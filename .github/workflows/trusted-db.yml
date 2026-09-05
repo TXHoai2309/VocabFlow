@@ -1,0 +1,125 @@
+name: Trusted DB Integration
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# test:db performs migration/reset/migration against the shared-ci target.
+# Serialize all runs so the shared Neon branch cannot be mutated concurrently.
+concurrency:
+  group: vocabflow-neon-test-migration
+  cancel-in-progress: false
+
+jobs:
+  trusted-db:
+    # This workflow intentionally has no pull_request trigger. Keep the guard
+    # as defense in depth so secrets can never reach fork/untrusted PR code.
+    if: ${{ github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      EXECUTION_CONTEXT: ci-test
+      VOCABFLOW_ENV: test
+      DATABASE_ENV: test
+      # Purpose-specific credentials. DATABASE_URL is deliberately not set:
+      # trusted CI must never fall back to a production connection.
+      BOOTSTRAP_DATABASE_URL: ${{ secrets.BOOTSTRAP_DATABASE_URL }}
+      NEON_TEST_IDENTITY_PROVISION_DATABASE_URL: ${{ secrets.NEON_TEST_IDENTITY_PROVISION_DATABASE_URL }}
+      NEON_TEST_MIGRATION_DATABASE_URL: ${{ secrets.NEON_TEST_MIGRATION_DATABASE_URL }}
+      NEON_TEST_RUNTIME_DATABASE_URL: ${{ secrets.NEON_TEST_RUNTIME_DATABASE_URL }}
+      NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Keep this version in lockstep with package.json#packageManager.
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.17.0
+          run_install: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.23.2
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # db:preflight validates markers, target policy and all configured role
+      # fingerprints, and performs Neon provider verification before mutation.
+      # It emits run_db=false for a missing test secret so that skip is not a
+      # failure, while every other non-PASS state fails closed below.
+      - name: DB preflight and provider verification
+        id: preflight
+        shell: bash
+        continue-on-error: true
+        run: |
+          set +e
+          pnpm db:preflight 2>&1 | tee "$RUNNER_TEMP/vocabflow-db-preflight.log"
+          command_status=${PIPESTATUS[0]}
+          status=$(grep -Eo 'TRUSTED_DB_STATUS=[A-Z0-9_]+' "$RUNNER_TEMP/vocabflow-db-preflight.log" | tail -n 1 | cut -d= -f2)
+          run_db=$(grep -E '^run_db=(true|false)$' "$GITHUB_OUTPUT" | tail -n 1 | cut -d= -f2)
+
+          if [[ -z "$status" ]]; then
+            if [[ "$command_status" -eq 0 && "$run_db" == "true" ]]; then
+              status=PASS
+            else
+              status=FAIL
+            fi
+          fi
+
+          if [[ "$status" == "PASS" ]]; then
+            run_db=true
+          else
+            run_db=false
+          fi
+
+          printf 'status=%s\n' "$status" >> "$GITHUB_OUTPUT"
+          printf 'run_db=%s\n' "$run_db" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Handle canonical preflight status
+        run: |
+          status='${{ steps.preflight.outputs.status }}'
+          run_db='${{ steps.preflight.outputs.run_db }}'
+          case "$status" in
+            PASS)
+              [[ "$run_db" == "true" ]] || { echo 'TRUSTED_DB_STATUS=FAIL'; exit 1; }
+              echo 'TRUSTED_DB_STATUS=PASS (preflight)'
+              ;;
+            SKIPPED_NO_TEST_DATABASE_SECRET)
+              echo 'TRUSTED_DB_STATUS=SKIPPED_NO_TEST_DATABASE_SECRET'
+              ;;
+            BLOCKED_PROVIDER_VERIFICATION|BLOCKED_ROLE_MODEL|FAIL)
+              echo "TRUSTED_DB_STATUS=$status"
+              exit 1
+              ;;
+            *)
+              echo 'TRUSTED_DB_STATUS=FAIL'
+              exit 1
+              ;;
+          esac
+
+      # db:bootstrap is idempotent for a valid protected v1 state and creates
+      # the canonical state only when the trusted target is fresh.
+      - name: Bootstrap protected metadata if fresh
+        if: ${{ steps.preflight.outputs.run_db == 'true' }}
+        run: pnpm db:bootstrap
+
+      - name: Provision canonical identity
+        if: ${{ steps.preflight.outputs.run_db == 'true' }}
+        run: pnpm db:identity-provision
+
+      # test:db is the sole owner of the approved migration/reset/migration
+      # acceptance sequence. Do not add separate migration or reset steps here.
+      - name: Run trusted DB acceptance
+        if: ${{ steps.preflight.outputs.run_db == 'true' }}
+        run: pnpm test:db
