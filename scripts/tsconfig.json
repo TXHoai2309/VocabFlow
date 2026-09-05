@@ -1,0 +1,17 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "types": ["node"]
+  },
+  "include": [
+    ".",
+    "../config",
+    "../e2e",
+    "../apps/web/vite.config.mts",
+    "../vite.config.mts",
+    "../vitest.config.mts",
+    "../vitest.setup.ts",
+    "../playwright.config.ts",
+    "../drizzle.config.ts"
+  ]
+}

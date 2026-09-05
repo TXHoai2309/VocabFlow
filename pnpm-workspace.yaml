@@ -1,0 +1,13 @@
+packages:
+  - apps/*
+  - packages/*
+allowBuilds:
+  esbuild: true
+  workerd: true
+minimumReleaseAgeExclude:
+  - '@cloudflare/workers-types@5.20260905.1'
+  - '@playwright/test@1.63.0'
+  - eslint@10.10.0
+  - hono@4.13.7
+  - playwright-core@1.63.0
+  - playwright@1.63.0
