@@ -33,12 +33,23 @@ async function main() {
 }
 
 main().catch((error: unknown) => {
-  const code = error instanceof Error ? error.message : "FAIL";
-  const status = code === "BLOCKED_PROVIDER_VERIFICATION" || code === "PROVIDER_UNAVAILABLE"
-    ? "BLOCKED_PROVIDER_VERIFICATION"
-    : code === "BLOCKED_ROLE_MODEL"
-      ? "BLOCKED_ROLE_MODEL"
-      : "FAIL";
-  console.log(`TRUSTED_DB_STATUS=${status}`);
+  const candidate = error as {
+    code?: string;
+    message?: string;
+  };
+
+  const rawMessage =
+    candidate?.message ??
+    "DB_BOOTSTRAP_FAILED";
+
+  const safeMessage = rawMessage
+    .replace(/postgres(?:ql)?:\/\/\S+/gi, "[REDACTED_DATABASE_URL]")
+    .replace(/napi_[A-Za-z0-9_-]+/g, "[REDACTED_NEON_API_KEY]");
+
+  console.error(
+    `DB_BOOTSTRAP_ERROR code=${candidate?.code ?? "UNKNOWN"} message=${safeMessage}`,
+  );
+
+  console.error("TRUSTED_DB_STATUS=FAIL");
   process.exitCode = 1;
 });
