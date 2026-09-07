@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import postgres from "postgres";
+import { readFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { dirname, join } from "node:path";
 import { assertMigrationPrivileges, assertNoApplicationDatabasePrivileges, assertNoResidualBootstrapMembership, assertNoResidualBootstrapOwnerMembership, assertProtectedPrivileges, assertProtectedShape, assertRoleModel, createLoginRole, protectedState, ROLE_NAMES, type BootstrapRoleCredentials, withTemporarySetMembership } from "./db-bootstrap";
@@ -35,6 +36,15 @@ function resultSql(result: unknown[], queries?: string[]) {
     return Promise.resolve(result);
   }) as unknown as Parameters<typeof assertNoApplicationDatabasePrivileges>[0] & { array(values: unknown[]): unknown };
   tag.array = ((values: unknown[]) => values) as typeof tag.array;
+  return tag;
+}
+
+function sequenceSql(results: unknown[][], queries?: string[]) {
+  let resultIndex = 0;
+  const tag = ((strings: TemplateStringsArray, ..._values: unknown[]) => {
+    queries?.push(strings.join("?"));
+    return Promise.resolve(results[resultIndex++] ?? []);
+  }) as unknown as Parameters<typeof assertMigrationPrivileges>[0];
   return tag;
 }
 
@@ -227,20 +237,98 @@ describe("bootstrap role creation", () => {
     }
   });
 
-  it("casts migration privilege inquiry parameters", async () => {
+  it("checks migration schema invariants with specific failure codes", async () => {
+    const validResults = [
+      [{ migration_role_exists: true, schema_exists: true, schema_owner: ROLE_NAMES.migration }],
+      [{ public_usage: true, public_create: true }],
+      [{ migration_schema_usage: true, migration_schema_create: true }]
+    ];
     const queries: string[] = [];
-    const sql = resultSql([{
-      schema_exists: true,
-      schema_owner: ROLE_NAMES.migration,
-      public_usage: true,
-      public_create: true,
-      migration_schema_usage: true,
-      migration_schema_create: true
-    }], queries);
-
-    await expect(assertMigrationPrivileges(sql, undefined as never)).resolves.toBeUndefined();
+    await expect(assertMigrationPrivileges(sequenceSql(validResults, queries), undefined as never)).resolves.toBeUndefined();
+    expect(queries).toHaveLength(3);
+    expect(queries[0]).toContain("rolname::text = ?::text");
     expect(queries[0]).toContain("to_regnamespace(?::text)");
-    expect(queries[0]).toContain("has_schema_privilege(?::text, ?::text, 'USAGE')");
+    expect(queries[1]).toContain("has_schema_privilege(?::text, 'public'::text, 'USAGE')");
+    expect(queries[2]).toContain("has_schema_privilege(?::text, ?::text, 'USAGE')");
+
+    const cases: Array<{ name: string; results: unknown[][]; code: string }> = [
+      {
+        name: "migration role missing",
+        results: [[{ migration_role_exists: false, schema_exists: true, schema_owner: ROLE_NAMES.migration }]],
+        code: "BLOCKED_ROLE_MODEL_MIGRATION_ROLE_MISSING"
+      },
+      {
+        name: "drizzle schema missing",
+        results: [[{ migration_role_exists: true, schema_exists: false, schema_owner: null }]],
+        code: "BLOCKED_ROLE_MODEL_DRIZZLE_SCHEMA_MISSING"
+      },
+      {
+        name: "drizzle schema owner is wrong",
+        results: [[{ migration_role_exists: true, schema_exists: true, schema_owner: ROLE_NAMES.owner }]],
+        code: "BLOCKED_ROLE_MODEL_DRIZZLE_SCHEMA_OWNER"
+      },
+      {
+        name: "public schema usage is missing",
+        results: [validResults[0] ?? [], [{ public_usage: false, public_create: true }]],
+        code: "BLOCKED_ROLE_MODEL_PUBLIC_SCHEMA_USAGE"
+      },
+      {
+        name: "public schema create is missing",
+        results: [validResults[0] ?? [], [{ public_usage: true, public_create: false }]],
+        code: "BLOCKED_ROLE_MODEL_PUBLIC_SCHEMA_CREATE"
+      },
+      {
+        name: "drizzle schema usage is missing",
+        results: [validResults[0] ?? [], validResults[1] ?? [], [{ migration_schema_usage: false, migration_schema_create: true }]],
+        code: "BLOCKED_ROLE_MODEL_DRIZZLE_SCHEMA_USAGE"
+      },
+      {
+        name: "drizzle schema create is missing",
+        results: [validResults[0] ?? [], validResults[1] ?? [], [{ migration_schema_usage: true, migration_schema_create: false }]],
+        code: "BLOCKED_ROLE_MODEL_DRIZZLE_SCHEMA_CREATE"
+      }
+    ];
+
+    for (const testCase of cases) {
+      await expect(assertMigrationPrivileges(sequenceSql(testCase.results), undefined as never), testCase.name).rejects.toThrow(testCase.code);
+    }
+  });
+
+  it("emits explicit parameter types for every migration privilege query", async () => {
+    const builtQueries: BuiltQuery[] = [];
+    const capture = capturePostgresSql([
+      [{ migration_role_exists: true, schema_exists: true, schema_owner: ROLE_NAMES.migration }],
+      [{ public_usage: true, public_create: true }],
+      [{ migration_schema_usage: true, migration_schema_create: true }]
+    ], builtQueries);
+
+    try {
+      await expect(assertMigrationPrivileges(capture.tag, undefined as never)).resolves.toBeUndefined();
+    } finally {
+      await capture.close();
+    }
+
+    expect(builtQueries).toHaveLength(3);
+    expect(builtQueries[0]?.text).toContain("rolname::text = $1::text");
+    expect(builtQueries[0]?.text).toContain("to_regnamespace($2::text)");
+    expect(builtQueries[0]?.text).toContain("n.nspname::text = $3::text");
+    expect(builtQueries[1]?.text).toContain("has_schema_privilege($1::text, 'public'::text, 'USAGE')");
+    expect(builtQueries[1]?.text).toContain("has_schema_privilege($2::text, 'public'::text, 'CREATE')");
+    expect(builtQueries[2]?.text).toContain("has_schema_privilege($1::text, $2::text, 'USAGE')");
+    expect(builtQueries[2]?.text).toContain("has_schema_privilege($3::text, $4::text, 'CREATE')");
+    for (const query of builtQueries) {
+      expect(query.text).not.toMatch(/'\$\d/);
+    }
+  });
+
+  it("runs public schema configuration before the fresh-target migration assertion", () => {
+    const source = readFileSync(join(process.cwd(), "scripts", "db-bootstrap.ts"), "utf8");
+    const freshPathStart = source.indexOf("if (!credentials) throw new Error(\"ROLE_CREDENTIALS_REQUIRED\")");
+    const configurePublicSchema = source.indexOf('markStage("configure-public-schema")', freshPathStart);
+    const migrationAssertion = source.indexOf('markStage("assert-migration-privileges")', freshPathStart);
+    expect(freshPathStart).toBeGreaterThanOrEqual(0);
+    expect(configurePublicSchema).toBeGreaterThan(freshPathStart);
+    expect(migrationAssertion).toBeGreaterThan(configurePublicSchema);
   });
 
   it("uses the pg_class alias for protected constraint table names", async () => {

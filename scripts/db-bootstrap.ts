@@ -453,37 +453,52 @@ export async function assertProtectedPrivileges(sql: ReturnType<typeof openSql>)
 }
 
 export async function assertMigrationPrivileges(sql: ReturnType<typeof openSql>, target: ConnectionTarget) {
-  const [row] = await sql<{
+  type MigrationSubstage = "migration-drizzle-schema" | "migration-public-schema" | "migration-drizzle-privileges";
+  const markSubstage = (substage: MigrationSubstage) => {
+    console.log(`DB_BOOTSTRAP_SUBSTAGE=${substage}`);
+  };
+
+  markSubstage("migration-drizzle-schema");
+  const [drizzleSchema] = await sql<{
+    migration_role_exists: boolean;
     schema_exists: boolean;
     schema_owner: string | null;
-    public_usage: boolean;
-    public_create: boolean;
-    migration_schema_usage: boolean;
-    migration_schema_create: boolean;
   }[]>`
     SELECT
+      EXISTS (SELECT 1 FROM pg_roles WHERE rolname::text = ${ROLE_NAMES.migration}::text) AS migration_role_exists,
       to_regnamespace(${MIGRATION_SCHEMA}::text) IS NOT NULL AS schema_exists,
       (SELECT r.rolname
        FROM pg_namespace n
        JOIN pg_roles r ON r.oid = n.nspowner
-       WHERE n.nspname::text = ${MIGRATION_SCHEMA}::text) AS schema_owner,
+       WHERE n.nspname::text = ${MIGRATION_SCHEMA}::text) AS schema_owner
+  `;
+  if (!drizzleSchema?.migration_role_exists) throw new Error("BLOCKED_ROLE_MODEL_MIGRATION_ROLE_MISSING");
+  if (!drizzleSchema.schema_exists) throw new Error("BLOCKED_ROLE_MODEL_DRIZZLE_SCHEMA_MISSING");
+  if (drizzleSchema.schema_owner !== ROLE_NAMES.migration) throw new Error("BLOCKED_ROLE_MODEL_DRIZZLE_SCHEMA_OWNER");
+
+  markSubstage("migration-public-schema");
+  const [publicSchema] = await sql<{
+    public_usage: boolean;
+    public_create: boolean;
+  }[]>`
+    SELECT
       has_schema_privilege(${ROLE_NAMES.migration}::text, 'public'::text, 'USAGE') AS public_usage,
-      has_schema_privilege(${ROLE_NAMES.migration}::text, 'public'::text, 'CREATE') AS public_create,
+      has_schema_privilege(${ROLE_NAMES.migration}::text, 'public'::text, 'CREATE') AS public_create
+  `;
+  if (!publicSchema?.public_usage) throw new Error("BLOCKED_ROLE_MODEL_PUBLIC_SCHEMA_USAGE");
+  if (!publicSchema.public_create) throw new Error("BLOCKED_ROLE_MODEL_PUBLIC_SCHEMA_CREATE");
+
+  markSubstage("migration-drizzle-privileges");
+  const [drizzlePrivileges] = await sql<{
+    migration_schema_usage: boolean;
+    migration_schema_create: boolean;
+  }[]>`
+    SELECT
       has_schema_privilege(${ROLE_NAMES.migration}::text, ${MIGRATION_SCHEMA}::text, 'USAGE') AS migration_schema_usage,
       has_schema_privilege(${ROLE_NAMES.migration}::text, ${MIGRATION_SCHEMA}::text, 'CREATE') AS migration_schema_create
   `;
-
-  if (
-    !row ||
-    !row.schema_exists ||
-    row.schema_owner !== ROLE_NAMES.migration ||
-    !row.public_usage ||
-    !row.public_create ||
-    !row.migration_schema_usage ||
-    !row.migration_schema_create
-  ) {
-    throw new Error("BLOCKED_ROLE_MODEL");
-  }
+  if (!drizzlePrivileges?.migration_schema_usage) throw new Error("BLOCKED_ROLE_MODEL_DRIZZLE_SCHEMA_USAGE");
+  if (!drizzlePrivileges.migration_schema_create) throw new Error("BLOCKED_ROLE_MODEL_DRIZZLE_SCHEMA_CREATE");
 
   void target;
 }
@@ -562,8 +577,6 @@ export async function bootstrapProtectedMetadata(
         await assertProtectedShape(tx as unknown as ReturnType<typeof openSql>);
         markStage("assert-protected-privileges");
         await assertProtectedPrivileges(tx as unknown as ReturnType<typeof openSql>);
-        markStage("assert-migration-privileges");
-        await assertMigrationPrivileges(tx as unknown as ReturnType<typeof openSql>, target);
         await tx`RESET ROLE`;
       });
 
@@ -571,6 +584,8 @@ export async function bootstrapProtectedMetadata(
       await tx`REVOKE CREATE ON SCHEMA public FROM PUBLIC`;
       await tx`GRANT USAGE, CREATE ON SCHEMA public TO ${tx.unsafe(ident(ROLE_NAMES.migration))}`;
       await tx`GRANT USAGE ON SCHEMA public TO ${tx.unsafe(ident(ROLE_NAMES.runtime))}`;
+      markStage("assert-migration-privileges");
+      await assertMigrationPrivileges(tx as unknown as ReturnType<typeof openSql>, target);
       markStage("assert-role-model");
       await assertRoleModel(tx as unknown as ReturnType<typeof openSql>);
     });
