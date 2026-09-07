@@ -16,10 +16,127 @@ import { provisionCanonicalIdentity } from "./db-identity-provision";
 
 const ROLLBACK_MARKER = "__VOCABFLOW_PERMISSION_ROLLBACK__";
 
+type TrustedDbStage =
+  | "validate-execution-context"
+  | "resolve-database-configuration"
+  | "verify-trusted-targets"
+  | "snapshot-protected-identity"
+  | "prepare-shared-ci-clean-state"
+  | "verify-clean-start-state"
+  | "migrate-first-pass"
+  | "verify-first-migration"
+  | "reset-application-state"
+  | "migrate-second-pass"
+  | "verify-second-migration"
+  | "verify-concurrent-identity"
+  | "verify-permission-matrix";
+
+type TrustedDbSubstage =
+  | "target-migration"
+  | "target-identity-provision"
+  | "target-runtime"
+  | "identity-validate-target"
+  | "identity-read-snapshot"
+  | "initial-reset-validate-before"
+  | "initial-reset-application"
+  | "initial-reset-validate-after"
+  | "initial-reset-migration-zero"
+  | "initial-reset-application-absent"
+  | "initial-reset-identity-preserved"
+  | "clean-start-validate-target"
+  | "clean-start-migration-zero"
+  | "clean-start-application-absent"
+  | "first-migration-validate-target"
+  | "first-migration-application-present"
+  | "first-migration-tracking-present"
+  | "reset-cycle-validate-before"
+  | "reset-cycle-application"
+  | "reset-cycle-validate-after"
+  | "reset-cycle-migration-zero"
+  | "reset-cycle-application-absent"
+  | "reset-cycle-identity-preserved"
+  | "second-migration-validate-target"
+  | "second-migration-application-present"
+  | "second-migration-tracking-present"
+  | "concurrency-provision-pair"
+  | "concurrency-validate-target"
+  | "concurrency-identity-preserved"
+  | "permission-identity-provision"
+  | "permission-migration"
+  | "permission-runtime"
+  | `permission-${"identity-provision" | "migration" | "runtime"}-${"protected-identity" | "protected-write-policy" | "protected-denials" | "application-ddl" | "application-dml"}`;
+
+function markStage(stage: TrustedDbStage) {
+  console.log(`TRUSTED_DB_STAGE=${stage}`);
+}
+
+function markSubstage(substage: TrustedDbSubstage) {
+  console.log(`TRUSTED_DB_SUBSTAGE=${substage}`);
+}
+
+const SECRET_ENV_KEYS = [
+  "BOOTSTRAP_DATABASE_URL",
+  "DATABASE_URL",
+  "DATABASE_MIGRATION_URL",
+  "DATABASE_IDENTITY_PROVISION_URL",
+  "NEON_TEST_DATABASE_URL",
+  "NEON_TEST_IDENTITY_PROVISION_DATABASE_URL",
+  "NEON_TEST_MIGRATION_DATABASE_URL",
+  "NEON_TEST_RUNTIME_DATABASE_URL",
+  "NEON_API_KEY",
+] as const;
+
+function redactDiagnosticMessage(message: string, environment: NodeJS.ProcessEnv) {
+  let safe = message.replace(/[\r\n]+/g, " ");
+  for (const key of SECRET_ENV_KEYS) {
+    const secret = environment[key];
+    if (secret) safe = safe.replaceAll(secret, "[REDACTED]");
+  }
+  return safe
+    .replace(/postgres(?:ql)?:\/\/\S+/gi, "[REDACTED_DATABASE_URL]")
+    .replace(/napi_[A-Za-z0-9_-]+/g, "[REDACTED_NEON_API_KEY]")
+    .replace(/\b(password|api[_-]?key|token)=\S+/gi, "$1=[REDACTED]")
+    .slice(0, 1000);
+}
+
+export function formatTrustedDbError(
+  error: unknown,
+  environment: NodeJS.ProcessEnv = process.env,
+) {
+  const candidate = error && typeof error === "object"
+    ? error as { code?: unknown; message?: unknown }
+    : {};
+  const rawMessage = typeof candidate.message === "string"
+    ? candidate.message
+    : error instanceof Error ? error.message : "UNKNOWN";
+  const nativeCode = typeof candidate.code === "string" && /^[A-Z0-9]{5}$/.test(candidate.code)
+    ? candidate.code
+    : undefined;
+  const applicationCode = /^[A-Z][A-Z0-9_]{2,127}$/.test(rawMessage)
+    ? rawMessage
+    : undefined;
+  return {
+    code: nativeCode ?? applicationCode ?? "UNEXPECTED_ERROR",
+    message: redactDiagnosticMessage(rawMessage, environment),
+  };
+}
+
+export function reportTrustedDbFailure(
+  error: unknown,
+  log: (message: string) => void = console.error,
+  environment: NodeJS.ProcessEnv = process.env,
+) {
+  const diagnostic = formatTrustedDbError(error, environment);
+  log(`TRUSTED_DB_ERROR code=${diagnostic.code} message=${diagnostic.message}`);
+  log("TRUSTED_DB_STATUS=FAIL");
+}
+
 async function main() {
+  markStage("validate-execution-context");
   const { context, environment } = readContext();
   if (context !== "ci-test") throw new Error("TRUSTED_DB_TEST_REQUIRES_CI_CONTEXT");
 
+  markStage("resolve-database-configuration");
   const migrationUrl = configuredDatabaseUrl(context, "integration-test");
   if (!migrationUrl) {
     console.log("TRUSTED_DB_STATUS=SKIPPED_NO_TEST_DATABASE_SECRET");
@@ -42,54 +159,83 @@ async function main() {
   const migrationTarget = getConnectionTarget("test", "integration-test");
   const identityTarget = getConnectionTarget("test", "identity-provision");
   const runtimeTarget = getConnectionTarget("test", "runtime");
+  markStage("verify-trusted-targets");
+  markSubstage("target-migration");
   await assertResolvedTargetBeforeMutation({ context, source: "github-actions", environment, purpose: "integration-test", operation: "integration-test", target: migrationTarget, connectionString: migrationUrl });
+  markSubstage("target-identity-provision");
   await assertResolvedTargetBeforeMutation({ context, source: "github-actions", environment, purpose: "identity-provision", operation: "integration-test", target: identityTarget, connectionString: identityUrl });
+  markSubstage("target-runtime");
   await assertResolvedTargetBeforeMutation({ context, source: "github-actions", environment, purpose: "runtime", operation: "integration-test", target: runtimeTarget, connectionString: runtimeUrl });
 
+  markStage("snapshot-protected-identity");
   const beforeIdentity = await getIdentitySnapshotAfterValidation(migrationUrl, migrationTarget);
   // A shared CI branch is intentionally reusable. The first approved reset
   // returns it to the clean migration start state without touching metadata.
   if (migrationTarget.usage === "shared-ci") {
+    markStage("prepare-shared-ci-clean-state");
     const reset = openSql(migrationUrl);
     try {
+      markSubstage("initial-reset-validate-before");
       await assertPostConnectIdentity(reset, migrationTarget);
+      markSubstage("initial-reset-application");
       await resetApplicationScope(reset);
+      markSubstage("initial-reset-validate-after");
       await assertPostConnectIdentity(reset, migrationTarget);
+      markSubstage("initial-reset-migration-zero");
       await assertMigrationStateZero(reset);
+      markSubstage("initial-reset-application-absent");
       await assertApplicationTablesAbsent(reset);
+      markSubstage("initial-reset-identity-preserved");
       await assertIdentitySnapshot(reset, beforeIdentity);
     } finally {
       await reset.end({ timeout: 5 });
     }
   } else {
+    markStage("verify-clean-start-state");
     const clean = openSql(migrationUrl);
     try {
+      markSubstage("clean-start-validate-target");
       await assertPostConnectIdentity(clean, migrationTarget);
+      markSubstage("clean-start-migration-zero");
       await assertMigrationStateZero(clean);
+      markSubstage("clean-start-application-absent");
       await assertApplicationTablesAbsent(clean);
     } finally {
       await clean.end({ timeout: 5 });
     }
   }
 
+  markStage("migrate-first-pass");
   await runMigrations(migrationUrl, migrationTarget);
-  await assertMigratedState(migrationUrl, migrationTarget);
+  markStage("verify-first-migration");
+  await assertMigratedState(migrationUrl, migrationTarget, "first-migration");
 
+  markStage("reset-application-state");
   const reset = openSql(migrationUrl);
   try {
+    markSubstage("reset-cycle-validate-before");
     await assertPostConnectIdentity(reset, migrationTarget);
+    markSubstage("reset-cycle-application");
     await resetApplicationScope(reset);
+    markSubstage("reset-cycle-validate-after");
     await assertPostConnectIdentity(reset, migrationTarget);
+    markSubstage("reset-cycle-migration-zero");
     await assertMigrationStateZero(reset);
+    markSubstage("reset-cycle-application-absent");
     await assertApplicationTablesAbsent(reset);
+    markSubstage("reset-cycle-identity-preserved");
     await assertIdentitySnapshot(reset, beforeIdentity);
   } finally {
     await reset.end({ timeout: 5 });
   }
 
+  markStage("migrate-second-pass");
   await runMigrations(migrationUrl, migrationTarget);
-  await assertMigratedState(migrationUrl, migrationTarget);
+  markStage("verify-second-migration");
+  await assertMigratedState(migrationUrl, migrationTarget, "second-migration");
+  markStage("verify-concurrent-identity");
   await runConcurrentIdentityCheck(identityUrl, identityTarget, beforeIdentity);
+  markStage("verify-permission-matrix");
   await runPermissionMatrix({ identityUrl, migrationUrl, runtimeUrl, identityTarget, migrationTarget, runtimeTarget });
   console.log("TRUSTED_DB_STATUS=PASS");
 }
@@ -97,18 +243,27 @@ async function main() {
 async function getIdentitySnapshotAfterValidation(url: string, target: DatabaseTarget) {
   const sql = openSql(url);
   try {
+    markSubstage("identity-validate-target");
     await assertPostConnectIdentity(sql, target);
+    markSubstage("identity-read-snapshot");
     return await getIdentitySnapshot(sql);
   } finally {
     await sql.end({ timeout: 5 });
   }
 }
 
-async function assertMigratedState(url: string, target: DatabaseTarget) {
+async function assertMigratedState(
+  url: string,
+  target: DatabaseTarget,
+  pass: "first-migration" | "second-migration",
+) {
   const sql = openSql(url);
   try {
+    markSubstage(`${pass}-validate-target`);
     await assertPostConnectIdentity(sql, target);
+    markSubstage(`${pass}-application-present`);
     await assertApplicationTablesPresent(sql);
+    markSubstage(`${pass}-tracking-present`);
     if ((await readMigrationState(sql)) < 1) throw new Error("MIGRATION_STATE_NOT_LATEST");
   } finally {
     await sql.end({ timeout: 5 });
@@ -124,11 +279,14 @@ async function runConcurrentIdentityCheck(url: string, target: ConnectionTarget,
       await sql.end({ timeout: 5 });
     }
   };
+  markSubstage("concurrency-provision-pair");
   const [first, second] = await Promise.all([provision(), provision()]);
   if (JSON.stringify(first) !== JSON.stringify(second)) throw new Error("CONCURRENT_IDENTITY_INVALID");
   const verify = openSql(url);
   try {
+    markSubstage("concurrency-validate-target");
     await assertPostConnectIdentity(verify, target);
+    markSubstage("concurrency-identity-preserved");
     const actual = await getIdentitySnapshot(verify);
     if (JSON.stringify(actual) !== JSON.stringify(expected)) throw new Error("CONCURRENT_IDENTITY_INVALID");
   } finally {
@@ -146,23 +304,29 @@ type PermissionMatrixInput = {
 };
 
 async function runPermissionMatrix(input: PermissionMatrixInput) {
+  markSubstage("permission-identity-provision");
   await checkRole(input.identityUrl, input.identityTarget, "identity-provision");
+  markSubstage("permission-migration");
   await checkRole(input.migrationUrl, input.migrationTarget, "migration");
+  markSubstage("permission-runtime");
   await checkRole(input.runtimeUrl, input.runtimeTarget, "runtime");
 }
 
 async function checkRole(url: string, target: ConnectionTarget, role: "identity-provision" | "migration" | "runtime") {
   const sql = openSql(url);
   try {
+    markSubstage(`permission-${role}-protected-identity`);
     await assertPostConnectIdentity(sql, target);
     const identity = await sql`SELECT id FROM vocabflow_meta.environment_identity WHERE id = 1`;
     if (identity.length !== 1) throw new Error("PERMISSION_MATRIX_FAILED");
 
+    markSubstage(`permission-${role}-protected-write-policy`);
     if (role === "identity-provision") {
       await expectAllowed(sql, async (tx) => tx`INSERT INTO vocabflow_meta.environment_identity (id, environment, provider, project_id, branch_id, identity_version) VALUES (1, 'test', 'neon', ${target.projectId}, ${target.branchId}, 1) ON CONFLICT (id) DO NOTHING`);
     } else {
       await expectDenied(sql, async (tx) => tx`INSERT INTO vocabflow_meta.environment_identity (id, environment, provider, project_id, branch_id, identity_version) VALUES (1, 'test', 'neon', ${target.projectId}, ${target.branchId}, 1)`);
     }
+    markSubstage(`permission-${role}-protected-denials`);
     for (const operation of [
       (tx: ReturnType<typeof openSql>) => tx`UPDATE vocabflow_meta.environment_identity SET project_id = project_id WHERE id = 1`,
       (tx: ReturnType<typeof openSql>) => tx`DELETE FROM vocabflow_meta.environment_identity WHERE id = 1`,
@@ -175,6 +339,7 @@ async function checkRole(url: string, target: ConnectionTarget, role: "identity-
       await expectDenied(sql, operation);
     }
 
+    markSubstage(`permission-${role}-application-ddl`);
     const createApplicationTable = (tx: ReturnType<typeof openSql>) => tx`CREATE TABLE vocabflow_app.__vocabflow_permission_probe (id integer)`;
     if (role === "migration") {
       await expectAllowed(sql, createApplicationTable);
@@ -182,6 +347,7 @@ async function checkRole(url: string, target: ConnectionTarget, role: "identity-
       await expectDenied(sql, createApplicationTable);
     }
 
+    markSubstage(`permission-${role}-application-dml`);
     if (role === "runtime") {
       await expectAllowed(sql, async (tx) => {
         const probeId = "__vocabflow_runtime_permission_probe__";
@@ -207,7 +373,7 @@ async function expectAllowed(sql: ReturnType<typeof openSql>, operation: (tx: Re
     });
   } catch (error) {
     if (error instanceof Error && error.message === ROLLBACK_MARKER) return;
-    throw new Error("PERMISSION_MATRIX_FAILED");
+    throw error;
   }
 }
 
@@ -221,15 +387,14 @@ async function expectDenied(sql: ReturnType<typeof openSql>, operation: (tx: Ret
     if (error instanceof Error && error.message === ROLLBACK_MARKER) throw new Error("PERMISSION_MATRIX_FAILED");
     const candidate = error as { code?: string; message?: string };
     if (candidate.code === "42501" || /permission denied|must be owner|cannot set role/i.test(candidate.message ?? "")) return;
-    throw new Error("BLOCKED_ROLE_MODEL");
+    throw error;
   }
 }
 
-main().catch((error: unknown) => {
-  const code = error instanceof Error ? error.message : "FAIL";
-  const status = code === "BLOCKED_ROLE_MODEL" || code === "BLOCKED_PROVIDER_VERIFICATION" || code === "SKIPPED_NO_TEST_DATABASE_SECRET" || code === "PROVIDER_UNAVAILABLE"
-    ? code === "PROVIDER_UNAVAILABLE" ? "BLOCKED_PROVIDER_VERIFICATION" : code
-    : "FAIL";
-  console.error(`TRUSTED_DB_STATUS=${status}`);
-  process.exitCode = 1;
-});
+const invokedScript = process.argv[1]?.replaceAll("\\", "/") ?? "";
+if (invokedScript.endsWith("/test-db.ts") || invokedScript.endsWith("/test-db.js")) {
+  main().catch((error: unknown) => {
+    reportTrustedDbFailure(error);
+    process.exitCode = 1;
+  });
+}
