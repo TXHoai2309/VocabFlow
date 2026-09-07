@@ -58,6 +58,8 @@ type SqlTag = {
   (strings: TemplateStringsArray, ...values: unknown[]): Promise<unknown>;
 };
 
+type TemporarySetRole = typeof ROLE_NAMES.migration | typeof ROLE_NAMES.owner;
+
 const ROLE_NAME_SETTING = "vocabflow.bootstrap_role_name";
 const ROLE_PASSWORD_SETTING = "vocabflow.bootstrap_role_password";
 
@@ -100,7 +102,7 @@ export async function createLoginRole(tx: SqlTag, roleName: string, password: st
  */
 export async function withTemporarySetMembership(
   tx: SqlTag,
-  roleName: string,
+  roleName: TemporarySetRole,
   operation: () => Promise<void>,
 ) {
   await tx`GRANT ${tx.unsafe(ident(roleName))} TO ${tx.unsafe(ident(ROLE_NAMES.bootstrap))} WITH INHERIT FALSE, SET TRUE`;
@@ -114,6 +116,13 @@ export async function withTemporarySetMembership(
     // that state would mask the original error with 25P02.
     if (operationSucceeded) {
       await tx`REVOKE ${tx.unsafe(ident(roleName))} FROM ${tx.unsafe(ident(ROLE_NAMES.bootstrap))}`;
+      await assertNoResidualMembership(
+        tx as unknown as ReturnType<typeof openSql>,
+        roleName,
+        roleName === ROLE_NAMES.owner
+          ? "BLOCKED_ROLE_MODEL_BOOTSTRAP_TO_OWNER_MEMBERSHIP"
+          : "BLOCKED_ROLE_MODEL_BOOTSTRAP_TO_MIGRATION_MEMBERSHIP",
+      );
     }
   }
 }
@@ -252,17 +261,7 @@ export async function assertRoleModel(sql: ReturnType<typeof openSql>) {
   markStage("assert-application-database-privileges");
   await assertNoApplicationDatabasePrivileges(sql);
   markStage("assert-memberships");
-  const memberships = await sql<{ count: string }[]>`
-    SELECT count(*)::text AS count
-    FROM pg_auth_members membership
-    JOIN pg_roles member ON member.oid = membership.member
-    JOIN pg_roles granted ON granted.oid = membership.roleid
-    WHERE granted.rolname::text = ${ROLE_NAMES.owner}::text
-      AND member.rolname::text = ANY(${sql.array([ROLE_NAMES.provision, ROLE_NAMES.migration, ROLE_NAMES.runtime])}::text[])
-  `;
-  if (memberships[0]?.count !== "0") throw new Error("BLOCKED_ROLE_MODEL");
-  await assertNoResidualBootstrapMembership(sql);
-  await assertNoResidualBootstrapOwnerMembership(sql);
+  await assertMemberships(sql);
 }
 
 export async function assertNoApplicationDatabasePrivileges(sql: ReturnType<typeof openSql>) {
@@ -292,23 +291,99 @@ export async function assertNoApplicationDatabasePrivileges(sql: ReturnType<type
 }
 
 export async function assertNoResidualBootstrapMembership(sql: ReturnType<typeof openSql>) {
-  await assertNoResidualMembership(sql, ROLE_NAMES.migration);
+  await assertNoResidualMembership(
+    sql,
+    ROLE_NAMES.migration,
+    "BLOCKED_ROLE_MODEL_BOOTSTRAP_TO_MIGRATION_MEMBERSHIP",
+  );
 }
 
 export async function assertNoResidualBootstrapOwnerMembership(sql: ReturnType<typeof openSql>) {
-  await assertNoResidualMembership(sql, ROLE_NAMES.owner);
+  await assertNoResidualMembership(
+    sql,
+    ROLE_NAMES.owner,
+    "BLOCKED_ROLE_MODEL_BOOTSTRAP_TO_OWNER_MEMBERSHIP",
+  );
 }
 
-async function assertNoResidualMembership(sql: ReturnType<typeof openSql>, grantedRole: string) {
-  const [membership] = await sql<{ count: string }[]>`
-    SELECT count(*)::text AS count
-    FROM pg_auth_members membership
-    JOIN pg_roles member ON member.oid = membership.member
-    JOIN pg_roles granted ON granted.oid = membership.roleid
-    WHERE granted.rolname::text = ${grantedRole}::text
-      AND member.rolname::text = ${ROLE_NAMES.bootstrap}::text
+async function assertNoResidualMembership(
+  sql: ReturnType<typeof openSql>,
+  grantedRole: TemporarySetRole,
+  failureCode: string,
+) {
+  const [membership] = await sql<{ forbidden: boolean }[]>`
+    SELECT EXISTS (
+      SELECT 1
+      FROM pg_auth_members membership
+      JOIN pg_roles member ON member.oid = membership.member
+      JOIN pg_roles granted ON granted.oid = membership.roleid
+      WHERE granted.rolname::text = ${grantedRole}::text
+        AND member.rolname::text = ${ROLE_NAMES.bootstrap}::text
+    ) AS forbidden
   `;
-  if (membership?.count !== "0") throw new Error("BLOCKED_ROLE_MODEL");
+  if (membership?.forbidden !== false) throw new Error(failureCode);
+}
+
+export async function assertMemberships(sql: ReturnType<typeof openSql>) {
+  type MembershipSubstage =
+    | "membership-bootstrap-owner"
+    | "membership-bootstrap-migration"
+    | "membership-app-owner"
+    | "membership-cross-app";
+  const markSubstage = (substage: MembershipSubstage) => {
+    console.log(`DB_BOOTSTRAP_SUBSTAGE=${substage}`);
+  };
+
+  markSubstage("membership-bootstrap-owner");
+  await assertNoResidualBootstrapOwnerMembership(sql);
+
+  markSubstage("membership-bootstrap-migration");
+  await assertNoResidualBootstrapMembership(sql);
+
+  markSubstage("membership-app-owner");
+  const [applicationOwnerMembership] = await sql<{ forbidden: boolean }[]>`
+    SELECT EXISTS (
+      SELECT 1
+      FROM pg_auth_members membership
+      JOIN pg_roles member ON member.oid = membership.member
+      JOIN pg_roles granted ON granted.oid = membership.roleid
+      WHERE granted.rolname::text = ${ROLE_NAMES.owner}::text
+        AND member.rolname::text = ANY(${sql.array([ROLE_NAMES.provision, ROLE_NAMES.migration, ROLE_NAMES.runtime])}::text[])
+    ) AS forbidden
+  `;
+  if (applicationOwnerMembership?.forbidden !== false) {
+    throw new Error("BLOCKED_ROLE_MODEL_APP_TO_OWNER_MEMBERSHIP");
+  }
+
+  markSubstage("membership-cross-app");
+  const [crossApplicationMembership] = await sql<{
+    provision_to_migration: boolean;
+    runtime_to_migration: boolean;
+  }[]>`
+    SELECT
+      EXISTS (
+        SELECT 1
+        FROM pg_auth_members membership
+        JOIN pg_roles member ON member.oid = membership.member
+        JOIN pg_roles granted ON granted.oid = membership.roleid
+        WHERE granted.rolname::text = ${ROLE_NAMES.migration}::text
+          AND member.rolname::text = ${ROLE_NAMES.provision}::text
+      ) AS provision_to_migration,
+      EXISTS (
+        SELECT 1
+        FROM pg_auth_members membership
+        JOIN pg_roles member ON member.oid = membership.member
+        JOIN pg_roles granted ON granted.oid = membership.roleid
+        WHERE granted.rolname::text = ${ROLE_NAMES.migration}::text
+          AND member.rolname::text = ${ROLE_NAMES.runtime}::text
+      ) AS runtime_to_migration
+  `;
+  if (crossApplicationMembership?.provision_to_migration !== false) {
+    throw new Error("BLOCKED_ROLE_MODEL_PROVISION_TO_MIGRATION_MEMBERSHIP");
+  }
+  if (crossApplicationMembership.runtime_to_migration !== false) {
+    throw new Error("BLOCKED_ROLE_MODEL_RUNTIME_TO_MIGRATION_MEMBERSHIP");
+  }
 }
 
 export async function assertProtectedPrivileges(sql: ReturnType<typeof openSql>) {

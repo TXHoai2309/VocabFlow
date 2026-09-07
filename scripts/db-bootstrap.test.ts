@@ -3,7 +3,7 @@ import postgres from "postgres";
 import { readFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { dirname, join } from "node:path";
-import { APP_SCHEMA, assertMigrationPrivileges, assertNoApplicationDatabasePrivileges, assertNoResidualBootstrapMembership, assertNoResidualBootstrapOwnerMembership, assertProtectedPrivileges, assertProtectedShape, assertRoleModel, createLoginRole, MIGRATION_SCHEMA, protectedState, ROLE_NAMES, type BootstrapRoleCredentials, withTemporarySetMembership } from "./db-bootstrap";
+import { APP_SCHEMA, assertMemberships, assertMigrationPrivileges, assertNoApplicationDatabasePrivileges, assertNoResidualBootstrapMembership, assertNoResidualBootstrapOwnerMembership, assertProtectedPrivileges, assertProtectedShape, assertRoleModel, createLoginRole, MIGRATION_SCHEMA, protectedState, ROLE_NAMES, type BootstrapRoleCredentials, withTemporarySetMembership } from "./db-bootstrap";
 
 type CapturedQuery = { strings: string[]; values: unknown[] };
 type BuiltQuery = { text: string; parameters: unknown[]; types: number[] };
@@ -56,8 +56,8 @@ function sequenceSql(results: unknown[][], queries?: string[]) {
 function fakeSql(queries: CapturedQuery[]) {
   const tag = ((strings: TemplateStringsArray, ...values: unknown[]) => {
     queries.push({ strings: [...strings], values });
-    return Promise.resolve();
-  }) as ((strings: TemplateStringsArray, ...values: unknown[]) => Promise<void>) & { unsafe(value: string): string };
+    return Promise.resolve(strings.join("?").includes("pg_auth_members") ? [{ forbidden: false }] : undefined);
+  }) as ((strings: TemplateStringsArray, ...values: unknown[]) => Promise<unknown>) & { unsafe(value: string): string };
   tag.unsafe = (value: string) => value;
   return tag;
 }
@@ -116,9 +116,10 @@ describe("bootstrap role creation", () => {
 
     await withTemporarySetMembership(sql, ROLE_NAMES.migration, async () => undefined);
 
-    expect(queries).toHaveLength(2);
+    expect(queries).toHaveLength(3);
     expect(queries[0]?.strings.join("?")).toContain("WITH INHERIT FALSE, SET TRUE");
     expect(queries[1]?.strings.join("?")).toContain("REVOKE");
+    expect(queries[2]?.strings.join("?")).toContain("pg_auth_members");
     expect(unsafeQueries).toEqual([
       `"${ROLE_NAMES.migration}"`,
       `"${ROLE_NAMES.bootstrap}"`,
@@ -143,17 +144,70 @@ describe("bootstrap role creation", () => {
       await sql`RESET ROLE`;
     });
 
-    expect(queries).toHaveLength(6);
+    expect(queries).toHaveLength(7);
     expect(queries[0]?.strings.join("?")).toContain("GRANT");
     expect(queries[1]?.strings.join("?")).toContain("CREATE SCHEMA");
     expect(queries[2]?.strings.join("?")).toContain("SET LOCAL ROLE");
     expect(queries[3]?.strings.join("?")).toContain("CREATE TABLE");
     expect(queries[4]?.strings.join("?")).toContain("RESET ROLE");
     expect(queries[5]?.strings.join("?")).toContain("REVOKE");
+    expect(queries[6]?.strings.join("?")).toContain("pg_auth_members");
     expect(unsafeQueries[0]).toBe(`"${ROLE_NAMES.owner}"`);
     expect(unsafeQueries[1]).toBe(`"${ROLE_NAMES.bootstrap}"`);
     expect(unsafeQueries.at(-2)).toBe(`"${ROLE_NAMES.owner}"`);
     expect(unsafeQueries.at(-1)).toBe(`"${ROLE_NAMES.bootstrap}"`);
+  });
+
+  it("leaves all fresh-bootstrap temporary memberships clean", async () => {
+    const memberships = new Set<string>();
+    const statements: string[] = [];
+    const sql = ((strings: TemplateStringsArray, ...values: unknown[]) => {
+      const statement = strings.join("?");
+      statements.push(statement);
+      if (statement.startsWith("GRANT ")) memberships.add(String(values[0]));
+      if (statement.startsWith("REVOKE ")) memberships.delete(String(values[0]));
+      if (statement.includes("pg_auth_members")) {
+        return Promise.resolve([{ forbidden: memberships.has(`"${String(values[0])}"`) }]);
+      }
+      return Promise.resolve(undefined);
+    }) as unknown as Parameters<typeof withTemporarySetMembership>[0];
+    sql.unsafe = (value: string) => value;
+
+    const runOwnershipSequence = async (role: typeof ROLE_NAMES.migration | typeof ROLE_NAMES.owner) => {
+      await withTemporarySetMembership(sql, role, async () => {
+        await sql`SET LOCAL ROLE ${sql.unsafe(`"${role}"`)}`;
+        await sql`RESET ROLE`;
+      });
+    };
+
+    await runOwnershipSequence(ROLE_NAMES.migration);
+    await runOwnershipSequence(ROLE_NAMES.migration);
+    await runOwnershipSequence(ROLE_NAMES.owner);
+
+    expect(memberships.size).toBe(0);
+    expect(statements.filter((statement) => statement.startsWith("GRANT "))).toHaveLength(3);
+    expect(statements.filter((statement) => statement.startsWith("REVOKE "))).toHaveLength(3);
+    for (let index = 0; index < statements.length; index += 1) {
+      if (!statements[index]?.startsWith("REVOKE ")) continue;
+      expect(statements[index - 1]).toContain("RESET ROLE");
+    }
+  });
+
+  it("fails immediately if a successful ownership sequence leaves membership behind", async () => {
+    const statements: string[] = [];
+    const sql = ((strings: TemplateStringsArray, ..._values: unknown[]) => {
+      const statement = strings.join("?");
+      statements.push(statement);
+      if (statement.includes("pg_auth_members")) return Promise.resolve([{ forbidden: true }]);
+      return Promise.resolve(undefined);
+    }) as unknown as Parameters<typeof withTemporarySetMembership>[0];
+    sql.unsafe = (value: string) => value;
+
+    await expect(withTemporarySetMembership(sql, ROLE_NAMES.migration, async () => undefined))
+      .rejects.toThrow("BLOCKED_ROLE_MODEL_BOOTSTRAP_TO_MIGRATION_MEMBERSHIP");
+    expect(statements[0]).toContain("GRANT");
+    expect(statements[1]).toContain("REVOKE");
+    expect(statements[2]).toContain("pg_auth_members");
   });
 
   it("rejects permanent application database ownership or CREATE privilege", async () => {
@@ -385,22 +439,32 @@ describe("bootstrap role creation", () => {
     expect(builtQueries.map((query) => query.text).join("\n")).not.toContain("'public'");
   });
 
-  it("creates the application schema through temporary migration membership", () => {
+  it("wraps every fresh schema ownership sequence in temporary membership", () => {
     const source = readFileSync(join(process.cwd(), "scripts", "db-bootstrap.ts"), "utf8");
     const freshPathStart = source.indexOf("if (!credentials) throw new Error(\"ROLE_CREDENTIALS_REQUIRED\")");
     const migrationSchemaStage = source.indexOf('markStage("create-migration-schema")', freshPathStart);
     const applicationSchemaStage = source.indexOf('markStage("create-application-schema")', migrationSchemaStage);
     const protectedSchemaStage = source.indexOf('markStage("create-protected-schema")', applicationSchemaStage);
-    const applicationBlock = source.slice(applicationSchemaStage, protectedSchemaStage);
+    const protectedMembershipStart = source.lastIndexOf("await withTemporarySetMembership", protectedSchemaStage);
+    const finalAssertionStage = source.indexOf('markStage("assert-migration-privileges")', protectedSchemaStage);
+    const migrationBlock = source.slice(migrationSchemaStage, applicationSchemaStage);
+    const applicationBlock = source.slice(applicationSchemaStage, protectedMembershipStart);
+    const protectedBlock = source.slice(protectedMembershipStart, finalAssertionStage);
+    const freshPath = source.slice(freshPathStart, finalAssertionStage);
     expect(APP_SCHEMA).toBe("vocabflow_app");
     expect(applicationSchemaStage).toBeGreaterThan(migrationSchemaStage);
     expect(protectedSchemaStage).toBeGreaterThan(applicationSchemaStage);
+    expect(freshPath.match(/withTemporarySetMembership\(/g)).toHaveLength(3);
+    expect(migrationBlock).toContain("withTemporarySetMembership(tx as unknown as SqlTag, ROLE_NAMES.migration");
+    expect(migrationBlock.indexOf("RESET ROLE")).toBeGreaterThan(migrationBlock.indexOf("SET LOCAL ROLE"));
     expect(applicationBlock).toContain("withTemporarySetMembership(tx as unknown as SqlTag, ROLE_NAMES.migration");
     expect(applicationBlock).toContain("CREATE SCHEMA");
     expect(applicationBlock).toContain("AUTHORIZATION");
     expect(applicationBlock).toContain("GRANT USAGE, CREATE ON SCHEMA");
     expect(applicationBlock).toContain("GRANT USAGE ON SCHEMA");
-    expect(applicationBlock).toContain("RESET ROLE");
+    expect(applicationBlock.indexOf("RESET ROLE")).toBeGreaterThan(applicationBlock.indexOf("SET LOCAL ROLE"));
+    expect(protectedBlock).toContain("withTemporarySetMembership(tx as unknown as SqlTag, ROLE_NAMES.owner");
+    expect(protectedBlock.indexOf("RESET ROLE")).toBeGreaterThan(protectedBlock.indexOf("SET LOCAL ROLE"));
     expect(source).not.toContain('markStage("configure-public-schema")');
     expect(source).not.toContain("ON SCHEMA public");
   });
@@ -462,9 +526,10 @@ describe("bootstrap role creation", () => {
     const results = [
       roles,
       [{ application_database_owner: false, owner_create: false, provision_create: false, migration_create: false, runtime_create: false }],
-      [{ count: "0" }],
-      [{ count: "0" }],
-      [{ count: "0" }]
+      [{ forbidden: false }],
+      [{ forbidden: false }],
+      [{ forbidden: false }],
+      [{ provision_to_migration: false, runtime_to_migration: false }]
     ];
     let call = 0;
     const sql = ((strings: TemplateStringsArray, ..._values: unknown[]) => {
@@ -476,30 +541,72 @@ describe("bootstrap role creation", () => {
     await expect(assertRoleModel(sql)).resolves.toBeUndefined();
     expect(queries[0]).toContain("rolname::text = ANY(?::text[])");
     expect(queries[2]).toContain("granted.rolname::text = ?::text");
-    expect(queries[2]).toContain("member.rolname::text = ANY(?::text[])");
     expect(queries[3]).toContain("granted.rolname::text = ?::text");
-    expect(queries[4]).toContain("member.rolname::text = ?::text");
+    expect(queries[4]).toContain("member.rolname::text = ANY(?::text[])");
+    expect(queries[5]).toContain("AS provision_to_migration");
   });
 
   it("fails if a bootstrap-to-migration membership remains", async () => {
     const queries: string[] = [];
     const sql = ((strings: TemplateStringsArray, ..._values: unknown[]) => {
       queries.push(strings.join("?"));
-      return Promise.resolve([{ count: "0" }]);
+      return Promise.resolve([{ forbidden: false }]);
     }) as unknown as Parameters<typeof assertNoResidualBootstrapMembership>[0];
     await expect(assertNoResidualBootstrapMembership(sql)).resolves.toBeUndefined();
     expect(queries[0]).toContain("granted.rolname::text = ?::text");
 
-    const residual = ((_strings: TemplateStringsArray, ..._values: unknown[]) => Promise.resolve([{ count: "1" }])) as unknown as Parameters<typeof assertNoResidualBootstrapMembership>[0];
-    await expect(assertNoResidualBootstrapMembership(residual)).rejects.toThrow("BLOCKED_ROLE_MODEL");
+    const residual = ((_strings: TemplateStringsArray, ..._values: unknown[]) => Promise.resolve([{ forbidden: true }])) as unknown as Parameters<typeof assertNoResidualBootstrapMembership>[0];
+    await expect(assertNoResidualBootstrapMembership(residual)).rejects.toThrow("BLOCKED_ROLE_MODEL_BOOTSTRAP_TO_MIGRATION_MEMBERSHIP");
   });
 
   it("fails if a bootstrap-to-owner membership remains", async () => {
-    const sql = ((_strings: TemplateStringsArray, ..._values: unknown[]) => Promise.resolve([{ count: "0" }])) as unknown as Parameters<typeof assertNoResidualBootstrapOwnerMembership>[0];
+    const sql = ((_strings: TemplateStringsArray, ..._values: unknown[]) => Promise.resolve([{ forbidden: false }])) as unknown as Parameters<typeof assertNoResidualBootstrapOwnerMembership>[0];
     await expect(assertNoResidualBootstrapOwnerMembership(sql)).resolves.toBeUndefined();
 
-    const residual = ((_strings: TemplateStringsArray, ..._values: unknown[]) => Promise.resolve([{ count: "1" }])) as unknown as Parameters<typeof assertNoResidualBootstrapOwnerMembership>[0];
-    await expect(assertNoResidualBootstrapOwnerMembership(residual)).rejects.toThrow("BLOCKED_ROLE_MODEL");
+    const residual = ((_strings: TemplateStringsArray, ..._values: unknown[]) => Promise.resolve([{ forbidden: true }])) as unknown as Parameters<typeof assertNoResidualBootstrapOwnerMembership>[0];
+    await expect(assertNoResidualBootstrapOwnerMembership(residual)).rejects.toThrow("BLOCKED_ROLE_MODEL_BOOTSTRAP_TO_OWNER_MEMBERSHIP");
+  });
+
+  it("returns a specific failure for every forbidden membership relation", async () => {
+    const success = [
+      [{ forbidden: false }],
+      [{ forbidden: false }],
+      [{ forbidden: false }],
+      [{ provision_to_migration: false, runtime_to_migration: false }]
+    ];
+    await expect(assertMemberships(sequenceSql(success))).resolves.toBeUndefined();
+
+    const cases: Array<{ name: string; results: unknown[][]; code: string }> = [
+      {
+        name: "bootstrap to owner",
+        results: [[{ forbidden: true }]],
+        code: "BLOCKED_ROLE_MODEL_BOOTSTRAP_TO_OWNER_MEMBERSHIP"
+      },
+      {
+        name: "bootstrap to migration",
+        results: [[{ forbidden: false }], [{ forbidden: true }]],
+        code: "BLOCKED_ROLE_MODEL_BOOTSTRAP_TO_MIGRATION_MEMBERSHIP"
+      },
+      {
+        name: "application role to owner",
+        results: [[{ forbidden: false }], [{ forbidden: false }], [{ forbidden: true }]],
+        code: "BLOCKED_ROLE_MODEL_APP_TO_OWNER_MEMBERSHIP"
+      },
+      {
+        name: "provision to migration",
+        results: [[{ forbidden: false }], [{ forbidden: false }], [{ forbidden: false }], [{ provision_to_migration: true, runtime_to_migration: false }]],
+        code: "BLOCKED_ROLE_MODEL_PROVISION_TO_MIGRATION_MEMBERSHIP"
+      },
+      {
+        name: "runtime to migration",
+        results: [[{ forbidden: false }], [{ forbidden: false }], [{ forbidden: false }], [{ provision_to_migration: false, runtime_to_migration: true }]],
+        code: "BLOCKED_ROLE_MODEL_RUNTIME_TO_MIGRATION_MEMBERSHIP"
+      }
+    ];
+
+    for (const testCase of cases) {
+      await expect(assertMemberships(sequenceSql(testCase.results)), testCase.name).rejects.toThrow(testCase.code);
+    }
   });
 
   it("preserves the original ownership error on rollback without masking it", async () => {
