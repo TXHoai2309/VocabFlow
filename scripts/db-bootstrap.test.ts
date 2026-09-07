@@ -3,8 +3,11 @@ import { assertNoApplicationDatabasePrivileges, assertNoResidualBootstrapMembers
 
 type CapturedQuery = { strings: string[]; values: unknown[] };
 
-function resultSql(result: unknown[]) {
-  const tag = ((_strings: TemplateStringsArray, ..._values: unknown[]) => Promise.resolve(result)) as unknown as Parameters<typeof assertNoApplicationDatabasePrivileges>[0] & { array(values: unknown[]): unknown };
+function resultSql(result: unknown[], queries?: string[]) {
+  const tag = ((_strings: TemplateStringsArray, ..._values: unknown[]) => {
+    queries?.push(_strings.join("?"));
+    return Promise.resolve(result);
+  }) as unknown as Parameters<typeof assertNoApplicationDatabasePrivileges>[0] & { array(values: unknown[]): unknown };
   tag.array = ((values: unknown[]) => values) as typeof tag.array;
   return tag;
 }
@@ -112,14 +115,17 @@ describe("bootstrap role creation", () => {
   });
 
   it("rejects permanent application database ownership or CREATE privilege", async () => {
+    const queries: string[] = [];
     const valid = resultSql([{
       application_database_owner: false,
       owner_create: false,
       provision_create: false,
       migration_create: false,
       runtime_create: false
-    }]);
+    }], queries);
     await expect(assertNoApplicationDatabasePrivileges(valid)).resolves.toBeUndefined();
+    expect(queries[0]).toContain("has_database_privilege(?::text, current_database()::text, 'CREATE')");
+    expect(queries[0]).not.toContain("has_database_privilege(?, current_database()");
 
     const violation = resultSql([{
       application_database_owner: false,

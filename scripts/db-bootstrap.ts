@@ -259,10 +259,10 @@ export async function assertNoApplicationDatabasePrivileges(sql: ReturnType<type
         WHERE db.datname = current_database()
           AND role_owner.rolname = ANY(${sql.array([ROLE_NAMES.owner, ROLE_NAMES.provision, ROLE_NAMES.migration, ROLE_NAMES.runtime])})
       ) AS application_database_owner,
-      has_database_privilege(${ROLE_NAMES.owner}, current_database(), 'CREATE') AS owner_create,
-      has_database_privilege(${ROLE_NAMES.provision}, current_database(), 'CREATE') AS provision_create,
-      has_database_privilege(${ROLE_NAMES.migration}, current_database(), 'CREATE') AS migration_create,
-      has_database_privilege(${ROLE_NAMES.runtime}, current_database(), 'CREATE') AS runtime_create
+      has_database_privilege(${ROLE_NAMES.owner}::text, current_database()::text, 'CREATE') AS owner_create,
+      has_database_privilege(${ROLE_NAMES.provision}::text, current_database()::text, 'CREATE') AS provision_create,
+      has_database_privilege(${ROLE_NAMES.migration}::text, current_database()::text, 'CREATE') AS migration_create,
+      has_database_privilege(${ROLE_NAMES.runtime}::text, current_database()::text, 'CREATE') AS runtime_create
   `;
   if (database?.application_database_owner || database?.owner_create || database?.provision_create || database?.migration_create || database?.runtime_create) {
     throw new Error("BLOCKED_ROLE_MODEL");
@@ -297,29 +297,29 @@ async function assertProtectedPrivileges(sql: ReturnType<typeof openSql>) {
     provision_set_owner: boolean; migration_set_owner: boolean; runtime_set_owner: boolean;
   }[]>`
     SELECT
-      has_table_privilege(${ROLE_NAMES.provision}, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}', 'SELECT') AS provision_select,
-      has_table_privilege(${ROLE_NAMES.provision}, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}', 'INSERT') AS provision_insert,
-      has_table_privilege(${ROLE_NAMES.provision}, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}', 'UPDATE') AS provision_update,
-      has_table_privilege(${ROLE_NAMES.provision}, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}', 'DELETE') AS provision_delete,
-      has_table_privilege(${ROLE_NAMES.provision}, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}', 'TRUNCATE') AS provision_truncate,
-      has_schema_privilege(${ROLE_NAMES.provision}, '${PROTECTED_SCHEMA}', 'CREATE') AS provision_schema_create,
-      has_table_privilege(${ROLE_NAMES.migration}, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}', 'SELECT') AS migration_select,
-      has_table_privilege(${ROLE_NAMES.migration}, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}', 'INSERT') AS migration_insert,
-      has_table_privilege(${ROLE_NAMES.migration}, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}', 'UPDATE') AS migration_update,
-      has_table_privilege(${ROLE_NAMES.migration}, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}', 'DELETE') AS migration_delete,
-      has_table_privilege(${ROLE_NAMES.migration}, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}', 'TRUNCATE') AS migration_truncate,
-      has_schema_privilege(${ROLE_NAMES.migration}, '${PROTECTED_SCHEMA}', 'CREATE') AS migration_schema_create,
-      has_table_privilege(${ROLE_NAMES.runtime}, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}', 'SELECT') AS runtime_select,
-      has_table_privilege(${ROLE_NAMES.runtime}, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}', 'INSERT') AS runtime_insert,
-      has_table_privilege(${ROLE_NAMES.runtime}, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}', 'UPDATE') AS runtime_update,
-      has_table_privilege(${ROLE_NAMES.runtime}, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}', 'DELETE') AS runtime_delete,
-      has_table_privilege(${ROLE_NAMES.runtime}, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}', 'TRUNCATE') AS runtime_truncate,
-      has_schema_privilege(${ROLE_NAMES.runtime}, '${PROTECTED_SCHEMA}', 'CREATE') AS runtime_schema_create,
+      has_table_privilege(${ROLE_NAMES.provision}::text, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}'::text, 'SELECT') AS provision_select,
+      has_table_privilege(${ROLE_NAMES.provision}::text, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}'::text, 'INSERT') AS provision_insert,
+      has_table_privilege(${ROLE_NAMES.provision}::text, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}'::text, 'UPDATE') AS provision_update,
+      has_table_privilege(${ROLE_NAMES.provision}::text, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}'::text, 'DELETE') AS provision_delete,
+      has_table_privilege(${ROLE_NAMES.provision}::text, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}'::text, 'TRUNCATE') AS provision_truncate,
+      has_schema_privilege(${ROLE_NAMES.provision}::text, '${PROTECTED_SCHEMA}'::text, 'CREATE') AS provision_schema_create,
+      has_table_privilege(${ROLE_NAMES.migration}::text, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}'::text, 'SELECT') AS migration_select,
+      has_table_privilege(${ROLE_NAMES.migration}::text, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}'::text, 'INSERT') AS migration_insert,
+      has_table_privilege(${ROLE_NAMES.migration}::text, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}'::text, 'UPDATE') AS migration_update,
+      has_table_privilege(${ROLE_NAMES.migration}::text, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}'::text, 'DELETE') AS migration_delete,
+      has_table_privilege(${ROLE_NAMES.migration}::text, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}'::text, 'TRUNCATE') AS migration_truncate,
+      has_schema_privilege(${ROLE_NAMES.migration}::text, '${PROTECTED_SCHEMA}'::text, 'CREATE') AS migration_schema_create,
+      has_table_privilege(${ROLE_NAMES.runtime}::text, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}'::text, 'SELECT') AS runtime_select,
+      has_table_privilege(${ROLE_NAMES.runtime}::text, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}'::text, 'INSERT') AS runtime_insert,
+      has_table_privilege(${ROLE_NAMES.runtime}::text, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}'::text, 'UPDATE') AS runtime_update,
+      has_table_privilege(${ROLE_NAMES.runtime}::text, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}'::text, 'DELETE') AS runtime_delete,
+      has_table_privilege(${ROLE_NAMES.runtime}::text, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}'::text, 'TRUNCATE') AS runtime_truncate,
+      has_schema_privilege(${ROLE_NAMES.runtime}::text, '${PROTECTED_SCHEMA}'::text, 'CREATE') AS runtime_schema_create,
       -- SET is the privilege that controls SET ROLE; checking USAGE here
       -- would not prove that application roles are isolated from the owner.
-      pg_has_role(${ROLE_NAMES.provision}, ${ROLE_NAMES.owner}, 'SET') AS provision_set_owner,
-      pg_has_role(${ROLE_NAMES.migration}, ${ROLE_NAMES.owner}, 'SET') AS migration_set_owner,
-      pg_has_role(${ROLE_NAMES.runtime}, ${ROLE_NAMES.owner}, 'SET') AS runtime_set_owner
+      pg_has_role(${ROLE_NAMES.provision}::text, ${ROLE_NAMES.owner}::text, 'SET') AS provision_set_owner,
+      pg_has_role(${ROLE_NAMES.migration}::text, ${ROLE_NAMES.owner}::text, 'SET') AS migration_set_owner,
+      pg_has_role(${ROLE_NAMES.runtime}::text, ${ROLE_NAMES.owner}::text, 'SET') AS runtime_set_owner
   `;
   if (!row || !row.provision_select || !row.provision_insert || row.provision_update || row.provision_delete || row.provision_truncate || row.provision_schema_create
     || !row.migration_select || row.migration_insert || row.migration_update || row.migration_delete || row.migration_truncate || row.migration_schema_create
@@ -344,10 +344,10 @@ async function assertMigrationPrivileges(sql: ReturnType<typeof openSql>, target
        FROM pg_namespace n
        JOIN pg_roles r ON r.oid = n.nspowner
        WHERE n.nspname = ${MIGRATION_SCHEMA}) AS schema_owner,
-      has_schema_privilege(${ROLE_NAMES.migration}, 'public', 'USAGE') AS public_usage,
-      has_schema_privilege(${ROLE_NAMES.migration}, 'public', 'CREATE') AS public_create,
-      has_schema_privilege(${ROLE_NAMES.migration}, ${MIGRATION_SCHEMA}, 'USAGE') AS migration_schema_usage,
-      has_schema_privilege(${ROLE_NAMES.migration}, ${MIGRATION_SCHEMA}, 'CREATE') AS migration_schema_create
+      has_schema_privilege(${ROLE_NAMES.migration}::text, 'public'::text, 'USAGE') AS public_usage,
+      has_schema_privilege(${ROLE_NAMES.migration}::text, 'public'::text, 'CREATE') AS public_create,
+      has_schema_privilege(${ROLE_NAMES.migration}::text, ${MIGRATION_SCHEMA}::text, 'USAGE') AS migration_schema_usage,
+      has_schema_privilege(${ROLE_NAMES.migration}::text, ${MIGRATION_SCHEMA}::text, 'CREATE') AS migration_schema_create
   `;
 
   if (
