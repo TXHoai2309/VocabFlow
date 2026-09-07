@@ -312,41 +312,142 @@ async function assertNoResidualMembership(sql: ReturnType<typeof openSql>, grant
 }
 
 export async function assertProtectedPrivileges(sql: ReturnType<typeof openSql>) {
-  const [row] = await sql<{
-    provision_select: boolean; provision_insert: boolean; provision_update: boolean; provision_delete: boolean; provision_truncate: boolean; provision_schema_create: boolean;
-    migration_select: boolean; migration_insert: boolean; migration_update: boolean; migration_delete: boolean; migration_truncate: boolean; migration_schema_create: boolean;
-    runtime_select: boolean; runtime_insert: boolean; runtime_update: boolean; runtime_delete: boolean; runtime_truncate: boolean; runtime_schema_create: boolean;
-    provision_set_owner: boolean; migration_set_owner: boolean; runtime_set_owner: boolean;
+  type ProtectedPrivilegeSubstage =
+    | "protected-resolve-oids"
+    | "protected-provision-table"
+    | "protected-provision-schema"
+    | "protected-migration-table"
+    | "protected-migration-schema"
+    | "protected-runtime-table"
+    | "protected-runtime-schema"
+    | "protected-owner-membership";
+  const markSubstage = (substage: ProtectedPrivilegeSubstage) => {
+    console.log(`DB_BOOTSTRAP_SUBSTAGE=${substage}`);
+  };
+
+  const protectedIdentityRelation = `${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}`;
+
+  markSubstage("protected-resolve-oids");
+  const [oids] = await sql<{
+    owner_oid: number | null;
+    provision_oid: number | null;
+    migration_oid: number | null;
+    runtime_oid: number | null;
+    table_oid: number | null;
+    schema_oid: number | null;
   }[]>`
     SELECT
-      has_table_privilege(${ROLE_NAMES.provision}::text, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}'::text, 'SELECT') AS provision_select,
-      has_table_privilege(${ROLE_NAMES.provision}::text, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}'::text, 'INSERT') AS provision_insert,
-      has_table_privilege(${ROLE_NAMES.provision}::text, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}'::text, 'UPDATE') AS provision_update,
-      has_table_privilege(${ROLE_NAMES.provision}::text, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}'::text, 'DELETE') AS provision_delete,
-      has_table_privilege(${ROLE_NAMES.provision}::text, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}'::text, 'TRUNCATE') AS provision_truncate,
-      has_schema_privilege(${ROLE_NAMES.provision}::text, '${PROTECTED_SCHEMA}'::text, 'CREATE') AS provision_schema_create,
-      has_table_privilege(${ROLE_NAMES.migration}::text, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}'::text, 'SELECT') AS migration_select,
-      has_table_privilege(${ROLE_NAMES.migration}::text, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}'::text, 'INSERT') AS migration_insert,
-      has_table_privilege(${ROLE_NAMES.migration}::text, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}'::text, 'UPDATE') AS migration_update,
-      has_table_privilege(${ROLE_NAMES.migration}::text, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}'::text, 'DELETE') AS migration_delete,
-      has_table_privilege(${ROLE_NAMES.migration}::text, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}'::text, 'TRUNCATE') AS migration_truncate,
-      has_schema_privilege(${ROLE_NAMES.migration}::text, '${PROTECTED_SCHEMA}'::text, 'CREATE') AS migration_schema_create,
-      has_table_privilege(${ROLE_NAMES.runtime}::text, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}'::text, 'SELECT') AS runtime_select,
-      has_table_privilege(${ROLE_NAMES.runtime}::text, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}'::text, 'INSERT') AS runtime_insert,
-      has_table_privilege(${ROLE_NAMES.runtime}::text, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}'::text, 'UPDATE') AS runtime_update,
-      has_table_privilege(${ROLE_NAMES.runtime}::text, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}'::text, 'DELETE') AS runtime_delete,
-      has_table_privilege(${ROLE_NAMES.runtime}::text, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}'::text, 'TRUNCATE') AS runtime_truncate,
-      has_schema_privilege(${ROLE_NAMES.runtime}::text, '${PROTECTED_SCHEMA}'::text, 'CREATE') AS runtime_schema_create,
+      (SELECT oid::oid FROM pg_roles WHERE rolname::text = ${ROLE_NAMES.owner}::text) AS owner_oid,
+      (SELECT oid::oid FROM pg_roles WHERE rolname::text = ${ROLE_NAMES.provision}::text) AS provision_oid,
+      (SELECT oid::oid FROM pg_roles WHERE rolname::text = ${ROLE_NAMES.migration}::text) AS migration_oid,
+      (SELECT oid::oid FROM pg_roles WHERE rolname::text = ${ROLE_NAMES.runtime}::text) AS runtime_oid,
+      to_regclass(${protectedIdentityRelation}::text)::oid AS table_oid,
+      to_regnamespace(${PROTECTED_SCHEMA}::text)::oid AS schema_oid
+  `;
+  if (!oids || oids.owner_oid === null || oids.provision_oid === null || oids.migration_oid === null || oids.runtime_oid === null || oids.table_oid === null || oids.schema_oid === null) {
+    throw new Error("BLOCKED_ROLE_MODEL");
+  }
+
+  markSubstage("protected-provision-table");
+  const [provisionTable] = await sql<{
+    provision_select: boolean;
+    provision_insert: boolean;
+    provision_update: boolean;
+    provision_delete: boolean;
+    provision_truncate: boolean;
+  }[]>`
+    SELECT
+      has_table_privilege(${oids.provision_oid}::oid, ${oids.table_oid}::oid, 'SELECT'::text) AS provision_select,
+      has_table_privilege(${oids.provision_oid}::oid, ${oids.table_oid}::oid, 'INSERT'::text) AS provision_insert,
+      has_table_privilege(${oids.provision_oid}::oid, ${oids.table_oid}::oid, 'UPDATE'::text) AS provision_update,
+      has_table_privilege(${oids.provision_oid}::oid, ${oids.table_oid}::oid, 'DELETE'::text) AS provision_delete,
+      has_table_privilege(${oids.provision_oid}::oid, ${oids.table_oid}::oid, 'TRUNCATE'::text) AS provision_truncate
+  `;
+
+  markSubstage("protected-provision-schema");
+  const [provisionSchema] = await sql<{ provision_schema_create: boolean }[]>`
+    SELECT has_schema_privilege(${oids.provision_oid}::oid, ${oids.schema_oid}::oid, 'CREATE'::text) AS provision_schema_create
+  `;
+
+  markSubstage("protected-migration-table");
+  const [migrationTable] = await sql<{
+    migration_select: boolean;
+    migration_insert: boolean;
+    migration_update: boolean;
+    migration_delete: boolean;
+    migration_truncate: boolean;
+  }[]>`
+    SELECT
+      has_table_privilege(${oids.migration_oid}::oid, ${oids.table_oid}::oid, 'SELECT'::text) AS migration_select,
+      has_table_privilege(${oids.migration_oid}::oid, ${oids.table_oid}::oid, 'INSERT'::text) AS migration_insert,
+      has_table_privilege(${oids.migration_oid}::oid, ${oids.table_oid}::oid, 'UPDATE'::text) AS migration_update,
+      has_table_privilege(${oids.migration_oid}::oid, ${oids.table_oid}::oid, 'DELETE'::text) AS migration_delete,
+      has_table_privilege(${oids.migration_oid}::oid, ${oids.table_oid}::oid, 'TRUNCATE'::text) AS migration_truncate
+  `;
+
+  markSubstage("protected-migration-schema");
+  const [migrationSchema] = await sql<{ migration_schema_create: boolean }[]>`
+    SELECT has_schema_privilege(${oids.migration_oid}::oid, ${oids.schema_oid}::oid, 'CREATE'::text) AS migration_schema_create
+  `;
+
+  markSubstage("protected-runtime-table");
+  const [runtimeTable] = await sql<{
+    runtime_select: boolean;
+    runtime_insert: boolean;
+    runtime_update: boolean;
+    runtime_delete: boolean;
+    runtime_truncate: boolean;
+  }[]>`
+    SELECT
+      has_table_privilege(${oids.runtime_oid}::oid, ${oids.table_oid}::oid, 'SELECT'::text) AS runtime_select,
+      has_table_privilege(${oids.runtime_oid}::oid, ${oids.table_oid}::oid, 'INSERT'::text) AS runtime_insert,
+      has_table_privilege(${oids.runtime_oid}::oid, ${oids.table_oid}::oid, 'UPDATE'::text) AS runtime_update,
+      has_table_privilege(${oids.runtime_oid}::oid, ${oids.table_oid}::oid, 'DELETE'::text) AS runtime_delete,
+      has_table_privilege(${oids.runtime_oid}::oid, ${oids.table_oid}::oid, 'TRUNCATE'::text) AS runtime_truncate
+  `;
+
+  markSubstage("protected-runtime-schema");
+  const [runtimeSchema] = await sql<{ runtime_schema_create: boolean }[]>`
+    SELECT has_schema_privilege(${oids.runtime_oid}::oid, ${oids.schema_oid}::oid, 'CREATE'::text) AS runtime_schema_create
+  `;
+
+  markSubstage("protected-owner-membership");
+  const [ownerMembership] = await sql<{
+    provision_set_owner: boolean;
+    migration_set_owner: boolean;
+    runtime_set_owner: boolean;
+  }[]>`
+    SELECT
       -- SET is the privilege that controls SET ROLE; checking USAGE here
       -- would not prove that application roles are isolated from the owner.
-      pg_has_role(${ROLE_NAMES.provision}::text, ${ROLE_NAMES.owner}::text, 'SET') AS provision_set_owner,
-      pg_has_role(${ROLE_NAMES.migration}::text, ${ROLE_NAMES.owner}::text, 'SET') AS migration_set_owner,
-      pg_has_role(${ROLE_NAMES.runtime}::text, ${ROLE_NAMES.owner}::text, 'SET') AS runtime_set_owner
+      pg_has_role(${oids.provision_oid}::oid, ${oids.owner_oid}::oid, 'SET'::text) AS provision_set_owner,
+      pg_has_role(${oids.migration_oid}::oid, ${oids.owner_oid}::oid, 'SET'::text) AS migration_set_owner,
+      pg_has_role(${oids.runtime_oid}::oid, ${oids.owner_oid}::oid, 'SET'::text) AS runtime_set_owner
   `;
-  if (!row || !row.provision_select || !row.provision_insert || row.provision_update || row.provision_delete || row.provision_truncate || row.provision_schema_create
-    || !row.migration_select || row.migration_insert || row.migration_update || row.migration_delete || row.migration_truncate || row.migration_schema_create
-    || !row.runtime_select || row.runtime_insert || row.runtime_update || row.runtime_delete || row.runtime_truncate || row.runtime_schema_create
-    || row.provision_set_owner || row.migration_set_owner || row.runtime_set_owner) {
+
+  if (
+    provisionTable?.provision_select !== true
+    || provisionTable.provision_insert !== true
+    || provisionTable.provision_update !== false
+    || provisionTable.provision_delete !== false
+    || provisionTable.provision_truncate !== false
+    || provisionSchema?.provision_schema_create !== false
+    || migrationTable?.migration_select !== true
+    || migrationTable.migration_insert !== false
+    || migrationTable.migration_update !== false
+    || migrationTable.migration_delete !== false
+    || migrationTable.migration_truncate !== false
+    || migrationSchema?.migration_schema_create !== false
+    || runtimeTable?.runtime_select !== true
+    || runtimeTable.runtime_insert !== false
+    || runtimeTable.runtime_update !== false
+    || runtimeTable.runtime_delete !== false
+    || runtimeTable.runtime_truncate !== false
+    || runtimeSchema?.runtime_schema_create !== false
+    || ownerMembership?.provision_set_owner !== false
+    || ownerMembership.migration_set_owner !== false
+    || ownerMembership.runtime_set_owner !== false
+  ) {
     throw new Error("BLOCKED_ROLE_MODEL");
   }
 }

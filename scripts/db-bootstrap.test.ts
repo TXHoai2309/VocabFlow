@@ -1,7 +1,33 @@
 import { describe, expect, it } from "vitest";
+import postgres from "postgres";
+import { createRequire } from "node:module";
+import { dirname, join } from "node:path";
 import { assertMigrationPrivileges, assertNoApplicationDatabasePrivileges, assertNoResidualBootstrapMembership, assertNoResidualBootstrapOwnerMembership, assertProtectedPrivileges, assertProtectedShape, assertRoleModel, createLoginRole, protectedState, ROLE_NAMES, type BootstrapRoleCredentials, withTemporarySetMembership } from "./db-bootstrap";
 
 type CapturedQuery = { strings: string[]; values: unknown[] };
+type BuiltQuery = { text: string; parameters: unknown[]; types: number[] };
+
+const testRequire = createRequire(import.meta.url);
+const postgresTypes = testRequire(join(dirname(testRequire.resolve("postgres")), "types.js")) as {
+  stringify(query: unknown, text: string, value: unknown, parameters: unknown[], types: number[], options: unknown): string;
+};
+
+function capturePostgresSql(results: unknown[][], builtQueries: BuiltQuery[]) {
+  const realSql = postgres("postgres://test:test@127.0.0.1:1/test", { max: 1 });
+  const realTag = realSql as unknown as (strings: TemplateStringsArray, ...values: unknown[]) => unknown;
+  let resultIndex = 0;
+  const tag = ((strings: TemplateStringsArray, ...values: unknown[]) => {
+    const query = realTag(strings, ...values) as { strings: string[]; args: unknown[] };
+    const parameters: unknown[] = [];
+    const types: number[] = [];
+    const text = postgresTypes.stringify(query, query.strings[0] ?? "", query.args[0], parameters, types, realSql.options);
+    builtQueries.push({ text, parameters, types });
+    return Promise.resolve(results[resultIndex++] ?? []);
+  }) as unknown as Parameters<typeof assertProtectedPrivileges>[0] & { array: typeof realSql.array; unsafe: typeof realSql.unsafe };
+  tag.array = realSql.array;
+  tag.unsafe = realSql.unsafe;
+  return { tag, close: () => realSql.end({ timeout: 1 }) };
+}
 
 function resultSql(result: unknown[], queries?: string[]) {
   const tag = ((_strings: TemplateStringsArray, ..._values: unknown[]) => {
@@ -161,36 +187,44 @@ describe("bootstrap role creation", () => {
     expect(queries[2]).toContain("nspname::text = ?::text");
   });
 
-  it("casts all protected privilege inquiry parameters", async () => {
-    const queries: string[] = [];
-    const sql = resultSql([{
-      provision_select: true,
-      provision_insert: true,
-      provision_update: false,
-      provision_delete: false,
-      provision_truncate: false,
-      provision_schema_create: false,
-      migration_select: true,
-      migration_insert: false,
-      migration_update: false,
-      migration_delete: false,
-      migration_truncate: false,
-      migration_schema_create: false,
-      runtime_select: true,
-      runtime_insert: false,
-      runtime_update: false,
-      runtime_delete: false,
-      runtime_truncate: false,
-      runtime_schema_create: false,
-      provision_set_owner: false,
-      migration_set_owner: false,
-      runtime_set_owner: false
-    }], queries);
+  it("builds typed OID privilege queries without quoted relation binds", async () => {
+    const builtQueries: BuiltQuery[] = [];
+    const capture = capturePostgresSql([
+      [{ owner_oid: 11, provision_oid: 12, migration_oid: 13, runtime_oid: 14, table_oid: 15, schema_oid: 16 }],
+      [{ provision_select: true, provision_insert: true, provision_update: false, provision_delete: false, provision_truncate: false }],
+      [{ provision_schema_create: false }],
+      [{ migration_select: true, migration_insert: false, migration_update: false, migration_delete: false, migration_truncate: false }],
+      [{ migration_schema_create: false }],
+      [{ runtime_select: true, runtime_insert: false, runtime_update: false, runtime_delete: false, runtime_truncate: false }],
+      [{ runtime_schema_create: false }],
+      [{ provision_set_owner: false, migration_set_owner: false, runtime_set_owner: false }]
+    ], builtQueries);
 
-    await expect(assertProtectedPrivileges(sql)).resolves.toBeUndefined();
-    expect(queries[0]).toContain("has_table_privilege(?::text, '?.?'::text, 'SELECT')");
-    expect(queries[0]).toContain("has_schema_privilege(?::text, '?'::text, 'CREATE')");
-    expect(queries[0]).toContain("pg_has_role(?::text, ?::text, 'SET')");
+    try {
+      await expect(assertProtectedPrivileges(capture.tag)).resolves.toBeUndefined();
+    } finally {
+      await capture.close();
+    }
+
+    expect(builtQueries).toHaveLength(8);
+    for (let parameter = 1; parameter <= 6; parameter += 1) {
+      expect(builtQueries[0]?.text).toContain(`$${parameter}::text`);
+    }
+    expect(builtQueries[0]?.text).toContain("to_regclass($5::text)::oid");
+    expect(builtQueries[0]?.text).toContain("to_regnamespace($6::text)::oid");
+    expect(builtQueries[0]?.parameters[4]).toBe("vocabflow_meta.environment_identity");
+    expect(builtQueries[0]?.text).not.toMatch(/'\$\d/);
+
+    expect(builtQueries[1]?.text).toContain("has_table_privilege($1::oid, $2::oid, 'SELECT'::text)");
+    expect(builtQueries[2]?.text).toContain("has_schema_privilege($1::oid, $2::oid, 'CREATE'::text)");
+    expect(builtQueries[3]?.text).toContain("has_table_privilege($1::oid, $2::oid, 'SELECT'::text)");
+    expect(builtQueries[4]?.text).toContain("has_schema_privilege($1::oid, $2::oid, 'CREATE'::text)");
+    expect(builtQueries[5]?.text).toContain("has_table_privilege($1::oid, $2::oid, 'SELECT'::text)");
+    expect(builtQueries[6]?.text).toContain("has_schema_privilege($1::oid, $2::oid, 'CREATE'::text)");
+    expect(builtQueries[7]?.text).toContain("pg_has_role($1::oid, $2::oid, 'SET'::text)");
+    for (const query of builtQueries.slice(1)) {
+      expect(query.text).not.toMatch(/'\$\d/);
+    }
   });
 
   it("casts migration privilege inquiry parameters", async () => {
