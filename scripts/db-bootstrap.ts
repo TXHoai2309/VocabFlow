@@ -21,6 +21,26 @@ export const MIGRATION_SCHEMA = "drizzle";
 
 const LOCK_KEY = 89421731;
 
+type BootstrapStage =
+  | "acquire-advisory-lock"
+  | "load-existing-state"
+  | "create-roles"
+  | "create-migration-schema"
+  | "create-protected-schema"
+  | "create-protected-tables"
+  | "grant-protected-privileges"
+  | "configure-public-schema"
+  | "assert-role-model"
+  | "assert-protected-shape"
+  | "assert-protected-privileges"
+  | "assert-migration-privileges"
+  | "assert-application-database-privileges"
+  | "assert-memberships";
+
+function markStage(stage: BootstrapStage) {
+  console.log(`DB_BOOTSTRAP_STAGE=${stage}`);
+}
+
 function ident(value: string) {
   if (!/^[a-z_][a-z0-9_]*$/.test(value)) throw new Error("INVALID_ROLE_IDENTIFIER");
   return `"${value}"`;
@@ -66,7 +86,7 @@ $vocabflow_role$`;
 export async function createLoginRole(tx: SqlTag, roleName: string, password: string) {
   ident(roleName);
   if (!password) throw new Error("ROLE_CREDENTIALS_REQUIRED");
-  await tx`SELECT set_config(${ROLE_NAME_SETTING}, ${roleName}, true), set_config(${ROLE_PASSWORD_SETTING}, ${password}, true)`;
+  await tx`SELECT set_config(${ROLE_NAME_SETTING}::text, ${roleName}::text, true), set_config(${ROLE_PASSWORD_SETTING}::text, ${password}::text, true)`;
   await tx.unsafe(CREATE_LOGIN_ROLE_BLOCK);
 }
 
@@ -98,17 +118,17 @@ export async function withTemporarySetMembership(
   }
 }
 
-async function protectedState(sql: ReturnType<typeof openSql>) {
+export async function protectedState(sql: ReturnType<typeof openSql>) {
   // Do catalog existence checks first. Referencing a missing relation in the
   // same SQL statement as a CASE expression still fails at parse time in
   // PostgreSQL, which would make a genuinely fresh target impossible to
   // bootstrap.
   const [catalog] = await sql<{ schema_exists: boolean; identity_exists: boolean; metadata_exists: boolean; schema_owner: string | null }[]>`
     SELECT
-      to_regnamespace(${PROTECTED_SCHEMA}) IS NOT NULL AS schema_exists,
-      to_regclass(${`${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}`}) IS NOT NULL AS identity_exists,
-      to_regclass(${`${PROTECTED_SCHEMA}.bootstrap_metadata`}) IS NOT NULL AS metadata_exists,
-      (SELECT r.rolname FROM pg_namespace n JOIN pg_roles r ON r.oid = n.nspowner WHERE n.nspname = ${PROTECTED_SCHEMA}) AS schema_owner
+      to_regnamespace(${PROTECTED_SCHEMA}::text) IS NOT NULL AS schema_exists,
+      to_regclass(${`${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}`}::text) IS NOT NULL AS identity_exists,
+      to_regclass(${`${PROTECTED_SCHEMA}.bootstrap_metadata`}::text) IS NOT NULL AS metadata_exists,
+      (SELECT r.rolname FROM pg_namespace n JOIN pg_roles r ON r.oid = n.nspowner WHERE n.nspname::text = ${PROTECTED_SCHEMA}::text) AS schema_owner
   `;
   let owner: string | null = null;
   let metadataOwner: string | null = null;
@@ -120,7 +140,7 @@ async function protectedState(sql: ReturnType<typeof openSql>) {
   if (catalog?.identity_exists) {
     const [identity] = await sql<{ owner: string | null; identity_count: string; identity_id: number | null }[]>`
       SELECT
-        (SELECT r.rolname FROM pg_class c JOIN pg_namespace n ON n.oid = c.relnamespace JOIN pg_roles r ON r.oid = c.relowner WHERE n.nspname = ${PROTECTED_SCHEMA} AND c.relname = ${PROTECTED_IDENTITY_TABLE}) AS owner,
+        (SELECT r.rolname FROM pg_class c JOIN pg_namespace n ON n.oid = c.relnamespace JOIN pg_roles r ON r.oid = c.relowner WHERE n.nspname::text = ${PROTECTED_SCHEMA}::text AND c.relname::text = ${PROTECTED_IDENTITY_TABLE}::text) AS owner,
         (SELECT count(*)::text FROM ${sql.unsafe(`"${PROTECTED_SCHEMA}"."${PROTECTED_IDENTITY_TABLE}"`)}) AS identity_count,
         (SELECT id FROM ${sql.unsafe(`"${PROTECTED_SCHEMA}"."${PROTECTED_IDENTITY_TABLE}"`)} ORDER BY id LIMIT 1) AS identity_id
     `;
@@ -131,7 +151,7 @@ async function protectedState(sql: ReturnType<typeof openSql>) {
   if (catalog?.metadata_exists) {
     const [metadata] = await sql<{ owner: string | null; metadata_count: string; metadata_id: number | null; metadata_version: number | null }[]>`
       SELECT
-        (SELECT r.rolname FROM pg_class c JOIN pg_namespace n ON n.oid = c.relnamespace JOIN pg_roles r ON r.oid = c.relowner WHERE n.nspname = ${PROTECTED_SCHEMA} AND c.relname = 'bootstrap_metadata') AS owner,
+        (SELECT r.rolname FROM pg_class c JOIN pg_namespace n ON n.oid = c.relnamespace JOIN pg_roles r ON r.oid = c.relowner WHERE n.nspname::text = ${PROTECTED_SCHEMA}::text AND c.relname = 'bootstrap_metadata') AS owner,
         (SELECT count(*)::text FROM ${sql.unsafe(`"${PROTECTED_SCHEMA}"."bootstrap_metadata"`)}) AS metadata_count,
         (SELECT id FROM ${sql.unsafe(`"${PROTECTED_SCHEMA}"."bootstrap_metadata"`)} ORDER BY id LIMIT 1) AS metadata_id,
         (SELECT version FROM ${sql.unsafe(`"${PROTECTED_SCHEMA}"."bootstrap_metadata"`)} WHERE id = 1) AS metadata_version
@@ -160,8 +180,8 @@ export async function assertProtectedShape(sql: ReturnType<typeof openSql>) {
   const columns = await sql<{ table_name: string; column_name: string; udt_name: string; is_nullable: string }[]>`
     SELECT table_name, column_name, udt_name, is_nullable
     FROM information_schema.columns
-    WHERE table_schema = ${PROTECTED_SCHEMA}
-      AND table_name = ANY(${sql.array(["bootstrap_metadata", PROTECTED_IDENTITY_TABLE])})
+    WHERE table_schema::text = ${PROTECTED_SCHEMA}::text
+      AND table_name::text = ANY(${sql.array(["bootstrap_metadata", PROTECTED_IDENTITY_TABLE])}::text[])
     ORDER BY table_name, ordinal_position
   `;
   const expected = [
@@ -185,8 +205,8 @@ export async function assertProtectedShape(sql: ReturnType<typeof openSql>) {
     FROM pg_constraint c
     JOIN pg_class ctable ON ctable.oid = c.conrelid
     JOIN pg_namespace n ON n.oid = ctable.relnamespace
-    WHERE n.nspname = ${PROTECTED_SCHEMA}
-      AND ctable.relname = ANY(${sql.array(["bootstrap_metadata", PROTECTED_IDENTITY_TABLE])})
+    WHERE n.nspname::text = ${PROTECTED_SCHEMA}::text
+      AND ctable.relname::text = ANY(${sql.array(["bootstrap_metadata", PROTECTED_IDENTITY_TABLE])}::text[])
   `;
   const normalized = (table: string) => constraints.filter((constraint) => constraint.table_name === table).map((constraint) => constraint.definition.toLowerCase().replaceAll('"', "").replaceAll(/\s+/g, ""));
   const metadataConstraints = normalized("bootstrap_metadata");
@@ -207,7 +227,7 @@ export async function assertProtectedShape(sql: ReturnType<typeof openSql>) {
       SELECT 1
       FROM pg_namespace n,
            aclexplode(COALESCE(n.nspacl, acldefault('n', n.nspowner))) privilege
-      WHERE n.nspname = ${PROTECTED_SCHEMA}
+      WHERE n.nspname::text = ${PROTECTED_SCHEMA}::text
         AND privilege.grantee = 0
         AND privilege.privilege_type = 'CREATE'
     ) AS public_create
@@ -215,12 +235,12 @@ export async function assertProtectedShape(sql: ReturnType<typeof openSql>) {
   if (acl?.public_create) throw new Error("PROTECTED_METADATA_MALFORMED");
 }
 
-async function assertRoleModel(sql: ReturnType<typeof openSql>) {
+export async function assertRoleModel(sql: ReturnType<typeof openSql>) {
   const required = [ROLE_NAMES.owner, ROLE_NAMES.provision, ROLE_NAMES.migration, ROLE_NAMES.runtime];
   const roles = await sql<{ rolname: string; rolcanlogin: boolean; rolinherit: boolean; rolsuper: boolean; rolcreatedb: boolean; rolcreaterole: boolean; rolreplication: boolean; rolbypassrls: boolean }[]>`
     SELECT rolname, rolcanlogin, rolinherit, rolsuper, rolcreatedb, rolcreaterole, rolreplication, rolbypassrls
     FROM pg_roles
-    WHERE rolname = ANY(${sql.array(required)})
+    WHERE rolname::text = ANY(${sql.array(required)}::text[])
   `;
   if (roles.length !== required.length) throw new Error("BLOCKED_ROLE_MODEL");
   for (const role of roles) {
@@ -229,16 +249,18 @@ async function assertRoleModel(sql: ReturnType<typeof openSql>) {
       throw new Error("BLOCKED_ROLE_MODEL");
     }
   }
+  markStage("assert-application-database-privileges");
+  await assertNoApplicationDatabasePrivileges(sql);
+  markStage("assert-memberships");
   const memberships = await sql<{ count: string }[]>`
     SELECT count(*)::text AS count
     FROM pg_auth_members membership
     JOIN pg_roles member ON member.oid = membership.member
     JOIN pg_roles granted ON granted.oid = membership.roleid
-    WHERE granted.rolname = ${ROLE_NAMES.owner}
-      AND member.rolname = ANY(${sql.array([ROLE_NAMES.provision, ROLE_NAMES.migration, ROLE_NAMES.runtime])})
+    WHERE granted.rolname::text = ${ROLE_NAMES.owner}::text
+      AND member.rolname::text = ANY(${sql.array([ROLE_NAMES.provision, ROLE_NAMES.migration, ROLE_NAMES.runtime])}::text[])
   `;
   if (memberships[0]?.count !== "0") throw new Error("BLOCKED_ROLE_MODEL");
-  await assertNoApplicationDatabasePrivileges(sql);
   await assertNoResidualBootstrapMembership(sql);
   await assertNoResidualBootstrapOwnerMembership(sql);
 }
@@ -257,7 +279,7 @@ export async function assertNoApplicationDatabasePrivileges(sql: ReturnType<type
         FROM pg_database db
         JOIN pg_roles role_owner ON role_owner.oid = db.datdba
         WHERE db.datname = current_database()
-          AND role_owner.rolname = ANY(${sql.array([ROLE_NAMES.owner, ROLE_NAMES.provision, ROLE_NAMES.migration, ROLE_NAMES.runtime])})
+          AND role_owner.rolname::text = ANY(${sql.array([ROLE_NAMES.owner, ROLE_NAMES.provision, ROLE_NAMES.migration, ROLE_NAMES.runtime])}::text[])
       ) AS application_database_owner,
       has_database_privilege(${ROLE_NAMES.owner}::text, current_database()::text, 'CREATE') AS owner_create,
       has_database_privilege(${ROLE_NAMES.provision}::text, current_database()::text, 'CREATE') AS provision_create,
@@ -283,13 +305,13 @@ async function assertNoResidualMembership(sql: ReturnType<typeof openSql>, grant
     FROM pg_auth_members membership
     JOIN pg_roles member ON member.oid = membership.member
     JOIN pg_roles granted ON granted.oid = membership.roleid
-    WHERE granted.rolname = ${grantedRole}
-      AND member.rolname = ${ROLE_NAMES.bootstrap}
+    WHERE granted.rolname::text = ${grantedRole}::text
+      AND member.rolname::text = ${ROLE_NAMES.bootstrap}::text
   `;
   if (membership?.count !== "0") throw new Error("BLOCKED_ROLE_MODEL");
 }
 
-async function assertProtectedPrivileges(sql: ReturnType<typeof openSql>) {
+export async function assertProtectedPrivileges(sql: ReturnType<typeof openSql>) {
   const [row] = await sql<{
     provision_select: boolean; provision_insert: boolean; provision_update: boolean; provision_delete: boolean; provision_truncate: boolean; provision_schema_create: boolean;
     migration_select: boolean; migration_insert: boolean; migration_update: boolean; migration_delete: boolean; migration_truncate: boolean; migration_schema_create: boolean;
@@ -329,7 +351,7 @@ async function assertProtectedPrivileges(sql: ReturnType<typeof openSql>) {
   }
 }
 
-async function assertMigrationPrivileges(sql: ReturnType<typeof openSql>, target: ConnectionTarget) {
+export async function assertMigrationPrivileges(sql: ReturnType<typeof openSql>, target: ConnectionTarget) {
   const [row] = await sql<{
     schema_exists: boolean;
     schema_owner: string | null;
@@ -339,11 +361,11 @@ async function assertMigrationPrivileges(sql: ReturnType<typeof openSql>, target
     migration_schema_create: boolean;
   }[]>`
     SELECT
-      to_regnamespace(${MIGRATION_SCHEMA}) IS NOT NULL AS schema_exists,
+      to_regnamespace(${MIGRATION_SCHEMA}::text) IS NOT NULL AS schema_exists,
       (SELECT r.rolname
        FROM pg_namespace n
        JOIN pg_roles r ON r.oid = n.nspowner
-       WHERE n.nspname = ${MIGRATION_SCHEMA}) AS schema_owner,
+       WHERE n.nspname::text = ${MIGRATION_SCHEMA}::text) AS schema_owner,
       has_schema_privilege(${ROLE_NAMES.migration}::text, 'public'::text, 'USAGE') AS public_usage,
       has_schema_privilege(${ROLE_NAMES.migration}::text, 'public'::text, 'CREATE') AS public_create,
       has_schema_privilege(${ROLE_NAMES.migration}::text, ${MIGRATION_SCHEMA}::text, 'USAGE') AS migration_schema_usage,
@@ -373,14 +395,20 @@ export async function bootstrapProtectedMetadata(
   const sql = postgres(url, { max: 1, idle_timeout: 10, connect_timeout: 10, onnotice: () => undefined });
   try {
     await sql.begin(async (tx) => {
-      await tx`SELECT pg_advisory_xact_lock(${LOCK_KEY})`;
+      markStage("acquire-advisory-lock");
+      await tx`SELECT pg_advisory_xact_lock(${LOCK_KEY}::bigint)`;
+      markStage("load-existing-state");
       const state = await protectedState(tx as unknown as ReturnType<typeof openSql>);
       if (state.schema_exists || state.identity_exists || state.metadata_exists || state.schema_owner || state.owner || state.metadataOwner) {
         const identityStateIsValid = state.identity_count === "0" || (state.identity_count === "1" && state.identity_id === 1);
         if (state.schema_exists && state.identity_exists && state.metadata_exists && state.schema_owner === ROLE_NAMES.owner && state.owner === ROLE_NAMES.owner && state.metadataOwner === ROLE_NAMES.owner && identityStateIsValid && state.metadata_count === "1" && state.metadata_id === 1 && state.metadata_version === BOOTSTRAP_METADATA_VERSION) {
+          markStage("assert-protected-shape");
           await assertProtectedShape(tx as unknown as ReturnType<typeof openSql>);
+          markStage("assert-role-model");
           await assertRoleModel(tx as unknown as ReturnType<typeof openSql>);
+          markStage("assert-protected-privileges");
           await assertProtectedPrivileges(tx as unknown as ReturnType<typeof openSql>);
+          markStage("assert-migration-privileges");
           await assertMigrationPrivileges(tx as unknown as ReturnType<typeof openSql>, target);
           return;
         }
@@ -389,10 +417,12 @@ export async function bootstrapProtectedMetadata(
 
       if (!credentials) throw new Error("ROLE_CREDENTIALS_REQUIRED");
 
+      markStage("create-roles");
       await tx`CREATE ROLE ${tx.unsafe(ident(ROLE_NAMES.owner))} NOLOGIN NOINHERIT NOSUPERUSER NOCREATEDB NOCREATEROLE NOREPLICATION NOBYPASSRLS`;
       await createLoginRole(tx as unknown as SqlTag, ROLE_NAMES.provision, credentials.provision.password);
       await createLoginRole(tx as unknown as SqlTag, ROLE_NAMES.migration, credentials.migration.password);
       await createLoginRole(tx as unknown as SqlTag, ROLE_NAMES.runtime, credentials.runtime.password);
+      markStage("create-migration-schema");
       await withTemporarySetMembership(tx as unknown as SqlTag, ROLE_NAMES.migration, async () => {
         await tx`CREATE SCHEMA ${tx.unsafe(ident(MIGRATION_SCHEMA))} AUTHORIZATION ${tx.unsafe(ident(ROLE_NAMES.migration))}`;
         await tx`SET LOCAL ROLE ${tx.unsafe(ident(ROLE_NAMES.migration))}`;
@@ -406,7 +436,9 @@ export async function bootstrapProtectedMetadata(
         // object ownership work runs while the external bootstrap session can
         // SET ROLE to the NOLOGIN owner. No application role receives this
         // membership, and it is revoked by the helper before returning.
+        markStage("create-protected-schema");
         await tx`CREATE SCHEMA ${tx.unsafe(ident(PROTECTED_SCHEMA))} AUTHORIZATION ${tx.unsafe(ident(ROLE_NAMES.owner))}`;
+        markStage("create-protected-tables");
         await tx`SET LOCAL ROLE ${tx.unsafe(ident(ROLE_NAMES.owner))}`;
         await tx`CREATE TABLE ${tx.unsafe(`${PROTECTED_SCHEMA}.bootstrap_metadata`)} (id SMALLINT PRIMARY KEY CHECK (id = 1), version INTEGER NOT NULL CHECK (version = 1))`;
         await tx`CREATE TABLE ${tx.unsafe(`${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}`)} (
@@ -419,20 +451,26 @@ export async function bootstrapProtectedMetadata(
           created_at TIMESTAMPTZ NOT NULL DEFAULT now()
         )`;
         await tx`INSERT INTO ${tx.unsafe(`${PROTECTED_SCHEMA}.bootstrap_metadata`)} (id, version) VALUES (1, ${BOOTSTRAP_METADATA_VERSION})`;
+        markStage("grant-protected-privileges");
         await tx`REVOKE ALL ON SCHEMA ${tx.unsafe(ident(PROTECTED_SCHEMA))} FROM PUBLIC`;
         await tx`GRANT USAGE ON SCHEMA ${tx.unsafe(ident(PROTECTED_SCHEMA))} TO ${tx.unsafe(ident(ROLE_NAMES.provision))}, ${tx.unsafe(ident(ROLE_NAMES.migration))}, ${tx.unsafe(ident(ROLE_NAMES.runtime))}`;
         await tx`GRANT SELECT ON ${tx.unsafe(`${PROTECTED_SCHEMA}.bootstrap_metadata`)} TO ${tx.unsafe(ident(ROLE_NAMES.provision))}, ${tx.unsafe(ident(ROLE_NAMES.migration))}, ${tx.unsafe(ident(ROLE_NAMES.runtime))}`;
         await tx`GRANT SELECT, INSERT ON ${tx.unsafe(`${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}`)} TO ${tx.unsafe(ident(ROLE_NAMES.provision))}`;
         await tx`GRANT SELECT ON ${tx.unsafe(`${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}`)} TO ${tx.unsafe(ident(ROLE_NAMES.migration))}, ${tx.unsafe(ident(ROLE_NAMES.runtime))}`;
+        markStage("assert-protected-shape");
         await assertProtectedShape(tx as unknown as ReturnType<typeof openSql>);
+        markStage("assert-protected-privileges");
         await assertProtectedPrivileges(tx as unknown as ReturnType<typeof openSql>);
+        markStage("assert-migration-privileges");
         await assertMigrationPrivileges(tx as unknown as ReturnType<typeof openSql>, target);
         await tx`RESET ROLE`;
       });
 
+      markStage("configure-public-schema");
       await tx`REVOKE CREATE ON SCHEMA public FROM PUBLIC`;
       await tx`GRANT USAGE, CREATE ON SCHEMA public TO ${tx.unsafe(ident(ROLE_NAMES.migration))}`;
       await tx`GRANT USAGE ON SCHEMA public TO ${tx.unsafe(ident(ROLE_NAMES.runtime))}`;
+      markStage("assert-role-model");
       await assertRoleModel(tx as unknown as ReturnType<typeof openSql>);
     });
   } catch (error) {

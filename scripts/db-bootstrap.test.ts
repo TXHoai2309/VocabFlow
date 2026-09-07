@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { assertNoApplicationDatabasePrivileges, assertNoResidualBootstrapMembership, assertNoResidualBootstrapOwnerMembership, assertProtectedShape, createLoginRole, ROLE_NAMES, type BootstrapRoleCredentials, withTemporarySetMembership } from "./db-bootstrap";
+import { assertMigrationPrivileges, assertNoApplicationDatabasePrivileges, assertNoResidualBootstrapMembership, assertNoResidualBootstrapOwnerMembership, assertProtectedPrivileges, assertProtectedShape, assertRoleModel, createLoginRole, protectedState, ROLE_NAMES, type BootstrapRoleCredentials, withTemporarySetMembership } from "./db-bootstrap";
 
 type CapturedQuery = { strings: string[]; values: unknown[] };
 
@@ -41,6 +41,7 @@ describe("bootstrap role creation", () => {
     await createLoginRole(sql, ROLE_NAMES.runtime, credentials.runtime.password);
 
     expect(queries).toHaveLength(3);
+    expect(queries[0]?.strings.join("?")).toContain("set_config(?::text, ?::text, true)");
     expect(unsafeQueries).toHaveLength(3);
     for (const query of unsafeQueries) {
       expect(query).toContain("CREATE ROLE %I LOGIN NOINHERIT PASSWORD %L");
@@ -137,6 +138,77 @@ describe("bootstrap role creation", () => {
     await expect(assertNoApplicationDatabasePrivileges(violation)).rejects.toThrow("BLOCKED_ROLE_MODEL");
   });
 
+  it("casts protected-state catalog parameters before execution", async () => {
+    const queries: string[] = [];
+    const results = [
+      [{ schema_exists: true, identity_exists: true, metadata_exists: true, schema_owner: ROLE_NAMES.owner }],
+      [{ owner: ROLE_NAMES.owner, identity_count: "0", identity_id: null }],
+      [{ owner: ROLE_NAMES.owner, metadata_count: "1", metadata_id: 1, metadata_version: 1 }]
+    ];
+    let call = 0;
+    const sql = ((strings: TemplateStringsArray, ..._values: unknown[]) => {
+      queries.push(strings.join("?"));
+      return Promise.resolve(results[call++] ?? []);
+    }) as unknown as Parameters<typeof protectedState>[0] & { array(values: unknown[]): unknown; unsafe(value: string): unknown };
+    sql.array = ((values: unknown[]) => values) as typeof sql.array;
+    sql.unsafe = ((value: string) => value) as typeof sql.unsafe;
+
+    await expect(protectedState(sql)).resolves.toMatchObject({ schema_exists: true, identity_exists: true, metadata_exists: true });
+    expect(queries[0]).toContain("to_regnamespace(?::text)");
+    expect(queries[0]).toContain("to_regclass(?::text)");
+    expect(queries[0]).toContain("nspname::text = ?::text");
+    expect(queries[1]).toContain("nspname::text = ?::text AND c.relname::text = ?::text");
+    expect(queries[2]).toContain("nspname::text = ?::text");
+  });
+
+  it("casts all protected privilege inquiry parameters", async () => {
+    const queries: string[] = [];
+    const sql = resultSql([{
+      provision_select: true,
+      provision_insert: true,
+      provision_update: false,
+      provision_delete: false,
+      provision_truncate: false,
+      provision_schema_create: false,
+      migration_select: true,
+      migration_insert: false,
+      migration_update: false,
+      migration_delete: false,
+      migration_truncate: false,
+      migration_schema_create: false,
+      runtime_select: true,
+      runtime_insert: false,
+      runtime_update: false,
+      runtime_delete: false,
+      runtime_truncate: false,
+      runtime_schema_create: false,
+      provision_set_owner: false,
+      migration_set_owner: false,
+      runtime_set_owner: false
+    }], queries);
+
+    await expect(assertProtectedPrivileges(sql)).resolves.toBeUndefined();
+    expect(queries[0]).toContain("has_table_privilege(?::text, '?.?'::text, 'SELECT')");
+    expect(queries[0]).toContain("has_schema_privilege(?::text, '?'::text, 'CREATE')");
+    expect(queries[0]).toContain("pg_has_role(?::text, ?::text, 'SET')");
+  });
+
+  it("casts migration privilege inquiry parameters", async () => {
+    const queries: string[] = [];
+    const sql = resultSql([{
+      schema_exists: true,
+      schema_owner: ROLE_NAMES.migration,
+      public_usage: true,
+      public_create: true,
+      migration_schema_usage: true,
+      migration_schema_create: true
+    }], queries);
+
+    await expect(assertMigrationPrivileges(sql, undefined as never)).resolves.toBeUndefined();
+    expect(queries[0]).toContain("to_regnamespace(?::text)");
+    expect(queries[0]).toContain("has_schema_privilege(?::text, ?::text, 'USAGE')");
+  });
+
   it("uses the pg_class alias for protected constraint table names", async () => {
     const queries: string[] = [];
     const columns = [
@@ -171,13 +243,56 @@ describe("bootstrap role creation", () => {
     sql.array = ((values: unknown[]) => values) as typeof sql.array;
 
     await expect(assertProtectedShape(sql)).resolves.toBeUndefined();
+    expect(queries[0]).toContain("table_schema::text = ?::text");
+    expect(queries[0]).toContain("table_name::text = ANY(?::text[])");
     expect(queries[1]).toContain("SELECT ctable.relname AS table_name");
     expect(queries[1]).not.toContain("SELECT c.relname AS table_name");
+    expect(queries[1]).toContain("ctable.relname::text = ANY(?::text[])");
+    expect(queries[2]).toContain("n.nspname::text = ?::text");
+  });
+
+  it("casts role-model arrays and membership parameters", async () => {
+    const queries: string[] = [];
+    const roles = [ROLE_NAMES.owner, ROLE_NAMES.provision, ROLE_NAMES.migration, ROLE_NAMES.runtime].map((rolname) => ({
+      rolname,
+      rolcanlogin: rolname !== ROLE_NAMES.owner,
+      rolinherit: false,
+      rolsuper: false,
+      rolcreatedb: false,
+      rolcreaterole: false,
+      rolreplication: false,
+      rolbypassrls: false
+    }));
+    const results = [
+      roles,
+      [{ application_database_owner: false, owner_create: false, provision_create: false, migration_create: false, runtime_create: false }],
+      [{ count: "0" }],
+      [{ count: "0" }],
+      [{ count: "0" }]
+    ];
+    let call = 0;
+    const sql = ((strings: TemplateStringsArray, ..._values: unknown[]) => {
+      queries.push(strings.join("?"));
+      return Promise.resolve(results[call++] ?? []);
+    }) as unknown as Parameters<typeof assertRoleModel>[0] & { array(values: unknown[]): unknown };
+    sql.array = ((values: unknown[]) => values) as typeof sql.array;
+
+    await expect(assertRoleModel(sql)).resolves.toBeUndefined();
+    expect(queries[0]).toContain("rolname::text = ANY(?::text[])");
+    expect(queries[2]).toContain("granted.rolname::text = ?::text");
+    expect(queries[2]).toContain("member.rolname::text = ANY(?::text[])");
+    expect(queries[3]).toContain("granted.rolname::text = ?::text");
+    expect(queries[4]).toContain("member.rolname::text = ?::text");
   });
 
   it("fails if a bootstrap-to-migration membership remains", async () => {
-    const sql = ((_strings: TemplateStringsArray, ..._values: unknown[]) => Promise.resolve([{ count: "0" }])) as unknown as Parameters<typeof assertNoResidualBootstrapMembership>[0];
+    const queries: string[] = [];
+    const sql = ((strings: TemplateStringsArray, ..._values: unknown[]) => {
+      queries.push(strings.join("?"));
+      return Promise.resolve([{ count: "0" }]);
+    }) as unknown as Parameters<typeof assertNoResidualBootstrapMembership>[0];
     await expect(assertNoResidualBootstrapMembership(sql)).resolves.toBeUndefined();
+    expect(queries[0]).toContain("granted.rolname::text = ?::text");
 
     const residual = ((_strings: TemplateStringsArray, ..._values: unknown[]) => Promise.resolve([{ count: "1" }])) as unknown as Parameters<typeof assertNoResidualBootstrapMembership>[0];
     await expect(assertNoResidualBootstrapMembership(residual)).rejects.toThrow("BLOCKED_ROLE_MODEL");
