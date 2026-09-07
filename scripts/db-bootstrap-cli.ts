@@ -38,9 +38,7 @@ main().catch((error: unknown) => {
     message?: string;
   };
 
-  const rawMessage =
-    candidate?.message ??
-    "DB_BOOTSTRAP_FAILED";
+  const rawMessage = candidate?.message ?? "DB_BOOTSTRAP_FAILED";
 
   const safeMessage = rawMessage
     .replace(/postgres(?:ql)?:\/\/\S+/gi, "[REDACTED_DATABASE_URL]")
