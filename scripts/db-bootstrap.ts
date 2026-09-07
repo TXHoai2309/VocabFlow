@@ -238,8 +238,35 @@ async function assertRoleModel(sql: ReturnType<typeof openSql>) {
       AND member.rolname = ANY(${sql.array([ROLE_NAMES.provision, ROLE_NAMES.migration, ROLE_NAMES.runtime])})
   `;
   if (memberships[0]?.count !== "0") throw new Error("BLOCKED_ROLE_MODEL");
+  await assertNoApplicationDatabasePrivileges(sql);
   await assertNoResidualBootstrapMembership(sql);
   await assertNoResidualBootstrapOwnerMembership(sql);
+}
+
+export async function assertNoApplicationDatabasePrivileges(sql: ReturnType<typeof openSql>) {
+  const [database] = await sql<{
+    application_database_owner: boolean;
+    owner_create: boolean;
+    provision_create: boolean;
+    migration_create: boolean;
+    runtime_create: boolean;
+  }[]>`
+    SELECT
+      EXISTS (
+        SELECT 1
+        FROM pg_database db
+        JOIN pg_roles role_owner ON role_owner.oid = db.datdba
+        WHERE db.datname = current_database()
+          AND role_owner.rolname = ANY(${sql.array([ROLE_NAMES.owner, ROLE_NAMES.provision, ROLE_NAMES.migration, ROLE_NAMES.runtime])})
+      ) AS application_database_owner,
+      has_database_privilege(${ROLE_NAMES.owner}, current_database(), 'CREATE') AS owner_create,
+      has_database_privilege(${ROLE_NAMES.provision}, current_database(), 'CREATE') AS provision_create,
+      has_database_privilege(${ROLE_NAMES.migration}, current_database(), 'CREATE') AS migration_create,
+      has_database_privilege(${ROLE_NAMES.runtime}, current_database(), 'CREATE') AS runtime_create
+  `;
+  if (database?.application_database_owner || database?.owner_create || database?.provision_create || database?.migration_create || database?.runtime_create) {
+    throw new Error("BLOCKED_ROLE_MODEL");
+  }
 }
 
 export async function assertNoResidualBootstrapMembership(sql: ReturnType<typeof openSql>) {
@@ -306,7 +333,6 @@ async function assertMigrationPrivileges(sql: ReturnType<typeof openSql>, target
   const [row] = await sql<{
     schema_exists: boolean;
     schema_owner: string | null;
-    database_create: boolean;
     public_usage: boolean;
     public_create: boolean;
     migration_schema_usage: boolean;
@@ -318,7 +344,6 @@ async function assertMigrationPrivileges(sql: ReturnType<typeof openSql>, target
        FROM pg_namespace n
        JOIN pg_roles r ON r.oid = n.nspowner
        WHERE n.nspname = ${MIGRATION_SCHEMA}) AS schema_owner,
-      has_database_privilege(${ROLE_NAMES.migration}, current_database(), 'CREATE') AS database_create,
       has_schema_privilege(${ROLE_NAMES.migration}, 'public', 'USAGE') AS public_usage,
       has_schema_privilege(${ROLE_NAMES.migration}, 'public', 'CREATE') AS public_create,
       has_schema_privilege(${ROLE_NAMES.migration}, ${MIGRATION_SCHEMA}, 'USAGE') AS migration_schema_usage,
@@ -329,7 +354,6 @@ async function assertMigrationPrivileges(sql: ReturnType<typeof openSql>, target
     !row ||
     !row.schema_exists ||
     row.schema_owner !== ROLE_NAMES.migration ||
-    !row.database_create ||
     !row.public_usage ||
     !row.public_create ||
     !row.migration_schema_usage ||
@@ -369,10 +393,9 @@ export async function bootstrapProtectedMetadata(
       await createLoginRole(tx as unknown as SqlTag, ROLE_NAMES.provision, credentials.provision.password);
       await createLoginRole(tx as unknown as SqlTag, ROLE_NAMES.migration, credentials.migration.password);
       await createLoginRole(tx as unknown as SqlTag, ROLE_NAMES.runtime, credentials.runtime.password);
-      await tx`GRANT CREATE ON DATABASE ${tx.unsafe(ident(target.databaseName))} TO ${tx.unsafe(ident(ROLE_NAMES.migration))}`;
       await withTemporarySetMembership(tx as unknown as SqlTag, ROLE_NAMES.migration, async () => {
-        await tx`SET LOCAL ROLE ${tx.unsafe(ident(ROLE_NAMES.migration))}`;
         await tx`CREATE SCHEMA ${tx.unsafe(ident(MIGRATION_SCHEMA))} AUTHORIZATION ${tx.unsafe(ident(ROLE_NAMES.migration))}`;
+        await tx`SET LOCAL ROLE ${tx.unsafe(ident(ROLE_NAMES.migration))}`;
         await tx`REVOKE ALL ON SCHEMA ${tx.unsafe(ident(MIGRATION_SCHEMA))} FROM PUBLIC`;
         await tx`GRANT USAGE, CREATE ON SCHEMA ${tx.unsafe(ident(MIGRATION_SCHEMA))} TO ${tx.unsafe(ident(ROLE_NAMES.migration))}`;
         await tx`RESET ROLE`;
@@ -395,8 +418,6 @@ export async function bootstrapProtectedMetadata(
           identity_version INTEGER NOT NULL CHECK (identity_version = 1),
           created_at TIMESTAMPTZ NOT NULL DEFAULT now()
         )`;
-        await tx`ALTER TABLE ${tx.unsafe(`${PROTECTED_SCHEMA}.bootstrap_metadata`)} OWNER TO ${tx.unsafe(ident(ROLE_NAMES.owner))}`;
-        await tx`ALTER TABLE ${tx.unsafe(`${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}`)} OWNER TO ${tx.unsafe(ident(ROLE_NAMES.owner))}`;
         await tx`INSERT INTO ${tx.unsafe(`${PROTECTED_SCHEMA}.bootstrap_metadata`)} (id, version) VALUES (1, ${BOOTSTRAP_METADATA_VERSION})`;
         await tx`REVOKE ALL ON SCHEMA ${tx.unsafe(ident(PROTECTED_SCHEMA))} FROM PUBLIC`;
         await tx`GRANT USAGE ON SCHEMA ${tx.unsafe(ident(PROTECTED_SCHEMA))} TO ${tx.unsafe(ident(ROLE_NAMES.provision))}, ${tx.unsafe(ident(ROLE_NAMES.migration))}, ${tx.unsafe(ident(ROLE_NAMES.runtime))}`;

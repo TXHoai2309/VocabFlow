@@ -1,7 +1,13 @@
 import { describe, expect, it } from "vitest";
-import { assertNoResidualBootstrapMembership, assertNoResidualBootstrapOwnerMembership, createLoginRole, ROLE_NAMES, type BootstrapRoleCredentials, withTemporarySetMembership } from "./db-bootstrap";
+import { assertNoApplicationDatabasePrivileges, assertNoResidualBootstrapMembership, assertNoResidualBootstrapOwnerMembership, createLoginRole, ROLE_NAMES, type BootstrapRoleCredentials, withTemporarySetMembership } from "./db-bootstrap";
 
 type CapturedQuery = { strings: string[]; values: unknown[] };
+
+function resultSql(result: unknown[]) {
+  const tag = ((_strings: TemplateStringsArray, ..._values: unknown[]) => Promise.resolve(result)) as unknown as Parameters<typeof assertNoApplicationDatabasePrivileges>[0] & { array(values: unknown[]): unknown };
+  tag.array = ((values: unknown[]) => values) as typeof tag.array;
+  return tag;
+}
 
 function fakeSql(queries: CapturedQuery[]) {
   const tag = ((strings: TemplateStringsArray, ...values: unknown[]) => {
@@ -87,18 +93,42 @@ describe("bootstrap role creation", () => {
 
     await withTemporarySetMembership(sql, ROLE_NAMES.owner, async () => {
       await sql`CREATE SCHEMA vocabflow_meta AUTHORIZATION ${sql.unsafe(`"${ROLE_NAMES.owner}"`)}`;
-      await sql`ALTER TABLE vocabflow_meta.environment_identity OWNER TO ${sql.unsafe(`"${ROLE_NAMES.owner}"`)}`;
+      await sql`SET LOCAL ROLE ${sql.unsafe(`"${ROLE_NAMES.owner}"`)}`;
+      await sql`CREATE TABLE vocabflow_meta.environment_identity (id smallint)`;
+      await sql`RESET ROLE`;
     });
 
-    expect(queries).toHaveLength(4);
+    expect(queries).toHaveLength(6);
     expect(queries[0]?.strings.join("?")).toContain("GRANT");
     expect(queries[1]?.strings.join("?")).toContain("CREATE SCHEMA");
-    expect(queries[2]?.strings.join("?")).toContain("ALTER TABLE");
-    expect(queries[3]?.strings.join("?")).toContain("REVOKE");
+    expect(queries[2]?.strings.join("?")).toContain("SET LOCAL ROLE");
+    expect(queries[3]?.strings.join("?")).toContain("CREATE TABLE");
+    expect(queries[4]?.strings.join("?")).toContain("RESET ROLE");
+    expect(queries[5]?.strings.join("?")).toContain("REVOKE");
     expect(unsafeQueries[0]).toBe(`"${ROLE_NAMES.owner}"`);
     expect(unsafeQueries[1]).toBe(`"${ROLE_NAMES.bootstrap}"`);
     expect(unsafeQueries.at(-2)).toBe(`"${ROLE_NAMES.owner}"`);
     expect(unsafeQueries.at(-1)).toBe(`"${ROLE_NAMES.bootstrap}"`);
+  });
+
+  it("rejects permanent application database ownership or CREATE privilege", async () => {
+    const valid = resultSql([{
+      application_database_owner: false,
+      owner_create: false,
+      provision_create: false,
+      migration_create: false,
+      runtime_create: false
+    }]);
+    await expect(assertNoApplicationDatabasePrivileges(valid)).resolves.toBeUndefined();
+
+    const violation = resultSql([{
+      application_database_owner: false,
+      owner_create: true,
+      provision_create: false,
+      migration_create: false,
+      runtime_create: false
+    }]);
+    await expect(assertNoApplicationDatabasePrivileges(violation)).rejects.toThrow("BLOCKED_ROLE_MODEL");
   });
 
   it("fails if a bootstrap-to-migration membership remains", async () => {
