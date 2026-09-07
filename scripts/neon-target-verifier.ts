@@ -82,11 +82,47 @@ export function createNeonApiClient(apiKey: string, fetchImpl: typeof fetch = fe
   };
   return {
     async getBranch({ projectId, branchId }) {
-      const body = await request(`https://console.neon.tech/api/v2/projects/${encodeURIComponent(projectId)}/branches/${encodeURIComponent(branchId)}`);
-      const id = typeof body.id === "string" ? body.id : typeof body.branch_id === "string" ? body.branch_id : undefined;
-      const project = typeof body.project_id === "string" ? body.project_id : projectId;
-      if (!id || project !== projectId) throw new Error("PROVIDER_RESPONSE_INVALID");
-      return { projectId: project, branchId: id };
+      const body = await request(
+        `https://console.neon.tech/api/v2/projects/${encodeURIComponent(
+          projectId,
+        )}/branches/${encodeURIComponent(branchId)}`,
+      );
+
+      const branch =
+        body.branch && typeof body.branch === "object"
+          ? (body.branch as Record<string, unknown>)
+          : undefined;
+
+      if (!branch) {
+        throw new Error("PROVIDER_RESPONSE_INVALID");
+      }
+
+      const id =
+        typeof branch.id === "string"
+          ? branch.id
+          : undefined;
+
+      const project =
+        typeof branch.project_id === "string"
+          ? branch.project_id
+          : undefined;
+
+      if (!id || !project) {
+        throw new Error("PROVIDER_RESPONSE_INVALID");
+      }
+
+      if (project !== projectId) {
+        throw new Error("PROJECT_NOT_FOUND");
+      }
+
+      if (id !== branchId) {
+        throw new Error("BRANCH_NOT_FOUND");
+      }
+
+      return {
+        projectId: project,
+        branchId: id,
+      };
     },
     async getConnectionUri({ projectId, branchId, databaseName, roleName, pooled }) {
       const params = new URLSearchParams({

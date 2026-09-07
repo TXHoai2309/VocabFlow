@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { ConnectionTarget } from "@vocabflow/contracts";
-import { mapProviderCodeToDbStatus, verifyNeonTarget, type NeonApiClient } from "./neon-target-verifier";
+import { createNeonApiClient, mapProviderCodeToDbStatus, verifyNeonTarget, type NeonApiClient } from "./neon-target-verifier";
 
 const expected: ConnectionTarget = {
   environment: "development",
@@ -100,5 +100,20 @@ describe("Neon target verifier", () => {
   it("maps provider availability to blocked and mismatch to fail", () => {
     expect(mapProviderCodeToDbStatus("PROVIDER_UNAVAILABLE")).toBe("BLOCKED_PROVIDER_VERIFICATION");
     expect(mapProviderCodeToDbStatus("CONNECTION_TARGET_MISMATCH")).toBe("FAIL");
+  });
+
+  it("parses Neon branch responses wrapped in a branch object", async () => {
+    const client = createNeonApiClient("api-key", async (input) => {
+      const url = String(input);
+      if (url.includes("/branches/")) {
+        return new Response(JSON.stringify({ branch: { id: "branch", project_id: "project" } }), { status: 200 });
+      }
+      return new Response(JSON.stringify({ uri: "postgresql://runtime:secret@ep-example.neon.tech/vocabflow" }), { status: 200 });
+    });
+
+    await expect(client.getBranch({ projectId: "project", branchId: "branch" })).resolves.toEqual({
+      projectId: "project",
+      branchId: "branch"
+    });
   });
 });

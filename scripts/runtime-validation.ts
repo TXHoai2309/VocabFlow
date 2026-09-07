@@ -38,16 +38,20 @@ export function assertTargetPolicy(target: ConnectionTarget) {
 }
 
 export function parseConnectionFingerprint(connectionString: string, roleName: string) {
-  const parsed = new URL(connectionString);
-  const pathname = parsed.pathname.replace(/^\//, "");
-  if (!parsed.hostname || !pathname || !parsed.username) throw new Error("INVALID_DATABASE_URL");
-  return {
-    host: parsed.hostname.toLowerCase(),
-    databaseName: decodeURIComponent(pathname),
-    roleName: decodeURIComponent(parsed.username),
-    pooled: parsed.hostname.toLowerCase().includes("-pooler"),
-    expectedRoleName: roleName
-  };
+  try {
+    const parsed = new URL(connectionString);
+    const pathname = parsed.pathname.replace(/^\//, "");
+    if (!parsed.hostname || !pathname || !parsed.username) throw new Error("INVALID_DATABASE_URL");
+    return {
+      host: parsed.hostname.toLowerCase(),
+      databaseName: decodeURIComponent(pathname),
+      roleName: decodeURIComponent(parsed.username),
+      pooled: parsed.hostname.toLowerCase().includes("-pooler"),
+      expectedRoleName: roleName
+    };
+  } catch {
+    throw new Error("INVALID_DATABASE_URL");
+  }
 }
 
 export function assertPreConnect(input: {

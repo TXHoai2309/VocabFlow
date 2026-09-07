@@ -1,6 +1,7 @@
 import postgres from "postgres";
 import { BOOTSTRAP_METADATA_VERSION, openSql, PROTECTED_IDENTITY_TABLE, PROTECTED_SCHEMA } from "./db-core";
 import type { ConnectionTarget } from "@vocabflow/contracts";
+import type { ParsedRoleCredential } from "./db-credentials";
 
 export const ROLE_NAMES = {
   owner: "vocabflow_identity_owner",
@@ -9,6 +10,14 @@ export const ROLE_NAMES = {
   runtime: "vocabflow_runtime",
   bootstrap: "vocabflow_identity_bootstrap"
 } as const;
+
+export type BootstrapRoleCredentials = {
+  provision: ParsedRoleCredential;
+  migration: ParsedRoleCredential;
+  runtime: ParsedRoleCredential;
+};
+
+export const MIGRATION_SCHEMA = "drizzle";
 
 const LOCK_KEY = 89421731;
 
@@ -22,6 +31,43 @@ function roleModelFailure(error: unknown) {
   const candidate = error as { code?: string; message?: string };
   return candidate.code === "42501"
     || /permission denied|must be owner|must have .* privilege|cannot create role|role .* does not exist|not permitted/i.test(candidate.message ?? "");
+}
+
+type SqlTag = {
+  unsafe(value: string): unknown;
+  (strings: TemplateStringsArray, ...values: unknown[]): Promise<unknown>;
+};
+
+const ROLE_NAME_SETTING = "vocabflow.bootstrap_role_name";
+const ROLE_PASSWORD_SETTING = "vocabflow.bootstrap_role_password";
+
+// PostgreSQL utility statements do not accept extended-query parameters in
+// CREATE ROLE's PASSWORD clause. Keep this block constant and pass both
+// values through transaction-local settings; the server-side format() applies
+// identifier/literal quoting. `tx.unsafe` is deliberately used only for this
+// constant block, never for either credential value.
+const CREATE_LOGIN_ROLE_BLOCK = `DO $vocabflow_role$
+DECLARE
+  role_name text := current_setting('${ROLE_NAME_SETTING}', true);
+  role_password text := current_setting('${ROLE_PASSWORD_SETTING}', true);
+BEGIN
+  IF role_name IS NULL OR role_password IS NULL OR role_name = '' OR role_password = '' THEN
+    RAISE EXCEPTION 'ROLE_CREDENTIALS_REQUIRED';
+  END IF;
+  EXECUTE format(
+    'CREATE ROLE %I LOGIN NOINHERIT PASSWORD %L NOSUPERUSER NOCREATEDB NOCREATEROLE NOREPLICATION NOBYPASSRLS',
+    role_name,
+    role_password
+  );
+END
+$vocabflow_role$`;
+
+/** Execute CREATE ROLE without placing a password in client-side SQL text. */
+export async function createLoginRole(tx: SqlTag, roleName: string, password: string) {
+  ident(roleName);
+  if (!password) throw new Error("ROLE_CREDENTIALS_REQUIRED");
+  await tx`SELECT set_config(${ROLE_NAME_SETTING}, ${roleName}, true), set_config(${ROLE_PASSWORD_SETTING}, ${password}, true)`;
+  await tx.unsafe(CREATE_LOGIN_ROLE_BLOCK);
 }
 
 async function protectedState(sql: ReturnType<typeof openSql>) {
@@ -143,15 +189,15 @@ async function assertProtectedShape(sql: ReturnType<typeof openSql>) {
 
 async function assertRoleModel(sql: ReturnType<typeof openSql>) {
   const required = [ROLE_NAMES.owner, ROLE_NAMES.provision, ROLE_NAMES.migration, ROLE_NAMES.runtime];
-  const roles = await sql<{ rolname: string; rolcanlogin: boolean; rolsuper: boolean; rolcreatedb: boolean; rolcreaterole: boolean; rolreplication: boolean; rolbypassrls: boolean }[]>`
-    SELECT rolname, rolcanlogin, rolsuper, rolcreatedb, rolcreaterole, rolreplication, rolbypassrls
+  const roles = await sql<{ rolname: string; rolcanlogin: boolean; rolinherit: boolean; rolsuper: boolean; rolcreatedb: boolean; rolcreaterole: boolean; rolreplication: boolean; rolbypassrls: boolean }[]>`
+    SELECT rolname, rolcanlogin, rolinherit, rolsuper, rolcreatedb, rolcreaterole, rolreplication, rolbypassrls
     FROM pg_roles
     WHERE rolname = ANY(${sql.array(required)})
   `;
   if (roles.length !== required.length) throw new Error("BLOCKED_ROLE_MODEL");
   for (const role of roles) {
     const expectedLogin = role.rolname !== ROLE_NAMES.owner;
-    if (role.rolcanlogin !== expectedLogin || role.rolsuper || role.rolcreatedb || role.rolcreaterole || role.rolreplication || role.rolbypassrls) {
+    if (role.rolcanlogin !== expectedLogin || role.rolinherit || role.rolsuper || role.rolcreatedb || role.rolcreaterole || role.rolreplication || role.rolbypassrls) {
       throw new Error("BLOCKED_ROLE_MODEL");
     }
   }
@@ -204,7 +250,50 @@ async function assertProtectedPrivileges(sql: ReturnType<typeof openSql>) {
   }
 }
 
-export async function bootstrapProtectedMetadata(url: string, target: ConnectionTarget) {
+async function assertMigrationPrivileges(sql: ReturnType<typeof openSql>, target: ConnectionTarget) {
+  const [row] = await sql<{
+    schema_exists: boolean;
+    schema_owner: string | null;
+    database_create: boolean;
+    public_usage: boolean;
+    public_create: boolean;
+    migration_schema_usage: boolean;
+    migration_schema_create: boolean;
+  }[]>`
+    SELECT
+      to_regnamespace(${MIGRATION_SCHEMA}) IS NOT NULL AS schema_exists,
+      (SELECT r.rolname
+       FROM pg_namespace n
+       JOIN pg_roles r ON r.oid = n.nspowner
+       WHERE n.nspname = ${MIGRATION_SCHEMA}) AS schema_owner,
+      has_database_privilege(${ROLE_NAMES.migration}, current_database(), 'CREATE') AS database_create,
+      has_schema_privilege(${ROLE_NAMES.migration}, 'public', 'USAGE') AS public_usage,
+      has_schema_privilege(${ROLE_NAMES.migration}, 'public', 'CREATE') AS public_create,
+      has_schema_privilege(${ROLE_NAMES.migration}, ${MIGRATION_SCHEMA}, 'USAGE') AS migration_schema_usage,
+      has_schema_privilege(${ROLE_NAMES.migration}, ${MIGRATION_SCHEMA}, 'CREATE') AS migration_schema_create
+  `;
+
+  if (
+    !row ||
+    !row.schema_exists ||
+    row.schema_owner !== ROLE_NAMES.migration ||
+    !row.database_create ||
+    !row.public_usage ||
+    !row.public_create ||
+    !row.migration_schema_usage ||
+    !row.migration_schema_create
+  ) {
+    throw new Error("BLOCKED_ROLE_MODEL");
+  }
+
+  void target;
+}
+
+export async function bootstrapProtectedMetadata(
+  url: string,
+  target: ConnectionTarget,
+  credentials?: BootstrapRoleCredentials,
+) {
   const sql = postgres(url, { max: 1, idle_timeout: 10, connect_timeout: 10, onnotice: () => undefined });
   try {
     await sql.begin(async (tx) => {
@@ -216,15 +305,20 @@ export async function bootstrapProtectedMetadata(url: string, target: Connection
           await assertProtectedShape(tx as unknown as ReturnType<typeof openSql>);
           await assertRoleModel(tx as unknown as ReturnType<typeof openSql>);
           await assertProtectedPrivileges(tx as unknown as ReturnType<typeof openSql>);
+          await assertMigrationPrivileges(tx as unknown as ReturnType<typeof openSql>, target);
           return;
         }
         throw new Error("PROTECTED_METADATA_MALFORMED");
       }
 
-      await tx`CREATE ROLE ${tx.unsafe(ident(ROLE_NAMES.owner))} NOLOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOREPLICATION NOBYPASSRLS`;
-      await tx`CREATE ROLE ${tx.unsafe(ident(ROLE_NAMES.provision))} LOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOREPLICATION NOBYPASSRLS`;
-      await tx`CREATE ROLE ${tx.unsafe(ident(ROLE_NAMES.migration))} LOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOREPLICATION NOBYPASSRLS`;
-      await tx`CREATE ROLE ${tx.unsafe(ident(ROLE_NAMES.runtime))} LOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOREPLICATION NOBYPASSRLS`;
+      if (!credentials) throw new Error("ROLE_CREDENTIALS_REQUIRED");
+
+      await tx`CREATE ROLE ${tx.unsafe(ident(ROLE_NAMES.owner))} NOLOGIN NOINHERIT NOSUPERUSER NOCREATEDB NOCREATEROLE NOREPLICATION NOBYPASSRLS`;
+      await createLoginRole(tx as unknown as SqlTag, ROLE_NAMES.provision, credentials.provision.password);
+      await createLoginRole(tx as unknown as SqlTag, ROLE_NAMES.migration, credentials.migration.password);
+      await createLoginRole(tx as unknown as SqlTag, ROLE_NAMES.runtime, credentials.runtime.password);
+      await tx`GRANT CREATE ON DATABASE ${tx.unsafe(ident(target.databaseName))} TO ${tx.unsafe(ident(ROLE_NAMES.migration))}`;
+      await tx`CREATE SCHEMA ${tx.unsafe(ident(MIGRATION_SCHEMA))} AUTHORIZATION ${tx.unsafe(ident(ROLE_NAMES.migration))}`;
       await tx`CREATE SCHEMA ${tx.unsafe(ident(PROTECTED_SCHEMA))} AUTHORIZATION ${tx.unsafe(ident(ROLE_NAMES.owner))}`;
       await tx`CREATE TABLE ${tx.unsafe(`${PROTECTED_SCHEMA}.bootstrap_metadata`)} (id SMALLINT PRIMARY KEY CHECK (id = 1), version INTEGER NOT NULL CHECK (version = 1))`;
       await tx`CREATE TABLE ${tx.unsafe(`${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}`)} (
@@ -239,6 +333,11 @@ export async function bootstrapProtectedMetadata(url: string, target: Connection
       await tx`ALTER TABLE ${tx.unsafe(`${PROTECTED_SCHEMA}.bootstrap_metadata`)} OWNER TO ${tx.unsafe(ident(ROLE_NAMES.owner))}`;
       await tx`ALTER TABLE ${tx.unsafe(`${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}`)} OWNER TO ${tx.unsafe(ident(ROLE_NAMES.owner))}`;
       await tx`INSERT INTO ${tx.unsafe(`${PROTECTED_SCHEMA}.bootstrap_metadata`)} (id, version) VALUES (1, ${BOOTSTRAP_METADATA_VERSION})`;
+      await tx`REVOKE CREATE ON SCHEMA public FROM PUBLIC`;
+      await tx`GRANT USAGE, CREATE ON SCHEMA public TO ${tx.unsafe(ident(ROLE_NAMES.migration))}`;
+      await tx`GRANT USAGE ON SCHEMA public TO ${tx.unsafe(ident(ROLE_NAMES.runtime))}`;
+      await tx`REVOKE ALL ON SCHEMA ${tx.unsafe(ident(MIGRATION_SCHEMA))} FROM PUBLIC`;
+      await tx`GRANT USAGE, CREATE ON SCHEMA ${tx.unsafe(ident(MIGRATION_SCHEMA))} TO ${tx.unsafe(ident(ROLE_NAMES.migration))}`;
       await tx`REVOKE ALL ON SCHEMA ${tx.unsafe(ident(PROTECTED_SCHEMA))} FROM PUBLIC`;
       await tx`GRANT USAGE ON SCHEMA ${tx.unsafe(ident(PROTECTED_SCHEMA))} TO ${tx.unsafe(ident(ROLE_NAMES.provision))}, ${tx.unsafe(ident(ROLE_NAMES.migration))}, ${tx.unsafe(ident(ROLE_NAMES.runtime))}`;
       await tx`GRANT SELECT ON ${tx.unsafe(`${PROTECTED_SCHEMA}.bootstrap_metadata`)} TO ${tx.unsafe(ident(ROLE_NAMES.provision))}, ${tx.unsafe(ident(ROLE_NAMES.migration))}, ${tx.unsafe(ident(ROLE_NAMES.runtime))}`;
@@ -247,7 +346,7 @@ export async function bootstrapProtectedMetadata(url: string, target: Connection
       await assertProtectedShape(tx as unknown as ReturnType<typeof openSql>);
       await assertRoleModel(tx as unknown as ReturnType<typeof openSql>);
       await assertProtectedPrivileges(tx as unknown as ReturnType<typeof openSql>);
-      void target;
+      await assertMigrationPrivileges(tx as unknown as ReturnType<typeof openSql>, target);
     });
   } catch (error) {
     if (roleModelFailure(error)) throw new Error("BLOCKED_ROLE_MODEL");
