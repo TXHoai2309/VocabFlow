@@ -174,6 +174,26 @@ async function checkRole(url: string, target: ConnectionTarget, role: "identity-
     ]) {
       await expectDenied(sql, operation);
     }
+
+    const createApplicationTable = (tx: ReturnType<typeof openSql>) => tx`CREATE TABLE vocabflow_app.__vocabflow_permission_probe (id integer)`;
+    if (role === "migration") {
+      await expectAllowed(sql, createApplicationTable);
+    } else {
+      await expectDenied(sql, createApplicationTable);
+    }
+
+    if (role === "runtime") {
+      await expectAllowed(sql, async (tx) => {
+        const probeId = "__vocabflow_runtime_permission_probe__";
+        await tx`INSERT INTO vocabflow_app.verification (id, identifier, value, expires_at) VALUES (${probeId}, ${probeId}, 'value', now() + interval '1 minute')`;
+        const rows = await tx`SELECT id FROM vocabflow_app.verification WHERE id = ${probeId}`;
+        if (rows.length !== 1) throw new Error("PERMISSION_MATRIX_FAILED");
+        await tx`UPDATE vocabflow_app.verification SET value = 'updated' WHERE id = ${probeId}`;
+        await tx`DELETE FROM vocabflow_app.verification WHERE id = ${probeId}`;
+      });
+    } else if (role === "identity-provision") {
+      await expectDenied(sql, async (tx) => tx`SELECT id FROM vocabflow_app.verification LIMIT 1`);
+    }
   } finally {
     await sql.end({ timeout: 5 });
   }

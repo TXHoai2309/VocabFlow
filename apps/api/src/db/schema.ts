@@ -1,12 +1,15 @@
 import {
   boolean,
-  pgTable,
+  pgSchema,
   text,
   timestamp
 } from "drizzle-orm/pg-core";
+import { APP_SCHEMA } from "@vocabflow/contracts";
+
+export const vocabflowApp = pgSchema(APP_SCHEMA);
 
 // Better Auth owns these tables. BATCH 0 does not introduce competing auth tables.
-export const user = pgTable("user", {
+export const user = vocabflowApp.table("user", {
   id: text("id").primaryKey(),
   name: text("name").notNull(),
   email: text("email").notNull().unique(),
@@ -16,7 +19,7 @@ export const user = pgTable("user", {
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow()
 });
 
-export const session = pgTable("session", {
+export const session = vocabflowApp.table("session", {
   id: text("id").primaryKey(),
   expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
   token: text("token").notNull().unique(),
@@ -27,7 +30,7 @@ export const session = pgTable("session", {
   userId: text("user_id").notNull().references(() => user.id, { onDelete: "cascade" })
 });
 
-export const account = pgTable("account", {
+export const account = vocabflowApp.table("account", {
   id: text("id").primaryKey(),
   accountId: text("account_id").notNull(),
   providerId: text("provider_id").notNull(),
@@ -43,7 +46,7 @@ export const account = pgTable("account", {
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow()
 });
 
-export const verification = pgTable("verification", {
+export const verification = vocabflowApp.table("verification", {
   id: text("id").primaryKey(),
   identifier: text("identifier").notNull(),
   value: text("value").notNull(),

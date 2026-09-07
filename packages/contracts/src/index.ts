@@ -1,5 +1,8 @@
 import { z } from "zod";
 
+export const APP_SCHEMA = "vocabflow_app" as const;
+export const MIGRATION_SCHEMA = "drizzle" as const;
+
 export const executionContextSchema = z.enum([
   "local-development",
   "ci-test",

@@ -5,7 +5,7 @@ import { DATABASE_RESET_POLICY } from "../config/database-reset-policy";
 import { getConnectionTarget, isConfiguredTarget } from "../config/database-targets";
 import { configuredDatabaseUrl } from "./runtime-validation";
 import type { DatabasePurpose, DatabaseTarget, Environment, ExecutionContext } from "@vocabflow/contracts";
-import { canonicalIdentityMatches, databasePurposeSchema, executionContextSchema, environmentSchema } from "@vocabflow/contracts";
+import { APP_SCHEMA, canonicalIdentityMatches, databasePurposeSchema, executionContextSchema, environmentSchema, MIGRATION_SCHEMA } from "@vocabflow/contracts";
 
 export const BOOTSTRAP_METADATA_VERSION = 1;
 export const PROTECTED_SCHEMA = "vocabflow_meta";
@@ -34,7 +34,7 @@ export async function runMigrations(url: string, expected?: DatabaseTarget) {
   const { sql, db } = applicationDb(url);
   try {
     if (expected) await assertPostConnectIdentity(sql, expected);
-    await migrate(db, { migrationsFolder: "drizzle/migrations" });
+    await migrate(db, { migrationsFolder: "drizzle/migrations", migrationsSchema: MIGRATION_SCHEMA });
   } finally {
     await sql.end({ timeout: 5 });
   }
@@ -64,10 +64,10 @@ export async function assertPostConnectIdentity(sql: ReturnType<typeof openSql>,
 
 export async function readMigrationState(sql: ReturnType<typeof openSql>) {
   const [exists] = await sql<{ exists: boolean }[]>`
-    SELECT to_regclass('drizzle.__drizzle_migrations') IS NOT NULL AS exists
+    SELECT to_regclass(${`${MIGRATION_SCHEMA}.__drizzle_migrations`}::text) IS NOT NULL AS exists
   `;
   if (!exists?.exists) return 0;
-  const [row] = await sql<{ count: string }[]>`SELECT count(*)::text AS count FROM "drizzle"."__drizzle_migrations"`;
+  const [row] = await sql<{ count: string }[]>`SELECT count(*)::text AS count FROM ${sql.unsafe(`"${MIGRATION_SCHEMA}"."__drizzle_migrations"`)}`;
   return Number(row?.count ?? 0);
 }
 
@@ -106,23 +106,33 @@ export async function assertMigrationStateZero(sql: ReturnType<typeof openSql>) 
 }
 
 export async function assertApplicationTablesAbsent(sql: ReturnType<typeof openSql>) {
-  const tables = DATABASE_RESET_POLICY.applicationTables.map((name) => name.split(".")[1]);
+  const tables = applicationTableNames();
   if (tables.length === 0) return;
   const rows = await sql<{ count: string }[]>`
     SELECT count(*)::text AS count
     FROM information_schema.tables
-    WHERE table_schema = 'public' AND table_name = ANY(${sql.array(tables)})
+    WHERE table_schema::text = ${APP_SCHEMA}::text
+      AND table_name::text = ANY(${sql.array(tables)}::text[])
   `;
   if (rows[0]?.count !== "0") throw new Error("APPLICATION_SCHEMA_NOT_EMPTY");
 }
 
 export async function assertApplicationTablesPresent(sql: ReturnType<typeof openSql>) {
-  const tables = DATABASE_RESET_POLICY.applicationTables.map((name) => name.split(".")[1]);
+  const tables = applicationTableNames();
   if (tables.length === 0) return;
   const rows = await sql<{ count: string }[]>`
     SELECT count(*)::text AS count
     FROM information_schema.tables
-    WHERE table_schema = 'public' AND table_name = ANY(${sql.array(tables)})
+    WHERE table_schema::text = ${APP_SCHEMA}::text
+      AND table_name::text = ANY(${sql.array(tables)}::text[])
   `;
   if (rows[0]?.count !== String(tables.length)) throw new Error("APPLICATION_SCHEMA_INCOMPLETE");
+}
+
+function applicationTableNames() {
+  return DATABASE_RESET_POLICY.applicationTables.map((name) => {
+    const [schema, table] = name.split(".");
+    if (schema !== APP_SCHEMA || !table) throw new Error("INVALID_RESET_POLICY");
+    return table;
+  });
 }

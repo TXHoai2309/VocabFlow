@@ -1,15 +1,17 @@
+import { APP_SCHEMA, MIGRATION_SCHEMA } from "@vocabflow/contracts";
+
 export const DATABASE_RESET_POLICY = {
-  applicationSchemas: ["public"],
+  applicationSchemas: [APP_SCHEMA],
   applicationTables: [
-    "public.account",
-    "public.session",
-    "public.verification",
-    "public.user"
+    `${APP_SCHEMA}.account`,
+    `${APP_SCHEMA}.session`,
+    `${APP_SCHEMA}.verification`,
+    `${APP_SCHEMA}.user`
   ],
   protectedSchemas: ["vocabflow_meta"],
   protectedTables: [
     "vocabflow_meta.bootstrap_metadata",
     "vocabflow_meta.environment_identity"
   ],
-  migrationTrackingObjects: ["drizzle.__drizzle_migrations"]
+  migrationTrackingObjects: [`${MIGRATION_SCHEMA}.__drizzle_migrations`]
 } as const;

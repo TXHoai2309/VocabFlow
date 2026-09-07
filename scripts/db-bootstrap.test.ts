@@ -3,7 +3,7 @@ import postgres from "postgres";
 import { readFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { dirname, join } from "node:path";
-import { assertMigrationPrivileges, assertNoApplicationDatabasePrivileges, assertNoResidualBootstrapMembership, assertNoResidualBootstrapOwnerMembership, assertProtectedPrivileges, assertProtectedShape, assertRoleModel, configurePublicSchema, createLoginRole, protectedState, ROLE_NAMES, type BootstrapRoleCredentials, withTemporarySetMembership } from "./db-bootstrap";
+import { APP_SCHEMA, assertMigrationPrivileges, assertNoApplicationDatabasePrivileges, assertNoResidualBootstrapMembership, assertNoResidualBootstrapOwnerMembership, assertProtectedPrivileges, assertProtectedShape, assertRoleModel, createLoginRole, MIGRATION_SCHEMA, protectedState, ROLE_NAMES, type BootstrapRoleCredentials, withTemporarySetMembership } from "./db-bootstrap";
 
 type CapturedQuery = { strings: string[]; values: unknown[] };
 type BuiltQuery = { text: string; parameters: unknown[]; types: number[] };
@@ -47,7 +47,8 @@ function sequenceSql(results: unknown[][], queries?: string[]) {
   const tag = ((strings: TemplateStringsArray, ..._values: unknown[]) => {
     queries?.push(strings.join("?"));
     return Promise.resolve(results[resultIndex++] ?? []);
-  }) as unknown as Parameters<typeof assertMigrationPrivileges>[0] & { unsafe(value: string): unknown };
+  }) as unknown as Parameters<typeof assertMigrationPrivileges>[0] & { array(values: unknown[]): unknown; unsafe(value: string): unknown };
+  tag.array = ((values: unknown[]) => values) as typeof tag.array;
   tag.unsafe = ((value: string) => value) as typeof tag.unsafe;
   return tag;
 }
@@ -241,54 +242,104 @@ describe("bootstrap role creation", () => {
     }
   });
 
-  it("checks migration schema invariants with specific failure codes", async () => {
+  it("checks dedicated application schema invariants with specific failure codes", async () => {
     const validResults = [
-      [{ migration_role_exists: true, schema_exists: true, schema_owner: ROLE_NAMES.migration }],
-      [{ public_usage: true, public_create: true }],
+      [{ migration_role_oid: 13, schema_oid: 14, schema_owner: ROLE_NAMES.migration }],
+      [{ schema_oid: 15, schema_owner: ROLE_NAMES.migration, provision_role_oid: 12, runtime_role_oid: 16 }],
+      [{
+        migration_usage: true,
+        migration_create: true,
+        runtime_usage: true,
+        runtime_create: false,
+        provision_create: false,
+        provision_set_migration: false,
+        runtime_set_migration: false,
+        forbidden_migration_membership: false
+      }],
       [{ migration_schema_usage: true, migration_schema_create: true }]
     ];
     const queries: string[] = [];
     await expect(assertMigrationPrivileges(sequenceSql(validResults, queries), undefined as never)).resolves.toBeUndefined();
-    expect(queries).toHaveLength(3);
-    expect(queries[0]).toContain("rolname::text = ?::text");
-    expect(queries[0]).toContain("to_regnamespace(?::text)");
-    expect(queries[1]).toContain("has_schema_privilege(?::text, 'public'::text, 'USAGE')");
-    expect(queries[2]).toContain("has_schema_privilege(?::text, ?::text, 'USAGE')");
+    expect(queries).toHaveLength(4);
+    expect(queries[0]).toContain("to_regnamespace(?::text)::oid");
+    expect(queries[1]).toContain("to_regnamespace(?::text)::oid");
+    expect(queries[2]).toContain("has_schema_privilege(?::oid, ?::oid, 'CREATE'::text)");
+    expect(queries.join("\n")).not.toContain("'public'");
 
     const cases: Array<{ name: string; results: unknown[][]; code: string }> = [
       {
         name: "migration role missing",
-        results: [[{ migration_role_exists: false, schema_exists: true, schema_owner: ROLE_NAMES.migration }]],
+        results: [[{ migration_role_oid: null, schema_oid: 14, schema_owner: ROLE_NAMES.migration }]],
         code: "BLOCKED_ROLE_MODEL_MIGRATION_ROLE_MISSING"
       },
       {
         name: "drizzle schema missing",
-        results: [[{ migration_role_exists: true, schema_exists: false, schema_owner: null }]],
+        results: [[{ migration_role_oid: 13, schema_oid: null, schema_owner: null }]],
         code: "BLOCKED_ROLE_MODEL_DRIZZLE_SCHEMA_MISSING"
       },
       {
         name: "drizzle schema owner is wrong",
-        results: [[{ migration_role_exists: true, schema_exists: true, schema_owner: ROLE_NAMES.owner }]],
+        results: [[{ migration_role_oid: 13, schema_oid: 14, schema_owner: ROLE_NAMES.owner }]],
         code: "BLOCKED_ROLE_MODEL_DRIZZLE_SCHEMA_OWNER"
       },
       {
-        name: "public schema usage is missing",
-        results: [validResults[0] ?? [], [{ public_usage: false, public_create: true }]],
-        code: "BLOCKED_ROLE_MODEL_PUBLIC_SCHEMA_USAGE"
+        name: "application schema missing",
+        results: [validResults[0] ?? [], [{ schema_oid: null, schema_owner: null, provision_role_oid: 12, runtime_role_oid: 16 }]],
+        code: "BLOCKED_ROLE_MODEL_APP_SCHEMA_MISSING"
       },
       {
-        name: "public schema create is missing",
-        results: [validResults[0] ?? [], [{ public_usage: true, public_create: false }]],
-        code: "BLOCKED_ROLE_MODEL_PUBLIC_SCHEMA_CREATE"
+        name: "application schema owner is wrong",
+        results: [validResults[0] ?? [], [{ schema_oid: 15, schema_owner: ROLE_NAMES.owner, provision_role_oid: 12, runtime_role_oid: 16 }]],
+        code: "BLOCKED_ROLE_MODEL_APP_SCHEMA_OWNER"
+      },
+      {
+        name: "application schema role is missing",
+        results: [validResults[0] ?? [], [{ schema_oid: 15, schema_owner: ROLE_NAMES.migration, provision_role_oid: null, runtime_role_oid: 16 }]],
+        code: "BLOCKED_ROLE_MODEL_APP_SCHEMA_ROLE_MISSING"
+      },
+      {
+        name: "migration cannot use application schema",
+        results: [validResults[0] ?? [], validResults[1] ?? [], [{ ...(validResults[2]?.[0] as object), migration_usage: false }]],
+        code: "BLOCKED_ROLE_MODEL_APP_SCHEMA_MIGRATION_USAGE"
+      },
+      {
+        name: "migration cannot create application objects",
+        results: [validResults[0] ?? [], validResults[1] ?? [], [{ ...(validResults[2]?.[0] as object), migration_create: false }]],
+        code: "BLOCKED_ROLE_MODEL_APP_SCHEMA_MIGRATION_CREATE"
+      },
+      {
+        name: "runtime cannot use application schema",
+        results: [validResults[0] ?? [], validResults[1] ?? [], [{ ...(validResults[2]?.[0] as object), runtime_usage: false }]],
+        code: "BLOCKED_ROLE_MODEL_APP_SCHEMA_RUNTIME_USAGE"
+      },
+      {
+        name: "runtime can create application objects",
+        results: [validResults[0] ?? [], validResults[1] ?? [], [{ ...(validResults[2]?.[0] as object), runtime_create: true }]],
+        code: "BLOCKED_ROLE_MODEL_APP_SCHEMA_RUNTIME_CREATE"
+      },
+      {
+        name: "provision can create application objects",
+        results: [validResults[0] ?? [], validResults[1] ?? [], [{ ...(validResults[2]?.[0] as object), provision_create: true }]],
+        code: "BLOCKED_ROLE_MODEL_APP_SCHEMA_PROVISION_CREATE"
+      },
+      {
+        name: "application role is a migration member",
+        results: [validResults[0] ?? [], validResults[1] ?? [], [{ ...(validResults[2]?.[0] as object), forbidden_migration_membership: true }]],
+        code: "BLOCKED_ROLE_MODEL_APP_SCHEMA_FORBIDDEN_MEMBERSHIP"
+      },
+      {
+        name: "application role can set migration role",
+        results: [validResults[0] ?? [], validResults[1] ?? [], [{ ...(validResults[2]?.[0] as object), runtime_set_migration: true }]],
+        code: "BLOCKED_ROLE_MODEL_APP_SCHEMA_FORBIDDEN_MEMBERSHIP"
       },
       {
         name: "drizzle schema usage is missing",
-        results: [validResults[0] ?? [], validResults[1] ?? [], [{ migration_schema_usage: false, migration_schema_create: true }]],
+        results: [validResults[0] ?? [], validResults[1] ?? [], validResults[2] ?? [], [{ migration_schema_usage: false, migration_schema_create: true }]],
         code: "BLOCKED_ROLE_MODEL_DRIZZLE_SCHEMA_USAGE"
       },
       {
         name: "drizzle schema create is missing",
-        results: [validResults[0] ?? [], validResults[1] ?? [], [{ migration_schema_usage: true, migration_schema_create: false }]],
+        results: [validResults[0] ?? [], validResults[1] ?? [], validResults[2] ?? [], [{ migration_schema_usage: true, migration_schema_create: false }]],
         code: "BLOCKED_ROLE_MODEL_DRIZZLE_SCHEMA_CREATE"
       }
     ];
@@ -298,11 +349,21 @@ describe("bootstrap role creation", () => {
     }
   });
 
-  it("emits explicit parameter types for every migration privilege query", async () => {
+  it("emits typed OID checks for application and Drizzle schema privileges", async () => {
     const builtQueries: BuiltQuery[] = [];
     const capture = capturePostgresSql([
-      [{ migration_role_exists: true, schema_exists: true, schema_owner: ROLE_NAMES.migration }],
-      [{ public_usage: true, public_create: true }],
+      [{ migration_role_oid: 13, schema_oid: 14, schema_owner: ROLE_NAMES.migration }],
+      [{ schema_oid: 15, schema_owner: ROLE_NAMES.migration, provision_role_oid: 12, runtime_role_oid: 16 }],
+      [{
+        migration_usage: true,
+        migration_create: true,
+        runtime_usage: true,
+        runtime_create: false,
+        provision_create: false,
+        provision_set_migration: false,
+        runtime_set_migration: false,
+        forbidden_migration_membership: false
+      }],
       [{ migration_schema_usage: true, migration_schema_create: true }]
     ], builtQueries);
 
@@ -312,153 +373,36 @@ describe("bootstrap role creation", () => {
       await capture.close();
     }
 
-    expect(builtQueries).toHaveLength(3);
-    expect(builtQueries[0]?.text).toContain("rolname::text = $1::text");
-    expect(builtQueries[0]?.text).toContain("to_regnamespace($2::text)");
-    expect(builtQueries[0]?.text).toContain("n.nspname::text = $3::text");
-    expect(builtQueries[1]?.text).toContain("has_schema_privilege($1::text, 'public'::text, 'USAGE')");
-    expect(builtQueries[1]?.text).toContain("has_schema_privilege($2::text, 'public'::text, 'CREATE')");
-    expect(builtQueries[2]?.text).toContain("has_schema_privilege($1::text, $2::text, 'USAGE')");
-    expect(builtQueries[2]?.text).toContain("has_schema_privilege($3::text, $4::text, 'CREATE')");
-    for (const query of builtQueries) {
-      expect(query.text).not.toMatch(/'\$\d/);
-    }
+    expect(builtQueries).toHaveLength(4);
+    expect(builtQueries[0]?.text).toContain("to_regnamespace($2::text)::oid");
+    expect(builtQueries[0]?.parameters).toContain(MIGRATION_SCHEMA);
+    expect(builtQueries[1]?.text).toContain("to_regnamespace($1::text)::oid");
+    expect(builtQueries[1]?.parameters).toContain(APP_SCHEMA);
+    expect(builtQueries[2]?.text).toContain("has_schema_privilege($1::oid, $2::oid, 'USAGE'::text)");
+    expect(builtQueries[2]?.text).toContain("pg_has_role($11::oid, $12::oid, 'SET'::text)");
+    expect(builtQueries[2]?.text).toContain("ANY($16::oid[])");
+    expect(builtQueries[3]?.text).toContain("has_schema_privilege($1::oid, $2::oid, 'USAGE'::text)");
+    expect(builtQueries.map((query) => query.text).join("\n")).not.toContain("'public'");
   });
 
-  it("runs public schema configuration before the fresh-target migration assertion", () => {
+  it("creates the application schema through temporary migration membership", () => {
     const source = readFileSync(join(process.cwd(), "scripts", "db-bootstrap.ts"), "utf8");
     const freshPathStart = source.indexOf("if (!credentials) throw new Error(\"ROLE_CREDENTIALS_REQUIRED\")");
-    const configurePublicSchema = source.indexOf('markStage("configure-public-schema")', freshPathStart);
-    const migrationAssertion = source.indexOf('markStage("assert-migration-privileges")', freshPathStart);
-    const resetRole = source.lastIndexOf("await tx`RESET ROLE`", configurePublicSchema);
-    expect(freshPathStart).toBeGreaterThanOrEqual(0);
-    expect(configurePublicSchema).toBeGreaterThan(freshPathStart);
-    expect(resetRole).toBeGreaterThan(freshPathStart);
-    expect(resetRole).toBeLessThan(configurePublicSchema);
-    expect(migrationAssertion).toBeGreaterThan(configurePublicSchema);
-  });
-
-  it("configures public schema in the bootstrap context and checks the ACL immediately", async () => {
-    const builtQueries: BuiltQuery[] = [];
-    const capture = capturePostgresSql([
-      [{
-        public_schema_exists: true,
-        public_owner: "pg_database_owner",
-        current_user_is_bootstrap: true,
-        session_user_is_bootstrap: true,
-        current_user_is_public_owner: false,
-        current_user_is_database_owner: true,
-        current_user_is_superuser: false,
-        current_user_in_public_owner: true,
-        current_user_create_grantable: false
-      }],
-      [],
-      [],
-      [{
-        migration_public_usage: true,
-        migration_public_create: true,
-        migration_acl_usage: true,
-        migration_acl_create: true,
-        provision_public_create: false,
-        runtime_public_create: false
-      }],
-      []
-    ], builtQueries);
-
-    try {
-      await expect(configurePublicSchema(capture.tag)).resolves.toBeUndefined();
-    } finally {
-      await capture.close();
-    }
-
-    expect(builtQueries).toHaveLength(5);
-    expect(builtQueries[0]?.text).toContain("current_user::text = $1::text");
-    expect(builtQueries[0]?.text).toContain("session_user::text = $2::text");
-    expect(builtQueries[0]?.text).toContain("public_owner");
-    expect(builtQueries[1]?.text).toContain("REVOKE CREATE ON SCHEMA public FROM PUBLIC");
-    expect(builtQueries[2]?.text).toContain(`GRANT USAGE, CREATE ON SCHEMA public TO "${ROLE_NAMES.migration}"`);
-    expect(builtQueries[3]?.text).toContain("has_schema_privilege(role_ids.migration_role_oid::oid, role_ids.public_schema_oid::oid, 'USAGE'::text)");
-    expect(builtQueries[3]?.text).toContain("has_schema_privilege(role_ids.migration_role_oid::oid, role_ids.public_schema_oid::oid, 'CREATE'::text)");
-    expect(builtQueries[3]?.text).toContain("privilege.grantee = role_ids.migration_role_oid");
-    expect(builtQueries[4]?.text).toContain(`GRANT USAGE ON SCHEMA public TO "${ROLE_NAMES.runtime}"`);
-    for (const parameter of [1, 2]) {
-      expect(builtQueries[0]?.text).toContain(`$${parameter}::text`);
-    }
-    for (const parameter of [1, 2, 3]) {
-      expect(builtQueries[3]?.text).toContain(`$${parameter}::text`);
-    }
-    expect(builtQueries[3]?.text).not.toMatch(/'\$\d/);
-    expect(builtQueries[2]?.text.indexOf("REVOKE")).toBe(-1);
-
-    const source = readFileSync(join(process.cwd(), "scripts", "db-bootstrap.ts"), "utf8");
-    const functionStart = source.indexOf("export async function configurePublicSchema");
-    const functionEnd = source.indexOf("export async function bootstrapProtectedMetadata", functionStart);
-    const functionSource = source.slice(functionStart, functionEnd);
-    expect(functionSource.indexOf('markSubstage("public-grant-migration")')).toBeLessThan(functionSource.indexOf('markSubstage("public-post-grant-check")'));
-    expect(functionSource).not.toContain("REVOKE CREATE ON SCHEMA public FROM vocabflow_migration");
-  });
-
-  it("fails closed when public schema grant authority is unavailable", async () => {
-    const queries: string[] = [];
-    const sql = sequenceSql([[
-      {
-        public_schema_exists: true,
-        public_owner: "pg_database_owner",
-        current_user_is_bootstrap: true,
-        session_user_is_bootstrap: true,
-        current_user_is_public_owner: false,
-        current_user_is_database_owner: false,
-        current_user_is_superuser: false,
-        current_user_in_public_owner: false,
-        current_user_create_grantable: false
-      }
-    ]], queries) as Parameters<typeof configurePublicSchema>[0];
-    await expect(configurePublicSchema(sql)).rejects.toThrow("BLOCKED_ROLE_MODEL_PUBLIC_SCHEMA_GRANT_AUTHORITY");
-    expect(queries).toHaveLength(1);
-  });
-
-  it("fails closed when the grant is not executed by the bootstrap identity", async () => {
-    const sql = sequenceSql([[
-      {
-        public_schema_exists: true,
-        public_owner: "pg_database_owner",
-        current_user_is_bootstrap: false,
-        session_user_is_bootstrap: true,
-        current_user_is_public_owner: true,
-        current_user_is_database_owner: false,
-        current_user_is_superuser: true,
-        current_user_in_public_owner: true,
-        current_user_create_grantable: true
-      }
-    ]]) as Parameters<typeof configurePublicSchema>[0];
-    await expect(configurePublicSchema(sql)).rejects.toThrow("BLOCKED_ROLE_MODEL_PUBLIC_SCHEMA_GRANT_CONTEXT");
-  });
-
-  it("fails closed when the public migration grant is not effective", async () => {
-    const sql = sequenceSql([
-      [{
-        public_schema_exists: true,
-        public_owner: "pg_database_owner",
-        current_user_is_bootstrap: true,
-        session_user_is_bootstrap: true,
-        current_user_is_public_owner: false,
-        current_user_is_database_owner: false,
-        current_user_is_superuser: false,
-        current_user_in_public_owner: true,
-        current_user_create_grantable: false
-      }],
-      [],
-      [],
-      [{
-        migration_public_usage: true,
-        migration_public_create: false,
-        migration_acl_usage: true,
-        migration_acl_create: false,
-        provision_public_create: false,
-        runtime_public_create: false
-      }]
-    ]) as Parameters<typeof configurePublicSchema>[0];
-    await expect(configurePublicSchema(sql)).rejects.toThrow("BLOCKED_ROLE_MODEL_PUBLIC_SCHEMA_GRANT_NOT_EFFECTIVE");
+    const migrationSchemaStage = source.indexOf('markStage("create-migration-schema")', freshPathStart);
+    const applicationSchemaStage = source.indexOf('markStage("create-application-schema")', migrationSchemaStage);
+    const protectedSchemaStage = source.indexOf('markStage("create-protected-schema")', applicationSchemaStage);
+    const applicationBlock = source.slice(applicationSchemaStage, protectedSchemaStage);
+    expect(APP_SCHEMA).toBe("vocabflow_app");
+    expect(applicationSchemaStage).toBeGreaterThan(migrationSchemaStage);
+    expect(protectedSchemaStage).toBeGreaterThan(applicationSchemaStage);
+    expect(applicationBlock).toContain("withTemporarySetMembership(tx as unknown as SqlTag, ROLE_NAMES.migration");
+    expect(applicationBlock).toContain("CREATE SCHEMA");
+    expect(applicationBlock).toContain("AUTHORIZATION");
+    expect(applicationBlock).toContain("GRANT USAGE, CREATE ON SCHEMA");
+    expect(applicationBlock).toContain("GRANT USAGE ON SCHEMA");
+    expect(applicationBlock).toContain("RESET ROLE");
+    expect(source).not.toContain('markStage("configure-public-schema")');
+    expect(source).not.toContain("ON SCHEMA public");
   });
 
   it("uses the pg_class alias for protected constraint table names", async () => {
