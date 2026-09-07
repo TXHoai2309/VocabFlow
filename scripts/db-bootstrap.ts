@@ -349,7 +349,19 @@ export async function bootstrapProtectedMetadata(
       await assertMigrationPrivileges(tx as unknown as ReturnType<typeof openSql>, target);
     });
   } catch (error) {
-    if (roleModelFailure(error)) throw new Error("BLOCKED_ROLE_MODEL");
+    if (roleModelFailure(error)) {
+      const candidate = error as {
+        code?: string;
+        message?: string;
+      };
+
+      console.error(
+        `DB_ROLE_MODEL_DETAIL code=${candidate.code ?? "UNKNOWN"} message=${candidate.message ?? "UNKNOWN"}`
+      );
+
+      throw new Error("BLOCKED_ROLE_MODEL");
+    }
+
     throw error;
   } finally {
     await sql.end({ timeout: 5 });
