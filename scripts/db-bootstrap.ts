@@ -70,6 +70,33 @@ export async function createLoginRole(tx: SqlTag, roleName: string, password: st
   await tx.unsafe(CREATE_LOGIN_ROLE_BLOCK);
 }
 
+/**
+ * PostgreSQL 18 creates the CREATEROLE user's membership in a newly-created
+ * role with SET FALSE. CREATE SCHEMA ... AUTHORIZATION migration therefore
+ * needs a narrowly-scoped, transaction-local SET grant. The finally block
+ * guarantees the membership is revoked on every successful path; an error
+ * aborts the surrounding transaction and rolls both statements back.
+ */
+export async function withTemporarySetMembership(
+  tx: SqlTag,
+  roleName: string,
+  operation: () => Promise<void>,
+) {
+  await tx`GRANT ${tx.unsafe(ident(roleName))} TO ${tx.unsafe(ident(ROLE_NAMES.bootstrap))} WITH INHERIT FALSE, SET TRUE`;
+  let operationSucceeded = false;
+  try {
+    await operation();
+    operationSucceeded = true;
+  } finally {
+    // If operation failed, PostgreSQL has already marked the transaction
+    // aborted; rollback will remove the temporary grant. Issuing REVOKE in
+    // that state would mask the original error with 25P02.
+    if (operationSucceeded) {
+      await tx`REVOKE ${tx.unsafe(ident(roleName))} FROM ${tx.unsafe(ident(ROLE_NAMES.bootstrap))}`;
+    }
+  }
+}
+
 async function protectedState(sql: ReturnType<typeof openSql>) {
   // Do catalog existence checks first. Referencing a missing relation in the
   // same SQL statement as a CASE expression still fails at parse time in
@@ -210,6 +237,19 @@ async function assertRoleModel(sql: ReturnType<typeof openSql>) {
       AND member.rolname = ANY(${sql.array([ROLE_NAMES.provision, ROLE_NAMES.migration, ROLE_NAMES.runtime])})
   `;
   if (memberships[0]?.count !== "0") throw new Error("BLOCKED_ROLE_MODEL");
+  await assertNoResidualBootstrapMembership(sql);
+}
+
+export async function assertNoResidualBootstrapMembership(sql: ReturnType<typeof openSql>) {
+  const [membership] = await sql<{ count: string }[]>`
+    SELECT count(*)::text AS count
+    FROM pg_auth_members membership
+    JOIN pg_roles member ON member.oid = membership.member
+    JOIN pg_roles granted ON granted.oid = membership.roleid
+    WHERE granted.rolname = ${ROLE_NAMES.migration}
+      AND member.rolname = ${ROLE_NAMES.bootstrap}
+  `;
+  if (membership?.count !== "0") throw new Error("BLOCKED_ROLE_MODEL");
 }
 
 async function assertProtectedPrivileges(sql: ReturnType<typeof openSql>) {
@@ -318,7 +358,9 @@ export async function bootstrapProtectedMetadata(
       await createLoginRole(tx as unknown as SqlTag, ROLE_NAMES.migration, credentials.migration.password);
       await createLoginRole(tx as unknown as SqlTag, ROLE_NAMES.runtime, credentials.runtime.password);
       await tx`GRANT CREATE ON DATABASE ${tx.unsafe(ident(target.databaseName))} TO ${tx.unsafe(ident(ROLE_NAMES.migration))}`;
-      await tx`CREATE SCHEMA ${tx.unsafe(ident(MIGRATION_SCHEMA))} AUTHORIZATION ${tx.unsafe(ident(ROLE_NAMES.migration))}`;
+      await withTemporarySetMembership(tx as unknown as SqlTag, ROLE_NAMES.migration, async () => {
+        await tx`CREATE SCHEMA ${tx.unsafe(ident(MIGRATION_SCHEMA))} AUTHORIZATION ${tx.unsafe(ident(ROLE_NAMES.migration))}`;
+      });
       await tx`CREATE SCHEMA ${tx.unsafe(ident(PROTECTED_SCHEMA))} AUTHORIZATION ${tx.unsafe(ident(ROLE_NAMES.owner))}`;
       await tx`CREATE TABLE ${tx.unsafe(`${PROTECTED_SCHEMA}.bootstrap_metadata`)} (id SMALLINT PRIMARY KEY CHECK (id = 1), version INTEGER NOT NULL CHECK (version = 1))`;
       await tx`CREATE TABLE ${tx.unsafe(`${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}`)} (

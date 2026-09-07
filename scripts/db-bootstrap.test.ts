@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { createLoginRole, ROLE_NAMES, type BootstrapRoleCredentials } from "./db-bootstrap";
+import { assertNoResidualBootstrapMembership, createLoginRole, ROLE_NAMES, type BootstrapRoleCredentials, withTemporarySetMembership } from "./db-bootstrap";
 
 type CapturedQuery = { strings: string[]; values: unknown[] };
 
@@ -52,5 +52,35 @@ describe("bootstrap role creation", () => {
       "vocabflow.bootstrap_role_password",
       "runtime-secret"
     ]);
+  });
+
+  it("grants migration SET only around the ownership operation and revokes it", async () => {
+    const queries: CapturedQuery[] = [];
+    const unsafeQueries: string[] = [];
+    const sql = fakeSql(queries);
+    sql.unsafe = (value: string) => {
+      unsafeQueries.push(value);
+      return value;
+    };
+
+    await withTemporarySetMembership(sql, ROLE_NAMES.migration, async () => undefined);
+
+    expect(queries).toHaveLength(2);
+    expect(queries[0]?.strings.join("?")).toContain("WITH INHERIT FALSE, SET TRUE");
+    expect(queries[1]?.strings.join("?")).toContain("REVOKE");
+    expect(unsafeQueries).toEqual([
+      `"${ROLE_NAMES.migration}"`,
+      `"${ROLE_NAMES.bootstrap}"`,
+      `"${ROLE_NAMES.migration}"`,
+      `"${ROLE_NAMES.bootstrap}"`
+    ]);
+  });
+
+  it("fails if a bootstrap-to-migration membership remains", async () => {
+    const sql = ((_strings: TemplateStringsArray, ..._values: unknown[]) => Promise.resolve([{ count: "0" }])) as unknown as Parameters<typeof assertNoResidualBootstrapMembership>[0];
+    await expect(assertNoResidualBootstrapMembership(sql)).resolves.toBeUndefined();
+
+    const residual = ((_strings: TemplateStringsArray, ..._values: unknown[]) => Promise.resolve([{ count: "1" }])) as unknown as Parameters<typeof assertNoResidualBootstrapMembership>[0];
+    await expect(assertNoResidualBootstrapMembership(residual)).rejects.toThrow("BLOCKED_ROLE_MODEL");
   });
 });
