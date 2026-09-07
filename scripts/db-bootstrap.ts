@@ -72,10 +72,11 @@ export async function createLoginRole(tx: SqlTag, roleName: string, password: st
 
 /**
  * PostgreSQL 18 creates the CREATEROLE user's membership in a newly-created
- * role with SET FALSE. CREATE SCHEMA ... AUTHORIZATION migration therefore
- * needs a narrowly-scoped, transaction-local SET grant. The finally block
- * guarantees the membership is revoked on every successful path; an error
- * aborts the surrounding transaction and rolls both statements back.
+ * role with SET FALSE. CREATE SCHEMA ... AUTHORIZATION and protected object
+ * ownership operations therefore need a narrowly-scoped, transaction-local
+ * SET grant. The finally block guarantees the membership is revoked on every
+ * successful path; an error aborts the surrounding transaction and rolls both
+ * statements back.
  */
 export async function withTemporarySetMembership(
   tx: SqlTag,
@@ -238,15 +239,24 @@ async function assertRoleModel(sql: ReturnType<typeof openSql>) {
   `;
   if (memberships[0]?.count !== "0") throw new Error("BLOCKED_ROLE_MODEL");
   await assertNoResidualBootstrapMembership(sql);
+  await assertNoResidualBootstrapOwnerMembership(sql);
 }
 
 export async function assertNoResidualBootstrapMembership(sql: ReturnType<typeof openSql>) {
+  await assertNoResidualMembership(sql, ROLE_NAMES.migration);
+}
+
+export async function assertNoResidualBootstrapOwnerMembership(sql: ReturnType<typeof openSql>) {
+  await assertNoResidualMembership(sql, ROLE_NAMES.owner);
+}
+
+async function assertNoResidualMembership(sql: ReturnType<typeof openSql>, grantedRole: string) {
   const [membership] = await sql<{ count: string }[]>`
     SELECT count(*)::text AS count
     FROM pg_auth_members membership
     JOIN pg_roles member ON member.oid = membership.member
     JOIN pg_roles granted ON granted.oid = membership.roleid
-    WHERE granted.rolname = ${ROLE_NAMES.migration}
+    WHERE granted.rolname = ${grantedRole}
       AND member.rolname = ${ROLE_NAMES.bootstrap}
   `;
   if (membership?.count !== "0") throw new Error("BLOCKED_ROLE_MODEL");
@@ -278,9 +288,11 @@ async function assertProtectedPrivileges(sql: ReturnType<typeof openSql>) {
       has_table_privilege(${ROLE_NAMES.runtime}, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}', 'DELETE') AS runtime_delete,
       has_table_privilege(${ROLE_NAMES.runtime}, '${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}', 'TRUNCATE') AS runtime_truncate,
       has_schema_privilege(${ROLE_NAMES.runtime}, '${PROTECTED_SCHEMA}', 'CREATE') AS runtime_schema_create,
-      pg_has_role(${ROLE_NAMES.provision}, ${ROLE_NAMES.owner}, 'USAGE') AS provision_set_owner,
-      pg_has_role(${ROLE_NAMES.migration}, ${ROLE_NAMES.owner}, 'USAGE') AS migration_set_owner,
-      pg_has_role(${ROLE_NAMES.runtime}, ${ROLE_NAMES.owner}, 'USAGE') AS runtime_set_owner
+      -- SET is the privilege that controls SET ROLE; checking USAGE here
+      -- would not prove that application roles are isolated from the owner.
+      pg_has_role(${ROLE_NAMES.provision}, ${ROLE_NAMES.owner}, 'SET') AS provision_set_owner,
+      pg_has_role(${ROLE_NAMES.migration}, ${ROLE_NAMES.owner}, 'SET') AS migration_set_owner,
+      pg_has_role(${ROLE_NAMES.runtime}, ${ROLE_NAMES.owner}, 'SET') AS runtime_set_owner
   `;
   if (!row || !row.provision_select || !row.provision_insert || row.provision_update || row.provision_delete || row.provision_truncate || row.provision_schema_create
     || !row.migration_select || row.migration_insert || row.migration_update || row.migration_delete || row.migration_truncate || row.migration_schema_create
@@ -359,36 +371,48 @@ export async function bootstrapProtectedMetadata(
       await createLoginRole(tx as unknown as SqlTag, ROLE_NAMES.runtime, credentials.runtime.password);
       await tx`GRANT CREATE ON DATABASE ${tx.unsafe(ident(target.databaseName))} TO ${tx.unsafe(ident(ROLE_NAMES.migration))}`;
       await withTemporarySetMembership(tx as unknown as SqlTag, ROLE_NAMES.migration, async () => {
+        await tx`SET LOCAL ROLE ${tx.unsafe(ident(ROLE_NAMES.migration))}`;
         await tx`CREATE SCHEMA ${tx.unsafe(ident(MIGRATION_SCHEMA))} AUTHORIZATION ${tx.unsafe(ident(ROLE_NAMES.migration))}`;
+        await tx`REVOKE ALL ON SCHEMA ${tx.unsafe(ident(MIGRATION_SCHEMA))} FROM PUBLIC`;
+        await tx`GRANT USAGE, CREATE ON SCHEMA ${tx.unsafe(ident(MIGRATION_SCHEMA))} TO ${tx.unsafe(ident(ROLE_NAMES.migration))}`;
+        await tx`RESET ROLE`;
       });
-      await tx`CREATE SCHEMA ${tx.unsafe(ident(PROTECTED_SCHEMA))} AUTHORIZATION ${tx.unsafe(ident(ROLE_NAMES.owner))}`;
-      await tx`CREATE TABLE ${tx.unsafe(`${PROTECTED_SCHEMA}.bootstrap_metadata`)} (id SMALLINT PRIMARY KEY CHECK (id = 1), version INTEGER NOT NULL CHECK (version = 1))`;
-      await tx`CREATE TABLE ${tx.unsafe(`${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}`)} (
-        id SMALLINT PRIMARY KEY CHECK (id = 1),
-        environment TEXT NOT NULL CHECK (environment IN ('development', 'test', 'production')),
-        provider TEXT NOT NULL CHECK (provider = 'neon'),
-        project_id TEXT NOT NULL,
-        branch_id TEXT NOT NULL,
-        identity_version INTEGER NOT NULL CHECK (identity_version = 1),
-        created_at TIMESTAMPTZ NOT NULL DEFAULT now()
-      )`;
-      await tx`ALTER TABLE ${tx.unsafe(`${PROTECTED_SCHEMA}.bootstrap_metadata`)} OWNER TO ${tx.unsafe(ident(ROLE_NAMES.owner))}`;
-      await tx`ALTER TABLE ${tx.unsafe(`${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}`)} OWNER TO ${tx.unsafe(ident(ROLE_NAMES.owner))}`;
-      await tx`INSERT INTO ${tx.unsafe(`${PROTECTED_SCHEMA}.bootstrap_metadata`)} (id, version) VALUES (1, ${BOOTSTRAP_METADATA_VERSION})`;
+
+      await withTemporarySetMembership(tx as unknown as SqlTag, ROLE_NAMES.owner, async () => {
+        // CREATE SCHEMA ... AUTHORIZATION and all subsequent protected
+        // object ownership work runs while the external bootstrap session can
+        // SET ROLE to the NOLOGIN owner. No application role receives this
+        // membership, and it is revoked by the helper before returning.
+        await tx`CREATE SCHEMA ${tx.unsafe(ident(PROTECTED_SCHEMA))} AUTHORIZATION ${tx.unsafe(ident(ROLE_NAMES.owner))}`;
+        await tx`SET LOCAL ROLE ${tx.unsafe(ident(ROLE_NAMES.owner))}`;
+        await tx`CREATE TABLE ${tx.unsafe(`${PROTECTED_SCHEMA}.bootstrap_metadata`)} (id SMALLINT PRIMARY KEY CHECK (id = 1), version INTEGER NOT NULL CHECK (version = 1))`;
+        await tx`CREATE TABLE ${tx.unsafe(`${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}`)} (
+          id SMALLINT PRIMARY KEY CHECK (id = 1),
+          environment TEXT NOT NULL CHECK (environment IN ('development', 'test', 'production')),
+          provider TEXT NOT NULL CHECK (provider = 'neon'),
+          project_id TEXT NOT NULL,
+          branch_id TEXT NOT NULL,
+          identity_version INTEGER NOT NULL CHECK (identity_version = 1),
+          created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+        )`;
+        await tx`ALTER TABLE ${tx.unsafe(`${PROTECTED_SCHEMA}.bootstrap_metadata`)} OWNER TO ${tx.unsafe(ident(ROLE_NAMES.owner))}`;
+        await tx`ALTER TABLE ${tx.unsafe(`${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}`)} OWNER TO ${tx.unsafe(ident(ROLE_NAMES.owner))}`;
+        await tx`INSERT INTO ${tx.unsafe(`${PROTECTED_SCHEMA}.bootstrap_metadata`)} (id, version) VALUES (1, ${BOOTSTRAP_METADATA_VERSION})`;
+        await tx`REVOKE ALL ON SCHEMA ${tx.unsafe(ident(PROTECTED_SCHEMA))} FROM PUBLIC`;
+        await tx`GRANT USAGE ON SCHEMA ${tx.unsafe(ident(PROTECTED_SCHEMA))} TO ${tx.unsafe(ident(ROLE_NAMES.provision))}, ${tx.unsafe(ident(ROLE_NAMES.migration))}, ${tx.unsafe(ident(ROLE_NAMES.runtime))}`;
+        await tx`GRANT SELECT ON ${tx.unsafe(`${PROTECTED_SCHEMA}.bootstrap_metadata`)} TO ${tx.unsafe(ident(ROLE_NAMES.provision))}, ${tx.unsafe(ident(ROLE_NAMES.migration))}, ${tx.unsafe(ident(ROLE_NAMES.runtime))}`;
+        await tx`GRANT SELECT, INSERT ON ${tx.unsafe(`${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}`)} TO ${tx.unsafe(ident(ROLE_NAMES.provision))}`;
+        await tx`GRANT SELECT ON ${tx.unsafe(`${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}`)} TO ${tx.unsafe(ident(ROLE_NAMES.migration))}, ${tx.unsafe(ident(ROLE_NAMES.runtime))}`;
+        await assertProtectedShape(tx as unknown as ReturnType<typeof openSql>);
+        await assertProtectedPrivileges(tx as unknown as ReturnType<typeof openSql>);
+        await assertMigrationPrivileges(tx as unknown as ReturnType<typeof openSql>, target);
+        await tx`RESET ROLE`;
+      });
+
       await tx`REVOKE CREATE ON SCHEMA public FROM PUBLIC`;
       await tx`GRANT USAGE, CREATE ON SCHEMA public TO ${tx.unsafe(ident(ROLE_NAMES.migration))}`;
       await tx`GRANT USAGE ON SCHEMA public TO ${tx.unsafe(ident(ROLE_NAMES.runtime))}`;
-      await tx`REVOKE ALL ON SCHEMA ${tx.unsafe(ident(MIGRATION_SCHEMA))} FROM PUBLIC`;
-      await tx`GRANT USAGE, CREATE ON SCHEMA ${tx.unsafe(ident(MIGRATION_SCHEMA))} TO ${tx.unsafe(ident(ROLE_NAMES.migration))}`;
-      await tx`REVOKE ALL ON SCHEMA ${tx.unsafe(ident(PROTECTED_SCHEMA))} FROM PUBLIC`;
-      await tx`GRANT USAGE ON SCHEMA ${tx.unsafe(ident(PROTECTED_SCHEMA))} TO ${tx.unsafe(ident(ROLE_NAMES.provision))}, ${tx.unsafe(ident(ROLE_NAMES.migration))}, ${tx.unsafe(ident(ROLE_NAMES.runtime))}`;
-      await tx`GRANT SELECT ON ${tx.unsafe(`${PROTECTED_SCHEMA}.bootstrap_metadata`)} TO ${tx.unsafe(ident(ROLE_NAMES.provision))}, ${tx.unsafe(ident(ROLE_NAMES.migration))}, ${tx.unsafe(ident(ROLE_NAMES.runtime))}`;
-      await tx`GRANT SELECT, INSERT ON ${tx.unsafe(`${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}`)} TO ${tx.unsafe(ident(ROLE_NAMES.provision))}`;
-      await tx`GRANT SELECT ON ${tx.unsafe(`${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}`)} TO ${tx.unsafe(ident(ROLE_NAMES.migration))}, ${tx.unsafe(ident(ROLE_NAMES.runtime))}`;
-      await assertProtectedShape(tx as unknown as ReturnType<typeof openSql>);
       await assertRoleModel(tx as unknown as ReturnType<typeof openSql>);
-      await assertProtectedPrivileges(tx as unknown as ReturnType<typeof openSql>);
-      await assertMigrationPrivileges(tx as unknown as ReturnType<typeof openSql>, target);
     });
   } catch (error) {
     if (roleModelFailure(error)) {

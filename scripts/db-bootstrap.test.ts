@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { assertNoResidualBootstrapMembership, createLoginRole, ROLE_NAMES, type BootstrapRoleCredentials, withTemporarySetMembership } from "./db-bootstrap";
+import { assertNoResidualBootstrapMembership, assertNoResidualBootstrapOwnerMembership, createLoginRole, ROLE_NAMES, type BootstrapRoleCredentials, withTemporarySetMembership } from "./db-bootstrap";
 
 type CapturedQuery = { strings: string[]; values: unknown[] };
 
@@ -76,11 +76,66 @@ describe("bootstrap role creation", () => {
     ]);
   });
 
+  it("grants owner SET before protected ownership and revokes it after the last operation", async () => {
+    const queries: CapturedQuery[] = [];
+    const unsafeQueries: string[] = [];
+    const sql = fakeSql(queries);
+    sql.unsafe = (value: string) => {
+      unsafeQueries.push(value);
+      return value;
+    };
+
+    await withTemporarySetMembership(sql, ROLE_NAMES.owner, async () => {
+      await sql`CREATE SCHEMA vocabflow_meta AUTHORIZATION ${sql.unsafe(`"${ROLE_NAMES.owner}"`)}`;
+      await sql`ALTER TABLE vocabflow_meta.environment_identity OWNER TO ${sql.unsafe(`"${ROLE_NAMES.owner}"`)}`;
+    });
+
+    expect(queries).toHaveLength(4);
+    expect(queries[0]?.strings.join("?")).toContain("GRANT");
+    expect(queries[1]?.strings.join("?")).toContain("CREATE SCHEMA");
+    expect(queries[2]?.strings.join("?")).toContain("ALTER TABLE");
+    expect(queries[3]?.strings.join("?")).toContain("REVOKE");
+    expect(unsafeQueries[0]).toBe(`"${ROLE_NAMES.owner}"`);
+    expect(unsafeQueries[1]).toBe(`"${ROLE_NAMES.bootstrap}"`);
+    expect(unsafeQueries.at(-2)).toBe(`"${ROLE_NAMES.owner}"`);
+    expect(unsafeQueries.at(-1)).toBe(`"${ROLE_NAMES.bootstrap}"`);
+  });
+
   it("fails if a bootstrap-to-migration membership remains", async () => {
     const sql = ((_strings: TemplateStringsArray, ..._values: unknown[]) => Promise.resolve([{ count: "0" }])) as unknown as Parameters<typeof assertNoResidualBootstrapMembership>[0];
     await expect(assertNoResidualBootstrapMembership(sql)).resolves.toBeUndefined();
 
     const residual = ((_strings: TemplateStringsArray, ..._values: unknown[]) => Promise.resolve([{ count: "1" }])) as unknown as Parameters<typeof assertNoResidualBootstrapMembership>[0];
     await expect(assertNoResidualBootstrapMembership(residual)).rejects.toThrow("BLOCKED_ROLE_MODEL");
+  });
+
+  it("fails if a bootstrap-to-owner membership remains", async () => {
+    const sql = ((_strings: TemplateStringsArray, ..._values: unknown[]) => Promise.resolve([{ count: "0" }])) as unknown as Parameters<typeof assertNoResidualBootstrapOwnerMembership>[0];
+    await expect(assertNoResidualBootstrapOwnerMembership(sql)).resolves.toBeUndefined();
+
+    const residual = ((_strings: TemplateStringsArray, ..._values: unknown[]) => Promise.resolve([{ count: "1" }])) as unknown as Parameters<typeof assertNoResidualBootstrapOwnerMembership>[0];
+    await expect(assertNoResidualBootstrapOwnerMembership(residual)).rejects.toThrow("BLOCKED_ROLE_MODEL");
+  });
+
+  it("preserves the original ownership error on rollback without masking it", async () => {
+    const queries: CapturedQuery[] = [];
+    const unsafeQueries: string[] = [];
+    const sql = fakeSql(queries);
+    sql.unsafe = (value: string) => {
+      unsafeQueries.push(value);
+      return value;
+    };
+    const original = new Error('must be able to SET ROLE "vocabflow_identity_owner"');
+
+    await expect(withTemporarySetMembership(sql, ROLE_NAMES.owner, async () => {
+      throw original;
+    })).rejects.toBe(original);
+    expect(queries).toHaveLength(1);
+    expect(queries[0]?.strings.join("?")).toContain("GRANT");
+    expect(queries.some((query) => query.strings.join("?").includes("REVOKE"))).toBe(false);
+    expect(unsafeQueries).toEqual([
+      `"${ROLE_NAMES.owner}"`,
+      `"${ROLE_NAMES.bootstrap}"`
+    ]);
   });
 });
