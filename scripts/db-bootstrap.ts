@@ -156,7 +156,7 @@ async function protectedState(sql: ReturnType<typeof openSql>) {
   };
 }
 
-async function assertProtectedShape(sql: ReturnType<typeof openSql>) {
+export async function assertProtectedShape(sql: ReturnType<typeof openSql>) {
   const columns = await sql<{ table_name: string; column_name: string; udt_name: string; is_nullable: string }[]>`
     SELECT table_name, column_name, udt_name, is_nullable
     FROM information_schema.columns
@@ -181,7 +181,7 @@ async function assertProtectedShape(sql: ReturnType<typeof openSql>) {
   })) throw new Error("PROTECTED_METADATA_MALFORMED");
 
   const constraints = await sql<{ table_name: string; contype: string; definition: string }[]>`
-    SELECT c.relname AS table_name, c.contype, pg_get_constraintdef(c.oid) AS definition
+    SELECT ctable.relname AS table_name, c.contype, pg_get_constraintdef(c.oid) AS definition
     FROM pg_constraint c
     JOIN pg_class ctable ON ctable.oid = c.conrelid
     JOIN pg_namespace n ON n.oid = ctable.relnamespace

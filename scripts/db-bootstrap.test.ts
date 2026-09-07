@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { assertNoApplicationDatabasePrivileges, assertNoResidualBootstrapMembership, assertNoResidualBootstrapOwnerMembership, createLoginRole, ROLE_NAMES, type BootstrapRoleCredentials, withTemporarySetMembership } from "./db-bootstrap";
+import { assertNoApplicationDatabasePrivileges, assertNoResidualBootstrapMembership, assertNoResidualBootstrapOwnerMembership, assertProtectedShape, createLoginRole, ROLE_NAMES, type BootstrapRoleCredentials, withTemporarySetMembership } from "./db-bootstrap";
 
 type CapturedQuery = { strings: string[]; values: unknown[] };
 
@@ -129,6 +129,44 @@ describe("bootstrap role creation", () => {
       runtime_create: false
     }]);
     await expect(assertNoApplicationDatabasePrivileges(violation)).rejects.toThrow("BLOCKED_ROLE_MODEL");
+  });
+
+  it("uses the pg_class alias for protected constraint table names", async () => {
+    const queries: string[] = [];
+    const columns = [
+      ["bootstrap_metadata", "id", "int2"],
+      ["bootstrap_metadata", "version", "int4"],
+      ["environment_identity", "id", "int2"],
+      ["environment_identity", "environment", "text"],
+      ["environment_identity", "provider", "text"],
+      ["environment_identity", "project_id", "text"],
+      ["environment_identity", "branch_id", "text"],
+      ["environment_identity", "identity_version", "int4"],
+      ["environment_identity", "created_at", "timestamptz"]
+    ].map(([table_name, column_name, udt_name]) => ({ table_name, column_name, udt_name, is_nullable: "NO" }));
+    const constraints = [
+      ["bootstrap_metadata", "PRIMARY KEY (id)"],
+      ["bootstrap_metadata", "CHECK (id = 1)"],
+      ["bootstrap_metadata", "CHECK (version = 1)"],
+      ["environment_identity", "PRIMARY KEY (id)"],
+      ["environment_identity", "CHECK (id = 1)"],
+      ["environment_identity", "CHECK (environment IN ('development', 'test', 'production'))"],
+      ["environment_identity", "CHECK (provider = 'neon')"],
+      ["environment_identity", "CHECK (identity_version = 1)"]
+    ].map(([table_name, definition]) => ({ table_name, contype: "c", definition }));
+    let call = 0;
+    const sql = ((_strings: TemplateStringsArray, ..._values: unknown[]) => {
+      queries.push(_strings.join("?"));
+      call += 1;
+      if (call === 1) return Promise.resolve(columns);
+      if (call === 2) return Promise.resolve(constraints);
+      return Promise.resolve([{ public_create: false }]);
+    }) as unknown as Parameters<typeof assertProtectedShape>[0] & { array(values: unknown[]): unknown };
+    sql.array = ((values: unknown[]) => values) as typeof sql.array;
+
+    await expect(assertProtectedShape(sql)).resolves.toBeUndefined();
+    expect(queries[1]).toContain("SELECT ctable.relname AS table_name");
+    expect(queries[1]).not.toContain("SELECT c.relname AS table_name");
   });
 
   it("fails if a bootstrap-to-migration membership remains", async () => {
