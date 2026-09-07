@@ -3,7 +3,7 @@ import postgres from "postgres";
 import { readFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { dirname, join } from "node:path";
-import { assertMigrationPrivileges, assertNoApplicationDatabasePrivileges, assertNoResidualBootstrapMembership, assertNoResidualBootstrapOwnerMembership, assertProtectedPrivileges, assertProtectedShape, assertRoleModel, createLoginRole, protectedState, ROLE_NAMES, type BootstrapRoleCredentials, withTemporarySetMembership } from "./db-bootstrap";
+import { assertMigrationPrivileges, assertNoApplicationDatabasePrivileges, assertNoResidualBootstrapMembership, assertNoResidualBootstrapOwnerMembership, assertProtectedPrivileges, assertProtectedShape, assertRoleModel, configurePublicSchema, createLoginRole, protectedState, ROLE_NAMES, type BootstrapRoleCredentials, withTemporarySetMembership } from "./db-bootstrap";
 
 type CapturedQuery = { strings: string[]; values: unknown[] };
 type BuiltQuery = { text: string; parameters: unknown[]; types: number[] };
@@ -14,7 +14,10 @@ const postgresTypes = testRequire(join(dirname(testRequire.resolve("postgres")),
 };
 
 function capturePostgresSql(results: unknown[][], builtQueries: BuiltQuery[]) {
-  const realSql = postgres("postgres://test:test@127.0.0.1:1/test", { max: 1 });
+  // Use the same CommonJS module instance as `types.js` so nested unsafe
+  // identifier fragments are recognized as Query objects by the serializer.
+  const postgresCjs = testRequire("postgres") as typeof postgres;
+  const realSql = postgresCjs("postgres://test:test@127.0.0.1:1/test", { max: 1 });
   const realTag = realSql as unknown as (strings: TemplateStringsArray, ...values: unknown[]) => unknown;
   let resultIndex = 0;
   const tag = ((strings: TemplateStringsArray, ...values: unknown[]) => {
@@ -44,7 +47,8 @@ function sequenceSql(results: unknown[][], queries?: string[]) {
   const tag = ((strings: TemplateStringsArray, ..._values: unknown[]) => {
     queries?.push(strings.join("?"));
     return Promise.resolve(results[resultIndex++] ?? []);
-  }) as unknown as Parameters<typeof assertMigrationPrivileges>[0];
+  }) as unknown as Parameters<typeof assertMigrationPrivileges>[0] & { unsafe(value: string): unknown };
+  tag.unsafe = ((value: string) => value) as typeof tag.unsafe;
   return tag;
 }
 
@@ -326,9 +330,135 @@ describe("bootstrap role creation", () => {
     const freshPathStart = source.indexOf("if (!credentials) throw new Error(\"ROLE_CREDENTIALS_REQUIRED\")");
     const configurePublicSchema = source.indexOf('markStage("configure-public-schema")', freshPathStart);
     const migrationAssertion = source.indexOf('markStage("assert-migration-privileges")', freshPathStart);
+    const resetRole = source.lastIndexOf("await tx`RESET ROLE`", configurePublicSchema);
     expect(freshPathStart).toBeGreaterThanOrEqual(0);
     expect(configurePublicSchema).toBeGreaterThan(freshPathStart);
+    expect(resetRole).toBeGreaterThan(freshPathStart);
+    expect(resetRole).toBeLessThan(configurePublicSchema);
     expect(migrationAssertion).toBeGreaterThan(configurePublicSchema);
+  });
+
+  it("configures public schema in the bootstrap context and checks the ACL immediately", async () => {
+    const builtQueries: BuiltQuery[] = [];
+    const capture = capturePostgresSql([
+      [{
+        public_schema_exists: true,
+        public_owner: "pg_database_owner",
+        current_user_is_bootstrap: true,
+        session_user_is_bootstrap: true,
+        current_user_is_public_owner: false,
+        current_user_is_database_owner: true,
+        current_user_is_superuser: false,
+        current_user_in_public_owner: true,
+        current_user_create_grantable: false
+      }],
+      [],
+      [],
+      [{
+        migration_public_usage: true,
+        migration_public_create: true,
+        migration_acl_usage: true,
+        migration_acl_create: true,
+        provision_public_create: false,
+        runtime_public_create: false
+      }],
+      []
+    ], builtQueries);
+
+    try {
+      await expect(configurePublicSchema(capture.tag)).resolves.toBeUndefined();
+    } finally {
+      await capture.close();
+    }
+
+    expect(builtQueries).toHaveLength(5);
+    expect(builtQueries[0]?.text).toContain("current_user::text = $1::text");
+    expect(builtQueries[0]?.text).toContain("session_user::text = $2::text");
+    expect(builtQueries[0]?.text).toContain("public_owner");
+    expect(builtQueries[1]?.text).toContain("REVOKE CREATE ON SCHEMA public FROM PUBLIC");
+    expect(builtQueries[2]?.text).toContain(`GRANT USAGE, CREATE ON SCHEMA public TO "${ROLE_NAMES.migration}"`);
+    expect(builtQueries[3]?.text).toContain("has_schema_privilege(role_ids.migration_role_oid::oid, role_ids.public_schema_oid::oid, 'USAGE'::text)");
+    expect(builtQueries[3]?.text).toContain("has_schema_privilege(role_ids.migration_role_oid::oid, role_ids.public_schema_oid::oid, 'CREATE'::text)");
+    expect(builtQueries[3]?.text).toContain("privilege.grantee = role_ids.migration_role_oid");
+    expect(builtQueries[4]?.text).toContain(`GRANT USAGE ON SCHEMA public TO "${ROLE_NAMES.runtime}"`);
+    for (const parameter of [1, 2]) {
+      expect(builtQueries[0]?.text).toContain(`$${parameter}::text`);
+    }
+    for (const parameter of [1, 2, 3]) {
+      expect(builtQueries[3]?.text).toContain(`$${parameter}::text`);
+    }
+    expect(builtQueries[3]?.text).not.toMatch(/'\$\d/);
+    expect(builtQueries[2]?.text.indexOf("REVOKE")).toBe(-1);
+
+    const source = readFileSync(join(process.cwd(), "scripts", "db-bootstrap.ts"), "utf8");
+    const functionStart = source.indexOf("export async function configurePublicSchema");
+    const functionEnd = source.indexOf("export async function bootstrapProtectedMetadata", functionStart);
+    const functionSource = source.slice(functionStart, functionEnd);
+    expect(functionSource.indexOf('markSubstage("public-grant-migration")')).toBeLessThan(functionSource.indexOf('markSubstage("public-post-grant-check")'));
+    expect(functionSource).not.toContain("REVOKE CREATE ON SCHEMA public FROM vocabflow_migration");
+  });
+
+  it("fails closed when public schema grant authority is unavailable", async () => {
+    const queries: string[] = [];
+    const sql = sequenceSql([[
+      {
+        public_schema_exists: true,
+        public_owner: "pg_database_owner",
+        current_user_is_bootstrap: true,
+        session_user_is_bootstrap: true,
+        current_user_is_public_owner: false,
+        current_user_is_database_owner: false,
+        current_user_is_superuser: false,
+        current_user_in_public_owner: false,
+        current_user_create_grantable: false
+      }
+    ]], queries) as Parameters<typeof configurePublicSchema>[0];
+    await expect(configurePublicSchema(sql)).rejects.toThrow("BLOCKED_ROLE_MODEL_PUBLIC_SCHEMA_GRANT_AUTHORITY");
+    expect(queries).toHaveLength(1);
+  });
+
+  it("fails closed when the grant is not executed by the bootstrap identity", async () => {
+    const sql = sequenceSql([[
+      {
+        public_schema_exists: true,
+        public_owner: "pg_database_owner",
+        current_user_is_bootstrap: false,
+        session_user_is_bootstrap: true,
+        current_user_is_public_owner: true,
+        current_user_is_database_owner: false,
+        current_user_is_superuser: true,
+        current_user_in_public_owner: true,
+        current_user_create_grantable: true
+      }
+    ]]) as Parameters<typeof configurePublicSchema>[0];
+    await expect(configurePublicSchema(sql)).rejects.toThrow("BLOCKED_ROLE_MODEL_PUBLIC_SCHEMA_GRANT_CONTEXT");
+  });
+
+  it("fails closed when the public migration grant is not effective", async () => {
+    const sql = sequenceSql([
+      [{
+        public_schema_exists: true,
+        public_owner: "pg_database_owner",
+        current_user_is_bootstrap: true,
+        session_user_is_bootstrap: true,
+        current_user_is_public_owner: false,
+        current_user_is_database_owner: false,
+        current_user_is_superuser: false,
+        current_user_in_public_owner: true,
+        current_user_create_grantable: false
+      }],
+      [],
+      [],
+      [{
+        migration_public_usage: true,
+        migration_public_create: false,
+        migration_acl_usage: true,
+        migration_acl_create: false,
+        provision_public_create: false,
+        runtime_public_create: false
+      }]
+    ]) as Parameters<typeof configurePublicSchema>[0];
+    await expect(configurePublicSchema(sql)).rejects.toThrow("BLOCKED_ROLE_MODEL_PUBLIC_SCHEMA_GRANT_NOT_EFFECTIVE");
   });
 
   it("uses the pg_class alias for protected constraint table names", async () => {

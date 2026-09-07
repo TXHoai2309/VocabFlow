@@ -503,6 +503,144 @@ export async function assertMigrationPrivileges(sql: ReturnType<typeof openSql>,
   void target;
 }
 
+export async function configurePublicSchema(sql: ReturnType<typeof openSql>) {
+  type PublicSchemaSubstage =
+    | "public-role-context"
+    | "public-revoke-public-create"
+    | "public-grant-migration"
+    | "public-grant-runtime"
+    | "public-post-grant-check";
+  const markSubstage = (substage: PublicSchemaSubstage) => {
+    console.log(`DB_BOOTSTRAP_SUBSTAGE=${substage}`);
+  };
+
+  markSubstage("public-role-context");
+  const [context] = await sql<{
+    public_schema_exists: boolean;
+    public_owner: string | null;
+    current_user_is_bootstrap: boolean;
+    session_user_is_bootstrap: boolean;
+    current_user_is_public_owner: boolean;
+    current_user_is_database_owner: boolean;
+    current_user_is_superuser: boolean;
+    current_user_in_public_owner: boolean;
+    current_user_create_grantable: boolean;
+  }[]>`
+    SELECT
+      EXISTS (SELECT 1 FROM pg_namespace WHERE nspname::text = 'public'::text) AS public_schema_exists,
+      (SELECT r.rolname::text
+       FROM pg_namespace n
+       JOIN pg_roles r ON r.oid = n.nspowner
+       WHERE n.nspname::text = 'public'::text) AS public_owner,
+      current_user::text = ${ROLE_NAMES.bootstrap}::text AS current_user_is_bootstrap,
+      session_user::text = ${ROLE_NAMES.bootstrap}::text AS session_user_is_bootstrap,
+      EXISTS (
+        SELECT 1
+        FROM pg_namespace n
+        JOIN pg_roles owner_role ON owner_role.oid = n.nspowner
+        WHERE n.nspname::text = 'public'::text
+          AND owner_role.rolname::text = current_user::text
+      ) AS current_user_is_public_owner,
+      EXISTS (
+        SELECT 1
+        FROM pg_database db
+        WHERE db.datname = current_database()
+          AND db.datdba = (SELECT r.oid FROM pg_roles r WHERE r.rolname::text = current_user::text)
+      ) AS current_user_is_database_owner,
+      COALESCE((SELECT r.rolsuper FROM pg_roles r WHERE r.rolname::text = current_user::text), false) AS current_user_is_superuser,
+      EXISTS (
+        SELECT 1
+        FROM pg_namespace n
+        WHERE n.nspname::text = 'public'::text
+          AND pg_has_role(
+            (SELECT r.oid::oid FROM pg_roles r WHERE r.rolname::text = current_user::text),
+            n.nspowner::oid,
+            'USAGE'::text
+          )
+      ) AS current_user_in_public_owner,
+      EXISTS (
+        SELECT 1
+        FROM pg_namespace n
+        CROSS JOIN LATERAL aclexplode(COALESCE(n.nspacl, acldefault('n', n.nspowner))) privilege
+        WHERE n.nspname::text = 'public'::text
+          AND privilege.grantee = (SELECT r.oid FROM pg_roles r WHERE r.rolname::text = current_user::text)
+          AND privilege.privilege_type = 'CREATE'::text
+          AND privilege.is_grantable
+      ) AS current_user_create_grantable
+  `;
+
+  if (!context?.public_schema_exists) throw new Error("BLOCKED_ROLE_MODEL_PUBLIC_SCHEMA_MISSING");
+  if (!context.current_user_is_bootstrap || !context.session_user_is_bootstrap) {
+    throw new Error("BLOCKED_ROLE_MODEL_PUBLIC_SCHEMA_GRANT_CONTEXT");
+  }
+  if (!context.current_user_is_public_owner
+    && !context.current_user_is_database_owner
+    && !context.current_user_is_superuser
+    && !context.current_user_in_public_owner
+    && !context.current_user_create_grantable) {
+    throw new Error("BLOCKED_ROLE_MODEL_PUBLIC_SCHEMA_GRANT_AUTHORITY");
+  }
+
+  markSubstage("public-revoke-public-create");
+  await sql`REVOKE CREATE ON SCHEMA public FROM PUBLIC`;
+
+  markSubstage("public-grant-migration");
+  await sql`GRANT USAGE, CREATE ON SCHEMA public TO ${sql.unsafe(ident(ROLE_NAMES.migration))}`;
+
+  markSubstage("public-post-grant-check");
+  const [postGrant] = await sql<{
+    migration_public_usage: boolean;
+    migration_public_create: boolean;
+    migration_acl_usage: boolean;
+    migration_acl_create: boolean;
+    provision_public_create: boolean;
+    runtime_public_create: boolean;
+  }[]>`
+    WITH role_ids AS (
+      SELECT
+        (SELECT oid::oid FROM pg_roles WHERE rolname::text = ${ROLE_NAMES.migration}::text) AS migration_role_oid,
+        (SELECT oid::oid FROM pg_roles WHERE rolname::text = ${ROLE_NAMES.provision}::text) AS provision_role_oid,
+        (SELECT oid::oid FROM pg_roles WHERE rolname::text = ${ROLE_NAMES.runtime}::text) AS runtime_role_oid,
+        (SELECT oid::oid FROM pg_namespace WHERE nspname::text = 'public'::text) AS public_schema_oid
+    )
+    SELECT
+      has_schema_privilege(role_ids.migration_role_oid::oid, role_ids.public_schema_oid::oid, 'USAGE'::text) AS migration_public_usage,
+      has_schema_privilege(role_ids.migration_role_oid::oid, role_ids.public_schema_oid::oid, 'CREATE'::text) AS migration_public_create,
+      EXISTS (
+        SELECT 1
+        FROM pg_namespace n
+        CROSS JOIN LATERAL aclexplode(COALESCE(n.nspacl, acldefault('n', n.nspowner))) privilege
+        WHERE n.oid = role_ids.public_schema_oid
+          AND privilege.grantee = role_ids.migration_role_oid
+          AND privilege.privilege_type = 'USAGE'::text
+      ) AS migration_acl_usage,
+      EXISTS (
+        SELECT 1
+        FROM pg_namespace n
+        CROSS JOIN LATERAL aclexplode(COALESCE(n.nspacl, acldefault('n', n.nspowner))) privilege
+        WHERE n.oid = role_ids.public_schema_oid
+          AND privilege.grantee = role_ids.migration_role_oid
+          AND privilege.privilege_type = 'CREATE'::text
+      ) AS migration_acl_create,
+      has_schema_privilege(role_ids.provision_role_oid::oid, role_ids.public_schema_oid::oid, 'CREATE'::text) AS provision_public_create,
+      has_schema_privilege(role_ids.runtime_role_oid::oid, role_ids.public_schema_oid::oid, 'CREATE'::text) AS runtime_public_create
+    FROM role_ids
+  `;
+
+  if (!postGrant
+    || postGrant.migration_public_usage !== true
+    || postGrant.migration_public_create !== true
+    || postGrant.migration_acl_usage !== true
+    || postGrant.migration_acl_create !== true
+    || postGrant.provision_public_create !== false
+    || postGrant.runtime_public_create !== false) {
+    throw new Error("BLOCKED_ROLE_MODEL_PUBLIC_SCHEMA_GRANT_NOT_EFFECTIVE");
+  }
+
+  markSubstage("public-grant-runtime");
+  await sql`GRANT USAGE ON SCHEMA public TO ${sql.unsafe(ident(ROLE_NAMES.runtime))}`;
+}
+
 export async function bootstrapProtectedMetadata(
   url: string,
   target: ConnectionTarget,
@@ -581,9 +719,7 @@ export async function bootstrapProtectedMetadata(
       });
 
       markStage("configure-public-schema");
-      await tx`REVOKE CREATE ON SCHEMA public FROM PUBLIC`;
-      await tx`GRANT USAGE, CREATE ON SCHEMA public TO ${tx.unsafe(ident(ROLE_NAMES.migration))}`;
-      await tx`GRANT USAGE ON SCHEMA public TO ${tx.unsafe(ident(ROLE_NAMES.runtime))}`;
+      await configurePublicSchema(tx as unknown as ReturnType<typeof openSql>);
       markStage("assert-migration-privileges");
       await assertMigrationPrivileges(tx as unknown as ReturnType<typeof openSql>, target);
       markStage("assert-role-model");
