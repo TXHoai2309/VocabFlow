@@ -93,19 +93,19 @@ export async function createLoginRole(tx: SqlTag, roleName: string, password: st
 }
 
 /**
- * PostgreSQL 18 creates the CREATEROLE user's membership in a newly-created
- * role with SET FALSE. CREATE SCHEMA ... AUTHORIZATION and protected object
- * ownership operations therefore need a narrowly-scoped, transaction-local
- * SET grant. The finally block guarantees the membership is revoked on every
- * successful path; an error aborts the surrounding transaction and rolls both
- * statements back.
+ * PostgreSQL 18 automatically grants every role created by a non-superuser
+ * CREATEROLE user back to that creator with ADMIN TRUE, INHERIT FALSE and
+ * SET FALSE. That bootstrap-superuser-attributed row cannot be changed by the
+ * creator and is intentionally retained. Ownership operations use a separate,
+ * CURRENT_USER-attributed SET grant which is revoked on the successful path.
+ * An error aborts the surrounding transaction and rolls the temporary row back.
  */
 export async function withTemporarySetMembership(
   tx: SqlTag,
   roleName: TemporarySetRole,
   operation: () => Promise<void>,
 ) {
-  await tx`GRANT ${tx.unsafe(ident(roleName))} TO ${tx.unsafe(ident(ROLE_NAMES.bootstrap))} WITH INHERIT FALSE, SET TRUE`;
+  await tx`GRANT ${tx.unsafe(ident(roleName))} TO ${tx.unsafe(ident(ROLE_NAMES.bootstrap))} WITH ADMIN FALSE, INHERIT FALSE, SET TRUE GRANTED BY CURRENT_USER`;
   let operationSucceeded = false;
   try {
     await operation();
@@ -115,13 +115,10 @@ export async function withTemporarySetMembership(
     // aborted; rollback will remove the temporary grant. Issuing REVOKE in
     // that state would mask the original error with 25P02.
     if (operationSucceeded) {
-      await tx`REVOKE ${tx.unsafe(ident(roleName))} FROM ${tx.unsafe(ident(ROLE_NAMES.bootstrap))}`;
-      await assertNoResidualMembership(
+      await tx`REVOKE ${tx.unsafe(ident(roleName))} FROM ${tx.unsafe(ident(ROLE_NAMES.bootstrap))} GRANTED BY CURRENT_USER`;
+      await assertBootstrapAdministrativeMemberships(
         tx as unknown as ReturnType<typeof openSql>,
-        roleName,
-        roleName === ROLE_NAMES.owner
-          ? "BLOCKED_ROLE_MODEL_BOOTSTRAP_TO_OWNER_MEMBERSHIP"
-          : "BLOCKED_ROLE_MODEL_BOOTSTRAP_TO_MIGRATION_MEMBERSHIP",
+        [roleName],
       );
     }
   }
@@ -290,44 +287,99 @@ export async function assertNoApplicationDatabasePrivileges(sql: ReturnType<type
   }
 }
 
-export async function assertNoResidualBootstrapMembership(sql: ReturnType<typeof openSql>) {
-  await assertNoResidualMembership(
-    sql,
-    ROLE_NAMES.migration,
-    "BLOCKED_ROLE_MODEL_BOOTSTRAP_TO_MIGRATION_MEMBERSHIP",
-  );
-}
+type BootstrapCreatedRole = typeof ROLE_NAMES.owner
+  | typeof ROLE_NAMES.provision
+  | typeof ROLE_NAMES.migration
+  | typeof ROLE_NAMES.runtime;
 
-export async function assertNoResidualBootstrapOwnerMembership(sql: ReturnType<typeof openSql>) {
-  await assertNoResidualMembership(
-    sql,
-    ROLE_NAMES.owner,
-    "BLOCKED_ROLE_MODEL_BOOTSTRAP_TO_OWNER_MEMBERSHIP",
-  );
-}
+type BootstrapMembershipRow = {
+  roleid: number;
+  member: number;
+  grantor: number;
+  granted_role: BootstrapCreatedRole;
+  grantor_is_superuser: boolean;
+  admin_option: boolean;
+  inherit_option: boolean;
+  set_option: boolean;
+};
 
-async function assertNoResidualMembership(
+const BOOTSTRAP_MEMBERSHIP_FAILURES: Record<BootstrapCreatedRole, { inherit: string; set: string }> = {
+  [ROLE_NAMES.owner]: {
+    inherit: "BLOCKED_ROLE_MODEL_BOOTSTRAP_OWNER_INHERIT_ENABLED",
+    set: "BLOCKED_ROLE_MODEL_BOOTSTRAP_OWNER_SET_ENABLED",
+  },
+  [ROLE_NAMES.provision]: {
+    inherit: "BLOCKED_ROLE_MODEL_BOOTSTRAP_PROVISION_INHERIT_ENABLED",
+    set: "BLOCKED_ROLE_MODEL_BOOTSTRAP_PROVISION_SET_ENABLED",
+  },
+  [ROLE_NAMES.migration]: {
+    inherit: "BLOCKED_ROLE_MODEL_BOOTSTRAP_MIGRATION_INHERIT_ENABLED",
+    set: "BLOCKED_ROLE_MODEL_BOOTSTRAP_MIGRATION_SET_ENABLED",
+  },
+  [ROLE_NAMES.runtime]: {
+    inherit: "BLOCKED_ROLE_MODEL_BOOTSTRAP_RUNTIME_INHERIT_ENABLED",
+    set: "BLOCKED_ROLE_MODEL_BOOTSTRAP_RUNTIME_SET_ENABLED",
+  },
+};
+
+async function assertBootstrapAdministrativeMemberships(
   sql: ReturnType<typeof openSql>,
-  grantedRole: TemporarySetRole,
-  failureCode: string,
+  roles: readonly BootstrapCreatedRole[],
 ) {
-  const [membership] = await sql<{ forbidden: boolean }[]>`
-    SELECT EXISTS (
-      SELECT 1
-      FROM pg_auth_members membership
-      JOIN pg_roles member ON member.oid = membership.member
-      JOIN pg_roles granted ON granted.oid = membership.roleid
-      WHERE granted.rolname::text = ${grantedRole}::text
-        AND member.rolname::text = ${ROLE_NAMES.bootstrap}::text
-    ) AS forbidden
+  const rows = await sql<BootstrapMembershipRow[]>`
+    SELECT
+      membership.roleid::oid AS roleid,
+      membership.member::oid AS member,
+      membership.grantor::oid AS grantor,
+      granted.rolname::text AS granted_role,
+      grantor_role.rolsuper AS grantor_is_superuser,
+      membership.admin_option,
+      membership.inherit_option,
+      membership.set_option
+    FROM pg_auth_members membership
+    JOIN pg_roles member ON member.oid = membership.member
+    JOIN pg_roles granted ON granted.oid = membership.roleid
+    JOIN pg_roles grantor_role ON grantor_role.oid = membership.grantor
+    WHERE member.rolname::text = ${ROLE_NAMES.bootstrap}::text
+      AND granted.rolname::text = ANY(${sql.array([...roles])}::text[])
+    ORDER BY granted.rolname, membership.grantor
   `;
-  if (membership?.forbidden !== false) throw new Error(failureCode);
+
+  for (const role of roles) {
+    const roleRows = rows.filter((row) => row.granted_role === role);
+    const failures = BOOTSTRAP_MEMBERSHIP_FAILURES[role];
+    if (roleRows.some((row) => row.set_option)) throw new Error(failures.set);
+    if (roleRows.some((row) => row.inherit_option)) throw new Error(failures.inherit);
+
+    // PostgreSQL 18 creates exactly one bootstrap-superuser-attributed
+    // administrative row. It is safe only because SET and INHERIT are false.
+    // A row granted by the bootstrap member itself is a leaked temporary grant.
+    const automatic = roleRows[0];
+    if (roleRows.length !== 1
+      || !automatic
+      || automatic.admin_option !== true
+      || automatic.set_option !== false
+      || automatic.inherit_option !== false
+      || automatic.grantor_is_superuser !== true
+      || automatic.grantor === automatic.member) {
+      throw new Error("BLOCKED_ROLE_MODEL_UNEXPECTED_BOOTSTRAP_MEMBERSHIP_OPTIONS");
+    }
+  }
+}
+
+export async function assertBootstrapMigrationMembershipSafe(sql: ReturnType<typeof openSql>) {
+  await assertBootstrapAdministrativeMemberships(sql, [ROLE_NAMES.migration]);
+}
+
+export async function assertBootstrapOwnerMembershipSafe(sql: ReturnType<typeof openSql>) {
+  await assertBootstrapAdministrativeMemberships(sql, [ROLE_NAMES.owner]);
 }
 
 export async function assertMemberships(sql: ReturnType<typeof openSql>) {
   type MembershipSubstage =
     | "membership-bootstrap-owner"
     | "membership-bootstrap-migration"
+    | "membership-bootstrap-application-roles"
     | "membership-app-owner"
     | "membership-cross-app";
   const markSubstage = (substage: MembershipSubstage) => {
@@ -335,10 +387,13 @@ export async function assertMemberships(sql: ReturnType<typeof openSql>) {
   };
 
   markSubstage("membership-bootstrap-owner");
-  await assertNoResidualBootstrapOwnerMembership(sql);
+  await assertBootstrapOwnerMembershipSafe(sql);
 
   markSubstage("membership-bootstrap-migration");
-  await assertNoResidualBootstrapMembership(sql);
+  await assertBootstrapMigrationMembershipSafe(sql);
+
+  markSubstage("membership-bootstrap-application-roles");
+  await assertBootstrapAdministrativeMemberships(sql, [ROLE_NAMES.provision, ROLE_NAMES.runtime]);
 
   markSubstage("membership-app-owner");
   const [applicationOwnerMembership] = await sql<{ forbidden: boolean }[]>`
