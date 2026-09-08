@@ -5,6 +5,7 @@
 - Owner: Project Owner
 - Last updated: 2026-09-08
 - Baseline commit: `24e4580` (BATCH 0 acceptance evidence)
+- T01-04 status: IMPLEMENTED / PENDING ACCEPTANCE
 
 ## 1. User Story
 
@@ -213,7 +214,7 @@ Likely areas (not a mandatory implementation list):
 
 ## 18. Definition of Done
 
-- All AC-01 through AC-13 pass with evidence.
+- All AC-01 through AC-14 pass with evidence.
 - Better Auth signup and required household bootstrap boundaries are explicit
   and tested.
 - Signup-only success is never presented as completed Family registration.
@@ -244,20 +245,44 @@ household resolved. Learner creation remains out of scope for US-01.
   `US01_BLOCKED_BETTER_AUTH_NAME_CONTRACT`: `name` is required by
   `signUp.email`, so the approved Register contract explicitly collects the
   parent's display name. No fake, derived or hidden name is used.
-- T01-04 (Better Auth signup, authenticated bootstrap and recovery states) is
-  still pending and remains the next implementation slice.
-- Tests: `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm build`.
-- No database schema or migration was added in Phase 1. T01-04 may add only the
-  minimal `households` and `household_members` application migration; BATCH 0
-  schema/role/bootstrap/reset/CI infrastructure remains frozen.
+- T01-04 implementation evidence:
+  - Better Auth 1.7.2 signup is called directly with the required
+    `{ name, email, password }` contract, then the authenticated client calls
+    `POST /api/bootstrap`.
+  - The additive migration `0001_curious_miss_america.sql` creates only
+    `vocabflow_app.households` and `vocabflow_app.household_members`, with the
+    approved UUID/FK/OWNER constraints. No learner or learning-domain tables
+    were added.
+  - Bootstrap uses one atomic, unique-owner-keyed write to resolve the
+    server-owned neutral household name `Gia đình VocabFlow` and an `OWNER`
+    membership. It is safe to retry after a partial client flow and does not
+    accept a client-supplied owner id.
+  - The UI covers signup-pending, bootstrap-pending, safe auth/bootstrap
+    errors, authenticated bootstrap recovery and completed Family registration.
+    A bootstrap failure never claims registration completed and the retry calls
+    bootstrap only.
+  - `config/database-reset-policy.ts` resets household members before
+    households, then Better Auth tables; protected metadata remains outside
+    the reset scope.
+- T01-04 is implemented but remains pending owner acceptance evidence; this
+  story stays `IN PROGRESS` until that review is complete.
+- Targeted API/component/migration tests pass locally, including the atomic
+  bootstrap query-shape regression tests. Full repository checks are recorded
+  in the implementation handoff after they run.
+- The known baseline Playwright preview mismatch remains unchanged: the
+  existing `/api/auth/session` smoke expects `503` while the preview serves the
+  route as `404`; this is not introduced by T01-04 and is not fixed in this
+  story.
+- The additive migration is limited to the two household tables above;
+  BATCH 0 schema/role/bootstrap/reset/CI infrastructure remains frozen.
 - Non-blocking review notes: `/login` does not exist yet and remains out of
   scope; the Enter-submit component test manually fires `submit` after
   `keyDown`, so final US-01 acceptance must include native keyboard E2E/manual
   evidence.
 
-- Commit: pending implementation.
-- CI/tests: Phase 1 local checks recorded above; full story acceptance remains
-  pending T01-04.
+- Commit: pending T01-04 implementation checkpoint.
+- CI/tests: implementation checks are pending final local validation; story
+  acceptance remains pending owner review.
 - Screenshots/manual evidence: local Playwright render checks passed at
   375px, 768px and 1280px; screenshots are retained outside the repository.
-- Final status: IN PROGRESS.
+- Final status: IN PROGRESS (T01-04 IMPLEMENTED / PENDING ACCEPTANCE).

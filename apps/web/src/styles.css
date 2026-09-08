@@ -11,6 +11,7 @@
   --color-text-muted: #64748b;
   --color-border: #e2e8f0;
   --color-danger: #dc2626;
+  --color-success-text: #166534;
   --color-focus: #4f46e5;
   --radius-control: 12px;
   --radius-feature: 20px;
@@ -155,7 +156,8 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
 
 .text-input:focus-visible,
 .password-toggle:focus-visible,
-.register-submit:focus-visible {
+.register-submit:focus-visible,
+.auth-retry:focus-visible {
   outline: 2px solid var(--color-focus);
   outline-offset: 2px;
 }
@@ -220,6 +222,45 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
 .register-submit:disabled {
   cursor: wait;
   opacity: 0.7;
+}
+
+.auth-status {
+  min-height: 24px;
+  margin-top: 16px;
+  color: var(--color-text-muted);
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.auth-status p {
+  margin: 0;
+}
+
+.auth-status [role="alert"] {
+  color: var(--color-danger);
+}
+
+.auth-status [role="status"] {
+  color: var(--color-success-text);
+  font-weight: 600;
+}
+
+.auth-retry {
+  min-height: 44px;
+  margin-top: 12px;
+  padding: 8px 12px;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-control);
+  color: var(--color-primary);
+  background: transparent;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.auth-retry:hover {
+  background: var(--color-primary-soft);
 }
 
 .auth-switch {

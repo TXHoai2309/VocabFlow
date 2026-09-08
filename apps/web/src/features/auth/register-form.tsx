@@ -9,11 +9,12 @@ import {
 
 type RegisterFormProps = {
   onValidSubmit?: (values: RegisterFormValues) => void | Promise<void>;
+  submitDisabled?: boolean;
 };
 
 const INITIAL_VALUES: RegisterFormValues = { name: "", email: "", password: "" };
 
-export function RegisterForm({ onValidSubmit }: RegisterFormProps) {
+export function RegisterForm({ onValidSubmit, submitDisabled = false }: RegisterFormProps) {
   const [values, setValues] = useState<RegisterFormValues>(INITIAL_VALUES);
   const [errors, setErrors] = useState<RegisterFieldErrors>({});
   const [hasSubmitted, setHasSubmitted] = useState(false);
@@ -58,7 +59,7 @@ export function RegisterForm({ onValidSubmit }: RegisterFormProps) {
 
     const nextErrors = validateRegisterForm(values);
     setErrors(nextErrors);
-    if (hasRegisterErrors(nextErrors) || !onValidSubmit || submittingRef.current) {
+    if (hasRegisterErrors(nextErrors) || !onValidSubmit || submitDisabled || submittingRef.current) {
       return;
     }
 
@@ -139,7 +140,7 @@ export function RegisterForm({ onValidSubmit }: RegisterFormProps) {
         {errors.password ? <p className="form-error" id="register-password-error" role="alert">{errors.password}</p> : null}
       </div>
 
-      <button className="register-submit" type="submit" disabled={isSubmitting}>
+      <button className="register-submit" type="submit" disabled={isSubmitting || submitDisabled}>
         {isSubmitting ? "Đang xử lý…" : "Tạo tài khoản"}
       </button>
     </form>

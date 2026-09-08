@@ -11,26 +11,29 @@
   with implementation baseline `2429b0f`
 - CI status: Core CI PASS
 - Database acceptance status: Trusted DB Integration PASS on Neon PostgreSQL 18
-- Current implementation focus: US-01 Phase 1 Register UI/form behavior,
-  including the approved parent name/email/password contract
-- Last completed work: US-01 Phase 1 Register UI (T01-01/T01-02/T01-03);
-  BATCH 0 Foundation remains accepted and frozen.
-- Files/areas most recently changed: `apps/web/src/features/auth/`, the web
-  router/styles, and the US-01 story handoff docs; no database or CI areas changed.
-- Tests/evidence: Acceptance record under
-  `docs/implementation/BATCH0_FOUNDATION_ACCEPTANCE.md`; `pnpm lint`,
-  `pnpm typecheck`, `pnpm test` (82/82), `pnpm build` and `git diff --check`
-  PASS; local Playwright render checks pass at 375/768/1280px.
+- Current implementation focus: US-01 T01-04 Better Auth signup and
+  authenticated household bootstrap (implemented / pending acceptance)
+- Last completed work: T01-04 registration integration, including the
+  additive household migration, atomic `/api/bootstrap` service and safe UI
+  recovery states; BATCH 0 Foundation remains accepted and frozen.
+- Files/areas most recently changed: `apps/api/src/bootstrap.ts`,
+  `apps/api/src/index.ts`, `apps/api/src/db/schema.ts`, the web auth feature,
+  shared contracts, reset policy, additive Drizzle migration and US-01 docs.
+  BATCH 0 infrastructure, CI and protected database code were not changed.
+- Tests/evidence: targeted API/component/migration tests pass, including the
+  serialized bootstrap query-shape regression. Final local validation:
+  `pnpm lint` PASS, `pnpm typecheck` PASS, `pnpm test` PASS (13 files / 100
+  tests), `pnpm build` PASS and `git diff --check` PASS. No live Neon call is
+  permitted.
 - Open blockers: None. `US01_BLOCKED_BETTER_AUTH_NAME_CONTRACT` is resolved by
   the approved explicit parent display-name field. Successful registration
   includes authenticated Better Auth signup followed by idempotent
   `POST /api/bootstrap`.
 - Frozen areas: BATCH 0 bootstrap, role model, database targets, schemas, reset
   policy, migration executor and CI behavior unless a proven regression appears.
-- Next safe action: Implement T01-04 Better Auth signup + household
-  persistence/bootstrap integration under the corrected story contract.
-- Do NOT do next: Do not call Neon, modify migrations, or reopen BATCH 0 without
-  regression evidence.
+- Next safe action: US-01 ACCEPTANCE TEST / REVIEW.
+- Do NOT do next: Do not call live Neon directly; do not add learner/domain
+  tables; do not reopen BATCH 0 infrastructure without regression evidence.
 - Documents new agent must read first: `docs/README.md`,
   `docs/product/product-spec.md`, `docs/architecture/technical-architecture.md`,
   `docs/design/design-system.md`, `docs/design/feature-ui-spec.md`,
@@ -205,3 +208,37 @@ registration boundary before feature implementation.
 ### Next safe action
 
 - Implement T01-04 Better Auth signup + household persistence/bootstrap.
+
+## 2026-09-08 — US-01 T01-04 registration integration
+
+### Completed
+
+- Implemented the real Better Auth 1.7.2 signup path with the explicit parent
+  `name`, `email` and `password` contract.
+- Added the authenticated `POST /api/bootstrap` route and a server-owned,
+  atomic/idempotent household resolver. Bootstrap ignores client owner input,
+  uses the neutral default name `Gia đình VocabFlow`, and creates the canonical
+  `OWNER` membership.
+- Added only the additive `vocabflow_app.households` and
+  `vocabflow_app.household_members` migration; no learner or learning-domain
+  tables were introduced. Reset order is dependency-safe and preserves
+  `vocabflow_meta`.
+- Added signup/bootstrap loading, safe error, authenticated recovery/retry and
+  completed states. Signup success alone is never presented as completed Family
+  registration.
+- Added API, component and migration/reset tests, including the serialized SQL
+  and idempotent bootstrap contract.
+
+### Checkpoint
+
+- Story status: `IN PROGRESS`.
+- T01-04 status: `IMPLEMENTED / PENDING ACCEPTANCE`.
+- BATCH 0 remains `ACCEPTED` / frozen; no live Neon call was made.
+- Known baseline E2E issue remains unchanged: `pnpm test:e2e` receives `404`
+  for `/api/auth/session` in preview while the existing foundation smoke test
+  expects `503`; this is classified `KNOWN BASELINE FAILURE`, not a T01-04
+  regression.
+
+### Next safe action
+
+- US-01 ACCEPTANCE TEST / REVIEW.

@@ -37,6 +37,12 @@ Current task contract:
 - `T01-04` — Better Auth signup, loading/error state, preserve email on error,
   duplicate-submit protection, then required idempotent household bootstrap.
 
+Implementation checkpoint: `T01-04` is `IMPLEMENTED / PENDING ACCEPTANCE`.
+Family registration succeeds only after Better Auth signup, an authenticated
+session, `POST /api/bootstrap` and canonical default household resolution.
+Bootstrap uses the server-owned neutral name `Gia đình VocabFlow`; learner
+creation remains out of scope.
+
 Register contract: `Tên phụ huynh` → `Email` → `Mật khẩu`. Parent display name
 is collected explicitly because Better Auth 1.7.2 requires `name` for
 `signUp.email`; learner naming and learner creation remain out of scope.

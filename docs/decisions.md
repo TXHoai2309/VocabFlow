@@ -223,3 +223,22 @@ evidence condition is met and the affected source document is updated.
   [US-01 contract](stories/US-01-parent-registration.md)
 - Revisit only if: Better Auth is upgraded or the product owner explicitly
   changes the parent registration identity contract.
+
+## DEC-016 — Server-owned default household name for US-01 bootstrap
+
+- Status: ACCEPTED
+- Date: Recorded 2026-09-08
+- Context: The first Family registration must resolve one canonical household,
+  while learner naming and household customization are outside US-01.
+- Decision: `POST /api/bootstrap` uses the neutral server-owned default name
+  `Gia đình VocabFlow`; it never derives a household name from email or parent
+  display name and never accepts a client-supplied owner id. The household and
+  `OWNER` membership are resolved in one idempotent write keyed by the unique
+  primary owner.
+- Consequences: Signup success alone is not the Family registration boundary;
+  a bootstrap failure stays recoverable without a second signup. Household
+  naming customization can be introduced by a later reviewed story.
+- Evidence/source: `apps/api/src/bootstrap.ts`,
+  `apps/api/src/index.ts`, [US-01 contract](stories/US-01-parent-registration.md)
+- Revisit only if: The product owner adds a household naming requirement or a
+  proven persistence constraint requires a new contract.

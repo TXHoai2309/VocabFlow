@@ -67,3 +67,14 @@ This log records meaningful project milestones and accepted baselines.
   parent's visible display name, with required/trimmed Unicode-safe validation.
 - T01-04 Better Auth signup and household bootstrap remain pending; no
   application integration or database change was started.
+
+## 2026-09-08 — US-01 T01-04 registration integration
+
+- Implemented the real Better Auth 1.7.2 parent signup pipeline with the
+  authenticated `POST /api/bootstrap` Family-registration boundary.
+- Added the additive `vocabflow_app.households` and
+  `vocabflow_app.household_members` migration, atomic/idempotent bootstrap
+  persistence and dependency-safe application reset ordering.
+- Added safe signup/bootstrap loading, error and authenticated recovery states;
+  learner creation and all learning-domain tables remain out of scope.
+- T01-04 is implemented / pending acceptance; US-01 remains `IN PROGRESS`.
