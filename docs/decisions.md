@@ -194,8 +194,10 @@ evidence condition is met and the affected source document is updated.
   alone is not the completed Family registration boundary.
 - Consequences: Bootstrap failure preserves authenticated state and exposes safe
   retry/recovery; the idempotent/race-safe bootstrap contract is reused. Learner
-  creation remains out of scope for US-01, and US-01 introduces no new schema or
-  migration.
+  creation remains out of scope for US-01. T01-04 may add only the minimal
+  additive `vocabflow_app.households` and `vocabflow_app.household_members`
+  application migration required for canonical bootstrap; BATCH 0 database
+  infrastructure remains frozen.
 - Evidence/source: [Product Specification](product/product-spec.md#8--acceptance-validation--freeze),
   [Technical Architecture](architecture/technical-architecture.md#62-household-bootstrap-flow),
   [User Flow](flow/user-flow.md#2-luồng-parent--learner),

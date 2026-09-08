@@ -49,6 +49,10 @@ an toàn theo contract idempotent của server.
 - `T01-03`: Password show/hide, Enter submit và autocomplete phù hợp.
 - `T01-04`: Better Auth signup, loading/error state, giữ email khi lỗi và chống
   duplicate submit, followed by authenticated `POST /api/bootstrap`.
+- T01-04 may add the minimal additive application migration for
+  `vocabflow_app.households` and `vocabflow_app.household_members`, using the
+  exact approved Technical Architecture types, constraints, ownership and
+  timezone rules. This is BATCH 1 feature work, not a reopening of BATCH 0.
 - Parent account only; learner không có email/password riêng.
 
 ## 6. Out of Scope
@@ -59,7 +63,9 @@ an toàn theo contract idempotent của server.
 - Learner own login/PIN, social login và email verification UI nếu auth config
   không bắt buộc.
 - Offline write queue, AI, gamification, payment, admin CMS và analytics.
-- Bất kỳ database schema/role/migration thay đổi nào thuộc BATCH 0.
+- Learner profiles, vocabulary/progress/review tables and any BATCH 0 database
+  infrastructure changes. BATCH 0 role model, protected metadata, targets,
+  reset policy and migration executor remain frozen.
 
 ## 7. Acceptance Criteria
 
@@ -121,8 +127,11 @@ an toàn theo contract idempotent của server.
 - Sau Better Auth signup success, gọi `POST /api/bootstrap` trong authenticated
   session. Chỉ khi canonical default household được resolve mới đạt Family
   registration success boundary.
-- Bootstrap phải dùng contract idempotent/race-safe đã khóa trong Architecture;
-  không tạo schema hoặc migration mới cho US-01.
+- Bootstrap phải dùng contract idempotent/race-safe đã khóa trong Architecture.
+- US-01 không sửa BATCH 0 database infrastructure. T01-04 được phép thêm
+  migration application additive tối thiểu cho `vocabflow_app.households` và
+  `vocabflow_app.household_members`; không thêm learner, vocabulary, progress
+  hoặc review tables.
 
 ## 11. Authorization and Security
 
@@ -139,7 +148,9 @@ an toàn theo contract idempotent của server.
 - Không tạo bảng auth cạnh tranh.
 - Bootstrap household phải tạo/resolve canonical household bằng atomic
   idempotent write; registration không được coi là hoàn tất trước boundary đó.
-- US-01 không giới thiệu database schema hoặc migration mới.
+- US-01 không sửa BATCH 0 database foundation. T01-04 có thể giới thiệu đúng
+  hai application tables `households` và `household_members` trong
+  `vocabflow_app` theo Architecture; learner profiles vẫn out of scope.
 
 ## 13. Error and Recovery Matrix
 
@@ -179,6 +190,8 @@ Likely areas (not a mandatory implementation list):
 
 - `apps/web/src/` register route/page/components/styles.
 - `apps/api/src/auth.ts` or approved Better Auth integration boundary.
+- `drizzle/` additive application migration for `households` and
+  `household_members` only, when implementing T01-04.
 - Shared contracts only if an actual API contract requires them.
 - Relevant component/Worker/E2E tests and docs evidence.
 
@@ -197,7 +210,9 @@ Likely areas (not a mandatory implementation list):
 - Better Auth signup and required household bootstrap boundaries are explicit
   and tested.
 - Signup-only success is never presented as completed Family registration.
-- No unrelated BATCH 0/database/migration diff.
+- No BATCH 0 database infrastructure, role model, protected metadata, target,
+  reset policy or migration-executor diff; only the reviewed additive
+  `vocabflow_app` household migration is allowed for T01-04.
 - Relevant lint, typecheck, unit/component, API and E2E checks pass.
 - Story status is updated to `ACCEPTED` only after review evidence is recorded.
 
@@ -219,7 +234,13 @@ household resolved. Learner creation remains out of scope for US-01.
 - T01-04 (Better Auth signup, authenticated bootstrap and recovery states) is
   still pending and remains the next implementation slice.
 - Tests: `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm build`.
-- No database schema, migration, bootstrap, role-model, reset or CI changes.
+- No database schema or migration was added in Phase 1. T01-04 may add only the
+  minimal `households` and `household_members` application migration; BATCH 0
+  schema/role/bootstrap/reset/CI infrastructure remains frozen.
+- Non-blocking review notes: `/login` does not exist yet and remains out of
+  scope; the Enter-submit component test manually fires `submit` after
+  `keyDown`, so final US-01 acceptance must include native keyboard E2E/manual
+  evidence.
 
 - Commit: pending implementation.
 - CI/tests: Phase 1 local checks recorded above; full story acceptance remains

@@ -4,7 +4,7 @@
 - Current phase/batch: BATCH 1
 - Current active story: US-01 Parent Registration
 - Story status: IN PROGRESS
-- Current Git branch: `main`
+- Current Git branch: `TXH`
 - Baseline HEAD before documentation pack: `24e4580`
 - Documentation/agent pack status: finalized and approved for repository baseline
 - Last accepted baseline: BATCH 0 Foundation, recorded in commit `24e4580`
@@ -24,8 +24,8 @@
   authenticated Better Auth signup followed by idempotent `POST /api/bootstrap`.
 - Frozen areas: BATCH 0 bootstrap, role model, database targets, schemas, reset
   policy, migration executor and CI behavior unless a proven regression appears.
-- Next safe action: Begin T01-04 Better Auth + household bootstrap integration
-  under the accepted story contract.
+- Next safe action: Implement T01-04 Better Auth + household persistence/
+  bootstrap integration under the corrected story contract.
 - Do NOT do next: Do not call Neon, modify migrations, or reopen BATCH 0 without
   regression evidence.
 - Documents new agent must read first: `docs/README.md`,
@@ -145,3 +145,32 @@ registration boundary before feature implementation.
 ### Next safe action
 
 - Implement T01-04 Better Auth signup followed by idempotent `POST /api/bootstrap`.
+
+## 2026-09-08 — US-01 Phase 1 checkpoint and contract correction
+
+### Proven dependency
+
+- The repository currently has `/api/auth/*` and Better Auth's four auth tables,
+  but no `/api/bootstrap`, `households` or `household_members`; the only
+  migration is the auth foundation migration.
+- BATCH 0 TE-08 intentionally established Better Auth Foundation only and did
+  not implement the Family household domain.
+
+### Contract correction
+
+- T01-04 may add the minimal additive BATCH 1 application migration for
+  `vocabflow_app.households` and `vocabflow_app.household_members` using the
+  approved Architecture contract.
+- This does not reopen BATCH 0: role model, `vocabflow_meta`, target identity,
+  bootstrap infrastructure, migration executor and reset architecture remain
+  frozen.
+- Learner profiles/creation and vocabulary, progress and review tables remain
+  out of scope for US-01.
+
+### Checkpoint
+
+- Phase 1 (T01-01/T01-02/T01-03) is completed and checkpointed on branch `TXH`.
+- Story status remains `IN PROGRESS`; T01-04 has not started.
+- Next safe action: implement T01-04 signup plus household
+  persistence/bootstrap.
+- Do NOT do next: learner profile/learner UI or unrelated BATCH 0 changes.

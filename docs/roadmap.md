@@ -15,11 +15,14 @@ the supplied BATCH 1 backlog. It does not invent later user stories.
 
 ## BATCH 1 — Authentication and Family Entry
 
-- Status: `READY FOR IMPLEMENTATION`
+- Status: `IN PROGRESS`
 - Active story: US-01 Parent Registration.
 - Dependency: BATCH 0 accepted.
 - Success boundary: Better Auth signup → authenticated session →
   `POST /api/bootstrap` → canonical default household resolved.
+- T01-04 may add only the minimal additive `vocabflow_app.households` and
+  `vocabflow_app.household_members` migration required by that boundary. This
+  does not reopen BATCH 0 infrastructure or add learner/domain tables.
 
 ### US-01 — Parent Registration
 

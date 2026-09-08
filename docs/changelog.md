@@ -49,3 +49,12 @@ This log records meaningful project milestones and accepted baselines.
 - Added accessible required-field/email validation, password show/hide,
   autocomplete and keyboard submit behavior.
 - Real Better Auth signup and household bootstrap (T01-04) remain pending.
+
+## 2026-09-08 — US-01 Phase 1 checkpoint and contract correction
+
+- Checkpointed Phase 1 on the `TXH` branch without implementing T01-04.
+- Corrected the proven dependency: canonical household bootstrap requires
+  `vocabflow_app.households` and `vocabflow_app.household_members`, which are
+  not present in the BATCH 0 Better Auth Foundation migration.
+- T01-04 may add only that minimal additive application migration; BATCH 0
+  database infrastructure remains frozen.

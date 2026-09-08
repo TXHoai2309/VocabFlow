@@ -94,6 +94,6 @@ feature code may start.
 - BATCH 0 Foundation: `ACCEPTED`.
 - Core CI: `PASS`.
 - Trusted DB Integration on Neon PostgreSQL 18: `PASS`.
-- BATCH 1 is the next work phase and is `READY FOR IMPLEMENTATION`.
-- US-01 Parent Registration is the active story and is `READY FOR IMPLEMENTATION`.
+- BATCH 1 is the current work phase and is `IN PROGRESS`.
+- US-01 Parent Registration is the active story and is `IN PROGRESS`.
 - Documentation/agent-pack work does not implement US-01 or any other feature.
