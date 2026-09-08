@@ -82,7 +82,7 @@ Desktop app shell
 
 | **Feature** | v1.0.1 decision |
 | --- | --- |
-| Register | Email + password, parent account. |
+| Register | Tên phụ huynh + email + password, parent account. `Tên phụ huynh` là display/profile identity được lưu bởi Better Auth. |
 | Login | Email + password. |
 | Logout | Có trong parent/profile menu. |
 | Social login | OUT v1.0. |
@@ -94,6 +94,7 @@ Desktop app shell
 > **Auth — mobile/desktop cùng Focused Task pattern**
 > [ VocabFlow ]
 > Đăng nhập / Tạo tài khoản
+> [ Tên phụ huynh                 ]
 > [ Email                         ]
 > [ Mật khẩu                      ]
 > [        Primary action         ]
@@ -106,10 +107,14 @@ Desktop app shell
 | Email already exists | Register hiển thị account-exists message. | Chuyển sang Login. |
 | Network error | Không clear form; giữ email đã nhập và password theo browser policy. | Retry. |
 | Auth success | Đi tiếp theo learner resolution rule. | — |
-| Required fields | Email/password required; validation message hiển thị gần field, không chỉ dựa vào placeholder. | Điền trường còn thiếu rồi submit lại. |
+| Required fields | Tên phụ huynh, email và password required; validation message hiển thị gần field, không chỉ dựa vào placeholder. | Điền trường còn thiếu rồi submit lại. |
 | Password visibility | Password field có show/hide control với accessible label; không làm mất giá trị đã nhập. | Toggle visibility. |
 | Keyboard submit | Enter submit form khi field hợp lệ; trong lúc submitting không gửi duplicate request. | Chờ response hoặc sửa validation. |
-| Autocomplete | Login dùng autocomplete=email + current-password; Register dùng email + new-password. | Browser/password manager hỗ trợ điền an toàn. |
+| Autocomplete | Login dùng autocomplete=email + current-password; Register dùng name + email + new-password. | Browser/password manager hỗ trợ điền an toàn. |
+
+Register thu thập tên hiển thị của phụ huynh vì Better Auth 1.7.2 yêu cầu
+`name` cho `signUp.email`. Đây là danh tính profile của parent, không phải tên
+learner; tên household vẫn do server quản lý theo bootstrap contract.
 
 ## 2.3 Post-login learner resolution
 

@@ -49,3 +49,39 @@ This log records meaningful project milestones and accepted baselines.
 - Added accessible required-field/email validation, password show/hide,
   autocomplete and keyboard submit behavior.
 - Real Better Auth signup and household bootstrap (T01-04) remain pending.
+
+## 2026-09-08 — US-01 Phase 1 checkpoint and contract correction
+
+- Checkpointed Phase 1 on the `TXH` branch without implementing T01-04.
+- Corrected the proven dependency: canonical household bootstrap requires
+  `vocabflow_app.households` and `vocabflow_app.household_members`, which are
+  not present in the BATCH 0 Better Auth Foundation migration.
+- T01-04 may add only that minimal additive application migration; BATCH 0
+  database infrastructure remains frozen.
+
+## 2026-09-08 — Resolve US-01 Better Auth name contract
+
+- Reconfirmed Better Auth 1.7.2 requires `name`, `email` and `password` for
+  `signUp.email`.
+- Updated the canonical Register contract and Phase 1 UI to collect the
+  parent's visible display name, with required/trimmed Unicode-safe validation.
+- T01-04 Better Auth signup and household bootstrap remain pending; no
+  application integration or database change was started.
+
+## 2026-09-08 — US-01 T01-04 registration integration
+
+- Implemented the real Better Auth 1.7.2 parent signup pipeline with the
+  authenticated `POST /api/bootstrap` Family-registration boundary.
+- Added the additive `vocabflow_app.households` and
+  `vocabflow_app.household_members` migration, atomic/idempotent bootstrap
+  persistence and dependency-safe application reset ordering.
+- Added safe signup/bootstrap loading, error and authenticated recovery states;
+  learner creation and all learning-domain tables remain out of scope.
+- T01-04 is implemented / pending acceptance; US-01 remains `IN PROGRESS`.
+
+## 2026-09-08 — US-01 acceptance review: Better Auth session smoke
+
+- Corrected the stale foundation Playwright smoke from unsupported
+  `/api/auth/session` to Better Auth 1.7.2's `/api/auth/get-session` endpoint.
+- The smoke now passes in configured preview and secretless CI modes. US-01
+  remains pending Core CI and Trusted DB Integration evidence.

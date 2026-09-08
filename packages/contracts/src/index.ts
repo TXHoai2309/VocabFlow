@@ -143,6 +143,18 @@ export type ErrorEnvelope = {
   error: { code: ErrorCode; message: string; details?: Record<string, unknown> };
 };
 
+export const householdRoleSchema = z.enum(["OWNER", "PARENT"]);
+export type HouseholdRole = z.infer<typeof householdRoleSchema>;
+
+export const householdBootstrapResponseSchema = z.object({
+  household: z.object({
+    id: z.string().uuid(),
+    name: z.string().min(1),
+    timezone: z.string().min(1)
+  })
+});
+export type HouseholdBootstrapResponse = z.infer<typeof householdBootstrapResponseSchema>;
+
 export function errorEnvelope(code: ErrorCode, message: string, details?: Record<string, unknown>): ErrorEnvelope {
   return details ? { error: { code, message, details } } : { error: { code, message } };
 }

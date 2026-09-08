@@ -2,11 +2,14 @@ import {
   boolean,
   pgSchema,
   text,
-  timestamp
+  timestamp,
+  unique,
+  uuid
 } from "drizzle-orm/pg-core";
 import { APP_SCHEMA } from "@vocabflow/contracts";
 
 export const vocabflowApp = pgSchema(APP_SCHEMA);
+export const householdRole = vocabflowApp.enum("household_role", ["OWNER", "PARENT"]);
 
 // Better Auth owns these tables. BATCH 0 does not introduce competing auth tables.
 export const user = vocabflowApp.table("user", {
@@ -55,7 +58,33 @@ export const verification = vocabflowApp.table("verification", {
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow()
 });
 
+export const households = vocabflowApp.table("households", {
+  id: uuid("id").primaryKey(),
+  primaryOwnerUserId: text("primary_owner_user_id")
+    .notNull()
+    .unique()
+    .references(() => user.id, { onDelete: "no action" }),
+  name: text("name").notNull(),
+  timezone: text("timezone").notNull().default("Asia/Ho_Chi_Minh"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow()
+});
+
+export const householdMembers = vocabflowApp.table("household_members", {
+  householdId: uuid("household_id")
+    .notNull()
+    .references(() => households.id, { onDelete: "no action" }),
+  userId: text("user_id")
+    .notNull()
+    .references(() => user.id, { onDelete: "no action" }),
+  role: householdRole("role").notNull().default("OWNER"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow()
+}, (table) => [
+  unique("household_members_household_user_unique").on(table.householdId, table.userId)
+]);
+
 export const authSchema = { user, session, account, verification };
+export const applicationSchema = { households, householdMembers };
 
 export type AuthUser = typeof user.$inferSelect;
 export type AuthSession = typeof session.$inferSelect;
