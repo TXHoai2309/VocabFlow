@@ -1,0 +1,992 @@
+# Technical Architecture v1.0.4
+
+- Status: APPROVED FOR IMPLEMENTATION
+- Version: v1.0.4
+- Source baseline: `VocabFlow_Technical_Architecture_v1.0.4.docx`
+- Canonical format: Markdown
+- Last synchronized: 2026-09-08
+
+**VOCABFLOW**
+
+**Technical Architecture v1.0.4**
+
+**Family Learning MVP**
+
+| **Status** | APPROVED FOR IMPLEMENTATION |
+| --- | --- |
+| **Architecture** | React SPA + Hono API + PostgreSQL |
+| **Primary persistence** | Neon PostgreSQL |
+| **Decision baseline** | Family MVP Product Spec v1.0 + Tech Stack v1.3 |
+| **Verification state** | Acceptance gates verified during implementation |
+
+Mục tiêu: khóa kiến trúc kỹ thuật đủ chi tiết để triển khai Family MVP mà không phải quyết định lại stack, data flow, auth, authorization hoặc cơ chế ghi tiến trình trong lúc code.
+
+# 0. Document Control
+
+| **Mục** | **Giá trị** |
+| --- | --- |
+| Document | VocabFlow Technical Architecture v1.0.4 |
+| Target release | Family MVP / vertical slice đầu tiên |
+| Status | APPROVED FOR IMPLEMENTATION |
+| Verification status | Architecture Acceptance Gates được xác minh trong quá trình triển khai; sau khi P0 gates PASS có thể đổi trạng thái thành ARCHITECTURE VERIFIED. |
+| Product baseline | VocabFlow Family MVP Product Specification v1.0 |
+| Tech baseline | React + Vite + TypeScript; Cloudflare Workers + Hono; Neon PostgreSQL; Drizzle; Better Auth |
+| Không thuộc v1 | Offline write queue, advanced gamification, R2 bắt buộc, admin CMS, notifications, AI, study_sessions |
+
+# 1. Executive Summary
+
+VocabFlow là web học từ vựng cho một hộ gia đình. Một tài khoản phụ huynh quản lý nhiều learner profile; mỗi learner có tiến trình, review queue và lịch sử review riêng. PostgreSQL là nguồn dữ liệu bền vững. Backend là authority cho scheduler transition và mọi write liên quan đến progress; client chỉ gửi hành động học và expected revision.
+
+> **Architecture invariant**
+> Một review chỉ được xem là đã lưu khi backend xác thực user, xác minh learner thuộc household, kiểm tra idempotency/revision, tính scheduler và hoàn tất atomic write vào PostgreSQL.
+
+## 1.1 Architecture goals
+
+- Cho phép các em dùng nhiều thiết bị mà không mất tiến trình.
+
+- Giữ learning-domain độc lập với React, Hono, Drizzle và Neon.
+
+- Chống double-click, retry, cùng reviewId chạy đồng thời và stale update.
+
+- Giữ frontend/backend cùng origin để đơn giản hóa cookie, CORS và deployment.
+
+- Không đưa offline conflict resolution hoặc infrastructure enterprise vào Family MVP.
+
+## 1.2 Non-goals
+
+- Không hỗ trợ offline write queue trong vertical slice đầu.
+
+- Không có teacher/classroom, leaderboard, social, payment hoặc public user-generated content.
+
+- Không tối ưu cho hàng triệu user trong Family MVP.
+
+- Không dùng Next.js/SSR chỉ để chuẩn bị cho SEO tương lai.
+
+# 2. Frozen Technology Stack
+
+| **Layer** | **Decision** | **Vai trò** |
+| --- | --- | --- |
+| Tooling | Node.js 22 LTS + pnpm | Build, scripts, CI, workspace |
+| Workspace | pnpm monorepo | Chia sẻ domain/contracts giữa web và API |
+| Frontend | React + Vite + TypeScript strict | SPA học từ vựng |
+| Routing | React Router - Declarative Mode | Client-side routing |
+| UI | Tailwind + shadcn/ui + Radix + Lucide | Design system và primitives |
+| Backend | Cloudflare Workers + Hono | Same-origin API /api/* |
+| Database | Neon PostgreSQL | Persistent source of truth |
+| Database layer | Drizzle ORM + Drizzle Kit | Schema, query, migrations |
+| Driver | Neon HTTP mặc định | Non-interactive/atomic DB operations |
+| Auth | Better Auth + Drizzle adapter | Parent authentication |
+| Validation | Zod | Request/response/dataset contracts |
+| Client cache | IndexedDB + Dexie (incremental) | Vocabulary/settings/recent snapshot |
+| Testing | Vitest + RTL + Workers env + Playwright | Unit, integration, E2E |
+| Deployment | Cloudflare Workers + Static Assets | FE + API cùng origin |
+| Media | Static assets -> R2 khi cần | Ảnh/audio ngoài DB |
+
+> **Stack change rule**
+> Không đổi framework, database hoặc auth provider trừ khi có blocker được chứng minh bằng spike/test. “Có thể cần sau này” không phải lý do đổi stack.
+
+# 3. System Context & Deployment Topology
+
+```text
+                         Browser
+                           |
+                    React / Vite SPA
+                           |
+               +-----------+-----------+
+               |                       |
+          Local UI/cache            /api/*
+          IndexedDB/Dexie              |
+                                       v
+                               Cloudflare Worker
+                                     Hono
+                                       |
+                            +----------+----------+
+                            |                     |
+                       Better Auth           VocabFlow API
+                            |                     |
+                            +----------+----------+
+                                       |
+                                     Drizzle
+                                       |
+                                 Neon PostgreSQL
+```
+
+## 3.1 Same-origin routing
+
+| **Path** | **Handler** | **Quy tắc** |
+| --- | --- | --- |
+| /api/auth/* | Better Auth via Hono | Worker xử lý trước |
+| /api/* | Hono API | Worker xử lý trước |
+| /media/*, hashed assets | Cloudflare Static Assets | Versioned/cache immutable khi phù hợp |
+| /* navigation | React SPA | SPA fallback về index.html |
+
+## 3.2 Cloudflare configuration requirements
+
+- Dùng Cloudflare Vite Plugin để local runtime gần production.
+
+- SPA fallback cấu hình `single-page-application`.
+
+- Worker ưu tiên Web APIs; Node.js 22 là tooling runtime, không phải server runtime đầy đủ.
+
+- Pin compatibility_date; chỉ bật nodejs_compat khi dependency yêu cầu và đã test.
+
+- Trusted origins/cookie configuration phải có cho production domain và localhost development.
+
+# 4. Repository & Module Boundaries
+
+```text
+vocabflow/
+├─ apps/
+│  ├─ web/                  React/Vite SPA
+│  └─ api/                  Hono Worker
+├─ packages/
+│  ├─ learning-domain/      scheduler, date, session rules, domain types
+│  └─ contracts/            Zod schemas + shared API DTOs
+├─ drizzle/
+│  ├─ migrations/
+│  └─ seed/
+├─ scripts/
+│  └─ validate-dataset.ts
+├─ pnpm-workspace.yaml
+├─ package.json
+└─ pnpm-lock.yaml
+```
+
+## 4.1 Dependency rules
+
+| **Module** | **Được phụ thuộc** | **Không được phụ thuộc** |
+| --- | --- | --- |
+| learning-domain | TypeScript standard library | React, Hono, Drizzle, Neon, Better Auth |
+| contracts | Zod + domain enums/types | UI framework, DB implementation |
+| web | domain, contracts, API client, UI libs | Drizzle schema/Neon trực tiếp |
+| api | domain, contracts, Drizzle, Better Auth | React components |
+| db/schema | Drizzle pg-core | React/browser APIs |
+
+> **Boundary rule**
+> Frontend không gọi Neon/Drizzle trực tiếp. Learning-domain không biết storage nằm ở đâu. API không tin state transition do client gửi lên.
+
+# 5. Data Architecture
+
+## 5.1 Runtime source of truth
+
+PostgreSQL là runtime source of truth cho account, household, learner, vocabulary runtime content, learner progress và review history.
+
+- JSON dataset là source artifact để validate/version/seed, không phải runtime database song song.
+
+- Ảnh/audio nằm ngoài PostgreSQL; DB chỉ lưu URL/key.
+
+- IndexedDB chỉ là cache và không được quyết định canonical progress.
+
+## 5.2 Ownership boundary
+
+| **Table** | **Ownership** | **Purpose** |
+| --- | --- | --- |
+| user / session / account / verification | Better Auth | Authentication/session lifecycle |
+| households | VocabFlow | Đơn vị gia đình + timezone |
+| household_members | VocabFlow | Liên kết auth user với household và role |
+| learner_profiles | VocabFlow | Hồ sơ từng em nhỏ |
+| vocabularies | VocabFlow | Runtime vocabulary content |
+| learner_progress | VocabFlow | Canonical state hiện tại của learner/từ |
+| review_events | VocabFlow | Immutable history + idempotency snapshot |
+
+## 5.3 Schema contract - exact types and nullability
+
+Better Auth schema không được chép lại thủ công trong tài liệu. Bảng dưới đây chỉ khóa các bảng VocabFlow sở hữu; tên/type của auth tables theo schema generated bởi Better Auth version đã pin.
+
+| **Table / column** | **PostgreSQL type** | **Null / default** | **Notes** |
+| --- | --- | --- | --- |
+| households.id | uuid | PK, NOT NULL | Stable household id |
+| households.primary_owner_user_id | text | NOT NULL, UNIQUE | FK -> Better Auth user.id; race barrier cho default household bootstrap |
+| households.name | text | NOT NULL | Tên hiển thị |
+| households.timezone | text | NOT NULL DEFAULT 'Asia/Ho_Chi_Minh' | IANA timezone |
+| households.created_at / updated_at | timestamptz | NOT NULL DEFAULT now() | Audit timestamps |
+| household_members.household_id | uuid | NOT NULL | FK -> households.id |
+| household_members.user_id | text | NOT NULL | FK -> Better Auth user.id |
+| household_members.role | household_role | NOT NULL DEFAULT OWNER | OWNER \| PARENT |
+| household_members.created_at | timestamptz | NOT NULL DEFAULT now() | Membership audit |
+| learner_profiles.id | uuid | PK, NOT NULL | Learner id |
+| learner_profiles.household_id | uuid | NOT NULL | FK -> households.id |
+| learner_profiles.display_name | text | NOT NULL | Tên bé |
+| learner_profiles.avatar_key | text | NULL | Optional |
+| learner_profiles.enabled | boolean | NOT NULL DEFAULT true | Soft delete/disable |
+| learner_profiles.created_at / updated_at | timestamptz | NOT NULL DEFAULT now() | Audit timestamps |
+
+| **Table / column** | **PostgreSQL type** | **Null / default** | **Notes** |
+| --- | --- | --- | --- |
+| vocabularies.id | integer | PK, NOT NULL | Stable id từ dataset; không tái sử dụng |
+| vocabularies.word | text | NOT NULL | English word |
+| vocabularies.ipa | text | NULL | Optional |
+| vocabularies.vietnamese | text | NOT NULL | Nghĩa Việt |
+| vocabularies.definition_en / example_en | text | NULL | Optional content |
+| vocabularies.image_url / audio_url | text | NULL | Media URL/key, không lưu binary |
+| vocabularies.topic | text | NULL | Optional grouping |
+| vocabularies.enabled | boolean | NOT NULL DEFAULT false | Bật theo seed/set |
+| vocabularies.content_version | integer | NOT NULL DEFAULT 1 | >= 1 |
+| vocabularies.created_at / updated_at | timestamptz | NOT NULL DEFAULT now() | Audit timestamps |
+| learner_progress.learner_id | uuid | NOT NULL | FK -> learner_profiles.id |
+| learner_progress.vocabulary_id | integer | NOT NULL | FK -> vocabularies.id |
+| learner_progress.status | learning_status | NOT NULL DEFAULT NEW | NEW \| LEARNING \| MASTERED |
+| learner_progress.consecutive_correct | integer | NOT NULL DEFAULT 0 | CHECK >= 0 |
+| learner_progress.interval_days | integer | NOT NULL DEFAULT 0 | CHECK >= 0 |
+| learner_progress.first_learned_date | date | NULL | Household-local calendar date |
+| learner_progress.last_reviewed_date | date | NULL | Household-local calendar date |
+| learner_progress.next_review_date | date | NULL | NULL = not scheduled |
+| learner_progress.total_correct / total_incorrect | integer | NOT NULL DEFAULT 0 | CHECK >= 0 |
+| learner_progress.revision | integer | NOT NULL DEFAULT 0 | Optimistic locking |
+| learner_progress.updated_at | timestamptz | NOT NULL DEFAULT now() | Audit timestamp |
+
+| **Table / column** | **PostgreSQL type** | **Null / default** | **Notes** |
+| --- | --- | --- | --- |
+| review_events.review_id | uuid | PK, NOT NULL | Idempotency key từ client |
+| review_events.request_fingerprint | text | NOT NULL | Canonical payload hash |
+| review_events.learner_id | uuid | NOT NULL | FK -> learner_profiles.id |
+| review_events.vocabulary_id | integer | NOT NULL | FK -> vocabularies.id |
+| review_events.result | review_result | NOT NULL | REMEMBERED \| FORGOTTEN |
+| review_events.previous_status / new_status | learning_status | NOT NULL | Transition snapshot |
+| review_events.previous_interval / new_interval | integer | NOT NULL | Transition snapshot |
+| review_events.expected_revision / resulting_revision | integer | NOT NULL | Concurrency snapshot |
+| review_events.review_date | date | NOT NULL | Derived from household timezone |
+| review_events.reviewed_at | timestamptz | NOT NULL DEFAULT now() | Actual event instant |
+| review_events.response_payload | jsonb | NOT NULL | Canonical response for idempotent retry |
+| review_events.created_at | timestamptz | NOT NULL DEFAULT now() | Audit timestamp |
+
+## 5.4 Enumerations
+
+| **Enum** | **Allowed values** | **Rule** |
+| --- | --- | --- |
+| learning_status | NEW, LEARNING, MASTERED | Stored progress state |
+| review_result | REMEMBERED, FORGOTTEN | Only client learning action accepted |
+| household_role | OWNER, PARENT | No ADMIN/TEACHER/CHILD_USER in Family MVP |
+
+## 5.5 Constraints & indexes
+
+| **Object** | **Constraint / Index** | **Lý do** |
+| --- | --- | --- |
+| learner_progress | UNIQUE (learner_id, vocabulary_id) | Một canonical progress record/từ/learner |
+| learner_progress | INDEX (learner_id, next_review_date) | Review queue |
+| learner_progress | revision >= 0 | Optimistic locking |
+| review_events | PRIMARY KEY / UNIQUE (review_id) | Idempotency |
+| review_events | INDEX (learner_id, reviewed_at) | Dashboard/history |
+| review_events | INDEX (learner_id, vocabulary_id, reviewed_at) | History từng từ |
+| households | UNIQUE (primary_owner_user_id) | Chống hai bootstrap đồng thời tạo hai default household cho cùng owner |
+| household_members | UNIQUE (household_id, user_id) | Membership duy nhất |
+| FKs | Explicit ON DELETE behavior | Tránh cascade mất lịch sử ngoài ý muốn |
+
+## 5.6 Foreign keys & delete policy
+
+- learner_profiles: soft delete bằng enabled=false; không cascade history khi thao tác bình thường.
+
+- vocabularies: enabled=false thay vì xóa nếu đã có progress/history.
+
+- learner_progress/review_events: không bị xóa bởi UI thông thường.
+
+- Reset progress là action riêng có confirmation.
+
+- FK delete action được chọn explicit (RESTRICT/NO ACTION cho dữ liệu lịch sử); hard delete chỉ dành cho maintenance hậu MVP.
+
+## 5.7 Sparse progress model & virtual NEW state
+
+Family MVP dùng sparse progress: không tạo sẵn learner_progress cho mọi learner x vocabulary. Một từ chưa từng được review được biểu diễn bằng việc không có row progress; backend map trạng thái vắng row thành virtual NEW state.
+
+```text
+Virtual NEW state:
+  status = NEW
+  consecutiveCorrect = 0
+  intervalDays = 0
+  revision = 0
+  firstLearnedDate = null
+  lastReviewedDate = null
+  nextReviewDate = null
+  totalCorrect = 0
+  totalIncorrect = 0
+```
+
+- Không pre-create ~2.000 progress rows mỗi learner. Row chỉ được materialize khi scheduled review đầu tiên được persist.
+
+- GET progress/review queue phải coi missing row là NEW, không coi là lỗi dữ liệu.
+
+- UNIQUE (learner_id, vocabulary_id) là race barrier khi hai first-review request cố tạo progress cùng lúc.
+
+- Schema vẫn cho phép learning_status=NEW, nhưng normal write path tạo row đầu tiên trực tiếp ở scheduler result (LEARNING); default NEW chỉ là safe default/migration compatibility.
+
+# 6. Authentication, Household Bootstrap & Authorization
+
+## 6.1 Auth ownership
+
+```text
+Better Auth owns:
+  user
+  session
+  account
+  verification
+
+VocabFlow owns:
+  households
+  household_members
+  learner_profiles
+  vocabularies
+  learner_progress
+  review_events
+```
+
+- Better Auth schema được generate bằng adapter chính thức của version đã pin.
+
+- Better Auth schema và VocabFlow schema đi vào cùng Drizzle migration history.
+
+- Không tự định nghĩa bảng `accounts` riêng gây trùng nghĩa với Better Auth `account`.
+
+## 6.2 Household bootstrap flow
+
+```text
+Parent signup
+    |
+    v
+Better Auth creates user + session
+    |
+    v
+POST /api/bootstrap   (idempotent + race-safe)
+    |
+    v
+Atomic DB bootstrap
+    1. INSERT households(primary_owner_user_id, name, timezone)
+       ... ON CONFLICT (primary_owner_user_id)
+       -> resolve canonical household
+    2. INSERT household_members(household_id, user_id, OWNER)
+       ... ON CONFLICT (household_id, user_id) DO NOTHING
+    |
+    v
+Return canonical household -> create/select learner
+```
+
+- `POST /api/bootstrap` phải idempotent cả tuần tự lẫn đồng thời: không dùng SELECT-then-INSERT làm race barrier. UNIQUE (households.primary_owner_user_id) + INSERT ... ON CONFLICT bảo đảm cùng một parent chỉ có một default household; UNIQUE (household_id, user_id) bảo đảm chỉ một OWNER membership tương ứng.
+
+- Family MVP giả định một household chính cho parent mới; multi-household UI để sau.
+
+- Timezone là property của household, không lấy client date làm authority cho scheduler.
+
+## 6.3 Household authorization invariant
+
+```text
+session.user.id
+      |
+      v
+household_members
+      |
+      v
+household_id
+      |
+      v
+learner_profiles.household_id
+      |
+      +-- match --> ALLOW
+      +-- mismatch --> 403
+```
+
+> **P0 security invariant**
+> Mọi API learner-scoped phải authorize ownership ở server. Biết learnerId không bao giờ đủ để đọc hoặc ghi progress.
+
+## 6.4 Required negative tests
+
+- Parent A không thể GET progress của Learner B thuộc Household B.
+
+- Parent A không thể POST review cho Learner B.
+
+- Parent A không thể lấy review queue/dashboard của Household B.
+
+- Không session -> 401; có session nhưng không ownership -> 403.
+
+- Hai POST /api/bootstrap đồng thời cho cùng parent -> một household, một OWNER membership, cả hai response cùng householdId.
+
+# 7. Vocabulary Content Pipeline
+
+```text
+Source JSON / converted dataset
+          |
+          v
+scripts/validate-dataset.ts
+          |
+          +-- FAIL: duplicate id, missing required fields, invalid types
+          +-- WARN: missing optional media/IPA, duplicate normalized word
+          |
+          v
+Versioned seed input
+          |
+          v
+Drizzle seed / controlled content migration
+          |
+          v
+vocabularies table
+          |
+          v
+GET /api/vocabulary...
+```
+
+## 7.1 Data quality gates
+
+| **Check** | **Severity** | **Behavior** |
+| --- | --- | --- |
+| Missing id / word / Vietnamese meaning | FAIL | Block seed/CI |
+| Duplicate id | FAIL | Block seed/CI |
+| Invalid enabled/contentVersion | FAIL | Block seed/CI |
+| Duplicate normalized word | WARN | Review manually |
+| Missing IPA | WARN | Card vẫn hoạt động |
+| Missing audio | WARN | Fallback/disable audio |
+| Missing image | WARN | Ẩn image region |
+| Missing example/definition | ACCEPT | Ẩn optional section |
+
+## 7.2 Vocabulary update rule
+
+```text
+JSON source update
+   |
+   v
+validate
+   |
+   v
+upsert vocabularies by stable id
+   |
+   +-- text/media changed -> contentVersion++
+   +-- progress/history preserved
+   +-- removed from active set -> enabled=false
+```
+
+# 8. Learning Domain & Scheduler
+
+Scheduler là pure function trong `packages/learning-domain`; backend dùng kết quả đó để persist canonical state. Server tự xác định calendar date từ household.timezone tại thời điểm review.
+
+| **Consecutive correct** | **Interval** | **Status** |
+| --- | --- | --- |
+| 0 / forgotten | 1 ngày | LEARNING |
+| 1 | 1 ngày | LEARNING |
+| 2 | 3 ngày | LEARNING |
+| 3 | 7 ngày | LEARNING |
+| 4 | 14 ngày | MASTERED |
+| 5+ | 30 ngày | MASTERED |
+
+## 8.1 Scheduler rules
+
+- REMEMBERED: tăng consecutiveCorrect và chọn interval theo bảng.
+
+- FORGOTTEN: consecutiveCorrect=0, interval=1, status=LEARNING.
+
+- MASTERED + FORGOTTEN: rớt về LEARNING.
+
+- Review quá hạn: không cộng bonus ngày trễ.
+
+- reviewDate/nextReviewDate dùng calendar date theo household.timezone; reviewedAt dùng timestamptz.
+
+- Client không gửi newStatus/nextReviewDate để server tin trực tiếp.
+
+## 8.2 NEW state transitions
+
+Trạng thái NEW là domain state của từ chưa có tiến trình. Với sparse progress, NEW thường là virtual state do row chưa tồn tại. Scheduled review đầu tiên phải có transition rõ ràng:
+
+```text
+NEW + REMEMBERED
+  -> status = LEARNING
+  -> consecutiveCorrect = 1
+  -> intervalDays = 1
+  -> firstLearnedDate = today
+  -> nextReviewDate = today + 1 day
+  -> totalCorrect = 1, totalIncorrect = 0
+
+NEW + FORGOTTEN
+  -> status = LEARNING
+  -> consecutiveCorrect = 0
+  -> intervalDays = 1
+  -> firstLearnedDate = today
+  -> nextReviewDate = today + 1 day
+  -> totalCorrect = 0, totalIncorrect = 1
+```
+
+- First scheduled review luôn materialize progress row; không có case review thành công mà row vẫn giữ NEW.
+
+- Reinforcement evaluation sau FORGOTTEN trong cùng session là session-local feedback và không gọi POST /api/reviews; chỉ scheduled evaluation được persist/advance scheduler.
+
+## **8.3 Session limits (product rule)**
+
+```text
+Daily session:
+  due words: max 20
+  new words: max 10
+  max unique words: 30
+
+If due >= 20: 20 due, 0 new
+If due < 20: all due + up to 10 new
+If due == 0: up to 10 new
+```
+
+## 8.4 Review Queue: due words + new words
+
+Review Queue được tạo ở backend theo household timezone và luôn scoped theo learner hiện tại. Due words bắt buộc lọc `learner_progress.learner_id = :learnerId`; new words dùng LEFT JOIN chỉ với progress của chính learner đó.
+
+```text
+Due words:
+  SELECT ...
+  FROM learner_progress
+  JOIN vocabularies
+    ON vocabularies.id = learner_progress.vocabulary_id
+  WHERE learner_progress.learner_id = :learnerId
+    AND learner_progress.next_review_date <= :today
+    AND vocabularies.enabled = true
+  ORDER BY learner_progress.next_review_date ASC, vocabularies.id ASC
+  LIMIT 20
+
+New words (sparse progress):
+  SELECT ...
+  FROM vocabularies
+  LEFT JOIN learner_progress
+    ON learner_progress.vocabulary_id = vocabularies.id
+   AND learner_progress.learner_id = :learnerId
+  WHERE vocabularies.enabled = true
+    AND learner_progress.vocabulary_id IS NULL
+  ORDER BY vocabularies.id ASC
+  LIMIT 10
+```
+
+- Due priority: nếu due >= 20 thì không lấy new; nếu 0 < due < 20 thì lấy tất cả due (tối đa 20) + tối đa 10 new; nếu due = 0 thì tối đa 10 new.
+
+- Ordering của new words phải deterministic để reload/retry không đổi ngẫu nhiên tập từ trong cùng dữ liệu/version.
+
+# 9. Review Write Architecture
+
+> **Critical path**
+> POST /api/reviews là write path quan trọng nhất: authentication + authorization + idempotency + optimistic locking + atomic persistence phải cùng đúng.
+
+## 9.1 Client request contract
+
+```text
+POST /api/reviews
+
+{
+  "reviewId": "uuid",
+  "learnerId": "uuid",
+  "vocabularyId": 123,
+  "result": "REMEMBERED",
+  "expectedRevision": 4
+}
+```
+
+## 9.2 Read/compute/write boundary
+
+```text
+A. Read / compute in Worker
+   1. Authenticate session
+   2. Authorize learner -> household
+   3. Pre-check reviewId
+      - same fingerprint -> 200 canonical response, NO scheduler
+      - different fingerprint -> 409 IDEMPOTENCY_CONFLICT
+   4. Read learner_progress by (learnerId, vocabularyId)
+      - row exists -> use canonical stored progress
+      - row missing -> construct virtual NEW state, revision = 0
+   5. Verify expectedRevision against stored/virtual revision
+   6. Resolve today from household.timezone
+   7. Run scheduler in Worker
+
+B. Atomic write in PostgreSQL
+   Existing progress branch:
+      conditional UPDATE WHERE revision = expectedRevision
+      + INSERT review_event from successful update
+
+   First-review sparse branch:
+      allowed only when row missing AND expectedRevision = 0
+      INSERT learner_progress with scheduler result
+      + INSERT review_event from successful insert
+      UNIQUE (learner_id, vocabulary_id) protects concurrent first review
+
+   Both branches:
+      progress + event commit together or neither commits
+```
+
+Concurrent race nuance: hai Worker có thể cùng tính scheduler trước khi optimistic/race barrier phân thắng bại. Requirement là chỉ một canonical transition/event được persist. Với existing progress, revision chỉ cho một write thắng; với sparse first review, UNIQUE (learner_id, vocabulary_id) chỉ cho một insert thắng. Sau khi phát hiện cùng reviewId/fingerprint đã commit, request thua trả 200 canonical result và không persist/re-evaluate thêm; reviewId khác trả 409 STALE_REVISION.
+
+## 9.3 Atomic write invariant
+
+> **Atomicity**
+> learner_progress và review_events hoặc cùng commit, hoặc cùng không thay đổi. Nếu insert event fail (kể cả UNIQUE review_id), progress update phải rollback.
+
+```text
+WITH updated_progress AS (
+  -- Existing row only
+  UPDATE learner_progress
+  SET ...schedulerResult...,
+      revision = revision + 1,
+      updated_at = NOW()
+  WHERE learner_id = :learnerId
+    AND vocabulary_id = :vocabularyId
+    AND revision = :expectedRevision
+  RETURNING ...
+),
+inserted_progress AS (
+  -- Sparse first review only
+  INSERT INTO learner_progress (...)
+  SELECT ...schedulerResult...
+  WHERE :expectedRevision = 0
+    AND NOT EXISTS (
+      SELECT 1 FROM learner_progress
+      WHERE learner_id = :learnerId
+        AND vocabulary_id = :vocabularyId
+    )
+  ON CONFLICT (learner_id, vocabulary_id) DO NOTHING
+  RETURNING ...
+),
+written_progress AS (
+  SELECT * FROM updated_progress
+  UNION ALL
+  SELECT * FROM inserted_progress
+),
+inserted_event AS (
+  INSERT INTO review_events (...)
+  SELECT ... FROM written_progress
+  RETURNING ...
+)
+SELECT ...canonical response...;
+```
+
+Implementation preference: Neon HTTP driver + một atomic SQL statement/CTE hoặc database function. CTE ở trên là shape kiến trúc, không phải migration SQL đóng băng. P0 requirement là cả existing-update branch và sparse-first-insert branch đều chỉ insert review_event khi progress write thành công; duplicate reviewId phải rollback toàn statement. WebSocket interactive transaction chỉ xem xét nếu atomic HTTP write không đủ.
+
+## 9.4 Complete idempotency semantics
+
+| **Condition** | **HTTP** | **Server behavior** |
+| --- | --- | --- |
+| reviewId mới + canonical/virtual revision đúng | 201 | Existing row: update; missing row + expectedRevision=0: insert sparse progress; cả hai atomic với event |
+| reviewId đã tồn tại + cùng fingerprint | 200 | Không chạy scheduler; return stored response_payload |
+| reviewId đã tồn tại + payload khác | 409 | IDEMPOTENCY_CONFLICT |
+| Atomic update = 0; recheck thấy same reviewId/fingerprint | 200 | Concurrent retry thắng ở request khác; return stored canonical result |
+| Progress write = 0; recheck không thấy same reviewId | 409 | STALE_REVISION (bao gồm losing first-review race với reviewId khác); client reload state |
+| No session | 401 | Reject |
+| Learner không thuộc household | 403 | Reject |
+
+## 9.5 Request fingerprint
+
+`requestFingerprint` được tính từ canonical payload: learnerId + vocabularyId + result + expectedRevision. reviewId không nằm trong fingerprint. response_payload lưu canonical result của lần commit để retry sau này trả đúng response lịch sử ngay cả khi learner đã học tiếp.
+
+# 10. API Surface v1
+
+| **Method** | **Endpoint** | **Purpose** | **Auth** |
+| --- | --- | --- | --- |
+| * | /api/auth/* | Better Auth routes | Public/session lifecycle |
+| POST | /api/bootstrap | Idempotent household bootstrap | Authenticated parent |
+| GET | /api/learners | Learners trong household | Parent |
+| POST | /api/learners | Tạo learner | Parent |
+| GET | /api/vocabulary | Enabled vocabulary/set slice | Household context |
+| GET | /api/learners/:id/progress | Canonical progress | Household-owned |
+| GET | /api/learners/:id/review-queue | Due + sparse new words, deterministic order | Household-owned |
+| POST | /api/reviews | Submit idempotent review | Household-owned |
+| GET | /api/learners/:id/summary | Minimal parent summary | Household-owned |
+
+## 10.1 Error envelope
+
+```text
+{
+  "error": {
+    "code": "STALE_REVISION",
+    "message": "Progress changed. Reload canonical state.",
+    "details": { "currentRevision": 5 }
+  }
+}
+```
+
+- Error code phải ổn định/testable; frontend không parse message text để quyết định logic.
+
+- Không trả stack trace/database error thô ra client.
+
+- 409 stale revision cung cấp currentRevision hoặc endpoint reload canonical state.
+
+# 11. Client State & Cache Policy
+
+| **Data** | **Canonical source** | **Client behavior** |
+| --- | --- | --- |
+| Auth session | Better Auth/backend | Cookie/session state |
+| Learners | PostgreSQL | Fetch + short-lived UI cache |
+| Vocabulary | PostgreSQL/runtime API | Dexie optional sau vertical slice |
+| Progress | PostgreSQL | Recent snapshot only |
+| Review write | Backend | Success mới hiển thị Saved |
+| Settings UI | Client/Dexie | Có thể local-only |
+
+## 11.1 Failure behavior
+
+- POST review fail -> hiển thị `Chưa lưu tiến trình` + Retry.
+
+- Retry cùng action phải reuse cùng reviewId.
+
+- Không âm thầm tạo offline write queue trong MVP.
+
+- 409 STALE_REVISION -> reload canonical progress rồi tiếp tục.
+
+- 409 IDEMPOTENCY_CONFLICT -> coi là lỗi client/logic; không tự retry bằng cùng reviewId.
+
+# 12. Media Architecture
+
+MVP phục vụ ảnh/audio dưới dạng static assets versioned; Neon chỉ lưu URL/key.
+
+```text
+/media/v1/images/<key>.webp
+/media/v1/audio/<key>.mp3
+```
+
+- File versioned/hash cache immutable khi phù hợp.
+
+- Missing image không làm card hỏng; vùng ảnh được ẩn.
+
+- Audio ưu tiên file dataset; fail -> SpeechSynthesis fallback hoặc disable control.
+
+- Chuyển sang R2 khi asset volume/deploy time/caching trở thành vấn đề.
+
+# 13. Security, Privacy & Operational Safety
+
+## 13.1 Security baseline
+
+- Password/session do Better Auth quản lý; không tự triển khai password flow.
+
+- Learner PIN nếu thêm sau chỉ là profile selector, không thay parent auth boundary.
+
+- Mọi learner-scoped query bắt buộc household authorization.
+
+- Không log password, session token, raw cookie hoặc secret.
+
+- Secrets chỉ nằm trong Cloudflare/CI secret store.
+
+- Zod validate input tại API boundary.
+
+## 13.2 Minimal observability
+
+- Structured log cho review failures, 401/403, 409 conflict, seed/migration errors.
+
+- Log reviewId và error code nhưng không log auth secrets.
+
+- Theo dõi API error rate/latency cơ bản; chưa cần full APM.
+
+# 14. Testing Strategy
+
+| **Layer** | **Tool** | **Must-test** |
+| --- | --- | --- |
+| learning-domain | Vitest | NEW transitions; 1→3→7→14→30; forgotten reset; timezone date rules |
+| contracts | Vitest + Zod | DTO/errors |
+| DB/service | Vitest | sparse first insert, unique race, atomic write, revision/idempotency |
+| Worker/API | Workers test env | auth/authz + bootstrap concurrency + review 201/200/409/401/403 |
+| React UI | RTL | flashcard + loading/error states |
+| Browser E2E | Playwright | login → learner → review → reload/login |
+| Security E2E | Playwright/API | Cross-household read/write blocked |
+
+## 14.1 P0 E2E scenarios
+
+- Parent login -> learner -> review -> reload/logout-login -> progress đúng trên Neon.
+
+- Double-click/retry cùng reviewId không tạo hai events.
+
+- Hai request khác reviewId cùng expectedRevision: chỉ một request commit; request còn lại 409.
+
+- Hai request cùng reviewId chạy đồng thời: tối đa một transition/event được persist; request còn lại trả canonical result (thường 200) sau khi nhận diện event đã commit.
+
+- Household authorization chặn cross-household read/write.
+
+- Refresh SPA route không 404.
+
+- Learner chưa có progress row: first REMEMBERED và first FORGOTTEN đều tạo progress + review_event đúng, không trả 409 giả.
+
+- Hai first-review request khác reviewId cùng expectedRevision=0: một insert thắng, request còn lại 409 STALE_REVISION; không duplicate progress/event.
+
+- Review Queue: due query bắt buộc filter learnerId + enabled vocabulary; new words dùng LEFT JOIN missing progress scoped theo learnerId và ordering ổn định theo vocabulary id.
+
+# 15. CI/CD & Environment Strategy
+
+```text
+PR / Push
+   |
+   v
+pnpm install --frozen-lockfile
+   +--> dataset validation
+   +--> lint + typecheck
+   +--> unit/integration/Worker tests
+   +--> build
+   +--> Playwright E2E
+
+Production release
+   1. Build/test artifact
+   2. Apply forward-compatible Neon migration
+   3. Deploy Cloudflare Worker + assets
+   4. Smoke test
+   5. Roll back Worker if smoke fails
+```
+
+## 15.1 Environment rules
+
+| **Environment** | **Database** | **Purpose** |
+| --- | --- | --- |
+| Local / Development | Verified Neon development branch | Development + explicit seed/migrate on verified dev target |
+| CI Test (trusted DB job) | Verified dedicated/disposable Neon test branch | Identity provision + clean migration + DB integration |
+| Production | Verified production Neon branch | Family runtime; no destructive reset/test |
+
+- Không chạy destructive seed lên production.
+
+- Migration được commit vào repo; production schema chỉ thay đổi qua approved release migration. BATCH 0 chỉ validate dev/test migrations; production migration execution nằm ngoài BATCH 0.
+
+- Better Auth + VocabFlow application schema dùng cùng Drizzle migration history. Database identity metadata trong vocabflow_meta được bootstrap/provision riêng và không thuộc application migrations.
+
+- Node/pnpm versions được pin.
+
+## 15.2 BATCH 0 environment & database identity invariant
+
+• BATCH 0 tách execution context khỏi environment marker. local-development chỉ hợp lệ với development/development; ci-test chỉ hợp lệ với test/test; cloudflare-production chỉ hợp lệ với production/production. Marker thiếu, sai enum hoặc mismatch phải fail fast.
+
+• Test DB integration chỉ được dùng NEON_TEST_DATABASE_URL trên verified test target; tuyệt đối không fallback sang DATABASE_URL. Fork/untrusted PR không nhận database secret và không dùng pull_request_target để chạy code chưa tin cậy với secret.
+
+• Database target không được suy luận từ connection-string hostname. Expected target lấy từ trusted allowlist; actual target được xác minh bằng trusted provider/control-plane evidence khi bootstrap và bằng canonical database-side identity metadata ở runtime/tooling.
+
+• Protected metadata nằm tại vocabflow_meta.environment_identity với singleton id=1 và identity_version=1. Runtime/migration chỉ SELECT; application reset không được xóa hoặc sửa vocabflow_meta.
+
+• Ownership model: vocabflow_identity_owner (NOLOGIN protected owner), vocabflow_identity_provision (SELECT+INSERT canonical identity), vocabflow_migration (SELECT identity + application migration privileges), vocabflow_runtime (SELECT identity + minimum app runtime privileges), và một one-shot bootstrap DDL credential. Các role thường đều NOSUPERUSER/NOCREATEDB/NOCREATEROLE/NOREPLICATION/NOBYPASSRLS và không được SET ROLE owner.
+
+• Full operational runbook, permission matrix, concurrency test và CI status contract được khóa trong BATCH 0 Foundation Execution Spec. Architecture này chỉ khóa invariant; implementation không được nới lỏng boundary.
+
+# 16. Migration, Deployment & Rollback Rules
+
+- Schema change luôn có Drizzle migration; không chỉnh production table thủ công.
+
+- Migration production phải forward-compatible với Worker version đang chạy trước deploy.
+
+- Ưu tiên additive change: thêm nullable/default-compatible column trước; tighten constraint ở release sau nếu cần.
+
+- Tránh DROP COLUMN, breaking RENAME hoặc enum-breaking change trong cùng release với code phụ thuộc mới.
+
+- Nếu Worker deploy lỗi sau migration, rollback Worker phải vẫn chạy được với schema mới.
+
+- Vocabulary update giữ stable primary id; content change tăng contentVersion; removed content dùng enabled=false.
+
+## 16.1 Safe migration sequence
+
+```text
+Release N
+  build/test
+      |
+      v
+  forward-compatible migration
+      |
+      v
+  deploy Worker
+      |
+      v
+  smoke test
+      |
+      +-- PASS -> complete
+      +-- FAIL -> rollback Worker (schema remains compatible)
+
+Destructive cleanup/tightening, nếu cần, thực hiện ở release sau.
+```
+
+## 16.2 BATCH 0 clean migration contract
+
+**Official clean migration definition:**
+
+Fresh verified Neon development/test branch
+  ↓
+trusted bootstrap DDL
+  ↓
+identity-provision (canonical id=1, identity_version=1)
+  ↓
+verify database identity against trusted allowlist
+  ↓
+empty application schema
+  ↓
+Drizzle migrations 0 → latest
+  ↓
+db:reset application schema only
+  ↓
+verify vocabflow_meta + identity unchanged
+  ↓
+Drizzle migrations 0 → latest again → PASS
+
+• db:migrate không tự tạo, tự sửa hoặc overwrite identity metadata; identity missing/malformed/mismatch phải fail closed.
+
+• identity-provision là explicit trusted operation; concurrent provisioning phải race-safe và resolve đúng một canonical row, không UPDATE mismatch.
+
+• db:reset chỉ thao tác explicit application schema allowlist; DROP DATABASE, DROP vocabflow_meta hoặc broad destructive scope có thể chạm protected metadata đều bị cấm.
+
+• Production migration execution không thuộc BATCH 0. Production release migration vẫn phải forward-compatible theo các rule bên dưới và được định nghĩa/triển khai ở release phase.
+
+# 17. Implementation Sequence & Vertical Slice
+
+| **Step** | **Deliverable** | **Exit gate** |
+| --- | --- | --- |
+| **0** | Monorepo + CI + Cloudflare/Neon connectivity | Build/deploy skeleton PASS |
+| **1** | Drizzle migrations + Better Auth | Parent register/login PASS |
+| **2** | Bootstrap household + learner + authz | Concurrent bootstrap one-household + cross-household 403 PASS |
+| **3** | Seed 20-30 vocabulary | Real content query PASS |
+| **4** | Render one real Flashcard | Optional media handling PASS |
+| **5** | Scheduler package + exhaustive unit tests | NEW + existing state transitions PASS |
+| **6** | POST /api/reviews | Sparse first review + idempotency + revision + atomic write PASS |
+| **7** | Cloud persistence milestone | Review survives reload/logout-login PASS |
+| **8** | Review Queue | Due + sparse new LEFT JOIN + stable order PASS |
+| **9** | Flashcard session UX | 20 due + 10 new rules |
+| **10** | Minimal parent progress | Basic summary per learner |
+
+```text
+Architecture milestone
+Step 7 là mốc xác nhận kiến trúc: parent login → learner → review → cloud write → logout/reload → canonical progress vẫn chính xác. Chỉ sau khi PASS mới mở rộng UX/cache.
+```
+
+# 18. Architecture Acceptance Gates
+
+| **Gate** | **Requirement** |
+| --- | --- |
+| **A1** | Frontend + API cùng Cloudflare origin; SPA deep links hoạt động. |
+| **A2** | Better Auth quản lý auth tables; không có auth schema cạnh tranh. |
+| **A3** | Household bootstrap idempotent và race-safe: hai request đồng thời tạo tối đa một default household + một OWNER membership và trả cùng canonical householdId. |
+| **A4** | Cross-household authorization có automated test. |
+| **A5** | Vocabulary runtime content đến từ PostgreSQL; sparse new words được chọn bằng LEFT JOIN missing progress với deterministic order. |
+| **A6** | Scheduler pure function có NEW + REMEMBERED/FORGOTTEN transitions, existing-state rules và timezone tests. |
+| **A7** | POST /api/reviews có reviewId, expectedRevision và hỗ trợ sparse first review khi row chưa tồn tại + expectedRevision=0. |
+| **A8** | Existing UPDATE hoặc sparse INSERT progress + review_event là atomic; failure/duplicate event rollback toàn operation. |
+| **A9** | Duplicate/concurrent review submissions persist tối đa một canonical state transition và một review_event. Khi reviewId đã tồn tại, retry resolve về canonical result; không persist transition lần hai. |
+| **A10** | Concurrent different reviewId cùng revision (kể cả first review revision=0): một commit, một STALE_REVISION. |
+| **A11** | Progress tồn tại sau reload/logout-login. |
+| **A12** | Không có offline write queue trong vertical slice. |
+| **A13** | Clean migration reproducible trên verified dev/test target: trusted identity metadata được bootstrap/provision trước, application schema rỗng migrate 0→latest, db:reset giữ nguyên vocabflow_meta/identity, rồi migrate 0→latest lại PASS. |
+| **A14** | Rollback Worker vẫn tương thích với migration đã apply. |
+| **A15** | CI chạy validation, lint, typecheck, tests, build và E2E. |
+
+# 19. Deferred Decisions
+
+| **Deferred item** | **Trigger để xem xét** |
+| --- | --- |
+| Dexie progress cache sâu hơn | Core cloud flow ổn; UX cần cache/offline snapshot |
+| Offline write queue | Có requirement mất mạng + conflict policy rõ |
+| Neon WebSocket driver | Interactive transaction thật sự cần và atomic HTTP write không đủ |
+| Cloudflare R2 | Media volume/deploy time/caching trở thành vấn đề |
+| study_sessions | Cần duration/resume/per-session analytics |
+| Learner PIN | Nhiều em dùng chung thiết bị và cần tránh chọn nhầm |
+| Advanced parent dashboard | Core learning loop ổn qua self-use |
+| Admin CMS | Seed script không còn đủ cho content maintenance |
+
+# 20. Known Risks
+
+| **Risk** | **Impact** | **Mitigation** |
+| --- | --- | --- |
+| Dataset/media license chưa rõ | Block commercial/public reuse | Family MVP nội bộ; audit trước commercial launch |
+| Auth/provider version drift | Migration/config break | Pin versions + migration tests |
+| Concurrent review edge cases | Progress sai | reviewId + revision + sparse unique constraint + atomic write + race tests |
+| Timezone misconfiguration | Wrong due dates | Household IANA timezone + server-derived calendar date |
+| Media thiếu/hỏng | Card UX lỗi | Optional media handling + validation |
+| Cloud/provider policy thay đổi | Operational risk | PostgreSQL chuẩn + backups/exports + abstraction vừa đủ |
+
+# Appendix A. Official Reference Basis
+
+• Cloudflare Workers Static Assets: [https://developers.cloudflare.com/workers/static-assets/](https://developers.cloudflare.com/workers/static-assets/)
+
+• Cloudflare Vite Plugin: [https://developers.cloudflare.com/workers/vite-plugin/](https://developers.cloudflare.com/workers/vite-plugin/)
+
+• Cloudflare SPA routing: [https://developers.cloudflare.com/workers/static-assets/routing/single-page-application/](https://developers.cloudflare.com/workers/static-assets/routing/single-page-application/)
+
+• Drizzle + Neon: [https://orm.drizzle.team/docs/connect-neon](https://orm.drizzle.team/docs/connect-neon)
+
+• Better Auth Drizzle Adapter: [https://better-auth.com/docs/adapters/drizzle](https://better-auth.com/docs/adapters/drizzle)
+
+• Better Auth Hono Integration: [https://better-auth.com/docs/integrations/hono](https://better-auth.com/docs/integrations/hono)
+
+• Neon Serverless Driver: [https://neon.com/docs/serverless/serverless-driver](https://neon.com/docs/serverless/serverless-driver)
+
+# Appendix B. Approval Statement
+
+> TECHNICAL ARCHITECTURE v1.0.4 — APPROVED FOR IMPLEMENTATION
+> Từ thời điểm tài liệu này được chấp nhận, triển khai phải bám architecture invariants, sparse progress/virtual NEW model, learner-scoped review queue, race-safe household bootstrap, schema constraints, household authorization, review write/idempotency contract, database identity ownership boundary và clean migration contract ở trên. Acceptance Gates được xác minh trong implementation; mọi thay đổi kiến trúc cần blocker/evidence kỹ thuật cụ thể.
