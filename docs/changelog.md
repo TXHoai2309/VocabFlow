@@ -41,3 +41,11 @@ This log records meaningful project milestones and accepted baselines.
 - Kept learner creation, new schema and new migration out of US-01.
 - BATCH 1 and US-01 are now `READY FOR IMPLEMENTATION`; no feature code has
   started.
+
+## 2026-09-08 — US-01 Phase 1 Register UI
+
+- Implemented the `/register` focused auth screen and form behavior for
+  T01-01/T01-02/T01-03.
+- Added accessible required-field/email validation, password show/hide,
+  autocomplete and keyboard submit behavior.
+- Real Better Auth signup and household bootstrap (T01-04) remain pending.

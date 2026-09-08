@@ -1,6 +1,6 @@
 # US-01 — Parent Registration
 
-- Status: READY FOR IMPLEMENTATION
+- Status: IN PROGRESS
 - Batch: BATCH 1
 - Owner: Project Owner
 - Last updated: 2026-09-08
@@ -209,9 +209,21 @@ household resolved. Learner creation remains out of scope for US-01.
 
 ## 20. Acceptance Evidence
 
-Not implemented in this documentation task.
+- Phase 1 (T01-01/T01-02/T01-03) implemented in the web app:
+  - `/register` uses the Focused Task auth layout with VocabFlow identity,
+    visible email/password labels and the required secondary Login link.
+  - Email and required-password validation run through the extracted
+    registration validation seam; errors are inline and accessible.
+  - Password visibility toggle, Enter submit, autocomplete and duplicate-submit
+    protection are covered by component tests.
+- T01-04 (Better Auth signup, authenticated bootstrap and recovery states) is
+  still pending and remains the next implementation slice.
+- Tests: `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm build`.
+- No database schema, migration, bootstrap, role-model, reset or CI changes.
 
 - Commit: pending implementation.
-- CI/tests: pending implementation.
-- Screenshots/manual evidence: pending implementation.
-- Final status: READY FOR IMPLEMENTATION.
+- CI/tests: Phase 1 local checks recorded above; full story acceptance remains
+  pending T01-04.
+- Screenshots/manual evidence: local Playwright render checks passed at
+  375px, 768px and 1280px; screenshots are retained outside the repository.
+- Final status: IN PROGRESS.

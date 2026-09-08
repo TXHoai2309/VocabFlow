@@ -15,3 +15,13 @@ describe("foundation SPA", () => {
     expect(screen.getByRole("heading", { name: /foundation route is working/i })).toBeInTheDocument();
   });
 });
+
+describe("register route", () => {
+  it("renders the parent registration screen without app navigation", () => {
+    render(<MemoryRouter initialEntries={["/register"]}><App /></MemoryRouter>);
+    expect(screen.getByRole("heading", { name: "Tạo tài khoản" })).toBeInTheDocument();
+    expect(screen.getByRole("textbox", { name: "Email" })).toBeInTheDocument();
+    expect(screen.getByLabelText("Mật khẩu")).toBeInTheDocument();
+    expect(screen.queryByRole("navigation", { name: "Foundation navigation" })).not.toBeInTheDocument();
+  });
+});

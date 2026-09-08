@@ -1,4 +1,5 @@
 import { Link, Route, Routes } from "react-router";
+import { RegisterPage } from "./features/auth/register-page";
 
 function Shell({ children }: { children: React.ReactNode }) {
   return (
@@ -61,12 +62,11 @@ function NotFound() {
 
 export default function App() {
   return (
-    <Shell>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/foundation" element={<FoundationRoute />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Shell>
+    <Routes>
+      <Route path="/register" element={<RegisterPage />} />
+      <Route path="/" element={<Shell><Home /></Shell>} />
+      <Route path="/foundation" element={<Shell><FoundationRoute /></Shell>} />
+      <Route path="*" element={<Shell><NotFound /></Shell>} />
+    </Routes>
   );
 }

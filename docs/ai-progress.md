@@ -3,7 +3,7 @@
 - Project: VocabFlow Family MVP
 - Current phase/batch: BATCH 1
 - Current active story: US-01 Parent Registration
-- Story status: READY FOR IMPLEMENTATION
+- Story status: IN PROGRESS
 - Current Git branch: `main`
 - Baseline HEAD before documentation pack: `24e4580`
 - Documentation/agent pack status: finalized and approved for repository baseline
@@ -11,22 +11,21 @@
   with implementation baseline `2429b0f`
 - CI status: Core CI PASS
 - Database acceptance status: Trusted DB Integration PASS on Neon PostgreSQL 18
-- Current implementation focus: US-01 Parent Registration implementation
-  contract; feature code has not started
-- Last completed work: BATCH 0 Foundation accepted; least-privilege migration
-  executor and trusted DB acceptance evidence are in Git history.
-- Files/areas most recently changed: `docs/implementation/`, then this
-  documentation pack; no application feature code is changed here.
+- Current implementation focus: US-01 Phase 1 Register UI/form behavior
+- Last completed work: US-01 Phase 1 Register UI (T01-01/T01-02/T01-03);
+  BATCH 0 Foundation remains accepted and frozen.
+- Files/areas most recently changed: `apps/web/src/features/auth/`, the web
+  router/styles, and the US-01 story handoff docs; no database or CI areas changed.
 - Tests/evidence: Acceptance record under
-  `docs/implementation/BATCH0_FOUNDATION_ACCEPTANCE.md`; source-to-Markdown
-  paragraph/table parity check PASS; `pnpm lint`, `pnpm typecheck`,
-  `pnpm test` (73/73), `pnpm build` and `git diff --check` PASS.
+  `docs/implementation/BATCH0_FOUNDATION_ACCEPTANCE.md`; `pnpm lint`,
+  `pnpm typecheck`, `pnpm test` (82/82), `pnpm build` and `git diff --check`
+  PASS; local Playwright render checks pass at 375/768/1280px.
 - Open blockers: None for the US-01 contract. Successful registration includes
   authenticated Better Auth signup followed by idempotent `POST /api/bootstrap`.
 - Frozen areas: BATCH 0 bootstrap, role model, database targets, schemas, reset
   policy, migration executor and CI behavior unless a proven regression appears.
-- Next safe action: Begin US-01 implementation from `T01-01` under the accepted
-  story contract.
+- Next safe action: Begin T01-04 Better Auth + household bootstrap integration
+  under the accepted story contract.
 - Do NOT do next: Do not call Neon, modify migrations, or reopen BATCH 0 without
   regression evidence.
 - Documents new agent must read first: `docs/README.md`,
@@ -124,5 +123,25 @@ registration boundary before feature implementation.
 
 ### Next safe action
 
-- Start US-01 implementation at `T01-01` only after the owner is ready to move
-  from documentation review to implementation work.
+- Continue US-01 with T01-04 Better Auth + household bootstrap integration.
+
+## 2026-09-08 — US-01 Phase 1 Register UI
+
+### Completed
+
+- Moved US-01 to `IN PROGRESS` and implemented T01-01/T01-02/T01-03.
+- Added the `/register` focused auth screen, accessible email/password
+  validation, password visibility toggle, Enter submit and autocomplete.
+- Kept T01-04 (real Better Auth signup and authenticated household bootstrap)
+  out of scope for this phase.
+
+### Verification
+
+- Component tests cover route rendering, validation, submit seam, keyboard
+  submit, password toggle, autocomplete and error semantics.
+- `pnpm lint`, `pnpm typecheck`, `pnpm test` and `pnpm build` pass.
+- No database, migration, bootstrap, role-model, reset or CI changes.
+
+### Next safe action
+
+- Implement T01-04 Better Auth signup followed by idempotent `POST /api/bootstrap`.
