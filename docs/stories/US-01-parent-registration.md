@@ -13,12 +13,17 @@ Là phụ huynh, tôi muốn đăng ký tài khoản để bắt đầu sử d�
 
 ## 2. Outcome
 
-Một parent có thể gửi form đăng ký bằng email và password, nhận authenticated
-session từ Better Auth, rồi hoàn tất `POST /api/bootstrap` để resolve canonical
-default household. Better Auth signup success alone **không phải** completed
-Family registration boundary. Nếu bootstrap thất bại, không được giả vờ đăng
-ký gia đình đã hoàn tất; phải giữ authenticated state và hiển thị recovery/retry
-an toàn theo contract idempotent của server.
+Một parent có thể gửi form đăng ký bằng tên hiển thị, email và password, nhận
+authenticated session từ Better Auth, rồi hoàn tất `POST /api/bootstrap` để
+resolve canonical default household. Better Auth signup success alone **không
+phải** completed Family registration boundary. Nếu bootstrap thất bại, không
+được giả vờ đăng ký gia đình đã hoàn tất; phải giữ authenticated state và hiển
+thị recovery/retry an toàn theo contract idempotent của server.
+
+`Tên phụ huynh` là display/profile identity được lưu bởi Better Auth theo
+contract `signUp.email`; nó không phải tên learner. Tên household vẫn do server
+quản lý trong bootstrap contract. Thay đổi này chỉ giải quyết required `name`
+của Better Auth và không thêm learner creation.
 
 ## 3. Source of Truth References
 
@@ -45,7 +50,7 @@ an toàn theo contract idempotent của server.
 ## 5. In Scope
 
 - `T01-01`: Tạo Register screen theo Feature UI Specification.
-- `T01-02`: Email/password/required-field validation.
+- `T01-02`: Parent-name/email/password/required-field validation.
 - `T01-03`: Password show/hide, Enter submit và autocomplete phù hợp.
 - `T01-04`: Better Auth signup, loading/error state, giữ email khi lỗi và chống
   duplicate submit, followed by authenticated `POST /api/bootstrap`.
@@ -71,13 +76,13 @@ an toàn theo contract idempotent của server.
 
 - AC-01: Register dùng Focused Task auth layout, một primary action và không
   hiển thị app navigation.
-- AC-02: Form có visible labels cho email/password và required messages gần
-  field, không chỉ dùng placeholder.
-- AC-03: Email và password được validate trước submit; invalid form không gọi
-  signup request.
+- AC-02: Form có visible labels cho tên phụ huynh, email/password và required
+  messages gần field, không chỉ dùng placeholder.
+- AC-03: Tên phụ huynh, email và password được validate trước submit; invalid
+  form không gọi signup request.
 - AC-04: Password có show/hide control với accessible label và không làm mất
   giá trị.
-- AC-05: Register dùng `autocomplete="email"` và
+- AC-05: Register dùng `autocomplete="name"`, `autocomplete="email"` và
   `autocomplete="new-password"`; Enter submit khi form hợp lệ.
 - AC-06: Khi submitting, primary action bị disable và có progress indicator;
   duplicate submit không tạo request thứ hai.
@@ -97,6 +102,8 @@ an toàn theo contract idempotent của server.
   thiểu 44px theo Global Design System và không tràn ngang trên mobile.
 - AC-13: Test chứng minh empty/invalid/submitting/success/account-exists/
   network-error states.
+- AC-14: Register thu thập và trim tên phụ huynh; tên rỗng/whitespace bị từ
+  chối, còn tên Unicode hợp lệ được truyền nguyên vẹn tới signup seam.
 
 ## 8. UX/UI Contract
 
@@ -173,7 +180,7 @@ an toàn theo contract idempotent của server.
 
 ## 15. Test Plan
 
-- Unit: email/password/required-field validation và submit guard.
+- Unit: parent-name/email/password/required-field validation và submit guard.
 - Component: all UI states, password toggle, Enter submit, preserved input,
   accessible labels and live error region.
 - API/Worker: Better Auth signup success, duplicate account và safe errors.
@@ -226,11 +233,17 @@ household resolved. Learner creation remains out of scope for US-01.
 
 - Phase 1 (T01-01/T01-02/T01-03) implemented in the web app:
   - `/register` uses the Focused Task auth layout with VocabFlow identity,
-    visible email/password labels and the required secondary Login link.
-  - Email and required-password validation run through the extracted
-    registration validation seam; errors are inline and accessible.
+    visible parent-name/email/password labels and the required secondary Login
+    link.
+  - Parent-name, email and required-password validation run through the
+    extracted registration validation seam; errors are inline and accessible.
   - Password visibility toggle, Enter submit, autocomplete and duplicate-submit
-    protection are covered by component tests.
+    protection are covered by component tests. The valid submission seam now
+    passes `{ name, email, password }` with name and email trimmed.
+- Better Auth 1.7.2 contract audit resolved blocker
+  `US01_BLOCKED_BETTER_AUTH_NAME_CONTRACT`: `name` is required by
+  `signUp.email`, so the approved Register contract explicitly collects the
+  parent's display name. No fake, derived or hidden name is used.
 - T01-04 (Better Auth signup, authenticated bootstrap and recovery states) is
   still pending and remains the next implementation slice.
 - Tests: `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm build`.

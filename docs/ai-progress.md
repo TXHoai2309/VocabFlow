@@ -11,7 +11,8 @@
   with implementation baseline `2429b0f`
 - CI status: Core CI PASS
 - Database acceptance status: Trusted DB Integration PASS on Neon PostgreSQL 18
-- Current implementation focus: US-01 Phase 1 Register UI/form behavior
+- Current implementation focus: US-01 Phase 1 Register UI/form behavior,
+  including the approved parent name/email/password contract
 - Last completed work: US-01 Phase 1 Register UI (T01-01/T01-02/T01-03);
   BATCH 0 Foundation remains accepted and frozen.
 - Files/areas most recently changed: `apps/web/src/features/auth/`, the web
@@ -20,12 +21,14 @@
   `docs/implementation/BATCH0_FOUNDATION_ACCEPTANCE.md`; `pnpm lint`,
   `pnpm typecheck`, `pnpm test` (82/82), `pnpm build` and `git diff --check`
   PASS; local Playwright render checks pass at 375/768/1280px.
-- Open blockers: None for the US-01 contract. Successful registration includes
-  authenticated Better Auth signup followed by idempotent `POST /api/bootstrap`.
+- Open blockers: None. `US01_BLOCKED_BETTER_AUTH_NAME_CONTRACT` is resolved by
+  the approved explicit parent display-name field. Successful registration
+  includes authenticated Better Auth signup followed by idempotent
+  `POST /api/bootstrap`.
 - Frozen areas: BATCH 0 bootstrap, role model, database targets, schemas, reset
   policy, migration executor and CI behavior unless a proven regression appears.
-- Next safe action: Implement T01-04 Better Auth + household persistence/
-  bootstrap integration under the corrected story contract.
+- Next safe action: Implement T01-04 Better Auth signup + household
+  persistence/bootstrap integration under the corrected story contract.
 - Do NOT do next: Do not call Neon, modify migrations, or reopen BATCH 0 without
   regression evidence.
 - Documents new agent must read first: `docs/README.md`,
@@ -174,3 +177,31 @@ registration boundary before feature implementation.
 - Next safe action: implement T01-04 signup plus household
   persistence/bootstrap.
 - Do NOT do next: learner profile/learner UI or unrelated BATCH 0 changes.
+
+## 2026-09-08 — Resolve Better Auth name contract blocker
+
+### Proven blocker
+
+- Better Auth 1.7.2 `signUp.email` requires `name`, `email` and `password`.
+- The previous Phase 1 form exposed only email and password, so T01-04 could
+  not safely call the pinned API without inventing a parent identity.
+
+### Accepted resolution
+
+- US-01 now explicitly collects `Tên phụ huynh`, `Email` and `Mật khẩu`.
+- Name is required, trimmed before the Phase-1 seam, and accepts normal
+  Vietnamese/Unicode text. It is the parent display/profile identity; learner
+  name and learner creation remain out of scope, and household name remains
+  server-owned.
+- `US01_BLOCKED_BETTER_AUTH_NAME_CONTRACT` is RESOLVED.
+
+### Checkpoint
+
+- US-01 remains `IN PROGRESS`; T01-04 remains pending.
+- No Better Auth signup request, `/api/bootstrap`, household migration or
+  learner/domain implementation was started.
+- BATCH 0 remains frozen.
+
+### Next safe action
+
+- Implement T01-04 Better Auth signup + household persistence/bootstrap.

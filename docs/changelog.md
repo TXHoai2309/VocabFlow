@@ -58,3 +58,12 @@ This log records meaningful project milestones and accepted baselines.
   not present in the BATCH 0 Better Auth Foundation migration.
 - T01-04 may add only that minimal additive application migration; BATCH 0
   database infrastructure remains frozen.
+
+## 2026-09-08 — Resolve US-01 Better Auth name contract
+
+- Reconfirmed Better Auth 1.7.2 requires `name`, `email` and `password` for
+  `signUp.email`.
+- Updated the canonical Register contract and Phase 1 UI to collect the
+  parent's visible display name, with required/trimmed Unicode-safe validation.
+- T01-04 Better Auth signup and household bootstrap remain pending; no
+  application integration or database change was started.

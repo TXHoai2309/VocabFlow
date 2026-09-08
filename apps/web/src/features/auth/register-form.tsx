@@ -11,7 +11,7 @@ type RegisterFormProps = {
   onValidSubmit?: (values: RegisterFormValues) => void | Promise<void>;
 };
 
-const INITIAL_VALUES: RegisterFormValues = { email: "", password: "" };
+const INITIAL_VALUES: RegisterFormValues = { name: "", email: "", password: "" };
 
 export function RegisterForm({ onValidSubmit }: RegisterFormProps) {
   const [values, setValues] = useState<RegisterFormValues>(INITIAL_VALUES);
@@ -65,7 +65,7 @@ export function RegisterForm({ onValidSubmit }: RegisterFormProps) {
     submittingRef.current = true;
     setIsSubmitting(true);
     try {
-      await onValidSubmit({ email: values.email.trim(), password: values.password });
+      await onValidSubmit({ name: values.name.trim(), email: values.email.trim(), password: values.password });
     } finally {
       submittingRef.current = false;
       setIsSubmitting(false);
@@ -74,6 +74,24 @@ export function RegisterForm({ onValidSubmit }: RegisterFormProps) {
 
   return (
     <form className="register-form" noValidate onSubmit={handleSubmit} aria-busy={isSubmitting}>
+      <div className="field-group">
+        <label className="form-label" htmlFor="register-name">Tên phụ huynh</label>
+        <input
+          id="register-name"
+          name="name"
+          className="text-input"
+          type="text"
+          autoComplete="name"
+          value={values.name}
+          onChange={(event) => updateField("name", event.target.value)}
+          onBlur={() => validateField("name")}
+          aria-invalid={Boolean(errors.name)}
+          aria-describedby={errors.name ? "register-name-error" : undefined}
+          required
+        />
+        {errors.name ? <p className="form-error" id="register-name-error" role="alert">{errors.name}</p> : null}
+      </div>
+
       <div className="field-group">
         <label className="form-label" htmlFor="register-email">Email</label>
         <input

@@ -1,4 +1,5 @@
 export type RegisterFormValues = {
+  name: string;
   email: string;
   password: string;
 };
@@ -10,7 +11,12 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export function validateRegisterForm(values: RegisterFormValues): RegisterFieldErrors {
   const errors: RegisterFieldErrors = {};
+  const name = values.name.trim();
   const email = values.email.trim();
+
+  if (!name) {
+    errors.name = "Vui lòng nhập tên phụ huynh.";
+  }
 
   if (!email) {
     errors.email = "Vui lòng nhập email.";
@@ -28,4 +34,3 @@ export function validateRegisterForm(values: RegisterFormValues): RegisterFieldE
 export function hasRegisterErrors(errors: RegisterFieldErrors) {
   return Object.keys(errors).length > 0;
 }
-

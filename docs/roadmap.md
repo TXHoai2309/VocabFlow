@@ -32,10 +32,14 @@ VocabFlow cho gia đình.
 Current task contract:
 
 - `T01-01` — Tạo Register screen theo Family MVP Feature UI Specification.
-- `T01-02` — Email/password/required-field validation.
+- `T01-02` — Parent-name/email/password/required-field validation.
 - `T01-03` — Password show/hide, Enter submit, correct autocomplete.
 - `T01-04` — Better Auth signup, loading/error state, preserve email on error,
   duplicate-submit protection, then required idempotent household bootstrap.
+
+Register contract: `Tên phụ huynh` → `Email` → `Mật khẩu`. Parent display name
+is collected explicitly because Better Auth 1.7.2 requires `name` for
+`signUp.email`; learner naming and learner creation remain out of scope.
 
 The complete story contract is in
 [`docs/stories/US-01-parent-registration.md`](stories/US-01-parent-registration.md).
