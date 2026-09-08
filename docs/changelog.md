@@ -78,3 +78,10 @@ This log records meaningful project milestones and accepted baselines.
 - Added safe signup/bootstrap loading, error and authenticated recovery states;
   learner creation and all learning-domain tables remain out of scope.
 - T01-04 is implemented / pending acceptance; US-01 remains `IN PROGRESS`.
+
+## 2026-09-08 — US-01 acceptance review: Better Auth session smoke
+
+- Corrected the stale foundation Playwright smoke from unsupported
+  `/api/auth/session` to Better Auth 1.7.2's `/api/auth/get-session` endpoint.
+- The smoke now passes in configured preview and secretless CI modes. US-01
+  remains pending Core CI and Trusted DB Integration evidence.

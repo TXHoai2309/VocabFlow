@@ -37,7 +37,7 @@ describe("foundation worker routes", () => {
   });
 
   it("keeps the auth boundary server-only when not configured", async () => {
-    const response = await app.request("http://localhost/api/auth/session");
+    const response = await app.request("http://localhost/api/auth/get-session");
     expect(response.status).toBe(503);
     expect(response.headers.get("content-type")).toContain("application/json");
   });

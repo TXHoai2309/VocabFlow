@@ -9,8 +9,10 @@
 - Documentation/agent pack status: finalized and approved for repository baseline
 - Last accepted baseline: BATCH 0 Foundation, recorded in commit `24e4580`
   with implementation baseline `2429b0f`
-- CI status: Core CI PASS
-- Database acceptance status: Trusted DB Integration PASS on Neon PostgreSQL 18
+- BATCH 0 CI status: Core CI PASS
+- BATCH 0 database acceptance status: Trusted DB Integration PASS on Neon
+  PostgreSQL 18
+- US-01 acceptance CI/Trusted DB status: NOT VERIFIED from this environment
 - Current implementation focus: US-01 T01-04 Better Auth signup and
   authenticated household bootstrap (implemented / pending acceptance)
 - Last completed work: T01-04 registration integration, including the
@@ -25,10 +27,10 @@
   `pnpm lint` PASS, `pnpm typecheck` PASS, `pnpm test` PASS (13 files / 100
   tests), `pnpm build` PASS and `git diff --check` PASS. No live Neon call is
   permitted.
-- Open blockers: None. `US01_BLOCKED_BETTER_AUTH_NAME_CONTRACT` is resolved by
-  the approved explicit parent display-name field. Successful registration
-  includes authenticated Better Auth signup followed by idempotent
-  `POST /api/bootstrap`.
+- Open blockers: External acceptance evidence is pending. The local E2E smoke
+  endpoint was corrected from `/api/auth/session` to Better Auth 1.7.2's
+  supported `/api/auth/get-session`; successful registration still includes
+  authenticated Better Auth signup followed by idempotent `POST /api/bootstrap`.
 - Frozen areas: BATCH 0 bootstrap, role model, database targets, schemas, reset
   policy, migration executor and CI behavior unless a proven regression appears.
 - Next safe action: US-01 ACCEPTANCE TEST / REVIEW.
@@ -234,10 +236,17 @@ registration boundary before feature implementation.
 - Story status: `IN PROGRESS`.
 - T01-04 status: `IMPLEMENTED / PENDING ACCEPTANCE`.
 - BATCH 0 remains `ACCEPTED` / frozen; no live Neon call was made.
-- Known baseline E2E issue remains unchanged: `pnpm test:e2e` receives `404`
-  for `/api/auth/session` in preview while the existing foundation smoke test
-  expects `503`; this is classified `KNOWN BASELINE FAILURE`, not a T01-04
-  regression.
+- Acceptance review corrected the stale foundation smoke endpoint from
+  `/api/auth/session` to Better Auth 1.7.2's supported
+  `/api/auth/get-session`; `pnpm test:e2e` now passes locally. The test accepts
+  `200 null` for a configured unauthenticated preview and `503` for secretless
+  Core CI.
+- Added a route-intercepted Playwright test for the native password-field
+  Enter key: exactly one Better Auth signup, one bootstrap and completed state.
+- Core CI and Trusted DB Integration statuses for the TXH commit are not
+  available from this environment because the private repository cannot be
+  queried without GitHub credentials and neither workflow runs on a TXH push.
+  Do not mark US-01 accepted until those external gates are reviewed.
 
 ### Next safe action
 

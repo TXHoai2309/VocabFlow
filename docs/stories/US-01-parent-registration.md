@@ -266,23 +266,28 @@ household resolved. Learner creation remains out of scope for US-01.
     the reset scope.
 - T01-04 is implemented but remains pending owner acceptance evidence; this
   story stays `IN PROGRESS` until that review is complete.
-- Targeted API/component/migration tests pass locally, including the atomic
-  bootstrap query-shape regression tests. Full repository checks are recorded
-  in the implementation handoff after they run.
-- The known baseline Playwright preview mismatch remains unchanged: the
-  existing `/api/auth/session` smoke expects `503` while the preview serves the
-  route as `404`; this is not introduced by T01-04 and is not fixed in this
-  story.
+- Local acceptance checks pass: `pnpm lint`, `pnpm typecheck`, `pnpm test`
+  (13 files / 100 tests), `pnpm build`, `pnpm test:e2e` (2 tests) and
+  `git diff --check`.
+- Acceptance review corrected the stale foundation smoke endpoint from
+  `/api/auth/session` to Better Auth 1.7.2's supported
+  `/api/auth/get-session`. The smoke now passes locally in both configured
+  preview (`200` with unauthenticated `null`) and secretless CI (`503`) modes.
+- Core CI and Trusted DB Integration evidence for this TXH commit could not be
+  queried from the current environment (the repository is not accessible via
+  unauthenticated GitHub API and these workflows run on PR/main, not TXH push).
+  Owner review of those gates is still required before acceptance.
 - The additive migration is limited to the two household tables above;
   BATCH 0 schema/role/bootstrap/reset/CI infrastructure remains frozen.
-- Non-blocking review notes: `/login` does not exist yet and remains out of
-  scope; the Enter-submit component test manually fires `submit` after
-  `keyDown`, so final US-01 acceptance must include native keyboard E2E/manual
-  evidence.
+- Non-blocking review note: `/login` does not exist yet and remains out of
+  scope. Native Playwright acceptance now focuses the password field and
+  presses Enter, proving one signup and one bootstrap request; the test uses
+  route interception and does not call a live database.
 
-- Commit: pending T01-04 implementation checkpoint.
-- CI/tests: implementation checks are pending final local validation; story
-  acceptance remains pending owner review.
+- Implementation commit: `6be13c6590858fce62aff75bc6ab57858e0f4039`.
+- Acceptance fix: Better Auth session smoke now uses `/get-session`; local
+  acceptance checks pass, while Core CI and Trusted DB evidence remain pending
+  owner review.
 - Screenshots/manual evidence: local Playwright render checks passed at
   375px, 768px and 1280px; screenshots are retained outside the repository.
 - Final status: IN PROGRESS (T01-04 IMPLEMENTED / PENDING ACCEPTANCE).
