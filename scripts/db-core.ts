@@ -107,14 +107,27 @@ export async function assertMigrationStateZero(sql: ReturnType<typeof openSql>) 
 
 export async function assertApplicationTablesAbsent(sql: ReturnType<typeof openSql>) {
   const tables = applicationTableNames();
-  if (tables.length === 0) return;
-  const rows = await sql<{ count: string }[]>`
+  if (tables.length > 0) {
+    const rows = await sql<{ count: string }[]>`
+      SELECT count(*)::text AS count
+      FROM information_schema.tables
+      WHERE table_schema::text = ${APP_SCHEMA}::text
+        AND table_name::text = ANY(${sql.array(tables)}::text[])
+    `;
+    if (rows[0]?.count !== "0") throw new Error("APPLICATION_SCHEMA_NOT_EMPTY");
+  }
+
+  const enumTypes = applicationEnumTypeNames();
+  if (enumTypes.length === 0) return;
+  const enumRows = await sql<{ count: string }[]>`
     SELECT count(*)::text AS count
-    FROM information_schema.tables
-    WHERE table_schema::text = ${APP_SCHEMA}::text
-      AND table_name::text = ANY(${sql.array(tables)}::text[])
+    FROM pg_type AS t
+    JOIN pg_namespace AS n ON n.oid = t.typnamespace
+    WHERE t.typtype = 'e'
+      AND n.nspname::text = ${APP_SCHEMA}::text
+      AND t.typname::text = ANY(${sql.array(enumTypes)}::text[])
   `;
-  if (rows[0]?.count !== "0") throw new Error("APPLICATION_SCHEMA_NOT_EMPTY");
+  if (enumRows[0]?.count !== "0") throw new Error("APPLICATION_ENUM_TYPES_PRESENT");
 }
 
 export async function assertApplicationTablesPresent(sql: ReturnType<typeof openSql>) {
@@ -134,5 +147,13 @@ function applicationTableNames() {
     const [schema, table] = name.split(".");
     if (schema !== APP_SCHEMA || !table) throw new Error("INVALID_RESET_POLICY");
     return table;
+  });
+}
+
+function applicationEnumTypeNames() {
+  return DATABASE_RESET_POLICY.applicationEnumTypes.map((name) => {
+    const [schema, type] = name.split(".");
+    if (schema !== APP_SCHEMA || !type) throw new Error("INVALID_RESET_POLICY");
+    return type;
   });
 }

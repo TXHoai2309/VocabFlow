@@ -262,8 +262,8 @@ household resolved. Learner creation remains out of scope for US-01.
     A bootstrap failure never claims registration completed and the retry calls
     bootstrap only.
   - `config/database-reset-policy.ts` resets household members before
-    households, then Better Auth tables; protected metadata remains outside
-    the reset scope.
+    households, then Better Auth tables and finally the application enum types;
+    protected metadata remains outside the reset scope.
 - T01-04 is implemented but remains pending owner acceptance evidence; this
   story stays `IN PROGRESS` until that review is complete.
 - Local acceptance checks pass: `pnpm lint`, `pnpm typecheck`, `pnpm test`
@@ -291,3 +291,17 @@ household resolved. Learner creation remains out of scope for US-01.
 - Screenshots/manual evidence: local Playwright render checks passed at
   375px, 768px and 1280px; screenshots are retained outside the repository.
 - Final status: IN PROGRESS (T01-04 IMPLEMENTED / PENDING ACCEPTANCE).
+
+## Trusted DB acceptance blocker — application enum reset
+
+- Trusted DB reported SQLSTATE `42710` (`type "household_role" already exists`)
+  during the second migration pass.
+- The first migration and reset table/history checks passed, proving that the
+  app-owned enum `vocabflow_app.household_role` survived the app-only reset.
+- The reset contract now drops dependent application tables first, then the
+  schema-qualified `vocabflow_app.household_role` type, and only then resets
+  Drizzle migration history. State-zero validation also rejects a leftover
+  application enum with `APPLICATION_ENUM_TYPES_PRESENT`.
+- US-01 remains `IN PROGRESS / PENDING ACCEPTANCE` until the fix is run through
+  the trusted workflow.
+- Next safe action: PR → Core CI → merge → Trusted DB Integration rerun.

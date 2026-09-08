@@ -10,6 +10,9 @@ export const DATABASE_RESET_POLICY = {
     `${APP_SCHEMA}.verification`,
     `${APP_SCHEMA}.user`
   ],
+  applicationEnumTypes: [
+    `${APP_SCHEMA}.household_role`
+  ],
   protectedSchemas: ["vocabflow_meta"],
   protectedTables: [
     "vocabflow_meta.bootstrap_metadata",

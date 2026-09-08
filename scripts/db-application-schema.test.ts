@@ -10,10 +10,11 @@ import { resetApplicationScope } from "./db-reset-operations";
 
 type CapturedQuery = { text: string; values: unknown[] };
 
-function applicationAssertionSql(count: string, queries: CapturedQuery[]) {
+function applicationAssertionSql(count: string, queries: CapturedQuery[], enumCount = "0") {
   const tag = ((strings: TemplateStringsArray, ...values: unknown[]) => {
-    queries.push({ text: strings.join("?"), values });
-    return Promise.resolve([{ count }]);
+    const text = strings.join("?");
+    queries.push({ text, values });
+    return Promise.resolve([{ count: text.includes("pg_type") ? enumCount : count }]);
   }) as unknown as Parameters<typeof assertApplicationTablesAbsent>[0] & { array(values: unknown[]): unknown };
   tag.array = ((values: unknown[]) => values) as typeof tag.array;
   return tag;
@@ -32,6 +33,7 @@ describe("dedicated application schema", () => {
       `${APP_SCHEMA}.verification`,
       `${APP_SCHEMA}.user`
     ]);
+    expect(DATABASE_RESET_POLICY.applicationEnumTypes).toEqual([`${APP_SCHEMA}.household_role`]);
     expect(DATABASE_RESET_POLICY.protectedSchemas).toEqual(["vocabflow_meta"]);
     expect(DATABASE_RESET_POLICY.migrationTrackingObjects).toEqual([`${MIGRATION_SCHEMA}.__drizzle_migrations`]);
   });
@@ -55,6 +57,10 @@ describe("dedicated application schema", () => {
     await expect(assertApplicationTablesPresent(applicationAssertionSql("3", []))).rejects.toThrow("APPLICATION_SCHEMA_INCOMPLETE");
   });
 
+  it("fails state-zero validation when the application enum survives reset", async () => {
+    await expect(assertApplicationTablesAbsent(applicationAssertionSql("0", [], "1"))).rejects.toThrow("APPLICATION_ENUM_TYPES_PRESENT");
+  });
+
   it("resets only application tables and Drizzle state while preserving protected metadata", async () => {
     const statements: string[] = [];
     const unsafeFragments: string[] = [];
@@ -75,7 +81,13 @@ describe("dedicated application schema", () => {
 
     expect(statements[0]).toContain("pg_advisory_xact_lock");
     expect(statements.filter((statement) => statement.includes("DROP TABLE IF EXISTS"))).toHaveLength(6);
+    const lastTableDrop = Math.max(...statements.map((statement, index) => statement.includes("DROP TABLE IF EXISTS") ? index : -1));
+    const enumDrop = statements.findIndex((statement) => statement.includes("DROP TYPE IF EXISTS"));
+    const migrationReset = statements.findIndex((statement) => statement.includes("TRUNCATE TABLE"));
+    expect(enumDrop).toBeGreaterThan(lastTableDrop);
+    expect(migrationReset).toBeGreaterThan(enumDrop);
     expect(statements.some((statement) => statement.includes("DROP SCHEMA"))).toBe(false);
+    expect(statements.some((statement) => /DROP ROLE|GRANT|REVOKE/i.test(statement))).toBe(false);
     expect(unsafeFragments).toEqual([
       `"${APP_SCHEMA}"."household_members"`,
       `"${APP_SCHEMA}"."households"`,
@@ -83,6 +95,7 @@ describe("dedicated application schema", () => {
       `"${APP_SCHEMA}"."session"`,
       `"${APP_SCHEMA}"."verification"`,
       `"${APP_SCHEMA}"."user"`,
+      `"${APP_SCHEMA}"."household_role"`,
       `"${MIGRATION_SCHEMA}"."__drizzle_migrations"`
     ]);
     expect(unsafeFragments.some((fragment) => fragment.includes("vocabflow_meta"))).toBe(false);
