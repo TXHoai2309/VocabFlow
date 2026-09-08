@@ -85,3 +85,13 @@ This log records meaningful project milestones and accepted baselines.
   `/api/auth/session` to Better Auth 1.7.2's `/api/auth/get-session` endpoint.
 - The smoke now passes in configured preview and secretless CI modes. US-01
   remains pending Core CI and Trusted DB Integration evidence.
+
+## 2026-09-08 — US-01 Trusted DB application enum reset fix
+
+- Trusted DB exposed SQLSTATE `42710` on the second migration because the
+  app-only reset left `vocabflow_app.household_role` behind after dropping its
+  dependent tables.
+- The reset policy now explicitly removes the schema-qualified application enum
+  before truncating Drizzle migration history, and state-zero validation detects
+  leftover application enum artifacts.
+- US-01 remains `IN PROGRESS / PENDING ACCEPTANCE` pending the trusted rerun.

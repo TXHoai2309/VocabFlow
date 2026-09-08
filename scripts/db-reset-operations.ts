@@ -12,6 +12,11 @@ export async function resetApplicationScope(sql: SqlClient) {
       if (schema !== APP_SCHEMA || !table) throw new Error("INVALID_RESET_POLICY");
       await tx`DROP TABLE IF EXISTS ${tx.unsafe(`"${schema}"."${table}"`)}`;
     }
+    for (const objectName of DATABASE_RESET_POLICY.applicationEnumTypes) {
+      const [schema, type] = objectName.split(".");
+      if (schema !== APP_SCHEMA || !type) throw new Error("INVALID_RESET_POLICY");
+      await tx`DROP TYPE IF EXISTS ${tx.unsafe(`"${schema}"."${type}"`)}`;
+    }
     const [migrationSchema, migrationTable] = DATABASE_RESET_POLICY.migrationTrackingObjects[0].split(".");
     if (migrationSchema !== MIGRATION_SCHEMA || !migrationTable) throw new Error("INVALID_RESET_POLICY");
     const migrationExists = await tx<{ exists: boolean }[]>`SELECT to_regclass(${`${migrationSchema}.${migrationTable}`}) IS NOT NULL AS exists`;

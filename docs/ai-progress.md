@@ -251,3 +251,31 @@ registration boundary before feature implementation.
 ### Next safe action
 
 - US-01 ACCEPTANCE TEST / REVIEW.
+
+## 2026-09-08 — US-01 Trusted DB reset blocker
+
+### Proven blocker
+
+- Trusted DB reached the second migration after application reset and failed
+  with SQLSTATE `42710`: `vocabflow_app.household_role` already existed.
+- The reset removed application tables and migration history but left the enum
+  type created by migration `0001_curious_miss_america.sql`.
+
+### Fix scope
+
+- Added `vocabflow_app.household_role` to the explicit application reset policy.
+- Reset now drops application tables, then the enum type, then Drizzle history;
+  clean-state validation fails early with `APPLICATION_ENUM_TYPES_PRESENT` if a
+  type remains.
+- Protected `vocabflow_meta`, the `drizzle` schema, roles and BATCH 0
+  infrastructure remain untouched. Migration SQL was not made idempotent.
+
+### Checkpoint
+
+- US-01 remains `IN PROGRESS / PENDING ACCEPTANCE`.
+- Local validation is required before the acceptance-fix commit; no live Neon
+  call is made from this environment.
+
+### Next safe action
+
+- PR → Core CI → merge → Trusted DB Integration rerun. Do not start US-02.
