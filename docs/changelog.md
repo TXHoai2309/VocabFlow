@@ -95,3 +95,12 @@ This log records meaningful project milestones and accepted baselines.
   before truncating Drizzle migration history, and state-zero validation detects
   leftover application enum artifacts.
 - US-01 remains `IN PROGRESS / PENDING ACCEPTANCE` pending the trusted rerun.
+
+## 2026-09-08 — US-01 Parent Registration acceptance
+
+- US-01 is accepted after local validation plus Core CI and Trusted DB
+  Integration PASS on merged main commit `6806e66`.
+- The success boundary is Better Auth signup → authenticated session →
+  `POST /api/bootstrap` → canonical default household resolved.
+- `/login`, learner creation, learner selector and Learner Home remain deferred
+  and out of scope for this story; BATCH 1 remains in progress.

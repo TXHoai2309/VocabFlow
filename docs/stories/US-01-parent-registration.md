@@ -1,11 +1,14 @@
 # US-01 — Parent Registration
 
-- Status: IN PROGRESS
+- Status: ACCEPTED
 - Batch: BATCH 1
 - Owner: Project Owner
 - Last updated: 2026-09-08
 - Baseline commit: `24e4580` (BATCH 0 acceptance evidence)
-- T01-04 status: IMPLEMENTED / PENDING ACCEPTANCE
+- T01-01 status: ACCEPTED
+- T01-02 status: ACCEPTED
+- T01-03 status: ACCEPTED
+- T01-04 status: ACCEPTED
 
 ## 1. User Story
 
@@ -264,19 +267,26 @@ household resolved. Learner creation remains out of scope for US-01.
   - `config/database-reset-policy.ts` resets household members before
     households, then Better Auth tables and finally the application enum types;
     protected metadata remains outside the reset scope.
-- T01-04 is implemented but remains pending owner acceptance evidence; this
-  story stays `IN PROGRESS` until that review is complete.
-- Local acceptance checks pass: `pnpm lint`, `pnpm typecheck`, `pnpm test`
-  (13 files / 100 tests), `pnpm build`, `pnpm test:e2e` (2 tests) and
-  `git diff --check`.
+- Final acceptance evidence:
+  - Register UI, validation, accessibility and responsive checks: PASS at
+    375px, 768px and 1280px.
+  - Better Auth 1.7.2 signup and authenticated `POST /api/bootstrap`:
+    PASS, including auth, idempotency and recovery behavior.
+  - Household schema/migration and application reset enum lifecycle: PASS.
+  - Native password-field Enter E2E: PASS; exactly one signup and bootstrap.
+  - `pnpm lint`: PASS.
+  - `pnpm typecheck`: PASS.
+  - `pnpm test`: PASS — 13 files / 101 tests.
+  - `pnpm build`: PASS.
+  - `pnpm test:e2e`: PASS — 2/2.
+  - Core CI: PASS on merged main commit `6806e66`.
+  - Trusted DB Integration: PASS on merged main commit `6806e66`.
 - Acceptance review corrected the stale foundation smoke endpoint from
   `/api/auth/session` to Better Auth 1.7.2's supported
   `/api/auth/get-session`. The smoke now passes locally in both configured
   preview (`200` with unauthenticated `null`) and secretless CI (`503`) modes.
-- Core CI and Trusted DB Integration evidence for this TXH commit could not be
-  queried from the current environment (the repository is not accessible via
-  unauthenticated GitHub API and these workflows run on PR/main, not TXH push).
-  Owner review of those gates is still required before acceptance.
+- External acceptance evidence is recorded from the merged main commit
+  `6806e66`; the enum-reset fix was included in that verified run.
 - The additive migration is limited to the two household tables above;
   BATCH 0 schema/role/bootstrap/reset/CI infrastructure remains frozen.
 - Non-blocking review note: `/login` does not exist yet and remains out of
@@ -284,15 +294,18 @@ household resolved. Learner creation remains out of scope for US-01.
   presses Enter, proving one signup and one bootstrap request; the test uses
   route interception and does not call a live database.
 
-- Implementation commit: `6be13c6590858fce62aff75bc6ab57858e0f4039`.
-- Acceptance fix: Better Auth session smoke now uses `/get-session`; local
-  acceptance checks pass, while Core CI and Trusted DB evidence remain pending
-  owner review.
+- Relevant commits:
+  - Implementation: `6be13c6590858fce62aff75bc6ab57858e0f4039`.
+  - Acceptance test/fix: `4a07abacf6b74fa84c842cd043a68b2c7627b948`.
+  - Application enum reset fix: `7ffe1a020a3bc96626bd2011f0f8ad5a15c4df65`.
+  - Merged main acceptance evidence: `6806e66`.
 - Screenshots/manual evidence: local Playwright render checks passed at
   375px, 768px and 1280px; screenshots are retained outside the repository.
-- Final status: IN PROGRESS (T01-04 IMPLEMENTED / PENDING ACCEPTANCE).
+- Known deferred dependencies: `/login` implementation, learner creation,
+  learner selector and Learner Home remain out of scope for US-01.
+- Final status: ACCEPTED.
 
-## Trusted DB acceptance blocker — application enum reset
+## Historical Trusted DB acceptance blocker — resolved
 
 - Trusted DB reported SQLSTATE `42710` (`type "household_role" already exists`)
   during the second migration pass.
@@ -302,6 +315,5 @@ household resolved. Learner creation remains out of scope for US-01.
   schema-qualified `vocabflow_app.household_role` type, and only then resets
   Drizzle migration history. State-zero validation also rejects a leftover
   application enum with `APPLICATION_ENUM_TYPES_PRESENT`.
-- US-01 remains `IN PROGRESS / PENDING ACCEPTANCE` until the fix is run through
-  the trusted workflow.
-- Next safe action: PR → Core CI → merge → Trusted DB Integration rerun.
+- Resolution was verified by Trusted DB Integration on merged main commit
+  `6806e66`.

@@ -16,7 +16,8 @@ the supplied BATCH 1 backlog. It does not invent later user stories.
 ## BATCH 1 — Authentication and Family Entry
 
 - Status: `IN PROGRESS`
-- Active story: US-01 Parent Registration.
+- US-01 Parent Registration: `ACCEPTED`.
+- Active story: none; next story has not been selected.
 - Dependency: BATCH 0 accepted.
 - Success boundary: Better Auth signup → authenticated session →
   `POST /api/bootstrap` → canonical default household resolved.
@@ -37,7 +38,7 @@ Current task contract:
 - `T01-04` — Better Auth signup, loading/error state, preserve email on error,
   duplicate-submit protection, then required idempotent household bootstrap.
 
-Implementation checkpoint: `T01-04` is `IMPLEMENTED / PENDING ACCEPTANCE`.
+Implementation checkpoint: `T01-01` through `T01-04` are `ACCEPTED`.
 Family registration succeeds only after Better Auth signup, an authenticated
 session, `POST /api/bootstrap` and canonical default household resolution.
 Bootstrap uses the server-owned neutral name `Gia đình VocabFlow`; learner

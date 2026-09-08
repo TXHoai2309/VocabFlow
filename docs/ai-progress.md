@@ -2,8 +2,8 @@
 
 - Project: VocabFlow Family MVP
 - Current phase/batch: BATCH 1
-- Current active story: US-01 Parent Registration
-- Story status: IN PROGRESS
+- Current active story: None (US-01 Parent Registration accepted)
+- Story status: ACCEPTED
 - Current Git branch: `TXH`
 - Baseline HEAD before documentation pack: `24e4580`
 - Documentation/agent pack status: finalized and approved for repository baseline
@@ -12,9 +12,9 @@
 - BATCH 0 CI status: Core CI PASS
 - BATCH 0 database acceptance status: Trusted DB Integration PASS on Neon
   PostgreSQL 18
-- US-01 acceptance CI/Trusted DB status: NOT VERIFIED from this environment
-- Current implementation focus: US-01 T01-04 Better Auth signup and
-  authenticated household bootstrap (implemented / pending acceptance)
+- US-01 acceptance CI status: Core CI PASS on merged main `6806e66`
+- US-01 Trusted DB Integration status: PASS on merged main `6806e66`
+- Current implementation focus: US-01 complete; no active next story
 - Last completed work: T01-04 registration integration, including the
   additive household migration, atomic `/api/bootstrap` service and safe UI
   recovery states; BATCH 0 Foundation remains accepted and frozen.
@@ -24,18 +24,17 @@
   BATCH 0 infrastructure, CI and protected database code were not changed.
 - Tests/evidence: targeted API/component/migration tests pass, including the
   serialized bootstrap query-shape regression. Final local validation:
-  `pnpm lint` PASS, `pnpm typecheck` PASS, `pnpm test` PASS (13 files / 100
-  tests), `pnpm build` PASS and `git diff --check` PASS. No live Neon call is
-  permitted.
-- Open blockers: External acceptance evidence is pending. The local E2E smoke
-  endpoint was corrected from `/api/auth/session` to Better Auth 1.7.2's
-  supported `/api/auth/get-session`; successful registration still includes
-  authenticated Better Auth signup followed by idempotent `POST /api/bootstrap`.
+  `pnpm lint` PASS, `pnpm typecheck` PASS, `pnpm test` PASS (13 files / 101
+  tests), `pnpm build` PASS, `pnpm test:e2e` PASS (2/2), responsive checks PASS
+  at 375/768/1280px and `git diff --check` PASS. No live Neon call is
+  permitted from local development.
+- Open blockers: None for US-01 acceptance. `/login`, learner creation,
+  learner selector and Learner Home remain deferred product work.
 - Frozen areas: BATCH 0 bootstrap, role model, database targets, schemas, reset
   policy, migration executor and CI behavior unless a proven regression appears.
-- Next safe action: US-01 ACCEPTANCE TEST / REVIEW.
-- Do NOT do next: Do not call live Neon directly; do not add learner/domain
-  tables; do not reopen BATCH 0 infrastructure without regression evidence.
+- Next safe action: Project owner selects/reviews the next User Story.
+- Do NOT do next: Do not automatically start US-02; do not call live Neon
+  directly; do not reopen BATCH 0 infrastructure without regression evidence.
 - Documents new agent must read first: `docs/README.md`,
   `docs/product/product-spec.md`, `docs/architecture/technical-architecture.md`,
   `docs/design/design-system.md`, `docs/design/feature-ui-spec.md`,
@@ -279,3 +278,20 @@ registration boundary before feature implementation.
 ### Next safe action
 
 - PR → Core CI → merge → Trusted DB Integration rerun. Do not start US-02.
+
+## 2026-09-08 — US-01 acceptance finalized
+
+### Accepted evidence
+
+- US-01 Parent Registration is `ACCEPTED`.
+- Core CI and Trusted DB Integration both PASS on merged main commit
+  `6806e66`.
+- Local lint, typecheck, 13-file/101-test suite, build and 2/2 Playwright E2E
+  checks PASS; responsive checks at 375/768/1280px PASS.
+- BATCH 0 remains `ACCEPTED / FROZEN`; BATCH 1 remains `IN PROGRESS`.
+
+### Handoff
+
+- There is no active next story.
+- Next safe action: Project owner selects/reviews the next User Story.
+- Do not automatically start US-02.
