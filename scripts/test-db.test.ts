@@ -47,6 +47,8 @@ describe("trusted DB acceptance diagnostics", () => {
       code: "42501",
       message: "permission denied for schema vocabflow_app",
     });
+    const wrapped = new Error("Failed query: secret query parameters", { cause: postgresError });
+    expect(formatTrustedDbError(wrapped, {})).toEqual(formatTrustedDbError(postgresError, {}));
 
     expect(formatTrustedDbError(new Error("APPLICATION_SCHEMA_INCOMPLETE"), {})).toEqual({
       code: "APPLICATION_SCHEMA_INCOMPLETE",

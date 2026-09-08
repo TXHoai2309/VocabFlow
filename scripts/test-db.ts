@@ -103,9 +103,22 @@ export function formatTrustedDbError(
   error: unknown,
   environment: NodeJS.ProcessEnv = process.env,
 ) {
-  const candidate = error && typeof error === "object"
+  let candidate = error && typeof error === "object"
     ? error as { code?: unknown; message?: unknown }
     : {};
+  // Drizzle wraps query errors in `cause`. Prefer the underlying SQLSTATE,
+  // without serializing query text/parameters or looping on cyclic causes.
+  const visited = new Set<unknown>();
+  let current: unknown = error;
+  while (current && typeof current === "object" && !visited.has(current) && visited.size < 16) {
+    visited.add(current);
+    const nested = current as { code?: unknown; message?: unknown; cause?: unknown };
+    if (typeof nested.code === "string" && /^[A-Z0-9]{5}$/.test(nested.code)) {
+      candidate = nested;
+      break;
+    }
+    current = nested.cause;
+  }
   const rawMessage = typeof candidate.message === "string"
     ? candidate.message
     : error instanceof Error ? error.message : "UNKNOWN";

@@ -1,5 +1,5 @@
 import postgres from "postgres";
-import { migrate } from "drizzle-orm/postgres-js/migrator";
+import { executeApplicationMigrations } from "./db-migration-executor";
 import { drizzle } from "drizzle-orm/postgres-js";
 import { DATABASE_RESET_POLICY } from "../config/database-reset-policy";
 import { getConnectionTarget, isConfiguredTarget } from "../config/database-targets";
@@ -31,10 +31,10 @@ export function applicationDb(url: string) {
 }
 
 export async function runMigrations(url: string, expected?: DatabaseTarget) {
-  const { sql, db } = applicationDb(url);
+  const sql = openSql(url);
   try {
     if (expected) await assertPostConnectIdentity(sql, expected);
-    await migrate(db, { migrationsFolder: "drizzle/migrations", migrationsSchema: MIGRATION_SCHEMA });
+    await executeApplicationMigrations(sql);
   } finally {
     await sql.end({ timeout: 5 });
   }

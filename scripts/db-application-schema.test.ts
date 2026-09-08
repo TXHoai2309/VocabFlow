@@ -102,6 +102,6 @@ describe("dedicated application schema", () => {
     expect(migration).toContain(`CREATE TABLE "${APP_SCHEMA}"."user"`);
     expect(migration).toContain(`TO "vocabflow_runtime"`);
     expect(migration).toContain(`ALTER DEFAULT PRIVILEGES FOR ROLE "vocabflow_migration" IN SCHEMA "${APP_SCHEMA}"`);
-    expect(dbCore).toContain("migrationsSchema: MIGRATION_SCHEMA");
+    expect(dbCore).toContain("await executeApplicationMigrations(sql)");
   });
 });
