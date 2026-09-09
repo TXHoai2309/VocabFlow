@@ -56,7 +56,7 @@ export function createBootstrapService(database: BootstrapDatabase): BootstrapSe
         FROM household CROSS JOIN membership_result
       `);
 
-      const row = (result as BootstrapRow[])[0];
+      const row = (result as { rows: BootstrapRow[] }).rows[0];
       const parsed = householdBootstrapResponseSchema.safeParse({ household: row });
       if (!parsed.success) throw new Error("BOOTSTRAP_RESULT_INVALID");
       return parsed.data.household;

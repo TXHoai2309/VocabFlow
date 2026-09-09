@@ -5,11 +5,13 @@ import { createBootstrapService, DEFAULT_HOUSEHOLD_NAME, DEFAULT_HOUSEHOLD_TIMEZ
 const HOUSEHOLD_ID = "00000000-0000-4000-8000-000000000001";
 
 function successfulDatabase() {
-  const execute = vi.fn().mockResolvedValue([{
-    id: HOUSEHOLD_ID,
-    name: DEFAULT_HOUSEHOLD_NAME,
-    timezone: DEFAULT_HOUSEHOLD_TIMEZONE
-  }]);
+  const execute = vi.fn().mockResolvedValue({
+    rows: [{
+      id: HOUSEHOLD_ID,
+      name: DEFAULT_HOUSEHOLD_NAME,
+      timezone: DEFAULT_HOUSEHOLD_TIMEZONE
+    }]
+  });
   return { execute };
 }
 
@@ -55,7 +57,7 @@ describe("US-01 household bootstrap service", () => {
   });
 
   it("fails closed when the database returns a malformed household row", async () => {
-    const database = { execute: vi.fn().mockResolvedValue([{ id: "not-a-uuid", name: "", timezone: "" }]) };
+    const database = { execute: vi.fn().mockResolvedValue({ rows: [{ id: "not-a-uuid", name: "", timezone: "" }] }) };
     await expect(createBootstrapService(database).ensureDefaultHousehold("user-1")).rejects.toThrow("BOOTSTRAP_RESULT_INVALID");
   });
 });
