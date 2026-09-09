@@ -209,7 +209,7 @@ evidence condition is met and the affected source document is updated.
 
 - Status: ACCEPTED
 - Date: Recorded 2026-09-08
-- Context: Better Auth 1.7.2 `signUp.email` requires `name`, while the Phase 1
+- Context: Better Auth 1.7.3 `signUp.email` requires `name`, while the Phase 1
   Register contract previously collected only email and password.
 - Decision: US-01 explicitly collects `name`, `email` and `password`. `name` is
   the parent's persisted display/profile identity; it is trimmed at the form
@@ -218,7 +218,7 @@ evidence condition is met and the affected source document is updated.
 - Consequences: Learner profile naming and learner creation remain a later
   story. Household name remains server-owned by the bootstrap contract. This
   is a contract/UI clarification only and adds no learner or database schema.
-- Evidence/source: Better Auth 1.7.2 signup runtime/type contract,
+- Evidence/source: Better Auth 1.7.3 signup runtime/type contract,
   [Feature UI Specification](design/feature-ui-spec.md#2-authentication),
   [US-01 contract](stories/US-01-parent-registration.md)
 - Revisit only if: Better Auth is upgraded or the product owner explicitly

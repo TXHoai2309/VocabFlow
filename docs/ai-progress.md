@@ -2,7 +2,7 @@
 
 - Project: VocabFlow Family MVP
 - Current phase/batch: BATCH 1
-- Current active story: None (US-01 Parent Registration accepted)
+- Current active story: None (US-02 Parent Login accepted)
 - Story status: ACCEPTED
 - Current Git branch: `TXH`
 - Baseline HEAD before documentation pack: `24e4580`
@@ -14,27 +14,29 @@
   PostgreSQL 18
 - US-01 acceptance CI status: Core CI PASS on merged main `6806e66`
 - US-01 Trusted DB Integration status: PASS on merged main `6806e66`
-- Current implementation focus: US-01 complete; no active next story
-- Last completed work: T01-04 registration integration, including the
-  additive household migration, atomic `/api/bootstrap` service and safe UI
-  recovery states; BATCH 0 Foundation remains accepted and frozen.
-- Files/areas most recently changed: `apps/api/src/bootstrap.ts`,
-  `apps/api/src/index.ts`, `apps/api/src/db/schema.ts`, the web auth feature,
-  shared contracts, reset policy, additive Drizzle migration and US-01 docs.
-  BATCH 0 infrastructure, CI and protected database code were not changed.
-- Tests/evidence: targeted API/component/migration tests pass, including the
-  serialized bootstrap query-shape regression. Final local validation:
-  `pnpm lint` PASS, `pnpm typecheck` PASS, `pnpm test` PASS (13 files / 101
-  tests), `pnpm build` PASS, `pnpm test:e2e` PASS (2/2), responsive checks PASS
-  at 375/768/1280px and `git diff --check` PASS. No live Neon call is
+- Current implementation focus: None; US-02 Parent Login is accepted and no
+  next story has been selected.
+- Last completed work: US-02 Parent Login, including the Better Auth login
+  form, authenticated household handoff, safe recovery states, existing-session
+  handling and acceptance coverage; BATCH 0 Foundation remains accepted and
+  frozen.
+- Files/areas most recently changed: the web auth feature (`/login`, login
+  form/schema, shared bootstrap client and route tests), E2E coverage and the
+  US-02 documentation. US-01 bootstrap behavior, BATCH 0 infrastructure, CI
+  and database code were not changed.
+- Tests/evidence: US-01 regression tests remain green. US-02 local validation:
+  `pnpm lint` PASS, `pnpm typecheck` PASS, `pnpm test` PASS (14 files / 114
+  tests), `pnpm build` PASS, `pnpm test:e2e` PASS (5/5), rendered login checks
+  PASS at 375px and 1280px, and `git diff --check` PASS. No live Neon call is
   permitted from local development.
-- Open blockers: None for US-01 acceptance. `/login`, learner creation,
-  learner selector and Learner Home remain deferred product work.
+- Open blockers: None for US-02 acceptance. Learner creation, learner selector
+  and Learner Home remain unimplemented and are deferred to future stories.
 - Frozen areas: BATCH 0 bootstrap, role model, database targets, schemas, reset
   policy, migration executor and CI behavior unless a proven regression appears.
-- Next safe action: Project owner selects/reviews the next User Story.
-- Do NOT do next: Do not automatically start US-02; do not call live Neon
-  directly; do not reopen BATCH 0 infrastructure without regression evidence.
+- Next safe action: Project owner selects/reviews the next User Story; do not
+  automatically start US-03.
+- Do NOT do next: Do not start US-03 automatically; do not call live Neon; do
+  not reopen BATCH 0 infrastructure without regression evidence.
 - Documents new agent must read first: `docs/README.md`,
   `docs/product/product-spec.md`, `docs/architecture/technical-architecture.md`,
   `docs/design/design-system.md`, `docs/design/feature-ui-spec.md`,
@@ -186,7 +188,7 @@ registration boundary before feature implementation.
 
 ### Proven blocker
 
-- Better Auth 1.7.2 `signUp.email` requires `name`, `email` and `password`.
+- Better Auth 1.7.3 `signUp.email` requires `name`, `email` and `password`.
 - The previous Phase 1 form exposed only email and password, so T01-04 could
   not safely call the pinned API without inventing a parent identity.
 
@@ -214,7 +216,7 @@ registration boundary before feature implementation.
 
 ### Completed
 
-- Implemented the real Better Auth 1.7.2 signup path with the explicit parent
+- Implemented the real Better Auth 1.7.3 signup path with the explicit parent
   `name`, `email` and `password` contract.
 - Added the authenticated `POST /api/bootstrap` route and a server-owned,
   atomic/idempotent household resolver. Bootstrap ignores client owner input,
@@ -236,7 +238,7 @@ registration boundary before feature implementation.
 - T01-04 status: `IMPLEMENTED / PENDING ACCEPTANCE`.
 - BATCH 0 remains `ACCEPTED` / frozen; no live Neon call was made.
 - Acceptance review corrected the stale foundation smoke endpoint from
-  `/api/auth/session` to Better Auth 1.7.2's supported
+  `/api/auth/session` to Better Auth 1.7.3's supported
   `/api/auth/get-session`; `pnpm test:e2e` now passes locally. The test accepts
   `200 null` for a configured unauthenticated preview and `503` for secretless
   Core CI.

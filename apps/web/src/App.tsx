@@ -1,4 +1,5 @@
 import { Link, Route, Routes } from "react-router";
+import { LoginPage } from "./features/auth/login-page";
 import { RegisterPage } from "./features/auth/register-page";
 
 function Shell({ children }: { children: React.ReactNode }) {
@@ -63,6 +64,7 @@ function NotFound() {
 export default function App() {
   return (
     <Routes>
+      <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/" element={<Shell><Home /></Shell>} />
       <Route path="/foundation" element={<Shell><FoundationRoute /></Shell>} />

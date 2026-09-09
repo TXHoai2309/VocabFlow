@@ -18,7 +18,9 @@ convenient. Reprioritization or a new story must be explicit.
 ## Files
 
 - [US template](US-TEMPLATE.md)
-- [US-01 Parent Registration](US-01-parent-registration.md)
+- [US-01 Parent Registration](US-01-parent-registration.md) — `ACCEPTED`
+- [US-02 Parent Login](US-02-parent-login.md) — `ACCEPTED`; no next story
+  is active.
 
 ## Story status gate
 

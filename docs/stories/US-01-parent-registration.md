@@ -244,12 +244,12 @@ household resolved. Learner creation remains out of scope for US-01.
   - Password visibility toggle, Enter submit, autocomplete and duplicate-submit
     protection are covered by component tests. The valid submission seam now
     passes `{ name, email, password }` with name and email trimmed.
-- Better Auth 1.7.2 contract audit resolved blocker
+- Better Auth 1.7.3 contract audit resolved blocker
   `US01_BLOCKED_BETTER_AUTH_NAME_CONTRACT`: `name` is required by
   `signUp.email`, so the approved Register contract explicitly collects the
   parent's display name. No fake, derived or hidden name is used.
 - T01-04 implementation evidence:
-  - Better Auth 1.7.2 signup is called directly with the required
+  - Better Auth 1.7.3 signup is called directly with the required
     `{ name, email, password }` contract, then the authenticated client calls
     `POST /api/bootstrap`.
   - The additive migration `0001_curious_miss_america.sql` creates only
@@ -270,7 +270,7 @@ household resolved. Learner creation remains out of scope for US-01.
 - Final acceptance evidence:
   - Register UI, validation, accessibility and responsive checks: PASS at
     375px, 768px and 1280px.
-  - Better Auth 1.7.2 signup and authenticated `POST /api/bootstrap`:
+  - Better Auth 1.7.3 signup and authenticated `POST /api/bootstrap`:
     PASS, including auth, idempotency and recovery behavior.
   - Household schema/migration and application reset enum lifecycle: PASS.
   - Native password-field Enter E2E: PASS; exactly one signup and bootstrap.
@@ -282,7 +282,7 @@ household resolved. Learner creation remains out of scope for US-01.
   - Core CI: PASS on merged main commit `6806e66`.
   - Trusted DB Integration: PASS on merged main commit `6806e66`.
 - Acceptance review corrected the stale foundation smoke endpoint from
-  `/api/auth/session` to Better Auth 1.7.2's supported
+  `/api/auth/session` to Better Auth 1.7.3's supported
   `/api/auth/get-session`. The smoke now passes locally in both configured
   preview (`200` with unauthenticated `null`) and secretless CI (`503`) modes.
 - External acceptance evidence is recorded from the merged main commit

@@ -2,6 +2,35 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-09 — US-02 Parent Login acceptance
+
+- US-02 Parent Login is `ACCEPTED` after owner manual acceptance and complete
+  automated evidence.
+- Valid Better Auth sign-in, authenticated session, idempotent
+  `POST /api/bootstrap` and `authenticated-household-ready` handoff PASS.
+- Lint, typecheck, 114-test suite, build, 5/5 E2E, responsive and diff checks
+  PASS; no learner scope, migration, dependency or BATCH 0 changes were added.
+- No next story is active; US-03 has not started.
+
+## 2026-09-09 — US-02 Parent Login contract review
+
+- Added the owner-defined `US-02 — Parent Login` story contract with status
+  `READY FOR CONTRACT REVIEW`.
+- Locked the success boundary at Better Auth sign-in → authenticated session →
+  existing idempotent `POST /api/bootstrap` →
+  `authenticated-household-ready`; learner profiles and learner UI remain out
+  of scope.
+- Reconciled active Better Auth documentation references with the repository's
+  pinned `1.7.3` dependency.
+
+## 2026-09-09 — US-02 Parent Login implementation
+
+- Promoted US-02 to `IN PROGRESS` after owner approval.
+- Implemented the `/login` Better Auth email/password slice, authenticated
+  household handoff, safe retry/error states and acceptance tests.
+- Learner schema/API/UI, migrations, dependencies and BATCH 0 infrastructure
+  remain unchanged.
+
 ## 2026-09-08 — BATCH 0 Foundation acceptance
 
 - Commit `24e4580`: documented BATCH 0 acceptance evidence.
@@ -61,7 +90,7 @@ This log records meaningful project milestones and accepted baselines.
 
 ## 2026-09-08 — Resolve US-01 Better Auth name contract
 
-- Reconfirmed Better Auth 1.7.2 requires `name`, `email` and `password` for
+- Reconfirmed Better Auth 1.7.3 requires `name`, `email` and `password` for
   `signUp.email`.
 - Updated the canonical Register contract and Phase 1 UI to collect the
   parent's visible display name, with required/trimmed Unicode-safe validation.
@@ -70,7 +99,7 @@ This log records meaningful project milestones and accepted baselines.
 
 ## 2026-09-08 — US-01 T01-04 registration integration
 
-- Implemented the real Better Auth 1.7.2 parent signup pipeline with the
+- Implemented the real Better Auth 1.7.3 parent signup pipeline with the
   authenticated `POST /api/bootstrap` Family-registration boundary.
 - Added the additive `vocabflow_app.households` and
   `vocabflow_app.household_members` migration, atomic/idempotent bootstrap
@@ -82,7 +111,7 @@ This log records meaningful project milestones and accepted baselines.
 ## 2026-09-08 — US-01 acceptance review: Better Auth session smoke
 
 - Corrected the stale foundation Playwright smoke from unsupported
-  `/api/auth/session` to Better Auth 1.7.2's `/api/auth/get-session` endpoint.
+  `/api/auth/session` to Better Auth 1.7.3's `/api/auth/get-session` endpoint.
 - The smoke now passes in configured preview and secretless CI modes. US-01
   remains pending Core CI and Trusted DB Integration evidence.
 

@@ -17,7 +17,8 @@ the supplied BATCH 1 backlog. It does not invent later user stories.
 
 - Status: `IN PROGRESS`
 - US-01 Parent Registration: `ACCEPTED`.
-- Active story: none; next story has not been selected.
+- Active story: none; US-02 Parent Login is `ACCEPTED` and the next story has
+  not been selected.
 - Dependency: BATCH 0 accepted.
 - Success boundary: Better Auth signup → authenticated session →
   `POST /api/bootstrap` → canonical default household resolved.
@@ -45,11 +46,28 @@ Bootstrap uses the server-owned neutral name `Gia đình VocabFlow`; learner
 creation remains out of scope.
 
 Register contract: `Tên phụ huynh` → `Email` → `Mật khẩu`. Parent display name
-is collected explicitly because Better Auth 1.7.2 requires `name` for
+is collected explicitly because Better Auth 1.7.3 requires `name` for
 `signUp.email`; learner naming and learner creation remain out of scope.
 
 The complete story contract is in
 [`docs/stories/US-01-parent-registration.md`](stories/US-01-parent-registration.md).
+
+### US-02 — Parent Login
+
+- Status: `ACCEPTED`.
+- Contract: [`docs/stories/US-02-parent-login.md`](stories/US-02-parent-login.md).
+- Scope: parent email/password login through Better Auth, existing-session
+  handling, safe retry/error states and the authenticated household handoff.
+- Success boundary: Better Auth sign-in → authenticated session → existing
+  idempotent `POST /api/bootstrap` → `authenticated-household-ready`.
+- Learner profiles, learner APIs, learner selector/home and all learning-domain
+  behavior remain out of scope for US-02.
+- Acceptance evidence: owner manual acceptance PASS; `pnpm lint`,
+  `pnpm typecheck`, `pnpm test` (114 tests), `pnpm build`, `pnpm test:e2e`
+  (5/5), responsive checks and `git diff --check` PASS.
+- US-02 ends at `authenticated-household-ready`; learner profiles, learner
+  APIs, selector/home and learning-domain behavior remain out of scope.
+- No next story is active; do not start US-03 automatically.
 
 ## Later product scope
 

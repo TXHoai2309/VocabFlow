@@ -26,3 +26,13 @@ describe("register route", () => {
     expect(screen.queryByRole("navigation", { name: "Foundation navigation" })).not.toBeInTheDocument();
   });
 });
+
+describe("login route", () => {
+  it("renders the parent login screen without app navigation", () => {
+    render(<MemoryRouter initialEntries={["/login"]}><App /></MemoryRouter>);
+    expect(screen.getByRole("heading", { name: "Đăng nhập" })).toBeInTheDocument();
+    expect(screen.getByRole("textbox", { name: "Email" })).toBeInTheDocument();
+    expect(screen.getByLabelText("Mật khẩu")).toBeInTheDocument();
+    expect(screen.queryByRole("navigation", { name: "Foundation navigation" })).not.toBeInTheDocument();
+  });
+});
