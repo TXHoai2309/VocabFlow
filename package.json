@@ -25,10 +25,10 @@
     "test:e2e": "pnpm build && playwright test"
   },
   "dependencies": {
+    "@neondatabase/serverless": "1.1.0",
     "@vocabflow/contracts": "workspace:*",
     "@vocabflow/learning-domain": "workspace:*",
-    "@neondatabase/serverless": "1.1.0",
-    "better-auth": "1.7.2",
+    "better-auth": "1.7.3",
     "drizzle-orm": "0.45.2",
     "hono": "4.13.7",
     "react": "19.2.8",

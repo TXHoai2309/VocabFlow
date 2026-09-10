@@ -16,7 +16,9 @@ the supplied BATCH 1 backlog. It does not invent later user stories.
 ## BATCH 1 — Authentication and Family Entry
 
 - Status: `IN PROGRESS`
-- Active story: US-01 Parent Registration.
+- US-01 Parent Registration: `ACCEPTED`.
+- US-02 Parent Login: `ACCEPTED`.
+- Active story: US-03 Learner Profile Creation & Resolution — `IN PROGRESS`.
 - Dependency: BATCH 0 accepted.
 - Success boundary: Better Auth signup → authenticated session →
   `POST /api/bootstrap` → canonical default household resolved.
@@ -37,18 +39,44 @@ Current task contract:
 - `T01-04` — Better Auth signup, loading/error state, preserve email on error,
   duplicate-submit protection, then required idempotent household bootstrap.
 
-Implementation checkpoint: `T01-04` is `IMPLEMENTED / PENDING ACCEPTANCE`.
+Implementation checkpoint: `T01-01` through `T01-04` are `ACCEPTED`.
 Family registration succeeds only after Better Auth signup, an authenticated
 session, `POST /api/bootstrap` and canonical default household resolution.
 Bootstrap uses the server-owned neutral name `Gia đình VocabFlow`; learner
 creation remains out of scope.
 
 Register contract: `Tên phụ huynh` → `Email` → `Mật khẩu`. Parent display name
-is collected explicitly because Better Auth 1.7.2 requires `name` for
+is collected explicitly because Better Auth 1.7.3 requires `name` for
 `signUp.email`; learner naming and learner creation remain out of scope.
 
 The complete story contract is in
 [`docs/stories/US-01-parent-registration.md`](stories/US-01-parent-registration.md).
+
+### US-02 — Parent Login
+
+- Status: `ACCEPTED`.
+- Contract: [`docs/stories/US-02-parent-login.md`](stories/US-02-parent-login.md).
+- Scope: parent email/password login through Better Auth, existing-session
+  handling, safe retry/error states and the authenticated household handoff.
+- Success boundary: Better Auth sign-in → authenticated session → existing
+  idempotent `POST /api/bootstrap` → `authenticated-household-ready`.
+- Learner profiles, learner APIs, learner selector/home and all learning-domain
+  behavior remain out of scope for US-02.
+- Acceptance evidence: owner manual acceptance PASS; `pnpm lint`,
+  `pnpm typecheck`, `pnpm test` (114 tests), `pnpm build`, `pnpm test:e2e`
+  (5/5), responsive checks and `git diff --check` PASS.
+- US-02 ends at `authenticated-household-ready`; learner profiles, learner
+  APIs, selector/home and learning-domain behavior remain out of scope.
+
+### US-03 — Learner Profile Creation & Resolution
+
+- Status: `IN PROGRESS`.
+- Contract: [`docs/stories/US-03-learner-profile-resolution.md`](stories/US-03-learner-profile-resolution.md).
+- Scope: additive learner profile persistence, authorized learner list/create,
+  first-learner empty state and 0/1/2+ resolution through the canonical
+  `learner-context-ready` handoff. Implementation is active within this scope.
+- Learner Home, progress, vocabulary, review and learner authentication remain
+  out of scope. No US-04 implementation has started.
 
 ## Later product scope
 

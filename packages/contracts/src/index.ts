@@ -133,6 +133,9 @@ export function resolveDatabaseTarget(
 export type ErrorCode =
   | "UNAUTHORIZED"
   | "FORBIDDEN"
+  | "HOUSEHOLD_ACCESS_DENIED"
+  | "LEARNER_DISPLAY_NAME_INVALID"
+  | "INVALID_REQUEST"
   | "VALIDATION_ERROR"
   | "NOT_FOUND"
   | "IDEMPOTENCY_CONFLICT"
@@ -154,6 +157,27 @@ export const householdBootstrapResponseSchema = z.object({
   })
 });
 export type HouseholdBootstrapResponse = z.infer<typeof householdBootstrapResponseSchema>;
+
+export const learnerDtoSchema = z.object({
+  id: z.string().uuid(),
+  householdId: z.string().uuid(),
+  displayName: z.string().min(1),
+  avatarKey: z.string().nullable(),
+  enabled: z.boolean(),
+  createdAt: z.string().datetime(),
+  updatedAt: z.string().datetime()
+});
+export type LearnerDto = z.infer<typeof learnerDtoSchema>;
+
+export const createLearnerRequestSchema = z.object({
+  displayName: z.string()
+}).strict();
+export type CreateLearnerRequest = z.infer<typeof createLearnerRequestSchema>;
+
+export const learnerListResponseSchema = z.object({
+  learners: z.array(learnerDtoSchema)
+});
+export type LearnerListResponse = z.infer<typeof learnerListResponseSchema>;
 
 export function errorEnvelope(code: ErrorCode, message: string, details?: Record<string, unknown>): ErrorEnvelope {
   return details ? { error: { code, message, details } } : { error: { code, message } };

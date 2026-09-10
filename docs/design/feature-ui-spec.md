@@ -112,7 +112,7 @@ Desktop app shell
 | Keyboard submit | Enter submit form khi field hợp lệ; trong lúc submitting không gửi duplicate request. | Chờ response hoặc sửa validation. |
 | Autocomplete | Login dùng autocomplete=email + current-password; Register dùng name + email + new-password. | Browser/password manager hỗ trợ điền an toàn. |
 
-Register thu thập tên hiển thị của phụ huynh vì Better Auth 1.7.2 yêu cầu
+Register thu thập tên hiển thị của phụ huynh vì Better Auth 1.7.3 yêu cầu
 `name` cho `signUp.email`. Đây là danh tính profile của parent, không phải tên
 learner; tên household vẫn do server quản lý theo bootstrap contract.
 

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router";
-import { householdBootstrapResponseSchema, type HouseholdBootstrapResponse } from "@vocabflow/contracts";
+import type { HouseholdBootstrapResponse } from "@vocabflow/contracts";
 import { authClient } from "./auth-client";
+import { requestBootstrap } from "./bootstrap-client";
 import { RegisterForm } from "./register-form";
 import type { RegisterFormValues } from "./register-schema";
 
@@ -20,20 +21,6 @@ const BOOTSTRAP_ERROR_MESSAGE = "Đã tạo tài khoản nhưng chưa hoàn tấ
 
 function safeAuthErrorMessage(error: { code?: string } | null | undefined) {
   return error?.code === ACCOUNT_EXISTS_CODE ? ACCOUNT_EXISTS_MESSAGE : AUTH_ERROR_MESSAGE;
-}
-
-async function requestBootstrap(): Promise<HouseholdBootstrapResponse> {
-  const response = await fetch("/api/bootstrap", {
-    method: "POST",
-    credentials: "include",
-    headers: { "Content-Type": "application/json" },
-    body: "{}"
-  });
-  if (!response.ok) throw new Error("BOOTSTRAP_REQUEST_FAILED");
-  const payload: unknown = await response.json();
-  const parsed = householdBootstrapResponseSchema.safeParse(payload);
-  if (!parsed.success) throw new Error("BOOTSTRAP_RESPONSE_INVALID");
-  return parsed.data;
 }
 
 export function RegisterPage() {
@@ -103,10 +90,11 @@ export function RegisterPage() {
             </div>
           ) : null}
           {state === "completed" ? (
-            <p role="status">
+            <div role="status">
               Tài khoản và gia đình đã được thiết lập.
               {household ? ` ${household.name}` : ""}
-            </p>
+              <Link className="auth-next-link" to="/learners">Tiếp tục tạo hồ sơ học</Link>
+            </div>
           ) : null}
         </div>
         <p className="auth-switch">

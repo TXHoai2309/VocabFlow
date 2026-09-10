@@ -3,7 +3,7 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { getTableConfig } from "drizzle-orm/pg-core";
 import { APP_SCHEMA, MIGRATION_SCHEMA } from "@vocabflow/contracts";
-import { account, householdMembers, households, session, user, verification } from "../apps/api/src/db/schema";
+import { account, householdMembers, households, learnerProfiles, session, user, verification } from "../apps/api/src/db/schema";
 import { DATABASE_RESET_POLICY } from "../config/database-reset-policy";
 import { assertApplicationTablesAbsent, assertApplicationTablesPresent } from "./db-core";
 import { resetApplicationScope } from "./db-reset-operations";
@@ -26,6 +26,7 @@ describe("dedicated application schema", () => {
     expect(MIGRATION_SCHEMA).toBe("drizzle");
     expect(DATABASE_RESET_POLICY.applicationSchemas).toEqual([APP_SCHEMA]);
     expect(DATABASE_RESET_POLICY.applicationTables).toEqual([
+      `${APP_SCHEMA}.learner_profiles`,
       `${APP_SCHEMA}.household_members`,
       `${APP_SCHEMA}.households`,
       `${APP_SCHEMA}.account`,
@@ -39,7 +40,7 @@ describe("dedicated application schema", () => {
   });
 
   it("binds every runtime Drizzle table to the dedicated application schema", () => {
-    for (const table of [account, session, user, verification, households, householdMembers]) {
+    for (const table of [account, session, user, verification, households, householdMembers, learnerProfiles]) {
       expect(getTableConfig(table).schema).toBe(APP_SCHEMA);
     }
   });
@@ -52,7 +53,7 @@ describe("dedicated application schema", () => {
     expect(absentQueries[0]?.values[0]).toBe(APP_SCHEMA);
 
     const presentQueries: CapturedQuery[] = [];
-    await expect(assertApplicationTablesPresent(applicationAssertionSql("6", presentQueries))).resolves.toBeUndefined();
+    await expect(assertApplicationTablesPresent(applicationAssertionSql("7", presentQueries))).resolves.toBeUndefined();
     expect(presentQueries[0]?.values[0]).toBe(APP_SCHEMA);
     await expect(assertApplicationTablesPresent(applicationAssertionSql("3", []))).rejects.toThrow("APPLICATION_SCHEMA_INCOMPLETE");
   });
@@ -80,7 +81,7 @@ describe("dedicated application schema", () => {
     await resetApplicationScope(sql);
 
     expect(statements[0]).toContain("pg_advisory_xact_lock");
-    expect(statements.filter((statement) => statement.includes("DROP TABLE IF EXISTS"))).toHaveLength(6);
+    expect(statements.filter((statement) => statement.includes("DROP TABLE IF EXISTS"))).toHaveLength(7);
     const lastTableDrop = Math.max(...statements.map((statement, index) => statement.includes("DROP TABLE IF EXISTS") ? index : -1));
     const enumDrop = statements.findIndex((statement) => statement.includes("DROP TYPE IF EXISTS"));
     const migrationReset = statements.findIndex((statement) => statement.includes("TRUNCATE TABLE"));
@@ -89,6 +90,7 @@ describe("dedicated application schema", () => {
     expect(statements.some((statement) => statement.includes("DROP SCHEMA"))).toBe(false);
     expect(statements.some((statement) => /DROP ROLE|GRANT|REVOKE/i.test(statement))).toBe(false);
     expect(unsafeFragments).toEqual([
+      `"${APP_SCHEMA}"."learner_profiles"`,
       `"${APP_SCHEMA}"."household_members"`,
       `"${APP_SCHEMA}"."households"`,
       `"${APP_SCHEMA}"."account"`,
@@ -105,6 +107,7 @@ describe("dedicated application schema", () => {
     const schemaSource = readFileSync(join(process.cwd(), "apps", "api", "src", "db", "schema.ts"), "utf8");
     const migration = readFileSync(join(process.cwd(), "drizzle", "migrations", "0000_application-schema.sql"), "utf8");
     const householdMigration = readFileSync(join(process.cwd(), "drizzle", "migrations", "0001_curious_miss_america.sql"), "utf8");
+    const learnerMigration = readFileSync(join(process.cwd(), "drizzle", "migrations", "0002_smiling_wrecking_crew.sql"), "utf8");
     const journal = JSON.parse(readFileSync(join(process.cwd(), "drizzle", "migrations", "meta", "_journal.json"), "utf8")) as { entries: Array<{ idx: number; tag: string }> };
     const snapshot = JSON.parse(readFileSync(join(process.cwd(), "drizzle", "migrations", "meta", "0000_snapshot.json"), "utf8")) as {
       schemas: Record<string, string>;
@@ -125,12 +128,17 @@ describe("dedicated application schema", () => {
     expect(householdMigration).toContain(`CREATE TABLE "${APP_SCHEMA}"."households"`);
     expect(householdMigration).toContain(`CREATE TABLE "${APP_SCHEMA}"."household_members"`);
     expect(householdMigration).not.toMatch(/CREATE SCHEMA|CREATE ON DATABASE|vocabflow_meta/i);
-    expect(journal.entries.map((entry) => entry.tag)).toEqual(["0000_application-schema", "0001_curious_miss_america"]);
+    expect(learnerMigration).toContain(`CREATE TABLE "${APP_SCHEMA}"."learner_profiles"`);
+    expect(learnerMigration).toContain(`REFERENCES "${APP_SCHEMA}"."households"("id") ON DELETE restrict`);
+    expect(learnerMigration).toContain(`CREATE INDEX "learner_profiles_household_enabled_created_id_idx"`);
+    expect(learnerMigration).not.toContain('UNIQUE("display_name")');
+    expect(journal.entries.map((entry) => entry.tag)).toEqual(["0000_application-schema", "0001_curious_miss_america", "0002_smiling_wrecking_crew"]);
     expect(dbCore).toContain("await executeApplicationMigrations(sql)");
   });
 
   it("keeps household reset order dependency-safe", () => {
     const tables = DATABASE_RESET_POLICY.applicationTables;
+    expect(tables.indexOf(`${APP_SCHEMA}.learner_profiles`)).toBeLessThan(tables.indexOf(`${APP_SCHEMA}.households`));
     expect(tables.indexOf(`${APP_SCHEMA}.household_members`)).toBeLessThan(tables.indexOf(`${APP_SCHEMA}.households`));
     expect(tables.indexOf(`${APP_SCHEMA}.households`)).toBeLessThan(tables.indexOf(`${APP_SCHEMA}.user`));
   });
