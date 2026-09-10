@@ -120,10 +120,11 @@ export function LoginPage() {
             </div>
           ) : null}
           {state === "completed" ? (
-            <p role="status" data-testid="authenticated-household-ready">
+            <div role="status" data-testid="authenticated-household-ready">
               Đã đăng nhập. Household đã sẵn sàng.
               {household ? ` ${household.name}` : ""}
-            </p>
+              <Link className="auth-next-link" to="/learners">Tiếp tục chọn learner</Link>
+            </div>
           ) : null}
         </div>
 

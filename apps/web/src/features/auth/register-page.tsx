@@ -90,10 +90,11 @@ export function RegisterPage() {
             </div>
           ) : null}
           {state === "completed" ? (
-            <p role="status">
+            <div role="status">
               Tài khoản và gia đình đã được thiết lập.
               {household ? ` ${household.name}` : ""}
-            </p>
+              <Link className="auth-next-link" to="/learners">Tiếp tục tạo hồ sơ học</Link>
+            </div>
           ) : null}
         </div>
         <p className="auth-switch">

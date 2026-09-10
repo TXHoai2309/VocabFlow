@@ -2,6 +2,43 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-10 — US-03 contract approved for implementation
+
+- Owner approved the US-03 learner profile contract and its exact decisions for
+  display-name validation, strict request fields, `learner-context-ready`,
+  short-lived active learner state, nullable avatar behavior and network-
+  uncertainty reconciliation.
+- US-03 is now `READY FOR IMPLEMENTATION`; no feature code, schema, migration,
+  dependency, BATCH 0 or US-04 work was started in the documentation task.
+
+## 2026-09-10 — US-03 implementation started
+
+- Promoted US-03 to `IN PROGRESS` and began the approved learner profile
+  list/create and 0/1/2+ resolution slice.
+- Local implementation gates currently pass: 137 Vitest tests and 9/9
+  Playwright E2E tests, plus lint, typecheck and build.
+- US-04, Learner Home, learning-domain behavior and BATCH 0 remain out of
+  scope.
+
+## 2026-09-10 — US-03 manual acceptance core-flow checkpoint
+
+- Owner manual acceptance PASS: zero-learner empty state, first learner
+  creation, one-learner auto-resolution, 2+ learner selector, explicit
+  selection, one- and 2+ learner reload behavior, empty `displayName`
+  validation, native Enter create, and Tab + Enter learner selection.
+- US-03 remains `IN PROGRESS`; T03-17 remains `PARTIAL` and Trusted DB
+  Integration remains the pending acceptance gate.
+
+## 2026-09-09 — US-03 Learner Profile Creation & Resolution contract review
+
+- Added the `US-03 — Learner Profile Creation & Resolution` story with status
+  `READY FOR CONTRACT REVIEW`.
+- Defined authorized learner list/create, 0/1/2+ resolution and the proposed
+  `learner-context-ready` handoff; Learner Home and learning behavior remain
+  out of scope.
+- This is documentation-only preparation. No application code, schema,
+  migration, dependency, BATCH 0 or US-04 work was started.
+
 ## 2026-09-09 — US-02 Parent Login acceptance
 
 - US-02 Parent Login is `ACCEPTED` after owner manual acceptance and complete

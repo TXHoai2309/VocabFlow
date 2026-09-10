@@ -1,5 +1,6 @@
 import {
   boolean,
+  index,
   pgSchema,
   text,
   timestamp,
@@ -83,8 +84,27 @@ export const householdMembers = vocabflowApp.table("household_members", {
   unique("household_members_household_user_unique").on(table.householdId, table.userId)
 ]);
 
+export const learnerProfiles = vocabflowApp.table("learner_profiles", {
+  id: uuid("id").primaryKey(),
+  householdId: uuid("household_id")
+    .notNull()
+    .references(() => households.id, { onDelete: "restrict" }),
+  displayName: text("display_name").notNull(),
+  avatarKey: text("avatar_key"),
+  enabled: boolean("enabled").notNull().default(true),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow()
+}, (table) => [
+  index("learner_profiles_household_enabled_created_id_idx").on(
+    table.householdId,
+    table.enabled,
+    table.createdAt,
+    table.id
+  )
+]);
+
 export const authSchema = { user, session, account, verification };
-export const applicationSchema = { households, householdMembers };
+export const applicationSchema = { households, householdMembers, learnerProfiles };
 
 export type AuthUser = typeof user.$inferSelect;
 export type AuthSession = typeof session.$inferSelect;

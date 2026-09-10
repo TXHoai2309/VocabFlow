@@ -2,6 +2,7 @@ import { Hono } from "hono";
 import { errorEnvelope, type HouseholdBootstrapResponse } from "@vocabflow/contracts";
 import { createAuth } from "./auth";
 import { createBootstrapService, type BootstrapService } from "./bootstrap";
+import { createLearnerService, LearnerServiceError, type LearnerService } from "./learners";
 
 export type WorkerBindings = {
   DATABASE_URL?: string;
@@ -15,6 +16,7 @@ type BootstrapRunner = (userId: string, env: WorkerBindings) => Promise<Househol
 export type AppDependencies = {
   readSession?: SessionReader;
   bootstrap?: BootstrapRunner;
+  learnerService?: LearnerService;
 };
 
 const SAFE_BOOTSTRAP_ERROR = "Không thể hoàn tất thiết lập gia đình. Vui lòng thử lại.";
@@ -33,6 +35,12 @@ async function runBootstrap(userId: string, env: WorkerBindings) {
   const database = createHttpDatabase(env.DATABASE_URL);
   const service: BootstrapService = createBootstrapService(database);
   return service.ensureDefaultHousehold(userId);
+}
+
+async function runLearnerService(env: WorkerBindings) {
+  if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
+  const { createHttpDatabase } = await import("./db/client");
+  return createLearnerService(createHttpDatabase(env.DATABASE_URL));
 }
 
 export function createApp(dependencies: AppDependencies = {}) {
@@ -60,6 +68,58 @@ export function createApp(dependencies: AppDependencies = {}) {
       return c.json({ household }, 200);
     } catch {
       return c.json(errorEnvelope("INTERNAL_ERROR", SAFE_BOOTSTRAP_ERROR), 503);
+    }
+  });
+
+  application.get("/api/learners", async (c) => {
+    try {
+      const session = await readSession(c.req.raw, c.env);
+      if (!session?.user?.id) {
+        return c.json(errorEnvelope("UNAUTHORIZED", "Đăng nhập để tiếp tục."), 401);
+      }
+      const service = dependencies.learnerService ?? await runLearnerService(c.env);
+      return c.json({ learners: await service.list(session.user.id) }, 200);
+    } catch (error) {
+      if (error instanceof LearnerServiceError) {
+        const message = error.code === "HOUSEHOLD_ACCESS_DENIED"
+          ? "Bạn không có quyền truy cập household này."
+          : error.code === "LEARNER_DISPLAY_NAME_INVALID"
+            ? "Tên learner không hợp lệ."
+            : error.code === "INVALID_REQUEST"
+              ? "Dữ liệu gửi lên không hợp lệ."
+              : "Không thể tải learner lúc này. Vui lòng thử lại.";
+        return c.json(errorEnvelope(error.code, message), error.status);
+      }
+      return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể tải learner lúc này. Vui lòng thử lại."), 503);
+    }
+  });
+
+  application.post("/api/learners", async (c) => {
+    try {
+      const session = await readSession(c.req.raw, c.env);
+      if (!session?.user?.id) {
+        return c.json(errorEnvelope("UNAUTHORIZED", "Đăng nhập để tiếp tục."), 401);
+      }
+      let payload: unknown;
+      try {
+        payload = await c.req.json();
+      } catch {
+        return c.json(errorEnvelope("INVALID_REQUEST", "Dữ liệu gửi lên không hợp lệ."), 400);
+      }
+      const service = dependencies.learnerService ?? await runLearnerService(c.env);
+      return c.json(await service.create(session.user.id, payload), 201);
+    } catch (error) {
+      if (error instanceof LearnerServiceError) {
+        const message = error.code === "HOUSEHOLD_ACCESS_DENIED"
+          ? "Bạn không có quyền truy cập household này."
+          : error.code === "LEARNER_DISPLAY_NAME_INVALID"
+            ? "Tên learner không hợp lệ."
+            : error.code === "INVALID_REQUEST"
+              ? "Dữ liệu gửi lên không hợp lệ."
+              : "Không thể tạo learner lúc này. Vui lòng thử lại.";
+        return c.json(errorEnvelope(error.code, message), error.status);
+      }
+      return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể tạo learner lúc này. Vui lòng thử lại."), 503);
     }
   });
 
