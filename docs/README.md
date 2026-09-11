@@ -100,7 +100,7 @@ feature code may start.
 - US-02 Parent Login is `ACCEPTED`.
 - US-03 Learner Profile Creation & Resolution is `ACCEPTED`.
 - US-04 Vocabulary Content Seed & Read Foundation is `ACCEPTED`.
-- BATCH 3 First Study Experience is `IN PROGRESS`.
-- US-05 First Real Flashcard is the current story and is `IN PROGRESS`.
+- BATCH 3 First Study Experience is `ACCEPTED`.
+- US-05 First Real Flashcard is `ACCEPTED`.
 - US-06 has not started.
 - Documentation/agent-pack work does not implement US-01 or any other feature.

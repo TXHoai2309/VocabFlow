@@ -114,9 +114,9 @@ The complete story contract is in
 
 ## BATCH 3 — First Study Experience
 
-- Status: `IN PROGRESS`.
+- Status: `ACCEPTED`.
 - Dependency: BATCH 2 and US-04 are `ACCEPTED`.
-- Active story: US-05 First Real Flashcard — `IN PROGRESS`.
+- Active story: none; US-05 First Real Flashcard is `ACCEPTED`.
 - Owner-approved scope: minimal learner-context-to-first-card handoff using
   the accepted vocabulary API; do not fabricate a full Learner Home dashboard.
 - Success boundary: `first-flashcard-ready`.
@@ -135,9 +135,12 @@ The complete story contract is in
 - Manual owner acceptance: PASS for the learner handoff, real first `apple`
   card, flip/accessibility behavior, NULL/media safety, error/retry, reload
   recovery and 375x812 responsive verification.
-- T05-01 through T05-17 are locally PASS; final Core CI evidence is pending.
-- Trusted DB Integration is not required because US-05 makes no schema,
-  migration, seed, privilege or database behavior change.
+- T05-01 through T05-17: `PASS`.
+- Core CI #30: `SUCCESS` on main commit
+  `712d8bb42fbb46704e7c4da6e1a1fd791f61e331`.
+- Trusted DB Integration #28: `SUCCESS` as incidental evidence, not a required
+  US-05 acceptance gate; US-05 makes no schema, migration, seed, privilege or
+  database behavior change.
 - Learner Home, due/new metrics, progress, review queue, scheduler and review
   writes remain out of scope for this implementation story.
 

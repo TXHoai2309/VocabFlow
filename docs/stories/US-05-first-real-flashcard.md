@@ -1,6 +1,6 @@
 # US-05 — First Real Flashcard
 
-- Status: IN PROGRESS
+- Status: ACCEPTED
 - Batch: BATCH 3 — First Study Experience
 - Owner: Project Owner
 - Last updated: 2026-09-11
@@ -390,8 +390,8 @@ expected to change for this story.
 - No new Trusted DB gate is required because US-05 changes no schema,
   migration, privilege or database behavior; it relies on accepted US-04
   database evidence.
-- US-06 remains unstarted and this story remains `IN PROGRESS` until its
-  implementation and acceptance evidence are complete.
+- US-06 remains unstarted. This story is `ACCEPTED` after owner manual
+  acceptance, local gates and Core CI evidence.
 
 ## 18. Open Questions and Blockers
 
@@ -406,7 +406,7 @@ expected to change for this story.
 
 ## 19. Acceptance Evidence
 
-Implementation checkpoint. US-05 is `IN PROGRESS`; the implementation remains
+Final acceptance record. US-05 is `ACCEPTED`; the implementation remains
 limited to the approved web route, short-lived learner context, vocabulary read
 client, first-card UI and tests. No schema, migration, dependency,
 CI/workflow or Neon operation was performed.
@@ -430,7 +430,7 @@ CI/workflow or Neon operation was performed.
 - No new Trusted DB Integration gate unless implementation later changes
   schema, migration, privilege or database behavior.
 
-### Owner manual acceptance checkpoint — 2026-09-11
+### Final owner manual acceptance — 2026-09-11
 
 Manual owner acceptance is PASS for the approved core flow:
 
@@ -453,29 +453,40 @@ Manual owner acceptance is PASS for the approved core flow:
 - T05-10/T05-11: loading and empty states remain accepted through automated
   coverage; no database/content mutation was fabricated for manual evidence.
 - T05-16: no functional-looking review controls PASS.
-- T05-17: local regression/repository gates PASS; final Core CI evidence is
-  still pending.
+- T05-17: regression and repository gates PASS; Core CI #30 SUCCESS on the
+  validated main commit `712d8bb42fbb46704e7c4da6e1a1fd791f61e331`.
 
-Accordingly, T05-01 through T05-17 are `LOCAL PASS / CORE CI PENDING`, while
-US-05 remains `IN PROGRESS` and is not yet accepted.
+The owner-provided manual evidence covers the learner-context-ready handoff,
+`/study`, the real `vocabulary[0]` card, flip interactions, optional/media
+safety, reload recovery, responsive/mobile behavior, safe API error handling
+and Retry recovery. T05-01 through T05-17 are all `PASS`.
 
-### Implementation evidence
+### Automated/local and CI evidence
 
 - Focused Study/client/routing and learner handoff tests PASS; the full local
   suite is green at 167 tests.
 - `pnpm lint` PASS, `pnpm typecheck` PASS, `pnpm build` PASS and
   `pnpm test:e2e` PASS (11/11) after the Space-key flip correction.
+- Full automated suite: `167/167` tests PASS.
+- `git diff --check` PASS; production scan found no review, progress,
+  scheduler or database write side effects.
+- Core CI #30: SUCCESS on main commit
+  `712d8bb42fbb46704e7c4da6e1a1fd791f61e331`.
+- Trusted DB Integration #28: SUCCESS, recorded as incidental evidence only;
+  it is not a required US-05 acceptance gate.
 - The E2E path covers authenticated learner resolution → `Bắt đầu học` →
   `/study` → accepted vocabulary read → first card → Space flip, with no
   review write request.
 - No implementation path uses `localStorage`, `sessionStorage`, IndexedDB,
   cookies, durable learner URL state, `SpeechSynthesis` or a review endpoint.
 
-### Acceptance gate remaining
+### Final acceptance result
 
-- Core CI PASS on the final TXH implementation commit is still required.
+- US-05 is `ACCEPTED` and T05-01 through T05-17 are `PASS`.
 - Trusted DB Integration is `NOT REQUIRED` for US-05 because no schema,
-  migration, seed, privilege or database behavior changed; accepted US-04
-  database evidence remains the dependency.
+  migration, seed, privilege or database behavior changed; the successful #28
+  run does not change that gate classification.
+- The local Node warning remains `22.19.0` versus pinned `22.23.2`; Core CI
+  validated the repository-pinned toolchain.
 
 US-06 has not started.

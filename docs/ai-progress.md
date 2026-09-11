@@ -1,9 +1,9 @@
 # Current Handoff Snapshot
 
 - Project: VocabFlow Family MVP
-- Current phase/batch: BATCH 3 — First Study Experience
-- Current active story: US-05 First Real Flashcard
-- Story status: IN PROGRESS
+- Current phase/batch: BATCH 3 — First Study Experience (accepted)
+- Current active story: none; US-05 First Real Flashcard is accepted
+- Story status: ACCEPTED
 - Current Git branch: `TXH`
 - Baseline HEAD before documentation pack: `24e4580`
 - Documentation/agent pack status: finalized and approved for repository baseline
@@ -14,8 +14,7 @@
   PostgreSQL 18
 - US-01 acceptance CI status: Core CI PASS on merged main `6806e66`
 - US-01 Trusted DB Integration status: PASS on merged main `6806e66`
-- Current implementation focus: US-05 owner manual acceptance is PASS; final
-  Core CI evidence is pending before acceptance.
+- Current implementation focus: none; US-05 First Real Flashcard is accepted.
 - Last completed work: US-04 Vocabulary Content Seed & Read Foundation,
   including the vocabulary schema/migration, controlled Starter v1 content,
   authenticated read API and final Trusted DB acceptance; BATCH 0, BATCH 1 and
@@ -36,8 +35,8 @@
   stable IDs (1–30) are approved, all enabled with `contentVersion=1`.
 - Frozen areas: BATCH 0 bootstrap, role model, database targets, schemas, reset
   policy, migration executor and CI behavior unless a proven regression appears.
-- Next safe action: run/review final Core CI for US-05, then finalize acceptance
-  only after the repository gate is PASS.
+- Next safe action: owner selects and reviews the next story; do not start US-06
+  automatically.
 - Do NOT do next: Do not start US-06, modify CI/workflows or reopen accepted
   infrastructure without regression evidence.
 - Documents new agent must read first: `docs/README.md`,
@@ -72,7 +71,7 @@
 - Lint, typecheck, build and `pnpm test:e2e` PASS (11/11) after the corrected
   Space-key interaction was revalidated.
 
-## 2026-09-11 — US-05 manual acceptance checkpoint
+## 2026-09-11 — US-05 pre-Core-CI manual acceptance checkpoint
 
 ### Owner evidence
 
@@ -90,13 +89,39 @@
 
 ### Gate and handoff
 
-- T05-01 through T05-17 are locally PASS, subject to final Core CI evidence.
-- US-05 remains `IN PROGRESS`; it must not be marked `ACCEPTED` yet.
+- T05-01 through T05-17 were locally PASS, subject to final Core CI evidence
+  at this checkpoint; final acceptance is recorded below.
+- US-05 was still `IN PROGRESS` at this pre-Core-CI checkpoint and was not
+  accepted until Core CI passed.
 - Trusted DB Integration is `NOT REQUIRED` for this web-only story. No schema,
   migration, seed, privilege, learning write, review write or database side
   effect was added.
 - `docs/decisions.md` remains unrelated, unstaged, uncommitted and excluded.
 - US-06 remains unstarted.
+
+## 2026-09-11 — US-05 final acceptance
+
+### Accepted evidence
+
+- US-05 First Real Flashcard is `ACCEPTED`; T05-01 through T05-17 are `PASS`.
+- Owner manual acceptance PASS for the learner handoff, `/study`, real
+  `vocabulary[0]` `apple` card, front/back and flip interactions, NULL/media
+  safety, no fake review controls, reload learner recovery, mobile 375x812,
+  no horizontal overflow, safe API error and Retry recovery.
+- Local evidence: `167/167` tests, E2E `11/11`, lint, typecheck, build and
+  `git diff --check` PASS; no review/progress/scheduler/DB writes.
+- Core CI #30 SUCCESS on main commit
+  `712d8bb42fbb46704e7c4da6e1a1fd791f61e331`.
+- Trusted DB Integration #28 SUCCESS is incidental and is not a required
+  US-05 gate. No schema, migration, seed, privilege or DB behavior changed.
+
+### Handoff
+
+- The local Node warning remains `22.19.0` versus pinned `22.23.2`; Core CI
+  validated the pinned toolchain.
+- `docs/decisions.md` remains preserved in its stash and was not changed by
+  this acceptance commit.
+- US-06 has not started.
 
 ## 2026-09-11 — US-04 contract preparation
 

@@ -2,6 +2,21 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-11 — US-05 First Real Flashcard accepted
+
+- US-05 is `ACCEPTED`; T05-01 through T05-17 are `PASS` after owner manual
+  acceptance of the learner handoff, real `apple` first card, flip behavior,
+  optional/media safety, reload recovery, responsive layout and safe error/
+  retry behavior.
+- Local evidence is PASS: `167/167` tests, E2E `11/11`, lint, typecheck, build
+  and `git diff --check`; no review, progress, scheduler or database write
+  side effects were introduced.
+- Core CI #30 SUCCESS on main commit
+  `712d8bb42fbb46704e7c4da6e1a1fd791f61e331`.
+- Trusted DB Integration #28 SUCCESS is incidental and not a required US-05
+  acceptance gate. No schema, migration, seed, privilege or DB behavior
+  changed. US-06 has not started.
+
 ## 2026-09-11 — US-05 implementation started
 
 - Moved US-05 to `IN PROGRESS` and implemented the approved minimal
