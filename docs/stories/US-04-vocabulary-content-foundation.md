@@ -1,6 +1,6 @@
 # US-04 — Vocabulary Content Seed & Read Foundation
 
-- Status: IN PROGRESS
+- Status: ACCEPTED
 - Batch: BATCH 2 — Learning Content Foundation
 - Owner: Project Owner
 - Last updated: 2026-09-11
@@ -78,7 +78,7 @@ and first real flashcard rendering.
 - PostgreSQL remains the runtime source of truth; the dataset artifact is only
   validated seed input.
 - `VocabFlow Starter Vocabulary v1` is owner-approved with project-authored
-  provenance; implementation is in progress.
+  provenance; implementation and acceptance are complete.
 
 ## 5. In Scope
 
@@ -398,29 +398,26 @@ Implementation areas changed in this story:
   introduced.
 - Core CI, migration/reset checks and Trusted DB Integration pass.
 - US-01/US-02/US-03 behavior remains regression-protected.
-- The story is `IN PROGRESS`; implementation must use only this approved
-  dataset contract. Acceptance remains pending Trusted DB evidence.
+- The story is `ACCEPTED`; implementation used only this approved dataset
+  contract and all required acceptance gates passed.
 
 ## 21. Open Questions and Blockers
 
 - No contract blocker remains. `DATASET_SOURCE=VOCABFLOW_STARTER_V1` is
   approved with `DATASET_PROVENANCE=PROJECT_AUTHORED` and
   `DATASET_STATUS=APPROVED`.
-- Implementation is underway; local evidence is being collected and final
-  acceptance remains pending Trusted DB evidence.
+- Implementation and acceptance are complete. Core CI and Trusted DB
+  Integration passed on the validated main commit.
 - No other contract ambiguity remains after the owner selected Option A.
 - US-05, Learner Home and first real flashcard integration remain unstarted.
 
 ## 22. Acceptance Evidence
 
-Pre-Trusted-DB checkpoint. `VocabFlow Starter Vocabulary v1` remains approved
-as a project-authored, exactly 30-record dataset with stable IDs 1–30; all v1
+Final acceptance. `VocabFlow Starter Vocabulary v1` remains approved as a
+project-authored, exactly 30-record dataset with stable IDs 1–30; all v1
 records are enabled with `contentVersion=1`, and optional fields are `NULL`.
 The vocabulary schema, controlled migration/content insert, source artifact,
-validator, shared DTO and authenticated read API are implemented locally.
-Manual acceptance of the local read contract PASSed, and local validation is
-complete. Trusted DB acceptance evidence remains pending; no live Neon call
-was performed. The story is `IN PROGRESS` and must not be marked `ACCEPTED` yet.
+validator, shared DTO and authenticated read API are implemented and accepted.
 
 ### Manual acceptance checkpoint
 
@@ -437,48 +434,52 @@ Owner-provided manual acceptance PASS:
 - `403 HOUSEHOLD_ACCESS_DENIED` is covered by automated tests; it was not
   manually forced by mutating the local database.
 
-Local migration evidence: `DB_MIGRATE=PASS`. Trusted DB Integration remains
-`PENDING ACCEPTANCE GATE`. The local Node runtime is `22.19.0` versus the
-pinned `22.23.2`.
+Local migration evidence: `DB_MIGRATE=PASS`. Trusted DB Integration is `PASS`.
+The local Node runtime was `22.19.0` versus the pinned `22.23.2`.
 
-### T04 implementation checkpoint
+### Final T04 acceptance evidence
 
-- T04-01: PARTIAL; local schema contract test PASS; Trusted DB schema
-  verification pending.
-- T04-02: PARTIAL; local migration/schema inspection PASS; Trusted DB
-  verification pending.
+- T04-01: PASS; local schema contract and Trusted DB schema verification PASS.
+- T04-02: PASS; local migration/schema inspection and Trusted DB verification
+  PASS.
 - T04-03: PASS; exact approved 30-record Starter v1 validator and manual
   dataset-content verification PASS.
-- T04-04: IMPLEMENTED; required-field, type, duplicate-ID and version-failure
-  tests PASS.
-- T04-05: IMPLEMENTED; duplicate-word/media warnings and optional
+- T04-04: PASS; required-field, type, duplicate-ID and version-failure tests
+  PASS.
+- T04-05: PASS; duplicate-word/media warnings and optional
   definition/example absence tests PASS.
-- T04-06: IMPLEMENTED; stable IDs 1–30, version 1 and enabled semantics are
-  encoded in the source artifact, migration and tests.
-- T04-07: PARTIAL; controlled migration uses the existing migration executor
-  and conflict-safe content insert; reset-cycle verification pending Trusted DB
-  evidence.
+- T04-06: PASS; stable IDs 1–30, version 1 and enabled semantics are encoded
+  in the source artifact, migration and tests.
+- T04-07: PASS; controlled migration, conflict-safe content insert and
+  Trusted DB reset/migration lifecycle verification PASS.
 - T04-08: PASS; authenticated household-gated `200` response contract passed
-  manual acceptance and is covered by API/service tests.
-- T04-09: PASS; the manual 30-record result confirmed enabled-only,
-  deterministic `id ASC` behavior; empty-array behavior is covered by tests.
-- T04-10: PARTIAL; unauthenticated `401 UNAUTHORIZED` passed manual acceptance
-  and no-membership `403 HOUSEHOLD_ACCESS_DENIED` passed automated tests; the
-  `403` path was not manually forced by mutating the local database.
-- T04-11: IMPLEMENTED; `householdId` and `learnerId` query inputs return safe
+  manual acceptance and API/service tests.
+- T04-09: PASS; enabled-only deterministic `id ASC` behavior and empty-array
+  behavior PASS.
+- T04-10: PASS; unauthenticated `401 UNAUTHORIZED` passed manual acceptance,
+  and no-membership `403 HOUSEHOLD_ACCESS_DENIED` passed automated tests.
+- T04-11: PASS; `householdId` and `learnerId` query inputs return safe
   `400 INVALID_REQUEST` and cannot reach the service.
-- T04-12: IMPLEMENTED; vocabulary query has no learner/household ownership
-  filter or learning-state side effect.
-- T04-13: IMPLEMENTED; unexpected service failures map to safe `503` output
-  without internal details.
-- T04-14: IMPLEMENTED; runtime API reads PostgreSQL only; source artifact is
+- T04-12: PASS; vocabulary query has no learner/household ownership filter or
+  learning-state side effect.
+- T04-13: PASS; unexpected service failures map to safe `503` output without
+  internal details.
+- T04-14: PASS; runtime API reads PostgreSQL only; source artifact is
   validation/migration input.
-- T04-15: LOCAL PASS; the full 159-test regression suite remains green.
-- T04-16: PARTIAL; local `DB_MIGRATE=PASS` and migration/schema/reset unit
-  coverage PASS; Trusted DB Integration is `PENDING ACCEPTANCE GATE`.
+- T04-15: PASS; the full 159-test regression suite remains green.
+- T04-16: PASS; local `DB_MIGRATE=PASS`, migration/schema/reset coverage PASS,
+  and Trusted DB Integration PASS.
 
-Final story acceptance remains pending Trusted DB evidence; US-04 is not
-`ACCEPTED`.
+### Final automated and Trusted CI evidence
+
+- Dataset validation, lint, typecheck, tests, build, E2E,
+  migration/schema/reset tests and `git diff --check`: PASS.
+- Core CI #28: SUCCESS.
+- Trusted DB Integration #26: SUCCESS.
+- Validated main commit:
+  `1435170ed944c3fb8632fab376817a7bbe63ed55`.
+
+US-04 final acceptance is complete; the story is `ACCEPTED`.
 
 ### Approved Starter v1 records
 

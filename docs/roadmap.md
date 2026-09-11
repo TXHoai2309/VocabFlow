@@ -86,17 +86,17 @@ The complete story contract is in
 
 ## BATCH 2 — Learning Content Foundation
 
-- Status: `IN PROGRESS`.
+- Status: `ACCEPTED`.
 - Dependency: BATCH 1 and US-03 are `ACCEPTED`.
-- Active story: US-04 Vocabulary Content Seed & Read Foundation — `IN
-  PROGRESS`.
+- Active story: none; US-04 Vocabulary Content Seed & Read Foundation is
+  `ACCEPTED`.
 - Scope: approved VocabFlow Starter Vocabulary v1 with exactly 30 records,
   canonical PostgreSQL content,
   validated dataset contract and authenticated deterministic read API.
 - Learner Home, first flashcard rendering, study session, scheduler, progress,
   review queue and review writes remain later scope. US-05 has not started.
 - Dataset source: `VOCABFLOW_STARTER_V1`, project-authored, approved;
-  implementation is in progress and Trusted DB acceptance remains pending.
+  implementation and Trusted DB acceptance are complete.
 
 ### US-04 — Vocabulary Content Seed & Read Foundation
 
@@ -106,6 +106,11 @@ The complete story contract is in
 - Success boundary: `vocabulary-content-ready`.
 - No production UI is added; the next story owns Learner Home and first real
   flashcard rendering.
+- Acceptance evidence: owner manual acceptance PASS; dataset validation, lint,
+  typecheck, tests, build, E2E, migration/schema/reset checks, `DB_MIGRATE=PASS`
+  and `git diff --check` PASS; Core CI #28 and Trusted DB Integration #26
+  SUCCESS on main commit
+  `1435170ed944c3fb8632fab376817a7bbe63ed55`.
 
 ## Later product scope
 

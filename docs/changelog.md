@@ -2,6 +2,20 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-11 — US-04 Vocabulary Content Seed & Read Foundation accepted
+
+- US-04 is `ACCEPTED` after owner manual acceptance of authenticated vocabulary
+  read, the exact 30-record Starter v1 dataset, optional `NULL` fields,
+  unsupported scope rejection and unauthenticated access; `403` behavior is
+  covered by automated tests.
+- T04-01 through T04-16 PASS. Dataset validation, lint, typecheck, tests,
+  build, E2E, migration/schema/reset checks, `DB_MIGRATE=PASS` and
+  `git diff --check` PASS.
+- Core CI #28 and Trusted DB Integration #26 both SUCCESS on main commit
+  `1435170ed944c3fb8632fab376817a7bbe63ed55`.
+- BATCH 2 is accepted; Learner Home, first flashcard rendering and US-05
+  remain deferred and unstarted.
+
 ## 2026-09-11 — US-04 pre-Trusted-DB acceptance checkpoint
 
 - Recorded owner manual acceptance PASS for authenticated

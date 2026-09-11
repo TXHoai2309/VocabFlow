@@ -23,7 +23,7 @@ convenient. Reprioritization or a new story must be explicit.
 - [US-03 Learner Profile Creation & Resolution](US-03-learner-profile-resolution.md)
   — `ACCEPTED`.
 - [US-04 Vocabulary Content Seed & Read Foundation](US-04-vocabulary-content-foundation.md)
-  — `IN PROGRESS`; current active story.
+  — `ACCEPTED`.
 
 ## Story status gate
 

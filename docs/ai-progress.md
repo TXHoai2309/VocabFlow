@@ -1,9 +1,10 @@
 # Current Handoff Snapshot
 
 - Project: VocabFlow Family MVP
-- Current phase/batch: BATCH 2 — Learning Content Foundation
-- Current active story: US-04 Vocabulary Content Seed & Read Foundation
-- Story status: IN PROGRESS
+- Current phase/batch: BATCH 2 — Learning Content Foundation (accepted)
+- Current active story: none; US-04 Vocabulary Content Seed & Read Foundation
+  is accepted
+- Story status: ACCEPTED
 - Current Git branch: `TXH`
 - Baseline HEAD before documentation pack: `24e4580`
 - Documentation/agent pack status: finalized and approved for repository baseline
@@ -14,31 +15,32 @@
   PostgreSQL 18
 - US-01 acceptance CI status: Core CI PASS on merged main `6806e66`
 - US-01 Trusted DB Integration status: PASS on merged main `6806e66`
-- Current implementation focus: US-04 vocabulary schema, controlled Starter v1
-  migration/content, validator and authenticated read API.
-- Last completed work: US-03 Learner Profile Creation & Resolution, including
-  the learner schema/migration, server-derived list/create service and routes,
-  authorization seam, resolution UI and acceptance evidence; BATCH 0 and BATCH 1
-  remain accepted/frozen.
+- Current implementation focus: none; US-04 vocabulary schema, controlled
+  Starter v1 migration/content, validator and authenticated read API are
+  accepted.
+- Last completed work: US-04 Vocabulary Content Seed & Read Foundation,
+  including the vocabulary schema/migration, controlled Starter v1 content,
+  authenticated read API and final Trusted DB acceptance; BATCH 0, BATCH 1 and
+  BATCH 2 remain accepted/frozen.
 - Files/areas most recently changed: US-04 schema, migration, source artifact,
   validator, shared contracts, API service/routes and tests. `docs/decisions.md`
   remains unrelated and untouched.
 - Evidence: manual authenticated `GET /api/vocabulary` acceptance PASS
   (200/30 records, IDs 1–30, `apple` → `new`, enabled/version checks), exact
-  dataset and optional-NULL checks PASS, unsupported-scope `400` PASS and
-  unauthenticated `401` PASS. Dataset validation, lint, typecheck, 159 tests,
-  build, 9/9 E2E, migration/schema/reset checks and `git diff --check` PASS;
-  local `DB_MIGRATE=PASS`. No live Neon call was made.
+  dataset, optional-NULL, unsupported-scope `400` and unauthenticated `401`
+  checks PASS; `403` is covered by automated tests. Dataset validation, lint,
+  typecheck, 159 tests, build, 9/9 E2E, migration/schema/reset checks,
+  `DB_MIGRATE=PASS` and `git diff --check` PASS. Core CI #28 and Trusted DB
+  Integration #26 SUCCESS on main commit
+  `1435170ed944c3fb8632fab376817a7bbe63ed55`.
 - Dataset contract: `DATASET_SOURCE=VOCABFLOW_STARTER_V1`,
   `DATASET_PROVENANCE=PROJECT_AUTHORED`, `DATASET_STATUS=APPROVED`; exactly 30
   stable IDs (1–30) are approved, all enabled with `contentVersion=1`.
 - Frozen areas: BATCH 0 bootstrap, role model, database targets, schemas, reset
   policy, migration executor and CI behavior unless a proven regression appears.
-- Next safe action: prepare the US-04 acceptance candidate for the Trusted DB
-  Integration gate without calling live Neon from this environment.
-- Do NOT do next: Do not call live Neon, mark US-04 accepted, modify CI/workflows
-  or start US-05; do not reopen accepted infrastructure without regression
-  evidence.
+- Next safe action: owner selects and reviews the next User Story.
+- Do NOT do next: Do not automatically start US-05, modify CI/workflows or
+  reopen accepted infrastructure without regression evidence.
 - Documents new agent must read first: `docs/README.md`,
   `docs/product/product-spec.md`, `docs/architecture/technical-architecture.md`,
   `docs/design/design-system.md`, `docs/design/feature-ui-spec.md`,
@@ -128,6 +130,17 @@
 - The local Node runtime warning remains `22.19.0` versus pinned `22.23.2`.
 - `docs/decisions.md` remains unrelated, unstaged and excluded; US-05 has not
   started.
+
+## 2026-09-11 — US-04 acceptance finalized
+
+### Accepted evidence
+
+- US-04 Vocabulary Content Seed & Read Foundation is `ACCEPTED`.
+- T04-01 through T04-16 are PASS with manual, local, migration/reset and
+  Trusted DB evidence recorded in the story.
+- Core CI #28 and Trusted DB Integration #26 both SUCCESS on main commit
+  `1435170ed944c3fb8632fab376817a7bbe63ed55`.
+- US-05 remains unstarted; no next story was automatically started.
 
 ## 2026-09-08 — Documentation and Agent Pack
 
