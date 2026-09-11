@@ -21,6 +21,7 @@
     "db:identity-provision": "tsx scripts/db-identity-provision.ts",
     "db:migrate": "tsx scripts/db-migrate.ts",
     "db:reset": "tsx scripts/db-reset.ts",
+    "dataset:validate": "tsx scripts/validate-dataset.ts",
     "test:db": "tsx scripts/test-db.ts",
     "test:e2e": "pnpm build && playwright test"
   },

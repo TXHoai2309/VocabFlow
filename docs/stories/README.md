@@ -21,7 +21,9 @@ convenient. Reprioritization or a new story must be explicit.
 - [US-01 Parent Registration](US-01-parent-registration.md) — `ACCEPTED`
 - [US-02 Parent Login](US-02-parent-login.md) — `ACCEPTED`
 - [US-03 Learner Profile Creation & Resolution](US-03-learner-profile-resolution.md)
-  — `ACCEPTED`; no next story is active.
+  — `ACCEPTED`.
+- [US-04 Vocabulary Content Seed & Read Foundation](US-04-vocabulary-content-foundation.md)
+  — `IN PROGRESS`; current active story.
 
 ## Story status gate
 

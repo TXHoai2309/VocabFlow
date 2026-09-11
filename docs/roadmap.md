@@ -15,11 +15,11 @@ the supplied BATCH 1 backlog. It does not invent later user stories.
 
 ## BATCH 1 — Authentication and Family Entry
 
-- Status: `IN PROGRESS`
+- Status: `ACCEPTED`
 - US-01 Parent Registration: `ACCEPTED`.
 - US-02 Parent Login: `ACCEPTED`.
 - US-03 Learner Profile Creation & Resolution: `ACCEPTED`.
-- Active story: none; no next story is active.
+- Active story: none; BATCH 1 is complete.
 - Dependency: BATCH 0 accepted.
 - Success boundary: Better Auth signup → authenticated session →
   `POST /api/bootstrap` → canonical default household resolved.
@@ -78,11 +78,34 @@ The complete story contract is in
   `learner-context-ready` handoff. Implementation and acceptance are complete
   within this scope.
 - Learner Home, progress, vocabulary, review and learner authentication remain
-- out of scope. No US-04 implementation has started.
+  out of scope for US-03; US-04 was not started at the US-03 checkpoint.
 - Acceptance evidence: owner manual core-flow PASS; local lint, typecheck, test,
   build, E2E, migration/schema/reset and diff checks PASS; Core CI #26 and
   Trusted DB Integration #24 SUCCESS on main commit
   `de6a8387da0f5e90faa62f19124df8ab4cb50157`.
+
+## BATCH 2 — Learning Content Foundation
+
+- Status: `IN PROGRESS`.
+- Dependency: BATCH 1 and US-03 are `ACCEPTED`.
+- Active story: US-04 Vocabulary Content Seed & Read Foundation — `IN
+  PROGRESS`.
+- Scope: approved VocabFlow Starter Vocabulary v1 with exactly 30 records,
+  canonical PostgreSQL content,
+  validated dataset contract and authenticated deterministic read API.
+- Learner Home, first flashcard rendering, study session, scheduler, progress,
+  review queue and review writes remain later scope. US-05 has not started.
+- Dataset source: `VOCABFLOW_STARTER_V1`, project-authored, approved;
+  implementation is in progress and Trusted DB acceptance remains pending.
+
+### US-04 — Vocabulary Content Seed & Read Foundation
+
+- Contract: [`docs/stories/US-04-vocabulary-content-foundation.md`](stories/US-04-vocabulary-content-foundation.md).
+- Input: `learner-context-ready`; selected learner provides product-flow
+  continuity, not vocabulary ownership.
+- Success boundary: `vocabulary-content-ready`.
+- No production UI is added; the next story owns Learner Home and first real
+  flashcard rendering.
 
 ## Later product scope
 

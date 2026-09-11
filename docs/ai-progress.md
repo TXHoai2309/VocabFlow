@@ -1,9 +1,9 @@
 # Current Handoff Snapshot
 
 - Project: VocabFlow Family MVP
-- Current phase/batch: BATCH 1
-- Current active story: None (US-03 Learner Profile Creation & Resolution accepted)
-- Story status: ACCEPTED
+- Current phase/batch: BATCH 2 — Learning Content Foundation
+- Current active story: US-04 Vocabulary Content Seed & Read Foundation
+- Story status: IN PROGRESS
 - Current Git branch: `TXH`
 - Baseline HEAD before documentation pack: `24e4580`
 - Documentation/agent pack status: finalized and approved for repository baseline
@@ -14,34 +14,120 @@
   PostgreSQL 18
 - US-01 acceptance CI status: Core CI PASS on merged main `6806e66`
 - US-01 Trusted DB Integration status: PASS on merged main `6806e66`
-- Current implementation focus: None; US-03 learner profile resolution is
-  accepted.
+- Current implementation focus: US-04 vocabulary schema, controlled Starter v1
+  migration/content, validator and authenticated read API.
 - Last completed work: US-03 Learner Profile Creation & Resolution, including
   the learner schema/migration, server-derived list/create service and routes,
-  authorization seam, resolution UI and acceptance evidence; BATCH 0
-  Foundation remains accepted and frozen.
-- Files/areas most recently changed: the learner schema/migration and reset
-  policy, shared learner contracts, server learner service/routes, learner
-  resolution UI, component/API tests, E2E coverage and the US-03
-  documentation. US-01/US-02 auth behavior, BATCH 0 infrastructure and CI
-  behavior remain unchanged.
-- Tests/evidence: US-01/US-02 regression tests remain green. US-03 local
-  validation: lint, typecheck, 137-test suite, build, 9/9 E2E, migration/schema/
-  reset tests and `git diff --check` PASS. Manual core-flow acceptance PASS.
-  Core CI #26 and Trusted DB Integration #24 both SUCCESS on main commit
-  `de6a8387da0f5e90faa62f19124df8ab4cb50157`.
-- Open acceptance gate: None for US-03. Learner Home and later learning
-  behavior remain out of scope.
+  authorization seam, resolution UI and acceptance evidence; BATCH 0 and BATCH 1
+  remain accepted/frozen.
+- Files/areas most recently changed: US-04 schema, migration, source artifact,
+  validator, shared contracts, API service/routes and tests. `docs/decisions.md`
+  remains unrelated and untouched.
+- Evidence: manual authenticated `GET /api/vocabulary` acceptance PASS
+  (200/30 records, IDs 1–30, `apple` → `new`, enabled/version checks), exact
+  dataset and optional-NULL checks PASS, unsupported-scope `400` PASS and
+  unauthenticated `401` PASS. Dataset validation, lint, typecheck, 159 tests,
+  build, 9/9 E2E, migration/schema/reset checks and `git diff --check` PASS;
+  local `DB_MIGRATE=PASS`. No live Neon call was made.
+- Dataset contract: `DATASET_SOURCE=VOCABFLOW_STARTER_V1`,
+  `DATASET_PROVENANCE=PROJECT_AUTHORED`, `DATASET_STATUS=APPROVED`; exactly 30
+  stable IDs (1–30) are approved, all enabled with `contentVersion=1`.
 - Frozen areas: BATCH 0 bootstrap, role model, database targets, schemas, reset
   policy, migration executor and CI behavior unless a proven regression appears.
-- Next safe action: Project owner selects/reviews the next User Story.
-- Do NOT do next: Do not start US-04 automatically; do not reopen BATCH 0
-  infrastructure without regression evidence.
+- Next safe action: prepare the US-04 acceptance candidate for the Trusted DB
+  Integration gate without calling live Neon from this environment.
+- Do NOT do next: Do not call live Neon, mark US-04 accepted, modify CI/workflows
+  or start US-05; do not reopen accepted infrastructure without regression
+  evidence.
 - Documents new agent must read first: `docs/README.md`,
   `docs/product/product-spec.md`, `docs/architecture/technical-architecture.md`,
   `docs/design/design-system.md`, `docs/design/feature-ui-spec.md`,
   `docs/flow/user-flow.md`, `docs/decisions.md`, `docs/roadmap.md`, the active
   story and this file.
+
+## 2026-09-11 — US-04 contract preparation
+
+### Completed
+
+- Registered US-04 as `Vocabulary Content Seed & Read Foundation` with status
+  `READY FOR CONTRACT REVIEW` before owner dataset approval.
+- Locked Option A only: shared/global vocabulary schema, owner-approved 20–30
+  word seed, validated controlled content migration and authenticated
+  deterministic `GET /api/vocabulary`.
+- Explicitly kept Learner Home, first flashcard rendering, study, scheduler,
+  progress, review queue, review writes and US-05 out of scope.
+
+### Blocker and handoff
+
+- `DATASET_SOURCE=OWNER_APPROVAL_REQUIRED`; no vocabulary words or provenance
+  were invented.
+- No application code, migration, seed data, dependency, CI or Neon operation
+  was performed.
+- Next safe action: owner contract review and dataset-source approval. Do not
+  move US-04 to `READY FOR IMPLEMENTATION` before that decision.
+
+## 2026-09-11 — US-04 dataset source approved
+
+### Completed
+
+- Owner approved `VocabFlow Starter Vocabulary v1` with
+  `DATASET_PROVENANCE=PROJECT_AUTHORED` and `DATASET_STATUS=APPROVED`.
+- Locked the exact 30-record enabled set with stable IDs `1` through `30`,
+  `contentVersion=1`, and `NULL` optional fields for v1.
+- The only allowed claim is “beginner starter vocabulary selected for the
+  VocabFlow MVP”; no official CEFR, Oxford, Cambridge, Wiktionary-derived or
+  copied dictionary claim is permitted.
+- Moved US-04 to `READY FOR IMPLEMENTATION`; no application code, migration,
+  actual seed data, dependency, CI or Neon operation was performed.
+
+### Handoff
+
+- The next safe action is US-04 implementation from this approved contract.
+- US-05 remains unstarted.
+
+## 2026-09-11 — US-04 implementation started
+
+### Completed
+
+- Moved US-04 to `IN PROGRESS` and implemented the approved
+  `vocabflow_app.vocabularies` schema with `content_version >= 1`.
+- Added the controlled `0003` migration with the exact 30 Starter v1 records,
+  the versioned JSON source artifact and pre-mutation dataset validator.
+- Added shared `VocabularyDto`/response/seed contracts and
+  `GET /api/vocabulary` with session → household membership authorization,
+  enabled-only deterministic `id ASC` reads and strict query-scope rejection.
+- Added targeted schema/reset, dataset, service and API tests. No UI, learner
+  progress, review, scheduler, CI or US-05 work was added.
+
+### Validation and handoff
+
+- Dataset validation PASS; targeted US-04/schema/reset tests PASS; typecheck
+  PASS. Full lint, tests, build and E2E remain to be run.
+- Trusted DB Integration remains `PENDING ACCEPTANCE GATE`; no live Neon call
+  was made.
+
+## 2026-09-11 — US-04 pre-Trusted-DB acceptance checkpoint
+
+### Completed
+
+- Recorded owner manual acceptance PASS for authenticated `GET /api/vocabulary`:
+  `200`, exactly 30 records, IDs `1..30`, first word `apple`, last word
+  `new`, all `enabled=true`, all `contentVersion=1`.
+- Recorded PASS for exact approved dataset content, all optional fields `NULL`,
+  unsupported `householdId`/`learnerId` rejection as `400 INVALID_REQUEST`,
+  and unauthenticated access as `401 UNAUTHORIZED`.
+- Recorded local `DB_MIGRATE=PASS` plus dataset validation, lint, typecheck,
+  tests, build, E2E, migration/schema/reset checks and `git diff --check` PASS.
+
+### Gate and handoff
+
+- US-04 remains `IN PROGRESS`; Trusted DB Integration remains
+  `PENDING ACCEPTANCE GATE`.
+- `403 HOUSEHOLD_ACCESS_DENIED` is automated-test evidence only; it was not
+  manually forced by mutating the local database.
+- The local Node runtime warning remains `22.19.0` versus pinned `22.23.2`.
+- `docs/decisions.md` remains unrelated, unstaged and excluded; US-05 has not
+  started.
 
 ## 2026-09-08 — Documentation and Agent Pack
 

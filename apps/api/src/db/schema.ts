@@ -1,12 +1,15 @@
 import {
   boolean,
+  check,
   index,
+  integer,
   pgSchema,
   text,
   timestamp,
   unique,
   uuid
 } from "drizzle-orm/pg-core";
+import { sql } from "drizzle-orm";
 import { APP_SCHEMA } from "@vocabflow/contracts";
 
 export const vocabflowApp = pgSchema(APP_SCHEMA);
@@ -103,8 +106,26 @@ export const learnerProfiles = vocabflowApp.table("learner_profiles", {
   )
 ]);
 
+export const vocabularies = vocabflowApp.table("vocabularies", {
+  id: integer("id").primaryKey(),
+  word: text("word").notNull(),
+  ipa: text("ipa"),
+  vietnamese: text("vietnamese").notNull(),
+  definitionEn: text("definition_en"),
+  exampleEn: text("example_en"),
+  imageUrl: text("image_url"),
+  audioUrl: text("audio_url"),
+  topic: text("topic"),
+  enabled: boolean("enabled").notNull().default(false),
+  contentVersion: integer("content_version").notNull().default(1),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow()
+}, (table) => [
+  check("vocabularies_content_version_check", sql`${table.contentVersion} >= 1`)
+]);
+
 export const authSchema = { user, session, account, verification };
-export const applicationSchema = { households, householdMembers, learnerProfiles };
+export const applicationSchema = { households, householdMembers, learnerProfiles, vocabularies };
 
 export type AuthUser = typeof user.$inferSelect;
 export type AuthSession = typeof session.$inferSelect;

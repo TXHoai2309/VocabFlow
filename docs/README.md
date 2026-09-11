@@ -94,9 +94,13 @@ feature code may start.
 - BATCH 0 Foundation: `ACCEPTED`.
 - Core CI: `PASS`.
 - Trusted DB Integration on Neon PostgreSQL 18: `PASS`.
-- BATCH 1 is the current work phase and is `IN PROGRESS`.
+- BATCH 1 Authentication and Family Entry: `ACCEPTED`.
+- BATCH 2 Learning Content Foundation is the current work phase and is
+  `IN PROGRESS`.
 - US-01 Parent Registration is `ACCEPTED`.
 - US-02 Parent Login is `ACCEPTED`.
 - US-03 Learner Profile Creation & Resolution is `ACCEPTED`.
-- No next story is active; US-04 has not started.
+- US-04 Vocabulary Content Seed & Read Foundation is the current story and is
+  `IN PROGRESS`.
+- US-05 has not started.
 - Documentation/agent-pack work does not implement US-01 or any other feature.
