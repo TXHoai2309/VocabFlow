@@ -89,7 +89,7 @@ export function parseCreateLearnerRequest(payload: unknown): CreateLearnerReques
   return parsed.data;
 }
 
-async function resolveHouseholdId(database: LearnerDatabase, userId: string): Promise<string> {
+export async function resolveHouseholdId(database: LearnerDatabase, userId: string): Promise<string> {
   const result = await database.execute(sql`
     SELECT h.id::text AS household_id
     FROM "${sql.raw(APP_SCHEMA)}"."households" h

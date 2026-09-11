@@ -179,6 +179,51 @@ export const learnerListResponseSchema = z.object({
 });
 export type LearnerListResponse = z.infer<typeof learnerListResponseSchema>;
 
+export const vocabularyDtoSchema = z.object({
+  id: z.number().int(),
+  word: z.string().min(1),
+  ipa: z.string().nullable(),
+  vietnamese: z.string().min(1),
+  definitionEn: z.string().nullable(),
+  exampleEn: z.string().nullable(),
+  imageUrl: z.string().nullable(),
+  audioUrl: z.string().nullable(),
+  topic: z.string().nullable(),
+  enabled: z.boolean(),
+  contentVersion: z.number().int().min(1)
+});
+export type VocabularyDto = z.infer<typeof vocabularyDtoSchema>;
+
+export const vocabularyListResponseSchema = z.object({
+  vocabulary: z.array(vocabularyDtoSchema)
+});
+export type VocabularyListResponse = z.infer<typeof vocabularyListResponseSchema>;
+
+export const vocabularySeedRecordSchema = z.object({
+  id: z.number().int(),
+  word: z.string().min(1),
+  vietnamese: z.string().min(1),
+  enabled: z.boolean(),
+  contentVersion: z.number().int().min(1),
+  ipa: z.string().nullable().optional(),
+  definitionEn: z.string().nullable().optional(),
+  exampleEn: z.string().nullable().optional(),
+  imageUrl: z.string().nullable().optional(),
+  audioUrl: z.string().nullable().optional(),
+  topic: z.string().nullable().optional()
+}).strict();
+export type VocabularySeedRecord = z.infer<typeof vocabularySeedRecordSchema>;
+
+export const vocabflowStarterDatasetSchema = z.object({
+  source: z.literal("VOCABFLOW_STARTER_V1"),
+  provenance: z.literal("PROJECT_AUTHORED"),
+  status: z.literal("APPROVED"),
+  name: z.literal("VocabFlow Starter Vocabulary v1"),
+  version: z.literal(1),
+  records: z.array(vocabularySeedRecordSchema)
+}).strict();
+export type VocabflowStarterDataset = z.infer<typeof vocabflowStarterDatasetSchema>;
+
 export function errorEnvelope(code: ErrorCode, message: string, details?: Record<string, unknown>): ErrorEnvelope {
   return details ? { error: { code, message, details } } : { error: { code, message } };
 }

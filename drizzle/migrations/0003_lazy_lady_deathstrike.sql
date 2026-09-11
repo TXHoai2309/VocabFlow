@@ -1,0 +1,51 @@
+CREATE TABLE "vocabflow_app"."vocabularies" (
+	"id" integer PRIMARY KEY NOT NULL,
+	"word" text NOT NULL,
+	"ipa" text,
+	"vietnamese" text NOT NULL,
+	"definition_en" text,
+	"example_en" text,
+	"image_url" text,
+	"audio_url" text,
+	"topic" text,
+	"enabled" boolean DEFAULT false NOT NULL,
+	"content_version" integer DEFAULT 1 NOT NULL,
+	"created_at" timestamp with time zone DEFAULT now() NOT NULL,
+	"updated_at" timestamp with time zone DEFAULT now() NOT NULL,
+	CONSTRAINT "vocabularies_content_version_check" CHECK ("vocabflow_app"."vocabularies"."content_version" >= 1)
+);
+--> statement-breakpoint
+INSERT INTO "vocabflow_app"."vocabularies"
+	("id", "word", "ipa", "vietnamese", "definition_en", "example_en", "image_url", "audio_url", "topic", "enabled", "content_version")
+VALUES
+	(1, 'apple', NULL, 'táo', NULL, NULL, NULL, NULL, NULL, true, 1),
+	(2, 'book', NULL, 'sách', NULL, NULL, NULL, NULL, NULL, true, 1),
+	(3, 'cat', NULL, 'mèo', NULL, NULL, NULL, NULL, NULL, true, 1),
+	(4, 'dog', NULL, 'chó', NULL, NULL, NULL, NULL, NULL, true, 1),
+	(5, 'family', NULL, 'gia đình', NULL, NULL, NULL, NULL, NULL, true, 1),
+	(6, 'friend', NULL, 'bạn bè', NULL, NULL, NULL, NULL, NULL, true, 1),
+	(7, 'home', NULL, 'nhà', NULL, NULL, NULL, NULL, NULL, true, 1),
+	(8, 'school', NULL, 'trường học', NULL, NULL, NULL, NULL, NULL, true, 1),
+	(9, 'teacher', NULL, 'giáo viên', NULL, NULL, NULL, NULL, NULL, true, 1),
+	(10, 'student', NULL, 'học sinh', NULL, NULL, NULL, NULL, NULL, true, 1),
+	(11, 'water', NULL, 'nước', NULL, NULL, NULL, NULL, NULL, true, 1),
+	(12, 'food', NULL, 'thức ăn', NULL, NULL, NULL, NULL, NULL, true, 1),
+	(13, 'morning', NULL, 'buổi sáng', NULL, NULL, NULL, NULL, NULL, true, 1),
+	(14, 'night', NULL, 'ban đêm', NULL, NULL, NULL, NULL, NULL, true, 1),
+	(15, 'today', NULL, 'hôm nay', NULL, NULL, NULL, NULL, NULL, true, 1),
+	(16, 'go', NULL, 'đi', NULL, NULL, NULL, NULL, NULL, true, 1),
+	(17, 'come', NULL, 'đến', NULL, NULL, NULL, NULL, NULL, true, 1),
+	(18, 'eat', NULL, 'ăn', NULL, NULL, NULL, NULL, NULL, true, 1),
+	(19, 'drink', NULL, 'uống', NULL, NULL, NULL, NULL, NULL, true, 1),
+	(20, 'read', NULL, 'đọc', NULL, NULL, NULL, NULL, NULL, true, 1),
+	(21, 'write', NULL, 'viết', NULL, NULL, NULL, NULL, NULL, true, 1),
+	(22, 'speak', NULL, 'nói', NULL, NULL, NULL, NULL, NULL, true, 1),
+	(23, 'listen', NULL, 'nghe', NULL, NULL, NULL, NULL, NULL, true, 1),
+	(24, 'happy', NULL, 'vui', NULL, NULL, NULL, NULL, NULL, true, 1),
+	(25, 'sad', NULL, 'buồn', NULL, NULL, NULL, NULL, NULL, true, 1),
+	(26, 'big', NULL, 'lớn', NULL, NULL, NULL, NULL, NULL, true, 1),
+	(27, 'small', NULL, 'nhỏ', NULL, NULL, NULL, NULL, NULL, true, 1),
+	(28, 'good', NULL, 'tốt', NULL, NULL, NULL, NULL, NULL, true, 1),
+	(29, 'bad', NULL, 'xấu', NULL, NULL, NULL, NULL, NULL, true, 1),
+	(30, 'new', NULL, 'mới', NULL, NULL, NULL, NULL, NULL, true, 1)
+ON CONFLICT ("id") DO NOTHING;

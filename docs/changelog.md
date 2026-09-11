@@ -2,6 +2,61 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-11 — US-04 pre-Trusted-DB acceptance checkpoint
+
+- Recorded owner manual acceptance PASS for authenticated
+  `GET /api/vocabulary`: `200`, exactly 30 records, IDs `1..30`, first word
+  `apple`, last word `new`, all `enabled=true` and `contentVersion=1`.
+- Recorded PASS for the exact approved dataset content, all optional fields
+  `NULL`, unsupported `householdId`/`learnerId` rejection as
+  `400 INVALID_REQUEST`, and unauthenticated access as `401 UNAUTHORIZED`.
+- Local `DB_MIGRATE=PASS`, dataset validation, lint, typecheck, tests, build,
+  E2E, migration/schema/reset checks and `git diff --check` PASS.
+- US-04 remains `IN PROGRESS`; Trusted DB Integration remains
+  `PENDING ACCEPTANCE GATE`. The `403 HOUSEHOLD_ACCESS_DENIED` path is covered
+  by automated tests only and was not manually forced by mutating local DB.
+- No acceptance finalization or US-05 work was started.
+
+## 2026-09-11 — US-04 implementation started
+
+- Moved US-04 to `IN PROGRESS` and implemented the approved
+  `vocabflow_app.vocabularies` schema, content-version check and reset-policy
+  participation.
+- Added the controlled `0003` migration with exactly 30 enabled Starter v1
+  records, the versioned JSON source artifact, dataset validation and tests.
+- Added shared `VocabularyDto`/response/seed contracts and authenticated
+  `GET /api/vocabulary` with household authorization, enabled-only `id ASC`
+  ordering, strict scope-input rejection and safe errors.
+- No UI, learner progress, review, scheduler, CI/workflow or US-05 work was
+  added. Trusted DB Integration remains pending; no live Neon call was made.
+
+## 2026-09-11 — US-04 dataset source approved
+
+- Approved `VocabFlow Starter Vocabulary v1` as
+  `DATASET_SOURCE=VOCABFLOW_STARTER_V1` with
+  `DATASET_PROVENANCE=PROJECT_AUTHORED` and `DATASET_STATUS=APPROVED`.
+- Locked exactly 30 enabled records with stable IDs `1` through `30`,
+  `contentVersion=1`, and nullable optional fields left `NULL` for v1.
+- The allowed claim is only “beginner starter vocabulary selected for the
+  VocabFlow MVP”; no official CEFR, Oxford, Cambridge, Wiktionary-derived or
+  copied dictionary claim is permitted.
+- Moved US-04 to `READY FOR IMPLEMENTATION`. No application code, schema,
+  migration, actual seed data, dependency, CI or Neon operation was created;
+  US-05 remains unstarted.
+
+## 2026-09-11 — US-04 contract prepared for review
+
+- Added `US-04 — Vocabulary Content Seed & Read Foundation` with status
+  `READY FOR CONTRACT REVIEW` in new BATCH 2 Learning Content Foundation.
+- Locked Option A only: shared/global `vocabularies` content, owner-approved
+  20–30 word source, validated controlled content migration and authenticated
+  deterministic `GET /api/vocabulary` ending at `vocabulary-content-ready`.
+- Learner Home, first flashcard rendering, study, scheduler, progress, review
+  queue, review writes, production UI and US-05 remain out of scope.
+- Before owner approval, `DATASET_SOURCE=OWNER_APPROVAL_REQUIRED`; no dataset
+  words, implementation, migration, dependency, CI or Neon operation was
+  created in that preparation step.
+
 ## 2026-09-11 — US-03 Learner Profile Creation & Resolution accepted
 
 - US-03 is `ACCEPTED` after owner manual acceptance of the zero-learner empty

@@ -3,6 +3,7 @@ import { errorEnvelope, type HouseholdBootstrapResponse } from "@vocabflow/contr
 import { createAuth } from "./auth";
 import { createBootstrapService, type BootstrapService } from "./bootstrap";
 import { createLearnerService, LearnerServiceError, type LearnerService } from "./learners";
+import { createVocabularyService, VocabularyServiceError, type VocabularyService } from "./vocabulary";
 
 export type WorkerBindings = {
   DATABASE_URL?: string;
@@ -17,6 +18,7 @@ export type AppDependencies = {
   readSession?: SessionReader;
   bootstrap?: BootstrapRunner;
   learnerService?: LearnerService;
+  vocabularyService?: VocabularyService;
 };
 
 const SAFE_BOOTSTRAP_ERROR = "Không thể hoàn tất thiết lập gia đình. Vui lòng thử lại.";
@@ -41,6 +43,12 @@ async function runLearnerService(env: WorkerBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
   return createLearnerService(createHttpDatabase(env.DATABASE_URL));
+}
+
+async function runVocabularyService(env: WorkerBindings) {
+  if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
+  const { createHttpDatabase } = await import("./db/client");
+  return createVocabularyService(createHttpDatabase(env.DATABASE_URL));
 }
 
 export function createApp(dependencies: AppDependencies = {}) {
@@ -91,6 +99,28 @@ export function createApp(dependencies: AppDependencies = {}) {
         return c.json(errorEnvelope(error.code, message), error.status);
       }
       return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể tải learner lúc này. Vui lòng thử lại."), 503);
+    }
+  });
+
+  application.get("/api/vocabulary", async (c) => {
+    try {
+      const session = await readSession(c.req.raw, c.env);
+      if (!session?.user?.id) {
+        return c.json(errorEnvelope("UNAUTHORIZED", "Đăng nhập để tiếp tục."), 401);
+      }
+      if ([...new URL(c.req.url).searchParams.keys()].length > 0) {
+        return c.json(errorEnvelope("INVALID_REQUEST", "Dữ liệu gửi lên không hợp lệ."), 400);
+      }
+      const service = dependencies.vocabularyService ?? await runVocabularyService(c.env);
+      return c.json({ vocabulary: await service.list(session.user.id) }, 200);
+    } catch (error) {
+      if (error instanceof VocabularyServiceError) {
+        const message = error.code === "HOUSEHOLD_ACCESS_DENIED"
+          ? "Bạn không có quyền truy cập household này."
+          : "Không thể tải vocabulary lúc này. Vui lòng thử lại.";
+        return c.json(errorEnvelope(error.code, message), error.status);
+      }
+      return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể tải vocabulary lúc này. Vui lòng thử lại."), 503);
     }
   });
 
