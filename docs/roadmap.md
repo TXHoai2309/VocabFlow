@@ -18,7 +18,8 @@ the supplied BATCH 1 backlog. It does not invent later user stories.
 - Status: `IN PROGRESS`
 - US-01 Parent Registration: `ACCEPTED`.
 - US-02 Parent Login: `ACCEPTED`.
-- Active story: US-03 Learner Profile Creation & Resolution — `IN PROGRESS`.
+- US-03 Learner Profile Creation & Resolution: `ACCEPTED`.
+- Active story: none; no next story is active.
 - Dependency: BATCH 0 accepted.
 - Success boundary: Better Auth signup → authenticated session →
   `POST /api/bootstrap` → canonical default household resolved.
@@ -70,13 +71,18 @@ The complete story contract is in
 
 ### US-03 — Learner Profile Creation & Resolution
 
-- Status: `IN PROGRESS`.
+- Status: `ACCEPTED`.
 - Contract: [`docs/stories/US-03-learner-profile-resolution.md`](stories/US-03-learner-profile-resolution.md).
 - Scope: additive learner profile persistence, authorized learner list/create,
   first-learner empty state and 0/1/2+ resolution through the canonical
-  `learner-context-ready` handoff. Implementation is active within this scope.
+  `learner-context-ready` handoff. Implementation and acceptance are complete
+  within this scope.
 - Learner Home, progress, vocabulary, review and learner authentication remain
-  out of scope. No US-04 implementation has started.
+- out of scope. No US-04 implementation has started.
+- Acceptance evidence: owner manual core-flow PASS; local lint, typecheck, test,
+  build, E2E, migration/schema/reset and diff checks PASS; Core CI #26 and
+  Trusted DB Integration #24 SUCCESS on main commit
+  `de6a8387da0f5e90faa62f19124df8ab4cb50157`.
 
 ## Later product scope
 

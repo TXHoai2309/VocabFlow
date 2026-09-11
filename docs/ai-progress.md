@@ -2,8 +2,8 @@
 
 - Project: VocabFlow Family MVP
 - Current phase/batch: BATCH 1
-- Current active story: US-03 Learner Profile Creation & Resolution
-- Story status: IN PROGRESS
+- Current active story: None (US-03 Learner Profile Creation & Resolution accepted)
+- Story status: ACCEPTED
 - Current Git branch: `TXH`
 - Baseline HEAD before documentation pack: `24e4580`
 - Documentation/agent pack status: finalized and approved for repository baseline
@@ -14,37 +14,29 @@
   PostgreSQL 18
 - US-01 acceptance CI status: Core CI PASS on merged main `6806e66`
 - US-01 Trusted DB Integration status: PASS on merged main `6806e66`
-- Current implementation focus: US-03 learner profile list/create and
-  resolution vertical slice.
-- Last completed work: US-02 Parent Login, including the Better Auth login
-  form, authenticated household handoff, safe recovery states, existing-session
-  handling and acceptance coverage; BATCH 0 Foundation remains accepted and
-  frozen.
+- Current implementation focus: None; US-03 learner profile resolution is
+  accepted.
+- Last completed work: US-03 Learner Profile Creation & Resolution, including
+  the learner schema/migration, server-derived list/create service and routes,
+  authorization seam, resolution UI and acceptance evidence; BATCH 0
+  Foundation remains accepted and frozen.
 - Files/areas most recently changed: the learner schema/migration and reset
   policy, shared learner contracts, server learner service/routes, learner
   resolution UI, component/API tests, E2E coverage and the US-03
   documentation. US-01/US-02 auth behavior, BATCH 0 infrastructure and CI
   behavior remain unchanged.
 - Tests/evidence: US-01/US-02 regression tests remain green. US-03 local
-  validation: `pnpm lint` PASS, `pnpm typecheck` PASS, `pnpm test` PASS (137
-  tests), `pnpm build` PASS, `pnpm test:e2e` PASS (9/9, including learner
-  resolution and responsive smoke coverage), and `git diff --check` PASS. No
-  live Neon call is permitted from local development; Trusted DB Integration
-  remains pending for acceptance.
-- Manual acceptance core flow: PASS for zero-learner empty state, first learner
-  creation, one-learner auto-resolution, 2+ learner selector, explicit learner
-  selection, one- and 2+ learner reload behavior, empty `displayName`
-  validation, native Enter create, and Tab + Enter learner selection.
-- Open acceptance gate: T03-17 remains `PARTIAL`; Trusted DB Integration remains
-  `PENDING ACCEPTANCE GATE`. Learner Home and later learning behavior remain out
-  of scope for US-03.
+  validation: lint, typecheck, 137-test suite, build, 9/9 E2E, migration/schema/
+  reset tests and `git diff --check` PASS. Manual core-flow acceptance PASS.
+  Core CI #26 and Trusted DB Integration #24 both SUCCESS on main commit
+  `de6a8387da0f5e90faa62f19124df8ab4cb50157`.
+- Open acceptance gate: None for US-03. Learner Home and later learning
+  behavior remain out of scope.
 - Frozen areas: BATCH 0 bootstrap, role model, database targets, schemas, reset
   policy, migration executor and CI behavior unless a proven regression appears.
-- Next safe action: Complete US-03 implementation and validation within the
-  approved contract.
-- Do NOT do next: Do not start US-04; do not call live Neon during this
-  documentation finalization; do not reopen BATCH 0 infrastructure without
-  regression evidence.
+- Next safe action: Project owner selects/reviews the next User Story.
+- Do NOT do next: Do not start US-04 automatically; do not reopen BATCH 0
+  infrastructure without regression evidence.
 - Documents new agent must read first: `docs/README.md`,
   `docs/product/product-spec.md`, `docs/architecture/technical-architecture.md`,
   `docs/design/design-system.md`, `docs/design/feature-ui-spec.md`,

@@ -1,9 +1,9 @@
 # US-03 — Learner Profile Creation & Resolution
 
-- Status: IN PROGRESS
+- Status: ACCEPTED
 - Batch: BATCH 1
 - Owner: Project Owner
-- Last updated: 2026-09-10
+- Last updated: 2026-09-11
 - Baseline commit: `06f85d356844b45a0b87fa87ea3b79c8ed104a18`
 
 ## 1. User Story
@@ -363,34 +363,36 @@ application, BATCH 0 or US-04 area is in scope.
 
 ## 20. Acceptance Evidence
 
-Implementation checkpoint (not final acceptance): learner schema/migration,
-server-derived list/create service and routes, authorization seam, and
-0/1/2+ learner resolution UI have been added. Automated evidence is being
-completed locally; the story remains `IN PROGRESS` until all T03-01–T03-17
-gates, including Trusted DB Integration, are accepted by the owner.
+Final owner acceptance (2026-09-11): implementation and acceptance evidence
+are complete. The story is `ACCEPTED`.
 
-Local implementation validation so far: `pnpm lint` PASS,
-`pnpm typecheck` PASS, `pnpm test` PASS (137 tests), `pnpm build` PASS and
-`pnpm test:e2e` PASS (9/9, including US-01/US-02 regression coverage). These
-results are implementation evidence only; Trusted DB Integration remains the
-required acceptance gate before this story can become `ACCEPTED`.
-
-Manual acceptance core-flow checkpoint (owner review, 2026-09-10):
+Manual acceptance:
 
 - PASS — zero-learner empty state.
-- PASS — create first learner.
-- PASS — one-learner auto-resolution.
+- PASS — first learner creation.
+- PASS — single learner auto-resolution.
 - PASS — 2+ learner selector.
 - PASS — explicit learner selection.
-- PASS — reload with one learner.
-- PASS — reload with 2+ learners returns the selector.
-- PASS — empty `displayName` validation.
+- PASS — reload behavior for one learner and 2+ learners.
+- PASS — display-name validation.
 - PASS — native Enter create.
-- PASS — keyboard Tab + Enter learner selection.
+- PASS — keyboard learner selection with Tab + Enter.
 
-This manual checkpoint does not complete the story. `T03-17` remains `PARTIAL`,
-Trusted DB Integration remains `PENDING ACCEPTANCE GATE`, and the story status
-remains `IN PROGRESS`.
+Automated/local validation:
+
+- PASS — lint.
+- PASS — typecheck.
+- PASS — tests (137 tests).
+- PASS — build.
+- PASS — E2E (9/9, including US-01/US-02 regression coverage).
+- PASS — migration/schema/reset tests.
+- PASS — `git diff --check`.
+
+Trusted CI validation:
+
+- PASS — Core CI #26 SUCCESS.
+- PASS — Trusted DB Integration #24 SUCCESS.
+- Validated main commit: `de6a8387da0f5e90faa62f19124df8ab4cb50157`.
 
 Acceptance-criteria checkpoint:
 
@@ -412,4 +414,4 @@ Acceptance-criteria checkpoint:
 | T03-14 | PASS — labeled native form, keyboard, focus-visible and responsive coverage. |
 | T03-15 | PASS — reusable same-household ALLOW/cross-household FORBIDDEN seam tests. |
 | T03-16 | PASS — safe error-envelope and no sensitive-detail leakage tests. |
-| T03-17 | PARTIAL — local regression/migration/schema/reset and E2E gates pass; Trusted DB Integration is pending acceptance. |
+| T03-17 | PASS — Core CI #26 and Trusted DB Integration #24 succeeded on main commit `de6a8387da0f5e90faa62f19124df8ab4cb50157`; local migration/schema/reset and E2E gates also pass. |

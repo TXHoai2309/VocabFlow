@@ -97,6 +97,6 @@ feature code may start.
 - BATCH 1 is the current work phase and is `IN PROGRESS`.
 - US-01 Parent Registration is `ACCEPTED`.
 - US-02 Parent Login is `ACCEPTED`.
-- US-03 Learner Profile Creation & Resolution is the current story and is
-  `IN PROGRESS`.
+- US-03 Learner Profile Creation & Resolution is `ACCEPTED`.
+- No next story is active; US-04 has not started.
 - Documentation/agent-pack work does not implement US-01 or any other feature.

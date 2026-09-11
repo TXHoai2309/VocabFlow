@@ -2,6 +2,18 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-11 — US-03 Learner Profile Creation & Resolution accepted
+
+- US-03 is `ACCEPTED` after owner manual acceptance of the zero-learner empty
+  state, first learner creation, single-learner auto-resolution, 2+ learner
+  selector, explicit selection, reload behavior, display-name validation,
+  native Enter create and keyboard learner selection.
+- Local lint, typecheck, tests, build, E2E, migration/schema/reset tests and
+  `git diff --check` PASS.
+- Core CI #26 and Trusted DB Integration #24 both SUCCESS on main commit
+  `de6a8387da0f5e90faa62f19124df8ab4cb50157`.
+- No US-04 implementation has started; no next story is active.
+
 ## 2026-09-10 — US-03 contract approved for implementation
 
 - Owner approved the US-03 learner profile contract and its exact decisions for
