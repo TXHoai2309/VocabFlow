@@ -1,7 +1,9 @@
 import { Link, Route, Routes } from "react-router";
 import { LoginPage } from "./features/auth/login-page";
 import { RegisterPage } from "./features/auth/register-page";
+import { ActiveLearnerProvider } from "./features/learners/learner-context-provider";
 import { LearnerPage } from "./features/learners/learner-page";
+import { StudyPage } from "./features/study/study-page";
 
 function Shell({ children }: { children: React.ReactNode }) {
   return (
@@ -64,13 +66,16 @@ function NotFound() {
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/register" element={<RegisterPage />} />
-      <Route path="/learners" element={<LearnerPage />} />
-      <Route path="/" element={<Shell><Home /></Shell>} />
-      <Route path="/foundation" element={<Shell><FoundationRoute /></Shell>} />
-      <Route path="*" element={<Shell><NotFound /></Shell>} />
-    </Routes>
+    <ActiveLearnerProvider>
+      <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/learners" element={<LearnerPage />} />
+        <Route path="/study" element={<StudyPage />} />
+        <Route path="/" element={<Shell><Home /></Shell>} />
+        <Route path="/foundation" element={<Shell><FoundationRoute /></Shell>} />
+        <Route path="*" element={<Shell><NotFound /></Shell>} />
+      </Routes>
+    </ActiveLearnerProvider>
   );
 }

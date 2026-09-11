@@ -371,6 +371,82 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
 
 .learner-ready p { margin: 0; color: inherit; font-size: 16px; }
 .learner-ready .learner-handoff-note { margin-top: 6px; font-size: 14px; }
+.learner-study-submit { display: flex; margin-top: 16px; text-decoration: none; }
+
+.study-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+  background: var(--color-bg);
+}
+
+.study-shell {
+  width: min(100%, 720px);
+  padding: clamp(24px, 5vw, 40px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-feature);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.study-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.study-topbar .back-link { margin: 0; }
+.study-learner { margin: 0; color: var(--color-text-muted); font-size: 14px; line-height: 20px; text-align: right; }
+.study-learner strong { color: var(--color-text); }
+.study-shell .auth-eyebrow { margin-top: 32px; }
+.study-status { min-height: 80px; display: grid; place-items: center; margin-top: 28px; color: var(--color-text-muted); }
+.study-state { margin-top: 28px; padding: 24px; border: 1px dashed var(--color-border); border-radius: var(--radius-control); background: var(--color-primary-soft); }
+.study-state h2 { margin: 0; color: var(--color-text); font-size: 20px; }
+.study-state p { margin: 8px 0 0; font-size: 15px; }
+.study-state .auth-retry, .study-state-link { margin-top: 18px; }
+.study-state-link { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; }
+.study-card-area { margin-top: 28px; }
+.study-instruction { margin: 0 0 12px; color: var(--color-text-muted); font-size: 14px; line-height: 20px; }
+.study-card {
+  width: 100%;
+  min-height: 360px;
+  padding: 32px 24px;
+  border: 1px solid #cbd5e1;
+  border-radius: 24px;
+  color: var(--color-text);
+  background: linear-gradient(145deg, #fff 0%, #f0f5ff 100%);
+  font: inherit;
+  cursor: pointer;
+  box-shadow: 0 18px 40px rgb(35 87 216 / 0.12);
+}
+.study-card:hover { border-color: var(--color-primary); }
+.study-card:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 4px; }
+.study-card-face { display: flex; min-height: 292px; flex-direction: column; align-items: center; justify-content: center; gap: 16px; overflow-wrap: anywhere; }
+.study-card-word { color: var(--color-text); font-size: clamp(2.5rem, 9vw, 5rem); font-weight: 800; line-height: 1; letter-spacing: -0.06em; }
+.study-card-hint { color: var(--color-text-muted); font-size: 14px; }
+.study-card-vietnamese { color: var(--color-primary); font-size: clamp(1.35rem, 4vw, 2rem); font-weight: 750; line-height: 1.25; }
+.study-card-optional, .study-card-example { max-width: 560px; color: var(--color-text-muted); font-size: 15px; line-height: 1.5; }
+.study-card-example { font-style: italic; }
+.study-card-image { max-width: min(100%, 280px); max-height: 140px; border-radius: 12px; object-fit: cover; }
+.study-card-state { margin: 12px 0 0; color: var(--color-text-muted); font-size: 14px; line-height: 20px; text-align: center; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+@media (min-width: 640px) {
+  .study-page { padding: 48px 24px; }
+}
+
+@media (max-width: 520px) {
+  .study-topbar { align-items: flex-start; flex-direction: column; }
+  .study-learner { text-align: left; }
+  .study-card { min-height: 300px; padding: 24px 16px; }
+  .study-card-face { min-height: 244px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .study-card { transition: none; }
+}
 
 @media (min-width: 640px) {
   .learner-page { padding: 48px 24px; }

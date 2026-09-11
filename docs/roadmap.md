@@ -112,6 +112,35 @@ The complete story contract is in
   SUCCESS on main commit
   `1435170ed944c3fb8632fab376817a7bbe63ed55`.
 
+## BATCH 3 — First Study Experience
+
+- Status: `IN PROGRESS`.
+- Dependency: BATCH 2 and US-04 are `ACCEPTED`.
+- Active story: US-05 First Real Flashcard — `IN PROGRESS`.
+- Owner-approved scope: minimal learner-context-to-first-card handoff using
+  the accepted vocabulary API; do not fabricate a full Learner Home dashboard.
+- Success boundary: `first-flashcard-ready`.
+- No new schema, migration, privilege, read/write API or Trusted DB gate is
+  proposed. US-06 and later scheduler/review work have not started.
+
+### US-05 — First Real Flashcard
+
+- Contract: [`docs/stories/US-05-first-real-flashcard.md`](stories/US-05-first-real-flashcard.md).
+- Input: authenticated session + `learner-context-ready` +
+  `vocabulary-content-ready`.
+- Route: focused `/study` handoff with short-lived navigation context;
+  reload re-resolves learner context instead of resuming a card.
+- Selection: first enabled `VocabularyDto` in the accepted
+  deterministic `id ASC` API response.
+- Manual owner acceptance: PASS for the learner handoff, real first `apple`
+  card, flip/accessibility behavior, NULL/media safety, error/retry, reload
+  recovery and 375x812 responsive verification.
+- T05-01 through T05-17 are locally PASS; final Core CI evidence is pending.
+- Trusted DB Integration is not required because US-05 makes no schema,
+  migration, seed, privilege or database behavior change.
+- Learner Home, due/new metrics, progress, review queue, scheduler and review
+  writes remain out of scope for this implementation story.
+
 ## Later product scope
 
 The Product Specification defines learner selector/create, Learner Home, Study,

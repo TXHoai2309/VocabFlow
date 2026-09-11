@@ -1,10 +1,9 @@
 # Current Handoff Snapshot
 
 - Project: VocabFlow Family MVP
-- Current phase/batch: BATCH 2 — Learning Content Foundation (accepted)
-- Current active story: none; US-04 Vocabulary Content Seed & Read Foundation
-  is accepted
-- Story status: ACCEPTED
+- Current phase/batch: BATCH 3 — First Study Experience
+- Current active story: US-05 First Real Flashcard
+- Story status: IN PROGRESS
 - Current Git branch: `TXH`
 - Baseline HEAD before documentation pack: `24e4580`
 - Documentation/agent pack status: finalized and approved for repository baseline
@@ -15,16 +14,15 @@
   PostgreSQL 18
 - US-01 acceptance CI status: Core CI PASS on merged main `6806e66`
 - US-01 Trusted DB Integration status: PASS on merged main `6806e66`
-- Current implementation focus: none; US-04 vocabulary schema, controlled
-  Starter v1 migration/content, validator and authenticated read API are
-  accepted.
+- Current implementation focus: US-05 owner manual acceptance is PASS; final
+  Core CI evidence is pending before acceptance.
 - Last completed work: US-04 Vocabulary Content Seed & Read Foundation,
   including the vocabulary schema/migration, controlled Starter v1 content,
   authenticated read API and final Trusted DB acceptance; BATCH 0, BATCH 1 and
   BATCH 2 remain accepted/frozen.
-- Files/areas most recently changed: US-04 schema, migration, source artifact,
-  validator, shared contracts, API service/routes and tests. `docs/decisions.md`
-  remains unrelated and untouched.
+- Files/areas most recently changed: US-05 focused Study route, short-lived
+  learner context, vocabulary client, first-card UI and tests.
+  `docs/decisions.md` remains unrelated and untouched.
 - Evidence: manual authenticated `GET /api/vocabulary` acceptance PASS
   (200/30 records, IDs 1–30, `apple` → `new`, enabled/version checks), exact
   dataset, optional-NULL, unsupported-scope `400` and unauthenticated `401`
@@ -38,14 +36,67 @@
   stable IDs (1–30) are approved, all enabled with `contentVersion=1`.
 - Frozen areas: BATCH 0 bootstrap, role model, database targets, schemas, reset
   policy, migration executor and CI behavior unless a proven regression appears.
-- Next safe action: owner selects and reviews the next User Story.
-- Do NOT do next: Do not automatically start US-05, modify CI/workflows or
-  reopen accepted infrastructure without regression evidence.
+- Next safe action: run/review final Core CI for US-05, then finalize acceptance
+  only after the repository gate is PASS.
+- Do NOT do next: Do not start US-06, modify CI/workflows or reopen accepted
+  infrastructure without regression evidence.
 - Documents new agent must read first: `docs/README.md`,
   `docs/product/product-spec.md`, `docs/architecture/technical-architecture.md`,
   `docs/design/design-system.md`, `docs/design/feature-ui-spec.md`,
   `docs/flow/user-flow.md`, `docs/decisions.md`, `docs/roadmap.md`, the active
   story and this file.
+
+## 2026-09-11 — US-05 implementation started
+
+### Completed
+
+- Moved US-05 to `IN PROGRESS` and implemented the owner-approved minimal
+  learner-context → focused `/study` → first real vocabulary card flow.
+- Reused the accepted `GET /api/vocabulary` contract with deterministic
+  `vocabulary[0]` selection, keyboard/touch flipping and safe loading, empty,
+  error, auth/403 and optional-field states.
+- Added focused learner-context, Study UI/client and routing tests. No schema,
+  migration, seed, write API, progress, scheduler, CI/workflow or US-06 work
+  was added.
+
+### Handoff
+
+- Trusted DB remains inherited from accepted US-04 evidence; no new Trusted DB
+  gate is proposed for this web-only story.
+- `docs/decisions.md` remains an unrelated unstaged local change and is not
+  part of the implementation scope.
+
+### Validation checkpoint
+
+- Focused US-05 tests PASS; full local test suite PASS at 167 tests.
+- Lint, typecheck, build and `pnpm test:e2e` PASS (11/11) after the corrected
+  Space-key interaction was revalidated.
+
+## 2026-09-11 — US-05 manual acceptance checkpoint
+
+### Owner evidence
+
+- Manual owner acceptance PASS for resolved learner handoff through `Bắt đầu
+  học`, real PostgreSQL-backed `/study`, first `apple` card from
+  `vocabulary[0]`, front/back meaning visibility, pointer/touch and Space flip,
+  Space scroll prevention, NULL optional fields, media safety, no fake review
+  controls, safe `/api/vocabulary` error/retry, reload redirection and no
+  active-learner persistence/guessing.
+- Mobile owner verification at `375x812` for learner handoff and Study PASS with
+  no horizontal overflow.
+- T05-09 and T05-13 are now manual PASS; T05-10 and T05-11 remain accepted by
+  automated coverage without fabricated database/content mutations. T05-12 is
+  manual PASS.
+
+### Gate and handoff
+
+- T05-01 through T05-17 are locally PASS, subject to final Core CI evidence.
+- US-05 remains `IN PROGRESS`; it must not be marked `ACCEPTED` yet.
+- Trusted DB Integration is `NOT REQUIRED` for this web-only story. No schema,
+  migration, seed, privilege, learning write, review write or database side
+  effect was added.
+- `docs/decisions.md` remains unrelated, unstaged, uncommitted and excluded.
+- US-06 remains unstarted.
 
 ## 2026-09-11 — US-04 contract preparation
 
@@ -141,6 +192,46 @@
 - Core CI #28 and Trusted DB Integration #26 both SUCCESS on main commit
   `1435170ed944c3fb8632fab376817a7bbe63ed55`.
 - US-05 remains unstarted; no next story was automatically started.
+
+## 2026-09-11 — US-05 story discovery / contract preparation
+
+### Recommendation
+
+- Recommended title: `US-05 — First Real Flashcard`.
+- Recommended scope: the smallest vertical slice from accepted
+  `learner-context-ready` plus `vocabulary-content-ready` to one real,
+  deterministic, flippable card.
+- Recommended Learner Home decision: use only a minimal study-entry handoff;
+  defer full due/new/progress metrics until their read contracts exist.
+- Recommended output boundary: `first-flashcard-ready`.
+
+### Contract handoff
+
+- Reuse authenticated `GET /api/vocabulary`; select the first item in its
+  deterministic `id ASC` order.
+- Handle all Starter v1 optional fields as `NULL` without broken placeholders.
+- Do not add schema, migration, dependency, API write, progress, scheduler,
+  review or Trusted DB work.
+- US-05 is `READY FOR CONTRACT REVIEW`; US-06 remains unstarted.
+
+## 2026-09-11 — US-05 contract owner approval
+
+### Approved boundary
+
+- US-05 remains `First Real Flashcard` and is now `READY FOR IMPLEMENTATION`.
+- Frozen input: `learner-context-ready` + `vocabulary-content-ready`.
+- Frozen route: `/study`; frozen output: `first-flashcard-ready`.
+- The minimal “Bắt đầu học” handoff is approved; full Learner Home metrics are
+  deferred until progress/review read contracts exist.
+- First selection is `vocabulary[0]` from accepted enabled-only `id ASC` API
+  order. Space flips the focused card; no audio playback or review controls are
+  added.
+
+### Scope guard
+
+- No schema, migration, dependency, API endpoint, database write, Trusted DB
+  gate or US-06 work is authorized by this contract update.
+- Implementation has not started.
 
 ## 2026-09-08 — Documentation and Agent Pack
 

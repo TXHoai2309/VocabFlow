@@ -4,6 +4,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import type { LearnerDto } from "@vocabflow/contracts";
 import { LearnerClientError } from "./learner-client";
+import { ActiveLearnerProvider } from "./learner-context-provider";
 import { LearnerPage } from "./learner-page";
 
 const { useSession, requestLearners, createLearner } = vi.hoisted(() => ({
@@ -29,7 +30,13 @@ const learner = (id: string, displayName: string): LearnerDto => ({
 });
 
 function renderPage() {
-  return render(<MemoryRouter><LearnerPage /></MemoryRouter>);
+  return render(
+    <MemoryRouter>
+      <ActiveLearnerProvider>
+        <LearnerPage />
+      </ActiveLearnerProvider>
+    </MemoryRouter>
+  );
 }
 
 describe("US-03 learner resolution UI", () => {
@@ -52,6 +59,7 @@ describe("US-03 learner resolution UI", () => {
 
     await waitFor(() => expect(createLearner).toHaveBeenCalledWith({ displayName: "An" }));
     expect(await screen.findByTestId("learner-context-ready")).toHaveTextContent("An");
+    expect(screen.getByRole("link", { name: "Bắt đầu học" })).toHaveAttribute("href", "/study");
   });
 
   it("auto-resolves exactly one learner", async () => {

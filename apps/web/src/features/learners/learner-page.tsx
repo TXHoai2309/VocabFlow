@@ -3,6 +3,7 @@ import { Link, Navigate } from "react-router";
 import { authClient } from "../auth/auth-client";
 import type { LearnerDto } from "@vocabflow/contracts";
 import { createLearner, LearnerClientError, requestLearners } from "./learner-client";
+import { useActiveLearner } from "./learner-context-hook";
 
 type ResolutionState =
   | "loading"
@@ -24,9 +25,9 @@ function localNameError(value: string) {
 
 export function LearnerPage() {
   const sessionState = authClient.useSession();
+  const { activeLearner, setActiveLearner, clearActiveLearner } = useActiveLearner();
   const [state, setState] = useState<ResolutionState>("loading");
   const [learners, setLearners] = useState<LearnerDto[]>([]);
-  const [activeLearner, setActiveLearner] = useState<LearnerDto | null>(null);
   const [displayName, setDisplayName] = useState("");
   const [fieldError, setFieldError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
@@ -40,17 +41,17 @@ export function LearnerPage() {
     const enabledLearners = next.filter((learner) => learner.enabled);
     setLearners(enabledLearners);
     if (enabledLearners.length === 0) {
-      setActiveLearner(null);
+      clearActiveLearner();
       setState("empty");
     } else if (enabledLearners.length === 1) {
       setState("auto-resolving");
       setActiveLearner(enabledLearners[0] ?? null);
       setState("completed");
     } else {
-      setActiveLearner(null);
+      clearActiveLearner();
       setState("selector");
     }
-  }, []);
+  }, [clearActiveLearner, setActiveLearner]);
 
   const loadLearners = useCallback(async (reconciliation = false) => {
     if (requestInFlight.current) return;
@@ -69,10 +70,14 @@ export function LearnerPage() {
 
   useEffect(() => {
     const userId = sessionState.data?.user?.id;
+    if (!userId) {
+      clearActiveLearner();
+      return;
+    }
     if (!userId || loadedUserId.current === userId) return;
     loadedUserId.current = userId;
     void loadLearners();
-  }, [loadLearners, sessionState.data?.user?.id]);
+  }, [clearActiveLearner, loadLearners, sessionState.data?.user?.id]);
 
   async function handleCreate(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -197,7 +202,8 @@ export function LearnerPage() {
         {state === "completed" && activeLearner ? (
           <div className="learner-ready" data-testid="learner-context-ready" role="status">
             <p>Đã chọn learner: <strong>{activeLearner.displayName}</strong></p>
-            <p className="learner-handoff-note">Learner Home sẽ được mở ở story tiếp theo.</p>
+            <p className="learner-handoff-note">Sẵn sàng cho thẻ học đầu tiên.</p>
+            <Link className="register-submit learner-study-submit" to="/study">Bắt đầu học</Link>
           </div>
         ) : null}
       </section>
