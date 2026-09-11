@@ -2,6 +2,57 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-11 — US-05 implementation started
+
+- Moved US-05 to `IN PROGRESS` and implemented the approved minimal
+  learner-context → focused `/study` → first real flashcard flow.
+- Reused authenticated `GET /api/vocabulary`, selecting `vocabulary[0]` from
+  the accepted deterministic response; added keyboard/touch flip behavior and
+  safe loading, empty, error, auth/403 and optional-field states.
+- Added focused UI/client/routing tests; the full local test suite is green at
+  167 tests. No schema, migration, seed, write API, progress, scheduler,
+  CI/workflow, Trusted DB or US-06 work was added.
+
+## 2026-09-11 — US-05 manual acceptance checkpoint
+
+- Owner manual acceptance PASS for the resolved learner handoff, real
+  PostgreSQL-backed first `apple` card, front/back meaning behavior,
+  pointer/touch and Space flip, safe NULL/media states, safe error/retry,
+  reload learner-context recovery and 375x812 responsive behavior.
+- T05-09, T05-12 and T05-13 now have manual PASS evidence; T05-10/T05-11 remain
+  accepted through automated coverage without fabricated database/content
+  mutations. T05-01 through T05-17 are locally PASS subject to final Core CI.
+- US-05 remains `IN PROGRESS`. Trusted DB Integration is not required because
+  US-05 adds no schema, migration, seed, privilege or database behavior.
+- `docs/decisions.md` remains an unrelated local change and is excluded.
+
+## 2026-09-11 — US-05 contract owner approval
+
+- Owner approved `US-05 — First Real Flashcard` and promoted it to
+  `READY FOR IMPLEMENTATION`.
+- Frozen boundary: `learner-context-ready` + `vocabulary-content-ready` →
+  focused `/study` → `first-flashcard-ready`.
+- Approved the minimal “Bắt đầu học” handoff; full Learner Home metrics,
+  scheduler, review queue and progress remain deferred.
+- Frozen selection is `vocabulary[0]` from accepted enabled-only `id ASC`
+  content. Space keyboard flip and optional-field safety are required; audio
+  playback and fake review controls are excluded.
+- No implementation, schema, migration, dependency, database/API write,
+  Trusted DB or US-06 work started.
+
+## 2026-09-11 — US-05 First Real Flashcard contract preparation
+
+- Added the US-05 story in `READY FOR CONTRACT REVIEW` after US-04 acceptance.
+- Recommended the smallest vertical slice: accepted learner context plus
+  accepted vocabulary content → deterministic first card →
+  `first-flashcard-ready`.
+- Recommended a minimal study-entry handoff rather than a full Learner Home;
+  due/new/progress metrics depend on later read contracts.
+- Reuses authenticated `GET /api/vocabulary`; no schema, migration, dependency,
+  write API, progress, scheduler, review or Trusted DB change is proposed.
+- This is contract preparation only. No US-05 implementation or US-06 work
+  started; `docs/decisions.md` remains unrelated and untouched.
+
 ## 2026-09-11 — US-04 Vocabulary Content Seed & Read Foundation accepted
 
 - US-04 is `ACCEPTED` after owner manual acceptance of authenticated vocabulary

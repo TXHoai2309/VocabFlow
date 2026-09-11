@@ -24,6 +24,8 @@ convenient. Reprioritization or a new story must be explicit.
   — `ACCEPTED`.
 - [US-04 Vocabulary Content Seed & Read Foundation](US-04-vocabulary-content-foundation.md)
   — `ACCEPTED`.
+- [US-05 First Real Flashcard](US-05-first-real-flashcard.md)
+  — `IN PROGRESS`; current story.
 
 ## Story status gate
 
