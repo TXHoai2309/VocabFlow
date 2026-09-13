@@ -2,6 +2,58 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-13 — US-06 Learning Scheduler Domain fix-forward checkpoint
+
+- Corrected safe-integer overflow handling for scheduler counter increments;
+  unsafe canonical results now fail deterministically with the existing domain
+  validation error.
+- Added focused coverage for numeric invalid values, result overflow, large
+  mastered counts, leap-year century rules, interval rollover and complete
+  remembered-transition outputs.
+- Focused scheduler tests PASS (`51/51`). US-06 remains `IN PROGRESS`; no API,
+  database/schema/migration, dependency, CI/workflow, UI, persistence or
+  US-07 work was added. Technical re-review and Core CI remain pending.
+
+## 2026-09-12 — US-06 Learning Scheduler Domain implementation checkpoint
+
+- Moved US-06 to `IN PROGRESS` and implemented the approved pure
+  `packages/learning-domain` `scheduleReview` contract.
+- Added explicit virtual `NEW`, `LEARNING`/`MASTERED` invariants,
+  `REMEMBERED`/`FORGOTTEN` transitions, 1/3/7/14/30 intervals, deterministic
+  Gregorian calendar arithmetic, no overdue bonus and typed validation.
+- Scheduler tests PASS (28 focused tests); repository tests PASS (195/195),
+  lint, typecheck, build and existing E2E (11/11) PASS.
+- No API, database/schema/migration, dependency, CI/workflow, Review Queue,
+  persistence or UI behavior was added. Trusted DB is not required; Core CI is
+  the remaining acceptance gate. US-07 has not started.
+
+## 2026-09-11 — US-06 Learning Scheduler Domain contract approved
+
+- Owner approved `US-06 — Learning Scheduler Domain` as a pure-domain story
+  and promoted it to `READY FOR IMPLEMENTATION`.
+- Confirmed explicit virtual `NEW` (never `null`), the `scheduleReview` input
+  of `currentState` + `result` + explicit local `today`, and the
+  `scheduler-domain-ready` success boundary.
+- Confirmed the scheduler owns only deterministic state/date transformation;
+  revision, `reviewedAt`, authorization, persistence, review queue and
+  reinforcement remain later-layer concerns.
+- No implementation, API, database/schema/migration, dependency, CI/workflow,
+  commit, push or US-07 work started.
+
+## 2026-09-11 — US-06 Learning Scheduler Domain contract preparation
+
+- Added `US-06 — Learning Scheduler Domain` with status `READY FOR CONTRACT
+  REVIEW` after US-05 acceptance.
+- Proposed the `first-flashcard-ready` → `scheduler-domain-ready` boundary for
+  a pure `packages/learning-domain` scheduled-evaluation function.
+- Recorded virtual `NEW`, `LEARNING` and `MASTERED` transitions; the approved
+  `REMEMBERED`/`FORGOTTEN` results; 1/3/7/14/30 intervals; explicit
+  household-local calendar dates; no overdue bonus; and deterministic invalid
+  input handling.
+- Kept `POST /api/reviews`, revision/idempotency, persistence, review queue,
+  session reinforcement, UI, schema/migration, API and Trusted DB work out of
+  scope. No implementation, US-07 work, commit or push started.
+
 ## 2026-09-11 — US-05 First Real Flashcard accepted
 
 - US-05 is `ACCEPTED`; T05-01 through T05-17 are `PASS` after owner manual

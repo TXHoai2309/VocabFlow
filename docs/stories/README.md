@@ -26,7 +26,9 @@ convenient. Reprioritization or a new story must be explicit.
   — `ACCEPTED`.
 - [US-05 First Real Flashcard](US-05-first-real-flashcard.md)
   — `ACCEPTED`.
-- US-06 has not started; no next story is active.
+- [US-06 Learning Scheduler Domain](US-06-learning-scheduler-domain.md)
+  — `IN PROGRESS`.
+- US-07 has not started.
 
 ## Story status gate
 

@@ -1,11 +1,11 @@
 # Current Handoff Snapshot
 
 - Project: VocabFlow Family MVP
-- Current phase/batch: BATCH 3 — First Study Experience (accepted)
-- Current active story: none; US-05 First Real Flashcard is accepted
-- Story status: ACCEPTED
+- Current phase/batch: BATCH 4 — Learning Scheduler Domain (implementation in progress)
+- Current active story: US-06 Learning Scheduler Domain
+- Story status: IN PROGRESS
 - Current Git branch: `TXH`
-- Baseline HEAD before documentation pack: `24e4580`
+- Latest accepted baseline: `d4bdf4fb934950cd6a90c91b981871fdc8fbb078`
 - Documentation/agent pack status: finalized and approved for repository baseline
 - Last accepted baseline: BATCH 0 Foundation, recorded in commit `24e4580`
   with implementation baseline `2429b0f`
@@ -14,36 +14,133 @@
   PostgreSQL 18
 - US-01 acceptance CI status: Core CI PASS on merged main `6806e66`
 - US-01 Trusted DB Integration status: PASS on merged main `6806e66`
-- Current implementation focus: none; US-05 First Real Flashcard is accepted.
-- Last completed work: US-04 Vocabulary Content Seed & Read Foundation,
-  including the vocabulary schema/migration, controlled Starter v1 content,
-  authenticated read API and final Trusted DB acceptance; BATCH 0, BATCH 1 and
-  BATCH 2 remain accepted/frozen.
-- Files/areas most recently changed: US-05 focused Study route, short-lived
-  learner context, vocabulary client, first-card UI and tests.
-  `docs/decisions.md` remains unrelated and untouched.
-- Evidence: manual authenticated `GET /api/vocabulary` acceptance PASS
-  (200/30 records, IDs 1–30, `apple` → `new`, enabled/version checks), exact
-  dataset, optional-NULL, unsupported-scope `400` and unauthenticated `401`
-  checks PASS; `403` is covered by automated tests. Dataset validation, lint,
-  typecheck, 159 tests, build, 9/9 E2E, migration/schema/reset checks,
-  `DB_MIGRATE=PASS` and `git diff --check` PASS. Core CI #28 and Trusted DB
-  Integration #26 SUCCESS on main commit
-  `1435170ed944c3fb8632fab376817a7bbe63ed55`.
+- Current implementation focus: US-06 pure scheduler/domain and exhaustive
+  unit tests; review persistence remains out of scope.
+- Last completed work: US-05 First Real Flashcard, including the accepted
+  focused Study route, real first-card flow and final Core CI evidence; BATCH
+  0, BATCH 1, BATCH 2 and BATCH 3 remain accepted/frozen.
+- Files/areas most recently changed: US-06 learning-domain implementation and
+  tests, plus its story/index/roadmap/evidence documentation.
+  `docs/decisions.md` remains an unrelated unstaged local modification.
+- Accepted evidence: US-05 owner manual acceptance PASS; `167/167` tests,
+  E2E `11/11`, lint, typecheck, build and `git diff --check` PASS; Core CI #30
+  SUCCESS on main commit
+  `712d8bb42fbb46704e7c4da6e1a1fd791f61e331`.
 - Dataset contract: `DATASET_SOURCE=VOCABFLOW_STARTER_V1`,
   `DATASET_PROVENANCE=PROJECT_AUTHORED`, `DATASET_STATUS=APPROVED`; exactly 30
   stable IDs (1–30) are approved, all enabled with `contentVersion=1`.
 - Frozen areas: BATCH 0 bootstrap, role model, database targets, schemas, reset
   policy, migration executor and CI behavior unless a proven regression appears.
-- Next safe action: owner selects and reviews the next story; do not start US-06
-  automatically.
-- Do NOT do next: Do not start US-06, modify CI/workflows or reopen accepted
+- Next safe action: technical re-review and Core CI for the pure-domain
+  implementation; keep the review API and persistence out of scope.
+- Do NOT do next: Do not mark US-06 accepted before Core CI, start US-07,
+  expand the scheduler scope into review persistence or reopen accepted
   infrastructure without regression evidence.
 - Documents new agent must read first: `docs/README.md`,
   `docs/product/product-spec.md`, `docs/architecture/technical-architecture.md`,
   `docs/design/design-system.md`, `docs/design/feature-ui-spec.md`,
   `docs/flow/user-flow.md`, `docs/decisions.md`, `docs/roadmap.md`, the active
   story and this file.
+
+## 2026-09-11 — US-06 story discovery / contract preparation
+
+### Completed
+
+- Read the repository instructions, canonical Product/Architecture/Flow/UI
+  sources, accepted US-01 through US-05 stories, progress/changelog records,
+  current contracts/tests and the existing `packages/learning-domain` stub.
+- Registered `US-06 — Learning Scheduler Domain` in BATCH 4 with status
+  `READY FOR CONTRACT REVIEW`.
+- Proposed the accepted upstream `first-flashcard-ready` handoff and the
+  `scheduler-domain-ready` output boundary.
+- Defined the pure scheduler input/output contract, virtual sparse `NEW`, all
+  six scheduled transitions, 1/3/7/14/30 intervals, explicit local dates,
+  no overdue bonus, typed invalid-input handling and persistence-owned
+  revision/`reviewedAt` boundaries.
+
+### Scope and handoff
+
+- US-06 is pure learning-domain work only. `POST /api/reviews`,
+  `learner_progress`, `review_events`, revision/idempotency, review queue,
+  session reinforcement, UI, schema/migration, API and Trusted DB work remain
+  out of scope.
+- No application code, learning-domain implementation, schema, migration,
+  API, dependency, CI/workflow or Neon operation was performed. No commit or
+  push was performed.
+- No source conflict was found; the remaining gate is owner review of the
+  proposed contract. `docs/decisions.md` remains untouched and unstaged.
+- US-07 has not started.
+
+## 2026-09-11 — US-06 contract owner approval
+
+### Approved contract
+
+- Owner approved `US-06 — Learning Scheduler Domain` as a pure-domain story
+  and promoted it from `READY FOR CONTRACT REVIEW` to `READY FOR
+  IMPLEMENTATION`.
+- Virtual `NEW` is an explicit canonical state object; `null` is not a valid
+  scheduler state. The approved function receives `currentState`,
+  `REMEMBERED`/`FORGOTTEN`, and explicit household-local `today`.
+- The approved output is `scheduler-domain-ready`; it contains only canonical
+  learning-domain values. Revision, `reviewedAt`, IDs, persistence and
+  authorization remain outside the scheduler.
+- Owner confirmed deterministic Gregorian calendar arithmetic, no overdue
+  bonus, full transition/threshold coverage, typed validation and no UI/E2E
+  requirement for this story.
+
+### Handoff
+
+- No learning-domain code, API, schema, migration, dependency, CI/workflow or
+  Neon operation was performed. No commit or push was performed.
+- The next permitted implementation scope is only the pure scheduler package
+  and its exhaustive unit tests. `docs/decisions.md` remains untouched and
+  unstaged.
+- US-07 has not started.
+
+## 2026-09-12 — US-06 implementation
+
+### Completed
+
+- Implemented `scheduleReview` in `packages/learning-domain` with explicit
+  scheduler types, virtual `NEW`, state invariants, typed validation and
+  synchronous deterministic transitions.
+- Implemented Gregorian calendar validation/addition without system clock,
+  timezone, UTC-instant, browser, storage or framework dependencies.
+- Added 28 focused table-driven tests covering all transition classes,
+  thresholds, date boundaries, overdue behavior, invalid input and
+  non-mutation/determinism.
+- Updated US-06 evidence: T06-01 through T06-16 PASS and T06-17 PASS locally;
+  Core CI remains pending technical review.
+
+### Validation and handoff
+
+- `pnpm test` PASS (195/195), `pnpm lint` PASS, `pnpm typecheck` PASS,
+  `pnpm build` PASS, `pnpm test:e2e` PASS (11/11), and `git diff --check` PASS.
+- Trusted DB Integration is `NOT REQUIRED`; no API, DB/schema/migration,
+  dependency, CI/workflow, UI or persistence change was made.
+- US-06 remains `IN PROGRESS`; no acceptance finalization or US-07 work was
+  started. `docs/decisions.md` remains untouched and unstaged.
+
+## 2026-09-13 — US-06 fix-forward
+
+### Completed
+
+- Corrected the reviewed safe-integer overflow defect in scheduler counter
+  increments. `totalCorrect`, `totalIncorrect` and incremented
+  `consecutiveCorrect` now fail deterministically before an unsafe output can
+  be returned.
+- Added focused validation and transition coverage for overflow, fractional,
+  NaN, Infinity and out-of-range numeric values; leap-year century rules;
+  interval rollovers; large safe mastered counts; and full remembered outputs.
+- Focused learning-domain tests now PASS at `51/51`; US-06 remains
+  `IN PROGRESS` and no approved scheduler semantics changed.
+
+### Validation and handoff
+
+- No API, database/schema/migration, dependency, CI/workflow, UI, persistence
+  or US-07 work was added. Trusted DB remains `NOT REQUIRED`.
+- Technical re-review and Core CI remain pending. `docs/decisions.md` remains
+  an unrelated unstaged local modification and was not changed.
 
 ## 2026-09-11 — US-05 implementation started
 
