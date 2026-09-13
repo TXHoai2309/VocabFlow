@@ -144,6 +144,20 @@ The complete story contract is in
 - Learner Home, due/new metrics, progress, review queue, scheduler and review
   writes remain out of scope for this implementation story.
 
+## BATCH 4 — Learning Scheduler Domain
+
+- Status: `IN PROGRESS`.
+- Dependency: BATCH 3 and US-05 are `ACCEPTED`.
+- Active story: US-06 Learning Scheduler Domain.
+- Scope: pure scheduler/date domain function in
+  `packages/learning-domain`, virtual sparse `NEW`, existing-state
+  transitions, exhaustive unit tests and deterministic invalid-input handling.
+- Success boundary: `scheduler-domain-ready`.
+- No `POST /api/reviews`, review queue, session reinforcement, progress/review
+  persistence, schema, migration, API, UI or Trusted DB work is proposed.
+- Owner contract approval is recorded; the pure scheduler implementation and
+  local tests are complete, with Core CI review pending. US-07 has not started.
+
 ## Later product scope
 
 The Product Specification defines learner selector/create, Learner Home, Study,

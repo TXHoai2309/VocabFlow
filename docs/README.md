@@ -102,5 +102,7 @@ feature code may start.
 - US-04 Vocabulary Content Seed & Read Foundation is `ACCEPTED`.
 - BATCH 3 First Study Experience is `ACCEPTED`.
 - US-05 First Real Flashcard is `ACCEPTED`.
-- US-06 has not started.
+- BATCH 4 Learning Scheduler Domain is `IN PROGRESS`.
+- US-06 Learning Scheduler Domain is `IN PROGRESS`.
+- US-07 has not started.
 - Documentation/agent-pack work does not implement US-01 or any other feature.
