@@ -1,11 +1,11 @@
 # Current Handoff Snapshot
 
 - Project: VocabFlow Family MVP
-- Current phase/batch: BATCH 4 — Learning Scheduler Domain (implementation in progress)
-- Current active story: US-06 Learning Scheduler Domain
-- Story status: IN PROGRESS
+- Current phase/batch: BATCH 4 — Learning Scheduler Domain (accepted)
+- Current active story: none; US-06 Learning Scheduler Domain is accepted
+- Story status: ACCEPTED
 - Current Git branch: `TXH`
-- Latest accepted baseline: `d4bdf4fb934950cd6a90c91b981871fdc8fbb078`
+- Latest accepted implementation baseline: `b838f107a69830234202caded33f9b7ad0040c9e`
 - Documentation/agent pack status: finalized and approved for repository baseline
 - Last accepted baseline: BATCH 0 Foundation, recorded in commit `24e4580`
   with implementation baseline `2429b0f`
@@ -14,33 +14,66 @@
   PostgreSQL 18
 - US-01 acceptance CI status: Core CI PASS on merged main `6806e66`
 - US-01 Trusted DB Integration status: PASS on merged main `6806e66`
-- Current implementation focus: US-06 pure scheduler/domain and exhaustive
-  unit tests; review persistence remains out of scope.
-- Last completed work: US-05 First Real Flashcard, including the accepted
-  focused Study route, real first-card flow and final Core CI evidence; BATCH
-  0, BATCH 1, BATCH 2 and BATCH 3 remain accepted/frozen.
+- Current implementation focus: none; US-06 Learning Scheduler Domain is
+  accepted and review persistence remains out of scope.
+- Last completed work: US-06 Learning Scheduler Domain, including the accepted
+  pure scheduler implementation, exhaustive tests, technical re-review and
+  Core CI evidence; BATCH 0 through BATCH 4 remain accepted/frozen.
 - Files/areas most recently changed: US-06 learning-domain implementation and
-  tests, plus its story/index/roadmap/evidence documentation.
+  tests, plus its final acceptance documentation.
   `docs/decisions.md` remains an unrelated unstaged local modification.
 - Accepted evidence: US-05 owner manual acceptance PASS; `167/167` tests,
   E2E `11/11`, lint, typecheck, build and `git diff --check` PASS; Core CI #30
   SUCCESS on main commit
   `712d8bb42fbb46704e7c4da6e1a1fd791f61e331`.
+- US-06 accepted evidence: focused learning-domain tests `51/51`, full tests
+  `218/218`, E2E `11/11`, lint, typecheck, build and `git diff --check` PASS;
+  technical re-review PASS; Core CI #32 PASS on reviewed commit
+  `cc649d2dca4b233752e08f9c565ad384ea2f6816`; Core CI #33 PASS on merged main
+  commit `b838f107a69830234202caded33f9b7ad0040c9e`. Trusted DB #30 PASS is
+  extra evidence only and was not required.
 - Dataset contract: `DATASET_SOURCE=VOCABFLOW_STARTER_V1`,
   `DATASET_PROVENANCE=PROJECT_AUTHORED`, `DATASET_STATUS=APPROVED`; exactly 30
   stable IDs (1–30) are approved, all enabled with `contentVersion=1`.
 - Frozen areas: BATCH 0 bootstrap, role model, database targets, schemas, reset
   policy, migration executor and CI behavior unless a proven regression appears.
-- Next safe action: technical re-review and Core CI for the pure-domain
-  implementation; keep the review API and persistence out of scope.
-- Do NOT do next: Do not mark US-06 accepted before Core CI, start US-07,
-  expand the scheduler scope into review persistence or reopen accepted
-  infrastructure without regression evidence.
+- Next safe action: stop at the accepted `scheduler-domain-ready` boundary;
+  any next story requires a separate discovery/contract task.
+- Do NOT do next: Do not start US-07 implementation, expand the scheduler
+  scope into review persistence or reopen accepted infrastructure without
+  regression evidence.
 - Documents new agent must read first: `docs/README.md`,
   `docs/product/product-spec.md`, `docs/architecture/technical-architecture.md`,
   `docs/design/design-system.md`, `docs/design/feature-ui-spec.md`,
-  `docs/flow/user-flow.md`, `docs/decisions.md`, `docs/roadmap.md`, the active
-  story and this file.
+  `docs/flow/user-flow.md`, `docs/decisions.md`, `docs/roadmap.md`, the accepted
+  US-06 story and this file.
+
+## 2026-09-13 — US-06 acceptance finalized
+
+### Accepted evidence
+
+- Owner approved US-06 final acceptance after the post-merge audit confirmed
+  the exact reviewed implementation revision, no scope drift and no technical
+  blocker.
+- T06-01 through T06-17 are `PASS`; the success boundary
+  `scheduler-domain-ready` is achieved.
+- Focused learning-domain tests `51/51` PASS; full tests `218/218` PASS; E2E
+  `11/11` PASS; lint, typecheck, build and `git diff --check` PASS.
+- Technical re-review PASS. Core CI #32 PASS on reviewed commit
+  `cc649d2dca4b233752e08f9c565ad384ea2f6816`; Core CI #33 PASS on merged main
+  commit `b838f107a69830234202caded33f9b7ad0040c9e`.
+- Trusted DB Integration #30 PASS is extra evidence only and was not required
+  for this pure-domain story.
+
+### Process and handoff
+
+- PR #3 was merged before explicit Owner Acceptance. The audit verified the
+  exact reviewed revision, green CI and no scope drift. Classification:
+  `PROCESS-ORDER DEVIATION ONLY`; no revert was required.
+- No API, persistence, review queue, session reinforcement, UI, schema,
+  migration, dependency, CI/workflow or US-07 work was added by acceptance.
+- US-07 has not started. `docs/decisions.md` remains an unrelated local
+  modification and is excluded from acceptance work.
 
 ## 2026-09-11 — US-06 story discovery / contract preparation
 

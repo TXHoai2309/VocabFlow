@@ -1,6 +1,6 @@
 # US-06 — Learning Scheduler Domain
 
-- Status: IN PROGRESS
+- Status: ACCEPTED
 - Batch: BATCH 4 — Learning Scheduler Domain
 - Owner: Project Owner
 - Last updated: 2026-09-13
@@ -429,16 +429,18 @@ described here.
   introduced.
 - Core CI and local repository gates pass; no Trusted DB gate is required for
   a pure-domain change.
-- US-06 is promoted to `ACCEPTED` only after owner acceptance and the required
-  Core CI evidence; `READY FOR CONTRACT REVIEW` alone is not acceptance.
+- US-06 is promoted to `ACCEPTED` after owner acceptance and the required Core
+  CI evidence; `READY FOR CONTRACT REVIEW` alone is not acceptance.
 
 ## 22. Open Questions and Blockers
 
 No source-of-truth conflict remains for interval thresholds, status
 transitions, explicit virtual `NEW`, overdue handling, date ownership,
 reinforcement or revision ownership. The reviewed fix-forward is complete
-within the approved pure-domain scope. Technical re-review and Core CI remain
-pending before acceptance.
+within the approved pure-domain scope. Technical re-review, Core CI and owner
+acceptance are complete. PR #3 was merged before explicit Owner Acceptance;
+the post-merge audit confirmed the exact reviewed revision, green CI and no
+scope drift. This was a process-order deviation only and required no revert.
 
 US-07 has not started. `docs/decisions.md` is unrelated local work and is not
 part of this story.
@@ -538,3 +540,70 @@ Data and gate evidence:
   `IN PROGRESS`.
 - US-07 has not started and `docs/decisions.md` remains unrelated local work,
   untouched by this implementation.
+
+### Final acceptance — 2026-09-13
+
+US-06 is `ACCEPTED`. The owner approved finalization after the technical
+re-review, Core CI validation and post-merge audit completed. The approved
+success boundary was achieved:
+
+```text
+scheduler-domain-ready
+```
+
+Acceptance-criteria result:
+
+| Criterion | Evidence status |
+|---|---|
+| T06-01 | PASS |
+| T06-02 | PASS |
+| T06-03 | PASS |
+| T06-04 | PASS |
+| T06-05 | PASS |
+| T06-06 | PASS |
+| T06-07 | PASS |
+| T06-08 | PASS |
+| T06-09 | PASS |
+| T06-10 | PASS |
+| T06-11 | PASS |
+| T06-12 | PASS |
+| T06-13 | PASS |
+| T06-14 | PASS |
+| T06-15 | PASS |
+| T06-16 | PASS |
+| T06-17 | PASS |
+
+Final validation evidence:
+
+- Focused learning-domain tests: `51/51` PASS.
+- Full tests: `218/218` PASS.
+- E2E: `11/11` PASS.
+- Lint: PASS.
+- Typecheck: PASS.
+- Build: PASS.
+- `git diff --check`: PASS.
+- Technical re-review: PASS.
+
+Core CI evidence:
+
+- Core CI #32: PASS on the reviewed implementation commit
+  `cc649d2dca4b233752e08f9c565ad384ea2f6816`.
+- Core CI #33: PASS on merged main commit
+  `b838f107a69830234202caded33f9b7ad0040c9e`.
+- Trusted DB Integration #30: PASS as extra evidence only; it was not a
+  required gate for this pure-domain story.
+
+The accepted semantics remain explicit virtual `NEW`, the canonical
+`NEW`/`LEARNING`/`MASTERED` transitions, `REMEMBERED`/`FORGOTTEN`,
+1/3/7/14/30-day intervals, deterministic household-local calendar arithmetic,
+safe-integer validation and no overdue bonus. No API, persistence, review
+queue, session reinforcement, UI, schema, migration or dependency behavior
+was added.
+
+Process note: PR #3 was merged before explicit Owner Acceptance. The
+post-merge audit proved that the exact reviewed revision was merged, Core CI
+passed and no scope drift was present. Classification: `PROCESS-ORDER
+DEVIATION ONLY`; no revert was required.
+
+US-07 has not started. `docs/decisions.md` remains unrelated local work and is
+not part of this acceptance.

@@ -2,6 +2,25 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-13 — US-06 Learning Scheduler Domain accepted
+
+- US-06 is `ACCEPTED`; the `scheduler-domain-ready` success boundary was
+  achieved and T06-01 through T06-17 are `PASS`.
+- Focused learning-domain tests `51/51` PASS; full tests `218/218` PASS; E2E
+  `11/11` PASS; lint, typecheck, build and `git diff --check` PASS; technical
+  re-review PASS.
+- Core CI #32 PASS on reviewed commit
+  `cc649d2dca4b233752e08f9c565ad384ea2f6816`; Core CI #33 PASS on merged main
+  commit `b838f107a69830234202caded33f9b7ad0040c9e`.
+- Trusted DB Integration #30 PASS is extra evidence only and was not required
+  for this pure-domain story. No API, persistence, review queue, session,
+  schema, migration, dependency, UI or US-07 work was added.
+- PR #3 was merged before explicit Owner Acceptance. The post-merge audit
+  confirmed the exact reviewed revision, green CI and no scope drift;
+  classification is `PROCESS-ORDER DEVIATION ONLY`, with no revert required.
+
+US-07 remains not started.
+
 ## 2026-09-13 — US-06 Learning Scheduler Domain fix-forward checkpoint
 
 - Corrected safe-integer overflow handling for scheduler counter increments;

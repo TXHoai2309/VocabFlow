@@ -146,17 +146,21 @@ The complete story contract is in
 
 ## BATCH 4 — Learning Scheduler Domain
 
-- Status: `IN PROGRESS`.
+- Status: `ACCEPTED`.
 - Dependency: BATCH 3 and US-05 are `ACCEPTED`.
-- Active story: US-06 Learning Scheduler Domain.
+- Active story: none; US-06 Learning Scheduler Domain is `ACCEPTED`.
 - Scope: pure scheduler/date domain function in
   `packages/learning-domain`, virtual sparse `NEW`, existing-state
   transitions, exhaustive unit tests and deterministic invalid-input handling.
 - Success boundary: `scheduler-domain-ready`.
 - No `POST /api/reviews`, review queue, session reinforcement, progress/review
   persistence, schema, migration, API, UI or Trusted DB work is proposed.
-- Owner contract approval is recorded; the pure scheduler implementation and
-  local tests are complete, with Core CI review pending. US-07 has not started.
+- Owner contract approval, implementation, technical re-review and owner
+  acceptance are complete. T06-01 through T06-17 are `PASS`; focused tests are
+  `51/51`, full tests are `218/218`, E2E is `11/11`, and lint, typecheck,
+  build and `git diff --check` are PASS. Core CI #32 and #33 are PASS on the
+  reviewed revision and merged main commit respectively. Trusted DB #30 is
+  extra evidence only and was not required. US-07 has not started.
 
 ## Later product scope
 
