@@ -88,10 +88,21 @@ describe("trusted DB preflight phases", () => {
 
   it("keeps full preflight after bootstrap in the canonical workflow", () => {
     const workflow = readFileSync(resolve(process.cwd(), ".github/workflows/trusted-db.yml"), "utf8");
-    expect(workflow.indexOf("pnpm db:bootstrap-preflight")).toBeLessThan(workflow.indexOf("run: pnpm db:bootstrap\n"));
-    expect(workflow.indexOf("run: pnpm db:bootstrap\n")).toBeLessThan(workflow.indexOf("pnpm db:preflight"));
-    expect(workflow.indexOf("pnpm db:preflight")).toBeLessThan(workflow.indexOf("run: pnpm db:identity-provision\n"));
-    expect(workflow.indexOf("run: pnpm db:identity-provision\n")).toBeLessThan(workflow.indexOf("run: pnpm test:db\n"));
-    expect(workflow).not.toMatch(/run:\s*pnpm db:(?:migrate|reset)\b/);
+    const normalizedWorkflow = workflow.replace(/\r\n/g, "\n");
+    const bootstrapPreflightIndex = normalizedWorkflow.indexOf("pnpm db:bootstrap-preflight");
+    const bootstrapIndex = normalizedWorkflow.indexOf("run: pnpm db:bootstrap\n");
+    const fullPreflightIndex = normalizedWorkflow.indexOf("pnpm db:preflight");
+    const identityProvisionIndex = normalizedWorkflow.indexOf("run: pnpm db:identity-provision\n");
+    const testDbIndex = normalizedWorkflow.indexOf("run: pnpm test:db\n");
+    expect(bootstrapPreflightIndex).toBeGreaterThanOrEqual(0);
+    expect(bootstrapIndex).toBeGreaterThanOrEqual(0);
+    expect(fullPreflightIndex).toBeGreaterThanOrEqual(0);
+    expect(identityProvisionIndex).toBeGreaterThanOrEqual(0);
+    expect(testDbIndex).toBeGreaterThanOrEqual(0);
+    expect(bootstrapPreflightIndex).toBeLessThan(bootstrapIndex);
+    expect(bootstrapIndex).toBeLessThan(fullPreflightIndex);
+    expect(fullPreflightIndex).toBeLessThan(identityProvisionIndex);
+    expect(identityProvisionIndex).toBeLessThan(testDbIndex);
+    expect(normalizedWorkflow).not.toMatch(/run:\s*pnpm db:(?:migrate|reset)\b/);
   });
 });

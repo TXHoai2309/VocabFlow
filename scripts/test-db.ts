@@ -13,6 +13,7 @@ import {
 import { assertResolvedTargetBeforeMutation, configuredDatabaseUrl } from "./runtime-validation";
 import { assertIdentitySnapshot, getIdentitySnapshot, resetApplicationScope } from "./db-reset-operations";
 import { provisionCanonicalIdentity } from "./db-identity-provision";
+import { runUs07TrustedDbSuite } from "./test-reviews-db";
 
 const ROLLBACK_MARKER = "__VOCABFLOW_PERMISSION_ROLLBACK__";
 
@@ -29,7 +30,8 @@ type TrustedDbStage =
   | "migrate-second-pass"
   | "verify-second-migration"
   | "verify-concurrent-identity"
-  | "verify-permission-matrix";
+  | "verify-permission-matrix"
+  | "verify-us07-review-runtime";
 
 type TrustedDbSubstage =
   | "target-migration"
@@ -250,6 +252,8 @@ async function main() {
   await runConcurrentIdentityCheck(identityUrl, identityTarget, beforeIdentity);
   markStage("verify-permission-matrix");
   await runPermissionMatrix({ identityUrl, migrationUrl, runtimeUrl, identityTarget, migrationTarget, runtimeTarget });
+  markStage("verify-us07-review-runtime");
+  await runUs07TrustedDbSuite({ migrationUrl, runtimeUrl, migrationTarget, runtimeTarget });
   console.log("TRUSTED_DB_STATUS=PASS");
 }
 
