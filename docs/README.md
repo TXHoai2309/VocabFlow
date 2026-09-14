@@ -104,5 +104,5 @@ feature code may start.
 - US-05 First Real Flashcard is `ACCEPTED`.
 - BATCH 4 Learning Scheduler Domain is `ACCEPTED`.
 - US-06 Learning Scheduler Domain is `ACCEPTED`.
-- US-07 has not started.
+- US-07 Scheduled Review Write is `IN PROGRESS`.
 - Documentation/agent-pack work does not implement US-01 or any other feature.

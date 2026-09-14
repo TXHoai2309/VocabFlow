@@ -4,6 +4,7 @@ import { createAuth } from "./auth";
 import { createBootstrapService, type BootstrapService } from "./bootstrap";
 import { createLearnerService, LearnerServiceError, type LearnerService } from "./learners";
 import { createVocabularyService, VocabularyServiceError, type VocabularyService } from "./vocabulary";
+import { createReviewService, ReviewServiceError, type ReviewService } from "./reviews";
 
 export type WorkerBindings = {
   DATABASE_URL?: string;
@@ -19,6 +20,7 @@ export type AppDependencies = {
   bootstrap?: BootstrapRunner;
   learnerService?: LearnerService;
   vocabularyService?: VocabularyService;
+  reviewService?: ReviewService;
 };
 
 const SAFE_BOOTSTRAP_ERROR = "Không thể hoàn tất thiết lập gia đình. Vui lòng thử lại.";
@@ -49,6 +51,12 @@ async function runVocabularyService(env: WorkerBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
   return createVocabularyService(createHttpDatabase(env.DATABASE_URL));
+}
+
+async function runReviewService(env: WorkerBindings) {
+  if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
+  const { createHttpDatabase } = await import("./db/client");
+  return createReviewService(createHttpDatabase(env.DATABASE_URL));
 }
 
 export function createApp(dependencies: AppDependencies = {}) {
@@ -150,6 +158,40 @@ export function createApp(dependencies: AppDependencies = {}) {
         return c.json(errorEnvelope(error.code, message), error.status);
       }
       return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể tạo learner lúc này. Vui lòng thử lại."), 503);
+    }
+  });
+
+  application.post("/api/reviews", async (c) => {
+    try {
+      const session = await readSession(c.req.raw, c.env);
+      if (!session?.user?.id) {
+        return c.json(errorEnvelope("UNAUTHORIZED", "Đăng nhập để tiếp tục."), 401);
+      }
+      let payload: unknown;
+      try {
+        payload = await c.req.json();
+      } catch {
+        return c.json(errorEnvelope("INVALID_REQUEST", "Dữ liệu gửi lên không hợp lệ."), 400);
+      }
+      const service = dependencies.reviewService ?? await runReviewService(c.env);
+      const result = await service.write(session.user.id, payload);
+      return c.json(result.response, result.status);
+    } catch (error) {
+      if (error instanceof ReviewServiceError) {
+        const message = error.code === "HOUSEHOLD_ACCESS_DENIED"
+          ? "Bạn không có quyền truy cập learner này."
+          : error.code === "VOCABULARY_NOT_FOUND"
+            ? "Vocabulary không khả dụng."
+            : error.code === "IDEMPOTENCY_CONFLICT"
+              ? "Review đã tồn tại với dữ liệu khác."
+              : error.code === "STALE_REVISION"
+                ? "Tiến trình đã thay đổi. Vui lòng tải lại."
+                : error.code === "INVALID_REQUEST"
+                  ? "Dữ liệu gửi lên không hợp lệ."
+                  : "Không thể lưu tiến trình lúc này. Vui lòng thử lại.";
+        return c.json(errorEnvelope(error.code, message, error.details), error.status);
+      }
+      return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể lưu tiến trình lúc này. Vui lòng thử lại."), 503);
     }
   });
 
