@@ -28,7 +28,8 @@ convenient. Reprioritization or a new story must be explicit.
   — `ACCEPTED`.
 - [US-06 Learning Scheduler Domain](US-06-learning-scheduler-domain.md)
   — `ACCEPTED`.
-- US-07 has not started.
+- [US-07 Scheduled Review Write](US-07-scheduled-review-write.md)
+  — `IN PROGRESS`.
 
 ## Story status gate
 

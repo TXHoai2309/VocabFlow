@@ -226,25 +226,26 @@ Better Auth schema không được chép lại thủ công trong tài liệu. B�
 | learner_progress.learner_id | uuid | NOT NULL | FK -> learner_profiles.id |
 | learner_progress.vocabulary_id | integer | NOT NULL | FK -> vocabularies.id |
 | learner_progress.status | learning_status | NOT NULL DEFAULT NEW | NEW \| LEARNING \| MASTERED |
-| learner_progress.consecutive_correct | integer | NOT NULL DEFAULT 0 | CHECK >= 0 |
-| learner_progress.interval_days | integer | NOT NULL DEFAULT 0 | CHECK >= 0 |
+| learner_progress.consecutive_correct | bigint | NOT NULL DEFAULT 0 | CHECK 0 <= value <= Number.MAX_SAFE_INTEGER |
+| learner_progress.interval_days | bigint | NOT NULL DEFAULT 0 | CHECK 0 <= value <= Number.MAX_SAFE_INTEGER |
 | learner_progress.first_learned_date | date | NULL | Household-local calendar date |
 | learner_progress.last_reviewed_date | date | NULL | Household-local calendar date |
 | learner_progress.next_review_date | date | NULL | NULL = not scheduled |
-| learner_progress.total_correct / total_incorrect | integer | NOT NULL DEFAULT 0 | CHECK >= 0 |
-| learner_progress.revision | integer | NOT NULL DEFAULT 0 | Optimistic locking |
+| learner_progress.total_correct / total_incorrect | bigint | NOT NULL DEFAULT 0 | CHECK 0 <= value <= Number.MAX_SAFE_INTEGER |
+| learner_progress.revision | bigint | NOT NULL DEFAULT 0 | Optimistic locking; 0 <= value <= Number.MAX_SAFE_INTEGER |
 | learner_progress.updated_at | timestamptz | NOT NULL DEFAULT now() | Audit timestamp |
 
 | **Table / column** | **PostgreSQL type** | **Null / default** | **Notes** |
 | --- | --- | --- | --- |
-| review_events.review_id | uuid | PK, NOT NULL | Idempotency key từ client |
-| review_events.request_fingerprint | text | NOT NULL | Canonical payload hash |
+| review_events.household_id | uuid | PK component, NOT NULL | Server-owned FK -> households.id; derived from authorized learner ownership; not client-authored |
+| review_events.review_id | uuid | PK component, NOT NULL | Canonical client idempotency key within one household namespace; not globally unique |
+| review_events.request_fingerprint | text | NOT NULL | Canonical payload hash; excludes reviewId and householdId |
 | review_events.learner_id | uuid | NOT NULL | FK -> learner_profiles.id |
 | review_events.vocabulary_id | integer | NOT NULL | FK -> vocabularies.id |
 | review_events.result | review_result | NOT NULL | REMEMBERED \| FORGOTTEN |
 | review_events.previous_status / new_status | learning_status | NOT NULL | Transition snapshot |
-| review_events.previous_interval / new_interval | integer | NOT NULL | Transition snapshot |
-| review_events.expected_revision / resulting_revision | integer | NOT NULL | Concurrency snapshot |
+| review_events.previous_interval / new_interval | bigint | NOT NULL | Transition snapshot; 0 <= value <= Number.MAX_SAFE_INTEGER |
+| review_events.expected_revision / resulting_revision | bigint | NOT NULL | Concurrency snapshot; 0 <= value <= Number.MAX_SAFE_INTEGER |
 | review_events.review_date | date | NOT NULL | Derived from household timezone |
 | review_events.reviewed_at | timestamptz | NOT NULL DEFAULT now() | Actual event instant |
 | review_events.response_payload | jsonb | NOT NULL | Canonical response for idempotent retry |
@@ -264,8 +265,8 @@ Better Auth schema không được chép lại thủ công trong tài liệu. B�
 | --- | --- | --- |
 | learner_progress | UNIQUE (learner_id, vocabulary_id) | Một canonical progress record/từ/learner |
 | learner_progress | INDEX (learner_id, next_review_date) | Review queue |
-| learner_progress | revision >= 0 | Optimistic locking |
-| review_events | PRIMARY KEY / UNIQUE (review_id) | Idempotency |
+| learner_progress | revision >= 0 AND revision <= Number.MAX_SAFE_INTEGER | Optimistic locking within the JavaScript safe-integer domain |
+| review_events | PRIMARY KEY (household_id, review_id) | Household-scoped idempotency; review_id is not globally unique |
 | review_events | INDEX (learner_id, reviewed_at) | Dashboard/history |
 | review_events | INDEX (learner_id, vocabulary_id, reviewed_at) | History từng từ |
 | households | UNIQUE (primary_owner_user_id) | Chống hai bootstrap đồng thời tạo hai default household cho cùng owner |
@@ -283,6 +284,22 @@ Better Auth schema không được chép lại thủ công trong tài liệu. B�
 - Reset progress là action riêng có confirmation.
 
 - FK delete action được chọn explicit (RESTRICT/NO ACTION cho dữ liệu lịch sử); hard delete chỉ dành cho maintenance hậu MVP.
+
+Scheduler counters, intervals and revision snapshots use PostgreSQL `BIGINT` so
+valid JavaScript safe integers above the PostgreSQL `INTEGER` range remain
+persistable. The application logical domain remains `0 <= value <=
+Number.MAX_SAFE_INTEGER` (`9007199254740991`) where applicable; `BIGINT` does
+not authorize arbitrary 64-bit application values. Values returned from BIGINT
+storage must be range-checked before conversion to JavaScript numbers, with no
+silent precision loss.
+
+The revision boundary is fail-closed: virtual `NEW` starts at revision `0`, a
+successful first write persists revision `1`, and an existing revision `N`
+advances to `N + 1`. `Number.MAX_SAFE_INTEGER - 1` may advance successfully to
+`Number.MAX_SAFE_INTEGER`; a write whose current revision is already
+`Number.MAX_SAFE_INTEGER` fails before scheduler execution or persistence can
+produce an unsafe resulting revision. The pure scheduler remains
+revision-unaware.
 
 ## 5.7 Sparse progress model & virtual NEW state
 
@@ -567,15 +584,22 @@ POST /api/reviews
 }
 ```
 
+`householdId` is intentionally absent from this request. The server derives it
+from the authenticated user's membership and authorized learner ownership;
+the client cannot author or override it. `reviewId` and `learnerId` are
+validated and canonicalized UUIDs. `reviewId` is unique only within the
+derived household namespace, so the same canonical review ID may be persisted
+independently by another household.
+
 ## 9.2 Read/compute/write boundary
 
 ```text
 A. Read / compute in Worker
    1. Authenticate session
    2. Authorize learner -> household
-   3. Pre-check reviewId
-      - same fingerprint -> 200 canonical response, NO scheduler
-      - different fingerprint -> 409 IDEMPOTENCY_CONFLICT
+   3. Pre-check (household_id, reviewId) in the authorized household
+      - same fingerprint -> 200 canonical response, NO scheduler or mutation
+      - different fingerprint -> 409 IDEMPOTENCY_CONFLICT, no mutation
    4. Read learner_progress by (learnerId, vocabularyId)
       - row exists -> use canonical stored progress
       - row missing -> construct virtual NEW state, revision = 0
@@ -593,17 +617,19 @@ B. Atomic write in PostgreSQL
       INSERT learner_progress with scheduler result
       + INSERT review_event from successful insert
       UNIQUE (learner_id, vocabulary_id) protects concurrent first review
+      review_events PRIMARY KEY (household_id, review_id) protects scoped
+      idempotency; a matching reviewId in another household is not a conflict
 
    Both branches:
       progress + event commit together or neither commits
 ```
 
-Concurrent race nuance: hai Worker có thể cùng tính scheduler trước khi optimistic/race barrier phân thắng bại. Requirement là chỉ một canonical transition/event được persist. Với existing progress, revision chỉ cho một write thắng; với sparse first review, UNIQUE (learner_id, vocabulary_id) chỉ cho một insert thắng. Sau khi phát hiện cùng reviewId/fingerprint đã commit, request thua trả 200 canonical result và không persist/re-evaluate thêm; reviewId khác trả 409 STALE_REVISION.
+Concurrent race nuance: hai Worker có thể cùng tính scheduler trước khi optimistic/race barrier phân thắng bại. Requirement là chỉ một canonical transition/event được persist. Với existing progress, revision chỉ cho một write thắng; với sparse first review, UNIQUE (learner_id, vocabulary_id) chỉ cho một insert thắng. Sau khi phát hiện cùng `(household_id, reviewId)` và fingerprint đã commit, request thua trả 200 canonical result và không persist/re-evaluate thêm; cùng household với fingerprint khác trả 409 IDEMPOTENCY_CONFLICT; không có event trong authorized household và progress đã tiến lên thì trả 409 STALE_REVISION. Event cùng reviewId thuộc household khác là observationally absent và không tham gia phân loại race.
 
 ## 9.3 Atomic write invariant
 
 > **Atomicity**
-> learner_progress và review_events hoặc cùng commit, hoặc cùng không thay đổi. Nếu insert event fail (kể cả UNIQUE review_id), progress update phải rollback.
+> learner_progress và review_events hoặc cùng commit, hoặc cùng không thay đổi. Nếu insert event fail (kể cả duplicate PRIMARY KEY (household_id, review_id) trong cùng household namespace), progress update phải rollback hoặc race được reclassify an toàn. Event cùng reviewId ở household khác không tạo duplicate conflict trong scope hiện tại.
 
 ```text
 WITH updated_progress AS (
@@ -643,23 +669,33 @@ inserted_event AS (
 SELECT ...canonical response...;
 ```
 
-Implementation preference: Neon HTTP driver + một atomic SQL statement/CTE hoặc database function. CTE ở trên là shape kiến trúc, không phải migration SQL đóng băng. P0 requirement là cả existing-update branch và sparse-first-insert branch đều chỉ insert review_event khi progress write thành công; duplicate reviewId phải rollback toàn statement. WebSocket interactive transaction chỉ xem xét nếu atomic HTTP write không đủ.
+Implementation preference: Neon HTTP driver + một atomic SQL statement/CTE hoặc database function. CTE ở trên là shape kiến trúc, không phải migration SQL đóng băng. P0 requirement là cả existing-update branch và sparse-first-insert branch đều chỉ insert review_event khi progress write thành công; duplicate `(household_id, review_id)` trong cùng namespace phải rollback toàn statement hoặc được reclassify an toàn. WebSocket interactive transaction chỉ xem xét nếu atomic HTTP write không đủ.
 
 ## 9.4 Complete idempotency semantics
 
 | **Condition** | **HTTP** | **Server behavior** |
 | --- | --- | --- |
-| reviewId mới + canonical/virtual revision đúng | 201 | Existing row: update; missing row + expectedRevision=0: insert sparse progress; cả hai atomic với event |
-| reviewId đã tồn tại + cùng fingerprint | 200 | Không chạy scheduler; return stored response_payload |
-| reviewId đã tồn tại + payload khác | 409 | IDEMPOTENCY_CONFLICT |
-| Atomic update = 0; recheck thấy same reviewId/fingerprint | 200 | Concurrent retry thắng ở request khác; return stored canonical result |
-| Progress write = 0; recheck không thấy same reviewId | 409 | STALE_REVISION (bao gồm losing first-review race với reviewId khác); client reload state |
+| reviewId mới trong authorized household + canonical/virtual revision đúng | 201 | Existing row: update; missing row + expectedRevision=0: insert sparse progress; cả hai atomic với event |
+| reviewId đã tồn tại trong authorized household + cùng fingerprint | 200 | Không chạy scheduler, không mutate progress, không thêm event; return stored response_payload |
+| reviewId đã tồn tại trong authorized household + payload khác | 409 | IDEMPOTENCY_CONFLICT; không chạy scheduler và không mutate progress |
+| Atomic update = 0; recheck thấy same household/reviewId/fingerprint | 200 | Concurrent retry thắng ở request khác; return stored canonical result |
+| Progress write = 0; recheck không thấy event trong authorized household | 409 | STALE_REVISION (bao gồm losing first-review race với reviewId khác); client reload state |
+| Cùng reviewId chỉ tồn tại ở household khác | 201 hoặc tiếp tục phân loại theo scope hiện tại | Observationally absent; không replay, không conflict và không disclose event/fingerprint/learner |
 | No session | 401 | Reject |
 | Learner không thuộc household | 403 | Reject |
 
 ## 9.5 Request fingerprint
 
-`requestFingerprint` được tính từ canonical payload: learnerId + vocabularyId + result + expectedRevision. reviewId không nằm trong fingerprint. response_payload lưu canonical result của lần commit để retry sau này trả đúng response lịch sử ngay cả khi learner đã học tiếp.
+`requestFingerprint` được tính từ đúng bốn trường canonical: `learnerId` +
+`vocabularyId` + `result` + `expectedRevision`. `reviewId`, `householdId`,
+`reviewDate`, `reviewedAt`, timezone, scheduler output, resulting revision,
+response payload và mọi server timestamp đều bị loại khỏi fingerprint.
+Canonical UUID normalization occurs before fingerprinting and persistence
+comparison. Different review IDs therefore keep the same semantic fingerprint
+when the four payload fields are unchanged, while a different learner ID (or
+any other included field) produces a different fingerprint. `response_payload`
+lưu canonical result của lần commit để retry sau này trả đúng response lịch sử
+ngay cả khi learner đã học tiếp.
 
 # 10. API Surface v1
 
@@ -742,6 +778,12 @@ MVP phục vụ ảnh/audio dưới dạng static assets versioned; Neon chỉ l
 - Learner PIN nếu thêm sau chỉ là profile selector, không thay parent auth boundary.
 
 - Mọi learner-scoped query bắt buộc household authorization.
+
+- Review-event idempotency is tenant-scoped: a canonical `reviewId` belonging
+  to another household is observationally absent to the current authorized
+  household. It cannot cause replay, `IDEMPOTENCY_CONFLICT`, or disclosure of
+  event existence, payload, fingerprint or learner data; different households
+  may persist the same canonical `reviewId` independently.
 
 - Không log password, session token, raw cookie hoặc secret.
 

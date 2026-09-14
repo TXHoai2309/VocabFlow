@@ -162,6 +162,29 @@ The complete story contract is in
   reviewed revision and merged main commit respectively. Trusted DB #30 is
   extra evidence only and was not required. US-07 has not started.
 
+## BATCH 5 — Scheduled Review Write
+
+- Status: `IN PROGRESS`.
+- Dependency: BATCH 4 and US-06 are `ACCEPTED`.
+- Active story: US-07 Scheduled Review Write.
+- Scope: the smallest server-authoritative `POST /api/reviews` boundary for
+  one scheduled evaluation, sparse first materialization, idempotency,
+  optimistic revision and atomic progress/event persistence.
+- Input boundary: authenticated parent + authorized enabled learner + enabled
+  vocabulary + `scheduler-domain-ready`.
+- Success boundary: `scheduled-review-write-ready`.
+- Trusted DB Integration is required because this story proposes additive
+  application schema, migration, runtime persistence, reset participation and
+  real concurrency behavior.
+- Review Queue, due/new selection, session reinforcement, Study-session UX,
+  progress dashboards and US-08 remain out of scope. Review Queue is the later
+  Architecture Step 8 milestone.
+- Owner-approved contract decisions lock the exact response DTO, first
+  materialized revision `1`, missing/disabled vocabulary `404` behavior,
+  authorization-before-replay and enabled-learner rules. Implementation is in
+  progress; final acceptance still requires technical review, Core CI and
+  Trusted DB.
+
 ## Later product scope
 
 The Product Specification defines learner selector/create, Learner Home, Study,

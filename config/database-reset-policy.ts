@@ -3,6 +3,8 @@ import { APP_SCHEMA, MIGRATION_SCHEMA } from "@vocabflow/contracts";
 export const DATABASE_RESET_POLICY = {
   applicationSchemas: [APP_SCHEMA],
   applicationTables: [
+    `${APP_SCHEMA}.review_events`,
+    `${APP_SCHEMA}.learner_progress`,
     `${APP_SCHEMA}.vocabularies`,
     `${APP_SCHEMA}.learner_profiles`,
     `${APP_SCHEMA}.household_members`,
@@ -13,6 +15,8 @@ export const DATABASE_RESET_POLICY = {
     `${APP_SCHEMA}.user`
   ],
   applicationEnumTypes: [
+    `${APP_SCHEMA}.review_result`,
+    `${APP_SCHEMA}.learning_status`,
     `${APP_SCHEMA}.household_role`
   ],
   protectedSchemas: ["vocabflow_meta"],

@@ -138,6 +138,7 @@ export type ErrorCode =
   | "INVALID_REQUEST"
   | "VALIDATION_ERROR"
   | "NOT_FOUND"
+  | "VOCABULARY_NOT_FOUND"
   | "IDEMPOTENCY_CONFLICT"
   | "STALE_REVISION"
   | "INTERNAL_ERROR";
@@ -198,6 +199,42 @@ export const vocabularyListResponseSchema = z.object({
   vocabulary: z.array(vocabularyDtoSchema)
 });
 export type VocabularyListResponse = z.infer<typeof vocabularyListResponseSchema>;
+
+export const reviewResultSchema = z.enum(["REMEMBERED", "FORGOTTEN"]);
+export type ReviewResult = z.infer<typeof reviewResultSchema>;
+
+const canonicalUuidSchema = z.string().uuid().transform((value) => value.toLowerCase());
+
+export const reviewRequestSchema = z.object({
+  reviewId: canonicalUuidSchema,
+  learnerId: canonicalUuidSchema,
+  vocabularyId: z.number().int().positive().max(2147483647),
+  result: reviewResultSchema,
+  expectedRevision: z.number().int().nonnegative().safe()
+}).strict();
+export type ReviewRequest = z.infer<typeof reviewRequestSchema>;
+
+export const reviewProgressSchema = z.object({
+  status: z.enum(["LEARNING", "MASTERED"]),
+  consecutiveCorrect: z.number().int().nonnegative().safe(),
+  intervalDays: z.number().int().positive().safe(),
+  firstLearnedDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  lastReviewedDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  nextReviewDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  totalCorrect: z.number().int().nonnegative().safe(),
+  totalIncorrect: z.number().int().nonnegative().safe(),
+  revision: z.number().int().positive().safe()
+}).strict();
+export type ReviewProgress = z.infer<typeof reviewProgressSchema>;
+
+export const reviewResponseSchema = z.object({
+  reviewId: canonicalUuidSchema,
+  learnerId: canonicalUuidSchema,
+  vocabularyId: z.number().int().positive().max(2147483647),
+  result: reviewResultSchema,
+  progress: reviewProgressSchema
+}).strict();
+export type ReviewResponse = z.infer<typeof reviewResponseSchema>;
 
 export const vocabularySeedRecordSchema = z.object({
   id: z.number().int(),

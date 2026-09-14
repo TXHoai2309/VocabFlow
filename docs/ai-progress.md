@@ -1,9 +1,9 @@
 # Current Handoff Snapshot
 
 - Project: VocabFlow Family MVP
-- Current phase/batch: BATCH 4 — Learning Scheduler Domain (accepted)
-- Current active story: none; US-06 Learning Scheduler Domain is accepted
-- Story status: ACCEPTED
+- Current phase/batch: BATCH 5 — Scheduled Review Write (implementation)
+- Current active story: US-07 Scheduled Review Write
+- Story status: IN PROGRESS
 - Current Git branch: `TXH`
 - Latest accepted implementation baseline: `b838f107a69830234202caded33f9b7ad0040c9e`
 - Documentation/agent pack status: finalized and approved for repository baseline
@@ -14,13 +14,13 @@
   PostgreSQL 18
 - US-01 acceptance CI status: Core CI PASS on merged main `6806e66`
 - US-01 Trusted DB Integration status: PASS on merged main `6806e66`
-- Current implementation focus: none; US-06 Learning Scheduler Domain is
-  accepted and review persistence remains out of scope.
+- Current implementation focus: US-07 scheduled review write implementation;
+  final technical review and acceptance are pending.
 - Last completed work: US-06 Learning Scheduler Domain, including the accepted
   pure scheduler implementation, exhaustive tests, technical re-review and
   Core CI evidence; BATCH 0 through BATCH 4 remain accepted/frozen.
-- Files/areas most recently changed: US-06 learning-domain implementation and
-  tests, plus its final acceptance documentation.
+- Files/areas most recently changed: US-07 scheduled-review-write contract and
+  story/index/roadmap/progress documentation.
   `docs/decisions.md` remains an unrelated unstaged local modification.
 - Accepted evidence: US-05 owner manual acceptance PASS; `167/167` tests,
   E2E `11/11`, lint, typecheck, build and `git diff --check` PASS; Core CI #30
@@ -37,16 +37,143 @@
   stable IDs (1–30) are approved, all enabled with `contentVersion=1`.
 - Frozen areas: BATCH 0 bootstrap, role model, database targets, schemas, reset
   policy, migration executor and CI behavior unless a proven regression appears.
-- Next safe action: stop at the accepted `scheduler-domain-ready` boundary;
-  any next story requires a separate discovery/contract task.
-- Do NOT do next: Do not start US-07 implementation, expand the scheduler
-  scope into review persistence or reopen accepted infrastructure without
-  regression evidence.
+- Next safe action: complete focused US-07 validation, regression gates and
+  implementation evidence; Trusted DB remains a later acceptance gate.
+- Do NOT do next: Do not expand into Review Queue or Study UX, mark US-07
+  accepted, or start US-08.
 - Documents new agent must read first: `docs/README.md`,
   `docs/product/product-spec.md`, `docs/architecture/technical-architecture.md`,
   `docs/design/design-system.md`, `docs/design/feature-ui-spec.md`,
-  `docs/flow/user-flow.md`, `docs/decisions.md`, `docs/roadmap.md`, the accepted
-  US-06 story and this file.
+  `docs/flow/user-flow.md`, `docs/decisions.md`, `docs/roadmap.md`, the current
+  US-07 story and this file.
+
+## 2026-09-14 — US-07 implementation checkpoint
+
+### Implemented scope
+
+- Added the approved strict review request/response contracts, additive
+  `learning_status`/`review_result` enums, `learner_progress` and
+  `review_events` schema, migration `0004_scheduled_review_write`, reset
+  ordering and `POST /api/reviews` service/route.
+- Added server-authoritative authorization, vocabulary availability checks,
+  sparse NEW revision `0 → 1`, deterministic fingerprints, replay/conflict
+  handling, CAS writes, race reclassification, household-local dates and
+  atomic progress/event persistence.
+- Added focused review and schema/reset tests: `20/20` PASS; full repository
+  tests are `231/231` PASS, E2E is `11/11` PASS, and lint, typecheck and build
+  are PASS. US-07 remains `IN PROGRESS`; technical review, Core CI, Trusted DB
+  and owner acceptance are pending.
+
+### Scope guard
+
+- No Review Queue, Study UI, reinforcement, US-08 work, seed change or
+  CI/workflow change was added. `docs/decisions.md` remains an unrelated
+  protected unstaged local modification.
+
+## 2026-09-14 — US-07 fix-forward 1 checkpoint
+
+### P1 findings resolved
+
+- P1-H: review-event idempotency is now scoped to the server-authorized
+  household, including pre-write lookup and post-race reclassification.
+- P1-J: validated request UUIDs are canonicalized before fingerprinting,
+  persistence comparison and response construction.
+- P1-T: scheduler numeric persistence uses BIGINT with explicit safe-integer
+  checks, safe database conversion and deterministic revision exhaustion
+  handling; the US-06 scheduler remains unchanged.
+- Focused US-07 service/API and schema/reset tests are now `27/27` PASS,
+  including foreign-ID, UUID and numeric-boundary regressions.
+
+### Gate status
+
+- US-07 remains `IN PROGRESS`.
+- Technical re-review is pending. Core CI and Trusted DB Integration remain
+  pending; Trusted DB is required for final acceptance.
+- No commit, push, Core CI run, Trusted DB run or US-08 work was performed.
+- `docs/decisions.md` remains protected unrelated local work.
+
+## 2026-09-14 — US-07 fix-forward 2 checkpoint
+
+### Alignment scope
+
+- Aligned the US-07 story's persistence and concurrency contract with the
+  reviewed household-scoped `(household_id, review_id)` idempotency key.
+- Documented BIGINT scheduler/revision storage, JavaScript safe-integer bounds,
+  checked conversion and deterministic revision exhaustion behavior.
+- Updated UUID regression fixtures to contain alphabetic hexadecimal characters,
+  making uppercase/lowercase canonicalization coverage non-vacuous.
+- Focused tests remain `27/27` PASS; full tests are `238/238` PASS; E2E is
+  `11/11` PASS; lint, typecheck, build, Markdown links/anchors and
+  `git diff --check` are PASS.
+
+### Gate status
+
+- US-07 remains `IN PROGRESS`; technical re-review is pending.
+- Core CI and Trusted DB Integration remain pending; Trusted DB is required for
+  final acceptance.
+- No implementation redesign, commit, push, Core CI run, Trusted DB run or
+  US-08 work was performed. `docs/decisions.md` remains protected local work.
+
+## 2026-09-14 — US-07 contract owner approval
+
+### Approved contract
+
+- Owner approved the canonical response DTO, first materialized revision `1`,
+  missing/disabled vocabulary `404 VOCABULARY_NOT_FOUND` behavior (or the
+  established equivalent), authorization-before-replay and enabled-learner
+  behavior.
+- Fingerprint semantics, sparse virtual `NEW`, concurrent first-review
+  handling, server-owned dates, immutable events and atomic progress/event
+  persistence remain locked as documented in the story.
+- US-07 was promoted to `READY FOR IMPLEMENTATION`; final acceptance requires
+  Core CI and Trusted DB Integration. US-08 remains `NOT STARTED`.
+
+### Scope guard
+
+- No application code, API route, schema, migration, dependency, CI/workflow,
+  Neon operation, commit or push was performed. `docs/decisions.md` remains
+  an unrelated protected unstaged local modification.
+
+## 2026-09-14 — US-07 story discovery / contract preparation
+
+### Recommendation
+
+- The correct next story is `US-07 — Scheduled Review Write`, aligned to
+  Architecture Step 6 (`POST /api/reviews`). It is smaller and safer than
+  combining review persistence with Review Queue or Study-session UX.
+- Proposed success boundary: `scheduled-review-write-ready`, from the
+  accepted `scheduler-domain-ready` boundary plus authenticated parent,
+  authorized learner and approved sparse-progress architecture.
+- Review Queue remains the later Architecture Step 8 milestone; reinforcement,
+  session UX and progress presentation remain separate scope.
+
+### Contract discovery
+
+- The architecture fixes the strict request fields, server-owned scheduler
+  computation, sparse virtual `NEW`, `reviewId` fingerprint semantics,
+  `expectedRevision`, concurrent first-review race barrier, household-local
+  review date, immutable event snapshot and atomic progress/event write.
+- US-07 requires an additive application migration for `learning_status`,
+  `review_result`, `learner_progress` and `review_events`, plus reset/index/
+  privilege verification. Trusted DB Integration is therefore required for
+  implementation acceptance.
+- No application code, API route, schema, migration, dependency, CI/workflow,
+  Neon operation, commit or push was performed. `docs/decisions.md` remains an
+  unrelated protected unstaged local modification.
+
+### Owner decisions required
+
+- The exact successful response DTO is not specified by the repository; it
+  must be approved before shared response contracts or `response_payload` are
+  implemented.
+- The first materialized revision is not explicitly specified. Recommended
+  smallest choice: virtual `0` is consumed and first persisted/resulting
+  revision is `1`.
+- Confirm `404 NOT_FOUND` for missing/disabled vocabulary; no other critical
+  source conflict was found.
+
+US-06 remains `ACCEPTED / CLOSED`. US-07 implementation is now `IN PROGRESS`;
+US-08 work has not started.
 
 ## 2026-09-13 — US-06 acceptance finalized
 

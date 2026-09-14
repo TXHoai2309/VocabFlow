@@ -2,6 +2,73 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-14 — US-07 Scheduled Review Write fix-forward 2
+
+- Aligned the story contract with the reviewed household-scoped idempotency
+  key `(household_id, review_id)`, BIGINT scheduler/revision persistence and
+  JavaScript safe-integer/MAX_SAFE revision semantics.
+- Replaced numeric-only UUID fixtures so uppercase/lowercase canonicalization
+  coverage is non-vacuous. Focused tests remain `27/27` PASS and full tests are
+  `238/238` PASS; US-07 remains `IN PROGRESS`.
+- Technical re-review, Core CI and Trusted DB Integration remain pending. No
+  implementation redesign, commit, push or US-08 work was performed.
+
+## 2026-09-14 — US-07 Scheduled Review Write fix-forward 1
+
+- Resolved the three technical-review P1 findings: household-scoped review
+  idempotency, canonical UUID fingerprinting and safe BIGINT scheduler
+  persistence with explicit JavaScript safe-integer boundaries.
+- Added focused foreign-review-ID, case-normalization, numeric-boundary and
+  migration-alignment regressions. Focused US-07/schema-reset tests are
+  `27/27` PASS; US-07 remains `IN PROGRESS`.
+- Technical re-review, Core CI and Trusted DB Integration remain pending;
+  Trusted DB is required for final acceptance. No US-08 work was started.
+
+## 2026-09-14 — US-07 Scheduled Review Write implementation checkpoint
+
+- Started US-07 implementation under the approved scheduled-review contract.
+- Added shared review DTOs, additive progress/event schema and migration
+  `0004_scheduled_review_write`, reset support and `POST /api/reviews` with
+  authorization, sparse NEW, scheduler, idempotency, CAS concurrency, atomic
+  persistence and safe errors.
+- Added focused API/service and schema/reset tests. US-07 remains `IN PROGRESS`;
+  technical review, Core CI, Trusted DB and owner acceptance remain pending.
+- Review Queue, Study UI, reinforcement, seed changes, CI/workflow changes and
+  US-08 remain out of scope. `docs/decisions.md` remains protected local work.
+
+## 2026-09-14 — US-07 Scheduled Review Write contract approved
+
+- Owner approved US-07 for implementation with the canonical scheduled-review
+  response DTO, first materialized revision `1`, missing/disabled vocabulary
+  `404 VOCABULARY_NOT_FOUND` behavior (or the established equivalent),
+  authorization-before-replay and enabled-learner rules.
+- Preserved the server-authoritative idempotency, sparse `NEW`, optimistic
+  concurrency, timezone, immutable event and atomic progress/event contracts.
+- US-07 is `READY FOR IMPLEMENTATION`; Review Queue and US-08 remain out of
+  scope. Final acceptance requires Core CI and Trusted DB Integration.
+- No application code, API route, schema, migration, dependency, CI/workflow,
+  Neon operation, commit or push was performed. `docs/decisions.md` remains
+  protected unrelated local work.
+
+## 2026-09-14 — US-07 Scheduled Review Write contract preparation
+
+- Added US-07 at `READY FOR CONTRACT REVIEW` as the recommended next story
+  after accepted US-06 and Architecture Step 6: `POST /api/reviews`.
+- Locked the discovery scope around one scheduled server-authoritative write,
+  sparse virtual `NEW` materialization, `reviewId` idempotency,
+  `expectedRevision`, household-local dates and atomic progress plus immutable
+  review-event persistence.
+- Kept Review Queue (Architecture Step 8), reinforcement, Study-session UX,
+  progress presentation and US-08 out of scope.
+- Identified owner decisions required before implementation: exact response DTO,
+  first materialized revision (`0` versus `1`) and confirmation of the
+  missing/disabled vocabulary `404 NOT_FOUND` mapping.
+- US-07 requires additive schema/migration and real DB concurrency validation,
+  so Trusted DB Integration will be required for its later acceptance.
+- No application code, API route, schema, migration, dependency, CI/workflow,
+  Neon operation, commit or push was performed. `docs/decisions.md` remains
+  protected unrelated local work.
+
 ## 2026-09-13 — US-06 Learning Scheduler Domain accepted
 
 - US-06 is `ACCEPTED`; the `scheduler-domain-ready` success boundary was
