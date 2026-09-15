@@ -2,6 +2,19 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-15 — US-09 Flashcard Session UX implementation
+
+- Implemented the Architecture Step 9 queue-backed Study session over the
+  accepted US-08 review queue and US-07 scheduled-review write APIs.
+- Added due-first flashcard presentation, flip/back content, manual audio and
+  media fallback, server-confirmed recall actions, exact-payload retry,
+  stale-revision reconciliation, bounded session-local reinforcement and an
+  ephemeral session summary.
+- No schema, migration, API or database behavior changed. Trusted DB is not
+  required for this UI/client-composition slice.
+- Local implementation evidence is complete; US-09 is ready for owner check.
+- `docs/decisions.md` remains protected and unchanged.
+
 ## 2026-09-15 — US-08 Review Queue accepted and merged
 
 - Accepted immutable US-08 candidate

@@ -29,9 +29,11 @@ convenient. Reprioritization or a new story must be explicit.
 - [US-06 Learning Scheduler Domain](US-06-learning-scheduler-domain.md)
   — `ACCEPTED`.
 - [US-07 Scheduled Review Write](US-07-scheduled-review-write.md)
-  — `IN PROGRESS`.
+  — `ACCEPTED / CLOSED`.
 - [US-08 Review Queue](US-08-review-queue.md)
-  — `ACCEPTED` (owner override; US-07 CAS acceptance remains blocked).
+  — `ACCEPTED / CLOSED`.
+- [US-09 Flashcard Session UX](US-09-flashcard-session-ux.md)
+  — `IN PROGRESS` (implementation complete; owner check pending).
 
 ## Story status gate
 

@@ -1,10 +1,10 @@
 # US-07 — Scheduled Review Write
 
-- Status: IN PROGRESS
+- Status: ACCEPTED / CLOSED
 - Batch: BATCH 5 — Scheduled Review Write
 - Owner: Project Owner
-- Last updated: 2026-09-14
-- Baseline commit: `77da0208af433675d28647b12651ad7447287b1a`
+- Last updated: 2026-09-15
+- Accepted implementation commit: `8eb194e30871ef5af2ea02943e718c91d20816f8`
 - Scope: SCHEDULED_REVIEW_PERSISTENCE_ONLY
 
 ## 1. User Story
@@ -770,6 +770,14 @@ PROGRESS`.
 No final acceptance, commit, push or Trusted DB run has been performed by this
 implementation task. `docs/decisions.md` remains unrelated protected local
 work and is not part of US-07.
+
+## 28. Acceptance Closeout
+
+The accepted US-07 revision is `8eb194e30871ef5af2ea02943e718c91d20816f8`.
+The PostgreSQL CAS finding is closed, and US-07 is `ACCEPTED / CLOSED` in the
+current project state. This closeout supersedes the historical pending-gate
+checkpoint above; the historical evidence sections are retained for audit
+traceability.
 
 ## 27. Trusted DB Evidence Fix-Forward
 

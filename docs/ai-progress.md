@@ -1,10 +1,10 @@
 # Current Handoff Snapshot
 
 - Project: VocabFlow Family MVP
-- Current phase/batch: BATCH 6 — Review Queue (accepted)
-- Current active story: none; US-08 Review Queue is accepted and closed
-- Story status: `US-08 ACCEPTED / CLOSED`
-- Current Git branch: `main`
+- Current phase/batch: BATCH 7 — Flashcard Session UX
+- Current active story: US-09 Flashcard Session UX
+- Story status: `US-09 IMPLEMENTATION COMPLETE — READY FOR OWNER CHECK`
+- Current Git branch: `TXH`
 - Accepted US-08 candidate: `bb91e01073dd156602cddb5bb98948ce06659bbe`
 - Final US-08 merge on main: `2e8dd0f30754969f86fb00933813dcebbbe342d5`
 - Documentation/agent pack status: finalized and approved for repository baseline
@@ -15,12 +15,10 @@
   PostgreSQL 18
 - US-01 acceptance CI status: Core CI PASS on merged main `6806e66`
 - US-01 Trusted DB Integration status: PASS on merged main `6806e66`
-- Current implementation focus: no active US-08 work; US-07 remains blocked on
-  its known PostgreSQL CAS acceptance finding.
-- Last completed work: US-08 Review Queue, including technical review, exact-SHA
-  Core CI, scoped Trusted DB, Owner Acceptance and PR #7 merge; BATCH 0 through
-  BATCH 4 and BATCH 6 remain accepted/frozen; BATCH 5 remains blocked on the
-  separate US-07 CAS finding.
+- Current implementation focus: US-09 Flashcard Session UX is implemented over
+  the accepted US-07 and US-08 API contracts; owner check remains pending.
+- Last completed work: US-09 queue-backed Study session implementation and
+  local validation; BATCH 0 through BATCH 6 remain accepted/frozen.
 - Files/areas most recently changed: US-08 review-queue harness evidence and
   acceptance closeout documentation. The protected `docs/decisions.md` remains
   preserved in the original US-07 evidence worktree.
@@ -43,15 +41,28 @@
   Core CI #34970869460 PASS, Trusted DB #34971985883 PASS for
   `us08-review-queue`, Owner Acceptance `OWNER_ACCEPT_US08`, merged by PR #7
   at `2e8dd0f30754969f86fb00933813dcebbbe342d5`.
-- Next safe action: follow separate owner direction for US-07 or a later story;
-  do not infer US-07 acceptance from US-08 closeout.
-- Do NOT do next: Do not mark US-07 accepted, close its CAS P1, modify its
-  diagnostic worktree, or begin Architecture Step 9 Study UX.
+- Next safe action: owner check for US-09; do not begin US-10.
+- Do NOT do next: do not modify `docs/decisions.md`, add speculative session
+  persistence/offline writes, or begin US-10.
 - Documents new agent must read first: `docs/README.md`,
   `docs/product/product-spec.md`, `docs/architecture/technical-architecture.md`,
   `docs/design/design-system.md`, `docs/design/feature-ui-spec.md`,
   `docs/flow/user-flow.md`, `docs/decisions.md`, `docs/roadmap.md`, the current
-  US-07 story and this file.
+  US-09 story and this file.
+
+## 2026-09-15 — US-09 implementation checkpoint
+
+- Implemented Architecture Step 9, `Flashcard Session UX`, using the accepted
+  US-08 review queue and US-07 `POST /api/reviews` contracts.
+- The Study route now owns queue-backed due-first presentation, flip/back card
+  content, manual media fallback, server-confirmed scheduled answers, exact
+  request retry, stale-revision recovery, two-attempt session-local
+  reinforcement and ephemeral summary metrics.
+- No schema, migration, API or real database behavior changed. Trusted DB is
+  not required for this UI/client-composition slice.
+- Focused and repository-wide local validation is recorded at closeout; US-09
+  is ready for owner check and US-10 has not started.
+- `docs/decisions.md` remains protected and untouched.
 
 ## 2026-09-15 — US-08 authorization harness expectation fix-forward
 

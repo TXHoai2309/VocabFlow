@@ -6,8 +6,7 @@
 - Owner: Project Owner
 - Last updated: 2026-09-15
 - Scope: LEARNER_SCOPED_REVIEW_QUEUE_READ
-- Gate note: SEQUENTIAL GATE OVERRIDDEN BY OWNER; ACCEPTANCE COMPLETE
-- Upstream acceptance debt: US-07 persistence CAS Trusted DB acceptance remains unresolved. US-07 is not accepted and its known PostgreSQL CAS P1 remains open.
+- Gate note: ACCEPTANCE COMPLETE; US-07 is accepted and closed upstream
 
 ## 1. User Story
 
@@ -56,17 +55,15 @@ queue is an API/data foundation for that later story.
 - [User Flow — Flashcard](../flow/user-flow.md#3-luồng-học-flashcard)
   — queue precedes card presentation.
 - [US-07 Scheduled Review Write](US-07-scheduled-review-write.md)
-  — existing progress/revision persistence contract and unresolved acceptance debt.
+  — accepted progress/revision persistence contract.
 
-## 4. Dependencies and Owner Override
+## 4. Dependencies and Acceptance Ordering
 
 - BATCH 0 through US-06 remain accepted baselines.
-- US-07 is `IN PROGRESS / BLOCKED`; its public request/write contract and
-  `learner_progress` schema are present, but real PostgreSQL CAS acceptance is
-  still pending.
-- The owner explicitly authorized US-08 before US-07 acceptance.
-- This story records the override and does not close, alter or depend on a
-  resolution of the known US-07 CAS P1.
+- US-07 is `ACCEPTED / CLOSED`; its public request/write contract,
+  `learner_progress` schema and PostgreSQL CAS behavior are accepted.
+- US-08 was accepted with the owner-authorized ordering recorded in the
+  historical evidence below.
 
 Dependency classification:
 
@@ -80,14 +77,13 @@ Dependency classification:
 
 ### HISTORICAL ACCEPTANCE-BLOCKED CHECKPOINT
 
-- End-to-end acceptance of a queue followed by a successful persisted review
-  remains downstream of US-07's unresolved real PostgreSQL CAS evidence.
-- The queue read itself is locally testable and does not claim to prove US-07.
+- The queue read is independently accepted, while the persisted review write
+  remains governed by the accepted US-07 contract.
 
 ### HARD BLOCKERS
 
-None for the Step 8 read/API implementation. The unresolved US-07 CAS root
-cause is not silently fixed here.
+None for the Step 8 read/API implementation. The accepted US-07 CAS behavior
+is consumed as an upstream contract and is not changed here.
 
 ## 5. Input Boundary
 
@@ -301,5 +297,5 @@ US-07 CAS ACCEPTANCE DEBT`.
   operations completed and `us08-reset` was invoked, but final reset state is
   not independently proven because no distinct reset-completion marker was
   emitted.
-- US-07 remains `IN PROGRESS / BLOCKED` with its known CAS P1 open. US-08
-  acceptance does not accept or close US-07. US-09 remains `NOT STARTED`.
+- US-07 is `ACCEPTED / CLOSED`. US-09 is the next active story at Architecture
+  Step 9.

@@ -164,9 +164,9 @@ The complete story contract is in
 
 ## BATCH 5 — Scheduled Review Write
 
-- Status: `IN PROGRESS`.
+- Status: `ACCEPTED`.
 - Dependency: BATCH 4 and US-06 are `ACCEPTED`.
-- Active story: US-07 Scheduled Review Write.
+- Active story: none; US-07 Scheduled Review Write is `ACCEPTED / CLOSED`.
 - Scope: the smallest server-authoritative `POST /api/reviews` boundary for
   one scheduled evaluation, sparse first materialization, idempotency,
   optimistic revision and atomic progress/event persistence.
@@ -181,16 +181,14 @@ The complete story contract is in
   Architecture Step 8 milestone.
 - Owner-approved contract decisions lock the exact response DTO, first
   materialized revision `1`, missing/disabled vocabulary `404` behavior,
-  authorization-before-replay and enabled-learner rules. Implementation is in
-  progress; final acceptance still requires technical review, Core CI and
-  Trusted DB.
+  authorization-before-replay and enabled-learner rules. The accepted fix
+  closed the PostgreSQL CAS finding and the story is now closed.
 
 ## BATCH 6 — Review Queue
 
 - Status: `ACCEPTED`.
 - Dependency: Architecture Step 8 and the accepted vocabulary, learner and
-  sparse-progress foundations. The owner explicitly overrode the sequential
-  gate while US-07 remains blocked on its PostgreSQL CAS acceptance evidence.
+  sparse-progress foundations. US-07 is now accepted and closed.
 - Active story: none; US-08 Review Queue is `ACCEPTED / CLOSED`.
 - Scope: authenticated, household-authorized
   `GET /api/learners/:learnerId/review-queue` with deterministic due-first and
@@ -210,8 +208,26 @@ The complete story contract is in
 - The reset note remains truthful: fixture cleanup completed and `us08-reset`
   was invoked, but final reset state is not independently proven because no
   distinct reset-completion marker was emitted.
-- US-07 remains `IN PROGRESS / BLOCKED`; its known PostgreSQL CAS P1 is not
-  closed by this story and no US-07 acceptance is implied.
+- US-07 is `ACCEPTED / CLOSED`; its CAS acceptance is an upstream dependency
+  already satisfied.
+
+## BATCH 7 — Flashcard Session UX
+
+- Status: `IN PROGRESS` — implementation complete; owner check pending.
+- Dependency: BATCH 6 / US-08 Review Queue and the accepted US-07 scheduled
+  review write.
+- Active story: US-09 Flashcard Session UX.
+- Architecture step: Step 9.
+- Scope: queue-backed Study session composition with due-first presentation,
+  front/back flashcard interaction, server-confirmed scheduled answers, retry
+  with the same request identity, stale-revision reconciliation, session-local
+  reinforcement and ephemeral summary metrics.
+- Success boundary: `study-session-ready`.
+- No schema, migration, API or database behavior changes are introduced. The
+  client composes the accepted US-08 queue and US-07 review-write APIs; no
+  `study_sessions` persistence or offline write queue is added.
+- Trusted DB is not required for this UI/client-composition slice because no
+  real database behavior changes.
 
 ## Later product scope
 

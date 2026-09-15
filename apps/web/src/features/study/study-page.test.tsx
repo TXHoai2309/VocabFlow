@@ -2,7 +2,7 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
-import type { LearnerDto, VocabularyDto } from "@vocabflow/contracts";
+import type { LearnerDto, ReviewQueueItem, ReviewQueueResponse, VocabularyDto } from "@vocabflow/contracts";
 import { ActiveLearnerProvider } from "../learners/learner-context-provider";
 import { StudyPage } from "./study-page";
 
@@ -16,19 +16,61 @@ const learner: LearnerDto = {
   updatedAt: "2026-09-10T00:00:00.000Z"
 };
 
-const vocabulary: VocabularyDto = {
-  id: 1,
-  word: "apple",
-  ipa: null,
-  vietnamese: "quả táo",
-  definitionEn: null,
-  exampleEn: null,
-  imageUrl: null,
-  audioUrl: null,
-  topic: null,
-  enabled: true,
-  contentVersion: 1
-};
+function vocabulary(id: number, word: string, vietnamese: string): VocabularyDto {
+  return {
+    id,
+    word,
+    ipa: null,
+    vietnamese,
+    definitionEn: null,
+    exampleEn: null,
+    imageUrl: null,
+    audioUrl: null,
+    topic: null,
+    enabled: true,
+    contentVersion: 1
+  };
+}
+
+function queueItem(id: number, word: string, queueType: ReviewQueueItem["queueType"] = "NEW", expectedRevision = 0): ReviewQueueItem {
+  return {
+    vocabulary: vocabulary(id, word, `${word}-nghĩa`),
+    queueType,
+    status: queueType === "DUE" ? "LEARNING" : "NEW",
+    nextReviewDate: queueType === "DUE" ? "2026-09-15" : null,
+    expectedRevision
+  };
+}
+
+function queueResponse(queue: ReviewQueueItem[]): ReviewQueueResponse {
+  return {
+    learnerId: learner.id,
+    reviewDate: "2026-09-15",
+    dueCount: queue.filter((item) => item.queueType === "DUE").length,
+    newCount: queue.filter((item) => item.queueType === "NEW").length,
+    queue
+  };
+}
+
+function reviewResponse(item: ReviewQueueItem, result: "REMEMBERED" | "FORGOTTEN") {
+  return {
+    reviewId: "00000000-0000-4000-8000-000000000099",
+    learnerId: learner.id,
+    vocabularyId: item.vocabulary.id,
+    result,
+    progress: {
+      status: "LEARNING",
+      consecutiveCorrect: result === "REMEMBERED" ? 1 : 0,
+      intervalDays: 1,
+      firstLearnedDate: "2026-09-15",
+      lastReviewedDate: "2026-09-15",
+      nextReviewDate: "2026-09-16",
+      totalCorrect: result === "REMEMBERED" ? 1 : 0,
+      totalIncorrect: result === "FORGOTTEN" ? 1 : 0,
+      revision: item.expectedRevision + 1
+    }
+  };
+}
 
 function response(body: unknown, status = 200) {
   return new Response(JSON.stringify(body), {
@@ -44,102 +86,151 @@ function renderStudy(initialLearner: LearnerDto | null = learner) {
         <Routes>
           <Route path="/study" element={<StudyPage />} />
           <Route path="/learners" element={<p>learners-route</p>} />
+          <Route path="/login" element={<p>login-route</p>} />
         </Routes>
       </ActiveLearnerProvider>
     </MemoryRouter>
   );
 }
 
-describe("US-05 first real flashcard", () => {
+describe("US-09 flashcard session UX", () => {
   beforeEach(() => {
     vi.restoreAllMocks();
   });
 
-  it("loads vocabulary[0] and keeps the Vietnamese meaning off the front", async () => {
-    const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValue(response({ vocabulary: [vocabulary] }));
+  it("loads the canonical due-first queue and keeps Vietnamese off the front", async () => {
+    const due = queueItem(1, "apple", "DUE", 3);
+    due.vocabulary.audioUrl = "/audio/apple.mp3";
+    const fresh = queueItem(2, "book");
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValue(response(queueResponse([due, fresh])));
     renderStudy();
 
-    expect(await screen.findByTestId("first-flashcard-ready")).toBeInTheDocument();
+    expect(await screen.findByTestId("study-session-ready")).toBeInTheDocument();
     expect(screen.getByText("apple")).toBeInTheDocument();
-    expect(screen.queryByText("quả táo")).not.toBeInTheDocument();
-    expect(fetchMock).toHaveBeenCalledWith("/api/vocabulary", { credentials: "include" });
-    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(screen.queryByText("apple-nghĩa")).not.toBeInTheDocument();
+    expect(screen.getByTestId("session-counter")).toHaveTextContent("0 / 2");
+    expect(screen.getByRole("button", { name: "Phát âm thanh" })).toBeInTheDocument();
+    expect(fetchMock).toHaveBeenCalledWith(`/api/learners/${learner.id}/review-queue`, { credentials: "include" });
+
+    fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
+    expect(screen.getByText("apple-nghĩa")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Chưa nhớ" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Đã nhớ" })).toBeInTheDocument();
   });
 
-  it("flips by click and exposes the word plus Vietnamese on the back", async () => {
-    vi.spyOn(globalThis, "fetch").mockResolvedValue(response({ vocabulary: [vocabulary] }));
-    renderStudy();
-    const card = await screen.findByRole("button", { name: "Lật để xem nghĩa" });
-
-    fireEvent.click(card);
-
-    expect(screen.getByRole("button", { name: "Lật về mặt trước" })).toBeInTheDocument();
-    expect(screen.getByText("apple")).toBeInTheDocument();
-    expect(screen.getByText("quả táo")).toBeInTheDocument();
-  });
-
-  it("prevents Space page scrolling while leaving the flip to the focused button", async () => {
-    vi.spyOn(globalThis, "fetch").mockResolvedValue(response({ vocabulary: [vocabulary] }));
-    renderStudy();
-    const card = await screen.findByRole("button", { name: "Lật để xem nghĩa" });
-
-    fireEvent.keyDown(card, { key: " ", code: "Space" });
-    expect(screen.getByRole("button", { name: "Lật về mặt trước" })).toBeInTheDocument();
-  });
-
-  it("renders the NULL optional-field card without placeholder controls", async () => {
-    vi.spyOn(globalThis, "fetch").mockResolvedValue(response({ vocabulary: [vocabulary] }));
-    renderStudy();
-    const card = await screen.findByRole("button", { name: "Lật để xem nghĩa" });
-
-    fireEvent.click(card);
-
-    expect(screen.getAllByRole("button")).toHaveLength(1);
-    expect(screen.queryByText(/definition|example|audio|image|ipa/i)).not.toBeInTheDocument();
-  });
-
-  it("shows loading without fabricating a card and handles an empty response", async () => {
-    let resolveRequest: ((value: Response) => void) | undefined;
-    vi.spyOn(globalThis, "fetch").mockImplementation(() => new Promise((resolve) => {
-      resolveRequest = resolve;
-    }));
-    renderStudy();
-
-    expect(screen.getByTestId("study-loading")).toBeInTheDocument();
-    expect(screen.queryByTestId("first-flashcard-ready")).not.toBeInTheDocument();
-
-    resolveRequest?.(response({ vocabulary: [] }));
-    expect(await screen.findByTestId("study-empty-state")).toBeInTheDocument();
-    expect(screen.queryByTestId("first-flashcard-ready")).not.toBeInTheDocument();
-  });
-
-  it("offers a safe retry after an API failure", async () => {
+  it("persists a scheduled answer and advances only after server confirmation", async () => {
+    const first = queueItem(1, "apple", "DUE", 3);
+    const second = queueItem(2, "book");
     const fetchMock = vi.spyOn(globalThis, "fetch")
-      .mockResolvedValueOnce(response({ error: { code: "INTERNAL_ERROR", message: "secret detail" } }, 503))
-      .mockResolvedValueOnce(response({ vocabulary: [vocabulary] }));
+      .mockResolvedValueOnce(response(queueResponse([first, second])))
+      .mockResolvedValueOnce(response(reviewResponse(first, "REMEMBERED"), 201));
     renderStudy();
 
-    expect(await screen.findByRole("alert")).toHaveTextContent("Không thể tải nội dung học lúc này. Vui lòng thử lại.");
-    expect(screen.getByRole("alert")).not.toHaveTextContent("secret detail");
+    await screen.findByTestId("study-session-ready");
+    fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
+    fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
+
+    await waitFor(() => expect(screen.getByText("book")).toBeInTheDocument());
+    expect(screen.getByTestId("session-counter")).toHaveTextContent("1 / 2");
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    const request = JSON.parse(String(fetchMock.mock.calls[1]?.[1]?.body));
+    expect(request).toMatchObject({ learnerId: learner.id, vocabularyId: 1, result: "REMEMBERED", expectedRevision: 3 });
+    expect(request.reviewId).toMatch(/^[0-9a-f-]{36}$/);
+  });
+
+  it("keeps the same reviewId on retry after save failure", async () => {
+    const item = queueItem(1, "apple");
+    const fetchMock = vi.spyOn(globalThis, "fetch")
+      .mockResolvedValueOnce(response(queueResponse([item])))
+      .mockResolvedValueOnce(response({ error: { code: "INTERNAL_ERROR" } }, 503))
+      .mockResolvedValueOnce(response(reviewResponse(item, "REMEMBERED"), 201));
+    renderStudy();
+
+    await screen.findByTestId("study-session-ready");
+    fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
+    fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
+    expect(await screen.findByTestId("study-save-failed")).toBeInTheDocument();
+    expect(screen.getByText("Chưa lưu tiến trình")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Chưa nhớ" })).toBeDisabled();
+
+    const firstBody = String(fetchMock.mock.calls[1]?.[1]?.body);
     fireEvent.click(screen.getByRole("button", { name: "Thử lại" }));
-    expect(await screen.findByTestId("first-flashcard-ready")).toBeInTheDocument();
+    await waitFor(() => expect(screen.getByTestId("study-session-summary")).toBeInTheDocument());
+    expect(fetchMock).toHaveBeenCalledTimes(3);
+    expect(fetchMock.mock.calls[2]?.[1]?.body).toBe(firstBody);
+    expect(screen.getByText("Đã review").nextElementSibling).toHaveTextContent("1");
+  });
+
+  it("reconciles stale revision without counting the rejected answer", async () => {
+    const item = queueItem(1, "apple", "DUE", 1);
+    const refreshed = queueItem(1, "apple", "DUE", 2);
+    const fetchMock = vi.spyOn(globalThis, "fetch")
+      .mockResolvedValueOnce(response(queueResponse([item])))
+      .mockResolvedValueOnce(response({ error: { code: "STALE_REVISION" } }, 409))
+      .mockResolvedValueOnce(response(queueResponse([refreshed])))
+      .mockResolvedValueOnce(response(reviewResponse(refreshed, "REMEMBERED"), 201));
+    renderStudy();
+
+    await screen.findByTestId("study-session-ready");
+    fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
+    fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
+    await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(3));
+    expect(await screen.findByText("Tiến trình đã thay đổi. Hãy đánh giá lại thẻ này.")).toBeInTheDocument();
+    expect(screen.getByTestId("session-counter")).toHaveTextContent("0 / 1");
+
+    fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
+    fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
+    await waitFor(() => expect(screen.getByTestId("study-session-summary")).toBeInTheDocument());
+    expect(screen.getByText("Đã review").nextElementSibling).toHaveTextContent("1");
+    expect(fetchMock).toHaveBeenCalledTimes(4);
+  });
+
+  it("reinserts Forgotten only as session-local reinforcement and caps it at two", async () => {
+    const item = queueItem(1, "apple");
+    const fetchMock = vi.spyOn(globalThis, "fetch")
+      .mockResolvedValueOnce(response(queueResponse([item])))
+      .mockResolvedValueOnce(response(reviewResponse(item, "FORGOTTEN"), 201));
+    renderStudy();
+
+    await screen.findByTestId("study-session-ready");
+    fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
+    fireEvent.click(screen.getByRole("button", { name: "Chưa nhớ" }));
+    await screen.findByText("Ôn lại");
+    expect(screen.getByTestId("session-counter")).toHaveTextContent("1 / 1");
+
+    fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
+    fireEvent.click(screen.getByRole("button", { name: "Chưa nhớ" }));
+    await screen.findByText("Ôn lại");
+    fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
+    fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
+
+    await waitFor(() => expect(screen.getByTestId("study-session-summary")).toBeInTheDocument());
+    expect(screen.getByText("Lượt ôn lại").nextElementSibling).toHaveTextContent("2");
     expect(fetchMock).toHaveBeenCalledTimes(2);
   });
 
-  it("handles an authenticated household denial without exposing server details", async () => {
-    vi.spyOn(globalThis, "fetch").mockResolvedValue(
-      response({ error: { code: "HOUSEHOLD_ACCESS_DENIED", message: "private detail" } }, 403)
-    );
+  it("shows a valid empty state and redirects without learner context", async () => {
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(response(queueResponse([])));
     renderStudy();
+    expect(await screen.findByTestId("study-empty-state")).toBeInTheDocument();
+    expect(screen.getByText("Về learner")).toBeInTheDocument();
 
-    expect(await screen.findByRole("alert")).toHaveTextContent("Không thể tiếp tục với learner này. Vui lòng chọn lại learner.");
-    expect(screen.getByRole("alert")).not.toHaveTextContent("private detail");
-  });
-
-  it("returns to learner resolution when opened without an in-memory learner context", async () => {
-    const fetchMock = vi.spyOn(globalThis, "fetch");
     renderStudy(null);
     await waitFor(() => expect(screen.getByText("learners-route")).toBeInTheDocument());
-    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it("confirms leaving the session even before an answer is pending", async () => {
+    const item = queueItem(1, "apple");
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(response(queueResponse([item])));
+    const confirmMock = vi.fn(() => false);
+    vi.stubGlobal("confirm", confirmMock);
+    renderStudy();
+
+    await screen.findByTestId("study-session-ready");
+    fireEvent.click(screen.getByRole("link", { name: "← Thoát" }));
+
+    expect(confirmMock).toHaveBeenCalledWith("Bạn muốn kết thúc phiên học?");
+    expect(screen.getByTestId("study-session-ready")).toBeInTheDocument();
+    vi.unstubAllGlobals();
   });
 });
