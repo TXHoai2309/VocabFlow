@@ -49,6 +49,33 @@
   `docs/flow/user-flow.md`, `docs/decisions.md`, `docs/roadmap.md`, the current
   US-07 story and this file.
 
+## 2026-09-15 — US-08 Trusted DB harness fix-forward checkpoint
+
+### Diagnosis and fix
+
+- Trusted DB run `34941415887` reached the exact retired candidate
+  `54a029f333dcee7abfa825e9991d8d61797e87e4` and failed with PostgreSQL
+  SQLSTATE `42601` during `us08-authorization-cases` / `us08-fixture-auth-a`.
+- The root cause was confirmed as a harness-only `vocabularies` fixture INSERT
+  arity defect in `scripts/test-review-queue-db.ts`: five target columns were
+  supplied with four expressions. The fixture now omits `content_version` from
+  the target list so the canonical schema default `1` applies.
+- The shared helper covers all US-08 fixture callers. No product behavior,
+  schema, migration, workflow, US-07 code or US-07 CAS finding changed.
+
+### Validation and gate status
+
+- Focused US-08/harness/reset/preflight validation: `41/41` tests PASS across
+  five files; full local tests: `251/251` PASS; E2E: `11/11` PASS.
+- Lint, typecheck, build, Drizzle check, YAML parsing, workflow/preflight
+  checks and `git diff --check` PASS. No reliable local PostgreSQL arity
+  regression was added; real Trusted DB remains authoritative for SQL shape.
+- The failed SHA remains `FAILED / RETIRED`. No new immutable candidate was
+  created; future Core CI and scoped Trusted DB rerun remain pending after
+  narrow technical review. US-08 remains `IN PROGRESS / BLOCKED`.
+- US-07 remains `IN PROGRESS / BLOCKED` with its known CAS P1 open; US-09 has
+  not started. `docs/decisions.md` remains protected local work.
+
 ## 2026-09-15 — US-08 owner-override implementation checkpoint
 
 ### Discovery and gate override

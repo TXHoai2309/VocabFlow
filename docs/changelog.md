@@ -2,6 +2,23 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-15 — US-08 Trusted DB harness fix-forward diagnosis
+
+- Retired immutable candidate
+  `54a029f333dcee7abfa825e9991d8d61797e87e4` after Trusted DB run
+  `34941415887` failed with PostgreSQL SQLSTATE `42601` in the US-08
+  authorization fixture setup.
+- Confirmed a harness-only `vocabularies` INSERT arity defect: the shared
+  fixture helper listed `content_version` without supplying a fifth value.
+  The local fix removes that target column so the schema default `1` applies.
+- Product semantics, schema, migration, workflow and US-07 behavior remain
+  unchanged. Focused validation is `41/41`, full tests are `251/251`, E2E is
+  `11/11`, and lint, typecheck, build, Drizzle and workflow/preflight checks
+  pass.
+- No new immutable candidate was created. Narrow technical review, future
+  Core CI and the scoped Trusted DB rerun remain pending; US-08 remains
+  `IN PROGRESS / BLOCKED`.
+
 ## 2026-09-15 — US-08 acceptance evidence hardening
 
 - Implemented the five queue test-quality areas with queue-specific

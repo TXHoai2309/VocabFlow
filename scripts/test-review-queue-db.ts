@@ -107,8 +107,8 @@ async function seedFixture(
     `;
     for (const item of vocabulary) {
       await tx`
-        INSERT INTO ${tx.unsafe(VOCABULARY_TABLE)}
-          (id, word, vietnamese, enabled, content_version)
+      INSERT INTO ${tx.unsafe(VOCABULARY_TABLE)}
+          (id, word, vietnamese, enabled)
         VALUES (${item.id}::integer, ${`trusted-${label}-${item.id}`}::text, ${label}::text, ${item.enabled})
       `;
     }

@@ -245,6 +245,25 @@ still open. Neither suite was run by this change.
   `IN PROGRESS` pending evidence-delta technical re-review and owner
   acceptance.
 
+### 12.1 Trusted DB failure and harness fix-forward
+
+- The first scoped Trusted DB run, `34941415887`, checked out immutable
+  candidate `54a029f333dcee7abfa825e9991d8d61797e87e4` exactly, then failed
+  with PostgreSQL SQLSTATE `42601` at
+  `verify-us08-review-queue` / `us08-authorization-cases` /
+  `us08-fixture-auth-a`.
+- Diagnosis confirmed a harness-only `vocabularies` fixture INSERT arity
+  defect in `seedFixture()`: `content_version` was listed as a target column
+  without a matching expression. The local fix omits that target column and
+  preserves the schema default `content_version = 1`.
+- The failure occurred before `createReviewQueueService` or any queue
+  assertion executed. Product live evidence was not reached. The failed
+  candidate remains `FAILED / RETIRED`; it is not amended or reused.
+- The harness fix is local only and has not produced a new candidate. Future
+  technical review, Core CI and scoped Trusted DB evidence are required.
+  US-08 remains `IN PROGRESS / BLOCKED`; US-07 remains blocked with its CAS
+  P1 open, and US-09 has not started.
+
 ## 13. Explicit Out of Scope
 
 - Any change to `POST /api/reviews`, scheduler, idempotency, CAS or event
