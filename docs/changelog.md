@@ -2,6 +2,33 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-15 — US-08 acceptance evidence hardening
+
+- Implemented the five queue test-quality areas with queue-specific
+  authorization, future-progress, UTC/local timezone, ordering/cap and
+  unsafe-BIGINT coverage. A follow-up review found the due progress insertion
+  order needed to be noncanonical to prove order-before-LIMIT; that P2-4 fix
+  is now implemented and pending technical re-review.
+- Added an independent `scripts/test-review-queue-db.ts` PostgreSQL suite for
+  live queue semantics, read-only behavior, role use, cleanup/reset and
+  household isolation.
+- Added explicit `TRUSTED_DB_SUITE=us08-review-queue` orchestration while
+  preserving `full` as the canonical default. Trusted DB and Core CI were not
+  run; US-07 remains blocked on its known CAS P1 and US-08 remains in progress.
+
+## 2026-09-15 — US-08 Review Queue owner-override implementation
+
+- Started the owner-authorized US-08 `Review Queue` implementation on an
+  isolated `us-08` branch from `origin/main` at
+  `c3b2eb422bb5d922c5c2808ad2761674ba11b93a`.
+- Added the strict queue contract and authenticated household-scoped read API
+  for deterministic due-first and sparse-NEW selection, including
+  household-local date and revision metadata, plus focused tests and the
+  US-08 story.
+- No schema, migration, reset, privilege, study-session UI, US-07 diagnostic
+  or Trusted DB work was added. US-07 remains `IN PROGRESS / BLOCKED` with its
+  known PostgreSQL CAS P1 open; the owner override does not imply acceptance.
+
 ## 2026-09-14 — US-07 Scheduled Review Write fix-forward 2
 
 - Aligned the story contract with the reviewed household-scoped idempotency

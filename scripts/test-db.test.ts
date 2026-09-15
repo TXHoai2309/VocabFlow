@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { describe, expect, it } from "vitest";
-import { formatTrustedDbError, reportTrustedDbFailure } from "./test-db";
+import { afterEach, describe, expect, it } from "vitest";
+import { formatTrustedDbError, reportTrustedDbFailure, resolveTrustedDbSuite } from "./test-db";
 
 const source = readFileSync(join(process.cwd(), "scripts", "test-db.ts"), "utf8");
 const mainSource = source.slice(
@@ -88,5 +88,37 @@ describe("trusted DB acceptance diagnostics", () => {
     expect(mainSource.match(/await assertIdentitySnapshot\(reset, beforeIdentity\)/g)).toHaveLength(2);
     expect(source).toContain("vocabflow_app.verification");
     expect(source).toContain("vocabflow_meta.environment_identity");
+  });
+});
+
+const originalSuite = process.env.TRUSTED_DB_SUITE;
+
+afterEach(() => {
+  if (originalSuite === undefined) delete process.env.TRUSTED_DB_SUITE;
+  else process.env.TRUSTED_DB_SUITE = originalSuite;
+});
+
+describe("trusted DB suite selection", () => {
+  it("defaults to the canonical full suite", () => {
+    delete process.env.TRUSTED_DB_SUITE;
+    expect(resolveTrustedDbSuite()).toBe("full");
+  });
+
+  it("accepts only the explicit US-08 scoped suite", () => {
+    expect(resolveTrustedDbSuite("us08-review-queue")).toBe("us08-review-queue");
+    expect(() => resolveTrustedDbSuite("us07-review-runtime")).toThrow("TRUSTED_DB_SUITE_INVALID");
+    expect(() => resolveTrustedDbSuite("skip-us07")).toThrow("TRUSTED_DB_SUITE_INVALID");
+  });
+
+  it("keeps the canonical workflow default and exposes an explicit choice", () => {
+    const workflow = readFileSync(join(process.cwd(), ".github/workflows/trusted-db.yml"), "utf8").replace(/\r\n/g, "\n");
+    expect(workflow).toContain("default: full");
+    expect(workflow).toContain("- us08-review-queue");
+    expect(workflow).toContain("TRUSTED_DB_SUITE: ${{ inputs.suite || 'full' }}");
+    const runner = readFileSync(join(process.cwd(), "scripts/test-db.ts"), "utf8");
+    expect(runner).toContain('if (suite === "full")');
+    expect(runner).toContain('await runUs07TrustedDbSuite');
+    expect(runner).toContain('await runUs08TrustedDbSuite');
+    expect(runner).toContain('markStage("verify-us08-review-queue")');
   });
 });

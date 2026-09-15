@@ -14,6 +14,7 @@ import { assertResolvedTargetBeforeMutation, configuredDatabaseUrl } from "./run
 import { assertIdentitySnapshot, getIdentitySnapshot, resetApplicationScope } from "./db-reset-operations";
 import { provisionCanonicalIdentity } from "./db-identity-provision";
 import { runUs07TrustedDbSuite } from "./test-reviews-db";
+import { runUs08TrustedDbSuite } from "./test-review-queue-db";
 
 const ROLLBACK_MARKER = "__VOCABFLOW_PERMISSION_ROLLBACK__";
 
@@ -31,6 +32,7 @@ type TrustedDbStage =
   | "verify-second-migration"
   | "verify-concurrent-identity"
   | "verify-permission-matrix"
+  | "verify-us08-review-queue"
   | "verify-us07-review-runtime";
 
 type TrustedDbSubstage =
@@ -74,6 +76,17 @@ function markStage(stage: TrustedDbStage) {
 
 function markSubstage(substage: TrustedDbSubstage) {
   console.log(`TRUSTED_DB_SUBSTAGE=${substage}`);
+}
+
+export const trustedDbSuiteNames = ["full", "us08-review-queue"] as const;
+export type TrustedDbSuite = typeof trustedDbSuiteNames[number];
+
+export function resolveTrustedDbSuite(value = process.env.TRUSTED_DB_SUITE): TrustedDbSuite {
+  const requested = value?.trim() || "full";
+  if (!trustedDbSuiteNames.includes(requested as TrustedDbSuite)) {
+    throw new Error("TRUSTED_DB_SUITE_INVALID");
+  }
+  return requested as TrustedDbSuite;
 }
 
 const SECRET_ENV_KEYS = [
@@ -150,6 +163,8 @@ async function main() {
   markStage("validate-execution-context");
   const { context, environment } = readContext();
   if (context !== "ci-test") throw new Error("TRUSTED_DB_TEST_REQUIRES_CI_CONTEXT");
+  const suite = resolveTrustedDbSuite();
+  console.log(`TRUSTED_DB_SUITE=${suite}`);
 
   markStage("resolve-database-configuration");
   const migrationUrl = configuredDatabaseUrl(context, "integration-test");
@@ -252,8 +267,13 @@ async function main() {
   await runConcurrentIdentityCheck(identityUrl, identityTarget, beforeIdentity);
   markStage("verify-permission-matrix");
   await runPermissionMatrix({ identityUrl, migrationUrl, runtimeUrl, identityTarget, migrationTarget, runtimeTarget });
-  markStage("verify-us07-review-runtime");
-  await runUs07TrustedDbSuite({ migrationUrl, runtimeUrl, migrationTarget, runtimeTarget });
+  if (suite === "full") {
+    markStage("verify-us07-review-runtime");
+    await runUs07TrustedDbSuite({ migrationUrl, runtimeUrl, migrationTarget, runtimeTarget });
+  } else {
+    markStage("verify-us08-review-queue");
+    await runUs08TrustedDbSuite({ migrationUrl, runtimeUrl, migrationTarget, runtimeTarget });
+  }
   console.log("TRUSTED_DB_STATUS=PASS");
 }
 

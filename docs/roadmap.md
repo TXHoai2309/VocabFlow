@@ -185,11 +185,33 @@ The complete story contract is in
   progress; final acceptance still requires technical review, Core CI and
   Trusted DB.
 
+## BATCH 6 — Review Queue
+
+- Status: `IN PROGRESS`.
+- Dependency: Architecture Step 8 and the accepted vocabulary, learner and
+  sparse-progress foundations. The owner explicitly overrode the sequential
+  gate while US-07 remains blocked on its PostgreSQL CAS acceptance evidence.
+- Active story: US-08 Review Queue.
+- Scope: authenticated, household-authorized
+  `GET /api/learners/:learnerId/review-queue` with deterministic due-first and
+  sparse-NEW selection, server-owned household-local review date and
+  revision-aware queue items.
+- No new schema, migration, reset, privilege or study-session UX is included.
+  Architecture Step 9 owns the later Study session experience.
+- Queue acceptance still requires Trusted DB because the contract depends on
+  PostgreSQL `LEFT JOIN`/`NULL`, date, ordering, cap and BIGINT runtime
+  semantics. The evidence-hardening delta adds an explicit scoped suite
+  selector while preserving the canonical `full` suite default; it does not
+  change product schema or US-07 behavior.
+- US-07 remains `IN PROGRESS / BLOCKED`; its known PostgreSQL CAS P1 is not
+  closed by this story and no US-07 acceptance is implied.
+
 ## Later product scope
 
 The Product Specification defines learner selector/create, Learner Home, Study,
 Session Summary, Progress, Vocabulary and conditional reset as Family MVP
-scope. They are not promoted to implementation batches here until a tracked
-story contract is created. Product exclusions remain out of scope, including
+scope. Untracked later work is not promoted to implementation batches until a
+tracked story contract is created. Product exclusions remain out of scope,
+including
 learner own login/PIN, offline write queue, AI tutor/generated content,
 gamification, admin CMS, payments and social features.

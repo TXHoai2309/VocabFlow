@@ -1,10 +1,10 @@
 # Current Handoff Snapshot
 
 - Project: VocabFlow Family MVP
-- Current phase/batch: BATCH 5 — Scheduled Review Write (implementation)
-- Current active story: US-07 Scheduled Review Write
-- Story status: IN PROGRESS
-- Current Git branch: `TXH`
+- Current phase/batch: BATCH 6 — Review Queue (evidence hardening)
+- Current active story: US-08 Review Queue
+- Story status: IN PROGRESS (owner override)
+- Current Git branch: `us-08`
 - Latest accepted implementation baseline: `b838f107a69830234202caded33f9b7ad0040c9e`
 - Documentation/agent pack status: finalized and approved for repository baseline
 - Last accepted baseline: BATCH 0 Foundation, recorded in commit `24e4580`
@@ -14,8 +14,9 @@
   PostgreSQL 18
 - US-01 acceptance CI status: Core CI PASS on merged main `6806e66`
 - US-01 Trusted DB Integration status: PASS on merged main `6806e66`
-- Current implementation focus: US-07 scheduled review write implementation;
-  final technical review and acceptance are pending.
+- Current implementation focus: US-08 review queue implementation under the
+  explicit owner override; US-07 remains blocked on its known PostgreSQL CAS
+  acceptance finding.
 - Last completed work: US-06 Learning Scheduler Domain, including the accepted
   pure scheduler implementation, exhaustive tests, technical re-review and
   Core CI evidence; BATCH 0 through BATCH 4 remain accepted/frozen.
@@ -37,15 +38,80 @@
   stable IDs (1–30) are approved, all enabled with `contentVersion=1`.
 - Frozen areas: BATCH 0 bootstrap, role model, database targets, schemas, reset
   policy, migration executor and CI behavior unless a proven regression appears.
-- Next safe action: complete focused US-07 validation, regression gates and
-  implementation evidence; Trusted DB remains a later acceptance gate.
-- Do NOT do next: Do not expand into Review Queue or Study UX, mark US-07
-  accepted, or start US-08.
+- Next safe action: complete the US-08 evidence-delta technical re-review;
+  Trusted DB and Core CI remain pending, and no US-07 Trusted DB work is
+  authorized by this task.
+- Do NOT do next: Do not mark US-07 accepted, close its CAS P1, modify its
+  diagnostic worktree, or begin Architecture Step 9 Study UX.
 - Documents new agent must read first: `docs/README.md`,
   `docs/product/product-spec.md`, `docs/architecture/technical-architecture.md`,
   `docs/design/design-system.md`, `docs/design/feature-ui-spec.md`,
   `docs/flow/user-flow.md`, `docs/decisions.md`, `docs/roadmap.md`, the current
   US-07 story and this file.
+
+## 2026-09-15 — US-08 owner-override implementation checkpoint
+
+### Discovery and gate override
+
+- The owner explicitly authorized parallel US-08 work while US-07 remains
+  `IN PROGRESS / BLOCKED` on the known PostgreSQL CAS P1. This does not mark
+  US-07 accepted, close the CAS finding or authorize US-07 Trusted DB work.
+- US-08 is the canonical `Review Queue` story for Architecture Step 8. No
+  hard implementation blocker was found. Existing authentication, learner
+  ownership, vocabulary DTOs and sparse progress are contract-stable
+  dependencies; persisted review-flow acceptance remains acceptance-blocked
+  by the unresolved US-07 database evidence.
+
+### Implemented scope
+
+- Added the strict review-queue response contract and a read-only
+  `GET /api/learners/:learnerId/review-queue` service/route.
+- Implemented household authorization, household-local server date, due-first
+  ordering, due/new caps, sparse virtual `NEW`, deterministic ordering and
+  safe error responses. No browser-to-Neon access, study-session UI,
+  schema/migration/reset change or duplicate scheduler/persistence logic was
+  added.
+- Added focused API/service coverage and the active story at
+  `docs/stories/US-08-review-queue.md`.
+
+### Gate status
+
+- US-08 remains `IN PROGRESS`; implementation evidence and local validation
+  are pending completion before technical review.
+- US-07 remains `IN PROGRESS / BLOCKED`; its diagnostic worktree and
+  `docs/decisions.md` remain protected. No US-07 Trusted DB or Core CI run was
+  performed.
+
+## 2026-09-15 — US-08 acceptance evidence hardening checkpoint
+
+### Evidence delta
+
+- Implemented the five test-quality areas identified by technical review:
+  queue-specific cross-household/disabled/missing authorization, explicit
+  future progress exclusion, a UTC/local timezone boundary, ordering with
+  19/20/21 due-cap fixtures, and queue-specific unsafe BIGINT revision
+  handling. A narrow follow-up review found the due progress insertion order
+  needed to be noncanonical as well; that P2-4 fix is now implemented and
+  pending technical re-review.
+- Added `scripts/test-review-queue-db.ts`, an independent real-PostgreSQL
+  suite covering authorization, enabled vocabulary, due predicate and
+  ordering, sparse NEW selection, MASTERED rows, caps/suppression, timezone,
+  BIGINT revisions, read-only state and cleanup/reset behavior.
+- Added an explicit `TRUSTED_DB_SUITE` selector. `full` remains the default
+  and preserves the canonical US-07 Trusted DB path; `us08-review-queue` is
+  an explicit scoped path and is never selected implicitly.
+- Added only the corresponding manual workflow choice and environment
+  forwarding. No product semantics, schema, migration, reset policy or
+  US-07 diagnostic/CAS code was changed.
+
+### Gate status
+
+- Local evidence validation is being rerun after the hardening delta. Trusted
+  DB has not run, so all PostgreSQL-dependent US-08 criteria remain pending.
+- Core CI has not run. US-07 remains `IN PROGRESS / BLOCKED` with its known
+  CAS P1 open; US-08 remains `IN PROGRESS`; US-09 has not started.
+- No commit, push, exact-SHA creation, US-07 modification or owner acceptance
+  was performed. `docs/decisions.md` remains protected.
 
 ## 2026-09-14 — US-07 implementation checkpoint
 

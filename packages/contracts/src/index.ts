@@ -200,10 +200,28 @@ export const vocabularyListResponseSchema = z.object({
 });
 export type VocabularyListResponse = z.infer<typeof vocabularyListResponseSchema>;
 
+const canonicalUuidSchema = z.string().uuid().transform((value) => value.toLowerCase());
+
+export const reviewQueueItemSchema = z.object({
+  vocabulary: vocabularyDtoSchema,
+  queueType: z.enum(["DUE", "NEW"]),
+  status: z.enum(["NEW", "LEARNING", "MASTERED"]),
+  nextReviewDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).nullable(),
+  expectedRevision: z.number().int().nonnegative().safe()
+}).strict();
+export type ReviewQueueItem = z.infer<typeof reviewQueueItemSchema>;
+
+export const reviewQueueResponseSchema = z.object({
+  learnerId: canonicalUuidSchema,
+  reviewDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  dueCount: z.number().int().nonnegative().safe(),
+  newCount: z.number().int().nonnegative().safe(),
+  queue: z.array(reviewQueueItemSchema)
+}).strict();
+export type ReviewQueueResponse = z.infer<typeof reviewQueueResponseSchema>;
+
 export const reviewResultSchema = z.enum(["REMEMBERED", "FORGOTTEN"]);
 export type ReviewResult = z.infer<typeof reviewResultSchema>;
-
-const canonicalUuidSchema = z.string().uuid().transform((value) => value.toLowerCase());
 
 export const reviewRequestSchema = z.object({
   reviewId: canonicalUuidSchema,
