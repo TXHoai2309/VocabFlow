@@ -219,7 +219,7 @@ evidence condition is met and the affected source document is updated.
   story. Household name remains server-owned by the bootstrap contract. This
   is a contract/UI clarification only and adds no learner or database schema.
 - Evidence/source: Better Auth 1.7.3 signup runtime/type contract,
-  [Feature UI Specification](design/feature-ui-spec.md#2-authentication),
+  [Feature UI Specification](design/feature-ui-spec.md#2--authentication),
   [US-01 contract](stories/US-01-parent-registration.md)
 - Revisit only if: Better Auth is upgraded or the product owner explicitly
   changes the parent registration identity contract.

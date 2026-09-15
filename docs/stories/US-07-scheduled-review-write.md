@@ -770,3 +770,27 @@ PROGRESS`.
 No final acceptance, commit, push or Trusted DB run has been performed by this
 implementation task. `docs/decisions.md` remains unrelated protected local
 work and is not part of US-07.
+
+## 27. Trusted DB Evidence Fix-Forward
+
+The previous immutable review SHA
+`2f70b31b9961bab4293bcc788a737a2c9fa1537c` is superseded as the final
+acceptance candidate because it did not contain the required live US-07
+database evidence. The evidence-fix branch adds the focused
+`scripts/test-reviews-db.ts` suite to the canonical `pnpm test:db` command.
+The suite uses the runtime database role for the production review service
+path and migration-role setup/inspection only, covering live schema shape,
+BIGINT round-trips, sparse first writes, revision/CAS behavior, atomic
+rollback, idempotency races, cross-household review IDs, runtime privileges
+and reset cleanup.
+
+The Trusted DB workflow retains its push-to-`main` behavior and adds an
+explicit owner-triggered `workflow_dispatch` `target_sha` input. The manual
+path validates a full commit SHA, checks out that exact SHA and verifies the
+checked-out `HEAD` before secret-bearing database steps run.
+
+US-07 remains `IN PROGRESS`. The new evidence infrastructure has not been
+run against Trusted DB in this fix-forward. After technical re-review, a new
+immutable review SHA is required; Core CI and Trusted DB must both validate
+that same new SHA, followed by Owner Acceptance. No criteria are promoted to
+PASS from this unexecuted gate.
