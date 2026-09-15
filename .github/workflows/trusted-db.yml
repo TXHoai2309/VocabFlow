@@ -10,6 +10,14 @@ on:
         description: "Full 40-character immutable commit SHA to validate"
         required: true
         type: string
+      suite:
+        description: "Trusted DB suite (full preserves the canonical default)"
+        required: false
+        default: full
+        type: choice
+        options:
+          - full
+          - us08-review-queue
 
 permissions:
   contents: read
@@ -191,4 +199,6 @@ jobs:
       # acceptance sequence. Do not add separate migration or reset steps here.
       - name: Run trusted DB acceptance
         if: ${{ steps.full_preflight.outputs.run_db == 'true' }}
+        env:
+          TRUSTED_DB_SUITE: ${{ inputs.suite || 'full' }}
         run: pnpm test:db
