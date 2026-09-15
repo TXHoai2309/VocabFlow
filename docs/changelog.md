@@ -2,6 +2,21 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-15 — US-08 queue-semantics harness fix-forward
+
+- Retained immutable candidate
+  `191bda880b43d22a9ca050a66507a400cc32fcdd` as `FAILED / RETIRED` after
+  Trusted DB run `34954397186` reached live authorization and old-`42601`
+  evidence, then exposed the invalid queue-semantics count expectation.
+- Updated only `scripts/test-review-queue-db.ts`: the queue-semantics learner
+  now receives strict-future progress for enabled vocabulary that pre-existed
+  the scenario, preserving the intended sparse NEW rows and deterministic
+  DUE-first queue. Diagnostics include expected/actual review date, IDs and
+  counts without normalizing the runtime response.
+- Product code, schema, migrations, workflow/orchestration, US-07 and the
+  prior authorization/`42601` fixes remain unchanged. The local fix is
+  uncommitted; no external Trusted DB rerun or new candidate was created.
+
 ## 2026-09-15 — US-08 authorization harness expectation fix-forward
 
 - Kept immutable candidate

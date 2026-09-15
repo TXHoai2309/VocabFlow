@@ -78,6 +78,35 @@
   remains `IN PROGRESS / BLOCKED`; US-09 has not started. `docs/decisions.md`
   remains protected local work.
 
+## 2026-09-15 — US-08 queue-semantics harness fix-forward
+
+### Diagnosis and fix
+
+- Trusted DB run `34954397186` for immutable candidate
+  `191bda880b43d22a9ca050a66507a400cc32fcdd` passed target-SHA validation,
+  authorization cases and the prior `42601` fixture path, then failed in
+  `us08-queue-semantics` with `US08_DB_QUEUE_COUNTS`.
+- Diagnosis confirmed a second harness-only expectation defect: the migrated
+  database and earlier authorization fixtures leave enabled global vocabulary
+  rows visible to the learner's NEW query. The queue-semantics fixture now
+  inserts strict-future progress for pre-existing enabled rows, before adding
+  its scenario-specific vocabulary, so only the intended sparse NEW rows are
+  eligible.
+- The diagnostic now reports expected/actual review date, DUE and NEW IDs,
+  counts and complete queue IDs. Production code, schema, migrations,
+  workflow/orchestration and US-07 behavior are unchanged.
+
+### Checkpoint
+
+- The fix is implemented locally and remains uncommitted. Candidate
+  `191bda880b43d22a9ca050a66507a400cc32fcdd` remains `FAILED / RETIRED` and
+  is not amended or reused. No external Trusted DB run or new candidate was
+  created.
+- Local validation is required before the narrow queue-semantics harness
+  technical review. US-07 remains `IN PROGRESS / BLOCKED` with its known CAS
+  P1 open; US-08 remains `IN PROGRESS / BLOCKED`; US-09 has not started.
+- `docs/decisions.md` remains protected local work.
+
 ## 2026-09-15 — US-08 Trusted DB harness fix-forward checkpoint
 
 ### Diagnosis and fix

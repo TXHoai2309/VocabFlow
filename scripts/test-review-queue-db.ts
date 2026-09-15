@@ -66,6 +66,18 @@ function allocateVocabulary(count: number): number[] {
   return Array.from({ length: count }, () => nextVocabularyId++);
 }
 
+async function enabledVocabularyIds(migration: SqlClient): Promise<number[]> {
+  const rows = await migration<{ id: number }[]>`
+    SELECT id
+    FROM ${migration.unsafe(VOCABULARY_TABLE)}
+    WHERE enabled = true
+    ORDER BY id ASC
+  `;
+  const ids = rows.map((row) => Number(row.id));
+  if (!ids.every(Number.isSafeInteger)) fail("BASELINE_VOCABULARY_IDS_INVALID");
+  return ids;
+}
+
 async function seedFixture(
   migration: SqlClient,
   label: string,
@@ -293,12 +305,24 @@ async function testAuthorization(migration: SqlClient, runtimeUrl: string, fixtu
 
 async function testQueueSemantics(migration: SqlClient, runtimeUrl: string, fixtures: Fixture[]) {
   mark("queue-semantics");
+  // The migration seeds enabled global vocabulary rows. Isolate those rows
+  // for this learner before adding the scenario-specific sparse-NEW rows so
+  // this test proves queue semantics without depending on database-wide
+  // fixture state left by earlier cases.
+  const preExistingEnabledIds = await enabledVocabularyIds(migration);
   const ids = allocateVocabulary(8);
   const fixture = await seedFixture(migration, "semantics", ids.map((id, index) => ({
     id,
     enabled: index !== 4 && index !== 5
   })).reverse());
   fixtures.push(fixture);
+  for (const vocabularyId of preExistingEnabledIds) {
+    await insertProgress(migration, fixture, vocabularyId, {
+      status: "LEARNING",
+      nextReviewDate: "2026-09-15",
+      revision: 1
+    });
+  }
   // Deliberately insert the due rows in the opposite order from the expected
   // date/id order. The two 2026-09-13 rows also prove the secondary ID key.
   for (const [vocabularyId, state] of [
@@ -314,9 +338,29 @@ async function testQueueSemantics(migration: SqlClient, runtimeUrl: string, fixt
   const before = await stateSnapshot(migration, fixture);
   const queue = await withQueue(runtimeUrl, (service) => service.list(fixture.ownerUserId, fixture.learnerId));
   const after = await stateSnapshot(migration, fixture);
-  assert(queue.reviewDate === "2026-09-14", "HOUSEHOLD_LOCAL_DATE");
-  assert(queue.dueCount === 3 && queue.newCount === 2, "QUEUE_COUNTS");
-  assert(queue.queue.map((item) => item.vocabulary.id).join(",") === [ids[0], ids[1], ids[2], ids[6], ids[7]].join(","), "QUEUE_ORDER");
+  const expectedReviewDate = "2026-09-14";
+  const expectedDueIds = [ids[0]!, ids[1]!, ids[2]!];
+  const expectedNewIds = [ids[6]!, ids[7]!];
+  const expectedQueueIds = [...expectedDueIds, ...expectedNewIds];
+  const actualDueIds = queue.queue.filter((item) => item.queueType === "DUE").map((item) => item.vocabulary.id);
+  const actualNewIds = queue.queue.filter((item) => item.queueType === "NEW").map((item) => item.vocabulary.id);
+  const actualQueueIds = queue.queue.map((item) => item.vocabulary.id);
+  console.log(
+    `TRUSTED_DB_QUEUE_SEMANTICS_EXPECTATION expected_review_date=${expectedReviewDate}`
+      + ` actual_review_date=${queue.reviewDate} expected_due_count=${expectedDueIds.length}`
+      + ` actual_due_count=${queue.dueCount} expected_new_count=${expectedNewIds.length}`
+      + ` actual_new_count=${queue.newCount} expected_queue_count=${expectedQueueIds.length}`
+      + ` actual_queue_count=${actualQueueIds.length}`
+      + ` expected_due_ids=${formatVocabularyIds(expectedDueIds)}`
+      + ` actual_due_ids=${formatVocabularyIds(actualDueIds)}`
+      + ` expected_new_ids=${formatVocabularyIds(expectedNewIds)}`
+      + ` actual_new_ids=${formatVocabularyIds(actualNewIds)}`
+      + ` expected_queue_ids=${formatVocabularyIds(expectedQueueIds)}`
+      + ` actual_queue_ids=${formatVocabularyIds(actualQueueIds)}`,
+  );
+  assert(queue.reviewDate === expectedReviewDate, "HOUSEHOLD_LOCAL_DATE");
+  assert(queue.dueCount === expectedDueIds.length && queue.newCount === expectedNewIds.length, "QUEUE_COUNTS");
+  assert(actualQueueIds.join(",") === expectedQueueIds.join(","), "QUEUE_ORDER");
   assertQueueItem(queue, ids[0]!, "DUE", 3);
   assertQueueItem(queue, ids[1]!, "DUE", 3_000_000_000);
   assertQueueItem(queue, ids[2]!, "DUE", MAX_SAFE_INTEGER);
