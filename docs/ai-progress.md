@@ -1,10 +1,10 @@
 # Current Handoff Snapshot
 
 - Project: VocabFlow Family MVP
-- Current phase/batch: BATCH 5 — Scheduled Review Write (implementation)
-- Current active story: US-07 Scheduled Review Write
-- Story status: IN PROGRESS
-- Current Git branch: `TXH`
+- Current phase/batch: BATCH 6 — Review Queue (evidence hardening)
+- Current active story: US-08 Review Queue
+- Story status: IN PROGRESS (owner override)
+- Current Git branch: `us-08`
 - Latest accepted implementation baseline: `b838f107a69830234202caded33f9b7ad0040c9e`
 - Documentation/agent pack status: finalized and approved for repository baseline
 - Last accepted baseline: BATCH 0 Foundation, recorded in commit `24e4580`
@@ -14,8 +14,9 @@
   PostgreSQL 18
 - US-01 acceptance CI status: Core CI PASS on merged main `6806e66`
 - US-01 Trusted DB Integration status: PASS on merged main `6806e66`
-- Current implementation focus: US-07 scheduled review write implementation;
-  final technical review and acceptance are pending.
+- Current implementation focus: US-08 review queue implementation under the
+  explicit owner override; US-07 remains blocked on its known PostgreSQL CAS
+  acceptance finding.
 - Last completed work: US-06 Learning Scheduler Domain, including the accepted
   pure scheduler implementation, exhaustive tests, technical re-review and
   Core CI evidence; BATCH 0 through BATCH 4 remain accepted/frozen.
@@ -37,15 +38,192 @@
   stable IDs (1–30) are approved, all enabled with `contentVersion=1`.
 - Frozen areas: BATCH 0 bootstrap, role model, database targets, schemas, reset
   policy, migration executor and CI behavior unless a proven regression appears.
-- Next safe action: complete focused US-07 validation, regression gates and
-  implementation evidence; Trusted DB remains a later acceptance gate.
-- Do NOT do next: Do not expand into Review Queue or Study UX, mark US-07
-  accepted, or start US-08.
+- Next safe action: complete the US-08 evidence-delta technical re-review;
+  Trusted DB and Core CI remain pending, and no US-07 Trusted DB work is
+  authorized by this task.
+- Do NOT do next: Do not mark US-07 accepted, close its CAS P1, modify its
+  diagnostic worktree, or begin Architecture Step 9 Study UX.
 - Documents new agent must read first: `docs/README.md`,
   `docs/product/product-spec.md`, `docs/architecture/technical-architecture.md`,
   `docs/design/design-system.md`, `docs/design/feature-ui-spec.md`,
   `docs/flow/user-flow.md`, `docs/decisions.md`, `docs/roadmap.md`, the current
   US-07 story and this file.
+
+## 2026-09-15 — US-08 authorization harness expectation fix-forward
+
+### Diagnosis and fix
+
+- The failed candidate `9dad72447457b08327de2606e218d34c37af1912` remains
+  `FAILED / RETIRED` after Trusted DB run `34950169177` failed in
+  `us08-authorization-cases`.
+- Diagnosis confirmed a harness-only expectation defect: the authorization
+  test treated `allowed.queue.length !== 1` as an empty queue even though the
+  migrated database contains 30 enabled global vocabulary rows and the
+  production NEW selection is ordered by ID and capped at 10.
+- `scripts/test-review-queue-db.ts` now independently derives the eligible
+  global NEW prefix from migration-role state, compares the runtime response
+  without sorting or normalizing the actual list, and logs expected/actual
+  counts and vocabulary IDs. Positive and negative learner authorization
+  evidence remains intact.
+
+### Scope and gate status
+
+- Product semantics, schema, migrations, workflow/orchestration and US-07
+  behavior are unchanged. The old `42601` fixture INSERT fix is preserved.
+- Local validation is complete and passing. No new immutable candidate was
+  created, no external Trusted DB was rerun, and the failed candidate was not
+  amended or reused. The next gate is narrow authorization-harness technical
+  review.
+- US-07 remains `IN PROGRESS / BLOCKED` with its known CAS P1 open; US-08
+  remains `IN PROGRESS / BLOCKED`; US-09 has not started. `docs/decisions.md`
+  remains protected local work.
+
+## 2026-09-15 — US-08 queue-semantics harness fix-forward
+
+### Diagnosis and fix
+
+- Trusted DB run `34954397186` for immutable candidate
+  `191bda880b43d22a9ca050a66507a400cc32fcdd` passed target-SHA validation,
+  authorization cases and the prior `42601` fixture path, then failed in
+  `us08-queue-semantics` with `US08_DB_QUEUE_COUNTS`.
+- Diagnosis confirmed a second harness-only expectation defect: the migrated
+  database and earlier authorization fixtures leave enabled global vocabulary
+  rows visible to the learner's NEW query. The queue-semantics fixture now
+  inserts strict-future progress for pre-existing enabled rows, before adding
+  its scenario-specific vocabulary, so only the intended sparse NEW rows are
+  eligible.
+- The diagnostic now reports expected/actual review date, DUE and NEW IDs,
+  counts and complete queue IDs. Production code, schema, migrations,
+  workflow/orchestration and US-07 behavior are unchanged.
+
+### Checkpoint
+
+- The fix is implemented locally and remains uncommitted. Candidate
+  `191bda880b43d22a9ca050a66507a400cc32fcdd` remains `FAILED / RETIRED` and
+  is not amended or reused. No external Trusted DB run or new candidate was
+  created.
+- Local validation is required before the narrow queue-semantics harness
+  technical review. US-07 remains `IN PROGRESS / BLOCKED` with its known CAS
+  P1 open; US-08 remains `IN PROGRESS / BLOCKED`; US-09 has not started.
+- `docs/decisions.md` remains protected local work.
+
+## 2026-09-15 — US-08 consolidated cap/suppression harness fix-forward
+
+### Diagnosis and fix
+
+- Trusted DB run `34960083041` proved candidate
+  `21db8578c6bb15fe9fb6639fd692d7942340498d` through authorization and the
+  queue-semantics isolation stage, then failed at
+  `us08-caps-and-suppression` / `US08_DB_DUE_19_COUNTS`.
+- Source diagnosis confirmed a systematic harness isolation defect: fresh cap
+  learners saw globally enabled baseline and prior-fixture vocabulary as NEW,
+  while the cap expectations assumed scenario-only vocabulary. The fix now
+  captures enabled vocabulary before each cap fixture, gives only that fresh
+  learner strict-future progress, and derives explicit 19/20/21 contracts.
+- Cap diagnostics now report expected/actual counts, DUE/NEW IDs, queue IDs,
+  review date and suppression state. Product semantics, schema, migrations,
+  workflow/orchestration, US-07 and prior live-proven fixes are unchanged.
+
+### Checkpoint
+
+- The fix is implemented locally and remains uncommitted. Candidate
+  `21db8578c6bb15fe9fb6639fd692d7942340498d` remains `FAILED / RETIRED` and
+  will not be amended or reused. No external Trusted DB run or candidate #5
+  was created.
+- US-07 remains `IN PROGRESS / BLOCKED` with its CAS P1 open; US-08 remains
+  `IN PROGRESS / BLOCKED`; US-09 has not started. `docs/decisions.md` remains
+  protected local work.
+
+## 2026-09-15 — US-08 Trusted DB harness fix-forward checkpoint
+
+### Diagnosis and fix
+
+- Trusted DB run `34941415887` reached the exact retired candidate
+  `54a029f333dcee7abfa825e9991d8d61797e87e4` and failed with PostgreSQL
+  SQLSTATE `42601` during `us08-authorization-cases` / `us08-fixture-auth-a`.
+- The root cause was confirmed as a harness-only `vocabularies` fixture INSERT
+  arity defect in `scripts/test-review-queue-db.ts`: five target columns were
+  supplied with four expressions. The fixture now omits `content_version` from
+  the target list so the canonical schema default `1` applies.
+- The shared helper covers all US-08 fixture callers. No product behavior,
+  schema, migration, workflow, US-07 code or US-07 CAS finding changed.
+
+### Validation and gate status
+
+- Focused US-08/harness/reset/preflight validation: `41/41` tests PASS across
+  five files; full local tests: `251/251` PASS; E2E: `11/11` PASS.
+- Lint, typecheck, build, Drizzle check, YAML parsing, workflow/preflight
+  checks and `git diff --check` PASS. No reliable local PostgreSQL arity
+  regression was added; real Trusted DB remains authoritative for SQL shape.
+- The failed SHA remains `FAILED / RETIRED`. No new immutable candidate was
+  created; future Core CI and scoped Trusted DB rerun remain pending after
+  narrow technical review. US-08 remains `IN PROGRESS / BLOCKED`.
+- US-07 remains `IN PROGRESS / BLOCKED` with its known CAS P1 open; US-09 has
+  not started. `docs/decisions.md` remains protected local work.
+
+## 2026-09-15 — US-08 owner-override implementation checkpoint
+
+### Discovery and gate override
+
+- The owner explicitly authorized parallel US-08 work while US-07 remains
+  `IN PROGRESS / BLOCKED` on the known PostgreSQL CAS P1. This does not mark
+  US-07 accepted, close the CAS finding or authorize US-07 Trusted DB work.
+- US-08 is the canonical `Review Queue` story for Architecture Step 8. No
+  hard implementation blocker was found. Existing authentication, learner
+  ownership, vocabulary DTOs and sparse progress are contract-stable
+  dependencies; persisted review-flow acceptance remains acceptance-blocked
+  by the unresolved US-07 database evidence.
+
+### Implemented scope
+
+- Added the strict review-queue response contract and a read-only
+  `GET /api/learners/:learnerId/review-queue` service/route.
+- Implemented household authorization, household-local server date, due-first
+  ordering, due/new caps, sparse virtual `NEW`, deterministic ordering and
+  safe error responses. No browser-to-Neon access, study-session UI,
+  schema/migration/reset change or duplicate scheduler/persistence logic was
+  added.
+- Added focused API/service coverage and the active story at
+  `docs/stories/US-08-review-queue.md`.
+
+### Gate status
+
+- US-08 remains `IN PROGRESS`; implementation evidence and local validation
+  are pending completion before technical review.
+- US-07 remains `IN PROGRESS / BLOCKED`; its diagnostic worktree and
+  `docs/decisions.md` remain protected. No US-07 Trusted DB or Core CI run was
+  performed.
+
+## 2026-09-15 — US-08 acceptance evidence hardening checkpoint
+
+### Evidence delta
+
+- Implemented the five test-quality areas identified by technical review:
+  queue-specific cross-household/disabled/missing authorization, explicit
+  future progress exclusion, a UTC/local timezone boundary, ordering with
+  19/20/21 due-cap fixtures, and queue-specific unsafe BIGINT revision
+  handling. A narrow follow-up review found the due progress insertion order
+  needed to be noncanonical as well; that P2-4 fix is now implemented and
+  pending technical re-review.
+- Added `scripts/test-review-queue-db.ts`, an independent real-PostgreSQL
+  suite covering authorization, enabled vocabulary, due predicate and
+  ordering, sparse NEW selection, MASTERED rows, caps/suppression, timezone,
+  BIGINT revisions, read-only state and cleanup/reset behavior.
+- Added an explicit `TRUSTED_DB_SUITE` selector. `full` remains the default
+  and preserves the canonical US-07 Trusted DB path; `us08-review-queue` is
+  an explicit scoped path and is never selected implicitly.
+- Added only the corresponding manual workflow choice and environment
+  forwarding. No product semantics, schema, migration, reset policy or
+  US-07 diagnostic/CAS code was changed.
+
+### Gate status
+
+- Local evidence validation is being rerun after the hardening delta. Trusted
+  DB has not run, so all PostgreSQL-dependent US-08 criteria remain pending.
+- Core CI has not run. US-07 remains `IN PROGRESS / BLOCKED` with its known
+  CAS P1 open; US-08 remains `IN PROGRESS`; US-09 has not started.
+- No commit, push, exact-SHA creation, US-07 modification or owner acceptance
+  was performed. `docs/decisions.md` remains protected.
 
 ## 2026-09-14 — US-07 implementation checkpoint
 

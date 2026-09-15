@@ -5,6 +5,7 @@ import { createBootstrapService, type BootstrapService } from "./bootstrap";
 import { createLearnerService, LearnerServiceError, type LearnerService } from "./learners";
 import { createVocabularyService, VocabularyServiceError, type VocabularyService } from "./vocabulary";
 import { createReviewService, ReviewServiceError, type ReviewService } from "./reviews";
+import { createReviewQueueService, ReviewQueueServiceError, type ReviewQueueService } from "./review-queue";
 
 export type WorkerBindings = {
   DATABASE_URL?: string;
@@ -21,6 +22,7 @@ export type AppDependencies = {
   learnerService?: LearnerService;
   vocabularyService?: VocabularyService;
   reviewService?: ReviewService;
+  reviewQueueService?: ReviewQueueService;
 };
 
 const SAFE_BOOTSTRAP_ERROR = "Không thể hoàn tất thiết lập gia đình. Vui lòng thử lại.";
@@ -57,6 +59,12 @@ async function runReviewService(env: WorkerBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
   return createReviewService(createHttpDatabase(env.DATABASE_URL));
+}
+
+async function runReviewQueueService(env: WorkerBindings) {
+  if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
+  const { createHttpDatabase } = await import("./db/client");
+  return createReviewQueueService(createHttpDatabase(env.DATABASE_URL));
 }
 
 export function createApp(dependencies: AppDependencies = {}) {
@@ -192,6 +200,25 @@ export function createApp(dependencies: AppDependencies = {}) {
         return c.json(errorEnvelope(error.code, message, error.details), error.status);
       }
       return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể lưu tiến trình lúc này. Vui lòng thử lại."), 503);
+    }
+  });
+
+  application.get("/api/learners/:learnerId/review-queue", async (c) => {
+    try {
+      const session = await readSession(c.req.raw, c.env);
+      if (!session?.user?.id) {
+        return c.json(errorEnvelope("UNAUTHORIZED", "Đăng nhập để tiếp tục."), 401);
+      }
+      const service = dependencies.reviewQueueService ?? await runReviewQueueService(c.env);
+      return c.json(await service.list(session.user.id, c.req.param("learnerId")), 200);
+    } catch (error) {
+      if (error instanceof ReviewQueueServiceError) {
+        const message = error.code === "HOUSEHOLD_ACCESS_DENIED"
+          ? "Bạn không có quyền truy cập learner này."
+          : "Không thể tải review queue lúc này. Vui lòng thử lại.";
+        return c.json(errorEnvelope(error.code, message), error.status);
+      }
+      return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể tải review queue lúc này. Vui lòng thử lại."), 503);
     }
   });
 

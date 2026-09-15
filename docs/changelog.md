@@ -2,6 +2,94 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-15 — US-08 consolidated cap/suppression harness fix-forward
+
+- Retained candidate
+  `21db8578c6bb15fe9fb6639fd692d7942340498d` as `FAILED / RETIRED` after
+  Trusted DB run `34960083041` exposed the systematic cap-harness isolation
+  defect at `US08_DB_DUE_19_COUNTS`.
+- Updated the Trusted DB harness to isolate each fresh cap learner from
+  pre-existing enabled vocabulary with strict-future progress, while keeping
+  global vocabulary unchanged. The 19-DUE NEW-cap, 20-DUE suppression and
+  21-DUE order-before-LIMIT contracts now derive explicit expected sets and
+  emit detailed diagnostics.
+- Product code, schema, migrations, workflow/orchestration, US-07 and the
+  prior live-proven fixes remain unchanged. The fix is uncommitted; no
+  Trusted DB rerun or candidate #5 was created.
+
+## 2026-09-15 — US-08 queue-semantics harness fix-forward
+
+- Retained immutable candidate
+  `191bda880b43d22a9ca050a66507a400cc32fcdd` as `FAILED / RETIRED` after
+  Trusted DB run `34954397186` reached live authorization and old-`42601`
+  evidence, then exposed the invalid queue-semantics count expectation.
+- Updated only `scripts/test-review-queue-db.ts`: the queue-semantics learner
+  now receives strict-future progress for enabled vocabulary that pre-existed
+  the scenario, preserving the intended sparse NEW rows and deterministic
+  DUE-first queue. Diagnostics include expected/actual review date, IDs and
+  counts without normalizing the runtime response.
+- Product code, schema, migrations, workflow/orchestration, US-07 and the
+  prior authorization/`42601` fixes remain unchanged. The local fix is
+  uncommitted; no external Trusted DB rerun or new candidate was created.
+
+## 2026-09-15 — US-08 authorization harness expectation fix-forward
+
+- Kept immutable candidate
+  `9dad72447457b08327de2606e218d34c37af1912` as `FAILED / RETIRED` after
+  Trusted DB run `34950169177` exposed the invalid exact-one authorization
+  expectation.
+- Updated only `scripts/test-review-queue-db.ts`: the positive authorization
+  case now derives the eligible global NEW prefix independently from canonical
+  migration-role state, enforces the existing order/cap/virtual-NEW contract,
+  and emits expected/actual queue diagnostics.
+- Confirmed no product, schema, migration, workflow, US-07 or US-09 scope
+  changed. The old `42601` fixture fix remains closed. Local validation passes;
+  external Trusted DB was not rerun and no new candidate was created.
+
+## 2026-09-15 — US-08 Trusted DB harness fix-forward diagnosis
+
+- Retired immutable candidate
+  `54a029f333dcee7abfa825e9991d8d61797e87e4` after Trusted DB run
+  `34941415887` failed with PostgreSQL SQLSTATE `42601` in the US-08
+  authorization fixture setup.
+- Confirmed a harness-only `vocabularies` INSERT arity defect: the shared
+  fixture helper listed `content_version` without supplying a fifth value.
+  The local fix removes that target column so the schema default `1` applies.
+- Product semantics, schema, migration, workflow and US-07 behavior remain
+  unchanged. Focused validation is `41/41`, full tests are `251/251`, E2E is
+  `11/11`, and lint, typecheck, build, Drizzle and workflow/preflight checks
+  pass.
+- No new immutable candidate was created. Narrow technical review, future
+  Core CI and the scoped Trusted DB rerun remain pending; US-08 remains
+  `IN PROGRESS / BLOCKED`.
+
+## 2026-09-15 — US-08 acceptance evidence hardening
+
+- Implemented the five queue test-quality areas with queue-specific
+  authorization, future-progress, UTC/local timezone, ordering/cap and
+  unsafe-BIGINT coverage. A follow-up review found the due progress insertion
+  order needed to be noncanonical to prove order-before-LIMIT; that P2-4 fix
+  is now implemented and pending technical re-review.
+- Added an independent `scripts/test-review-queue-db.ts` PostgreSQL suite for
+  live queue semantics, read-only behavior, role use, cleanup/reset and
+  household isolation.
+- Added explicit `TRUSTED_DB_SUITE=us08-review-queue` orchestration while
+  preserving `full` as the canonical default. Trusted DB and Core CI were not
+  run; US-07 remains blocked on its known CAS P1 and US-08 remains in progress.
+
+## 2026-09-15 — US-08 Review Queue owner-override implementation
+
+- Started the owner-authorized US-08 `Review Queue` implementation on an
+  isolated `us-08` branch from `origin/main` at
+  `c3b2eb422bb5d922c5c2808ad2761674ba11b93a`.
+- Added the strict queue contract and authenticated household-scoped read API
+  for deterministic due-first and sparse-NEW selection, including
+  household-local date and revision metadata, plus focused tests and the
+  US-08 story.
+- No schema, migration, reset, privilege, study-session UI, US-07 diagnostic
+  or Trusted DB work was added. US-07 remains `IN PROGRESS / BLOCKED` with its
+  known PostgreSQL CAS P1 open; the owner override does not imply acceptance.
+
 ## 2026-09-14 — US-07 Scheduled Review Write fix-forward 2
 
 - Aligned the story contract with the reviewed household-scoped idempotency
