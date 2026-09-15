@@ -2,6 +2,20 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-15 — US-08 authorization harness expectation fix-forward
+
+- Kept immutable candidate
+  `9dad72447457b08327de2606e218d34c37af1912` as `FAILED / RETIRED` after
+  Trusted DB run `34950169177` exposed the invalid exact-one authorization
+  expectation.
+- Updated only `scripts/test-review-queue-db.ts`: the positive authorization
+  case now derives the eligible global NEW prefix independently from canonical
+  migration-role state, enforces the existing order/cap/virtual-NEW contract,
+  and emits expected/actual queue diagnostics.
+- Confirmed no product, schema, migration, workflow, US-07 or US-09 scope
+  changed. The old `42601` fixture fix remains closed. Local validation passes;
+  external Trusted DB was not rerun and no new candidate was created.
+
 ## 2026-09-15 — US-08 Trusted DB harness fix-forward diagnosis
 
 - Retired immutable candidate

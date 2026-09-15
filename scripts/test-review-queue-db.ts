@@ -194,6 +194,44 @@ function assertQueueItem(queue: ReviewQueueResponse, vocabularyId: number, queue
   }
 }
 
+type ExpectedNewSelection = {
+  eligibleCount: number;
+  vocabularyIds: number[];
+};
+
+async function expectedNewSelection(migration: SqlClient, learnerId: string): Promise<ExpectedNewSelection> {
+  const [countRow] = await migration<{ eligible_count: string }[]>`
+    SELECT count(*)::text AS eligible_count
+    FROM ${migration.unsafe(VOCABULARY_TABLE)} v
+    LEFT JOIN ${migration.unsafe(PROGRESS_TABLE)} lp
+      ON lp.vocabulary_id = v.id
+     AND lp.learner_id = ${learnerId}::uuid
+    WHERE v.enabled = true
+      AND lp.vocabulary_id IS NULL
+  `;
+  const rows = await migration<{ id: number }[]>`
+    SELECT v.id
+    FROM ${migration.unsafe(VOCABULARY_TABLE)} v
+    LEFT JOIN ${migration.unsafe(PROGRESS_TABLE)} lp
+      ON lp.vocabulary_id = v.id
+     AND lp.learner_id = ${learnerId}::uuid
+    WHERE v.enabled = true
+      AND lp.vocabulary_id IS NULL
+    ORDER BY v.id ASC
+    LIMIT 10
+  `;
+  const eligibleCount = Number(countRow?.eligible_count ?? "0");
+  const vocabularyIds = rows.map((row) => Number(row.id));
+  if (!Number.isSafeInteger(eligibleCount) || eligibleCount < 0 || !vocabularyIds.every(Number.isSafeInteger)) {
+    fail("AUTHORIZED_EXPECTED_NEW_STATE_INVALID");
+  }
+  return { eligibleCount, vocabularyIds };
+}
+
+function formatVocabularyIds(ids: readonly number[]) {
+  return ids.length === 0 ? "<empty>" : ids.join(",");
+}
+
 async function stateSnapshot(migration: SqlClient, fixture: Fixture) {
   const [row] = await migration<{
     progress_count: string;
@@ -232,10 +270,22 @@ async function testAuthorization(migration: SqlClient, runtimeUrl: string, fixtu
   fixtures.push(householdA, householdB);
   const disabledLearnerId = await addLearner(migration, householdA, false, "disabled-learner");
 
+  const expected = await expectedNewSelection(migration, householdA.learnerId);
   const allowed = await withQueue(runtimeUrl, (service) => service.list(householdA.ownerUserId, householdA.learnerId));
+  const actualIds = allowed.queue.map((item) => item.vocabulary.id);
+  console.log(
+    `TRUSTED_DB_AUTHORIZED_QUEUE_EXPECTATION expected_queue_count=${expected.vocabularyIds.length}`
+      + ` actual_queue_count=${actualIds.length} eligible_new_count=${expected.eligibleCount}`
+      + ` actual_due_count=${allowed.dueCount} actual_new_count=${allowed.newCount}`
+      + ` expected_vocabulary_ids=${formatVocabularyIds(expected.vocabularyIds)}`
+      + ` actual_vocabulary_ids=${formatVocabularyIds(actualIds)}`,
+  );
   assert(allowed.learnerId === householdA.learnerId, "AUTHORIZED_LEARNER_ID_MISMATCH");
-  assert(allowed.queue.length === 1, "AUTHORIZED_QUEUE_EMPTY");
-  assert(allowed.queue.every((item) => householdA.vocabularyIds.includes(item.vocabulary.id)), "AUTHORIZED_QUEUE_LEAK");
+  assert(allowed.dueCount === 0, "AUTHORIZED_DUE_ITEMS_UNEXPECTED");
+  assert(allowed.newCount === expected.eligibleCount, "AUTHORIZED_NEW_COUNT_MISMATCH");
+  assert(actualIds.length === Math.min(expected.eligibleCount, 10), "AUTHORIZED_QUEUE_COUNT_MISMATCH");
+  assert(actualIds.every((id, index) => id === expected.vocabularyIds[index]), "AUTHORIZED_QUEUE_ORDER_OR_CONTENT_MISMATCH");
+  assert(allowed.queue.every((item) => item.queueType === "NEW" && item.status === "NEW" && item.expectedRevision === 0), "AUTHORIZED_NEW_ITEM_SHAPE_MISMATCH");
   await expectDenied(runtimeUrl, householdA.ownerUserId, householdB.learnerId, "CROSS_HOUSEHOLD");
   await expectDenied(runtimeUrl, householdA.ownerUserId, disabledLearnerId, "DISABLED_LEARNER");
   await expectDenied(runtimeUrl, householdA.ownerUserId, randomUUID(), "MISSING_LEARNER");

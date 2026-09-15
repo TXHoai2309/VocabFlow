@@ -49,6 +49,35 @@
   `docs/flow/user-flow.md`, `docs/decisions.md`, `docs/roadmap.md`, the current
   US-07 story and this file.
 
+## 2026-09-15 — US-08 authorization harness expectation fix-forward
+
+### Diagnosis and fix
+
+- The failed candidate `9dad72447457b08327de2606e218d34c37af1912` remains
+  `FAILED / RETIRED` after Trusted DB run `34950169177` failed in
+  `us08-authorization-cases`.
+- Diagnosis confirmed a harness-only expectation defect: the authorization
+  test treated `allowed.queue.length !== 1` as an empty queue even though the
+  migrated database contains 30 enabled global vocabulary rows and the
+  production NEW selection is ordered by ID and capped at 10.
+- `scripts/test-review-queue-db.ts` now independently derives the eligible
+  global NEW prefix from migration-role state, compares the runtime response
+  without sorting or normalizing the actual list, and logs expected/actual
+  counts and vocabulary IDs. Positive and negative learner authorization
+  evidence remains intact.
+
+### Scope and gate status
+
+- Product semantics, schema, migrations, workflow/orchestration and US-07
+  behavior are unchanged. The old `42601` fixture INSERT fix is preserved.
+- Local validation is complete and passing. No new immutable candidate was
+  created, no external Trusted DB was rerun, and the failed candidate was not
+  amended or reused. The next gate is narrow authorization-harness technical
+  review.
+- US-07 remains `IN PROGRESS / BLOCKED` with its known CAS P1 open; US-08
+  remains `IN PROGRESS / BLOCKED`; US-09 has not started. `docs/decisions.md`
+  remains protected local work.
+
 ## 2026-09-15 — US-08 Trusted DB harness fix-forward checkpoint
 
 ### Diagnosis and fix
