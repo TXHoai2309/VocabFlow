@@ -1,12 +1,12 @@
 # US-08 — Review Queue
 
-- Status: IN PROGRESS
+- Status: ACCEPTED / CLOSED
 - Batch: BATCH 6 — Review Queue
 - Architecture step: Step 8
 - Owner: Project Owner
 - Last updated: 2026-09-15
 - Scope: LEARNER_SCOPED_REVIEW_QUEUE_READ
-- Gate note: SEQUENTIAL GATE OVERRIDDEN BY OWNER
+- Gate note: SEQUENTIAL GATE OVERRIDDEN BY OWNER; ACCEPTANCE COMPLETE
 - Upstream acceptance debt: US-07 persistence CAS Trusted DB acceptance remains unresolved. US-07 is not accepted and its known PostgreSQL CAS P1 remains open.
 
 ## 1. User Story
@@ -78,7 +78,7 @@ Dependency classification:
 - Existing public revision semantics: a missing row is revision `0`; a stored
   row supplies its canonical revision.
 
-### ACCEPTANCE-BLOCKED
+### HISTORICAL ACCEPTANCE-BLOCKED CHECKPOINT
 
 - End-to-end acceptance of a queue followed by a successful persisted review
   remains downstream of US-07's unresolved real PostgreSQL CAS evidence.
@@ -220,7 +220,7 @@ still open. Neither suite was run by this change.
   authorization, date-boundary, ordering/cap, sparse-NEW, BIGINT and
   read-only live fixtures, but does not run them.
 
-## 12. Acceptance Evidence Hardening Checkpoint
+## 12. Historical Acceptance Evidence Hardening Checkpoint
 
 - P2-1 authorization coverage is closed with queue-specific cross-household,
   disabled-learner and missing-learner cases; the live suite uses distinct
@@ -245,7 +245,7 @@ still open. Neither suite was run by this change.
   `IN PROGRESS` pending evidence-delta technical re-review and owner
   acceptance.
 
-### 12.1 Trusted DB failure and harness fix-forward
+### 12.1 Historical Trusted DB failure and harness fix-forward
 
 - The first scoped Trusted DB run, `34941415887`, checked out immutable
   candidate `54a029f333dcee7abfa825e9991d8d61797e87e4` exactly, then failed
@@ -280,5 +280,26 @@ still open. Neither suite was run by this change.
 ## 14. Implementation Evidence
 
 Implementation and local validation are recorded in `docs/ai-progress.md` and
-`docs/changelog.md`. US-08 may be locally complete while the project still
- carries `UPSTREAM US-07 CAS ACCEPTANCE DEBT`.
+`docs/changelog.md`. US-08 is accepted and closed at the
+`review-queue-ready` boundary while the project still carries `UPSTREAM
+US-07 CAS ACCEPTANCE DEBT`.
+
+## 15. Acceptance Closeout
+
+- Accepted candidate: `bb91e01073dd156602cddb5bb98948ce06659bbe`.
+- Core CI: run `34970869460`, exact candidate SHA, PASS.
+- Trusted DB: run `34971985883`, suite `us08-review-queue`, requested and
+  checked-out SHA exactly equal to the accepted candidate, PASS.
+- Owner Acceptance: `OWNER_ACCEPT_US08`.
+- Final merge: PR #7 merged into `main` at
+  `2e8dd0f30754969f86fb00933813dcebbbe342d5`, with the accepted candidate as
+  the second parent.
+- US-08 findings: P0 = 0, P1 = 0, P2 = 0.
+- Success boundary: `review-queue-ready` achieved; US-08 is
+  `ACCEPTED / CLOSED`.
+- The reset evidence limitation remains explicit: all six fixture cleanup
+  operations completed and `us08-reset` was invoked, but final reset state is
+  not independently proven because no distinct reset-completion marker was
+  emitted.
+- US-07 remains `IN PROGRESS / BLOCKED` with its known CAS P1 open. US-08
+  acceptance does not accept or close US-07. US-09 remains `NOT STARTED`.

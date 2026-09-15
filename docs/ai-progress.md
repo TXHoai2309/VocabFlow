@@ -1,11 +1,12 @@
 # Current Handoff Snapshot
 
 - Project: VocabFlow Family MVP
-- Current phase/batch: BATCH 6 — Review Queue (evidence hardening)
-- Current active story: US-08 Review Queue
-- Story status: IN PROGRESS (owner override)
-- Current Git branch: `us-08`
-- Latest accepted implementation baseline: `b838f107a69830234202caded33f9b7ad0040c9e`
+- Current phase/batch: BATCH 6 — Review Queue (accepted)
+- Current active story: none; US-08 Review Queue is accepted and closed
+- Story status: `US-08 ACCEPTED / CLOSED`
+- Current Git branch: `main`
+- Accepted US-08 candidate: `bb91e01073dd156602cddb5bb98948ce06659bbe`
+- Final US-08 merge on main: `2e8dd0f30754969f86fb00933813dcebbbe342d5`
 - Documentation/agent pack status: finalized and approved for repository baseline
 - Last accepted baseline: BATCH 0 Foundation, recorded in commit `24e4580`
   with implementation baseline `2429b0f`
@@ -14,15 +15,15 @@
   PostgreSQL 18
 - US-01 acceptance CI status: Core CI PASS on merged main `6806e66`
 - US-01 Trusted DB Integration status: PASS on merged main `6806e66`
-- Current implementation focus: US-08 review queue implementation under the
-  explicit owner override; US-07 remains blocked on its known PostgreSQL CAS
-  acceptance finding.
-- Last completed work: US-06 Learning Scheduler Domain, including the accepted
-  pure scheduler implementation, exhaustive tests, technical re-review and
-  Core CI evidence; BATCH 0 through BATCH 4 remain accepted/frozen.
-- Files/areas most recently changed: US-07 scheduled-review-write contract and
-  story/index/roadmap/progress documentation.
-  `docs/decisions.md` remains an unrelated unstaged local modification.
+- Current implementation focus: no active US-08 work; US-07 remains blocked on
+  its known PostgreSQL CAS acceptance finding.
+- Last completed work: US-08 Review Queue, including technical review, exact-SHA
+  Core CI, scoped Trusted DB, Owner Acceptance and PR #7 merge; BATCH 0 through
+  BATCH 4 and BATCH 6 remain accepted/frozen; BATCH 5 remains blocked on the
+  separate US-07 CAS finding.
+- Files/areas most recently changed: US-08 review-queue harness evidence and
+  acceptance closeout documentation. The protected `docs/decisions.md` remains
+  preserved in the original US-07 evidence worktree.
 - Accepted evidence: US-05 owner manual acceptance PASS; `167/167` tests,
   E2E `11/11`, lint, typecheck, build and `git diff --check` PASS; Core CI #30
   SUCCESS on main commit
@@ -38,9 +39,12 @@
   stable IDs (1–30) are approved, all enabled with `contentVersion=1`.
 - Frozen areas: BATCH 0 bootstrap, role model, database targets, schemas, reset
   policy, migration executor and CI behavior unless a proven regression appears.
-- Next safe action: complete the US-08 evidence-delta technical re-review;
-  Trusted DB and Core CI remain pending, and no US-07 Trusted DB work is
-  authorized by this task.
+- US-08 accepted evidence: candidate `bb91e01073dd156602cddb5bb98948ce06659bbe`,
+  Core CI #34970869460 PASS, Trusted DB #34971985883 PASS for
+  `us08-review-queue`, Owner Acceptance `OWNER_ACCEPT_US08`, merged by PR #7
+  at `2e8dd0f30754969f86fb00933813dcebbbe342d5`.
+- Next safe action: follow separate owner direction for US-07 or a later story;
+  do not infer US-07 acceptance from US-08 closeout.
 - Do NOT do next: Do not mark US-07 accepted, close its CAS P1, modify its
   diagnostic worktree, or begin Architecture Step 9 Study UX.
 - Documents new agent must read first: `docs/README.md`,

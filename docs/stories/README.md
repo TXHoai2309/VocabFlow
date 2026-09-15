@@ -31,7 +31,7 @@ convenient. Reprioritization or a new story must be explicit.
 - [US-07 Scheduled Review Write](US-07-scheduled-review-write.md)
   — `IN PROGRESS`.
 - [US-08 Review Queue](US-08-review-queue.md)
-  — `IN PROGRESS` (owner override; US-07 CAS acceptance remains blocked).
+  — `ACCEPTED` (owner override; US-07 CAS acceptance remains blocked).
 
 ## Story status gate
 

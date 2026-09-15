@@ -187,22 +187,29 @@ The complete story contract is in
 
 ## BATCH 6 — Review Queue
 
-- Status: `IN PROGRESS`.
+- Status: `ACCEPTED`.
 - Dependency: Architecture Step 8 and the accepted vocabulary, learner and
   sparse-progress foundations. The owner explicitly overrode the sequential
   gate while US-07 remains blocked on its PostgreSQL CAS acceptance evidence.
-- Active story: US-08 Review Queue.
+- Active story: none; US-08 Review Queue is `ACCEPTED / CLOSED`.
 - Scope: authenticated, household-authorized
   `GET /api/learners/:learnerId/review-queue` with deterministic due-first and
   sparse-NEW selection, server-owned household-local review date and
   revision-aware queue items.
 - No new schema, migration, reset, privilege or study-session UX is included.
   Architecture Step 9 owns the later Study session experience.
-- Queue acceptance still requires Trusted DB because the contract depends on
-  PostgreSQL `LEFT JOIN`/`NULL`, date, ordering, cap and BIGINT runtime
-  semantics. The evidence-hardening delta adds an explicit scoped suite
-  selector while preserving the canonical `full` suite default; it does not
-  change product schema or US-07 behavior.
+- Acceptance evidence: technical re-review PASS; Core CI run `34970869460`
+  PASS on accepted candidate `bb91e01073dd156602cddb5bb98948ce06659bbe`;
+  Trusted DB run `34971985883` PASS for `us08-review-queue` on the same exact
+  requested and checked-out SHA; Owner Acceptance `OWNER_ACCEPT_US08`; PR #7
+  merged into main at `2e8dd0f30754969f86fb00933813dcebbbe342d5`.
+- The live evidence covered PostgreSQL `LEFT JOIN`/`NULL`, date, ordering, cap,
+  BIGINT read semantics, authorization, household isolation and read-only
+  behavior. The evidence-hardening delta preserved the canonical `full` suite
+  default and did not change product schema or US-07 behavior.
+- The reset note remains truthful: fixture cleanup completed and `us08-reset`
+  was invoked, but final reset state is not independently proven because no
+  distinct reset-completion marker was emitted.
 - US-07 remains `IN PROGRESS / BLOCKED`; its known PostgreSQL CAS P1 is not
   closed by this story and no US-07 acceptance is implied.
 

@@ -2,6 +2,29 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-15 — US-08 Review Queue accepted and merged
+
+- Accepted immutable US-08 candidate
+  `bb91e01073dd156602cddb5bb98948ce06659bbe` after technical review, Core CI
+  run `34970869460` PASS, scoped Trusted DB run `34971985883` PASS for
+  `us08-review-queue`, and Owner Acceptance `OWNER_ACCEPT_US08`.
+- PR #7 merged the accepted candidate into `main` at
+  `2e8dd0f30754969f86fb00933813dcebbbe342d5`, with merge parents
+  `1a860ffc16e688b806299d4dafe4e8a064c0d1f2` and
+  `bb91e01073dd156602cddb5bb98948ce06659bbe`.
+- Real PostgreSQL evidence passed for authorization and household isolation,
+  sparse NEW and revision `0`, due/new ordering and caps, NEW suppression,
+  timezone ownership, BIGINT/revision read behavior, read-only queue behavior
+  and runtime-role execution. US-07 write/CAS behavior remains separate.
+- US-08 success boundary `review-queue-ready` is achieved and US-08 is now
+  `ACCEPTED / CLOSED`. The reset evidence note remains: all six fixture cleanup
+  operations completed and `us08-reset` was invoked, but the final reset state
+  is not independently proven because no distinct reset-completion marker was
+  emitted.
+- Historical candidates #1 through #4 remain permanently `FAILED / RETIRED`;
+  candidate #5 is the accepted candidate. US-07 remains `IN PROGRESS / BLOCKED`
+  with its CAS P1 open, and US-09 has not started.
+
 ## 2026-09-15 — US-08 consolidated cap/suppression harness fix-forward
 
 - Retained candidate
