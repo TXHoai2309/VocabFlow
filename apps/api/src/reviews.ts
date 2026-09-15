@@ -306,7 +306,7 @@ async function atomicPersist(
         ${output.status}::text::"${sql.raw(APP_SCHEMA)}"."learning_status" AS new_status,
         cp.interval_days AS previous_interval,
         (${output.intervalDays})::bigint AS new_interval,
-        cp.revision AS expected_revision,
+        ${input.expectedRevision}::bigint AS expected_revision,
         ${reviewDate}::date AS review_date,
         ${JSON.stringify(response)}::jsonb AS response_payload,
         false AS is_new,

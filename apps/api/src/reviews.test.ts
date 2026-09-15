@@ -127,6 +127,8 @@ describe("US-07 review contracts and orchestration", () => {
     expect(atomicQuery.sql).toContain("ON CONFLICT (learner_id, vocabulary_id) DO NOTHING");
     expect(atomicQuery.sql).toContain("household_id =");
     expect(atomicQuery.sql).toContain("::bigint");
+    expect(atomicQuery.sql).toContain("::bigint AS expected_revision");
+    expect(atomicQuery.sql).not.toContain("cp.revision AS expected_revision");
     expect(atomicQuery.sql).not.toContain(REVIEW_ID);
     expect(atomicQuery.params).toContain(REVIEW_ID);
   });
