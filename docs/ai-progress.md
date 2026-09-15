@@ -107,6 +107,33 @@
   P1 open; US-08 remains `IN PROGRESS / BLOCKED`; US-09 has not started.
 - `docs/decisions.md` remains protected local work.
 
+## 2026-09-15 — US-08 consolidated cap/suppression harness fix-forward
+
+### Diagnosis and fix
+
+- Trusted DB run `34960083041` proved candidate
+  `21db8578c6bb15fe9fb6639fd692d7942340498d` through authorization and the
+  queue-semantics isolation stage, then failed at
+  `us08-caps-and-suppression` / `US08_DB_DUE_19_COUNTS`.
+- Source diagnosis confirmed a systematic harness isolation defect: fresh cap
+  learners saw globally enabled baseline and prior-fixture vocabulary as NEW,
+  while the cap expectations assumed scenario-only vocabulary. The fix now
+  captures enabled vocabulary before each cap fixture, gives only that fresh
+  learner strict-future progress, and derives explicit 19/20/21 contracts.
+- Cap diagnostics now report expected/actual counts, DUE/NEW IDs, queue IDs,
+  review date and suppression state. Product semantics, schema, migrations,
+  workflow/orchestration, US-07 and prior live-proven fixes are unchanged.
+
+### Checkpoint
+
+- The fix is implemented locally and remains uncommitted. Candidate
+  `21db8578c6bb15fe9fb6639fd692d7942340498d` remains `FAILED / RETIRED` and
+  will not be amended or reused. No external Trusted DB run or candidate #5
+  was created.
+- US-07 remains `IN PROGRESS / BLOCKED` with its CAS P1 open; US-08 remains
+  `IN PROGRESS / BLOCKED`; US-09 has not started. `docs/decisions.md` remains
+  protected local work.
+
 ## 2026-09-15 — US-08 Trusted DB harness fix-forward checkpoint
 
 ### Diagnosis and fix

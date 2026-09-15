@@ -2,6 +2,21 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-15 — US-08 consolidated cap/suppression harness fix-forward
+
+- Retained candidate
+  `21db8578c6bb15fe9fb6639fd692d7942340498d` as `FAILED / RETIRED` after
+  Trusted DB run `34960083041` exposed the systematic cap-harness isolation
+  defect at `US08_DB_DUE_19_COUNTS`.
+- Updated the Trusted DB harness to isolate each fresh cap learner from
+  pre-existing enabled vocabulary with strict-future progress, while keeping
+  global vocabulary unchanged. The 19-DUE NEW-cap, 20-DUE suppression and
+  21-DUE order-before-LIMIT contracts now derive explicit expected sets and
+  emit detailed diagnostics.
+- Product code, schema, migrations, workflow/orchestration, US-07 and the
+  prior live-proven fixes remain unchanged. The fix is uncommitted; no
+  Trusted DB rerun or candidate #5 was created.
+
 ## 2026-09-15 — US-08 queue-semantics harness fix-forward
 
 - Retained immutable candidate

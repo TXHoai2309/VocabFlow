@@ -45,6 +45,8 @@ const VOCABULARY_TABLE = `${APP_SCHEMA}."vocabularies"`;
 const PROGRESS_TABLE = `${APP_SCHEMA}."learner_progress"`;
 const EVENTS_TABLE = `${APP_SCHEMA}."review_events"`;
 const FIXED_NOW = new Date("2026-09-15T01:00:00.000Z");
+const CONTROLLED_REVIEW_DATE = "2026-09-14";
+const ISOLATION_NEXT_REVIEW_DATE = "2026-09-15";
 const FIXTURE_PREFIX = randomUUID().replaceAll("-", "");
 const MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER;
 let fixtureNumber = 0;
@@ -160,6 +162,20 @@ async function insertProgress(migration: SqlClient, fixture: Fixture, vocabulary
   `;
 }
 
+async function isolateExistingVocabularyForLearner(
+  migration: SqlClient,
+  fixture: Fixture,
+  vocabularyIds: readonly number[],
+) {
+  for (const vocabularyId of vocabularyIds) {
+    await insertProgress(migration, fixture, vocabularyId, {
+      status: "LEARNING",
+      nextReviewDate: ISOLATION_NEXT_REVIEW_DATE,
+      revision: 1
+    });
+  }
+}
+
 async function withQueue<T>(
   runtimeUrl: string,
   operation: (service: ReturnType<typeof createReviewQueueService>) => Promise<T>,
@@ -244,6 +260,61 @@ function formatVocabularyIds(ids: readonly number[]) {
   return ids.length === 0 ? "<empty>" : ids.join(",");
 }
 
+export type CapQueueExpectation = {
+  reviewDate: string;
+  dueCount: number;
+  newCount: number;
+  returnedDueIds: number[];
+  returnedNewIds: number[];
+  queueIds: number[];
+  newSuppressed: boolean;
+};
+
+export function buildCapQueueExpectation(
+  reviewDate: string,
+  expectedDueIds: readonly number[],
+  expectedNewIds: readonly number[],
+): CapQueueExpectation {
+  const returnedDueIds = [...expectedDueIds].slice(0, 20);
+  const returnedNewIds = expectedDueIds.length >= 20 ? [] : [...expectedNewIds].slice(0, 10);
+  return {
+    reviewDate,
+    dueCount: expectedDueIds.length,
+    newCount: expectedNewIds.length,
+    returnedDueIds,
+    returnedNewIds,
+    queueIds: [...returnedDueIds, ...returnedNewIds],
+    newSuppressed: expectedDueIds.length >= 20
+  };
+}
+
+function assertCapQueue(label: string, queue: ReviewQueueResponse, expected: CapQueueExpectation) {
+  const actualDueIds = queue.queue.filter((item) => item.queueType === "DUE").map((item) => item.vocabulary.id);
+  const actualNewIds = queue.queue.filter((item) => item.queueType === "NEW").map((item) => item.vocabulary.id);
+  const actualQueueIds = queue.queue.map((item) => item.vocabulary.id);
+  const actualNewSuppressed = queue.dueCount >= 20;
+  console.log(
+    `TRUSTED_DB_${label}_EXPECTATION expected_review_date=${expected.reviewDate}`
+      + ` actual_review_date=${queue.reviewDate} expected_due_count=${expected.dueCount}`
+      + ` actual_due_count=${queue.dueCount} expected_new_count=${expected.newCount}`
+      + ` actual_new_count=${queue.newCount} expected_returned_due_ids=${formatVocabularyIds(expected.returnedDueIds)}`
+      + ` actual_returned_due_ids=${formatVocabularyIds(actualDueIds)}`
+      + ` expected_returned_new_ids=${formatVocabularyIds(expected.returnedNewIds)}`
+      + ` actual_returned_new_ids=${formatVocabularyIds(actualNewIds)}`
+      + ` expected_queue_ids=${formatVocabularyIds(expected.queueIds)}`
+      + ` actual_queue_ids=${formatVocabularyIds(actualQueueIds)}`
+      + ` expected_queue_count=${expected.queueIds.length} actual_queue_count=${actualQueueIds.length}`
+      + ` expected_new_suppressed=${expected.newSuppressed} actual_new_suppressed=${actualNewSuppressed}`,
+  );
+  assert(queue.reviewDate === expected.reviewDate, `${label}_REVIEW_DATE`);
+  assert(queue.dueCount === expected.dueCount, `${label}_DUE_COUNT`);
+  assert(queue.newCount === expected.newCount, `${label}_NEW_COUNT`);
+  assert(actualDueIds.join(",") === expected.returnedDueIds.join(","), `${label}_DUE_ORDER_OR_CONTENT`);
+  assert(actualNewIds.join(",") === expected.returnedNewIds.join(","), `${label}_NEW_ORDER_OR_CONTENT`);
+  assert(actualQueueIds.join(",") === expected.queueIds.join(","), `${label}_QUEUE_ORDER_OR_CONTENT`);
+  assert(actualNewSuppressed === expected.newSuppressed, `${label}_NEW_SUPPRESSION`);
+}
+
 async function stateSnapshot(migration: SqlClient, fixture: Fixture) {
   const [row] = await migration<{
     progress_count: string;
@@ -316,13 +387,7 @@ async function testQueueSemantics(migration: SqlClient, runtimeUrl: string, fixt
     enabled: index !== 4 && index !== 5
   })).reverse());
   fixtures.push(fixture);
-  for (const vocabularyId of preExistingEnabledIds) {
-    await insertProgress(migration, fixture, vocabularyId, {
-      status: "LEARNING",
-      nextReviewDate: "2026-09-15",
-      revision: 1
-    });
-  }
+  await isolateExistingVocabularyForLearner(migration, fixture, preExistingEnabledIds);
   // Deliberately insert the due rows in the opposite order from the expected
   // date/id order. The two 2026-09-13 rows also prove the secondary ID key.
   for (const [vocabularyId, state] of [
@@ -338,7 +403,7 @@ async function testQueueSemantics(migration: SqlClient, runtimeUrl: string, fixt
   const before = await stateSnapshot(migration, fixture);
   const queue = await withQueue(runtimeUrl, (service) => service.list(fixture.ownerUserId, fixture.learnerId));
   const after = await stateSnapshot(migration, fixture);
-  const expectedReviewDate = "2026-09-14";
+  const expectedReviewDate = CONTROLLED_REVIEW_DATE;
   const expectedDueIds = [ids[0]!, ids[1]!, ids[2]!];
   const expectedNewIds = [ids[6]!, ids[7]!];
   const expectedQueueIds = [...expectedDueIds, ...expectedNewIds];
@@ -374,39 +439,43 @@ async function testQueueSemantics(migration: SqlClient, runtimeUrl: string, fixt
 
 async function testCapsAndSuppression(migration: SqlClient, runtimeUrl: string, fixtures: Fixture[]) {
   mark("caps-and-suppression");
+  const preExistingEnabledIds19 = await enabledVocabularyIds(migration);
   const nineteenDue = allocateVocabulary(30);
   const fixture19 = await seedFixture(migration, "nineteen-due", nineteenDue.map((id) => ({ id, enabled: true })).reverse());
   fixtures.push(fixture19);
+  await isolateExistingVocabularyForLearner(migration, fixture19, preExistingEnabledIds19);
   for (const vocabularyId of nineteenDue.slice(0, 19).reverse()) {
-    await insertProgress(migration, fixture19, vocabularyId, { status: "LEARNING", nextReviewDate: "2026-09-14", revision: 1 });
+    await insertProgress(migration, fixture19, vocabularyId, { status: "LEARNING", nextReviewDate: CONTROLLED_REVIEW_DATE, revision: 1 });
   }
   const queue19 = await withQueue(runtimeUrl, (service) => service.list(fixture19.ownerUserId, fixture19.learnerId));
-  assert(queue19.dueCount === 19 && queue19.newCount === 11, "DUE_19_COUNTS");
-  assert(queue19.queue.length === 29, "DUE_19_TOTAL_LENGTH");
-  assert(queue19.queue.slice(0, 19).every((item) => item.queueType === "DUE"), "DUE_19_PRIORITY");
-  assert(queue19.queue.slice(19).map((item) => item.vocabulary.id).join(",") === nineteenDue.slice(19, 29).join(","), "NEW_10_ORDER");
+  const expectation19 = buildCapQueueExpectation(CONTROLLED_REVIEW_DATE, nineteenDue.slice(0, 19), nineteenDue.slice(19));
+  assertCapQueue("DUE_19", queue19, expectation19);
 
+  const preExistingEnabledIds20 = await enabledVocabularyIds(migration);
   const twentyDue = allocateVocabulary(21);
   const fixture20 = await seedFixture(migration, "twenty-due", twentyDue.map((id) => ({ id, enabled: true })).reverse());
   fixtures.push(fixture20);
+  await isolateExistingVocabularyForLearner(migration, fixture20, preExistingEnabledIds20);
   for (const vocabularyId of twentyDue.slice(0, 20).reverse()) {
-    await insertProgress(migration, fixture20, vocabularyId, { status: "LEARNING", nextReviewDate: "2026-09-14", revision: 1 });
+    await insertProgress(migration, fixture20, vocabularyId, { status: "LEARNING", nextReviewDate: CONTROLLED_REVIEW_DATE, revision: 1 });
   }
   const queue20 = await withQueue(runtimeUrl, (service) => service.list(fixture20.ownerUserId, fixture20.learnerId));
-  assert(queue20.dueCount === 20 && queue20.newCount === 1, "DUE_20_COUNTS");
-  assert(queue20.queue.length === 20 && queue20.queue.every((item) => item.queueType === "DUE"), "DUE_20_SUPPRESSION");
+  const expectation20 = buildCapQueueExpectation(CONTROLLED_REVIEW_DATE, twentyDue.slice(0, 20), twentyDue.slice(20));
+  assertCapQueue("DUE_20", queue20, expectation20);
 
+  const preExistingEnabledIds21 = await enabledVocabularyIds(migration);
   const twentyOneDue = allocateVocabulary(21);
   const fixture21 = await seedFixture(migration, "twenty-one-due", twentyOneDue.map((id) => ({ id, enabled: true })).reverse());
   fixtures.push(fixture21);
+  await isolateExistingVocabularyForLearner(migration, fixture21, preExistingEnabledIds21);
   // Reverse insertion makes the canonical first 20 assertion prove that
   // PostgreSQL orders before applying LIMIT 20.
   for (const vocabularyId of twentyOneDue.slice().reverse()) {
-    await insertProgress(migration, fixture21, vocabularyId, { status: "LEARNING", nextReviewDate: "2026-09-14", revision: 1 });
+    await insertProgress(migration, fixture21, vocabularyId, { status: "LEARNING", nextReviewDate: CONTROLLED_REVIEW_DATE, revision: 1 });
   }
   const queue21 = await withQueue(runtimeUrl, (service) => service.list(fixture21.ownerUserId, fixture21.learnerId));
-  assert(queue21.dueCount === 21 && queue21.queue.length === 20, "DUE_CAP");
-  assert(queue21.queue.map((item) => item.vocabulary.id).join(",") === twentyOneDue.slice(0, 20).join(","), "DUE_CAP_ORDER");
+  const expectation21 = buildCapQueueExpectation(CONTROLLED_REVIEW_DATE, twentyOneDue, []);
+  assertCapQueue("DUE_21", queue21, expectation21);
 }
 
 async function verifyReset(

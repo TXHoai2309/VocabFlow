@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
 import { formatTrustedDbError, reportTrustedDbFailure, resolveTrustedDbSuite } from "./test-db";
+import { buildCapQueueExpectation } from "./test-review-queue-db";
 
 const source = readFileSync(join(process.cwd(), "scripts", "test-db.ts"), "utf8");
 const mainSource = source.slice(
@@ -120,5 +121,43 @@ describe("trusted DB suite selection", () => {
     expect(runner).toContain('await runUs07TrustedDbSuite');
     expect(runner).toContain('await runUs08TrustedDbSuite');
     expect(runner).toContain('markStage("verify-us08-review-queue")');
+  });
+});
+
+describe("US-08 cap harness contract model", () => {
+  it("keeps the 19-DUE NEW-cap contract explicit", () => {
+    const expectation = buildCapQueueExpectation(
+      "2026-09-14",
+      Array.from({ length: 19 }, (_, index) => index + 1),
+      Array.from({ length: 11 }, (_, index) => index + 20),
+    );
+    expect(expectation).toEqual({
+      reviewDate: "2026-09-14",
+      dueCount: 19,
+      newCount: 11,
+      returnedDueIds: Array.from({ length: 19 }, (_, index) => index + 1),
+      returnedNewIds: Array.from({ length: 10 }, (_, index) => index + 20),
+      queueIds: Array.from({ length: 19 }, (_, index) => index + 1).concat(Array.from({ length: 10 }, (_, index) => index + 20)),
+      newSuppressed: false
+    });
+  });
+
+  it("keeps the 20-DUE suppression contract separate from total NEW count", () => {
+    const expectation = buildCapQueueExpectation("2026-09-14", Array.from({ length: 20 }, (_, index) => index + 1), [21]);
+    expect(expectation.dueCount).toBe(20);
+    expect(expectation.newCount).toBe(1);
+    expect(expectation.returnedNewIds).toEqual([]);
+    expect(expectation.queueIds).toHaveLength(20);
+    expect(expectation.newSuppressed).toBe(true);
+  });
+
+  it("keeps the 21-DUE canonical first-20 contract explicit", () => {
+    const expectation = buildCapQueueExpectation("2026-09-14", Array.from({ length: 21 }, (_, index) => index + 1), []);
+    expect(expectation.dueCount).toBe(21);
+    expect(expectation.newCount).toBe(0);
+    expect(expectation.returnedDueIds).toEqual(Array.from({ length: 20 }, (_, index) => index + 1));
+    expect(expectation.returnedNewIds).toEqual([]);
+    expect(expectation.queueIds).toHaveLength(20);
+    expect(expectation.newSuppressed).toBe(true);
   });
 });
