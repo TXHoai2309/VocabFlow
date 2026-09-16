@@ -112,6 +112,8 @@ describe("US-09 flashcard session UX", () => {
     expect(screen.getByTestId("flashcard")).toHaveClass("flashcard");
     expect(screen.getByTestId("flashcard").querySelector(".flashcard-front")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Phát âm thanh" })).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Chưa nhớ" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Đã nhớ" })).not.toBeInTheDocument();
     expect(fetchMock).toHaveBeenCalledWith(`/api/learners/${learner.id}/review-queue`, { credentials: "include" });
 
     fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));

@@ -1,7 +1,7 @@
 # US-10 — Reusable Flashcard Front State
 
-- Status: IN PROGRESS
-- Implementation: COMPLETE — READY FOR OWNER CHECK
+- Status: ACCEPTED / CLOSED
+- Implementation: COMPLETE
 - Batch: BATCH 7 — Flashcard Session UX refinement
 - Architecture slice: Step 9 — Flashcard session UX
 - Owner: Project Owner
@@ -91,3 +91,9 @@ Trusted DB is not required.
 
 Implementation and local validation are complete. US-10 is ready for owner
 check; US-11 has not started.
+
+## 9. Current Project Status
+
+The current project state records US-10 as `ACCEPTED / CLOSED`. The historical
+pending-owner-check wording in the closeout above is retained for audit
+traceability; the next narrow Study refinement is US-11.

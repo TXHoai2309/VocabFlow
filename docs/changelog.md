@@ -2,6 +2,18 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-16 — US-11 Flashcard Back Content & Recall Actions implementation
+
+- Extended the reusable Flashcard presentation with explicit back-side IPA,
+  Vietnamese meaning and available supporting content.
+- Preserved optional image fallback, added meaningful image alternative text and
+  kept absent optional fields out of the rendered back.
+- Preserved Study-owned Remembered/Forgotten controls, review writes,
+  reinforcement and summary behavior; controls remain unavailable before flip.
+- No backend, schema, migration or database behavior changed. Trusted DB is not
+  required for this UI-only refinement.
+- US-11 implementation is ready for owner check; US-12 has not started.
+
 ## 2026-09-16 — US-10 Reusable Flashcard Front State implementation
 
 - Extracted the Study card presentation and media fallback behavior into the

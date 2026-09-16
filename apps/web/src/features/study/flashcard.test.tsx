@@ -18,7 +18,7 @@ const vocabulary: VocabularyDto = {
   contentVersion: 1
 };
 
-describe("US-10 reusable Flashcard", () => {
+describe("US-11 Flashcard back state", () => {
   it("renders only the allowed front content and no answer-bearing DOM", () => {
     render(<Flashcard vocabulary={vocabulary} isFlipped={false} onFlip={vi.fn()} />);
 
@@ -49,7 +49,31 @@ describe("US-10 reusable Flashcard", () => {
     expect(screen.getByText("the ability to control or influence")).toBeInTheDocument();
     expect(screen.getByText("Power can be shared.")).toBeInTheDocument();
     expect(screen.getByText("people")).toBeInTheDocument();
-    expect(screen.getByTestId("flashcard").querySelector(".flashcard-image")).toHaveAttribute("src", "/images/power.jpg");
+    expect(screen.getByTestId("flashcard").querySelector(".flashcard-image"))
+      .toHaveAttribute("src", "/images/power.jpg");
+    expect(screen.getByTestId("flashcard").querySelector(".flashcard-image"))
+      .toHaveAttribute("alt", "Minh họa cho power");
+  });
+
+  it("omits absent IPA, definition, example and image without placeholders", () => {
+    const sparseVocabulary: VocabularyDto = {
+      ...vocabulary,
+      ipa: null,
+      definitionEn: "",
+      exampleEn: null,
+      imageUrl: null,
+      audioUrl: null,
+      topic: null
+    };
+
+    render(<Flashcard vocabulary={sparseVocabulary} isFlipped onFlip={vi.fn()} />);
+
+    expect(screen.getByText("sức mạnh; quyền lực")).toBeInTheDocument();
+    expect(screen.queryByText("/ˈpaʊər/")).not.toBeInTheDocument();
+    expect(screen.queryByText("the ability to control or influence")).not.toBeInTheDocument();
+    expect(screen.queryByText("Power can be shared.")).not.toBeInTheDocument();
+    expect(screen.queryByRole("img")).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Phát âm thanh" })).not.toBeInTheDocument();
   });
 
   it("supports Space flip and preserves responsive/accessibility structure", () => {

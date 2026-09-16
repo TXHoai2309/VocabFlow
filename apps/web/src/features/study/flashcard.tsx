@@ -51,7 +51,7 @@ export function Flashcard({ vocabulary, isFlipped, onFlip }: FlashcardProps) {
               {vocabulary.exampleEn ? <span className="flashcard-example">{vocabulary.exampleEn}</span> : null}
               {vocabulary.topic ? <span className="flashcard-optional">{vocabulary.topic}</span> : null}
               {vocabulary.imageUrl && !imageFailed ? (
-                <img className="flashcard-image" src={vocabulary.imageUrl} alt="" onError={() => setImageFailed(true)} />
+                <img className="flashcard-image" src={vocabulary.imageUrl} alt={`Minh họa cho ${vocabulary.word}`} onError={() => setImageFailed(true)} />
               ) : null}
             </span>
           )}
