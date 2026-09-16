@@ -33,6 +33,8 @@ convenient. Reprioritization or a new story must be explicit.
 - [US-08 Review Queue](US-08-review-queue.md)
   — `ACCEPTED / CLOSED`.
 - [US-09 Flashcard Session UX](US-09-flashcard-session-ux.md)
+  — `ACCEPTED / CLOSED`.
+- [US-10 Reusable Flashcard Front State](US-10-reusable-flashcard-front-state.md)
   — `IN PROGRESS` (implementation complete; owner check pending).
 
 ## Story status gate

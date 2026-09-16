@@ -2,6 +2,19 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-16 — US-10 Reusable Flashcard Front State implementation
+
+- Extracted the Study card presentation and media fallback behavior into the
+  reusable `Flashcard` component.
+- The front now mounts only the English word, flip affordance and explicitly
+  allowed manual audio; meaning and answer-bearing optional content are
+  conditionally rendered only on the back.
+- Preserved Study queue/review/reinforcement/summary behavior and responsive,
+  keyboard and focus-visible interaction.
+- No backend, schema, migration or database behavior changed. Trusted DB is not
+  required for this UI-only refinement.
+- US-10 implementation is ready for owner check; US-11 has not started.
+
 ## 2026-09-15 — US-09 Flashcard Session UX implementation
 
 - Implemented the Architecture Step 9 queue-backed Study session over the

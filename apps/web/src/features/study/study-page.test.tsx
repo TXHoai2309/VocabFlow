@@ -109,6 +109,8 @@ describe("US-09 flashcard session UX", () => {
     expect(screen.getByText("apple")).toBeInTheDocument();
     expect(screen.queryByText("apple-nghĩa")).not.toBeInTheDocument();
     expect(screen.getByTestId("session-counter")).toHaveTextContent("0 / 2");
+    expect(screen.getByTestId("flashcard")).toHaveClass("flashcard");
+    expect(screen.getByTestId("flashcard").querySelector(".flashcard-front")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Phát âm thanh" })).toBeInTheDocument();
     expect(fetchMock).toHaveBeenCalledWith(`/api/learners/${learner.id}/review-queue`, { credentials: "include" });
 

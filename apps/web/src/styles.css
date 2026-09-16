@@ -414,7 +414,7 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
 .study-progress { height: 8px; margin-top: 12px; overflow: hidden; border-radius: 999px; background: var(--color-primary-soft); }
 .study-progress span { display: block; height: 100%; border-radius: inherit; background: var(--color-primary); transition: width 180ms ease; }
 .study-instruction { margin: 0 0 12px; color: var(--color-text-muted); font-size: 14px; line-height: 20px; }
-.study-card {
+.flashcard {
   width: 100%;
   min-height: 360px;
   overflow: hidden;
@@ -423,7 +423,7 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
   background: linear-gradient(145deg, #fff 0%, #f0f5ff 100%);
   box-shadow: 0 18px 40px rgb(35 87 216 / 0.12);
 }
-.study-card-flip {
+.flashcard-flip {
   display: block;
   width: 100%;
   min-height: 360px;
@@ -434,20 +434,20 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
   font: inherit;
   cursor: pointer;
 }
-.study-card:hover { border-color: var(--color-primary); }
-.study-card-flip:focus-visible { outline: 3px solid var(--color-focus); outline-offset: -5px; }
-.study-card-face { display: flex; min-height: 292px; flex-direction: column; align-items: center; justify-content: center; gap: 16px; overflow-wrap: anywhere; }
-.study-card-word { color: var(--color-text); font-size: clamp(2.5rem, 9vw, 5rem); font-weight: 800; line-height: 1; letter-spacing: -0.06em; }
-.study-card-hint { color: var(--color-text-muted); font-size: 14px; }
-.study-card-vietnamese { color: var(--color-primary); font-size: clamp(1.35rem, 4vw, 2rem); font-weight: 750; line-height: 1.25; }
-.study-card-optional, .study-card-example { max-width: 560px; color: var(--color-text-muted); font-size: 15px; line-height: 1.5; }
-.study-card-example { font-style: italic; }
-.study-card-image { max-width: min(100%, 280px); max-height: 140px; border-radius: 12px; object-fit: cover; }
+.flashcard:hover { border-color: var(--color-primary); }
+.flashcard-flip:focus-visible { outline: 3px solid var(--color-focus); outline-offset: -5px; }
+.flashcard-face { display: flex; min-height: 292px; flex-direction: column; align-items: center; justify-content: center; gap: 16px; overflow-wrap: anywhere; }
+.flashcard-word { color: var(--color-text); font-size: clamp(2.5rem, 9vw, 5rem); font-weight: 800; line-height: 1; letter-spacing: -0.06em; }
+.flashcard-hint { color: var(--color-text-muted); font-size: 14px; }
+.flashcard-vietnamese { color: var(--color-primary); font-size: clamp(1.35rem, 4vw, 2rem); font-weight: 750; line-height: 1.25; }
+.flashcard-optional, .flashcard-example { max-width: 560px; color: var(--color-text-muted); font-size: 15px; line-height: 1.5; }
+.flashcard-example { font-style: italic; }
+.flashcard-image { max-width: min(100%, 280px); max-height: 140px; border-radius: 12px; object-fit: cover; }
 .study-card-state { margin: 12px 0 0; color: var(--color-text-muted); font-size: 14px; line-height: 20px; text-align: center; }
 .study-session-message { margin: 12px 0 0; color: var(--color-text-muted); font-size: 14px; line-height: 20px; text-align: center; }
-.study-audio-row { display: flex; align-items: center; justify-content: center; min-height: 52px; color: var(--color-text-muted); font-size: 14px; }
-.study-audio-button { margin-top: 0; }
-.study-audio-row audio { display: none; }
+.flashcard-audio-row { display: flex; align-items: center; justify-content: center; min-height: 52px; color: var(--color-text-muted); font-size: 14px; }
+.flashcard-audio-button { margin-top: 0; }
+.flashcard-audio-row audio { display: none; }
 .study-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 18px; }
 .study-recall { min-height: 48px; padding: 10px 16px; border: 1px solid var(--color-primary); border-radius: var(--radius-control); color: var(--color-primary); background: var(--color-surface); font: inherit; font-weight: 750; cursor: pointer; }
 .study-recall:hover:not(:disabled) { background: var(--color-primary-soft); }
@@ -475,15 +475,15 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
 @media (max-width: 520px) {
   .study-topbar { align-items: flex-start; flex-direction: column; }
   .study-learner { text-align: left; }
-  .study-card, .study-card-flip { min-height: 300px; }
-  .study-card-flip { padding: 24px 16px; }
-  .study-card-face { min-height: 244px; }
+  .flashcard, .flashcard-flip { min-height: 300px; }
+  .flashcard-flip { padding: 24px 16px; }
+  .flashcard-face { min-height: 244px; }
   .study-actions { grid-template-columns: 1fr; }
   .study-save-failed { align-items: flex-start; flex-direction: column; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .study-card { transition: none; }
+  .flashcard { transition: none; }
 }
 
 @media (min-width: 640px) {

@@ -76,13 +76,13 @@ test("US-09 enters the queue-backed study session and flips the first card", asy
 
   await expect(page).toHaveURL(/\/study$/);
   await expect(page.getByTestId("study-session-ready")).toBeVisible();
-  await expect(page.locator(".study-card-word")).toHaveText("apple");
-  await expect(page.locator(".study-card-vietnamese")).not.toBeVisible();
+  await expect(page.locator(".flashcard-word")).toHaveText("apple");
+  await expect(page.locator(".flashcard-vietnamese")).not.toBeVisible();
 
   await page.getByRole("button", { name: "Lật để xem nghĩa" }).press("Space");
 
   await expect(page.getByRole("button", { name: "Lật về mặt trước" })).toBeVisible();
-  await expect(page.locator(".study-card-vietnamese")).toHaveText("quả táo");
+  await expect(page.locator(".flashcard-vietnamese")).toHaveText("quả táo");
   expect(queueReadCount).toBe(1);
   expect(reviewWrites).toEqual([]);
   expect(writeRequests).toEqual([]);

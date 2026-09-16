@@ -1,7 +1,7 @@
 # US-09 — Flashcard Session UX
 
-- Status: IN PROGRESS
-- Implementation: COMPLETE — READY FOR OWNER CHECK
+- Status: ACCEPTED / CLOSED
+- Implementation: COMPLETE
 - Batch: BATCH 7 — Flashcard Session UX
 - Architecture step: Step 9
 - Owner: Project Owner
@@ -129,3 +129,9 @@ full tests, lint, typecheck, build, E2E, Drizzle check and `git diff --check`.
 
 Implementation and local validation are complete. US-09 is ready for owner
 check; owner acceptance remains pending. US-10 has not started.
+
+## 9. Current Project Status
+
+The current project state records US-09 as `ACCEPTED / CLOSED`. The historical
+pending-owner-check wording in the closeout above is retained for audit
+traceability; the next narrow Study refinement is US-10.

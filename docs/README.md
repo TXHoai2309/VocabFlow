@@ -106,6 +106,7 @@ feature code may start.
 - US-06 Learning Scheduler Domain is `ACCEPTED`.
 - US-07 Scheduled Review Write is `ACCEPTED / CLOSED`.
 - US-08 Review Queue is `ACCEPTED / CLOSED`.
-- US-09 Flashcard Session UX is `IN PROGRESS`; implementation and local
-  acceptance evidence are complete, with owner check pending.
+- US-09 Flashcard Session UX is `ACCEPTED / CLOSED`.
+- US-10 Reusable Flashcard Front State is `IN PROGRESS`; implementation and
+  local acceptance evidence are complete, with owner check pending.
 - Documentation/agent-pack work does not implement US-01 or any other feature.

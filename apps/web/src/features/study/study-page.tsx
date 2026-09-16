@@ -10,6 +10,7 @@ import type {
 import { useActiveLearner } from "../learners/learner-context-hook";
 import { requestReviewQueue, ReviewQueueClientError } from "./review-queue-client";
 import { ReviewClientError, submitReview } from "./review-client";
+import { Flashcard } from "./flashcard";
 
 type StudyState = "loading" | "empty" | "error" | "ready" | "saving" | "save-failed" | "reconciling" | "summary";
 
@@ -94,12 +95,9 @@ function StudyExperience({ activeLearner }: { activeLearner: LearnerDto }) {
   });
   const [message, setMessage] = useState<string | null>(null);
   const [isFlipped, setIsFlipped] = useState(false);
-  const [imageFailed, setImageFailed] = useState(false);
-  const [audioUnavailable, setAudioUnavailable] = useState(false);
   const [pending, setPending] = useState<PendingReview | null>(null);
   const [lastAnswer, setLastAnswer] = useState<ReviewResult | null>(null);
   const cardsRef = useRef<SessionCard[]>([]);
-  const audioRef = useRef<HTMLAudioElement>(null);
 
   const currentCard = cards[0] ?? null;
 
@@ -113,8 +111,6 @@ function StudyExperience({ activeLearner }: { activeLearner: LearnerDto }) {
     setPending(null);
     setLastAnswer(null);
     setIsFlipped(false);
-    setImageFailed(false);
-    setAudioUnavailable(false);
     try {
       const response = await requestReviewQueue(activeLearner.id);
       const nextCards = sessionCards(response.queue);
@@ -137,8 +133,6 @@ function StudyExperience({ activeLearner }: { activeLearner: LearnerDto }) {
     cardsRef.current = nextCards;
     if (resetPresentation) {
       setIsFlipped(false);
-      setImageFailed(false);
-      setAudioUnavailable(false);
     }
     setCards(nextCards);
   }, []);
@@ -263,12 +257,6 @@ function StudyExperience({ activeLearner }: { activeLearner: LearnerDto }) {
     }
   };
 
-  const playAudio = () => {
-    const audio = audioRef.current;
-    if (!audio) return;
-    void audio.play().catch(() => setAudioUnavailable(true));
-  };
-
   if (state === "loading") {
     return (
       <main className="study-page" aria-labelledby="study-title">
@@ -340,56 +328,12 @@ function StudyExperience({ activeLearner }: { activeLearner: LearnerDto }) {
             </div>
 
             <p className="study-instruction">Chạm hoặc nhấn Space để lật thẻ.</p>
-            <div className="study-card" data-testid="study-card">
-              <button
-                className="study-card-flip"
-                type="button"
-                aria-label={isFlipped ? "Lật về mặt trước" : "Lật để xem nghĩa"}
-                aria-describedby="study-card-description"
-                aria-pressed={isFlipped}
-                onClick={() => setIsFlipped((current) => !current)}
-                onKeyDown={(event) => {
-                  if (event.key === " ") {
-                    event.preventDefault();
-                    setIsFlipped((current) => !current);
-                  }
-                }}
-              >
-                {!isFlipped ? (
-                  <span className="study-card-face study-card-front">
-                    <span id="study-card-description" className="sr-only">Từ tiếng Anh: {currentCard.item.vocabulary.word}</span>
-                    <span className="study-card-word">{currentCard.item.vocabulary.word}</span>
-                    <span className="study-card-hint">Nhấn để xem nghĩa</span>
-                  </span>
-                ) : (
-                  <span className="study-card-face study-card-back">
-                    <span id="study-card-description" className="sr-only">Từ: {currentCard.item.vocabulary.word}. Nghĩa: {currentCard.item.vocabulary.vietnamese}.</span>
-                    <span className="study-card-word">{currentCard.item.vocabulary.word}</span>
-                    {currentCard.item.vocabulary.ipa ? <span className="study-card-optional">{currentCard.item.vocabulary.ipa}</span> : null}
-                    <span className="study-card-vietnamese">{currentCard.item.vocabulary.vietnamese}</span>
-                    {currentCard.item.vocabulary.definitionEn ? <span className="study-card-optional">{currentCard.item.vocabulary.definitionEn}</span> : null}
-                    {currentCard.item.vocabulary.exampleEn ? <span className="study-card-example">{currentCard.item.vocabulary.exampleEn}</span> : null}
-                    {currentCard.item.vocabulary.topic ? <span className="study-card-optional">{currentCard.item.vocabulary.topic}</span> : null}
-                    {currentCard.item.vocabulary.imageUrl && !imageFailed ? (
-                      <img className="study-card-image" src={currentCard.item.vocabulary.imageUrl} alt="" onError={() => setImageFailed(true)} />
-                    ) : null}
-                  </span>
-                )}
-              </button>
-            </div>
-
-            {currentCard.item.vocabulary.audioUrl ? (
-              <div className="study-audio-row">
-                {audioUnavailable ? (
-                  <span role="status">Âm thanh không khả dụng.</span>
-                ) : (
-                  <>
-                    <button className="auth-retry study-audio-button" type="button" onClick={playAudio}>Phát âm thanh</button>
-                    <audio ref={audioRef} src={currentCard.item.vocabulary.audioUrl} preload="none" onError={() => setAudioUnavailable(true)} />
-                  </>
-                )}
-              </div>
-            ) : null}
+            <Flashcard
+              key={`${currentCard.item.vocabulary.id}-${currentCard.reinforcementAttempt}`}
+              vocabulary={currentCard.item.vocabulary}
+              isFlipped={isFlipped}
+              onFlip={() => setIsFlipped((current) => !current)}
+            />
 
             <p className="study-card-state" role="status" aria-live="polite">
               {state === "saving" ? "Đang lưu…" : state === "reconciling" ? "Đang cập nhật tiến trình…" : lastAnswer ? "Chưa lưu tiến trình" : isFlipped ? "Mặt sau: nghĩa tiếng Việt" : "Mặt trước: từ tiếng Anh"}

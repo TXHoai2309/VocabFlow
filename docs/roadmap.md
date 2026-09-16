@@ -213,10 +213,11 @@ The complete story contract is in
 
 ## BATCH 7 — Flashcard Session UX
 
-- Status: `IN PROGRESS` — implementation complete; owner check pending.
+- Status: `IN PROGRESS` — US-09 is accepted; US-10 refinement is pending owner
+  check.
 - Dependency: BATCH 6 / US-08 Review Queue and the accepted US-07 scheduled
   review write.
-- Active story: US-09 Flashcard Session UX.
+- Active story: US-10 Reusable Flashcard Front State.
 - Architecture step: Step 9.
 - Scope: queue-backed Study session composition with due-first presentation,
   front/back flashcard interaction, server-confirmed scheduled answers, retry
@@ -228,6 +229,9 @@ The complete story contract is in
   `study_sessions` persistence or offline write queue is added.
 - Trusted DB is not required for this UI/client-composition slice because no
   real database behavior changes.
+- US-09 Flashcard Session UX is `ACCEPTED / CLOSED`. US-10 is a narrow
+  component/refinement story within the same Study boundary and does not open
+  US-11 or Architecture Step 10.
 
 ## Later product scope
 
