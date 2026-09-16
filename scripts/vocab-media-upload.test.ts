@@ -216,6 +216,37 @@ describe("safe Cloudinary media uploader", () => {
     expect(uploadCalls).toBe(1);
   });
 
+  it("streams verified bytes for Unicode Windows-style filenames", async () => {
+    const root = fixtureDirectory();
+    const bytes = Buffer.from("unicode image bytes");
+    const image = asset("image", bytes, "images/藍色網路上的晶片.jpg");
+    writeFileSync(join(root, image.sourcePath), bytes);
+    let receivedBytes = Buffer.alloc(0);
+    let receivedSourceType = "";
+    const summary = await runUploader({
+      manifest: manifest([image]),
+      datasetRoot: root,
+      apply: true,
+      client: client({
+        upload: async (source, options) => {
+          receivedSourceType = typeof source;
+          const chunks: Buffer[] = [];
+          for await (const chunk of source) chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
+          receivedBytes = Buffer.concat(chunks);
+          expect(options.resource_type).toBe("image");
+          expect(options.overwrite).toBe(false);
+          return { resource_type: "image" };
+        }
+      }),
+      statePath: join(root, "state.json"),
+      failuresPath: join(root, "failures.json"),
+      mediaMapPath: join(root, "map.json")
+    });
+    expect(summary.uploadedCount).toBe(1);
+    expect(receivedSourceType).toBe("object");
+    expect(receivedBytes).toEqual(bytes);
+  });
+
   it("derives deterministic public IDs and provider resource types", () => {
     const image = asset("image", Buffer.from("image"), "images/one.png");
     const audio = asset("audio", Buffer.from("audio"), "audio/one.mp3");
@@ -300,6 +331,68 @@ describe("safe Cloudinary media uploader", () => {
       status: "EXISTS",
       publicId: publicIdForAsset(image)
     });
+  });
+
+  it("classifies the known unsupported optional media response without creating a mapping", async () => {
+    const root = fixtureDirectory();
+    const bytes = Buffer.from("coarse mp3 bytes");
+    const audio = asset("audio", bytes, "audio/sapi5com-d39f3da2-5e62e4fb-9dbce53b-35268074-28acddd4.mp3");
+    writeFileSync(join(root, audio.sourcePath), bytes);
+    const summary = await runUploader({
+      manifest: manifest([audio]),
+      datasetRoot: root,
+      apply: true,
+      client: client({
+        upload: async () => { throw { name: "Error", message: "Unsupported video format or file", http_code: 400 }; }
+      }),
+      statePath: join(root, "state.json"),
+      failuresPath: join(root, "failures.json"),
+      mediaMapPath: join(root, "map.json"),
+      unusablePath: join(root, "unusable.json")
+    });
+    expect(summary.unusableSourceMediaCount).toBe(1);
+    expect(summary.permanentFailureCount).toBe(0);
+    expect(summary.failures).toHaveLength(0);
+    expect(JSON.parse(readFileSync(join(root, "state.json"), "utf8")).assets[audio.mediaKey]).toMatchObject({
+      status: "UNUSABLE_SOURCE_MEDIA"
+    });
+    expect(JSON.parse(readFileSync(join(root, "map.json"), "utf8")).assets).toHaveLength(0);
+    expect(JSON.parse(readFileSync(join(root, "unusable.json"), "utf8"))).toMatchObject([{
+      mediaKey: audio.mediaKey,
+      reason: "UNSUPPORTED_MEDIA_FORMAT"
+    }]);
+  });
+
+  it("reuses a checkpointed unusable asset without streaming or creating a mapping", async () => {
+    const root = fixtureDirectory();
+    const bytes = Buffer.from("coarse mp3 bytes");
+    const audio = asset("audio", bytes, "audio/unusable.mp3");
+    writeFileSync(join(root, audio.sourcePath), bytes);
+    const spec = buildUploadSpecs(manifest([audio]), root)[0];
+    writeFileSync(join(root, "state.json"), JSON.stringify({
+      schemaVersion: 1,
+      assets: {
+        [audio.mediaKey]: {
+          ...stored(spec),
+          status: "UNUSABLE_SOURCE_MEDIA",
+          sanitizedMessage: "Unsupported video format or file"
+        }
+      }
+    }));
+    let uploadCalls = 0;
+    const summary = await runUploader({
+      manifest: manifest([audio]),
+      datasetRoot: root,
+      apply: true,
+      client: client({ upload: async () => { uploadCalls += 1; return {}; } }),
+      statePath: join(root, "state.json"),
+      failuresPath: join(root, "failures.json"),
+      mediaMapPath: join(root, "map.json"),
+      unusablePath: join(root, "unusable.json")
+    });
+    expect(summary.unusableSourceMediaCount).toBe(1);
+    expect(uploadCalls).toBe(0);
+    expect(JSON.parse(readFileSync(join(root, "map.json"), "utf8")).assets).toHaveLength(0);
   });
 
   it("resumes from a matching checkpoint without contacting Cloudinary", async () => {

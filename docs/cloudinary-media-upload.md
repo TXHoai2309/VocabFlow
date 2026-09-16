@@ -73,6 +73,7 @@ Apply state is written to the gitignored generated directory:
 local-data/generated/cloudinary-upload-state.json
 local-data/generated/cloudinary-media-map.json
 local-data/generated/cloudinary-upload-failures.json
+local-data/generated/cloudinary-upload-unusable.json
 ```
 
 The checkpoint contains only asset identity and non-secret provider metadata.
@@ -81,9 +82,11 @@ matching assets already present in Cloudinary based on the direct upload
 response, retries only transient upload failures, and writes a deterministic
 failure report. It does not perform a per-asset Cloudinary Admin API resource
 lookup. Before every upload the local file is re-hashed and must still match
-the manifest SHA-256; changed or missing bytes fail closed. A later controlled
-upload should begin with the offline plan, review the summary, and then pass
-`--apply` explicitly. Each apply run replaces the generated failure report with
+the manifest SHA-256; changed or missing bytes fail closed. Uploads are sent
+through Cloudinary's stream API from those verified bytes, so Unicode Windows
+filenames are not passed as upload path payloads. A later controlled upload
+should begin with the offline plan, review the summary, and then pass `--apply`
+explicitly. Each apply run replaces the generated failure report with
 the current unresolved failures, so stale failures from an earlier run do not
 block resume; successful checkpoint entries are preserved.
 
@@ -92,7 +95,10 @@ bounded retries with exponential jitter, honoring retry-after metadata when the
 SDK exposes it. HTTP 400 remains permanent except for the SDK's explicit
 `resource already exists` response, which is checkpointed as `EXISTS` without
 overwriting the asset. Permanent failure reports retain only a short sanitized
-message and never store credentials, signatures or request configuration.
+message and never store credentials, signatures or request configuration. Known
+optional media rejected with the tightly scoped unsupported-format response is
+recorded as `UNUSABLE_SOURCE_MEDIA`, excluded from the Cloudinary media map,
+and treated as unavailable downstream without blocking other assets.
 
 Optional controls are bounded:
 

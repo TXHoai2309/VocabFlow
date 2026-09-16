@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, renameSync, statSync, writeFileSync } from "node:fs";
 import { loadEnvFile } from "node:process";
 import { dirname, isAbsolute, join, relative, resolve, sep } from "node:path";
+import { Readable } from "node:stream";
 import { v2 as cloudinary } from "cloudinary";
 import type { MediaAsset, MediaManifest } from "./vocab-media-manifest";
 import { DEFAULT_DATASET_ROOT, DEFAULT_OUTPUT_DIR, MANIFEST_FILENAME } from "./vocab-media-manifest";
@@ -9,6 +10,7 @@ import { DEFAULT_DATASET_ROOT, DEFAULT_OUTPUT_DIR, MANIFEST_FILENAME } from "./v
 export const DEFAULT_MANIFEST_PATH = join(DEFAULT_OUTPUT_DIR, MANIFEST_FILENAME);
 export const DEFAULT_STATE_PATH = join(DEFAULT_OUTPUT_DIR, "cloudinary-upload-state.json");
 export const DEFAULT_FAILURES_PATH = join(DEFAULT_OUTPUT_DIR, "cloudinary-upload-failures.json");
+export const DEFAULT_UNUSABLE_PATH = join(DEFAULT_OUTPUT_DIR, "cloudinary-upload-unusable.json");
 export const DEFAULT_MEDIA_MAP_PATH = join(DEFAULT_OUTPUT_DIR, "cloudinary-media-map.json");
 export const DEFAULT_CONCURRENCY = 3;
 export const MAX_CONCURRENCY = 5;
@@ -19,6 +21,7 @@ const AUDIO_FOLDER = "Vocab/audio";
 
 export type CloudinaryResourceType = "image" | "video";
 export type UploadSuccessStatus = "UPLOADED" | "EXISTS";
+export type UploadCheckpointStatus = UploadSuccessStatus | "UNUSABLE_SOURCE_MEDIA";
 
 export type CloudinaryUploadResponse = {
   public_id?: string;
@@ -30,7 +33,7 @@ export type CloudinaryUploadResponse = {
 
 export type CloudinaryClient = {
   upload: (
-    filePath: string,
+    source: Readable,
     options: {
       asset_folder: string;
       public_id: string;
@@ -67,7 +70,8 @@ export type StoredMediaAsset = {
   publicId: string;
   resourceType: CloudinaryResourceType;
   format: string;
-  status: UploadSuccessStatus;
+  status: UploadCheckpointStatus;
+  sanitizedMessage?: string;
   secureUrl?: string;
   bytes?: number;
 };
@@ -81,6 +85,16 @@ export type CloudinaryMediaMap = {
   schemaVersion: 1;
   provider: "cloudinary";
   assets: StoredMediaAsset[];
+};
+
+export type UnusableSourceMedia = {
+  mediaKey: string;
+  type: MediaAsset["type"];
+  sha256: string;
+  sourcePath: string;
+  publicId: string;
+  reason: "UNSUPPORTED_MEDIA_FORMAT";
+  sanitizedMessage: string;
 };
 
 export type UploadFailure = {
@@ -104,11 +118,13 @@ export type UploadRunSummary = {
   uploadedCount: number;
   existingCount: number;
   checkpointSkippedCount: number;
+  unusableSourceMediaCount: number;
   localMissingCount: number;
   hashMismatchCount: number;
   transientFailureCount: number;
   permanentFailureCount: number;
   failures: UploadFailure[];
+  unusableSourceMedia: UnusableSourceMedia[];
 };
 
 export type RunUploaderOptions = {
@@ -123,6 +139,7 @@ export type RunUploaderOptions = {
   maxRetries?: number;
   statePath?: string;
   failuresPath?: string;
+  unusablePath?: string;
   mediaMapPath?: string;
   sleep?: (milliseconds: number) => Promise<void>;
   redactValues?: readonly string[];
@@ -160,6 +177,7 @@ class SanitizedCloudinaryError extends MediaUploadError {
   readonly alreadyExists: boolean;
   readonly retryAfterMs?: number;
   readonly sanitizedMessage: string;
+  readonly unsupportedMedia: boolean;
 
   constructor(
     reason: string,
@@ -167,7 +185,8 @@ class SanitizedCloudinaryError extends MediaUploadError {
     httpCode: number | undefined,
     alreadyExists: boolean,
     retryAfterMs: number | undefined,
-    sanitizedMessage: string
+    sanitizedMessage: string,
+    unsupportedMedia: boolean
   ) {
     super(reason);
     this.transient = transient;
@@ -175,6 +194,7 @@ class SanitizedCloudinaryError extends MediaUploadError {
     this.alreadyExists = alreadyExists;
     this.retryAfterMs = retryAfterMs;
     this.sanitizedMessage = sanitizedMessage;
+    this.unsupportedMedia = unsupportedMedia;
   }
 }
 
@@ -299,6 +319,13 @@ function isExistingUploadError(error: unknown): boolean {
   return normalizedMessage(error).toLowerCase() === "resource already exists";
 }
 
+function isUnsupportedMediaUploadError(error: unknown): boolean {
+  if (error instanceof SanitizedCloudinaryError) return error.unsupportedMedia;
+  const message = normalizedMessage(error).toLowerCase().replace(/[.!]+$/, "");
+  return message === "unsupported video format or file"
+    || message === "unsupported image format or file";
+}
+
 function assertConcurrency(value: number): number {
   if (!Number.isSafeInteger(value) || value < 1 || value > MAX_CONCURRENCY) {
     throw new MediaUploadError("CONCURRENCY_OUT_OF_RANGE");
@@ -386,15 +413,18 @@ export function buildUploadSpecs(
   }));
 }
 
-function hashFile(path: string): string | null {
-  if (!existsSync(path) || !statSync(path).isFile()) return null;
-  return createHash("sha256").update(readFileSync(path)).digest("hex");
-}
+type LocalVerification = {
+  status: "OK" | "LOCAL_FILE_MISSING" | "HASH_MISMATCH";
+  bytes?: Buffer;
+};
 
-function validateLocalFile(spec: UploadAssetSpec): "OK" | "LOCAL_FILE_MISSING" | "HASH_MISMATCH" {
-  const actualHash = hashFile(spec.absolutePath);
-  if (actualHash === null) return "LOCAL_FILE_MISSING";
-  return actualHash === spec.asset.sha256 ? "OK" : "HASH_MISMATCH";
+function verifyLocalFile(spec: UploadAssetSpec): LocalVerification {
+  if (!existsSync(spec.absolutePath) || !statSync(spec.absolutePath).isFile()) {
+    return { status: "LOCAL_FILE_MISSING" };
+  }
+  const bytes = readFileSync(spec.absolutePath);
+  const actualHash = createHash("sha256").update(bytes).digest("hex");
+  return actualHash === spec.asset.sha256 ? { status: "OK", bytes } : { status: "HASH_MISMATCH" };
 }
 
 function safeBytes(value: unknown): number | undefined {
@@ -403,7 +433,7 @@ function safeBytes(value: unknown): number | undefined {
 
 function storedAsset(
   spec: UploadAssetSpec,
-  status: UploadSuccessStatus,
+  status: UploadCheckpointStatus,
   response: CloudinaryUploadResponse = {}
 ): StoredMediaAsset {
   return {
@@ -425,7 +455,7 @@ function validStoredAsset(value: unknown, spec: UploadAssetSpec): value is Store
     && value.sha256 === spec.asset.sha256
     && value.publicId === spec.publicId
     && value.resourceType === spec.resourceType
-    && (value.status === "UPLOADED" || value.status === "EXISTS")
+    && (value.status === "UPLOADED" || value.status === "EXISTS" || value.status === "UNUSABLE_SOURCE_MEDIA")
     && typeof value.format === "string";
 }
 
@@ -455,7 +485,9 @@ function mediaMapFromCheckpoint(checkpoint: UploadCheckpoint): CloudinaryMediaMa
   return {
     schemaVersion: 1,
     provider: "cloudinary",
-    assets: Object.values(checkpoint.assets).sort((left, right) => left.mediaKey.localeCompare(right.mediaKey))
+    assets: Object.values(checkpoint.assets)
+      .filter((asset) => asset.status === "UPLOADED" || asset.status === "EXISTS")
+      .sort((left, right) => left.mediaKey.localeCompare(right.mediaKey))
   };
 }
 
@@ -478,7 +510,8 @@ async function retryOperation<T>(
           classification.httpCode,
           isExistingUploadError(error),
           classification.retryAfterMs,
-          sanitizeCloudinaryErrorMessage(error, redactValues)
+          sanitizeCloudinaryErrorMessage(error, redactValues),
+          isUnsupportedMediaUploadError(error)
         );
       }
       retryCount += 1;
@@ -516,18 +549,35 @@ async function processAsset(
   maxRetries: number,
   sleep: (milliseconds: number) => Promise<void>,
   redactValues: readonly string[]
-): Promise<{ status: "CHECKPOINT_SKIPPED" | UploadSuccessStatus | "FAILED"; stored?: StoredMediaAsset; failure?: UploadFailure }> {
-  const localStatus = validateLocalFile(spec);
-  if (localStatus !== "OK") {
-    return { status: "FAILED", failure: failureFor(spec, "local", localStatus) };
+): Promise<{ status: "CHECKPOINT_SKIPPED" | UploadSuccessStatus | "UNUSABLE_SOURCE_MEDIA" | "FAILED"; stored?: StoredMediaAsset; failure?: UploadFailure; unusable?: UnusableSourceMedia }> {
+  const localVerification = verifyLocalFile(spec);
+  if (localVerification.status !== "OK") {
+    return { status: "FAILED", failure: failureFor(spec, "local", localVerification.status) };
   }
 
   const previous = checkpoint.assets[spec.asset.mediaKey];
-  if (validStoredAsset(previous, spec)) return { status: "CHECKPOINT_SKIPPED", stored: previous };
+  if (validStoredAsset(previous, spec)) {
+    if (previous.status === "UNUSABLE_SOURCE_MEDIA") {
+      return {
+        status: "UNUSABLE_SOURCE_MEDIA",
+        stored: previous,
+        unusable: {
+          mediaKey: previous.mediaKey,
+          type: previous.type,
+          sha256: previous.sha256,
+          sourcePath: spec.asset.sourcePath,
+          publicId: previous.publicId,
+          reason: "UNSUPPORTED_MEDIA_FORMAT",
+          sanitizedMessage: previous.sanitizedMessage ?? "Unsupported media format or file"
+        }
+      };
+    }
+    return { status: "CHECKPOINT_SKIPPED", stored: previous };
+  }
 
   try {
     const uploaded = await retryOperation(
-      () => client.upload(spec.absolutePath, {
+      () => client.upload(Readable.from([localVerification.bytes as Buffer]), {
         asset_folder: spec.assetFolder,
         public_id: spec.publicId,
         resource_type: spec.resourceType,
@@ -545,6 +595,24 @@ async function processAsset(
     }
     return { status: "UPLOADED", stored: storedAsset(spec, "UPLOADED", uploaded) };
   } catch (error) {
+    if (isUnsupportedMediaUploadError(error)) {
+      const unusable = {
+        mediaKey: spec.asset.mediaKey,
+        type: spec.asset.type,
+        sha256: spec.asset.sha256,
+        sourcePath: spec.asset.sourcePath,
+        publicId: spec.publicId,
+        reason: "UNSUPPORTED_MEDIA_FORMAT" as const,
+        sanitizedMessage: sanitizeCloudinaryErrorMessage(error, redactValues)
+      } satisfies UnusableSourceMedia;
+      const stored = storedAsset(spec, "UNUSABLE_SOURCE_MEDIA");
+      stored.sanitizedMessage = unusable.sanitizedMessage;
+      return {
+        status: "UNUSABLE_SOURCE_MEDIA",
+        stored,
+        unusable
+      };
+    }
     if (isExistingUploadError(error)) return { status: "EXISTS", stored: storedAsset(spec, "EXISTS") };
     const classification = classifyCloudinaryError(error);
     return {
@@ -586,11 +654,13 @@ function summaryFor(assets: MediaAsset[], apply: boolean, canaryMode: boolean): 
     uploadedCount: 0,
     existingCount: 0,
     checkpointSkippedCount: 0,
+    unusableSourceMediaCount: 0,
     localMissingCount: 0,
     hashMismatchCount: 0,
     transientFailureCount: 0,
     permanentFailureCount: 0,
-    failures: []
+    failures: [],
+    unusableSourceMedia: []
   };
 }
 
@@ -609,7 +679,7 @@ export async function runUploader(options: RunUploaderOptions): Promise<UploadRu
   if (options.canary) assertCanarySelection(specs.map((spec) => spec.asset));
   if (!options.apply) {
     for (const spec of specs) {
-      const localStatus = validateLocalFile(spec);
+      const localStatus = verifyLocalFile(spec).status;
       if (localStatus === "LOCAL_FILE_MISSING") summary.localMissingCount += 1;
       if (localStatus === "HASH_MISMATCH") summary.hashMismatchCount += 1;
     }
@@ -621,6 +691,8 @@ export async function runUploader(options: RunUploaderOptions): Promise<UploadRu
   const maxRetries = assertRetries(options.maxRetries ?? DEFAULT_MAX_RETRIES);
   const statePath = options.statePath ?? DEFAULT_STATE_PATH;
   const failuresPath = options.failuresPath ?? DEFAULT_FAILURES_PATH;
+  const unusablePath = options.unusablePath
+    ?? (options.statePath ? join(dirname(options.statePath), "cloudinary-upload-unusable.json") : DEFAULT_UNUSABLE_PATH);
   const mediaMapPath = options.mediaMapPath ?? DEFAULT_MEDIA_MAP_PATH;
   const checkpoint = readCheckpoint(statePath);
   const defaultSleep = (milliseconds: number) => new Promise<void>((resolveSleep) => setTimeout(resolveSleep, milliseconds));
@@ -643,6 +715,10 @@ export async function runUploader(options: RunUploaderOptions): Promise<UploadRu
     if (result.status === "UPLOADED") summary.uploadedCount += 1;
     else if (result.status === "EXISTS") summary.existingCount += 1;
     else if (result.status === "CHECKPOINT_SKIPPED") summary.checkpointSkippedCount += 1;
+    else if (result.status === "UNUSABLE_SOURCE_MEDIA" && result.unusable) {
+      summary.unusableSourceMediaCount += 1;
+      summary.unusableSourceMedia.push(result.unusable);
+    }
     else if (result.failure) {
       summary.failures.push(result.failure);
       if (result.failure.reason === "LOCAL_FILE_MISSING") summary.localMissingCount += 1;
@@ -656,7 +732,9 @@ export async function runUploader(options: RunUploaderOptions): Promise<UploadRu
   });
   await persistence;
   summary.failures.sort((left, right) => left.mediaKey.localeCompare(right.mediaKey));
+  summary.unusableSourceMedia.sort((left, right) => left.mediaKey.localeCompare(right.mediaKey));
   writeJsonAtomic(failuresPath, summary.failures);
+  writeJsonAtomic(unusablePath, summary.unusableSourceMedia);
   return summary;
 }
 
@@ -668,7 +746,20 @@ export function createCloudinaryClient(config: CloudinaryConfig): CloudinaryClie
     secure: true
   });
   return {
-    upload: async (filePath, options) => cloudinary.uploader.upload(filePath, options) as unknown as CloudinaryUploadResponse
+    upload: async (source, options) => new Promise<CloudinaryUploadResponse>((resolveUpload, rejectUpload) => {
+      const uploadStream = cloudinary.uploader.upload_stream(options, (error, result) => {
+        if (error) {
+          rejectUpload(error);
+        } else if (result) {
+          resolveUpload(result as CloudinaryUploadResponse);
+        } else {
+          rejectUpload(new MediaUploadError("CLOUDINARY_EMPTY_UPLOAD_RESPONSE"));
+        }
+      });
+      source.once("error", rejectUpload);
+      uploadStream.once("error", rejectUpload);
+      source.pipe(uploadStream);
+    })
   };
 }
 
@@ -749,7 +840,7 @@ function printSummary(summary: UploadRunSummary) {
     console.log(`AUDIO_SELECTED=${summary.audioCandidateCount}`);
     console.log(`TOTAL_SELECTED=${summary.uploadCandidateCount}`);
   }
-  console.log(`UPLOADED=${summary.uploadedCount} EXISTING=${summary.existingCount} CHECKPOINT_SKIPPED=${summary.checkpointSkippedCount}`);
+  console.log(`UPLOADED=${summary.uploadedCount} EXISTING=${summary.existingCount} CHECKPOINT_SKIPPED=${summary.checkpointSkippedCount} UNUSABLE_SOURCE_MEDIA=${summary.unusableSourceMediaCount}`);
   console.log(`LOCAL_MISSING=${summary.localMissingCount} HASH_MISMATCH=${summary.hashMismatchCount}`);
   console.log(`TRANSIENT_FAILURES=${summary.transientFailureCount} PERMANENT_FAILURES=${summary.permanentFailureCount}`);
 }
