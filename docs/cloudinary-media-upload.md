@@ -20,6 +20,27 @@ An actual upload requires the explicit apply flag:
 pnpm run media:upload -- --apply
 ```
 
+For the first controlled canary, select exactly one canonical image and one
+canonical audio asset in stable manifest order. The default canary command is
+also plan-only and makes no Cloudinary requests:
+
+```text
+pnpm run media:upload -- --canary
+```
+
+It reports `CANARY_MODE=true`, `APPLY_MODE=false`, one selected image, one
+selected audio asset and two total selected assets. The later real canary must
+be explicitly enabled:
+
+```text
+pnpm run media:upload -- --canary --apply
+```
+
+Canary apply is bounded to those two canonical assets and retains the same
+hash verification, `overwrite=false`, checkpoint, retry, public-ID and
+secret-safe protections as the full batch. Normal `--apply` remains the full
+3,910-asset batch.
+
 Apply mode loads `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`,
 `CLOUDINARY_API_SECRET`, `MEDIA_PROVIDER`, `CLOUDINARY_VOCAB_IMAGE_FOLDER` and
 `CLOUDINARY_VOCAB_AUDIO_FOLDER` from the repository environment. Credentials are

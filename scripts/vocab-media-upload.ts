@@ -97,6 +97,7 @@ export type UploadFailure = {
 };
 
 export type UploadRunSummary = {
+  canaryMode: boolean;
   applyMode: boolean;
   uploadCandidateCount: number;
   imageCandidateCount: number;
@@ -115,6 +116,7 @@ export type RunUploaderOptions = {
   manifest: MediaManifest;
   datasetRoot?: string;
   apply: boolean;
+  canary?: boolean;
   client?: CloudinaryClient;
   imageFolder?: string;
   audioFolder?: string;
@@ -134,6 +136,22 @@ export class MediaUploadError extends Error {
     this.name = "MediaUploadError";
     this.code = code;
   }
+}
+
+export function assertCanarySelection(assets: MediaAsset[]): void {
+  const imageCount = assets.filter((asset) => asset.type === "image").length;
+  const audioCount = assets.filter((asset) => asset.type === "audio").length;
+  if (imageCount !== 1 || audioCount !== 1 || assets.length !== 2) {
+    throw new MediaUploadError("CANARY_SELECTION_INVALID");
+  }
+}
+
+export function selectCanaryAssets(assets: MediaAsset[]): MediaAsset[] {
+  const image = assets.find((asset) => asset.type === "image");
+  const audio = assets.find((asset) => asset.type === "audio");
+  const selected = [image, audio].filter((asset): asset is MediaAsset => asset !== undefined);
+  assertCanarySelection(selected);
+  return selected;
 }
 
 class SanitizedCloudinaryError extends MediaUploadError {
@@ -510,12 +528,13 @@ async function runConcurrent<T>(items: T[], concurrency: number, worker: (item: 
   await Promise.all(Array.from({ length: Math.min(concurrency, Math.max(items.length, 1)) }, () => runWorker()));
 }
 
-function summaryFor(manifest: MediaManifest, apply: boolean): UploadRunSummary {
-  const imageCandidateCount = manifest.assets.filter((asset) => asset.type === "image").length;
-  const audioCandidateCount = manifest.assets.filter((asset) => asset.type === "audio").length;
+function summaryFor(assets: MediaAsset[], apply: boolean, canaryMode: boolean): UploadRunSummary {
+  const imageCandidateCount = assets.filter((asset) => asset.type === "image").length;
+  const audioCandidateCount = assets.filter((asset) => asset.type === "audio").length;
   return {
+    canaryMode,
     applyMode: apply,
-    uploadCandidateCount: manifest.assets.length,
+    uploadCandidateCount: assets.length,
     imageCandidateCount,
     audioCandidateCount,
     uploadedCount: 0,
@@ -531,13 +550,17 @@ function summaryFor(manifest: MediaManifest, apply: boolean): UploadRunSummary {
 
 export async function runUploader(options: RunUploaderOptions): Promise<UploadRunSummary> {
   assertManifest(options.manifest);
-  const summary = summaryFor(options.manifest, options.apply);
-  const specs = buildUploadSpecs(
+  const selectedAssets = options.canary ? selectCanaryAssets(options.manifest.assets) : options.manifest.assets;
+  const summary = summaryFor(selectedAssets, options.apply, options.canary === true);
+  const allSpecs = buildUploadSpecs(
     options.manifest,
     options.datasetRoot ?? DEFAULT_DATASET_ROOT,
     options.imageFolder ?? IMAGE_FOLDER,
     options.audioFolder ?? AUDIO_FOLDER
   );
+  const selectedKeys = new Set(selectedAssets.map((asset) => asset.mediaKey));
+  const specs = options.canary ? allSpecs.filter((spec) => selectedKeys.has(spec.asset.mediaKey)) : allSpecs;
+  if (options.canary) assertCanarySelection(specs.map((spec) => spec.asset));
   if (!options.apply) {
     for (const spec of specs) {
       const localStatus = validateLocalFile(spec);
@@ -637,6 +660,7 @@ function parseInteger(value: string | undefined, code: string): number {
 
 export function parseCliArgs(argv: string[]) {
   let apply = false;
+  let canary = false;
   let manifestPath = DEFAULT_MANIFEST_PATH;
   let datasetRoot = DEFAULT_DATASET_ROOT;
   let concurrency = DEFAULT_CONCURRENCY;
@@ -644,6 +668,7 @@ export function parseCliArgs(argv: string[]) {
   for (let index = 0; index < argv.length; index += 1) {
     const argument = argv[index];
     if (argument === "--apply") apply = true;
+    else if (argument === "--canary") canary = true;
     else if (argument === "--manifest") {
       const value = argv[index + 1];
       if (!value) throw new MediaUploadError("MANIFEST_ARGUMENT_REQUIRED");
@@ -661,20 +686,26 @@ export function parseCliArgs(argv: string[]) {
       maxRetries = assertRetries(parseInteger(argv[index + 1], "RETRIES_ARGUMENT_INVALID"));
       index += 1;
     } else if (argument === "--help" || argument === "-h") {
-      console.log("Usage: pnpm run media:upload [--manifest PATH] [--dataset-root PATH] [--concurrency 1-5] [--max-retries 0-5] [--apply]");
+      console.log("Usage: pnpm run media:upload [--canary] [--manifest PATH] [--dataset-root PATH] [--concurrency 1-5] [--max-retries 0-5] [--apply]");
       process.exit(0);
     } else {
       throw new MediaUploadError("CLI_ARGUMENT_INVALID");
     }
   }
-  return { apply, manifestPath, datasetRoot, concurrency, maxRetries };
+  return { apply, canary, manifestPath, datasetRoot, concurrency, maxRetries };
 }
 
 function printSummary(summary: UploadRunSummary) {
   console.log(`MEDIA_UPLOAD_STATUS=${summary.failures.length === 0 ? "PASS" : "FAIL"}`);
+  console.log(`CANARY_MODE=${summary.canaryMode ? "true" : "false"}`);
   console.log(`APPLY_MODE=${summary.applyMode ? "true" : "false"}`);
   console.log(`UPLOAD_CANDIDATES=${summary.uploadCandidateCount}`);
   console.log(`IMAGE_CANDIDATES=${summary.imageCandidateCount} AUDIO_CANDIDATES=${summary.audioCandidateCount}`);
+  if (summary.canaryMode) {
+    console.log(`IMAGE_SELECTED=${summary.imageCandidateCount}`);
+    console.log(`AUDIO_SELECTED=${summary.audioCandidateCount}`);
+    console.log(`TOTAL_SELECTED=${summary.uploadCandidateCount}`);
+  }
   console.log(`UPLOADED=${summary.uploadedCount} EXISTING=${summary.existingCount} CHECKPOINT_SKIPPED=${summary.checkpointSkippedCount}`);
   console.log(`LOCAL_MISSING=${summary.localMissingCount} HASH_MISMATCH=${summary.hashMismatchCount}`);
   console.log(`TRANSIENT_FAILURES=${summary.transientFailureCount} PERMANENT_FAILURES=${summary.permanentFailureCount}`);
@@ -685,7 +716,7 @@ async function main() {
     const args = parseCliArgs(process.argv.slice(2));
     const manifest = loadMediaManifest(args.manifestPath);
     if (!args.apply) {
-      printSummary(await runUploader({ manifest, datasetRoot: args.datasetRoot, apply: false }));
+      printSummary(await runUploader({ manifest, datasetRoot: args.datasetRoot, apply: false, canary: args.canary }));
       return;
     }
     loadRepositoryEnv();
@@ -694,6 +725,7 @@ async function main() {
       manifest,
       datasetRoot: args.datasetRoot,
       apply: true,
+      canary: args.canary,
       client: createCloudinaryClient(config),
       imageFolder: config.imageFolder,
       audioFolder: config.audioFolder,
