@@ -207,12 +207,19 @@ describe("US-09 flashcard session UX", () => {
     expect(screen.getByText("Chưa lưu tiến trình")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Chưa nhớ" })).toBeDisabled();
 
+    const confirmMock = vi.fn(() => false);
+    vi.stubGlobal("confirm", confirmMock);
+    fireEvent.click(screen.getByRole("link", { name: "← Thoát" }));
+    expect(confirmMock).toHaveBeenCalledWith("Câu trả lời chưa được lưu. Bạn vẫn muốn thoát?");
+    expect(screen.getByTestId("study-session-ready")).toBeInTheDocument();
+
     const firstBody = String(fetchMock.mock.calls[1]?.[1]?.body);
     fireEvent.click(screen.getByRole("button", { name: "Thử lại" }));
     await waitFor(() => expect(screen.getByTestId("study-session-summary")).toBeInTheDocument());
     expect(fetchMock).toHaveBeenCalledTimes(3);
     expect(fetchMock.mock.calls[2]?.[1]?.body).toBe(firstBody);
     expect(screen.getByText("Đã review").nextElementSibling).toHaveTextContent("1");
+    vi.unstubAllGlobals();
   });
 
   it("reconciles stale revision without counting the rejected answer", async () => {
@@ -273,18 +280,18 @@ describe("US-09 flashcard session UX", () => {
     await waitFor(() => expect(screen.getByText("learners-route")).toBeInTheDocument());
   });
 
-  it("confirms leaving the session even before an answer is pending", async () => {
+  it("leaves without confirmation when all work is already settled", async () => {
     const item = queueItem(1, "apple");
     vi.spyOn(globalThis, "fetch").mockResolvedValue(response(queueResponse([item])));
-    const confirmMock = vi.fn(() => false);
+    const confirmMock = vi.fn(() => true);
     vi.stubGlobal("confirm", confirmMock);
     renderStudy();
 
     await screen.findByTestId("study-session-ready");
     fireEvent.click(screen.getByRole("link", { name: "← Thoát" }));
 
-    expect(confirmMock).toHaveBeenCalledWith("Bạn muốn kết thúc phiên học?");
-    expect(screen.getByTestId("study-session-ready")).toBeInTheDocument();
+    expect(confirmMock).not.toHaveBeenCalled();
+    expect(await screen.findByText("learners-route")).toBeInTheDocument();
     vi.unstubAllGlobals();
   });
 });

@@ -264,9 +264,9 @@ function StudyExperience({ activeLearner }: { activeLearner: LearnerDto }) {
   };
 
   const handleExit = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    const message = state === "saving" || state === "save-failed" || pending
-      ? "Câu trả lời chưa được lưu. Bạn vẫn muốn thoát?"
-      : "Bạn muốn kết thúc phiên học?";
+    const hasUnsavedRisk = state === "saving" || state === "save-failed" || pending !== null;
+    if (!hasUnsavedRisk) return;
+    const message = "Câu trả lời chưa được lưu. Bạn vẫn muốn thoát?";
     if (!globalThis.confirm(message)) {
       event.preventDefault();
     }
