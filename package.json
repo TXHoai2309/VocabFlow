@@ -22,6 +22,7 @@
     "db:migrate": "tsx scripts/db-migrate.ts",
     "db:reset": "tsx scripts/db-reset.ts",
     "dataset:validate": "tsx scripts/validate-dataset.ts",
+    "vocab:enrich-starter": "tsx scripts/enrich-starter-vocabulary.ts",
     "media:manifest": "tsx scripts/vocab-media-manifest.ts",
     "media:upload": "tsx scripts/vocab-media-upload.ts",
     "test:db": "tsx scripts/test-db.ts",

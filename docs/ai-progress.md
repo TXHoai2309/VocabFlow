@@ -51,6 +51,16 @@
   `docs/flow/user-flow.md`, `docs/decisions.md`, `docs/roadmap.md`, the current
   US-11 story and this file.
 
+## 2026-09-16 — starter enrichment tooling checkpoint
+
+- Added a dry-run and guarded transactional apply tool for the owner-approved
+  starter enrichment subset `1, 2, 7, 8, 9, 11, 18, 19`.
+- The tool validates exact DB/source identity and explicit media-map
+  resolution, preserves enabled state and learner history, and fails safe on
+  unexpected database content or partial updates.
+- The real database apply command was not run; US-12 remains unstarted and
+  `docs/decisions.md` remains protected.
+
 ## 2026-09-16 — US-11 implementation checkpoint
 
 - Confirmed the accepted reusable Flashcard remains answer-free before flip and

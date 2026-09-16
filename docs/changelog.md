@@ -2,6 +2,15 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-16 — Starter vocabulary enrichment tooling
+
+- Added the dry-run-first `vocab:enrich-starter` command for the eight
+  owner-approved rows `1, 2, 7, 8, 9, 11, 18, 19`.
+- Added exact source/media identity checks, missing-source preservation,
+  content-version idempotency and guarded single-transaction apply logic.
+- No real database apply was run; student `10` and the remaining 21 starter
+  rows remain excluded.
+
 ## 2026-09-16 — US-11 Flashcard Back Content & Recall Actions implementation
 
 - Extended the reusable Flashcard presentation with explicit back-side IPA,

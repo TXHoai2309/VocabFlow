@@ -4,7 +4,7 @@ import { DATABASE_TARGETS, getConnectionTarget, isConfiguredTarget, SHARED_CI_TA
 import { EXECUTION_CONTEXTS, assertExecutionContext } from "../config/execution-context";
 import { createNeonApiClient, verifyNeonTarget } from "./neon-target-verifier";
 
-export type Operation = "identity-provision" | "db-migrate" | "db-reset" | "db-seed" | "integration-test" | "db-check";
+export type Operation = "identity-provision" | "db-migrate" | "db-reset" | "db-seed" | "db-enrich" | "integration-test" | "db-check";
 
 const purposeEnvironmentVariables: Record<DatabasePurpose, { local: string[]; ci: string[]; production: string[] }> = {
   bootstrap: { local: ["BOOTSTRAP_DATABASE_URL"], ci: ["BOOTSTRAP_DATABASE_URL"], production: [] },
