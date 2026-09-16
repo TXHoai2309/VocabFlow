@@ -111,7 +111,7 @@ describe("US-09 flashcard session UX", () => {
     expect(screen.getByTestId("session-counter")).toHaveTextContent("0 / 2");
     expect(screen.getByTestId("flashcard")).toHaveClass("flashcard");
     expect(screen.getByTestId("flashcard").querySelector(".flashcard-front")).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Phát âm thanh" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Nghe phát âm apple" })).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: "Chưa nhớ" })).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: "Đã nhớ" })).not.toBeInTheDocument();
     expect(fetchMock).toHaveBeenCalledWith(`/api/learners/${learner.id}/review-queue`, { credentials: "include" });
@@ -140,6 +140,40 @@ describe("US-09 flashcard session UX", () => {
     const request = JSON.parse(String(fetchMock.mock.calls[1]?.[1]?.body));
     expect(request).toMatchObject({ learnerId: learner.id, vocabularyId: 1, result: "REMEMBERED", expectedRevision: 3 });
     expect(request.reviewId).toMatch(/^[0-9a-f-]{36}$/);
+  });
+
+  it("passes queue audio into Flashcard and stops it when Study advances", async () => {
+    const first = queueItem(1, "apple", "DUE", 3);
+    first.vocabulary.audioUrl = "/audio/apple.mp3";
+    const second = queueItem(2, "book");
+    const audio = {
+      src: "",
+      preload: "",
+      currentTime: 0,
+      play: vi.fn().mockResolvedValue(undefined),
+      pause: vi.fn(),
+      load: vi.fn(),
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn()
+    } as unknown as HTMLAudioElement;
+    vi.stubGlobal("Audio", vi.fn(function Audio() {
+      return audio;
+    }));
+    vi.spyOn(globalThis, "fetch")
+      .mockResolvedValueOnce(response(queueResponse([first, second])))
+      .mockResolvedValueOnce(response(reviewResponse(first, "REMEMBERED"), 201));
+    renderStudy();
+
+    await screen.findByTestId("study-session-ready");
+    fireEvent.click(screen.getByRole("button", { name: "Nghe phát âm apple" }));
+    await waitFor(() => expect(audio.play).toHaveBeenCalledTimes(1));
+    expect(audio.src).toBe("/audio/apple.mp3");
+
+    fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
+    fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
+    await waitFor(() => expect(screen.getByText("book")).toBeInTheDocument());
+    expect(audio.pause).toHaveBeenCalledTimes(1);
+    expect(audio.currentTime).toBe(0);
   });
 
   it("keeps the same reviewId on retry after save failure", async () => {

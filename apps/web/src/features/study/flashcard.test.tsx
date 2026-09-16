@@ -1,5 +1,5 @@
-import { fireEvent, render, screen } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import type { VocabularyDto } from "@vocabflow/contracts";
 import { Flashcard } from "./flashcard";
@@ -25,7 +25,7 @@ describe("US-11 Flashcard back state", () => {
     expect(screen.getByTestId("flashcard")).toHaveClass("flashcard");
     expect(screen.getByTestId("flashcard").querySelector(".flashcard-front")).toBeInTheDocument();
     expect(screen.getByText("power")).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Phát âm thanh" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Nghe phát âm power" })).toBeInTheDocument();
     expect(screen.queryByText("sức mạnh; quyền lực")).not.toBeInTheDocument();
     expect(screen.queryByText("/ˈpaʊər/")).not.toBeInTheDocument();
     expect(screen.queryByText("the ability to control or influence")).not.toBeInTheDocument();
@@ -95,5 +95,148 @@ describe("US-11 Flashcard back state", () => {
     fireEvent.error(image!);
     expect(container.querySelector(".flashcard-image")).not.toBeInTheDocument();
     expect(screen.getByText("sức mạnh; quyền lực")).toBeInTheDocument();
+  });
+});
+
+type MockAudio = {
+  audio: HTMLAudioElement;
+  play: ReturnType<typeof vi.fn>;
+  pause: ReturnType<typeof vi.fn>;
+  emit: (type: string) => void;
+};
+
+function createMockAudio(): MockAudio {
+  const listeners = new Map<string, Set<EventListener>>();
+  const play = vi.fn().mockResolvedValue(undefined);
+  const pause = vi.fn();
+  const audio = {
+    src: "",
+    preload: "",
+    currentTime: 0,
+    play,
+    pause,
+    load: vi.fn(),
+    addEventListener(type: string, listener: EventListener) {
+      const handlers = listeners.get(type) ?? new Set<EventListener>();
+      handlers.add(listener);
+      listeners.set(type, handlers);
+    },
+    removeEventListener(type: string, listener: EventListener) {
+      listeners.get(type)?.delete(listener);
+    }
+  } as unknown as HTMLAudioElement;
+
+  return {
+    audio,
+    play,
+    pause,
+    emit: (type) => listeners.get(type)?.forEach((listener) => listener(new Event(type)))
+  };
+}
+
+function stubAudio(...mocks: MockAudio[]) {
+  let index = 0;
+  const AudioMock = vi.fn(function AudioMock() {
+    return mocks[index++]?.audio ?? createMockAudio().audio;
+  });
+  vi.stubGlobal("Audio", AudioMock);
+  return AudioMock;
+}
+
+afterEach(() => {
+  vi.restoreAllMocks();
+  vi.unstubAllGlobals();
+});
+
+describe("US-12 pronunciation audio", () => {
+  it("uses audioUrl, plays a valid pronunciation and supports replay after ended", async () => {
+    const mock = createMockAudio();
+    const AudioMock = stubAudio(mock);
+    render(<Flashcard vocabulary={vocabulary} isFlipped={false} onFlip={vi.fn()} />);
+
+    const button = screen.getByRole("button", { name: "Nghe phát âm power" });
+    expect(button).toHaveAttribute("type", "button");
+    fireEvent.click(button);
+
+    await waitFor(() => expect(mock.play).toHaveBeenCalledTimes(1));
+    expect(AudioMock).toHaveBeenCalledTimes(1);
+    expect(mock.audio.src).toBe("/audio/power.mp3");
+    expect(button).toHaveAttribute("data-audio-state", "playing");
+
+    mock.emit("ended");
+    await waitFor(() => expect(screen.getByRole("button", { name: "Nghe lại phát âm power" })).toBeInTheDocument());
+    fireEvent.click(screen.getByRole("button", { name: "Nghe lại phát âm power" }));
+    await waitFor(() => expect(mock.play).toHaveBeenCalledTimes(2));
+    expect(mock.audio.currentTime).toBe(0);
+  });
+
+  it("shows loading and prevents duplicate play requests until playback starts", async () => {
+    const mock = createMockAudio();
+    let resolvePlay!: () => void;
+    mock.play.mockImplementation(() => new Promise<void>((resolve) => {
+      resolvePlay = resolve;
+    }));
+    stubAudio(mock);
+    render(<Flashcard vocabulary={vocabulary} isFlipped={false} onFlip={vi.fn()} />);
+
+    const button = screen.getByRole("button", { name: "Nghe phát âm power" });
+    fireEvent.click(button);
+    expect(button).toBeDisabled();
+    expect(button).toHaveAttribute("data-audio-state", "loading");
+    fireEvent.click(button);
+    expect(mock.play).toHaveBeenCalledTimes(1);
+
+    resolvePlay();
+    await waitFor(() => expect(button).toHaveAttribute("data-audio-state", "playing"));
+  });
+
+  it("stops the previous audio before starting another vocabulary", async () => {
+    const first = createMockAudio();
+    const second = createMockAudio();
+    stubAudio(first, second);
+    render(
+      <>
+        <Flashcard vocabulary={vocabulary} isFlipped={false} onFlip={vi.fn()} />
+        <Flashcard vocabulary={{ ...vocabulary, id: 2, word: "book", audioUrl: "/audio/book.mp3" }} isFlipped={false} onFlip={vi.fn()} />
+      </>
+    );
+
+    fireEvent.click(screen.getByRole("button", { name: "Nghe phát âm power" }));
+    await waitFor(() => expect(first.play).toHaveBeenCalledTimes(1));
+    fireEvent.click(screen.getByRole("button", { name: "Nghe phát âm book" }));
+    await waitFor(() => expect(second.play).toHaveBeenCalledTimes(1));
+
+    expect(first.pause).toHaveBeenCalledTimes(1);
+    expect(first.audio.currentTime).toBe(0);
+    expect(second.play).toHaveBeenCalledTimes(1);
+  });
+
+  it("stops active audio on unmount and keeps flip available after playback error", async () => {
+    const mock = createMockAudio();
+    mock.play.mockRejectedValue(new Error("blocked"));
+    stubAudio(mock);
+    const onFlip = vi.fn();
+    const { unmount } = render(<Flashcard vocabulary={vocabulary} isFlipped={false} onFlip={onFlip} />);
+
+    fireEvent.click(screen.getByRole("button", { name: "Nghe phát âm power" }));
+    expect(await screen.findByText("Âm thanh không khả dụng.")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Âm thanh không khả dụng cho power" })).toBeDisabled();
+
+    fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
+    expect(onFlip).toHaveBeenCalledTimes(1);
+    unmount();
+    expect(mock.pause).toHaveBeenCalled();
+  });
+
+  it("hides missing audio, including an empty URL, and never uses SpeechSynthesis", () => {
+    const speak = vi.fn();
+    vi.stubGlobal("speechSynthesis", { speak });
+    const { unmount } = render(<Flashcard vocabulary={{ ...vocabulary, audioUrl: null }} isFlipped={false} onFlip={vi.fn()} />);
+    expect(screen.queryByTestId("flashcard-audio-control")).not.toBeInTheDocument();
+    unmount();
+
+    render(<Flashcard vocabulary={{ ...vocabulary, audioUrl: "" }} isFlipped={false} onFlip={vi.fn()} />);
+    expect(screen.queryByTestId("flashcard-audio-control")).not.toBeInTheDocument();
+    expect(speak).not.toHaveBeenCalled();
   });
 });
