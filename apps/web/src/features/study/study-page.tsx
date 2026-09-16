@@ -5,7 +5,8 @@ import type {
   ReviewQueueItem,
   ReviewQueueResponse,
   ReviewRequest,
-  ReviewResult
+  ReviewResult,
+  ReviewResponse
 } from "@vocabflow/contracts";
 import { useActiveLearner } from "../learners/learner-context-hook";
 import { requestReviewQueue, ReviewQueueClientError } from "./review-queue-client";
@@ -37,6 +38,18 @@ const SAFE_SAVE_ERROR = "Không thể lưu tiến trình lúc này. Vui lòng th
 
 function sessionCards(queue: ReviewQueueItem[]): SessionCard[] {
   return queue.map((item) => ({ item, reinforcementAttempt: 0, reviewId: null }));
+}
+
+function applyCanonicalReviewResponse(card: SessionCard, response: ReviewResponse): SessionCard {
+  return {
+    ...card,
+    item: {
+      ...card.item,
+      status: response.progress.status,
+      nextReviewDate: response.progress.nextReviewDate,
+      expectedRevision: response.progress.revision
+    }
+  };
 }
 
 function createReviewId() {
@@ -168,10 +181,12 @@ function StudyExperience({ activeLearner }: { activeLearner: LearnerDto }) {
     }
   }, [activeLearner.id, replaceCards]);
 
-  const advanceScheduledCard = useCallback((card: SessionCard, result: ReviewResult) => {
+  const advanceScheduledCard = useCallback((card: SessionCard, response: ReviewResponse) => {
+    const canonicalCard = applyCanonicalReviewResponse(card, response);
+    const result = response.result;
     const remaining = cardsRef.current.slice(1);
     const reinforcement = result === "FORGOTTEN"
-      ? [{ ...card, reinforcementAttempt: 1, reviewId: null }]
+      ? [{ ...canonicalCard, reinforcementAttempt: 1, reviewId: null }]
       : [];
     const nextCards = [...remaining, ...reinforcement];
     replaceCards(nextCards);
@@ -190,8 +205,8 @@ function StudyExperience({ activeLearner }: { activeLearner: LearnerDto }) {
 
   const saveScheduledReview = useCallback(async (request: ReviewRequest, card: SessionCard) => {
     try {
-      await submitReview(request);
-      advanceScheduledCard(card, request.result);
+      const response = await submitReview(request);
+      advanceScheduledCard(card, response);
     } catch (error) {
       if (error instanceof ReviewClientError && error.code === "STALE_REVISION") {
         await reconcileQueue(card, "stale");

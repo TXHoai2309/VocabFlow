@@ -142,6 +142,22 @@ describe("US-09 flashcard session UX", () => {
     expect(request.reviewId).toMatch(/^[0-9a-f-]{36}$/);
   });
 
+  it("uses the canonical server response when deciding the next session state", async () => {
+    const item = queueItem(1, "apple");
+    const fetchMock = vi.spyOn(globalThis, "fetch")
+      .mockResolvedValueOnce(response(queueResponse([item])))
+      .mockResolvedValueOnce(response(reviewResponse(item, "FORGOTTEN"), 201));
+    renderStudy();
+
+    await screen.findByTestId("study-session-ready");
+    fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
+    fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
+
+    await screen.findByText("Ôn lại");
+    expect(screen.queryByTestId("study-session-summary")).not.toBeInTheDocument();
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+  });
+
   it("passes queue audio into Flashcard and stops it when Study advances", async () => {
     const first = queueItem(1, "apple", "DUE", 3);
     first.vocabulary.audioUrl = "/audio/apple.mp3";
