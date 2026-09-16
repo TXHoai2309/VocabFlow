@@ -23,6 +23,7 @@
     "db:reset": "tsx scripts/db-reset.ts",
     "dataset:validate": "tsx scripts/validate-dataset.ts",
     "media:manifest": "tsx scripts/vocab-media-manifest.ts",
+    "media:upload": "tsx scripts/vocab-media-upload.ts",
     "test:db": "tsx scripts/test-db.ts",
     "test:e2e": "pnpm build && playwright test"
   },
@@ -31,6 +32,7 @@
     "@vocabflow/contracts": "workspace:*",
     "@vocabflow/learning-domain": "workspace:*",
     "better-auth": "1.7.3",
+    "cloudinary": "^2.11.0",
     "drizzle-orm": "0.45.2",
     "hono": "4.13.7",
     "react": "19.2.8",
