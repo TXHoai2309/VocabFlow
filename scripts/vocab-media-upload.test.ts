@@ -52,7 +52,6 @@ function manifest(assets: MediaManifest["assets"]): MediaManifest {
 
 function client(overrides: Partial<CloudinaryClient> = {}): CloudinaryClient {
   return {
-    resource: async () => { throw Object.assign(new Error("not found"), { http_code: 404 }); },
     upload: async (_path, _options) => ({ resource_type: "image", secure_url: "https://res.cloudinary.test/asset", bytes: 12, format: "png" }),
     ...overrides
   };
@@ -119,7 +118,6 @@ describe("safe Cloudinary media uploader", () => {
     const secondAudio = asset("audio", Buffer.from("second-audio"), "audio/two.mp3");
     writeFileSync(join(root, image.sourcePath), imageBytes);
     writeFileSync(join(root, audio.sourcePath), audioBytes);
-    let resourceCalls = 0;
     let uploadCalls = 0;
     const summary = await runUploader({
       manifest: manifest([image, audio, secondImage, secondAudio]),
@@ -127,7 +125,6 @@ describe("safe Cloudinary media uploader", () => {
       apply: false,
       canary: true,
       client: client({
-        resource: async () => { resourceCalls += 1; return {}; },
         upload: async () => { uploadCalls += 1; return {}; }
       })
     });
@@ -135,7 +132,6 @@ describe("safe Cloudinary media uploader", () => {
     expect(summary.imageCandidateCount).toBe(1);
     expect(summary.audioCandidateCount).toBe(1);
     expect(summary.uploadCandidateCount).toBe(2);
-    expect(resourceCalls).toBe(0);
     expect(uploadCalls).toBe(0);
   });
 
@@ -186,6 +182,38 @@ describe("safe Cloudinary media uploader", () => {
     expect(full.imageCandidateCount).toBe(2);
     expect(full.audioCandidateCount).toBe(2);
     expect(canary.uploadCandidateCount).toBe(2);
+  });
+
+  it("keeps the production full-batch candidate count at 3,910", async () => {
+    const images = Array.from({ length: 1937 }, (_, index) => asset("image", Buffer.from(`image-${index}`), `images/${index}.png`));
+    const audio = Array.from({ length: 1973 }, (_, index) => asset("audio", Buffer.from(`audio-${index}`), `audio/${index}.mp3`));
+    const summary = await runUploader({ manifest: manifest([...images, ...audio]), apply: false });
+    expect(summary.uploadCandidateCount).toBe(3910);
+    expect(summary.imageCandidateCount).toBe(1937);
+    expect(summary.audioCandidateCount).toBe(1973);
+  });
+
+  it("uploads an uncheckpointed asset directly without an Admin API lookup", async () => {
+    const root = fixtureDirectory();
+    const bytes = Buffer.from("image");
+    const image = asset("image", bytes, "images/one.png");
+    writeFileSync(join(root, image.sourcePath), bytes);
+    let uploadCalls = 0;
+    const summary = await runUploader({
+      manifest: manifest([image]),
+      datasetRoot: root,
+      apply: true,
+      client: client({ upload: async (_path, options) => {
+        uploadCalls += 1;
+        expect(options.overwrite).toBe(false);
+        return { resource_type: "image" };
+      } }),
+      statePath: join(root, "state.json"),
+      failuresPath: join(root, "failures.json"),
+      mediaMapPath: join(root, "map.json")
+    });
+    expect(summary.uploadedCount).toBe(1);
+    expect(uploadCalls).toBe(1);
   });
 
   it("derives deterministic public IDs and provider resource types", () => {
@@ -257,15 +285,21 @@ describe("safe Cloudinary media uploader", () => {
       datasetRoot: root,
       apply: true,
       client: client({
-        resource: async () => ({ resource_type: "image", bytes: 12 }),
-        upload: async () => { uploadCalls += 1; return {}; }
+        upload: async () => {
+          uploadCalls += 1;
+          throw { name: "Error", message: "Resource already exists", http_code: 400 };
+        }
       }),
       statePath: join(root, "state.json"),
       failuresPath: join(root, "failures.json"),
       mediaMapPath: join(root, "map.json")
     });
     expect(summary.existingCount).toBe(1);
-    expect(uploadCalls).toBe(0);
+    expect(uploadCalls).toBe(1);
+    expect(JSON.parse(readFileSync(join(root, "state.json"), "utf8")).assets[image.mediaKey]).toMatchObject({
+      status: "EXISTS",
+      publicId: publicIdForAsset(image)
+    });
   });
 
   it("resumes from a matching checkpoint without contacting Cloudinary", async () => {
@@ -277,14 +311,12 @@ describe("safe Cloudinary media uploader", () => {
     const checkpoint = { schemaVersion: 1, assets: { [image.mediaKey]: stored(spec) } };
     const statePath = join(root, "state.json");
     writeFileSync(statePath, JSON.stringify(checkpoint));
-    let resourceCalls = 0;
     let uploadCalls = 0;
     const summary = await runUploader({
       manifest: manifest([image]),
       datasetRoot: root,
       apply: true,
       client: client({
-        resource: async () => { resourceCalls += 1; return {}; },
         upload: async () => { uploadCalls += 1; return {}; }
       }),
       statePath,
@@ -292,7 +324,6 @@ describe("safe Cloudinary media uploader", () => {
       mediaMapPath: join(root, "map.json")
     });
     expect(summary.checkpointSkippedCount).toBe(1);
-    expect(resourceCalls).toBe(0);
     expect(uploadCalls).toBe(0);
   });
 
@@ -321,15 +352,18 @@ describe("safe Cloudinary media uploader", () => {
     const image = asset("image", bytes, "images/one.png");
     writeFileSync(join(root, image.sourcePath), bytes);
     let transientCalls = 0;
+    const retryDelays: number[] = [];
     const transient = await runUploader({
       manifest: manifest([image]),
       datasetRoot: root,
       apply: true,
       maxRetries: 2,
-      sleep: async () => {},
+      sleep: async (milliseconds) => { retryDelays.push(milliseconds); },
       client: client({
-        resource: async () => { transientCalls += 1; throw Object.assign(new Error("server"), { http_code: 503 }); },
-        upload: async () => ({})
+        upload: async () => {
+          transientCalls += 1;
+          throw { name: "Error", message: "rate limited", http_code: 420, retry_after: 1 };
+        }
       }),
       statePath: join(root, "transient-state.json"),
       failuresPath: join(root, "transient-failures.json"),
@@ -337,6 +371,7 @@ describe("safe Cloudinary media uploader", () => {
     });
     expect(transient.transientFailureCount).toBe(1);
     expect(transientCalls).toBe(3);
+    expect(retryDelays).toEqual([1000, 1000]);
 
     let permanentCalls = 0;
     const permanent = await runUploader({
@@ -346,8 +381,10 @@ describe("safe Cloudinary media uploader", () => {
       maxRetries: 5,
       sleep: async () => {},
       client: client({
-        resource: async () => { permanentCalls += 1; throw Object.assign(new Error("unauthorized"), { http_code: 401 }); },
-        upload: async () => ({})
+        upload: async () => {
+          permanentCalls += 1;
+          throw { name: "Error", message: "Invalid image format", http_code: 400 };
+        }
       }),
       statePath: join(root, "permanent-state.json"),
       failuresPath: join(root, "permanent-failures.json"),
@@ -355,6 +392,7 @@ describe("safe Cloudinary media uploader", () => {
     });
     expect(permanent.permanentFailureCount).toBe(1);
     expect(permanentCalls).toBe(1);
+    expect(permanent.failures[0]?.sanitizedMessage).toBe("Invalid image format");
   });
 
   it("never includes secret-like values in its sanitized failure report", async () => {
@@ -368,12 +406,12 @@ describe("safe Cloudinary media uploader", () => {
       datasetRoot: root,
       apply: true,
       client: client({
-        resource: async () => { throw Object.assign(new Error(`bad ${secret}`), { http_code: 401 }); },
-        upload: async () => ({})
+        upload: async () => { throw { name: "Error", message: `Invalid signature api_secret=${secret}`, http_code: 400 }; }
       }),
       statePath: join(root, "state.json"),
       failuresPath: join(root, "failures.json"),
-      mediaMapPath: join(root, "map.json")
+      mediaMapPath: join(root, "map.json"),
+      redactValues: [secret]
     });
     expect(JSON.stringify(summary)).not.toContain(secret);
     expect(readFileSync(join(root, "failures.json"), "utf8")).not.toContain(secret);

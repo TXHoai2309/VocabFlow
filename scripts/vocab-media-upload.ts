@@ -20,17 +20,15 @@ const AUDIO_FOLDER = "Vocab/audio";
 export type CloudinaryResourceType = "image" | "video";
 export type UploadSuccessStatus = "UPLOADED" | "EXISTS";
 
-export type CloudinaryResource = {
+export type CloudinaryUploadResponse = {
+  public_id?: string;
   resource_type?: string;
   secure_url?: string;
   bytes?: number;
   format?: string;
 };
 
-export type CloudinaryUploadResponse = CloudinaryResource;
-
 export type CloudinaryClient = {
-  resource: (publicId: string, options: { resourceType: CloudinaryResourceType }) => Promise<CloudinaryResource>;
   upload: (
     filePath: string,
     options: {
@@ -91,9 +89,10 @@ export type UploadFailure = {
   sha256: string;
   sourcePath: string;
   publicId: string;
-  stage: "local" | "resource_lookup" | "upload";
+  stage: "local" | "upload";
   reason: string;
   httpCode?: number;
+  sanitizedMessage?: string;
 };
 
 export type UploadRunSummary = {
@@ -126,6 +125,7 @@ export type RunUploaderOptions = {
   failuresPath?: string;
   mediaMapPath?: string;
   sleep?: (milliseconds: number) => Promise<void>;
+  redactValues?: readonly string[];
 };
 
 export class MediaUploadError extends Error {
@@ -158,12 +158,23 @@ class SanitizedCloudinaryError extends MediaUploadError {
   readonly transient: boolean;
   readonly httpCode?: number;
   readonly alreadyExists: boolean;
+  readonly retryAfterMs?: number;
+  readonly sanitizedMessage: string;
 
-  constructor(reason: string, transient: boolean, httpCode: number | undefined, alreadyExists: boolean) {
+  constructor(
+    reason: string,
+    transient: boolean,
+    httpCode: number | undefined,
+    alreadyExists: boolean,
+    retryAfterMs: number | undefined,
+    sanitizedMessage: string
+  ) {
     super(reason);
     this.transient = transient;
     this.httpCode = httpCode;
     this.alreadyExists = alreadyExists;
+    this.retryAfterMs = retryAfterMs;
+    this.sanitizedMessage = sanitizedMessage;
   }
 }
 
@@ -172,6 +183,7 @@ type FailureClassification = {
   reason: string;
   transient: boolean;
   httpCode?: number;
+  retryAfterMs?: number;
 };
 
 function isRecord(value: unknown): value is UnknownRecord {
@@ -202,26 +214,77 @@ function errorCodeOf(error: unknown): string | undefined {
   return typeof code === "string" ? code : undefined;
 }
 
-function privateErrorMessage(error: unknown): string {
-  if (error instanceof Error) return error.message.toLowerCase();
+function errorMessageOf(error: unknown): string {
+  if (error instanceof Error) return error.message;
   if (isRecord(error) && isRecord(error.error) && typeof error.error.message === "string") {
-    return error.error.message.toLowerCase();
+    return error.error.message;
   }
+  if (isRecord(error) && typeof error.message === "string") return error.message;
   return "";
+}
+
+function retryAfterHeader(error: unknown): unknown {
+  if (!isRecord(error)) return undefined;
+  const headers = error.headers;
+  if (isRecord(headers)) return headers["retry-after"] ?? headers["Retry-After"];
+  const response = error.response;
+  if (isRecord(response) && isRecord(response.headers)) {
+    return response.headers["retry-after"] ?? response.headers["Retry-After"];
+  }
+  return undefined;
+}
+
+function retryAfterMsOf(error: unknown): number | undefined {
+  if (!isRecord(error)) return undefined;
+  const retryAfterMs = error.retry_after_ms ?? error.retryAfterMs;
+  if (typeof retryAfterMs === "number" && Number.isFinite(retryAfterMs) && retryAfterMs >= 0) {
+    return Math.min(retryAfterMs, 30_000);
+  }
+  const retryAfter = error.retry_after ?? error.retryAfter ?? retryAfterHeader(error);
+  if (typeof retryAfter === "number" && Number.isFinite(retryAfter) && retryAfter >= 0) {
+    return Math.min(retryAfter * 1000, 30_000);
+  }
+  if (typeof retryAfter === "string") {
+    if (/^\d+(?:\.\d+)?$/.test(retryAfter.trim())) {
+      return Math.min(Number(retryAfter.trim()) * 1000, 30_000);
+    }
+    const date = Date.parse(retryAfter);
+    if (Number.isFinite(date)) return Math.min(Math.max(0, date - Date.now()), 30_000);
+  }
+  return undefined;
+}
+
+function normalizedMessage(error: unknown): string {
+  return errorMessageOf(error).replaceAll(/\s+/g, " ").trim();
+}
+
+export function sanitizeCloudinaryErrorMessage(error: unknown, redactValues: readonly string[] = []): string {
+  if (error instanceof SanitizedCloudinaryError) return error.sanitizedMessage;
+  let message = normalizedMessage(error);
+  for (const value of redactValues) {
+    if (value) message = message.replaceAll(value, "[REDACTED]");
+  }
+  message = message
+    .replaceAll(/cloudinary:\/\/[^\s]+/gi, "[REDACTED_CREDENTIAL_URL]")
+    .replaceAll(/https?:\/\/[^\s]+/gi, "[REDACTED_URL]")
+    .replaceAll(/((?:api[_ -]?key|api[_ -]?secret|signature|token|password|secret)\s*[=:]\s*)[^\s,;]+/gi, "$1[REDACTED]")
+    .replaceAll(/((?:authorization|x-api-key)\s*:\s*)[^\s,;]+/gi, "$1[REDACTED]");
+  return message.slice(0, 240) || "Cloudinary request failed";
 }
 
 export function classifyCloudinaryError(error: unknown): FailureClassification {
   if (error instanceof SanitizedCloudinaryError) {
-    return { reason: error.code, transient: error.transient, httpCode: error.httpCode };
+    return { reason: error.code, transient: error.transient, httpCode: error.httpCode, retryAfterMs: error.retryAfterMs };
   }
   const httpCode = httpCodeOf(error);
   const errorCode = errorCodeOf(error);
-  if (httpCode === 429) return { reason: "HTTP_429", transient: true, httpCode };
+  if (httpCode === 420) return { reason: "HTTP_420", transient: true, httpCode, retryAfterMs: retryAfterMsOf(error) };
+  if (httpCode === 429) return { reason: "HTTP_429", transient: true, httpCode, retryAfterMs: retryAfterMsOf(error) };
   if (httpCode !== undefined && httpCode >= 500 && httpCode <= 599) {
-    return { reason: "HTTP_5XX", transient: true, httpCode };
+    return { reason: "HTTP_5XX", transient: true, httpCode, retryAfterMs: retryAfterMsOf(error) };
   }
   if (errorCode === "ECONNRESET" || errorCode === "ETIMEDOUT" || errorCode === "EAI_AGAIN" || errorCode === "ECONNREFUSED") {
-    return { reason: "NETWORK_TRANSIENT", transient: true, httpCode };
+    return { reason: "NETWORK_TRANSIENT", transient: true, httpCode, retryAfterMs: retryAfterMsOf(error) };
   }
   if (httpCode !== undefined && httpCode >= 400 && httpCode <= 499) {
     return { reason: `HTTP_${httpCode}`, transient: false, httpCode };
@@ -229,12 +292,11 @@ export function classifyCloudinaryError(error: unknown): FailureClassification {
   return { reason: "CLOUDINARY_ERROR", transient: false, httpCode };
 }
 
-function isAlreadyExists(error: unknown): boolean {
+function isExistingUploadError(error: unknown): boolean {
   if (error instanceof SanitizedCloudinaryError) return error.alreadyExists;
-  const httpCode = httpCodeOf(error);
-  if (httpCode === 409) return true;
-  const message = privateErrorMessage(error).replaceAll(/[^a-z0-9]+/g, " ");
-  return message.includes("already exists") || message.includes("already_exist") || message.includes("alreadyexists");
+  const code = errorCodeOf(error);
+  if (code === "already_exists" || code === "already_exists_ids") return true;
+  return normalizedMessage(error).toLowerCase() === "resource already exists";
 }
 
 function assertConcurrency(value: number): number {
@@ -342,7 +404,7 @@ function safeBytes(value: unknown): number | undefined {
 function storedAsset(
   spec: UploadAssetSpec,
   status: UploadSuccessStatus,
-  response: CloudinaryResource = {}
+  response: CloudinaryUploadResponse = {}
 ): StoredMediaAsset {
   return {
     mediaKey: spec.asset.mediaKey,
@@ -400,7 +462,8 @@ function mediaMapFromCheckpoint(checkpoint: UploadCheckpoint): CloudinaryMediaMa
 async function retryOperation<T>(
   operation: () => Promise<T>,
   maxRetries: number,
-  sleep: (milliseconds: number) => Promise<void>
+  sleep: (milliseconds: number) => Promise<void>,
+  redactValues: readonly string[]
 ): Promise<T> {
   let retryCount = 0;
   while (true) {
@@ -413,11 +476,15 @@ async function retryOperation<T>(
           classification.reason,
           classification.transient,
           classification.httpCode,
-          isAlreadyExists(error)
+          isExistingUploadError(error),
+          classification.retryAfterMs,
+          sanitizeCloudinaryErrorMessage(error, redactValues)
         );
       }
       retryCount += 1;
-      await sleep(250 * (2 ** (retryCount - 1)));
+      const exponentialDelay = 250 * (2 ** (retryCount - 1));
+      const jitter = Math.floor(Math.random() * Math.max(1, exponentialDelay * 0.25));
+      await sleep(Math.min(30_000, classification.retryAfterMs ?? exponentialDelay + jitter));
     }
   }
 }
@@ -426,7 +493,8 @@ function failureFor(
   spec: UploadAssetSpec,
   stage: UploadFailure["stage"],
   reason: string,
-  httpCode?: number
+  httpCode?: number,
+  sanitizedMessage?: string
 ): UploadFailure {
   return {
     mediaKey: spec.asset.mediaKey,
@@ -436,7 +504,8 @@ function failureFor(
     publicId: spec.publicId,
     stage,
     reason,
-    ...(httpCode === undefined ? {} : { httpCode })
+    ...(httpCode === undefined ? {} : { httpCode }),
+    ...(sanitizedMessage === undefined ? {} : { sanitizedMessage })
   };
 }
 
@@ -445,7 +514,8 @@ async function processAsset(
   client: CloudinaryClient,
   checkpoint: UploadCheckpoint,
   maxRetries: number,
-  sleep: (milliseconds: number) => Promise<void>
+  sleep: (milliseconds: number) => Promise<void>,
+  redactValues: readonly string[]
 ): Promise<{ status: "CHECKPOINT_SKIPPED" | UploadSuccessStatus | "FAILED"; stored?: StoredMediaAsset; failure?: UploadFailure }> {
   const localStatus = validateLocalFile(spec);
   if (localStatus !== "OK") {
@@ -454,37 +524,6 @@ async function processAsset(
 
   const previous = checkpoint.assets[spec.asset.mediaKey];
   if (validStoredAsset(previous, spec)) return { status: "CHECKPOINT_SKIPPED", stored: previous };
-
-  let existing: CloudinaryResource | null;
-  try {
-    existing = await retryOperation(
-      () => client.resource(spec.publicId, { resourceType: spec.resourceType }),
-      maxRetries,
-      sleep
-    );
-  } catch (error) {
-    const classification = classifyCloudinaryError(error);
-    if (classification.httpCode === 404) {
-      existing = null;
-    } else {
-      return {
-        status: "FAILED",
-        failure: failureFor(spec, "resource_lookup", classification.reason, classification.httpCode)
-      };
-    }
-  }
-
-  if (existing !== null) {
-    if (existing.resource_type !== undefined && existing.resource_type !== spec.resourceType) {
-      return { status: "FAILED", failure: failureFor(spec, "resource_lookup", "RESOURCE_TYPE_CONFLICT") };
-    }
-    return { status: "EXISTS", stored: storedAsset(spec, "EXISTS", existing) };
-  }
-
-  const finalLocalStatus = validateLocalFile(spec);
-  if (finalLocalStatus !== "OK") {
-    return { status: "FAILED", failure: failureFor(spec, "local", finalLocalStatus) };
-  }
 
   try {
     const uploaded = await retryOperation(
@@ -498,18 +537,25 @@ async function processAsset(
         use_filename: false
       }),
       maxRetries,
-      sleep
+      sleep,
+      redactValues
     );
     if (uploaded.resource_type !== undefined && uploaded.resource_type !== spec.resourceType) {
       return { status: "FAILED", failure: failureFor(spec, "upload", "RESOURCE_TYPE_CONFLICT") };
     }
     return { status: "UPLOADED", stored: storedAsset(spec, "UPLOADED", uploaded) };
   } catch (error) {
-    if (isAlreadyExists(error)) return { status: "EXISTS", stored: storedAsset(spec, "EXISTS") };
+    if (isExistingUploadError(error)) return { status: "EXISTS", stored: storedAsset(spec, "EXISTS") };
     const classification = classifyCloudinaryError(error);
     return {
       status: "FAILED",
-      failure: failureFor(spec, "upload", classification.transient ? "TRANSIENT_RETRIES_EXHAUSTED" : classification.reason, classification.httpCode)
+      failure: failureFor(
+        spec,
+        "upload",
+        classification.transient ? "TRANSIENT_RETRIES_EXHAUSTED" : classification.reason,
+        classification.httpCode,
+        sanitizeCloudinaryErrorMessage(error, redactValues)
+      )
     };
   }
 }
@@ -579,6 +625,7 @@ export async function runUploader(options: RunUploaderOptions): Promise<UploadRu
   const checkpoint = readCheckpoint(statePath);
   const defaultSleep = (milliseconds: number) => new Promise<void>((resolveSleep) => setTimeout(resolveSleep, milliseconds));
   const sleep = options.sleep ?? defaultSleep;
+  const redactValues = options.redactValues ?? [];
   let persistence = Promise.resolve();
 
   const persistSuccess = (stored: StoredMediaAsset) => {
@@ -591,7 +638,7 @@ export async function runUploader(options: RunUploaderOptions): Promise<UploadRu
   };
 
   await runConcurrent(specs, concurrency, async (spec) => {
-    const result = await processAsset(spec, options.client as CloudinaryClient, checkpoint, maxRetries, sleep);
+    const result = await processAsset(spec, options.client as CloudinaryClient, checkpoint, maxRetries, sleep, redactValues);
     if (result.stored) await persistSuccess(result.stored);
     if (result.status === "UPLOADED") summary.uploadedCount += 1;
     else if (result.status === "EXISTS") summary.existingCount += 1;
@@ -621,10 +668,6 @@ export function createCloudinaryClient(config: CloudinaryConfig): CloudinaryClie
     secure: true
   });
   return {
-    resource: async (publicId, options) => cloudinary.api.resource(publicId, {
-      resource_type: options.resourceType,
-      type: "upload"
-    }) as unknown as CloudinaryResource,
     upload: async (filePath, options) => cloudinary.uploader.upload(filePath, options) as unknown as CloudinaryUploadResponse
   };
 }
@@ -730,7 +773,8 @@ async function main() {
       imageFolder: config.imageFolder,
       audioFolder: config.audioFolder,
       concurrency: args.concurrency,
-      maxRetries: args.maxRetries
+      maxRetries: args.maxRetries,
+      redactValues: [config.cloudName, config.apiKey, config.apiSecret]
     });
     printSummary(summary);
     if (summary.failures.length > 0) process.exitCode = 1;

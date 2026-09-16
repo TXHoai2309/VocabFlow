@@ -77,11 +77,22 @@ local-data/generated/cloudinary-upload-failures.json
 
 The checkpoint contains only asset identity and non-secret provider metadata.
 Re-running apply skips matching successful checkpoint entries, safely skips
-matching assets already present in Cloudinary, retries only transient failures,
-and writes a deterministic failure report. Before every upload the local file
-is re-hashed and must still match the manifest SHA-256; changed or missing
-bytes fail closed. A later controlled upload should begin with the offline plan,
-review the summary, and then pass `--apply` explicitly.
+matching assets already present in Cloudinary based on the direct upload
+response, retries only transient upload failures, and writes a deterministic
+failure report. It does not perform a per-asset Cloudinary Admin API resource
+lookup. Before every upload the local file is re-hashed and must still match
+the manifest SHA-256; changed or missing bytes fail closed. A later controlled
+upload should begin with the offline plan, review the summary, and then pass
+`--apply` explicitly. Each apply run replaces the generated failure report with
+the current unresolved failures, so stale failures from an earlier run do not
+block resume; successful checkpoint entries are preserved.
+
+Cloudinary upload HTTP 420/429 and transient 5xx/network failures receive
+bounded retries with exponential jitter, honoring retry-after metadata when the
+SDK exposes it. HTTP 400 remains permanent except for the SDK's explicit
+`resource already exists` response, which is checkpointed as `EXISTS` without
+overwriting the asset. Permanent failure reports retain only a short sanitized
+message and never store credentials, signatures or request configuration.
 
 Optional controls are bounded:
 
