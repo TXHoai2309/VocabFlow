@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, renameSync, statSync, writeFileSync } from "node:fs";
 import { loadEnvFile } from "node:process";
 import { dirname, isAbsolute, join, relative, resolve, sep } from "node:path";
-import { Readable } from "node:stream";
+import { Readable, Writable } from "node:stream";
 import { v2 as cloudinary } from "cloudinary";
 import type { MediaAsset, MediaManifest } from "./vocab-media-manifest";
 import { DEFAULT_DATASET_ROOT, DEFAULT_OUTPUT_DIR, MANIFEST_FILENAME } from "./vocab-media-manifest";
@@ -15,6 +15,7 @@ export const DEFAULT_MEDIA_MAP_PATH = join(DEFAULT_OUTPUT_DIR, "cloudinary-media
 export const DEFAULT_CONCURRENCY = 3;
 export const MAX_CONCURRENCY = 5;
 export const DEFAULT_MAX_RETRIES = 3;
+export const CLOUDINARY_UPLOAD_TIMEOUT_MS = 120_000;
 
 const IMAGE_FOLDER = "Vocab/images";
 const AUDIO_FOLDER = "Vocab/audio";
@@ -34,16 +35,26 @@ export type CloudinaryUploadResponse = {
 export type CloudinaryClient = {
   upload: (
     source: Readable,
-    options: {
-      asset_folder: string;
-      public_id: string;
-      resource_type: CloudinaryResourceType;
-      format: string;
-      overwrite: false;
-      unique_filename: false;
-      use_filename: false;
-    }
+    options: CloudinaryUploadOptions
   ) => Promise<CloudinaryUploadResponse>;
+};
+
+export type CloudinaryUploadOptions = {
+  asset_folder: string;
+  public_id: string;
+  resource_type: CloudinaryResourceType;
+  format: string;
+  overwrite: false;
+  unique_filename: false;
+  use_filename: false;
+  timeout: number;
+};
+
+export type CloudinaryStreamUploader = {
+  upload_stream: (
+    options: CloudinaryUploadOptions,
+    callback: (error?: unknown, result?: unknown) => void
+  ) => Writable;
 };
 
 export type CloudinaryConfig = {
@@ -299,6 +310,7 @@ export function classifyCloudinaryError(error: unknown): FailureClassification {
   const httpCode = httpCodeOf(error);
   const errorCode = errorCodeOf(error);
   if (httpCode === 420) return { reason: "HTTP_420", transient: true, httpCode, retryAfterMs: retryAfterMsOf(error) };
+  if (httpCode === 499) return { reason: "HTTP_499", transient: true, httpCode, retryAfterMs: retryAfterMsOf(error) };
   if (httpCode === 429) return { reason: "HTTP_429", transient: true, httpCode, retryAfterMs: retryAfterMsOf(error) };
   if (httpCode !== undefined && httpCode >= 500 && httpCode <= 599) {
     return { reason: "HTTP_5XX", transient: true, httpCode, retryAfterMs: retryAfterMsOf(error) };
@@ -584,7 +596,8 @@ async function processAsset(
         format: spec.format,
         overwrite: false,
         unique_filename: false,
-        use_filename: false
+        use_filename: false,
+        timeout: CLOUDINARY_UPLOAD_TIMEOUT_MS
       }),
       maxRetries,
       sleep,
@@ -723,7 +736,9 @@ export async function runUploader(options: RunUploaderOptions): Promise<UploadRu
       summary.failures.push(result.failure);
       if (result.failure.reason === "LOCAL_FILE_MISSING") summary.localMissingCount += 1;
       else if (result.failure.reason === "HASH_MISMATCH") summary.hashMismatchCount += 1;
-      else if (result.failure.reason === "HTTP_429"
+      else if (result.failure.reason === "HTTP_420"
+        || result.failure.reason === "HTTP_429"
+        || result.failure.reason === "HTTP_499"
         || result.failure.reason === "HTTP_5XX"
         || result.failure.reason === "NETWORK_TRANSIENT"
         || result.failure.reason === "TRANSIENT_RETRIES_EXHAUSTED") summary.transientFailureCount += 1;
@@ -738,6 +753,38 @@ export async function runUploader(options: RunUploaderOptions): Promise<UploadRu
   return summary;
 }
 
+export function uploadReadableWithCloudinary(
+  source: Readable,
+  options: CloudinaryUploadOptions,
+  uploader: CloudinaryStreamUploader = cloudinary.uploader as unknown as CloudinaryStreamUploader
+): Promise<CloudinaryUploadResponse> {
+  return new Promise<CloudinaryUploadResponse>((resolveUpload, rejectUpload) => {
+    let settled = false;
+    const resolveOnce = (result: CloudinaryUploadResponse) => {
+      if (settled) return;
+      settled = true;
+      resolveUpload(result);
+    };
+    const rejectOnce = (error: unknown) => {
+      if (settled) return;
+      settled = true;
+      rejectUpload(error);
+    };
+    const uploadStream = uploader.upload_stream(options, (error, result) => {
+      if (error) {
+        rejectOnce(error);
+      } else if (result) {
+        resolveOnce(result as CloudinaryUploadResponse);
+      } else {
+        rejectOnce(new MediaUploadError("CLOUDINARY_EMPTY_UPLOAD_RESPONSE"));
+      }
+    });
+    source.once("error", rejectOnce);
+    uploadStream.once("error", rejectOnce);
+    source.pipe(uploadStream);
+  });
+}
+
 export function createCloudinaryClient(config: CloudinaryConfig): CloudinaryClient {
   cloudinary.config({
     cloud_name: config.cloudName,
@@ -746,20 +793,7 @@ export function createCloudinaryClient(config: CloudinaryConfig): CloudinaryClie
     secure: true
   });
   return {
-    upload: async (source, options) => new Promise<CloudinaryUploadResponse>((resolveUpload, rejectUpload) => {
-      const uploadStream = cloudinary.uploader.upload_stream(options, (error, result) => {
-        if (error) {
-          rejectUpload(error);
-        } else if (result) {
-          resolveUpload(result as CloudinaryUploadResponse);
-        } else {
-          rejectUpload(new MediaUploadError("CLOUDINARY_EMPTY_UPLOAD_RESPONSE"));
-        }
-      });
-      source.once("error", rejectUpload);
-      uploadStream.once("error", rejectUpload);
-      source.pipe(uploadStream);
-    })
+    upload: (source, options) => uploadReadableWithCloudinary(source, options)
   };
 }
 

@@ -2,16 +2,20 @@ import { createHash } from "node:crypto";
 import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
+import { PassThrough, Readable } from "node:stream";
 import { afterEach, describe, expect, it } from "vitest";
 import type { MediaManifest } from "./vocab-media-manifest";
 import {
   buildUploadSpecs,
   assertCanarySelection,
+  CLOUDINARY_UPLOAD_TIMEOUT_MS,
   parseCliArgs,
   publicIdForAsset,
   runUploader,
   selectCanaryAssets,
+  uploadReadableWithCloudinary,
   type CloudinaryClient,
+  type CloudinaryUploadOptions,
   type StoredMediaAsset
 } from "./vocab-media-upload";
 
@@ -66,6 +70,20 @@ function stored(spec: ReturnType<typeof buildUploadSpecs>[number]): StoredMediaA
     resourceType: spec.resourceType,
     format: spec.format,
     status: "UPLOADED"
+  };
+}
+
+function uploadOptions(overrides: Partial<CloudinaryUploadOptions> = {}): CloudinaryUploadOptions {
+  return {
+    asset_folder: "Vocab/images",
+    public_id: "vocabflow/images/content-v1/test",
+    resource_type: "image",
+    format: "png",
+    overwrite: false,
+    unique_filename: false,
+    use_filename: false,
+    timeout: CLOUDINARY_UPLOAD_TIMEOUT_MS,
+    ...overrides
   };
 }
 
@@ -247,6 +265,72 @@ describe("safe Cloudinary media uploader", () => {
     expect(receivedBytes).toEqual(bytes);
   });
 
+  it("resolves a Cloudinary upload only after the callback reports success", async () => {
+    const source = Readable.from([Buffer.from("payload")]);
+    const uploadStream = new PassThrough();
+    let callback: ((error?: unknown, result?: unknown) => void) | undefined;
+    const promise = uploadReadableWithCloudinary(source, uploadOptions(), {
+      upload_stream: (_options, completion) => {
+        callback = completion;
+        return uploadStream;
+      }
+    });
+    let settled = false;
+    const observed = promise.then(() => { settled = true; });
+    await new Promise<void>((resolve) => uploadStream.once("finish", resolve));
+    await Promise.resolve();
+    expect(settled).toBe(false);
+    callback?.(undefined, { resource_type: "image", secure_url: "https://res.cloudinary.test/asset" });
+    await observed;
+    await expect(promise).resolves.toMatchObject({ resource_type: "image" });
+  });
+
+  it("does not resolve when only the source stream finishes", async () => {
+    const source = Readable.from([Buffer.from("payload")]);
+    const uploadStream = new PassThrough();
+    let callback: ((error?: unknown, result?: unknown) => void) | undefined;
+    const promise = uploadReadableWithCloudinary(source, uploadOptions(), {
+      upload_stream: (_options, completion) => {
+        callback = completion;
+        return uploadStream;
+      }
+    });
+    let settled = false;
+    void promise.then(() => { settled = true; }, () => { settled = true; });
+    await new Promise<void>((resolve) => uploadStream.once("finish", resolve));
+    await Promise.resolve();
+    expect(settled).toBe(false);
+    callback?.(undefined, { resource_type: "image" });
+    await expect(promise).resolves.toMatchObject({ resource_type: "image" });
+  });
+
+  it("rejects when Cloudinary reports a stream upload error", async () => {
+    const source = Readable.from([Buffer.from("payload")]);
+    const uploadStream = new PassThrough();
+    let callback: ((error?: unknown, result?: unknown) => void) | undefined;
+    const promise = uploadReadableWithCloudinary(source, uploadOptions(), {
+      upload_stream: (_options, completion) => {
+        callback = completion;
+        return uploadStream;
+      }
+    });
+    callback?.({ message: "Request Timeout", http_code: 499 });
+    await expect(promise).rejects.toMatchObject({ http_code: 499 });
+  });
+
+  it("rejects when the local source stream errors", async () => {
+    const source = new Readable({
+      read() {
+        this.destroy(new Error("source read failed"));
+      }
+    });
+    const uploadStream = new PassThrough();
+    const promise = uploadReadableWithCloudinary(source, uploadOptions(), {
+      upload_stream: () => uploadStream
+    });
+    await expect(promise).rejects.toThrow("source read failed");
+  });
+
   it("derives deterministic public IDs and provider resource types", () => {
     const image = asset("image", Buffer.from("image"), "images/one.png");
     const audio = asset("audio", Buffer.from("audio"), "audio/one.mp3");
@@ -282,7 +366,8 @@ describe("safe Cloudinary media uploader", () => {
       resource_type: "image",
       overwrite: false,
       unique_filename: false,
-      use_filename: false
+      use_filename: false,
+      timeout: CLOUDINARY_UPLOAD_TIMEOUT_MS
     });
   });
 
@@ -486,6 +571,38 @@ describe("safe Cloudinary media uploader", () => {
     expect(permanent.permanentFailureCount).toBe(1);
     expect(permanentCalls).toBe(1);
     expect(permanent.failures[0]?.sanitizedMessage).toBe("Invalid image format");
+  });
+
+  it("treats HTTP 499 as transient and stops after the configured retry bound", async () => {
+    const root = fixtureDirectory();
+    const bytes = Buffer.from("image");
+    const image = asset("image", bytes, "images/one.png");
+    writeFileSync(join(root, image.sourcePath), bytes);
+    let uploadCalls = 0;
+    const retryDelays: number[] = [];
+    const summary = await runUploader({
+      manifest: manifest([image]),
+      datasetRoot: root,
+      apply: true,
+      maxRetries: 2,
+      sleep: async (milliseconds) => { retryDelays.push(milliseconds); },
+      client: client({
+        upload: async () => {
+          uploadCalls += 1;
+          throw { name: "Error", message: "Request Timeout", http_code: 499 };
+        }
+      }),
+      statePath: join(root, "state.json"),
+      failuresPath: join(root, "failures.json"),
+      mediaMapPath: join(root, "map.json")
+    });
+    expect(summary.transientFailureCount).toBe(1);
+    expect(summary.permanentFailureCount).toBe(0);
+    expect(uploadCalls).toBe(3);
+    expect(retryDelays).toHaveLength(2);
+    expect(retryDelays[0]).toBeGreaterThanOrEqual(250);
+    expect(retryDelays[1]).toBeGreaterThanOrEqual(500);
+    expect(summary.failures[0]).toMatchObject({ reason: "TRANSIENT_RETRIES_EXHAUSTED", httpCode: 499 });
   });
 
   it("never includes secret-like values in its sanitized failure report", async () => {

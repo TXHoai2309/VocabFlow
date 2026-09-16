@@ -90,9 +90,13 @@ explicitly. Each apply run replaces the generated failure report with
 the current unresolved failures, so stale failures from an earlier run do not
 block resume; successful checkpoint entries are preserved.
 
-Cloudinary upload HTTP 420/429 and transient 5xx/network failures receive
+Cloudinary upload HTTP 420/429/499 and transient 5xx/network failures receive
 bounded retries with exponential jitter, honoring retry-after metadata when the
-SDK exposes it. HTTP 400 remains permanent except for the SDK's explicit
+SDK exposes it. The stream request also receives the named
+`CLOUDINARY_UPLOAD_TIMEOUT_MS` option, currently 120,000 ms. The uploader
+waits for Cloudinary's upload callback to report success or failure; a local
+source `finish` event alone never marks an upload successful. HTTP 400 remains
+permanent except for the SDK's explicit
 `resource already exists` response, which is checkpointed as `EXISTS` without
 overwriting the asset. Permanent failure reports retain only a short sanitized
 message and never store credentials, signatures or request configuration. Known
