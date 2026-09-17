@@ -390,6 +390,7 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
 }
 .progress-topbar .back-link { margin: 0; }
 .progress-card .auth-eyebrow { margin-top: 32px; }
+.progress-success { margin: 16px 0 0; color: var(--color-success-text); font-weight: 700; }
 .progress-state {
   min-height: 80px;
   display: grid;
@@ -435,6 +436,49 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
 }
 .progress-grid dt { color: var(--color-text-muted); font-size: 14px; line-height: 20px; }
 .progress-grid dd { margin: 6px 0 0; color: var(--color-text); font-size: 28px; font-weight: 800; line-height: 32px; }
+.progress-danger-zone {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-border);
+}
+.progress-danger-zone h2 { margin: 0; color: var(--color-text); font-size: 18px; }
+.progress-danger-zone p { margin: 8px 0 0; color: var(--color-text-muted); font-size: 14px; line-height: 20px; }
+.progress-reset-button {
+  min-height: 44px;
+  margin-top: 16px;
+  padding: 8px 14px;
+  border: 1px solid var(--color-danger);
+  border-radius: var(--radius-control);
+  color: var(--color-danger);
+  background: var(--color-surface);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.progress-reset-button:hover:not(:disabled) { background: #fef2f2; }
+.progress-reset-button:disabled { cursor: wait; opacity: 0.7; }
+.reset-dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+  background: rgb(15 23 42 / 0.48);
+}
+.reset-dialog {
+  width: min(100%, 480px);
+  padding: 24px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-feature);
+  background: var(--color-surface);
+  box-shadow: 0 24px 64px rgb(15 23 42 / 0.2);
+}
+.reset-dialog h2 { margin: 0; color: var(--color-text); font-size: 22px; line-height: 28px; }
+.reset-dialog > p { margin: 12px 0 0; color: var(--color-text-muted); font-size: 15px; line-height: 22px; }
+.reset-dialog-error { color: var(--color-danger) !important; }
+.reset-dialog-actions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px; }
+.reset-dialog-cancel { margin-top: 0; }
 
 @media (min-width: 640px) {
   .progress-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }

@@ -15,6 +15,11 @@ import {
   LearnerVocabularyServiceError,
   type LearnerVocabularyDatabase
 } from "../apps/api/src/learner-vocabulary";
+import {
+  createResetLearnerProgressService,
+  ResetLearnerProgressServiceError,
+  type ResetLearnerProgressDatabase
+} from "../apps/api/src/reset-learner-progress";
 import type { ConnectionTarget, ReviewQueueResponse } from "@vocabflow/contracts";
 import { assertApplicationTablesAbsent, assertMigrationStateZero, assertPostConnectIdentity, openSql } from "./db-core";
 import { assertIdentitySnapshot, getIdentitySnapshot, resetApplicationScope } from "./db-reset-operations";
@@ -234,6 +239,20 @@ async function withLearnerVocabulary<T>(
   }
 }
 
+async function withReset<T>(
+  runtimeUrl: string,
+  operation: (service: ReturnType<typeof createResetLearnerProgressService>) => Promise<T>,
+): Promise<T> {
+  const connection = openSql(runtimeUrl);
+  const database = drizzle(connection) as unknown as ResetLearnerProgressDatabase;
+  console.log("TRUSTED_DB_CONNECTION role=runtime operation=us24-reset-progress");
+  try {
+    return await operation(createResetLearnerProgressService(database));
+  } finally {
+    await connection.end({ timeout: 5 });
+  }
+}
+
 async function capture<T>(promise: Promise<T>): Promise<Outcome<T>> {
   try {
     return { ok: true, value: await promise };
@@ -277,6 +296,19 @@ async function expectLearnerVocabularyDenied(
   const outcome = await withLearnerVocabulary(runtimeUrl, (service) => capture(service.list(userId, learnerId)));
   assert(!outcome.ok, code + "_LEAKED");
   assert(outcome.error instanceof LearnerVocabularyServiceError, code + "_WRONG_ERROR_TYPE");
+  assert(outcome.error.code === "HOUSEHOLD_ACCESS_DENIED", code + "_WRONG_ERROR_CODE");
+  assert(outcome.error.status === 403, code + "_WRONG_STATUS");
+}
+
+async function expectResetDenied(
+  runtimeUrl: string,
+  userId: string,
+  learnerId: string,
+  code: string,
+) {
+  const outcome = await withReset(runtimeUrl, (service) => capture(service.reset(userId, learnerId)));
+  assert(!outcome.ok, code + "_LEAKED");
+  assert(outcome.error instanceof ResetLearnerProgressServiceError, code + "_WRONG_ERROR_TYPE");
   assert(outcome.error.code === "HOUSEHOLD_ACCESS_DENIED", code + "_WRONG_ERROR_CODE");
   assert(outcome.error.status === 403, code + "_WRONG_STATUS");
 }
@@ -403,11 +435,47 @@ async function stateSnapshot(migration: SqlClient, fixture: Fixture) {
   };
 }
 
+async function insertReviewHistory(
+  migration: SqlClient,
+  fixture: Fixture,
+  learnerId: string,
+  vocabularyId: number,
+) {
+  await migration`
+    INSERT INTO ${migration.unsafe(EVENTS_TABLE)}
+      (household_id, review_id, request_fingerprint, learner_id, vocabulary_id,
+       result, previous_status, new_status, previous_interval, new_interval,
+       expected_revision, resulting_revision, review_date, response_payload)
+    VALUES (
+      ${fixture.householdId}::uuid,
+      ${randomUUID()}::uuid,
+      'sha256:us24-reset'::text,
+      ${learnerId}::uuid,
+      ${vocabularyId}::integer,
+      'REMEMBERED'::text::"vocabflow_app"."review_result",
+      'NEW'::text::"vocabflow_app"."learning_status",
+      'LEARNING'::text::"vocabflow_app"."learning_status",
+      0::bigint,
+      1::bigint,
+      0::bigint,
+      1::bigint,
+      '2026-09-14'::date,
+      '{"reviewId":"us24-reset"}'::jsonb
+    )
+  `;
+}
+
 async function cleanupFixture(migration: SqlClient, fixture: Fixture) {
   mark("fixture-cleanup");
   await migration.begin(async (tx) => {
     await tx`DELETE FROM ${tx.unsafe(EVENTS_TABLE)} WHERE household_id = ${fixture.householdId}::uuid`;
-    await tx`DELETE FROM ${tx.unsafe(PROGRESS_TABLE)} WHERE learner_id = ${fixture.learnerId}::uuid`;
+    await tx`
+      DELETE FROM ${tx.unsafe(PROGRESS_TABLE)}
+      WHERE learner_id IN (
+        SELECT id FROM ${tx.unsafe(LEARNERS_TABLE)}
+        WHERE household_id = ${fixture.householdId}::uuid
+      )
+    `;
     await tx`DELETE FROM ${tx.unsafe(LEARNERS_TABLE)} WHERE household_id = ${fixture.householdId}::uuid`;
     await tx`DELETE FROM ${tx.unsafe(MEMBERS_TABLE)} WHERE household_id = ${fixture.householdId}::uuid`;
     await tx`DELETE FROM ${tx.unsafe(HOUSEHOLDS_TABLE)} WHERE id = ${fixture.householdId}::uuid`;
@@ -654,6 +722,82 @@ async function testLearnerVocabulary(migration: SqlClient, runtimeUrl: string, f
   await expectLearnerVocabularyDenied(runtimeUrl, fixture.ownerUserId, foreignFixture.learnerId, "VOCABULARY_CROSS_HOUSEHOLD");
 }
 
+async function testResetProgress(migration: SqlClient, runtimeUrl: string, fixtures: Fixture[]) {
+  mark("reset-progress");
+  const preExistingEnabledIds = await enabledVocabularyIds(migration);
+  const ids = allocateVocabulary(2);
+  const fixture = await seedFixture(migration, "reset-progress", ids.map((id) => ({ id, enabled: true })));
+  fixtures.push(fixture);
+  const learnerB = await addLearner(migration, fixture, true, "reset-progress-b");
+
+  await insertProgress(migration, fixture, ids[0]!, {
+    status: "LEARNING",
+    nextReviewDate: CONTROLLED_REVIEW_DATE,
+    revision: 2
+  });
+  await insertProgress(migration, fixture, ids[0]!, {
+    status: "MASTERED",
+    nextReviewDate: "2026-09-20",
+    revision: 7
+  }, learnerB);
+  await insertReviewHistory(migration, fixture, fixture.learnerId, ids[0]!);
+  await insertReviewHistory(migration, fixture, learnerB, ids[0]!);
+
+  const beforeB = await migration<{ progress_count: string; event_count: string }[]>`
+    SELECT
+      (SELECT count(*)::text FROM ${migration.unsafe(PROGRESS_TABLE)} WHERE learner_id = ${learnerB}::uuid) AS progress_count,
+      (SELECT count(*)::text FROM ${migration.unsafe(EVENTS_TABLE)} WHERE learner_id = ${learnerB}::uuid) AS event_count
+  `;
+  const beforeAEvents = await migration<{ event_count: string }[]>`
+    SELECT count(*)::text AS event_count
+    FROM ${migration.unsafe(EVENTS_TABLE)}
+    WHERE learner_id = ${fixture.learnerId}::uuid
+  `;
+
+  const firstReset = await withReset(runtimeUrl, (service) => service.reset(fixture.ownerUserId, fixture.learnerId));
+  assert(firstReset.deletedProgressCount === 1, "RESET_DELETED_COUNT");
+  const secondReset = await withReset(runtimeUrl, (service) => service.reset(fixture.ownerUserId, fixture.learnerId));
+  assert(secondReset.deletedProgressCount === 0, "RESET_REPEAT_NOT_IDEMPOTENT");
+
+  const summaryA = await withProgress(runtimeUrl, (service) => service.get(fixture.ownerUserId, fixture.learnerId));
+  const summaryB = await withProgress(runtimeUrl, (service) => service.get(fixture.ownerUserId, learnerB));
+  assert(summaryA.newCount === preExistingEnabledIds.length + 2, "RESET_A_NEW_COUNT");
+  assert(summaryA.learningCount === 0 && summaryA.masteredCount === 0, "RESET_A_STATUS_COUNTS");
+  assert(summaryA.dueCount === 0 && summaryA.learnedCount === 0, "RESET_A_LEARNED_COUNTS");
+  assert(summaryB.newCount === preExistingEnabledIds.length + 1, "RESET_B_NEW_COUNT_CHANGED");
+  assert(summaryB.learningCount === 0 && summaryB.masteredCount === 1, "RESET_B_STATUS_CHANGED");
+  assert(summaryB.dueCount === 0 && summaryB.learnedCount === 1, "RESET_B_LEARNED_CHANGED");
+
+  const queueA = await withQueue(runtimeUrl, (service) => service.list(fixture.ownerUserId, fixture.learnerId));
+  const queueB = await withQueue(runtimeUrl, (service) => service.list(fixture.ownerUserId, learnerB));
+  assert(queueA.queue.some((item) => item.vocabulary.id === ids[0] && item.queueType === "NEW" && item.expectedRevision === 0), "RESET_A_QUEUE_NOT_NEW");
+  assert(!queueB.queue.some((item) => item.vocabulary.id === ids[0]), "RESET_B_QUEUE_CHANGED");
+  assert(queueB.queue.some((item) => item.vocabulary.id === ids[1] && item.queueType === "NEW"), "RESET_B_NEW_QUEUE_MISSING");
+
+  const vocabularyA = await withLearnerVocabulary(runtimeUrl, (service) => service.list(fixture.ownerUserId, fixture.learnerId));
+  const vocabularyB = await withLearnerVocabulary(runtimeUrl, (service) => service.list(fixture.ownerUserId, learnerB));
+  assert(vocabularyA.find((item) => item.id === ids[0])?.status === "NEW", "RESET_A_VOCABULARY_NOT_NEW");
+  assert(vocabularyB.find((item) => item.id === ids[0])?.status === "MASTERED", "RESET_B_VOCABULARY_CHANGED");
+
+  const afterB = await migration<{ progress_count: string; event_count: string }[]>`
+    SELECT
+      (SELECT count(*)::text FROM ${migration.unsafe(PROGRESS_TABLE)} WHERE learner_id = ${learnerB}::uuid) AS progress_count,
+      (SELECT count(*)::text FROM ${migration.unsafe(EVENTS_TABLE)} WHERE learner_id = ${learnerB}::uuid) AS event_count
+  `;
+  const afterAEvents = await migration<{ event_count: string }[]>`
+    SELECT count(*)::text AS event_count
+    FROM ${migration.unsafe(EVENTS_TABLE)}
+    WHERE learner_id = ${fixture.learnerId}::uuid
+  `;
+  assert(afterB[0]?.progress_count === beforeB[0]?.progress_count, "RESET_B_PROGRESS_DELETED");
+  assert(afterB[0]?.event_count === beforeB[0]?.event_count, "RESET_B_HISTORY_DELETED");
+  assert(afterAEvents[0]?.event_count === beforeAEvents[0]?.event_count, "RESET_A_HISTORY_DELETED");
+
+  const foreignFixture = fixtures[1];
+  assert(foreignFixture, "RESET_FOREIGN_FIXTURE_MISSING");
+  await expectResetDenied(runtimeUrl, fixture.ownerUserId, foreignFixture.learnerId, "RESET_CROSS_HOUSEHOLD");
+}
+
 async function verifyReset(
   migrationUrl: string,
   migrationTarget: ConnectionTarget,
@@ -688,6 +832,7 @@ export async function runUs08TrustedDbSuite(input: Us08TrustedDbInput) {
     await testQueueSemantics(migration, input.runtimeUrl, fixtures);
     await testProgressSummary(migration, input.runtimeUrl, fixtures);
     await testLearnerVocabulary(migration, input.runtimeUrl, fixtures);
+    await testResetProgress(migration, input.runtimeUrl, fixtures);
     await testCapsAndSuppression(migration, input.runtimeUrl, fixtures);
   } finally {
     try {

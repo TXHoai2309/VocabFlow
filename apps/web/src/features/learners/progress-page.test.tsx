@@ -7,6 +7,13 @@ import { ActiveLearnerProvider } from "./learner-context-provider";
 import { useActiveLearner } from "./learner-context-hook";
 import { ProgressPage } from "./progress-page";
 
+const { requestResetLearnerProgress } = vi.hoisted(() => ({ requestResetLearnerProgress: vi.fn() }));
+
+vi.mock("./reset-progress-client", async () => {
+  const actual = await vi.importActual<typeof import("./reset-progress-client")>("./reset-progress-client");
+  return { ...actual, requestResetLearnerProgress };
+});
+
 const learner = (id: string, displayName: string): LearnerDto => ({
   id,
   householdId: "00000000-0000-4000-8000-000000000001",
@@ -58,6 +65,7 @@ function metric(label: string) {
 describe("US-20 learner progress UI", () => {
   beforeEach(() => {
     vi.restoreAllMocks();
+    requestResetLearnerProgress.mockReset();
   });
 
   it("shows loading and then all canonical progress cards", async () => {
@@ -142,5 +150,46 @@ describe("US-20 learner progress UI", () => {
   it("redirects to learner home when no active learner exists", async () => {
     renderProgress(null);
     expect(await screen.findByText("learners-route")).toBeInTheDocument();
+  });
+
+  it("requires confirmation, locks duplicate reset submits, and refreshes the summary", async () => {
+    const resetResponse = { learnerId: learnerA.id, deletedProgressCount: 2 };
+    let resolveReset!: (value: typeof resetResponse) => void;
+    requestResetLearnerProgress.mockReturnValue(new Promise((resolve) => { resolveReset = resolve; }));
+    const fetchMock = vi.spyOn(globalThis, "fetch")
+      .mockResolvedValueOnce(response(summary(learnerA.id, { learnedCount: 2 })))
+      .mockResolvedValueOnce(response(summary(learnerA.id, { newCount: 30, learningCount: 0, masteredCount: 0, dueCount: 0, learnedCount: 0 })));
+    renderProgress();
+
+    await screen.findByTestId("progress-summary");
+    fireEvent.click(screen.getByRole("button", { name: "Reset tiến trình" }));
+    expect(screen.getByRole("dialog")).toHaveTextContent("Reset tiến trình của An?");
+    expect(screen.getByRole("dialog")).toHaveTextContent("lịch sử review vẫn được giữ lại");
+    fireEvent.click(screen.getByRole("button", { name: "Hủy" }));
+    expect(requestResetLearnerProgress).not.toHaveBeenCalled();
+
+    fireEvent.click(screen.getByRole("button", { name: "Reset tiến trình" }));
+    fireEvent.click(screen.getByRole("button", { name: "Xác nhận reset" }));
+    fireEvent.click(screen.getByRole("button", { name: "Đang reset…" }));
+    expect(requestResetLearnerProgress).toHaveBeenCalledTimes(1);
+    expect(screen.getByRole("button", { name: "Đang reset…" })).toBeDisabled();
+    resolveReset(resetResponse);
+
+    await waitFor(() => expect(screen.getByTestId("progress-empty-state")).toBeInTheDocument());
+    expect(screen.getByText("Đã reset tiến trình của An.")).toBeInTheDocument();
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+  });
+
+  it("keeps the dialog open and usable after reset failure", async () => {
+    requestResetLearnerProgress.mockRejectedValue(new Error("network"));
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(response(summary(learnerA.id)));
+    renderProgress();
+    await screen.findByTestId("progress-summary");
+    fireEvent.click(screen.getByRole("button", { name: "Reset tiến trình" }));
+    fireEvent.click(screen.getByRole("button", { name: "Xác nhận reset" }));
+
+    expect(await screen.findByRole("alert")).toHaveTextContent("Không thể reset tiến trình lúc này. Vui lòng thử lại.");
+    expect(screen.getByRole("dialog")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Xác nhận reset" })).toBeEnabled();
   });
 });

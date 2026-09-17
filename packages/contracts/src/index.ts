@@ -226,6 +226,12 @@ export const progressSummaryResponseSchema = z.object({
 }).strict();
 export type ProgressSummaryResponse = z.infer<typeof progressSummaryResponseSchema>;
 
+export const resetLearnerProgressResponseSchema = z.object({
+  learnerId: canonicalUuidSchema,
+  deletedProgressCount: z.number().int().nonnegative().safe()
+}).strict();
+export type ResetLearnerProgressResponse = z.infer<typeof resetLearnerProgressResponseSchema>;
+
 export const reviewQueueItemSchema = z.object({
   vocabulary: vocabularyDtoSchema,
   queueType: z.enum(["DUE", "NEW"]),
