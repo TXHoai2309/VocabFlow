@@ -203,6 +203,7 @@ export function LearnerPage() {
           <div className="learner-ready" data-testid="learner-context-ready" role="status">
             <p>Đã chọn learner: <strong>{activeLearner.displayName}</strong></p>
             <p className="learner-handoff-note">Sẵn sàng cho thẻ học đầu tiên.</p>
+            <Link className="learner-progress-link" to="/progress">Xem tiến trình</Link>
             <Link className="register-submit learner-study-submit" to="/study">Bắt đầu học</Link>
           </div>
         ) : null}

@@ -5,6 +5,11 @@ import {
   ReviewQueueServiceError,
   type ReviewQueueDatabase
 } from "../apps/api/src/review-queue";
+import {
+  createProgressSummaryService,
+  ProgressSummaryServiceError,
+  type ProgressSummaryDatabase
+} from "../apps/api/src/progress-summary";
 import type { ConnectionTarget, ReviewQueueResponse } from "@vocabflow/contracts";
 import { assertApplicationTablesAbsent, assertMigrationStateZero, assertPostConnectIdentity, openSql } from "./db-core";
 import { assertIdentitySnapshot, getIdentitySnapshot, resetApplicationScope } from "./db-reset-operations";
@@ -140,14 +145,20 @@ async function addLearner(migration: SqlClient, fixture: Fixture, enabled: boole
   return learnerId;
 }
 
-async function insertProgress(migration: SqlClient, fixture: Fixture, vocabularyId: number, state: ProgressSpec) {
+async function insertProgress(
+  migration: SqlClient,
+  fixture: Fixture,
+  vocabularyId: number,
+  state: ProgressSpec,
+  learnerId = fixture.learnerId,
+) {
   await migration`
     INSERT INTO ${migration.unsafe(PROGRESS_TABLE)}
       (learner_id, vocabulary_id, status, consecutive_correct, interval_days,
        first_learned_date, last_reviewed_date, next_review_date, total_correct,
        total_incorrect, revision)
     VALUES (
-      ${fixture.learnerId}::uuid,
+      ${learnerId}::uuid,
       ${vocabularyId}::integer,
       ${state.status}::text::"vocabflow_app"."learning_status",
       1::bigint,
@@ -190,6 +201,20 @@ async function withQueue<T>(
   }
 }
 
+async function withProgress<T>(
+  runtimeUrl: string,
+  operation: (service: ReturnType<typeof createProgressSummaryService>) => Promise<T>,
+): Promise<T> {
+  const connection = openSql(runtimeUrl);
+  const database = drizzle(connection) as unknown as ProgressSummaryDatabase;
+  console.log("TRUSTED_DB_CONNECTION role=runtime operation=us20-progress-summary");
+  try {
+    return await operation(createProgressSummaryService(database, { now: () => FIXED_NOW }));
+  } finally {
+    await connection.end({ timeout: 5 });
+  }
+}
+
 async function capture<T>(promise: Promise<T>): Promise<Outcome<T>> {
   try {
     return { ok: true, value: await promise };
@@ -209,6 +234,19 @@ async function expectDenied(
   assert(outcome.error instanceof ReviewQueueServiceError, `${code}_WRONG_ERROR_TYPE`);
   assert(outcome.error.code === "HOUSEHOLD_ACCESS_DENIED", `${code}_WRONG_ERROR_CODE`);
   assert(outcome.error.status === 403, `${code}_WRONG_STATUS`);
+}
+
+async function expectProgressDenied(
+  runtimeUrl: string,
+  userId: string,
+  learnerId: string,
+  code: string,
+) {
+  const outcome = await withProgress(runtimeUrl, (service) => capture(service.get(userId, learnerId)));
+  assert(!outcome.ok, code + "_LEAKED");
+  assert(outcome.error instanceof ProgressSummaryServiceError, code + "_WRONG_ERROR_TYPE");
+  assert(outcome.error.code === "HOUSEHOLD_ACCESS_DENIED", code + "_WRONG_ERROR_CODE");
+  assert(outcome.error.status === 403, code + "_WRONG_STATUS");
 }
 
 function assertQueueItem(queue: ReviewQueueResponse, vocabularyId: number, queueType: "DUE" | "NEW", revision: number) {
@@ -478,6 +516,67 @@ async function testCapsAndSuppression(migration: SqlClient, runtimeUrl: string, 
   assertCapQueue("DUE_21", queue21, expectation21);
 }
 
+async function testProgressSummary(migration: SqlClient, runtimeUrl: string, fixtures: Fixture[]) {
+  mark("progress-summary");
+  const preExistingEnabledIds = await enabledVocabularyIds(migration);
+  const ids = allocateVocabulary(7);
+  const fixture = await seedFixture(migration, "progress-summary", ids.map((id, index) => ({
+    id,
+    enabled: index !== 3 && index !== 6
+  })).reverse());
+  fixtures.push(fixture);
+  await isolateExistingVocabularyForLearner(migration, fixture, preExistingEnabledIds);
+  await insertProgress(migration, fixture, ids[0]!, {
+    status: "LEARNING",
+    nextReviewDate: CONTROLLED_REVIEW_DATE,
+    revision: 3
+  });
+  await insertProgress(migration, fixture, ids[1]!, {
+    status: "MASTERED",
+    nextReviewDate: "2026-09-13",
+    revision: 4
+  });
+  await insertProgress(migration, fixture, ids[2]!, {
+    status: "MASTERED",
+    nextReviewDate: "2026-09-15",
+    revision: 5
+  });
+  await insertProgress(migration, fixture, ids[3]!, {
+    status: "LEARNING",
+    nextReviewDate: "2026-09-13",
+    revision: 6
+  });
+
+  const summary = await withProgress(runtimeUrl, (service) => service.get(fixture.ownerUserId, fixture.learnerId));
+  const baselineCount = preExistingEnabledIds.length;
+  assert(summary.newCount === 2, "SUMMARY_NEW_COUNT");
+  assert(summary.learningCount === baselineCount + 2, "SUMMARY_LEARNING_COUNT");
+  assert(summary.masteredCount === 2, "SUMMARY_MASTERED_COUNT");
+  assert(summary.dueCount === 2, "SUMMARY_DUE_COUNT");
+  assert(summary.learnedCount === baselineCount + 4, "SUMMARY_LEARNED_COUNT");
+  console.log(
+    "TRUSTED_DB_PROGRESS_SUMMARY_EXPECTATION"
+      + " review_date=" + CONTROLLED_REVIEW_DATE
+      + " new_count=" + summary.newCount
+      + " learning_count=" + summary.learningCount
+      + " mastered_count=" + summary.masteredCount
+      + " due_count=" + summary.dueCount
+      + " learned_count=" + summary.learnedCount,
+  );
+
+  const otherLearnerId = await addLearner(migration, fixture, true, "progress-summary-other");
+  const otherSummary = await withProgress(runtimeUrl, (service) => service.get(fixture.ownerUserId, otherLearnerId));
+  assert(otherSummary.newCount === baselineCount + 5, "SUMMARY_OTHER_NEW_COUNT");
+  assert(otherSummary.learningCount === 0, "SUMMARY_OTHER_LEARNING_LEAK");
+  assert(otherSummary.masteredCount === 0, "SUMMARY_OTHER_MASTERED_LEAK");
+  assert(otherSummary.dueCount === 0, "SUMMARY_OTHER_DUE_LEAK");
+  assert(otherSummary.learnedCount === 0, "SUMMARY_OTHER_LEARNED_LEAK");
+
+  const foreignFixture = fixtures[1];
+  assert(foreignFixture, "SUMMARY_FOREIGN_FIXTURE_MISSING");
+  await expectProgressDenied(runtimeUrl, fixture.ownerUserId, foreignFixture.learnerId, "SUMMARY_CROSS_HOUSEHOLD");
+}
+
 async function verifyReset(
   migrationUrl: string,
   migrationTarget: ConnectionTarget,
@@ -510,6 +609,7 @@ export async function runUs08TrustedDbSuite(input: Us08TrustedDbInput) {
     }
     await testAuthorization(migration, input.runtimeUrl, fixtures);
     await testQueueSemantics(migration, input.runtimeUrl, fixtures);
+    await testProgressSummary(migration, input.runtimeUrl, fixtures);
     await testCapsAndSuppression(migration, input.runtimeUrl, fixtures);
   } finally {
     try {

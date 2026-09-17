@@ -202,6 +202,16 @@ export type VocabularyListResponse = z.infer<typeof vocabularyListResponseSchema
 
 const canonicalUuidSchema = z.string().uuid().transform((value) => value.toLowerCase());
 
+export const progressSummaryResponseSchema = z.object({
+  learnerId: canonicalUuidSchema,
+  newCount: z.number().int().nonnegative().safe(),
+  learningCount: z.number().int().nonnegative().safe(),
+  masteredCount: z.number().int().nonnegative().safe(),
+  dueCount: z.number().int().nonnegative().safe(),
+  learnedCount: z.number().int().nonnegative().safe()
+}).strict();
+export type ProgressSummaryResponse = z.infer<typeof progressSummaryResponseSchema>;
+
 export const reviewQueueItemSchema = z.object({
   vocabulary: vocabularyDtoSchema,
   queueType: z.enum(["DUE", "NEW"]),

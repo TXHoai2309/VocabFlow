@@ -371,7 +371,79 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
 
 .learner-ready p { margin: 0; color: inherit; font-size: 16px; }
 .learner-ready .learner-handoff-note { margin-top: 6px; font-size: 14px; }
+.learner-progress-link {
+  display: flex;
+  margin-top: 16px;
+  color: var(--color-primary);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 .learner-study-submit { display: flex; margin-top: 16px; text-decoration: none; }
+
+.progress-card { width: min(100%, 860px); }
+.progress-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.progress-topbar .back-link { margin: 0; }
+.progress-card .auth-eyebrow { margin-top: 32px; }
+.progress-state {
+  min-height: 80px;
+  display: grid;
+  place-items: center;
+  margin-top: 28px;
+  color: var(--color-text-muted);
+}
+.progress-error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 28px;
+  padding: 16px;
+  border-radius: var(--radius-control);
+  color: var(--color-danger);
+  background: #fef2f2;
+}
+.progress-error p { margin: 0; }
+.progress-error .auth-retry { flex: 0 0 auto; margin-top: 0; }
+.progress-content { margin-top: 28px; }
+.progress-empty {
+  margin-bottom: 24px;
+  padding: 24px;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-control);
+  background: var(--color-primary-soft);
+}
+.progress-empty h2 { margin: 0; color: var(--color-text); font-size: 20px; }
+.progress-empty p { margin: 8px 0 0; font-size: 15px; }
+.progress-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.progress-grid div {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  background: var(--color-surface);
+}
+.progress-grid dt { color: var(--color-text-muted); font-size: 14px; line-height: 20px; }
+.progress-grid dd { margin: 6px 0 0; color: var(--color-text); font-size: 28px; font-weight: 800; line-height: 32px; }
+
+@media (min-width: 640px) {
+  .progress-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+}
+
+@media (max-width: 520px) {
+  .progress-topbar { align-items: flex-start; flex-direction: column; }
+  .progress-error { align-items: flex-start; flex-direction: column; }
+}
 
 .study-page {
   min-height: 100vh;
