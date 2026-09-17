@@ -4,6 +4,7 @@ import { RegisterPage } from "./features/auth/register-page";
 import { ActiveLearnerProvider } from "./features/learners/learner-context-provider";
 import { LearnerPage } from "./features/learners/learner-page";
 import { ProgressPage } from "./features/learners/progress-page";
+import { VocabularyListPage } from "./features/learners/vocabulary-list-page";
 import { StudyPage } from "./features/study/study-page";
 
 function Shell({ children }: { children: React.ReactNode }) {
@@ -73,6 +74,7 @@ export default function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/learners" element={<LearnerPage />} />
         <Route path="/progress" element={<ProgressPage />} />
+        <Route path="/vocabulary" element={<VocabularyListPage />} />
         <Route path="/study" element={<StudyPage />} />
         <Route path="/" element={<Shell><Home /></Shell>} />
         <Route path="/foundation" element={<Shell><FoundationRoute /></Shell>} />

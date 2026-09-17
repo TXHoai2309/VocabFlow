@@ -10,6 +10,11 @@ import {
   ProgressSummaryServiceError,
   type ProgressSummaryDatabase
 } from "../apps/api/src/progress-summary";
+import {
+  createLearnerVocabularyService,
+  LearnerVocabularyServiceError,
+  type LearnerVocabularyDatabase
+} from "../apps/api/src/learner-vocabulary";
 import type { ConnectionTarget, ReviewQueueResponse } from "@vocabflow/contracts";
 import { assertApplicationTablesAbsent, assertMigrationStateZero, assertPostConnectIdentity, openSql } from "./db-core";
 import { assertIdentitySnapshot, getIdentitySnapshot, resetApplicationScope } from "./db-reset-operations";
@@ -215,6 +220,20 @@ async function withProgress<T>(
   }
 }
 
+async function withLearnerVocabulary<T>(
+  runtimeUrl: string,
+  operation: (service: ReturnType<typeof createLearnerVocabularyService>) => Promise<T>,
+): Promise<T> {
+  const connection = openSql(runtimeUrl);
+  const database = drizzle(connection) as unknown as LearnerVocabularyDatabase;
+  console.log("TRUSTED_DB_CONNECTION role=runtime operation=us22-learner-vocabulary");
+  try {
+    return await operation(createLearnerVocabularyService(database));
+  } finally {
+    await connection.end({ timeout: 5 });
+  }
+}
+
 async function capture<T>(promise: Promise<T>): Promise<Outcome<T>> {
   try {
     return { ok: true, value: await promise };
@@ -245,6 +264,19 @@ async function expectProgressDenied(
   const outcome = await withProgress(runtimeUrl, (service) => capture(service.get(userId, learnerId)));
   assert(!outcome.ok, code + "_LEAKED");
   assert(outcome.error instanceof ProgressSummaryServiceError, code + "_WRONG_ERROR_TYPE");
+  assert(outcome.error.code === "HOUSEHOLD_ACCESS_DENIED", code + "_WRONG_ERROR_CODE");
+  assert(outcome.error.status === 403, code + "_WRONG_STATUS");
+}
+
+async function expectLearnerVocabularyDenied(
+  runtimeUrl: string,
+  userId: string,
+  learnerId: string,
+  code: string,
+) {
+  const outcome = await withLearnerVocabulary(runtimeUrl, (service) => capture(service.list(userId, learnerId)));
+  assert(!outcome.ok, code + "_LEAKED");
+  assert(outcome.error instanceof LearnerVocabularyServiceError, code + "_WRONG_ERROR_TYPE");
   assert(outcome.error.code === "HOUSEHOLD_ACCESS_DENIED", code + "_WRONG_ERROR_CODE");
   assert(outcome.error.status === 403, code + "_WRONG_STATUS");
 }
@@ -577,6 +609,51 @@ async function testProgressSummary(migration: SqlClient, runtimeUrl: string, fix
   await expectProgressDenied(runtimeUrl, fixture.ownerUserId, foreignFixture.learnerId, "SUMMARY_CROSS_HOUSEHOLD");
 }
 
+async function testLearnerVocabulary(migration: SqlClient, runtimeUrl: string, fixtures: Fixture[]) {
+  mark("learner-vocabulary");
+  const ids = allocateVocabulary(4);
+  const fixture = await seedFixture(migration, "learner-vocabulary", ids.map((id, index) => ({
+    id,
+    enabled: index !== 2
+  })).reverse());
+  fixtures.push(fixture);
+  await insertProgress(migration, fixture, ids[0]!, {
+    status: "LEARNING",
+    nextReviewDate: "2026-09-20",
+    revision: 2
+  });
+  await insertProgress(migration, fixture, ids[1]!, {
+    status: "MASTERED",
+    nextReviewDate: "2026-09-20",
+    revision: 3
+  });
+  await insertProgress(migration, fixture, ids[2]!, {
+    status: "LEARNING",
+    nextReviewDate: CONTROLLED_REVIEW_DATE,
+    revision: 4
+  });
+
+  const learnerA = await withLearnerVocabulary(runtimeUrl, (service) => service.list(fixture.ownerUserId, fixture.learnerId));
+  const rowA = learnerA.find((item) => item.id === ids[0]);
+  const rowMasteredA = learnerA.find((item) => item.id === ids[1]);
+  const disabledA = learnerA.find((item) => item.id === ids[2]);
+  const newA = learnerA.find((item) => item.id === ids[3]);
+  assert(rowA?.status === "LEARNING", "VOCABULARY_LEARNING_STATUS");
+  assert(rowMasteredA?.status === "MASTERED", "VOCABULARY_MASTERED_STATUS");
+  assert(disabledA === undefined, "VOCABULARY_DISABLED_LEAK");
+  assert(newA?.status === "NEW", "VOCABULARY_VIRTUAL_NEW_STATUS");
+  assert(learnerA.every((item, index) => index === 0 || item.id > learnerA[index - 1]!.id), "VOCABULARY_ORDER");
+
+  const otherLearnerId = await addLearner(migration, fixture, true, "learner-vocabulary-other");
+  const learnerB = await withLearnerVocabulary(runtimeUrl, (service) => service.list(fixture.ownerUserId, otherLearnerId));
+  const rowB = learnerB.find((item) => item.id === ids[0]);
+  assert(rowB?.status === "NEW", "VOCABULARY_LEARNER_ISOLATION");
+
+  const foreignFixture = fixtures[1];
+  assert(foreignFixture, "VOCABULARY_FOREIGN_FIXTURE_MISSING");
+  await expectLearnerVocabularyDenied(runtimeUrl, fixture.ownerUserId, foreignFixture.learnerId, "VOCABULARY_CROSS_HOUSEHOLD");
+}
+
 async function verifyReset(
   migrationUrl: string,
   migrationTarget: ConnectionTarget,
@@ -610,6 +687,7 @@ export async function runUs08TrustedDbSuite(input: Us08TrustedDbInput) {
     await testAuthorization(migration, input.runtimeUrl, fixtures);
     await testQueueSemantics(migration, input.runtimeUrl, fixtures);
     await testProgressSummary(migration, input.runtimeUrl, fixtures);
+    await testLearnerVocabulary(migration, input.runtimeUrl, fixtures);
     await testCapsAndSuppression(migration, input.runtimeUrl, fixtures);
   } finally {
     try {

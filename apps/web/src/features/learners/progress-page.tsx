@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link, Navigate } from "react-router";
-import type { ProgressSummaryResponse } from "@vocabflow/contracts";
+import type { LearnerDto, ProgressSummaryResponse } from "@vocabflow/contracts";
 import { useActiveLearner } from "./learner-context-hook";
 import { ProgressSummaryClientError, requestProgressSummary } from "./progress-summary-client";
 
@@ -18,12 +18,16 @@ function progressErrorMessage(error: unknown) {
 
 export function ProgressPage() {
   const { activeLearner } = useActiveLearner();
+  if (!activeLearner) return <Navigate to="/learners" replace />;
+  return <ProgressExperience key={activeLearner.id} activeLearner={activeLearner} />;
+}
+
+function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
   const [state, setState] = useState<ProgressState>("loading");
   const [summary, setSummary] = useState<ProgressSummaryResponse | null>(null);
   const [message, setMessage] = useState<string | null>(null);
 
   const loadSummary = useCallback(async () => {
-    if (!activeLearner) return;
     setState("loading");
     setSummary(null);
     setMessage(null);
@@ -35,14 +39,10 @@ export function ProgressPage() {
       setState("error");
       setMessage(progressErrorMessage(error));
     }
-  }, [activeLearner]);
+  }, [activeLearner.id]);
 
   useEffect(() => {
     let cancelled = false;
-    if (!activeLearner) return;
-    setState("loading");
-    setSummary(null);
-    setMessage(null);
     void requestProgressSummary(activeLearner.id)
       .then((response) => {
         if (cancelled) return;
@@ -57,9 +57,7 @@ export function ProgressPage() {
     return () => {
       cancelled = true;
     };
-  }, [activeLearner?.id]);
-
-  if (!activeLearner) return <Navigate to="/learners" replace />;
+  }, [activeLearner.id]);
 
   return (
     <main className="learner-page" aria-labelledby="progress-title">

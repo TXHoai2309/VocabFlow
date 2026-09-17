@@ -445,6 +445,92 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
   .progress-error { align-items: flex-start; flex-direction: column; }
 }
 
+.vocabulary-list-card { width: min(100%, 860px); }
+.vocabulary-list-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.vocabulary-list-topbar .back-link { margin: 0; }
+.vocabulary-list-card .auth-eyebrow { margin-top: 32px; }
+.vocabulary-list-state {
+  min-height: 80px;
+  display: grid;
+  place-items: center;
+  margin-top: 28px;
+  color: var(--color-text-muted);
+}
+.vocabulary-list-error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px;
+  border-radius: var(--radius-control);
+  color: var(--color-danger);
+  background: #fef2f2;
+}
+.vocabulary-list-error p { margin: 0; }
+.vocabulary-list-error .auth-retry { flex: 0 0 auto; margin-top: 0; }
+.vocabulary-empty {
+  margin-top: 28px;
+  padding: 24px;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-control);
+  background: var(--color-primary-soft);
+}
+.vocabulary-empty h2 { margin: 0; color: var(--color-text); font-size: 20px; }
+.vocabulary-empty p { margin: 8px 0 0; font-size: 15px; }
+.vocabulary-list {
+  display: grid;
+  gap: 10px;
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.vocabulary-list-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  background: var(--color-surface);
+}
+.vocabulary-list-copy {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+}
+.vocabulary-list-copy strong {
+  overflow-wrap: anywhere;
+  color: var(--color-text);
+  font-size: 18px;
+}
+.vocabulary-list-copy span {
+  overflow-wrap: anywhere;
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+.vocabulary-status {
+  flex: 0 0 auto;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 800;
+}
+.vocabulary-status-new { color: #1e40af; background: #dbeafe; }
+.vocabulary-status-learning { color: #92400e; background: #fef3c7; }
+.vocabulary-status-mastered { color: #166534; background: #dcfce7; }
+
+@media (max-width: 520px) {
+  .vocabulary-list-topbar { align-items: flex-start; flex-direction: column; }
+  .vocabulary-list-error { align-items: flex-start; flex-direction: column; }
+  .vocabulary-list-row { align-items: flex-start; flex-direction: column; }
+}
+
 .study-page {
   min-height: 100vh;
   display: grid;

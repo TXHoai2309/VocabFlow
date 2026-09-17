@@ -200,6 +200,20 @@ export const vocabularyListResponseSchema = z.object({
 });
 export type VocabularyListResponse = z.infer<typeof vocabularyListResponseSchema>;
 
+export const learnerVocabularyStatusSchema = z.enum(["NEW", "LEARNING", "MASTERED"]);
+export type LearnerVocabularyStatus = z.infer<typeof learnerVocabularyStatusSchema>;
+
+export const learnerVocabularyDtoSchema = vocabularyDtoSchema.extend({
+  status: learnerVocabularyStatusSchema,
+  nextReviewDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).nullable()
+}).strict();
+export type LearnerVocabularyDto = z.infer<typeof learnerVocabularyDtoSchema>;
+
+export const learnerVocabularyListResponseSchema = z.object({
+  vocabulary: z.array(learnerVocabularyDtoSchema)
+});
+export type LearnerVocabularyListResponse = z.infer<typeof learnerVocabularyListResponseSchema>;
+
 const canonicalUuidSchema = z.string().uuid().transform((value) => value.toLowerCase());
 
 export const progressSummaryResponseSchema = z.object({
