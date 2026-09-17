@@ -113,7 +113,7 @@ export const learnerProfiles = vocabflowApp.table("learner_profiles", {
 ]);
 
 export const vocabularies = vocabflowApp.table("vocabularies", {
-  id: integer("id").primaryKey(),
+  id: integer("id").primaryKey().generatedByDefaultAsIdentity(),
   word: text("word").notNull(),
   ipa: text("ipa"),
   vietnamese: text("vietnamese").notNull(),
@@ -124,10 +124,13 @@ export const vocabularies = vocabflowApp.table("vocabularies", {
   topic: text("topic"),
   enabled: boolean("enabled").notNull().default(false),
   contentVersion: integer("content_version").notNull().default(1),
+  sourceDataset: text("source_dataset"),
+  sourceRecordId: integer("source_record_id"),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow()
 }, (table) => [
-  check("vocabularies_content_version_check", sql`${table.contentVersion} >= 1`)
+  check("vocabularies_content_version_check", sql`${table.contentVersion} >= 1`),
+  unique("vocabularies_source_identity_unique").on(table.sourceDataset, table.sourceRecordId)
 ]);
 
 export const learnerProgress = vocabflowApp.table("learner_progress", {

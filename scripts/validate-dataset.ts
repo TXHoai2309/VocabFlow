@@ -40,7 +40,7 @@ function fail(code: string, issues?: z.ZodIssue[]): never {
   throw new DatasetValidationError(code, issues);
 }
 
-function normalizeWord(word: string) {
+export function normalizeWord(word: string) {
   return word.normalize("NFKC").trim().toLocaleLowerCase("en-US");
 }
 
