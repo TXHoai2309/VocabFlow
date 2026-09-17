@@ -142,6 +142,51 @@ describe("US-09 flashcard session UX", () => {
     expect(request.reviewId).toMatch(/^[0-9a-f-]{36}$/);
   });
 
+  it("does not count a pending review before canonical confirmation", async () => {
+    const item = queueItem(1, "apple");
+    let resolveReview!: (value: Response) => void;
+    const pendingReview = new Promise<Response>((resolve) => {
+      resolveReview = resolve;
+    });
+    const fetchMock = vi.spyOn(globalThis, "fetch")
+      .mockResolvedValueOnce(response(queueResponse([item])))
+      .mockReturnValueOnce(pendingReview);
+    renderStudy();
+
+    await screen.findByTestId("study-session-ready");
+    fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
+    fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
+
+    expect(screen.getByText("Đang lưu…")).toBeInTheDocument();
+    expect(screen.getByTestId("session-counter")).toHaveTextContent("0 / 1");
+    expect(screen.queryByTestId("study-session-summary")).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Đã nhớ" })).toBeDisabled();
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+
+    resolveReview(response(reviewResponse(item, "REMEMBERED"), 201));
+    await waitFor(() => expect(screen.getByTestId("study-session-summary")).toBeInTheDocument());
+  });
+
+  it("shows session summary metrics and the home CTA after confirmed completion", async () => {
+    const item = queueItem(1, "apple");
+    vi.spyOn(globalThis, "fetch")
+      .mockResolvedValueOnce(response(queueResponse([item])))
+      .mockResolvedValueOnce(response(reviewResponse(item, "REMEMBERED"), 201));
+    renderStudy();
+
+    await screen.findByTestId("study-session-ready");
+    fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
+    fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
+
+    await waitFor(() => expect(screen.getByTestId("study-session-summary")).toBeInTheDocument());
+    expect(screen.getByText("Đã review").nextElementSibling).toHaveTextContent("1");
+    expect(screen.getByText("Đã nhớ").nextElementSibling).toHaveTextContent("1");
+    expect(screen.getByText("Chưa nhớ").nextElementSibling).toHaveTextContent("0");
+    expect(screen.getByText("Lượt ôn lại").nextElementSibling).toHaveTextContent("0");
+    expect(screen.getByRole("link", { name: "Về trang chủ" })).toHaveAttribute("href", "/learners");
+    expect(screen.queryByText("Học tiếp")).not.toBeInTheDocument();
+  });
+
   it("uses the canonical server response when deciding the next session state", async () => {
     const item = queueItem(1, "apple");
     const fetchMock = vi.spyOn(globalThis, "fetch")
@@ -206,6 +251,7 @@ describe("US-09 flashcard session UX", () => {
     expect(await screen.findByTestId("study-save-failed")).toBeInTheDocument();
     expect(screen.getByText("Chưa lưu tiến trình")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Chưa nhớ" })).toBeDisabled();
+    expect(screen.queryByTestId("study-session-summary")).not.toBeInTheDocument();
 
     const confirmMock = vi.fn(() => false);
     vi.stubGlobal("confirm", confirmMock);
@@ -267,6 +313,9 @@ describe("US-09 flashcard session UX", () => {
 
     await waitFor(() => expect(screen.getByTestId("study-session-summary")).toBeInTheDocument());
     expect(screen.getByText("Lượt ôn lại").nextElementSibling).toHaveTextContent("2");
+    expect(screen.getByText("Đã review").nextElementSibling).toHaveTextContent("1");
+    expect(screen.getByText("Đã nhớ").nextElementSibling).toHaveTextContent("0");
+    expect(screen.getByText("Chưa nhớ").nextElementSibling).toHaveTextContent("1");
     expect(fetchMock).toHaveBeenCalledTimes(2);
   });
 

@@ -327,7 +327,7 @@ function StudyExperience({ activeLearner }: { activeLearner: LearnerDto }) {
               <div><dt>Chưa nhớ</dt><dd>{metrics.forgotten}</dd></div>
               <div><dt>Lượt ôn lại</dt><dd>{metrics.reinforcement}</dd></div>
             </dl>
-            <Link className="register-submit study-summary-link" to="/learners">Về learner home</Link>
+            <Link className="register-submit study-summary-link" to="/learners">Về trang chủ</Link>
           </div>
         ) : null}
 
