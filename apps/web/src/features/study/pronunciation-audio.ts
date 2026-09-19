@@ -45,10 +45,16 @@ function finishPronunciationAudio(owner: AudioOwner, audio: HTMLAudioElement, re
   activePlayback = null;
 }
 
-export function usePronunciationAudio(audioUrl: string | null, word: string, vocabularyId: number) {
+export function usePronunciationAudio(
+  audioUrl: string | null,
+  word: string,
+  vocabularyId: number,
+  onError?: () => void
+) {
   const [owner] = useState<AudioOwner>(() => Symbol("pronunciation-audio-owner"));
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const requestIdRef = useRef(0);
+  const onErrorRef = useRef(onError);
   const normalizedAudioUrl = audioUrl?.trim() || null;
   const audioIdentity = `${vocabularyId}:${word}:${normalizedAudioUrl ?? ""}`;
   const [audioState, setAudioState] = useState<{ identity: string; value: PronunciationAudioState }>({
@@ -57,6 +63,10 @@ export function usePronunciationAudio(audioUrl: string | null, word: string, voc
   });
   const state = audioState.identity === audioIdentity ? audioState.value : "idle";
   const setState = (value: PronunciationAudioState) => setAudioState({ identity: audioIdentity, value });
+
+  useEffect(() => {
+    onErrorRef.current = onError;
+  }, [onError]);
 
   useEffect(() => {
     requestIdRef.current += 1;
@@ -89,6 +99,7 @@ export function usePronunciationAudio(audioUrl: string | null, word: string, voc
       if (!ownsActivePlayback(owner, audio, requestId)) return;
       stopActivePronunciationAudio(owner);
       setState("error");
+      onErrorRef.current?.();
     });
     audioRef.current = audio;
     return audio;
@@ -118,6 +129,7 @@ export function usePronunciationAudio(audioUrl: string | null, word: string, voc
           if (!ownsActivePlayback(owner, nextAudio, requestId)) return;
           stopActivePronunciationAudio(owner);
           setState("error");
+          onErrorRef.current?.();
         });
       } else if (ownsActivePlayback(owner, audio, requestId)) {
         setState("playing");
@@ -127,6 +139,7 @@ export function usePronunciationAudio(audioUrl: string | null, word: string, voc
         stopActivePronunciationAudio(owner);
       }
       setState("error");
+      onErrorRef.current?.();
     }
   };
 

@@ -293,6 +293,22 @@ The owner-verified Hoài/Ngọc metric snapshots are recorded in US-20 and US-21
   the household-local date. Learning-set eligibility, sparse New semantics,
   reset history preservation and review retry behavior remain unchanged.
 
+### US-31 + US-32 — Multiple Choice Meaning and Listening Exercise
+
+- Status: `IMPLEMENTED / READY FOR OWNER CHECK`.
+- Contracts: [`US-31 Multiple Choice Meaning`](stories/US-31-multiple-choice-meaning.md)
+  and [`US-32 Listening Exercise`](stories/US-32-listening-exercise.md).
+- Added an explicit `/study/exercises` route while preserving `/study` as the
+  accepted Flashcard path. Exercises are a presentation layer over the current
+  queue, not a second scheduler or progress model.
+- Meaning exercises use four deterministic safe options and fall back to
+  Flashcard when distractors are insufficient. Listening exercises require
+  usable audio, use four English options, and fall back safely on missing or
+  broken audio without auto-recording Forgotten.
+- Both exercise outcomes call the existing review API and preserve daily New,
+  learning-set, authorization, save-before-next, retry, reinforcement and
+  summary semantics. No database schema change is required.
+
 ## Later product scope
 
 The Product Specification defines learner selector/create, Learner Home, Study,

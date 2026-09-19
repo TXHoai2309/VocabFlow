@@ -1,18 +1,18 @@
-# Technical Architecture v1.0.8
+# Technical Architecture v1.0.9
 
 - Status: APPROVED FOR IMPLEMENTATION
-- Version: v1.0.8
-- Source baseline: `VocabFlow_Technical_Architecture_v1.0.4.docx`; this Markdown records the US-25 identity reconciliation, US-26/US-27 vocabulary taxonomy, US-28/US-29 learning-set assignment model and US-30 daily New allowance.
+- Version: v1.0.9
+- Source baseline: `VocabFlow_Technical_Architecture_v1.0.4.docx`; this Markdown records the US-25 identity reconciliation, US-26/US-27 vocabulary taxonomy, US-28/US-29 learning-set assignment model, US-30 daily New allowance and US-31/US-32 exercise interaction layer.
 - Canonical format: Markdown
 - Last synchronized: 2026-09-19
 
 **VOCABFLOW**
 
-**Technical Architecture v1.0.8**
+**Technical Architecture v1.0.9**
 
 **Family Learning MVP**
 
-| **Status** | APPROVED FOR IMPLEMENTATION; US-25 identity reconciliation, US-26/US-27 taxonomy, US-28/US-29 learning sets and US-30 daily New allowance recorded |
+| **Status** | APPROVED FOR IMPLEMENTATION; US-25 identity reconciliation, US-26/US-27 taxonomy, US-28/US-29 learning sets, US-30 daily New allowance and US-31/US-32 exercises recorded |
 | --- | --- |
 | **Architecture** | React SPA + Hono API + PostgreSQL |
 | **Primary persistence** | Neon PostgreSQL |
@@ -25,7 +25,7 @@ Mục tiêu: khóa kiến trúc kỹ thuật đủ chi tiết để triển khai
 
 | **Mục** | **Giá trị** |
 | --- | --- |
-| Document | VocabFlow Technical Architecture v1.0.7 |
+| Document | VocabFlow Technical Architecture v1.0.9 |
 | Target release | Family MVP / vertical slice đầu tiên |
 | Status | APPROVED FOR IMPLEMENTATION |
 | Verification status | Architecture Acceptance Gates được xác minh trong quá trình triển khai; sau khi P0 gates PASS có thể đổi trạng thái thành ARCHITECTURE VERIFIED. |
@@ -905,6 +905,31 @@ re-uploads media.
 
 - Chuyển sang R2 khi asset volume/deploy time/caching trở thành vấn đề.
 
+## 12.1 Exercise interaction layer (US-31 / US-32)
+
+Exercises are a learner interaction layer over the already admitted review
+queue. The explicit `/study/exercises` route uses deterministic client-side
+generation because the current API already exposes the complete queue DTO and
+the canonical review endpoint is the only learning write boundary. The correct
+option identity is held in controller state and is not rendered as an
+answer-key attribute before submission; this is not intended as anti-cheat
+infrastructure.
+
+- `MULTIPLE_CHOICE_MEANING` uses one English prompt and four Vietnamese
+  options. Normalized duplicate/blank/self/multi-sense-overlap candidates are
+  excluded; fewer than three safe distractors means Flashcard fallback.
+- `LISTENING_CHOICE` requires a non-blank `audioUrl` and four unique English
+  options. Missing or insufficient media means Flashcard fallback. Playback
+  uses the existing one-active-audio cleanup boundary; broken media is
+  non-destructive and never creates a Forgotten review.
+- A selected exercise answer maps explicitly to the existing
+  `REMEMBERED`/`FORGOTTEN` review result. `POST /api/reviews` remains the
+  server-authoritative path for authorization, scheduler, revision,
+  idempotency, progress and review-event persistence.
+- No `exercise_progress`, exercise interval, exercise streak or parallel
+  mastery state is introduced. Queue eligibility, daily New allowance,
+  learning-set filters, reinforcement and summary metrics remain unchanged.
+
 # 13. Security, Privacy & Operational Safety
 
 ## 13.1 Security baseline
@@ -1166,5 +1191,5 @@ Step 7 là mốc xác nhận kiến trúc: parent login → learner → review �
 
 # Appendix B. Approval Statement
 
-> TECHNICAL ARCHITECTURE v1.0.7 — APPROVED FOR IMPLEMENTATION
+> TECHNICAL ARCHITECTURE v1.0.9 — APPROVED FOR IMPLEMENTATION
 > Từ thời điểm tài liệu này được chấp nhận, triển khai phải bám architecture invariants, sparse progress/virtual NEW model, learner-scoped review queue, race-safe household bootstrap, schema constraints, household authorization, review write/idempotency contract, database identity ownership boundary và clean migration contract ở trên. Acceptance Gates được xác minh trong implementation; mọi thay đổi kiến trúc cần blocker/evidence kỹ thuật cụ thể.

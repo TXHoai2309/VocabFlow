@@ -2,6 +2,23 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-19 — US-31 + US-32 exercise interaction layer
+
+- Added an explicit `/study/exercises` route for deterministic
+  `MULTIPLE_CHOICE_MEANING` and `LISTENING_CHOICE` exercises; `/study` keeps
+  the existing Flashcard path.
+- Meaning exercises use one correct Vietnamese meaning plus three normalized,
+  non-duplicate distractors. Listening exercises require usable `audioUrl` and
+  unique English candidates; both fall back to Flashcard when safe generation
+  is not possible.
+- Exercise submission maps correct/incorrect to `REMEMBERED`/`FORGOTTEN` via
+  the existing review API, locks one submission, waits for save confirmation,
+  preserves safe retry/reinforcement/summary behavior and never writes progress
+  directly from the UI.
+- Broken audio falls back without scheduler mutation; SpeechSynthesis is not
+  used. No database schema, learner-progress schema or scheduler interval
+  changed. Status: `IMPLEMENTED / READY FOR OWNER CHECK`.
+
 ## 2026-09-19 — US-30 daily new word limit
 
 - Added learner-scoped `daily_new_word_limit` with default 10 and validation

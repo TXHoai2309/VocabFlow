@@ -7,7 +7,7 @@ import { ProgressPage } from "./features/learners/progress-page";
 import { LearnerSettingsPage } from "./features/learners/learner-settings-page";
 import { VocabularyListPage } from "./features/learners/vocabulary-list-page";
 import { TopicsPage } from "./features/learners/topics-page";
-import { StudyPage } from "./features/study/study-page";
+import { ExerciseStudyPage, StudyPage } from "./features/study/study-page";
 import { LearningSetDetailPage, LearningSetsPage } from "./features/learning-sets/learning-sets-page";
 import { LearnerLearningSetsPage } from "./features/learning-sets/learner-learning-sets-page";
 
@@ -85,6 +85,7 @@ export default function App() {
         <Route path="/learning-sets/assign" element={<LearnerLearningSetsPage />} />
         <Route path="/learning-sets/:learningSetId" element={<LearningSetDetailPage />} />
         <Route path="/study" element={<StudyPage />} />
+        <Route path="/study/exercises" element={<ExerciseStudyPage />} />
         <Route path="/" element={<Shell><Home /></Shell>} />
         <Route path="/foundation" element={<Shell><FoundationRoute /></Shell>} />
         <Route path="*" element={<Shell><NotFound /></Shell>} />

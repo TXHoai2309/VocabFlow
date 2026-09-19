@@ -57,6 +57,8 @@ convenient. Reprioritization or a new story must be explicit.
 - [US-28 Learning Sets](US-28-learning-sets.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
 - [US-29 Assign Learning Sets to Learners](US-29-assign-learning-sets.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
 - [US-30 Daily New Word Limit](US-30-daily-new-word-limit.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
+- [US-31 Multiple Choice Meaning](US-31-multiple-choice-meaning.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
+- [US-32 Listening Exercise](US-32-listening-exercise.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
 
 ## Story status gate
 

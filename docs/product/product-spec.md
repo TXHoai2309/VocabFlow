@@ -4,7 +4,7 @@
 - Version: v1.0
 - Source baseline: `VocabFlow_Family_MVP_Product_Specification_v1.0.docx`
 - Canonical format: Markdown
-- Last synchronized: 2026-09-08
+- Last synchronized: 2026-09-19
 
 **VOCABFLOW**
 
@@ -156,6 +156,28 @@ Hết queue hoặc learner chủ động thoát → Summary
 - Chưa nhớ / Đã nhớ chỉ xuất hiện sau khi flip.
 
 - Chỉ server-confirmed scheduled review mới được coi là đã lưu progress.
+
+## 8.1 Controlled exercise mode (US-31 / US-32)
+
+Study keeps the accepted Flashcard flow at `/study`. Learner Home also exposes
+an explicit `/study/exercises` route for two interaction types:
+
+- `MULTIPLE_CHOICE_MEANING`: English prompt with one correct Vietnamese
+  meaning and three deterministic safe distractors.
+- `LISTENING_CHOICE`: usable pronunciation audio with one correct English word
+  and three deterministic safe distractors. The target is not repeated in the
+  prompt or answer-bearing Flashcard back content before submission.
+
+Exercise generation happens after queue admission and never changes enabled,
+learning-set, scheduler or daily-New eligibility. Missing/ambiguous distractors
+fall back to Flashcard. Broken audio falls back without creating a review, and
+SpeechSynthesis is not used.
+
+Correct and incorrect answers map to the existing `REMEMBERED` and `FORGOTTEN`
+actions through the canonical review API. One answer locks the exercise; the
+card advances only after the server confirms save, preserving retry,
+reinforcement, learner isolation and session-summary semantics. Exercises do
+not introduce a second progress or scheduler model.
 
 # 4 · LEARNING ENGINE
 
@@ -317,6 +339,7 @@ reduced to today's allowance.
 | Disable/delete learner | Soft-disable/delete UX. | OUT v1.0 |
 | Learner Home | Due/new availability + CTA bắt đầu học + progress summary. | YES |
 | Study | Flashcard, flip, audio/media fallback, remember/forget. | YES |
+| Exercise mode | Explicit meaning/listening route over the canonical queue and review API. | YES |
 | Session Summary | Reviewed/remembered/forgotten/reinforcement summary. | YES |
 | Progress | New/Learning/Mastered/Due theo active learner. | YES |
 | Vocabulary list / learning sets | Danh sách enabled vocabulary + trạng thái learner tối thiểu; lọc cấp độ, browse theo chủ đề, xem set và gán set cho learner. | YES |

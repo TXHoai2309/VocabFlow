@@ -2,9 +2,9 @@
 
 - Status: CURRENT FEATURE UI SOURCE OF TRUTH
 - Version: v1.0.3
-- Source baseline: `VocabFlow_Family_MVP_Feature_UI_Specification_v1.0.1.docx`; this Markdown records the US-26/US-27 taxonomy browse, US-28/US-29 learning-set extension and US-30 daily New settings.
+- Source baseline: `VocabFlow_Family_MVP_Feature_UI_Specification_v1.0.1.docx`; this Markdown records the US-26/US-27 taxonomy browse, US-28/US-29 learning-set extension, US-30 daily New settings and US-31/US-32 exercise mode.
 - Canonical format: Markdown
-- Last synchronized: 2026-09-08
+- Last synchronized: 2026-09-19
 
 **VOCABFLOW**
 
@@ -225,6 +225,28 @@ Study — Back
 
 > **DS-EX-001 — Recall action group**
 > Study có hai lựa chọn đánh giá loại trừ lẫn nhau và không nên bias learner về một câu trả lời. Cho phép hai action có kích thước/hierarchy tương đương trong scope Study, thay cho rule “one primary action”. Không áp dụng cho màn hình khác.
+
+## 4.5 Controlled exercise mode (US-31 / US-32)
+
+Learner Home exposes a secondary `Luyện bài tập trắc nghiệm` CTA to
+`/study/exercises`; the primary `/study` CTA continues to open Flashcard.
+
+| **Exercise** | **Pre-answer UI** | **Options** | **Fallback** |
+| --- | --- | --- | --- |
+| Multiple choice meaning | English word + instruction | Four Vietnamese meanings | Flashcard when fewer than three safe distractors exist |
+| Listening choice | Generic audio control + instruction | Four English words; target is not repeated in the prompt | Flashcard when audio is missing, broken or candidates are insufficient |
+
+Exercise options are native keyboard-accessible buttons inside a labelled
+fieldset. After one selection, options are disabled, selected/focus state stays
+visible and feedback uses text as well as color. Correct/incorrect feedback is
+shown before the `Tiếp tục` action becomes available; `Tiếp tục` is only shown
+after the canonical review save succeeds. Save failure keeps the answer locked
+and exposes the existing Retry action.
+
+Listening uses a generic audio label so the control does not reveal the target
+word. Existing one-active-audio, transition cleanup, unmount cleanup and
+no-SpeechSynthesis rules remain in force. The four-option grid collapses to a
+single readable column on small screens.
 
 ## 4.4 Session counter semantics
 

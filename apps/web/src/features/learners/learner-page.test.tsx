@@ -60,6 +60,7 @@ describe("US-03 learner resolution UI", () => {
     await waitFor(() => expect(createLearner).toHaveBeenCalledWith({ displayName: "An" }));
     expect(await screen.findByTestId("learner-context-ready")).toHaveTextContent("An");
     expect(screen.getByRole("link", { name: "Bắt đầu học" })).toHaveAttribute("href", "/study");
+    expect(screen.getByRole("link", { name: "Luyện bài tập trắc nghiệm" })).toHaveAttribute("href", "/study/exercises");
   });
 
   it("auto-resolves exactly one learner", async () => {
