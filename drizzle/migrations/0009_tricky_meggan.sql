@@ -1,0 +1,2 @@
+ALTER TABLE "vocabflow_app"."learner_profiles" ADD COLUMN "daily_learning_goal" integer DEFAULT 10 NOT NULL;--> statement-breakpoint
+ALTER TABLE "vocabflow_app"."learner_profiles" ADD CONSTRAINT "learner_profiles_daily_learning_goal_check" CHECK ("vocabflow_app"."learner_profiles"."daily_learning_goal" >= 1 AND "vocabflow_app"."learner_profiles"."daily_learning_goal" <= 100);

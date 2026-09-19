@@ -1,9 +1,12 @@
 import { sql, type SQL } from "drizzle-orm";
 import {
   APP_SCHEMA,
+  DAILY_LEARNING_GOAL_MAX,
+  DAILY_LEARNING_GOAL_MIN,
   learnerSettingsResponseSchema,
   updateLearnerSettingsRequestSchema,
-  type LearnerSettingsResponse
+  type LearnerSettingsResponse,
+  type UpdateLearnerSettingsRequest
 } from "@vocabflow/contracts";
 import { authorizeLearnerOwnership } from "./learners";
 
@@ -43,19 +46,36 @@ function safeLimit(value: unknown): number {
   return value;
 }
 
-function toResponse(row: { learner_id: unknown; daily_new_word_limit: unknown }): LearnerSettingsResponse {
+function safeGoal(value: unknown): number {
+  if (
+    typeof value !== "number"
+    || !Number.isSafeInteger(value)
+    || value < DAILY_LEARNING_GOAL_MIN
+    || value > DAILY_LEARNING_GOAL_MAX
+  ) {
+    throw new LearnerSettingsServiceError("INTERNAL_ERROR", 500);
+  }
+  return value;
+}
+
+function toResponse(row: {
+  learner_id: unknown;
+  daily_new_word_limit: unknown;
+  daily_learning_goal: unknown;
+}): LearnerSettingsResponse {
   const parsed = learnerSettingsResponseSchema.safeParse({
     learnerId: String(row.learner_id),
-    dailyNewWordLimit: safeLimit(Number(row.daily_new_word_limit))
+    dailyNewWordLimit: safeLimit(Number(row.daily_new_word_limit)),
+    dailyLearningGoal: safeGoal(Number(row.daily_learning_goal))
   });
   if (!parsed.success) throw new LearnerSettingsServiceError("INTERNAL_ERROR", 500);
   return parsed.data;
 }
 
-export function parseLearnerSettingsRequest(payload: unknown): number {
+export function parseLearnerSettingsRequest(payload: unknown): UpdateLearnerSettingsRequest {
   const parsed = updateLearnerSettingsRequestSchema.safeParse(payload);
   if (!parsed.success) throw new LearnerSettingsServiceError("INVALID_REQUEST", 400);
-  return parsed.data.dailyNewWordLimit;
+  return parsed.data;
 }
 
 export type LearnerSettingsService = {
@@ -72,12 +92,16 @@ export function createLearnerSettingsService(database: LearnerSettingsDatabase):
       }
       try {
         const result = await database.execute(sql`
-          SELECT id::text AS learner_id, daily_new_word_limit
+        SELECT id::text AS learner_id, daily_new_word_limit, daily_learning_goal
           FROM "${sql.raw(APP_SCHEMA)}"."learner_profiles"
           WHERE id = ${ownership.learnerId}::uuid
           LIMIT 1
         `);
-        const [row] = rowsOf<{ learner_id: unknown; daily_new_word_limit: unknown }>(result);
+        const [row] = rowsOf<{
+          learner_id: unknown;
+          daily_new_word_limit: unknown;
+          daily_learning_goal: unknown;
+        }>(result);
         if (!row) throw new LearnerSettingsServiceError("INTERNAL_ERROR", 500);
         return toResponse(row);
       } catch (error) {
@@ -86,20 +110,31 @@ export function createLearnerSettingsService(database: LearnerSettingsDatabase):
       }
     },
     async update(userId, learnerId, payload) {
-      const dailyNewWordLimit = parseLearnerSettingsRequest(payload);
+      const settings = parseLearnerSettingsRequest(payload);
       const ownership = await authorizeLearnerOwnership(database, userId, learnerId);
       if (ownership.decision === "FORBIDDEN") {
         throw new LearnerSettingsServiceError("HOUSEHOLD_ACCESS_DENIED", 403);
       }
       try {
+        const updates: SQL[] = [];
+        if (settings.dailyNewWordLimit !== undefined) {
+          updates.push(sql`daily_new_word_limit = ${settings.dailyNewWordLimit}::integer`);
+        }
+        if (settings.dailyLearningGoal !== undefined) {
+          updates.push(sql`daily_learning_goal = ${settings.dailyLearningGoal}::integer`);
+        }
+        updates.push(sql`updated_at = now()`);
         const result = await database.execute(sql`
           UPDATE "${sql.raw(APP_SCHEMA)}"."learner_profiles"
-          SET daily_new_word_limit = ${dailyNewWordLimit}::integer,
-              updated_at = now()
+          SET ${sql.join(updates, sql`, `)}
           WHERE id = ${ownership.learnerId}::uuid
-          RETURNING id::text AS learner_id, daily_new_word_limit
+          RETURNING id::text AS learner_id, daily_new_word_limit, daily_learning_goal
         `);
-        const [row] = rowsOf<{ learner_id: unknown; daily_new_word_limit: unknown }>(result);
+        const [row] = rowsOf<{
+          learner_id: unknown;
+          daily_new_word_limit: unknown;
+          daily_learning_goal: unknown;
+        }>(result);
         if (!row) throw new LearnerSettingsServiceError("INTERNAL_ERROR", 500);
         return toResponse(row);
       } catch (error) {

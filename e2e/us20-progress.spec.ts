@@ -37,6 +37,18 @@ async function mockProgressPage(page: import("@playwright/test").Page) {
       })
     });
   });
+  await page.route("**/api/learners/" + learnerId + "/activity-summary", async (route) => {
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({
+        learnerId,
+        localDate: "2026-09-20",
+        dailyGoal: { goal: 10, reviewedUnique: 7, remaining: 3, completed: false },
+        streak: { currentStreak: 3, longestStreak: 7, todayActive: true }
+      })
+    });
+  });
 }
 
 test("US-20 opens learner progress and renders all summary metrics", async ({ page }) => {
@@ -52,6 +64,8 @@ test("US-20 opens learner progress and renders all summary metrics", async ({ pa
   await expect(page.getByText("Mastered").locator("..")).toContainText("3");
   await expect(page.getByText("Due").locator("..")).toContainText("4");
   await expect(page.getByText("Learned").locator("..")).toContainText("5");
+  await expect(page.getByTestId("daily-goal")).toContainText("7 / 10");
+  await expect(page.getByTestId("streak-summary")).toContainText("3 ngày liên tiếp");
 });
 
 test("US-20 keeps the progress dashboard within a mobile viewport", async ({ page }) => {

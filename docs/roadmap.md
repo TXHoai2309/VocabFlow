@@ -1,7 +1,7 @@
 # VocabFlow Roadmap and Batch Index
 
 This roadmap promotes only work supported by the current product documents and
-the accepted/backfilled user-story evidence. US-26 through US-30 are
+the accepted/backfilled user-story evidence. US-26 through US-36 are
 implemented and awaiting owner check.
 
 ## BATCH 0 — Foundation
@@ -324,6 +324,22 @@ The owner-verified Hoài/Ngọc metric snapshots are recorded in US-20 and US-21
 - Both modes use the canonical review API and preserve queue admission, daily
   New limits, learner isolation, retry, reinforcement and summary semantics.
   No database or learner-progress schema change is required.
+
+### US-35 + US-36 — Daily Learning Goal and Learning Streak
+
+- Status: `IMPLEMENTED / READY FOR OWNER CHECK`.
+- Contracts: [`US-35 Daily Learning Goal`](stories/US-35-daily-learning-goal.md)
+  and [`US-36 Learning Streak`](stories/US-36-learning-streak.md).
+- Added learner-scoped `dailyLearningGoal` with default 10 and range 1–100;
+  it remains separate from the daily New admission limit.
+- Added a canonical learner activity summary derived from persisted review
+  history. Daily progress counts distinct vocabulary per household-local
+  `review_date`; remembered, forgotten and reinforcement events count once per
+  vocabulary.
+- Added derived current/longest local-date streaks. Reset, logout/reload and
+  learning-set unassignment preserve historical activity because review events
+  remain canonical. No mutable streak counter or parallel progress state was
+  introduced.
 
 ## Later product scope
 

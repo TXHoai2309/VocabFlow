@@ -217,6 +217,31 @@ Quay lại learner selector hoặc tiếp tục học
 > **Metric boundary**
 > Ý nghĩa cụ thể của “Đã học”, “Đã nhớ”, “Chưa nhớ”, “Tuần này”… phải được khóa trong Family MVP Feature UI Spec. User Flow chỉ xác định đường đi, không định nghĩa metric.
 
+# 5.1 Daily goal và learning streak (US-35 / US-36)
+
+```text
+Learner Home
+↓
+Mở Progress
+↓
+GET activity-summary cho learner hiện tại
+↙                                      ↘
+Daily Goal: unique reviewed / goal      Streak: current / longest
+↓                                      ↓
+completed khi reviewedUnique >= goal    active day theo review_date local
+```
+
+Daily goal và streak là hai chỉ báo độc lập. Daily goal đếm distinct
+`vocabularyId` từ review đã persist trong household-local date; reinforcement,
+retry và nhiều learning set không nhân đôi. Remembered và Forgotten đều tính,
+review lỗi không tính. Streak active khi ngày có ít nhất một review thành công;
+nếu hôm nay chưa học nhưng hôm qua active thì current streak vẫn tiếp tục trong
+ngày hiện tại. Cả hai giá trị được đọc lại từ server sau learner switch,
+reload, logout/login và reset progress.
+
+Parent mở learner settings để xem/chỉnh Daily New Limit và Daily Learning Goal;
+hai setting không thay thế hoặc giới hạn lẫn nhau.
+
 # 6. Flow Acceptance
 
 | **ID** | **Điều kiện** |

@@ -2,6 +2,20 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-20 — US-35 + US-36 daily goal and learning streak
+
+- Added learner-scoped `daily_learning_goal` with default 10 and validation
+  range 1–100. Settings GET/PATCH now returns and safely updates it alongside
+  the separate daily New limit.
+- Added canonical learner activity summary derived from persisted
+  `review_events`: daily progress counts distinct vocabulary on the
+  household-local review date, while remembered, forgotten, reinforcement and
+  retry semantics remain canonical.
+- Added derived current/longest learning streaks with local calendar-day
+  boundaries and the not-active-today/active-yesterday continuation rule.
+  Progress UI shows goal and streak indicators; reset and unassign preserve
+  history. Status: `IMPLEMENTED / READY FOR OWNER CHECK`.
+
 ## 2026-09-20 — US-33 + US-34 image and typing exercises
 
 - Extended the existing `/study/exercises` route with deterministic

@@ -1,14 +1,14 @@
-# Technical Architecture v1.0.9
+# Technical Architecture v1.0.10
 
 - Status: APPROVED FOR IMPLEMENTATION
-- Version: v1.0.9
-- Source baseline: `VocabFlow_Technical_Architecture_v1.0.4.docx`; this Markdown records the US-25 identity reconciliation, US-26/US-27 vocabulary taxonomy, US-28/US-29 learning-set assignment model, US-30 daily New allowance and US-31 through US-34 exercise interaction layer.
+- Version: v1.0.10
+- Source baseline: `VocabFlow_Technical_Architecture_v1.0.4.docx`; this Markdown records the US-25 identity reconciliation, US-26/US-27 vocabulary taxonomy, US-28/US-29 learning-set assignment model, US-30 daily New allowance, US-31 through US-34 exercise interaction layer and US-35/US-36 activity read model.
 - Canonical format: Markdown
 - Last synchronized: 2026-09-20
 
 **VOCABFLOW**
 
-**Technical Architecture v1.0.9**
+**Technical Architecture v1.0.10**
 
 **Family Learning MVP**
 
@@ -25,7 +25,7 @@ Mục tiêu: khóa kiến trúc kỹ thuật đủ chi tiết để triển khai
 
 | **Mục** | **Giá trị** |
 | --- | --- |
-| Document | VocabFlow Technical Architecture v1.0.9 |
+| Document | VocabFlow Technical Architecture v1.0.10 |
 | Target release | Family MVP / vertical slice đầu tiên |
 | Status | APPROVED FOR IMPLEMENTATION |
 | Verification status | Architecture Acceptance Gates được xác minh trong quá trình triển khai; sau khi P0 gates PASS có thể đổi trạng thái thành ARCHITECTURE VERIFIED. |
@@ -223,6 +223,7 @@ Better Auth schema không được chép lại thủ công trong tài liệu. B�
 | learner_profiles.display_name | text | NOT NULL | Tên bé |
 | learner_profiles.avatar_key | text | NULL | Optional |
 | learner_profiles.daily_new_word_limit | integer | NOT NULL DEFAULT 10; CHECK 0..100 | Daily virtual-New allowance |
+| learner_profiles.daily_learning_goal | integer | NOT NULL DEFAULT 10; CHECK 1..100 | Daily unique-reviewed vocabulary target |
 | learner_profiles.enabled | boolean | NOT NULL DEFAULT true | Soft delete/disable |
 | learner_profiles.created_at / updated_at | timestamptz | NOT NULL DEFAULT now() | Audit timestamps |
 
@@ -552,9 +553,27 @@ US-30 daily New allowance rules:
 
 `GET /api/learners/:learnerId/settings` and
 `PATCH /api/learners/:learnerId/settings` are authorized through the canonical
-household learner ownership helper. PATCH accepts only the strict
-`dailyNewWordLimit` integer contract and returns the saved canonical value;
+household learner ownership helper. The canonical response contains both
+`dailyNewWordLimit` (0..100) and `dailyLearningGoal` (1..100). PATCH accepts one
+or both strict integer fields and returns the saved canonical values;
 cross-household access returns 403 and malformed values return 400.
+
+## 6.8 Daily activity and streak read model (US-35 / US-36)
+
+`GET /api/learners/:learnerId/activity-summary` is a read-only, authorized
+learner activity endpoint. It resolves today's date with the household IANA
+timezone and aggregates only persisted `review_events`, selecting
+`review_date` and `COUNT(DISTINCT vocabulary_id)` grouped by date. The daily
+goal is derived as `reviewedUnique >= dailyLearningGoal`; no mutable completion
+flag is stored.
+
+An active day has at least one successful persisted review event. Current streak
+ends today when today is active, otherwise may end yesterday while today remains
+unfinished. Longest streak is the maximum consecutive run of distinct persisted
+review dates. The endpoint derives both values in memory from one grouped date
+query, so reinforcement and repeated reviews cannot create extra vocabulary or
+streak days. Reset and learning-set unassignment do not remove the source
+history.
 
 ## 7.1 Data quality gates
 
@@ -842,6 +861,7 @@ ngay cả khi learner đã học tiếp.
 | GET | /api/learners/:id/review-queue | Due + sparse new words, deterministic order | Household-owned |
 | POST | /api/reviews | Submit idempotent review | Household-owned |
 | GET | /api/learners/:id/summary | Minimal parent summary | Household-owned |
+| GET | /api/learners/:id/activity-summary | Daily goal and derived streak activity | Household-owned |
 
 ## 10.1 Error envelope
 
@@ -954,6 +974,21 @@ same `/study/exercises` route.
   CAS, idempotency, scheduler and learner-progress persistence. Raw typing and
   keyboard events are not persisted. No DB schema or learner-progress schema
   change is required.
+
+## 12.3 Daily goal and learning streak activity (US-35 / US-36)
+
+Daily goal progress is `COUNT(DISTINCT review_events.vocabulary_id)` for the
+learner and current household-local `review_date`. It counts both
+`REMEMBERED` and `FORGOTTEN` successful events, including reinforcement only
+once per vocabulary; idempotent replay does not add a row. Active streak days
+use the same persisted local dates, with current streak allowed to continue
+from yesterday when today is not active. Activity is learner-scoped and does
+not depend on current queue eligibility, daily New allowance, review accuracy,
+or materialized learner progress.
+
+The event's persisted `review_date` is the historical local-date identity. A
+later household timezone change does not rebucket old events; only new events
+use the current timezone. This is an explicit MVP limitation.
 
 # 13. Security, Privacy & Operational Safety
 
@@ -1216,5 +1251,5 @@ Step 7 là mốc xác nhận kiến trúc: parent login → learner → review �
 
 # Appendix B. Approval Statement
 
-> TECHNICAL ARCHITECTURE v1.0.9 — APPROVED FOR IMPLEMENTATION
+> TECHNICAL ARCHITECTURE v1.0.10 — APPROVED FOR IMPLEMENTATION
 > Từ thời điểm tài liệu này được chấp nhận, triển khai phải bám architecture invariants, sparse progress/virtual NEW model, learner-scoped review queue, race-safe household bootstrap, schema constraints, household authorization, review write/idempotency contract, database identity ownership boundary và clean migration contract ở trên. Acceptance Gates được xác minh trong implementation; mọi thay đổi kiến trúc cần blocker/evidence kỹ thuật cụ thể.

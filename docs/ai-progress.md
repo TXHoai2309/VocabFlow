@@ -1053,6 +1053,23 @@ registration boundary before feature implementation.
   gates remain pending at this checkpoint. `docs/decisions.md`, `.env.example`
   and `local-data.zip` remain protected.
 
+## 2026-09-20 — US-35 + US-36 daily goal and learning streak
+
+- Gap audit found the existing household-local date helper, persisted
+  `review_events.review_date`, review idempotency, reset-history preservation and
+  learner authorization reusable. Daily goal setting/status, unique activity
+  aggregation, active-day derivation and streak UI/API were missing.
+- Added `learner_profiles.daily_learning_goal` with default 10 and range 1–100.
+  The existing `dailyNewWordLimit` remains an independent New-admission limit.
+- Added learner-scoped `GET /api/learners/:learnerId/activity-summary`, deriving
+  daily unique vocabulary and current/longest streak from persisted review
+  history. Reinforcement, duplicate retry, remembered and forgotten reviews are
+  handled by distinct vocabulary/date semantics; failed saves are absent.
+- Progress now displays daily goal progress and streaks; parent settings can
+  update both learner-scoped settings. Reset and learning-set unassignment do
+  not erase historical activity. `docs/decisions.md`, `.env.example` and
+  `local-data.zip` remain protected.
+
 ## 2026-09-19 — US-31 + US-32 exercise implementation checkpoint
 
 - Gap audit found the accepted queue, scheduler, review API, save-before-next,

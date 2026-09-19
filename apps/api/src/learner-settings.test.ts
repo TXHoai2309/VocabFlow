@@ -25,14 +25,14 @@ describe("US-30 learner settings API", () => {
 
   it("returns and updates the canonical setting for an owned learner", async () => {
     const service = {
-      get: vi.fn(async () => ({ learnerId, dailyNewWordLimit: 10 })),
-      update: vi.fn(async () => ({ learnerId, dailyNewWordLimit: 5 }))
+      get: vi.fn(async () => ({ learnerId, dailyNewWordLimit: 10, dailyLearningGoal: 10 })),
+      update: vi.fn(async () => ({ learnerId, dailyNewWordLimit: 5, dailyLearningGoal: 12 }))
     };
     const app = createApp({ readSession: async () => ({ user: { id: "parent-1" } }), learnerSettingsService: service });
 
     const current = await app.request(`http://localhost/api/learners/${learnerId}/settings`);
     expect(current.status).toBe(200);
-    expect(await current.json()).toEqual({ learnerId, dailyNewWordLimit: 10 });
+    expect(await current.json()).toEqual({ learnerId, dailyNewWordLimit: 10, dailyLearningGoal: 10 });
 
     const updated = await app.request(`http://localhost/api/learners/${learnerId}/settings`, {
       method: "PATCH",
@@ -40,7 +40,7 @@ describe("US-30 learner settings API", () => {
       body: JSON.stringify({ dailyNewWordLimit: 5 })
     });
     expect(updated.status).toBe(200);
-    expect(await updated.json()).toEqual({ learnerId, dailyNewWordLimit: 5 });
+    expect(await updated.json()).toEqual({ learnerId, dailyNewWordLimit: 5, dailyLearningGoal: 12 });
     expect(service.update).toHaveBeenCalledWith("parent-1", learnerId, { dailyNewWordLimit: 5 });
   });
 
@@ -72,12 +72,16 @@ describe("US-30 learner settings API", () => {
 
 describe("US-30 learner settings service", () => {
   it("accepts the bounded integer contract and rejects unsafe values", () => {
-    expect(parseLearnerSettingsRequest({ dailyNewWordLimit: 0 })).toBe(0);
-    expect(parseLearnerSettingsRequest({ dailyNewWordLimit: 100 })).toBe(100);
+    expect(parseLearnerSettingsRequest({ dailyNewWordLimit: 0 })).toEqual({ dailyNewWordLimit: 0 });
+    expect(parseLearnerSettingsRequest({ dailyLearningGoal: 1 })).toEqual({ dailyLearningGoal: 1 });
+    expect(parseLearnerSettingsRequest({ dailyLearningGoal: 100 })).toEqual({ dailyLearningGoal: 100 });
     expect(() => parseLearnerSettingsRequest({ dailyNewWordLimit: -1 })).toThrow("INVALID_REQUEST");
     expect(() => parseLearnerSettingsRequest({ dailyNewWordLimit: 101 })).toThrow("INVALID_REQUEST");
     expect(() => parseLearnerSettingsRequest({ dailyNewWordLimit: 1.5 })).toThrow("INVALID_REQUEST");
     expect(() => parseLearnerSettingsRequest({ dailyNewWordLimit: "10" })).toThrow("INVALID_REQUEST");
+    expect(() => parseLearnerSettingsRequest({ dailyLearningGoal: 0 })).toThrow("INVALID_REQUEST");
+    expect(() => parseLearnerSettingsRequest({ dailyLearningGoal: 101 })).toThrow("INVALID_REQUEST");
+    expect(() => parseLearnerSettingsRequest({})).toThrow("INVALID_REQUEST");
   });
 
   it("reads and writes only through the authorized learner scope", async () => {
@@ -89,7 +93,7 @@ describe("US-30 learner settings service", () => {
       })
       .mockImplementationOnce(async (query) => {
         queries.push(new PgDialect().sqlToQuery(query));
-        return { rows: [{ learner_id: learnerId, daily_new_word_limit: 10 }] };
+        return { rows: [{ learner_id: learnerId, daily_new_word_limit: 10, daily_learning_goal: 10 }] };
       })
       .mockImplementationOnce(async (query) => {
         queries.push(new PgDialect().sqlToQuery(query));
@@ -97,12 +101,12 @@ describe("US-30 learner settings service", () => {
       })
       .mockImplementationOnce(async (query) => {
         queries.push(new PgDialect().sqlToQuery(query));
-        return { rows: [{ learner_id: learnerId, daily_new_word_limit: 5 }] };
+        return { rows: [{ learner_id: learnerId, daily_new_word_limit: 5, daily_learning_goal: 12 }] };
       });
     const service = createLearnerSettingsService({ execute });
 
-    await expect(service.get("parent-1", learnerId)).resolves.toEqual({ learnerId, dailyNewWordLimit: 10 });
-    await expect(service.update("parent-1", learnerId, { dailyNewWordLimit: 5 })).resolves.toEqual({ learnerId, dailyNewWordLimit: 5 });
+    await expect(service.get("parent-1", learnerId)).resolves.toEqual({ learnerId, dailyNewWordLimit: 10, dailyLearningGoal: 10 });
+    await expect(service.update("parent-1", learnerId, { dailyNewWordLimit: 5 })).resolves.toEqual({ learnerId, dailyNewWordLimit: 5, dailyLearningGoal: 12 });
     expect(queries[1]?.sql).toContain("daily_new_word_limit");
     expect(queries[3]?.sql).toContain("UPDATE");
     expect(queries.map((query) => query.sql).join(" ")).not.toContain("parent-1");

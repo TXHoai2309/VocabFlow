@@ -2,7 +2,7 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
-import type { LearnerDto, ProgressSummaryResponse } from "@vocabflow/contracts";
+import type { ActivitySummaryResponse, LearnerDto, ProgressSummaryResponse } from "@vocabflow/contracts";
 import { ActiveLearnerProvider } from "./learner-context-provider";
 import { useActiveLearner } from "./learner-context-hook";
 import { ProgressPage } from "./progress-page";
@@ -38,6 +38,20 @@ function summary(learnerId: string, values: Partial<Omit<ProgressSummaryResponse
   };
 }
 
+function activity(learnerId: string, values: Partial<ActivitySummaryResponse["dailyGoal"]> = {}): ActivitySummaryResponse {
+  return {
+    learnerId,
+    localDate: "2026-09-20",
+    dailyGoal: {
+      goal: values.goal ?? 10,
+      reviewedUnique: values.reviewedUnique ?? 0,
+      remaining: values.remaining ?? Math.max(0, (values.goal ?? 10) - (values.reviewedUnique ?? 0)),
+      completed: values.completed ?? false
+    },
+    streak: { currentStreak: 0, longestStreak: 0, todayActive: false }
+  };
+}
+
 function response(body: unknown, status = 200) {
   return new Response(JSON.stringify(body), {
     status,
@@ -69,13 +83,18 @@ describe("US-20 learner progress UI", () => {
   });
 
   it("shows loading and then all canonical progress cards", async () => {
-    let resolveResponse!: (value: Response) => void;
-    const pending = new Promise<Response>((resolve) => { resolveResponse = resolve; });
-    const fetchMock = vi.spyOn(globalThis, "fetch").mockReturnValue(pending);
+    let resolveProgress!: (value: Response) => void;
+    let resolveActivity!: (value: Response) => void;
+    const pendingProgress = new Promise<Response>((resolve) => { resolveProgress = resolve; });
+    const pendingActivity = new Promise<Response>((resolve) => { resolveActivity = resolve; });
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation((input) =>
+      String(input).includes("activity-summary") ? pendingActivity : pendingProgress
+    );
     renderProgress();
 
     expect(screen.getByTestId("progress-loading")).toBeInTheDocument();
-    resolveResponse(response(summary(learnerA.id)));
+    resolveProgress(response(summary(learnerA.id)));
+    resolveActivity(response(activity(learnerA.id, { reviewedUnique: 7, remaining: 3 })));
 
     expect(await screen.findByTestId("progress-summary")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Tiến trình của An" })).toBeInTheDocument();
@@ -84,17 +103,24 @@ describe("US-20 learner progress UI", () => {
     expect(metric("Mastered")).toHaveTextContent("3");
     expect(metric("Due")).toHaveTextContent("4");
     expect(metric("Learned")).toHaveTextContent("5");
+    expect(screen.getByTestId("daily-goal")).toHaveTextContent("7 / 10");
+    expect(screen.getByTestId("streak-summary")).toHaveTextContent("0 ngày liên tiếp");
     expect(fetchMock).toHaveBeenCalledWith("/api/learners/" + learnerA.id + "/progress-summary", { credentials: "include" });
+    expect(fetchMock).toHaveBeenCalledWith("/api/learners/" + learnerA.id + "/activity-summary", { credentials: "include" });
   });
 
   it("shows the explicit empty state without inventing learned words", async () => {
-    vi.spyOn(globalThis, "fetch").mockResolvedValue(response(summary(learnerA.id, {
-      newCount: 30,
-      learningCount: 0,
-      masteredCount: 0,
-      dueCount: 0,
-      learnedCount: 0
-    })));
+    vi.spyOn(globalThis, "fetch").mockImplementation((input) => Promise.resolve(
+      String(input).includes("activity-summary")
+        ? response(activity(learnerA.id))
+        : response(summary(learnerA.id, {
+          newCount: 30,
+          learningCount: 0,
+          masteredCount: 0,
+          dueCount: 0,
+          learnedCount: 0
+        }))
+    ));
     renderProgress();
 
     expect(await screen.findByTestId("progress-empty-state")).toHaveTextContent("Chưa học từ nào");
@@ -103,21 +129,26 @@ describe("US-20 learner progress UI", () => {
   });
 
   it("shows a safe retry state after a progress request failure", async () => {
-    const fetchMock = vi.spyOn(globalThis, "fetch")
-      .mockResolvedValueOnce(response({ error: { code: "INTERNAL_ERROR" } }, 503))
-      .mockResolvedValueOnce(response(summary(learnerA.id)));
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation((input) => {
+      if (!String(input).includes("activity-summary") && fetchMock.mock.calls.length === 1) {
+        return Promise.resolve(response({ error: { code: "INTERNAL_ERROR" } }, 503));
+      }
+      return Promise.resolve(String(input).includes("activity-summary") ? response(activity(learnerA.id)) : response(summary(learnerA.id)));
+    });
     renderProgress();
 
     expect(await screen.findByTestId("progress-error")).toHaveTextContent("Không thể tải tiến trình lúc này. Vui lòng thử lại.");
     fireEvent.click(screen.getByRole("button", { name: "Thử lại" }));
     await waitFor(() => expect(screen.getByTestId("progress-summary")).toBeInTheDocument());
-    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(fetchMock).toHaveBeenCalledTimes(4);
   });
 
   it("refreshes by learner id and never keeps the previous learner summary", async () => {
-    const fetchMock = vi.spyOn(globalThis, "fetch")
-      .mockResolvedValueOnce(response(summary(learnerA.id, { learnedCount: 1 })))
-      .mockResolvedValueOnce(response(summary(learnerB.id, { learnedCount: 9 })));
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation((input) => {
+      const url = String(input);
+      const id = url.includes(learnerB.id) ? learnerB.id : learnerA.id;
+      return Promise.resolve(url.includes("activity-summary") ? response(activity(id)) : response(summary(id, { learnedCount: id === learnerA.id ? 1 : 9 })));
+    });
 
     function SwitchHarness() {
       const { setActiveLearner } = useActiveLearner();
@@ -144,7 +175,7 @@ describe("US-20 learner progress UI", () => {
     await waitFor(() => expect(metric("Learned")).toHaveTextContent("9"));
     expect(screen.queryByText("Tiến trình của An")).not.toBeInTheDocument();
     expect(fetchMock).toHaveBeenNthCalledWith(1, "/api/learners/" + learnerA.id + "/progress-summary", { credentials: "include" });
-    expect(fetchMock).toHaveBeenNthCalledWith(2, "/api/learners/" + learnerB.id + "/progress-summary", { credentials: "include" });
+    expect(fetchMock).toHaveBeenNthCalledWith(3, "/api/learners/" + learnerB.id + "/progress-summary", { credentials: "include" });
   });
 
   it("redirects to learner home when no active learner exists", async () => {
@@ -156,9 +187,14 @@ describe("US-20 learner progress UI", () => {
     const resetResponse = { learnerId: learnerA.id, deletedProgressCount: 2 };
     let resolveReset!: (value: typeof resetResponse) => void;
     requestResetLearnerProgress.mockReturnValue(new Promise((resolve) => { resolveReset = resolve; }));
-    const fetchMock = vi.spyOn(globalThis, "fetch")
-      .mockResolvedValueOnce(response(summary(learnerA.id, { learnedCount: 2 })))
-      .mockResolvedValueOnce(response(summary(learnerA.id, { newCount: 30, learningCount: 0, masteredCount: 0, dueCount: 0, learnedCount: 0 })));
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation((input) => {
+      const url = String(input);
+      const isActivity = url.includes("activity-summary");
+      const isAfterReset = fetchMock.mock.calls.filter(([value]) => String(value).includes("progress-summary")).length > 1;
+      return Promise.resolve(isActivity ? response(activity(learnerA.id)) : response(summary(learnerA.id, isAfterReset
+        ? { newCount: 30, learningCount: 0, masteredCount: 0, dueCount: 0, learnedCount: 0 }
+        : { learnedCount: 2 })));
+    });
     renderProgress();
 
     await screen.findByTestId("progress-summary");
@@ -177,12 +213,14 @@ describe("US-20 learner progress UI", () => {
 
     await waitFor(() => expect(screen.getByTestId("progress-empty-state")).toBeInTheDocument());
     expect(screen.getByText("Đã reset tiến trình của An.")).toBeInTheDocument();
-    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(fetchMock).toHaveBeenCalledTimes(4);
   });
 
   it("keeps the dialog open and usable after reset failure", async () => {
     requestResetLearnerProgress.mockRejectedValue(new Error("network"));
-    vi.spyOn(globalThis, "fetch").mockResolvedValue(response(summary(learnerA.id)));
+    vi.spyOn(globalThis, "fetch").mockImplementation((input) => Promise.resolve(
+      String(input).includes("activity-summary") ? response(activity(learnerA.id)) : response(summary(learnerA.id))
+    ));
     renderProgress();
     await screen.findByTestId("progress-summary");
     fireEvent.click(screen.getByRole("button", { name: "Reset tiến trình" }));

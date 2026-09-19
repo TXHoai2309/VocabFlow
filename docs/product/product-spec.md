@@ -4,7 +4,7 @@
 - Version: v1.0
 - Source baseline: `VocabFlow_Family_MVP_Product_Specification_v1.0.docx`
 - Canonical format: Markdown
-- Last synchronized: 2026-09-19
+- Last synchronized: 2026-09-20
 
 **VOCABFLOW**
 
@@ -58,7 +58,7 @@ Family MVP vẫn là một hệ thống quản lý trạng thái ghi nhớ, khô
 | Per-learner cloud progress | Offline write queue / full PWA sync |
 | Curated learning sets; default starter compatibility set; 200–300 enabled | User-created sets / marketplace |
 | Flashcard + audio/image khi có | Nhiều mode Learn/Test/Game |
-| Chưa nhớ / Đã nhớ + spaced scheduler | Streak, leaderboard, achievement system |
+| Chưa nhớ / Đã nhớ + spaced scheduler | Leaderboard, achievement system, advanced gamification |
 | Review Queue + session summary | AI tutor / generated content |
 | Progress tối giản | Advanced analytics / reporting |
 | Responsive mobile/tablet/desktop | Admin CMS / payment / social |
@@ -299,6 +299,27 @@ current lifecycle is virtual NEW again. Progress summary New remains the
 global count of eligible vocabulary without current progress; it is not
 reduced to today's allowance.
 
+### 15.4 Daily learning goal and streak (US-35 / US-36)
+
+Each learner has a separate `dailyLearningGoal`, default `10`, validated from
+`1` to `100`. It is motivational read-only progress: it does not constrain
+queue admission and is not the Daily New Limit.
+
+Daily goal progress counts distinct vocabulary IDs from successful persisted
+review events whose server-owned `review_date` is the current household-local
+date. Reinforcement, repeated review and retry of one vocabulary count once;
+both Remembered and Forgotten count as learning activity, while failed or
+unsaved review requests do not count. Completion is derived when the unique
+count reaches the configured goal and may exceed it.
+
+An active learning day is any local date with at least one successful persisted
+review event. Current streak counts consecutive active dates ending today, or
+continues through yesterday when today is not active yet. Longest streak is the
+maximum consecutive active-date run in review history. Streaks are learner
+scoped, derived rather than mutable counters, and survive reload, logout/login,
+reset progress and learning-set unassignment because review history remains
+canonical.
+
 ## 16. Data quality gate
 
 | **Kiểm tra** | **Kết quả** |
@@ -351,6 +372,8 @@ reduced to today's allowance.
 | Progress | New/Learning/Mastered/Due theo active learner. | YES |
 | Vocabulary list / learning sets | Danh sách enabled vocabulary + trạng thái learner tối thiểu; lọc cấp độ, browse theo chủ đề, xem set và gán set cho learner. | YES |
 | Daily New settings | Parent xem/chỉnh giới hạn từ mới theo learner; Due exemption và trạng thái lưu được hiển thị rõ. | YES |
+| Daily learning goal | Parent cấu hình goal 1–100; learner xem unique reviewed/goal và trạng thái hoàn thành theo local day. | YES |
+| Learning streak | Learner xem current/longest streak theo household-local active days. | YES |
 | Reset progress | Parent-confirmed reset per learner; có thể làm sau vertical slice nhưng vẫn thuộc MVP. | YES |
 
 ## 20. Family vertical slice

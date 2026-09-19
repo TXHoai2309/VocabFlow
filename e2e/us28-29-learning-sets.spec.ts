@@ -81,10 +81,10 @@ test("US-30 edits the active learner daily NEW-word limit", async ({ page }) => 
   });
   await page.route(`**/api/learners/${learnerId}/settings`, async (route) => {
     if (route.request().method() === "PATCH") {
-      await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ learnerId, dailyNewWordLimit: 5 }) });
+      await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ learnerId, dailyNewWordLimit: 5, dailyLearningGoal: 10 }) });
       return;
     }
-    await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ learnerId, dailyNewWordLimit: 10 }) });
+    await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ learnerId, dailyNewWordLimit: 10, dailyLearningGoal: 10 }) });
   });
   await page.goto("/learners");
   await expect(page.getByTestId("learner-context-ready")).toContainText("An");
@@ -92,5 +92,5 @@ test("US-30 edits the active learner daily NEW-word limit", async ({ page }) => 
   await expect(page.getByLabel("Số từ mới tối đa mỗi ngày")).toHaveValue("10");
   await page.getByLabel("Số từ mới tối đa mỗi ngày").fill("5");
   await page.getByRole("button", { name: "Lưu cài đặt" }).click();
-  await expect(page.getByRole("status")).toContainText("Đã lưu giới hạn từ mới của An.");
+  await expect(page.getByRole("status")).toContainText("Đã lưu cài đặt học của An.");
 });

@@ -449,6 +449,25 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
 }
 .progress-grid dt { color: var(--color-text-muted); font-size: 14px; line-height: 20px; }
 .progress-grid dd { margin: 6px 0 0; color: var(--color-text); font-size: 28px; font-weight: 800; line-height: 32px; }
+.progress-activity {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-border);
+}
+.progress-activity h2 { margin: 0; color: var(--color-text); font-size: 18px; }
+.progress-activity-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 12px; }
+.progress-activity-grid > div {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  background: var(--color-primary-soft);
+}
+.progress-activity-grid span, .progress-activity-grid small { color: var(--color-text-muted); font-size: 14px; line-height: 20px; }
+.progress-activity-grid strong { color: var(--color-text); font-size: 24px; line-height: 30px; }
 .progress-danger-zone {
   margin-top: 32px;
   padding-top: 24px;
@@ -500,6 +519,7 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
 @media (max-width: 520px) {
   .progress-topbar { align-items: flex-start; flex-direction: column; }
   .progress-error { align-items: flex-start; flex-direction: column; }
+  .progress-activity-grid { grid-template-columns: 1fr; }
 }
 
 .vocabulary-list-card { width: min(100%, 860px); }

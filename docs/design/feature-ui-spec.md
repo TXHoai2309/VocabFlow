@@ -2,7 +2,7 @@
 
 - Status: CURRENT FEATURE UI SOURCE OF TRUTH
 - Version: v1.0.3
-- Source baseline: `VocabFlow_Family_MVP_Feature_UI_Specification_v1.0.1.docx`; this Markdown records the US-26/US-27 taxonomy browse, US-28/US-29 learning-set extension, US-30 daily New settings and US-31 through US-34 exercise mode.
+- Source baseline: `VocabFlow_Family_MVP_Feature_UI_Specification_v1.0.1.docx`; this Markdown records the US-26/US-27 taxonomy browse, US-28/US-29 learning-set extension, US-30 daily New settings, US-31 through US-34 exercise mode and US-35/US-36 activity indicators.
 - Canonical format: Markdown
 - Last synchronized: 2026-09-20
 
@@ -422,6 +422,19 @@ state returned by the canonical API.
 | Learner switch | Changing learner remounts the screen and clears the previous value, status and messages before loading. |
 | States | Loading, API error/retry, validation error, saving and success are explicit and mobile-safe. |
 
+## 7.1d Daily learning goal and streak (US-35 / US-36)
+
+| **Capability** | **Behavior** |
+| --- | --- |
+| Daily goal setting | Parent sees and edits `dailyLearningGoal` for the active learner; integer 1–100, default 10. |
+| Separate semantics | Copy clearly distinguishes the motivational unique-reviewed goal from the daily New admission limit. |
+| Daily progress | Progress screen shows `reviewedUnique / goal`, including 0/10, partial, exact and over-goal states; completion is derived. |
+| Current streak | Show “N ngày liên tiếp”; today-active streak ends today, while inactive today may continue from an active yesterday. |
+| Longest streak | Show “Kỷ lục: N ngày”; it is separate from goal completion and accuracy. |
+| Canonical source | Loading reads the learner activity-summary API; no client counter or local persistence is authoritative. |
+| Learner switch | Goal, progress, streak and messages clear/remount by learner ID before loading the next learner. |
+| States | Loading, API error/retry, empty history, active day, yesterday continuation, broken streak, saving and validation are explicit and mobile-safe. |
+
 ## 7.2 Parent actions in MVP
 
 | **Action** | **Scope** | **UI location** |
@@ -432,6 +445,7 @@ state returned by the canonical API.
 | Reset learner progress | P1 / CONDITIONAL — thuộc Family MVP nhưng không thuộc first vertical slice. | Chỉ enable sau khi có reset API contract + learner authorization contract + confirmation behavior được test. |
 | View and assign learning sets | YES | Learning-set catalog/detail and active learner assignment screen. |
 | Edit daily New limit | YES | Active learner settings screen. |
+| Edit daily learning goal | YES | Active learner settings screen. |
 | Edit learner name/avatar | DEFERRED | Không expose control trong v1.0 baseline. |
 | Disable/delete learner | OUT v1.0 | Không expose control. |
 
@@ -519,7 +533,7 @@ state returned by the canonical API.
 | **FUI-15** | Mobile Study usable ở narrow viewport, không horizontal overflow, recall actions không che nội dung. |
 | **FUI-16** | Keyboard/focus/audio/dialog behavior đạt Global Design System accessibility contract. |
 | **FUI-17** | Study dùng DS-EX-001 cho hai recall actions; exception không lan sang feature khác. |
-| **FUI-18** | Không implement deferred features: social login, learner login/PIN, edit/delete learner, streak/achievement, offline write sync. |
+| **FUI-18** | Không implement deferred features: social login, learner login/PIN, edit/delete learner, leaderboard/achievement, offline write sync. |
 | **FUI-19** | Learning-set catalog/detail renders deterministic ordered enabled content with explicit loading/error/empty states. |
 | **FUI-20** | Assignment toggles are learner-scoped, show save feedback, reject cross-household access safely and never imply progress/history deletion. |
 

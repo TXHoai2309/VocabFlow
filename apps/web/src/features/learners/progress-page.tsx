@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link, Navigate } from "react-router";
-import type { LearnerDto, ProgressSummaryResponse } from "@vocabflow/contracts";
+import type { ActivitySummaryResponse, LearnerDto, ProgressSummaryResponse } from "@vocabflow/contracts";
 import { useActiveLearner } from "./learner-context-hook";
 import { ProgressSummaryClientError, requestProgressSummary } from "./progress-summary-client";
+import { ActivitySummaryClientError, requestActivitySummary } from "./activity-summary-client";
 import {
   requestResetLearnerProgress,
   ResetLearnerProgressClientError
@@ -11,10 +12,16 @@ import {
 type ProgressState = "loading" | "ready" | "error";
 
 function progressErrorMessage(error: unknown) {
-  if (error instanceof ProgressSummaryClientError && (error.status === 401 || error.code === "UNAUTHORIZED")) {
+  if (
+    (error instanceof ProgressSummaryClientError || error instanceof ActivitySummaryClientError)
+    && (error.status === 401 || error.code === "UNAUTHORIZED")
+  ) {
     return "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại.";
   }
-  if (error instanceof ProgressSummaryClientError && (error.status === 403 || error.code === "HOUSEHOLD_ACCESS_DENIED")) {
+  if (
+    (error instanceof ProgressSummaryClientError || error instanceof ActivitySummaryClientError)
+    && (error.status === 403 || error.code === "HOUSEHOLD_ACCESS_DENIED")
+  ) {
     return "Không thể xem tiến trình của learner này.";
   }
   return "Không thể tải tiến trình lúc này. Vui lòng thử lại.";
@@ -39,6 +46,7 @@ export function ProgressPage() {
 function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
   const [state, setState] = useState<ProgressState>("loading");
   const [summary, setSummary] = useState<ProgressSummaryResponse | null>(null);
+  const [activity, setActivity] = useState<ActivitySummaryResponse | null>(null);
   const [message, setMessage] = useState<string | null>(null);
   const [resetOpen, setResetOpen] = useState(false);
   const [resetSubmitting, setResetSubmitting] = useState(false);
@@ -48,10 +56,15 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
   const loadSummary = useCallback(async () => {
     setState("loading");
     setSummary(null);
+    setActivity(null);
     setMessage(null);
     try {
-      const response = await requestProgressSummary(activeLearner.id);
+      const [response, activityResponse] = await Promise.all([
+        requestProgressSummary(activeLearner.id),
+        requestActivitySummary(activeLearner.id)
+      ]);
       setSummary(response);
+      setActivity(activityResponse);
       setState("ready");
     } catch (error) {
       setState("error");
@@ -80,10 +93,14 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
 
   useEffect(() => {
     let cancelled = false;
-    void requestProgressSummary(activeLearner.id)
-      .then((response) => {
+    void Promise.all([
+      requestProgressSummary(activeLearner.id),
+      requestActivitySummary(activeLearner.id)
+    ])
+      .then(([response, activityResponse]) => {
         if (cancelled) return;
         setSummary(response);
+        setActivity(activityResponse);
         setState("ready");
       })
       .catch((error: unknown) => {
@@ -134,6 +151,23 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
               <div><dt>Due</dt><dd>{summary.dueCount}</dd></div>
               <div><dt>Learned</dt><dd>{summary.learnedCount}</dd></div>
             </dl>
+            {activity ? (
+              <section className="progress-activity" data-testid="activity-summary" aria-labelledby="activity-summary-title">
+                <h2 id="activity-summary-title">Hoạt động hôm nay</h2>
+                <div className="progress-activity-grid">
+                  <div data-testid="daily-goal">
+                    <span>Mục tiêu học</span>
+                    <strong>{activity.dailyGoal.reviewedUnique} / {activity.dailyGoal.goal}</strong>
+                    <small>{activity.dailyGoal.completed ? "Đã hoàn thành mục tiêu hôm nay" : `Còn ${activity.dailyGoal.remaining} từ`}</small>
+                  </div>
+                  <div data-testid="streak-summary">
+                    <span>Chuỗi hiện tại</span>
+                    <strong>{activity.streak.currentStreak} ngày liên tiếp</strong>
+                    <small>Kỷ lục: {activity.streak.longestStreak} ngày</small>
+                  </div>
+                </div>
+              </section>
+            ) : null}
           </div>
         ) : null}
 

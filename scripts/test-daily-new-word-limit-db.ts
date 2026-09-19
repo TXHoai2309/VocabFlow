@@ -3,6 +3,7 @@ import { drizzle } from "drizzle-orm/postgres-js";
 import type { ConnectionTarget } from "@vocabflow/contracts";
 import { createLearnerService, type LearnerDatabase } from "../apps/api/src/learners";
 import { createLearnerSettingsService, type LearnerSettingsDatabase } from "../apps/api/src/learner-settings";
+import { createActivitySummaryService, type ActivitySummaryDatabase } from "../apps/api/src/activity-summary";
 import { createResetLearnerProgressService, type ResetLearnerProgressDatabase } from "../apps/api/src/reset-learner-progress";
 import { createReviewQueueService, type ReviewQueueDatabase } from "../apps/api/src/review-queue";
 import { createReviewService, type ReviewDatabase } from "../apps/api/src/reviews";
@@ -84,12 +85,13 @@ async function runReview(
   vocabularyId: number,
   expectedRevision: number,
   reviewId = randomUUID(),
+  result: "REMEMBERED" | "FORGOTTEN" = "REMEMBERED",
 ) {
   return reviewService.write(userId, {
     reviewId,
     learnerId,
     vocabularyId,
-    result: "REMEMBERED",
+    result,
     expectedRevision
   });
 }
@@ -150,22 +152,29 @@ export async function runUs30TrustedDbSuite(input: DailyNewWordLimitTrustedDbInp
       & LearnerSettingsDatabase
       & ReviewDatabase
       & ReviewQueueDatabase
-      & ResetLearnerProgressDatabase;
+      & ResetLearnerProgressDatabase
+      & ActivitySummaryDatabase;
     const learnerService = createLearnerService(runtimeDatabase);
     const settingsService = createLearnerSettingsService(runtimeDatabase);
     const reviewService = createReviewService(runtimeDatabase, { now: () => FIXED_NOW });
     const queueService = createReviewQueueService(runtimeDatabase, { now: () => FIXED_NOW });
     const resetService = createResetLearnerProgressService(runtimeDatabase);
+    const activityService = createActivitySummaryService(runtimeDatabase, { now: () => FIXED_NOW });
 
     const existingDefaults = await settingsService.get(ownerUserId, existingLearnerId);
     assert(existingDefaults.dailyNewWordLimit === 10, "EXISTING_LEARNER_DEFAULT_INVALID");
+    assert(existingDefaults.dailyLearningGoal === 10, "EXISTING_LEARNING_GOAL_DEFAULT_INVALID");
     const created = await learnerService.create(ownerUserId, { displayName: "US30 new learner" });
     newLearnerId = created.id;
     const newDefaults = await settingsService.get(ownerUserId, newLearnerId);
     assert(newDefaults.dailyNewWordLimit === 10, "NEW_LEARNER_DEFAULT_INVALID");
+    assert(newDefaults.dailyLearningGoal === 10, "NEW_LEARNING_GOAL_DEFAULT_INVALID");
     await expectForbidden(async () => settingsService.update(ownerUserId, outsiderLearnerId, { dailyNewWordLimit: 5 }));
+    await expectForbidden(async () => settingsService.update(ownerUserId, outsiderLearnerId, { dailyLearningGoal: 5 }));
     const invalidSetting = await expectInvalidSetting(() => settingsService.update(ownerUserId, existingLearnerId, { dailyNewWordLimit: -1 }));
     assert(invalidSetting, "INVALID_SETTING_ACCEPTED");
+    const invalidGoal = await expectInvalidSetting(() => settingsService.update(ownerUserId, existingLearnerId, { dailyLearningGoal: 0 }));
+    assert(invalidGoal, "INVALID_LEARNING_GOAL_ACCEPTED");
 
     mark("due-exemption");
     await settingsService.update(ownerUserId, existingLearnerId, { dailyNewWordLimit: 0 });
@@ -195,6 +204,30 @@ export async function runUs30TrustedDbSuite(input: DailyNewWordLimitTrustedDbInp
     assert(await countFixtureEvents(migration, householdId) === eventsAfterReinforcement, "RETRY_DOUBLE_COUNTED_EVENT");
     const afterRetry = await queueService.list(ownerUserId, existingLearnerId);
     assert(afterRetry.queue.filter((item) => item.queueType === "NEW").length === 4, "REINFORCEMENT_CONSUMED_ALLOWANCE");
+
+    mark("daily-goal-and-streak-aggregation");
+    await settingsService.update(ownerUserId, existingLearnerId, { dailyLearningGoal: 5 });
+    const forgotten = await runReview(reviewService, ownerUserId, existingLearnerId, 3, 1, randomUUID(), "FORGOTTEN");
+    assert(forgotten.status === 201, "FORGOTTEN_REVIEW_WRITE_INVALID");
+    const sameDay = await activityService.get(ownerUserId, existingLearnerId);
+    assert(sameDay.dailyGoal.reviewedUnique === 6, "UNIQUE_DAILY_ACTIVITY_INVALID");
+    assert(sameDay.dailyGoal.completed && sameDay.dailyGoal.remaining === 0, "DAILY_GOAL_COMPLETION_INVALID");
+    assert(sameDay.streak.currentStreak === 1 && sameDay.streak.longestStreak === 1, "SINGLE_DAY_STREAK_INVALID");
+    const failedEvents = await countFixtureEvents(migration, householdId);
+    try {
+      await runReview(reviewService, ownerUserId, existingLearnerId, 4, 0);
+      fail("FAILED_REVIEW_WAS_PERSISTED");
+    } catch (error) {
+      assert((error as { code?: string }).code === "STALE_REVISION", "FAILED_REVIEW_WRONG_ERROR");
+    }
+    assert(await countFixtureEvents(migration, householdId) === failedEvents, "FAILED_REVIEW_CHANGED_HISTORY");
+    const nextDayReview = createReviewService(runtimeDatabase, { now: () => new Date("2026-09-14T17:00:00.000Z") });
+    await runReview(nextDayReview, ownerUserId, existingLearnerId, 1, 2);
+    const nextDayActivity = await createActivitySummaryService(runtimeDatabase, { now: () => new Date("2026-09-14T17:00:00.000Z") }).get(ownerUserId, existingLearnerId);
+    assert(nextDayActivity.localDate === "2026-09-15", "LOCAL_DATE_BOUNDARY_INVALID");
+    assert(nextDayActivity.dailyGoal.reviewedUnique === 1, "NEXT_DAY_ACTIVITY_INVALID");
+    assert(nextDayActivity.streak.currentStreak === 2 && nextDayActivity.streak.longestStreak === 2, "CONSECUTIVE_STREAK_INVALID");
+    const preservedActivity = await activityService.get(ownerUserId, existingLearnerId);
 
     mark("learner-isolation");
     await settingsService.update(ownerUserId, existingLearnerId, { dailyNewWordLimit: 5 });
@@ -244,13 +277,16 @@ export async function runUs30TrustedDbSuite(input: DailyNewWordLimitTrustedDbInp
     assert(await countFixtureEvents(migration, householdId) === eventsBeforeReset, "RESET_DELETED_REVIEW_EVENTS");
     const afterReset = await queueService.list(ownerUserId, existingLearnerId);
     assert(afterReset.queue.filter((item) => item.queueType === "NEW").length === 5, "RESET_NEW_LIFECYCLE_INVALID");
+    const afterResetActivity = await activityService.get(ownerUserId, existingLearnerId);
+    assert(afterResetActivity.dailyGoal.reviewedUnique === preservedActivity.dailyGoal.reviewedUnique, "RESET_DELETED_DAILY_HISTORY");
+    assert(afterResetActivity.streak.currentStreak === preservedActivity.streak.currentStreak, "RESET_DELETED_STREAK");
 
     const afterVocabulary = await countRows(migration, `${APP_SCHEMA}."vocabularies"`);
     const afterProgress = await countRows(migration, PROGRESS_TABLE);
     const afterEvents = await countRows(migration, EVENTS_TABLE);
     assert(afterVocabulary === beforeVocabulary, "VOCABULARY_ROWS_CHANGED");
     assert(afterProgress === beforeProgress + 2, "PROGRESS_BASELINE_CHANGED_UNEXPECTEDLY");
-    assert(afterEvents === beforeEvents + 9, "REVIEW_EVENTS_COUNT_INVALID");
+    assert(afterEvents === beforeEvents + 11, "REVIEW_EVENTS_COUNT_INVALID");
     console.log("TRUSTED_DB_US30_STATUS=PASS");
   } finally {
     try {

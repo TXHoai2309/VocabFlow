@@ -19,6 +19,7 @@ import { createLearningSetService, LearningSetServiceError, type LearningSetServ
 import { createReviewService, ReviewServiceError, type ReviewService } from "./reviews";
 import { createReviewQueueService, ReviewQueueServiceError, type ReviewQueueService } from "./review-queue";
 import { createProgressSummaryService, ProgressSummaryServiceError, type ProgressSummaryService } from "./progress-summary";
+import { createActivitySummaryService, ActivitySummaryServiceError, type ActivitySummaryService } from "./activity-summary";
 import { createLearnerVocabularyService, LearnerVocabularyServiceError, type LearnerVocabularyService } from "./learner-vocabulary";
 import {
   createResetLearnerProgressService,
@@ -46,6 +47,7 @@ export type AppDependencies = {
   reviewService?: ReviewService;
   reviewQueueService?: ReviewQueueService;
   progressSummaryService?: ProgressSummaryService;
+  activitySummaryService?: ActivitySummaryService;
   learnerVocabularyService?: LearnerVocabularyService;
   resetLearnerProgressService?: ResetLearnerProgressService;
 };
@@ -114,6 +116,12 @@ async function runProgressSummaryService(env: WorkerBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
   return createProgressSummaryService(createHttpDatabase(env.DATABASE_URL));
+}
+
+async function runActivitySummaryService(env: WorkerBindings) {
+  if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
+  const { createHttpDatabase } = await import("./db/client");
+  return createActivitySummaryService(createHttpDatabase(env.DATABASE_URL));
 }
 
 async function runLearnerVocabularyService(env: WorkerBindings) {
@@ -550,6 +558,28 @@ export function createApp(dependencies: AppDependencies = {}) {
         return c.json(errorEnvelope(error.code, message), error.status);
       }
       return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể tải tiến trình lúc này. Vui lòng thử lại."), 503);
+    }
+  });
+
+  application.get("/api/learners/:learnerId/activity-summary", async (c) => {
+    try {
+      const session = await readSession(c.req.raw, c.env);
+      if (!session?.user?.id) {
+        return c.json(errorEnvelope("UNAUTHORIZED", "Đăng nhập để tiếp tục."), 401);
+      }
+      if ([...new URL(c.req.url).searchParams.keys()].length > 0) {
+        return c.json(errorEnvelope("INVALID_REQUEST", "Dữ liệu gửi lên không hợp lệ."), 400);
+      }
+      const service = dependencies.activitySummaryService ?? await runActivitySummaryService(c.env);
+      return c.json(await service.get(session.user.id, c.req.param("learnerId")), 200);
+    } catch (error) {
+      if (error instanceof ActivitySummaryServiceError) {
+        const message = error.code === "HOUSEHOLD_ACCESS_DENIED"
+          ? "Bạn không có quyền truy cập hoạt động học của learner này."
+          : "Không thể tải hoạt động học lúc này. Vui lòng thử lại.";
+        return c.json(errorEnvelope(error.code, message), error.status);
+      }
+      return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể tải hoạt động học lúc này. Vui lòng thử lại."), 503);
     }
   });
 

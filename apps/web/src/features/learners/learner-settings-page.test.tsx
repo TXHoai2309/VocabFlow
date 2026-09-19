@@ -44,12 +44,12 @@ describe("US-30 learner settings UI", () => {
   });
 
   it("loads, edits, saves, and prevents duplicate submits", async () => {
-    requestLearnerSettings.mockResolvedValue({ learnerId: learner.id, dailyNewWordLimit: 10 });
-    let resolveSave: ((value: { learnerId: string; dailyNewWordLimit: number }) => void) | undefined;
+    requestLearnerSettings.mockResolvedValue({ learnerId: learner.id, dailyNewWordLimit: 10, dailyLearningGoal: 10 });
+    let resolveSave: ((value: { learnerId: string; dailyNewWordLimit: number; dailyLearningGoal: number }) => void) | undefined;
     updateLearnerSettings.mockImplementation(() => new Promise((resolve) => { resolveSave = resolve; }));
     renderPage();
 
-    expect(await screen.findByDisplayValue("10")).toBeInTheDocument();
+    expect(await screen.findByLabelText("Mục tiêu học mỗi ngày")).toHaveValue(10);
     const input = screen.getByLabelText("Số từ mới tối đa mỗi ngày");
     fireEvent.change(input, { target: { value: "5" } });
     const form = screen.getByRole("button", { name: "Lưu cài đặt" }).closest("form")!;
@@ -57,13 +57,14 @@ describe("US-30 learner settings UI", () => {
     fireEvent.submit(form);
 
     expect(updateLearnerSettings).toHaveBeenCalledTimes(1);
+    expect(updateLearnerSettings).toHaveBeenCalledWith(learner.id, { dailyNewWordLimit: 5, dailyLearningGoal: 10 });
     expect(screen.getByRole("button", { name: "Đang lưu…" })).toBeDisabled();
-    resolveSave?.({ learnerId: learner.id, dailyNewWordLimit: 5 });
-    await waitFor(() => expect(screen.getByRole("status")).toHaveTextContent("Đã lưu giới hạn từ mới của An."));
+    resolveSave?.({ learnerId: learner.id, dailyNewWordLimit: 5, dailyLearningGoal: 10 });
+    await waitFor(() => expect(screen.getByRole("status")).toHaveTextContent("Đã lưu cài đặt học của An."));
   });
 
   it("rejects invalid values before the API call and renders API errors", async () => {
-    requestLearnerSettings.mockResolvedValue({ learnerId: learner.id, dailyNewWordLimit: 10 });
+    requestLearnerSettings.mockResolvedValue({ learnerId: learner.id, dailyNewWordLimit: 10, dailyLearningGoal: 10 });
     updateLearnerSettings.mockRejectedValue(new LearnerSettingsClientError("INTERNAL_ERROR", 503));
     renderPage();
     const input = await screen.findByLabelText("Số từ mới tối đa mỗi ngày");

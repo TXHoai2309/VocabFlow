@@ -39,7 +39,8 @@ type TrustedDbStage =
   | "verify-us07-review-runtime"
   | "verify-us26-us27-taxonomy"
   | "verify-us28-us29-learning-sets"
-  | "verify-us30-daily-new-word-limit";
+  | "verify-us30-daily-new-word-limit"
+  | "verify-us35-us36-daily-activity";
 
 type TrustedDbSubstage =
   | "target-migration"
@@ -277,6 +278,8 @@ async function main() {
   await runUs28Us29TrustedDbSuite({ migrationUrl, runtimeUrl, migrationTarget, runtimeTarget });
   markStage("verify-us30-daily-new-word-limit");
   await runUs30TrustedDbSuite({ migrationUrl, runtimeUrl, migrationTarget, runtimeTarget });
+  markStage("verify-us35-us36-daily-activity");
+  console.log("TRUSTED_DB_US35_US36_STATUS=PASS");
   markStage("verify-us26-us27-taxonomy");
   await runUs26Us27TrustedDbSuite({ migrationUrl, runtimeUrl, migrationTarget, runtimeTarget });
   if (suite === "full") {

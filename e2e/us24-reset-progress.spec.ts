@@ -44,6 +44,19 @@ test("US-24 confirms a learner-scoped reset and refreshes the progress summary",
       })
     });
   });
+  await page.route("**/api/learners/" + learnerId + "/activity-summary", async (route) => {
+    const reset = summaryCalls > 1;
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({
+        learnerId,
+        localDate: "2026-09-20",
+        dailyGoal: { goal: 10, reviewedUnique: reset ? 0 : 7, remaining: reset ? 10 : 3, completed: false },
+        streak: { currentStreak: reset ? 0 : 3, longestStreak: reset ? 3 : 7, todayActive: !reset }
+      })
+    });
+  });
   await page.route("**/api/learners/" + learnerId + "/reset-progress", async (route) => {
     resetCalls += 1;
     await resetPending;
