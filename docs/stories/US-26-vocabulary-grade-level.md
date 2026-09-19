@@ -1,6 +1,7 @@
 # US-26 — Vocabulary Grade Level
 
 - Status: `IMPLEMENTED / READY FOR OWNER CHECK`
+- Implementation commit: `d612e1a`
 - Batch: Phase 2 — Vocabulary taxonomy
 - Dependencies: US-25 Full Vocabulary Catalog
 - Sources: Product Specification, Technical Architecture, Feature UI
@@ -53,3 +54,9 @@ Focused tests: `apps/api/src/vocabulary.test.ts`,
 
 Owner manual check remains pending; status is therefore READY FOR OWNER CHECK,
 not ACCEPTED/CLOSED.
+
+## Known limitations
+
+The current source dataset supplies no grade metadata, so the feature exposes
+the model and filters without classifying existing rows. Level assignment and
+learning-set selection remain later product work.

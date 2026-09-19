@@ -15,7 +15,8 @@ This log records meaningful project milestones and accepted baselines.
   learner progress and review events. Study queue and scheduler behavior are
   unchanged.
 - Added migration safety assertions, focused API/UI tests and Playwright E2E
-  coverage. Status: `IMPLEMENTED / READY FOR OWNER CHECK`.
+  coverage. Implementation commit: `d612e1a`. Status: `IMPLEMENTED / READY FOR
+  OWNER CHECK`.
 
 ## 2026-09-19 — Repository recovery: US-12 through US-25 backfill and Core CI closeout
 

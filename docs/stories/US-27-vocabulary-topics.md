@@ -1,6 +1,7 @@
 # US-27 — Vocabulary Topics
 
 - Status: `IMPLEMENTED / READY FOR OWNER CHECK`
+- Implementation commit: `d612e1a`
 - Batch: Phase 2 — Vocabulary taxonomy
 - Dependencies: US-25 Full Vocabulary Catalog
 - Sources: Product Specification, Technical Architecture, Feature UI
@@ -59,3 +60,9 @@ Focused tests: `apps/api/src/topics.test.ts`,
 
 Owner manual check remains pending; status is therefore READY FOR OWNER CHECK,
 not ACCEPTED/CLOSED.
+
+## Known limitations
+
+The 30 starter rows have NULL legacy source topics and are intentionally not
+forced into a topic. Imported rows remain disabled; this story provides
+classification and browse only, not learning-set assignment or topic mastery.

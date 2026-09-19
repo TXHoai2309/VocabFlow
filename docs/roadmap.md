@@ -258,6 +258,7 @@ The owner-verified Hoài/Ngọc metric snapshots are recorded in US-20 and US-21
 ### US-26 + US-27 — Vocabulary Taxonomy
 
 - Status: `IMPLEMENTED / READY FOR OWNER CHECK`.
+- Implementation: `d612e1a`.
 - Contracts: [`US-26 Vocabulary Grade Level`](stories/US-26-vocabulary-grade-level.md)
   and [`US-27 Vocabulary Topics`](stories/US-27-vocabulary-topics.md).
 - US-26 adds a nullable, source-honest level enum and optional API/UI filters;

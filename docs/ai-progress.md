@@ -3,7 +3,7 @@
 - Project: VocabFlow Family MVP
 - Current phase/batch: Family MVP US-01..US-25 complete; Phase 2 / US-26 + US-27 ready for owner check
 - Current Git branch: `TXH`
-- Current implementation baseline: `16317d2c91696d9c357eb0f45ac1ce8ad04da3e` plus uncommitted US-26/US-27 implementation
+- Current implementation baseline: `d612e1a` (`feat: add vocabulary levels and topics`), with protected local changes preserved
 - US-24: `ACCEPTED / CLOSED`.
 - US-25: `ACCEPTED / CLOSED` after recovery Core CI and Trusted DB passed.
 - US-26 + US-27: `IMPLEMENTED / READY FOR OWNER CHECK`; US-28 remains unopened.
@@ -46,6 +46,7 @@
 - Added optional level filters, topic APIs, topic browse UI, migration/schema
   assertions, focused API/UI tests and E2E coverage. Scheduler, progress and
   review-event paths were not changed semantically.
+- Implementation commit: `d612e1a`.
 - Local status: IMPLEMENTED / READY FOR OWNER CHECK. Final lint, typecheck,
   full tests, build, E2E, diff and Trusted DB gates are still being run.
 - `docs/decisions.md`, `.env.example` and `local-data.zip` remain protected.
