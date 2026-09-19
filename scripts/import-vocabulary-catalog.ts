@@ -136,6 +136,7 @@ export type CatalogTransaction = {
   readState: () => Promise<CatalogDatabaseSnapshot>;
   insertRecord: (record: CatalogRecord) => Promise<number>;
   updateRecord: (record: CatalogRecord, existing: CatalogRow, nextContentVersion: number) => Promise<number>;
+  syncTopicMemberships?: () => Promise<void>;
 };
 
 export type CatalogDatabase = CatalogTransaction & {
@@ -537,6 +538,23 @@ function transactionForSql(sqlClient: SqlTag): CatalogTransaction {
       `;
       if (rows.length !== 1 || rows[0]?.id !== existing.id) throw new CatalogImportError("DB_ROW_CHANGED_DURING_APPLY");
       return existing.id;
+    },
+    syncTopicMemberships: async () => {
+      await sqlClient`
+        DELETE FROM "${sqlClient.unsafe(APP_SCHEMA)}"."vocabulary_topics" vt
+        USING "${sqlClient.unsafe(APP_SCHEMA)}"."vocabularies" v
+        WHERE v.id = vt.vocabulary_id
+          AND v.source_dataset = ${SOURCE_DATASET_ID}
+      `;
+      await sqlClient`
+        INSERT INTO "${sqlClient.unsafe(APP_SCHEMA)}"."vocabulary_topics" (vocabulary_id, topic_id)
+        SELECT v.id, t.id
+        FROM "${sqlClient.unsafe(APP_SCHEMA)}"."vocabularies" v
+        JOIN "${sqlClient.unsafe(APP_SCHEMA)}"."topics" t ON t.source_topic = v.topic
+        WHERE v.source_dataset = ${SOURCE_DATASET_ID}
+          AND v.source_record_id IS NOT NULL
+        ON CONFLICT (vocabulary_id, topic_id) DO NOTHING
+      `;
     }
   };
 }
@@ -569,6 +587,7 @@ export async function runApply(
       if (entry.action === "INSERT") await transaction.insertRecord(entry.record);
       if (entry.action === "UPDATE") await transaction.updateRecord(entry.record, entry.existing, entry.nextContentVersion);
     }
+    await transaction.syncTopicMemberships?.();
     const after = await transaction.readState();
     if (after.learnerProgressCount !== before.learnerProgressCount) throw new CatalogImportError("LEARNER_PROGRESS_CHANGED");
     if (after.reviewEventCount !== before.reviewEventCount) throw new CatalogImportError("REVIEW_EVENTS_CHANGED");

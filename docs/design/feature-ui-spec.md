@@ -1,14 +1,14 @@
-# Family MVP Feature UI Specification v1.0.1
+# Family MVP Feature UI Specification v1.0.2
 
 - Status: CURRENT FEATURE UI SOURCE OF TRUTH
-- Version: v1.0.1
-- Source baseline: `VocabFlow_Family_MVP_Feature_UI_Specification_v1.0.1.docx`
+- Version: v1.0.2
+- Source baseline: `VocabFlow_Family_MVP_Feature_UI_Specification_v1.0.1.docx`; this Markdown records the US-26/US-27 taxonomy browse extension.
 - Canonical format: Markdown
 - Last synchronized: 2026-09-08
 
 **VOCABFLOW**
 
-**Family MVP Feature UI Specification v1.0.1**
+**Family MVP Feature UI Specification v1.0.2**
 
 **Screen behavior, states and responsive contracts for the Family MVP**
 
@@ -18,10 +18,10 @@
 | **Baseline** | **Vai trò** |
 | --- | --- |
 | Family MVP Product Specification v1.0 | Product semantics và phạm vi MVP. |
-| Technical Architecture v1.0.3 | Auth, API, persistence, concurrency và backend invariants. |
+| Technical Architecture v1.0.6 | Auth, API, persistence, concurrency và backend invariants. |
 | Global Design System v1.0.2 | Token, layout primitives, responsive, component và accessibility rules. |
 | User Flow v1 | Đường đi tổng thể của parent/learner. |
-| Feature UI Spec v1.0.1 | Screen composition, interaction, states, copy và responsive behavior. |
+| Feature UI Spec v1.0.2 | Screen composition, interaction, states, copy và responsive behavior. |
 
 ## Trạng thái
 
@@ -34,7 +34,7 @@
 | **Destination** | **Mục đích** | **Learner context** |
 | --- | --- | --- |
 | Home | Tóm tắt hôm nay + CTA bắt đầu học. | Bắt buộc |
-| Từ vựng | Xem danh sách enabled vocabulary và trạng thái của learner. | Bắt buộc |
+| Từ vựng | Xem danh sách enabled vocabulary, trạng thái learner, lọc cấp độ và mở browse theo chủ đề. | Bắt buộc |
 | Tiến độ | Xem New / Learning / Mastered / Due / Learned. | Bắt buộc |
 | Study | Focused task, truy cập từ CTA; không phải destination cố định. | Bắt buộc khi học |
 | Learner selector | Chọn/tạo learner; mở từ login flow hoặc profile switcher. | Ngoài learner context |
@@ -80,7 +80,7 @@ Desktop app shell
 
 ## 2.1 MVP auth scope
 
-| **Feature** | v1.0.1 decision |
+| **Feature** | v1.0.2 decision |
 | --- | --- |
 | Register | Tên phụ huynh + email + password, parent account. `Tên phụ huynh` là display/profile identity được lưu bởi Better Auth. |
 | Login | Email + password. |
@@ -348,6 +348,21 @@ Network/5xx → SAVE_FAILED → giữ nguyên card → Retry cùng reviewId
 | Search no result | “Không tìm thấy từ phù hợp”; clear-search action. |
 | Optional media missing | Không ảnh hưởng row/list. |
 
+## 7.1a Vocabulary taxonomy browse
+
+| **Capability** | **Behavior** |
+| --- | --- |
+| Level filter | Select with `Tất cả cấp độ`, `Lớp 1`–`Lớp 5` and `Chung`; changing it reloads the canonical learner vocabulary read. |
+| Unclassified level | `Tất cả cấp độ` includes NULL levels; the UI does not invent a label or assign a grade. |
+| Topic entry | A `Duyệt theo chủ đề` link opens the topic browse route without changing active learner progress. |
+| Topic list | Show enabled topics in canonical `sortOrder`; each item includes name and description. |
+| Topic vocabulary | Selecting a topic shows enabled mapped vocabulary in stable order; no learner status is required on this read-only surface. |
+| Topic states | Loading, request error with retry-capable error state, no-topic empty state, no-vocabulary empty state and selected-topic state are explicit. |
+
+Topic browse is read-only. Missing media, NULL level and disabled vocabulary
+must remain safe states; disabled vocabulary is never rendered by a topic
+result.
+
 ## 7.2 Parent actions in MVP
 
 | **Action** | **Scope** | **UI location** |
@@ -385,7 +400,8 @@ Network/5xx → SAVE_FAILED → giữ nguyên card → Retry cùng reviewId
 | Study | Focused task | Card full-width + sticky recall zone | Centered readable card; optional side whitespace only |
 | Summary | Focused task | Stacked metrics | Centered panel |
 | Progress | Dashboard grid | Stacked summary cards | Grid allowed |
-| Vocabulary | Single column/list | List + search | Wider list; no mandatory split view |
+| Vocabulary | Single column/list; filter stacks above list | List + search/filter | Wider list with level filter and topic browse affordance |
+| Topic browse | Topic buttons stack above selected vocabulary | Topic list + selected results | Two-column topic navigation and results |
 
 ## 8.2 Mobile-specific rules
 
@@ -417,7 +433,7 @@ Network/5xx → SAVE_FAILED → giữ nguyên card → Retry cùng reviewId
 | --- | --- |
 | Global primitives | Button, IconButton, Card, Badge/Chip, Input, Dialog/Sheet, Toast, ProgressBar. |
 | Global composites | SearchField, EmptyState, ErrorState, LoadingState, Avatar/ProfileMenu. |
-| Feature-owned | Flashcard, RecallActions, LearnerCard, LearnerSwitcher, SessionSummary, ProgressSummary, VocabularyRow. |
+| Feature-owned | Flashcard, RecallActions, LearnerCard, LearnerSwitcher, SessionSummary, ProgressSummary, VocabularyRow, VocabularyLevelFilter, TopicBrowse. |
 
 **Family UI vertical slice: 1 parent → 2 learners → mỗi learner review ≥1 từ → reload/login lại → progress và review queue của hai learner vẫn tách biệt.**
 
@@ -458,4 +474,4 @@ Network/5xx → SAVE_FAILED → giữ nguyên card → Retry cùng reviewId
 ## 9.2 Approval statement
 
 > APPROVED FOR UI IMPLEMENTATION
-> Feature UI Specification v1.0.1 là baseline cho Family MVP UI implementation. Backlog/UI code phải bám screen states, interaction contracts, session behavior và responsive rules trong tài liệu này. Product semantics thay đổi phải quay về Family MVP Product Specification; visual language thay đổi phải quay về Global Design System; backend contract thay đổi phải quay về Technical Architecture/contracts.
+> Feature UI Specification v1.0.2 là baseline cho Family MVP UI implementation. Backlog/UI code phải bám screen states, interaction contracts, session behavior và responsive rules trong tài liệu này. Product semantics thay đổi phải quay về Family MVP Product Specification; visual language thay đổi phải quay về Global Design System; backend contract thay đổi phải quay về Technical Architecture/contracts.

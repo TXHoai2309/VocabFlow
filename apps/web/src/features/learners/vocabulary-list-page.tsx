@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link, Navigate } from "react-router";
-import type { LearnerDto, LearnerVocabularyDto } from "@vocabflow/contracts";
+import type { LearnerDto, LearnerVocabularyDto, VocabularyLevel } from "@vocabflow/contracts";
 import { useActiveLearner } from "./learner-context-hook";
 import { LearnerVocabularyClientError, requestLearnerVocabulary } from "./vocabulary-list-client";
 
@@ -30,24 +30,25 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
   const [state, setState] = useState<VocabularyListState>("loading");
   const [vocabulary, setVocabulary] = useState<LearnerVocabularyDto[]>([]);
   const [message, setMessage] = useState<string | null>(null);
+  const [level, setLevel] = useState<VocabularyLevel | "">("");
 
   const loadVocabulary = useCallback(async () => {
     setState("loading");
     setVocabulary([]);
     setMessage(null);
     try {
-      const response = await requestLearnerVocabulary(activeLearner.id);
+      const response = await requestLearnerVocabulary(activeLearner.id, level || undefined);
       setVocabulary(response);
       setState("ready");
     } catch (error) {
       setState("error");
       setMessage(listErrorMessage(error));
     }
-  }, [activeLearner.id]);
+  }, [activeLearner.id, level]);
 
   useEffect(() => {
     let cancelled = false;
-    void requestLearnerVocabulary(activeLearner.id)
+    void requestLearnerVocabulary(activeLearner.id, level || undefined)
       .then((response) => {
         if (cancelled) return;
         setVocabulary(response);
@@ -61,7 +62,7 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
     return () => {
       cancelled = true;
     };
-  }, [activeLearner.id]);
+  }, [activeLearner.id, level]);
 
   return (
     <main className="learner-page" aria-labelledby="vocabulary-list-title">
@@ -72,6 +73,25 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
         </div>
         <p className="auth-eyebrow">Vocabulary</p>
         <h1 className="auth-title" id="vocabulary-list-title">Từ vựng của {activeLearner.displayName}</h1>
+        <div className="vocabulary-list-actions">
+          <label className="vocabulary-filter-label" htmlFor="vocabulary-level-filter">Cấp độ</label>
+          <select
+            id="vocabulary-level-filter"
+            className="vocabulary-filter"
+            data-testid="vocabulary-level-filter"
+            value={level}
+            onChange={(event) => setLevel(event.target.value as VocabularyLevel | "")}
+          >
+            <option value="">Tất cả cấp độ</option>
+            <option value="GRADE_1">Lớp 1</option>
+            <option value="GRADE_2">Lớp 2</option>
+            <option value="GRADE_3">Lớp 3</option>
+            <option value="GRADE_4">Lớp 4</option>
+            <option value="GRADE_5">Lớp 5</option>
+            <option value="GENERAL">Chung</option>
+          </select>
+          <Link className="vocabulary-topics-link" to="/topics">Duyệt theo chủ đề</Link>
+        </div>
 
         {state === "loading" ? (
           <div className="vocabulary-list-state" data-testid="vocabulary-loading" role="status">Đang tải vocabulary…</div>

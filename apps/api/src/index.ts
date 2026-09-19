@@ -1,9 +1,15 @@
 import { Hono } from "hono";
-import { errorEnvelope, type HouseholdBootstrapResponse } from "@vocabflow/contracts";
+import {
+  errorEnvelope,
+  vocabularyLevelSchema,
+  type HouseholdBootstrapResponse,
+  type VocabularyLevel
+} from "@vocabflow/contracts";
 import { createAuth } from "./auth";
 import { createBootstrapService, type BootstrapService } from "./bootstrap";
 import { createLearnerService, LearnerServiceError, type LearnerService } from "./learners";
 import { createVocabularyService, VocabularyServiceError, type VocabularyService } from "./vocabulary";
+import { createTopicService, TopicServiceError, type TopicService } from "./topics";
 import { createReviewService, ReviewServiceError, type ReviewService } from "./reviews";
 import { createReviewQueueService, ReviewQueueServiceError, type ReviewQueueService } from "./review-queue";
 import { createProgressSummaryService, ProgressSummaryServiceError, type ProgressSummaryService } from "./progress-summary";
@@ -28,6 +34,7 @@ export type AppDependencies = {
   bootstrap?: BootstrapRunner;
   learnerService?: LearnerService;
   vocabularyService?: VocabularyService;
+  topicService?: TopicService;
   reviewService?: ReviewService;
   reviewQueueService?: ReviewQueueService;
   progressSummaryService?: ProgressSummaryService;
@@ -77,6 +84,12 @@ async function runReviewQueueService(env: WorkerBindings) {
   return createReviewQueueService(createHttpDatabase(env.DATABASE_URL));
 }
 
+async function runTopicService(env: WorkerBindings) {
+  if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
+  const { createHttpDatabase } = await import("./db/client");
+  return createTopicService(createHttpDatabase(env.DATABASE_URL));
+}
+
 async function runProgressSummaryService(env: WorkerBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
@@ -93,6 +106,21 @@ async function runResetLearnerProgressService(env: WorkerBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
   return createResetLearnerProgressService(createHttpDatabase(env.DATABASE_URL));
+}
+
+function parseVocabularyLevelQuery(request: Request): VocabularyLevel | undefined | null {
+  const params = new URL(request.url).searchParams;
+  const keys = [...params.keys()];
+  if (keys.length === 0) return undefined;
+  if (keys.length !== 1 || keys[0] !== "level") return null;
+  const parsed = vocabularyLevelSchema.safeParse(params.get("level"));
+  return parsed.success ? parsed.data : null;
+}
+
+function parsePositiveInteger(value: string): number | null {
+  if (!/^\d+$/.test(value)) return null;
+  const parsed = Number(value);
+  return Number.isSafeInteger(parsed) && parsed > 0 ? parsed : null;
 }
 
 export function createApp(dependencies: AppDependencies = {}) {
@@ -152,11 +180,15 @@ export function createApp(dependencies: AppDependencies = {}) {
       if (!session?.user?.id) {
         return c.json(errorEnvelope("UNAUTHORIZED", "Đăng nhập để tiếp tục."), 401);
       }
-      if ([...new URL(c.req.url).searchParams.keys()].length > 0) {
+      const level = parseVocabularyLevelQuery(c.req.raw);
+      if (level === null) {
         return c.json(errorEnvelope("INVALID_REQUEST", "Dữ liệu gửi lên không hợp lệ."), 400);
       }
       const service = dependencies.vocabularyService ?? await runVocabularyService(c.env);
-      return c.json({ vocabulary: await service.list(session.user.id) }, 200);
+      const vocabulary = level === undefined
+        ? await service.list(session.user.id)
+        : await service.list(session.user.id, level);
+      return c.json({ vocabulary }, 200);
     } catch (error) {
       if (error instanceof VocabularyServiceError) {
         const message = error.code === "HOUSEHOLD_ACCESS_DENIED"
@@ -250,6 +282,56 @@ export function createApp(dependencies: AppDependencies = {}) {
     }
   });
 
+  application.get("/api/topics", async (c) => {
+    try {
+      const session = await readSession(c.req.raw, c.env);
+      if (!session?.user?.id) {
+        return c.json(errorEnvelope("UNAUTHORIZED", "Đăng nhập để tiếp tục."), 401);
+      }
+      if ([...new URL(c.req.url).searchParams.keys()].length > 0) {
+        return c.json(errorEnvelope("INVALID_REQUEST", "Dữ liệu gửi lên không hợp lệ."), 400);
+      }
+      const service = dependencies.topicService ?? await runTopicService(c.env);
+      return c.json({ topics: await service.list(session.user.id) }, 200);
+    } catch (error) {
+      if (error instanceof TopicServiceError) {
+        const message = error.code === "HOUSEHOLD_ACCESS_DENIED"
+          ? "Bạn không có quyền truy cập household này."
+          : "Không thể tải topic lúc này. Vui lòng thử lại.";
+        return c.json(errorEnvelope(error.code, message), error.status);
+      }
+      return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể tải topic lúc này. Vui lòng thử lại."), 503);
+    }
+  });
+
+  application.get("/api/topics/:topicId/vocabulary", async (c) => {
+    try {
+      const session = await readSession(c.req.raw, c.env);
+      if (!session?.user?.id) {
+        return c.json(errorEnvelope("UNAUTHORIZED", "Đăng nhập để tiếp tục."), 401);
+      }
+      if ([...new URL(c.req.url).searchParams.keys()].length > 0) {
+        return c.json(errorEnvelope("INVALID_REQUEST", "Dữ liệu gửi lên không hợp lệ."), 400);
+      }
+      const topicId = parsePositiveInteger(c.req.param("topicId"));
+      if (topicId === null) {
+        return c.json(errorEnvelope("INVALID_REQUEST", "Dữ liệu gửi lên không hợp lệ."), 400);
+      }
+      const service = dependencies.topicService ?? await runTopicService(c.env);
+      return c.json({ vocabulary: await service.listVocabulary(session.user.id, topicId) }, 200);
+    } catch (error) {
+      if (error instanceof TopicServiceError) {
+        const message = error.code === "HOUSEHOLD_ACCESS_DENIED"
+          ? "Bạn không có quyền truy cập household này."
+          : error.code === "TOPIC_NOT_FOUND"
+            ? "Topic không khả dụng."
+            : "Không thể tải vocabulary theo topic lúc này. Vui lòng thử lại.";
+        return c.json(errorEnvelope(error.code, message), error.status);
+      }
+      return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể tải vocabulary theo topic lúc này. Vui lòng thử lại."), 503);
+    }
+  });
+
   application.get("/api/learners/:learnerId/progress-summary", async (c) => {
     try {
       const session = await readSession(c.req.raw, c.env);
@@ -275,8 +357,15 @@ export function createApp(dependencies: AppDependencies = {}) {
       if (!session?.user?.id) {
         return c.json(errorEnvelope("UNAUTHORIZED", "Đăng nhập để tiếp tục."), 401);
       }
+      const level = parseVocabularyLevelQuery(c.req.raw);
+      if (level === null) {
+        return c.json(errorEnvelope("INVALID_REQUEST", "Dữ liệu gửi lên không hợp lệ."), 400);
+      }
       const service = dependencies.learnerVocabularyService ?? await runLearnerVocabularyService(c.env);
-      return c.json({ vocabulary: await service.list(session.user.id, c.req.param("learnerId")) }, 200);
+      const vocabulary = level === undefined
+        ? await service.list(session.user.id, c.req.param("learnerId"))
+        : await service.list(session.user.id, c.req.param("learnerId"), level);
+      return c.json({ vocabulary }, 200);
     } catch (error) {
       if (error instanceof LearnerVocabularyServiceError) {
         const message = error.code === "HOUSEHOLD_ACCESS_DENIED"

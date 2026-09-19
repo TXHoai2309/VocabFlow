@@ -1,12 +1,12 @@
 # Current Handoff Snapshot
 
 - Project: VocabFlow Family MVP
-- Current phase/batch: Family MVP US-01..US-24 complete; Phase 2 / US-25 accepted
+- Current phase/batch: Family MVP US-01..US-25 complete; Phase 2 / US-26 + US-27 ready for owner check
 - Current Git branch: `TXH`
-- Current implementation baseline: `60b384dd1f53ca5a5472402292a450190446ba9e`
+- Current implementation baseline: `16317d2c91696d9c357eb0f45ac1ce8ad04da3e` plus uncommitted US-26/US-27 implementation
 - US-24: `ACCEPTED / CLOSED`.
-- US-25: `ACCEPTED / CLOSED` after recovery Core CI and Trusted DB passed; do
-  not start US-26.
+- US-25: `ACCEPTED / CLOSED` after recovery Core CI and Trusted DB passed.
+- US-26 + US-27: `IMPLEMENTED / READY FOR OWNER CHECK`; US-28 remains unopened.
 - US-22: `IMPLEMENTED / AUTOMATED PASS — MANUAL OWNER CHECK DEFERRED`.
 - Catalog state after real import: 30 starter rows + 1,994 imported rows =
   2,024 total vocabulary rows.
@@ -25,12 +25,30 @@
   `35434440380` and Trusted DB run `35434440386` both passed.
 - Protected: never modify, stage, restore, reset, clean, or commit
   `docs/decisions.md`. Preserve `.env.example` and `local-data.zip` changes.
-- Next safe action: preserve the accepted baseline; no US-26 work is opened by
-  this recovery task. US-22's manual owner check remains deferred.
+- Next safe action: run final local/CI/Trusted DB gates and request owner check
+  for US-26 + US-27. US-22's manual owner check remains deferred.
 - Documents new agents must read first: `docs/README.md`,
   `docs/product/product-spec.md`, `docs/architecture/technical-architecture.md`,
   `docs/design/design-system.md`, `docs/design/feature-ui-spec.md`,
   `docs/flow/user-flow.md`, `docs/roadmap.md`, the relevant story, and this file.
+
+## 2026-09-19 — US-26 + US-27 implementation checkpoint
+
+- Gap audit found no existing canonical level model/filter or topic catalog,
+  normalized mapping, API or browse UI.
+- Added nullable `vocabulary_level` with six explicit values. The source
+  dataset has no grade metadata, so all 2,024 catalog rows remain NULL and no
+  inference or bulk assignment was performed.
+- Added 17 source-backed canonical topics and normalized
+  `vocabulary_topics` mappings. The migration maps 1,994 imported rows by
+  exact source topic; 30 starter rows remain unmapped because their source
+  topic is NULL. Imported rows remain disabled.
+- Added optional level filters, topic APIs, topic browse UI, migration/schema
+  assertions, focused API/UI tests and E2E coverage. Scheduler, progress and
+  review-event paths were not changed semantically.
+- Local status: IMPLEMENTED / READY FOR OWNER CHECK. Final lint, typecheck,
+  full tests, build, E2E, diff and Trusted DB gates are still being run.
+- `docs/decisions.md`, `.env.example` and `local-data.zip` remain protected.
 
 ## 2026-09-19 — Repository recovery checkpoint
 

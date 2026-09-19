@@ -23,6 +23,7 @@ function vocabularyRow(id: number, status: string | null = null, nextReviewDate:
     image_url: null,
     audio_url: null,
     topic: null,
+    level: null,
     enabled: true,
     content_version: 1,
     progress_status: status,
@@ -52,6 +53,7 @@ describe("US-22 learner vocabulary API boundary", () => {
       imageUrl: null,
       audioUrl: null,
       topic: null,
+      level: null,
       enabled: true,
       contentVersion: 1,
       status: "NEW",
@@ -88,6 +90,14 @@ describe("US-22 learner vocabulary API boundary", () => {
     expect(failedResponse.status).toBe(503);
     expect(body).toContain('"code":"INTERNAL_ERROR"');
     expect(body).not.toContain("database secret");
+  });
+
+  it("rejects an invalid level before reading learner vocabulary", async () => {
+    const service = { list: vi.fn(async () => []) };
+    const app = createApp({ readSession: async () => ({ user: { id: "parent-1" } }), learnerVocabularyService: service });
+    const response = await app.request("http://localhost/api/learners/" + learnerId + "/vocabulary?level=unknown");
+    expect(response.status).toBe(400);
+    expect(service.list).not.toHaveBeenCalled();
   });
 });
 
@@ -134,6 +144,20 @@ describe("US-22 learner vocabulary service", () => {
 
     await expect(service.list("parent-1", learnerId)).resolves.toMatchObject([{ id: 1, status: "LEARNING" }]);
     await expect(service.list("parent-1", otherLearnerId)).resolves.toMatchObject([{ id: 1, status: "NEW" }]);
+  });
+
+  it("filters by level after learner authorization", async () => {
+    const queries: Array<{ sql: string; params: unknown[] }> = [];
+    const execute = vi.fn()
+      .mockResolvedValueOnce(authorizedRows())
+      .mockImplementationOnce(async (query) => {
+        queries.push(new PgDialect().sqlToQuery(query));
+        return { rows: [vocabularyRow(1)] };
+      });
+    await expect(createLearnerVocabularyService({ execute }).list("parent-1", learnerId, "GENERAL"))
+      .resolves.toMatchObject([{ id: 1, status: "NEW", level: null }]);
+    expect(queries[0]?.sql).toContain("v.level = $2");
+    expect(queries[0]?.params).toEqual([learnerId, "GENERAL"]);
   });
 
   it("returns an empty enabled vocabulary list without inventing rows", async () => {

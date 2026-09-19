@@ -1,6 +1,7 @@
 import {
   learnerVocabularyListResponseSchema,
-  type LearnerVocabularyDto
+  type LearnerVocabularyDto,
+  type VocabularyLevel
 } from "@vocabflow/contracts";
 
 export class LearnerVocabularyClientError extends Error {
@@ -26,10 +27,11 @@ async function readError(response: Response): Promise<LearnerVocabularyClientErr
   return new LearnerVocabularyClientError(code, response.status);
 }
 
-export async function requestLearnerVocabulary(learnerId: string): Promise<LearnerVocabularyDto[]> {
+export async function requestLearnerVocabulary(learnerId: string, level?: VocabularyLevel): Promise<LearnerVocabularyDto[]> {
+  const query = level ? `?level=${encodeURIComponent(level)}` : "";
   let response: Response;
   try {
-    response = await fetch(`/api/learners/${encodeURIComponent(learnerId)}/vocabulary`, {
+    response = await fetch(`/api/learners/${encodeURIComponent(learnerId)}/vocabulary${query}`, {
       credentials: "include"
     });
   } catch {

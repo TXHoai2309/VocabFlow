@@ -1,8 +1,8 @@
 # VocabFlow Roadmap and Batch Index
 
 This roadmap promotes only work supported by the current product documents and
-the accepted/backfilled user-story evidence. US-26 and later work are not
-opened by this recovery task.
+the accepted/backfilled user-story evidence. US-26 and US-27 are implemented
+and awaiting owner check; US-28 and later work remain unopened.
 
 ## BATCH 0 — Foundation
 
@@ -254,6 +254,21 @@ The owner-verified Hoài/Ngọc metric snapshots are recorded in US-20 and US-21
 - Closeout evidence: Core CI run `35434440380` PASS and Trusted DB Integration
   run `35434440386` PASS on the recovery commit. This roadmap does not open
   US-26.
+
+### US-26 + US-27 — Vocabulary Taxonomy
+
+- Status: `IMPLEMENTED / READY FOR OWNER CHECK`.
+- Contracts: [`US-26 Vocabulary Grade Level`](stories/US-26-vocabulary-grade-level.md)
+  and [`US-27 Vocabulary Topics`](stories/US-27-vocabulary-topics.md).
+- US-26 adds a nullable, source-honest level enum and optional API/UI filters;
+  no current row is auto-classified because the source dataset has no grade
+  metadata.
+- US-27 adds 17 source-backed canonical topics, normalized vocabulary-topic
+  mappings, authenticated browse APIs and a topic browse UI.
+- Imported rows remain disabled; starter IDs, source identities, progress and
+  review history are preserved. Scheduler and review behavior are unchanged.
+- Local implementation evidence is ready for owner check. This roadmap does
+  not open US-28.
 
 ## Later product scope
 

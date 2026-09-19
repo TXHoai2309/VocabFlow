@@ -58,6 +58,7 @@ test("US-09 enters the queue-backed study session and flips the first card", asy
             imageUrl: null,
             audioUrl: null,
             topic: null,
+            level: null,
             enabled: true,
             contentVersion: 1
           },
@@ -136,6 +137,7 @@ test("US-09 persists a confirmed evaluation and shows the session summary", asyn
             imageUrl: null,
             audioUrl: null,
             topic: "study",
+            level: null,
             enabled: true,
             contentVersion: 1
           },

@@ -123,4 +123,7 @@ feature code may start.
   are `ACCEPTED / CLOSED`.
 - US-25 Full Vocabulary Catalog is `ACCEPTED / CLOSED`; real migration/import,
   idempotency, Core CI and Trusted DB evidence are recorded in its story.
+- US-26 Vocabulary Grade Level and US-27 Vocabulary Topics are
+  `IMPLEMENTED / READY FOR OWNER CHECK`; source-honest nullable levels,
+  canonical topics, APIs and browse UI are recorded in their stories.
 - Documentation/agent-pack work does not implement US-01 or any other feature.

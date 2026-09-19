@@ -138,6 +138,7 @@ export type ErrorCode =
   | "INVALID_REQUEST"
   | "VALIDATION_ERROR"
   | "NOT_FOUND"
+  | "TOPIC_NOT_FOUND"
   | "VOCABULARY_NOT_FOUND"
   | "IDEMPOTENCY_CONFLICT"
   | "STALE_REVISION"
@@ -180,6 +181,16 @@ export const learnerListResponseSchema = z.object({
 });
 export type LearnerListResponse = z.infer<typeof learnerListResponseSchema>;
 
+export const vocabularyLevelSchema = z.enum([
+  "GRADE_1",
+  "GRADE_2",
+  "GRADE_3",
+  "GRADE_4",
+  "GRADE_5",
+  "GENERAL"
+]);
+export type VocabularyLevel = z.infer<typeof vocabularyLevelSchema>;
+
 export const vocabularyDtoSchema = z.object({
   id: z.number().int(),
   word: z.string().min(1),
@@ -190,6 +201,7 @@ export const vocabularyDtoSchema = z.object({
   imageUrl: z.string().nullable(),
   audioUrl: z.string().nullable(),
   topic: z.string().nullable(),
+  level: vocabularyLevelSchema.nullable(),
   enabled: z.boolean(),
   contentVersion: z.number().int().min(1)
 });
@@ -199,6 +211,21 @@ export const vocabularyListResponseSchema = z.object({
   vocabulary: z.array(vocabularyDtoSchema)
 });
 export type VocabularyListResponse = z.infer<typeof vocabularyListResponseSchema>;
+
+export const topicDtoSchema = z.object({
+  id: z.number().int().positive(),
+  slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
+  name: z.string().min(1),
+  description: z.string().min(1),
+  sortOrder: z.number().int().nonnegative(),
+  enabled: z.boolean()
+}).strict();
+export type TopicDto = z.infer<typeof topicDtoSchema>;
+
+export const topicListResponseSchema = z.object({
+  topics: z.array(topicDtoSchema)
+}).strict();
+export type TopicListResponse = z.infer<typeof topicListResponseSchema>;
 
 export const learnerVocabularyStatusSchema = z.enum(["NEW", "LEARNING", "MASTERED"]);
 export type LearnerVocabularyStatus = z.infer<typeof learnerVocabularyStatusSchema>;
@@ -295,7 +322,8 @@ export const vocabularySeedRecordSchema = z.object({
   exampleEn: z.string().nullable().optional(),
   imageUrl: z.string().nullable().optional(),
   audioUrl: z.string().nullable().optional(),
-  topic: z.string().nullable().optional()
+  topic: z.string().nullable().optional(),
+  level: vocabularyLevelSchema.nullable().optional()
 }).strict();
 export type VocabularySeedRecord = z.infer<typeof vocabularySeedRecordSchema>;
 

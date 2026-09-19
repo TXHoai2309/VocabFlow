@@ -2,6 +2,21 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-19 — US-26 + US-27 vocabulary taxonomy implementation
+
+- Implemented a nullable canonical vocabulary level model with optional API
+  filters and a Vocabulary List level selector. No grade was inferred because
+  the imported source contains no grade metadata; all current rows remain
+  unclassified.
+- Added 17 source-backed canonical topics and normalized
+  `vocabulary_topics` many-to-many membership, plus authenticated topic APIs
+  and a responsive topic browse screen.
+- Preserved starter IDs, imported source identities, disabled imported rows,
+  learner progress and review events. Study queue and scheduler behavior are
+  unchanged.
+- Added migration safety assertions, focused API/UI tests and Playwright E2E
+  coverage. Status: `IMPLEMENTED / READY FOR OWNER CHECK`.
+
 ## 2026-09-19 — Repository recovery: US-12 through US-25 backfill and Core CI closeout
 
 - Backfilled retrospective story contracts for US-12 Audio Pronunciation,
@@ -23,8 +38,8 @@ This log records meaningful project milestones and accepted baselines.
 - Recovery commit `60b384dd1f53ca5a5472402292a450190446ba9e` passed Core CI run
   `35434440380` and Trusted DB Integration run `35434440386`; US-25 is now
   `ACCEPTED / CLOSED`.
-- This recovery does not start US-26. `docs/decisions.md` remains protected and
-  is intentionally not changed.
+- At that recovery checkpoint US-26 had not started. `docs/decisions.md`
+  remains protected and is intentionally not changed.
 
 ## 2026-09-16 — Starter vocabulary enrichment tooling
 

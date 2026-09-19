@@ -2,7 +2,7 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
-import type { LearnerDto, LearnerVocabularyDto } from "@vocabflow/contracts";
+import type { LearnerDto, LearnerVocabularyDto, VocabularyLevel } from "@vocabflow/contracts";
 import { ActiveLearnerProvider } from "./learner-context-provider";
 import { useActiveLearner } from "./learner-context-hook";
 import { VocabularyListPage } from "./vocabulary-list-page";
@@ -20,7 +20,7 @@ const learner = (id: string, displayName: string): LearnerDto => ({
 const learnerA = learner("00000000-0000-4000-8000-000000000010", "An");
 const learnerB = learner("00000000-0000-4000-8000-000000000011", "Bình");
 
-function item(id: number, word: string, status: LearnerVocabularyDto["status"]): LearnerVocabularyDto {
+function item(id: number, word: string, status: LearnerVocabularyDto["status"], level: VocabularyLevel | null = null): LearnerVocabularyDto {
   return {
     id,
     word,
@@ -31,6 +31,7 @@ function item(id: number, word: string, status: LearnerVocabularyDto["status"]):
     imageUrl: null,
     audioUrl: null,
     topic: null,
+    level,
     enabled: true,
     contentVersion: 1,
     status,
@@ -131,6 +132,19 @@ describe("US-22 vocabulary list UI", () => {
     await waitFor(() => expect(screen.getByTestId("vocabulary-row-1")).toHaveTextContent("New"));
     expect(fetchMock).toHaveBeenNthCalledWith(1, "/api/learners/" + learnerA.id + "/vocabulary", { credentials: "include" });
     expect(fetchMock).toHaveBeenNthCalledWith(2, "/api/learners/" + learnerB.id + "/vocabulary", { credentials: "include" });
+  });
+
+  it("filters the current learner list by level and returns to the unfiltered view", async () => {
+    const fetchMock = vi.spyOn(globalThis, "fetch")
+      .mockResolvedValueOnce(response([item(1, "apple", "NEW", "GRADE_1"), item(2, "book", "NEW", "GENERAL")]))
+      .mockResolvedValueOnce(response([item(1, "apple", "NEW", "GRADE_1")]));
+    renderList();
+
+    expect(await screen.findByTestId("vocabulary-row-2")).toBeInTheDocument();
+    fireEvent.change(screen.getByTestId("vocabulary-level-filter"), { target: { value: "GRADE_1" } });
+    await waitFor(() => expect(screen.queryByTestId("vocabulary-row-2")).not.toBeInTheDocument());
+    expect(fetchMock).toHaveBeenNthCalledWith(2, "/api/learners/" + learnerA.id + "/vocabulary?level=GRADE_1", { credentials: "include" });
+    expect(screen.getByTestId("vocabulary-row-1")).toBeInTheDocument();
   });
 
   it("redirects to learner home when no active learner exists", async () => {

@@ -2,6 +2,7 @@ import { sql, type SQL } from "drizzle-orm";
 import {
   APP_SCHEMA,
   vocabularyDtoSchema,
+  type VocabularyLevel,
   type VocabularyDto
 } from "@vocabflow/contracts";
 import { LearnerServiceError, resolveHouseholdId } from "./learners";
@@ -44,6 +45,7 @@ type VocabularyRow = {
   image_url: string | null;
   audio_url: string | null;
   topic: string | null;
+  level: string | null;
   enabled: boolean;
   content_version: number | string;
 };
@@ -65,6 +67,7 @@ function toVocabularyDto(row: VocabularyRow): VocabularyDto {
     imageUrl: nullableText(row.image_url),
     audioUrl: nullableText(row.audio_url),
     topic: nullableText(row.topic),
+    level: row.level == null ? null : String(row.level),
     enabled: row.enabled === true,
     contentVersion
   };
@@ -74,12 +77,12 @@ function toVocabularyDto(row: VocabularyRow): VocabularyDto {
 }
 
 export type VocabularyService = {
-  list: (userId: string) => Promise<VocabularyDto[]>;
+  list: (userId: string, level?: VocabularyLevel) => Promise<VocabularyDto[]>;
 };
 
 export function createVocabularyService(database: VocabularyDatabase): VocabularyService {
   return {
-    async list(userId) {
+    async list(userId, level) {
       try {
         // Household membership is an authorization gate only. The vocabulary
         // query below intentionally has no household_id or learner_id scope.
@@ -95,8 +98,10 @@ export function createVocabularyService(database: VocabularyDatabase): Vocabular
         const result = await database.execute(sql`
           SELECT id, word, ipa, vietnamese, definition_en, example_en,
                  image_url, audio_url, topic, enabled, content_version
+                 , level
           FROM "${sql.raw(APP_SCHEMA)}"."vocabularies"
           WHERE enabled = true
+            ${level ? sql`AND level = ${level}` : sql``}
           ORDER BY id ASC
         `);
         return rowsOf<VocabularyRow>(result).map(toVocabularyDto);

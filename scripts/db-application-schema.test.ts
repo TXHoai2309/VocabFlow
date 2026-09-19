@@ -11,9 +11,11 @@ import {
   learnerProgress,
   reviewEvents,
   session,
+  topics,
   user,
   verification,
-  vocabularies
+  vocabularies,
+  vocabularyTopics
 } from "../apps/api/src/db/schema";
 import { DATABASE_RESET_POLICY } from "../config/database-reset-policy";
 import { assertApplicationTablesAbsent, assertApplicationTablesPresent } from "./db-core";
@@ -37,9 +39,11 @@ describe("dedicated application schema", () => {
     expect(MIGRATION_SCHEMA).toBe("drizzle");
     expect(DATABASE_RESET_POLICY.applicationSchemas).toEqual([APP_SCHEMA]);
     expect(DATABASE_RESET_POLICY.applicationTables).toEqual([
+      `${APP_SCHEMA}.vocabulary_topics`,
       `${APP_SCHEMA}.review_events`,
       `${APP_SCHEMA}.learner_progress`,
       `${APP_SCHEMA}.vocabularies`,
+      `${APP_SCHEMA}.topics`,
       `${APP_SCHEMA}.learner_profiles`,
       `${APP_SCHEMA}.household_members`,
       `${APP_SCHEMA}.households`,
@@ -49,6 +53,7 @@ describe("dedicated application schema", () => {
       `${APP_SCHEMA}.user`
     ]);
     expect(DATABASE_RESET_POLICY.applicationEnumTypes).toEqual([
+      `${APP_SCHEMA}.vocabulary_level`,
       `${APP_SCHEMA}.review_result`,
       `${APP_SCHEMA}.learning_status`,
       `${APP_SCHEMA}.household_role`
@@ -58,7 +63,7 @@ describe("dedicated application schema", () => {
   });
 
   it("binds every runtime Drizzle table to the dedicated application schema", () => {
-    for (const table of [account, session, user, verification, households, householdMembers, learnerProfiles, vocabularies, learnerProgress, reviewEvents]) {
+    for (const table of [account, session, user, verification, households, householdMembers, learnerProfiles, vocabularies, topics, vocabularyTopics, learnerProgress, reviewEvents]) {
       expect(getTableConfig(table).schema).toBe(APP_SCHEMA);
     }
   });
@@ -71,7 +76,7 @@ describe("dedicated application schema", () => {
     expect(absentQueries[0]?.values[0]).toBe(APP_SCHEMA);
 
     const presentQueries: CapturedQuery[] = [];
-    await expect(assertApplicationTablesPresent(applicationAssertionSql("10", presentQueries))).resolves.toBeUndefined();
+    await expect(assertApplicationTablesPresent(applicationAssertionSql("12", presentQueries))).resolves.toBeUndefined();
     expect(presentQueries[0]?.values[0]).toBe(APP_SCHEMA);
     await expect(assertApplicationTablesPresent(applicationAssertionSql("3", []))).rejects.toThrow("APPLICATION_SCHEMA_INCOMPLETE");
   });
@@ -99,7 +104,7 @@ describe("dedicated application schema", () => {
     await resetApplicationScope(sql);
 
     expect(statements[0]).toContain("pg_advisory_xact_lock");
-    expect(statements.filter((statement) => statement.includes("DROP TABLE IF EXISTS"))).toHaveLength(10);
+    expect(statements.filter((statement) => statement.includes("DROP TABLE IF EXISTS"))).toHaveLength(12);
     const lastTableDrop = Math.max(...statements.map((statement, index) => statement.includes("DROP TABLE IF EXISTS") ? index : -1));
     const enumDrop = statements.findIndex((statement) => statement.includes("DROP TYPE IF EXISTS"));
     const migrationReset = statements.findIndex((statement) => statement.includes("TRUNCATE TABLE"));
@@ -108,9 +113,11 @@ describe("dedicated application schema", () => {
     expect(statements.some((statement) => statement.includes("DROP SCHEMA"))).toBe(false);
     expect(statements.some((statement) => /DROP ROLE|GRANT|REVOKE/i.test(statement))).toBe(false);
     expect(unsafeFragments).toEqual([
+      `"${APP_SCHEMA}"."vocabulary_topics"`,
       `"${APP_SCHEMA}"."review_events"`,
       `"${APP_SCHEMA}"."learner_progress"`,
       `"${APP_SCHEMA}"."vocabularies"`,
+      `"${APP_SCHEMA}"."topics"`,
       `"${APP_SCHEMA}"."learner_profiles"`,
       `"${APP_SCHEMA}"."household_members"`,
       `"${APP_SCHEMA}"."households"`,
@@ -118,6 +125,7 @@ describe("dedicated application schema", () => {
       `"${APP_SCHEMA}"."session"`,
       `"${APP_SCHEMA}"."verification"`,
       `"${APP_SCHEMA}"."user"`,
+      `"${APP_SCHEMA}"."vocabulary_level"`,
       `"${APP_SCHEMA}"."review_result"`,
       `"${APP_SCHEMA}"."learning_status"`,
       `"${APP_SCHEMA}"."household_role"`,
@@ -134,6 +142,7 @@ describe("dedicated application schema", () => {
     const vocabularyMigration = readFileSync(join(process.cwd(), "drizzle", "migrations", "0003_lazy_lady_deathstrike.sql"), "utf8");
     const reviewMigration = readFileSync(join(process.cwd(), "drizzle", "migrations", "0004_scheduled_review_write.sql"), "utf8");
     const catalogMigration = readFileSync(join(process.cwd(), "drizzle", "migrations", "0005_graceful_eddie_brock.sql"), "utf8");
+    const taxonomyMigration = readFileSync(join(process.cwd(), "drizzle", "migrations", "0006_sticky_risque.sql"), "utf8");
     const journal = JSON.parse(readFileSync(join(process.cwd(), "drizzle", "migrations", "meta", "_journal.json"), "utf8")) as { entries: Array<{ idx: number; tag: string }> };
     const snapshot = JSON.parse(readFileSync(join(process.cwd(), "drizzle", "migrations", "meta", "0000_snapshot.json"), "utf8")) as {
       schemas: Record<string, string>;
@@ -144,6 +153,10 @@ describe("dedicated application schema", () => {
         columns: Record<string, { type: string }>;
         compositePrimaryKeys: Record<string, unknown>;
       }>;
+    };
+    const taxonomySnapshot = JSON.parse(readFileSync(join(process.cwd(), "drizzle", "migrations", "meta", "0006_snapshot.json"), "utf8")) as {
+      tables: Record<string, { columns: Record<string, { type: string; notNull?: boolean }>; compositePrimaryKeys: Record<string, unknown> }>;
+      enums: Record<string, { values: string[] }>;
     };
     const dbCore = readFileSync(join(process.cwd(), "scripts", "db-core.ts"), "utf8");
 
@@ -187,16 +200,28 @@ describe("dedicated application schema", () => {
     expect(catalogMigration).toContain(`ADD COLUMN "source_record_id" integer`);
     expect(catalogMigration).toContain(`UNIQUE("source_dataset","source_record_id")`);
     expect(catalogMigration).not.toMatch(/DROP TABLE|TRUNCATE|DELETE FROM/i);
+    expect(taxonomyMigration).toContain(`CREATE TYPE "${APP_SCHEMA}"."vocabulary_level" AS ENUM('GRADE_1', 'GRADE_2', 'GRADE_3', 'GRADE_4', 'GRADE_5', 'GENERAL')`);
+    expect(taxonomyMigration).toContain(`ALTER TABLE "${APP_SCHEMA}"."vocabularies" ADD COLUMN "level" "${APP_SCHEMA}"."vocabulary_level"`);
+    expect(taxonomyMigration).toContain(`CREATE TABLE "${APP_SCHEMA}"."topics"`);
+    expect(taxonomyMigration).toContain(`CREATE TABLE "${APP_SCHEMA}"."vocabulary_topics"`);
+    expect(taxonomyMigration).toContain(`CONSTRAINT "vocabulary_topics_vocabulary_topic_pk" PRIMARY KEY("vocabulary_id","topic_id")`);
+    expect(taxonomyMigration).toContain(`INSERT INTO "${APP_SCHEMA}"."topics"`);
+    expect(taxonomyMigration).toContain(`INSERT INTO "${APP_SCHEMA}"."vocabulary_topics"`);
+    expect(taxonomyMigration).toContain("ON CONFLICT");
+    expect(taxonomyMigration).not.toMatch(/DROP TABLE|TRUNCATE|DELETE FROM/i);
     const catalogSnapshot = JSON.parse(readFileSync(join(process.cwd(), "drizzle", "migrations", "meta", "0005_snapshot.json"), "utf8")) as {
       tables: Record<string, { columns: Record<string, { identity?: { type: string } }>; uniqueConstraints: Record<string, { columns: string[] }> }>;
     };
     const vocabularyTable = catalogSnapshot.tables[`${APP_SCHEMA}.vocabularies`];
     expect(vocabularyTable?.columns.id?.identity?.type).toBe("byDefault");
     expect(vocabularyTable?.uniqueConstraints.vocabularies_source_identity_unique.columns).toEqual(["source_dataset", "source_record_id"]);
+    expect(taxonomySnapshot.enums[`${APP_SCHEMA}.vocabulary_level`]?.values).toEqual(["GRADE_1", "GRADE_2", "GRADE_3", "GRADE_4", "GRADE_5", "GENERAL"]);
+    expect(taxonomySnapshot.tables[`${APP_SCHEMA}.vocabularies`]?.columns.level).toMatchObject({ type: "vocabulary_level", notNull: false });
+    expect(taxonomySnapshot.tables[`${APP_SCHEMA}.vocabulary_topics`]?.compositePrimaryKeys.vocabulary_topics_vocabulary_topic_pk).toBeDefined();
     expect(reviewSnapshot.tables[`${APP_SCHEMA}.learner_progress`]?.columns.consecutive_correct.type).toBe("bigint");
     expect(reviewSnapshot.tables[`${APP_SCHEMA}.review_events`]?.columns.expected_revision.type).toBe("bigint");
     expect(reviewSnapshot.tables[`${APP_SCHEMA}.review_events`]?.compositePrimaryKeys.review_events_household_review_pk).toBeDefined();
-    expect(journal.entries.map((entry) => entry.tag)).toEqual(["0000_application-schema", "0001_curious_miss_america", "0002_smiling_wrecking_crew", "0003_lazy_lady_deathstrike", "0004_scheduled_review_write", "0005_graceful_eddie_brock"]);
+    expect(journal.entries.map((entry) => entry.tag)).toEqual(["0000_application-schema", "0001_curious_miss_america", "0002_smiling_wrecking_crew", "0003_lazy_lady_deathstrike", "0004_scheduled_review_write", "0005_graceful_eddie_brock", "0006_sticky_risque"]);
     expect(dbCore).toContain("await executeApplicationMigrations(sql)");
   });
 

@@ -27,6 +27,7 @@ function vocabulary(id: number, word: string, vietnamese: string): VocabularyDto
     imageUrl: null,
     audioUrl: null,
     topic: null,
+    level: null,
     enabled: true,
     contentVersion: 1
   };

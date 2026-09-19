@@ -38,6 +38,7 @@ type QueueRow = {
   image_url: string | null;
   audio_url: string | null;
   topic: string | null;
+  level: string | null;
   enabled: boolean;
   content_version: number | string;
   status: string;
@@ -79,6 +80,7 @@ function vocabularyFromRow(row: QueueRow): VocabularyDto {
     imageUrl: row.image_url,
     audioUrl: row.audio_url,
     topic: row.topic,
+    level: row.level == null ? null : String(row.level),
     enabled: row.enabled,
     contentVersion: Number(row.content_version)
   };
@@ -125,6 +127,7 @@ async function dueRows(database: ReviewQueueDatabase, learnerId: string, reviewD
            v.image_url,
            v.audio_url,
            v.topic,
+           v.level,
            v.enabled,
            v.content_version,
            lp.status::text AS status,
@@ -153,6 +156,7 @@ async function newRows(database: ReviewQueueDatabase, learnerId: string) {
            v.image_url,
            v.audio_url,
            v.topic,
+           v.level,
            v.enabled,
            v.content_version,
            'NEW'::text AS status,

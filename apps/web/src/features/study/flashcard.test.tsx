@@ -14,6 +14,7 @@ const vocabulary: VocabularyDto = {
   imageUrl: "/images/power.jpg",
   audioUrl: "/audio/power.mp3",
   topic: "people",
+  level: null,
   enabled: true,
   contentVersion: 1
 };

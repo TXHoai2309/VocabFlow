@@ -38,6 +38,7 @@ describe("trusted DB acceptance diagnostics", () => {
       "verify-second-migration",
       "verify-concurrent-identity",
       "verify-permission-matrix",
+      "verify-us26-us27-taxonomy",
     ].map(stagePosition);
     expect(commonTail).toEqual([...commonTail].sort((left, right) => left - right));
   });
@@ -120,6 +121,7 @@ describe("trusted DB suite selection", () => {
     expect(runner).toContain('if (suite === "full")');
     expect(runner).toContain('await runUs07TrustedDbSuite');
     expect(runner).toContain('await runUs08TrustedDbSuite');
+    expect(runner).toContain('await runUs26Us27TrustedDbSuite');
     expect(runner).toContain('markStage("verify-us08-review-queue")');
   });
 });

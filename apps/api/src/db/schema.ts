@@ -20,6 +20,14 @@ export const vocabflowApp = pgSchema(APP_SCHEMA);
 export const householdRole = vocabflowApp.enum("household_role", ["OWNER", "PARENT"]);
 export const learningStatus = vocabflowApp.enum("learning_status", ["NEW", "LEARNING", "MASTERED"]);
 export const reviewResult = vocabflowApp.enum("review_result", ["REMEMBERED", "FORGOTTEN"]);
+export const vocabularyLevel = vocabflowApp.enum("vocabulary_level", [
+  "GRADE_1",
+  "GRADE_2",
+  "GRADE_3",
+  "GRADE_4",
+  "GRADE_5",
+  "GENERAL"
+]);
 
 // Better Auth owns these tables. BATCH 0 does not introduce competing auth tables.
 export const user = vocabflowApp.table("user", {
@@ -122,6 +130,7 @@ export const vocabularies = vocabflowApp.table("vocabularies", {
   imageUrl: text("image_url"),
   audioUrl: text("audio_url"),
   topic: text("topic"),
+  level: vocabularyLevel("level"),
   enabled: boolean("enabled").notNull().default(false),
   contentVersion: integer("content_version").notNull().default(1),
   sourceDataset: text("source_dataset"),
@@ -131,6 +140,33 @@ export const vocabularies = vocabflowApp.table("vocabularies", {
 }, (table) => [
   check("vocabularies_content_version_check", sql`${table.contentVersion} >= 1`),
   unique("vocabularies_source_identity_unique").on(table.sourceDataset, table.sourceRecordId)
+]);
+
+export const topics = vocabflowApp.table("topics", {
+  id: integer("id").primaryKey().generatedByDefaultAsIdentity(),
+  slug: text("slug").notNull().unique(),
+  name: text("name").notNull(),
+  description: text("description").notNull(),
+  sortOrder: integer("sort_order").notNull(),
+  enabled: boolean("enabled").notNull().default(true),
+  sourceTopic: text("source_topic").unique(),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow()
+}, (table) => [
+  check("topics_sort_order_check", sql`${table.sortOrder} >= 0`),
+  index("topics_enabled_sort_order_id_idx").on(table.enabled, table.sortOrder, table.id)
+]);
+
+export const vocabularyTopics = vocabflowApp.table("vocabulary_topics", {
+  vocabularyId: integer("vocabulary_id")
+    .notNull()
+    .references(() => vocabularies.id, { onDelete: "cascade" }),
+  topicId: integer("topic_id")
+    .notNull()
+    .references(() => topics.id, { onDelete: "cascade" })
+}, (table) => [
+  primaryKey({ columns: [table.vocabularyId, table.topicId], name: "vocabulary_topics_vocabulary_topic_pk" }),
+  index("vocabulary_topics_topic_vocabulary_idx").on(table.topicId, table.vocabularyId)
 ]);
 
 export const learnerProgress = vocabflowApp.table("learner_progress", {
@@ -199,6 +235,8 @@ export const applicationSchema = {
   householdMembers,
   learnerProfiles,
   vocabularies,
+  topics,
+  vocabularyTopics,
   learnerProgress,
   reviewEvents
 };

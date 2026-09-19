@@ -18,6 +18,7 @@ function vocabularyRow(id: number, word = `word-${id}`) {
     image_url: null,
     audio_url: null,
     topic: null,
+    level: null,
     enabled: true,
     content_version: 1
   };
@@ -75,6 +76,7 @@ describe("US-08 review queue API boundary", () => {
           imageUrl: null,
           audioUrl: null,
           topic: null,
+          level: null,
           enabled: true,
           contentVersion: 1
         },

@@ -15,6 +15,7 @@ import { assertIdentitySnapshot, getIdentitySnapshot, resetApplicationScope } fr
 import { provisionCanonicalIdentity } from "./db-identity-provision";
 import { runUs07TrustedDbSuite } from "./test-reviews-db";
 import { runUs08TrustedDbSuite } from "./test-review-queue-db";
+import { runUs26Us27TrustedDbSuite } from "./test-vocabulary-taxonomy-db";
 
 const ROLLBACK_MARKER = "__VOCABFLOW_PERMISSION_ROLLBACK__";
 
@@ -33,7 +34,8 @@ type TrustedDbStage =
   | "verify-concurrent-identity"
   | "verify-permission-matrix"
   | "verify-us08-review-queue"
-  | "verify-us07-review-runtime";
+  | "verify-us07-review-runtime"
+  | "verify-us26-us27-taxonomy";
 
 type TrustedDbSubstage =
   | "target-migration"
@@ -274,6 +276,8 @@ async function main() {
     markStage("verify-us08-review-queue");
     await runUs08TrustedDbSuite({ migrationUrl, runtimeUrl, migrationTarget, runtimeTarget });
   }
+  markStage("verify-us26-us27-taxonomy");
+  await runUs26Us27TrustedDbSuite({ migrationUrl, runtimeUrl, migrationTarget, runtimeTarget });
   console.log("TRUSTED_DB_STATUS=PASS");
 }
 

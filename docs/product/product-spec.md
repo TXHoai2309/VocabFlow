@@ -229,6 +229,15 @@ NEW là virtual state trước lần scheduled evaluation đầu tiên. Absence 
 | MVP enabled set | 200–300 từ | Dùng sau khi core loop ổn định. |
 | First vertical slice | 20–30 từ | Build/test end-to-end trước khi bật enabled set. |
 
+### 15.1 Vocabulary taxonomy extension (US-26 / US-27)
+
+Vocabulary may carry an optional canonical grade level (`GRADE_1`–`GRADE_5`
+or `GENERAL`) and may belong to multiple canonical topics. Parents can filter
+the read-only vocabulary catalog by level and browse enabled vocabulary by
+topic. Missing source classification remains NULL/unmapped; the product must
+not infer a grade or silently enable imported rows. This extension does not
+change study queue, scheduler or learner-progress semantics.
+
 ## 16. Data quality gate
 
 | **Kiểm tra** | **Kết quả** |
@@ -278,7 +287,7 @@ NEW là virtual state trước lần scheduled evaluation đầu tiên. Absence 
 | Study | Flashcard, flip, audio/media fallback, remember/forget. | YES |
 | Session Summary | Reviewed/remembered/forgotten/reinforcement summary. | YES |
 | Progress | New/Learning/Mastered/Due theo active learner. | YES |
-| Vocabulary list | Danh sách enabled vocabulary + trạng thái learner tối thiểu. | YES |
+| Vocabulary list | Danh sách enabled vocabulary + trạng thái learner tối thiểu; lọc cấp độ tùy chọn và browse theo chủ đề. | YES |
 | Reset progress | Parent-confirmed reset per learner; có thể làm sau vertical slice nhưng vẫn thuộc MVP. | YES |
 
 ## 20. Family vertical slice
@@ -343,8 +352,8 @@ Từ đây không quay lại Personal MVP làm source of truth. Tài liệu ti�
 
 - Family MVP v1.0: CURRENT PRODUCT SOURCE OF TRUTH.
 
-- Technical Architecture v1.0.5: technical source of truth, including the US-25
-  canonical DB/source identity reconciliation.
+- Technical Architecture v1.0.6: technical source of truth, including the US-25
+  canonical DB/source identity reconciliation and US-26/US-27 vocabulary taxonomy.
 
 - Global Design System v1.0.2: global UI source of truth.
 

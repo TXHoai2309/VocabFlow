@@ -15,6 +15,7 @@ const vocabulary = [
     imageUrl: null,
     audioUrl: null,
     topic: null,
+    level: null,
     enabled: true,
     contentVersion: 1
   },
@@ -28,6 +29,7 @@ const vocabulary = [
     imageUrl: null,
     audioUrl: null,
     topic: null,
+    level: null,
     enabled: true,
     contentVersion: 1
   }
@@ -64,6 +66,20 @@ describe("US-04 vocabulary API boundary", () => {
     const response = await app.request(`http://localhost/api/vocabulary?${query}`);
     expect(response.status).toBe(400);
     expect(await response.json()).toEqual({ error: { code: "INVALID_REQUEST", message: "Dữ liệu gửi lên không hợp lệ." } });
+    expect(vocabularyService.list).not.toHaveBeenCalled();
+  });
+
+  it("accepts a validated level filter and preserves the filter in the service call", async () => {
+    const { app, vocabularyService } = appWithSession({ user: { id: "parent-1" } });
+    const response = await app.request("http://localhost/api/vocabulary?level=GRADE_1");
+    expect(response.status).toBe(200);
+    expect(vocabularyService.list).toHaveBeenCalledWith("parent-1", "GRADE_1");
+  });
+
+  it.each(["level=invalid", "level=GRADE_1&level=GRADE_2"])("rejects invalid level input: %s", async (query) => {
+    const { app, vocabularyService } = appWithSession({ user: { id: "parent-1" } });
+    const response = await app.request(`http://localhost/api/vocabulary?${query}`);
+    expect(response.status).toBe(400);
     expect(vocabularyService.list).not.toHaveBeenCalled();
   });
 
@@ -107,6 +123,7 @@ describe("US-04 vocabulary service", () => {
             image_url: item.imageUrl,
             audio_url: item.audioUrl,
             topic: item.topic,
+            level: item.level,
             enabled: item.enabled,
             content_version: item.contentVersion
           }))
@@ -127,6 +144,19 @@ describe("US-04 vocabulary service", () => {
       .mockResolvedValueOnce({ rows: [{ household_id: householdId }] })
       .mockResolvedValueOnce({ rows: [] });
     await expect(createVocabularyService({ execute }).list("parent-1")).resolves.toEqual([]);
+  });
+
+  it("adds a level predicate without changing enabled ordering semantics", async () => {
+    const queries: Array<{ sql: string; params: unknown[] }> = [];
+    const execute = vi.fn()
+      .mockResolvedValueOnce({ rows: [{ household_id: householdId }] })
+      .mockImplementationOnce(async (query) => {
+        queries.push(new PgDialect().sqlToQuery(query));
+        return { rows: [{ ...vocabulary[0], level: "GRADE_1", content_version: 1 }] };
+      });
+    await expect(createVocabularyService({ execute }).list("parent-1", "GRADE_1")).resolves.toMatchObject([{ id: 1, level: "GRADE_1" }]);
+    expect(queries[0]?.sql).toContain("level = $1");
+    expect(queries[0]?.params).toEqual(["GRADE_1"]);
   });
 
   it("denies a user without canonical household membership", async () => {

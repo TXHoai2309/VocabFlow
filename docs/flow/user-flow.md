@@ -15,7 +15,7 @@
 | **Mục** | **Nội dung** |
 | --- | --- |
 | Status | FLOW BASELINE |
-| Phạm vi | Parent account + learner profile + learning flow + progress |
+| Phạm vi | Parent account + learner profile + learning flow + progress + vocabulary taxonomy browse |
 | Mục tiêu | Đọc nhanh để hiểu người dùng đi qua hệ thống như thế nào |
 | Không bao gồm | Chi tiết database, API, design token hoặc screen mockup |
 
@@ -57,6 +57,28 @@ Xem kết quả / tiếp tục học
 - Không dùng chung progress giữa các learner.
 
 - Đổi learner giữa lúc đang học phải thoát/kết thúc phiên hiện tại trước khi đổi context.
+
+## 2.1 Vocabulary browse branch
+
+```text
+Learner Home
+↓
+Mở Từ vựng
+↓
+Tuỳ chọn lọc cấp độ (hoặc Tất cả cấp độ)
+↓
+Danh sách enabled vocabulary + trạng thái learner
+↓
+Duyệt theo chủ đề
+↓
+Chọn một topic canonical
+↓
+Xem enabled vocabulary được map vào topic
+```
+
+Level NULL remains visible under `Tất cả cấp độ`; the UI never infers a grade.
+Topic browsing is read-only and does not create progress, review events or
+change the Study queue.
 
 # 3. Luồng học Flashcard
 

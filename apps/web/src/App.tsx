@@ -5,6 +5,7 @@ import { ActiveLearnerProvider } from "./features/learners/learner-context-provi
 import { LearnerPage } from "./features/learners/learner-page";
 import { ProgressPage } from "./features/learners/progress-page";
 import { VocabularyListPage } from "./features/learners/vocabulary-list-page";
+import { TopicsPage } from "./features/learners/topics-page";
 import { StudyPage } from "./features/study/study-page";
 
 function Shell({ children }: { children: React.ReactNode }) {
@@ -75,6 +76,7 @@ export default function App() {
         <Route path="/learners" element={<LearnerPage />} />
         <Route path="/progress" element={<ProgressPage />} />
         <Route path="/vocabulary" element={<VocabularyListPage />} />
+        <Route path="/topics" element={<TopicsPage />} />
         <Route path="/study" element={<StudyPage />} />
         <Route path="/" element={<Shell><Home /></Shell>} />
         <Route path="/foundation" element={<Shell><FoundationRoute /></Shell>} />

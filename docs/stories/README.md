@@ -52,6 +52,8 @@ convenient. Reprioritization or a new story must be explicit.
 - [US-23 Missing Media / Dataset Vertical Slice](US-23-missing-media-data-foundation.md) — `ACCEPTED / CLOSED`.
 - [US-24 Reset Learner Progress](US-24-reset-learner-progress.md) — `ACCEPTED / CLOSED`.
 - [US-25 Full Vocabulary Catalog](US-25-full-vocabulary-catalog.md) — `ACCEPTED / CLOSED`.
+- [US-26 Vocabulary Grade Level](US-26-vocabulary-grade-level.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
+- [US-27 Vocabulary Topics](US-27-vocabulary-topics.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
 
 ## Story status gate
 

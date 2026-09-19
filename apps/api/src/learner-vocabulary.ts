@@ -2,6 +2,7 @@ import { sql, type SQL } from "drizzle-orm";
 import {
   APP_SCHEMA,
   learnerVocabularyDtoSchema,
+  type VocabularyLevel,
   type LearnerVocabularyDto
 } from "@vocabflow/contracts";
 import { authorizeLearnerOwnership } from "./learners";
@@ -36,6 +37,7 @@ type LearnerVocabularyRow = {
   image_url: unknown;
   audio_url: unknown;
   topic: unknown;
+  level: unknown;
   enabled: unknown;
   content_version: number | string;
   progress_status: unknown;
@@ -71,6 +73,7 @@ function toLearnerVocabularyDto(row: LearnerVocabularyRow): LearnerVocabularyDto
     imageUrl: nullableText(row.image_url),
     audioUrl: nullableText(row.audio_url),
     topic: nullableText(row.topic),
+    level: row.level == null ? null : String(row.level),
     enabled: row.enabled === true,
     contentVersion: safeInteger(row.content_version),
     status: row.progress_status == null ? "NEW" : String(row.progress_status),
@@ -81,12 +84,12 @@ function toLearnerVocabularyDto(row: LearnerVocabularyRow): LearnerVocabularyDto
 }
 
 export type LearnerVocabularyService = {
-  list: (userId: string, learnerId: string) => Promise<LearnerVocabularyDto[]>;
+  list: (userId: string, learnerId: string, level?: VocabularyLevel) => Promise<LearnerVocabularyDto[]>;
 };
 
 export function createLearnerVocabularyService(database: LearnerVocabularyDatabase): LearnerVocabularyService {
   return {
-    async list(userId, learnerId) {
+    async list(userId, learnerId, level) {
       const ownership = await authorizeLearnerOwnership(database, userId, learnerId);
       if (ownership.decision === "FORBIDDEN") {
         throw new LearnerVocabularyServiceError("HOUSEHOLD_ACCESS_DENIED", 403);
@@ -104,6 +107,7 @@ export function createLearnerVocabularyService(database: LearnerVocabularyDataba
             v.image_url,
             v.audio_url,
             v.topic,
+            v.level,
             v.enabled,
             v.content_version,
             lp.status::text AS progress_status,
@@ -113,6 +117,7 @@ export function createLearnerVocabularyService(database: LearnerVocabularyDataba
             ON lp.vocabulary_id = v.id
            AND lp.learner_id = ${ownership.learnerId}::uuid
           WHERE v.enabled = true
+            ${level ? sql`AND v.level = ${level}` : sql``}
           ORDER BY v.id ASC
         `);
         return rowsOf<LearnerVocabularyRow>(result).map(toLearnerVocabularyDto);

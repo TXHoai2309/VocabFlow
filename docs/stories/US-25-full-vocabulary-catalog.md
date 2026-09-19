@@ -74,5 +74,6 @@ the recovery commit.
 
 ## Closeout
 
-US-25 is accepted and closed after the recovery gates passed. No US-26 work is
-started by this story.
+US-25 is accepted and closed after the recovery gates passed. US-26 and US-27
+are tracked separately in their own contracts; this story does not define their
+classification or topic behavior.
