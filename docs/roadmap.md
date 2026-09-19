@@ -1,8 +1,8 @@
 # VocabFlow Roadmap and Batch Index
 
 This roadmap promotes only work supported by the current product documents and
-the accepted/backfilled user-story evidence. US-26 and US-27 are implemented
-and awaiting owner check; US-28 and later work remain unopened.
+the accepted/backfilled user-story evidence. US-26 through US-29 are
+implemented and awaiting owner check; US-30 remains unopened.
 
 ## BATCH 0 — Foundation
 
@@ -252,8 +252,8 @@ The owner-verified Hoài/Ngọc metric snapshots are recorded in US-20 and US-21
   the post-import idempotency dry run reported 0 inserts, 0 updates, 1,994
   skips, 0 database mutations, and PASS.
 - Closeout evidence: Core CI run `35434440380` PASS and Trusted DB Integration
-  run `35434440386` PASS on the recovery commit. This roadmap does not open
-  US-26.
+  run `35434440386` PASS on the recovery commit. At this historical checkpoint
+  US-26 had not started; it was opened in the later taxonomy batch.
 
 ### US-26 + US-27 — Vocabulary Taxonomy
 
@@ -268,8 +268,21 @@ The owner-verified Hoài/Ngọc metric snapshots are recorded in US-20 and US-21
   mappings, authenticated browse APIs and a topic browse UI.
 - Imported rows remain disabled; starter IDs, source identities, progress and
   review history are preserved. Scheduler and review behavior are unchanged.
-- Local implementation evidence is ready for owner check. This roadmap does
-  not open US-28.
+- Local implementation evidence is ready for owner check. US-28 and US-29 are
+  the next implementation batch below.
+
+### US-28 + US-29 — Learning Sets and Learner Assignment
+
+- Status: `IMPLEMENTED / READY FOR OWNER CHECK`.
+- Contracts: [`US-28 Learning Sets`](stories/US-28-learning-sets.md) and
+  [`US-29 Assign Learning Sets to Learners`](stories/US-29-assign-learning-sets.md).
+- US-28 adds deterministic curated sets and ordered many-to-many vocabulary
+  membership. US-29 adds household-authorized learner assignment and makes the
+  queue the enabled union of active assigned sets.
+- The default compatibility set contains all 30 enabled starter rows; existing
+  learners are assigned during migration and new learners are assigned through
+  the canonical create path. Imported rows remain disabled and untouched.
+- US-30 recommendation or adaptive-set work remains unopened.
 
 ## Later product scope
 

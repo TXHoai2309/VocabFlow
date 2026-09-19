@@ -1,12 +1,13 @@
 # Current Handoff Snapshot
 
 - Project: VocabFlow Family MVP
-- Current phase/batch: Family MVP US-01..US-25 complete; Phase 2 / US-26 + US-27 ready for owner check
+- Current phase/batch: Family MVP US-01..US-25 complete; Phase 2 / US-26 + US-27 + US-28 + US-29 ready for owner check
 - Current Git branch: `TXH`
-- Current implementation baseline: `d612e1a` (`feat: add vocabulary levels and topics`), with protected local changes preserved
+- Current implementation baseline: `79ae11742022580bf64783ff2d01b0744fec7d8a` (`feat: add learning sets and learner assignments`), with protected local changes preserved
 - US-24: `ACCEPTED / CLOSED`.
 - US-25: `ACCEPTED / CLOSED` after recovery Core CI and Trusted DB passed.
-- US-26 + US-27: `IMPLEMENTED / READY FOR OWNER CHECK`; US-28 remains unopened.
+- US-26 + US-27: `IMPLEMENTED / READY FOR OWNER CHECK`.
+- US-28 + US-29: `IMPLEMENTED / READY FOR OWNER CHECK`.
 - US-22: `IMPLEMENTED / AUTOMATED PASS — MANUAL OWNER CHECK DEFERRED`.
 - Catalog state after real import: 30 starter rows + 1,994 imported rows =
   2,024 total vocabulary rows.
@@ -26,11 +27,29 @@
 - Protected: never modify, stage, restore, reset, clean, or commit
   `docs/decisions.md`. Preserve `.env.example` and `local-data.zip` changes.
 - Next safe action: run final local/CI/Trusted DB gates and request owner check
-  for US-26 + US-27. US-22's manual owner check remains deferred.
+  for US-26 through US-29. US-22's manual owner check remains deferred.
 - Documents new agents must read first: `docs/README.md`,
   `docs/product/product-spec.md`, `docs/architecture/technical-architecture.md`,
   `docs/design/design-system.md`, `docs/design/feature-ui-spec.md`,
   `docs/flow/user-flow.md`, `docs/roadmap.md`, the relevant story, and this file.
+
+## 2026-09-19 — US-28 + US-29 implementation checkpoint
+
+- Gap audit found no learning-set schema, normalized learner assignment,
+  assignment UI or set-aware queue eligibility. Existing vocabulary IDs,
+  household ownership and sparse progress primitives were retained.
+- Added five deterministic curated sets, ordered memberships and the
+  backward-compatible `starter-vocabulary` set containing all 30 enabled
+  starter rows. Imported rows remain disabled and are not inferred into sets.
+- Added household-authorized assignment APIs/UI. Existing learners receive the
+  default assignment in migration and new learners receive it in the canonical
+  learner-create path.
+- Queue eligibility is now `enabled vocabulary ∩ union(active assigned sets)`;
+  `EXISTS` keeps repeated membership deduplicated. Unassign preserves progress
+  and review events; reassignment reuses progress.
+- Focused tests, full tests, lint, typecheck, build, E2E and diff checks pass
+  locally; Trusted DB is pending the post-push CI run. `docs/decisions.md`,
+  `.env.example` and `local-data.zip` remain protected.
 
 ## 2026-09-19 — US-26 + US-27 implementation checkpoint
 

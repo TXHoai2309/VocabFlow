@@ -54,6 +54,8 @@ convenient. Reprioritization or a new story must be explicit.
 - [US-25 Full Vocabulary Catalog](US-25-full-vocabulary-catalog.md) — `ACCEPTED / CLOSED`.
 - [US-26 Vocabulary Grade Level](US-26-vocabulary-grade-level.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
 - [US-27 Vocabulary Topics](US-27-vocabulary-topics.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
+- [US-28 Learning Sets](US-28-learning-sets.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
+- [US-29 Assign Learning Sets to Learners](US-29-assign-learning-sets.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
 
 ## Story status gate
 

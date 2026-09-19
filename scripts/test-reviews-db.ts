@@ -72,6 +72,8 @@ const USER_TABLE = `${APP_SCHEMA}."user"`;
 const HOUSEHOLDS_TABLE = `${APP_SCHEMA}."households"`;
 const MEMBERS_TABLE = `${APP_SCHEMA}."household_members"`;
 const LEARNERS_TABLE = `${APP_SCHEMA}."learner_profiles"`;
+const LEARNING_SETS_TABLE = `${APP_SCHEMA}."learning_sets"`;
+const LEARNER_LEARNING_SETS_TABLE = `${APP_SCHEMA}."learner_learning_sets"`;
 const VOCABULARY_TABLE = `${APP_SCHEMA}."vocabularies"`;
 const PROGRESS_TABLE = `${APP_SCHEMA}."learner_progress"`;
 const EVENTS_TABLE = `${APP_SCHEMA}."review_events"`;
@@ -160,6 +162,13 @@ async function seedFixture(migration: SqlClient, label: string, timezone = "Asia
       INSERT INTO ${tx.unsafe(LEARNERS_TABLE)}
         (id, household_id, display_name, enabled)
       VALUES (${ids.learnerId}::uuid, ${ids.householdId}::uuid, ${label}::text, true)
+    `;
+    await tx`
+      INSERT INTO ${tx.unsafe(LEARNER_LEARNING_SETS_TABLE)} (learner_id, learning_set_id, active)
+      SELECT ${ids.learnerId}::uuid, id, true
+      FROM ${tx.unsafe(LEARNING_SETS_TABLE)}
+      WHERE slug = 'starter-vocabulary' AND enabled = true
+      ON CONFLICT (learner_id, learning_set_id) DO NOTHING
     `;
     await tx`
       INSERT INTO ${tx.unsafe(VOCABULARY_TABLE)}

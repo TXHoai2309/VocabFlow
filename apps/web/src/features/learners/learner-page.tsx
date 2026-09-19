@@ -204,6 +204,8 @@ export function LearnerPage() {
             <p>Đã chọn learner: <strong>{activeLearner.displayName}</strong></p>
             <p className="learner-handoff-note">Sẵn sàng cho thẻ học đầu tiên.</p>
             <Link className="learner-progress-link" to="/vocabulary">Từ vựng</Link>
+            <Link aria-label="Bộ học" className="learner-progress-link" to="/learning-sets">Bộ từ vựng</Link>
+            <Link className="learner-progress-link" to="/learning-sets/assign">Quản lý bộ từ của learner</Link>
             <Link className="learner-progress-link" to="/progress">Xem tiến trình</Link>
             <Link className="register-submit learner-study-submit" to="/study">Bắt đầu học</Link>
           </div>

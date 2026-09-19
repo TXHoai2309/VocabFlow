@@ -152,11 +152,15 @@ describe("US-08 review queue service", () => {
     expect(queries[2]?.sql).toContain("lp.next_review_date <= $2::date");
     expect(queries[2]?.sql).toContain("ORDER BY lp.next_review_date ASC, v.id ASC");
     expect(queries[2]?.sql).toContain("LIMIT 20");
+    expect(queries[2]?.sql).toContain('"vocabflow_app"."learner_learning_sets"');
+    expect(queries[2]?.sql).toContain("EXISTS");
     expect(queries[3]?.sql).toContain("LEFT JOIN \"vocabflow_app\".\"learner_progress\"");
     expect(queries[3]?.sql).toContain("lp.learner_id = $1::uuid");
     expect(queries[3]?.sql).toContain("lp.vocabulary_id IS NULL");
     expect(queries[3]?.sql).toContain("ORDER BY v.id ASC");
     expect(queries[3]?.sql).toContain("LIMIT 10");
+    expect(queries[3]?.sql).toContain('"vocabflow_app"."learning_set_items"');
+    expect(queries[3]?.sql).toContain("EXISTS");
   });
 
   it.each(["cross-household", "disabled", "missing"])("returns safe 403 for an actual %s authorization outcome", async (caseName) => {

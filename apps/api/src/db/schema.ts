@@ -157,6 +157,21 @@ export const topics = vocabflowApp.table("topics", {
   index("topics_enabled_sort_order_id_idx").on(table.enabled, table.sortOrder, table.id)
 ]);
 
+export const learningSets = vocabflowApp.table("learning_sets", {
+  id: integer("id").primaryKey().generatedByDefaultAsIdentity(),
+  slug: text("slug").notNull().unique(),
+  name: text("name").notNull(),
+  description: text("description").notNull(),
+  grade: vocabularyLevel("grade"),
+  enabled: boolean("enabled").notNull().default(true),
+  sortOrder: integer("sort_order").notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow()
+}, (table) => [
+  check("learning_sets_sort_order_check", sql`${table.sortOrder} >= 0`),
+  index("learning_sets_enabled_sort_order_id_idx").on(table.enabled, table.sortOrder, table.id)
+]);
+
 export const vocabularyTopics = vocabflowApp.table("vocabulary_topics", {
   vocabularyId: integer("vocabulary_id")
     .notNull()
@@ -167,6 +182,36 @@ export const vocabularyTopics = vocabflowApp.table("vocabulary_topics", {
 }, (table) => [
   primaryKey({ columns: [table.vocabularyId, table.topicId], name: "vocabulary_topics_vocabulary_topic_pk" }),
   index("vocabulary_topics_topic_vocabulary_idx").on(table.topicId, table.vocabularyId)
+]);
+
+export const learningSetItems = vocabflowApp.table("learning_set_items", {
+  learningSetId: integer("learning_set_id")
+    .notNull()
+    .references(() => learningSets.id, { onDelete: "cascade" }),
+  vocabularyId: integer("vocabulary_id")
+    .notNull()
+    .references(() => vocabularies.id, { onDelete: "no action" }),
+  sortOrder: integer("sort_order").notNull()
+}, (table) => [
+  primaryKey({ columns: [table.learningSetId, table.vocabularyId], name: "learning_set_items_set_vocabulary_pk" }),
+  check("learning_set_items_sort_order_check", sql`${table.sortOrder} >= 0`),
+  index("learning_set_items_set_sort_vocabulary_idx").on(table.learningSetId, table.sortOrder, table.vocabularyId),
+  index("learning_set_items_vocabulary_set_idx").on(table.vocabularyId, table.learningSetId)
+]);
+
+export const learnerLearningSets = vocabflowApp.table("learner_learning_sets", {
+  learnerId: uuid("learner_id")
+    .notNull()
+    .references(() => learnerProfiles.id, { onDelete: "no action" }),
+  learningSetId: integer("learning_set_id")
+    .notNull()
+    .references(() => learningSets.id, { onDelete: "no action" }),
+  active: boolean("active").notNull().default(true),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow()
+}, (table) => [
+  primaryKey({ columns: [table.learnerId, table.learningSetId], name: "learner_learning_sets_learner_set_pk" }),
+  index("learner_learning_sets_learner_active_set_idx").on(table.learnerId, table.active, table.learningSetId)
 ]);
 
 export const learnerProgress = vocabflowApp.table("learner_progress", {
@@ -236,7 +281,10 @@ export const applicationSchema = {
   learnerProfiles,
   vocabularies,
   topics,
+  learningSets,
   vocabularyTopics,
+  learningSetItems,
+  learnerLearningSets,
   learnerProgress,
   reviewEvents
 };

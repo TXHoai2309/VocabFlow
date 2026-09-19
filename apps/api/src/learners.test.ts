@@ -210,4 +210,26 @@ describe("US-03 learner service", () => {
     await expect(service.create("parent-1", { displayName: "An" })).resolves.toMatchObject({ displayName: "An" });
     await expect(service.create("parent-1", { displayName: "An" })).resolves.toMatchObject({ displayName: "An" });
   });
+
+  it("assigns the compatibility starter set in the canonical create statement", async () => {
+    const queries: Array<{ sql: string; params: unknown[] }> = [];
+    const execute = vi.fn()
+      .mockResolvedValueOnce({ rows: [{ household_id: learner.householdId }] })
+      .mockImplementationOnce(async (query) => {
+        queries.push(new PgDialect().sqlToQuery(query));
+        return { rows: [{
+          id: learner.id,
+          household_id: learner.householdId,
+          display_name: learner.displayName,
+          avatar_key: null,
+          enabled: true,
+          created_at: learner.createdAt,
+          updated_at: learner.updatedAt
+        }] };
+      });
+    await expect(createLearnerService({ execute }).create("parent-1", { displayName: "An" })).resolves.toMatchObject({ id: learner.id });
+    expect(queries[0]?.sql).toContain('"learner_learning_sets"');
+    expect(queries[0]?.sql).toContain("starter-vocabulary");
+    expect(queries[0]?.sql).toContain("ON CONFLICT");
+  });
 });

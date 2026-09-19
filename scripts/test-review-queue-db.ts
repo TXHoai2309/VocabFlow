@@ -56,6 +56,8 @@ const USER_TABLE = `${APP_SCHEMA}."user"`;
 const HOUSEHOLDS_TABLE = `${APP_SCHEMA}."households"`;
 const MEMBERS_TABLE = `${APP_SCHEMA}."household_members"`;
 const LEARNERS_TABLE = `${APP_SCHEMA}."learner_profiles"`;
+const LEARNING_SETS_TABLE = `${APP_SCHEMA}."learning_sets"`;
+const LEARNER_LEARNING_SETS_TABLE = `${APP_SCHEMA}."learner_learning_sets"`;
 const VOCABULARY_TABLE = `${APP_SCHEMA}."vocabularies"`;
 const PROGRESS_TABLE = `${APP_SCHEMA}."learner_progress"`;
 const EVENTS_TABLE = `${APP_SCHEMA}."review_events"`;
@@ -134,6 +136,13 @@ async function seedFixture(
         (id, household_id, display_name, enabled)
       VALUES (${fixture.learnerId}::uuid, ${fixture.householdId}::uuid, ${label}::text, true)
     `;
+    await tx`
+      INSERT INTO ${tx.unsafe(LEARNER_LEARNING_SETS_TABLE)} (learner_id, learning_set_id, active)
+      SELECT ${fixture.learnerId}::uuid, id, true
+      FROM ${tx.unsafe(LEARNING_SETS_TABLE)}
+      WHERE slug = 'starter-vocabulary' AND enabled = true
+      ON CONFLICT (learner_id, learning_set_id) DO NOTHING
+    `;
     for (const item of vocabulary) {
       await tx`
       INSERT INTO ${tx.unsafe(VOCABULARY_TABLE)}
@@ -151,6 +160,13 @@ async function addLearner(migration: SqlClient, fixture: Fixture, enabled: boole
     INSERT INTO ${migration.unsafe(LEARNERS_TABLE)}
       (id, household_id, display_name, enabled)
     VALUES (${learnerId}::uuid, ${fixture.householdId}::uuid, ${label}::text, ${enabled})
+  `;
+  await migration`
+    INSERT INTO ${migration.unsafe(LEARNER_LEARNING_SETS_TABLE)} (learner_id, learning_set_id, active)
+    SELECT ${learnerId}::uuid, id, true
+    FROM ${migration.unsafe(LEARNING_SETS_TABLE)}
+    WHERE slug = 'starter-vocabulary' AND enabled = true
+    ON CONFLICT (learner_id, learning_set_id) DO NOTHING
   `;
   return learnerId;
 }
@@ -469,6 +485,13 @@ async function cleanupFixture(migration: SqlClient, fixture: Fixture) {
   mark("fixture-cleanup");
   await migration.begin(async (tx) => {
     await tx`DELETE FROM ${tx.unsafe(EVENTS_TABLE)} WHERE household_id = ${fixture.householdId}::uuid`;
+    await tx`
+      DELETE FROM ${tx.unsafe(LEARNER_LEARNING_SETS_TABLE)}
+      WHERE learner_id IN (
+        SELECT id FROM ${tx.unsafe(LEARNERS_TABLE)}
+        WHERE household_id = ${fixture.householdId}::uuid
+      )
+    `;
     await tx`
       DELETE FROM ${tx.unsafe(PROGRESS_TABLE)}
       WHERE learner_id IN (

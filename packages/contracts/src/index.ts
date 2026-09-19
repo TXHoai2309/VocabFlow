@@ -139,6 +139,7 @@ export type ErrorCode =
   | "VALIDATION_ERROR"
   | "NOT_FOUND"
   | "TOPIC_NOT_FOUND"
+  | "LEARNING_SET_NOT_FOUND"
   | "VOCABULARY_NOT_FOUND"
   | "IDEMPOTENCY_CONFLICT"
   | "STALE_REVISION"
@@ -227,6 +228,59 @@ export const topicListResponseSchema = z.object({
 }).strict();
 export type TopicListResponse = z.infer<typeof topicListResponseSchema>;
 
+const canonicalUuidSchema = z.string().uuid().transform((value) => value.toLowerCase());
+
+export const learningSetSummarySchema = z.object({
+  id: z.number().int().positive(),
+  slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
+  name: z.string().min(1),
+  description: z.string().min(1),
+  grade: vocabularyLevelSchema.nullable(),
+  enabled: z.boolean(),
+  sortOrder: z.number().int().nonnegative(),
+  vocabularyCount: z.number().int().nonnegative().safe()
+}).strict();
+export type LearningSetSummary = z.infer<typeof learningSetSummarySchema>;
+
+export const learningSetItemDtoSchema = z.object({
+  sortOrder: z.number().int().nonnegative(),
+  vocabulary: vocabularyDtoSchema
+}).strict();
+export type LearningSetItemDto = z.infer<typeof learningSetItemDtoSchema>;
+
+export const learningSetDetailSchema = learningSetSummarySchema.extend({
+  items: z.array(learningSetItemDtoSchema)
+}).strict();
+export type LearningSetDetail = z.infer<typeof learningSetDetailSchema>;
+
+export const learningSetListResponseSchema = z.object({
+  learningSets: z.array(learningSetSummarySchema)
+}).strict();
+export type LearningSetListResponse = z.infer<typeof learningSetListResponseSchema>;
+
+export const learningSetDetailResponseSchema = z.object({
+  learningSet: learningSetDetailSchema
+}).strict();
+export type LearningSetDetailResponse = z.infer<typeof learningSetDetailResponseSchema>;
+
+export const learnerLearningSetDtoSchema = z.object({
+  learningSet: learningSetSummarySchema,
+  active: z.boolean()
+}).strict();
+export type LearnerLearningSetDto = z.infer<typeof learnerLearningSetDtoSchema>;
+
+export const learnerLearningSetListResponseSchema = z.object({
+  learningSets: z.array(learnerLearningSetDtoSchema)
+}).strict();
+export type LearnerLearningSetListResponse = z.infer<typeof learnerLearningSetListResponseSchema>;
+
+export const learnerLearningSetMutationResponseSchema = z.object({
+  learnerId: canonicalUuidSchema,
+  learningSetId: z.number().int().positive(),
+  active: z.boolean()
+}).strict();
+export type LearnerLearningSetMutationResponse = z.infer<typeof learnerLearningSetMutationResponseSchema>;
+
 export const learnerVocabularyStatusSchema = z.enum(["NEW", "LEARNING", "MASTERED"]);
 export type LearnerVocabularyStatus = z.infer<typeof learnerVocabularyStatusSchema>;
 
@@ -240,8 +294,6 @@ export const learnerVocabularyListResponseSchema = z.object({
   vocabulary: z.array(learnerVocabularyDtoSchema)
 });
 export type LearnerVocabularyListResponse = z.infer<typeof learnerVocabularyListResponseSchema>;
-
-const canonicalUuidSchema = z.string().uuid().transform((value) => value.toLowerCase());
 
 export const progressSummaryResponseSchema = z.object({
   learnerId: canonicalUuidSchema,

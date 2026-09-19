@@ -173,11 +173,25 @@ export function createLearnerService(database: LearnerDatabase): LearnerService 
       const householdId = await resolveHouseholdId(database, userId);
       const learnerId = crypto.randomUUID();
       const result = await database.execute(sql`
-        INSERT INTO "${sql.raw(APP_SCHEMA)}"."learner_profiles"
-          (id, household_id, display_name, avatar_key, enabled)
-        VALUES (${learnerId}::uuid, ${householdId}::uuid, ${input.displayName}::text, NULL, true)
-        RETURNING id::text, household_id::text, display_name, avatar_key, enabled,
-                  created_at, updated_at
+        WITH inserted_learner AS (
+          INSERT INTO "${sql.raw(APP_SCHEMA)}"."learner_profiles"
+            (id, household_id, display_name, avatar_key, enabled)
+          VALUES (${learnerId}::uuid, ${householdId}::uuid, ${input.displayName}::text, NULL, true)
+          RETURNING id, household_id, display_name, avatar_key, enabled,
+                    created_at, updated_at
+        ), default_assignment AS (
+          INSERT INTO "${sql.raw(APP_SCHEMA)}"."learner_learning_sets"
+            (learner_id, learning_set_id, active)
+          SELECT inserted_learner.id, learning_sets.id, true
+          FROM inserted_learner
+          JOIN "${sql.raw(APP_SCHEMA)}"."learning_sets"
+            ON learning_sets.slug = 'starter-vocabulary'
+           AND learning_sets.enabled = true
+          ON CONFLICT (learner_id, learning_set_id) DO NOTHING
+        )
+        SELECT id::text, household_id::text, display_name, avatar_key, enabled,
+               created_at, updated_at
+        FROM inserted_learner
       `);
       const [row] = rowsOf<LearnerRow>(result);
       if (!row) throw new LearnerServiceError("INTERNAL_ERROR", 500);

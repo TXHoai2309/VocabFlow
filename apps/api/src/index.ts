@@ -10,6 +10,7 @@ import { createBootstrapService, type BootstrapService } from "./bootstrap";
 import { createLearnerService, LearnerServiceError, type LearnerService } from "./learners";
 import { createVocabularyService, VocabularyServiceError, type VocabularyService } from "./vocabulary";
 import { createTopicService, TopicServiceError, type TopicService } from "./topics";
+import { createLearningSetService, LearningSetServiceError, type LearningSetService } from "./learning-sets";
 import { createReviewService, ReviewServiceError, type ReviewService } from "./reviews";
 import { createReviewQueueService, ReviewQueueServiceError, type ReviewQueueService } from "./review-queue";
 import { createProgressSummaryService, ProgressSummaryServiceError, type ProgressSummaryService } from "./progress-summary";
@@ -35,6 +36,7 @@ export type AppDependencies = {
   learnerService?: LearnerService;
   vocabularyService?: VocabularyService;
   topicService?: TopicService;
+  learningSetService?: LearningSetService;
   reviewService?: ReviewService;
   reviewQueueService?: ReviewQueueService;
   progressSummaryService?: ProgressSummaryService;
@@ -88,6 +90,12 @@ async function runTopicService(env: WorkerBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
   return createTopicService(createHttpDatabase(env.DATABASE_URL));
+}
+
+async function runLearningSetService(env: WorkerBindings) {
+  if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
+  const { createHttpDatabase } = await import("./db/client");
+  return createLearningSetService(createHttpDatabase(env.DATABASE_URL));
 }
 
 async function runProgressSummaryService(env: WorkerBindings) {
@@ -226,6 +234,134 @@ export function createApp(dependencies: AppDependencies = {}) {
         return c.json(errorEnvelope(error.code, message), error.status);
       }
       return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể tạo learner lúc này. Vui lòng thử lại."), 503);
+    }
+  });
+
+  application.get("/api/learning-sets", async (c) => {
+    try {
+      const session = await readSession(c.req.raw, c.env);
+      if (!session?.user?.id) {
+        return c.json(errorEnvelope("UNAUTHORIZED", "Đăng nhập để tiếp tục."), 401);
+      }
+      if ([...new URL(c.req.url).searchParams.keys()].length > 0) {
+        return c.json(errorEnvelope("INVALID_REQUEST", "Dữ liệu gửi lên không hợp lệ."), 400);
+      }
+      const service = dependencies.learningSetService ?? await runLearningSetService(c.env);
+      return c.json({ learningSets: await service.list(session.user.id) }, 200);
+    } catch (error) {
+      if (error instanceof LearningSetServiceError) {
+        const message = error.code === "HOUSEHOLD_ACCESS_DENIED"
+          ? "Bạn không có quyền truy cập household này."
+          : "Không thể tải learning set lúc này. Vui lòng thử lại.";
+        return c.json(errorEnvelope(error.code, message), error.status);
+      }
+      return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể tải learning set lúc này. Vui lòng thử lại."), 503);
+    }
+  });
+
+  application.get("/api/learning-sets/:learningSetId", async (c) => {
+    try {
+      const session = await readSession(c.req.raw, c.env);
+      if (!session?.user?.id) {
+        return c.json(errorEnvelope("UNAUTHORIZED", "Đăng nhập để tiếp tục."), 401);
+      }
+      if ([...new URL(c.req.url).searchParams.keys()].length > 0) {
+        return c.json(errorEnvelope("INVALID_REQUEST", "Dữ liệu gửi lên không hợp lệ."), 400);
+      }
+      const learningSetId = parsePositiveInteger(c.req.param("learningSetId"));
+      if (learningSetId === null) {
+        return c.json(errorEnvelope("INVALID_REQUEST", "Dữ liệu gửi lên không hợp lệ."), 400);
+      }
+      const service = dependencies.learningSetService ?? await runLearningSetService(c.env);
+      return c.json({ learningSet: await service.detail(session.user.id, learningSetId) }, 200);
+    } catch (error) {
+      if (error instanceof LearningSetServiceError) {
+        const message = error.code === "HOUSEHOLD_ACCESS_DENIED"
+          ? "Bạn không có quyền truy cập household này."
+          : error.code === "LEARNING_SET_NOT_FOUND"
+            ? "Learning set không khả dụng."
+            : "Không thể tải learning set lúc này. Vui lòng thử lại.";
+        return c.json(errorEnvelope(error.code, message), error.status);
+      }
+      return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể tải learning set lúc này. Vui lòng thử lại."), 503);
+    }
+  });
+
+  application.get("/api/learners/:learnerId/learning-sets", async (c) => {
+    try {
+      const session = await readSession(c.req.raw, c.env);
+      if (!session?.user?.id) {
+        return c.json(errorEnvelope("UNAUTHORIZED", "Đăng nhập để tiếp tục."), 401);
+      }
+      if ([...new URL(c.req.url).searchParams.keys()].length > 0) {
+        return c.json(errorEnvelope("INVALID_REQUEST", "Dữ liệu gửi lên không hợp lệ."), 400);
+      }
+      const service = dependencies.learningSetService ?? await runLearningSetService(c.env);
+      return c.json({ learningSets: await service.listForLearner(session.user.id, c.req.param("learnerId")) }, 200);
+    } catch (error) {
+      if (error instanceof LearningSetServiceError) {
+        const message = error.code === "HOUSEHOLD_ACCESS_DENIED"
+          ? "Bạn không có quyền truy cập learner này."
+          : "Không thể tải learning set của learner lúc này. Vui lòng thử lại.";
+        return c.json(errorEnvelope(error.code, message), error.status);
+      }
+      return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể tải learning set của learner lúc này. Vui lòng thử lại."), 503);
+    }
+  });
+
+  application.put("/api/learners/:learnerId/learning-sets/:learningSetId", async (c) => {
+    try {
+      const session = await readSession(c.req.raw, c.env);
+      if (!session?.user?.id) {
+        return c.json(errorEnvelope("UNAUTHORIZED", "Đăng nhập để tiếp tục."), 401);
+      }
+      if ([...new URL(c.req.url).searchParams.keys()].length > 0) {
+        return c.json(errorEnvelope("INVALID_REQUEST", "Dữ liệu gửi lên không hợp lệ."), 400);
+      }
+      const learningSetId = parsePositiveInteger(c.req.param("learningSetId"));
+      if (learningSetId === null) {
+        return c.json(errorEnvelope("INVALID_REQUEST", "Dữ liệu gửi lên không hợp lệ."), 400);
+      }
+      const service = dependencies.learningSetService ?? await runLearningSetService(c.env);
+      return c.json(await service.assign(session.user.id, c.req.param("learnerId"), learningSetId), 200);
+    } catch (error) {
+      if (error instanceof LearningSetServiceError) {
+        const message = error.code === "HOUSEHOLD_ACCESS_DENIED"
+          ? "Bạn không có quyền truy cập learner này."
+          : error.code === "LEARNING_SET_NOT_FOUND"
+            ? "Learning set không khả dụng."
+            : "Không thể gán learning set lúc này. Vui lòng thử lại.";
+        return c.json(errorEnvelope(error.code, message), error.status);
+      }
+      return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể gán learning set lúc này. Vui lòng thử lại."), 503);
+    }
+  });
+
+  application.delete("/api/learners/:learnerId/learning-sets/:learningSetId", async (c) => {
+    try {
+      const session = await readSession(c.req.raw, c.env);
+      if (!session?.user?.id) {
+        return c.json(errorEnvelope("UNAUTHORIZED", "Đăng nhập để tiếp tục."), 401);
+      }
+      if ([...new URL(c.req.url).searchParams.keys()].length > 0) {
+        return c.json(errorEnvelope("INVALID_REQUEST", "Dữ liệu gửi lên không hợp lệ."), 400);
+      }
+      const learningSetId = parsePositiveInteger(c.req.param("learningSetId"));
+      if (learningSetId === null) {
+        return c.json(errorEnvelope("INVALID_REQUEST", "Dữ liệu gửi lên không hợp lệ."), 400);
+      }
+      const service = dependencies.learningSetService ?? await runLearningSetService(c.env);
+      return c.json(await service.unassign(session.user.id, c.req.param("learnerId"), learningSetId), 200);
+    } catch (error) {
+      if (error instanceof LearningSetServiceError) {
+        const message = error.code === "HOUSEHOLD_ACCESS_DENIED"
+          ? "Bạn không có quyền truy cập learner này."
+          : error.code === "LEARNING_SET_NOT_FOUND"
+            ? "Learning set không khả dụng."
+            : "Không thể bỏ gán learning set lúc này. Vui lòng thử lại.";
+        return c.json(errorEnvelope(error.code, message), error.status);
+      }
+      return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể bỏ gán learning set lúc này. Vui lòng thử lại."), 503);
     }
   });
 

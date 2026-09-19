@@ -2,6 +2,21 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-19 — US-28 + US-29 learning sets and learner assignments
+
+- Added five deterministic curated learning sets with ordered vocabulary
+  membership and authenticated catalog/detail APIs and UI.
+- Added normalized, household-authorized learner/set assignments. Existing
+  learners and newly created learners receive the all-starter compatibility set
+  through canonical paths.
+- Review queue eligibility now requires enabled vocabulary in at least one
+  active assigned enabled set; repeated vocabulary across sets is deduplicated.
+- Unassignment preserves progress and review history, and reassignment reuses
+  the canonical learner/vocabulary progress row. Imported rows remain disabled.
+- Added forward-only migration/reset/schema assertions, focused API/UI/queue
+  coverage and a Trusted DB US-28/29 suite. Status:
+  `IMPLEMENTED / READY FOR OWNER CHECK`.
+
 ## 2026-09-19 — US-26 + US-27 vocabulary taxonomy implementation
 
 - Implemented a nullable canonical vocabulary level model with optional API

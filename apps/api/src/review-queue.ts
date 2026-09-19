@@ -139,6 +139,16 @@ async function dueRows(database: ReviewQueueDatabase, learnerId: string, reviewD
     WHERE lp.learner_id = ${learnerId}::uuid
       AND lp.next_review_date <= ${reviewDate}::date
       AND v.enabled = true
+      AND EXISTS (
+        SELECT 1
+        FROM "${sql.raw(APP_SCHEMA)}"."learner_learning_sets" lls
+        JOIN "${sql.raw(APP_SCHEMA)}"."learning_sets" ls ON ls.id = lls.learning_set_id
+        JOIN "${sql.raw(APP_SCHEMA)}"."learning_set_items" lsi ON lsi.learning_set_id = ls.id
+        WHERE lls.learner_id = lp.learner_id
+          AND lls.active = true
+          AND ls.enabled = true
+          AND lsi.vocabulary_id = v.id
+      )
     ORDER BY lp.next_review_date ASC, v.id ASC
     LIMIT 20
   `);
@@ -169,6 +179,16 @@ async function newRows(database: ReviewQueueDatabase, learnerId: string) {
      AND lp.learner_id = ${learnerId}::uuid
     WHERE v.enabled = true
       AND lp.vocabulary_id IS NULL
+      AND EXISTS (
+        SELECT 1
+        FROM "${sql.raw(APP_SCHEMA)}"."learner_learning_sets" lls
+        JOIN "${sql.raw(APP_SCHEMA)}"."learning_sets" ls ON ls.id = lls.learning_set_id
+        JOIN "${sql.raw(APP_SCHEMA)}"."learning_set_items" lsi ON lsi.learning_set_id = ls.id
+        WHERE lls.learner_id = ${learnerId}::uuid
+          AND lls.active = true
+          AND ls.enabled = true
+          AND lsi.vocabulary_id = v.id
+      )
     ORDER BY v.id ASC
     LIMIT 10
   `);

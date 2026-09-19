@@ -7,6 +7,8 @@ import { ProgressPage } from "./features/learners/progress-page";
 import { VocabularyListPage } from "./features/learners/vocabulary-list-page";
 import { TopicsPage } from "./features/learners/topics-page";
 import { StudyPage } from "./features/study/study-page";
+import { LearningSetDetailPage, LearningSetsPage } from "./features/learning-sets/learning-sets-page";
+import { LearnerLearningSetsPage } from "./features/learning-sets/learner-learning-sets-page";
 
 function Shell({ children }: { children: React.ReactNode }) {
   return (
@@ -77,6 +79,9 @@ export default function App() {
         <Route path="/progress" element={<ProgressPage />} />
         <Route path="/vocabulary" element={<VocabularyListPage />} />
         <Route path="/topics" element={<TopicsPage />} />
+        <Route path="/learning-sets" element={<LearningSetsPage />} />
+        <Route path="/learning-sets/assign" element={<LearnerLearningSetsPage />} />
+        <Route path="/learning-sets/:learningSetId" element={<LearningSetDetailPage />} />
         <Route path="/study" element={<StudyPage />} />
         <Route path="/" element={<Shell><Home /></Shell>} />
         <Route path="/foundation" element={<Shell><FoundationRoute /></Shell>} />

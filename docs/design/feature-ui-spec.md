@@ -1,14 +1,14 @@
-# Family MVP Feature UI Specification v1.0.2
+# Family MVP Feature UI Specification v1.0.3
 
 - Status: CURRENT FEATURE UI SOURCE OF TRUTH
-- Version: v1.0.2
-- Source baseline: `VocabFlow_Family_MVP_Feature_UI_Specification_v1.0.1.docx`; this Markdown records the US-26/US-27 taxonomy browse extension.
+- Version: v1.0.3
+- Source baseline: `VocabFlow_Family_MVP_Feature_UI_Specification_v1.0.1.docx`; this Markdown records the US-26/US-27 taxonomy browse and US-28/US-29 learning-set extension.
 - Canonical format: Markdown
 - Last synchronized: 2026-09-08
 
 **VOCABFLOW**
 
-**Family MVP Feature UI Specification v1.0.2**
+**Family MVP Feature UI Specification v1.0.3**
 
 **Screen behavior, states and responsive contracts for the Family MVP**
 
@@ -18,10 +18,10 @@
 | **Baseline** | **Vai trò** |
 | --- | --- |
 | Family MVP Product Specification v1.0 | Product semantics và phạm vi MVP. |
-| Technical Architecture v1.0.6 | Auth, API, persistence, concurrency và backend invariants. |
+| Technical Architecture v1.0.7 | Auth, API, persistence, concurrency và backend invariants. |
 | Global Design System v1.0.2 | Token, layout primitives, responsive, component và accessibility rules. |
 | User Flow v1 | Đường đi tổng thể của parent/learner. |
-| Feature UI Spec v1.0.2 | Screen composition, interaction, states, copy và responsive behavior. |
+| Feature UI Spec v1.0.3 | Screen composition, interaction, states, copy và responsive behavior. |
 
 ## Trạng thái
 
@@ -35,6 +35,7 @@
 | --- | --- | --- |
 | Home | Tóm tắt hôm nay + CTA bắt đầu học. | Bắt buộc |
 | Từ vựng | Xem danh sách enabled vocabulary, trạng thái learner, lọc cấp độ và mở browse theo chủ đề. | Bắt buộc |
+| Bộ từ | Xem curated learning sets, chi tiết thứ tự từ và gán/tắt set cho active learner. | Parent + learner context |
 | Tiến độ | Xem New / Learning / Mastered / Due / Learned. | Bắt buộc |
 | Study | Focused task, truy cập từ CTA; không phải destination cố định. | Bắt buộc khi học |
 | Learner selector | Chọn/tạo learner; mở từ login flow hoặc profile switcher. | Ngoài learner context |
@@ -80,7 +81,7 @@ Desktop app shell
 
 ## 2.1 MVP auth scope
 
-| **Feature** | v1.0.2 decision |
+| **Feature** | v1.0.3 decision |
 | --- | --- |
 | Register | Tên phụ huynh + email + password, parent account. `Tên phụ huynh` là display/profile identity được lưu bởi Better Auth. |
 | Login | Email + password. |
@@ -363,6 +364,22 @@ Topic browse is read-only. Missing media, NULL level and disabled vocabulary
 must remain safe states; disabled vocabulary is never rendered by a topic
 result.
 
+## 7.1b Learning set catalog and assignment
+
+| **Capability** | **Behavior** |
+| --- | --- |
+| Set catalog | Show enabled curated sets in canonical `sortOrder`, with name, description, optional grade and enabled vocabulary count. |
+| Set detail | Show enabled vocabulary in the server-provided `learning_set_items.sortOrder`; display a stable position number, word and Vietnamese meaning. |
+| Assignment entry | From learner home or set catalog, open the active learner's assignment screen. |
+| Assignment toggle | Each set shows `Gán bộ từ` or `Đã gán`; PUT/DELETE has a per-set busy state and does not block unrelated page navigation longer than necessary. |
+| Learner switch | Assignment screen is keyed by learner identity and reloads the full canonical assignment list; no previous learner's toggles or success state remain. |
+| States | Catalog/detail/assignment each expose loading, error/retry, empty and save success/error states with live-region messaging. |
+| Queue meaning | Copy explains that queue content is the enabled union of active assigned sets; unassigning does not delete progress or review history. |
+
+Learning-set screens are read-only for set content. Parents cannot author or
+edit sets in this slice. Cross-household learners must show the safe forbidden
+state returned by the canonical API.
+
 ## 7.2 Parent actions in MVP
 
 | **Action** | **Scope** | **UI location** |
@@ -371,6 +388,7 @@ result.
 | Select/switch learner | YES | Learner Selector / profile switcher. |
 | View learner progress | YES | Progress screen. |
 | Reset learner progress | P1 / CONDITIONAL — thuộc Family MVP nhưng không thuộc first vertical slice. | Chỉ enable sau khi có reset API contract + learner authorization contract + confirmation behavior được test. |
+| View and assign learning sets | YES | Learning-set catalog/detail and active learner assignment screen. |
 | Edit learner name/avatar | DEFERRED | Không expose control trong v1.0 baseline. |
 | Disable/delete learner | OUT v1.0 | Không expose control. |
 
@@ -459,6 +477,8 @@ result.
 | **FUI-16** | Keyboard/focus/audio/dialog behavior đạt Global Design System accessibility contract. |
 | **FUI-17** | Study dùng DS-EX-001 cho hai recall actions; exception không lan sang feature khác. |
 | **FUI-18** | Không implement deferred features: social login, learner login/PIN, edit/delete learner, streak/achievement, offline write sync. |
+| **FUI-19** | Learning-set catalog/detail renders deterministic ordered enabled content with explicit loading/error/empty states. |
+| **FUI-20** | Assignment toggles are learner-scoped, show save feedback, reject cross-household access safely and never imply progress/history deletion. |
 
 ## 9.1 Deferred / not defined here
 
@@ -474,4 +494,4 @@ result.
 ## 9.2 Approval statement
 
 > APPROVED FOR UI IMPLEMENTATION
-> Feature UI Specification v1.0.2 là baseline cho Family MVP UI implementation. Backlog/UI code phải bám screen states, interaction contracts, session behavior và responsive rules trong tài liệu này. Product semantics thay đổi phải quay về Family MVP Product Specification; visual language thay đổi phải quay về Global Design System; backend contract thay đổi phải quay về Technical Architecture/contracts.
+> Feature UI Specification v1.0.3 là baseline cho Family MVP UI implementation. Backlog/UI code phải bám screen states, interaction contracts, session behavior và responsive rules trong tài liệu này. Product semantics thay đổi phải quay về Family MVP Product Specification; visual language thay đổi phải quay về Global Design System; backend contract thay đổi phải quay về Technical Architecture/contracts.

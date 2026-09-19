@@ -56,7 +56,7 @@ Family MVP vẫn là một hệ thống quản lý trạng thái ghi nhớ, khô
 | Parent authentication + default household | Co-parent invitation / household sharing nâng cao |
 | Create/select nhiều learner profile | Learner email/password hoặc PIN security boundary |
 | Per-learner cloud progress | Offline write queue / full PWA sync |
-| 1 bộ từ mặc định; 200–300 enabled | User-created sets / marketplace |
+| Curated learning sets; default starter compatibility set; 200–300 enabled | User-created sets / marketplace |
 | Flashcard + audio/image khi có | Nhiều mode Learn/Test/Game |
 | Chưa nhớ / Đã nhớ + spaced scheduler | Streak, leaderboard, achievement system |
 | Review Queue + session summary | AI tutor / generated content |
@@ -238,6 +238,21 @@ topic. Missing source classification remains NULL/unmapped; the product must
 not infer a grade or silently enable imported rows. This extension does not
 change study queue, scheduler or learner-progress semantics.
 
+### 15.2 Learning sets and learner assignment (US-28 / US-29)
+
+The catalog exposes deterministic, project-curated learning sets with stable
+ordering. A vocabulary item may belong to more than one set. Parents can view
+set details and assign or unassign enabled sets for a learner in their own
+household. The review queue is the enabled vocabulary union of active assigned
+sets, with the existing due/new rules applied afterward; duplicate membership
+does not duplicate a card. Unassigning a set never deletes learner progress or
+review history, and reassignment reuses it.
+
+The migration provides a compatibility `VocabFlow Starter` set containing all
+30 enabled starter rows, plus curated Grade 1 Starter, Family Basics, School
+Basics and Everyday Words sets. Imported rows remain disabled and are not
+automatically classified or enabled.
+
 ## 16. Data quality gate
 
 | **Kiểm tra** | **Kết quả** |
@@ -287,7 +302,7 @@ change study queue, scheduler or learner-progress semantics.
 | Study | Flashcard, flip, audio/media fallback, remember/forget. | YES |
 | Session Summary | Reviewed/remembered/forgotten/reinforcement summary. | YES |
 | Progress | New/Learning/Mastered/Due theo active learner. | YES |
-| Vocabulary list | Danh sách enabled vocabulary + trạng thái learner tối thiểu; lọc cấp độ tùy chọn và browse theo chủ đề. | YES |
+| Vocabulary list / learning sets | Danh sách enabled vocabulary + trạng thái learner tối thiểu; lọc cấp độ, browse theo chủ đề, xem set và gán set cho learner. | YES |
 | Reset progress | Parent-confirmed reset per learner; có thể làm sau vertical slice nhưng vẫn thuộc MVP. | YES |
 
 ## 20. Family vertical slice
@@ -352,8 +367,9 @@ Từ đây không quay lại Personal MVP làm source of truth. Tài liệu ti�
 
 - Family MVP v1.0: CURRENT PRODUCT SOURCE OF TRUTH.
 
-- Technical Architecture v1.0.6: technical source of truth, including the US-25
-  canonical DB/source identity reconciliation and US-26/US-27 vocabulary taxonomy.
+- Technical Architecture v1.0.7: technical source of truth, including the US-25
+  canonical DB/source identity reconciliation, US-26/US-27 taxonomy and
+  US-28/US-29 learning-set assignment model.
 
 - Global Design System v1.0.2: global UI source of truth.
 

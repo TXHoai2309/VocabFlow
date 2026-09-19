@@ -15,7 +15,7 @@
 | **Mục** | **Nội dung** |
 | --- | --- |
 | Status | FLOW BASELINE |
-| Phạm vi | Parent account + learner profile + learning flow + progress + vocabulary taxonomy browse |
+| Phạm vi | Parent account + learner profile + learning flow + progress + vocabulary taxonomy and learning-set browse/assignment |
 | Mục tiêu | Đọc nhanh để hiểu người dùng đi qua hệ thống như thế nào |
 | Không bao gồm | Chi tiết database, API, design token hoặc screen mockup |
 
@@ -79,6 +79,31 @@ Xem enabled vocabulary được map vào topic
 Level NULL remains visible under `Tất cả cấp độ`; the UI never infers a grade.
 Topic browsing is read-only and does not create progress, review events or
 change the Study queue.
+
+## 2.2 Learning-set and assignment branch
+
+```text
+Learner Home hoặc Từ vựng
+↓
+Mở Bộ từ
+↓
+Xem danh sách curated learning sets
+↓
+Chọn một set
+↓
+Xem vocabulary enabled theo thứ tự membership
+↓
+Với active learner: mở Quản lý bộ từ
+↓
+Bật / tắt assignment từng set
+↓
+Queue lần sau = enabled vocabulary thuộc union các set đang bật
+```
+
+Existing learners receive the compatibility starter assignment during
+migration; new learners receive it during canonical learner creation. Switching
+learner reloads assignment state. Tắt set chỉ thay đổi eligibility, không xóa
+progress hoặc review history; bật lại dùng lại progress hiện có.
 
 # 3. Luồng học Flashcard
 

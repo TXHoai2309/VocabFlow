@@ -16,6 +16,7 @@ import { provisionCanonicalIdentity } from "./db-identity-provision";
 import { runUs07TrustedDbSuite } from "./test-reviews-db";
 import { runUs08TrustedDbSuite } from "./test-review-queue-db";
 import { runUs26Us27TrustedDbSuite } from "./test-vocabulary-taxonomy-db";
+import { runUs28Us29TrustedDbSuite } from "./test-learning-sets-db";
 
 const ROLLBACK_MARKER = "__VOCABFLOW_PERMISSION_ROLLBACK__";
 
@@ -35,7 +36,8 @@ type TrustedDbStage =
   | "verify-permission-matrix"
   | "verify-us08-review-queue"
   | "verify-us07-review-runtime"
-  | "verify-us26-us27-taxonomy";
+  | "verify-us26-us27-taxonomy"
+  | "verify-us28-us29-learning-sets";
 
 type TrustedDbSubstage =
   | "target-migration"
@@ -269,6 +271,8 @@ async function main() {
   await runConcurrentIdentityCheck(identityUrl, identityTarget, beforeIdentity);
   markStage("verify-permission-matrix");
   await runPermissionMatrix({ identityUrl, migrationUrl, runtimeUrl, identityTarget, migrationTarget, runtimeTarget });
+  markStage("verify-us28-us29-learning-sets");
+  await runUs28Us29TrustedDbSuite({ migrationUrl, runtimeUrl, migrationTarget, runtimeTarget });
   markStage("verify-us26-us27-taxonomy");
   await runUs26Us27TrustedDbSuite({ migrationUrl, runtimeUrl, migrationTarget, runtimeTarget });
   if (suite === "full") {
