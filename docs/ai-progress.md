@@ -3,12 +3,12 @@
 - Project: VocabFlow Family MVP
 - Current phase/batch: Family MVP US-01..US-25 complete; Phase 2 / US-26 + US-27 + US-28 + US-29 + US-30 ready for owner check
 - Current Git branch: `TXH`
-- Current implementation baseline: US-30 working tree changes are in progress on `TXH`, with protected local changes preserved
+- Current implementation baseline: commit `6c22d68` (`feat: add daily new word limits`) on `TXH`, with protected local changes preserved
 - US-24: `ACCEPTED / CLOSED`.
 - US-25: `ACCEPTED / CLOSED` after recovery Core CI and Trusted DB passed.
 - US-26 + US-27: `IMPLEMENTED / READY FOR OWNER CHECK`.
 - US-28 + US-29: `IMPLEMENTED / READY FOR OWNER CHECK`.
-- US-30: `IMPLEMENTED / READY FOR OWNER CHECK` pending final gates.
+- US-30: `IMPLEMENTED / READY FOR OWNER CHECK`.
 - US-22: `IMPLEMENTED / AUTOMATED PASS — MANUAL OWNER CHECK DEFERRED`.
 - Catalog state after real import: 30 starter rows + 1,994 imported rows =
   2,024 total vocabulary rows.
@@ -27,8 +27,9 @@
   `35434440380` and Trusted DB run `35434440386` both passed.
 - Protected: never modify, stage, restore, reset, clean, or commit
   `docs/decisions.md`. Preserve `.env.example` and `local-data.zip` changes.
-- Next safe action: run final local/CI/Trusted DB gates and request owner check
-  for US-26 through US-30. US-22's manual owner check remains deferred.
+- Final US-30 evidence: local validation passed; Core CI run `35443781349` and
+  Trusted DB run `35443781278` both passed. Next safe action: request owner
+  check for US-26 through US-30. US-22's manual owner check remains deferred.
 - Documents new agents must read first: `docs/README.md`,
   `docs/product/product-spec.md`, `docs/architecture/technical-architecture.md`,
   `docs/design/design-system.md`, `docs/design/feature-ui-spec.md`,
@@ -48,9 +49,9 @@
 - Queue eligibility is now `enabled vocabulary ∩ union(active assigned sets)`;
   `EXISTS` keeps repeated membership deduplicated. Unassign preserves progress
   and review events; reassignment reuses progress.
-- Focused tests, full tests, lint, typecheck, build, E2E and diff checks pass
-  locally; Trusted DB is pending the post-push CI run. `docs/decisions.md`,
-  `.env.example` and `local-data.zip` remain protected.
+- Focused tests, full tests, lint, typecheck, build, E2E, diff checks and the
+  post-push Trusted DB gate pass. `docs/decisions.md`, `.env.example` and
+  `local-data.zip` remain protected.
 
 ## 2026-09-19 — US-26 + US-27 implementation checkpoint
 
