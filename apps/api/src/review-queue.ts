@@ -47,6 +47,11 @@ type QueueRow = {
   total_count: number | string | bigint;
 };
 
+type DailyNewUsageRow = {
+  daily_new_word_limit: number | string | bigint;
+  consumed_today: number | string | bigint;
+};
+
 function rowsOf<T>(result: unknown): T[] {
   if (Array.isArray(result)) return result as T[];
   if (result && typeof result === "object" && Array.isArray((result as { rows?: unknown }).rows)) {
@@ -114,6 +119,30 @@ async function householdTimezone(database: ReviewQueueDatabase, householdId: str
     throw new ReviewQueueServiceError("INTERNAL_ERROR", 500);
   }
   return row.timezone;
+}
+
+async function dailyNewUsage(
+  database: ReviewQueueDatabase,
+  learnerId: string,
+  reviewDate: string
+): Promise<{ dailyNewWordLimit: number; consumedToday: number }> {
+  const result = await database.execute(sql`
+    SELECT lp.daily_new_word_limit,
+           COUNT(progress.vocabulary_id) FILTER (
+             WHERE progress.first_learned_date = ${reviewDate}::date
+           ) AS consumed_today
+    FROM "${sql.raw(APP_SCHEMA)}"."learner_profiles" lp
+    LEFT JOIN "${sql.raw(APP_SCHEMA)}"."learner_progress" progress
+      ON progress.learner_id = lp.id
+    WHERE lp.id = ${learnerId}::uuid
+    GROUP BY lp.daily_new_word_limit
+  `);
+  const [row] = rowsOf<DailyNewUsageRow>(result);
+  if (!row) throw new ReviewQueueServiceError("INTERNAL_ERROR", 500);
+  const dailyNewWordLimit = safeCount(row.daily_new_word_limit);
+  const consumedToday = safeCount(row.consumed_today);
+  if (dailyNewWordLimit > 100) throw new ReviewQueueServiceError("INTERNAL_ERROR", 500);
+  return { dailyNewWordLimit, consumedToday };
 }
 
 async function dueRows(database: ReviewQueueDatabase, learnerId: string, reviewDate: string) {
@@ -215,11 +244,13 @@ export function createReviewQueueService(
       try {
         const timezone = await householdTimezone(database, ownership.householdId);
         const reviewDate = householdLocalDate(now(), timezone);
+        const usage = await dailyNewUsage(database, ownership.learnerId, reviewDate);
         const due = await dueRows(database, ownership.learnerId, reviewDate);
         const availableNew = await newRows(database, ownership.learnerId);
         const dueCount = due.length === 0 ? 0 : safeCount(due[0]?.total_count);
         const newCount = availableNew.length === 0 ? 0 : safeCount(availableNew[0]?.total_count);
-        const selectedNew = dueCount >= 20 ? [] : availableNew;
+        const remainingNew = Math.max(0, usage.dailyNewWordLimit - usage.consumedToday);
+        const selectedNew = dueCount >= 20 ? [] : availableNew.slice(0, remainingNew);
         const response = {
           learnerId: ownership.learnerId,
           reviewDate,

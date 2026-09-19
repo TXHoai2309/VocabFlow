@@ -2,7 +2,7 @@
 
 - Status: CURRENT FEATURE UI SOURCE OF TRUTH
 - Version: v1.0.3
-- Source baseline: `VocabFlow_Family_MVP_Feature_UI_Specification_v1.0.1.docx`; this Markdown records the US-26/US-27 taxonomy browse and US-28/US-29 learning-set extension.
+- Source baseline: `VocabFlow_Family_MVP_Feature_UI_Specification_v1.0.1.docx`; this Markdown records the US-26/US-27 taxonomy browse, US-28/US-29 learning-set extension and US-30 daily New settings.
 - Canonical format: Markdown
 - Last synchronized: 2026-09-08
 
@@ -37,6 +37,7 @@
 | Từ vựng | Xem danh sách enabled vocabulary, trạng thái learner, lọc cấp độ và mở browse theo chủ đề. | Bắt buộc |
 | Bộ từ | Xem curated learning sets, chi tiết thứ tự từ và gán/tắt set cho active learner. | Parent + learner context |
 | Tiến độ | Xem New / Learning / Mastered / Due / Learned. | Bắt buộc |
+| Cài đặt learner | Parent xem/chỉnh giới hạn từ mới mỗi ngày cho active learner. | Parent + learner context |
 | Study | Focused task, truy cập từ CTA; không phải destination cố định. | Bắt buộc khi học |
 | Learner selector | Chọn/tạo learner; mở từ login flow hoặc profile switcher. | Ngoài learner context |
 
@@ -380,6 +381,18 @@ Learning-set screens are read-only for set content. Parents cannot author or
 edit sets in this slice. Cross-household learners must show the safe forbidden
 state returned by the canonical API.
 
+## 7.1c Daily New settings (US-30)
+
+| **Capability** | **Behavior** |
+| --- | --- |
+| Learner identity | The settings screen clearly names the active learner and is keyed by learner ID. |
+| Current value | Load the canonical `dailyNewWordLimit` before enabling the form; default is 10. |
+| Validation | Accept integer values 0–100 only; show inline validation without sending malformed input. |
+| Save | Disable duplicate submits, show saving state, refresh the canonical saved value and show success/error feedback. |
+| Semantics copy | Explain that the setting limits only New words for the household-local day; Due remains available and first. |
+| Learner switch | Changing learner remounts the screen and clears the previous value, status and messages before loading. |
+| States | Loading, API error/retry, validation error, saving and success are explicit and mobile-safe. |
+
 ## 7.2 Parent actions in MVP
 
 | **Action** | **Scope** | **UI location** |
@@ -389,6 +402,7 @@ state returned by the canonical API.
 | View learner progress | YES | Progress screen. |
 | Reset learner progress | P1 / CONDITIONAL — thuộc Family MVP nhưng không thuộc first vertical slice. | Chỉ enable sau khi có reset API contract + learner authorization contract + confirmation behavior được test. |
 | View and assign learning sets | YES | Learning-set catalog/detail and active learner assignment screen. |
+| Edit daily New limit | YES | Active learner settings screen. |
 | Edit learner name/avatar | DEFERRED | Không expose control trong v1.0 baseline. |
 | Disable/delete learner | OUT v1.0 | Không expose control. |
 

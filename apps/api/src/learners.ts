@@ -1,6 +1,7 @@
 import { sql, type SQL } from "drizzle-orm";
 import {
   APP_SCHEMA,
+  DAILY_NEW_WORD_LIMIT_DEFAULT,
   createLearnerRequestSchema,
   learnerDtoSchema,
   type CreateLearnerRequest,
@@ -175,8 +176,8 @@ export function createLearnerService(database: LearnerDatabase): LearnerService 
       const result = await database.execute(sql`
         WITH inserted_learner AS (
           INSERT INTO "${sql.raw(APP_SCHEMA)}"."learner_profiles"
-            (id, household_id, display_name, avatar_key, enabled)
-          VALUES (${learnerId}::uuid, ${householdId}::uuid, ${input.displayName}::text, NULL, true)
+            (id, household_id, display_name, avatar_key, daily_new_word_limit, enabled)
+          VALUES (${learnerId}::uuid, ${householdId}::uuid, ${input.displayName}::text, NULL, ${DAILY_NEW_WORD_LIMIT_DEFAULT}::integer, true)
           RETURNING id, household_id, display_name, avatar_key, enabled,
                     created_at, updated_at
         ), default_assignment AS (

@@ -206,6 +206,7 @@ export function LearnerPage() {
             <Link className="learner-progress-link" to="/vocabulary">Từ vựng</Link>
             <Link aria-label="Bộ học" className="learner-progress-link" to="/learning-sets">Bộ từ vựng</Link>
             <Link className="learner-progress-link" to="/learning-sets/assign">Quản lý bộ từ của learner</Link>
+            <Link className="learner-progress-link" to="/learner-settings">Cài đặt số từ mới mỗi ngày</Link>
             <Link className="learner-progress-link" to="/progress">Xem tiến trình</Link>
             <Link className="register-submit learner-study-submit" to="/study">Bắt đầu học</Link>
           </div>

@@ -35,6 +35,8 @@ Chọn learner hiện có hoặc tạo learner mới
 ↓
 Vào Home của learner
 ↓
+Parent có thể mở Cài đặt learner → chỉnh giới hạn từ mới mỗi ngày
+↓
 Bắt đầu học
 ↓
 Lưu review + cập nhật progress
@@ -141,6 +143,7 @@ Thẻ tiếp theo      Giữ nguyên thẻ + Retry
 | Due >= 20 | Tối đa 20 due, không thêm new |
 | 0 < Due < 20 | Toàn bộ due + tối đa 10 new |
 | Due = 0 | Tối đa 10 new |
+| Daily New allowance | New admission = min(session cap, allowance còn lại của learner trong household-local day); default 10, range 0–100. |
 | Thứ tự | Due trước, New sau |
 | Reinforcement | Có thể chèn lại từ chưa nhớ tối đa 2 lần trong phiên; không persist scheduler lần nữa |
 
@@ -162,6 +165,7 @@ Về Learner Home hoặc bắt đầu phiên tiếp theo
 | Network/save failed | Không chuyển thẻ; hiển thị “Chưa lưu tiến trình” + Retry |
 | Retry | Dùng lại cùng `reviewId` |
 | 409 stale revision | Reload canonical progress → thông báo nhẹ → tiếp tục từ state mới |
+| Hết daily New allowance | Không thêm New; Due vẫn được học. Review write stale NEW bị server từ chối an toàn. |
 | Session expired | Dừng write → yêu cầu đăng nhập lại → không giả vờ đã lưu |
 | Audio lỗi/bị chặn | Flashcard vẫn dùng được; audio chuyển thành unavailable state |
 | Không còn due/new | Hiển thị completed/empty state; không tạo phiên rỗng |

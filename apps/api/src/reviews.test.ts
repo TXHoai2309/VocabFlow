@@ -62,7 +62,8 @@ function insertedReview(resultingRevision: number | string | bigint = 1) {
       existing_fingerprint: null,
       existing_response_payload: null,
       inserted_review_id: REVIEW_ID,
-      resulting_revision: resultingRevision
+      resulting_revision: resultingRevision,
+      daily_limit_reached: false
     }]
   };
 }
@@ -121,7 +122,7 @@ describe("US-07 review contracts and orchestration", () => {
       today: "2026-09-14"
     });
     const atomicQuery = new PgDialect().sqlToQuery(database.execute.mock.calls[4]?.[0]);
-    expect(atomicQuery.sql).toContain("WITH existing_event AS MATERIALIZED");
+    expect(atomicQuery.sql).toContain("WITH locked_learner AS MATERIALIZED");
     expect(atomicQuery.sql).toContain('UPDATE "vocabflow_app"."learner_progress"');
     expect(atomicQuery.sql).toContain('INSERT INTO "vocabflow_app"."review_events"');
     expect(atomicQuery.sql).toContain("ON CONFLICT (learner_id, vocabulary_id) DO NOTHING");
@@ -131,6 +132,29 @@ describe("US-07 review contracts and orchestration", () => {
     expect(atomicQuery.sql).not.toContain("cp.revision AS expected_revision");
     expect(atomicQuery.sql).not.toContain(REVIEW_ID);
     expect(atomicQuery.params).toContain(REVIEW_ID);
+  });
+
+  it("rejects a stale NEW write after the daily allowance is consumed", async () => {
+    const database = queuedDatabase([
+      authorizedRows(),
+      vocabularyRows(),
+      emptyEvent(),
+      emptyProgress(),
+      { rows: [{ existing_fingerprint: null, existing_response_payload: null, inserted_review_id: null, resulting_revision: null, daily_limit_reached: true }] }
+    ]);
+    const scheduler = vi.fn(() => schedulerOutput);
+
+    await expect(createReviewService(database, {
+      scheduler,
+      now: () => new Date("2026-09-14T03:00:00.000Z")
+    }).write(USER_ID, request)).rejects.toMatchObject({
+      code: "DAILY_NEW_LIMIT_REACHED",
+      status: 409
+    });
+    const atomicQuery = new PgDialect().sqlToQuery(database.execute.mock.calls[4]?.[0]);
+    expect(atomicQuery.sql).toContain("pg_advisory_xact_lock");
+    expect(atomicQuery.sql).toContain("daily_new_word_limit");
+    expect(atomicQuery.sql).toContain("first_learned_date");
   });
 
   it("uses the stored response for an idempotent replay without scheduling", async () => {
@@ -194,7 +218,7 @@ describe("US-07 review contracts and orchestration", () => {
     const database = {
       execute: vi.fn(async (query) => {
         const rendered = new PgDialect().sqlToQuery(query);
-        if (rendered.sql.includes("WITH existing_event")) return insertedReview();
+        if (rendered.sql.includes("WITH locked_learner")) return insertedReview();
         if (rendered.sql.includes('FROM "vocabflow_app"."review_events"')) {
           return rendered.sql.includes("household_id") ? emptyEvent() : foreignEvent;
         }
@@ -274,7 +298,7 @@ describe("US-07 review contracts and orchestration", () => {
       vocabularyRows(),
       emptyEvent(),
       emptyProgress(),
-      { rows: [{ existing_fingerprint: null, existing_response_payload: null, inserted_review_id: null, resulting_revision: null }] },
+      { rows: [{ existing_fingerprint: null, existing_response_payload: null, inserted_review_id: null, resulting_revision: null, daily_limit_reached: false }] },
       { rows: [{ request_fingerprint: fingerprint, response_payload: stored }] }
     ]);
     const scheduler = vi.fn(() => schedulerOutput);
@@ -292,8 +316,8 @@ describe("US-07 review contracts and orchestration", () => {
     const database = {
       execute: vi.fn(async (query) => {
         const rendered = new PgDialect().sqlToQuery(query);
-        if (rendered.sql.includes("WITH existing_event")) {
-          return { rows: [{ existing_fingerprint: null, existing_response_payload: null, inserted_review_id: null, resulting_revision: null }] };
+        if (rendered.sql.includes("WITH locked_learner")) {
+          return { rows: [{ existing_fingerprint: null, existing_response_payload: null, inserted_review_id: null, resulting_revision: null, daily_limit_reached: false }] };
         }
         if (rendered.sql.includes('FROM "vocabflow_app"."review_events"')) {
           return rendered.sql.includes("household_id") ? emptyEvent() : foreignEvent;

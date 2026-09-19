@@ -143,6 +143,7 @@ export type ErrorCode =
   | "VOCABULARY_NOT_FOUND"
   | "IDEMPOTENCY_CONFLICT"
   | "STALE_REVISION"
+  | "DAILY_NEW_LIMIT_REACHED"
   | "INTERNAL_ERROR";
 
 export type ErrorEnvelope = {
@@ -229,6 +230,21 @@ export const topicListResponseSchema = z.object({
 export type TopicListResponse = z.infer<typeof topicListResponseSchema>;
 
 const canonicalUuidSchema = z.string().uuid().transform((value) => value.toLowerCase());
+
+export const DAILY_NEW_WORD_LIMIT_DEFAULT = 10 as const;
+export const DAILY_NEW_WORD_LIMIT_MIN = 0 as const;
+export const DAILY_NEW_WORD_LIMIT_MAX = 100 as const;
+
+export const learnerSettingsResponseSchema = z.object({
+  learnerId: canonicalUuidSchema,
+  dailyNewWordLimit: z.number().int().min(DAILY_NEW_WORD_LIMIT_MIN).max(DAILY_NEW_WORD_LIMIT_MAX).safe()
+}).strict();
+export type LearnerSettingsResponse = z.infer<typeof learnerSettingsResponseSchema>;
+
+export const updateLearnerSettingsRequestSchema = z.object({
+  dailyNewWordLimit: z.number().int().min(DAILY_NEW_WORD_LIMIT_MIN).max(DAILY_NEW_WORD_LIMIT_MAX).safe()
+}).strict();
+export type UpdateLearnerSettingsRequest = z.infer<typeof updateLearnerSettingsRequestSchema>;
 
 export const learningSetSummarySchema = z.object({
   id: z.number().int().positive(),

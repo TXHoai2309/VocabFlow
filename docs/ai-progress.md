@@ -1,13 +1,14 @@
 # Current Handoff Snapshot
 
 - Project: VocabFlow Family MVP
-- Current phase/batch: Family MVP US-01..US-25 complete; Phase 2 / US-26 + US-27 + US-28 + US-29 ready for owner check
+- Current phase/batch: Family MVP US-01..US-25 complete; Phase 2 / US-26 + US-27 + US-28 + US-29 + US-30 ready for owner check
 - Current Git branch: `TXH`
-- Current implementation baseline: `9f3d3b1639dd0653e4355d7098ceef72ee70065e` (`feat: add learning sets and learner assignments`), with protected local changes preserved
+- Current implementation baseline: US-30 working tree changes are in progress on `TXH`, with protected local changes preserved
 - US-24: `ACCEPTED / CLOSED`.
 - US-25: `ACCEPTED / CLOSED` after recovery Core CI and Trusted DB passed.
 - US-26 + US-27: `IMPLEMENTED / READY FOR OWNER CHECK`.
 - US-28 + US-29: `IMPLEMENTED / READY FOR OWNER CHECK`.
+- US-30: `IMPLEMENTED / READY FOR OWNER CHECK` pending final gates.
 - US-22: `IMPLEMENTED / AUTOMATED PASS — MANUAL OWNER CHECK DEFERRED`.
 - Catalog state after real import: 30 starter rows + 1,994 imported rows =
   2,024 total vocabulary rows.
@@ -27,7 +28,7 @@
 - Protected: never modify, stage, restore, reset, clean, or commit
   `docs/decisions.md`. Preserve `.env.example` and `local-data.zip` changes.
 - Next safe action: run final local/CI/Trusted DB gates and request owner check
-  for US-26 through US-29. US-22's manual owner check remains deferred.
+  for US-26 through US-30. US-22's manual owner check remains deferred.
 - Documents new agents must read first: `docs/README.md`,
   `docs/product/product-spec.md`, `docs/architecture/technical-architecture.md`,
   `docs/design/design-system.md`, `docs/design/feature-ui-spec.md`,
@@ -1014,3 +1015,22 @@ registration boundary before feature implementation.
 - There is no active next story.
 - Next safe action: Project owner selects/reviews the next User Story.
 - Do not automatically start US-02.
+
+## 2026-09-19 — US-30 daily new word limit implementation checkpoint
+
+- Gap audit found the existing Due-first queue, household-local date helper,
+  sparse virtual New state, reset semantics, retry idempotency and US-29 set
+  filtering already satisfied. Learner daily settings, daily consumption and
+  parent controls were missing.
+- Added `learner_profiles.daily_new_word_limit`, default 10, bounded to 0–100,
+  with authorized GET/PATCH settings APIs and a learner-scoped parent UI.
+- Queue allowance counts distinct current progress rows whose
+  `first_learned_date` equals the household-local date. Due remains exempt and
+  session caps remain independent. Atomic review writes serialize per learner
+  and reject stale NEW writes after the allowance is consumed.
+- Reset still deletes current progress while preserving review events; reset
+  therefore makes the current lifecycle virtual New again without consulting
+  all-time history.
+- Focused validation is passing locally; full local and post-push Trusted DB
+  gates remain pending at this checkpoint. `docs/decisions.md`, `.env.example`
+  and `local-data.zip` remain protected.

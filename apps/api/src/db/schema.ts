@@ -108,10 +108,12 @@ export const learnerProfiles = vocabflowApp.table("learner_profiles", {
     .references(() => households.id, { onDelete: "restrict" }),
   displayName: text("display_name").notNull(),
   avatarKey: text("avatar_key"),
+  dailyNewWordLimit: integer("daily_new_word_limit").notNull().default(10),
   enabled: boolean("enabled").notNull().default(true),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow()
 }, (table) => [
+  check("learner_profiles_daily_new_word_limit_check", sql`${table.dailyNewWordLimit} >= 0 AND ${table.dailyNewWordLimit} <= 100`),
   index("learner_profiles_household_enabled_created_id_idx").on(
     table.householdId,
     table.enabled,

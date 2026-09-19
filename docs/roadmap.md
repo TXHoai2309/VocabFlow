@@ -1,8 +1,8 @@
 # VocabFlow Roadmap and Batch Index
 
 This roadmap promotes only work supported by the current product documents and
-the accepted/backfilled user-story evidence. US-26 through US-29 are
-implemented and awaiting owner check; US-30 remains unopened.
+the accepted/backfilled user-story evidence. US-26 through US-30 are
+implemented and awaiting owner check.
 
 ## BATCH 0 — Foundation
 
@@ -282,7 +282,16 @@ The owner-verified Hoài/Ngọc metric snapshots are recorded in US-20 and US-21
 - The default compatibility set contains all 30 enabled starter rows; existing
   learners are assigned during migration and new learners are assigned through
   the canonical create path. Imported rows remain disabled and untouched.
-- US-30 recommendation or adaptive-set work remains unopened.
+
+### US-30 — Daily New Word Limit
+
+- Status: `IMPLEMENTED / READY FOR OWNER CHECK`.
+- Contract: [`US-30 Daily New Word Limit`](stories/US-30-daily-new-word-limit.md).
+- Adds a learner-scoped integer limit from 0 through 100, default 10, with a
+  parent settings API/UI. Due remains exempt and ordered first.
+- Daily consumption is based on distinct current progress rows materialized on
+  the household-local date. Learning-set eligibility, sparse New semantics,
+  reset history preservation and review retry behavior remain unchanged.
 
 ## Later product scope
 

@@ -136,6 +136,7 @@ Hết queue hoặc learner chủ động thoát → Summary
 | Due ≥ 20 | Lấy tối đa 20 due; không thêm new. |
 | 0 < Due < 20 | Lấy toàn bộ due; thêm tối đa 10 new. |
 | Due = 0 | Lấy tối đa 10 new. |
+| Daily New allowance | Mỗi learner mặc định được tối đa 10 vocabulary virtual-New materializations mỗi household-local day; setting 0..100 thay đổi được theo learner. |
 | Unique-word ceiling | Policy ceiling là 30 unique words; với selection rule hiện tại thực tế tối đa 29, không pad thêm. |
 | Ưu tiên | Due luôn đứng trước new. |
 | Reinforcement | Một từ Chưa nhớ có thể reinsert tối đa 2 lần trong cùng session. |
@@ -253,6 +254,22 @@ The migration provides a compatibility `VocabFlow Starter` set containing all
 Basics and Everyday Words sets. Imported rows remain disabled and are not
 automatically classified or enabled.
 
+### 15.3 Daily new word limit (US-30)
+
+Each learner has a `dailyNewWordLimit`, default `10`, validated from `0` to
+`100`. It limits only vocabulary that transitions from the current virtual NEW
+state into a current `learner_progress` lifecycle on the household-local date.
+Due vocabulary is always available and remains ahead of New; the existing
+session selection cap is independent of this daily allowance.
+
+The queue reads the server-side remaining allowance across sessions. A
+materialized vocabulary, reinforcement, idempotent retry, duplicate set
+membership and an unassign/reassign cycle do not consume another allowance.
+Reset preserves `review_events` but deletes current progress, so the next
+current lifecycle is virtual NEW again. Progress summary New remains the
+global count of eligible vocabulary without current progress; it is not
+reduced to today's allowance.
+
 ## 16. Data quality gate
 
 | **Kiểm tra** | **Kết quả** |
@@ -303,6 +320,7 @@ automatically classified or enabled.
 | Session Summary | Reviewed/remembered/forgotten/reinforcement summary. | YES |
 | Progress | New/Learning/Mastered/Due theo active learner. | YES |
 | Vocabulary list / learning sets | Danh sách enabled vocabulary + trạng thái learner tối thiểu; lọc cấp độ, browse theo chủ đề, xem set và gán set cho learner. | YES |
+| Daily New settings | Parent xem/chỉnh giới hạn từ mới theo learner; Due exemption và trạng thái lưu được hiển thị rõ. | YES |
 | Reset progress | Parent-confirmed reset per learner; có thể làm sau vertical slice nhưng vẫn thuộc MVP. | YES |
 
 ## 20. Family vertical slice
@@ -332,6 +350,7 @@ Vertical slice đầu tiên
 | **PR-08** | Một từ Chưa nhớ reinsert tối đa 2 lần/session. |
 | **PR-09** | Due được ưu tiên; due ≥20 thì không thêm new. |
 | **PR-10** | Due=0 chỉ lấy tối đa 10 new. |
+| **PR-10A** | Daily New admission không vượt allowance còn lại của learner theo household-local day; Due không bị chặn. |
 | **PR-11** | MASTERED + Chưa nhớ → LEARNING / 1 day. |
 | **PR-12** | nextReviewDate <= today xuất hiện trong due queue của đúng learner. |
 | **PR-13** | Review chỉ chuyển thẻ sau server-confirmed save. |

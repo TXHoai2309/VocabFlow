@@ -1,0 +1,2 @@
+ALTER TABLE "vocabflow_app"."learner_profiles" ADD COLUMN "daily_new_word_limit" integer DEFAULT 10 NOT NULL;--> statement-breakpoint
+ALTER TABLE "vocabflow_app"."learner_profiles" ADD CONSTRAINT "learner_profiles_daily_new_word_limit_check" CHECK ("vocabflow_app"."learner_profiles"."daily_new_word_limit" >= 0 AND "vocabflow_app"."learner_profiles"."daily_new_word_limit" <= 100);

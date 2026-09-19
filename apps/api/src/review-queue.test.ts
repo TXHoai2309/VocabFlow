@@ -48,6 +48,10 @@ function authorizedRows() {
   return { rows: [{ learner_id: learnerId, household_id: householdId }] };
 }
 
+function dailyUsageRow(limit = 10, consumedToday = 0) {
+  return { rows: [{ daily_new_word_limit: limit, consumed_today: consumedToday }] };
+}
+
 describe("US-08 review queue API boundary", () => {
   it("returns 401 before invoking the queue service", async () => {
     const service = { list: vi.fn() };
@@ -124,6 +128,7 @@ describe("US-08 review queue service", () => {
     const results: unknown[] = [
       authorizedRows(),
       { rows: [{ timezone: "America/Los_Angeles" }] },
+      dailyUsageRow(),
       { rows: [dueRow(2, 2, 7), dueRow(5, 2, 8n)] },
       { rows: [newRow(1, 3), newRow(3, 3), newRow(4, 3)] }
     ];
@@ -147,20 +152,21 @@ describe("US-08 review queue service", () => {
         expect.objectContaining({ "vocabulary": expect.objectContaining({ id: 4 }), queueType: "NEW", expectedRevision: 0 })
       ]
     });
-    expect(queries).toHaveLength(4);
-    expect(queries[2]?.sql).toContain("lp.learner_id = $1::uuid");
-    expect(queries[2]?.sql).toContain("lp.next_review_date <= $2::date");
-    expect(queries[2]?.sql).toContain("ORDER BY lp.next_review_date ASC, v.id ASC");
-    expect(queries[2]?.sql).toContain("LIMIT 20");
-    expect(queries[2]?.sql).toContain('"vocabflow_app"."learner_learning_sets"');
-    expect(queries[2]?.sql).toContain("EXISTS");
-    expect(queries[3]?.sql).toContain("LEFT JOIN \"vocabflow_app\".\"learner_progress\"");
+    expect(queries).toHaveLength(5);
+    expect(queries[2]?.sql).toContain("first_learned_date");
     expect(queries[3]?.sql).toContain("lp.learner_id = $1::uuid");
-    expect(queries[3]?.sql).toContain("lp.vocabulary_id IS NULL");
-    expect(queries[3]?.sql).toContain("ORDER BY v.id ASC");
-    expect(queries[3]?.sql).toContain("LIMIT 10");
-    expect(queries[3]?.sql).toContain('"vocabflow_app"."learning_set_items"');
+    expect(queries[3]?.sql).toContain("lp.next_review_date <= $2::date");
+    expect(queries[3]?.sql).toContain("ORDER BY lp.next_review_date ASC, v.id ASC");
+    expect(queries[3]?.sql).toContain("LIMIT 20");
+    expect(queries[3]?.sql).toContain('"vocabflow_app"."learner_learning_sets"');
     expect(queries[3]?.sql).toContain("EXISTS");
+    expect(queries[4]?.sql).toContain("LEFT JOIN \"vocabflow_app\".\"learner_progress\"");
+    expect(queries[4]?.sql).toContain("lp.learner_id = $1::uuid");
+    expect(queries[4]?.sql).toContain("lp.vocabulary_id IS NULL");
+    expect(queries[4]?.sql).toContain("ORDER BY v.id ASC");
+    expect(queries[4]?.sql).toContain("LIMIT 10");
+    expect(queries[4]?.sql).toContain('"vocabflow_app"."learning_set_items"');
+    expect(queries[4]?.sql).toContain("EXISTS");
   });
 
   it.each(["cross-household", "disabled", "missing"])("returns safe 403 for an actual %s authorization outcome", async (caseName) => {
@@ -180,6 +186,7 @@ describe("US-08 review queue service", () => {
     const execute = vi.fn()
       .mockResolvedValueOnce(authorizedRows())
       .mockResolvedValueOnce({ rows: [{ timezone: "Asia/Ho_Chi_Minh" }] })
+      .mockResolvedValueOnce(dailyUsageRow())
       .mockResolvedValueOnce({ rows: due })
       .mockResolvedValueOnce({ rows: [newRow(100, 5)] });
     const service = createReviewQueueService({ execute }, { now: () => new Date("2026-09-14T03:00:00.000Z") });
@@ -195,6 +202,7 @@ describe("US-08 review queue service", () => {
     const execute = vi.fn()
       .mockResolvedValueOnce(authorizedRows())
       .mockResolvedValueOnce({ rows: [{ timezone: "Asia/Ho_Chi_Minh" }] })
+      .mockResolvedValueOnce(dailyUsageRow())
       .mockResolvedValueOnce({ rows: [] })
       .mockResolvedValueOnce({ rows: [newRow(1, 1)] });
     const service = createReviewQueueService({ execute }, { now: () => new Date("2026-09-14T03:00:00.000Z") });
@@ -204,6 +212,7 @@ describe("US-08 review queue service", () => {
     const malformed = vi.fn()
       .mockResolvedValueOnce(authorizedRows())
       .mockResolvedValueOnce({ rows: [{ timezone: "Asia/Ho_Chi_Minh" }] })
+      .mockResolvedValueOnce(dailyUsageRow())
       .mockResolvedValueOnce({ rows: [{ ...dueRow(1, 1), content_version: 0 }] })
       .mockResolvedValueOnce({ rows: [] });
     await expect(createReviewQueueService({ execute: malformed }, { now: () => new Date("2026-09-14T03:00:00.000Z") }).list("parent-1", learnerId))
@@ -222,5 +231,31 @@ describe("US-08 review queue service", () => {
       code: "INTERNAL_ERROR",
       status: 500
     });
+  });
+
+  it("limits NEW rows by the remaining daily allowance while preserving the eligible count", async () => {
+    const execute = vi.fn()
+      .mockResolvedValueOnce(authorizedRows())
+      .mockResolvedValueOnce({ rows: [{ timezone: "Asia/Ho_Chi_Minh" }] })
+      .mockResolvedValueOnce(dailyUsageRow(10, 6))
+      .mockResolvedValueOnce({ rows: [] })
+      .mockResolvedValueOnce({ rows: [newRow(1, 5), newRow(2, 5), newRow(3, 5), newRow(4, 5), newRow(5, 5)] });
+
+    const result = await createReviewQueueService({ execute }, { now: () => new Date("2026-09-14T03:00:00.000Z") }).list("parent-1", learnerId);
+    expect(result.newCount).toBe(5);
+    expect(result.queue.filter((item) => item.queueType === "NEW").map((item) => item.vocabulary.id)).toEqual([1, 2, 3, 4]);
+  });
+
+  it("keeps Due available when the daily NEW allowance is zero", async () => {
+    const execute = vi.fn()
+      .mockResolvedValueOnce(authorizedRows())
+      .mockResolvedValueOnce({ rows: [{ timezone: "Asia/Ho_Chi_Minh" }] })
+      .mockResolvedValueOnce(dailyUsageRow(0, 0))
+      .mockResolvedValueOnce({ rows: [dueRow(1, 1)] })
+      .mockResolvedValueOnce({ rows: [newRow(2, 4)] });
+
+    const result = await createReviewQueueService({ execute }, { now: () => new Date("2026-09-14T03:00:00.000Z") }).list("parent-1", learnerId);
+    expect(result.queue).toHaveLength(1);
+    expect(result.queue[0]).toMatchObject({ queueType: "DUE", vocabulary: { id: 1 } });
   });
 });

@@ -1,18 +1,18 @@
-# Technical Architecture v1.0.7
+# Technical Architecture v1.0.8
 
 - Status: APPROVED FOR IMPLEMENTATION
-- Version: v1.0.7
-- Source baseline: `VocabFlow_Technical_Architecture_v1.0.4.docx`; this Markdown records the US-25 identity reconciliation, US-26/US-27 vocabulary taxonomy and US-28/US-29 learning-set assignment model.
+- Version: v1.0.8
+- Source baseline: `VocabFlow_Technical_Architecture_v1.0.4.docx`; this Markdown records the US-25 identity reconciliation, US-26/US-27 vocabulary taxonomy, US-28/US-29 learning-set assignment model and US-30 daily New allowance.
 - Canonical format: Markdown
 - Last synchronized: 2026-09-19
 
 **VOCABFLOW**
 
-**Technical Architecture v1.0.7**
+**Technical Architecture v1.0.8**
 
 **Family Learning MVP**
 
-| **Status** | APPROVED FOR IMPLEMENTATION; US-25 identity reconciliation, US-26/US-27 taxonomy and US-28/US-29 learning sets recorded |
+| **Status** | APPROVED FOR IMPLEMENTATION; US-25 identity reconciliation, US-26/US-27 taxonomy, US-28/US-29 learning sets and US-30 daily New allowance recorded |
 | --- | --- |
 | **Architecture** | React SPA + Hono API + PostgreSQL |
 | **Primary persistence** | Neon PostgreSQL |
@@ -222,6 +222,7 @@ Better Auth schema không được chép lại thủ công trong tài liệu. B�
 | learner_profiles.household_id | uuid | NOT NULL | FK -> households.id |
 | learner_profiles.display_name | text | NOT NULL | Tên bé |
 | learner_profiles.avatar_key | text | NULL | Optional |
+| learner_profiles.daily_new_word_limit | integer | NOT NULL DEFAULT 10; CHECK 0..100 | Daily virtual-New allowance |
 | learner_profiles.enabled | boolean | NOT NULL DEFAULT true | Soft delete/disable |
 | learner_profiles.created_at / updated_at | timestamptz | NOT NULL DEFAULT now() | Audit timestamps |
 
@@ -526,6 +527,35 @@ US-28/US-29 learning-set and assignment rules:
   removes only the assignment row; progress and review events remain canonical
   and reappear when the set is assigned again.
 
+US-30 daily New allowance rules:
+
+- `learner_profiles.daily_new_word_limit` is an integer from 0 through 100,
+  defaulting to 10 for existing rows through migration and for new learners in
+  the canonical learner-create statement.
+- Queue admission counts distinct current `learner_progress` rows where
+  `first_learned_date = householdLocalDate(now, household.timezone)`. It does
+  not count review events, reinforcement or repeated review submissions.
+- Queue output remains Due first. Due is never reduced by the daily New limit;
+  the existing 20-Due / 10-New session selection caps remain separate.
+- New eligibility remains enabled vocabulary plus an active assigned enabled
+  learning set plus no current learner progress. Duplicate set membership is
+  still deduplicated by the existing `EXISTS` predicate.
+- Review materialization repeats the allowance check in the atomic write and
+  takes a PostgreSQL transaction advisory lock keyed to the learner. This
+  closes the obvious concurrent first-write bypass while keeping queue reads
+  non-reserved and read-only.
+- Reset deletes current progress but preserves immutable review events. Because
+  consumption uses current progress lifecycle dates, reset makes those words
+  virtual New again without treating old history as current progress.
+
+## 6.7 Learner daily settings API
+
+`GET /api/learners/:learnerId/settings` and
+`PATCH /api/learners/:learnerId/settings` are authorized through the canonical
+household learner ownership helper. PATCH accepts only the strict
+`dailyNewWordLimit` integer contract and returns the saved canonical value;
+cross-household access returns 403 and malformed values return 400.
+
 ## 7.1 Data quality gates
 
 | **Check** | **Severity** | **Behavior** |
@@ -651,6 +681,11 @@ New words (sparse progress):
 ```
 
 - Due priority: nếu due >= 20 thì không lấy new; nếu 0 < due < 20 thì lấy tất cả due (tối đa 20) + tối đa 10 new; nếu due = 0 thì tối đa 10 new.
+
+- The 10-New selection cap is also bounded by
+  `max(0, daily_new_word_limit - consumedToday)`. `consumedToday` is the
+  distinct current-progress lifecycle count for the household-local date; the
+  progress summary's global New count is not changed.
 
 - Ordering của new words phải deterministic để reload/retry không đổi ngẫu nhiên tập từ trong cùng dữ liệu/version.
 

@@ -39,6 +39,7 @@ describe("trusted DB acceptance diagnostics", () => {
       "verify-concurrent-identity",
       "verify-permission-matrix",
       "verify-us28-us29-learning-sets",
+      "verify-us30-daily-new-word-limit",
       "verify-us26-us27-taxonomy",
     ].map(stagePosition);
     expect(commonTail).toEqual([...commonTail].sort((left, right) => left - right));
@@ -127,6 +128,7 @@ describe("trusted DB suite selection", () => {
     expect(runner).toContain('await runUs08TrustedDbSuite');
     expect(runner).toContain('await runUs26Us27TrustedDbSuite');
     expect(runner).toContain('await runUs28Us29TrustedDbSuite');
+    expect(runner).toContain('await runUs30TrustedDbSuite');
     expect(runner).toContain('markStage("verify-us08-review-queue")');
   });
 });

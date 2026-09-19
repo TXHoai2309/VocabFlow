@@ -8,6 +8,11 @@ import {
 import { createAuth } from "./auth";
 import { createBootstrapService, type BootstrapService } from "./bootstrap";
 import { createLearnerService, LearnerServiceError, type LearnerService } from "./learners";
+import {
+  createLearnerSettingsService,
+  LearnerSettingsServiceError,
+  type LearnerSettingsService
+} from "./learner-settings";
 import { createVocabularyService, VocabularyServiceError, type VocabularyService } from "./vocabulary";
 import { createTopicService, TopicServiceError, type TopicService } from "./topics";
 import { createLearningSetService, LearningSetServiceError, type LearningSetService } from "./learning-sets";
@@ -34,6 +39,7 @@ export type AppDependencies = {
   readSession?: SessionReader;
   bootstrap?: BootstrapRunner;
   learnerService?: LearnerService;
+  learnerSettingsService?: LearnerSettingsService;
   vocabularyService?: VocabularyService;
   topicService?: TopicService;
   learningSetService?: LearningSetService;
@@ -84,6 +90,12 @@ async function runReviewQueueService(env: WorkerBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
   return createReviewQueueService(createHttpDatabase(env.DATABASE_URL));
+}
+
+async function runLearnerSettingsService(env: WorkerBindings) {
+  if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
+  const { createHttpDatabase } = await import("./db/client");
+  return createLearnerSettingsService(createHttpDatabase(env.DATABASE_URL));
 }
 
 async function runTopicService(env: WorkerBindings) {
@@ -234,6 +246,58 @@ export function createApp(dependencies: AppDependencies = {}) {
         return c.json(errorEnvelope(error.code, message), error.status);
       }
       return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể tạo learner lúc này. Vui lòng thử lại."), 503);
+    }
+  });
+
+  application.get("/api/learners/:learnerId/settings", async (c) => {
+    try {
+      const session = await readSession(c.req.raw, c.env);
+      if (!session?.user?.id) {
+        return c.json(errorEnvelope("UNAUTHORIZED", "Đăng nhập để tiếp tục."), 401);
+      }
+      if ([...new URL(c.req.url).searchParams.keys()].length > 0) {
+        return c.json(errorEnvelope("INVALID_REQUEST", "Dữ liệu gửi lên không hợp lệ."), 400);
+      }
+      const service = dependencies.learnerSettingsService ?? await runLearnerSettingsService(c.env);
+      return c.json(await service.get(session.user.id, c.req.param("learnerId")), 200);
+    } catch (error) {
+      if (error instanceof LearnerSettingsServiceError) {
+        const message = error.code === "HOUSEHOLD_ACCESS_DENIED"
+          ? "Bạn không có quyền truy cập learner này."
+          : "Không thể tải cài đặt learner lúc này. Vui lòng thử lại.";
+        return c.json(errorEnvelope(error.code, message), error.status);
+      }
+      return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể tải cài đặt learner lúc này. Vui lòng thử lại."), 503);
+    }
+  });
+
+  application.patch("/api/learners/:learnerId/settings", async (c) => {
+    try {
+      const session = await readSession(c.req.raw, c.env);
+      if (!session?.user?.id) {
+        return c.json(errorEnvelope("UNAUTHORIZED", "Đăng nhập để tiếp tục."), 401);
+      }
+      if ([...new URL(c.req.url).searchParams.keys()].length > 0) {
+        return c.json(errorEnvelope("INVALID_REQUEST", "Dữ liệu gửi lên không hợp lệ."), 400);
+      }
+      let payload: unknown;
+      try {
+        payload = await c.req.json();
+      } catch {
+        return c.json(errorEnvelope("INVALID_REQUEST", "Dữ liệu gửi lên không hợp lệ."), 400);
+      }
+      const service = dependencies.learnerSettingsService ?? await runLearnerSettingsService(c.env);
+      return c.json(await service.update(session.user.id, c.req.param("learnerId"), payload), 200);
+    } catch (error) {
+      if (error instanceof LearnerSettingsServiceError) {
+        const message = error.code === "HOUSEHOLD_ACCESS_DENIED"
+          ? "Bạn không có quyền thay đổi learner này."
+          : error.code === "INVALID_REQUEST"
+            ? "Giới hạn từ mới phải là số nguyên từ 0 đến 100."
+            : "Không thể lưu cài đặt learner lúc này. Vui lòng thử lại.";
+        return c.json(errorEnvelope(error.code, message), error.status);
+      }
+      return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể lưu cài đặt learner lúc này. Vui lòng thử lại."), 503);
     }
   });
 
@@ -390,6 +454,8 @@ export function createApp(dependencies: AppDependencies = {}) {
               ? "Review đã tồn tại với dữ liệu khác."
               : error.code === "STALE_REVISION"
                 ? "Tiến trình đã thay đổi. Vui lòng tải lại."
+                : error.code === "DAILY_NEW_LIMIT_REACHED"
+                  ? "Learner đã đạt giới hạn từ mới hôm nay."
                 : error.code === "INVALID_REQUEST"
                   ? "Dữ liệu gửi lên không hợp lệ."
                   : "Không thể lưu tiến trình lúc này. Vui lòng thử lại.";

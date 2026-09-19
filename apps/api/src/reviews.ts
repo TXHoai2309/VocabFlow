@@ -28,6 +28,7 @@ export type ReviewServiceErrorCode =
   | "VOCABULARY_NOT_FOUND"
   | "IDEMPOTENCY_CONFLICT"
   | "STALE_REVISION"
+  | "DAILY_NEW_LIMIT_REACHED"
   | "INTERNAL_ERROR";
 
 export class ReviewServiceError extends Error {
@@ -73,6 +74,7 @@ type AtomicWriteRow = {
   existing_response_payload: unknown;
   inserted_review_id: string | null;
   resulting_revision: number | string | bigint | null;
+  daily_limit_reached: boolean;
 };
 
 function rowsOf<T>(result: unknown): T[] {
@@ -274,11 +276,24 @@ async function atomicPersist(
   response: ReviewResponse
 ): Promise<AtomicWriteRow | undefined> {
   const result = await database.execute(sql`
-    WITH existing_event AS MATERIALIZED (
+    WITH locked_learner AS MATERIALIZED (
+      SELECT pg_advisory_xact_lock(hashtextextended(${input.learnerId}::text, 0)) AS acquired
+    ), existing_event AS MATERIALIZED (
       SELECT request_fingerprint, response_payload
       FROM "${sql.raw(APP_SCHEMA)}"."review_events"
       WHERE household_id = ${householdId}::uuid
         AND review_id = ${input.reviewId}::uuid
+    ), daily_usage AS MATERIALIZED (
+      SELECT lp.daily_new_word_limit,
+             COUNT(progress.vocabulary_id) FILTER (
+               WHERE progress.first_learned_date = ${reviewDate}::date
+             ) AS consumed_today
+      FROM "${sql.raw(APP_SCHEMA)}"."learner_profiles" lp
+      LEFT JOIN "${sql.raw(APP_SCHEMA)}"."learner_progress" progress
+        ON progress.learner_id = lp.id
+      CROSS JOIN locked_learner
+      WHERE lp.id = ${input.learnerId}::uuid
+      GROUP BY lp.daily_new_word_limit
     ), current_progress AS MATERIALIZED (
       SELECT learner_id,
              vocabulary_id,
@@ -317,6 +332,7 @@ async function atomicPersist(
         (${output.totalCorrect})::bigint AS total_correct,
         (${output.totalIncorrect})::bigint AS total_incorrect
       FROM current_progress cp
+      CROSS JOIN locked_learner
       WHERE NOT EXISTS (SELECT 1 FROM existing_event)
       UNION ALL
       SELECT
@@ -340,7 +356,9 @@ async function atomicPersist(
         ${output.nextReviewDate}::date AS next_review_date,
         (${output.totalCorrect})::bigint AS total_correct,
         (${output.totalIncorrect})::bigint AS total_incorrect
-      WHERE NOT EXISTS (SELECT 1 FROM current_progress)
+      FROM daily_usage
+      WHERE daily_usage.consumed_today < daily_usage.daily_new_word_limit
+        AND NOT EXISTS (SELECT 1 FROM current_progress)
         AND NOT EXISTS (SELECT 1 FROM existing_event)
     ), updated_progress AS (
       UPDATE "${sql.raw(APP_SCHEMA)}"."learner_progress" AS lp
@@ -440,7 +458,17 @@ async function atomicPersist(
     SELECT ee.request_fingerprint AS existing_fingerprint,
            ee.response_payload AS existing_response_payload,
            ie.review_id AS inserted_review_id,
-           (SELECT expected_revision + 1::bigint FROM successful LIMIT 1) AS resulting_revision
+           (SELECT expected_revision + 1::bigint FROM successful LIMIT 1) AS resulting_revision,
+           (
+             NOT EXISTS (SELECT 1 FROM current_progress)
+             AND NOT EXISTS (SELECT 1 FROM existing_event)
+             AND NOT EXISTS (SELECT 1 FROM prepared)
+             AND EXISTS (
+               SELECT 1
+               FROM daily_usage
+               WHERE consumed_today >= daily_new_word_limit
+             )
+           ) AS daily_limit_reached
     FROM (SELECT 1) AS anchor
     LEFT JOIN existing_event ee ON true
     LEFT JOIN inserted_event ie ON true
@@ -535,6 +563,9 @@ export function createReviewService(
           throw new ReviewServiceError("IDEMPOTENCY_CONFLICT", 409);
         }
         return { status: 200, response: storedResponse(persisted.existing_response_payload) };
+      }
+      if (persisted?.daily_limit_reached) {
+        throw new ReviewServiceError("DAILY_NEW_LIMIT_REACHED", 409);
       }
       if (persisted?.inserted_review_id) {
         if (

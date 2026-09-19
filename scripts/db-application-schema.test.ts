@@ -153,6 +153,7 @@ describe("dedicated application schema", () => {
     const catalogMigration = readFileSync(join(process.cwd(), "drizzle", "migrations", "0005_graceful_eddie_brock.sql"), "utf8");
     const taxonomyMigration = readFileSync(join(process.cwd(), "drizzle", "migrations", "0006_sticky_risque.sql"), "utf8");
     const learningSetMigration = readFileSync(join(process.cwd(), "drizzle", "migrations", "0007_modern_mysterio.sql"), "utf8");
+    const learnerSettingsMigration = readFileSync(join(process.cwd(), "drizzle", "migrations", "0008_chief_morph.sql"), "utf8");
     const journal = JSON.parse(readFileSync(join(process.cwd(), "drizzle", "migrations", "meta", "_journal.json"), "utf8")) as { entries: Array<{ idx: number; tag: string }> };
     const snapshot = JSON.parse(readFileSync(join(process.cwd(), "drizzle", "migrations", "meta", "0000_snapshot.json"), "utf8")) as {
       schemas: Record<string, string>;
@@ -170,6 +171,9 @@ describe("dedicated application schema", () => {
     };
     const learningSetSnapshot = JSON.parse(readFileSync(join(process.cwd(), "drizzle", "migrations", "meta", "0007_snapshot.json"), "utf8")) as {
       tables: Record<string, { columns: Record<string, { type: string; notNull?: boolean }>; compositePrimaryKeys: Record<string, unknown> }>;
+    };
+    const learnerSettingsSnapshot = JSON.parse(readFileSync(join(process.cwd(), "drizzle", "migrations", "meta", "0008_snapshot.json"), "utf8")) as {
+      tables: Record<string, { columns: Record<string, { type: string; notNull?: boolean }> }>;
     };
     const dbCore = readFileSync(join(process.cwd(), "scripts", "db-core.ts"), "utf8");
 
@@ -231,6 +235,9 @@ describe("dedicated application schema", () => {
     expect(learningSetMigration).toContain("everyday-words");
     expect(learningSetMigration).toContain("ON CONFLICT");
     expect(learningSetMigration).not.toMatch(/DROP TABLE|TRUNCATE|DELETE FROM/i);
+    expect(learnerSettingsMigration).toContain(`ALTER TABLE "${APP_SCHEMA}"."learner_profiles" ADD COLUMN "daily_new_word_limit" integer DEFAULT 10 NOT NULL`);
+    expect(learnerSettingsMigration).toContain("learner_profiles_daily_new_word_limit_check");
+    expect(learnerSettingsMigration).not.toMatch(/DROP TABLE|TRUNCATE|DELETE FROM/i);
     const catalogSnapshot = JSON.parse(readFileSync(join(process.cwd(), "drizzle", "migrations", "meta", "0005_snapshot.json"), "utf8")) as {
       tables: Record<string, { columns: Record<string, { identity?: { type: string } }>; uniqueConstraints: Record<string, { columns: string[] }> }>;
     };
@@ -242,10 +249,11 @@ describe("dedicated application schema", () => {
     expect(taxonomySnapshot.tables[`${APP_SCHEMA}.vocabulary_topics`]?.compositePrimaryKeys.vocabulary_topics_vocabulary_topic_pk).toBeDefined();
     expect(learningSetSnapshot.tables[`${APP_SCHEMA}.learning_set_items`]?.compositePrimaryKeys.learning_set_items_set_vocabulary_pk).toBeDefined();
     expect(learningSetSnapshot.tables[`${APP_SCHEMA}.learner_learning_sets`]?.compositePrimaryKeys.learner_learning_sets_learner_set_pk).toBeDefined();
+    expect(learnerSettingsSnapshot.tables[`${APP_SCHEMA}.learner_profiles`]?.columns.daily_new_word_limit).toMatchObject({ type: "integer", notNull: true });
     expect(reviewSnapshot.tables[`${APP_SCHEMA}.learner_progress`]?.columns.consecutive_correct.type).toBe("bigint");
     expect(reviewSnapshot.tables[`${APP_SCHEMA}.review_events`]?.columns.expected_revision.type).toBe("bigint");
     expect(reviewSnapshot.tables[`${APP_SCHEMA}.review_events`]?.compositePrimaryKeys.review_events_household_review_pk).toBeDefined();
-    expect(journal.entries.map((entry) => entry.tag)).toEqual(["0000_application-schema", "0001_curious_miss_america", "0002_smiling_wrecking_crew", "0003_lazy_lady_deathstrike", "0004_scheduled_review_write", "0005_graceful_eddie_brock", "0006_sticky_risque", "0007_modern_mysterio"]);
+    expect(journal.entries.map((entry) => entry.tag)).toEqual(["0000_application-schema", "0001_curious_miss_america", "0002_smiling_wrecking_crew", "0003_lazy_lady_deathstrike", "0004_scheduled_review_write", "0005_graceful_eddie_brock", "0006_sticky_risque", "0007_modern_mysterio", "0008_chief_morph"]);
     expect(dbCore).toContain("await executeApplicationMigrations(sql)");
   });
 

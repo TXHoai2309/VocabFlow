@@ -2,6 +2,20 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-19 — US-30 daily new word limit
+
+- Added learner-scoped `daily_new_word_limit` with default 10 and validation
+  range 0–100, plus authorized settings API and parent UI.
+- Review Queue now limits only virtual NEW admission by the remaining
+  household-local daily allowance. Due remains first and exempt; existing
+  session caps and progress-summary semantics are unchanged.
+- Daily consumption uses the current progress lifecycle's
+  `first_learned_date`; reset removes that lifecycle while preserving review
+  events. Idempotent retries and reinforcement do not consume another NEW
+  allowance, and concurrent first writes are serialized per learner.
+- Added focused settings/queue/review/UI coverage, migration assertions and a
+  Trusted DB US-30 suite. Status: `IMPLEMENTED / READY FOR OWNER CHECK`.
+
 ## 2026-09-19 — US-28 + US-29 learning sets and learner assignments
 
 - Added five deterministic curated learning sets with ordered vocabulary
