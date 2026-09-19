@@ -1,8 +1,9 @@
 # US-25 — Full Vocabulary Catalog
 
-- Status: BLOCKED FOR CLOSEOUT — Core CI recovery gate pending
+- Status: ACCEPTED / CLOSED
 - Documentation state: retrospective/backfilled from implementation evidence
 - Implementation commit: `f17521bd41738db6dd5e8f7f72a170ed08c22bf3`
+- Recovery fix commit: `60b384dd1f53ca5a5472402292a450190446ba9e`
 - Dependencies: US-04 content foundation, US-23 media foundation, and US-24 safety baseline.
 
 ## User story
@@ -66,9 +67,12 @@ post-import idempotency dry run reported INSERT_COUNT=0, UPDATE_COUNT=0,
 SKIP_COUNT=1994, DATABASE_MUTATIONS=0, STATUS=PASS. Starter, progress, and
 review-event modifications were zero. Trusted DB on the implementation commit
 passed, while the Core CI run on that commit failed because a test depended on
-gitignored `local-data/`; the recovery fix is tracked separately.
+gitignored `local-data/`. The recovery fix replaced that test dependency with
+deterministic tracked fixtures while retaining real-data manual tooling. Core CI
+run `35434440380` and Trusted DB Integration run `35434440386` both passed on
+the recovery commit.
 
-## Known limitation / closeout gate
+## Closeout
 
-US-25 must remain blocked until the new Core CI run for the recovery fix passes.
-No US-26 work is started by this story.
+US-25 is accepted and closed after the recovery gates passed. No US-26 work is
+started by this story.

@@ -242,16 +242,18 @@ The owner-verified Hoài/Ngọc metric snapshots are recorded in US-20 and US-21
 
 ### US-25 — Full Vocabulary Catalog
 
-- Status: `BLOCKED FOR CLOSEOUT` while the recovery Core CI run is pending.
+- Status: `ACCEPTED / CLOSED` after the recovery Core CI and Trusted DB gates.
 - Implementation: `f17521bd41738db6dd5e8f7f72a170ed08c22bf3`.
+- Recovery fix: `60b384dd1f53ca5a5472402292a450190446ba9e`.
 - Scope: additive source identity, safe 1,994-row import/reconciliation, media
   reuse, disabled imported rows, stable starter IDs, and no progress/history
   reinterpretation.
 - Evidence: real migration/import produced 30 starter plus 1,994 imported rows;
   the post-import idempotency dry run reported 0 inserts, 0 updates, 1,994
   skips, 0 database mutations, and PASS.
-- Closeout rule: do not call US-25 accepted until the post-fix Core CI run
-  passes. This roadmap does not open US-26.
+- Closeout evidence: Core CI run `35434440380` PASS and Trusted DB Integration
+  run `35434440386` PASS on the recovery commit. This roadmap does not open
+  US-26.
 
 ## Later product scope
 

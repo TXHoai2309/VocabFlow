@@ -92,12 +92,14 @@ feature code may start.
 ## Current project state
 
 - BATCH 0 Foundation: `ACCEPTED`.
-- Recovery baseline: implementation commit `f17521bd41738db6dd5e8f7f72a170ed08c22bf3`.
+- Recovery baseline: implementation commit `f17521bd41738db6dd5e8f7f72a170ed08c22bf3`;
+  recovery fix commit `60b384dd1f53ca5a5472402292a450190446ba9e`.
 - Initial Core CI on that commit: `FAIL` in Unit and component tests because a
   starter-enrichment test read gitignored `local-data/`.
 - Initial Trusted DB Integration on that commit: `PASS`.
-- Recovery fix: deterministic tracked test fixtures; local Core CI sequence is
-  passing and the post-fix GitHub run is the remaining closeout gate.
+- Recovery fix: deterministic tracked test fixtures; Core CI run `35434440380`
+  and Trusted DB Integration run `35434440386` both passed on the recovery
+  commit.
 - BATCH 1 Authentication and Family Entry: `ACCEPTED`.
 - BATCH 2 Learning Content Foundation is `ACCEPTED`.
 - US-01 Parent Registration is `ACCEPTED`.
@@ -119,6 +121,6 @@ feature code may start.
   DEFERRED`.
 - US-23 Missing Media / Dataset Vertical Slice and US-24 Reset Learner Progress
   are `ACCEPTED / CLOSED`.
-- US-25 Full Vocabulary Catalog is `BLOCKED FOR CLOSEOUT` until the recovery
-  Core CI run passes. Real migration/import evidence is recorded in its story.
+- US-25 Full Vocabulary Catalog is `ACCEPTED / CLOSED`; real migration/import,
+  idempotency, Core CI and Trusted DB evidence are recorded in its story.
 - Documentation/agent-pack work does not implement US-01 or any other feature.

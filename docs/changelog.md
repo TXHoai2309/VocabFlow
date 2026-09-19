@@ -2,7 +2,7 @@
 
 This log records meaningful project milestones and accepted baselines.
 
-## 2026-09-19 — Repository recovery: US-12 through US-25 backfill and Core CI diagnosis
+## 2026-09-19 — Repository recovery: US-12 through US-25 backfill and Core CI closeout
 
 - Backfilled retrospective story contracts for US-12 Audio Pronunciation,
   US-13 Recall/Scheduler Integration, US-14 Due/New Queue, US-15 Session
@@ -20,6 +20,9 @@ This log records meaningful project milestones and accepted baselines.
   `scripts/enrich-starter-vocabulary.test.ts` read gitignored `local-data/`;
   Trusted DB run `35250926632` passed. Recovery replaces that test dependency
   with deterministic tracked fixtures while retaining real-data manual tooling.
+- Recovery commit `60b384dd1f53ca5a5472402292a450190446ba9e` passed Core CI run
+  `35434440380` and Trusted DB Integration run `35434440386`; US-25 is now
+  `ACCEPTED / CLOSED`.
 - This recovery does not start US-26. `docs/decisions.md` remains protected and
   is intentionally not changed.
 

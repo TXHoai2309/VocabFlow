@@ -51,7 +51,7 @@ convenient. Reprioritization or a new story must be explicit.
 - [US-22 Vocabulary List](US-22-vocabulary-list.md) — `IMPLEMENTED / AUTOMATED PASS — MANUAL OWNER CHECK DEFERRED`.
 - [US-23 Missing Media / Dataset Vertical Slice](US-23-missing-media-data-foundation.md) — `ACCEPTED / CLOSED`.
 - [US-24 Reset Learner Progress](US-24-reset-learner-progress.md) — `ACCEPTED / CLOSED`.
-- [US-25 Full Vocabulary Catalog](US-25-full-vocabulary-catalog.md) — `BLOCKED FOR CLOSEOUT — CORE CI FAILURE`.
+- [US-25 Full Vocabulary Catalog](US-25-full-vocabulary-catalog.md) — `ACCEPTED / CLOSED`.
 
 ## Story status gate
 

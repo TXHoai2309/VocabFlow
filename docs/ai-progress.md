@@ -1,12 +1,12 @@
 # Current Handoff Snapshot
 
 - Project: VocabFlow Family MVP
-- Current phase/batch: Family MVP US-01..US-24 complete; Phase 2 / US-25 closeout recovery
+- Current phase/batch: Family MVP US-01..US-24 complete; Phase 2 / US-25 accepted
 - Current Git branch: `TXH`
-- Current implementation baseline: `f17521bd41738db6dd5e8f7f72a170ed08c22bf3`
+- Current implementation baseline: `60b384dd1f53ca5a5472402292a450190446ba9e`
 - US-24: `ACCEPTED / CLOSED`.
-- US-25: `BLOCKED FOR CLOSEOUT` until the recovery Core CI run passes; do not
-  start US-26.
+- US-25: `ACCEPTED / CLOSED` after recovery Core CI and Trusted DB passed; do
+  not start US-26.
 - US-22: `IMPLEMENTED / AUTOMATED PASS — MANUAL OWNER CHECK DEFERRED`.
 - Catalog state after real import: 30 starter rows + 1,994 imported rows =
   2,024 total vocabulary rows.
@@ -20,14 +20,13 @@
   and component tests because a starter-enrichment test required gitignored
   `local-data/`.
 - Trusted DB on the implementation baseline: `PASS`, run `35250926632`.
-- Recovery fix in working tree: deterministic tracked test fixtures replace the
-  CI test's dependency on local generated/source data. Local Linux and Windows
-  Core CI sequences pass; the post-fix GitHub run is pending.
+- Recovery fix in commit `60b384d`: deterministic tracked test fixtures replace
+  the CI test's dependency on local generated/source data. Core CI run
+  `35434440380` and Trusted DB run `35434440386` both passed.
 - Protected: never modify, stage, restore, reset, clean, or commit
   `docs/decisions.md`. Preserve `.env.example` and `local-data.zip` changes.
-- Next safe action: commit only the CI fixture fix and documentation backfill,
-  push `TXH` and `TXH:main`, then inspect the new Core CI run before closing
-  US-25.
+- Next safe action: preserve the accepted baseline; no US-26 work is opened by
+  this recovery task. US-22's manual owner check remains deferred.
 - Documents new agents must read first: `docs/README.md`,
   `docs/product/product-spec.md`, `docs/architecture/technical-architecture.md`,
   `docs/design/design-system.md`, `docs/design/feature-ui-spec.md`,
