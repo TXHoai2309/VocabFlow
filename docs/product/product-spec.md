@@ -157,21 +157,28 @@ Hết queue hoặc learner chủ động thoát → Summary
 
 - Chỉ server-confirmed scheduled review mới được coi là đã lưu progress.
 
-## 8.1 Controlled exercise mode (US-31 / US-32)
+## 8.1 Controlled exercise mode (US-31 through US-34)
 
 Study keeps the accepted Flashcard flow at `/study`. Learner Home also exposes
-an explicit `/study/exercises` route for two interaction types:
+an explicit `/study/exercises` route for four deterministic interaction types:
 
 - `MULTIPLE_CHOICE_MEANING`: English prompt with one correct Vietnamese
   meaning and three deterministic safe distractors.
 - `LISTENING_CHOICE`: usable pronunciation audio with one correct English word
   and three deterministic safe distractors. The target is not repeated in the
   prompt or answer-bearing Flashcard back content before submission.
+- `IMAGE_TO_WORD`: a usable image with one correct English word and three
+  deterministic safe distractors. Missing images are ineligible and the image
+  alt text is neutral before submission.
+- `TYPE_WORD`: a Vietnamese-first safe cue followed by image, audio or a
+  non-answer-revealing definition/example. The learner must type the exact
+  spelling after NFKC, outer-trim and case normalization; meaningful internal
+  whitespace is preserved.
 
 Exercise generation happens after queue admission and never changes enabled,
 learning-set, scheduler or daily-New eligibility. Missing/ambiguous distractors
-fall back to Flashcard. Broken audio falls back without creating a review, and
-SpeechSynthesis is not used.
+fall back to Flashcard. Broken audio, image or optional typing cues fall back
+without creating a review, and SpeechSynthesis is not used.
 
 Correct and incorrect answers map to the existing `REMEMBERED` and `FORGOTTEN`
 actions through the canonical review API. One answer locks the exercise; the

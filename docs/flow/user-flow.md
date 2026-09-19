@@ -4,7 +4,7 @@
 - Version: v1
 - Source baseline: `VocabFlow_User_Flow_v1.docx`
 - Canonical format: Markdown
-- Last synchronized: 2026-09-19
+- Last synchronized: 2026-09-20
 
 **VOCABFLOW**
 
@@ -147,7 +147,7 @@ Thẻ tiếp theo      Giữ nguyên thẻ + Retry
 | Thứ tự | Due trước, New sau |
 | Reinforcement | Có thể chèn lại từ chưa nhớ tối đa 2 lần trong phiên; không persist scheduler lần nữa |
 
-## 3.2 Luồng bài tập có kiểm soát (US-31 / US-32)
+## 3.2 Luồng bài tập có kiểm soát (US-31 through US-34)
 
 ```text
 Learner Home
@@ -157,11 +157,11 @@ Luyện bài tập trắc nghiệm
 Server tạo cùng Review Queue canonical
 ↓
 Chọn loại bài deterministic sau khi queue admission hoàn tất
-↙                         ↘
-Meaning choice             Listening choice
-↓                          ↓
-Chọn nghĩa Việt             Nghe audio → chọn từ Anh
-↘                         ↙
+↙                 ↓                  ↘
+Meaning choice   Image to word       Listening / Type word
+↓                ↓                  ↓
+Chọn nghĩa Việt  Nhìn hình → từ Anh  Audio → từ Anh / cue → gõ từ
+↘                 ↓                  ↙
 Feedback + khóa lựa chọn
 ↓
 POST review canonical
@@ -172,7 +172,9 @@ Lưu lỗi → giữ bài + Retry cùng reviewId
 
 Exercise mode không bypass enabled vocabulary, learning-set assignment,
 scheduler eligibility hoặc daily New limit. Thiếu distractor an toàn dùng
-Flashcard; audio thiếu/hỏng dùng Flashcard và không tự ghi `FORGOTTEN`.
+Flashcard; audio/image/cue thiếu hoặc hỏng dùng fallback an toàn và không tự
+ghi `FORGOTTEN`. Typing dùng spelling exact sau NFKC/trim/case normalization,
+không fuzzy-match và không gửi raw input lên review API.
 `/study` vẫn là Flashcard path mặc định.
 
 ## 3.3 Kết thúc phiên

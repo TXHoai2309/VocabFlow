@@ -309,6 +309,22 @@ The owner-verified Hoài/Ngọc metric snapshots are recorded in US-20 and US-21
   learning-set, authorization, save-before-next, retry, reinforcement and
   summary semantics. No database schema change is required.
 
+### US-33 + US-34 — Image to Word and Typing / Spelling Exercises
+
+- Status: `IMPLEMENTED / READY FOR OWNER CHECK`.
+- Contracts: [`US-33 Image to Word Exercise`](stories/US-33-image-word-exercise.md)
+  and [`US-34 Typing / Spelling Exercise`](stories/US-34-typing-spelling-exercise.md).
+- Extended the same `/study/exercises` layer with deterministic
+  `IMAGE_TO_WORD` and `TYPE_WORD` modes. Learner Home exposes explicit image
+  and typing entry links while `/study` and the default exercise route retain
+  their accepted behavior.
+- Image exercises require a usable image and four safe English options. Typing
+  uses a deterministic safe cue, strict NFKC/trim/case normalization and no
+  fuzzy spelling. Broken or missing media falls back without a review write.
+- Both modes use the canonical review API and preserve queue admission, daily
+  New limits, learner isolation, retry, reinforcement and summary semantics.
+  No database or learner-progress schema change is required.
+
 ## Later product scope
 
 The Product Specification defines learner selector/create, Learner Home, Study,

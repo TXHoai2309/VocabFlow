@@ -59,6 +59,8 @@ convenient. Reprioritization or a new story must be explicit.
 - [US-30 Daily New Word Limit](US-30-daily-new-word-limit.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
 - [US-31 Multiple Choice Meaning](US-31-multiple-choice-meaning.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
 - [US-32 Listening Exercise](US-32-listening-exercise.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
+- [US-33 Image to Word Exercise](US-33-image-word-exercise.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
+- [US-34 Typing / Spelling Exercise](US-34-typing-spelling-exercise.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
 
 ## Story status gate
 

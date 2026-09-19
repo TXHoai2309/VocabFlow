@@ -1,5 +1,6 @@
+import { useState } from "react";
 import type { ExerciseInstance } from "./exercise-generator";
-import { EXERCISE_TYPE } from "./exercise-generator";
+import { EXERCISE_TYPE, normalizeExerciseAnswer, TYPE_WORD_CUE, TYPE_WORD_SUBMISSION } from "./exercise-generator";
 import type { PronunciationAudioState } from "./pronunciation-audio";
 import { usePronunciationAudio } from "./pronunciation-audio";
 
@@ -12,8 +13,9 @@ export type ExerciseCardProps = {
   exercise: ExerciseInstance;
   answer: ExerciseAnswer | null;
   saveState: "ready" | "saving" | "save-failed" | "awaiting-next";
-  onAnswer: (optionId: string) => void;
+  onAnswer: (optionId: string, typedAnswerCorrect?: boolean) => void;
   onAudioFailure: () => void;
+  onImageFailure?: () => void;
 };
 
 function audioLabel(state: PronunciationAudioState): string {
@@ -24,20 +26,43 @@ function audioLabel(state: PronunciationAudioState): string {
   return "Nghe phát âm";
 }
 
-export function ExerciseCard({ exercise, answer, saveState, onAnswer, onAudioFailure }: ExerciseCardProps) {
+export function ExerciseCard({ exercise, answer, saveState, onAnswer, onAudioFailure, onImageFailure }: ExerciseCardProps) {
   const isListening = exercise.exerciseType === EXERCISE_TYPE.LISTENING_CHOICE;
+  const isTypeWord = exercise.exerciseType === EXERCISE_TYPE.TYPE_WORD;
+  const hasAudioCue = isListening || (isTypeWord && exercise.cueType === TYPE_WORD_CUE.AUDIO);
+  const [typedAnswer, setTypedAnswer] = useState("");
+  const [typingError, setTypingError] = useState<string | null>(null);
+  const [typeSubmitted, setTypeSubmitted] = useState(false);
   const audio = usePronunciationAudio(
-    isListening ? exercise.audioUrl : null,
+    hasAudioCue ? exercise.audioUrl : null,
     "",
     exercise.vocabularyId,
     onAudioFailure
   );
 
+  const submitTypedAnswer = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (answer || typeSubmitted || saveState !== "ready") return;
+    if (!normalizeExerciseAnswer(typedAnswer)) {
+      setTypingError("Nhập câu trả lời trước khi gửi.");
+      return;
+    }
+    setTypingError(null);
+    setTypeSubmitted(true);
+    const correct = normalizeExerciseAnswer(typedAnswer) === normalizeExerciseAnswer(exercise.correctAnswer ?? "");
+    onAnswer(TYPE_WORD_SUBMISSION, correct);
+  };
+
+  const canonicalAnswer = exercise.correctAnswer
+    ?? exercise.options.find((option) => option.optionId === exercise.correctOptionId)?.label;
+
   return (
     <section className="exercise-card" data-testid="exercise-card" data-exercise-type={exercise.exerciseType}>
       <div className="exercise-header">
-        <span className="exercise-type-label">{isListening ? "Listening choice" : "Multiple choice"}</span>
-        {isListening ? (
+        <span className="exercise-type-label">
+          {isListening ? "Listening choice" : exercise.exerciseType === EXERCISE_TYPE.IMAGE_TO_WORD ? "Image to word" : isTypeWord ? "Typing" : "Multiple choice"}
+        </span>
+        {hasAudioCue ? (
           <button
             className="auth-retry exercise-audio-button"
             type="button"
@@ -52,35 +77,73 @@ export function ExerciseCard({ exercise, answer, saveState, onAnswer, onAudioFai
         ) : null}
       </div>
 
+      {exercise.imageUrl ? (
+        <img
+          className="exercise-image"
+          src={exercise.imageUrl}
+          alt="Vocabulary exercise image"
+          data-testid="exercise-image"
+          onError={onImageFailure ?? onAudioFailure}
+        />
+      ) : null}
+
       <p className="exercise-prompt" data-testid="exercise-prompt">
-        {isListening ? exercise.prompt : <>Chọn nghĩa đúng của <strong>{exercise.prompt}</strong>.</>}
+        {isListening || isTypeWord || exercise.exerciseType === EXERCISE_TYPE.IMAGE_TO_WORD
+          ? exercise.prompt
+          : <>Chọn nghĩa đúng của <strong>{exercise.prompt}</strong>.</>}
       </p>
 
-      <fieldset className="exercise-options" disabled={Boolean(answer) || saveState !== "ready"}>
-        <legend className="sr-only">Các đáp án</legend>
-        {exercise.options.map((option) => {
-          const selected = answer?.optionId === option.optionId;
-          const correct = Boolean(answer) && exercise.correctOptionId === option.optionId;
-          return (
-            <button
-              className={`exercise-option${selected ? " is-selected" : ""}${correct ? " is-correct" : ""}`}
-              type="button"
-              key={option.optionId}
-              aria-pressed={selected}
-              onClick={() => onAnswer(option.optionId)}
-            >
-              <span>{option.label}</span>
-              {answer && correct ? <span aria-label="Đáp án đúng">✓</span> : null}
-            </button>
-          );
-        })}
-      </fieldset>
+      {exercise.cueText ? <p className="exercise-cue" data-testid="exercise-cue">{exercise.cueText}</p> : null}
+
+      {isTypeWord ? (
+        <form className="exercise-typing-form" onSubmit={submitTypedAnswer} noValidate>
+          <label className="exercise-typing-label" htmlFor="exercise-answer">Từ tiếng Anh</label>
+          <input
+            id="exercise-answer"
+            className="exercise-typing-input"
+            type="text"
+            autoComplete="off"
+            value={typedAnswer}
+            disabled={Boolean(answer) || typeSubmitted || saveState !== "ready"}
+            aria-invalid={Boolean(typingError)}
+            aria-describedby={typingError ? "exercise-typing-error" : undefined}
+            onChange={(event) => {
+              setTypedAnswer(event.target.value);
+              if (typingError) setTypingError(null);
+            }}
+          />
+          {typingError ? <p id="exercise-typing-error" className="exercise-typing-error" role="alert">{typingError}</p> : null}
+          <button className="register-submit exercise-submit-button" type="submit" disabled={Boolean(answer) || typeSubmitted || saveState !== "ready" || !normalizeExerciseAnswer(typedAnswer)}>
+            Gửi câu trả lời
+          </button>
+        </form>
+      ) : (
+        <fieldset className="exercise-options" disabled={Boolean(answer) || saveState !== "ready"}>
+          <legend className="sr-only">Các đáp án</legend>
+          {exercise.options.map((option) => {
+            const selected = answer?.optionId === option.optionId;
+            const correct = Boolean(answer) && exercise.correctOptionId === option.optionId;
+            return (
+              <button
+                className={`exercise-option${selected ? " is-selected" : ""}${correct ? " is-correct" : ""}`}
+                type="button"
+                key={option.optionId}
+                aria-pressed={selected}
+                onClick={() => onAnswer(option.optionId)}
+              >
+                <span>{option.label}</span>
+                {answer && correct ? <span aria-label="Đáp án đúng">✓</span> : null}
+              </button>
+            );
+          })}
+        </fieldset>
+      )}
 
       {answer ? (
         <div className={`exercise-feedback ${answer.result === "REMEMBERED" ? "is-correct" : "is-incorrect"}`} role="status" aria-live="polite">
           {answer.result === "REMEMBERED"
-            ? <><span>Chính xác.</span> <span>Đáp án: <strong>{exercise.options.find((option) => option.optionId === exercise.correctOptionId)?.label}</strong></span></>
-            : <>Chưa đúng. Đáp án: <strong>{exercise.options.find((option) => option.optionId === exercise.correctOptionId)?.label}</strong></>}
+            ? <><span>Chính xác.</span> <span>Đáp án: <strong>{canonicalAnswer}</strong></span></>
+            : <>Chưa đúng. Đáp án: <strong>{canonicalAnswer}</strong></>}
           {saveState === "saving" ? <span className="exercise-save-status"> Đang lưu kết quả…</span> : null}
           {saveState === "save-failed" ? <span className="exercise-save-status"> Chưa lưu tiến trình.</span> : null}
         </div>

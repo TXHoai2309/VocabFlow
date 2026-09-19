@@ -16,7 +16,7 @@ const learner: LearnerDto = {
   updatedAt: "2026-09-10T00:00:00.000Z"
 };
 
-function queueItem(id: number, word: string, vietnamese: string, audioUrl: string | null = null): ReviewQueueItem {
+function queueItem(id: number, word: string, vietnamese: string, audioUrl: string | null = null, imageUrl: string | null = null): ReviewQueueItem {
   const vocabulary: VocabularyDto = {
     id,
     word,
@@ -24,7 +24,7 @@ function queueItem(id: number, word: string, vietnamese: string, audioUrl: strin
     vietnamese,
     definitionEn: null,
     exampleEn: null,
-    imageUrl: null,
+    imageUrl,
     audioUrl,
     topic: null,
     level: null,
@@ -62,9 +62,9 @@ function response(body: unknown, status = 200) {
   return new Response(JSON.stringify(body), { status, headers: { "Content-Type": "application/json" } });
 }
 
-function renderExercise() {
+function renderExercise(path = "/study/exercises") {
   return render(
-    <MemoryRouter initialEntries={["/study/exercises"]}>
+    <MemoryRouter initialEntries={[path]}>
       <ActiveLearnerProvider initialLearner={learner}>
         <Routes>
           <Route path="/study/exercises" element={<ExerciseStudyPage />} />
@@ -190,5 +190,78 @@ describe("US-31 + US-32 controlled exercise Study mode", () => {
     fireEvent.click(screen.getByRole("button", { name: "Thử lại" }));
     await screen.findByRole("button", { name: "Tiếp tục" });
     expect(fetchMock.mock.calls[2]?.[1]?.body).toBe(firstBody);
+  });
+});
+
+describe("US-33 + US-34 image and typing Study mode", () => {
+  beforeEach(() => {
+    vi.restoreAllMocks();
+    vi.unstubAllGlobals();
+  });
+
+  it("shows an image-to-word prompt without answer leakage and saves a correct image answer", async () => {
+    const target = queueItem(1, "apple", "quả táo", null, "/images/apple.jpg");
+    const queue = [target, queueItem(2, "book", "quyển sách"), queueItem(3, "house", "ngôi nhà"), queueItem(4, "water", "nước")];
+    const fetchMock = vi.spyOn(globalThis, "fetch")
+      .mockResolvedValueOnce(response(queueResponse(queue)))
+      .mockResolvedValueOnce(response(reviewResponse(target, "REMEMBERED"), 201));
+    renderExercise("/study/exercises?type=IMAGE_TO_WORD");
+
+    await screen.findByTestId("exercise-card");
+    expect(screen.getByTestId("exercise-card")).toHaveAttribute("data-exercise-type", "IMAGE_TO_WORD");
+    expect(screen.getByTestId("exercise-image")).toHaveAttribute("alt", "Vocabulary exercise image");
+    expect(screen.getByTestId("exercise-prompt")).not.toHaveTextContent("apple");
+    fireEvent.click(screen.getByRole("button", { name: "apple" }));
+    await screen.findByText("Chính xác.");
+    expect(JSON.parse(String(fetchMock.mock.calls[1]?.[1]?.body))).toMatchObject({ result: "REMEMBERED", vocabularyId: 1 });
+  });
+
+  it("moves a broken image to one safe alternative without creating a review", async () => {
+    const target = queueItem(1, "apple", "quả táo", null, "/images/apple.jpg");
+    const queue = [target, queueItem(2, "book", "quyển sách"), queueItem(3, "house", "ngôi nhà"), queueItem(4, "water", "nước")];
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValue(response(queueResponse(queue)));
+    renderExercise("/study/exercises?type=IMAGE_TO_WORD");
+
+    await screen.findByTestId("exercise-image");
+    fireEvent.error(screen.getByTestId("exercise-image"));
+    expect(await screen.findByTestId("exercise-card")).toHaveAttribute("data-exercise-type", "TYPE_WORD");
+    expect(screen.queryByTestId("exercise-image")).not.toBeInTheDocument();
+    expect(screen.getByTestId("exercise-cue")).toHaveTextContent("quả táo");
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+
+  it("accepts a normalized exact spelling and sends only the canonical review result", async () => {
+    const target = queueItem(1, "apple", "quả táo");
+    const queue = [target, queueItem(2, "book", "quyển sách"), queueItem(3, "house", "ngôi nhà"), queueItem(4, "water", "nước")];
+    const fetchMock = vi.spyOn(globalThis, "fetch")
+      .mockResolvedValueOnce(response(queueResponse(queue)))
+      .mockResolvedValueOnce(response(reviewResponse(target, "REMEMBERED"), 201));
+    renderExercise("/study/exercises?type=TYPE_WORD");
+
+    await screen.findByTestId("exercise-card");
+    expect(screen.getByTestId("exercise-card")).toHaveAttribute("data-exercise-type", "TYPE_WORD");
+    expect(screen.getByTestId("exercise-prompt")).not.toHaveTextContent("apple");
+    fireEvent.change(screen.getByLabelText("Từ tiếng Anh"), { target: { value: " APPLE " } });
+    fireEvent.submit(screen.getByRole("button", { name: "Gửi câu trả lời" }).closest("form")!);
+    await screen.findByText("Chính xác.");
+    const body = JSON.parse(String(fetchMock.mock.calls[1]?.[1]?.body)) as Record<string, unknown>;
+    expect(body).toMatchObject({ result: "REMEMBERED", vocabularyId: 1 });
+    expect(body).not.toHaveProperty("answer");
+    expect(JSON.stringify(body)).not.toContain("APPLE");
+  });
+
+  it("maps an exact spelling error to FORGOTTEN", async () => {
+    const target = queueItem(1, "apple", "quả táo");
+    const queue = [target, queueItem(2, "book", "quyển sách"), queueItem(3, "house", "ngôi nhà"), queueItem(4, "water", "nước")];
+    const fetchMock = vi.spyOn(globalThis, "fetch")
+      .mockResolvedValueOnce(response(queueResponse(queue)))
+      .mockResolvedValueOnce(response(reviewResponse(target, "FORGOTTEN"), 201));
+    renderExercise("/study/exercises?type=TYPE_WORD");
+
+    await screen.findByTestId("exercise-card");
+    fireEvent.change(screen.getByLabelText("Từ tiếng Anh"), { target: { value: "aple" } });
+    fireEvent.submit(screen.getByRole("button", { name: "Gửi câu trả lời" }).closest("form")!);
+    await screen.findByText("Chưa đúng. Đáp án:");
+    expect(JSON.parse(String(fetchMock.mock.calls[1]?.[1]?.body))).toMatchObject({ result: "FORGOTTEN" });
   });
 });

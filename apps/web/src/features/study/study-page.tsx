@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Link, Navigate } from "react-router";
+import { Link, Navigate, useSearchParams } from "react-router";
 import type {
   LearnerDto,
   ReviewQueueItem,
@@ -13,7 +13,14 @@ import { requestReviewQueue, ReviewQueueClientError } from "./review-queue-clien
 import { ReviewClientError, submitReview } from "./review-client";
 import { Flashcard } from "./flashcard";
 import { ExerciseCard, type ExerciseAnswer } from "./exercise-card";
-import { createExercise, type ExerciseInstance } from "./exercise-generator";
+import {
+  createExercise,
+  EXERCISE_TYPE,
+  TYPE_WORD_CUE,
+  type ExerciseInstance,
+  type ExerciseType,
+  type TypeWordCue
+} from "./exercise-generator";
 
 type StudyState = "loading" | "empty" | "error" | "ready" | "saving" | "save-failed" | "reconciling" | "awaiting-next" | "summary";
 export type StudyMode = "flashcard" | "exercise";
@@ -93,17 +100,22 @@ function saveErrorMessage(error: unknown) {
   return SAFE_SAVE_ERROR;
 }
 
-export function StudyPage({ mode = "flashcard" }: { mode?: StudyMode } = {}) {
+export function StudyPage({ mode = "flashcard", exercisePreference }: { mode?: StudyMode; exercisePreference?: ExerciseType } = {}) {
   const { activeLearner } = useActiveLearner();
   if (!activeLearner) return <Navigate to="/learners" replace />;
-  return <StudyExperience key={`${activeLearner.id}:${mode}`} activeLearner={activeLearner} mode={mode} />;
+  return <StudyExperience key={`${activeLearner.id}:${mode}:${exercisePreference ?? "default"}`} activeLearner={activeLearner} mode={mode} exercisePreference={exercisePreference} />;
 }
 
 export function ExerciseStudyPage() {
-  return <StudyPage mode="exercise" />;
+  const [searchParams] = useSearchParams();
+  const requestedType = searchParams.get("type");
+  const exercisePreference = Object.values(EXERCISE_TYPE).includes(requestedType as ExerciseType)
+    ? requestedType as ExerciseType
+    : undefined;
+  return <StudyPage mode="exercise" exercisePreference={exercisePreference} />;
 }
 
-function StudyExperience({ activeLearner, mode }: { activeLearner: LearnerDto; mode: StudyMode }) {
+function StudyExperience({ activeLearner, mode, exercisePreference }: { activeLearner: LearnerDto; mode: StudyMode; exercisePreference?: ExerciseType }) {
   const [state, setState] = useState<StudyState>("loading");
   const [cards, setCards] = useState<SessionCard[]>([]);
   const [baseQueueLength, setBaseQueueLength] = useState(0);
@@ -121,16 +133,20 @@ function StudyExperience({ activeLearner, mode }: { activeLearner: LearnerDto; m
   const [exerciseAnswer, setExerciseAnswer] = useState<ExerciseAnswer | null>(null);
   const [confirmedExerciseResponse, setConfirmedExerciseResponse] = useState<ReviewResponse | null>(null);
   const [exerciseReinforcementReady, setExerciseReinforcementReady] = useState(false);
-  const [exerciseFallbackVocabularyId, setExerciseFallbackVocabularyId] = useState<number | null>(null);
+  const [exerciseFallbackType, setExerciseFallbackType] = useState<ExerciseType | "flashcard" | null>(null);
+  const [exerciseBlockedCues, setExerciseBlockedCues] = useState<TypeWordCue[]>([]);
   const cardsRef = useRef<SessionCard[]>([]);
 
   const currentCard = cards[0] ?? null;
-  const currentExercise: ExerciseInstance | null = mode === "exercise" && currentCard
-    ? createExercise(currentCard.item, cards.map((card) => card.item))
+  const currentExercise: ExerciseInstance | null = mode === "exercise" && currentCard && exerciseFallbackType !== "flashcard"
+    ? createExercise(currentCard.item, cards.map((card) => card.item), {
+      preferredType: exerciseFallbackType ?? exercisePreference,
+      blockedCues: exerciseBlockedCues
+    })
     : null;
   const useExerciseCard = mode === "exercise"
     && currentExercise !== null
-    && currentExercise.vocabularyId !== exerciseFallbackVocabularyId;
+    && exerciseFallbackType !== "flashcard";
 
   useEffect(() => {
     cardsRef.current = cards;
@@ -144,7 +160,8 @@ function StudyExperience({ activeLearner, mode }: { activeLearner: LearnerDto; m
     setExerciseAnswer(null);
     setConfirmedExerciseResponse(null);
     setExerciseReinforcementReady(false);
-    setExerciseFallbackVocabularyId(null);
+    setExerciseFallbackType(null);
+    setExerciseBlockedCues([]);
     setIsFlipped(false);
     try {
       const response = await requestReviewQueue(activeLearner.id);
@@ -189,7 +206,8 @@ function StudyExperience({ activeLearner, mode }: { activeLearner: LearnerDto; m
       setExerciseAnswer(null);
       setConfirmedExerciseResponse(null);
       setExerciseReinforcementReady(false);
-      setExerciseFallbackVocabularyId(null);
+      setExerciseFallbackType(null);
+      setExerciseBlockedCues([]);
       setMessage(matchingCard
         ? reason === "stale"
           ? "Tiến trình đã thay đổi. Hãy đánh giá lại thẻ này."
@@ -227,7 +245,8 @@ function StudyExperience({ activeLearner, mode }: { activeLearner: LearnerDto; m
     setExerciseAnswer(null);
     setConfirmedExerciseResponse(null);
     setExerciseReinforcementReady(false);
-    setExerciseFallbackVocabularyId(null);
+    setExerciseFallbackType(null);
+    setExerciseBlockedCues([]);
     setMessage(null);
     setIsFlipped(false);
     setState(nextCards.length === 0 ? "summary" : "ready");
@@ -272,6 +291,8 @@ function StudyExperience({ activeLearner, mode }: { activeLearner: LearnerDto; m
       setMetrics((current) => ({ ...current, reinforcement: current.reinforcement + 1 }));
       setMessage(null);
       setIsFlipped(false);
+      setExerciseFallbackType(null);
+      setExerciseBlockedCues([]);
       setState(nextCards.length === 0 ? "summary" : "ready");
       return;
     }
@@ -294,9 +315,13 @@ function StudyExperience({ activeLearner, mode }: { activeLearner: LearnerDto; m
     void saveScheduledReview(request, card, false);
   };
 
-  const answerExercise = (optionId: string) => {
+  const answerExercise = (optionId: string, typedAnswerCorrect?: boolean) => {
     if (!currentCard || !currentExercise || !useExerciseCard || state !== "ready" || exerciseAnswer) return;
-    const result: ReviewResult = optionId === currentExercise.correctOptionId ? "REMEMBERED" : "FORGOTTEN";
+    const result: ReviewResult = currentExercise.exerciseType === EXERCISE_TYPE.TYPE_WORD
+      ? typedAnswerCorrect === true
+        ? "REMEMBERED"
+        : "FORGOTTEN"
+      : optionId === currentExercise.correctOptionId ? "REMEMBERED" : "FORGOTTEN";
 
     if (currentCard.reinforcementAttempt > 0) {
       setExerciseAnswer({ optionId, result });
@@ -342,6 +367,8 @@ function StudyExperience({ activeLearner, mode }: { activeLearner: LearnerDto; m
     setMetrics((current) => ({ ...current, reinforcement: current.reinforcement + 1 }));
     setExerciseAnswer(null);
     setExerciseReinforcementReady(false);
+    setExerciseFallbackType(null);
+    setExerciseBlockedCues([]);
     setMessage(null);
     setState(nextCards.length === 0 ? "summary" : "ready");
   };
@@ -353,11 +380,30 @@ function StudyExperience({ activeLearner, mode }: { activeLearner: LearnerDto; m
     void saveScheduledReview(pending.request, pending.card, pending.exercise);
   };
 
-  const handleExerciseAudioFailure = useCallback(() => {
-    if (!currentCard) return;
-    setExerciseFallbackVocabularyId(currentCard.item.vocabulary.id);
-    setMessage("Âm thanh không khả dụng. Đã chuyển thẻ này sang Flashcard.");
-  }, [currentCard]);
+  const handleExerciseMediaFailure = useCallback(() => {
+    if (!currentCard || !currentExercise || state !== "ready" || exerciseAnswer || exerciseFallbackType === "flashcard") return;
+    if (currentExercise.exerciseType === EXERCISE_TYPE.IMAGE_TO_WORD) {
+      setExerciseFallbackType(EXERCISE_TYPE.TYPE_WORD);
+      setExerciseBlockedCues([TYPE_WORD_CUE.IMAGE]);
+      setMessage("Hình ảnh không khả dụng. Đã chuyển bài này sang gợi ý an toàn khác.");
+      return;
+    }
+    if (currentExercise.exerciseType === EXERCISE_TYPE.TYPE_WORD && currentExercise.cueType) {
+      if (exerciseBlockedCues.includes(currentExercise.cueType)) {
+        setExerciseFallbackType("flashcard");
+        setMessage("Media không khả dụng. Đã chuyển thẻ này sang Flashcard.");
+        return;
+      }
+      setExerciseFallbackType(EXERCISE_TYPE.TYPE_WORD);
+      setExerciseBlockedCues((current) => [...new Set([...current, currentExercise.cueType!])]);
+      setMessage("Media không khả dụng. Đã chuyển bài này sang gợi ý an toàn khác.");
+      return;
+    }
+    setExerciseFallbackType("flashcard");
+    setMessage(currentExercise.exerciseType === EXERCISE_TYPE.LISTENING_CHOICE
+      ? "Âm thanh không khả dụng. Đã chuyển thẻ này sang Flashcard."
+      : "Media không khả dụng. Đã chuyển thẻ này sang Flashcard.");
+  }, [currentCard, currentExercise, exerciseAnswer, exerciseBlockedCues, exerciseFallbackType, state]);
 
   const exerciseSaveState = state === "saving"
     ? "saving"
@@ -447,7 +493,11 @@ function StudyExperience({ activeLearner, mode }: { activeLearner: LearnerDto; m
             </div>
 
             <p className="study-instruction">
-              {mode === "exercise" && useExerciseCard ? "Chọn một đáp án. Bạn chỉ có một lần trả lời cho mỗi bài." : "Chạm hoặc nhấn Space để lật thẻ."}
+              {mode === "exercise" && useExerciseCard
+                ? currentExercise?.exerciseType === EXERCISE_TYPE.TYPE_WORD
+                  ? "Gõ từ tiếng Anh. Bạn chỉ có một lần trả lời cho mỗi bài."
+                  : "Chọn một đáp án. Bạn chỉ có một lần trả lời cho mỗi bài."
+                : "Chạm hoặc nhấn Space để lật thẻ."}
             </p>
             {useExerciseCard && currentExercise ? (
               <ExerciseCard
@@ -456,7 +506,8 @@ function StudyExperience({ activeLearner, mode }: { activeLearner: LearnerDto; m
                 answer={exerciseAnswer}
                 saveState={exerciseSaveState}
                 onAnswer={answerExercise}
-                onAudioFailure={handleExerciseAudioFailure}
+                onAudioFailure={handleExerciseMediaFailure}
+                onImageFailure={handleExerciseMediaFailure}
               />
             ) : (
               <>

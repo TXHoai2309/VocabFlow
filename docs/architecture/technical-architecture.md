@@ -2,9 +2,9 @@
 
 - Status: APPROVED FOR IMPLEMENTATION
 - Version: v1.0.9
-- Source baseline: `VocabFlow_Technical_Architecture_v1.0.4.docx`; this Markdown records the US-25 identity reconciliation, US-26/US-27 vocabulary taxonomy, US-28/US-29 learning-set assignment model, US-30 daily New allowance and US-31/US-32 exercise interaction layer.
+- Source baseline: `VocabFlow_Technical_Architecture_v1.0.4.docx`; this Markdown records the US-25 identity reconciliation, US-26/US-27 vocabulary taxonomy, US-28/US-29 learning-set assignment model, US-30 daily New allowance and US-31 through US-34 exercise interaction layer.
 - Canonical format: Markdown
-- Last synchronized: 2026-09-19
+- Last synchronized: 2026-09-20
 
 **VOCABFLOW**
 
@@ -12,7 +12,7 @@
 
 **Family Learning MVP**
 
-| **Status** | APPROVED FOR IMPLEMENTATION; US-25 identity reconciliation, US-26/US-27 taxonomy, US-28/US-29 learning sets, US-30 daily New allowance and US-31/US-32 exercises recorded |
+| **Status** | APPROVED FOR IMPLEMENTATION; US-25 identity reconciliation, US-26/US-27 taxonomy, US-28/US-29 learning sets, US-30 daily New allowance and US-31 through US-34 exercises recorded |
 | --- | --- |
 | **Architecture** | React SPA + Hono API + PostgreSQL |
 | **Primary persistence** | Neon PostgreSQL |
@@ -929,6 +929,31 @@ infrastructure.
 - No `exercise_progress`, exercise interval, exercise streak or parallel
   mastery state is introduced. Queue eligibility, daily New allowance,
   learning-set filters, reinforcement and summary metrics remain unchanged.
+
+## 12.2 Image and typing exercises (US-33 / US-34)
+
+The same interaction layer now supports `IMAGE_TO_WORD` and `TYPE_WORD`.
+Exercise selection still happens after canonical queue admission. The default
+route preserves the existing audio-first/listening and meaning behavior while
+Learner Home exposes deterministic image and typing preferences through the
+same `/study/exercises` route.
+
+- `IMAGE_TO_WORD` requires a nonblank `imageUrl` and three safe English
+  distractors. Options are normalized-unique, nonblank, non-self and stable;
+  the image alt label is neutral and the target is not placed in prompt or
+  metadata outside the candidate options.
+- `TYPE_WORD` selects a safe cue in deterministic order: Vietnamese meaning,
+  usable image, usable audio, then a definition/example that does not directly
+  contain the answer. NFKC, outer trim and case-insensitive comparison are
+  used; meaningful internal spaces remain meaningful and spelling is strict.
+- A failed image or optional cue follows one explicit fallback transition to a
+  safer cue/type and then Flashcard if needed. Media failure never creates a
+  review event or a `FORGOTTEN` result, and fallback state prevents cycles.
+- Both types use the existing review request with the existing `reviewId` and
+  `expectedRevision`; the canonical API remains responsible for authorization,
+  CAS, idempotency, scheduler and learner-progress persistence. Raw typing and
+  keyboard events are not persisted. No DB schema or learner-progress schema
+  change is required.
 
 # 13. Security, Privacy & Operational Safety
 

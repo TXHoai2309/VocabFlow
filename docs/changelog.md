@@ -2,6 +2,22 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-20 — US-33 + US-34 image and typing exercises
+
+- Extended the existing `/study/exercises` route with deterministic
+  `IMAGE_TO_WORD` and `TYPE_WORD` modes; Learner Home exposes image and typing
+  entry links without creating a second exercise subsystem.
+- Image mode requires a usable image and four safe English options, uses neutral
+  non-answer-revealing alt text and performs a one-way safe fallback on broken
+  media. Typing uses Vietnamese-first cues, strict Unicode NFKC/trim/
+  case-insensitive comparison, preserves meaningful internal spaces and rejects
+  fuzzy spelling.
+- Correct/incorrect results continue through the canonical review API. One
+  submission, save-before-next, safe retry, reinforcement, summary, queue
+  eligibility, daily New limits and learner isolation remain unchanged. Raw
+  keyboard input is not persisted; no DB or learner-progress schema changed.
+- Status: `IMPLEMENTED / READY FOR OWNER CHECK`.
+
 ## 2026-09-19 — US-31 + US-32 exercise interaction layer
 
 - Added an explicit `/study/exercises` route for deterministic

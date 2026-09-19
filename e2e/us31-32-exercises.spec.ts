@@ -15,7 +15,7 @@ const session = {
   user: { id: "parent-1", email: "parent@example.com" }
 };
 
-function vocabulary(id: number, word: string, vietnamese: string, audioUrl: string | null = null) {
+function vocabulary(id: number, word: string, vietnamese: string, audioUrl: string | null = null, imageUrl: string | null = null) {
   return {
     id,
     word,
@@ -23,7 +23,7 @@ function vocabulary(id: number, word: string, vietnamese: string, audioUrl: stri
     vietnamese,
     definitionEn: null,
     exampleEn: null,
-    imageUrl: null,
+    imageUrl,
     audioUrl,
     topic: null,
     level: null,
@@ -32,9 +32,9 @@ function vocabulary(id: number, word: string, vietnamese: string, audioUrl: stri
   };
 }
 
-function queueItem(id: number, word: string, vietnamese: string, audioUrl: string | null = null) {
+function queueItem(id: number, word: string, vietnamese: string, audioUrl: string | null = null, imageUrl: string | null = null) {
   return {
-    vocabulary: vocabulary(id, word, vietnamese, audioUrl),
+    vocabulary: vocabulary(id, word, vietnamese, audioUrl, imageUrl),
     queueType: "NEW",
     status: "NEW",
     nextReviewDate: null,
@@ -146,4 +146,98 @@ test("US-32 hides the listening prompt target and maps a wrong choice to FORGOTT
   await page.getByRole("button", { name: "book" }).click();
   await expect(page.getByText("Chưa đúng. Đáp án:")).toBeVisible();
   expect(reviewBody).toMatchObject({ learnerId: learner.id, vocabularyId: 1, result: "FORGOTTEN", expectedRevision: 0 });
+});
+
+test("US-33 shows a neutral image prompt and maps the correct choice to REMEMBERED", async ({ page }) => {
+  await preparePage(page);
+  await page.route("**/images/apple.jpg", async (route: Route) => {
+    await route.fulfill({
+      status: 200,
+      contentType: "image/svg+xml",
+      body: "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8\" height=\"8\"><rect width=\"8\" height=\"8\" fill=\"#0ea5e9\"/></svg>"
+    });
+  });
+  const target = queueItem(1, "apple", "quả táo", null, "/images/apple.jpg");
+  const queue = [target, queueItem(2, "book", "quyển sách"), queueItem(3, "house", "ngôi nhà"), queueItem(4, "water", "nước")];
+  await page.route("**/api/learners/*/review-queue", async (route: Route) => {
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({ learnerId: learner.id, reviewDate: "2026-09-15", dueCount: 0, newCount: queue.length, queue })
+    });
+  });
+  let reviewBody: Record<string, unknown> | undefined;
+  await page.route("**/api/reviews", async (route: Route) => {
+    const requestBody = route.request().postDataJSON() as Record<string, unknown>;
+    reviewBody = requestBody;
+    await route.fulfill({
+      status: 201,
+      contentType: "application/json",
+      body: JSON.stringify({
+        reviewId: requestBody.reviewId,
+        learnerId: learner.id,
+        vocabularyId: target.vocabulary.id,
+        result: "REMEMBERED",
+        progress: {
+          status: "LEARNING", consecutiveCorrect: 1, intervalDays: 1,
+          firstLearnedDate: "2026-09-15", lastReviewedDate: "2026-09-15", nextReviewDate: "2026-09-16",
+          totalCorrect: 1, totalIncorrect: 0, revision: 1
+        }
+      })
+    });
+  });
+
+  await page.goto("/learners");
+  await page.getByRole("link", { name: "Luyện qua hình ảnh" }).click();
+  await expect(page).toHaveURL(/\/study\/exercises\?type=IMAGE_TO_WORD$/);
+  await expect(page.getByTestId("exercise-card")).toHaveAttribute("data-exercise-type", "IMAGE_TO_WORD");
+  await expect(page.getByTestId("exercise-image")).toHaveAttribute("alt", "Vocabulary exercise image");
+  await expect(page.getByTestId("exercise-prompt")).not.toContainText("apple");
+  await page.getByRole("button", { name: "apple" }).click();
+  await expect(page.getByText("Chính xác.")).toBeVisible();
+  expect(reviewBody).toMatchObject({ learnerId: learner.id, vocabularyId: 1, result: "REMEMBERED" });
+});
+
+test("US-34 accepts normalized exact spelling without persisting raw input", async ({ page }) => {
+  await preparePage(page);
+  const target = queueItem(1, "apple", "quả táo");
+  const queue = [target, queueItem(2, "book", "quyển sách"), queueItem(3, "house", "ngôi nhà"), queueItem(4, "water", "nước")];
+  await page.route("**/api/learners/*/review-queue", async (route: Route) => {
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({ learnerId: learner.id, reviewDate: "2026-09-15", dueCount: 0, newCount: queue.length, queue })
+    });
+  });
+  let reviewBody: Record<string, unknown> | undefined;
+  await page.route("**/api/reviews", async (route: Route) => {
+    const requestBody = route.request().postDataJSON() as Record<string, unknown>;
+    reviewBody = requestBody;
+    await route.fulfill({
+      status: 201,
+      contentType: "application/json",
+      body: JSON.stringify({
+        reviewId: requestBody.reviewId,
+        learnerId: learner.id,
+        vocabularyId: target.vocabulary.id,
+        result: "REMEMBERED",
+        progress: {
+          status: "LEARNING", consecutiveCorrect: 1, intervalDays: 1,
+          firstLearnedDate: "2026-09-15", lastReviewedDate: "2026-09-15", nextReviewDate: "2026-09-16",
+          totalCorrect: 1, totalIncorrect: 0, revision: 1
+        }
+      })
+    });
+  });
+
+  await page.goto("/learners");
+  await page.getByRole("link", { name: "Luyện gõ từ" }).click();
+  await expect(page.getByTestId("exercise-card")).toHaveAttribute("data-exercise-type", "TYPE_WORD");
+  await expect(page.getByTestId("exercise-prompt")).not.toContainText("apple");
+  await page.getByLabel("Từ tiếng Anh").fill(" ＡＰＰＬＥ ");
+  await page.getByLabel("Từ tiếng Anh").press("Enter");
+  await expect(page.getByText("Chính xác.")).toBeVisible();
+  expect(reviewBody).toMatchObject({ learnerId: learner.id, vocabularyId: 1, result: "REMEMBERED" });
+  expect(reviewBody).not.toHaveProperty("answer");
+  expect(JSON.stringify(reviewBody)).not.toContain("APPLE");
 });

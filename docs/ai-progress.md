@@ -1,7 +1,7 @@
 # Current Handoff Snapshot
 
 - Project: VocabFlow Family MVP
-- Current phase/batch: Family MVP US-01..US-25 complete; Phase 2 / US-26 + US-27 + US-28 + US-29 + US-30 + US-31 + US-32 ready for owner check
+- Current phase/batch: Family MVP US-01..US-25 complete; Phase 2 / US-26 + US-27 + US-28 + US-29 + US-30 + US-31 + US-32 + US-33 + US-34 ready for owner check
 - Current Git branch: `TXH`
 - Current implementation baseline: commit `6c22d68` (`feat: add daily new word limits`) on `TXH`, with protected local changes preserved
 - US-24: `ACCEPTED / CLOSED`.
@@ -10,6 +10,7 @@
 - US-28 + US-29: `IMPLEMENTED / READY FOR OWNER CHECK`.
 - US-30: `IMPLEMENTED / READY FOR OWNER CHECK`.
 - US-31 + US-32: `IMPLEMENTED / READY FOR OWNER CHECK`.
+- US-33 + US-34: `IMPLEMENTED / READY FOR OWNER CHECK`.
 - US-22: `IMPLEMENTED / AUTOMATED PASS — MANUAL OWNER CHECK DEFERRED`.
 - Catalog state after real import: 30 starter rows + 1,994 imported rows =
   2,024 total vocabulary rows.
@@ -53,6 +54,21 @@
 - Focused tests, full tests, lint, typecheck, build, E2E, diff checks and the
   post-push Trusted DB gate pass. `docs/decisions.md`, `.env.example` and
   `local-data.zip` remain protected.
+
+## 2026-09-20 — US-33 + US-34 exercise implementation checkpoint
+
+- Gap audit found the existing DTO media fields, Flashcard media safety,
+  canonical review API and queue admission reusable; image interaction,
+  typing interaction, strict answer normalization and exercise media fallback
+  were missing.
+- Added `IMAGE_TO_WORD` and `TYPE_WORD` to the same controlled exercise layer.
+  Image mode requires a usable image plus four safe word choices and uses a
+  neutral alt label. Typing uses deterministic Vietnamese-first cues, NFKC /
+  trim / case-insensitive exact comparison and preserves meaningful spaces.
+- Broken image or optional cue media uses one-way fallback without a review
+  mutation. Canonical review, retry, reinforcement, summary, queue eligibility,
+  daily New limits and learner isolation remain unchanged. No schema change;
+  `docs/decisions.md`, `.env.example` and `local-data.zip` remain protected.
 
 ## 2026-09-19 — US-26 + US-27 implementation checkpoint
 
