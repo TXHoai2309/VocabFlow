@@ -3,7 +3,7 @@
 - Project: VocabFlow Family MVP
 - Current phase/batch: Family MVP US-01..US-25 complete; Phase 2 / US-26 + US-27 + US-28 + US-29 ready for owner check
 - Current Git branch: `TXH`
-- Current implementation baseline: `79ae11742022580bf64783ff2d01b0744fec7d8a` (`feat: add learning sets and learner assignments`), with protected local changes preserved
+- Current implementation baseline: `9f3d3b1639dd0653e4355d7098ceef72ee70065e` (`feat: add learning sets and learner assignments`), with protected local changes preserved
 - US-24: `ACCEPTED / CLOSED`.
 - US-25: `ACCEPTED / CLOSED` after recovery Core CI and Trusted DB passed.
 - US-26 + US-27: `IMPLEMENTED / READY FOR OWNER CHECK`.
