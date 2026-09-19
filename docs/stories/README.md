@@ -37,7 +37,21 @@ convenient. Reprioritization or a new story must be explicit.
 - [US-10 Reusable Flashcard Front State](US-10-reusable-flashcard-front-state.md)
   — `ACCEPTED / CLOSED`.
 - [US-11 Flashcard Back Content & Recall Actions](US-11-flashcard-back-content-and-recall-actions.md)
-  — `IN PROGRESS` (implementation complete; owner check pending).
+  — `ACCEPTED / CLOSED`.
+- [US-12 Audio Pronunciation](US-12-audio-pronunciation.md) — `ACCEPTED / CLOSED`.
+- [US-13 Recall / Scheduler Integration](US-13-recall-scheduler-integration.md) — `ACCEPTED / CLOSED`.
+- [US-14 Due / New Review Queue](US-14-due-new-review-queue.md) — `ACCEPTED / CLOSED`.
+- [US-15 Session Reinforcement](US-15-session-reinforcement.md) — `ACCEPTED / CLOSED`.
+- [US-16 Save Before Next](US-16-save-before-next.md) — `ACCEPTED / CLOSED`.
+- [US-17 Safe Retry](US-17-safe-retry.md) — `ACCEPTED / CLOSED`.
+- [US-18 Reload / Leave](US-18-reload-leave.md) — `ACCEPTED / CLOSED`.
+- [US-19 Session Summary](US-19-session-summary.md) — `ACCEPTED / CLOSED`.
+- [US-20 Learner Progress Summary](US-20-learner-progress-summary.md) — `ACCEPTED / CLOSED`.
+- [US-21 Learner Progress Isolation](US-21-learner-progress-isolation.md) — `ACCEPTED / CLOSED`.
+- [US-22 Vocabulary List](US-22-vocabulary-list.md) — `IMPLEMENTED / AUTOMATED PASS — MANUAL OWNER CHECK DEFERRED`.
+- [US-23 Missing Media / Dataset Vertical Slice](US-23-missing-media-data-foundation.md) — `ACCEPTED / CLOSED`.
+- [US-24 Reset Learner Progress](US-24-reset-learner-progress.md) — `ACCEPTED / CLOSED`.
+- [US-25 Full Vocabulary Catalog](US-25-full-vocabulary-catalog.md) — `BLOCKED FOR CLOSEOUT — CORE CI FAILURE`.
 
 ## Story status gate
 

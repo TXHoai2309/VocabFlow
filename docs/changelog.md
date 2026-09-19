@@ -2,6 +2,27 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-19 — Repository recovery: US-12 through US-25 backfill and Core CI diagnosis
+
+- Backfilled retrospective story contracts for US-12 Audio Pronunciation,
+  US-13 Recall/Scheduler Integration, US-14 Due/New Queue, US-15 Session
+  Reinforcement, US-16 Save Before Next, US-17 Safe Retry, and US-18 Reload/Leave.
+- Recorded closed US-19 Session Summary (`72120022`), US-20/US-21 Progress and
+  Isolation (`ee9fd8a`), US-22 Vocabulary List (`e56940c`, manual owner check
+  deferred), US-23 Missing Media, and US-24 Reset Progress (`101ccc1`).
+- Recorded US-11 acceptance (`d5fea5e`), US-12 (`5988661`), US-13–US-15
+  audited baseline (`c0b65f4`), US-16–US-18 closeout (`447d6e2`), and the
+  existing media-manifest/Cloudinary foundation plus starter enrichment tooling.
+- US-25 (`f17521b`) documents the schema/source-identity importer, real
+  migration/import of 1,994 records, disabled imported rows, and the
+  post-import idempotency result of 0 inserts, 0 updates, and 1,994 skips.
+- GitHub Core CI run `35250926587` failed in Unit and component tests because
+  `scripts/enrich-starter-vocabulary.test.ts` read gitignored `local-data/`;
+  Trusted DB run `35250926632` passed. Recovery replaces that test dependency
+  with deterministic tracked fixtures while retaining real-data manual tooling.
+- This recovery does not start US-26. `docs/decisions.md` remains protected and
+  is intentionally not changed.
+
 ## 2026-09-16 — Starter vocabulary enrichment tooling
 
 - Added the dry-run-first `vocab:enrich-starter` command for the eight

@@ -1,7 +1,8 @@
 # VocabFlow Roadmap and Batch Index
 
 This roadmap promotes only work supported by the current product documents and
-the supplied BATCH 1 backlog. It does not invent later user stories.
+the accepted/backfilled user-story evidence. US-26 and later work are not
+opened by this recovery task.
 
 ## BATCH 0 — Foundation
 
@@ -211,27 +212,46 @@ The complete story contract is in
 - US-07 is `ACCEPTED / CLOSED`; its CAS acceptance is an upstream dependency
   already satisfied.
 
-## BATCH 7 — Flashcard Session UX
+## FAMILY MVP — US-01 through US-24
 
-- Status: `IN PROGRESS` — US-10 is accepted; US-11 refinement is pending owner
-  check.
-- Dependency: BATCH 6 / US-08 Review Queue and the accepted US-07 scheduled
-  review write.
-- Active story: US-11 Flashcard Back Content & Recall Actions.
-- Architecture step: Step 9.
-- Scope: queue-backed Study session composition with due-first presentation,
-  front/back flashcard interaction, server-confirmed scheduled answers, retry
-  with the same request identity, stale-revision reconciliation, session-local
-  reinforcement and ephemeral summary metrics.
-- Success boundary: `study-session-ready`.
-- No schema, migration, API or database behavior changes are introduced. The
-  client composes the accepted US-08 queue and US-07 review-write APIs; no
-  `study_sessions` persistence or offline write queue is added.
-- Trusted DB is not required for this UI/client-composition slice because no
-  real database behavior changes.
-- US-09 Flashcard Session UX and US-10 Reusable Flashcard Front State are
-  `ACCEPTED / CLOSED`. US-11 is a narrow component/refinement story within the
-  same Study boundary and does not open US-12 or Architecture Step 10.
+- Status: `ACCEPTED` with one explicit deferred manual check.
+- US-11 Flashcard Back Content & Recall Actions through US-21 Learner Progress
+  Isolation are `ACCEPTED / CLOSED`.
+- US-22 Vocabulary List is `IMPLEMENTED / AUTOMATED PASS — MANUAL OWNER CHECK
+  DEFERRED`.
+- US-23 Missing Media / Dataset Vertical Slice and US-24 Reset Learner Progress
+  are `ACCEPTED / CLOSED`.
+- The backfilled contracts and evidence are indexed in
+  [`docs/stories/README.md`](stories/README.md).
+- Family MVP scope remains the learner selector/home, Study, session summary,
+  progress, vocabulary list, and learner-scoped reset. No catalog activation
+  policy is implied by this boundary.
+
+### US-12 through US-18 — Study and lifecycle hardening
+
+US-12 pronunciation, US-13 recall/scheduler integration, US-14 due/new queue,
+US-15 session reinforcement, and US-16–US-18 save/retry/reload behavior are
+closed under their documented commits and owner evidence where recorded.
+
+### US-19 through US-21 — Summary and learner isolation
+
+US-19 session summary and US-20/US-21 progress summary/isolation are closed.
+The owner-verified Hoài/Ngọc metric snapshots are recorded in US-20 and US-21.
+
+## PHASE 2 — Catalog Expansion
+
+### US-25 — Full Vocabulary Catalog
+
+- Status: `BLOCKED FOR CLOSEOUT` while the recovery Core CI run is pending.
+- Implementation: `f17521bd41738db6dd5e8f7f72a170ed08c22bf3`.
+- Scope: additive source identity, safe 1,994-row import/reconciliation, media
+  reuse, disabled imported rows, stable starter IDs, and no progress/history
+  reinterpretation.
+- Evidence: real migration/import produced 30 starter plus 1,994 imported rows;
+  the post-import idempotency dry run reported 0 inserts, 0 updates, 1,994
+  skips, 0 database mutations, and PASS.
+- Closeout rule: do not call US-25 accepted until the post-fix Core CI run
+  passes. This roadmap does not open US-26.
 
 ## Later product scope
 

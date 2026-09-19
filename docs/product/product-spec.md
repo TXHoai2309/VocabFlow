@@ -343,7 +343,8 @@ Từ đây không quay lại Personal MVP làm source of truth. Tài liệu ti�
 
 - Family MVP v1.0: CURRENT PRODUCT SOURCE OF TRUTH.
 
-- Technical Architecture v1.0.3: technical source of truth.
+- Technical Architecture v1.0.5: technical source of truth, including the US-25
+  canonical DB/source identity reconciliation.
 
 - Global Design System v1.0.2: global UI source of truth.
 

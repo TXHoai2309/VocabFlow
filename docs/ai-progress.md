@@ -1,55 +1,47 @@
 # Current Handoff Snapshot
 
 - Project: VocabFlow Family MVP
-- Current phase/batch: BATCH 7 — Flashcard Session UX refinement
-- Current active story: US-11 Flashcard Back Content & Recall Actions
-- Story status: `US-11 IMPLEMENTATION COMPLETE — READY FOR OWNER CHECK`
+- Current phase/batch: Family MVP US-01..US-24 complete; Phase 2 / US-25 closeout recovery
 - Current Git branch: `TXH`
-- Accepted US-08 candidate: `bb91e01073dd156602cddb5bb98948ce06659bbe`
-- Final US-08 merge on main: `2e8dd0f30754969f86fb00933813dcebbbe342d5`
-- Documentation/agent pack status: finalized and approved for repository baseline
-- Last accepted baseline: BATCH 0 Foundation, recorded in commit `24e4580`
-  with implementation baseline `2429b0f`
-- BATCH 0 CI status: Core CI PASS
-- BATCH 0 database acceptance status: Trusted DB Integration PASS on Neon
-  PostgreSQL 18
-- US-01 acceptance CI status: Core CI PASS on merged main `6806e66`
-- US-01 Trusted DB Integration status: PASS on merged main `6806e66`
-- Current implementation focus: US-11 Flashcard back content and recall-action
-  visibility over the accepted US-09/US-10 Study flow; owner check remains
-  pending.
-- Last completed work: US-11 Flashcard back-state hardening and local
-  validation; BATCH 0 through BATCH 6 and US-09/US-10 remain accepted/frozen.
-- Files/areas most recently changed: US-08 review-queue harness evidence and
-  acceptance closeout documentation. The protected `docs/decisions.md` remains
-  preserved in the original US-07 evidence worktree.
-- Accepted evidence: US-05 owner manual acceptance PASS; `167/167` tests,
-  E2E `11/11`, lint, typecheck, build and `git diff --check` PASS; Core CI #30
-  SUCCESS on main commit
-  `712d8bb42fbb46704e7c4da6e1a1fd791f61e331`.
-- US-06 accepted evidence: focused learning-domain tests `51/51`, full tests
-  `218/218`, E2E `11/11`, lint, typecheck, build and `git diff --check` PASS;
-  technical re-review PASS; Core CI #32 PASS on reviewed commit
-  `cc649d2dca4b233752e08f9c565ad384ea2f6816`; Core CI #33 PASS on merged main
-  commit `b838f107a69830234202caded33f9b7ad0040c9e`. Trusted DB #30 PASS is
-  extra evidence only and was not required.
-- Dataset contract: `DATASET_SOURCE=VOCABFLOW_STARTER_V1`,
-  `DATASET_PROVENANCE=PROJECT_AUTHORED`, `DATASET_STATUS=APPROVED`; exactly 30
-  stable IDs (1–30) are approved, all enabled with `contentVersion=1`.
-- Frozen areas: BATCH 0 bootstrap, role model, database targets, schemas, reset
-  policy, migration executor and CI behavior unless a proven regression appears.
-- US-08 accepted evidence: candidate `bb91e01073dd156602cddb5bb98948ce06659bbe`,
-  Core CI #34970869460 PASS, Trusted DB #34971985883 PASS for
-  `us08-review-queue`, Owner Acceptance `OWNER_ACCEPT_US08`, merged by PR #7
-  at `2e8dd0f30754969f86fb00933813dcebbbe342d5`.
-- Next safe action: owner check for US-11; do not begin US-12.
-- Do NOT do next: do not modify `docs/decisions.md`, add speculative session
-  persistence/offline writes, or begin US-12.
-- Documents new agent must read first: `docs/README.md`,
+- Current implementation baseline: `f17521bd41738db6dd5e8f7f72a170ed08c22bf3`
+- US-24: `ACCEPTED / CLOSED`.
+- US-25: `BLOCKED FOR CLOSEOUT` until the recovery Core CI run passes; do not
+  start US-26.
+- US-22: `IMPLEMENTED / AUTOMATED PASS — MANUAL OWNER CHECK DEFERRED`.
+- Catalog state after real import: 30 starter rows + 1,994 imported rows =
+  2,024 total vocabulary rows.
+- Imported catalog defaults: `enabled=false`; source identity is
+  `(source_dataset, source_record_id)` and is separate from canonical DB ID.
+- Real US-25 evidence: migration/import PASS; starter, learner_progress, and
+  review_events modifications were 0; post-import idempotency dry run was
+  INSERT_COUNT=0, UPDATE_COUNT=0, SKIP_COUNT=1994, DATABASE_MUTATIONS=0,
+  STATUS=PASS.
+- Core CI on the implementation baseline: `FAIL`, run `35250926587`, at Unit
+  and component tests because a starter-enrichment test required gitignored
+  `local-data/`.
+- Trusted DB on the implementation baseline: `PASS`, run `35250926632`.
+- Recovery fix in working tree: deterministic tracked test fixtures replace the
+  CI test's dependency on local generated/source data. Local Linux and Windows
+  Core CI sequences pass; the post-fix GitHub run is pending.
+- Protected: never modify, stage, restore, reset, clean, or commit
+  `docs/decisions.md`. Preserve `.env.example` and `local-data.zip` changes.
+- Next safe action: commit only the CI fixture fix and documentation backfill,
+  push `TXH` and `TXH:main`, then inspect the new Core CI run before closing
+  US-25.
+- Documents new agents must read first: `docs/README.md`,
   `docs/product/product-spec.md`, `docs/architecture/technical-architecture.md`,
   `docs/design/design-system.md`, `docs/design/feature-ui-spec.md`,
-  `docs/flow/user-flow.md`, `docs/decisions.md`, `docs/roadmap.md`, the current
-  US-11 story and this file.
+  `docs/flow/user-flow.md`, `docs/roadmap.md`, the relevant story, and this file.
+
+## 2026-09-19 — Repository recovery checkpoint
+
+- Confirmed documentation drift: canonical story index stopped at US-11 and
+  current handoff/roadmap statements incorrectly said US-12 had not started.
+- Confirmed Core CI root cause from GitHub run `35250926587`: the test
+  `starter vocabulary enrichment safety > loads the real source...` failed
+  with `ENRICHMENT_SOURCE_UNREADABLE` because `local-data/` is gitignored.
+- The fix keeps real-data loading available to the manual enrichment tool and
+  makes automated tests deterministic with in-repository fixtures.
 
 ## 2026-09-16 — starter enrichment tooling checkpoint
 

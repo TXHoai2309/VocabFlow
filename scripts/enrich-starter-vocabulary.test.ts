@@ -3,7 +3,6 @@ import {
   APPROVED_ENRICHMENTS,
   buildEnrichmentInputs,
   buildEnrichmentPlan,
-  loadEnrichmentInputs,
   renderDryRun,
   runApply,
   runDryRun,
@@ -133,8 +132,8 @@ describe("starter vocabulary enrichment safety", () => {
     expect(excluded.filter((id) => id !== 10)).toHaveLength(21);
   });
 
-  it("loads the real source and explicit media mappings for all eight approved rows", () => {
-    const inputs = loadEnrichmentInputs();
+  it("loads deterministic source and explicit media fixtures for all eight approved rows", () => {
+    const inputs = buildEnrichmentInputs(fixtureSources(), fixtureMappings(), fixtureAssets());
     expect(inputs).toHaveLength(8);
     expect(inputs.every((input) => input.imageAvailable && input.audioAvailable)).toBe(true);
     expect(inputs.map((input) => input.sourceId)).toEqual([265, 762, 208, 262, 759, 375, 931, 932]);

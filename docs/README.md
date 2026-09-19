@@ -92,8 +92,12 @@ feature code may start.
 ## Current project state
 
 - BATCH 0 Foundation: `ACCEPTED`.
-- Core CI: `PASS`.
-- Trusted DB Integration on Neon PostgreSQL 18: `PASS`.
+- Recovery baseline: implementation commit `f17521bd41738db6dd5e8f7f72a170ed08c22bf3`.
+- Initial Core CI on that commit: `FAIL` in Unit and component tests because a
+  starter-enrichment test read gitignored `local-data/`.
+- Initial Trusted DB Integration on that commit: `PASS`.
+- Recovery fix: deterministic tracked test fixtures; local Core CI sequence is
+  passing and the post-fix GitHub run is the remaining closeout gate.
 - BATCH 1 Authentication and Family Entry: `ACCEPTED`.
 - BATCH 2 Learning Content Foundation is `ACCEPTED`.
 - US-01 Parent Registration is `ACCEPTED`.
@@ -108,7 +112,13 @@ feature code may start.
 - US-08 Review Queue is `ACCEPTED / CLOSED`.
 - US-09 Flashcard Session UX is `ACCEPTED / CLOSED`.
 - US-10 Reusable Flashcard Front State is `ACCEPTED / CLOSED`.
-- US-11 Flashcard Back Content & Recall Actions is `IN PROGRESS`;
-  implementation and local acceptance evidence are complete, with owner check
-  pending.
+- US-11 Flashcard Back Content & Recall Actions is `ACCEPTED / CLOSED`.
+- US-12 Audio Pronunciation through US-21 Learner Progress Isolation are
+  `ACCEPTED / CLOSED` according to their backfilled story records.
+- US-22 Vocabulary List is `IMPLEMENTED / AUTOMATED PASS — MANUAL OWNER CHECK
+  DEFERRED`.
+- US-23 Missing Media / Dataset Vertical Slice and US-24 Reset Learner Progress
+  are `ACCEPTED / CLOSED`.
+- US-25 Full Vocabulary Catalog is `BLOCKED FOR CLOSEOUT` until the recovery
+  Core CI run passes. Real migration/import evidence is recorded in its story.
 - Documentation/agent-pack work does not implement US-01 or any other feature.

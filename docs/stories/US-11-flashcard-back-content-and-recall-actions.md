@@ -1,11 +1,11 @@
 # US-11 — Flashcard Back Content & Recall Actions
 
-- Status: IN PROGRESS
-- Implementation: COMPLETE — READY FOR OWNER CHECK
+- Status: ACCEPTED / CLOSED
+- Implementation: COMPLETE — owner-approved acceptance is recorded in the recovery backfill
 - Batch: BATCH 7 — Flashcard Session UX refinement
 - Architecture step: Step 9 — Flashcard session UX
 - Owner: Project Owner
-- Last updated: 2026-09-16
+- Last updated: 2026-09-19
 - Scope: FLASHCARD_BACK_CONTENT_AND_RECALL_ACTIONS
 - Success boundary: `flashcard-revealed`
 
@@ -70,7 +70,7 @@ flow.
 - Review queue selection, `POST /api/reviews`, scheduler, persistence,
   authorization or session metric redesign.
 - New API routes, schema, migrations, vocabulary fields or database behavior.
-- Autoplay, new media assets, offline writes or US-12.
+- Autoplay, new media assets, offline writes or catalog expansion.
 
 ## 6. Acceptance Criteria
 
@@ -94,5 +94,5 @@ Trusted DB is not required.
 
 ## 8. Closeout
 
-Implementation and local validation are complete. US-11 is ready for owner
-check; US-12 has not started.
+Implementation and local validation are complete. US-11 is accepted/closed;
+subsequent work is recorded in US-12 and later backfilled story documents.
