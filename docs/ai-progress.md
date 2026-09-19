@@ -3,7 +3,7 @@
 - Project: VocabFlow Family MVP
 - Current phase/batch: Family MVP US-01..US-25 complete; Phase 2 / US-26 + US-27 + US-28 + US-29 + US-30 + US-31 + US-32 + US-33 + US-34 ready for owner check
 - Current Git branch: `TXH`
-- Current implementation baseline: commit `6c22d68` (`feat: add daily new word limits`) on `TXH`, with protected local changes preserved
+- Current implementation baseline: commit `d5791c7` (`feat: add image and typing exercises`) on `TXH`, with protected local changes preserved
 - US-24: `ACCEPTED / CLOSED`.
 - US-25: `ACCEPTED / CLOSED` after recovery Core CI and Trusted DB passed.
 - US-26 + US-27: `IMPLEMENTED / READY FOR OWNER CHECK`.
