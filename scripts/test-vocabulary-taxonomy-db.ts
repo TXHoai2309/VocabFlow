@@ -3,6 +3,9 @@ import { assertPostConnectIdentity, openSql } from "./db-core";
 import type { ConnectionTarget } from "@vocabflow/contracts";
 
 type SqlClient = ReturnType<typeof openSql>;
+type TransactionClient = SqlClient & {
+  savepoint<T>(operation: (tx: TransactionClient) => T | Promise<T>): Promise<T>;
+};
 
 type TaxonomyTrustedDbInput = {
   migrationUrl: string;
@@ -57,10 +60,10 @@ async function countRows(sql: SqlClient, table: string) {
   return Number(rows[0]?.count ?? -1);
 }
 
-async function assertRollback(sql: SqlClient, operation: (tx: SqlClient) => Promise<void>) {
+async function assertRollback(sql: SqlClient, operation: (tx: TransactionClient) => Promise<void>) {
   try {
     await sql.begin(async (tx) => {
-      await operation(tx as unknown as SqlClient);
+      await operation(tx as unknown as TransactionClient);
       throw new Error(ROLLBACK_MARKER);
     });
   } catch (error) {
@@ -69,12 +72,14 @@ async function assertRollback(sql: SqlClient, operation: (tx: SqlClient) => Prom
   }
 }
 
-async function assertDuplicateMembership(tx: SqlClient, vocabularyId: number, topicId: number) {
+async function assertDuplicateMembership(tx: TransactionClient, vocabularyId: number, topicId: number) {
   try {
-    await tx`
-      INSERT INTO ${tx.unsafe(MEMBERSHIP_TABLE)} (vocabulary_id, topic_id)
-      VALUES (${vocabularyId}, ${topicId})
-    `;
+    await tx.savepoint(async (savepoint) => {
+      await savepoint`
+        INSERT INTO ${savepoint.unsafe(MEMBERSHIP_TABLE)} (vocabulary_id, topic_id)
+        VALUES (${vocabularyId}, ${topicId})
+      `;
+    });
   } catch (error) {
     const candidate = error as { code?: string };
     if (candidate.code !== "23505") fail("DUPLICATE_MEMBERSHIP_NOT_REJECTED");
