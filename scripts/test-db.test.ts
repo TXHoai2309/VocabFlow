@@ -41,6 +41,8 @@ describe("trusted DB acceptance diagnostics", () => {
       "verify-us26-us27-taxonomy",
     ].map(stagePosition);
     expect(commonTail).toEqual([...commonTail].sort((left, right) => left - right));
+    expect(stagePosition("verify-us26-us27-taxonomy")).toBeLessThan(stagePosition("verify-us07-review-runtime"));
+    expect(stagePosition("verify-us26-us27-taxonomy")).toBeLessThan(stagePosition("verify-us08-review-queue"));
   });
 
   it("preserves PostgreSQL SQLSTATE and stable application error codes", () => {
