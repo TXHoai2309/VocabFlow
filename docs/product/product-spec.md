@@ -1,5 +1,13 @@
 # Family MVP Specification v1.0
 
+## Progress detail extension (US-37 / US-38)
+
+Parents can inspect a learner's last seven household-local days of persisted
+review activity and current eligible vocabulary state per canonical topic.
+Historical activity remains after reset; topic state resets with sparse learner
+progress. Topic totals do not imply a global total because a word can be
+unmapped or belong to multiple topics.
+
 - Status: CURRENT PRODUCT SOURCE OF TRUTH
 - Version: v1.0
 - Source baseline: `VocabFlow_Family_MVP_Product_Specification_v1.0.docx`

@@ -2,16 +2,31 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
-import type { ActivitySummaryResponse, LearnerDto, ProgressSummaryResponse } from "@vocabflow/contracts";
+import type {
+  ActivitySummaryResponse,
+  LearnerDto,
+  ProgressHistoryResponse,
+  ProgressSummaryResponse,
+  TopicProgressResponse
+} from "@vocabflow/contracts";
 import { ActiveLearnerProvider } from "./learner-context-provider";
 import { useActiveLearner } from "./learner-context-hook";
 import { ProgressPage } from "./progress-page";
 
-const { requestResetLearnerProgress } = vi.hoisted(() => ({ requestResetLearnerProgress: vi.fn() }));
+const { requestResetLearnerProgress, requestProgressHistory, requestTopicProgress } = vi.hoisted(() => ({
+  requestResetLearnerProgress: vi.fn(),
+  requestProgressHistory: vi.fn(),
+  requestTopicProgress: vi.fn()
+}));
 
 vi.mock("./reset-progress-client", async () => {
   const actual = await vi.importActual<typeof import("./reset-progress-client")>("./reset-progress-client");
   return { ...actual, requestResetLearnerProgress };
+});
+
+vi.mock("./progress-insights-client", async () => {
+  const actual = await vi.importActual<typeof import("./progress-insights-client")>("./progress-insights-client");
+  return { ...actual, requestProgressHistory, requestTopicProgress };
 });
 
 const learner = (id: string, displayName: string): LearnerDto => ({
@@ -52,6 +67,31 @@ function activity(learnerId: string, values: Partial<ActivitySummaryResponse["da
   };
 }
 
+function history(learnerId: string): ProgressHistoryResponse {
+  return {
+    learnerId,
+    timezone: "Asia/Ho_Chi_Minh",
+    from: "2026-09-14",
+    to: "2026-09-20",
+    days: Array.from({ length: 7 }, (_, index) => ({
+      date: `2026-09-${String(index + 14).padStart(2, "0")}`,
+      reviews: index === 6 ? 2 : 0,
+      uniqueWords: index === 6 ? 1 : 0,
+      remembered: index === 6 ? 1 : 0,
+      forgotten: index === 6 ? 1 : 0,
+      newLearned: index === 6 ? 1 : 0
+    }))
+  };
+}
+
+function topicProgress(learnerId: string): TopicProgressResponse {
+  return {
+    learnerId,
+    localDate: "2026-09-20",
+    topics: [{ topicId: 1, slug: "family", name: "Family", total: 2, newCount: 1, learningCount: 1, masteredCount: 0, dueCount: 1 }]
+  };
+}
+
 function response(body: unknown, status = 200) {
   return new Response(JSON.stringify(body), {
     status,
@@ -73,13 +113,19 @@ function renderProgress(initialLearner: LearnerDto | null = learnerA) {
 }
 
 function metric(label: string) {
-  return screen.getByText(label).nextElementSibling;
+  return screen.getByTestId("progress-summary").querySelector(".progress-grid")
+    ?.querySelectorAll("dt")
+    ? Array.from(screen.getByTestId("progress-summary").querySelectorAll(".progress-grid dt"))
+      .find((element) => element.textContent === label)?.nextElementSibling
+    : null;
 }
 
 describe("US-20 learner progress UI", () => {
   beforeEach(() => {
     vi.restoreAllMocks();
     requestResetLearnerProgress.mockReset();
+    requestProgressHistory.mockResolvedValue(history(learnerA.id));
+    requestTopicProgress.mockResolvedValue(topicProgress(learnerA.id));
   });
 
   it("shows loading and then all canonical progress cards", async () => {
@@ -126,6 +172,19 @@ describe("US-20 learner progress UI", () => {
     expect(await screen.findByTestId("progress-empty-state")).toHaveTextContent("Chưa học từ nào");
     expect(metric("New")).toHaveTextContent("30");
     expect(metric("Learned")).toHaveTextContent("0");
+  });
+
+  it("renders the seven local days and learner-scoped topic progress", async () => {
+    vi.spyOn(globalThis, "fetch").mockImplementation((input) => Promise.resolve(
+      String(input).includes("activity-summary") ? response(activity(learnerA.id)) : response(summary(learnerA.id))
+    ));
+    renderProgress();
+
+    expect(await screen.findByTestId("weekly-progress")).toBeInTheDocument();
+    expect(screen.getAllByText("0 từ")).toHaveLength(6);
+    expect(screen.getByTestId("topic-progress-list")).toHaveTextContent("Family");
+    expect(requestProgressHistory).toHaveBeenCalledWith(learnerA.id, "2026-09-14", "2026-09-20");
+    expect(requestTopicProgress).toHaveBeenCalledWith(learnerA.id);
   });
 
   it("shows a safe retry state after a progress request failure", async () => {

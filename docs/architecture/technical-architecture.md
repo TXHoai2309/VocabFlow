@@ -10,6 +10,15 @@
 
 **Technical Architecture v1.0.10**
 
+## US-37 / US-38 progress read models
+
+Weekly/daily analytics derives directly from `review_events.review_date` and
+the canonical event fields; current topic progress derives from enabled
+vocabulary, active learner learning-set assignments, `vocabulary_topics` and
+`learner_progress`. Neither model persists mutable counters. Range buckets use
+the existing household-local review-date snapshot and zero-fill occurs after a
+single range aggregation. Topic Due is an overlapping current-state subset.
+
 **Family Learning MVP**
 
 | **Status** | APPROVED FOR IMPLEMENTATION; US-25 identity reconciliation, US-26/US-27 taxonomy, US-28/US-29 learning sets, US-30 daily New allowance and US-31 through US-34 exercises recorded |

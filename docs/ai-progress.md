@@ -1,5 +1,11 @@
 # Current Handoff Snapshot
 
+## 2026-09-21 — US-37 + US-38 weekly/daily and topic progress
+
+- Audit classified US-37 historical aggregation/weekly UI and US-38 learner topic aggregation/UI as missing; canonical review history, household-local dates, sparse progress, topics, active learning-set eligibility and authorization were reusable.
+- Added read-only range and topic APIs plus the Progress dashboard sections. `newLearned` is derived from immutable review-event `previous_status = NEW`, so reset-created lifecycles are represented without a schema change or fabricated backfill.
+- Topic scope is current enabled vocabulary reachable through active assigned enabled sets. Imported mappings remain 1,994 and the 30 starter rows remain unmapped; no topic was guessed. `docs/decisions.md`, `.env.example` and local datasets remain untouched.
+
 - Project: VocabFlow Family MVP
 - Current phase/batch: Family MVP US-01..US-25 complete; Phase 2 / US-26 + US-27 + US-28 + US-29 + US-30 + US-31 + US-32 + US-33 + US-34 ready for owner check
 - Current Git branch: `TXH`

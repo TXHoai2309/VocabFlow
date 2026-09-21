@@ -20,6 +20,12 @@ import { createReviewService, ReviewServiceError, type ReviewService } from "./r
 import { createReviewQueueService, ReviewQueueServiceError, type ReviewQueueService } from "./review-queue";
 import { createProgressSummaryService, ProgressSummaryServiceError, type ProgressSummaryService } from "./progress-summary";
 import { createActivitySummaryService, ActivitySummaryServiceError, type ActivitySummaryService } from "./activity-summary";
+import {
+  createProgressHistoryService,
+  ProgressHistoryServiceError,
+  type ProgressHistoryService
+} from "./progress-history";
+import { createTopicProgressService, TopicProgressServiceError, type TopicProgressService } from "./topic-progress";
 import { createLearnerVocabularyService, LearnerVocabularyServiceError, type LearnerVocabularyService } from "./learner-vocabulary";
 import {
   createResetLearnerProgressService,
@@ -48,6 +54,8 @@ export type AppDependencies = {
   reviewQueueService?: ReviewQueueService;
   progressSummaryService?: ProgressSummaryService;
   activitySummaryService?: ActivitySummaryService;
+  progressHistoryService?: ProgressHistoryService;
+  topicProgressService?: TopicProgressService;
   learnerVocabularyService?: LearnerVocabularyService;
   resetLearnerProgressService?: ResetLearnerProgressService;
 };
@@ -124,6 +132,18 @@ async function runActivitySummaryService(env: WorkerBindings) {
   return createActivitySummaryService(createHttpDatabase(env.DATABASE_URL));
 }
 
+async function runProgressHistoryService(env: WorkerBindings) {
+  if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
+  const { createHttpDatabase } = await import("./db/client");
+  return createProgressHistoryService(createHttpDatabase(env.DATABASE_URL));
+}
+
+async function runTopicProgressService(env: WorkerBindings) {
+  if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
+  const { createHttpDatabase } = await import("./db/client");
+  return createTopicProgressService(createHttpDatabase(env.DATABASE_URL));
+}
+
 async function runLearnerVocabularyService(env: WorkerBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
@@ -149,6 +169,14 @@ function parsePositiveInteger(value: string): number | null {
   if (!/^\d+$/.test(value)) return null;
   const parsed = Number(value);
   return Number.isSafeInteger(parsed) && parsed > 0 ? parsed : null;
+}
+
+function parseProgressHistoryQuery(request: Request): { from: string; to: string } | null {
+  const params = new URL(request.url).searchParams;
+  if ([...params.keys()].length !== 2) return null;
+  const from = params.get("from");
+  const to = params.get("to");
+  return from !== null && to !== null ? { from, to } : null;
 }
 
 export function createApp(dependencies: AppDependencies = {}) {
@@ -580,6 +608,47 @@ export function createApp(dependencies: AppDependencies = {}) {
         return c.json(errorEnvelope(error.code, message), error.status);
       }
       return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể tải hoạt động học lúc này. Vui lòng thử lại."), 503);
+    }
+  });
+
+  application.get("/api/learners/:learnerId/progress-history", async (c) => {
+    try {
+      const session = await readSession(c.req.raw, c.env);
+      if (!session?.user?.id) return c.json(errorEnvelope("UNAUTHORIZED", "Đăng nhập để tiếp tục."), 401);
+      const range = parseProgressHistoryQuery(c.req.raw);
+      if (!range) return c.json(errorEnvelope("INVALID_REQUEST", "Khoảng ngày không hợp lệ."), 400);
+      const service = dependencies.progressHistoryService ?? await runProgressHistoryService(c.env);
+      return c.json(await service.get(session.user.id, c.req.param("learnerId"), range.from, range.to), 200);
+    } catch (error) {
+      if (error instanceof ProgressHistoryServiceError) {
+        const message = error.code === "HOUSEHOLD_ACCESS_DENIED"
+          ? "Bạn không có quyền truy cập tiến trình của learner này."
+          : error.code === "INVALID_REQUEST"
+            ? "Khoảng ngày không hợp lệ."
+            : "Không thể tải lịch sử tiến trình lúc này. Vui lòng thử lại.";
+        return c.json(errorEnvelope(error.code, message), error.status);
+      }
+      return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể tải lịch sử tiến trình lúc này. Vui lòng thử lại."), 503);
+    }
+  });
+
+  application.get("/api/learners/:learnerId/topic-progress", async (c) => {
+    try {
+      const session = await readSession(c.req.raw, c.env);
+      if (!session?.user?.id) return c.json(errorEnvelope("UNAUTHORIZED", "Đăng nhập để tiếp tục."), 401);
+      if ([...new URL(c.req.url).searchParams.keys()].length > 0) {
+        return c.json(errorEnvelope("INVALID_REQUEST", "Dữ liệu gửi lên không hợp lệ."), 400);
+      }
+      const service = dependencies.topicProgressService ?? await runTopicProgressService(c.env);
+      return c.json(await service.get(session.user.id, c.req.param("learnerId")), 200);
+    } catch (error) {
+      if (error instanceof TopicProgressServiceError) {
+        const message = error.code === "HOUSEHOLD_ACCESS_DENIED"
+          ? "Bạn không có quyền truy cập tiến trình của learner này."
+          : "Không thể tải tiến trình theo chủ đề lúc này. Vui lòng thử lại.";
+        return c.json(errorEnvelope(error.code, message), error.status);
+      }
+      return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể tải tiến trình theo chủ đề lúc này. Vui lòng thử lại."), 503);
     }
   });
 

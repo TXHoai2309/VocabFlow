@@ -1,15 +1,35 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link, Navigate } from "react-router";
-import type { ActivitySummaryResponse, LearnerDto, ProgressSummaryResponse } from "@vocabflow/contracts";
+import type {
+  ActivitySummaryResponse,
+  LearnerDto,
+  ProgressHistoryResponse,
+  ProgressSummaryResponse,
+  TopicProgressResponse
+} from "@vocabflow/contracts";
 import { useActiveLearner } from "./learner-context-hook";
 import { ProgressSummaryClientError, requestProgressSummary } from "./progress-summary-client";
 import { ActivitySummaryClientError, requestActivitySummary } from "./activity-summary-client";
+import {
+  requestProgressHistory,
+  requestTopicProgress
+} from "./progress-insights-client";
 import {
   requestResetLearnerProgress,
   ResetLearnerProgressClientError
 } from "./reset-progress-client";
 
 type ProgressState = "loading" | "ready" | "error";
+type InsightState = "loading" | "ready" | "error";
+
+function dateMinus(value: string, days: number): string {
+  const [year, month, day] = value.split("-").map(Number);
+  return new Date(Date.UTC(year, month - 1, day - days)).toISOString().slice(0, 10);
+}
+
+function weekday(value: string): string {
+  return new Intl.DateTimeFormat("vi-VN", { weekday: "short", timeZone: "UTC" }).format(new Date(`${value}T00:00:00Z`));
+}
 
 function progressErrorMessage(error: unknown) {
   if (
@@ -47,6 +67,9 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
   const [state, setState] = useState<ProgressState>("loading");
   const [summary, setSummary] = useState<ProgressSummaryResponse | null>(null);
   const [activity, setActivity] = useState<ActivitySummaryResponse | null>(null);
+  const [history, setHistory] = useState<ProgressHistoryResponse | null>(null);
+  const [topicProgress, setTopicProgress] = useState<TopicProgressResponse | null>(null);
+  const [insightState, setInsightState] = useState<InsightState>("loading");
   const [message, setMessage] = useState<string | null>(null);
   const [resetOpen, setResetOpen] = useState(false);
   const [resetSubmitting, setResetSubmitting] = useState(false);
@@ -57,6 +80,8 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
     setState("loading");
     setSummary(null);
     setActivity(null);
+    setHistory(null);
+    setTopicProgress(null);
     setMessage(null);
     try {
       const [response, activityResponse] = await Promise.all([
@@ -66,6 +91,16 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
       setSummary(response);
       setActivity(activityResponse);
       setState("ready");
+      const from = dateMinus(activityResponse.localDate, 6);
+      setInsightState("loading");
+      void Promise.all([
+        requestProgressHistory(activeLearner.id, from, activityResponse.localDate),
+        requestTopicProgress(activeLearner.id)
+      ]).then(([historyResponse, topicResponse]) => {
+        setHistory(historyResponse);
+        setTopicProgress(topicResponse);
+        setInsightState("ready");
+      }).catch(() => setInsightState("error"));
     } catch (error) {
       setState("error");
       setMessage(progressErrorMessage(error));
@@ -102,6 +137,19 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
         setSummary(response);
         setActivity(activityResponse);
         setState("ready");
+        const from = dateMinus(activityResponse.localDate, 6);
+        setInsightState("loading");
+        void Promise.all([
+          requestProgressHistory(activeLearner.id, from, activityResponse.localDate),
+          requestTopicProgress(activeLearner.id)
+        ]).then((insights) => {
+          if (cancelled) return;
+          setHistory(insights[0]);
+          setTopicProgress(insights[1]);
+          setInsightState("ready");
+        }).catch(() => {
+          if (!cancelled) setInsightState("error");
+        });
       })
       .catch((error: unknown) => {
         if (cancelled) return;
@@ -168,6 +216,45 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
                 </div>
               </section>
             ) : null}
+            <section className="progress-insights" aria-labelledby="weekly-progress-title">
+              <div className="progress-insights-heading">
+                <div>
+                  <h2 id="weekly-progress-title">7 ngày gần đây</h2>
+                  <p>Gồm hôm nay và 6 ngày trước theo lịch household.</p>
+                </div>
+              </div>
+              {insightState === "loading" ? <p data-testid="progress-insights-loading" role="status">Đang tải tiến trình theo ngày…</p> : null}
+              {insightState === "error" ? <p data-testid="progress-insights-error" className="progress-inline-error" role="alert">Không thể tải chi tiết theo ngày và chủ đề lúc này.</p> : null}
+              {insightState === "ready" && history ? (
+                <div className="weekly-progress" data-testid="weekly-progress">
+                  {history.days.map((day) => (
+                    <details className="weekly-progress-day" key={day.date}>
+                      <summary><span>{weekday(day.date)}</span><strong>{day.uniqueWords} từ</strong><small>{day.reviews} reviews</small></summary>
+                      <dl>
+                        <div><dt>Đã nhớ</dt><dd>{day.remembered}</dd></div>
+                        <div><dt>Chưa nhớ</dt><dd>{day.forgotten}</dd></div>
+                        <div><dt>Từ mới học</dt><dd>{day.newLearned}</dd></div>
+                      </dl>
+                    </details>
+                  ))}
+                </div>
+              ) : null}
+            </section>
+            <section className="progress-insights" aria-labelledby="topic-progress-title">
+              <h2 id="topic-progress-title">Tiến trình theo chủ đề</h2>
+              {insightState === "ready" && topicProgress?.topics.length === 0 ? <p data-testid="topic-progress-empty">Chưa có chủ đề khả dụng.</p> : null}
+              {insightState === "ready" && topicProgress && topicProgress.topics.length > 0 ? (
+                <div className="topic-progress-list" data-testid="topic-progress-list">
+                  {topicProgress.topics.map((topic) => (
+                    <article className="topic-progress-row" key={topic.topicId}>
+                      <div><h3>{topic.name}</h3><p>{topic.masteredCount} / {topic.total} đã thành thạo</p></div>
+                      <dl><div><dt>New</dt><dd>{topic.newCount}</dd></div><div><dt>Learning</dt><dd>{topic.learningCount}</dd></div><div><dt>Mastered</dt><dd>{topic.masteredCount}</dd></div><div><dt>Due</dt><dd>{topic.dueCount}</dd></div></dl>
+                    </article>
+                  ))}
+                </div>
+              ) : null}
+              {insightState === "ready" && topicProgress?.topics.every((topic) => topic.total === 0) ? <p className="topic-progress-note">Các từ đang học hiện chưa được phân loại theo chủ đề.</p> : null}
+            </section>
           </div>
         ) : null}
 

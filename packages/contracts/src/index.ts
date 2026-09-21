@@ -328,6 +328,44 @@ export type ProgressSummaryResponse = z.infer<typeof progressSummaryResponseSche
 
 const localDateSchema = z.string().regex(/^\d{4}-\d{2}-\d{2}$/);
 
+export const progressHistoryDaySchema = z.object({
+  date: localDateSchema,
+  reviews: z.number().int().nonnegative().safe(),
+  uniqueWords: z.number().int().nonnegative().safe(),
+  remembered: z.number().int().nonnegative().safe(),
+  forgotten: z.number().int().nonnegative().safe(),
+  newLearned: z.number().int().nonnegative().safe()
+}).strict();
+export type ProgressHistoryDay = z.infer<typeof progressHistoryDaySchema>;
+
+export const progressHistoryResponseSchema = z.object({
+  learnerId: canonicalUuidSchema,
+  timezone: z.string().min(1),
+  from: localDateSchema,
+  to: localDateSchema,
+  days: z.array(progressHistoryDaySchema)
+}).strict();
+export type ProgressHistoryResponse = z.infer<typeof progressHistoryResponseSchema>;
+
+export const topicProgressItemSchema = z.object({
+  topicId: z.number().int().positive(),
+  slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
+  name: z.string().min(1),
+  total: z.number().int().nonnegative().safe(),
+  newCount: z.number().int().nonnegative().safe(),
+  learningCount: z.number().int().nonnegative().safe(),
+  masteredCount: z.number().int().nonnegative().safe(),
+  dueCount: z.number().int().nonnegative().safe()
+}).strict();
+export type TopicProgressItem = z.infer<typeof topicProgressItemSchema>;
+
+export const topicProgressResponseSchema = z.object({
+  learnerId: canonicalUuidSchema,
+  localDate: localDateSchema,
+  topics: z.array(topicProgressItemSchema)
+}).strict();
+export type TopicProgressResponse = z.infer<typeof topicProgressResponseSchema>;
+
 export const dailyGoalSummarySchema = z.object({
   goal: z.number().int().min(DAILY_LEARNING_GOAL_MIN).max(DAILY_LEARNING_GOAL_MAX).safe(),
   reviewedUnique: z.number().int().nonnegative().safe(),

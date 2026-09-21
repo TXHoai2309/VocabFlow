@@ -63,6 +63,8 @@ convenient. Reprioritization or a new story must be explicit.
 - [US-34 Typing / Spelling Exercise](US-34-typing-spelling-exercise.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
 - [US-35 Daily Learning Goal](US-35-daily-learning-goal.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
 - [US-36 Learning Streak](US-36-learning-streak.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
+- [US-37 Weekly / Daily Progress](US-37-weekly-daily-progress.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
+- [US-38 Topic Progress](US-38-topic-progress.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
 
 ## Story status gate
 

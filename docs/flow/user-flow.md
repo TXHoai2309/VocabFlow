@@ -8,6 +8,13 @@
 
 **VOCABFLOW**
 
+## Progress detail extension (US-37 / US-38)
+
+Parent selects a learner → opens Progress → sees current summary, daily goal
+and streak → inspects the last seven household-local dates and current topic
+state. A learner switch reloads every learner-scoped read model. Reset leaves
+historical weekly activity intact while topic state returns to virtual New.
+
 **User Flow v1**
 
 **Luồng người dùng ngắn gọn cho Family MVP**

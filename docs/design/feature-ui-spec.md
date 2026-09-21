@@ -10,6 +10,14 @@
 
 **Family MVP Feature UI Specification v1.0.3**
 
+## Progress detail extension (US-37 / US-38)
+
+The Progress route presents seven compact daily summaries (unique words and
+reviews) with disclosure details for outcomes and materializations. It also
+presents responsive topic rows showing mastered/total plus New, Learning,
+Mastered and Due. Loading, safe error and zero-eligible states are explicit;
+the latter explains that active words may not yet be categorized.
+
 **Screen behavior, states and responsive contracts for the Family MVP**
 
 > **Vai trò của tài liệu**

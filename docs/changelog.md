@@ -2,6 +2,12 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-21 — US-37 + US-38 weekly, daily and topic progress
+
+- Added learner-scoped, bounded 90-day progress-history aggregation from canonical review events with household-local dates, explicit zero-fill and review/unique/remembered/forgotten/current-lifecycle-new metrics.
+- Progress now has a seven-day view and set-based current topic progress for enabled vocabulary reachable through active assigned sets. Topic Due remains an overlapping subset; unmapped starter words remain honestly uncategorized.
+- No mutable analytics counters, schema changes or scheduler changes were added. Status: `IMPLEMENTED / READY FOR OWNER CHECK`.
+
 ## 2026-09-20 — US-35 + US-36 daily goal and learning streak
 
 - Added learner-scoped `daily_learning_goal` with default 10 and validation

@@ -657,6 +657,32 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
 .topic-vocabulary > p { color: var(--color-text-muted); }
 .topic-vocabulary .vocabulary-list { margin-top: 16px; }
 
+.progress-insights { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--color-border); }
+.progress-insights h2 { margin: 0; color: var(--color-text); font-size: 20px; }
+.progress-insights-heading p, .topic-progress-note { margin: 6px 0 0; color: var(--color-text-muted); font-size: 14px; }
+.progress-inline-error { color: var(--color-danger); }
+.weekly-progress { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px; margin-top: 16px; }
+.weekly-progress-day { min-width: 0; border: 1px solid var(--color-border); border-radius: var(--radius-control); background: var(--color-surface); }
+.weekly-progress-day summary { display: grid; min-height: 86px; padding: 10px; cursor: pointer; list-style: none; }
+.weekly-progress-day summary::-webkit-details-marker { display: none; }
+.weekly-progress-day summary span, .weekly-progress-day summary small { color: var(--color-text-muted); font-size: 12px; }
+.weekly-progress-day summary strong { margin: 6px 0 2px; color: var(--color-text); font-size: 15px; }
+.weekly-progress-day dl, .topic-progress-row dl { display: grid; gap: 8px; margin: 0; padding: 0 10px 12px; }
+.weekly-progress-day dl div, .topic-progress-row dl div { display: flex; justify-content: space-between; gap: 8px; font-size: 12px; }
+.weekly-progress-day dt, .topic-progress-row dt { color: var(--color-text-muted); }
+.weekly-progress-day dd, .topic-progress-row dd { margin: 0; font-weight: 800; }
+.topic-progress-list { display: grid; gap: 10px; margin-top: 16px; }
+.topic-progress-row { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 14px; border: 1px solid var(--color-border); border-radius: var(--radius-control); background: var(--color-surface); }
+.topic-progress-row h3, .topic-progress-row p { margin: 0; }
+.topic-progress-row h3 { color: var(--color-text); font-size: 16px; }
+.topic-progress-row p { margin-top: 4px; color: var(--color-text-muted); font-size: 13px; }
+.topic-progress-row dl { grid-template-columns: repeat(4, minmax(52px, 1fr)); padding: 0; }
+@media (max-width: 680px) {
+  .weekly-progress { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .topic-progress-row { display: grid; }
+  .topic-progress-row dl { width: 100%; }
+}
+
 .learning-sets-card { width: min(100%, 900px); }
 .learning-sets-topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .learning-sets-topbar .back-link { margin: 0; }
