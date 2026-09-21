@@ -223,14 +223,24 @@ async function withRuntimeService<T>(
   url: string,
   operation: (service: ReturnType<typeof createReviewService>, connection: SqlClient) => Promise<T>,
 ): Promise<T> {
-  const connection = openSql(url);
-  const database = drizzle(connection) as unknown as ReviewDatabase;
-  console.log("TRUSTED_DB_CONNECTION role=runtime operation=us07-review");
-  try {
-    return await operation(createReviewService(database, { now: () => FIXED_NOW }), connection);
-  } finally {
-    await connection.end({ timeout: 5 });
+  // The CI runtime endpoint may occasionally drop a newly opened connection
+  // before the first query. Retry only non-domain failures on a fresh client;
+  // reviewId idempotency remains the database-backed final guard if a write
+  // reached the server before the client observed its outcome.
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    const connection = openSql(url);
+    const database = drizzle(connection) as unknown as ReviewDatabase;
+    console.log("TRUSTED_DB_CONNECTION role=runtime operation=us07-review");
+    try {
+      return await operation(createReviewService(database, { now: () => FIXED_NOW }), connection);
+    } catch (error) {
+      if (error instanceof ReviewServiceError || attempt === 1) throw error;
+      mark("runtime-connection-retry");
+    } finally {
+      await connection.end({ timeout: 5 });
+    }
   }
+  throw new Error("US07_DB_RUNTIME_RETRY_EXHAUSTED");
 }
 
 async function openRuntimeService(url: string) {
