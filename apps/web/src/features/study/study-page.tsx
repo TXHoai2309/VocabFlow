@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, Navigate, useSearchParams } from "react-router";
 import type {
   LearnerDto,
+  ExerciseSubmission,
   ReviewQueueItem,
   ReviewQueueResponse,
   ReviewRequest,
@@ -16,6 +17,7 @@ import { ExerciseCard, type ExerciseAnswer } from "./exercise-card";
 import {
   createExercise,
   EXERCISE_TYPE,
+  normalizeExerciseAnswer,
   TYPE_WORD_CUE,
   type ExerciseInstance,
   type ExerciseType,
@@ -315,10 +317,11 @@ function StudyExperience({ activeLearner, mode, exercisePreference }: { activeLe
     void saveScheduledReview(request, card, false);
   };
 
-  const answerExercise = (optionId: string, typedAnswerCorrect?: boolean) => {
+  const answerExercise = (optionId: string, exerciseSubmission: ExerciseSubmission) => {
     if (!currentCard || !currentExercise || !useExerciseCard || state !== "ready" || exerciseAnswer) return;
     const result: ReviewResult = currentExercise.exerciseType === EXERCISE_TYPE.TYPE_WORD
-      ? typedAnswerCorrect === true
+      ? normalizeExerciseAnswer(exerciseSubmission.type === EXERCISE_TYPE.TYPE_WORD ? exerciseSubmission.answer : "")
+        === normalizeExerciseAnswer(currentExercise.correctAnswer ?? "")
         ? "REMEMBERED"
         : "FORGOTTEN"
       : optionId === currentExercise.correctOptionId ? "REMEMBERED" : "FORGOTTEN";
@@ -336,7 +339,8 @@ function StudyExperience({ activeLearner, mode, exercisePreference }: { activeLe
       learnerId: activeLearner.id,
       vocabularyId: currentCard.item.vocabulary.id,
       result,
-      expectedRevision: currentCard.item.expectedRevision
+      expectedRevision: currentCard.item.expectedRevision,
+      exerciseSubmission
     };
     const card = { ...currentCard, reviewId };
     const nextCards = cardsRef.current.map((candidate, index) => index === 0 ? card : candidate);

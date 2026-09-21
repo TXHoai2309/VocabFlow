@@ -15,6 +15,11 @@ rewards → learner later opens Progress to view level and badges. Retry and
 reinforcement never add rewards. Reset returns current vocabulary state to New
 but keeps historical rewards and unlocked badges.
 
+For an exercise, the learner submits an answer → the server verifies it against
+the canonical target → a matching scheduled review receives its one correct
+exercise bonus; mismatched recall claims are rejected and reinforcement stays
+session-local with zero XP.
+
 ## Progress detail extension (US-37 / US-38)
 
 Parent selects a learner → opens Progress → sees current summary, daily goal

@@ -165,6 +165,7 @@ describe("dedicated application schema", () => {
     const learnerSettingsMigration = readFileSync(join(process.cwd(), "drizzle", "migrations", "0008_chief_morph.sql"), "utf8");
     const activityMigration = readFileSync(join(process.cwd(), "drizzle", "migrations", "0009_tricky_meggan.sql"), "utf8");
     const gamificationMigration = readFileSync(join(process.cwd(), "drizzle", "migrations", "0010_gamification-rewards.sql"), "utf8");
+    const exerciseXpMigration = readFileSync(join(process.cwd(), "drizzle", "migrations", "0011_exercise-correct-xp.sql"), "utf8");
     const journal = JSON.parse(readFileSync(join(process.cwd(), "drizzle", "migrations", "meta", "_journal.json"), "utf8")) as { entries: Array<{ idx: number; tag: string }> };
     const snapshot = JSON.parse(readFileSync(join(process.cwd(), "drizzle", "migrations", "meta", "0000_snapshot.json"), "utf8")) as {
       schemas: Record<string, string>;
@@ -261,6 +262,9 @@ describe("dedicated application schema", () => {
     expect(gamificationMigration).toContain("xp_events_source_type_key_unique");
     expect(gamificationMigration).toContain("ON CONFLICT (\"code\") DO NOTHING");
     expect(gamificationMigration).not.toMatch(/DROP TABLE|TRUNCATE|DELETE FROM/i);
+    expect(exerciseXpMigration).toContain("DROP CONSTRAINT \"xp_events_source_type_check\"");
+    expect(exerciseXpMigration).toContain("'EXERCISE_CORRECT'");
+    expect(exerciseXpMigration).not.toMatch(/DROP TABLE|TRUNCATE|DELETE FROM/i);
     const catalogSnapshot = JSON.parse(readFileSync(join(process.cwd(), "drizzle", "migrations", "meta", "0005_snapshot.json"), "utf8")) as {
       tables: Record<string, { columns: Record<string, { identity?: { type: string } }>; uniqueConstraints: Record<string, { columns: string[] }> }>;
     };
@@ -277,7 +281,7 @@ describe("dedicated application schema", () => {
     expect(reviewSnapshot.tables[`${APP_SCHEMA}.learner_progress`]?.columns.consecutive_correct.type).toBe("bigint");
     expect(reviewSnapshot.tables[`${APP_SCHEMA}.review_events`]?.columns.expected_revision.type).toBe("bigint");
     expect(reviewSnapshot.tables[`${APP_SCHEMA}.review_events`]?.compositePrimaryKeys.review_events_household_review_pk).toBeDefined();
-    expect(journal.entries.map((entry) => entry.tag)).toEqual(["0000_application-schema", "0001_curious_miss_america", "0002_smiling_wrecking_crew", "0003_lazy_lady_deathstrike", "0004_scheduled_review_write", "0005_graceful_eddie_brock", "0006_sticky_risque", "0007_modern_mysterio", "0008_chief_morph", "0009_tricky_meggan", "0010_gamification-rewards"]);
+    expect(journal.entries.map((entry) => entry.tag)).toEqual(["0000_application-schema", "0001_curious_miss_america", "0002_smiling_wrecking_crew", "0003_lazy_lady_deathstrike", "0004_scheduled_review_write", "0005_graceful_eddie_brock", "0006_sticky_risque", "0007_modern_mysterio", "0008_chief_morph", "0009_tricky_meggan", "0010_gamification-rewards", "0011_exercise-correct-xp"]);
     expect(dbCore).toContain("await executeApplicationMigrations(sql)");
   });
 

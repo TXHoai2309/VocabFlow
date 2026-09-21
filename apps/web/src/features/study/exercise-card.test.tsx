@@ -85,6 +85,10 @@ describe("exercise interaction layer", () => {
     expect(screen.getByTestId("exercise-prompt")).toHaveTextContent("apple");
     fireEvent.click(screen.getByRole("button", { name: "quyển sách" }));
     expect(onAnswer).toHaveBeenCalledTimes(1);
+    expect(onAnswer).toHaveBeenCalledWith("MULTIPLE_CHOICE_MEANING:2", {
+      type: "MULTIPLE_CHOICE_MEANING",
+      answer: "quyển sách"
+    });
 
     const answer = { optionId: "MULTIPLE_CHOICE_MEANING:2", result: "FORGOTTEN" as const };
     rerender(<ExerciseCard exercise={meaningExercise} answer={answer} saveState="saving" onAnswer={onAnswer} onAudioFailure={vi.fn()} />);
@@ -124,7 +128,7 @@ describe("exercise interaction layer", () => {
     expect(onImageFailure).toHaveBeenCalledTimes(1);
   });
 
-  it("accepts normalized exact typing once and locks the input after submit", () => {
+  it("submits raw typing evidence once and locks the input after submit", () => {
     const onAnswer = vi.fn();
     const { rerender } = render(<ExerciseCard exercise={typingExercise} answer={null} saveState="ready" onAnswer={onAnswer} onAudioFailure={vi.fn()} />);
 
@@ -132,18 +136,18 @@ describe("exercise interaction layer", () => {
     expect(screen.getByTestId("exercise-cue")).toHaveTextContent("quả táo");
     fireEvent.change(screen.getByLabelText("Từ tiếng Anh"), { target: { value: " ＡＰＰＬＥ " } });
     fireEvent.submit(screen.getByRole("button", { name: "Gửi câu trả lời" }).closest("form")!);
-    expect(onAnswer).toHaveBeenCalledWith(TYPE_WORD_SUBMISSION, true);
+    expect(onAnswer).toHaveBeenCalledWith(TYPE_WORD_SUBMISSION, { type: "TYPE_WORD", answer: " ＡＰＰＬＥ " });
 
     rerender(<ExerciseCard exercise={typingExercise} answer={{ optionId: TYPE_WORD_SUBMISSION, result: "REMEMBERED" }} saveState="saving" onAnswer={onAnswer} onAudioFailure={vi.fn()} />);
     expect(screen.getByLabelText("Từ tiếng Anh")).toBeDisabled();
     expect(onAnswer).toHaveBeenCalledTimes(1);
   });
 
-  it("rejects a spelling error instead of using fuzzy matching", () => {
+  it("submits a spelling error for server-side verification", () => {
     const onAnswer = vi.fn();
     render(<ExerciseCard exercise={typingExercise} answer={null} saveState="ready" onAnswer={onAnswer} onAudioFailure={vi.fn()} />);
     fireEvent.change(screen.getByLabelText("Từ tiếng Anh"), { target: { value: "aple" } });
     fireEvent.submit(screen.getByRole("button", { name: "Gửi câu trả lời" }).closest("form")!);
-    expect(onAnswer).toHaveBeenCalledWith(TYPE_WORD_SUBMISSION, false);
+    expect(onAnswer).toHaveBeenCalledWith(TYPE_WORD_SUBMISSION, { type: "TYPE_WORD", answer: "aple" });
   });
 });

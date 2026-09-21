@@ -230,7 +230,7 @@ describe("US-33 + US-34 image and typing Study mode", () => {
     expect(fetchMock).toHaveBeenCalledTimes(1);
   });
 
-  it("accepts a normalized exact spelling and sends only the canonical review result", async () => {
+  it("accepts a normalized exact spelling and sends transient server-verifiable evidence", async () => {
     const target = queueItem(1, "apple", "quả táo");
     const queue = [target, queueItem(2, "book", "quyển sách"), queueItem(3, "house", "ngôi nhà"), queueItem(4, "water", "nước")];
     const fetchMock = vi.spyOn(globalThis, "fetch")
@@ -246,8 +246,8 @@ describe("US-33 + US-34 image and typing Study mode", () => {
     await screen.findByText("Chính xác.");
     const body = JSON.parse(String(fetchMock.mock.calls[1]?.[1]?.body)) as Record<string, unknown>;
     expect(body).toMatchObject({ result: "REMEMBERED", vocabularyId: 1 });
-    expect(body).not.toHaveProperty("answer");
-    expect(JSON.stringify(body)).not.toContain("APPLE");
+    expect(body).toMatchObject({ exerciseSubmission: { type: "TYPE_WORD", answer: " APPLE " } });
+    expect((body.exerciseSubmission as Record<string, unknown>).correct).toBeUndefined();
   });
 
   it("maps an exact spelling error to FORGOTTEN", async () => {

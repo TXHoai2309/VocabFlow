@@ -446,12 +446,43 @@ export type ReviewQueueResponse = z.infer<typeof reviewQueueResponseSchema>;
 export const reviewResultSchema = z.enum(["REMEMBERED", "FORGOTTEN"]);
 export type ReviewResult = z.infer<typeof reviewResultSchema>;
 
+export const exerciseTypeSchema = z.enum([
+  "MULTIPLE_CHOICE_MEANING",
+  "LISTENING_CHOICE",
+  "IMAGE_TO_WORD",
+  "TYPE_WORD"
+]);
+export type ExerciseType = z.infer<typeof exerciseTypeSchema>;
+
+// This is submission evidence, never a client assertion of correctness.  The
+// server derives correctness from the canonical target vocabulary.
+export const exerciseSubmissionSchema = z.discriminatedUnion("type", [
+  z.object({
+    type: z.literal("MULTIPLE_CHOICE_MEANING"),
+    answer: z.string().min(1).max(1000)
+  }).strict(),
+  z.object({
+    type: z.literal("LISTENING_CHOICE"),
+    selectedVocabularyId: z.number().int().positive().max(2147483647)
+  }).strict(),
+  z.object({
+    type: z.literal("IMAGE_TO_WORD"),
+    selectedVocabularyId: z.number().int().positive().max(2147483647)
+  }).strict(),
+  z.object({
+    type: z.literal("TYPE_WORD"),
+    answer: z.string().min(1).max(1000)
+  }).strict()
+]);
+export type ExerciseSubmission = z.infer<typeof exerciseSubmissionSchema>;
+
 export const reviewRequestSchema = z.object({
   reviewId: canonicalUuidSchema,
   learnerId: canonicalUuidSchema,
   vocabularyId: z.number().int().positive().max(2147483647),
   result: reviewResultSchema,
-  expectedRevision: z.number().int().nonnegative().safe()
+  expectedRevision: z.number().int().nonnegative().safe(),
+  exerciseSubmission: exerciseSubmissionSchema.optional()
 }).strict();
 export type ReviewRequest = z.infer<typeof reviewRequestSchema>;
 

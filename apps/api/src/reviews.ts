@@ -3,6 +3,7 @@ import {
   APP_SCHEMA,
   reviewRequestSchema,
   reviewResponseSchema,
+  type ExerciseSubmission,
   type ReviewRequest,
   type ReviewResponse
 } from "@vocabflow/contracts";
@@ -130,13 +131,24 @@ export async function createReviewFingerprint(input: ReviewRequest) {
   return `sha256:${hex}`;
 }
 
+type CanonicalVocabulary = {
+  id: number;
+  word: string;
+  vietnamese: string;
+};
+
+type ReviewTarget = {
+  timezone: string;
+  vocabulary: CanonicalVocabulary;
+};
+
 async function resolveVocabularyAndTimezone(
   database: ReviewDatabase,
   householdId: string,
   vocabularyId: number
-): Promise<string> {
+): Promise<ReviewTarget> {
   const result = await database.execute(sql`
-    SELECT h.timezone, v.id AS vocabulary_id
+    SELECT h.timezone, v.id AS vocabulary_id, v.word, v.vietnamese
     FROM "${sql.raw(APP_SCHEMA)}"."households" h
     JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v
       ON v.id = ${vocabularyId}::integer
@@ -144,11 +156,31 @@ async function resolveVocabularyAndTimezone(
     WHERE h.id = ${householdId}::uuid
     LIMIT 1
   `);
-  const [row] = rowsOf<{ timezone: unknown; vocabulary_id: unknown }>(result);
-  if (!row || typeof row.timezone !== "string" || row.vocabulary_id == null) {
+  const [row] = rowsOf<{ timezone: unknown; vocabulary_id: unknown; word: unknown; vietnamese: unknown }>(result);
+  if (!row || typeof row.timezone !== "string" || !Number.isSafeInteger(row.vocabulary_id) || typeof row.word !== "string" || typeof row.vietnamese !== "string") {
     throw new ReviewServiceError("VOCABULARY_NOT_FOUND", 404);
   }
-  return row.timezone;
+  return { timezone: row.timezone, vocabulary: { id: Number(row.vocabulary_id), word: row.word, vietnamese: row.vietnamese } };
+}
+
+function normalizeExerciseText(value: string): string {
+  return value.normalize("NFKC").trim().toLocaleLowerCase("vi-VN");
+}
+
+export function serverDerivedExerciseResult(submission: ExerciseSubmission, vocabulary: CanonicalVocabulary): "REMEMBERED" | "FORGOTTEN" {
+  const correct = submission.type === "MULTIPLE_CHOICE_MEANING"
+    ? normalizeExerciseText(submission.answer) === normalizeExerciseText(vocabulary.vietnamese)
+    : submission.type === "TYPE_WORD"
+      ? normalizeExerciseText(submission.answer) === normalizeExerciseText(vocabulary.word)
+      : submission.selectedVocabularyId === vocabulary.id;
+  return correct ? "REMEMBERED" : "FORGOTTEN";
+}
+
+function deriveExerciseReviewRequest(input: ReviewRequest, vocabulary: CanonicalVocabulary): ReviewRequest {
+  if (!input.exerciseSubmission) return input;
+  const derivedResult = serverDerivedExerciseResult(input.exerciseSubmission, vocabulary);
+  if (input.result !== derivedResult) throw new ReviewServiceError("INVALID_REQUEST", 400);
+  return { ...input, result: derivedResult };
 }
 
 async function findReviewEvent(
@@ -273,7 +305,8 @@ async function atomicPersist(
   fingerprint: string,
   reviewDate: string,
   output: SchedulerOutput,
-  response: ReviewResponse
+  response: ReviewResponse,
+  awardExerciseBonus: boolean
 ): Promise<AtomicWriteRow | undefined> {
   const result = await database.execute(sql`
     WITH locked_learner AS MATERIALIZED (
@@ -471,6 +504,21 @@ async function atomicPersist(
       FROM inserted_event ie
       ON CONFLICT (source_type, source_key) DO NOTHING
       RETURNING learner_id
+    ), inserted_exercise_xp AS (
+      INSERT INTO "${sql.raw(APP_SCHEMA)}"."xp_events" (
+        learner_id,
+        source_type,
+        source_key,
+        points
+      )
+      SELECT ie.learner_id::uuid,
+             'EXERCISE_CORRECT',
+             'exercise-correct:' || ie.review_id,
+             5
+      FROM inserted_event ie
+      WHERE ${awardExerciseBonus}::boolean
+      ON CONFLICT (source_type, source_key) DO NOTHING
+      RETURNING learner_id
     ), inserted_daily_goal_xp AS (
       INSERT INTO "${sql.raw(APP_SCHEMA)}"."xp_events" (
         learner_id,
@@ -557,8 +605,9 @@ export function createReviewService(
         throw new ReviewServiceError("HOUSEHOLD_ACCESS_DENIED", 403);
       }
 
-      const timezone = await resolveVocabularyAndTimezone(database, ownership.householdId, input.vocabularyId);
-      const fingerprint = await createReviewFingerprint(input);
+      const target = await resolveVocabularyAndTimezone(database, ownership.householdId, input.vocabularyId);
+      const verifiedInput = deriveExerciseReviewRequest(input, target.vocabulary);
+      const fingerprint = await createReviewFingerprint(verifiedInput);
       const existing = await findReviewEvent(database, ownership.householdId, input.reviewId);
       if (existing) {
         if (existing.request_fingerprint !== fingerprint) {
@@ -567,12 +616,12 @@ export function createReviewService(
         return { status: 200, response: storedResponse(existing.response_payload) };
       }
 
-      const current = await loadProgress(database, input.learnerId, input.vocabularyId);
+      const current = await loadProgress(database, verifiedInput.learnerId, verifiedInput.vocabularyId);
       const currentRevision = current ? numberValue(current.revision) : 0;
-      if (input.expectedRevision !== currentRevision) throw staleRevision(currentRevision);
-      if (input.expectedRevision === Number.MAX_SAFE_INTEGER) throw internalFailure();
+      if (verifiedInput.expectedRevision !== currentRevision) throw staleRevision(currentRevision);
+      if (verifiedInput.expectedRevision === Number.MAX_SAFE_INTEGER) throw internalFailure();
 
-      const reviewDate = householdLocalDate(now(), timezone);
+      const reviewDate = householdLocalDate(now(), target.timezone);
       let output: SchedulerOutput;
       try {
         output = scheduler({
@@ -586,20 +635,29 @@ export function createReviewService(
             totalCorrect: 0,
             totalIncorrect: 0
           },
-          result: input.result,
+          result: verifiedInput.result,
           today: reviewDate
         });
       } catch {
         throw internalFailure();
       }
 
-      const response = buildResponse(input, output, input.expectedRevision + 1);
+      const response = buildResponse(verifiedInput, output, verifiedInput.expectedRevision + 1);
       let persisted: AtomicWriteRow | undefined;
       try {
-        persisted = await atomicPersist(database, input, ownership.householdId, fingerprint, reviewDate, output, response);
+        persisted = await atomicPersist(
+          database,
+          verifiedInput,
+          ownership.householdId,
+          fingerprint,
+          reviewDate,
+          output,
+          response,
+          verifiedInput.exerciseSubmission !== undefined && verifiedInput.result === "REMEMBERED"
+        );
       } catch (error) {
         if (!isWriteRaceError(error)) throw error;
-        return classifyWriteRace(database, input, ownership.householdId, fingerprint);
+        return classifyWriteRace(database, verifiedInput, ownership.householdId, fingerprint);
       }
       if (persisted?.existing_fingerprint) {
         if (persisted.existing_fingerprint !== fingerprint) {

@@ -1,0 +1,2 @@
+ALTER TABLE "vocabflow_app"."xp_events" DROP CONSTRAINT "xp_events_source_type_check";--> statement-breakpoint
+ALTER TABLE "vocabflow_app"."xp_events" ADD CONSTRAINT "xp_events_source_type_check" CHECK ("vocabflow_app"."xp_events"."source_type" IN ('REVIEW', 'EXERCISE_CORRECT', 'DAILY_GOAL'));

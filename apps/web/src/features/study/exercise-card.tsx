@@ -1,4 +1,5 @@
 import { useState } from "react";
+import type { ExerciseSubmission } from "@vocabflow/contracts";
 import type { ExerciseInstance } from "./exercise-generator";
 import { EXERCISE_TYPE, normalizeExerciseAnswer, TYPE_WORD_CUE, TYPE_WORD_SUBMISSION } from "./exercise-generator";
 import type { PronunciationAudioState } from "./pronunciation-audio";
@@ -13,7 +14,7 @@ export type ExerciseCardProps = {
   exercise: ExerciseInstance;
   answer: ExerciseAnswer | null;
   saveState: "ready" | "saving" | "save-failed" | "awaiting-next";
-  onAnswer: (optionId: string, typedAnswerCorrect?: boolean) => void;
+  onAnswer: (optionId: string, submission: ExerciseSubmission) => void;
   onAudioFailure: () => void;
   onImageFailure?: () => void;
 };
@@ -49,8 +50,7 @@ export function ExerciseCard({ exercise, answer, saveState, onAnswer, onAudioFai
     }
     setTypingError(null);
     setTypeSubmitted(true);
-    const correct = normalizeExerciseAnswer(typedAnswer) === normalizeExerciseAnswer(exercise.correctAnswer ?? "");
-    onAnswer(TYPE_WORD_SUBMISSION, correct);
+    onAnswer(TYPE_WORD_SUBMISSION, { type: EXERCISE_TYPE.TYPE_WORD, answer: typedAnswer });
   };
 
   const canonicalAnswer = exercise.correctAnswer
@@ -129,7 +129,14 @@ export function ExerciseCard({ exercise, answer, saveState, onAnswer, onAudioFai
                 type="button"
                 key={option.optionId}
                 aria-pressed={selected}
-                onClick={() => onAnswer(option.optionId)}
+                onClick={() => {
+                  const submission: ExerciseSubmission = exercise.exerciseType === EXERCISE_TYPE.MULTIPLE_CHOICE_MEANING
+                    ? { type: EXERCISE_TYPE.MULTIPLE_CHOICE_MEANING, answer: option.label }
+                    : exercise.exerciseType === EXERCISE_TYPE.LISTENING_CHOICE
+                      ? { type: EXERCISE_TYPE.LISTENING_CHOICE, selectedVocabularyId: option.vocabularyId }
+                      : { type: EXERCISE_TYPE.IMAGE_TO_WORD, selectedVocabularyId: option.vocabularyId };
+                  onAnswer(option.optionId, submission);
+                }}
               >
                 <span>{option.label}</span>
                 {answer && correct ? <span aria-label="Đáp án đúng">✓</span> : null}

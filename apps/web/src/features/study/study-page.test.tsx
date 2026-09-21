@@ -80,12 +80,12 @@ function response(body: unknown, status = 200) {
   });
 }
 
-function renderStudy(initialLearner: LearnerDto | null = learner) {
+function renderStudy(initialLearner: LearnerDto | null = learner, mode: "flashcard" | "exercise" = "flashcard") {
   return render(
     <MemoryRouter initialEntries={["/study"]}>
       <ActiveLearnerProvider initialLearner={initialLearner}>
         <Routes>
-          <Route path="/study" element={<StudyPage />} />
+          <Route path="/study" element={<StudyPage mode={mode} />} />
           <Route path="/learners" element={<p>learners-route</p>} />
           <Route path="/login" element={<p>login-route</p>} />
         </Routes>
@@ -141,6 +141,27 @@ describe("US-09 flashcard session UX", () => {
     const request = JSON.parse(String(fetchMock.mock.calls[1]?.[1]?.body));
     expect(request).toMatchObject({ learnerId: learner.id, vocabularyId: 1, result: "REMEMBERED", expectedRevision: 3 });
     expect(request.reviewId).toMatch(/^[0-9a-f-]{36}$/);
+  });
+
+  it("sends exercise evidence instead of a client correctness boolean", async () => {
+    const first = queueItem(1, "apple");
+    first.vocabulary.audioUrl = "/audio/apple.mp3";
+    const queue = [first, queueItem(2, "book"), queueItem(3, "cat"), queueItem(4, "dog")];
+    const fetchMock = vi.spyOn(globalThis, "fetch")
+      .mockResolvedValueOnce(response(queueResponse(queue)))
+      .mockResolvedValueOnce(response(reviewResponse(first, "REMEMBERED"), 201));
+    renderStudy(learner, "exercise");
+
+    await screen.findByTestId("exercise-card");
+    fireEvent.click(screen.getByRole("button", { name: "apple" }));
+    await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(2));
+    const request = JSON.parse(String(fetchMock.mock.calls[1]?.[1]?.body));
+    expect(request).toMatchObject({
+      vocabularyId: 1,
+      result: "REMEMBERED",
+      exerciseSubmission: { type: "LISTENING_CHOICE", selectedVocabularyId: 1 }
+    });
+    expect(request.exerciseSubmission.correct).toBeUndefined();
   });
 
   it("does not count a pending review before canonical confirmation", async () => {

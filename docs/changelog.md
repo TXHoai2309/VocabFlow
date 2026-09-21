@@ -8,6 +8,11 @@ This log records meaningful project milestones and accepted baselines.
 - Added idempotent catalog-backed achievements with historical reconciliation for canonical evidence and responsive locked/unlocked Progress UI. Reset preserves XP and badges.
 - Exercise-correct bonus is deferred: exercise type and correctness are not a server-trusted review signal, so no client label can farm rewards. Scheduler behavior is unchanged.
 
+## 2026-09-21 — US-39/US-40 reward fix-forward
+
+- Added server-derived exercise verification to the existing review write. A correct scheduled exercise earns one immutable `EXERCISE_CORRECT` event worth 5 XP; no client correctness boolean is accepted, typed input is transient, and no historical exercise XP is backfilled.
+- Fixed Trusted DB fixture cleanup to remove XP and learner-achievement child rows before learner profiles, preserving the global achievement catalog and avoiding FK teardown failures.
+
 ## 2026-09-21 — US-37 + US-38 weekly, daily and topic progress
 
 - Added learner-scoped, bounded 90-day progress-history aggregation from canonical review events with household-local dates, explicit zero-fill and review/unique/remembered/forgotten/current-lifecycle-new metrics.

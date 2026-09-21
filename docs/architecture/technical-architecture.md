@@ -18,6 +18,14 @@ reference data and `learner_achievements` is an immutable once-only unlock
 record. Totals and level are derived at read time. These tables never influence
 learner progress, the scheduler, due dates or queue eligibility.
 
+An optional discriminated exercise submission reaches the same canonical review
+write. The server verifies selected meaning/identity or typed word against the
+target vocabulary, rejects a client result mismatch, and inserts the 5-XP
+`EXERCISE_CORRECT` event only alongside a successful correct scheduled review.
+Typed input is never persisted. Trusted DB fixture teardown deletes
+`learner_achievements` and `xp_events` before their learner parent; the global
+achievement catalog is reference data and is not fixture-cleaned.
+
 ## US-37 / US-38 progress read models
 
 Weekly/daily analytics derives directly from `review_events.review_date` and

@@ -26,6 +26,8 @@ const LEARNERS_TABLE = `${APP_SCHEMA}."learner_profiles"`;
 const ASSIGNMENTS_TABLE = `${APP_SCHEMA}."learner_learning_sets"`;
 const PROGRESS_TABLE = `${APP_SCHEMA}."learner_progress"`;
 const EVENTS_TABLE = `${APP_SCHEMA}."review_events"`;
+const XP_EVENTS_TABLE = `${APP_SCHEMA}."xp_events"`;
+const LEARNER_ACHIEVEMENTS_TABLE = `${APP_SCHEMA}."learner_achievements"`;
 const FIXED_NOW = new Date("2026-09-14T03:00:00.000Z");
 
 function mark(name: string) {
@@ -291,6 +293,8 @@ export async function runUs30TrustedDbSuite(input: DailyNewWordLimitTrustedDbInp
   } finally {
     try {
       await migration.begin(async (tx) => {
+        await tx`DELETE FROM ${tx.unsafe(LEARNER_ACHIEVEMENTS_TABLE)} WHERE learner_id IN (${existingLearnerId}::uuid, ${outsiderLearnerId}::uuid, ${newLearnerId || randomUUID()}::uuid)`;
+        await tx`DELETE FROM ${tx.unsafe(XP_EVENTS_TABLE)} WHERE learner_id IN (${existingLearnerId}::uuid, ${outsiderLearnerId}::uuid, ${newLearnerId || randomUUID()}::uuid)`;
         await tx`DELETE FROM ${tx.unsafe(EVENTS_TABLE)} WHERE household_id IN (${householdId}::uuid, ${outsiderHouseholdId}::uuid)`;
         await tx`DELETE FROM ${tx.unsafe(ASSIGNMENTS_TABLE)} WHERE learner_id IN (${existingLearnerId}::uuid, ${outsiderLearnerId}::uuid, ${newLearnerId || randomUUID()}::uuid)`;
         await tx`DELETE FROM ${tx.unsafe(PROGRESS_TABLE)} WHERE learner_id IN (${existingLearnerId}::uuid, ${outsiderLearnerId}::uuid, ${newLearnerId || randomUUID()}::uuid)`;

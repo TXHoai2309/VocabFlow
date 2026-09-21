@@ -344,6 +344,17 @@ The owner-verified Hoài/Ngọc metric snapshots are recorded in US-20 and US-21
   remain canonical. No mutable streak counter or parallel progress state was
   introduced.
 
+### US-39 + US-40 — XP, Level and Achievements
+
+- Status: `IMPLEMENTED / READY FOR OWNER CHECK`.
+- Immutable learner-scoped rewards remain outside the scheduler. Scheduled
+  reviews earn 10 XP, server-verified correct scheduled exercises earn an
+  additional 5 XP, and daily goal completion earns 20 XP once per local date.
+- Exercise submissions carry evidence, never a trusted correctness boolean;
+  retry uniqueness, reinforcement zero-XP behavior and no historical XP
+  backfill remain intact. Trusted DB fixture cleanup removes reward children
+  before learner fixtures.
+
 ## Later product scope
 
 The Product Specification defines learner selector/create, Learner Home, Study,

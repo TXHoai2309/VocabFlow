@@ -290,7 +290,7 @@ export const xpEvents = vocabflowApp.table("xp_events", {
 }, (table) => [
   unique("xp_events_source_type_key_unique").on(table.sourceType, table.sourceKey),
   index("xp_events_learner_created_at_idx").on(table.learnerId, table.createdAt),
-  check("xp_events_source_type_check", sql`${table.sourceType} IN ('REVIEW', 'DAILY_GOAL')`),
+  check("xp_events_source_type_check", sql`${table.sourceType} IN ('REVIEW', 'EXERCISE_CORRECT', 'DAILY_GOAL')`),
   check("xp_events_points_check", sql`${table.points} > 0 AND ${table.points} <= 1000`)
 ]);
 

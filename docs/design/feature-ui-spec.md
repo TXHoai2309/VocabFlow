@@ -16,6 +16,11 @@ The Progress route provides non-blocking level/XP information and a compact,
 responsive ordered badge list. Every badge visibly distinguishes locked from
 unlocked; loading and safe error states do not interrupt Study.
 
+Exercise feedback remains immediate, but the subsequent save submits answer
+evidence rather than a client correctness claim. Server confirmation remains
+the authority for the canonical result and any XP bonus; save failures do not
+award rewards.
+
 ## Progress detail extension (US-37 / US-38)
 
 The Progress route presents seven compact daily summaries (unique words and

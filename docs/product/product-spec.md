@@ -7,6 +7,10 @@ recognize persisted study participation and daily goal completion, remain
 learner-specific and survive a progress reset. They never alter learning state
 or the review schedule.
 
+A correct scheduled exercise earns an additional 5 XP only after the server
+checks submitted evidence against the canonical target vocabulary. The client
+never grants correctness; plain Flashcard reviews earn only participation XP.
+
 ## Progress detail extension (US-37 / US-38)
 
 Parents can inspect a learner's last seven household-local days of persisted

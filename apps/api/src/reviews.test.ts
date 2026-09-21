@@ -7,6 +7,7 @@ import {
   householdLocalDate,
   parseReviewRequest,
   ReviewServiceError,
+  serverDerivedExerciseResult,
   type ReviewDatabase
 } from "./reviews";
 
@@ -45,7 +46,7 @@ function authorizedRows() {
 }
 
 function vocabularyRows(timezone = "Asia/Ho_Chi_Minh") {
-  return { rows: [{ timezone, vocabulary_id: 1 }] };
+  return { rows: [{ timezone, vocabulary_id: 1, word: "ice cream", vietnamese: "kem" }] };
 }
 
 function emptyEvent() {
@@ -80,6 +81,48 @@ describe("US-07 review contracts and orchestration", () => {
     expect(() => parseReviewRequest({ ...request, expectedRevision: -1 })).toThrow();
     expect(() => parseReviewRequest({ ...request, vocabularyId: 1.5 })).toThrow();
     expect(() => parseReviewRequest({ ...request, expectedRevision: Number.MAX_SAFE_INTEGER + 1 })).toThrow();
+    expect(() => parseReviewRequest({ ...request, exerciseSubmission: { type: "TYPE_WORD", answer: "ice cream", correct: true } })).toThrow();
+  });
+
+  it("derives every exercise result from canonical vocabulary rather than a client boolean", () => {
+    const vocabulary = { id: 7, word: "ice cream", vietnamese: "kem que" };
+    expect(serverDerivedExerciseResult({ type: "MULTIPLE_CHOICE_MEANING", answer: " KEM QUE " }, vocabulary)).toBe("REMEMBERED");
+    expect(serverDerivedExerciseResult({ type: "MULTIPLE_CHOICE_MEANING", answer: "bánh mì" }, vocabulary)).toBe("FORGOTTEN");
+    expect(serverDerivedExerciseResult({ type: "LISTENING_CHOICE", selectedVocabularyId: 7 }, vocabulary)).toBe("REMEMBERED");
+    expect(serverDerivedExerciseResult({ type: "LISTENING_CHOICE", selectedVocabularyId: 8 }, vocabulary)).toBe("FORGOTTEN");
+    expect(serverDerivedExerciseResult({ type: "IMAGE_TO_WORD", selectedVocabularyId: 7 }, vocabulary)).toBe("REMEMBERED");
+    expect(serverDerivedExerciseResult({ type: "IMAGE_TO_WORD", selectedVocabularyId: 8 }, vocabulary)).toBe("FORGOTTEN");
+    expect(serverDerivedExerciseResult({ type: "TYPE_WORD", answer: " ＩＣＥ ＣＲＥＡＭ " }, vocabulary)).toBe("REMEMBERED");
+    expect(serverDerivedExerciseResult({ type: "TYPE_WORD", answer: "icecream" }, vocabulary)).toBe("FORGOTTEN");
+  });
+
+  it("rejects a client recall result that conflicts with server-verified exercise evidence", async () => {
+    const database = queuedDatabase([authorizedRows(), vocabularyRows()]);
+    const scheduler = vi.fn(() => schedulerOutput);
+    await expect(createReviewService(database, { scheduler }).write(USER_ID, {
+      ...request,
+      exerciseSubmission: { type: "TYPE_WORD", answer: "wrong answer" }
+    })).rejects.toMatchObject({ code: "INVALID_REQUEST", status: 400 });
+    expect(scheduler).not.toHaveBeenCalled();
+  });
+
+  it("adds one server-derived correct-exercise reward without persisting the typed answer", async () => {
+    const database = queuedDatabase([
+      authorizedRows(),
+      vocabularyRows(),
+      emptyEvent(),
+      emptyProgress(),
+      insertedReview()
+    ]);
+    await expect(createReviewService(database, {
+      now: () => new Date("2026-09-14T03:00:00.000Z")
+    }).write(USER_ID, {
+      ...request,
+      exerciseSubmission: { type: "TYPE_WORD", answer: " ＩＣＥ ＣＲＥＡＭ " }
+    })).resolves.toMatchObject({ status: 201 });
+    const atomicQuery = new PgDialect().sqlToQuery(database.execute.mock.calls[4]?.[0]);
+    expect(atomicQuery.sql).toContain("'EXERCISE_CORRECT'");
+    expect(atomicQuery.params).not.toContain(" ＩＣＥ ＣＲＥＡＭ ");
   });
 
   it("creates a first scheduled review at revision 1", async () => {
@@ -127,6 +170,7 @@ describe("US-07 review contracts and orchestration", () => {
     expect(atomicQuery.sql).toContain('INSERT INTO "vocabflow_app"."review_events"');
     expect(atomicQuery.sql).toContain('INSERT INTO "vocabflow_app"."xp_events"');
     expect(atomicQuery.sql).toContain("'REVIEW'");
+    expect(atomicQuery.sql).toContain("'EXERCISE_CORRECT'");
     expect(atomicQuery.sql).toContain("'DAILY_GOAL'");
     expect(atomicQuery.sql).toContain("ON CONFLICT (source_type, source_key) DO NOTHING");
     expect(atomicQuery.sql).toContain("ON CONFLICT (learner_id, vocabulary_id) DO NOTHING");

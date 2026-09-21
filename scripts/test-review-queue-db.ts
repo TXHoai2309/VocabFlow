@@ -61,6 +61,8 @@ const LEARNER_LEARNING_SETS_TABLE = `${APP_SCHEMA}."learner_learning_sets"`;
 const VOCABULARY_TABLE = `${APP_SCHEMA}."vocabularies"`;
 const PROGRESS_TABLE = `${APP_SCHEMA}."learner_progress"`;
 const EVENTS_TABLE = `${APP_SCHEMA}."review_events"`;
+const XP_EVENTS_TABLE = `${APP_SCHEMA}."xp_events"`;
+const LEARNER_ACHIEVEMENTS_TABLE = `${APP_SCHEMA}."learner_achievements"`;
 const FIXED_NOW = new Date("2026-09-15T01:00:00.000Z");
 const CONTROLLED_REVIEW_DATE = "2026-09-14";
 const ISOLATION_NEXT_REVIEW_DATE = "2026-09-15";
@@ -484,6 +486,20 @@ async function insertReviewHistory(
 async function cleanupFixture(migration: SqlClient, fixture: Fixture) {
   mark("fixture-cleanup");
   await migration.begin(async (tx) => {
+    await tx`
+      DELETE FROM ${tx.unsafe(LEARNER_ACHIEVEMENTS_TABLE)}
+      WHERE learner_id IN (
+        SELECT id FROM ${tx.unsafe(LEARNERS_TABLE)}
+        WHERE household_id = ${fixture.householdId}::uuid
+      )
+    `;
+    await tx`
+      DELETE FROM ${tx.unsafe(XP_EVENTS_TABLE)}
+      WHERE learner_id IN (
+        SELECT id FROM ${tx.unsafe(LEARNERS_TABLE)}
+        WHERE household_id = ${fixture.householdId}::uuid
+      )
+    `;
     await tx`DELETE FROM ${tx.unsafe(EVENTS_TABLE)} WHERE household_id = ${fixture.householdId}::uuid`;
     await tx`
       DELETE FROM ${tx.unsafe(LEARNER_LEARNING_SETS_TABLE)}
@@ -504,6 +520,35 @@ async function cleanupFixture(migration: SqlClient, fixture: Fixture) {
     await tx`DELETE FROM ${tx.unsafe(HOUSEHOLDS_TABLE)} WHERE id = ${fixture.householdId}::uuid`;
     await tx`DELETE FROM ${tx.unsafe(VOCABULARY_TABLE)} WHERE id = ANY(${tx.array(fixture.vocabularyIds)}::integer[])`;
     await tx`DELETE FROM ${tx.unsafe(USER_TABLE)} WHERE id = ${fixture.ownerUserId}::text`;
+  });
+  const [remaining] = await migration<{ xp_count: string; achievement_count: string; learner_count: string }[]>`
+    SELECT
+      (SELECT count(*)::text FROM ${migration.unsafe(XP_EVENTS_TABLE)} WHERE learner_id = ${fixture.learnerId}::uuid) AS xp_count,
+      (SELECT count(*)::text FROM ${migration.unsafe(LEARNER_ACHIEVEMENTS_TABLE)} WHERE learner_id = ${fixture.learnerId}::uuid) AS achievement_count,
+      (SELECT count(*)::text FROM ${migration.unsafe(LEARNERS_TABLE)} WHERE id = ${fixture.learnerId}::uuid) AS learner_count
+  `;
+  assert(remaining?.xp_count === "0", "CLEANUP_XP_ORPHAN");
+  assert(remaining?.achievement_count === "0", "CLEANUP_ACHIEVEMENT_ORPHAN");
+  assert(remaining?.learner_count === "0", "CLEANUP_LEARNER_REMAINS");
+}
+
+async function seedGamificationCleanupEvidence(migration: SqlClient, fixture: Fixture) {
+  mark("gamification-cleanup-evidence");
+  const [achievement] = await migration<{ id: number }[]>`
+    SELECT id FROM ${migration.unsafe(`${APP_SCHEMA}."achievements"`)}
+    WHERE code = 'FIRST_REVIEW'
+    LIMIT 1
+  `;
+  assert(Number.isSafeInteger(achievement?.id), "CLEANUP_ACHIEVEMENT_CATALOG_MISSING");
+  await migration.begin(async (tx) => {
+    await tx`
+      INSERT INTO ${tx.unsafe(XP_EVENTS_TABLE)} (learner_id, source_type, source_key, points)
+      VALUES (${fixture.learnerId}::uuid, 'REVIEW', ${`cleanup-review:${fixture.learnerId}`}::text, 10)
+    `;
+    await tx`
+      INSERT INTO ${tx.unsafe(LEARNER_ACHIEVEMENTS_TABLE)} (learner_id, achievement_id)
+      VALUES (${fixture.learnerId}::uuid, ${achievement!.id}::integer)
+    `;
   });
 }
 
@@ -857,6 +902,9 @@ export async function runUs08TrustedDbSuite(input: Us08TrustedDbInput) {
     await testLearnerVocabulary(migration, input.runtimeUrl, fixtures);
     await testResetProgress(migration, input.runtimeUrl, fixtures);
     await testCapsAndSuppression(migration, input.runtimeUrl, fixtures);
+    const cleanupFixture = fixtures[0];
+    assert(cleanupFixture, "CLEANUP_FIXTURE_MISSING");
+    await seedGamificationCleanupEvidence(migration, cleanupFixture);
   } finally {
     try {
       for (const fixture of fixtures.reverse()) await cleanupFixture(migration, fixture);

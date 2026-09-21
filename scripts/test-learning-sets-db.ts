@@ -28,6 +28,8 @@ const ASSIGNMENTS_TABLE = `${APP_SCHEMA}."learner_learning_sets"`;
 const VOCABULARY_TABLE = `${APP_SCHEMA}."vocabularies"`;
 const PROGRESS_TABLE = `${APP_SCHEMA}."learner_progress"`;
 const EVENTS_TABLE = `${APP_SCHEMA}."review_events"`;
+const XP_EVENTS_TABLE = `${APP_SCHEMA}."xp_events"`;
+const LEARNER_ACHIEVEMENTS_TABLE = `${APP_SCHEMA}."learner_achievements"`;
 function mark(name: string) {
   console.log(`TRUSTED_DB_SUBSTAGE=us28-us29-${name}`);
 }
@@ -179,6 +181,8 @@ export async function runUs28Us29TrustedDbSuite(input: LearningSetsTrustedDbInpu
   } finally {
     try {
       await migration.begin(async (tx) => {
+        await tx`DELETE FROM ${tx.unsafe(LEARNER_ACHIEVEMENTS_TABLE)} WHERE learner_id IN (${learnerId}::uuid, ${outsiderLearnerId}::uuid)`;
+        await tx`DELETE FROM ${tx.unsafe(XP_EVENTS_TABLE)} WHERE learner_id IN (${learnerId}::uuid, ${outsiderLearnerId}::uuid)`;
         await tx`DELETE FROM ${tx.unsafe(ASSIGNMENTS_TABLE)} WHERE learner_id IN (${learnerId}::uuid, ${outsiderLearnerId}::uuid)`;
         await tx`DELETE FROM ${tx.unsafe(PROGRESS_TABLE)} WHERE learner_id = ${learnerId}::uuid`;
         await tx`DELETE FROM ${tx.unsafe(LEARNERS_TABLE)} WHERE id IN (${learnerId}::uuid, ${outsiderLearnerId}::uuid)`;
