@@ -63,6 +63,7 @@ type ReviewRequest = {
   vocabularyId: number;
   result: "REMEMBERED" | "FORGOTTEN";
   expectedRevision: number;
+  exerciseSubmission?: { type: "TYPE_WORD"; answer: string };
 };
 
 type Outcome<T> = { ok: true; value: T } | { ok: false; error: unknown };
@@ -77,6 +78,7 @@ const LEARNER_LEARNING_SETS_TABLE = `${APP_SCHEMA}."learner_learning_sets"`;
 const VOCABULARY_TABLE = `${APP_SCHEMA}."vocabularies"`;
 const PROGRESS_TABLE = `${APP_SCHEMA}."learner_progress"`;
 const EVENTS_TABLE = `${APP_SCHEMA}."review_events"`;
+const XP_EVENTS_TABLE = `${APP_SCHEMA}."xp_events"`;
 const FIXED_NOW = new Date("2026-09-14T03:00:00.000Z");
 const ROLLBACK_MARKER = "__VOCABFLOW_US07_ROLLBACK__";
 const FIXTURE_PREFIX = randomUUID().replaceAll("-", "");
@@ -399,7 +401,7 @@ async function assertLiveSchema(migration: SqlClient) {
     JOIN pg_class c ON c.oid = con.conrelid
     JOIN pg_namespace n ON n.oid = c.relnamespace
     WHERE n.nspname = 'vocabflow_app'
-      AND c.relname IN ('learner_progress', 'review_events')
+      AND c.relname IN ('learner_progress', 'review_events', 'xp_events')
   `;
   const hasConstraint = (name: string, type?: string) => constraints.some((item) => item.constraint_name === name && (!type || item.constraint_type === type));
   assert(hasConstraint("review_events_household_review_pk", "PRIMARY KEY"), "EVENT_COMPOSITE_PRIMARY_KEY_MISSING");
@@ -421,6 +423,9 @@ async function assertLiveSchema(migration: SqlClient) {
     const definition = constraints.find((item) => item.constraint_name === name)?.definition ?? "";
     assert(definition.includes("9007199254740991"), `CHECK_SAFE_RANGE_MISSING_${name}`);
   }
+  assert(hasConstraint("xp_events_source_type_check", "CHECK"), "XP_SOURCE_TYPE_CHECK_MISSING");
+  const xpSourceCheck = constraints.find((item) => item.constraint_name === "xp_events_source_type_check")?.definition ?? "";
+  assert(xpSourceCheck.includes("EXERCISE_CORRECT"), "XP_EXERCISE_SOURCE_MISSING");
   for (const name of [
     "learner_progress_learner_id_learner_profiles_id_fk",
     "learner_progress_vocabulary_id_vocabularies_id_fk",
@@ -493,6 +498,55 @@ async function testNewForgotten(migration: SqlClient, runtimeUrl: string) {
   assert(progress.totalIncorrect === 1 && progress.intervalDays === 1, "NEW_FORGOTTEN_STATE");
   assert((await eventsFor(migration, fixture)).length === 1, "NEW_FORGOTTEN_EVENT_COUNT");
   await assertCanonicalEvent(migration, fixture, request, result, "2026-09-14");
+}
+
+async function testServerVerifiedExerciseXp(migration: SqlClient, runtimeUrl: string) {
+  mark("server-verified-exercise-xp");
+  const fixture = await seedFixture(migration, "exercise-xp");
+  const correctRequest: ReviewRequest = {
+    ...makeRequest(fixture, "REMEMBERED", 0),
+    exerciseSubmission: { type: "TYPE_WORD", answer: " TRUSTED-EXERCISE-XP " }
+  };
+  const created = await withRuntimeService(runtimeUrl, (service) => service.write(fixture.ownerUserId, correctRequest));
+  assert(created.status === 201 && created.response.result === "REMEMBERED", "EXERCISE_CORRECT_NOT_CREATED");
+
+  const rewardsAfterCorrect = await migration<{ source_type: string; source_key: string; points: number }[]>`
+    SELECT source_type, source_key, points
+    FROM ${migration.unsafe(XP_EVENTS_TABLE)}
+    WHERE learner_id = ${fixture.learnerId}::uuid
+    ORDER BY source_type
+  `;
+  assert(rewardsAfterCorrect.length === 2, "EXERCISE_CORRECT_REWARD_COUNT");
+  assert(rewardsAfterCorrect.some((row) => row.source_type === "REVIEW" && Number(row.points) === 10), "EXERCISE_REVIEW_REWARD_MISSING");
+  assert(rewardsAfterCorrect.some((row) => row.source_type === "EXERCISE_CORRECT" && row.source_key === `exercise-correct:${correctRequest.reviewId}` && Number(row.points) === 5), "EXERCISE_BONUS_MISSING");
+  assert(!JSON.stringify(await eventFor(migration, fixture, correctRequest.reviewId)).includes("TRUSTED-EXERCISE-XP"), "EXERCISE_TYPED_ANSWER_PERSISTED");
+
+  const replay = await withRuntimeService(runtimeUrl, (service) => service.write(fixture.ownerUserId, correctRequest));
+  assert(replay.status === 200, "EXERCISE_REPLAY_NOT_IDEMPOTENT");
+  const [rewardCountAfterReplay] = await migration<{ count: string }[]>`
+    SELECT count(*)::text AS count FROM ${migration.unsafe(XP_EVENTS_TABLE)}
+    WHERE learner_id = ${fixture.learnerId}::uuid
+  `;
+  assert(rewardCountAfterReplay?.count === "2", "EXERCISE_REPLAY_DUPLICATE_REWARD");
+
+  const wrongRequest: ReviewRequest = {
+    ...makeRequest(fixture, "FORGOTTEN", 1),
+    exerciseSubmission: { type: "TYPE_WORD", answer: "wrong" }
+  };
+  const wrong = await withRuntimeService(runtimeUrl, (service) => service.write(fixture.ownerUserId, wrongRequest));
+  assert(wrong.status === 201 && wrong.response.result === "FORGOTTEN", "EXERCISE_WRONG_NOT_CREATED");
+  const [bonusCountAfterWrong] = await migration<{ count: string }[]>`
+    SELECT count(*)::text AS count FROM ${migration.unsafe(XP_EVENTS_TABLE)}
+    WHERE learner_id = ${fixture.learnerId}::uuid AND source_type = 'EXERCISE_CORRECT'
+  `;
+  assert(bonusCountAfterWrong?.count === "1", "EXERCISE_WRONG_BONUS_CREATED");
+
+  const mismatchRequest: ReviewRequest = {
+    ...makeRequest(fixture, "REMEMBERED", 2),
+    exerciseSubmission: { type: "TYPE_WORD", answer: "wrong" }
+  };
+  const mismatch = await withRuntimeService(runtimeUrl, (service) => capture(service.write(fixture.ownerUserId, mismatchRequest)));
+  expectReviewError(mismatch, "INVALID_REQUEST");
 }
 
 async function testExistingRevision(migration: SqlClient, runtimeUrl: string) {
@@ -882,6 +936,7 @@ export async function runUs07TrustedDbSuite(input: Us07TrustedDbInput) {
     await assertLiveSchema(migration);
     await testNewRemembered(migration, input.runtimeUrl);
     await testNewForgotten(migration, input.runtimeUrl);
+    await testServerVerifiedExerciseXp(migration, input.runtimeUrl);
     await testExistingRevision(migration, input.runtimeUrl);
     await testStaleNoMutation(migration, input.runtimeUrl);
     await testAtomicRollback(migration, input.runtimeUrl);
