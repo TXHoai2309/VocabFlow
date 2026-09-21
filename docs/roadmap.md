@@ -4,6 +4,8 @@ This roadmap promotes only work supported by the current product documents and
 the accepted/backfilled user-story evidence. US-26 through US-36 are
 implemented and awaiting owner check. US-37 and US-38 extend the learner progress
 read model and are also `IMPLEMENTED / READY FOR OWNER CHECK`.
+US-39 and US-40 complete the final Phase 2 reward layer and are `IMPLEMENTED /
+READY FOR OWNER CHECK`.
 
 ## BATCH 0 — Foundation
 

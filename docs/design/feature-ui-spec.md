@@ -10,6 +10,12 @@
 
 **Family MVP Feature UI Specification v1.0.3**
 
+## Reward extension (US-39 / US-40)
+
+The Progress route provides non-blocking level/XP information and a compact,
+responsive ordered badge list. Every badge visibly distinguishes locked from
+unlocked; loading and safe error states do not interrupt Study.
+
 ## Progress detail extension (US-37 / US-38)
 
 The Progress route presents seven compact daily summaries (unique words and

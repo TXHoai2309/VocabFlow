@@ -278,6 +278,48 @@ export const reviewEvents = vocabflowApp.table("review_events", {
   check("review_events_resulting_revision_check", sql`${table.resultingRevision} > 0 AND ${table.resultingRevision} <= 9007199254740991`)
 ]);
 
+export const xpEvents = vocabflowApp.table("xp_events", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  learnerId: uuid("learner_id")
+    .notNull()
+    .references(() => learnerProfiles.id, { onDelete: "no action" }),
+  sourceType: text("source_type").notNull(),
+  sourceKey: text("source_key").notNull(),
+  points: integer("points").notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow()
+}, (table) => [
+  unique("xp_events_source_type_key_unique").on(table.sourceType, table.sourceKey),
+  index("xp_events_learner_created_at_idx").on(table.learnerId, table.createdAt),
+  check("xp_events_source_type_check", sql`${table.sourceType} IN ('REVIEW', 'DAILY_GOAL')`),
+  check("xp_events_points_check", sql`${table.points} > 0 AND ${table.points} <= 1000`)
+]);
+
+export const achievements = vocabflowApp.table("achievements", {
+  id: integer("id").primaryKey().generatedByDefaultAsIdentity(),
+  code: text("code").notNull().unique(),
+  name: text("name").notNull(),
+  description: text("description").notNull(),
+  sortOrder: integer("sort_order").notNull(),
+  enabled: boolean("enabled").notNull().default(true),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow()
+}, (table) => [
+  check("achievements_sort_order_check", sql`${table.sortOrder} >= 0`),
+  index("achievements_enabled_sort_order_id_idx").on(table.enabled, table.sortOrder, table.id)
+]);
+
+export const learnerAchievements = vocabflowApp.table("learner_achievements", {
+  learnerId: uuid("learner_id")
+    .notNull()
+    .references(() => learnerProfiles.id, { onDelete: "no action" }),
+  achievementId: integer("achievement_id")
+    .notNull()
+    .references(() => achievements.id, { onDelete: "no action" }),
+  unlockedAt: timestamp("unlocked_at", { withTimezone: true }).notNull().defaultNow()
+}, (table) => [
+  primaryKey({ columns: [table.learnerId, table.achievementId], name: "learner_achievements_learner_achievement_pk" }),
+  index("learner_achievements_learner_unlocked_at_idx").on(table.learnerId, table.unlockedAt)
+]);
+
 export const authSchema = { user, session, account, verification };
 export const applicationSchema = {
   households,

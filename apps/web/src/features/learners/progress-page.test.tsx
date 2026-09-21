@@ -4,6 +4,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import type {
   ActivitySummaryResponse,
+  GamificationResponse,
   LearnerDto,
   ProgressHistoryResponse,
   ProgressSummaryResponse,
@@ -13,10 +14,11 @@ import { ActiveLearnerProvider } from "./learner-context-provider";
 import { useActiveLearner } from "./learner-context-hook";
 import { ProgressPage } from "./progress-page";
 
-const { requestResetLearnerProgress, requestProgressHistory, requestTopicProgress } = vi.hoisted(() => ({
+const { requestResetLearnerProgress, requestProgressHistory, requestTopicProgress, requestGamification } = vi.hoisted(() => ({
   requestResetLearnerProgress: vi.fn(),
   requestProgressHistory: vi.fn(),
-  requestTopicProgress: vi.fn()
+  requestTopicProgress: vi.fn(),
+  requestGamification: vi.fn()
 }));
 
 vi.mock("./reset-progress-client", async () => {
@@ -27,6 +29,11 @@ vi.mock("./reset-progress-client", async () => {
 vi.mock("./progress-insights-client", async () => {
   const actual = await vi.importActual<typeof import("./progress-insights-client")>("./progress-insights-client");
   return { ...actual, requestProgressHistory, requestTopicProgress };
+});
+
+vi.mock("./gamification-client", async () => {
+  const actual = await vi.importActual<typeof import("./gamification-client")>("./gamification-client");
+  return { ...actual, requestGamification };
 });
 
 const learner = (id: string, displayName: string): LearnerDto => ({
@@ -92,6 +99,14 @@ function topicProgress(learnerId: string): TopicProgressResponse {
   };
 }
 
+function gamification(learnerId: string): GamificationResponse {
+  return {
+    learnerId,
+    xp: { total: 100, level: 2, xpIntoLevel: 0, xpPerLevel: 100, xpToNextLevel: 100 },
+    achievements: [{ code: "FIRST_REVIEW", name: "Bắt đầu học", description: "Hoàn thành lần review đầu tiên.", unlockedAt: null }]
+  };
+}
+
 function response(body: unknown, status = 200) {
   return new Response(JSON.stringify(body), {
     status,
@@ -126,6 +141,7 @@ describe("US-20 learner progress UI", () => {
     requestResetLearnerProgress.mockReset();
     requestProgressHistory.mockResolvedValue(history(learnerA.id));
     requestTopicProgress.mockResolvedValue(topicProgress(learnerA.id));
+    requestGamification.mockResolvedValue(gamification(learnerA.id));
   });
 
   it("shows loading and then all canonical progress cards", async () => {
@@ -185,6 +201,8 @@ describe("US-20 learner progress UI", () => {
     expect(screen.getByTestId("topic-progress-list")).toHaveTextContent("Family");
     expect(requestProgressHistory).toHaveBeenCalledWith(learnerA.id, "2026-09-14", "2026-09-20");
     expect(requestTopicProgress).toHaveBeenCalledWith(learnerA.id);
+    expect(screen.getByTestId("xp-summary")).toHaveTextContent("100 XP");
+    expect(screen.getByTestId("achievement-list")).toHaveTextContent("Đang khóa");
   });
 
   it("shows a safe retry state after a progress request failure", async () => {

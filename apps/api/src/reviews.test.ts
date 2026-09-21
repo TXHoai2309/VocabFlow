@@ -125,6 +125,10 @@ describe("US-07 review contracts and orchestration", () => {
     expect(atomicQuery.sql).toContain("WITH locked_learner AS MATERIALIZED");
     expect(atomicQuery.sql).toContain('UPDATE "vocabflow_app"."learner_progress"');
     expect(atomicQuery.sql).toContain('INSERT INTO "vocabflow_app"."review_events"');
+    expect(atomicQuery.sql).toContain('INSERT INTO "vocabflow_app"."xp_events"');
+    expect(atomicQuery.sql).toContain("'REVIEW'");
+    expect(atomicQuery.sql).toContain("'DAILY_GOAL'");
+    expect(atomicQuery.sql).toContain("ON CONFLICT (source_type, source_key) DO NOTHING");
     expect(atomicQuery.sql).toContain("ON CONFLICT (learner_id, vocabulary_id) DO NOTHING");
     expect(atomicQuery.sql).toContain("household_id =");
     expect(atomicQuery.sql).toContain("::bigint");

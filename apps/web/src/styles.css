@@ -677,10 +677,22 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
 .topic-progress-row h3 { color: var(--color-text); font-size: 16px; }
 .topic-progress-row p { margin-top: 4px; color: var(--color-text-muted); font-size: 13px; }
 .topic-progress-row dl { grid-template-columns: repeat(4, minmax(52px, 1fr)); padding: 0; }
+.xp-summary { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 16px; }
+.xp-summary > div { display: grid; gap: 4px; padding: 14px; border-radius: var(--radius-control); background: var(--color-primary-soft); }
+.xp-summary span, .xp-summary p, .achievement-row p { color: var(--color-text-muted); font-size: 13px; }
+.xp-summary strong { color: var(--color-text); font-size: 23px; }
+.xp-summary p { grid-column: 1 / -1; margin: 0; }
+.achievement-list { display: grid; gap: 8px; margin-top: 16px; }
+.achievement-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 14px; border: 1px solid var(--color-border); border-radius: var(--radius-control); }
+.achievement-row h3, .achievement-row p { margin: 0; }
+.achievement-row h3 { color: var(--color-text); font-size: 15px; }
+.achievement-row p { margin-top: 3px; }
+.achievement-row time, .achievement-row > span { flex: 0 0 auto; color: var(--color-primary); font-size: 13px; font-weight: 800; }
 @media (max-width: 680px) {
   .weekly-progress { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .topic-progress-row { display: grid; }
   .topic-progress-row dl { width: 100%; }
+  .achievement-row { align-items: flex-start; flex-direction: column; }
 }
 
 .learning-sets-card { width: min(100%, 900px); }

@@ -10,6 +10,14 @@
 
 **Technical Architecture v1.0.10**
 
+## US-39 / US-40 reward layer
+
+The reward layer is downstream from canonical review persistence. `xp_events`
+is immutable evidence with unique reward identity; `achievements` is catalog
+reference data and `learner_achievements` is an immutable once-only unlock
+record. Totals and level are derived at read time. These tables never influence
+learner progress, the scheduler, due dates or queue eligibility.
+
 ## US-37 / US-38 progress read models
 
 Weekly/daily analytics derives directly from `review_events.review_date` and

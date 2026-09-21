@@ -65,6 +65,8 @@ convenient. Reprioritization or a new story must be explicit.
 - [US-36 Learning Streak](US-36-learning-streak.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
 - [US-37 Weekly / Daily Progress](US-37-weekly-daily-progress.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
 - [US-38 Topic Progress](US-38-topic-progress.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
+- [US-39 XP & Learner Level](US-39-xp-learner-level.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
+- [US-40 Achievements / Badges](US-40-achievements-badges.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
 
 ## Story status gate
 

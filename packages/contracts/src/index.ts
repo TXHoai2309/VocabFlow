@@ -389,6 +389,36 @@ export const activitySummaryResponseSchema = z.object({
 }).strict();
 export type ActivitySummaryResponse = z.infer<typeof activitySummaryResponseSchema>;
 
+export const achievementCodeSchema = z.enum([
+  "FIRST_REVIEW",
+  "TEN_WORDS_LEARNED",
+  "FIFTY_WORDS_LEARNED",
+  "SEVEN_DAY_STREAK",
+  "DAILY_GOAL_COMPLETED"
+]);
+export type AchievementCode = z.infer<typeof achievementCodeSchema>;
+
+export const learnerAchievementSchema = z.object({
+  code: achievementCodeSchema,
+  name: z.string().min(1),
+  description: z.string().min(1),
+  unlockedAt: z.string().datetime().nullable()
+}).strict();
+export type LearnerAchievement = z.infer<typeof learnerAchievementSchema>;
+
+export const gamificationResponseSchema = z.object({
+  learnerId: canonicalUuidSchema,
+  xp: z.object({
+    total: z.number().int().nonnegative().safe(),
+    level: z.number().int().positive().safe(),
+    xpIntoLevel: z.number().int().nonnegative().safe(),
+    xpPerLevel: z.literal(100),
+    xpToNextLevel: z.number().int().positive().max(100).safe()
+  }).strict(),
+  achievements: z.array(learnerAchievementSchema)
+}).strict();
+export type GamificationResponse = z.infer<typeof gamificationResponseSchema>;
+
 export const resetLearnerProgressResponseSchema = z.object({
   learnerId: canonicalUuidSchema,
   deletedProgressCount: z.number().int().nonnegative().safe()

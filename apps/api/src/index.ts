@@ -26,6 +26,7 @@ import {
   type ProgressHistoryService
 } from "./progress-history";
 import { createTopicProgressService, TopicProgressServiceError, type TopicProgressService } from "./topic-progress";
+import { createGamificationService, GamificationServiceError, type GamificationService } from "./gamification";
 import { createLearnerVocabularyService, LearnerVocabularyServiceError, type LearnerVocabularyService } from "./learner-vocabulary";
 import {
   createResetLearnerProgressService,
@@ -56,6 +57,7 @@ export type AppDependencies = {
   activitySummaryService?: ActivitySummaryService;
   progressHistoryService?: ProgressHistoryService;
   topicProgressService?: TopicProgressService;
+  gamificationService?: GamificationService;
   learnerVocabularyService?: LearnerVocabularyService;
   resetLearnerProgressService?: ResetLearnerProgressService;
 };
@@ -142,6 +144,12 @@ async function runTopicProgressService(env: WorkerBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
   return createTopicProgressService(createHttpDatabase(env.DATABASE_URL));
+}
+
+async function runGamificationService(env: WorkerBindings) {
+  if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
+  const { createHttpDatabase } = await import("./db/client");
+  return createGamificationService(createHttpDatabase(env.DATABASE_URL));
 }
 
 async function runLearnerVocabularyService(env: WorkerBindings) {
@@ -649,6 +657,26 @@ export function createApp(dependencies: AppDependencies = {}) {
         return c.json(errorEnvelope(error.code, message), error.status);
       }
       return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể tải tiến trình theo chủ đề lúc này. Vui lòng thử lại."), 503);
+    }
+  });
+
+  application.get("/api/learners/:learnerId/gamification", async (c) => {
+    try {
+      const session = await readSession(c.req.raw, c.env);
+      if (!session?.user?.id) return c.json(errorEnvelope("UNAUTHORIZED", "Đăng nhập để tiếp tục."), 401);
+      if ([...new URL(c.req.url).searchParams.keys()].length > 0) {
+        return c.json(errorEnvelope("INVALID_REQUEST", "Dữ liệu gửi lên không hợp lệ."), 400);
+      }
+      const service = dependencies.gamificationService ?? await runGamificationService(c.env);
+      return c.json(await service.get(session.user.id, c.req.param("learnerId")), 200);
+    } catch (error) {
+      if (error instanceof GamificationServiceError) {
+        const message = error.code === "HOUSEHOLD_ACCESS_DENIED"
+          ? "Bạn không có quyền truy cập phần thưởng của learner này."
+          : "Không thể tải phần thưởng lúc này. Vui lòng thử lại.";
+        return c.json(errorEnvelope(error.code, message), error.status);
+      }
+      return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể tải phần thưởng lúc này. Vui lòng thử lại."), 503);
     }
   });
 

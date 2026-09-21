@@ -2,6 +2,12 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-21 — US-39 + US-40 learner rewards
+
+- Added an immutable, learner-scoped XP ledger and derived 100-XP level rule. A successful scheduled review earns 10 XP once; daily-goal completion earns 20 XP once per local date.
+- Added idempotent catalog-backed achievements with historical reconciliation for canonical evidence and responsive locked/unlocked Progress UI. Reset preserves XP and badges.
+- Exercise-correct bonus is deferred: exercise type and correctness are not a server-trusted review signal, so no client label can farm rewards. Scheduler behavior is unchanged.
+
 ## 2026-09-21 — US-37 + US-38 weekly, daily and topic progress
 
 - Added learner-scoped, bounded 90-day progress-history aggregation from canonical review events with household-local dates, explicit zero-fill and review/unique/remembered/forgotten/current-lifecycle-new metrics.

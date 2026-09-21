@@ -1,5 +1,12 @@
 # Family MVP Specification v1.0
 
+## Reward extension (US-39 / US-40)
+
+Learners can see a derived level, XP progress and deterministic badges. Rewards
+recognize persisted study participation and daily goal completion, remain
+learner-specific and survive a progress reset. They never alter learning state
+or the review schedule.
+
 ## Progress detail extension (US-37 / US-38)
 
 Parents can inspect a learner's last seven household-local days of persisted

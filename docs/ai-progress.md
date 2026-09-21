@@ -1,5 +1,11 @@
 # Current Handoff Snapshot
 
+## 2026-09-21 — US-39 + US-40 XP, level and achievements
+
+- Audit found no reward persistence, catalog or UI. Canonical review idempotency, household authorization, household-local daily activity, streak derivation and session-local reinforcement were reused.
+- Added immutable `xp_events`, idempotently seeded achievements and immutable learner unlock records. Scheduled review and daily-goal rewards are safely coupled to the canonical review write; no XP backfill occurs.
+- Exercise correct-bonus remains deferred because the current client-generated exercise flow has no trusted server-side exercise context. `.env.example`, `docs/decisions.md` and local data remain untouched.
+
 ## 2026-09-21 — US-37 + US-38 weekly/daily and topic progress
 
 - Audit classified US-37 historical aggregation/weekly UI and US-38 learner topic aggregation/UI as missing; canonical review history, household-local dates, sparse progress, topics, active learning-set eligibility and authorization were reusable.

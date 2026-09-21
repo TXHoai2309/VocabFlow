@@ -453,7 +453,50 @@ async function atomicPersist(
              review_date,
              response_payload
       FROM successful
-      RETURNING review_id::text AS review_id
+      RETURNING review_id::text AS review_id,
+                learner_id::text AS learner_id,
+                vocabulary_id,
+                review_date
+    ), inserted_review_xp AS (
+      INSERT INTO "${sql.raw(APP_SCHEMA)}"."xp_events" (
+        learner_id,
+        source_type,
+        source_key,
+        points
+      )
+      SELECT ie.learner_id::uuid,
+             'REVIEW',
+             'review:' || ie.review_id,
+             10
+      FROM inserted_event ie
+      ON CONFLICT (source_type, source_key) DO NOTHING
+      RETURNING learner_id
+    ), inserted_daily_goal_xp AS (
+      INSERT INTO "${sql.raw(APP_SCHEMA)}"."xp_events" (
+        learner_id,
+        source_type,
+        source_key,
+        points
+      )
+      SELECT ie.learner_id::uuid,
+             'DAILY_GOAL',
+             'daily-goal:' || ie.learner_id || ':' || ie.review_date::text,
+             20
+      FROM inserted_event ie
+      JOIN "${sql.raw(APP_SCHEMA)}"."learner_profiles" lp ON lp.id = ie.learner_id::uuid
+      WHERE (
+        SELECT COUNT(DISTINCT activity.vocabulary_id)
+        FROM (
+          SELECT re.vocabulary_id
+          FROM "${sql.raw(APP_SCHEMA)}"."review_events" re
+          WHERE re.learner_id = ie.learner_id::uuid
+            AND re.review_date = ie.review_date
+          UNION ALL
+          SELECT ie.vocabulary_id
+        ) activity
+      ) >= lp.daily_learning_goal
+      ON CONFLICT (source_type, source_key) DO NOTHING
+      RETURNING learner_id
     )
     SELECT ee.request_fingerprint AS existing_fingerprint,
            ee.response_payload AS existing_response_payload,

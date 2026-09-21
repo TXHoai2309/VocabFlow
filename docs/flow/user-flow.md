@@ -8,6 +8,13 @@
 
 **VOCABFLOW**
 
+## Reward extension (US-39 / US-40)
+
+Learner completes a persisted scheduled review → server evaluates immutable
+rewards → learner later opens Progress to view level and badges. Retry and
+reinforcement never add rewards. Reset returns current vocabulary state to New
+but keeps historical rewards and unlocked badges.
+
 ## Progress detail extension (US-37 / US-38)
 
 Parent selects a learner → opens Progress → sees current summary, daily goal

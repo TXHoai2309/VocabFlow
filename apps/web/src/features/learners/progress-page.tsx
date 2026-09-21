@@ -3,6 +3,7 @@ import { Link, Navigate } from "react-router";
 import type {
   ActivitySummaryResponse,
   LearnerDto,
+  GamificationResponse,
   ProgressHistoryResponse,
   ProgressSummaryResponse,
   TopicProgressResponse
@@ -14,6 +15,7 @@ import {
   requestProgressHistory,
   requestTopicProgress
 } from "./progress-insights-client";
+import { requestGamification } from "./gamification-client";
 import {
   requestResetLearnerProgress,
   ResetLearnerProgressClientError
@@ -69,6 +71,8 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
   const [activity, setActivity] = useState<ActivitySummaryResponse | null>(null);
   const [history, setHistory] = useState<ProgressHistoryResponse | null>(null);
   const [topicProgress, setTopicProgress] = useState<TopicProgressResponse | null>(null);
+  const [gamification, setGamification] = useState<GamificationResponse | null>(null);
+  const [gamificationState, setGamificationState] = useState<InsightState>("loading");
   const [insightState, setInsightState] = useState<InsightState>("loading");
   const [message, setMessage] = useState<string | null>(null);
   const [resetOpen, setResetOpen] = useState(false);
@@ -82,6 +86,7 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
     setActivity(null);
     setHistory(null);
     setTopicProgress(null);
+    setGamification(null);
     setMessage(null);
     try {
       const [response, activityResponse] = await Promise.all([
@@ -101,6 +106,11 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
         setTopicProgress(topicResponse);
         setInsightState("ready");
       }).catch(() => setInsightState("error"));
+      setGamificationState("loading");
+      void requestGamification(activeLearner.id).then((response) => {
+        setGamification(response);
+        setGamificationState("ready");
+      }).catch(() => setGamificationState("error"));
     } catch (error) {
       setState("error");
       setMessage(progressErrorMessage(error));
@@ -149,6 +159,14 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
           setInsightState("ready");
         }).catch(() => {
           if (!cancelled) setInsightState("error");
+        });
+        setGamificationState("loading");
+        void requestGamification(activeLearner.id).then((gamificationResponse) => {
+          if (cancelled) return;
+          setGamification(gamificationResponse);
+          setGamificationState("ready");
+        }).catch(() => {
+          if (!cancelled) setGamificationState("error");
         });
       })
       .catch((error: unknown) => {
@@ -254,6 +272,24 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
                 </div>
               ) : null}
               {insightState === "ready" && topicProgress?.topics.every((topic) => topic.total === 0) ? <p className="topic-progress-note">Các từ đang học hiện chưa được phân loại theo chủ đề.</p> : null}
+            </section>
+            <section className="progress-insights" aria-labelledby="gamification-title">
+              <h2 id="gamification-title">Level và huy hiệu</h2>
+              {gamificationState === "loading" ? <p data-testid="gamification-loading" role="status">Đang tải XP và huy hiệu…</p> : null}
+              {gamificationState === "error" ? <p data-testid="gamification-error" className="progress-inline-error" role="alert">Không thể tải XP và huy hiệu lúc này.</p> : null}
+              {gamificationState === "ready" && gamification ? <>
+                <div className="xp-summary" data-testid="xp-summary">
+                  <div><span>Level</span><strong>{gamification.xp.level}</strong></div>
+                  <div><span>Tổng XP</span><strong>{gamification.xp.total} XP</strong></div>
+                  <p>{gamification.xp.xpIntoLevel} / {gamification.xp.xpPerLevel} XP đến Level {gamification.xp.level + 1}</p>
+                </div>
+                <div className="achievement-list" data-testid="achievement-list">
+                  {gamification.achievements.map((achievement) => <article className="achievement-row" key={achievement.code}>
+                    <div><h3>{achievement.name}</h3><p>{achievement.description}</p></div>
+                    {achievement.unlockedAt ? <time dateTime={achievement.unlockedAt}>Đã mở khóa</time> : <span>Đang khóa</span>}
+                  </article>)}
+                </div>
+              </> : null}
             </section>
           </div>
         ) : null}
