@@ -40,6 +40,9 @@ jobs:
       - name: Typecheck
         run: pnpm typecheck
 
+      - name: Validate US-41 curation manifest (dry run)
+        run: pnpm vocab:curate
+
       - name: Unit and component tests
         run: pnpm test
 

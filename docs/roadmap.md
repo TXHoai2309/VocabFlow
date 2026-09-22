@@ -4,8 +4,9 @@ This roadmap promotes only work supported by the current product documents and
 the accepted/backfilled user-story evidence. US-26 through US-36 are
 implemented and awaiting owner check. US-37 and US-38 extend the learner progress
 read model and are also `IMPLEMENTED / READY FOR OWNER CHECK`.
-US-39 and US-40 complete the final Phase 2 reward layer and are `IMPLEMENTED /
-READY FOR OWNER CHECK`.
+US-39 and US-40 complete the reward layer and are `IMPLEMENTED / READY FOR
+OWNER CHECK`. US-41 adds the reviewed catalog activation boundary and is also
+`IMPLEMENTED / READY FOR OWNER CHECK`.
 
 ## BATCH 0 — Foundation
 
@@ -354,6 +355,22 @@ The owner-verified Hoài/Ngọc metric snapshots are recorded in US-20 and US-21
   retry uniqueness, reinforcement zero-XP behavior and no historical XP
   backfill remain intact. Trusted DB fixture cleanup removes reward children
   before learner fixtures.
+
+### US-41 — Content Curation and Activation
+
+- Status: `IMPLEMENTED / READY FOR OWNER CHECK`.
+- Contract: [`US-41 Content Curation & Activation`](stories/US-41-content-curation-activation.md).
+- A tracked `VOCABULARY_CURATION_V1` manifest explicitly selects 220 imported
+  rows (100 Grade 1, 80 Grade 2, 40 Grade 3), validates source identity,
+  canonical topics and both image/audio media gates, and assigns eleven ordered
+  learning sets.
+- The default `pnpm vocab:curate` command is local and read-only. The guarded
+  `--apply` path is trusted-CI-only, transactional and idempotent. It enables
+  only reviewed rows, preserves starter ids and learner state, adds no learner
+  assignments, and leaves daily-New, review, progress, XP and achievement
+  semantics unchanged.
+- The next action is the same-commit Core CI and Trusted DB gate, followed by
+  owner review of the manifest and dry-run report. US-42 has not started.
 
 ## Later product scope
 

@@ -126,4 +126,12 @@ feature code may start.
 - US-26 Vocabulary Grade Level and US-27 Vocabulary Topics are
   `IMPLEMENTED / READY FOR OWNER CHECK`; source-honest nullable levels,
   canonical topics, APIs and browse UI are recorded in their stories.
+- US-28 through US-40 are `IMPLEMENTED / READY FOR OWNER CHECK` with their
+  learning-set, daily-limit, exercise, activity and reward evidence recorded
+  in the story index.
+- US-41 Content Curation & Activation is `IMPLEMENTED / READY FOR OWNER CHECK`.
+  The tracked `VOCABULARY_CURATION_V1` manifest contains 220 reviewed rows,
+  eleven sets and 30 starter topic mappings. The default curation command is
+  dry-run-only; activation is guarded to trusted CI and does not auto-assign
+  learners or mutate learning history.
 - Documentation/agent-pack work does not implement US-01 or any other feature.

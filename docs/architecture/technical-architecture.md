@@ -1,14 +1,32 @@
-# Technical Architecture v1.0.10
+# Technical Architecture v1.0.11
 
 - Status: APPROVED FOR IMPLEMENTATION
-- Version: v1.0.10
-- Source baseline: `VocabFlow_Technical_Architecture_v1.0.4.docx`; this Markdown records the US-25 identity reconciliation, US-26/US-27 vocabulary taxonomy, US-28/US-29 learning-set assignment model, US-30 daily New allowance, US-31 through US-34 exercise interaction layer and US-35/US-36 activity read model.
+- Version: v1.0.11
+- Source baseline: `VocabFlow_Technical_Architecture_v1.0.4.docx`; this Markdown records the US-25 identity reconciliation, US-26/US-27 vocabulary taxonomy, US-28/US-29 learning-set assignment model, US-30 daily New allowance, US-31 through US-34 exercise interaction layer, US-35/US-36 activity read model, US-39/US-40 rewards and US-41 reviewed catalog activation.
 - Canonical format: Markdown
-- Last synchronized: 2026-09-20
+- Last synchronized: 2026-09-22
 
 **VOCABFLOW**
 
-**Technical Architecture v1.0.10**
+**Technical Architecture v1.0.11**
+
+## US-41 content curation and activation
+
+`config/vocabulary-curation-v1.json` is the reviewed
+`VOCABULARY_CURATION_V1` source of truth for the first 220 imported rows. The
+manifest stores `(source_dataset, source_record_id, expectedWord)`, explicit
+Grade 1–3 labels, canonical topic slugs, ordered learning-set membership and
+an activation decision for every row. The allow-list and deterministic
+selection policy are kept in `scripts/vocabulary-curation.ts`.
+
+The default `pnpm vocab:curate` path is local, read-only and validates the
+source/media gate without opening a database connection. Activation is a
+single trusted-CI transaction only: it verifies the existing source row and
+both resolved media URLs, enables and grades only manifest rows, upserts the
+eleven set definitions/items, and adds the 30 starter topic memberships. It
+never inserts `learner_learning_sets`, changes starter identity/content
+version, or mutates progress, review events, XP or achievement state. Repeating
+the transaction converges to the same state.
 
 ## US-39 / US-40 reward layer
 
@@ -37,7 +55,7 @@ single range aggregation. Topic Due is an overlapping current-state subset.
 
 **Family Learning MVP**
 
-| **Status** | APPROVED FOR IMPLEMENTATION; US-25 identity reconciliation, US-26/US-27 taxonomy, US-28/US-29 learning sets, US-30 daily New allowance and US-31 through US-34 exercises recorded |
+| **Status** | APPROVED FOR IMPLEMENTATION; US-25 through US-41 catalog, taxonomy, learning-set, exercise, activity, reward and activation contracts recorded |
 | --- | --- |
 | **Architecture** | React SPA + Hono API + PostgreSQL |
 | **Primary persistence** | Neon PostgreSQL |
@@ -50,7 +68,7 @@ Mục tiêu: khóa kiến trúc kỹ thuật đủ chi tiết để triển khai
 
 | **Mục** | **Giá trị** |
 | --- | --- |
-| Document | VocabFlow Technical Architecture v1.0.10 |
+| Document | VocabFlow Technical Architecture v1.0.11 |
 | Target release | Family MVP / vertical slice đầu tiên |
 | Status | APPROVED FOR IMPLEMENTATION |
 | Verification status | Architecture Acceptance Gates được xác minh trong quá trình triển khai; sau khi P0 gates PASS có thể đổi trạng thái thành ARCHITECTURE VERIFIED. |
@@ -520,12 +538,28 @@ explicit --apply transaction (default is read-only dry run)
           v
 vocabularies table + vocabulary_topics -> GET /api/vocabulary,
 GET /api/topics and GET /api/topics/:topicId/vocabulary
+
+US-41 reviewed activation (separate, trusted-CI-only command)
+          |
+          v
+VOCABULARY_CURATION_V1 manifest + source/media gate
+          |
+          +-- exact source identity/expected word check
+          +-- explicit grade/topic/set metadata
+          +-- enable only manifest rows; preserve all other imported rows
+          +-- upsert set items; do not create learner assignments
+          +-- assert no progress/review/XP/achievement mutation
+          |
+          v
+enabled vocabulary + learning-set membership -> existing queue/assignment APIs
 ```
 
 US-26/US-27 taxonomy rules:
 
 - `vocabularies.level` is nullable. The current imported source has no grade
-  metadata, so the importer does not infer or assign a level.
+  metadata, so the importer does not infer or assign a level. US-41 assigns a
+  level only through its reviewed manifest; all other imported rows remain
+  NULL.
 - The raw legacy `vocabularies.topic` value remains preserved for source
   compatibility; canonical browse membership is stored in `topics` and
   `vocabulary_topics`.
@@ -536,11 +570,24 @@ US-26/US-27 taxonomy rules:
   never reads or writes learner progress. Scheduler and review queue selection
   remain unchanged by taxonomy.
 
+US-41 activation rules:
+
+- The 220-row manifest is the only authority allowed to enable imported rows;
+  source identity and expected word must match exactly.
+- A selected row must have one resolved uploaded image and one resolved
+  uploaded audio asset. Missing or unusable media aborts activation.
+- Eleven ordered sets are upserted, but no learner assignment is created. The
+  existing parent assignment API remains the only assignment boundary.
+- The transaction snapshots starter rows, assignments, progress, review
+  events, XP events and achievement rows and fails if any protected state
+  changes. It is idempotent and trusted-CI-only.
+
 US-28/US-29 learning-set and assignment rules:
 
-- Migration `0007_modern_mysterio.sql` seeds five explicit curated sets. The
-  `starter-vocabulary` set contains all 30 enabled starter rows; imported rows
-  remain disabled and are not inferred or bulk-enabled.
+- Migration `0007_modern_mysterio.sql` seeds five explicit compatibility sets.
+  The `starter-vocabulary` set contains all 30 enabled starter rows. US-41
+  adds eleven reviewed sets through the activation tool; imported rows outside
+  its manifest remain disabled and are not inferred or bulk-enabled.
 - `GET /api/learning-sets` and `GET /api/learning-sets/:id` expose enabled sets
   and enabled vocabulary in deterministic set-item order.
 - Existing learners are assigned the compatibility set during migration; the
@@ -1276,5 +1323,5 @@ Step 7 là mốc xác nhận kiến trúc: parent login → learner → review �
 
 # Appendix B. Approval Statement
 
-> TECHNICAL ARCHITECTURE v1.0.10 — APPROVED FOR IMPLEMENTATION
+> TECHNICAL ARCHITECTURE v1.0.11 — APPROVED FOR IMPLEMENTATION
 > Từ thời điểm tài liệu này được chấp nhận, triển khai phải bám architecture invariants, sparse progress/virtual NEW model, learner-scoped review queue, race-safe household bootstrap, schema constraints, household authorization, review write/idempotency contract, database identity ownership boundary và clean migration contract ở trên. Acceptance Gates được xác minh trong implementation; mọi thay đổi kiến trúc cần blocker/evidence kỹ thuật cụ thể.

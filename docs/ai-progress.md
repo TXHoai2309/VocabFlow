@@ -1,5 +1,25 @@
 # Current Handoff Snapshot
 
+## 2026-09-22 — US-41 content curation and activation
+
+- Audited the 1,994 imported source records and generated media report:
+  1,979 image references, 1,993 audio references, 15 missing images, 1
+  missing audio and no invalid media records.
+- Added tracked `VOCABULARY_CURATION_V1` manifest with 220 explicitly reviewed
+  rows: 100 Grade 1, 80 Grade 2 and 40 Grade 3, in 11 ordered learning sets.
+  Every row records source identity, expected word, canonical topics, set
+  membership and activation decision.
+- Added deterministic dry-run-first curation tooling. It maps all 30 starter
+  rows to canonical topics, leaves unreviewed imported rows disabled, and has a
+  trusted-CI-only transactional `--apply` path that preserves starter
+  identity, learner assignments, progress, reviews, XP and achievements.
+- Local dry run PASS: `MANIFEST_RECORDS=220`, `LEARNING_SET_COUNT=11`,
+  `STARTER_TOPIC_MAPPINGS=30`, `MEDIA_GATE=PASS checked=220`,
+  `DB_MUTATIONS=0`.
+- Current phase/batch: Phase 2 / US-41 implemented and ready for owner check;
+  US-42 has not started. The next gate is the same-commit Core CI and Trusted
+  DB Integration run.
+
 ## 2026-09-21 — US-39 + US-40 XP, level and achievements
 
 - Audit found no reward persistence, catalog or UI. Canonical review idempotency, household authorization, household-local daily activity, streak derivation and session-local reinforcement were reused.
@@ -18,7 +38,7 @@
 - Topic scope is current enabled vocabulary reachable through active assigned enabled sets. Imported mappings remain 1,994 and the 30 starter rows remain unmapped; no topic was guessed. `docs/decisions.md`, `.env.example` and local datasets remain untouched.
 
 - Project: VocabFlow Family MVP
-- Current phase/batch: Family MVP US-01..US-25 complete; Phase 2 / US-26 + US-27 + US-28 + US-29 + US-30 + US-31 + US-32 + US-33 + US-34 ready for owner check
+- Current phase/batch: Family MVP US-01..US-25 complete; Phase 2 / US-26 through US-41 implemented and ready for owner check
 - Current Git branch: `TXH`
 - Current implementation baseline: commit `d5791c7` (`feat: add image and typing exercises`) on `TXH`, with protected local changes preserved
 - US-24: `ACCEPTED / CLOSED`.
@@ -30,9 +50,11 @@
 - US-33 + US-34: `IMPLEMENTED / READY FOR OWNER CHECK`.
 - US-22: `IMPLEMENTED / AUTOMATED PASS — MANUAL OWNER CHECK DEFERRED`.
 - Catalog state after real import: 30 starter rows + 1,994 imported rows =
-  2,024 total vocabulary rows.
-- Imported catalog defaults: `enabled=false`; source identity is
-  `(source_dataset, source_record_id)` and is separate from canonical DB ID.
+  2,024 total vocabulary rows. US-41 explicitly activates 220 reviewed
+  imported rows; the remaining imported rows stay disabled.
+- Imported catalog identity is `(source_dataset, source_record_id)` and is
+  separate from canonical DB ID. Grade is NULL for unreviewed rows and explicit
+  only where the tracked curation manifest assigns it.
 - Real US-25 evidence: migration/import PASS; starter, learner_progress, and
   review_events modifications were 0; post-import idempotency dry run was
   INSERT_COUNT=0, UPDATE_COUNT=0, SKIP_COUNT=1994, DATABASE_MUTATIONS=0,
@@ -47,8 +69,10 @@
 - Protected: never modify, stage, restore, reset, clean, or commit
   `docs/decisions.md`. Preserve `.env.example` and `local-data.zip` changes.
 - Final US-30 evidence: local validation passed; Core CI run `35443781349` and
-  Trusted DB run `35443781278` both passed. Next safe action: request owner
-  check for US-26 through US-32. US-22's manual owner check remains deferred.
+  Trusted DB run `35443781278` both passed. US-39/40 fix-forward baseline is
+  `b057f70897859004de9659b1780c9f098915ac0c`; US-41 is the current candidate
+  awaiting same-commit CI gates and owner review. US-22's manual owner check
+  remains deferred.
 - Documents new agents must read first: `docs/README.md`,
   `docs/product/product-spec.md`, `docs/architecture/technical-architecture.md`,
   `docs/design/design-system.md`, `docs/design/feature-ui-spec.md`,

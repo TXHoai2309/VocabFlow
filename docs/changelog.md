@@ -2,6 +2,19 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-22 — US-41 content curation and activation
+
+- Audited the 1,994 imported vocabulary records and tracked the deterministic
+  `VOCABULARY_CURATION_V1` manifest with 220 reviewed rows: 100 Grade 1, 80
+  Grade 2 and 40 Grade 3, grouped into eleven ordered learning sets.
+- Added source-identity, canonical-topic, explicit-grade and image/audio media
+  gates. The default `pnpm vocab:curate` command is read-only and reports
+  `MANIFEST_RECORDS=220`, `STARTER_TOPIC_MAPPINGS=30`, `MEDIA_GATE=PASS
+  checked=220` and `DB_MUTATIONS=0`.
+- Added trusted-CI-only transactional activation with idempotent set/item
+  upserts. Starter identity, learner assignments, progress, review history, XP,
+  achievements and the daily New limit remain unchanged. US-42 is not started.
+
 ## 2026-09-21 — US-39 + US-40 learner rewards
 
 - Added an immutable, learner-scoped XP ledger and derived 100-XP level rule. A successful scheduled review earns 10 XP once; daily-goal completion earns 20 XP once per local date.

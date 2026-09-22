@@ -1,0 +1,3171 @@
+{
+  "version": "VOCABULARY_CURATION_V1",
+  "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+  "selectionPolicy": {
+    "reviewedRows": "Human-reviewed allow-list in scripts/vocabulary-curation.ts; source identity and expected word are emitted into this manifest.",
+    "gradePolicy": "Grade is explicitly assigned by the named curation group; it is not inferred from id, length, alphabetic order, topic, or frequency.",
+    "mediaPolicy": "Activation requires one resolved uploaded image and one resolved uploaded audio asset.",
+    "activationPolicy": "Only manifest rows are enabled; existing starter rows, learner assignments, progress, reviews, XP, and achievements are preserved."
+  },
+  "learningSets": [
+    {
+      "slug": "grade-1-home",
+      "name": "Grade 1 Home",
+      "description": "Everyday rooms and objects used at home.",
+      "grade": "GRADE_1",
+      "sortOrder": 60
+    },
+    {
+      "slug": "grade-1-family",
+      "name": "Grade 1 Family",
+      "description": "Core family relationships for first conversations.",
+      "grade": "GRADE_1",
+      "sortOrder": 70
+    },
+    {
+      "slug": "grade-1-school",
+      "name": "Grade 1 School",
+      "description": "A practical school-supplies and classroom routine set.",
+      "grade": "GRADE_1",
+      "sortOrder": 80
+    },
+    {
+      "slug": "grade-1-food",
+      "name": "Grade 1 Food",
+      "description": "Familiar foods and ingredients for daily life.",
+      "grade": "GRADE_1",
+      "sortOrder": 90
+    },
+    {
+      "slug": "grade-1-actions",
+      "name": "Grade 1 Actions",
+      "description": "High-frequency actions for simple instructions and stories.",
+      "grade": "GRADE_1",
+      "sortOrder": 100
+    },
+    {
+      "slug": "grade-2-body",
+      "name": "Grade 2 Body",
+      "description": "Common body words for health and classroom language.",
+      "grade": "GRADE_2",
+      "sortOrder": 110
+    },
+    {
+      "slug": "grade-2-outdoors",
+      "name": "Grade 2 Outdoors",
+      "description": "Nature, places, and directions for everyday exploration.",
+      "grade": "GRADE_2",
+      "sortOrder": 120
+    },
+    {
+      "slug": "grade-2-clothing",
+      "name": "Grade 2 Clothing",
+      "description": "Clothing and accessories for practical descriptions.",
+      "grade": "GRADE_2",
+      "sortOrder": 130
+    },
+    {
+      "slug": "grade-2-feelings",
+      "name": "Grade 2 Feelings",
+      "description": "Useful emotions for personal expression and stories.",
+      "grade": "GRADE_2",
+      "sortOrder": 140
+    },
+    {
+      "slug": "grade-3-language",
+      "name": "Grade 3 Language",
+      "description": "Communication and writing terms that support independent reading.",
+      "grade": "GRADE_3",
+      "sortOrder": 150
+    },
+    {
+      "slug": "grade-3-tools",
+      "name": "Grade 3 Tools & Media",
+      "description": "Everyday technology, science, and image-making vocabulary.",
+      "grade": "GRADE_3",
+      "sortOrder": 160
+    }
+  ],
+  "records": [
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 2,
+      "expectedWord": "armchair",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "object-in-house"
+      ],
+      "learningSetSlugs": [
+        "grade-1-home"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 4,
+      "expectedWord": "basket",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "object-in-house"
+      ],
+      "learningSetSlugs": [
+        "grade-1-home"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 5,
+      "expectedWord": "bath mat",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "object-in-house"
+      ],
+      "learningSetSlugs": [
+        "grade-1-home"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 6,
+      "expectedWord": "bath towel",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "object-in-house"
+      ],
+      "learningSetSlugs": [
+        "grade-1-home"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 79,
+      "expectedWord": "bed",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "object-in-house"
+      ],
+      "learningSetSlugs": [
+        "grade-1-home"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 80,
+      "expectedWord": "bowl",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "object-in-house"
+      ],
+      "learningSetSlugs": [
+        "grade-1-home"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 127,
+      "expectedWord": "chair",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "object-in-house"
+      ],
+      "learningSetSlugs": [
+        "grade-1-home"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 130,
+      "expectedWord": "clock",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "object-in-house"
+      ],
+      "learningSetSlugs": [
+        "grade-1-home"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 24,
+      "expectedWord": "coffee table",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "object-in-house"
+      ],
+      "learningSetSlugs": [
+        "grade-1-home"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 98,
+      "expectedWord": "cup",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "object-in-house"
+      ],
+      "learningSetSlugs": [
+        "grade-1-home"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 134,
+      "expectedWord": "curtain",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "object-in-house"
+      ],
+      "learningSetSlugs": [
+        "grade-1-home"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 36,
+      "expectedWord": "cushion",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "object-in-house"
+      ],
+      "learningSetSlugs": [
+        "grade-1-home"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 81,
+      "expectedWord": "desk",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "object-in-house"
+      ],
+      "learningSetSlugs": [
+        "grade-1-home"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1208,
+      "expectedWord": "door",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "object-in-house"
+      ],
+      "learningSetSlugs": [
+        "grade-1-home"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 18,
+      "expectedWord": "floor lamp",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "object-in-house"
+      ],
+      "learningSetSlugs": [
+        "grade-1-home"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 90,
+      "expectedWord": "fridge",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "object-in-house"
+      ],
+      "learningSetSlugs": [
+        "grade-1-home"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 148,
+      "expectedWord": "kitchen",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "object-in-house"
+      ],
+      "learningSetSlugs": [
+        "grade-1-home"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 40,
+      "expectedWord": "mirror",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "object-in-house"
+      ],
+      "learningSetSlugs": [
+        "grade-1-home"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 44,
+      "expectedWord": "pillow",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "object-in-house"
+      ],
+      "learningSetSlugs": [
+        "grade-1-home"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 47,
+      "expectedWord": "sofa",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "object-in-house"
+      ],
+      "learningSetSlugs": [
+        "grade-1-home"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 911,
+      "expectedWord": "aunt",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "family"
+      ],
+      "learningSetSlugs": [
+        "grade-1-family"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 886,
+      "expectedWord": "brother",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "family"
+      ],
+      "learningSetSlugs": [
+        "grade-1-family"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 907,
+      "expectedWord": "child",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "family"
+      ],
+      "learningSetSlugs": [
+        "grade-1-family"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 891,
+      "expectedWord": "cousin",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "family"
+      ],
+      "learningSetSlugs": [
+        "grade-1-family"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 888,
+      "expectedWord": "daughter",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "family"
+      ],
+      "learningSetSlugs": [
+        "grade-1-family"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 884,
+      "expectedWord": "father",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "family"
+      ],
+      "learningSetSlugs": [
+        "grade-1-family"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 897,
+      "expectedWord": "granddaughter",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "family"
+      ],
+      "learningSetSlugs": [
+        "grade-1-family"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 889,
+      "expectedWord": "grandfather",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "family"
+      ],
+      "learningSetSlugs": [
+        "grade-1-family"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 890,
+      "expectedWord": "grandmother",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "family"
+      ],
+      "learningSetSlugs": [
+        "grade-1-family"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 896,
+      "expectedWord": "grandson",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "family"
+      ],
+      "learningSetSlugs": [
+        "grade-1-family"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 899,
+      "expectedWord": "husband",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "family"
+      ],
+      "learningSetSlugs": [
+        "grade-1-family"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 883,
+      "expectedWord": "mother",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "family"
+      ],
+      "learningSetSlugs": [
+        "grade-1-family"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 895,
+      "expectedWord": "nephew",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "family"
+      ],
+      "learningSetSlugs": [
+        "grade-1-family"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 894,
+      "expectedWord": "niece",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "family"
+      ],
+      "learningSetSlugs": [
+        "grade-1-family"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 909,
+      "expectedWord": "parents",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "family"
+      ],
+      "learningSetSlugs": [
+        "grade-1-family"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 908,
+      "expectedWord": "siblings",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "family"
+      ],
+      "learningSetSlugs": [
+        "grade-1-family"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 885,
+      "expectedWord": "sister",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "family"
+      ],
+      "learningSetSlugs": [
+        "grade-1-family"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 887,
+      "expectedWord": "son",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "family"
+      ],
+      "learningSetSlugs": [
+        "grade-1-family"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 910,
+      "expectedWord": "uncle",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "family"
+      ],
+      "learningSetSlugs": [
+        "grade-1-family"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 905,
+      "expectedWord": "wife",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "family"
+      ],
+      "learningSetSlugs": [
+        "grade-1-family"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 759,
+      "expectedWord": "teacher",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "casual"
+      ],
+      "learningSetSlugs": [
+        "grade-1-school"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 760,
+      "expectedWord": "chalkboard",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "casual"
+      ],
+      "learningSetSlugs": [
+        "grade-1-school"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 761,
+      "expectedWord": "chalk",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "casual"
+      ],
+      "learningSetSlugs": [
+        "grade-1-school"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 762,
+      "expectedWord": "book",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "casual"
+      ],
+      "learningSetSlugs": [
+        "grade-1-school"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 763,
+      "expectedWord": "backpack",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "casual"
+      ],
+      "learningSetSlugs": [
+        "grade-1-school"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 767,
+      "expectedWord": "pencil",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "casual"
+      ],
+      "learningSetSlugs": [
+        "grade-1-school"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 769,
+      "expectedWord": "eraser",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "casual"
+      ],
+      "learningSetSlugs": [
+        "grade-1-school"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 770,
+      "expectedWord": "pen",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "casual"
+      ],
+      "learningSetSlugs": [
+        "grade-1-school"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 773,
+      "expectedWord": "pencil sharpener",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "casual"
+      ],
+      "learningSetSlugs": [
+        "grade-1-school"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 774,
+      "expectedWord": "globe",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "casual"
+      ],
+      "learningSetSlugs": [
+        "grade-1-school"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 776,
+      "expectedWord": "glue",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "casual"
+      ],
+      "learningSetSlugs": [
+        "grade-1-school"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 777,
+      "expectedWord": "scissors",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "casual"
+      ],
+      "learningSetSlugs": [
+        "grade-1-school"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 778,
+      "expectedWord": "ruler",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "casual"
+      ],
+      "learningSetSlugs": [
+        "grade-1-school"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 779,
+      "expectedWord": "highlighter",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "casual"
+      ],
+      "learningSetSlugs": [
+        "grade-1-school"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 780,
+      "expectedWord": "crayons",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "casual"
+      ],
+      "learningSetSlugs": [
+        "grade-1-school"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 781,
+      "expectedWord": "marker",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "casual"
+      ],
+      "learningSetSlugs": [
+        "grade-1-school"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 782,
+      "expectedWord": "piece of paper",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "casual"
+      ],
+      "learningSetSlugs": [
+        "grade-1-school"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 785,
+      "expectedWord": "spiral notebook",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "casual"
+      ],
+      "learningSetSlugs": [
+        "grade-1-school"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 786,
+      "expectedWord": "note pad",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "casual"
+      ],
+      "learningSetSlugs": [
+        "grade-1-school"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 787,
+      "expectedWord": "student's desk",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "casual"
+      ],
+      "learningSetSlugs": [
+        "grade-1-school"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 265,
+      "expectedWord": "apple",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "food"
+      ],
+      "learningSetSlugs": [
+        "grade-1-food"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 272,
+      "expectedWord": "banana",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "food"
+      ],
+      "learningSetSlugs": [
+        "grade-1-food"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 273,
+      "expectedWord": "beans",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "food"
+      ],
+      "learningSetSlugs": [
+        "grade-1-food"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 331,
+      "expectedWord": "bread",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "food"
+      ],
+      "learningSetSlugs": [
+        "grade-1-food"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 279,
+      "expectedWord": "broccoli",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "food"
+      ],
+      "learningSetSlugs": [
+        "grade-1-food"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 343,
+      "expectedWord": "butter",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "food"
+      ],
+      "learningSetSlugs": [
+        "grade-1-food"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 399,
+      "expectedWord": "cake",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "food"
+      ],
+      "learningSetSlugs": [
+        "grade-1-food"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 392,
+      "expectedWord": "candy",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "food"
+      ],
+      "learningSetSlugs": [
+        "grade-1-food"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 282,
+      "expectedWord": "carrot",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "food"
+      ],
+      "learningSetSlugs": [
+        "grade-1-food"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 344,
+      "expectedWord": "cheese",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "food"
+      ],
+      "learningSetSlugs": [
+        "grade-1-food"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 285,
+      "expectedWord": "cherry",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "food"
+      ],
+      "learningSetSlugs": [
+        "grade-1-food"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 394,
+      "expectedWord": "chocolate",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "food"
+      ],
+      "learningSetSlugs": [
+        "grade-1-food"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 286,
+      "expectedWord": "coconut",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "food"
+      ],
+      "learningSetSlugs": [
+        "grade-1-food"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 401,
+      "expectedWord": "cookie",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "food"
+      ],
+      "learningSetSlugs": [
+        "grade-1-food"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 287,
+      "expectedWord": "corn",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "food"
+      ],
+      "learningSetSlugs": [
+        "grade-1-food"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 288,
+      "expectedWord": "cucumber",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "food"
+      ],
+      "learningSetSlugs": [
+        "grade-1-food"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 409,
+      "expectedWord": "donut",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "food"
+      ],
+      "learningSetSlugs": [
+        "grade-1-food"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 289,
+      "expectedWord": "eggplant",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "food"
+      ],
+      "learningSetSlugs": [
+        "grade-1-food"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 291,
+      "expectedWord": "garlic",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "food"
+      ],
+      "learningSetSlugs": [
+        "grade-1-food"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 294,
+      "expectedWord": "grapes",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "food"
+      ],
+      "learningSetSlugs": [
+        "grade-1-food"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 914,
+      "expectedWord": "kick",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "action"
+      ],
+      "learningSetSlugs": [
+        "grade-1-actions"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 915,
+      "expectedWord": "walk",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "action"
+      ],
+      "learningSetSlugs": [
+        "grade-1-actions"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 916,
+      "expectedWord": "run",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "action"
+      ],
+      "learningSetSlugs": [
+        "grade-1-actions"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 917,
+      "expectedWord": "sit",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "action"
+      ],
+      "learningSetSlugs": [
+        "grade-1-actions"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 918,
+      "expectedWord": "stand",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "action"
+      ],
+      "learningSetSlugs": [
+        "grade-1-actions"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 919,
+      "expectedWord": "jump",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "action"
+      ],
+      "learningSetSlugs": [
+        "grade-1-actions"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 920,
+      "expectedWord": "push",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "action"
+      ],
+      "learningSetSlugs": [
+        "grade-1-actions"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 921,
+      "expectedWord": "pull",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "action"
+      ],
+      "learningSetSlugs": [
+        "grade-1-actions"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 922,
+      "expectedWord": "lift",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "action"
+      ],
+      "learningSetSlugs": [
+        "grade-1-actions"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 923,
+      "expectedWord": "throw",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "action"
+      ],
+      "learningSetSlugs": [
+        "grade-1-actions"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 924,
+      "expectedWord": "catch",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "action"
+      ],
+      "learningSetSlugs": [
+        "grade-1-actions"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 925,
+      "expectedWord": "hit",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "action"
+      ],
+      "learningSetSlugs": [
+        "grade-1-actions"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 926,
+      "expectedWord": "punch",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "action"
+      ],
+      "learningSetSlugs": [
+        "grade-1-actions"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 927,
+      "expectedWord": "dance",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "action"
+      ],
+      "learningSetSlugs": [
+        "grade-1-actions"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 928,
+      "expectedWord": "sing",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "action"
+      ],
+      "learningSetSlugs": [
+        "grade-1-actions"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 929,
+      "expectedWord": "laugh",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "action"
+      ],
+      "learningSetSlugs": [
+        "grade-1-actions"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 930,
+      "expectedWord": "cry",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "action"
+      ],
+      "learningSetSlugs": [
+        "grade-1-actions"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 931,
+      "expectedWord": "eat",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "action"
+      ],
+      "learningSetSlugs": [
+        "grade-1-actions"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 932,
+      "expectedWord": "drink",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "action"
+      ],
+      "learningSetSlugs": [
+        "grade-1-actions"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 933,
+      "expectedWord": "sleep",
+      "grade": "GRADE_1",
+      "topicSlugs": [
+        "action"
+      ],
+      "learningSetSlugs": [
+        "grade-1-actions"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 410,
+      "expectedWord": "arm",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "body"
+      ],
+      "learningSetSlugs": [
+        "grade-2-body"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 411,
+      "expectedWord": "leg",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "body"
+      ],
+      "learningSetSlugs": [
+        "grade-2-body"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 414,
+      "expectedWord": "navel",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "body"
+      ],
+      "learningSetSlugs": [
+        "grade-2-body"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 415,
+      "expectedWord": "chest",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "body"
+      ],
+      "learningSetSlugs": [
+        "grade-2-body"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 417,
+      "expectedWord": "wrist",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "body"
+      ],
+      "learningSetSlugs": [
+        "grade-2-body"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 418,
+      "expectedWord": "thigh",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "body"
+      ],
+      "learningSetSlugs": [
+        "grade-2-body"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 419,
+      "expectedWord": "knee",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "body"
+      ],
+      "learningSetSlugs": [
+        "grade-2-body"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 420,
+      "expectedWord": "head",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "body"
+      ],
+      "learningSetSlugs": [
+        "grade-2-body"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 421,
+      "expectedWord": "neck",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "body"
+      ],
+      "learningSetSlugs": [
+        "grade-2-body"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 422,
+      "expectedWord": "hand",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "body"
+      ],
+      "learningSetSlugs": [
+        "grade-2-body"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 423,
+      "expectedWord": "thumb",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "body"
+      ],
+      "learningSetSlugs": [
+        "grade-2-body"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 429,
+      "expectedWord": "finger",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "body"
+      ],
+      "learningSetSlugs": [
+        "grade-2-body"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 432,
+      "expectedWord": "foot",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "body"
+      ],
+      "learningSetSlugs": [
+        "grade-2-body"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 433,
+      "expectedWord": "heel",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "body"
+      ],
+      "learningSetSlugs": [
+        "grade-2-body"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 437,
+      "expectedWord": "ankle",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "body"
+      ],
+      "learningSetSlugs": [
+        "grade-2-body"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 438,
+      "expectedWord": "shoulder",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "body"
+      ],
+      "learningSetSlugs": [
+        "grade-2-body"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 439,
+      "expectedWord": "elbow",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "body"
+      ],
+      "learningSetSlugs": [
+        "grade-2-body"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 443,
+      "expectedWord": "back",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "body"
+      ],
+      "learningSetSlugs": [
+        "grade-2-body"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 451,
+      "expectedWord": "hair",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "body"
+      ],
+      "learningSetSlugs": [
+        "grade-2-body"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 459,
+      "expectedWord": "nose",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "body"
+      ],
+      "learningSetSlugs": [
+        "grade-2-body"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 619,
+      "expectedWord": "acorn",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "nature"
+      ],
+      "learningSetSlugs": [
+        "grade-2-outdoors"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 621,
+      "expectedWord": "axe",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "nature"
+      ],
+      "learningSetSlugs": [
+        "grade-2-outdoors"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 623,
+      "expectedWord": "bamboo",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "nature"
+      ],
+      "learningSetSlugs": [
+        "grade-2-outdoors"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 624,
+      "expectedWord": "bark",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "nature"
+      ],
+      "learningSetSlugs": [
+        "grade-2-outdoors"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 625,
+      "expectedWord": "bay",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "nature"
+      ],
+      "learningSetSlugs": [
+        "grade-2-outdoors"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 629,
+      "expectedWord": "cabin",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "nature"
+      ],
+      "learningSetSlugs": [
+        "grade-2-outdoors"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 630,
+      "expectedWord": "cactus",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "nature"
+      ],
+      "learningSetSlugs": [
+        "grade-2-outdoors"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 631,
+      "expectedWord": "campfire",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "nature"
+      ],
+      "learningSetSlugs": [
+        "grade-2-outdoors"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 632,
+      "expectedWord": "canal",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "nature"
+      ],
+      "learningSetSlugs": [
+        "grade-2-outdoors"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 634,
+      "expectedWord": "canyon",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "nature"
+      ],
+      "learningSetSlugs": [
+        "grade-2-outdoors"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 635,
+      "expectedWord": "cave",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "nature"
+      ],
+      "learningSetSlugs": [
+        "grade-2-outdoors"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 636,
+      "expectedWord": "city",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "nature"
+      ],
+      "learningSetSlugs": [
+        "grade-2-outdoors"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 637,
+      "expectedWord": "cliff",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "nature"
+      ],
+      "learningSetSlugs": [
+        "grade-2-outdoors"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 638,
+      "expectedWord": "cloud",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "nature"
+      ],
+      "learningSetSlugs": [
+        "grade-2-outdoors"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 639,
+      "expectedWord": "compass",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "nature"
+      ],
+      "learningSetSlugs": [
+        "grade-2-outdoors"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 640,
+      "expectedWord": "dam",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "nature"
+      ],
+      "learningSetSlugs": [
+        "grade-2-outdoors"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 641,
+      "expectedWord": "desert",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "nature"
+      ],
+      "learningSetSlugs": [
+        "grade-2-outdoors"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 642,
+      "expectedWord": "directions",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "nature"
+      ],
+      "learningSetSlugs": [
+        "grade-2-outdoors"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 646,
+      "expectedWord": "dune",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "nature"
+      ],
+      "learningSetSlugs": [
+        "grade-2-outdoors"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 647,
+      "expectedWord": "east",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "nature"
+      ],
+      "learningSetSlugs": [
+        "grade-2-outdoors"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1012,
+      "expectedWord": "belt",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "clothing"
+      ],
+      "learningSetSlugs": [
+        "grade-2-clothing"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1013,
+      "expectedWord": "boot",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "clothing"
+      ],
+      "learningSetSlugs": [
+        "grade-2-clothing"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1014,
+      "expectedWord": "bow tie",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "clothing"
+      ],
+      "learningSetSlugs": [
+        "grade-2-clothing"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1054,
+      "expectedWord": "coat",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "clothing"
+      ],
+      "learningSetSlugs": [
+        "grade-2-clothing"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1018,
+      "expectedWord": "collar",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "clothing"
+      ],
+      "learningSetSlugs": [
+        "grade-2-clothing"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1047,
+      "expectedWord": "earring",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "clothing"
+      ],
+      "learningSetSlugs": [
+        "grade-2-clothing"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1058,
+      "expectedWord": "gloves",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "clothing"
+      ],
+      "learningSetSlugs": [
+        "grade-2-clothing"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1020,
+      "expectedWord": "hat",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "clothing"
+      ],
+      "learningSetSlugs": [
+        "grade-2-clothing"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1062,
+      "expectedWord": "hoodie",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "clothing"
+      ],
+      "learningSetSlugs": [
+        "grade-2-clothing"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1021,
+      "expectedWord": "jeans",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "clothing"
+      ],
+      "learningSetSlugs": [
+        "grade-2-clothing"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1064,
+      "expectedWord": "necklace",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "clothing"
+      ],
+      "learningSetSlugs": [
+        "grade-2-clothing"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1023,
+      "expectedWord": "pocket",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "clothing"
+      ],
+      "learningSetSlugs": [
+        "grade-2-clothing"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1040,
+      "expectedWord": "purse",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "clothing"
+      ],
+      "learningSetSlugs": [
+        "grade-2-clothing"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1046,
+      "expectedWord": "ring",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "clothing"
+      ],
+      "learningSetSlugs": [
+        "grade-2-clothing"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1043,
+      "expectedWord": "scarf",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "clothing"
+      ],
+      "learningSetSlugs": [
+        "grade-2-clothing"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1025,
+      "expectedWord": "shoe",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "clothing"
+      ],
+      "learningSetSlugs": [
+        "grade-2-clothing"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1027,
+      "expectedWord": "shorts",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "clothing"
+      ],
+      "learningSetSlugs": [
+        "grade-2-clothing"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1039,
+      "expectedWord": "skirt",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "clothing"
+      ],
+      "learningSetSlugs": [
+        "grade-2-clothing"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1029,
+      "expectedWord": "sock",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "clothing"
+      ],
+      "learningSetSlugs": [
+        "grade-2-clothing"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1055,
+      "expectedWord": "sweater",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "clothing"
+      ],
+      "learningSetSlugs": [
+        "grade-2-clothing"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 948,
+      "expectedWord": "adoration",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "emotion"
+      ],
+      "learningSetSlugs": [
+        "grade-2-feelings"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 949,
+      "expectedWord": "affection",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "emotion"
+      ],
+      "learningSetSlugs": [
+        "grade-2-feelings"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 950,
+      "expectedWord": "alarm",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "emotion"
+      ],
+      "learningSetSlugs": [
+        "grade-2-feelings"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 951,
+      "expectedWord": "amazement",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "emotion"
+      ],
+      "learningSetSlugs": [
+        "grade-2-feelings"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 952,
+      "expectedWord": "amusement",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "emotion"
+      ],
+      "learningSetSlugs": [
+        "grade-2-feelings"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 954,
+      "expectedWord": "astonishment",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "emotion"
+      ],
+      "learningSetSlugs": [
+        "grade-2-feelings"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 955,
+      "expectedWord": "attraction",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "emotion"
+      ],
+      "learningSetSlugs": [
+        "grade-2-feelings"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 956,
+      "expectedWord": "bitterness",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "emotion"
+      ],
+      "learningSetSlugs": [
+        "grade-2-feelings"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 957,
+      "expectedWord": "bliss",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "emotion"
+      ],
+      "learningSetSlugs": [
+        "grade-2-feelings"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 958,
+      "expectedWord": "caring",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "emotion"
+      ],
+      "learningSetSlugs": [
+        "grade-2-feelings"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 959,
+      "expectedWord": "cheerfulness",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "emotion"
+      ],
+      "learningSetSlugs": [
+        "grade-2-feelings"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 960,
+      "expectedWord": "compassion",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "emotion"
+      ],
+      "learningSetSlugs": [
+        "grade-2-feelings"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 961,
+      "expectedWord": "delight",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "emotion"
+      ],
+      "learningSetSlugs": [
+        "grade-2-feelings"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 962,
+      "expectedWord": "depression",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "emotion"
+      ],
+      "learningSetSlugs": [
+        "grade-2-feelings"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 963,
+      "expectedWord": "despair",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "emotion"
+      ],
+      "learningSetSlugs": [
+        "grade-2-feelings"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 964,
+      "expectedWord": "dislike",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "emotion"
+      ],
+      "learningSetSlugs": [
+        "grade-2-feelings"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 965,
+      "expectedWord": "ecstasy",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "emotion"
+      ],
+      "learningSetSlugs": [
+        "grade-2-feelings"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 966,
+      "expectedWord": "elation",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "emotion"
+      ],
+      "learningSetSlugs": [
+        "grade-2-feelings"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 967,
+      "expectedWord": "enjoyment",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "emotion"
+      ],
+      "learningSetSlugs": [
+        "grade-2-feelings"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 968,
+      "expectedWord": "euphoria",
+      "grade": "GRADE_2",
+      "topicSlugs": [
+        "emotion"
+      ],
+      "learningSetSlugs": [
+        "grade-2-feelings"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1336,
+      "expectedWord": "accent",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "communication"
+      ],
+      "learningSetSlugs": [
+        "grade-3-language"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1347,
+      "expectedWord": "acquire",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "communication"
+      ],
+      "learningSetSlugs": [
+        "grade-3-language"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1339,
+      "expectedWord": "approach",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "communication"
+      ],
+      "learningSetSlugs": [
+        "grade-3-language"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1340,
+      "expectedWord": "bilingual",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "communication"
+      ],
+      "learningSetSlugs": [
+        "grade-3-language"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1348,
+      "expectedWord": "blend",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "communication"
+      ],
+      "learningSetSlugs": [
+        "grade-3-language"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1325,
+      "expectedWord": "cue",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "communication"
+      ],
+      "learningSetSlugs": [
+        "grade-3-language"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1359,
+      "expectedWord": "dialect",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "communication"
+      ],
+      "learningSetSlugs": [
+        "grade-3-language"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1346,
+      "expectedWord": "immersion",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "communication"
+      ],
+      "learningSetSlugs": [
+        "grade-3-language"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1321,
+      "expectedWord": "phrase book",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "communication"
+      ],
+      "learningSetSlugs": [
+        "grade-3-language"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1358,
+      "expectedWord": "slang",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "communication"
+      ],
+      "learningSetSlugs": [
+        "grade-3-language"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 566,
+      "expectedWord": "ampersand",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "writing-numbers"
+      ],
+      "learningSetSlugs": [
+        "grade-3-language"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 556,
+      "expectedWord": "apostrophe",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "writing-numbers"
+      ],
+      "learningSetSlugs": [
+        "grade-3-language"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 549,
+      "expectedWord": "comma",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "writing-numbers"
+      ],
+      "learningSetSlugs": [
+        "grade-3-language"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 552,
+      "expectedWord": "colon",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "writing-numbers"
+      ],
+      "learningSetSlugs": [
+        "grade-3-language"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 553,
+      "expectedWord": "exclamation mark",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "writing-numbers"
+      ],
+      "learningSetSlugs": [
+        "grade-3-language"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 569,
+      "expectedWord": "letter",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "writing-numbers"
+      ],
+      "learningSetSlugs": [
+        "grade-3-language"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 576,
+      "expectedWord": "page",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "writing-numbers"
+      ],
+      "learningSetSlugs": [
+        "grade-3-language"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 574,
+      "expectedWord": "paragraph",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "writing-numbers"
+      ],
+      "learningSetSlugs": [
+        "grade-3-language"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 550,
+      "expectedWord": "period",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "writing-numbers"
+      ],
+      "learningSetSlugs": [
+        "grade-3-language"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 572,
+      "expectedWord": "sentence",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "writing-numbers"
+      ],
+      "learningSetSlugs": [
+        "grade-3-language"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1100,
+      "expectedWord": "laptop",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "computer-office-science"
+      ],
+      "learningSetSlugs": [
+        "grade-3-tools"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1099,
+      "expectedWord": "mouse",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "computer-office-science"
+      ],
+      "learningSetSlugs": [
+        "grade-3-tools"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 146,
+      "expectedWord": "keyboard",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "object-in-house"
+      ],
+      "learningSetSlugs": [
+        "grade-3-tools"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1083,
+      "expectedWord": "printer",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "computer-office-science"
+      ],
+      "learningSetSlugs": [
+        "grade-3-tools"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1103,
+      "expectedWord": "hard drive",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "computer-office-science"
+      ],
+      "learningSetSlugs": [
+        "grade-3-tools"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1104,
+      "expectedWord": "memory",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "computer-office-science"
+      ],
+      "learningSetSlugs": [
+        "grade-3-tools"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1150,
+      "expectedWord": "robot",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "computer-office-science"
+      ],
+      "learningSetSlugs": [
+        "grade-3-tools"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1133,
+      "expectedWord": "scientist",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "computer-office-science"
+      ],
+      "learningSetSlugs": [
+        "grade-3-tools"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1149,
+      "expectedWord": "microscope",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "computer-office-science"
+      ],
+      "learningSetSlugs": [
+        "grade-3-tools"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 1124,
+      "expectedWord": "atom",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "computer-office-science"
+      ],
+      "learningSetSlugs": [
+        "grade-3-tools"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 538,
+      "expectedWord": "camera",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "photography"
+      ],
+      "learningSetSlugs": [
+        "grade-3-tools"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 547,
+      "expectedWord": "film",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "photography"
+      ],
+      "learningSetSlugs": [
+        "grade-3-tools"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 539,
+      "expectedWord": "flash",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "photography"
+      ],
+      "learningSetSlugs": [
+        "grade-3-tools"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 543,
+      "expectedWord": "photo album",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "photography"
+      ],
+      "learningSetSlugs": [
+        "grade-3-tools"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 546,
+      "expectedWord": "projector",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "photography"
+      ],
+      "learningSetSlugs": [
+        "grade-3-tools"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 548,
+      "expectedWord": "screen",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "photography"
+      ],
+      "learningSetSlugs": [
+        "grade-3-tools"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 542,
+      "expectedWord": "slide",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "photography"
+      ],
+      "learningSetSlugs": [
+        "grade-3-tools"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 545,
+      "expectedWord": "tripod",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "photography"
+      ],
+      "learningSetSlugs": [
+        "grade-3-tools"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 544,
+      "expectedWord": "video camera",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "photography"
+      ],
+      "learningSetSlugs": [
+        "grade-3-tools"
+      ],
+      "activation": true
+    },
+    {
+      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+      "sourceRecordId": 540,
+      "expectedWord": "zoom lens",
+      "grade": "GRADE_3",
+      "topicSlugs": [
+        "photography"
+      ],
+      "learningSetSlugs": [
+        "grade-3-tools"
+      ],
+      "activation": true
+    }
+  ],
+  "starterTopicMappings": [
+    {
+      "vocabularyId": 1,
+      "expectedWord": "apple",
+      "topicSlugs": [
+        "food"
+      ]
+    },
+    {
+      "vocabularyId": 2,
+      "expectedWord": "book",
+      "topicSlugs": [
+        "casual",
+        "common-place"
+      ]
+    },
+    {
+      "vocabularyId": 3,
+      "expectedWord": "cat",
+      "topicSlugs": [
+        "nature"
+      ]
+    },
+    {
+      "vocabularyId": 4,
+      "expectedWord": "dog",
+      "topicSlugs": [
+        "nature"
+      ]
+    },
+    {
+      "vocabularyId": 5,
+      "expectedWord": "family",
+      "topicSlugs": [
+        "family"
+      ]
+    },
+    {
+      "vocabularyId": 6,
+      "expectedWord": "friend",
+      "topicSlugs": [
+        "emotion"
+      ]
+    },
+    {
+      "vocabularyId": 7,
+      "expectedWord": "home",
+      "topicSlugs": [
+        "object-in-house",
+        "common-place"
+      ]
+    },
+    {
+      "vocabularyId": 8,
+      "expectedWord": "school",
+      "topicSlugs": [
+        "casual",
+        "common-place"
+      ]
+    },
+    {
+      "vocabularyId": 9,
+      "expectedWord": "teacher",
+      "topicSlugs": [
+        "casual",
+        "common-place"
+      ]
+    },
+    {
+      "vocabularyId": 10,
+      "expectedWord": "student",
+      "topicSlugs": [
+        "casual",
+        "common-place"
+      ]
+    },
+    {
+      "vocabularyId": 11,
+      "expectedWord": "water",
+      "topicSlugs": [
+        "food",
+        "nature"
+      ]
+    },
+    {
+      "vocabularyId": 12,
+      "expectedWord": "food",
+      "topicSlugs": [
+        "food"
+      ]
+    },
+    {
+      "vocabularyId": 13,
+      "expectedWord": "morning",
+      "topicSlugs": [
+        "casual"
+      ]
+    },
+    {
+      "vocabularyId": 14,
+      "expectedWord": "night",
+      "topicSlugs": [
+        "casual"
+      ]
+    },
+    {
+      "vocabularyId": 15,
+      "expectedWord": "today",
+      "topicSlugs": [
+        "casual"
+      ]
+    },
+    {
+      "vocabularyId": 16,
+      "expectedWord": "go",
+      "topicSlugs": [
+        "action"
+      ]
+    },
+    {
+      "vocabularyId": 17,
+      "expectedWord": "come",
+      "topicSlugs": [
+        "action"
+      ]
+    },
+    {
+      "vocabularyId": 18,
+      "expectedWord": "eat",
+      "topicSlugs": [
+        "action"
+      ]
+    },
+    {
+      "vocabularyId": 19,
+      "expectedWord": "drink",
+      "topicSlugs": [
+        "action"
+      ]
+    },
+    {
+      "vocabularyId": 20,
+      "expectedWord": "read",
+      "topicSlugs": [
+        "casual",
+        "communication"
+      ]
+    },
+    {
+      "vocabularyId": 21,
+      "expectedWord": "write",
+      "topicSlugs": [
+        "writing-numbers",
+        "communication"
+      ]
+    },
+    {
+      "vocabularyId": 22,
+      "expectedWord": "speak",
+      "topicSlugs": [
+        "communication"
+      ]
+    },
+    {
+      "vocabularyId": 23,
+      "expectedWord": "listen",
+      "topicSlugs": [
+        "communication"
+      ]
+    },
+    {
+      "vocabularyId": 24,
+      "expectedWord": "happy",
+      "topicSlugs": [
+        "emotion"
+      ]
+    },
+    {
+      "vocabularyId": 25,
+      "expectedWord": "sad",
+      "topicSlugs": [
+        "emotion"
+      ]
+    },
+    {
+      "vocabularyId": 26,
+      "expectedWord": "big",
+      "topicSlugs": [
+        "miscellaneous"
+      ]
+    },
+    {
+      "vocabularyId": 27,
+      "expectedWord": "small",
+      "topicSlugs": [
+        "miscellaneous"
+      ]
+    },
+    {
+      "vocabularyId": 28,
+      "expectedWord": "good",
+      "topicSlugs": [
+        "emotion"
+      ]
+    },
+    {
+      "vocabularyId": 29,
+      "expectedWord": "bad",
+      "topicSlugs": [
+        "emotion"
+      ]
+    },
+    {
+      "vocabularyId": 30,
+      "expectedWord": "new",
+      "topicSlugs": [
+        "miscellaneous"
+      ]
+    }
+  ]
+}

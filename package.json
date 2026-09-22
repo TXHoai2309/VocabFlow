@@ -23,6 +23,7 @@
     "db:reset": "tsx scripts/db-reset.ts",
     "dataset:validate": "tsx scripts/validate-dataset.ts",
     "vocab:import-catalog": "tsx scripts/import-vocabulary-catalog.ts",
+    "vocab:curate": "tsx scripts/vocabulary-curation.ts",
     "vocab:enrich-starter": "tsx scripts/enrich-starter-vocabulary.ts",
     "media:manifest": "tsx scripts/vocab-media-manifest.ts",
     "media:upload": "tsx scripts/vocab-media-upload.ts",

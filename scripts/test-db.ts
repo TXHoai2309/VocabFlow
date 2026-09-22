@@ -18,6 +18,7 @@ import { runUs08TrustedDbSuite } from "./test-review-queue-db";
 import { runUs26Us27TrustedDbSuite } from "./test-vocabulary-taxonomy-db";
 import { runUs28Us29TrustedDbSuite } from "./test-learning-sets-db";
 import { runUs30TrustedDbSuite } from "./test-daily-new-word-limit-db";
+import { runUs41TrustedDbSuite } from "./test-vocabulary-curation-db";
 
 const ROLLBACK_MARKER = "__VOCABFLOW_PERMISSION_ROLLBACK__";
 
@@ -40,7 +41,8 @@ type TrustedDbStage =
   | "verify-us26-us27-taxonomy"
   | "verify-us28-us29-learning-sets"
   | "verify-us30-daily-new-word-limit"
-  | "verify-us35-us36-daily-activity";
+  | "verify-us35-us36-daily-activity"
+  | "verify-us41-content-curation";
 
 type TrustedDbSubstage =
   | "target-migration"
@@ -289,6 +291,8 @@ async function main() {
     markStage("verify-us08-review-queue");
     await runUs08TrustedDbSuite({ migrationUrl, runtimeUrl, migrationTarget, runtimeTarget });
   }
+  markStage("verify-us41-content-curation");
+  await runUs41TrustedDbSuite({ migrationUrl, runtimeUrl, migrationTarget, runtimeTarget });
   console.log("TRUSTED_DB_STATUS=PASS");
 }
 

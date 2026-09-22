@@ -75,9 +75,9 @@ Family MVP vẫn là một hệ thống quản lý trạng thái ghi nhớ, khô
 | Parent authentication + default household | Co-parent invitation / household sharing nâng cao |
 | Create/select nhiều learner profile | Learner email/password hoặc PIN security boundary |
 | Per-learner cloud progress | Offline write queue / full PWA sync |
-| Curated learning sets; default starter compatibility set; 200–300 enabled | User-created sets / marketplace |
+| Curated learning sets; default starter compatibility set; 200–300 reviewed enabled rows | User-created sets / marketplace |
 | Flashcard + audio/image khi có | Nhiều mode Learn/Test/Game |
-| Chưa nhớ / Đã nhớ + spaced scheduler | Leaderboard, achievement system, advanced gamification |
+| Chưa nhớ / Đã nhớ + spaced scheduler; deterministic XP and badges | Leaderboard, social competition, advanced gamification |
 | Review Queue + session summary | AI tutor / generated content |
 | Progress tối giản | Advanced analytics / reporting |
 | Responsive mobile/tablet/desktop | Admin CMS / payment / social |
@@ -283,9 +283,11 @@ NEW là virtual state trước lần scheduled evaluation đầu tiên. Absence 
 Vocabulary may carry an optional canonical grade level (`GRADE_1`–`GRADE_5`
 or `GENERAL`) and may belong to multiple canonical topics. Parents can filter
 the read-only vocabulary catalog by level and browse enabled vocabulary by
-topic. Missing source classification remains NULL/unmapped; the product must
-not infer a grade or silently enable imported rows. This extension does not
-change study queue, scheduler or learner-progress semantics.
+topic. Unreviewed source classification remains NULL/unmapped and imported
+rows remain disabled. US-41 is the explicit, tracked exception: a reviewed
+`VOCABULARY_CURATION_V1` manifest may assign a grade and enable only its
+reviewed rows after source-identity and image/audio media gates pass. This
+extension does not change study queue, scheduler or learner-progress semantics.
 
 ### 15.2 Learning sets and learner assignment (US-28 / US-29)
 
@@ -299,10 +301,21 @@ review history, and reassignment reuses it.
 
 The migration provides a compatibility `VocabFlow Starter` set containing all
 30 enabled starter rows, plus curated Grade 1 Starter, Family Basics, School
-Basics and Everyday Words sets. Imported rows remain disabled and are not
-automatically classified or enabled.
+Basics and Everyday Words sets. US-41 adds eleven reviewed sets through its
+tracked manifest; imported rows outside that manifest remain disabled and are
+not automatically classified or enabled.
 
-### 15.3 Daily new word limit (US-30)
+### 15.3 Content curation and activation (US-41)
+
+The imported 1,994-row catalog is curated through a tracked deterministic
+manifest. The first approved slice contains 220 rows with explicit Grade 1–3
+labels, canonical topic memberships, eleven ordered learning sets and both
+image/audio media references. The command defaults to a read-only dry run;
+activation is transactional, idempotent and trusted-CI-only. It does not
+auto-assign learners or mutate progress, review history, XP, achievements or
+the daily New limit. Existing starter ids and enabled state remain compatible.
+
+### 15.4 Daily new word limit (US-30)
 
 Each learner has a `dailyNewWordLimit`, default `10`, validated from `0` to
 `100`. It limits only vocabulary that transitions from the current virtual NEW
@@ -318,7 +331,7 @@ current lifecycle is virtual NEW again. Progress summary New remains the
 global count of eligible vocabulary without current progress; it is not
 reduced to today's allowance.
 
-### 15.4 Daily learning goal and streak (US-35 / US-36)
+### 15.5 Daily learning goal and streak (US-35 / US-36)
 
 Each learner has a separate `dailyLearningGoal`, default `10`, validated from
 `1` to `100`. It is motivational read-only progress: it does not constrain
@@ -404,7 +417,9 @@ Vertical slice đầu tiên
 
 - Không cần dashboard hoàn chỉnh, multi-parent, AI, gamification hoặc offline sync để pass vertical slice.
 
-- Sau khi vertical slice PASS mới bật 200–300 enabled words và mở rộng UI polish.
+- Sau khi vertical slice PASS, US-41 activates the first 220 reviewed rows and
+  opens the curated-set catalog for parent assignment; unreviewed imports stay
+  disabled while UI polish continues.
 
 # 8 · ACCEPTANCE, VALIDATION & FREEZE
 
@@ -458,9 +473,9 @@ Từ đây không quay lại Personal MVP làm source of truth. Tài liệu ti�
 
 - Family MVP v1.0: CURRENT PRODUCT SOURCE OF TRUTH.
 
-- Technical Architecture v1.0.7: technical source of truth, including the US-25
-  canonical DB/source identity reconciliation, US-26/US-27 taxonomy and
-  US-28/US-29 learning-set assignment model.
+- Technical Architecture v1.0.11: technical source of truth, including the
+  US-25 canonical DB/source identity reconciliation, US-26/US-27 taxonomy,
+  US-28/US-29 learning-set assignment model and US-41 activation boundary.
 
 - Global Design System v1.0.2: global UI source of truth.
 
