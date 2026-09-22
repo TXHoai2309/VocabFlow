@@ -17,8 +17,9 @@
   `STARTER_TOPIC_MAPPINGS=30`, `MEDIA_GATE=PASS checked=220`,
   `DB_MUTATIONS=0`.
 - Current phase/batch: Phase 2 / US-41 implemented and ready for owner check;
-  US-42 has not started. The next gate is the same-commit Core CI and Trusted
-  DB Integration run.
+  US-42 has not started. Core CI #87 and Trusted DB Integration #81 both passed
+  on commit `4d76cfa946ccae94ec3e5deb690f0365ba579363`; only owner review of
+  the manifest and dry-run report remains.
 
 ## 2026-09-21 — US-39 + US-40 XP, level and achievements
 
@@ -70,8 +71,9 @@
   `docs/decisions.md`. Preserve `.env.example` and `local-data.zip` changes.
 - Final US-30 evidence: local validation passed; Core CI run `35443781349` and
   Trusted DB run `35443781278` both passed. US-39/40 fix-forward baseline is
-  `b057f70897859004de9659b1780c9f098915ac0c`; US-41 is the current candidate
-  awaiting same-commit CI gates and owner review. US-22's manual owner check
+  `b057f70897859004de9659b1780c9f098915ac0c`; US-41 candidate
+  `4d76cfa946ccae94ec3e5deb690f0365ba579363` passed same-commit Core CI #87
+  and Trusted DB #81 and is awaiting owner review. US-22's manual owner check
   remains deferred.
 - Documents new agents must read first: `docs/README.md`,
   `docs/product/product-spec.md`, `docs/architecture/technical-architecture.md`,

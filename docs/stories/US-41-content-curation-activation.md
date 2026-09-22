@@ -71,7 +71,9 @@ requires the existing `ci-test`/`test` target verification before connecting.
 - [x] Apply is transactional, CI-target guarded and idempotent; no progress,
   review, XP or achievement mutation is permitted.
 - [x] Daily New limit and reward/review semantics remain unchanged.
-- [ ] Core CI and Trusted DB Integration pass on the same pushed commit.
+- [x] Core CI and Trusted DB Integration pass on the same pushed commit
+  (`4d76cfa946ccae94ec3e5deb690f0365ba579363`; Core CI #87,
+  Trusted DB Integration #81).
 - [ ] Owner manually reviews the manifest, dry-run report and resulting catalog.
 
 ## Evidence
@@ -80,6 +82,7 @@ requires the existing `ci-test`/`test` target verification before connecting.
   `GRADE_2_RECORDS=80`, `GRADE_3_RECORDS=40`, `LEARNING_SET_COUNT=11`,
   `STARTER_TOPIC_MAPPINGS=30`, `MEDIA_GATE=PASS checked=220`,
   `DB_MUTATIONS=0`, `STATUS=PASS`.
-- Focused manifest tests and repository typecheck/lint are part of the US-41
-  closeout. Remote gate run ids and the owner decision are appended after the
-  candidate is pushed.
+- Focused manifest tests and repository typecheck/lint pass locally. Remote
+  evidence: Core CI #87 and Trusted DB Integration #81 both passed on
+  `4d76cfa946ccae94ec3e5deb690f0365ba579363`. Owner review remains the only
+  open acceptance item.

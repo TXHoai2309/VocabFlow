@@ -14,6 +14,8 @@ This log records meaningful project milestones and accepted baselines.
 - Added trusted-CI-only transactional activation with idempotent set/item
   upserts. Starter identity, learner assignments, progress, review history, XP,
   achievements and the daily New limit remain unchanged. US-42 is not started.
+- Core CI #87 and Trusted DB Integration #81 both passed on candidate
+  `4d76cfa946ccae94ec3e5deb690f0365ba579363`; owner review remains pending.
 
 ## 2026-09-21 — US-39 + US-40 learner rewards
 
