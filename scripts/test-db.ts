@@ -284,6 +284,8 @@ async function main() {
   console.log("TRUSTED_DB_US35_US36_STATUS=PASS");
   markStage("verify-us26-us27-taxonomy");
   await runUs26Us27TrustedDbSuite({ migrationUrl, runtimeUrl, migrationTarget, runtimeTarget });
+  markStage("verify-us41-content-curation");
+  await runUs41TrustedDbSuite({ migrationUrl, runtimeUrl, migrationTarget, runtimeTarget });
   if (suite === "full") {
     markStage("verify-us07-review-runtime");
     await runUs07TrustedDbSuite({ migrationUrl, runtimeUrl, migrationTarget, runtimeTarget });
@@ -291,8 +293,6 @@ async function main() {
     markStage("verify-us08-review-queue");
     await runUs08TrustedDbSuite({ migrationUrl, runtimeUrl, migrationTarget, runtimeTarget });
   }
-  markStage("verify-us41-content-curation");
-  await runUs41TrustedDbSuite({ migrationUrl, runtimeUrl, migrationTarget, runtimeTarget });
   console.log("TRUSTED_DB_STATUS=PASS");
 }
 
