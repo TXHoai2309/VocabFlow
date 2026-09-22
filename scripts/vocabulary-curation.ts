@@ -318,61 +318,80 @@ export async function applyCurationManifest(sql: SqlClient, manifest: CurationMa
       setIds.set(set.slug, Number(row.id));
     }
 
+    const sourceRows = await tx<{
+      id: number;
+      source_record_id: number;
+      word: string;
+      enabled: boolean;
+      image_url: string | null;
+      audio_url: string | null;
+    }[]>`
+      SELECT id, source_record_id, word, enabled, image_url, audio_url
+      FROM ${tx.unsafe(VOCABULARIES)}
+      WHERE source_dataset = ${SOURCE_DATASET_ID}
+        AND source_record_id = ANY(${tx.array(manifest.records.map((record) => record.sourceRecordId))}::integer[])
+      FOR UPDATE
+    `;
+    const sourceById = new Map(sourceRows.map((row) => [Number(row.source_record_id), row]));
     let newlyActivatedRecords = 0;
     let alreadyActiveRecords = 0;
-    let setMemberships = 0;
-    for (const [index, record] of manifest.records.entries()) {
-      const rows = await tx<{ id: number; enabled: boolean }[]>`
-        SELECT id, enabled FROM ${tx.unsafe(VOCABULARIES)}
-        WHERE source_dataset = ${record.sourceDataset} AND source_record_id = ${record.sourceRecordId}
-          AND word = ${record.expectedWord} AND image_url IS NOT NULL AND audio_url IS NOT NULL
-        FOR UPDATE
-      `;
-      assert(rows.length === 1, `CURATED_SOURCE_ROW_NOT_READY_${record.sourceRecordId}`);
-      const wasEnabled = rows[0]?.enabled === true;
-      const updated = await tx`
+    for (const record of manifest.records) {
+      const row = sourceById.get(record.sourceRecordId);
+      assert(row, `CURATED_SOURCE_ROW_NOT_READY_${record.sourceRecordId}`);
+      assert(row.word === record.expectedWord, `CURATED_SOURCE_WORD_MISMATCH_${record.sourceRecordId}`);
+      assert(row.image_url && row.audio_url, `CURATED_MEDIA_GATE_FAILED_${record.expectedWord}`);
+      if (row.enabled) alreadyActiveRecords += 1;
+      else newlyActivatedRecords += 1;
+    }
+    assert(sourceRows.length === manifest.records.length, "CURATED_SOURCE_ROW_COUNT_INVALID");
+
+    for (const grade of ["GRADE_1", "GRADE_2", "GRADE_3"] as const) {
+      const ids = manifest.records.filter((record) => record.grade === grade).map((record) => record.sourceRecordId);
+      if (ids.length === 0) continue;
+      await tx`
         UPDATE ${tx.unsafe(VOCABULARIES)} SET enabled = true,
-          level = ${record.grade}::${tx.unsafe(q(APP_SCHEMA, "vocabulary_level"))}, updated_at = now()
-        WHERE id = ${Number(rows[0]?.id)}
-          AND (enabled IS DISTINCT FROM true OR level IS DISTINCT FROM ${record.grade}::${tx.unsafe(q(APP_SCHEMA, "vocabulary_level"))})
+          level = ${grade}::${tx.unsafe(q(APP_SCHEMA, "vocabulary_level"))}, updated_at = now()
+        WHERE source_dataset = ${SOURCE_DATASET_ID}
+          AND source_record_id = ANY(${tx.array(ids)}::integer[])
       `;
-      if (updated.count > 0) newlyActivatedRecords += wasEnabled ? 0 : 1;
-      if (wasEnabled && updated.count === 0) alreadyActiveRecords += 1;
-
-      const desiredTopicIds = record.topicSlugs.map((slug) => topicIds.get(slug) as number);
-      await tx`
-        DELETE FROM ${tx.unsafe(MEMBERSHIPS)}
-        WHERE vocabulary_id = ${Number(rows[0]?.id)} AND topic_id <> ALL(${tx.array(desiredTopicIds)}::integer[])
-      `;
-      for (const topicId of desiredTopicIds) {
-        await tx`INSERT INTO ${tx.unsafe(MEMBERSHIPS)} (vocabulary_id, topic_id) VALUES (${Number(rows[0]?.id)}, ${topicId}) ON CONFLICT DO NOTHING`;
-      }
-      for (const setSlug of record.learningSetSlugs) {
-        const setId = setIds.get(setSlug);
-        assert(setId != null, "LEARNING_SET_ID_MISSING");
-        await tx`
-          INSERT INTO ${tx.unsafe(ITEMS)} (learning_set_id, vocabulary_id, sort_order)
-          VALUES (${setId}, ${Number(rows[0]?.id)}, ${index})
-          ON CONFLICT (learning_set_id, vocabulary_id) DO UPDATE SET sort_order = EXCLUDED.sort_order
-        `;
-        setMemberships += 1;
-      }
     }
 
-    for (const mapping of manifest.starterTopicMappings) {
-      const rows = await tx<{ id: number; word: string }[]>`
-        SELECT id, word FROM ${tx.unsafe(VOCABULARIES)} WHERE id = ${mapping.vocabularyId} AND word = ${mapping.expectedWord}
-      `;
-      assert(rows.length === 1, `STARTER_TOPIC_WORD_MISMATCH_${mapping.vocabularyId}`);
-      const desiredTopicIds = mapping.topicSlugs.map((slug) => topicIds.get(slug) as number);
-      await tx`
-        DELETE FROM ${tx.unsafe(MEMBERSHIPS)}
-        WHERE vocabulary_id = ${mapping.vocabularyId} AND topic_id <> ALL(${tx.array(desiredTopicIds)}::integer[])
-      `;
-      for (const topicId of desiredTopicIds) {
-        await tx`INSERT INTO ${tx.unsafe(MEMBERSHIPS)} (vocabulary_id, topic_id) VALUES (${mapping.vocabularyId}, ${topicId}) ON CONFLICT DO NOTHING`;
-      }
-    }
+    const vocabularyIds = manifest.records.map((record) => Number(sourceById.get(record.sourceRecordId)?.id));
+    const topicPairs = manifest.records.flatMap((record) => record.topicSlugs.map((slug) => [
+      Number(sourceById.get(record.sourceRecordId)?.id), topicIds.get(slug) as number
+    ]));
+    await tx`DELETE FROM ${tx.unsafe(MEMBERSHIPS)} WHERE vocabulary_id = ANY(${tx.array(vocabularyIds)}::integer[])`;
+    await tx`
+      INSERT INTO ${tx.unsafe(MEMBERSHIPS)} (vocabulary_id, topic_id)
+      SELECT * FROM unnest(${tx.array(topicPairs.map(([vocabularyId]) => vocabularyId))}::integer[], ${tx.array(topicPairs.map(([, topicId]) => topicId))}::integer[])
+      AS pair(vocabulary_id, topic_id)
+      ON CONFLICT DO NOTHING
+    `;
+
+    const itemPairs = manifest.records.flatMap((record, index) => record.learningSetSlugs.map((setSlug) => {
+      const setId = setIds.get(setSlug);
+      assert(setId != null, "LEARNING_SET_ID_MISSING");
+      return [setId, Number(sourceById.get(record.sourceRecordId)?.id), index];
+    }));
+    await tx`
+      INSERT INTO ${tx.unsafe(ITEMS)} (learning_set_id, vocabulary_id, sort_order)
+      SELECT * FROM unnest(${tx.array(itemPairs.map(([setId]) => setId))}::integer[], ${tx.array(itemPairs.map(([, vocabularyId]) => vocabularyId))}::integer[], ${tx.array(itemPairs.map(([, , sortOrder]) => sortOrder))}::integer[])
+      AS item(learning_set_id, vocabulary_id, sort_order)
+      ON CONFLICT (learning_set_id, vocabulary_id) DO UPDATE SET sort_order = EXCLUDED.sort_order
+    `;
+
+    const starterById = new Map(starterBefore.map((row) => [row.id, row]));
+    const starterTopicPairs = manifest.starterTopicMappings.flatMap((mapping) => {
+      assert(starterById.get(mapping.vocabularyId)?.word === mapping.expectedWord, `STARTER_TOPIC_WORD_MISMATCH_${mapping.vocabularyId}`);
+      return mapping.topicSlugs.map((slug) => [mapping.vocabularyId, topicIds.get(slug) as number]);
+    });
+    await tx`DELETE FROM ${tx.unsafe(MEMBERSHIPS)} WHERE vocabulary_id BETWEEN 1 AND 30`;
+    await tx`
+      INSERT INTO ${tx.unsafe(MEMBERSHIPS)} (vocabulary_id, topic_id)
+      SELECT * FROM unnest(${tx.array(starterTopicPairs.map(([vocabularyId]) => vocabularyId))}::integer[], ${tx.array(starterTopicPairs.map(([, topicId]) => topicId))}::integer[])
+      AS pair(vocabulary_id, topic_id)
+      ON CONFLICT DO NOTHING
+    `;
 
     const starterAfter = await tx<{ id: number; word: string; enabled: boolean; content_version: number }[]>`
       SELECT id, word, enabled, content_version FROM ${tx.unsafe(VOCABULARIES)} WHERE id BETWEEN 1 AND 30 ORDER BY id
@@ -384,7 +403,7 @@ export async function applyCurationManifest(sql: SqlClient, manifest: CurationMa
     assert(await count(tx, q(APP_SCHEMA, "learner_learning_sets")) === beforeAssignments, "LEARNER_ASSIGNMENTS_CHANGED");
     assert(await count(tx, q(APP_SCHEMA, "achievements")) === beforeAchievementDefinitions, "ACHIEVEMENT_DEFINITIONS_CHANGED");
     assert(await count(tx, q(APP_SCHEMA, "learner_achievements")) === beforeAchievements, "ACHIEVEMENTS_CHANGED");
-    return { selectedRecords: manifest.records.length, newlyActivatedRecords, alreadyActiveRecords, learningSets: manifest.learningSets.length, setMemberships, starterTopicMappings: manifest.starterTopicMappings.length };
+    return { selectedRecords: manifest.records.length, newlyActivatedRecords, alreadyActiveRecords, learningSets: manifest.learningSets.length, setMemberships: itemPairs.length, starterTopicMappings: manifest.starterTopicMappings.length };
   });
 }
 
