@@ -15,7 +15,10 @@ This log records meaningful project milestones and accepted baselines.
   New behavior.
 - Local dry run: media 210 PASS / 3 WARN / 0 BLOCK (`anger`, `sadness`, `joy`),
   30 starter mappings and `DB_MUTATIONS=0`. No real Neon apply was performed.
-- Current validation/CI closeout is tracked in `docs/ai-progress.md`.
+- Lint, typecheck, all 457 tests, build and 26 E2E tests pass locally. Core CI
+  run `35840195766` and Trusted DB Integration run `35840195673` both pass on
+  commit `760c0c04d7498a3b6e27b15ee47e4cee0c305aed`; Trusted DB used the
+  configured CI test target only.
 
 ## 2026-09-22 — US-41 content curation and activation
 

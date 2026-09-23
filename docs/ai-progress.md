@@ -16,14 +16,16 @@
   mappings; `DB_MUTATIONS=0`. Real Neon apply was not run.
 - Focused curation, importer and exercise-generator tests PASS (34 tests).
   Full local validation PASS: lint, typecheck, 457 unit/component tests, build,
-  and 26 E2E tests. Current-commit Core CI and Trusted DB Integration evidence
-  will be recorded after pushing/alignment with `main`.
+  and 26 E2E tests. Commit `760c0c04d7498a3b6e27b15ee47e4cee0c305aed` was
+  pushed to `TXH` and fast-forwarded to `main`; Core CI run `35840195766` and
+  Trusted DB Integration run `35840195673` both PASS on that exact SHA.
 - Owner review CSV and summary are regenerated under ignored
   `local-data/generated/`; manifest and story record `love`'s source meaning
   and romantic English definition without rewriting it, and note that
   `despair` → `fear` is a set-level replacement, not a synonym claim.
 - Preserve pre-existing `.env.example` and `docs/decisions.md` changes. Do not
   stage or commit either file; `docs/decisions.md` remains untouched.
+- `REAL_NEON_APPLY=NOT_RUN`; Trusted DB used only the configured CI test target.
 
 ## 2026-09-22 — US-41 content curation and activation
 

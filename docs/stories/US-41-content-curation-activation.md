@@ -110,8 +110,10 @@ was not broadened.
   execution pending).
 - [x] The previous 220-row baseline passed Core CI and Trusted DB Integration
   (`4d76cfa946ccae94ec3e5deb690f0365ba579363`; Core CI #87, Trusted DB #81).
-- [ ] The current 213-row refinement passes Core CI and Trusted DB Integration
-  on the same pushed commit.
+- [x] The current 213-row refinement passed both remote gates on the same
+  pushed commit [`760c0c04`](https://github.com/TXHoai2309/VocabFlow/commit/760c0c04d7498a3b6e27b15ee47e4cee0c305aed):
+  [Core CI run 35840195766](https://github.com/TXHoai2309/VocabFlow/actions/runs/35840195766)
+  and [Trusted DB Integration run 35840195673](https://github.com/TXHoai2309/VocabFlow/actions/runs/35840195673).
 - [ ] Owner manually reviews the manifest, dry-run report and resulting catalog.
 
 ## Evidence
@@ -123,6 +125,7 @@ was not broadened.
   `MISSING_IMAGE_SELECTED=anger,sadness,joy`, `STARTER_TOPIC_MAPPINGS=30`,
   `DB_MUTATIONS=0`, `STATUS=PASS`. Real Neon apply has not been run.
 - Current local evidence: focused 34 tests pass; full suite 46 files / 457
-  tests pass; lint, typecheck, build and 26 E2E pass. Current-commit remote CI
-  and Trusted DB results remain pending. The prior Core CI #87 and Trusted DB
-  #81 runs cover only the earlier 220-row baseline.
+  tests pass; lint, typecheck, build and 26 E2E pass. Core CI and Trusted DB
+  Integration both PASS on `760c0c04d7498a3b6e27b15ee47e4cee0c305aed` (runs
+  `35840195766` and `35840195673`). Trusted DB used the configured CI test
+  target; real Neon apply was not performed.
