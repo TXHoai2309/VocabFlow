@@ -4,7 +4,7 @@
   "selectionPolicy": {
     "reviewedRows": "Human-reviewed allow-list in scripts/vocabulary-curation.ts; source identity and expected word are emitted into this manifest.",
     "gradePolicy": "Grade is explicitly assigned by the named curation group; it is not inferred from id, length, alphabetic order, topic, or frequency.",
-    "mediaPolicy": "Activation requires one resolved uploaded image and one resolved uploaded audio asset.",
+    "mediaPolicy": "A missing image is WARN and may activate, but remains ineligible for IMAGE_TO_WORD; usable audio is required and known unusable/corrupt media blocks activation.",
     "activationPolicy": "Only manifest rows are enabled; existing starter rows, learner assignments, progress, reviews, XP, and achievements are preserved."
   },
   "learningSets": [
@@ -2169,24 +2169,11 @@
     },
     {
       "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
-      "sourceRecordId": 948,
-      "expectedWord": "adoration",
+      "sourceRecordId": 938,
+      "expectedWord": "love",
       "grade": "GRADE_2",
       "topicSlugs": [
-        "emotion"
-      ],
-      "learningSetSlugs": [
-        "grade-2-feelings"
-      ],
-      "activation": true
-    },
-    {
-      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
-      "sourceRecordId": 949,
-      "expectedWord": "affection",
-      "grade": "GRADE_2",
-      "topicSlugs": [
-        "emotion"
+        "action"
       ],
       "learningSetSlugs": [
         "grade-2-feelings"
@@ -2208,8 +2195,8 @@
     },
     {
       "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
-      "sourceRecordId": 951,
-      "expectedWord": "amazement",
+      "sourceRecordId": 1005,
+      "expectedWord": "surprise",
       "grade": "GRADE_2",
       "topicSlugs": [
         "emotion"
@@ -2221,8 +2208,8 @@
     },
     {
       "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
-      "sourceRecordId": 952,
-      "expectedWord": "amusement",
+      "sourceRecordId": 989,
+      "expectedWord": "liking",
       "grade": "GRADE_2",
       "topicSlugs": [
         "emotion"
@@ -2234,8 +2221,8 @@
     },
     {
       "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
-      "sourceRecordId": 954,
-      "expectedWord": "astonishment",
+      "sourceRecordId": 953,
+      "expectedWord": "anger",
       "grade": "GRADE_2",
       "topicSlugs": [
         "emotion"
@@ -2247,34 +2234,8 @@
     },
     {
       "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
-      "sourceRecordId": 955,
-      "expectedWord": "attraction",
-      "grade": "GRADE_2",
-      "topicSlugs": [
-        "emotion"
-      ],
-      "learningSetSlugs": [
-        "grade-2-feelings"
-      ],
-      "activation": true
-    },
-    {
-      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
-      "sourceRecordId": 956,
-      "expectedWord": "bitterness",
-      "grade": "GRADE_2",
-      "topicSlugs": [
-        "emotion"
-      ],
-      "learningSetSlugs": [
-        "grade-2-feelings"
-      ],
-      "activation": true
-    },
-    {
-      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
-      "sourceRecordId": 957,
-      "expectedWord": "bliss",
+      "sourceRecordId": 980,
+      "expectedWord": "happiness",
       "grade": "GRADE_2",
       "topicSlugs": [
         "emotion"
@@ -2299,32 +2260,6 @@
     },
     {
       "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
-      "sourceRecordId": 959,
-      "expectedWord": "cheerfulness",
-      "grade": "GRADE_2",
-      "topicSlugs": [
-        "emotion"
-      ],
-      "learningSetSlugs": [
-        "grade-2-feelings"
-      ],
-      "activation": true
-    },
-    {
-      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
-      "sourceRecordId": 960,
-      "expectedWord": "compassion",
-      "grade": "GRADE_2",
-      "topicSlugs": [
-        "emotion"
-      ],
-      "learningSetSlugs": [
-        "grade-2-feelings"
-      ],
-      "activation": true
-    },
-    {
-      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
       "sourceRecordId": 961,
       "expectedWord": "delight",
       "grade": "GRADE_2",
@@ -2338,8 +2273,8 @@
     },
     {
       "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
-      "sourceRecordId": 962,
-      "expectedWord": "depression",
+      "sourceRecordId": 998,
+      "expectedWord": "sadness",
       "grade": "GRADE_2",
       "topicSlugs": [
         "emotion"
@@ -2351,8 +2286,8 @@
     },
     {
       "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
-      "sourceRecordId": 963,
-      "expectedWord": "despair",
+      "sourceRecordId": 969,
+      "expectedWord": "fear",
       "grade": "GRADE_2",
       "topicSlugs": [
         "emotion"
@@ -2377,21 +2312,8 @@
     },
     {
       "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
-      "sourceRecordId": 965,
-      "expectedWord": "ecstasy",
-      "grade": "GRADE_2",
-      "topicSlugs": [
-        "emotion"
-      ],
-      "learningSetSlugs": [
-        "grade-2-feelings"
-      ],
-      "activation": true
-    },
-    {
-      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
-      "sourceRecordId": 966,
-      "expectedWord": "elation",
+      "sourceRecordId": 987,
+      "expectedWord": "joy",
       "grade": "GRADE_2",
       "topicSlugs": [
         "emotion"
@@ -2416,19 +2338,6 @@
     },
     {
       "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
-      "sourceRecordId": 968,
-      "expectedWord": "euphoria",
-      "grade": "GRADE_2",
-      "topicSlugs": [
-        "emotion"
-      ],
-      "learningSetSlugs": [
-        "grade-2-feelings"
-      ],
-      "activation": true
-    },
-    {
-      "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
       "sourceRecordId": 1336,
       "expectedWord": "accent",
       "grade": "GRADE_3",
@@ -2442,11 +2351,11 @@
     },
     {
       "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
-      "sourceRecordId": 1347,
-      "expectedWord": "acquire",
+      "sourceRecordId": 937,
+      "expectedWord": "learn",
       "grade": "GRADE_3",
       "topicSlugs": [
-        "communication"
+        "action"
       ],
       "learningSetSlugs": [
         "grade-3-language"
@@ -2520,11 +2429,11 @@
     },
     {
       "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
-      "sourceRecordId": 1346,
-      "expectedWord": "immersion",
+      "sourceRecordId": 570,
+      "expectedWord": "word",
       "grade": "GRADE_3",
       "topicSlugs": [
-        "communication"
+        "writing-numbers"
       ],
       "learningSetSlugs": [
         "grade-3-language"
@@ -2559,8 +2468,8 @@
     },
     {
       "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
-      "sourceRecordId": 566,
-      "expectedWord": "ampersand",
+      "sourceRecordId": 555,
+      "expectedWord": "question mark",
       "grade": "GRADE_3",
       "topicSlugs": [
         "writing-numbers"

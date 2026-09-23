@@ -1,5 +1,30 @@
 # Current Handoff Snapshot
 
+## 2026-09-23 — US-41 owner-refined final curation
+
+- Applied only the owner's explicit 11 source-record replacements and seven
+  no-replacement deferrals to the tracked allow-list. V1 now contains 213 rows:
+  Grade 1 = 100, Grade 2 = 73, Grade 3 = 40. Grade 2 Feelings has 13 rows;
+  nothing was added to pad it back to 20.
+- Narrowed image availability policy: a missing image is a visible WARN and
+  does not block activation. Usable audio, required word/meaning, source
+  identity and the existing known-unusable/corrupt media block remain intact.
+  `IMAGE_TO_WORD` still requires a usable image; exercise fallback, scheduling,
+  progress and rewards are unchanged.
+- Local real-dataset dry run PASS: 1,994 source rows; 213 curated; media 210
+  PASS / 3 WARN / 0 BLOCK (`anger`, `sadness`, `joy`); 30 starter-topic
+  mappings; `DB_MUTATIONS=0`. Real Neon apply was not run.
+- Focused curation, importer and exercise-generator tests PASS (34 tests).
+  Full local validation PASS: lint, typecheck, 457 unit/component tests, build,
+  and 26 E2E tests. Current-commit Core CI and Trusted DB Integration evidence
+  will be recorded after pushing/alignment with `main`.
+- Owner review CSV and summary are regenerated under ignored
+  `local-data/generated/`; manifest and story record `love`'s source meaning
+  and romantic English definition without rewriting it, and note that
+  `despair` → `fear` is a set-level replacement, not a synonym claim.
+- Preserve pre-existing `.env.example` and `docs/decisions.md` changes. Do not
+  stage or commit either file; `docs/decisions.md` remains untouched.
+
 ## 2026-09-22 — US-41 content curation and activation
 
 - Audited the 1,994 imported source records and generated media report:
@@ -51,7 +76,7 @@
 - US-33 + US-34: `IMPLEMENTED / READY FOR OWNER CHECK`.
 - US-22: `IMPLEMENTED / AUTOMATED PASS — MANUAL OWNER CHECK DEFERRED`.
 - Catalog state after real import: 30 starter rows + 1,994 imported rows =
-  2,024 total vocabulary rows. US-41 explicitly activates 220 reviewed
+  2,024 total vocabulary rows. The owner-refined US-41 manifest selects 213
   imported rows; the remaining imported rows stay disabled.
 - Imported catalog identity is `(source_dataset, source_record_id)` and is
   separate from canonical DB ID. Grade is NULL for unreviewed rows and explicit

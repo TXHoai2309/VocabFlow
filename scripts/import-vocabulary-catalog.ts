@@ -36,6 +36,9 @@ export type CatalogRecord = {
   audioUrl: string | null;
 };
 
+export type CatalogMediaAvailability = "READY" | "MISSING" | "UNUSABLE";
+export type CatalogMediaAvailabilityBySourceId = Record<number, { image: CatalogMediaAvailability; audio: CatalogMediaAvailability }>;
+
 export type CatalogInvalidRecord = {
   sourceRecordId: number | null;
   codes: string[];
@@ -51,6 +54,7 @@ export type CatalogValidation = {
   missingImageCount: number;
   missingAudioCount: number;
   unusableMediaCount: number;
+  mediaAvailabilityBySourceId: CatalogMediaAvailabilityBySourceId;
 };
 
 export type CatalogRow = {
@@ -220,13 +224,13 @@ function readMediaIndex(
 function resolveMedia(
   key: string | null,
   index: MediaIndex,
-): { url: string | null; missing: number; unusable: number } {
-  if (!key) return { url: null, missing: 1, unusable: 0 };
+): { url: string | null; missing: number; unusable: number; availability: CatalogMediaAvailability } {
+  if (!key) return { url: null, missing: 1, unusable: 0, availability: "MISSING" };
   const asset = index.assets.get(key);
   if (!asset || asset.status !== "UPLOADED" || !asset.secureUrl) {
-    return { url: null, missing: 0, unusable: 1 };
+    return { url: null, missing: 0, unusable: 1, availability: "UNUSABLE" };
   }
-  return { url: asset.secureUrl, missing: 0, unusable: 0 };
+  return { url: asset.secureUrl, missing: 0, unusable: 0, availability: "READY" };
 }
 
 type Candidate = {
@@ -294,12 +298,14 @@ export function validateCatalogRecords(
   let missingImageCount = 0;
   let missingAudioCount = 0;
   let unusableMediaCount = 0;
+  const mediaAvailabilityBySourceId: CatalogMediaAvailabilityBySourceId = {};
   for (const candidate of validCandidates) {
     const sourceRecordId = candidate.sourceRecordId;
     if (sourceRecordId === null) throw new CatalogImportError("SOURCE_RECORD_ID_INVALID");
     const mapping = mediaIndex.records.get(sourceRecordId);
     const image = resolveMedia(mapping?.imageKey ?? null, mediaIndex);
     const audio = resolveMedia(mapping?.audioKey ?? null, mediaIndex);
+    mediaAvailabilityBySourceId[sourceRecordId] = { image: image.availability, audio: audio.availability };
     missingImageCount += image.missing;
     missingAudioCount += audio.missing;
     unusableMediaCount += image.unusable + audio.unusable;
@@ -341,7 +347,8 @@ export function validateCatalogRecords(
     duplicateNormalizedWordRecords,
     missingImageCount,
     missingAudioCount,
-    unusableMediaCount
+    unusableMediaCount,
+    mediaAvailabilityBySourceId
   };
 }
 

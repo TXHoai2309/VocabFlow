@@ -167,6 +167,16 @@ describe("US-33 deterministic image-to-word exercises", () => {
       item(4, "water", "nước")
     ])).toBeNull();
   });
+
+  it.each([[953, "anger"], [998, "sadness"], [987, "joy"]] as const)(
+    "%s %s remains out of IMAGE_TO_WORD when its image is missing",
+    (id, word) => {
+      const target = item(id, word, "nghĩa tiếng Việt");
+      const pool = [target, item(2, "book", "quyển sách"), item(3, "house", "ngôi nhà"), item(4, "water", "nước")];
+      expect(createImageToWordExercise(target, pool)).toBeNull();
+      expect(createExercise(target, pool)?.exerciseType).not.toBe(EXERCISE_TYPE.IMAGE_TO_WORD);
+    }
+  );
 });
 
 describe("US-34 strict typing exercises", () => {

@@ -360,10 +360,12 @@ The owner-verified Hoài/Ngọc metric snapshots are recorded in US-20 and US-21
 
 - Status: `IMPLEMENTED / READY FOR OWNER CHECK`.
 - Contract: [`US-41 Content Curation & Activation`](stories/US-41-content-curation-activation.md).
-- A tracked `VOCABULARY_CURATION_V1` manifest explicitly selects 220 imported
-  rows (100 Grade 1, 80 Grade 2, 40 Grade 3), validates source identity,
-  canonical topics and both image/audio media gates, and assigns eleven ordered
-  learning sets.
+- The owner-refined `VOCABULARY_CURATION_V1` manifest selects 213 imported
+  rows (100 Grade 1, 73 Grade 2, 40 Grade 3), validates source identity,
+  canonical topics and required media/text, and assigns eleven ordered
+  learning sets. Missing images are WARN and may activate; usable audio remains
+  required and known unusable/corrupt media blocks. Activation does not imply
+  `IMAGE_TO_WORD` eligibility, which still requires a usable image.
 - The default `pnpm vocab:curate` command is local and read-only. The guarded
   `--apply` path is trusted-CI-only, transactional and idempotent. It enables
   only reviewed rows, preserves starter ids and learner state, adds no learner

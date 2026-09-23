@@ -4,7 +4,7 @@
 - Version: v1.0.11
 - Source baseline: `VocabFlow_Technical_Architecture_v1.0.4.docx`; this Markdown records the US-25 identity reconciliation, US-26/US-27 vocabulary taxonomy, US-28/US-29 learning-set assignment model, US-30 daily New allowance, US-31 through US-34 exercise interaction layer, US-35/US-36 activity read model, US-39/US-40 rewards and US-41 reviewed catalog activation.
 - Canonical format: Markdown
-- Last synchronized: 2026-09-22
+- Last synchronized: 2026-09-23
 
 **VOCABFLOW**
 
@@ -13,17 +13,19 @@
 ## US-41 content curation and activation
 
 `config/vocabulary-curation-v1.json` is the reviewed
-`VOCABULARY_CURATION_V1` source of truth for the first 220 imported rows. The
+`VOCABULARY_CURATION_V1` source of truth for the owner-refined 213 imported rows. The
 manifest stores `(source_dataset, source_record_id, expectedWord)`, explicit
 Grade 1–3 labels, canonical topic slugs, ordered learning-set membership and
 an activation decision for every row. The allow-list and deterministic
 selection policy are kept in `scripts/vocabulary-curation.ts`.
 
 The default `pnpm vocab:curate` path is local, read-only and validates the
-source/media gate without opening a database connection. Activation is a
-single trusted-CI transaction only: it verifies the existing source row and
-both resolved media URLs, enables and grades only manifest rows, upserts the
-eleven set definitions/items, and adds the 30 starter topic memberships. It
+source/media gate without opening a database connection. A missing image is a
+reported WARN and does not block activation; usable audio remains required,
+and known unusable/corrupt media blocks. Activation is a single trusted-CI
+transaction only: it verifies the existing source row and media preflight,
+enables and grades only manifest rows, upserts the eleven set definitions/items,
+and adds the 30 starter topic memberships. It
 never inserts `learner_learning_sets`, changes starter identity/content
 version, or mutates progress, review events, XP or achievement state. Repeating
 the transaction converges to the same state.
@@ -572,10 +574,16 @@ US-26/US-27 taxonomy rules:
 
 US-41 activation rules:
 
-- The 220-row manifest is the only authority allowed to enable imported rows;
+- The 213-row manifest is the only authority allowed to enable imported rows;
   source identity and expected word must match exactly.
-- A selected row must have one resolved uploaded image and one resolved
-  uploaded audio asset. Missing or unusable media aborts activation.
+- Usable audio is required. A missing image is WARN and may activate; a known
+  unusable/corrupt image or audio asset, missing audio, missing required text,
+  or invalid source identity aborts activation. Database URL nullability alone
+  cannot distinguish missing from unusable media, so the source media
+  preflight preserves that distinction before trusted activation preparation.
+- Catalog activation does not grant `IMAGE_TO_WORD` eligibility: that exercise
+  still independently requires a usable image and otherwise follows its
+  existing safe fallback. Missing images are not replaced with placeholders.
 - Eleven ordered sets are upserted, but no learner assignment is created. The
   existing parent assignment API remains the only assignment boundary.
 - The transaction snapshots starter rows, assignments, progress, review

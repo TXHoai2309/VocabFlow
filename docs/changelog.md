@@ -2,6 +2,21 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-23 — US-41 owner-refined final curation
+
+- Applied the owner's exact source identities for 11 replacements and removed
+  seven deferred terms with no replacements. The reviewed manifest now has 213
+  rows (100 Grade 1, 73 Grade 2, 40 Grade 3); Grade 2 Feelings has 13 rows and
+  was not padded back to 20.
+- Missing image references now report WARN and may activate. Usable audio,
+  required text and source identity remain mandatory; known unusable/corrupt
+  media still blocks. This does not grant `IMAGE_TO_WORD` eligibility or
+  change exercise fallback, study queue, progress, XP, achievements or daily
+  New behavior.
+- Local dry run: media 210 PASS / 3 WARN / 0 BLOCK (`anger`, `sadness`, `joy`),
+  30 starter mappings and `DB_MUTATIONS=0`. No real Neon apply was performed.
+- Current validation/CI closeout is tracked in `docs/ai-progress.md`.
+
 ## 2026-09-22 — US-41 content curation and activation
 
 - Audited the 1,994 imported vocabulary records and tracked the deterministic

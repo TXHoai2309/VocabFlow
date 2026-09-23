@@ -1,5 +1,6 @@
 import { assertPostConnectIdentity, openSql } from "./db-core";
 import { applyCurationManifest, readManifest } from "./vocabulary-curation";
+import type { CatalogMediaAvailabilityBySourceId } from "./import-vocabulary-catalog";
 import type { ConnectionTarget } from "@vocabflow/contracts";
 
 type SqlClient = ReturnType<typeof openSql>;
@@ -41,6 +42,12 @@ async function countRows(sql: SqlClient, table: string) {
 
 export async function runUs41TrustedDbSuite(input: CurationTrustedDbInput) {
   const manifest = readManifest();
+  const mediaAvailabilityBySourceId: CatalogMediaAvailabilityBySourceId = Object.fromEntries(
+    manifest.records.map((record) => [record.sourceRecordId, {
+      image: [953, 998, 987].includes(record.sourceRecordId) ? "MISSING" as const : "READY" as const,
+      audio: "READY" as const
+    }])
+  );
   const migration = openSql(input.migrationUrl);
   const runtime = openSql(input.runtimeUrl);
   try {
@@ -51,11 +58,12 @@ export async function runUs41TrustedDbSuite(input: CurationTrustedDbInput) {
     mark("seed-imported-fixture");
     await migration.begin(async (tx) => {
       for (const record of manifest.records) {
+        const imageUrl = [953, 998, 987].includes(record.sourceRecordId) ? null : "https://media.invalid/image";
         await tx`
           INSERT INTO ${tx.unsafe(VOCABULARY_TABLE)}
             (word, vietnamese, definition_en, image_url, audio_url, enabled, content_version, source_dataset, source_record_id)
           VALUES
-            (${record.expectedWord}, 'trusted fixture', 'Trusted US-41 fixture row', 'https://media.invalid/image', 'https://media.invalid/audio', false, 1, ${SOURCE_DATASET}, ${record.sourceRecordId})
+            (${record.expectedWord}, 'trusted fixture', 'Trusted US-41 fixture row', ${imageUrl}, 'https://media.invalid/audio', false, 1, ${SOURCE_DATASET}, ${record.sourceRecordId})
         `;
       }
     });
@@ -67,18 +75,19 @@ export async function runUs41TrustedDbSuite(input: CurationTrustedDbInput) {
     const beforeAssignments = await countRows(migration, ASSIGNMENTS_TABLE);
 
     mark("apply-first-run");
-    const first = await applyCurationManifest(runtime, manifest);
-    assert(first.selectedRecords === 220, "SELECTED_RECORD_COUNT_INVALID");
-    assert(first.newlyActivatedRecords === 220, "FIRST_RUN_ACTIVATION_COUNT_INVALID");
+    const first = await applyCurationManifest(runtime, manifest, mediaAvailabilityBySourceId);
+    assert(first.selectedRecords === 213, "SELECTED_RECORD_COUNT_INVALID");
+    assert(first.newlyActivatedRecords === 213, "FIRST_RUN_ACTIVATION_COUNT_INVALID");
     assert(first.alreadyActiveRecords === 0, "FIRST_RUN_ALREADY_ACTIVE_INVALID");
-    assert(first.learningSets === 11 && first.setMemberships === 220, "SET_ACTIVATION_COUNT_INVALID");
+    assert(first.learningSets === 11 && first.setMemberships === 213, "SET_ACTIVATION_COUNT_INVALID");
 
-    const activated = await runtime<{ enabled: boolean; level: string | null }[]>`
-      SELECT enabled, level::text FROM ${runtime.unsafe(VOCABULARY_TABLE)}
+    const activated = await runtime<{ enabled: boolean; level: string | null; source_record_id: number; image_url: string | null }[]>`
+      SELECT enabled, level::text, source_record_id, image_url FROM ${runtime.unsafe(VOCABULARY_TABLE)}
       WHERE source_dataset = ${SOURCE_DATASET}
       ORDER BY source_record_id
     `;
-    assert(activated.length === 220 && activated.every((row) => row.enabled === true && ["GRADE_1", "GRADE_2", "GRADE_3"].includes(row.level ?? "")), "ACTIVATED_ROWS_INVALID");
+    assert(activated.length === 213 && activated.every((row) => row.enabled === true && ["GRADE_1", "GRADE_2", "GRADE_3"].includes(row.level ?? "")), "ACTIVATED_ROWS_INVALID");
+    assert([953, 998, 987].every((id) => activated.find((row) => row.source_record_id === id)?.image_url === null), "MISSING_IMAGE_ROWS_NOT_ACTIVATED");
     const setRows = await runtime<{ slug: string; item_count: string }[]>`
       SELECT ls.slug, count(lsi.vocabulary_id)::text AS item_count
       FROM ${runtime.unsafe(SETS_TABLE)} ls
@@ -86,7 +95,7 @@ export async function runUs41TrustedDbSuite(input: CurationTrustedDbInput) {
       WHERE ls.slug = ANY(${runtime.array(manifest.learningSets.map((set) => set.slug))}::text[])
       GROUP BY ls.slug ORDER BY ls.slug
     `;
-    assert(setRows.length === 11 && setRows.every((row) => Number(row.item_count) === 20), "CURATED_SET_MEMBERSHIP_INVALID");
+    assert(setRows.length === 11 && setRows.every((row) => Number(row.item_count) === (row.slug === "grade-2-feelings" ? 13 : 20)), "CURATED_SET_MEMBERSHIP_INVALID");
     const starterMemberships = await runtime<{ count: string }[]>`
       SELECT count(*)::text AS count FROM ${runtime.unsafe(MEMBERSHIPS_TABLE)} WHERE vocabulary_id BETWEEN 1 AND 30
     `;
@@ -94,8 +103,8 @@ export async function runUs41TrustedDbSuite(input: CurationTrustedDbInput) {
     assert(await countRows(migration, ASSIGNMENTS_TABLE) === beforeAssignments, "LEARNER_ASSIGNMENTS_CHANGED");
 
     mark("apply-idempotent-rerun");
-    const second = await applyCurationManifest(runtime, manifest);
-    assert(second.newlyActivatedRecords === 0 && second.alreadyActiveRecords === 220, "RERUN_NOT_IDEMPOTENT");
+    const second = await applyCurationManifest(runtime, manifest, mediaAvailabilityBySourceId);
+    assert(second.newlyActivatedRecords === 0 && second.alreadyActiveRecords === 213, "RERUN_NOT_IDEMPOTENT");
     assert(await countRows(migration, PROGRESS_TABLE) === beforeProgress, "PROGRESS_CHANGED");
     assert(await countRows(migration, REVIEWS_TABLE) === beforeReviews, "REVIEWS_CHANGED");
     assert(await countRows(migration, XP_TABLE) === beforeXp, "XP_CHANGED");

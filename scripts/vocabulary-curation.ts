@@ -3,7 +3,12 @@ import { join, resolve } from "node:path";
 import { loadEnvFile } from "node:process";
 import { APP_SCHEMA } from "@vocabflow/contracts";
 import { DEFAULT_DATASET_ROOT } from "./vocab-media-manifest";
-import { loadCatalogValidation, SOURCE_DATASET_ID } from "./import-vocabulary-catalog";
+import {
+  loadCatalogValidation,
+  SOURCE_DATASET_ID,
+  type CatalogMediaAvailability,
+  type CatalogMediaAvailabilityBySourceId
+} from "./import-vocabulary-catalog";
 import { openSql, readContext } from "./db-core";
 import { assertResolvedTargetBeforeMutation, configuredDatabaseUrl } from "./runtime-validation";
 import { getConnectionTarget } from "../config/database-targets";
@@ -71,8 +76,8 @@ export const CURATION_GROUPS: readonly CurationCandidateGroup[] = [
   { slug: "grade-2-body", name: "Grade 2 Body", description: "Common body words for health and classroom language.", grade: "GRADE_2", sortOrder: 110, words: ["arm", "leg", "navel", "chest", "wrist", "thigh", "knee", "head", "neck", "hand", "thumb", "finger", "foot", "heel", "ankle", "shoulder", "elbow", "back", "hair", "nose"] },
   { slug: "grade-2-outdoors", name: "Grade 2 Outdoors", description: "Nature, places, and directions for everyday exploration.", grade: "GRADE_2", sortOrder: 120, words: ["acorn", "axe", "bamboo", "bark", "bay", "cabin", "cactus", "campfire", "canal", "canyon", "cave", "city", "cliff", "cloud", "compass", "dam", "desert", "directions", "dune", "east"] },
   { slug: "grade-2-clothing", name: "Grade 2 Clothing", description: "Clothing and accessories for practical descriptions.", grade: "GRADE_2", sortOrder: 130, words: ["belt", "boot", "bow tie", "coat", "collar", "earring", "gloves", "hat", "hoodie", "jeans", "necklace", "pocket", "purse", "ring", "scarf", "shoe", "shorts", "skirt", "sock", "sweater"] },
-  { slug: "grade-2-feelings", name: "Grade 2 Feelings", description: "Useful emotions for personal expression and stories.", grade: "GRADE_2", sortOrder: 140, words: ["adoration", "affection", "alarm", "amazement", "amusement", "astonishment", "attraction", "bitterness", "bliss", "caring", "cheerfulness", "compassion", "delight", "depression", "despair", "dislike", "ecstasy", "elation", "enjoyment", "euphoria"] },
-  { slug: "grade-3-language", name: "Grade 3 Language", description: "Communication and writing terms that support independent reading.", grade: "GRADE_3", sortOrder: 150, words: ["accent", "acquire", "approach", "bilingual", "blend", "cue", "dialect", "immersion", "phrase book", "slang", "ampersand", "apostrophe", "comma", "colon", "exclamation mark", "letter", "page", "paragraph", "period", "sentence"] },
+  { slug: "grade-2-feelings", name: "Grade 2 Feelings", description: "Useful emotions for personal expression and stories.", grade: "GRADE_2", sortOrder: 140, words: ["love", "alarm", "surprise", "liking", "anger", "happiness", "caring", "delight", "sadness", "fear", "dislike", "joy", "enjoyment"] },
+  { slug: "grade-3-language", name: "Grade 3 Language", description: "Communication and writing terms that support independent reading.", grade: "GRADE_3", sortOrder: 150, words: ["accent", "learn", "approach", "bilingual", "blend", "cue", "dialect", "word", "phrase book", "slang", "question mark", "apostrophe", "comma", "colon", "exclamation mark", "letter", "page", "paragraph", "period", "sentence"] },
   { slug: "grade-3-tools", name: "Grade 3 Tools & Media", description: "Everyday technology, science, and image-making vocabulary.", grade: "GRADE_3", sortOrder: 160, words: ["laptop", "mouse", "keyboard", "printer", "hard drive", "memory", "robot", "scientist", "microscope", "atom", "camera", "film", "flash", "photo album", "projector", "screen", "slide", "tripod", "video camera", "zoom lens"] }
 ] as const;
 
@@ -109,6 +114,20 @@ export const STARTER_TOPIC_MAPPINGS: readonly StarterTopicMapping[] = [
   { vocabularyId: 30, expectedWord: "new", topicSlugs: ["miscellaneous"] }
 ] as const;
 
+const OWNER_APPROVED_SOURCE_IDS: Readonly<Record<string, number>> = {
+  "question mark": 555,
+  learn: 937,
+  word: 570,
+  love: 938,
+  surprise: 1005,
+  liking: 989,
+  anger: 953,
+  happiness: 980,
+  sadness: 998,
+  fear: 969,
+  joy: 987
+};
+
 export class CurationError extends Error {
   readonly code: string;
   constructor(code: string) {
@@ -124,6 +143,34 @@ function normalizeWord(word: string) {
 
 function assert(condition: unknown, code: string): asserts condition {
   if (!condition) throw new CurationError(code);
+}
+
+export type CuratedMediaClassification = "PASS" | "WARN" | "BLOCK";
+
+export function classifyCuratedMedia(availability: { image: CatalogMediaAvailability; audio: CatalogMediaAvailability }) {
+  const blockingReasons: string[] = [];
+  if (availability.image === "UNUSABLE") blockingReasons.push("UNUSABLE_IMAGE");
+  if (availability.audio !== "READY") {
+    blockingReasons.push(availability.audio === "MISSING" ? "MISSING_AUDIO" : "UNUSABLE_AUDIO");
+  }
+  const classification: CuratedMediaClassification = blockingReasons.length > 0
+    ? "BLOCK"
+    : availability.image === "MISSING" ? "WARN" : "PASS";
+  return {
+    classification,
+    activationAllowed: classification !== "BLOCK",
+    imageExerciseEligible: availability.image === "READY",
+    blockingReasons
+  };
+}
+
+function assertManifestMediaAllowed(manifest: CurationManifest, mediaAvailabilityBySourceId: CatalogMediaAvailabilityBySourceId) {
+  for (const record of manifest.records) {
+    const availability = mediaAvailabilityBySourceId[record.sourceRecordId];
+    assert(availability, `CURATED_MEDIA_STATUS_MISSING_${record.sourceRecordId}`);
+    const media = classifyCuratedMedia(availability);
+    assert(media.activationAllowed, `CURATED_MEDIA_GATE_FAILED_${record.expectedWord}_${media.blockingReasons.join("_")}`);
+  }
 }
 
 export function validateManifest(input: unknown): CurationManifest {
@@ -190,7 +237,12 @@ export function buildManifestFromCatalog(validation = loadCatalogValidation()): 
     for (const word of group.words) {
       const source = byWord.get(normalizeWord(word))?.slice().sort((left, right) => left.sourceRecordId - right.sourceRecordId)[0];
       assert(source, `CURATED_WORD_NOT_FOUND_${word}`);
-      assert(source.imageUrl && source.audioUrl, `CURATED_MEDIA_GATE_FAILED_${word}`);
+      const approvedSourceId = OWNER_APPROVED_SOURCE_IDS[word];
+      if (approvedSourceId !== undefined) assert(source.sourceRecordId === approvedSourceId, `CURATED_OWNER_SOURCE_ID_MISMATCH_${word}`);
+      const availability = validation.mediaAvailabilityBySourceId[source.sourceRecordId];
+      assert(availability, `CURATED_MEDIA_STATUS_MISSING_${source.sourceRecordId}`);
+      const media = classifyCuratedMedia(availability);
+      assert(media.activationAllowed, `CURATED_MEDIA_GATE_FAILED_${word}_${media.blockingReasons.join("_")}`);
       const topic = source.topic;
       const topicSlug = topic ? rawTopicToSlug(topic) : null;
       assert(topicSlug, `CURATED_TOPIC_MISSING_${word}`);
@@ -211,7 +263,7 @@ export function buildManifestFromCatalog(validation = loadCatalogValidation()): 
     selectionPolicy: {
       reviewedRows: "Human-reviewed allow-list in scripts/vocabulary-curation.ts; source identity and expected word are emitted into this manifest.",
       gradePolicy: "Grade is explicitly assigned by the named curation group; it is not inferred from id, length, alphabetic order, topic, or frequency.",
-      mediaPolicy: "Activation requires one resolved uploaded image and one resolved uploaded audio asset.",
+      mediaPolicy: "A missing image is WARN and may activate, but remains ineligible for IMAGE_TO_WORD; usable audio is required and known unusable/corrupt media blocks activation.",
       activationPolicy: "Only manifest rows are enabled; existing starter rows, learner assignments, progress, reviews, XP, and achievements are preserved."
     },
     learningSets: CURATION_GROUPS.map(({ words: _words, ...definition }) => definition),
@@ -246,16 +298,37 @@ export function validateManifestAgainstCatalog(manifest: CurationManifest, valid
   const missing: string[] = [];
   const mediaFailures: string[] = [];
   const wordMismatches: string[] = [];
+  const missingImageWords: string[] = [];
+  let mediaPass = 0;
+  let mediaWarnings = 0;
   for (const record of manifest.records) {
     const source = byId.get(record.sourceRecordId);
     if (!source) { missing.push(String(record.sourceRecordId)); continue; }
     if (source.word !== record.expectedWord) wordMismatches.push(String(record.sourceRecordId));
-    if (!source.imageUrl || !source.audioUrl) mediaFailures.push(record.expectedWord);
+    const availability = validation.mediaAvailabilityBySourceId[record.sourceRecordId];
+    if (!availability) { mediaFailures.push(`${record.expectedWord}(MEDIA_STATUS_MISSING)`); continue; }
+    const media = classifyCuratedMedia(availability);
+    if (media.classification === "BLOCK") {
+      mediaFailures.push(`${record.expectedWord}(${media.blockingReasons.join(",")})`);
+    } else if (media.classification === "WARN") {
+      mediaWarnings += 1;
+      missingImageWords.push(record.expectedWord);
+    } else {
+      mediaPass += 1;
+    }
   }
   assert(missing.length === 0, `CURATED_SOURCE_RECORDS_MISSING_${missing.join(",")}`);
   assert(wordMismatches.length === 0, `CURATED_SOURCE_WORD_MISMATCH_${wordMismatches.join(",")}`);
   assert(mediaFailures.length === 0, `CURATED_MEDIA_GATE_FAILED_${mediaFailures.join(",")}`);
-  return { sourceRecords: validation.sourceRecords, selectedRecords: manifest.records.length, mediaChecked: manifest.records.length };
+  return {
+    sourceRecords: validation.sourceRecords,
+    selectedRecords: manifest.records.length,
+    mediaChecked: manifest.records.length,
+    mediaPass,
+    mediaWarnings,
+    mediaBlocked: mediaFailures.length,
+    missingImageWords
+  };
 }
 
 type SqlClient = ReturnType<typeof openSql>;
@@ -286,7 +359,12 @@ async function count(sqlInput: unknown, table: string) {
   return Number(row?.count ?? 0);
 }
 
-export async function applyCurationManifest(sql: SqlClient, manifest: CurationManifest): Promise<CurationApplyReport> {
+export async function applyCurationManifest(
+  sql: SqlClient,
+  manifest: CurationManifest,
+  mediaAvailabilityBySourceId: CatalogMediaAvailabilityBySourceId
+): Promise<CurationApplyReport> {
+  assertManifestMediaAllowed(manifest, mediaAvailabilityBySourceId);
   return sql.begin(async (tx) => {
     const beforeProgress = await count(tx, q(APP_SCHEMA, "learner_progress"));
     const beforeReviews = await count(tx, q(APP_SCHEMA, "review_events"));
@@ -339,7 +417,12 @@ export async function applyCurationManifest(sql: SqlClient, manifest: CurationMa
       const row = sourceById.get(record.sourceRecordId);
       assert(row, `CURATED_SOURCE_ROW_NOT_READY_${record.sourceRecordId}`);
       assert(row.word === record.expectedWord, `CURATED_SOURCE_WORD_MISMATCH_${record.sourceRecordId}`);
-      assert(row.image_url && row.audio_url, `CURATED_MEDIA_GATE_FAILED_${record.expectedWord}`);
+      const availability = mediaAvailabilityBySourceId[record.sourceRecordId];
+      // The source media preflight carries READY/MISSING/UNUSABLE separately;
+      // the database stores only nullable URLs and cannot distinguish missing
+      // references from unusable source media on its own.
+      assert((availability.image === "READY") === Boolean(row.image_url), `CURATED_IMAGE_STATUS_MISMATCH_${record.expectedWord}`);
+      assert(Boolean(row.audio_url), `CURATED_MEDIA_GATE_FAILED_${record.expectedWord}_AUDIO`);
       if (row.enabled) alreadyActiveRecords += 1;
       else newlyActivatedRecords += 1;
     }
@@ -412,7 +495,12 @@ function loadRepositoryEnv() {
   if (existsSync(path)) loadEnvFile(path);
 }
 
-function printDryRun(manifest: CurationManifest, datasetStatus: string, mediaStatus: string) {
+function printDryRun(
+  manifest: CurationManifest,
+  datasetStatus: string,
+  mediaStatus: string,
+  mediaReport?: ReturnType<typeof validateManifestAgainstCatalog>
+) {
   const grades = new Map<Grade, number>();
   for (const record of manifest.records) grades.set(record.grade, (grades.get(record.grade) ?? 0) + 1);
   console.log(`CURATION_VERSION=${CURATION_VERSION}`);
@@ -425,6 +513,10 @@ function printDryRun(manifest: CurationManifest, datasetStatus: string, mediaSta
   console.log(`STARTER_TOPIC_MAPPINGS=${manifest.starterTopicMappings.length}`);
   console.log(`DATASET_STATUS=${datasetStatus}`);
   console.log(`MEDIA_GATE=${mediaStatus}`);
+  console.log(`MEDIA_PASS=${mediaReport?.mediaPass ?? 0}`);
+  console.log(`MEDIA_WARN=${mediaReport?.mediaWarnings ?? 0}`);
+  console.log(`MEDIA_BLOCK=${mediaReport?.mediaBlocked ?? 0}`);
+  console.log(`MISSING_IMAGE_SELECTED=${mediaReport?.missingImageWords.join(",") || "(none)"}`);
   console.log("DRY_RUN=YES");
   console.log("LEARNER_ASSIGNMENTS_CHANGED=0");
   console.log("PROGRESS_REVIEW_XP_ACHIEVEMENT_MUTATIONS=0");
@@ -447,15 +539,18 @@ async function main() {
   if (!apply) {
     let datasetStatus = "SKIPPED_NO_LOCAL_DATASET";
     let mediaStatus = "SKIPPED_NO_LOCAL_DATASET";
+    let mediaReport: ReturnType<typeof validateManifestAgainstCatalog> | undefined;
     const datasetPath = join(resolve(DEFAULT_DATASET_ROOT), "vocabulary.json");
     if (existsSync(datasetPath)) {
-      const result = validateManifestAgainstCatalog(manifest);
-      datasetStatus = `PASS records=${result.sourceRecords}`;
-      mediaStatus = `PASS checked=${result.mediaChecked}`;
+      mediaReport = validateManifestAgainstCatalog(manifest);
+      datasetStatus = `PASS records=${mediaReport.sourceRecords}`;
+      mediaStatus = `PASS checked=${mediaReport.mediaChecked} pass=${mediaReport.mediaPass} warn=${mediaReport.mediaWarnings} block=${mediaReport.mediaBlocked}`;
     }
-    printDryRun(manifest, datasetStatus, mediaStatus);
+    printDryRun(manifest, datasetStatus, mediaStatus, mediaReport);
     return;
   }
+  const catalogValidation = loadCatalogValidation();
+  validateManifestAgainstCatalog(manifest, catalogValidation);
   loadRepositoryEnv();
   const { context, environment } = readContext();
   if (context !== "ci-test" || environment !== "test") throw new CurationError("APPLY_REQUIRES_TRUSTED_CI_TEST_CONTEXT");
@@ -465,7 +560,7 @@ async function main() {
   if (!url) throw new CurationError("RUNTIME_DATABASE_URL_REQUIRED");
   const sql = openSql(url);
   try {
-    const report = await applyCurationManifest(sql, manifest);
+    const report = await applyCurationManifest(sql, manifest, catalogValidation.mediaAvailabilityBySourceId);
     for (const [key, value] of Object.entries(report)) console.log(`${key.toUpperCase()}=${value}`);
     console.log("APPLY_MODE=APPLY");
     console.log("STATUS=PASS");

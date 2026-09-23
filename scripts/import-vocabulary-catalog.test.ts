@@ -18,7 +18,8 @@ function mediaIndex() {
     records: new Map([
       [1, { vocabularyId: 1, word: "Apple", imageKey: "image-1", audioKey: "audio-1" }],
       [2, { vocabularyId: 2, word: "apple", imageKey: null, audioKey: null }],
-      [3, { vocabularyId: 3, word: "book", imageKey: "missing-image", audioKey: "missing-audio" }]
+      [3, { vocabularyId: 3, word: "book", imageKey: "missing-image", audioKey: "missing-audio" }],
+      [4, { vocabularyId: 4, word: "chair", imageKey: null, audioKey: "audio-1" }]
     ]),
     assets: new Map([
       ["image-1", { mediaKey: "image-1", status: "UPLOADED", secureUrl: "https://media.test/image-1" }],
@@ -182,6 +183,17 @@ describe("US-25 catalog validation", () => {
     expect(result.missingImageCount).toBe(1);
     expect(result.missingAudioCount).toBe(1);
     expect(result.unusableMediaCount).toBe(2);
+    expect(result.mediaAvailabilityBySourceId).toEqual({
+      2: { image: "MISSING", audio: "MISSING" },
+      3: { image: "UNUSABLE", audio: "UNUSABLE" }
+    });
+  });
+
+  it("keeps missing and unusable media distinguishable per source row", () => {
+    const result = validateCatalogRecords([sourceRecord(4, "chair", "ghế")], mediaIndex());
+
+    expect(result.validRecords[0]).toMatchObject({ imageUrl: null, audioUrl: "https://media.test/audio-1" });
+    expect(result.mediaAvailabilityBySourceId[4]).toEqual({ image: "MISSING", audio: "READY" });
   });
 });
 

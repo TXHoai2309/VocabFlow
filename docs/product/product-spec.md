@@ -187,8 +187,9 @@ an explicit `/study/exercises` route for four deterministic interaction types:
   and three deterministic safe distractors. The target is not repeated in the
   prompt or answer-bearing Flashcard back content before submission.
 - `IMAGE_TO_WORD`: a usable image with one correct English word and three
-  deterministic safe distractors. Missing images are ineligible and the image
-  alt text is neutral before submission.
+  deterministic safe distractors. Vocabulary without a usable image is
+  ineligible for this exercise type, even when its separate catalog activation
+  was allowed; the image alt text is neutral before submission.
 - `TYPE_WORD`: a Vietnamese-first safe cue followed by image, audio or a
   non-answer-revealing definition/example. The learner must type the exact
   spelling after NFKC, outer-trim and case normalization; meaningful internal
@@ -286,8 +287,11 @@ the read-only vocabulary catalog by level and browse enabled vocabulary by
 topic. Unreviewed source classification remains NULL/unmapped and imported
 rows remain disabled. US-41 is the explicit, tracked exception: a reviewed
 `VOCABULARY_CURATION_V1` manifest may assign a grade and enable only its
-reviewed rows after source-identity and image/audio media gates pass. This
-extension does not change study queue, scheduler or learner-progress semantics.
+reviewed rows after source identity and required content checks pass. A missing
+image is a visible warning and does not prevent activation, but it never makes
+the row eligible for `IMAGE_TO_WORD`; usable audio remains required, and known
+unusable/corrupt media continues to block. This extension does not change study
+queue, scheduler or learner-progress semantics.
 
 ### 15.2 Learning sets and learner assignment (US-28 / US-29)
 
@@ -308,12 +312,15 @@ not automatically classified or enabled.
 ### 15.3 Content curation and activation (US-41)
 
 The imported 1,994-row catalog is curated through a tracked deterministic
-manifest. The first approved slice contains 220 rows with explicit Grade 1–3
-labels, canonical topic memberships, eleven ordered learning sets and both
-image/audio media references. The command defaults to a read-only dry run;
-activation is transactional, idempotent and trusted-CI-only. It does not
-auto-assign learners or mutate progress, review history, XP, achievements or
-the daily New limit. Existing starter ids and enabled state remain compatible.
+manifest. The owner-refined V1 slice contains 213 rows with explicit Grade 1–3
+labels, canonical topic memberships and eleven ordered learning sets. Usable
+audio remains required. Missing images are reported as WARN and may activate;
+known unusable/corrupt media still blocks. `IMAGE_TO_WORD` independently
+requires a usable image, and no placeholder is fabricated. The read-only dry
+run is the default; activation remains transactional, idempotent and
+trusted-CI-only. It does not auto-assign learners or mutate progress, review
+history, XP, achievements or the daily New limit. Existing starter ids and
+enabled state remain compatible.
 
 ### 15.4 Daily new word limit (US-30)
 
@@ -417,7 +424,7 @@ Vertical slice đầu tiên
 
 - Không cần dashboard hoàn chỉnh, multi-parent, AI, gamification hoặc offline sync để pass vertical slice.
 
-- Sau khi vertical slice PASS, US-41 activates the first 220 reviewed rows and
+- Sau khi vertical slice PASS, US-41 activates the owner-refined 213 reviewed rows and
   opens the curated-set catalog for parent assignment; unreviewed imports stay
   disabled while UI polish continues.
 

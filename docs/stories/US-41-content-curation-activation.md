@@ -24,15 +24,21 @@ The manifest records every activation candidate with:
 - one or more named `learningSetSlugs`; and
 - `activation: true`.
 
-The current manifest contains 220 rows (100 Grade 1, 80 Grade 2, 40 Grade 3)
-in 11 meaningful sets. Grade is a human-reviewed group assignment; it is not
-derived from source id, spelling length, alphabetic order, topic or frequency.
+The owner-refined manifest contains 213 rows (100 Grade 1, 73 Grade 2, 40 Grade
+3) in 11 meaningful sets. Grade is a human-reviewed group assignment; it is
+not derived from source id, spelling length, alphabetic order, topic or
+frequency. Grade 2 Feelings contains 13 rows after seven advanced words were
+deferred without replacement; the list is intentionally not padded back to 20.
 
 ## Quality and activation policy
 
-1. The source identity pair is immutable and must resolve to the expected word.
-2. The selected row must have one resolved uploaded image and one resolved
-   uploaded audio asset. A missing or unusable asset blocks activation.
+1. The source identity pair is immutable and must resolve to the expected word;
+   required English word and Vietnamese meaning must be present.
+2. Usable audio remains required. A missing image is classified `WARN`, is
+   visible in reports, and may activate when other requirements pass. A known
+   unusable/corrupt image or audio asset and missing/unusable audio still block.
+   Activation never grants `IMAGE_TO_WORD` eligibility; that exercise continues
+   to require a usable image and follows its existing safe fallback.
 3. Only manifest rows are enabled and assigned a level. Other imported rows
    remain disabled and unclassified.
 4. The tool upserts set definitions and ordered memberships but never creates or
@@ -53,8 +59,34 @@ pnpm vocab:curate --generate-manifest  # regenerate from the local audited datas
 ```
 
 The default command is a dry run and reports exact record, grade, set, starter
-mapping and media-gate counts. `--apply` rejects local-development context and
-requires the existing `ci-test`/`test` target verification before connecting.
+mapping and media PASS/WARN/BLOCK counts, including missing-image words.
+`--apply` rejects local-development context and requires the existing
+`ci-test`/`test` target verification before connecting.
+
+## Owner-refined selection
+
+The approved replacements are `ampersand` (566) → `question mark` (555),
+`acquire` (1347) → `learn` (937), `immersion` (1346) → `word` (570),
+`adoration` (948) → `love` (938), `amazement` (951) → `surprise` (1005),
+`attraction` (955) → `liking` (989), `bitterness` (956) → `anger` (953),
+`bliss` (957) → `happiness` (980), `depression` (962) → `sadness` (998),
+`despair` (963) → `fear` (969), and `ecstasy` (965) → `joy` (987). The first
+three remain Grade 3 / `grade-3-language`; the remaining eight are Grade 2 /
+`grade-2-feelings`, with source-backed canonical topics unchanged.
+
+`despair` → `fear` is a set-level substitution, not a synonym claim. `love`
+keeps its source Vietnamese meaning (“Tình yêu, lòng yêu mến”) and source
+English definition, which includes romantic attachment; it is retained because
+the word itself is substantially more familiar and child-facing than
+`adoration`. Seven words were removed with no replacement: `affection` (949),
+`amusement` (952), `astonishment` (954), `cheerfulness` (959), `compassion`
+(960), `elation` (966), and `euphoria` (968). These remain in the imported
+catalog but outside curated V1.
+
+The selected rows `anger`, `sadness`, and `joy` have no image source reference
+but do have usable audio and required text; they are `WARN`, not `BLOCK`, and
+remain ineligible for `IMAGE_TO_WORD`. No image is fabricated. The audio policy
+was not broadened.
 
 ## Acceptance criteria
 
@@ -62,8 +94,9 @@ requires the existing `ci-test`/`test` target verification before connecting.
   imported source records.
 - [x] Every selected record has a source identity, expected word, grade, topic,
   learning-set membership and activation decision.
-- [x] The reviewed media gate passes for all 220 local records (220 images and
-  220 audio references resolved).
+- [x] The refined media gate passes for all 213 local records: 210 images and
+  all 213 audio references resolve; the three missing images are explicit
+  warnings and no selected media is unusable.
 - [x] Eleven sets are defined with stable order and no automatic learner
   assignments.
 - [x] Starter topic mappings cover all 30 starter ids without changing starter
@@ -71,18 +104,25 @@ requires the existing `ci-test`/`test` target verification before connecting.
 - [x] Apply is transactional, CI-target guarded and idempotent; no progress,
   review, XP or achievement mutation is permitted.
 - [x] Daily New limit and reward/review semantics remain unchanged.
-- [x] Core CI and Trusted DB Integration pass on the same pushed commit
-  (`4d76cfa946ccae94ec3e5deb690f0365ba579363`; Core CI #87,
-  Trusted DB Integration #81).
+- [x] Focused curation/media-policy tests, full lint/typecheck/test/build/E2E
+  pass locally; the trusted-DB fixture now asserts activation of missing-image
+  rows without changing learner assignments or learning history (remote
+  execution pending).
+- [x] The previous 220-row baseline passed Core CI and Trusted DB Integration
+  (`4d76cfa946ccae94ec3e5deb690f0365ba579363`; Core CI #87, Trusted DB #81).
+- [ ] The current 213-row refinement passes Core CI and Trusted DB Integration
+  on the same pushed commit.
 - [ ] Owner manually reviews the manifest, dry-run report and resulting catalog.
 
 ## Evidence
 
-- Local dry run: `MANIFEST_RECORDS=220`, `GRADE_1_RECORDS=100`,
-  `GRADE_2_RECORDS=80`, `GRADE_3_RECORDS=40`, `LEARNING_SET_COUNT=11`,
-  `STARTER_TOPIC_MAPPINGS=30`, `MEDIA_GATE=PASS checked=220`,
-  `DB_MUTATIONS=0`, `STATUS=PASS`.
-- Focused manifest tests and repository typecheck/lint pass locally. Remote
-  evidence: Core CI #87 and Trusted DB Integration #81 both passed on
-  `4d76cfa946ccae94ec3e5deb690f0365ba579363`. Owner review remains the only
-  open acceptance item.
+- Historical dry run: `MANIFEST_RECORDS=220`, `GRADE_1_RECORDS=100`,
+  `GRADE_2_RECORDS=80`, `GRADE_3_RECORDS=40`, `MEDIA_GATE=PASS checked=220`.
+- Refined local dry run: `MANIFEST_RECORDS=213`, grades 100/73/40,
+  `MEDIA_GATE=PASS checked=213 pass=210 warn=3 block=0`,
+  `MISSING_IMAGE_SELECTED=anger,sadness,joy`, `STARTER_TOPIC_MAPPINGS=30`,
+  `DB_MUTATIONS=0`, `STATUS=PASS`. Real Neon apply has not been run.
+- Current local evidence: focused 34 tests pass; full suite 46 files / 457
+  tests pass; lint, typecheck, build and 26 E2E pass. Current-commit remote CI
+  and Trusted DB results remain pending. The prior Core CI #87 and Trusted DB
+  #81 runs cover only the earlier 220-row baseline.

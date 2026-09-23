@@ -130,8 +130,10 @@ feature code may start.
   learning-set, daily-limit, exercise, activity and reward evidence recorded
   in the story index.
 - US-41 Content Curation & Activation is `IMPLEMENTED / READY FOR OWNER CHECK`.
-  The tracked `VOCABULARY_CURATION_V1` manifest contains 220 reviewed rows,
-  eleven sets and 30 starter topic mappings. The default curation command is
-  dry-run-only; activation is guarded to trusted CI and does not auto-assign
-  learners or mutate learning history.
+  The tracked `VOCABULARY_CURATION_V1` manifest contains 213 owner-refined
+  reviewed rows, eleven sets and 30 starter topic mappings. Missing images are
+  warnings (not `IMAGE_TO_WORD` eligible); usable audio remains required and
+  unusable media still blocks. The default curation command is dry-run-only;
+  activation is guarded to trusted CI and does not auto-assign learners or
+  mutate learning history.
 - Documentation/agent-pack work does not implement US-01 or any other feature.
