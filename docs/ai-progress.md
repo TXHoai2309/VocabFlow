@@ -27,7 +27,8 @@
   apply with PostgreSQL `XX000: cache lookup failed for type 590564`. The
   trusted test reset drops/recreates application enums; `scripts/db-core.ts`
   now disables prepared statements to prevent stale enum OIDs, with a focused
-  regression test. Verification of this fix on the final remote SHA is pending.
+  regression test. Core CI `35843693211` and Trusted DB `35843693265` both PASS
+  on fix commit `2ef6166dcc9c3475773f2385626001f2d897cc43`.
 - Preserve pre-existing `.env.example` and `docs/decisions.md` changes. Do not
   stage or commit either file; `docs/decisions.md` remains untouched.
 - `REAL_NEON_APPLY=NOT_RUN`; Trusted DB used only the configured CI test target.

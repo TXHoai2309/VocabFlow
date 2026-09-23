@@ -23,8 +23,9 @@ This log records meaningful project milestones and accepted baselines.
   `35841107601` and `35842150875` at curated apply with `XX000: cache lookup
   failed for type 590564`. The shared test reset drops/recreates enum types;
   DB script connections now use `prepare: false` to avoid stale prepared-query
-  type OIDs. Focused regression passes locally; final remote verification is
-  pending. No real Neon apply was run.
+  type OIDs. The focused regression passes; Core CI `35843693211` and Trusted
+  DB `35843693265` both PASS on fix commit
+  `2ef6166dcc9c3475773f2385626001f2d897cc43`. No real Neon apply was run.
 
 ## 2026-09-22 — US-41 content curation and activation
 

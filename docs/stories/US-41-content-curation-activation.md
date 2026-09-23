@@ -113,12 +113,13 @@ was not broadened.
   pushed commit [`760c0c04`](https://github.com/TXHoai2309/VocabFlow/commit/760c0c04d7498a3b6e27b15ee47e4cee0c305aed):
   [Core CI run 35840195766](https://github.com/TXHoai2309/VocabFlow/actions/runs/35840195766)
   and [Trusted DB Integration run 35840195673](https://github.com/TXHoai2309/VocabFlow/actions/runs/35840195673).
-- [ ] Follow-up verification found `XX000: cache lookup failed for type
+- [x] Follow-up verification found `XX000: cache lookup failed for type
   590564` in US-41 apply on documentation-only commit `6d2675f2` (Trusted DB
   runs `35841107601` and `35842150875`). The trusted harness drops/recreates
   application enums during reset; script SQL connections now disable prepared
   statements to avoid retaining stale enum type OIDs. A regression test covers
-  that connection option; final remote verification of the fix is pending.
+  that connection option. The fix passed Core CI run `35843693211` and Trusted
+  DB Integration run `35843693265` on `2ef6166dcc9c3475773f2385626001f2d897cc43`.
 - [ ] Owner manually reviews the manifest, dry-run report and resulting catalog.
 
 ## Evidence
@@ -137,5 +138,6 @@ was not broadened.
 - Trusted DB follow-up on documentation-only commit `6d2675f2` failed twice at
   the first curated apply with PostgreSQL `XX000` (runs `35841107601` and
   `35842150875`). Since the trusted reset drops/recreates enum types, script
-  connections now set `prepare: false`; focused regression and final remote
-  verification are pending. No real/production Neon apply was run.
+  connections now set `prepare: false`; the focused regression passes, as do
+  Core CI `35843693211` and Trusted DB `35843693265` on fix commit `2ef6166`.
+  No real/production Neon apply was run.
