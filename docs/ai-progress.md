@@ -23,6 +23,11 @@
   `local-data/generated/`; manifest and story record `love`'s source meaning
   and romantic English definition without rewriting it, and note that
   `despair` → `fear` is a set-level replacement, not a synonym claim.
+- Follow-up Trusted DB runs `35841107601` and `35842150875` failed at US-41
+  apply with PostgreSQL `XX000: cache lookup failed for type 590564`. The
+  trusted test reset drops/recreates application enums; `scripts/db-core.ts`
+  now disables prepared statements to prevent stale enum OIDs, with a focused
+  regression test. Verification of this fix on the final remote SHA is pending.
 - Preserve pre-existing `.env.example` and `docs/decisions.md` changes. Do not
   stage or commit either file; `docs/decisions.md` remains untouched.
 - `REAL_NEON_APPLY=NOT_RUN`; Trusted DB used only the configured CI test target.

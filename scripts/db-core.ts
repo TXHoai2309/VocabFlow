@@ -22,7 +22,15 @@ export function resolvePurpose(value: string | undefined): DatabasePurpose {
 }
 
 export function openSql(url: string) {
-  return postgres(url, { max: 1, idle_timeout: 10, connect_timeout: 10, onnotice: () => undefined });
+  return postgres(url, {
+    max: 1,
+    idle_timeout: 10,
+    connect_timeout: 10,
+    // Trusted DB tooling drops and recreates enum types during schema reset.
+    // Avoid retaining prepared statements that may still reference their old OIDs.
+    prepare: false,
+    onnotice: () => undefined
+  });
 }
 
 export function applicationDb(url: string) {

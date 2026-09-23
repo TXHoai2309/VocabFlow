@@ -19,6 +19,12 @@ This log records meaningful project milestones and accepted baselines.
   run `35840195766` and Trusted DB Integration run `35840195673` both pass on
   commit `760c0c04d7498a3b6e27b15ee47e4cee0c305aed`; Trusted DB used the
   configured CI test target only.
+- The documentation-only follow-up SHA `6d2675f2` failed Trusted DB runs
+  `35841107601` and `35842150875` at curated apply with `XX000: cache lookup
+  failed for type 590564`. The shared test reset drops/recreates enum types;
+  DB script connections now use `prepare: false` to avoid stale prepared-query
+  type OIDs. Focused regression passes locally; final remote verification is
+  pending. No real Neon apply was run.
 
 ## 2026-09-22 — US-41 content curation and activation
 
