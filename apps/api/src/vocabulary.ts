@@ -96,9 +96,10 @@ export function createVocabularyService(database: VocabularyDatabase): Vocabular
 
       try {
         const result = await database.execute(sql`
-          SELECT id, word, ipa, vietnamese, definition_en, example_en,
-                 image_url, audio_url, topic, enabled, content_version
-                 , level
+          SELECT id, word, ipa, COALESCE(vietnamese_override, vietnamese) AS vietnamese,
+                 definition_en, example_en,
+                 CASE WHEN image_quarantined THEN NULL ELSE image_url END AS image_url,
+                 audio_url, topic, enabled, content_version, level
           FROM "${sql.raw(APP_SCHEMA)}"."vocabularies"
           WHERE enabled = true
             ${level ? sql`AND level = ${level}` : sql``}

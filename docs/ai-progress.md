@@ -1,5 +1,31 @@
 # Current Handoff Snapshot
 
+## 2026-09-24 — US-41 final content remediation
+
+- Kept all 213 curated imported rows. Added eight source-bound image
+  quarantines and five exact owner-approved Vietnamese meaning overrides to
+  the tracked curation manifest; no raw source dataset values or unrelated
+  meanings were changed, and no LLM/API classification or translation was used.
+- Added durable `image_quarantined` and `vietnamese_override` columns. Runtime
+  vocabulary, topic, set, queue and review-answer reads use canonical meanings
+  and hide quarantined images. Catalog re-import refreshes raw source columns
+  without clearing owner metadata. Migration: `0012_us41_owner_content_overrides`.
+- Final local dataset dry run PASS: 213 selected (100/73/40 by grade), 202
+  media PASS, 3 missing-image WARN, 8 quarantined-image WARN, 0 BLOCK and 11
+  effective image-ineligible rows. Duplicate identities/words, expected-word
+  mismatches and missing meanings are all 0. `DATABASE_MUTATIONS=0` and
+  `REAL_NEON_APPLY=NOT_RUN`.
+- Regenerated ignored owner-review CSVs, summary and original-image contact
+  sheet. The review has 15 findings, zero activation blockers, eight
+  `SAFE_WITH_LIMITATION` quarantines with `IMAGE_TO_WORD=NO`, and six corrected
+  meanings assessed OK; cousin and love remain unchanged.
+- Local validation PASS: 17 focused files / 175 tests; full suite 47 files /
+  476 tests; lint, typecheck, build, 26 E2E and `git diff --check`. Core CI and
+  Trusted DB Integration are pending push to `main`; only the configured CI
+  test database may be used. Do not run real `vocab:curate --apply`.
+- Preserve pre-existing `.env.example` and `docs/decisions.md` changes; neither
+  belongs in the remediation commit.
+
 ## 2026-09-23 — US-41 owner-refined final curation
 
 - Applied only the owner's explicit 11 source-record replacements and seven

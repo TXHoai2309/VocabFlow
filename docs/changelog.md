@@ -2,6 +2,23 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-24 — US-41 final content remediation
+
+- Kept the full 213-row curated corpus and added eight explicit source-bound
+  image quarantines plus five exact Vietnamese meaning overrides. Source
+  images remain preserved for audit but are masked in learner-facing content;
+  quarantined rows stay enabled candidates and cannot enter `IMAGE_TO_WORD`.
+- Added durable schema-backed overrides with raw-import precedence, updated
+  vocabulary/topic/set/queue/review reads, and extended curation dry-run
+  reporting. No local source dataset or unrelated translation was changed; no
+  LLM/API content rewriting was used.
+- Final local dry run: 202 media PASS, 3 missing-image WARN, 8
+  quarantined-image WARN, 0 BLOCK, 11 image-ineligible; 5 meaning overrides;
+  all duplicate, mismatch and missing-meaning counts are zero.
+- Local full validation: 476 tests, lint, typecheck, build and 26 E2E tests
+  pass. Core CI and Trusted DB Integration are pending push to `main`; real
+  Neon apply was not performed.
+
 ## 2026-09-23 — US-41 owner-refined final curation
 
 - Applied the owner's exact source identities for 11 replacements and removed

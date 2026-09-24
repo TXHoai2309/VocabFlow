@@ -1,6 +1,6 @@
 # US-41 — Content Curation & Activation
 
-- Status: `IMPLEMENTED / READY FOR OWNER CHECK`.
+- Status: `IN PROGRESS — awaiting remote CI; real Neon apply not run`.
 - Dependency: US-25 catalog identity/import, US-26/US-27 taxonomy, US-28/US-30 learning-set and daily-New contracts, and US-39/US-40 reward invariants.
 - Scope: review and activate a bounded slice of the imported `2000_COMMON_ENGLISH_VOCABULARY_V1` catalog.
 - Out of scope: US-42, AI-generated content, learner-owned sets, automatic learner assignment, XP/review/progress backfill, daily-limit changes, schema redesign and production/live-Neon execution from a developer workstation.
@@ -18,11 +18,14 @@ and is versioned `VOCABULARY_CURATION_V1`. The reviewed allow-list and its
 selection rationale are kept in [`scripts/vocabulary-curation.ts`](../../scripts/vocabulary-curation.ts).
 The manifest records every activation candidate with:
 
-- `sourceDataset`, `sourceRecordId` and `expectedWord`;
+- `sourceDataset`, `sourceRecordId` and `expectedWord` as the exact owner-
+  override identity;
 - an explicit `GRADE_1`, `GRADE_2` or `GRADE_3` assignment;
 - one or more canonical `topicSlugs`;
 - one or more named `learningSetSlugs`; and
 - `activation: true`.
+- optional source-bound `imagePolicy: "QUARANTINED"` and
+  `vietnameseOverride` decisions.
 
 The owner-refined manifest contains 213 rows (100 Grade 1, 73 Grade 2, 40 Grade
 3) in 11 meaningful sets. Grade is a human-reviewed group assignment; it is
@@ -34,20 +37,24 @@ deferred without replacement; the list is intentionally not padded back to 20.
 
 1. The source identity pair is immutable and must resolve to the expected word;
    required English word and Vietnamese meaning must be present.
-2. Usable audio remains required. A missing image is classified `WARN`, is
-   visible in reports, and may activate when other requirements pass. A known
-   unusable/corrupt image or audio asset and missing/unusable audio still block.
-   Activation never grants `IMAGE_TO_WORD` eligibility; that exercise continues
-   to require a usable image and follows its existing safe fallback.
-3. Only manifest rows are enabled and assigned a level. Other imported rows
+2. Usable audio remains required. A missing image is `WARN_MISSING_IMAGE`; an
+   owner-quarantined image is `WARN_QUARANTINED_IMAGE`. Both may activate when
+   other requirements pass but resolve to no learner-facing image and cannot
+   qualify for `IMAGE_TO_WORD`. Known unusable/corrupt image or audio and
+   missing/unusable audio still block.
+3. The owner-approved `vietnameseOverride` takes precedence at runtime while
+   preserving raw imported `vietnamese`. The source catalog importer does not
+   write the override or quarantine columns, so re-import cannot silently
+   undo owner-reviewed content.
+4. Only manifest rows are enabled and assigned a level. Other imported rows
    remain disabled and unclassified.
-4. The tool upserts set definitions and ordered memberships but never creates or
+5. The tool upserts set definitions and ordered memberships but never creates or
    changes `learner_learning_sets` assignments. A parent chooses a set through
    the existing assignment API.
-5. Starter ids 1–30 keep their word, enabled flag and content version. The
+6. Starter ids 1–30 keep their word, enabled flag and content version. The
    manifest carries 30 explicit starter-to-canonical-topic mappings and updates
    only normalized topic membership for those rows.
-6. The apply transaction asserts that learner assignments, progress, review
+7. The apply transaction asserts that learner assignments, progress, review
    events, XP events and achievement rows are unchanged. It is safe to rerun.
 
 ## Tool contract
@@ -59,7 +66,8 @@ pnpm vocab:curate --generate-manifest  # regenerate from the local audited datas
 ```
 
 The default command is a dry run and reports exact record, grade, set, starter
-mapping and media PASS/WARN/BLOCK counts, including missing-image words.
+mapping, missing-image WARN, quarantined-image WARN and media BLOCK counts,
+including exact missing/quarantined words and owner override counts.
 `--apply` rejects local-development context and requires the existing
 `ci-test`/`test` target verification before connecting.
 
@@ -88,6 +96,36 @@ but do have usable audio and required text; they are `WARN`, not `BLOCK`, and
 remain ineligible for `IMAGE_TO_WORD`. No image is fabricated. The audio policy
 was not broadened.
 
+## Owner-approved final content remediation
+
+The owner approved keeping all 213 curated source rows. The tracked manifest
+marks exactly these source identities as `imagePolicy: "QUARANTINED"`:
+`(4,basket)`, `(98,cup)`, `(884,father)`, `(889,grandfather)`,
+`(759,teacher)`, `(637,cliff)`, `(647,east)` and `(570,word)`. The image
+references remain in the imported source and canonical raw `image_url` for
+audit, while `image_quarantined=true` makes every learner-facing read expose
+no image. In particular, the teacher poster text is never sent to Flashcard or
+exercise generation. Quarantine is non-blocking WARN and does not disable the
+vocabulary or valid audio/listening, typing and meaning-choice modes.
+
+The owner-approved meaning overrides are attached to source identities and
+used only for the curated runtime value:
+
+| Source identity | Owner-approved Vietnamese meaning |
+| --- | --- |
+| `(911,aunt)` | `Cô, dì, bác gái` |
+| `(910,uncle)` | `Chú, cậu, bác trai` |
+| `(897,granddaughter)` | `Cháu gái (cháu nội hoặc ngoại)` |
+| `(896,grandson)` | `Cháu trai (cháu nội hoặc ngoại)` |
+| `(621,axe)` | `Rìu` |
+
+`(891,cousin)` and `(938,love)` have no override and retain their current
+source meaning. No raw dataset values were changed. The canonical precedence
+is raw catalog import → source-identity-bound manifest override → runtime
+effective-content projection. Re-import updates raw columns only; the next
+curation activation remains the reviewed step that can replace or clear owner
+metadata. No LLM/API translation or classification is used.
+
 ## Acceptance criteria
 
 - [x] A tracked deterministic manifest exists and contains 200–300 explicit
@@ -97,6 +135,16 @@ was not broadened.
 - [x] The refined media gate passes for all 213 local records: 210 images and
   all 213 audio references resolve; the three missing images are explicit
   warnings and no selected media is unusable.
+- [x] Exactly eight source-bound image quarantines and five owner-approved
+  Vietnamese overrides survive manifest regeneration and catalog re-import;
+  learner-facing queries mask all quarantined images and apply only exact
+  source-identity overrides.
+- [x] Dry run reports 202 media PASS, three missing-image WARN, eight
+  quarantined-image WARN, zero BLOCK and 11 effective image-ineligible rows.
+- [x] Runtime regressions prove all 213 vocabulary rows remain enabled
+  candidates, quarantined words are excluded from `IMAGE_TO_WORD`, and valid
+  audio/listening, typing, meaning choice and image-free Flashcard behavior
+  remain available.
 - [x] Eleven sets are defined with stable order and no automatic learner
   assignments.
 - [x] Starter topic mappings cover all 30 starter ids without changing starter
@@ -104,9 +152,12 @@ was not broadened.
 - [x] Apply is transactional, CI-target guarded and idempotent; no progress,
   review, XP or achievement mutation is permitted.
 - [x] Daily New limit and reward/review semantics remain unchanged.
-- [x] Focused curation/media-policy tests, full lint/typecheck/test/build/E2E
-  pass locally; the trusted-DB fixture asserts activation of missing-image
-  rows without changing learner assignments or learning history.
+- [x] Owner approved the final image quarantine and five meaning decisions;
+  regenerated content review has zero activation blockers.
+- [x] Focused curation, media-policy, owner-override, catalog-import,
+  Flashcard/exercise, queue, progress, gamification and reset regressions pass;
+  the full local test, lint, typecheck, build and E2E gates pass.
+- [ ] Trusted DB Integration and Core CI pass on the final remediation SHA.
 - [x] The previous 220-row baseline passed Core CI and Trusted DB Integration
   (`4d76cfa946ccae94ec3e5deb690f0365ba579363`; Core CI #87, Trusted DB #81).
 - [x] The current 213-row refinement passed both remote gates on the same
@@ -124,20 +175,21 @@ was not broadened.
 
 ## Evidence
 
-- Historical dry run: `MANIFEST_RECORDS=220`, `GRADE_1_RECORDS=100`,
-  `GRADE_2_RECORDS=80`, `GRADE_3_RECORDS=40`, `MEDIA_GATE=PASS checked=220`.
-- Refined local dry run: `MANIFEST_RECORDS=213`, grades 100/73/40,
-  `MEDIA_GATE=PASS checked=213 pass=210 warn=3 block=0`,
-  `MISSING_IMAGE_SELECTED=anger,sadness,joy`, `STARTER_TOPIC_MAPPINGS=30`,
-  `DB_MUTATIONS=0`, `STATUS=PASS`. Real Neon apply has not been run.
-- Current local evidence: focused 34 tests pass; full suite 46 files / 457
-  tests pass; lint, typecheck, build and 26 E2E pass. Core CI and Trusted DB
-  Integration both PASS on `760c0c04d7498a3b6e27b15ee47e4cee0c305aed` (runs
-  `35840195766` and `35840195673`). Trusted DB used the configured CI test
-  target; real Neon apply was not performed.
-- Trusted DB follow-up on documentation-only commit `6d2675f2` failed twice at
-  the first curated apply with PostgreSQL `XX000` (runs `35841107601` and
-  `35842150875`). Since the trusted reset drops/recreates enum types, script
-  connections now set `prepare: false`; the focused regression passes, as do
-  Core CI `35843693211` and Trusted DB `35843693265` on fix commit `2ef6166`.
-  No real/production Neon apply was run.
+- Final local real-dataset dry run: `MANIFEST_RECORDS=213`, grades 100/73/40,
+  `MEDIA_GATE=PASS checked=213 pass=202 warn=11 block=0 warn_missing=3
+  warn_quarantined=8`, `IMAGE_QUARANTINES=8`, `MEANING_OVERRIDES=5`,
+  `EFFECTIVE_IMAGE_INELIGIBLE_COUNT=11`, duplicate identities/words 0,
+  expected-word mismatches 0, missing meanings 0, and 30 starter mappings.
+  `DATABASE_MUTATIONS=0`; `REAL_NEON_APPLY=NOT_RUN`.
+- Owner review regenerated from the canonical manifest and local source data:
+  15 review rows; all 8 image findings retain `MISMATCH`/`AMBIGUOUS` review
+  classifications while being `SAFE_WITH_LIMITATION` and
+  `IMAGE_TO_WORD=NO`; all five approved meaning corrections re-evaluate as
+  `OK`; `BLOCK_BEFORE_ACTIVATION_COUNT=0`. Cousin and love remain unchanged.
+- Local validation: focused suite 17 files / 175 tests; full suite 47 files /
+  476 tests; lint and typecheck pass; production build passes; E2E 26/26 pass.
+  The CSV artifacts round-trip through the spreadsheet runtime (15 rows and 8
+  image rows) and remain in ignored `local-data/generated/`.
+- Core CI and Trusted DB Integration on the final remediation SHA: pending.
+  Trusted DB is restricted to its configured CI test target. Real Neon apply
+  has not been run.

@@ -177,6 +177,35 @@ describe("US-33 deterministic image-to-word exercises", () => {
       expect(createExercise(target, pool)?.exerciseType).not.toBe(EXERCISE_TYPE.IMAGE_TO_WORD);
     }
   );
+
+  it.each([
+    [4, "basket"], [98, "cup"], [884, "father"], [889, "grandfather"],
+    [759, "teacher"], [637, "cliff"], [647, "east"], [570, "word"],
+    [953, "anger"], [998, "sadness"], [987, "joy"]
+  ] as const)("keeps quarantined or missing image %s (%s) out of IMAGE_TO_WORD without disabling vocabulary", (id, word) => {
+    const target = item(id, word, "owner-reviewed meaning", "/audio/valid.mp3", null);
+    const pool = [target, item(2001, "book", "quyển sách"), item(2002, "house", "ngôi nhà"), item(2003, "water", "nước")];
+
+    expect(target.vocabulary.enabled).toBe(true);
+    expect(createImageToWordExercise(target, pool)).toBeNull();
+    expect(createExercise(target, pool, { preferredType: EXERCISE_TYPE.IMAGE_TO_WORD })?.exerciseType)
+      .not.toBe(EXERCISE_TYPE.IMAGE_TO_WORD);
+  });
+
+  it("keeps listening, typing and meaning choice available without a quarantined image", () => {
+    const target = item(911, "aunt", "Cô, dì, bác gái", "/audio/aunt.mp3", null);
+    const pool = [target, item(2001, "book", "quyển sách"), item(2002, "house", "ngôi nhà"), item(2003, "water", "nước")];
+
+    expect(createExercise(target, pool, { preferredType: EXERCISE_TYPE.LISTENING_CHOICE })?.exerciseType)
+      .toBe(EXERCISE_TYPE.LISTENING_CHOICE);
+    expect(createExercise(target, pool, { preferredType: EXERCISE_TYPE.TYPE_WORD })).toMatchObject({
+      exerciseType: EXERCISE_TYPE.TYPE_WORD,
+      cueType: "VIETNAMESE",
+      cueText: "Cô, dì, bác gái"
+    });
+    expect(createExercise(target, pool, { preferredType: EXERCISE_TYPE.MULTIPLE_CHOICE_MEANING })?.exerciseType)
+      .toBe(EXERCISE_TYPE.MULTIPLE_CHOICE_MEANING);
+  });
 });
 
 describe("US-34 strict typing exercises", () => {

@@ -1,3 +1,4 @@
+import { PgDialect } from "drizzle-orm/pg-core";
 import { describe, expect, it, vi } from "vitest";
 import { createApp } from "./index";
 import { createLearningSetService, LearningSetServiceError } from "./learning-sets";
@@ -97,15 +98,21 @@ describe("US-28/29 learning set API boundary", () => {
 
 describe("US-28/29 learning set service", () => {
   it("returns ordered catalog detail and enabled vocabulary only", async () => {
+    const queries: Array<{ sql: string; params: unknown[] }> = [];
     const execute = vi.fn()
       .mockResolvedValueOnce({ rows: [{ household_id: householdId }] })
       .mockResolvedValueOnce({ rows: [summaryRow] })
-      .mockResolvedValueOnce({ rows: [vocabularyRow(1), vocabularyRow(2)] });
+      .mockImplementationOnce(async (query) => {
+        queries.push(new PgDialect().sqlToQuery(query));
+        return { rows: [vocabularyRow(1), vocabularyRow(2)] };
+      });
     const service = createLearningSetService({ execute });
     await expect(service.detail("parent-1", 1)).resolves.toMatchObject({
       slug: "starter-vocabulary",
       items: [{ sortOrder: 0, vocabulary: { id: 1 } }, { sortOrder: 1, vocabulary: { id: 2 } }]
     });
+    expect(queries[0]?.sql).toContain("COALESCE(v.vietnamese_override, v.vietnamese) AS vietnamese");
+    expect(queries[0]?.sql).toContain("CASE WHEN v.image_quarantined THEN NULL ELSE v.image_url END AS image_url");
   });
 
   it("returns active assignment state for every enabled set", async () => {

@@ -158,6 +158,8 @@ describe("US-08 review queue service", () => {
     expect(queries[3]?.sql).toContain("lp.next_review_date <= $2::date");
     expect(queries[3]?.sql).toContain("ORDER BY lp.next_review_date ASC, v.id ASC");
     expect(queries[3]?.sql).toContain("LIMIT 20");
+    expect(queries[3]?.sql).toContain("COALESCE(v.vietnamese_override, v.vietnamese) AS vietnamese");
+    expect(queries[3]?.sql).toContain("CASE WHEN v.image_quarantined THEN NULL ELSE v.image_url END AS image_url");
     expect(queries[3]?.sql).toContain('"vocabflow_app"."learner_learning_sets"');
     expect(queries[3]?.sql).toContain("EXISTS");
     expect(queries[4]?.sql).toContain("LEFT JOIN \"vocabflow_app\".\"learner_progress\"");
@@ -165,6 +167,8 @@ describe("US-08 review queue service", () => {
     expect(queries[4]?.sql).toContain("lp.vocabulary_id IS NULL");
     expect(queries[4]?.sql).toContain("ORDER BY v.id ASC");
     expect(queries[4]?.sql).toContain("LIMIT 10");
+    expect(queries[4]?.sql).toContain("COALESCE(v.vietnamese_override, v.vietnamese) AS vietnamese");
+    expect(queries[4]?.sql).toContain("CASE WHEN v.image_quarantined THEN NULL ELSE v.image_url END AS image_url");
     expect(queries[4]?.sql).toContain('"vocabflow_app"."learning_set_items"');
     expect(queries[4]?.sql).toContain("EXISTS");
   });

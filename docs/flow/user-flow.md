@@ -4,7 +4,7 @@
 - Version: v1
 - Source baseline: `VocabFlow_User_Flow_v1.docx`
 - Canonical format: Markdown
-- Last synchronized: 2026-09-20
+- Last synchronized: 2026-09-24
 
 **VOCABFLOW**
 
@@ -142,7 +142,7 @@ Hiển thị mặt trước Flashcard
 ↓
 Learner lật thẻ
 ↓
-Hiển thị nghĩa / IPA / audio / image nếu có
+Hiển thị nghĩa / IPA / audio / ảnh dùng được nếu có; ảnh thiếu hoặc bị quarantine được ẩn
 ↓
 Chọn ĐÃ NHỚ hoặc CHƯA NHỚ
 ↓
@@ -191,9 +191,10 @@ Lưu lỗi → giữ bài + Retry cùng reviewId
 
 Exercise mode không bypass enabled vocabulary, learning-set assignment,
 scheduler eligibility hoặc daily New limit. Thiếu distractor an toàn dùng
-Flashcard; audio/image/cue thiếu hoặc hỏng dùng fallback an toàn và không tự
-ghi `FORGOTTEN`. Typing dùng spelling exact sau NFKC/trim/case normalization,
-không fuzzy-match và không gửi raw input lên review API.
+Flashcard; audio/image/cue thiếu, hỏng hoặc ảnh bị owner quarantine dùng
+fallback an toàn và không tự ghi `FORGOTTEN`. Typing dùng spelling exact sau
+NFKC/trim/case normalization, không fuzzy-match và không gửi raw input lên
+review API.
 `/study` vẫn là Flashcard path mặc định.
 
 ## 3.3 Kết thúc phiên

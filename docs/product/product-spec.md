@@ -23,7 +23,7 @@ unmapped or belong to multiple topics.
 - Version: v1.0
 - Source baseline: `VocabFlow_Family_MVP_Product_Specification_v1.0.docx`
 - Canonical format: Markdown
-- Last synchronized: 2026-09-20
+- Last synchronized: 2026-09-24
 
 **VOCABFLOW**
 
@@ -315,12 +315,17 @@ The imported 1,994-row catalog is curated through a tracked deterministic
 manifest. The owner-refined V1 slice contains 213 rows with explicit Grade 1–3
 labels, canonical topic memberships and eleven ordered learning sets. Usable
 audio remains required. Missing images are reported as WARN and may activate;
-known unusable/corrupt media still blocks. `IMAGE_TO_WORD` independently
-requires a usable image, and no placeholder is fabricated. The read-only dry
-run is the default; activation remains transactional, idempotent and
-trusted-CI-only. It does not auto-assign learners or mutate progress, review
-history, XP, achievements or the daily New limit. Existing starter ids and
-enabled state remain compatible.
+an owner-quarantined image is also WARN and may activate, but is hidden from
+every learner-facing vocabulary response. Missing and quarantined images are
+both ineligible for `IMAGE_TO_WORD`; no placeholder is fabricated. Known
+unusable/corrupt media still blocks. Owner-approved Vietnamese meanings are
+stored by source identity and take precedence at runtime, while the raw
+imported meaning is preserved. Catalog re-imports update only raw source
+content and cannot clear the meaning override or image quarantine. The
+read-only dry run is the default; activation remains transactional,
+idempotent and trusted-CI-only. It does not auto-assign learners or mutate
+progress, review history, XP, achievements or the daily New limit. Existing
+starter ids and enabled state remain compatible.
 
 ### 15.4 Daily new word limit (US-30)
 
@@ -369,6 +374,7 @@ canonical.
 | Thiếu IPA | ACCEPT: ẩn IPA. |
 | Thiếu audio | ACCEPT: fallback theo Feature UI Spec; không crash. |
 | Thiếu image | ACCEPT: ẩn vùng ảnh. |
+| Image bị owner quarantine | WARN: ẩn learner-facing image; không đủ điều kiện `IMAGE_TO_WORD`. |
 | Thiếu definition/example | ACCEPT: ẩn section. |
 | Media path hỏng | ACCEPT có fallback; card không crash. |
 
@@ -480,7 +486,7 @@ Từ đây không quay lại Personal MVP làm source of truth. Tài liệu ti�
 
 - Family MVP v1.0: CURRENT PRODUCT SOURCE OF TRUTH.
 
-- Technical Architecture v1.0.11: technical source of truth, including the
+- Technical Architecture v1.0.12: technical source of truth, including the
   US-25 canonical DB/source identity reconciliation, US-26/US-27 taxonomy,
   US-28/US-29 learning-set assignment model and US-41 activation boundary.
 

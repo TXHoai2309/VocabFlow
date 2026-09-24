@@ -35,9 +35,12 @@ const schedulerOutput = {
   totalIncorrect: 0
 };
 
-function queuedDatabase(results: unknown[]): ReviewDatabase & { execute: ReturnType<typeof vi.fn> } {
+function queuedDatabase(results: unknown[], queries?: Array<{ sql: string; params: unknown[] }>): ReviewDatabase & { execute: ReturnType<typeof vi.fn> } {
   return {
-    execute: vi.fn(async () => results.shift() ?? { rows: [] })
+    execute: vi.fn(async (query) => {
+      if (queries) queries.push(new PgDialect().sqlToQuery(query));
+      return results.shift() ?? { rows: [] };
+    })
   };
 }
 
@@ -94,6 +97,22 @@ describe("US-07 review contracts and orchestration", () => {
     expect(serverDerivedExerciseResult({ type: "IMAGE_TO_WORD", selectedVocabularyId: 8 }, vocabulary)).toBe("FORGOTTEN");
     expect(serverDerivedExerciseResult({ type: "TYPE_WORD", answer: " ＩＣＥ ＣＲＥＡＭ " }, vocabulary)).toBe("REMEMBERED");
     expect(serverDerivedExerciseResult({ type: "TYPE_WORD", answer: "icecream" }, vocabulary)).toBe("FORGOTTEN");
+  });
+
+  it("verifies multiple-choice answers against the owner-reviewed canonical meaning", async () => {
+    const queries: Array<{ sql: string; params: unknown[] }> = [];
+    const database = queuedDatabase([
+      authorizedRows(),
+      { rows: [{ timezone: "Asia/Ho_Chi_Minh", vocabulary_id: 1, word: "aunt", vietnamese: "Cô, dì, bác gái" }] },
+      emptyEvent(),
+      emptyProgress(),
+      insertedReview()
+    ], queries);
+    await expect(createReviewService(database).write(USER_ID, {
+      ...request,
+      exerciseSubmission: { type: "MULTIPLE_CHOICE_MEANING", answer: "Cô, dì, bác gái" }
+    })).resolves.toMatchObject({ status: 201 });
+    expect(queries[1]?.sql).toContain("COALESCE(v.vietnamese_override, v.vietnamese) AS vietnamese");
   });
 
   it("rejects a client recall result that conflicts with server-verified exercise evidence", async () => {

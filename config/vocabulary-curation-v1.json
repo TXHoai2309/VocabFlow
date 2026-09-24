@@ -4,7 +4,7 @@
   "selectionPolicy": {
     "reviewedRows": "Human-reviewed allow-list in scripts/vocabulary-curation.ts; source identity and expected word are emitted into this manifest.",
     "gradePolicy": "Grade is explicitly assigned by the named curation group; it is not inferred from id, length, alphabetic order, topic, or frequency.",
-    "mediaPolicy": "A missing image is WARN and may activate, but remains ineligible for IMAGE_TO_WORD; usable audio is required and known unusable/corrupt media blocks activation.",
+    "mediaPolicy": "A missing image is WARN and may activate; an owner-quarantined image is WARN and is hidden from learners. Both remain ineligible for IMAGE_TO_WORD; usable audio is required and known unusable/corrupt media blocks activation.",
     "activationPolicy": "Only manifest rows are enabled; existing starter rows, learner assignments, progress, reviews, XP, and achievements are preserved."
   },
   "learningSets": [
@@ -111,7 +111,8 @@
       "learningSetSlugs": [
         "grade-1-home"
       ],
-      "activation": true
+      "activation": true,
+      "imagePolicy": "QUARANTINED"
     },
     {
       "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
@@ -215,7 +216,8 @@
       "learningSetSlugs": [
         "grade-1-home"
       ],
-      "activation": true
+      "activation": true,
+      "imagePolicy": "QUARANTINED"
     },
     {
       "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
@@ -358,7 +360,8 @@
       "learningSetSlugs": [
         "grade-1-family"
       ],
-      "activation": true
+      "activation": true,
+      "vietnameseOverride": "Cô, dì, bác gái"
     },
     {
       "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
@@ -423,7 +426,8 @@
       "learningSetSlugs": [
         "grade-1-family"
       ],
-      "activation": true
+      "activation": true,
+      "imagePolicy": "QUARANTINED"
     },
     {
       "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
@@ -436,7 +440,8 @@
       "learningSetSlugs": [
         "grade-1-family"
       ],
-      "activation": true
+      "activation": true,
+      "vietnameseOverride": "Cháu gái (cháu nội hoặc ngoại)"
     },
     {
       "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
@@ -449,7 +454,8 @@
       "learningSetSlugs": [
         "grade-1-family"
       ],
-      "activation": true
+      "activation": true,
+      "imagePolicy": "QUARANTINED"
     },
     {
       "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
@@ -475,7 +481,8 @@
       "learningSetSlugs": [
         "grade-1-family"
       ],
-      "activation": true
+      "activation": true,
+      "vietnameseOverride": "Cháu trai (cháu nội hoặc ngoại)"
     },
     {
       "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
@@ -592,7 +599,8 @@
       "learningSetSlugs": [
         "grade-1-family"
       ],
-      "activation": true
+      "activation": true,
+      "vietnameseOverride": "Chú, cậu, bác trai"
     },
     {
       "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
@@ -618,7 +626,8 @@
       "learningSetSlugs": [
         "grade-1-school"
       ],
-      "activation": true
+      "activation": true,
+      "imagePolicy": "QUARANTINED"
     },
     {
       "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
@@ -1671,7 +1680,8 @@
       "learningSetSlugs": [
         "grade-2-outdoors"
       ],
-      "activation": true
+      "activation": true,
+      "vietnameseOverride": "Rìu"
     },
     {
       "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
@@ -1814,7 +1824,8 @@
       "learningSetSlugs": [
         "grade-2-outdoors"
       ],
-      "activation": true
+      "activation": true,
+      "imagePolicy": "QUARANTINED"
     },
     {
       "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
@@ -1905,7 +1916,8 @@
       "learningSetSlugs": [
         "grade-2-outdoors"
       ],
-      "activation": true
+      "activation": true,
+      "imagePolicy": "QUARANTINED"
     },
     {
       "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
@@ -2438,7 +2450,8 @@
       "learningSetSlugs": [
         "grade-3-language"
       ],
-      "activation": true
+      "activation": true,
+      "imagePolicy": "QUARANTINED"
     },
     {
       "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",

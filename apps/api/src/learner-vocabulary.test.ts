@@ -127,6 +127,8 @@ describe("US-22 learner vocabulary service", () => {
     ]);
     expect(queries).toHaveLength(2);
     expect(queries[1]?.sql).toContain('LEFT JOIN "vocabflow_app"."learner_progress"');
+    expect(queries[1]?.sql).toContain("COALESCE(v.vietnamese_override, v.vietnamese) AS vietnamese");
+    expect(queries[1]?.sql).toContain("CASE WHEN v.image_quarantined THEN NULL ELSE v.image_url END AS image_url");
     expect(queries[1]?.sql).toContain("lp.learner_id = $1::uuid");
     expect(queries[1]?.sql).toContain("WHERE v.enabled = true");
     expect(queries[1]?.sql).toContain("ORDER BY v.id ASC");

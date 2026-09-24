@@ -133,6 +133,8 @@ describe("US-04 vocabulary service", () => {
     await expect(createVocabularyService({ execute }).list("parent-1")).resolves.toEqual(vocabulary);
     expect(execute).toHaveBeenCalledTimes(2);
     expect(queries[1]?.sql).toContain('FROM "vocabflow_app"."vocabularies"');
+    expect(queries[1]?.sql).toContain("COALESCE(vietnamese_override, vietnamese) AS vietnamese");
+    expect(queries[1]?.sql).toContain("CASE WHEN image_quarantined THEN NULL ELSE image_url END AS image_url");
     expect(queries[1]?.sql).toContain("WHERE enabled = true");
     expect(queries[1]?.sql).toContain("ORDER BY id ASC");
     expect(queries[1]?.sql).not.toContain("household_id");

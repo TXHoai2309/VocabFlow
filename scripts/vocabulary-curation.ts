@@ -41,6 +41,8 @@ export type CurationManifestRecord = {
   topicSlugs: TopicSlug[];
   learningSetSlugs: string[];
   activation: true;
+  imagePolicy?: "QUARANTINED";
+  vietnameseOverride?: string;
 };
 
 export type StarterTopicMapping = {
@@ -145,9 +147,12 @@ function assert(condition: unknown, code: string): asserts condition {
   if (!condition) throw new CurationError(code);
 }
 
-export type CuratedMediaClassification = "PASS" | "WARN" | "BLOCK";
+export type CuratedMediaClassification = "PASS" | "WARN_MISSING_IMAGE" | "WARN_QUARANTINED_IMAGE" | "BLOCK";
 
-export function classifyCuratedMedia(availability: { image: CatalogMediaAvailability; audio: CatalogMediaAvailability }) {
+export function classifyCuratedMedia(
+  availability: { image: CatalogMediaAvailability; audio: CatalogMediaAvailability },
+  imagePolicy?: CurationManifestRecord["imagePolicy"]
+) {
   const blockingReasons: string[] = [];
   if (availability.image === "UNUSABLE") blockingReasons.push("UNUSABLE_IMAGE");
   if (availability.audio !== "READY") {
@@ -155,11 +160,12 @@ export function classifyCuratedMedia(availability: { image: CatalogMediaAvailabi
   }
   const classification: CuratedMediaClassification = blockingReasons.length > 0
     ? "BLOCK"
-    : availability.image === "MISSING" ? "WARN" : "PASS";
+    : imagePolicy === "QUARANTINED" ? "WARN_QUARANTINED_IMAGE"
+      : availability.image === "MISSING" ? "WARN_MISSING_IMAGE" : "PASS";
   return {
     classification,
     activationAllowed: classification !== "BLOCK",
-    imageExerciseEligible: availability.image === "READY",
+    imageExerciseEligible: classification === "PASS",
     blockingReasons
   };
 }
@@ -168,7 +174,7 @@ function assertManifestMediaAllowed(manifest: CurationManifest, mediaAvailabilit
   for (const record of manifest.records) {
     const availability = mediaAvailabilityBySourceId[record.sourceRecordId];
     assert(availability, `CURATED_MEDIA_STATUS_MISSING_${record.sourceRecordId}`);
-    const media = classifyCuratedMedia(availability);
+    const media = classifyCuratedMedia(availability, record.imagePolicy);
     assert(media.activationAllowed, `CURATED_MEDIA_GATE_FAILED_${record.expectedWord}_${media.blockingReasons.join("_")}`);
   }
 }
@@ -210,6 +216,8 @@ export function validateManifest(input: unknown): CurationManifest {
       const set = manifest.learningSets.find((candidate) => candidate.slug === slug);
       assert(set?.grade === record.grade, "CURATION_RECORD_SET_GRADE_MISMATCH");
     }
+    assert(record.imagePolicy === undefined || record.imagePolicy === "QUARANTINED", "CURATION_RECORD_IMAGE_POLICY_INVALID");
+    assert(record.vietnameseOverride === undefined || (typeof record.vietnameseOverride === "string" && record.vietnameseOverride.trim() !== ""), "CURATION_RECORD_VIETNAMESE_OVERRIDE_INVALID");
   }
   const starterIds = new Set<number>();
   assert(manifest.starterTopicMappings.length === 30, "STARTER_TOPIC_MAPPING_COUNT_INVALID");
@@ -225,6 +233,9 @@ export function validateManifest(input: unknown): CurationManifest {
 }
 
 export function buildManifestFromCatalog(validation = loadCatalogValidation()): CurationManifest {
+  const priorRecordsById = existsSync(MANIFEST_PATH)
+    ? new Map(readManifest().records.map((record) => [record.sourceRecordId, record]))
+    : new Map<number, CurationManifestRecord>();
   const byWord = new Map<string, typeof validation.validRecords[number][]>();
   for (const record of validation.validRecords) {
     const normalized = normalizeWord(record.word);
@@ -246,6 +257,8 @@ export function buildManifestFromCatalog(validation = loadCatalogValidation()): 
       const topic = source.topic;
       const topicSlug = topic ? rawTopicToSlug(topic) : null;
       assert(topicSlug, `CURATED_TOPIC_MISSING_${word}`);
+      const prior = priorRecordsById.get(source.sourceRecordId);
+      assert(!prior || prior.expectedWord === source.word, `CURATED_PRIOR_OWNER_OVERRIDE_IDENTITY_MISMATCH_${source.sourceRecordId}`);
       records.push({
         sourceDataset: SOURCE_DATASET_ID,
         sourceRecordId: source.sourceRecordId,
@@ -253,7 +266,9 @@ export function buildManifestFromCatalog(validation = loadCatalogValidation()): 
         grade: group.grade,
         topicSlugs: [topicSlug],
         learningSetSlugs: [group.slug],
-        activation: true
+        activation: true,
+        ...(prior?.imagePolicy ? { imagePolicy: prior.imagePolicy } : {}),
+        ...(prior?.vietnameseOverride ? { vietnameseOverride: prior.vietnameseOverride } : {})
       });
     }
   }
@@ -263,7 +278,7 @@ export function buildManifestFromCatalog(validation = loadCatalogValidation()): 
     selectionPolicy: {
       reviewedRows: "Human-reviewed allow-list in scripts/vocabulary-curation.ts; source identity and expected word are emitted into this manifest.",
       gradePolicy: "Grade is explicitly assigned by the named curation group; it is not inferred from id, length, alphabetic order, topic, or frequency.",
-      mediaPolicy: "A missing image is WARN and may activate, but remains ineligible for IMAGE_TO_WORD; usable audio is required and known unusable/corrupt media blocks activation.",
+      mediaPolicy: "A missing image is WARN and may activate; an owner-quarantined image is WARN and is hidden from learners. Both remain ineligible for IMAGE_TO_WORD; usable audio is required and known unusable/corrupt media blocks activation.",
       activationPolicy: "Only manifest rows are enabled; existing starter rows, learner assignments, progress, reviews, XP, and achievements are preserved."
     },
     learningSets: CURATION_GROUPS.map(({ words: _words, ...definition }) => definition),
@@ -299,20 +314,31 @@ export function validateManifestAgainstCatalog(manifest: CurationManifest, valid
   const mediaFailures: string[] = [];
   const wordMismatches: string[] = [];
   const missingImageWords: string[] = [];
+  const quarantinedImageWords: string[] = [];
+  const selectedIds = new Set(manifest.records.map((record) => record.sourceRecordId));
+  const missingRequiredMeanings = validation.invalidRecords.filter((record) =>
+    record.sourceRecordId !== null
+      && selectedIds.has(record.sourceRecordId)
+      && record.codes.includes("VIETNAMESE_INVALID")
+  ).length;
   let mediaPass = 0;
-  let mediaWarnings = 0;
+  let mediaWarnMissingImage = 0;
+  let mediaWarnQuarantinedImage = 0;
   for (const record of manifest.records) {
     const source = byId.get(record.sourceRecordId);
     if (!source) { missing.push(String(record.sourceRecordId)); continue; }
-    if (source.word !== record.expectedWord) wordMismatches.push(String(record.sourceRecordId));
+    if (source.sourceDataset !== record.sourceDataset || source.word !== record.expectedWord) wordMismatches.push(String(record.sourceRecordId));
     const availability = validation.mediaAvailabilityBySourceId[record.sourceRecordId];
     if (!availability) { mediaFailures.push(`${record.expectedWord}(MEDIA_STATUS_MISSING)`); continue; }
-    const media = classifyCuratedMedia(availability);
+    if (availability.image === "MISSING") missingImageWords.push(record.expectedWord);
+    if (record.imagePolicy === "QUARANTINED") quarantinedImageWords.push(record.expectedWord);
+    const media = classifyCuratedMedia(availability, record.imagePolicy);
     if (media.classification === "BLOCK") {
       mediaFailures.push(`${record.expectedWord}(${media.blockingReasons.join(",")})`);
-    } else if (media.classification === "WARN") {
-      mediaWarnings += 1;
-      missingImageWords.push(record.expectedWord);
+    } else if (media.classification === "WARN_MISSING_IMAGE") {
+      mediaWarnMissingImage += 1;
+    } else if (media.classification === "WARN_QUARANTINED_IMAGE") {
+      mediaWarnQuarantinedImage += 1;
     } else {
       mediaPass += 1;
     }
@@ -325,9 +351,20 @@ export function validateManifestAgainstCatalog(manifest: CurationManifest, valid
     selectedRecords: manifest.records.length,
     mediaChecked: manifest.records.length,
     mediaPass,
-    mediaWarnings,
+    mediaWarnings: mediaWarnMissingImage + mediaWarnQuarantinedImage,
+    mediaWarnMissingImage,
+    mediaWarnQuarantinedImage,
     mediaBlocked: mediaFailures.length,
-    missingImageWords
+    missingImageWords,
+    quarantinedImageWords,
+    effectiveImageIneligibleCount: new Set([...missingImageWords, ...quarantinedImageWords]).size,
+    meaningOverrides: manifest.records.filter((record) => record.vietnameseOverride !== undefined).length,
+    meaningOverrideWords: manifest.records.filter((record) => record.vietnameseOverride !== undefined).map((record) => record.expectedWord),
+    imageQuarantines: manifest.records.filter((record) => record.imagePolicy === "QUARANTINED").length,
+    duplicateSourceIdentities: manifest.records.length - new Set(manifest.records.map((record) => `${record.sourceDataset}:${record.sourceRecordId}`)).size,
+    duplicateNormalizedWords: manifest.records.length - new Set(manifest.records.map((record) => normalizeWord(record.expectedWord))).size,
+    expectedWordMismatches: wordMismatches.length,
+    missingRequiredMeanings
   };
 }
 
@@ -346,6 +383,8 @@ export type CurationApplyReport = {
   learningSets: number;
   setMemberships: number;
   starterTopicMappings: number;
+  meaningOverrides: number;
+  imageQuarantines: number;
 };
 
 type Queryable = {
@@ -428,6 +467,24 @@ export async function applyCurationManifest(
     }
     assert(sourceRows.length === manifest.records.length, "CURATED_SOURCE_ROW_COUNT_INVALID");
 
+    const ownerContentRows = await tx<{ source_record_id: number }[]>`
+      UPDATE ${tx.unsafe(VOCABULARIES)} AS v
+      SET vietnamese_override = owner.vietnamese_override,
+          image_quarantined = owner.image_quarantined,
+          updated_at = now()
+      FROM unnest(
+        ${tx.array(manifest.records.map((record) => record.sourceRecordId))}::integer[],
+        ${tx.array(manifest.records.map((record) => record.expectedWord))}::text[],
+        ${tx.array(manifest.records.map((record) => record.vietnameseOverride ?? null))}::text[],
+        ${tx.array(manifest.records.map((record) => record.imagePolicy === "QUARANTINED"))}::boolean[]
+      ) AS owner(source_record_id, expected_word, vietnamese_override, image_quarantined)
+      WHERE v.source_dataset = ${SOURCE_DATASET_ID}
+        AND v.source_record_id = owner.source_record_id
+        AND v.word = owner.expected_word
+      RETURNING v.source_record_id
+    `;
+    assert(ownerContentRows.length === manifest.records.length, "OWNER_CONTENT_IDENTITY_MISMATCH");
+
     for (const grade of ["GRADE_1", "GRADE_2", "GRADE_3"] as const) {
       const ids = manifest.records.filter((record) => record.grade === grade).map((record) => record.sourceRecordId);
       if (ids.length === 0) continue;
@@ -486,7 +543,16 @@ export async function applyCurationManifest(
     assert(await count(tx, q(APP_SCHEMA, "learner_learning_sets")) === beforeAssignments, "LEARNER_ASSIGNMENTS_CHANGED");
     assert(await count(tx, q(APP_SCHEMA, "achievements")) === beforeAchievementDefinitions, "ACHIEVEMENT_DEFINITIONS_CHANGED");
     assert(await count(tx, q(APP_SCHEMA, "learner_achievements")) === beforeAchievements, "ACHIEVEMENTS_CHANGED");
-    return { selectedRecords: manifest.records.length, newlyActivatedRecords, alreadyActiveRecords, learningSets: manifest.learningSets.length, setMemberships: itemPairs.length, starterTopicMappings: manifest.starterTopicMappings.length };
+    return {
+      selectedRecords: manifest.records.length,
+      newlyActivatedRecords,
+      alreadyActiveRecords,
+      learningSets: manifest.learningSets.length,
+      setMemberships: itemPairs.length,
+      starterTopicMappings: manifest.starterTopicMappings.length,
+      meaningOverrides: manifest.records.filter((record) => record.vietnameseOverride !== undefined).length,
+      imageQuarantines: manifest.records.filter((record) => record.imagePolicy === "QUARANTINED").length
+    };
   });
 }
 
@@ -506,21 +572,36 @@ function printDryRun(
   console.log(`CURATION_VERSION=${CURATION_VERSION}`);
   console.log(`SOURCE_DATASET_ID=${SOURCE_DATASET_ID}`);
   console.log(`MANIFEST_RECORDS=${manifest.records.length}`);
+  console.log(`CURATED_IMPORTED_COUNT=${manifest.records.length}`);
   console.log(`GRADE_1_RECORDS=${grades.get("GRADE_1") ?? 0}`);
   console.log(`GRADE_2_RECORDS=${grades.get("GRADE_2") ?? 0}`);
   console.log(`GRADE_3_RECORDS=${grades.get("GRADE_3") ?? 0}`);
   console.log(`LEARNING_SET_COUNT=${manifest.learningSets.length}`);
   console.log(`STARTER_TOPIC_MAPPINGS=${manifest.starterTopicMappings.length}`);
   console.log(`DATASET_STATUS=${datasetStatus}`);
-  console.log(`MEDIA_GATE=${mediaStatus}`);
+  console.log(`MEDIA_GATE=${mediaStatus} warn_missing=${mediaReport?.mediaWarnMissingImage ?? 0} warn_quarantined=${mediaReport?.mediaWarnQuarantinedImage ?? 0}`);
   console.log(`MEDIA_PASS=${mediaReport?.mediaPass ?? 0}`);
   console.log(`MEDIA_WARN=${mediaReport?.mediaWarnings ?? 0}`);
+  console.log(`MEDIA_WARN_MISSING=${mediaReport?.mediaWarnMissingImage ?? 0}`);
+  console.log(`MEDIA_WARN_QUARANTINED=${mediaReport?.mediaWarnQuarantinedImage ?? 0}`);
   console.log(`MEDIA_BLOCK=${mediaReport?.mediaBlocked ?? 0}`);
   console.log(`MISSING_IMAGE_SELECTED=${mediaReport?.missingImageWords.join(",") || "(none)"}`);
+  console.log(`MISSING_IMAGES_EXISTING=${mediaReport?.missingImageWords.length ?? 0}`);
+  console.log(`IMAGE_QUARANTINES=${mediaReport?.imageQuarantines ?? 0}`);
+  console.log(`IMAGE_QUARANTINE_WORDS=${mediaReport?.quarantinedImageWords.join(",") || "(none)"}`);
+  console.log(`MEANING_OVERRIDES=${mediaReport?.meaningOverrides ?? 0}`);
+  console.log(`MEANING_OVERRIDE_WORDS=${mediaReport?.meaningOverrideWords.join(",") || "(none)"}`);
+  console.log(`EFFECTIVE_IMAGE_INELIGIBLE_COUNT=${mediaReport?.effectiveImageIneligibleCount ?? 0}`);
+  console.log(`DUPLICATE_SOURCE_IDENTITIES=${mediaReport?.duplicateSourceIdentities ?? 0}`);
+  console.log(`DUPLICATE_NORMALIZED_WORDS=${mediaReport?.duplicateNormalizedWords ?? 0}`);
+  console.log(`EXPECTED_WORD_MISMATCHES=${mediaReport?.expectedWordMismatches ?? 0}`);
+  console.log(`MISSING_REQUIRED_MEANINGS=${mediaReport?.missingRequiredMeanings ?? 0}`);
   console.log("DRY_RUN=YES");
+  console.log("DATABASE_MUTATIONS=0");
   console.log("LEARNER_ASSIGNMENTS_CHANGED=0");
   console.log("PROGRESS_REVIEW_XP_ACHIEVEMENT_MUTATIONS=0");
   console.log("DB_MUTATIONS=0");
+  console.log("REAL_NEON_APPLY=NOT_RUN");
   console.log("STATUS=PASS");
 }
 

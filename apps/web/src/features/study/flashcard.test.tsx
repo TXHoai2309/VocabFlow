@@ -77,6 +77,17 @@ describe("US-11 Flashcard back state", () => {
     expect(screen.queryByRole("button", { name: "Phát âm thanh" })).not.toBeInTheDocument();
   });
 
+  it("does not expose a quarantined teacher poster image or its printed answer text", () => {
+    render(<Flashcard
+      vocabulary={{ ...vocabulary, word: "teacher", vietnamese: "giáo viên", imageUrl: null }}
+      isFlipped
+      onFlip={vi.fn()}
+    />);
+
+    expect(screen.queryByRole("img")).not.toBeInTheDocument();
+    expect(screen.queryByText(/A TEACHER/i)).not.toBeInTheDocument();
+  });
+
   it("supports Space flip and preserves responsive/accessibility structure", () => {
     const onFlip = vi.fn();
     render(<Flashcard vocabulary={vocabulary} isFlipped={false} onFlip={onFlip} />);

@@ -3,13 +3,22 @@ import {
   CURATION_GROUPS,
   CURATION_VERSION,
   applyCurationManifest,
+  buildManifestFromCatalog,
   classifyCuratedMedia,
   readManifest,
   validateManifest,
   validateManifestAgainstCatalog,
-  type CurationManifest
+  type CurationManifest,
+  type TopicSlug
 } from "./vocabulary-curation";
 import type { CatalogValidation } from "./import-vocabulary-catalog";
+
+const rawTopicBySlug: Record<TopicSlug, string> = {
+  action: "Action", body: "body", casual: "casual", challenge: "Challenge", clothing: "Clothing",
+  "common-place": "CommonPlace", communication: "Communication", "computer-office-science": "Computer_office_science",
+  emotion: "Emotion", family: "Family", food: "Food", healthy: "Healthy", miscellaneous: "Miscellaneous",
+  nature: "nature", "object-in-house": "ObjectInHouse", photography: "Photography", "writing-numbers": "writing_number"
+};
 
 function validationFor(manifest: CurationManifest): CatalogValidation {
   const mediaAvailabilityBySourceId: CatalogValidation["mediaAvailabilityBySourceId"] = {};
@@ -25,7 +34,7 @@ function validationFor(manifest: CurationManifest): CatalogValidation {
       ipa: null,
       definitionEn: null,
       exampleEn: null,
-      topic: null,
+      topic: rawTopicBySlug[record.topicSlugs[0] ?? "miscellaneous"],
       imageUrl: missingImage ? null : "https://media.test/image",
       audioUrl: "https://media.test/audio"
     };
@@ -96,12 +105,49 @@ describe("US-41 vocabulary curation manifest", () => {
     expect(manifest.records).toHaveLength(213);
   });
 
+  it("stores only the owner-approved source-bound media quarantines and Vietnamese overrides", () => {
+    const manifest = readManifest();
+    const byId = new Map(manifest.records.map((record) => [record.sourceRecordId, record]));
+    expect([...manifest.records.filter((record) => record.imagePolicy === "QUARANTINED").map(({ sourceRecordId, expectedWord }) => [sourceRecordId, expectedWord])])
+      .toEqual([[4, "basket"], [98, "cup"], [884, "father"], [889, "grandfather"], [759, "teacher"], [637, "cliff"], [647, "east"], [570, "word"]]);
+    expect([...manifest.records.filter((record) => record.vietnameseOverride !== undefined).map(({ sourceRecordId, expectedWord, vietnameseOverride }) => [sourceRecordId, expectedWord, vietnameseOverride])])
+      .toEqual([
+        [911, "aunt", "Cô, dì, bác gái"],
+        [897, "granddaughter", "Cháu gái (cháu nội hoặc ngoại)"],
+        [896, "grandson", "Cháu trai (cháu nội hoặc ngoại)"],
+        [910, "uncle", "Chú, cậu, bác trai"],
+        [621, "axe", "Rìu"]
+      ]);
+    expect(byId.get(891)?.vietnameseOverride).toBeUndefined();
+    expect(byId.get(938)?.vietnameseOverride).toBeUndefined();
+  });
+
+  it("preserves owner content policies when the reviewed manifest is regenerated", () => {
+    const manifest = readManifest();
+    const regenerated = buildManifestFromCatalog(validationFor(manifest));
+    expect(regenerated.records
+      .filter((record) => record.imagePolicy === "QUARANTINED")
+      .map((record) => [record.sourceRecordId, record.expectedWord]))
+      .toEqual(manifest.records.filter((record) => record.imagePolicy === "QUARANTINED").map((record) => [record.sourceRecordId, record.expectedWord]));
+    expect(regenerated.records
+      .filter((record) => record.vietnameseOverride !== undefined)
+      .map((record) => [record.sourceRecordId, record.expectedWord, record.vietnameseOverride]))
+      .toEqual(manifest.records.filter((record) => record.vietnameseOverride !== undefined).map((record) => [record.sourceRecordId, record.expectedWord, record.vietnameseOverride]));
+  });
+
   it("classifies missing images as WARN without granting IMAGE_TO_WORD eligibility", () => {
     expect(classifyCuratedMedia({ image: "READY", audio: "READY" })).toMatchObject({
       classification: "PASS", activationAllowed: true, imageExerciseEligible: true
     });
     expect(classifyCuratedMedia({ image: "MISSING", audio: "READY" })).toMatchObject({
-      classification: "WARN", activationAllowed: true, imageExerciseEligible: false
+      classification: "WARN_MISSING_IMAGE", activationAllowed: true, imageExerciseEligible: false
+    });
+    expect(classifyCuratedMedia({ image: "READY", audio: "READY" }, "QUARANTINED")).toMatchObject({
+      classification: "WARN_QUARANTINED_IMAGE", activationAllowed: true, imageExerciseEligible: false
+    });
+    expect(classifyCuratedMedia({ image: "UNUSABLE", audio: "READY" }, "QUARANTINED")).toMatchObject({
+      classification: "BLOCK", activationAllowed: false, imageExerciseEligible: false,
+      blockingReasons: ["UNUSABLE_IMAGE"]
     });
   });
 
@@ -109,8 +155,23 @@ describe("US-41 vocabulary curation manifest", () => {
     const manifest = readManifest();
     const validation = validationFor(manifest);
     const report = validateManifestAgainstCatalog(manifest, validation);
-    expect(report).toMatchObject({ mediaChecked: 213, mediaPass: 210, mediaWarnings: 3, mediaBlocked: 0 });
+    expect(report).toMatchObject({
+      mediaChecked: 213,
+      mediaPass: 202,
+      mediaWarnings: 11,
+      mediaWarnMissingImage: 3,
+      mediaWarnQuarantinedImage: 8,
+      mediaBlocked: 0,
+      effectiveImageIneligibleCount: 11,
+      meaningOverrides: 5,
+      imageQuarantines: 8,
+      duplicateSourceIdentities: 0,
+      duplicateNormalizedWords: 0,
+      expectedWordMismatches: 0,
+      missingRequiredMeanings: 0
+    });
     expect(report.missingImageWords).toEqual(["anger", "sadness", "joy"]);
+    expect(report.quarantinedImageWords).toEqual(["basket", "cup", "father", "grandfather", "teacher", "cliff", "east", "word"]);
 
     validation.mediaAvailabilityBySourceId[953] = { image: "READY", audio: "MISSING" };
     expect(() => validateManifestAgainstCatalog(manifest, validation)).toThrow(/MISSING_AUDIO/);
@@ -134,5 +195,15 @@ describe("US-41 vocabulary curation manifest", () => {
       records: manifest.records.map((record, index) => index === 0 ? { ...record, activation: false } : record)
     } as unknown as CurationManifest;
     expect(() => validateManifest(invalid)).toThrowError("CURATION_RECORD_NOT_ACTIVATED");
+  });
+
+  it("fails closed when an owner override is attached to an identity with a mismatched word", () => {
+    const manifest = readManifest();
+    const invalid = {
+      ...manifest,
+      records: manifest.records.map((record) => record.sourceRecordId === 911 ? { ...record, expectedWord: "uncle" } : record)
+    } as CurationManifest;
+    expect(() => validateManifestAgainstCatalog(invalid, validationFor(manifest)))
+      .toThrowError("CURATED_SOURCE_WORD_MISMATCH_911");
   });
 });

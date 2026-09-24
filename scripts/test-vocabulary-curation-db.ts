@@ -80,14 +80,65 @@ export async function runUs41TrustedDbSuite(input: CurationTrustedDbInput) {
     assert(first.newlyActivatedRecords === 213, "FIRST_RUN_ACTIVATION_COUNT_INVALID");
     assert(first.alreadyActiveRecords === 0, "FIRST_RUN_ALREADY_ACTIVE_INVALID");
     assert(first.learningSets === 11 && first.setMemberships === 213, "SET_ACTIVATION_COUNT_INVALID");
+    assert(first.meaningOverrides === 5 && first.imageQuarantines === 8, "OWNER_CONTENT_OVERRIDE_COUNT_INVALID");
 
-    const activated = await runtime<{ enabled: boolean; level: string | null; source_record_id: number; image_url: string | null }[]>`
-      SELECT enabled, level::text, source_record_id, image_url FROM ${runtime.unsafe(VOCABULARY_TABLE)}
+    const activated = await runtime<{
+      enabled: boolean;
+      level: string | null;
+      source_record_id: number;
+      image_url: string | null;
+      image_quarantined: boolean;
+      vietnamese_override: string | null;
+      audio_url: string | null;
+    }[]>`
+      SELECT enabled, level::text, source_record_id, image_url, image_quarantined, vietnamese_override, audio_url
+      FROM ${runtime.unsafe(VOCABULARY_TABLE)}
       WHERE source_dataset = ${SOURCE_DATASET}
       ORDER BY source_record_id
     `;
     assert(activated.length === 213 && activated.every((row) => row.enabled === true && ["GRADE_1", "GRADE_2", "GRADE_3"].includes(row.level ?? "")), "ACTIVATED_ROWS_INVALID");
     assert([953, 998, 987].every((id) => activated.find((row) => row.source_record_id === id)?.image_url === null), "MISSING_IMAGE_ROWS_NOT_ACTIVATED");
+    const quarantinedIds = [4, 98, 884, 889, 759, 637, 647, 570];
+    assert(quarantinedIds.every((id) => {
+      const row = activated.find((item) => item.source_record_id === id);
+      return row?.image_quarantined === true && row.image_url !== null && row.audio_url !== null && row.enabled === true;
+    }), "QUARANTINED_IMAGE_SOURCE_NOT_PRESERVED_OR_ROW_DISABLED");
+    const exactMeaningOverrides = new Map([
+      [911, "Cô, dì, bác gái"],
+      [910, "Chú, cậu, bác trai"],
+      [897, "Cháu gái (cháu nội hoặc ngoại)"],
+      [896, "Cháu trai (cháu nội hoặc ngoại)"],
+      [621, "Rìu"]
+    ]);
+    assert([...exactMeaningOverrides].every(([id, meaning]) => activated.find((row) => row.source_record_id === id)?.vietnamese_override === meaning), "VIETNAMESE_OVERRIDE_VALUE_INVALID");
+    assert([891, 938].every((id) => activated.find((row) => row.source_record_id === id)?.vietnamese_override === null), "UNAPPROVED_MEANING_OVERRIDE_PRESENT");
+    const effectiveMedia = await runtime<{ image_ineligible: string; quarantined: string; visible_bad_images: string }[]>`
+      SELECT
+        count(*) FILTER (WHERE image_quarantined OR image_url IS NULL)::text AS image_ineligible,
+        count(*) FILTER (WHERE image_quarantined)::text AS quarantined,
+        count(*) FILTER (WHERE image_quarantined AND CASE WHEN image_quarantined THEN NULL ELSE image_url END IS NOT NULL)::text AS visible_bad_images
+      FROM ${runtime.unsafe(VOCABULARY_TABLE)}
+      WHERE source_dataset = ${SOURCE_DATASET}
+    `;
+    assert(Number(effectiveMedia[0]?.image_ineligible) === 11, "EFFECTIVE_IMAGE_INELIGIBLE_COUNT_INVALID");
+    assert(Number(effectiveMedia[0]?.quarantined) === 8 && Number(effectiveMedia[0]?.visible_bad_images) === 0, "QUARANTINED_IMAGE_LEAKED_TO_LEARNERS");
+
+    mark("source-reimport-preserves-owner-content");
+    await migration`
+      UPDATE ${migration.unsafe(VOCABULARY_TABLE)}
+      SET vietnamese = 'refreshed source meaning', image_url = 'https://media.invalid/refreshed-image'
+      WHERE source_dataset = ${SOURCE_DATASET} AND source_record_id IN (4, 911)
+    `;
+    const afterSourceRefresh = await runtime<{ source_record_id: number; vietnamese: string; image_url: string | null }[]>`
+      SELECT source_record_id,
+             COALESCE(vietnamese_override, vietnamese) AS vietnamese,
+             CASE WHEN image_quarantined THEN NULL ELSE image_url END AS image_url
+      FROM ${runtime.unsafe(VOCABULARY_TABLE)}
+      WHERE source_dataset = ${SOURCE_DATASET} AND source_record_id IN (4, 911)
+      ORDER BY source_record_id
+    `;
+    assert(afterSourceRefresh[0]?.source_record_id === 4 && afterSourceRefresh[0]?.image_url === null, "REIMPORT_REENABLED_QUARANTINED_IMAGE");
+    assert(afterSourceRefresh[1]?.source_record_id === 911 && afterSourceRefresh[1]?.vietnamese === "Cô, dì, bác gái", "REIMPORT_REPLACED_OWNER_MEANING");
     const setRows = await runtime<{ slug: string; item_count: string }[]>`
       SELECT ls.slug, count(lsi.vocabulary_id)::text AS item_count
       FROM ${runtime.unsafe(SETS_TABLE)} ls
@@ -105,6 +156,7 @@ export async function runUs41TrustedDbSuite(input: CurationTrustedDbInput) {
     mark("apply-idempotent-rerun");
     const second = await applyCurationManifest(runtime, manifest, mediaAvailabilityBySourceId);
     assert(second.newlyActivatedRecords === 0 && second.alreadyActiveRecords === 213, "RERUN_NOT_IDEMPOTENT");
+    assert(second.meaningOverrides === 5 && second.imageQuarantines === 8, "RERUN_DROPPED_OWNER_CONTENT_OVERRIDES");
     assert(await countRows(migration, PROGRESS_TABLE) === beforeProgress, "PROGRESS_CHANGED");
     assert(await countRows(migration, REVIEWS_TABLE) === beforeReviews, "REVIEWS_CHANGED");
     assert(await countRows(migration, XP_TABLE) === beforeXp, "XP_CHANGED");

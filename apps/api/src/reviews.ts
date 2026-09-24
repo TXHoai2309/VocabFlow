@@ -148,7 +148,8 @@ async function resolveVocabularyAndTimezone(
   vocabularyId: number
 ): Promise<ReviewTarget> {
   const result = await database.execute(sql`
-    SELECT h.timezone, v.id AS vocabulary_id, v.word, v.vietnamese
+    SELECT h.timezone, v.id AS vocabulary_id, v.word,
+           COALESCE(v.vietnamese_override, v.vietnamese) AS vietnamese
     FROM "${sql.raw(APP_SCHEMA)}"."households" h
     JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v
       ON v.id = ${vocabularyId}::integer

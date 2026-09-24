@@ -1,34 +1,41 @@
-# Technical Architecture v1.0.11
+# Technical Architecture v1.0.12
 
 - Status: APPROVED FOR IMPLEMENTATION
-- Version: v1.0.11
+- Version: v1.0.12
 - Source baseline: `VocabFlow_Technical_Architecture_v1.0.4.docx`; this Markdown records the US-25 identity reconciliation, US-26/US-27 vocabulary taxonomy, US-28/US-29 learning-set assignment model, US-30 daily New allowance, US-31 through US-34 exercise interaction layer, US-35/US-36 activity read model, US-39/US-40 rewards and US-41 reviewed catalog activation.
 - Canonical format: Markdown
-- Last synchronized: 2026-09-23
+- Last synchronized: 2026-09-24
 
 **VOCABFLOW**
 
-**Technical Architecture v1.0.11**
+**Technical Architecture v1.0.12**
 
 ## US-41 content curation and activation
 
 `config/vocabulary-curation-v1.json` is the reviewed
-`VOCABULARY_CURATION_V1` source of truth for the owner-refined 213 imported rows. The
-manifest stores `(source_dataset, source_record_id, expectedWord)`, explicit
-Grade 1–3 labels, canonical topic slugs, ordered learning-set membership and
-an activation decision for every row. The allow-list and deterministic
-selection policy are kept in `scripts/vocabulary-curation.ts`.
+`VOCABULARY_CURATION_V1` source of truth for the owner-refined 213 imported
+rows. In addition to identity, grade, topic, learning-set and activation
+metadata, selected source identities may carry `imagePolicy: "QUARANTINED"` or
+an owner-approved `vietnameseOverride`. The activation transaction persists
+these choices in `vocabularies.image_quarantined` and
+`vocabularies.vietnamese_override`. Raw `image_url` and `vietnamese` continue
+to represent source-imported content; catalog re-import updates those raw
+columns only and cannot clear owner metadata.
 
-The default `pnpm vocab:curate` path is local, read-only and validates the
-source/media gate without opening a database connection. A missing image is a
-reported WARN and does not block activation; usable audio remains required,
-and known unusable/corrupt media blocks. Activation is a single trusted-CI
-transaction only: it verifies the existing source row and media preflight,
-enables and grades only manifest rows, upserts the eleven set definitions/items,
-and adds the 30 starter topic memberships. It
-never inserts `learner_learning_sets`, changes starter identity/content
-version, or mutates progress, review events, XP or achievement state. Repeating
-the transaction converges to the same state.
+Every learner-facing vocabulary query returns
+`COALESCE(vietnamese_override, vietnamese)` and hides `image_url` whenever
+`image_quarantined` is true. Thus quarantined source images remain auditable
+but are absent from Flashcard and `IMAGE_TO_WORD` DTOs. The default
+`pnpm vocab:curate` path is local, read-only and validates the source/media
+gate without opening a database connection. Missing and quarantined images
+are non-blocking WARN states; both are ineligible for `IMAGE_TO_WORD`. Usable
+audio remains required, and known unusable/corrupt media blocks. Activation is
+a single trusted-CI transaction only: it verifies exact source identities and
+media preflight, enables and grades only manifest rows, persists only explicit
+owner overrides, upserts the eleven set definitions/items, and adds the 30
+starter topic memberships. It never inserts `learner_learning_sets`, changes
+starter identity/content version, or mutates progress, review events, XP or
+achievement state. Repeating the transaction converges to the same state.
 
 ## US-39 / US-40 reward layer
 
@@ -70,7 +77,7 @@ Mục tiêu: khóa kiến trúc kỹ thuật đủ chi tiết để triển khai
 
 | **Mục** | **Giá trị** |
 | --- | --- |
-| Document | VocabFlow Technical Architecture v1.0.11 |
+| Document | VocabFlow Technical Architecture v1.0.12 |
 | Target release | Family MVP / vertical slice đầu tiên |
 | Status | APPROVED FOR IMPLEMENTATION |
 | Verification status | Architecture Acceptance Gates được xác minh trong quá trình triển khai; sau khi P0 gates PASS có thể đổi trạng thái thành ARCHITECTURE VERIFIED. |
@@ -278,8 +285,10 @@ Better Auth schema không được chép lại thủ công trong tài liệu. B�
 | vocabularies.word | text | NOT NULL | English word |
 | vocabularies.ipa | text | NULL | Optional |
 | vocabularies.vietnamese | text | NOT NULL | Nghĩa Việt |
+| vocabularies.vietnamese_override | text | NULL | Owner-reviewed canonical meaning; source re-import does not overwrite it |
 | vocabularies.definition_en / example_en | text | NULL | Optional content |
 | vocabularies.image_url / audio_url | text | NULL | Media URL/key, không lưu binary |
+| vocabularies.image_quarantined | boolean | NOT NULL DEFAULT false | Hides the source image from learner-facing reads without deleting its reference |
 | vocabularies.topic | text | NULL | Optional grouping |
 | vocabularies.level | vocabulary_level | NULL | GRADE_1..GRADE_5 or GENERAL; no default or inferred classification |
 | vocabularies.enabled | boolean | NOT NULL DEFAULT false | Bật theo seed/set |
@@ -548,12 +557,19 @@ VOCABULARY_CURATION_V1 manifest + source/media gate
           |
           +-- exact source identity/expected word check
           +-- explicit grade/topic/set metadata
+          +-- apply only source-bound Vietnamese overrides and image quarantines
           +-- enable only manifest rows; preserve all other imported rows
           +-- upsert set items; do not create learner assignments
           +-- assert no progress/review/XP/achievement mutation
           |
           v
-enabled vocabulary + learning-set membership -> existing queue/assignment APIs
+enabled vocabulary + learning-set membership -> effective-content read model
+          |
+          +-- vietnamese = COALESCE(vietnamese_override, vietnamese)
+          +-- image_url = NULL when image_quarantined = true
+          |
+          v
+existing queue/assignment APIs and exercise generation
 ```
 
 US-26/US-27 taxonomy rules:
@@ -576,14 +592,22 @@ US-41 activation rules:
 
 - The 213-row manifest is the only authority allowed to enable imported rows;
   source identity and expected word must match exactly.
-- Usable audio is required. A missing image is WARN and may activate; a known
-  unusable/corrupt image or audio asset, missing audio, missing required text,
-  or invalid source identity aborts activation. Database URL nullability alone
-  cannot distinguish missing from unusable media, so the source media
-  preflight preserves that distinction before trusted activation preparation.
-- Catalog activation does not grant `IMAGE_TO_WORD` eligibility: that exercise
-  still independently requires a usable image and otherwise follows its
-  existing safe fallback. Missing images are not replaced with placeholders.
+- Usable audio is required. A missing image is `WARN_MISSING_IMAGE`; an image
+  marked `QUARANTINED` in the source-bound manifest is
+  `WARN_QUARANTINED_IMAGE`. Both may activate when other requirements pass and
+  both resolve to no learner-facing image. Known unusable/corrupt media,
+  missing audio, missing required text or invalid source identity blocks.
+  Database URL nullability alone cannot distinguish missing from unusable
+  media, so source preflight preserves that distinction.
+- The runtime read model applies `vietnamese_override` before exposing
+  `vietnamese` and masks `image_url` when `image_quarantined` is true. Flashcard
+  therefore renders without the quarantined image, and `IMAGE_TO_WORD` remains
+  ineligible. Audio/listening, typing and meaning choice keep their independent
+  prerequisites. No placeholder is fabricated.
+- `vocab:import-catalog` reconciles raw source fields by source identity but
+  does not write the owner metadata columns. A later source refresh can update
+  raw `vietnamese` or restore a source image URL without changing effective
+  learner content until a reviewed curation activation changes the override.
 - Eleven ordered sets are upserted, but no learner assignment is created. The
   existing parent assignment API remains the only assignment boundary.
 - The transaction snapshots starter rows, assignments, progress, review
@@ -683,6 +707,12 @@ reconcile by (source_dataset, source_record_id)
    +-- text/media changed -> contentVersion++
    +-- existing enabled row -> preserve enabled state
    +-- progress/history preserved; no starter matching by normalized word
+
+The catalog importer intentionally leaves `vietnamese_override` and
+`image_quarantined` untouched. US-41 activation is the final owner-reviewed
+canonicalization step: `vietnamese_override` takes precedence over the raw
+source meaning, and a true quarantine flag masks any current or re-imported
+`image_url` from learner-facing reads.
 ```
 
 # 8. Learning Domain & Scheduler
@@ -999,6 +1029,9 @@ re-uploads media.
 - File versioned/hash cache immutable khi phù hợp.
 
 - Missing image không làm card hỏng; vùng ảnh được ẩn.
+- Owner-quarantined image giữ nguyên source reference để audit nhưng được trả
+  về runtime như không có ảnh; nó không thể render trong Flashcard hoặc được
+  dùng làm `IMAGE_TO_WORD` prompt.
 
 - Audio dùng URL đã resolve từ media map; thiếu/hỏng thì disable control.
   Không dùng SpeechSynthesis và không phát minh fallback audio.
@@ -1331,5 +1364,5 @@ Step 7 là mốc xác nhận kiến trúc: parent login → learner → review �
 
 # Appendix B. Approval Statement
 
-> TECHNICAL ARCHITECTURE v1.0.11 — APPROVED FOR IMPLEMENTATION
+> TECHNICAL ARCHITECTURE v1.0.12 — APPROVED FOR IMPLEMENTATION
 > Từ thời điểm tài liệu này được chấp nhận, triển khai phải bám architecture invariants, sparse progress/virtual NEW model, learner-scoped review queue, race-safe household bootstrap, schema constraints, household authorization, review write/idempotency contract, database identity ownership boundary và clean migration contract ở trên. Acceptance Gates được xác minh trong implementation; mọi thay đổi kiến trúc cần blocker/evidence kỹ thuật cụ thể.

@@ -1,0 +1,2 @@
+ALTER TABLE "vocabflow_app"."vocabularies" ADD COLUMN "vietnamese_override" text;--> statement-breakpoint
+ALTER TABLE "vocabflow_app"."vocabularies" ADD COLUMN "image_quarantined" boolean DEFAULT false NOT NULL;

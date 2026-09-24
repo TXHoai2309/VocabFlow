@@ -263,6 +263,28 @@ describe("US-25 catalog planning and mutation safety", () => {
     expect(after.learnerProgressCount).toBe(4);
     expect(after.reviewEventCount).toBe(7);
   });
+
+  it("preserves US-41 owner overrides while refreshing raw catalog content", async () => {
+    const original = validatedRecords()[0]!;
+    const existing = {
+      ...rowFromRecord(31, original, true),
+      vietnamese_override: "owner-reviewed meaning",
+      image_quarantined: true
+    } as CatalogRow;
+    const source = sourceRecord(1, original.word, "refreshed raw meaning");
+    const validation = validateCatalogRecords([source], mediaIndex());
+    const mock = memoryDatabase(snapshot([existing]));
+
+    await runApply(mock.database, validation);
+
+    const refreshed = (await mock.database.readState()).importedRows[0] as CatalogRow & {
+      vietnamese_override: string | null;
+      image_quarantined: boolean;
+    };
+    expect(refreshed.vietnamese).toBe("refreshed raw meaning");
+    expect(refreshed.vietnamese_override).toBe("owner-reviewed meaning");
+    expect(refreshed.image_quarantined).toBe(true);
+  });
 });
 
 describe("US-25 source identity schema", () => {
