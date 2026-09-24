@@ -16,8 +16,11 @@ This log records meaningful project milestones and accepted baselines.
   quarantined-image WARN, 0 BLOCK, 11 image-ineligible; 5 meaning overrides;
   all duplicate, mismatch and missing-meaning counts are zero.
 - Local full validation: 476 tests, lint, typecheck, build and 26 E2E tests
-  pass. Core CI and Trusted DB Integration are pending push to `main`; real
-  Neon apply was not performed.
+  pass. Core CI run [#93](https://github.com/TXHoai2309/VocabFlow/actions/runs/35964700073)
+  and Trusted DB Integration run [#88, attempt 3](https://github.com/TXHoai2309/VocabFlow/actions/runs/35964700003)
+  pass on implementation SHA `0cc10dd9ded1564a860d605b196939a25dce1d1d`.
+  Trusted DB used its configured CI test target. Real Neon apply was not
+  performed.
 
 ## 2026-09-23 — US-41 owner-refined final curation
 

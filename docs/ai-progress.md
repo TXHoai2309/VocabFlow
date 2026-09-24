@@ -20,9 +20,14 @@
   `SAFE_WITH_LIMITATION` quarantines with `IMAGE_TO_WORD=NO`, and six corrected
   meanings assessed OK; cousin and love remain unchanged.
 - Local validation PASS: 17 focused files / 175 tests; full suite 47 files /
-  476 tests; lint, typecheck, build, 26 E2E and `git diff --check`. Core CI and
-  Trusted DB Integration are pending push to `main`; only the configured CI
-  test database may be used. Do not run real `vocab:curate --apply`.
+  476 tests; lint, typecheck, build, 26 E2E and `git diff --check`. Core CI
+  run #93 (`35964700073`) and Trusted DB Integration run #88, attempt 3
+  (`35964700003`), passed on implementation SHA
+  `0cc10dd9ded1564a860d605b196939a25dce1d1d`.
+- Trusted DB used only the configured CI test target. Earlier attempt 1 stopped
+  at the runtime protected-identity check; attempt 2 passed US-41, then hit the
+  existing US-07 same-review-ID replay-race assertion. Attempt 3 passed the
+  full suite. No real Neon apply was run.
 - Preserve pre-existing `.env.example` and `docs/decisions.md` changes; neither
   belongs in the remediation commit.
 

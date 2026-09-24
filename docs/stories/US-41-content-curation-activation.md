@@ -1,6 +1,6 @@
 # US-41 — Content Curation & Activation
 
-- Status: `IN PROGRESS — awaiting remote CI; real Neon apply not run`.
+- Status: `IMPLEMENTED / READY FOR REAL NEON APPLY — apply not run`.
 - Dependency: US-25 catalog identity/import, US-26/US-27 taxonomy, US-28/US-30 learning-set and daily-New contracts, and US-39/US-40 reward invariants.
 - Scope: review and activate a bounded slice of the imported `2000_COMMON_ENGLISH_VOCABULARY_V1` catalog.
 - Out of scope: US-42, AI-generated content, learner-owned sets, automatic learner assignment, XP/review/progress backfill, daily-limit changes, schema redesign and production/live-Neon execution from a developer workstation.
@@ -157,7 +157,9 @@ metadata. No LLM/API translation or classification is used.
 - [x] Focused curation, media-policy, owner-override, catalog-import,
   Flashcard/exercise, queue, progress, gamification and reset regressions pass;
   the full local test, lint, typecheck, build and E2E gates pass.
-- [ ] Trusted DB Integration and Core CI pass on the final remediation SHA.
+- [x] Core CI #93 and Trusted DB Integration #88 (attempt 3) pass on the
+  remediation implementation SHA; Trusted DB used only the configured CI test
+  target.
 - [x] The previous 220-row baseline passed Core CI and Trusted DB Integration
   (`4d76cfa946ccae94ec3e5deb690f0365ba579363`; Core CI #87, Trusted DB #81).
 - [x] The current 213-row refinement passed both remote gates on the same
@@ -190,6 +192,11 @@ metadata. No LLM/API translation or classification is used.
   476 tests; lint and typecheck pass; production build passes; E2E 26/26 pass.
   The CSV artifacts round-trip through the spreadsheet runtime (15 rows and 8
   image rows) and remain in ignored `local-data/generated/`.
-- Core CI and Trusted DB Integration on the final remediation SHA: pending.
-  Trusted DB is restricted to its configured CI test target. Real Neon apply
-  has not been run.
+- Core CI run [#93](https://github.com/TXHoai2309/VocabFlow/actions/runs/35964700073)
+  and Trusted DB Integration run [#88, attempt 3](https://github.com/TXHoai2309/VocabFlow/actions/runs/35964700003)
+  pass on implementation SHA
+  `0cc10dd9ded1564a860d605b196939a25dce1d1d`. Attempts 1 and 2 exposed an
+  early runtime identity-harness error and a later legacy US-07 replay-race
+  failure; attempt 3 passed the full suite, including US-41 source-refresh and
+  idempotency assertions. Trusted DB used only its configured CI test target.
+  Real Neon apply has not been run.
