@@ -1,6 +1,7 @@
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { loadEnvFile } from "node:process";
+import type postgres from "postgres";
 import { APP_SCHEMA } from "@vocabflow/contracts";
 import { DEFAULT_DATASET_ROOT } from "./vocab-media-manifest";
 import {
@@ -9,9 +10,17 @@ import {
   type CatalogMediaAvailability,
   type CatalogMediaAvailabilityBySourceId
 } from "./import-vocabulary-catalog";
-import { openSql, readContext } from "./db-core";
+import { assertPostConnectIdentity, openSql, readContext } from "./db-core";
 import { assertResolvedTargetBeforeMutation, configuredDatabaseUrl } from "./runtime-validation";
-import { getConnectionTarget } from "../config/database-targets";
+import {
+  assertCurationDatabaseAccess,
+  configuredCurationTarget,
+  formatCurationTargetMetadata,
+  parseCurationCliArgs,
+  resolveCurationTargetName,
+  runAuthorizedCurationApply,
+  type CurationCliOptions
+} from "./vocabulary-curation-access";
 
 export const CURATION_VERSION = "VOCABULARY_CURATION_V1" as const;
 export const MANIFEST_PATH = join(process.cwd(), "config", "vocabulary-curation-v1.json");
@@ -387,15 +396,225 @@ export type CurationApplyReport = {
   imageQuarantines: number;
 };
 
+export type CurationDatabasePlan = {
+  totalVocabularyRows: number;
+  enabledVocabularyRows: number;
+  importedVocabularyRows: number;
+  enabledImportedVocabularyRows: number;
+  curatedSourceRowsFound: number;
+  learnerProgressRows: number;
+  reviewEventRows: number;
+  xpEventRows: number;
+  learnerAchievementRows: number;
+  learnerLearningSetAssignments: number;
+  starterCount: number;
+  starterEnabledCount: number;
+  starterTopicMappings: number;
+  rowsToEnable: number;
+  rowsAlreadyEnabled: number;
+  rowsToDisable: 0;
+  gradeUpdates: number;
+  topicMappingInserts: number;
+  topicMappingDeletes: number;
+  learningSetsToCreateOrUpdate: number;
+  learningSetItemsToCreateOrUpdate: number;
+  unexpectedLearningSetItems: number;
+  meaningOverridesToApply: number;
+  imageQuarantinesToApply: number;
+};
+
 type Queryable = {
   <T extends Record<string, unknown> = Record<string, unknown>>(strings: TemplateStringsArray, ...values: unknown[]): Promise<T[]>;
   unsafe: (value: string) => unknown;
 };
 
+export async function withCurationReadOnlyTransaction<T>(
+  sql: SqlClient,
+  read: (tx: postgres.TransactionSql) => Promise<T>
+): Promise<T> {
+  const result = await sql.begin(async (tx) => {
+    await tx`SET TRANSACTION READ ONLY`;
+    return read(tx);
+  });
+  return result as unknown as T;
+}
+
 async function count(sqlInput: unknown, table: string) {
   const sql = sqlInput as Queryable;
   const [row] = await sql<{ count: string }>`SELECT count(*)::text AS count FROM ${sql.unsafe(table)}`;
   return Number(row?.count ?? 0);
+}
+
+export async function planCurationManifest(
+  sql: SqlClient,
+  manifest: CurationManifest,
+  mediaAvailabilityBySourceId: CatalogMediaAvailabilityBySourceId
+): Promise<CurationDatabasePlan> {
+  assertManifestMediaAllowed(manifest, mediaAvailabilityBySourceId);
+  return withCurationReadOnlyTransaction(sql, async (tx) => {
+    // The database enforces that this dry-run transaction cannot write, even
+    // if later query code is accidentally changed to include a mutation.
+
+    const [snapshot] = await tx<{
+      total_vocabulary_rows: string;
+      enabled_vocabulary_rows: string;
+      imported_vocabulary_rows: string;
+      enabled_imported_vocabulary_rows: string;
+      learner_progress_rows: string;
+      review_event_rows: string;
+      xp_event_rows: string;
+      learner_achievement_rows: string;
+      learner_learning_set_assignments: string;
+    }[]>`
+      SELECT
+        (SELECT count(*)::text FROM ${tx.unsafe(VOCABULARIES)}) AS total_vocabulary_rows,
+        (SELECT count(*)::text FROM ${tx.unsafe(VOCABULARIES)} WHERE enabled) AS enabled_vocabulary_rows,
+        (SELECT count(*)::text FROM ${tx.unsafe(VOCABULARIES)} WHERE source_dataset IS NOT NULL) AS imported_vocabulary_rows,
+        (SELECT count(*)::text FROM ${tx.unsafe(VOCABULARIES)} WHERE source_dataset IS NOT NULL AND enabled) AS enabled_imported_vocabulary_rows,
+        (SELECT count(*)::text FROM ${tx.unsafe(q(APP_SCHEMA, "learner_progress"))}) AS learner_progress_rows,
+        (SELECT count(*)::text FROM ${tx.unsafe(q(APP_SCHEMA, "review_events"))}) AS review_event_rows,
+        (SELECT count(*)::text FROM ${tx.unsafe(q(APP_SCHEMA, "xp_events"))}) AS xp_event_rows,
+        (SELECT count(*)::text FROM ${tx.unsafe(q(APP_SCHEMA, "learner_achievements"))}) AS learner_achievement_rows,
+        (SELECT count(*)::text FROM ${tx.unsafe(q(APP_SCHEMA, "learner_learning_sets"))}) AS learner_learning_set_assignments
+    `;
+    assert(snapshot, "CURATION_DATABASE_SNAPSHOT_FAILED");
+
+    const starterRows = await tx<{ id: number; word: string; enabled: boolean }[]>`
+      SELECT id, word, enabled FROM ${tx.unsafe(VOCABULARIES)} WHERE id BETWEEN 1 AND 30 ORDER BY id
+    `;
+    assert(starterRows.length === 30, "STARTER_ROWS_NOT_READY");
+    for (const mapping of manifest.starterTopicMappings) {
+      assert(starterRows[mapping.vocabularyId - 1]?.word === mapping.expectedWord, `STARTER_TOPIC_WORD_MISMATCH_${mapping.vocabularyId}`);
+    }
+
+    const topicRows = await tx<{ id: number; slug: string }[]>`
+      SELECT id, slug FROM ${tx.unsafe(TOPICS)} WHERE slug = ANY(${tx.array([...CANONICAL_TOPIC_SLUGS])}::text[])
+    `;
+    const topicIds = new Map(topicRows.map((row) => [row.slug, Number(row.id)]));
+    for (const slug of CANONICAL_TOPIC_SLUGS) assert(topicIds.has(slug), `CANONICAL_TOPIC_MISSING_${slug}`);
+
+    const sourceRows = await tx<{
+      id: number;
+      source_record_id: number;
+      word: string;
+      vietnamese: string | null;
+      enabled: boolean;
+      level: string | null;
+      image_url: string | null;
+      audio_url: string | null;
+      vietnamese_override: string | null;
+      image_quarantined: boolean;
+    }[]>`
+      SELECT id, source_record_id, word, vietnamese, enabled, level::text AS level,
+        image_url, audio_url, vietnamese_override, image_quarantined
+      FROM ${tx.unsafe(VOCABULARIES)}
+      WHERE source_dataset = ${SOURCE_DATASET_ID}
+        AND source_record_id = ANY(${tx.array(manifest.records.map((record) => record.sourceRecordId))}::integer[])
+    `;
+    assert(sourceRows.length === manifest.records.length, "CURATED_SOURCE_ROW_COUNT_INVALID");
+    const sourceById = new Map(sourceRows.map((row) => [Number(row.source_record_id), row]));
+    for (const record of manifest.records) {
+      const row = sourceById.get(record.sourceRecordId);
+      assert(row, `CURATED_SOURCE_ROW_NOT_READY_${record.sourceRecordId}`);
+      assert(row.id > 30, `CURATED_SOURCE_ID_OVERLAPS_STARTERS_${record.sourceRecordId}`);
+      assert(row.word === record.expectedWord, `CURATED_SOURCE_WORD_MISMATCH_${record.sourceRecordId}`);
+      assert(typeof row.vietnamese === "string" && row.vietnamese.trim() !== "", `CURATED_SOURCE_MEANING_MISSING_${record.sourceRecordId}`);
+      const availability = mediaAvailabilityBySourceId[record.sourceRecordId];
+      assert((availability.image === "READY") === Boolean(row.image_url), `CURATED_IMAGE_STATUS_MISMATCH_${record.expectedWord}`);
+      assert(Boolean(row.audio_url), `CURATED_MEDIA_GATE_FAILED_${record.expectedWord}_AUDIO`);
+    }
+
+    const existingSets = await tx<{
+      id: number;
+      slug: string;
+      name: string;
+      description: string;
+      grade: string;
+      enabled: boolean;
+      sort_order: number;
+    }[]>`
+      SELECT id, slug, name, description, grade::text AS grade, enabled, sort_order
+      FROM ${tx.unsafe(SETS)}
+      WHERE slug = ANY(${tx.array(manifest.learningSets.map((set) => set.slug))}::text[])
+    `;
+    const existingSetBySlug = new Map(existingSets.map((set) => [set.slug, set]));
+    const setsToCreateOrUpdate = manifest.learningSets.filter((set) => {
+      const existing = existingSetBySlug.get(set.slug);
+      return !existing || existing.name !== set.name || existing.description !== set.description
+        || existing.grade !== set.grade || existing.enabled !== true || Number(existing.sort_order) !== set.sortOrder;
+    }).length;
+
+    const vocabularyIds = [
+      ...sourceRows.map((row) => Number(row.id)),
+      ...starterRows.map((row) => Number(row.id))
+    ];
+    const existingTopics = await tx<{ vocabulary_id: number; topic_id: number }[]>`
+      SELECT vocabulary_id, topic_id
+      FROM ${tx.unsafe(MEMBERSHIPS)}
+      WHERE vocabulary_id = ANY(${tx.array(vocabularyIds)}::integer[])
+    `;
+    const existingTopicKeys = new Set(existingTopics.map((row) => `${row.vocabulary_id}:${row.topic_id}`));
+    const desiredTopicKeys = new Set<string>();
+    for (const record of manifest.records) {
+      const vocabularyId = Number(sourceById.get(record.sourceRecordId)?.id);
+      for (const slug of record.topicSlugs) desiredTopicKeys.add(`${vocabularyId}:${topicIds.get(slug)}`);
+    }
+    for (const mapping of manifest.starterTopicMappings) {
+      for (const slug of mapping.topicSlugs) desiredTopicKeys.add(`${mapping.vocabularyId}:${topicIds.get(slug)}`);
+    }
+    const topicMappingInserts = [...desiredTopicKeys].filter((key) => !existingTopicKeys.has(key)).length;
+    const topicMappingDeletes = [...existingTopicKeys].filter((key) => !desiredTopicKeys.has(key)).length;
+
+    const existingItems = existingSets.length === 0 ? [] : await tx<{
+      slug: string;
+      vocabulary_id: number;
+      sort_order: number;
+    }[]>`
+      SELECT ls.slug, lsi.vocabulary_id, lsi.sort_order
+      FROM ${tx.unsafe(ITEMS)} lsi
+      JOIN ${tx.unsafe(SETS)} ls ON ls.id = lsi.learning_set_id
+      WHERE ls.slug = ANY(${tx.array(manifest.learningSets.map((set) => set.slug))}::text[])
+    `;
+    const existingItemByKey = new Map(existingItems.map((item) => [`${item.slug}:${item.vocabulary_id}`, Number(item.sort_order)]));
+    const expectedItemByKey = new Map<string, number>();
+    manifest.records.forEach((record, sortOrder) => {
+      const vocabularyId = Number(sourceById.get(record.sourceRecordId)?.id);
+      for (const slug of record.learningSetSlugs) expectedItemByKey.set(`${slug}:${vocabularyId}`, sortOrder);
+    });
+    const learningSetItemsToCreateOrUpdate = [...expectedItemByKey]
+      .filter(([key, sortOrder]) => existingItemByKey.get(key) !== sortOrder).length;
+    const unexpectedLearningSetItems = [...existingItemByKey.keys()].filter((key) => !expectedItemByKey.has(key)).length;
+
+    const expectedMeanings = new Map(manifest.records.map((record) => [record.sourceRecordId, record.vietnameseOverride ?? null]));
+    const expectedQuarantines = new Map(manifest.records.map((record) => [record.sourceRecordId, record.imagePolicy === "QUARANTINED"]));
+
+    return {
+      totalVocabularyRows: Number(snapshot.total_vocabulary_rows),
+      enabledVocabularyRows: Number(snapshot.enabled_vocabulary_rows),
+      importedVocabularyRows: Number(snapshot.imported_vocabulary_rows),
+      enabledImportedVocabularyRows: Number(snapshot.enabled_imported_vocabulary_rows),
+      curatedSourceRowsFound: sourceRows.length,
+      learnerProgressRows: Number(snapshot.learner_progress_rows),
+      reviewEventRows: Number(snapshot.review_event_rows),
+      xpEventRows: Number(snapshot.xp_event_rows),
+      learnerAchievementRows: Number(snapshot.learner_achievement_rows),
+      learnerLearningSetAssignments: Number(snapshot.learner_learning_set_assignments),
+      starterCount: starterRows.length,
+      starterEnabledCount: starterRows.filter((row) => row.enabled).length,
+      starterTopicMappings: manifest.starterTopicMappings.length,
+      rowsToEnable: sourceRows.filter((row) => !row.enabled).length,
+      rowsAlreadyEnabled: sourceRows.filter((row) => row.enabled).length,
+      rowsToDisable: 0,
+      gradeUpdates: manifest.records.filter((record) => sourceById.get(record.sourceRecordId)?.level !== record.grade).length,
+      topicMappingInserts,
+      topicMappingDeletes,
+      learningSetsToCreateOrUpdate: setsToCreateOrUpdate,
+      learningSetItemsToCreateOrUpdate,
+      unexpectedLearningSetItems,
+      meaningOverridesToApply: sourceRows.filter((row) => expectedMeanings.get(row.source_record_id) !== row.vietnamese_override).length,
+      imageQuarantinesToApply: sourceRows.filter((row) => expectedQuarantines.get(row.source_record_id) !== row.image_quarantined).length
+    };
+  });
 }
 
 export async function applyCurationManifest(
@@ -561,14 +780,17 @@ function loadRepositoryEnv() {
   if (existsSync(path)) loadEnvFile(path);
 }
 
-function printDryRun(
+export function printDryRun(
   manifest: CurationManifest,
   datasetStatus: string,
   mediaStatus: string,
-  mediaReport?: ReturnType<typeof validateManifestAgainstCatalog>
+  mediaReport?: ReturnType<typeof validateManifestAgainstCatalog>,
+  targetMetadata?: string[],
+  databasePlan?: CurationDatabasePlan
 ) {
   const grades = new Map<Grade, number>();
   for (const record of manifest.records) grades.set(record.grade, (grades.get(record.grade) ?? 0) + 1);
+  for (const line of targetMetadata ?? []) console.log(line);
   console.log(`CURATION_VERSION=${CURATION_VERSION}`);
   console.log(`SOURCE_DATASET_ID=${SOURCE_DATASET_ID}`);
   console.log(`MANIFEST_RECORDS=${manifest.records.length}`);
@@ -596,28 +818,67 @@ function printDryRun(
   console.log(`DUPLICATE_NORMALIZED_WORDS=${mediaReport?.duplicateNormalizedWords ?? 0}`);
   console.log(`EXPECTED_WORD_MISMATCHES=${mediaReport?.expectedWordMismatches ?? 0}`);
   console.log(`MISSING_REQUIRED_MEANINGS=${mediaReport?.missingRequiredMeanings ?? 0}`);
+  if (databasePlan) printCurationDatabasePlan(databasePlan);
   console.log("DRY_RUN=YES");
   console.log("DATABASE_MUTATIONS=0");
   console.log("LEARNER_ASSIGNMENTS_CHANGED=0");
   console.log("PROGRESS_REVIEW_XP_ACHIEVEMENT_MUTATIONS=0");
   console.log("DB_MUTATIONS=0");
   console.log("REAL_NEON_APPLY=NOT_RUN");
-  console.log("STATUS=PASS");
+  console.log(`STATUS=${databasePlan?.unexpectedLearningSetItems ? "BLOCKED" : "PASS"}`);
+}
+
+function printCurationDatabasePlan(plan: CurationDatabasePlan) {
+  console.log(`TOTAL_VOCABULARY_ROWS=${plan.totalVocabularyRows}`);
+  console.log(`ENABLED_VOCABULARY_ROWS=${plan.enabledVocabularyRows}`);
+  console.log(`IMPORTED_VOCABULARY_ROWS=${plan.importedVocabularyRows}`);
+  console.log(`ENABLED_IMPORTED_ROWS=${plan.enabledImportedVocabularyRows}`);
+  console.log(`CURATED_SOURCE_ROWS_FOUND=${plan.curatedSourceRowsFound}`);
+  console.log(`LEARNER_PROGRESS_ROWS=${plan.learnerProgressRows}`);
+  console.log(`REVIEW_EVENT_ROWS=${plan.reviewEventRows}`);
+  console.log(`XP_EVENT_ROWS=${plan.xpEventRows}`);
+  console.log(`LEARNER_ACHIEVEMENT_ROWS=${plan.learnerAchievementRows}`);
+  console.log(`LEARNER_LEARNING_SET_ASSIGNMENTS=${plan.learnerLearningSetAssignments}`);
+  console.log(`STARTER_COUNT=${plan.starterCount}`);
+  console.log(`STARTER_ENABLED_COUNT=${plan.starterEnabledCount}`);
+  console.log(`STARTER_TOPIC_MAPPINGS=${plan.starterTopicMappings}`);
+  console.log(`ROWS_TO_ENABLE=${plan.rowsToEnable}`);
+  console.log(`ROWS_ALREADY_ENABLED=${plan.rowsAlreadyEnabled}`);
+  console.log(`ROWS_TO_DISABLE=${plan.rowsToDisable}`);
+  console.log(`GRADE_UPDATES=${plan.gradeUpdates}`);
+  console.log(`TOPIC_MAPPING_INSERTS=${plan.topicMappingInserts}`);
+  console.log(`TOPIC_MAPPING_DELETES=${plan.topicMappingDeletes}`);
+  console.log(`LEARNING_SETS_TO_CREATE_OR_UPDATE=${plan.learningSetsToCreateOrUpdate}`);
+  console.log(`LEARNING_SET_ITEMS_TO_CREATE_OR_UPDATE=${plan.learningSetItemsToCreateOrUpdate}`);
+  console.log(`UNEXPECTED_LEARNING_SET_ITEMS=${plan.unexpectedLearningSetItems}`);
+  console.log(`MEANING_OVERRIDES_TO_APPLY=${plan.meaningOverridesToApply}`);
+  console.log(`IMAGE_QUARANTINES_TO_APPLY=${plan.imageQuarantinesToApply}`);
+  console.log(`PLAN_STATUS=${plan.unexpectedLearningSetItems === 0 ? "PASS" : "BLOCKED"}`);
+}
+
+function printPreApplyPlan(plan: CurationDatabasePlan, targetMetadata: string[]) {
+  for (const line of targetMetadata) console.log(line);
+  printCurationDatabasePlan(plan);
+  console.log("PRE_APPLY_DATABASE_MUTATIONS=0");
 }
 
 async function main() {
-  const args = process.argv.slice(2);
-  const apply = args.includes("--apply");
-  const generate = args.includes("--generate-manifest");
-  if (args.some((arg) => !["--apply", "--generate-manifest"].includes(arg)) || (apply && generate)) throw new CurationError("CLI_ARGUMENT_INVALID");
-  if (generate) {
+  let options: CurationCliOptions;
+  try {
+    options = parseCurationCliArgs(process.argv.slice(2));
+  } catch {
+    throw new CurationError("CLI_ARGUMENT_INVALID");
+  }
+
+  if (options.generateManifest) {
     const manifest = buildManifestFromCatalog();
     writeFileSync(MANIFEST_PATH, `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
     console.log(`MANIFEST_GENERATED=${MANIFEST_PATH}`);
     return;
   }
   const manifest = readManifest();
-  if (!apply) {
+  const hasConfirmation = options.confirmTarget !== undefined || options.confirmBranch !== undefined;
+  if (!options.apply && !options.requestedTarget && !hasConfirmation) {
     let datasetStatus = "SKIPPED_NO_LOCAL_DATASET";
     let mediaStatus = "SKIPPED_NO_LOCAL_DATASET";
     let mediaReport: ReturnType<typeof validateManifestAgainstCatalog> | undefined;
@@ -630,20 +891,70 @@ async function main() {
     printDryRun(manifest, datasetStatus, mediaStatus, mediaReport);
     return;
   }
+
+  if (!options.apply && hasConfirmation) throw new CurationError("CURATION_CONFIRMATION_WITHOUT_APPLY");
+  if (options.requestedTarget === "production") throw new CurationError("CURATION_PRODUCTION_TARGET_BLOCKED");
+  const datasetPath = join(resolve(DEFAULT_DATASET_ROOT), "vocabulary.json");
+  if (!existsSync(datasetPath)) throw new CurationError("CURATION_LOCAL_DATASET_REQUIRED");
   const catalogValidation = loadCatalogValidation();
-  validateManifestAgainstCatalog(manifest, catalogValidation);
+  const mediaReport = validateManifestAgainstCatalog(manifest, catalogValidation);
   loadRepositoryEnv();
   const { context, environment } = readContext();
-  if (context !== "ci-test" || environment !== "test") throw new CurationError("APPLY_REQUIRES_TRUSTED_CI_TEST_CONTEXT");
-  const target = getConnectionTarget("test", "runtime");
-  const connection = await assertResolvedTargetBeforeMutation({ context, source: "github-actions", environment, purpose: "runtime", operation: "db-enrich", target });
+  const targetName = resolveCurationTargetName(context, options.requestedTarget);
+  const target = configuredCurationTarget(targetName);
+  const trustedSource = process.env.GITHUB_ACTIONS === "true" ? "github-actions" as const : "dev-launcher" as const;
+  const accessRequest = {
+    executionContext: context,
+    trustedSource,
+    vocabularyEnvironment: environment,
+    databaseEnvironment: process.env.DATABASE_ENV,
+    requestedTarget: options.requestedTarget,
+    resolvedTarget: target,
+    mode: options.apply ? "apply" as const : "dry-run" as const,
+    confirmTarget: options.confirmTarget,
+    confirmBranch: options.confirmBranch
+  };
+  const authorizedTarget = assertCurationDatabaseAccess(accessRequest);
+  const connection = await assertResolvedTargetBeforeMutation({
+    context,
+    source: trustedSource,
+    environment,
+    purpose: "runtime",
+    operation: options.apply ? "db-enrich" : "db-check",
+    target
+  });
+  const verifiedTarget = assertCurationDatabaseAccess({ ...accessRequest, resolvedTarget: connection.resolved.expected });
   const url = connection.url ?? configuredDatabaseUrl(context, "runtime");
   if (!url) throw new CurationError("RUNTIME_DATABASE_URL_REQUIRED");
   const sql = openSql(url);
   try {
-    const report = await applyCurationManifest(sql, manifest, catalogValidation.mediaAvailabilityBySourceId);
+    await assertPostConnectIdentity(sql, target);
+    const plan = await planCurationManifest(sql, manifest, catalogValidation.mediaAvailabilityBySourceId);
+    const targetMetadata = formatCurationTargetMetadata(context, environment, verifiedTarget);
+
+    if (!options.apply) {
+      printDryRun(
+        manifest,
+        `PASS records=${mediaReport.sourceRecords}`,
+        `PASS checked=${mediaReport.mediaChecked} pass=${mediaReport.mediaPass} warn=${mediaReport.mediaWarnings} block=${mediaReport.mediaBlocked}`,
+        mediaReport,
+        targetMetadata,
+        plan
+      );
+      if (plan.unexpectedLearningSetItems > 0) process.exitCode = 1;
+      return;
+    }
+
+    printPreApplyPlan(plan, targetMetadata);
+    if (plan.unexpectedLearningSetItems > 0) throw new CurationError("CURATION_UNEXPECTED_LEARNING_SET_ITEMS");
+    await assertPostConnectIdentity(sql, target);
+    const report = await runAuthorizedCurationApply(accessRequest, async (confirmedTarget) => {
+      if (confirmedTarget.branchId !== authorizedTarget.branchId) throw new CurationError("CURATION_TARGET_CHANGED_AFTER_PREFLIGHT");
+      return applyCurationManifest(sql, manifest, catalogValidation.mediaAvailabilityBySourceId);
+    });
     for (const [key, value] of Object.entries(report)) console.log(`${key.toUpperCase()}=${value}`);
     console.log("APPLY_MODE=APPLY");
+    console.log("REAL_NEON_APPLY=COMPLETE");
     console.log("STATUS=PASS");
   } finally {
     await sql.end({ timeout: 5 });

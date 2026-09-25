@@ -1,6 +1,6 @@
 # US-41 — Content Curation & Activation
 
-- Status: `IMPLEMENTED / READY FOR REAL NEON APPLY — apply not run`.
+- Status: `IMPLEMENTED / READY FOR OWNER DEVELOPMENT DRY RUN — no target command run`.
 - Dependency: US-25 catalog identity/import, US-26/US-27 taxonomy, US-28/US-30 learning-set and daily-New contracts, and US-39/US-40 reward invariants.
 - Scope: review and activate a bounded slice of the imported `2000_COMMON_ENGLISH_VOCABULARY_V1` catalog.
 - Out of scope: US-42, AI-generated content, learner-owned sets, automatic learner assignment, XP/review/progress backfill, daily-limit changes, schema redesign and production/live-Neon execution from a developer workstation.
@@ -61,15 +61,26 @@ deferred without replacement; the list is intentionally not padded back to 20.
 
 ```text
 pnpm vocab:curate                 # local deterministic validation; no DB connection
-pnpm vocab:curate --apply         # trusted CI test context only; one DB transaction
+pnpm vocab:curate -- --target development  # verified development snapshot/plan; read-only
+pnpm vocab:curate -- --target development --apply --confirm-target development --confirm-branch br-square-grass-b3af0nte
+pnpm vocab:curate -- --apply      # trusted CI test context only; one DB transaction
 pnpm vocab:curate --generate-manifest  # regenerate from the local audited dataset
 ```
 
 The default command is a dry run and reports exact record, grade, set, starter
 mapping, missing-image WARN, quarantined-image WARN and media BLOCK counts,
-including exact missing/quarantined words and owner override counts.
-`--apply` rejects local-development context and requires the existing
-`ci-test`/`test` target verification before connecting.
+including exact missing/quarantined words and owner override counts. Explicit
+`--target development` verifies canonical Neon project/branch identity and
+prints non-secret target metadata plus a DB snapshot and activation plan inside
+a PostgreSQL `READ ONLY` transaction; it requires no apply confirmation and
+reports `DATABASE_MUTATIONS=0`. A local-development apply requires both
+`--confirm-target development` and `--confirm-branch` equal to the branch id in
+`config/database-targets.ts` (currently `br-square-grass-b3af0nte`); it repeats
+target identity checks before its transaction. Production is blocked for both
+dry run and apply. Trusted DB
+remains isolated to `ci-test` / `test` and its canonical `shared-ci` target.
+The owner development dry-run and apply commands are intentionally not run by
+this implementation change.
 
 ## Owner-refined selection
 
@@ -149,7 +160,7 @@ metadata. No LLM/API translation or classification is used.
   assignments.
 - [x] Starter topic mappings cover all 30 starter ids without changing starter
   identity, enabled state or content version.
-- [x] Apply is transactional, CI-target guarded and idempotent; no progress,
+- [x] Apply is transactional, explicitly target guarded and idempotent; no progress,
   review, XP or achievement mutation is permitted.
 - [x] Daily New limit and reward/review semantics remain unchanged.
 - [x] Owner approved the final image quarantine and five meaning decisions;

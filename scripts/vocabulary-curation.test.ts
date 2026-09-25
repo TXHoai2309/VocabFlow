@@ -5,13 +5,17 @@ import {
   applyCurationManifest,
   buildManifestFromCatalog,
   classifyCuratedMedia,
+  printDryRun,
   readManifest,
   validateManifest,
   validateManifestAgainstCatalog,
+  withCurationReadOnlyTransaction,
+  type CurationDatabasePlan,
   type CurationManifest,
   type TopicSlug
 } from "./vocabulary-curation";
 import type { CatalogValidation } from "./import-vocabulary-catalog";
+import { configuredCurationTarget } from "./vocabulary-curation-access";
 
 const rawTopicBySlug: Record<TopicSlug, string> = {
   action: "Action", body: "body", casual: "casual", challenge: "Challenge", clothing: "Clothing",
@@ -54,6 +58,75 @@ function validationFor(manifest: CurationManifest): CatalogValidation {
 }
 
 describe("US-41 vocabulary curation manifest", () => {
+  it("runs database dry-run planning in a PostgreSQL READ ONLY transaction", async () => {
+    const statements: string[] = [];
+    const query = Object.assign(
+      vi.fn((strings: TemplateStringsArray) => {
+        statements.push(strings.join(" ").trim());
+        return Promise.resolve([]);
+      }),
+      { unsafe: vi.fn((value: string) => value) }
+    );
+    const fakeSql = {
+      begin: vi.fn(async (callback: (tx: typeof query) => Promise<string>) => callback(query))
+    };
+
+    await expect(withCurationReadOnlyTransaction(fakeSql as never, async () => "READ_ONLY_OK"))
+      .resolves.toBe("READ_ONLY_OK");
+    expect(statements).toEqual(["SET TRANSACTION READ ONLY"]);
+    expect(statements.some((statement) => /\b(INSERT|UPDATE|DELETE|CREATE|ALTER|DROP)\b/i.test(statement))).toBe(false);
+  });
+
+  it("reports zero database mutations in the read-only dry-run output", () => {
+    const log = vi.spyOn(console, "log").mockImplementation(() => undefined);
+    const emptyPlan: CurationDatabasePlan = {
+      totalVocabularyRows: 0,
+      enabledVocabularyRows: 0,
+      importedVocabularyRows: 0,
+      enabledImportedVocabularyRows: 0,
+      curatedSourceRowsFound: 0,
+      learnerProgressRows: 0,
+      reviewEventRows: 0,
+      xpEventRows: 0,
+      learnerAchievementRows: 0,
+      learnerLearningSetAssignments: 0,
+      starterCount: 0,
+      starterEnabledCount: 0,
+      starterTopicMappings: 0,
+      rowsToEnable: 0,
+      rowsAlreadyEnabled: 0,
+      rowsToDisable: 0,
+      gradeUpdates: 0,
+      topicMappingInserts: 0,
+      topicMappingDeletes: 0,
+      learningSetsToCreateOrUpdate: 0,
+      learningSetItemsToCreateOrUpdate: 0,
+      unexpectedLearningSetItems: 0,
+      meaningOverridesToApply: 0,
+      imageQuarantinesToApply: 0
+    };
+    try {
+      printDryRun(
+        readManifest(),
+        "PASS records=1994",
+        "PASS checked=213",
+        undefined,
+        [
+          "EXECUTION_CONTEXT=local-development",
+          "DATABASE_ENV=development",
+          "TARGET_NAME=development",
+          `TARGET_BRANCH=${configuredCurationTarget("development").branchId}`
+        ],
+        emptyPlan
+      );
+      expect(log).toHaveBeenCalledWith("DATABASE_MUTATIONS=0");
+      expect(log).toHaveBeenCalledWith("TARGET_NAME=development");
+      expect(log).toHaveBeenCalledWith("PLAN_STATUS=PASS");
+    } finally {
+      log.mockRestore();
+    }
+  });
+
   it("is a reviewed 200-300 row manifest with explicit grades and learning sets", () => {
     const manifest = readManifest();
     expect(manifest.version).toBe(CURATION_VERSION);

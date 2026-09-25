@@ -2,6 +2,17 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-25 — US-41 explicit development-target safety path
+
+- Added an explicit read-only development target snapshot and activation plan,
+  protected by configured Neon identity checks and a database-enforced
+  `READ ONLY` transaction. Output includes only non-secret target metadata.
+- Development apply requires the explicit development target, apply flag,
+  target confirmation and exact configured branch confirmation. Production
+  remains blocked, and Trusted DB remains isolated to the shared CI test target.
+- Tooling/docs/tests only; no development or production database operation was
+  executed and no curation manifest selection changed.
+
 ## 2026-09-24 — US-41 final content remediation
 
 - Kept the full 213-row curated corpus and added eight explicit source-bound

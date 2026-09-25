@@ -1,5 +1,25 @@
 # Current Handoff Snapshot
 
+## 2026-09-25 — US-41 explicit development-target safety path
+
+- Added an explicit `--target development` read-only DB snapshot/planning path.
+  It verifies the canonical configured Neon identity, checks selected source
+  identities, words and Vietnamese meanings, and runs the DB plan in a
+  PostgreSQL `READ ONLY` transaction. It prints non-secret target metadata and
+  reports zero DB mutations.
+- Local development apply now requires `--target development --apply`,
+  `--confirm-target development`, and `--confirm-branch` equal to the
+  configured development branch. Production remains blocked; Trusted DB keeps
+  its existing `ci-test`/`test` → `shared-ci` path. Generic bypass flags do not
+  exist.
+- Local validation passes: focused safety tests (38), full suite (494), lint,
+  typecheck, build, 26 Playwright E2E tests and `git diff --check`.
+- No development dry run, development apply or production DB operation was run.
+  The owner commands remain separate manual actions after the required remote
+  gates; this implementation does not invoke them.
+- Preserve pre-existing `.env.example` and `docs/decisions.md` changes; neither
+  is part of this implementation.
+
 ## 2026-09-24 — US-41 final content remediation
 
 - Kept all 213 curated imported rows. Added eight source-bound image
