@@ -1,3 +1,4 @@
+import { spawnSync } from "node:child_process";
 import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -13,6 +14,42 @@ import {
   productionBuildEnvironment,
   resolveProductionBuildReleaseSha,
 } from "./production-build";
+
+function runGitFixtureCommand(root: string, args: string[]) {
+  const result = spawnSync("git", args, { cwd: root, encoding: "utf8", windowsHide: true });
+  if (result.error || result.status !== 0) throw new Error("GIT_FIXTURE_SETUP_FAILED");
+  return result.stdout;
+}
+
+function trackedSourceFixture() {
+  const root = mkdtempSync(join(tmpdir(), "vocabflow-tracked-source-"));
+  mkdirSync(join(root, "src"), { recursive: true });
+  mkdirSync(join(root, "apps", "web"), { recursive: true });
+  writeFileSync(join(root, "src", "lesson.ts"), "export const lesson = 'baseline';\n", "utf8");
+  runGitFixtureCommand(root, ["init", "--quiet"]);
+  runGitFixtureCommand(root, ["config", "user.name", "VocabFlow Test"]);
+  runGitFixtureCommand(root, ["config", "user.email", "vocabflow-test@example.invalid"]);
+  runGitFixtureCommand(root, ["add", "src/lesson.ts"]);
+  runGitFixtureCommand(root, ["commit", "--quiet", "-m", "test fixture"]);
+  return root;
+}
+
+function fixtureGitDiffQuiet(root: string, args: string[]) {
+  const result = spawnSync("git", args, { cwd: root, stdio: "ignore", windowsHide: true });
+  if (result.error) throw result.error;
+  return result.status;
+}
+
+function fixtureGitDiffNames(root: string, args: string[]) {
+  const result = spawnSync("git", [...args, "-z"], {
+    cwd: root,
+    encoding: "buffer",
+    maxBuffer: 128 * 1024,
+    windowsHide: true,
+  });
+  if (result.error || result.status !== 0 || !Buffer.isBuffer(result.stdout)) return null;
+  return result.stdout.toString("utf8").split("\0").filter(Boolean);
+}
 
 describe("Vercel production build safety", () => {
   it("requires the pinned Node and pnpm toolchain", () => {
@@ -204,17 +241,93 @@ describe("Vercel production build safety", () => {
     expect(readLocalStatus).not.toHaveBeenCalled();
   });
 
-  it("blocks an unstaged tracked-file modification using quiet git diff", () => {
-    const gitDiffQuiet = vi.fn(() => 1);
-    expect(() => assertTrackedSourceUnmodified(gitDiffQuiet)).toThrow("RELEASE_SOURCE_TREE_NOT_CLEAN");
-    expect(gitDiffQuiet).toHaveBeenCalledExactlyOnceWith(["diff", "--quiet"]);
+  it("blocks actual unstaged tracked changes and reports only bounded filename diagnostics", () => {
+    const root = trackedSourceFixture();
+    const filenameSecret = "synthetic-secret-path-value";
+    const changedContent = "SOURCE_CONTENT_MUST_NEVER_BE_PRINTED";
+    const secretPath = join(root, "src", `${filenameSecret}.ts`);
+    writeFileSync(secretPath, "baseline\n", "utf8");
+    runGitFixtureCommand(root, ["add", "src"]);
+    runGitFixtureCommand(root, ["commit", "--quiet", "-m", "add fixture filename"]);
+    writeFileSync(secretPath, `${changedContent}\n`, "utf8");
+    const diagnostics: string[] = [];
+
+    try {
+      expect(() => assertTrackedSourceUnmodified(
+        (args) => fixtureGitDiffQuiet(root, args),
+        (args) => fixtureGitDiffNames(root, args),
+        (line) => diagnostics.push(line),
+        { VOCABFLOW_API_KEY: filenameSecret },
+      )).toThrow("RELEASE_SOURCE_TREE_NOT_CLEAN");
+      expect(diagnostics).toEqual([
+        'RELEASE_SOURCE_DIRTY_UNSTAGED_FILES=["src/[REDACTED].ts"]',
+        "RELEASE_SOURCE_DIRTY_STAGED_FILES=[]",
+      ]);
+      const output = diagnostics.join("\n");
+      expect(output).not.toContain(filenameSecret);
+      expect(output).not.toContain(changedContent);
+      expect(output).not.toContain("baseline");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 
-  it("blocks a staged tracked-file modification using quiet cached git diff", () => {
-    const gitDiffQuiet = vi.fn().mockReturnValueOnce(0).mockReturnValueOnce(1);
-    expect(() => assertTrackedSourceUnmodified(gitDiffQuiet)).toThrow("RELEASE_SOURCE_TREE_NOT_CLEAN");
-    expect(gitDiffQuiet).toHaveBeenNthCalledWith(1, ["diff", "--quiet"]);
-    expect(gitDiffQuiet).toHaveBeenNthCalledWith(2, ["diff", "--cached", "--quiet"]);
+  it("blocks actual staged tracked changes and names only the staged file", () => {
+    const root = trackedSourceFixture();
+    const diagnostics: string[] = [];
+    try {
+      writeFileSync(join(root, "src", "lesson.ts"), "export const lesson = 'staged';\n", "utf8");
+      runGitFixtureCommand(root, ["add", "src/lesson.ts"]);
+      expect(() => assertTrackedSourceUnmodified(
+        (args) => fixtureGitDiffQuiet(root, args),
+        (args) => fixtureGitDiffNames(root, args),
+        (line) => diagnostics.push(line),
+      )).toThrow("RELEASE_SOURCE_TREE_NOT_CLEAN");
+      expect(diagnostics).toEqual([
+        "RELEASE_SOURCE_DIRTY_UNSTAGED_FILES=[]",
+        'RELEASE_SOURCE_DIRTY_STAGED_FILES=["src/lesson.ts"]',
+      ]);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("caps diagnostic filename count and per-path length", () => {
+    const diagnostics: string[] = [];
+    expect(() => assertTrackedSourceUnmodified(
+      () => 1,
+      () => Array.from({ length: 25 }, (_, index) => `generated/${index}-${"x".repeat(300)}`),
+      (line) => diagnostics.push(line),
+      {},
+    )).toThrow("RELEASE_SOURCE_TREE_NOT_CLEAN");
+    expect(diagnostics).toHaveLength(2);
+    expect(diagnostics[0]).toContain("additional paths omitted");
+    expect(diagnostics.every((line) => line.length < 6000)).toBe(true);
+    expect(diagnostics.join("\n")).not.toContain("x".repeat(241));
+  });
+
+  it("allows Vercel install/build-style untracked outputs without a false dirty-source failure", () => {
+    const root = trackedSourceFixture();
+    const diagnostics: string[] = [];
+    try {
+      mkdirSync(join(root, ".vercel", "output"), { recursive: true });
+      mkdirSync(join(root, "node_modules", ".pnpm"), { recursive: true });
+      mkdirSync(join(root, "dist", "client"), { recursive: true });
+      writeFileSync(join(root, ".vercel", "output", "config.json"), "{}", "utf8");
+      writeFileSync(join(root, "node_modules", ".pnpm", "install-metadata.json"), "{}", "utf8");
+      writeFileSync(join(root, "dist", "client", "index.html"), "<main />", "utf8");
+      expect(() => assertTrackedSourceUnmodified(
+        (args) => fixtureGitDiffQuiet(root, args),
+        (args) => fixtureGitDiffNames(root, args),
+        (line) => diagnostics.push(line),
+      )).not.toThrow();
+      expect(diagnostics).toEqual([]);
+
+      writeFileSync(join(root, ".env.preview"), "SYNTHETIC_SECRET_CONTENT", "utf8");
+      expect(() => assertNoLocalSecretInputFiles(root)).toThrow("LOCAL_SECRET_INPUT_FILE_PRESENT");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 
   it("uses a matching Vercel Git SHA without a per-commit release-SHA variable", () => {

@@ -43,11 +43,48 @@ function gitDiffQuietExitCode(args: string[]) {
   return result.status;
 }
 
-export function assertTrackedSourceUnmodified(runGitDiffQuiet: (args: string[]) => number | null = gitDiffQuietExitCode) {
-  for (const args of [["diff", "--quiet"], ["diff", "--cached", "--quiet"]]) {
-    const status = runGitDiffQuiet(args);
-    if (status === 1) throw new Error("RELEASE_SOURCE_TREE_NOT_CLEAN");
-    if (status !== 0) throw new Error("GIT_TRACKED_SOURCE_CHECK_FAILED");
+const MAX_TRACKED_SOURCE_DIAGNOSTIC_FILES = 20;
+const MAX_TRACKED_SOURCE_DIAGNOSTIC_PATH_LENGTH = 240;
+
+function gitDiffNameOnly(args: string[]) {
+  const result = spawnSync("git", [...args, "-z"], { encoding: "buffer", maxBuffer: 128 * 1024 });
+  if (result.error || result.status !== 0 || !Buffer.isBuffer(result.stdout)) return null;
+  return result.stdout.toString("utf8").split("\0").filter(Boolean);
+}
+
+function safeTrackedSourceDiagnosticPath(path: string, environment: NodeJS.ProcessEnv) {
+  return sanitizeDiagnosticText(path, knownSecretValues(environment))
+    .replace(/[\x00-\x1F\x7F-\x9F]/g, "?")
+    .slice(0, MAX_TRACKED_SOURCE_DIAGNOSTIC_PATH_LENGTH);
+}
+
+function trackedSourceDiagnosticLine(label: string, paths: string[] | null, environment: NodeJS.ProcessEnv) {
+  if (paths === null) return `RELEASE_SOURCE_DIRTY_${label}=UNAVAILABLE`;
+  const safePaths = paths.map((path) => safeTrackedSourceDiagnosticPath(path, environment));
+  const shownPaths = safePaths.slice(0, MAX_TRACKED_SOURCE_DIAGNOSTIC_FILES);
+  if (safePaths.length > MAX_TRACKED_SOURCE_DIAGNOSTIC_FILES) {
+    shownPaths.push(`[${safePaths.length - MAX_TRACKED_SOURCE_DIAGNOSTIC_FILES} additional paths omitted]`);
+  }
+  return `RELEASE_SOURCE_DIRTY_${label}=${JSON.stringify(shownPaths)}`;
+}
+
+export function assertTrackedSourceUnmodified(
+  runGitDiffQuiet: (args: string[]) => number | null = gitDiffQuietExitCode,
+  readGitDiffNames: (args: string[]) => string[] | null = gitDiffNameOnly,
+  writeDiagnostic: (line: string) => void = (line) => console.error(line),
+  environment: NodeJS.ProcessEnv = process.env,
+) {
+  const unstagedStatus = runGitDiffQuiet(["diff", "--quiet"]);
+  const stagedStatus = runGitDiffQuiet(["diff", "--cached", "--quiet"]);
+  if (![unstagedStatus, stagedStatus].every((status) => status === 0 || status === 1)) {
+    throw new Error("GIT_TRACKED_SOURCE_CHECK_FAILED");
+  }
+  if (unstagedStatus === 1 || stagedStatus === 1) {
+    const unstagedPaths = readGitDiffNames(["diff", "--name-only"]);
+    const stagedPaths = readGitDiffNames(["diff", "--cached", "--name-only"]);
+    writeDiagnostic(trackedSourceDiagnosticLine("UNSTAGED_FILES", unstagedPaths, environment));
+    writeDiagnostic(trackedSourceDiagnosticLine("STAGED_FILES", stagedPaths, environment));
+    throw new Error("RELEASE_SOURCE_TREE_NOT_CLEAN");
   }
 }
 
