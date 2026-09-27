@@ -14,6 +14,7 @@ import {
   productionBuildEnvironment,
   resolveProductionBuildReleaseSha,
   vercelJsonMutationDiagnosticLines,
+  vercelJsonSemanticDiagnosticLines,
 } from "./production-build";
 
 function runGitFixtureCommand(root: string, args: string[]) {
@@ -325,7 +326,8 @@ describe("Vercel production build safety", () => {
   it("reports only bounded vercel.json identity metadata and keeps an unproven transform blocked", () => {
     const root = trackedSourceFixture();
     const platformSecret = "SYNTHETIC_PLATFORM_CONFIG_SECRET_VALUE";
-    const modifiedConfig = `{"buildCommand":"${platformSecret}"}\r\n`;
+    const configKeySecret = "SYNTHETIC_CONFIG_API_KEY_VALUE";
+    const modifiedConfig = `${JSON.stringify({ buildCommand: platformSecret, apiKey: configKeySecret })}\r\n`;
     const environment = { BETTER_AUTH_SECRET: platformSecret };
     const diagnostics: string[] = [];
     try {
@@ -354,11 +356,68 @@ describe("Vercel production build safety", () => {
       expect(diagnostics.some((line) => line.startsWith("VERCEL_JSON_DIFF_NUMSTAT=") && line.includes("vercel.json"))).toBe(true);
       const output = diagnostics.join("\n");
       expect(output).not.toContain(platformSecret);
+      expect(output).not.toContain(configKeySecret);
       expect(output).not.toContain(modifiedConfig);
 
       writeFileSync(join(root, "vercel.json"), modifiedConfig.trimEnd(), "utf8");
       expect(vercelJsonMutationDiagnosticLines(root, environment)).toContain("VERCEL_JSON_WORKTREE_LINE_ENDINGS=NONE");
       expect(vercelJsonMutationDiagnosticLines(root, environment)).toContain("VERCEL_JSON_WORKTREE_FINAL_NEWLINE=NO");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("compares Vercel JSON semantics independent of formatting/key order while preserving array order", () => {
+    expect(vercelJsonSemanticDiagnosticLines(
+      '{"framework":"vite","rewrites":[{"source":"/a","destination":"/b"}]}',
+      '{\n  "rewrites": [{ "destination": "/b", "source": "/a" }],\n  "framework": "vite"\n}',
+    )).toEqual(["VERCEL_JSON_SEMANTIC_EQUAL=YES"]);
+    expect(vercelJsonSemanticDiagnosticLines('{"buildCommand":"pnpm build"}', '{"buildCommand":"pnpm build:production"}'))
+      .toEqual(["VERCEL_JSON_SEMANTIC_EQUAL=NO"]);
+    expect(vercelJsonSemanticDiagnosticLines('{"rewrites":["/a","/b"]}', '{"rewrites":["/b","/a"]}'))
+      .toEqual(["VERCEL_JSON_SEMANTIC_EQUAL=NO"]);
+  });
+
+  it("classifies invalid JSON safely and still fails the tracked-source guard", () => {
+    const invalid = vercelJsonSemanticDiagnosticLines('{"framework":"vite"}', "{ invalid json");
+    expect(invalid[0]).toBe("VERCEL_JSON_SEMANTIC_EQUAL=NO");
+    expect(invalid.some((line) => line.startsWith("VERCEL_JSON_PARSE_ERROR=WORKTREE_SyntaxError"))).toBe(true);
+    expect(invalid.find((line) => line.startsWith("VERCEL_JSON_PARSE_ERROR_MESSAGE="))?.length).toBeLessThan(250);
+
+    const root = trackedSourceFixture();
+    const diagnostics: string[] = [];
+    try {
+      writeFileSync(join(root, "vercel.json"), "{ invalid json", "utf8");
+      expect(() => assertTrackedSourceUnmodified(
+        (args) => fixtureGitDiffQuiet(root, args),
+        (args) => fixtureGitDiffNames(root, args),
+        (line) => diagnostics.push(line),
+        {},
+        () => vercelJsonMutationDiagnosticLines(root, {}),
+      )).toThrow("RELEASE_SOURCE_TREE_NOT_CLEAN");
+      expect(diagnostics).toContain("VERCEL_JSON_SEMANTIC_EQUAL=NO");
+      expect(diagnostics.some((line) => line.startsWith("VERCEL_JSON_PARSE_ERROR=WORKTREE_SyntaxError"))).toBe(true);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("truncates the serialized Vercel JSON diff within the configured output bound", () => {
+    const root = trackedSourceFixture();
+    const diagnostics: string[] = [];
+    try {
+      writeFileSync(join(root, "vercel.json"), `${JSON.stringify({ note: "x".repeat(10_000) })}\n`, "utf8");
+      expect(() => assertTrackedSourceUnmodified(
+        (args) => fixtureGitDiffQuiet(root, args),
+        (args) => fixtureGitDiffNames(root, args),
+        (line) => diagnostics.push(line),
+        {},
+        () => vercelJsonMutationDiagnosticLines(root, {}),
+      )).toThrow("RELEASE_SOURCE_TREE_NOT_CLEAN");
+      const boundedDiff = diagnostics.find((line) => line.startsWith("VERCEL_JSON_BOUNDED_DIFF="));
+      expect(boundedDiff).toBeDefined();
+      expect(boundedDiff!.length).toBeLessThan(4025);
+      expect(JSON.parse(boundedDiff!.slice("VERCEL_JSON_BOUNDED_DIFF=".length))).toContain("[TRUNCATED]");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

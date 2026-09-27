@@ -71,6 +71,8 @@ function trackedSourceDiagnosticLine(label: string, paths: string[] | null, envi
 
 const MAX_VERCEL_JSON_DIAGNOSTIC_BYTES = 16 * 1024;
 const MAX_VERCEL_JSON_GIT_DIAGNOSTIC_LENGTH = 300;
+const MAX_VERCEL_JSON_DIFF_BUFFER_BYTES = 64 * 1024;
+const MAX_VERCEL_JSON_SERIALIZED_DIFF_LENGTH = 3975;
 
 type VercelJsonFileIdentity = {
   size: number;
@@ -86,7 +88,7 @@ function boundedGitOutput(root: string, args: string[], maxBuffer = 1024) {
 }
 
 function gitVercelJsonBlob(root: string) {
-  const result = spawnSync("git", ["cat-file", "blob", "HEAD:vercel.json"], {
+  const result = spawnSync("git", ["show", "HEAD:vercel.json"], {
     cwd: root,
     encoding: "buffer",
     maxBuffer: MAX_VERCEL_JSON_DIAGNOSTIC_BYTES,
@@ -144,6 +146,102 @@ function safeVercelJsonDiffMetadata(value: string | null, environment: NodeJS.Pr
     .slice(0, MAX_VERCEL_JSON_GIT_DIAGNOSTIC_LENGTH);
 }
 
+function canonicalizeJson(value: unknown): unknown {
+  if (Array.isArray(value)) return value.map(canonicalizeJson);
+  if (value !== null && typeof value === "object") {
+    const sortedEntries = Object.entries(value as Record<string, unknown>)
+      .sort(([left], [right]) => left < right ? -1 : left > right ? 1 : 0)
+      .map(([key, child]) => [key, canonicalizeJson(child)] as const);
+    return Object.fromEntries(sortedEntries);
+  }
+  return value;
+}
+
+export function vercelJsonSemanticDiagnosticLines(
+  headText: string | null,
+  worktreeText: string | null,
+  environment: NodeJS.ProcessEnv = process.env,
+) {
+  if (headText === null || worktreeText === null) {
+    return [
+      "VERCEL_JSON_SEMANTIC_EQUAL=NO",
+      "VERCEL_JSON_PARSE_ERROR=CONTENT_UNAVAILABLE",
+      "VERCEL_JSON_PARSE_ERROR_MESSAGE=One or both bounded JSON inputs were unavailable.",
+    ];
+  }
+
+  const parse = (label: "HEAD" | "WORKTREE", text: string) => {
+    try {
+      return { value: JSON.parse(text) as unknown, errorLines: [] as string[] };
+    } catch (error) {
+      const errorName = error instanceof Error ? error.name : "NonErrorThrown";
+      const errorMessage = error instanceof Error ? error.message : "JSON parse failed.";
+      return {
+        value: undefined,
+        errorLines: [
+          `VERCEL_JSON_PARSE_ERROR=${label}_${errorName.replace(/[^A-Za-z0-9_-]/g, "_").slice(0, 60)}`,
+          `VERCEL_JSON_PARSE_ERROR_MESSAGE=${sanitizeDiagnosticText(errorMessage, knownSecretValues(environment)).slice(0, 200)}`,
+        ],
+      };
+    }
+  };
+
+  const parsedHead = parse("HEAD", headText);
+  const parsedWorktree = parse("WORKTREE", worktreeText);
+  if (parsedHead.errorLines.length > 0 || parsedWorktree.errorLines.length > 0) {
+    return ["VERCEL_JSON_SEMANTIC_EQUAL=NO", ...parsedHead.errorLines, ...parsedWorktree.errorLines];
+  }
+  const headCanonical = JSON.stringify(canonicalizeJson(parsedHead.value));
+  const worktreeCanonical = JSON.stringify(canonicalizeJson(parsedWorktree.value));
+  return [`VERCEL_JSON_SEMANTIC_EQUAL=${headCanonical === worktreeCanonical ? "YES" : "NO"}`];
+}
+
+function redactSensitiveDiagnosticText(value: string, secrets: readonly string[]) {
+  let sanitized = value;
+  for (const secret of secrets) sanitized = sanitized.replaceAll(secret, "[REDACTED]");
+  return sanitized
+    .replace(databaseUrl, "[REDACTED_DATABASE_URL]")
+    .replace(apiKeyLikeValue, "[REDACTED_API_KEY]")
+    .replace(bearerCredential, "Bearer [REDACTED]")
+    .replace(labeledCredential, "$1[REDACTED]");
+}
+
+function sanitizeVercelJsonDiff(diff: string, environment: NodeJS.ProcessEnv) {
+  const sensitiveJsonProperty = /("(?:[^"\\]|\\.)*(?:secret|token|api[_-]?key|password|credential|private[_-]?key|database(?:[_-]?[a-z0-9]+)*[_-]?url)(?:[^"\\]|\\.)*"\s*:\s*)("(?:\\.|[^"\\])*"|[^,\r\n}\]]+)/gi;
+  return redactSensitiveDiagnosticText(diff, knownSecretValues(environment))
+    .replace(sensitiveJsonProperty, '$1"[REDACTED]"')
+    .replace(/\r\n?/g, "\n")
+    .replace(/\x1b(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])/g, "")
+    .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x9F]/g, "?");
+}
+
+function boundedVercelJsonDiffLine(diff: string | null, environment: NodeJS.ProcessEnv) {
+  const value = diff === null ? "DIFF_UNAVAILABLE_OUTPUT_LIMIT" : sanitizeVercelJsonDiff(diff, environment);
+  const marker = "\n[TRUNCATED]";
+  let serialized = JSON.stringify(value);
+  if (serialized.length > MAX_VERCEL_JSON_SERIALIZED_DIFF_LENGTH) {
+    let low = 0;
+    let high = value.length;
+    while (low < high) {
+      const middle = Math.ceil((low + high) / 2);
+      if (JSON.stringify(`${value.slice(0, middle)}${marker}`).length <= MAX_VERCEL_JSON_SERIALIZED_DIFF_LENGTH) low = middle;
+      else high = middle - 1;
+    }
+    serialized = JSON.stringify(`${value.slice(0, low)}${marker}`);
+  }
+  return `VERCEL_JSON_BOUNDED_DIFF=${serialized}`;
+}
+
+function readVercelJsonDiff(root: string) {
+  const result = spawnSync("git", ["diff", "--no-ext-diff", "--unified=1", "--", "vercel.json"], {
+    cwd: root,
+    encoding: "utf8",
+    maxBuffer: MAX_VERCEL_JSON_DIFF_BUFFER_BYTES,
+  });
+  if (result.error || result.status !== 0 || typeof result.stdout !== "string") return null;
+  return result.stdout;
+}
+
 export function vercelJsonMutationDiagnosticLines(
   repositoryRoot = process.cwd(),
   environment: NodeJS.ProcessEnv = process.env,
@@ -167,12 +265,15 @@ export function vercelJsonMutationDiagnosticLines(
   const headSize = headSizeText && /^\d+$/.test(headSizeText) ? Number(headSizeText) : undefined;
   const numstat = boundedGitOutput(repositoryRoot, ["diff", "--numstat", "--", "vercel.json"]);
   const summary = boundedGitOutput(repositoryRoot, ["diff", "--summary", "--", "vercel.json"]);
+  const worktreeText = worktreeContents?.toString("utf8") ?? null;
   return [
     `VERCEL_JSON_HEAD_BLOB_ID=${headBlobId && /^[a-f0-9]{40,64}$/i.test(headBlobId) ? headBlobId : "UNAVAILABLE"}`,
     ...identityDiagnosticLines("HEAD", headContents ? vercelJsonFileIdentity(headContents) : null, headSize),
     ...identityDiagnosticLines("WORKTREE", worktreeContents ? vercelJsonFileIdentity(worktreeContents) : null, worktreeSize),
+    ...vercelJsonSemanticDiagnosticLines(headContents?.toString("utf8") ?? null, worktreeText, environment),
     `VERCEL_JSON_DIFF_NUMSTAT=${safeVercelJsonDiffMetadata(numstat, environment)}`,
     `VERCEL_JSON_DIFF_SUMMARY=${safeVercelJsonDiffMetadata(summary, environment)}`,
+    boundedVercelJsonDiffLine(readVercelJsonDiff(repositoryRoot), environment),
   ];
 }
 
@@ -252,13 +353,7 @@ function knownSecretValues(environment: NodeJS.ProcessEnv) {
 }
 
 function sanitizeDiagnosticText(value: string, secrets: readonly string[]) {
-  let sanitized = value;
-  for (const secret of secrets) sanitized = sanitized.replaceAll(secret, "[REDACTED]");
-  return sanitized
-    .replace(databaseUrl, "[REDACTED_DATABASE_URL]")
-    .replace(apiKeyLikeValue, "[REDACTED_API_KEY]")
-    .replace(bearerCredential, "Bearer [REDACTED]")
-    .replace(labeledCredential, "$1[REDACTED]")
+  return redactSensitiveDiagnosticText(value, secrets)
     .replace(/[\r\n\t]+/g, " ")
     .slice(0, 1000);
 }
