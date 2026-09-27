@@ -5,20 +5,15 @@
   "buildCommand": "pnpm build:production",
   "devCommand": "pnpm dev:web",
   "outputDirectory": "dist/client",
-  "routes": [
-    {
-      "src": "^(/api(?:/.*)?)$",
-      "dest": "/api/handler",
-      "transforms": [
-        {
-          "type": "request.path",
-          "op": "set",
-          "args": "$1"
-        }
-      ]
-    }
-  ],
   "rewrites": [
+    {
+      "source": "/api",
+      "destination": "/api/handler?__vocabflow_path=/api"
+    },
+    {
+      "source": "/api/:path*",
+      "destination": "/api/handler?__vocabflow_path=/api/:path*"
+    },
     {
       "source": "/((?!api(?:/|$)).*)",
       "destination": "/index.html"

@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import { describe, expect, it } from "vitest";
-import { createVercelApiHandler } from "./handler";
+import { createVercelApiHandler, VERCEL_API_PATH_QUERY } from "./handler";
 import type { RuntimeBindings } from "../apps/api/src/runtime-bindings";
 
 describe("Vercel Hono function boundary", () => {
@@ -51,6 +51,43 @@ describe("Vercel Hono function boundary", () => {
     expect(response.status).toBe(200);
     expect(received[0]?.url).toBe("https://vocabflow.vercel.app/api/auth/get-session");
     expect(received[0]?.method).toBe("GET");
+  });
+
+  it("restores the original API health path from the supported Vercel rewrite capture", async () => {
+    const fixture = new Hono();
+    fixture.get("/api/health", (context) => context.json({ path: context.req.path }));
+    const request = new Request(
+      `https://vocabflow.vercel.app/api/handler?${VERCEL_API_PATH_QUERY}=%2Fapi%2Fhealth`,
+    );
+
+    const response = await createVercelApiHandler(fixture).fetch(request);
+
+    expect(response.status).toBe(200);
+    await expect(response.json()).resolves.toEqual({ path: "/api/health" });
+  });
+
+  it("preserves a nested API path and its query after the Vercel rewrite", async () => {
+    const fixture = new Hono();
+    fixture.get("/api/learners/:learnerId/progress-history", (context) =>
+      context.json({
+        path: context.req.path,
+        learnerId: context.req.param("learnerId"),
+        from: context.req.query("from"),
+        to: context.req.query("to"),
+      }));
+    const request = new Request(
+      `https://vocabflow.vercel.app/api/handler?${VERCEL_API_PATH_QUERY}=%2Fapi%2Flearners%2F123%2Fprogress-history&from=2026-01-01&to=2026-01-31`,
+    );
+
+    const response = await createVercelApiHandler(fixture).fetch(request);
+
+    expect(response.status).toBe(200);
+    await expect(response.json()).resolves.toEqual({
+      path: "/api/learners/123/progress-history",
+      learnerId: "123",
+      from: "2026-01-01",
+      to: "2026-01-31",
+    });
   });
 
   it("keeps unknown API requests in Hono instead of returning SPA HTML", async () => {

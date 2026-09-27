@@ -95,11 +95,6 @@ describe("Vercel release deployment guards", () => {
       devCommand: string;
       outputDirectory: string;
       rewrites: Array<{ source: string; destination: string }>;
-      routes: Array<{
-        src: string;
-        dest: string;
-        transforms: Array<{ type: string; op: string; args: string }>;
-      }>;
     };
     expect(config).toMatchObject({
       framework: "vite",
@@ -108,25 +103,34 @@ describe("Vercel release deployment guards", () => {
       devCommand: "pnpm dev:web",
       outputDirectory: "dist/client",
     });
-    const fallback = new RegExp(`^${config.rewrites[0]?.source}$`);
-    expect(config.rewrites[0]?.destination).toBe("/index.html");
+    const fallback = new RegExp(`^${config.rewrites[2]?.source}$`);
+    expect(config.rewrites[2]?.destination).toBe("/index.html");
     expect(fallback.test("/")).toBe(true);
     expect(fallback.test("/study/exercises")).toBe(true);
     expect(fallback.test("/api")).toBe(false);
     expect(fallback.test("/api/health")).toBe(false);
-    const apiRoute = config.routes.find((route) => route.dest === "/api/handler");
-    expect(apiRoute).toBeDefined();
-    const apiSource = new RegExp(apiRoute?.src ?? "$");
-    for (const path of ["/api", "/api/health", "/api/auth/sign-up/email"]) {
-      expect(apiSource.exec(path)?.[1]).toBe(path);
-    }
-    expect(apiSource.test("/not-api/auth/sign-up/email")).toBe(false);
-    expect(apiRoute?.transforms).toContainEqual({
-      type: "request.path",
-      op: "set",
-      args: "$1",
-    });
-    expect(readFileSync(resolve("api", "handler.ts"), "utf8")).toContain("application.fetch(request");
+    expect(config).not.toHaveProperty("routes");
+    expect(config.rewrites).toEqual([
+      {
+        source: "/api",
+        destination: "/api/handler?__vocabflow_path=/api",
+      },
+      {
+        source: "/api/:path*",
+        destination: "/api/handler?__vocabflow_path=/api/:path*",
+      },
+      {
+        source: "/((?!api(?:/|$)).*)",
+        destination: "/index.html",
+      },
+    ]);
+    expect(config.rewrites[0]?.source).toBe("/api");
+    expect(config.rewrites[1]?.source).toBe("/api/:path*");
+    expect(config.rewrites[2]?.destination).toBe("/index.html");
+    expect(config.rewrites[1]?.destination.replace(":path*", "learners/123/progress-history"))
+      .toBe("/api/handler?__vocabflow_path=/api/learners/123/progress-history");
+    expect(config.rewrites.some((rewrite) => "transforms" in rewrite)).toBe(false);
+    expect(readFileSync(resolve("api", "handler.ts"), "utf8")).toContain("application.fetch(");
   });
 
   it("keeps the Vercel production build independent of Cloudflare settings", () => {
