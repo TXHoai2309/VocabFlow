@@ -295,7 +295,18 @@ export function assertTrackedSourceUnmodified(
     writeDiagnostic(trackedSourceDiagnosticLine("UNSTAGED_FILES", unstagedPaths, environment));
     writeDiagnostic(trackedSourceDiagnosticLine("STAGED_FILES", stagedPaths, environment));
     if (unstagedPaths?.includes("vercel.json") || stagedPaths?.includes("vercel.json")) {
-      for (const line of readVercelJsonDiagnostics()) writeDiagnostic(line);
+      const vercelJsonDiagnostics = readVercelJsonDiagnostics();
+      for (const line of vercelJsonDiagnostics) writeDiagnostic(line);
+      const onlyUnstagedVercelJson = unstagedStatus === 1
+        && stagedStatus === 0
+        && unstagedPaths?.length === 1
+        && unstagedPaths[0] === "vercel.json"
+        && stagedPaths?.length === 0;
+      if (onlyUnstagedVercelJson && vercelJsonDiagnostics.includes("VERCEL_JSON_SEMANTIC_EQUAL=YES")) {
+        writeDiagnostic("VERCEL_JSON_FORMAT_ONLY_MUTATION_ACCEPTED=YES");
+        writeDiagnostic("RELEASE_SOURCE_EFFECTIVE_DIRTY_UNSTAGED_FILES=[]");
+        return;
+      }
     }
     throw new Error("RELEASE_SOURCE_TREE_NOT_CLEAN");
   }

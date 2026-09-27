@@ -23,18 +23,28 @@ function runGitFixtureCommand(root: string, args: string[]) {
   return result.stdout;
 }
 
-function trackedSourceFixture() {
+function trackedSourceFixture(vercelJson = '{"buildCommand":"pnpm build:production"}\n') {
   const root = mkdtempSync(join(tmpdir(), "vocabflow-tracked-source-"));
   mkdirSync(join(root, "src"), { recursive: true });
   mkdirSync(join(root, "apps", "web"), { recursive: true });
   writeFileSync(join(root, "src", "lesson.ts"), "export const lesson = 'baseline';\n", "utf8");
-  writeFileSync(join(root, "vercel.json"), '{"buildCommand":"pnpm build:production"}\n', "utf8");
+  writeFileSync(join(root, "vercel.json"), vercelJson, "utf8");
   runGitFixtureCommand(root, ["init", "--quiet"]);
   runGitFixtureCommand(root, ["config", "user.name", "VocabFlow Test"]);
   runGitFixtureCommand(root, ["config", "user.email", "vocabflow-test@example.invalid"]);
   runGitFixtureCommand(root, ["add", "src/lesson.ts", "vercel.json"]);
   runGitFixtureCommand(root, ["commit", "--quiet", "-m", "test fixture"]);
   return root;
+}
+
+function assertFixtureTrackedSourceUnmodified(root: string, diagnostics: string[] = []) {
+  return assertTrackedSourceUnmodified(
+    (args) => fixtureGitDiffQuiet(root, args),
+    (args) => fixtureGitDiffNames(root, args),
+    (line) => diagnostics.push(line),
+    {},
+    () => vercelJsonMutationDiagnosticLines(root, {}),
+  );
 }
 
 function fixtureGitDiffQuiet(root: string, args: string[]) {
@@ -378,6 +388,89 @@ describe("Vercel production build safety", () => {
       .toEqual(["VERCEL_JSON_SEMANTIC_EQUAL=NO"]);
   });
 
+  it("passes only a sole unstaged vercel.json mutation when formatting or key order is the only difference", () => {
+    const baseline = '{\n  "buildCommand": "pnpm build:production",\n  "rewrites": [{ "source": "/lesson", "destination": "/learn" }]\n}\n';
+    const root = trackedSourceFixture(baseline);
+    const equivalentVariants = [
+      '{\n    "buildCommand": "pnpm build:production",\n    "rewrites": [ { "source": "/lesson", "destination": "/learn" } ]\n}\n',
+      '{"rewrites":[{"destination":"/learn","source":"/lesson"}],"buildCommand":"pnpm build:production"}\n',
+      '{"buildCommand":"pnpm build:production","rewrites":[{"source":"/lesson","destination":"/learn"}]}\n',
+    ];
+    try {
+      for (const equivalent of equivalentVariants) {
+        const diagnostics: string[] = [];
+        writeFileSync(join(root, "vercel.json"), equivalent, "utf8");
+        expect(() => assertFixtureTrackedSourceUnmodified(root, diagnostics)).not.toThrow();
+        expect(diagnostics).toContain("VERCEL_JSON_SEMANTIC_EQUAL=YES");
+        expect(diagnostics).toContain("VERCEL_JSON_FORMAT_ONLY_MUTATION_ACCEPTED=YES");
+        expect(diagnostics).toContain("RELEASE_SOURCE_EFFECTIVE_DIRTY_UNSTAGED_FILES=[]");
+      }
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  }, 15_000);
+
+  it("passes a clean tracked tree without emitting a Vercel mutation exception", () => {
+    const root = trackedSourceFixture();
+    const diagnostics: string[] = [];
+    try {
+      expect(() => assertFixtureTrackedSourceUnmodified(root, diagnostics)).not.toThrow();
+      expect(diagnostics).toEqual([]);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("blocks semantic Vercel config changes including changed, added, and removed keys", () => {
+    const root = trackedSourceFixture('{"buildCommand":"pnpm build:production","rewrites":[]}\n');
+    const changedConfigs = [
+      '{"buildCommand":"pnpm build","rewrites":[]}\n',
+      '{"buildCommand":"pnpm build:production","rewrites":[],"cleanUrls":true}\n',
+      '{"buildCommand":"pnpm build:production"}\n',
+    ];
+    try {
+      for (const config of changedConfigs) {
+        const diagnostics: string[] = [];
+        writeFileSync(join(root, "vercel.json"), config, "utf8");
+        expect(() => assertFixtureTrackedSourceUnmodified(root, diagnostics)).toThrow("RELEASE_SOURCE_TREE_NOT_CLEAN");
+        expect(diagnostics).toContain("VERCEL_JSON_SEMANTIC_EQUAL=NO");
+        expect(diagnostics).not.toContain("VERCEL_JSON_FORMAT_ONLY_MUTATION_ACCEPTED=YES");
+      }
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  }, 15_000);
+
+  it("blocks semantic-equal formatting when another tracked file is also dirty", () => {
+    const root = trackedSourceFixture();
+    const diagnostics: string[] = [];
+    try {
+      writeFileSync(join(root, "vercel.json"), '{\n  "buildCommand": "pnpm build:production"\n}\n', "utf8");
+      writeFileSync(join(root, "src", "lesson.ts"), "export const lesson = 'also changed';\n", "utf8");
+      expect(() => assertFixtureTrackedSourceUnmodified(root, diagnostics)).toThrow("RELEASE_SOURCE_TREE_NOT_CLEAN");
+      expect(diagnostics).toContain("VERCEL_JSON_SEMANTIC_EQUAL=YES");
+      expect(diagnostics).not.toContain("VERCEL_JSON_FORMAT_ONLY_MUTATION_ACCEPTED=YES");
+      expect(diagnostics).toContain('RELEASE_SOURCE_DIRTY_UNSTAGED_FILES=["src/lesson.ts","vercel.json"]');
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  }, 10_000);
+
+  it("blocks semantic-equal Vercel JSON when any tracked change is staged", () => {
+    const root = trackedSourceFixture();
+    const diagnostics: string[] = [];
+    try {
+      writeFileSync(join(root, "vercel.json"), '{\n  "buildCommand": "pnpm build:production"\n}\n', "utf8");
+      runGitFixtureCommand(root, ["add", "vercel.json"]);
+      expect(() => assertFixtureTrackedSourceUnmodified(root, diagnostics)).toThrow("RELEASE_SOURCE_TREE_NOT_CLEAN");
+      expect(diagnostics).toContain("VERCEL_JSON_SEMANTIC_EQUAL=YES");
+      expect(diagnostics).not.toContain("VERCEL_JSON_FORMAT_ONLY_MUTATION_ACCEPTED=YES");
+      expect(diagnostics).toContain('RELEASE_SOURCE_DIRTY_STAGED_FILES=["vercel.json"]');
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  }, 10_000);
+
   it("classifies invalid JSON safely and still fails the tracked-source guard", () => {
     const invalid = vercelJsonSemanticDiagnosticLines('{"framework":"vite"}', "{ invalid json");
     expect(invalid[0]).toBe("VERCEL_JSON_SEMANTIC_EQUAL=NO");
@@ -396,6 +489,7 @@ describe("Vercel production build safety", () => {
         () => vercelJsonMutationDiagnosticLines(root, {}),
       )).toThrow("RELEASE_SOURCE_TREE_NOT_CLEAN");
       expect(diagnostics).toContain("VERCEL_JSON_SEMANTIC_EQUAL=NO");
+      expect(diagnostics).not.toContain("VERCEL_JSON_FORMAT_ONLY_MUTATION_ACCEPTED=YES");
       expect(diagnostics.some((line) => line.startsWith("VERCEL_JSON_PARSE_ERROR=WORKTREE_SyntaxError"))).toBe(true);
     } finally {
       rmSync(root, { recursive: true, force: true });
