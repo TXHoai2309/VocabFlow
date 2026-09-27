@@ -2,6 +2,21 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-28 — Vercel Function ESM module-scope fix
+
+- The Preview runtime trace showed the CommonJS function boundary requiring
+  `apps/api/src/index.js`, which belongs to the app's ESM package scope. The
+  repository root has no ESM marker and `api/` had no package boundary.
+- Added `api/package.json` with `type: module` so the thin Vercel Function
+  boundary uses ESM without changing the root package scope or duplicating the
+  existing Hono app. A Node + tsx subprocess test loads the handler, calls the
+  Hono health route, and rejects `ERR_REQUIRE_ESM` / CommonJS `require()`.
+- Existing Better Auth dispatch, nested API path restoration, API JSON 404 and
+  SPA routing remain covered and unchanged. No DB/auth schema or configuration
+  behavior changed; no Vercel CLI, deployment or database was used.
+- Local lint, typecheck, all 579 tests, Vite build and `git diff --check` pass.
+  Local Node is 22.19.0 rather than the repository-pinned 22.23.2.
+
 ## 2026-09-27 — Vercel Preview API route integration
 
 - Added an explicit `/api` and `/api/*` route to the statically named

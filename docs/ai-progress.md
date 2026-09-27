@@ -1,5 +1,24 @@
 # Current Handoff Snapshot
 
+## 2026-09-28 — Vercel Preview Function ESM compatibility fix
+
+- Confirmed from the live Preview stack and repository package scopes that the
+  `/api/handler` boundary was emitted/executed as CommonJS while loading the
+  ESM-scoped `apps/api/src/index.js`. The root package has no `type` marker and
+  `api/` had no local `package.json`; `apps/api/` is already ESM.
+- Added only an `api/package.json` ESM boundary and a subprocess test that
+  starts Node with `tsx`, imports the actual handler under that package scope,
+  and calls `/api/health`. Source checks reject `require()` in the handler.
+- Existing tests continue to cover Better Auth route dispatch, nested path
+  restoration, API JSON 404, and the Vercel SPA rewrite exclusion. Business
+  logic, DB/auth behavior, environment markers, production guards and routing
+  configuration are unchanged.
+- `pnpm lint`, `pnpm typecheck`, `pnpm test` (54 files / 579 tests),
+  `pnpm build`, and `git diff --check` pass. The local runtime is Node 22.19.0
+  versus the pinned 22.23.2. No Vercel CLI/deploy or DB connection was used.
+- Next safe action: commit/push this fix to `TXH` only, then owner may create
+  exactly one Preview deployment and verify `/api/health` plus auth smoke.
+
 ## 2026-09-27 — Vercel Preview API route integration fix
 
 - The live Preview returned Vercel `NOT_FOUND` for nested Better Auth requests.

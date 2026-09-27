@@ -1,9 +1,53 @@
+import { spawnSync } from "node:child_process";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
+import { pathToFileURL } from "node:url";
 import { Hono } from "hono";
 import { describe, expect, it } from "vitest";
 import { createVercelApiHandler, VERCEL_API_PATH_QUERY } from "./handler";
 import type { RuntimeBindings } from "../apps/api/src/runtime-bindings";
 
 describe("Vercel Hono function boundary", () => {
+  it("loads the handler and existing Hono app under the function-local ESM package scope", () => {
+    const rootPackage = JSON.parse(readFileSync(resolve("package.json"), "utf8")) as { type?: string };
+    const functionPackage = JSON.parse(readFileSync(resolve("api/package.json"), "utf8")) as { type?: string };
+    const applicationPackage = JSON.parse(readFileSync(resolve("apps/api/package.json"), "utf8")) as { type?: string };
+    const handlerSource = readFileSync(resolve("api/handler.ts"), "utf8");
+    const handlerUrl = pathToFileURL(resolve("api/handler.ts")).href;
+    const childEnvironment = Object.fromEntries(
+      ["PATH", "SystemRoot", "WINDIR", "TEMP", "TMP"]
+        .flatMap((key) => process.env[key] ? [[key, process.env[key] as string]] : []),
+    );
+    const script = [
+      `import handler from ${JSON.stringify(handlerUrl)};`,
+      `const response = await handler.fetch(new Request("https://vocabflow.vercel.app/api/health"));`,
+      `if (response.status !== 200 || (await response.text()) !== '{"status":"ok"}') process.exitCode = 1;`,
+      `else process.stdout.write("VERCEL_HANDLER_ESM_LOAD_OK");`,
+    ].join("\n");
+
+    expect(rootPackage.type).not.toBe("module");
+    expect(functionPackage.type).toBe("module");
+    expect(applicationPackage.type).toBe("module");
+    expect(handlerSource).toMatch(/import app from ["']\.\.\/apps\/api\/src["']/);
+    expect(handlerSource).not.toMatch(/\brequire\s*\(/);
+
+    const result = spawnSync(
+      process.execPath,
+      ["--import", "tsx", "--input-type=module", "--eval", script],
+      {
+        cwd: resolve("."),
+        encoding: "utf8",
+        env: { ...childEnvironment, NODE_ENV: "test" },
+        timeout: 30_000,
+      },
+    );
+
+    expect(result.error?.message, result.stderr).toBeUndefined();
+    expect(result.status, result.stderr).toBe(0);
+    expect(result.stdout).toContain("VERCEL_HANDLER_ESM_LOAD_OK");
+    expect(result.stderr).not.toContain("ERR_REQUIRE_ESM");
+  }, 30_000);
+
   it("dispatches the existing Hono API app for API requests", async () => {
     const handler = createVercelApiHandler();
     const response = await handler.fetch(new Request("https://vocabflow.vercel.app/api/health"));
