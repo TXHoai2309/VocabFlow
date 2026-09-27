@@ -1,5 +1,6 @@
+import { createHash } from "node:crypto";
 import { execFileSync, spawnSync } from "node:child_process";
-import { readdirSync, writeFileSync } from "node:fs";
+import { lstatSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { buildArtifactDigest, inspectBuildArtifact } from "./build-artifact-safety";
 
@@ -68,11 +69,119 @@ function trackedSourceDiagnosticLine(label: string, paths: string[] | null, envi
   return `RELEASE_SOURCE_DIRTY_${label}=${JSON.stringify(shownPaths)}`;
 }
 
+const MAX_VERCEL_JSON_DIAGNOSTIC_BYTES = 16 * 1024;
+const MAX_VERCEL_JSON_GIT_DIAGNOSTIC_LENGTH = 300;
+
+type VercelJsonFileIdentity = {
+  size: number;
+  sha256: string;
+  lineEndings: "LF_ONLY" | "CRLF_ONLY" | "MIXED" | "NONE";
+  finalNewline: "YES" | "NO";
+};
+
+function boundedGitOutput(root: string, args: string[], maxBuffer = 1024) {
+  const result = spawnSync("git", args, { cwd: root, encoding: "utf8", maxBuffer });
+  if (result.error || result.status !== 0 || typeof result.stdout !== "string") return null;
+  return result.stdout.trim();
+}
+
+function gitVercelJsonBlob(root: string) {
+  const result = spawnSync("git", ["cat-file", "blob", "HEAD:vercel.json"], {
+    cwd: root,
+    encoding: "buffer",
+    maxBuffer: MAX_VERCEL_JSON_DIAGNOSTIC_BYTES,
+  });
+  if (result.error || result.status !== 0 || !Buffer.isBuffer(result.stdout)) return null;
+  return result.stdout;
+}
+
+function vercelJsonFileIdentity(contents: Buffer): VercelJsonFileIdentity {
+  let lineFeedCount = 0;
+  let carriageReturnLineFeedCount = 0;
+  for (let index = 0; index < contents.length; index += 1) {
+    if (contents[index] === 0x0a) {
+      lineFeedCount += 1;
+      if (index > 0 && contents[index - 1] === 0x0d) carriageReturnLineFeedCount += 1;
+    }
+  }
+  const bareLineFeedCount = lineFeedCount - carriageReturnLineFeedCount;
+  const lineEndings = lineFeedCount === 0
+    ? "NONE"
+    : bareLineFeedCount > 0 && carriageReturnLineFeedCount > 0
+      ? "MIXED"
+      : carriageReturnLineFeedCount > 0
+        ? "CRLF_ONLY"
+        : "LF_ONLY";
+  return {
+    size: contents.length,
+    sha256: createHash("sha256").update(contents).digest("hex"),
+    lineEndings,
+    finalNewline: contents.length > 0 && contents[contents.length - 1] === 0x0a ? "YES" : "NO",
+  };
+}
+
+function identityDiagnosticLines(prefix: "HEAD" | "WORKTREE", identity: VercelJsonFileIdentity | null, size?: number) {
+  if (!identity) {
+    return [
+      `VERCEL_JSON_${prefix}_SIZE=${size ?? "UNAVAILABLE"}`,
+      `VERCEL_JSON_${prefix}_HASH=UNAVAILABLE`,
+      `VERCEL_JSON_${prefix}_LINE_ENDINGS=UNAVAILABLE`,
+      `VERCEL_JSON_${prefix}_FINAL_NEWLINE=UNAVAILABLE`,
+    ];
+  }
+  return [
+    `VERCEL_JSON_${prefix}_SIZE=${identity.size}`,
+    `VERCEL_JSON_${prefix}_HASH=${identity.sha256}`,
+    `VERCEL_JSON_${prefix}_LINE_ENDINGS=${identity.lineEndings}`,
+    `VERCEL_JSON_${prefix}_FINAL_NEWLINE=${identity.finalNewline}`,
+  ];
+}
+
+function safeVercelJsonDiffMetadata(value: string | null, environment: NodeJS.ProcessEnv) {
+  if (value === null || value.length === 0) return "NONE";
+  return sanitizeDiagnosticText(value, knownSecretValues(environment))
+    .replace(/[\x00-\x1F\x7F-\x9F]/g, "?")
+    .slice(0, MAX_VERCEL_JSON_GIT_DIAGNOSTIC_LENGTH);
+}
+
+export function vercelJsonMutationDiagnosticLines(
+  repositoryRoot = process.cwd(),
+  environment: NodeJS.ProcessEnv = process.env,
+) {
+  const headBlobId = boundedGitOutput(repositoryRoot, ["rev-parse", "HEAD:vercel.json"]);
+  const headContents = gitVercelJsonBlob(repositoryRoot);
+  let worktreeContents: Buffer | null = null;
+  let worktreeSize: number | undefined;
+  try {
+    const path = join(repositoryRoot, "vercel.json");
+    const stats = lstatSync(path);
+    worktreeSize = stats.size;
+    if (stats.isFile() && !stats.isSymbolicLink() && stats.size <= MAX_VERCEL_JSON_DIAGNOSTIC_BYTES) {
+      worktreeContents = readFileSync(path);
+    }
+  } catch {
+    worktreeContents = null;
+  }
+
+  const headSizeText = boundedGitOutput(repositoryRoot, ["cat-file", "-s", "HEAD:vercel.json"]);
+  const headSize = headSizeText && /^\d+$/.test(headSizeText) ? Number(headSizeText) : undefined;
+  const numstat = boundedGitOutput(repositoryRoot, ["diff", "--numstat", "--", "vercel.json"]);
+  const summary = boundedGitOutput(repositoryRoot, ["diff", "--summary", "--", "vercel.json"]);
+  return [
+    `VERCEL_JSON_HEAD_BLOB_ID=${headBlobId && /^[a-f0-9]{40,64}$/i.test(headBlobId) ? headBlobId : "UNAVAILABLE"}`,
+    ...identityDiagnosticLines("HEAD", headContents ? vercelJsonFileIdentity(headContents) : null, headSize),
+    ...identityDiagnosticLines("WORKTREE", worktreeContents ? vercelJsonFileIdentity(worktreeContents) : null, worktreeSize),
+    `VERCEL_JSON_DIFF_NUMSTAT=${safeVercelJsonDiffMetadata(numstat, environment)}`,
+    `VERCEL_JSON_DIFF_SUMMARY=${safeVercelJsonDiffMetadata(summary, environment)}`,
+  ];
+}
+
 export function assertTrackedSourceUnmodified(
   runGitDiffQuiet: (args: string[]) => number | null = gitDiffQuietExitCode,
   readGitDiffNames: (args: string[]) => string[] | null = gitDiffNameOnly,
   writeDiagnostic: (line: string) => void = (line) => console.error(line),
   environment: NodeJS.ProcessEnv = process.env,
+  readVercelJsonDiagnostics: () => string[] = () => vercelJsonMutationDiagnosticLines(process.cwd(), environment),
 ) {
   const unstagedStatus = runGitDiffQuiet(["diff", "--quiet"]);
   const stagedStatus = runGitDiffQuiet(["diff", "--cached", "--quiet"]);
@@ -84,6 +193,9 @@ export function assertTrackedSourceUnmodified(
     const stagedPaths = readGitDiffNames(["diff", "--cached", "--name-only"]);
     writeDiagnostic(trackedSourceDiagnosticLine("UNSTAGED_FILES", unstagedPaths, environment));
     writeDiagnostic(trackedSourceDiagnosticLine("STAGED_FILES", stagedPaths, environment));
+    if (unstagedPaths?.includes("vercel.json") || stagedPaths?.includes("vercel.json")) {
+      for (const line of readVercelJsonDiagnostics()) writeDiagnostic(line);
+    }
     throw new Error("RELEASE_SOURCE_TREE_NOT_CLEAN");
   }
 }
