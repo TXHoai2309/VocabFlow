@@ -27,6 +27,77 @@ export function assertNoLocalSecretInputFiles(repositoryRoot: string) {
 
 const buildOnlyOrServerSecret = /^(?:DATABASE_URL|DATABASE_MIGRATION_URL|PRODUCTION_DATABASE_URL|PRODUCTION_MIGRATION_DATABASE_URL|NEON_API_KEY|BETTER_AUTH_SECRET|CLOUDINARY_API_KEY|CLOUDINARY_API_SECRET|VERCEL_API_TOKEN|VERCEL_TOKEN|VERCEL_ORG_ID|VERCEL_PROJECT_ID|VOCABFLOW_VERCEL_ORG_ID|VOCABFLOW_VERCEL_PROJECT_ID)$/i;
 
+const sensitiveEnvironmentName = /(?:^|_)DATABASE(?:_[A-Z0-9]+)*_URL$|(?:^|_)(?:[A-Z0-9]+_)*(?:SECRET|TOKEN|API_KEY|PASSWORD|PRIVATE_KEY|CREDENTIALS?)$/i;
+const databaseUrl = /postgres(?:ql)?:\/\/[^\s"'`<>]+/gi;
+const labeledCredential = /((?:[A-Z][A-Z0-9_]*_)?(?:DATABASE(?:_[A-Z0-9]+)*_URL|[A-Z][A-Z0-9_]*(?:SECRET|TOKEN|API_KEY|PASSWORD|PRIVATE_KEY|CREDENTIALS?)|api[_ -]?key|api[_ -]?secret|token|password|secret)\s*[=:]\s*)["']?[^\s,;}'"]+/gi;
+const apiKeyLikeValue = /\b(?:napi_[A-Za-z0-9_-]+|sk_(?:live|test)_[A-Za-z0-9_-]{8,}|sk-[A-Za-z0-9_-]{16,}|gh[pousr]_[A-Za-z0-9_]{16,}|xox[baprs]-[A-Za-z0-9-]{10,})\b/gi;
+const bearerCredential = /\bBearer\s+[A-Za-z0-9._~+/-]+=*/gi;
+
+export type ProductionBuildDiagnostic = {
+  errorClass: string;
+  errorCode: string;
+  errorMessage: string;
+  errorLocation: string;
+};
+
+function knownSecretValues(environment: NodeJS.ProcessEnv) {
+  return Object.entries(environment)
+    .filter(([name, value]) => sensitiveEnvironmentName.test(name) && Boolean(value))
+    .map(([, value]) => value as string)
+    .sort((left, right) => right.length - left.length);
+}
+
+function sanitizeDiagnosticText(value: string, secrets: readonly string[]) {
+  let sanitized = value;
+  for (const secret of secrets) sanitized = sanitized.replaceAll(secret, "[REDACTED]");
+  return sanitized
+    .replace(databaseUrl, "[REDACTED_DATABASE_URL]")
+    .replace(apiKeyLikeValue, "[REDACTED_API_KEY]")
+    .replace(bearerCredential, "Bearer [REDACTED]")
+    .replace(labeledCredential, "$1[REDACTED]")
+    .replace(/[\r\n\t]+/g, " ")
+    .slice(0, 1000);
+}
+
+function firstStackLocation(stack: string | undefined, secrets: readonly string[]) {
+  const frame = stack?.split(/\r?\n/).slice(1).find((line) => /^\s*at\s/.test(line));
+  return frame ? sanitizeDiagnosticText(frame.trim(), secrets).slice(0, 300) : "UNKNOWN";
+}
+
+export function productionBuildDiagnostic(error: unknown, environment: NodeJS.ProcessEnv = process.env): ProductionBuildDiagnostic {
+  const secrets = knownSecretValues(environment);
+  if (!(error instanceof Error)) {
+    return {
+      errorClass: "NonErrorThrown",
+      errorCode: "NONE",
+      errorMessage: "Non-Error value thrown (not serialized)",
+      errorLocation: "UNKNOWN",
+    };
+  }
+
+  const errorCode = "code" in error && typeof error.code === "string" ? error.code : "NONE";
+  return {
+    errorClass: sanitizeDiagnosticText(error.name || "Error", secrets) || "Error",
+    errorCode: sanitizeDiagnosticText(errorCode, secrets) || "NONE",
+    errorMessage: sanitizeDiagnosticText(error.message || "Error without a message", secrets) || "Error without a message",
+    errorLocation: firstStackLocation(error.stack, secrets),
+  };
+}
+
+export function productionBuildErrorLines(error: unknown, environment: NodeJS.ProcessEnv = process.env) {
+  const diagnostic = productionBuildDiagnostic(error, environment);
+  const failureToken = /^[A-Z][A-Z0-9_]{2,79}$/.test(diagnostic.errorMessage)
+    ? diagnostic.errorMessage
+    : "PRODUCTION_BUILD_FAILED";
+  return [
+    failureToken,
+    `PRODUCTION_BUILD_ERROR_CLASS=${diagnostic.errorClass}`,
+    `PRODUCTION_BUILD_ERROR_CODE=${diagnostic.errorCode}`,
+    `PRODUCTION_BUILD_ERROR_MESSAGE=${diagnostic.errorMessage}`,
+    `PRODUCTION_BUILD_ERROR_LOCATION=${diagnostic.errorLocation}`,
+  ];
+}
+
 export function productionBuildEnvironment(environment: NodeJS.ProcessEnv): NodeJS.ProcessEnv {
   const sanitized = { ...environment };
   for (const name of Object.keys(sanitized)) {
@@ -78,8 +149,7 @@ if (invokedScript.endsWith("/production-build.ts") || invokedScript.endsWith("/p
   try {
     main();
   } catch (error) {
-    const message = error instanceof Error ? error.message : "";
-    console.error(/^[A-Z][A-Z0-9_]{2,79}$/.test(message) ? message : "PRODUCTION_BUILD_FAILED");
+    for (const line of productionBuildErrorLines(error)) console.error(line);
     process.exitCode = 1;
   }
 }

@@ -6,6 +6,8 @@ import {
   assertCleanReleaseSource,
   assertNoLocalSecretInputFiles,
   assertPinnedProductionToolchain,
+  productionBuildDiagnostic,
+  productionBuildErrorLines,
   productionBuildEnvironment,
 } from "./production-build";
 
@@ -67,5 +69,94 @@ describe("Vercel production build safety", () => {
     ]) expect(childEnvironment).not.toHaveProperty(name);
     expect(childEnvironment.BETTER_AUTH_URL).toBe("https://vocabflow.vercel.app");
     expect(childEnvironment.VOCABFLOW_RELEASE_SHA).toBe("a".repeat(40));
+  });
+
+  it("shows ordinary Error messages in the sanitized diagnostic fields", () => {
+    const error = Object.assign(new Error("Unable to inspect the generated artifact"), { code: "EACCES" });
+    const lines = productionBuildErrorLines(error, {});
+    expect(lines[0]).toBe("PRODUCTION_BUILD_FAILED");
+    expect(lines[3]).toBe("PRODUCTION_BUILD_ERROR_MESSAGE=Unable to inspect the generated artifact");
+    expect(lines[1]).toBe("PRODUCTION_BUILD_ERROR_CLASS=Error");
+    expect(lines[2]).toBe("PRODUCTION_BUILD_ERROR_CODE=EACCES");
+  });
+
+  it("redacts PostgreSQL connection URLs from error messages", () => {
+    const lines = productionBuildErrorLines(
+      new Error("connect failed for postgres://runtime:pw@db.example/neondb and postgresql://other:pw@db2.example/app"),
+      {},
+    );
+    const output = lines.join("\n");
+    expect(output).toContain("[REDACTED_DATABASE_URL]");
+    expect(output).not.toContain("runtime:pw");
+    expect(output).not.toContain("other:pw");
+  });
+
+  it("redacts known secret environment values wherever they occur", () => {
+    const environment = {
+      DATABASE_URL: "postgresql://runtime:fixture-db-secret@db.example/neondb",
+      BETTER_AUTH_SECRET: "fixture-auth-secret-value",
+    };
+    const lines = productionBuildErrorLines(
+      new Error(`failed using ${environment.DATABASE_URL}; auth=${environment.BETTER_AUTH_SECRET}`),
+      environment,
+    );
+    const output = lines.join("\n");
+    expect(output).not.toContain("fixture-db-secret");
+    expect(output).not.toContain(environment.BETTER_AUTH_SECRET);
+    expect(output).toContain("[REDACTED]");
+  });
+
+  it("redacts API-key-looking values", () => {
+    const lines = productionBuildErrorLines(
+      new Error("provider rejected napi_synthetic_api_key_value and sk_live_synthetic_key_value_123456"),
+      {},
+    );
+    const output = lines.join("\n");
+    expect(output).not.toContain("napi_synthetic_api_key_value");
+    expect(output).not.toContain("sk_live_synthetic_key_value_123456");
+    expect(output).toContain("[REDACTED_API_KEY]");
+  });
+
+  it("preserves uppercase guard tokens unchanged", () => {
+    const lines = productionBuildErrorLines(new Error("PRODUCTION_NODE_VERSION_REQUIRED"), {});
+    expect(lines[0]).toBe("PRODUCTION_NODE_VERSION_REQUIRED");
+    expect(lines[3]).toBe("PRODUCTION_BUILD_ERROR_MESSAGE=PRODUCTION_NODE_VERSION_REQUIRED");
+  });
+
+  it("does not mistake an uppercase secret value for a guard token", () => {
+    const secret = "UPPERCASE_SECRET_VALUE";
+    const lines = productionBuildErrorLines(new Error(secret), { NEON_API_KEY: secret });
+    expect(lines[0]).toBe("PRODUCTION_BUILD_FAILED");
+    expect(lines.join("\n")).not.toContain(secret);
+  });
+
+  it("reports only a sanitized stack location and never serializes the environment or full stack", () => {
+    const databaseUrl = "postgresql://runtime:fixture-stack-secret@db.example/neondb";
+    const authSecret = "fixture-stack-auth-secret";
+    const error = new Error(`request failed with ${databaseUrl} and ${authSecret}`);
+    error.stack = [
+      `Error: request failed with ${databaseUrl} and ${authSecret}`,
+      "    at buildStep (scripts/production-build.ts:84:9)",
+      `    at hiddenFrame (${authSecret})`,
+      `DATABASE_URL=${databaseUrl}`,
+      "UNRELATED_ENV_MARKER=must-not-be-logged",
+    ].join("\n");
+    const lines = productionBuildErrorLines(error, {
+      DATABASE_URL: databaseUrl,
+      BETTER_AUTH_SECRET: authSecret,
+      UNRELATED_ENV_MARKER: "must-not-be-logged",
+    });
+    expect(productionBuildDiagnostic(error, {
+      DATABASE_URL: databaseUrl,
+      BETTER_AUTH_SECRET: authSecret,
+      UNRELATED_ENV_MARKER: "must-not-be-logged",
+    }).errorLocation).toContain("scripts/production-build.ts:84:9");
+    const output = lines.join("\n");
+    expect(lines[4]).toContain("scripts/production-build.ts:84:9");
+    expect(output).not.toContain(databaseUrl);
+    expect(output).not.toContain(authSecret);
+    expect(output).not.toContain("hiddenFrame");
+    expect(output).not.toContain("UNRELATED_ENV_MARKER");
+    expect(output).not.toContain("must-not-be-logged");
   });
 });
