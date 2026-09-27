@@ -12,6 +12,9 @@
     "typecheck": "tsc -b",
     "test": "vitest run",
     "build": "vite build --config apps/web/vite.config.mts",
+    "postbuild": "tsx scripts/postbuild.ts",
+    "build:production": "tsx scripts/production-build.ts",
+    "deploy:production": "tsx scripts/deploy-production.ts",
     "preview": "vite preview",
     "db:check": "tsx scripts/db-check.ts",
     "db:bootstrap-preflight": "tsx scripts/db-preflight.ts bootstrap",
@@ -20,6 +23,7 @@
     "db:bootstrap": "tsx scripts/db-bootstrap-cli.ts",
     "db:identity-provision": "tsx scripts/db-identity-provision.ts",
     "db:migrate": "tsx scripts/db-migrate.ts",
+    "db:production-preflight": "tsx scripts/db-production-preflight.ts",
     "db:reset": "tsx scripts/db-reset.ts",
     "dataset:validate": "tsx scripts/validate-dataset.ts",
     "vocab:import-catalog": "tsx scripts/import-vocabulary-catalog.ts",
@@ -67,6 +71,7 @@
     "tsx": "4.23.13",
     "typescript": "5.9.2",
     "vite": "8.2.2",
-    "vitest": "5.0.0"
+    "vitest": "5.0.0",
+    "wrangler": "4.129.0"
   }
 }

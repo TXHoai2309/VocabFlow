@@ -98,6 +98,10 @@ export function resolveTrustedDbSuite(value = process.env.TRUSTED_DB_SUITE): Tru
   return requested as TrustedDbSuite;
 }
 
+export function assertTrustedTestContext(context: string, environment: string) {
+  if (context !== "ci-test" || environment !== "test") throw new Error("TRUSTED_DB_TEST_REQUIRES_TEST_CONTEXT");
+}
+
 const SECRET_ENV_KEYS = [
   "BOOTSTRAP_DATABASE_URL",
   "DATABASE_URL",
@@ -171,7 +175,7 @@ export function reportTrustedDbFailure(
 async function main() {
   markStage("validate-execution-context");
   const { context, environment } = readContext();
-  if (context !== "ci-test") throw new Error("TRUSTED_DB_TEST_REQUIRES_CI_CONTEXT");
+  assertTrustedTestContext(context, environment);
   const suite = resolveTrustedDbSuite();
   console.log(`TRUSTED_DB_SUITE=${suite}`);
 

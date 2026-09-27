@@ -12,6 +12,7 @@ import {
 } from "./import-vocabulary-catalog";
 import { assertPostConnectIdentity, openSql, readContext } from "./db-core";
 import { assertResolvedTargetBeforeMutation, configuredDatabaseUrl } from "./runtime-validation";
+import { resolveProductionConnection } from "./production-release-safety";
 import {
   assertCurationDatabaseAccess,
   configuredCurationTarget,
@@ -893,7 +894,6 @@ async function main() {
   }
 
   if (!options.apply && hasConfirmation) throw new CurationError("CURATION_CONFIRMATION_WITHOUT_APPLY");
-  if (options.requestedTarget === "production") throw new CurationError("CURATION_PRODUCTION_TARGET_BLOCKED");
   const datasetPath = join(resolve(DEFAULT_DATASET_ROOT), "vocabulary.json");
   if (!existsSync(datasetPath)) throw new CurationError("CURATION_LOCAL_DATASET_REQUIRED");
   const catalogValidation = loadCatalogValidation();
@@ -915,14 +915,16 @@ async function main() {
     confirmBranch: options.confirmBranch
   };
   const authorizedTarget = assertCurationDatabaseAccess(accessRequest);
-  const connection = await assertResolvedTargetBeforeMutation({
-    context,
-    source: trustedSource,
-    environment,
-    purpose: "runtime",
-    operation: options.apply ? "db-enrich" : "db-check",
-    target
-  });
+  const connection = targetName === "production"
+    ? await resolveProductionConnection({ purpose: "runtime", environment: process.env })
+    : await assertResolvedTargetBeforeMutation({
+      context,
+      source: trustedSource,
+      environment,
+      purpose: "runtime",
+      operation: options.apply ? "db-enrich" : "db-check",
+      target
+    });
   const verifiedTarget = assertCurationDatabaseAccess({ ...accessRequest, resolvedTarget: connection.resolved.expected });
   const url = connection.url ?? configuredDatabaseUrl(context, "runtime");
   if (!url) throw new CurationError("RUNTIME_DATABASE_URL_REQUIRED");

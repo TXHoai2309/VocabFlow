@@ -37,6 +37,9 @@ import {
 export type WorkerBindings = {
   DATABASE_URL?: string;
   BETTER_AUTH_SECRET?: string;
+  BETTER_AUTH_URL?: string;
+  VOCABFLOW_ENV?: string;
+  DATABASE_ENV?: string;
 };
 
 type AuthenticatedSession = { user: { id: string } };
@@ -68,7 +71,7 @@ async function readAuthenticatedSession(request: Request, env: WorkerBindings) {
   if (!env.DATABASE_URL || !env.BETTER_AUTH_SECRET) {
     throw new Error("AUTH_SERVICE_NOT_CONFIGURED");
   }
-  const auth = createAuth(env.DATABASE_URL, env.BETTER_AUTH_SECRET);
+  const auth = createAuth(env.DATABASE_URL, env.BETTER_AUTH_SECRET, env);
   return auth.api.getSession({ headers: request.headers });
 }
 
@@ -198,8 +201,12 @@ export function createApp(dependencies: AppDependencies = {}) {
     if (!c.env?.DATABASE_URL || !c.env.BETTER_AUTH_SECRET) {
       return c.json({ error: { code: "INTERNAL_ERROR", message: "Authentication service is not configured." } }, 503);
     }
-    const auth = createAuth(c.env.DATABASE_URL, c.env.BETTER_AUTH_SECRET);
-    return auth.handler(c.req.raw);
+    try {
+      const auth = createAuth(c.env.DATABASE_URL, c.env.BETTER_AUTH_SECRET, c.env);
+      return await auth.handler(c.req.raw);
+    } catch {
+      return c.json({ error: { code: "INTERNAL_ERROR", message: "Authentication service is not configured." } }, 503);
+    }
   });
 
   application.post("/api/bootstrap", async (c) => {

@@ -9,7 +9,7 @@ export type Operation = "identity-provision" | "db-migrate" | "db-reset" | "db-s
 const purposeEnvironmentVariables: Record<DatabasePurpose, { local: string[]; ci: string[]; production: string[] }> = {
   bootstrap: { local: ["BOOTSTRAP_DATABASE_URL"], ci: ["BOOTSTRAP_DATABASE_URL"], production: [] },
   "identity-provision": { local: ["DATABASE_IDENTITY_PROVISION_URL"], ci: ["NEON_TEST_IDENTITY_PROVISION_DATABASE_URL"], production: [] },
-  migration: { local: ["DATABASE_MIGRATION_URL"], ci: ["NEON_TEST_MIGRATION_DATABASE_URL", "NEON_TEST_DATABASE_URL"], production: ["DATABASE_URL"] },
+  migration: { local: ["DATABASE_MIGRATION_URL"], ci: ["NEON_TEST_MIGRATION_DATABASE_URL", "NEON_TEST_DATABASE_URL"], production: [] },
   runtime: { local: ["DATABASE_URL"], ci: ["NEON_TEST_RUNTIME_DATABASE_URL"], production: ["DATABASE_URL"] },
   "integration-test": { local: ["DATABASE_MIGRATION_URL"], ci: ["NEON_TEST_MIGRATION_DATABASE_URL", "NEON_TEST_DATABASE_URL"], production: [] }
 };

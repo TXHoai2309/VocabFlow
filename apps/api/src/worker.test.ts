@@ -41,6 +41,21 @@ describe("foundation worker routes", () => {
     expect(response.status).toBe(503);
     expect(response.headers.get("content-type")).toContain("application/json");
   });
+
+  it("fails closed on production auth when the canonical HTTPS origin is missing", async () => {
+    const response = await createApp().request("https://worker.invalid/api/auth/get-session", {}, {
+      DATABASE_URL: "postgres://fixture-only",
+      BETTER_AUTH_SECRET: "fixture-only",
+      VOCABFLOW_ENV: "production",
+      DATABASE_ENV: "production",
+    });
+    expect(response.status).toBe(503);
+    const body = await response.text();
+    expect(JSON.parse(body)).toEqual({
+      error: { code: "INTERNAL_ERROR", message: "Authentication service is not configured." },
+    });
+    expect(body).not.toContain("fixture-only");
+  });
 });
 
 describe("US-01 household bootstrap route", () => {

@@ -18,6 +18,7 @@ async function main() {
 }
 
 main().catch((error: unknown) => {
-  console.error(error instanceof Error ? error.message : "DB_CHECK_FAILED");
+  const message = error instanceof Error ? error.message : "";
+  console.error(/^[A-Z][A-Z0-9_]{2,79}$/.test(message) ? message : "DB_CHECK_FAILED");
   process.exitCode = 1;
 });

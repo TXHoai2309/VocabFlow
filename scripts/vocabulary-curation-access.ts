@@ -74,7 +74,7 @@ export type CurationDatabaseAccessRequest = {
 };
 
 export type AuthorizedCurationTarget = {
-  name: "development" | "test";
+  name: "development" | "test" | "production";
   branchId: string;
   mode: CurationAccessMode;
   target: ConnectionTarget;
@@ -116,7 +116,25 @@ export function assertCurationDatabaseAccess(
   const { executionContext, vocabularyEnvironment, databaseEnvironment, requestedTarget, resolvedTarget, mode } = request;
 
   if (requestedTarget === "production" || vocabularyEnvironment === "production" || resolvedTarget.environment === "production") {
-    throw new Error("CURATION_PRODUCTION_TARGET_BLOCKED");
+    const expected = getConnectionTarget("production", "runtime");
+    if (executionContext !== "local-development" || request.trustedSource !== "dev-launcher") {
+      throw new Error("CURATION_PRODUCTION_OPERATOR_CONTEXT_REQUIRED");
+    }
+    if (vocabularyEnvironment !== "production" || databaseEnvironment !== "production") {
+      throw new Error("CURATION_PRODUCTION_ENVIRONMENT_MISMATCH");
+    }
+    if (requestedTarget !== "production") throw new Error("CURATION_PRODUCTION_TARGET_REQUIRED");
+    if (!isCanonicalTarget(resolvedTarget, expected) || resolvedTarget.usage !== "production") {
+      throw new Error("CURATION_PRODUCTION_RESOLVED_TARGET_MISMATCH");
+    }
+    if (mode === "apply") {
+      if (request.confirmTarget !== "production") throw new Error("CURATION_TARGET_CONFIRMATION_REQUIRED");
+      if (request.confirmBranch !== expected.branchId) throw new Error("CURATION_BRANCH_CONFIRMATION_MISMATCH");
+    } else if (request.confirmTarget !== undefined || request.confirmBranch !== undefined) {
+      throw new Error("CURATION_CONFIRMATION_WITHOUT_APPLY");
+    }
+    if (expected.branchId === SHARED_CI_TARGET.branchId) throw new Error("CURATION_SHARED_CI_TARGET_BLOCKED");
+    return { name: "production", branchId: expected.branchId, mode, target: expected };
   }
 
   if (executionContext === "local-development") {
@@ -167,19 +185,20 @@ export function assertCurationDatabaseAccess(
 export function resolveCurationTargetName(
   executionContext: ExecutionContext,
   requestedTarget: CurationTargetName | undefined
-): "development" | "test" {
+): "development" | "test" | "production" {
   if (executionContext === "ci-test") {
     if (requestedTarget !== undefined && requestedTarget !== "test") throw new Error("CURATION_TEST_TARGET_MISMATCH");
     return "test";
   }
   if (executionContext === "local-development") {
+    if (requestedTarget === "production") return "production";
     if (requestedTarget !== "development") throw new Error("CURATION_DEVELOPMENT_TARGET_REQUIRED");
     return "development";
   }
   throw new Error("CURATION_EXECUTION_CONTEXT_BLOCKED");
 }
 
-export function configuredCurationTarget(name: "development" | "test") {
+export function configuredCurationTarget(name: "development" | "test" | "production") {
   return getConnectionTarget(name, "runtime");
 }
 

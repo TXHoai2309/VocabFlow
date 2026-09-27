@@ -1,5 +1,41 @@
 # Current Handoff Snapshot
 
+## 2026-09-27 — V1.0.0 production release preparation
+
+- Added a guarded production migration dry-run/apply path with an explicit
+  canonical target, exact target/branch confirmations, provider proof, a
+  read-only migration plan, and forward-only/destructive-SQL checks. Production
+  curation now has explicit read-only and confirmed apply paths using separate
+  production runtime credentials. `db:reset` and reset-capable Trusted DB
+  tooling refuse production markers.
+- Production Better Auth requires matching production markers and an
+  owner-supplied canonical HTTPS origin; secure cookies and a single trusted
+  origin are enforced. The Worker build artifact receives production markers,
+  SPA and `/api/*` routing, an owner-supplied custom route, and
+  `workers.dev=false` only after the guarded production build finalizes it.
+- Added pinned Wrangler CLI, clean-source/toolchain/SHA gates, local environment
+  file exclusion, a client/artifact secret scan and digest check, safe CLI error
+  codes, production preflight/build/deploy commands, and the
+  [v1.0.0 release runbook](releases/v1.0.0-release-runbook.md).
+- Repository config defines production Neon target branch
+  `br-rough-silence-b3gbqjcb`; no Neon API or database connection was used to
+  verify it during this task. Production hostname/zone remain
+  `OWNER_INPUT_REQUIRED`. Worker production secrets and operator migration/
+  runtime credentials must be provisioned separately; no credential values
+  are documented.
+- Local verification: full suite 52 files / 527 tests, lint, typecheck,
+  manifest-only curation dry-run (213 selected rows, no DB access), build
+  (dev-vars removed; client secret-value scan and source-map scan pass),
+  Playwright E2E (26), Wrangler 4.129.0 dry-run (no upload), and final diff
+  check. Local Node is 22.19.0; the guarded production build intentionally
+  requires 22.23.2 and a completely clean release checkout.
+- Production migration/apply, curation apply, Worker/web deploy, account/user
+  creation, and `v1.0.0` tagging were not performed. Core CI and Trusted DB
+  must be green on the exact pushed SHA before any production preflight or
+  mutation.
+- Preserve pre-existing `.env.example` and `docs/decisions.md` changes; neither
+  is part of this task or its commit.
+
 ## 2026-09-25 — US-41 explicit development-target safety path
 
 - Added an explicit `--target development` read-only DB snapshot/planning path.

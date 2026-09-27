@@ -38,11 +38,11 @@ export function applicationDb(url: string) {
   return { sql, db: drizzle(sql) };
 }
 
-export async function runMigrations(url: string, expected?: DatabaseTarget) {
+export async function runMigrations(url: string, expected?: DatabaseTarget, options: { productionForwardOnly?: boolean } = {}) {
   const sql = openSql(url);
   try {
     if (expected) await assertPostConnectIdentity(sql, expected);
-    await executeApplicationMigrations(sql);
+    await executeApplicationMigrations(sql, options);
   } finally {
     await sql.end({ timeout: 5 });
   }

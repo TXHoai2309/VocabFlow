@@ -2,6 +2,27 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-27 — V1.0.0 production deployment preparation
+
+- Added a production release runbook and guarded production preflight,
+  migration, and US-41 curation paths. Production migration/apply requires
+  explicit target/branch confirmation, provider proof, and forward-only SQL;
+  reset tooling remains blocked. No production database was connected or
+  mutated.
+- Added canonical HTTPS Better Auth origin enforcement, secure production
+  cookies/trusted origin, Cloudflare production Worker route finalization,
+  clean SHA/toolchain checks, local env-file exclusion, artifact secret/source
+  map scanning, and a deploy-time artifact digest check.
+- The repository's canonical production branch is
+  `br-rough-silence-b3gbqjcb`; the hostname/zone are owner inputs. The
+  development acceptance facts in the runbook are owner-provided baseline, not
+  a new Trusted DB run. Production migration, US-41 apply, deploy, user
+  creation, and `v1.0.0` tag remain unexecuted.
+- Local validation on this change: 527 tests, lint, typecheck, manifest-only
+  curation dry-run, build with dev-vars cleanup and artifact scan, 26 E2E tests,
+  and Wrangler dry-run. Production build requires Node 22.23.2 and a clean
+  release checkout; the current local runtime is 22.19.0.
+
 ## 2026-09-25 — US-41 explicit development-target safety path
 
 - Added an explicit read-only development target snapshot and activation plan,

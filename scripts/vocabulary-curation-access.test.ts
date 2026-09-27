@@ -1,5 +1,4 @@
 import { describe, expect, it, vi } from "vitest";
-import { getConnectionTarget } from "../config/database-targets";
 import {
   assertCurationDatabaseAccess,
   configuredCurationTarget,
@@ -12,6 +11,7 @@ import {
 
 const developmentTarget = configuredCurationTarget("development");
 const testTarget = configuredCurationTarget("test");
+const productionTarget = configuredCurationTarget("production");
 
 function developmentRequest(overrides: Partial<CurationDatabaseAccessRequest> = {}): CurationDatabaseAccessRequest {
   return {
@@ -36,6 +36,19 @@ function testRequest(overrides: Partial<CurationDatabaseAccessRequest> = {}): Cu
     resolvedTarget: testTarget,
     mode: "dry-run",
     ...overrides
+  };
+}
+
+function productionRequest(overrides: Partial<CurationDatabaseAccessRequest> = {}): CurationDatabaseAccessRequest {
+  return {
+    executionContext: "local-development",
+    trustedSource: "dev-launcher",
+    vocabularyEnvironment: "production",
+    databaseEnvironment: "production",
+    requestedTarget: "production",
+    resolvedTarget: productionTarget,
+    mode: "dry-run",
+    ...overrides,
   };
 }
 
@@ -122,21 +135,35 @@ describe("US-41 curation target authorization", () => {
     expect(fixturePlanner).toHaveBeenCalledWith(expect.objectContaining({ name: "development" }));
   });
 
-  it("blocks production for every curation mode", () => {
-    const productionTarget = getConnectionTarget("production", "runtime");
-    for (const mode of ["dry-run", "apply"] as const) {
-      expect(() => assertCurationDatabaseAccess(developmentRequest({
-        requestedTarget: "production",
-        resolvedTarget: productionTarget,
-        mode
-      }))).toThrow("CURATION_PRODUCTION_TARGET_BLOCKED");
-      expect(() => assertCurationDatabaseAccess({
-        ...developmentRequest({ mode }),
-        vocabularyEnvironment: "production",
-        databaseEnvironment: "production",
-        resolvedTarget: productionTarget
-      })).toThrow("CURATION_PRODUCTION_TARGET_BLOCKED");
-    }
+  it("resolves only an explicit, canonical production dry-run target", () => {
+    expect(assertCurationDatabaseAccess(productionRequest())).toMatchObject({
+      name: "production",
+      branchId: productionTarget.branchId,
+      mode: "dry-run",
+    });
+    expect(() => resolveCurationTargetName("local-development", undefined))
+      .toThrow("CURATION_DEVELOPMENT_TARGET_REQUIRED");
+  });
+
+  it("requires production and exact branch confirmation for curation apply", async () => {
+    expect(() => assertCurationDatabaseAccess(productionRequest({ mode: "apply" })))
+      .toThrow("CURATION_TARGET_CONFIRMATION_REQUIRED");
+    expect(() => assertCurationDatabaseAccess(productionRequest({
+      mode: "apply", confirmTarget: "production", confirmBranch: developmentTarget.branchId,
+    }))).toThrow("CURATION_BRANCH_CONFIRMATION_MISMATCH");
+    const planner = vi.fn(async (target) => target.branchId);
+    await expect(runAuthorizedCurationApply(productionRequest({
+      mode: "apply", confirmTarget: "production", confirmBranch: productionTarget.branchId,
+    }), planner)).resolves.toBe(productionTarget.branchId);
+    expect(planner).toHaveBeenCalledOnce();
+  });
+
+  it("rejects a production curation target mismatch before connection", () => {
+    expect(() => assertCurationDatabaseAccess(productionRequest({ resolvedTarget: testTarget })))
+      .toThrow("CURATION_PRODUCTION_RESOLVED_TARGET_MISMATCH");
+    expect(() => assertCurationDatabaseAccess(productionRequest({
+      requestedTarget: undefined,
+    }))).toThrow("CURATION_PRODUCTION_TARGET_REQUIRED");
   });
 
   it("rejects target or environment mismatches before provider or DB access", () => {

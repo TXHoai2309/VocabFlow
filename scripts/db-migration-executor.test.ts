@@ -1,6 +1,6 @@
 import { describe, expect, it, vi, afterEach } from "vitest";
 import { readMigrationFiles } from "drizzle-orm/migrator";
-import { executeApplicationMigrations } from "./db-migration-executor";
+import { assertProductionMigrationsForwardOnly, executeApplicationMigrations, planApplicationMigrationsReadOnly } from "./db-migration-executor";
 import { resetApplicationScope } from "./db-reset-operations";
 
 vi.mock("drizzle-orm/migrator", { spy: true });
@@ -119,5 +119,39 @@ describe("least-privilege migration executor", () => {
     await expect(executeApplicationMigrations(db.sql)).rejects.toThrow("MIGRATION_SCHEMA_DDL_FORBIDDEN");
     expect(db.applied).toEqual([]);
     expect(db.emitted.join("\n")).not.toContain("CREATE TABLE");
+  });
+
+  it("rejects destructive production SQL while allowing forward constraint transitions", () => {
+    expect(() => assertProductionMigrationsForwardOnly([
+      { sql: ["DROP TABLE vocabularies"], hash: "unsafe", folderMillis: 1, bps: true },
+    ] as ReturnType<typeof readMigrationFiles>)).toThrow("PRODUCTION_DESTRUCTIVE_MIGRATION_FORBIDDEN");
+    expect(() => assertProductionMigrationsForwardOnly([
+      { sql: ["UPDATE vocabflow_app.user SET name = 'changed'"], hash: "unsafe-update", folderMillis: 2, bps: true },
+    ] as ReturnType<typeof readMigrationFiles>)).toThrow("PRODUCTION_DESTRUCTIVE_MIGRATION_FORBIDDEN");
+    expect(() => assertProductionMigrationsForwardOnly([
+      { sql: ["ALTER TABLE exercise_answers DROP CONSTRAINT old_check"], hash: "safe", folderMillis: 1, bps: true },
+    ] as ReturnType<typeof readMigrationFiles>)).not.toThrow();
+  });
+
+  it("plans pending production migrations inside a PostgreSQL read-only transaction", async () => {
+    const emitted: string[] = [];
+    const tx = Object.assign(async (parts: TemplateStringsArray) => {
+      const query = parts.join("?");
+      emitted.push(query);
+      if (query.includes("current_user")) return [{ expected_user: true }];
+      if (query.includes("to_regnamespace")) return [{ exists: true }];
+      if (query.includes("to_regclass")) return [{ exists: true }];
+      if (query.includes("ORDER BY created_at")) return [];
+      return [];
+    }, { unsafe: vi.fn() });
+    const sql = {
+      begin: (operation: (client: typeof tx) => Promise<unknown>) => operation(tx),
+    } as unknown as Parameters<typeof planApplicationMigrationsReadOnly>[0];
+    const plan = await planApplicationMigrationsReadOnly(sql);
+    expect(emitted[0]).toContain("SET TRANSACTION READ ONLY");
+    expect(plan.pendingCount).toBe(plan.migrationCount);
+    expect(plan.appliedThrough).toBeNull();
+    expect(tx.unsafe).not.toHaveBeenCalled();
+    expect(emitted.join("\n")).not.toMatch(/CREATE TABLE|INSERT INTO|ALTER TABLE|DROP TABLE|TRUNCATE/i);
   });
 });

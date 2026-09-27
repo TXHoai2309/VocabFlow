@@ -16,7 +16,51 @@ function mark(substage: MigrationSubstage) {
   console.log(`TRUSTED_DB_SUBSTAGE=${substage}`);
 }
 
-export async function executeApplicationMigrations(sql: SqlClient) {
+export function assertProductionMigrationsForwardOnly(migrations: ReturnType<typeof readMigrationFiles>) {
+  const destructive = /\b(?:DROP\s+(?:DATABASE|SCHEMA|TABLE|TYPE|COLUMN|OWNED)|TRUNCATE\b|DELETE\s+FROM\b|UPDATE\s+(?:"[^"\r\n]+"|[\w.]+)\s+SET\b|REASSIGN\s+OWNED\b)\b/i;
+  if (migrations.some((migration) => migration.sql.some((statement) => destructive.test(statement)))) {
+    throw new Error("PRODUCTION_DESTRUCTIVE_MIGRATION_FORBIDDEN");
+  }
+}
+
+export async function planApplicationMigrationsReadOnly(sql: SqlClient) {
+  const migrations = readMigrationFiles({ migrationsFolder: "drizzle/migrations" });
+  assertProductionMigrationsForwardOnly(migrations);
+  return sql.begin(async (tx) => {
+    await tx`SET TRANSACTION READ ONLY`;
+    const [identity] = await tx<{ expected_user: boolean }[]>`
+      SELECT current_user::text = ${MIGRATION_ROLE}::text
+        AND session_user::text = ${MIGRATION_ROLE}::text AS expected_user
+    `;
+    if (identity?.expected_user !== true) throw new Error("MIGRATION_ROLE_MISMATCH");
+    const [schema] = await tx<{ exists: boolean }[]>`
+      SELECT to_regnamespace(${MIGRATION_SCHEMA}::text) IS NOT NULL AS exists
+    `;
+    if (schema?.exists !== true) throw new Error("MIGRATION_SCHEMA_MISSING");
+    const [table] = await tx<{ exists: boolean }[]>`
+      SELECT to_regclass(${`${MIGRATION_SCHEMA}.__drizzle_migrations`}::text) IS NOT NULL AS exists
+    `;
+    let latestCreatedAt: number | null = null;
+    if (table?.exists) {
+      const [last] = await tx<{ created_at: string | number }[]>`
+        SELECT created_at FROM "drizzle"."__drizzle_migrations"
+        ORDER BY created_at DESC LIMIT 1
+      `;
+      if (last) latestCreatedAt = Number(last.created_at);
+    }
+    const pending = migrations.filter((migration) =>
+      latestCreatedAt === null || latestCreatedAt < migration.folderMillis,
+    );
+    return {
+      migrationCount: migrations.length,
+      appliedThrough: latestCreatedAt,
+      pendingCount: pending.length,
+      pendingHashes: pending.map((migration) => migration.hash),
+    };
+  });
+}
+
+export async function executeApplicationMigrations(sql: SqlClient, options: { productionForwardOnly?: boolean } = {}) {
   await sql.begin(async (tx) => {
     mark("migration-validate-infrastructure");
     // Coordinate with app-only reset. The surrounding CI workflow also locks
@@ -68,6 +112,7 @@ export async function executeApplicationMigrations(sql: SqlClient) {
     if (migrations.some((migration) => migration.sql.some((statement) => /\bCREATE\s+SCHEMA\b/i.test(statement)))) {
       throw new Error("MIGRATION_SCHEMA_DDL_FORBIDDEN");
     }
+    if (options.productionForwardOnly) assertProductionMigrationsForwardOnly(migrations);
 
     mark("migration-read-history");
     // Exact history shape used by drizzle-orm 0.45.2 PgDialect.migrate.

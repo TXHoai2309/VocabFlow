@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
-import { formatTrustedDbError, reportTrustedDbFailure, resolveTrustedDbSuite } from "./test-db";
+import { assertTrustedTestContext, formatTrustedDbError, reportTrustedDbFailure, resolveTrustedDbSuite } from "./test-db";
 import { buildCapQueueExpectation } from "./test-review-queue-db";
 
 const source = readFileSync(join(process.cwd(), "scripts", "test-db.ts"), "utf8");
@@ -106,6 +106,12 @@ afterEach(() => {
 });
 
 describe("trusted DB suite selection", () => {
+  it("cannot run reset-capable Trusted DB tooling against production markers", () => {
+    expect(() => assertTrustedTestContext("ci-test", "production"))
+      .toThrow("TRUSTED_DB_TEST_REQUIRES_TEST_CONTEXT");
+    expect(() => assertTrustedTestContext("ci-test", "test")).not.toThrow();
+  });
+
   it("defaults to the canonical full suite", () => {
     delete process.env.TRUSTED_DB_SUITE;
     expect(resolveTrustedDbSuite()).toBe("full");

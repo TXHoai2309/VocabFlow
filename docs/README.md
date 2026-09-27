@@ -86,6 +86,7 @@ feature code may start.
 - [AI Progress and Handoff](ai-progress.md)
 - [Roadmap and Batch Index](roadmap.md)
 - [Changelog](changelog.md)
+- [v1.0.0 Production Release Runbook](releases/v1.0.0-release-runbook.md)
 - [Source Baselines](source-baselines.md)
 - [User Story System](stories/README.md)
 
