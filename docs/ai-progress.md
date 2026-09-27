@@ -1,5 +1,19 @@
 # Current Handoff Snapshot
 
+## 2026-09-27 — Vercel Preview API route integration fix
+
+- The live Preview returned Vercel `NOT_FOUND` for nested Better Auth requests.
+  Source inspection confirmed the Hono `POST /api/auth/*` mount and other API
+  routes already existed, but the Vite deployment had no explicit Vercel route
+  from nested `/api/*` paths to a statically named Function.
+- Replaced the implicit catch-all filename with `api/handler.ts` and an explicit
+  Vercel route/path transform that dispatches `/api` and `/api/*` to the same
+  Hono app while restoring the original URL path. The SPA rewrite still excludes
+  API paths. Better Auth logic, auth configuration, DB schema/data and release
+  source guard are unchanged.
+- Focused routing/auth/artifact tests pass. Full local validation and exactly
+  one Preview deployment are pending.
+
 ## 2026-09-27 — V1.0 hosting pivot: Cloudflare to Vercel
 
 - Replaced the V1.0 deployment layer with a root Vercel project: Vite static

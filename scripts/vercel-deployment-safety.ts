@@ -39,12 +39,12 @@ function walk(directory: string): string[] {
   });
 }
 
-function hasApiFunction(outputRoot: string) {
+function hasExpectedApiFunction(outputRoot: string) {
   const functionsRoot = join(outputRoot, "functions");
   if (!existsSync(functionsRoot) || !lstatSync(functionsRoot).isDirectory()) return false;
   return walk(functionsRoot).some((path) => {
     const relativePath = relative(functionsRoot, path).replaceAll("\\", "/");
-    return relativePath.startsWith("api/") && relativePath.includes(".func/");
+    return relativePath.startsWith("api/handler.func/");
   });
 }
 
@@ -58,7 +58,7 @@ export function verifyVercelArtifact(input: {
   const clientRoot = join(distributionRoot, "client");
   const metadataPath = join(distributionRoot, "vocabflow-release-metadata.json");
   if (!existsSync(join(outputRoot, "static", "index.html"))) throw new Error("VERCEL_STATIC_OUTPUT_MISSING");
-  if (!hasApiFunction(outputRoot)) throw new Error("VERCEL_API_FUNCTION_MISSING");
+  if (!hasExpectedApiFunction(outputRoot)) throw new Error("VERCEL_API_FUNCTION_MISSING");
   if (!existsSync(metadataPath)) throw new Error("PRODUCTION_BUILD_METADATA_MISSING");
 
   const metadata = JSON.parse(readFileSync(metadataPath, "utf8")) as Record<string, unknown>;

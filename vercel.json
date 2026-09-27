@@ -5,6 +5,19 @@
   "buildCommand": "pnpm build:production",
   "devCommand": "pnpm dev:web",
   "outputDirectory": "dist/client",
+  "routes": [
+    {
+      "src": "^(/api(?:/.*)?)$",
+      "dest": "/api/handler",
+      "transforms": [
+        {
+          "type": "request.path",
+          "op": "set",
+          "args": "$1"
+        }
+      ]
+    }
+  ],
   "rewrites": [
     {
       "source": "/((?!api(?:/|$)).*)",

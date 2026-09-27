@@ -1,4 +1,4 @@
-import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
@@ -58,7 +58,7 @@ describe("Vercel release deployment guards", () => {
     const clientRoot = join(distributionRoot, "client");
     const outputRoot = join(temporaryRoot, ".vercel", "output");
     const staticRoot = join(outputRoot, "static");
-    const apiFunctionRoot = join(outputRoot, "functions", "api", "[...route].func");
+    const apiFunctionRoot = join(outputRoot, "functions", "api", "handler.func");
     mkdirSync(clientRoot, { recursive: true });
     mkdirSync(staticRoot, { recursive: true });
     mkdirSync(apiFunctionRoot, { recursive: true });
@@ -76,6 +76,12 @@ describe("Vercel release deployment guards", () => {
     expect(() => verifyVercelArtifact({ outputRoot, distributionRoot, releaseSha: "b".repeat(40) }))
       .toThrow("PRODUCTION_ARTIFACT_RELEASE_MISMATCH");
 
+    const legacyCatchAllRoot = join(outputRoot, "functions", "api", "[...route].func");
+    renameSync(apiFunctionRoot, legacyCatchAllRoot);
+    expect(() => verifyVercelArtifact({ outputRoot, distributionRoot, releaseSha }))
+      .toThrow("VERCEL_API_FUNCTION_MISSING");
+    renameSync(legacyCatchAllRoot, apiFunctionRoot);
+
     writeFileSync(join(apiFunctionRoot, ".env.production"), "BETTER_AUTH_SECRET=synthetic-fixture", "utf8");
     expect(() => verifyVercelArtifact({ outputRoot, distributionRoot, releaseSha }))
       .toThrow("BUILD_ARTIFACT_SECURITY_CHECK_FAILED");
@@ -89,6 +95,11 @@ describe("Vercel release deployment guards", () => {
       devCommand: string;
       outputDirectory: string;
       rewrites: Array<{ source: string; destination: string }>;
+      routes: Array<{
+        src: string;
+        dest: string;
+        transforms: Array<{ type: string; op: string; args: string }>;
+      }>;
     };
     expect(config).toMatchObject({
       framework: "vite",
@@ -103,7 +114,19 @@ describe("Vercel release deployment guards", () => {
     expect(fallback.test("/study/exercises")).toBe(true);
     expect(fallback.test("/api")).toBe(false);
     expect(fallback.test("/api/health")).toBe(false);
-    expect(readFileSync(resolve("api", "[...route].ts"), "utf8")).toContain("application.fetch(request");
+    const apiRoute = config.routes.find((route) => route.dest === "/api/handler");
+    expect(apiRoute).toBeDefined();
+    const apiSource = new RegExp(apiRoute?.src ?? "$");
+    for (const path of ["/api", "/api/health", "/api/auth/sign-up/email"]) {
+      expect(apiSource.exec(path)?.[1]).toBe(path);
+    }
+    expect(apiSource.test("/not-api/auth/sign-up/email")).toBe(false);
+    expect(apiRoute?.transforms).toContainEqual({
+      type: "request.path",
+      op: "set",
+      args: "$1",
+    });
+    expect(readFileSync(resolve("api", "handler.ts"), "utf8")).toContain("application.fetch(request");
   });
 
   it("keeps the Vercel production build independent of Cloudflare settings", () => {

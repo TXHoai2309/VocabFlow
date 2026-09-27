@@ -38,8 +38,10 @@ import {
 type AuthenticatedSession = { user: { id: string } };
 type SessionReader = (request: Request, env: RuntimeBindings) => Promise<AuthenticatedSession | null>;
 type BootstrapRunner = (userId: string, env: RuntimeBindings) => Promise<HouseholdBootstrapResponse["household"]>;
+type AuthRequestHandler = (request: Request, env: RuntimeBindings) => Promise<Response>;
 
 export type AppDependencies = {
+  authRequestHandler?: AuthRequestHandler;
   readSession?: SessionReader;
   bootstrap?: BootstrapRunner;
   learnerService?: LearnerService;
@@ -195,6 +197,9 @@ export function createApp(dependencies: AppDependencies = {}) {
       return c.json({ error: { code: "INTERNAL_ERROR", message: "Authentication service is not configured." } }, 503);
     }
     try {
+      if (dependencies.authRequestHandler) {
+        return await dependencies.authRequestHandler(c.req.raw, c.env);
+      }
       const auth = createAuth(c.env.DATABASE_URL, c.env.BETTER_AUTH_SECRET, c.env);
       return await auth.handler(c.req.raw);
     } catch {

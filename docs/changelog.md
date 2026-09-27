@@ -2,6 +2,19 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-27 — Vercel Preview API route integration
+
+- Added an explicit `/api` and `/api/*` route to the statically named
+  `api/handler.ts` Vercel Function, restoring each original API pathname before
+  dispatch to the existing Hono app. This covers Better Auth and non-auth API
+  endpoints without duplicating application routes.
+- Preserved the SPA fallback exclusion for API paths and tightened release
+  artifact verification to require the packaged handler Function.
+- Added focused tests proving GET/POST auth requests reach the existing Hono /
+  Better Auth boundary, API routing is distinct from SPA fallback, and the
+  expected Function artifact is required. No DB/auth schema or source guard
+  policy changed.
+
 ## 2026-09-27 — V1.0 hosting pivot: Cloudflare to Vercel
 
 - Made Vercel the V1.0 production host without changing React/Vite, Hono,

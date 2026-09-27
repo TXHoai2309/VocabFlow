@@ -43,6 +43,33 @@ describe("foundation API routes", () => {
     expect(response.headers.get("content-type")).toContain("application/json");
   });
 
+  it.each([
+    ["POST", "/api/auth/sign-up/email", "{\"name\":\"Fixture\"}"],
+    ["GET", "/api/auth/get-session", undefined],
+  ] as const)("forwards %s %s to the Better Auth request handler", async (method, path, body) => {
+    const authRequestHandler = vi.fn(async (request: Request) =>
+      new Response(JSON.stringify({ reached: new URL(request.url).pathname, method: request.method }), {
+        headers: { "content-type": "application/json" },
+      }),
+    );
+    const testApp = createApp({ authRequestHandler });
+    const response = await testApp.request(`http://localhost${path}`, {
+      method,
+      ...(body ? { headers: { "content-type": "application/json" }, body } : {}),
+    }, {
+      DATABASE_URL: "postgres://auth-handler-fixture",
+      BETTER_AUTH_SECRET: "auth-handler-fixture",
+    } as RuntimeBindings);
+
+    expect(response.status).toBe(200);
+    await expect(response.json()).resolves.toEqual({ reached: path, method });
+    expect(authRequestHandler).toHaveBeenCalledOnce();
+    const forwardedRequest = authRequestHandler.mock.calls[0]?.[0];
+    expect(forwardedRequest?.url).toBe(`http://localhost${path}`);
+    expect(forwardedRequest?.method).toBe(method);
+    if (body) await expect(forwardedRequest?.text()).resolves.toBe(body);
+  });
+
   it("fails closed on production auth when the canonical HTTPS origin is missing", async () => {
     const response = await createApp().request("https://worker.invalid/api/auth/get-session", {}, {
       DATABASE_URL: "postgres://fixture-only",

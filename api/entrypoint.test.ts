@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import { describe, expect, it } from "vitest";
-import { createVercelApiHandler } from "./[...route]";
+import { createVercelApiHandler } from "./handler";
 import type { RuntimeBindings } from "../apps/api/src/runtime-bindings";
 
 describe("Vercel Hono function boundary", () => {
@@ -10,6 +10,47 @@ describe("Vercel Hono function boundary", () => {
 
     expect(response.status).toBe(200);
     await expect(response.json()).resolves.toEqual({ status: "ok" });
+  });
+
+  it("forwards nested POST auth requests, including the original body, to the Hono auth route", async () => {
+    const received: Request[] = [];
+    const fixture = new Hono();
+    fixture.all("/api/auth/*", async (context) => {
+      received.push(context.req.raw);
+      return context.text("auth handler reached", 202);
+    });
+    const handler = createVercelApiHandler(fixture);
+    const request = new Request("https://vocabflow.vercel.app/api/auth/sign-up/email?source=preview", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ name: "Fixture", email: "fixture@example.test", password: "not-a-real-password" }),
+    });
+    const expectedBody = await request.clone().text();
+
+    const response = await handler.fetch(request);
+
+    expect(response.status).toBe(202);
+    expect(received).toHaveLength(1);
+    expect(received[0]?.url).toBe(request.url);
+    expect(received[0]?.method).toBe("POST");
+    expect(await received[0]?.text()).toBe(expectedBody);
+  });
+
+  it("forwards GET Better Auth session requests through the same Hono route", async () => {
+    const received: Request[] = [];
+    const fixture = new Hono();
+    fixture.all("/api/auth/*", (context) => {
+      received.push(context.req.raw);
+      return context.text("session handler reached", 200);
+    });
+
+    const response = await createVercelApiHandler(fixture).fetch(
+      new Request("https://vocabflow.vercel.app/api/auth/get-session"),
+    );
+
+    expect(response.status).toBe(200);
+    expect(received[0]?.url).toBe("https://vocabflow.vercel.app/api/auth/get-session");
+    expect(received[0]?.method).toBe("GET");
   });
 
   it("keeps unknown API requests in Hono instead of returning SPA HTML", async () => {
