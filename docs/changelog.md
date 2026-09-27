@@ -21,6 +21,9 @@ This log records meaningful project milestones and accepted baselines.
   typecheck, Vite build, 26 Playwright E2E tests and `git diff --check` pass.
   The guarded production build remains gated on pinned Node 22.23.2 and a clean
   release checkout.
+- Core CI run `36300948885` and Trusted DB run `36300948861` both pass on
+  implementation SHA `5fd0515c4d3ae2cd4cc0a15ec407aca13d2f04ad`; Trusted DB
+  targets `shared-ci`, not Production.
 
 ## 2026-09-27 — Historical Cloudflare production deployment preparation (superseded)
 
