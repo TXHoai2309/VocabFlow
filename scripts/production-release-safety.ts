@@ -76,7 +76,7 @@ export function assertResetTargetAllowed(input: {
   if (input.args.length > 0) throw new Error("DB_RESET_ARGUMENTS_NOT_SUPPORTED");
   if (input.environment.VOCABFLOW_ENV === "production"
       || input.environment.DATABASE_ENV === "production"
-      || input.environment.EXECUTION_CONTEXT === "cloudflare-production") {
+      || input.environment.EXECUTION_CONTEXT === "vercel-production") {
     throw new Error("DB_RESET_PRODUCTION_BLOCKED");
   }
 }

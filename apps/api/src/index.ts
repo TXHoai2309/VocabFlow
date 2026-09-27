@@ -1,4 +1,5 @@
 import { Hono } from "hono";
+import type { RuntimeBindings } from "./runtime-bindings";
 import {
   errorEnvelope,
   vocabularyLevelSchema,
@@ -34,17 +35,9 @@ import {
   type ResetLearnerProgressService
 } from "./reset-learner-progress";
 
-export type WorkerBindings = {
-  DATABASE_URL?: string;
-  BETTER_AUTH_SECRET?: string;
-  BETTER_AUTH_URL?: string;
-  VOCABFLOW_ENV?: string;
-  DATABASE_ENV?: string;
-};
-
 type AuthenticatedSession = { user: { id: string } };
-type SessionReader = (request: Request, env: WorkerBindings) => Promise<AuthenticatedSession | null>;
-type BootstrapRunner = (userId: string, env: WorkerBindings) => Promise<HouseholdBootstrapResponse["household"]>;
+type SessionReader = (request: Request, env: RuntimeBindings) => Promise<AuthenticatedSession | null>;
+type BootstrapRunner = (userId: string, env: RuntimeBindings) => Promise<HouseholdBootstrapResponse["household"]>;
 
 export type AppDependencies = {
   readSession?: SessionReader;
@@ -67,7 +60,7 @@ export type AppDependencies = {
 
 const SAFE_BOOTSTRAP_ERROR = "Không thể hoàn tất thiết lập gia đình. Vui lòng thử lại.";
 
-async function readAuthenticatedSession(request: Request, env: WorkerBindings) {
+async function readAuthenticatedSession(request: Request, env: RuntimeBindings) {
   if (!env.DATABASE_URL || !env.BETTER_AUTH_SECRET) {
     throw new Error("AUTH_SERVICE_NOT_CONFIGURED");
   }
@@ -75,7 +68,7 @@ async function readAuthenticatedSession(request: Request, env: WorkerBindings) {
   return auth.api.getSession({ headers: request.headers });
 }
 
-async function runBootstrap(userId: string, env: WorkerBindings) {
+async function runBootstrap(userId: string, env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
   const database = createHttpDatabase(env.DATABASE_URL);
@@ -83,85 +76,85 @@ async function runBootstrap(userId: string, env: WorkerBindings) {
   return service.ensureDefaultHousehold(userId);
 }
 
-async function runLearnerService(env: WorkerBindings) {
+async function runLearnerService(env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
   return createLearnerService(createHttpDatabase(env.DATABASE_URL));
 }
 
-async function runVocabularyService(env: WorkerBindings) {
+async function runVocabularyService(env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
   return createVocabularyService(createHttpDatabase(env.DATABASE_URL));
 }
 
-async function runReviewService(env: WorkerBindings) {
+async function runReviewService(env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
   return createReviewService(createHttpDatabase(env.DATABASE_URL));
 }
 
-async function runReviewQueueService(env: WorkerBindings) {
+async function runReviewQueueService(env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
   return createReviewQueueService(createHttpDatabase(env.DATABASE_URL));
 }
 
-async function runLearnerSettingsService(env: WorkerBindings) {
+async function runLearnerSettingsService(env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
   return createLearnerSettingsService(createHttpDatabase(env.DATABASE_URL));
 }
 
-async function runTopicService(env: WorkerBindings) {
+async function runTopicService(env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
   return createTopicService(createHttpDatabase(env.DATABASE_URL));
 }
 
-async function runLearningSetService(env: WorkerBindings) {
+async function runLearningSetService(env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
   return createLearningSetService(createHttpDatabase(env.DATABASE_URL));
 }
 
-async function runProgressSummaryService(env: WorkerBindings) {
+async function runProgressSummaryService(env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
   return createProgressSummaryService(createHttpDatabase(env.DATABASE_URL));
 }
 
-async function runActivitySummaryService(env: WorkerBindings) {
+async function runActivitySummaryService(env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
   return createActivitySummaryService(createHttpDatabase(env.DATABASE_URL));
 }
 
-async function runProgressHistoryService(env: WorkerBindings) {
+async function runProgressHistoryService(env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
   return createProgressHistoryService(createHttpDatabase(env.DATABASE_URL));
 }
 
-async function runTopicProgressService(env: WorkerBindings) {
+async function runTopicProgressService(env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
   return createTopicProgressService(createHttpDatabase(env.DATABASE_URL));
 }
 
-async function runGamificationService(env: WorkerBindings) {
+async function runGamificationService(env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
   return createGamificationService(createHttpDatabase(env.DATABASE_URL));
 }
 
-async function runLearnerVocabularyService(env: WorkerBindings) {
+async function runLearnerVocabularyService(env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
   return createLearnerVocabularyService(createHttpDatabase(env.DATABASE_URL));
 }
 
-async function runResetLearnerProgressService(env: WorkerBindings) {
+async function runResetLearnerProgressService(env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
   return createResetLearnerProgressService(createHttpDatabase(env.DATABASE_URL));
@@ -193,7 +186,7 @@ function parseProgressHistoryQuery(request: Request): { from: string; to: string
 export function createApp(dependencies: AppDependencies = {}) {
   const readSession = dependencies.readSession ?? readAuthenticatedSession;
   const bootstrap = dependencies.bootstrap ?? runBootstrap;
-  const application = new Hono<{ Bindings: WorkerBindings }>();
+  const application = new Hono<{ Bindings: RuntimeBindings }>();
 
   application.get("/api/health", (c) => c.json({ status: "ok" }, 200));
 

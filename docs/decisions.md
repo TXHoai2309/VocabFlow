@@ -48,7 +48,7 @@ evidence condition is met and the affected source document is updated.
 - Date: Recorded 2026-09-08
 - Context: The implementation baseline must not reopen stack choices during a
   vertical slice.
-- Decision: React/Vite/TypeScript SPA, Hono Worker, Neon PostgreSQL, Drizzle,
+- Decision: React/Vite/TypeScript SPA, Hono API on Vercel Functions, Neon PostgreSQL, Drizzle,
   Better Auth and Zod are the pinned stack.
 - Consequences: Framework/provider changes require a demonstrated blocker spike.
 - Evidence/source: [Technical Architecture](architecture/technical-architecture.md#2-frozen-technology-stack),
@@ -63,7 +63,7 @@ evidence condition is met and the affected source document is updated.
 - Decision: React/Vite static assets and Hono `/api/*` run under the same origin.
 - Consequences: Web code never connects directly to Neon.
 - Evidence/source: [Technical Architecture](architecture/technical-architecture.md#31-same-origin-routing),
-  `wrangler.jsonc`, `apps/api/src/index.ts`
+  `vercel.json`, `api/[...route].ts`, `apps/api/src/index.ts`
 - Revisit only if: Deployment constraints make same-origin impossible.
 
 ## DEC-006 — Dedicated schema boundaries
@@ -242,3 +242,25 @@ evidence condition is met and the affected source document is updated.
   `apps/api/src/index.ts`, [US-01 contract](stories/US-01-parent-registration.md)
 - Revisit only if: The product owner adds a household naming requirement or a
   proven persistence constraint requires a new contract.
+
+## DEC-017 — Vercel is the V1.0 production hosting target
+
+- Status: ACCEPTED
+- Date: 2026-09-27
+- Context: The owner changed the V1.0 hosting decision from Cloudflare to Vercel
+  while keeping the existing React/Vite, Hono, Neon, Better Auth and Cloudinary
+  architecture.
+- Decision: Serve the Vite SPA as static output and run the existing Hono API as
+  a same-origin Vercel Function. Do not migrate to Next.js or duplicate API
+  routes/domain logic. Production database release operations remain manual,
+  separately approved steps and never run automatically during deployment.
+- Consequences: Vercel Preview auth trusts only the exact current
+  `VERCEL_URL`; Preview requires development markers and must not use production
+  credentials. Production uses the owner-selected canonical HTTPS
+  `BETTER_AUTH_URL`. Cloudflare deployment configuration is no longer the V1.0
+  production path.
+- Evidence/source: [Technical Architecture](architecture/technical-architecture.md#3-system-context--deployment-topology),
+  [V1.0.0 Release Runbook](releases/v1.0.0-release-runbook.md), `vercel.json`,
+  `api/[...route].ts`, `apps/api/src/auth-production-config.ts`
+- Revisit only if: The owner explicitly changes the V1.0 hosting target or a
+  focused deployment spike proves Vercel cannot satisfy the accepted boundary.

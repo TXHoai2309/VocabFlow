@@ -19,7 +19,7 @@ function firstPresent(names: string[]) {
 }
 
 export function configuredDatabaseUrl(context: ExecutionContext, purpose: DatabasePurpose = "runtime"): string | undefined {
-  const key = context === "ci-test" ? "ci" : context === "cloudflare-production" ? "production" : "local";
+  const key = context === "ci-test" ? "ci" : context === "vercel-production" ? "production" : "local";
   return firstPresent(purposeEnvironmentVariables[purpose][key]);
 }
 
@@ -68,7 +68,7 @@ export function assertPreConnect(input: {
   assertTargetPolicy(input.target);
   const expectedContext = EXECUTION_CONTEXTS[input.context];
   if (expectedContext.environment !== input.target.environment) throw new Error("INVALID_TARGET_CONTEXT");
-  if (input.context === "cloudflare-production" && input.operation !== "db-check") {
+  if (input.context === "vercel-production" && input.operation !== "db-check") {
     throw new Error("PRODUCTION_DB_MUTATION_OUT_OF_SCOPE");
   }
   const url = input.connectionString ?? configuredDatabaseUrl(input.context, input.purpose);

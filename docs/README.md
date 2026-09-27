@@ -92,6 +92,10 @@ feature code may start.
 
 ## Current project state
 
+- V1.0 production hosting target: **Vercel** (DEC-017); root Vite SPA plus the
+  existing Hono API as a same-origin Function. Production deploy is still
+  manual and is not authorized by this preparation task. See the
+  [V1.0.0 Production Release Runbook](releases/v1.0.0-release-runbook.md).
 - BATCH 0 Foundation: `ACCEPTED`.
 - Recovery baseline: implementation commit `f17521bd41738db6dd5e8f7f72a170ed08c22bf3`;
   recovery fix commit `60b384dd1f53ca5a5472402292a450190446ba9e`.

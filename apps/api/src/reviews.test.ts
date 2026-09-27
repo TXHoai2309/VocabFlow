@@ -1,6 +1,7 @@
 import { PgDialect } from "drizzle-orm/pg-core";
 import { describe, expect, it, vi } from "vitest";
-import { createApp, type WorkerBindings } from "./index";
+import { createApp } from "./index";
+import type { RuntimeBindings } from "./runtime-bindings";
 import {
   createReviewFingerprint,
   createReviewService,
@@ -621,7 +622,7 @@ describe("US-07 review contracts and orchestration", () => {
 describe("POST /api/reviews route", () => {
   it("requires a session and maps service errors to stable envelopes", async () => {
     const unauthorizedApp = createApp({ readSession: async () => null });
-    const unauthorized = await unauthorizedApp.request("http://localhost/api/reviews", { method: "POST", body: "{}" }, {} as WorkerBindings);
+    const unauthorized = await unauthorizedApp.request("http://localhost/api/reviews", { method: "POST", body: "{}" }, {} as RuntimeBindings);
     expect(unauthorized.status).toBe(401);
     expect(await unauthorized.json()).toEqual({ error: { code: "UNAUTHORIZED", message: "Đăng nhập để tiếp tục." } });
 
@@ -633,7 +634,7 @@ describe("POST /api/reviews route", () => {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(request)
-    }, {} as WorkerBindings);
+    }, {} as RuntimeBindings);
     expect(forbidden.status).toBe(503);
     const body = await forbidden.text();
     expect(JSON.parse(body)).toEqual({ error: { code: "INTERNAL_ERROR", message: "Không thể lưu tiến trình lúc này. Vui lòng thử lại." } });
@@ -647,7 +648,7 @@ describe("POST /api/reviews route", () => {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(request)
-    }, {} as WorkerBindings);
+    }, {} as RuntimeBindings);
     expect(stale.status).toBe(409);
     expect(await stale.json()).toEqual({
       error: {

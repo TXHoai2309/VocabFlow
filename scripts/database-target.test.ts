@@ -24,7 +24,7 @@ describe("foundation target policy", () => {
   it.each([
     ["local-development", "dev-launcher", "development"],
     ["ci-test", "github-actions", "test"],
-    ["cloudflare-production", "cloudflare-runtime", "production"]
+    ["vercel-production", "vercel-runtime", "production"]
   ] as const)("accepts the %s trusted context mapping", (context, source, environment) => {
     const previousVocabulary = process.env.VOCABFLOW_ENV;
     const previousDatabase = process.env.DATABASE_ENV;

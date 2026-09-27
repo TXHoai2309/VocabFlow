@@ -1,6 +1,38 @@
 # Current Handoff Snapshot
 
-## 2026-09-27 — V1.0.0 production release preparation
+## 2026-09-27 — V1.0 hosting pivot: Cloudflare to Vercel
+
+- Replaced the V1.0 deployment layer with a root Vercel project: Vite static
+  output plus a thin Hono Web `fetch` Function at `/api/*`; the existing Hono
+  routes/business logic remain the single implementation. Added exact-origin
+  Preview auth using the current `VERCEL_URL`, with development-only markers
+  and no wildcard Vercel trust.
+- Kept production DB identity/preflight, migration and US-41 guards, reset
+  block, shared-CI isolation, forward-only SQL policy, release SHA/toolchain
+  gates and artifact secret/source-map scanning. Removed the Worker/Wrangler
+  deployment implementation; BATCH 0 Cloudflare docs remain explicitly
+  historical.
+- Updated the current architecture, V1.0 release runbook, decision log and
+  handoff/changelog for Vercel. Vercel project IDs and production origin remain
+  owner inputs; Preview auth/API smoke stays restricted until a separate
+  owner-approved non-production database is provisioned.
+- No Vercel link/pull/build/deploy, Cloudflare deploy, production Neon
+  connection, migration or curation apply was executed. Existing local edits in
+  `.env.example` and the prior DEC-018 link correction are preserved and are
+  not part of this pivot commit.
+- Local verification: frozen-lockfile install, 10 focused files / 106 tests,
+  full suite 54 files / 544 tests, lint, typecheck, Vite build, 26 Playwright
+  E2E tests, and `git diff --check` pass. Artifact checks found no secret
+  values, DB/provider credentials, local env files or source maps; one
+  `BETTER_AUTH_SECRET` key-name string is from Better Auth's browser package,
+  not a configured value.
+- The guarded `build:production` was not executed: this workstation is Node
+  22.19.0 rather than pinned 22.23.2 and the worktree contains preserved
+  pre-existing edits. Remote Core CI/Trusted DB remain pending on the final
+  pushed SHA. Vercel project/org IDs and canonical production origin remain
+  owner inputs.
+
+## 2026-09-27 — Historical Cloudflare production release preparation (superseded)
 
 - Added a guarded production migration dry-run/apply path with an explicit
   canonical target, exact target/branch confirmations, provider proof, a

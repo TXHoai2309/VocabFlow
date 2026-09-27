@@ -77,12 +77,12 @@ Mục tiêu: khóa kiến trúc kỹ thuật đủ chi tiết để triển khai
 
 | **Mục** | **Giá trị** |
 | --- | --- |
-| Document | VocabFlow Technical Architecture v1.0.12 |
+| Document | VocabFlow Technical Architecture v1.0.13 |
 | Target release | Family MVP / vertical slice đầu tiên |
 | Status | APPROVED FOR IMPLEMENTATION |
 | Verification status | Architecture Acceptance Gates được xác minh trong quá trình triển khai; sau khi P0 gates PASS có thể đổi trạng thái thành ARCHITECTURE VERIFIED. |
 | Product baseline | VocabFlow Family MVP Product Specification v1.0 |
-| Tech baseline | React + Vite + TypeScript; Cloudflare Workers + Hono; Neon PostgreSQL; Drizzle; Better Auth |
+| Tech baseline | React + Vite + TypeScript; Hono on Vercel Functions; Neon PostgreSQL; Drizzle; Better Auth |
 | Không thuộc v1 | Offline write queue, advanced gamification, R2 bắt buộc, admin CMS, notifications, AI, study_sessions |
 
 # 1. Executive Summary
@@ -123,16 +123,16 @@ VocabFlow là web học từ vựng cho một hộ gia đình. Một tài khoả
 | Frontend | React + Vite + TypeScript strict | SPA học từ vựng |
 | Routing | React Router - Declarative Mode | Client-side routing |
 | UI | Tailwind + shadcn/ui + Radix + Lucide | Design system và primitives |
-| Backend | Cloudflare Workers + Hono | Same-origin API /api/* |
+| Backend | Hono + Vercel Node.js Function | Same-origin API /api/* |
 | Database | Neon PostgreSQL | Persistent source of truth |
 | Database layer | Drizzle ORM + Drizzle Kit | Schema, query, migrations |
 | Driver | Neon HTTP mặc định | Non-interactive/atomic DB operations |
 | Auth | Better Auth + Drizzle adapter | Parent authentication |
 | Validation | Zod | Request/response/dataset contracts |
 | Client cache | IndexedDB + Dexie (incremental) | Vocabulary/settings/recent snapshot |
-| Testing | Vitest + RTL + Workers env + Playwright | Unit, integration, E2E |
-| Deployment | Cloudflare Workers + Static Assets | FE + API cùng origin |
-| Media | Provider-neutral manifest/map; Cloudinary hiện tại, R2 là lựa chọn tương lai | Ảnh/audio ngoài DB; DB chỉ lưu URL/key |
+| Testing | Vitest + RTL + Hono Web APIs + Playwright | Unit, integration, E2E |
+| Deployment | Vercel static output + Functions | FE + API cùng origin; production release is manual |
+| Media | Provider-neutral manifest/map; Cloudinary hiện tại | Ảnh/audio ngoài DB; DB chỉ lưu URL/key |
 
 > **Stack change rule**
 > Không đổi framework, database hoặc auth provider trừ khi có blocker được chứng minh bằng spike/test. “Có thể cần sau này” không phải lý do đổi stack.
@@ -149,7 +149,7 @@ VocabFlow là web học từ vựng cho một hộ gia đình. Một tài khoả
           Local UI/cache            /api/*
           IndexedDB/Dexie              |
                                        v
-                               Cloudflare Worker
+                                Vercel Function
                                      Hono
                                        |
                             +----------+----------+
@@ -167,22 +167,31 @@ VocabFlow là web học từ vựng cho một hộ gia đình. Một tài khoả
 
 | **Path** | **Handler** | **Quy tắc** |
 | --- | --- | --- |
-| /api/auth/* | Better Auth via Hono | Worker xử lý trước |
-| /api/* | Hono API | Worker xử lý trước |
-| /media/*, hashed assets | Cloudflare Static Assets | Versioned/cache immutable khi phù hợp |
-| /* navigation | React SPA | SPA fallback về index.html |
+| /api/auth/* | Better Auth via Hono | Vercel Function; không rewrite sang SPA |
+| /api/* | Hono API | Vercel Function; unknown API vẫn trả JSON 404 |
+| /media/*, hashed assets | Vercel static output / Cloudinary URLs | Versioned/cache immutable khi phù hợp |
+| /* navigation (excluding /api) | React SPA | SPA fallback về index.html |
 
-## 3.2 Cloudflare configuration requirements
+## 3.2 Vercel configuration requirements
 
-- Dùng Cloudflare Vite Plugin để local runtime gần production.
+- Root Vercel project dùng pnpm workspace; install `pnpm install --frozen-lockfile`,
+  build `pnpm build:production`, output `dist/client`.
 
-- SPA fallback cấu hình `single-page-application`.
+- `api/[...route].ts` là adapter mỏng gọi app Hono hiện có qua Web `Request`/
+  `Response`; `vercel.json` chỉ rewrite path không bắt đầu bằng `/api` về
+  `/index.html`.
 
-- Worker ưu tiên Web APIs; Node.js 22 là tooling runtime, không phải server runtime đầy đủ.
+- API chạy trong Node.js Vercel Function; Hono routes, services và domain logic
+  vẫn dùng chung, không tạo bản sao cho Vercel.
 
-- Pin compatibility_date; chỉ bật nodejs_compat khi dependency yêu cầu và đã test.
+- Production auth dùng canonical HTTPS `BETTER_AUTH_URL`, secure cookies và
+  đúng một trusted origin. Preview chỉ tin chính xác `https://${VERCEL_URL}` và
+  bắt buộc cả hai marker môi trường là `development`; không tin wildcard
+  `*.vercel.app`.
 
-- Trusted origins/cookie configuration phải có cho production domain và localhost development.
+- Vercel Production auto-deployment từ Git phải tắt cho đến khi lần release
+  thủ công đầu tiên được xác minh. DB migration và US-41 apply là bước thủ công
+  tách biệt, không phải build/deploy hook.
 
 # 4. Repository & Module Boundaries
 
@@ -190,7 +199,7 @@ VocabFlow là web học từ vựng cho một hộ gia đình. Một tài khoả
 vocabflow/
 ├─ apps/
 │  ├─ web/                  React/Vite SPA
-│  └─ api/                  Hono Worker
+│  └─ api/                  Hono API application
 ├─ packages/
 │  ├─ learning-domain/      scheduler, date, session rules, domain types
 │  └─ contracts/            Zod schemas + shared API DTOs
@@ -847,7 +856,7 @@ independently by another household.
 ## 9.2 Read/compute/write boundary
 
 ```text
-A. Read / compute in Worker
+A. Read / compute in backend
    1. Authenticate session
    2. Authorize learner -> household
    3. Pre-check (household_id, reviewId) in the authorized household
@@ -858,7 +867,7 @@ A. Read / compute in Worker
       - row missing -> construct virtual NEW state, revision = 0
    5. Verify expectedRevision against stored/virtual revision
    6. Resolve today from household.timezone
-   7. Run scheduler in Worker
+   7. Run scheduler in API server
 
 B. Atomic write in PostgreSQL
    Existing progress branch:
@@ -877,7 +886,7 @@ B. Atomic write in PostgreSQL
       progress + event commit together or neither commits
 ```
 
-Concurrent race nuance: hai Worker có thể cùng tính scheduler trước khi optimistic/race barrier phân thắng bại. Requirement là chỉ một canonical transition/event được persist. Với existing progress, revision chỉ cho một write thắng; với sparse first review, UNIQUE (learner_id, vocabulary_id) chỉ cho một insert thắng. Sau khi phát hiện cùng `(household_id, reviewId)` và fingerprint đã commit, request thua trả 200 canonical result và không persist/re-evaluate thêm; cùng household với fingerprint khác trả 409 IDEMPOTENCY_CONFLICT; không có event trong authorized household và progress đã tiến lên thì trả 409 STALE_REVISION. Event cùng reviewId thuộc household khác là observationally absent và không tham gia phân loại race.
+Concurrent race nuance: hai API requests có thể cùng tính scheduler trước khi optimistic/race barrier phân thắng bại. Requirement là chỉ một canonical transition/event được persist. Với existing progress, revision chỉ cho một write thắng; với sparse first review, UNIQUE (learner_id, vocabulary_id) chỉ cho một insert thắng. Sau khi phát hiện cùng `(household_id, reviewId)` và fingerprint đã commit, request thua trả 200 canonical result và không persist/re-evaluate thêm; cùng household với fingerprint khác trả 409 IDEMPOTENCY_CONFLICT; không có event trong authorized household và progress đã tiến lên thì trả 409 STALE_REVISION. Event cùng reviewId thuộc household khác là observationally absent và không tham gia phân loại race.
 
 ## 9.3 Atomic write invariant
 
@@ -1121,7 +1130,8 @@ use the current timezone. This is an explicit MVP limitation.
 
 - Không log password, session token, raw cookie hoặc secret.
 
-- Secrets chỉ nằm trong Cloudflare/CI secret store.
+- Runtime secrets chỉ nằm trong Vercel/CI secret stores; production DB
+  operator credentials chỉ được cấp trong môi trường release operator riêng.
 
 - Zod validate input tại API boundary.
 
@@ -1140,7 +1150,7 @@ use the current timezone. This is an explicit MVP limitation.
 | learning-domain | Vitest | NEW transitions; 1→3→7→14→30; forgotten reset; timezone date rules |
 | contracts | Vitest + Zod | DTO/errors |
 | DB/service | Vitest | sparse first insert, unique race, atomic write, revision/idempotency |
-| Worker/API | Workers test env | auth/authz + bootstrap concurrency + review 201/200/409/401/403 |
+| API Function | Vitest + Hono Web Request/Response | auth/authz + bootstrap concurrency + review 201/200/409/401/403 |
 | React UI | RTL | flashcard + loading/error states |
 | Browser E2E | Playwright | login → learner → review → reload/login |
 | Security E2E | Playwright/API | Cross-household read/write blocked |
@@ -1174,16 +1184,16 @@ PR / Push
 pnpm install --frozen-lockfile
    +--> dataset validation
    +--> lint + typecheck
-   +--> unit/integration/Worker tests
+   +--> unit/integration/API tests
    +--> build
    +--> Playwright E2E
 
-Production release
-   1. Build/test artifact
-   2. Apply forward-compatible Neon migration
-   3. Deploy Cloudflare Worker + assets
-   4. Smoke test
-   5. Roll back Worker if smoke fails
+Production release (manual; never tied to a Git push)
+   1. Require Core CI + Trusted DB PASS on exact release SHA
+   2. Production DB preflight, reviewed forward-only migration, verify
+   3. US-41 curation dry-run, owner approval, apply, idempotency verify
+   4. Build/scan and explicitly deploy Vercel static SPA + API Function
+   5. Smoke test; Vercel rollback if needed, DB remains forward-only
 ```
 
 ## 15.1 Environment rules
@@ -1204,7 +1214,7 @@ Production release
 
 ## 15.2 BATCH 0 environment & database identity invariant
 
-• BATCH 0 tách execution context khỏi environment marker. local-development chỉ hợp lệ với development/development; ci-test chỉ hợp lệ với test/test; cloudflare-production chỉ hợp lệ với production/production. Marker thiếu, sai enum hoặc mismatch phải fail fast.
+• Execution context tách khỏi environment marker. local-development chỉ hợp lệ với development/development; ci-test với test/test; vercel-production với production/production. Marker thiếu, sai enum hoặc mismatch phải fail fast. Các tên Cloudflare trong BATCH 0 bên dưới là lịch sử.
 
 • Test DB integration chỉ được dùng NEON_TEST_DATABASE_URL trên verified test target; tuyệt đối không fallback sang DATABASE_URL. Fork/untrusted PR không nhận database secret và không dùng pull_request_target để chạy code chưa tin cậy với secret.
 
@@ -1220,13 +1230,13 @@ Production release
 
 - Schema change luôn có Drizzle migration; không chỉnh production table thủ công.
 
-- Migration production phải forward-compatible với Worker version đang chạy trước deploy.
+- Migration production phải forward-compatible với Vercel application version đang chạy trước deploy.
 
 - Ưu tiên additive change: thêm nullable/default-compatible column trước; tighten constraint ở release sau nếu cần.
 
 - Tránh DROP COLUMN, breaking RENAME hoặc enum-breaking change trong cùng release với code phụ thuộc mới.
 
-- Nếu Worker deploy lỗi sau migration, rollback Worker phải vẫn chạy được với schema mới.
+- Nếu Vercel deploy lỗi sau migration, rollback app phải vẫn chạy được với schema mới.
 
 - Vocabulary update giữ stable primary id; content change tăng contentVersion; removed content dùng enabled=false.
 
@@ -1240,13 +1250,13 @@ Release N
   forward-compatible migration
       |
       v
-  deploy Worker
+  deploy Vercel app (static + Function)
       |
       v
   smoke test
       |
       +-- PASS -> complete
-      +-- FAIL -> rollback Worker (schema remains compatible)
+      +-- FAIL -> rollback Vercel deployment (schema remains compatible)
 
 Destructive cleanup/tightening, nếu cần, thực hiện ở release sau.
 ```
@@ -1285,7 +1295,7 @@ Drizzle migrations 0 → latest again → PASS
 
 | **Step** | **Deliverable** | **Exit gate** |
 | --- | --- | --- |
-| **0** | Monorepo + CI + Cloudflare/Neon connectivity | Build/deploy skeleton PASS |
+| **0** | Monorepo + CI + Vercel/Neon connectivity (current host replaces historical Cloudflare baseline) | Build/deploy skeleton PASS |
 | **1** | Drizzle migrations + Better Auth | Parent register/login PASS |
 | **2** | Bootstrap household + learner + authz | Concurrent bootstrap one-household + cross-household 403 PASS |
 | **3** | Seed 20-30 vocabulary | Real content query PASS |
@@ -1306,7 +1316,7 @@ Step 7 là mốc xác nhận kiến trúc: parent login → learner → review �
 
 | **Gate** | **Requirement** |
 | --- | --- |
-| **A1** | Frontend + API cùng Cloudflare origin; SPA deep links hoạt động. |
+| **A1** | Frontend + API cùng Vercel origin; `/api/*` reaches Hono Function, SPA deep links work, and unknown API paths are not rewritten to HTML. |
 | **A2** | Better Auth quản lý auth tables; không có auth schema cạnh tranh. |
 | **A3** | Household bootstrap idempotent và race-safe: hai request đồng thời tạo tối đa một default household + một OWNER membership và trả cùng canonical householdId. |
 | **A4** | Cross-household authorization có automated test. |
@@ -1319,7 +1329,7 @@ Step 7 là mốc xác nhận kiến trúc: parent login → learner → review �
 | **A11** | Progress tồn tại sau reload/logout-login. |
 | **A12** | Không có offline write queue trong vertical slice. |
 | **A13** | Clean migration reproducible trên verified dev/test target: trusted identity metadata được bootstrap/provision trước, application schema rỗng migrate 0→latest, db:reset giữ nguyên vocabflow_meta/identity, rồi migrate 0→latest lại PASS. |
-| **A14** | Rollback Worker vẫn tương thích với migration đã apply. |
+| **A14** | Rollback Vercel deployment vẫn tương thích với migration đã apply. |
 | **A15** | CI chạy validation, lint, typecheck, tests, build và E2E. |
 
 # 19. Deferred Decisions
@@ -1329,7 +1339,7 @@ Step 7 là mốc xác nhận kiến trúc: parent login → learner → review �
 | Dexie progress cache sâu hơn | Core cloud flow ổn; UX cần cache/offline snapshot |
 | Offline write queue | Có requirement mất mạng + conflict policy rõ |
 | Neon WebSocket driver | Interactive transaction thật sự cần và atomic HTTP write không đủ |
-| Cloudflare R2 | Media volume/deploy time/caching trở thành vấn đề |
+| Media provider change | Cloudinary volume, availability or caching becomes a demonstrated concern |
 | study_sessions | Cần duration/resume/per-session analytics |
 | Learner PIN | Nhiều em dùng chung thiết bị và cần tránh chọn nhầm |
 | Advanced parent dashboard | Core learning loop ổn qua self-use |
@@ -1346,7 +1356,17 @@ Step 7 là mốc xác nhận kiến trúc: parent login → learner → review �
 | Media thiếu/hỏng | Card UX lỗi | Optional media handling + validation |
 | Cloud/provider policy thay đổi | Operational risk | PostgreSQL chuẩn + backups/exports + abstraction vừa đủ |
 
-# Appendix A. Official Reference Basis
+# Appendix A. Current Vercel Reference Basis
+
+• Vercel Hono Functions: [https://vercel.com/docs/frameworks/backend/hono](https://vercel.com/docs/frameworks/backend/hono)
+
+• Vercel Vite + API Functions: [https://vercel.com/docs/frameworks/frontend/vite](https://vercel.com/docs/frameworks/frontend/vite)
+
+• Vercel project routes/configuration: [https://vercel.com/docs/project-configuration/vercel-json](https://vercel.com/docs/project-configuration/vercel-json)
+
+• Vercel deployment rollback: [https://vercel.com/docs/instant-rollback](https://vercel.com/docs/instant-rollback)
+
+## Historical Cloudflare BATCH 0 references (not current hosting guidance)
 
 • Cloudflare Workers Static Assets: [https://developers.cloudflare.com/workers/static-assets/](https://developers.cloudflare.com/workers/static-assets/)
 
@@ -1364,5 +1384,5 @@ Step 7 là mốc xác nhận kiến trúc: parent login → learner → review �
 
 # Appendix B. Approval Statement
 
-> TECHNICAL ARCHITECTURE v1.0.12 — APPROVED FOR IMPLEMENTATION
+> TECHNICAL ARCHITECTURE v1.0.13 — APPROVED FOR IMPLEMENTATION
 > Từ thời điểm tài liệu này được chấp nhận, triển khai phải bám architecture invariants, sparse progress/virtual NEW model, learner-scoped review queue, race-safe household bootstrap, schema constraints, household authorization, review write/idempotency contract, database identity ownership boundary và clean migration contract ở trên. Acceptance Gates được xác minh trong implementation; mọi thay đổi kiến trúc cần blocker/evidence kỹ thuật cụ thể.

@@ -4,7 +4,7 @@ import { databasePurposeSchema, environmentSchema, executionContextSchema, trust
 export const EXECUTION_CONTEXTS: Record<ExecutionContext, { source: TrustedSource; environment: Environment }> = {
   "local-development": { source: "dev-launcher", environment: "development" },
   "ci-test": { source: "github-actions", environment: "test" },
-  "cloudflare-production": { source: "cloudflare-runtime", environment: "production" }
+  "vercel-production": { source: "vercel-runtime", environment: "production" }
 };
 
 export function readExecutionContext(value: string | undefined): ExecutionContext {

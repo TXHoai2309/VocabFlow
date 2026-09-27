@@ -6,11 +6,11 @@ export const MIGRATION_SCHEMA = "drizzle" as const;
 export const executionContextSchema = z.enum([
   "local-development",
   "ci-test",
-  "cloudflare-production"
+  "vercel-production"
 ]);
 export type ExecutionContext = z.infer<typeof executionContextSchema>;
 
-export const trustedSourceSchema = z.enum(["dev-launcher", "github-actions", "cloudflare-runtime"]);
+export const trustedSourceSchema = z.enum(["dev-launcher", "github-actions", "vercel-runtime"]);
 export type TrustedSource = z.infer<typeof trustedSourceSchema>;
 
 export const environmentSchema = z.enum(["development", "test", "production"]);

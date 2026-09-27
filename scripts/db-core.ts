@@ -80,7 +80,7 @@ export async function readMigrationState(sql: ReturnType<typeof openSql>) {
 }
 
 export function getTargetForContext(context: ExecutionContext, purpose: DatabasePurpose) {
-  const environment = context === "ci-test" ? "test" : context === "cloudflare-production" ? "production" : "development";
+  const environment = context === "ci-test" ? "test" : context === "vercel-production" ? "production" : "development";
   const target = getConnectionTarget(environment, purpose);
   if (!isConfiguredTarget(target)) throw new Error("UNCONFIGURED_DATABASE_TARGET");
   return target;

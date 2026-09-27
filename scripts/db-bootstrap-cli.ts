@@ -6,7 +6,7 @@ import { assertResolvedTargetBeforeMutation, configuredDatabaseUrl } from "./run
 
 async function main() {
   const { context, environment } = readContext();
-  if (context === "cloudflare-production") throw new Error("BOOTSTRAP_NOT_ALLOWED_IN_PRODUCTION");
+  if (context === "vercel-production") throw new Error("BOOTSTRAP_NOT_ALLOWED_IN_PRODUCTION");
   const target = getConnectionTarget(environment === "test" ? "test" : "development", "bootstrap");
   const url = getUrlForContext(context, "bootstrap");
   await assertResolvedTargetBeforeMutation({ context, source: context === "ci-test" ? "github-actions" : "dev-launcher", environment, purpose: "bootstrap", operation: "identity-provision", target, connectionString: url });

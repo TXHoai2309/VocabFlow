@@ -662,7 +662,7 @@ async function main() {
   const connection = apply
     ? await assertResolvedTargetBeforeMutation({
       context,
-      source: context === "ci-test" ? "github-actions" : context === "cloudflare-production" ? "cloudflare-runtime" : "dev-launcher",
+      source: context === "ci-test" ? "github-actions" : context === "vercel-production" ? "vercel-runtime" : "dev-launcher",
       environment,
       purpose: "runtime",
       operation: "db-enrich",
@@ -670,7 +670,7 @@ async function main() {
     })
     : assertPreConnect({
       context,
-      source: context === "ci-test" ? "github-actions" : context === "cloudflare-production" ? "cloudflare-runtime" : "dev-launcher",
+      source: context === "ci-test" ? "github-actions" : context === "vercel-production" ? "vercel-runtime" : "dev-launcher",
       environment,
       purpose: "runtime",
       operation: "db-enrich",

@@ -28,7 +28,7 @@ export async function provisionCanonicalIdentity(sql: ReturnType<typeof openSql>
 
 async function main() {
   const { context, environment } = readContext();
-  if (context === "cloudflare-production") throw new Error("IDENTITY_PROVISION_NOT_ALLOWED_IN_PRODUCTION");
+  if (context === "vercel-production") throw new Error("IDENTITY_PROVISION_NOT_ALLOWED_IN_PRODUCTION");
   const target = getConnectionTarget(environment === "test" ? "test" : "development", "identity-provision");
   const { url } = await assertResolvedTargetBeforeMutation({
     context,

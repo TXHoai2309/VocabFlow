@@ -2,7 +2,27 @@
 
 This log records meaningful project milestones and accepted baselines.
 
-## 2026-09-27 — V1.0.0 production deployment preparation
+## 2026-09-27 — V1.0 hosting pivot: Cloudflare to Vercel
+
+- Made Vercel the V1.0 production host without changing React/Vite, Hono,
+  Neon, Better Auth or Cloudinary. The root project serves the static SPA and
+  routes `/api/*` to the existing Hono app as a Node.js Function; SPA fallback
+  explicitly excludes API paths.
+- Added an allowlisted process-environment boundary, canonical Production auth
+  origin checks and exact-current-deployment Preview auth. Production database
+  migrations and US-41 curation remain separate, manually approved steps.
+- Retained platform-independent DB release/reset/shared-CI guards and clean
+  SHA/toolchain/artifact checks; removed the Cloudflare/Vite Worker plugin,
+  Wrangler config and deploy helper. Historical BATCH 0 Cloudflare records are
+  labeled as such.
+- No Vercel or Cloudflare deployment and no production database connection or
+  mutation was performed in this preparation.
+- Local verification: frozen-lockfile install, 544 unit/component tests, lint,
+  typecheck, Vite build, 26 Playwright E2E tests and `git diff --check` pass.
+  The guarded production build remains gated on pinned Node 22.23.2 and a clean
+  release checkout.
+
+## 2026-09-27 — Historical Cloudflare production deployment preparation (superseded)
 
 - Added a production release runbook and guarded production preflight,
   migration, and US-41 curation paths. Production migration/apply requires

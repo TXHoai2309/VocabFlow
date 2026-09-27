@@ -1,8 +1,7 @@
 import { execFileSync, spawnSync } from "node:child_process";
-import { readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { readdirSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { buildArtifactDigest, inspectBuildArtifact } from "./build-artifact-safety";
-import { finalizeProductionWorkerConfig, requireProductionWorkerRoute } from "./production-worker-config";
 
 export function assertPinnedProductionToolchain(input: { nodeVersion: string; packageManagerAgent: string | undefined }) {
   if (input.nodeVersion !== "v22.23.2") throw new Error("PRODUCTION_NODE_VERSION_REQUIRED");
@@ -26,12 +25,12 @@ export function assertNoLocalSecretInputFiles(repositoryRoot: string) {
   if (found.length > 0) throw new Error("LOCAL_SECRET_INPUT_FILE_PRESENT");
 }
 
+const buildOnlyOrServerSecret = /^(?:DATABASE_URL|DATABASE_MIGRATION_URL|PRODUCTION_DATABASE_URL|PRODUCTION_MIGRATION_DATABASE_URL|NEON_API_KEY|BETTER_AUTH_SECRET|CLOUDINARY_API_KEY|CLOUDINARY_API_SECRET|VERCEL_API_TOKEN|VERCEL_TOKEN|VERCEL_ORG_ID|VERCEL_PROJECT_ID|VOCABFLOW_VERCEL_ORG_ID|VOCABFLOW_VERCEL_PROJECT_ID)$/i;
+
 export function productionBuildEnvironment(environment: NodeJS.ProcessEnv): NodeJS.ProcessEnv {
   const sanitized = { ...environment };
   for (const name of Object.keys(sanitized)) {
-    if (/^(?:DATABASE_URL|DATABASE_MIGRATION_URL|PRODUCTION_DATABASE_URL|PRODUCTION_MIGRATION_DATABASE_URL|NEON_API_KEY|BETTER_AUTH_SECRET|CLOUDINARY_API_KEY|CLOUDINARY_API_SECRET|CLOUDFLARE_API_TOKEN)$/i.test(name)) {
-      delete sanitized[name];
-    }
+    if (buildOnlyOrServerSecret.test(name)) delete sanitized[name];
   }
   return sanitized;
 }
@@ -49,52 +48,29 @@ function main() {
   });
   const releaseSha = currentReleaseSha();
   assertNoLocalSecretInputFiles(process.cwd());
-  const route = requireProductionWorkerRoute({
-    authUrl: process.env.BETTER_AUTH_URL,
-    zoneName: process.env.CLOUDFLARE_ZONE_NAME,
-  });
   const child = spawnSync("pnpm", ["build"], {
     stdio: "inherit",
     shell: process.platform === "win32",
-    env: {
-      ...productionBuildEnvironment(process.env),
-      CLOUDFLARE_ENV: "production",
-      CLOUDFLARE_LOAD_DEV_VARS_FROM_DOT_ENV: "false",
-    },
+    env: productionBuildEnvironment(process.env),
   });
   if (child.error || child.status !== 0) throw new Error("PRODUCTION_VITE_BUILD_FAILED");
 
-  const outputRoot = resolve("dist", "vocabflow");
-  const configPath = resolve(outputRoot, "wrangler.json");
-  const parsed = JSON.parse(readFileSync(configPath, "utf8")) as Record<string, unknown>;
-  const assets = parsed.assets as Record<string, unknown> | undefined;
-  const runWorkerFirst = assets?.run_worker_first;
-  if (parsed.name !== "vocabflow" || assets?.not_found_handling !== "single-page-application"
-      || assets?.directory !== "../client"
-      || !Array.isArray(runWorkerFirst) || !runWorkerFirst.includes("/api/*")) {
-    throw new Error("PRODUCTION_WORKER_OUTPUT_CONFIG_INVALID");
-  }
-  const finalized = finalizeProductionWorkerConfig(parsed, {
-    authUrl: route.origin,
-    zoneName: route.zoneName,
-  });
-  writeFileSync(configPath, `${JSON.stringify(finalized, null, 2)}\n`, "utf8");
+  const outputRoot = resolve("dist", "client");
   const scan = inspectBuildArtifact(outputRoot);
   if (!scan.safe) throw new Error("BUILD_ARTIFACT_SECURITY_CHECK_FAILED");
   const artifactDigest = buildArtifactDigest(outputRoot);
-  writeFileSync(resolve(outputRoot, "release-metadata.json"), `${JSON.stringify({
+  writeFileSync(resolve("dist", "vocabflow-release-metadata.json"), `${JSON.stringify({
     releaseSha,
-    workerName: "vocabflow",
-    canonicalOrigin: route.origin,
-    zoneName: route.zoneName,
     node: "22.23.2",
     pnpm: "11.17.0",
+    outputDirectory: "dist/client",
     artifactDigest,
   }, null, 2)}\n`, "utf8");
   console.log("PRODUCTION_BUILD=PASS");
   console.log(`RELEASE_SHA=${releaseSha}`);
   console.log("LOCAL_DEV_SECRET_ARTIFACT=EXCLUDED");
-  console.log("CLIENT_SECRET_SCAN=PASS");
+  console.log(`CLIENT_SECRET_SCAN=PASS key_name_hits=${scan.clientSecretKeyNameMatches} value_hits=${scan.secretValueMatches}`);
+  console.log("BUILD_SOURCE_MAP_SCAN=PASS");
 }
 
 const invokedScript = process.argv[1]?.replaceAll("\\", "/") ?? "";

@@ -52,7 +52,7 @@ jobs:
       - name: Install Playwright Chromium
         run: pnpm exec playwright install --with-deps chromium
 
-      # test:e2e builds and exercises the production-preview path, including
-      # SPA deep links and Worker/API routing. No DB or Neon secrets are used.
+      # test:e2e builds and exercises the static SPA preview path, including
+      # application deep links. No DB or Neon secrets are used.
       - name: Playwright production-preview smoke
         run: pnpm test:e2e

@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
-import app, { createApp, type WorkerBindings } from "./index";
+import app, { createApp } from "./index";
+import type { RuntimeBindings } from "./runtime-bindings";
 
 const household = {
   id: "00000000-0000-4000-8000-000000000001",
@@ -9,9 +10,9 @@ const household = {
 
 function bootstrapTestApp(
   session: { user: { id: string } } | null,
-  bootstrap?: (userId: string, env: WorkerBindings) => Promise<typeof household>
+  bootstrap?: (userId: string, env: RuntimeBindings) => Promise<typeof household>
 ) {
-  const bootstrapImpl = bootstrap ?? vi.fn(async (_userId: string, _env: WorkerBindings) => household);
+  const bootstrapImpl = bootstrap ?? vi.fn(async (_userId: string, _env: RuntimeBindings) => household);
   return {
     app: createApp({
       readSession: async () => session,
@@ -21,7 +22,7 @@ function bootstrapTestApp(
   };
 }
 
-describe("foundation worker routes", () => {
+describe("foundation API routes", () => {
   it("returns deterministic health JSON without bindings", async () => {
     const response = await app.request("http://localhost/api/health");
     expect(response.status).toBe(200);
@@ -61,7 +62,7 @@ describe("foundation worker routes", () => {
 describe("US-01 household bootstrap route", () => {
   it("returns 401 without a valid Better Auth session", async () => {
     const { app: testApp, bootstrap } = bootstrapTestApp(null);
-    const response = await testApp.request("http://localhost/api/bootstrap", { method: "POST", body: "{}" }, {} as WorkerBindings);
+    const response = await testApp.request("http://localhost/api/bootstrap", { method: "POST", body: "{}" }, {} as RuntimeBindings);
     expect(response.status).toBe(401);
     expect(await response.json()).toEqual({ error: { code: "UNAUTHORIZED", message: "Đăng nhập để tiếp tục." } });
     expect(bootstrap).not.toHaveBeenCalled();
@@ -73,7 +74,7 @@ describe("US-01 household bootstrap route", () => {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ ownerUserId: "attacker" })
-    }, {} as WorkerBindings);
+    }, {} as RuntimeBindings);
     expect(response.status).toBe(200);
     const body = await response.json();
     expect(body).toEqual({ household });
@@ -88,7 +89,7 @@ describe("US-01 household bootstrap route", () => {
       return household;
     });
     const { app: testApp } = bootstrapTestApp({ user: { id: "user-1" } }, service);
-    const request = () => testApp.request("http://localhost/api/bootstrap", { method: "POST" }, {} as WorkerBindings);
+    const request = () => testApp.request("http://localhost/api/bootstrap", { method: "POST" }, {} as RuntimeBindings);
     const first = await request();
     const second = await request();
     expect(await first.json()).toEqual({ household });
@@ -108,7 +109,7 @@ describe("US-01 household bootstrap route", () => {
       return household;
     });
     const { app: testApp } = bootstrapTestApp({ user: { id: "user-1" } }, service);
-    const request = () => testApp.request("http://localhost/api/bootstrap", { method: "POST" }, {} as WorkerBindings);
+    const request = () => testApp.request("http://localhost/api/bootstrap", { method: "POST" }, {} as RuntimeBindings);
     const responses = await Promise.all([request(), request(), request()]);
     expect(createCount).toBe(1);
     expect(await Promise.all(responses.map((response) => response.json()))).toEqual([
@@ -119,7 +120,7 @@ describe("US-01 household bootstrap route", () => {
   it("returns a safe envelope when the database service fails", async () => {
     const service = vi.fn(async () => { throw new Error("raw SQL secret"); });
     const { app: testApp } = bootstrapTestApp({ user: { id: "user-1" } }, service);
-    const response = await testApp.request("http://localhost/api/bootstrap", { method: "POST" }, {} as WorkerBindings);
+    const response = await testApp.request("http://localhost/api/bootstrap", { method: "POST" }, {} as RuntimeBindings);
     expect(response.status).toBe(503);
     const body = await response.json();
     expect(body).toEqual({ error: { code: "INTERNAL_ERROR", message: "Không thể hoàn tất thiết lập gia đình. Vui lòng thử lại." } });

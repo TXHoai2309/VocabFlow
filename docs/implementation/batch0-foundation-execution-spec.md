@@ -1,5 +1,11 @@
 # BATCH 0 Foundation Execution Specification v1.0
 
+> **ARCHIVED HISTORICAL BASELINE:** This frozen specification records the
+> original BATCH 0 Cloudflare implementation. The current V1.0 production host
+> is Vercel (DEC-017); Cloudflare references below are historical acceptance
+> evidence, not current deployment instructions. Database identity and release
+> safety invariants remain in force.
+
 - Status: ACCEPTED / FROZEN
 - Version: v1.0
 - Source baseline: `VocabFlow_BATCH0_Foundation_Execution_Spec_v1.0.docx`
