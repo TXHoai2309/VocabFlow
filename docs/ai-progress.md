@@ -1,5 +1,22 @@
 # Current Handoff Snapshot
 
+## 2026-09-28 — Vercel ESM directory import fix
+
+- The latest Preview error proved Node reached the ESM Function but rejected
+  the handler's `../apps/api/src` directory import. `apps/api/src/index.ts` is
+  the existing app entrypoint; no API package export/public alias exists.
+- Replaced app and runtime-binding value/type specifiers with explicit `.js`
+  paths, matching Vercel's observed emitted `apps/api/src/index.js`. Added a
+  native Node ESM test against a transpiled handler fixture and preserved
+  actual-app health, auth, nested-path and JSON-404 tests; added explicit
+  sign-in dispatch coverage through the existing Better Auth seam.
+- Focused module/routing/auth tests pass (28 tests); full suite passes (54
+  files / 582 tests), as do lint, typecheck, Vite build and `git diff --check`.
+  Local Node is 22.19.0 rather than the pinned 22.23.2. No Vercel CLI/deploy or
+  DB access was used.
+- Next safe action: commit and push this module-resolution fix to `TXH` only.
+  Owner may then create one Preview retry to verify emitted runtime behavior.
+
 ## 2026-09-28 — Vercel Preview Function ESM compatibility fix
 
 - Confirmed from the live Preview stack and repository package scopes that the

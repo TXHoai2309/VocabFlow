@@ -1,6 +1,6 @@
-import app from "../apps/api/src";
-import { runtimeBindingsFromEnvironment } from "../apps/api/src/runtime-bindings";
-import type { RuntimeBindings } from "../apps/api/src/runtime-bindings";
+import app from "../apps/api/src/index.js";
+import { runtimeBindingsFromEnvironment } from "../apps/api/src/runtime-bindings.js";
+import type { RuntimeBindings } from "../apps/api/src/runtime-bindings.js";
 
 type HonoFetchApp = {
   fetch(request: Request, environment?: RuntimeBindings): Response | Promise<Response>;

@@ -45,6 +45,7 @@ describe("foundation API routes", () => {
 
   it.each([
     ["POST", "/api/auth/sign-up/email", "{\"name\":\"Fixture\"}"],
+    ["POST", "/api/auth/sign-in/email", "{\"email\":\"fixture@example.test\"}"],
     ["GET", "/api/auth/get-session", undefined],
   ] as const)("forwards %s %s to the Better Auth request handler", async (method, path, body) => {
     const authRequestHandler = vi.fn(async (request: Request) =>

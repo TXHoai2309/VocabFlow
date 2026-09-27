@@ -2,6 +2,22 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-28 — Vercel API ESM explicit module paths
+
+- Preview confirmed the ESM Function no longer failed with `ERR_REQUIRE_ESM`,
+  but Node ESM rejected the directory import `../apps/api/src`.
+- The handler now imports the existing `index.js` and runtime-bindings `.js`
+  module paths explicitly. TypeScript's Bundler resolution maps those paths to
+  the tracked `.ts` sources; the observed Vercel output already contains
+  `apps/api/src/index.js`.
+- Added native Node ESM coverage for the transpiled handler boundary and
+  expanded Better Auth sign-in forwarding coverage. No app business logic,
+  route configuration, SPA fallback, DB/auth settings or schema changed.
+- Focused module/routing/auth tests pass (28 tests); full suite passes (54
+  files / 582 tests), as do lint, typecheck, Vite build and `git diff --check`.
+  No Vercel CLI/deploy or DB was used. Runtime confirmation of the Preview fix
+  remains for the owner's single retry.
+
 ## 2026-09-28 — Vercel Function ESM module-scope fix
 
 - The Preview runtime trace showed the CommonJS function boundary requiring
