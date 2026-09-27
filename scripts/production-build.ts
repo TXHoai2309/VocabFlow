@@ -15,6 +15,61 @@ export function assertCleanReleaseSource(input: { head: string; requestedSha: st
   return input.head.toLowerCase();
 }
 
+type ReleaseShaEnvironment = {
+  VERCEL_ENV?: string;
+  VERCEL_GIT_COMMIT_SHA?: string;
+  VOCABFLOW_RELEASE_SHA?: string;
+};
+
+function isVercelGitEnvironment(environment: ReleaseShaEnvironment) {
+  return (environment.VERCEL_ENV === "preview" || environment.VERCEL_ENV === "production")
+    && environment.VERCEL_GIT_COMMIT_SHA !== undefined;
+}
+
+export function resolveProductionBuildReleaseSha(environment: ReleaseShaEnvironment) {
+  if (isVercelGitEnvironment(environment)) {
+    const vercelSha = environment.VERCEL_GIT_COMMIT_SHA;
+    if (!vercelSha || !/^[a-f0-9]{40}$/i.test(vercelSha)) {
+      throw new Error("VERCEL_GIT_COMMIT_SHA_INVALID");
+    }
+    return vercelSha;
+  }
+  return environment.VOCABFLOW_RELEASE_SHA;
+}
+
+function gitDiffQuietExitCode(args: string[]) {
+  const result = spawnSync("git", args, { stdio: "ignore" });
+  if (result.error) throw result.error;
+  return result.status;
+}
+
+export function assertTrackedSourceUnmodified(runGitDiffQuiet: (args: string[]) => number | null = gitDiffQuietExitCode) {
+  for (const args of [["diff", "--quiet"], ["diff", "--cached", "--quiet"]]) {
+    const status = runGitDiffQuiet(args);
+    if (status === 1) throw new Error("RELEASE_SOURCE_TREE_NOT_CLEAN");
+    if (status !== 0) throw new Error("GIT_TRACKED_SOURCE_CHECK_FAILED");
+  }
+}
+
+export function assertProductionBuildReleaseSource(input: {
+  head: string;
+  environment: ReleaseShaEnvironment;
+  readLocalStatus: () => string;
+  assertTrackedSourceUnmodified: () => void;
+}) {
+  const requestedSha = resolveProductionBuildReleaseSha(input.environment);
+  const releaseSha = assertCleanReleaseSource({ head: input.head, requestedSha, status: "" });
+  if (isVercelGitEnvironment(input.environment)) {
+    input.assertTrackedSourceUnmodified();
+    return releaseSha;
+  }
+  return assertCleanReleaseSource({
+    head: input.head,
+    requestedSha: releaseSha,
+    status: input.readLocalStatus(),
+  });
+}
+
 export function assertNoLocalSecretInputFiles(repositoryRoot: string) {
   const roots = [repositoryRoot, join(repositoryRoot, "apps", "web")];
   const found = roots.flatMap((root) => readdirSync(root, { withFileTypes: true })
@@ -107,9 +162,13 @@ export function productionBuildEnvironment(environment: NodeJS.ProcessEnv): Node
 }
 
 function currentReleaseSha() {
-  const head = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
-  const status = execFileSync("git", ["status", "--porcelain", "--untracked-files=all"], { encoding: "utf8" });
-  return assertCleanReleaseSource({ head, requestedSha: process.env.VOCABFLOW_RELEASE_SHA, status });
+  const head = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8", maxBuffer: 1024 }).trim();
+  return assertProductionBuildReleaseSource({
+    head,
+    environment: process.env,
+    readLocalStatus: () => execFileSync("git", ["status", "--porcelain", "--untracked-files=all"], { encoding: "utf8" }),
+    assertTrackedSourceUnmodified: () => assertTrackedSourceUnmodified(),
+  });
 }
 
 function main() {

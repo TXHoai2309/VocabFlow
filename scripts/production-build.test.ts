@@ -1,14 +1,17 @@
 import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import {
+  assertProductionBuildReleaseSource,
   assertCleanReleaseSource,
   assertNoLocalSecretInputFiles,
   assertPinnedProductionToolchain,
+  assertTrackedSourceUnmodified,
   productionBuildDiagnostic,
   productionBuildErrorLines,
   productionBuildEnvironment,
+  resolveProductionBuildReleaseSha,
 } from "./production-build";
 
 describe("Vercel production build safety", () => {
@@ -38,6 +41,9 @@ describe("Vercel production build safety", () => {
       mkdirSync(join(root, "apps", "web"), { recursive: true });
       writeFileSync(join(root, ".env.example"), "DOCUMENTATION_ONLY=true", "utf8");
       expect(() => assertNoLocalSecretInputFiles(root)).not.toThrow();
+      writeFileSync(join(root, ".env"), "DATABASE_URL=fixture-only", "utf8");
+      writeFileSync(join(root, ".env.preview"), "BETTER_AUTH_SECRET=fixture-only", "utf8");
+      writeFileSync(join(root, ".dev.vars"), "SECRET=fixture-only", "utf8");
       writeFileSync(join(root, "apps", "web", ".dev.vars.preview"), "LOCAL_ONLY=true", "utf8");
       expect(() => assertNoLocalSecretInputFiles(root)).toThrow("LOCAL_SECRET_INPUT_FILE_PRESENT");
     } finally {
@@ -158,5 +164,111 @@ describe("Vercel production build safety", () => {
     expect(output).not.toContain("hiddenFrame");
     expect(output).not.toContain("UNRELATED_ENV_MARKER");
     expect(output).not.toContain("must-not-be-logged");
+  });
+
+  it("avoids the overflowing status command for a Vercel workspace with over 1 MiB of untracked paths", () => {
+    const sha = "a".repeat(40);
+    const simulatedStatusOutput = Array.from({ length: 12_000 }, (_, index) =>
+      `?? generated/${String(index).padStart(5, "0")}-${"x".repeat(100)}`).join("\r\n");
+    expect(Buffer.byteLength(simulatedStatusOutput)).toBeGreaterThan(1024 * 1024);
+    const readLocalStatus = vi.fn(() => { throw new Error("spawnSync git ENOBUFS"); });
+    const checkTrackedSource = vi.fn();
+
+    expect(assertProductionBuildReleaseSource({
+      head: sha,
+      environment: { VERCEL_ENV: "preview", VERCEL_GIT_COMMIT_SHA: sha },
+      readLocalStatus,
+      assertTrackedSourceUnmodified: checkTrackedSource,
+    })).toBe(sha);
+    expect(readLocalStatus).not.toHaveBeenCalled();
+    expect(checkTrackedSource).toHaveBeenCalledOnce();
+  });
+
+  it("does not enumerate Vercel-generated or install artifacts on a Production Git build", () => {
+    const sha = "b".repeat(40);
+    const generatedArtifacts = [
+      ".vercel/output/config.json",
+      "node_modules/.pnpm/generated-install-metadata.json",
+      "dist/client/index.html",
+    ];
+    const readLocalStatus = vi.fn(() => {
+      throw new Error(`status serialized ${generatedArtifacts.length} generated artifact paths`);
+    });
+
+    expect(assertProductionBuildReleaseSource({
+      head: sha,
+      environment: { VERCEL_ENV: "production", VERCEL_GIT_COMMIT_SHA: sha },
+      readLocalStatus,
+      assertTrackedSourceUnmodified: () => undefined,
+    })).toBe(sha);
+    expect(readLocalStatus).not.toHaveBeenCalled();
+  });
+
+  it("blocks an unstaged tracked-file modification using quiet git diff", () => {
+    const gitDiffQuiet = vi.fn(() => 1);
+    expect(() => assertTrackedSourceUnmodified(gitDiffQuiet)).toThrow("RELEASE_SOURCE_TREE_NOT_CLEAN");
+    expect(gitDiffQuiet).toHaveBeenCalledExactlyOnceWith(["diff", "--quiet"]);
+  });
+
+  it("blocks a staged tracked-file modification using quiet cached git diff", () => {
+    const gitDiffQuiet = vi.fn().mockReturnValueOnce(0).mockReturnValueOnce(1);
+    expect(() => assertTrackedSourceUnmodified(gitDiffQuiet)).toThrow("RELEASE_SOURCE_TREE_NOT_CLEAN");
+    expect(gitDiffQuiet).toHaveBeenNthCalledWith(1, ["diff", "--quiet"]);
+    expect(gitDiffQuiet).toHaveBeenNthCalledWith(2, ["diff", "--cached", "--quiet"]);
+  });
+
+  it("uses a matching Vercel Git SHA without a per-commit release-SHA variable", () => {
+    const sha = "c".repeat(40);
+    expect(resolveProductionBuildReleaseSha({
+      VERCEL_ENV: "preview",
+      VERCEL_GIT_COMMIT_SHA: sha,
+      VOCABFLOW_RELEASE_SHA: "d".repeat(40),
+    })).toBe(sha);
+    expect(assertProductionBuildReleaseSource({
+      head: sha,
+      environment: { VERCEL_ENV: "preview", VERCEL_GIT_COMMIT_SHA: sha },
+      readLocalStatus: () => { throw new Error("Vercel status must not be enumerated"); },
+      assertTrackedSourceUnmodified: () => undefined,
+    })).toBe(sha);
+  });
+
+  it("blocks a Vercel Git SHA that does not match HEAD", () => {
+    expect(() => assertProductionBuildReleaseSource({
+      head: "e".repeat(40),
+      environment: { VERCEL_ENV: "preview", VERCEL_GIT_COMMIT_SHA: "f".repeat(40) },
+      readLocalStatus: () => "",
+      assertTrackedSourceUnmodified: () => undefined,
+    })).toThrow("RELEASE_SHA_MISMATCH");
+  });
+
+  it("preserves the explicit local release-SHA requirement and mismatch guard", () => {
+    const head = "1".repeat(40);
+    expect(assertProductionBuildReleaseSource({
+      head,
+      environment: { VOCABFLOW_RELEASE_SHA: head },
+      readLocalStatus: () => "",
+      assertTrackedSourceUnmodified: () => undefined,
+    })).toBe(head);
+    expect(() => assertProductionBuildReleaseSource({
+      head,
+      environment: { VOCABFLOW_RELEASE_SHA: "2".repeat(40) },
+      readLocalStatus: () => "",
+      assertTrackedSourceUnmodified: () => undefined,
+    })).toThrow("RELEASE_SHA_MISMATCH");
+  });
+
+  it("fails closed when no valid Vercel or explicit release SHA is available", () => {
+    const readLocalStatus = vi.fn(() => "");
+    expect(() => assertProductionBuildReleaseSource({
+      head: "3".repeat(40),
+      environment: { VERCEL_ENV: "development", VERCEL_GIT_COMMIT_SHA: "4".repeat(40) },
+      readLocalStatus,
+      assertTrackedSourceUnmodified: () => undefined,
+    })).toThrow("RELEASE_SHA_REQUIRED");
+    expect(readLocalStatus).not.toHaveBeenCalled();
+    expect(() => resolveProductionBuildReleaseSha({
+      VERCEL_ENV: "preview",
+      VERCEL_GIT_COMMIT_SHA: "not-a-full-commit-sha",
+    })).toThrow("VERCEL_GIT_COMMIT_SHA_INVALID");
   });
 });
