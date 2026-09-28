@@ -49,9 +49,13 @@ supports long-term learning beyond the 30-row starter slice.
 
 ## Authorization and security
 
-The importer is a local operational tool with runtime-target preflight. It must
-not infer production authority from a URL and must never auto-apply the real
-Neon catalog. Source/media reports must not print credentials.
+The importer defaults to a read-only plan and must not infer production
+authority from a URL. The production release follow-up below adds a separate,
+explicitly targeted operator path; it is not an automatic import or Vercel
+runtime capability. Production access requires Neon project/branch proof and
+the canonical post-connect identity check, uses only the dedicated
+`vocabflow_runtime` credential, and requires exact confirmations before apply.
+Source/media reports must not print credentials.
 
 ## Persistence semantics
 
@@ -77,3 +81,15 @@ the recovery commit.
 US-25 is accepted and closed after the recovery gates passed. US-26 and US-27
 are tracked separately in their own contracts; this story does not define their
 classification or topic behavior.
+
+## Production release tooling follow-up — 2026-09-28
+
+- Added explicit `--target production` dry-run and confirmed `--apply` modes for
+  the catalog prerequisite needed by US-41. Both validate production target
+  markers, Neon project/branch, and canonical post-connect identity.
+- Dry-run uses a read-only transaction; apply uses only
+  `PRODUCTION_DATABASE_URL` for `vocabflow_runtime`. It never resolves owner or
+  migration credentials and retains the original starter/progress/review,
+  disabled-new-row, and source-identity safety checks.
+- No production DB connection or mutation was performed while implementing
+  this operator path.

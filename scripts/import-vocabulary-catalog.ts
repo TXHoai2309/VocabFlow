@@ -11,7 +11,15 @@ import {
   assertResolvedTargetBeforeMutation,
   configuredDatabaseUrl
 } from "./runtime-validation";
-import { openSql, readContext } from "./db-core";
+import { assertPostConnectIdentity, openSql, readContext } from "./db-core";
+import {
+  authorizeProductionRelease,
+  parseProductionReleaseArgs,
+  resolveProductionConnection,
+  runAuthorizedProductionMutation,
+  type ProductionReleaseOptions,
+} from "./production-release-safety";
+import type { NeonApiClient } from "./neon-target-verifier";
 
 export const SOURCE_DATASET_ID = "2000_COMMON_ENGLISH_VOCABULARY_V1";
 export const STARTER_ID_MAX = 30;
@@ -146,6 +154,30 @@ export type CatalogTransaction = {
 export type CatalogDatabase = CatalogTransaction & {
   transaction: <T>(operation: (transaction: CatalogTransaction) => Promise<T>) => Promise<T>;
 };
+
+export type CatalogImportCliOptions = {
+  apply: boolean;
+  productionOptions?: ProductionReleaseOptions;
+};
+
+export function parseCatalogImportCliArgs(args: readonly string[]): CatalogImportCliOptions {
+  let apply = false;
+  const releaseArgs: string[] = [];
+  for (const arg of args) {
+    if (arg === "--apply") {
+      if (apply) throw new CatalogImportError("CLI_ARGUMENT_INVALID");
+      apply = true;
+    } else {
+      releaseArgs.push(arg);
+    }
+  }
+  if (releaseArgs.length === 0) return { apply };
+  try {
+    return { apply, productionOptions: parseProductionReleaseArgs(releaseArgs) };
+  } catch {
+    throw new CatalogImportError("CLI_ARGUMENT_INVALID");
+  }
+}
 
 function requiredText(value: unknown, code: string): string {
   if (typeof value !== "string" || value.trim() === "") throw new CatalogImportError(code);
@@ -637,6 +669,75 @@ export function renderReport(plan: CatalogPlan, applyMode: boolean): string[] {
   ];
 }
 
+export async function runProductionCatalogImport(input: {
+  options: ProductionReleaseOptions;
+  apply: boolean;
+  environment: NodeJS.ProcessEnv;
+  validation?: CatalogValidation;
+  neonApiClient?: NeonApiClient;
+  openSql?: (url: string) => ReturnType<typeof openSql>;
+}): Promise<CatalogPlan> {
+  const authorizedTarget = authorizeProductionRelease({
+    options: input.options,
+    mode: input.apply ? "mutation" : "read-only",
+    environment: input.environment,
+  });
+  const connection = await resolveProductionConnection({
+    purpose: "runtime",
+    environment: input.environment,
+    neonApiClient: input.neonApiClient,
+  });
+  const canonicalRuntimeTarget = getConnectionTarget("production", "runtime");
+  const providerTarget = connection.resolved.expected;
+  if (
+    connection.target.roleName !== canonicalRuntimeTarget.roleName
+    || connection.target.purpose !== "runtime"
+    || connection.target.projectId !== authorizedTarget.projectId
+    || connection.target.branchId !== authorizedTarget.branchId
+    || connection.target.databaseName !== authorizedTarget.databaseName
+    || providerTarget.roleName !== canonicalRuntimeTarget.roleName
+    || providerTarget.branchId !== authorizedTarget.branchId
+    || providerTarget.projectId !== authorizedTarget.projectId
+    || providerTarget.databaseName !== authorizedTarget.databaseName
+  ) {
+    throw new CatalogImportError("PRODUCTION_RUNTIME_TARGET_MISMATCH");
+  }
+
+  const validation = input.validation ?? loadCatalogValidation();
+  const sqlClient = (input.openSql ?? openSql)(connection.url) as unknown as SqlTag;
+  try {
+    if (!input.apply) {
+      return await sqlClient.begin(async (transaction) => {
+        await transaction`SET TRANSACTION READ ONLY`;
+        await assertPostConnectIdentity(transaction as unknown as ReturnType<typeof openSql>, connection.target);
+        return runDryRun(createPostgresCatalogDatabase(transaction), validation);
+      });
+    }
+
+    const database: CatalogDatabase = {
+      ...createPostgresCatalogDatabase(sqlClient),
+      transaction: <T>(operation: (transaction: CatalogTransaction) => Promise<T>) =>
+        sqlClient.begin(async (transaction) => {
+          // Check protected identity inside the same transaction and before
+          // reading or mutating the production catalog.
+          await assertPostConnectIdentity(transaction as unknown as ReturnType<typeof openSql>, connection.target);
+          return operation(transactionForSql(transaction));
+        }),
+    };
+    return runAuthorizedProductionMutation(
+      { options: input.options, environment: input.environment },
+      async (confirmedTarget) => {
+        if (confirmedTarget.branchId !== authorizedTarget.branchId) {
+          throw new CatalogImportError("PRODUCTION_TARGET_CHANGED_AFTER_PREFLIGHT");
+        }
+        return runApply(database, validation);
+      },
+    );
+  } finally {
+    await sqlClientEnd(sqlClient);
+  }
+}
+
 function loadRepositoryEnv() {
   const envPath = join(process.cwd(), ".env");
   if (!existsSync(envPath)) return;
@@ -654,8 +755,23 @@ function sqlClientEnd(sqlClient: SqlTag) {
 async function main() {
   loadRepositoryEnv();
   const args = process.argv.slice(2);
-  const apply = args.length === 1 && args[0] === "--apply";
-  if (args.length > 0 && !apply) throw new CatalogImportError("CLI_ARGUMENT_INVALID");
+  const options = parseCatalogImportCliArgs(args);
+  const productionInvocation = options.productionOptions !== undefined
+    || process.env.VOCABFLOW_ENV === "production"
+    || process.env.DATABASE_ENV === "production";
+  if (productionInvocation) {
+    const plan = await runProductionCatalogImport({
+      options: options.productionOptions ?? {},
+      apply: options.apply,
+      environment: process.env,
+    });
+    console.log("TARGET_NAME=production");
+    console.log(`TARGET_BRANCH=${getConnectionTarget("production", "runtime").branchId}`);
+    for (const line of renderReport(plan, options.apply)) console.log(line);
+    return;
+  }
+
+  const apply = options.apply;
   const validation = loadCatalogValidation();
   const { context, environment } = readContext();
   const target = getConnectionTarget(environment === "test" ? "test" : environment === "production" ? "production" : "development", "runtime");
