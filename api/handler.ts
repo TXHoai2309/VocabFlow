@@ -6,6 +6,7 @@ type HonoFetchApp = {
 };
 
 export const VERCEL_API_PATH_QUERY = "__vocabflow_path";
+export const VERCEL_API_ROUTE_QUERY = "__vocabflow_route";
 
 function restoreLogicalApiRequest(request: Request): Request {
   const url = new URL(request.url);
@@ -20,6 +21,7 @@ function restoreLogicalApiRequest(request: Request): Request {
 
   url.pathname = logicalPath;
   url.searchParams.delete(VERCEL_API_PATH_QUERY);
+  url.searchParams.delete(VERCEL_API_ROUTE_QUERY);
   return new Request(url, request);
 }
 

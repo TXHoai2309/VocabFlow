@@ -4,9 +4,38 @@ import { join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { Hono } from "hono";
 import { ModuleKind, ScriptTarget, transpileModule } from "typescript";
-import { describe, expect, it } from "vitest";
-import { createVercelApiHandler, VERCEL_API_PATH_QUERY } from "./handler";
+import { createApp } from "../apps/api/src/index";
+import { describe, expect, it, vi } from "vitest";
+import { createVercelApiHandler, VERCEL_API_PATH_QUERY, VERCEL_API_ROUTE_QUERY } from "./handler";
 import type { RuntimeBindings } from "../apps/api/src/runtime-bindings";
+
+function createStrictQueryValidationApp() {
+  const learningSetService = {
+    list: vi.fn(async () => []),
+    detail: async () => { throw new Error("unused learning set detail"); },
+    listForLearner: vi.fn(async () => []),
+    assign: async () => { throw new Error("unused learning set assignment"); },
+    unassign: async () => { throw new Error("unused learning set removal"); },
+  };
+  const learnerSettingsService = {
+    get: vi.fn(async (_userId: string, learnerId: string) => ({
+      learnerId,
+      dailyNewWordLimit: 5,
+      dailyLearningGoal: 10,
+    })),
+    update: async (_userId: string, learnerId: string) => ({
+      learnerId,
+      dailyNewWordLimit: 5,
+      dailyLearningGoal: 10,
+    }),
+  };
+  const application = createApp({
+    readSession: async () => ({ user: { id: "user-1" } }),
+    learningSetService,
+    learnerSettingsService,
+  });
+  return { application, learningSetService, learnerSettingsService };
+}
 
 describe("Vercel Hono function boundary", () => {
   it("loads the handler and existing Hono app under the function-local ESM package scope", () => {
@@ -173,15 +202,21 @@ describe("Vercel Hono function boundary", () => {
 
   it("restores the original API health path from the supported Vercel rewrite capture", async () => {
     const fixture = new Hono();
-    fixture.get("/api/health", (context) => context.json({ path: context.req.path }));
+    fixture.get("/api/health", (context) => context.json({
+      path: context.req.path,
+      query: Object.fromEntries(new URL(context.req.url).searchParams.entries()),
+    }));
     const request = new Request(
-      `https://vocabflow.vercel.app/api/handler?${VERCEL_API_PATH_QUERY}=%2Fapi%2Fhealth`,
+      `https://vocabflow.vercel.app/api/handler?${VERCEL_API_PATH_QUERY}=%2Fapi%2Fhealth&${VERCEL_API_ROUTE_QUERY}=health&path=client-value&grade=GRADE_1&topic=home`,
     );
 
     const response = await createVercelApiHandler(fixture).fetch(request);
 
     expect(response.status).toBe(200);
-    await expect(response.json()).resolves.toEqual({ path: "/api/health" });
+    await expect(response.json()).resolves.toEqual({
+      path: "/api/health",
+      query: { path: "client-value", grade: "GRADE_1", topic: "home" },
+    });
   });
 
   it("preserves a nested API path and its query after the Vercel rewrite", async () => {
@@ -192,9 +227,10 @@ describe("Vercel Hono function boundary", () => {
         learnerId: context.req.param("learnerId"),
         from: context.req.query("from"),
         to: context.req.query("to"),
+        clientPath: context.req.query("path"),
       }));
     const request = new Request(
-      `https://vocabflow.vercel.app/api/handler?${VERCEL_API_PATH_QUERY}=%2Fapi%2Flearners%2F123%2Fprogress-history&from=2026-01-01&to=2026-01-31`,
+      `https://vocabflow.vercel.app/api/handler?${VERCEL_API_PATH_QUERY}=%2Fapi%2Flearners%2F123%2Fprogress-history&${VERCEL_API_ROUTE_QUERY}=learners%2F123%2Fprogress-history&path=client-value&from=2026-01-01&to=2026-01-31`,
     );
 
     const response = await createVercelApiHandler(fixture).fetch(request);
@@ -205,6 +241,55 @@ describe("Vercel Hono function boundary", () => {
       learnerId: "123",
       from: "2026-01-01",
       to: "2026-01-31",
+      clientPath: "client-value",
+    });
+  });
+
+  it.each([
+    ["/api/learning-sets", "learning-sets"],
+    ["/api/learners/00000000-0000-4000-8000-000000000002/settings", "learners/00000000-0000-4000-8000-000000000002/settings"],
+    ["/api/learners/00000000-0000-4000-8000-000000000002/learning-sets", "learners/00000000-0000-4000-8000-000000000002/learning-sets"],
+  ])("strips Vercel transport metadata before the strict %s route validator", async (logicalPath, capturedRoute) => {
+    const { application, learningSetService, learnerSettingsService } = createStrictQueryValidationApp();
+    const request = new Request(
+      `https://vocabflow.vercel.app/api/handler?${VERCEL_API_PATH_QUERY}=${encodeURIComponent(logicalPath)}&${VERCEL_API_ROUTE_QUERY}=${encodeURIComponent(capturedRoute)}`,
+    );
+
+    const response = await createVercelApiHandler(application).fetch(request);
+
+    expect(response.status).toBe(200);
+    if (logicalPath === "/api/learning-sets") {
+      await expect(response.json()).resolves.toEqual({ learningSets: [] });
+      expect(learningSetService.list).toHaveBeenCalledOnce();
+    } else if (logicalPath.endsWith("/settings")) {
+      await expect(response.json()).resolves.toEqual({
+        learnerId: "00000000-0000-4000-8000-000000000002",
+        dailyNewWordLimit: 5,
+        dailyLearningGoal: 10,
+      });
+      expect(learnerSettingsService.get).toHaveBeenCalledOnce();
+    } else {
+      await expect(response.json()).resolves.toEqual({ learningSets: [] });
+      expect(learningSetService.listForLearner).toHaveBeenCalledOnce();
+    }
+  });
+
+  it("preserves a client query named path and multiple legitimate query parameters", async () => {
+    const fixture = new Hono();
+    fixture.get("/api/vocabulary", (context) => context.json({
+      path: context.req.path,
+      query: Object.fromEntries(new URL(context.req.url).searchParams.entries()),
+    }));
+    const request = new Request(
+      `https://vocabflow.vercel.app/api/handler?${VERCEL_API_PATH_QUERY}=%2Fapi%2Fvocabulary&${VERCEL_API_ROUTE_QUERY}=vocabulary&path=client-value&grade=GRADE_1&topic=home&page=2&sort=recent`,
+    );
+
+    const response = await createVercelApiHandler(fixture).fetch(request);
+
+    expect(response.status).toBe(200);
+    await expect(response.json()).resolves.toEqual({
+      path: "/api/vocabulary",
+      query: { path: "client-value", grade: "GRADE_1", topic: "home", page: "2", sort: "recent" },
     });
   });
 

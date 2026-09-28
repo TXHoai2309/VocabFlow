@@ -44,6 +44,21 @@ describe("foundation API routes", () => {
   });
 
   it.each([
+    "/api/learning-sets",
+    "/api/learners/00000000-0000-4000-8000-000000000002/settings",
+    "/api/learners/00000000-0000-4000-8000-000000000002/learning-sets",
+  ])("continues rejecting unknown client query parameters at %s", async (path) => {
+    const testApp = createApp({ readSession: async () => ({ user: { id: "user-1" } }) });
+
+    const response = await testApp.request(`http://localhost${path}?path=client-value`, {}, {} as RuntimeBindings);
+
+    expect(response.status).toBe(400);
+    await expect(response.json()).resolves.toEqual({
+      error: { code: "INVALID_REQUEST", message: "Dữ liệu gửi lên không hợp lệ." },
+    });
+  });
+
+  it.each([
     ["POST", "/api/auth/sign-up/email", "{\"name\":\"Fixture\"}"],
     ["POST", "/api/auth/sign-in/email", "{\"email\":\"fixture@example.test\"}"],
     ["GET", "/api/auth/get-session", undefined],

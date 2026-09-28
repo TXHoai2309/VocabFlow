@@ -116,8 +116,8 @@ describe("Vercel release deployment guards", () => {
         destination: "/api/handler?__vocabflow_path=/api",
       },
       {
-        source: "/api/:path*",
-        destination: "/api/handler?__vocabflow_path=/api/:path*",
+        source: "/api/:__vocabflow_route*",
+        destination: "/api/handler?__vocabflow_path=/api/:__vocabflow_route*",
       },
       {
         source: "/((?!api(?:/|$)).*)",
@@ -125,9 +125,9 @@ describe("Vercel release deployment guards", () => {
       },
     ]);
     expect(config.rewrites[0]?.source).toBe("/api");
-    expect(config.rewrites[1]?.source).toBe("/api/:path*");
+    expect(config.rewrites[1]?.source).toBe("/api/:__vocabflow_route*");
     expect(config.rewrites[2]?.destination).toBe("/index.html");
-    expect(config.rewrites[1]?.destination.replace(":path*", "learners/123/progress-history"))
+    expect(config.rewrites[1]?.destination.replace(":__vocabflow_route*", "learners/123/progress-history"))
       .toBe("/api/handler?__vocabflow_path=/api/learners/123/progress-history");
     expect(config.rewrites.some((rewrite) => "transforms" in rewrite)).toBe(false);
     expect(readFileSync(resolve("api", "handler.ts"), "utf8")).toContain("application.fetch(");

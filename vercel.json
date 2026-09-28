@@ -11,8 +11,8 @@
       "destination": "/api/handler?__vocabflow_path=/api"
     },
     {
-      "source": "/api/:path*",
-      "destination": "/api/handler?__vocabflow_path=/api/:path*"
+      "source": "/api/:__vocabflow_route*",
+      "destination": "/api/handler?__vocabflow_path=/api/:__vocabflow_route*"
     },
     {
       "source": "/((?!api(?:/|$)).*)",
