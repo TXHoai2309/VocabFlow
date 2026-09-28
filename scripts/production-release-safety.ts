@@ -1,7 +1,7 @@
 import { DATABASE_TARGETS, getConnectionTarget } from "../config/database-targets";
 import type { ConnectionTarget, DatabasePurpose } from "@vocabflow/contracts";
 import { createNeonApiClient, verifyNeonTarget, type NeonApiClient } from "./neon-target-verifier";
-import { parseConnectionFingerprint } from "./runtime-validation";
+import { configuredProductionOperatorDatabaseUrl, parseConnectionFingerprint } from "./runtime-validation";
 
 export type ProductionReleaseMode = "read-only" | "mutation";
 export type ProductionReleaseOptions = {
@@ -82,7 +82,7 @@ export function assertResetTargetAllowed(input: {
 }
 
 export async function resolveProductionConnection(input: {
-  purpose: Extract<DatabasePurpose, "migration" | "runtime">;
+  purpose: Extract<DatabasePurpose, "bootstrap" | "identity-provision" | "migration" | "runtime">;
   environment: NodeJS.ProcessEnv;
   neonApiClient?: NeonApiClient;
 }) {
@@ -91,9 +91,8 @@ export async function resolveProductionConnection(input: {
     throw new Error("PRODUCTION_ENVIRONMENT_MARKERS_REQUIRED");
   }
   const target = getConnectionTarget("production", purpose);
-  const urlName = purpose === "migration" ? "PRODUCTION_MIGRATION_DATABASE_URL" : "PRODUCTION_DATABASE_URL";
-  const url = environment[urlName];
-  if (!url) throw new Error(`${urlName}_REQUIRED`);
+  const url = configuredProductionOperatorDatabaseUrl(purpose, environment);
+  if (!url) throw new Error(`${productionOperatorVariable(purpose)}_REQUIRED`);
   const fingerprint = parseConnectionFingerprint(url, target.roleName);
   if (!environment.NEON_API_KEY) throw new Error("PRODUCTION_PROVIDER_VERIFICATION_REQUIRED");
   const verification = await verifyNeonTarget({
@@ -108,4 +107,13 @@ export async function resolveProductionConnection(input: {
   });
   if (!verification.ok) throw new Error(verification.code);
   return { target, url, resolved: verification.verified };
+}
+
+function productionOperatorVariable(purpose: Extract<DatabasePurpose, "bootstrap" | "identity-provision" | "migration" | "runtime">) {
+  return {
+    bootstrap: "PRODUCTION_BOOTSTRAP_DATABASE_URL",
+    "identity-provision": "PRODUCTION_IDENTITY_PROVISION_DATABASE_URL",
+    migration: "PRODUCTION_MIGRATION_DATABASE_URL",
+    runtime: "PRODUCTION_DATABASE_URL"
+  }[purpose];
 }

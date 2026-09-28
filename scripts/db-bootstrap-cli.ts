@@ -1,4 +1,4 @@
-import { getConnectionTarget } from "../config/database-targets";
+import { bootstrapTargetForEnvironment } from "./bootstrap-target";
 import { getUrlForContext, readContext } from "./db-core";
 import { bootstrapProtectedMetadata, ROLE_NAMES } from "./db-bootstrap";
 import { parseRoleCredential } from "./db-credentials";
@@ -7,7 +7,7 @@ import { assertResolvedTargetBeforeMutation, configuredDatabaseUrl } from "./run
 async function main() {
   const { context, environment } = readContext();
   if (context === "vercel-production") throw new Error("BOOTSTRAP_NOT_ALLOWED_IN_PRODUCTION");
-  const target = getConnectionTarget(environment === "test" ? "test" : "development", "bootstrap");
+  const target = bootstrapTargetForEnvironment(environment);
   const url = getUrlForContext(context, "bootstrap");
   await assertResolvedTargetBeforeMutation({ context, source: context === "ci-test" ? "github-actions" : "dev-launcher", environment, purpose: "bootstrap", operation: "identity-provision", target, connectionString: url });
   // CI bootstrap must use the three purpose-specific secrets. In particular,
@@ -39,10 +39,7 @@ main().catch((error: unknown) => {
   };
 
   const rawMessage = candidate?.message ?? "DB_BOOTSTRAP_FAILED";
-
-  const safeMessage = rawMessage
-    .replace(/postgres(?:ql)?:\/\/\S+/gi, "[REDACTED_DATABASE_URL]")
-    .replace(/napi_[A-Za-z0-9_-]+/g, "[REDACTED_NEON_API_KEY]");
+  const safeMessage = /^[A-Z][A-Z0-9_]{2,79}$/.test(rawMessage) ? rawMessage : "DB_BOOTSTRAP_FAILED";
 
   console.error(
     `DB_BOOTSTRAP_ERROR code=${candidate?.code ?? "UNKNOWN"} message=${safeMessage}`,

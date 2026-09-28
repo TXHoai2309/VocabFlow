@@ -1,5 +1,25 @@
 # Current Handoff Snapshot
 
+## 2026-09-28 — Guarded fresh-production database bootstrap
+
+- Added `pnpm db:production-bootstrap` as a read-only-by-default, explicit
+  production-only path for the confirmed fresh Neon branch. Apply requires
+  `--apply`, `--confirm-target production`, and the exact configured branch;
+  Neon API project/branch proof and the explicit `neondb_owner` operator URL
+  are checked before database work. Catalog checks allow only fresh state or
+  a complete bootstrap-only state; partial/unexpected roles, schemas,
+  relations, types, identity or app tables stop safely.
+- Reused `bootstrapProtectedMetadata` and its existing role/least-privilege
+  checks, with parameterized bootstrap-principal membership handling. Added
+  distinct operator-only bootstrap and identity-provision URL resolution;
+  Vercel runtime lookup remains `DATABASE_URL` only. Production identity is
+  provisioned and verified with the canonical identity role immediately after
+  bootstrap. The runbook distinguishes this one-time flow from later releases.
+- Focused tests pass (54 tests); `pnpm lint`, `pnpm typecheck`, full `pnpm
+  test` (57 files / 609 tests), `pnpm build`, and `git diff --check` pass.
+  The workstation uses Node 22.19.0 while the repo pins 22.23.2. No database
+  command/connection, database mutation, Vercel deploy or main push was run.
+
 ## 2026-09-28 — Vercel ESM directory import fix
 
 - The latest Preview error proved Node reached the ESM Function but rejected

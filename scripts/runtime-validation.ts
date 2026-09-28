@@ -14,6 +14,23 @@ const purposeEnvironmentVariables: Record<DatabasePurpose, { local: string[]; ci
   "integration-test": { local: ["DATABASE_MIGRATION_URL"], ci: ["NEON_TEST_MIGRATION_DATABASE_URL", "NEON_TEST_DATABASE_URL"], production: [] }
 };
 
+const productionOperatorDatabaseVariables = {
+  bootstrap: "PRODUCTION_BOOTSTRAP_DATABASE_URL",
+  "identity-provision": "PRODUCTION_IDENTITY_PROVISION_DATABASE_URL",
+  migration: "PRODUCTION_MIGRATION_DATABASE_URL",
+  runtime: "PRODUCTION_DATABASE_URL",
+  "integration-test": undefined
+} satisfies Record<DatabasePurpose, string | undefined>;
+
+/** Production operator credentials are deliberately separate from runtime env resolution. */
+export function configuredProductionOperatorDatabaseUrl(
+  purpose: DatabasePurpose,
+  environment: NodeJS.ProcessEnv = process.env,
+): string | undefined {
+  const variable = productionOperatorDatabaseVariables[purpose];
+  return variable ? environment[variable] : undefined;
+}
+
 function firstPresent(names: string[]) {
   return names.map((name) => process.env[name]).find((value): value is string => Boolean(value));
 }

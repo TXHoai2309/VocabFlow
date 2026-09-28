@@ -1,5 +1,5 @@
 import postgres from "postgres";
-import { BOOTSTRAP_METADATA_VERSION, openSql, PROTECTED_IDENTITY_TABLE, PROTECTED_SCHEMA } from "./db-core";
+import { assertApplicationTablesAbsent, BOOTSTRAP_METADATA_VERSION, openSql, PROTECTED_IDENTITY_TABLE, PROTECTED_SCHEMA } from "./db-core";
 import { APP_SCHEMA, MIGRATION_SCHEMA, type ConnectionTarget } from "@vocabflow/contracts";
 import type { ParsedRoleCredential } from "./db-credentials";
 
@@ -104,8 +104,9 @@ export async function withTemporarySetMembership(
   tx: SqlTag,
   roleName: TemporarySetRole,
   operation: () => Promise<void>,
+  bootstrapRoleName: string = ROLE_NAMES.bootstrap,
 ) {
-  await tx`GRANT ${tx.unsafe(ident(roleName))} TO ${tx.unsafe(ident(ROLE_NAMES.bootstrap))} WITH ADMIN FALSE, INHERIT FALSE, SET TRUE GRANTED BY CURRENT_USER`;
+  await tx`GRANT ${tx.unsafe(ident(roleName))} TO ${tx.unsafe(ident(bootstrapRoleName))} WITH ADMIN FALSE, INHERIT FALSE, SET TRUE GRANTED BY CURRENT_USER`;
   let operationSucceeded = false;
   try {
     await operation();
@@ -115,10 +116,11 @@ export async function withTemporarySetMembership(
     // aborted; rollback will remove the temporary grant. Issuing REVOKE in
     // that state would mask the original error with 25P02.
     if (operationSucceeded) {
-      await tx`REVOKE ${tx.unsafe(ident(roleName))} FROM ${tx.unsafe(ident(ROLE_NAMES.bootstrap))} GRANTED BY CURRENT_USER`;
+      await tx`REVOKE ${tx.unsafe(ident(roleName))} FROM ${tx.unsafe(ident(bootstrapRoleName))} GRANTED BY CURRENT_USER`;
       await assertBootstrapAdministrativeMemberships(
         tx as unknown as ReturnType<typeof openSql>,
         [roleName],
+        bootstrapRoleName,
       );
     }
   }
@@ -241,7 +243,7 @@ export async function assertProtectedShape(sql: ReturnType<typeof openSql>) {
   if (acl?.public_create) throw new Error("PROTECTED_METADATA_MALFORMED");
 }
 
-export async function assertRoleModel(sql: ReturnType<typeof openSql>) {
+export async function assertRoleModel(sql: ReturnType<typeof openSql>, bootstrapRoleName: string = ROLE_NAMES.bootstrap) {
   const required = [ROLE_NAMES.owner, ROLE_NAMES.provision, ROLE_NAMES.migration, ROLE_NAMES.runtime];
   const roles = await sql<{ rolname: string; rolcanlogin: boolean; rolinherit: boolean; rolsuper: boolean; rolcreatedb: boolean; rolcreaterole: boolean; rolreplication: boolean; rolbypassrls: boolean }[]>`
     SELECT rolname, rolcanlogin, rolinherit, rolsuper, rolcreatedb, rolcreaterole, rolreplication, rolbypassrls
@@ -258,7 +260,7 @@ export async function assertRoleModel(sql: ReturnType<typeof openSql>) {
   markStage("assert-application-database-privileges");
   await assertNoApplicationDatabasePrivileges(sql);
   markStage("assert-memberships");
-  await assertMemberships(sql);
+  await assertMemberships(sql, bootstrapRoleName);
 }
 
 export async function assertNoApplicationDatabasePrivileges(sql: ReturnType<typeof openSql>) {
@@ -325,6 +327,7 @@ const BOOTSTRAP_MEMBERSHIP_FAILURES: Record<BootstrapCreatedRole, { inherit: str
 async function assertBootstrapAdministrativeMemberships(
   sql: ReturnType<typeof openSql>,
   roles: readonly BootstrapCreatedRole[],
+  bootstrapRoleName: string = ROLE_NAMES.bootstrap,
 ) {
   const rows = await sql<BootstrapMembershipRow[]>`
     SELECT
@@ -340,7 +343,7 @@ async function assertBootstrapAdministrativeMemberships(
     JOIN pg_roles member ON member.oid = membership.member
     JOIN pg_roles granted ON granted.oid = membership.roleid
     JOIN pg_roles grantor_role ON grantor_role.oid = membership.grantor
-    WHERE member.rolname::text = ${ROLE_NAMES.bootstrap}::text
+    WHERE member.rolname::text = ${bootstrapRoleName}::text
       AND granted.rolname::text = ANY(${sql.array([...roles])}::text[])
     ORDER BY granted.rolname, membership.grantor
   `;
@@ -367,15 +370,15 @@ async function assertBootstrapAdministrativeMemberships(
   }
 }
 
-export async function assertBootstrapMigrationMembershipSafe(sql: ReturnType<typeof openSql>) {
-  await assertBootstrapAdministrativeMemberships(sql, [ROLE_NAMES.migration]);
+export async function assertBootstrapMigrationMembershipSafe(sql: ReturnType<typeof openSql>, bootstrapRoleName: string = ROLE_NAMES.bootstrap) {
+  await assertBootstrapAdministrativeMemberships(sql, [ROLE_NAMES.migration], bootstrapRoleName);
 }
 
-export async function assertBootstrapOwnerMembershipSafe(sql: ReturnType<typeof openSql>) {
-  await assertBootstrapAdministrativeMemberships(sql, [ROLE_NAMES.owner]);
+export async function assertBootstrapOwnerMembershipSafe(sql: ReturnType<typeof openSql>, bootstrapRoleName: string = ROLE_NAMES.bootstrap) {
+  await assertBootstrapAdministrativeMemberships(sql, [ROLE_NAMES.owner], bootstrapRoleName);
 }
 
-export async function assertMemberships(sql: ReturnType<typeof openSql>) {
+export async function assertMemberships(sql: ReturnType<typeof openSql>, bootstrapRoleName: string = ROLE_NAMES.bootstrap) {
   type MembershipSubstage =
     | "membership-bootstrap-owner"
     | "membership-bootstrap-migration"
@@ -387,13 +390,13 @@ export async function assertMemberships(sql: ReturnType<typeof openSql>) {
   };
 
   markSubstage("membership-bootstrap-owner");
-  await assertBootstrapOwnerMembershipSafe(sql);
+  await assertBootstrapOwnerMembershipSafe(sql, bootstrapRoleName);
 
   markSubstage("membership-bootstrap-migration");
-  await assertBootstrapMigrationMembershipSafe(sql);
+  await assertBootstrapMigrationMembershipSafe(sql, bootstrapRoleName);
 
   markSubstage("membership-bootstrap-application-roles");
-  await assertBootstrapAdministrativeMemberships(sql, [ROLE_NAMES.provision, ROLE_NAMES.runtime]);
+  await assertBootstrapAdministrativeMemberships(sql, [ROLE_NAMES.provision, ROLE_NAMES.runtime], bootstrapRoleName);
 
   markSubstage("membership-app-owner");
   const [applicationOwnerMembership] = await sql<{ forbidden: boolean }[]>`
@@ -684,16 +687,171 @@ export async function assertMigrationPrivileges(sql: ReturnType<typeof openSql>,
   void target;
 }
 
+export type ProductionBootstrapIdentityRow = {
+  id: number;
+  environment: string;
+  provider: string;
+  project_id: string;
+  branch_id: string;
+  identity_version: number;
+};
+
+export type ProductionBootstrapCatalogSnapshot = {
+  databaseName: string;
+  sessionUser: string;
+  currentUser: string;
+  vocabularyRoles: string[];
+  vocabularySchemas: string[];
+  relations: string[];
+  applicationTypes: string[];
+  protected: Awaited<ReturnType<typeof protectedState>>;
+  identities: ProductionBootstrapIdentityRow[];
+};
+
+const productionApplicationRoles = [ROLE_NAMES.owner, ROLE_NAMES.provision, ROLE_NAMES.migration, ROLE_NAMES.runtime].sort();
+const productionApplicationSchemas = [APP_SCHEMA, MIGRATION_SCHEMA, PROTECTED_SCHEMA].sort();
+const productionBootstrapRelations = [`${PROTECTED_SCHEMA}.bootstrap_metadata`, `${PROTECTED_SCHEMA}.${PROTECTED_IDENTITY_TABLE}`].sort();
+
+export function classifyProductionBootstrapState(
+  snapshot: ProductionBootstrapCatalogSnapshot,
+  target: ConnectionTarget,
+  bootstrapRoleName: string,
+): "FRESH" | "ALREADY_BOOTSTRAPPED" {
+  if (target.environment !== "production"
+    || target.projectId !== "shy-hill-72364426"
+    || target.branchId !== "br-rough-silence-b3gbqjcb"
+    || target.databaseName !== "neondb"
+    || snapshot.databaseName !== target.databaseName
+    || snapshot.sessionUser !== bootstrapRoleName
+    || snapshot.currentUser !== bootstrapRoleName) {
+    throw new Error("PRODUCTION_BOOTSTRAP_CONNECTION_TARGET_MISMATCH");
+  }
+
+  const roles = [...snapshot.vocabularyRoles].sort();
+  const schemas = [...snapshot.vocabularySchemas].sort();
+  const relations = [...snapshot.relations].sort();
+  const identityIsCanonical = snapshot.identities.length === 1
+    && snapshot.identities[0]?.id === 1
+    && snapshot.identities[0]?.environment === target.environment
+    && snapshot.identities[0]?.provider === target.provider
+    && snapshot.identities[0]?.project_id === target.projectId
+    && snapshot.identities[0]?.branch_id === target.branchId
+    && snapshot.identities[0]?.identity_version === target.identityVersion;
+  const noIdentity = snapshot.identities.length === 0;
+  const protectedStateIsFresh = !snapshot.protected.schema_exists
+    && !snapshot.protected.identity_exists
+    && !snapshot.protected.metadata_exists
+    && snapshot.protected.schema_owner === null
+    && snapshot.protected.owner === null
+    && snapshot.protected.metadataOwner === null;
+
+  if (roles.length === 0 && schemas.length === 0 && relations.length === 0
+    && snapshot.applicationTypes.length === 0 && noIdentity && protectedStateIsFresh) {
+    return "FRESH";
+  }
+
+  const protectedStateIsComplete = snapshot.protected.schema_exists
+    && snapshot.protected.identity_exists
+    && snapshot.protected.metadata_exists
+    && snapshot.protected.schema_owner === ROLE_NAMES.owner
+    && snapshot.protected.owner === ROLE_NAMES.owner
+    && snapshot.protected.metadataOwner === ROLE_NAMES.owner
+    && snapshot.protected.metadata_count === "1"
+    && snapshot.protected.metadata_id === 1
+    && snapshot.protected.metadata_version === BOOTSTRAP_METADATA_VERSION
+    && (snapshot.protected.identity_count === "0" || (snapshot.protected.identity_count === "1" && snapshot.protected.identity_id === 1));
+  const complete = JSON.stringify(roles) === JSON.stringify(productionApplicationRoles)
+    && JSON.stringify(schemas) === JSON.stringify(productionApplicationSchemas)
+    && JSON.stringify(relations) === JSON.stringify(productionBootstrapRelations)
+    && snapshot.applicationTypes.length === 0
+    && (noIdentity || identityIsCanonical)
+    && protectedStateIsComplete;
+  if (!complete) throw new Error("PRODUCTION_BOOTSTRAP_UNEXPECTED_STATE");
+  return "ALREADY_BOOTSTRAPPED";
+}
+
+export async function assertProductionBootstrapState(
+  sql: ReturnType<typeof openSql>,
+  target: ConnectionTarget,
+  bootstrapRoleName: string,
+) {
+  if (bootstrapRoleName !== target.roleName || target.environment !== "production") {
+    throw new Error("PRODUCTION_BOOTSTRAP_CONNECTION_TARGET_MISMATCH");
+  }
+  const [connection] = await sql<{ database_name: string; session_user: string; current_user: string }[]>`
+    SELECT current_database()::text AS database_name,
+      session_user::text AS session_user,
+      current_user::text AS current_user
+  `;
+  const roles = await sql<{ rolname: string }[]>`
+    SELECT rolname::text AS rolname FROM pg_roles WHERE left(rolname::text, 10) = 'vocabflow_' ORDER BY rolname
+  `;
+  const schemas = await sql<{ schema_name: string }[]>`
+    SELECT nspname::text AS schema_name FROM pg_namespace
+    WHERE left(nspname::text, 10) = 'vocabflow_' OR nspname::text = ${MIGRATION_SCHEMA}::text
+    ORDER BY nspname
+  `;
+  const relationRows = await sql<{ schema_name: string; relation_name: string }[]>`
+    SELECT n.nspname::text AS schema_name, c.relname::text AS relation_name
+    FROM pg_class c JOIN pg_namespace n ON n.oid = c.relnamespace
+    WHERE n.nspname::text = ANY(${sql.array(productionApplicationSchemas)}::text[])
+      AND c.relkind = ANY(ARRAY['r', 'p', 'v', 'm', 'f', 'S']::"char"[])
+    ORDER BY n.nspname, c.relname
+  `;
+  const applicationTypes = await sql<{ type_name: string }[]>`
+    SELECT t.typname::text AS type_name
+    FROM pg_type t JOIN pg_namespace n ON n.oid = t.typnamespace
+    WHERE n.nspname::text = ANY(${sql.array(productionApplicationSchemas)}::text[])
+      AND (t.typtype IN ('e', 'd', 'r') OR (t.typtype = 'c' AND t.typrelid = 0))
+      AND left(t.typname::text, 1) <> '_'
+    ORDER BY t.typname
+  `;
+  const existing = await protectedState(sql);
+  const identities = existing.identity_exists
+    ? await sql<ProductionBootstrapIdentityRow[]>`
+      SELECT id, environment, provider, project_id, branch_id, identity_version
+      FROM ${sql.unsafe(`"${PROTECTED_SCHEMA}"."${PROTECTED_IDENTITY_TABLE}"`)} ORDER BY id
+    `
+    : [];
+  const status = classifyProductionBootstrapState({
+    databaseName: connection?.database_name ?? "",
+    sessionUser: connection?.session_user ?? "",
+    currentUser: connection?.current_user ?? "",
+    vocabularyRoles: roles.map((row) => row.rolname),
+    vocabularySchemas: schemas.map((row) => row.schema_name),
+    relations: relationRows.map((row) => `${row.schema_name}.${row.relation_name}`),
+    applicationTypes: applicationTypes.map((row) => row.type_name),
+    protected: existing,
+    identities,
+  }, target, bootstrapRoleName);
+  if (status === "ALREADY_BOOTSTRAPPED") {
+    await assertProtectedShape(sql);
+    await assertRoleModel(sql, bootstrapRoleName);
+    await assertProtectedPrivileges(sql);
+    await assertMigrationPrivileges(sql, target);
+    await assertApplicationTablesAbsent(sql);
+  }
+  return status;
+}
+
 export async function bootstrapProtectedMetadata(
   url: string,
   target: ConnectionTarget,
   credentials?: BootstrapRoleCredentials,
+  options: { bootstrapRoleName?: string; requireFreshProductionState?: boolean } = {},
 ) {
+  const bootstrapRoleName = options.bootstrapRoleName ?? ROLE_NAMES.bootstrap;
+  if (options.requireFreshProductionState && (target.environment !== "production" || bootstrapRoleName !== target.roleName)) {
+    throw new Error("PRODUCTION_BOOTSTRAP_CONNECTION_TARGET_MISMATCH");
+  }
   const sql = postgres(url, { max: 1, idle_timeout: 10, connect_timeout: 10, onnotice: () => undefined });
   try {
     await sql.begin(async (tx) => {
       markStage("acquire-advisory-lock");
       await tx`SELECT pg_advisory_xact_lock(${LOCK_KEY}::bigint)`;
+      if (options.requireFreshProductionState) {
+        await assertProductionBootstrapState(tx as unknown as ReturnType<typeof openSql>, target, bootstrapRoleName);
+      }
       markStage("load-existing-state");
       const state = await protectedState(tx as unknown as ReturnType<typeof openSql>);
       if (state.schema_exists || state.identity_exists || state.metadata_exists || state.schema_owner || state.owner || state.metadataOwner) {
@@ -702,7 +860,7 @@ export async function bootstrapProtectedMetadata(
           markStage("assert-protected-shape");
           await assertProtectedShape(tx as unknown as ReturnType<typeof openSql>);
           markStage("assert-role-model");
-          await assertRoleModel(tx as unknown as ReturnType<typeof openSql>);
+          await assertRoleModel(tx as unknown as ReturnType<typeof openSql>, bootstrapRoleName);
           markStage("assert-protected-privileges");
           await assertProtectedPrivileges(tx as unknown as ReturnType<typeof openSql>);
           markStage("assert-migration-privileges");
@@ -726,7 +884,7 @@ export async function bootstrapProtectedMetadata(
         await tx`REVOKE ALL ON SCHEMA ${tx.unsafe(ident(MIGRATION_SCHEMA))} FROM PUBLIC`;
         await tx`GRANT USAGE, CREATE ON SCHEMA ${tx.unsafe(ident(MIGRATION_SCHEMA))} TO ${tx.unsafe(ident(ROLE_NAMES.migration))}`;
         await tx`RESET ROLE`;
-      });
+      }, bootstrapRoleName);
 
       markStage("create-application-schema");
       await withTemporarySetMembership(tx as unknown as SqlTag, ROLE_NAMES.migration, async () => {
@@ -736,7 +894,7 @@ export async function bootstrapProtectedMetadata(
         await tx`GRANT USAGE, CREATE ON SCHEMA ${tx.unsafe(ident(APP_SCHEMA))} TO ${tx.unsafe(ident(ROLE_NAMES.migration))}`;
         await tx`GRANT USAGE ON SCHEMA ${tx.unsafe(ident(APP_SCHEMA))} TO ${tx.unsafe(ident(ROLE_NAMES.runtime))}`;
         await tx`RESET ROLE`;
-      });
+      }, bootstrapRoleName);
 
       await withTemporarySetMembership(tx as unknown as SqlTag, ROLE_NAMES.owner, async () => {
         // CREATE SCHEMA ... AUTHORIZATION and all subsequent protected
@@ -769,12 +927,12 @@ export async function bootstrapProtectedMetadata(
         markStage("assert-protected-privileges");
         await assertProtectedPrivileges(tx as unknown as ReturnType<typeof openSql>);
         await tx`RESET ROLE`;
-      });
+      }, bootstrapRoleName);
 
       markStage("assert-migration-privileges");
       await assertMigrationPrivileges(tx as unknown as ReturnType<typeof openSql>, target);
       markStage("assert-role-model");
-      await assertRoleModel(tx as unknown as ReturnType<typeof openSql>);
+      await assertRoleModel(tx as unknown as ReturnType<typeof openSql>, bootstrapRoleName);
     });
   } catch (error) {
     if (roleModelFailure(error)) {
@@ -784,7 +942,7 @@ export async function bootstrapProtectedMetadata(
       };
 
       console.error(
-        `DB_ROLE_MODEL_DETAIL code=${candidate.code ?? "UNKNOWN"} message=${candidate.message ?? "UNKNOWN"}`
+        `DB_ROLE_MODEL_DETAIL code=${typeof candidate.code === "string" && /^[A-Z0-9_]{2,80}$/.test(candidate.code) ? candidate.code : "UNKNOWN"}`
       );
 
       throw new Error("BLOCKED_ROLE_MODEL");

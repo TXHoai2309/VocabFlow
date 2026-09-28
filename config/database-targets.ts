@@ -55,7 +55,9 @@ export const DATABASE_TARGETS = {
     usage: "production",
     identityVersion: 1,
     roles: {
-      bootstrap: "vocabflow_identity_bootstrap",
+      // Fresh Neon production bootstrap uses this one-shot provider owner
+      // credential, never one of the production runtime/application roles.
+      bootstrap: "neondb_owner",
       "identity-provision": "vocabflow_identity_provision",
       migration: "vocabflow_migration",
       runtime: "vocabflow_runtime",

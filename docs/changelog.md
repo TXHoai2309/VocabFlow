@@ -2,6 +2,20 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-28 — Guarded first-production database bootstrap
+
+- Added an explicit, read-only-by-default first-production bootstrap command
+  for the confirmed fresh Neon production branch. It requires provider-side
+  project/branch proof and an explicit one-shot `neondb_owner` URL, and refuses
+  unexpected or partial VocabFlow state before mutation.
+- Reused the established role/schema/privilege bootstrap implementation and
+  added separate operator-only URLs for bootstrap and canonical identity
+  provisioning. Vercel runtime credential resolution remains unchanged; no
+  production database connection, mutation or deployment was performed.
+- Updated the release runbook to separate one-time initialization from normal
+  future releases. Focused/full validation and TXH push status are recorded in
+  the current handoff snapshot after completion.
+
 ## 2026-09-28 — Vercel API ESM explicit module paths
 
 - Preview confirmed the ESM Function no longer failed with `ERR_REQUIRE_ESM`,

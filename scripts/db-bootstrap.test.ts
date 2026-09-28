@@ -727,4 +727,16 @@ describe("bootstrap role creation", () => {
       `"${ROLE_NAMES.bootstrap}"`
     ]);
   });
+
+  it("uses the explicit one-shot owner principal for temporary role membership", async () => {
+    const queries: CapturedQuery[] = [];
+    const sql = fakeSql(queries);
+
+    await withTemporarySetMembership(sql, ROLE_NAMES.owner, async () => undefined, "neondb_owner");
+
+    expect(queries).toHaveLength(3);
+    expect(queries[0]?.values).toContain('"neondb_owner"');
+    expect(queries[1]?.values).toContain('"neondb_owner"');
+    expect(queries[2]?.values).toContain("neondb_owner");
+  });
 });
