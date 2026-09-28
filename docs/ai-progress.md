@@ -15,8 +15,13 @@
   Vercel runtime lookup remains `DATABASE_URL` only. Production identity is
   provisioned and verified with the canonical identity role immediately after
   bootstrap. The runbook distinguishes this one-time flow from later releases.
-- Focused tests pass (54 tests); `pnpm lint`, `pnpm typecheck`, full `pnpm
-  test` (57 files / 609 tests), `pnpm build`, and `git diff --check` pass.
+- Regression coverage confirms the fresh owner-only bootstrap path does not
+  require `vocabflow_identity_bootstrap`, wrong/development targets fail
+  closed, the canonical application roles remain unchanged, and the one-shot
+  owner is not granted runtime membership. The runbook now labels the legacy
+  bootstrap role as development/test-only.
+- Focused tests pass (58 tests); `pnpm lint`, `pnpm typecheck`, full `pnpm
+  test` (57 files / 613 tests), `pnpm build`, and `git diff --check` pass.
   The workstation uses Node 22.19.0 while the repo pins 22.23.2. No database
   command/connection, database mutation, Vercel deploy or main push was run.
 

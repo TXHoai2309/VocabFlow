@@ -739,4 +739,40 @@ describe("bootstrap role creation", () => {
     expect(queries[1]?.values).toContain('"neondb_owner"');
     expect(queries[2]?.values).toContain("neondb_owner");
   });
+
+  it("keeps the one-shot Neon owner from inheriting or setting application runtime roles", async () => {
+    const createMembershipSql = (results: unknown[][]) => {
+      const queries: CapturedQuery[] = [];
+      let call = 0;
+      const sql = ((strings: TemplateStringsArray, ...values: unknown[]) => {
+        queries.push({ strings: [...strings], values });
+        return Promise.resolve(results[call++] ?? []);
+      }) as unknown as Parameters<typeof assertMemberships>[0] & { array(values: unknown[]): unknown };
+      sql.array = ((values: unknown[]) => values) as typeof sql.array;
+      return { sql, queries };
+    };
+    const safeResults = [
+      [automaticBootstrapMembership(ROLE_NAMES.owner)],
+      [automaticBootstrapMembership(ROLE_NAMES.migration)],
+      [automaticBootstrapMembership(ROLE_NAMES.provision), automaticBootstrapMembership(ROLE_NAMES.runtime)],
+      [{ forbidden: false }],
+      [{ provision_to_migration: false, runtime_to_migration: false }],
+    ];
+    const safe = createMembershipSql(safeResults);
+
+    await expect(assertMemberships(safe.sql, "neondb_owner")).resolves.toBeUndefined();
+    expect(safe.queries.slice(0, 3).map((query) => query.values[0])).toEqual([
+      "neondb_owner",
+      "neondb_owner",
+      "neondb_owner",
+    ]);
+
+    const runtimeSetEnabled = createMembershipSql([
+      safeResults[0] ?? [],
+      safeResults[1] ?? [],
+      [automaticBootstrapMembership(ROLE_NAMES.provision), automaticBootstrapMembership(ROLE_NAMES.runtime, { set_option: true })],
+    ]);
+    await expect(assertMemberships(runtimeSetEnabled.sql, "neondb_owner"))
+      .rejects.toThrow("BLOCKED_ROLE_MODEL_BOOTSTRAP_RUNTIME_SET_ENABLED");
+  });
 });

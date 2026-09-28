@@ -13,8 +13,13 @@ This log records meaningful project milestones and accepted baselines.
   provisioning. Vercel runtime credential resolution remains unchanged; no
   production database connection, mutation or deployment was performed.
 - Updated the release runbook to separate one-time initialization from normal
-  future releases. Focused/full validation and TXH push status are recorded in
-  the current handoff snapshot after completion.
+  future releases. The owner-authorized follow-up is scoped to TXH; main remains
+  excluded.
+- Added regression coverage proving fresh bootstrap resolves the owner-only
+  Neon principal without requiring `vocabflow_identity_bootstrap`, rejects
+  wrong/development targets, and keeps runtime/migration roles canonical. The
+  runbook now explicitly labels `vocabflow_identity_bootstrap` as
+  development/test-only. No live DB was accessed.
 
 ## 2026-09-28 — Vercel API ESM explicit module paths
 

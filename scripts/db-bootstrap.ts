@@ -10,6 +10,8 @@ export const ROLE_NAMES = {
   provision: "vocabflow_identity_provision",
   migration: "vocabflow_migration",
   runtime: "vocabflow_runtime",
+  // Development/test bootstrap only. Fresh production bootstrap supplies
+  // its one-shot Neon owner principal explicitly through the target.
   bootstrap: "vocabflow_identity_bootstrap"
 } as const;
 

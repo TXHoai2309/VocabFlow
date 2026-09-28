@@ -7,6 +7,7 @@ import {
   resolveProductionConnection,
   type ProductionReleaseOptions,
 } from "./production-release-safety";
+import type { NeonApiClient } from "./neon-target-verifier";
 import { parseConnectionFingerprint } from "./runtime-validation";
 
 export type ProductionBootstrapOptions = ProductionReleaseOptions & { apply: boolean };
@@ -43,8 +44,8 @@ export function authorizeProductionBootstrapApply(options: ProductionBootstrapOp
   return authorizeProductionRelease({ options, mode: "mutation", environment });
 }
 
-export async function resolveProductionBootstrapConnection(environment: NodeJS.ProcessEnv) {
-  return resolveProductionConnection({ purpose: "bootstrap", environment });
+export async function resolveProductionBootstrapConnection(environment: NodeJS.ProcessEnv, neonApiClient?: NeonApiClient) {
+  return resolveProductionConnection({ purpose: "bootstrap", environment, neonApiClient });
 }
 
 export function productionBootstrapRoleCredentials(

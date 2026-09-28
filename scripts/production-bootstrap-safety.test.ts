@@ -155,6 +155,45 @@ describe("guarded fresh production bootstrap", () => {
     expect(provider.getBranch).not.toHaveBeenCalled();
   });
 
+  it("preflights a fresh owner-only branch without a pre-existing VocabFlow bootstrap role", async () => {
+    const provider = providerFixture();
+    const connection = await resolveProductionBootstrapConnection({
+      ...productionEnvironment,
+      PRODUCTION_BOOTSTRAP_DATABASE_URL: bootstrapUrl,
+      NEON_API_KEY: "fixture-key",
+    }, provider);
+    const snapshot = stateSnapshot({
+      sessionUser: connection.target.roleName,
+      currentUser: connection.target.roleName,
+    });
+
+    expect(connection.target.roleName).toBe("neondb_owner");
+    expect(provider.getConnectionUri).toHaveBeenCalledWith(expect.objectContaining({
+      projectId: "shy-hill-72364426",
+      branchId: branch,
+      databaseName: "neondb",
+      roleName: "neondb_owner",
+    }));
+    expect(snapshot.vocabularyRoles).not.toContain(ROLE_NAMES.bootstrap);
+    expect(classifyProductionBootstrapState(snapshot, connection.target, connection.target.roleName)).toBe("FRESH");
+  });
+
+  it("rejects a legacy bootstrap-role URL, a development host, and the wrong database", async () => {
+    const key = { NEON_API_KEY: "fixture-key" };
+    const provider = providerFixture();
+    for (const url of [
+      "postgresql://vocabflow_identity_bootstrap:old-role@ep-prod-pooler.neon.tech/neondb",
+      "postgresql://neondb_owner:dev-owner@ep-dev-pooler.neon.tech/neondb",
+      "postgresql://neondb_owner:one-shot@ep-prod-pooler.neon.tech/not-neondb",
+    ]) {
+      await expect(resolveProductionBootstrapConnection({
+        ...productionEnvironment,
+        ...key,
+        PRODUCTION_BOOTSTRAP_DATABASE_URL: url,
+      }, provider)).rejects.toThrow("CONNECTION_TARGET_MISMATCH");
+    }
+  });
+
   it("resolves identity provisioning only from its dedicated operator URL", async () => {
     const provider = providerFixture({ uri: roleUrls.PRODUCTION_IDENTITY_PROVISION_DATABASE_URL });
     await expect(resolveProductionConnection({
@@ -163,6 +202,7 @@ describe("guarded fresh production bootstrap", () => {
         ...productionEnvironment,
         DATABASE_URL: roleUrls.PRODUCTION_DATABASE_URL,
         PRODUCTION_DATABASE_URL: roleUrls.PRODUCTION_DATABASE_URL,
+        PRODUCTION_MIGRATION_DATABASE_URL: roleUrls.PRODUCTION_MIGRATION_DATABASE_URL,
         NEON_API_KEY: "fixture-key",
       },
       neonApiClient: provider,
@@ -204,6 +244,23 @@ describe("guarded fresh production bootstrap", () => {
     expect(result.target).toMatchObject({ projectId: "shy-hill-72364426", branchId: branch, databaseName: "neondb", roleName: "neondb_owner" });
     expect(correct.getBranch).toHaveBeenCalledOnce();
     expect(correct.getConnectionUri).toHaveBeenCalledOnce();
+  });
+
+  it("uses the canonical migration and runtime roles after bootstrap", async () => {
+    for (const [purpose, variable] of [
+      ["migration", "PRODUCTION_MIGRATION_DATABASE_URL"],
+      ["runtime", "PRODUCTION_DATABASE_URL"],
+    ] as const) {
+      const url = roleUrls[variable];
+      const provider = providerFixture({ uri: url });
+      const result = await resolveProductionConnection({
+        purpose,
+        environment: { ...productionEnvironment, [variable]: url, NEON_API_KEY: "fixture-key" },
+        neonApiClient: provider,
+      });
+      expect(result.target.roleName).toBe(purpose === "migration" ? "vocabflow_migration" : "vocabflow_runtime");
+      expect(result.target.roleName).not.toBe("neondb_owner");
+    }
   });
 
   it("requires distinct role credentials whose target matches the one-shot bootstrap connection", () => {
@@ -264,6 +321,13 @@ describe("guarded fresh production bootstrap", () => {
     expect(bootstrapSource).toContain("assertRoleModel(sql, bootstrapRoleName)");
     expect(bootstrapSource).toContain("withTemporarySetMembership(tx as unknown as SqlTag, ROLE_NAMES.owner");
     expect(bootstrapSource).toContain("requireFreshProductionState");
+    expect([ROLE_NAMES.owner, ROLE_NAMES.provision, ROLE_NAMES.migration, ROLE_NAMES.runtime]).toEqual([
+      "vocabflow_identity_owner",
+      "vocabflow_identity_provision",
+      "vocabflow_migration",
+      "vocabflow_runtime",
+    ]);
+    expect([ROLE_NAMES.owner, ROLE_NAMES.provision, ROLE_NAMES.migration, ROLE_NAMES.runtime]).not.toContain("neondb_owner");
   });
 
   it("keeps operator credentials out of Vercel runtime lookup and identity provisioning guarded", () => {
