@@ -1,6 +1,5 @@
 import { spawnSync } from "node:child_process";
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
-import { tmpdir } from "node:os";
+import { readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { Hono } from "hono";
@@ -30,9 +29,8 @@ describe("Vercel Hono function boundary", () => {
     expect(rootPackage.type).not.toBe("module");
     expect(functionPackage.type).toBe("module");
     expect(applicationPackage.type).toBe("module");
-    expect(handlerSource).toMatch(/import app from ["']\.\.\/apps\/api\/src\/index\.js["']/);
-    expect(handlerSource).toMatch(/runtime-bindings\.js["']/);
-    expect(handlerSource).not.toMatch(/["']\.\.\/apps\/api\/src["']/);
+    expect(handlerSource).toMatch(/from ["']\.\.\/apps\/api\/dist\/vercel-runtime\.mjs["']/);
+    expect(handlerSource).toMatch(/import type \{ RuntimeBindings \} from ["']\.\.\/apps\/api\/src\/runtime-bindings\.js["']/);
     expect(handlerSource).not.toMatch(/\brequire\s*\(/);
 
     const result = spawnSync(
@@ -52,55 +50,52 @@ describe("Vercel Hono function boundary", () => {
     expect(result.stderr).not.toContain("ERR_REQUIRE_ESM");
   }, 30_000);
 
-  it("resolves the transpiled handler's explicit JavaScript modules with native Node ESM", () => {
-    const fixtureRoot = mkdtempSync(join(tmpdir(), "vocabflow-native-esm-"));
+  it("loads the transpiled handler and built Hono app with native Node ESM and no TS loader", () => {
+    const handlerOutputPath = join(resolve("api"), `handler.native-esm-${process.pid}.mjs`);
     try {
-      const apiDirectory = join(fixtureRoot, "api");
-      const appSourceDirectory = join(fixtureRoot, "apps", "api", "src");
-      mkdirSync(apiDirectory, { recursive: true });
-      mkdirSync(appSourceDirectory, { recursive: true });
-      writeFileSync(join(apiDirectory, "package.json"), JSON.stringify({ type: "module" }), "utf8");
-      writeFileSync(join(fixtureRoot, "apps", "api", "package.json"), JSON.stringify({ type: "module" }), "utf8");
       const handlerSource = readFileSync(resolve("api/handler.ts"), "utf8");
       const emittedHandler = transpileModule(handlerSource, {
         compilerOptions: { module: ModuleKind.ESNext, target: ScriptTarget.ES2022 },
       }).outputText;
-      writeFileSync(join(apiDirectory, "handler.js"), emittedHandler, "utf8");
-      writeFileSync(
-        join(appSourceDirectory, "index.js"),
-        "export default { fetch(request) { return new Response(new URL(request.url).pathname); } };\n",
-        "utf8",
-      );
-      writeFileSync(
-        join(appSourceDirectory, "runtime-bindings.js"),
-        "export function runtimeBindingsFromEnvironment() { return {}; }\n",
-        "utf8",
-      );
+      expect(emittedHandler).not.toMatch(/\.\.\/apps\/api\/src/);
+      writeFileSync(handlerOutputPath, emittedHandler, "utf8");
       const script = [
-        `import handler from ${JSON.stringify(pathToFileURL(join(apiDirectory, "handler.js")).href)};`,
+        `import handler from ${JSON.stringify(pathToFileURL(handlerOutputPath).href)};`,
         `const response = await handler.fetch(new Request("https://vocabflow.vercel.app/api/health"));`,
-        `if (response.status !== 200 || (await response.text()) !== "/api/health") throw new Error("NATIVE_ESM_HANDLER_DISPATCH_FAILED");`,
-        `process.stdout.write("NATIVE_NODE_ESM_MODULE_RESOLUTION_OK");`,
+        `const body = await response.json();`,
+        `if (response.status !== 200 || body.status !== "ok") throw new Error("NATIVE_ESM_HANDLER_DISPATCH_FAILED");`,
+        `const sessionResponse = await handler.fetch(new Request("https://vocabflow.vercel.app/api/auth/get-session"));`,
+        `const signInResponse = await handler.fetch(new Request("https://vocabflow.vercel.app/api/auth/sign-in/email", { method: "POST", headers: { "content-type": "application/json" }, body: "{}" }));`,
+        `const unknownResponse = await handler.fetch(new Request("https://vocabflow.vercel.app/api/not-a-real-route"));`,
+        `if (sessionResponse.status !== 503 || signInResponse.status !== 503 || unknownResponse.status !== 404) throw new Error("NATIVE_ESM_API_ROUTE_DISPATCH_FAILED");`,
+        `if (!(unknownResponse.headers.get("content-type") ?? "").includes("application/json")) throw new Error("NATIVE_ESM_API_404_NOT_JSON");`,
+        `for (const name of ["@vocabflow/contracts", "@vocabflow/learning-domain"]) {`,
+        `  const resolved = import.meta.resolve(name);`,
+        `  if (!resolved.endsWith("/dist/index.js") || resolved.endsWith(".ts")) throw new Error("WORKSPACE_RUNTIME_EXPORT_NOT_JS:" + name + ":" + resolved);`,
+        `  await import(name);`,
+        `}`,
+        `process.stdout.write("NATIVE_NODE_ESM_HANDLER_AND_WORKSPACES_OK");`,
       ].join("\n");
       const childEnvironment = Object.fromEntries(
         ["PATH", "SystemRoot", "WINDIR", "TEMP", "TMP"]
           .flatMap((key) => process.env[key] ? [[key, process.env[key] as string]] : []),
       );
       const result = spawnSync(process.execPath, ["--input-type=module", "--eval", script], {
-        cwd: fixtureRoot,
+        cwd: resolve("."),
         encoding: "utf8",
         env: { ...childEnvironment, NODE_ENV: "test" },
         timeout: 30_000,
       });
 
-      expect(emittedHandler).toContain("../apps/api/src/index.js");
+      expect(emittedHandler).toContain("../apps/api/dist/vercel-runtime.mjs");
       expect(emittedHandler).not.toMatch(/\brequire\s*\(/);
       expect(result.error?.message, result.stderr).toBeUndefined();
       expect(result.status, result.stderr).toBe(0);
-      expect(result.stdout).toContain("NATIVE_NODE_ESM_MODULE_RESOLUTION_OK");
+      expect(result.stdout).toContain("NATIVE_NODE_ESM_HANDLER_AND_WORKSPACES_OK");
       expect(result.stderr).not.toContain("ERR_UNSUPPORTED_DIR_IMPORT");
+      expect(result.stderr).not.toContain("ERR_MODULE_NOT_FOUND");
     } finally {
-      rmSync(fixtureRoot, { recursive: true, force: true });
+      rmSync(handlerOutputPath, { force: true });
     }
   }, 30_000);
 

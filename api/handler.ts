@@ -1,5 +1,4 @@
-import app from "../apps/api/src/index.js";
-import { runtimeBindingsFromEnvironment } from "../apps/api/src/runtime-bindings.js";
+import app, { runtimeBindingsFromEnvironment } from "../apps/api/dist/vercel-runtime.mjs";
 import type { RuntimeBindings } from "../apps/api/src/runtime-bindings.js";
 
 type HonoFetchApp = {
