@@ -166,7 +166,9 @@ describe("dedicated application schema", () => {
     const activityMigration = readFileSync(join(process.cwd(), "drizzle", "migrations", "0009_tricky_meggan.sql"), "utf8");
     const gamificationMigration = readFileSync(join(process.cwd(), "drizzle", "migrations", "0010_gamification-rewards.sql"), "utf8");
     const exerciseXpMigration = readFileSync(join(process.cwd(), "drizzle", "migrations", "0011_exercise-correct-xp.sql"), "utf8");
-    const journal = JSON.parse(readFileSync(join(process.cwd(), "drizzle", "migrations", "meta", "_journal.json"), "utf8")) as { entries: Array<{ idx: number; tag: string }> };
+    const journal = JSON.parse(readFileSync(join(process.cwd(), "drizzle", "migrations", "meta", "_journal.json"), "utf8")) as { entries: Array<{ idx: number; tag: string; when: number }> };
+    const previousMigrationSnapshot = JSON.parse(readFileSync(join(process.cwd(), "drizzle", "migrations", "meta", "0012_snapshot.json"), "utf8")) as { id: string; prevId: string; [key: string]: unknown };
+    const sequencePrivilegeSnapshot = JSON.parse(readFileSync(join(process.cwd(), "drizzle", "migrations", "meta", "0013_snapshot.json"), "utf8")) as { id: string; prevId: string; [key: string]: unknown };
     const snapshot = JSON.parse(readFileSync(join(process.cwd(), "drizzle", "migrations", "meta", "0000_snapshot.json"), "utf8")) as {
       schemas: Record<string, string>;
       tables: Record<string, unknown>;
@@ -281,8 +283,33 @@ describe("dedicated application schema", () => {
     expect(reviewSnapshot.tables[`${APP_SCHEMA}.learner_progress`]?.columns.consecutive_correct.type).toBe("bigint");
     expect(reviewSnapshot.tables[`${APP_SCHEMA}.review_events`]?.columns.expected_revision.type).toBe("bigint");
     expect(reviewSnapshot.tables[`${APP_SCHEMA}.review_events`]?.compositePrimaryKeys.review_events_household_review_pk).toBeDefined();
-    expect(journal.entries.map((entry) => entry.tag)).toEqual(["0000_application-schema", "0001_curious_miss_america", "0002_smiling_wrecking_crew", "0003_lazy_lady_deathstrike", "0004_scheduled_review_write", "0005_graceful_eddie_brock", "0006_sticky_risque", "0007_modern_mysterio", "0008_chief_morph", "0009_tricky_meggan", "0010_gamification-rewards", "0011_exercise-correct-xp", "0012_us41_owner_content_overrides"]);
+    expect(journal.entries.map((entry) => entry.tag)).toEqual(["0000_application-schema", "0001_curious_miss_america", "0002_smiling_wrecking_crew", "0003_lazy_lady_deathstrike", "0004_scheduled_review_write", "0005_graceful_eddie_brock", "0006_sticky_risque", "0007_modern_mysterio", "0008_chief_morph", "0009_tricky_meggan", "0010_gamification-rewards", "0011_exercise-correct-xp", "0012_us41_owner_content_overrides", "0013_runtime-vocabulary-sequence-privilege"]);
+    const latestMigration = journal.entries.at(-1);
+    const previousMigration = journal.entries.at(-2);
+    expect(latestMigration).toMatchObject({ idx: 13, tag: "0013_runtime-vocabulary-sequence-privilege" });
+    expect(latestMigration?.when).toBeGreaterThan(previousMigration?.when ?? 0);
+    const { id: previousSnapshotId, prevId: previousSnapshotParent, ...previousSnapshotSchema } = previousMigrationSnapshot;
+    const { id: currentSnapshotId, prevId: currentSnapshotParent, ...currentSnapshotSchema } = sequencePrivilegeSnapshot;
+    expect(currentSnapshotParent).toBe(previousSnapshotId);
+    expect(currentSnapshotId).not.toBe(previousSnapshotId);
+    expect(previousSnapshotParent).toBeTruthy();
+    expect(currentSnapshotSchema).toEqual(previousSnapshotSchema);
     expect(dbCore).toContain("await executeApplicationMigrations(sql, options)");
+  });
+
+  it("grants only runtime USAGE on the existing and future application sequences", () => {
+    const migration = readFileSync(join(process.cwd(), "drizzle", "migrations", "0013_runtime-vocabulary-sequence-privilege.sql"), "utf8");
+    const statements = migration
+      .split("--> statement-breakpoint")
+      .map((statement) => statement.trim())
+      .filter(Boolean);
+
+    expect(statements).toEqual([
+      `GRANT USAGE ON SEQUENCE "${APP_SCHEMA}"."vocabularies_id_seq" TO "vocabflow_runtime";`,
+      `ALTER DEFAULT PRIVILEGES FOR ROLE "vocabflow_migration" IN SCHEMA "${APP_SCHEMA}" GRANT USAGE ON SEQUENCES TO "vocabflow_runtime";`,
+    ]);
+    expect(migration).not.toMatch(/\b(?:ALL|CREATE|SELECT|INSERT|UPDATE|DELETE|PUBLIC|drizzle|vocabflow_meta)\b/i);
+    expect(migration).not.toMatch(/\b(?:GRANT|REVOKE)\b[^;]*\b(?:TABLES|SCHEMA)\b/i);
   });
 
   it("keeps household reset order dependency-safe", () => {
