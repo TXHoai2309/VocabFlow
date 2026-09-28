@@ -526,6 +526,9 @@ describe("bootstrap role creation", () => {
     expect(protectedSchemaStage).toBeGreaterThan(applicationSchemaStage);
     expect(freshPath.match(/withTemporarySetMembership\(/g)).toHaveLength(3);
     expect(migrationBlock).toContain("withTemporarySetMembership(tx as unknown as SqlTag, ROLE_NAMES.migration");
+    expect(migrationBlock).toContain("GRANT USAGE, CREATE ON SCHEMA");
+    expect(migrationBlock).toContain("ROLE_NAMES.migration");
+    expect(migrationBlock).not.toContain("ROLE_NAMES.runtime");
     expect(migrationBlock.indexOf("RESET ROLE")).toBeGreaterThan(migrationBlock.indexOf("SET LOCAL ROLE"));
     expect(applicationBlock).toContain("withTemporarySetMembership(tx as unknown as SqlTag, ROLE_NAMES.migration");
     expect(applicationBlock).toContain("CREATE SCHEMA");
