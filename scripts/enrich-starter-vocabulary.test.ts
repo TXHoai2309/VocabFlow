@@ -1,9 +1,15 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
+import { getConnectionTarget } from "../config/database-targets";
+import type { NeonApiClient } from "./neon-target-verifier";
+import { openSql } from "./db-core";
 import {
   APPROVED_ENRICHMENTS,
   buildEnrichmentInputs,
   buildEnrichmentPlan,
+  parseStarterEnrichmentCliArgs,
   renderDryRun,
+  renderStarterEnrichmentFailure,
+  runProductionStarterEnrichment,
   runApply,
   runDryRun,
   updatesFromPlan,
@@ -14,6 +20,76 @@ import {
   type SourceMediaMapping,
   type SourceVocabularyRecord
 } from "./enrich-starter-vocabulary";
+
+const productionTarget = getConnectionTarget("production", "runtime");
+const productionRuntimeUrl = "postgresql://vocabflow_runtime:fixture@ep-production-pooler.neon.tech/neondb";
+const productionEnvironment = {
+  EXECUTION_CONTEXT: "local-development",
+  VOCABFLOW_ENV: "production",
+  DATABASE_ENV: "production",
+  NEON_API_KEY: "fixture-neon-key-not-real",
+  PRODUCTION_DATABASE_URL: productionRuntimeUrl,
+  DATABASE_URL: "postgresql://vocabflow_runtime:decoy@ep-development-pooler.neon.tech/neondb",
+  PRODUCTION_MIGRATION_DATABASE_URL: "postgresql://vocabflow_migration:decoy@ep-production-pooler.neon.tech/neondb",
+  PRODUCTION_BOOTSTRAP_DATABASE_URL: "postgresql://neondb_owner:decoy@ep-production-pooler.neon.tech/neondb"
+} as NodeJS.ProcessEnv;
+
+const productionApplyOptions = {
+  target: "production",
+  confirmTarget: "production",
+  confirmBranch: productionTarget.branchId
+};
+
+function productionNeonFixture(overrides: { projectId?: string; branchId?: string } = {}): NeonApiClient {
+  return {
+    getBranch: vi.fn(async () => ({
+      projectId: overrides.projectId ?? productionTarget.projectId,
+      branchId: overrides.branchId ?? productionTarget.branchId
+    })),
+    getConnectionUri: vi.fn(async ({ roleName }) => {
+      if (roleName !== "vocabflow_runtime") throw new Error("UNEXPECTED_DATABASE_ROLE");
+      return { uri: productionRuntimeUrl };
+    })
+  };
+}
+
+function productionSqlFixture(options: { wrongIdentity?: boolean } = {}) {
+  const statements: string[] = [];
+  const mutations: string[] = [];
+  let readOnly = false;
+  const query = ((strings: TemplateStringsArray, ...values: unknown[]) => {
+    const statement = strings.join("?").replace(/\s+/g, " ").trim();
+    statements.push(statement);
+    if (statement.includes("SET TRANSACTION READ ONLY")) readOnly = true;
+
+    let rows: Record<string, unknown>[] = [];
+    if (statement.includes("to_regclass")) rows = [{ exists: true }];
+    else if (statement.includes("SELECT id, environment, provider, project_id, branch_id, identity_version")) {
+      rows = [{
+        id: 1,
+        environment: "production",
+        provider: "neon",
+        project_id: productionTarget.projectId,
+        branch_id: options.wrongIdentity ? "wrong-branch" : productionTarget.branchId,
+        identity_version: productionTarget.identityVersion
+      }];
+    } else if (statement.includes("SELECT id, word, ipa, vietnamese")) {
+      rows = currentRows().map((row) => ({ ...row }));
+    } else if (/^UPDATE/i.test(statement)) {
+      mutations.push("UPDATE vocabulary");
+    }
+    const result = rows as Record<string, unknown>[] & { count?: number };
+    if (/^UPDATE/i.test(statement)) result.count = 1;
+    void values;
+    return Promise.resolve(result);
+  }) as unknown as ReturnType<typeof openSql>;
+  Object.assign(query, {
+    unsafe: (value: string) => value,
+    begin: async <T>(operation: (transaction: ReturnType<typeof openSql>) => Promise<T>) => operation(query),
+    end: vi.fn(async () => undefined)
+  });
+  return { client: query, statements, mutations, get readOnly() { return readOnly; } };
+}
 
 function fixtureSources(): SourceVocabularyRecord[] {
   return APPROVED_ENRICHMENTS.map((approved, index) => ({
@@ -278,5 +354,175 @@ describe("starter vocabulary enrichment safety", () => {
     expect(output).not.toContain("secure_url");
     expect(output).not.toContain("api_secret");
     expect(output).not.toContain("cloudinary.test");
+  });
+});
+
+describe("production vocab:enrich-starter operator path", () => {
+  it("preserves the Development CLI shape and parses explicit production flags", () => {
+    expect(parseStarterEnrichmentCliArgs([])).toEqual({ apply: false });
+    expect(parseStarterEnrichmentCliArgs(["--apply"])).toEqual({ apply: true });
+    expect(parseStarterEnrichmentCliArgs(["--target", "production"])).toEqual({
+      apply: false,
+      productionOptions: { target: "production" }
+    });
+    expect(parseStarterEnrichmentCliArgs([
+      "--target", "production", "--apply", "--confirm-target", "production", "--confirm-branch", productionTarget.branchId
+    ])).toEqual({ apply: true, productionOptions: productionApplyOptions });
+    expect(() => parseStarterEnrichmentCliArgs(["--force"])).toThrow("CLI_ARGUMENT_INVALID");
+    expect(() => parseStarterEnrichmentCliArgs(["--apply", "--apply"])).toThrow("CLI_ARGUMENT_INVALID");
+  });
+
+  it("requires an explicit production target even when the environment is marked production", async () => {
+    const neon = productionNeonFixture();
+    const open = vi.fn(() => productionSqlFixture().client);
+    await expect(runProductionStarterEnrichment({
+      options: {},
+      apply: false,
+      environment: productionEnvironment,
+      inputs: fixtureInputs(),
+      neonApiClient: neon,
+      openSql: open
+    })).rejects.toThrow("PRODUCTION_TARGET_REQUIRED");
+    expect(neon.getBranch).not.toHaveBeenCalled();
+    expect(open).not.toHaveBeenCalled();
+  });
+
+  it("runs a provider-verified production dry run read-only with the runtime URL and no confirmation flags", async () => {
+    const neon = productionNeonFixture();
+    const database = productionSqlFixture();
+    const open = vi.fn(() => database.client);
+    const plan = await runProductionStarterEnrichment({
+      options: { target: "production" },
+      apply: false,
+      environment: productionEnvironment,
+      inputs: fixtureInputs(),
+      neonApiClient: neon,
+      openSql: open
+    });
+
+    expect(neon.getBranch).toHaveBeenCalledWith({
+      projectId: productionTarget.projectId,
+      branchId: productionTarget.branchId
+    });
+    expect(neon.getConnectionUri).toHaveBeenCalledWith(expect.objectContaining({ roleName: "vocabflow_runtime" }));
+    expect(open).toHaveBeenCalledOnce();
+    expect(open).toHaveBeenCalledWith(productionRuntimeUrl);
+    expect(database.readOnly).toBe(true);
+    expect(database.mutations).toEqual([]);
+    expect(database.statements.every((statement) => statement.startsWith("SELECT") || statement.includes("SET TRANSACTION READ ONLY"))).toBe(true);
+    expect(renderDryRun(plan)).toContain("DATABASE_MUTATIONS=0");
+    expect(renderDryRun(plan).join("\n")).not.toContain(productionRuntimeUrl);
+    expect(renderDryRun(plan).join("\n")).not.toContain(productionEnvironment.NEON_API_KEY);
+    expect(database.client.end).toHaveBeenCalledOnce();
+  });
+
+  it("fails closed for missing apply target confirmation or an incorrect canonical branch confirmation", async () => {
+    const neon = productionNeonFixture();
+    const open = vi.fn(() => productionSqlFixture().client);
+    for (const testCase of [
+      { options: { target: "production" }, error: "PRODUCTION_TARGET_CONFIRMATION_REQUIRED" },
+      { options: { ...productionApplyOptions, confirmTarget: "development" }, error: "PRODUCTION_TARGET_CONFIRMATION_REQUIRED" },
+      { options: { ...productionApplyOptions, confirmBranch: "wrong-branch" }, error: "PRODUCTION_BRANCH_CONFIRMATION_MISMATCH" }
+    ]) {
+      await expect(runProductionStarterEnrichment({
+        options: testCase.options,
+        apply: true,
+        environment: productionEnvironment,
+        inputs: fixtureInputs(),
+        neonApiClient: neon,
+        openSql: open
+      })).rejects.toThrow(testCase.error);
+    }
+    expect(neon.getBranch).not.toHaveBeenCalled();
+    expect(open).not.toHaveBeenCalled();
+  });
+
+  it("requires provider verification and never falls back to DATABASE_URL", async () => {
+    const open = vi.fn(() => productionSqlFixture().client);
+    const noProductionCredential = { ...productionEnvironment };
+    delete noProductionCredential.PRODUCTION_DATABASE_URL;
+    await expect(runProductionStarterEnrichment({
+      options: { target: "production" },
+      apply: false,
+      environment: noProductionCredential,
+      inputs: fixtureInputs(),
+      neonApiClient: productionNeonFixture(),
+      openSql: open
+    })).rejects.toThrow("PRODUCTION_DATABASE_URL_REQUIRED");
+    const noProviderKey = { ...productionEnvironment };
+    delete noProviderKey.NEON_API_KEY;
+    await expect(runProductionStarterEnrichment({
+      options: { target: "production" },
+      apply: false,
+      environment: noProviderKey,
+      inputs: fixtureInputs(),
+      neonApiClient: productionNeonFixture(),
+      openSql: open
+    })).rejects.toThrow("PRODUCTION_PROVIDER_VERIFICATION_REQUIRED");
+    expect(open).not.toHaveBeenCalled();
+  });
+
+  it("rejects provider project or branch mismatch before connecting", async () => {
+    for (const mismatch of [
+      { projectId: "wrong-project", message: "PROJECT_NOT_FOUND" },
+      { branchId: "wrong-branch", message: "BRANCH_NOT_FOUND" }
+    ]) {
+      const open = vi.fn(() => productionSqlFixture().client);
+      await expect(runProductionStarterEnrichment({
+        options: { target: "production" },
+        apply: false,
+        environment: productionEnvironment,
+        inputs: fixtureInputs(),
+        neonApiClient: productionNeonFixture(mismatch),
+        openSql: open
+      })).rejects.toThrow(mismatch.message);
+      expect(open).not.toHaveBeenCalled();
+    }
+  });
+
+  it("checks canonical post-connect identity before reading the plan or mutating", async () => {
+    const database = productionSqlFixture({ wrongIdentity: true });
+    await expect(runProductionStarterEnrichment({
+      options: productionApplyOptions,
+      apply: true,
+      environment: productionEnvironment,
+      inputs: fixtureInputs(),
+      neonApiClient: productionNeonFixture(),
+      openSql: vi.fn(() => database.client)
+    })).rejects.toThrow("DATABASE_IDENTITY_MISMATCH");
+    expect(database.statements.some((statement) => statement.includes("SELECT id, word, ipa, vietnamese"))).toBe(false);
+    expect(database.mutations).toEqual([]);
+  });
+
+  it("only applies after the production mutation guard and confirms identity before updates", async () => {
+    const database = productionSqlFixture();
+    const neon = productionNeonFixture();
+    const plan = await runProductionStarterEnrichment({
+      options: productionApplyOptions,
+      apply: true,
+      environment: productionEnvironment,
+      inputs: fixtureInputs(),
+      neonApiClient: neon,
+      openSql: vi.fn(() => database.client)
+    });
+    const identityIndex = database.statements.findIndex((statement) => statement.includes("SELECT id, environment, provider, project_id, branch_id, identity_version"));
+    const enrichmentReadIndex = database.statements.findIndex((statement) => statement.includes("SELECT id, word, ipa, vietnamese"));
+    const updateIndex = database.statements.findIndex((statement) => /^UPDATE/i.test(statement));
+    expect(identityIndex).toBeGreaterThanOrEqual(0);
+    expect(identityIndex).toBeLessThan(enrichmentReadIndex);
+    expect(enrichmentReadIndex).toBeLessThan(updateIndex);
+    expect(neon.getConnectionUri).toHaveBeenCalledWith(expect.objectContaining({ roleName: "vocabflow_runtime" }));
+    expect(database.mutations).toHaveLength(8);
+    expect(plan.updateCount).toBe(8);
+    expect(database.statements.join("\n")).not.toMatch(/neondb_owner|vocabflow_migration/);
+  });
+
+  it("reports operational guard tokens without leaking arbitrary error messages or credentials", () => {
+    expect(renderStarterEnrichmentFailure(new Error("PRODUCTION_BRANCH_CONFIRMATION_MISMATCH")))
+      .toBe("PRODUCTION_BRANCH_CONFIRMATION_MISMATCH");
+    expect(renderStarterEnrichmentFailure(new Error("postgresql://user:password@host/db")))
+      .toBe("STARTER_ENRICHMENT_FAILED");
+    expect(renderStarterEnrichmentFailure(new Error("NAPI_FAKE_API_KEY")))
+      .toBe("STARTER_ENRICHMENT_FAILED");
   });
 });

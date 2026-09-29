@@ -10,7 +10,15 @@ import {
   assertResolvedTargetBeforeMutation,
   configuredDatabaseUrl
 } from "./runtime-validation";
-import { openSql, readContext } from "./db-core";
+import { assertPostConnectIdentity, openSql, readContext } from "./db-core";
+import {
+  authorizeProductionRelease,
+  parseProductionReleaseArgs,
+  resolveProductionConnection,
+  runAuthorizedProductionMutation,
+  type ProductionReleaseOptions
+} from "./production-release-safety";
+import type { NeonApiClient } from "./neon-target-verifier";
 
 export const APPROVED_ENRICHMENTS = [
   { dbId: 1, starterWord: "apple", sourceId: 265, sourceWord: "apple" },
@@ -133,6 +141,11 @@ export type EnrichmentTransaction = {
 
 export type EnrichmentDatabase = EnrichmentTransaction & {
   transaction: <T>(operation: (transaction: EnrichmentTransaction) => Promise<T>) => Promise<T>;
+};
+
+export type StarterEnrichmentCliOptions = {
+  apply: boolean;
+  productionOptions?: ProductionReleaseOptions;
 };
 
 function requiredText(value: unknown, code: string): string {
@@ -429,6 +442,7 @@ export function renderDryRun(plan: EnrichmentPlan): string[] {
   return [
     "STARTER_ENRICHMENT_MODE=DRY_RUN",
     "DRY_RUN_MUTATES_DB=NO",
+    "DATABASE_MUTATIONS=0",
     `APPROVED_ROW_COUNT=${plan.entries.length}`,
     `UPDATE_COUNT=${plan.updateCount}`,
     ...plan.entries.map((entry) => [
@@ -536,15 +550,176 @@ function printPlan(plan: EnrichmentPlan) {
 }
 
 function printApplyPlan(plan: EnrichmentPlan) {
-  for (const line of renderDryRun(plan).filter((line) => !line.startsWith("STARTER_ENRICHMENT_MODE=") && !line.startsWith("DRY_RUN_MUTATES_DB="))) {
+  for (const line of renderDryRun(plan).filter((line) => !line.startsWith("STARTER_ENRICHMENT_MODE=")
+      && !line.startsWith("DRY_RUN_MUTATES_DB=") && !line.startsWith("DATABASE_MUTATIONS="))) {
     console.log(line);
   }
 }
 
+export function parseStarterEnrichmentCliArgs(args: readonly string[]): StarterEnrichmentCliOptions {
+  let apply = false;
+  const releaseArgs: string[] = [];
+  for (const arg of args) {
+    if (arg === "--apply") {
+      if (apply) throw new StarterEnrichmentError("CLI_ARGUMENT_INVALID");
+      apply = true;
+    } else {
+      releaseArgs.push(arg);
+    }
+  }
+  if (releaseArgs.length === 0) return { apply };
+  try {
+    return { apply, productionOptions: parseProductionReleaseArgs(releaseArgs) };
+  } catch {
+    throw new StarterEnrichmentError("CLI_ARGUMENT_INVALID");
+  }
+}
+
+export async function runProductionStarterEnrichment(input: {
+  options: ProductionReleaseOptions;
+  apply: boolean;
+  environment: NodeJS.ProcessEnv;
+  inputs?: EnrichmentInput[];
+  neonApiClient?: NeonApiClient;
+  openSql?: (url: string) => ReturnType<typeof openSql>;
+}): Promise<EnrichmentPlan> {
+  const authorizedTarget = authorizeProductionRelease({
+    options: input.options,
+    mode: input.apply ? "mutation" : "read-only",
+    environment: input.environment
+  });
+  const connection = await resolveProductionConnection({
+    purpose: "runtime",
+    environment: input.environment,
+    neonApiClient: input.neonApiClient
+  });
+  const canonicalRuntimeTarget = getConnectionTarget("production", "runtime");
+  const providerTarget = connection.resolved.expected;
+  if (
+    connection.target.roleName !== canonicalRuntimeTarget.roleName
+    || connection.target.purpose !== "runtime"
+    || connection.target.projectId !== authorizedTarget.projectId
+    || connection.target.branchId !== authorizedTarget.branchId
+    || connection.target.databaseName !== authorizedTarget.databaseName
+    || providerTarget.roleName !== canonicalRuntimeTarget.roleName
+    || providerTarget.branchId !== authorizedTarget.branchId
+    || providerTarget.projectId !== authorizedTarget.projectId
+    || providerTarget.databaseName !== authorizedTarget.databaseName
+  ) {
+    throw new StarterEnrichmentError("PRODUCTION_RUNTIME_TARGET_MISMATCH");
+  }
+
+  const inputs = input.inputs ?? loadEnrichmentInputs();
+  const sqlClient = (input.openSql ?? openSql)(connection.url) as unknown as SqlTag;
+  try {
+    if (!input.apply) {
+      return await sqlClient.begin(async (transaction) => {
+        await transaction`SET TRANSACTION READ ONLY`;
+        await assertPostConnectIdentity(transaction as unknown as ReturnType<typeof openSql>, connection.target);
+        return runDryRun(createPostgresEnrichmentDatabase(transaction), inputs);
+      });
+    }
+
+    const database: EnrichmentDatabase = {
+      ...createPostgresEnrichmentDatabase(sqlClient),
+      transaction: <T>(operation: (transaction: EnrichmentTransaction) => Promise<T>) =>
+        sqlClient.begin(async (transaction) => {
+          // Validate the protected production identity before reading the plan or updating rows.
+          await assertPostConnectIdentity(transaction as unknown as ReturnType<typeof openSql>, connection.target);
+          return operation(createPostgresEnrichmentDatabase(transaction));
+        })
+    };
+    return runAuthorizedProductionMutation(
+      { options: input.options, environment: input.environment },
+      async (confirmedTarget) => {
+        if (confirmedTarget.projectId !== authorizedTarget.projectId
+            || confirmedTarget.branchId !== authorizedTarget.branchId
+            || confirmedTarget.databaseName !== authorizedTarget.databaseName) {
+          throw new StarterEnrichmentError("PRODUCTION_TARGET_CHANGED_AFTER_PREFLIGHT");
+        }
+        return runApply(database, inputs);
+      }
+    );
+  } finally {
+    await sqlClientEnd(sqlClient);
+  }
+}
+
+const SAFE_OPERATIONAL_ERROR_CODES = new Set([
+  "PRODUCTION_TARGET_REQUIRED",
+  "PRODUCTION_OPERATOR_CONTEXT_REQUIRED",
+  "PRODUCTION_ENVIRONMENT_MARKERS_REQUIRED",
+  "PRODUCTION_CANONICAL_TARGET_MISMATCH",
+  "PRODUCTION_TARGET_CONFIRMATION_REQUIRED",
+  "PRODUCTION_BRANCH_CONFIRMATION_MISMATCH",
+  "PRODUCTION_CONFIRMATION_WITHOUT_MUTATION",
+  "PRODUCTION_DEVELOPMENT_BRANCH_BLOCKED",
+  "PRODUCTION_SHARED_CI_BRANCH_BLOCKED",
+  "PRODUCTION_DATABASE_URL_REQUIRED",
+  "PRODUCTION_PROVIDER_VERIFICATION_REQUIRED",
+  "PRODUCTION_RUNTIME_TARGET_MISMATCH",
+  "PRODUCTION_TARGET_CHANGED_AFTER_PREFLIGHT",
+  "PROTECTED_METADATA_MISSING",
+  "CANONICAL_IDENTITY_INVALID",
+  "DATABASE_IDENTITY_MISMATCH",
+  "PROJECT_NOT_FOUND",
+  "BRANCH_NOT_FOUND",
+  "PROVIDER_AUTH_FAILED",
+  "PROVIDER_RESPONSE_INVALID",
+  "PROVIDER_UNAVAILABLE",
+  "CONNECTION_TARGET_MISMATCH",
+  "INVALID_ENVIRONMENT_MARKERS",
+  "INVALID_TARGET_CONTEXT",
+  "PRODUCTION_DB_MUTATION_OUT_OF_SCOPE",
+  "LOCAL_SHARED_CI_TARGET_FORBIDDEN",
+  "BLOCKED_PROVIDER_VERIFICATION",
+  "PROVIDER_VERIFICATION_REQUIRED",
+  "CONNECTION_CLOSED",
+  "CONNECT_TIMEOUT",
+  "CONNECTION_TIMEOUT",
+  "SOCKET_TIMEOUT",
+  "ECONNRESET",
+  "ECONNREFUSED",
+  "ETIMEDOUT",
+  "EPIPE"
+]);
+
+export function renderStarterEnrichmentFailure(error: unknown): string {
+  if (error instanceof StarterEnrichmentError) return error.code;
+  if (error && typeof error === "object") {
+    const safeCode = (error as { code?: unknown }).code;
+    if (typeof safeCode === "string" && SAFE_OPERATIONAL_ERROR_CODES.has(safeCode)) return safeCode;
+    const safeMessage = (error as { message?: unknown }).message;
+    if (typeof safeMessage === "string" && SAFE_OPERATIONAL_ERROR_CODES.has(safeMessage)) return safeMessage;
+  }
+  return "STARTER_ENRICHMENT_FAILED";
+}
+
 async function main() {
   loadRepositoryEnv();
-  const apply = process.argv.slice(2).length === 1 && process.argv[2] === "--apply";
-  if (process.argv.slice(2).length > 0 && !apply) throw new StarterEnrichmentError("CLI_ARGUMENT_INVALID");
+  const options = parseStarterEnrichmentCliArgs(process.argv.slice(2));
+  const productionInvocation = options.productionOptions !== undefined
+    || process.env.VOCABFLOW_ENV === "production"
+    || process.env.DATABASE_ENV === "production";
+  if (productionInvocation) {
+    const plan = await runProductionStarterEnrichment({
+      options: options.productionOptions ?? {},
+      apply: options.apply,
+      environment: process.env
+    });
+    console.log(`TARGET_NAME=production`);
+    console.log(`TARGET_BRANCH=${getConnectionTarget("production", "runtime").branchId}`);
+    if (options.apply) {
+      console.log("STARTER_ENRICHMENT_MODE=APPLY");
+      printApplyPlan(plan);
+      console.log("STARTER_ENRICHMENT_APPLY=PASS");
+    } else {
+      printPlan(plan);
+    }
+    return;
+  }
+
+  const apply = options.apply;
   const { context, environment } = readContext();
   const target = getConnectionTarget(environment === "test" ? "test" : environment === "production" ? "production" : "development", "runtime");
   const connection = apply
@@ -589,7 +764,7 @@ async function sqlClientEnd(sql: SqlTag) {
 const invokedScript = process.argv[1]?.replaceAll("\\", "/") ?? "";
 if (invokedScript.endsWith("/enrich-starter-vocabulary.ts") || invokedScript.endsWith("/enrich-starter-vocabulary.js")) {
   main().catch((error: unknown) => {
-    console.error(error instanceof StarterEnrichmentError ? error.code : "STARTER_ENRICHMENT_FAILED");
+    console.error(renderStarterEnrichmentFailure(error));
     process.exitCode = 1;
   });
 }
