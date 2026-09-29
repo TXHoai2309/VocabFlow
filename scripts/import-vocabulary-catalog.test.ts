@@ -3,10 +3,14 @@ import type {
   CatalogDatabase,
   CatalogDatabaseSnapshot,
   CatalogRecord,
+  CatalogValidation,
   CatalogRow
 } from "./import-vocabulary-catalog";
 import {
+  CATALOG_INSERT_BATCH_SIZE,
   buildCatalogPlan,
+  createPostgresCatalogDatabase,
+  renderCatalogImportFailure,
   runApply,
   runDryRun,
   validateCatalogRecords,
@@ -95,43 +99,92 @@ function rowFromRecord(id: number, record: CatalogRecord, enabled = false): Cata
   };
 }
 
-function memoryDatabase(initial: CatalogDatabaseSnapshot) {
+function memoryDatabase(
+  initial: CatalogDatabaseSnapshot,
+  options: {
+    returningRows?: "missing" | "duplicate-source" | "unexpected-source" | "starter-id" | "duplicate-id";
+    failBatchNumber?: number;
+    afterApply?: (state: CatalogDatabaseSnapshot) => void;
+  } = {},
+) {
   let state = structuredClone(initial);
   const inserted: CatalogRecord[] = [];
   const updated: CatalogRecord[] = [];
+  const mutationOrder: string[] = [];
+  let batchNumber = 0;
+  let nextId = Math.max(30, ...state.importedRows.map((row) => row.id)) + 1;
+  const insertOne = async (record: CatalogRecord) => {
+    const id = nextId++;
+    state.importedRows.push(rowFromRecord(id, record));
+    inserted.push(record);
+    return id;
+  };
+  const insertMany = async (records: readonly CatalogRecord[]) => {
+    batchNumber += 1;
+    mutationOrder.push(`INSERT_BATCH:${records.length}`);
+    if (batchNumber === options.failBatchNumber) throw new Error("SYNTHETIC_BATCH_FAILURE");
+    const rows = [];
+    for (const record of records) {
+      const id = await insertOne(record);
+      rows.push({ id, source_dataset: record.sourceDataset, source_record_id: record.sourceRecordId });
+    }
+    if (options.returningRows === "missing") return rows.slice(1);
+    if (options.returningRows === "duplicate-source") return [rows[0]!, rows[0]!];
+    if (options.returningRows === "unexpected-source") return rows.map((row, index) => index === 0 ? { ...row, source_record_id: 999999 } : row);
+    if (options.returningRows === "starter-id") return rows.map((row, index) => index === 0 ? { ...row, id: 30 } : row);
+    if (options.returningRows === "duplicate-id") return rows.map((row) => ({ ...row, id: 31 }));
+    return rows;
+  };
+  const batchInsert = vi.fn(insertMany);
+  const updateOne = async (record: CatalogRecord, existing: CatalogRow, nextContentVersion: number) => {
+    const row = state.importedRows.find((candidate) => candidate.id === existing.id);
+    if (!row) throw new Error("missing row");
+    Object.assign(row, rowFromRecord(existing.id, record, row.enabled), { content_version: nextContentVersion });
+    updated.push(record);
+    mutationOrder.push(`UPDATE:${record.sourceRecordId}`);
+    return existing.id;
+  };
+  const transaction = {
+    readState: async () => structuredClone(state),
+    insertRecord: insertOne,
+    insertRecords: batchInsert,
+    updateRecord: updateOne,
+    syncTopicMemberships: async () => {
+      mutationOrder.push("TOPIC_SYNC");
+      options.afterApply?.(state);
+    },
+  };
   const database: CatalogDatabase = {
     readState: vi.fn(async () => structuredClone(state)),
-    insertRecord: vi.fn(async (record: CatalogRecord) => {
-      const id = Math.max(30, ...state.importedRows.map((row) => row.id)) + 1;
-      state.importedRows.push(rowFromRecord(id, record));
-      inserted.push(record);
-      return id;
-    }),
-    updateRecord: vi.fn(async (record: CatalogRecord, existing: CatalogRow, nextContentVersion: number) => {
-      const row = state.importedRows.find((candidate) => candidate.id === existing.id);
-      if (!row) throw new Error("missing row");
-      Object.assign(row, rowFromRecord(existing.id, record, row.enabled), { content_version: nextContentVersion });
-      updated.push(record);
-      return existing.id;
-    }),
-    transaction: vi.fn(async (operation) => operation({
-      readState: async () => structuredClone(state),
-      insertRecord: async (record: CatalogRecord) => {
-        const id = Math.max(30, ...state.importedRows.map((row) => row.id)) + 1;
-        state.importedRows.push(rowFromRecord(id, record));
-        inserted.push(record);
-        return id;
-      },
-      updateRecord: async (record: CatalogRecord, existing: CatalogRow, nextContentVersion: number) => {
-        const row = state.importedRows.find((candidate) => candidate.id === existing.id);
-        if (!row) throw new Error("missing row");
-        Object.assign(row, rowFromRecord(existing.id, record, row.enabled), { content_version: nextContentVersion });
-        updated.push(record);
-        return existing.id;
+    insertRecord: vi.fn(insertOne),
+    insertRecords: batchInsert,
+    updateRecord: vi.fn(updateOne),
+    transaction: vi.fn(async (operation) => {
+      const before = structuredClone(state);
+      try {
+        return await operation(transaction);
+      } catch (error) {
+        state = before;
+        throw error;
       }
-    }))
+    }),
   };
-  return { database, inserted, updated };
+  return { database, inserted, updated, mutationOrder, batchInsert };
+}
+
+function catalogValidation(records: CatalogRecord[]): CatalogValidation {
+  const base = validateCatalogRecords([sourceRecord(1)], mediaIndex());
+  return { ...base, sourceRecords: records.length, validRecords: records };
+}
+
+function catalogRecords(count: number): CatalogRecord[] {
+  const template = validatedRecords()[0]!;
+  return Array.from({ length: count }, (_, index) => ({
+    ...template,
+    sourceRecordId: 1000 + index,
+    word: `catalog-word-${index}`,
+    normalizedWord: `catalog-word-${index}`,
+  }));
 }
 
 describe("US-25 catalog validation", () => {
@@ -254,6 +307,117 @@ describe("US-25 catalog planning and mutation safety", () => {
     expect(mock.inserted).toHaveLength(2);
   });
 
+  it("inserts 1,994 records in bounded batches with database-generated IDs", async () => {
+    const records = catalogRecords(1994);
+    const mock = memoryDatabase(snapshot());
+
+    const plan = await runApply(mock.database, catalogValidation(records));
+
+    expect(plan.insertCount).toBe(1994);
+    expect(mock.batchInsert).toHaveBeenCalledTimes(10);
+    expect(mock.batchInsert.mock.calls.map(([batch]) => batch.length)).toEqual([
+      200, 200, 200, 200, 200, 200, 200, 200, 200, 194,
+    ]);
+    const afterApply = await mock.database.readState();
+    expect(afterApply.importedRows).toHaveLength(1994);
+    expect(afterApply.importedRows[0]?.id).toBeGreaterThan(30);
+    expect(afterApply.importedRows.every((row) => row.enabled === false && row.content_version === 1)).toBe(true);
+    expect(afterApply.importedRows.map((row) => row.source_record_id)).toEqual(records.map((record) => record.sourceRecordId));
+    expect(new Set(afterApply.importedRows.map((row) => row.id)).size).toBe(1994);
+  });
+
+  it("builds bounded multi-row SQL without explicit IDs and verifies RETURNING source identities", async () => {
+    const records = catalogRecords(2);
+    let statement = "";
+    let parameters: unknown[] = [];
+    const sqlClient = Object.assign(
+      (() => Promise.resolve([])) as unknown as Parameters<typeof createPostgresCatalogDatabase>[0],
+      {
+        unsafe: vi.fn(async (query: string, values: unknown[] = []) => {
+          statement = query;
+          parameters = values;
+          return records.map((record, index) => ({
+            id: 31 + index,
+            source_dataset: record.sourceDataset,
+            source_record_id: record.sourceRecordId,
+          }));
+        }),
+        begin: async <T>(operation: (transaction: Parameters<typeof createPostgresCatalogDatabase>[0]) => Promise<T>) => operation(sqlClient),
+        array: (values: unknown[]) => values,
+      },
+    );
+
+    const inserted = await createPostgresCatalogDatabase(sqlClient).insertRecords!(records);
+
+    expect(inserted.map((row) => row.source_record_id)).toEqual(records.map((record) => record.sourceRecordId));
+    expect(sqlClient.unsafe).toHaveBeenCalledOnce();
+    expect(parameters).toHaveLength(records.length * 10);
+    expect(parameters.slice(0, 10)).toEqual([
+      records[0]?.word,
+      records[0]?.ipa,
+      records[0]?.vietnamese,
+      records[0]?.definitionEn,
+      records[0]?.exampleEn,
+      records[0]?.imageUrl,
+      records[0]?.audioUrl,
+      records[0]?.topic,
+      records[0]?.sourceDataset,
+      records[0]?.sourceRecordId,
+    ]);
+    expect(statement).toContain('INSERT INTO "vocabflow_app"."vocabularies"');
+    expect(statement).toContain("enabled, content_version, source_dataset, source_record_id");
+    expect(statement).toContain("false, 1");
+    expect(statement).toContain("RETURNING id, source_dataset, source_record_id");
+    expect(statement).not.toMatch(/INSERT INTO [^(]+\(\s*id\b/i);
+
+    await expect(createPostgresCatalogDatabase(sqlClient).insertRecords!(catalogRecords(CATALOG_INSERT_BATCH_SIZE + 1)))
+      .rejects.toThrow("INSERT_BATCH_SIZE_INVALID");
+    expect(sqlClient.unsafe).toHaveBeenCalledOnce();
+  });
+
+  it.each([
+    ["missing", "missing", "INSERT_RETURNING_COUNT_MISMATCH"],
+    ["duplicate source identity", "duplicate-source", "INSERT_RETURNING_DUPLICATE_SOURCE_IDENTITY"],
+    ["unexpected source identity", "unexpected-source", "INSERT_RETURNING_SOURCE_IDENTITY_MISMATCH"],
+  ] as const)("rolls back when RETURNING has %s", async (_case, returningRows, code) => {
+    const mock = memoryDatabase(snapshot(), { returningRows });
+    await expect(runApply(mock.database, catalogValidation(catalogRecords(2)))).rejects.toThrow(code);
+    expect((await mock.database.readState()).importedRows).toEqual([]);
+  });
+
+  it("rejects generated IDs at or below the starter range and duplicate generated IDs", async () => {
+    for (const returningRows of [
+      "starter-id",
+      "duplicate-id",
+    ] as const) {
+      const mock = memoryDatabase(snapshot(), { returningRows });
+      await expect(runApply(mock.database, catalogValidation(catalogRecords(2))))
+        .rejects.toThrow(/IMPORTED_ID_COLLIDES_WITH_STARTER|INSERT_RETURNING_DUPLICATE_ID/);
+      expect((await mock.database.readState()).importedRows).toEqual([]);
+    }
+  });
+
+  it("fails the transaction on a failed batch and does not commit an earlier batch", async () => {
+    const mock = memoryDatabase(snapshot(), { failBatchNumber: 2 });
+
+    await expect(runApply(mock.database, catalogValidation(catalogRecords(201))))
+      .rejects.toThrow("SYNTHETIC_BATCH_FAILURE");
+
+    expect(mock.batchInsert).toHaveBeenCalledTimes(2);
+    expect((await mock.database.readState()).importedRows).toEqual([]);
+    expect(mock.mutationOrder).not.toContain("TOPIC_SYNC");
+  });
+
+  it("synchronizes topic memberships only after all insert and update work", async () => {
+    const records = catalogRecords(2);
+    const existing = { ...rowFromRecord(31, records[0]!, false), definition_en: "old definition" };
+    const mock = memoryDatabase(snapshot([existing]));
+
+    await runApply(mock.database, catalogValidation(records));
+
+    expect(mock.mutationOrder).toEqual(["UPDATE:1000", "INSERT_BATCH:1", "TOPIC_SYNC"]);
+  });
+
   it("preserves progress/review counts and starter rows during apply", async () => {
     const validation = validateCatalogRecords([sourceRecord(1)], mediaIndex());
     const mock = memoryDatabase(snapshot());
@@ -262,6 +426,43 @@ describe("US-25 catalog planning and mutation safety", () => {
     expect(after.starterRows.map((row) => [row.id, row.word])).toEqual([[1, "apple"], [30, "new"]]);
     expect(after.learnerProgressCount).toBe(4);
     expect(after.reviewEventCount).toBe(7);
+  });
+
+  it.each([
+    ["starter rows", "STARTER_ROWS_CHANGED", (state: CatalogDatabaseSnapshot) => { state.starterRows[0]!.word = "changed"; }],
+    ["learner progress", "LEARNER_PROGRESS_CHANGED", (state: CatalogDatabaseSnapshot) => { state.learnerProgressCount += 1; }],
+    ["review events", "REVIEW_EVENTS_CHANGED", (state: CatalogDatabaseSnapshot) => { state.reviewEventCount += 1; }],
+    ["enabled new imported row", "IMPORTED_ROW_ENABLED_UNEXPECTED", (state: CatalogDatabaseSnapshot) => { state.importedRows[0]!.enabled = true; }],
+  ])("rolls back if post-apply %s invariant changes", async (_case, code, changeState) => {
+    const mock = memoryDatabase(snapshot(), { afterApply: changeState });
+    await expect(runApply(mock.database, catalogValidation(catalogRecords(1)))).rejects.toThrow(code);
+    expect((await mock.database.readState()).importedRows).toEqual([]);
+  });
+
+  it("rejects duplicate imported source identities already present in the database", async () => {
+    const record = catalogRecords(1)[0]!;
+    const duplicate = rowFromRecord(32, record);
+    const mock = memoryDatabase(snapshot([rowFromRecord(31, record), duplicate]));
+
+    await expect(runApply(mock.database, catalogValidation([record]))).rejects.toThrow("DATABASE_DUPLICATE_SOURCE_ID");
+    expect(mock.batchInsert).not.toHaveBeenCalled();
+  });
+
+  it("reports safe operational connection codes without serializing error details", () => {
+    const host = "production-pooler-host.neon.tech";
+    const url = `postgresql://user:password@${host}:5432/database`;
+    const apiKey = "napi_synthetic-secret-api-key";
+    const error = Object.assign(new Error(`write CONNECTION_CLOSED ${url} ${apiKey}`), { code: "CONNECTION_CLOSED" });
+
+    const report = renderCatalogImportFailure(error);
+
+    expect(report).toBe("CATALOG_IMPORT_STATUS=FAIL code=CONNECTION_CLOSED");
+    expect(report).not.toContain(host);
+    expect(report).not.toContain(url);
+    expect(report).not.toContain("password");
+    expect(report).not.toContain(apiKey);
+    expect(renderCatalogImportFailure(Object.assign(new Error("unsafe detail"), { code: "42501" })))
+      .toBe("CATALOG_IMPORT_STATUS=FAIL code=UNEXPECTED_ERROR");
   });
 
   it("preserves US-41 owner overrides while refreshing raw catalog content", async () => {

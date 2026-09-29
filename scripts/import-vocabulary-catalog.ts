@@ -23,6 +23,18 @@ import type { NeonApiClient } from "./neon-target-verifier";
 
 export const SOURCE_DATASET_ID = "2000_COMMON_ENGLISH_VOCABULARY_V1";
 export const STARTER_ID_MAX = 30;
+export const CATALOG_INSERT_BATCH_SIZE = 200;
+
+const SAFE_OPERATIONAL_ERROR_CODES = new Set([
+  "CONNECTION_CLOSED",
+  "CONNECT_TIMEOUT",
+  "CONNECTION_TIMEOUT",
+  "SOCKET_TIMEOUT",
+  "ECONNRESET",
+  "ECONNREFUSED",
+  "ETIMEDOUT",
+  "EPIPE",
+]);
 
 const VOCABULARY_TABLE = `"${APP_SCHEMA}"."vocabularies"`;
 const PROGRESS_TABLE = `"${APP_SCHEMA}"."learner_progress"`;
@@ -117,6 +129,19 @@ export class CatalogImportError extends Error {
   }
 }
 
+export function catalogImportFailureCode(error: unknown): string {
+  if (error instanceof CatalogImportError) return error.code;
+  if (typeof error !== "object" || error === null || !("code" in error)) return "UNEXPECTED_ERROR";
+  const code = (error as { code?: unknown }).code;
+  return typeof code === "string" && SAFE_OPERATIONAL_ERROR_CODES.has(code)
+    ? code
+    : "UNEXPECTED_ERROR";
+}
+
+export function renderCatalogImportFailure(error: unknown) {
+  return `CATALOG_IMPORT_STATUS=FAIL code=${catalogImportFailureCode(error)}`;
+}
+
 type MediaManifestRecord = {
   vocabularyId: number;
   word: string;
@@ -140,13 +165,20 @@ type SqlTag = {
     strings: TemplateStringsArray,
     ...values: unknown[]
   ): Promise<T[]>;
-  unsafe: (value: string) => unknown;
+  unsafe: (value: string, parameters?: unknown[]) => unknown;
   begin: <T>(operation: (transaction: SqlTag) => Promise<T>) => Promise<T>;
+};
+
+export type CatalogInsertResult = {
+  id: number;
+  source_dataset: string;
+  source_record_id: number;
 };
 
 export type CatalogTransaction = {
   readState: () => Promise<CatalogDatabaseSnapshot>;
   insertRecord: (record: CatalogRecord) => Promise<number>;
+  insertRecords?: (records: readonly CatalogRecord[]) => Promise<CatalogInsertResult[]>;
   updateRecord: (record: CatalogRecord, existing: CatalogRow, nextContentVersion: number) => Promise<number>;
   syncTopicMemberships?: () => Promise<void>;
 };
@@ -498,6 +530,54 @@ function rowFromDatabase(row: Record<string, unknown>): CatalogRow {
   };
 }
 
+function sourceIdentityKey(sourceDataset: string, sourceRecordId: number) {
+  return `${sourceDataset}\u0000${sourceRecordId}`;
+}
+
+function validateInsertReturningRows(
+  records: readonly CatalogRecord[],
+  rows: readonly Record<string, unknown>[],
+): CatalogInsertResult[] {
+  if (rows.length !== records.length) throw new CatalogImportError("INSERT_RETURNING_COUNT_MISMATCH");
+
+  const expected = new Map<string, CatalogRecord>();
+  for (const record of records) {
+    const key = sourceIdentityKey(record.sourceDataset, record.sourceRecordId);
+    if (expected.has(key)) throw new CatalogImportError("INSERT_SOURCE_IDENTITY_DUPLICATE");
+    expected.set(key, record);
+  }
+
+  const returned = new Map<string, CatalogInsertResult>();
+  const generatedIds = new Set<number>();
+  for (const row of rows) {
+    const id = safeCount(row.id);
+    const sourceRecordId = safeCount(row.source_record_id);
+    const sourceDataset = typeof row.source_dataset === "string" ? row.source_dataset : "";
+    const key = sourceIdentityKey(sourceDataset, sourceRecordId);
+    if (!expected.has(key)) throw new CatalogImportError("INSERT_RETURNING_SOURCE_IDENTITY_MISMATCH");
+    if (returned.has(key)) throw new CatalogImportError("INSERT_RETURNING_DUPLICATE_SOURCE_IDENTITY");
+    if (id <= STARTER_ID_MAX) throw new CatalogImportError("IMPORTED_ID_COLLIDES_WITH_STARTER");
+    if (generatedIds.has(id)) throw new CatalogImportError("INSERT_RETURNING_DUPLICATE_ID");
+    returned.set(key, { id, source_dataset: sourceDataset, source_record_id: sourceRecordId });
+    generatedIds.add(id);
+  }
+
+  if (returned.size !== expected.size) throw new CatalogImportError("INSERT_RETURNING_SOURCE_IDENTITY_MISSING");
+  return records.map((record) => returned.get(sourceIdentityKey(record.sourceDataset, record.sourceRecordId))!);
+}
+
+function validateFallbackGeneratedIds(records: readonly CatalogRecord[], ids: readonly number[]) {
+  if (ids.length !== records.length) throw new CatalogImportError("INSERT_RETURNING_COUNT_MISMATCH");
+  const seen = new Set<number>();
+  for (const id of ids) {
+    if (!Number.isSafeInteger(id) || id <= STARTER_ID_MAX) {
+      throw new CatalogImportError("IMPORTED_ID_COLLIDES_WITH_STARTER");
+    }
+    if (seen.has(id)) throw new CatalogImportError("INSERT_RETURNING_DUPLICATE_ID");
+    seen.add(id);
+  }
+}
+
 async function stateFromSql(sqlClient: SqlTag): Promise<CatalogDatabaseSnapshot> {
   const [columns] = await sqlClient<{ source_dataset_exists: boolean; source_record_id_exists: boolean }>`
     SELECT
@@ -557,6 +637,40 @@ function transactionForSql(sqlClient: SqlTag): CatalogTransaction {
       const id = safeCount(row?.id);
       if (id <= STARTER_ID_MAX) throw new CatalogImportError("IMPORTED_ID_COLLIDES_WITH_STARTER");
       return id;
+    },
+    insertRecords: async (records) => {
+      if (records.length === 0) return [];
+      if (records.length > CATALOG_INSERT_BATCH_SIZE) {
+        throw new CatalogImportError("INSERT_BATCH_SIZE_INVALID");
+      }
+
+      const parameters = records.flatMap((record) => [
+        record.word,
+        record.ipa,
+        record.vietnamese,
+        record.definitionEn,
+        record.exampleEn,
+        record.imageUrl,
+        record.audioUrl,
+        record.topic,
+        record.sourceDataset,
+        record.sourceRecordId,
+      ]);
+      let parameterIndex = 0;
+      const values = records.map(() => {
+        const fields = Array.from({ length: 8 }, () => `$${++parameterIndex}`);
+        fields.push("false", "1", `$${++parameterIndex}`, `$${++parameterIndex}`);
+        return `(${fields.join(", ")})`;
+      });
+      const statement = `
+        INSERT INTO ${VOCABULARY_TABLE}
+          (word, ipa, vietnamese, definition_en, example_en, image_url, audio_url, topic,
+           enabled, content_version, source_dataset, source_record_id)
+        VALUES ${values.join(", ")}
+        RETURNING id, source_dataset, source_record_id
+      `;
+      const rows = await sqlClient.unsafe(statement, parameters) as Array<Record<string, unknown>>;
+      return validateInsertReturningRows(records, rows);
     },
     updateRecord: async (record, existing, nextContentVersion) => {
       const rows = await sqlClient<{ id: number }>`
@@ -622,10 +736,29 @@ export async function runApply(
     const before = await transaction.readState();
     if (!before.schemaReady) throw new CatalogImportError("CATALOG_SCHEMA_NOT_READY");
     const plan = buildCatalogPlan(validation, before);
+    const pendingInserts: CatalogRecord[] = [];
+    const flushInserts = async () => {
+      if (pendingInserts.length === 0) return;
+      const records = pendingInserts.splice(0, pendingInserts.length);
+      if (transaction.insertRecords) {
+        validateInsertReturningRows(records, await transaction.insertRecords(records));
+        return;
+      }
+      const ids: number[] = [];
+      for (const record of records) ids.push(await transaction.insertRecord(record));
+      validateFallbackGeneratedIds(records, ids);
+    };
+
     for (const entry of plan.entries) {
-      if (entry.action === "INSERT") await transaction.insertRecord(entry.record);
-      if (entry.action === "UPDATE") await transaction.updateRecord(entry.record, entry.existing, entry.nextContentVersion);
+      if (entry.action === "INSERT") {
+        pendingInserts.push(entry.record);
+        if (pendingInserts.length === CATALOG_INSERT_BATCH_SIZE) await flushInserts();
+      } else if (entry.action === "UPDATE") {
+        await flushInserts();
+        await transaction.updateRecord(entry.record, entry.existing, entry.nextContentVersion);
+      }
     }
+    await flushInserts();
     await transaction.syncTopicMemberships?.();
     const after = await transaction.readState();
     if (after.learnerProgressCount !== before.learnerProgressCount) throw new CatalogImportError("LEARNER_PROGRESS_CHANGED");
@@ -807,7 +940,7 @@ async function main() {
 const invokedScript = process.argv[1]?.replaceAll("\\", "/") ?? "";
 if (invokedScript.endsWith("/import-vocabulary-catalog.ts") || invokedScript.endsWith("/import-vocabulary-catalog.js")) {
   main().catch((error: unknown) => {
-    console.error(error instanceof CatalogImportError ? `CATALOG_IMPORT_STATUS=FAIL code=${error.code}` : "CATALOG_IMPORT_STATUS=FAIL code=UNEXPECTED_ERROR");
+    console.error(renderCatalogImportFailure(error));
     process.exitCode = 1;
   });
 }

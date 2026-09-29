@@ -142,7 +142,38 @@ function fakeSql(options: { wrongIdentity?: boolean } = {}) {
     return Promise.resolve([]);
   }) as unknown as ReturnType<typeof openSql>;
   Object.assign(query, {
-    unsafe: (value: string) => value,
+    unsafe: (value: string, parameters?: unknown[]) => {
+      if (!parameters) return value;
+      const statement = value.replace(/\s+/g, " ").trim();
+      statements.push(statement);
+      if (!/^INSERT INTO/i.test(statement) || !statement.includes('"vocabflow_app"."vocabularies"')) {
+        throw new Error("UNEXPECTED_UNSAFE_QUERY");
+      }
+      const inserted = [];
+      for (let offset = 0; offset < parameters.length; offset += 10) {
+        const sourceDataset = String(parameters[offset + 8]);
+        const sourceRecordId = Number(parameters[offset + 9]);
+        const id = 31 + importedRows.length;
+        const row = {
+          ...sourceRow(id, String(parameters[offset]), sourceRecordId),
+          ipa: parameters[offset + 1] as string | null,
+          vietnamese: String(parameters[offset + 2]),
+          definition_en: parameters[offset + 3] as string | null,
+          example_en: parameters[offset + 4] as string | null,
+          image_url: parameters[offset + 5] as string | null,
+          audio_url: parameters[offset + 6] as string | null,
+          topic: parameters[offset + 7] as string | null,
+          source_dataset: sourceDataset,
+          source_record_id: sourceRecordId,
+          enabled: false,
+          content_version: 1,
+        };
+        importedRows.push(row);
+        inserted.push({ id, source_dataset: sourceDataset, source_record_id: sourceRecordId });
+      }
+      mutations.push("INSERT vocabulary batch");
+      return Promise.resolve(inserted);
+    },
     array: (values: unknown[]) => values,
     begin: async <T>(operation: (transaction: ReturnType<typeof openSql>) => Promise<T>) => operation(query),
     end: vi.fn(async () => undefined),
@@ -298,7 +329,7 @@ describe("production vocab:import-catalog operator path", () => {
     });
 
     expect(neon.getConnectionUri).toHaveBeenCalledWith(expect.objectContaining({ roleName: "vocabflow_runtime" }));
-    expect(database.mutations).toEqual(["INSERT vocabulary", "SYNC vocabulary topics", "SYNC vocabulary topics"]);
+    expect(database.mutations).toEqual(["INSERT vocabulary batch", "SYNC vocabulary topics", "SYNC vocabulary topics"]);
     expect(database.statements.some((statement) => statement.includes("false, 1"))).toBe(true);
     expect(plan.insertCount).toBe(1);
     expect(renderReport(plan, true)).toContain("DATABASE_MUTATIONS=1");
