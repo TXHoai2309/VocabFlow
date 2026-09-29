@@ -42,3 +42,6 @@ data/raw/
 
 # Prevent DOCX accidentally being placed/tracked at repo root.
 /*.docx
+
+.vercel
+.env*

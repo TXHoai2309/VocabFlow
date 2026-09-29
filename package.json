@@ -7,7 +7,8 @@
     "node": "22.23.2"
   },
   "scripts": {
-    "dev": "vercel dev --listen 3000",
+    "dev": "pnpm dev:web",
+    "dev:vercel": "vercel dev --local --listen 3000",
     "dev:web": "vite --config apps/web/vite.config.mts --host 127.0.0.1",
     "build:workspace-packages": "tsc -p packages/contracts/tsconfig.build.json && esbuild packages/contracts/src/index.ts --format=cjs --platform=node --target=node22 --outfile=packages/contracts/dist/index.cjs && tsc -p packages/learning-domain/tsconfig.build.json && esbuild packages/learning-domain/src/index.ts --format=cjs --platform=node --target=node22 --outfile=packages/learning-domain/dist/index.cjs",
     "build:api-runtime": "vite build --config apps/api/vite.config.mts && tsc -p apps/api/tsconfig.runtime-build.json",

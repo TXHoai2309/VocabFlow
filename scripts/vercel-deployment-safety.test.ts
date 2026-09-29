@@ -18,6 +18,17 @@ afterEach(() => {
 });
 
 describe("Vercel release deployment guards", () => {
+  it("keeps local frontend and Vercel full-stack development commands separate", () => {
+    const packageJson = JSON.parse(readFileSync(resolve("package.json"), "utf8")) as {
+      scripts: Record<string, string>;
+    };
+
+    expect(packageJson.scripts.dev).toBe("pnpm dev:web");
+    expect(packageJson.scripts["dev:web"]).toContain("vite --config apps/web/vite.config.mts");
+    expect(packageJson.scripts["dev:vercel"]).toBe("vercel dev --local --listen 3000");
+    expect(packageJson.scripts.dev).not.toContain("vercel dev");
+  });
+
   it("uses explicit preview and production CLI targets without implicit production", () => {
     expect(vercelDeployCommandPlan("preview")).toEqual([
       ["pull", "--yes", "--environment=preview"],
@@ -87,7 +98,7 @@ describe("Vercel release deployment guards", () => {
       .toThrow("BUILD_ARTIFACT_SECURITY_CHECK_FAILED");
   });
 
-  it("defines repository-root Vite output and excludes API paths from the SPA rewrite", () => {
+  it("defines repository-root Vite output and excludes API paths and assets from the SPA rewrite", () => {
     const config = JSON.parse(readFileSync(resolve("vercel.json"), "utf8")) as {
       framework: string;
       installCommand: string;
@@ -100,13 +111,16 @@ describe("Vercel release deployment guards", () => {
       framework: "vite",
       installCommand: "pnpm install --frozen-lockfile",
       buildCommand: "pnpm build:production",
-      devCommand: "pnpm dev:web",
+      devCommand: "pnpm dev:web --port $PORT",
       outputDirectory: "dist/client",
     });
     const fallback = new RegExp(`^${config.rewrites[2]?.source}$`);
     expect(config.rewrites[2]?.destination).toBe("/index.html");
     expect(fallback.test("/")).toBe(true);
     expect(fallback.test("/study/exercises")).toBe(true);
+    expect(fallback.test("/src/main.tsx")).toBe(false);
+    expect(fallback.test("/@vite/client")).toBe(false);
+    expect(fallback.test("/@react-refresh")).toBe(false);
     expect(fallback.test("/api")).toBe(false);
     expect(fallback.test("/api/health")).toBe(false);
     expect(config).not.toHaveProperty("routes");
@@ -120,7 +134,7 @@ describe("Vercel release deployment guards", () => {
         destination: "/api/handler?__vocabflow_path=/api/:__vocabflow_route*",
       },
       {
-        source: "/((?!api(?:/|$)).*)",
+        source: "/((?!api(?:/|$)|@|.*\\.[^/]+$).*)",
         destination: "/index.html",
       },
     ]);

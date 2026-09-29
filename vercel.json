@@ -3,7 +3,7 @@
   "framework": "vite",
   "installCommand": "pnpm install --frozen-lockfile",
   "buildCommand": "pnpm build:production",
-  "devCommand": "pnpm dev:web",
+  "devCommand": "pnpm dev:web --port $PORT",
   "outputDirectory": "dist/client",
   "rewrites": [
     {
@@ -15,7 +15,7 @@
       "destination": "/api/handler?__vocabflow_path=/api/:__vocabflow_route*"
     },
     {
-      "source": "/((?!api(?:/|$)).*)",
+      "source": "/((?!api(?:/|$)|@|.*\\.[^/]+$).*)",
       "destination": "/index.html"
     }
   ]
