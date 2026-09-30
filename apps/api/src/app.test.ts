@@ -83,6 +83,10 @@ describe("foundation API routes", () => {
     const forwardedRequest = authRequestHandler.mock.calls[0]?.[0];
     expect(forwardedRequest?.url).toBe(`http://localhost${path}`);
     expect(forwardedRequest?.method).toBe(method);
+    const timing = response.headers.get("Server-Timing");
+    expect(timing).toMatch(/auth_init;dur=\d+\.\d+, auth_handler;dur=\d+\.\d+, total;dur=\d+\.\d+/);
+    expect(timing).not.toContain("fixture-only");
+    expect(timing).not.toContain("fixture@example.test");
     if (body) await expect(forwardedRequest?.text()).resolves.toBe(body);
   });
 

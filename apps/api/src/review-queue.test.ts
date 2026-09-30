@@ -91,14 +91,24 @@ describe("US-08 review queue API boundary", () => {
       }]
     } satisfies ReviewQueueResponse;
     const service = { list: vi.fn(async () => queue) };
-    const app = createApp({ readSession: async () => ({ user: { id: "parent-1" } }), reviewQueueService: service });
+    const readSession = vi.fn(async (_request: Request, _env: unknown, timings?: { authInitMs?: number; authGetSessionMs?: number }) => {
+      if (timings) {
+        timings.authInitMs = 12.3;
+        timings.authGetSessionMs = 845.6;
+      }
+      return { user: { id: "parent-1" } };
+    });
+    const app = createApp({
+      readSession,
+      reviewQueueService: service
+    });
     const response = await app.request(`http://localhost/api/learners/${learnerId}/review-queue`);
 
     expect(response.status).toBe(200);
     expect(await response.json()).toEqual(queue);
     expect(service.list).toHaveBeenCalledWith("parent-1", learnerId, expect.any(Object));
     const timing = response.headers.get("Server-Timing");
-    expect(timing).toMatch(/auth;dur=\d+\.\d+, authorization;dur=\d+\.\d+, db;dur=\d+\.\d+, total;dur=\d+\.\d+/);
+    expect(timing).toMatch(/auth_init;dur=12\.3, auth_get_session;dur=845\.6, auth;dur=\d+\.\d+, authorization;dur=\d+\.\d+, db;dur=\d+\.\d+, total;dur=\d+\.\d+/);
     expect(timing).not.toContain(learnerId);
     expect(timing).not.toContain("parent-1");
     expect(timing).not.toContain("secret");

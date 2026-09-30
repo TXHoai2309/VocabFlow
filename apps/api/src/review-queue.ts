@@ -23,6 +23,8 @@ export type ReviewQueueTimings = {
 };
 
 export function renderReviewQueueServerTiming(timings: {
+  authInitMs?: number;
+  authGetSessionMs?: number;
   authMs: number;
   authorizationMs: number;
   databaseMs: number;
@@ -30,6 +32,8 @@ export function renderReviewQueueServerTiming(timings: {
 }): string {
   const duration = (value: number) => (Number.isFinite(value) ? Math.max(0, value) : 0).toFixed(1);
   return [
+    `auth_init;dur=${duration(timings.authInitMs ?? 0)}`,
+    `auth_get_session;dur=${duration(timings.authGetSessionMs ?? 0)}`,
     `auth;dur=${duration(timings.authMs)}`,
     `authorization;dur=${duration(timings.authorizationMs)}`,
     `db;dur=${duration(timings.databaseMs)}`,

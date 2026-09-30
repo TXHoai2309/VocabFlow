@@ -43,7 +43,8 @@ import {
 } from "./reset-learner-progress";
 
 type AuthenticatedSession = { user: { id: string } };
-type SessionReader = (request: Request, env: RuntimeBindings) => Promise<AuthenticatedSession | null>;
+type AuthSessionTimings = { authInitMs?: number; authGetSessionMs?: number };
+type SessionReader = (request: Request, env: RuntimeBindings, timings?: AuthSessionTimings) => Promise<AuthenticatedSession | null>;
 type BootstrapRunner = (userId: string, env: RuntimeBindings) => Promise<HouseholdBootstrapResponse["household"]>;
 type AuthRequestHandler = (request: Request, env: RuntimeBindings) => Promise<Response>;
 
@@ -69,12 +70,23 @@ export type AppDependencies = {
 
 const SAFE_BOOTSTRAP_ERROR = "Không thể hoàn tất thiết lập gia đình. Vui lòng thử lại.";
 
-async function readAuthenticatedSession(request: Request, env: RuntimeBindings) {
+async function readAuthenticatedSession(request: Request, env: RuntimeBindings, timings?: AuthSessionTimings) {
   if (!env.DATABASE_URL || !env.BETTER_AUTH_SECRET) {
     throw new Error("AUTH_SERVICE_NOT_CONFIGURED");
   }
-  const auth = createAuth(env.DATABASE_URL, env.BETTER_AUTH_SECRET, env);
-  return auth.api.getSession({ headers: request.headers });
+  const authInitStarted = performance.now();
+  let auth: ReturnType<typeof createAuth>;
+  try {
+    auth = createAuth(env.DATABASE_URL, env.BETTER_AUTH_SECRET, env);
+  } finally {
+    if (timings) timings.authInitMs = performance.now() - authInitStarted;
+  }
+  const getSessionStarted = performance.now();
+  try {
+    return await auth.api.getSession({ headers: request.headers });
+  } finally {
+    if (timings) timings.authGetSessionMs = performance.now() - getSessionStarted;
+  }
 }
 
 async function runBootstrap(userId: string, env: RuntimeBindings) {
@@ -203,14 +215,50 @@ export function createApp(dependencies: AppDependencies = {}) {
     if (!c.env?.DATABASE_URL || !c.env.BETTER_AUTH_SECRET) {
       return c.json({ error: { code: "INTERNAL_ERROR", message: "Authentication service is not configured." } }, 503);
     }
+    const authRequestStarted = performance.now();
+    let authInitMs = 0;
+    let authHandlerStarted = authRequestStarted;
+    let authHandlerMs = 0;
+    const withAuthTiming = (response: Response) => {
+      const timedResponse = new Response(response.body, response);
+      const duration = (value: number) => (Number.isFinite(value) ? Math.max(0, value) : 0).toFixed(1);
+      timedResponse.headers.set("Server-Timing", [
+        `auth_init;dur=${duration(authInitMs)}`,
+        `auth_handler;dur=${duration(authHandlerMs)}`,
+        `total;dur=${duration(performance.now() - authRequestStarted)}`
+      ].join(", "));
+      return timedResponse;
+    };
     try {
+      let response: Response;
       if (dependencies.authRequestHandler) {
-        return await dependencies.authRequestHandler(c.req.raw, c.env);
+        authHandlerStarted = performance.now();
+        try {
+          response = await dependencies.authRequestHandler(c.req.raw, c.env);
+        } finally {
+          authHandlerMs = performance.now() - authHandlerStarted;
+        }
+      } else {
+        const authInitStarted = performance.now();
+        let auth: ReturnType<typeof createAuth>;
+        try {
+          auth = createAuth(c.env.DATABASE_URL, c.env.BETTER_AUTH_SECRET, c.env);
+        } finally {
+          authInitMs = performance.now() - authInitStarted;
+        }
+        authHandlerStarted = performance.now();
+        try {
+          response = await auth.handler(c.req.raw);
+        } finally {
+          authHandlerMs = performance.now() - authHandlerStarted;
+        }
       }
-      const auth = createAuth(c.env.DATABASE_URL, c.env.BETTER_AUTH_SECRET, c.env);
-      return await auth.handler(c.req.raw);
+      return withAuthTiming(response);
     } catch {
-      return c.json({ error: { code: "INTERNAL_ERROR", message: "Authentication service is not configured." } }, 503);
+      if (authHandlerMs === 0 && authHandlerStarted !== authRequestStarted) {
+        authHandlerMs = performance.now() - authHandlerStarted;
+      }
+      return withAuthTiming(c.json({ error: { code: "INTERNAL_ERROR", message: "Authentication service is not configured." } }, 503));
     }
   });
 
@@ -524,8 +572,11 @@ export function createApp(dependencies: AppDependencies = {}) {
   application.get("/api/learners/:learnerId/review-queue", async (c) => {
     const requestStarted = performance.now();
     const timings: ReviewQueueTimings & { authMs: number } = { authMs: 0, authorizationMs: 0, databaseMs: 0 };
+    const authSessionTimings: AuthSessionTimings = {};
     const withTiming = (response: Response) => {
       response.headers.set("Server-Timing", renderReviewQueueServerTiming({
+        authInitMs: authSessionTimings.authInitMs,
+        authGetSessionMs: authSessionTimings.authGetSessionMs,
         authMs: timings.authMs,
         authorizationMs: timings.authorizationMs ?? 0,
         databaseMs: timings.databaseMs ?? 0,
@@ -537,7 +588,7 @@ export function createApp(dependencies: AppDependencies = {}) {
       const authStarted = performance.now();
       let session: AuthenticatedSession | null;
       try {
-        session = await readSession(c.req.raw, c.env);
+        session = await readSession(c.req.raw, c.env, authSessionTimings);
       } finally {
         timings.authMs = performance.now() - authStarted;
       }
