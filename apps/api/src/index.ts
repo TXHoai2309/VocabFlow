@@ -534,20 +534,39 @@ export function createApp(dependencies: AppDependencies = {}) {
   });
 
   application.post("/api/reviews", async (c) => {
+    const requestStarted = performance.now();
+    const timings = { authorizationMs: 0, databaseMs: 0 };
+    const authSessionTimings: AuthSessionTimings = {};
+    let authMs = 0;
+    const withTiming = (response: Response) => {
+      response.headers.set("Server-Timing", renderReviewQueueServerTiming({
+        ...authSessionTimings,
+        authMs,
+        ...timings,
+        totalMs: performance.now() - requestStarted
+      }));
+      return response;
+    };
     try {
-      const session = await readSession(c.req.raw, c.env);
+      const authStarted = performance.now();
+      let session: AuthenticatedSession | null;
+      try {
+        session = await readSession(c.req.raw, c.env, authSessionTimings);
+      } finally {
+        authMs = performance.now() - authStarted;
+      }
       if (!session?.user?.id) {
-        return c.json(errorEnvelope("UNAUTHORIZED", "Đăng nhập để tiếp tục."), 401);
+        return withTiming(c.json(errorEnvelope("UNAUTHORIZED", "Đăng nhập để tiếp tục."), 401));
       }
       let payload: unknown;
       try {
         payload = await c.req.json();
       } catch {
-        return c.json(errorEnvelope("INVALID_REQUEST", "Dữ liệu gửi lên không hợp lệ."), 400);
+        return withTiming(c.json(errorEnvelope("INVALID_REQUEST", "Dữ liệu gửi lên không hợp lệ."), 400));
       }
       const service = dependencies.reviewService ?? await runReviewService(c.env);
-      const result = await service.write(session.user.id, payload);
-      return c.json(result.response, result.status);
+      const result = await service.write(session.user.id, payload, timings);
+      return withTiming(c.json(result.response, result.status));
     } catch (error) {
       if (error instanceof ReviewServiceError) {
         const message = error.code === "HOUSEHOLD_ACCESS_DENIED"
@@ -563,9 +582,9 @@ export function createApp(dependencies: AppDependencies = {}) {
                 : error.code === "INVALID_REQUEST"
                   ? "Dữ liệu gửi lên không hợp lệ."
                   : "Không thể lưu tiến trình lúc này. Vui lòng thử lại.";
-        return c.json(errorEnvelope(error.code, message, error.details), error.status);
+        return withTiming(c.json(errorEnvelope(error.code, message, error.details), error.status));
       }
-      return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể lưu tiến trình lúc này. Vui lòng thử lại."), 503);
+      return withTiming(c.json(errorEnvelope("INTERNAL_ERROR", "Không thể lưu tiến trình lúc này. Vui lòng thử lại."), 503));
     }
   });
 

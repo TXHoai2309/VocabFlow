@@ -1,4 +1,5 @@
 import { sql, type SQL } from "drizzle-orm";
+import { performance } from "node:perf_hooks";
 import {
   APP_SCHEMA,
   reviewRequestSchema,
@@ -586,7 +587,12 @@ async function classifyWriteRace(
 }
 
 export type ReviewService = {
-  write: (userId: string, payload: unknown) => Promise<ReviewWriteResult>;
+  write: (userId: string, payload: unknown, timings?: ReviewTimings) => Promise<ReviewWriteResult>;
+};
+
+export type ReviewTimings = {
+  authorizationMs?: number;
+  databaseMs?: number;
 };
 
 export function createReviewService(
@@ -597,19 +603,37 @@ export function createReviewService(
   const scheduler = options.scheduler ?? scheduleReview;
 
   return {
-    async write(userId, payload) {
+    async write(userId, payload, timings) {
       const input = parseReviewRequest(payload);
       if (!userId) throw new ReviewServiceError("HOUSEHOLD_ACCESS_DENIED", 403);
 
-      const ownership = await authorizeLearnerOwnership(database, userId, input.learnerId);
+      const authorizationStarted = performance.now();
+      let ownership: Awaited<ReturnType<typeof authorizeLearnerOwnership>>;
+      try {
+        ownership = await authorizeLearnerOwnership(database, userId, input.learnerId);
+      } finally {
+        if (timings) timings.authorizationMs = performance.now() - authorizationStarted;
+      }
       if (ownership.decision === "FORBIDDEN") {
         throw new ReviewServiceError("HOUSEHOLD_ACCESS_DENIED", 403);
       }
 
-      const target = await resolveVocabularyAndTimezone(database, ownership.householdId, input.vocabularyId);
+      // Sum post-authorization query durations, including write-race recovery.
+      // Delegation preserves SQL, query order and the existing atomic write.
+      const timedDatabase: ReviewDatabase = timings ? {
+        async execute(query) {
+          const started = performance.now();
+          try {
+            return await database.execute(query);
+          } finally {
+            timings.databaseMs = (timings.databaseMs ?? 0) + performance.now() - started;
+          }
+        }
+      } : database;
+      const target = await resolveVocabularyAndTimezone(timedDatabase, ownership.householdId, input.vocabularyId);
       const verifiedInput = deriveExerciseReviewRequest(input, target.vocabulary);
       const fingerprint = await createReviewFingerprint(verifiedInput);
-      const existing = await findReviewEvent(database, ownership.householdId, input.reviewId);
+      const existing = await findReviewEvent(timedDatabase, ownership.householdId, input.reviewId);
       if (existing) {
         if (existing.request_fingerprint !== fingerprint) {
           throw new ReviewServiceError("IDEMPOTENCY_CONFLICT", 409);
@@ -617,7 +641,7 @@ export function createReviewService(
         return { status: 200, response: storedResponse(existing.response_payload) };
       }
 
-      const current = await loadProgress(database, verifiedInput.learnerId, verifiedInput.vocabularyId);
+      const current = await loadProgress(timedDatabase, verifiedInput.learnerId, verifiedInput.vocabularyId);
       const currentRevision = current ? numberValue(current.revision) : 0;
       if (verifiedInput.expectedRevision !== currentRevision) throw staleRevision(currentRevision);
       if (verifiedInput.expectedRevision === Number.MAX_SAFE_INTEGER) throw internalFailure();
@@ -647,7 +671,7 @@ export function createReviewService(
       let persisted: AtomicWriteRow | undefined;
       try {
         persisted = await atomicPersist(
-          database,
+          timedDatabase,
           verifiedInput,
           ownership.householdId,
           fingerprint,
@@ -658,7 +682,7 @@ export function createReviewService(
         );
       } catch (error) {
         if (!isWriteRaceError(error)) throw error;
-        return classifyWriteRace(database, verifiedInput, ownership.householdId, fingerprint);
+        return classifyWriteRace(timedDatabase, verifiedInput, ownership.householdId, fingerprint);
       }
       if (persisted?.existing_fingerprint) {
         if (persisted.existing_fingerprint !== fingerprint) {
@@ -678,7 +702,7 @@ export function createReviewService(
         }
         return { status: 201, response };
       }
-      return classifyWriteRace(database, input, ownership.householdId, fingerprint);
+      return classifyWriteRace(timedDatabase, input, ownership.householdId, fingerprint);
     }
   };
 }

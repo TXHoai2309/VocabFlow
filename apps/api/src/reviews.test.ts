@@ -666,15 +666,38 @@ describe("POST /api/reviews route", () => {
       progress: { ...schedulerOutput, revision: 1 }
     };
     const successApp = createApp({
-      readSession: async () => ({ user: { id: USER_ID } }),
-      reviewService: { write: vi.fn(async () => ({ status: 201 as const, response: successResponse })) }
+      readSession: async (_request, _env, timings) => {
+        if (timings) {
+          timings.authInitMs = 1.2;
+          timings.authGetSessionMs = 1320.6;
+        }
+        return { user: { id: USER_ID } };
+      },
+      reviewService: {
+        write: vi.fn(async (_userId, _payload, timings) => {
+          if (timings) {
+            timings.authorizationMs = 212.3;
+            timings.databaseMs = 878.4;
+          }
+          return { status: 201 as const, response: successResponse };
+        })
+      }
     });
     const success = await successApp.request("http://localhost/api/reviews", {
       method: "POST",
-      headers: { "content-type": "application/json" },
+      headers: {
+        "content-type": "application/json",
+        cookie: "session=sensitive-session-token"
+      },
       body: JSON.stringify(request)
     });
     expect(success.status).toBe(201);
     expect(await success.json()).toEqual(successResponse);
+    const timing = success.headers.get("Server-Timing");
+    expect(timing).toMatch(/auth_init;dur=1\.2, auth_get_session;dur=1320\.6, auth;dur=\d+\.\d+, authorization;dur=212\.3, db;dur=878\.4, total;dur=\d+\.\d+/);
+    expect(timing).not.toContain(USER_ID);
+    expect(timing).not.toContain(LEARNER_ID);
+    expect(timing).not.toContain(REVIEW_ID);
+    expect(timing).not.toContain("sensitive-session-token");
   });
 });
