@@ -94,7 +94,7 @@ export function RegisterForm({ onValidSubmit, submitDisabled = false }: Register
       </div>
 
       <div className="field-group">
-        <label className="form-label" htmlFor="register-email">Email</label>
+        <label className="form-label" htmlFor="register-email">Địa chỉ email</label>
         <input
           id="register-email"
           name="email"

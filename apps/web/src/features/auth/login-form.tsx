@@ -76,7 +76,7 @@ export function LoginForm({ onValidSubmit, submitDisabled = false }: LoginFormPr
   return (
     <form className="register-form" noValidate onSubmit={handleSubmit} aria-busy={isSubmitting}>
       <div className="field-group">
-        <label className="form-label" htmlFor="login-email">Email</label>
+        <label className="form-label" htmlFor="login-email">Địa chỉ email</label>
         <input
           id="login-email"
           name="email"

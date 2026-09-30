@@ -160,11 +160,11 @@ describe("US-20 learner progress UI", () => {
 
     expect(await screen.findByTestId("progress-summary")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Tiến trình của An" })).toBeInTheDocument();
-    expect(metric("New")).toHaveTextContent("30");
-    expect(metric("Learning")).toHaveTextContent("2");
-    expect(metric("Mastered")).toHaveTextContent("3");
-    expect(metric("Due")).toHaveTextContent("4");
-    expect(metric("Learned")).toHaveTextContent("5");
+    expect(metric("Từ mới")).toHaveTextContent("30");
+    expect(metric("Đang học")).toHaveTextContent("2");
+    expect(metric("Đã thành thạo")).toHaveTextContent("3");
+    expect(metric("Cần ôn tập")).toHaveTextContent("4");
+    expect(metric("Đã học")).toHaveTextContent("5");
     expect(screen.getByTestId("daily-goal")).toHaveTextContent("7 / 10");
     expect(screen.getByTestId("streak-summary")).toHaveTextContent("0 ngày liên tiếp");
     expect(fetchMock).toHaveBeenCalledWith("/api/learners/" + learnerA.id + "/progress-summary", { credentials: "include" });
@@ -186,8 +186,8 @@ describe("US-20 learner progress UI", () => {
     renderProgress();
 
     expect(await screen.findByTestId("progress-empty-state")).toHaveTextContent("Chưa học từ nào");
-    expect(metric("New")).toHaveTextContent("30");
-    expect(metric("Learned")).toHaveTextContent("0");
+    expect(metric("Từ mới")).toHaveTextContent("30");
+    expect(metric("Đã học")).toHaveTextContent("0");
   });
 
   it("renders the seven local days and learner-scoped topic progress", async () => {
@@ -201,7 +201,9 @@ describe("US-20 learner progress UI", () => {
     expect(screen.getByTestId("topic-progress-list")).toHaveTextContent("Family");
     expect(requestProgressHistory).toHaveBeenCalledWith(learnerA.id, "2026-09-14", "2026-09-20");
     expect(requestTopicProgress).toHaveBeenCalledWith(learnerA.id);
-    expect(screen.getByTestId("xp-summary")).toHaveTextContent("100 XP");
+    expect(screen.getByTestId("xp-summary")).toHaveTextContent("Tổng điểm kinh nghiệm");
+    expect(screen.getByTestId("xp-summary")).toHaveTextContent("100");
+    expect(screen.getByTestId("xp-summary")).not.toHaveTextContent("XP");
     expect(screen.getByTestId("achievement-list")).toHaveTextContent("Đang khóa");
   });
 
@@ -246,10 +248,10 @@ describe("US-20 learner progress UI", () => {
     );
 
     expect(await screen.findByRole("heading", { name: "Tiến trình của An" })).toBeInTheDocument();
-    expect(metric("Learned")).toHaveTextContent("1");
+    expect(metric("Đã học")).toHaveTextContent("1");
     fireEvent.click(screen.getByRole("button", { name: "Switch learner" }));
     expect(await screen.findByRole("heading", { name: "Tiến trình của Bình" })).toBeInTheDocument();
-    await waitFor(() => expect(metric("Learned")).toHaveTextContent("9"));
+    await waitFor(() => expect(metric("Đã học")).toHaveTextContent("9"));
     expect(screen.queryByText("Tiến trình của An")).not.toBeInTheDocument();
     expect(fetchMock).toHaveBeenNthCalledWith(1, "/api/learners/" + learnerA.id + "/progress-summary", { credentials: "include" });
     expect(fetchMock).toHaveBeenNthCalledWith(3, "/api/learners/" + learnerB.id + "/progress-summary", { credentials: "include" });
@@ -275,21 +277,21 @@ describe("US-20 learner progress UI", () => {
     renderProgress();
 
     await screen.findByTestId("progress-summary");
-    fireEvent.click(screen.getByRole("button", { name: "Reset tiến trình" }));
-    expect(screen.getByRole("dialog")).toHaveTextContent("Reset tiến trình của An?");
-    expect(screen.getByRole("dialog")).toHaveTextContent("lịch sử review vẫn được giữ lại");
+    fireEvent.click(screen.getByRole("button", { name: "Đặt lại tiến trình" }));
+    expect(screen.getByRole("dialog")).toHaveTextContent("Đặt lại tiến trình của An?");
+    expect(screen.getByRole("dialog")).toHaveTextContent("lịch sử ôn tập vẫn được giữ lại");
     fireEvent.click(screen.getByRole("button", { name: "Hủy" }));
     expect(requestResetLearnerProgress).not.toHaveBeenCalled();
 
-    fireEvent.click(screen.getByRole("button", { name: "Reset tiến trình" }));
-    fireEvent.click(screen.getByRole("button", { name: "Xác nhận reset" }));
-    fireEvent.click(screen.getByRole("button", { name: "Đang reset…" }));
+    fireEvent.click(screen.getByRole("button", { name: "Đặt lại tiến trình" }));
+    fireEvent.click(screen.getByRole("button", { name: "Xác nhận đặt lại" }));
+    fireEvent.click(screen.getByRole("button", { name: "Đang đặt lại…" }));
     expect(requestResetLearnerProgress).toHaveBeenCalledTimes(1);
-    expect(screen.getByRole("button", { name: "Đang reset…" })).toBeDisabled();
+    expect(screen.getByRole("button", { name: "Đang đặt lại…" })).toBeDisabled();
     resolveReset(resetResponse);
 
     await waitFor(() => expect(screen.getByTestId("progress-empty-state")).toBeInTheDocument());
-    expect(screen.getByText("Đã reset tiến trình của An.")).toBeInTheDocument();
+    expect(screen.getByText("Đã đặt lại tiến trình của An.")).toBeInTheDocument();
     expect(fetchMock).toHaveBeenCalledTimes(4);
   });
 
@@ -300,11 +302,11 @@ describe("US-20 learner progress UI", () => {
     ));
     renderProgress();
     await screen.findByTestId("progress-summary");
-    fireEvent.click(screen.getByRole("button", { name: "Reset tiến trình" }));
-    fireEvent.click(screen.getByRole("button", { name: "Xác nhận reset" }));
+    fireEvent.click(screen.getByRole("button", { name: "Đặt lại tiến trình" }));
+    fireEvent.click(screen.getByRole("button", { name: "Xác nhận đặt lại" }));
 
-    expect(await screen.findByRole("alert")).toHaveTextContent("Không thể reset tiến trình lúc này. Vui lòng thử lại.");
+    expect(await screen.findByRole("alert")).toHaveTextContent("Không thể đặt lại tiến trình lúc này. Vui lòng thử lại.");
     expect(screen.getByRole("dialog")).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Xác nhận reset" })).toBeEnabled();
+    expect(screen.getByRole("button", { name: "Xác nhận đặt lại" })).toBeEnabled();
   });
 });

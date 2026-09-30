@@ -64,14 +64,14 @@ describe("application routing", () => {
 
   it("renders the nested foundation route", () => {
     render(<MemoryRouter initialEntries={["/foundation"]}><App /></MemoryRouter>);
-    expect(screen.getByRole("heading", { name: /foundation route is working/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Trang nền tảng đang hoạt động." })).toBeInTheDocument();
   });
 
   it("keeps the shared shell hidden while a protected route checks the session", () => {
     useSession.mockReturnValue({ data: null, isPending: true, error: null, refetch: vi.fn() });
     renderAppRoutes("/study");
 
-    expect(screen.getByText("Checking your session…")).toHaveAttribute("role", "status");
+    expect(screen.getByText("Đang kiểm tra phiên đăng nhập…")).toHaveAttribute("role", "status");
     expect(document.querySelector(".app-layout")).toBeNull();
   });
 
@@ -88,9 +88,9 @@ describe("application routing", () => {
     useSession.mockReturnValue({ data: null, isPending: false, error: new Error("session unavailable"), refetch });
     renderAppRoutes("/study");
 
-    expect(screen.getByRole("alert")).toHaveTextContent("We couldn’t verify your session");
+    expect(screen.getByRole("alert")).toHaveTextContent("Không thể xác minh phiên đăng nhập");
     expect(document.querySelector(".app-layout")).toBeNull();
-    fireEvent.click(screen.getByRole("button", { name: "Try again" }));
+    fireEvent.click(screen.getByRole("button", { name: "Thử lại" }));
     expect(refetch).toHaveBeenCalledOnce();
   });
 });
@@ -100,7 +100,7 @@ describe("register route", () => {
     render(<MemoryRouter initialEntries={["/register"]}><App /></MemoryRouter>);
     expect(screen.getByRole("heading", { name: "Tạo tài khoản" })).toBeInTheDocument();
     expect(screen.getByRole("textbox", { name: "Tên phụ huynh" })).toBeInTheDocument();
-    expect(screen.getByRole("textbox", { name: "Email" })).toBeInTheDocument();
+    expect(screen.getByRole("textbox", { name: "Địa chỉ email" })).toBeInTheDocument();
     expect(screen.getByLabelText("Mật khẩu")).toBeInTheDocument();
     expect(document.querySelector(".app-layout")).toBeNull();
   });
@@ -110,7 +110,7 @@ describe("login route", () => {
   it("renders the parent login screen without the shared app shell", () => {
     render(<MemoryRouter initialEntries={["/login"]}><App /></MemoryRouter>);
     expect(screen.getByRole("heading", { name: "Đăng nhập" })).toBeInTheDocument();
-    expect(screen.getByRole("textbox", { name: "Email" })).toBeInTheDocument();
+    expect(screen.getByRole("textbox", { name: "Địa chỉ email" })).toBeInTheDocument();
     expect(screen.getByLabelText("Mật khẩu")).toBeInTheDocument();
     expect(document.querySelector(".app-layout")).toBeNull();
   });
@@ -119,22 +119,22 @@ describe("login route", () => {
 describe("shared authenticated app shell", () => {
   it("renders the Home dashboard inside the shared shell", async () => {
     renderAppRoutes("/");
-    const dashboard = await screen.findByRole("main", { name: "Avery Nguyen learning dashboard" });
+    const dashboard = await screen.findByRole("main", { name: "Trang chủ học tập của Avery Nguyen" });
     expect(document.querySelector(".app-layout")?.contains(dashboard)).toBe(true);
     expect(document.querySelector(".app-parent-account strong")).toHaveTextContent("Jordan Nguyen");
-    expect(screen.getAllByRole("link", { name: "VocabFlow home" }).length).toBeGreaterThan(0);
-    expectActiveNav("Home");
+    expect(screen.getAllByRole("link", { name: "Trang chủ VocabFlow" }).length).toBeGreaterThan(0);
+    expectActiveNav("Trang chủ");
   });
 
   it.each([
-    ["/study", "Phiên học hôm nay", "Study"],
-    ["/study/exercises", "Phiên học hôm nay", "Study"],
-    ["/vocabulary", "Từ vựng của Avery Nguyen", "Vocabulary"],
-    ["/topics", "Học theo chủ đề", "Topics"],
-    ["/progress", "Tiến trình của Avery Nguyen", "Progress"],
-    ["/learning-sets", "Bộ từ vựng", "Learning Sets"],
-    ["/learning-sets/assign", "Bộ từ của Avery Nguyen", "Learning Sets"],
-    ["/learner-settings", "Cài đặt học của Avery Nguyen", "Settings"]
+    ["/study", "Phiên học hôm nay", "Học tập"],
+    ["/study/exercises", "Phiên học hôm nay", "Học tập"],
+    ["/vocabulary", "Từ vựng của Avery Nguyen", "Từ vựng"],
+    ["/topics", "Học theo chủ đề", "Chủ đề"],
+    ["/progress", "Tiến trình của Avery Nguyen", "Tiến trình"],
+    ["/learning-sets", "Bộ từ", "Bộ từ"],
+    ["/learning-sets/assign", "Bộ từ của Avery Nguyen", "Bộ từ"],
+    ["/learner-settings", "Cài đặt học của Avery Nguyen", "Cài đặt"]
   ] as const)("keeps %s inside the shared shell with %s active", async (path, heading, nav) => {
     renderAppRoutes(path);
     const pageHeading = await screen.findByRole("heading", { name: heading });
@@ -142,23 +142,23 @@ describe("shared authenticated app shell", () => {
     expectActiveNav(nav);
   });
 
-  it("activates Learning Sets on a learning-set detail route", async () => {
+  it("activates Bộ từ on a learning-set detail route", async () => {
     renderAppRoutes("/learning-sets/7");
     const detailState = await screen.findByRole("alert");
     expect(document.querySelector(".app-layout")?.contains(detailState)).toBe(true);
-    expectActiveNav("Learning Sets");
+    expectActiveNav("Bộ từ");
   });
 
   it("keeps a direct Learners visit visible after resolving one learner", async () => {
     renderAppRoutes("/learners", null);
     expect(await screen.findByTestId("learner-context-ready")).toHaveTextContent("Avery Nguyen");
     expect(screen.getByTestId("current-location")).toHaveTextContent("/learners");
-    expectActiveNav("Learners");
+    expectActiveNav("Người học");
   });
 
   it("returns a Home learner handoff without a redirect loop", async () => {
     renderAppRoutes("/", null);
-    expect(await screen.findByRole("main", { name: "Avery Nguyen learning dashboard" })).toBeInTheDocument();
+    expect(await screen.findByRole("main", { name: "Trang chủ học tập của Avery Nguyen" })).toBeInTheDocument();
     await waitFor(() => expect(screen.getByTestId("current-location")).toHaveTextContent("/"));
   });
 
@@ -166,22 +166,22 @@ describe("shared authenticated app shell", () => {
     renderAppRoutes("/learners");
     expect(await screen.findByRole("heading", { name: "Chọn người học" })).toBeInTheDocument();
     const shell = document.querySelector(".app-layout");
-    fireEvent.click(screen.getAllByRole("link", { name: "Vocabulary" })[0]!);
+    fireEvent.click(screen.getAllByRole("link", { name: "Từ vựng" })[0]!);
     expect(await screen.findByRole("heading", { name: "Từ vựng của Avery Nguyen" })).toBeInTheDocument();
     expect(document.querySelector(".app-layout")).toBe(shell);
-    expectActiveNav("Vocabulary");
+    expectActiveNav("Từ vựng");
   });
 
   it("opens and closes the compact mobile navigation after a route is chosen", async () => {
     renderAppRoutes("/learners");
     expect(await screen.findByRole("heading", { name: "Chọn người học" })).toBeInTheDocument();
-    const menuButton = screen.getByRole("button", { name: "Open navigation" });
+    const menuButton = screen.getByRole("button", { name: "Mở điều hướng" });
     fireEvent.click(menuButton);
     expect(menuButton).toHaveAttribute("aria-expanded", "true");
 
-    const studyLinks = screen.getAllByRole("link", { name: "Study" });
+    const studyLinks = screen.getAllByRole("link", { name: "Học tập" });
     fireEvent.click(studyLinks[studyLinks.length - 1]!);
     expect(await screen.findByRole("heading", { name: "Phiên học hôm nay" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Open navigation" })).toHaveAttribute("aria-expanded", "false");
+    expect(screen.getByRole("button", { name: "Mở điều hướng" })).toHaveAttribute("aria-expanded", "false");
   });
 });

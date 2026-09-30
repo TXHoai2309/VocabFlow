@@ -31,7 +31,7 @@ function bootstrapResponse(ok: boolean, payload: unknown = {
 }
 
 function fillValidForm() {
-  fireEvent.change(screen.getByLabelText("Email"), { target: { value: "parent@example.com" } });
+  fireEvent.change(screen.getByLabelText("Địa chỉ email"), { target: { value: "parent@example.com" } });
   fireEvent.change(screen.getByLabelText("Mật khẩu"), { target: { value: "secret" } });
   fireEvent.submit(screen.getByRole("button", { name: "Đăng nhập" }).closest("form")!);
 }
@@ -49,7 +49,7 @@ describe("LoginPage integration pipeline", () => {
     renderPage();
 
     expect(screen.getByRole("heading", { name: "Đăng nhập" })).toBeInTheDocument();
-    expect(screen.getByLabelText("Email")).toHaveAttribute("autocomplete", "email");
+    expect(screen.getByLabelText("Địa chỉ email")).toHaveAttribute("autocomplete", "email");
     expect(screen.getByLabelText("Mật khẩu")).toHaveAttribute("autocomplete", "current-password");
     expect(screen.getByRole("link", { name: "Tạo tài khoản" })).toHaveAttribute("href", "/register");
   });
@@ -81,7 +81,7 @@ describe("LoginPage integration pipeline", () => {
       credentials: "include",
       body: "{}"
     }));
-    expect(await screen.findByTestId("authenticated-household-ready")).toHaveTextContent("Household đã sẵn sàng.");
+    expect(await screen.findByTestId("authenticated-household-ready")).toHaveTextContent("Gia đình đã sẵn sàng.");
   });
 
   it("maps invalid credentials to a safe inline error", async () => {
@@ -91,7 +91,7 @@ describe("LoginPage integration pipeline", () => {
     fillValidForm();
 
     const alert = await screen.findByRole("alert");
-    expect(alert).toHaveTextContent("Email hoặc mật khẩu không đúng. Vui lòng thử lại.");
+    expect(alert).toHaveTextContent("Địa chỉ email hoặc mật khẩu không đúng. Vui lòng thử lại.");
     expect(alert).not.toHaveTextContent("secret provider detail");
     expect(fetch).not.toHaveBeenCalled();
   });
@@ -113,7 +113,7 @@ describe("LoginPage integration pipeline", () => {
     const alert = await screen.findByRole("alert");
     expect(alert).toHaveTextContent("Không thể đăng nhập lúc này. Vui lòng thử lại.");
     expect(alert).not.toHaveTextContent("secret stack trace");
-    expect(screen.getByLabelText("Email")).toHaveValue("parent@example.com");
+    expect(screen.getByLabelText("Địa chỉ email")).toHaveValue("parent@example.com");
   });
 
   it("retries bootstrap without repeating password submission", async () => {

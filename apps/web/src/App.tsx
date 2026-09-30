@@ -18,16 +18,16 @@ function Shell({ children }: { children: React.ReactNode }) {
   return (
     <div className="app-shell">
       <header className="app-header">
-        <Link className="brand" to="/" aria-label="VocabFlow home">
+        <Link className="brand" to="/" aria-label="Trang chủ VocabFlow">
           <span className="brand-mark" aria-hidden="true">V</span>
           <span>VocabFlow</span>
         </Link>
-        <nav aria-label="Foundation navigation">
-          <Link to="/foundation">Foundation route</Link>
+        <nav aria-label="Điều hướng nền tảng">
+          <Link to="/foundation">Trang nền tảng</Link>
         </nav>
       </header>
       <main className="app-main">{children}</main>
-      <footer className="app-footer">Family learning foundation · BATCH 0</footer>
+      <footer className="app-footer">Nền tảng học tập gia đình · Đợt 0</footer>
     </div>
   );
 }
@@ -35,12 +35,12 @@ function Shell({ children }: { children: React.ReactNode }) {
 function FoundationRoute() {
   return (
     <section className="panel" aria-labelledby="foundation-title">
-      <Link className="back-link" to="/">← Back home</Link>
-      <p className="eyebrow">Nested route</p>
-      <h1 id="foundation-title">The foundation route is working.</h1>
-      <p>Refresh this URL in production preview to verify SPA deep-link behavior.</p>
+      <Link className="back-link" to="/">← Về trang chủ</Link>
+      <p className="eyebrow">Trang con</p>
+      <h1 id="foundation-title">Trang nền tảng đang hoạt động.</h1>
+      <p>Tải lại địa chỉ này trên bản xem trước để kiểm tra liên kết sâu của ứng dụng.</p>
       <div className="status-row" role="status">
-        <span className="status-dot" aria-hidden="true" /> Worker + SPA same-origin boundary ready
+        <span className="status-dot" aria-hidden="true" /> Ranh giới Worker và ứng dụng cùng nguồn đã sẵn sàng
       </div>
     </section>
   );
@@ -50,8 +50,8 @@ function NotFound() {
   return (
     <section className="panel" aria-labelledby="not-found-title">
       <p className="eyebrow">404</p>
-      <h1 id="not-found-title">That route is not available yet.</h1>
-      <Link className="button primary" to="/">Return home</Link>
+      <h1 id="not-found-title">Trang này hiện chưa khả dụng.</h1>
+      <Link className="button primary" to="/">Về trang chủ</Link>
     </section>
   );
 }
@@ -63,7 +63,7 @@ function AppShellRoute() {
     return (
       <main className="auth-page" aria-busy="true">
         <section className="auth-card">
-          <p className="auth-copy" role="status">Checking your session…</p>
+          <p className="auth-copy" role="status">Đang kiểm tra phiên đăng nhập…</p>
         </section>
       </main>
     );
@@ -73,10 +73,10 @@ function AppShellRoute() {
     return (
       <main className="auth-page">
         <section className="auth-card" role="alert">
-          <h1 className="auth-title">We couldn’t verify your session</h1>
-          <p className="auth-copy">Please try again.</p>
+          <h1 className="auth-title">Không thể xác minh phiên đăng nhập</h1>
+          <p className="auth-copy">Vui lòng thử lại.</p>
           <button className="auth-retry" type="button" onClick={() => void sessionState.refetch()}>
-            Try again
+            Thử lại
           </button>
         </section>
       </main>

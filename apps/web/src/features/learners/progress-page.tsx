@@ -44,7 +44,7 @@ function progressErrorMessage(error: unknown) {
     (error instanceof ProgressSummaryClientError || error instanceof ActivitySummaryClientError)
     && (error.status === 403 || error.code === "HOUSEHOLD_ACCESS_DENIED")
   ) {
-    return "Không thể xem tiến trình của learner này.";
+    return "Không thể xem tiến trình của người học này.";
   }
   return "Không thể tải tiến trình lúc này. Vui lòng thử lại.";
 }
@@ -54,9 +54,9 @@ function resetErrorMessage(error: unknown) {
     return "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại.";
   }
   if (error instanceof ResetLearnerProgressClientError && (error.status === 403 || error.code === "HOUSEHOLD_ACCESS_DENIED")) {
-    return "Không thể reset tiến trình của learner này.";
+    return "Không thể đặt lại tiến trình của người học này.";
   }
-  return "Không thể reset tiến trình lúc này. Vui lòng thử lại.";
+  return "Không thể đặt lại tiến trình lúc này. Vui lòng thử lại.";
 }
 
 export function ProgressPage() {
@@ -125,7 +125,7 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
     try {
       await requestResetLearnerProgress(activeLearner.id);
       setResetOpen(false);
-      setResetSuccess(`Đã reset tiến trình của ${activeLearner.displayName}.`);
+          setResetSuccess(`Đã đặt lại tiến trình của ${activeLearner.displayName}.`);
       // Reload the canonical summary immediately; vocabulary and queue are
       // likewise fetched fresh when their learner-scoped pages open.
       await loadSummary();
@@ -183,10 +183,10 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
     <main className="learner-page" aria-labelledby="progress-title">
       <section className="learner-card progress-card">
         <div className="progress-topbar">
-          <Link className="back-link" to="/learners">← Về learner home</Link>
-          <p className="study-learner">Learner: <strong>{activeLearner.displayName}</strong></p>
+          <Link className="back-link" to="/learners">← Về trang người học</Link>
+          <p className="study-learner">Người học: <strong>{activeLearner.displayName}</strong></p>
         </div>
-        <p className="auth-eyebrow">Progress</p>
+        <p className="auth-eyebrow">Tiến trình</p>
         <h1 className="auth-title" id="progress-title">Tiến trình của {activeLearner.displayName}</h1>
 
         {resetSuccess ? <p className="progress-success" role="status">{resetSuccess}</p> : null}
@@ -211,11 +211,11 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
               </div>
             ) : null}
             <dl className="progress-grid">
-              <div><dt>New</dt><dd>{summary.newCount}</dd></div>
-              <div><dt>Learning</dt><dd>{summary.learningCount}</dd></div>
-              <div><dt>Mastered</dt><dd>{summary.masteredCount}</dd></div>
-              <div><dt>Due</dt><dd>{summary.dueCount}</dd></div>
-              <div><dt>Learned</dt><dd>{summary.learnedCount}</dd></div>
+              <div><dt>Từ mới</dt><dd>{summary.newCount}</dd></div>
+              <div><dt>Đang học</dt><dd>{summary.learningCount}</dd></div>
+              <div><dt>Đã thành thạo</dt><dd>{summary.masteredCount}</dd></div>
+              <div><dt>Cần ôn tập</dt><dd>{summary.dueCount}</dd></div>
+              <div><dt>Đã học</dt><dd>{summary.learnedCount}</dd></div>
             </dl>
             {activity ? (
               <section className="progress-activity" data-testid="activity-summary" aria-labelledby="activity-summary-title">
@@ -238,7 +238,7 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
               <div className="progress-insights-heading">
                 <div>
                   <h2 id="weekly-progress-title">7 ngày gần đây</h2>
-                  <p>Gồm hôm nay và 6 ngày trước theo lịch household.</p>
+                  <p>Gồm hôm nay và 6 ngày trước theo lịch của gia đình.</p>
                 </div>
               </div>
               {insightState === "loading" ? <p data-testid="progress-insights-loading" role="status">Đang tải tiến trình theo ngày…</p> : null}
@@ -247,7 +247,7 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
                 <div className="weekly-progress" data-testid="weekly-progress">
                   {history.days.map((day) => (
                     <details className="weekly-progress-day" key={day.date}>
-                      <summary><span>{weekday(day.date)}</span><strong>{day.uniqueWords} từ</strong><small>{day.reviews} reviews</small></summary>
+                      <summary><span>{weekday(day.date)}</span><strong>{day.uniqueWords} từ</strong><small>{day.reviews} lượt ôn tập</small></summary>
                       <dl>
                         <div><dt>Đã nhớ</dt><dd>{day.remembered}</dd></div>
                         <div><dt>Chưa nhớ</dt><dd>{day.forgotten}</dd></div>
@@ -266,7 +266,7 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
                   {topicProgress.topics.map((topic) => (
                     <article className="topic-progress-row" key={topic.topicId}>
                       <div><h3>{topic.name}</h3><p>{topic.masteredCount} / {topic.total} đã thành thạo</p></div>
-                      <dl><div><dt>New</dt><dd>{topic.newCount}</dd></div><div><dt>Learning</dt><dd>{topic.learningCount}</dd></div><div><dt>Mastered</dt><dd>{topic.masteredCount}</dd></div><div><dt>Due</dt><dd>{topic.dueCount}</dd></div></dl>
+                      <dl><div><dt>Từ mới</dt><dd>{topic.newCount}</dd></div><div><dt>Đang học</dt><dd>{topic.learningCount}</dd></div><div><dt>Đã thành thạo</dt><dd>{topic.masteredCount}</dd></div><div><dt>Cần ôn tập</dt><dd>{topic.dueCount}</dd></div></dl>
                     </article>
                   ))}
                 </div>
@@ -274,14 +274,14 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
               {insightState === "ready" && topicProgress?.topics.every((topic) => topic.total === 0) ? <p className="topic-progress-note">Các từ đang học hiện chưa được phân loại theo chủ đề.</p> : null}
             </section>
             <section className="progress-insights" aria-labelledby="gamification-title">
-              <h2 id="gamification-title">Level và huy hiệu</h2>
-              {gamificationState === "loading" ? <p data-testid="gamification-loading" role="status">Đang tải XP và huy hiệu…</p> : null}
-              {gamificationState === "error" ? <p data-testid="gamification-error" className="progress-inline-error" role="alert">Không thể tải XP và huy hiệu lúc này.</p> : null}
+              <h2 id="gamification-title">Cấp độ và huy hiệu</h2>
+              {gamificationState === "loading" ? <p data-testid="gamification-loading" role="status">Đang tải điểm kinh nghiệm và huy hiệu…</p> : null}
+              {gamificationState === "error" ? <p data-testid="gamification-error" className="progress-inline-error" role="alert">Không thể tải điểm kinh nghiệm và huy hiệu lúc này.</p> : null}
               {gamificationState === "ready" && gamification ? <>
                 <div className="xp-summary" data-testid="xp-summary">
-                  <div><span>Level</span><strong>{gamification.xp.level}</strong></div>
-                  <div><span>Tổng XP</span><strong>{gamification.xp.total} XP</strong></div>
-                  <p>{gamification.xp.xpIntoLevel} / {gamification.xp.xpPerLevel} XP đến Level {gamification.xp.level + 1}</p>
+                  <div><span>Cấp độ</span><strong>{gamification.xp.level}</strong></div>
+                  <div><span>Tổng điểm kinh nghiệm</span><strong>{gamification.xp.total}</strong></div>
+                  <p>{gamification.xp.xpIntoLevel} / {gamification.xp.xpPerLevel} điểm kinh nghiệm để lên cấp độ {gamification.xp.level + 1}</p>
                 </div>
                 <div className="achievement-list" data-testid="achievement-list">
                   {gamification.achievements.map((achievement) => <article className="achievement-row" key={achievement.code}>
@@ -296,7 +296,7 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
 
         <div className="progress-danger-zone">
           <h2>Quản lý tiến trình</h2>
-          <p>Reset chỉ xóa tiến trình hiện tại của learner này. Lịch sử review vẫn được giữ lại.</p>
+          <p>Việc đặt lại chỉ xóa tiến trình hiện tại của người học này. Lịch sử ôn tập vẫn được giữ lại.</p>
           <button
             className="progress-reset-button"
             type="button"
@@ -307,7 +307,7 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
             }}
             disabled={resetSubmitting}
           >
-            Reset tiến trình
+            Đặt lại tiến trình
           </button>
         </div>
       </section>
@@ -321,10 +321,10 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
             aria-labelledby="reset-progress-title"
             aria-describedby="reset-progress-description"
           >
-            <h2 id="reset-progress-title">Reset tiến trình của {activeLearner.displayName}?</h2>
+            <h2 id="reset-progress-title">Đặt lại tiến trình của {activeLearner.displayName}?</h2>
             <p id="reset-progress-description">
-              Tiến trình học hiện tại của learner này sẽ được đưa về từ mới. Chỉ learner này bị ảnh hưởng;
-              lịch sử review vẫn được giữ lại.
+              Tiến trình học hiện tại của người học này sẽ được đưa về trạng thái từ mới. Chỉ người học này bị ảnh hưởng;
+              lịch sử ôn tập vẫn được giữ lại.
             </p>
             {resetError ? <p className="reset-dialog-error" role="alert">{resetError}</p> : null}
             <div className="reset-dialog-actions">
@@ -343,7 +343,7 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
                 disabled={resetSubmitting}
                 aria-busy={resetSubmitting}
               >
-                {resetSubmitting ? "Đang reset…" : "Xác nhận reset"}
+                {resetSubmitting ? "Đang đặt lại…" : "Xác nhận đặt lại"}
               </button>
             </div>
           </section>

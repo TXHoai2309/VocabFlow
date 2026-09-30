@@ -8,7 +8,7 @@ type LoadState = "loading" | "ready" | "error";
 function errorMessage(error: unknown, topic = false) {
   if (error instanceof TopicsClientError && error.status === 401) return "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại.";
   return topic
-    ? "Không thể tải vocabulary theo chủ đề lúc này. Vui lòng thử lại."
+    ? "Không thể tải từ vựng theo chủ đề lúc này. Vui lòng thử lại."
     : "Không thể tải chủ đề lúc này. Vui lòng thử lại.";
 }
 
@@ -69,7 +69,7 @@ export function TopicsPage() {
         <div className="vocabulary-list-topbar">
           <Link className="back-link" to="/vocabulary">← Về danh sách từ vựng</Link>
         </div>
-        <p className="auth-eyebrow">Topics</p>
+        <p className="auth-eyebrow">Chủ đề</p>
         <h1 className="auth-title" id="topics-title">Học theo chủ đề</h1>
 
         {topicState === "loading" ? <div className="vocabulary-list-state" data-testid="topics-loading" role="status">Đang tải chủ đề…</div> : null}
@@ -82,7 +82,7 @@ export function TopicsPage() {
         ) : null}
         {topicState === "ready" && topics.length > 0 ? (
           <div className="topics-layout">
-            <nav aria-label="Vocabulary topics" className="topic-list">
+            <nav aria-label="Các chủ đề từ vựng" className="topic-list">
               {topics.map((topic) => (
                 <button
                   className={topic.id === selectedTopicId ? "topic-button topic-button-active" : "topic-button"}
@@ -100,9 +100,9 @@ export function TopicsPage() {
             <section className="topic-vocabulary" aria-live="polite">
               {!selectedTopic ? <p data-testid="topic-select-prompt">Chọn một chủ đề để xem từ vựng.</p> : <>
                 <h2>{selectedTopic.name}</h2>
-                {vocabularyState === "loading" ? <div className="vocabulary-list-state" data-testid="topic-vocabulary-loading" role="status">Đang tải vocabulary…</div> : null}
+                {vocabularyState === "loading" ? <div className="vocabulary-list-state" data-testid="topic-vocabulary-loading" role="status">Đang tải từ vựng…</div> : null}
                 {vocabularyState === "error" ? <div className="vocabulary-list-state vocabulary-list-error" data-testid="topic-vocabulary-error" role="alert">{vocabularyMessage}</div> : null}
-                {vocabularyState === "ready" && vocabulary.length === 0 ? <p data-testid="topic-vocabulary-empty">Chủ đề này chưa có vocabulary đang bật.</p> : null}
+                {vocabularyState === "ready" && vocabulary.length === 0 ? <p data-testid="topic-vocabulary-empty">Chủ đề này chưa có từ vựng nào đang bật.</p> : null}
                 {vocabularyState === "ready" && vocabulary.length > 0 ? (
                   <ul className="vocabulary-list" data-testid="topic-vocabulary-list">
                     {vocabulary.map((item) => <li className="vocabulary-list-row" key={item.id}><div className="vocabulary-list-copy"><strong>{item.word}</strong><span>{item.vietnamese}</span></div></li>)}

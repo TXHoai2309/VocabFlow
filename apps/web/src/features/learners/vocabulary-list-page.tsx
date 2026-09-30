@@ -7,7 +7,7 @@ import { LearnerVocabularyClientError, requestLearnerVocabulary } from "./vocabu
 type VocabularyListState = "loading" | "ready" | "error";
 
 function statusLabel(status: LearnerVocabularyDto["status"]) {
-  return status === "LEARNING" ? "Learning" : status === "MASTERED" ? "Mastered" : "New";
+  return status === "LEARNING" ? "Đang học" : status === "MASTERED" ? "Đã thành thạo" : "Từ mới";
 }
 
 function listErrorMessage(error: unknown) {
@@ -15,9 +15,9 @@ function listErrorMessage(error: unknown) {
     return "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại.";
   }
   if (error instanceof LearnerVocabularyClientError && (error.status === 403 || error.code === "HOUSEHOLD_ACCESS_DENIED")) {
-    return "Không thể xem vocabulary của learner này.";
+    return "Không thể xem từ vựng của người học này.";
   }
-  return "Không thể tải vocabulary lúc này. Vui lòng thử lại.";
+  return "Không thể tải từ vựng lúc này. Vui lòng thử lại.";
 }
 
 export function VocabularyListPage() {
@@ -68,10 +68,10 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
     <main className="learner-page" aria-labelledby="vocabulary-list-title">
       <section className="learner-card vocabulary-list-card">
         <div className="vocabulary-list-topbar">
-          <Link className="back-link" to="/learners">← Về learner home</Link>
-          <p className="study-learner">Learner: <strong>{activeLearner.displayName}</strong></p>
+          <Link className="back-link" to="/learners">← Về trang người học</Link>
+          <p className="study-learner">Người học: <strong>{activeLearner.displayName}</strong></p>
         </div>
-        <p className="auth-eyebrow">Vocabulary</p>
+        <p className="auth-eyebrow">Từ vựng</p>
         <h1 className="auth-title" id="vocabulary-list-title">Từ vựng của {activeLearner.displayName}</h1>
         <div className="vocabulary-list-actions">
           <label className="vocabulary-filter-label" htmlFor="vocabulary-level-filter">Cấp độ</label>
@@ -94,7 +94,7 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
         </div>
 
         {state === "loading" ? (
-          <div className="vocabulary-list-state" data-testid="vocabulary-loading" role="status">Đang tải vocabulary…</div>
+          <div className="vocabulary-list-state" data-testid="vocabulary-loading" role="status">Đang tải từ vựng…</div>
         ) : null}
 
         {state === "error" ? (
@@ -107,7 +107,7 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
         {state === "ready" && vocabulary.length === 0 ? (
           <div className="vocabulary-empty" data-testid="vocabulary-empty-state" role="status">
             <h2>Chưa có từ vựng</h2>
-            <p>Danh sách vocabulary đang trống.</p>
+            <p>Danh sách từ vựng hiện đang trống.</p>
           </div>
         ) : null}
 

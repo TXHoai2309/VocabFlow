@@ -169,7 +169,7 @@ describe("US-31 + US-32 controlled exercise Study mode", () => {
     await screen.findByTestId("exercise-card");
     fireEvent.click(screen.getByTestId("exercise-audio-button"));
     expect(await screen.findByTestId("flashcard")).toBeInTheDocument();
-    expect(screen.getByText("Âm thanh không khả dụng. Đã chuyển thẻ này sang Flashcard.")).toBeInTheDocument();
+    expect(screen.getByText("Âm thanh không khả dụng. Đã chuyển sang thẻ học.")).toBeInTheDocument();
     expect(fetchMock).toHaveBeenCalledTimes(1);
   });
 
@@ -209,7 +209,7 @@ describe("US-33 + US-34 image and typing Study mode", () => {
 
     await screen.findByTestId("exercise-card");
     expect(screen.getByTestId("exercise-card")).toHaveAttribute("data-exercise-type", "IMAGE_TO_WORD");
-    expect(screen.getByTestId("exercise-image")).toHaveAttribute("alt", "Vocabulary exercise image");
+    expect(screen.getByTestId("exercise-image")).toHaveAttribute("alt", "Hình ảnh gợi ý cho bài tập từ vựng");
     expect(screen.getByTestId("exercise-prompt")).not.toHaveTextContent("apple");
     fireEvent.click(screen.getByRole("button", { name: "apple" }));
     await screen.findByText("Chính xác.");

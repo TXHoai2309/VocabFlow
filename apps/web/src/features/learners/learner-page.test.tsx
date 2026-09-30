@@ -54,7 +54,7 @@ describe("US-03 learner resolution UI", () => {
     renderPage();
 
     expect(await screen.findByTestId("learner-empty-state")).toBeInTheDocument();
-    fireEvent.change(screen.getByLabelText("Tên learner"), { target: { value: "  An  " } });
+    fireEvent.change(screen.getByLabelText("Tên người học"), { target: { value: "  An  " } });
     fireEvent.submit(screen.getByRole("button", { name: "Tạo hồ sơ học" }).closest("form")!);
 
     await waitFor(() => expect(createLearner).toHaveBeenCalledWith({ displayName: "An" }));
@@ -100,12 +100,12 @@ describe("US-03 learner resolution UI", () => {
     createLearner.mockRejectedValue(new LearnerClientError("NETWORK_ERROR", 0, true));
     renderPage();
     await screen.findByTestId("learner-empty-state");
-    fireEvent.change(screen.getByLabelText("Tên learner"), { target: { value: "An" } });
+    fireEvent.change(screen.getByLabelText("Tên người học"), { target: { value: "An" } });
     fireEvent.submit(screen.getByRole("button", { name: "Tạo hồ sơ học" }).closest("form")!);
 
     await waitFor(() => expect(requestLearners).toHaveBeenCalledTimes(2));
     expect(createLearner).toHaveBeenCalledTimes(1);
-    expect(await screen.findByText("Danh sách đã được đồng bộ. Kiểm tra trước khi tạo lại.")).toBeInTheDocument();
+    expect(await screen.findByText("Danh sách đã được cập nhật. Vui lòng kiểm tra trước khi tạo lại.")).toBeInTheDocument();
   });
 
   it("locks duplicate create submits while the first request is pending", async () => {
@@ -114,7 +114,7 @@ describe("US-03 learner resolution UI", () => {
     createLearner.mockImplementation(() => new Promise((resolve) => { resolveCreate = resolve; }));
     renderPage();
     await screen.findByTestId("learner-empty-state");
-    fireEvent.change(screen.getByLabelText("Tên learner"), { target: { value: "An" } });
+    fireEvent.change(screen.getByLabelText("Tên người học"), { target: { value: "An" } });
     const form = screen.getByRole("button", { name: "Tạo hồ sơ học" }).closest("form")!;
     fireEvent.submit(form);
     fireEvent.submit(form);
@@ -130,11 +130,11 @@ describe("US-03 learner resolution UI", () => {
     createLearner.mockRejectedValue(new LearnerClientError("INTERNAL_ERROR", 503));
     renderPage();
     await screen.findByTestId("learner-empty-state");
-    const input = screen.getByLabelText("Tên learner");
+    const input = screen.getByLabelText("Tên người học");
     fireEvent.change(input, { target: { value: "An" } });
     fireEvent.submit(input.closest("form")!);
 
-    expect(await screen.findByRole("alert")).toHaveTextContent("Không thể tạo learner lúc này. Vui lòng thử lại.");
+    expect(await screen.findByRole("alert")).toHaveTextContent("Không thể tạo hồ sơ người học lúc này. Vui lòng thử lại.");
     expect(input).toHaveValue("An");
     expect(screen.getByRole("button", { name: "Tạo hồ sơ học" })).toBeEnabled();
   });

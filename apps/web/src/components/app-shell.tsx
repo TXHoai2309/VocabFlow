@@ -2,14 +2,14 @@ import { useState } from "react";
 import { Link, NavLink, Outlet } from "react-router";
 
 const destinations = [
-  { label: "Home", to: "/", icon: "home" },
-  { label: "Study", to: "/study", icon: "study" },
-  { label: "Vocabulary", to: "/vocabulary", icon: "vocabulary" },
-  { label: "Topics", to: "/topics", icon: "topics" },
-  { label: "Learning Sets", to: "/learning-sets", icon: "sets" },
-  { label: "Progress", to: "/progress", icon: "progress" },
-  { label: "Learners", to: "/learners", icon: "learners" },
-  { label: "Settings", to: "/learner-settings", icon: "settings" }
+  { label: "Trang chủ", to: "/", icon: "home" },
+  { label: "Học tập", to: "/study", icon: "study" },
+  { label: "Từ vựng", to: "/vocabulary", icon: "vocabulary" },
+  { label: "Chủ đề", to: "/topics", icon: "topics" },
+  { label: "Bộ từ", to: "/learning-sets", icon: "sets" },
+  { label: "Tiến trình", to: "/progress", icon: "progress" },
+  { label: "Người học", to: "/learners", icon: "learners" },
+  { label: "Cài đặt", to: "/learner-settings", icon: "settings" }
 ] as const;
 
 type IconName = typeof destinations[number]["icon"];
@@ -30,7 +30,7 @@ function NavigationIcon({ name }: { name: IconName }) {
 
 function Brand() {
   return (
-    <Link className="app-brand" to="/" aria-label="VocabFlow home">
+    <Link className="app-brand" to="/" aria-label="Trang chủ VocabFlow">
       <svg aria-hidden="true" viewBox="0 0 32 32" className="app-brand-mark">
         <path d="M4 6.5c4.8-.9 8.8-.1 12 2.2v17c-3.2-2.3-7.2-3.1-12-2.2z" fill="currentColor" />
         <path d="M28 6.5c-4.8-.9-8.8-.1-12 2.2v17c3.2-2.3 7.2-3.1 12-2.2z" fill="currentColor" opacity=".68" />
@@ -46,7 +46,7 @@ function initials(value: string) {
 
 function PrimaryNavigation({ onNavigate }: { onNavigate?: () => void }) {
   return (
-    <nav aria-label="Primary navigation" className="app-primary-nav">
+    <nav aria-label="Điều hướng chính" className="app-primary-nav">
       {destinations.map((item) => (
         <NavLink
           key={item.to}
@@ -65,13 +65,13 @@ function PrimaryNavigation({ onNavigate }: { onNavigate?: () => void }) {
 
 function ParentAccount({ parentName }: { parentName: string }) {
   const displayName = parentName.trim();
-  const accountLabel = displayName || "Parent account";
+  const accountLabel = displayName || "Tài khoản phụ huynh";
   return (
     <div className="app-parent-account">
       <span className="app-parent-avatar" aria-hidden="true">{initials(accountLabel)}</span>
       <span className="app-parent-copy">
         <strong>{accountLabel}</strong>
-        {displayName ? <small>Parent account</small> : null}
+        {displayName ? <small>Tài khoản phụ huynh</small> : null}
       </span>
     </div>
   );
@@ -81,7 +81,7 @@ export function AppShell({ parentName }: { parentName: string }) {
   const [navigationOpen, setNavigationOpen] = useState(false);
   return (
     <div className="app-layout">
-      <aside className="app-sidebar" aria-label="Application sidebar">
+      <aside className="app-sidebar" aria-label="Thanh điều hướng ứng dụng">
         <Brand />
         <PrimaryNavigation />
         <ParentAccount parentName={parentName} />
@@ -92,7 +92,7 @@ export function AppShell({ parentName }: { parentName: string }) {
           <button
             className="app-menu-toggle"
             type="button"
-            aria-label={navigationOpen ? "Close navigation" : "Open navigation"}
+            aria-label={navigationOpen ? "Đóng điều hướng" : "Mở điều hướng"}
             aria-expanded={navigationOpen}
             aria-controls="app-mobile-navigation"
             onClick={() => setNavigationOpen((open) => !open)}

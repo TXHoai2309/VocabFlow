@@ -15,7 +15,7 @@ function renderPage() {
 
 function fillValidForm() {
   fireEvent.change(screen.getByLabelText("Tên phụ huynh"), { target: { value: "  Nguyễn An  " } });
-  fireEvent.change(screen.getByLabelText("Email"), { target: { value: "parent@example.com" } });
+  fireEvent.change(screen.getByLabelText("Địa chỉ email"), { target: { value: "parent@example.com" } });
   fireEvent.change(screen.getByLabelText("Mật khẩu"), { target: { value: "secret" } });
   fireEvent.submit(screen.getByRole("button", { name: "Tạo tài khoản" }).closest("form")!);
 }
@@ -49,7 +49,7 @@ describe("RegisterPage integration pipeline", () => {
     renderPage();
     fillValidForm();
 
-    expect(await screen.findByRole("alert")).toHaveTextContent("Email này đã được đăng ký. Hãy đăng nhập để tiếp tục.");
+    expect(await screen.findByRole("alert")).toHaveTextContent("Địa chỉ email này đã được đăng ký. Hãy đăng nhập để tiếp tục.");
     expect(screen.getByRole("link", { name: "Đăng nhập" })).toBeInTheDocument();
     expect(fetch).not.toHaveBeenCalled();
   });
@@ -62,7 +62,7 @@ describe("RegisterPage integration pipeline", () => {
     expect(await screen.findByRole("alert")).toHaveTextContent("Không thể tạo tài khoản lúc này. Vui lòng thử lại.");
     expect(screen.getByRole("alert")).not.toHaveTextContent("secret stack trace");
     expect(screen.getByLabelText("Tên phụ huynh")).toHaveValue("  Nguyễn An  ");
-    expect(screen.getByLabelText("Email")).toHaveValue("parent@example.com");
+    expect(screen.getByLabelText("Địa chỉ email")).toHaveValue("parent@example.com");
     expect(fetch).not.toHaveBeenCalled();
   });
 

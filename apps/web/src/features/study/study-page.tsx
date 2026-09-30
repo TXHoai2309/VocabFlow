@@ -46,7 +46,7 @@ type PendingReview = {
   exercise: boolean;
 };
 
-const SAFE_QUEUE_ERROR = "Không thể tải review queue lúc này. Vui lòng thử lại.";
+const SAFE_QUEUE_ERROR = "Không thể tải danh sách học lúc này. Vui lòng thử lại.";
 const SAFE_SAVE_ERROR = "Không thể lưu tiến trình lúc này. Vui lòng thử lại.";
 
 function sessionCards(queue: ReviewQueueItem[]): SessionCard[] {
@@ -81,7 +81,7 @@ function queueErrorMessage(error: unknown) {
     return "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại.";
   }
   if (error.status === 403 || error.code === "HOUSEHOLD_ACCESS_DENIED") {
-    return "Không thể tiếp tục với learner này. Vui lòng chọn lại learner.";
+    return "Không thể tiếp tục với người học này. Vui lòng chọn lại.";
   }
   return SAFE_QUEUE_ERROR;
 }
@@ -98,7 +98,7 @@ function isLearnerAccessError(error: unknown) {
 
 function saveErrorMessage(error: unknown) {
   if (isLoginError(error)) return "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại.";
-  if (isLearnerAccessError(error)) return "Không thể tiếp tục với learner này. Vui lòng chọn lại learner.";
+  if (isLearnerAccessError(error)) return "Không thể tiếp tục với người học này. Vui lòng chọn lại.";
   return SAFE_SAVE_ERROR;
 }
 
@@ -193,7 +193,7 @@ function StudyExperience({ activeLearner, mode, exercisePreference }: { activeLe
 
   const reconcileQueue = useCallback(async (card: SessionCard, reason: "stale" | "conflict") => {
     setState("reconciling");
-    setMessage("Đang tải lại tiến trình canonical…");
+    setMessage("Đang tải lại tiến trình mới nhất…");
     try {
       const response = await requestReviewQueue(activeLearner.id);
       const canonicalCards = sessionCards(response.queue);
@@ -213,8 +213,8 @@ function StudyExperience({ activeLearner, mode, exercisePreference }: { activeLe
       setMessage(matchingCard
         ? reason === "stale"
           ? "Tiến trình đã thay đổi. Hãy đánh giá lại thẻ này."
-          : "Review đã tồn tại với dữ liệu khác. Hãy đánh giá lại thẻ này."
-        : "Tiến trình đã được cập nhật. Thẻ này không còn trong queue.");
+          : "Lượt ôn tập này đã được ghi nhận với dữ liệu khác. Hãy đánh giá lại thẻ này."
+        : "Tiến trình đã được cập nhật. Thẻ này không còn trong danh sách học.");
       setState(nextCards.length === 0 ? "summary" : "ready");
     } catch (error) {
       setPending(null);
@@ -222,8 +222,8 @@ function StudyExperience({ activeLearner, mode, exercisePreference }: { activeLe
       setMessage(isLoginError(error)
         ? "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại."
         : isLearnerAccessError(error)
-          ? "Không thể tiếp tục với learner này. Vui lòng chọn lại learner."
-          : "Không thể cập nhật tiến trình lúc này. Vui lòng tải lại queue.");
+          ? "Không thể tiếp tục với người học này. Vui lòng chọn lại."
+          : "Không thể cập nhật tiến trình lúc này. Vui lòng tải lại danh sách học.");
     }
   }, [activeLearner.id, replaceCards]);
 
@@ -395,18 +395,18 @@ function StudyExperience({ activeLearner, mode, exercisePreference }: { activeLe
     if (currentExercise.exerciseType === EXERCISE_TYPE.TYPE_WORD && currentExercise.cueType) {
       if (exerciseBlockedCues.includes(currentExercise.cueType)) {
         setExerciseFallbackType("flashcard");
-        setMessage("Media không khả dụng. Đã chuyển thẻ này sang Flashcard.");
+        setMessage("Nội dung đa phương tiện không khả dụng. Đã chuyển sang thẻ học.");
         return;
       }
       setExerciseFallbackType(EXERCISE_TYPE.TYPE_WORD);
       setExerciseBlockedCues((current) => [...new Set([...current, currentExercise.cueType!])]);
-      setMessage("Media không khả dụng. Đã chuyển bài này sang gợi ý an toàn khác.");
+      setMessage("Nội dung đa phương tiện không khả dụng. Đã chuyển sang gợi ý khác.");
       return;
     }
     setExerciseFallbackType("flashcard");
     setMessage(currentExercise.exerciseType === EXERCISE_TYPE.LISTENING_CHOICE
-      ? "Âm thanh không khả dụng. Đã chuyển thẻ này sang Flashcard."
-      : "Media không khả dụng. Đã chuyển thẻ này sang Flashcard.");
+      ? "Âm thanh không khả dụng. Đã chuyển sang thẻ học."
+      : "Nội dung đa phương tiện không khả dụng. Đã chuyển sang thẻ học.");
   }, [currentCard, currentExercise, exerciseAnswer, exerciseBlockedCues, exerciseFallbackType, state]);
 
   const exerciseSaveState = state === "saving"
@@ -431,9 +431,9 @@ function StudyExperience({ activeLearner, mode, exercisePreference }: { activeLe
       <main className="study-page" aria-labelledby="study-title">
         <section className="study-shell">
           <div className="study-topbar"><Link className="back-link" to="/learners">← Thoát</Link><p className="study-learner">Đang học: <strong>{activeLearner.displayName}</strong></p></div>
-          <p className="auth-eyebrow">{mode === "exercise" ? "Exercise session" : "Study session"}</p>
+          <p className="auth-eyebrow">{mode === "exercise" ? "Bài tập" : "Phiên học"}</p>
           <h1 className="auth-title" id="study-title">Phiên học hôm nay</h1>
-          <div className="study-status" data-testid="study-loading" role="status">Đang tạo review queue…</div>
+          <div className="study-status" data-testid="study-loading" role="status">Đang chuẩn bị phiên học…</div>
         </section>
       </main>
     );
@@ -447,7 +447,7 @@ function StudyExperience({ activeLearner, mode, exercisePreference }: { activeLe
           <p className="study-learner">Đang học: <strong>{activeLearner.displayName}</strong></p>
         </div>
 
-        <p className="auth-eyebrow">{mode === "exercise" ? "Exercise session" : "Study session"}</p>
+        <p className="auth-eyebrow">{mode === "exercise" ? "Bài tập" : "Phiên học"}</p>
         <h1 className="auth-title" id="study-title">{state === "summary" ? "Hoàn thành phiên học" : "Phiên học hôm nay"}</h1>
 
         {state === "error" ? (
@@ -456,8 +456,8 @@ function StudyExperience({ activeLearner, mode, exercisePreference }: { activeLe
             <p>{message ?? SAFE_QUEUE_ERROR}</p>
             {message === "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại." ? (
               <Link className="auth-retry study-state-link" to="/login">Đăng nhập lại</Link>
-            ) : message === "Không thể tiếp tục với learner này. Vui lòng chọn lại learner." ? (
-              <Link className="auth-retry study-state-link" to="/learners">Chọn lại learner</Link>
+            ) : message === "Không thể tiếp tục với người học này. Vui lòng chọn lại." ? (
+              <Link className="auth-retry study-state-link" to="/learners">Chọn lại người học</Link>
             ) : (
               <button className="auth-retry" type="button" onClick={() => void loadQueue()}>Thử lại</button>
             )}
@@ -468,20 +468,20 @@ function StudyExperience({ activeLearner, mode, exercisePreference }: { activeLe
           <div className="study-state" data-testid="study-empty-state" role="status">
             <h2>Hôm nay chưa có thẻ học</h2>
             <p>Không có từ đến hạn hoặc từ mới để bắt đầu phiên học.</p>
-            <Link className="auth-retry study-state-link" to="/learners">Về learner</Link>
+            <Link className="auth-retry study-state-link" to="/learners">Về trang người học</Link>
           </div>
         ) : null}
 
         {state === "summary" ? (
           <div className="study-summary" data-testid="study-session-summary">
-            <p className="study-summary-lead">Bạn đã hoàn thành các thẻ trong queue hiện tại.</p>
+            <p className="study-summary-lead">Bạn đã hoàn thành tất cả thẻ trong phiên học này.</p>
             <dl className="study-summary-list">
-              <div><dt>Đã review</dt><dd>{metrics.scheduledReviews}</dd></div>
+              <div><dt>Đã ôn tập</dt><dd>{metrics.scheduledReviews}</dd></div>
               <div><dt>Đã nhớ</dt><dd>{metrics.remembered}</dd></div>
               <div><dt>Chưa nhớ</dt><dd>{metrics.forgotten}</dd></div>
               <div><dt>Lượt ôn lại</dt><dd>{metrics.reinforcement}</dd></div>
             </dl>
-            <Link className="register-submit study-summary-link" to="/learners">Về trang chủ</Link>
+            <Link className="register-submit study-summary-link" to="/learners">Về trang người học</Link>
           </div>
         ) : null}
 
@@ -489,7 +489,7 @@ function StudyExperience({ activeLearner, mode, exercisePreference }: { activeLe
           <div className="study-session" data-testid="study-session-ready">
             <div className="study-session-header">
               <span data-testid="session-counter">{metrics.scheduledReviews} / {baseQueueLength}</span>
-              <span>{currentCard.reinforcementAttempt > 0 ? "Ôn lại" : currentCard.item.queueType === "DUE" ? "Đến hạn" : "Từ mới"}</span>
+              <span>{currentCard.reinforcementAttempt > 0 ? "Ôn tập lại" : currentCard.item.queueType === "DUE" ? "Cần ôn tập" : "Từ mới"}</span>
             </div>
             {queueInfo ? <p className="study-queue-meta">{queueInfo.dueCount} đến hạn · {queueInfo.newCount} từ mới · {queueInfo.reviewDate}</p> : null}
             <div className="study-progress" role="progressbar" aria-label="Tiến độ phiên học" aria-valuemin={0} aria-valuemax={baseQueueLength} aria-valuenow={metrics.scheduledReviews}>
@@ -501,7 +501,7 @@ function StudyExperience({ activeLearner, mode, exercisePreference }: { activeLe
                 ? currentExercise?.exerciseType === EXERCISE_TYPE.TYPE_WORD
                   ? "Gõ từ tiếng Anh. Bạn chỉ có một lần trả lời cho mỗi bài."
                   : "Chọn một đáp án. Bạn chỉ có một lần trả lời cho mỗi bài."
-                : "Chạm hoặc nhấn Space để lật thẻ."}
+                : "Chạm hoặc nhấn phím cách để lật thẻ."}
             </p>
             {useExerciseCard && currentExercise ? (
               <ExerciseCard
@@ -521,7 +521,7 @@ function StudyExperience({ activeLearner, mode, exercisePreference }: { activeLe
                   isFlipped={isFlipped}
                   onFlip={() => setIsFlipped((current) => !current)}
                 />
-                {mode === "exercise" ? <p className="study-session-message" role="status">Không đủ đáp án an toàn cho bài tập; dùng Flashcard cho thẻ này.</p> : null}
+                {mode === "exercise" ? <p className="study-session-message" role="status">Không đủ đáp án phù hợp cho bài tập; dùng thẻ học cho từ này.</p> : null}
               </>
             )}
 
@@ -546,7 +546,7 @@ function StudyExperience({ activeLearner, mode, exercisePreference }: { activeLe
             {state === "save-failed" ? (
               <div className="study-save-failed" data-testid="study-save-failed" role="alert">
                 <span>{message ?? SAFE_SAVE_ERROR}</span>
-                {pending ? <button className="auth-retry" type="button" onClick={retrySave}>Thử lại</button> : <button className="auth-retry" type="button" onClick={() => void loadQueue()}>Tải lại queue</button>}
+                {pending ? <button className="auth-retry" type="button" onClick={retrySave}>Thử lại</button> : <button className="auth-retry" type="button" onClick={() => void loadQueue()}>Tải lại danh sách học</button>}
               </div>
             ) : null}
             {state === "reconciling" ? <p className="study-reconciling" role="status">{message}</p> : null}

@@ -16,8 +16,8 @@ describe("RegisterForm", () => {
     renderForm();
     expect(screen.getByLabelText("Tên phụ huynh")).toHaveAttribute("type", "text");
     expect(screen.getByLabelText("Tên phụ huynh")).toHaveAttribute("autocomplete", "name");
-    expect(screen.getByLabelText("Email")).toHaveAttribute("type", "email");
-    expect(screen.getByLabelText("Email")).toHaveAttribute("autocomplete", "email");
+    expect(screen.getByLabelText("Địa chỉ email")).toHaveAttribute("type", "email");
+    expect(screen.getByLabelText("Địa chỉ email")).toHaveAttribute("autocomplete", "email");
     expect(screen.getByLabelText("Mật khẩu")).toHaveAttribute("type", "password");
     expect(screen.getByLabelText("Mật khẩu")).toHaveAttribute("autocomplete", "new-password");
   });
@@ -26,27 +26,27 @@ describe("RegisterForm", () => {
     renderForm();
     fireEvent.submit(screen.getByRole("button", { name: "Tạo tài khoản" }).closest("form")!);
     expect(screen.getByText("Vui lòng nhập tên phụ huynh.")).toBeInTheDocument();
-    expect(screen.getByText("Vui lòng nhập email.")).toBeInTheDocument();
+    expect(screen.getByText("Vui lòng nhập địa chỉ email.")).toBeInTheDocument();
     expect(screen.getByText("Vui lòng nhập mật khẩu.")).toBeInTheDocument();
     expect(screen.getByLabelText("Tên phụ huynh")).toHaveAttribute("aria-invalid", "true");
-    expect(screen.getByLabelText("Email")).toHaveAttribute("aria-invalid", "true");
+    expect(screen.getByLabelText("Địa chỉ email")).toHaveAttribute("aria-invalid", "true");
     expect(screen.getByLabelText("Mật khẩu")).toHaveAttribute("aria-invalid", "true");
   });
 
   it("distinguishes invalid email format", () => {
     renderForm();
     fireEvent.change(screen.getByLabelText("Tên phụ huynh"), { target: { value: "Phụ huynh" } });
-    fireEvent.change(screen.getByLabelText("Email"), { target: { value: "not-an-email" } });
+    fireEvent.change(screen.getByLabelText("Địa chỉ email"), { target: { value: "not-an-email" } });
     fireEvent.change(screen.getByLabelText("Mật khẩu"), { target: { value: "secret" } });
     fireEvent.submit(screen.getByRole("button", { name: "Tạo tài khoản" }).closest("form")!);
-    expect(screen.getByText("Vui lòng nhập email hợp lệ.")).toBeInTheDocument();
+    expect(screen.getByText("Vui lòng nhập địa chỉ email hợp lệ.")).toBeInTheDocument();
   });
 
   it("passes normalized valid values to the Phase-1 submission seam", () => {
     const onValidSubmit = vi.fn();
     renderForm(onValidSubmit);
     fireEvent.change(screen.getByLabelText("Tên phụ huynh"), { target: { value: "  Nguyễn Thị Lan  " } });
-    fireEvent.change(screen.getByLabelText("Email"), { target: { value: "  parent@example.com  " } });
+    fireEvent.change(screen.getByLabelText("Địa chỉ email"), { target: { value: "  parent@example.com  " } });
     fireEvent.change(screen.getByLabelText("Mật khẩu"), { target: { value: "secret" } });
     fireEvent.submit(screen.getByRole("button", { name: "Tạo tài khoản" }).closest("form")!);
     expect(onValidSubmit).toHaveBeenCalledWith({ name: "Nguyễn Thị Lan", email: "parent@example.com", password: "secret" });
@@ -63,7 +63,7 @@ describe("RegisterForm", () => {
     const onValidSubmit = vi.fn();
     renderForm(onValidSubmit);
     fireEvent.change(screen.getByLabelText("Tên phụ huynh"), { target: { value: "Đặng Thùy Trang" } });
-    fireEvent.change(screen.getByLabelText("Email"), { target: { value: "parent@example.com" } });
+    fireEvent.change(screen.getByLabelText("Địa chỉ email"), { target: { value: "parent@example.com" } });
     fireEvent.change(screen.getByLabelText("Mật khẩu"), { target: { value: "secret" } });
     fireEvent.submit(screen.getByRole("button", { name: "Tạo tài khoản" }).closest("form")!);
     expect(onValidSubmit).toHaveBeenCalledWith({ name: "Đặng Thùy Trang", email: "parent@example.com", password: "secret" });
@@ -92,10 +92,10 @@ describe("RegisterForm", () => {
     const onValidSubmit = vi.fn();
     renderForm(onValidSubmit);
     fireEvent.change(screen.getByLabelText("Tên phụ huynh"), { target: { value: "Parent" } });
-    fireEvent.change(screen.getByLabelText("Email"), { target: { value: "parent@example.com" } });
+    fireEvent.change(screen.getByLabelText("Địa chỉ email"), { target: { value: "parent@example.com" } });
     fireEvent.change(screen.getByLabelText("Mật khẩu"), { target: { value: "secret" } });
-    const form = screen.getByLabelText("Email").closest("form")!;
-    fireEvent.keyDown(screen.getByLabelText("Email"), { key: "Enter", code: "Enter" });
+    const form = screen.getByLabelText("Địa chỉ email").closest("form")!;
+    fireEvent.keyDown(screen.getByLabelText("Địa chỉ email"), { key: "Enter", code: "Enter" });
     fireEvent.submit(form);
     expect(onValidSubmit).toHaveBeenCalledTimes(1);
   });
@@ -104,10 +104,10 @@ describe("RegisterForm", () => {
     renderForm();
     fireEvent.submit(screen.getByRole("button", { name: "Tạo tài khoản" }).closest("form")!);
     expect(screen.getByLabelText("Tên phụ huynh")).toHaveAttribute("aria-describedby", "register-name-error");
-    expect(screen.getByLabelText("Email")).toHaveAttribute("aria-describedby", "register-email-error");
+    expect(screen.getByLabelText("Địa chỉ email")).toHaveAttribute("aria-describedby", "register-email-error");
     expect(screen.getByLabelText("Mật khẩu")).toHaveAttribute("aria-describedby", "register-password-error");
     expect(screen.getAllByRole("alert")[0]).toHaveTextContent("Vui lòng nhập tên phụ huynh.");
-    expect(screen.getAllByRole("alert")[1]).toHaveTextContent("Vui lòng nhập email.");
+    expect(screen.getAllByRole("alert")[1]).toHaveTextContent("Vui lòng nhập địa chỉ email.");
     expect(screen.getAllByRole("alert")[2]).toHaveTextContent("Vui lòng nhập mật khẩu.");
   });
 
@@ -116,9 +116,9 @@ describe("RegisterForm", () => {
     const onValidSubmit = vi.fn(() => new Promise<void>((resolve) => { resolveSubmit = resolve; }));
     renderForm(onValidSubmit);
     fireEvent.change(screen.getByLabelText("Tên phụ huynh"), { target: { value: "Parent" } });
-    fireEvent.change(screen.getByLabelText("Email"), { target: { value: "parent@example.com" } });
+    fireEvent.change(screen.getByLabelText("Địa chỉ email"), { target: { value: "parent@example.com" } });
     fireEvent.change(screen.getByLabelText("Mật khẩu"), { target: { value: "secret" } });
-    const form = screen.getByLabelText("Email").closest("form")!;
+    const form = screen.getByLabelText("Địa chỉ email").closest("form")!;
     fireEvent.submit(form);
     fireEvent.submit(form);
     expect(onValidSubmit).toHaveBeenCalledTimes(1);

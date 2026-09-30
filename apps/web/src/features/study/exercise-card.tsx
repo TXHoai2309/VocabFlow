@@ -60,7 +60,7 @@ export function ExerciseCard({ exercise, answer, saveState, onAnswer, onAudioFai
     <section className="exercise-card" data-testid="exercise-card" data-exercise-type={exercise.exerciseType}>
       <div className="exercise-header">
         <span className="exercise-type-label">
-          {isListening ? "Listening choice" : exercise.exerciseType === EXERCISE_TYPE.IMAGE_TO_WORD ? "Image to word" : isTypeWord ? "Typing" : "Multiple choice"}
+          {isListening ? "Nghe và chọn" : exercise.exerciseType === EXERCISE_TYPE.IMAGE_TO_WORD ? "Nhìn hình, chọn từ" : isTypeWord ? "Gõ từ" : "Trắc nghiệm"}
         </span>
         {hasAudioCue ? (
           <button
@@ -81,7 +81,7 @@ export function ExerciseCard({ exercise, answer, saveState, onAnswer, onAudioFai
         <img
           className="exercise-image"
           src={exercise.imageUrl}
-          alt="Vocabulary exercise image"
+          alt="Hình ảnh gợi ý cho bài tập từ vựng"
           data-testid="exercise-image"
           onError={onImageFailure ?? onAudioFailure}
         />

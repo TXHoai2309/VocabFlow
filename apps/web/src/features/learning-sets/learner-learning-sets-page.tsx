@@ -12,9 +12,9 @@ import {
 type LoadState = "loading" | "ready" | "error";
 
 function messageFor(error: unknown) {
-  if (error instanceof LearningSetsClientError && error.status === 403) return "Bạn không có quyền thay đổi learner này.";
+  if (error instanceof LearningSetsClientError && error.status === 403) return "Bạn không có quyền thay đổi hồ sơ người học này.";
   if (error instanceof LearningSetsClientError && error.status === 401) return "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại.";
-  return "Không thể cập nhật learning set lúc này. Vui lòng thử lại.";
+  return "Không thể cập nhật bộ từ lúc này. Vui lòng thử lại.";
 }
 
 export function LearnerLearningSetsPage() {
@@ -70,16 +70,16 @@ function LearnerLearningSetsExperience({ activeLearner }: { activeLearner: Learn
     <main className="learner-page" aria-labelledby="learner-learning-sets-title">
       <section className="learner-card learning-sets-card">
         <div className="learning-sets-topbar">
-          <Link className="back-link" to="/learners">← Về learner home</Link>
+          <Link className="back-link" to="/learners">← Về trang người học</Link>
           <Link className="learning-sets-manage-link" to="/learning-sets">Xem danh mục</Link>
         </div>
-        <p className="auth-eyebrow">Learner sets</p>
+        <p className="auth-eyebrow">Bộ từ</p>
         <h1 className="auth-title" id="learner-learning-sets-title">Bộ từ của {activeLearner.displayName}</h1>
-        <p className="auth-copy">Bật hoặc tắt bộ từ để điều khiển vocabulary xuất hiện trong queue. Tiến trình và lịch sử review không bị xóa.</p>
+        <p className="auth-copy">Bật hoặc tắt bộ từ để chọn những từ vựng xuất hiện trong danh sách học. Tiến trình và lịch sử ôn tập sẽ không bị xóa.</p>
         {success ? <p className="learning-sets-success" role="status">{success}</p> : null}
         {state === "loading" ? <div className="learning-sets-state" data-testid="learner-learning-sets-loading" role="status">Đang tải bộ từ…</div> : null}
         {state === "error" ? <div className="learning-sets-state learning-sets-error" data-testid="learner-learning-sets-error" role="alert">{message}</div> : null}
-        {state === "ready" && items.length === 0 ? <div className="vocabulary-empty" data-testid="learner-learning-sets-empty" role="status"><h2>Chưa có bộ từ khả dụng</h2><p>Danh mục learning set hiện đang trống.</p></div> : null}
+        {state === "ready" && items.length === 0 ? <div className="vocabulary-empty" data-testid="learner-learning-sets-empty" role="status"><h2>Chưa có bộ từ khả dụng</h2><p>Danh mục bộ từ hiện đang trống.</p></div> : null}
         {state === "ready" && items.length > 0 ? (
           <div className="learner-set-toggle-list" data-testid="learner-learning-sets-list">
             {items.map((item) => (

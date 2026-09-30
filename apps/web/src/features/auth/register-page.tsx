@@ -15,7 +15,7 @@ export type RegistrationState =
   | "auth-error";
 
 const ACCOUNT_EXISTS_CODE = "USER_ALREADY_EXISTS_USE_ANOTHER_EMAIL";
-const ACCOUNT_EXISTS_MESSAGE = "Email này đã được đăng ký. Hãy đăng nhập để tiếp tục.";
+const ACCOUNT_EXISTS_MESSAGE = "Địa chỉ email này đã được đăng ký. Hãy đăng nhập để tiếp tục.";
 const AUTH_ERROR_MESSAGE = "Không thể tạo tài khoản lúc này. Vui lòng thử lại.";
 const BOOTSTRAP_ERROR_MESSAGE = "Đã tạo tài khoản nhưng chưa hoàn tất thiết lập gia đình.";
 
@@ -69,7 +69,7 @@ export function RegisterPage() {
   return (
     <main className="auth-page" aria-labelledby="register-title">
       <section className="auth-card">
-        <Link className="auth-brand" to="/" aria-label="VocabFlow home">
+        <Link className="auth-brand" to="/" aria-label="Trang chủ VocabFlow">
           <span className="auth-brand-mark" aria-hidden="true">V</span>
           <span>VocabFlow</span>
         </Link>
@@ -93,7 +93,7 @@ export function RegisterPage() {
             <div role="status">
               Tài khoản và gia đình đã được thiết lập.
               {household ? ` ${household.name}` : ""}
-              <Link className="auth-next-link" to="/learners">Tiếp tục tạo hồ sơ học</Link>
+              <Link className="auth-next-link" to="/learners">Tiếp tục tạo hồ sơ người học</Link>
             </div>
           ) : null}
         </div>

@@ -197,24 +197,24 @@ describe("Home dashboard", () => {
   it("renders the active learner, live dashboard metrics, learning set, and weekly aggregates", async () => {
     renderHome();
 
-    expect(await screen.findByRole("heading", { name: /good (morning|afternoon|evening), jordan nguyen/i })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /active learner avery nguyen, level 3/i })).toHaveAttribute("href", "/learners");
-    expect(screen.getAllByRole("link", { name: "Home" }).some((link) => link.getAttribute("aria-current") === "page")).toBe(true);
+    expect(await screen.findByRole("heading", { name: /chào buổi (sáng|chiều|tối), jordan nguyen/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Đổi người học. Người học hiện tại: Avery Nguyen, Cấp độ 3" })).toHaveAttribute("href", "/learners");
+    expect(screen.getAllByRole("link", { name: "Trang chủ" }).some((link) => link.getAttribute("aria-current") === "page")).toBe(true);
     expect(screen.getByText("Avery Nguyen")).toBeInTheDocument();
     expect(screen.queryByText("Sarah")).not.toBeInTheDocument();
     expect(screen.queryByText("Emma")).not.toBeInTheDocument();
     expect(document.querySelector(".home-notification-visual i")).toBeNull();
     expect(document.querySelector(".home-parent-chevron")).toBeNull();
-    expect(screen.getByRole("link", { name: "To Review: 3" })).toHaveAttribute("href", "/study");
-    expect(screen.getByRole("link", { name: "New Words: 2" })).toHaveAttribute("href", "/study");
-    expect(screen.getByRole("link", { name: "Total Learned: 16" })).toHaveAttribute("href", "/progress");
-    expect(screen.getByRole("link", { name: "Day Streak: 4" })).toHaveAttribute("href", "/progress");
-    expect(screen.getByRole("link", { name: /start studying/i })).toHaveAttribute("href", "/study");
+    expect(screen.getByRole("link", { name: "Cần ôn tập: 3" })).toHaveAttribute("href", "/study");
+    expect(screen.getByRole("link", { name: "Từ mới: 2" })).toHaveAttribute("href", "/study");
+    expect(screen.getByRole("link", { name: "Đã học: 16" })).toHaveAttribute("href", "/progress");
+    expect(screen.getByRole("link", { name: "Chuỗi ngày học: 4" })).toHaveAttribute("href", "/progress");
+    expect(screen.getByRole("link", { name: /bắt đầu học/i })).toHaveAttribute("href", "/study");
     expect(await screen.findByText("Essential Verbs")).toBeInTheDocument();
-    expect(screen.getAllByRole("link", { name: "See all" }).some((link) => link.getAttribute("href") === "/learning-sets")).toBe(true);
-    expect(screen.getByText("20 words · Grade 1")).toBeInTheDocument();
-    expect(await screen.findByText("5 unique words studied on Sep 30")).toBeInTheDocument();
-    expect(screen.getByText("6 reviews")).toBeInTheDocument();
+    expect(screen.getAllByRole("link", { name: "Xem tất cả" }).some((link) => link.getAttribute("href") === "/learning-sets")).toBe(true);
+    expect(screen.getByText("20 từ · Lớp 1")).toBeInTheDocument();
+    expect(await screen.findByText(/5 từ khác nhau đã học vào ngày/)).toBeInTheDocument();
+    expect(screen.getByText("6 lượt ôn tập")).toBeInTheDocument();
     expect(requestReviewQueue).toHaveBeenCalledWith(learner.id);
     expect(requestProgressSummary).toHaveBeenCalledWith(learner.id);
     expect(requestActivitySummary).toHaveBeenCalledWith(learner.id);
@@ -226,21 +226,21 @@ describe("Home dashboard", () => {
   it("shows a loading state while dashboard data is pending", async () => {
     requestReviewQueue.mockImplementation(() => new Promise(() => undefined));
     renderHome();
-    expect(await screen.findByRole("status", { name: "Loading your current study queue" })).toBeInTheDocument();
+    expect(await screen.findByRole("status", { name: "Đang tải danh sách học hiện tại" })).toBeInTheDocument();
   });
 
   it("renders independent sections while the review queue is still pending", async () => {
     requestReviewQueue.mockImplementation(() => new Promise(() => undefined));
     renderHome();
 
-    expect(await screen.findByRole("link", { name: "Total Learned: 16" })).toBeInTheDocument();
+    expect(await screen.findByRole("link", { name: "Đã học: 16" })).toBeInTheDocument();
     expect(await screen.findByText("Essential Verbs")).toBeInTheDocument();
-    expect(await screen.findByText("5 unique words studied on Sep 30")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /active learner avery nguyen, level 3/i })).toBeInTheDocument();
+    expect(await screen.findByText(/5 từ khác nhau đã học vào ngày/)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Đổi người học. Người học hiện tại: Avery Nguyen, Cấp độ 3" })).toBeInTheDocument();
 
-    expect(screen.getByRole("status", { name: "Loading your current study queue" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "To Review: …" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "New Words: …" })).toBeInTheDocument();
+    expect(screen.getByRole("status", { name: "Đang tải danh sách học hiện tại" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Cần ôn tập: …" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Từ mới: …" })).toBeInTheDocument();
     expect(requestReviewQueue).toHaveBeenCalledOnce();
     expect(requestProgressSummary).toHaveBeenCalledOnce();
     expect(requestActivitySummary).toHaveBeenCalledOnce();
@@ -258,16 +258,16 @@ describe("Home dashboard", () => {
     });
     renderHome();
 
-    expect(await screen.findByRole("heading", { name: /good (morning|afternoon|evening)/i })).toHaveTextContent(parentName);
+    expect(await screen.findByRole("heading", { name: /chào buổi (sáng|chiều|tối)/i })).toHaveTextContent(parentName);
   });
 
   it("shows an honest queue error and retries the dashboard requests", async () => {
     requestReviewQueue.mockRejectedValueOnce(new Error("fixture failure")).mockResolvedValueOnce(queue);
     renderHome();
 
-    expect(await screen.findByRole("alert")).toHaveTextContent("Some dashboard information could not be loaded.");
-    fireEvent.click(screen.getByRole("button", { name: "Retry" }));
-    expect(await screen.findByRole("link", { name: "To Review: 3" })).toBeInTheDocument();
+    expect(await screen.findByRole("alert")).toHaveTextContent("Không thể tải một số thông tin trên trang chủ.");
+    fireEvent.click(screen.getByRole("button", { name: "Thử lại" }));
+    expect(await screen.findByRole("link", { name: "Cần ôn tập: 3" })).toBeInTheDocument();
     await waitFor(() => expect(requestReviewQueue).toHaveBeenCalledTimes(2));
   });
 
@@ -284,7 +284,7 @@ describe("Home dashboard", () => {
     ]);
     renderHome(null);
 
-    expect(await screen.findByRole("main", { name: "Avery Nguyen learning dashboard" })).toBeInTheDocument();
+    expect(await screen.findByRole("main", { name: "Trang chủ học tập của Avery Nguyen" })).toBeInTheDocument();
     expect(screen.getByTestId("current-location")).toHaveTextContent("/");
   });
 
@@ -295,7 +295,7 @@ describe("Home dashboard", () => {
     expect(await screen.findByRole("button", { name: "Avery Nguyen" })).toBeInTheDocument();
     expect(screen.getByTestId("current-location")).toHaveTextContent("/learners");
     fireEvent.click(screen.getByRole("button", { name: "Morgan Nguyen" }));
-    expect(await screen.findByRole("main", { name: "Morgan Nguyen learning dashboard" })).toBeInTheDocument();
+    expect(await screen.findByRole("main", { name: "Trang chủ học tập của Morgan Nguyen" })).toBeInTheDocument();
     expect(screen.getByTestId("current-location")).toHaveTextContent("/");
   });
 
@@ -320,17 +320,17 @@ describe("Home dashboard", () => {
     renderHome(null);
 
     expect(await screen.findByTestId("learner-empty-state")).toBeInTheDocument();
-    fireEvent.change(screen.getByLabelText("Tên learner"), { target: { value: "Avery Nguyen" } });
+    fireEvent.change(screen.getByLabelText("Tên người học"), { target: { value: "Avery Nguyen" } });
     fireEvent.submit(screen.getByRole("button", { name: "Tạo hồ sơ học" }).closest("form")!);
 
-    expect(await screen.findByRole("main", { name: "Avery Nguyen learning dashboard" })).toBeInTheDocument();
+    expect(await screen.findByRole("main", { name: "Trang chủ học tập của Avery Nguyen" })).toBeInTheDocument();
     expect(screen.getByTestId("current-location")).toHaveTextContent("/");
   });
 
   it("replaces the Home handoff history so Back does not loop through learner selection", async () => {
     renderHome(null, ["/previous", "/"]);
 
-    expect(await screen.findByRole("main", { name: "Avery Nguyen learning dashboard" })).toBeInTheDocument();
+    expect(await screen.findByRole("main", { name: "Trang chủ học tập của Avery Nguyen" })).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "Go back" }));
     expect(await screen.findByTestId("previous-route")).toBeInTheDocument();
     expect(screen.getByTestId("current-location")).toHaveTextContent("/previous");
@@ -339,14 +339,14 @@ describe("Home dashboard", () => {
   it("shows a non-blank loading skeleton while the parent session is pending", () => {
     useSession.mockReturnValue({ data: null, isPending: true, error: null, refetch: vi.fn() });
     renderHome();
-    expect(screen.getByText("Loading your learning home…")).toBeInTheDocument();
+    expect(screen.getByText("Đang tải trang học tập…")).toBeInTheDocument();
   });
 
   it("provides a retry action when session validation fails", () => {
     const refetch = vi.fn();
     useSession.mockReturnValue({ data: null, isPending: false, error: new Error("session failure"), refetch });
     renderHome();
-    fireEvent.click(screen.getByRole("button", { name: "Try again" }));
+    fireEvent.click(screen.getByRole("button", { name: "Thử lại" }));
     expect(refetch).toHaveBeenCalledOnce();
   });
 });

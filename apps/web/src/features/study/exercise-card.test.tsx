@@ -122,7 +122,7 @@ describe("exercise interaction layer", () => {
     const onImageFailure = vi.fn();
     render(<ExerciseCard exercise={imageExercise} answer={null} saveState="ready" onAnswer={vi.fn()} onAudioFailure={vi.fn()} onImageFailure={onImageFailure} />);
 
-    expect(screen.getByTestId("exercise-image")).toHaveAttribute("alt", "Vocabulary exercise image");
+    expect(screen.getByTestId("exercise-image")).toHaveAttribute("alt", "Hình ảnh gợi ý cho bài tập từ vựng");
     expect(screen.getByTestId("exercise-prompt")).not.toHaveTextContent("apple");
     fireEvent.error(screen.getByTestId("exercise-image"));
     expect(onImageFailure).toHaveBeenCalledTimes(1);

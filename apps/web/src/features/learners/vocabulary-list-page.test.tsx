@@ -79,9 +79,9 @@ describe("US-22 vocabulary list UI", () => {
 
     expect(await screen.findByTestId("vocabulary-list")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Từ vựng của An" })).toBeInTheDocument();
-    expect(screen.getByTestId("vocabulary-row-1")).toHaveTextContent("New");
-    expect(screen.getByTestId("vocabulary-row-2")).toHaveTextContent("Learning");
-    expect(screen.getByTestId("vocabulary-row-3")).toHaveTextContent("Mastered");
+    expect(screen.getByTestId("vocabulary-row-1")).toHaveTextContent("Từ mới");
+    expect(screen.getByTestId("vocabulary-row-2")).toHaveTextContent("Đang học");
+    expect(screen.getByTestId("vocabulary-row-3")).toHaveTextContent("Đã thành thạo");
     expect(fetchMock).toHaveBeenCalledWith("/api/learners/" + learnerA.id + "/vocabulary", { credentials: "include" });
   });
 
@@ -97,7 +97,7 @@ describe("US-22 vocabulary list UI", () => {
       .mockResolvedValueOnce(response([item(1, "apple", "NEW")]));
     renderList();
 
-    expect(await screen.findByTestId("vocabulary-error")).toHaveTextContent("Không thể tải vocabulary lúc này. Vui lòng thử lại.");
+    expect(await screen.findByTestId("vocabulary-error")).toHaveTextContent("Không thể tải từ vựng lúc này. Vui lòng thử lại.");
     fireEvent.click(screen.getByRole("button", { name: "Thử lại" }));
     await waitFor(() => expect(screen.getByTestId("vocabulary-list")).toBeInTheDocument());
     expect(fetchMock).toHaveBeenCalledTimes(2);
@@ -126,10 +126,10 @@ describe("US-22 vocabulary list UI", () => {
       </MemoryRouter>
     );
 
-    expect(await screen.findByTestId("vocabulary-row-1")).toHaveTextContent("Learning");
+    expect(await screen.findByTestId("vocabulary-row-1")).toHaveTextContent("Đang học");
     fireEvent.click(screen.getByRole("button", { name: "Switch learner" }));
     await waitFor(() => expect(screen.getByRole("heading", { name: "Từ vựng của Bình" })).toBeInTheDocument());
-    await waitFor(() => expect(screen.getByTestId("vocabulary-row-1")).toHaveTextContent("New"));
+    await waitFor(() => expect(screen.getByTestId("vocabulary-row-1")).toHaveTextContent("Từ mới"));
     expect(fetchMock).toHaveBeenNthCalledWith(1, "/api/learners/" + learnerA.id + "/vocabulary", { credentials: "include" });
     expect(fetchMock).toHaveBeenNthCalledWith(2, "/api/learners/" + learnerB.id + "/vocabulary", { credentials: "include" });
   });

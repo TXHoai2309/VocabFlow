@@ -14,7 +14,7 @@ export type LoginState =
   | "completed"
   | "auth-error";
 
-const AUTH_ERROR_MESSAGE = "Email hoặc mật khẩu không đúng. Vui lòng thử lại.";
+const AUTH_ERROR_MESSAGE = "Địa chỉ email hoặc mật khẩu không đúng. Vui lòng thử lại.";
 const NETWORK_ERROR_MESSAGE = "Không thể đăng nhập lúc này. Vui lòng thử lại.";
 const BOOTSTRAP_ERROR_MESSAGE = "Đã đăng nhập nhưng chưa hoàn tất thiết lập gia đình.";
 const SESSION_CHECK_ERROR_MESSAGE = "Không thể kiểm tra phiên hiện tại. Vui lòng thử lại.";
@@ -88,7 +88,7 @@ export function LoginPage() {
   return (
     <main className="auth-page" aria-labelledby="login-title">
       <section className="auth-card">
-        <Link className="auth-brand" to="/" aria-label="VocabFlow home">
+        <Link className="auth-brand" to="/" aria-label="Trang chủ VocabFlow">
           <span className="auth-brand-mark" aria-hidden="true">V</span>
           <span>VocabFlow</span>
         </Link>
@@ -121,9 +121,9 @@ export function LoginPage() {
           ) : null}
           {state === "completed" ? (
             <div role="status" data-testid="authenticated-household-ready">
-              Đã đăng nhập. Household đã sẵn sàng.
+              Đã đăng nhập. Gia đình đã sẵn sàng.
               {household ? ` ${household.name}` : ""}
-              <Link className="auth-next-link" to="/learners">Tiếp tục chọn learner</Link>
+              <Link className="auth-next-link" to="/learners">Tiếp tục chọn người học</Link>
             </div>
           ) : null}
         </div>

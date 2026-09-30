@@ -6,13 +6,13 @@ import { LearningSetsClientError, requestLearningSet, requestLearningSets } from
 type LoadState = "loading" | "ready" | "error";
 
 function gradeLabel(grade: VocabularyLevel | null) {
-  if (!grade) return "Tổng quát";
-  return grade === "GENERAL" ? "Tổng quát" : grade.replace("GRADE_", "Lớp ");
+  if (!grade) return "Chung";
+  return grade === "GENERAL" ? "Chung" : grade.replace("GRADE_", "Lớp ");
 }
 
 function loadError(error: unknown) {
   if (error instanceof LearningSetsClientError && error.status === 401) return "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại.";
-  return "Không thể tải learning set lúc này. Vui lòng thử lại.";
+  return "Không thể tải bộ từ lúc này. Vui lòng thử lại.";
 }
 
 export function LearningSetsPage() {
@@ -54,14 +54,14 @@ export function LearningSetsPage() {
     <main className="learner-page" aria-labelledby="learning-sets-title">
       <section className="learner-card learning-sets-card">
         <div className="learning-sets-topbar">
-          <Link className="back-link" to="/learners">← Về learner home</Link>
-          <Link className="learning-sets-manage-link" to="/learning-sets/assign">Gán cho learner</Link>
+          <Link className="back-link" to="/learners">← Về trang người học</Link>
+          <Link className="learning-sets-manage-link" to="/learning-sets/assign">Gán cho người học</Link>
         </div>
-        <p className="auth-eyebrow">Learning sets</p>
-        <h1 className="auth-title" id="learning-sets-title">Bộ từ vựng</h1>
+        <p className="auth-eyebrow">Bộ từ</p>
+        <h1 className="auth-title" id="learning-sets-title">Bộ từ</h1>
         <p className="auth-copy">Các bộ từ được tuyển chọn sẵn, có thứ tự ổn định để gia đình chọn nội dung học.</p>
 
-        {state === "loading" ? <div className="learning-sets-state" data-testid="learning-sets-loading" role="status">Đang tải learning set…</div> : null}
+        {state === "loading" ? <div className="learning-sets-state" data-testid="learning-sets-loading" role="status">Đang tải bộ từ…</div> : null}
         {state === "error" ? (
           <div className="learning-sets-state learning-sets-error" data-testid="learning-sets-error" role="alert">
             <span>{message}</span><button className="auth-retry" type="button" onClick={load}>Thử lại</button>
@@ -69,7 +69,7 @@ export function LearningSetsPage() {
         ) : null}
         {state === "ready" && learningSets.length === 0 ? (
           <div className="vocabulary-empty" data-testid="learning-sets-empty" role="status">
-            <h2>Chưa có bộ từ</h2><p>Danh mục learning set hiện đang trống.</p>
+            <h2>Chưa có bộ từ</h2><p>Danh mục bộ từ hiện đang trống.</p>
           </div>
         ) : null}
         {state === "ready" && learningSets.length > 0 ? (
@@ -115,7 +115,7 @@ function LearningSetDetailExperience({ learningSetId }: { learningSetId: number 
         if (cancelled) return;
         setState("error");
         setMessage(error instanceof LearningSetsClientError && error.status === 404
-          ? "Learning set không khả dụng."
+          ? "Bộ từ này hiện không khả dụng."
           : loadError(error));
       });
     return () => { cancelled = true; };
@@ -124,7 +124,7 @@ function LearningSetDetailExperience({ learningSetId }: { learningSetId: number 
   return (
     <main className="learner-page" aria-labelledby="learning-set-detail-title">
       <section className="learner-card learning-sets-card">
-        <Link className="back-link" to="/learning-sets">← Về danh sách learning set</Link>
+        <Link className="back-link" to="/learning-sets">← Về danh sách bộ từ</Link>
         {state === "loading" ? <div className="learning-sets-state" data-testid="learning-set-detail-loading" role="status">Đang tải chi tiết…</div> : null}
         {state === "error" ? <div className="learning-sets-state learning-sets-error" data-testid="learning-set-detail-error" role="alert">{message}</div> : null}
         {state === "ready" && learningSet ? (

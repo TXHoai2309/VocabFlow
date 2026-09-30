@@ -75,6 +75,6 @@ describe("US-30 learner settings UI", () => {
 
     fireEvent.change(input, { target: { value: "5" } });
     fireEvent.click(screen.getByRole("button", { name: "Lưu cài đặt" }));
-    expect(await screen.findByRole("alert")).toHaveTextContent("Không thể tải cài đặt learner lúc này. Vui lòng thử lại.");
+    expect(await screen.findByRole("alert")).toHaveTextContent("Không thể tải cài đặt người học lúc này. Vui lòng thử lại.");
   });
 });

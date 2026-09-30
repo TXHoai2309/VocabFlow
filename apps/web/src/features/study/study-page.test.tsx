@@ -201,11 +201,11 @@ describe("US-09 flashcard session UX", () => {
     fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
 
     await waitFor(() => expect(screen.getByTestId("study-session-summary")).toBeInTheDocument());
-    expect(screen.getByText("Đã review").nextElementSibling).toHaveTextContent("1");
+    expect(screen.getByText("Đã ôn tập").nextElementSibling).toHaveTextContent("1");
     expect(screen.getByText("Đã nhớ").nextElementSibling).toHaveTextContent("1");
     expect(screen.getByText("Chưa nhớ").nextElementSibling).toHaveTextContent("0");
     expect(screen.getByText("Lượt ôn lại").nextElementSibling).toHaveTextContent("0");
-    expect(screen.getByRole("link", { name: "Về trang chủ" })).toHaveAttribute("href", "/learners");
+    expect(screen.getByRole("link", { name: "Về trang người học" })).toHaveAttribute("href", "/learners");
     expect(screen.queryByText("Học tiếp")).not.toBeInTheDocument();
   });
 
@@ -220,7 +220,7 @@ describe("US-09 flashcard session UX", () => {
     fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
     fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
 
-    await screen.findByText("Ôn lại");
+    await screen.findByText("Ôn tập lại");
     expect(screen.queryByTestId("study-session-summary")).not.toBeInTheDocument();
     expect(fetchMock).toHaveBeenCalledTimes(2);
   });
@@ -286,7 +286,7 @@ describe("US-09 flashcard session UX", () => {
     await waitFor(() => expect(screen.getByTestId("study-session-summary")).toBeInTheDocument());
     expect(fetchMock).toHaveBeenCalledTimes(3);
     expect(fetchMock.mock.calls[2]?.[1]?.body).toBe(firstBody);
-    expect(screen.getByText("Đã review").nextElementSibling).toHaveTextContent("1");
+    expect(screen.getByText("Đã ôn tập").nextElementSibling).toHaveTextContent("1");
     vi.unstubAllGlobals();
   });
 
@@ -310,7 +310,7 @@ describe("US-09 flashcard session UX", () => {
     fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
     fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
     await waitFor(() => expect(screen.getByTestId("study-session-summary")).toBeInTheDocument());
-    expect(screen.getByText("Đã review").nextElementSibling).toHaveTextContent("1");
+    expect(screen.getByText("Đã ôn tập").nextElementSibling).toHaveTextContent("1");
     expect(fetchMock).toHaveBeenCalledTimes(4);
   });
 
@@ -324,18 +324,18 @@ describe("US-09 flashcard session UX", () => {
     await screen.findByTestId("study-session-ready");
     fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
     fireEvent.click(screen.getByRole("button", { name: "Chưa nhớ" }));
-    await screen.findByText("Ôn lại");
+    await screen.findByText("Ôn tập lại");
     expect(screen.getByTestId("session-counter")).toHaveTextContent("1 / 1");
 
     fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
     fireEvent.click(screen.getByRole("button", { name: "Chưa nhớ" }));
-    await screen.findByText("Ôn lại");
+    await screen.findByText("Ôn tập lại");
     fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
     fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
 
     await waitFor(() => expect(screen.getByTestId("study-session-summary")).toBeInTheDocument());
     expect(screen.getByText("Lượt ôn lại").nextElementSibling).toHaveTextContent("2");
-    expect(screen.getByText("Đã review").nextElementSibling).toHaveTextContent("1");
+    expect(screen.getByText("Đã ôn tập").nextElementSibling).toHaveTextContent("1");
     expect(screen.getByText("Đã nhớ").nextElementSibling).toHaveTextContent("0");
     expect(screen.getByText("Chưa nhớ").nextElementSibling).toHaveTextContent("1");
     expect(fetchMock).toHaveBeenCalledTimes(2);
@@ -345,7 +345,7 @@ describe("US-09 flashcard session UX", () => {
     vi.spyOn(globalThis, "fetch").mockResolvedValue(response(queueResponse([])));
     renderStudy();
     expect(await screen.findByTestId("study-empty-state")).toBeInTheDocument();
-    expect(screen.getByText("Về learner")).toBeInTheDocument();
+    expect(screen.getByText("Về trang người học")).toBeInTheDocument();
 
     renderStudy(null);
     await waitFor(() => expect(screen.getByText("learners-route")).toBeInTheDocument());

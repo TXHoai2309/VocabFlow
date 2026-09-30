@@ -13,9 +13,9 @@ export function validateLoginForm(values: LoginFormValues): LoginFieldErrors {
   const email = values.email.trim();
 
   if (!email) {
-    errors.email = "Vui lòng nhập email.";
+    errors.email = "Vui lòng nhập địa chỉ email.";
   } else if (!EMAIL_PATTERN.test(email)) {
-    errors.email = "Vui lòng nhập email hợp lệ.";
+    errors.email = "Vui lòng nhập địa chỉ email hợp lệ.";
   }
 
   if (!values.password) {

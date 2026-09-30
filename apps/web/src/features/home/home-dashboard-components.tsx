@@ -21,9 +21,9 @@ function initials(value: string) {
 
 function greetingForNow() {
   const hour = new Date().getHours();
-  if (hour < 12) return "Good morning";
-  if (hour < 17) return "Good afternoon";
-  return "Good evening";
+  if (hour < 12) return "Chào buổi sáng";
+  if (hour < 17) return "Chào buổi chiều";
+  return "Chào buổi tối";
 }
 
 export function HomeDashboardHeader({
@@ -40,13 +40,13 @@ export function HomeDashboardHeader({
       <div className="home-header-heading">
         <div>
           <h1>{greetingForNow()}, {parentName}! <span aria-hidden="true">👋</span></h1>
-          <p>Let’s make progress today.</p>
+          <p>Cùng học thật tốt hôm nay nhé!</p>
         </div>
       </div>
       <div className="home-header-actions">
-        <Link className="home-learner-switcher" to="/learners" aria-label={`Change learner. Active learner ${learner.displayName}${level === null ? "" : `, Level ${level}`}`}>
+        <Link className="home-learner-switcher" to="/learners" aria-label={`Đổi người học. Người học hiện tại: ${learner.displayName}${level === null ? "" : `, Cấp độ ${level}`}`}>
           <span className="home-learner-avatar" aria-hidden="true">{initials(learner.displayName)}</span>
-          <span className="home-learner-label"><strong>{learner.displayName}</strong>{level === null ? null : <span>Level {level}</span>}</span>
+          <span className="home-learner-label"><strong>{learner.displayName}</strong>{level === null ? null : <span>Cấp độ {level}</span>}</span>
           <span className="home-chevron" aria-hidden="true">⌄</span>
         </Link>
         <span className="home-notification-visual" aria-hidden="true">
@@ -60,7 +60,7 @@ export function HomeDashboardHeader({
 export function HomeSessionLoading() {
   return (
     <main className="home-session-state" aria-busy="true">
-      <div className="home-session-skeleton" role="status"><span className="home-skeleton home-skeleton-title" /><span className="home-skeleton home-skeleton-line" />Loading your learning home…</div>
+      <div className="home-session-skeleton" role="status"><span className="home-skeleton home-skeleton-title" /><span className="home-skeleton home-skeleton-line" />Đang tải trang học tập…</div>
       <div className="home-session-skeleton-cards" aria-hidden="true">{Array.from({ length: 4 }, (_, index) => <span className="home-skeleton" key={index} />)}</div>
     </main>
   );
@@ -70,9 +70,9 @@ export function HomeSessionError({ onRetry }: { onRetry: () => void }) {
   return (
     <main className="home-session-state">
       <section className="home-session-error" role="alert">
-        <h1>We couldn’t check your session.</h1>
-        <p>Please try again. Your learning data has not been changed.</p>
-        <button className="home-button home-button-primary" type="button" onClick={onRetry}>Try again</button>
+        <h1>Không thể kiểm tra phiên đăng nhập.</h1>
+        <p>Vui lòng thử lại. Dữ liệu học tập của bạn chưa bị thay đổi.</p>
+        <button className="home-button home-button-primary" type="button" onClick={onRetry}>Thử lại</button>
       </section>
     </main>
   );
@@ -113,8 +113,8 @@ function SectionLoading({ label }: { label: string }) {
 }
 
 function gradeLabel(grade: VocabularyLevel | null) {
-  if (!grade || grade === "GENERAL") return "General";
-  return grade.replace("GRADE_", "Grade ");
+  if (!grade || grade === "GENERAL") return "Chung";
+  return grade.replace("GRADE_", "Lớp ");
 }
 
 export function DailyStudyHero({
@@ -132,22 +132,22 @@ export function DailyStudyHero({
     <section className="home-hero" aria-labelledby="home-hero-title">
       <div className="home-hero-copy">
         <p className="home-eyebrow">VocabFlow</p>
-        <h2 id="home-hero-title">Ready to learn?</h2>
-        {queue.status === "loading" ? <p>Checking today’s study queue…</p> : null}
-        {queue.status === "error" ? <p>Your study queue could not be loaded. Use Retry below to check again.</p> : null}
-        {queue.status === "ready" && hasQueue ? <p>You have {dueCount} words to review and {newCount} new words available today. Keep your streak going!</p> : null}
-        {queue.status === "ready" && !hasQueue ? <p>You’re all caught up for today. Check back when more words are ready.</p> : null}
-        {hasQueue ? <Link className="home-button home-button-light" to="/study">Start Studying <span aria-hidden="true">→</span></Link> : (
+        <h2 id="home-hero-title">Sẵn sàng học chưa?</h2>
+        {queue.status === "loading" ? <p>Đang kiểm tra danh sách học hôm nay…</p> : null}
+        {queue.status === "error" ? <p>Không thể tải danh sách học hôm nay. Nhấn Thử lại bên dưới để kiểm tra lại.</p> : null}
+        {queue.status === "ready" && hasQueue ? <p>Hôm nay bạn có {dueCount} từ cần ôn tập và {newCount} từ mới. Hãy duy trì chuỗi ngày học nhé!</p> : null}
+        {queue.status === "ready" && !hasQueue ? <p>Hôm nay bạn đã hoàn thành danh sách học. Hãy quay lại khi có thêm từ mới nhé.</p> : null}
+        {hasQueue ? <Link className="home-button home-button-light" to="/study">Bắt đầu học <span aria-hidden="true">→</span></Link> : (
           <button className="home-button home-button-light" type="button" disabled>
-            {queue.status === "loading" ? "Loading study queue…" : queue.status === "error" ? "Study queue unavailable" : "Today’s queue is complete"}
+            {queue.status === "loading" ? "Đang tải danh sách học…" : queue.status === "error" ? "Danh sách học chưa khả dụng" : "Đã hoàn thành danh sách hôm nay"}
           </button>
         )}
       </div>
       <div className="home-hero-art"><StudyIllustration /></div>
-      <div className="home-streak" role="img" aria-label={streak === null ? "Streak loading" : `${streak} day streak`}>
+      <div className="home-streak" role="img" aria-label={streak === null ? "Đang tải chuỗi ngày học" : `${streak} ngày liên tiếp`}>
         <span aria-hidden="true">🔥</span>
         <strong>{streak ?? "—"}</strong>
-        <small>day streak</small>
+        <small>ngày liên tiếp</small>
       </div>
     </section>
   );
@@ -186,11 +186,11 @@ export function QuickStats({
   activity: HomeResource<ActivitySummaryResponse>;
 }) {
   return (
-    <section className="home-quick-stats" aria-label="Learning summary">
-      <StatCard label="To Review" icon="📘" resource={queue} value={queue.status === "ready" ? queue.data.dueCount : null} href="/study" />
-      <StatCard label="New Words" icon="🟩" resource={queue} value={queue.status === "ready" ? queue.data.newCount : null} href="/study" />
-      <StatCard label="Total Learned" icon="🎓" resource={summary} value={summary.status === "ready" ? summary.data.learnedCount : null} href="/progress" />
-      <StatCard label="Day Streak" icon="🔥" resource={activity} value={activity.status === "ready" ? activity.data.streak.currentStreak : null} href="/progress" />
+    <section className="home-quick-stats" aria-label="Tóm tắt việc học">
+      <StatCard label="Cần ôn tập" icon="📘" resource={queue} value={queue.status === "ready" ? queue.data.dueCount : null} href="/study" />
+      <StatCard label="Từ mới" icon="🟩" resource={queue} value={queue.status === "ready" ? queue.data.newCount : null} href="/study" />
+      <StatCard label="Đã học" icon="🎓" resource={summary} value={summary.status === "ready" ? summary.data.learnedCount : null} href="/progress" />
+      <StatCard label="Chuỗi ngày học" icon="🔥" resource={activity} value={activity.status === "ready" ? activity.data.streak.currentStreak : null} href="/progress" />
     </section>
   );
 }
@@ -199,19 +199,19 @@ export function ContinueLearningCard({ queue }: { queue: HomeResource<ReviewQueu
   const next = queue.status === "ready" ? queue.data.queue[0] : undefined;
   return (
     <section className="home-card home-continue-card" aria-labelledby="home-continue-title">
-      <div className="home-card-heading"><h2 id="home-continue-title">Continue Learning</h2></div>
-      {queue.status === "loading" ? <SectionLoading label="Loading your current study queue" /> : null}
-      {queue.status === "error" ? <p className="home-inline-state" role="status">Your current queue is unavailable. Retry to load it.</p> : null}
-      {queue.status === "ready" && !next ? <div className="home-empty-state" role="status"><span aria-hidden="true">✨</span><p>No words are waiting in your queue right now.</p><small>There is no saved session to resume; the next session will use your current queue.</small></div> : null}
+      <div className="home-card-heading"><h2 id="home-continue-title">Tiếp tục học</h2></div>
+      {queue.status === "loading" ? <SectionLoading label="Đang tải danh sách học hiện tại" /> : null}
+      {queue.status === "error" ? <p className="home-inline-state" role="status">Chưa thể tải danh sách học hiện tại. Hãy thử lại.</p> : null}
+      {queue.status === "ready" && !next ? <div className="home-empty-state" role="status"><span aria-hidden="true">✨</span><p>Hiện không có từ nào trong danh sách học.</p><small>Chưa có phiên học nào được lưu; phiên tiếp theo sẽ dùng danh sách học hiện tại.</small></div> : null}
       {next ? (
         <div className="home-next-item">
           <div className="home-next-art" aria-hidden="true"><span>📖</span><i>✦</i></div>
           <div className="home-next-copy">
-            <small>Up next in your current queue · {next.queueType === "DUE" ? "Review" : "New word"}</small>
+            <small>Tiếp theo trong danh sách học hiện tại · {next.queueType === "DUE" ? "Ôn tập" : "Từ mới"}</small>
             <strong>{next.vocabulary.word}</strong>
             <span>{next.vocabulary.vietnamese}</span>
           </div>
-          <Link className="home-button home-button-primary" to="/study">Start a session</Link>
+          <Link className="home-button home-button-primary" to="/study">Bắt đầu phiên học</Link>
         </div>
       ) : null}
     </section>
@@ -229,15 +229,15 @@ export function LearningSetsCard({
   return (
     <section className="home-card home-learning-sets-card" aria-labelledby="home-learning-sets-title">
       <div className="home-card-heading">
-        <h2 id="home-learning-sets-title">Learning Sets for {learnerName}</h2>
-        <Link to="/learning-sets">See all</Link>
+        <h2 id="home-learning-sets-title">Bộ từ của {learnerName}</h2>
+        <Link to="/learning-sets">Xem tất cả</Link>
       </div>
-      {resource.status === "loading" ? <SectionLoading label="Loading assigned learning sets" /> : null}
-      {resource.status === "error" ? <p className="home-inline-state" role="status">Assigned learning sets could not be loaded. Retry to check again.</p> : null}
+      {resource.status === "loading" ? <SectionLoading label="Đang tải các bộ từ đã chọn" /> : null}
+      {resource.status === "error" ? <p className="home-inline-state" role="status">Không thể tải các bộ từ đã chọn. Hãy thử lại.</p> : null}
       {resource.status === "ready" && active.length === 0 ? (
         <div className="home-empty-state home-sets-empty" role="status">
-          <span aria-hidden="true">📚</span><p>No learning sets are assigned to this learner yet.</p>
-          <Link className="home-text-link" to="/learning-sets/assign">Choose learning sets</Link>
+          <span aria-hidden="true">📚</span><p>Người học này chưa có bộ từ nào.</p>
+          <Link className="home-text-link" to="/learning-sets/assign">Chọn bộ từ</Link>
         </div>
       ) : null}
       {active.length > 0 ? (
@@ -246,7 +246,7 @@ export function LearningSetsCard({
             <li key={learningSet.id}>
               <Link to={`/learning-sets/${learningSet.id}`} className="home-learning-set-row">
                 <span className="home-learning-set-icon" aria-hidden="true">{learningSet.slug.includes("food") ? "🍎" : learningSet.slug.includes("school") ? "🎒" : "🌱"}</span>
-                <span className="home-learning-set-copy"><strong>{learningSet.name}</strong><small>{learningSet.vocabularyCount} words · {gradeLabel(learningSet.grade)}</small></span>
+                <span className="home-learning-set-copy"><strong>{learningSet.name}</strong><small>{learningSet.vocabularyCount} từ · {gradeLabel(learningSet.grade)}</small></span>
                 <span className="home-stat-chevron" aria-hidden="true">›</span>
               </Link>
             </li>
@@ -258,11 +258,11 @@ export function LearningSetsCard({
 }
 
 function weekday(date: string) {
-  return new Intl.DateTimeFormat(undefined, { weekday: "short", timeZone: "UTC" }).format(new Date(`${date}T00:00:00Z`));
+  return new Intl.DateTimeFormat("vi-VN", { weekday: "short", timeZone: "UTC" }).format(new Date(`${date}T00:00:00Z`));
 }
 
 function dateLabel(date: string) {
-  return new Intl.DateTimeFormat(undefined, { month: "short", day: "numeric", timeZone: "UTC" }).format(new Date(`${date}T00:00:00Z`));
+  return new Intl.DateTimeFormat("vi-VN", { month: "short", day: "numeric", timeZone: "UTC" }).format(new Date(`${date}T00:00:00Z`));
 }
 
 function HomeHistoryContent({ history, mode }: { history: ProgressHistoryResponse; mode: "chart" | "activity" }) {
@@ -270,7 +270,7 @@ function HomeHistoryContent({ history, mode }: { history: ProgressHistoryRespons
   if (mode === "chart") {
     const maximum = Math.max(1, ...history.days.map((day) => day.uniqueWords));
     return (
-      <ul className="home-week-chart" role="list" aria-label="Unique words studied each day during the last seven days">
+      <ul className="home-week-chart" role="list" aria-label="Số từ khác nhau đã học mỗi ngày trong 7 ngày qua">
         {history.days.map((day) => {
           const barStyle = { "--bar-height": `${day.uniqueWords === 0 ? 2 : (day.uniqueWords / maximum) * 100}%` } as CSSProperties;
           return (
@@ -278,7 +278,7 @@ function HomeHistoryContent({ history, mode }: { history: ProgressHistoryRespons
               <span className="home-week-chart-value">{day.uniqueWords}</span>
               <span className="home-week-chart-track" aria-hidden="true"><span className="home-week-chart-bar" style={barStyle} /></span>
               <span className="home-week-chart-label">{weekday(day.date)}</span>
-              <span className="home-sr-only">{day.uniqueWords} unique words studied on {dateLabel(day.date)}</span>
+              <span className="home-sr-only">{day.uniqueWords} từ khác nhau đã học vào ngày {dateLabel(day.date)}</span>
             </li>
           );
         })}
@@ -286,14 +286,14 @@ function HomeHistoryContent({ history, mode }: { history: ProgressHistoryRespons
     );
   }
   if (activeDays.length === 0) {
-    return <div className="home-empty-state" role="status"><span aria-hidden="true">🌿</span><p>No review activity has been recorded in the last seven days.</p></div>;
+    return <div className="home-empty-state" role="status"><span aria-hidden="true">🌿</span><p>Chưa có hoạt động ôn tập nào trong 7 ngày qua.</p></div>;
   }
   return (
     <ul className="home-activity-list">
       {activeDays.slice(-3).reverse().map((day) => (
         <li key={day.date}>
           <span className="home-activity-icon" aria-hidden="true">✓</span>
-          <span className="home-activity-copy"><strong>{day.uniqueWords} unique words studied</strong><small>{day.reviews} {day.reviews === 1 ? "review" : "reviews"}</small></span>
+          <span className="home-activity-copy"><strong>{day.uniqueWords} từ khác nhau đã học</strong><small>{day.reviews} lượt ôn tập</small></span>
           <time dateTime={day.date}>{dateLabel(day.date)}</time>
         </li>
       ))}
@@ -304,10 +304,10 @@ function HomeHistoryContent({ history, mode }: { history: ProgressHistoryRespons
 export function WeeklyProgressCard({ resource }: { resource: HomeResource<ProgressHistoryResponse> }) {
   return (
     <section className="home-card home-week-card" aria-labelledby="home-week-title">
-      <div className="home-card-heading"><h2 id="home-week-title">Your Progress</h2><span className="home-period-label">Last 7 days</span></div>
-      {resource.status === "loading" ? <SectionLoading label="Loading weekly progress" /> : null}
-      {resource.status === "error" ? <p className="home-inline-state" role="status">Weekly progress could not be loaded. Retry to check again.</p> : null}
-      {resource.status === "ready" && resource.data.days.every((day) => day.uniqueWords === 0) ? <p className="home-chart-empty" role="status">Study activity will appear here as you learn.</p> : null}
+      <div className="home-card-heading"><h2 id="home-week-title">Tiến trình của bạn</h2><span className="home-period-label">7 ngày gần đây</span></div>
+      {resource.status === "loading" ? <SectionLoading label="Đang tải tiến trình trong tuần" /> : null}
+      {resource.status === "error" ? <p className="home-inline-state" role="status">Không thể tải tiến trình trong tuần. Hãy thử lại.</p> : null}
+      {resource.status === "ready" && resource.data.days.every((day) => day.uniqueWords === 0) ? <p className="home-chart-empty" role="status">Hoạt động học tập sẽ hiển thị tại đây khi bạn bắt đầu học.</p> : null}
       {resource.status === "ready" && resource.data.days.some((day) => day.uniqueWords > 0) ? <HomeHistoryContent history={resource.data} mode="chart" /> : null}
     </section>
   );
@@ -316,9 +316,9 @@ export function WeeklyProgressCard({ resource }: { resource: HomeResource<Progre
 export function RecentActivityCard({ resource }: { resource: HomeResource<ProgressHistoryResponse> }) {
   return (
     <section className="home-card home-activity-card" aria-labelledby="home-activity-title">
-      <div className="home-card-heading"><h2 id="home-activity-title">Recent Activity</h2><Link to="/progress">See all</Link></div>
-      {resource.status === "loading" ? <SectionLoading label="Loading recent activity" /> : null}
-      {resource.status === "error" ? <p className="home-inline-state" role="status">Recent activity could not be loaded. Retry to check again.</p> : null}
+      <div className="home-card-heading"><h2 id="home-activity-title">Hoạt động gần đây</h2><Link to="/progress">Xem tất cả</Link></div>
+      {resource.status === "loading" ? <SectionLoading label="Đang tải hoạt động gần đây" /> : null}
+      {resource.status === "error" ? <p className="home-inline-state" role="status">Không thể tải hoạt động gần đây. Hãy thử lại.</p> : null}
       {resource.status === "ready" ? <HomeHistoryContent history={resource.data} mode="activity" /> : null}
     </section>
   );
@@ -327,8 +327,8 @@ export function RecentActivityCard({ resource }: { resource: HomeResource<Progre
 export function DashboardErrorNotice({ onRetry }: { onRetry: () => void }) {
   return (
     <div className="home-error-notice" role="alert">
-      <p>Some dashboard information could not be loaded.</p>
-      <button className="home-button home-button-secondary" type="button" onClick={onRetry}>Retry</button>
+      <p>Không thể tải một số thông tin trên trang chủ.</p>
+      <button className="home-button home-button-secondary" type="button" onClick={onRetry}>Thử lại</button>
     </div>
   );
 }

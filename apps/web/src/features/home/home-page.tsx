@@ -99,7 +99,7 @@ function HomeDashboard({ learner, parentName }: { learner: LearnerDto; parentNam
   return (
     <>
       <HomeDashboardHeader parentName={parentName} learner={learner} level={learnerLevel} />
-      <main className="home-dashboard" aria-label={`${learner.displayName} learning dashboard`}>
+      <main className="home-dashboard" aria-label={`Trang chủ học tập của ${learner.displayName}`}>
         {hasError ? <DashboardErrorNotice onRetry={retryDashboard} /> : null}
         <DailyStudyHero queue={queue} activity={activity} />
         <QuickStats queue={queue} summary={summary} activity={activity} />

@@ -18,8 +18,8 @@ type LoadState = "loading" | "ready" | "error";
 
 function errorMessage(error: unknown) {
   if (error instanceof LearnerSettingsClientError && error.status === 401) return "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại.";
-  if (error instanceof LearnerSettingsClientError && error.status === 403) return "Bạn không có quyền thay đổi learner này.";
-  return "Không thể tải cài đặt learner lúc này. Vui lòng thử lại.";
+  if (error instanceof LearnerSettingsClientError && error.status === 403) return "Bạn không có quyền thay đổi hồ sơ người học này.";
+  return "Không thể tải cài đặt người học lúc này. Vui lòng thử lại.";
 }
 
 function validateDraft(value: string, min: number, max: number): string | null {
@@ -93,12 +93,12 @@ function LearnerSettingsExperience({ activeLearner }: { activeLearner: LearnerDt
     <main className="learner-page" aria-labelledby="learner-settings-title">
       <section className="learner-card progress-card">
         <div className="progress-topbar">
-          <Link className="back-link" to="/learners">← Về learner home</Link>
-          <p className="study-learner">Learner: <strong>{activeLearner.displayName}</strong></p>
+          <Link className="back-link" to="/learners">← Về trang người học</Link>
+          <p className="study-learner">Người học: <strong>{activeLearner.displayName}</strong></p>
         </div>
-        <p className="auth-eyebrow">Daily learning</p>
+        <p className="auth-eyebrow">Học tập mỗi ngày</p>
         <h1 className="auth-title" id="learner-settings-title">Cài đặt học của {activeLearner.displayName}</h1>
-        <p className="auth-copy">Giới hạn từ mới chỉ áp dụng cho việc giới thiệu từ mới. Mục tiêu học đếm số từ duy nhất đã review trong ngày; từ đến hạn vẫn luôn được ưu tiên.</p>
+        <p className="auth-copy">Giới hạn từ mới chỉ áp dụng cho việc giới thiệu từ mới. Mục tiêu học tính số từ khác nhau đã ôn tập trong ngày; các từ đến hạn luôn được ưu tiên.</p>
 
         {state === "loading" ? <div className="progress-state" data-testid="learner-settings-loading" role="status">Đang tải cài đặt…</div> : null}
         {state === "error" ? (
