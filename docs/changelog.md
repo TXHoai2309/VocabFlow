@@ -2,6 +2,27 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-28 — Guarded production vocabulary catalog import
+
+- Added a separate explicit production release-operator path to
+  `vocab:import-catalog`; local development and CI test invocations retain
+  their existing CLI and environment guards.
+- Production preflights use the provider-verified `vocabflow_runtime`
+  credential, enforce canonical post-connect identity, and keep dry-run inside
+  a read-only transaction. Apply needs the explicit target/apply/branch
+  confirmations. No owner/migration credential, DB privilege, or Vercel
+  runtime path was added.
+- The release runbook now places catalog import before US-41 curation.
+
+## 2026-09-28 — Least-privilege production DB preflight
+
+- Production preflight now validates `vocabflow_runtime` separately from
+  `vocabflow_migration`: both perform canonical post-connect identity checks
+  in read-only transactions, while only migration reads the Drizzle ledger.
+- No runtime Drizzle grant, runtime-to-migration membership, protected
+  metadata privilege change, or database mutation was introduced. Regression
+  tests reproduce the prior runtime-role ledger permission failure.
+
 ## 2026-09-28 — Guarded first-production database bootstrap
 
 - Added an explicit, read-only-by-default first-production bootstrap command

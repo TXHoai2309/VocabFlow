@@ -1,5 +1,41 @@
 # Current Handoff Snapshot
 
+## 2026-09-28 — Guarded production vocabulary catalog import
+
+- Added explicit production target parsing for `vocab:import-catalog` while
+  preserving the existing no-argument / `--apply` development and test CLI.
+  Production uses `authorizeProductionRelease` and
+  `resolveProductionConnection({ purpose: "runtime" })`, selecting only
+  `PRODUCTION_DATABASE_URL` and requiring Neon project/branch proof.
+- Production dry-run checks the canonical protected identity and catalog plan
+  inside a PostgreSQL `READ ONLY` transaction. Apply requires `--apply`, exact
+  production and branch confirmations, repeats release authorization, and
+  validates identity inside the write transaction before catalog operations.
+  Existing import safety rules are unchanged; no owner/migration credential,
+  extra grant, or execution-context guard bypass was added.
+- Focused tests pass (29 tests); full `pnpm test` passes (59 files / 623
+  tests); `pnpm lint`, `pnpm typecheck`, `pnpm build`, and `git diff --check`
+  pass. Local Node is 22.19.0 versus pinned 22.23.2. No real DB connection,
+  mutation, deploy, push, or commit was performed. `.env.example`,
+  `docs/decisions.md`, and existing unrelated workspace edits remain
+  untouched.
+
+## 2026-09-28 — Least-privilege production preflight
+
+- Split `db:production-preflight` into two provider-verified read-only
+  connections. `vocabflow_runtime` now independently validates connectivity
+  and canonical protected identity; `vocabflow_migration` independently
+  validates the same identity and reads `drizzle.__drizzle_migrations`.
+- Both use read-only transactions. The bootstrap grants, protected metadata
+  model, runtime-to-migration membership rules, and Vercel/database settings
+  are unchanged. Added a mock regression test that fails with the reported
+  schema-permission error if runtime accesses the Drizzle ledger.
+- Focused tests pass (31 tests); full `pnpm test` passes (58 files / 615
+  tests); `pnpm lint`, `pnpm typecheck`, `pnpm build`, and `git diff --check`
+  pass. Local Node is 22.19.0 versus pinned 22.23.2. No database connection,
+  mutation, deploy, or push was performed. Existing unrelated edits,
+  including `docs/decisions.md`, remain untouched and unstaged.
+
 ## 2026-09-28 — Guarded fresh-production database bootstrap
 
 - Added `pnpm db:production-bootstrap` as a read-only-by-default, explicit
