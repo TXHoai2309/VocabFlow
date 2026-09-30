@@ -10,6 +10,7 @@ import { TopicsPage } from "./features/learners/topics-page";
 import { ExerciseStudyPage, StudyPage } from "./features/study/study-page";
 import { LearningSetDetailPage, LearningSetsPage } from "./features/learning-sets/learning-sets-page";
 import { LearnerLearningSetsPage } from "./features/learning-sets/learner-learning-sets-page";
+import { HomePage } from "./features/home/home-page";
 
 function Shell({ children }: { children: React.ReactNode }) {
   return (
@@ -26,23 +27,6 @@ function Shell({ children }: { children: React.ReactNode }) {
       <main className="app-main">{children}</main>
       <footer className="app-footer">Family learning foundation · BATCH 0</footer>
     </div>
-  );
-}
-
-function Home() {
-  return (
-    <section className="hero" aria-labelledby="home-title">
-      <div className="eyebrow">Foundation ready</div>
-      <h1 id="home-title">A dependable place to build better learning habits.</h1>
-      <p>
-        VocabFlow BATCH 0 establishes the shared shell, routing and API boundary that future
-        family learning features can build on.
-      </p>
-      <div className="actions">
-        <Link className="button primary" to="/foundation">Open nested route</Link>
-        <a className="button secondary" href="/api/health">Check API health</a>
-      </div>
-    </section>
   );
 }
 
@@ -86,7 +70,7 @@ export default function App() {
         <Route path="/learning-sets/:learningSetId" element={<LearningSetDetailPage />} />
         <Route path="/study" element={<StudyPage />} />
         <Route path="/study/exercises" element={<ExerciseStudyPage />} />
-        <Route path="/" element={<Shell><Home /></Shell>} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/foundation" element={<Shell><FoundationRoute /></Shell>} />
         <Route path="*" element={<Shell><NotFound /></Shell>} />
       </Routes>

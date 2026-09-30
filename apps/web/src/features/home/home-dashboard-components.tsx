@@ -1,0 +1,451 @@
+import { useState, type CSSProperties, type ReactNode } from "react";
+import { Link, NavLink } from "react-router";
+import type {
+  ActivitySummaryResponse,
+  GamificationResponse,
+  LearnerDto,
+  LearnerLearningSetDto,
+  ProgressHistoryResponse,
+  ProgressSummaryResponse,
+  ReviewQueueResponse,
+  VocabularyLevel
+} from "@vocabflow/contracts";
+
+export type HomeResource<T> =
+  | { status: "loading" }
+  | { status: "ready"; data: T }
+  | { status: "error" };
+
+const destinations = [
+  { label: "Home", to: "/", icon: "home" },
+  { label: "Study", to: "/study", icon: "study" },
+  { label: "Vocabulary", to: "/vocabulary", icon: "vocabulary" },
+  { label: "Topics", to: "/topics", icon: "topics" },
+  { label: "Learning Sets", to: "/learning-sets", icon: "sets" },
+  { label: "Progress", to: "/progress", icon: "progress" },
+  { label: "Learners", to: "/learners", icon: "learners" },
+  { label: "Settings", to: "/learner-settings", icon: "settings" }
+] as const;
+
+type IconName = typeof destinations[number]["icon"];
+
+function NavigationIcon({ name }: { name: IconName }) {
+  const paths: Record<IconName, string> = {
+    home: "M3 10.8 12 3l9 7.8v9.7a.5.5 0 0 1-.5.5h-5.8v-6.4H9.3V21H3.5a.5.5 0 0 1-.5-.5z",
+    study: "M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5zm0 0v16M8 7h8M8 10h8",
+    vocabulary: "M5 4h14v16H5zM8 8h8M8 11h8M8 14h5",
+    topics: "M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z",
+    sets: "M3.5 7.5h7l2 2H20a1 1 0 0 1 1 1v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM3.5 7.5v-2a1.5 1.5 0 0 1 1.5-1.5h4l2 2H19",
+    progress: "M4 20V12M10 20V5M16 20V9M22 20H2",
+    learners: "M16 20v-1.5a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4V20m16 0v-1.5a4 4 0 0 0-2.7-3.8M10 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm7-7.7a4 4 0 0 1 0 7.4",
+    settings: "M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm0-6 .8 2.2a7.8 7.8 0 0 1 1.8.7l2.1-1 2 2-1 2.1c.3.6.6 1.2.7 1.8l2.2.8v2.8l-2.2.8a7.8 7.8 0 0 1-.7 1.8l1 2.1-2 2-2.1-1a7.8 7.8 0 0 1-1.8.7l-.8 2.2H9.2l-.8-2.2a7.8 7.8 0 0 1-1.8-.7l-2.1 1-2-2 1-2.1a7.8 7.8 0 0 1-.7-1.8L.6 14.7v-2.8l2.2-.8a7.8 7.8 0 0 1 .7-1.8l-1-2.1 2-2 2.1 1a7.8 7.8 0 0 1 1.8-.7l.8-2.2z"
+  };
+  return <svg aria-hidden="true" viewBox="0 0 24 24" className="home-nav-icon" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d={paths[name]} /></svg>;
+}
+
+function Brand() {
+  return (
+    <Link className="home-brand" to="/" aria-label="VocabFlow home">
+      <svg aria-hidden="true" viewBox="0 0 32 32" className="home-brand-mark">
+        <path d="M4 6.5c4.8-.9 8.8-.1 12 2.2v17c-3.2-2.3-7.2-3.1-12-2.2z" fill="currentColor" />
+        <path d="M28 6.5c-4.8-.9-8.8-.1-12 2.2v17c3.2-2.3 7.2-3.1 12-2.2z" fill="currentColor" opacity=".68" />
+      </svg>
+      <span>Vocab<span className="home-brand-accent">Flow</span></span>
+    </Link>
+  );
+}
+
+function PrimaryNavigation({ onNavigate }: { onNavigate?: () => void }) {
+  return (
+    <nav aria-label="Primary navigation" className="home-primary-nav">
+      {destinations.map((item) => (
+        <NavLink
+          key={item.to}
+          to={item.to}
+          end={item.to === "/"}
+          onClick={onNavigate}
+          className={({ isActive }) => isActive ? "home-nav-link is-active" : "home-nav-link"}
+        >
+          <NavigationIcon name={item.icon} />
+          <span>{item.label}</span>
+        </NavLink>
+      ))}
+    </nav>
+  );
+}
+
+function initials(value: string) {
+  return value.trim().split(/\s+/).slice(0, 2).map((part) => part.charAt(0)).join("").toLocaleUpperCase() || "?";
+}
+
+function HomeSidebar({ parentName }: { parentName: string }) {
+  return (
+    <aside className="home-sidebar">
+      <Brand />
+      <PrimaryNavigation />
+      <div className="home-parent-account">
+        <span className="home-parent-avatar" aria-hidden="true">{initials(parentName)}</span>
+        <span className="home-parent-copy"><strong>{parentName}</strong><small>Parent account</small></span>
+      </div>
+    </aside>
+  );
+}
+
+function greetingForNow() {
+  const hour = new Date().getHours();
+  if (hour < 12) return "Good morning";
+  if (hour < 17) return "Good afternoon";
+  return "Good evening";
+}
+
+function HomeHeader({
+  parentName,
+  learner,
+  level,
+  onToggleNavigation,
+  navigationOpen
+}: {
+  parentName: string;
+  learner: LearnerDto;
+  level: number | null;
+  onToggleNavigation: () => void;
+  navigationOpen: boolean;
+}) {
+  return (
+    <header className="home-header">
+      <div className="home-header-heading">
+        <button
+          className="home-menu-toggle"
+          type="button"
+          aria-label={navigationOpen ? "Close navigation" : "Open navigation"}
+          aria-expanded={navigationOpen}
+          onClick={onToggleNavigation}
+        >
+          <span aria-hidden="true">{navigationOpen ? "×" : "☰"}</span>
+        </button>
+        <div>
+          <h1>{greetingForNow()}, {parentName}! <span aria-hidden="true">👋</span></h1>
+          <p>Let’s make progress today.</p>
+        </div>
+      </div>
+      <div className="home-header-actions">
+        <Link className="home-learner-switcher" to="/learners" aria-label={`Change learner. Active learner ${learner.displayName}${level === null ? "" : `, Level ${level}`}`}>
+          <span className="home-learner-avatar" aria-hidden="true">{initials(learner.displayName)}</span>
+          <span className="home-learner-label"><strong>{learner.displayName}</strong>{level === null ? null : <span>Level {level}</span>}</span>
+          <span className="home-chevron" aria-hidden="true">⌄</span>
+        </Link>
+        <span className="home-notification-visual" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4" /></svg>
+        </span>
+      </div>
+    </header>
+  );
+}
+
+export function HomeAppShell({
+  parentName,
+  learner,
+  learnerLevel,
+  children
+}: {
+  parentName: string;
+  learner: LearnerDto;
+  learnerLevel: HomeResource<GamificationResponse>;
+  children: ReactNode;
+}) {
+  const [navigationOpen, setNavigationOpen] = useState(false);
+  const level = learnerLevel.status === "ready" ? learnerLevel.data.xp.level : null;
+  return (
+    <div className="home-shell">
+      <HomeSidebar parentName={parentName} />
+      <div className="home-main-column">
+        <HomeHeader
+          parentName={parentName}
+          learner={learner}
+          level={level}
+          onToggleNavigation={() => setNavigationOpen((open) => !open)}
+          navigationOpen={navigationOpen}
+        />
+        <div className="home-tablet-nav"><PrimaryNavigation /></div>
+        {navigationOpen ? <div className="home-mobile-nav"><PrimaryNavigation onNavigate={() => setNavigationOpen(false)} /></div> : null}
+        {children}
+      </div>
+    </div>
+  );
+}
+
+export function HomeSessionLoading() {
+  return (
+    <main className="home-session-state" aria-busy="true">
+      <div className="home-session-skeleton" role="status"><span className="home-skeleton home-skeleton-title" /><span className="home-skeleton home-skeleton-line" />Loading your learning home…</div>
+      <div className="home-session-skeleton-cards" aria-hidden="true">{Array.from({ length: 4 }, (_, index) => <span className="home-skeleton" key={index} />)}</div>
+    </main>
+  );
+}
+
+export function HomeSessionError({ onRetry }: { onRetry: () => void }) {
+  return (
+    <main className="home-session-state">
+      <section className="home-session-error" role="alert">
+        <h1>We couldn’t check your session.</h1>
+        <p>Please try again. Your learning data has not been changed.</p>
+        <button className="home-button home-button-primary" type="button" onClick={onRetry}>Try again</button>
+      </section>
+    </main>
+  );
+}
+
+function StudyIllustration() {
+  return (
+    <svg className="home-hero-illustration" viewBox="0 0 390 260" aria-hidden="true">
+      <defs>
+        <linearGradient id="home-sweater" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#FFD17A" /><stop offset="1" stopColor="#FF9F55" /></linearGradient>
+        <linearGradient id="home-book" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#FDFBFF" /><stop offset="1" stopColor="#C8C7FF" /></linearGradient>
+      </defs>
+      <circle cx="216" cy="130" r="108" fill="#FFFFFF" opacity=".09" />
+      <path d="M35 215c32-40 70-38 102 0 25-37 59-36 83 1 25-31 56-26 76 1h64v43H28z" fill="#BBB8FF" opacity=".7" />
+      <path d="M72 188c5-43 22-68 44-78-4 30-15 53-44 78zm39-7c0-39 14-65 37-78 0 29-7 55-37 78z" fill="#6ED9C2" />
+      <path d="M269 187c-2-43 9-68 32-87 6 31 1 59-32 87zm27-2c6-36 25-57 51-67-4 28-17 51-51 67z" fill="#72D9C4" />
+      <path d="M150 220c0-36 22-60 52-60h48c32 0 51 24 56 60l4 40H143z" fill="url(#home-sweater)" />
+      <path d="M151 108c-4-46 22-81 65-83 47-3 74 27 75 73-1 22-10 35-22 48l-20 22h-81l-18-26z" fill="#28203F" />
+      <path d="M181 91c0-31 16-50 41-50 29 0 47 21 47 51v26c0 31-20 53-46 53-25 0-42-22-42-53z" fill="#FFD3B5" />
+      <path d="M175 108c-20-28-13-67 13-84 24-16 64-11 82 16-18-10-30-9-43-5-1 20-18 36-53 40z" fill="#28203F" />
+      <path d="M180 99c-18 2-27 16-24 34 2 11 9 18 20 18zm88-3c18 4 24 18 19 35-3 10-10 16-20 17z" fill="#28203F" />
+      <ellipse cx="203" cy="111" rx="4" ry="6" fill="#28203F" /><ellipse cx="247" cy="111" rx="4" ry="6" fill="#28203F" />
+      <circle cx="191" cy="127" r="8" fill="#FBA8A1" opacity=".65" /><circle cx="257" cy="127" r="8" fill="#FBA8A1" opacity=".65" />
+      <path d="M215 137c7 7 15 7 22 0" fill="none" stroke="#A34449" strokeWidth="3" strokeLinecap="round" />
+      <path d="M166 195c19 0 30 13 35 32h82c4-19 15-31 32-34l4 67H145z" fill="#FFB65D" />
+      <path d="M144 200c20-14 39-17 58-8l39 27c13 9 21 14 36 17l-8 17c-18-2-32-7-47-17l-35-20c-9-5-19-2-26 4z" fill="#FFD3B5" />
+      <path d="M135 205c18-9 36-8 51 1l21 13v34h-88v-31z" fill="url(#home-book)" />
+      <path d="M207 219c20-14 41-17 63-8v42h-63z" fill="#817BFF" />
+      <path d="M207 219c-8-5-15-5-21 0v39h21zm0 0c8-5 15-5 21 0v39h-21z" fill="none" stroke="#635BFF" strokeWidth="2" />
+      <path d="m113 56 8 12 13 4-13 5-8 12-4-12-13-5 13-4zm214 34 6 9 10 3-10 4-6 9-4-9-9-4 9-3z" fill="#FFE37A" />
+      <path d="m93 129 5 8 9 3-9 3-5 9-3-9-9-3 9-3z" fill="#AAA6FF" />
+    </svg>
+  );
+}
+
+function SectionLoading({ label }: { label: string }) {
+  return <div className="home-section-loading" role="status" aria-label={label}><span className="home-skeleton home-skeleton-line" /><span className="home-skeleton home-skeleton-line short" /></div>;
+}
+
+function gradeLabel(grade: VocabularyLevel | null) {
+  if (!grade || grade === "GENERAL") return "General";
+  return grade.replace("GRADE_", "Grade ");
+}
+
+export function DailyStudyHero({
+  queue,
+  activity
+}: {
+  queue: HomeResource<ReviewQueueResponse>;
+  activity: HomeResource<ActivitySummaryResponse>;
+}) {
+  const hasQueue = queue.status === "ready" && queue.data.queue.length > 0;
+  const dueCount = queue.status === "ready" ? queue.data.dueCount : null;
+  const newCount = queue.status === "ready" ? queue.data.newCount : null;
+  const streak = activity.status === "ready" ? activity.data.streak.currentStreak : null;
+  return (
+    <section className="home-hero" aria-labelledby="home-hero-title">
+      <div className="home-hero-copy">
+        <p className="home-eyebrow">VocabFlow</p>
+        <h2 id="home-hero-title">Ready to learn?</h2>
+        {queue.status === "loading" ? <p>Checking today’s study queue…</p> : null}
+        {queue.status === "error" ? <p>Your study queue could not be loaded. Use Retry below to check again.</p> : null}
+        {queue.status === "ready" && hasQueue ? <p>You have {dueCount} words to review and {newCount} new words available today. Keep your streak going!</p> : null}
+        {queue.status === "ready" && !hasQueue ? <p>You’re all caught up for today. Check back when more words are ready.</p> : null}
+        {hasQueue ? <Link className="home-button home-button-light" to="/study">Start Studying <span aria-hidden="true">→</span></Link> : (
+          <button className="home-button home-button-light" type="button" disabled>
+            {queue.status === "loading" ? "Loading study queue…" : queue.status === "error" ? "Study queue unavailable" : "Today’s queue is complete"}
+          </button>
+        )}
+      </div>
+      <div className="home-hero-art"><StudyIllustration /></div>
+      <div className="home-streak" role="img" aria-label={streak === null ? "Streak loading" : `${streak} day streak`}>
+        <span aria-hidden="true">🔥</span>
+        <strong>{streak ?? "—"}</strong>
+        <small>day streak</small>
+      </div>
+    </section>
+  );
+}
+
+function StatCard({
+  label,
+  icon,
+  resource,
+  value,
+  href
+}: {
+  label: string;
+  icon: string;
+  resource: HomeResource<unknown>;
+  value: number | null;
+  href: string;
+}) {
+  const displayed = resource.status === "loading" ? "…" : resource.status === "error" || value === null ? "—" : value;
+  return (
+    <Link className="home-stat-card" to={href} aria-label={`${label}: ${displayed}`}>
+      <span className="home-stat-icon" aria-hidden="true">{icon}</span>
+      <span className="home-stat-copy"><strong>{displayed}</strong><span>{label}</span></span>
+      <span className="home-stat-chevron" aria-hidden="true">›</span>
+    </Link>
+  );
+}
+
+export function QuickStats({
+  queue,
+  summary,
+  activity
+}: {
+  queue: HomeResource<ReviewQueueResponse>;
+  summary: HomeResource<ProgressSummaryResponse>;
+  activity: HomeResource<ActivitySummaryResponse>;
+}) {
+  return (
+    <section className="home-quick-stats" aria-label="Learning summary">
+      <StatCard label="To Review" icon="📘" resource={queue} value={queue.status === "ready" ? queue.data.dueCount : null} href="/study" />
+      <StatCard label="New Words" icon="🟩" resource={queue} value={queue.status === "ready" ? queue.data.newCount : null} href="/study" />
+      <StatCard label="Total Learned" icon="🎓" resource={summary} value={summary.status === "ready" ? summary.data.learnedCount : null} href="/progress" />
+      <StatCard label="Day Streak" icon="🔥" resource={activity} value={activity.status === "ready" ? activity.data.streak.currentStreak : null} href="/progress" />
+    </section>
+  );
+}
+
+export function ContinueLearningCard({ queue }: { queue: HomeResource<ReviewQueueResponse> }) {
+  const next = queue.status === "ready" ? queue.data.queue[0] : undefined;
+  return (
+    <section className="home-card home-continue-card" aria-labelledby="home-continue-title">
+      <div className="home-card-heading"><h2 id="home-continue-title">Continue Learning</h2></div>
+      {queue.status === "loading" ? <SectionLoading label="Loading your current study queue" /> : null}
+      {queue.status === "error" ? <p className="home-inline-state" role="status">Your current queue is unavailable. Retry to load it.</p> : null}
+      {queue.status === "ready" && !next ? <div className="home-empty-state" role="status"><span aria-hidden="true">✨</span><p>No words are waiting in your queue right now.</p><small>There is no saved session to resume; the next session will use your current queue.</small></div> : null}
+      {next ? (
+        <div className="home-next-item">
+          <div className="home-next-art" aria-hidden="true"><span>📖</span><i>✦</i></div>
+          <div className="home-next-copy">
+            <small>Up next in your current queue · {next.queueType === "DUE" ? "Review" : "New word"}</small>
+            <strong>{next.vocabulary.word}</strong>
+            <span>{next.vocabulary.vietnamese}</span>
+          </div>
+          <Link className="home-button home-button-primary" to="/study">Start a session</Link>
+        </div>
+      ) : null}
+    </section>
+  );
+}
+
+export function LearningSetsCard({
+  learnerName,
+  resource
+}: {
+  learnerName: string;
+  resource: HomeResource<LearnerLearningSetDto[]>;
+}) {
+  const active = resource.status === "ready" ? resource.data.filter((item) => item.active) : [];
+  return (
+    <section className="home-card home-learning-sets-card" aria-labelledby="home-learning-sets-title">
+      <div className="home-card-heading">
+        <h2 id="home-learning-sets-title">Learning Sets for {learnerName}</h2>
+        <Link to="/learning-sets">See all</Link>
+      </div>
+      {resource.status === "loading" ? <SectionLoading label="Loading assigned learning sets" /> : null}
+      {resource.status === "error" ? <p className="home-inline-state" role="status">Assigned learning sets could not be loaded. Retry to check again.</p> : null}
+      {resource.status === "ready" && active.length === 0 ? (
+        <div className="home-empty-state home-sets-empty" role="status">
+          <span aria-hidden="true">📚</span><p>No learning sets are assigned to this learner yet.</p>
+          <Link className="home-text-link" to="/learning-sets/assign">Choose learning sets</Link>
+        </div>
+      ) : null}
+      {active.length > 0 ? (
+        <ul className="home-learning-set-list">
+          {active.slice(0, 4).map(({ learningSet }) => (
+            <li key={learningSet.id}>
+              <Link to={`/learning-sets/${learningSet.id}`} className="home-learning-set-row">
+                <span className="home-learning-set-icon" aria-hidden="true">{learningSet.slug.includes("food") ? "🍎" : learningSet.slug.includes("school") ? "🎒" : "🌱"}</span>
+                <span className="home-learning-set-copy"><strong>{learningSet.name}</strong><small>{learningSet.vocabularyCount} words · {gradeLabel(learningSet.grade)}</small></span>
+                <span className="home-stat-chevron" aria-hidden="true">›</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+    </section>
+  );
+}
+
+function weekday(date: string) {
+  return new Intl.DateTimeFormat(undefined, { weekday: "short", timeZone: "UTC" }).format(new Date(`${date}T00:00:00Z`));
+}
+
+function dateLabel(date: string) {
+  return new Intl.DateTimeFormat(undefined, { month: "short", day: "numeric", timeZone: "UTC" }).format(new Date(`${date}T00:00:00Z`));
+}
+
+function HomeHistoryContent({ history, mode }: { history: ProgressHistoryResponse; mode: "chart" | "activity" }) {
+  const activeDays = history.days.filter((day) => day.reviews > 0 || day.uniqueWords > 0);
+  if (mode === "chart") {
+    const maximum = Math.max(1, ...history.days.map((day) => day.uniqueWords));
+    return (
+      <ul className="home-week-chart" role="list" aria-label="Unique words studied each day during the last seven days">
+        {history.days.map((day) => {
+          const barStyle = { "--bar-height": `${day.uniqueWords === 0 ? 2 : (day.uniqueWords / maximum) * 100}%` } as CSSProperties;
+          return (
+            <li className="home-week-chart-day" key={day.date}>
+              <span className="home-week-chart-value">{day.uniqueWords}</span>
+              <span className="home-week-chart-track" aria-hidden="true"><span className="home-week-chart-bar" style={barStyle} /></span>
+              <span className="home-week-chart-label">{weekday(day.date)}</span>
+              <span className="home-sr-only">{day.uniqueWords} unique words studied on {dateLabel(day.date)}</span>
+            </li>
+          );
+        })}
+      </ul>
+    );
+  }
+  if (activeDays.length === 0) {
+    return <div className="home-empty-state" role="status"><span aria-hidden="true">🌿</span><p>No review activity has been recorded in the last seven days.</p></div>;
+  }
+  return (
+    <ul className="home-activity-list">
+      {activeDays.slice(-3).reverse().map((day) => (
+        <li key={day.date}>
+          <span className="home-activity-icon" aria-hidden="true">✓</span>
+          <span className="home-activity-copy"><strong>{day.uniqueWords} unique words studied</strong><small>{day.reviews} {day.reviews === 1 ? "review" : "reviews"}</small></span>
+          <time dateTime={day.date}>{dateLabel(day.date)}</time>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export function WeeklyProgressCard({ resource }: { resource: HomeResource<ProgressHistoryResponse> }) {
+  return (
+    <section className="home-card home-week-card" aria-labelledby="home-week-title">
+      <div className="home-card-heading"><h2 id="home-week-title">Your Progress</h2><span className="home-period-label">Last 7 days</span></div>
+      {resource.status === "loading" ? <SectionLoading label="Loading weekly progress" /> : null}
+      {resource.status === "error" ? <p className="home-inline-state" role="status">Weekly progress could not be loaded. Retry to check again.</p> : null}
+      {resource.status === "ready" && resource.data.days.every((day) => day.uniqueWords === 0) ? <p className="home-chart-empty" role="status">Study activity will appear here as you learn.</p> : null}
+      {resource.status === "ready" && resource.data.days.some((day) => day.uniqueWords > 0) ? <HomeHistoryContent history={resource.data} mode="chart" /> : null}
+    </section>
+  );
+}
+
+export function RecentActivityCard({ resource }: { resource: HomeResource<ProgressHistoryResponse> }) {
+  return (
+    <section className="home-card home-activity-card" aria-labelledby="home-activity-title">
+      <div className="home-card-heading"><h2 id="home-activity-title">Recent Activity</h2><Link to="/progress">See all</Link></div>
+      {resource.status === "loading" ? <SectionLoading label="Loading recent activity" /> : null}
+      {resource.status === "error" ? <p className="home-inline-state" role="status">Recent activity could not be loaded. Retry to check again.</p> : null}
+      {resource.status === "ready" ? <HomeHistoryContent history={resource.data} mode="activity" /> : null}
+    </section>
+  );
+}
+
+export function DashboardErrorNotice({ onRetry }: { onRetry: () => void }) {
+  return (
+    <div className="home-error-notice" role="alert">
+      <p>Some dashboard information could not be loaded.</p>
+      <button className="home-button home-button-secondary" type="button" onClick={onRetry}>Retry</button>
+    </div>
+  );
+}

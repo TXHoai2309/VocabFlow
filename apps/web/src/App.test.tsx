@@ -1,13 +1,21 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
-import { describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import App from "./App";
 
-describe("foundation SPA", () => {
-  it("renders the home shell", () => {
+const { useSession } = vi.hoisted(() => ({ useSession: vi.fn() }));
+
+vi.mock("./features/auth/auth-client", () => ({ authClient: { useSession } }));
+
+beforeEach(() => {
+  useSession.mockReturnValue({ data: null, isPending: false, error: null, refetch: vi.fn() });
+});
+
+describe("application routing", () => {
+  it("routes an unauthenticated Home visit through the existing login page", () => {
     render(<MemoryRouter initialEntries={["/"]}><App /></MemoryRouter>);
-    expect(screen.getByRole("heading", { name: /dependable place/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Đăng nhập" })).toBeInTheDocument();
   });
 
   it("renders the nested foundation route", () => {
