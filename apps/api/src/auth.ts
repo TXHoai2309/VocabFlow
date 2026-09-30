@@ -11,6 +11,12 @@ export function createAuth(connectionString: string, secret: string, environment
     secret,
     database: drizzleAdapter(db, { provider: "pg" }),
     emailAndPassword: { enabled: true },
+    session: {
+      cookieCache: {
+        enabled: true,
+        maxAge: 60
+      }
+    },
     ...(productionSettings ?? {})
   });
 }
