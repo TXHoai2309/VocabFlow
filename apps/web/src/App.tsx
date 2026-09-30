@@ -1,4 +1,4 @@
-import { Link, Route, Routes } from "react-router";
+import { Link, Navigate, Route, Routes } from "react-router";
 import { AppShell } from "./components/app-shell";
 import { authClient } from "./features/auth/auth-client";
 import { LoginPage } from "./features/auth/login-page";
@@ -58,7 +58,35 @@ function NotFound() {
 
 function AppShellRoute() {
   const sessionState = authClient.useSession();
-  const parentName = typeof sessionState.data?.user?.name === "string" ? sessionState.data.user.name : "";
+
+  if (sessionState.isPending) {
+    return (
+      <main className="auth-page" aria-busy="true">
+        <section className="auth-card">
+          <p className="auth-copy" role="status">Checking your session…</p>
+        </section>
+      </main>
+    );
+  }
+
+  if (sessionState.error) {
+    return (
+      <main className="auth-page">
+        <section className="auth-card" role="alert">
+          <h1 className="auth-title">We couldn’t verify your session</h1>
+          <p className="auth-copy">Please try again.</p>
+          <button className="auth-retry" type="button" onClick={() => void sessionState.refetch()}>
+            Try again
+          </button>
+        </section>
+      </main>
+    );
+  }
+
+  const user = sessionState.data?.user;
+  if (!user?.id) return <Navigate to="/login" replace />;
+
+  const parentName = typeof user.name === "string" ? user.name : "";
   return <AppShell parentName={parentName} />;
 }
 

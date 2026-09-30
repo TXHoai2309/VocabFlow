@@ -104,10 +104,14 @@ function HomeDashboard({ learner, parentName }: { learner: LearnerDto; parentNam
         <DailyStudyHero queue={queue} activity={activity} />
         <QuickStats queue={queue} summary={summary} activity={activity} />
         <div className="home-dashboard-grid">
-          <ContinueLearningCard queue={queue} />
-          <LearningSetsCard learnerName={learner.displayName} resource={learningSets} />
-          <WeeklyProgressCard resource={history} />
-          <RecentActivityCard resource={history} />
+          <div className="home-dashboard-column">
+            <ContinueLearningCard queue={queue} />
+            <WeeklyProgressCard resource={history} />
+          </div>
+          <div className="home-dashboard-column">
+            <LearningSetsCard learnerName={learner.displayName} resource={learningSets} />
+            <RecentActivityCard resource={history} />
+          </div>
         </div>
       </main>
     </>

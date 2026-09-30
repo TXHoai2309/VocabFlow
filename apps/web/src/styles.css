@@ -1107,7 +1107,8 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
 .home-stat-copy strong { color: var(--color-text); font-size: 25px; font-weight: 700; line-height: 29px; }
 .home-stat-copy > span { overflow: hidden; color: var(--color-text-muted); font-size: 13px; text-overflow: ellipsis; white-space: nowrap; }
 .home-stat-chevron { flex: 0 0 auto; margin-left: auto; color: var(--color-text-muted); font-size: 23px; }
-.home-dashboard-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 14px; }
+.home-dashboard-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); align-items: start; gap: 14px; }
+.home-dashboard-column { display: grid; min-width: 0; align-content: start; gap: 14px; }
 .home-card { min-width: 0; min-height: 220px; padding: 18px; border: var(--border-default); border-radius: var(--radius-feature); background: var(--color-surface); box-shadow: var(--shadow-card); }
 .home-card-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
 .home-card-heading h2 { min-width: 0; margin: 0; color: var(--color-text); font-size: var(--text-h3); font-weight: var(--weight-h3); line-height: var(--leading-h3); letter-spacing: -.025em; }

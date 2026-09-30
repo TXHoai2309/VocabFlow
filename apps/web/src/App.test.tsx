@@ -66,6 +66,33 @@ describe("application routing", () => {
     render(<MemoryRouter initialEntries={["/foundation"]}><App /></MemoryRouter>);
     expect(screen.getByRole("heading", { name: /foundation route is working/i })).toBeInTheDocument();
   });
+
+  it("keeps the shared shell hidden while a protected route checks the session", () => {
+    useSession.mockReturnValue({ data: null, isPending: true, error: null, refetch: vi.fn() });
+    renderAppRoutes("/study");
+
+    expect(screen.getByText("Checking your session…")).toHaveAttribute("role", "status");
+    expect(document.querySelector(".app-layout")).toBeNull();
+  });
+
+  it.each(["/study", "/vocabulary"])("redirects unauthenticated %s to login without rendering the shared shell", (path) => {
+    useSession.mockReturnValue({ data: null, isPending: false, error: null, refetch: vi.fn() });
+    renderAppRoutes(path);
+
+    expect(screen.getByRole("heading", { name: "Đăng nhập" })).toBeInTheDocument();
+    expect(document.querySelector(".app-layout")).toBeNull();
+  });
+
+  it("keeps the shared shell hidden on session error and retries the session check", () => {
+    const refetch = vi.fn();
+    useSession.mockReturnValue({ data: null, isPending: false, error: new Error("session unavailable"), refetch });
+    renderAppRoutes("/study");
+
+    expect(screen.getByRole("alert")).toHaveTextContent("We couldn’t verify your session");
+    expect(document.querySelector(".app-layout")).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "Try again" }));
+    expect(refetch).toHaveBeenCalledOnce();
+  });
 });
 
 describe("register route", () => {
@@ -94,6 +121,7 @@ describe("shared authenticated app shell", () => {
     renderAppRoutes("/");
     const dashboard = await screen.findByRole("main", { name: "Avery Nguyen learning dashboard" });
     expect(document.querySelector(".app-layout")?.contains(dashboard)).toBe(true);
+    expect(document.querySelector(".app-parent-account strong")).toHaveTextContent("Jordan Nguyen");
     expect(screen.getAllByRole("link", { name: "VocabFlow home" }).length).toBeGreaterThan(0);
     expectActiveNav("Home");
   });
