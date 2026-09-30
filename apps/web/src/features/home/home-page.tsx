@@ -21,7 +21,7 @@ import {
   ContinueLearningCard,
   DailyStudyHero,
   DashboardErrorNotice,
-  HomeAppShell,
+  HomeDashboardHeader,
   HomeSessionError,
   HomeSessionLoading,
   LearningSetsCard,
@@ -95,8 +95,10 @@ function HomeDashboard({ learner, parentName }: { learner: LearnerDto; parentNam
     setHistory({ status: "loading" });
     setRetryIndex((index) => index + 1);
   }
+  const learnerLevel = gamification.status === "ready" ? gamification.data.xp.level : null;
   return (
-    <HomeAppShell parentName={parentName} learner={learner} learnerLevel={gamification}>
+    <>
+      <HomeDashboardHeader parentName={parentName} learner={learner} level={learnerLevel} />
       <main className="home-dashboard" aria-label={`${learner.displayName} learning dashboard`}>
         {hasError ? <DashboardErrorNotice onRetry={retryDashboard} /> : null}
         <DailyStudyHero queue={queue} activity={activity} />
@@ -108,7 +110,7 @@ function HomeDashboard({ learner, parentName }: { learner: LearnerDto; parentNam
           <RecentActivityCard resource={history} />
         </div>
       </main>
-    </HomeAppShell>
+    </>
   );
 }
 

@@ -1,4 +1,6 @@
 import { Link, Route, Routes } from "react-router";
+import { AppShell } from "./components/app-shell";
+import { authClient } from "./features/auth/auth-client";
 import { LoginPage } from "./features/auth/login-page";
 import { RegisterPage } from "./features/auth/register-page";
 import { ActiveLearnerProvider } from "./features/learners/learner-context-provider";
@@ -54,12 +56,18 @@ function NotFound() {
   );
 }
 
-export default function App() {
+function AppShellRoute() {
+  const sessionState = authClient.useSession();
+  const parentName = typeof sessionState.data?.user?.name === "string" ? sessionState.data.user.name : "";
+  return <AppShell parentName={parentName} />;
+}
+
+export function AppRoutes() {
   return (
-    <ActiveLearnerProvider>
-      <Routes>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
+    <Routes>
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
+      <Route element={<AppShellRoute />}>
         <Route path="/learners" element={<LearnerPage />} />
         <Route path="/progress" element={<ProgressPage />} />
         <Route path="/learner-settings" element={<LearnerSettingsPage />} />
@@ -70,10 +78,18 @@ export default function App() {
         <Route path="/learning-sets/:learningSetId" element={<LearningSetDetailPage />} />
         <Route path="/study" element={<StudyPage />} />
         <Route path="/study/exercises" element={<ExerciseStudyPage />} />
-        <Route path="/" element={<HomePage />} />
-        <Route path="/foundation" element={<Shell><FoundationRoute /></Shell>} />
-        <Route path="*" element={<Shell><NotFound /></Shell>} />
-      </Routes>
+        <Route index element={<HomePage />} />
+      </Route>
+      <Route path="/foundation" element={<Shell><FoundationRoute /></Shell>} />
+      <Route path="*" element={<Shell><NotFound /></Shell>} />
+    </Routes>
+  );
+}
+
+export default function App() {
+  return (
+    <ActiveLearnerProvider>
+      <AppRoutes />
     </ActiveLearnerProvider>
   );
 }

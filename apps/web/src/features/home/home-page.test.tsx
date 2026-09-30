@@ -5,6 +5,7 @@ import "@testing-library/jest-dom/vitest";
 import type { LearnerDto } from "@vocabflow/contracts";
 import { ActiveLearnerProvider } from "../learners/learner-context-provider";
 import { LearnerPage } from "../learners/learner-page";
+import { AppShell } from "../../components/app-shell";
 import { HomePage } from "./home-page";
 
 const {
@@ -161,8 +162,10 @@ function renderHome(initialLearner: LearnerDto | null = learner, initialEntries 
       <ActiveLearnerProvider initialLearner={initialLearner}>
         <LocationProbe />
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/learners" element={<LearnerPage />} />
+          <Route element={<AppShell parentName="Jordan Nguyen" />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/learners" element={<LearnerPage />} />
+          </Route>
           <Route path="/login" element={<p data-testid="login-route">Login route</p>} />
           <Route path="/previous" element={<p data-testid="previous-route">Previous page</p>} />
           <Route path="*" element={<p>Not found</p>} />

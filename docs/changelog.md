@@ -2,6 +2,19 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-09-30 — Shared authenticated application shell
+
+- Moved the existing Home sidebar/navigation into one persistent layout route
+  shared by Home, Study, Vocabulary, Topics, Learning Sets, Progress, Learners
+  and learner Settings. Nested routes retain their parent destination's active
+  navigation state; login and registration remain standalone.
+- Replaced the centered Home-only outer card with a full-viewport desktop shell,
+  compact tablet navigation and a mobile menu. Home keeps its greeting and
+  approved dashboard content; learner-selection return navigation is unchanged.
+- Added routing coverage for shell reuse, direct Learners visits, nested active
+  links, auth screens and the Home return flow. No backend, data, auth or
+  scheduler behavior changed.
+
 ## 2026-09-28 — Guarded production vocabulary catalog import
 
 - Added a separate explicit production release-operator path to

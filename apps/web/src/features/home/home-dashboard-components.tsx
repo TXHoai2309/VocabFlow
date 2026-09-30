@@ -1,8 +1,7 @@
-import { useState, type CSSProperties, type ReactNode } from "react";
-import { Link, NavLink } from "react-router";
+import type { CSSProperties } from "react";
+import { Link } from "react-router";
 import type {
   ActivitySummaryResponse,
-  GamificationResponse,
   LearnerDto,
   LearnerLearningSetDto,
   ProgressHistoryResponse,
@@ -16,79 +15,8 @@ export type HomeResource<T> =
   | { status: "ready"; data: T }
   | { status: "error" };
 
-const destinations = [
-  { label: "Home", to: "/", icon: "home" },
-  { label: "Study", to: "/study", icon: "study" },
-  { label: "Vocabulary", to: "/vocabulary", icon: "vocabulary" },
-  { label: "Topics", to: "/topics", icon: "topics" },
-  { label: "Learning Sets", to: "/learning-sets", icon: "sets" },
-  { label: "Progress", to: "/progress", icon: "progress" },
-  { label: "Learners", to: "/learners", icon: "learners" },
-  { label: "Settings", to: "/learner-settings", icon: "settings" }
-] as const;
-
-type IconName = typeof destinations[number]["icon"];
-
-function NavigationIcon({ name }: { name: IconName }) {
-  const paths: Record<IconName, string> = {
-    home: "M3 10.8 12 3l9 7.8v9.7a.5.5 0 0 1-.5.5h-5.8v-6.4H9.3V21H3.5a.5.5 0 0 1-.5-.5z",
-    study: "M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5zm0 0v16M8 7h8M8 10h8",
-    vocabulary: "M5 4h14v16H5zM8 8h8M8 11h8M8 14h5",
-    topics: "M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z",
-    sets: "M3.5 7.5h7l2 2H20a1 1 0 0 1 1 1v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM3.5 7.5v-2a1.5 1.5 0 0 1 1.5-1.5h4l2 2H19",
-    progress: "M4 20V12M10 20V5M16 20V9M22 20H2",
-    learners: "M16 20v-1.5a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4V20m16 0v-1.5a4 4 0 0 0-2.7-3.8M10 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm7-7.7a4 4 0 0 1 0 7.4",
-    settings: "M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm0-6 .8 2.2a7.8 7.8 0 0 1 1.8.7l2.1-1 2 2-1 2.1c.3.6.6 1.2.7 1.8l2.2.8v2.8l-2.2.8a7.8 7.8 0 0 1-.7 1.8l1 2.1-2 2-2.1-1a7.8 7.8 0 0 1-1.8.7l-.8 2.2H9.2l-.8-2.2a7.8 7.8 0 0 1-1.8-.7l-2.1 1-2-2 1-2.1a7.8 7.8 0 0 1-.7-1.8L.6 14.7v-2.8l2.2-.8a7.8 7.8 0 0 1 .7-1.8l-1-2.1 2-2 2.1 1a7.8 7.8 0 0 1 1.8-.7l.8-2.2z"
-  };
-  return <svg aria-hidden="true" viewBox="0 0 24 24" className="home-nav-icon" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d={paths[name]} /></svg>;
-}
-
-function Brand() {
-  return (
-    <Link className="home-brand" to="/" aria-label="VocabFlow home">
-      <svg aria-hidden="true" viewBox="0 0 32 32" className="home-brand-mark">
-        <path d="M4 6.5c4.8-.9 8.8-.1 12 2.2v17c-3.2-2.3-7.2-3.1-12-2.2z" fill="currentColor" />
-        <path d="M28 6.5c-4.8-.9-8.8-.1-12 2.2v17c3.2-2.3 7.2-3.1 12-2.2z" fill="currentColor" opacity=".68" />
-      </svg>
-      <span>Vocab<span className="home-brand-accent">Flow</span></span>
-    </Link>
-  );
-}
-
-function PrimaryNavigation({ onNavigate }: { onNavigate?: () => void }) {
-  return (
-    <nav aria-label="Primary navigation" className="home-primary-nav">
-      {destinations.map((item) => (
-        <NavLink
-          key={item.to}
-          to={item.to}
-          end={item.to === "/"}
-          onClick={onNavigate}
-          className={({ isActive }) => isActive ? "home-nav-link is-active" : "home-nav-link"}
-        >
-          <NavigationIcon name={item.icon} />
-          <span>{item.label}</span>
-        </NavLink>
-      ))}
-    </nav>
-  );
-}
-
 function initials(value: string) {
   return value.trim().split(/\s+/).slice(0, 2).map((part) => part.charAt(0)).join("").toLocaleUpperCase() || "?";
-}
-
-function HomeSidebar({ parentName }: { parentName: string }) {
-  return (
-    <aside className="home-sidebar">
-      <Brand />
-      <PrimaryNavigation />
-      <div className="home-parent-account">
-        <span className="home-parent-avatar" aria-hidden="true">{initials(parentName)}</span>
-        <span className="home-parent-copy"><strong>{parentName}</strong><small>Parent account</small></span>
-      </div>
-    </aside>
-  );
 }
 
 function greetingForNow() {
@@ -98,31 +26,18 @@ function greetingForNow() {
   return "Good evening";
 }
 
-function HomeHeader({
+export function HomeDashboardHeader({
   parentName,
   learner,
-  level,
-  onToggleNavigation,
-  navigationOpen
+  level
 }: {
   parentName: string;
   learner: LearnerDto;
   level: number | null;
-  onToggleNavigation: () => void;
-  navigationOpen: boolean;
 }) {
   return (
     <header className="home-header">
       <div className="home-header-heading">
-        <button
-          className="home-menu-toggle"
-          type="button"
-          aria-label={navigationOpen ? "Close navigation" : "Open navigation"}
-          aria-expanded={navigationOpen}
-          onClick={onToggleNavigation}
-        >
-          <span aria-hidden="true">{navigationOpen ? "×" : "☰"}</span>
-        </button>
         <div>
           <h1>{greetingForNow()}, {parentName}! <span aria-hidden="true">👋</span></h1>
           <p>Let’s make progress today.</p>
@@ -139,38 +54,6 @@ function HomeHeader({
         </span>
       </div>
     </header>
-  );
-}
-
-export function HomeAppShell({
-  parentName,
-  learner,
-  learnerLevel,
-  children
-}: {
-  parentName: string;
-  learner: LearnerDto;
-  learnerLevel: HomeResource<GamificationResponse>;
-  children: ReactNode;
-}) {
-  const [navigationOpen, setNavigationOpen] = useState(false);
-  const level = learnerLevel.status === "ready" ? learnerLevel.data.xp.level : null;
-  return (
-    <div className="home-shell">
-      <HomeSidebar parentName={parentName} />
-      <div className="home-main-column">
-        <HomeHeader
-          parentName={parentName}
-          learner={learner}
-          level={level}
-          onToggleNavigation={() => setNavigationOpen((open) => !open)}
-          navigationOpen={navigationOpen}
-        />
-        <div className="home-tablet-nav"><PrimaryNavigation /></div>
-        {navigationOpen ? <div className="home-mobile-nav"><PrimaryNavigation onNavigate={() => setNavigationOpen(false)} /></div> : null}
-        {children}
-      </div>
-    </div>
   );
 }
 

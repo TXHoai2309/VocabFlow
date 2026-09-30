@@ -1,5 +1,26 @@
 # Current Handoff Snapshot
 
+## 2026-09-30 — Shared authenticated application shell
+
+- Replaced the Home-owned sidebar with one nested shared app shell for the
+  authenticated Home, Study, Vocabulary, Topics, Learning Sets, Progress,
+  Learners and learner Settings routes. Desktop keeps a sticky 248px sidebar;
+  tablet uses the compact horizontal nav; mobile uses a 44px menu button and
+  48px navigation targets. Login/Register and the existing foundation route
+  remain outside this shell.
+- Home retains its own greeting, active-learner switcher and approved dashboard
+  content. The existing Home → `/learners` return intent and direct Learners
+  behavior are unchanged. The pre-existing Continue Learning CSS refinement is
+  preserved.
+- Added App routing tests for shared-shell persistence, active parent paths,
+  direct Learners, mobile navigation, auth isolation and no return loop.
+- `pnpm lint`, `pnpm typecheck`, focused routing/Home tests (32), full tests
+  (61 files / 677 tests), `pnpm build`, and `git diff --check` pass. Local Node
+  is 22.19.0 versus the pinned 22.23.2. No backend/database/auth/scheduler
+  changes, deployment, commit or push were performed.
+- No active user story covered this explicitly requested layout refactor; no
+  new feature story or product/architecture decision was introduced.
+
 ## 2026-09-28 — Guarded production vocabulary catalog import
 
 - Added explicit production target parsing for `vocab:import-catalog` while
