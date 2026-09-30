@@ -1,4 +1,5 @@
 import { sql, type SQL } from "drizzle-orm";
+import { performance } from "node:perf_hooks";
 import {
   APP_SCHEMA,
   reviewQueueResponseSchema,
@@ -15,6 +16,26 @@ export type ReviewQueueDatabase = {
 };
 
 export type ReviewQueueServiceErrorCode = "HOUSEHOLD_ACCESS_DENIED" | "INTERNAL_ERROR";
+
+export type ReviewQueueTimings = {
+  authorizationMs?: number;
+  databaseMs?: number;
+};
+
+export function renderReviewQueueServerTiming(timings: {
+  authMs: number;
+  authorizationMs: number;
+  databaseMs: number;
+  totalMs: number;
+}): string {
+  const duration = (value: number) => (Number.isFinite(value) ? Math.max(0, value) : 0).toFixed(1);
+  return [
+    `auth;dur=${duration(timings.authMs)}`,
+    `authorization;dur=${duration(timings.authorizationMs)}`,
+    `db;dur=${duration(timings.databaseMs)}`,
+    `total;dur=${duration(timings.totalMs)}`
+  ].join(", ");
+}
 
 export class ReviewQueueServiceError extends Error {
   readonly code: ReviewQueueServiceErrorCode;
@@ -225,7 +246,7 @@ async function newRows(database: ReviewQueueDatabase, learnerId: string) {
 }
 
 export type ReviewQueueService = {
-  list: (userId: string, learnerId: string) => Promise<ReviewQueueResponse>;
+  list: (userId: string, learnerId: string, timings?: ReviewQueueTimings) => Promise<ReviewQueueResponse>;
 };
 
 export function createReviewQueueService(
@@ -235,18 +256,35 @@ export function createReviewQueueService(
   const now = options.now ?? (() => new Date());
 
   return {
-    async list(userId, learnerId) {
-      const ownership = await authorizeLearnerOwnership(database, userId, learnerId);
+    async list(userId, learnerId, timings) {
+      const authorizationStarted = timings ? performance.now() : 0;
+      let ownership: Awaited<ReturnType<typeof authorizeLearnerOwnership>>;
+      try {
+        ownership = await authorizeLearnerOwnership(database, userId, learnerId);
+      } finally {
+        if (timings) timings.authorizationMs = performance.now() - authorizationStarted;
+      }
       if (ownership.decision === "FORBIDDEN") {
         throw new ReviewQueueServiceError("HOUSEHOLD_ACCESS_DENIED", 403);
       }
 
       try {
-        const timezone = await householdTimezone(database, ownership.householdId);
-        const reviewDate = householdLocalDate(now(), timezone);
-        const usage = await dailyNewUsage(database, ownership.learnerId, reviewDate);
-        const due = await dueRows(database, ownership.learnerId, reviewDate);
-        const availableNew = await newRows(database, ownership.learnerId);
+        const databaseStarted = timings ? performance.now() : 0;
+        let reviewDate: string;
+        let usage: { dailyNewWordLimit: number; consumedToday: number };
+        let due: QueueRow[];
+        let availableNew: QueueRow[];
+        try {
+          const timezone = await householdTimezone(database, ownership.householdId);
+          reviewDate = householdLocalDate(now(), timezone);
+          [usage, due, availableNew] = await Promise.all([
+            dailyNewUsage(database, ownership.learnerId, reviewDate),
+            dueRows(database, ownership.learnerId, reviewDate),
+            newRows(database, ownership.learnerId)
+          ]);
+        } finally {
+          if (timings) timings.databaseMs = performance.now() - databaseStarted;
+        }
         const dueCount = due.length === 0 ? 0 : safeCount(due[0]?.total_count);
         const newCount = availableNew.length === 0 ? 0 : safeCount(availableNew[0]?.total_count);
         const remainingNew = Math.max(0, usage.dailyNewWordLimit - usage.consumedToday);

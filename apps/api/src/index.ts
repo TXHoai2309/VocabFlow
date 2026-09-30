@@ -1,4 +1,5 @@
 import { Hono } from "hono";
+import { performance } from "node:perf_hooks";
 import type { RuntimeBindings } from "./runtime-bindings";
 import {
   errorEnvelope,
@@ -18,7 +19,13 @@ import { createVocabularyService, VocabularyServiceError, type VocabularyService
 import { createTopicService, TopicServiceError, type TopicService } from "./topics";
 import { createLearningSetService, LearningSetServiceError, type LearningSetService } from "./learning-sets";
 import { createReviewService, ReviewServiceError, type ReviewService } from "./reviews";
-import { createReviewQueueService, ReviewQueueServiceError, type ReviewQueueService } from "./review-queue";
+import {
+  createReviewQueueService,
+  renderReviewQueueServerTiming,
+  ReviewQueueServiceError,
+  type ReviewQueueService,
+  type ReviewQueueTimings
+} from "./review-queue";
 import { createProgressSummaryService, ProgressSummaryServiceError, type ProgressSummaryService } from "./progress-summary";
 import { createActivitySummaryService, ActivitySummaryServiceError, type ActivitySummaryService } from "./activity-summary";
 import {
@@ -515,21 +522,39 @@ export function createApp(dependencies: AppDependencies = {}) {
   });
 
   application.get("/api/learners/:learnerId/review-queue", async (c) => {
+    const requestStarted = performance.now();
+    const timings: ReviewQueueTimings & { authMs: number } = { authMs: 0, authorizationMs: 0, databaseMs: 0 };
+    const withTiming = (response: Response) => {
+      response.headers.set("Server-Timing", renderReviewQueueServerTiming({
+        authMs: timings.authMs,
+        authorizationMs: timings.authorizationMs ?? 0,
+        databaseMs: timings.databaseMs ?? 0,
+        totalMs: performance.now() - requestStarted
+      }));
+      return response;
+    };
     try {
-      const session = await readSession(c.req.raw, c.env);
+      const authStarted = performance.now();
+      let session: AuthenticatedSession | null;
+      try {
+        session = await readSession(c.req.raw, c.env);
+      } finally {
+        timings.authMs = performance.now() - authStarted;
+      }
       if (!session?.user?.id) {
-        return c.json(errorEnvelope("UNAUTHORIZED", "Đăng nhập để tiếp tục."), 401);
+        return withTiming(c.json(errorEnvelope("UNAUTHORIZED", "Đăng nhập để tiếp tục."), 401));
       }
       const service = dependencies.reviewQueueService ?? await runReviewQueueService(c.env);
-      return c.json(await service.list(session.user.id, c.req.param("learnerId")), 200);
+      const queue = await service.list(session.user.id, c.req.param("learnerId"), timings);
+      return withTiming(c.json(queue, 200));
     } catch (error) {
       if (error instanceof ReviewQueueServiceError) {
         const message = error.code === "HOUSEHOLD_ACCESS_DENIED"
           ? "Bạn không có quyền truy cập learner này."
           : "Không thể tải review queue lúc này. Vui lòng thử lại.";
-        return c.json(errorEnvelope(error.code, message), error.status);
+        return withTiming(c.json(errorEnvelope(error.code, message), error.status));
       }
-      return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể tải review queue lúc này. Vui lòng thử lại."), 503);
+      return withTiming(c.json(errorEnvelope("INTERNAL_ERROR", "Không thể tải review queue lúc này. Vui lòng thử lại."), 503));
     }
   });
 

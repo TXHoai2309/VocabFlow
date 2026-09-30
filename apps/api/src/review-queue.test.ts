@@ -96,7 +96,12 @@ describe("US-08 review queue API boundary", () => {
 
     expect(response.status).toBe(200);
     expect(await response.json()).toEqual(queue);
-    expect(service.list).toHaveBeenCalledWith("parent-1", learnerId);
+    expect(service.list).toHaveBeenCalledWith("parent-1", learnerId, expect.any(Object));
+    const timing = response.headers.get("Server-Timing");
+    expect(timing).toMatch(/auth;dur=\d+\.\d+, authorization;dur=\d+\.\d+, db;dur=\d+\.\d+, total;dur=\d+\.\d+/);
+    expect(timing).not.toContain(learnerId);
+    expect(timing).not.toContain("parent-1");
+    expect(timing).not.toContain("secret");
   });
 
   it("maps authorization and database failures to safe outward errors", async () => {
@@ -171,6 +176,34 @@ describe("US-08 review queue service", () => {
     expect(queries[4]?.sql).toContain("CASE WHEN v.image_quarantined THEN NULL ELSE v.image_url END AS image_url");
     expect(queries[4]?.sql).toContain('"vocabflow_app"."learning_set_items"');
     expect(queries[4]?.sql).toContain("EXISTS");
+  });
+
+  it("runs the three reads independent of the household date concurrently without adding queries", async () => {
+    let activeQueries = 0;
+    let maximumConcurrentQueries = 0;
+    const execute = vi.fn(async (query) => {
+      const { sql: statement } = new PgDialect().sqlToQuery(query);
+      activeQueries += 1;
+      maximumConcurrentQueries = Math.max(maximumConcurrentQueries, activeQueries);
+      try {
+        await new Promise((resolve) => setTimeout(resolve, 5));
+        if (statement.includes("SELECT lp.id::text AS learner_id")) return authorizedRows();
+        if (statement.includes("SELECT timezone")) return { rows: [{ timezone: "Asia/Ho_Chi_Minh" }] };
+        if (statement.includes("daily_new_word_limit")) return dailyUsageRow();
+        if (statement.includes("next_review_date <=")) return { rows: [dueRow(2, 1)] };
+        if (statement.includes("lp.vocabulary_id IS NULL")) return { rows: [newRow(3, 1)] };
+        return { rows: [] };
+      } finally {
+        activeQueries -= 1;
+      }
+    });
+    const service = createReviewQueueService({ execute }, { now: () => new Date("2026-09-14T03:00:00.000Z") });
+
+    const response = await service.list("parent-1", learnerId);
+
+    expect(execute).toHaveBeenCalledTimes(5);
+    expect(maximumConcurrentQueries).toBe(3);
+    expect(response.queue.map((item) => [item.vocabulary.id, item.queueType])).toEqual([[2, "DUE"], [3, "NEW"]]);
   });
 
   it.each(["cross-household", "disabled", "missing"])("returns safe 403 for an actual %s authorization outcome", async (caseName) => {
