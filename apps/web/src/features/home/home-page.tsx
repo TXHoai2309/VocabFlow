@@ -118,7 +118,7 @@ export function HomePage() {
   if (sessionState.isPending) return <HomeSessionLoading />;
   if (sessionState.error) return <HomeSessionError onRetry={() => void sessionState.refetch()} />;
   if (!sessionState.data?.user?.id) return <Navigate to="/login" replace />;
-  if (!activeLearner) return <Navigate to="/learners" replace />;
+  if (!activeLearner) return <Navigate to="/learners" replace state={{ returnTo: "/" }} />;
   const parentName = typeof sessionState.data.user.name === "string" ? sessionState.data.user.name.trim() : "";
   return <HomeDashboard key={activeLearner.id} learner={activeLearner} parentName={parentName} />;
 }

@@ -1,9 +1,10 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import { MemoryRouter, Route, Routes } from "react-router";
+import { MemoryRouter, Route, Routes, useLocation, useNavigate } from "react-router";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import type { LearnerDto } from "@vocabflow/contracts";
 import { ActiveLearnerProvider } from "../learners/learner-context-provider";
+import { LearnerPage } from "../learners/learner-page";
 import { HomePage } from "./home-page";
 
 const {
@@ -13,7 +14,9 @@ const {
   requestActivitySummary,
   requestGamification,
   requestLearnerLearningSets,
-  requestProgressHistory
+  requestProgressHistory,
+  requestLearners,
+  createLearner
 } = vi.hoisted(() => ({
   useSession: vi.fn(),
   requestReviewQueue: vi.fn(),
@@ -21,7 +24,9 @@ const {
   requestActivitySummary: vi.fn(),
   requestGamification: vi.fn(),
   requestLearnerLearningSets: vi.fn(),
-  requestProgressHistory: vi.fn()
+  requestProgressHistory: vi.fn(),
+  requestLearners: vi.fn(),
+  createLearner: vi.fn()
 }));
 
 vi.mock("../auth/auth-client", () => ({ authClient: { useSession } }));
@@ -48,6 +53,11 @@ vi.mock("../learners/progress-insights-client", async () => ({
 vi.mock("../learning-sets/learning-sets-client", async () => ({
   ...(await vi.importActual<typeof import("../learning-sets/learning-sets-client")>("../learning-sets/learning-sets-client")),
   requestLearnerLearningSets
+}));
+vi.mock("../learners/learner-client", async () => ({
+  ...(await vi.importActual<typeof import("../learners/learner-client")>("../learners/learner-client")),
+  requestLearners,
+  createLearner
 }));
 
 const learner: LearnerDto = {
@@ -139,14 +149,22 @@ const history = {
   ]
 };
 
-function renderHome(initialLearner: LearnerDto | null = learner) {
+function LocationProbe() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  return <><output data-testid="current-location">{location.pathname}</output><button type="button" onClick={() => navigate(-1)}>Go back</button></>;
+}
+
+function renderHome(initialLearner: LearnerDto | null = learner, initialEntries = ["/"]) {
   return render(
-    <MemoryRouter initialEntries={["/"]}>
+    <MemoryRouter initialEntries={initialEntries} initialIndex={initialEntries.length - 1}>
       <ActiveLearnerProvider initialLearner={initialLearner}>
+        <LocationProbe />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/learners" element={<p data-testid="learner-selection">Choose a learner</p>} />
+          <Route path="/learners" element={<LearnerPage />} />
           <Route path="/login" element={<p data-testid="login-route">Login route</p>} />
+          <Route path="/previous" element={<p data-testid="previous-route">Previous page</p>} />
           <Route path="*" element={<p>Not found</p>} />
         </Routes>
       </ActiveLearnerProvider>
@@ -163,6 +181,8 @@ describe("Home dashboard", () => {
     requestGamification.mockReset().mockResolvedValue(gamification);
     requestLearnerLearningSets.mockReset().mockResolvedValue(assignedSets);
     requestProgressHistory.mockReset().mockResolvedValue(history);
+    requestLearners.mockReset().mockResolvedValue([learner]);
+    createLearner.mockReset();
     useSession.mockReturnValue({
       data: { user: { id: "parent-id", name: "Jordan Nguyen" } },
       isPending: false,
@@ -250,13 +270,73 @@ describe("Home dashboard", () => {
 
   it("uses the established learner-selection route when there is no active learner", () => {
     renderHome(null);
-    expect(screen.getByTestId("learner-selection")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Chọn người học" })).toBeInTheDocument();
+    expect(screen.getByTestId("current-location")).toHaveTextContent("/learners");
+  });
+
+  it("auto-selects one enabled learner and returns to Home", async () => {
+    requestLearners.mockResolvedValue([
+      learner,
+      { ...learner, id: "disabled-learner", displayName: "Disabled", enabled: false }
+    ]);
+    renderHome(null);
+
+    expect(await screen.findByRole("main", { name: "Avery Nguyen learning dashboard" })).toBeInTheDocument();
+    expect(screen.getByTestId("current-location")).toHaveTextContent("/");
+  });
+
+  it("waits for an explicit choice when multiple learners exist, then returns Home", async () => {
+    requestLearners.mockResolvedValue([learner, { ...learner, id: "learner-2", displayName: "Morgan Nguyen" }]);
+    renderHome(null);
+
+    expect(await screen.findByRole("button", { name: "Avery Nguyen" })).toBeInTheDocument();
+    expect(screen.getByTestId("current-location")).toHaveTextContent("/learners");
+    fireEvent.click(screen.getByRole("button", { name: "Morgan Nguyen" }));
+    expect(await screen.findByRole("main", { name: "Morgan Nguyen learning dashboard" })).toBeInTheDocument();
+    expect(screen.getByTestId("current-location")).toHaveTextContent("/");
+  });
+
+  it("keeps a direct learner-page visit visible without a Home return intent", async () => {
+    renderHome(null, ["/learners"]);
+
+    expect(await screen.findByTestId("learner-context-ready")).toHaveTextContent("Avery Nguyen");
+    expect(screen.getByTestId("current-location")).toHaveTextContent("/learners");
+  });
+
+  it("keeps zero-learner users on the creation page", async () => {
+    requestLearners.mockResolvedValue([]);
+    renderHome(null);
+
+    expect(await screen.findByTestId("learner-empty-state")).toBeInTheDocument();
+    expect(screen.getByTestId("current-location")).toHaveTextContent("/learners");
+  });
+
+  it("returns to Home after creating the first learner from a Home handoff", async () => {
+    requestLearners.mockResolvedValue([]);
+    createLearner.mockResolvedValue(learner);
+    renderHome(null);
+
+    expect(await screen.findByTestId("learner-empty-state")).toBeInTheDocument();
+    fireEvent.change(screen.getByLabelText("Tên learner"), { target: { value: "Avery Nguyen" } });
+    fireEvent.submit(screen.getByRole("button", { name: "Tạo hồ sơ học" }).closest("form")!);
+
+    expect(await screen.findByRole("main", { name: "Avery Nguyen learning dashboard" })).toBeInTheDocument();
+    expect(screen.getByTestId("current-location")).toHaveTextContent("/");
+  });
+
+  it("replaces the Home handoff history so Back does not loop through learner selection", async () => {
+    renderHome(null, ["/previous", "/"]);
+
+    expect(await screen.findByRole("main", { name: "Avery Nguyen learning dashboard" })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Go back" }));
+    expect(await screen.findByTestId("previous-route")).toBeInTheDocument();
+    expect(screen.getByTestId("current-location")).toHaveTextContent("/previous");
   });
 
   it("shows a non-blank loading skeleton while the parent session is pending", () => {
     useSession.mockReturnValue({ data: null, isPending: true, error: null, refetch: vi.fn() });
     renderHome();
-    expect(screen.getByRole("status")).toHaveTextContent("Loading your learning home");
+    expect(screen.getByText("Loading your learning home…")).toBeInTheDocument();
   });
 
   it("provides a retry action when session validation fails", () => {

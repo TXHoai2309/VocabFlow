@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Link, Navigate } from "react-router";
+import { Link, Navigate, useLocation, useNavigate } from "react-router";
 import { authClient } from "../auth/auth-client";
 import type { LearnerDto } from "@vocabflow/contracts";
 import { createLearner, LearnerClientError, requestLearners } from "./learner-client";
@@ -26,6 +26,9 @@ function localNameError(value: string) {
 export function LearnerPage() {
   const sessionState = authClient.useSession();
   const { activeLearner, setActiveLearner, clearActiveLearner } = useActiveLearner();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const returnTo = (location.state as { returnTo?: unknown } | null)?.returnTo === "/" ? "/" : null;
   const [state, setState] = useState<ResolutionState>("loading");
   const [learners, setLearners] = useState<LearnerDto[]>([]);
   const [displayName, setDisplayName] = useState("");
@@ -78,6 +81,12 @@ export function LearnerPage() {
     loadedUserId.current = userId;
     void loadLearners();
   }, [clearActiveLearner, loadLearners, sessionState.data?.user?.id]);
+
+  useEffect(() => {
+    if (returnTo && state === "completed" && activeLearner) {
+      navigate(returnTo, { replace: true, state: null });
+    }
+  }, [activeLearner, navigate, returnTo, state]);
 
   async function handleCreate(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
