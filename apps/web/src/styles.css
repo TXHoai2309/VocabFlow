@@ -1064,7 +1064,6 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
 .home-learner-label { display: flex; min-width: 0; align-items: baseline; gap: 6px; }
 .home-learner-label strong { font-size: 14px; }
 .home-learner-label > span { color: var(--color-text-muted); font-size: 13px; white-space: nowrap; }
-.home-chevron { color: var(--color-text-muted); font-size: 20px; }
 .home-notification-visual { display: grid; flex: 0 0 48px; place-items: center; width: 48px; height: 48px; border: 1px solid var(--color-border); border-radius: var(--radius-control); color: var(--color-text-muted); background: var(--color-surface); }
 .home-notification-visual svg { width: 22px; height: 22px; }
 .home-dashboard { display: grid; min-width: 0; gap: 16px; }
@@ -1227,7 +1226,6 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
   .home-learner-label { display: grid; gap: 0; }
   .home-learner-label strong { min-width: 0; max-width: 100%; overflow: hidden; font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
   .home-learner-label > span { font-size: 11px; }
-  .home-chevron { display: none; }
   .home-notification-visual { display: none; }
   .home-dashboard { gap: 12px; }
   .home-hero { min-height: 250px; grid-template-columns: minmax(0, 1fr) 78px; gap: 8px; padding: 20px 14px; border-radius: var(--radius-feature); }

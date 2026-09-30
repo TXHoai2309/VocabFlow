@@ -204,7 +204,7 @@ describe("Home dashboard", () => {
     expect(screen.queryByText("Sarah")).not.toBeInTheDocument();
     expect(screen.queryByText("Emma")).not.toBeInTheDocument();
     expect(document.querySelector(".home-notification-visual i")).toBeNull();
-    expect(document.querySelector(".home-parent-chevron")).toBeNull();
+    expect(document.querySelector(".home-chevron")).toBeNull();
     expect(screen.getByRole("link", { name: "Cần ôn tập: 3" })).toHaveAttribute("href", "/study");
     expect(screen.getByRole("link", { name: "Từ mới: 2" })).toHaveAttribute("href", "/study");
     expect(screen.getByRole("link", { name: "Đã học: 16" })).toHaveAttribute("href", "/progress");
