@@ -204,7 +204,7 @@ describe("US-20 learner progress UI", () => {
     expect(screen.getByTestId("xp-summary")).toHaveTextContent("Tổng điểm kinh nghiệm");
     expect(screen.getByTestId("xp-summary")).toHaveTextContent("100");
     expect(screen.getByTestId("xp-summary")).not.toHaveTextContent("XP");
-    expect(screen.getByTestId("achievement-list")).toHaveTextContent("Đang khóa");
+    expect(screen.getByTestId("achievement-list")).toHaveTextContent("Chưa mở khóa");
   });
 
   it("shows a safe retry state after a progress request failure", async () => {

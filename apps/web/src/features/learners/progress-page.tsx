@@ -286,7 +286,7 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
                 <div className="achievement-list" data-testid="achievement-list">
                   {gamification.achievements.map((achievement) => <article className="achievement-row" key={achievement.code}>
                     <div><h3>{achievement.name}</h3><p>{achievement.description}</p></div>
-                    {achievement.unlockedAt ? <time dateTime={achievement.unlockedAt}>Đã mở khóa</time> : <span>Đang khóa</span>}
+                    {achievement.unlockedAt ? <time dateTime={achievement.unlockedAt}>Đã mở khóa</time> : <span>Chưa mở khóa</span>}
                   </article>)}
                 </div>
               </> : null}
