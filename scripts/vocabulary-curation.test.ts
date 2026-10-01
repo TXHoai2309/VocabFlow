@@ -141,6 +141,8 @@ describe("US-41 vocabulary curation manifest", () => {
     expect(manifest.records.filter((record) => record.grade === "GRADE_2")).toHaveLength(73);
     expect(manifest.records.filter((record) => record.grade === "GRADE_3")).toHaveLength(40);
     expect(manifest.records.filter((record) => record.learningSetSlugs.includes("grade-2-feelings"))).toHaveLength(13);
+    expect(manifest.learningSets).toEqual(CURATION_GROUPS.map(({ words: _words, ...definition }) => definition));
+    expect(manifest.learningSets.every((set) => /[À-ỹ]/u.test(`${set.name} ${set.description}`))).toBe(true);
   });
 
   it("keeps the selection policy explicit and deterministic", () => {

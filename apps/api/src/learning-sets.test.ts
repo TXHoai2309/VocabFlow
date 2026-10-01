@@ -9,8 +9,8 @@ const householdId = "00000000-0000-4000-8000-000000000001";
 const summaryRow = {
   id: 1,
   slug: "starter-vocabulary",
-  name: "VocabFlow Starter",
-  description: "Starter words.",
+  name: "Bộ từ khởi đầu VocabFlow",
+  description: "Bộ từ khởi đầu giúp người học làm quen với những từ vựng cơ bản.",
   grade: null,
   enabled: true,
   sort_order: 10,
@@ -50,12 +50,12 @@ describe("US-28/29 learning set API boundary", () => {
   });
 
   it("lists and details learning sets through the canonical service", async () => {
-    const detail = { id: 1, slug: "starter-vocabulary", name: "VocabFlow Starter", description: "Starter words.", grade: null, enabled: true, sortOrder: 10, vocabularyCount: 2, items: [{ sortOrder: 0, vocabulary: {
+    const detail = { id: 1, slug: "starter-vocabulary", name: "Bộ từ khởi đầu VocabFlow", description: "Bộ từ khởi đầu giúp người học làm quen với những từ vựng cơ bản.", grade: null, enabled: true, sortOrder: 10, vocabularyCount: 2, items: [{ sortOrder: 0, vocabulary: {
       id: 1, word: "apple", ipa: null, vietnamese: "quả táo", definitionEn: null,
       exampleEn: null, imageUrl: null, audioUrl: null, topic: null, level: null, enabled: true, contentVersion: 1
     } }] };
     const service = {
-      list: vi.fn(async () => [{ id: 1, slug: "starter-vocabulary", name: "VocabFlow Starter", description: "Starter words.", grade: null, enabled: true, sortOrder: 10, vocabularyCount: 1 }]),
+      list: vi.fn(async () => [{ id: 1, slug: "starter-vocabulary", name: "Bộ từ khởi đầu VocabFlow", description: "Bộ từ khởi đầu giúp người học làm quen với những từ vựng cơ bản.", grade: null, enabled: true, sortOrder: 10, vocabularyCount: 1 }]),
       detail: vi.fn(async () => detail), listForLearner: vi.fn(), assign: vi.fn(), unassign: vi.fn()
     };
     const app = createApp({ readSession: async () => ({ user: { id: "parent-1" } }), learningSetService: service });

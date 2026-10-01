@@ -137,6 +137,16 @@ effective-content projection. Re-import updates raw columns only; the next
 curation activation remains the reviewed step that can replace or clear owner
 metadata. No LLM/API translation or classification is used.
 
+## Vietnamese display-metadata follow-up
+
+Forward migration `0014_vietnamese_catalog_metadata` localizes the names and
+descriptions of the five compatibility sets, all eleven sets defined by this
+manifest, and the 17 canonical topics. It also corrects achievement
+descriptions by stable achievement code. The manifest and its curation source
+now carry Vietnamese display names/descriptions so a later curation apply does
+not restore English labels. Slugs, grades, sort order, selected vocabulary,
+topics, memberships, source classifications and learner state are unchanged.
+
 ## Acceptance criteria
 
 - [x] A tracked deterministic manifest exists and contains 200–300 explicit

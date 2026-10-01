@@ -9,8 +9,8 @@ import { LearningSetDetailPage, LearningSetsPage } from "./learning-sets-page";
 const learningSet = {
   id: 1,
   slug: "starter-vocabulary",
-  name: "VocabFlow Starter",
-  description: "The original starter words.",
+  name: "Bộ từ khởi đầu VocabFlow",
+  description: "Bộ từ khởi đầu giúp người học làm quen với những từ vựng cơ bản.",
   grade: null,
   enabled: true,
   sortOrder: 10,
@@ -34,7 +34,7 @@ describe("US-28/29 learning set UI", () => {
     const fetchMock = vi.spyOn(globalThis, "fetch")
       .mockResolvedValueOnce(new Response(JSON.stringify({ learningSets: [learningSet] }), { status: 200 }));
     render(<MemoryRouter initialEntries={["/learning-sets"]}><Routes><Route path="/learning-sets" element={<LearningSetsPage />} /></Routes></MemoryRouter>);
-    expect(await screen.findByTestId("learning-sets-list")).toHaveTextContent("VocabFlow Starter");
+    expect(await screen.findByTestId("learning-sets-list")).toHaveTextContent("Bộ từ khởi đầu VocabFlow");
     expect(fetchMock).toHaveBeenCalledWith("/api/learning-sets", { credentials: "include" });
     cleanup();
     fetchMock.mockResolvedValueOnce(new Response(JSON.stringify({ learningSet: {

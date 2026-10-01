@@ -14,8 +14,8 @@ const learner = {
 const learningSet = {
   id: 1,
   slug: "starter-vocabulary",
-  name: "VocabFlow Starter",
-  description: "The original starter words.",
+  name: "Bộ từ khởi đầu VocabFlow",
+  description: "Bộ từ khởi đầu giúp người học làm quen với những từ vựng cơ bản.",
   grade: null,
   enabled: true,
   sortOrder: 10,
@@ -28,6 +28,9 @@ const session = {
 };
 
 test("US-28 browses an ordered learning-set catalog and detail", async ({ page }) => {
+  await page.route("**/api/auth/get-session", async (route) => {
+    await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(session) });
+  });
   await page.route("**/api/learning-sets", async (route) => {
     await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ learningSets: [learningSet] }) });
   });
@@ -41,7 +44,7 @@ test("US-28 browses an ordered learning-set catalog and detail", async ({ page }
     } }) });
   });
   await page.goto("/learning-sets");
-  await expect(page.getByTestId("learning-sets-list")).toContainText("VocabFlow Starter");
+  await expect(page.getByTestId("learning-sets-list")).toContainText("Bộ từ khởi đầu VocabFlow");
   await page.getByRole("link", { name: "Xem bộ từ" }).click();
   await expect(page.getByTestId("learning-set-detail-items")).toContainText("apple");
 });
@@ -65,11 +68,11 @@ test("US-29 assigns a set to the active learner and shows success", async ({ pag
   });
   await page.goto("/learners");
   await expect(page.getByTestId("learner-context-ready")).toContainText("An");
-  await page.getByRole("link", { name: "Quản lý bộ từ của learner" }).click();
+  await page.getByRole("link", { name: "Quản lý bộ từ của người học" }).click();
   await expect(page.getByTestId("learner-learning-sets-list")).toBeVisible();
   await page.getByRole("button", { name: "Gán bộ từ" }).click();
   await expect(page.getByRole("button", { name: "Đã gán" })).toBeVisible();
-  await expect(page.getByRole("status")).toContainText("Đã gán VocabFlow Starter.");
+  await expect(page.getByRole("status")).toContainText("Đã gán Bộ từ khởi đầu VocabFlow.");
 });
 
 test("US-30 edits the active learner daily NEW-word limit", async ({ page }) => {

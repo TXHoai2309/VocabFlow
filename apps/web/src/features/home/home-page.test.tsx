@@ -124,9 +124,9 @@ const assignedSets = [{
   active: true,
   learningSet: {
     id: 7,
-    slug: "essential-verbs",
-    name: "Essential Verbs",
-    description: "Common actions",
+    slug: "grade-1-actions",
+    name: "Hành động lớp 1",
+    description: "Các hành động thường gặp trong chỉ dẫn và câu chuyện đơn giản.",
     grade: "GRADE_1" as const,
     enabled: true,
     sortOrder: 0,
@@ -210,7 +210,7 @@ describe("Home dashboard", () => {
     expect(screen.getByRole("link", { name: "Đã học: 16" })).toHaveAttribute("href", "/progress");
     expect(screen.getByRole("link", { name: "Chuỗi ngày học: 4" })).toHaveAttribute("href", "/progress");
     expect(screen.getByRole("link", { name: /bắt đầu học/i })).toHaveAttribute("href", "/study");
-    expect(await screen.findByText("Essential Verbs")).toBeInTheDocument();
+    expect(await screen.findByText("Hành động lớp 1")).toBeInTheDocument();
     expect(screen.getAllByRole("link", { name: "Xem tất cả" }).some((link) => link.getAttribute("href") === "/learning-sets")).toBe(true);
     expect(screen.getByText("20 từ · Lớp 1")).toBeInTheDocument();
     expect(await screen.findByText(/5 từ khác nhau đã học vào ngày/)).toBeInTheDocument();
@@ -234,7 +234,7 @@ describe("Home dashboard", () => {
     renderHome();
 
     expect(await screen.findByRole("link", { name: "Đã học: 16" })).toBeInTheDocument();
-    expect(await screen.findByText("Essential Verbs")).toBeInTheDocument();
+    expect(await screen.findByText("Hành động lớp 1")).toBeInTheDocument();
     expect(await screen.findByText(/5 từ khác nhau đã học vào ngày/)).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Đổi người học. Người học hiện tại: Avery Nguyen, Cấp độ 3" })).toBeInTheDocument();
 

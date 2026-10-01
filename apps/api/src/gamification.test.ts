@@ -32,8 +32,8 @@ describe("US-39 + US-40 gamification API", () => {
       if (queries.length === 2) return { rows: [] };
       if (queries.length === 3) return { rows: [{ total_xp: "250" }] };
       return { rows: [
-        { code: "FIRST_REVIEW", name: "Bắt đầu học", description: "Review đầu tiên.", unlocked_at: "2026-09-21T00:00:00.000Z" },
-        { code: "TEN_WORDS_LEARNED", name: "10 từ", description: "Mười từ.", unlocked_at: null }
+        { code: "FIRST_REVIEW", name: "Bắt đầu học", description: "Hoàn thành lần ôn tập đầu tiên.", unlocked_at: "2026-09-21T00:00:00.000Z" },
+        { code: "TEN_WORDS_LEARNED", name: "10 từ đã học", description: "Đã bắt đầu học ít nhất 10 từ.", unlocked_at: null }
       ] };
     });
     const response = await createGamificationService({ execute }).get("parent-1", learnerId);

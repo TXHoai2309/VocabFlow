@@ -8,8 +8,8 @@ const householdId = "00000000-0000-4000-8000-000000000001";
 const topic = {
   id: 1,
   slug: "family",
-  name: "Family",
-  description: "Vocabulary classified as Family by the imported source.",
+  name: "Gia đình",
+  description: "Từ vựng về gia đình và người thân.",
   sortOrder: 10,
   enabled: true
 };

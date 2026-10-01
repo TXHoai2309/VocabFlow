@@ -95,7 +95,7 @@ function topicProgress(learnerId: string): TopicProgressResponse {
   return {
     learnerId,
     localDate: "2026-09-20",
-    topics: [{ topicId: 1, slug: "family", name: "Family", total: 2, newCount: 1, learningCount: 1, masteredCount: 0, dueCount: 1 }]
+    topics: [{ topicId: 1, slug: "family", name: "Gia đình", total: 2, newCount: 1, learningCount: 1, masteredCount: 0, dueCount: 1 }]
   };
 }
 
@@ -103,7 +103,7 @@ function gamification(learnerId: string): GamificationResponse {
   return {
     learnerId,
     xp: { total: 100, level: 2, xpIntoLevel: 0, xpPerLevel: 100, xpToNextLevel: 100 },
-    achievements: [{ code: "FIRST_REVIEW", name: "Bắt đầu học", description: "Hoàn thành lần review đầu tiên.", unlockedAt: null }]
+    achievements: [{ code: "FIRST_REVIEW", name: "Bắt đầu học", description: "Hoàn thành lần ôn tập đầu tiên.", unlockedAt: null }]
   };
 }
 
@@ -198,7 +198,7 @@ describe("US-20 learner progress UI", () => {
 
     expect(await screen.findByTestId("weekly-progress")).toBeInTheDocument();
     expect(screen.getAllByText("0 từ")).toHaveLength(6);
-    expect(screen.getByTestId("topic-progress-list")).toHaveTextContent("Family");
+    expect(screen.getByTestId("topic-progress-list")).toHaveTextContent("Gia đình");
     expect(requestProgressHistory).toHaveBeenCalledWith(learnerA.id, "2026-09-14", "2026-09-20");
     expect(requestTopicProgress).toHaveBeenCalledWith(learnerA.id);
     expect(screen.getByTestId("xp-summary")).toHaveTextContent("Tổng điểm kinh nghiệm");

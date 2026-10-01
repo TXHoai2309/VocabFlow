@@ -1,5 +1,30 @@
 # Current Handoff Snapshot
 
+## 2026-10-01 — Vietnamese catalog metadata audit
+
+- Added forward migration `0014_vietnamese_catalog_metadata` for catalog
+  display strings: five compatibility sets, eleven US-41 sets, 17 topics and
+  four achievement descriptions. Statements update only names/descriptions by
+  stable slug or achievement code; IDs, slugs, source classifications,
+  ordering, enabled/grade values, relationships and learning history remain
+  untouched.
+- Updated the US-41 curation source and manifest metadata to keep future
+  curation applications from restoring English set labels. Owner-selected
+  vocabulary, topics, grades and set memberships are unchanged. API and
+  learning behavior are unchanged.
+- Updated API, web and browser-test fixtures to use Vietnamese catalog display
+  metadata while retaining English vocabulary and raw source-topic examples.
+- Validation: focused catalog/migration/API/web tests pass (10 files / 72
+  tests); `drizzle-kit check` passes; final `pnpm lint`, `pnpm typecheck`,
+  `pnpm test` (62 files / 683 tests), focused learning-set E2E (3/3),
+  `pnpm build` and `git diff --check` pass. The production-build test that
+  exceeded its 5-second limit once during concurrent checks passes by itself;
+  the full suite also passes without competing checks. Updated the focused E2E
+  auth mock and stale Vietnamese accessible-name locator. Local Node is
+  22.19.0 versus the pinned 22.23.2.
+  No database connection or migration execution, deployment, commit or push
+  has been performed.
+
 ## 2026-09-30 — Shared authenticated application shell
 
 - Replaced the Home-owned sidebar with one nested shared app shell for the

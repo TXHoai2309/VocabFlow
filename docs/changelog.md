@@ -2,6 +2,17 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-01 — Vietnamese catalog metadata
+
+- Added forward-only migration `0014_vietnamese_catalog_metadata` to localize
+  the five compatibility learning sets, eleven US-41 learning sets, all 17
+  topics, and achievement descriptions that were mixed or awkward Vietnamese.
+  Updates are keyed by stable slugs/codes and preserve IDs, source topics,
+  ordering, grades, enabled flags, relationships and learner history.
+- Updated the US-41 curation source and manifest display metadata so later
+  curation applies retain Vietnamese names/descriptions; vocabulary selection,
+  English learning content and API shape are unchanged.
+
 ## 2026-09-30 — Shared authenticated application shell
 
 - Moved the existing Home sidebar/navigation into one persistent layout route

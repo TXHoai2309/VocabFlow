@@ -7,8 +7,8 @@ import { TopicsPage } from "./topics-page";
 const topics = [{
   id: 1,
   slug: "family",
-  name: "Family",
-  description: "Vocabulary classified as Family by the imported source.",
+  name: "Gia đình",
+  description: "Từ vựng về gia đình và người thân.",
   sortOrder: 10,
   enabled: true
 }];
