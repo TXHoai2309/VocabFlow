@@ -258,6 +258,8 @@ jobs:
         run: pnpm deploy:production
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_PROJECT_ID: ${{ vars.VOCABFLOW_VERCEL_PROJECT_ID }}
+          VERCEL_ORG_ID: ${{ vars.VOCABFLOW_VERCEL_ORG_ID }}
           VOCABFLOW_VERCEL_PROJECT_ID: ${{ vars.VOCABFLOW_VERCEL_PROJECT_ID }}
           VOCABFLOW_VERCEL_ORG_ID: ${{ vars.VOCABFLOW_VERCEL_ORG_ID }}
           BETTER_AUTH_URL: ${{ vars.BETTER_AUTH_URL }}

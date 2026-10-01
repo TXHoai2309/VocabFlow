@@ -307,10 +307,18 @@ describe("production release workflow safety contract", () => {
     expect(workflow).toContain("PRODUCTION_MIGRATION_DATABASE_URL: ${{ secrets.PRODUCTION_MIGRATION_DATABASE_URL }}");
     expect(workflow).toContain("NEON_API_KEY: ${{ secrets.NEON_API_KEY }}");
     expect(workflow).toContain("VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}");
+    expect(workflow).toContain("VERCEL_PROJECT_ID: ${{ vars.VOCABFLOW_VERCEL_PROJECT_ID }}");
+    expect(workflow).toContain("VERCEL_ORG_ID: ${{ vars.VOCABFLOW_VERCEL_ORG_ID }}");
     expect(workflow).toContain("vars.VOCABFLOW_VERCEL_PROJECT_ID");
     expect(workflow).toContain("vars.VOCABFLOW_VERCEL_ORG_ID");
     expect(workflow).toContain("vars.BETTER_AUTH_URL");
     expect(workflow).not.toContain("NEON_TEST_");
+
+    const linkedProjectStepStart = workflow.indexOf("Create ephemeral linked Vercel project metadata");
+    const deployStepStart = workflow.indexOf("Deploy the migrated release SHA to Vercel Production");
+    const linkedProjectStep = workflow.slice(linkedProjectStepStart, deployStepStart);
+    expect(linkedProjectStep).toContain(".vercel/project.json");
+    expect(linkedProjectStep).not.toContain("VERCEL_TOKEN");
 
     const trustedDb = readFileSync(resolve(".github/workflows/trusted-db.yml"), "utf8").replace(/\r\n/g, "\n");
     expect(trustedDb).toContain("EXECUTION_CONTEXT: ci-test");

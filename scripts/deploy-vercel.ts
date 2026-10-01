@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { assertCleanReleaseSource, assertNoLocalSecretInputFiles, assertPinnedProductionToolchain } from "./production-build";
 import {
+  requireVercelToken,
   vercelDeployCommandPlan,
   verifyLinkedVercelProject,
   verifyVercelArtifact,
@@ -38,8 +39,15 @@ function verifyLinkedProject() {
   });
 }
 
-function runVercel(args: string[]) {
-  const result = spawnSync("pnpm", ["exec", "vercel", ...args], {
+type VercelSpawnResult = { error?: Error | null; status: number | null };
+type VercelSpawn = (
+  command: string,
+  args: string[],
+  options: { stdio: "inherit"; shell: boolean; env: NodeJS.ProcessEnv },
+) => VercelSpawnResult;
+
+export function runVercel(args: string[], spawn: VercelSpawn = spawnSync) {
+  const result = spawn("pnpm", ["exec", "vercel", ...args], {
     stdio: "inherit",
     shell: process.platform === "win32",
     env: process.env,
@@ -48,6 +56,7 @@ function runVercel(args: string[]) {
 }
 
 function main() {
+  const token = requireVercelToken(process.env.VERCEL_TOKEN);
   assertPinnedProductionToolchain({
     nodeVersion: process.version,
     packageManagerAgent: process.env.npm_config_user_agent,
@@ -58,7 +67,7 @@ function main() {
   if (target === "production") verifyVercelProductionOrigin(process.env.BETTER_AUTH_URL);
   assertNoLocalSecretInputFiles(process.cwd());
 
-  const [pull, build, deploy] = vercelDeployCommandPlan(target);
+  const [pull, build, deploy] = vercelDeployCommandPlan(target, token);
   runVercel(pull);
   runVercel(build);
   const artifact = verifyVercelArtifact({ releaseSha });

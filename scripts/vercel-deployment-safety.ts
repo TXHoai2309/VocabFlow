@@ -10,6 +10,11 @@ export type LinkedVercelProject = {
   orgId?: unknown;
 };
 
+export function requireVercelToken(token: string | undefined) {
+  if (!token?.trim()) throw new Error("VERCEL_TOKEN_REQUIRED");
+  return token;
+}
+
 export function verifyLinkedVercelProject(input: {
   linkedProject: LinkedVercelProject;
   expectedProjectId?: string;
@@ -22,12 +27,14 @@ export function verifyLinkedVercelProject(input: {
   return { projectId: input.expectedProjectId, orgId: input.expectedOrgId };
 }
 
-export function vercelDeployCommandPlan(target: VercelDeployTarget): string[][] {
+export function vercelDeployCommandPlan(target: VercelDeployTarget, tokenInput: string | undefined): string[][] {
+  const token = requireVercelToken(tokenInput);
   const production = target === "production";
+  const authenticated = ["--token", token];
   return [
-    ["pull", "--yes", `--environment=${target}`],
-    ["build", ...(production ? ["--prod"] : [])],
-    ["deploy", "--prebuilt", ...(production ? ["--prod"] : []), "--yes"],
+    ["pull", "--yes", `--environment=${target}`, ...authenticated],
+    ["build", ...(production ? ["--prod"] : []), ...authenticated],
+    ["deploy", "--prebuilt", ...(production ? ["--prod"] : []), "--yes", ...authenticated],
   ];
 }
 

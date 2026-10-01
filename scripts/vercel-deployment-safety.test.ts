@@ -1,9 +1,11 @@
 import { mkdirSync, mkdtempSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { buildArtifactDigest } from "./build-artifact-safety";
+import { runVercel } from "./deploy-vercel";
 import {
+  requireVercelToken,
   vercelDeployCommandPlan,
   verifyLinkedVercelProject,
   verifyVercelArtifact,
@@ -30,16 +32,46 @@ describe("Vercel release deployment guards", () => {
   });
 
   it("uses explicit preview and production CLI targets without implicit production", () => {
-    expect(vercelDeployCommandPlan("preview")).toEqual([
-      ["pull", "--yes", "--environment=preview"],
-      ["build"],
-      ["deploy", "--prebuilt", "--yes"],
+    const token = "synthetic-vercel-token-for-test-only";
+    expect(vercelDeployCommandPlan("preview", token)).toEqual([
+      ["pull", "--yes", "--environment=preview", "--token", token],
+      ["build", "--token", token],
+      ["deploy", "--prebuilt", "--yes", "--token", token],
     ]);
-    expect(vercelDeployCommandPlan("production")).toEqual([
-      ["pull", "--yes", "--environment=production"],
-      ["build", "--prod"],
-      ["deploy", "--prebuilt", "--prod", "--yes"],
+    expect(vercelDeployCommandPlan("production", token)).toEqual([
+      ["pull", "--yes", "--environment=production", "--token", token],
+      ["build", "--prod", "--token", token],
+      ["deploy", "--prebuilt", "--prod", "--yes", "--token", token],
     ]);
+  });
+
+  it("requires a non-empty token and does not log or persist it during command invocation", () => {
+    const token = "synthetic-vercel-token-not-for-output";
+    expect(() => requireVercelToken(undefined)).toThrow("VERCEL_TOKEN_REQUIRED");
+    expect(() => requireVercelToken("  ")).toThrow("VERCEL_TOKEN_REQUIRED");
+    expect(() => vercelDeployCommandPlan("production", undefined)).toThrow("VERCEL_TOKEN_REQUIRED");
+
+    const deploySource = readFileSync(resolve("scripts/deploy-vercel.ts"), "utf8");
+    const loggedValues: unknown[][] = [];
+    const logSpy = vi.spyOn(console, "log").mockImplementation((...values) => { loggedValues.push(values); });
+    const errorSpy = vi.spyOn(console, "error").mockImplementation((...values) => { loggedValues.push(values); });
+    const invocations: Array<{ command: string; args: string[] }> = [];
+    try {
+      runVercel(["deploy", "--token", token], (command, args) => {
+        invocations.push({ command, args });
+        return { status: 0 };
+      });
+      expect(invocations).toEqual([{
+        command: "pnpm",
+        args: ["exec", "vercel", "deploy", "--token", token],
+      }]);
+      expect(loggedValues.flat().join(" ")).not.toContain(token);
+      expect(deploySource).not.toMatch(/\b(?:writeFileSync|appendFileSync|createWriteStream)\b/);
+      expect(deploySource).not.toMatch(/console\.(?:log|error)\([^)]*(?:token|args)/i);
+    } finally {
+      logSpy.mockRestore();
+      errorSpy.mockRestore();
+    }
   });
 
   it("requires an exact owner-approved linked project and organization", () => {
