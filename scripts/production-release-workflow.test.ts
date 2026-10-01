@@ -70,8 +70,11 @@ describe("production release workflow safety contract", () => {
     expect(postMigrationPreflight).toBeGreaterThan(apply);
     expect(idempotency).toBeGreaterThan(postMigrationPreflight);
     expect(deploy).toBeGreaterThan(idempotency);
-    expect(workflow).toContain("pnpm db:production-preflight -- --target production");
-    expect(workflow).toContain("pnpm db:migrate -- --target production");
+    expect(workflow).toContain("pnpm db:production-preflight --target production");
+    expect(workflow).toContain("pnpm db:migrate --target production");
+    expect(workflow).toContain('migration_report="$(pnpm db:migrate --target production)"');
+    expect(workflow).not.toMatch(/pnpm db:production-preflight -- --target/);
+    expect(workflow).not.toMatch(/pnpm db:migrate -- --target/);
     expect(workflow).toContain("--confirm-target production");
     expect(workflow).toContain('--confirm-branch "$PRODUCTION_BRANCH_ID"');
     expect(workflow).toContain("DATABASE_TARGETS.production.branchId");

@@ -100,14 +100,14 @@ jobs:
           echo "branch_id=$branch_id" >> "$GITHUB_OUTPUT"
 
       - name: Production DB preflight (read-only)
-        run: pnpm db:production-preflight -- --target production
+        run: pnpm db:production-preflight --target production
         env:
           NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
           PRODUCTION_DATABASE_URL: ${{ secrets.PRODUCTION_DATABASE_URL }}
           PRODUCTION_MIGRATION_DATABASE_URL: ${{ secrets.PRODUCTION_MIGRATION_DATABASE_URL }}
 
       - name: Production migration plan (read-only)
-        run: pnpm db:migrate -- --target production
+        run: pnpm db:migrate --target production
         env:
           NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
           PRODUCTION_MIGRATION_DATABASE_URL: ${{ secrets.PRODUCTION_MIGRATION_DATABASE_URL }}
@@ -204,7 +204,7 @@ jobs:
 
       - name: Apply forward-only production migrations
         run: >-
-          pnpm db:migrate -- --target production
+          pnpm db:migrate --target production
           --confirm-target production
           --confirm-branch "$PRODUCTION_BRANCH_ID"
           --apply
@@ -215,7 +215,7 @@ jobs:
           PRODUCTION_BRANCH_ID: ${{ steps.production-target.outputs.branch_id }}
 
       - name: Verify production DB after migration (read-only)
-        run: pnpm db:production-preflight -- --target production
+        run: pnpm db:production-preflight --target production
         env:
           NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
           PRODUCTION_DATABASE_URL: ${{ secrets.PRODUCTION_DATABASE_URL }}
@@ -225,7 +225,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          migration_report="$(pnpm db:migrate -- --target production)"
+          migration_report="$(pnpm db:migrate --target production)"
           printf '%s\n' "$migration_report"
           if ! grep -Fxq 'MIGRATIONS_PENDING=0' <<< "$migration_report"; then
             echo 'PRODUCTION_POST_MIGRATION_VERIFY_FAILED' >&2
