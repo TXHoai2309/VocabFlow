@@ -11,10 +11,10 @@ import {
   sys,
   transpileModule,
 } from "typescript";
-import { createApp } from "../apps/api/src/index";
+import { createApp } from "../../apps/api/src/index";
 import { describe, expect, it, vi } from "vitest";
-import { createVercelApiHandler, VERCEL_API_PATH_QUERY, VERCEL_API_ROUTE_QUERY } from "./handler";
-import type { RuntimeBindings } from "../apps/api/src/runtime-bindings";
+import { createVercelApiHandler, VERCEL_API_PATH_QUERY, VERCEL_API_ROUTE_QUERY } from "../../api/handler";
+import type { RuntimeBindings } from "../../apps/api/src/runtime-bindings";
 
 function createStrictQueryValidationApp() {
   const learningSetService = {
@@ -45,7 +45,7 @@ function createStrictQueryValidationApp() {
 }
 
 describe("Vercel Hono function boundary", () => {
-  it("limits the production TypeScript project to api/handler.ts, excluding its test file", () => {
+  it("limits the production TypeScript project to api/handler.ts", () => {
     const configPath = resolve("api/tsconfig.json");
     const config = readConfigFile(configPath, sys.readFile);
     expect(config.error).toBeUndefined();

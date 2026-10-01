@@ -1,5 +1,22 @@
 # Current Handoff Snapshot
 
+## 2026-10-01 — Production Release #7 Vercel API boundary fix
+
+- Moved the Vercel entrypoint tests and their TypeScript project from root
+  `/api` to `tests/api`; root TypeScript references still typecheck the tests.
+  Root `/api` now contains only `handler.ts`, `package.json` and its production
+  `tsconfig.json`.
+- Added a recursive production-build guard rejecting `.test` and `.spec`
+  TypeScript entrypoints under `/api`. Credential and source-map scanners were
+  not relaxed.
+- Focused boundary/API tests pass (20); `pnpm lint`, `pnpm typecheck`,
+  `pnpm test` (64 files / 734 tests), `pnpm build`, and `git diff --check`
+  pass. The static client artifact scan reports `value_hits=0`.
+  `vercel build --prod` was skipped because the local Node is 22.19.0 (required
+  22.23.2) and the release wrapper requires a clean source tree; the requested
+  changes remain uncommitted. No production DB operation, deployment, commit
+  or push occurred.
+
 ## 2026-10-01 — Protected Production Release automation (US-42)
 
 - Added `.github/workflows/production-release.yml`, triggered only after Core

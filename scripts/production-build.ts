@@ -3,6 +3,7 @@ import { execFileSync, spawnSync } from "node:child_process";
 import { lstatSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { buildArtifactDigest, inspectBuildArtifact } from "./build-artifact-safety";
+import { assertNoApiTestEntrypoints } from "./vercel-api-boundary";
 
 export function assertPinnedProductionToolchain(input: { nodeVersion: string; packageManagerAgent: string | undefined }) {
   if (input.nodeVersion !== "v22.23.2") throw new Error("PRODUCTION_NODE_VERSION_REQUIRED");
@@ -433,6 +434,7 @@ function main() {
   });
   const releaseSha = currentReleaseSha();
   assertNoLocalSecretInputFiles(process.cwd());
+  assertNoApiTestEntrypoints(resolve("api"));
   const child = spawnSync("pnpm", ["build"], {
     stdio: "inherit",
     shell: process.platform === "win32",

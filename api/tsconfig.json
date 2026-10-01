@@ -1,8 +1,8 @@
 {
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
+    "tsBuildInfoFile": "../node_modules/.cache/vocabflow-api-production.tsbuildinfo",
     "types": ["node"]
   },
-  "include": ["handler.ts"],
-  "exclude": ["entrypoint.test.ts"]
+  "include": ["handler.ts"]
 }

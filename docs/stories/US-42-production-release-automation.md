@@ -64,8 +64,11 @@ Out of scope:
 8. Tests cover execution-context mapping, allowed/rejected authorization
    metadata, confirmation guards, workflow gate/SHA/order/environment and the
    absence of production deployment after failed DB steps.
-9. Local lint, typecheck, focused and full tests, build, and diff checks pass;
-   no real production DB operation, deployment, commit or push occurs.
+9. The Vercel root `/api` directory contains no `.test` or `.spec` TypeScript
+   entrypoints; the production build enforces this boundary. Artifact scans
+   continue to reject credential values and database/provider credentials.
+10. Local lint, typecheck, focused and full tests, build, and diff checks pass;
+    no real production DB operation, deployment, commit or push occurs.
 
 ## Owner setup still required
 
@@ -77,5 +80,16 @@ implementation.
 
 ## Acceptance evidence
 
-Pending final local validation and owner review. No remote workflow run,
-production database connection, migration, or Vercel deployment was executed.
+The API entrypoint test and test TypeScript project are under `tests/api`, and
+the root TypeScript project still references the test project. The production
+build rejects test/spec TypeScript entrypoints under `/api`; the directory
+contains only `handler.ts`, `package.json` and `tsconfig.json`. Focused
+boundary/API tests pass (20); `pnpm lint`, `pnpm typecheck`, `pnpm test`
+(64 files / 734 tests), `pnpm build`, and `git diff --check` pass. The static
+client artifact scan reports `value_hits=0`. `vercel build --prod` was not run:
+the installed Node is 22.19.0 rather than the pinned 22.23.2, and the
+production release wrapper also requires a clean source tree; this requested
+change remains uncommitted. Artifact counts for `.vercel/output` therefore
+remain unverified. No remote workflow run, production database operation,
+migration, Vercel deployment, commit or push was executed. Owner review remains
+pending.

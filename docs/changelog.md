@@ -2,6 +2,14 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-01 — Production Release #7 Vercel API boundary fix
+
+- Moved the Vercel entrypoint tests and test TypeScript project out of root
+  `/api`, retaining them in the root `tsc -b` references.
+- Added a recursive guard to the production build so Vercel's function
+  discovery directory cannot contain `.test` or `.spec` TypeScript files.
+  Existing artifact credential scanners remain strict.
+
 ## 2026-10-01 — Protected Production Release automation
 
 - Added a third GitHub Actions workflow that starts only after successful Core

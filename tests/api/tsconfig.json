@@ -1,0 +1,8 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": "../../node_modules/.cache/vocabflow-api-tests.tsbuildinfo",
+    "types": ["node"]
+  },
+  "include": ["entrypoint.test.ts"]
+}
