@@ -68,6 +68,7 @@ convenient. Reprioritization or a new story must be explicit.
 - [US-39 XP & Learner Level](US-39-xp-learner-level.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
 - [US-40 Achievements / Badges](US-40-achievements-badges.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
 - [US-41 Content Curation & Activation](US-41-content-curation-activation.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
+- [US-42 Protected Production Release Automation](US-42-production-release-automation.md) — `IN PROGRESS`.
 
 ## Story status gate
 

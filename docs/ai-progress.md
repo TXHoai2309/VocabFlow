@@ -1,5 +1,27 @@
 # Current Handoff Snapshot
 
+## 2026-10-01 — Protected Production Release automation (US-42)
+
+- Added `.github/workflows/production-release.yml`, triggered only after Core
+  CI completes successfully for a same-repository `main` push. It checks out
+  `workflow_run.head_sha`, verifies the checkout, runs read-only production DB
+  preflight and migration plan, applies guarded forward-only migrations, then
+  repeats read-only DB verification and requires zero pending migrations
+  before calling `pnpm deploy:production` for the same SHA. Steps are
+  sequential and serialized; migration/verification failure prevents deployment.
+- Added the `ci-production-release` execution context and production
+  authorization bound to the GitHub event payload's Core CI name, conclusion,
+  push event, main branch, repository and exact SHA. Generic database URL and
+  mutation paths reject this context; `ci-test` remains test-only.
+- Production secrets are step-scoped. Workflow also generates ignored
+  `.vercel/project.json` ephemerally for the existing safe Vercel project guard.
+  Trusted DB Integration was not changed; bootstrap, catalog import and US-41
+  curation are outside this workflow.
+- Local validation and owner review are pending. GitHub Environment
+  `production` still needs required reviewers, a `main` branch rule, and the
+  listed secrets/variables. No production DB connection/mutation, deploy,
+  commit or push was performed.
+
 ## 2026-10-01 — Vietnamese catalog metadata audit
 
 - Added forward migration `0014_vietnamese_catalog_metadata` for catalog

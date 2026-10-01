@@ -1,14 +1,14 @@
-# Technical Architecture v1.0.12
+# Technical Architecture v1.0.14
 
 - Status: APPROVED FOR IMPLEMENTATION
-- Version: v1.0.12
-- Source baseline: `VocabFlow_Technical_Architecture_v1.0.4.docx`; this Markdown records the US-25 identity reconciliation, US-26/US-27 vocabulary taxonomy, US-28/US-29 learning-set assignment model, US-30 daily New allowance, US-31 through US-34 exercise interaction layer, US-35/US-36 activity read model, US-39/US-40 rewards and US-41 reviewed catalog activation.
+- Version: v1.0.14
+- Source baseline: `VocabFlow_Technical_Architecture_v1.0.4.docx`; this Markdown records the US-25 identity reconciliation, US-26/US-27 vocabulary taxonomy, US-28/US-29 learning-set assignment model, US-30 daily New allowance, US-31 through US-34 exercise interaction layer, US-35/US-36 activity read model, US-39/US-40 rewards, US-41 reviewed catalog activation and US-42 production release automation.
 - Canonical format: Markdown
-- Last synchronized: 2026-09-24
+- Last synchronized: 2026-10-01
 
 **VOCABFLOW**
 
-**Technical Architecture v1.0.12**
+**Technical Architecture v1.0.14**
 
 ## US-41 content curation and activation
 
@@ -64,7 +64,7 @@ single range aggregation. Topic Due is an overlapping current-state subset.
 
 **Family Learning MVP**
 
-| **Status** | APPROVED FOR IMPLEMENTATION; US-25 through US-41 catalog, taxonomy, learning-set, exercise, activity, reward and activation contracts recorded |
+| **Status** | APPROVED FOR IMPLEMENTATION; US-25 through US-42 catalog, taxonomy, learning-set, exercise, activity, reward, activation and release contracts recorded |
 | --- | --- |
 | **Architecture** | React SPA + Hono API + PostgreSQL |
 | **Primary persistence** | Neon PostgreSQL |
@@ -77,7 +77,7 @@ Mục tiêu: khóa kiến trúc kỹ thuật đủ chi tiết để triển khai
 
 | **Mục** | **Giá trị** |
 | --- | --- |
-| Document | VocabFlow Technical Architecture v1.0.13 |
+| Document | VocabFlow Technical Architecture v1.0.14 |
 | Target release | Family MVP / vertical slice đầu tiên |
 | Status | APPROVED FOR IMPLEMENTATION |
 | Verification status | Architecture Acceptance Gates được xác minh trong quá trình triển khai; sau khi P0 gates PASS có thể đổi trạng thái thành ARCHITECTURE VERIFIED. |
@@ -131,7 +131,7 @@ VocabFlow là web học từ vựng cho một hộ gia đình. Một tài khoả
 | Validation | Zod | Request/response/dataset contracts |
 | Client cache | IndexedDB + Dexie (incremental) | Vocabulary/settings/recent snapshot |
 | Testing | Vitest + RTL + Hono Web APIs + Playwright | Unit, integration, E2E |
-| Deployment | Vercel static output + Functions | FE + API cùng origin; production release is manual |
+| Deployment | Vercel static output + Functions | FE + API cùng origin; production release is environment-protected GitHub Actions |
 | Media | Provider-neutral manifest/map; Cloudinary hiện tại | Ảnh/audio ngoài DB; DB chỉ lưu URL/key |
 
 > **Stack change rule**
@@ -189,9 +189,14 @@ VocabFlow là web học từ vựng cho một hộ gia đình. Một tài khoả
   bắt buộc cả hai marker môi trường là `development`; không tin wildcard
   `*.vercel.app`.
 
-- Vercel Production auto-deployment từ Git phải tắt cho đến khi lần release
-  thủ công đầu tiên được xác minh. DB migration và US-41 apply là bước thủ công
-  tách biệt, không phải build/deploy hook.
+- Vercel Git integration must not deploy Production directly on pushes. Normal
+  releases use the `workflow_run` Production Release workflow only after Core
+  CI succeeds on `main`; GitHub Environment `production` must have required
+  reviewers and a `main` deployment-branch rule configured. The workflow checks
+  out the completed run's immutable SHA, verifies the production DB, applies
+  guarded forward-only migrations, then invokes the repository's safe Vercel
+  deploy wrapper for that same SHA. First-time bootstrap and owner-reviewed
+  catalog import/US-41 curation remain separate operator-only procedures.
 
 # 4. Repository & Module Boundaries
 
@@ -1188,12 +1193,18 @@ pnpm install --frozen-lockfile
    +--> build
    +--> Playwright E2E
 
-Production release (manual; never tied to a Git push)
-   1. Require Core CI + Trusted DB PASS on exact release SHA
-   2. Production DB preflight, reviewed forward-only migration, verify
-   3. US-41 curation dry-run, owner approval, apply, idempotency verify
-   4. Build/scan and explicitly deploy Vercel static SPA + API Function
-   5. Smoke test; Vercel rollback if needed, DB remains forward-only
+Production release (workflow_run after successful Core CI push to main)
+   1. Require same-repository Core CI success on main; bind release to head_sha
+   2. Wait for the protected GitHub Environment production gate
+   3. Production DB preflight and read-only migration plan
+   4. Apply guarded forward-only migrations; failure blocks later steps
+   5. Repeat read-only preflight/plan and require zero pending migrations
+   6. Build/scan and deploy the same SHA through pnpm deploy:production
+   7. Smoke test; Vercel rollback if needed, DB remains forward-only
+
+First-time bootstrap, catalog import and US-41 curation remain separate
+operator-only operations and are never invoked by this workflow. Trusted DB
+Integration remains a separate test-only workflow on ci-test / shared-ci.
 ```
 
 ## 15.1 Environment rules
@@ -1214,7 +1225,34 @@ Production release (manual; never tied to a Git push)
 
 ## 15.2 BATCH 0 environment & database identity invariant
 
-• Execution context tách khỏi environment marker. local-development chỉ hợp lệ với development/development; ci-test với test/test; vercel-production với production/production. Marker thiếu, sai enum hoặc mismatch phải fail fast. Các tên Cloudflare trong BATCH 0 bên dưới là lịch sử.
+• Execution context tách khỏi environment marker. `local-development` chỉ hợp lệ với development/development; `ci-test` với test/test; `ci-production-release` và `vercel-production` với production/production. `ci-production-release` is only authorized by the production release guard after validating GitHub workflow-run metadata; generic database URL lookup and generic mutation paths reject it. Marker thiếu, sai enum hoặc mismatch phải fail fast. Các tên Cloudflare trong BATCH 0 bên dưới là lịch sử.
+
+## 15.3 Protected production release workflow (US-42 / DEC-018)
+
+`.github/workflows/production-release.yml` is triggered by completion of
+`Core CI`; its job proceeds only for a successful same-repository push run on
+`main`. It checks out `workflow_run.head_sha` with full history and verifies
+`git rev-parse HEAD` before setting the release marker. The dedicated
+`ci-production-release` context validates the GitHub event payload's workflow,
+repository, branch, event type, conclusion and SHA before any production
+operator connection can be resolved. Ordinary `ci-test`, generic CI metadata,
+pull-request runs and arbitrary branches cannot authorize production changes.
+
+All production database credentials are scoped to individual workflow steps
+from GitHub Environment `production`: runtime role only for read-only
+preflight, and migration role for migration dry-run/apply. Neon project/branch
+verification and post-connect identity checks remain mandatory. Apply still
+requires the exact configured production branch and target confirmations; the
+repository's forward-only migration executor is the only migration path. The
+post-apply read-only verification requires zero pending migrations before the
+deploy step. Deployment is sequential after successful migration and calls
+`pnpm deploy:production` with the exact same release SHA. GitHub Environment
+`production` must be configured with required reviewers and a main-only branch
+rule; Vercel Git integration must not deploy Production independently.
+
+The workflow does not bootstrap/reset production, import catalog data, apply
+US-41 curation, or use `NEON_TEST_*`. Trusted DB Integration remains an
+independent test-only workflow.
 
 • Test DB integration chỉ được dùng NEON_TEST_DATABASE_URL trên verified test target; tuyệt đối không fallback sang DATABASE_URL. Fork/untrusted PR không nhận database secret và không dùng pull_request_target để chạy code chưa tin cậy với secret.
 
@@ -1384,5 +1422,5 @@ Step 7 là mốc xác nhận kiến trúc: parent login → learner → review �
 
 # Appendix B. Approval Statement
 
-> TECHNICAL ARCHITECTURE v1.0.13 — APPROVED FOR IMPLEMENTATION
+> TECHNICAL ARCHITECTURE v1.0.14 — APPROVED FOR IMPLEMENTATION
 > Từ thời điểm tài liệu này được chấp nhận, triển khai phải bám architecture invariants, sparse progress/virtual NEW model, learner-scoped review queue, race-safe household bootstrap, schema constraints, household authorization, review write/idempotency contract, database identity ownership boundary và clean migration contract ở trên. Acceptance Gates được xác minh trong implementation; mọi thay đổi kiến trúc cần blocker/evidence kỹ thuật cụ thể.

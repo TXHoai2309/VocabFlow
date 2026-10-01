@@ -252,15 +252,49 @@ evidence condition is met and the affected source document is updated.
   architecture.
 - Decision: Serve the Vite SPA as static output and run the existing Hono API as
   a same-origin Vercel Function. Do not migrate to Next.js or duplicate API
-  routes/domain logic. Production database release operations remain manual,
-  separately approved steps and never run automatically during deployment.
+  routes/domain logic.
 - Consequences: Vercel Preview auth trusts only the exact current
   `VERCEL_URL`; Preview requires development markers and must not use production
   credentials. Production uses the owner-selected canonical HTTPS
   `BETTER_AUTH_URL`. Cloudflare deployment configuration is no longer the V1.0
   production path.
+- Follow-up: the manual normal-release operation mode recorded here is
+  superseded by DEC-018; the Vercel hosting target and runtime boundaries are
+  unchanged.
 - Evidence/source: [Technical Architecture](architecture/technical-architecture.md#3-system-context--deployment-topology),
   [V1.0.0 Release Runbook](releases/v1.0.0-release-runbook.md), `vercel.json`,
   `api/[...route].ts`, `apps/api/src/auth-production-config.ts`
 - Revisit only if: The owner explicitly changes the V1.0 hosting target or a
   focused deployment spike proves Vercel cannot satisfy the accepted boundary.
+
+## DEC-018 — Protected GitHub Actions production release pipeline
+
+- Status: ACCEPTED
+- Date: 2026-10-01
+- Context: Manual production migration/deploy steps are easy to run against a
+  different commit or in the wrong order; a migration failure must prevent the
+  matching app deploy.
+- Decision: A completed, successful `Core CI` push run for `main` in
+  `TXHoai2309/VocabFlow` triggers `Production Release`. The release checks out
+  and verifies that run's immutable `head_sha`, performs read-only production
+  DB preflight and migration planning, applies only guarded forward-only
+  migrations with the migration role and exact canonical confirmations, then
+  deploys the same SHA via `pnpm deploy:production`. Any failed DB step stops
+  before deployment. The workflow uses a serialized concurrency group and the
+  GitHub Environment `production`; that environment must be configured with
+  required reviewers and a `main` deployment-branch rule before its credentials
+  are provisioned. Production DB/Vercel credentials must exist only in that
+  Environment, not as repository- or organization-level secrets. Vercel Git
+  integration must not independently auto-deploy Production.
+- Boundaries: the workflow never bootstraps/resets Production, imports the
+  vocabulary catalog, applies US-41 curation, or uses Trusted DB test
+  credentials. `trusted-db.yml` remains a separate `ci-test` / `shared-ci`
+  workflow. First-time bootstrap and owner-reviewed content operations remain
+  separate operator procedures.
+- Evidence/source: [Technical Architecture](architecture/technical-architecture.md#15-cicd--environment-strategy),
+  [Production Release Runbook](releases/v1.0.0-release-runbook.md),
+  `.github/workflows/production-release.yml`,
+  `scripts/production-release-safety.ts`.
+- Revisit only if: A release-safety review finds a concrete workflow or
+  provider limitation, or the owner explicitly changes the approved release
+  boundary.

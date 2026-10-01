@@ -36,6 +36,9 @@ function firstPresent(names: string[]) {
 }
 
 export function configuredDatabaseUrl(context: ExecutionContext, purpose: DatabasePurpose = "runtime"): string | undefined {
+  // Production release tooling must use resolveProductionConnection() and its
+  // purpose-specific PRODUCTION_* credentials, never generic URL fallback.
+  if (context === "ci-production-release") return undefined;
   const key = context === "ci-test" ? "ci" : context === "vercel-production" ? "production" : "local";
   return firstPresent(purposeEnvironmentVariables[purpose][key]);
 }
@@ -82,6 +85,9 @@ export function assertPreConnect(input: {
   connectionString?: string;
 }) {
   assertMarkers(input.context, input.source, input.environment);
+  if (input.context === "ci-production-release") {
+    throw new Error("PRODUCTION_RELEASE_GUARD_REQUIRED");
+  }
   assertTargetPolicy(input.target);
   const expectedContext = EXECUTION_CONTEXTS[input.context];
   if (expectedContext.environment !== input.target.environment) throw new Error("INVALID_TARGET_CONTEXT");

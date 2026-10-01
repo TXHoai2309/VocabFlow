@@ -3,6 +3,7 @@ import { executeApplicationMigrations } from "./db-migration-executor";
 import { drizzle } from "drizzle-orm/postgres-js";
 import { DATABASE_RESET_POLICY } from "../config/database-reset-policy";
 import { getConnectionTarget, isConfiguredTarget } from "../config/database-targets";
+import { EXECUTION_CONTEXTS } from "../config/execution-context";
 import { configuredDatabaseUrl } from "./runtime-validation";
 import type { DatabasePurpose, DatabaseTarget, Environment, ExecutionContext } from "@vocabflow/contracts";
 import { APP_SCHEMA, canonicalIdentityMatches, databasePurposeSchema, executionContextSchema, environmentSchema, MIGRATION_SCHEMA } from "@vocabflow/contracts";
@@ -80,7 +81,7 @@ export async function readMigrationState(sql: ReturnType<typeof openSql>) {
 }
 
 export function getTargetForContext(context: ExecutionContext, purpose: DatabasePurpose) {
-  const environment = context === "ci-test" ? "test" : context === "vercel-production" ? "production" : "development";
+  const environment = EXECUTION_CONTEXTS[context].environment;
   const target = getConnectionTarget(environment, purpose);
   if (!isConfiguredTarget(target)) throw new Error("UNCONFIGURED_DATABASE_TARGET");
   return target;

@@ -1,4 +1,7 @@
-import { describe, expect, it, vi } from "vitest";
+import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { afterAll, describe, expect, it, vi } from "vitest";
 import { getConnectionTarget } from "../config/database-targets";
 import {
   assertResetTargetAllowed,
@@ -15,6 +18,47 @@ const productionEnvironment = {
   DATABASE_ENV: "production",
 };
 const productionFlags = { target: "production", confirmTarget: "production", confirmBranch: branch };
+const releaseSha = "a".repeat(40);
+const githubRepository = "TXHoai2309/VocabFlow";
+const temporaryEventDirectories: string[] = [];
+
+function coreCiWorkflowRun(overrides: Record<string, unknown> = {}) {
+  return {
+    action: "completed",
+    repository: { full_name: githubRepository },
+    workflow_run: {
+      name: "Core CI",
+      conclusion: "success",
+      event: "push",
+      head_branch: "main",
+      head_sha: releaseSha,
+      head_repository: { full_name: githubRepository },
+      ...overrides,
+    },
+  };
+}
+
+function ciProductionEnvironment(event = coreCiWorkflowRun()) {
+  const eventDirectory = mkdtempSync(join(tmpdir(), "vocabflow-production-release-"));
+  temporaryEventDirectories.push(eventDirectory);
+  const eventPath = join(eventDirectory, "event.json");
+  writeFileSync(eventPath, JSON.stringify(event), { encoding: "utf8", mode: 0o600 });
+  return {
+    EXECUTION_CONTEXT: "ci-production-release",
+    VOCABFLOW_ENV: "production",
+    DATABASE_ENV: "production",
+    VOCABFLOW_RELEASE_SHA: releaseSha,
+    GITHUB_ACTIONS: "true",
+    GITHUB_REPOSITORY: githubRepository,
+    GITHUB_WORKFLOW: "Production Release",
+    GITHUB_EVENT_NAME: "workflow_run",
+    GITHUB_EVENT_PATH: eventPath,
+  };
+}
+
+afterAll(() => {
+  for (const directory of temporaryEventDirectories) rmSync(directory, { recursive: true, force: true });
+});
 
 describe("production database release guard", () => {
   it("resolves the canonical production target in read-only mode after explicit selection", () => {
@@ -63,6 +107,76 @@ describe("production database release guard", () => {
     })).toThrow("PRODUCTION_OPERATOR_CONTEXT_REQUIRED");
   });
 
+  it("keeps the local production operator path and admits only the verified GitHub release context", () => {
+    expect(authorizeProductionRelease({
+      options: { target: "production" }, mode: "read-only", environment: productionEnvironment,
+    })).toMatchObject({ branchId: branch, roleName: "vocabflow_migration" });
+    expect(authorizeProductionRelease({
+      options: { target: "production" }, mode: "read-only", environment: ciProductionEnvironment(),
+    })).toMatchObject({ branchId: branch, roleName: "vocabflow_migration" });
+  });
+
+  it("requires GitHub Actions, the exact repository, and workflow-run metadata", () => {
+    const missing = {
+      EXECUTION_CONTEXT: "ci-production-release",
+      VOCABFLOW_ENV: "production",
+      DATABASE_ENV: "production",
+    };
+    expect(() => authorizeProductionRelease({ options: { target: "production" }, mode: "read-only", environment: missing }))
+      .toThrow("PRODUCTION_GITHUB_CONTEXT_REQUIRED");
+    expect(() => authorizeProductionRelease({
+      options: { target: "production" }, mode: "read-only",
+      environment: { ...ciProductionEnvironment(), GITHUB_REPOSITORY: "somebody-else/VocabFlow" },
+    })).toThrow("PRODUCTION_GITHUB_CONTEXT_REQUIRED");
+    expect(() => authorizeProductionRelease({
+      options: { target: "production" }, mode: "read-only",
+      environment: { ...ciProductionEnvironment(), GITHUB_EVENT_PATH: undefined },
+    })).toThrow("PRODUCTION_GITHUB_EVENT_REQUIRED");
+  });
+
+  it.each([
+    ["wrong base repository", coreCiWorkflowRun({ head_repository: { full_name: "untrusted/VocabFlow" } })],
+    ["non-main branch", coreCiWorkflowRun({ head_branch: "feature/unsafe" })],
+    ["failed Core CI", coreCiWorkflowRun({ conclusion: "failure" })],
+    ["pull request code", coreCiWorkflowRun({ event: "pull_request", head_branch: "contributor-branch" })],
+    ["wrong workflow", coreCiWorkflowRun({ name: "Other workflow" })],
+  ])("rejects %s for production release", (_label, event) => {
+    expect(() => authorizeProductionRelease({
+      options: { target: "production" }, mode: "read-only", environment: ciProductionEnvironment(event),
+    })).toThrow("PRODUCTION_CORE_CI_RELEASE_REQUIRED");
+  });
+
+  it("binds the production release to the successful Core CI immutable SHA", () => {
+    const mismatch = ciProductionEnvironment(coreCiWorkflowRun({ head_sha: "b".repeat(40) }));
+    expect(() => authorizeProductionRelease({
+      options: { target: "production" }, mode: "read-only", environment: mismatch,
+    })).toThrow("PRODUCTION_RELEASE_SHA_MISMATCH");
+    expect(() => authorizeProductionRelease({
+      options: { target: "production" }, mode: "read-only",
+      environment: { ...ciProductionEnvironment(), VOCABFLOW_RELEASE_SHA: "not-a-commit" },
+    })).toThrow("RELEASE_SHA_REQUIRED");
+  });
+
+  it("does not allow ci-test to authorize production and retains exact mutation confirmations", () => {
+    expect(() => authorizeProductionRelease({
+      options: productionFlags, mode: "mutation", environment: {
+        ...ciProductionEnvironment(), EXECUTION_CONTEXT: "ci-test",
+      },
+    })).toThrow("PRODUCTION_OPERATOR_CONTEXT_REQUIRED");
+    const validCi = ciProductionEnvironment();
+    expect(() => authorizeProductionRelease({
+      options: { target: "production" }, mode: "mutation", environment: validCi,
+    })).toThrow("PRODUCTION_TARGET_CONFIRMATION_REQUIRED");
+    expect(() => authorizeProductionRelease({
+      options: { target: "production", confirmTarget: "production", confirmBranch: "wrong" },
+      mode: "mutation", environment: validCi,
+    })).toThrow("PRODUCTION_BRANCH_CONFIRMATION_MISMATCH");
+    expect(() => authorizeProductionRelease({
+      options: { ...productionFlags, confirmBranch: getConnectionTarget("development", "migration").branchId },
+      mode: "mutation", environment: ciProductionEnvironment(),
+    })).toThrow("PRODUCTION_BRANCH_CONFIRMATION_MISMATCH");
+  });
+
   it("correct confirmation reaches only an injected fixture boundary; no real DB is opened", async () => {
     const fixture = vi.fn(async (target) => ({ branch: target.branchId, externalIo: false }));
     await expect(runAuthorizedProductionMutation({ options: productionFlags, environment: productionEnvironment }, fixture))
@@ -87,6 +201,18 @@ describe("production database release guard", () => {
     expect(neonApiClient.getConnectionUri).toHaveBeenCalledOnce();
   });
 
+  it("requires Neon provider verification for the GitHub release context", async () => {
+    const eventEnvironment = ciProductionEnvironment();
+    await expect(resolveProductionConnection({
+      purpose: "migration",
+      environment: {
+        ...eventEnvironment,
+        PRODUCTION_MIGRATION_DATABASE_URL: "postgresql://vocabflow_migration:fixture@ep-production-pooler.neon.tech/neondb",
+      },
+      neonApiClient: { getBranch: vi.fn(), getConnectionUri: vi.fn() },
+    })).rejects.toThrow("PRODUCTION_PROVIDER_VERIFICATION_REQUIRED");
+  });
+
   it("requires a separate migration credential and never falls back to DATABASE_URL", async () => {
     await expect(resolveProductionConnection({
       purpose: "migration",
@@ -101,9 +227,28 @@ describe("production database release guard", () => {
     }
   });
 
-  it("blocks reset tooling in production and rejects all reset CLI target overrides", () => {
+  it("blocks reset tooling for every production marker and preserves non-production behavior", () => {
     expect(() => assertResetTargetAllowed({ args: [], environment: productionEnvironment }))
       .toThrow("DB_RESET_PRODUCTION_BLOCKED");
+
+    for (const environment of [
+      { VOCABFLOW_ENV: "production" },
+      { DATABASE_ENV: "production" },
+      { EXECUTION_CONTEXT: "vercel-production" },
+      { EXECUTION_CONTEXT: "ci-production-release", VOCABFLOW_ENV: "production", DATABASE_ENV: "production" },
+      { EXECUTION_CONTEXT: "ci-production-release" },
+    ]) {
+      expect(() => assertResetTargetAllowed({ args: [], environment }))
+        .toThrow("DB_RESET_PRODUCTION_BLOCKED");
+    }
+
+    expect(() => assertResetTargetAllowed({ args: [], environment: {
+      VOCABFLOW_ENV: "test", DATABASE_ENV: "test", EXECUTION_CONTEXT: "ci-test",
+    } })).not.toThrow();
+    expect(() => assertResetTargetAllowed({ args: [], environment: {
+      VOCABFLOW_ENV: "development", DATABASE_ENV: "development", EXECUTION_CONTEXT: "local-development",
+    } })).not.toThrow();
+
     expect(() => assertResetTargetAllowed({ args: ["--target", "production"], environment: {
       VOCABFLOW_ENV: "test", DATABASE_ENV: "test", EXECUTION_CONTEXT: "ci-test",
     } })).toThrow("DB_RESET_ARGUMENTS_NOT_SUPPORTED");

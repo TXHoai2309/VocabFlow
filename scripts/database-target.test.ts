@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { resolveDatabaseTarget, validateEnvironmentUsage } from "@vocabflow/contracts";
+import { executionContextSchema, resolveDatabaseTarget, validateEnvironmentUsage } from "@vocabflow/contracts";
+import { EXECUTION_CONTEXTS, readExecutionContext } from "../config/execution-context";
+import { getTargetForContext } from "./db-core";
 import { assertMarkers, assertPreConnect, assertResolvedTargetBeforeMutation, configuredDatabaseUrl } from "./runtime-validation";
 import { validatePostConnectIdentity } from "./post-connect-validation";
 
@@ -24,6 +26,7 @@ describe("foundation target policy", () => {
   it.each([
     ["local-development", "dev-launcher", "development"],
     ["ci-test", "github-actions", "test"],
+    ["ci-production-release", "github-actions", "production"],
     ["vercel-production", "vercel-runtime", "production"]
   ] as const)("accepts the %s trusted context mapping", (context, source, environment) => {
     const previousVocabulary = process.env.VOCABFLOW_ENV;
@@ -42,6 +45,47 @@ describe("foundation target policy", () => {
     expect(() => assertMarkers("ci-test", "github-actions", "production")).toThrow("INVALID_EXECUTION_CONTEXT");
     process.env.VOCABFLOW_ENV = "development";
     process.env.DATABASE_ENV = "development";
+  });
+
+  it("keeps ci-production-release out of generic database URL and mutation paths", () => {
+    expect(executionContextSchema.parse("ci-production-release")).toBe("ci-production-release");
+    expect(readExecutionContext("ci-production-release")).toBe("ci-production-release");
+    expect(EXECUTION_CONTEXTS["ci-production-release"]).toEqual({ source: "github-actions", environment: "production" });
+    expect(getTargetForContext("ci-production-release", "migration").branchId)
+      .toBe(getTargetForContext("vercel-production", "migration").branchId);
+    expect(configuredDatabaseUrl("ci-production-release", "runtime")).toBeUndefined();
+    expect(configuredDatabaseUrl("ci-production-release", "migration")).toBeUndefined();
+
+    const previousVocabulary = process.env.VOCABFLOW_ENV;
+    const previousDatabase = process.env.DATABASE_ENV;
+    process.env.VOCABFLOW_ENV = "production";
+    process.env.DATABASE_ENV = "production";
+    try {
+      const target = {
+        environment: "production" as const,
+        provider: "neon" as const,
+        projectId: "project",
+        branchId: "production-branch",
+        databaseName: "neondb",
+        pooled: true,
+        usage: "production" as const,
+        identityVersion: 1 as const,
+        purpose: "migration" as const,
+        roleName: "vocabflow_migration",
+      };
+      expect(() => assertPreConnect({
+        context: "ci-production-release",
+        source: "github-actions",
+        environment: "production",
+        purpose: "migration",
+        operation: "db-migrate",
+        target,
+        connectionString: "postgresql://vocabflow_migration:secret@fixture.neon.tech/neondb",
+      })).toThrow("PRODUCTION_RELEASE_GUARD_REQUIRED");
+    } finally {
+      if (previousVocabulary === undefined) delete process.env.VOCABFLOW_ENV; else process.env.VOCABFLOW_ENV = previousVocabulary;
+      if (previousDatabase === undefined) delete process.env.DATABASE_ENV; else process.env.DATABASE_ENV = previousDatabase;
+    }
   });
 
   it("rejects invalid environment and usage combinations", () => {

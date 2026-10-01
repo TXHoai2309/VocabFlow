@@ -372,7 +372,24 @@ The owner-verified Hoài/Ngọc metric snapshots are recorded in US-20 and US-21
   assignments, and leaves daily-New, review, progress, XP and achievement
   semantics unchanged.
 - The next action is the same-commit Core CI and Trusted DB gate, followed by
-  owner review of the manifest and dry-run report. US-42 has not started.
+  owner review of the manifest and dry-run report. Production release
+  automation is tracked separately in US-42.
+
+### US-42 — Protected Production Release Automation
+
+- Status: `IN PROGRESS`.
+- Contract: [`US-42 Protected Production Release Automation`](stories/US-42-production-release-automation.md).
+- A successful same-repository Core CI push run on `main` triggers a
+  serialized release pinned to its immutable `head_sha`. Read-only production
+  preflight and migration planning precede explicitly confirmed forward-only
+  migrations; a second read-only check requires an empty pending set before
+  `pnpm deploy:production` runs for that same SHA.
+- GitHub Environment `production` must be configured with required reviewers,
+  a main-only branch rule, and the documented purpose-specific secrets and
+  variables. The workflow does not bootstrap/reset production, import the
+  catalog, run US-41 curation, or change Trusted DB Integration.
+- Local implementation checks and owner review are pending; no production DB
+  connection, migration or deployment has been performed.
 
 ## Later product scope
 

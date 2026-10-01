@@ -6,6 +6,7 @@ export const MIGRATION_SCHEMA = "drizzle" as const;
 export const executionContextSchema = z.enum([
   "local-development",
   "ci-test",
+  "ci-production-release",
   "vercel-production"
 ]);
 export type ExecutionContext = z.infer<typeof executionContextSchema>;

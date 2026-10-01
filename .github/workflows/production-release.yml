@@ -1,0 +1,263 @@
+name: Production Release
+
+on:
+  workflow_run:
+    workflows:
+      - Core CI
+    types:
+      - completed
+    branches:
+      - main
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: vocabflow-production-release
+  cancel-in-progress: false
+
+jobs:
+  production-release:
+    name: Verify, migrate, then deploy
+    if: >-
+      github.event.workflow_run.name == 'Core CI' &&
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.head_branch == 'main' &&
+      github.event.workflow_run.event == 'push' &&
+      github.event.workflow_run.head_repository.full_name == 'TXHoai2309/VocabFlow' &&
+      github.event.repository.full_name == 'TXHoai2309/VocabFlow'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    environment:
+      name: production
+    env:
+      EXECUTION_CONTEXT: ci-production-release
+      VOCABFLOW_ENV: production
+      DATABASE_ENV: production
+      VOCABFLOW_RELEASE_SHA: ${{ github.event.workflow_run.head_sha }}
+
+    steps:
+      - name: Checkout the exact Core CI commit
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Verify Core CI provenance and immutable checkout SHA
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          EVENT_REPOSITORY: ${{ github.repository }}
+          CORE_CI_NAME: ${{ github.event.workflow_run.name }}
+          CORE_CI_EVENT: ${{ github.event.workflow_run.event }}
+          CORE_CI_CONCLUSION: ${{ github.event.workflow_run.conclusion }}
+          CORE_CI_BRANCH: ${{ github.event.workflow_run.head_branch }}
+          CORE_CI_REPOSITORY: ${{ github.event.workflow_run.head_repository.full_name }}
+          RELEASE_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          set -euo pipefail
+          if [[ "$EVENT_NAME" != "workflow_run" || "$EVENT_REPOSITORY" != "TXHoai2309/VocabFlow" ]] ||
+            [[ "$CORE_CI_NAME" != "Core CI" || "$CORE_CI_EVENT" != "push" ]] ||
+            [[ "$CORE_CI_CONCLUSION" != "success" || "$CORE_CI_BRANCH" != "main" ]] ||
+            [[ "$CORE_CI_REPOSITORY" != "TXHoai2309/VocabFlow" || ! "$RELEASE_SHA" =~ ^[a-f0-9]{40}$ ]]; then
+            echo 'PRODUCTION_CORE_CI_RELEASE_REQUIRED' >&2
+            exit 1
+          fi
+          actual_sha="$(git rev-parse HEAD)"
+          if [[ "$actual_sha" != "$RELEASE_SHA" ]]; then
+            echo 'PRODUCTION_RELEASE_SHA_MISMATCH' >&2
+            exit 1
+          fi
+          echo "Verified production release SHA: $actual_sha"
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.17.0
+          run_install: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.23.2
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Resolve canonical production branch from repository config
+        id: production-target
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch_id="$(pnpm exec tsx -e 'import { DATABASE_TARGETS } from "./config/database-targets.ts"; process.stdout.write(DATABASE_TARGETS.production.branchId);')"
+          if [[ ! "$branch_id" =~ ^br-[a-z0-9-]+$ ]]; then
+            echo 'PRODUCTION_CANONICAL_TARGET_MISMATCH' >&2
+            exit 1
+          fi
+          echo "branch_id=$branch_id" >> "$GITHUB_OUTPUT"
+
+      - name: Production DB preflight (read-only)
+        run: pnpm db:production-preflight -- --target production
+        env:
+          NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
+          PRODUCTION_DATABASE_URL: ${{ secrets.PRODUCTION_DATABASE_URL }}
+          PRODUCTION_MIGRATION_DATABASE_URL: ${{ secrets.PRODUCTION_MIGRATION_DATABASE_URL }}
+
+      - name: Production migration plan (read-only)
+        run: pnpm db:migrate -- --target production
+        env:
+          NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
+          PRODUCTION_MIGRATION_DATABASE_URL: ${{ secrets.PRODUCTION_MIGRATION_DATABASE_URL }}
+
+      - name: Verify release SHA is still current main before mutation
+        shell: bash
+        env:
+          GITHUB_API_URL: ${{ github.api_url }}
+          READONLY_GITHUB_TOKEN: ${{ github.token }}
+          EVENT_SHA: ${{ github.event.workflow_run.head_sha }}
+          RELEASE_SHA: ${{ env.VOCABFLOW_RELEASE_SHA }}
+        run: |
+          set -euo pipefail
+          response="$(curl --fail --silent --show-error \
+            --header "Authorization: Bearer ${READONLY_GITHUB_TOKEN}" \
+            --header 'Accept: application/vnd.github+json' \
+            --header 'X-GitHub-Api-Version: 2022-11-28' \
+            "${GITHUB_API_URL}/repos/TXHoai2309/VocabFlow/commits/main")" || {
+            echo 'PRODUCTION_MAIN_HEAD_LOOKUP_FAILED' >&2
+            exit 1
+          }
+          current_main_sha="$(jq -er '.sha | select(type == "string" and test("^[a-f0-9]{40}$"))' <<< "$response")" || {
+            echo 'PRODUCTION_MAIN_HEAD_LOOKUP_FAILED' >&2
+            exit 1
+          }
+          CURRENT_MAIN_SHA="$current_main_sha" pnpm exec tsx -e 'import { assertProductionReleaseIsCurrentMain } from "./scripts/production-release-safety.ts"; try { assertProductionReleaseIsCurrentMain({ eventSha: process.env.EVENT_SHA, releaseSha: process.env.RELEASE_SHA, currentMainSha: process.env.CURRENT_MAIN_SHA }); } catch { console.error("PRODUCTION_RELEASE_NOT_CURRENT_MAIN"); process.exit(1); } console.log("PRODUCTION_RELEASE_CURRENT_MAIN=PASS");'
+
+      - name: Wait for Trusted DB Integration for release SHA
+        shell: bash
+        env:
+          GITHUB_API_URL: ${{ github.api_url }}
+          READONLY_GITHUB_TOKEN: ${{ github.token }}
+          RELEASE_SHA: ${{ env.VOCABFLOW_RELEASE_SHA }}
+        run: |
+          pnpm exec tsx -e '
+            import { waitForTrustedDbIntegration } from "./scripts/production-release-safety.ts";
+
+            const releaseSha = process.env.RELEASE_SHA;
+            const apiBaseValue = process.env.GITHUB_API_URL;
+            const apiBase = apiBaseValue?.endsWith("/") ? apiBaseValue.slice(0, -1) : apiBaseValue;
+            const token = process.env.READONLY_GITHUB_TOKEN;
+            const workflowRunsUrl = `${apiBase}/repos/TXHoai2309/VocabFlow/actions/workflows/trusted-db.yml/runs`;
+
+            void waitForTrustedDbIntegration({
+              releaseSha,
+              fetchWorkflowRuns: async (timeoutMs) => {
+                if (!apiBase || !token || !releaseSha) throw new Error("PRODUCTION_TRUSTED_DB_REQUIRED");
+                const url = new URL(workflowRunsUrl);
+                url.searchParams.set("head_sha", releaseSha);
+                url.searchParams.set("branch", "main");
+                url.searchParams.set("event", "push");
+                url.searchParams.set("per_page", "100");
+                const response = await fetch(url, {
+                  headers: {
+                    Authorization: `Bearer ${token}`,
+                    Accept: "application/vnd.github+json",
+                    "X-GitHub-Api-Version": "2022-11-28",
+                  },
+                  signal: AbortSignal.timeout(timeoutMs),
+                });
+                if (!response.ok) throw new Error("PRODUCTION_TRUSTED_DB_REQUIRED");
+                return response.json();
+              },
+            }).then(() => {
+              console.log("PRODUCTION_TRUSTED_DB=PASS");
+            }).catch(() => {
+              console.error("PRODUCTION_TRUSTED_DB_REQUIRED");
+              process.exitCode = 1;
+            });
+          '
+
+      - name: Reconfirm release SHA is still current main before mutation
+        shell: bash
+        env:
+          GITHUB_API_URL: ${{ github.api_url }}
+          READONLY_GITHUB_TOKEN: ${{ github.token }}
+          EVENT_SHA: ${{ github.event.workflow_run.head_sha }}
+          RELEASE_SHA: ${{ env.VOCABFLOW_RELEASE_SHA }}
+        run: |
+          set -euo pipefail
+          response="$(curl --fail --silent --show-error \
+            --header "Authorization: Bearer ${READONLY_GITHUB_TOKEN}" \
+            --header 'Accept: application/vnd.github+json' \
+            --header 'X-GitHub-Api-Version: 2022-11-28' \
+            "${GITHUB_API_URL}/repos/TXHoai2309/VocabFlow/commits/main")" || {
+            echo 'PRODUCTION_MAIN_HEAD_LOOKUP_FAILED' >&2
+            exit 1
+          }
+          current_main_sha="$(jq -er '.sha | select(type == "string" and test("^[a-f0-9]{40}$"))' <<< "$response")" || {
+            echo 'PRODUCTION_MAIN_HEAD_LOOKUP_FAILED' >&2
+            exit 1
+          }
+          CURRENT_MAIN_SHA="$current_main_sha" pnpm exec tsx -e 'import { assertProductionReleaseIsCurrentMain } from "./scripts/production-release-safety.ts"; try { assertProductionReleaseIsCurrentMain({ eventSha: process.env.EVENT_SHA, releaseSha: process.env.RELEASE_SHA, currentMainSha: process.env.CURRENT_MAIN_SHA }); } catch { console.error("PRODUCTION_RELEASE_NOT_CURRENT_MAIN"); process.exit(1); } console.log("PRODUCTION_RELEASE_CURRENT_MAIN=PASS");'
+
+      - name: Apply forward-only production migrations
+        run: >-
+          pnpm db:migrate -- --target production
+          --confirm-target production
+          --confirm-branch "$PRODUCTION_BRANCH_ID"
+          --apply
+        shell: bash
+        env:
+          NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
+          PRODUCTION_MIGRATION_DATABASE_URL: ${{ secrets.PRODUCTION_MIGRATION_DATABASE_URL }}
+          PRODUCTION_BRANCH_ID: ${{ steps.production-target.outputs.branch_id }}
+
+      - name: Verify production DB after migration (read-only)
+        run: pnpm db:production-preflight -- --target production
+        env:
+          NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
+          PRODUCTION_DATABASE_URL: ${{ secrets.PRODUCTION_DATABASE_URL }}
+          PRODUCTION_MIGRATION_DATABASE_URL: ${{ secrets.PRODUCTION_MIGRATION_DATABASE_URL }}
+
+      - name: Verify no production migrations remain pending
+        shell: bash
+        run: |
+          set -euo pipefail
+          migration_report="$(pnpm db:migrate -- --target production)"
+          printf '%s\n' "$migration_report"
+          if ! grep -Fxq 'MIGRATIONS_PENDING=0' <<< "$migration_report"; then
+            echo 'PRODUCTION_POST_MIGRATION_VERIFY_FAILED' >&2
+            exit 1
+          fi
+        env:
+          NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
+          PRODUCTION_MIGRATION_DATABASE_URL: ${{ secrets.PRODUCTION_MIGRATION_DATABASE_URL }}
+
+      - name: Create ephemeral linked Vercel project metadata
+        shell: bash
+        env:
+          PROJECT_ID: ${{ vars.VOCABFLOW_VERCEL_PROJECT_ID }}
+          ORG_ID: ${{ vars.VOCABFLOW_VERCEL_ORG_ID }}
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const { mkdirSync, writeFileSync } = require('node:fs');
+          const projectId = process.env.PROJECT_ID;
+          const orgId = process.env.ORG_ID;
+          if (!projectId || !orgId || /[\r\n]/.test(projectId + orgId)) {
+            console.error('VERCEL_PROJECT_ID_OWNER_INPUT_REQUIRED');
+            process.exit(1);
+          }
+          mkdirSync('.vercel', { recursive: true });
+          writeFileSync('.vercel/project.json', `${JSON.stringify({ projectId, orgId }, null, 2)}\n`, { mode: 0o600 });
+          NODE
+
+      - name: Deploy the migrated release SHA to Vercel Production
+        run: pnpm deploy:production
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VOCABFLOW_VERCEL_PROJECT_ID: ${{ vars.VOCABFLOW_VERCEL_PROJECT_ID }}
+          VOCABFLOW_VERCEL_ORG_ID: ${{ vars.VOCABFLOW_VERCEL_ORG_ID }}
+          BETTER_AUTH_URL: ${{ vars.BETTER_AUTH_URL }}

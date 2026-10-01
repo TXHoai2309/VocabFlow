@@ -4,6 +4,7 @@ import { databasePurposeSchema, environmentSchema, executionContextSchema, trust
 export const EXECUTION_CONTEXTS: Record<ExecutionContext, { source: TrustedSource; environment: Environment }> = {
   "local-development": { source: "dev-launcher", environment: "development" },
   "ci-test": { source: "github-actions", environment: "test" },
+  "ci-production-release": { source: "github-actions", environment: "production" },
   "vercel-production": { source: "vercel-runtime", environment: "production" }
 };
 

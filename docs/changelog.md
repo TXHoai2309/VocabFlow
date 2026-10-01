@@ -2,6 +2,21 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-01 — Protected Production Release automation
+
+- Added a third GitHub Actions workflow that starts only after successful Core
+  CI completion for a same-repository `main` push, checks out the triggering
+  run's immutable SHA, verifies production DB identity and migration state,
+  applies guarded forward-only migrations, verifies no migrations remain
+  pending, then deploys that exact SHA through the existing safe Vercel wrapper.
+- Added dedicated `ci-production-release` authorization bound to GitHub's
+  workflow-run event metadata. Generic CI/database paths and `ci-test` cannot
+  use production credentials; the existing Trusted DB workflow remains
+  test-only and unchanged.
+- No production connection, migration, deployment, commit or push was run.
+  GitHub Environment reviewer/branch protections and the documented secrets
+  and variables remain owner setup.
+
 ## 2026-10-01 — Vietnamese catalog metadata
 
 - Added forward-only migration `0014_vietnamese_catalog_metadata` to localize

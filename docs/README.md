@@ -93,8 +93,10 @@ feature code may start.
 ## Current project state
 
 - V1.0 production hosting target: **Vercel** (DEC-017); root Vite SPA plus the
-  existing Hono API as a same-origin Function. Production deploy is still
-  manual and is not authorized by this preparation task. See the
+  existing Hono API as a same-origin Function. Normal schema releases use the
+  protected immutable-SHA workflow in DEC-018; first bootstrap and reviewed
+  content operations remain operator-only. Environment protection/secrets
+  require owner setup, and this implementation did not run a release. See the
   [V1.0.0 Production Release Runbook](releases/v1.0.0-release-runbook.md).
 - BATCH 0 Foundation: `ACCEPTED`.
 - Recovery baseline: implementation commit `f17521bd41738db6dd5e8f7f72a170ed08c22bf3`;
@@ -141,4 +143,7 @@ feature code may start.
   unusable media still blocks. The default curation command is dry-run-only;
   activation is guarded to trusted CI and does not auto-assign learners or
   mutate learning history.
+- US-42 Production Release Automation is `IN PROGRESS`; its workflow is
+  implemented but requires GitHub Environment `production` protections and
+  owner-configured credentials before the first run.
 - Documentation/agent-pack work does not implement US-01 or any other feature.
