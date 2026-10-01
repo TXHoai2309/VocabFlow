@@ -182,6 +182,6 @@ test("US-09 persists a confirmed evaluation and shows the session summary", asyn
   await expect(page.getByRole("button", { name: "Đã nhớ" })).toBeVisible();
   await page.getByRole("button", { name: "Đã nhớ" }).click();
   await expect(page.getByTestId("study-session-summary")).toBeVisible();
-  await expect(page.getByTestId("study-session-summary")).toContainText("Đã review");
+  await expect(page.getByTestId("study-session-summary")).toContainText("Đã ôn tập");
   await expect(page.getByTestId("study-session-summary")).toContainText("Lượt ôn lại");
 });

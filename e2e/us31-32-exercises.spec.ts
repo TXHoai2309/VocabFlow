@@ -191,7 +191,7 @@ test("US-33 shows a neutral image prompt and maps the correct choice to REMEMBER
   await page.getByRole("link", { name: "Luyện qua hình ảnh" }).click();
   await expect(page).toHaveURL(/\/study\/exercises\?type=IMAGE_TO_WORD$/);
   await expect(page.getByTestId("exercise-card")).toHaveAttribute("data-exercise-type", "IMAGE_TO_WORD");
-  await expect(page.getByTestId("exercise-image")).toHaveAttribute("alt", "Vocabulary exercise image");
+  await expect(page.getByTestId("exercise-image")).toHaveAttribute("alt", "Hình ảnh gợi ý cho bài tập từ vựng");
   await expect(page.getByTestId("exercise-prompt")).not.toContainText("apple");
   await page.getByRole("button", { name: "apple" }).click();
   await expect(page.getByText("Chính xác.")).toBeVisible();

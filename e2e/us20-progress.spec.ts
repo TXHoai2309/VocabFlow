@@ -59,11 +59,11 @@ test("US-20 opens learner progress and renders all summary metrics", async ({ pa
   await page.getByRole("link", { name: "Xem tiến trình" }).click();
   await expect(page).toHaveURL(/\/progress$/);
   await expect(page.getByRole("heading", { name: "Tiến trình của An" })).toBeVisible();
-  await expect(page.getByText("New").locator("..")).toContainText("30");
-  await expect(page.getByText("Learning").locator("..")).toContainText("2");
-  await expect(page.getByText("Mastered").locator("..")).toContainText("3");
-  await expect(page.getByText("Due").locator("..")).toContainText("4");
-  await expect(page.getByText("Learned").locator("..")).toContainText("5");
+  await expect(page.getByText("Từ mới").locator("..")).toContainText("30");
+  await expect(page.getByText("Đang học").locator("..")).toContainText("2");
+  await expect(page.getByText("Đã thành thạo").locator("..")).toContainText("3");
+  await expect(page.getByText("Cần ôn tập").locator("..")).toContainText("4");
+  await expect(page.getByText("Đã học").locator("..")).toContainText("5");
   await expect(page.getByTestId("daily-goal")).toContainText("7 / 10");
   await expect(page.getByTestId("streak-summary")).toContainText("3 ngày liên tiếp");
 });

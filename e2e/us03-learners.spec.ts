@@ -45,8 +45,8 @@ test("US-03 resolves zero learners, creates the first profile and reaches contex
   await page.goto("/learners");
 
   await expect(page.getByTestId("learner-empty-state")).toBeVisible();
-  await page.getByLabel("Tên learner").fill("  An  ");
-  await page.getByLabel("Tên learner").press("Enter");
+  await page.getByLabel("Tên người học").fill("  An  ");
+  await page.getByLabel("Tên người học").press("Enter");
   await expect(page.getByTestId("learner-context-ready")).toContainText("An");
   expect(rows).toHaveLength(1);
 });

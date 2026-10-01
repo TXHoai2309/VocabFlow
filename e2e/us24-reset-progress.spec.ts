@@ -71,19 +71,19 @@ test("US-24 confirms a learner-scoped reset and refreshes the progress summary",
   await page.getByRole("link", { name: "Xem tiến trình" }).click();
   await expect(page.getByTestId("progress-summary")).toBeVisible();
 
-  await page.getByRole("button", { name: "Reset tiến trình" }).click();
-  await expect(page.getByRole("dialog")).toContainText("Reset tiến trình của An?");
+  await page.getByRole("button", { name: "Đặt lại tiến trình" }).click();
+  await expect(page.getByRole("dialog")).toContainText("Đặt lại tiến trình của An?");
   await page.getByRole("button", { name: "Hủy" }).click();
   expect(resetCalls).toBe(0);
 
-  await page.getByRole("button", { name: "Reset tiến trình" }).click();
-  await page.getByRole("button", { name: "Xác nhận reset" }).click();
-  await expect(page.getByRole("button", { name: "Đang reset…" })).toBeDisabled();
+  await page.getByRole("button", { name: "Đặt lại tiến trình" }).click();
+  await page.getByRole("button", { name: "Xác nhận đặt lại" }).click();
+  await expect(page.getByRole("button", { name: "Đang đặt lại…" })).toBeDisabled();
   expect(resetCalls).toBe(1);
   finishReset();
 
   await expect(page.getByTestId("progress-empty-state")).toBeVisible();
-  await expect(page.getByText("Đã reset tiến trình của An.")).toBeVisible();
-  await expect(page.getByText("Learned").locator("..")).toContainText("0");
+  await expect(page.getByText("Đã đặt lại tiến trình của An.")).toBeVisible();
+  await expect(page.getByText("Đã học").locator("..")).toContainText("0");
   expect(summaryCalls).toBe(2);
 });

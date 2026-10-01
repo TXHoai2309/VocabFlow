@@ -32,7 +32,7 @@ test("US-02 signs in with native Enter and reaches household-ready handoff", asy
   await password.fill("secret");
   await password.press("Enter");
 
-  await expect(page.getByTestId("authenticated-household-ready")).toContainText("Household đã sẵn sàng.");
+  await expect(page.getByTestId("authenticated-household-ready")).toContainText("Đã đăng nhập. Gia đình đã sẵn sàng.");
   expect(signInCount).toBe(1);
   expect(bootstrapCount).toBe(1);
 });
@@ -55,7 +55,7 @@ test("US-02 shows a safe invalid-credentials state", async ({ page }) => {
   await password.fill("wrong");
   await password.press("Enter");
 
-  await expect(page.getByRole("alert")).toContainText("Email hoặc mật khẩu không đúng. Vui lòng thử lại.");
+  await expect(page.getByRole("alert")).toContainText("Địa chỉ email hoặc mật khẩu không đúng. Vui lòng thử lại.");
   await expect(page.getByRole("alert")).not.toContainText("internal provider detail");
 });
 
