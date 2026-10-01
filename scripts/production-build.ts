@@ -24,7 +24,7 @@ type ReleaseShaEnvironment = {
 
 function isVercelGitEnvironment(environment: ReleaseShaEnvironment) {
   return (environment.VERCEL_ENV === "preview" || environment.VERCEL_ENV === "production")
-    && environment.VERCEL_GIT_COMMIT_SHA !== undefined;
+    && Boolean(environment.VERCEL_GIT_COMMIT_SHA?.trim());
 }
 
 export function resolveProductionBuildReleaseSha(environment: ReleaseShaEnvironment) {

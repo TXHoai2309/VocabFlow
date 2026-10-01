@@ -575,19 +575,49 @@ describe("Vercel production build safety", () => {
     }
   });
 
-  it("uses a matching Vercel Git SHA without a per-commit release-SHA variable", () => {
+  it.each(["preview", "production"] as const)("uses a valid Vercel Git SHA in %s and preserves tracked-source validation", (vercelEnv) => {
     const sha = "c".repeat(40);
     expect(resolveProductionBuildReleaseSha({
-      VERCEL_ENV: "preview",
+      VERCEL_ENV: vercelEnv,
       VERCEL_GIT_COMMIT_SHA: sha,
       VOCABFLOW_RELEASE_SHA: "d".repeat(40),
     })).toBe(sha);
+    const readLocalStatus = vi.fn(() => { throw new Error("Vercel status must not be enumerated"); });
+    const assertTrackedSourceUnmodified = vi.fn();
     expect(assertProductionBuildReleaseSource({
       head: sha,
-      environment: { VERCEL_ENV: "preview", VERCEL_GIT_COMMIT_SHA: sha },
-      readLocalStatus: () => { throw new Error("Vercel status must not be enumerated"); },
-      assertTrackedSourceUnmodified: () => undefined,
+      environment: { VERCEL_ENV: vercelEnv, VERCEL_GIT_COMMIT_SHA: sha },
+      readLocalStatus,
+      assertTrackedSourceUnmodified,
     })).toBe(sha);
+    expect(assertTrackedSourceUnmodified).toHaveBeenCalledOnce();
+    expect(readLocalStatus).not.toHaveBeenCalled();
+  });
+
+  it.each([
+    { VERCEL_ENV: "production", VERCEL_GIT_COMMIT_SHA: "" },
+    { VERCEL_ENV: "preview", VERCEL_GIT_COMMIT_SHA: "  \t  " },
+  ])("uses VOCABFLOW_RELEASE_SHA for a blank custom Vercel Git SHA: $VERCEL_ENV", (vercelEnvironment) => {
+    const releaseSha = "a".repeat(40);
+    const environment = { ...vercelEnvironment, VOCABFLOW_RELEASE_SHA: releaseSha };
+    expect(resolveProductionBuildReleaseSha(environment)).toBe(releaseSha);
+
+    const readLocalStatus = vi.fn(() => "");
+    const assertTrackedSourceUnmodified = vi.fn();
+    expect(assertProductionBuildReleaseSource({
+      head: releaseSha,
+      environment,
+      readLocalStatus,
+      assertTrackedSourceUnmodified,
+    })).toBe(releaseSha);
+    expect(readLocalStatus).toHaveBeenCalledOnce();
+    expect(assertTrackedSourceUnmodified).not.toHaveBeenCalled();
+    expect(() => assertProductionBuildReleaseSource({
+      head: "b".repeat(40),
+      environment,
+      readLocalStatus: () => "",
+      assertTrackedSourceUnmodified: () => undefined,
+    })).toThrow("RELEASE_SHA_MISMATCH");
   });
 
   it("blocks a Vercel Git SHA that does not match HEAD", () => {
@@ -628,5 +658,16 @@ describe("Vercel production build safety", () => {
       VERCEL_ENV: "preview",
       VERCEL_GIT_COMMIT_SHA: "not-a-full-commit-sha",
     })).toThrow("VERCEL_GIT_COMMIT_SHA_INVALID");
+    expect(() => resolveProductionBuildReleaseSha({
+      VERCEL_ENV: "production",
+      VERCEL_GIT_COMMIT_SHA: "  malformed  ",
+      VOCABFLOW_RELEASE_SHA: "5".repeat(40),
+    })).toThrow("VERCEL_GIT_COMMIT_SHA_INVALID");
+    expect(() => assertProductionBuildReleaseSource({
+      head: "6".repeat(40),
+      environment: { VERCEL_ENV: "production", VERCEL_GIT_COMMIT_SHA: "  " },
+      readLocalStatus: () => "",
+      assertTrackedSourceUnmodified: () => undefined,
+    })).toThrow("RELEASE_SHA_REQUIRED");
   });
 });
