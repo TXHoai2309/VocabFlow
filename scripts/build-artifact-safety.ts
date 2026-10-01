@@ -49,15 +49,21 @@ export function inspectBuildArtifact(outputRoot = resolve("dist", "client")) {
   const files = walkFiles(outputRoot);
   const clientRoot = artifactClientRoot(outputRoot);
   const clientFiles = files.filter((path) => isInside(clientRoot, path));
+  const functionsRoot = join(outputRoot, "functions");
   const localEnvironmentFiles = files.filter((path) => isLocalEnvironmentFile(path.split(/[\\/]/).at(-1) ?? ""));
-  const sourceMaps = files.filter((path) => path.endsWith(".map"));
+  const sourceMapFiles = files.filter((path) => path.endsWith(".map"));
+  const sourceMaps = sourceMapFiles.filter((path) => isInside(clientRoot, path));
+  const serverSourceMaps = sourceMapFiles.filter((path) => !isInside(clientRoot, path) && isInside(functionsRoot, path));
+  const otherSourceMaps = sourceMapFiles.filter((path) => !isInside(clientRoot, path) && !isInside(functionsRoot, path));
   let clientSecretKeyNameMatches = 0;
   let secretValueMatches = 0;
   let clientDatabaseCredentialMatches = 0;
+  let databaseCredentialMatches = 0;
   let providerCredentialMatches = 0;
   for (const path of files) {
     const content = readFileSync(path, "utf8");
     if (secretKeyAssignment.test(content)) secretValueMatches += 1;
+    if (databaseCredential.test(content)) databaseCredentialMatches += 1;
     if (neonCredential.test(content)) providerCredentialMatches += 1;
   }
   for (const path of clientFiles) {
@@ -68,13 +74,29 @@ export function inspectBuildArtifact(outputRoot = resolve("dist", "client")) {
   return {
     localEnvironmentFiles: localEnvironmentFiles.length,
     sourceMaps: sourceMaps.length,
+    serverSourceMaps: serverSourceMaps.length,
+    otherSourceMaps: otherSourceMaps.length,
     clientSecretKeyNameMatches,
     secretValueMatches,
     clientDatabaseCredentialMatches,
+    databaseCredentialMatches,
     providerCredentialMatches,
-    safe: localEnvironmentFiles.length === 0 && sourceMaps.length === 0
-      && secretValueMatches === 0 && clientDatabaseCredentialMatches === 0 && providerCredentialMatches === 0,
+    safe: localEnvironmentFiles.length === 0 && sourceMaps.length === 0 && otherSourceMaps.length === 0
+      && secretValueMatches === 0 && databaseCredentialMatches === 0 && providerCredentialMatches === 0,
   };
+}
+
+export function buildArtifactSafetyCounts(scan: ReturnType<typeof inspectBuildArtifact>) {
+  return [
+    `localEnvironmentFiles=${scan.localEnvironmentFiles}`,
+    `sourceMaps=${scan.sourceMaps}`,
+    `serverSourceMaps=${scan.serverSourceMaps}`,
+    `otherSourceMaps=${scan.otherSourceMaps}`,
+    `secretValueMatches=${scan.secretValueMatches}`,
+    `databaseCredentialMatches=${scan.databaseCredentialMatches}`,
+    `clientDatabaseCredentialMatches=${scan.clientDatabaseCredentialMatches}`,
+    `providerCredentialMatches=${scan.providerCredentialMatches}`,
+  ].join(" ");
 }
 
 export function buildArtifactDigest(outputRoot = resolve("dist", "client")) {

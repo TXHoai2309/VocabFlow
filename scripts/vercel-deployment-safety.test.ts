@@ -126,8 +126,22 @@ describe("Vercel release deployment guards", () => {
     renameSync(legacyCatchAllRoot, apiFunctionRoot);
 
     writeFileSync(join(apiFunctionRoot, ".env.production"), "BETTER_AUTH_SECRET=synthetic-fixture", "utf8");
-    expect(() => verifyVercelArtifact({ outputRoot, distributionRoot, releaseSha }))
-      .toThrow("BUILD_ARTIFACT_SECURITY_CHECK_FAILED");
+    const diagnosticLines: string[] = [];
+    const diagnosticSpy = vi.spyOn(console, "error").mockImplementation((...values) => {
+      diagnosticLines.push(values.map(String).join(" "));
+    });
+    try {
+      expect(() => verifyVercelArtifact({ outputRoot, distributionRoot, releaseSha }))
+        .toThrow("BUILD_ARTIFACT_SECURITY_CHECK_FAILED");
+      expect(diagnosticLines).toHaveLength(2);
+      expect(diagnosticLines[0]).toContain("BUILD_ARTIFACT_SCAN=client");
+      expect(diagnosticLines[1]).toContain("BUILD_ARTIFACT_SCAN=vercel-output localEnvironmentFiles=1");
+      expect(diagnosticLines.join(" ")).not.toContain(".env.production");
+      expect(diagnosticLines.join(" ")).not.toContain("synthetic-fixture");
+      expect(diagnosticLines.join(" ")).not.toContain("index.js");
+    } finally {
+      diagnosticSpy.mockRestore();
+    }
   });
 
   it("defines repository-root Vite output and excludes API paths and assets from the SPA rewrite", () => {

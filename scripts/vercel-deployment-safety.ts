@@ -1,6 +1,6 @@
 import { existsSync, lstatSync, readFileSync, readdirSync } from "node:fs";
 import { join, relative, resolve } from "node:path";
-import { buildArtifactDigest, inspectBuildArtifact } from "./build-artifact-safety";
+import { buildArtifactDigest, buildArtifactSafetyCounts, inspectBuildArtifact } from "./build-artifact-safety";
 import { parseProductionAuthOrigin } from "../apps/api/src/auth-production-config";
 
 export type VercelDeployTarget = "preview" | "production";
@@ -78,7 +78,11 @@ export function verifyVercelArtifact(input: {
 
   const clientScan = inspectBuildArtifact(clientRoot);
   const deployScan = inspectBuildArtifact(outputRoot);
-  if (!clientScan.safe || !deployScan.safe) throw new Error("BUILD_ARTIFACT_SECURITY_CHECK_FAILED");
+  if (!clientScan.safe || !deployScan.safe) {
+    console.error(`BUILD_ARTIFACT_SCAN=client ${buildArtifactSafetyCounts(clientScan)}`);
+    console.error(`BUILD_ARTIFACT_SCAN=vercel-output ${buildArtifactSafetyCounts(deployScan)}`);
+    throw new Error("BUILD_ARTIFACT_SECURITY_CHECK_FAILED");
+  }
   return {
     clientScan,
     deployScan,

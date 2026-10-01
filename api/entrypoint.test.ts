@@ -1,9 +1,16 @@
 import { spawnSync } from "node:child_process";
 import { readFileSync, rmSync, writeFileSync } from "node:fs";
-import { join, resolve } from "node:path";
+import { dirname, join, relative, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { Hono } from "hono";
-import { ModuleKind, ScriptTarget, transpileModule } from "typescript";
+import {
+  ModuleKind,
+  parseJsonConfigFileContent,
+  readConfigFile,
+  ScriptTarget,
+  sys,
+  transpileModule,
+} from "typescript";
 import { createApp } from "../apps/api/src/index";
 import { describe, expect, it, vi } from "vitest";
 import { createVercelApiHandler, VERCEL_API_PATH_QUERY, VERCEL_API_ROUTE_QUERY } from "./handler";
@@ -38,6 +45,18 @@ function createStrictQueryValidationApp() {
 }
 
 describe("Vercel Hono function boundary", () => {
+  it("limits the production TypeScript project to api/handler.ts, excluding its test file", () => {
+    const configPath = resolve("api/tsconfig.json");
+    const config = readConfigFile(configPath, sys.readFile);
+    expect(config.error).toBeUndefined();
+    if (!config.config) throw new Error("VERCEL_FUNCTION_TSCONFIG_INVALID");
+
+    const parsed = parseJsonConfigFileContent(config.config, sys, dirname(configPath), undefined, configPath);
+    expect(parsed.errors).toEqual([]);
+    expect(parsed.fileNames.map((file) => relative(resolve("."), file).replaceAll("\\", "/")))
+      .toEqual(["api/handler.ts"]);
+  });
+
   it("loads the handler and existing Hono app under the function-local ESM package scope", () => {
     const rootPackage = JSON.parse(readFileSync(resolve("package.json"), "utf8")) as { type?: string };
     const functionPackage = JSON.parse(readFileSync(resolve("api/package.json"), "utf8")) as { type?: string };
