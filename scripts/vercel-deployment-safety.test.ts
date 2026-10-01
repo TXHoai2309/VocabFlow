@@ -74,6 +74,29 @@ describe("Vercel release deployment guards", () => {
     }
   });
 
+  it("keeps known server secrets in the verifier process but strips them from Vercel subprocesses", () => {
+    const knownSecret = "postgresql://release-user:release-password@db.example.test/app";
+    const environment = {
+      PRODUCTION_DATABASE_URL: knownSecret,
+      PRODUCTION_MIGRATION_DATABASE_URL: "postgresql://migration-user:migration-password@db.example.test/app",
+      NEON_API_KEY: "napi_synthetic-release-key",
+      VERCEL_TOKEN: "synthetic-vercel-release-token",
+      VERCEL_PROJECT_ID: "project-id-is-not-a-secret",
+    };
+    let childEnvironment: NodeJS.ProcessEnv | undefined;
+    runVercel(["build", "--prod", "--token", environment.VERCEL_TOKEN], (_command, _args, options) => {
+      childEnvironment = options.env;
+      return { status: 0 };
+    }, environment);
+
+    expect(environment.PRODUCTION_DATABASE_URL).toBe(knownSecret);
+    expect(childEnvironment).toMatchObject({ VERCEL_PROJECT_ID: "project-id-is-not-a-secret" });
+    expect(childEnvironment).not.toHaveProperty("PRODUCTION_DATABASE_URL");
+    expect(childEnvironment).not.toHaveProperty("PRODUCTION_MIGRATION_DATABASE_URL");
+    expect(childEnvironment).not.toHaveProperty("NEON_API_KEY");
+    expect(childEnvironment).not.toHaveProperty("VERCEL_TOKEN");
+  });
+
   it("requires an exact owner-approved linked project and organization", () => {
     expect(verifyLinkedVercelProject({
       linkedProject: { projectId: "prj_owner_approved", orgId: "team_owner_approved" },
@@ -115,7 +138,44 @@ describe("Vercel release deployment guards", () => {
       artifactDigest: buildArtifactDigest(clientRoot),
     }), "utf8");
 
-    expect(verifyVercelArtifact({ outputRoot, distributionRoot, releaseSha }).deployScan.safe).toBe(true);
+    expect(verifyVercelArtifact({ outputRoot, distributionRoot, releaseSha, environment: {} }).deployScan.safe).toBe(true);
+    writeFileSync(join(apiFunctionRoot, "vendor.js"), "postgresql://user:pass@host/db", "utf8");
+    const artifactDiagnostics: string[] = [];
+    const artifactLogSpy = vi.spyOn(console, "log").mockImplementation((...values) => {
+      artifactDiagnostics.push(values.map(String).join(" "));
+    });
+    try {
+      expect(verifyVercelArtifact({ outputRoot, distributionRoot, releaseSha, environment: {} }).deployScan)
+        .toMatchObject({ safe: true, serverDatabaseCredentialMatches: 1 });
+      expect(artifactDiagnostics.join(" ")).toContain("serverDatabaseCredentialMatches=1");
+      expect(artifactDiagnostics.join(" ")).not.toContain("postgresql://user:pass@host/db");
+      expect(artifactDiagnostics.join(" ")).not.toContain("vendor.js");
+    } finally {
+      artifactLogSpy.mockRestore();
+    }
+    writeFileSync(join(apiFunctionRoot, "vendor.js"), "const vendorBundle = true;", "utf8");
+
+    const knownDatabaseSecret = "postgresql://production-user:production-password@db.example.test/app";
+    writeFileSync(join(apiFunctionRoot, "index.js"), `const dsn = ${JSON.stringify(knownDatabaseSecret)};`, "utf8");
+    const secretDiagnosticLines: string[] = [];
+    const secretDiagnosticSpy = vi.spyOn(console, "error").mockImplementation((...values) => {
+      secretDiagnosticLines.push(values.map(String).join(" "));
+    });
+    try {
+      expect(() => verifyVercelArtifact({
+        outputRoot,
+        distributionRoot,
+        releaseSha,
+        environment: { PRODUCTION_DATABASE_URL: knownDatabaseSecret },
+      })).toThrow("BUILD_ARTIFACT_SECURITY_CHECK_FAILED");
+      expect(secretDiagnosticLines.join(" ")).toContain("knownSecretValueMatches=1");
+      expect(secretDiagnosticLines.join(" ")).not.toContain(knownDatabaseSecret);
+      expect(secretDiagnosticLines.join(" ")).not.toContain("index.js");
+    } finally {
+      secretDiagnosticSpy.mockRestore();
+    }
+    writeFileSync(join(apiFunctionRoot, "index.js"), "export default { fetch: () => new Response('ok') }", "utf8");
+
     expect(() => verifyVercelArtifact({ outputRoot, distributionRoot, releaseSha: "b".repeat(40) }))
       .toThrow("PRODUCTION_ARTIFACT_RELEASE_MISMATCH");
 
@@ -136,6 +196,9 @@ describe("Vercel release deployment guards", () => {
       expect(diagnosticLines).toHaveLength(2);
       expect(diagnosticLines[0]).toContain("BUILD_ARTIFACT_SCAN=client");
       expect(diagnosticLines[1]).toContain("BUILD_ARTIFACT_SCAN=vercel-output localEnvironmentFiles=1");
+      expect(diagnosticLines[1]).toContain("knownSecretValueMatches=0");
+      expect(diagnosticLines[1]).toContain("serverDatabaseCredentialMatches=0");
+      expect(diagnosticLines[1]).toContain("otherDatabaseCredentialMatches=0");
       expect(diagnosticLines.join(" ")).not.toContain(".env.production");
       expect(diagnosticLines.join(" ")).not.toContain("synthetic-fixture");
       expect(diagnosticLines.join(" ")).not.toContain("index.js");

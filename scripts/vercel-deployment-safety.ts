@@ -59,6 +59,7 @@ export function verifyVercelArtifact(input: {
   outputRoot?: string;
   distributionRoot?: string;
   releaseSha: string;
+  environment?: NodeJS.ProcessEnv;
 }) {
   const outputRoot = resolve(input.outputRoot ?? ".vercel/output");
   const distributionRoot = resolve(input.distributionRoot ?? "dist");
@@ -76,13 +77,18 @@ export function verifyVercelArtifact(input: {
     throw new Error("PRODUCTION_ARTIFACT_INTEGRITY_MISMATCH");
   }
 
-  const clientScan = inspectBuildArtifact(clientRoot);
-  const deployScan = inspectBuildArtifact(outputRoot);
+  const environment = input.environment ?? process.env;
+  const clientScan = inspectBuildArtifact(clientRoot, environment);
+  const deployScan = inspectBuildArtifact(outputRoot, environment);
+  const diagnostics = [
+    `BUILD_ARTIFACT_SCAN=client ${buildArtifactSafetyCounts(clientScan)}`,
+    `BUILD_ARTIFACT_SCAN=vercel-output ${buildArtifactSafetyCounts(deployScan)}`,
+  ];
   if (!clientScan.safe || !deployScan.safe) {
-    console.error(`BUILD_ARTIFACT_SCAN=client ${buildArtifactSafetyCounts(clientScan)}`);
-    console.error(`BUILD_ARTIFACT_SCAN=vercel-output ${buildArtifactSafetyCounts(deployScan)}`);
+    for (const line of diagnostics) console.error(line);
     throw new Error("BUILD_ARTIFACT_SECURITY_CHECK_FAILED");
   }
+  for (const line of diagnostics) console.log(line);
   return {
     clientScan,
     deployScan,

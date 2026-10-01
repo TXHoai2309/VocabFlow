@@ -2,6 +2,16 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-01 — Production Release #8 artifact scan policy
+
+- Kept generic PostgreSQL URI matches blocking in public/static and
+  unclassified artifact files while making private Vercel function URI counts
+  diagnostic. Added exact known-secret scans across every artifact file and
+  retained global assignment, provider/token, local-env-file, and source-map
+  checks.
+- Passed the release database/provider values only to the artifact verifier;
+  the Vercel CLI subprocess receives a sanitized environment.
+
 ## 2026-10-01 — Production Release #7 Vercel API boundary fix
 
 - Moved the Vercel entrypoint tests and test TypeScript project out of root

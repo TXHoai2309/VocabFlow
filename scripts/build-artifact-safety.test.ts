@@ -16,6 +16,17 @@ function createArtifact() {
   return temporaryRoot;
 }
 
+function createVercelArtifact() {
+  const root = createArtifact();
+  const staticRoot = join(root, "static");
+  const functionRoot = join(root, "functions", "api", "handler.func");
+  mkdirSync(staticRoot, { recursive: true });
+  mkdirSync(functionRoot, { recursive: true });
+  writeFileSync(join(staticRoot, "index.html"), "<main>safe</main>", "utf8");
+  writeFileSync(join(functionRoot, "index.js"), "export default () => new Response('ok')", "utf8");
+  return { root, staticRoot, functionRoot };
+}
+
 describe("Vercel build artifact secret safety", () => {
   it("removes generated environment files and hashes the static client output", () => {
     const artifact = createArtifact();
@@ -41,6 +52,120 @@ describe("Vercel build artifact secret safety", () => {
     expect(scan.secretValueMatches).toBe(1);
     expect(scan.clientDatabaseCredentialMatches).toBe(1);
     expect(scan.providerCredentialMatches).toBe(1);
+  });
+
+  it("rejects a generic database URI in public Vercel static output", () => {
+    const { root, staticRoot } = createVercelArtifact();
+    writeFileSync(join(staticRoot, "bundle.js"), "postgresql://user:pass@host/db", "utf8");
+
+    expect(inspectBuildArtifact(root, {})).toMatchObject({
+      safe: false,
+      clientDatabaseCredentialMatches: 1,
+      serverDatabaseCredentialMatches: 0,
+      otherDatabaseCredentialMatches: 0,
+    });
+  });
+
+  it("counts harmless PostgreSQL examples in private function bundles without failing", () => {
+    const { root, functionRoot } = createVercelArtifact();
+    writeFileSync(join(functionRoot, "vendor.js"), "postgresql://user:pass@host/db", "utf8");
+
+    expect(inspectBuildArtifact(root, {})).toMatchObject({
+      safe: true,
+      clientDatabaseCredentialMatches: 0,
+      serverDatabaseCredentialMatches: 1,
+      otherDatabaseCredentialMatches: 0,
+    });
+  });
+
+  it("allows harmless PostgreSQL examples in private function source maps", () => {
+    const { root, functionRoot } = createVercelArtifact();
+    writeFileSync(join(functionRoot, "index.js.map"),
+      '{"version":3,"sources":[],"mappings":"","x_example":"postgres://user:pass@host/db"}', "utf8");
+
+    expect(inspectBuildArtifact(root, {})).toMatchObject({
+      safe: true,
+      serverSourceMaps: 1,
+      serverDatabaseCredentialMatches: 1,
+    });
+  });
+
+  it("rejects an exact production database URL in private function code", () => {
+    const { root, functionRoot } = createVercelArtifact();
+    const knownSecret = "postgresql://production-user:production-password@db.example.test/app";
+    writeFileSync(join(functionRoot, "index.js"), `const dsn = ${JSON.stringify(knownSecret)};`, "utf8");
+
+    expect(inspectBuildArtifact(root, { PRODUCTION_DATABASE_URL: knownSecret })).toMatchObject({
+      safe: false,
+      knownSecretValueMatches: 1,
+      serverDatabaseCredentialMatches: 1,
+    });
+  });
+
+  it("rejects an exact production database URL in private function source maps", () => {
+    const { root, functionRoot } = createVercelArtifact();
+    const knownSecret = "postgresql://production-user:production-password@db.example.test/app";
+    writeFileSync(join(functionRoot, "index.js.map"),
+      JSON.stringify({ version: 3, sources: [], mappings: "", x_example: knownSecret }), "utf8");
+
+    expect(inspectBuildArtifact(root, { PRODUCTION_DATABASE_URL: knownSecret })).toMatchObject({
+      safe: false,
+      knownSecretValueMatches: 1,
+      serverSourceMaps: 1,
+    });
+  });
+
+  it("keeps private function source-map secret assignments blocking", () => {
+    const { root, functionRoot } = createVercelArtifact();
+    writeFileSync(join(functionRoot, "index.js.map"),
+      'DATABASE_URL="postgresql://user:synthetic-password@db.example.test/app"', "utf8");
+
+    expect(inspectBuildArtifact(root, {})).toMatchObject({
+      safe: false,
+      secretValueMatches: 1,
+      serverDatabaseCredentialMatches: 1,
+    });
+  });
+
+  it.each([
+    "napi_syntheticcredentialvalue",
+    "sk_live_syntheticcredentialvalue",
+    "sk-syntheticcredentialvalue0123456789",
+    "ghp_syntheticcredentialvalue0123456789",
+    "xoxb-syntheticcredentialvalue0123456789",
+  ])("keeps provider and token credential detection blocking in private functions", (credential) => {
+    const { root, functionRoot } = createVercelArtifact();
+    writeFileSync(join(functionRoot, "index.js.map"), credential, "utf8");
+
+    expect(inspectBuildArtifact(root, {})).toMatchObject({
+      safe: false,
+      providerCredentialMatches: 1,
+    });
+  });
+
+  it("fails closed for database URIs outside the public and function roots", () => {
+    const { root } = createVercelArtifact();
+    const otherRoot = join(root, "metadata");
+    mkdirSync(otherRoot, { recursive: true });
+    writeFileSync(join(otherRoot, "manifest.js"), "postgresql://user:pass@host/db", "utf8");
+
+    expect(inspectBuildArtifact(root, {})).toMatchObject({
+      safe: false,
+      otherDatabaseCredentialMatches: 1,
+      clientDatabaseCredentialMatches: 0,
+      serverDatabaseCredentialMatches: 0,
+    });
+  });
+
+  it("ignores short values and ordinary non-secret environment values", () => {
+    const { root } = createVercelArtifact();
+
+    expect(inspectBuildArtifact(root, {
+      BETTER_AUTH_SECRET: "short",
+      NEON_API_KEY: "        ",
+      DATABASE_ENV: "production",
+      VERCEL_PROJECT_ID: "project-id-is-not-a-secret",
+    })).toMatchObject({ safe: true, knownSecretValueMatches: 0 });
   });
 
   it("allows harmless source maps only in Vercel function output", () => {
@@ -91,7 +216,7 @@ describe("Vercel build artifact secret safety", () => {
       sourceMaps: 0,
       serverSourceMaps: 1,
       secretValueMatches: 1,
-      databaseCredentialMatches: 1,
+      serverDatabaseCredentialMatches: 1,
       providerCredentialMatches: 1,
     });
   });

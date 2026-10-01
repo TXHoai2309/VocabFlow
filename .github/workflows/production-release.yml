@@ -257,6 +257,10 @@ jobs:
       - name: Deploy the migrated release SHA to Vercel Production
         run: pnpm deploy:production
         env:
+          # The verifier scans these exact values; runVercel strips them before spawning the CLI.
+          NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
+          PRODUCTION_DATABASE_URL: ${{ secrets.PRODUCTION_DATABASE_URL }}
+          PRODUCTION_MIGRATION_DATABASE_URL: ${{ secrets.PRODUCTION_MIGRATION_DATABASE_URL }}
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_PROJECT_ID: ${{ vars.VOCABFLOW_VERCEL_PROJECT_ID }}
           VERCEL_ORG_ID: ${{ vars.VOCABFLOW_VERCEL_ORG_ID }}

@@ -319,6 +319,10 @@ describe("production release workflow safety contract", () => {
     const linkedProjectStep = workflow.slice(linkedProjectStepStart, deployStepStart);
     expect(linkedProjectStep).toContain(".vercel/project.json");
     expect(linkedProjectStep).not.toContain("VERCEL_TOKEN");
+    const deployStep = workflow.slice(deployStepStart);
+    expect(deployStep).toContain("NEON_API_KEY: ${{ secrets.NEON_API_KEY }}");
+    expect(deployStep).toContain("PRODUCTION_DATABASE_URL: ${{ secrets.PRODUCTION_DATABASE_URL }}");
+    expect(deployStep).toContain("PRODUCTION_MIGRATION_DATABASE_URL: ${{ secrets.PRODUCTION_MIGRATION_DATABASE_URL }}");
 
     const trustedDb = readFileSync(resolve(".github/workflows/trusted-db.yml"), "utf8").replace(/\r\n/g, "\n");
     expect(trustedDb).toContain("EXECUTION_CONTEXT: ci-test");

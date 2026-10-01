@@ -375,7 +375,7 @@ describe("Vercel production build safety", () => {
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
-  });
+  }, 15_000);
 
   it("compares Vercel JSON semantics independent of formatting/key order while preserving array order", () => {
     expect(vercelJsonSemanticDiagnosticLines(

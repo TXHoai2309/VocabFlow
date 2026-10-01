@@ -64,9 +64,11 @@ Out of scope:
 8. Tests cover execution-context mapping, allowed/rejected authorization
    metadata, confirmation guards, workflow gate/SHA/order/environment and the
    absence of production deployment after failed DB steps.
-9. The Vercel root `/api` directory contains no `.test` or `.spec` TypeScript
-   entrypoints; the production build enforces this boundary. Artifact scans
-   continue to reject credential values and database/provider credentials.
+9. Public client/static artifacts reject all PostgreSQL credential-shaped
+   URIs. Private function URI matches are diagnostic only, while exact known
+   secret values, secret assignments, provider/token credentials, local env
+   files, and database URI matches outside recognized roots remain blocking.
+   Exact known secret values are scanned across all artifact files.
 10. Local lint, typecheck, focused and full tests, build, and diff checks pass;
     no real production DB operation, deployment, commit or push occurs.
 
@@ -80,16 +82,19 @@ implementation.
 
 ## Acceptance evidence
 
-The API entrypoint test and test TypeScript project are under `tests/api`, and
-the root TypeScript project still references the test project. The production
-build rejects test/spec TypeScript entrypoints under `/api`; the directory
-contains only `handler.ts`, `package.json` and `tsconfig.json`. Focused
-boundary/API tests pass (20); `pnpm lint`, `pnpm typecheck`, `pnpm test`
-(64 files / 734 tests), `pnpm build`, and `git diff --check` pass. The static
-client artifact scan reports `value_hits=0`. `vercel build --prod` was not run:
-the installed Node is 22.19.0 rather than the pinned 22.23.2, and the
-production release wrapper also requires a clean source tree; this requested
-change remains uncommitted. Artifact counts for `.vercel/output` therefore
-remain unverified. No remote workflow run, production database operation,
-migration, Vercel deployment, commit or push was executed. Owner review remains
-pending.
+Public/static PostgreSQL URI matches remain blocking. Private function URI
+matches are diagnostic, while out-of-root URI matches fail closed. Exact values
+from the known secret-variable allowlist are scanned across every artifact
+file; assignment, provider/token, local-env-file and source-map policies remain
+in force. The deploy verifier receives release database/provider secret values
+and removes known secret variables before spawning the Vercel CLI. Artifact
+diagnostics print counts only.
+
+Focused artifact/deployment/workflow tests pass (54); `pnpm lint`,
+`pnpm typecheck`, `pnpm test` (64 files / 748 tests), `pnpm build`, and
+`git diff --check` pass. The static client scan reports `value_hits=0`. A
+source-control diagnostic test timed out under full-suite load at its old
+5-second limit, passed alone, then passed in the full suite after its limit was
+raised to 15 seconds. Local Node is 22.19.0 rather than the repository's
+22.23.2 pin. No DB/migration command, deployment, commit or push was executed.
+Owner review remains pending.

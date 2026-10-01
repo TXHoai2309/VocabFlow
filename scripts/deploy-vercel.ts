@@ -1,6 +1,7 @@
 import { execFileSync, spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
+import { environmentWithoutKnownArtifactSecrets } from "./build-artifact-safety";
 import { assertCleanReleaseSource, assertNoLocalSecretInputFiles, assertPinnedProductionToolchain } from "./production-build";
 import {
   requireVercelToken,
@@ -46,11 +47,11 @@ type VercelSpawn = (
   options: { stdio: "inherit"; shell: boolean; env: NodeJS.ProcessEnv },
 ) => VercelSpawnResult;
 
-export function runVercel(args: string[], spawn: VercelSpawn = spawnSync) {
+export function runVercel(args: string[], spawn: VercelSpawn = spawnSync, environment: NodeJS.ProcessEnv = process.env) {
   const result = spawn("pnpm", ["exec", "vercel", ...args], {
     stdio: "inherit",
     shell: process.platform === "win32",
-    env: process.env,
+    env: environmentWithoutKnownArtifactSecrets(environment),
   });
   if (result.error || result.status !== 0) throw new Error("VERCEL_COMMAND_FAILED");
 }

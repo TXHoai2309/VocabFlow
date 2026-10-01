@@ -5,7 +5,29 @@ import { join, relative, resolve, sep } from "node:path";
 const clientSecretKeyName = /\b(?:DATABASE_URL|DATABASE_MIGRATION_URL|PRODUCTION_DATABASE_URL|PRODUCTION_MIGRATION_DATABASE_URL|NEON_API_KEY|BETTER_AUTH_SECRET|CLOUDINARY_API_KEY|CLOUDINARY_API_SECRET|VERCEL_API_TOKEN|VERCEL_TOKEN)\b/i;
 const secretKeyAssignment = /["']?\b(?:DATABASE_URL|DATABASE_MIGRATION_URL|PRODUCTION_DATABASE_URL|PRODUCTION_MIGRATION_DATABASE_URL|NEON_API_KEY|BETTER_AUTH_SECRET|CLOUDINARY_API_KEY|CLOUDINARY_API_SECRET|VERCEL_API_TOKEN|VERCEL_TOKEN)\b["']?\s*[:=]\s*["'`]([^"'`]{8,})["'`]/i;
 const databaseCredential = /postgres(?:ql)?:\/\/[^\s"'`]+:[^\s"'`]+@/i;
-const neonCredential = /napi_[A-Za-z0-9_-]{10,}/i;
+const providerCredential = /\b(?:napi_[A-Za-z0-9_-]{10,}|sk_(?:live|test)_[A-Za-z0-9_-]{8,}|sk-[A-Za-z0-9_-]{16,}|gh[pousr]_[A-Za-z0-9_]{16,}|xox[baprs]-[A-Za-z0-9-]{10,})\b/i;
+const MIN_KNOWN_SECRET_LENGTH = 8;
+
+export const knownSecretEnvironmentNames = [
+  "DATABASE_URL",
+  "DATABASE_MIGRATION_URL",
+  "BOOTSTRAP_DATABASE_URL",
+  "DATABASE_IDENTITY_PROVISION_URL",
+  "NEON_TEST_DATABASE_URL",
+  "NEON_TEST_RUNTIME_DATABASE_URL",
+  "NEON_TEST_MIGRATION_DATABASE_URL",
+  "NEON_TEST_IDENTITY_PROVISION_DATABASE_URL",
+  "PRODUCTION_DATABASE_URL",
+  "PRODUCTION_MIGRATION_DATABASE_URL",
+  "PRODUCTION_BOOTSTRAP_DATABASE_URL",
+  "PRODUCTION_IDENTITY_PROVISION_DATABASE_URL",
+  "NEON_API_KEY",
+  "BETTER_AUTH_SECRET",
+  "CLOUDINARY_API_KEY",
+  "CLOUDINARY_API_SECRET",
+  "VERCEL_API_TOKEN",
+  "VERCEL_TOKEN",
+] as const;
 
 function walkFiles(directory: string): string[] {
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
@@ -37,6 +59,19 @@ function artifactClientRoot(outputRoot: string) {
   return isDirectory(vercelStaticRoot) ? vercelStaticRoot : outputRoot;
 }
 
+function knownSecretValues(environment: NodeJS.ProcessEnv) {
+  return [...new Set(knownSecretEnvironmentNames
+    .map((name) => environment[name])
+    .filter((value): value is string => typeof value === "string" && value.trim().length >= MIN_KNOWN_SECRET_LENGTH))]
+    .sort((left, right) => right.length - left.length);
+}
+
+export function environmentWithoutKnownArtifactSecrets(environment: NodeJS.ProcessEnv) {
+  const sanitized = { ...environment };
+  for (const name of knownSecretEnvironmentNames) delete sanitized[name];
+  return sanitized;
+}
+
 export function sanitizeGeneratedSecretFiles(outputRoot = resolve("dist", "client")) {
   if (!isDirectory(outputRoot)) throw new Error("BUILD_CLIENT_ARTIFACT_MISSING");
   const removed = walkFiles(outputRoot).filter((path) => isLocalEnvironmentFile(path.split(/[\\/]/).at(-1) ?? ""));
@@ -44,7 +79,7 @@ export function sanitizeGeneratedSecretFiles(outputRoot = resolve("dist", "clien
   return removed.length;
 }
 
-export function inspectBuildArtifact(outputRoot = resolve("dist", "client")) {
+export function inspectBuildArtifact(outputRoot = resolve("dist", "client"), environment: NodeJS.ProcessEnv = process.env) {
   if (!isDirectory(outputRoot)) throw new Error("BUILD_ARTIFACT_ROOT_INVALID");
   const files = walkFiles(outputRoot);
   const clientRoot = artifactClientRoot(outputRoot);
@@ -57,18 +92,25 @@ export function inspectBuildArtifact(outputRoot = resolve("dist", "client")) {
   const otherSourceMaps = sourceMapFiles.filter((path) => !isInside(clientRoot, path) && !isInside(functionsRoot, path));
   let clientSecretKeyNameMatches = 0;
   let secretValueMatches = 0;
+  let knownSecretValueMatches = 0;
   let clientDatabaseCredentialMatches = 0;
-  let databaseCredentialMatches = 0;
+  let serverDatabaseCredentialMatches = 0;
+  let otherDatabaseCredentialMatches = 0;
   let providerCredentialMatches = 0;
+  const exactSecretValues = knownSecretValues(environment);
   for (const path of files) {
     const content = readFileSync(path, "utf8");
     if (secretKeyAssignment.test(content)) secretValueMatches += 1;
-    if (databaseCredential.test(content)) databaseCredentialMatches += 1;
-    if (neonCredential.test(content)) providerCredentialMatches += 1;
+    if (exactSecretValues.some((value) => content.includes(value))) knownSecretValueMatches += 1;
+    if (databaseCredential.test(content)) {
+      if (isInside(clientRoot, path)) clientDatabaseCredentialMatches += 1;
+      else if (isInside(functionsRoot, path)) serverDatabaseCredentialMatches += 1;
+      else otherDatabaseCredentialMatches += 1;
+    }
+    if (providerCredential.test(content)) providerCredentialMatches += 1;
   }
   for (const path of clientFiles) {
     const content = readFileSync(path, "utf8");
-    if (databaseCredential.test(content)) clientDatabaseCredentialMatches += 1;
     if (clientSecretKeyName.test(content)) clientSecretKeyNameMatches += 1;
   }
   return {
@@ -78,11 +120,14 @@ export function inspectBuildArtifact(outputRoot = resolve("dist", "client")) {
     otherSourceMaps: otherSourceMaps.length,
     clientSecretKeyNameMatches,
     secretValueMatches,
+    knownSecretValueMatches,
     clientDatabaseCredentialMatches,
-    databaseCredentialMatches,
+    serverDatabaseCredentialMatches,
+    otherDatabaseCredentialMatches,
     providerCredentialMatches,
     safe: localEnvironmentFiles.length === 0 && sourceMaps.length === 0 && otherSourceMaps.length === 0
-      && secretValueMatches === 0 && databaseCredentialMatches === 0 && providerCredentialMatches === 0,
+      && secretValueMatches === 0 && knownSecretValueMatches === 0 && clientDatabaseCredentialMatches === 0
+      && otherDatabaseCredentialMatches === 0 && providerCredentialMatches === 0,
   };
 }
 
@@ -93,8 +138,10 @@ export function buildArtifactSafetyCounts(scan: ReturnType<typeof inspectBuildAr
     `serverSourceMaps=${scan.serverSourceMaps}`,
     `otherSourceMaps=${scan.otherSourceMaps}`,
     `secretValueMatches=${scan.secretValueMatches}`,
-    `databaseCredentialMatches=${scan.databaseCredentialMatches}`,
+    `knownSecretValueMatches=${scan.knownSecretValueMatches}`,
     `clientDatabaseCredentialMatches=${scan.clientDatabaseCredentialMatches}`,
+    `serverDatabaseCredentialMatches=${scan.serverDatabaseCredentialMatches}`,
+    `otherDatabaseCredentialMatches=${scan.otherDatabaseCredentialMatches}`,
     `providerCredentialMatches=${scan.providerCredentialMatches}`,
   ].join(" ");
 }

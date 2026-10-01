@@ -1,5 +1,23 @@
 # Current Handoff Snapshot
 
+## 2026-10-01 — Production Release #8 artifact scan policy
+
+- Split PostgreSQL URI counts by artifact boundary. Client/static URIs remain a
+  hard failure; Vercel function URI-shaped examples are counted for diagnostics
+  only; matches outside public/function roots fail closed.
+- Added exact-value scans for the project's known secret environment variables
+  across every artifact file. Secret assignments, provider/token patterns,
+  local environment files, public source maps and out-of-root database URIs
+  remain blocking. Diagnostics contain counts only.
+- The production deploy step provides its release DB/provider secret values to
+  the verifier, and the Vercel CLI subprocess receives a sanitized environment.
+  Focused tests (54), lint, typecheck, full tests (64 files / 748 tests), build,
+  and `git diff --check` pass. The static client artifact scan reports zero
+  value matches. One slow source-control diagnostic test's timeout was raised
+  after it timed out under full-suite load but passed by itself.
+- No DB/migration command, deployment, commit or push was performed. Local Node
+  is 22.19.0 against the repository's 22.23.2 pin.
+
 ## 2026-10-01 — Production Release #7 Vercel API boundary fix
 
 - Moved the Vercel entrypoint tests and their TypeScript project from root
