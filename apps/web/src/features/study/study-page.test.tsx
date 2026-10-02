@@ -251,14 +251,15 @@ describe("US-09 flashcard session UX", () => {
     expect(screen.getByRole("heading", { name: "Đúng" }).parentElement).toHaveTextContent("1 từ");
     expect(screen.getByRole("heading", { name: "Sai" }).parentElement).toHaveTextContent("0 từ");
     expect(screen.getByRole("heading", { name: "Từ mới" }).parentElement).toHaveTextContent("1 từ");
-    expect(screen.getByRole("heading", { name: "Từ ôn tập" }).parentElement).toHaveTextContent("0 từ");
+    expect(screen.getByRole("heading", { name: "Từ đã ôn" }).parentElement).toHaveTextContent("0 từ");
     expect(await screen.findByRole("heading", { name: "Chuỗi ngày" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Chuỗi ngày" }).parentElement).toHaveTextContent("7 ngày");
     expect(screen.getByRole("heading", { name: "Thời gian học" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /Học tiếp/ })).toHaveAttribute("href", "/study/setup");
     expect(screen.getByRole("link", { name: "Về trang chủ" })).toHaveAttribute("href", "/");
     expect(screen.queryByRole("button", { name: "Ôn từ sai" })).not.toBeInTheDocument();
-    expect(screen.getByText("Bạn không có từ nào trả lời sai trong buổi học này.")).toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "Các từ cần ôn lại" })).not.toBeInTheDocument();
+    expect(screen.getByRole("status")).toHaveTextContent("Bạn không có từ nào trả lời sai trong buổi học này.");
     expect(screen.queryByText(/XP/)).not.toBeInTheDocument();
     expect(screen.getByText("Kết quả này chỉ được giữ trong phiên hiện tại.")).toBeInTheDocument();
     expect(requestActivitySummaryMock).toHaveBeenCalledWith(learner.id);
@@ -297,7 +298,7 @@ describe("US-09 flashcard session UX", () => {
     expect(screen.getByRole("heading", { name: "Đúng" }).parentElement).toHaveTextContent("2 từ");
     expect(screen.getByRole("heading", { name: "Sai" }).parentElement).toHaveTextContent("1 từ");
     expect(screen.getByRole("heading", { name: "Từ mới" }).parentElement).toHaveTextContent("2 từ");
-    expect(screen.getByRole("heading", { name: "Từ ôn tập" }).parentElement).toHaveTextContent("1 từ");
+    expect(screen.getByRole("heading", { name: "Từ đã ôn" }).parentElement).toHaveTextContent("1 từ");
     expect(screen.getByRole("heading", { name: "Cần ôn lại" }).parentElement).toHaveTextContent("1 từ");
     expect(screen.getAllByRole("link", { name: "apple" })).toHaveLength(1);
     expect(screen.queryByRole("link", { name: "book" })).not.toBeInTheDocument();

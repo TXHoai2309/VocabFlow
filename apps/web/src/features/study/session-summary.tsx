@@ -49,7 +49,7 @@ export function SessionSummary({ result, scope, streak, onReviewWrong }: {
         <Metric icon="✓" label="Đúng" value={result.correct} unit="từ" tone="is-success" />
         <Metric icon="×" label="Sai" value={result.incorrect} unit="từ" tone="is-danger" />
         <Metric icon="▧" label="Từ mới" value={result.newCount} unit="từ" tone="is-primary" />
-        <Metric icon="↻" label="Từ ôn tập" value={result.reviewCount} unit="từ" tone="is-warning" />
+        <Metric icon="↻" label="Từ đã ôn" value={result.reviewCount} unit="từ" tone="is-warning" />
       </section>
 
       <section className="study-summary-secondary-metrics" aria-label="Thời lượng và ôn tập">
@@ -58,17 +58,17 @@ export function SessionSummary({ result, scope, streak, onReviewWrong }: {
         {streak !== null ? <Metric icon="♨" label="Chuỗi ngày" value={streak} unit="ngày" tone="is-blue" /> : null}
       </section>
 
-      <section className="study-summary-wrong" aria-labelledby="study-summary-wrong-title">
-        <div className="study-summary-section-heading">
-          <span className="study-summary-section-icon" aria-hidden="true">↻</span>
-          <div>
-            <h3 id="study-summary-wrong-title">Các từ cần ôn lại</h3>
-            <p>Những từ bạn trả lời chưa đúng trong buổi học này.</p>
+      {wrongCount === 0 ? (
+        <p className="study-summary-all-correct" role="status"><span aria-hidden="true">✓</span> Bạn không có từ nào trả lời sai trong buổi học này.</p>
+      ) : (
+        <section className="study-summary-wrong" aria-labelledby="study-summary-wrong-title">
+          <div className="study-summary-section-heading">
+            <span className="study-summary-section-icon" aria-hidden="true">↻</span>
+            <div>
+              <h3 id="study-summary-wrong-title">Các từ cần ôn lại</h3>
+              <p>Những từ bạn trả lời chưa đúng trong buổi học này.</p>
+            </div>
           </div>
-        </div>
-        {wrongCount === 0 ? (
-          <p className="study-summary-all-correct" role="status"><span aria-hidden="true">✓</span> Bạn không có từ nào trả lời sai trong buổi học này.</p>
-        ) : (
           <ul className="study-summary-wrong-list">
             {result.wrongItems.map(({ item, learnerAnswer, correctAnswer }) => (
               <li key={item.vocabulary.id}>
@@ -89,8 +89,8 @@ export function SessionSummary({ result, scope, streak, onReviewWrong }: {
               </li>
             ))}
           </ul>
-        )}
-      </section>
+        </section>
+      )}
 
       <nav className={`study-summary-actions${wrongCount > 0 ? " has-wrong-words" : ""}`} aria-label="Hành động sau buổi học">
         {wrongCount > 0 ? <button className="study-summary-button is-primary" type="button" onClick={onReviewWrong}><span aria-hidden="true">↻</span> Ôn từ sai <span aria-hidden="true">→</span></button> : null}
