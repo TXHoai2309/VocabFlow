@@ -1,0 +1,37 @@
+{
+  "mediaAssetId": "0195f85c-7b2a-7d10-8c01-000000000040",
+  "targetEntityType": "SENSE",
+  "targetId": "0195f85c-7b2a-7d10-8c01-000000000011",
+  "mediaKind": "IMAGE",
+  "semanticBrief": [{ "language": "en", "text": "Synthetic schema-only image slot." }],
+  "status": "APPROVED",
+  "currentMediaAssetVersion": 1,
+  "versions": [
+    {
+      "mediaAssetId": "0195f85c-7b2a-7d10-8c01-000000000040",
+      "mediaAssetVersion": 1,
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "mimeType": "image/png",
+      "byteLength": 0,
+      "sourceType": "PROJECT_AUTHORED",
+      "sourceLocator": "fixture://schema-only",
+      "qaStatus": "PASSED",
+      "reviewedBy": "schema-fixture",
+      "reviewedAt": "2026-10-02T00:00:00Z",
+      "status": "APPROVED"
+    }
+  ],
+  "deliveries": [
+    {
+      "deliveryId": "0195f85c-7b2a-7d10-8c01-000000000041",
+      "mediaAssetId": "0195f85c-7b2a-7d10-8c01-000000000040",
+      "mediaAssetVersion": 1,
+      "provider": "fixture-cdn",
+      "providerDeliveryId": "synthetic-delivery-id",
+      "url": "https://media.invalid/schema-fixture.png",
+      "deliveryStatus": "READY"
+    }
+  ],
+  "createdAt": "2026-10-02T00:00:00Z",
+  "updatedAt": "2026-10-02T00:00:00Z"
+}

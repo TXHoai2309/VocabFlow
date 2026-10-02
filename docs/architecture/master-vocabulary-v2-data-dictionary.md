@@ -1,6 +1,6 @@
 # VocabFlow Master Vocabulary V2 — Logical Data Dictionary
 
-**Status:** Phase 1 architecture baseline for owner review. This document defines the logical Master model; it does not define PostgreSQL tables, a JSON Schema, an importer implementation, or a runtime migration.
+**Status:** Accepted Phase 1 architecture baseline. This document defines the logical Master model; it does not define PostgreSQL tables, an importer implementation, or a runtime migration. Its serialized document shapes are defined by the schema-only package in `vocabflow-dataset/`.
 
 ## 1. Model decisions
 
@@ -19,9 +19,11 @@
 
 Localization is represented as language-tagged child records or language maps with equivalent validation. Prefer child records for values that require independent provenance or review. Timestamps are UTC instants. A timestamp, source URL, reviewer name, or asset URL is not an identity.
 
+For the schema package's immutable revision artifacts, a Lexeme snapshot serializes its aliases and Lexeme-owned pronunciations, and a Sense snapshot serializes its translations, definitions, examples/example translations, and Sense-owned pronunciation overrides. A Learning Set snapshot serializes its Learning Set Items in `items`; a Taxonomy Snapshot contains the exact catalog records for its version. Those child records keep their stable IDs across corrections to the same conceptual child; the next parent revision contains the corrected child state, while the previous revision artifact remains available. Classification assignments and Relation edges have independent revisions and are pinned separately because their edits do not automatically advance a Sense revision.
+
 ## 3. Dataset and release manifest
 
-**Owner entity:** Dataset release. A dataset release is an immutable, named snapshot of included Master identities and their revisions. Master identities are not regenerated for each release.
+**Owner entity:** Dataset release. A dataset release is an immutable, named snapshot of included Master identities and their exact revisions. Master identities are not regenerated for each release. Published revision artifacts are immutable files/records; a later edit appends a new revision and never overwrites the artifact selected by an older release.
 
 | Field | Type | Req. / cardinality | Owner | Meaning | Validation, example, compatibility |
 |---|---|---|---|---|---|
@@ -32,8 +34,15 @@ Localization is represented as language-tagged child records or language maps wi
 | `datasetVersion` | SemVer string | Required; one per release | Dataset release | Version of the curated content release | Valid `MAJOR.MINOR.PATCH`; e.g. `2.0.0`. Semantics are defined in the identity/versioning policy. |
 | `schemaVersion` | SemVer string | Required; one per serialized artifact | Dataset release | Version of the data shape/contract used to serialize the release | Independent of `datasetVersion`; e.g. `2.0.0`. A field shape change need not mean the vocabulary content changed. |
 | `status` | Enum | Required; one | Dataset release | Editorial/release state | `DRAFT`, `IN_REVIEW`, `APPROVED`, `RETIRED`; only approved release content can enter a learner-facing projection. |
-| `includedLexemeIds` | UUIDv7 reference list | Required for a release; zero or more | Dataset release | Lexeme identities present in this release | Every reference must resolve. A release does not copy identity records. Example `[lexeme-apple-id]`. |
-| `includedSenseIds` | UUIDv7 reference list | Required for a release; zero or more | Dataset release | Teachable senses present in this release | Every sense and its owning lexeme must resolve; release can include one sense of a polysemous lexeme without asserting that all senses are ready. |
+| `includedLexemes` | Pinned-record reference list | Required; zero or more | Dataset release | Exact Lexeme state included in the release | Each entry contains `masterLexemeId`, `lexemeRevision`, `recordPath`, and SHA-256 `contentHash`. Resolve the stated revision and path only; never substitute the latest revision. |
+| `includedSenses` | Pinned-record reference list | Required; zero or more | Dataset release | Exact teachable Sense state included in the release | Each entry contains `masterSenseId`, `senseRevision`, `recordPath`, and `contentHash`. Every Sense and owning Lexeme must resolve at the pinned revisions; a release may include only selected senses of a polysemous Lexeme. |
+| `includedClassifications` | Pinned-record reference list | Required; zero or more | Dataset release | Exact classification assignments included in the release | Each entry pins `classificationId` + `classificationRevision`, path, and content hash. Classification edits do not silently change an older Sense snapshot. |
+| `includedLearningSets` | Pinned-record reference list | Required; zero or more | Dataset release | Exact set definition and ordered membership included in the release | Each entry pins `learningSetId` + `learningSetRevision`, path, and content hash. The set revision captures its item membership and order. |
+| `includedTaxonomySnapshots` | Pinned snapshot reference list | Required; zero or more | Dataset release | Exact taxonomy state used by included classifications | Each entry pins `taxonomyId` + `taxonomyVersion`, path, and content hash; taxonomy references resolve against these snapshots, not current catalogs. |
+| `includedMediaAssetVersions` | Pinned media-version reference list | Required; zero or more | Dataset release | Exact selected media slot/version and bytes | Each entry pins `mediaAssetId`, `mediaAssetVersion`, asset-record path/hash, and the full byte `sha256` where bytes exist. A delivery URL/provider placement is not the selected media identity. |
+| `includedRelations` | Pinned-record reference list | Required; zero or more | Dataset release | Exact relationship edges included in the release | Each entry pins `relationId` + `relationRevision`, path, and content hash. |
+| `includedProvenance` | Immutable-record reference list | Required; zero or more | Dataset release | Evidence records needed to interpret included claims | Each entry pins `provenanceId`, path, and content hash. A corrected source claim receives a new immutable provenance record. |
+| `releaseHash`, `releaseHashAlgorithm` | SHA-256, controlled string | Required for `APPROVED`; absent for `DRAFT`/`IN_REVIEW` | Dataset release | Integrity hash for the canonical manifest and pinned content references | Use `sha256-canonical-json-v1`: SHA-256 over RFC 8785 JCS canonical UTF-8 manifest bytes with `releaseHash` omitted; the manifest includes every exact revision/content hash and selected media byte hash. |
 | `createdAt`, `releasedAt` | UTC timestamp | Created required; release optional until approved | Dataset release | Snapshot creation and publication times | `releasedAt` required when status is `APPROVED`; not used to generate IDs or infer language level. |
 | `changeSummary` | Localized text | Optional; zero or more | Dataset release | Human-readable description of changes | Does not replace revisions or provenance; e.g. “Adds reviewed fruit and school senses.” |
 
@@ -72,8 +81,8 @@ POS describes the Lexeme’s grammatical category in a particular Sense record w
 | Field | Type | Req. / cardinality | Owner | Meaning | Validation, example, compatibility |
 |---|---|---|---|---|---|
 | `pronunciationId` | UUIDv7 | Required; 1 | Pronunciation | Stable identity for an accent/variant pronunciation record | Immutable, not derived from IPA or audio URL. |
-| `masterLexemeId` | UUIDv7 reference | Conditional; 0..1 | Pronunciation | Lexeme-level owner | Exactly one of `masterLexemeId` or `masterSenseId` must be set. |
-| `masterSenseId` | UUIDv7 reference | Conditional; 0..1 | Pronunciation | Sense-level override owner | Must resolve to a Sense of the referenced Lexeme if both owner references are retained; a sense override takes precedence only for that Sense. |
+| `masterLexemeId` | UUIDv7 reference | Conditional; 0..1 | Pronunciation | Lexeme-level owner | Set this field for a Lexeme pronunciation and omit `masterSenseId`. |
+| `masterSenseId` | UUIDv7 reference | Conditional; 0..1 | Pronunciation | Sense-level override owner | Set this field for a Sense override and omit `masterLexemeId`; resolve the owning Lexeme through `Sense.masterLexemeId`. Exactly one owner field is present; both and neither are invalid. |
 | `locale` | BCP 47 language/locale tag | Required; 1 | Pronunciation | Language and regional variant, e.g. `en-US`, `en-GB` | Canonical tag; keep distinct from the learner’s UI language. |
 | `accentCode` | Controlled code | Optional; 0..1 | Pronunciation | More specific pronunciation variety | E.g. `US_GENERAL`, `UK_SOUTHERN_ENGLAND`; define controlled values rather than interpreting URL names. |
 | `ipa` | String | Optional; 0..1 | Pronunciation | IPA transcription for this variant | Validate allowed IPA Unicode and nonblank text; do not merge US and UK strings into one ambiguous field. |
@@ -95,14 +104,14 @@ POS describes the Lexeme’s grammatical category in a particular Sense record w
 | `partOfSpeechCode` | Controlled code | Optional; 0..1 | Sense | Grammatical category of this sense | Must resolve to the POS vocabulary version; `bank` as a financial institution can be `NOUN`. |
 | `usageRegister` | Controlled code | Optional; 0..many | Sense | Formal, informal, technical, archaic, etc. | Values are versioned and language-aware; e.g. `FORMAL`. |
 | `regionCodes` | Controlled region codes | Optional; 0..many | Sense | Region-specific usage | Distinguish dialect evidence from pronunciation accent. |
-| `senseRevision` | Positive integer | Required; 1 | Sense | Revision of meaning-bearing Sense content | Increment automatically when approved Sense/Translation/Definition/Example learner content changes; precise rules are in the versioning policy. |
+| `senseRevision` | Positive integer | Required; 1 | Sense | Revision of the semantic Sense state, including approved learner-facing child state | Increment when meaning or an owned approved Translation, Definition, Example selection/content, or Sense-level pronunciation transcription/semantic variant changes. Child IDs stay stable for corrections to the same conceptual child; the new Sense revision preserves the updated child state. Classification assignments have their own revisions and are pinned separately. |
 | `status` | Enum | Required; 1 | Sense | Lifecycle state | `DRAFT`, `IN_REVIEW`, `APPROVED`, `RETIRED`, `MERGED`; app projection only accepts approved senses. |
 | `mergedIntoSenseId` | UUIDv7 reference | Conditional; 0..1 | Sense | Canonical Sense after a reviewed duplicate merge | Only for `MERGED`; old ID remains reserved and resolves through alias/redirect metadata. |
 | `createdAt`, `updatedAt` | UTC timestamp | Required; 1 each | Sense | Editorial audit times | Changed only by authoring workflow, not used as identity or sole revision signal. |
 
 ## 7. Translation, Definition, and Example
 
-These are separate content records. A Translation gives a target-language equivalent/gloss. A Definition explains the sense in prose in a named language. A Definition is not copied into a Translation field just because both can be rendered in an app card.
+These are separate content records. A Translation gives a target-language equivalent/gloss. A Definition explains the sense in prose in a named language. A Definition is not copied into a Translation field just because both can be rendered in an app card. In serialized Sense revision files, these child records travel inside the owning Sense snapshot so the pinned `senseRevision` recovers their exact state; their child IDs still identify the same conceptual records across corrections.
 
 ### Translation
 
@@ -142,7 +151,7 @@ These are separate content records. A Translation gives a target-language equiva
 | `register` | Controlled code | Optional; 0..1 | Example | Style of the sentence | E.g. `NEUTRAL`; validate against the register vocabulary. |
 | `levelNotes` | String/localized text | Optional; 0..1 | Example | Editorial note on syntactic or vocabulary load | Keep distinct from CEFR classification and difficulty score. |
 | `displayOrder` | Integer | Required; 1 per Sense/language | Example | Order among examples | Nonnegative and unique in scope. |
-| `exampleTranslationIds` | UUIDv7 references | Optional; 0..many | Example | Reviewed sentence translations | Must point to Example Translation records owned by this Example, not to lexical Translation records for the Sense. |
+| `exampleTranslations` | Example Translation records | Optional; 0..many | Example | Reviewed sentence translations | Each embedded child retains its `exampleTranslationId` and `exampleId`; it is distinct from a Sense-level lexical Translation. |
 | `audioAssetIds` | UUIDv7 references | Optional; 0..many | Example | Approved spoken versions of this sentence | Must resolve to example-audio assets whose target is this `exampleId`; distinct from word pronunciation audio. |
 | `provenanceIds` | UUIDv7 references | Required for approved value; 1..many | Example | Source/reviewer for the example | Include authorship/license evidence if sourced externally. |
 | `status` | Enum | Required; 1 | Example | Review state | Only approved examples can be projected. |
@@ -168,11 +177,15 @@ These are separate content records. A Translation gives a target-language equiva
 | Field | Type | Req. / cardinality | Owner | Meaning | Validation, example, compatibility |
 |---|---|---|---|---|---|
 | `classificationId` | UUIDv7 | Required; 1 | Classification | Stable identity for this assignment | Immutable; not generated from its value or taxonomy location. |
+| `classificationRevision` | Positive integer | Required; 1 | Classification | Revision of this assignment's value, scope, evidence, or lifecycle state | Starts at 1 and advances when the assignment changes; a classification-only change does not advance `senseRevision`. Releases pin the exact classification revision. |
 | `masterSenseId` | UUIDv7 reference | Required; many per Sense | Classification | Sense classified | Must resolve. Default scope is Sense, even when lexical spelling is shared. |
-| `dimension` | Enum | Required; 1 | Classification | Independent classification dimension | One of `CEFR`, `DIFFICULTY`, `AGE_GROUP`, `SCHOOL_LEVEL`, `TOPIC`, `DOMAIN`, `EXAM`; unknown values fail closed until schemaVersion adds them. |
-| `valueRef` | Typed UUIDv7 reference/code | Conditional; 0..1 | Classification | Value for a catalog-backed dimension | Must resolve to the entity allowed by `dimension`: Topic, Domain, Exam, School Level, or CEFR value catalog. Not used for numeric difficulty. |
-| `numericValue` | Integer | Conditional; 0..1 | Classification | Numeric value such as canonical difficulty score | Required only for `DIFFICULTY`, within 1–100, high means harder. Other dimensions reject it. |
-| `scaleId` | UUIDv7 reference | Conditional; 0..1 | Classification | Difficulty rubric/calibration scope | Required for difficulty; resolves to a versioned scale and target learning cohort. |
+| `dimension` | Enum | Required; 1 | Classification | Independent classification dimension | Current values: `CEFR`, `DIFFICULTY`, `AGE_GROUP`, `SCHOOL_LEVEL`, `TOPIC`, `DOMAIN`, `EXAM`; unknown values fail closed until a schema version adds them. |
+| `frameworkCode`, `frameworkVersion` | Controlled code, version string | Required for `CEFR`; otherwise absent | Classification | CEFR framework scope for a level claim | Must resolve to a framework/version in a pinned taxonomy snapshot; different frameworks remain separate claims. |
+| `valueCode` | Controlled scalar code | Conditional; 0..1 | Classification | Scalar value for code-based dimensions | Required for `CEFR` (`PRE_A1`, `A1`…`C2`) and `AGE_GROUP` (`KIDS`, `TEEN`, `ADULT`). Future controlled scalar dimensions also use `valueCode`. |
+| `valueRef` | UUIDv7 taxonomy reference | Conditional; 0..1 | Classification | Value for an entity-backed dimension | Required for `TOPIC`, `DOMAIN`, `EXAM`, and `SCHOOL_LEVEL`, resolving to the matching entity in a pinned taxonomy snapshot. |
+| `numericValue` | Integer | Conditional; 0..1 | Classification | Canonical difficulty score | Required only for `DIFFICULTY`, within 1–100, high means harder. |
+| `scaleId` | UUIDv7 reference | Conditional; 0..1 | Classification | Difficulty rubric/calibration scope | Required with `numericValue` for `DIFFICULTY`; resolves to a pinned versioned scale and target learning cohort. |
+| Value-shape exclusivity | Conditional object shape | Required; exactly one shape | Classification | Typed representation for the selected dimension | CEFR/AGE_GROUP: `valueCode` only; TOPIC/DOMAIN/EXAM/SCHOOL_LEVEL: `valueRef` only; DIFFICULTY: `numericValue` + `scaleId` only. JSON Schema enforces this with `oneOf`; unrelated value fields are forbidden. |
 | `isPrimary` | Boolean | Required; 1 | Classification | Primary assignment for display/projection within a dimension/scope | At most one primary per Sense/dimension/scale scope. It does not make other approved memberships invalid. |
 | `sourceProvenanceIds` | UUIDv7 references | Required for sourced/approved claim; 1..many | Classification | Evidence for the classification | CEFR and exam claims need evidence; an editor-only judgment is explicitly marked editorial. |
 | `confidence` | Decimal 0..1 | Optional; 0..1 | Classification | Editorial confidence where meaningful | Use only with a documented scoring rubric; confidence is not difficulty or exam relevance. |
@@ -282,7 +295,7 @@ Learning Set membership is independent from Topic, CEFR, difficulty, audience, s
 
 | Field | Type | Req. / cardinality | Owner | Meaning | Validation, example, compatibility |
 |---|---|---|---|---|---|
-| `relationId` | UUIDv7 | Required; 1 | Relation | Stable identity for one reviewed lexical relationship | Immutable; can be omitted only if relation edge is generated from a strictly canonical symmetric-pair representation. Recommendation: keep it for provenance and lifecycle. |
+| `relationId`, `relationRevision` | UUIDv7, positive integer | Required; 1 pair | Relation | Stable identity and exact revision of one reviewed lexical relationship | ID is immutable; revision starts at 1 and advances when endpoints, relation meaning, evidence, or lifecycle state changes. Dataset releases pin the exact revision. |
 | `fromEntityType`, `fromId` | Enum, UUIDv7 reference | Required; 1 pair | Relation | Source endpoint | Type is `LEXEME` or `SENSE`; ID must resolve to that type. |
 | `toEntityType`, `toId` | Enum, UUIDv7 reference | Required; 1 pair | Relation | Target endpoint | Type/ID must resolve; self-relations prohibited. |
 | `relationType` | Controlled enum | Required; 1 | Relation | Meaning of the edge | Initial values may include `SYNONYM`, `ANTONYM`, `RELATED`, `DERIVATIVE`, `VARIANT_OF`; define allowed endpoint types and symmetry for each. |
@@ -294,7 +307,7 @@ Cycles are validated according to relation semantics. Synonym/related graphs may
 
 ## 11. Media Asset, versions, and delivery locations
 
-An asset ID identifies an editorial media slot/brief for a target. A hash identifies exact bytes. A provider URL or public ID identifies where a delivery copy is stored. These are three different identities.
+An asset ID identifies an editorial media slot/brief for a target. A `mediaAssetVersion` identifies an immutable approved revision of that slot. A hash identifies exact bytes. A provider delivery ID, public ID, or URL identifies where a delivery copy is stored. These identities are separate. The serialized Media Asset document contains its versions and deliveries; a release pins the immutable asset-record path/hash, exact selected version, and selected bytes hash rather than resolving `currentMediaAssetVersion` at read time.
 
 ### Media Asset
 
@@ -366,6 +379,6 @@ One Lexeme represents English `apple`; its fruit meaning is one Sense. The fruit
 
 ## 14. Runtime boundary
 
-The app currently accepts one vocabulary row with fields such as `word`, `ipa`, `vietnamese`, `definitionEn`, `exampleEn`, one image/audio URL, legacy topic text, grade-oriented `level`, `enabled`, and integer `contentVersion`. The Master can store richer data without sending every field to Neon. A projection must explicitly select one approved Sense translation/definition/example and one approved compatible media delivery location for each supported runtime field. Master IDs map to stable app IDs through an explicit registry; neither lemma nor an array index is sufficient.
+The app currently accepts one vocabulary row with fields such as `word`, `ipa`, `vietnamese`, `definitionEn`, `exampleEn`, one image/audio URL, legacy topic text, grade-oriented `level`, `enabled`, and integer `contentVersion`. The Master can store richer data without sending every field to Neon. A projection must explicitly select one approved Sense translation/definition/example and one approved compatible media delivery location for each supported runtime field. Master IDs map to stable app IDs through an explicit registry; neither lemma nor an array index is sufficient. The Master classification model has no runtime `level` field: school level is one typed taxonomy dimension, separate from CEFR, difficulty, and audience.
 
-No schema or app code is changed by this data dictionary. A later JSON Schema should encode this logical contract only after the owner resolves the open choices listed in the task report.
+This Phase 1 contract is serialized by the schema-only package under `vocabflow-dataset/`. It does not change app code or database schema. JSON Schema validates each document's shape; release closure, pin resolution, graph rules, and uniqueness across files remain cross-file validator responsibilities.

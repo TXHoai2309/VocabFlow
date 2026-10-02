@@ -1,6 +1,6 @@
 # VocabFlow Master Vocabulary V2 — Taxonomy Contract
 
-**Status:** Phase 1 architecture baseline for owner review. Taxonomies are independent controlled dimensions over approved Master Senses. They do not replace the existing runtime `level` field and do not require app migrations in this task.
+**Status:** Accepted Phase 1 architecture baseline. Taxonomies are independent controlled dimensions over approved Master Senses. They do not replace the existing runtime `level` field and do not require app migrations in this task.
 
 ## 1. Shared contract
 
@@ -11,6 +11,20 @@
 - Multiple assignments are supported where specified. “Unknown/unreviewed” is not the same as a broad catch-all value.
 - Never infer one dimension from another. A CEFR level does not mechanically imply difficulty, age, school grade, exam, domain, topic, or set membership.
 - Learning Set membership is curated collection membership, not a taxonomy assignment.
+- A release pins an immutable taxonomy snapshot by `taxonomyId`, `taxonomyVersion`, package-relative path, and content hash. Rebuilding an old release must not read the current taxonomy catalog.
+
+### Classification value representation
+
+Every Classification carries exactly one value shape, selected by `dimension`:
+
+| Dimensions | Required value fields | Forbidden value fields |
+|---|---|---|
+| `CEFR` | `valueCode` (`PRE_A1`, `A1`, `A2`, `B1`, `B2`, `C1`, `C2`) | `valueRef`, `numericValue`, `scaleId` |
+| `AGE_GROUP` | `valueCode` (`KIDS`, `TEEN`, `ADULT`) | `valueRef`, `numericValue`, `scaleId` |
+| `TOPIC`, `DOMAIN`, `EXAM`, `SCHOOL_LEVEL` | `valueRef` (UUIDv7 ID of the matching taxonomy entity) | `valueCode`, `numericValue`, `scaleId` |
+| `DIFFICULTY` | `numericValue` (integer 1–100) and `scaleId` | `valueCode`, `valueRef` |
+
+The current schema enumerates only these dimensions. A future controlled scalar-code dimension uses `valueCode` and must be added through a schema-versioned contract change with its own controlled code set. Entity-backed dimensions use `valueRef`. No classification may combine representations. Draft assignments may omit evidence while being authored; an approved evidence-backed assignment must resolve its Provenance. JSON Schema uses `oneOf` to enforce the representation shape; taxonomy existence and evidence checks require the cross-file validator.
 
 ## 2. CEFR
 
@@ -29,12 +43,12 @@ Difficulty is an editorial/calibration estimate for a defined learner context. I
 
 | Property | Contract |
 |---|---|
-| Canonical score | Integer `difficultyScore` from **1 to 100**, with 1 easiest and 100 hardest for the named difficulty scale/profile. This provides enough resolution for later calibration while retaining a simple bounded data contract. Do not present the integer as measured precision until calibrated. |
-| Scope | Every score refers to a versioned `difficultyScaleId`/profile that names the target learner context and rubric. Scores from different profiles or rubric versions are not directly comparable. |
+| Canonical score | Integer `numericValue` from **1 to 100**, with 1 easiest and 100 hardest for the named difficulty scale/profile. This provides enough resolution for later calibration while retaining a simple bounded data contract. Do not present the integer as measured precision until calibrated. |
+| Scope | Every score refers to a versioned `scaleId`/profile that names the target learner context and rubric. Scores from different profiles or rubric versions are not directly comparable. |
 | Labels | Display labels are derived, never independently persisted as a second truth: 1–20 `VERY_EASY`; 21–40 `EASY`; 41–60 `MEDIUM`; 61–80 `HARD`; 81–100 `VERY_HARD`. Boundary changes require a taxonomy-contract version change and a re-evaluation plan. |
 | Cardinality | Zero or one approved active score per Sense and scale/profile. Keep prior score claims in history rather than overwriting them silently. |
 | Calibration metadata | Keep scale ID, rubric version, score method (`EDITORIAL`, `PILOT_CALIBRATED`, `EMPIRICAL_MODEL`), sample/evidence summary where relevant, and calibration timestamp/model version when empirically calibrated. Do not mix an editorial score with a future psychometric estimate without preserving method and scale. |
-| Validation | Integer range 1–100; scale/profile exists and is active; rubric version resolves; method-specific evidence is present. Missing difficulty is allowed and must not default from CEFR. |
+| Validation | `dimension=DIFFICULTY` requires `numericValue` and `scaleId`, and rejects `valueCode`/`valueRef`; integer range 1–100; scale/profile exists and is active; rubric version resolves; method-specific evidence is present. Missing difficulty is allowed and must not default from CEFR. |
 | Runtime compatibility | Master-only initially; never overload current school-oriented `level`. |
 
 The 1–100 scale is a normalized editorial score until learner-response data and an explicit calibration model exist. Calibration can refine score placement without changing its meaning or converting it into CEFR. If future empirical calibration uses a different statistical scale, store that estimate as a separately named, model-versioned measurement rather than silently reinterpreting historical 1–100 scores.

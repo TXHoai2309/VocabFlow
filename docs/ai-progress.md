@@ -1,5 +1,39 @@
 # Current Handoff Snapshot
 
+## 2026-10-02 — Master Vocabulary Dataset V2 Phase 2A validator
+
+- Added `scripts/validate-master-vocabulary-v2.ts` and
+  `pnpm validate:master-vocab-v2`. The validator uses the manifest as the only
+  release boundary, validates pinned documents with Draft 2020-12 schemas, then
+  checks typed references, scoped uniqueness, taxonomy graphs, learning sets,
+  media, Relations, Provenance, JCS record hashes, and the release hash.
+- Added synthetic approved graph fixtures generated in temp directories,
+  Phase 1 schema fixture assertions, machine report output, and the stable issue
+  catalog at `docs/architecture/master-vocabulary-v2-validation-contract.md`.
+  The checked-in `dataset.json` remains an empty DRAFT; no real vocabulary,
+  media bytes, or pilot data were added.
+- Focused validator tests: 21 passing at the last run; targeted script typecheck
+  and final checks are in progress. Full application tests were not run. Runtime/UI, database,
+  Neon, importer, and Cloudinary paths were not changed.
+
+## 2026-10-02 — Master Vocabulary Dataset V2 Phase 1 schema package
+
+- Patched the V2 data dictionary, identity/versioning policy, and taxonomy
+  contract. Dataset releases now pin exact Lexeme, Sense, Classification,
+  Learning Set, taxonomy, relation, media-version, and Provenance artifacts;
+  `releaseHash` uses the `sha256-canonical-json-v1` contract. Pronunciation
+  ownership is XOR, classification values are dimension-typed, and semantic
+  child state advances its owning Lexeme/Sense revision as specified.
+- Added the Draft 2020-12 schema package under `vocabflow-dataset/` and
+  synthetic valid/invalid schema fixtures. The initial `dataset.json` is an
+  empty `DRAFT` manifest; no vocabulary pilot or runtime/database/media change
+  was made. Cross-file graph, identity, revision-history, and byte checks were
+  documented for Phase 2A. All 8 schemas pass Draft 2020-12 meta-
+  schema checks and all 18 fixture expectations match under `jsonschema`.
+- No matching active user story covers this architecture/schema-only work;
+  unrelated US-43 remains untouched. Application tests and database/media
+  operations were not run.
+
 ## 2026-10-02 — Vocabulary Detail (US-43)
 
 - Owner explicitly reprioritized the read-only Vocabulary Detail page while

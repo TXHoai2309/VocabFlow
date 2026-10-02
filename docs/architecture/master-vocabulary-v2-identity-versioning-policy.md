@@ -1,6 +1,6 @@
 # VocabFlow Master Vocabulary V2 — Identity and Versioning Policy
 
-**Status:** Phase 1 architecture baseline for owner review. Applies to Master data and the future app projection contract. It does not change current PostgreSQL schema, integer vocabulary IDs, or runtime behavior.
+**Status:** Accepted Phase 1 architecture baseline. Applies to Master data and the future app projection contract. It does not change current PostgreSQL schema, integer vocabulary IDs, or runtime behavior.
 
 ## 1. Decisions
 
@@ -37,6 +37,7 @@ UUIDv7 is preferable here to ULID because UUID tooling and the app's database bo
 | Definition | `definitionId` | One explanatory definition for one Sense and language. |
 | Example Translation | `exampleTranslationId` | One language translation of one Example. Separate from a lexical Translation. |
 | Pronunciation | `pronunciationId` | One pronunciation variant for a Lexeme or Sense override and locale/accent. |
+| Classification | `classificationId` | One typed assignment of one independent dimension to one Sense; its mutable assignment state is tracked by `classificationRevision`. |
 | Learning Set | `learningSetId` | One editorial collection/course identity. Not derived from its title, topic, grade, exam, or contents. |
 | Learning Set Item | `learningSetItemId` | One membership identity linking a set to a Sense. Its order may change without changing membership identity. |
 | Topic | `topicId` | One taxonomy concept. Not derived from label, slug, or parent/path. |
@@ -45,7 +46,8 @@ UUIDv7 is preferable here to ULID because UUID tooling and the app's database bo
 | Curriculum | `curriculumId` | One named education framework/jurisdiction/edition. |
 | School Level | `schoolLevelId` | One level within one Curriculum. Grade number alone is not identity. |
 | Difficulty Scale | `scaleId` | One versioned difficulty rubric and learner-context profile. Its revision is a separate `scaleVersion`. |
-| Relation | `relationId` | One reviewed relationship edge and its provenance/lifecycle. Required unless a future contract explicitly adopts canonical pair-only storage for one symmetric relation type. |
+| Taxonomy Snapshot | `taxonomyId` | One governed taxonomy catalog lineage; each immutable snapshot in the lineage has its own `taxonomyVersion`. |
+| Relation | `relationId` | One reviewed relationship edge and its provenance/lifecycle; exact mutable state is tracked by `relationRevision`. |
 | Media Asset | `mediaAssetId` | One semantic/editorial asset slot or brief for one target. Not a hash, file path, provider public ID, or URL. |
 | Media Delivery | `deliveryId` | One provider placement for an immutable media version. A provider migration creates/retires delivery rows without changing the asset identity. |
 | Provenance | `provenanceId` | One evidence/source/authorship claim. |
@@ -88,6 +90,10 @@ Retired IDs remain reserved and resolvable for old releases, import mappings, me
 | `schemaVersion` | Serialized Master data contract | Field shape, type, cardinality, enum, or requiredness changes | A word, translation, topic membership, or image changes under the same shape. |
 | `lexemeRevision` | One Lexeme's authored lexical identity/form fields | Approved Lexeme-owned fields or alias state change | A child Sense or media asset changes. |
 | `senseRevision` | One Sense's semantic teaching content | Sense meaning, preferred Translation/Definition/Example, or other approved sense-owned content changes | A media replacement or reviewer-note/provenance-only correction changes. |
+| `classificationRevision` | One typed classification assignment | Its dimension value, scope, evidence, or lifecycle state changes | An unrelated Sense semantic edit changes. |
+| `relationRevision` | One reviewed relationship edge | Its endpoints, relation meaning, evidence, or lifecycle state changes | An unrelated Lexeme or Sense edit changes. |
+| `learningSetRevision` | One set definition and ordered membership | The set meaning, metadata, membership, or item order changes | A referenced Sense changes. |
+| `taxonomyVersion` | One immutable taxonomy snapshot | A taxonomy record/value/hierarchy changes in a new snapshot | A Sense or set changes. |
 | `mediaAssetVersion` | One editorial media slot | A replacement deliverable or learner-visible media rendition is approved for the same slot | Provider delivery moves to another URL with the same asset version/bytes. |
 | `runtimeContentVersion` | One app vocabulary projection row | The learner-facing projection fingerprint differs from the last applied fingerprint | Nonprojected source/provenance/reviewer metadata changes. |
 
@@ -101,11 +107,21 @@ Use SemVer for `datasetVersion`, independent from `schemaVersion`:
 
 Every release is immutable after publication. Corrections produce a later release referencing the same stable identities and higher entity revisions as needed. `schemaVersion` changes only when the serialized data contract changes. The exact release cadence and compatibility guarantees between consumer versions remain product-owner decisions.
 
+### Reproducible release snapshot
+
+`datasetVersion` names the curated release; it is not a pointer to whatever is current later. The release manifest pins exact records and their revisions: `(masterLexemeId, lexemeRevision)`, `(masterSenseId, senseRevision)`, `(classificationId, classificationRevision)`, `(learningSetId, learningSetRevision)`, and `(relationId, relationRevision)`. It also pins each immutable taxonomy snapshot `(taxonomyId, taxonomyVersion)`, each included media slot/version plus exact byte SHA-256, and each immutable Provenance record. Every pin includes a package-relative record path and the SHA-256 content hash of that serialized record.
+
+The pinned artifact at that path is immutable. A revision increment writes a new artifact and does not replace an older one. Reconstructing `2.0.0` means loading exactly its recorded IDs, revisions, paths, and hashes and verifying them; resolving “latest revision” at read time is forbidden. Lexeme/Sense parent snapshots include the exact state of their owned linguistic children, whose stable child IDs remain unchanged when correcting the same conceptual child. Learning Set revisions include the exact ordered item list. Classification assignments and relations are independently revisioned so a classification/evidence edit does not silently rewrite an older Sense snapshot.
+
+`releaseHash` is SHA-256 over the [RFC 8785 JSON Canonicalization Scheme (JCS)](https://www.rfc-editor.org/rfc/rfc8785.html) UTF-8 bytes of the manifest with the `releaseHash` field omitted. The manifest includes the exact revision pins and content hashes, and the selected media byte hashes. `releaseHashAlgorithm` is `sha256-canonical-json-v1`; changing canonicalization requires a new named algorithm/schema contract. The per-record `contentHash` is likewise computed over JCS UTF-8 bytes for that immutable record. Linguistic strings must already satisfy the contract's NFC requirement before a revision is finalized; hashing preserves their exact stored Unicode values. A release is not approved until all referenced artifacts resolve, hashes match, and its release hash verifies.
+
 ### Lexeme and Sense revision rules
 
-Revisions are positive, monotonically increasing integers local to the entity, starting at 1. An approved editorial transaction computes whether owned content changed and advances the appropriate revision automatically. The revision history records old/new values and provenance. Never decrement, reuse, or infer a revision from datasetVersion.
+Revisions are positive, monotonically increasing integers local to the entity, starting at 1. An approved editorial transaction computes whether owned content changed and advances the appropriate revision automatically. The revision history records old/new values and provenance. Never decrement, reuse, overwrite an already published revision artifact, or infer a revision from datasetVersion.
 
-`lexemeRevision` changes for Lexeme-owned fields such as lemma/display form, language/lexical-unit metadata, aliases, or a Lexeme-level IPA/pronunciation-variant change. It does not fan out to every Sense just because the headword was corrected. `senseRevision` changes for meaning-bearing Sense content and its learner-facing linguistic children, including a preferred Translation, Definition, Example text, or a Sense-level pronunciation override. A classification/provenance/reviewer-note change alone does not advance `senseRevision`, unless that classification is part of the approved semantic claim and the owner explicitly defines it as sense content. Audio bytes/voice rendering remain media versions; they are not linguistic pronunciation revisions unless the spoken target/transcription itself changes.
+`lexemeRevision` changes for Lexeme-owned fields such as lemma/display form, normalized lexical metadata, aliases, or Lexeme-level pronunciation semantic/transcription state. It does not fan out to every Sense just because the headword was corrected. `senseRevision` changes for the semantic state of a Sense and its approved learner-facing linguistic children: preferred Translation, preferred Definition, Example content/selection where it affects the semantic state, and Sense-level pronunciation semantic/transcription changes. A child stable ID remains unchanged when correcting the same conceptual child; the parent revision advances and preserves the corrected child state. A classification/provenance/reviewer-note change alone does not advance `senseRevision`; classification edits advance `classificationRevision`, while Provenance claims are immutable records. Audio bytes or voice-render replacement remain `mediaAssetVersion` changes and do not automatically increment semantic Sense revision. A changed spoken target or transcription is linguistic state and advances the owning Lexeme or Sense revision.
+
+Each Pronunciation has exactly one owner: `masterLexemeId` XOR `masterSenseId`. A Sense-owned override stores only `masterSenseId`; the Lexeme is resolved by loading that Sense's `masterLexemeId`. Both owner fields or neither owner field are invalid. A Lexeme-level pronunciation semantic/transcription change advances `lexemeRevision`; a Sense-level override semantic/transcription change advances `senseRevision`. The media bytes attached to either pronunciation are pinned and versioned independently.
 
 Example IDs remain stable when correcting the same sentence/context; that correction advances the parent Sense revision because the app projection can change. Adding/removing an Example advances Sense revision if the selected runtime example changes. If multiple examples are editorial-only and the projection remains identical, no runtime version change is required even though the Master release/revision records the editorial update.
 

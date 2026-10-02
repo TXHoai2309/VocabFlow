@@ -298,3 +298,36 @@ evidence condition is met and the affected source document is updated.
 - Revisit only if: A release-safety review finds a concrete workflow or
   provider limitation, or the owner explicitly changes the approved release
   boundary.
+
+## DEC-019 — Reproducible Master Vocabulary V2 release snapshots
+
+- Status: ACCEPTED
+- Date: 2026-10-02
+- Context: An immutable dataset release cannot be reconstructed from stable
+  Lexeme/Sense IDs alone after those records or their supporting catalogs,
+  sets, and media have changed.
+- Decision: A Dataset Release pins exact Lexeme, Sense, Classification,
+  Learning Set, taxonomy snapshot, Relation, media slot/version, and immutable
+  Provenance artifacts using their IDs, revisions/versions, package-relative
+  record paths, and SHA-256 content hashes. Historical reconstruction must
+  resolve the recorded pins and never use the latest revision. `releaseHash`
+  uses `sha256-canonical-json-v1` over JCS canonical manifest bytes excluding
+  the hash field itself. Pronunciations have exactly one owner
+  (`masterLexemeId` XOR `masterSenseId`); classifications use `valueCode` for
+  controlled scalar values, `valueRef` for entity-backed dimensions, and
+  `numericValue` plus `scaleId` for difficulty. Lexeme/Sense revisions include
+  the approved semantic child state they own; Classification and Relation
+  assignments have independent revisions.
+- Consequences: Draft 2020-12 schemas validate document-local shapes; the
+  Phase 2A validator now checks reference closure, pinned artifact/hash
+  resolution, graph and scoped uniqueness rules, media target compatibility,
+  and approved release invariants. Historical revision monotonicity and
+  append-only storage checks still require revision history or a governed
+  authoring store. This decision does not alter app runtime contracts or
+  database schema.
+- Evidence/source: `docs/architecture/master-vocabulary-v2-data-dictionary.md`,
+  `docs/architecture/master-vocabulary-v2-identity-versioning-policy.md`,
+  `docs/architecture/master-vocabulary-v2-taxonomy-contract.md`,
+  `vocabflow-dataset/README.md`
+- Revisit only if: The owner changes the release reproducibility, identity,
+  classification representation, or canonical hash contract.

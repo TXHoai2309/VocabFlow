@@ -2,6 +2,33 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-02 — Master Vocabulary Dataset V2 Phase 2A validator
+
+- Added a two-stage Draft 2020-12 schema and cross-file validator rooted at the
+  exact pins in `vocabflow-dataset/dataset.json`. Added RFC 8785 JCS content and
+  release hash verification, typed references, ownership/cardinality checks,
+  taxonomy cycles/scope, Learning Set eligibility, media compatibility,
+  Relation semantics, Provenance closure, and a stable machine report.
+- Added synthetic cross-file test datasets and coverage for valid release
+  hashes, warnings, required invalid graphs/pins, and all existing Phase 1
+  schema fixture expectations. No production vocabulary, runtime, database,
+  importer, or media operation was added.
+- Generated validation reports carry a run timestamp and are git-ignored to
+  keep source changes reproducible.
+
+## 2026-10-02 — Master Vocabulary Dataset V2 Phase 1 schema package
+
+- Made V2 releases reproducible by pinning exact entity revisions, immutable
+  record paths/content hashes, taxonomy snapshots, Learning Set revisions,
+  media versions/byte hashes, relations, and Provenance; specified a canonical
+  release hash.
+- Clarified Pronunciation owner XOR, classification value shape by dimension,
+  and Lexeme/Sense semantic revision ownership. Added Draft 2020-12 document
+  schemas and synthetic fixtures under `vocabflow-dataset/`. The package has
+  no production vocabulary content and does not change runtime or persistence.
+  All 8 schemas pass Draft 2020-12 meta-schema checks and all 18 fixture
+  expectations match under the local JSON Schema validator.
+
 ## 2026-10-02 — Vocabulary Detail implementation
 
 - Started owner-reprioritized US-43. Adds an authenticated detail route using
