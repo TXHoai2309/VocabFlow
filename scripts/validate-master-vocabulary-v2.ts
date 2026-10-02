@@ -611,6 +611,17 @@ function validateSemanticGraph(manifest: JsonObject, artifacts: LoadedArtifact[]
           cefrFrameworks: asObjectArray(root.cefrFrameworks),
         };
         taxonomyContexts.push(context);
+        for (const [frameworkIndex, framework] of context.cefrFrameworks.entries()) {
+          for (const [descriptorIndex, descriptor] of asObjectArray(framework.descriptors).entries()) {
+            addProvenanceRefs(descriptor.provenanceIds, "TAXONOMY", root.taxonomyId, rootPath, `/cefrFrameworks/${frameworkIndex}/descriptors/${descriptorIndex}/provenanceIds`);
+          }
+        }
+        for (const [index, curriculum] of context.curricula.entries()) {
+          addProvenanceRefs(curriculum.sourceProvenanceIds, "CURRICULUM", curriculum.curriculumId, rootPath, `/curricula/${index}/sourceProvenanceIds`);
+        }
+        for (const [index, scale] of context.difficultyScales.entries()) {
+          addProvenanceRefs(scale.provenanceIds, "DIFFICULTY_SCALE", scale.scaleId, rootPath, `/difficultyScales/${index}/provenanceIds`);
+        }
         registerTaxonomyEntities(context, addEntity, issues);
         break;
       }

@@ -52,6 +52,8 @@ export const fixtureIds = {
   provenanceRelation: id("97"),
   provenanceSet: id("98"),
   relation: id("99"),
+  provenanceCurriculum: id("86"),
+  provenanceDifficultyScale: id("87"),
 } as const;
 
 function localized(language: string, text: string): JsonObject {
@@ -136,9 +138,9 @@ export function writeValidMasterVocabularyFixture(root: string): void {
       { domainId: fixtureIds.domainChild, code: "FIXTURE_DOMAIN_CHILD", labels: [localized("en", "Fixture domain child")], parentDomainId: fixtureIds.domainParent, status: "ACTIVE" },
     ],
     exams: [{ examId: fixtureIds.exam, code: "FIXTURE_EXAM", familyCode: "OTHER", labels: [localized("en", "Fixture exam")], status: "ACTIVE" }],
-    curricula: [{ curriculumId: fixtureIds.curriculum, code: "FIXTURE_CURRICULUM", jurisdiction: "XX", labels: [localized("en", "Fixture curriculum")], status: "ACTIVE" }],
+    curricula: [{ curriculumId: fixtureIds.curriculum, code: "FIXTURE_CURRICULUM", jurisdiction: "XX", labels: [localized("en", "Fixture curriculum")], sourceProvenanceIds: [fixtureIds.provenanceCurriculum], status: "ACTIVE" }],
     schoolLevels: [{ schoolLevelId: fixtureIds.schoolLevel, curriculumId: fixtureIds.curriculum, gradeNumber: 1, levelCode: "GRADE_1", labels: [localized("en", "Grade 1")], status: "ACTIVE", sortOrder: 1 }],
-    difficultyScales: [{ scaleId: fixtureIds.scale, scaleVersion: "1.0.0", labels: [localized("en", "Fixture difficulty")], targetLearnerContext: "Synthetic test fixture", rubricVersion: "fixture-v1", scoreMethod: "EDITORIAL", status: "ACTIVE" }],
+    difficultyScales: [{ scaleId: fixtureIds.scale, scaleVersion: "1.0.0", labels: [localized("en", "Fixture difficulty")], targetLearnerContext: "Synthetic test fixture", rubricVersion: "fixture-v1", scoreMethod: "EDITORIAL", provenanceIds: [fixtureIds.provenanceDifficultyScale], status: "ACTIVE" }],
     createdAt: timestamp,
     updatedAt: timestamp,
   };
@@ -177,6 +179,8 @@ export function writeValidMasterVocabularyFixture(root: string): void {
     approvedProvenance(fixtureIds.provenanceExam, "CLASSIFICATION", fixtureIds.examClassification),
     approvedProvenance(fixtureIds.provenanceRelation, "RELATION", fixtureIds.relation),
     approvedProvenance(fixtureIds.provenanceSet, "LEARNING_SET", fixtureIds.learningSet),
+    approvedProvenance(fixtureIds.provenanceCurriculum, "TAXONOMY_RECORD", fixtureIds.curriculum),
+    approvedProvenance(fixtureIds.provenanceDifficultyScale, "TAXONOMY_RECORD", fixtureIds.scale),
   ];
 
   const pins: Record<string, JsonObject[]> = {

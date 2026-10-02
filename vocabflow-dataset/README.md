@@ -125,7 +125,9 @@ The cross-file stage checks:
 - Relation endpoint types, self-edges, required directionality for the
   contract's symmetric/directed types, and canonical duplicate symmetric
   edges. Other relation graph cycles are allowed.
-- Provenance reference closure for references represented by the schemas.
+- Provenance reference closure for linguistic records, classifications, CEFR
+  descriptors, Curricula, Difficulty Scales, Learning Sets, Relations, and
+  taxonomy/media subjects.
 
 The complete stable issue-code catalog is in
 [`docs/architecture/master-vocabulary-v2-validation-contract.md`](../docs/architecture/master-vocabulary-v2-validation-contract.md).

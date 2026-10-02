@@ -97,6 +97,7 @@
         "authority": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
         "edition": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
         "labels": { "$ref": "common.schema.json#/$defs/localizedTextList" },
+        "sourceProvenanceIds": { "$ref": "common.schema.json#/$defs/provenanceIds" },
         "status": { "type": "string", "enum": ["ACTIVE", "RETIRED"] }
       },
       "required": ["curriculumId", "code", "jurisdiction", "labels", "status"],
@@ -125,10 +126,11 @@
         "targetLearnerContext": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
         "rubricVersion": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
         "scoreMethod": { "type": "string", "enum": ["EDITORIAL", "PILOT_CALIBRATED", "EMPIRICAL_MODEL"] },
+        "provenanceIds": { "$ref": "common.schema.json#/$defs/provenanceIds" },
         "modelVersion": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
         "status": { "type": "string", "enum": ["ACTIVE", "RETIRED"] }
       },
-      "required": ["scaleId", "scaleVersion", "labels", "targetLearnerContext", "rubricVersion", "scoreMethod", "status"],
+      "required": ["scaleId", "scaleVersion", "labels", "targetLearnerContext", "rubricVersion", "scoreMethod", "provenanceIds", "status"],
       "additionalProperties": false
     }
   }

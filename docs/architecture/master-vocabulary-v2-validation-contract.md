@@ -76,9 +76,10 @@ and active taxonomy scopes where the contract calls for them.
   allowed.
 - Approved Translation, Definition, Example, and Example Translation
   Provenance presence is enforced by JSON Schema. The cross-file stage checks
-  all provided Provenance IDs; it additionally requires Provenance for
-  approved CEFR, Exam, and School Level assignments and approved Relations, as
-  specified by the existing contract.
+  all provided Provenance IDs, including CEFR descriptor, Curriculum, and
+  Difficulty Scale evidence. It additionally requires Provenance for approved
+  CEFR, Exam, and School Level assignments and approved Relations, as specified
+  by the existing contract.
 - Same-language `normalizedLemma` collisions emit a warning only; no automatic
   merge or repair occurs.
 

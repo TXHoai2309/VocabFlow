@@ -158,6 +158,41 @@ describe("Master Vocabulary V2 cross-file validator", () => {
     expect(codes(validateMasterVocabularyV2({ datasetRoot, writeReport: false }))).toContain("REFERENCE_TYPE_MISMATCH");
   });
 
+  it("requires Provenance for an approved School Level claim", () => {
+    const classification = record("includedClassifications", fixtureIds.schoolClassification);
+    delete classification.sourceProvenanceIds;
+    writeRecord("includedClassifications", fixtureIds.schoolClassification, classification);
+    updateManifestAndHashes();
+    expect(codes(validateMasterVocabularyV2({ datasetRoot, writeReport: false }))).toContain("APPROVED_PROVENANCE_MISSING");
+  });
+
+  it("resolves Curriculum Provenance IDs across the pinned graph", () => {
+    const taxonomy = record("includedTaxonomySnapshots", fixtureIds.taxonomy);
+    const curricula = taxonomy.curricula as Array<Record<string, unknown>>;
+    curricula[0].sourceProvenanceIds = ["0195f85c-7b2a-7d10-8c01-999999999999"];
+    writeRecord("includedTaxonomySnapshots", fixtureIds.taxonomy, taxonomy);
+    updateManifestAndHashes();
+    expect(codes(validateMasterVocabularyV2({ datasetRoot, writeReport: false }))).toContain("REFERENCE_DANGLING");
+  });
+
+  it("requires Difficulty Scale Provenance under its JSON Schema", () => {
+    const taxonomy = record("includedTaxonomySnapshots", fixtureIds.taxonomy);
+    const scales = taxonomy.difficultyScales as Array<Record<string, unknown>>;
+    delete scales[0].provenanceIds;
+    writeRecord("includedTaxonomySnapshots", fixtureIds.taxonomy, taxonomy);
+    updateManifestAndHashes();
+    expect(codes(validateMasterVocabularyV2({ datasetRoot, writeReport: false }))).toContain("SCHEMA_VALIDATION_FAILED");
+  });
+
+  it("resolves Difficulty Scale Provenance IDs across the pinned graph", () => {
+    const taxonomy = record("includedTaxonomySnapshots", fixtureIds.taxonomy);
+    const scales = taxonomy.difficultyScales as Array<Record<string, unknown>>;
+    scales[0].provenanceIds = ["0195f85c-7b2a-7d10-8c01-999999999999"];
+    writeRecord("includedTaxonomySnapshots", fixtureIds.taxonomy, taxonomy);
+    updateManifestAndHashes();
+    expect(codes(validateMasterVocabularyV2({ datasetRoot, writeReport: false }))).toContain("REFERENCE_DANGLING");
+  });
+
   it("detects Topic hierarchy cycles", () => {
     const taxonomy = record("includedTaxonomySnapshots", fixtureIds.taxonomy);
     const topics = taxonomy.topics as Array<Record<string, unknown>>;
