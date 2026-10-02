@@ -317,6 +317,25 @@ export const learnerVocabularyListResponseSchema = z.object({
 });
 export type LearnerVocabularyListResponse = z.infer<typeof learnerVocabularyListResponseSchema>;
 
+export const learnerSavedVocabularyDtoSchema = z.object({
+  vocabulary: learnerVocabularyDtoSchema,
+  savedAt: z.string().datetime()
+}).strict();
+export type LearnerSavedVocabularyDto = z.infer<typeof learnerSavedVocabularyDtoSchema>;
+
+export const learnerSavedVocabularyResponseSchema = z.object({
+  savedVocabulary: z.array(learnerSavedVocabularyDtoSchema)
+}).strict();
+export type LearnerSavedVocabularyResponse = z.infer<typeof learnerSavedVocabularyResponseSchema>;
+
+export const learnerSavedVocabularyMutationResponseSchema = z.object({
+  learnerId: canonicalUuidSchema,
+  vocabularyId: z.number().int().positive().max(2147483647),
+  saved: z.boolean(),
+  savedAt: z.string().datetime().nullable()
+}).strict();
+export type LearnerSavedVocabularyMutationResponse = z.infer<typeof learnerSavedVocabularyMutationResponseSchema>;
+
 export const progressSummaryResponseSchema = z.object({
   learnerId: canonicalUuidSchema,
   newCount: z.number().int().nonnegative().safe(),

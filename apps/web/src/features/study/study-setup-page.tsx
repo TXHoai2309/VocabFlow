@@ -51,6 +51,7 @@ function SetupIcon({ name }: { name: "back" | "layers" | "new" | "review" | "mix
 function returnHref(scope: StudyScope | null) {
   if (scope?.type === "topic") return `/topics/${scope.id}`;
   if (scope?.type === "learning-set") return `/learning-sets/${scope.id}`;
+  if (scope?.type === "saved") return "/saved";
   return "/learners";
 }
 
@@ -61,6 +62,7 @@ async function requestScopeDetails(scope: Exclude<StudyScope, { type: "invalid" 
     if (!topic) throw new TopicsClientError("SCOPE_NOT_FOUND", 404);
     return { scopeName: topic.name, vocabularyIds: vocabulary.map((item) => item.id) };
   }
+  if (scope.type === "saved") return { scopeName: "Từ đã lưu", vocabularyIds: [] };
   const learningSet = await requestLearningSet(scope.id);
   return { scopeName: learningSet.name, vocabularyIds: learningSet.items.map((item) => item.vocabulary.id) };
 }
@@ -68,6 +70,7 @@ async function requestScopeDetails(scope: Exclude<StudyScope, { type: "invalid" 
 async function requestSetupData(learnerId: string, scope: StudyScope | null): Promise<StudySetupData> {
   if (scope?.type === "invalid") throw new TopicsClientError("INVALID_SCOPE", 404);
   if (!scope) return { queue: await requestScopedReviewQueue(learnerId, null), scopeName: null };
+  if (scope.type === "saved") return { queue: await requestScopedReviewQueue(learnerId, scope), scopeName: "Từ đã lưu" };
   const detailsPromise = requestScopeDetails(scope);
   const [queue, details] = await Promise.all([
     requestScopedReviewQueue(learnerId, scope, detailsPromise.then((details) => details.vocabularyIds)),
@@ -185,6 +188,7 @@ function StudySetupExperience({ activeLearner, scope, returnTo }: { activeLearne
     if (scope?.type === "topic" || scope?.type === "learning-set") {
       params.set(scope.type === "topic" ? "topicId" : "learningSetId", String(scope.id));
     }
+    if (scope?.type === "saved") params.set("saved", "1");
     params.set("count", String(amount));
     params.set("content", selectedContent);
     navigate(`/study?${params.toString()}`, { state: { returnTo } });
@@ -247,7 +251,7 @@ function StudySetupExperience({ activeLearner, scope, returnTo }: { activeLearne
             <dl>
               <div><dt>Số lượng từ</dt><dd data-testid="study-setup-summary-count">{plannedCount} từ</dd></div>
               <div><dt>Chế độ học</dt><dd data-testid="study-setup-summary-mode">{MODE_COPY[selectedContent].title}</dd></div>
-              {data.scopeName ? <div><dt>{scope?.type === "topic" ? "Chủ đề" : "Bộ từ"}</dt><dd data-testid="study-setup-summary-scope">{data.scopeName}</dd></div> : null}
+              {data.scopeName ? <div><dt>{scope?.type === "topic" ? "Chủ đề" : scope?.type === "learning-set" ? "Bộ từ" : "Phạm vi"}</dt><dd data-testid="study-setup-summary-scope">{data.scopeName}</dd></div> : null}
             </dl>
             {plannedCount < amount ? <p className="study-setup-availability">Có {plannedCount} từ phù hợp trong phạm vi này.</p> : null}
           </section>

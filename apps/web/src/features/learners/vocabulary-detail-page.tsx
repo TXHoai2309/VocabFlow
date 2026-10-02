@@ -1,9 +1,10 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, Navigate, useLocation, useParams } from "react-router";
 import type { LearnerDto, LearnerVocabularyDto } from "@vocabflow/contracts";
 import { useActiveLearner } from "./learner-context-hook";
 import { LearnerVocabularyClientError, requestLearnerVocabulary } from "./vocabulary-list-client";
 import { usePronunciationAudio } from "../study/pronunciation-audio";
+import { requestSavedVocabulary, saveVocabulary, unsaveVocabulary } from "./saved-vocabulary-client";
 
 type DetailState = "loading" | "ready" | "error";
 
@@ -25,7 +26,7 @@ type DetailIconName =
   | "chevron"
   | "image";
 
-function DetailIcon({ name, className }: { name: DetailIconName; className?: string }) {
+function DetailIcon({ name, className, filled = false }: { name: DetailIconName; className?: string; filled?: boolean }) {
   const paths: Record<DetailIconName, string> = {
     back: "M15 18 9 12l6-6M20 12H4",
     speaker: "M11 5 6 9H3v6h3l5 4zM15.5 8.5a5 5 0 0 1 0 7m3-10a9 9 0 0 1 0 13",
@@ -46,7 +47,7 @@ function DetailIcon({ name, className }: { name: DetailIconName; className?: str
   };
 
   return (
-    <svg aria-hidden="true" className={className} viewBox="0 0 24 24" fill={name === "play" ? "currentColor" : "none"} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <svg aria-hidden="true" className={className} viewBox="0 0 24 24" fill={name === "play" || (name === "bookmark" && filled) ? "currentColor" : "none"} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
       <path d={paths[name]} />
     </svg>
   );
@@ -96,6 +97,11 @@ function VocabularyDetailExperience({ activeLearner, vocabularyId }: { activeLea
   const [vocabulary, setVocabulary] = useState<LearnerVocabularyDto | null>(null);
   const [allVocabulary, setAllVocabulary] = useState<LearnerVocabularyDto[]>([]);
   const [message, setMessage] = useState<string | null>(null);
+  const [savedVocabularyState, setSavedVocabularyState] = useState<"loading" | "ready" | "error">("loading");
+  const [isSaved, setIsSaved] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const [savedMessage, setSavedMessage] = useState<string | null>(null);
+  const mutationInFlight = useRef(false);
 
   const loadVocabulary = useCallback(async () => {
     setState("loading");
@@ -117,6 +123,39 @@ function VocabularyDetailExperience({ activeLearner, vocabularyId }: { activeLea
     }
   }, [activeLearner.id, vocabularyId]);
 
+  const loadSavedVocabulary = useCallback(async () => {
+    setSavedVocabularyState("loading");
+    setSavedMessage(null);
+    try {
+      const saved = await requestSavedVocabulary(activeLearner.id);
+      setIsSaved(saved.some((entry) => entry.vocabulary.id === vocabularyId));
+      setSavedVocabularyState("ready");
+    } catch {
+      setSavedVocabularyState("error");
+    }
+  }, [activeLearner.id, vocabularyId]);
+
+  const toggleSaved = useCallback(async (item: LearnerVocabularyDto) => {
+    if (savedVocabularyState !== "ready" || mutationInFlight.current) return;
+    const wasSaved = isSaved;
+    mutationInFlight.current = true;
+    setIsSaving(true);
+    setSavedMessage(null);
+    setIsSaved(!wasSaved);
+    try {
+      const response = wasSaved
+        ? await unsaveVocabulary(activeLearner.id, item.id)
+        : await saveVocabulary(activeLearner.id, item.id);
+      if (response.saved === wasSaved) throw new Error("INVALID_RESPONSE");
+    } catch {
+      setIsSaved(wasSaved);
+      setSavedMessage("Không thể lưu từ. Vui lòng thử lại.");
+    } finally {
+      mutationInFlight.current = false;
+      setIsSaving(false);
+    }
+  }, [activeLearner.id, isSaved, savedVocabularyState]);
+
   useEffect(() => {
     let cancelled = false;
     if (!hasValidVocabularyId) return () => { cancelled = true; };
@@ -131,6 +170,22 @@ function VocabularyDetailExperience({ activeLearner, vocabularyId }: { activeLea
         if (cancelled) return;
         setMessage(detailErrorMessage(error));
         setState("error");
+      });
+    return () => { cancelled = true; };
+  }, [activeLearner.id, hasValidVocabularyId, vocabularyId]);
+
+  useEffect(() => {
+    let cancelled = false;
+    if (!hasValidVocabularyId) return () => { cancelled = true; };
+    void requestSavedVocabulary(activeLearner.id)
+      .then((saved) => {
+        if (cancelled) return;
+        setIsSaved(saved.some((entry) => entry.vocabulary.id === vocabularyId));
+        setSavedVocabularyState("ready");
+      })
+      .catch(() => {
+        if (cancelled) return;
+        setSavedVocabularyState("error");
       });
     return () => { cancelled = true; };
   }, [activeLearner.id, hasValidVocabularyId, vocabularyId]);
@@ -163,13 +218,31 @@ function VocabularyDetailExperience({ activeLearner, vocabularyId }: { activeLea
         </section>
       ) : null}
       {state === "ready" && vocabulary ? (
-        <VocabularyDetailContent vocabulary={vocabulary} allVocabulary={allVocabulary} />
+        <VocabularyDetailContent
+          vocabulary={vocabulary}
+          allVocabulary={allVocabulary}
+          isSaved={isSaved}
+          isSaving={isSaving}
+          savedVocabularyState={savedVocabularyState}
+          savedMessage={savedMessage}
+          onToggleSaved={() => void toggleSaved(vocabulary)}
+          onRetrySaved={() => void loadSavedVocabulary()}
+        />
       ) : null}
     </main>
   );
 }
 
-function VocabularyDetailContent({ vocabulary, allVocabulary }: { vocabulary: LearnerVocabularyDto; allVocabulary: LearnerVocabularyDto[] }) {
+function VocabularyDetailContent({ vocabulary, allVocabulary, isSaved, isSaving, savedVocabularyState, savedMessage, onToggleSaved, onRetrySaved }: {
+  vocabulary: LearnerVocabularyDto;
+  allVocabulary: LearnerVocabularyDto[];
+  isSaved: boolean;
+  isSaving: boolean;
+  savedVocabularyState: "loading" | "ready" | "error";
+  savedMessage: string | null;
+  onToggleSaved: () => void;
+  onRetrySaved: () => void;
+}) {
   const [imageFailed, setImageFailed] = useState(false);
   const audio = usePronunciationAudio(vocabulary.audioUrl, vocabulary.word, vocabulary.id);
   const relatedWords = vocabulary.topic
@@ -222,20 +295,25 @@ function VocabularyDetailContent({ vocabulary, allVocabulary }: { vocabulary: Le
                 {audio.state === "loading" ? "Đang tải…" : audio.state === "playing" ? "Tạm dừng" : audio.state === "ended" ? "Nghe lại" : "Nghe phát âm"}
               </button>
               <button
-                className="vocabulary-detail-action vocabulary-detail-action-secondary"
+                className={`vocabulary-detail-action vocabulary-detail-action-secondary${isSaved ? " is-saved" : ""}`}
                 type="button"
-                disabled
-                aria-label="Lưu từ — hiện chưa hỗ trợ lưu từng từ"
-                title="Hiện chưa hỗ trợ lưu từng từ."
+                disabled={savedVocabularyState !== "ready" || isSaving}
+                aria-label={`${isSaved ? "Bỏ lưu" : "Lưu"} từ ${vocabulary.word}`}
+                aria-pressed={isSaved}
+                aria-busy={isSaving || savedVocabularyState === "loading"}
+                title={isSaved ? `Bỏ lưu ${vocabulary.word}` : `Lưu ${vocabulary.word}`}
+                onClick={onToggleSaved}
               >
-                <DetailIcon name="bookmark" />
-                Lưu từ
+                <DetailIcon name="bookmark" filled={isSaved} />
+                {isSaved ? "Đã lưu" : "Lưu từ"}
               </button>
               <Link className="vocabulary-detail-action vocabulary-detail-action-secondary" to="/study/setup">
                 <DetailIcon name="play" />
                 Bắt đầu học
               </Link>
             </div>
+            {savedVocabularyState === "error" ? <p className="vocabulary-detail-save-error" role="alert">Không thể tải trạng thái từ đã lưu. <button type="button" onClick={onRetrySaved}>Thử lại</button></p> : null}
+            {savedMessage ? <p className="vocabulary-detail-save-error" role="alert">{savedMessage}</p> : null}
             {audio.state === "error" ? <p className="vocabulary-detail-audio-error" role="status">Âm thanh không khả dụng lúc này.</p> : null}
           </div>
 

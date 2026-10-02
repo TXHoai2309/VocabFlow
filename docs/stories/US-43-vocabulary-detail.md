@@ -1,9 +1,9 @@
 # US-43 — Vocabulary Detail
 
-- Status: IN PROGRESS
-- Priority: Owner-reprioritized for implementation on 2026-10-02 while US-42 remains open; US-42 work resumes after this review.
+- Status: IMPLEMENTED / READY FOR OWNER CHECK
+- Priority: Owner-reprioritized on 2026-10-02 while US-42 remained open; implementation checks are complete and the owner review is pending.
 - Owner: Project Owner
-- Last updated: 2026-10-02
+- Last updated: 2026-10-03
 - Baseline commit: `ecba98126e6ea7629e720c4c2a881a45a6b1d409`
 
 ## 1. User Story
@@ -63,8 +63,8 @@ parallel content, learning metrics, or persistence behavior.
 - AC-04: Missing optional fields use explicit empty states; no sample data or
   derived mastery/review counts are presented as real learner facts.
 - AC-05: Pronunciation uses the existing audio hook; study action uses the
-  existing `/study` route. Save is visibly unavailable because favorites are
-  outside the accepted product scope.
+  existing `/study` route. The bookmark reads and changes the learner-owned
+  saved state delivered by US-46; US-43 does not own its persistence contract.
 - AC-06: Desktop uses a hero/content column and contextual right column;
   tablet stacks the contextual cards and mobile stacks all content without
   horizontal overflow. Controls remain keyboard accessible with visible focus.
@@ -99,8 +99,9 @@ parallel content, learning metrics, or persistence behavior.
 
 ## 12. Data and Persistence Contract
 
-- No schema or persistence changes. Favorites and per-word metrics remain
-  unavailable and are not simulated.
+- US-43 itself adds no schema or persistence. Saved state is supplied by the
+  separate US-46 learner relation; per-word metrics remain unavailable and
+  are not simulated.
 
 ## 13. Error and Recovery Matrix
 
@@ -145,8 +146,8 @@ Read-only; no mutation semantics apply.
 ## 19. Open Questions and Blockers
 
 - Owner review may decide whether future vocabulary content should add
-  Vietnamese definitions/translations, part of speech, synonyms/antonyms,
-  favorites, or per-word progress metrics.
+  Vietnamese definitions/translations, part of speech, synonyms/antonyms, or
+  per-word progress metrics. Saved words are tracked independently in US-46.
 
 ## 20. Acceptance Evidence
 

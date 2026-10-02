@@ -5,12 +5,12 @@ import { usePronunciationAudio } from "../study/pronunciation-audio";
 
 export type VocabularyCardItem = Pick<
   VocabularyDto,
-  "id" | "word" | "ipa" | "vietnamese" | "imageUrl" | "audioUrl" | "level"
+  "id" | "word" | "ipa" | "vietnamese" | "imageUrl" | "audioUrl" | "level" | "topic"
 > & { status?: LearnerVocabularyDto["status"] };
 
 type VocabularyIconName = "bookmark" | "speaker" | "image";
 
-function VocabularyIcon({ name }: { name: VocabularyIconName }) {
+function VocabularyIcon({ name, filled = false }: { name: VocabularyIconName; filled?: boolean }) {
   const paths: Record<VocabularyIconName, string> = {
     bookmark: "M6 4h12v17l-6-4-6 4z",
     speaker: "M11 5 6 9H3v6h3l5 4zM15.5 8.5a5 5 0 0 1 0 7m3-10a9 9 0 0 1 0 13",
@@ -19,7 +19,7 @@ function VocabularyIcon({ name }: { name: VocabularyIconName }) {
 
   return (
     <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" focusable="false">
-      <path d={paths[name]} />
+      <path d={paths[name]} fill={filled ? "currentColor" : "none"} />
     </svg>
   );
 }
@@ -33,15 +33,32 @@ function statusLabel(status: NonNullable<VocabularyCardItem["status"]>) {
   return status === "NEW" ? "Chưa học" : status === "LEARNING" ? "Đang học" : "Đã học";
 }
 
-export function VocabularyCard({ item, showStatus = false }: { item: VocabularyCardItem; showStatus?: boolean }) {
+function formattedSavedDate(value: string | null | undefined) {
+  if (!value) return null;
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return null;
+  return new Intl.DateTimeFormat("vi-VN", { day: "2-digit", month: "2-digit", year: "numeric" }).format(date);
+}
+
+export function VocabularyCard({ item, showStatus = false, showTopic = false, variant = "card", isSaved = false, isSaving = false, bookmarkDisabled = false, savedAt, onToggleSaved }: {
+  item: VocabularyCardItem;
+  showStatus?: boolean;
+  showTopic?: boolean;
+  variant?: "card" | "row";
+  isSaved?: boolean;
+  isSaving?: boolean;
+  bookmarkDisabled?: boolean;
+  savedAt?: string | null;
+  onToggleSaved?: (item: VocabularyCardItem) => void;
+}) {
   const [imageFailed, setImageFailed] = useState(false);
   const audio = usePronunciationAudio(item.audioUrl, item.word, item.id);
   const imageUrl = item.imageUrl?.trim();
   const level = levelLabel(item.level);
 
   return (
-    <li className="vocabulary-card-item" data-testid={`vocabulary-row-${item.id}`}>
-      <article className="vocabulary-card">
+    <li className={`vocabulary-card-item${variant === "row" ? " is-row" : ""}`} data-testid={`vocabulary-row-${item.id}`}>
+      <article className={`vocabulary-card${variant === "row" ? " is-row" : ""}`}>
         <Link className="vocabulary-card-link" to={`/vocabulary/${item.id}`} aria-label={`${item.word}${item.ipa ? `, ${item.ipa}` : ""}. ${item.vietnamese}. Xem chi tiết`}>
           <span className="vocabulary-card-thumbnail">
             {imageUrl && !imageFailed ? (
@@ -54,10 +71,25 @@ export function VocabularyCard({ item, showStatus = false }: { item: VocabularyC
             {item.ipa ? <span className="vocabulary-card-ipa">{item.ipa}</span> : null}
             <span className="vocabulary-card-meaning">{item.vietnamese}</span>
             {showStatus && item.status ? <span className={`vocabulary-card-status vocabulary-card-status-${item.status.toLowerCase()}`}>{statusLabel(item.status)}</span> : null}
+            {showTopic && item.topic ? <span className="vocabulary-card-topic">{item.topic}</span> : null}
           </span>
         </Link>
-        <button className="vocabulary-bookmark-button" type="button" disabled title="Hiện chưa hỗ trợ lưu từng từ" aria-label={`Hiện chưa hỗ trợ lưu từng từ: ${item.word}`}>
-          <VocabularyIcon name="bookmark" />
+        {variant === "row" && savedAt ? <span className="vocabulary-card-saved-date">Đã lưu {formattedSavedDate(savedAt)}</span> : null}
+        <button
+          className={`vocabulary-bookmark-button${isSaved ? " is-saved" : ""}`}
+          type="button"
+          disabled={bookmarkDisabled || isSaving || !onToggleSaved}
+          aria-label={`${isSaved ? "Bỏ lưu" : "Lưu"} từ ${item.word}`}
+          aria-pressed={isSaved}
+          aria-busy={isSaving}
+          title={isSaved ? `Bỏ lưu ${item.word}` : `Lưu ${item.word}`}
+          onClick={(event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            onToggleSaved?.(item);
+          }}
+        >
+          <VocabularyIcon name="bookmark" filled={isSaved} />
         </button>
         <button
           className="vocabulary-audio-button"

@@ -374,6 +374,26 @@ describe("US-09 flashcard session UX", () => {
     expect(screen.getByRole("link", { name: /Học tiếp/ })).toHaveAttribute("href", "/study/setup?learningSetId=4");
   });
 
+  it("preserves the saved vocabulary scope through a completed session summary", async () => {
+    const apple = queueItem(1, "apple");
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
+      const url = String(input);
+      if (url === `/api/learners/${learner.id}/review-queue?scope=saved`) return response(queueResponse([apple]));
+      if (url.endsWith("/reviews")) return response(reviewResponse(apple, "REMEMBERED"), 201);
+      return response({ error: { code: "NOT_FOUND" } }, 404);
+    });
+    renderStudy(learner, "flashcard", "/study?saved=1&count=1&content=new");
+
+    expect(await screen.findByTestId("study-session-ready")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
+    fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
+    await screen.findByTestId("study-session-summary");
+
+    expect(screen.getByRole("link", { name: /Học tiếp/ })).toHaveAttribute("href", "/study/setup?saved=1");
+    expect(fetchMock).toHaveBeenCalledWith(`/api/learners/${learner.id}/review-queue?scope=saved`, { credentials: "include" });
+    expect(fetchMock.mock.calls.some(([url]) => String(url) === `/api/learners/${learner.id}/review-queue`)).toBe(false);
+  });
+
   it("hides the current streak when the summary read fails", async () => {
     requestActivitySummaryMock.mockRejectedValueOnce(new Error("unavailable"));
     const item = queueItem(1, "apple");

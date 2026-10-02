@@ -1,5 +1,23 @@
 # Current Handoff Snapshot
 
+## 2026-10-02 — Saved Vocabulary (US-46)
+
+- Owner explicitly started Feature #8. Audit found no prior persistence, API,
+  or favorite state; learner ownership is the existing progress boundary.
+- Implemented a new learner-to-vocabulary relation, additive migration 0017,
+  authenticated list/save/unsave endpoints, a server-enforced saved queue
+  scope, Saved Words route, and bookmark controls on Catalog and Detail.
+- Search/level/topic state is URL-backed. The saved queue applies membership
+  in SQL before existing New/Due limits; Review writes and progress semantics
+  remain unchanged. No browser storage or Dataset V2 content is used.
+- Focused Saved Words, API, queue, Catalog, Detail, Study Setup, Summary and
+  application-schema tests pass (9 files / 104 tests). `pnpm typecheck`,
+  feature ESLint, `pnpm build`, and `git diff --check` pass. Local Node is
+  22.19.0 while the repo pins 22.23.2; build completes with existing dynamic-
+  import and bundle-size warnings.
+- Migration validation is offline. No live database operation, Dataset V2
+  change, or production deployment was performed.
+
 ## 2026-10-02 — Master Vocabulary Dataset V2 Phase 2A validator
 
 - Added `scripts/validate-master-vocabulary-v2.ts` and

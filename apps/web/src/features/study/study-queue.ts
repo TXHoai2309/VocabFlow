@@ -3,14 +3,19 @@ import { requestLearningSet } from "../learning-sets/learning-sets-client";
 import { requestTopicVocabulary } from "../learners/topics-client";
 import { requestReviewQueue } from "./review-queue-client";
 
-export type StudyScope = { type: "topic" | "learning-set"; id: number } | { type: "invalid" };
+export type StudyScope = { type: "topic" | "learning-set"; id: number } | { type: "saved" } | { type: "invalid" };
 export type StudyContentMode = "new" | "review" | "mixed";
 export type StudySelection = { amount: 5 | 10 | 20 | 30; content: StudyContentMode };
 
 export function studyScopeFromParams(searchParams: URLSearchParams): StudyScope | null {
   const topicId = searchParams.get("topicId");
   const learningSetId = searchParams.get("learningSetId");
-  if (topicId !== null && learningSetId !== null) return { type: "invalid" };
+  const savedValues = searchParams.getAll("saved");
+  const saved = savedValues[0] ?? null;
+  if ((topicId !== null && learningSetId !== null)
+    || savedValues.length > 1
+    || (saved !== null && (saved !== "1" || topicId !== null || learningSetId !== null))) return { type: "invalid" };
+  if (saved === "1") return { type: "saved" };
   const type = topicId !== null ? "topic" : learningSetId !== null ? "learning-set" : null;
   if (!type) return null;
   const rawId = topicId ?? learningSetId;
@@ -59,8 +64,9 @@ export async function requestScopedReviewQueue(
   scope: StudyScope | null,
   scopedVocabularyIds?: Promise<number[]>
 ): Promise<ReviewQueueResponse> {
+  if (!scope) return requestReviewQueue(learnerId);
+  if (scope.type === "saved") return requestReviewQueue(learnerId, "saved");
   const response = await requestReviewQueue(learnerId);
-  if (!scope) return response;
   if (scope.type === "invalid") return { ...response, queue: [], dueCount: 0, newCount: 0 };
 
   const vocabularyIds = scopedVocabularyIds

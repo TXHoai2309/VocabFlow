@@ -388,7 +388,7 @@ Network/5xx → SAVE_FAILED → giữ nguyên card → Retry cùng reviewId
 | Search | Search theo English word; client/server implementation tùy backlog. |
 | Status | Chip New / Learning / Mastered; Due là secondary indicator nếu applicable. |
 | Open item | Optional simple detail/read-only; không tạo edit flow. |
-| Favorite / custom sets | OUT v1.0. |
+| Favorites / saved words | Learner-owned favorites are in scope under US-46; custom sets remain a separate capability. |
 | Content editing | OUT v1.0. |
 
 | **State** | **Behavior** |
@@ -397,6 +397,18 @@ Network/5xx → SAVE_FAILED → giữ nguyên card → Retry cùng reviewId
 | No enabled vocabulary | Content empty/error state; Study CTA disabled. |
 | Search no result | “Không tìm thấy từ phù hợp”; clear-search action. |
 | Optional media missing | Không ảnh hưởng row/list. |
+
+## 7.1e Saved vocabulary (US-46)
+
+| **Capability** | **Behavior** |
+| --- | --- |
+| Saved page | `/saved` lists only the active learner's persisted saved vocabulary. |
+| Search | Trimmed, case-insensitive English word and Vietnamese meaning search. |
+| Filters | Runtime vocabulary levels and topics from saved records; search, level and topic combine with AND and remain in URL parameters. |
+| Save controls | Catalog, detail and saved rows expose a semantic bookmark with a learner-specific pressed state. Save/unsave is optimistic, blocks duplicate requests and rolls back with an accessible error on failure. |
+| Study action | “Học tất cả từ đã lưu” opens Study Setup with `saved=1`; the server queue applies saved membership before New/Review selection. |
+| Empty states | No saved records offers a link to Vocabulary; filter mismatch offers a clear-filters action. |
+| Learner change | Changing active learner reloads the saved relation and never reuses another learner's state. |
 
 ## 7.1a Vocabulary taxonomy browse
 

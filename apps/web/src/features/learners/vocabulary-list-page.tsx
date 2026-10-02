@@ -1,9 +1,10 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, Navigate, useLocation, useSearchParams } from "react-router";
 import type { LearnerDto, LearnerVocabularyDto, VocabularyLevel } from "@vocabflow/contracts";
 import { useActiveLearner } from "./learner-context-hook";
 import { LearnerVocabularyClientError, requestLearnerVocabulary } from "./vocabulary-list-client";
 import { VocabularyCard } from "./vocabulary-card";
+import { requestSavedVocabulary, saveVocabulary, unsaveVocabulary } from "./saved-vocabulary-client";
 
 type VocabularyListState = "loading" | "ready" | "error";
 type VocabularyIconName = "home" | "book" | "level" | "search" | "clear" | "previous" | "next";
@@ -70,6 +71,11 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
   const [state, setState] = useState<VocabularyListState>("loading");
   const [vocabulary, setVocabulary] = useState<LearnerVocabularyDto[]>([]);
   const [message, setMessage] = useState<string | null>(null);
+  const [savedVocabularyState, setSavedVocabularyState] = useState<"loading" | "ready" | "error">("loading");
+  const [savedIds, setSavedIds] = useState<Set<number>>(new Set());
+  const [savingIds, setSavingIds] = useState<Set<number>>(new Set());
+  const [savedMessage, setSavedMessage] = useState<string | null>(null);
+  const mutationInFlight = useRef(new Set<number>());
 
   const loadVocabulary = useCallback(async () => {
     setState("loading");
@@ -83,6 +89,53 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
       setMessage(listErrorMessage(error));
     }
   }, [activeLearner.id]);
+
+  const loadSavedVocabulary = useCallback(async () => {
+    setSavedVocabularyState("loading");
+    setSavedMessage(null);
+    try {
+      const saved = await requestSavedVocabulary(activeLearner.id);
+      setSavedIds(new Set(saved.map((item) => item.vocabulary.id)));
+      setSavedVocabularyState("ready");
+    } catch {
+      setSavedVocabularyState("error");
+    }
+  }, [activeLearner.id]);
+
+  const toggleSaved = useCallback(async (item: LearnerVocabularyDto) => {
+    if (savedVocabularyState !== "ready" || mutationInFlight.current.has(item.id)) return;
+    const wasSaved = savedIds.has(item.id);
+    mutationInFlight.current.add(item.id);
+    setSavingIds((current) => new Set(current).add(item.id));
+    setSavedMessage(null);
+    setSavedIds((current) => {
+      const next = new Set(current);
+      if (wasSaved) next.delete(item.id);
+      else next.add(item.id);
+      return next;
+    });
+    try {
+      const response = wasSaved
+        ? await unsaveVocabulary(activeLearner.id, item.id)
+        : await saveVocabulary(activeLearner.id, item.id);
+      if (response.saved === wasSaved) throw new Error("INVALID_RESPONSE");
+    } catch {
+      setSavedIds((current) => {
+        const next = new Set(current);
+        if (wasSaved) next.add(item.id);
+        else next.delete(item.id);
+        return next;
+      });
+      setSavedMessage("Không thể lưu từ. Vui lòng thử lại.");
+    } finally {
+      mutationInFlight.current.delete(item.id);
+      setSavingIds((current) => {
+        const next = new Set(current);
+        next.delete(item.id);
+        return next;
+      });
+    }
+  }, [activeLearner.id, savedIds, savedVocabularyState]);
 
   useEffect(() => {
     let cancelled = false;
@@ -100,6 +153,21 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
     return () => {
       cancelled = true;
     };
+  }, [activeLearner.id]);
+
+  useEffect(() => {
+    let cancelled = false;
+    void requestSavedVocabulary(activeLearner.id)
+      .then((saved) => {
+        if (cancelled) return;
+        setSavedIds(new Set(saved.map((item) => item.vocabulary.id)));
+        setSavedVocabularyState("ready");
+      })
+      .catch(() => {
+        if (cancelled) return;
+        setSavedVocabularyState("error");
+      });
+    return () => { cancelled = true; };
   }, [activeLearner.id]);
 
   const filteredVocabulary = vocabulary.filter((item) => {
@@ -217,6 +285,14 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
         </div>
       ) : null}
 
+      {savedVocabularyState === "error" ? (
+        <div className="saved-vocabulary-inline-error" role="alert">
+          <span>Không thể tải trạng thái từ đã lưu.</span>
+          <button type="button" onClick={() => void loadSavedVocabulary()}>Thử lại</button>
+        </div>
+      ) : null}
+      {savedMessage ? <p className="saved-vocabulary-inline-error" role="alert">{savedMessage}</p> : null}
+
       {state === "ready" ? (
         vocabulary.length === 0 ? (
           <div className="vocabulary-empty" data-testid="vocabulary-empty-state" role="status">
@@ -240,7 +316,16 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
               {pageCount > 1 ? <span className="vocabulary-page-summary">Trang {currentPage} / {pageCount}</span> : null}
             </div>
             <ul className="vocabulary-grid" data-testid="vocabulary-grid">
-              {pageVocabulary.map((item) => <VocabularyCard key={item.id} item={item} />)}
+              {pageVocabulary.map((item) => (
+                <VocabularyCard
+                  key={item.id}
+                  item={item}
+                  isSaved={savedIds.has(item.id)}
+                  isSaving={savingIds.has(item.id)}
+                  bookmarkDisabled={savedVocabularyState !== "ready"}
+                  onToggleSaved={() => void toggleSaved(item)}
+                />
+              ))}
             </ul>
             {pageCount > 1 ? (
               <nav className="vocabulary-pagination" aria-label="Phân trang từ vựng">

@@ -363,3 +363,28 @@ evidence condition is met and the affected source document is updated.
   `drizzle/migrations/0015_clean_yellowjacket.sql`.
 - Revisit only if: the projection contract, history-preservation guarantees,
   runtime identity model, or explicit ownership policy changes.
+
+## DEC-021 — Learner-owned saved vocabulary
+
+- Status: ACCEPTED
+- Date: 2026-10-02
+- Context: The owner explicitly reprioritized Feature #8 after the earlier
+  vocabulary UI baseline had deferred favorites. Saved state must survive
+  reloads, remain isolated by active learner, and constrain study selection.
+- Decision: Persist only the `(learner_id, vocabulary_id, created_at)` relation
+  in an additive table with a composite primary key and foreign keys to the
+  learner and runtime vocabulary. Expose authenticated learner-scoped list,
+  idempotent POST save, and idempotent DELETE unsave routes. Catalog, Detail
+  and Saved Words read state from that relation. The saved study queue applies
+  the relation in SQL before New/Due selection and retains existing scheduler
+  limits and review-write behavior.
+- Consequences: Vocabulary content remains canonical in `vocabularies`; saved
+  state is not copied into client storage or Master Vocabulary Dataset V2.
+  `/saved` is the single Saved Words route; its search and filters are
+  URL-backed. The feature is additive and does not change active-set
+  assignment, progress, review history, or content authoring.
+- Evidence/source: [US-46 Saved Vocabulary](stories/US-46-saved-vocabulary.md),
+  [Feature UI Specification](design/feature-ui-spec.md#71e-saved-vocabulary-us-46),
+  migration `drizzle/migrations/0017_nosy_hellfire_club.sql`.
+- Revisit only if: the owner changes learner ownership, saved queue semantics,
+  or the runtime vocabulary identity boundary.

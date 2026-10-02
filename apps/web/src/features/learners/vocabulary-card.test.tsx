@@ -15,6 +15,7 @@ const item: VocabularyCardItem = {
   imageUrl: null,
   audioUrl: "/audio/apple.mp3",
   level: "GRADE_1",
+  topic: "Hoa quả",
   status: "LEARNING"
 };
 

@@ -114,6 +114,20 @@ describe("US-08 review queue API boundary", () => {
     expect(timing).not.toContain("secret");
   });
 
+  it("accepts the saved scope, passes it to the queue service, and rejects unknown or duplicate scope params", async () => {
+    const queue: ReviewQueueResponse = { learnerId, reviewDate: "2026-09-14", dueCount: 0, newCount: 0, queue: [] };
+    const service = { list: vi.fn(async () => queue) };
+    const app = createApp({ readSession: async () => ({ user: { id: "parent-1" } }), reviewQueueService: service });
+
+    const saved = await app.request(`http://localhost/api/learners/${learnerId}/review-queue?scope=saved`);
+    expect(saved.status).toBe(200);
+    expect(service.list).toHaveBeenCalledWith("parent-1", learnerId, expect.any(Object), "saved");
+    expect(await saved.json()).toEqual(queue);
+    expect((await app.request(`http://localhost/api/learners/${learnerId}/review-queue?scope=other`)).status).toBe(400);
+    expect((await app.request(`http://localhost/api/learners/${learnerId}/review-queue?scope=saved&scope=saved`)).status).toBe(400);
+    expect(service.list).toHaveBeenCalledOnce();
+  });
+
   it("maps authorization and database failures to safe outward errors", async () => {
     const denied = createApp({
       readSession: async () => ({ user: { id: "parent-1" } }),
@@ -138,6 +152,33 @@ describe("US-08 review queue API boundary", () => {
 });
 
 describe("US-08 review queue service", () => {
+  it("restricts both saved due and new rows to this learner's saved vocabulary", async () => {
+    const queries: Array<{ sql: string; params: unknown[] }> = [];
+    const execute = vi.fn(async (query) => {
+      const rendered = new PgDialect().sqlToQuery(query);
+      queries.push(rendered);
+      if (queries.length === 1) return authorizedRows();
+      if (rendered.sql.includes("SELECT timezone")) return { rows: [{ timezone: "Asia/Ho_Chi_Minh" }] };
+      if (rendered.sql.includes("daily_new_word_limit")) return dailyUsageRow();
+      if (rendered.sql.includes("next_review_date <=")) return { rows: [dueRow(7, 1)] };
+      if (rendered.sql.includes("lp.vocabulary_id IS NULL")) return { rows: [newRow(9, 1)] };
+      return { rows: [] };
+    });
+    const service = createReviewQueueService({ execute }, { now: () => new Date("2026-09-14T03:00:00.000Z") });
+
+    const result = await service.list("parent-1", learnerId, undefined, "saved");
+
+    expect(result.queue.map((entry) => [entry.vocabulary.id, entry.queueType])).toEqual([[7, "DUE"], [9, "NEW"]]);
+    const dueQuery = queries.find(({ sql: statement }) => statement.includes("next_review_date <="))?.sql ?? "";
+    const newQuery = queries.find(({ sql: statement }) => statement.includes("lp.vocabulary_id IS NULL"))?.sql ?? "";
+    for (const statement of [dueQuery, newQuery]) {
+      expect(statement).toContain('"vocabflow_app"."learner_saved_vocabulary"');
+      expect(statement).toContain("saved.learner_id =");
+      expect(statement).not.toContain('"vocabflow_app"."learner_learning_sets"');
+    }
+    expect(queries.some(({ params }) => params.includes(learnerId))).toBe(true);
+  });
+
   it("authorizes the learner, derives the household date, and returns due before sparse new", async () => {
     const queries: Array<{ sql: string; params: unknown[] }> = [];
     const results: unknown[] = [

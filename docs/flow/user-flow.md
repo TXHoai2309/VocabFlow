@@ -4,7 +4,7 @@
 - Version: v1
 - Source baseline: `VocabFlow_User_Flow_v1.docx`
 - Canonical format: Markdown
-- Last synchronized: 2026-09-24
+- Last synchronized: 2026-10-03
 
 **VOCABFLOW**
 
@@ -26,6 +26,14 @@ Parent selects a learner → opens Progress → sees current summary, daily goal
 and streak → inspects the last seven household-local dates and current topic
 state. A learner switch reloads every learner-scoped read model. Reset leaves
 historical weekly activity intact while topic state returns to virtual New.
+
+## Saved vocabulary extension (US-46)
+
+Parent selects the active learner → saves or removes vocabulary from the
+Catalog or Word Detail → opens `/saved` to search/filter that learner's saved
+words → starts Study Setup with `saved=1` → the server returns only saved New
+and due Review vocabulary. Learner switching reloads the saved relationship;
+the continue action retains the saved scope.
 
 **User Flow v1**
 

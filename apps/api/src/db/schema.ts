@@ -370,6 +370,19 @@ export const learnerProgress = vocabflowApp.table("learner_progress", {
   check("learner_progress_revision_check", sql`${table.revision} >= 0 AND ${table.revision} <= 9007199254740991`)
 ]);
 
+export const learnerSavedVocabulary = vocabflowApp.table("learner_saved_vocabulary", {
+  learnerId: uuid("learner_id")
+    .notNull()
+    .references(() => learnerProfiles.id, { onDelete: "no action" }),
+  vocabularyId: integer("vocabulary_id")
+    .notNull()
+    .references(() => vocabularies.id, { onDelete: "no action" }),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow()
+}, (table) => [
+  primaryKey({ columns: [table.learnerId, table.vocabularyId], name: "learner_saved_vocabulary_learner_vocabulary_pk" }),
+  index("learner_saved_vocabulary_learner_saved_at_idx").on(table.learnerId, table.createdAt, table.vocabularyId)
+]);
+
 export const reviewEvents = vocabflowApp.table("review_events", {
   householdId: uuid("household_id")
     .notNull()

@@ -53,6 +53,12 @@ function response(vocabulary: LearnerVocabularyDto[], status = 200) {
   });
 }
 
+function savedResponse(saved: LearnerVocabularyDto[] = []) {
+  return new Response(JSON.stringify({ savedVocabulary: saved.map((vocabulary) => ({ vocabulary, savedAt: "2026-10-02T10:00:00.000Z" })) }), {
+    headers: { "Content-Type": "application/json" }
+  });
+}
+
 function LearnerRouteProbe() {
   const location = useLocation();
   const returnTo = (location.state as { returnTo?: unknown } | null)?.returnTo;
@@ -80,7 +86,10 @@ function renderList(initialLearner: LearnerDto | null = learnerA, path = "/vocab
 }
 
 function mockVocabulary(items: LearnerVocabularyDto[]) {
-  return vi.spyOn(globalThis, "fetch").mockResolvedValue(response(items));
+  return vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
+    const url = String(input);
+    return url.endsWith("/saved-vocabulary") ? savedResponse() : response(items);
+  });
 }
 
 describe("US-22 vocabulary list UI", () => {
@@ -102,7 +111,7 @@ describe("US-22 vocabulary list UI", () => {
     expect(screen.getByTestId("vocabulary-row-1")).toHaveTextContent("apple");
     expect(screen.getByTestId("vocabulary-row-1")).toHaveTextContent("/ˈæp.əl/");
     expect(screen.getByTestId("vocabulary-row-1")).toHaveTextContent("Lớp 1");
-    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(fetchMock.mock.calls.filter(([url]) => String(url).endsWith("/vocabulary"))).toHaveLength(1);
     expect(fetchMock).toHaveBeenCalledWith(`/api/learners/${learnerA.id}/vocabulary`, { credentials: "include" });
   });
 
@@ -189,7 +198,7 @@ describe("US-22 vocabulary list UI", () => {
     expect(screen.getByTestId("vocabulary-row-1")).toBeInTheDocument();
     expect(screen.queryByTestId("vocabulary-row-2")).not.toBeInTheDocument();
     expect(screen.queryByTestId("vocabulary-row-3")).not.toBeInTheDocument();
-    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(fetchMock.mock.calls.filter(([url]) => String(url).endsWith("/vocabulary"))).toHaveLength(1);
   });
 
   it("initializes the search input and results from the q URL parameter", async () => {
@@ -249,13 +258,53 @@ describe("US-22 vocabulary list UI", () => {
     expect(card.querySelector("svg")).toBeInTheDocument();
   });
 
-  it("disables audio and the unsupported bookmark when the corresponding features are unavailable", async () => {
+  it("disables audio without a real audio URL and enables the real save control", async () => {
     mockVocabulary([item(1, "apple")]);
     renderList();
     const card = await screen.findByTestId("vocabulary-row-1");
 
     expect(within(card).getByRole("button", { name: "Nghe phát âm apple" })).toBeDisabled();
-    expect(within(card).getByRole("button", { name: "Hiện chưa hỗ trợ lưu từng từ: apple" })).toBeDisabled();
+    expect(within(card).getByRole("button", { name: "Lưu từ apple" })).toBeEnabled();
+  });
+
+  it("saves optimistically and does not navigate when the bookmark is clicked", async () => {
+    const saved = new Set<number>();
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation(async (input, init) => {
+      const url = String(input);
+      const match = url.match(/saved-vocabulary\/(\d+)$/);
+      if (match) {
+        const id = Number(match[1]);
+        if (init?.method === "POST") saved.add(id);
+        else if (init?.method === "DELETE") saved.delete(id);
+        return new Response(JSON.stringify({ learnerId: learnerA.id, vocabularyId: id, saved: init?.method === "POST", savedAt: init?.method === "POST" ? "2026-10-02T10:00:00.000Z" : null }), { headers: { "Content-Type": "application/json" } });
+      }
+      return url.endsWith("/saved-vocabulary")
+        ? savedResponse([...saved].map((id) => item(id, "apple")))
+        : response([item(1, "apple", "NEW", "GRADE_1", { audioUrl: "/apple.mp3" })]);
+    });
+    renderList();
+    const card = await screen.findByTestId("vocabulary-row-1");
+
+    fireEvent.click(within(card).getByRole("button", { name: "Lưu từ apple" }));
+
+    await waitFor(() => expect(within(card).getByRole("button", { name: "Bỏ lưu từ apple" })).toHaveAttribute("aria-pressed", "true"));
+    expect(screen.getByTestId("current-url")).toHaveTextContent("/vocabulary");
+    expect(fetchMock.mock.calls.some(([url, init]) => String(url).endsWith("/saved-vocabulary/1") && init?.method === "POST")).toBe(true);
+    expect(screen.queryByTestId("detail-route")).not.toBeInTheDocument();
+  });
+
+  it("rolls back a failed save with an accessible message", async () => {
+    vi.spyOn(globalThis, "fetch").mockImplementation(async (input, init) => {
+      if (String(input).endsWith("/saved-vocabulary/1") && init?.method === "POST") return response([], 503);
+      return String(input).endsWith("/saved-vocabulary") ? savedResponse() : response([item(1, "apple")]);
+    });
+    renderList();
+    const card = await screen.findByTestId("vocabulary-row-1");
+
+    fireEvent.click(within(card).getByRole("button", { name: "Lưu từ apple" }));
+
+    expect(await screen.findByRole("alert")).toHaveTextContent("Không thể lưu từ. Vui lòng thử lại.");
+    expect(within(card).getByRole("button", { name: "Lưu từ apple" })).toHaveAttribute("aria-pressed", "false");
   });
 
   it("shows a separate empty state when the API returns no vocabulary", async () => {
@@ -292,21 +341,25 @@ describe("US-22 vocabulary list UI", () => {
   });
 
   it("shows a retry action after a list request fails", async () => {
-    const fetchMock = vi.spyOn(globalThis, "fetch")
-      .mockResolvedValueOnce(response([], 503))
-      .mockResolvedValueOnce(response([item(1, "apple")]));
+    let vocabularyCalls = 0;
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
+      if (String(input).endsWith("/saved-vocabulary")) return savedResponse();
+      vocabularyCalls += 1;
+      return vocabularyCalls === 1 ? response([], 503) : response([item(1, "apple")]);
+    });
     renderList();
 
     expect(await screen.findByTestId("vocabulary-error")).toHaveTextContent("Không thể tải từ vựng lúc này. Vui lòng thử lại.");
     fireEvent.click(screen.getByRole("button", { name: "Thử lại" }));
     expect(await screen.findByTestId("vocabulary-row-1")).toBeInTheDocument();
-    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(fetchMock.mock.calls.filter(([url]) => String(url).endsWith("/vocabulary"))).toHaveLength(2);
   });
 
   it("refreshes the vocabulary using the newly selected learner", async () => {
-    const fetchMock = vi.spyOn(globalThis, "fetch")
-      .mockResolvedValueOnce(response([item(1, "apple", "LEARNING")]))
-      .mockResolvedValueOnce(response([item(1, "apple", "NEW")]));
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
+      if (String(input).endsWith("/saved-vocabulary")) return savedResponse();
+      return String(input).includes(learnerA.id) ? response([item(1, "apple", "LEARNING")]) : response([item(1, "apple", "NEW")]);
+    });
 
     function SwitchHarness() {
       const { setActiveLearner } = useActiveLearner();
@@ -327,8 +380,8 @@ describe("US-22 vocabulary list UI", () => {
     expect(await screen.findByTestId("vocabulary-row-1")).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "Switch learner" }));
     await waitFor(() => expect(screen.getByRole("heading", { name: "Từ vựng của Bình" })).toBeInTheDocument());
-    await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(2));
+    await waitFor(() => expect(fetchMock.mock.calls.some(([url]) => String(url) === `/api/learners/${learnerB.id}/vocabulary`)).toBe(true));
     expect(fetchMock).toHaveBeenNthCalledWith(1, `/api/learners/${learnerA.id}/vocabulary`, { credentials: "include" });
-    expect(fetchMock).toHaveBeenNthCalledWith(2, `/api/learners/${learnerB.id}/vocabulary`, { credentials: "include" });
+    expect(fetchMock).toHaveBeenCalledWith(`/api/learners/${learnerB.id}/vocabulary`, { credentials: "include" });
   });
 });

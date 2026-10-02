@@ -22,6 +22,8 @@ export type ReviewQueueTimings = {
   databaseMs?: number;
 };
 
+export type ReviewQueueScope = "saved";
+
 export function renderReviewQueueServerTiming(timings: {
   authInitMs?: number;
   authGetSessionMs?: number;
@@ -170,7 +172,29 @@ async function dailyNewUsage(
   return { dailyNewWordLimit, consumedToday };
 }
 
-async function dueRows(database: ReviewQueueDatabase, learnerId: string, reviewDate: string) {
+function vocabularyMembership(learner: SQL, scope?: ReviewQueueScope): SQL {
+  if (scope === "saved") {
+    return sql`EXISTS (
+      SELECT 1
+      FROM "${sql.raw(APP_SCHEMA)}"."learner_saved_vocabulary" saved
+      WHERE saved.learner_id = ${learner}
+        AND saved.vocabulary_id = v.id
+    )`;
+  }
+  return sql`EXISTS (
+    SELECT 1
+    FROM "${sql.raw(APP_SCHEMA)}"."learner_learning_sets" lls
+    JOIN "${sql.raw(APP_SCHEMA)}"."learning_sets" ls ON ls.id = lls.learning_set_id
+    JOIN "${sql.raw(APP_SCHEMA)}"."learning_set_items" lsi ON lsi.learning_set_id = ls.id
+    WHERE lls.learner_id = ${learner}
+      AND lls.active = true
+      AND ls.enabled = true
+      AND lsi.vocabulary_id = v.id
+  )`;
+}
+
+async function dueRows(database: ReviewQueueDatabase, learnerId: string, reviewDate: string, scope?: ReviewQueueScope) {
+  const membership = vocabularyMembership(sql.raw("lp.learner_id"), scope);
   const result = await database.execute(sql`
     SELECT v.id,
            v.word,
@@ -193,23 +217,15 @@ async function dueRows(database: ReviewQueueDatabase, learnerId: string, reviewD
     WHERE lp.learner_id = ${learnerId}::uuid
       AND lp.next_review_date <= ${reviewDate}::date
       AND v.enabled = true
-      AND EXISTS (
-        SELECT 1
-        FROM "${sql.raw(APP_SCHEMA)}"."learner_learning_sets" lls
-        JOIN "${sql.raw(APP_SCHEMA)}"."learning_sets" ls ON ls.id = lls.learning_set_id
-        JOIN "${sql.raw(APP_SCHEMA)}"."learning_set_items" lsi ON lsi.learning_set_id = ls.id
-        WHERE lls.learner_id = lp.learner_id
-          AND lls.active = true
-          AND ls.enabled = true
-          AND lsi.vocabulary_id = v.id
-      )
+      AND ${membership}
     ORDER BY lp.next_review_date ASC, v.id ASC
     LIMIT 20
   `);
   return rowsOf<QueueRow>(result);
 }
 
-async function newRows(database: ReviewQueueDatabase, learnerId: string) {
+async function newRows(database: ReviewQueueDatabase, learnerId: string, scope?: ReviewQueueScope) {
+  const membership = vocabularyMembership(sql`${learnerId}::uuid`, scope);
   const result = await database.execute(sql`
     SELECT v.id,
            v.word,
@@ -233,16 +249,7 @@ async function newRows(database: ReviewQueueDatabase, learnerId: string) {
      AND lp.learner_id = ${learnerId}::uuid
     WHERE v.enabled = true
       AND lp.vocabulary_id IS NULL
-      AND EXISTS (
-        SELECT 1
-        FROM "${sql.raw(APP_SCHEMA)}"."learner_learning_sets" lls
-        JOIN "${sql.raw(APP_SCHEMA)}"."learning_sets" ls ON ls.id = lls.learning_set_id
-        JOIN "${sql.raw(APP_SCHEMA)}"."learning_set_items" lsi ON lsi.learning_set_id = ls.id
-        WHERE lls.learner_id = ${learnerId}::uuid
-          AND lls.active = true
-          AND ls.enabled = true
-          AND lsi.vocabulary_id = v.id
-      )
+      AND ${membership}
     ORDER BY v.id ASC
     LIMIT 10
   `);
@@ -250,7 +257,7 @@ async function newRows(database: ReviewQueueDatabase, learnerId: string) {
 }
 
 export type ReviewQueueService = {
-  list: (userId: string, learnerId: string, timings?: ReviewQueueTimings) => Promise<ReviewQueueResponse>;
+  list: (userId: string, learnerId: string, timings?: ReviewQueueTimings, scope?: ReviewQueueScope) => Promise<ReviewQueueResponse>;
 };
 
 export function createReviewQueueService(
@@ -260,7 +267,7 @@ export function createReviewQueueService(
   const now = options.now ?? (() => new Date());
 
   return {
-    async list(userId, learnerId, timings) {
+    async list(userId, learnerId, timings, scope) {
       const authorizationStarted = timings ? performance.now() : 0;
       let ownership: Awaited<ReturnType<typeof authorizeLearnerOwnership>>;
       try {
@@ -283,8 +290,8 @@ export function createReviewQueueService(
           reviewDate = householdLocalDate(now(), timezone);
           [usage, due, availableNew] = await Promise.all([
             dailyNewUsage(database, ownership.learnerId, reviewDate),
-            dueRows(database, ownership.learnerId, reviewDate),
-            newRows(database, ownership.learnerId)
+            dueRows(database, ownership.learnerId, reviewDate, scope),
+            newRows(database, ownership.learnerId, scope)
           ]);
         } finally {
           if (timings) timings.databaseMs = performance.now() - databaseStarted;

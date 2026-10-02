@@ -76,7 +76,7 @@ const learningSet = {
 function mockStudyData(queue: ReviewQueueItem[]) {
   return vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
     const path = String(input);
-    if (path === `/api/learners/${learner.id}/review-queue`) return response(queueResponse(queue));
+    if (path === `/api/learners/${learner.id}/review-queue` || path === `/api/learners/${learner.id}/review-queue?scope=saved`) return response(queueResponse(queue));
     if (path === "/api/topics") return response({ topics: [topic] });
     if (path === "/api/topics/7/vocabulary") return response({ vocabulary: topicVocabulary });
     if (path === "/api/learning-sets/4") return response({ learningSet });
@@ -214,6 +214,28 @@ describe("Study Setup", () => {
     expect(screen.getByTestId("study-setup-summary-count")).toHaveTextContent("2 từ");
     fireEvent.click(screen.getByRole("button", { name: /Từ mới/ }));
     expect(screen.getByTestId("study-setup-summary-count")).toHaveTextContent("1 từ");
+  });
+
+  it("uses only the server-provided saved queue in setup and preserves saved scope in the session", async () => {
+    const savedQueue = [item(1, "DUE"), item(2)];
+    const fetchMock = mockStudyData(savedQueue);
+    renderSetup("/study/setup?saved=1");
+
+    expect(await screen.findByTestId("study-setup-summary-scope")).toHaveTextContent("Từ đã lưu");
+    expect(screen.getByTestId("study-setup-summary-count")).toHaveTextContent("2 từ");
+    fireEvent.click(screen.getByRole("button", { name: /Từ mới/ }));
+    expect(screen.getByTestId("study-setup-summary-count")).toHaveTextContent("1 từ");
+    fireEvent.click(screen.getByRole("button", { name: /Ôn tập/ }));
+    expect(screen.getByTestId("study-setup-summary-count")).toHaveTextContent("1 từ");
+    fireEvent.click(screen.getByRole("button", { name: /Kết hợp/ }));
+    expect(screen.getByTestId("study-setup-summary-count")).toHaveTextContent("2 từ");
+    fireEvent.click(screen.getByRole("button", { name: /Từ mới/ }));
+    fireEvent.click(screen.getByRole("button", { name: /Bắt đầu học/ }));
+
+    expect(await screen.findByTestId("study-session-ready")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Thoát buổi học" })).toHaveAttribute("href", "/study/setup?saved=1");
+    expect(fetchMock).toHaveBeenCalledWith(`/api/learners/${learner.id}/review-queue?scope=saved`, { credentials: "include" });
+    expect(fetchMock.mock.calls.some(([url]) => String(url) === `/api/learners/${learner.id}/review-queue`)).toBe(false);
   });
 
   it("keeps global study unscoped and does not create a session or mutate progress before Start", async () => {

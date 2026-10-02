@@ -395,12 +395,23 @@ The owner-verified Hoài/Ngọc metric snapshots are recorded in US-20 and US-21
 
 ### US-43 — Vocabulary Detail
 
-- Status: `IN PROGRESS` by explicit owner reprioritization on 2026-10-02;
-  US-42 work resumes after this feature is reviewed.
+- Status: `IMPLEMENTED / READY FOR OWNER CHECK`; implementation checks are
+  complete and owner review remains pending.
 - Contract: [`US-43 Vocabulary Detail`](stories/US-43-vocabulary-detail.md).
 - Adds a read-only `/vocabulary/:vocabularyId` view over the existing
-  active-learner vocabulary endpoint. It does not add API, database, favorite,
-  or per-word mastery behavior.
+  active-learner vocabulary endpoint. Detail rendering remains read-only;
+  saved state is supplied by the separately tracked US-46 relation.
+
+### US-46 — Saved Vocabulary
+
+- Status: `IN PROGRESS` by the owner's explicit Feature #8 request on
+  2026-10-02.
+- Contract: [`US-46 Saved Vocabulary`](stories/US-46-saved-vocabulary.md).
+- Adds learner-owned saved vocabulary persistence, explicit save/unsave/list
+  APIs, `/saved` with URL-backed search and filters, bookmark controls in the
+  Catalog and Detail screens, and a server-enforced saved scope for Study.
+- No vocabulary content is duplicated and no Master Vocabulary Dataset V2
+  content or pipeline is changed.
 
 ### US-45 — Master Vocabulary V2 Runtime Import Bridge
 

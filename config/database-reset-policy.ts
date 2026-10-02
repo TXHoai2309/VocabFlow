@@ -15,6 +15,7 @@ export const DATABASE_RESET_POLICY = {
     `${APP_SCHEMA}.learner_learning_sets`,
     `${APP_SCHEMA}.learning_set_items`,
     `${APP_SCHEMA}.vocabulary_topics`,
+    `${APP_SCHEMA}.learner_saved_vocabulary`,
     `${APP_SCHEMA}.review_events`,
     `${APP_SCHEMA}.learner_progress`,
     `${APP_SCHEMA}.vocabularies`,

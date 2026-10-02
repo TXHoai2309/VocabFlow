@@ -2,6 +2,18 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-03 — Saved vocabulary (US-46)
+
+- Added learner-owned saved words with an additive relation table and explicit
+  list/save/unsave APIs. Vocabulary content stays canonical and learner
+  ownership is checked on every request.
+- Added bookmark controls in Catalog and Detail, plus `/saved` with runtime
+  search/filter options, optimistic rollback, and a Study Setup action whose
+  server queue includes saved words only. No Dataset V2 content changed.
+- Focused tests (9 files / 104 tests), typecheck, feature ESLint, build, and
+  diff check pass. Migration validation is offline; no live DB or production
+  deployment was performed.
+
 ## 2026-10-02 — Master Vocabulary Dataset V2 Phase 2D.2 readiness
 
 - Added a field-aware, explicit owner approval template and deterministic

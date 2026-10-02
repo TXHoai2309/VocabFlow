@@ -49,6 +49,27 @@ function LearnerRouteProbe() {
   return <div><span>learners-route</span><output data-testid="learner-return-to">{typeof returnTo === "string" ? returnTo : ""}</output></div>;
 }
 
+function savedResponse(items: LearnerVocabularyDto[] = []) {
+  return new Response(JSON.stringify({ savedVocabulary: items.map((vocabulary) => ({ vocabulary, savedAt: "2026-10-02T10:00:00.000Z" })) }), {
+    headers: { "Content-Type": "application/json" }
+  });
+}
+
+function mockDetailApi(items: LearnerVocabularyDto[], initiallySaved: number[] = []) {
+  const saved = new Set(initiallySaved);
+  return vi.spyOn(globalThis, "fetch").mockImplementation(async (input, init) => {
+    const url = String(input);
+    const match = url.match(/saved-vocabulary\/(\d+)$/);
+    if (match) {
+      const id = Number(match[1]);
+      if (init?.method === "POST") saved.add(id);
+      if (init?.method === "DELETE") saved.delete(id);
+      return new Response(JSON.stringify({ learnerId: learner.id, vocabularyId: id, saved: init?.method === "POST", savedAt: init?.method === "POST" ? "2026-10-02T10:00:00.000Z" : null }), { headers: { "Content-Type": "application/json" } });
+    }
+    return url.endsWith("/saved-vocabulary") ? savedResponse(items.filter((item) => saved.has(item.id))) : response(items);
+  });
+}
+
 function renderDetail(id = "1", initialLearner: LearnerDto | null = learner) {
   return render(
     <MemoryRouter initialEntries={[`/vocabulary/${id}`]}>
@@ -67,11 +88,12 @@ describe("vocabulary detail page", () => {
   beforeEach(() => vi.restoreAllMocks());
 
   it("renders current-learner vocabulary content and links related words from the same topic", async () => {
-    const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValue(response([
+    const items = [
       item(),
       item({ id: 2, word: "banana", vietnamese: "quả chuối", ipa: "/bəˈnɑː.nə/", imageUrl: null }),
       item({ id: 3, word: "book", topic: "Trường học" })
-    ]));
+    ];
+    const fetchMock = mockDetailApi(items);
 
     renderDetail();
 
@@ -89,7 +111,7 @@ describe("vocabulary detail page", () => {
   });
 
   it("uses explicit empty states for unavailable content and does not invent learning metrics", async () => {
-    vi.spyOn(globalThis, "fetch").mockResolvedValue(response([item({
+    mockDetailApi([item({
       ipa: null,
       definitionEn: null,
       exampleEn: null,
@@ -99,7 +121,7 @@ describe("vocabulary detail page", () => {
       level: null,
       status: "NEW",
       nextReviewDate: null
-    })]));
+    })]);
 
     renderDetail();
 
@@ -111,7 +133,7 @@ describe("vocabulary detail page", () => {
     expect(screen.getByText("Chưa có dữ liệu từ trái nghĩa.")).toBeInTheDocument();
     expect(screen.getByText("Chưa có lịch ôn")).toBeInTheDocument();
     expect(screen.getByText(/Số lượt học và độ thành thạo riêng/)).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Lưu từ — hiện chưa hỗ trợ lưu từng từ" })).toBeDisabled();
+    expect(screen.getByRole("button", { name: "Lưu từ apple" })).toBeEnabled();
     expect(screen.queryByText(/80%|5 lần/)).not.toBeInTheDocument();
   });
 
@@ -132,15 +154,55 @@ describe("vocabulary detail page", () => {
   });
 
   it("shows a recoverable request error", async () => {
-    const fetchMock = vi.spyOn(globalThis, "fetch")
-      .mockResolvedValueOnce(response([], 503))
-      .mockResolvedValueOnce(response([item()]));
+    let vocabularyCalls = 0;
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
+      if (String(input).endsWith("/saved-vocabulary")) return savedResponse();
+      vocabularyCalls += 1;
+      return vocabularyCalls === 1 ? response([], 503) : response([item()]);
+    });
 
     renderDetail();
 
     expect(await screen.findByTestId("vocabulary-detail-error")).toHaveTextContent("Không thể tải chi tiết từ vựng lúc này.");
     fireEvent.click(screen.getByRole("button", { name: "Thử lại" }));
     await waitFor(() => expect(screen.getByRole("heading", { name: "apple" })).toBeInTheDocument());
-    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(fetchMock.mock.calls.filter(([url]) => String(url).endsWith("/vocabulary"))).toHaveLength(2);
+  });
+
+  it("saves and unsaves from detail with immediate accessible state and no page reload", async () => {
+    const fetchMock = mockDetailApi([item()]);
+    renderDetail();
+    await screen.findByRole("heading", { name: "apple" });
+    const saveButton = await screen.findByRole("button", { name: "Lưu từ apple" });
+
+    fireEvent.click(saveButton);
+    expect(await screen.findByRole("button", { name: "Bỏ lưu từ apple" })).toHaveAttribute("aria-pressed", "true");
+    expect(screen.getByRole("button", { name: "Bỏ lưu từ apple" })).toHaveTextContent("Đã lưu");
+    fireEvent.click(screen.getByRole("button", { name: "Bỏ lưu từ apple" }));
+    expect(await screen.findByRole("button", { name: "Lưu từ apple" })).toHaveAttribute("aria-pressed", "false");
+    expect(fetchMock.mock.calls.some(([url, init]) => String(url).endsWith("/saved-vocabulary/1") && init?.method === "POST")).toBe(true);
+    expect(fetchMock.mock.calls.some(([url, init]) => String(url).endsWith("/saved-vocabulary/1") && init?.method === "DELETE")).toBe(true);
+  });
+
+  it("hydrates the bookmark state from the learner's saved list", async () => {
+    mockDetailApi([item()], [1]);
+    renderDetail();
+
+    expect(await screen.findByRole("button", { name: "Bỏ lưu từ apple" })).toHaveAttribute("aria-pressed", "true");
+    expect(screen.getByRole("button", { name: "Bỏ lưu từ apple" })).toHaveTextContent("Đã lưu");
+  });
+
+  it("rolls back a failed detail save", async () => {
+    vi.spyOn(globalThis, "fetch").mockImplementation(async (input, init) => {
+      if (String(input).endsWith("/saved-vocabulary/1") && init?.method === "POST") return response([], 503);
+      return String(input).endsWith("/saved-vocabulary") ? savedResponse() : response([item()]);
+    });
+    renderDetail();
+    await screen.findByRole("heading", { name: "apple" });
+
+    fireEvent.click(await screen.findByRole("button", { name: "Lưu từ apple" }));
+
+    expect(await screen.findByRole("alert")).toHaveTextContent("Không thể lưu từ. Vui lòng thử lại.");
+    expect(screen.getByRole("button", { name: "Lưu từ apple" })).toHaveAttribute("aria-pressed", "false");
   });
 });

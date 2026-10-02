@@ -24,7 +24,8 @@ import {
   renderReviewQueueServerTiming,
   ReviewQueueServiceError,
   type ReviewQueueService,
-  type ReviewQueueTimings
+  type ReviewQueueTimings,
+  type ReviewQueueScope
 } from "./review-queue";
 import { createProgressSummaryService, ProgressSummaryServiceError, type ProgressSummaryService } from "./progress-summary";
 import { createActivitySummaryService, ActivitySummaryServiceError, type ActivitySummaryService } from "./activity-summary";
@@ -36,6 +37,11 @@ import {
 import { createTopicProgressService, TopicProgressServiceError, type TopicProgressService } from "./topic-progress";
 import { createGamificationService, GamificationServiceError, type GamificationService } from "./gamification";
 import { createLearnerVocabularyService, LearnerVocabularyServiceError, type LearnerVocabularyService } from "./learner-vocabulary";
+import {
+  createLearnerSavedVocabularyService,
+  LearnerSavedVocabularyServiceError,
+  type LearnerSavedVocabularyService
+} from "./learner-saved-vocabulary";
 import {
   createResetLearnerProgressService,
   ResetLearnerProgressServiceError,
@@ -65,6 +71,7 @@ export type AppDependencies = {
   topicProgressService?: TopicProgressService;
   gamificationService?: GamificationService;
   learnerVocabularyService?: LearnerVocabularyService;
+  learnerSavedVocabularyService?: LearnerSavedVocabularyService;
   resetLearnerProgressService?: ResetLearnerProgressService;
 };
 
@@ -175,6 +182,12 @@ async function runLearnerVocabularyService(env: RuntimeBindings) {
   return createLearnerVocabularyService(createHttpDatabase(env.DATABASE_URL));
 }
 
+async function runLearnerSavedVocabularyService(env: RuntimeBindings) {
+  if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
+  const { createHttpDatabase } = await import("./db/client");
+  return createLearnerSavedVocabularyService(createHttpDatabase(env.DATABASE_URL));
+}
+
 async function runResetLearnerProgressService(env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
@@ -188,6 +201,14 @@ function parseVocabularyLevelQuery(request: Request): VocabularyLevel | undefine
   if (keys.length !== 1 || keys[0] !== "level") return null;
   const parsed = vocabularyLevelSchema.safeParse(params.get("level"));
   return parsed.success ? parsed.data : null;
+}
+
+function parseReviewQueueScope(request: Request): ReviewQueueScope | undefined | null {
+  const params = new URL(request.url).searchParams;
+  const keys = [...params.keys()];
+  if (keys.length === 0) return undefined;
+  if (keys.length !== 1 || keys[0] !== "scope" || params.get("scope") !== "saved") return null;
+  return "saved";
 }
 
 function parsePositiveInteger(value: string): number | null {
@@ -614,8 +635,12 @@ export function createApp(dependencies: AppDependencies = {}) {
       if (!session?.user?.id) {
         return withTiming(c.json(errorEnvelope("UNAUTHORIZED", "Đăng nhập để tiếp tục."), 401));
       }
+      const scope = parseReviewQueueScope(c.req.raw);
+      if (scope === null) return withTiming(c.json(errorEnvelope("INVALID_REQUEST", "Dữ liệu gửi lên không hợp lệ."), 400));
       const service = dependencies.reviewQueueService ?? await runReviewQueueService(c.env);
-      const queue = await service.list(session.user.id, c.req.param("learnerId"), timings);
+      const queue = scope === undefined
+        ? await service.list(session.user.id, c.req.param("learnerId"), timings)
+        : await service.list(session.user.id, c.req.param("learnerId"), timings, scope);
       return withTiming(c.json(queue, 200));
     } catch (error) {
       if (error instanceof ReviewQueueServiceError) {
@@ -803,6 +828,73 @@ export function createApp(dependencies: AppDependencies = {}) {
         return c.json(errorEnvelope(error.code, message), error.status);
       }
       return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể tải vocabulary lúc này. Vui lòng thử lại."), 503);
+    }
+  });
+
+  application.get("/api/learners/:learnerId/saved-vocabulary", async (c) => {
+    try {
+      const session = await readSession(c.req.raw, c.env);
+      if (!session?.user?.id) return c.json(errorEnvelope("UNAUTHORIZED", "Đăng nhập để tiếp tục."), 401);
+      if ([...new URL(c.req.url).searchParams.keys()].length > 0) {
+        return c.json(errorEnvelope("INVALID_REQUEST", "Dữ liệu gửi lên không hợp lệ."), 400);
+      }
+      const service = dependencies.learnerSavedVocabularyService ?? await runLearnerSavedVocabularyService(c.env);
+      const savedVocabulary = await service.list(session.user.id, c.req.param("learnerId"));
+      return c.json({ savedVocabulary }, 200);
+    } catch (error) {
+      if (error instanceof LearnerSavedVocabularyServiceError) {
+        const message = error.code === "HOUSEHOLD_ACCESS_DENIED"
+          ? "Bạn không có quyền truy cập learner này."
+          : "Không thể tải từ đã lưu lúc này. Vui lòng thử lại.";
+        return c.json(errorEnvelope(error.code, message), error.status);
+      }
+      return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể tải từ đã lưu lúc này. Vui lòng thử lại."), 503);
+    }
+  });
+
+  application.post("/api/learners/:learnerId/saved-vocabulary/:vocabularyId", async (c) => {
+    try {
+      const session = await readSession(c.req.raw, c.env);
+      if (!session?.user?.id) return c.json(errorEnvelope("UNAUTHORIZED", "Đăng nhập để tiếp tục."), 401);
+      if ([...new URL(c.req.url).searchParams.keys()].length > 0) {
+        return c.json(errorEnvelope("INVALID_REQUEST", "Dữ liệu gửi lên không hợp lệ."), 400);
+      }
+      const vocabularyId = parsePositiveInteger(c.req.param("vocabularyId"));
+      if (vocabularyId === null) return c.json(errorEnvelope("INVALID_REQUEST", "Dữ liệu gửi lên không hợp lệ."), 400);
+      const service = dependencies.learnerSavedVocabularyService ?? await runLearnerSavedVocabularyService(c.env);
+      return c.json(await service.save(session.user.id, c.req.param("learnerId"), vocabularyId), 200);
+    } catch (error) {
+      if (error instanceof LearnerSavedVocabularyServiceError) {
+        const message = error.code === "HOUSEHOLD_ACCESS_DENIED"
+          ? "Bạn không có quyền truy cập learner này."
+          : error.code === "VOCABULARY_NOT_FOUND"
+            ? "Vocabulary không khả dụng."
+            : "Không thể lưu từ lúc này. Vui lòng thử lại.";
+        return c.json(errorEnvelope(error.code, message), error.status);
+      }
+      return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể lưu từ lúc này. Vui lòng thử lại."), 503);
+    }
+  });
+
+  application.delete("/api/learners/:learnerId/saved-vocabulary/:vocabularyId", async (c) => {
+    try {
+      const session = await readSession(c.req.raw, c.env);
+      if (!session?.user?.id) return c.json(errorEnvelope("UNAUTHORIZED", "Đăng nhập để tiếp tục."), 401);
+      if ([...new URL(c.req.url).searchParams.keys()].length > 0) {
+        return c.json(errorEnvelope("INVALID_REQUEST", "Dữ liệu gửi lên không hợp lệ."), 400);
+      }
+      const vocabularyId = parsePositiveInteger(c.req.param("vocabularyId"));
+      if (vocabularyId === null) return c.json(errorEnvelope("INVALID_REQUEST", "Dữ liệu gửi lên không hợp lệ."), 400);
+      const service = dependencies.learnerSavedVocabularyService ?? await runLearnerSavedVocabularyService(c.env);
+      return c.json(await service.unsave(session.user.id, c.req.param("learnerId"), vocabularyId), 200);
+    } catch (error) {
+      if (error instanceof LearnerSavedVocabularyServiceError) {
+        const message = error.code === "HOUSEHOLD_ACCESS_DENIED"
+          ? "Bạn không có quyền truy cập learner này."
+          : "Không thể bỏ lưu từ lúc này. Vui lòng thử lại.";
+        return c.json(errorEnvelope(error.code, message), error.status);
+      }
+      return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể bỏ lưu từ lúc này. Vui lòng thử lại."), 503);
     }
   });
 

@@ -69,9 +69,10 @@ convenient. Reprioritization or a new story must be explicit.
 - [US-40 Achievements / Badges](US-40-achievements-badges.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
 - [US-41 Content Curation & Activation](US-41-content-curation-activation.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
 - [US-42 Protected Production Release Automation](US-42-production-release-automation.md) — `IN PROGRESS`.
-- [US-43 Vocabulary Detail](US-43-vocabulary-detail.md) — `IN PROGRESS` (explicitly reprioritized by the owner while US-42 remains open).
+- [US-43 Vocabulary Detail](US-43-vocabulary-detail.md) — `IMPLEMENTED / READY FOR OWNER CHECK` (owner-reprioritized while US-42 remained open).
 - [US-44 Study Session Focus Mode](US-44-study-session-focus-mode.md) — `IMPLEMENTED / READY FOR OWNER CHECK` (owner-requested Study Session presentation and interaction update).
 - [US-45 Master Vocabulary V2 Runtime Import Bridge](US-45-master-vocabulary-v2-runtime-import-bridge.md) — `IMPLEMENTED / READY FOR OWNER CHECK` (additive runtime adoption infrastructure; staging execution remains a later phase).
+- [US-46 Saved Vocabulary](US-46-saved-vocabulary.md) — `IN PROGRESS` (explicit owner reprioritization; learner-owned saved words, CRUD API, Saved Words page and scoped study queue).
 
 ## Story status gate
 
