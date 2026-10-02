@@ -301,7 +301,7 @@ function VocabularyCard({ item }: { item: LearnerVocabularyDto }) {
         <button
           className="vocabulary-audio-button"
           type="button"
-          disabled={!audio.hasAudio}
+          disabled={!audio.hasAudio || audio.state === "loading" || audio.state === "error"}
           aria-label={`Nghe phát âm ${item.word}`}
           aria-pressed={audio.state === "playing"}
           title={audio.hasAudio ? `Nghe phát âm ${item.word}` : "Chưa có âm thanh phát âm"}
