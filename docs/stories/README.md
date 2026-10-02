@@ -69,6 +69,7 @@ convenient. Reprioritization or a new story must be explicit.
 - [US-40 Achievements / Badges](US-40-achievements-badges.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
 - [US-41 Content Curation & Activation](US-41-content-curation-activation.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
 - [US-42 Protected Production Release Automation](US-42-production-release-automation.md) — `IN PROGRESS`.
+- [US-43 Vocabulary Detail](US-43-vocabulary-detail.md) — `IN PROGRESS` (explicitly reprioritized by the owner while US-42 remains open).
 
 ## Story status gate
 

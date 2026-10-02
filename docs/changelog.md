@@ -2,6 +2,13 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-02 — Vocabulary Detail implementation
+
+- Started owner-reprioritized US-43. Adds an authenticated detail route using
+  the existing learner vocabulary API, shared AppShell, and pronunciation hook;
+  unsupported vocabulary details and learning metrics remain explicit empty
+  states. No backend, database, commit, push, or deployment changes.
+
 ## 2026-10-01 — Production Release #8 artifact scan policy
 
 - Kept generic PostgreSQL URI matches blocking in public/static and

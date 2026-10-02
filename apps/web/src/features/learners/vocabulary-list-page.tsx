@@ -113,17 +113,20 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
 
         {state === "ready" && vocabulary.length > 0 ? (
           <ul className="vocabulary-list" data-testid="vocabulary-list">
-            {vocabulary.map((item) => (
-              <li className="vocabulary-list-row" data-testid={`vocabulary-row-${item.id}`} key={item.id}>
-                <div className="vocabulary-list-copy">
-                  <strong>{item.word}</strong>
-                  <span>{item.vietnamese}</span>
-                </div>
-                <span className={`vocabulary-status vocabulary-status-${item.status.toLowerCase()}`}>
-                  {statusLabel(item.status)}
-                </span>
-              </li>
-            ))}
+              {vocabulary.map((item) => (
+                <li className="vocabulary-list-row vocabulary-list-row-interactive" data-testid={`vocabulary-row-${item.id}`} key={item.id}>
+                  <Link className="vocabulary-list-row-link" to={`/vocabulary/${item.id}`} aria-label={`${item.word}, ${item.vietnamese}, ${statusLabel(item.status)}. Xem chi tiết`}>
+                    <span className="vocabulary-list-copy">
+                      <strong>{item.word}</strong>
+                      <span>{item.vietnamese}</span>
+                    </span>
+                    <span className={`vocabulary-status vocabulary-status-${item.status.toLowerCase()}`}>
+                      {statusLabel(item.status)}
+                    </span>
+                    <span className="vocabulary-list-chevron" aria-hidden="true">›</span>
+                  </Link>
+                </li>
+              ))}
           </ul>
         ) : null}
       </section>

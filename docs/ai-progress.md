@@ -1,5 +1,21 @@
 # Current Handoff Snapshot
 
+## 2026-10-02 — Vocabulary Detail (US-43)
+
+- Owner explicitly reprioritized the read-only Vocabulary Detail page while
+  US-42 remains open. Added `/vocabulary/:vocabularyId` on the shared AppShell,
+  using the existing active-learner vocabulary endpoint, image/audio fields,
+  pronunciation hook and `/study` route. List rows now link to detail.
+- Missing Vietnamese definition/example translations, POS, synonyms/antonyms,
+  per-word review counts, last-studied date, mastery percentage, and save state
+  are not present in the current model; the page uses neutral empty states and
+  disables unsupported save behavior.
+- Focused route/detail tests pass (27 tests). Full lint, typecheck, test suite
+  (65 files / 753 tests), build and `git diff --check` pass. Build used local
+  Node 22.19.0 while the project pins 22.23.2; the package manager emitted its
+  engine warning. Owner review remains pending. No backend/database command,
+  commit, push, or deployment work.
+
 ## 2026-10-01 — Production Release #8 artifact scan policy
 
 - Split PostgreSQL URI counts by artifact boundary. Client/static URIs remain a

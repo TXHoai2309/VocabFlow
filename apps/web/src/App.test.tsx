@@ -149,6 +149,32 @@ describe("shared authenticated app shell", () => {
     expectActiveNav("Bộ từ");
   });
 
+  it("renders vocabulary detail inside the shared shell with Từ vựng active", async () => {
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(JSON.stringify({
+      vocabulary: [{
+        id: 1,
+        word: "apple",
+        ipa: null,
+        vietnamese: "quả táo",
+        definitionEn: null,
+        exampleEn: null,
+        imageUrl: null,
+        audioUrl: null,
+        topic: null,
+        level: null,
+        enabled: true,
+        contentVersion: 1,
+        status: "NEW",
+        nextReviewDate: null
+      }]
+    }), { headers: { "Content-Type": "application/json" } }));
+    renderAppRoutes("/vocabulary/1");
+
+    const detail = await screen.findByRole("heading", { name: "apple" });
+    expect(document.querySelector(".app-layout")?.contains(detail)).toBe(true);
+    expectActiveNav("Từ vựng");
+  });
+
   it("keeps a direct Learners visit visible after resolving one learner", async () => {
     renderAppRoutes("/learners", null);
     expect(await screen.findByTestId("learner-context-ready")).toHaveTextContent("Avery Nguyen");

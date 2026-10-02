@@ -393,6 +393,15 @@ The owner-verified Hoài/Ngọc metric snapshots are recorded in US-20 and US-21
 
 ## Later product scope
 
+### US-43 — Vocabulary Detail
+
+- Status: `IN PROGRESS` by explicit owner reprioritization on 2026-10-02;
+  US-42 work resumes after this feature is reviewed.
+- Contract: [`US-43 Vocabulary Detail`](stories/US-43-vocabulary-detail.md).
+- Adds a read-only `/vocabulary/:vocabularyId` view over the existing
+  active-learner vocabulary endpoint. It does not add API, database, favorite,
+  or per-word mastery behavior.
+
 The Product Specification defines learner selector/create, Learner Home, Study,
 Session Summary, Progress, Vocabulary and conditional reset as Family MVP
 scope. Untracked later work is not promoted to implementation batches until a
