@@ -1,4 +1,4 @@
-import type { ReviewQueueItem } from "@vocabflow/contracts";
+import type { ExerciseSubmission, ReviewQueueItem } from "@vocabflow/contracts";
 
 export const EXERCISE_OPTION_COUNT = 4 as const;
 export const EXERCISE_TYPE = {
@@ -46,6 +46,16 @@ export type ExerciseGenerationOptions = {
   blockedTypes?: readonly ExerciseType[];
   blockedCues?: readonly TypeWordCue[];
 };
+
+export function exerciseSubmissionForOption(exercise: ExerciseInstance, option: ExerciseOption): ExerciseSubmission {
+  if (exercise.exerciseType === EXERCISE_TYPE.MULTIPLE_CHOICE_MEANING) {
+    return { type: EXERCISE_TYPE.MULTIPLE_CHOICE_MEANING, answer: option.label };
+  }
+  if (exercise.exerciseType === EXERCISE_TYPE.LISTENING_CHOICE) {
+    return { type: EXERCISE_TYPE.LISTENING_CHOICE, selectedVocabularyId: option.vocabularyId };
+  }
+  return { type: EXERCISE_TYPE.IMAGE_TO_WORD, selectedVocabularyId: option.vocabularyId };
+}
 
 export const TYPE_WORD_SUBMISSION = `${EXERCISE_TYPE.TYPE_WORD}:SUBMITTED`;
 

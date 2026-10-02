@@ -93,8 +93,11 @@ describe("US-31 + US-32 controlled exercise Study mode", () => {
     fireEvent.click(screen.getByRole("button", { name: "quả táo" }));
     expect(screen.getByTestId("exercise-card")).toHaveAttribute("data-exercise-type", "MULTIPLE_CHOICE_MEANING");
     expect(screen.getByRole("button", { name: /quả táo/ })).toBeDisabled();
-    expect(await screen.findByText("Chính xác.")).toBeInTheDocument();
-    await waitFor(() => expect(screen.getByText("Đã lưu. Bạn có thể tiếp tục.")).toBeInTheDocument());
+    expect(await screen.findByText("Chính xác!")).toBeInTheDocument();
+    expect(screen.getByTestId("exercise-word")).toHaveTextContent("apple");
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    fireEvent.click(screen.getByRole("button", { name: "Câu tiếp theo" }));
+    await waitFor(() => expect(screen.getByText("book")).toBeInTheDocument());
     expect(screen.queryByTestId("study-session-summary")).not.toBeInTheDocument();
     expect(fetchMock).toHaveBeenCalledTimes(2);
     expect(JSON.parse(String(fetchMock.mock.calls[1]?.[1]?.body))).toMatchObject({
@@ -104,8 +107,108 @@ describe("US-31 + US-32 controlled exercise Study mode", () => {
       expectedRevision: 0
     });
 
-    fireEvent.click(screen.getByRole("button", { name: "Tiếp tục" }));
-    expect(await screen.findByText("book")).toBeInTheDocument();
+    await waitFor(() => expect(screen.getByTestId("session-counter")).toHaveTextContent("Câu 2 / 4"));
+  });
+
+  it("supports desktop option and Enter shortcuts without duplicate review writes", async () => {
+    const target = queueItem(1, "apple", "quả táo");
+    const queue = [target, queueItem(2, "book", "quyển sách"), queueItem(3, "house", "ngôi nhà"), queueItem(4, "water", "nước")];
+    const fetchMock = vi.spyOn(globalThis, "fetch")
+      .mockResolvedValueOnce(response(queueResponse(queue)))
+      .mockResolvedValueOnce(response(reviewResponse(target, "REMEMBERED"), 201));
+    renderExercise();
+
+    await screen.findByTestId("exercise-card");
+    const options = screen.getByTestId("exercise-card").querySelectorAll<HTMLButtonElement>(".exercise-option");
+    const correctIndex = Array.from(options).findIndex((option) => option.textContent?.includes("quả táo"));
+    expect(correctIndex).toBeGreaterThanOrEqual(0);
+    options[correctIndex]!.focus();
+    fireEvent.keyDown(options[correctIndex]!, { key: String(correctIndex + 1) });
+    expect(options[correctIndex]).toHaveAttribute("aria-pressed", "false");
+
+    fireEvent.keyDown(document.body, { key: String(correctIndex + 1) });
+    fireEvent.keyDown(document.body, { key: String(correctIndex + 1) });
+    expect(options[correctIndex]).toHaveAttribute("aria-pressed", "true");
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    fireEvent.keyDown(document.body, { key: "Enter" });
+    await screen.findByText("book");
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+  });
+
+  it("does not apply keyboard answer shortcuts below desktop width", async () => {
+    vi.stubGlobal("matchMedia", vi.fn(() => ({ matches: false }) as MediaQueryList));
+    const target = queueItem(1, "apple", "quả táo");
+    const queue = [target, queueItem(2, "book", "quyển sách"), queueItem(3, "house", "ngôi nhà"), queueItem(4, "water", "nước")];
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(response(queueResponse(queue)));
+    renderExercise();
+
+    await screen.findByTestId("exercise-card");
+    const options = screen.getByTestId("exercise-card").querySelectorAll<HTMLButtonElement>(".exercise-option");
+    const correctIndex = Array.from(options).findIndex((option) => option.textContent?.includes("quả táo"));
+    expect(correctIndex).toBeGreaterThanOrEqual(0);
+    fireEvent.keyDown(document.body, { key: String(correctIndex + 1) });
+    expect(options[correctIndex]).toHaveAttribute("aria-pressed", "false");
+
+    fireEvent.click(options[correctIndex]!);
+    expect(options[correctIndex]).toHaveAttribute("aria-pressed", "true");
+  });
+
+  it("undoes a correct answer before it reaches the review API", async () => {
+    const target = queueItem(1, "apple", "quả táo");
+    const queue = [target, queueItem(2, "book", "quyển sách"), queueItem(3, "house", "ngôi nhà"), queueItem(4, "water", "nước")];
+    const fetchMock = vi.spyOn(globalThis, "fetch")
+      .mockResolvedValueOnce(response(queueResponse(queue)))
+      .mockResolvedValueOnce(response(reviewResponse(target, "REMEMBERED"), 201));
+    renderExercise();
+    await screen.findByTestId("exercise-card");
+
+    fireEvent.click(screen.getByRole("button", { name: "quả táo" }));
+    expect(screen.getByText("Chính xác!")).toBeInTheDocument();
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    fireEvent.click(screen.getByRole("button", { name: /Hoàn tác câu trả lời/ }));
+    expect(screen.queryByText("Chính xác!")).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "quả táo" })).toHaveAttribute("aria-pressed", "false");
+    expect(screen.getByTestId("session-counter")).toHaveTextContent("Câu 1 / 4");
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+
+    fireEvent.click(screen.getByRole("button", { name: "quả táo" }));
+    fireEvent.click(screen.getByRole("button", { name: "Câu tiếp theo" }));
+    await screen.findByText("book");
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+  });
+
+  it("undoes an incorrect answer without changing queue or persisted progress", async () => {
+    const target = queueItem(1, "apple", "quả táo");
+    const queue = [target, queueItem(2, "book", "quyển sách"), queueItem(3, "house", "ngôi nhà"), queueItem(4, "water", "nước")];
+    const fetchMock = vi.spyOn(globalThis, "fetch")
+      .mockResolvedValueOnce(response(queueResponse(queue)))
+      .mockResolvedValueOnce(response(reviewResponse(target, "REMEMBERED"), 201));
+    renderExercise();
+    await screen.findByTestId("exercise-card");
+
+    fireEvent.click(screen.getByRole("button", { name: "quyển sách" }));
+    expect(screen.getByText("Chưa đúng.")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "quả táo" })).toHaveClass("is-correct");
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    fireEvent.keyDown(document.body, { key: "z" });
+    expect(screen.queryByText("Chưa đúng.")).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "quyển sách" })).toHaveAttribute("aria-pressed", "false");
+    expect(screen.getByTestId("session-counter")).toHaveTextContent("Câu 1 / 4");
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+
+  it("does not route answer shortcuts into the typing field", async () => {
+    const target = queueItem(4, "desk", "bàn học");
+    const queue = [target, queueItem(1, "apple", "quả táo"), queueItem(2, "book", "quyển sách"), queueItem(3, "house", "ngôi nhà")];
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValue(response(queueResponse(queue)));
+    renderExercise("/study/exercises?type=TYPE_WORD");
+    await screen.findByLabelText("Từ tiếng Anh");
+    const input = screen.getByLabelText("Từ tiếng Anh");
+    input.focus();
+    fireEvent.keyDown(input, { key: "1" });
+    expect(screen.queryByText("Chính xác!")).not.toBeInTheDocument();
+    expect(screen.getByTestId("study-session-ready")).toBeInTheDocument();
+    expect(fetchMock).toHaveBeenCalledTimes(1);
   });
 
   it("keeps listening target out of the prompt, maps a wrong answer to FORGOTTEN, and preserves reinforcement", async () => {
@@ -130,13 +233,11 @@ describe("US-31 + US-32 controlled exercise Study mode", () => {
     expect(screen.getByTestId("exercise-prompt")).not.toHaveTextContent("apple");
     expect(screen.getByTestId("exercise-audio-button")).toHaveAccessibleName("Nghe phát âm");
     fireEvent.click(screen.getByRole("button", { name: "book" }));
-    expect(await screen.findByText("Chưa đúng. Đáp án:")).toBeInTheDocument();
-    await screen.findByText("Đã lưu. Bạn có thể tiếp tục.");
+    expect(await screen.findByText("Chưa đúng.")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Câu tiếp theo" }));
     expect(JSON.parse(String(fetchMock.mock.calls[1]?.[1]?.body))).toMatchObject({ result: "FORGOTTEN" });
 
-    fireEvent.click(screen.getByRole("button", { name: "Tiếp tục" }));
-    expect(await screen.findByText("book")).toBeInTheDocument();
-    expect(screen.getByTestId("session-counter")).toHaveTextContent("1 / 4");
+    await waitFor(() => expect(screen.getByTestId("session-counter")).toHaveTextContent("Câu 2 / 4"));
   });
 
   it("uses Flashcard when safe exercise distractors are insufficient", async () => {
@@ -184,11 +285,13 @@ describe("US-31 + US-32 controlled exercise Study mode", () => {
 
     await screen.findByTestId("exercise-card");
     fireEvent.click(screen.getByRole("button", { name: "quả táo" }));
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    fireEvent.click(screen.getByRole("button", { name: "Câu tiếp theo" }));
     expect(await screen.findByTestId("study-save-failed")).toBeInTheDocument();
-    expect(screen.queryByRole("button", { name: "Tiếp tục" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Câu tiếp theo" })).not.toBeInTheDocument();
     const firstBody = String(fetchMock.mock.calls[1]?.[1]?.body);
     fireEvent.click(screen.getByRole("button", { name: "Thử lại" }));
-    await screen.findByRole("button", { name: "Tiếp tục" });
+    await waitFor(() => expect(screen.getByTestId("session-counter")).toHaveTextContent("Câu 2 / 4"));
     expect(fetchMock.mock.calls[2]?.[1]?.body).toBe(firstBody);
   });
 });
@@ -212,7 +315,9 @@ describe("US-33 + US-34 image and typing Study mode", () => {
     expect(screen.getByTestId("exercise-image")).toHaveAttribute("alt", "Hình ảnh gợi ý cho bài tập từ vựng");
     expect(screen.getByTestId("exercise-prompt")).not.toHaveTextContent("apple");
     fireEvent.click(screen.getByRole("button", { name: "apple" }));
-    await screen.findByText("Chính xác.");
+    await screen.findByText("Chính xác!");
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    fireEvent.click(screen.getByRole("button", { name: "Câu tiếp theo" }));
     expect(JSON.parse(String(fetchMock.mock.calls[1]?.[1]?.body))).toMatchObject({ result: "REMEMBERED", vocabularyId: 1 });
   });
 
@@ -243,7 +348,9 @@ describe("US-33 + US-34 image and typing Study mode", () => {
     expect(screen.getByTestId("exercise-prompt")).not.toHaveTextContent("apple");
     fireEvent.change(screen.getByLabelText("Từ tiếng Anh"), { target: { value: " APPLE " } });
     fireEvent.submit(screen.getByRole("button", { name: "Gửi câu trả lời" }).closest("form")!);
-    await screen.findByText("Chính xác.");
+    await screen.findByText("Chính xác!");
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    fireEvent.click(screen.getByRole("button", { name: "Câu tiếp theo" }));
     const body = JSON.parse(String(fetchMock.mock.calls[1]?.[1]?.body)) as Record<string, unknown>;
     expect(body).toMatchObject({ result: "REMEMBERED", vocabularyId: 1 });
     expect(body).toMatchObject({ exerciseSubmission: { type: "TYPE_WORD", answer: " APPLE " } });
@@ -261,7 +368,9 @@ describe("US-33 + US-34 image and typing Study mode", () => {
     await screen.findByTestId("exercise-card");
     fireEvent.change(screen.getByLabelText("Từ tiếng Anh"), { target: { value: "aple" } });
     fireEvent.submit(screen.getByRole("button", { name: "Gửi câu trả lời" }).closest("form")!);
-    await screen.findByText("Chưa đúng. Đáp án:");
+    await screen.findByText("Chưa đúng.");
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    fireEvent.click(screen.getByRole("button", { name: "Câu tiếp theo" }));
     expect(JSON.parse(String(fetchMock.mock.calls[1]?.[1]?.body))).toMatchObject({ result: "FORGOTTEN" });
   });
 });

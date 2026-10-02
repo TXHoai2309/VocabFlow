@@ -85,10 +85,10 @@ export function StudySetupPage() {
   if (!activeLearner) {
     return <Navigate to="/learners" replace state={{ returnTo: `${location.pathname}${location.search}` }} />;
   }
-  return <StudySetupExperience key={`${activeLearner.id}:${scopeKey}`} activeLearner={activeLearner} scope={scope} />;
+  return <StudySetupExperience key={`${activeLearner.id}:${scopeKey}`} activeLearner={activeLearner} scope={scope} returnTo={`${location.pathname}${location.search}`} />;
 }
 
-function StudySetupExperience({ activeLearner, scope }: { activeLearner: LearnerDto; scope: StudyScope | null }) {
+function StudySetupExperience({ activeLearner, scope, returnTo }: { activeLearner: LearnerDto; scope: StudyScope | null; returnTo: string }) {
   const navigate = useNavigate();
   const [state, setState] = useState<SetupState>("loading");
   const [data, setData] = useState<StudySetupData | null>(null);
@@ -187,7 +187,7 @@ function StudySetupExperience({ activeLearner, scope }: { activeLearner: Learner
     }
     params.set("count", String(amount));
     params.set("content", selectedContent);
-    navigate(`/study?${params.toString()}`);
+    navigate(`/study?${params.toString()}`, { state: { returnTo } });
   }
 
   return (

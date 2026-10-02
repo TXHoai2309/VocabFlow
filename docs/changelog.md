@@ -2,6 +2,16 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-02 — Study Session focus mode
+
+- Refined `/study` and `/study/exercises` into a responsive focus-mode screen
+  with queue-backed progress, immediate answer feedback, desktop keyboard
+  shortcuts and an in-page next-question flow.
+- Answers stay local until Next, allowing Undo before the existing review API
+  is called. Server-confirmed saves, retry identity, queue scopes and
+  reinforcement behavior remain unchanged. No API, database or Dataset V2
+  changes were made.
+
 ## 2026-10-02 — Master Vocabulary Dataset V2 Phase 2A validator
 
 - Added a two-stage Draft 2020-12 schema and cross-file validator rooted at the

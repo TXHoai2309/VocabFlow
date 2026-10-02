@@ -125,8 +125,9 @@ describe("Study Setup", () => {
     expect(screen.getByTestId("study-setup-summary-mode")).toHaveTextContent("Kết hợp");
     fireEvent.click(screen.getByRole("button", { name: /Bắt đầu học/ }));
     expect(await screen.findByTestId("study-session-ready")).toBeInTheDocument();
-    expect(screen.getByTestId("session-counter")).toHaveTextContent("0 / 3");
-    expect(screen.getByText("2 đến hạn · 1 từ mới · 2026-09-15")).toBeInTheDocument();
+    expect(screen.getByTestId("session-counter")).toHaveTextContent("Câu 1 / 3");
+    expect(screen.getByText("Kết hợp")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Thoát buổi học" })).toHaveAttribute("href", "/study/setup");
   });
 
   it("allows each requested amount and New, Review, and Mixed mode selection", async () => {
@@ -183,8 +184,8 @@ describe("Study Setup", () => {
     fireEvent.click(screen.getByRole("button", { name: /Bắt đầu học/ }));
 
     expect(await screen.findByTestId("study-session-ready")).toBeInTheDocument();
-    expect(screen.getByTestId("session-counter")).toHaveTextContent("0 / 1");
-    expect(screen.getByText("0 đến hạn · 1 từ mới · 2026-09-15")).toBeInTheDocument();
+    expect(screen.getByTestId("session-counter")).toHaveTextContent("Câu 1 / 1");
+    expect(screen.getByRole("link", { name: "Thoát buổi học" })).toHaveAttribute("href", "/study/setup?topicId=7");
     expect(screen.getByText("word-3")).toBeInTheDocument();
     expect(screen.queryByText("word-2")).not.toBeInTheDocument();
     expect(fetchMock).toHaveBeenCalledWith("/api/topics/7/vocabulary", { credentials: "include" });
@@ -201,8 +202,8 @@ describe("Study Setup", () => {
     fireEvent.click(screen.getByRole("button", { name: /Bắt đầu học/ }));
 
     expect(await screen.findByTestId("study-session-ready")).toBeInTheDocument();
-    expect(screen.getByTestId("session-counter")).toHaveTextContent("0 / 5");
-    expect(screen.getByText("5 đến hạn · 0 từ mới · 2026-09-15")).toBeInTheDocument();
+    expect(screen.getByTestId("session-counter")).toHaveTextContent("Câu 1 / 5");
+    expect(screen.getByText("Ôn tập")).toBeInTheDocument();
   });
 
   it("uses only learning set vocabulary and displays the real set name", async () => {

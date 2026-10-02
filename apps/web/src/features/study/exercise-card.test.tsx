@@ -1,8 +1,14 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import { ExerciseCard } from "./exercise-card";
 import { EXERCISE_TYPE, TYPE_WORD_CUE, TYPE_WORD_SUBMISSION, type ExerciseInstance } from "./exercise-generator";
+import type { VocabularyDto } from "@vocabflow/contracts";
+
+const vocabulary: VocabularyDto = {
+  id: 1, word: "apple", ipa: "/ˈæp.əl/", vietnamese: "quả táo", definitionEn: null, exampleEn: null,
+  imageUrl: null, audioUrl: null, topic: null, level: null, enabled: true, contentVersion: 1
+};
 
 const meaningExercise: ExerciseInstance = {
   exerciseId: "meaning:1:1",
@@ -77,12 +83,17 @@ function audioMock(play = vi.fn().mockResolvedValue(undefined)) {
 }
 
 describe("exercise interaction layer", () => {
+  afterEach(() => vi.unstubAllGlobals());
+
   it("locks options after one answer and gives visible feedback", () => {
     const onAnswer = vi.fn();
-    const { rerender } = render(<ExerciseCard exercise={meaningExercise} answer={null} saveState="ready" onAnswer={onAnswer} onAudioFailure={vi.fn()} />);
+    const { rerender } = render(<ExerciseCard exercise={meaningExercise} vocabulary={vocabulary} answer={null} saveState="ready" onAnswer={onAnswer} onAudioFailure={vi.fn()} />);
 
     expect(screen.getByTestId("exercise-card")).toHaveAttribute("data-exercise-type", "MULTIPLE_CHOICE_MEANING");
-    expect(screen.getByTestId("exercise-prompt")).toHaveTextContent("apple");
+    expect(screen.getByTestId("exercise-word")).toHaveTextContent("apple");
+    expect(screen.getByText("/ˈæp.əl/")).toBeInTheDocument();
+    expect(screen.getByTestId("exercise-prompt")).toHaveTextContent("Chọn nghĩa đúng của từ này.");
+    expect(screen.getByTestId("exercise-audio-button")).toBeDisabled();
     fireEvent.click(screen.getByRole("button", { name: "quyển sách" }));
     expect(onAnswer).toHaveBeenCalledTimes(1);
     expect(onAnswer).toHaveBeenCalledWith("MULTIPLE_CHOICE_MEANING:2", {
@@ -91,16 +102,35 @@ describe("exercise interaction layer", () => {
     });
 
     const answer = { optionId: "MULTIPLE_CHOICE_MEANING:2", result: "FORGOTTEN" as const };
-    rerender(<ExerciseCard exercise={meaningExercise} answer={answer} saveState="saving" onAnswer={onAnswer} onAudioFailure={vi.fn()} />);
-    expect(screen.getByText("Chưa đúng. Đáp án:")).toBeInTheDocument();
-    expect(screen.getAllByText("quả táo")).toHaveLength(2);
+    rerender(<ExerciseCard exercise={meaningExercise} vocabulary={vocabulary} answer={answer} saveState="answered" onAnswer={onAnswer} onAudioFailure={vi.fn()} />);
+    expect(screen.getByText("Chưa đúng.")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "quả táo" })).toHaveClass("is-correct");
     expect(screen.getByRole("button", { name: "quyển sách" })).toBeDisabled();
     expect(onAnswer).toHaveBeenCalledTimes(1);
   });
 
+  it("disables optional pronunciation audio while loading and after an audio error", async () => {
+    const withAudio = { ...vocabulary, audioUrl: "/audio/apple.mp3" };
+    let resolvePlay!: () => void;
+    const pendingPlay = new Promise<void>((resolve) => { resolvePlay = resolve; });
+    audioMock(vi.fn(() => pendingPlay));
+    const { unmount } = render(<ExerciseCard exercise={meaningExercise} vocabulary={withAudio} answer={null} saveState="ready" onAnswer={vi.fn()} onAudioFailure={vi.fn()} />);
+    const button = screen.getByTestId("exercise-audio-button");
+    expect(button).toBeEnabled();
+    fireEvent.click(button);
+    expect(button).toBeDisabled();
+    resolvePlay();
+    unmount();
+
+    audioMock(vi.fn().mockRejectedValue(new Error("media failed")));
+    render(<ExerciseCard exercise={meaningExercise} vocabulary={withAudio} answer={null} saveState="ready" onAnswer={vi.fn()} onAudioFailure={vi.fn()} />);
+    fireEvent.click(screen.getByTestId("exercise-audio-button"));
+    await waitFor(() => expect(screen.getByTestId("exercise-audio-button")).toBeDisabled());
+  });
+
   it("does not reveal the target word in the listening prompt and exposes an accessible audio control", () => {
     audioMock();
-    render(<ExerciseCard exercise={listeningExercise} answer={null} saveState="ready" onAnswer={vi.fn()} onAudioFailure={vi.fn()} />);
+    render(<ExerciseCard exercise={listeningExercise} vocabulary={vocabulary} answer={null} saveState="ready" onAnswer={vi.fn()} onAudioFailure={vi.fn()} />);
 
     expect(screen.getByTestId("exercise-prompt")).not.toHaveTextContent("apple");
     expect(screen.getByTestId("exercise-audio-button")).toHaveAccessibleName("Nghe phát âm");
@@ -111,7 +141,7 @@ describe("exercise interaction layer", () => {
     const failedPlay = vi.fn().mockRejectedValue(new Error("media failed"));
     audioMock(failedPlay);
     const onAudioFailure = vi.fn();
-    render(<ExerciseCard exercise={listeningExercise} answer={null} saveState="ready" onAnswer={vi.fn()} onAudioFailure={onAudioFailure} />);
+    render(<ExerciseCard exercise={listeningExercise} vocabulary={vocabulary} answer={null} saveState="ready" onAnswer={vi.fn()} onAudioFailure={onAudioFailure} />);
 
     fireEvent.click(screen.getByTestId("exercise-audio-button"));
     await waitFor(() => expect(onAudioFailure).toHaveBeenCalledTimes(1));
@@ -120,7 +150,7 @@ describe("exercise interaction layer", () => {
 
   it("renders a neutral image prompt and reports a broken image without answering", () => {
     const onImageFailure = vi.fn();
-    render(<ExerciseCard exercise={imageExercise} answer={null} saveState="ready" onAnswer={vi.fn()} onAudioFailure={vi.fn()} onImageFailure={onImageFailure} />);
+    render(<ExerciseCard exercise={imageExercise} vocabulary={vocabulary} answer={null} saveState="ready" onAnswer={vi.fn()} onAudioFailure={vi.fn()} onImageFailure={onImageFailure} />);
 
     expect(screen.getByTestId("exercise-image")).toHaveAttribute("alt", "Hình ảnh gợi ý cho bài tập từ vựng");
     expect(screen.getByTestId("exercise-prompt")).not.toHaveTextContent("apple");
@@ -130,7 +160,7 @@ describe("exercise interaction layer", () => {
 
   it("submits raw typing evidence once and locks the input after submit", () => {
     const onAnswer = vi.fn();
-    const { rerender } = render(<ExerciseCard exercise={typingExercise} answer={null} saveState="ready" onAnswer={onAnswer} onAudioFailure={vi.fn()} />);
+    const { rerender } = render(<ExerciseCard exercise={typingExercise} vocabulary={vocabulary} answer={null} saveState="ready" onAnswer={onAnswer} onAudioFailure={vi.fn()} />);
 
     expect(screen.getByTestId("exercise-prompt")).not.toHaveTextContent("apple");
     expect(screen.getByTestId("exercise-cue")).toHaveTextContent("quả táo");
@@ -138,14 +168,14 @@ describe("exercise interaction layer", () => {
     fireEvent.submit(screen.getByRole("button", { name: "Gửi câu trả lời" }).closest("form")!);
     expect(onAnswer).toHaveBeenCalledWith(TYPE_WORD_SUBMISSION, { type: "TYPE_WORD", answer: " ＡＰＰＬＥ " });
 
-    rerender(<ExerciseCard exercise={typingExercise} answer={{ optionId: TYPE_WORD_SUBMISSION, result: "REMEMBERED" }} saveState="saving" onAnswer={onAnswer} onAudioFailure={vi.fn()} />);
+    rerender(<ExerciseCard exercise={typingExercise} vocabulary={vocabulary} answer={{ optionId: TYPE_WORD_SUBMISSION, result: "REMEMBERED" }} saveState="answered" onAnswer={onAnswer} onAudioFailure={vi.fn()} />);
     expect(screen.getByLabelText("Từ tiếng Anh")).toBeDisabled();
     expect(onAnswer).toHaveBeenCalledTimes(1);
   });
 
   it("submits a spelling error for server-side verification", () => {
     const onAnswer = vi.fn();
-    render(<ExerciseCard exercise={typingExercise} answer={null} saveState="ready" onAnswer={onAnswer} onAudioFailure={vi.fn()} />);
+    render(<ExerciseCard exercise={typingExercise} vocabulary={vocabulary} answer={null} saveState="ready" onAnswer={onAnswer} onAudioFailure={vi.fn()} />);
     fireEvent.change(screen.getByLabelText("Từ tiếng Anh"), { target: { value: "aple" } });
     fireEvent.submit(screen.getByRole("button", { name: "Gửi câu trả lời" }).closest("form")!);
     expect(onAnswer).toHaveBeenCalledWith(TYPE_WORD_SUBMISSION, { type: "TYPE_WORD", answer: "aple" });

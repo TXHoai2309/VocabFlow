@@ -1544,3 +1544,18 @@ registration boundary before feature implementation.
   to `REMEMBERED`/`FORGOTTEN`. No database schema, progress semantics or
   scheduler intervals changed. `docs/decisions.md`, `.env.example` and
   `local-data.zip` remain protected.
+
+## 2026-10-02 — US-44 Study Session focus mode
+
+- Reused `/study` and `/study/exercises`, hid the shared shell navigation in
+  focus mode, and aligned the session header, progress, question, feedback and
+  controls with the VocabFlow design system.
+- Kept answers pending in client state until Next, so Undo clears an unsent
+  answer without pretending to roll back persisted progress. Confirmed saves,
+  retry identity, topic/set restrictions and session-local reinforcement stay
+  on the existing queue/review flow.
+- Study feature tests pass (85/85), feature ESLint passes, web-project and root
+  typechecks pass, the production build passes, and `git diff --check` passes.
+- No API/database command or deployment was run. Concurrent Dataset V2 and
+  database workflow changes in the shared working tree are outside this Study
+  scope and excluded from its commit.

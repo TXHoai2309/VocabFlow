@@ -80,8 +80,10 @@ function ParentAccount({ parentName }: { parentName: string }) {
 
 export function AppShell({ parentName }: { parentName: string }) {
   const [navigationOpen, setNavigationOpen] = useState(false);
+  const location = useLocation();
+  const isStudyFocusMode = location.pathname === "/study" || location.pathname === "/study/exercises";
   return (
-    <div className="app-layout">
+    <div className={`app-layout${isStudyFocusMode ? " is-study-focus-mode" : ""}`}>
       <aside className="app-sidebar" aria-label="Thanh điều hướng ứng dụng">
         <Brand />
         <PrimaryNavigation />

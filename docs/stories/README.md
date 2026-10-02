@@ -70,6 +70,7 @@ convenient. Reprioritization or a new story must be explicit.
 - [US-41 Content Curation & Activation](US-41-content-curation-activation.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
 - [US-42 Protected Production Release Automation](US-42-production-release-automation.md) — `IN PROGRESS`.
 - [US-43 Vocabulary Detail](US-43-vocabulary-detail.md) — `IN PROGRESS` (explicitly reprioritized by the owner while US-42 remains open).
+- [US-44 Study Session Focus Mode](US-44-study-session-focus-mode.md) — `IMPLEMENTED / READY FOR OWNER CHECK` (owner-requested Study Session presentation and interaction update).
 
 ## Story status gate
 
