@@ -43,6 +43,8 @@ export type RuntimeVocabulary = {
   level: string | null;
   enabled: boolean;
   contentVersion: number;
+  sourceDataset?: string | null;
+  sourceRecordId?: number | null;
 };
 export type RuntimeVocabularyMapping = {
   masterSenseId: string;

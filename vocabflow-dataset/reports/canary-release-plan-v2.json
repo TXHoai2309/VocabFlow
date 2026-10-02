@@ -8,6 +8,12 @@
     "currentStatus": "DRAFT",
     "rawManifestSha256": "ef66192a140c74593ca3a77306a8b70a3dcb050a5553c026a854e78d83bf43a5"
   },
+  "proposedRelease": {
+    "datasetVersion": "2.1.0",
+    "semverBump": "MINOR",
+    "rationale": "The 2.0.0 pilot remains an immutable DRAFT snapshot. The canary is a new approved learner-content snapshot; it does not change schemaVersion or recycle the DRAFT release identity.",
+    "onlyAfterExplicitOwnerApproval": true
+  },
   "candidateSenseCount": 8,
   "proposedLearnerContentBoundary": {
     "includedSensePins": [

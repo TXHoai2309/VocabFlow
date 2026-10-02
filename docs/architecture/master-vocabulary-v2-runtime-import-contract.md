@@ -1,8 +1,9 @@
 # VocabFlow Master Vocabulary V2 — Runtime Import Contract
 
-- Status: `IMPLEMENTED / READY FOR OWNER CHECK` for Phase 2D and Phase 2D.1
-  offline adapter, composite identity constraints, and canary preparation.
-  Staging execution remains a later phase.
+- Status: `IMPLEMENTED / READY FOR OWNER CHECK` for Phase 2D and Phase 2D.1,
+  with Phase 2D.2 owner-approval/release tooling prepared offline. Owner content
+  approval, a dedicated staging target, runtime snapshot, reconciliation, and
+  staging execution remain pending.
 - Scope: explicit runtime identity reconciliation, deterministic planning,
   guarded catalog writes, and import audit records.
 - Current pilot: `DRAFT`, `IN_REVIEW`, and `importEligible: false`; it cannot be
@@ -182,3 +183,10 @@ a canary. The recommendation is to configure a dedicated isolated
 non-production staging/canary branch in a later explicitly authorized step.
 Staging migration and canary execution require that target, owner-approved
 content, an approved subset release, and complete runtime reconciliation.
+
+Phase 2D.2 prepares the field-aware owner artifact, an isolated `2.1.0` MINOR
+release builder, and a pure candidate scanner for separately verified
+read-only snapshots. The current owner artifact remains pending; no actual
+release workspace is created. `pnpm db:migrate` has no staging selector and
+must not be used as one. See the [Phase 2D.2 readiness report](master-vocabulary-v2-phase-2d2-readiness.md)
+for target blockers and exact gates.

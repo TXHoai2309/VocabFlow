@@ -193,9 +193,13 @@ describe("Master V2 canary preparation", () => {
     expect(first.reviewMarkdown).toContain("Technology starter");
     expect(first.reviewMarkdown).not.toContain("[object Object]");
     expect(first.reviewMarkdown).toContain("A1 — editorial estimate, non-official");
-    expect(first.reviewMarkdown).toContain("Legacy Topic projection");
+    expect(first.reviewMarkdown).toContain("Legacy Topic (full DRAFT preview)");
     expect(first.reviewMarkdown).toContain("ɹɪˈkɔɹd` (Sense override)");
-    expect(first.reviewMarkdown).toContain("Domain: Academic English (IN_REVIEW), IT and technology (IN_REVIEW)");
+    expect(first.reviewMarkdown).toContain("Domains: EDITORIAL / NON-OFFICIAL");
+    const ownerApproval = JSON.parse(first.ownerApprovalTemplateJson) as { releaseApproval: { decision: string }; senseReviews: Array<{ decision: string }> };
+    expect(ownerApproval.releaseApproval.decision).toBe("PENDING");
+    expect(ownerApproval.senseReviews).toHaveLength(8);
+    expect(ownerApproval.senseReviews.every((review) => review.decision === "PENDING")).toBe(true);
     expect(readFileSync(humanReconciliationPath, "utf8")).toBe(humanBefore);
   });
 });

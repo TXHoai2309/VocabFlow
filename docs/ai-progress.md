@@ -1618,3 +1618,38 @@ registration boundary before feature implementation.
   `CANARY_RELEASE_READY = NO`, `RUNTIME_RECONCILIATION_READY = NO`,
   `MIGRATION_APPLY_READY = NO`, and
   `PHASE_2E_STAGING_CANARY_READY = NO`.
+
+## 2026-10-02 — Master Vocabulary Dataset V2 Phase 2D.2
+
+- Added the explicit pending owner approval artifact, including per-Sense
+  learner fields, separate Lexeme/Pronunciation review, optional Learning Set
+  and item decisions, and release-level sign-off. Added a deterministic
+  release builder which verifies the raw source manifest hash and exact pins,
+  writes new immutable entity revisions into an isolated `2.1.0` workspace,
+  closes Provenance/media-slot references, validates the release, and runs the
+  offline RELEASE transform. No source DRAFT record is changed.
+- Added the pure read-only runtime snapshot scanner. Exact matching is only a
+  discovery hint; every result stays `UNRESOLVED`. It reports override and
+  quarantine semantics, projection differences, history counts, source
+  identity fields, Topic/Set collisions, and flags a runtime ID shared by
+  multiple polysemous Senses.
+- Allowed an approved release with no pinned taxonomy only when it also has no
+  pinned Classification. The synthetic builder test confirms eight eligible
+  projection rows, null media URLs/Topic/Level, valid release/content hashes,
+  and an unresolved reconciliation template. The test workspace is temporary
+  and removed; no real canary release was created.
+- The real owner template is still `PENDING`; `2.0.0` remains DRAFT. There is
+  no dedicated staging branch or staging CLI target, so no target was added,
+  no runtime snapshot was read, and no DB or migration command was run. The
+  canonical root manifest and human-owned reconciliation file are unchanged.
+- Node `v22.23.2`, pnpm `11.17.0`; Master validator PASS (0 errors, 0 warnings,
+  1 informational DRAFT issue); focused Dataset V2 suite PASS (7 files,
+  95/95 tests); root typecheck and ESLint PASS; Drizzle generation reports no
+  schema changes. Final `git diff --check` is recorded with this change.
+- A full-repository Vitest run was interrupted after the output identified
+  three failures in `apps/web/src/App.test.tsx` and then produced no further
+  progress for over two minutes. The displayed failures are the US-44 Study
+  shell-heading/mobile-navigation expectations; the Study files were not
+  touched. The complete current full-suite count is therefore unknown.
+- Readiness gates are recorded in
+  [`Phase 2D.2 readiness`](architecture/master-vocabulary-v2-phase-2d2-readiness.md).

@@ -65,6 +65,26 @@ learner state, or media provider is touched in this phase. Read the
 [Runtime Import Contract](../docs/architecture/master-vocabulary-v2-runtime-import-contract.md)
 before any future adoption or migration execution.
 
+## Phase 2D.2 owner approval and canary preparation
+
+The proposed eight-Sense canary is a review set only. Its field-aware owner
+artifact is [`reports/canary-owner-approval-v2.json`](reports/canary-owner-approval-v2.json)
+and intentionally contains only `PENDING` decisions. After the owner completes
+the release-level approval and each included Sense/Lexeme/Set review, the
+offline builder can be invoked with:
+
+```sh
+pnpm dataset:prepare-canary-v2 -- --approval-file vocabflow-dataset/reports/canary-owner-approval-v2.json
+```
+
+It rejects stale approvals and existing output workspaces. It does not update
+this root `dataset.json` or the human-owned
+`import/mappings/runtime-reconciliation-v2.json`. The candidate version is
+`2.1.0` MINOR, leaving the `2.0.0` DRAFT snapshot intact. The builder is not
+currently run against the blank owner template, and there is no dedicated
+staging branch or runtime snapshot. See the [Phase 2D.2 readiness report](../docs/architecture/master-vocabulary-v2-phase-2d2-readiness.md)
+before preparing a release or using any database command.
+
 ## Run validation
 
 From the repository root, run:

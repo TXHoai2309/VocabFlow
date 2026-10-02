@@ -1,0 +1,345 @@
+{
+  "artifactVersion": "vocabflow-master-v2-canary-owner-approval-v1",
+  "status": "OWNER_INPUT_REQUIRED",
+  "sourceDataset": {
+    "datasetId": "0195f85c-7b2a-7d10-8c01-000000000001",
+    "datasetVersion": "2.0.0",
+    "schemaVersion": "2.0.1",
+    "manifestStatus": "DRAFT",
+    "manifestRawSha256": "ef66192a140c74593ca3a77306a8b70a3dcb050a5553c026a854e78d83bf43a5"
+  },
+  "proposedRelease": {
+    "datasetVersion": "2.1.0",
+    "semverBump": "MINOR",
+    "rationale": "First approved canary snapshot on the 2.0.x content line. The existing 2.0.0 snapshot remains DRAFT and immutable; the canary adds a new approved content snapshot without changing schemaVersion."
+  },
+  "releaseApproval": {
+    "decision": "PENDING",
+    "reviewer": null,
+    "reviewedAt": null,
+    "notes": "Explicit owner sign-off for this exact release snapshot is required."
+  },
+  "senseReviews": [
+    {
+      "masterSenseId": "01a0fc13-09ed-70b4-801b-408be3b771e9",
+      "masterLexemeId": "01a0fc13-09ed-72c7-aef1-9124d94a6828",
+      "sourceSenseRevision": 1,
+      "sourceSenseContentHash": "b980421c56d4634d9c7cfdb914cc1109ccbb2b2f09b041275cce4d3d4308a921",
+      "decision": "PENDING",
+      "selectedChildIds": {
+        "translationId": "01a0fc13-09ed-74f7-88ba-a0f8187dc38b",
+        "definitionId": "01a0fc13-09ed-7095-9aec-8e6891154c2c",
+        "exampleId": "01a0fc13-09ed-7ed8-b9b0-57b9fc8a7c3c",
+        "exampleTranslationId": "01a0fc13-09ed-7798-97b4-f528164f1a60",
+        "pronunciationId": null
+      },
+      "fieldDecisions": {
+        "partOfSpeech": "PENDING",
+        "translation": "PENDING",
+        "definition": "PENDING",
+        "example": "PENDING",
+        "exampleTranslation": "PENDING",
+        "pronunciation": "PENDING",
+        "mediaRuntimeUrls": "PENDING"
+      },
+      "reviewer": null,
+      "reviewedAt": null,
+      "notes": ""
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-7211-8e5a-784c689a0c7a",
+      "masterLexemeId": "01a0fc13-09ed-77ca-b066-98b5169c16b8",
+      "sourceSenseRevision": 1,
+      "sourceSenseContentHash": "0a213c296d7f33392de5c24cfbbf5cbfc399037113908e0010c6682246e774b4",
+      "decision": "PENDING",
+      "selectedChildIds": {
+        "translationId": "01a0fc13-09ee-7361-828e-95ee6e59ee22",
+        "definitionId": "01a0fc13-09ee-7db4-93a1-795b4c5acc47",
+        "exampleId": "01a0fc13-09ee-7a73-b99c-fe636e2e77cf",
+        "exampleTranslationId": "01a0fc13-09ee-77b8-97aa-e9c8c4f7ef4f",
+        "pronunciationId": null
+      },
+      "fieldDecisions": {
+        "partOfSpeech": "PENDING",
+        "translation": "PENDING",
+        "definition": "PENDING",
+        "example": "PENDING",
+        "exampleTranslation": "PENDING",
+        "pronunciation": "PENDING",
+        "mediaRuntimeUrls": "PENDING"
+      },
+      "reviewer": null,
+      "reviewedAt": null,
+      "notes": ""
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-7584-a480-e313e359f744",
+      "masterLexemeId": "01a0fc13-09ed-77ca-b066-98b5169c16b8",
+      "sourceSenseRevision": 1,
+      "sourceSenseContentHash": "b38c3065ccb9ee0be20700f1a1a34ad710ba2a9697fcba1989ccf7bd8f4a7138",
+      "decision": "PENDING",
+      "selectedChildIds": {
+        "translationId": "01a0fc13-09ee-773c-9f05-c241b035be3a",
+        "definitionId": "01a0fc13-09ee-73cb-a49c-b14345623a87",
+        "exampleId": "01a0fc13-09ee-756e-84f0-4aa8e5a8f78d",
+        "exampleTranslationId": "01a0fc13-09ee-7104-8318-d9aafb68c89f",
+        "pronunciationId": null
+      },
+      "fieldDecisions": {
+        "partOfSpeech": "PENDING",
+        "translation": "PENDING",
+        "definition": "PENDING",
+        "example": "PENDING",
+        "exampleTranslation": "PENDING",
+        "pronunciation": "PENDING",
+        "mediaRuntimeUrls": "PENDING"
+      },
+      "reviewer": null,
+      "reviewedAt": null,
+      "notes": ""
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-71ff-9a0a-a96e48ef7dac",
+      "masterLexemeId": "01a0fc13-09ee-781c-8793-6ec31c09956e",
+      "sourceSenseRevision": 1,
+      "sourceSenseContentHash": "04e9258a439c3b0dffa02c938eaa5da0cb98f80ca8a200faf4d95e800b75e746",
+      "decision": "PENDING",
+      "selectedChildIds": {
+        "translationId": "01a0fc13-09ee-7224-8ec2-ecaf1c0b1bb4",
+        "definitionId": "01a0fc13-09ee-70be-80e8-750d76467636",
+        "exampleId": "01a0fc13-09ee-7b2b-abac-821ced9ddc1a",
+        "exampleTranslationId": "01a0fc13-09ee-70ce-ae1b-3e88aa2dc908",
+        "pronunciationId": "01a0fc13-09f0-74eb-b535-661bd926cf1c"
+      },
+      "fieldDecisions": {
+        "partOfSpeech": "PENDING",
+        "translation": "PENDING",
+        "definition": "PENDING",
+        "example": "PENDING",
+        "exampleTranslation": "PENDING",
+        "pronunciation": "PENDING",
+        "mediaRuntimeUrls": "PENDING"
+      },
+      "reviewer": null,
+      "reviewedAt": null,
+      "notes": ""
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-7823-95fc-5d1d76f13fa5",
+      "masterLexemeId": "01a0fc13-09ee-781c-8793-6ec31c09956e",
+      "sourceSenseRevision": 1,
+      "sourceSenseContentHash": "8ee3b79fbb840e22f8efd513aa55439d3afc8f36facd2aed6b63f53b9a6fbd3c",
+      "decision": "PENDING",
+      "selectedChildIds": {
+        "translationId": "01a0fc13-09ee-78c5-8f55-27e2e8dc0955",
+        "definitionId": "01a0fc13-09ee-7543-95d9-795bbc90a6c1",
+        "exampleId": "01a0fc13-09ee-7330-a69c-dff44607f372",
+        "exampleTranslationId": "01a0fc13-09ee-7cc8-99b6-d51894609012",
+        "pronunciationId": "01a0fc13-09f0-7a52-ac26-1949740de386"
+      },
+      "fieldDecisions": {
+        "partOfSpeech": "PENDING",
+        "translation": "PENDING",
+        "definition": "PENDING",
+        "example": "PENDING",
+        "exampleTranslation": "PENDING",
+        "pronunciation": "PENDING",
+        "mediaRuntimeUrls": "PENDING"
+      },
+      "reviewer": null,
+      "reviewedAt": null,
+      "notes": ""
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-79c7-85ff-cbe0fc14a249",
+      "masterLexemeId": "01a0fc13-09ee-73d5-affa-6e017eb9adb3",
+      "sourceSenseRevision": 1,
+      "sourceSenseContentHash": "e647419a8a621aea2bedae9ed58be579cc3e18f65734f16985f0d1c52486933a",
+      "decision": "PENDING",
+      "selectedChildIds": {
+        "translationId": "01a0fc13-09ee-7142-8375-88b4a8e36b12",
+        "definitionId": "01a0fc13-09ee-7668-ad7a-fb3ae553c73b",
+        "exampleId": "01a0fc13-09ee-7672-995d-747cf923c4c9",
+        "exampleTranslationId": "01a0fc13-09ee-70bb-8a01-a427ae8eacc0",
+        "pronunciationId": null
+      },
+      "fieldDecisions": {
+        "partOfSpeech": "PENDING",
+        "translation": "PENDING",
+        "definition": "PENDING",
+        "example": "PENDING",
+        "exampleTranslation": "PENDING",
+        "pronunciation": "PENDING",
+        "mediaRuntimeUrls": "PENDING"
+      },
+      "reviewer": null,
+      "reviewedAt": null,
+      "notes": ""
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-710c-8e76-753a5cfea69c",
+      "masterLexemeId": "01a0fc13-09ee-7113-8786-38671cd485b7",
+      "sourceSenseRevision": 1,
+      "sourceSenseContentHash": "02d58d786025eaaf080c9aa33ff13f7fd1dc4b0820aee9906fa66c1257f00b13",
+      "decision": "PENDING",
+      "selectedChildIds": {
+        "translationId": "01a0fc13-09ef-7187-84e1-34c0242759b5",
+        "definitionId": "01a0fc13-09ef-775c-bdc5-78f54f84cbed",
+        "exampleId": "01a0fc13-09ef-7542-ba90-310df4bf5b96",
+        "exampleTranslationId": "01a0fc13-09ef-795b-a916-6a7a0d898a75",
+        "pronunciationId": null
+      },
+      "fieldDecisions": {
+        "partOfSpeech": "PENDING",
+        "translation": "PENDING",
+        "definition": "PENDING",
+        "example": "PENDING",
+        "exampleTranslation": "PENDING",
+        "pronunciation": "PENDING",
+        "mediaRuntimeUrls": "PENDING"
+      },
+      "reviewer": null,
+      "reviewedAt": null,
+      "notes": ""
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-7d37-a50f-d05db6b1a89c",
+      "masterLexemeId": "01a0fc13-09ef-7e5d-b757-aa456f0cd969",
+      "sourceSenseRevision": 1,
+      "sourceSenseContentHash": "a518b06b074a9b81aa7437144166fe4b446586178a9638266300852f7ed84987",
+      "decision": "PENDING",
+      "selectedChildIds": {
+        "translationId": "01a0fc13-09ef-73bc-a930-1cf6e11b7e3c",
+        "definitionId": "01a0fc13-09ef-7b90-8334-fff3383108d8",
+        "exampleId": "01a0fc13-09ef-7424-9c6d-5f41f21db19d",
+        "exampleTranslationId": "01a0fc13-09ef-70cd-b5d7-61357df8dc30",
+        "pronunciationId": null
+      },
+      "fieldDecisions": {
+        "partOfSpeech": "PENDING",
+        "translation": "PENDING",
+        "definition": "PENDING",
+        "example": "PENDING",
+        "exampleTranslation": "PENDING",
+        "pronunciation": "PENDING",
+        "mediaRuntimeUrls": "PENDING"
+      },
+      "reviewer": null,
+      "reviewedAt": null,
+      "notes": ""
+    }
+  ],
+  "lexemeReviews": [
+    {
+      "masterLexemeId": "01a0fc13-09ed-72c7-aef1-9124d94a6828",
+      "sourceLexemeRevision": 1,
+      "sourceLexemeContentHash": "23d20c507ed31717603a82eb64a74700306cbd8826ee9d5eb46ea63a11aa58a4",
+      "decision": "PENDING",
+      "fieldDecisions": {
+        "lemma": "PENDING",
+        "lexicalUnitType": "PENDING",
+        "pronunciation": "PENDING"
+      },
+      "reviewer": null,
+      "reviewedAt": null,
+      "notes": ""
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ed-77ca-b066-98b5169c16b8",
+      "sourceLexemeRevision": 1,
+      "sourceLexemeContentHash": "756abe1b64febf384b236385864e0ed8cf7a34dc7be9bbdee037fafabe6a868d",
+      "decision": "PENDING",
+      "fieldDecisions": {
+        "lemma": "PENDING",
+        "lexicalUnitType": "PENDING",
+        "pronunciation": "PENDING"
+      },
+      "reviewer": null,
+      "reviewedAt": null,
+      "notes": ""
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ee-7113-8786-38671cd485b7",
+      "sourceLexemeRevision": 1,
+      "sourceLexemeContentHash": "941a653f9eae257680df1eef251584593f38a8ec6b9c89c03ba28172f2639fea",
+      "decision": "PENDING",
+      "fieldDecisions": {
+        "lemma": "PENDING",
+        "lexicalUnitType": "PENDING",
+        "pronunciation": "PENDING"
+      },
+      "reviewer": null,
+      "reviewedAt": null,
+      "notes": ""
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ee-73d5-affa-6e017eb9adb3",
+      "sourceLexemeRevision": 1,
+      "sourceLexemeContentHash": "7574d7a0f8bea5dc49e70ab24fadce1510a0a3ede2de9d1d164ec8650f58de00",
+      "decision": "PENDING",
+      "fieldDecisions": {
+        "lemma": "PENDING",
+        "lexicalUnitType": "PENDING",
+        "pronunciation": "PENDING"
+      },
+      "reviewer": null,
+      "reviewedAt": null,
+      "notes": ""
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ee-781c-8793-6ec31c09956e",
+      "sourceLexemeRevision": 1,
+      "sourceLexemeContentHash": "174bbfbc9192c5cdd6bdfc837545f3a4354dc9b680574080d4169e604c6d9e8b",
+      "decision": "PENDING",
+      "fieldDecisions": {
+        "lemma": "PENDING",
+        "lexicalUnitType": "PENDING",
+        "pronunciation": "PENDING"
+      },
+      "reviewer": null,
+      "reviewedAt": null,
+      "notes": ""
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ef-7e5d-b757-aa456f0cd969",
+      "sourceLexemeRevision": 1,
+      "sourceLexemeContentHash": "c1d9f747fdf3da710bfc67afc5d4a17b94f561e02f0731a74da02d97d242b35d",
+      "decision": "PENDING",
+      "fieldDecisions": {
+        "lemma": "PENDING",
+        "lexicalUnitType": "PENDING",
+        "pronunciation": "PENDING"
+      },
+      "reviewer": null,
+      "reviewedAt": null,
+      "notes": ""
+    }
+  ],
+  "learningSetReviews": [
+    {
+      "learningSetId": "01a0fc13-09f2-7709-a32d-5bef5b1f7a51",
+      "sourceLearningSetRevision": 1,
+      "sourceLearningSetContentHash": "9f24303d5df58331fddc2f558cbd4710ae917803b4f351a666e66368b4344527",
+      "decision": "PENDING",
+      "fieldDecisions": {
+        "name": "PENDING",
+        "description": "PENDING",
+        "membership": "PENDING"
+      },
+      "items": [
+        {
+          "learningSetItemId": "01a0fc13-09f2-765d-b327-41d62c73ecc1",
+          "masterSenseId": "01a0fc13-09ef-710c-8e76-753a5cfea69c",
+          "decision": "PENDING",
+          "reviewer": null,
+          "reviewedAt": null,
+          "notes": ""
+        }
+      ],
+      "reviewer": null,
+      "reviewedAt": null,
+      "notes": ""
+    }
+  ],
+  "reviewRule": "The tool accepts only explicit owner decisions. APPROVE requires every listed field to be APPROVED and a reviewer/date. REQUEST_CHANGES excludes that Sense from this canary until a reviewed immutable Master revision is supplied. EXCLUDE_FROM_CANARY omits a Sense. PENDING blocks release preparation."
+}

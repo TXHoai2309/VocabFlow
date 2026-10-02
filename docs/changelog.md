@@ -2,6 +2,20 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-02 — Master Vocabulary Dataset V2 Phase 2D.2 readiness
+
+- Added a field-aware, explicit owner approval template and deterministic
+  release builder for a new `2.1.0` MINOR subset snapshot. It creates immutable
+  revisions in an isolated workspace, validates/hashes the candidate, and runs
+  the offline RELEASE transform only after release-level and content decisions
+  are explicitly supplied.
+- Added a pure read-only snapshot reconciliation scanner. It reports exact
+  field drift, overrides, quarantine, history references, and polysemy ID
+  ambiguity while leaving all decisions unresolved.
+- The real approval template remains pending; no approved release workspace,
+  staging target, runtime snapshot, reconciliation, or applicable import plan
+  exists. No database or remote operation was performed.
+
 ## 2026-10-02 — Master Vocabulary Dataset V2 Phase 2D runtime bridge
 
 - Added additive Master Sense, Topic, Learning Set, membership-ownership and

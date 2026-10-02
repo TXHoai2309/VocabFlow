@@ -211,6 +211,8 @@ function mapVocabulary(row: Record<string, unknown>): RuntimeVocabulary {
     imageUrl: row.image_url === null ? null : String(row.image_url), imageQuarantined: row.image_quarantined === true,
     audioUrl: row.audio_url === null ? null : String(row.audio_url), topic: row.topic === null ? null : String(row.topic),
     level: row.level === null ? null : String(row.level), enabled: row.enabled === true, contentVersion: Number(row.content_version),
+    sourceDataset: typeof row.source_dataset === "string" ? row.source_dataset : null,
+    sourceRecordId: row.source_record_id === null || row.source_record_id === undefined ? null : Number(row.source_record_id),
   };
 }
 function mapTopics(rows: Array<Record<string, unknown>>) {
@@ -225,7 +227,7 @@ export function createPostgresMasterImportStore(sql: SqlClient): MasterImportSto
   const readSnapshot = async (tx: SqlTag, lock: boolean): Promise<RuntimeSnapshot> => {
     const lockSuffix = lock ? " FOR UPDATE" : "";
     const rows = async (query: string) => tx.unsafe(query);
-    const vocabRows = await rows(`SELECT id, word, ipa, vietnamese, vietnamese_override, definition_en, example_en, image_url, image_quarantined, audio_url, topic, level, enabled, content_version FROM "vocabflow_app"."vocabularies" ORDER BY id${lockSuffix}`);
+    const vocabRows = await rows(`SELECT id, word, ipa, vietnamese, vietnamese_override, definition_en, example_en, image_url, image_quarantined, audio_url, topic, level, enabled, content_version, source_dataset, source_record_id FROM "vocabflow_app"."vocabularies" ORDER BY id${lockSuffix}`);
     const vocabularyMappings = await rows(`SELECT master_sense_id, master_lexeme_id, vocabulary_id, projection_contract_version, applied_projection_fingerprint, last_release_hash FROM "vocabflow_app"."master_vocabulary_mappings" ORDER BY master_sense_id${lockSuffix}`);
     const topicRows = await rows(`SELECT id, slug, name, description, sort_order, enabled FROM "vocabflow_app"."topics" ORDER BY id${lockSuffix}`);
     const topicMappings = await rows(`SELECT master_topic_id, topic_id FROM "vocabflow_app"."master_topic_mappings" ORDER BY master_topic_id${lockSuffix}`);

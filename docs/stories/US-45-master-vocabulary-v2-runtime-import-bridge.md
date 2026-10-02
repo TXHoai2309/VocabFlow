@@ -132,3 +132,28 @@ workers completed 909/912 tests; its three failures are existing Study shell
 heading/mobile navigation expectations in `apps/web/src/App.test.tsx`, outside
 this scope. Node is 22.19.0 while the package engine requires 22.23.2. No
 database or Cloudinary operation occurred.
+
+## Phase 2D.2 follow-up — owner approval and staging preparation
+
+Phase 2D.2 adds the pending field-aware owner artifact
+[`canary-owner-approval-v2.json`](../../vocabflow-dataset/reports/canary-owner-approval-v2.json),
+the deterministic offline release builder (`pnpm dataset:prepare-canary-v2`),
+and a pure read-only runtime snapshot candidate scanner. A release workspace
+can be emitted only from explicit release-level, Sense-field, Lexeme, and
+included Learning Set/item approvals. The builder preserves the `2.0.0` DRAFT,
+proposes `2.1.0` MINOR, and creates new entity revisions under stable Master
+IDs. Synthetic approval tests use a temporary package and do not approve the
+checked-in content.
+
+The transform now accepts an approved release without a taxonomy snapshot only
+when the release also contains no Classification records. This permits the
+minimal canary to keep all experimental taxonomy/classification data outside
+the release; a release containing Classification records still needs one exact
+taxonomy snapshot. PLANNED audio slots are pinned only when referenced; no
+media versions are pinned and runtime URLs remain null.
+
+The staging audit confirms there is no dedicated branch ID and `db:migrate`
+does not accept a staging target. No staging config was added, no runtime
+snapshot was read, and the root human-owned reconciliation remains unchanged.
+The complete status and gates are in
+[`Phase 2D.2 readiness`](../architecture/master-vocabulary-v2-phase-2d2-readiness.md).

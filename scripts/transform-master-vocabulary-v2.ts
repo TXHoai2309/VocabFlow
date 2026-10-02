@@ -126,7 +126,9 @@ export function loadPinnedMasterProjectionGraph(datasetRoot: string): MasterProj
   const manifestValue: unknown = JSON.parse(readFileSync(path.join(resolvedRoot, "dataset.json"), "utf8"));
   if (!isRecord(manifestValue)) throw new Error("DATASET_MANIFEST_NOT_OBJECT");
   const taxonomySnapshots = pinRead(resolvedRoot, manifestValue.includedTaxonomySnapshots, "taxonomyId", "taxonomyVersion");
-  if (taxonomySnapshots.length !== 1) throw new Error("TRANSFORM_REQUIRES_EXACTLY_ONE_TAXONOMY_SNAPSHOT");
+  const classifications = pinRead(resolvedRoot, manifestValue.includedClassifications, "classificationId", "classificationRevision");
+  if (taxonomySnapshots.length > 1) throw new Error("TRANSFORM_REQUIRES_AT_MOST_ONE_TAXONOMY_SNAPSHOT");
+  if (taxonomySnapshots.length === 0 && classifications.length > 0) throw new Error("TRANSFORM_CLASSIFICATIONS_REQUIRE_TAXONOMY");
   const assetPins = [
     ...records(manifestValue.includedMediaAssets),
     ...records(manifestValue.includedMediaAssetVersions),
@@ -151,9 +153,18 @@ export function loadPinnedMasterProjectionGraph(datasetRoot: string): MasterProj
     manifest: manifestValue,
     lexemes: pinRead(resolvedRoot, manifestValue.includedLexemes, "masterLexemeId", "lexemeRevision"),
     senses: pinRead(resolvedRoot, manifestValue.includedSenses, "masterSenseId", "senseRevision"),
-    classifications: pinRead(resolvedRoot, manifestValue.includedClassifications, "classificationId", "classificationRevision"),
+    classifications,
     learningSets: pinRead(resolvedRoot, manifestValue.includedLearningSets, "learningSetId", "learningSetRevision"),
-    taxonomy: taxonomySnapshots[0]!,
+    taxonomy: taxonomySnapshots[0] ?? {
+      status: "APPROVED",
+      cefrFrameworks: [],
+      topics: [],
+      domains: [],
+      exams: [],
+      curricula: [],
+      schoolLevels: [],
+      difficultyScales: [],
+    },
     mediaAssets,
   };
 }

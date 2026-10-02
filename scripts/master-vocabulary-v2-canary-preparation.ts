@@ -89,6 +89,7 @@ function sortedPins(found: Array<Pin | undefined>, idField: string): Pin[] {
 
 export interface CanaryPreparationArtifacts {
   reviewMarkdown: string;
+  ownerApprovalTemplateJson: string;
   reconciliationCandidatesJson: string;
   releasePlanJson: string;
 }
@@ -130,6 +131,10 @@ export function buildMasterVocabularyV2CanaryArtifacts(datasetRoot: string): Can
       ?? objects(example?.exampleTranslations).find((entry) => entry.language === "vi");
     const pronunciations = [...objects(sense.pronunciationOverrides), ...objects(lexeme.pronunciations)];
     const selectedIpa = string(runtime.ipa);
+    const selectedPronunciation = selectedIpa === null
+      ? undefined
+      : objects(sense.pronunciationOverrides).find((entry) => entry.isPreferred === true && entry.locale === "en-US" && entry.ipa === selectedIpa)
+        ?? objects(lexeme.pronunciations).find((entry) => entry.isPreferred === true && entry.locale === "en-US" && entry.ipa === selectedIpa);
     const pronunciationSource = selectedIpa === null
       ? "none selected"
       : objects(sense.pronunciationOverrides).some((entry) => entry.isPreferred === true && entry.locale === "en-US" && entry.ipa === selectedIpa)
@@ -168,7 +173,7 @@ export function buildMasterVocabularyV2CanaryArtifacts(datasetRoot: string): Can
     const exampleText = string(example?.text);
     const contentProvenanceStatus = `${usedProvenanceIds.length} source references; ${usedProvenancePins.length} exact Provenance pins resolve; sources still need owner review`;
     const issues = [
-      "Lexeme, Sense and selected learner-facing child records are currently IN_REVIEW; owner must decide approve, revise or defer.",
+      "Lexeme, Sense and selected learner-facing child records are currently IN_REVIEW; owner must decide APPROVE, REQUEST CHANGES or EXCLUDE FROM CANARY.",
       "Confirm Vietnamese nuance and the selected definition/example translations before any learner-facing release.",
       media.some((asset) => asset.status === "PLANNED") ? "Media remains PLANNED; runtime media projection is null and no delivery may be assumed." : "Confirm that absent or pending media behavior is acceptable.",
       "CEFR and difficulty are editorial pilot estimates, not official claims; omit them from an approved release unless provenance and approval requirements are met.",
@@ -185,6 +190,7 @@ export function buildMasterVocabularyV2CanaryArtifacts(datasetRoot: string): Can
       sensePin,
       lexeme,
       lexemePin,
+      lexicalUnitType: string(lexeme.lexicalUnitType),
       runtime,
       translation,
       definition,
@@ -195,8 +201,15 @@ export function buildMasterVocabularyV2CanaryArtifacts(datasetRoot: string): Can
       level: string(runtime.level),
       cefr: { estimate: string(cefr?.valueCode), status: string(cefr?.status), confidence: cefr?.confidence },
       difficulty: { estimate: difficulty?.numericValue, scaleId: string(difficulty?.scaleId), status: string(difficulty?.status) },
+      classifications: senseClasses.map((classification) => ({
+        classificationId: string(classification.classificationId),
+        dimension: string(classification.dimension),
+        value: classification.valueCode ?? classification.valueRef ?? classification.numericValue ?? null,
+        status: string(classification.status),
+      })).sort((left, right) => String(left.dimension).localeCompare(String(right.dimension)) || String(left.classificationId).localeCompare(String(right.classificationId))),
       domains,
       media,
+      selectedPronunciationId: string(selectedPronunciation?.pronunciationId),
       usedProvenanceIds,
       usedProvenancePins,
       provenanceTypes,
@@ -242,6 +255,86 @@ export function buildMasterVocabularyV2CanaryArtifacts(datasetRoot: string): Can
   const includedMediaIds = new Set(requiredMediaIds.filter((id) => pinnedVersionIds.has(`${id}@${String(mediaRecords.find(({ asset }) => asset.mediaAssetId === id)?.asset.currentMediaAssetVersion)}`)));
 
   const sourceHash = createHash("sha256").update(readFileSync(join(datasetRoot, "dataset.json"))).digest("hex");
+  const approvalTemplate = {
+    artifactVersion: "vocabflow-master-v2-canary-owner-approval-v1",
+    status: "OWNER_INPUT_REQUIRED",
+    sourceDataset: {
+      datasetId: manifest.datasetId,
+      datasetVersion: manifest.datasetVersion,
+      schemaVersion: manifest.schemaVersion,
+      manifestStatus: manifest.status,
+      manifestRawSha256: sourceHash,
+    },
+    proposedRelease: {
+      datasetVersion: "2.1.0",
+      semverBump: "MINOR",
+      rationale: "First approved canary snapshot on the 2.0.x content line. The existing 2.0.0 snapshot remains DRAFT and immutable; the canary adds a new approved content snapshot without changing schemaVersion.",
+    },
+    releaseApproval: {
+      decision: "PENDING",
+      reviewer: null,
+      reviewedAt: null,
+      notes: "Explicit owner sign-off for this exact release snapshot is required.",
+    },
+    senseReviews: candidates.map((candidate) => ({
+      masterSenseId: candidate.sense.masterSenseId,
+      masterLexemeId: candidate.lexeme.masterLexemeId,
+      sourceSenseRevision: candidate.sense.senseRevision,
+      sourceSenseContentHash: candidate.sensePin.contentHash,
+      decision: "PENDING",
+      selectedChildIds: {
+        translationId: candidate.translation?.translationId ?? null,
+        definitionId: candidate.definition?.definitionId ?? null,
+        exampleId: (candidate.sense.examples && objects(candidate.sense.examples).find((entry) => entry.language === "en")?.exampleId) ?? null,
+        exampleTranslationId: candidate.exampleTranslation?.exampleTranslationId ?? null,
+        pronunciationId: candidate.selectedPronunciationId,
+      },
+      fieldDecisions: {
+        partOfSpeech: "PENDING",
+        translation: "PENDING",
+        definition: "PENDING",
+        example: "PENDING",
+        exampleTranslation: "PENDING",
+        pronunciation: "PENDING",
+        mediaRuntimeUrls: "PENDING",
+      },
+      reviewer: null,
+      reviewedAt: null,
+      notes: "",
+    })),
+    lexemeReviews: requiredLexemePins.map((pin) => {
+      const lexeme = readJson(datasetRoot, pin.recordPath);
+      return {
+        masterLexemeId: lexeme.masterLexemeId,
+        sourceLexemeRevision: lexeme.lexemeRevision,
+        sourceLexemeContentHash: pin.contentHash,
+        decision: "PENDING",
+        fieldDecisions: { lemma: "PENDING", lexicalUnitType: "PENDING", pronunciation: "PENDING" },
+        reviewer: null,
+        reviewedAt: null,
+        notes: "",
+      };
+    }),
+    learningSetReviews: canarySets.map(({ pin, record }) => ({
+      learningSetId: record.learningSetId,
+      sourceLearningSetRevision: record.learningSetRevision,
+      sourceLearningSetContentHash: pin.contentHash,
+      decision: "PENDING",
+      fieldDecisions: { name: "PENDING", description: "PENDING", membership: "PENDING" },
+      items: objects(record.items).map((item) => ({
+        learningSetItemId: item.learningSetItemId,
+        masterSenseId: item.masterSenseId,
+        decision: "PENDING",
+        reviewer: null,
+        reviewedAt: null,
+        notes: "",
+      })),
+      reviewer: null,
+      reviewedAt: null,
+      notes: "",
+    })),
+    reviewRule: "The tool accepts only explicit owner decisions. APPROVE requires every listed field to be APPROVED and a reviewer/date. REQUEST_CHANGES excludes that Sense from this canary until a reviewed immutable Master revision is supplied. EXCLUDE_FROM_CANARY omits a Sense. PENDING blocks release preparation.",
+  };
   const reviewLines = [
     "# Canary content review — Master Vocabulary V2",
     "",
@@ -256,18 +349,22 @@ export function buildMasterVocabularyV2CanaryArtifacts(datasetRoot: string): Can
     "",
     "## Review decisions",
     "",
-    "Choose one outcome for each Sense; do not infer approval from this package.",
+    "Review each Sense and its exact selected child IDs below. Record the same decisions in `canary-owner-approval-v2.json`; the release tool accepts only that explicit JSON artifact.",
     "",
-    "- [ ] Approve the listed learner-facing content after source review",
-    "- [ ] Request revisions and create reviewed immutable record revisions",
-    "- [ ] Defer this Sense from the canary",
-    "- Owner/reviewer: ____________________    Date: ____________________",
+    "- `APPROVE` requires a reviewer, date, and APPROVED decisions for every learner-facing field.",
+    "- `REQUEST_CHANGES` blocks that Sense from this canary until a reviewed immutable Master revision is supplied and the approval template is regenerated.",
+    "- `EXCLUDE_FROM_CANARY` omits that Sense; `PENDING` blocks release preparation.",
+    "- Complete `releaseApproval` at the end of `canary-owner-approval-v2.json` only after reviewing the exact selected subset; it is the release-level approval and supplies `releasedAt`.",
+    "- `2.1.0` is a MINOR content release: the 2.0.0 DRAFT history is preserved, the schema is unchanged, and a new approved canary snapshot is created.",
+    "- Lexeme identity and pronunciation, and any included Learning Set and item, require separate explicit review because the APPROVED manifest pins those records too.",
     "",
     "## Proposed Learning Set canary",
     "",
     ...canarySets.flatMap(({ pin, record }) => [
       `- [ ] Review **${markdownCell(localizedText(record.name, "en"))}** (\`${markdownCell(record.code)}\`, \`${markdownCell(pin.learningSetId)}\`), currently ${markdownCell(record.status)}. Its exact revision contains ${objects(record.items).length} item(s), all already in the proposed Sense subset.`,
-      `  - [ ] Approve this Set revision and each listed Master Set Item after owner review; selection Provenance is pinned in the release dependency plan.`,
+      `  - Decision: [ ] APPROVE [ ] REQUEST CHANGES [ ] EXCLUDE FROM CANARY; review name [ ] description [ ] membership [ ]; reviewer: __________; date: __________.`,
+      ...objects(record.items).map((item) => `  - Item \`${markdownCell(item.learningSetItemId)}\`: Sense \`${markdownCell(item.masterSenseId)}\`, position ${markdownCell(item.position)}, status ${markdownCell(item.status)}; decision [ ] APPROVE [ ] EXCLUDE.`),
+      "  - Selection Provenance is pinned in the dependency plan; PLANNED media remains outside runtime URLs.",
     ]),
     "- Other Learning Sets that intersect these Senses are excluded because their pinned revisions would add non-canary Senses.",
     "",
@@ -282,25 +379,38 @@ export function buildMasterVocabularyV2CanaryArtifacts(datasetRoot: string): Can
       ? "not assigned"
       : `${candidate.domains.map((entry) => `${entry.label ?? entry.code ?? "unresolved"} (${entry.status ?? "status unavailable"})`).join(", ")} — editorial pilot metadata, omitted from the proposed release`;
     const mediaSummary = candidate.media.length === 0 ? "no pinned Sense-target media record" : candidate.media.map((asset) => `${asset.mediaKind}: ${asset.status}`).join("; ");
+    const imageStatus = candidate.media.filter((asset) => asset.mediaKind === "IMAGE").map((asset) => asset.status).join(", ") || "no image slot";
+    const audioStatus = candidate.media.filter((asset) => asset.mediaKind === "WORD_PRONUNCIATION_AUDIO" || asset.mediaKind === "EXAMPLE_AUDIO").map((asset) => `${asset.mediaKind}: ${asset.status}`).join(", ") || "no audio slot";
+    const metadataValues = (dimensions: string[]) => candidate.classifications
+      .filter((entry) => dimensions.includes(String(entry.dimension)))
+      .map((entry) => `${String(entry.value ?? "unresolved")} (${entry.status ?? "status unavailable"})`)
+      .join(", ") || "not assigned";
     reviewLines.push(
       `### ${markdownCell(candidate.senseLabel ?? candidate.lexeme.lemma)} — ${markdownCell(candidate.lexeme.lemma)} (${markdownCell(candidate.partOfSpeechCode)})`,
       "",
       `- Purpose: ${candidate.purpose}.`,
-      `- masterLexemeId: \`${markdownCell(candidate.lexeme.masterLexemeId)}\``,
-      `- masterSenseId: \`${markdownCell(candidate.sense.masterSenseId)}\``,
+      `- Identity: lemma \`${markdownCell(candidate.lexeme.lemma)}\`; masterLexemeId \`${markdownCell(candidate.lexeme.masterLexemeId)}\`; masterSenseId \`${markdownCell(candidate.sense.masterSenseId)}\`; POS \`${markdownCell(candidate.partOfSpeechCode)}\`; lexicalUnitType \`${markdownCell(candidate.lexicalUnitType)}\`.`,
       `- Vietnamese translation: ${markdownCell(objects(candidate.sense.translations).find((entry) => entry.language === "vi" && entry.isPreferred === true)?.text ?? candidate.runtime.vietnamese)}`,
       `- Definition: ${markdownCell(candidate.definition?.text)}`,
       `- Example: ${markdownCell(candidate.exampleText)}`,
       `- Example translation: ${markdownCell(candidate.exampleTranslation?.text)}`,
       `- Selected IPA: ${candidate.pronunciation.ipa ? `\`${markdownCell(candidate.pronunciation.ipa)}\` (${candidate.pronunciation.source})` : "none"}`,
-      `- Legacy Topic projection: ${markdownCell(candidate.runtime.topic)}; Level projection: ${markdownCell(candidate.level)}`,
-      `- Media status: ${markdownCell(mediaSummary)}; current runtime projection has image/audio URL null unless safe approved delivery exists.`,
-      `- CEFR: ${markdownCell(cefr)}; difficulty: ${markdownCell(difficulty)}. These are not official learner claims.`,
-      `- Domain: ${markdownCell(domain)}.`,
+      `- Legacy Topic (full DRAFT preview): ${markdownCell(candidate.runtime.topic)}; Level (full DRAFT preview): ${markdownCell(candidate.level)}. Proposed canary projection omits the unapproved classifications/taxonomy, so runtime Topic and Level are null.`,
+      `- Media: image ${markdownCell(imageStatus)}; audio ${markdownCell(audioStatus)}; runtime imageUrl: null; runtime audioUrl: null. ${markdownCell(mediaSummary)}.`,
+      `- CEFR: EDITORIAL / NON-OFFICIAL — ${markdownCell(cefr)}; difficulty: EDITORIAL / NON-OFFICIAL — ${markdownCell(difficulty)}. Neither is an official learner claim.`,
+      `- Domains: EDITORIAL / NON-OFFICIAL — ${markdownCell(domain)}.`,
+      `- Audience / age group: EDITORIAL / NON-OFFICIAL — ${markdownCell(metadataValues(["AGE_GROUP", "AUDIENCE"]))}.`,
+      `- Exam / curriculum: EDITORIAL / NON-OFFICIAL — ${markdownCell(metadataValues(["EXAM", "CURRICULUM"]))}.`,
+      `- Selected pronunciation ID: \`${markdownCell(candidate.selectedPronunciationId)}\` (approve text/absence explicitly; audio URL stays null).`,
       `- Provenance: ${markdownCell(candidate.contentProvenanceStatus)} (${markdownCell(candidate.provenanceTypes.join(", ")) || "no source type"}).`,
       `- Current review status: Lexeme ${markdownCell(candidate.lexeme.status)}; selected content ${markdownCell(candidate.currentReviewStatuses)}.`,
       `- Human review required: ${markdownCell(candidate.issues.join(" "))}`,
-      "- Owner decision: [ ] `APPROVE`  [ ] `REVISE`  [ ] `DEFER`; reviewer: __________; date: __________",
+      `- Exact selected IDs: Translation \`${markdownCell(candidate.translation?.translationId)}\`; Definition \`${markdownCell(candidate.definition?.definitionId)}\`; Example \`${markdownCell(candidate.sense.examples && objects(candidate.sense.examples).find((entry) => entry.language === "en")?.exampleId)}\`; Example Translation \`${markdownCell(candidate.exampleTranslation?.exampleTranslationId)}\`.`,
+      "- Learner content: [ ] APPROVE  [ ] REQUEST CHANGES  [ ] EXCLUDE FROM CANARY",
+      "- Part of speech reviewed: [ ] approved; Translation: [ ] approved; Definition: [ ] approved; Example: [ ] approved; Example translation: [ ] approved; Pronunciation/absence: [ ] approved.",
+      "- Media runtime URLs: [ ] owner accepts imageUrl/audioUrl null for this canary.",
+      "- Reviewer: ____________________    Date: ____________________",
+      "- Notes: ____________________________________________________________________",
       "",
     );
   }
@@ -312,8 +422,20 @@ export function buildMasterVocabularyV2CanaryArtifacts(datasetRoot: string): Can
     normalizedLemma: candidate.lexeme.normalizedLemma,
     effectiveVietnameseSearchSignal: candidate.runtime.vietnamese,
     definitionSearchSignal: candidate.runtime.definitionEn,
-    exampleSearchSignal: candidate.runtime.exampleEn,
-    currentTopicSearchSignal: candidate.runtime.topic,
+      exampleSearchSignal: candidate.runtime.exampleEn,
+      currentTopicSearchSignal: candidate.runtime.topic,
+      masterRuntimeProjection: {
+        word: candidate.lexeme.lemma,
+        ipa: candidate.runtime.ipa,
+        vietnamese: candidate.runtime.vietnamese,
+        definitionEn: candidate.runtime.definitionEn,
+        exampleEn: candidate.runtime.exampleEn,
+        imageUrl: null,
+        audioUrl: null,
+        topic: null,
+        level: null,
+        enabled: true,
+      },
     searchSignalsAreNotIdentity: true,
     runtimeCandidateSearchPerformed: false,
     runtimeCandidates: [],
@@ -342,6 +464,7 @@ export function buildMasterVocabularyV2CanaryArtifacts(datasetRoot: string): Can
     runtimeSearchPerformed: false,
     similarityCanSelectIdentity: false,
     matchingSignalsAreDiscoveryHintsOnly: ["exact lemma", "normalized lemma", "effective Vietnamese", "definition/example similarity", "current Topic"],
+    runtimeCandidateColumns: ["appVocabularyId", "word", "ipa", "baseVietnamese", "vietnameseOverride", "effectiveVietnamese", "definition", "example", "imageUrl", "imageQuarantined", "audioUrl", "legacyTopic", "level", "enabled", "contentVersion", "sourceDataset", "sourceRecordId", "learnerProgressReferenceCount", "reviewEventReferenceCount", "projectionDifferences"],
     progressVisibility: "Unavailable without a verified read-only runtime target; null counts are not zero counts.",
     decisionRule: "UNRESOLVED cannot be applied. A human must choose MAP_EXISTING, CREATE_NEW or SKIP after reviewing a verified runtime snapshot.",
     candidates: candidateRows,
@@ -351,6 +474,12 @@ export function buildMasterVocabularyV2CanaryArtifacts(datasetRoot: string): Can
     artifactVersion: "master-vocabulary-v2-canary-release-plan-v1",
     planStatus: "PROPOSED_NOT_PUBLISHED",
     sourceDataset: { datasetId: manifest.datasetId, datasetVersion: manifest.datasetVersion, schemaVersion: manifest.schemaVersion, currentStatus: manifest.status, rawManifestSha256: sourceHash },
+    proposedRelease: {
+      datasetVersion: "2.1.0",
+      semverBump: "MINOR",
+      rationale: "The 2.0.0 pilot remains an immutable DRAFT snapshot. The canary is a new approved learner-content snapshot; it does not change schemaVersion or recycle the DRAFT release identity.",
+      onlyAfterExplicitOwnerApproval: true,
+    },
     candidateSenseCount: candidates.length,
     proposedLearnerContentBoundary: {
       includedSensePins: sortedPins(candidates.map((candidate) => candidate.sensePin), "masterSenseId"),
@@ -399,6 +528,7 @@ export function buildMasterVocabularyV2CanaryArtifacts(datasetRoot: string): Can
 
   return {
     reviewMarkdown: `${reviewLines.join("\n").trimEnd()}\n`,
+    ownerApprovalTemplateJson: `${JSON.stringify(approvalTemplate, null, 2)}\n`,
     reconciliationCandidatesJson: `${JSON.stringify(candidatesArtifact, null, 2)}\n`,
     releasePlanJson: `${JSON.stringify(plan, null, 2)}\n`,
   };
@@ -408,6 +538,7 @@ export function writeMasterVocabularyV2CanaryArtifacts(repositoryRoot: string): 
   const datasetRoot = join(repositoryRoot, "vocabflow-dataset");
   const artifacts = buildMasterVocabularyV2CanaryArtifacts(datasetRoot);
   writeFileSync(join(datasetRoot, "reports", "canary-content-review.md"), artifacts.reviewMarkdown);
+  writeFileSync(join(datasetRoot, "reports", "canary-owner-approval-v2.json"), artifacts.ownerApprovalTemplateJson);
   writeFileSync(join(datasetRoot, "import", "mappings", "runtime-reconciliation-candidates-v2.json"), artifacts.reconciliationCandidatesJson);
   writeFileSync(join(datasetRoot, "reports", "canary-release-plan-v2.json"), artifacts.releasePlanJson);
 }
