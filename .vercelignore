@@ -2,6 +2,7 @@ local-data/
 data/raw/
 .env
 .env.*
+!.env.example
 **/.wrangler/
 test-results/
 playwright-report/
