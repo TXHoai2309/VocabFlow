@@ -2,7 +2,8 @@
 
 - Status: `IMPLEMENTED / READY FOR OWNER CHECK`.
 - Owner direction: continue the Master Vocabulary Dataset V2 Phase 2D runtime
-  identity bridge and import adapter.
+  identity bridge, adapter, and explicitly reprioritized Phase 2D.1 hardening
+  and canary preparation.
 - Dependencies: Phase 2A validator, Phase 2B pilot, Phase 2C App Import V2
   projection, current integer runtime vocabulary identity, and production / DB
   target safety utilities.
@@ -67,6 +68,18 @@ recycling integer IDs or detaching learner history.
    applied during this story.
 10. Dataset validator, Phase 2C transform tests, Phase 2D planner/adapter tests,
     DB/schema tests, TypeScript, ESLint, and `git diff --check` pass.
+11. Add an additive follow-up migration with composite mapping-pair candidate
+    keys and Topic/Learning Set membership foreign keys that enforce exact
+    Master-to-runtime identity pairs; preserve committed migration 0015.
+12. Test conceptual identity mismatches and pre/post-mapping write-guard
+    behavior without applying the migration to a shared database.
+13. Audit existing catalog and membership writers, and document how mapped rows
+    use the V2 workflow while unrelated runtime links remain writable.
+14. Prepare deterministic owner-review, subset-release, and reconciliation
+    candidate artifacts; keep the canonical manifest and human-owned runtime
+    reconciliation unchanged.
+15. Audit staging configuration and publish explicit Phase 2E gates. No
+    staging branch, database migration, import APPLY, or owner approval occurs.
 
 ## Acceptance evidence
 
@@ -84,3 +97,38 @@ left unchanged. The focused Phase 2C/2D test set passes independently. The
 Node engine warning remains: local 22.19.0 while package.json pins 22.23.2.
 No migration or importer mutation was run against any database; no Cloudinary
 operation occurred. The branch commit/push is recorded in the task handoff.
+
+## Phase 2D.1 follow-up
+
+Phase 2D.1 adds `0016_nostalgic_mattie_franklin.sql` after the already
+committed `0015_clean_yellowjacket.sql`. The database now has composite unique
+keys and membership foreign keys for exact Sense/vocabulary, Topic/Topic, and
+Learning Set/Set pairs. The generated follow-up is unapplied. The new offline
+tests inspect Drizzle foreign-key metadata, generated DDL, migration chaining,
+and conditional write-guard rules.
+
+The deterministic review artifacts are
+[`canary-content-review.md`](../../vocabflow-dataset/reports/canary-content-review.md),
+[`canary-release-plan-v2.json`](../../vocabflow-dataset/reports/canary-release-plan-v2.json),
+and the separate
+[`runtime-reconciliation-candidates-v2.json`](../../vocabflow-dataset/import/mappings/runtime-reconciliation-candidates-v2.json).
+The proposed release contains 8 Senses, 6 Lexemes, one subset-safe Learning
+Set and 40 referenced Provenance records. The current Topic assignments and
+taxonomy are not release-ready; optional classifications are omitted without
+weakening provenance checks. All owner decisions remain pending.
+
+Write-path audit and target recommendation are recorded in
+[`Phase 2D.1 hardening and canary preparation`](../architecture/master-vocabulary-v2-phase-2d1-hardening.md).
+There is no dedicated staging target, so `STAGING_TARGET_READY = NO` and
+`PHASE_2E_STAGING_CANARY_READY = NO`. Runtime search was not performed; all
+candidate rows remain `UNRESOLVED` and runtime history fields are null because
+no verified target is available.
+
+Phase 2D.1 verification: Master validator PASS (0 errors, 0 warnings, 1
+informational DRAFT issue); focused dataset/schema suite PASS (100/100); root
+typecheck PASS; repository ESLint PASS; Drizzle regeneration reports no schema
+drift; and `git diff --check` PASS. The full repository run with two Vitest
+workers completed 909/912 tests; its three failures are existing Study shell
+heading/mobile navigation expectations in `apps/web/src/App.test.tsx`, outside
+this scope. Node is 22.19.0 while the package engine requires 22.23.2. No
+database or Cloudinary operation occurred.

@@ -1584,3 +1584,37 @@ registration boundary before feature implementation.
   passes independently, and no UI files were changed in this task. Local Node
   is 22.19.0; package engine pins 22.23.2. No DB migration/import or Cloudinary
   mutation occurred.
+
+## 2026-10-02 — Master Vocabulary Dataset V2 Phase 2D.1
+
+- Confirmed the Phase 2D membership ledger gap: independent Master/runtime FKs
+  did not enforce exact identity pairs. Added three candidate unique keys and
+  four composite membership foreign keys in Drizzle schema plus additive
+  migration `0016_nostalgic_mattie_franklin.sql`; retained migration 0015.
+- Added offline schema/migration mismatch tests, write-guard adoption transition
+  tests, and deterministic canary package generation. The focused dataset/schema
+  suite passes 100/100 tests; Master validation passes with 0 errors and 0
+  warnings; root typecheck and ESLint pass. Drizzle regeneration reports no
+  further schema changes, and `git diff --check` passes.
+- The full repository run with two Vitest workers passes 909/912 tests. Its
+  three failures are the existing US-44 Study shell heading/mobile navigation
+  expectations in `apps/web/src/App.test.tsx`; the Study UI file remains
+  untouched. Local Node is 22.19.0 while `package.json` requires 22.23.2.
+- Generated an owner content review package for 8 Senses / 6 Lexemes and a
+  subset release plan with 40 exact Provenance pins and the one-item
+  `TECHNOLOGY_STARTER` Learning Set. Optional Topic classifications remain
+  outside the subset because they are `IN_REVIEW` and the taxonomy snapshot is
+  `DRAFT`; CEFR/difficulty/domain/age/school-level pilot data remain outside
+  the release without changing provenance rules.
+- Generated a separate reconciliation candidates report. No safe staging
+  target exists; candidate search was not run, runtime visibility is unknown,
+  and all eight Sense decisions remain `UNRESOLVED`. The canonical manifest
+  and `runtime-reconciliation-v2.json` remain unchanged.
+- Recommended a dedicated isolated staging/canary target in a later explicitly
+  authorized step. No database, branch, learner state, review events, or media
+  services were mutated.
+- Final Phase 2E gates: `BRIDGE_DB_INVARIANTS_READY = YES`,
+  `STAGING_TARGET_READY = NO`, `CANARY_CONTENT_REVIEW_READY = YES`,
+  `CANARY_RELEASE_READY = NO`, `RUNTIME_RECONCILIATION_READY = NO`,
+  `MIGRATION_APPLY_READY = NO`, and
+  `PHASE_2E_STAGING_CANARY_READY = NO`.

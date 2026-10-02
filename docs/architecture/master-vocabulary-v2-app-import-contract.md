@@ -23,6 +23,19 @@ Every JSON artifact declares `artifactVersion: app-import-v2`, source dataset/sc
 
 `RELEASE` requires a clean Master validator result and `dataset.json.status: APPROVED`. The current DRAFT pilot is rejected before output files are written. Release projection also fails if an otherwise eligible Sense lacks the required Vietnamese value. Approved output sets runtime `enabled: true`; the future importer still must review/reconcile the artifact and IDs before any write.
 
+The current validator requires every pinned Lexeme, Sense, Classification,
+Learning Set, and Relation in an `APPROVED` manifest to have status `APPROVED`;
+its pinned taxonomy snapshot must also be `APPROVED`. An approved CEFR, Exam,
+or School Level classification additionally needs source Provenance. The
+Classification status vocabulary has no `EDITORIAL` status, so experimental
+metadata cannot be relabeled to bypass those gates. A legitimate learner
+content canary may omit nonessential Classification and taxonomy pins while
+retaining their source records in the working DRAFT dataset. Omitting them
+also omits their runtime projections: the proposed small canary therefore has
+null legacy Topic and Level unless a separately reviewed and approved Topic
+branch is included. Provenance validation remains required for included
+content and is not weakened.
+
 ## Learner-facing selection
 
 One selected Master Sense produces one vocabulary projection, even when its Lexeme has other senses or the Sense belongs to several Learning Sets. Stable ordering is Lexeme `displayOrder`, `normalizedLemma`, Lexeme ID, then Sense `senseOrder` and Sense ID.

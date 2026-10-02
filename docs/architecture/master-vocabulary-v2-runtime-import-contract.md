@@ -1,7 +1,8 @@
 # VocabFlow Master Vocabulary V2 — Runtime Import Contract
 
-- Status: `IMPLEMENTED / READY FOR OWNER CHECK` for the Phase 2D adapter and
-  additive schema. Staging execution is a later phase.
+- Status: `IMPLEMENTED / READY FOR OWNER CHECK` for Phase 2D and Phase 2D.1
+  offline adapter, composite identity constraints, and canary preparation.
+  Staging execution remains a later phase.
 - Scope: explicit runtime identity reconciliation, deterministic planning,
   guarded catalog writes, and import audit records.
 - Current pilot: `DRAFT`, `IN_REVIEW`, and `importEligible: false`; it cannot be
@@ -27,6 +28,18 @@ Bridge foreign keys use `NO ACTION`; there is no cascade into runtime catalog
 or learner history. The migration creates empty tables and guards only. It does
 not backfill or alter populated vocabulary/progress/review rows. `learner_progress`,
 `review_events`, and `learner_learning_sets` are not written by this importer.
+
+Migration `0016_nostalgic_mattie_franklin.sql` adds candidate unique keys for
+the `(Master ID, runtime ID)` pairs on the Sense, Topic, and Learning Set
+mapping tables. Topic memberships reference both exact pairs:
+`(master_sense_id, vocabulary_id)` and `(master_topic_id, topic_id)`. Learning
+Set memberships similarly reference `(master_learning_set_id, learning_set_id)`
+and `(master_sense_id, vocabulary_id)`, while retaining the runtime join-table
+foreign keys. Existing single-column foreign keys remain as redundant checks.
+This database-level contract prevents a planner or adapter defect from writing
+a membership that pairs a valid Master identity with another valid runtime ID.
+Migration `0015_clean_yellowjacket.sql` remains unchanged; `0016` is an
+additive snapshot-linked follow-up and has not been applied.
 
 ## 2. Human-owned reconciliation
 
@@ -118,6 +131,15 @@ their order updated. Unrelated links are preserved. A missing item in a later
 release is reported; no membership, catalog row, app ID, progress row, or review
 event is automatically deleted or retired.
 
+The write guards take effect only after the mapping or ownership row exists.
+Before adoption, existing catalog updates and curation flows remain
+unaffected. After adoption, changing a mapped vocabulary's projected fields
+or a mapped Topic/Set's owned fields requires the transaction-local V2 importer
+context. For `learning_set_items`, protection is per ledger-owned pair:
+changing its order or deleting it requires the importer; unrelated pairs
+remain operational. This preserves unrelated membership writes while keeping
+each Master-owned item under the V2 workflow.
+
 ## 5. Planner, CLI, and apply gates
 
 `pnpm import:master-vocab-v2` runs an offline `DRY_RUN` by default and writes a
@@ -148,11 +170,15 @@ database.
 
 ## 6. Migration and execution boundary
 
-`drizzle/migrations/0015_clean_yellowjacket.sql` is forward-only and additive.
-It creates the bridge tables, constraints, ownership/write guards, and indexes
-required by the adapter. Existing rows remain valid without backfill and app
-startup continues with empty bridge tables. The migration has been generated
-and statically tested but has not been applied. Phase 2D makes no Neon or other
-shared-database mutation and performs no media generation or Cloudinary upload.
-Staging migration and canary execution require a later phase after a reviewed
-APPROVED release and complete runtime reconciliation exist.
+`0015_clean_yellowjacket.sql` and `0016_nostalgic_mattie_franklin.sql` are
+forward-only and additive. Together the chain creates the bridge tables,
+candidate keys, membership identity constraints, ownership/write guards, and
+indexes required by the adapter. Existing rows remain valid without backfill
+and app startup continues with empty bridge tables. Phase 2D.1 performs no
+Neon or other shared-database mutation and no media generation or Cloudinary
+upload. No dedicated staging target is configured: `test` is shared CI, and
+the existing development target has not been proven safe to migrate/reset as
+a canary. The recommendation is to configure a dedicated isolated
+non-production staging/canary branch in a later explicitly authorized step.
+Staging migration and canary execution require that target, owner-approved
+content, an approved subset release, and complete runtime reconciliation.

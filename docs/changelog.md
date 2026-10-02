@@ -1059,3 +1059,11 @@ US-07 remains not started.
   `POST /api/bootstrap` → canonical default household resolved.
 - `/login`, learner creation, learner selector and Learner Home remain deferred
   and out of scope for this story; BATCH 1 remains in progress.
+
+## 2026-10-02 — Master Vocabulary Dataset V2 Phase 2D.1 bridge hardening
+
+- Added migration `0016_nostalgic_mattie_franklin.sql` with composite Master/runtime candidate keys and membership foreign keys; preserved committed migration 0015.
+- Added offline regression coverage for exact identity pairs, migration-chain integrity, and mapped/unmapped write-guard behavior.
+- Added deterministic owner review, subset release plan, and separate unresolved/no-target reconciliation candidate artifacts. The canonical manifest and human-owned reconciliation remain unchanged.
+- Audited existing import, enrichment, curation and read paths; documented the missing dedicated staging target and recommended a later isolated, explicitly configured canary branch.
+- No database, Neon branch, learner/review, production, or media mutation occurred.

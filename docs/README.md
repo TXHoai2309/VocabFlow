@@ -84,6 +84,7 @@ feature code may start.
 - [BATCH 0 Foundation Acceptance](implementation/BATCH0_FOUNDATION_ACCEPTANCE.md)
 - [Project Decisions](decisions.md)
 - [Master Vocabulary V2 Runtime Import Contract](architecture/master-vocabulary-v2-runtime-import-contract.md)
+- [Master Vocabulary V2 Phase 2D.1 Hardening and Canary Preparation](architecture/master-vocabulary-v2-phase-2d1-hardening.md)
 - [AI Progress and Handoff](ai-progress.md)
 - [Roadmap and Batch Index](roadmap.md)
 - [Changelog](changelog.md)

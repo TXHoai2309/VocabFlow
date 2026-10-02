@@ -407,10 +407,14 @@ The owner-verified Hoài/Ngọc metric snapshots are recorded in US-20 and US-21
 - Status: `IMPLEMENTED / READY FOR OWNER CHECK` by the owner's explicit Phase 2D request; independent
   of the learner-facing Study and Vocabulary UI stories.
 - Contract: [`US-45 Master Vocabulary V2 Runtime Import Bridge`](stories/US-45-master-vocabulary-v2-runtime-import-bridge.md).
-- Adds only an additive runtime identity bridge, an explicit human-owned
-  reconciliation file, and dry-run/apply adapter infrastructure. The current
-  DRAFT pilot remains ineligible; migration application and canary import are
-  later work and are not authorized by this Phase 2D implementation.
+- Adds an additive runtime identity bridge, explicit human-owned reconciliation,
+  dry-run/apply adapter, composite identity constraints, write-path audit and
+  owner-review canary package. Migration application and canary import remain
+  later work; the current DRAFT pilot remains ineligible.
+- Phase 2D.1 readiness: bridge invariant `YES`; dedicated staging target `NO`;
+  content review package `YES`; approved canary release `NO`; runtime
+  reconciliation `NO`; Phase 2E staging canary `NO`.
+- See [Phase 2D.1 hardening and canary preparation](architecture/master-vocabulary-v2-phase-2d1-hardening.md).
 
 The Product Specification defines learner selector/create, Learner Home, Study,
 Session Summary, Progress, Vocabulary and conditional reset as Family MVP

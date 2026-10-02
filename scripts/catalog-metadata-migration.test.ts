@@ -52,18 +52,23 @@ const expectedUpdates: Array<Omit<MetadataUpdate, "columns"> & { columns: string
 ];
 
 describe("Vietnamese catalog metadata migration", () => {
-  it("remains ordered immediately before the additive Master V2 bridge migration", () => {
+  it("remains ordered before the additive Master V2 bridge migration chain", () => {
     const journal = JSON.parse(readFileSync(resolve("drizzle/migrations/meta/_journal.json"), "utf8")) as {
       entries: Array<{ idx: number; when: number; tag: string }>;
     };
     const entry = journal.entries.find((candidate) => candidate.tag === "0014_vietnamese_catalog_metadata");
-    const bridgeEntry = journal.entries.at(-1);
+    const sequenceEntry = journal.entries.find((candidate) => candidate.tag === "0013_runtime-vocabulary-sequence-privilege");
+    const bridgeEntry = journal.entries.find((candidate) => candidate.tag === "0015_clean_yellowjacket");
+    const identityHardeningEntry = journal.entries.at(-1);
     const migrations = readMigrationFiles({ migrationsFolder: "drizzle/migrations" });
     const migration = migrations.find((candidate) => candidate.folderMillis === entry?.when);
 
     expect(entry).toMatchObject({ idx: 14, tag: "0014_vietnamese_catalog_metadata" });
     expect(bridgeEntry).toMatchObject({ idx: 15, tag: "0015_clean_yellowjacket" });
-    expect(entry?.when).toBeGreaterThan(journal.entries.at(-3)?.when ?? 0);
+    expect(identityHardeningEntry).toMatchObject({ idx: 16, tag: "0016_nostalgic_mattie_franklin" });
+    expect(entry?.when).toBeGreaterThan(sequenceEntry?.when ?? 0);
+    expect(bridgeEntry?.when).toBeGreaterThan(entry?.when ?? 0);
+    expect(identityHardeningEntry?.when).toBeGreaterThan(bridgeEntry?.when ?? 0);
     expect(migration?.sql).toHaveLength(expectedUpdates.length);
   });
 

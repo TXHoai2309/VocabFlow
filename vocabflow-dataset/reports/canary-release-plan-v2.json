@@ -1,0 +1,1042 @@
+{
+  "artifactVersion": "master-vocabulary-v2-canary-release-plan-v1",
+  "planStatus": "PROPOSED_NOT_PUBLISHED",
+  "sourceDataset": {
+    "datasetId": "0195f85c-7b2a-7d10-8c01-000000000001",
+    "datasetVersion": "2.0.0",
+    "schemaVersion": "2.0.1",
+    "currentStatus": "DRAFT",
+    "rawManifestSha256": "ef66192a140c74593ca3a77306a8b70a3dcb050a5553c026a854e78d83bf43a5"
+  },
+  "candidateSenseCount": 8,
+  "proposedLearnerContentBoundary": {
+    "includedSensePins": [
+      {
+        "masterSenseId": "01a0fc13-09ed-70b4-801b-408be3b771e9",
+        "senseRevision": 1,
+        "recordPath": "master/senses/01a0fc13-09ed-70b4-801b-408be3b771e9-r1.json",
+        "contentHash": "b980421c56d4634d9c7cfdb914cc1109ccbb2b2f09b041275cce4d3d4308a921"
+      },
+      {
+        "masterSenseId": "01a0fc13-09ee-71ff-9a0a-a96e48ef7dac",
+        "senseRevision": 1,
+        "recordPath": "master/senses/01a0fc13-09ee-71ff-9a0a-a96e48ef7dac-r1.json",
+        "contentHash": "04e9258a439c3b0dffa02c938eaa5da0cb98f80ca8a200faf4d95e800b75e746"
+      },
+      {
+        "masterSenseId": "01a0fc13-09ee-7211-8e5a-784c689a0c7a",
+        "senseRevision": 1,
+        "recordPath": "master/senses/01a0fc13-09ee-7211-8e5a-784c689a0c7a-r1.json",
+        "contentHash": "0a213c296d7f33392de5c24cfbbf5cbfc399037113908e0010c6682246e774b4"
+      },
+      {
+        "masterSenseId": "01a0fc13-09ee-7584-a480-e313e359f744",
+        "senseRevision": 1,
+        "recordPath": "master/senses/01a0fc13-09ee-7584-a480-e313e359f744-r1.json",
+        "contentHash": "b38c3065ccb9ee0be20700f1a1a34ad710ba2a9697fcba1989ccf7bd8f4a7138"
+      },
+      {
+        "masterSenseId": "01a0fc13-09ee-7823-95fc-5d1d76f13fa5",
+        "senseRevision": 1,
+        "recordPath": "master/senses/01a0fc13-09ee-7823-95fc-5d1d76f13fa5-r1.json",
+        "contentHash": "8ee3b79fbb840e22f8efd513aa55439d3afc8f36facd2aed6b63f53b9a6fbd3c"
+      },
+      {
+        "masterSenseId": "01a0fc13-09ee-79c7-85ff-cbe0fc14a249",
+        "senseRevision": 1,
+        "recordPath": "master/senses/01a0fc13-09ee-79c7-85ff-cbe0fc14a249-r1.json",
+        "contentHash": "e647419a8a621aea2bedae9ed58be579cc3e18f65734f16985f0d1c52486933a"
+      },
+      {
+        "masterSenseId": "01a0fc13-09ef-710c-8e76-753a5cfea69c",
+        "senseRevision": 1,
+        "recordPath": "master/senses/01a0fc13-09ef-710c-8e76-753a5cfea69c-r1.json",
+        "contentHash": "02d58d786025eaaf080c9aa33ff13f7fd1dc4b0820aee9906fa66c1257f00b13"
+      },
+      {
+        "masterSenseId": "01a0fc13-09ef-7d37-a50f-d05db6b1a89c",
+        "senseRevision": 1,
+        "recordPath": "master/senses/01a0fc13-09ef-7d37-a50f-d05db6b1a89c-r1.json",
+        "contentHash": "a518b06b074a9b81aa7437144166fe4b446586178a9638266300852f7ed84987"
+      }
+    ],
+    "requiredLexemePins": [
+      {
+        "masterLexemeId": "01a0fc13-09ed-72c7-aef1-9124d94a6828",
+        "lexemeRevision": 1,
+        "recordPath": "master/lexemes/01a0fc13-09ed-72c7-aef1-9124d94a6828-r1.json",
+        "contentHash": "23d20c507ed31717603a82eb64a74700306cbd8826ee9d5eb46ea63a11aa58a4"
+      },
+      {
+        "masterLexemeId": "01a0fc13-09ed-77ca-b066-98b5169c16b8",
+        "lexemeRevision": 1,
+        "recordPath": "master/lexemes/01a0fc13-09ed-77ca-b066-98b5169c16b8-r1.json",
+        "contentHash": "756abe1b64febf384b236385864e0ed8cf7a34dc7be9bbdee037fafabe6a868d"
+      },
+      {
+        "masterLexemeId": "01a0fc13-09ee-7113-8786-38671cd485b7",
+        "lexemeRevision": 1,
+        "recordPath": "master/lexemes/01a0fc13-09ee-7113-8786-38671cd485b7-r1.json",
+        "contentHash": "941a653f9eae257680df1eef251584593f38a8ec6b9c89c03ba28172f2639fea"
+      },
+      {
+        "masterLexemeId": "01a0fc13-09ee-73d5-affa-6e017eb9adb3",
+        "lexemeRevision": 1,
+        "recordPath": "master/lexemes/01a0fc13-09ee-73d5-affa-6e017eb9adb3-r1.json",
+        "contentHash": "7574d7a0f8bea5dc49e70ab24fadce1510a0a3ede2de9d1d164ec8650f58de00"
+      },
+      {
+        "masterLexemeId": "01a0fc13-09ee-781c-8793-6ec31c09956e",
+        "lexemeRevision": 1,
+        "recordPath": "master/lexemes/01a0fc13-09ee-781c-8793-6ec31c09956e-r1.json",
+        "contentHash": "174bbfbc9192c5cdd6bdfc837545f3a4354dc9b680574080d4169e604c6d9e8b"
+      },
+      {
+        "masterLexemeId": "01a0fc13-09ef-7e5d-b757-aa456f0cd969",
+        "lexemeRevision": 1,
+        "recordPath": "master/lexemes/01a0fc13-09ef-7e5d-b757-aa456f0cd969-r1.json",
+        "contentHash": "c1d9f747fdf3da710bfc67afc5d4a17b94f561e02f0731a74da02d97d242b35d"
+      }
+    ],
+    "requiredProvenancePins": [
+      {
+        "provenanceId": "01a0fc13-09ed-71e0-8a35-671c531c670d",
+        "recordPath": "provenance/01a0fc13-09ed-71e0-8a35-671c531c670d.json",
+        "contentHash": "d2777294286cde484fb1eb62dcd22ea6cb94dae944746e61c5726539bb39bd1b"
+      },
+      {
+        "provenanceId": "01a0fc13-09ed-726d-a81f-592356c289de",
+        "recordPath": "provenance/01a0fc13-09ed-726d-a81f-592356c289de.json",
+        "contentHash": "f164c562ad82355a53dc5aaaa4c7487c9da6dfbf20e30e9094a58848cdbc7751"
+      },
+      {
+        "provenanceId": "01a0fc13-09ed-7658-95fd-3aef16b98db6",
+        "recordPath": "provenance/01a0fc13-09ed-7658-95fd-3aef16b98db6.json",
+        "contentHash": "cc016a71d90ca9007bedb9749c58de542a3642ae2f594980198673e9225f7421"
+      },
+      {
+        "provenanceId": "01a0fc13-09ed-7e19-9418-c47dc4bbf86a",
+        "recordPath": "provenance/01a0fc13-09ed-7e19-9418-c47dc4bbf86a.json",
+        "contentHash": "a4638ed3e8fbb9c46c802e318e35a938124481e55068662f75865f8b9bd9b965"
+      },
+      {
+        "provenanceId": "01a0fc13-09ed-7edb-8c60-f19069e0f459",
+        "recordPath": "provenance/01a0fc13-09ed-7edb-8c60-f19069e0f459.json",
+        "contentHash": "dcd4feeeaa5666fa230af574b0d4246acb79d89e84ba4ebfe76af986d4d769b6"
+      },
+      {
+        "provenanceId": "01a0fc13-09ee-70aa-bd2c-f6eff145be69",
+        "recordPath": "provenance/01a0fc13-09ee-70aa-bd2c-f6eff145be69.json",
+        "contentHash": "82c229dcfcf5eca8e4ad9bc0c4a20a69414f64390f262b7e9474915ca5eeae9a"
+      },
+      {
+        "provenanceId": "01a0fc13-09ee-710e-bf7a-5f6a8faf6bea",
+        "recordPath": "provenance/01a0fc13-09ee-710e-bf7a-5f6a8faf6bea.json",
+        "contentHash": "219ec02d723c2db80d04a71dfc559660cb3a461e6bba8595cf8eb59becdee577"
+      },
+      {
+        "provenanceId": "01a0fc13-09ee-7197-b74d-69abcec8b89e",
+        "recordPath": "provenance/01a0fc13-09ee-7197-b74d-69abcec8b89e.json",
+        "contentHash": "78b70d8ded5d19d6a4188998759d88651d761e0206ab96fbf4e90f2c19b4e34a"
+      },
+      {
+        "provenanceId": "01a0fc13-09ee-722c-ac3e-fbd529bd4090",
+        "recordPath": "provenance/01a0fc13-09ee-722c-ac3e-fbd529bd4090.json",
+        "contentHash": "14ed6c49c0e3bf76abee9761c09ad3ff839ddada544e2d487454c2e7e5ce05ae"
+      },
+      {
+        "provenanceId": "01a0fc13-09ee-7239-b41e-ec0d4c7599c0",
+        "recordPath": "provenance/01a0fc13-09ee-7239-b41e-ec0d4c7599c0.json",
+        "contentHash": "099ed3ef800850f753dad650b979f28d8e2ef36dbb1d900530e88250ef073f21"
+      },
+      {
+        "provenanceId": "01a0fc13-09ee-7389-bf71-3c9acce30486",
+        "recordPath": "provenance/01a0fc13-09ee-7389-bf71-3c9acce30486.json",
+        "contentHash": "adf463d9001dc29dc77337d733118dcf9743f6c527be3d9da652fdf7bc6c6052"
+      },
+      {
+        "provenanceId": "01a0fc13-09ee-73f3-8815-2fa7d0fa41f2",
+        "recordPath": "provenance/01a0fc13-09ee-73f3-8815-2fa7d0fa41f2.json",
+        "contentHash": "0b13e67b72566f5bf3f6fdc566af82002a77512d3676271313dad1fd00b4e45c"
+      },
+      {
+        "provenanceId": "01a0fc13-09ee-74ae-ae97-e64b4a0bc056",
+        "recordPath": "provenance/01a0fc13-09ee-74ae-ae97-e64b4a0bc056.json",
+        "contentHash": "d6ff2a35c39dc948458ce90c4d8e3f762ca3f083773845592a57bd7f66cb6cac"
+      },
+      {
+        "provenanceId": "01a0fc13-09ee-7518-b4d0-53b1fa63fadf",
+        "recordPath": "provenance/01a0fc13-09ee-7518-b4d0-53b1fa63fadf.json",
+        "contentHash": "8cd03193c31d3acf0ed1cfd9a7bbcf813115b1798de7d26e2a6b005c127c8a18"
+      },
+      {
+        "provenanceId": "01a0fc13-09ee-7532-a32b-b1fd6c2b0451",
+        "recordPath": "provenance/01a0fc13-09ee-7532-a32b-b1fd6c2b0451.json",
+        "contentHash": "89195556c3282afe0af1c786fdcbae0bba8062a292edc149f3cdcf42805e3b71"
+      },
+      {
+        "provenanceId": "01a0fc13-09ee-7602-a87f-a3960077d5c6",
+        "recordPath": "provenance/01a0fc13-09ee-7602-a87f-a3960077d5c6.json",
+        "contentHash": "944c106c2e253b4b69f5e0626165e6ba5bb779bc9e77e2aab4c99d1b029e6340"
+      },
+      {
+        "provenanceId": "01a0fc13-09ee-764c-895c-476882625cc8",
+        "recordPath": "provenance/01a0fc13-09ee-764c-895c-476882625cc8.json",
+        "contentHash": "e2fc29705cab0abf6c988009d27f62eaf21957f7f3957285e160ef06765d11ee"
+      },
+      {
+        "provenanceId": "01a0fc13-09ee-76e2-860b-fdbb8d8e580a",
+        "recordPath": "provenance/01a0fc13-09ee-76e2-860b-fdbb8d8e580a.json",
+        "contentHash": "6ddb06f3fc29e58339694dfed39606c201af9c3c704dd9e0425de635ff867592"
+      },
+      {
+        "provenanceId": "01a0fc13-09ee-7751-888b-18082e5eda0e",
+        "recordPath": "provenance/01a0fc13-09ee-7751-888b-18082e5eda0e.json",
+        "contentHash": "51e6a1fe385c77fdcce18c94bf955dd47b64dc51813f1aaa696122fc2887029e"
+      },
+      {
+        "provenanceId": "01a0fc13-09ee-778e-a39a-31466640697b",
+        "recordPath": "provenance/01a0fc13-09ee-778e-a39a-31466640697b.json",
+        "contentHash": "33a1f813fc73540307c241a6ffa9f15f8c4134ee9be375f044a2ce042b9ba6a2"
+      },
+      {
+        "provenanceId": "01a0fc13-09ee-77b2-89fa-3a21313de6eb",
+        "recordPath": "provenance/01a0fc13-09ee-77b2-89fa-3a21313de6eb.json",
+        "contentHash": "513c4c820ef92689e28acb69bdbeb138a025910af38400198eb282edb2f9b31d"
+      },
+      {
+        "provenanceId": "01a0fc13-09ee-7914-9e07-0223e0754424",
+        "recordPath": "provenance/01a0fc13-09ee-7914-9e07-0223e0754424.json",
+        "contentHash": "7d591c95bde1c91347cd6bde7333132c95413b7033bcba5f09b5e77c4cf8c308"
+      },
+      {
+        "provenanceId": "01a0fc13-09ee-79c9-ac16-da590253cc6a",
+        "recordPath": "provenance/01a0fc13-09ee-79c9-ac16-da590253cc6a.json",
+        "contentHash": "ba26d45e6877cd9fbd088eef7bc3e526c51d8969e3530f806be4cbb69d8896df"
+      },
+      {
+        "provenanceId": "01a0fc13-09ee-7a57-b197-0ee77a38f963",
+        "recordPath": "provenance/01a0fc13-09ee-7a57-b197-0ee77a38f963.json",
+        "contentHash": "d60b73435634d1352d9cab3d25f17bc4259554c5fb4c756a7dc78f50cf5782c5"
+      },
+      {
+        "provenanceId": "01a0fc13-09ee-7ac2-b4df-928f7627f8a0",
+        "recordPath": "provenance/01a0fc13-09ee-7ac2-b4df-928f7627f8a0.json",
+        "contentHash": "ae564a4e6ed83b44d6c5f7b0c4a2172d95f5783d23a392e7fb6669db4b3a6d84"
+      },
+      {
+        "provenanceId": "01a0fc13-09ee-7b23-b068-eab8b4c0c3e0",
+        "recordPath": "provenance/01a0fc13-09ee-7b23-b068-eab8b4c0c3e0.json",
+        "contentHash": "d3b03fe062f2ba0d98616d41d2bb2a1c42ab23c9da1aa795c19f1aa6d6b58ecf"
+      },
+      {
+        "provenanceId": "01a0fc13-09ee-7dfe-8b5f-cf77b55e5ec3",
+        "recordPath": "provenance/01a0fc13-09ee-7dfe-8b5f-cf77b55e5ec3.json",
+        "contentHash": "2fe67084678fcd6418f287dd9708391c9950a312be1225b1d965407792a06908"
+      },
+      {
+        "provenanceId": "01a0fc13-09ee-7fc9-932a-89ae6859a9ed",
+        "recordPath": "provenance/01a0fc13-09ee-7fc9-932a-89ae6859a9ed.json",
+        "contentHash": "b1421a5f7f28f3be4567f64a6353087be70e771190ee5a26a3054f4cf51a5fda"
+      },
+      {
+        "provenanceId": "01a0fc13-09ee-7fcb-808c-d650f29d47de",
+        "recordPath": "provenance/01a0fc13-09ee-7fcb-808c-d650f29d47de.json",
+        "contentHash": "e3947791732c5ed1662d02395ba9019557f9a16b6ca5338cccb7c25d68397e71"
+      },
+      {
+        "provenanceId": "01a0fc13-09ee-7fcb-aff5-f9ec8cf31f73",
+        "recordPath": "provenance/01a0fc13-09ee-7fcb-aff5-f9ec8cf31f73.json",
+        "contentHash": "8ea3ae960a61f442f755c62e1ea33f1332dd18b2b5c1cd9345712f75d069497f"
+      },
+      {
+        "provenanceId": "01a0fc13-09ef-708f-a1dc-2b3d58e915ae",
+        "recordPath": "provenance/01a0fc13-09ef-708f-a1dc-2b3d58e915ae.json",
+        "contentHash": "015ca5ec859e76ff7dd6312cb94d2cfa441ac3fe361ce45951cc6a3d50bb438c"
+      },
+      {
+        "provenanceId": "01a0fc13-09ef-756b-9c43-1d84be2fecb0",
+        "recordPath": "provenance/01a0fc13-09ef-756b-9c43-1d84be2fecb0.json",
+        "contentHash": "b4b4fb0948bce7af7e69b0ff2406863e07f320f1288adadfdd153f2e2aede7bf"
+      },
+      {
+        "provenanceId": "01a0fc13-09ef-7884-8cf3-216497bfc161",
+        "recordPath": "provenance/01a0fc13-09ef-7884-8cf3-216497bfc161.json",
+        "contentHash": "53c06e15989766915632d3c46214b0c5f54590cbc549696a0201fed96a9dffd9"
+      },
+      {
+        "provenanceId": "01a0fc13-09ef-78e7-8067-5f5b5644b1fd",
+        "recordPath": "provenance/01a0fc13-09ef-78e7-8067-5f5b5644b1fd.json",
+        "contentHash": "6af6cf26c900cfc386cf47d0319edeaf750eafd5e8e2d3a5ee8be1042c0ff972"
+      },
+      {
+        "provenanceId": "01a0fc13-09ef-7a1b-9a1a-82963396d6ef",
+        "recordPath": "provenance/01a0fc13-09ef-7a1b-9a1a-82963396d6ef.json",
+        "contentHash": "5180e77ed7cac7098c0fe5ffeb5571e99513ccaf5052c2c0bb9b264d478b9cb1"
+      },
+      {
+        "provenanceId": "01a0fc13-09ef-7c41-8fc8-6acb6fa123f2",
+        "recordPath": "provenance/01a0fc13-09ef-7c41-8fc8-6acb6fa123f2.json",
+        "contentHash": "631869b931959e8123184b993fae085451b6df8921cbcdac0e8dc0cb92f92057"
+      },
+      {
+        "provenanceId": "01a0fc13-09ef-7cbe-b172-5c2e053bbe24",
+        "recordPath": "provenance/01a0fc13-09ef-7cbe-b172-5c2e053bbe24.json",
+        "contentHash": "a212c58727d48681f5a362cab3f9c6bc02b7e47e7dcd9be49ed5382fca5bc91e"
+      },
+      {
+        "provenanceId": "01a0fc13-09ef-7dbe-a8bc-c941578f7d3b",
+        "recordPath": "provenance/01a0fc13-09ef-7dbe-a8bc-c941578f7d3b.json",
+        "contentHash": "1c918ef47589bc28d3398176e6c4fc9b705ebf73ce8514f6a6fb0447a35b7156"
+      },
+      {
+        "provenanceId": "01a0fc13-09ef-7e40-80b9-af14d45a8916",
+        "recordPath": "provenance/01a0fc13-09ef-7e40-80b9-af14d45a8916.json",
+        "contentHash": "167bcbd2fd1bef89b555189f25d6c49fddda3d65188129fea89a8c281f460911"
+      },
+      {
+        "provenanceId": "01a0fc13-09ef-7e90-8a1e-ea1aaf871481",
+        "recordPath": "provenance/01a0fc13-09ef-7e90-8a1e-ea1aaf871481.json",
+        "contentHash": "29e26b1134eb7ff8c7d6fcac9e6710d99efa462437dd0b3f69b7195b162ddf5c"
+      }
+    ],
+    "includedClassificationPins": [],
+    "includedLearningSetPins": [
+      {
+        "learningSetId": "01a0fc13-09f2-7709-a32d-5bef5b1f7a51",
+        "learningSetRevision": 1,
+        "recordPath": "learning-sets/01a0fc13-09f2-7709-a32d-5bef5b1f7a51-r1.json",
+        "contentHash": "9f24303d5df58331fddc2f558cbd4710ae917803b4f351a666e66368b4344527"
+      }
+    ],
+    "includedLearningSetItemCount": 1,
+    "includedTaxonomySnapshotPins": [],
+    "includedMediaAssetPins": [],
+    "includedMediaAssetVersionPins": [],
+    "includedRelationPins": [],
+    "topicAndLevelProjection": "omitted in the minimal learner-content subset unless an owner-reviewed approved taxonomy/classification branch is explicitly selected; runtime topic and level will then be null",
+    "mediaBehavior": "omit PLANNED/unapproved media; runtime image/audio URLs remain null; include a media slot/version only after exact APPROVED pins and a safe READY delivery exist"
+  },
+  "optionalTopicBridge": {
+    "classificationPins": [
+      {
+        "classificationId": "01a0fc13-09f0-7784-aa7f-962c1ff1af70",
+        "classificationRevision": 1,
+        "recordPath": "master/classifications/01a0fc13-09f0-7784-aa7f-962c1ff1af70-r1.json",
+        "contentHash": "9b1a8d446dac8f6d80c09c166e6574d5dd8ae65ab4493a5d78480bfd5f3edf34"
+      },
+      {
+        "classificationId": "01a0fc13-09f0-7bc1-8283-811fc4c39f21",
+        "classificationRevision": 1,
+        "recordPath": "master/classifications/01a0fc13-09f0-7bc1-8283-811fc4c39f21-r1.json",
+        "contentHash": "3dee8cc85536513c2ac34f165ac36056280b562e7b91957ea0a5c0f1439aa878"
+      },
+      {
+        "classificationId": "01a0fc13-09f1-7154-907e-6e8cd4074baa",
+        "classificationRevision": 1,
+        "recordPath": "master/classifications/01a0fc13-09f1-7154-907e-6e8cd4074baa-r1.json",
+        "contentHash": "dc12863157c1984e17e32386ba7b4f46a71e9179aa274c6feedbdfc09ec3f466"
+      },
+      {
+        "classificationId": "01a0fc13-09f1-7ba5-b021-d70a2c4ef3c4",
+        "classificationRevision": 1,
+        "recordPath": "master/classifications/01a0fc13-09f1-7ba5-b021-d70a2c4ef3c4-r1.json",
+        "contentHash": "3287e6e914def217010abc6abfa02331e27582a840e6d43098b21ab73e10111d"
+      },
+      {
+        "classificationId": "01a0fc13-09f1-7d21-97b4-01d133e2cd52",
+        "classificationRevision": 1,
+        "recordPath": "master/classifications/01a0fc13-09f1-7d21-97b4-01d133e2cd52-r1.json",
+        "contentHash": "5d32836a776e7c55c0ecc9f5552ca48c4902aa7a99e81b4f982104485921de65"
+      },
+      {
+        "classificationId": "01a0fc13-09f1-7e82-a370-b7ce995951e3",
+        "classificationRevision": 1,
+        "recordPath": "master/classifications/01a0fc13-09f1-7e82-a370-b7ce995951e3-r1.json",
+        "contentHash": "f1c20ac66c745d48dfc505c7f0abf7129121a1289aaf9413562799e5ef71b7c6"
+      },
+      {
+        "classificationId": "01a0fc13-09f1-7eda-ad3a-10490deac0a7",
+        "classificationRevision": 1,
+        "recordPath": "master/classifications/01a0fc13-09f1-7eda-ad3a-10490deac0a7-r1.json",
+        "contentHash": "67f8b56b44855822b336bd1fa16cb44938682ac1ba7d1b4dd581386ed9b593d8"
+      },
+      {
+        "classificationId": "01a0fc13-09f2-716c-ac99-06b959381fac",
+        "classificationRevision": 1,
+        "recordPath": "master/classifications/01a0fc13-09f2-716c-ac99-06b959381fac-r1.json",
+        "contentHash": "79b05249cd8a5fe552d9085e27e9b386715f5ab28846d54aa9b3c5f0030eafd5"
+      }
+    ],
+    "provenancePins": [
+      {
+        "provenanceId": "01a0fc13-09f0-74af-ade5-5bd5757d011a",
+        "recordPath": "provenance/01a0fc13-09f0-74af-ade5-5bd5757d011a.json",
+        "contentHash": "67d7082d1cf2ae0b24c553ca3395ce841d146dae6fd5629845f3124492272ed0"
+      },
+      {
+        "provenanceId": "01a0fc13-09f0-7d15-82ef-32bc5a4d3469",
+        "recordPath": "provenance/01a0fc13-09f0-7d15-82ef-32bc5a4d3469.json",
+        "contentHash": "bdd1baf771ff14b524d7dbaa7994c716136aa9e488e735bec1009fdde8620c69"
+      },
+      {
+        "provenanceId": "01a0fc13-09f1-7384-88e6-f358dd95cdcc",
+        "recordPath": "provenance/01a0fc13-09f1-7384-88e6-f358dd95cdcc.json",
+        "contentHash": "b36f18b66d79ce5b3dec0b06e475d1faeb5063e315d053233d37b95a2f69f8aa"
+      },
+      {
+        "provenanceId": "01a0fc13-09f1-7912-81db-f3568bd5f76c",
+        "recordPath": "provenance/01a0fc13-09f1-7912-81db-f3568bd5f76c.json",
+        "contentHash": "24b16968085f39b2d777ddeeb7aadb74a3724b3db6c8e14c3692de40083b7785"
+      },
+      {
+        "provenanceId": "01a0fc13-09f1-7bf8-acb8-2101970ebaf1",
+        "recordPath": "provenance/01a0fc13-09f1-7bf8-acb8-2101970ebaf1.json",
+        "contentHash": "3e096b598628e5d78ca340463a24ab551b9d81818c9611472bc0fe5acd07df87"
+      },
+      {
+        "provenanceId": "01a0fc13-09f1-7c3f-9942-450dfc5dcd08",
+        "recordPath": "provenance/01a0fc13-09f1-7c3f-9942-450dfc5dcd08.json",
+        "contentHash": "e2ce0f2ca82e7249158897358421d1fa6f9162e5f87f99235fa208cb34a52554"
+      },
+      {
+        "provenanceId": "01a0fc13-09f1-7e3b-84c9-f5088a9b6cdf",
+        "recordPath": "provenance/01a0fc13-09f1-7e3b-84c9-f5088a9b6cdf.json",
+        "contentHash": "a3cbfdcf9c5dbad1f51e1d55e23c735b5026abdafd1752ae2db33dbac1681993"
+      },
+      {
+        "provenanceId": "01a0fc13-09f2-74c8-b3c4-d76eb68fd884",
+        "recordPath": "provenance/01a0fc13-09f2-74c8-b3c4-d76eb68fd884.json",
+        "contentHash": "d0a76e37030feb1418560e328746bb75cff096a22e86b7a77c088ac833a38f4e"
+      }
+    ],
+    "masterTopicIds": [
+      "01a0fc13-09e8-700a-8d88-7673162c64ac",
+      "01a0fc13-09e8-76e4-a314-bfd00d83ad93",
+      "01a0fc13-09e9-7438-bc1d-e5b86a4eff17",
+      "01a0fc13-09e9-74af-a3ea-f0b0ceafc8d7",
+      "01a0fc13-09e9-779a-8f56-6334961158f5",
+      "01a0fc13-09e9-7952-9f4d-3931203ef4e5",
+      "01a0fc13-09e9-7ad6-8997-01a8459fdbd3"
+    ],
+    "runtimeTopicRecords": [
+      {
+        "masterTopicId": "01a0fc13-09e8-700a-8d88-7673162c64ac",
+        "code": "FRUIT",
+        "slug": "fruit",
+        "name": "Fruit"
+      },
+      {
+        "masterTopicId": "01a0fc13-09e8-76e4-a314-bfd00d83ad93",
+        "code": "FINANCE",
+        "slug": "finance",
+        "name": "Finance"
+      },
+      {
+        "masterTopicId": "01a0fc13-09e9-7438-bc1d-e5b86a4eff17",
+        "code": "RECORDS_INFORMATION",
+        "slug": "records-information",
+        "name": "Records and information"
+      },
+      {
+        "masterTopicId": "01a0fc13-09e9-74af-a3ea-f0b0ceafc8d7",
+        "code": "TRAVEL",
+        "slug": "travel",
+        "name": "Travel"
+      },
+      {
+        "masterTopicId": "01a0fc13-09e9-779a-8f56-6334961158f5",
+        "code": "CARE_RELATIONSHIPS",
+        "slug": "care-relationships",
+        "name": "Care and relationships"
+      },
+      {
+        "masterTopicId": "01a0fc13-09e9-7952-9f4d-3931203ef4e5",
+        "code": "COMPUTER_SCIENCE",
+        "slug": "computer-science",
+        "name": "Computer science"
+      },
+      {
+        "masterTopicId": "01a0fc13-09e9-7ad6-8997-01a8459fdbd3",
+        "code": "RIVERS",
+        "slug": "rivers",
+        "name": "Rivers"
+      }
+    ],
+    "currentTopicClassificationStatuses": [
+      "IN_REVIEW"
+    ],
+    "currentTaxonomySnapshotStatus": "DRAFT",
+    "blocker": "Topic classifications are IN_REVIEW and the current taxonomy snapshot is DRAFT; APPROVED release requires every included Classification and the pinned taxonomy snapshot to be APPROVED. Owner review or a separately governed taxonomy revision is required before including this optional branch."
+  },
+  "omittedExperimentalClassifications": [
+    {
+      "classificationId": "01a0fc13-09f0-72dd-a23f-7d6eaf369a01",
+      "masterSenseId": "01a0fc13-09ed-70b4-801b-408be3b771e9",
+      "dimension": "AGE_GROUP",
+      "status": "IN_REVIEW",
+      "valueCode": "TEEN",
+      "numericValue": null,
+      "sourceProvenanceIds": [
+        "01a0fc13-09f0-7f68-bfb6-920877127b04"
+      ]
+    },
+    {
+      "classificationId": "01a0fc13-09f0-7338-b02a-f89108b7fc42",
+      "masterSenseId": "01a0fc13-09ee-7211-8e5a-784c689a0c7a",
+      "dimension": "DOMAIN",
+      "status": "IN_REVIEW",
+      "valueCode": null,
+      "numericValue": null,
+      "sourceProvenanceIds": [
+        "01a0fc13-09f0-7da4-ac3c-0506ba1c1141"
+      ]
+    },
+    {
+      "classificationId": "01a0fc13-09f0-737b-8c01-43ff9030423f",
+      "masterSenseId": "01a0fc13-09ed-70b4-801b-408be3b771e9",
+      "dimension": "AGE_GROUP",
+      "status": "IN_REVIEW",
+      "valueCode": "KIDS",
+      "numericValue": null,
+      "sourceProvenanceIds": [
+        "01a0fc13-09f0-78a9-99dd-359e609656fa"
+      ]
+    },
+    {
+      "classificationId": "01a0fc13-09f0-73ed-bfb2-59cf2e7fe2bf",
+      "masterSenseId": "01a0fc13-09ed-70b4-801b-408be3b771e9",
+      "dimension": "CEFR",
+      "status": "IN_REVIEW",
+      "valueCode": "A1",
+      "numericValue": null,
+      "sourceProvenanceIds": [
+        "01a0fc13-09f0-7867-8719-fd9e282d1bc9"
+      ]
+    },
+    {
+      "classificationId": "01a0fc13-09f0-7689-8f58-a6ec40ec8f27",
+      "masterSenseId": "01a0fc13-09ed-70b4-801b-408be3b771e9",
+      "dimension": "DOMAIN",
+      "status": "IN_REVIEW",
+      "valueCode": null,
+      "numericValue": null,
+      "sourceProvenanceIds": [
+        "01a0fc13-09f0-7949-b9a9-98fbd38bcb92"
+      ]
+    },
+    {
+      "classificationId": "01a0fc13-09f0-784b-aee3-d8cd08f03494",
+      "masterSenseId": "01a0fc13-09ed-70b4-801b-408be3b771e9",
+      "dimension": "DIFFICULTY",
+      "status": "IN_REVIEW",
+      "valueCode": null,
+      "numericValue": 12,
+      "sourceProvenanceIds": [
+        "01a0fc13-09f0-7d56-b9ad-2c893be44701"
+      ]
+    },
+    {
+      "classificationId": "01a0fc13-09f0-7bed-a975-e9a02616a904",
+      "masterSenseId": "01a0fc13-09ed-70b4-801b-408be3b771e9",
+      "dimension": "AGE_GROUP",
+      "status": "IN_REVIEW",
+      "valueCode": "ADULT",
+      "numericValue": null,
+      "sourceProvenanceIds": [
+        "01a0fc13-09f0-760b-b5d0-24996d2da50f"
+      ]
+    },
+    {
+      "classificationId": "01a0fc13-09f0-7c8d-b6f4-1093bbe1b466",
+      "masterSenseId": "01a0fc13-09ed-70b4-801b-408be3b771e9",
+      "dimension": "SCHOOL_LEVEL",
+      "status": "IN_REVIEW",
+      "valueCode": null,
+      "numericValue": null,
+      "sourceProvenanceIds": [
+        "01a0fc13-09f0-73f7-b602-281b84dc2642"
+      ]
+    },
+    {
+      "classificationId": "01a0fc13-09f1-7037-b3bb-c044e11bc6aa",
+      "masterSenseId": "01a0fc13-09ee-7823-95fc-5d1d76f13fa5",
+      "dimension": "DOMAIN",
+      "status": "IN_REVIEW",
+      "valueCode": null,
+      "numericValue": null,
+      "sourceProvenanceIds": [
+        "01a0fc13-09f1-74c0-aaa3-b2c81a1bdddc"
+      ]
+    },
+    {
+      "classificationId": "01a0fc13-09f1-7345-b4be-8a0e96b36043",
+      "masterSenseId": "01a0fc13-09ee-79c7-85ff-cbe0fc14a249",
+      "dimension": "CEFR",
+      "status": "IN_REVIEW",
+      "valueCode": "A2",
+      "numericValue": null,
+      "sourceProvenanceIds": [
+        "01a0fc13-09f1-74e7-bc07-562fd8b4ee06"
+      ]
+    },
+    {
+      "classificationId": "01a0fc13-09f1-73c7-b13b-e863404e69b9",
+      "masterSenseId": "01a0fc13-09ee-71ff-9a0a-a96e48ef7dac",
+      "dimension": "DIFFICULTY",
+      "status": "IN_REVIEW",
+      "valueCode": null,
+      "numericValue": 44,
+      "sourceProvenanceIds": [
+        "01a0fc13-09f1-7939-a523-e74b630d1d79"
+      ]
+    },
+    {
+      "classificationId": "01a0fc13-09f1-747f-8d1c-7d09c1e9878c",
+      "masterSenseId": "01a0fc13-09ee-7211-8e5a-784c689a0c7a",
+      "dimension": "DIFFICULTY",
+      "status": "IN_REVIEW",
+      "valueCode": null,
+      "numericValue": 32,
+      "sourceProvenanceIds": [
+        "01a0fc13-09f1-74c3-8a23-51f666f3df19"
+      ]
+    },
+    {
+      "classificationId": "01a0fc13-09f1-7638-bed1-d324d8aa4768",
+      "masterSenseId": "01a0fc13-09ee-71ff-9a0a-a96e48ef7dac",
+      "dimension": "CEFR",
+      "status": "IN_REVIEW",
+      "valueCode": "B1",
+      "numericValue": null,
+      "sourceProvenanceIds": [
+        "01a0fc13-09f1-7a4b-9269-c08e73638248"
+      ]
+    },
+    {
+      "classificationId": "01a0fc13-09f1-76eb-a927-20e6594ae291",
+      "masterSenseId": "01a0fc13-09ee-79c7-85ff-cbe0fc14a249",
+      "dimension": "DIFFICULTY",
+      "status": "IN_REVIEW",
+      "valueCode": null,
+      "numericValue": 34,
+      "sourceProvenanceIds": [
+        "01a0fc13-09f1-7e3e-8195-3a88dec48b21"
+      ]
+    },
+    {
+      "classificationId": "01a0fc13-09f1-7853-95a7-1b432eb93a70",
+      "masterSenseId": "01a0fc13-09ee-7584-a480-e313e359f744",
+      "dimension": "DIFFICULTY",
+      "status": "IN_REVIEW",
+      "valueCode": null,
+      "numericValue": 46,
+      "sourceProvenanceIds": [
+        "01a0fc13-09f1-7650-9b72-c1a28cdbc2ce"
+      ]
+    },
+    {
+      "classificationId": "01a0fc13-09f1-7a20-94dc-2ad4de3106ca",
+      "masterSenseId": "01a0fc13-09ee-7211-8e5a-784c689a0c7a",
+      "dimension": "DOMAIN",
+      "status": "IN_REVIEW",
+      "valueCode": null,
+      "numericValue": null,
+      "sourceProvenanceIds": [
+        "01a0fc13-09f1-7c75-94d1-1615222528d7"
+      ]
+    },
+    {
+      "classificationId": "01a0fc13-09f1-7b7e-a9bc-0e174466648f",
+      "masterSenseId": "01a0fc13-09ee-79c7-85ff-cbe0fc14a249",
+      "dimension": "DOMAIN",
+      "status": "IN_REVIEW",
+      "valueCode": null,
+      "numericValue": null,
+      "sourceProvenanceIds": [
+        "01a0fc13-09f1-7414-8542-86a6b56e083f"
+      ]
+    },
+    {
+      "classificationId": "01a0fc13-09f1-7bb7-ab5d-f5da5e14746d",
+      "masterSenseId": "01a0fc13-09ee-7823-95fc-5d1d76f13fa5",
+      "dimension": "DIFFICULTY",
+      "status": "IN_REVIEW",
+      "valueCode": null,
+      "numericValue": 54,
+      "sourceProvenanceIds": [
+        "01a0fc13-09f1-7b4f-ba47-91fea092bae9"
+      ]
+    },
+    {
+      "classificationId": "01a0fc13-09f1-7c65-a95a-6050f7403a79",
+      "masterSenseId": "01a0fc13-09ee-7211-8e5a-784c689a0c7a",
+      "dimension": "CEFR",
+      "status": "IN_REVIEW",
+      "valueCode": "A2",
+      "numericValue": null,
+      "sourceProvenanceIds": [
+        "01a0fc13-09f1-79be-94e9-70951b58b058"
+      ]
+    },
+    {
+      "classificationId": "01a0fc13-09f1-7c6e-9ee6-5bc6b86fdef4",
+      "masterSenseId": "01a0fc13-09ee-71ff-9a0a-a96e48ef7dac",
+      "dimension": "DOMAIN",
+      "status": "IN_REVIEW",
+      "valueCode": null,
+      "numericValue": null,
+      "sourceProvenanceIds": [
+        "01a0fc13-09f1-7fc0-93ca-732169e0dc33"
+      ]
+    },
+    {
+      "classificationId": "01a0fc13-09f1-7d7c-8b24-92831a0ad2b6",
+      "masterSenseId": "01a0fc13-09ee-7584-a480-e313e359f744",
+      "dimension": "DOMAIN",
+      "status": "IN_REVIEW",
+      "valueCode": null,
+      "numericValue": null,
+      "sourceProvenanceIds": [
+        "01a0fc13-09f1-7707-8a7a-d83f0accd53f"
+      ]
+    },
+    {
+      "classificationId": "01a0fc13-09f1-7e47-93e2-ae95dff762d0",
+      "masterSenseId": "01a0fc13-09ee-7584-a480-e313e359f744",
+      "dimension": "CEFR",
+      "status": "IN_REVIEW",
+      "valueCode": "B1",
+      "numericValue": null,
+      "sourceProvenanceIds": [
+        "01a0fc13-09f1-7537-ba1e-c20975afd343"
+      ]
+    },
+    {
+      "classificationId": "01a0fc13-09f1-7e8d-8c06-9f48f2109775",
+      "masterSenseId": "01a0fc13-09ee-7823-95fc-5d1d76f13fa5",
+      "dimension": "CEFR",
+      "status": "IN_REVIEW",
+      "valueCode": "B2",
+      "numericValue": null,
+      "sourceProvenanceIds": [
+        "01a0fc13-09f1-748c-a928-eb933a2f8d38"
+      ]
+    },
+    {
+      "classificationId": "01a0fc13-09f2-7122-af37-8b79ab6ff525",
+      "masterSenseId": "01a0fc13-09ef-7d37-a50f-d05db6b1a89c",
+      "dimension": "DIFFICULTY",
+      "status": "IN_REVIEW",
+      "valueCode": null,
+      "numericValue": 48,
+      "sourceProvenanceIds": [
+        "01a0fc13-09f2-7321-907b-de6920548c97"
+      ]
+    },
+    {
+      "classificationId": "01a0fc13-09f2-7320-a65e-5c12f5843a84",
+      "masterSenseId": "01a0fc13-09ef-710c-8e76-753a5cfea69c",
+      "dimension": "DIFFICULTY",
+      "status": "IN_REVIEW",
+      "valueCode": null,
+      "numericValue": 66,
+      "sourceProvenanceIds": [
+        "01a0fc13-09f2-7abb-b31b-37b478024fdf"
+      ]
+    },
+    {
+      "classificationId": "01a0fc13-09f2-740f-a479-1b9c17ca5014",
+      "masterSenseId": "01a0fc13-09ef-7d37-a50f-d05db6b1a89c",
+      "dimension": "CEFR",
+      "status": "IN_REVIEW",
+      "valueCode": "B1",
+      "numericValue": null,
+      "sourceProvenanceIds": [
+        "01a0fc13-09f2-77e9-8952-f36c1f12a1cf"
+      ]
+    },
+    {
+      "classificationId": "01a0fc13-09f2-7606-aac3-7af22d177f5e",
+      "masterSenseId": "01a0fc13-09ef-710c-8e76-753a5cfea69c",
+      "dimension": "DOMAIN",
+      "status": "IN_REVIEW",
+      "valueCode": null,
+      "numericValue": null,
+      "sourceProvenanceIds": [
+        "01a0fc13-09f2-731e-b2e0-44f715c28864"
+      ]
+    },
+    {
+      "classificationId": "01a0fc13-09f2-7c0b-8e9c-c7557e8dc1fa",
+      "masterSenseId": "01a0fc13-09ef-7d37-a50f-d05db6b1a89c",
+      "dimension": "DOMAIN",
+      "status": "IN_REVIEW",
+      "valueCode": null,
+      "numericValue": null,
+      "sourceProvenanceIds": [
+        "01a0fc13-09f2-75f7-803c-b40636d05f5f"
+      ]
+    },
+    {
+      "classificationId": "01a0fc13-09f2-7c65-b5ab-fca2461e52bb",
+      "masterSenseId": "01a0fc13-09ef-7d37-a50f-d05db6b1a89c",
+      "dimension": "DOMAIN",
+      "status": "IN_REVIEW",
+      "valueCode": null,
+      "numericValue": null,
+      "sourceProvenanceIds": [
+        "01a0fc13-09f2-718a-98a6-3fd0529d798b"
+      ]
+    },
+    {
+      "classificationId": "01a0fc13-09f2-7cc7-82c4-0c11828eaf36",
+      "masterSenseId": "01a0fc13-09ef-710c-8e76-753a5cfea69c",
+      "dimension": "CEFR",
+      "status": "IN_REVIEW",
+      "valueCode": "B2",
+      "numericValue": null,
+      "sourceProvenanceIds": [
+        "01a0fc13-09f2-757d-abcb-176de573c3ca"
+      ]
+    },
+    {
+      "classificationId": "01a0fc13-09f2-7e87-a203-18a87c7fba7d",
+      "masterSenseId": "01a0fc13-09ef-710c-8e76-753a5cfea69c",
+      "dimension": "DOMAIN",
+      "status": "IN_REVIEW",
+      "valueCode": null,
+      "numericValue": null,
+      "sourceProvenanceIds": [
+        "01a0fc13-09f2-7fd4-8f72-4015b19080eb"
+      ]
+    }
+  ],
+  "excludedLearningSetClosure": {
+    "excludedLearningSetPins": [
+      {
+        "learningSetId": "01a0fc13-09f2-7c82-82b8-c031f7feae33",
+        "learningSetRevision": 1,
+        "recordPath": "learning-sets/01a0fc13-09f2-7c82-82b8-c031f7feae33-r1.json",
+        "contentHash": "141a57d0e10e08a848bce93e493f5911f1c94d10fab9386077ca0df5dae080b1"
+      },
+      {
+        "learningSetId": "01a0fc13-09f2-700e-b1a8-ea88eca58c79",
+        "learningSetRevision": 1,
+        "recordPath": "learning-sets/01a0fc13-09f2-700e-b1a8-ea88eca58c79-r1.json",
+        "contentHash": "b151d61414aaeb0fc786972a5fc05e55966041756806c291324e82339af9625a"
+      },
+      {
+        "learningSetId": "01a0fc13-09f2-7172-8fef-8dd7ab6c398a",
+        "learningSetRevision": 1,
+        "recordPath": "learning-sets/01a0fc13-09f2-7172-8fef-8dd7ab6c398a-r1.json",
+        "contentHash": "89bb61796dcf09c203bead91bfb40c5459f8bcce27c2edbb3d77afe4841577a2"
+      },
+      {
+        "learningSetId": "01a0fc13-09f2-7882-938a-c8d7e84399e8",
+        "learningSetRevision": 1,
+        "recordPath": "learning-sets/01a0fc13-09f2-7882-938a-c8d7e84399e8-r1.json",
+        "contentHash": "e7d470a6c7985a19f57b45745abe4c176ce74c771ad10f439924d00aab890d33"
+      },
+      {
+        "learningSetId": "01a0fc13-09f2-7024-ae8b-167ec1c6d331",
+        "learningSetRevision": 1,
+        "recordPath": "learning-sets/01a0fc13-09f2-7024-ae8b-167ec1c6d331-r1.json",
+        "contentHash": "2d7168fe0ca4b25ab20207ed6067c442fe5546dfda731f8e50d6f01e64dc2d45"
+      },
+      {
+        "learningSetId": "01a0fc13-09f2-7950-b681-beace24e6cb6",
+        "learningSetRevision": 1,
+        "recordPath": "learning-sets/01a0fc13-09f2-7950-b681-beace24e6cb6-r1.json",
+        "contentHash": "dc0cdc0dc6c912c96e45a3f2435e8a830586d56500bb7a3dffcaaf2cd2cdd574"
+      }
+    ],
+    "setsTouchingCandidates": [
+      {
+        "learningSetId": "01a0fc13-09f2-700e-b1a8-ea88eca58c79",
+        "code": "BASIC_FRUITS",
+        "unselectedSenseIds": [
+          "01a0fc13-09f0-7869-8182-2e73328b05dd"
+        ]
+      },
+      {
+        "learningSetId": "01a0fc13-09f2-7024-ae8b-167ec1c6d331",
+        "code": "BUSINESS_STARTER",
+        "unselectedSenseIds": [
+          "01a0fc13-09ef-7d8c-a142-c41ca39a9e4d"
+        ]
+      },
+      {
+        "learningSetId": "01a0fc13-09f2-7172-8fef-8dd7ab6c398a",
+        "code": "A1_CORE_PILOT",
+        "unselectedSenseIds": [
+          "01a0fc13-09ee-7279-8a52-44ce829fb601",
+          "01a0fc13-09ee-72d5-80ac-b4dca3b54ceb",
+          "01a0fc13-09ee-7d1f-b899-8bc496d8ca5a",
+          "01a0fc13-09ef-755a-8833-aa46e4f7483a",
+          "01a0fc13-09ef-75bb-bbc6-a31a5bc3c83c",
+          "01a0fc13-09ef-7b92-9fe7-6e32ed4d4b6e",
+          "01a0fc13-09f0-7869-8182-2e73328b05dd"
+        ]
+      },
+      {
+        "learningSetId": "01a0fc13-09f2-7709-a32d-5bef5b1f7a51",
+        "code": "TECHNOLOGY_STARTER",
+        "unselectedSenseIds": []
+      },
+      {
+        "learningSetId": "01a0fc13-09f2-7882-938a-c8d7e84399e8",
+        "code": "TRAVEL_STARTER",
+        "unselectedSenseIds": [
+          "01a0fc13-09ef-7141-984b-9ed540913f76"
+        ]
+      },
+      {
+        "learningSetId": "01a0fc13-09f2-7950-b681-beace24e6cb6",
+        "code": "ACADEMIC_WORDS_PILOT",
+        "unselectedSenseIds": [
+          "01a0fc13-09ee-74ac-93f8-38acfc514554",
+          "01a0fc13-09ee-769b-b7f9-19f20a1686f4",
+          "01a0fc13-09ee-7a30-8772-3b0ac18c20a9"
+        ]
+      },
+      {
+        "learningSetId": "01a0fc13-09f2-7c82-82b8-c031f7feae33",
+        "code": "BASIC_STARTER_PILOT",
+        "unselectedSenseIds": [
+          "01a0fc13-09ee-7279-8a52-44ce829fb601",
+          "01a0fc13-09ee-72d5-80ac-b4dca3b54ceb",
+          "01a0fc13-09ee-7d1f-b899-8bc496d8ca5a",
+          "01a0fc13-09ef-74c6-8f36-9667eea96447",
+          "01a0fc13-09ef-755a-8833-aa46e4f7483a",
+          "01a0fc13-09ef-75bb-bbc6-a31a5bc3c83c",
+          "01a0fc13-09ef-7b92-9fe7-6e32ed4d4b6e",
+          "01a0fc13-09f0-7869-8182-2e73328b05dd"
+        ]
+      }
+    ],
+    "reason": "Only the TECHNOLOGY_STARTER Set is included because its exact pinned revision contains only the canary algorithm Sense. Other intersecting Sets are omitted because their revisions add unrelated pilot Senses."
+  },
+  "mediaReviewOnly": [
+    {
+      "pin": {
+        "mediaAssetId": "01a0fc13-0a50-7e9a-95b2-639cfe038833",
+        "recordPath": "media/assets/01a0fc13-0a50-7e9a-95b2-639cfe038833.json",
+        "contentHash": "7f09196595ce949fda123c9100eaca0e706460aa375451c3f07161451c18d1fb"
+      },
+      "mediaAssetId": "01a0fc13-0a50-7e9a-95b2-639cfe038833",
+      "mediaKind": "IMAGE",
+      "status": "PLANNED",
+      "currentMediaAssetVersion": null,
+      "includedVersionIsPinned": false
+    },
+    {
+      "pin": {
+        "mediaAssetId": "01a0fc13-0a50-75d9-b8c3-8afe8f548adf",
+        "recordPath": "media/assets/01a0fc13-0a50-75d9-b8c3-8afe8f548adf.json",
+        "contentHash": "3d632af2496ad772d27989fc22168eb94ebe03a40584fdfafa6e608f787e2443"
+      },
+      "mediaAssetId": "01a0fc13-0a50-75d9-b8c3-8afe8f548adf",
+      "mediaKind": "IMAGE",
+      "status": "PLANNED",
+      "currentMediaAssetVersion": null,
+      "includedVersionIsPinned": false
+    },
+    {
+      "pin": {
+        "mediaAssetId": "01a0fc13-0a50-7657-b979-535b2da7821e",
+        "recordPath": "media/assets/01a0fc13-0a50-7657-b979-535b2da7821e.json",
+        "contentHash": "95dc90f3df9cb89c2e109aa0b8585a9de9bc9ddd8185179bb15c8c0b8b82d146"
+      },
+      "mediaAssetId": "01a0fc13-0a50-7657-b979-535b2da7821e",
+      "mediaKind": "IMAGE",
+      "status": "PLANNED",
+      "currentMediaAssetVersion": null,
+      "includedVersionIsPinned": false
+    },
+    {
+      "pin": {
+        "mediaAssetId": "01a0fc13-0a50-7541-8ecf-e95ce72220d7",
+        "recordPath": "media/assets/01a0fc13-0a50-7541-8ecf-e95ce72220d7.json",
+        "contentHash": "2e2ea4de0d92587918b1a3c567ba025bb70bfb4f19b71458e02451af26374eb9"
+      },
+      "mediaAssetId": "01a0fc13-0a50-7541-8ecf-e95ce72220d7",
+      "mediaKind": "IMAGE",
+      "status": "PLANNED",
+      "currentMediaAssetVersion": null,
+      "includedVersionIsPinned": false
+    },
+    {
+      "pin": {
+        "mediaAssetId": "01a0fc13-0a50-760a-afc6-6e511f7a3003",
+        "recordPath": "media/assets/01a0fc13-0a50-760a-afc6-6e511f7a3003.json",
+        "contentHash": "5223df9c251b6b35deb09fff1e1fd418c6de4f51903d7b6bc6e11201bda6fe5c"
+      },
+      "mediaAssetId": "01a0fc13-0a50-760a-afc6-6e511f7a3003",
+      "mediaKind": "IMAGE",
+      "status": "PLANNED",
+      "currentMediaAssetVersion": null,
+      "includedVersionIsPinned": false
+    },
+    {
+      "pin": {
+        "mediaAssetId": "01a0fc13-0a50-776c-a198-40970271fdfe",
+        "recordPath": "media/assets/01a0fc13-0a50-776c-a198-40970271fdfe.json",
+        "contentHash": "ca5eecf638ac4681abd438ae0955b2c604958822f5ad6f49ccdc7e88e6664cff"
+      },
+      "mediaAssetId": "01a0fc13-0a50-776c-a198-40970271fdfe",
+      "mediaKind": "IMAGE",
+      "status": "PLANNED",
+      "currentMediaAssetVersion": null,
+      "includedVersionIsPinned": false
+    },
+    {
+      "pin": {
+        "mediaAssetId": "01a0fc13-0a50-7548-9564-492e114779aa",
+        "recordPath": "media/assets/01a0fc13-0a50-7548-9564-492e114779aa.json",
+        "contentHash": "d55a4dfa648e44827f4de5bc93f42647c4a56f1ccecb395ec1d7b9b0987cc3e9"
+      },
+      "mediaAssetId": "01a0fc13-0a50-7548-9564-492e114779aa",
+      "mediaKind": "IMAGE",
+      "status": "PLANNED",
+      "currentMediaAssetVersion": null,
+      "includedVersionIsPinned": false
+    },
+    {
+      "pin": {
+        "mediaAssetId": "01a0fc13-0a50-7e4c-bceb-70bbe0e2f42b",
+        "recordPath": "media/assets/01a0fc13-0a50-7e4c-bceb-70bbe0e2f42b.json",
+        "contentHash": "525ed6504875a379340b4260a0409ee055ba0bd5f52addd56d1879c4daceaba8"
+      },
+      "mediaAssetId": "01a0fc13-0a50-7e4c-bceb-70bbe0e2f42b",
+      "mediaKind": "IMAGE",
+      "status": "PLANNED",
+      "currentMediaAssetVersion": null,
+      "includedVersionIsPinned": false
+    },
+    {
+      "pin": {
+        "mediaAssetId": "01a0fc13-09f0-7c0f-8682-6b922d9309a6",
+        "recordPath": "media/assets/01a0fc13-09f0-7c0f-8682-6b922d9309a6.json",
+        "contentHash": "3f65428d5a33555dc390984cea70c26f3f6849f5d61f69fe00566c27ddf8b80a"
+      },
+      "mediaAssetId": "01a0fc13-09f0-7c0f-8682-6b922d9309a6",
+      "mediaKind": "WORD_PRONUNCIATION_AUDIO",
+      "status": "PLANNED",
+      "currentMediaAssetVersion": null,
+      "includedVersionIsPinned": false
+    }
+  ],
+  "manifestRules": {
+    "approvedManifestRequiresReleaseHashAndReleasedAt": true,
+    "everyPinnedLexemeSenseClassificationLearningSetRelationMustBeApproved": true,
+    "pinnedTaxonomySnapshotMustBeApproved": true,
+    "approvedCEFRExamSchoolLevelClassificationRequiresProvenance": true,
+    "editorialIsNotAClassificationStatusValue": true,
+    "provenanceRulesRemainUnchanged": true,
+    "canonicalManifestMutation": "not performed; current dataset.json remains DRAFT",
+    "sourceReviewStatus": [
+      "IN_REVIEW"
+    ]
+  }
+}
