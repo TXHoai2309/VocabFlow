@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import { MemoryRouter, Route, Routes, useLocation } from "react-router";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
@@ -20,6 +20,10 @@ const topic = { id: 7, slug: "food", name: "Food", description: "Từ vựng v�
 
 function vocabulary(id: number, word: string): VocabularyDto {
   return { id, word, ipa: `/${word}/`, vietnamese: `nghĩa ${word}`, definitionEn: null, exampleEn: null, imageUrl: null, audioUrl: null, topic: "Food", level: "GRADE_1", enabled: true, contentVersion: 1 };
+}
+
+function vocabularyList(count: number) {
+  return Array.from({ length: count }, (_, index) => vocabulary(index + 1, `word-${index + 1}`));
 }
 
 function learnerVocabulary(id: number, word: string, status: LearnerVocabularyDto["status"]): LearnerVocabularyDto {
@@ -58,6 +62,13 @@ function mockDetail(items: VocabularyDto[], progress = topicProgress(2, 1, 0, 1)
   return fetchMock;
 }
 
+function expectProgressRow(label: "Đã học" | "Chưa học", words: number, percent: number) {
+  const progressCard = screen.getByRole("heading", { name: "Tiến trình học" }).parentElement;
+  const row = within(progressCard!).getByText(label).parentElement;
+  expect(row).toHaveTextContent(`${words} từ`);
+  expect(row).toHaveTextContent(`(${percent}%)`);
+}
+
 function renderTopic(path = `/topics/${topic.id}`, initialLearner: LearnerDto | null = learner) {
   return render(
     <MemoryRouter initialEntries={[path]}>
@@ -77,7 +88,7 @@ function renderTopic(path = `/topics/${topic.id}`, initialLearner: LearnerDto | 
 describe("Topic Detail", () => {
   beforeEach(() => vi.restoreAllMocks());
 
-  it("shows the topic name, exact vocabulary list, level and partial aggregate progress", async () => {
+  it("shows the topic name, exact vocabulary list, level and progress from actual vocabulary statuses", async () => {
     const fetchMock = mockDetail(
       [vocabulary(1, "apple"), vocabulary(2, "bread")],
       topicProgress(2, 1, 0, 1),
@@ -103,6 +114,37 @@ describe("Topic Detail", () => {
 
     expect(await screen.findByRole("progressbar", { name: "Tiến độ học Food" })).toHaveAttribute("aria-valuetext", "0 / 2 từ, 0%");
     expect(screen.getByRole("link", { name: "Học chủ đề này" })).toHaveAttribute("href", "/study?topicId=7");
+  });
+
+  it("counts all 20 topic words as unlearned when no words have learner progress", async () => {
+    const items = vocabularyList(20);
+    mockDetail(items, topicProgress(0, 0, 0, 0), items.map((item) => learnerVocabulary(item.id, item.word, "NEW")));
+    renderTopic();
+
+    expect(await screen.findByRole("progressbar", { name: "Tiến độ học Food" })).toHaveAttribute("aria-valuetext", "0 / 20 từ, 0%");
+    expectProgressRow("Đã học", 0, 0);
+    expectProgressRow("Chưa học", 20, 100);
+  });
+
+  it("counts 11 of 20 topic words as learned and the remaining nine as unlearned", async () => {
+    const items = vocabularyList(20);
+    const statuses = items.map((item, index) => learnerVocabulary(item.id, item.word, index < 11 ? index < 6 ? "MASTERED" : "LEARNING" : "NEW"));
+    mockDetail(items, topicProgress(0, 0, 0, 0), statuses);
+    renderTopic();
+
+    expect(await screen.findByRole("progressbar", { name: "Tiến độ học Food" })).toHaveAttribute("aria-valuetext", "11 / 20 từ, 55%");
+    expectProgressRow("Đã học", 11, 55);
+    expectProgressRow("Chưa học", 9, 45);
+  });
+
+  it("counts all 20 topic words as learned when all statuses are mastered", async () => {
+    const items = vocabularyList(20);
+    mockDetail(items, topicProgress(0, 0, 0, 0), items.map((item) => learnerVocabulary(item.id, item.word, "MASTERED")));
+    renderTopic();
+
+    expect(await screen.findByRole("progressbar", { name: "Tiến độ học Food" })).toHaveAttribute("aria-valuetext", "20 / 20 từ, 100%");
+    expectProgressRow("Đã học", 20, 100);
+    expectProgressRow("Chưa học", 0, 0);
   });
 
   it("offers continue for partial progress and navigates without writing learner progress", async () => {
@@ -139,6 +181,10 @@ describe("Topic Detail", () => {
 
     expect(await screen.findByTestId("collection-detail-empty")).toHaveTextContent("Chưa có từ vựng trong nội dung này.");
     expect(screen.getByRole("button", { name: "Chưa có từ để học" })).toBeDisabled();
+    expectProgressRow("Đã học", 0, 0);
+    expectProgressRow("Chưa học", 0, 100);
+    expect(screen.getByRole("progressbar", { name: "Tiến độ học Food" })).toHaveAttribute("aria-valuetext", "0 / 0 từ, 0%");
+    expect(screen.queryByText(/NaN|Infinity/)).not.toBeInTheDocument();
   });
 
   it("shows an API error with a retry action", async () => {

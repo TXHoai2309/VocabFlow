@@ -132,6 +132,7 @@ type TopicDetailData = {
   total: number;
   learned: number;
   mastered: number;
+  hasAssignedVocabulary: boolean;
 };
 
 function topicDetailError(error: unknown) {
@@ -180,7 +181,7 @@ function TopicDetailExperience({ learner, topicId }: { learner: LearnerDto; topi
         const progress = topicProgress.topics.find((item) => item.topicId === topicId);
         if (!progress) throw new ProgressInsightsClientError("TOPIC_PROGRESS_NOT_FOUND", 404);
         const progressByVocabularyId = new Map(learnerVocabulary.map((item) => [item.id, item.status]));
-        const items = topicVocabulary.map((item) => {
+        const items: VocabularyCardItem[] = topicVocabulary.map((item) => {
           const status = progressByVocabularyId.get(item.id);
           return status ? { ...item, status } : item;
         });
@@ -191,9 +192,10 @@ function TopicDetailExperience({ learner, topicId }: { learner: LearnerDto; topi
           topic,
           items,
           level,
-          total: progress.total,
-          learned: progress.learningCount + progress.masteredCount,
-          mastered: progress.masteredCount
+          total: items.length,
+          learned: items.filter((item) => item.status === "LEARNING" || item.status === "MASTERED").length,
+          mastered: items.filter((item) => item.status === "MASTERED").length,
+          hasAssignedVocabulary: progress.total > 0
         });
         setState("ready");
       })
@@ -231,8 +233,8 @@ function TopicDetailExperience({ learner, topicId }: { learner: LearnerDto; topi
         progressTotal={data.total}
         masteredCount={data.mastered}
         studyHref={`/study?topicId=${data.topic.id}`}
-        studyReady={data.total > 0}
-        assignmentHref={data.items.length > 0 && data.total === 0 ? "/learning-sets/assign" : undefined}
+        studyReady={data.hasAssignedVocabulary}
+        assignmentHref={data.items.length > 0 && !data.hasAssignedVocabulary ? "/learning-sets/assign" : undefined}
       />
     );
   }
