@@ -8,6 +8,8 @@
   },
   "scripts": {
     "dev": "pnpm dev:web",
+    "dev:api": "tsx --env-file=.env apps/api/src/local-dev.ts",
+    "dev:all": "concurrently -n web,api -c cyan,yellow \"pnpm dev:web\" \"pnpm dev:api\"",
     "dev:vercel": "vercel dev --local --listen 3000",
     "dev:web": "vite --config apps/web/vite.config.mts --host 127.0.0.1",
     "build:workspace-packages": "tsc -p packages/contracts/tsconfig.build.json && esbuild packages/contracts/src/index.ts --format=cjs --platform=node --target=node22 --outfile=packages/contracts/dist/index.cjs && tsc -p packages/learning-domain/tsconfig.build.json && esbuild packages/learning-domain/src/index.ts --format=cjs --platform=node --target=node22 --outfile=packages/learning-domain/dist/index.cjs",
@@ -67,6 +69,7 @@
     "@typescript-eslint/eslint-plugin": "8.69.0",
     "@typescript-eslint/parser": "8.69.0",
     "@vitejs/plugin-react": "6.1.1",
+    "concurrently": "^10.0.5",
     "drizzle-kit": "0.31.10",
     "esbuild": "0.28.2",
     "eslint": "10.10.0",
