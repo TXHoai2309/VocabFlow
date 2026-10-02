@@ -5,6 +5,11 @@ import "@testing-library/jest-dom/vitest";
 import type { LearnerDto, ReviewQueueItem, ReviewQueueResponse, VocabularyDto } from "@vocabflow/contracts";
 import { ActiveLearnerProvider } from "../learners/learner-context-provider";
 import { StudyPage } from "./study-page";
+import { formatStudyDuration } from "./study-session-result";
+import type { ExerciseType } from "./exercise-generator";
+
+const { requestActivitySummaryMock } = vi.hoisted(() => ({ requestActivitySummaryMock: vi.fn() }));
+vi.mock("../learners/activity-summary-client", () => ({ requestActivitySummary: requestActivitySummaryMock }));
 
 const learner: LearnerDto = {
   id: "00000000-0000-4000-8000-000000000010",
@@ -80,13 +85,15 @@ function response(body: unknown, status = 200) {
   });
 }
 
-function renderStudy(initialLearner: LearnerDto | null = learner, mode: "flashcard" | "exercise" = "flashcard", path = "/study") {
+function renderStudy(initialLearner: LearnerDto | null = learner, mode: "flashcard" | "exercise" = "flashcard", path = "/study", exercisePreference?: ExerciseType) {
   return render(
     <MemoryRouter initialEntries={[path]}>
       <ActiveLearnerProvider initialLearner={initialLearner}>
         <Routes>
-          <Route path="/study" element={<StudyPage mode={mode} />} />
-          <Route path="/study/setup" element={<p>study-setup-route</p>} />
+          <Route path="/study" element={<StudyPage mode={mode} exercisePreference={exercisePreference} />} />
+          <Route path="/study/setup" element={<p data-testid="study-setup-route">study-setup-route</p>} />
+          <Route path="/vocabulary/:vocabularyId" element={<p data-testid="vocabulary-detail-route">vocabulary-detail-route</p>} />
+          <Route path="/" element={<p data-testid="home-route">home-route</p>} />
           <Route path="/learners" element={<p>learners-route</p>} />
           <Route path="/login" element={<p>login-route</p>} />
         </Routes>
@@ -98,6 +105,12 @@ function renderStudy(initialLearner: LearnerDto | null = learner, mode: "flashca
 describe("US-09 flashcard session UX", () => {
   beforeEach(() => {
     vi.restoreAllMocks();
+    requestActivitySummaryMock.mockReset().mockResolvedValue({
+      learnerId: learner.id,
+      localDate: "2026-09-15",
+      dailyGoal: { goal: 10, reviewedUnique: 1, remaining: 9, completed: false },
+      streak: { currentStreak: 7, longestStreak: 7, todayActive: true }
+    });
   });
 
   it("loads the canonical due-first queue and keeps Vietnamese off the front", async () => {
@@ -222,7 +235,7 @@ describe("US-09 flashcard session UX", () => {
     await screen.findByTestId("study-session-summary");
   });
 
-  it("shows session summary metrics and the home CTA after confirmed completion", async () => {
+  it("shows a real session summary, scope-safe setup action, current streak and home navigation", async () => {
     const item = queueItem(1, "apple");
     vi.spyOn(globalThis, "fetch")
       .mockResolvedValueOnce(response(queueResponse([item])))
@@ -234,12 +247,186 @@ describe("US-09 flashcard session UX", () => {
     fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
 
     await waitFor(() => expect(screen.getByTestId("study-session-summary")).toBeInTheDocument());
-    expect(screen.getByText("Đã ôn tập").nextElementSibling).toHaveTextContent("1");
-    expect(screen.getByText("Đã nhớ").nextElementSibling).toHaveTextContent("1");
-    expect(screen.getByText("Chưa nhớ").nextElementSibling).toHaveTextContent("0");
-    expect(screen.getByText("Lượt ôn lại").nextElementSibling).toHaveTextContent("0");
-    expect(screen.getByRole("link", { name: "Về trang người học" })).toHaveAttribute("href", "/learners");
-    expect(screen.queryByText("Học tiếp")).not.toBeInTheDocument();
+    expect(screen.getByTestId("summary-answered-total")).toHaveTextContent("1 / 1");
+    expect(screen.getByRole("heading", { name: "Đúng" }).parentElement).toHaveTextContent("1 từ");
+    expect(screen.getByRole("heading", { name: "Sai" }).parentElement).toHaveTextContent("0 từ");
+    expect(screen.getByRole("heading", { name: "Từ mới" }).parentElement).toHaveTextContent("1 từ");
+    expect(screen.getByRole("heading", { name: "Từ ôn tập" }).parentElement).toHaveTextContent("0 từ");
+    expect(await screen.findByRole("heading", { name: "Chuỗi ngày" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Chuỗi ngày" }).parentElement).toHaveTextContent("7 ngày");
+    expect(screen.getByRole("heading", { name: "Thời gian học" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /Học tiếp/ })).toHaveAttribute("href", "/study/setup");
+    expect(screen.getByRole("link", { name: "Về trang chủ" })).toHaveAttribute("href", "/");
+    expect(screen.queryByRole("button", { name: "Ôn từ sai" })).not.toBeInTheDocument();
+    expect(screen.getByText("Bạn không có từ nào trả lời sai trong buổi học này.")).toBeInTheDocument();
+    expect(screen.queryByText(/XP/)).not.toBeInTheDocument();
+    expect(screen.getByText("Kết quả này chỉ được giữ trong phiên hiện tại.")).toBeInTheDocument();
+    expect(requestActivitySummaryMock).toHaveBeenCalledWith(learner.id);
+    fireEvent.click(screen.getByRole("link", { name: "Về trang chủ" }));
+    expect(await screen.findByTestId("home-route")).toBeInTheDocument();
+  });
+
+  it("summarizes only the confirmed answers and queue classifications, and reviews only unique wrong words", async () => {
+    const apple = queueItem(1, "apple", "NEW");
+    apple.vocabulary.ipa = "/ˈæp.əl/";
+    apple.vocabulary.imageUrl = "/images/apple.png";
+    const book = queueItem(2, "book", "DUE", 2);
+    const cat = queueItem(3, "cat", "NEW");
+    const fetchMock = vi.spyOn(globalThis, "fetch")
+      .mockResolvedValueOnce(response(queueResponse([apple, book, cat])))
+      .mockResolvedValueOnce(response(reviewResponse(apple, "FORGOTTEN"), 201))
+      .mockResolvedValueOnce(response(reviewResponse(book, "REMEMBERED"), 201))
+      .mockResolvedValueOnce(response(reviewResponse(cat, "REMEMBERED"), 201));
+    renderStudy();
+
+    await screen.findByTestId("study-session-ready");
+    fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
+    fireEvent.click(screen.getByRole("button", { name: "Chưa nhớ" }));
+    await screen.findByText("book");
+    fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
+    fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
+    await screen.findByText("cat");
+    fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
+    fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
+    await waitFor(() => expect(screen.getByText("apple")).toBeInTheDocument());
+    fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
+    fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
+
+    await screen.findByTestId("study-session-summary");
+    expect(screen.getByTestId("summary-answered-total")).toHaveTextContent("3 / 3");
+    expect(screen.getByRole("heading", { name: "Đúng" }).parentElement).toHaveTextContent("2 từ");
+    expect(screen.getByRole("heading", { name: "Sai" }).parentElement).toHaveTextContent("1 từ");
+    expect(screen.getByRole("heading", { name: "Từ mới" }).parentElement).toHaveTextContent("2 từ");
+    expect(screen.getByRole("heading", { name: "Từ ôn tập" }).parentElement).toHaveTextContent("1 từ");
+    expect(screen.getByRole("heading", { name: "Cần ôn lại" }).parentElement).toHaveTextContent("1 từ");
+    expect(screen.getAllByRole("link", { name: "apple" })).toHaveLength(1);
+    expect(screen.queryByRole("link", { name: "book" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "cat" })).not.toBeInTheDocument();
+    expect(screen.getByText("/ˈæp.əl/")).toBeInTheDocument();
+    expect(screen.getByAltText("apple")).toHaveAttribute("src", "/images/apple.png");
+
+    fireEvent.click(screen.getByRole("button", { name: "Ôn từ sai" }));
+    expect(await screen.findByTestId("study-session-ready")).toBeInTheDocument();
+    expect(screen.getByTestId("session-counter")).toHaveTextContent("Câu 1 / 1");
+    expect(screen.getByText("apple")).toBeInTheDocument();
+    expect(screen.queryByText("book")).not.toBeInTheDocument();
+    expect(screen.queryByText("cat")).not.toBeInTheDocument();
+    expect(fetchMock).toHaveBeenCalledTimes(4);
+    fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
+    fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
+    await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(5));
+    const wrongReviewRequest = JSON.parse(String(fetchMock.mock.calls[4]?.[1]?.body));
+    expect(wrongReviewRequest).toMatchObject({ vocabularyId: 1, expectedRevision: 1, result: "REMEMBERED" });
+    expect(fetchMock.mock.calls.some(([url]) => String(url).includes("reset"))).toBe(false);
+  });
+
+  it("preserves a topic scope on continue and uses client-side navigation for vocabulary details", async () => {
+    const item = queueItem(1, "apple");
+    vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
+      const url = String(input);
+      if (url === `/api/learners/${learner.id}/review-queue`) return response(queueResponse([item]));
+      if (url === "/api/topics/42/vocabulary") return response({ vocabulary: [item.vocabulary] });
+      return response(reviewResponse(item, "FORGOTTEN"), 201);
+    });
+    renderStudy(learner, "flashcard", "/study?topicId=42");
+
+    await screen.findByTestId("study-session-ready");
+    fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
+    fireEvent.click(screen.getByRole("button", { name: "Chưa nhớ" }));
+    await screen.findByText("Ôn tập lại");
+    fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
+    fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
+    await screen.findByTestId("study-session-summary");
+
+    expect(screen.getByRole("link", { name: /Học tiếp/ })).toHaveAttribute("href", "/study/setup?topicId=42");
+    fireEvent.click(screen.getByRole("link", { name: "apple" }));
+    expect(await screen.findByTestId("vocabulary-detail-route")).toBeInTheDocument();
+  });
+
+  it("preserves a learning set scope on the continue action", async () => {
+    const apple = queueItem(1, "apple");
+    const bread = queueItem(2, "bread");
+    const learningSet = {
+      id: 4,
+      slug: "food",
+      name: "Food",
+      description: "Food words",
+      grade: null,
+      enabled: true,
+      sortOrder: 1,
+      vocabularyCount: 1,
+      items: [{ sortOrder: 0, vocabulary: apple.vocabulary }]
+    };
+    vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
+      const url = String(input);
+      if (url === `/api/learners/${learner.id}/review-queue`) return response(queueResponse([apple, bread]));
+      if (url === "/api/learning-sets/4") return response({ learningSet });
+      return response(reviewResponse(apple, "REMEMBERED"), 201);
+    });
+    renderStudy(learner, "flashcard", "/study?learningSetId=4");
+
+    await screen.findByTestId("study-session-ready");
+    fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
+    fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
+    await screen.findByTestId("study-session-summary");
+
+    expect(screen.getByRole("link", { name: /Học tiếp/ })).toHaveAttribute("href", "/study/setup?learningSetId=4");
+  });
+
+  it("hides the current streak when the summary read fails", async () => {
+    requestActivitySummaryMock.mockRejectedValueOnce(new Error("unavailable"));
+    const item = queueItem(1, "apple");
+    vi.spyOn(globalThis, "fetch")
+      .mockResolvedValueOnce(response(queueResponse([item])))
+      .mockResolvedValueOnce(response(reviewResponse(item, "REMEMBERED"), 201));
+    renderStudy();
+
+    await screen.findByTestId("study-session-ready");
+    fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
+    fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
+    await screen.findByTestId("study-session-summary");
+    await waitFor(() => expect(requestActivitySummaryMock).toHaveBeenCalledOnce());
+
+    expect(screen.queryByRole("heading", { name: "Chuỗi ngày" })).not.toBeInTheDocument();
+  });
+
+  it("keeps the learner answer and correct answer from exercise data on wrong rows", async () => {
+    const apple = queueItem(1, "apple");
+    const book = queueItem(2, "book");
+    const cat = queueItem(3, "cat");
+    const dog = queueItem(4, "dog");
+    const pool = [apple, book, cat, dog];
+    vi.spyOn(globalThis, "fetch")
+      .mockResolvedValueOnce(response(queueResponse(pool)))
+      .mockResolvedValueOnce(response(reviewResponse(apple, "FORGOTTEN"), 201))
+      .mockResolvedValueOnce(response(reviewResponse(book, "REMEMBERED"), 201))
+      .mockResolvedValueOnce(response(reviewResponse(cat, "REMEMBERED"), 201))
+      .mockResolvedValueOnce(response(reviewResponse(dog, "REMEMBERED"), 201));
+    renderStudy(learner, "exercise", "/study", "MULTIPLE_CHOICE_MEANING");
+
+    await screen.findByTestId("exercise-card");
+    fireEvent.click(screen.getByRole("button", { name: "book-nghĩa" }));
+    await waitFor(() => expect(screen.getByTestId("exercise-word")).toHaveTextContent("book"));
+    fireEvent.click(screen.getByRole("button", { name: "book-nghĩa" }));
+    await waitFor(() => expect(screen.getByTestId("flashcard")).toHaveTextContent("cat"));
+    fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
+    fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
+    await waitFor(() => expect(screen.getByTestId("flashcard")).toHaveTextContent("dog"));
+    fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
+    fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
+    await waitFor(() => expect(screen.getByTestId("flashcard")).toHaveTextContent("apple"));
+    fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
+    fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
+    await screen.findByTestId("study-session-summary");
+
+    expect(screen.getByText("Câu trả lời của bạn").nextElementSibling).toHaveTextContent("book-nghĩa");
+    expect(screen.getByText("Đáp án đúng").nextElementSibling).toHaveTextContent("apple-nghĩa");
+  });
+
+  it("formats measured session duration without substituting a default", () => {
+    expect(formatStudyDuration(1_000, 1_000)).toBe("0 giây");
+    expect(formatStudyDuration(1_000, 205_000)).toBe("3 phút 24 giây");
+    expect(formatStudyDuration(10_000, 730_000)).toBe("12 phút");
   });
 
   it("uses the canonical server response when deciding the next session state", async () => {
@@ -320,7 +507,7 @@ describe("US-09 flashcard session UX", () => {
     await waitFor(() => expect(screen.getByTestId("study-session-summary")).toBeInTheDocument());
     expect(fetchMock).toHaveBeenCalledTimes(3);
     expect(fetchMock.mock.calls[2]?.[1]?.body).toBe(firstBody);
-    expect(screen.getByText("Đã ôn tập").nextElementSibling).toHaveTextContent("1");
+    expect(screen.getByRole("heading", { name: "Đúng" }).parentElement).toHaveTextContent("1 từ");
     vi.unstubAllGlobals();
   });
 
@@ -344,7 +531,7 @@ describe("US-09 flashcard session UX", () => {
     fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
     fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
     await waitFor(() => expect(screen.getByTestId("study-session-summary")).toBeInTheDocument());
-    expect(screen.getByText("Đã ôn tập").nextElementSibling).toHaveTextContent("1");
+    expect(screen.getByRole("heading", { name: "Đúng" }).parentElement).toHaveTextContent("1 từ");
     expect(fetchMock).toHaveBeenCalledTimes(4);
   });
 
@@ -368,10 +555,9 @@ describe("US-09 flashcard session UX", () => {
     fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
 
     await waitFor(() => expect(screen.getByTestId("study-session-summary")).toBeInTheDocument());
-    expect(screen.getByText("Lượt ôn lại").nextElementSibling).toHaveTextContent("2");
-    expect(screen.getByText("Đã ôn tập").nextElementSibling).toHaveTextContent("1");
-    expect(screen.getByText("Đã nhớ").nextElementSibling).toHaveTextContent("0");
-    expect(screen.getByText("Chưa nhớ").nextElementSibling).toHaveTextContent("1");
+    expect(screen.getByTestId("summary-answered-total")).toHaveTextContent("1 / 1");
+    expect(screen.getByRole("heading", { name: "Sai" }).parentElement).toHaveTextContent("1 từ");
+    expect(screen.getByRole("heading", { name: "Cần ôn lại" }).parentElement).toHaveTextContent("1 từ");
     expect(fetchMock).toHaveBeenCalledTimes(2);
   });
 

@@ -8,12 +8,15 @@ import type {
   ReviewResult,
   ReviewResponse
 } from "@vocabflow/contracts";
+import { requestActivitySummary } from "../learners/activity-summary-client";
 import { useActiveLearner } from "../learners/learner-context-hook";
 import { ReviewQueueClientError } from "./review-queue-client";
 import { requestScopedReviewQueue, selectStudyQueue, studyScopeFromParams, studySelectionFromParams, type StudyScope, type StudySelection } from "./study-queue";
 import { ReviewClientError, submitReview } from "./review-client";
 import { Flashcard } from "./flashcard";
 import { ExerciseCard, type ExerciseAnswer } from "./exercise-card";
+import { SessionSummary } from "./session-summary";
+import { createStudySessionResult, type StudySessionResult, type StudySessionWrongItem } from "./study-session-result";
 import {
   createExercise,
   EXERCISE_TYPE,
@@ -36,14 +39,13 @@ type SessionCard = {
 
 type SessionMetrics = {
   scheduledReviews: number;
-  remembered: number;
-  forgotten: number;
-  reinforcement: number;
 };
 
 type PendingReview = {
   request: ReviewRequest;
   card: SessionCard;
+  learnerAnswer?: string;
+  correctAnswer?: string;
 };
 
 type FeedbackTransition =
@@ -156,12 +158,9 @@ function StudyExperience({ activeLearner, mode, exercisePreference, scope, selec
   const [state, setState] = useState<StudyState>("loading");
   const [cards, setCards] = useState<SessionCard[]>([]);
   const [baseQueueLength, setBaseQueueLength] = useState(0);
-  const [metrics, setMetrics] = useState<SessionMetrics>({
-    scheduledReviews: 0,
-    remembered: 0,
-    forgotten: 0,
-    reinforcement: 0
-  });
+  const [metrics, setMetrics] = useState<SessionMetrics>({ scheduledReviews: 0 });
+  const [sessionResult, setSessionResult] = useState<StudySessionResult | null>(null);
+  const [summaryStreak, setSummaryStreak] = useState<number | null>(null);
   const [message, setMessage] = useState<string | null>(null);
   const [isFlipped, setIsFlipped] = useState(false);
   const [pending, setPending] = useState<PendingReview | null>(null);
@@ -206,6 +205,8 @@ function StudyExperience({ activeLearner, mode, exercisePreference, scope, selec
       cardsRef.current = nextCards;
       setBaseQueueLength(response.queue.length);
       setCards(nextCards);
+      setSessionResult(response.queue.length > 0 ? createStudySessionResult(response.queue) : null);
+      setSummaryStreak(null);
       setState(nextCards.length === 0 ? "empty" : "ready");
     } catch (error) {
       setState("error");
@@ -247,7 +248,7 @@ function StudyExperience({ activeLearner, mode, exercisePreference, scope, selec
           ? "Tiến trình đã thay đổi. Hãy đánh giá lại thẻ này."
           : "Lượt ôn tập này đã được ghi nhận với dữ liệu khác. Hãy đánh giá lại thẻ này."
         : "Tiến trình đã được cập nhật. Thẻ này không còn trong danh sách học.");
-      setState(nextCards.length === 0 ? "summary" : "ready");
+      setState(nextCards.length === 0 ? "empty" : "ready");
     } catch (error) {
       setPending(null);
       setState(isLoginError(error) || isLearnerAccessError(error) ? "error" : "save-failed");
@@ -281,7 +282,13 @@ function StudyExperience({ activeLearner, mode, exercisePreference, scope, selec
     setMessage(null);
     setIsFlipped(false);
     submitInFlightRef.current = false;
-    setState(cardsRef.current.length === 0 ? "summary" : "ready");
+    const complete = cardsRef.current.length === 0;
+    if (complete) {
+      setSessionResult((current) => current ? { ...current, completedAt: Date.now() } : current);
+      setState("summary");
+    } else {
+      setState("ready");
+    }
   }, [replaceCards]);
 
   useEffect(() => {
@@ -294,15 +301,23 @@ function StudyExperience({ activeLearner, mode, exercisePreference, scope, selec
     return () => window.clearTimeout(timer);
   }, [completeFeedbackTransition, state]);
 
-  const saveScheduledReview = useCallback(async (request: ReviewRequest, card: SessionCard) => {
+  const saveScheduledReview = useCallback(async (request: ReviewRequest, card: SessionCard, answerDetails: Pick<PendingReview, "learnerAnswer" | "correctAnswer"> = {}) => {
     try {
       const response = await submitReview(request);
-      setMetrics((current) => ({
-        ...current,
-        scheduledReviews: current.scheduledReviews + 1,
-        remembered: current.remembered + (response.result === "REMEMBERED" ? 1 : 0),
-        forgotten: current.forgotten + (response.result === "FORGOTTEN" ? 1 : 0)
-      }));
+      setMetrics((current) => ({ scheduledReviews: current.scheduledReviews + 1 }));
+      setSessionResult((current) => {
+        if (!current) return current;
+        const savedItem = applyCanonicalReviewResponse(card, response).item;
+        const wrongItems = response.result === "FORGOTTEN"
+          ? [...current.wrongItems.filter((wrong) => wrong.item.vocabulary.id !== savedItem.vocabulary.id), { item: savedItem, ...answerDetails } satisfies StudySessionWrongItem]
+          : current.wrongItems;
+        return {
+          ...current,
+          correct: current.correct + (response.result === "REMEMBERED" ? 1 : 0),
+          incorrect: current.incorrect + (response.result === "FORGOTTEN" ? 1 : 0),
+          wrongItems
+        };
+      });
       setPending(null);
       setMessage(response.result === "REMEMBERED" ? "Đã ghi nhận" : "Sẽ ôn lại từ này");
       feedbackTransitionRef.current = { kind: "scheduled", card, response };
@@ -327,7 +342,6 @@ function StudyExperience({ activeLearner, mode, exercisePreference, scope, selec
     submitInFlightRef.current = true;
     if (currentCard.reinforcementAttempt > 0) {
       setLastAnswer(result);
-      setMetrics((current) => ({ ...current, reinforcement: current.reinforcement + 1 }));
       setMessage(result === "REMEMBERED" ? "Đã ghi nhận" : "Sẽ ôn lại từ này");
       feedbackTransitionRef.current = { kind: "reinforcement", card: currentCard, result };
       setState("feedback");
@@ -365,7 +379,6 @@ function StudyExperience({ activeLearner, mode, exercisePreference, scope, selec
     if (currentCard.reinforcementAttempt > 0) {
       setExerciseAnswer({ optionId, result });
       setLastAnswer(result);
-      setMetrics((current) => ({ ...current, reinforcement: current.reinforcement + 1 }));
       setMessage(result === "REMEMBERED" ? "Đã ghi nhận" : "Sẽ ôn lại từ này");
       feedbackTransitionRef.current = { kind: "reinforcement", card: currentCard, result };
       setState("feedback");
@@ -381,15 +394,25 @@ function StudyExperience({ activeLearner, mode, exercisePreference, scope, selec
       expectedRevision: currentCard.item.expectedRevision,
       exerciseSubmission
     };
+    const learnerAnswer = currentExercise.exerciseType === EXERCISE_TYPE.TYPE_WORD
+      ? exerciseSubmission.type === EXERCISE_TYPE.TYPE_WORD ? exerciseSubmission.answer.trim() : undefined
+      : currentExercise.options.find((option) => option.optionId === optionId)?.label;
+    const correctAnswer = currentExercise.exerciseType === EXERCISE_TYPE.TYPE_WORD
+      ? currentExercise.correctAnswer ?? undefined
+      : currentExercise.options.find((option) => option.optionId === currentExercise.correctOptionId)?.label;
+    const answerDetails: Pick<PendingReview, "learnerAnswer" | "correctAnswer"> = {
+      ...(learnerAnswer ? { learnerAnswer } : {}),
+      ...(correctAnswer ? { correctAnswer } : {})
+    };
     const card = { ...currentCard, reviewId };
     const nextCards = cardsRef.current.map((candidate, index) => index === 0 ? card : candidate);
     replaceCards(nextCards, false);
     setExerciseAnswer({ optionId, result });
-    setPending({ request, card });
+    setPending({ request, card, ...answerDetails });
     setLastAnswer(result);
     setMessage(null);
     setState("saving");
-    void saveScheduledReview(request, card);
+    void saveScheduledReview(request, card, answerDetails);
   }, [activeLearner.id, currentCard, currentExercise, exerciseAnswer, replaceCards, saveScheduledReview, state, useExerciseCard]);
 
   const retrySave = () => {
@@ -397,8 +420,42 @@ function StudyExperience({ activeLearner, mode, exercisePreference, scope, selec
     submitInFlightRef.current = true;
     setState("saving");
     setMessage(null);
-    void saveScheduledReview(pending.request, pending.card);
+    void saveScheduledReview(pending.request, pending.card, pending);
   };
+
+  const reviewWrongWords = useCallback(() => {
+    if (!sessionResult || sessionResult.wrongItems.length === 0) return;
+    const uniqueWrongItems = [...new Map(sessionResult.wrongItems.map((wrong) => [wrong.item.vocabulary.id, wrong.item])).values()]
+      .map((item) => ({ ...item, queueType: "DUE" as const }));
+    const nextCards = sessionCards(uniqueWrongItems);
+    replaceCards(nextCards);
+    setBaseQueueLength(nextCards.length);
+    setMetrics({ scheduledReviews: 0 });
+    setSessionResult(createStudySessionResult(uniqueWrongItems));
+    setSummaryStreak(null);
+    setPending(null);
+    setLastAnswer(null);
+    setExerciseAnswer(null);
+    setExerciseFallbackType(null);
+    setExerciseBlockedCues([]);
+    setMessage(null);
+    feedbackTransitionRef.current = null;
+    submitInFlightRef.current = false;
+    setState("ready");
+  }, [replaceCards, sessionResult]);
+
+  useEffect(() => {
+    if (state !== "summary") return;
+    let active = true;
+    void requestActivitySummary(activeLearner.id)
+      .then((response) => {
+        if (active) setSummaryStreak(response.streak.currentStreak);
+      })
+      .catch(() => {
+        if (active) setSummaryStreak(null);
+      });
+    return () => { active = false; };
+  }, [activeLearner.id, state]);
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -471,11 +528,11 @@ function StudyExperience({ activeLearner, mode, exercisePreference, scope, selec
   const progressPercent = progressTotal === 0 ? 0 : Math.round((currentQuestion / progressTotal) * 100);
   const selectedContentLabel = studyContentLabel(selection?.content);
   const sessionModeLabel = selectedContentLabel ?? (mode === "exercise" ? "Bài tập" : "Flashcard");
-  const studyTitle = state === "summary" ? "Hoàn thành buổi học" : "Buổi học";
+  const studyTitle = state === "summary" ? "Tổng kết buổi học" : "Buổi học";
 
   return (
     <main className="study-page" aria-labelledby="study-title">
-      <section className="study-shell">
+      <section className={`study-shell${state === "summary" ? " study-shell-summary" : ""}`}>
         <header className="study-topbar">
           <div className="study-brand" aria-label="VocabFlow">
             <svg aria-hidden="true" viewBox="0 0 32 32" className="study-brand-mark">
@@ -484,9 +541,11 @@ function StudyExperience({ activeLearner, mode, exercisePreference, scope, selec
             </svg>
             <span>Vocab<span>Flow</span></span>
           </div>
-          <Link className="study-exit-button" to={returnTo} onClick={handleExit}>
-            <span aria-hidden="true">←</span> Thoát buổi học
-          </Link>
+          {state !== "summary" ? (
+            <Link className="study-exit-button" to={returnTo} onClick={handleExit}>
+              <span aria-hidden="true">←</span> Thoát buổi học
+            </Link>
+          ) : <span aria-hidden="true" />}
           <div className="study-session-context" aria-label="Thiết lập buổi học">
             <span className="study-session-chip">{sessionModeLabel}</span>
             {progressTotal > 0 ? <span className="study-session-chip">{progressTotal} từ</span> : null}
@@ -525,17 +584,13 @@ function StudyExperience({ activeLearner, mode, exercisePreference, scope, selec
         ) : null}
 
         {state === "summary" ? (
-          <div className="study-summary" data-testid="study-session-summary">
-            <h2>Hoàn thành buổi học</h2>
-            <p className="study-summary-lead">Bạn đã hoàn thành tất cả câu hỏi trong buổi học này.</p>
-            <dl className="study-summary-list">
-              <div><dt>Đã ôn tập</dt><dd>{metrics.scheduledReviews}</dd></div>
-              <div><dt>Đã nhớ</dt><dd>{metrics.remembered}</dd></div>
-              <div><dt>Chưa nhớ</dt><dd>{metrics.forgotten}</dd></div>
-              <div><dt>Lượt ôn lại</dt><dd>{metrics.reinforcement}</dd></div>
-            </dl>
-            <Link className="register-submit study-summary-link" to="/learners">Về trang người học</Link>
-          </div>
+          sessionResult && sessionResult.completedAt !== null ? <SessionSummary result={sessionResult} scope={scope} streak={summaryStreak} onReviewWrong={reviewWrongWords} /> : (
+            <div className="study-state" data-testid="study-summary-unavailable" role="status">
+              <h2>Buổi học đã kết thúc</h2>
+              <p>Không thể khôi phục kết quả chi tiết của phiên học này.</p>
+              <Link className="study-state-link" to={studySetupHref(scope)}>Học tiếp</Link>
+            </div>
+          )
         ) : null}
 
         {currentCard && ["ready", "saving", "feedback", "save-failed", "reconciling"].includes(state) ? (

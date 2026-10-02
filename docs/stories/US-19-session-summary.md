@@ -46,3 +46,21 @@ CTA wording. Focused, full, and E2E regression evidence passed at the commit.
 ## Known limitations
 
 The summary is not a historical analytics dashboard.
+
+## Owner-requested UI follow-up (2026-10-02)
+
+- The existing inline completion state now renders a session summary without a
+  route transition. Correct/incorrect counts come from confirmed review
+  responses; NEW/DUE counts come from the admitted queue snapshot.
+- Wrong-word rows contain only unique vocabulary missed in this in-memory
+  session. “Ôn từ sai” starts a fresh queue from those canonical saved items,
+  without resetting learner progress. Topic and Learning Set scope remain on
+  the “Học tiếp” setup link.
+- Duration is measured from queue readiness to completion. Current streak is
+  read from the existing learner activity summary. XP earned by this session
+  is not displayed because the review response exposes no session XP amount;
+  the gamification read model only exposes accumulated XP.
+- A refresh does not restore the completed session result; the summary clearly
+  indicates that it is retained only for the current page session.
+- Focused Study, Setup, exercise-generation and scope tests: 74/74 passed;
+  root typecheck, production build, Study ESLint and diff check passed.
