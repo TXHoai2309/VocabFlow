@@ -9,7 +9,7 @@ import { ProgressPage } from "./features/learners/progress-page";
 import { LearnerSettingsPage } from "./features/learners/learner-settings-page";
 import { VocabularyListPage } from "./features/learners/vocabulary-list-page";
 import { VocabularyDetailPage } from "./features/learners/vocabulary-detail-page";
-import { TopicsPage } from "./features/learners/topics-page";
+import { TopicDetailPage, TopicsPage } from "./features/learners/topics-page";
 import { ExerciseStudyPage, StudyPage } from "./features/study/study-page";
 import { LearningSetDetailPage, LearningSetsPage } from "./features/learning-sets/learning-sets-page";
 import { LearnerLearningSetsPage } from "./features/learning-sets/learner-learning-sets-page";
@@ -103,6 +103,7 @@ export function AppRoutes() {
         <Route path="/vocabulary" element={<VocabularyListPage />} />
         <Route path="/vocabulary/:vocabularyId" element={<VocabularyDetailPage />} />
         <Route path="/topics" element={<TopicsPage />} />
+        <Route path="/topics/:topicId" element={<TopicDetailPage />} />
         <Route path="/learning-sets" element={<LearningSetsPage />} />
         <Route path="/learning-sets/assign" element={<LearnerLearningSetsPage />} />
         <Route path="/learning-sets/:learningSetId" element={<LearningSetDetailPage />} />

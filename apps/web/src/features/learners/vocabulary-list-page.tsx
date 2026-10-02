@@ -3,10 +3,10 @@ import { Link, Navigate, useLocation, useSearchParams } from "react-router";
 import type { LearnerDto, LearnerVocabularyDto, VocabularyLevel } from "@vocabflow/contracts";
 import { useActiveLearner } from "./learner-context-hook";
 import { LearnerVocabularyClientError, requestLearnerVocabulary } from "./vocabulary-list-client";
-import { usePronunciationAudio } from "../study/pronunciation-audio";
+import { VocabularyCard } from "./vocabulary-card";
 
 type VocabularyListState = "loading" | "ready" | "error";
-type VocabularyIconName = "home" | "book" | "level" | "search" | "clear" | "bookmark" | "speaker" | "image" | "previous" | "next";
+type VocabularyIconName = "home" | "book" | "level" | "search" | "clear" | "previous" | "next";
 
 const vocabularyLevels: { value: VocabularyLevel; label: string }[] = [
   { value: "GRADE_1", label: "Lớp 1" },
@@ -22,10 +22,6 @@ function isVocabularyLevel(value: string | null): value is VocabularyLevel {
   return vocabularyLevels.some((level) => level.value === value);
 }
 
-function levelLabel(level: VocabularyLevel | null) {
-  return level ? vocabularyLevels.find((option) => option.value === level)?.label : null;
-}
-
 function VocabularyIcon({ name, className }: { name: VocabularyIconName; className?: string }) {
   const paths: Record<VocabularyIconName, string> = {
     home: "m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z",
@@ -33,9 +29,6 @@ function VocabularyIcon({ name, className }: { name: VocabularyIconName; classNa
     level: "M4 19V10m5 9V5m5 14v-7m5 7V3M2 21h20",
     search: "m20 20-4.4-4.4M18 10.5a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0z",
     clear: "m18 6-12 12M6 6l12 12",
-    bookmark: "M6 4h12v17l-6-4-6 4z",
-    speaker: "M11 5 6 9H3v6h3l5 4zM15.5 8.5a5 5 0 0 1 0 7m3-10a9 9 0 0 1 0 13",
-    image: "M4 4h16v16H4zM8 10h.01M20 15l-5-5L5 20",
     previous: "m15 18-6-6 6-6",
     next: "m9 18 6-6-6-6"
   };
@@ -270,46 +263,5 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
         )
       ) : null}
     </main>
-  );
-}
-
-function VocabularyCard({ item }: { item: LearnerVocabularyDto }) {
-  const [imageFailed, setImageFailed] = useState(false);
-  const audio = usePronunciationAudio(item.audioUrl, item.word, item.id);
-  const imageUrl = item.imageUrl?.trim();
-  const level = levelLabel(item.level);
-
-  return (
-    <li className="vocabulary-card-item" data-testid={`vocabulary-row-${item.id}`}>
-      <article className="vocabulary-card">
-        <Link className="vocabulary-card-link" to={`/vocabulary/${item.id}`} aria-label={`${item.word}${item.ipa ? `, ${item.ipa}` : ""}. ${item.vietnamese}. Xem chi tiết`}>
-          <span className="vocabulary-card-thumbnail">
-            {imageUrl && !imageFailed ? (
-              <img src={imageUrl} alt={`Hình minh họa ${item.word}`} loading="lazy" onError={() => setImageFailed(true)} />
-            ) : <VocabularyIcon name="image" />}
-          </span>
-          {level ? <span className="vocabulary-level-badge">{level}</span> : null}
-          <span className="vocabulary-card-copy">
-            <strong>{item.word}</strong>
-            {item.ipa ? <span className="vocabulary-card-ipa">{item.ipa}</span> : null}
-            <span className="vocabulary-card-meaning">{item.vietnamese}</span>
-          </span>
-        </Link>
-        <button className="vocabulary-bookmark-button" type="button" disabled title="Hiện chưa hỗ trợ lưu từng từ" aria-label={`Hiện chưa hỗ trợ lưu từng từ: ${item.word}`}>
-          <VocabularyIcon name="bookmark" />
-        </button>
-        <button
-          className="vocabulary-audio-button"
-          type="button"
-          disabled={!audio.hasAudio || audio.state === "loading" || audio.state === "error"}
-          aria-label={`Nghe phát âm ${item.word}`}
-          aria-pressed={audio.state === "playing"}
-          title={audio.hasAudio ? `Nghe phát âm ${item.word}` : "Chưa có âm thanh phát âm"}
-          onClick={() => audio.state === "playing" ? audio.pause() : audio.play()}
-        >
-          <VocabularyIcon name="speaker" />
-        </button>
-      </article>
-    </li>
   );
 }

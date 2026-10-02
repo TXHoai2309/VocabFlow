@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router";
-import type { TopicDto, VocabularyDto } from "@vocabflow/contracts";
+import { Link, Navigate, useLocation, useParams } from "react-router";
+import type { LearnerDto, TopicDto, VocabularyDto, VocabularyLevel } from "@vocabflow/contracts";
+import { useActiveLearner } from "./learner-context-hook";
+import { LearnerVocabularyClientError, requestLearnerVocabulary } from "./vocabulary-list-client";
+import { ProgressInsightsClientError, requestTopicProgress } from "./progress-insights-client";
 import { requestTopicVocabulary, requestTopics, TopicsClientError } from "./topics-client";
+import { CollectionDetailView } from "./collection-detail-view";
+import type { VocabularyCardItem } from "./vocabulary-card";
 
 type LoadState = "loading" | "ready" | "error";
 
@@ -100,6 +105,7 @@ export function TopicsPage() {
             <section className="topic-vocabulary" aria-live="polite">
               {!selectedTopic ? <p data-testid="topic-select-prompt">Chọn một chủ đề để xem từ vựng.</p> : <>
                 <h2>{selectedTopic.name}</h2>
+                <Link className="topic-detail-link" to={`/topics/${selectedTopic.id}`}>Xem chi tiết chủ đề</Link>
                 {vocabularyState === "loading" ? <div className="vocabulary-list-state" data-testid="topic-vocabulary-loading" role="status">Đang tải từ vựng…</div> : null}
                 {vocabularyState === "error" ? <div className="vocabulary-list-state vocabulary-list-error" data-testid="topic-vocabulary-error" role="alert">{vocabularyMessage}</div> : null}
                 {vocabularyState === "ready" && vocabulary.length === 0 ? <p data-testid="topic-vocabulary-empty">Chủ đề này chưa có từ vựng nào đang bật.</p> : null}
@@ -113,6 +119,132 @@ export function TopicsPage() {
           </div>
         ) : null}
       </section>
+    </main>
+  );
+}
+
+type TopicDetailState = "loading" | "ready" | "error" | "not-found";
+
+type TopicDetailData = {
+  topic: TopicDto;
+  items: VocabularyCardItem[];
+  level: VocabularyLevel | null;
+  total: number;
+  learned: number;
+  mastered: number;
+};
+
+function topicDetailError(error: unknown) {
+  if ((error instanceof TopicsClientError || error instanceof ProgressInsightsClientError || error instanceof LearnerVocabularyClientError) && error.status === 401) {
+    return "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại.";
+  }
+  if ((error instanceof TopicsClientError || error instanceof ProgressInsightsClientError || error instanceof LearnerVocabularyClientError) && error.status === 403) {
+    return "Không thể xem nội dung của người học này.";
+  }
+  return "Không thể tải chi tiết chủ đề lúc này. Vui lòng thử lại.";
+}
+
+export function TopicDetailPage() {
+  const { activeLearner } = useActiveLearner();
+  const location = useLocation();
+  const { topicId } = useParams();
+  if (!activeLearner) {
+    return <Navigate to="/learners" replace state={{ returnTo: `${location.pathname}${location.search}` }} />;
+  }
+  const parsedId = topicId && /^\d+$/.test(topicId) ? Number(topicId) : NaN;
+  return <TopicDetailExperience key={`${activeLearner.id}:${topicId ?? "missing"}`} learner={activeLearner} topicId={parsedId} />;
+}
+
+function TopicDetailExperience({ learner, topicId }: { learner: LearnerDto; topicId: number }) {
+  const [state, setState] = useState<TopicDetailState>("loading");
+  const [data, setData] = useState<TopicDetailData | null>(null);
+  const [message, setMessage] = useState<string | null>(null);
+  const [retryCount, setRetryCount] = useState(0);
+  const validTopicId = Number.isSafeInteger(topicId) && topicId > 0;
+
+  useEffect(() => {
+    let cancelled = false;
+    if (!validTopicId) return () => { cancelled = true; };
+    void requestTopics()
+      .then(async (topics) => {
+        const topic = topics.find((item) => item.id === topicId);
+        if (!topic) {
+          if (!cancelled) setState("not-found");
+          return;
+        }
+        const [topicVocabulary, learnerVocabulary, topicProgress] = await Promise.all([
+          requestTopicVocabulary(topicId),
+          requestLearnerVocabulary(learner.id),
+          requestTopicProgress(learner.id)
+        ]);
+        const progress = topicProgress.topics.find((item) => item.topicId === topicId);
+        if (!progress) throw new ProgressInsightsClientError("TOPIC_PROGRESS_NOT_FOUND", 404);
+        const progressByVocabularyId = new Map(learnerVocabulary.map((item) => [item.id, item.status]));
+        const items = topicVocabulary.map((item) => {
+          const status = progressByVocabularyId.get(item.id);
+          return status ? { ...item, status } : item;
+        });
+        const firstLevel = items[0]?.level ?? null;
+        const level = firstLevel && items.every((item) => item.level === firstLevel) ? firstLevel : null;
+        if (cancelled) return;
+        setData({
+          topic,
+          items,
+          level,
+          total: progress.total,
+          learned: progress.learningCount + progress.masteredCount,
+          mastered: progress.masteredCount
+        });
+        setState("ready");
+      })
+      .catch((error: unknown) => {
+        if (cancelled) return;
+        if ((error instanceof TopicsClientError || error instanceof ProgressInsightsClientError) && error.status === 404) {
+          setState("not-found");
+          return;
+        }
+        setMessage(topicDetailError(error));
+        setState("error");
+      });
+    return () => { cancelled = true; };
+  }, [learner.id, retryCount, topicId, validTopicId]);
+
+  if (!validTopicId || state === "not-found") {
+    return (
+      <main className="collection-detail-page" aria-label="Chi tiết chủ đề">
+        <div className="collection-detail-state collection-detail-missing" role="status" data-testid="topic-detail-not-found">
+          <h1>Chủ đề này hiện không khả dụng.</h1><Link to="/topics">Quay lại chủ đề</Link>
+        </div>
+      </main>
+    );
+  }
+
+  if (state === "ready" && data) {
+    return (
+      <CollectionDetailView
+        kind="topic"
+        title={data.topic.name}
+        description={data.topic.description}
+        level={data.level}
+        items={data.items}
+        learnedCount={data.learned}
+        progressTotal={data.total}
+        masteredCount={data.mastered}
+        studyHref={`/study?topicId=${data.topic.id}`}
+        studyReady={data.total > 0}
+        assignmentHref={data.items.length > 0 && data.total === 0 ? "/learning-sets/assign" : undefined}
+      />
+    );
+  }
+
+  return (
+    <main className="collection-detail-page" aria-label="Chi tiết chủ đề">
+      {state === "loading" ? <div className="collection-detail-state" role="status" data-testid="topic-detail-loading">Đang tải chi tiết chủ đề…</div> : null}
+      {state === "error" ? (
+        <div className="collection-detail-state collection-detail-error" role="alert" data-testid="topic-detail-error">
+          <p>{message}</p><button className="auth-retry" type="button" onClick={() => { setState("loading"); setData(null); setMessage(null); setRetryCount((current) => current + 1); }}>Thử lại</button>
+        </div>
+      ) : null}
     </main>
   );
 }

@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
-import { Link, Navigate, useParams } from "react-router";
-import type { LearningSetDetail, LearningSetSummary, VocabularyLevel } from "@vocabflow/contracts";
-import { LearningSetsClientError, requestLearningSet, requestLearningSets } from "./learning-sets-client";
+import { Link, Navigate, useLocation, useParams } from "react-router";
+import type { LearnerDto, LearningSetDetail, LearningSetSummary, VocabularyLevel } from "@vocabflow/contracts";
+import { LearningSetsClientError, requestLearnerLearningSets, requestLearningSet, requestLearningSets } from "./learning-sets-client";
+import { useActiveLearner } from "../learners/learner-context-hook";
+import { requestLearnerVocabulary } from "../learners/vocabulary-list-client";
+import { CollectionDetailView } from "../learners/collection-detail-view";
+import type { VocabularyCardItem } from "../learners/vocabulary-card";
 
 type LoadState = "loading" | "ready" | "error";
 
@@ -92,63 +96,104 @@ export function LearningSetsPage() {
 }
 
 export function LearningSetDetailPage() {
+  const { activeLearner } = useActiveLearner();
+  const location = useLocation();
   const { learningSetId } = useParams();
-  const parsedId = Number(learningSetId);
-  if (!Number.isSafeInteger(parsedId) || parsedId <= 0) return <Navigate to="/learning-sets" replace />;
-  return <LearningSetDetailExperience key={parsedId} learningSetId={parsedId} />;
+  if (!activeLearner) {
+    return <Navigate to="/learners" replace state={{ returnTo: `${location.pathname}${location.search}` }} />;
+  }
+  const parsedId = learningSetId && /^\d+$/.test(learningSetId) ? Number(learningSetId) : NaN;
+  return <LearningSetDetailExperience key={`${activeLearner.id}:${learningSetId ?? "missing"}`} learner={activeLearner} learningSetId={parsedId} />;
 }
 
-function LearningSetDetailExperience({ learningSetId }: { learningSetId: number }) {
-  const [state, setState] = useState<LoadState>("loading");
-  const [learningSet, setLearningSet] = useState<LearningSetDetail | null>(null);
+type LearningSetDetailState = "loading" | "ready" | "error" | "not-found";
+
+type LearningSetDetailData = {
+  learningSet: LearningSetDetail;
+  items: VocabularyCardItem[];
+  learned: number;
+  mastered: number;
+  assigned: boolean;
+};
+
+function LearningSetDetailExperience({ learner, learningSetId }: { learner: LearnerDto; learningSetId: number }) {
+  const [state, setState] = useState<LearningSetDetailState>("loading");
+  const [data, setData] = useState<LearningSetDetailData | null>(null);
   const [message, setMessage] = useState<string | null>(null);
+  const [retryCount, setRetryCount] = useState(0);
+  const validLearningSetId = Number.isSafeInteger(learningSetId) && learningSetId > 0;
 
   useEffect(() => {
     let cancelled = false;
-    void requestLearningSet(learningSetId)
-      .then((item) => {
+    if (!validLearningSetId) return () => { cancelled = true; };
+    void Promise.all([
+      requestLearningSet(learningSetId),
+      requestLearnerVocabulary(learner.id),
+      requestLearnerLearningSets(learner.id)
+    ])
+      .then(([learningSet, learnerVocabulary, learnerSets]) => {
         if (cancelled) return;
-        setLearningSet(item);
+        const statusByVocabularyId = new Map(learnerVocabulary.map((item) => [item.id, item.status]));
+        const items: VocabularyCardItem[] = learningSet.items.map(({ vocabulary }) => {
+          const status = statusByVocabularyId.get(vocabulary.id);
+          return status ? { ...vocabulary, status } : vocabulary;
+        });
+        const learned = items.filter((item) => item.status && item.status !== "NEW").length;
+        const mastered = items.filter((item) => item.status === "MASTERED").length;
+        const assigned = learnerSets.some((item) => item.learningSet.id === learningSet.id && item.active);
+        setData({ learningSet, items, learned, mastered, assigned });
         setState("ready");
       })
       .catch((error: unknown) => {
         if (cancelled) return;
+        if (error instanceof LearningSetsClientError && error.status === 404) {
+          setState("not-found");
+          return;
+        }
         setState("error");
-        setMessage(error instanceof LearningSetsClientError && error.status === 404
-          ? "Bộ từ này hiện không khả dụng."
-          : loadError(error));
+        setMessage(error instanceof LearningSetsClientError && error.status === 401
+          ? "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại."
+          : "Không thể tải chi tiết bộ từ lúc này. Vui lòng thử lại.");
       });
     return () => { cancelled = true; };
-  }, [learningSetId]);
+  }, [learner.id, learningSetId, retryCount, validLearningSetId]);
+
+  if (!validLearningSetId || state === "not-found") {
+    return (
+      <main className="collection-detail-page" aria-label="Chi tiết bộ từ">
+        <div className="collection-detail-state collection-detail-missing" role="status" data-testid="learning-set-detail-not-found">
+          <h1>Bộ từ này hiện không khả dụng.</h1><Link to="/learning-sets">Quay lại danh sách bộ từ</Link>
+        </div>
+      </main>
+    );
+  }
+
+  if (state === "ready" && data) {
+    return (
+      <CollectionDetailView
+        kind="learning-set"
+        title={data.learningSet.name}
+        description={data.learningSet.description}
+        level={data.learningSet.grade}
+        items={data.items}
+        learnedCount={data.learned}
+        progressTotal={data.items.length}
+        masteredCount={data.mastered}
+        studyHref={`/study?learningSetId=${data.learningSet.id}`}
+        studyReady={data.assigned}
+        assignmentHref={!data.assigned && data.items.length > 0 ? "/learning-sets/assign" : undefined}
+      />
+    );
+  }
 
   return (
-    <main className="learner-page" aria-labelledby="learning-set-detail-title">
-      <section className="learner-card learning-sets-card">
-        <Link className="back-link" to="/learning-sets">← Về danh sách bộ từ</Link>
-        {state === "loading" ? <div className="learning-sets-state" data-testid="learning-set-detail-loading" role="status">Đang tải chi tiết…</div> : null}
-        {state === "error" ? <div className="learning-sets-state learning-sets-error" data-testid="learning-set-detail-error" role="alert">{message}</div> : null}
-        {state === "ready" && learningSet ? (
-          <>
-            <p className="auth-eyebrow">{gradeLabel(learningSet.grade)}</p>
-            <h1 className="auth-title" id="learning-set-detail-title">{learningSet.name}</h1>
-            <p className="auth-copy">{learningSet.description}</p>
-            {learningSet.items.length === 0 ? (
-              <div className="vocabulary-empty" data-testid="learning-set-detail-empty" role="status">
-                <h2>Chưa có từ đang bật</h2><p>Hãy chọn bộ từ khác để bắt đầu.</p>
-              </div>
-            ) : (
-              <ol className="learning-set-items" data-testid="learning-set-detail-items">
-                {learningSet.items.map((item) => (
-                  <li className="learning-set-item" key={item.vocabulary.id}>
-                    <span className="learning-set-item-order">{item.sortOrder + 1}</span>
-                    <div className="vocabulary-list-copy"><strong>{item.vocabulary.word}</strong><span>{item.vocabulary.vietnamese}</span></div>
-                  </li>
-                ))}
-              </ol>
-            )}
-          </>
-        ) : null}
-      </section>
+    <main className="collection-detail-page" aria-label="Chi tiết bộ từ">
+      {state === "loading" ? <div className="collection-detail-state" role="status" data-testid="learning-set-detail-loading">Đang tải chi tiết bộ từ…</div> : null}
+      {state === "error" ? (
+        <div className="collection-detail-state collection-detail-error" role="alert" data-testid="learning-set-detail-error">
+          <p>{message}</p><button className="auth-retry" type="button" onClick={() => { setState("loading"); setData(null); setMessage(null); setRetryCount((current) => current + 1); }}>Thử lại</button>
+        </div>
+      ) : null}
     </main>
   );
 }

@@ -80,9 +80,9 @@ function response(body: unknown, status = 200) {
   });
 }
 
-function renderStudy(initialLearner: LearnerDto | null = learner, mode: "flashcard" | "exercise" = "flashcard") {
+function renderStudy(initialLearner: LearnerDto | null = learner, mode: "flashcard" | "exercise" = "flashcard", path = "/study") {
   return render(
-    <MemoryRouter initialEntries={["/study"]}>
+    <MemoryRouter initialEntries={[path]}>
       <ActiveLearnerProvider initialLearner={initialLearner}>
         <Routes>
           <Route path="/study" element={<StudyPage mode={mode} />} />
@@ -349,6 +349,58 @@ describe("US-09 flashcard session UX", () => {
 
     renderStudy(null);
     await waitFor(() => expect(screen.getByText("learners-route")).toBeInTheDocument());
+  });
+
+  it("continues a topic session from only its vocabulary in the canonical queue", async () => {
+    const queue = [queueItem(1, "apple"), queueItem(2, "bread"), queueItem(3, "water", "DUE", 4)];
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
+      const path = String(input);
+      if (path === `/api/learners/${learner.id}/review-queue`) return response(queueResponse(queue));
+      if (path === "/api/topics/7/vocabulary") return response({ vocabulary: [queue[0]!.vocabulary, queue[2]!.vocabulary] });
+      return response({ error: { code: "NOT_FOUND" } }, 404);
+    });
+    renderStudy(learner, "flashcard", "/study?topicId=7");
+
+    expect(await screen.findByTestId("study-session-ready")).toBeInTheDocument();
+    expect(screen.getByTestId("session-counter")).toHaveTextContent("0 / 2");
+    expect(screen.getByText("apple")).toBeInTheDocument();
+    expect(screen.queryByText("bread")).not.toBeInTheDocument();
+    expect(fetchMock).toHaveBeenCalledWith("/api/topics/7/vocabulary", { credentials: "include" });
+    expect(screen.getByText("1 đến hạn · 1 từ mới · 2026-09-15")).toBeInTheDocument();
+    expect(fetchMock.mock.calls.every(([, init]) => !init?.method || init.method === "GET")).toBe(true);
+  });
+
+  it("continues a learning set session using its ordered vocabulary IDs", async () => {
+    const queue = [queueItem(1, "apple"), queueItem(2, "bread"), queueItem(3, "water")];
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
+      const path = String(input);
+      if (path === `/api/learners/${learner.id}/review-queue`) return response(queueResponse(queue));
+      if (path === "/api/learning-sets/4") {
+        return response({ learningSet: {
+          id: 4,
+          slug: "food",
+          name: "Food",
+          description: "Food words",
+          grade: null,
+          enabled: true,
+          sortOrder: 1,
+          vocabularyCount: 2,
+          items: [
+            { sortOrder: 0, vocabulary: queue[1]!.vocabulary },
+            { sortOrder: 1, vocabulary: queue[2]!.vocabulary }
+          ]
+        } });
+      }
+      return response({ error: { code: "NOT_FOUND" } }, 404);
+    });
+    renderStudy(learner, "flashcard", "/study?learningSetId=4");
+
+    expect(await screen.findByTestId("study-session-ready")).toBeInTheDocument();
+    expect(screen.getByTestId("session-counter")).toHaveTextContent("0 / 2");
+    expect(screen.getByText("bread")).toBeInTheDocument();
+    expect(screen.queryByText("apple")).not.toBeInTheDocument();
+    expect(fetchMock).toHaveBeenCalledWith("/api/learning-sets/4", { credentials: "include" });
+    expect(fetchMock.mock.calls.every(([, init]) => !init?.method || init.method === "GET")).toBe(true);
   });
 
   it("leaves without confirmation when all work is already settled", async () => {
