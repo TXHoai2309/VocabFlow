@@ -1,5 +1,5 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import { MemoryRouter, Route, Routes } from "react-router";
+import { MemoryRouter, Route, Routes, useLocation } from "react-router";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import type { LearnerDto, LearnerVocabularyDto, VocabularyLevel } from "@vocabflow/contracts";
@@ -46,13 +46,19 @@ function response(vocabulary: LearnerVocabularyDto[], status = 200) {
   });
 }
 
-function renderList(initialLearner: LearnerDto | null = learnerA) {
+function LearnerRouteProbe() {
+  const location = useLocation();
+  const returnTo = (location.state as { returnTo?: unknown } | null)?.returnTo;
+  return <div><span>learners-route</span><output data-testid="learner-return-to">{typeof returnTo === "string" ? returnTo : ""}</output></div>;
+}
+
+function renderList(initialLearner: LearnerDto | null = learnerA, path = "/vocabulary") {
   return render(
-    <MemoryRouter initialEntries={["/vocabulary"]}>
+    <MemoryRouter initialEntries={[path]}>
       <ActiveLearnerProvider initialLearner={initialLearner}>
         <Routes>
           <Route path="/vocabulary" element={<VocabularyListPage />} />
-          <Route path="/learners" element={<p>learners-route</p>} />
+          <Route path="/learners" element={<LearnerRouteProbe />} />
         </Routes>
       </ActiveLearnerProvider>
     </MemoryRouter>
@@ -150,5 +156,12 @@ describe("US-22 vocabulary list UI", () => {
   it("redirects to learner home when no active learner exists", async () => {
     renderList(null);
     expect(await screen.findByText("learners-route")).toBeInTheDocument();
+    expect(screen.getByTestId("learner-return-to")).toHaveTextContent("/vocabulary");
+  });
+
+  it("preserves the current search string when redirecting to learner home", async () => {
+    renderList(null, "/vocabulary?level=GRADE_1");
+    expect(await screen.findByText("learners-route")).toBeInTheDocument();
+    expect(screen.getByTestId("learner-return-to")).toHaveTextContent("/vocabulary?level=GRADE_1");
   });
 });

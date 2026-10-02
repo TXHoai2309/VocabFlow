@@ -18,6 +18,17 @@ type ResolutionState =
 const SAFE_LIST_ERROR = "Không thể tải danh sách người học lúc này. Vui lòng thử lại.";
 const SAFE_CREATE_ERROR = "Không thể tạo hồ sơ người học lúc này. Vui lòng thử lại.";
 
+function parseReturnTo(value: unknown): string | null {
+  if (typeof value !== "string" || !value.startsWith("/") || value.startsWith("//") || value.includes("\\") || /[\u0000-\u001f\u007f]/.test(value)) {
+    return null;
+  }
+  try {
+    return new URL(value, window.location.origin).origin === window.location.origin ? value : null;
+  } catch {
+    return null;
+  }
+}
+
 function localNameError(value: string) {
   const trimmed = value.trim();
   return trimmed.length < 1 || trimmed.length > 80 ? "Tên người học cần từ 1 đến 80 ký tự." : null;
@@ -28,7 +39,7 @@ export function LearnerPage() {
   const { activeLearner, setActiveLearner, clearActiveLearner } = useActiveLearner();
   const location = useLocation();
   const navigate = useNavigate();
-  const returnTo = (location.state as { returnTo?: unknown } | null)?.returnTo === "/" ? "/" : null;
+  const returnTo = parseReturnTo((location.state as { returnTo?: unknown } | null)?.returnTo);
   const [state, setState] = useState<ResolutionState>("loading");
   const [learners, setLearners] = useState<LearnerDto[]>([]);
   const [displayName, setDisplayName] = useState("");

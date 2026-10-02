@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { Link, Navigate, useParams } from "react-router";
+import { Link, Navigate, useLocation, useParams } from "react-router";
 import type { LearnerDto, LearnerVocabularyDto } from "@vocabflow/contracts";
 import { useActiveLearner } from "./learner-context-hook";
 import { LearnerVocabularyClientError, requestLearnerVocabulary } from "./vocabulary-list-client";
@@ -82,7 +82,10 @@ function detailErrorMessage(error: unknown) {
 export function VocabularyDetailPage() {
   const { activeLearner } = useActiveLearner();
   const { vocabularyId } = useParams();
-  if (!activeLearner) return <Navigate to="/learners" replace />;
+  const location = useLocation();
+  if (!activeLearner) {
+    return <Navigate to="/learners" replace state={{ returnTo: `${location.pathname}${location.search}` }} />;
+  }
   const id = vocabularyId && /^\d+$/.test(vocabularyId) ? Number(vocabularyId) : NaN;
   return <VocabularyDetailExperience key={`${activeLearner.id}:${vocabularyId ?? "missing"}`} activeLearner={activeLearner} vocabularyId={id} />;
 }

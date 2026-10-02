@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { Link, Navigate } from "react-router";
+import { Link, Navigate, useLocation } from "react-router";
 import type { LearnerDto, LearnerVocabularyDto, VocabularyLevel } from "@vocabflow/contracts";
 import { useActiveLearner } from "./learner-context-hook";
 import { LearnerVocabularyClientError, requestLearnerVocabulary } from "./vocabulary-list-client";
@@ -22,7 +22,10 @@ function listErrorMessage(error: unknown) {
 
 export function VocabularyListPage() {
   const { activeLearner } = useActiveLearner();
-  if (!activeLearner) return <Navigate to="/learners" replace />;
+  const location = useLocation();
+  if (!activeLearner) {
+    return <Navigate to="/learners" replace state={{ returnTo: `${location.pathname}${location.search}` }} />;
+  }
   return <VocabularyListExperience key={activeLearner.id} activeLearner={activeLearner} />;
 }
 
