@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { act, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
@@ -124,7 +124,7 @@ describe("US-09 flashcard session UX", () => {
     expect(screen.getByRole("button", { name: "Đã nhớ" })).toBeInTheDocument();
   });
 
-  it("keeps a scheduled answer undoable until Next, then advances after server confirmation", async () => {
+  it("renders a compact session and persists once before automatically advancing", async () => {
     const first = queueItem(1, "apple", "DUE", 3);
     const second = queueItem(2, "book");
     const fetchMock = vi.spyOn(globalThis, "fetch")
@@ -133,18 +133,47 @@ describe("US-09 flashcard session UX", () => {
     renderStudy();
 
     await screen.findByTestId("study-session-ready");
+    expect(document.querySelector(".study-shell")).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
-    fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
-
-    expect(screen.getByRole("button", { name: "Câu tiếp theo" })).toBeEnabled();
-    expect(fetchMock).toHaveBeenCalledTimes(1);
-    fireEvent.click(screen.getByRole("button", { name: "Câu tiếp theo" }));
-    await waitFor(() => expect(screen.getByText("book")).toBeInTheDocument());
+    const rememberButton = screen.getByRole("button", { name: "Đã nhớ" });
+    act(() => {
+      fireEvent.click(rememberButton);
+      fireEvent.click(rememberButton);
+    });
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(screen.queryByRole("button", { name: "Câu tiếp theo" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /Hoàn tác/ })).not.toBeInTheDocument();
+    await waitFor(() => expect(screen.getByTestId("session-counter")).toHaveTextContent("Câu 2 / 2"));
+    expect(screen.getByRole("progressbar")).toHaveAttribute("aria-valuenow", "2");
+    expect(screen.getByText("apple")).toBeInTheDocument();
+    await screen.findByText("book");
     expect(screen.getByTestId("session-counter")).toHaveTextContent("Câu 2 / 2");
     expect(fetchMock).toHaveBeenCalledTimes(2);
     const request = JSON.parse(String(fetchMock.mock.calls[1]?.[1]?.body));
     expect(request).toMatchObject({ learnerId: learner.id, vocabularyId: 1, result: "REMEMBERED", expectedRevision: 3 });
     expect(request.reviewId).toMatch(/^[0-9a-f-]{36}$/);
+  });
+
+  it("submits flashcard shortcuts once and ignores Enter and Z", async () => {
+    const first = queueItem(1, "apple");
+    const second = queueItem(2, "book");
+    const fetchMock = vi.spyOn(globalThis, "fetch")
+      .mockResolvedValueOnce(response(queueResponse([first, second])))
+      .mockResolvedValueOnce(response(reviewResponse(first, "REMEMBERED"), 201));
+    renderStudy();
+
+    await screen.findByTestId("study-session-ready");
+    fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
+    fireEvent.keyDown(document.body, { key: "Enter" });
+    fireEvent.keyDown(document.body, { key: "z" });
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+
+    fireEvent.keyDown(document.body, { key: "2" });
+    fireEvent.keyDown(document.body, { key: "2" });
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    await screen.findByText("book");
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(screen.getByTestId("session-counter")).toHaveTextContent("Câu 2 / 2");
   });
 
   it("sends exercise evidence instead of a client correctness boolean", async () => {
@@ -158,8 +187,6 @@ describe("US-09 flashcard session UX", () => {
 
     await screen.findByTestId("exercise-card");
     fireEvent.click(screen.getByRole("button", { name: "apple" }));
-    expect(fetchMock).toHaveBeenCalledTimes(1);
-    fireEvent.click(screen.getByRole("button", { name: "Câu tiếp theo" }));
     await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(2));
     const request = JSON.parse(String(fetchMock.mock.calls[1]?.[1]?.body));
     expect(request).toMatchObject({
@@ -170,7 +197,7 @@ describe("US-09 flashcard session UX", () => {
     expect(request.exerciseSubmission.correct).toBeUndefined();
   });
 
-  it("does not count a pending review before canonical confirmation", async () => {
+  it("submits immediately and holds the current item until a canonical response arrives", async () => {
     const item = queueItem(1, "apple");
     let resolveReview!: (value: Response) => void;
     const pendingReview = new Promise<Response>((resolve) => {
@@ -185,17 +212,14 @@ describe("US-09 flashcard session UX", () => {
     fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
     fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
 
-    expect(screen.getByText(/Bạn có thể hoàn tác trước khi sang câu tiếp theo/)).toBeInTheDocument();
     expect(screen.getByTestId("session-counter")).toHaveTextContent("Câu 1 / 1");
     expect(screen.queryByTestId("study-session-summary")).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: "Đã nhớ" })).not.toBeInTheDocument();
-    expect(fetchMock).toHaveBeenCalledTimes(1);
-
-    fireEvent.click(screen.getByRole("button", { name: "Câu tiếp theo" }));
-    expect(screen.getByText("Đang lưu câu trả lời…")).toBeInTheDocument();
     expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(screen.getByText("Đang lưu kết quả…")).toBeInTheDocument();
     resolveReview(response(reviewResponse(item, "REMEMBERED"), 201));
-    await waitFor(() => expect(screen.getByTestId("study-session-summary")).toBeInTheDocument());
+    expect(await screen.findByTestId("study-feedback")).toHaveTextContent("Đã ghi nhận");
+    await screen.findByTestId("study-session-summary");
   });
 
   it("shows session summary metrics and the home CTA after confirmed completion", async () => {
@@ -208,7 +232,6 @@ describe("US-09 flashcard session UX", () => {
     await screen.findByTestId("study-session-ready");
     fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
     fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
-    fireEvent.click(screen.getByRole("button", { name: "Câu tiếp theo" }));
 
     await waitFor(() => expect(screen.getByTestId("study-session-summary")).toBeInTheDocument());
     expect(screen.getByText("Đã ôn tập").nextElementSibling).toHaveTextContent("1");
@@ -229,7 +252,6 @@ describe("US-09 flashcard session UX", () => {
     await screen.findByTestId("study-session-ready");
     fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
     fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
-    fireEvent.click(screen.getByRole("button", { name: "Câu tiếp theo" }));
 
     await screen.findByText("Ôn tập lại");
     expect(screen.queryByTestId("study-session-summary")).not.toBeInTheDocument();
@@ -261,11 +283,11 @@ describe("US-09 flashcard session UX", () => {
     await screen.findByTestId("study-session-ready");
     fireEvent.click(screen.getByRole("button", { name: "Nghe phát âm apple" }));
     await waitFor(() => expect(audio.play).toHaveBeenCalledTimes(1));
+    await screen.findByRole("button", { name: "Tạm dừng phát âm apple" });
     expect(audio.src).toBe("/audio/apple.mp3");
 
     fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
     fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
-    fireEvent.click(screen.getByRole("button", { name: "Câu tiếp theo" }));
     await waitFor(() => expect(screen.getByText("book")).toBeInTheDocument());
     expect(audio.pause).toHaveBeenCalledTimes(1);
     expect(audio.currentTime).toBe(0);
@@ -282,7 +304,6 @@ describe("US-09 flashcard session UX", () => {
     await screen.findByTestId("study-session-ready");
     fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
     fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
-    fireEvent.click(screen.getByRole("button", { name: "Câu tiếp theo" }));
     expect(await screen.findByTestId("study-save-failed")).toBeInTheDocument();
     expect(screen.getByTestId("study-save-failed")).toHaveTextContent("Chưa lưu tiến trình.");
     expect(screen.getByRole("button", { name: "Chưa nhớ" })).toBeDisabled();
@@ -316,14 +337,12 @@ describe("US-09 flashcard session UX", () => {
     await screen.findByTestId("study-session-ready");
     fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
     fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
-    fireEvent.click(screen.getByRole("button", { name: "Câu tiếp theo" }));
     await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(3));
     expect(await screen.findByText("Tiến trình đã thay đổi. Hãy đánh giá lại thẻ này.")).toBeInTheDocument();
     expect(screen.getByTestId("session-counter")).toHaveTextContent("Câu 1 / 1");
 
     fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
     fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
-    fireEvent.click(screen.getByRole("button", { name: "Câu tiếp theo" }));
     await waitFor(() => expect(screen.getByTestId("study-session-summary")).toBeInTheDocument());
     expect(screen.getByText("Đã ôn tập").nextElementSibling).toHaveTextContent("1");
     expect(fetchMock).toHaveBeenCalledTimes(4);
@@ -339,17 +358,14 @@ describe("US-09 flashcard session UX", () => {
     await screen.findByTestId("study-session-ready");
     fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
     fireEvent.click(screen.getByRole("button", { name: "Chưa nhớ" }));
-    fireEvent.click(screen.getByRole("button", { name: "Câu tiếp theo" }));
     await screen.findByText("Ôn tập lại");
     expect(screen.getByTestId("session-counter")).toHaveTextContent("Câu 1 / 1");
 
     fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
     fireEvent.click(screen.getByRole("button", { name: "Chưa nhớ" }));
-    fireEvent.click(screen.getByRole("button", { name: "Câu tiếp theo" }));
     await screen.findByText("Ôn tập lại");
     fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
     fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
-    fireEvent.click(screen.getByRole("button", { name: "Câu tiếp theo" }));
 
     await waitFor(() => expect(screen.getByTestId("study-session-summary")).toBeInTheDocument());
     expect(screen.getByText("Lượt ôn lại").nextElementSibling).toHaveTextContent("2");

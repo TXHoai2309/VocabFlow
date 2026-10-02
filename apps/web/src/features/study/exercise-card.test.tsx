@@ -102,7 +102,7 @@ describe("exercise interaction layer", () => {
     });
 
     const answer = { optionId: "MULTIPLE_CHOICE_MEANING:2", result: "FORGOTTEN" as const };
-    rerender(<ExerciseCard exercise={meaningExercise} vocabulary={vocabulary} answer={answer} saveState="answered" onAnswer={onAnswer} onAudioFailure={vi.fn()} />);
+    rerender(<ExerciseCard exercise={meaningExercise} vocabulary={vocabulary} answer={answer} saveState="feedback" onAnswer={onAnswer} onAudioFailure={vi.fn()} />);
     expect(screen.getByText("Chưa đúng.")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "quả táo" })).toHaveClass("is-correct");
     expect(screen.getByRole("button", { name: "quyển sách" })).toBeDisabled();
@@ -168,7 +168,7 @@ describe("exercise interaction layer", () => {
     fireEvent.submit(screen.getByRole("button", { name: "Gửi câu trả lời" }).closest("form")!);
     expect(onAnswer).toHaveBeenCalledWith(TYPE_WORD_SUBMISSION, { type: "TYPE_WORD", answer: " ＡＰＰＬＥ " });
 
-    rerender(<ExerciseCard exercise={typingExercise} vocabulary={vocabulary} answer={{ optionId: TYPE_WORD_SUBMISSION, result: "REMEMBERED" }} saveState="answered" onAnswer={onAnswer} onAudioFailure={vi.fn()} />);
+    rerender(<ExerciseCard exercise={typingExercise} vocabulary={vocabulary} answer={{ optionId: TYPE_WORD_SUBMISSION, result: "REMEMBERED" }} saveState="feedback" onAnswer={onAnswer} onAudioFailure={vi.fn()} />);
     expect(screen.getByLabelText("Từ tiếng Anh")).toBeDisabled();
     expect(onAnswer).toHaveBeenCalledTimes(1);
   });

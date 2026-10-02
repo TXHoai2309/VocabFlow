@@ -14,7 +14,7 @@ export type ExerciseCardProps = {
   exercise: ExerciseInstance;
   vocabulary: VocabularyDto;
   answer: ExerciseAnswer | null;
-  saveState: "ready" | "answered" | "saving" | "save-failed";
+  saveState: "ready" | "saving" | "feedback" | "save-failed";
   onAnswer: (optionId: string, submission: ExerciseSubmission) => void;
   onAudioFailure: () => void;
   onImageFailure?: () => void;
@@ -163,9 +163,6 @@ export function ExerciseCard({ exercise, vocabulary, answer, saveState, onAnswer
           {answer.result === "REMEMBERED"
             ? <><strong>Chính xác!</strong> <span>{showsWord ? <>“{vocabulary.word}” có nghĩa là “{vocabulary.vietnamese}”.</> : <>Đáp án: {canonicalAnswer}</>}</span></>
             : <><strong>Chưa đúng.</strong> <span>Đáp án đúng là {canonicalAnswer}.</span></>}
-          {saveState === "answered" ? <span className="exercise-save-status"> Có thể hoàn tác trước khi lưu.</span> : null}
-          {saveState === "saving" ? <span className="exercise-save-status"> Đang lưu kết quả…</span> : null}
-          {saveState === "save-failed" ? <span className="exercise-save-status"> Chưa lưu tiến trình.</span> : null}
         </div>
       ) : null}
     </section>
