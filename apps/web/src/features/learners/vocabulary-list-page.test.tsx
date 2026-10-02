@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { MemoryRouter, Route, Routes, useLocation } from "react-router";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
@@ -20,7 +20,13 @@ const learner = (id: string, displayName: string): LearnerDto => ({
 const learnerA = learner("00000000-0000-4000-8000-000000000010", "An");
 const learnerB = learner("00000000-0000-4000-8000-000000000011", "Bình");
 
-function item(id: number, word: string, status: LearnerVocabularyDto["status"], level: VocabularyLevel | null = null): LearnerVocabularyDto {
+function item(
+  id: number,
+  word: string,
+  status: LearnerVocabularyDto["status"] = "NEW",
+  level: VocabularyLevel | null = null,
+  overrides: Partial<LearnerVocabularyDto> = {}
+): LearnerVocabularyDto {
   return {
     id,
     word,
@@ -35,7 +41,8 @@ function item(id: number, word: string, status: LearnerVocabularyDto["status"], 
     enabled: true,
     contentVersion: 1,
     status,
-    nextReviewDate: status === "NEW" ? null : "2026-09-20"
+    nextReviewDate: status === "NEW" ? null : "2026-09-20",
+    ...overrides
   };
 }
 
@@ -52,12 +59,19 @@ function LearnerRouteProbe() {
   return <div><span>learners-route</span><output data-testid="learner-return-to">{typeof returnTo === "string" ? returnTo : ""}</output></div>;
 }
 
+function LocationProbe() {
+  const location = useLocation();
+  return <output data-testid="current-url">{location.pathname}{location.search}</output>;
+}
+
 function renderList(initialLearner: LearnerDto | null = learnerA, path = "/vocabulary") {
   return render(
     <MemoryRouter initialEntries={[path]}>
       <ActiveLearnerProvider initialLearner={initialLearner}>
+        <LocationProbe />
         <Routes>
           <Route path="/vocabulary" element={<VocabularyListPage />} />
+          <Route path="/vocabulary/:vocabularyId" element={<div data-testid="detail-route">detail route</div>} />
           <Route path="/learners" element={<LearnerRouteProbe />} />
         </Routes>
       </ActiveLearnerProvider>
@@ -65,51 +79,231 @@ function renderList(initialLearner: LearnerDto | null = learnerA, path = "/vocab
   );
 }
 
+function mockVocabulary(items: LearnerVocabularyDto[]) {
+  return vi.spyOn(globalThis, "fetch").mockResolvedValue(response(items));
+}
+
 describe("US-22 vocabulary list UI", () => {
   beforeEach(() => {
     vi.restoreAllMocks();
   });
 
-  it("shows loading and resolves New, Learning and Mastered statuses", async () => {
-    let resolveResponse!: (value: Response) => void;
-    const pending = new Promise<Response>((resolve) => { resolveResponse = resolve; });
-    const fetchMock = vi.spyOn(globalThis, "fetch").mockReturnValue(pending);
-    renderList();
-
-    expect(screen.getByTestId("vocabulary-loading")).toBeInTheDocument();
-    resolveResponse(response([
-      item(1, "apple", "NEW"),
-      item(2, "book", "LEARNING"),
+  it("renders the page heading, labelled search and real vocabulary cards", async () => {
+    const fetchMock = mockVocabulary([
+      item(1, "apple", "NEW", "GRADE_1", { ipa: "/ˈæp.əl/", vietnamese: "quả táo" }),
+      item(2, "book", "LEARNING", "GENERAL", { vietnamese: "quyển sách" }),
       item(3, "cat", "MASTERED")
-    ]));
-
-    expect(await screen.findByTestId("vocabulary-list")).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Từ vựng của An" })).toBeInTheDocument();
-    expect(screen.getByTestId("vocabulary-row-1")).toHaveTextContent("Từ mới");
-    expect(screen.getByTestId("vocabulary-row-2")).toHaveTextContent("Đang học");
-    expect(screen.getByTestId("vocabulary-row-3")).toHaveTextContent("Đã thành thạo");
-    expect(fetchMock).toHaveBeenCalledWith("/api/learners/" + learnerA.id + "/vocabulary", { credentials: "include" });
-  });
-
-  it("shows an explicit empty state when no enabled vocabulary is returned", async () => {
-    vi.spyOn(globalThis, "fetch").mockResolvedValue(response([]));
+    ]);
     renderList();
-    expect(await screen.findByTestId("vocabulary-empty-state")).toHaveTextContent("Chưa có từ vựng");
+
+    expect(screen.getByRole("searchbox", { name: "Tìm từ tiếng Anh hoặc nghĩa tiếng Việt" })).toBeInTheDocument();
+    expect(await screen.findByTestId("vocabulary-grid")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Từ vựng của An" })).toBeInTheDocument();
+    expect(screen.getByTestId("vocabulary-row-1")).toHaveTextContent("apple");
+    expect(screen.getByTestId("vocabulary-row-1")).toHaveTextContent("/ˈæp.əl/");
+    expect(screen.getByTestId("vocabulary-row-1")).toHaveTextContent("Lớp 1");
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(fetchMock).toHaveBeenCalledWith(`/api/learners/${learnerA.id}/vocabulary`, { credentials: "include" });
   });
 
-  it("shows a safe retry state after the list request fails", async () => {
+  it("filters by an English word on the client", async () => {
+    mockVocabulary([item(1, "apple"), item(2, "book")]);
+    renderList();
+    await screen.findByTestId("vocabulary-row-2");
+
+    fireEvent.change(screen.getByTestId("vocabulary-search"), { target: { value: "apple" } });
+
+    expect(screen.getByTestId("vocabulary-row-1")).toBeInTheDocument();
+    expect(screen.queryByTestId("vocabulary-row-2")).not.toBeInTheDocument();
+  });
+
+  it("filters by Vietnamese meaning", async () => {
+    mockVocabulary([item(1, "apple", "NEW", null, { vietnamese: "quả táo" }), item(2, "book", "NEW", null, { vietnamese: "quyển sách" })]);
+    renderList();
+    await screen.findByTestId("vocabulary-row-2");
+
+    fireEvent.change(screen.getByTestId("vocabulary-search"), { target: { value: "quả táo" } });
+
+    expect(screen.getByTestId("vocabulary-row-1")).toBeInTheDocument();
+    expect(screen.queryByTestId("vocabulary-row-2")).not.toBeInTheDocument();
+  });
+
+  it("matches English searches without case sensitivity", async () => {
+    mockVocabulary([item(1, "apple"), item(2, "book")]);
+    renderList();
+    await screen.findByTestId("vocabulary-row-2");
+
+    fireEvent.change(screen.getByTestId("vocabulary-search"), { target: { value: "APPLE" } });
+
+    expect(screen.getByTestId("vocabulary-row-1")).toBeInTheDocument();
+    expect(screen.queryByTestId("vocabulary-row-2")).not.toBeInTheDocument();
+  });
+
+  it("trims whitespace before matching", async () => {
+    mockVocabulary([item(1, "apple"), item(2, "book")]);
+    renderList();
+    await screen.findByTestId("vocabulary-row-2");
+
+    fireEvent.change(screen.getByTestId("vocabulary-search"), { target: { value: "  APPLE  " } });
+
+    expect(screen.getByTestId("vocabulary-row-1")).toBeInTheDocument();
+    expect(screen.queryByTestId("vocabulary-row-2")).not.toBeInTheDocument();
+  });
+
+  it("shows a distinct no-results state and clears the search", async () => {
+    mockVocabulary([item(1, "apple")]);
+    renderList();
+    await screen.findByTestId("vocabulary-row-1");
+    fireEvent.change(screen.getByTestId("vocabulary-search"), { target: { value: "kiwi" } });
+
+    expect(screen.getByTestId("vocabulary-no-results")).toHaveTextContent("Không tìm thấy từ phù hợp");
+    expect(screen.getByTestId("vocabulary-no-results")).toHaveTextContent("Thử từ khóa khác hoặc thay đổi bộ lọc.");
+    fireEvent.click(screen.getByTestId("vocabulary-empty-clear"));
+
+    expect(screen.getByTestId("vocabulary-row-1")).toBeInTheDocument();
+    expect(screen.getByTestId("vocabulary-search")).toHaveValue("");
+  });
+
+  it("clears the search with its trailing clear button", async () => {
+    mockVocabulary([item(1, "apple")]);
+    renderList();
+    await screen.findByTestId("vocabulary-row-1");
+    fireEvent.change(screen.getByTestId("vocabulary-search"), { target: { value: "apple" } });
+    fireEvent.click(screen.getByTestId("vocabulary-clear-search"));
+
+    expect(screen.getByTestId("vocabulary-search")).toHaveValue("");
+    expect(screen.getByTestId("vocabulary-row-1")).toBeInTheDocument();
+  });
+
+  it("combines the level filter and search without another API request", async () => {
+    const fetchMock = mockVocabulary([
+      item(1, "apple", "NEW", "GRADE_1"),
+      item(2, "apple juice", "NEW", "GRADE_2"),
+      item(3, "book", "NEW", "GRADE_1")
+    ]);
+    renderList();
+    await screen.findByTestId("vocabulary-row-3");
+    fireEvent.change(screen.getByTestId("vocabulary-search"), { target: { value: "apple" } });
+    fireEvent.change(screen.getByTestId("vocabulary-level-filter"), { target: { value: "GRADE_1" } });
+
+    expect(screen.getByTestId("vocabulary-row-1")).toBeInTheDocument();
+    expect(screen.queryByTestId("vocabulary-row-2")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("vocabulary-row-3")).not.toBeInTheDocument();
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+
+  it("initializes the search input and results from the q URL parameter", async () => {
+    mockVocabulary([item(1, "apple"), item(2, "book")]);
+    renderList(learnerA, "/vocabulary?q=book");
+
+    expect(await screen.findByTestId("vocabulary-row-2")).toBeInTheDocument();
+    expect(screen.getByTestId("vocabulary-search")).toHaveValue("book");
+    expect(screen.queryByTestId("vocabulary-row-1")).not.toBeInTheDocument();
+  });
+
+  it("initializes the level filter and results from the level URL parameter", async () => {
+    mockVocabulary([item(1, "apple", "NEW", "GRADE_1"), item(2, "book", "NEW", "GENERAL")]);
+    renderList(learnerA, "/vocabulary?level=GRADE_1");
+
+    expect(await screen.findByTestId("vocabulary-row-1")).toBeInTheDocument();
+    expect(screen.getByTestId("vocabulary-level-filter")).toHaveValue("GRADE_1");
+    expect(screen.queryByTestId("vocabulary-row-2")).not.toBeInTheDocument();
+  });
+
+  it("updates q in the URL without reloading and removes it when cleared", async () => {
+    mockVocabulary([item(1, "apple")]);
+    renderList();
+    await screen.findByTestId("vocabulary-row-1");
+    fireEvent.change(screen.getByTestId("vocabulary-search"), { target: { value: "apple" } });
+
+    await waitFor(() => expect(screen.getByTestId("current-url")).toHaveTextContent("/vocabulary?q=apple"));
+    fireEvent.click(screen.getByTestId("vocabulary-clear-search"));
+    await waitFor(() => expect(screen.getByTestId("current-url")).toHaveTextContent("/vocabulary"));
+  });
+
+  it("redirects without a learner and preserves the complete search URL", async () => {
+    renderList(null, "/vocabulary?q=apple&level=GRADE_1");
+
+    expect(await screen.findByText("learners-route")).toBeInTheDocument();
+    expect(screen.getByTestId("learner-return-to")).toHaveTextContent("/vocabulary?q=apple&level=GRADE_1");
+  });
+
+  it("navigates to the vocabulary detail when a card link is activated", async () => {
+    mockVocabulary([item(27, "apple", "NEW", "GRADE_1", { vietnamese: "quả táo" })]);
+    renderList();
+    await screen.findByTestId("vocabulary-row-27");
+
+    fireEvent.click(screen.getByRole("link", { name: /apple.*quả táo.*xem chi tiết/i }));
+
+    expect(await screen.findByTestId("detail-route")).toBeInTheDocument();
+    expect(screen.getByTestId("current-url")).toHaveTextContent("/vocabulary/27");
+  });
+
+  it("shows the image placeholder when a real image URL fails", async () => {
+    mockVocabulary([item(1, "apple", "NEW", null, { imageUrl: "https://cdn.example.test/apple.webp" })]);
+    renderList();
+    const card = await screen.findByTestId("vocabulary-row-1");
+    fireEvent.error(within(card).getByRole("img", { name: "Hình minh họa apple" }));
+
+    expect(within(card).queryByRole("img")).not.toBeInTheDocument();
+    expect(card.querySelector("svg")).toBeInTheDocument();
+  });
+
+  it("disables audio and the unsupported bookmark when the corresponding features are unavailable", async () => {
+    mockVocabulary([item(1, "apple")]);
+    renderList();
+    const card = await screen.findByTestId("vocabulary-row-1");
+
+    expect(within(card).getByRole("button", { name: "Nghe phát âm apple" })).toBeDisabled();
+    expect(within(card).getByRole("button", { name: "Hiện chưa hỗ trợ lưu từng từ: apple" })).toBeDisabled();
+  });
+
+  it("shows a separate empty state when the API returns no vocabulary", async () => {
+    mockVocabulary([]);
+    renderList();
+
+    expect(await screen.findByTestId("vocabulary-empty-state")).toHaveTextContent("Chưa có từ vựng");
+    expect(screen.queryByTestId("vocabulary-no-results")).not.toBeInTheDocument();
+  });
+
+  it("paginates larger real data at 12 items and resets page when search changes", async () => {
+    mockVocabulary(Array.from({ length: 13 }, (_, index) => item(index + 1, `word-${index + 1}`)));
+    renderList();
+
+    expect(await screen.findByTestId("vocabulary-row-12")).toBeInTheDocument();
+    expect(screen.queryByTestId("vocabulary-row-13")).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Trang sau" }));
+    expect(await screen.findByTestId("vocabulary-row-13")).toBeInTheDocument();
+    await waitFor(() => expect(screen.getByTestId("current-url")).toHaveTextContent("page=2"));
+
+    fireEvent.change(screen.getByTestId("vocabulary-search"), { target: { value: "word" } });
+    expect(await screen.findByTestId("vocabulary-row-1")).toBeInTheDocument();
+    await waitFor(() => expect(screen.getByTestId("current-url")).toHaveTextContent("q=word"));
+    expect(screen.getByTestId("current-url")).not.toHaveTextContent("page=");
+  });
+
+  it("restores a valid page URL after the full list has loaded", async () => {
+    mockVocabulary(Array.from({ length: 13 }, (_, index) => item(index + 1, `word-${index + 1}`)));
+    renderList(learnerA, "/vocabulary?page=2");
+
+    expect(await screen.findByTestId("vocabulary-row-13")).toBeInTheDocument();
+    expect(screen.queryByTestId("vocabulary-row-1")).not.toBeInTheDocument();
+    expect(screen.getByTestId("current-url")).toHaveTextContent("/vocabulary?page=2");
+  });
+
+  it("shows a retry action after a list request fails", async () => {
     const fetchMock = vi.spyOn(globalThis, "fetch")
       .mockResolvedValueOnce(response([], 503))
-      .mockResolvedValueOnce(response([item(1, "apple", "NEW")]));
+      .mockResolvedValueOnce(response([item(1, "apple")]));
     renderList();
 
     expect(await screen.findByTestId("vocabulary-error")).toHaveTextContent("Không thể tải từ vựng lúc này. Vui lòng thử lại.");
     fireEvent.click(screen.getByRole("button", { name: "Thử lại" }));
-    await waitFor(() => expect(screen.getByTestId("vocabulary-list")).toBeInTheDocument());
+    expect(await screen.findByTestId("vocabulary-row-1")).toBeInTheDocument();
     expect(fetchMock).toHaveBeenCalledTimes(2);
   });
 
-  it("refreshes by learner id and removes the previous learner status", async () => {
+  it("refreshes the vocabulary using the newly selected learner", async () => {
     const fetchMock = vi.spyOn(globalThis, "fetch")
       .mockResolvedValueOnce(response([item(1, "apple", "LEARNING")]))
       .mockResolvedValueOnce(response([item(1, "apple", "NEW")]));
@@ -126,42 +320,15 @@ describe("US-22 vocabulary list UI", () => {
 
     render(
       <MemoryRouter initialEntries={["/vocabulary"]}>
-        <ActiveLearnerProvider initialLearner={learnerA}>
-          <SwitchHarness />
-        </ActiveLearnerProvider>
+        <ActiveLearnerProvider initialLearner={learnerA}><SwitchHarness /></ActiveLearnerProvider>
       </MemoryRouter>
     );
 
-    expect(await screen.findByTestId("vocabulary-row-1")).toHaveTextContent("Đang học");
+    expect(await screen.findByTestId("vocabulary-row-1")).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "Switch learner" }));
     await waitFor(() => expect(screen.getByRole("heading", { name: "Từ vựng của Bình" })).toBeInTheDocument());
-    await waitFor(() => expect(screen.getByTestId("vocabulary-row-1")).toHaveTextContent("Từ mới"));
-    expect(fetchMock).toHaveBeenNthCalledWith(1, "/api/learners/" + learnerA.id + "/vocabulary", { credentials: "include" });
-    expect(fetchMock).toHaveBeenNthCalledWith(2, "/api/learners/" + learnerB.id + "/vocabulary", { credentials: "include" });
-  });
-
-  it("filters the current learner list by level and returns to the unfiltered view", async () => {
-    const fetchMock = vi.spyOn(globalThis, "fetch")
-      .mockResolvedValueOnce(response([item(1, "apple", "NEW", "GRADE_1"), item(2, "book", "NEW", "GENERAL")]))
-      .mockResolvedValueOnce(response([item(1, "apple", "NEW", "GRADE_1")]));
-    renderList();
-
-    expect(await screen.findByTestId("vocabulary-row-2")).toBeInTheDocument();
-    fireEvent.change(screen.getByTestId("vocabulary-level-filter"), { target: { value: "GRADE_1" } });
-    await waitFor(() => expect(screen.queryByTestId("vocabulary-row-2")).not.toBeInTheDocument());
-    expect(fetchMock).toHaveBeenNthCalledWith(2, "/api/learners/" + learnerA.id + "/vocabulary?level=GRADE_1", { credentials: "include" });
-    expect(screen.getByTestId("vocabulary-row-1")).toBeInTheDocument();
-  });
-
-  it("redirects to learner home when no active learner exists", async () => {
-    renderList(null);
-    expect(await screen.findByText("learners-route")).toBeInTheDocument();
-    expect(screen.getByTestId("learner-return-to")).toHaveTextContent("/vocabulary");
-  });
-
-  it("preserves the current search string when redirecting to learner home", async () => {
-    renderList(null, "/vocabulary?level=GRADE_1");
-    expect(await screen.findByText("learners-route")).toBeInTheDocument();
-    expect(screen.getByTestId("learner-return-to")).toHaveTextContent("/vocabulary?level=GRADE_1");
+    await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(2));
+    expect(fetchMock).toHaveBeenNthCalledWith(1, `/api/learners/${learnerA.id}/vocabulary`, { credentials: "include" });
+    expect(fetchMock).toHaveBeenNthCalledWith(2, `/api/learners/${learnerB.id}/vocabulary`, { credentials: "include" });
   });
 });
