@@ -209,7 +209,7 @@ describe("Home dashboard", () => {
     expect(screen.getByRole("link", { name: "Từ mới: 2" })).toHaveAttribute("href", "/study");
     expect(screen.getByRole("link", { name: "Đã học: 16" })).toHaveAttribute("href", "/progress");
     expect(screen.getByRole("link", { name: "Chuỗi ngày học: 4" })).toHaveAttribute("href", "/progress");
-    expect(screen.getByRole("link", { name: /bắt đầu học/i })).toHaveAttribute("href", "/study");
+    expect(screen.getByRole("link", { name: /bắt đầu học/i })).toHaveAttribute("href", "/study/setup");
     expect(await screen.findByText("Hành động lớp 1")).toBeInTheDocument();
     expect(screen.getAllByRole("link", { name: "Xem tất cả" }).some((link) => link.getAttribute("href") === "/learning-sets")).toBe(true);
     expect(screen.getByText("20 từ · Lớp 1")).toBeInTheDocument();

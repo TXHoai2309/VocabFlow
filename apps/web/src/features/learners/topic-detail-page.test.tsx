@@ -78,6 +78,7 @@ function renderTopic(path = `/topics/${topic.id}`, initialLearner: LearnerDto | 
           <Route path="/topics/:topicId" element={<TopicDetailPage />} />
           <Route path="/learners" element={<LearnerRedirectProbe />} />
           <Route path="/study" element={<div data-testid="study-route">Study</div>} />
+          <Route path="/study/setup" element={<div data-testid="study-route">Study Setup</div>} />
           <Route path="/vocabulary/:vocabularyId" element={<div data-testid="vocabulary-route">Vocabulary</div>} />
         </Routes>
       </ActiveLearnerProvider>
@@ -113,7 +114,7 @@ describe("Topic Detail", () => {
     renderTopic();
 
     expect(await screen.findByRole("progressbar", { name: "Tiến độ học Food" })).toHaveAttribute("aria-valuetext", "0 / 2 từ, 0%");
-    expect(screen.getByRole("link", { name: "Học chủ đề này" })).toHaveAttribute("href", "/study?topicId=7");
+    expect(screen.getByRole("link", { name: "Học chủ đề này" })).toHaveAttribute("href", "/study/setup?topicId=7");
   });
 
   it("counts all 20 topic words as unlearned when no words have learner progress", async () => {
@@ -154,7 +155,7 @@ describe("Topic Detail", () => {
     fireEvent.click(await screen.findByRole("link", { name: "Tiếp tục học" }));
 
     expect(await screen.findByTestId("study-route")).toBeInTheDocument();
-    expect(screen.getByTestId("current-url")).toHaveTextContent("/study?topicId=7");
+    expect(screen.getByTestId("current-url")).toHaveTextContent("/study/setup?topicId=7");
     expect(fetchMock.mock.calls.every(([, init]) => !init?.method || init.method === "GET")).toBe(true);
   });
 
@@ -162,7 +163,7 @@ describe("Topic Detail", () => {
     mockDetail([vocabulary(1, "apple"), vocabulary(2, "bread")], topicProgress(2, 0, 0, 2), [learnerVocabulary(1, "apple", "MASTERED"), learnerVocabulary(2, "bread", "MASTERED")]);
     renderTopic();
 
-    expect(await screen.findByRole("link", { name: "Ôn tập lại" })).toHaveAttribute("href", "/study?topicId=7");
+    expect(await screen.findByRole("link", { name: "Ôn tập lại" })).toHaveAttribute("href", "/study/setup?topicId=7");
   });
 
   it("links a vocabulary card to its detail route", async () => {

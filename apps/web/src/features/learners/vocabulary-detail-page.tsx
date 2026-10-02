@@ -231,7 +231,7 @@ function VocabularyDetailContent({ vocabulary, allVocabulary }: { vocabulary: Le
                 <DetailIcon name="bookmark" />
                 Lưu từ
               </button>
-              <Link className="vocabulary-detail-action vocabulary-detail-action-secondary" to="/study">
+              <Link className="vocabulary-detail-action vocabulary-detail-action-secondary" to="/study/setup">
                 <DetailIcon name="play" />
                 Bắt đầu học
               </Link>

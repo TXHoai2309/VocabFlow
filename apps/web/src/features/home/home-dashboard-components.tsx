@@ -136,7 +136,7 @@ export function DailyStudyHero({
         {queue.status === "error" ? <p>Không thể tải danh sách học hôm nay. Nhấn Thử lại bên dưới để kiểm tra lại.</p> : null}
         {queue.status === "ready" && hasQueue ? <p>Hôm nay bạn có {dueCount} từ cần ôn tập và {newCount} từ mới. Hãy duy trì chuỗi ngày học nhé!</p> : null}
         {queue.status === "ready" && !hasQueue ? <p>Hôm nay bạn đã hoàn thành danh sách học. Hãy quay lại khi có thêm từ mới nhé.</p> : null}
-        {hasQueue ? <Link className="home-button home-button-light" to="/study">Bắt đầu học <span aria-hidden="true">→</span></Link> : (
+        {hasQueue ? <Link className="home-button home-button-light" to="/study/setup">Bắt đầu học <span aria-hidden="true">→</span></Link> : (
           <button className="home-button home-button-light" type="button" disabled>
             {queue.status === "loading" ? "Đang tải danh sách học…" : queue.status === "error" ? "Danh sách học chưa khả dụng" : "Đã hoàn thành danh sách hôm nay"}
           </button>
@@ -210,7 +210,7 @@ export function ContinueLearningCard({ queue }: { queue: HomeResource<ReviewQueu
             <strong>{next.vocabulary.word}</strong>
             <span>{next.vocabulary.vietnamese}</span>
           </div>
-          <Link className="home-button home-button-primary" to="/study">Bắt đầu phiên học</Link>
+          <Link className="home-button home-button-primary" to="/study/setup">Bắt đầu phiên học</Link>
         </div>
       ) : null}
     </section>

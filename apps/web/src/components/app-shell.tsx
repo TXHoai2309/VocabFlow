@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Link, NavLink, Outlet } from "react-router";
+import { Link, NavLink, Outlet, useLocation } from "react-router";
 
 const destinations = [
   { label: "Trang chủ", to: "/", icon: "home" },
-  { label: "Học tập", to: "/study", icon: "study" },
+  { label: "Học tập", to: "/study/setup", icon: "study" },
   { label: "Từ vựng", to: "/vocabulary", icon: "vocabulary" },
   { label: "Chủ đề", to: "/topics", icon: "topics" },
   { label: "Bộ từ", to: "/learning-sets", icon: "sets" },
@@ -45,6 +45,7 @@ function initials(value: string) {
 }
 
 function PrimaryNavigation({ onNavigate }: { onNavigate?: () => void }) {
+  const location = useLocation();
   return (
     <nav aria-label="Điều hướng chính" className="app-primary-nav">
       {destinations.map((item) => (
@@ -53,7 +54,7 @@ function PrimaryNavigation({ onNavigate }: { onNavigate?: () => void }) {
           to={item.to}
           end={item.to === "/"}
           onClick={onNavigate}
-          className={({ isActive }) => isActive ? "app-nav-link is-active" : "app-nav-link"}
+          className={({ isActive }) => (isActive || (item.to === "/study/setup" && location.pathname.startsWith("/study"))) ? "app-nav-link is-active" : "app-nav-link"}
         >
           <NavigationIcon name={item.icon} />
           <span>{item.label}</span>

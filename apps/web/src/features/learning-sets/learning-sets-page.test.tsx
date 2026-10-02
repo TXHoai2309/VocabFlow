@@ -114,6 +114,7 @@ function renderDetail(path = `/learning-sets/${learningSet.id}`, initialLearner:
           <Route path="/learning-sets" element={<div data-testid="learning-sets-route">List</div>} />
           <Route path="/learners" element={<ReturnToProbe />} />
           <Route path="/study" element={<div data-testid="study-route">Study</div>} />
+          <Route path="/study/setup" element={<div data-testid="study-route">Study Setup</div>} />
           <Route path="/vocabulary/:vocabularyId" element={<div data-testid="vocabulary-route">Vocabulary</div>} />
         </Routes>
       </ActiveLearnerProvider>
@@ -145,7 +146,7 @@ describe("US-28/29 learning set UI", () => {
     expect(list).toHaveTextContent("Đã học");
     expect(screen.getByTestId("collection-detail-hero")).toHaveTextContent("Lớp 1");
     expect(screen.getByRole("progressbar", { name: `Tiến độ học ${learningSet.name}` })).toHaveAttribute("aria-valuetext", "1 / 2 từ, 50%");
-    expect(screen.getByRole("link", { name: "Tiếp tục học" })).toHaveAttribute("href", "/study?learningSetId=1");
+    expect(screen.getByRole("link", { name: "Tiếp tục học" })).toHaveAttribute("href", "/study/setup?learningSetId=1");
     expect(fetchMock).toHaveBeenCalledWith(`/api/learning-sets/${learningSet.id}`, { credentials: "include" });
     expect(fetchMock.mock.calls.every(([, init]) => !init?.method || init.method === "GET")).toBe(true);
   });
@@ -154,7 +155,7 @@ describe("US-28/29 learning set UI", () => {
     mockDetail([vocabulary(1, "apple")]);
     renderDetail();
 
-    expect(await screen.findByRole("link", { name: "Học bộ này" })).toHaveAttribute("href", "/study?learningSetId=1");
+    expect(await screen.findByRole("link", { name: "Học bộ này" })).toHaveAttribute("href", "/study/setup?learningSetId=1");
   });
 
   it("shows zero progress for a set with only new words", async () => {
@@ -170,7 +171,7 @@ describe("US-28/29 learning set UI", () => {
     mockDetail(items, [learnerVocabulary(items[0]!, "MASTERED")]);
     renderDetail();
 
-    expect(await screen.findByRole("link", { name: "Ôn tập lại" })).toHaveAttribute("href", "/study?learningSetId=1");
+    expect(await screen.findByRole("link", { name: "Ôn tập lại" })).toHaveAttribute("href", "/study/setup?learningSetId=1");
   });
 
   it("routes an unassigned set to assignment instead of starting an empty session", async () => {

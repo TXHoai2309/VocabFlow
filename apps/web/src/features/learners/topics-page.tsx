@@ -232,7 +232,7 @@ function TopicDetailExperience({ learner, topicId }: { learner: LearnerDto; topi
         learnedCount={data.learned}
         progressTotal={data.total}
         masteredCount={data.mastered}
-        studyHref={`/study?topicId=${data.topic.id}`}
+        studyHref={`/study/setup?topicId=${data.topic.id}`}
         studyReady={data.hasAssignedVocabulary}
         assignmentHref={data.items.length > 0 && !data.hasAssignedVocabulary ? "/learning-sets/assign" : undefined}
       />

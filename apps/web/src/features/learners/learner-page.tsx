@@ -228,7 +228,7 @@ export function LearnerPage() {
             <Link className="learner-progress-link" to="/learning-sets/assign">Quản lý bộ từ của người học</Link>
             <Link className="learner-progress-link" to="/learner-settings">Cài đặt số từ mới mỗi ngày</Link>
             <Link className="learner-progress-link" to="/progress">Xem tiến trình</Link>
-            <Link className="register-submit learner-study-submit" to="/study">Bắt đầu học</Link>
+            <Link className="register-submit learner-study-submit" to="/study/setup">Bắt đầu học</Link>
             <div className="learner-exercise-links" aria-label="Các bài tập">
               <Link className="learner-exercise-submit" to="/study/exercises">Luyện bài tập trắc nghiệm</Link>
               <Link className="learner-exercise-submit" to="/study/exercises?type=IMAGE_TO_WORD">Luyện qua hình ảnh</Link>

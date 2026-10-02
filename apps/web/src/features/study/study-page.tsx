@@ -10,9 +10,8 @@ import type {
   ReviewResponse
 } from "@vocabflow/contracts";
 import { useActiveLearner } from "../learners/learner-context-hook";
-import { requestReviewQueue, ReviewQueueClientError } from "./review-queue-client";
-import { requestLearningSet } from "../learning-sets/learning-sets-client";
-import { requestTopicVocabulary } from "../learners/topics-client";
+import { ReviewQueueClientError } from "./review-queue-client";
+import { requestScopedReviewQueue, selectStudyQueue, studyScopeFromParams, studySelectionFromParams, type StudyScope, type StudySelection } from "./study-queue";
 import { ReviewClientError, submitReview } from "./review-client";
 import { Flashcard } from "./flashcard";
 import { ExerciseCard, type ExerciseAnswer } from "./exercise-card";
@@ -48,43 +47,11 @@ type PendingReview = {
   exercise: boolean;
 };
 
-type StudyScope = { type: "topic" | "learning-set"; id: number } | { type: "invalid" };
-
 const SAFE_QUEUE_ERROR = "Không thể tải danh sách học lúc này. Vui lòng thử lại.";
 const SAFE_SAVE_ERROR = "Không thể lưu tiến trình lúc này. Vui lòng thử lại.";
 
 function sessionCards(queue: ReviewQueueItem[]): SessionCard[] {
   return queue.map((item) => ({ item, reinforcementAttempt: 0, reviewId: null }));
-}
-
-function studyScopeFromParams(searchParams: URLSearchParams): StudyScope | null {
-  const topicId = searchParams.get("topicId");
-  const learningSetId = searchParams.get("learningSetId");
-  if (topicId !== null && learningSetId !== null) return { type: "invalid" };
-  const type = topicId !== null ? "topic" : learningSetId !== null ? "learning-set" : null;
-  if (!type) return null;
-  const rawId = topicId ?? learningSetId;
-  if (!rawId || !/^\d+$/.test(rawId)) return { type: "invalid" };
-  const id = Number(rawId);
-  return Number.isSafeInteger(id) && id > 0 ? { type, id } : { type: "invalid" };
-}
-
-async function requestScopedReviewQueue(learnerId: string, scope: StudyScope | null): Promise<ReviewQueueResponse> {
-  const response = await requestReviewQueue(learnerId);
-  if (!scope) return response;
-  if (scope.type === "invalid") return { ...response, queue: [], dueCount: 0, newCount: 0 };
-
-  const vocabularyIds = scope.type === "topic"
-    ? (await requestTopicVocabulary(scope.id)).map((item) => item.id)
-    : (await requestLearningSet(scope.id)).items.map((item) => item.vocabulary.id);
-  const eligibleIds = new Set(vocabularyIds);
-  const queue = response.queue.filter((item) => eligibleIds.has(item.vocabulary.id));
-  return {
-    ...response,
-    queue,
-    dueCount: queue.filter((item) => item.queueType === "DUE").length,
-    newCount: queue.filter((item) => item.queueType === "NEW").length
-  };
 }
 
 function applyCanonicalReviewResponse(card: SessionCard, response: ReviewResponse): SessionCard {
@@ -140,9 +107,11 @@ export function StudyPage({ mode = "flashcard", exercisePreference }: { mode?: S
   const { activeLearner } = useActiveLearner();
   const [searchParams] = useSearchParams();
   const scope = useMemo(() => studyScopeFromParams(searchParams), [searchParams]);
+  const selection = useMemo(() => studySelectionFromParams(searchParams), [searchParams]);
   const scopeKey = scope ? `${scope.type}:${"id" in scope ? scope.id : "invalid"}` : "all";
+  const selectionKey = selection ? `${selection.content}:${selection.amount}` : "default";
   if (!activeLearner) return <Navigate to="/learners" replace />;
-  return <StudyExperience key={`${activeLearner.id}:${mode}:${exercisePreference ?? "default"}:${scopeKey}`} activeLearner={activeLearner} mode={mode} exercisePreference={exercisePreference} scope={scope} />;
+  return <StudyExperience key={`${activeLearner.id}:${mode}:${exercisePreference ?? "default"}:${scopeKey}:${selectionKey}`} activeLearner={activeLearner} mode={mode} exercisePreference={exercisePreference} scope={scope} selection={selection} />;
 }
 
 export function ExerciseStudyPage() {
@@ -154,7 +123,7 @@ export function ExerciseStudyPage() {
   return <StudyPage mode="exercise" exercisePreference={exercisePreference} />;
 }
 
-function StudyExperience({ activeLearner, mode, exercisePreference, scope }: { activeLearner: LearnerDto; mode: StudyMode; exercisePreference?: ExerciseType; scope: StudyScope | null }) {
+function StudyExperience({ activeLearner, mode, exercisePreference, scope, selection }: { activeLearner: LearnerDto; mode: StudyMode; exercisePreference?: ExerciseType; scope: StudyScope | null; selection: StudySelection | null }) {
   const [state, setState] = useState<StudyState>("loading");
   const [cards, setCards] = useState<SessionCard[]>([]);
   const [baseQueueLength, setBaseQueueLength] = useState(0);
@@ -203,7 +172,8 @@ function StudyExperience({ activeLearner, mode, exercisePreference, scope }: { a
     setExerciseBlockedCues([]);
     setIsFlipped(false);
     try {
-      const response = await requestScopedReviewQueue(activeLearner.id, scope);
+      const scopedResponse = await requestScopedReviewQueue(activeLearner.id, scope);
+      const response = selection ? selectStudyQueue(scopedResponse, selection) : scopedResponse;
       const nextCards = sessionCards(response.queue);
       cardsRef.current = nextCards;
       setQueueInfo({ dueCount: response.dueCount, newCount: response.newCount, reviewDate: response.reviewDate });
@@ -214,7 +184,7 @@ function StudyExperience({ activeLearner, mode, exercisePreference, scope }: { a
       setState("error");
       setMessage(queueErrorMessage(error));
     }
-  }, [activeLearner.id, scope]);
+  }, [activeLearner.id, scope, selection]);
 
   useEffect(() => {
     void Promise.resolve().then(() => loadQueue());
@@ -232,7 +202,8 @@ function StudyExperience({ activeLearner, mode, exercisePreference, scope }: { a
     setState("reconciling");
     setMessage("Đang tải lại tiến trình mới nhất…");
     try {
-      const response = await requestScopedReviewQueue(activeLearner.id, scope);
+      const scopedResponse = await requestScopedReviewQueue(activeLearner.id, scope);
+      const response = selection ? selectStudyQueue(scopedResponse, selection) : scopedResponse;
       const canonicalCards = sessionCards(response.queue);
       const matchingCard = canonicalCards.find((candidate) => candidate.item.vocabulary.id === card.item.vocabulary.id);
       const nextCards = matchingCard
@@ -262,7 +233,7 @@ function StudyExperience({ activeLearner, mode, exercisePreference, scope }: { a
           ? "Không thể tiếp tục với người học này. Vui lòng chọn lại."
           : "Không thể cập nhật tiến trình lúc này. Vui lòng tải lại danh sách học.");
     }
-  }, [activeLearner.id, replaceCards, scope]);
+  }, [activeLearner.id, replaceCards, scope, selection]);
 
   const advanceScheduledCard = useCallback((card: SessionCard, response: ReviewResponse) => {
     const canonicalCard = applyCanonicalReviewResponse(card, response);

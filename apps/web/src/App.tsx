@@ -11,6 +11,7 @@ import { VocabularyListPage } from "./features/learners/vocabulary-list-page";
 import { VocabularyDetailPage } from "./features/learners/vocabulary-detail-page";
 import { TopicDetailPage, TopicsPage } from "./features/learners/topics-page";
 import { ExerciseStudyPage, StudyPage } from "./features/study/study-page";
+import { StudySetupPage } from "./features/study/study-setup-page";
 import { LearningSetDetailPage, LearningSetsPage } from "./features/learning-sets/learning-sets-page";
 import { LearnerLearningSetsPage } from "./features/learning-sets/learner-learning-sets-page";
 import { HomePage } from "./features/home/home-page";
@@ -107,6 +108,7 @@ export function AppRoutes() {
         <Route path="/learning-sets" element={<LearningSetsPage />} />
         <Route path="/learning-sets/assign" element={<LearnerLearningSetsPage />} />
         <Route path="/learning-sets/:learningSetId" element={<LearningSetDetailPage />} />
+        <Route path="/study/setup" element={<StudySetupPage />} />
         <Route path="/study" element={<StudyPage />} />
         <Route path="/study/exercises" element={<ExerciseStudyPage />} />
         <Route index element={<HomePage />} />

@@ -70,7 +70,7 @@ describe("US-03 learner resolution UI", () => {
 
     await waitFor(() => expect(createLearner).toHaveBeenCalledWith({ displayName: "An" }));
     expect(await screen.findByTestId("learner-context-ready")).toHaveTextContent("An");
-    expect(screen.getByRole("link", { name: "Bắt đầu học" })).toHaveAttribute("href", "/study");
+    expect(screen.getByRole("link", { name: "Bắt đầu học" })).toHaveAttribute("href", "/study/setup");
     expect(screen.getByRole("link", { name: "Luyện bài tập trắc nghiệm" })).toHaveAttribute("href", "/study/exercises");
     expect(screen.getByRole("link", { name: "Luyện qua hình ảnh" })).toHaveAttribute("href", "/study/exercises?type=IMAGE_TO_WORD");
     expect(screen.getByRole("link", { name: "Luyện gõ từ" })).toHaveAttribute("href", "/study/exercises?type=TYPE_WORD");

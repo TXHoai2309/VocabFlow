@@ -179,7 +179,7 @@ function LearningSetDetailExperience({ learner, learningSetId }: { learner: Lear
         learnedCount={data.learned}
         progressTotal={data.items.length}
         masteredCount={data.mastered}
-        studyHref={`/study?learningSetId=${data.learningSet.id}`}
+        studyHref={`/study/setup?learningSetId=${data.learningSet.id}`}
         studyReady={data.assigned}
         assignmentHref={!data.assigned && data.items.length > 0 ? "/learning-sets/assign" : undefined}
       />

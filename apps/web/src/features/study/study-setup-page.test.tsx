@@ -1,0 +1,244 @@
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { MemoryRouter, Route, Routes, useLocation } from "react-router";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import "@testing-library/jest-dom/vitest";
+import type { LearnerDto, ReviewQueueItem, ReviewQueueResponse, VocabularyDto } from "@vocabflow/contracts";
+import { ActiveLearnerProvider } from "../learners/learner-context-provider";
+import { StudyPage } from "./study-page";
+import { StudySetupPage } from "./study-setup-page";
+
+const learner: LearnerDto = {
+  id: "00000000-0000-4000-8000-000000000010",
+  householdId: "00000000-0000-4000-8000-000000000001",
+  displayName: "An",
+  avatarKey: null,
+  enabled: true,
+  createdAt: "2026-09-10T00:00:00.000Z",
+  updatedAt: "2026-09-10T00:00:00.000Z"
+};
+
+function vocabulary(id: number, word = `word-${id}`): VocabularyDto {
+  return {
+    id,
+    word,
+    ipa: null,
+    vietnamese: `nghĩa ${word}`,
+    definitionEn: null,
+    exampleEn: null,
+    imageUrl: null,
+    audioUrl: null,
+    topic: null,
+    level: null,
+    enabled: true,
+    contentVersion: 1
+  };
+}
+
+function item(id: number, queueType: ReviewQueueItem["queueType"] = "NEW"): ReviewQueueItem {
+  return {
+    vocabulary: vocabulary(id),
+    queueType,
+    status: queueType === "DUE" ? "LEARNING" : "NEW",
+    nextReviewDate: queueType === "DUE" ? "2026-09-15" : null,
+    expectedRevision: 0
+  };
+}
+
+function queueResponse(queue: ReviewQueueItem[]): ReviewQueueResponse {
+  return {
+    learnerId: learner.id,
+    reviewDate: "2026-09-15",
+    dueCount: queue.filter((entry) => entry.queueType === "DUE").length,
+    newCount: queue.filter((entry) => entry.queueType === "NEW").length,
+    queue
+  };
+}
+
+function response(body: unknown, status = 200) {
+  return new Response(JSON.stringify(body), { status, headers: { "Content-Type": "application/json" } });
+}
+
+const topicVocabulary = [vocabulary(1, "apple"), vocabulary(3, "water")];
+const topic = { id: 7, slug: "food", name: "Food", description: "Food words", sortOrder: 1, enabled: true };
+const learningSetVocabulary = [vocabulary(2, "bread"), vocabulary(3, "water")];
+const learningSet = {
+  id: 4,
+  slug: "starter-words",
+  name: "Starter Words",
+  description: "A starter set",
+  grade: null,
+  enabled: true,
+  sortOrder: 1,
+  vocabularyCount: learningSetVocabulary.length,
+  items: learningSetVocabulary.map((entry, index) => ({ sortOrder: index, vocabulary: entry }))
+};
+
+function mockStudyData(queue: ReviewQueueItem[]) {
+  return vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
+    const path = String(input);
+    if (path === `/api/learners/${learner.id}/review-queue`) return response(queueResponse(queue));
+    if (path === "/api/topics") return response({ topics: [topic] });
+    if (path === "/api/topics/7/vocabulary") return response({ vocabulary: topicVocabulary });
+    if (path === "/api/learning-sets/4") return response({ learningSet });
+    return response({ error: { code: "NOT_FOUND" } }, 404);
+  });
+}
+
+function LocationProbe() {
+  const location = useLocation();
+  return <output data-testid="location">{location.pathname}{location.search}</output>;
+}
+
+function LearnerReturnProbe() {
+  const location = useLocation();
+  const returnTo = (location.state as { returnTo?: unknown } | null)?.returnTo;
+  return <output data-testid="learner-return-to">{typeof returnTo === "string" ? returnTo : ""}</output>;
+}
+
+function renderSetup(path = "/study/setup", activeLearner: LearnerDto | null = learner) {
+  return render(
+    <MemoryRouter initialEntries={[path]}>
+      <ActiveLearnerProvider initialLearner={activeLearner}>
+        <Routes>
+          <Route path="/study/setup" element={<StudySetupPage />} />
+          <Route path="/study" element={<StudyPage />} />
+          <Route path="/learners" element={<LearnerReturnProbe />} />
+          <Route path="/topics/:topicId" element={<LocationProbe />} />
+          <Route path="/learning-sets/:learningSetId" element={<LocationProbe />} />
+        </Routes>
+      </ActiveLearnerProvider>
+    </MemoryRouter>
+  );
+}
+
+describe("Study Setup", () => {
+  beforeEach(() => vi.restoreAllMocks());
+
+  it("renders the 10 word preset and prefers mixed when both queue types are available", async () => {
+    mockStudyData([item(1, "DUE"), item(2), item(3, "DUE")]);
+    renderSetup();
+
+    expect(await screen.findByRole("heading", { name: "Thiết lập buổi học" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /10\s*từ/ })).toHaveAttribute("aria-pressed", "true");
+    expect(screen.getByRole("button", { name: /Kết hợp/ })).toHaveAttribute("aria-pressed", "true");
+    expect(screen.getByTestId("study-setup-summary-count")).toHaveTextContent("3 từ");
+    expect(screen.getByTestId("study-setup-summary-mode")).toHaveTextContent("Kết hợp");
+    fireEvent.click(screen.getByRole("button", { name: /Bắt đầu học/ }));
+    expect(await screen.findByTestId("study-session-ready")).toBeInTheDocument();
+    expect(screen.getByTestId("session-counter")).toHaveTextContent("0 / 3");
+    expect(screen.getByText("2 đến hạn · 1 từ mới · 2026-09-15")).toBeInTheDocument();
+  });
+
+  it("allows each requested amount and New, Review, and Mixed mode selection", async () => {
+    mockStudyData([item(1, "DUE"), item(2), item(3, "DUE"), item(4)]);
+    renderSetup();
+    await screen.findByTestId("study-setup-page");
+
+    for (const amount of [5, 10, 20, 30]) {
+      const option = screen.getByRole("button", { name: new RegExp(`${amount}\\s*từ`) });
+      fireEvent.click(option);
+      expect(option).toHaveAttribute("aria-pressed", "true");
+      expect(screen.getByTestId("study-setup-summary-count")).toHaveTextContent("4 từ");
+    }
+
+    for (const [mode, label] of [["new", "Từ mới"], ["review", "Ôn tập"], ["mixed", "Kết hợp"]] as const) {
+      const option = screen.getByRole("button", { name: new RegExp(label) });
+      fireEvent.click(option);
+      expect(option).toHaveAttribute("aria-pressed", "true");
+      expect(screen.getByTestId("study-setup-summary-mode")).toHaveTextContent(label);
+      const expectedCount = mode === "new" ? 2 : mode === "review" ? 2 : 4;
+      expect(screen.getByTestId("study-setup-summary-count")).toHaveTextContent(`${expectedCount} từ`);
+    }
+  });
+
+  it("disables empty modes and falls back to New when only new words are available", async () => {
+    mockStudyData([item(1), item(2)]);
+    renderSetup();
+
+    expect(await screen.findByRole("button", { name: /Từ mới/ })).toHaveAttribute("aria-pressed", "true");
+    expect(screen.getByRole("button", { name: /Ôn tập/ })).toBeDisabled();
+    expect(screen.getByText("Hiện chưa có từ cần ôn")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Kết hợp/ })).toBeEnabled();
+  });
+
+  it("disables empty new content and defaults to Review when only due words exist", async () => {
+    mockStudyData([item(1, "DUE"), item(2, "DUE")]);
+    renderSetup();
+
+    expect(await screen.findByRole("button", { name: /Ôn tập/ })).toHaveAttribute("aria-pressed", "true");
+    expect(screen.getByRole("button", { name: /Từ mới/ })).toBeDisabled();
+    expect(screen.getByText("Hiện chưa có từ mới cần học")).toBeInTheDocument();
+  });
+
+  it("uses only topic vocabulary and keeps the scope in the session URL", async () => {
+    const queue = [item(1, "DUE"), item(2), item(3), item(4, "DUE")];
+    const fetchMock = mockStudyData(queue);
+    renderSetup("/study/setup?topicId=7");
+
+    expect(await screen.findByTestId("study-setup-summary-scope")).toHaveTextContent("Food");
+    fireEvent.click(screen.getByRole("button", { name: /Từ mới/ }));
+    fireEvent.click(screen.getByRole("button", { name: /30\s*từ/ }));
+    expect(screen.getByTestId("study-setup-summary-count")).toHaveTextContent("1 từ");
+    expect(await screen.findByRole("button", { name: /Bắt đầu học/ })).toBeEnabled();
+    fireEvent.click(screen.getByRole("button", { name: /Bắt đầu học/ }));
+
+    expect(await screen.findByTestId("study-session-ready")).toBeInTheDocument();
+    expect(screen.getByTestId("session-counter")).toHaveTextContent("0 / 1");
+    expect(screen.getByText("0 đến hạn · 1 từ mới · 2026-09-15")).toBeInTheDocument();
+    expect(screen.getByText("word-3")).toBeInTheDocument();
+    expect(screen.queryByText("word-2")).not.toBeInTheDocument();
+    expect(fetchMock).toHaveBeenCalledWith("/api/topics/7/vocabulary", { credentials: "include" });
+  });
+
+  it("starts exactly the selected number of due Review words", async () => {
+    mockStudyData(Array.from({ length: 7 }, (_, index) => item(index + 1, "DUE")).concat(Array.from({ length: 8 }, (_, index) => item(index + 8))));
+    renderSetup();
+
+    await screen.findByTestId("study-setup-page");
+    fireEvent.click(screen.getByRole("button", { name: /5\s*từ/ }));
+    fireEvent.click(screen.getByRole("button", { name: /Ôn tập/ }));
+    expect(screen.getByTestId("study-setup-summary-count")).toHaveTextContent("5 từ");
+    fireEvent.click(screen.getByRole("button", { name: /Bắt đầu học/ }));
+
+    expect(await screen.findByTestId("study-session-ready")).toBeInTheDocument();
+    expect(screen.getByTestId("session-counter")).toHaveTextContent("0 / 5");
+    expect(screen.getByText("5 đến hạn · 0 từ mới · 2026-09-15")).toBeInTheDocument();
+  });
+
+  it("uses only learning set vocabulary and displays the real set name", async () => {
+    mockStudyData([item(1), item(2, "DUE"), item(3), item(4, "DUE")]);
+    renderSetup("/study/setup?learningSetId=4");
+
+    expect(await screen.findByTestId("study-setup-summary-scope")).toHaveTextContent("Starter Words");
+    expect(screen.getByTestId("study-setup-summary-count")).toHaveTextContent("2 từ");
+    fireEvent.click(screen.getByRole("button", { name: /Từ mới/ }));
+    expect(screen.getByTestId("study-setup-summary-count")).toHaveTextContent("1 từ");
+  });
+
+  it("keeps global study unscoped and does not create a session or mutate progress before Start", async () => {
+    const fetchMock = mockStudyData([item(1), item(2, "DUE")]);
+    renderSetup();
+
+    expect(await screen.findByTestId("study-setup-page")).toBeInTheDocument();
+    expect(screen.queryByTestId("study-session-ready")).not.toBeInTheDocument();
+    expect(fetchMock.mock.calls.map(([path]) => String(path))).toEqual([`/api/learners/${learner.id}/review-queue`]);
+    expect(fetchMock.mock.calls.every(([, init]) => !init?.method || init.method === "GET")).toBe(true);
+  });
+
+  it("shows an empty state without inventing words when the canonical queue is empty", async () => {
+    mockStudyData([]);
+    renderSetup();
+
+    expect(await screen.findByTestId("study-setup-empty")).toHaveTextContent("Chưa có từ để học");
+    expect(screen.getByText("Nội dung này hiện chưa có từ phù hợp cho buổi học.")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Quay lại" })).toHaveAttribute("href", "/learners");
+  });
+
+  it("preserves setup path and query when redirecting a learner without an active profile", async () => {
+    const fetchMock = vi.spyOn(globalThis, "fetch");
+    renderSetup("/study/setup?topicId=7&continue=1", null);
+
+    await waitFor(() => expect(screen.getByTestId("learner-return-to")).toHaveTextContent("/study/setup?topicId=7&continue=1"));
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+});
