@@ -38,6 +38,7 @@
     "dataset:validate": "tsx scripts/validate-dataset.ts",
     "validate:master-vocab-v2": "tsx scripts/validate-master-vocabulary-v2.ts",
     "transform:master-vocab-v2": "tsx scripts/transform-master-vocabulary-v2.ts",
+    "import:master-vocab-v2": "tsx scripts/import-master-vocabulary-v2.ts",
     "vocab:import-catalog": "tsx scripts/import-vocabulary-catalog.ts",
     "vocab:curate": "tsx scripts/vocabulary-curation.ts",
     "vocab:enrich-starter": "tsx scripts/enrich-starter-vocabulary.ts",

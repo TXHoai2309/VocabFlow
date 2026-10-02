@@ -331,3 +331,35 @@ evidence condition is met and the affected source document is updated.
   `vocabflow-dataset/README.md`
 - Revisit only if: The owner changes the release reproducibility, identity,
   classification representation, or canonical hash contract.
+
+## DEC-020 — Additive Master Vocabulary V2 runtime identity bridge
+
+- Status: ACCEPTED
+- Date: 2026-10-02
+- Context: Phase 2C can produce deterministic Master-to-App projections but
+  does not know whether a Master Sense owns an existing learner-history ID or
+  should receive a new runtime integer. Runtime APIs also expose a Vietnamese
+  override and image quarantine that can make stored vocabulary columns differ
+  from their effective learner-facing values.
+- Decision: Preserve `vocabularies.id` and create additive identity,
+  fingerprint, import-run, Topic/Set mapping, and membership ownership tables.
+  Identity adoption comes only from a separate human-reviewed reconciliation
+  artifact; never infer it from lemma, labels, order, or taxonomy. The default
+  importer is offline dry-run. Apply requires an approved eligible release,
+  complete reconciliation, explicit first-adoption/override policies, verified
+  target identity, an unchanged transaction-locked plan, and atomic projection
+  plus fingerprint persistence. No automatic catalog cleanup or learner Set
+  assignment is allowed.
+- Consequences: Existing app integer IDs remain attached to
+  `learner_progress`, `review_events`, and runtime membership. A new Sense gets
+  its generated ID only inside the transaction and begins at
+  `contentVersion = 1`; changed projections derive a one-step version increase.
+  The migration is additive and remains unapplied until the staging phase. The
+  current DRAFT pilot cannot be applied.
+- Evidence/source: [Runtime Import Contract](architecture/master-vocabulary-v2-runtime-import-contract.md),
+  [App Import V2 projection contract](architecture/master-vocabulary-v2-app-import-contract.md),
+  `scripts/master-vocabulary-v2-import-planner.ts`,
+  `scripts/master-vocabulary-v2-import-store.ts`,
+  `drizzle/migrations/0015_clean_yellowjacket.sql`.
+- Revisit only if: the projection contract, history-preservation guarantees,
+  runtime identity model, or explicit ownership policy changes.

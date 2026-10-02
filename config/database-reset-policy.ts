@@ -3,6 +3,12 @@ import { APP_SCHEMA, MIGRATION_SCHEMA } from "@vocabflow/contracts";
 export const DATABASE_RESET_POLICY = {
   applicationSchemas: [APP_SCHEMA],
   applicationTables: [
+    `${APP_SCHEMA}.master_learning_set_memberships`,
+    `${APP_SCHEMA}.master_vocabulary_topic_memberships`,
+    `${APP_SCHEMA}.master_learning_set_mappings`,
+    `${APP_SCHEMA}.master_topic_mappings`,
+    `${APP_SCHEMA}.master_vocabulary_mappings`,
+    `${APP_SCHEMA}.master_vocabulary_import_runs`,
     `${APP_SCHEMA}.learner_achievements`,
     `${APP_SCHEMA}.xp_events`,
     `${APP_SCHEMA}.achievements`,

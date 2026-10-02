@@ -2,6 +2,7 @@ import {
   boolean,
   check,
   date,
+  foreignKey,
   index,
   integer,
   bigint,
@@ -203,6 +204,121 @@ export const learningSetItems = vocabflowApp.table("learning_set_items", {
   check("learning_set_items_sort_order_check", sql`${table.sortOrder} >= 0`),
   index("learning_set_items_set_sort_vocabulary_idx").on(table.learningSetId, table.sortOrder, table.vocabularyId),
   index("learning_set_items_vocabulary_set_idx").on(table.vocabularyId, table.learningSetId)
+]);
+
+/** Successful, immutable application of one reviewed Master release/reconciliation. */
+export const masterVocabularyImportRuns = vocabflowApp.table("master_vocabulary_import_runs", {
+  id: uuid("id").primaryKey(),
+  datasetId: uuid("dataset_id").notNull(),
+  datasetVersion: text("dataset_version").notNull(),
+  schemaVersion: text("schema_version").notNull(),
+  appImportContractVersion: text("app_import_contract_version").notNull(),
+  projectionContractVersion: text("projection_contract_version").notNull(),
+  releaseHash: text("release_hash").notNull(),
+  reconciliationHash: text("reconciliation_hash").notNull(),
+  planFingerprint: text("plan_fingerprint").notNull(),
+  environment: text("environment").notNull(),
+  targetBranchId: text("target_branch_id").notNull(),
+  appliedAt: timestamp("applied_at", { withTimezone: true }).notNull().defaultNow()
+}, (table) => [
+  unique("master_vocabulary_import_runs_release_reconciliation_unique").on(
+    table.environment, table.datasetId, table.releaseHash, table.appImportContractVersion,
+    table.projectionContractVersion, table.reconciliationHash
+  ),
+  check("master_vocabulary_import_runs_release_hash_check", sql`${table.releaseHash} ~ '^[0-9a-f]{64}$'`),
+  check("master_vocabulary_import_runs_reconciliation_hash_check", sql`${table.reconciliationHash} ~ '^[0-9a-f]{64}$'`),
+  check("master_vocabulary_import_runs_plan_fingerprint_check", sql`${table.planFingerprint} ~ '^[0-9a-f]{64}$'`),
+  check("master_vocabulary_import_runs_environment_check", sql`${table.environment} IN ('development', 'test', 'production')`)
+]);
+
+/** Stable Master Sense identity alongside the existing learner-facing integer ID. */
+export const masterVocabularyMappings = vocabflowApp.table("master_vocabulary_mappings", {
+  masterSenseId: uuid("master_sense_id").primaryKey(),
+  masterLexemeId: uuid("master_lexeme_id").notNull(),
+  vocabularyId: integer("vocabulary_id").notNull().unique()
+    .references(() => vocabularies.id, { onDelete: "no action", onUpdate: "no action" }),
+  sourceDatasetId: uuid("source_dataset_id").notNull(),
+  sourceDatasetVersion: text("source_dataset_version").notNull(),
+  sourceSchemaVersion: text("source_schema_version").notNull(),
+  projectionContractVersion: text("projection_contract_version").notNull(),
+  appliedProjectionFingerprint: text("applied_projection_fingerprint").notNull(),
+  appliedLexemeRevision: integer("applied_lexeme_revision").notNull(),
+  appliedSenseRevision: integer("applied_sense_revision").notNull(),
+  lastReleaseHash: text("last_release_hash").notNull(),
+  lastImportRunId: uuid("last_import_run_id").notNull()
+    .references(() => masterVocabularyImportRuns.id, { onDelete: "no action", onUpdate: "no action" }),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow()
+}, (table) => [
+  check("master_vocabulary_mappings_fingerprint_check", sql`${table.appliedProjectionFingerprint} ~ '^[0-9a-f]{64}$'`),
+  check("master_vocabulary_mappings_release_hash_check", sql`${table.lastReleaseHash} ~ '^[0-9a-f]{64}$'`),
+  check("master_vocabulary_mappings_lexeme_revision_check", sql`${table.appliedLexemeRevision} >= 1`),
+  check("master_vocabulary_mappings_sense_revision_check", sql`${table.appliedSenseRevision} >= 1`)
+]);
+
+export const masterTopicMappings = vocabflowApp.table("master_topic_mappings", {
+  masterTopicId: uuid("master_topic_id").primaryKey(),
+  topicId: integer("topic_id").notNull().unique()
+    .references(() => topics.id, { onDelete: "no action", onUpdate: "no action" }),
+  sourceDatasetId: uuid("source_dataset_id").notNull(),
+  lastReleaseHash: text("last_release_hash").notNull(),
+  lastImportRunId: uuid("last_import_run_id").notNull()
+    .references(() => masterVocabularyImportRuns.id, { onDelete: "no action", onUpdate: "no action" }),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow()
+}, (table) => [
+  check("master_topic_mappings_release_hash_check", sql`${table.lastReleaseHash} ~ '^[0-9a-f]{64}$'`)
+]);
+
+export const masterLearningSetMappings = vocabflowApp.table("master_learning_set_mappings", {
+  masterLearningSetId: uuid("master_learning_set_id").primaryKey(),
+  learningSetId: integer("learning_set_id").notNull().unique()
+    .references(() => learningSets.id, { onDelete: "no action", onUpdate: "no action" }),
+  sourceDatasetId: uuid("source_dataset_id").notNull(),
+  lastReleaseHash: text("last_release_hash").notNull(),
+  lastImportRunId: uuid("last_import_run_id").notNull()
+    .references(() => masterVocabularyImportRuns.id, { onDelete: "no action", onUpdate: "no action" }),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow()
+}, (table) => [
+  check("master_learning_set_mappings_release_hash_check", sql`${table.lastReleaseHash} ~ '^[0-9a-f]{64}$'`)
+]);
+
+/** Ownership ledger prevents future imports from deleting unrelated topic links. */
+export const masterVocabularyTopicMemberships = vocabflowApp.table("master_vocabulary_topic_memberships", {
+  masterSenseId: uuid("master_sense_id").notNull(),
+  masterTopicId: uuid("master_topic_id").notNull(),
+  vocabularyId: integer("vocabulary_id").notNull(),
+  topicId: integer("topic_id").notNull(),
+  lastReleaseHash: text("last_release_hash").notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow()
+}, (table) => [
+  primaryKey({ columns: [table.masterSenseId, table.masterTopicId], name: "master_vocabulary_topic_memberships_pk" }),
+  unique("master_vocabulary_topic_memberships_app_pair_unique").on(table.vocabularyId, table.topicId),
+  foreignKey({ columns: [table.masterSenseId], foreignColumns: [masterVocabularyMappings.masterSenseId], name: "master_vocabulary_topic_memberships_sense_fk" }).onDelete("no action").onUpdate("no action"),
+  foreignKey({ columns: [table.masterTopicId], foreignColumns: [masterTopicMappings.masterTopicId], name: "master_vocabulary_topic_memberships_topic_fk" }).onDelete("no action").onUpdate("no action"),
+  foreignKey({ columns: [table.vocabularyId, table.topicId], foreignColumns: [vocabularyTopics.vocabularyId, vocabularyTopics.topicId], name: "master_vocabulary_topic_memberships_runtime_link_fk" }).onDelete("no action").onUpdate("no action"),
+  check("master_vocabulary_topic_memberships_release_hash_check", sql`${table.lastReleaseHash} ~ '^[0-9a-f]{64}$'`)
+]);
+
+/** Ownership and ordered position for Master-owned Learning Set membership only. */
+export const masterLearningSetMemberships = vocabflowApp.table("master_learning_set_memberships", {
+  masterLearningSetItemId: uuid("master_learning_set_item_id").notNull(),
+  masterLearningSetId: uuid("master_learning_set_id").notNull(),
+  masterSenseId: uuid("master_sense_id").notNull(),
+  learningSetId: integer("learning_set_id").notNull(),
+  vocabularyId: integer("vocabulary_id").notNull(),
+  sortOrder: integer("sort_order").notNull(),
+  lastReleaseHash: text("last_release_hash").notNull(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow()
+}, (table) => [
+  primaryKey({ columns: [table.masterLearningSetItemId], name: "master_learning_set_memberships_pk" }),
+  unique("master_learning_set_memberships_set_sense_unique").on(table.masterLearningSetId, table.masterSenseId),
+  foreignKey({ columns: [table.masterLearningSetId], foreignColumns: [masterLearningSetMappings.masterLearningSetId], name: "master_learning_set_memberships_set_fk" }).onDelete("no action").onUpdate("no action"),
+  foreignKey({ columns: [table.masterSenseId], foreignColumns: [masterVocabularyMappings.masterSenseId], name: "master_learning_set_memberships_sense_fk" }).onDelete("no action").onUpdate("no action"),
+  foreignKey({ columns: [table.learningSetId, table.vocabularyId], foreignColumns: [learningSetItems.learningSetId, learningSetItems.vocabularyId], name: "master_learning_set_memberships_runtime_link_fk" }).onDelete("no action").onUpdate("no action"),
+  check("master_learning_set_memberships_sort_order_check", sql`${table.sortOrder} >= 0`),
+  check("master_learning_set_memberships_release_hash_check", sql`${table.lastReleaseHash} ~ '^[0-9a-f]{64}$'`)
 ]);
 
 export const learnerLearningSets = vocabflowApp.table("learner_learning_sets", {

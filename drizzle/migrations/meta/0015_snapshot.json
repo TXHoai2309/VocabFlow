@@ -1,0 +1,2801 @@
+{
+  "id": "a7491f1d-5be3-477d-9784-de760d158bd4",
+  "prevId": "18651a6b-220e-4fe0-8357-830ef3ffc38c",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "vocabflow_app.account": {
+      "name": "account",
+      "schema": "vocabflow_app",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "account_id": {
+          "name": "account_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "provider_id": {
+          "name": "provider_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "access_token": {
+          "name": "access_token",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "refresh_token": {
+          "name": "refresh_token",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "id_token": {
+          "name": "id_token",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "access_token_expires_at": {
+          "name": "access_token_expires_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "refresh_token_expires_at": {
+          "name": "refresh_token_expires_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "scope": {
+          "name": "scope",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "password": {
+          "name": "password",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "account_user_id_user_id_fk": {
+          "name": "account_user_id_user_id_fk",
+          "tableFrom": "account",
+          "tableTo": "user",
+          "schemaTo": "vocabflow_app",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "vocabflow_app.achievements": {
+      "name": "achievements",
+      "schema": "vocabflow_app",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "byDefault",
+            "name": "achievements_id_seq",
+            "schema": "vocabflow_app",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "2147483647",
+            "cache": "1",
+            "cycle": false
+          }
+        },
+        "code": {
+          "name": "code",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "sort_order": {
+          "name": "sort_order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "enabled": {
+          "name": "enabled",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "achievements_enabled_sort_order_id_idx": {
+          "name": "achievements_enabled_sort_order_id_idx",
+          "columns": [
+            {
+              "expression": "enabled",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "sort_order",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "achievements_code_unique": {
+          "name": "achievements_code_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "code"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {
+        "achievements_sort_order_check": {
+          "name": "achievements_sort_order_check",
+          "value": "\"vocabflow_app\".\"achievements\".\"sort_order\" >= 0"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "vocabflow_app.household_members": {
+      "name": "household_members",
+      "schema": "vocabflow_app",
+      "columns": {
+        "household_id": {
+          "name": "household_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "role": {
+          "name": "role",
+          "type": "household_role",
+          "typeSchema": "vocabflow_app",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'OWNER'"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "household_members_household_id_households_id_fk": {
+          "name": "household_members_household_id_households_id_fk",
+          "tableFrom": "household_members",
+          "tableTo": "households",
+          "schemaTo": "vocabflow_app",
+          "columnsFrom": [
+            "household_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "household_members_user_id_user_id_fk": {
+          "name": "household_members_user_id_user_id_fk",
+          "tableFrom": "household_members",
+          "tableTo": "user",
+          "schemaTo": "vocabflow_app",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "household_members_household_user_unique": {
+          "name": "household_members_household_user_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "household_id",
+            "user_id"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "vocabflow_app.households": {
+      "name": "households",
+      "schema": "vocabflow_app",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "primary_owner_user_id": {
+          "name": "primary_owner_user_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "timezone": {
+          "name": "timezone",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'Asia/Ho_Chi_Minh'"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "households_primary_owner_user_id_user_id_fk": {
+          "name": "households_primary_owner_user_id_user_id_fk",
+          "tableFrom": "households",
+          "tableTo": "user",
+          "schemaTo": "vocabflow_app",
+          "columnsFrom": [
+            "primary_owner_user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "households_primary_owner_user_id_unique": {
+          "name": "households_primary_owner_user_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "primary_owner_user_id"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "vocabflow_app.learner_achievements": {
+      "name": "learner_achievements",
+      "schema": "vocabflow_app",
+      "columns": {
+        "learner_id": {
+          "name": "learner_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "achievement_id": {
+          "name": "achievement_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "unlocked_at": {
+          "name": "unlocked_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "learner_achievements_learner_unlocked_at_idx": {
+          "name": "learner_achievements_learner_unlocked_at_idx",
+          "columns": [
+            {
+              "expression": "learner_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "unlocked_at",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "learner_achievements_learner_id_learner_profiles_id_fk": {
+          "name": "learner_achievements_learner_id_learner_profiles_id_fk",
+          "tableFrom": "learner_achievements",
+          "tableTo": "learner_profiles",
+          "schemaTo": "vocabflow_app",
+          "columnsFrom": [
+            "learner_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "learner_achievements_achievement_id_achievements_id_fk": {
+          "name": "learner_achievements_achievement_id_achievements_id_fk",
+          "tableFrom": "learner_achievements",
+          "tableTo": "achievements",
+          "schemaTo": "vocabflow_app",
+          "columnsFrom": [
+            "achievement_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "learner_achievements_learner_achievement_pk": {
+          "name": "learner_achievements_learner_achievement_pk",
+          "columns": [
+            "learner_id",
+            "achievement_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "vocabflow_app.learner_learning_sets": {
+      "name": "learner_learning_sets",
+      "schema": "vocabflow_app",
+      "columns": {
+        "learner_id": {
+          "name": "learner_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "learning_set_id": {
+          "name": "learning_set_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "active": {
+          "name": "active",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "learner_learning_sets_learner_active_set_idx": {
+          "name": "learner_learning_sets_learner_active_set_idx",
+          "columns": [
+            {
+              "expression": "learner_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "active",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "learning_set_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "learner_learning_sets_learner_id_learner_profiles_id_fk": {
+          "name": "learner_learning_sets_learner_id_learner_profiles_id_fk",
+          "tableFrom": "learner_learning_sets",
+          "tableTo": "learner_profiles",
+          "schemaTo": "vocabflow_app",
+          "columnsFrom": [
+            "learner_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "learner_learning_sets_learning_set_id_learning_sets_id_fk": {
+          "name": "learner_learning_sets_learning_set_id_learning_sets_id_fk",
+          "tableFrom": "learner_learning_sets",
+          "tableTo": "learning_sets",
+          "schemaTo": "vocabflow_app",
+          "columnsFrom": [
+            "learning_set_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "learner_learning_sets_learner_set_pk": {
+          "name": "learner_learning_sets_learner_set_pk",
+          "columns": [
+            "learner_id",
+            "learning_set_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "vocabflow_app.learner_profiles": {
+      "name": "learner_profiles",
+      "schema": "vocabflow_app",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "household_id": {
+          "name": "household_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "display_name": {
+          "name": "display_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "avatar_key": {
+          "name": "avatar_key",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "daily_new_word_limit": {
+          "name": "daily_new_word_limit",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 10
+        },
+        "daily_learning_goal": {
+          "name": "daily_learning_goal",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 10
+        },
+        "enabled": {
+          "name": "enabled",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "learner_profiles_household_enabled_created_id_idx": {
+          "name": "learner_profiles_household_enabled_created_id_idx",
+          "columns": [
+            {
+              "expression": "household_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "enabled",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "created_at",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "learner_profiles_household_id_households_id_fk": {
+          "name": "learner_profiles_household_id_households_id_fk",
+          "tableFrom": "learner_profiles",
+          "tableTo": "households",
+          "schemaTo": "vocabflow_app",
+          "columnsFrom": [
+            "household_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {
+        "learner_profiles_daily_new_word_limit_check": {
+          "name": "learner_profiles_daily_new_word_limit_check",
+          "value": "\"vocabflow_app\".\"learner_profiles\".\"daily_new_word_limit\" >= 0 AND \"vocabflow_app\".\"learner_profiles\".\"daily_new_word_limit\" <= 100"
+        },
+        "learner_profiles_daily_learning_goal_check": {
+          "name": "learner_profiles_daily_learning_goal_check",
+          "value": "\"vocabflow_app\".\"learner_profiles\".\"daily_learning_goal\" >= 1 AND \"vocabflow_app\".\"learner_profiles\".\"daily_learning_goal\" <= 100"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "vocabflow_app.learner_progress": {
+      "name": "learner_progress",
+      "schema": "vocabflow_app",
+      "columns": {
+        "learner_id": {
+          "name": "learner_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "vocabulary_id": {
+          "name": "vocabulary_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "status": {
+          "name": "status",
+          "type": "learning_status",
+          "typeSchema": "vocabflow_app",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'NEW'"
+        },
+        "consecutive_correct": {
+          "name": "consecutive_correct",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "0"
+        },
+        "interval_days": {
+          "name": "interval_days",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "0"
+        },
+        "first_learned_date": {
+          "name": "first_learned_date",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "last_reviewed_date": {
+          "name": "last_reviewed_date",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "next_review_date": {
+          "name": "next_review_date",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "total_correct": {
+          "name": "total_correct",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "0"
+        },
+        "total_incorrect": {
+          "name": "total_incorrect",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "0"
+        },
+        "revision": {
+          "name": "revision",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "0"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "learner_progress_learner_next_review_idx": {
+          "name": "learner_progress_learner_next_review_idx",
+          "columns": [
+            {
+              "expression": "learner_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "next_review_date",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "learner_progress_learner_id_learner_profiles_id_fk": {
+          "name": "learner_progress_learner_id_learner_profiles_id_fk",
+          "tableFrom": "learner_progress",
+          "tableTo": "learner_profiles",
+          "schemaTo": "vocabflow_app",
+          "columnsFrom": [
+            "learner_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "learner_progress_vocabulary_id_vocabularies_id_fk": {
+          "name": "learner_progress_vocabulary_id_vocabularies_id_fk",
+          "tableFrom": "learner_progress",
+          "tableTo": "vocabularies",
+          "schemaTo": "vocabflow_app",
+          "columnsFrom": [
+            "vocabulary_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "learner_progress_learner_vocabulary_unique": {
+          "name": "learner_progress_learner_vocabulary_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "learner_id",
+            "vocabulary_id"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {
+        "learner_progress_consecutive_correct_check": {
+          "name": "learner_progress_consecutive_correct_check",
+          "value": "\"vocabflow_app\".\"learner_progress\".\"consecutive_correct\" >= 0 AND \"vocabflow_app\".\"learner_progress\".\"consecutive_correct\" <= 9007199254740991"
+        },
+        "learner_progress_interval_days_check": {
+          "name": "learner_progress_interval_days_check",
+          "value": "\"vocabflow_app\".\"learner_progress\".\"interval_days\" >= 0 AND \"vocabflow_app\".\"learner_progress\".\"interval_days\" <= 9007199254740991"
+        },
+        "learner_progress_total_correct_check": {
+          "name": "learner_progress_total_correct_check",
+          "value": "\"vocabflow_app\".\"learner_progress\".\"total_correct\" >= 0 AND \"vocabflow_app\".\"learner_progress\".\"total_correct\" <= 9007199254740991"
+        },
+        "learner_progress_total_incorrect_check": {
+          "name": "learner_progress_total_incorrect_check",
+          "value": "\"vocabflow_app\".\"learner_progress\".\"total_incorrect\" >= 0 AND \"vocabflow_app\".\"learner_progress\".\"total_incorrect\" <= 9007199254740991"
+        },
+        "learner_progress_revision_check": {
+          "name": "learner_progress_revision_check",
+          "value": "\"vocabflow_app\".\"learner_progress\".\"revision\" >= 0 AND \"vocabflow_app\".\"learner_progress\".\"revision\" <= 9007199254740991"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "vocabflow_app.learning_set_items": {
+      "name": "learning_set_items",
+      "schema": "vocabflow_app",
+      "columns": {
+        "learning_set_id": {
+          "name": "learning_set_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "vocabulary_id": {
+          "name": "vocabulary_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "sort_order": {
+          "name": "sort_order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "learning_set_items_set_sort_vocabulary_idx": {
+          "name": "learning_set_items_set_sort_vocabulary_idx",
+          "columns": [
+            {
+              "expression": "learning_set_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "sort_order",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "vocabulary_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "learning_set_items_vocabulary_set_idx": {
+          "name": "learning_set_items_vocabulary_set_idx",
+          "columns": [
+            {
+              "expression": "vocabulary_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "learning_set_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "learning_set_items_learning_set_id_learning_sets_id_fk": {
+          "name": "learning_set_items_learning_set_id_learning_sets_id_fk",
+          "tableFrom": "learning_set_items",
+          "tableTo": "learning_sets",
+          "schemaTo": "vocabflow_app",
+          "columnsFrom": [
+            "learning_set_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "learning_set_items_vocabulary_id_vocabularies_id_fk": {
+          "name": "learning_set_items_vocabulary_id_vocabularies_id_fk",
+          "tableFrom": "learning_set_items",
+          "tableTo": "vocabularies",
+          "schemaTo": "vocabflow_app",
+          "columnsFrom": [
+            "vocabulary_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "learning_set_items_set_vocabulary_pk": {
+          "name": "learning_set_items_set_vocabulary_pk",
+          "columns": [
+            "learning_set_id",
+            "vocabulary_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {
+        "learning_set_items_sort_order_check": {
+          "name": "learning_set_items_sort_order_check",
+          "value": "\"vocabflow_app\".\"learning_set_items\".\"sort_order\" >= 0"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "vocabflow_app.learning_sets": {
+      "name": "learning_sets",
+      "schema": "vocabflow_app",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "byDefault",
+            "name": "learning_sets_id_seq",
+            "schema": "vocabflow_app",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "2147483647",
+            "cache": "1",
+            "cycle": false
+          }
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "grade": {
+          "name": "grade",
+          "type": "vocabulary_level",
+          "typeSchema": "vocabflow_app",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "enabled": {
+          "name": "enabled",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "sort_order": {
+          "name": "sort_order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "learning_sets_enabled_sort_order_id_idx": {
+          "name": "learning_sets_enabled_sort_order_id_idx",
+          "columns": [
+            {
+              "expression": "enabled",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "sort_order",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "learning_sets_slug_unique": {
+          "name": "learning_sets_slug_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "slug"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {
+        "learning_sets_sort_order_check": {
+          "name": "learning_sets_sort_order_check",
+          "value": "\"vocabflow_app\".\"learning_sets\".\"sort_order\" >= 0"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "vocabflow_app.master_learning_set_mappings": {
+      "name": "master_learning_set_mappings",
+      "schema": "vocabflow_app",
+      "columns": {
+        "master_learning_set_id": {
+          "name": "master_learning_set_id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "learning_set_id": {
+          "name": "learning_set_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "source_dataset_id": {
+          "name": "source_dataset_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "last_release_hash": {
+          "name": "last_release_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "last_import_run_id": {
+          "name": "last_import_run_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "master_learning_set_mappings_learning_set_id_learning_sets_id_fk": {
+          "name": "master_learning_set_mappings_learning_set_id_learning_sets_id_fk",
+          "tableFrom": "master_learning_set_mappings",
+          "tableTo": "learning_sets",
+          "schemaTo": "vocabflow_app",
+          "columnsFrom": [
+            "learning_set_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "master_learning_set_mappings_last_import_run_id_master_vocabulary_import_runs_id_fk": {
+          "name": "master_learning_set_mappings_last_import_run_id_master_vocabulary_import_runs_id_fk",
+          "tableFrom": "master_learning_set_mappings",
+          "tableTo": "master_vocabulary_import_runs",
+          "schemaTo": "vocabflow_app",
+          "columnsFrom": [
+            "last_import_run_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "master_learning_set_mappings_learning_set_id_unique": {
+          "name": "master_learning_set_mappings_learning_set_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "learning_set_id"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {
+        "master_learning_set_mappings_release_hash_check": {
+          "name": "master_learning_set_mappings_release_hash_check",
+          "value": "\"vocabflow_app\".\"master_learning_set_mappings\".\"last_release_hash\" ~ '^[0-9a-f]{64}$'"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "vocabflow_app.master_learning_set_memberships": {
+      "name": "master_learning_set_memberships",
+      "schema": "vocabflow_app",
+      "columns": {
+        "master_learning_set_item_id": {
+          "name": "master_learning_set_item_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "master_learning_set_id": {
+          "name": "master_learning_set_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "master_sense_id": {
+          "name": "master_sense_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "learning_set_id": {
+          "name": "learning_set_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "vocabulary_id": {
+          "name": "vocabulary_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "sort_order": {
+          "name": "sort_order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "last_release_hash": {
+          "name": "last_release_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "master_learning_set_memberships_set_fk": {
+          "name": "master_learning_set_memberships_set_fk",
+          "tableFrom": "master_learning_set_memberships",
+          "tableTo": "master_learning_set_mappings",
+          "schemaTo": "vocabflow_app",
+          "columnsFrom": [
+            "master_learning_set_id"
+          ],
+          "columnsTo": [
+            "master_learning_set_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "master_learning_set_memberships_sense_fk": {
+          "name": "master_learning_set_memberships_sense_fk",
+          "tableFrom": "master_learning_set_memberships",
+          "tableTo": "master_vocabulary_mappings",
+          "schemaTo": "vocabflow_app",
+          "columnsFrom": [
+            "master_sense_id"
+          ],
+          "columnsTo": [
+            "master_sense_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "master_learning_set_memberships_runtime_link_fk": {
+          "name": "master_learning_set_memberships_runtime_link_fk",
+          "tableFrom": "master_learning_set_memberships",
+          "tableTo": "learning_set_items",
+          "schemaTo": "vocabflow_app",
+          "columnsFrom": [
+            "learning_set_id",
+            "vocabulary_id"
+          ],
+          "columnsTo": [
+            "learning_set_id",
+            "vocabulary_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "master_learning_set_memberships_pk": {
+          "name": "master_learning_set_memberships_pk",
+          "columns": [
+            "master_learning_set_item_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {
+        "master_learning_set_memberships_set_sense_unique": {
+          "name": "master_learning_set_memberships_set_sense_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "master_learning_set_id",
+            "master_sense_id"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {
+        "master_learning_set_memberships_sort_order_check": {
+          "name": "master_learning_set_memberships_sort_order_check",
+          "value": "\"vocabflow_app\".\"master_learning_set_memberships\".\"sort_order\" >= 0"
+        },
+        "master_learning_set_memberships_release_hash_check": {
+          "name": "master_learning_set_memberships_release_hash_check",
+          "value": "\"vocabflow_app\".\"master_learning_set_memberships\".\"last_release_hash\" ~ '^[0-9a-f]{64}$'"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "vocabflow_app.master_topic_mappings": {
+      "name": "master_topic_mappings",
+      "schema": "vocabflow_app",
+      "columns": {
+        "master_topic_id": {
+          "name": "master_topic_id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "topic_id": {
+          "name": "topic_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "source_dataset_id": {
+          "name": "source_dataset_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "last_release_hash": {
+          "name": "last_release_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "last_import_run_id": {
+          "name": "last_import_run_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "master_topic_mappings_topic_id_topics_id_fk": {
+          "name": "master_topic_mappings_topic_id_topics_id_fk",
+          "tableFrom": "master_topic_mappings",
+          "tableTo": "topics",
+          "schemaTo": "vocabflow_app",
+          "columnsFrom": [
+            "topic_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "master_topic_mappings_last_import_run_id_master_vocabulary_import_runs_id_fk": {
+          "name": "master_topic_mappings_last_import_run_id_master_vocabulary_import_runs_id_fk",
+          "tableFrom": "master_topic_mappings",
+          "tableTo": "master_vocabulary_import_runs",
+          "schemaTo": "vocabflow_app",
+          "columnsFrom": [
+            "last_import_run_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "master_topic_mappings_topic_id_unique": {
+          "name": "master_topic_mappings_topic_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "topic_id"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {
+        "master_topic_mappings_release_hash_check": {
+          "name": "master_topic_mappings_release_hash_check",
+          "value": "\"vocabflow_app\".\"master_topic_mappings\".\"last_release_hash\" ~ '^[0-9a-f]{64}$'"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "vocabflow_app.master_vocabulary_import_runs": {
+      "name": "master_vocabulary_import_runs",
+      "schema": "vocabflow_app",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "dataset_id": {
+          "name": "dataset_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "dataset_version": {
+          "name": "dataset_version",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "schema_version": {
+          "name": "schema_version",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "app_import_contract_version": {
+          "name": "app_import_contract_version",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "projection_contract_version": {
+          "name": "projection_contract_version",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "release_hash": {
+          "name": "release_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "reconciliation_hash": {
+          "name": "reconciliation_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "plan_fingerprint": {
+          "name": "plan_fingerprint",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "environment": {
+          "name": "environment",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "target_branch_id": {
+          "name": "target_branch_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "applied_at": {
+          "name": "applied_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "master_vocabulary_import_runs_release_reconciliation_unique": {
+          "name": "master_vocabulary_import_runs_release_reconciliation_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "environment",
+            "dataset_id",
+            "release_hash",
+            "app_import_contract_version",
+            "projection_contract_version",
+            "reconciliation_hash"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {
+        "master_vocabulary_import_runs_release_hash_check": {
+          "name": "master_vocabulary_import_runs_release_hash_check",
+          "value": "\"vocabflow_app\".\"master_vocabulary_import_runs\".\"release_hash\" ~ '^[0-9a-f]{64}$'"
+        },
+        "master_vocabulary_import_runs_reconciliation_hash_check": {
+          "name": "master_vocabulary_import_runs_reconciliation_hash_check",
+          "value": "\"vocabflow_app\".\"master_vocabulary_import_runs\".\"reconciliation_hash\" ~ '^[0-9a-f]{64}$'"
+        },
+        "master_vocabulary_import_runs_plan_fingerprint_check": {
+          "name": "master_vocabulary_import_runs_plan_fingerprint_check",
+          "value": "\"vocabflow_app\".\"master_vocabulary_import_runs\".\"plan_fingerprint\" ~ '^[0-9a-f]{64}$'"
+        },
+        "master_vocabulary_import_runs_environment_check": {
+          "name": "master_vocabulary_import_runs_environment_check",
+          "value": "\"vocabflow_app\".\"master_vocabulary_import_runs\".\"environment\" IN ('development', 'test', 'production')"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "vocabflow_app.master_vocabulary_mappings": {
+      "name": "master_vocabulary_mappings",
+      "schema": "vocabflow_app",
+      "columns": {
+        "master_sense_id": {
+          "name": "master_sense_id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "master_lexeme_id": {
+          "name": "master_lexeme_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "vocabulary_id": {
+          "name": "vocabulary_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "source_dataset_id": {
+          "name": "source_dataset_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "source_dataset_version": {
+          "name": "source_dataset_version",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "source_schema_version": {
+          "name": "source_schema_version",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "projection_contract_version": {
+          "name": "projection_contract_version",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "applied_projection_fingerprint": {
+          "name": "applied_projection_fingerprint",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "applied_lexeme_revision": {
+          "name": "applied_lexeme_revision",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "applied_sense_revision": {
+          "name": "applied_sense_revision",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "last_release_hash": {
+          "name": "last_release_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "last_import_run_id": {
+          "name": "last_import_run_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "master_vocabulary_mappings_vocabulary_id_vocabularies_id_fk": {
+          "name": "master_vocabulary_mappings_vocabulary_id_vocabularies_id_fk",
+          "tableFrom": "master_vocabulary_mappings",
+          "tableTo": "vocabularies",
+          "schemaTo": "vocabflow_app",
+          "columnsFrom": [
+            "vocabulary_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "master_vocabulary_mappings_last_import_run_id_master_vocabulary_import_runs_id_fk": {
+          "name": "master_vocabulary_mappings_last_import_run_id_master_vocabulary_import_runs_id_fk",
+          "tableFrom": "master_vocabulary_mappings",
+          "tableTo": "master_vocabulary_import_runs",
+          "schemaTo": "vocabflow_app",
+          "columnsFrom": [
+            "last_import_run_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "master_vocabulary_mappings_vocabulary_id_unique": {
+          "name": "master_vocabulary_mappings_vocabulary_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "vocabulary_id"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {
+        "master_vocabulary_mappings_fingerprint_check": {
+          "name": "master_vocabulary_mappings_fingerprint_check",
+          "value": "\"vocabflow_app\".\"master_vocabulary_mappings\".\"applied_projection_fingerprint\" ~ '^[0-9a-f]{64}$'"
+        },
+        "master_vocabulary_mappings_release_hash_check": {
+          "name": "master_vocabulary_mappings_release_hash_check",
+          "value": "\"vocabflow_app\".\"master_vocabulary_mappings\".\"last_release_hash\" ~ '^[0-9a-f]{64}$'"
+        },
+        "master_vocabulary_mappings_lexeme_revision_check": {
+          "name": "master_vocabulary_mappings_lexeme_revision_check",
+          "value": "\"vocabflow_app\".\"master_vocabulary_mappings\".\"applied_lexeme_revision\" >= 1"
+        },
+        "master_vocabulary_mappings_sense_revision_check": {
+          "name": "master_vocabulary_mappings_sense_revision_check",
+          "value": "\"vocabflow_app\".\"master_vocabulary_mappings\".\"applied_sense_revision\" >= 1"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "vocabflow_app.master_vocabulary_topic_memberships": {
+      "name": "master_vocabulary_topic_memberships",
+      "schema": "vocabflow_app",
+      "columns": {
+        "master_sense_id": {
+          "name": "master_sense_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "master_topic_id": {
+          "name": "master_topic_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "vocabulary_id": {
+          "name": "vocabulary_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "topic_id": {
+          "name": "topic_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "last_release_hash": {
+          "name": "last_release_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "master_vocabulary_topic_memberships_sense_fk": {
+          "name": "master_vocabulary_topic_memberships_sense_fk",
+          "tableFrom": "master_vocabulary_topic_memberships",
+          "tableTo": "master_vocabulary_mappings",
+          "schemaTo": "vocabflow_app",
+          "columnsFrom": [
+            "master_sense_id"
+          ],
+          "columnsTo": [
+            "master_sense_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "master_vocabulary_topic_memberships_topic_fk": {
+          "name": "master_vocabulary_topic_memberships_topic_fk",
+          "tableFrom": "master_vocabulary_topic_memberships",
+          "tableTo": "master_topic_mappings",
+          "schemaTo": "vocabflow_app",
+          "columnsFrom": [
+            "master_topic_id"
+          ],
+          "columnsTo": [
+            "master_topic_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "master_vocabulary_topic_memberships_runtime_link_fk": {
+          "name": "master_vocabulary_topic_memberships_runtime_link_fk",
+          "tableFrom": "master_vocabulary_topic_memberships",
+          "tableTo": "vocabulary_topics",
+          "schemaTo": "vocabflow_app",
+          "columnsFrom": [
+            "vocabulary_id",
+            "topic_id"
+          ],
+          "columnsTo": [
+            "vocabulary_id",
+            "topic_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "master_vocabulary_topic_memberships_pk": {
+          "name": "master_vocabulary_topic_memberships_pk",
+          "columns": [
+            "master_sense_id",
+            "master_topic_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {
+        "master_vocabulary_topic_memberships_app_pair_unique": {
+          "name": "master_vocabulary_topic_memberships_app_pair_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "vocabulary_id",
+            "topic_id"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {
+        "master_vocabulary_topic_memberships_release_hash_check": {
+          "name": "master_vocabulary_topic_memberships_release_hash_check",
+          "value": "\"vocabflow_app\".\"master_vocabulary_topic_memberships\".\"last_release_hash\" ~ '^[0-9a-f]{64}$'"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "vocabflow_app.review_events": {
+      "name": "review_events",
+      "schema": "vocabflow_app",
+      "columns": {
+        "household_id": {
+          "name": "household_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "review_id": {
+          "name": "review_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "request_fingerprint": {
+          "name": "request_fingerprint",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "learner_id": {
+          "name": "learner_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "vocabulary_id": {
+          "name": "vocabulary_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "result": {
+          "name": "result",
+          "type": "review_result",
+          "typeSchema": "vocabflow_app",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "previous_status": {
+          "name": "previous_status",
+          "type": "learning_status",
+          "typeSchema": "vocabflow_app",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "new_status": {
+          "name": "new_status",
+          "type": "learning_status",
+          "typeSchema": "vocabflow_app",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "previous_interval": {
+          "name": "previous_interval",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "new_interval": {
+          "name": "new_interval",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "expected_revision": {
+          "name": "expected_revision",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "resulting_revision": {
+          "name": "resulting_revision",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "review_date": {
+          "name": "review_date",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "reviewed_at": {
+          "name": "reviewed_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "response_payload": {
+          "name": "response_payload",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "review_events_learner_reviewed_at_idx": {
+          "name": "review_events_learner_reviewed_at_idx",
+          "columns": [
+            {
+              "expression": "learner_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "reviewed_at",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "review_events_learner_vocabulary_reviewed_at_idx": {
+          "name": "review_events_learner_vocabulary_reviewed_at_idx",
+          "columns": [
+            {
+              "expression": "learner_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "vocabulary_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "reviewed_at",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "review_events_household_id_households_id_fk": {
+          "name": "review_events_household_id_households_id_fk",
+          "tableFrom": "review_events",
+          "tableTo": "households",
+          "schemaTo": "vocabflow_app",
+          "columnsFrom": [
+            "household_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "review_events_learner_id_learner_profiles_id_fk": {
+          "name": "review_events_learner_id_learner_profiles_id_fk",
+          "tableFrom": "review_events",
+          "tableTo": "learner_profiles",
+          "schemaTo": "vocabflow_app",
+          "columnsFrom": [
+            "learner_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "review_events_vocabulary_id_vocabularies_id_fk": {
+          "name": "review_events_vocabulary_id_vocabularies_id_fk",
+          "tableFrom": "review_events",
+          "tableTo": "vocabularies",
+          "schemaTo": "vocabflow_app",
+          "columnsFrom": [
+            "vocabulary_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "review_events_household_review_pk": {
+          "name": "review_events_household_review_pk",
+          "columns": [
+            "household_id",
+            "review_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {
+        "review_events_previous_interval_check": {
+          "name": "review_events_previous_interval_check",
+          "value": "\"vocabflow_app\".\"review_events\".\"previous_interval\" >= 0 AND \"vocabflow_app\".\"review_events\".\"previous_interval\" <= 9007199254740991"
+        },
+        "review_events_new_interval_check": {
+          "name": "review_events_new_interval_check",
+          "value": "\"vocabflow_app\".\"review_events\".\"new_interval\" >= 0 AND \"vocabflow_app\".\"review_events\".\"new_interval\" <= 9007199254740991"
+        },
+        "review_events_expected_revision_check": {
+          "name": "review_events_expected_revision_check",
+          "value": "\"vocabflow_app\".\"review_events\".\"expected_revision\" >= 0 AND \"vocabflow_app\".\"review_events\".\"expected_revision\" <= 9007199254740991"
+        },
+        "review_events_resulting_revision_check": {
+          "name": "review_events_resulting_revision_check",
+          "value": "\"vocabflow_app\".\"review_events\".\"resulting_revision\" > 0 AND \"vocabflow_app\".\"review_events\".\"resulting_revision\" <= 9007199254740991"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "vocabflow_app.session": {
+      "name": "session",
+      "schema": "vocabflow_app",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "expires_at": {
+          "name": "expires_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "token": {
+          "name": "token",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "ip_address": {
+          "name": "ip_address",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user_agent": {
+          "name": "user_agent",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "session_user_id_user_id_fk": {
+          "name": "session_user_id_user_id_fk",
+          "tableFrom": "session",
+          "tableTo": "user",
+          "schemaTo": "vocabflow_app",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "session_token_unique": {
+          "name": "session_token_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "token"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "vocabflow_app.topics": {
+      "name": "topics",
+      "schema": "vocabflow_app",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "byDefault",
+            "name": "topics_id_seq",
+            "schema": "vocabflow_app",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "2147483647",
+            "cache": "1",
+            "cycle": false
+          }
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "sort_order": {
+          "name": "sort_order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "enabled": {
+          "name": "enabled",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "source_topic": {
+          "name": "source_topic",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "topics_enabled_sort_order_id_idx": {
+          "name": "topics_enabled_sort_order_id_idx",
+          "columns": [
+            {
+              "expression": "enabled",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "sort_order",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "topics_slug_unique": {
+          "name": "topics_slug_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "slug"
+          ]
+        },
+        "topics_source_topic_unique": {
+          "name": "topics_source_topic_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "source_topic"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {
+        "topics_sort_order_check": {
+          "name": "topics_sort_order_check",
+          "value": "\"vocabflow_app\".\"topics\".\"sort_order\" >= 0"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "vocabflow_app.user": {
+      "name": "user",
+      "schema": "vocabflow_app",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "email": {
+          "name": "email",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "email_verified": {
+          "name": "email_verified",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "image": {
+          "name": "image",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "user_email_unique": {
+          "name": "user_email_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "email"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "vocabflow_app.verification": {
+      "name": "verification",
+      "schema": "vocabflow_app",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "identifier": {
+          "name": "identifier",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "value": {
+          "name": "value",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "expires_at": {
+          "name": "expires_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "vocabflow_app.vocabularies": {
+      "name": "vocabularies",
+      "schema": "vocabflow_app",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "byDefault",
+            "name": "vocabularies_id_seq",
+            "schema": "vocabflow_app",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "2147483647",
+            "cache": "1",
+            "cycle": false
+          }
+        },
+        "word": {
+          "name": "word",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ipa": {
+          "name": "ipa",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "vietnamese": {
+          "name": "vietnamese",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "vietnamese_override": {
+          "name": "vietnamese_override",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "definition_en": {
+          "name": "definition_en",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "example_en": {
+          "name": "example_en",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_url": {
+          "name": "image_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_quarantined": {
+          "name": "image_quarantined",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "audio_url": {
+          "name": "audio_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "topic": {
+          "name": "topic",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "level": {
+          "name": "level",
+          "type": "vocabulary_level",
+          "typeSchema": "vocabflow_app",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "enabled": {
+          "name": "enabled",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "content_version": {
+          "name": "content_version",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 1
+        },
+        "source_dataset": {
+          "name": "source_dataset",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "source_record_id": {
+          "name": "source_record_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "vocabularies_source_identity_unique": {
+          "name": "vocabularies_source_identity_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "source_dataset",
+            "source_record_id"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {
+        "vocabularies_content_version_check": {
+          "name": "vocabularies_content_version_check",
+          "value": "\"vocabflow_app\".\"vocabularies\".\"content_version\" >= 1"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "vocabflow_app.vocabulary_topics": {
+      "name": "vocabulary_topics",
+      "schema": "vocabflow_app",
+      "columns": {
+        "vocabulary_id": {
+          "name": "vocabulary_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "topic_id": {
+          "name": "topic_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "vocabulary_topics_topic_vocabulary_idx": {
+          "name": "vocabulary_topics_topic_vocabulary_idx",
+          "columns": [
+            {
+              "expression": "topic_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "vocabulary_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "vocabulary_topics_vocabulary_id_vocabularies_id_fk": {
+          "name": "vocabulary_topics_vocabulary_id_vocabularies_id_fk",
+          "tableFrom": "vocabulary_topics",
+          "tableTo": "vocabularies",
+          "schemaTo": "vocabflow_app",
+          "columnsFrom": [
+            "vocabulary_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "vocabulary_topics_topic_id_topics_id_fk": {
+          "name": "vocabulary_topics_topic_id_topics_id_fk",
+          "tableFrom": "vocabulary_topics",
+          "tableTo": "topics",
+          "schemaTo": "vocabflow_app",
+          "columnsFrom": [
+            "topic_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "vocabulary_topics_vocabulary_topic_pk": {
+          "name": "vocabulary_topics_vocabulary_topic_pk",
+          "columns": [
+            "vocabulary_id",
+            "topic_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "vocabflow_app.xp_events": {
+      "name": "xp_events",
+      "schema": "vocabflow_app",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "learner_id": {
+          "name": "learner_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "source_type": {
+          "name": "source_type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "source_key": {
+          "name": "source_key",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "points": {
+          "name": "points",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "xp_events_learner_created_at_idx": {
+          "name": "xp_events_learner_created_at_idx",
+          "columns": [
+            {
+              "expression": "learner_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "created_at",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "xp_events_learner_id_learner_profiles_id_fk": {
+          "name": "xp_events_learner_id_learner_profiles_id_fk",
+          "tableFrom": "xp_events",
+          "tableTo": "learner_profiles",
+          "schemaTo": "vocabflow_app",
+          "columnsFrom": [
+            "learner_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "xp_events_source_type_key_unique": {
+          "name": "xp_events_source_type_key_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "source_type",
+            "source_key"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {
+        "xp_events_source_type_check": {
+          "name": "xp_events_source_type_check",
+          "value": "\"vocabflow_app\".\"xp_events\".\"source_type\" IN ('REVIEW', 'EXERCISE_CORRECT', 'DAILY_GOAL')"
+        },
+        "xp_events_points_check": {
+          "name": "xp_events_points_check",
+          "value": "\"vocabflow_app\".\"xp_events\".\"points\" > 0 AND \"vocabflow_app\".\"xp_events\".\"points\" <= 1000"
+        }
+      },
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {
+    "vocabflow_app.household_role": {
+      "name": "household_role",
+      "schema": "vocabflow_app",
+      "values": [
+        "OWNER",
+        "PARENT"
+      ]
+    },
+    "vocabflow_app.learning_status": {
+      "name": "learning_status",
+      "schema": "vocabflow_app",
+      "values": [
+        "NEW",
+        "LEARNING",
+        "MASTERED"
+      ]
+    },
+    "vocabflow_app.review_result": {
+      "name": "review_result",
+      "schema": "vocabflow_app",
+      "values": [
+        "REMEMBERED",
+        "FORGOTTEN"
+      ]
+    },
+    "vocabflow_app.vocabulary_level": {
+      "name": "vocabulary_level",
+      "schema": "vocabflow_app",
+      "values": [
+        "GRADE_1",
+        "GRADE_2",
+        "GRADE_3",
+        "GRADE_4",
+        "GRADE_5",
+        "GENERAL"
+      ]
+    }
+  },
+  "schemas": {
+    "vocabflow_app": "vocabflow_app"
+  },
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

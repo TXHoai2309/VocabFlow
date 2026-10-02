@@ -1,0 +1,2338 @@
+{
+  "planVersion": "master-runtime-import-plan-v1",
+  "mode": "DRY_RUN",
+  "targetEnvironment": "NOT_CONNECTED",
+  "source": {
+    "datasetId": "0195f85c-7b2a-7d10-8c01-000000000001",
+    "datasetVersion": "2.0.0",
+    "schemaVersion": "2.0.1",
+    "manifestStatus": "DRAFT",
+    "releaseHash": null,
+    "appImportContractVersion": "app-import-v2",
+    "projectionContractVersion": "runtime-vocabulary-projection-v1"
+  },
+  "eligibility": {
+    "importEligible": false,
+    "reconciliationComplete": false,
+    "canApply": false
+  },
+  "reconciliation": {
+    "hash": "254c7d2987c463a43788b0b6f5bae1c2eeeafcefc8349babc4a8d8567c335dbd",
+    "vocabularyResolved": 0,
+    "vocabularyUnresolved": 25,
+    "topicsResolved": 0,
+    "topicsUnresolved": 18,
+    "learningSetsResolved": 0,
+    "learningSetsUnresolved": 7
+  },
+  "vocabulary": [
+    {
+      "masterSenseId": "01a0fc13-09ed-70b4-801b-408be3b771e9",
+      "action": "BLOCKED",
+      "mappingAction": "NONE",
+      "appVocabularyId": null,
+      "expectedContentVersion": null,
+      "nextContentVersion": null,
+      "fingerprint": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "SENSE",
+          "entityId": "01a0fc13-09ed-70b4-801b-408be3b771e9",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-7211-8e5a-784c689a0c7a",
+      "action": "BLOCKED",
+      "mappingAction": "NONE",
+      "appVocabularyId": null,
+      "expectedContentVersion": null,
+      "nextContentVersion": null,
+      "fingerprint": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "SENSE",
+          "entityId": "01a0fc13-09ee-7211-8e5a-784c689a0c7a",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-7584-a480-e313e359f744",
+      "action": "BLOCKED",
+      "mappingAction": "NONE",
+      "appVocabularyId": null,
+      "expectedContentVersion": null,
+      "nextContentVersion": null,
+      "fingerprint": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "SENSE",
+          "entityId": "01a0fc13-09ee-7584-a480-e313e359f744",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-7279-8a52-44ce829fb601",
+      "action": "BLOCKED",
+      "mappingAction": "NONE",
+      "appVocabularyId": null,
+      "expectedContentVersion": null,
+      "nextContentVersion": null,
+      "fingerprint": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "SENSE",
+          "entityId": "01a0fc13-09ee-7279-8a52-44ce829fb601",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-786f-9492-e39a9a049078",
+      "action": "BLOCKED",
+      "mappingAction": "NONE",
+      "appVocabularyId": null,
+      "expectedContentVersion": null,
+      "nextContentVersion": null,
+      "fingerprint": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "SENSE",
+          "entityId": "01a0fc13-09ee-786f-9492-e39a9a049078",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-71ff-9a0a-a96e48ef7dac",
+      "action": "BLOCKED",
+      "mappingAction": "NONE",
+      "appVocabularyId": null,
+      "expectedContentVersion": null,
+      "nextContentVersion": null,
+      "fingerprint": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "SENSE",
+          "entityId": "01a0fc13-09ee-71ff-9a0a-a96e48ef7dac",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-7823-95fc-5d1d76f13fa5",
+      "action": "BLOCKED",
+      "mappingAction": "NONE",
+      "appVocabularyId": null,
+      "expectedContentVersion": null,
+      "nextContentVersion": null,
+      "fingerprint": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "SENSE",
+          "entityId": "01a0fc13-09ee-7823-95fc-5d1d76f13fa5",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-72d5-80ac-b4dca3b54ceb",
+      "action": "BLOCKED",
+      "mappingAction": "NONE",
+      "appVocabularyId": null,
+      "expectedContentVersion": null,
+      "nextContentVersion": null,
+      "fingerprint": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "SENSE",
+          "entityId": "01a0fc13-09ee-72d5-80ac-b4dca3b54ceb",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-7768-9be6-d20fa32521ee",
+      "action": "BLOCKED",
+      "mappingAction": "NONE",
+      "appVocabularyId": null,
+      "expectedContentVersion": null,
+      "nextContentVersion": null,
+      "fingerprint": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "SENSE",
+          "entityId": "01a0fc13-09ee-7768-9be6-d20fa32521ee",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-79c7-85ff-cbe0fc14a249",
+      "action": "BLOCKED",
+      "mappingAction": "NONE",
+      "appVocabularyId": null,
+      "expectedContentVersion": null,
+      "nextContentVersion": null,
+      "fingerprint": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "SENSE",
+          "entityId": "01a0fc13-09ee-79c7-85ff-cbe0fc14a249",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-7d1f-b899-8bc496d8ca5a",
+      "action": "BLOCKED",
+      "mappingAction": "NONE",
+      "appVocabularyId": null,
+      "expectedContentVersion": null,
+      "nextContentVersion": null,
+      "fingerprint": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "SENSE",
+          "entityId": "01a0fc13-09ee-7d1f-b899-8bc496d8ca5a",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-7a30-8772-3b0ac18c20a9",
+      "action": "BLOCKED",
+      "mappingAction": "NONE",
+      "appVocabularyId": null,
+      "expectedContentVersion": null,
+      "nextContentVersion": null,
+      "fingerprint": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "SENSE",
+          "entityId": "01a0fc13-09ee-7a30-8772-3b0ac18c20a9",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-769b-b7f9-19f20a1686f4",
+      "action": "BLOCKED",
+      "mappingAction": "NONE",
+      "appVocabularyId": null,
+      "expectedContentVersion": null,
+      "nextContentVersion": null,
+      "fingerprint": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "SENSE",
+          "entityId": "01a0fc13-09ee-769b-b7f9-19f20a1686f4",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-74ac-93f8-38acfc514554",
+      "action": "BLOCKED",
+      "mappingAction": "NONE",
+      "appVocabularyId": null,
+      "expectedContentVersion": null,
+      "nextContentVersion": null,
+      "fingerprint": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "SENSE",
+          "entityId": "01a0fc13-09ee-74ac-93f8-38acfc514554",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-710c-8e76-753a5cfea69c",
+      "action": "BLOCKED",
+      "mappingAction": "NONE",
+      "appVocabularyId": null,
+      "expectedContentVersion": null,
+      "nextContentVersion": null,
+      "fingerprint": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "SENSE",
+          "entityId": "01a0fc13-09ef-710c-8e76-753a5cfea69c",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-7d37-a50f-d05db6b1a89c",
+      "action": "BLOCKED",
+      "mappingAction": "NONE",
+      "appVocabularyId": null,
+      "expectedContentVersion": null,
+      "nextContentVersion": null,
+      "fingerprint": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "SENSE",
+          "entityId": "01a0fc13-09ef-7d37-a50f-d05db6b1a89c",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-7141-984b-9ed540913f76",
+      "action": "BLOCKED",
+      "mappingAction": "NONE",
+      "appVocabularyId": null,
+      "expectedContentVersion": null,
+      "nextContentVersion": null,
+      "fingerprint": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "SENSE",
+          "entityId": "01a0fc13-09ef-7141-984b-9ed540913f76",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-7d8c-a142-c41ca39a9e4d",
+      "action": "BLOCKED",
+      "mappingAction": "NONE",
+      "appVocabularyId": null,
+      "expectedContentVersion": null,
+      "nextContentVersion": null,
+      "fingerprint": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "SENSE",
+          "entityId": "01a0fc13-09ef-7d8c-a142-c41ca39a9e4d",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-7b92-9fe7-6e32ed4d4b6e",
+      "action": "BLOCKED",
+      "mappingAction": "NONE",
+      "appVocabularyId": null,
+      "expectedContentVersion": null,
+      "nextContentVersion": null,
+      "fingerprint": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "SENSE",
+          "entityId": "01a0fc13-09ef-7b92-9fe7-6e32ed4d4b6e",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-74c6-8f36-9667eea96447",
+      "action": "BLOCKED",
+      "mappingAction": "NONE",
+      "appVocabularyId": null,
+      "expectedContentVersion": null,
+      "nextContentVersion": null,
+      "fingerprint": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "SENSE",
+          "entityId": "01a0fc13-09ef-74c6-8f36-9667eea96447",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-75bb-bbc6-a31a5bc3c83c",
+      "action": "BLOCKED",
+      "mappingAction": "NONE",
+      "appVocabularyId": null,
+      "expectedContentVersion": null,
+      "nextContentVersion": null,
+      "fingerprint": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "SENSE",
+          "entityId": "01a0fc13-09ef-75bb-bbc6-a31a5bc3c83c",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-75ac-b815-039ab337c01a",
+      "action": "BLOCKED",
+      "mappingAction": "NONE",
+      "appVocabularyId": null,
+      "expectedContentVersion": null,
+      "nextContentVersion": null,
+      "fingerprint": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "SENSE",
+          "entityId": "01a0fc13-09ef-75ac-b815-039ab337c01a",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-7e09-a527-a47867da6730",
+      "action": "BLOCKED",
+      "mappingAction": "NONE",
+      "appVocabularyId": null,
+      "expectedContentVersion": null,
+      "nextContentVersion": null,
+      "fingerprint": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "SENSE",
+          "entityId": "01a0fc13-09ef-7e09-a527-a47867da6730",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-755a-8833-aa46e4f7483a",
+      "action": "BLOCKED",
+      "mappingAction": "NONE",
+      "appVocabularyId": null,
+      "expectedContentVersion": null,
+      "nextContentVersion": null,
+      "fingerprint": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "SENSE",
+          "entityId": "01a0fc13-09ef-755a-8833-aa46e4f7483a",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09f0-7869-8182-2e73328b05dd",
+      "action": "BLOCKED",
+      "mappingAction": "NONE",
+      "appVocabularyId": null,
+      "expectedContentVersion": null,
+      "nextContentVersion": null,
+      "fingerprint": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "SENSE",
+          "entityId": "01a0fc13-09f0-7869-8182-2e73328b05dd",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "masterId": "01a0fc13-09e9-75f1-b5cb-d0aa3c7a261a",
+      "action": "BLOCKED",
+      "appId": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "TOPIC",
+          "entityId": "01a0fc13-09e9-75f1-b5cb-d0aa3c7a261a",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterId": "01a0fc13-09e9-7d2b-bce3-fa4e943bcbf5",
+      "action": "BLOCKED",
+      "appId": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "TOPIC",
+          "entityId": "01a0fc13-09e9-7d2b-bce3-fa4e943bcbf5",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterId": "01a0fc13-09e9-779a-8f56-6334961158f5",
+      "action": "BLOCKED",
+      "appId": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "TOPIC",
+          "entityId": "01a0fc13-09e9-779a-8f56-6334961158f5",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterId": "01a0fc13-09e9-7952-9f4d-3931203ef4e5",
+      "action": "BLOCKED",
+      "appId": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "TOPIC",
+          "entityId": "01a0fc13-09e9-7952-9f4d-3931203ef4e5",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterId": "01a0fc13-09e8-717f-a0ec-bd3e1bf30e37",
+      "action": "BLOCKED",
+      "appId": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "TOPIC",
+          "entityId": "01a0fc13-09e8-717f-a0ec-bd3e1bf30e37",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterId": "01a0fc13-09e8-76e4-a314-bfd00d83ad93",
+      "action": "BLOCKED",
+      "appId": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "TOPIC",
+          "entityId": "01a0fc13-09e8-76e4-a314-bfd00d83ad93",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterId": "01a0fc13-09e8-700a-8d88-7673162c64ac",
+      "action": "BLOCKED",
+      "appId": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "TOPIC",
+          "entityId": "01a0fc13-09e8-700a-8d88-7673162c64ac",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterId": "01a0fc13-09e9-7447-8df1-9f6402ecee6d",
+      "action": "BLOCKED",
+      "appId": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "TOPIC",
+          "entityId": "01a0fc13-09e9-7447-8df1-9f6402ecee6d",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterId": "01a0fc13-09e9-7c61-a90d-a89672a8ce8a",
+      "action": "BLOCKED",
+      "appId": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "TOPIC",
+          "entityId": "01a0fc13-09e9-7c61-a90d-a89672a8ce8a",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterId": "01a0fc13-09e9-7f1e-bc34-e6b63ef49291",
+      "action": "BLOCKED",
+      "appId": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "TOPIC",
+          "entityId": "01a0fc13-09e9-7f1e-bc34-e6b63ef49291",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterId": "01a0fc13-09e9-7b6f-9590-1c378f0a4ec6",
+      "action": "BLOCKED",
+      "appId": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "TOPIC",
+          "entityId": "01a0fc13-09e9-7b6f-9590-1c378f0a4ec6",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterId": "01a0fc13-09e9-79c5-bc0c-b9e87d1600cb",
+      "action": "BLOCKED",
+      "appId": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "TOPIC",
+          "entityId": "01a0fc13-09e9-79c5-bc0c-b9e87d1600cb",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterId": "01a0fc13-09e8-7960-8072-7e3ed30f2c15",
+      "action": "BLOCKED",
+      "appId": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "TOPIC",
+          "entityId": "01a0fc13-09e8-7960-8072-7e3ed30f2c15",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterId": "01a0fc13-09e9-7438-bc1d-e5b86a4eff17",
+      "action": "BLOCKED",
+      "appId": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "TOPIC",
+          "entityId": "01a0fc13-09e9-7438-bc1d-e5b86a4eff17",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterId": "01a0fc13-09e9-75bd-b50c-da49032c2a25",
+      "action": "BLOCKED",
+      "appId": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "TOPIC",
+          "entityId": "01a0fc13-09e9-75bd-b50c-da49032c2a25",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterId": "01a0fc13-09e9-7ad6-8997-01a8459fdbd3",
+      "action": "BLOCKED",
+      "appId": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "TOPIC",
+          "entityId": "01a0fc13-09e9-7ad6-8997-01a8459fdbd3",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterId": "01a0fc13-09e9-74af-a3ea-f0b0ceafc8d7",
+      "action": "BLOCKED",
+      "appId": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "TOPIC",
+          "entityId": "01a0fc13-09e9-74af-a3ea-f0b0ceafc8d7",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterId": "01a0fc13-09e9-769b-9476-d9eaa2f9ff68",
+      "action": "BLOCKED",
+      "appId": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "TOPIC",
+          "entityId": "01a0fc13-09e9-769b-9476-d9eaa2f9ff68",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    }
+  ],
+  "learningSets": [
+    {
+      "masterId": "01a0fc13-09f2-7c82-82b8-c031f7feae33",
+      "action": "BLOCKED",
+      "appId": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "LEARNING_SET",
+          "entityId": "01a0fc13-09f2-7c82-82b8-c031f7feae33",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterId": "01a0fc13-09f2-700e-b1a8-ea88eca58c79",
+      "action": "BLOCKED",
+      "appId": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "LEARNING_SET",
+          "entityId": "01a0fc13-09f2-700e-b1a8-ea88eca58c79",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterId": "01a0fc13-09f2-7172-8fef-8dd7ab6c398a",
+      "action": "BLOCKED",
+      "appId": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "LEARNING_SET",
+          "entityId": "01a0fc13-09f2-7172-8fef-8dd7ab6c398a",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterId": "01a0fc13-09f2-7882-938a-c8d7e84399e8",
+      "action": "BLOCKED",
+      "appId": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "LEARNING_SET",
+          "entityId": "01a0fc13-09f2-7882-938a-c8d7e84399e8",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterId": "01a0fc13-09f2-7024-ae8b-167ec1c6d331",
+      "action": "BLOCKED",
+      "appId": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "LEARNING_SET",
+          "entityId": "01a0fc13-09f2-7024-ae8b-167ec1c6d331",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterId": "01a0fc13-09f2-7709-a32d-5bef5b1f7a51",
+      "action": "BLOCKED",
+      "appId": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "LEARNING_SET",
+          "entityId": "01a0fc13-09f2-7709-a32d-5bef5b1f7a51",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterId": "01a0fc13-09f2-7950-b681-beace24e6cb6",
+      "action": "BLOCKED",
+      "appId": null,
+      "issues": [
+        {
+          "code": "RECONCILIATION_UNRESOLVED",
+          "entityType": "LEARNING_SET",
+          "entityId": "01a0fc13-09f2-7950-b681-beace24e6cb6",
+          "message": "RECONCILIATION_UNRESOLVED"
+        }
+      ]
+    }
+  ],
+  "topicMemberships": [
+    {
+      "masterSenseId": "01a0fc13-09ef-7b92-9fe7-6e32ed4d4b6e",
+      "masterContainerId": "01a0fc13-09e9-75f1-b5cb-d0aa3c7a261a",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "TOPIC_MEMBERSHIP",
+          "entityId": "01a0fc13-09ef-7b92-9fe7-6e32ed4d4b6e:01a0fc13-09e9-75f1-b5cb-d0aa3c7a261a",
+          "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-7e09-a527-a47867da6730",
+      "masterContainerId": "01a0fc13-09e9-75f1-b5cb-d0aa3c7a261a",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "TOPIC_MEMBERSHIP",
+          "entityId": "01a0fc13-09ef-7e09-a527-a47867da6730:01a0fc13-09e9-75f1-b5cb-d0aa3c7a261a",
+          "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-7d8c-a142-c41ca39a9e4d",
+      "masterContainerId": "01a0fc13-09e9-7d2b-bce3-fa4e943bcbf5",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "TOPIC_MEMBERSHIP",
+          "entityId": "01a0fc13-09ef-7d8c-a142-c41ca39a9e4d:01a0fc13-09e9-7d2b-bce3-fa4e943bcbf5",
+          "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-79c7-85ff-cbe0fc14a249",
+      "masterContainerId": "01a0fc13-09e9-779a-8f56-6334961158f5",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "TOPIC_MEMBERSHIP",
+          "entityId": "01a0fc13-09ee-79c7-85ff-cbe0fc14a249:01a0fc13-09e9-779a-8f56-6334961158f5",
+          "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-710c-8e76-753a5cfea69c",
+      "masterContainerId": "01a0fc13-09e9-7952-9f4d-3931203ef4e5",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "TOPIC_MEMBERSHIP",
+          "entityId": "01a0fc13-09ef-710c-8e76-753a5cfea69c:01a0fc13-09e9-7952-9f4d-3931203ef4e5",
+          "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-7d1f-b899-8bc496d8ca5a",
+      "masterContainerId": "01a0fc13-09e8-717f-a0ec-bd3e1bf30e37",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "TOPIC_MEMBERSHIP",
+          "entityId": "01a0fc13-09ee-7d1f-b899-8bc496d8ca5a:01a0fc13-09e8-717f-a0ec-bd3e1bf30e37",
+          "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-7211-8e5a-784c689a0c7a",
+      "masterContainerId": "01a0fc13-09e8-76e4-a314-bfd00d83ad93",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "TOPIC_MEMBERSHIP",
+          "entityId": "01a0fc13-09ee-7211-8e5a-784c689a0c7a:01a0fc13-09e8-76e4-a314-bfd00d83ad93",
+          "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ed-70b4-801b-408be3b771e9",
+      "masterContainerId": "01a0fc13-09e8-700a-8d88-7673162c64ac",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "TOPIC_MEMBERSHIP",
+          "entityId": "01a0fc13-09ed-70b4-801b-408be3b771e9:01a0fc13-09e8-700a-8d88-7673162c64ac",
+          "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09f0-7869-8182-2e73328b05dd",
+      "masterContainerId": "01a0fc13-09e8-700a-8d88-7673162c64ac",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "TOPIC_MEMBERSHIP",
+          "entityId": "01a0fc13-09f0-7869-8182-2e73328b05dd:01a0fc13-09e8-700a-8d88-7673162c64ac",
+          "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-7a30-8772-3b0ac18c20a9",
+      "masterContainerId": "01a0fc13-09e9-7447-8df1-9f6402ecee6d",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "TOPIC_MEMBERSHIP",
+          "entityId": "01a0fc13-09ee-7a30-8772-3b0ac18c20a9:01a0fc13-09e9-7447-8df1-9f6402ecee6d",
+          "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-769b-b7f9-19f20a1686f4",
+      "masterContainerId": "01a0fc13-09e9-7c61-a90d-a89672a8ce8a",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "TOPIC_MEMBERSHIP",
+          "entityId": "01a0fc13-09ee-769b-b7f9-19f20a1686f4:01a0fc13-09e9-7c61-a90d-a89672a8ce8a",
+          "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-7141-984b-9ed540913f76",
+      "masterContainerId": "01a0fc13-09e9-7f1e-bc34-e6b63ef49291",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "TOPIC_MEMBERSHIP",
+          "entityId": "01a0fc13-09ef-7141-984b-9ed540913f76:01a0fc13-09e9-7f1e-bc34-e6b63ef49291",
+          "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-72d5-80ac-b4dca3b54ceb",
+      "masterContainerId": "01a0fc13-09e9-7b6f-9590-1c378f0a4ec6",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "TOPIC_MEMBERSHIP",
+          "entityId": "01a0fc13-09ee-72d5-80ac-b4dca3b54ceb:01a0fc13-09e9-7b6f-9590-1c378f0a4ec6",
+          "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-7279-8a52-44ce829fb601",
+      "masterContainerId": "01a0fc13-09e9-79c5-bc0c-b9e87d1600cb",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "TOPIC_MEMBERSHIP",
+          "entityId": "01a0fc13-09ee-7279-8a52-44ce829fb601:01a0fc13-09e9-79c5-bc0c-b9e87d1600cb",
+          "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-786f-9492-e39a9a049078",
+      "masterContainerId": "01a0fc13-09e9-79c5-bc0c-b9e87d1600cb",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "TOPIC_MEMBERSHIP",
+          "entityId": "01a0fc13-09ee-786f-9492-e39a9a049078:01a0fc13-09e9-79c5-bc0c-b9e87d1600cb",
+          "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-74c6-8f36-9667eea96447",
+      "masterContainerId": "01a0fc13-09e9-79c5-bc0c-b9e87d1600cb",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "TOPIC_MEMBERSHIP",
+          "entityId": "01a0fc13-09ef-74c6-8f36-9667eea96447:01a0fc13-09e9-79c5-bc0c-b9e87d1600cb",
+          "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-755a-8833-aa46e4f7483a",
+      "masterContainerId": "01a0fc13-09e9-79c5-bc0c-b9e87d1600cb",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "TOPIC_MEMBERSHIP",
+          "entityId": "01a0fc13-09ef-755a-8833-aa46e4f7483a:01a0fc13-09e9-79c5-bc0c-b9e87d1600cb",
+          "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-75ac-b815-039ab337c01a",
+      "masterContainerId": "01a0fc13-09e8-7960-8072-7e3ed30f2c15",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "TOPIC_MEMBERSHIP",
+          "entityId": "01a0fc13-09ef-75ac-b815-039ab337c01a:01a0fc13-09e8-7960-8072-7e3ed30f2c15",
+          "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-71ff-9a0a-a96e48ef7dac",
+      "masterContainerId": "01a0fc13-09e9-7438-bc1d-e5b86a4eff17",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "TOPIC_MEMBERSHIP",
+          "entityId": "01a0fc13-09ee-71ff-9a0a-a96e48ef7dac:01a0fc13-09e9-7438-bc1d-e5b86a4eff17",
+          "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-7823-95fc-5d1d76f13fa5",
+      "masterContainerId": "01a0fc13-09e9-7438-bc1d-e5b86a4eff17",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "TOPIC_MEMBERSHIP",
+          "entityId": "01a0fc13-09ee-7823-95fc-5d1d76f13fa5:01a0fc13-09e9-7438-bc1d-e5b86a4eff17",
+          "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-74ac-93f8-38acfc514554",
+      "masterContainerId": "01a0fc13-09e9-75bd-b50c-da49032c2a25",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "TOPIC_MEMBERSHIP",
+          "entityId": "01a0fc13-09ee-74ac-93f8-38acfc514554:01a0fc13-09e9-75bd-b50c-da49032c2a25",
+          "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-7584-a480-e313e359f744",
+      "masterContainerId": "01a0fc13-09e9-7ad6-8997-01a8459fdbd3",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "TOPIC_MEMBERSHIP",
+          "entityId": "01a0fc13-09ee-7584-a480-e313e359f744:01a0fc13-09e9-7ad6-8997-01a8459fdbd3",
+          "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-75bb-bbc6-a31a5bc3c83c",
+      "masterContainerId": "01a0fc13-09e9-7ad6-8997-01a8459fdbd3",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "TOPIC_MEMBERSHIP",
+          "entityId": "01a0fc13-09ef-75bb-bbc6-a31a5bc3c83c:01a0fc13-09e9-7ad6-8997-01a8459fdbd3",
+          "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-7d37-a50f-d05db6b1a89c",
+      "masterContainerId": "01a0fc13-09e9-74af-a3ea-f0b0ceafc8d7",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "TOPIC_MEMBERSHIP",
+          "entityId": "01a0fc13-09ef-7d37-a50f-d05db6b1a89c:01a0fc13-09e9-74af-a3ea-f0b0ceafc8d7",
+          "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-7768-9be6-d20fa32521ee",
+      "masterContainerId": "01a0fc13-09e9-769b-9476-d9eaa2f9ff68",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "TOPIC_MEMBERSHIP",
+          "entityId": "01a0fc13-09ee-7768-9be6-d20fa32521ee:01a0fc13-09e9-769b-9476-d9eaa2f9ff68",
+          "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    }
+  ],
+  "learningSetMemberships": [
+    {
+      "masterSenseId": "01a0fc13-09ed-70b4-801b-408be3b771e9",
+      "masterContainerId": "01a0fc13-09f2-7c82-82b8-c031f7feae33",
+      "masterItemId": "01a0fc13-09f2-7ee2-810b-6068394aef21",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "position": 1,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "LEARNING_SET_ITEM",
+          "entityId": "01a0fc13-09f2-7ee2-810b-6068394aef21",
+          "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-7279-8a52-44ce829fb601",
+      "masterContainerId": "01a0fc13-09f2-7c82-82b8-c031f7feae33",
+      "masterItemId": "01a0fc13-09f2-7539-a9de-87c0de76f909",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "position": 2,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "LEARNING_SET_ITEM",
+          "entityId": "01a0fc13-09f2-7539-a9de-87c0de76f909",
+          "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-72d5-80ac-b4dca3b54ceb",
+      "masterContainerId": "01a0fc13-09f2-7c82-82b8-c031f7feae33",
+      "masterItemId": "01a0fc13-09f2-7834-ba60-8c56966db1a1",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "position": 3,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "LEARNING_SET_ITEM",
+          "entityId": "01a0fc13-09f2-7834-ba60-8c56966db1a1",
+          "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-7d1f-b899-8bc496d8ca5a",
+      "masterContainerId": "01a0fc13-09f2-7c82-82b8-c031f7feae33",
+      "masterItemId": "01a0fc13-09f2-747f-839b-f6986b8fc038",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "position": 4,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "LEARNING_SET_ITEM",
+          "entityId": "01a0fc13-09f2-747f-839b-f6986b8fc038",
+          "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-7b92-9fe7-6e32ed4d4b6e",
+      "masterContainerId": "01a0fc13-09f2-7c82-82b8-c031f7feae33",
+      "masterItemId": "01a0fc13-09f2-7f88-9f16-25228210c0fe",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "position": 5,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "LEARNING_SET_ITEM",
+          "entityId": "01a0fc13-09f2-7f88-9f16-25228210c0fe",
+          "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-74c6-8f36-9667eea96447",
+      "masterContainerId": "01a0fc13-09f2-7c82-82b8-c031f7feae33",
+      "masterItemId": "01a0fc13-09f2-7a44-8c06-42f406cba0f8",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "position": 6,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "LEARNING_SET_ITEM",
+          "entityId": "01a0fc13-09f2-7a44-8c06-42f406cba0f8",
+          "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-75bb-bbc6-a31a5bc3c83c",
+      "masterContainerId": "01a0fc13-09f2-7c82-82b8-c031f7feae33",
+      "masterItemId": "01a0fc13-09f2-7a34-b32a-3e313c3e5d4e",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "position": 7,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "LEARNING_SET_ITEM",
+          "entityId": "01a0fc13-09f2-7a34-b32a-3e313c3e5d4e",
+          "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-755a-8833-aa46e4f7483a",
+      "masterContainerId": "01a0fc13-09f2-7c82-82b8-c031f7feae33",
+      "masterItemId": "01a0fc13-09f2-7fb2-a84f-f34774a885df",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "position": 8,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "LEARNING_SET_ITEM",
+          "entityId": "01a0fc13-09f2-7fb2-a84f-f34774a885df",
+          "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09f0-7869-8182-2e73328b05dd",
+      "masterContainerId": "01a0fc13-09f2-7c82-82b8-c031f7feae33",
+      "masterItemId": "01a0fc13-09f2-7b44-b890-12e8752f9f96",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "position": 9,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "LEARNING_SET_ITEM",
+          "entityId": "01a0fc13-09f2-7b44-b890-12e8752f9f96",
+          "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ed-70b4-801b-408be3b771e9",
+      "masterContainerId": "01a0fc13-09f2-700e-b1a8-ea88eca58c79",
+      "masterItemId": "01a0fc13-09f2-7417-9170-137771303c24",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "position": 1,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "LEARNING_SET_ITEM",
+          "entityId": "01a0fc13-09f2-7417-9170-137771303c24",
+          "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09f0-7869-8182-2e73328b05dd",
+      "masterContainerId": "01a0fc13-09f2-700e-b1a8-ea88eca58c79",
+      "masterItemId": "01a0fc13-09f2-79e0-af34-5bbc784d70fb",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "position": 2,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "LEARNING_SET_ITEM",
+          "entityId": "01a0fc13-09f2-79e0-af34-5bbc784d70fb",
+          "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ed-70b4-801b-408be3b771e9",
+      "masterContainerId": "01a0fc13-09f2-7172-8fef-8dd7ab6c398a",
+      "masterItemId": "01a0fc13-09f2-7a8f-aa9e-a0c8c5f3d115",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "position": 1,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "LEARNING_SET_ITEM",
+          "entityId": "01a0fc13-09f2-7a8f-aa9e-a0c8c5f3d115",
+          "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-7279-8a52-44ce829fb601",
+      "masterContainerId": "01a0fc13-09f2-7172-8fef-8dd7ab6c398a",
+      "masterItemId": "01a0fc13-09f2-78c8-80a1-863d7ecbdcc4",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "position": 2,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "LEARNING_SET_ITEM",
+          "entityId": "01a0fc13-09f2-78c8-80a1-863d7ecbdcc4",
+          "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-72d5-80ac-b4dca3b54ceb",
+      "masterContainerId": "01a0fc13-09f2-7172-8fef-8dd7ab6c398a",
+      "masterItemId": "01a0fc13-09f2-73a3-8033-8924ac4f1148",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "position": 3,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "LEARNING_SET_ITEM",
+          "entityId": "01a0fc13-09f2-73a3-8033-8924ac4f1148",
+          "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-7d1f-b899-8bc496d8ca5a",
+      "masterContainerId": "01a0fc13-09f2-7172-8fef-8dd7ab6c398a",
+      "masterItemId": "01a0fc13-09f2-7510-8361-80a39c6171d0",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "position": 4,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "LEARNING_SET_ITEM",
+          "entityId": "01a0fc13-09f2-7510-8361-80a39c6171d0",
+          "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-7b92-9fe7-6e32ed4d4b6e",
+      "masterContainerId": "01a0fc13-09f2-7172-8fef-8dd7ab6c398a",
+      "masterItemId": "01a0fc13-09f2-7a38-8299-3beea09264db",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "position": 5,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "LEARNING_SET_ITEM",
+          "entityId": "01a0fc13-09f2-7a38-8299-3beea09264db",
+          "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-75bb-bbc6-a31a5bc3c83c",
+      "masterContainerId": "01a0fc13-09f2-7172-8fef-8dd7ab6c398a",
+      "masterItemId": "01a0fc13-09f2-7565-9f50-391956eec739",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "position": 6,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "LEARNING_SET_ITEM",
+          "entityId": "01a0fc13-09f2-7565-9f50-391956eec739",
+          "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-755a-8833-aa46e4f7483a",
+      "masterContainerId": "01a0fc13-09f2-7172-8fef-8dd7ab6c398a",
+      "masterItemId": "01a0fc13-09f2-7902-8df5-c3d9e3009b42",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "position": 7,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "LEARNING_SET_ITEM",
+          "entityId": "01a0fc13-09f2-7902-8df5-c3d9e3009b42",
+          "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09f0-7869-8182-2e73328b05dd",
+      "masterContainerId": "01a0fc13-09f2-7172-8fef-8dd7ab6c398a",
+      "masterItemId": "01a0fc13-09f2-7519-b938-23d3db27c557",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "position": 8,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "LEARNING_SET_ITEM",
+          "entityId": "01a0fc13-09f2-7519-b938-23d3db27c557",
+          "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-7d37-a50f-d05db6b1a89c",
+      "masterContainerId": "01a0fc13-09f2-7882-938a-c8d7e84399e8",
+      "masterItemId": "01a0fc13-09f2-729f-b667-a41d0d1881fe",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "position": 1,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "LEARNING_SET_ITEM",
+          "entityId": "01a0fc13-09f2-729f-b667-a41d0d1881fe",
+          "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-7141-984b-9ed540913f76",
+      "masterContainerId": "01a0fc13-09f2-7882-938a-c8d7e84399e8",
+      "masterItemId": "01a0fc13-09f2-7f83-8422-1bc950df9227",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "position": 2,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "LEARNING_SET_ITEM",
+          "entityId": "01a0fc13-09f2-7f83-8422-1bc950df9227",
+          "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-7211-8e5a-784c689a0c7a",
+      "masterContainerId": "01a0fc13-09f2-7024-ae8b-167ec1c6d331",
+      "masterItemId": "01a0fc13-09f2-7722-8344-7b09acc9717b",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "position": 1,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "LEARNING_SET_ITEM",
+          "entityId": "01a0fc13-09f2-7722-8344-7b09acc9717b",
+          "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-7d8c-a142-c41ca39a9e4d",
+      "masterContainerId": "01a0fc13-09f2-7024-ae8b-167ec1c6d331",
+      "masterItemId": "01a0fc13-09f2-71b7-a846-95036fc2d9d6",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "position": 2,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "LEARNING_SET_ITEM",
+          "entityId": "01a0fc13-09f2-71b7-a846-95036fc2d9d6",
+          "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-710c-8e76-753a5cfea69c",
+      "masterContainerId": "01a0fc13-09f2-7709-a32d-5bef5b1f7a51",
+      "masterItemId": "01a0fc13-09f2-765d-b327-41d62c73ecc1",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "position": 1,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "LEARNING_SET_ITEM",
+          "entityId": "01a0fc13-09f2-765d-b327-41d62c73ecc1",
+          "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-7a30-8772-3b0ac18c20a9",
+      "masterContainerId": "01a0fc13-09f2-7950-b681-beace24e6cb6",
+      "masterItemId": "01a0fc13-09f2-7b1e-9aeb-b8c11b78e189",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "position": 1,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "LEARNING_SET_ITEM",
+          "entityId": "01a0fc13-09f2-7b1e-9aeb-b8c11b78e189",
+          "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-769b-b7f9-19f20a1686f4",
+      "masterContainerId": "01a0fc13-09f2-7950-b681-beace24e6cb6",
+      "masterItemId": "01a0fc13-09f2-706a-9c50-e0522b9e233b",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "position": 2,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "LEARNING_SET_ITEM",
+          "entityId": "01a0fc13-09f2-706a-9c50-e0522b9e233b",
+          "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-74ac-93f8-38acfc514554",
+      "masterContainerId": "01a0fc13-09f2-7950-b681-beace24e6cb6",
+      "masterItemId": "01a0fc13-09f2-7d8f-8e1c-5dda4ca14a32",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "position": 3,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "LEARNING_SET_ITEM",
+          "entityId": "01a0fc13-09f2-7d8f-8e1c-5dda4ca14a32",
+          "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-710c-8e76-753a5cfea69c",
+      "masterContainerId": "01a0fc13-09f2-7950-b681-beace24e6cb6",
+      "masterItemId": "01a0fc13-09f2-772c-93d6-ce6770ec00eb",
+      "appVocabularyId": null,
+      "appContainerId": null,
+      "position": 4,
+      "action": "BLOCKED",
+      "issues": [
+        {
+          "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+          "entityType": "LEARNING_SET_ITEM",
+          "entityId": "01a0fc13-09f2-772c-93d6-ce6770ec00eb",
+          "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+        }
+      ]
+    }
+  ],
+  "absentExistingMasterMappings": {
+    "senses": 0,
+    "topics": 0,
+    "learningSets": 0
+  },
+  "overrideConflicts": [],
+  "issues": [
+    {
+      "code": "APP_IMPORT_RELEASE_ARTIFACT_REQUIRED",
+      "entityType": "ARTIFACT",
+      "message": "APP_IMPORT_RELEASE_ARTIFACT_REQUIRED"
+    },
+    {
+      "code": "IMPORT_ARTIFACT_NOT_ELIGIBLE",
+      "entityType": "ARTIFACT",
+      "message": "IMPORT_ARTIFACT_NOT_ELIGIBLE"
+    },
+    {
+      "code": "APP_IMPORT_ARTIFACT_METADATA_MISMATCH",
+      "entityType": "ARTIFACT",
+      "entityId": "topics",
+      "message": "APP_IMPORT_ARTIFACT_METADATA_MISMATCH"
+    },
+    {
+      "code": "APP_IMPORT_ARTIFACT_METADATA_MISMATCH",
+      "entityType": "ARTIFACT",
+      "entityId": "learningSets",
+      "message": "APP_IMPORT_ARTIFACT_METADATA_MISMATCH"
+    },
+    {
+      "code": "APP_IMPORT_ARTIFACT_METADATA_MISMATCH",
+      "entityType": "ARTIFACT",
+      "entityId": "learningSetItems",
+      "message": "APP_IMPORT_ARTIFACT_METADATA_MISMATCH"
+    },
+    {
+      "code": "APP_IMPORT_ARTIFACT_METADATA_MISMATCH",
+      "entityType": "ARTIFACT",
+      "entityId": "topicMemberships",
+      "message": "APP_IMPORT_ARTIFACT_METADATA_MISMATCH"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "SENSE",
+      "entityId": "01a0fc13-09ed-70b4-801b-408be3b771e9",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "SENSE",
+      "entityId": "01a0fc13-09ee-7211-8e5a-784c689a0c7a",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "SENSE",
+      "entityId": "01a0fc13-09ee-7584-a480-e313e359f744",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "SENSE",
+      "entityId": "01a0fc13-09ee-7279-8a52-44ce829fb601",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "SENSE",
+      "entityId": "01a0fc13-09ee-786f-9492-e39a9a049078",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "SENSE",
+      "entityId": "01a0fc13-09ee-71ff-9a0a-a96e48ef7dac",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "SENSE",
+      "entityId": "01a0fc13-09ee-7823-95fc-5d1d76f13fa5",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "SENSE",
+      "entityId": "01a0fc13-09ee-72d5-80ac-b4dca3b54ceb",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "SENSE",
+      "entityId": "01a0fc13-09ee-7768-9be6-d20fa32521ee",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "SENSE",
+      "entityId": "01a0fc13-09ee-79c7-85ff-cbe0fc14a249",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "SENSE",
+      "entityId": "01a0fc13-09ee-7d1f-b899-8bc496d8ca5a",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "SENSE",
+      "entityId": "01a0fc13-09ee-7a30-8772-3b0ac18c20a9",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "SENSE",
+      "entityId": "01a0fc13-09ee-769b-b7f9-19f20a1686f4",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "SENSE",
+      "entityId": "01a0fc13-09ee-74ac-93f8-38acfc514554",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "SENSE",
+      "entityId": "01a0fc13-09ef-710c-8e76-753a5cfea69c",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "SENSE",
+      "entityId": "01a0fc13-09ef-7d37-a50f-d05db6b1a89c",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "SENSE",
+      "entityId": "01a0fc13-09ef-7141-984b-9ed540913f76",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "SENSE",
+      "entityId": "01a0fc13-09ef-7d8c-a142-c41ca39a9e4d",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "SENSE",
+      "entityId": "01a0fc13-09ef-7b92-9fe7-6e32ed4d4b6e",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "SENSE",
+      "entityId": "01a0fc13-09ef-74c6-8f36-9667eea96447",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "SENSE",
+      "entityId": "01a0fc13-09ef-75bb-bbc6-a31a5bc3c83c",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "SENSE",
+      "entityId": "01a0fc13-09ef-75ac-b815-039ab337c01a",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "SENSE",
+      "entityId": "01a0fc13-09ef-7e09-a527-a47867da6730",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "SENSE",
+      "entityId": "01a0fc13-09ef-755a-8833-aa46e4f7483a",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "SENSE",
+      "entityId": "01a0fc13-09f0-7869-8182-2e73328b05dd",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "TOPIC",
+      "entityId": "01a0fc13-09e9-75f1-b5cb-d0aa3c7a261a",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "TOPIC",
+      "entityId": "01a0fc13-09e9-7d2b-bce3-fa4e943bcbf5",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "TOPIC",
+      "entityId": "01a0fc13-09e9-779a-8f56-6334961158f5",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "TOPIC",
+      "entityId": "01a0fc13-09e9-7952-9f4d-3931203ef4e5",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "TOPIC",
+      "entityId": "01a0fc13-09e8-717f-a0ec-bd3e1bf30e37",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "TOPIC",
+      "entityId": "01a0fc13-09e8-76e4-a314-bfd00d83ad93",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "TOPIC",
+      "entityId": "01a0fc13-09e8-700a-8d88-7673162c64ac",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "TOPIC",
+      "entityId": "01a0fc13-09e9-7447-8df1-9f6402ecee6d",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "TOPIC",
+      "entityId": "01a0fc13-09e9-7c61-a90d-a89672a8ce8a",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "TOPIC",
+      "entityId": "01a0fc13-09e9-7f1e-bc34-e6b63ef49291",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "TOPIC",
+      "entityId": "01a0fc13-09e9-7b6f-9590-1c378f0a4ec6",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "TOPIC",
+      "entityId": "01a0fc13-09e9-79c5-bc0c-b9e87d1600cb",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "TOPIC",
+      "entityId": "01a0fc13-09e8-7960-8072-7e3ed30f2c15",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "TOPIC",
+      "entityId": "01a0fc13-09e9-7438-bc1d-e5b86a4eff17",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "TOPIC",
+      "entityId": "01a0fc13-09e9-75bd-b50c-da49032c2a25",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "TOPIC",
+      "entityId": "01a0fc13-09e9-7ad6-8997-01a8459fdbd3",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "TOPIC",
+      "entityId": "01a0fc13-09e9-74af-a3ea-f0b0ceafc8d7",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "TOPIC",
+      "entityId": "01a0fc13-09e9-769b-9476-d9eaa2f9ff68",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "LEARNING_SET",
+      "entityId": "01a0fc13-09f2-7c82-82b8-c031f7feae33",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "LEARNING_SET",
+      "entityId": "01a0fc13-09f2-700e-b1a8-ea88eca58c79",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "LEARNING_SET",
+      "entityId": "01a0fc13-09f2-7172-8fef-8dd7ab6c398a",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "LEARNING_SET",
+      "entityId": "01a0fc13-09f2-7882-938a-c8d7e84399e8",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "LEARNING_SET",
+      "entityId": "01a0fc13-09f2-7024-ae8b-167ec1c6d331",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "LEARNING_SET",
+      "entityId": "01a0fc13-09f2-7709-a32d-5bef5b1f7a51",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "RECONCILIATION_UNRESOLVED",
+      "entityType": "LEARNING_SET",
+      "entityId": "01a0fc13-09f2-7950-b681-beace24e6cb6",
+      "message": "RECONCILIATION_UNRESOLVED"
+    },
+    {
+      "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "TOPIC_MEMBERSHIP",
+      "entityId": "01a0fc13-09ef-7b92-9fe7-6e32ed4d4b6e:01a0fc13-09e9-75f1-b5cb-d0aa3c7a261a",
+      "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "TOPIC_MEMBERSHIP",
+      "entityId": "01a0fc13-09ef-7e09-a527-a47867da6730:01a0fc13-09e9-75f1-b5cb-d0aa3c7a261a",
+      "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "TOPIC_MEMBERSHIP",
+      "entityId": "01a0fc13-09ef-7d8c-a142-c41ca39a9e4d:01a0fc13-09e9-7d2b-bce3-fa4e943bcbf5",
+      "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "TOPIC_MEMBERSHIP",
+      "entityId": "01a0fc13-09ee-79c7-85ff-cbe0fc14a249:01a0fc13-09e9-779a-8f56-6334961158f5",
+      "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "TOPIC_MEMBERSHIP",
+      "entityId": "01a0fc13-09ef-710c-8e76-753a5cfea69c:01a0fc13-09e9-7952-9f4d-3931203ef4e5",
+      "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "TOPIC_MEMBERSHIP",
+      "entityId": "01a0fc13-09ee-7d1f-b899-8bc496d8ca5a:01a0fc13-09e8-717f-a0ec-bd3e1bf30e37",
+      "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "TOPIC_MEMBERSHIP",
+      "entityId": "01a0fc13-09ee-7211-8e5a-784c689a0c7a:01a0fc13-09e8-76e4-a314-bfd00d83ad93",
+      "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "TOPIC_MEMBERSHIP",
+      "entityId": "01a0fc13-09ed-70b4-801b-408be3b771e9:01a0fc13-09e8-700a-8d88-7673162c64ac",
+      "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "TOPIC_MEMBERSHIP",
+      "entityId": "01a0fc13-09f0-7869-8182-2e73328b05dd:01a0fc13-09e8-700a-8d88-7673162c64ac",
+      "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "TOPIC_MEMBERSHIP",
+      "entityId": "01a0fc13-09ee-7a30-8772-3b0ac18c20a9:01a0fc13-09e9-7447-8df1-9f6402ecee6d",
+      "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "TOPIC_MEMBERSHIP",
+      "entityId": "01a0fc13-09ee-769b-b7f9-19f20a1686f4:01a0fc13-09e9-7c61-a90d-a89672a8ce8a",
+      "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "TOPIC_MEMBERSHIP",
+      "entityId": "01a0fc13-09ef-7141-984b-9ed540913f76:01a0fc13-09e9-7f1e-bc34-e6b63ef49291",
+      "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "TOPIC_MEMBERSHIP",
+      "entityId": "01a0fc13-09ee-72d5-80ac-b4dca3b54ceb:01a0fc13-09e9-7b6f-9590-1c378f0a4ec6",
+      "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "TOPIC_MEMBERSHIP",
+      "entityId": "01a0fc13-09ee-7279-8a52-44ce829fb601:01a0fc13-09e9-79c5-bc0c-b9e87d1600cb",
+      "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "TOPIC_MEMBERSHIP",
+      "entityId": "01a0fc13-09ee-786f-9492-e39a9a049078:01a0fc13-09e9-79c5-bc0c-b9e87d1600cb",
+      "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "TOPIC_MEMBERSHIP",
+      "entityId": "01a0fc13-09ef-74c6-8f36-9667eea96447:01a0fc13-09e9-79c5-bc0c-b9e87d1600cb",
+      "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "TOPIC_MEMBERSHIP",
+      "entityId": "01a0fc13-09ef-755a-8833-aa46e4f7483a:01a0fc13-09e9-79c5-bc0c-b9e87d1600cb",
+      "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "TOPIC_MEMBERSHIP",
+      "entityId": "01a0fc13-09ef-75ac-b815-039ab337c01a:01a0fc13-09e8-7960-8072-7e3ed30f2c15",
+      "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "TOPIC_MEMBERSHIP",
+      "entityId": "01a0fc13-09ee-71ff-9a0a-a96e48ef7dac:01a0fc13-09e9-7438-bc1d-e5b86a4eff17",
+      "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "TOPIC_MEMBERSHIP",
+      "entityId": "01a0fc13-09ee-7823-95fc-5d1d76f13fa5:01a0fc13-09e9-7438-bc1d-e5b86a4eff17",
+      "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "TOPIC_MEMBERSHIP",
+      "entityId": "01a0fc13-09ee-74ac-93f8-38acfc514554:01a0fc13-09e9-75bd-b50c-da49032c2a25",
+      "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "TOPIC_MEMBERSHIP",
+      "entityId": "01a0fc13-09ee-7584-a480-e313e359f744:01a0fc13-09e9-7ad6-8997-01a8459fdbd3",
+      "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "TOPIC_MEMBERSHIP",
+      "entityId": "01a0fc13-09ef-75bb-bbc6-a31a5bc3c83c:01a0fc13-09e9-7ad6-8997-01a8459fdbd3",
+      "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "TOPIC_MEMBERSHIP",
+      "entityId": "01a0fc13-09ef-7d37-a50f-d05db6b1a89c:01a0fc13-09e9-74af-a3ea-f0b0ceafc8d7",
+      "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "TOPIC_MEMBERSHIP",
+      "entityId": "01a0fc13-09ee-7768-9be6-d20fa32521ee:01a0fc13-09e9-769b-9476-d9eaa2f9ff68",
+      "message": "TOPIC_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "LEARNING_SET_ITEM",
+      "entityId": "01a0fc13-09f2-7ee2-810b-6068394aef21",
+      "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "LEARNING_SET_ITEM",
+      "entityId": "01a0fc13-09f2-7539-a9de-87c0de76f909",
+      "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "LEARNING_SET_ITEM",
+      "entityId": "01a0fc13-09f2-7834-ba60-8c56966db1a1",
+      "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "LEARNING_SET_ITEM",
+      "entityId": "01a0fc13-09f2-747f-839b-f6986b8fc038",
+      "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "LEARNING_SET_ITEM",
+      "entityId": "01a0fc13-09f2-7f88-9f16-25228210c0fe",
+      "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "LEARNING_SET_ITEM",
+      "entityId": "01a0fc13-09f2-7a44-8c06-42f406cba0f8",
+      "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "LEARNING_SET_ITEM",
+      "entityId": "01a0fc13-09f2-7a34-b32a-3e313c3e5d4e",
+      "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "LEARNING_SET_ITEM",
+      "entityId": "01a0fc13-09f2-7fb2-a84f-f34774a885df",
+      "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "LEARNING_SET_ITEM",
+      "entityId": "01a0fc13-09f2-7b44-b890-12e8752f9f96",
+      "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "LEARNING_SET_ITEM",
+      "entityId": "01a0fc13-09f2-7417-9170-137771303c24",
+      "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "LEARNING_SET_ITEM",
+      "entityId": "01a0fc13-09f2-79e0-af34-5bbc784d70fb",
+      "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "LEARNING_SET_ITEM",
+      "entityId": "01a0fc13-09f2-7a8f-aa9e-a0c8c5f3d115",
+      "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "LEARNING_SET_ITEM",
+      "entityId": "01a0fc13-09f2-78c8-80a1-863d7ecbdcc4",
+      "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "LEARNING_SET_ITEM",
+      "entityId": "01a0fc13-09f2-73a3-8033-8924ac4f1148",
+      "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "LEARNING_SET_ITEM",
+      "entityId": "01a0fc13-09f2-7510-8361-80a39c6171d0",
+      "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "LEARNING_SET_ITEM",
+      "entityId": "01a0fc13-09f2-7a38-8299-3beea09264db",
+      "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "LEARNING_SET_ITEM",
+      "entityId": "01a0fc13-09f2-7565-9f50-391956eec739",
+      "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "LEARNING_SET_ITEM",
+      "entityId": "01a0fc13-09f2-7902-8df5-c3d9e3009b42",
+      "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "LEARNING_SET_ITEM",
+      "entityId": "01a0fc13-09f2-7519-b938-23d3db27c557",
+      "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "LEARNING_SET_ITEM",
+      "entityId": "01a0fc13-09f2-729f-b667-a41d0d1881fe",
+      "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "LEARNING_SET_ITEM",
+      "entityId": "01a0fc13-09f2-7f83-8422-1bc950df9227",
+      "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "LEARNING_SET_ITEM",
+      "entityId": "01a0fc13-09f2-7722-8344-7b09acc9717b",
+      "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "LEARNING_SET_ITEM",
+      "entityId": "01a0fc13-09f2-71b7-a846-95036fc2d9d6",
+      "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "LEARNING_SET_ITEM",
+      "entityId": "01a0fc13-09f2-765d-b327-41d62c73ecc1",
+      "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "LEARNING_SET_ITEM",
+      "entityId": "01a0fc13-09f2-7b1e-9aeb-b8c11b78e189",
+      "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "LEARNING_SET_ITEM",
+      "entityId": "01a0fc13-09f2-706a-9c50-e0522b9e233b",
+      "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "LEARNING_SET_ITEM",
+      "entityId": "01a0fc13-09f2-7d8f-8e1c-5dda4ca14a32",
+      "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+    },
+    {
+      "code": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "entityType": "LEARNING_SET_ITEM",
+      "entityId": "01a0fc13-09f2-772c-93d6-ce6770ec00eb",
+      "message": "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED"
+    }
+  ],
+  "summary": {
+    "vocabularyCreates": 0,
+    "vocabularyUpdates": 0,
+    "vocabularyNoops": 0,
+    "vocabularyConflicts": 0,
+    "vocabularyBlocked": 25,
+    "vocabularySkipped": 0,
+    "newMappings": 0,
+    "existingMappings": 0,
+    "contentVersionIncrements": 0,
+    "topicCreates": 0,
+    "topicUpdates": 0,
+    "topicNoops": 0,
+    "topicConflicts": 0,
+    "learningSetCreates": 0,
+    "learningSetUpdates": 0,
+    "learningSetNoops": 0,
+    "learningSetConflicts": 0,
+    "topicMembershipInserts": 0,
+    "topicMembershipAdoptions": 0,
+    "topicMembershipNoops": 0,
+    "topicMembershipSkipped": 0,
+    "learningSetMembershipInserts": 0,
+    "learningSetMembershipOrderUpdates": 0,
+    "learningSetMembershipAdoptions": 0,
+    "learningSetMembershipNoops": 0,
+    "learningSetMembershipSkipped": 0,
+    "issueCount": 109
+  },
+  "historySafety": {
+    "learnerProgressRows": 0,
+    "reviewEvents": 0,
+    "mappedProgressReferences": 0,
+    "mappedReviewReferences": 0,
+    "deletionsPlanned": 0,
+    "learnerAssignmentsChanged": 0
+  },
+  "snapshotFingerprint": "2e50c3f4263a58fbc87c71cffa8f81f55d6d63dac4b2002c45a8037e2ced413c",
+  "planFingerprint": "553d9e376eb3ebe626be3ff70f0290f56d9a210e3fbf3c975a2b89e55f2d8f93"
+}

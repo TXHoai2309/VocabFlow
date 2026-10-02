@@ -2,6 +2,19 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-02 — Master Vocabulary Dataset V2 Phase 2D runtime bridge
+
+- Added additive Master Sense, Topic, Learning Set, membership-ownership and
+  import-run bridge tables, plus migration `0015_clean_yellowjacket.sql`.
+- Added human-owned runtime reconciliation, deterministic offline plan/report,
+  and target-gated transactional importer. Existing integer IDs, progress and
+  review references remain stable; overrides and image quarantine require
+  explicit conflict resolution.
+- The current pilot stays DRAFT and ineligible (25 Sense, 18 Topic, and 7 Set
+  identities unresolved). Synthetic approved fixtures cover transaction-time
+  ID allocation and exact-release replay. The migration remains unapplied; no
+  Neon, other remote database, or Cloudinary mutation was performed.
+
 ## 2026-10-02 — Study Session focus mode
 
 - Refined `/study` and `/study/exercises` into a responsive focus-mode screen

@@ -52,17 +52,19 @@ const expectedUpdates: Array<Omit<MetadataUpdate, "columns"> & { columns: string
 ];
 
 describe("Vietnamese catalog metadata migration", () => {
-  it("is the next ordered Drizzle migration", () => {
+  it("remains ordered immediately before the additive Master V2 bridge migration", () => {
     const journal = JSON.parse(readFileSync(resolve("drizzle/migrations/meta/_journal.json"), "utf8")) as {
       entries: Array<{ idx: number; when: number; tag: string }>;
     };
-    const entry = journal.entries.at(-1);
+    const entry = journal.entries.find((candidate) => candidate.tag === "0014_vietnamese_catalog_metadata");
+    const bridgeEntry = journal.entries.at(-1);
     const migrations = readMigrationFiles({ migrationsFolder: "drizzle/migrations" });
+    const migration = migrations.find((candidate) => candidate.folderMillis === entry?.when);
 
     expect(entry).toMatchObject({ idx: 14, tag: "0014_vietnamese_catalog_metadata" });
-    expect(entry?.when).toBeGreaterThan(journal.entries.at(-2)?.when ?? 0);
-    expect(migrations.at(-1)?.folderMillis).toBe(entry?.when);
-    expect(migrations.at(-1)?.sql).toHaveLength(expectedUpdates.length);
+    expect(bridgeEntry).toMatchObject({ idx: 15, tag: "0015_clean_yellowjacket" });
+    expect(entry?.when).toBeGreaterThan(journal.entries.at(-3)?.when ?? 0);
+    expect(migration?.sql).toHaveLength(expectedUpdates.length);
   });
 
   it("updates only approved display metadata by stable slug/code", () => {

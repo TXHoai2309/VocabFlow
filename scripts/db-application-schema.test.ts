@@ -14,6 +14,12 @@ import {
   learnerProgress,
   learningSetItems,
   learningSets,
+  masterLearningSetMappings,
+  masterLearningSetMemberships,
+  masterTopicMappings,
+  masterVocabularyImportRuns,
+  masterVocabularyMappings,
+  masterVocabularyTopicMemberships,
   reviewEvents,
   session,
   topics,
@@ -45,6 +51,12 @@ describe("dedicated application schema", () => {
     expect(MIGRATION_SCHEMA).toBe("drizzle");
     expect(DATABASE_RESET_POLICY.applicationSchemas).toEqual([APP_SCHEMA]);
     expect(DATABASE_RESET_POLICY.applicationTables).toEqual([
+      `${APP_SCHEMA}.master_learning_set_memberships`,
+      `${APP_SCHEMA}.master_vocabulary_topic_memberships`,
+      `${APP_SCHEMA}.master_learning_set_mappings`,
+      `${APP_SCHEMA}.master_topic_mappings`,
+      `${APP_SCHEMA}.master_vocabulary_mappings`,
+      `${APP_SCHEMA}.master_vocabulary_import_runs`,
       `${APP_SCHEMA}.learner_achievements`,
       `${APP_SCHEMA}.xp_events`,
       `${APP_SCHEMA}.achievements`,
@@ -75,7 +87,7 @@ describe("dedicated application schema", () => {
   });
 
   it("binds every runtime Drizzle table to the dedicated application schema", () => {
-    for (const table of [account, session, user, verification, households, householdMembers, learnerProfiles, vocabularies, topics, learningSets, vocabularyTopics, learningSetItems, learnerLearningSets, learnerProgress, reviewEvents, xpEvents, achievements, learnerAchievements]) {
+    for (const table of [account, session, user, verification, households, householdMembers, learnerProfiles, vocabularies, topics, learningSets, vocabularyTopics, learningSetItems, masterVocabularyImportRuns, masterVocabularyMappings, masterTopicMappings, masterLearningSetMappings, masterVocabularyTopicMemberships, masterLearningSetMemberships, learnerLearningSets, learnerProgress, reviewEvents, xpEvents, achievements, learnerAchievements]) {
       expect(getTableConfig(table).schema).toBe(APP_SCHEMA);
     }
   });
@@ -88,7 +100,7 @@ describe("dedicated application schema", () => {
     expect(absentQueries[0]?.values[0]).toBe(APP_SCHEMA);
 
     const presentQueries: CapturedQuery[] = [];
-    await expect(assertApplicationTablesPresent(applicationAssertionSql("18", presentQueries))).resolves.toBeUndefined();
+    await expect(assertApplicationTablesPresent(applicationAssertionSql(String(DATABASE_RESET_POLICY.applicationTables.length), presentQueries))).resolves.toBeUndefined();
     expect(presentQueries[0]?.values[0]).toBe(APP_SCHEMA);
     await expect(assertApplicationTablesPresent(applicationAssertionSql("3", []))).rejects.toThrow("APPLICATION_SCHEMA_INCOMPLETE");
   });
@@ -116,7 +128,7 @@ describe("dedicated application schema", () => {
     await resetApplicationScope(sql);
 
     expect(statements[0]).toContain("pg_advisory_xact_lock");
-    expect(statements.filter((statement) => statement.includes("DROP TABLE IF EXISTS"))).toHaveLength(18);
+    expect(statements.filter((statement) => statement.includes("DROP TABLE IF EXISTS"))).toHaveLength(DATABASE_RESET_POLICY.applicationTables.length);
     const lastTableDrop = Math.max(...statements.map((statement, index) => statement.includes("DROP TABLE IF EXISTS") ? index : -1));
     const enumDrop = statements.findIndex((statement) => statement.includes("DROP TYPE IF EXISTS"));
     const migrationReset = statements.findIndex((statement) => statement.includes("TRUNCATE TABLE"));
@@ -125,28 +137,14 @@ describe("dedicated application schema", () => {
     expect(statements.some((statement) => statement.includes("DROP SCHEMA"))).toBe(false);
     expect(statements.some((statement) => /DROP ROLE|GRANT|REVOKE/i.test(statement))).toBe(false);
     expect(unsafeFragments).toEqual([
-      `"${APP_SCHEMA}"."learner_achievements"`,
-      `"${APP_SCHEMA}"."xp_events"`,
-      `"${APP_SCHEMA}"."achievements"`,
-      `"${APP_SCHEMA}"."learner_learning_sets"`,
-      `"${APP_SCHEMA}"."learning_set_items"`,
-      `"${APP_SCHEMA}"."vocabulary_topics"`,
-      `"${APP_SCHEMA}"."review_events"`,
-      `"${APP_SCHEMA}"."learner_progress"`,
-      `"${APP_SCHEMA}"."vocabularies"`,
-      `"${APP_SCHEMA}"."learning_sets"`,
-      `"${APP_SCHEMA}"."topics"`,
-      `"${APP_SCHEMA}"."learner_profiles"`,
-      `"${APP_SCHEMA}"."household_members"`,
-      `"${APP_SCHEMA}"."households"`,
-      `"${APP_SCHEMA}"."account"`,
-      `"${APP_SCHEMA}"."session"`,
-      `"${APP_SCHEMA}"."verification"`,
-      `"${APP_SCHEMA}"."user"`,
-      `"${APP_SCHEMA}"."vocabulary_level"`,
-      `"${APP_SCHEMA}"."review_result"`,
-      `"${APP_SCHEMA}"."learning_status"`,
-      `"${APP_SCHEMA}"."household_role"`,
+      ...DATABASE_RESET_POLICY.applicationTables.map((objectName) => {
+        const [schema, table] = objectName.split(".");
+        return `"${schema}"."${table}"`;
+      }),
+      ...DATABASE_RESET_POLICY.applicationEnumTypes.map((objectName) => {
+        const [schema, type] = objectName.split(".");
+        return `"${schema}"."${type}"`;
+      }),
       `"${MIGRATION_SCHEMA}"."__drizzle_migrations"`
     ]);
     expect(unsafeFragments.some((fragment) => fragment.includes("vocabflow_meta"))).toBe(false);
@@ -166,9 +164,11 @@ describe("dedicated application schema", () => {
     const activityMigration = readFileSync(join(process.cwd(), "drizzle", "migrations", "0009_tricky_meggan.sql"), "utf8");
     const gamificationMigration = readFileSync(join(process.cwd(), "drizzle", "migrations", "0010_gamification-rewards.sql"), "utf8");
     const exerciseXpMigration = readFileSync(join(process.cwd(), "drizzle", "migrations", "0011_exercise-correct-xp.sql"), "utf8");
+    const masterV2Migration = readFileSync(join(process.cwd(), "drizzle", "migrations", "0015_clean_yellowjacket.sql"), "utf8");
     const journal = JSON.parse(readFileSync(join(process.cwd(), "drizzle", "migrations", "meta", "_journal.json"), "utf8")) as { entries: Array<{ idx: number; tag: string; when: number }> };
     const previousMigrationSnapshot = JSON.parse(readFileSync(join(process.cwd(), "drizzle", "migrations", "meta", "0012_snapshot.json"), "utf8")) as { id: string; prevId: string; [key: string]: unknown };
     const sequencePrivilegeSnapshot = JSON.parse(readFileSync(join(process.cwd(), "drizzle", "migrations", "meta", "0013_snapshot.json"), "utf8")) as { id: string; prevId: string; [key: string]: unknown };
+    const masterV2Snapshot = JSON.parse(readFileSync(join(process.cwd(), "drizzle", "migrations", "meta", "0015_snapshot.json"), "utf8")) as { id: string; prevId: string; tables: Record<string, unknown>; [key: string]: unknown };
     const snapshot = JSON.parse(readFileSync(join(process.cwd(), "drizzle", "migrations", "meta", "0000_snapshot.json"), "utf8")) as {
       schemas: Record<string, string>;
       tables: Record<string, unknown>;
@@ -278,15 +278,20 @@ describe("dedicated application schema", () => {
     expect(taxonomySnapshot.tables[`${APP_SCHEMA}.vocabulary_topics`]?.compositePrimaryKeys.vocabulary_topics_vocabulary_topic_pk).toBeDefined();
     expect(learningSetSnapshot.tables[`${APP_SCHEMA}.learning_set_items`]?.compositePrimaryKeys.learning_set_items_set_vocabulary_pk).toBeDefined();
     expect(learningSetSnapshot.tables[`${APP_SCHEMA}.learner_learning_sets`]?.compositePrimaryKeys.learner_learning_sets_learner_set_pk).toBeDefined();
+    expect(masterV2Snapshot.tables[`${APP_SCHEMA}.master_vocabulary_mappings`]).toBeDefined();
+    expect(masterV2Snapshot.tables[`${APP_SCHEMA}.master_topic_mappings`]).toBeDefined();
+    expect(masterV2Snapshot.tables[`${APP_SCHEMA}.master_learning_set_mappings`]).toBeDefined();
+    expect(masterV2Snapshot.tables[`${APP_SCHEMA}.master_vocabulary_topic_memberships`]).toBeDefined();
+    expect(masterV2Snapshot.tables[`${APP_SCHEMA}.master_learning_set_memberships`]).toBeDefined();
     expect(learnerSettingsSnapshot.tables[`${APP_SCHEMA}.learner_profiles`]?.columns.daily_new_word_limit).toMatchObject({ type: "integer", notNull: true });
     expect(activitySnapshot.tables[`${APP_SCHEMA}.learner_profiles`]?.columns.daily_learning_goal).toMatchObject({ type: "integer", notNull: true });
     expect(reviewSnapshot.tables[`${APP_SCHEMA}.learner_progress`]?.columns.consecutive_correct.type).toBe("bigint");
     expect(reviewSnapshot.tables[`${APP_SCHEMA}.review_events`]?.columns.expected_revision.type).toBe("bigint");
     expect(reviewSnapshot.tables[`${APP_SCHEMA}.review_events`]?.compositePrimaryKeys.review_events_household_review_pk).toBeDefined();
-    expect(journal.entries.map((entry) => entry.tag)).toEqual(["0000_application-schema", "0001_curious_miss_america", "0002_smiling_wrecking_crew", "0003_lazy_lady_deathstrike", "0004_scheduled_review_write", "0005_graceful_eddie_brock", "0006_sticky_risque", "0007_modern_mysterio", "0008_chief_morph", "0009_tricky_meggan", "0010_gamification-rewards", "0011_exercise-correct-xp", "0012_us41_owner_content_overrides", "0013_runtime-vocabulary-sequence-privilege", "0014_vietnamese_catalog_metadata"]);
+    expect(journal.entries.map((entry) => entry.tag)).toEqual(["0000_application-schema", "0001_curious_miss_america", "0002_smiling_wrecking_crew", "0003_lazy_lady_deathstrike", "0004_scheduled_review_write", "0005_graceful_eddie_brock", "0006_sticky_risque", "0007_modern_mysterio", "0008_chief_morph", "0009_tricky_meggan", "0010_gamification-rewards", "0011_exercise-correct-xp", "0012_us41_owner_content_overrides", "0013_runtime-vocabulary-sequence-privilege", "0014_vietnamese_catalog_metadata", "0015_clean_yellowjacket"]);
     const latestMigration = journal.entries.at(-1);
     const previousMigration = journal.entries.at(-2);
-    expect(latestMigration).toMatchObject({ idx: 14, tag: "0014_vietnamese_catalog_metadata" });
+    expect(latestMigration).toMatchObject({ idx: 15, tag: "0015_clean_yellowjacket" });
     expect(latestMigration?.when).toBeGreaterThan(previousMigration?.when ?? 0);
     const { id: previousSnapshotId, prevId: previousSnapshotParent, ...previousSnapshotSchema } = previousMigrationSnapshot;
     const { id: currentSnapshotId, prevId: currentSnapshotParent, ...currentSnapshotSchema } = sequencePrivilegeSnapshot;
@@ -294,6 +299,14 @@ describe("dedicated application schema", () => {
     expect(currentSnapshotId).not.toBe(previousSnapshotId);
     expect(previousSnapshotParent).toBeTruthy();
     expect(currentSnapshotSchema).toEqual(previousSnapshotSchema);
+    expect(masterV2Snapshot.prevId).toBe(sequencePrivilegeSnapshot.id);
+    expect(masterV2Migration).toContain(`CREATE TABLE "${APP_SCHEMA}"."master_vocabulary_mappings"`);
+    expect(masterV2Migration).toContain(`CREATE TABLE "${APP_SCHEMA}"."master_vocabulary_import_runs"`);
+    expect(masterV2Migration).toContain("ON DELETE no action ON UPDATE no action");
+    expect(masterV2Migration).toContain("MASTER_MANAGED_VOCABULARY_WRITE_REQUIRES_IMPORTER");
+    expect(masterV2Migration).toContain("MASTER_MAPPING_IDENTITY_IMMUTABLE");
+    expect(masterV2Migration).not.toMatch(/DROP TABLE|TRUNCATE|DELETE FROM|ALTER TABLE[^;]+ADD COLUMN/i);
+    expect(masterV2Migration).not.toMatch(/UPDATE "vocabflow_app"\."learner_progress"|UPDATE "vocabflow_app"\."review_events"/i);
     expect(dbCore).toContain("await executeApplicationMigrations(sql, options)");
   });
 

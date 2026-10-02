@@ -1559,3 +1559,28 @@ registration boundary before feature implementation.
 - No API/database command or deployment was run. Concurrent Dataset V2 and
   database workflow changes in the shared working tree are outside this Study
   scope and excluded from its commit.
+
+## 2026-10-02 — Master Vocabulary Dataset V2 Phase 2D runtime bridge
+
+- Added additive integer-ID bridge, import-run ledger, Topic/Set mappings,
+  managed-membership ownership, and local transaction write guards. Created
+  the human-maintained `runtime-reconciliation-v2.json`; transform output does
+  not overwrite it.
+- Added a pure deterministic planner, Postgres transaction adapter, dry-run
+  CLI/report, target identity checks, explicit baseline/override/quarantine
+  policies, stale-plan protection, and production release authorization.
+- Offline current-pilot report confirms DRAFT / ineligible, 25 unresolved
+  Senses, 18 unresolved Topics, 7 unresolved Learning Sets, and zero planned
+  vocabulary creates/deletions/learner assignments. Synthetic approved adapter
+  coverage allocates a new runtime integer in-transaction and verifies replay
+  leaves the vocabulary and mapping unchanged.
+- Additive migration `0015_clean_yellowjacket.sql` is generated and statically
+  checked but unapplied. No Neon/shared DB or Cloudinary operation occurred.
+  Focused checks completed: validator PASS (0 errors/warnings), 82 Phase 2C/2D
+  tests passing, root TypeScript and repository ESLint PASS, and Drizzle reports
+  no schema drift. `git diff --check` passes. The full test run also reports
+  unrelated US-44 Study UI expectation failures (App shell headings and a
+  Flashcard audio pause assertion); the focused dataset/transform/schema suite
+  passes independently, and no UI files were changed in this task. Local Node
+  is 22.19.0; package engine pins 22.23.2. No DB migration/import or Cloudinary
+  mutation occurred.

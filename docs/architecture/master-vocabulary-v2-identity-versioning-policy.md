@@ -147,7 +147,16 @@ For each Master Sense mapped to an app row, the projection materializer construc
 4. Persist the fingerprint/version as part of the same transaction. A caller cannot pass a chosen version or opt out of the comparison.
 5. All writes to learner-facing vocabulary projection fields must pass through this materializer or an equivalent database-enforced mechanism. A script convention by itself is insufficient to guarantee the invariant.
 
-The existing app schema has `content_version` but does not yet store a projection fingerprint. A future runtime integration will need a durable comparison value and a controlled write boundary. This policy does not add that column, trigger, or service now.
+Phase 2D persists the full projection fingerprint and projection contract version
+in `master_vocabulary_mappings`, alongside each explicit Master Sense to app
+integer mapping. The bridge is additive; it does not change the legacy integer
+ID or source identity columns. A transaction-local V2 importer context and
+database guards prevent the existing catalog curation/import paths from
+changing learner-facing fields after a row is adopted. See the
+[Runtime Import Contract](master-vocabulary-v2-runtime-import-contract.md) for
+the explicit first-adoption, override, reconciliation, and apply rules. The
+guard establishes a write boundary for the repository's current paths; any new
+catalog writer must use the same governed materializer.
 
 ### Fingerprint inputs
 
@@ -192,4 +201,7 @@ The Master Sense ID is not substituted into the existing exercise ID in this pha
 
 This policy preserves today's app IDs, `contentVersion` integer contract, review/progress foreign keys, and exercise-ID shape. It strengthens the future write rule: a Master import must derive version changes from projection values rather than trusting a script author's manual increment. The Master → app mapping is explicit and stable; changing Master IDs does not silently remap existing learner history.
 
-Before runtime adoption, implementation design still needs to choose where the last fingerprint is persisted (app row or governed projection ledger), how every content write is restricted to the materializer, how existing rows receive an initial fingerprint without resetting version history, and how a projection-contract upgrade is reconciled. Those choices require a future reviewed runtime/database change and are not implemented here.
+Phase 2D implements the bridge and import adapter, but does not apply its
+additive migration. Runtime adoption still requires a later staging phase with
+an approved release, completed human reconciliation, migration application,
+and canary review. No DRAFT pilot row is eligible for adoption.

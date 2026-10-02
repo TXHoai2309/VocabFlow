@@ -83,6 +83,7 @@ feature code may start.
 - [BATCH 0 Foundation Execution Specification](implementation/batch0-foundation-execution-spec.md)
 - [BATCH 0 Foundation Acceptance](implementation/BATCH0_FOUNDATION_ACCEPTANCE.md)
 - [Project Decisions](decisions.md)
+- [Master Vocabulary V2 Runtime Import Contract](architecture/master-vocabulary-v2-runtime-import-contract.md)
 - [AI Progress and Handoff](ai-progress.md)
 - [Roadmap and Batch Index](roadmap.md)
 - [Changelog](changelog.md)
