@@ -1,0 +1,86 @@
+{
+  "masterSenseId": "01a0fc13-09f0-7869-8182-2e73328b05dd",
+  "masterLexemeId": "01a0fc13-09ef-7862-8f61-1806944702ca",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "citrus fruit"
+    },
+    {
+      "language": "vi",
+      "text": "quả cam"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "NOUN",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a0fc13-09f0-7f89-af8d-a2d8e213fbcb",
+      "masterSenseId": "01a0fc13-09f0-7869-8182-2e73328b05dd",
+      "language": "vi",
+      "text": "quả cam",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "provenanceIds": [
+        "01a0fc13-09f0-7e94-8fa9-fe951e559041"
+      ],
+      "status": "IN_REVIEW"
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a0fc13-09f0-7d58-89a9-a84777e357d1",
+      "masterSenseId": "01a0fc13-09f0-7869-8182-2e73328b05dd",
+      "language": "en",
+      "text": "A round citrus fruit with orange-colored skin and juicy segments.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "provenanceIds": [
+        "01a0fc13-09f0-7d6a-81a6-f1f91a31d33b"
+      ],
+      "status": "IN_REVIEW"
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a0fc13-09f0-7d7f-a119-8df023326b4d",
+      "masterSenseId": "01a0fc13-09f0-7869-8182-2e73328b05dd",
+      "language": "en",
+      "text": "Would you like an orange with your lunch?",
+      "register": "NEUTRAL",
+      "levelNotes": "Editorial example for this Sense; this note does not assert CEFR alignment.",
+      "displayOrder": 0,
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a0fc13-09f0-716e-accd-18d22fec7fdf",
+          "exampleId": "01a0fc13-09f0-7d7f-a119-8df023326b4d",
+          "language": "vi",
+          "text": "Bạn có muốn ăn một quả cam cùng bữa trưa không?",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "provenanceIds": [
+            "01a0fc13-09f0-754f-827b-3a28f10a804c"
+          ],
+          "status": "IN_REVIEW"
+        }
+      ],
+      "audioAssetIds": [],
+      "provenanceIds": [
+        "01a0fc13-09f0-79ef-bcb9-a47181f408e5"
+      ],
+      "status": "IN_REVIEW"
+    }
+  ],
+  "pronunciationOverrides": [],
+  "provenanceIds": [
+    "01a0fc13-09f0-72c5-b101-e7a571d97395"
+  ],
+  "status": "IN_REVIEW",
+  "createdAt": "2026-10-02T00:00:00Z",
+  "updatedAt": "2026-10-02T00:00:00Z"
+}

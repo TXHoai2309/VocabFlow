@@ -104,7 +104,7 @@ describe("Master Vocabulary V2 cross-file validator", () => {
     expect(report.status).toBe("PASS");
     expect(existsSync(reportPath)).toBe(true);
     expect(JSON.parse(readFileSync(reportPath, "utf8"))).toMatchObject({
-      schemaVersion: "2.0.0",
+      schemaVersion: "2.0.1",
       datasetVersion: "2.0.0",
       validatedAt: "2026-10-02T00:00:00.000Z",
       status: "PASS",
@@ -120,6 +120,69 @@ describe("Master Vocabulary V2 cross-file validator", () => {
     const report = validateMasterVocabularyV2({ datasetRoot, writeReport: false });
     expect(report.status).toBe("PASS");
     expect(report.errorCount).toBe(0);
+  });
+
+  it("pins PLANNED and NOT_APPLICABLE media slots without requiring byte versions", () => {
+    const currentManifest = manifest();
+    currentManifest.status = "DRAFT";
+    delete currentManifest.releaseHash;
+    delete currentManifest.releaseHashAlgorithm;
+    delete currentManifest.releasedAt;
+    const plannedId = "0195f85c-7b2a-7d10-8c01-999999999910";
+    const notApplicableId = "0195f85c-7b2a-7d10-8c01-999999999911";
+    const slots = [
+      { mediaAssetId: plannedId, status: "PLANNED", semanticBrief: "One clearly recognizable red apple fruit, neutral background, no text or logo, square composition." },
+      { mediaAssetId: notApplicableId, status: "NOT_APPLICABLE", semanticBrief: "No image is applicable to this function-word sense." },
+    ];
+    const pins = currentManifest.includedMediaAssets as Array<Record<string, unknown>>;
+    for (const slot of slots) {
+      const relativePath = "media/assets/" + slot.mediaAssetId + ".json";
+      const asset = {
+        mediaAssetId: slot.mediaAssetId,
+        targetEntityType: "SENSE",
+        targetId: fixtureIds.sense,
+        mediaKind: "IMAGE",
+        semanticBrief: [{ language: "en", text: slot.semanticBrief }],
+        status: slot.status,
+        versions: [],
+        deliveries: [],
+        createdAt: "2026-10-02T00:00:00Z",
+        updatedAt: "2026-10-02T00:00:00Z",
+      };
+      writeFixtureJson(datasetRoot, relativePath, asset);
+      pins.push({ mediaAssetId: slot.mediaAssetId, recordPath: relativePath, contentHash: canonicalJsonSha256(asset) });
+    }
+    writeManifest(currentManifest);
+    refreshFixtureHashes(datasetRoot, { releaseHash: false });
+    const report = validateMasterVocabularyV2({ datasetRoot, writeReport: false });
+    expect(report.status).toBe("PASS");
+    expect(report.errorCount).toBe(0);
+    expect(codes(report)).toContain("DRAFT_WORKING_DATASET");
+  });
+
+  it("requires an approved release to pin an approved media slot's exact current version", () => {
+    const currentManifest = manifest();
+    const mediaAssetId = "0195f85c-7b2a-7d10-8c01-999999999912";
+    const asset = {
+      mediaAssetId,
+      targetEntityType: "SENSE",
+      targetId: fixtureIds.sense,
+      mediaKind: "IMAGE",
+      semanticBrief: [{ language: "en", text: "Synthetic approved illustration slot." }],
+      status: "APPROVED",
+      currentMediaAssetVersion: 1,
+      versions: [{ mediaAssetId, mediaAssetVersion: 1, sha256: "a".repeat(64), mimeType: "image/png", byteLength: 12, sourceType: "PROJECT_AUTHORED", sourceLocator: "fixture://approved-bytes", qaStatus: "PASSED", reviewedBy: "fixture-reviewer", reviewedAt: "2026-10-02T00:00:00Z", status: "APPROVED" }],
+      deliveries: [],
+      createdAt: "2026-10-02T00:00:00Z",
+      updatedAt: "2026-10-02T00:00:00Z",
+    };
+    const relativePath = "media/assets/" + mediaAssetId + ".json";
+    writeFixtureJson(datasetRoot, relativePath, asset);
+    const pins = currentManifest.includedMediaAssets as Array<Record<string, unknown>>;
+    pins.push({ mediaAssetId, recordPath: relativePath, contentHash: canonicalJsonSha256(asset) });
+    writeManifest(currentManifest);
+    updateManifestAndHashes();
+    expect(codes(validateMasterVocabularyV2({ datasetRoot, writeReport: false }))).toContain("APPROVED_MEDIA_VERSION_NOT_PINNED");
   });
 
   it("reports normalized lemma collisions as warnings while the release passes", () => {

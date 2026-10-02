@@ -29,8 +29,9 @@ git-ignored because `validatedAt` is run-specific. Issue order is deterministic.
 2. **Pins:** only manifest arrays are traversed. Every pinned path must remain
    inside the dataset package, resolve to a readable JSON object, match the
    pinned ID/revision, and match its RFC 8785 JCS SHA-256. The media byte hash
-   pin is compared with the selected version's declared `sha256`. The release
-   hash is SHA-256 over the JCS manifest with only `releaseHash` omitted.
+   pin is compared with the selected version's declared `sha256`. Media slot
+   pins can include planned briefs that have no byte version. The release hash
+   is SHA-256 over the JCS manifest with only `releaseHash` omitted.
 3. **Cross-file semantics:** the validator builds typed registries, then checks
    reference integrity, ownership, uniqueness/cardinality, approved state,
    taxonomy graph scope, media compatibility, Relations, and Provenance.
@@ -115,6 +116,7 @@ otherwise valid report.
 | `APPROVED_RELEASE_CONTENT_NOT_APPROVED` | ERROR | An approved release pins a learner-facing record that is not approved. |
 | `APPROVED_RELEASE_TAXONOMY_NOT_APPROVED` | ERROR | An approved release pins a taxonomy snapshot that is not approved. |
 | `APPROVED_RELEASE_MEDIA_NOT_APPROVED` | ERROR | An approved release pins a media slot or version that is not approved. |
+| `APPROVED_MEDIA_VERSION_NOT_PINNED` | ERROR | An approved media slot's current version is not pinned by exact version and byte hash. |
 | `TAXONOMY_VERSION_CONFLICT` | ERROR | A release pins multiple versions of the same taxonomy ID. |
 | `TAXONOMY_FRAMEWORK_DUPLICATE` | ERROR | CEFR framework code/version scope repeats in one taxonomy snapshot. |
 | `TAXONOMY_CODE_DUPLICATE` | ERROR | Topic or Domain code is duplicated in a taxonomy namespace. |

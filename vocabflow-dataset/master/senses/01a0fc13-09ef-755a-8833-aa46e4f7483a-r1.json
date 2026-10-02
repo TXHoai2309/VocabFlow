@@ -1,0 +1,86 @@
+{
+  "masterSenseId": "01a0fc13-09ef-755a-8833-aa46e4f7483a",
+  "masterLexemeId": "01a0fc13-09ef-7021-a00d-86bc169fe0df",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "take part in a game"
+    },
+    {
+      "language": "vi",
+      "text": "chơi"
+    }
+  ],
+  "senseOrder": 2,
+  "partOfSpeechCode": "VERB",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a0fc13-09ef-71b3-9858-b2446cc005f5",
+      "masterSenseId": "01a0fc13-09ef-755a-8833-aa46e4f7483a",
+      "language": "vi",
+      "text": "chơi",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "provenanceIds": [
+        "01a0fc13-09ef-7a34-aaaf-697b2e8dd97d"
+      ],
+      "status": "IN_REVIEW"
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a0fc13-09ef-788c-8986-98e47e4dde0c",
+      "masterSenseId": "01a0fc13-09ef-755a-8833-aa46e4f7483a",
+      "language": "en",
+      "text": "To take part in a game, sport, or activity for enjoyment or competition.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "provenanceIds": [
+        "01a0fc13-09ef-7617-9e73-eb7797d82684"
+      ],
+      "status": "IN_REVIEW"
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a0fc13-09ef-76c3-9c38-5000f71ffc38",
+      "masterSenseId": "01a0fc13-09ef-755a-8833-aa46e4f7483a",
+      "language": "en",
+      "text": "The children play soccer after school.",
+      "register": "NEUTRAL",
+      "levelNotes": "Editorial example for this Sense; this note does not assert CEFR alignment.",
+      "displayOrder": 0,
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a0fc13-09ef-7b78-8a00-705fd975bfb1",
+          "exampleId": "01a0fc13-09ef-76c3-9c38-5000f71ffc38",
+          "language": "vi",
+          "text": "Bọn trẻ chơi bóng đá sau giờ học.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "provenanceIds": [
+            "01a0fc13-09ef-76cb-ae98-b65a6ca33668"
+          ],
+          "status": "IN_REVIEW"
+        }
+      ],
+      "audioAssetIds": [],
+      "provenanceIds": [
+        "01a0fc13-09ef-7d91-be95-27527ea062b9"
+      ],
+      "status": "IN_REVIEW"
+    }
+  ],
+  "pronunciationOverrides": [],
+  "provenanceIds": [
+    "01a0fc13-09ef-7fe7-a9a2-aabba10fb5fe"
+  ],
+  "status": "IN_REVIEW",
+  "createdAt": "2026-10-02T00:00:00Z",
+  "updatedAt": "2026-10-02T00:00:00Z"
+}

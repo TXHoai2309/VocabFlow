@@ -80,6 +80,20 @@
       },
       "uniqueItems": true
     },
+    "includedMediaAssets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "mediaAssetId": { "$ref": "common.schema.json#/$defs/uuidV7" },
+          "recordPath": { "$ref": "#/$defs/recordPath" },
+          "contentHash": { "$ref": "common.schema.json#/$defs/sha256" }
+        },
+        "required": ["mediaAssetId", "recordPath", "contentHash"],
+        "additionalProperties": false
+      },
+      "uniqueItems": true
+    },
     "includedMediaAssetVersions": {
       "type": "array",
       "items": {
@@ -138,7 +152,7 @@
   "required": [
     "datasetId", "datasetCode", "name", "datasetVersion", "schemaVersion", "status",
     "includedLexemes", "includedSenses", "includedClassifications", "includedLearningSets",
-    "includedTaxonomySnapshots", "includedMediaAssetVersions", "includedRelations", "includedProvenance", "createdAt"
+    "includedTaxonomySnapshots", "includedMediaAssets", "includedMediaAssetVersions", "includedRelations", "includedProvenance", "createdAt"
   ],
   "allOf": [
     {

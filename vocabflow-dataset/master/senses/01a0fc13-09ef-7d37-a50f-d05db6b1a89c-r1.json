@@ -1,0 +1,86 @@
+{
+  "masterSenseId": "01a0fc13-09ef-7d37-a50f-d05db6b1a89c",
+  "masterLexemeId": "01a0fc13-09ef-7e5d-b757-aa456f0cd969",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "booking"
+    },
+    {
+      "language": "vi",
+      "text": "việc đặt chỗ; chỗ đã đặt"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "NOUN",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a0fc13-09ef-73bc-a930-1cf6e11b7e3c",
+      "masterSenseId": "01a0fc13-09ef-7d37-a50f-d05db6b1a89c",
+      "language": "vi",
+      "text": "việc đặt chỗ; chỗ đã đặt",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "provenanceIds": [
+        "01a0fc13-09ef-7e90-8a1e-ea1aaf871481"
+      ],
+      "status": "IN_REVIEW"
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a0fc13-09ef-7b90-8334-fff3383108d8",
+      "masterSenseId": "01a0fc13-09ef-7d37-a50f-d05db6b1a89c",
+      "language": "en",
+      "text": "An arrangement made in advance to keep a place, room, or table for someone.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "provenanceIds": [
+        "01a0fc13-09ef-78e7-8067-5f5b5644b1fd"
+      ],
+      "status": "IN_REVIEW"
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a0fc13-09ef-7424-9c6d-5f41f21db19d",
+      "masterSenseId": "01a0fc13-09ef-7d37-a50f-d05db6b1a89c",
+      "language": "en",
+      "text": "I made a reservation for two at seven o'clock.",
+      "register": "NEUTRAL",
+      "levelNotes": "Editorial example for this Sense; this note does not assert CEFR alignment.",
+      "displayOrder": 0,
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a0fc13-09ef-70cd-b5d7-61357df8dc30",
+          "exampleId": "01a0fc13-09ef-7424-9c6d-5f41f21db19d",
+          "language": "vi",
+          "text": "Tôi đã đặt bàn cho hai người lúc bảy giờ.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "provenanceIds": [
+            "01a0fc13-09ef-7a1b-9a1a-82963396d6ef"
+          ],
+          "status": "IN_REVIEW"
+        }
+      ],
+      "audioAssetIds": [],
+      "provenanceIds": [
+        "01a0fc13-09ef-7884-8cf3-216497bfc161"
+      ],
+      "status": "IN_REVIEW"
+    }
+  ],
+  "pronunciationOverrides": [],
+  "provenanceIds": [
+    "01a0fc13-09ef-756b-9c43-1d84be2fecb0"
+  ],
+  "status": "IN_REVIEW",
+  "createdAt": "2026-10-02T00:00:00Z",
+  "updatedAt": "2026-10-02T00:00:00Z"
+}

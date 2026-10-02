@@ -1,0 +1,86 @@
+{
+  "masterSenseId": "01a0fc13-09ef-710c-8e76-753a5cfea69c",
+  "masterLexemeId": "01a0fc13-09ee-7113-8786-38671cd485b7",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "computing procedure"
+    },
+    {
+      "language": "vi",
+      "text": "thuật toán"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "NOUN",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a0fc13-09ef-7187-84e1-34c0242759b5",
+      "masterSenseId": "01a0fc13-09ef-710c-8e76-753a5cfea69c",
+      "language": "vi",
+      "text": "thuật toán",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "provenanceIds": [
+        "01a0fc13-09ef-7c41-8fc8-6acb6fa123f2"
+      ],
+      "status": "IN_REVIEW"
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a0fc13-09ef-775c-bdc5-78f54f84cbed",
+      "masterSenseId": "01a0fc13-09ef-710c-8e76-753a5cfea69c",
+      "language": "en",
+      "text": "A defined sequence of steps that a computer follows to solve a problem or process information.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "provenanceIds": [
+        "01a0fc13-09ef-7cbe-b172-5c2e053bbe24"
+      ],
+      "status": "IN_REVIEW"
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a0fc13-09ef-7542-ba90-310df4bf5b96",
+      "masterSenseId": "01a0fc13-09ef-710c-8e76-753a5cfea69c",
+      "language": "en",
+      "text": "The app uses an algorithm to sort the search results.",
+      "register": "NEUTRAL",
+      "levelNotes": "Editorial example for this Sense; this note does not assert CEFR alignment.",
+      "displayOrder": 0,
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a0fc13-09ef-795b-a916-6a7a0d898a75",
+          "exampleId": "01a0fc13-09ef-7542-ba90-310df4bf5b96",
+          "language": "vi",
+          "text": "Ứng dụng dùng một thuật toán để sắp xếp kết quả tìm kiếm.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "provenanceIds": [
+            "01a0fc13-09ef-7e40-80b9-af14d45a8916"
+          ],
+          "status": "IN_REVIEW"
+        }
+      ],
+      "audioAssetIds": [],
+      "provenanceIds": [
+        "01a0fc13-09ef-7dbe-a8bc-c941578f7d3b"
+      ],
+      "status": "IN_REVIEW"
+    }
+  ],
+  "pronunciationOverrides": [],
+  "provenanceIds": [
+    "01a0fc13-09ef-708f-a1dc-2b3d58e915ae"
+  ],
+  "status": "IN_REVIEW",
+  "createdAt": "2026-10-02T00:00:00Z",
+  "updatedAt": "2026-10-02T00:00:00Z"
+}

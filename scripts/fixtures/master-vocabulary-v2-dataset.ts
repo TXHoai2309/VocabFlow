@@ -184,7 +184,7 @@ export function writeValidMasterVocabularyFixture(root: string): void {
   ];
 
   const pins: Record<string, JsonObject[]> = {
-    includedLexemes: [], includedSenses: [], includedClassifications: [], includedLearningSets: [], includedTaxonomySnapshots: [], includedMediaAssetVersions: [], includedRelations: [], includedProvenance: [],
+    includedLexemes: [], includedSenses: [], includedClassifications: [], includedLearningSets: [], includedTaxonomySnapshots: [], includedMediaAssets: [], includedMediaAssetVersions: [], includedRelations: [], includedProvenance: [],
   };
   const writeAndPin = (collection: string, relative: string, value: JsonObject, idField: string, entityId: string, revisionField?: string, revision?: string | number): void => {
     writeRecord(root, relative, value);
@@ -209,7 +209,7 @@ export function writeValidMasterVocabularyFixture(root: string): void {
     datasetCode: "vocabflow-v2-cross-file-fixture",
     name: [localized("en", "Synthetic V2 Cross-file Fixture")],
     datasetVersion: "2.0.0",
-    schemaVersion: "2.0.0",
+    schemaVersion: "2.0.1",
     status: "APPROVED",
     ...pins,
     createdAt: timestamp,
@@ -250,7 +250,7 @@ export function refreshFixtureHashes(root: string, options: { recordHashes?: boo
   const manifest = JSON.parse(readFileSync(manifestPath, "utf8")) as JsonObject;
   const recordHashes = options.recordHashes ?? true;
   if (recordHashes) {
-    for (const collection of ["includedLexemes", "includedSenses", "includedClassifications", "includedLearningSets", "includedTaxonomySnapshots", "includedMediaAssetVersions", "includedRelations", "includedProvenance"]) {
+    for (const collection of ["includedLexemes", "includedSenses", "includedClassifications", "includedLearningSets", "includedTaxonomySnapshots", "includedMediaAssets", "includedMediaAssetVersions", "includedRelations", "includedProvenance"]) {
       const entries = Array.isArray(manifest[collection]) ? manifest[collection] as JsonObject[] : [];
       for (const pin of entries) {
         try {

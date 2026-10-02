@@ -69,6 +69,7 @@ interface ArtifactPin {
   revisionField?: string;
   schemaFile: string;
   schemaTarget?: string;
+  mediaVersionPin?: boolean;
   records: JsonObject[];
 }
 
@@ -119,7 +120,8 @@ const PIN_CONFIG: ArtifactPin[] = [
   { collection: "includedClassifications", entityType: "CLASSIFICATION", idField: "classificationId", revisionField: "classificationRevision", schemaFile: "common.schema.json", schemaTarget: "#/$defs/classification", records: [] },
   { collection: "includedLearningSets", entityType: "LEARNING_SET", idField: "learningSetId", revisionField: "learningSetRevision", schemaFile: "learning-set.schema.json", records: [] },
   { collection: "includedTaxonomySnapshots", entityType: "TAXONOMY", idField: "taxonomyId", revisionField: "taxonomyVersion", schemaFile: "taxonomy.schema.json", records: [] },
-  { collection: "includedMediaAssetVersions", entityType: "MEDIA_ASSET", idField: "mediaAssetId", revisionField: "mediaAssetVersion", schemaFile: "media-asset.schema.json", records: [] },
+  { collection: "includedMediaAssets", entityType: "MEDIA_ASSET", idField: "mediaAssetId", schemaFile: "media-asset.schema.json", records: [] },
+  { collection: "includedMediaAssetVersions", entityType: "MEDIA_ASSET", idField: "mediaAssetId", revisionField: "mediaAssetVersion", schemaFile: "media-asset.schema.json", mediaVersionPin: true, records: [] },
   { collection: "includedRelations", entityType: "RELATION", idField: "relationId", revisionField: "relationRevision", schemaFile: "common.schema.json", schemaTarget: "#/$defs/relation", records: [] },
   { collection: "includedProvenance", entityType: "PROVENANCE", idField: "provenanceId", schemaFile: "provenance.schema.json", records: [] },
 ];
@@ -382,7 +384,7 @@ export function validateMasterVocabularyV2(
           issues.push({ code: "CANONICAL_HASH_FAILED", severity: "ERROR", stage: "release", entityType: config.entityType, entityId, recordPath, message: error instanceof Error ? error.message : String(error) });
         }
 
-        if (config.entityType === "MEDIA_ASSET") {
+        if (config.mediaVersionPin) {
           const pinnedVersion = asObjectArray(parsed.versions).find((version) => version.mediaAssetVersion === pin.mediaAssetVersion);
           if (!pinnedVersion) {
             issues.push({ code: "PIN_MEDIA_VERSION_MISSING", severity: "ERROR", stage: "release", entityType: "MEDIA_ASSET", entityId, recordPath, path: "/versions", message: "The pinned mediaAssetVersion is absent from the pinned asset record." });
@@ -661,6 +663,7 @@ function validateSemanticGraph(manifest: JsonObject, artifacts: LoadedArtifact[]
   }
 
   const approvedRelease = manifest.status === "APPROVED";
+  const pinnedMediaVersions = new Set(asObjectArray(manifest.includedMediaAssetVersions).map((pin) => `${String(pin.mediaAssetId)}@${String(pin.mediaAssetVersion)}`));
   for (const artifact of artifacts) {
     if (approvedRelease) {
       const root = artifact.data;
@@ -670,6 +673,10 @@ function validateSemanticGraph(manifest: JsonObject, artifacts: LoadedArtifact[]
       }
       if (artifact.entityType === "TAXONOMY" && root.status !== "APPROVED") {
         issues.push({ code: "APPROVED_RELEASE_TAXONOMY_NOT_APPROVED", severity: "ERROR", stage: "cross-file", entityType: "TAXONOMY", entityId: stringValue(root.taxonomyId), recordPath: artifact.recordPath, path: "/status", message: "An APPROVED release requires its pinned taxonomy snapshot to be APPROVED." });
+      }
+      const mediaAssetId = artifact.entityType === "MEDIA_ASSET" ? stringValue(root.mediaAssetId) : undefined;
+      if (mediaAssetId && root.status === "APPROVED" && !pinnedMediaVersions.has(`${mediaAssetId}@${String(root.currentMediaAssetVersion)}`)) {
+        issues.push({ code: "APPROVED_MEDIA_VERSION_NOT_PINNED", severity: "ERROR", stage: "release", entityType: "MEDIA_ASSET", entityId: mediaAssetId, recordPath: artifact.recordPath, path: "/currentMediaAssetVersion", message: "An APPROVED release must pin the approved media slot's exact current version and byte hash." });
       }
     }
   }

@@ -1,11 +1,13 @@
 # VocabFlow Master Vocabulary Dataset V2
 
-This directory is the Phase 1 schema package and Phase 2A cross-file validation
-package for the Master Vocabulary contract. It is separate from the app's
-runtime DTOs and database schema. The
-initial [`dataset.json`](dataset.json) is an empty `DRAFT` manifest for release
-line `2.0.0`; it contains no production Lexemes, Senses, taxonomy assignments,
-Learning Set memberships, or media bytes.
+This directory contains the Phase 1 Master Vocabulary contract, the Phase 2A
+cross-file validator package, and the Phase 2B editorial pilot. It is separate
+from the app's runtime DTOs and database schema. The pinned `2.0.0` dataset
+manifest remains `DRAFT`; its 19 Lexemes and 25 Senses are all `IN_REVIEW`,
+with project-authored examples and Vietnamese translations. Pilot CEFR bands
+and difficulty scores are unverified editorial estimates. The internal school
+profile and IELTS-tagging exercise are explicitly non-official. Media records
+contain planning briefs only; no image or audio bytes have been generated.
 
 ## Package layout
 
@@ -62,6 +64,10 @@ serialized contract. `dataset.json` records exact pins rather than bare IDs:
 - Relation: `relationId` + `relationRevision`.
 - Media: `mediaAssetId` + `mediaAssetVersion` + asset-record `contentHash` and
   exact byte `sha256`.
+- Media planning slots without a byte version: `includedMediaAssets` pins the
+  asset ID, exact record path, and content hash. It represents the brief/status
+  only; selecting bytes still requires an exact `includedMediaAssetVersions`
+  pin.
 - Provenance: immutable `provenanceId` + record `contentHash`.
 
 Each pin includes a package-relative `recordPath` and SHA-256 `contentHash`.
@@ -105,8 +111,8 @@ requires its release hash, approved pinned learner-facing records and taxonomy,
 eligible approved Learning Set memberships, and active references where the
 contract requires them. Approved CEFR, Exam, School Level, and Relation claims
 also require Provenance under the current contract. Draft status does not waive
-checks on data that is actually pinned. No pilot or production vocabulary is
-included in this package.
+checks on data that is actually pinned. The tracked Phase 2B pilot is editorial
+working content and must not be treated as an approved production vocabulary.
 
 The cross-file stage checks:
 
