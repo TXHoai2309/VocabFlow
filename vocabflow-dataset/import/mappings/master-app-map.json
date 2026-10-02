@@ -1,0 +1,215 @@
+{
+  "artifactVersion": "app-import-v2",
+  "sourceDataset": "VOCABFLOW_MASTER_V2",
+  "sourceDatasetId": "0195f85c-7b2a-7d10-8c01-000000000001",
+  "sourceDatasetVersion": "2.0.0",
+  "sourceSchemaVersion": "2.0.1",
+  "sourceManifestStatus": "DRAFT",
+  "sourceManifestContentHash": "994474516c13728fec63c7c3ec155312c847af33c44a40ceadefdf8357952dc6",
+  "sourceReleaseHash": null,
+  "mode": "PREVIEW",
+  "importEligible": false,
+  "mappingPolicy": "explicit-only; no lemma matching or integer-id allocation",
+  "mappings": [
+    {
+      "masterLexemeId": "01a0fc13-09ed-72c7-aef1-9124d94a6828",
+      "masterSenseId": "01a0fc13-09ed-70b4-801b-408be3b771e9",
+      "appVocabularyId": null,
+      "mappingStatus": "UNRESOLVED",
+      "runtimeIdentityState": "NOT_RECONCILED",
+      "projectionFingerprint": "4bd223b0f24c767d7d4a84902d0477b0b05914a54097f7032e5c6e73da0d9f9d"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ed-77ca-b066-98b5169c16b8",
+      "masterSenseId": "01a0fc13-09ee-7211-8e5a-784c689a0c7a",
+      "appVocabularyId": null,
+      "mappingStatus": "UNRESOLVED",
+      "runtimeIdentityState": "NOT_RECONCILED",
+      "projectionFingerprint": "437cae648627c33284631b93391fe7de12afb0b7b0d8c66c8c11da0c072a213b"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ed-77ca-b066-98b5169c16b8",
+      "masterSenseId": "01a0fc13-09ee-7584-a480-e313e359f744",
+      "appVocabularyId": null,
+      "mappingStatus": "UNRESOLVED",
+      "runtimeIdentityState": "NOT_RECONCILED",
+      "projectionFingerprint": "73945a3038ae55a60cd6c37f01bef6c09407942ed9bb8e50251ae7e995189895"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ee-714b-953b-de9616600957",
+      "masterSenseId": "01a0fc13-09ee-7279-8a52-44ce829fb601",
+      "appVocabularyId": null,
+      "mappingStatus": "UNRESOLVED",
+      "runtimeIdentityState": "NOT_RECONCILED",
+      "projectionFingerprint": "a2316a3930b85be47cf608f794ca666006606ade6b742d133188fa85ce8d5296"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ee-714b-953b-de9616600957",
+      "masterSenseId": "01a0fc13-09ee-786f-9492-e39a9a049078",
+      "appVocabularyId": null,
+      "mappingStatus": "UNRESOLVED",
+      "runtimeIdentityState": "NOT_RECONCILED",
+      "projectionFingerprint": "464b09448443463cb5f89615d12456400be225ec09481fe1de6c52941bc8315d"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ee-781c-8793-6ec31c09956e",
+      "masterSenseId": "01a0fc13-09ee-71ff-9a0a-a96e48ef7dac",
+      "appVocabularyId": null,
+      "mappingStatus": "UNRESOLVED",
+      "runtimeIdentityState": "NOT_RECONCILED",
+      "projectionFingerprint": "0f028abeb877016520f071ce32a2a9ac740e99266410a1b36ec918b44a1b02cb"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ee-781c-8793-6ec31c09956e",
+      "masterSenseId": "01a0fc13-09ee-7823-95fc-5d1d76f13fa5",
+      "appVocabularyId": null,
+      "mappingStatus": "UNRESOLVED",
+      "runtimeIdentityState": "NOT_RECONCILED",
+      "projectionFingerprint": "ee9b7fb7a656fa1619ea2ac24911e1535ffc23d4fba1e1c2066310f9d5b89a03"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ee-7fd1-8ad8-a2026a7620e0",
+      "masterSenseId": "01a0fc13-09ee-72d5-80ac-b4dca3b54ceb",
+      "appVocabularyId": null,
+      "mappingStatus": "UNRESOLVED",
+      "runtimeIdentityState": "NOT_RECONCILED",
+      "projectionFingerprint": "01d8e6a75f6b3ffc9814f163f4241ba6aad005e541a244cc873644969d3e6a82"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ee-7fd1-8ad8-a2026a7620e0",
+      "masterSenseId": "01a0fc13-09ee-7768-9be6-d20fa32521ee",
+      "appVocabularyId": null,
+      "mappingStatus": "UNRESOLVED",
+      "runtimeIdentityState": "NOT_RECONCILED",
+      "projectionFingerprint": "608393c179f8d157647a7c5770e7ec2e64699ec9a4a4a87de6d3b768193a0243"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ee-73d5-affa-6e017eb9adb3",
+      "masterSenseId": "01a0fc13-09ee-79c7-85ff-cbe0fc14a249",
+      "appVocabularyId": null,
+      "mappingStatus": "UNRESOLVED",
+      "runtimeIdentityState": "NOT_RECONCILED",
+      "projectionFingerprint": "9c36c1a45e23c212a60b32451ad8e8ae9c23a6c7f9f17216bad61c6e7394b1e6"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ee-791e-a923-4c986be48d8a",
+      "masterSenseId": "01a0fc13-09ee-7d1f-b899-8bc496d8ca5a",
+      "appVocabularyId": null,
+      "mappingStatus": "UNRESOLVED",
+      "runtimeIdentityState": "NOT_RECONCILED",
+      "projectionFingerprint": "50a04c57f7ea8fd65a1b906b2ac1f5ebdf93b464ee885b8d4e4c92e182b62f7a"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ee-7036-8723-353b3c3861bf",
+      "masterSenseId": "01a0fc13-09ee-7a30-8772-3b0ac18c20a9",
+      "appVocabularyId": null,
+      "mappingStatus": "UNRESOLVED",
+      "runtimeIdentityState": "NOT_RECONCILED",
+      "projectionFingerprint": "4ecfa5e7da7cd4de21dec2fb36fce36786a35bc29279f7d6b0357a94d8f48fd6"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ee-74cc-83bc-591f2212bf94",
+      "masterSenseId": "01a0fc13-09ee-769b-b7f9-19f20a1686f4",
+      "appVocabularyId": null,
+      "mappingStatus": "UNRESOLVED",
+      "runtimeIdentityState": "NOT_RECONCILED",
+      "projectionFingerprint": "8b33042da64fbce62463bfb17a7ca56a775acf9fb078ed6b3cb5a00766b45aca"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ee-70d2-9953-2680228cb7c7",
+      "masterSenseId": "01a0fc13-09ee-74ac-93f8-38acfc514554",
+      "appVocabularyId": null,
+      "mappingStatus": "UNRESOLVED",
+      "runtimeIdentityState": "NOT_RECONCILED",
+      "projectionFingerprint": "2cd15af99ad08760d6600296c3f7f4b6717757ef306c24d0a4695628f3997043"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ee-7113-8786-38671cd485b7",
+      "masterSenseId": "01a0fc13-09ef-710c-8e76-753a5cfea69c",
+      "appVocabularyId": null,
+      "mappingStatus": "UNRESOLVED",
+      "runtimeIdentityState": "NOT_RECONCILED",
+      "projectionFingerprint": "24269dce95b96463807d02d53b204fc0cc4f8210b7d366791e44d23c5145c924"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ef-7e5d-b757-aa456f0cd969",
+      "masterSenseId": "01a0fc13-09ef-7d37-a50f-d05db6b1a89c",
+      "appVocabularyId": null,
+      "mappingStatus": "UNRESOLVED",
+      "runtimeIdentityState": "NOT_RECONCILED",
+      "projectionFingerprint": "a935fa0971f49b3964527305f113f0c4df3a1651b338fd1087a053f00dd89429"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ef-78f5-8ccd-8a63e974a202",
+      "masterSenseId": "01a0fc13-09ef-7141-984b-9ed540913f76",
+      "appVocabularyId": null,
+      "mappingStatus": "UNRESOLVED",
+      "runtimeIdentityState": "NOT_RECONCILED",
+      "projectionFingerprint": "5372d1d37c0481ef2f6ee82056264ddada0bfa47164a945ebe4d3e416ce78266"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ef-7857-9576-d74ec23a1366",
+      "masterSenseId": "01a0fc13-09ef-7d8c-a142-c41ca39a9e4d",
+      "appVocabularyId": null,
+      "mappingStatus": "UNRESOLVED",
+      "runtimeIdentityState": "NOT_RECONCILED",
+      "projectionFingerprint": "2ab659caa52cf78e937c0d31d1ce186d88537574bd18463d1950ae247e5e3e14"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ef-737e-b28d-c6f7c399e319",
+      "masterSenseId": "01a0fc13-09ef-7b92-9fe7-6e32ed4d4b6e",
+      "appVocabularyId": null,
+      "mappingStatus": "UNRESOLVED",
+      "runtimeIdentityState": "NOT_RECONCILED",
+      "projectionFingerprint": "0ca8abc279b616d146e85d803bf822d09227d03ac05d825bfa04b0a225692772"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ef-7150-aa19-1e98757d1de1",
+      "masterSenseId": "01a0fc13-09ef-74c6-8f36-9667eea96447",
+      "appVocabularyId": null,
+      "mappingStatus": "UNRESOLVED",
+      "runtimeIdentityState": "NOT_RECONCILED",
+      "projectionFingerprint": "26420a6b4f4e990124639a18c598d4eb74e6a95df833a44ba6027125fd63d9c0"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ef-73b3-b970-1a8bd5d48a27",
+      "masterSenseId": "01a0fc13-09ef-75bb-bbc6-a31a5bc3c83c",
+      "appVocabularyId": null,
+      "mappingStatus": "UNRESOLVED",
+      "runtimeIdentityState": "NOT_RECONCILED",
+      "projectionFingerprint": "0e0df651fe505e6af43533b527f6b23d03083dde228d50e80e6329cf910e6c96"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ef-73b3-b970-1a8bd5d48a27",
+      "masterSenseId": "01a0fc13-09ef-75ac-b815-039ab337c01a",
+      "appVocabularyId": null,
+      "mappingStatus": "UNRESOLVED",
+      "runtimeIdentityState": "NOT_RECONCILED",
+      "projectionFingerprint": "eb9a59bb7a39a873e6c063a8b23ba6661b26f8231f447853cab6115e72fdcce8"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ef-7021-a00d-86bc169fe0df",
+      "masterSenseId": "01a0fc13-09ef-7e09-a527-a47867da6730",
+      "appVocabularyId": null,
+      "mappingStatus": "UNRESOLVED",
+      "runtimeIdentityState": "NOT_RECONCILED",
+      "projectionFingerprint": "896141f995f37b49db4b5271ed4b0f8b3eff1a6844774148ca303384198e339b"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ef-7021-a00d-86bc169fe0df",
+      "masterSenseId": "01a0fc13-09ef-755a-8833-aa46e4f7483a",
+      "appVocabularyId": null,
+      "mappingStatus": "UNRESOLVED",
+      "runtimeIdentityState": "NOT_RECONCILED",
+      "projectionFingerprint": "65e14c833059cf234d0a460db50198101b72d5b19723765a3a9b15217c9dd5cd"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ef-7862-8f61-1806944702ca",
+      "masterSenseId": "01a0fc13-09f0-7869-8182-2e73328b05dd",
+      "appVocabularyId": null,
+      "mappingStatus": "UNRESOLVED",
+      "runtimeIdentityState": "NOT_RECONCILED",
+      "projectionFingerprint": "7acc3f4d75c67dc73b4cd41b859b39b02a8a769205df75dc65d5d34a8bd1d484"
+    }
+  ]
+}

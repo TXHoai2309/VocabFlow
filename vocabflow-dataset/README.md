@@ -33,6 +33,20 @@ through that local registry. The Phase 2A validator registers these local
 schemas and never fetches their `$id` values over the network. It does not
 include an importer, database adapter, or runtime integration.
 
+## Offline App Import V2 projection
+
+Phase 2C provides `pnpm transform:master-vocab-v2`, which first validates the
+Master package and writes deterministic App Import V2 preview artifacts under
+`import/`. The default mode is `PREVIEW`; it always marks the package
+`importEligible: false` and keeps rows disabled. `--release` requires a
+validator-clean `APPROVED` manifest, so this current DRAFT pilot is rejected
+before any import artifacts are written. This is an offline projection only;
+it does not assign app integer IDs or write to the runtime database.
+
+See the [App Import V2 projection contract](../docs/architecture/master-vocabulary-v2-app-import-contract.md)
+for field selection, fingerprint semantics, compatibility rules, information
+loss, and future runtime requirements.
+
 ## Run validation
 
 From the repository root, run:
