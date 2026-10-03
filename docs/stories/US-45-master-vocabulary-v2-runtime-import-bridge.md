@@ -224,3 +224,47 @@ Review artifacts:
 [`owner reconciliation review`](../../vocabflow-dataset/reports/canary-development-owner-reconciliation-review.md)
 and
 [`analysis-only proposal`](../../vocabflow-dataset/releases/canary-v2.1.0/import/mappings/runtime-reconciliation-proposal-development-v2.json).
+
+## Phase 2E.3 — final owner reconciliation preparation
+
+The development reconciliation scanner was rerun against the provider-verified
+Neon target in a REPEATABLE READ / READ ONLY transaction. The target is
+shy-hill-72364426 / br-square-grass-b3af0nte / neondb. The snapshot fingerprint
+remains
+464e6f0d6f9807f2b25d01c7d66b5ef9166c2b0808e19d31cd282a15652f6e7b, matching
+Phase 2E.2. Release 2.1.0, schema 2.0.1, APPROVED status, release hash and
+approved scope are unchanged.
+
+The owner decision sheet preserves the apple options #1, #295 and CREATE_NEW
+without ranking or selecting them. A separate field audit records the exact
+UPDATE_TO_MASTER projection losses for apple #1/#295, bank #871 and reservation
+#284. All eight Sense decisions and the Technology Starter decision remain
+unresolved in machine-readable owner-ready evidence.
+
+The planner returns reconciliationComplete=false and canApply=false for the
+current root human-owned reconciliation, which still targets 2.0.0. The
+analysis-only owner-ready artifact is rejected by the planner's ownership gate.
+A temporary simulation of the seven non-Apple decisions found no other
+structural issue; Apple remains the sole unresolved Sense. No hypothetical
+decision was saved as human-owned.
+
+The migration scan reconfirms 18/18 rows, exact 0015–0017 hashes, and six
+historical hash mismatches. Current planner code does not enforce historical
+ledger hash equality in canApply, so the drift remains a separate integrity
+concern. The generated release template also carries a sourceManifestContentHash
+that differs from the current transformed app-import metadata; the new
+owner-ready analysis file carries the matching metadata without changing the
+approved release or existing template.
+
+Focused scanner, proposal, planner, runtime bridge, transform and validator
+suites pass (6 files / 91 tests), along with typecheck and repository ESLint.
+No database mutation, import APPLY, migration, mapping decision, runtime ID
+allocation, learner-history merge, Cloudinary operation, APKG use, or API/UI
+change occurred.
+
+Phase 2E.3 evidence:
+
+- [`final reconciliation readiness`](../../vocabflow-dataset/reports/canary-development-final-reconciliation-readiness.md)
+- [`final owner decision sheet`](../../vocabflow-dataset/reports/canary-development-final-owner-decision-sheet.md)
+- [`projection-loss audit`](../../vocabflow-dataset/reports/canary-development-projection-loss-audit.md)
+- [`analysis-only owner-ready artifact`](../../vocabflow-dataset/releases/canary-v2.1.0/import/mappings/runtime-reconciliation-owner-ready-development-v2.json)

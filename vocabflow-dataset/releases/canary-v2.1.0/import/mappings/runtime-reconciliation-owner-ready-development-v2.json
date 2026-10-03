@@ -1,0 +1,72 @@
+{
+  "artifactVersion": "runtime-reconciliation-v2",
+  "owner": "owner-review-required",
+  "generatedByTransform": true,
+  "sourceDatasetId": "0195f85c-7b2a-7d10-8c01-000000000001",
+  "sourceDatasetVersion": "2.1.0",
+  "sourceSchemaVersion": "2.0.1",
+  "sourceManifestContentHash": "6c80ef29049f925c8e4c331642eba4fd0222b78fc249d144913f573de8f96b6c",
+  "sourceReleaseHash": "fc67dd2a70adadd311384360c004faa4693ae24ffe4524761ce7075f21c95591",
+  "allowPartialImport": false,
+  "vocabulary": [
+    {
+      "masterSenseId": "01a0fc13-09ed-70b4-801b-408be3b771e9",
+      "decision": "UNRESOLVED",
+      "runtimeCandidateIds": [1, 295]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-7211-8e5a-784c689a0c7a",
+      "decision": "UNRESOLVED",
+      "runtimeCandidateIds": [871]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-7584-a480-e313e359f744",
+      "decision": "UNRESOLVED",
+      "runtimeCandidateIds": [871]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-71ff-9a0a-a96e48ef7dac",
+      "decision": "UNRESOLVED",
+      "runtimeCandidateIds": [849]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-7823-95fc-5d1d76f13fa5",
+      "decision": "UNRESOLVED",
+      "runtimeCandidateIds": [849]
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-79c7-85ff-cbe0fc14a249",
+      "decision": "UNRESOLVED",
+      "runtimeCandidateIds": []
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-710c-8e76-753a5cfea69c",
+      "decision": "UNRESOLVED",
+      "runtimeCandidateIds": []
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-7d37-a50f-d05db6b1a89c",
+      "decision": "UNRESOLVED",
+      "runtimeCandidateIds": [284]
+    }
+  ],
+  "topics": [],
+  "learningSets": [
+    {
+      "masterLearningSetId": "01a0fc13-09f2-7709-a32d-5bef5b1f7a51",
+      "decision": "UNRESOLVED",
+      "runtimeCandidateIds": [],
+      "runtimeLearningSetCountInspected": 16,
+      "exactSlugOrNameCollisionCount": 0
+    }
+  ],
+  "analysisOnly": true,
+  "target": {
+    "environment": "development",
+    "projectId": "shy-hill-72364426",
+    "branchId": "br-square-grass-b3af0nte",
+    "databaseName": "neondb"
+  },
+  "snapshotFingerprint": "464e6f0d6f9807f2b25d01c7d66b5ef9166c2b0808e19d31cd282a15652f6e7b",
+  "reviewInstructions": "Analysis-only owner-ready copy for the verified development snapshot. Every decision remains UNRESOLVED. Do not use as the human-owned reconciliation or for APPLY; the planner ownership gate must reject it. The sourceManifestContentHash matches the current RELEASE app-import artifacts."
+}

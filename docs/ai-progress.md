@@ -1,5 +1,35 @@
 # Current Handoff Snapshot
 
+## 2026-10-03 — Master Vocabulary V2 Phase 2E.3 final owner reconciliation preparation
+
+- Re-ran the development reconciliation scanner through provider/target
+  verification and a REPEATABLE READ / READ ONLY snapshot. Target remains
+  shy-hill-72364426 / br-square-grass-b3af0nte / neondb; fingerprint
+  464e6f0d6f9807f2b25d01c7d66b5ef9166c2b0808e19d31cd282a15652f6e7b matches
+  Phase 2E.2. The approved 2.1.0 release identity and scope are unchanged.
+- Apple #1 and #295 remain the same fruit Sense with separate history and
+  memberships; the overlapping learner count is 1. Apple choice remains
+  unresolved. Added an owner decision sheet and a field-by-field projection
+  loss audit, including nulling existing IPA/media/legacy-topic fields under
+  UPDATE_TO_MASTER.
+- Added a contract-shaped, analysis-only owner-ready file with current release
+  metadata, snapshot fingerprint and runtime candidate IDs. All decisions stay
+  unresolved and the planner rejects it at the ownership gate. The root
+  human-owned reconciliation remains unchanged and is still for 2.0.0.
+- A temporary planner simulation accepted the seven non-Apple proposals and
+  left Apple unresolved: no non-Apple structural issues were found. The current
+  planner returns canApply=false until the owner completes reconciliation.
+- Reconfirmed 18/18 migration rows, exact 0015–0017 hashes, and six historical
+  hash mismatches. The planner does not enforce historical ledger hash
+  equality; this remains a separate integrity concern, not a safety finding.
+- Focused Dataset V2 suites pass 91/91; typecheck and repository ESLint pass.
+  Local Node 22.19.0 emits the repository's Node 22.23.2 engine warning.
+  No database mutation, import APPLY, migration, history merge, ID allocation,
+  Cloudinary operation, APKG use, or API/UI change occurred.
+- Evidence: vocabflow-dataset/reports/canary-development-final-reconciliation-readiness.md,
+  canary-development-final-owner-decision-sheet.md, and
+  canary-development-projection-loss-audit.md.
+
 ## 2026-10-03 — Master Vocabulary V2 Phase 2E.2 owner reconciliation review
 
 - Re-verified the approved 2.1.0 release against the development Neon target and

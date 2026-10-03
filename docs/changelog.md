@@ -2,6 +2,26 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-03 — Master Vocabulary V2 Phase 2E.3 owner reconciliation preparation
+
+- Refreshed development runtime reconciliation evidence in a verified
+  REPEATABLE READ / READ ONLY snapshot; its fingerprint is unchanged from
+  Phase 2E.2. The approved release and development target remain unchanged.
+- Added the final owner decision sheet, projection-loss audit, readiness report,
+  and an unresolved analysis-only owner-ready artifact. Apple #1/#295 remain
+  unranked; owner decisions for all Senses and Technology Starter are
+  unresolved.
+- Planner dry-runs reject the existing stale 2.0.0 human reconciliation for
+  release 2.1.0 and reject the analysis-only owner-ready file at the ownership
+  gate. A temporary non-Apple simulation found no other structural issue.
+- Migration ledger remains 18/18 rows present with 0015–0017 exact and six
+  historical hash mismatches. The planner does not currently compare that
+  ledger when calculating canApply; the drift remains a separate integrity
+  concern.
+- Focused Dataset V2 suites pass (6 files / 91 tests), typecheck and repository
+  ESLint pass. No database write, APPLY, migration, runtime ID allocation,
+  learner-history merge, Cloudinary operation, APKG use, or API/UI change.
+
 ## 2026-10-03 — Master Vocabulary V2 Phase 2E.2 owner reconciliation review
 
 - Added a targeted, read-only apple identity audit with Learning Set and
