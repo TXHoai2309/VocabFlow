@@ -18,8 +18,9 @@
   classified as harmless.
 - No database mutation, import APPLY, migration, history merge, mapping change,
   ID allocation, Cloudinary operation, or Study UI/API change occurred. Focused
-  scanner/proposal/planner tests: 25 passing; Master validator, TypeScript,
-  ESLint, and `git diff --check` results are recorded after final verification.
+  scanner/proposal/planner tests: 26 passing. Master validator, TypeScript,
+  repository ESLint, and `git diff --check` pass; validator reports 0 errors,
+  0 warnings, and one informational DRAFT issue.
 
 ## 2026-10-03 — Continue Learning Home card (US-47)
 

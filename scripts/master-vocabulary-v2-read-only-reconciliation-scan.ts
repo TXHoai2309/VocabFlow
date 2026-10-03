@@ -13,6 +13,7 @@ export type ReadOnlySnapshot = Omit<RuntimeSnapshot, "vocabularies"> & {
   learningSetAssignmentCounts?: Array<{ learningSetId: number; learnerAssignmentCount: number; activeLearnerAssignmentCount?: number }>;
   learnerProgressCounts?: Array<{ vocabularyId: number; referenceCount: number }>;
   reviewEventCounts?: Array<{ vocabularyId: number; referenceCount: number }>;
+  appleIdentityAudit?: Record<string, unknown>;
 };
 
 export type MasterRuntimeCandidate = {
@@ -405,6 +406,7 @@ export function fingerprintDevelopmentReconciliationSnapshot(input: DevelopmentR
     learningSetItems: candidateSetItems,
     masterLearningSetMemberships: candidateMasterSetMemberships,
     learningSetAssignmentCounts: assignmentRows,
+    appleIdentityAudit: input.snapshot.appleIdentityAudit ?? null,
     appliedRuns: [...input.snapshot.appliedRuns].sort((left, right) => left.datasetId.localeCompare(right.datasetId) || left.releaseHash.localeCompare(right.releaseHash)),
     topicProjection: "NOT_REQUIRED_FOR_THIS_CANARY",
   });

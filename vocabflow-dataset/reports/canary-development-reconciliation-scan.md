@@ -1,6 +1,6 @@
 # Development Runtime Reconciliation Scan — Master V2 Canary 2.1.0
 
-Scanned: 2026-10-03T04:19:11.093Z
+Scanned: 2026-10-03T14:26:40.650Z
 
 ## Target verification
 
@@ -36,7 +36,7 @@ Local journal rows present: 18/18; missing rows: 0. Local migration file hash di
 ## Snapshot fingerprint
 
 - Algorithm: SHA-256 over canonical JSON (RFC 8785/JCS).
-- Fingerprint: `b8eea5ac463cdf05a57e155cedd4e31890c21fd12b7d5c5425fa4e552992fe41`
+- Fingerprint: `464e6f0d6f9807f2b25d01c7d66b5ef9166c2b0808e19d31cd282a15652f6e7b`
 - Included: development project/branch/database and role/purpose, release hash, applied migration tags/hashes, the full vocabulary discovery universe (learner-facing content, overrides/quarantine, enabled/contentVersion/source identity), candidate IDs per Master Sense, relevant Master mappings/fingerprints/contracts/releases, candidate progress/review reference counts, all Learning Set discovery fields, candidate memberships/assignment counts/mappings, and applied import-run identities.
 - Excluded: scan time, database timestamps, learner IDs, and learner-level row content. History contributes aggregate counts per candidate vocabulary ID and candidate set.
 

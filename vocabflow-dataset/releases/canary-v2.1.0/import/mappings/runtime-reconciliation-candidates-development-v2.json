@@ -163,10 +163,117 @@
       }
     ]
   },
-  "scannedAt": "2026-10-03T04:19:11.093Z",
-  "snapshotFingerprint": "b8eea5ac463cdf05a57e155cedd4e31890c21fd12b7d5c5425fa4e552992fe41",
+  "scannedAt": "2026-10-03T14:26:40.650Z",
+  "snapshotFingerprint": "464e6f0d6f9807f2b25d01c7d66b5ef9166c2b0808e19d31cd282a15652f6e7b",
   "snapshotFingerprintAlgorithm": "sha256-canonical-json-v1",
-  "snapshotFingerprintContract": "Includes the complete runtime vocabulary and Learning Set discovery universes, candidate search results, relevant Master mappings, candidate history counts and memberships/assignments, applied run identities, verified target identity, release hash and applied migration hashes. Excludes timestamps and learner IDs.",
+  "snapshotFingerprintContract": "Includes the complete runtime vocabulary and Learning Set discovery universes, candidate search results, relevant Master mappings, candidate history counts and memberships/assignments, apple progress states/review ranges/learner-overlap count, applied run identities, verified target identity, release hash and applied migration hashes. Excludes learner IDs.",
+  "appleIdentityAudit": {
+    "vocabularyIds": [
+      1,
+      295
+    ],
+    "learningSetMemberships": [
+      {
+        "vocabularyId": 1,
+        "learningSetId": 1,
+        "slug": "starter-vocabulary",
+        "name": "Bộ từ khởi đầu VocabFlow",
+        "enabled": true,
+        "sortOrder": 0
+      },
+      {
+        "vocabularyId": 1,
+        "learningSetId": 2,
+        "slug": "grade-1-starter",
+        "name": "Bộ từ khởi đầu lớp 1",
+        "enabled": true,
+        "sortOrder": 0
+      },
+      {
+        "vocabularyId": 1,
+        "learningSetId": 5,
+        "slug": "everyday-words",
+        "name": "Từ vựng hằng ngày",
+        "enabled": true,
+        "sortOrder": 0
+      },
+      {
+        "vocabularyId": 295,
+        "learningSetId": 9,
+        "slug": "grade-1-food",
+        "name": "Đồ ăn lớp 1",
+        "enabled": true,
+        "sortOrder": 60
+      }
+    ],
+    "normalizedTopicMemberships": [
+      {
+        "vocabularyId": 1,
+        "topicId": 11,
+        "slug": "food",
+        "name": "Đồ ăn",
+        "enabled": true
+      },
+      {
+        "vocabularyId": 295,
+        "topicId": 11,
+        "slug": "food",
+        "name": "Đồ ăn",
+        "enabled": true
+      }
+    ],
+    "progressStateCounts": [
+      {
+        "vocabularyId": 1,
+        "status": "LEARNING",
+        "count": 3
+      },
+      {
+        "vocabularyId": 295,
+        "status": "LEARNING",
+        "count": 1
+      }
+    ],
+    "reviewSummary": [
+      {
+        "vocabularyId": 1,
+        "count": 8,
+        "earliest": "2026-09-16 03:17:15.132781+00",
+        "latest": "2026-10-02 10:24:44.882337+00"
+      },
+      {
+        "vocabularyId": 295,
+        "count": 1,
+        "earliest": "2026-10-02 13:10:35.322753+00",
+        "latest": "2026-10-02 13:10:35.322753+00"
+      }
+    ],
+    "overlappingLearnerCount": 1,
+    "learningSetAssignmentCounts": [
+      {
+        "learningSetId": 1,
+        "assignmentCount": 8,
+        "activeAssignmentCount": 8
+      },
+      {
+        "learningSetId": 2,
+        "assignmentCount": 2,
+        "activeAssignmentCount": 2
+      },
+      {
+        "learningSetId": 5,
+        "assignmentCount": 1,
+        "activeAssignmentCount": 1
+      },
+      {
+        "learningSetId": 9,
+        "assignmentCount": 1,
+        "activeAssignmentCount": 1
+      }
+    ],
+    "technologyStarterExactCollisions": [],
+    "runtimeLearningSetCount": 16
+  },
   "plannerDryRun": {
     "mode": "DRY_RUN",
     "reconciliationComplete": false,

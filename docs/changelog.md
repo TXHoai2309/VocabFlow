@@ -2,6 +2,20 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-03 — Master Vocabulary V2 Phase 2E.2 owner reconciliation review
+
+- Added a targeted, read-only apple identity audit with Learning Set and
+  normalized Topic memberships, assignment aggregates, progress-state counts,
+  review ranges, and same-learner overlap count. Learner IDs are not selected or
+  emitted; the one-row overlap is flagged `DUPLICATE_LEARNER_HISTORY`.
+- Added an analysis-only reconciliation proposal and owner review report for
+  the eight canary Senses and Technology Starter. All owner decisions remain
+  unresolved, the human-owned reconciliation file is unchanged, and the
+  proposal is rejected by the import planner's ownership gate.
+- Verified legacy migration hash drift separately from identity review. No
+  database or runtime mutation, import APPLY, migration, learner history merge,
+  ID allocation, media operation, or API/UI change.
+
 ## 2026-10-03 — Align Continue Learning Topic scope
 
 - Restricted Topic candidate progress to enabled Topic vocabulary intersected

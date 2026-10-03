@@ -199,3 +199,28 @@ or media operation occurred. See
 [`canary release 2.1.0 report`](../../vocabflow-dataset/reports/canary-release-2.1.0-report.md)
 and the current readiness snapshot in
 [`Phase 2D.2 readiness`](../architecture/master-vocabulary-v2-phase-2d2-readiness.md).
+
+## Phase 2E.2 follow-up — development owner reconciliation evidence
+
+The approved canary was rechecked against the configured development Neon
+target using provider verification and read-only transactions. The apple audit
+found IDs 1 and 295 both represent the fruit Sense, both are reachable through
+catalog/topic flows, and their Learning Set memberships differ. One learner
+has progress on both rows; only the overlap count is retained. The owner report
+lays out unranked ID 1, ID 295, and CREATE_NEW options. Seven other Sense
+proposals and the Technology Starter CREATE_NEW proposal are evidence-backed,
+but every `ownerDecision` remains `UNRESOLVED`; the final human-owned
+reconciliation is unchanged.
+
+The generated analysis-only proposal is rejected by the planner ownership
+gate. Six older migration hashes still differ while all 18 migration rows and
+the exact 0015–0017 hashes are present; this is documented as a separate
+integrity concern because the current planner does not include migration
+ledger comparison in `canApply`. No import APPLY, mutation, history merge,
+mapping update, ID allocation, migration, Cloudinary operation, or API/UI
+change occurred.
+
+Review artifacts:
+[`owner reconciliation review`](../../vocabflow-dataset/reports/canary-development-owner-reconciliation-review.md)
+and
+[`analysis-only proposal`](../../vocabflow-dataset/releases/canary-v2.1.0/import/mappings/runtime-reconciliation-proposal-development-v2.json).

@@ -22,11 +22,19 @@ import {
 } from "./master-vocabulary-v2-read-only-reconciliation-scan";
 import { canonicalJsonSha256 } from "./validate-master-vocabulary-v2";
 import { runMasterVocabularyTransform } from "./transform-master-vocabulary-v2";
+import {
+  buildOwnerReconciliationProposal,
+  proposalHasOnlyUnresolvedOwnerDecisions,
+  renderOwnerReconciliationReview,
+  type AppleIdentityAudit,
+} from "./master-vocabulary-v2-owner-reconciliation-proposal";
 
 const EXPECTED_RELEASE_HASH = "fc67dd2a70adadd311384360c004faa4693ae24ffe4524761ce7075f21c95591";
 const RELEASE_RELATIVE_ROOT = "vocabflow-dataset/releases/canary-v2.1.0";
 const CANDIDATE_RELATIVE_PATH = "import/mappings/runtime-reconciliation-candidates-development-v2.json";
 const REPORT_RELATIVE_PATH = "vocabflow-dataset/reports/canary-development-reconciliation-scan.md";
+const OWNER_PROPOSAL_RELATIVE_PATH = "import/mappings/runtime-reconciliation-proposal-development-v2.json";
+const OWNER_REVIEW_RELATIVE_PATH = "vocabflow-dataset/reports/canary-development-owner-reconciliation-review.md";
 
 type JournalEntry = { idx: number; when: number; tag: string };
 type DbMigrationRow = { id: number; hash: string; created_at: string | number | null };
@@ -296,7 +304,7 @@ function mapVocabulary(row: JsonRecord) {
 async function readDevelopmentRuntimeSnapshot(input: {
   url: string;
   target: ReturnType<typeof getConnectionTarget>;
-}): Promise<ReadOnlySnapshot> {
+}): Promise<ReadOnlySnapshot & { appleIdentityAudit: AppleIdentityAudit }> {
   const sql = openSql(input.url);
   try {
     return await sql.begin(async (tx) => {
@@ -315,6 +323,8 @@ async function readDevelopmentRuntimeSnapshot(input: {
           AND to_regclass('vocabflow_app.learner_learning_sets') IS NOT NULL
           AND to_regclass('vocabflow_app.learner_progress') IS NOT NULL
           AND to_regclass('vocabflow_app.review_events') IS NOT NULL
+          AND to_regclass('vocabflow_app.topics') IS NOT NULL
+          AND to_regclass('vocabflow_app.vocabulary_topics') IS NOT NULL
           AND to_regclass('vocabflow_app.master_vocabulary_mappings') IS NOT NULL
           AND to_regclass('vocabflow_app.master_learning_set_mappings') IS NOT NULL
           AND to_regclass('vocabflow_app.master_vocabulary_import_runs') IS NOT NULL AS ready
@@ -364,6 +374,78 @@ async function readDevelopmentRuntimeSnapshot(input: {
         SELECT dataset_id, release_hash, app_import_contract_version, projection_contract_version, reconciliation_hash, plan_fingerprint
         FROM "vocabflow_app"."master_vocabulary_import_runs" ORDER BY applied_at, id
       `;
+      const appleLearningSetRows = await tx<JsonRecord[]>`
+        SELECT lsi.vocabulary_id, ls.id AS learning_set_id, ls.slug, ls.name, ls.enabled, lsi.sort_order
+        FROM "vocabflow_app"."learning_set_items" lsi
+        JOIN "vocabflow_app"."learning_sets" ls ON ls.id = lsi.learning_set_id
+        WHERE lsi.vocabulary_id IN (1, 295)
+        ORDER BY lsi.vocabulary_id, ls.id, lsi.sort_order
+      `;
+      const appleTopicRows = await tx<JsonRecord[]>`
+        SELECT vt.vocabulary_id, t.id AS topic_id, t.slug, t.name, t.enabled
+        FROM "vocabflow_app"."vocabulary_topics" vt
+        JOIN "vocabflow_app"."topics" t ON t.id = vt.topic_id
+        WHERE vt.vocabulary_id IN (1, 295)
+        ORDER BY vt.vocabulary_id, t.id
+      `;
+      const appleProgressRows = await tx<JsonRecord[]>`
+        SELECT vocabulary_id, status::text AS status, count(*)::int AS row_count
+        FROM "vocabflow_app"."learner_progress"
+        WHERE vocabulary_id IN (1, 295)
+        GROUP BY vocabulary_id, status
+        ORDER BY vocabulary_id, status
+      `;
+      const appleReviewRows = await tx<JsonRecord[]>`
+        SELECT vocabulary_id, count(*)::int AS row_count,
+          min(reviewed_at)::text AS earliest_review, max(reviewed_at)::text AS latest_review
+        FROM "vocabflow_app"."review_events"
+        WHERE vocabulary_id IN (1, 295)
+        GROUP BY vocabulary_id
+        ORDER BY vocabulary_id
+      `;
+      const [appleOverlapRow] = await tx<JsonRecord[]>`
+        SELECT count(*)::int AS overlapping_learner_count
+        FROM "vocabflow_app"."learner_progress" p1
+        JOIN "vocabflow_app"."learner_progress" p2 ON p2.learner_id = p1.learner_id
+        WHERE p1.vocabulary_id = 1 AND p2.vocabulary_id = 295
+      `;
+      const assignmentCounts = new Map(assignmentRows.map((row) => [asNumber(row.learning_set_id), {
+        assignmentCount: asNumber(row.learner_assignment_count),
+        activeAssignmentCount: asNumber(row.active_learner_assignment_count),
+      }]));
+      const appleSetIds = [...new Set(appleLearningSetRows.map((row) => asNumber(row.learning_set_id)))];
+      const appleIdentityAudit: AppleIdentityAudit = {
+        vocabularyIds: [1, 295],
+        learningSetMemberships: appleLearningSetRows.map((row) => ({
+          vocabularyId: asNumber(row.vocabulary_id), learningSetId: asNumber(row.learning_set_id),
+          slug: asString(row.slug), name: asString(row.name), enabled: row.enabled === true, sortOrder: asNumber(row.sort_order),
+        })),
+        normalizedTopicMemberships: appleTopicRows.map((row) => ({
+          vocabularyId: asNumber(row.vocabulary_id), topicId: asNumber(row.topic_id),
+          slug: asString(row.slug), name: asString(row.name), enabled: row.enabled === true,
+        })),
+        progressStateCounts: appleProgressRows.map((row) => ({
+          vocabularyId: asNumber(row.vocabulary_id), status: asString(row.status), count: asNumber(row.row_count),
+        })),
+        reviewSummary: appleReviewRows.map((row) => ({
+          vocabularyId: asNumber(row.vocabulary_id), count: asNumber(row.row_count),
+          earliest: asNullableString(row.earliest_review), latest: asNullableString(row.latest_review),
+        })),
+        overlappingLearnerCount: asNumber(appleOverlapRow?.overlapping_learner_count),
+        learningSetAssignmentCounts: appleSetIds.map((learningSetId) => ({
+          learningSetId,
+          assignmentCount: assignmentCounts.get(learningSetId)?.assignmentCount ?? 0,
+          activeAssignmentCount: assignmentCounts.get(learningSetId)?.activeAssignmentCount ?? 0,
+        })),
+        technologyStarterExactCollisions: learningSetRows.flatMap((row) => {
+          const slug = asString(row.slug);
+          const name = asString(row.name);
+          return slug === "technology-starter" || name.toLocaleLowerCase("en-US") === "technology starter"
+            ? [{ learningSetId: asNumber(row.id), slug, name }]
+            : [];
+        }),
+        runtimeLearningSetCount: learningSetRows.length,
+      };
 
       return {
         vocabularies: vocabRows.map(mapVocabulary),
@@ -404,6 +486,7 @@ async function readDevelopmentRuntimeSnapshot(input: {
         })),
         learnerProgressCounts: progressRows.map((row) => ({ vocabularyId: asNumber(row.vocabulary_id), referenceCount: asNumber(row.reference_count) })),
         reviewEventCounts: reviewRows.map((row) => ({ vocabularyId: asNumber(row.vocabulary_id), referenceCount: asNumber(row.reference_count) })),
+        appleIdentityAudit,
       };
     });
   } finally {
@@ -653,7 +736,8 @@ async function main() {
     scannedAt,
     snapshotFingerprint: fingerprint,
     snapshotFingerprintAlgorithm: "sha256-canonical-json-v1",
-    snapshotFingerprintContract: "Includes the complete runtime vocabulary and Learning Set discovery universes, candidate search results, relevant Master mappings, candidate history counts and memberships/assignments, applied run identities, verified target identity, release hash and applied migration hashes. Excludes timestamps and learner IDs.",
+    snapshotFingerprintContract: "Includes the complete runtime vocabulary and Learning Set discovery universes, candidate search results, relevant Master mappings, candidate history counts and memberships/assignments, apple progress states/review ranges/learner-overlap count, applied run identities, verified target identity, release hash and applied migration hashes. Excludes learner IDs.",
+    appleIdentityAudit: snapshot.appleIdentityAudit,
     plannerDryRun: {
       mode: plan.mode,
       reconciliationComplete: plan.eligibility.reconciliationComplete,
@@ -685,7 +769,25 @@ async function main() {
     plan,
   });
   writeFileSync(reportPath, report, "utf8");
-  process.stdout.write(`DEVELOPMENT_TARGET_VERIFIED=YES\nDEVELOPMENT_MIGRATIONS_CURRENT=YES\nRUNTIME_SNAPSHOT_READY=YES\nVOCABULARY_CANDIDATES_READY=${asRecords(sanitized.artifact.senses).length === 8 ? "YES" : "NO"}\nLEARNING_SET_CANDIDATES_READY=${asRecords(sanitized.artifact.learningSets).length === 1 ? "YES" : "NO"}\nRUNTIME_RECONCILIATION_READY=NO\nIMPORT_PLAN_CAN_APPLY=NO\nPHASE_2E_OWNER_RECONCILIATION_READY=YES\nSENSE_CANDIDATE_COUNT=${asRecords(sanitized.artifact.senses).length}\nCANDIDATE_ROW_COUNT=${asRecords(sanitized.artifact.senses).reduce((sum, sense) => sum + asRecords(sense.runtimeCandidates).length, 0)}\nSNAPSHOT_FINGERPRINT=${fingerprint}\nRECONCILIATION_COMPLETE=${plan.eligibility.reconciliationComplete}\nCAN_APPLY=${plan.eligibility.canApply}\nCANDIDATE_ARTIFACT=${path.relative(repositoryRoot, candidatePath)}\nREPORT=${path.relative(repositoryRoot, reportPath)}\n`);
+  const proposalPath = path.join(datasetRoot, OWNER_PROPOSAL_RELATIVE_PATH);
+  if (existsSync(proposalPath)) {
+    const existing = readJsonFile<JsonRecord>(proposalPath);
+    if (existing.analysisOnly !== true || existing.owner === "human-reviewed") {
+      throw new Error("REFUSING_TO_OVERWRITE_NON_ANALYSIS_OWNER_PROPOSAL");
+    }
+  }
+  const proposal = buildOwnerReconciliationProposal({
+    candidateArtifact: sanitized.artifact,
+    appleIdentityAudit: snapshot.appleIdentityAudit as AppleIdentityAudit,
+    scannedAt,
+  });
+  if (!proposalHasOnlyUnresolvedOwnerDecisions(proposal)) throw new Error("OWNER_PROPOSAL_CONTAINS_FINAL_DECISION");
+  mkdirSync(path.dirname(proposalPath), { recursive: true });
+  writeFileSync(proposalPath, `${JSON.stringify(proposal, null, 2)}\n`, "utf8");
+  const ownerReviewPath = path.join(repositoryRoot, OWNER_REVIEW_RELATIVE_PATH);
+  mkdirSync(path.dirname(ownerReviewPath), { recursive: true });
+  writeFileSync(ownerReviewPath, renderOwnerReconciliationReview(proposal), "utf8");
+  process.stdout.write(`DEVELOPMENT_TARGET_VERIFIED=YES\nDEVELOPMENT_MIGRATIONS_CURRENT=YES\nRUNTIME_SNAPSHOT_READY=YES\nVOCABULARY_CANDIDATES_READY=${asRecords(sanitized.artifact.senses).length === 8 ? "YES" : "NO"}\nLEARNING_SET_CANDIDATES_READY=${asRecords(sanitized.artifact.learningSets).length === 1 ? "YES" : "NO"}\nAPPLE_IDENTITY_AUDIT_READY=YES\nRUNTIME_RECONCILIATION_READY=NO\nIMPORT_PLAN_CAN_APPLY=NO\nPHASE_2E_OWNER_RECONCILIATION_READY=YES\nSENSE_CANDIDATE_COUNT=${asRecords(sanitized.artifact.senses).length}\nCANDIDATE_ROW_COUNT=${asRecords(sanitized.artifact.senses).reduce((sum, sense) => sum + asRecords(sense.runtimeCandidates).length, 0)}\nSNAPSHOT_FINGERPRINT=${fingerprint}\nRECONCILIATION_COMPLETE=${plan.eligibility.reconciliationComplete}\nCAN_APPLY=${plan.eligibility.canApply}\nCANDIDATE_ARTIFACT=${path.relative(repositoryRoot, candidatePath)}\nOWNER_PROPOSAL_ARTIFACT=${path.relative(repositoryRoot, proposalPath)}\nOWNER_REVIEW_REPORT=${path.relative(repositoryRoot, ownerReviewPath)}\nREPORT=${path.relative(repositoryRoot, reportPath)}\n`);
 }
 
 function isMain() {
