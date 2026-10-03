@@ -38,7 +38,7 @@ function explicitlyApproveEveryField(approval: OwnerApprovalTest): void {
       example: "APPROVED",
       exampleTranslation: "APPROVED",
       pronunciation: "APPROVED",
-      mediaRuntimeUrls: "ACCEPT_NULL_URLS",
+      mediaRuntimeUrls: "APPROVED",
     };
     review.reviewer = "Synthetic test owner";
     review.reviewedAt = timestamp;

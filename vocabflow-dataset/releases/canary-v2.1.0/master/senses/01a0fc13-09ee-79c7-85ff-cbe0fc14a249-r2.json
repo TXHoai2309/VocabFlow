@@ -1,0 +1,86 @@
+{
+  "masterSenseId": "01a0fc13-09ee-79c7-85ff-cbe0fc14a249",
+  "masterLexemeId": "01a0fc13-09ee-73d5-affa-6e017eb9adb3",
+  "senseRevision": 2,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "take care of"
+    },
+    {
+      "language": "vi",
+      "text": "chăm sóc; trông nom"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "VERB",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a0fc13-09ee-7142-8375-88b4a8e36b12",
+      "masterSenseId": "01a0fc13-09ee-79c7-85ff-cbe0fc14a249",
+      "language": "vi",
+      "text": "chăm sóc; trông nom",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "provenanceIds": [
+        "01a0fc13-09ee-74ae-ae97-e64b4a0bc056"
+      ],
+      "status": "APPROVED"
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a0fc13-09ee-7668-ad7a-fb3ae553c73b",
+      "masterSenseId": "01a0fc13-09ee-79c7-85ff-cbe0fc14a249",
+      "language": "en",
+      "text": "To take responsibility for someone or something and make sure they are safe or cared for.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "provenanceIds": [
+        "01a0fc13-09ee-7b23-b068-eab8b4c0c3e0"
+      ],
+      "status": "APPROVED"
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a0fc13-09ee-7672-995d-747cf923c4c9",
+      "masterSenseId": "01a0fc13-09ee-79c7-85ff-cbe0fc14a249",
+      "language": "en",
+      "text": "Can you look after my dog this weekend?",
+      "register": "NEUTRAL",
+      "levelNotes": "Editorial example for this Sense; this note does not assert CEFR alignment.",
+      "displayOrder": 0,
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a0fc13-09ee-70bb-8a01-a427ae8eacc0",
+          "exampleId": "01a0fc13-09ee-7672-995d-747cf923c4c9",
+          "language": "vi",
+          "text": "Cuối tuần này bạn trông giúp chó của tôi được không?",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "provenanceIds": [
+            "01a0fc13-09ee-7239-b41e-ec0d4c7599c0"
+          ],
+          "status": "APPROVED"
+        }
+      ],
+      "audioAssetIds": [],
+      "provenanceIds": [
+        "01a0fc13-09ee-7751-888b-18082e5eda0e"
+      ],
+      "status": "APPROVED"
+    }
+  ],
+  "pronunciationOverrides": [],
+  "provenanceIds": [
+    "01a0fc13-09ee-7fcb-808c-d650f29d47de"
+  ],
+  "status": "APPROVED",
+  "createdAt": "2026-10-02T00:00:00Z",
+  "updatedAt": "2026-10-03T02:57:22Z"
+}

@@ -1013,6 +1013,18 @@ US-07 remains not started.
 - The executor preserves the installed Drizzle journal/history semantics while
   requiring pre-provisioned schemas.
 
+## 2026-10-03 — Owner-approved Master Vocabulary V2 canary 2.1.0
+
+- Recorded explicit owner approval and generated immutable approved release
+  `vocabflow-dataset/releases/canary-v2.1.0` with 8 Senses, 6 Lexemes, 41
+  Provenance records, and the approved one-item Technology Starter set.
+- Validated the release and generated Phase 2C RELEASE projections. Runtime
+  media URLs remain null, experimental classifications remain excluded, and
+  release-scoped reconciliation decisions remain unresolved.
+- Added the canary release report and updated Phase 2D readiness and US-45
+  progress documentation. No runtime/database/Neon/migration or learner-state
+  mutation occurred.
+
 ## 2026-09-07 — PostgreSQL 18 role-model acceptance
 
 - Commit `46d84f1`: aligned membership assertions with PostgreSQL 18's

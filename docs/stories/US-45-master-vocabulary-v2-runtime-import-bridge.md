@@ -78,8 +78,10 @@ recycling integer IDs or detaching learner history.
 14. Prepare deterministic owner-review, subset-release, and reconciliation
     candidate artifacts; keep the canonical manifest and human-owned runtime
     reconciliation unchanged.
-15. Audit staging configuration and publish explicit Phase 2E gates. No
-    staging branch, database migration, import APPLY, or owner approval occurs.
+15. Audit staging configuration and publish explicit Phase 2E gates. During
+    the Phase 2D.1 preparation, no staging branch, database migration, import
+    APPLY, or owner approval occurred. The later owner-approved offline canary
+    is documented in the dated follow-up below.
 
 ## Acceptance evidence
 
@@ -178,3 +180,22 @@ assertion (expected 0016, current branch contains 0017) and a transform timeout
 under concurrent load; the isolated transform rerun passed. `git diff --check`
 and branch handoff evidence are recorded after the final review. No runtime or
 database action occurred.
+
+## 2026-10-03 follow-up — owner-approved offline canary release
+
+The owner explicitly approved all eight canary Senses, six required Lexemes,
+the exact `TECHNOLOGY_STARTER` set/item, null runtime media URLs, and release
+2.1.0. `vocabflow-dataset/releases/canary-v2.1.0` is an immutable
+`APPROVED` release (schema 2.0.1; 8 Senses, 6 Lexemes, 41 Provenance records,
+one Learning Set/item; no Classification or taxonomy snapshot). The Master
+validator passes with zero issues; Phase 2C RELEASE projects all eight
+vocabulary rows with `importEligible=true`.
+
+The release-scoped reconciliation template remains non-human-reviewed and has
+eight `UNRESOLVED` Sense decisions. No staging target/snapshot was used, so
+runtime reconciliation, apply planning, and Phase 2E remain not ready. No
+database/Neon, migration, import APPLY, runtime mapping, learner assignment,
+or media operation occurred. See
+[`canary release 2.1.0 report`](../../vocabflow-dataset/reports/canary-release-2.1.0-report.md)
+and the current readiness snapshot in
+[`Phase 2D.2 readiness`](../architecture/master-vocabulary-v2-phase-2d2-readiness.md).

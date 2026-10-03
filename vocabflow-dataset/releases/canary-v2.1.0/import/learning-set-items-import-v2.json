@@ -1,0 +1,24 @@
+{
+  "artifactVersion": "app-import-v2",
+  "sourceDataset": "VOCABFLOW_MASTER_V2",
+  "sourceDatasetId": "0195f85c-7b2a-7d10-8c01-000000000001",
+  "sourceDatasetVersion": "2.1.0",
+  "sourceSchemaVersion": "2.0.1",
+  "sourceManifestStatus": "APPROVED",
+  "sourceManifestContentHash": "6c80ef29049f925c8e4c331642eba4fd0222b78fc249d144913f573de8f96b6c",
+  "sourceReleaseHash": "fc67dd2a70adadd311384360c004faa4693ae24ffe4524761ce7075f21c95591",
+  "mode": "RELEASE",
+  "importEligible": true,
+  "identity": "learningSetItemId",
+  "records": [
+    {
+      "masterLearningSetId": "01a0fc13-09f2-7709-a32d-5bef5b1f7a51",
+      "learningSetItemId": "01a0fc13-09f2-765d-b327-41d62c73ecc1",
+      "masterSenseId": "01a0fc13-09ef-710c-8e76-753a5cfea69c",
+      "position": 1,
+      "appLearningSetId": null,
+      "appVocabularyId": null,
+      "mappingStatus": "UNRESOLVED"
+    }
+  ]
+}

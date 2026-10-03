@@ -1,0 +1,53 @@
+{
+  "artifactVersion": "runtime-reconciliation-v2",
+  "owner": "owner-review-required",
+  "generatedByTransform": true,
+  "sourceDatasetId": "0195f85c-7b2a-7d10-8c01-000000000001",
+  "sourceDatasetVersion": "2.1.0",
+  "sourceSchemaVersion": "2.0.1",
+  "sourceManifestContentHash": "2b0da6b4e8128a894027bdbd08c9ffeaee4ffd913feddfad929290d75a886787",
+  "sourceReleaseHash": "fc67dd2a70adadd311384360c004faa4693ae24ffe4524761ce7075f21c95591",
+  "allowPartialImport": false,
+  "vocabulary": [
+    {
+      "masterSenseId": "01a0fc13-09ed-70b4-801b-408be3b771e9",
+      "decision": "UNRESOLVED"
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-71ff-9a0a-a96e48ef7dac",
+      "decision": "UNRESOLVED"
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-7211-8e5a-784c689a0c7a",
+      "decision": "UNRESOLVED"
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-7584-a480-e313e359f744",
+      "decision": "UNRESOLVED"
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-7823-95fc-5d1d76f13fa5",
+      "decision": "UNRESOLVED"
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-79c7-85ff-cbe0fc14a249",
+      "decision": "UNRESOLVED"
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-710c-8e76-753a5cfea69c",
+      "decision": "UNRESOLVED"
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-7d37-a50f-d05db6b1a89c",
+      "decision": "UNRESOLVED"
+    }
+  ],
+  "topics": [],
+  "learningSets": [
+    {
+      "masterLearningSetId": "01a0fc13-09f2-7709-a32d-5bef5b1f7a51",
+      "decision": "UNRESOLVED"
+    }
+  ],
+  "reviewInstructions": "Generated with no runtime target. Replace only in this release workspace after a verified read-only staging snapshot and explicit owner decisions. This file is not human-reviewed and is rejected by the planner until owner review."
+}

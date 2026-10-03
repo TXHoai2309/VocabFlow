@@ -65,6 +65,13 @@ function requireFields(decisions: unknown, fields: Record<string, string>, label
   }
 }
 
+function requireNullMediaApproval(decisions: unknown, label: string): void {
+  if (!isRecord(decisions)) throw new Error(`APPROVAL_FIELD_DECISIONS_REQUIRED:${label}`);
+  if (decisions.mediaRuntimeUrls !== "APPROVED" && decisions.mediaRuntimeUrls !== "ACCEPT_NULL_URLS") {
+    throw new Error(`APPROVAL_FIELD_NOT_EXPLICIT:${label}.mediaRuntimeUrls:APPROVED`);
+  }
+}
+
 function requireReview(review: JsonRecord, label: string): { reviewer: string; reviewedAt: string } {
   return {
     reviewer: requiredString(review.reviewer, `${label}.reviewer`),
@@ -261,8 +268,9 @@ export function prepareMasterVocabularyV2CanaryRelease(options: PrepareCanaryRel
     if (actual.decision === "APPROVE") {
       requireFields(actual.fieldDecisions, {
         partOfSpeech: "APPROVED", translation: "APPROVED", definition: "APPROVED", example: "APPROVED",
-        exampleTranslation: "APPROVED", pronunciation: "APPROVED", mediaRuntimeUrls: "ACCEPT_NULL_URLS",
+        exampleTranslation: "APPROVED", pronunciation: "APPROVED",
       }, `sense.${String(expected.masterSenseId)}`);
+      requireNullMediaApproval(actual.fieldDecisions, `sense.${String(expected.masterSenseId)}`);
       requireReview(actual, `sense.${String(expected.masterSenseId)}`);
     }
   }

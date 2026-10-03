@@ -1,7 +1,13 @@
 # Phase 2D.2 — Owner approval, canary release, and staging readiness
 
-**Status:** approval workflow and offline tooling prepared. Owner approval,
-staging target, runtime snapshot, and reconciliation are still pending.
+**Status as of 2026-10-03:** owner approval and the immutable offline 2.1.0
+canary release are complete. A staging target, runtime snapshot, and runtime
+identity reconciliation are still unavailable. The current readiness gates
+appear at the end of this document; the Phase 2D.2 preparation history below is
+retained as historical context.
+
+The exact release details are in
+[`canary release 2.1.0 report`](../../vocabflow-dataset/reports/canary-release-2.1.0-report.md).
 
 ## Owner approval and release builder
 
@@ -13,6 +19,10 @@ Vietnamese translation, English definition/example, example translation,
 pronunciation or its absence, and acceptance of null media URLs. Lexeme lemma,
 lexical unit type, and pronunciation have separate review fields. Optional
 Learning Set content and each item also have separate review fields.
+The owner may record the null-media decision as
+`mediaRuntimeUrls: APPROVED`; the builder also accepts the earlier explicit
+`ACCEPT_NULL_URLS` value for existing approval fixtures. Either value approves
+only the current null runtime URLs, never a PLANNED media asset.
 
 `REQUEST_CHANGES` excludes that Sense from this canary; `EXCLUDE_FROM_CANARY`
 also omits it. Any `PENDING` Sense blocks preparation. A release-level owner
@@ -47,10 +57,10 @@ Classifications, the transform still requires exactly one pinned taxonomy.
 Referenced PLANNED audio slots may be pinned for provenance/identity closure,
 but no media versions are pinned, so runtime media URLs remain null.
 
-No real owner approval artifact has been submitted. The checked-in approval
-template is intentionally blank. The only approved-release build exercised so
-far is a synthetic test fixture in a temporary directory, removed by the
-test; it is not a project release.
+At the time this Phase 2D.2 preparation text was written, no real owner
+approval had been submitted and only a synthetic release fixture had been
+tested. This historical state was superseded on 2026-10-03 by the explicit
+owner approval and immutable 2.1.0 release recorded in the release report.
 
 ## Read-only reconciliation
 
@@ -100,8 +110,8 @@ media, or remote operation was run.
 
 ```text
 NODE_RUNTIME_READY = YES
-OWNER_CONTENT_APPROVED = NO
-CANARY_RELEASE_READY = NO
+OWNER_CONTENT_APPROVED = YES
+CANARY_RELEASE_READY = YES
 STAGING_TARGET_READY = NO
 STAGING_MIGRATION_READY = NO
 RUNTIME_SNAPSHOT_READY = NO

@@ -1690,3 +1690,28 @@ registration boundary before feature implementation.
   touched. The complete current full-suite count is therefore unknown.
 - Readiness gates are recorded in
   [`Phase 2D.2 readiness`](architecture/master-vocabulary-v2-phase-2d2-readiness.md).
+
+## 2026-10-03 — Owner-approved Master Vocabulary V2 canary 2.1.0
+
+- Recorded the owner's explicit approval for all eight canary Senses, the six
+  required Lexemes, the exact one-item `TECHNOLOGY_STARTER` Learning Set, null
+  runtime media URLs, and release 2.1.0. Experimental classifications were not
+  approved.
+- Built the immutable `APPROVED` release at
+  `vocabflow-dataset/releases/canary-v2.1.0`: schema 2.0.1, 8 Senses, 6
+  Lexemes, 41 Provenance records, 1 Learning Set/item, 2 planned media assets,
+  no media versions, and no classifications/taxonomy. Release hash:
+  `fc67dd2a70adadd311384360c004faa4693ae24ffe4524761ce7075f21c95591`.
+- Master validator PASS (0 errors/warnings); Phase 2C RELEASE transform PASS
+  (8 projections, `importEligible=true`). The generated release-scoped
+  reconciliation has eight `UNRESOLVED` Sense decisions and remains
+  non-human-reviewed/non-importable. Runtime reconciliation and Phase 2E stay
+  not ready; no target or runtime snapshot was used.
+- Focused Dataset V2, preparation, transform, planner, reconciliation scan,
+  and schema suite PASS (7 files, 91/91). TypeScript, ESLint, and
+  `git diff --check` PASS. Bridge-hardening has one existing stale migration
+  index assertion (expected 16, current journal 17); its other 11 tests pass.
+- No database/Neon connection, migration, import APPLY, runtime identity
+  decision, ID allocation, learner assignment change, Cloudinary operation, or
+  Study UI file change occurred. The release report is
+  `vocabflow-dataset/reports/canary-release-2.1.0-report.md`.

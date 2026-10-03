@@ -1,0 +1,350 @@
+{
+  "datasetId": "0195f85c-7b2a-7d10-8c01-000000000001",
+  "datasetCode": "vocabflow-master-v2",
+  "name": [
+    {
+      "language": "en",
+      "text": "VocabFlow Master Vocabulary"
+    },
+    {
+      "language": "vi",
+      "text": "Từ vựng chuẩn VocabFlow"
+    }
+  ],
+  "datasetVersion": "2.1.0",
+  "schemaVersion": "2.0.1",
+  "status": "APPROVED",
+  "includedLexemes": [
+    {
+      "masterLexemeId": "01a0fc13-09ed-72c7-aef1-9124d94a6828",
+      "lexemeRevision": 2,
+      "recordPath": "master/lexemes/01a0fc13-09ed-72c7-aef1-9124d94a6828-r2.json",
+      "contentHash": "71ca1e505c93371d3cf646108dac8055b98b9a2ad15471f9ca37bbea4f1d0edb"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ed-77ca-b066-98b5169c16b8",
+      "lexemeRevision": 2,
+      "recordPath": "master/lexemes/01a0fc13-09ed-77ca-b066-98b5169c16b8-r2.json",
+      "contentHash": "b759dc63babc8262b4402b571e203a97fd7510e24635551322a39a28752160c3"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ee-7113-8786-38671cd485b7",
+      "lexemeRevision": 2,
+      "recordPath": "master/lexemes/01a0fc13-09ee-7113-8786-38671cd485b7-r2.json",
+      "contentHash": "1cbef55fa61dd7c8d9c8b8b769a8af6006155e775b5d9ad519b10726716d5412"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ee-73d5-affa-6e017eb9adb3",
+      "lexemeRevision": 2,
+      "recordPath": "master/lexemes/01a0fc13-09ee-73d5-affa-6e017eb9adb3-r2.json",
+      "contentHash": "1f06f055cc18856d9d879fc4a2541368cb5cafa1f524d3653da1bf125412bb0a"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ee-781c-8793-6ec31c09956e",
+      "lexemeRevision": 2,
+      "recordPath": "master/lexemes/01a0fc13-09ee-781c-8793-6ec31c09956e-r2.json",
+      "contentHash": "2dec15ed8adde0d718a7ab2a7ec7fe63f708f8d37cea95e3c3f38bb6ec5bb4ff"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ef-7e5d-b757-aa456f0cd969",
+      "lexemeRevision": 2,
+      "recordPath": "master/lexemes/01a0fc13-09ef-7e5d-b757-aa456f0cd969-r2.json",
+      "contentHash": "4fb3d47997a6eaa4e0a5f8dfba9aa85f87f5ba8a84b8c06b45d925032fa17d2e"
+    }
+  ],
+  "includedSenses": [
+    {
+      "masterSenseId": "01a0fc13-09ed-70b4-801b-408be3b771e9",
+      "senseRevision": 3,
+      "recordPath": "master/senses/01a0fc13-09ed-70b4-801b-408be3b771e9-r3.json",
+      "contentHash": "e9e8dbbf037da1f09d5ad6bbef285db0c8d446c636510d754e79d68f81798cb6"
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-71ff-9a0a-a96e48ef7dac",
+      "senseRevision": 3,
+      "recordPath": "master/senses/01a0fc13-09ee-71ff-9a0a-a96e48ef7dac-r3.json",
+      "contentHash": "cbe5dab3e925d7532f476adca5f0398e01c8babcedc56dc58e47f4b2a1fc6108"
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-7211-8e5a-784c689a0c7a",
+      "senseRevision": 2,
+      "recordPath": "master/senses/01a0fc13-09ee-7211-8e5a-784c689a0c7a-r2.json",
+      "contentHash": "6c38ec6035b70fb697ff8d18250ed0fed35281495227388fae33059bcb9d5954"
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-7584-a480-e313e359f744",
+      "senseRevision": 2,
+      "recordPath": "master/senses/01a0fc13-09ee-7584-a480-e313e359f744-r2.json",
+      "contentHash": "17ff48f7ffcf782c23df7136b21255e2da1d3c847db7a3cd5dbc8ed13f6fffd7"
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-7823-95fc-5d1d76f13fa5",
+      "senseRevision": 2,
+      "recordPath": "master/senses/01a0fc13-09ee-7823-95fc-5d1d76f13fa5-r2.json",
+      "contentHash": "fa359e435b77d7ac54c2eff0f4c3c84325345e534b2b7aebff441d362eceb0b3"
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-79c7-85ff-cbe0fc14a249",
+      "senseRevision": 2,
+      "recordPath": "master/senses/01a0fc13-09ee-79c7-85ff-cbe0fc14a249-r2.json",
+      "contentHash": "093f80c8472b1200f1a77144e382071870943c5a2fddd82000f3d06eebcb88e5"
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-710c-8e76-753a5cfea69c",
+      "senseRevision": 2,
+      "recordPath": "master/senses/01a0fc13-09ef-710c-8e76-753a5cfea69c-r2.json",
+      "contentHash": "78dc631c15a9664ee478c38f04de395ffb4db2735e959fb850e357ddc04af8a0"
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-7d37-a50f-d05db6b1a89c",
+      "senseRevision": 3,
+      "recordPath": "master/senses/01a0fc13-09ef-7d37-a50f-d05db6b1a89c-r3.json",
+      "contentHash": "dc02ac910cce8cdb19795a1091117bb350d147170964196c9b4128959840dc1f"
+    }
+  ],
+  "includedClassifications": [],
+  "includedLearningSets": [
+    {
+      "learningSetId": "01a0fc13-09f2-7709-a32d-5bef5b1f7a51",
+      "learningSetRevision": 2,
+      "recordPath": "learning-sets/01a0fc13-09f2-7709-a32d-5bef5b1f7a51-r2.json",
+      "contentHash": "545dd7455aa3ab9092a059b7f3acee20ea092c317989b6490e819e05f908330e"
+    }
+  ],
+  "includedTaxonomySnapshots": [],
+  "includedMediaAssets": [
+    {
+      "mediaAssetId": "01a0fc13-09f0-7b44-bf89-416e7f4ea727",
+      "recordPath": "media/assets/01a0fc13-09f0-7b44-bf89-416e7f4ea727.json",
+      "contentHash": "2b488ba6e3800b350c2965dc5b982f0c098a525b62592c2b82bd9450af4a51db"
+    },
+    {
+      "mediaAssetId": "01a0fc13-09f0-7c0f-8682-6b922d9309a6",
+      "recordPath": "media/assets/01a0fc13-09f0-7c0f-8682-6b922d9309a6.json",
+      "contentHash": "3f65428d5a33555dc390984cea70c26f3f6849f5d61f69fe00566c27ddf8b80a"
+    }
+  ],
+  "includedMediaAssetVersions": [],
+  "includedRelations": [],
+  "includedProvenance": [
+    {
+      "provenanceId": "01a0fc13-09ed-71e0-8a35-671c531c670d",
+      "recordPath": "provenance/01a0fc13-09ed-71e0-8a35-671c531c670d.json",
+      "contentHash": "d2777294286cde484fb1eb62dcd22ea6cb94dae944746e61c5726539bb39bd1b"
+    },
+    {
+      "provenanceId": "01a0fc13-09ed-726d-a81f-592356c289de",
+      "recordPath": "provenance/01a0fc13-09ed-726d-a81f-592356c289de.json",
+      "contentHash": "f164c562ad82355a53dc5aaaa4c7487c9da6dfbf20e30e9094a58848cdbc7751"
+    },
+    {
+      "provenanceId": "01a0fc13-09ed-7658-95fd-3aef16b98db6",
+      "recordPath": "provenance/01a0fc13-09ed-7658-95fd-3aef16b98db6.json",
+      "contentHash": "cc016a71d90ca9007bedb9749c58de542a3642ae2f594980198673e9225f7421"
+    },
+    {
+      "provenanceId": "01a0fc13-09ed-7e19-9418-c47dc4bbf86a",
+      "recordPath": "provenance/01a0fc13-09ed-7e19-9418-c47dc4bbf86a.json",
+      "contentHash": "a4638ed3e8fbb9c46c802e318e35a938124481e55068662f75865f8b9bd9b965"
+    },
+    {
+      "provenanceId": "01a0fc13-09ed-7edb-8c60-f19069e0f459",
+      "recordPath": "provenance/01a0fc13-09ed-7edb-8c60-f19069e0f459.json",
+      "contentHash": "dcd4feeeaa5666fa230af574b0d4246acb79d89e84ba4ebfe76af986d4d769b6"
+    },
+    {
+      "provenanceId": "01a0fc13-09ee-70aa-bd2c-f6eff145be69",
+      "recordPath": "provenance/01a0fc13-09ee-70aa-bd2c-f6eff145be69.json",
+      "contentHash": "82c229dcfcf5eca8e4ad9bc0c4a20a69414f64390f262b7e9474915ca5eeae9a"
+    },
+    {
+      "provenanceId": "01a0fc13-09ee-710e-bf7a-5f6a8faf6bea",
+      "recordPath": "provenance/01a0fc13-09ee-710e-bf7a-5f6a8faf6bea.json",
+      "contentHash": "219ec02d723c2db80d04a71dfc559660cb3a461e6bba8595cf8eb59becdee577"
+    },
+    {
+      "provenanceId": "01a0fc13-09ee-7197-b74d-69abcec8b89e",
+      "recordPath": "provenance/01a0fc13-09ee-7197-b74d-69abcec8b89e.json",
+      "contentHash": "78b70d8ded5d19d6a4188998759d88651d761e0206ab96fbf4e90f2c19b4e34a"
+    },
+    {
+      "provenanceId": "01a0fc13-09ee-722c-ac3e-fbd529bd4090",
+      "recordPath": "provenance/01a0fc13-09ee-722c-ac3e-fbd529bd4090.json",
+      "contentHash": "14ed6c49c0e3bf76abee9761c09ad3ff839ddada544e2d487454c2e7e5ce05ae"
+    },
+    {
+      "provenanceId": "01a0fc13-09ee-7239-b41e-ec0d4c7599c0",
+      "recordPath": "provenance/01a0fc13-09ee-7239-b41e-ec0d4c7599c0.json",
+      "contentHash": "099ed3ef800850f753dad650b979f28d8e2ef36dbb1d900530e88250ef073f21"
+    },
+    {
+      "provenanceId": "01a0fc13-09ee-7389-bf71-3c9acce30486",
+      "recordPath": "provenance/01a0fc13-09ee-7389-bf71-3c9acce30486.json",
+      "contentHash": "adf463d9001dc29dc77337d733118dcf9743f6c527be3d9da652fdf7bc6c6052"
+    },
+    {
+      "provenanceId": "01a0fc13-09ee-73f3-8815-2fa7d0fa41f2",
+      "recordPath": "provenance/01a0fc13-09ee-73f3-8815-2fa7d0fa41f2.json",
+      "contentHash": "0b13e67b72566f5bf3f6fdc566af82002a77512d3676271313dad1fd00b4e45c"
+    },
+    {
+      "provenanceId": "01a0fc13-09ee-74ae-ae97-e64b4a0bc056",
+      "recordPath": "provenance/01a0fc13-09ee-74ae-ae97-e64b4a0bc056.json",
+      "contentHash": "d6ff2a35c39dc948458ce90c4d8e3f762ca3f083773845592a57bd7f66cb6cac"
+    },
+    {
+      "provenanceId": "01a0fc13-09ee-7518-b4d0-53b1fa63fadf",
+      "recordPath": "provenance/01a0fc13-09ee-7518-b4d0-53b1fa63fadf.json",
+      "contentHash": "8cd03193c31d3acf0ed1cfd9a7bbcf813115b1798de7d26e2a6b005c127c8a18"
+    },
+    {
+      "provenanceId": "01a0fc13-09ee-7532-a32b-b1fd6c2b0451",
+      "recordPath": "provenance/01a0fc13-09ee-7532-a32b-b1fd6c2b0451.json",
+      "contentHash": "89195556c3282afe0af1c786fdcbae0bba8062a292edc149f3cdcf42805e3b71"
+    },
+    {
+      "provenanceId": "01a0fc13-09ee-7602-a87f-a3960077d5c6",
+      "recordPath": "provenance/01a0fc13-09ee-7602-a87f-a3960077d5c6.json",
+      "contentHash": "944c106c2e253b4b69f5e0626165e6ba5bb779bc9e77e2aab4c99d1b029e6340"
+    },
+    {
+      "provenanceId": "01a0fc13-09ee-764c-895c-476882625cc8",
+      "recordPath": "provenance/01a0fc13-09ee-764c-895c-476882625cc8.json",
+      "contentHash": "e2fc29705cab0abf6c988009d27f62eaf21957f7f3957285e160ef06765d11ee"
+    },
+    {
+      "provenanceId": "01a0fc13-09ee-76e2-860b-fdbb8d8e580a",
+      "recordPath": "provenance/01a0fc13-09ee-76e2-860b-fdbb8d8e580a.json",
+      "contentHash": "6ddb06f3fc29e58339694dfed39606c201af9c3c704dd9e0425de635ff867592"
+    },
+    {
+      "provenanceId": "01a0fc13-09ee-7751-888b-18082e5eda0e",
+      "recordPath": "provenance/01a0fc13-09ee-7751-888b-18082e5eda0e.json",
+      "contentHash": "51e6a1fe385c77fdcce18c94bf955dd47b64dc51813f1aaa696122fc2887029e"
+    },
+    {
+      "provenanceId": "01a0fc13-09ee-778e-a39a-31466640697b",
+      "recordPath": "provenance/01a0fc13-09ee-778e-a39a-31466640697b.json",
+      "contentHash": "33a1f813fc73540307c241a6ffa9f15f8c4134ee9be375f044a2ce042b9ba6a2"
+    },
+    {
+      "provenanceId": "01a0fc13-09ee-77b2-89fa-3a21313de6eb",
+      "recordPath": "provenance/01a0fc13-09ee-77b2-89fa-3a21313de6eb.json",
+      "contentHash": "513c4c820ef92689e28acb69bdbeb138a025910af38400198eb282edb2f9b31d"
+    },
+    {
+      "provenanceId": "01a0fc13-09ee-7914-9e07-0223e0754424",
+      "recordPath": "provenance/01a0fc13-09ee-7914-9e07-0223e0754424.json",
+      "contentHash": "7d591c95bde1c91347cd6bde7333132c95413b7033bcba5f09b5e77c4cf8c308"
+    },
+    {
+      "provenanceId": "01a0fc13-09ee-79c9-ac16-da590253cc6a",
+      "recordPath": "provenance/01a0fc13-09ee-79c9-ac16-da590253cc6a.json",
+      "contentHash": "ba26d45e6877cd9fbd088eef7bc3e526c51d8969e3530f806be4cbb69d8896df"
+    },
+    {
+      "provenanceId": "01a0fc13-09ee-7a57-b197-0ee77a38f963",
+      "recordPath": "provenance/01a0fc13-09ee-7a57-b197-0ee77a38f963.json",
+      "contentHash": "d60b73435634d1352d9cab3d25f17bc4259554c5fb4c756a7dc78f50cf5782c5"
+    },
+    {
+      "provenanceId": "01a0fc13-09ee-7ac2-b4df-928f7627f8a0",
+      "recordPath": "provenance/01a0fc13-09ee-7ac2-b4df-928f7627f8a0.json",
+      "contentHash": "ae564a4e6ed83b44d6c5f7b0c4a2172d95f5783d23a392e7fb6669db4b3a6d84"
+    },
+    {
+      "provenanceId": "01a0fc13-09ee-7b23-b068-eab8b4c0c3e0",
+      "recordPath": "provenance/01a0fc13-09ee-7b23-b068-eab8b4c0c3e0.json",
+      "contentHash": "d3b03fe062f2ba0d98616d41d2bb2a1c42ab23c9da1aa795c19f1aa6d6b58ecf"
+    },
+    {
+      "provenanceId": "01a0fc13-09ee-7dfe-8b5f-cf77b55e5ec3",
+      "recordPath": "provenance/01a0fc13-09ee-7dfe-8b5f-cf77b55e5ec3.json",
+      "contentHash": "2fe67084678fcd6418f287dd9708391c9950a312be1225b1d965407792a06908"
+    },
+    {
+      "provenanceId": "01a0fc13-09ee-7fc9-932a-89ae6859a9ed",
+      "recordPath": "provenance/01a0fc13-09ee-7fc9-932a-89ae6859a9ed.json",
+      "contentHash": "b1421a5f7f28f3be4567f64a6353087be70e771190ee5a26a3054f4cf51a5fda"
+    },
+    {
+      "provenanceId": "01a0fc13-09ee-7fcb-808c-d650f29d47de",
+      "recordPath": "provenance/01a0fc13-09ee-7fcb-808c-d650f29d47de.json",
+      "contentHash": "e3947791732c5ed1662d02395ba9019557f9a16b6ca5338cccb7c25d68397e71"
+    },
+    {
+      "provenanceId": "01a0fc13-09ee-7fcb-aff5-f9ec8cf31f73",
+      "recordPath": "provenance/01a0fc13-09ee-7fcb-aff5-f9ec8cf31f73.json",
+      "contentHash": "8ea3ae960a61f442f755c62e1ea33f1332dd18b2b5c1cd9345712f75d069497f"
+    },
+    {
+      "provenanceId": "01a0fc13-09ef-708f-a1dc-2b3d58e915ae",
+      "recordPath": "provenance/01a0fc13-09ef-708f-a1dc-2b3d58e915ae.json",
+      "contentHash": "015ca5ec859e76ff7dd6312cb94d2cfa441ac3fe361ce45951cc6a3d50bb438c"
+    },
+    {
+      "provenanceId": "01a0fc13-09ef-756b-9c43-1d84be2fecb0",
+      "recordPath": "provenance/01a0fc13-09ef-756b-9c43-1d84be2fecb0.json",
+      "contentHash": "b4b4fb0948bce7af7e69b0ff2406863e07f320f1288adadfdd153f2e2aede7bf"
+    },
+    {
+      "provenanceId": "01a0fc13-09ef-7884-8cf3-216497bfc161",
+      "recordPath": "provenance/01a0fc13-09ef-7884-8cf3-216497bfc161.json",
+      "contentHash": "53c06e15989766915632d3c46214b0c5f54590cbc549696a0201fed96a9dffd9"
+    },
+    {
+      "provenanceId": "01a0fc13-09ef-78e7-8067-5f5b5644b1fd",
+      "recordPath": "provenance/01a0fc13-09ef-78e7-8067-5f5b5644b1fd.json",
+      "contentHash": "6af6cf26c900cfc386cf47d0319edeaf750eafd5e8e2d3a5ee8be1042c0ff972"
+    },
+    {
+      "provenanceId": "01a0fc13-09ef-7a1b-9a1a-82963396d6ef",
+      "recordPath": "provenance/01a0fc13-09ef-7a1b-9a1a-82963396d6ef.json",
+      "contentHash": "5180e77ed7cac7098c0fe5ffeb5571e99513ccaf5052c2c0bb9b264d478b9cb1"
+    },
+    {
+      "provenanceId": "01a0fc13-09ef-7c41-8fc8-6acb6fa123f2",
+      "recordPath": "provenance/01a0fc13-09ef-7c41-8fc8-6acb6fa123f2.json",
+      "contentHash": "631869b931959e8123184b993fae085451b6df8921cbcdac0e8dc0cb92f92057"
+    },
+    {
+      "provenanceId": "01a0fc13-09ef-7cbe-b172-5c2e053bbe24",
+      "recordPath": "provenance/01a0fc13-09ef-7cbe-b172-5c2e053bbe24.json",
+      "contentHash": "a212c58727d48681f5a362cab3f9c6bc02b7e47e7dcd9be49ed5382fca5bc91e"
+    },
+    {
+      "provenanceId": "01a0fc13-09ef-7dbe-a8bc-c941578f7d3b",
+      "recordPath": "provenance/01a0fc13-09ef-7dbe-a8bc-c941578f7d3b.json",
+      "contentHash": "1c918ef47589bc28d3398176e6c4fc9b705ebf73ce8514f6a6fb0447a35b7156"
+    },
+    {
+      "provenanceId": "01a0fc13-09ef-7e40-80b9-af14d45a8916",
+      "recordPath": "provenance/01a0fc13-09ef-7e40-80b9-af14d45a8916.json",
+      "contentHash": "167bcbd2fd1bef89b555189f25d6c49fddda3d65188129fea89a8c281f460911"
+    },
+    {
+      "provenanceId": "01a0fc13-09ef-7e90-8a1e-ea1aaf871481",
+      "recordPath": "provenance/01a0fc13-09ef-7e90-8a1e-ea1aaf871481.json",
+      "contentHash": "29e26b1134eb7ff8c7d6fcac9e6710d99efa462437dd0b3f69b7195b162ddf5c"
+    },
+    {
+      "provenanceId": "01a0fc13-09f2-786e-8e62-1dd5a389830e",
+      "recordPath": "provenance/01a0fc13-09f2-786e-8e62-1dd5a389830e.json",
+      "contentHash": "810b2ac0b73e56e608d6a203bc92c6ecba33a400bf9e9edecc9a2031f314bf98"
+    }
+  ],
+  "releaseHashAlgorithm": "sha256-canonical-json-v1",
+  "createdAt": "2026-10-02T00:00:00Z",
+  "releasedAt": "2026-10-03T02:57:22Z",
+  "changeSummary": [
+    {
+      "language": "en",
+      "text": "First approved canary snapshot: 8 reviewed Senses and 6 Lexemes; no experimental classifications or runtime media versions."
+    },
+    {
+      "language": "vi",
+      "text": "Bản canary được duyệt đầu tiên: 8 Sense và 6 Lexeme đã được rà soát; không gồm phân loại thử nghiệm hoặc phiên bản media runtime."
+    }
+  ],
+  "releaseHash": "fc67dd2a70adadd311384360c004faa4693ae24ffe4524761ce7075f21c95591"
+}
