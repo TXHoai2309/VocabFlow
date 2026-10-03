@@ -4,8 +4,8 @@ import { fileURLToPath } from "node:url";
 import canonicalize from "canonicalize";
 import { canonicalJsonSha256, validateMasterVocabularyV2 } from "./validate-master-vocabulary-v2";
 
-export const APP_IMPORT_CONTRACT_VERSION = "app-import-v2";
-export const RUNTIME_PROJECTION_CONTRACT_VERSION = "runtime-vocabulary-projection-v1";
+export const APP_IMPORT_CONTRACT_VERSION = "app-import-v3";
+export const RUNTIME_PROJECTION_CONTRACT_VERSION = "runtime-vocabulary-projection-v2";
 export const RUNTIME_PRONUNCIATION_LOCALE = "en-US";
 export const MASTER_SOURCE_DATASET = "VOCABFLOW_MASTER_V2";
 
@@ -48,15 +48,24 @@ interface ProjectedVocabularyRecord {
     level: RuntimeLevel | null;
     enabled: boolean;
   };
+  projectionSemantics: {
+    wordLanguage: string;
+    pronunciationLocale: string;
+    translationLanguage: string;
+    definitionLanguage: string | null;
+    exampleLanguage: string | null;
+    image: SemanticMediaIdentity | null;
+    audio: SemanticMediaIdentity | null;
+  };
   projectionContractVersion: string;
-  projectionFingerprint: string;
+  masterProjectionFingerprint: string;
   appVocabularyId: null;
   mappingStatus: "UNRESOLVED";
   contentVersion: { status: "PENDING_RUNTIME_RECONCILIATION" };
   warnings: string[];
 }
 
-export interface AppImportV2Artifacts {
+export interface AppImportV3Artifacts {
   vocabulary: JsonRecord;
   topics: JsonRecord;
   learningSets: JsonRecord;
@@ -445,15 +454,24 @@ function buildVocabulary(graph: MasterProjectionGraph, mode: TransformMode): { r
         topicRows.some((entry) => Boolean(entry.topic.parentTopicId)) ? "TOPIC_HIERARCHY_NOT_REPRESENTED_IN_FLAT_RUNTIME" : undefined,
         records(lexeme.pronunciations).length + records(sense.pronunciationOverrides).length > 1 ? "MULTIPLE_PRONUNCIATIONS_REDUCED_TO_ONE_EN_US_SELECTION" : undefined,
       ].filter((warning): warning is string => Boolean(warning));
-      const projectionFingerprint = fingerprintFor(runtimeProjection, text(lexeme.language) ?? "en", translationText, definitionEn, exampleEn, ipa, image.semantic, audio.semantic);
+      const masterProjectionFingerprint = fingerprintFor(runtimeProjection, text(lexeme.language) ?? "en", translationText, definitionEn, exampleEn, ipa, image.semantic, audio.semantic);
       rows.push({
         masterLexemeId: lexemeId,
         masterSenseId: senseId,
         sourceRevisions: { lexemeRevision: number(lexeme.lexemeRevision), senseRevision: number(sense.senseRevision) },
         sourceIdentity: { sourceDataset: MASTER_SOURCE_DATASET, masterSenseId: senseId },
         runtimeProjection,
+        projectionSemantics: {
+          wordLanguage: text(lexeme.language) ?? "en",
+          pronunciationLocale: RUNTIME_PRONUNCIATION_LOCALE,
+          translationLanguage: "vi",
+          definitionLanguage: definitionEn === null ? null : "en",
+          exampleLanguage: exampleEn === null ? null : "en",
+          image: image.semantic,
+          audio: audio.semantic,
+        },
         projectionContractVersion: RUNTIME_PROJECTION_CONTRACT_VERSION,
-        projectionFingerprint,
+        masterProjectionFingerprint,
         appVocabularyId: null,
         mappingStatus: "UNRESOLVED",
         contentVersion: { status: "PENDING_RUNTIME_RECONCILIATION" },
@@ -565,7 +583,7 @@ function buildMapping(rows: ProjectedVocabularyRecord[], shared: JsonRecord): Js
       appVocabularyId: null,
       mappingStatus: "UNRESOLVED",
       runtimeIdentityState: "NOT_RECONCILED",
-      projectionFingerprint: row.projectionFingerprint,
+      masterProjectionFingerprint: row.masterProjectionFingerprint,
     })),
   };
 }
@@ -576,12 +594,12 @@ function buildReport(graph: MasterProjectionGraph, mode: TransformMode, rows: Pr
   const audioCount = rows.filter((row) => row.runtimeProjection.audioUrl !== null).length;
   const levelCount = rows.filter((row) => row.runtimeProjection.level !== null).length;
   const topicCount = rows.filter((row) => row.runtimeProjection.topic !== null).length;
-  const repeatedFingerprints = rows.length - new Set(rows.map((row) => row.projectionFingerprint)).size;
+  const repeatedFingerprints = rows.length - new Set(rows.map((row) => row.masterProjectionFingerprint)).size;
   const releaseIneligible = graph.manifest.status === "APPROVED" ? 0 : records(graph.manifest.includedSenses).length;
   const warningCodes = [...new Set(rows.flatMap((row) => row.warnings))].sort(compareText);
   const skipLines = skipped.length ? skipped.map((row) => `- ${row.masterSenseId}: ${row.reason}`).join("\n") : "- None";
   const warningLines = warningCodes.length ? warningCodes.map((warning) => `- ${warning}`).join("\n") : "- No row-level compatibility warnings.";
-  return `# Master Vocabulary V2 → App Import V2 Transform Report\n\n`
+  return `# Master Vocabulary V2 → App Import V3 Transform Report\n\n`
     + `- Source dataset version: ${String(graph.manifest.datasetVersion)}\n`
     + `- Source schema version: ${String(graph.manifest.schemaVersion)}\n`
     + `- Source manifest status: ${String(graph.manifest.status)}\n`
@@ -630,7 +648,7 @@ function buildReport(graph: MasterProjectionGraph, mode: TransformMode, rows: Pr
     + `- Taxonomy and Learning Set mappings need explicit integer-ID reconciliation and a policy for app slug/name collisions. No database write or learner-history migration is part of this transform.\n`;
 }
 
-export function buildAppImportV2(graph: MasterProjectionGraph, mode: TransformMode = "PREVIEW"): AppImportV2Artifacts {
+export function buildAppImportV2(graph: MasterProjectionGraph, mode: TransformMode = "PREVIEW"): AppImportV3Artifacts {
   if (mode === "RELEASE" && graph.manifest.status !== "APPROVED") {
     throw new Error(`RELEASE_REQUIRES_APPROVED_MANIFEST:${String(graph.manifest.status)}`);
   }
@@ -639,7 +657,7 @@ export function buildAppImportV2(graph: MasterProjectionGraph, mode: TransformMo
   const topicOutput = buildTopics(graph, rows, mode);
   const learningSetOutput = buildLearningSets(graph, rows, mode);
   const shared = metadata(graph, mode);
-  const repeatedFingerprints = rows.length - new Set(rows.map((row) => row.projectionFingerprint)).size;
+  const repeatedFingerprints = rows.length - new Set(rows.map((row) => row.masterProjectionFingerprint)).size;
   const duplicateMasterSenses = rows.length !== new Set(rows.map((row) => row.masterSenseId)).size;
   if (duplicateMasterSenses) throw new Error("DUPLICATE_MASTER_SENSE_PROJECTION");
   const topicSlugCollisions = duplicateValueCount(topicOutput.topics.map((topic) => String(topic.slug)));
@@ -673,7 +691,7 @@ export interface RunTransformOptions {
   writeOutputs?: boolean;
 }
 
-export function runMasterVocabularyTransform(options: RunTransformOptions = {}): AppImportV2Artifacts {
+export function runMasterVocabularyTransform(options: RunTransformOptions = {}): AppImportV3Artifacts {
   const datasetRoot = path.resolve(options.datasetRoot ?? path.join(process.cwd(), "vocabflow-dataset"));
   const mode = options.mode ?? "PREVIEW";
   const validation = validateMasterVocabularyV2({ datasetRoot, writeReport: false, validatedAt: "2000-01-01T00:00:00Z" });

@@ -2,7 +2,9 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import {
   buildMasterVocabularyImportPlan,
+  apiEffectiveProjection,
   emptySnapshot,
+  fingerprintEffectiveRuntimeProjection,
   type ImportArtifacts,
   type Reconciliation,
   type RuntimeSnapshot,
@@ -24,25 +26,26 @@ const PROJECTION_A = {
 };
 const PROJECTION_B = { ...PROJECTION_A, vietnamese: "bờ sông", definitionEn: "Land beside a river.", exampleEn: "They sat on the river bank.", topic: "Rivers" };
 
-function record(masterSenseId: string, projection: Record<string, unknown> = PROJECTION_A, fingerprint = "a".repeat(64)) {
+function record(masterSenseId: string, projection: Record<string, unknown> = PROJECTION_A, fingerprint = "a".repeat(64), projectionSemantics: Record<string, unknown> = {}) {
   return {
     masterLexemeId: LEXEME_ID, masterSenseId,
     sourceRevisions: { lexemeRevision: 1, senseRevision: 1 },
-    projectionContractVersion: "runtime-vocabulary-projection-v1",
-    projectionFingerprint: fingerprint,
+    projectionContractVersion: "runtime-vocabulary-projection-v2",
+    masterProjectionFingerprint: fingerprint,
+    projectionSemantics,
     runtimeProjection: projection,
   };
 }
 function metadata() {
   return {
-    artifactVersion: "app-import-v2", sourceDataset: "VOCABFLOW_MASTER_V2", sourceDatasetId: DATASET_ID,
+    artifactVersion: "app-import-v3", sourceDataset: "VOCABFLOW_MASTER_V2", sourceDatasetId: DATASET_ID,
     sourceDatasetVersion: "2.0.0", sourceSchemaVersion: "2.0.1", sourceManifestStatus: "APPROVED",
     sourceManifestContentHash: "c".repeat(64), sourceReleaseHash: RELEASE_HASH, mode: "RELEASE", importEligible: true,
   };
 }
 function approvedArtifacts(options: { records?: ReturnType<typeof record>[]; withMemberships?: boolean } = {}): ImportArtifacts {
   const common = metadata();
-  const vocabulary = { ...common, projectionContractVersion: "runtime-vocabulary-projection-v1", records: options.records ?? [record(SENSE_A)] };
+  const vocabulary = { ...common, projectionContractVersion: "runtime-vocabulary-projection-v2", records: options.records ?? [record(SENSE_A)] };
   const topics = { ...common, records: [{ masterTopicId: TOPIC_ID, slug: "finance", name: "Finance", description: "Financial words.", sortOrder: 0 }] };
   const learningSets = { ...common, records: [{ masterLearningSetId: SET_ID, slug: "basic-finance", name: "Basic finance", description: "A finance set.", grade: null, enabled: true, sortOrder: 0 }] };
   return {
@@ -56,7 +59,7 @@ function reconciliation(artifacts: ImportArtifacts, options: {
   allowPartialImport?: boolean;
 } = {}): Reconciliation {
   return {
-    artifactVersion: "runtime-reconciliation-v2", owner: "human-reviewed", generatedByTransform: false,
+    artifactVersion: "runtime-reconciliation-v3", owner: "human-reviewed", generatedByTransform: false,
     sourceDatasetId: String(artifacts.vocabulary.sourceDatasetId), sourceDatasetVersion: String(artifacts.vocabulary.sourceDatasetVersion),
     sourceSchemaVersion: String(artifacts.vocabulary.sourceSchemaVersion), sourceManifestContentHash: String(artifacts.vocabulary.sourceManifestContentHash),
     sourceReleaseHash: String(artifacts.vocabulary.sourceReleaseHash), allowPartialImport: options.allowPartialImport ?? false,
@@ -72,10 +75,13 @@ function runtimeVocabulary(overrides: Partial<RuntimeVocabulary> = {}): RuntimeV
 }
 function mappedSnapshot(overrides: Partial<RuntimeSnapshot> = {}): RuntimeSnapshot {
   const snapshot = emptySnapshot();
+  const runtime = runtimeVocabulary();
+  const runtimeRows = overrides.vocabularies ?? [runtime];
+  const mappedRuntime = runtimeRows.find((row) => row.id === 123) ?? runtime;
   return {
     ...snapshot,
-    vocabularies: [runtimeVocabulary()],
-    vocabularyMappings: [{ masterSenseId: SENSE_A, masterLexemeId: LEXEME_ID, vocabularyId: 123, projectionContractVersion: "runtime-vocabulary-projection-v1", appliedProjectionFingerprint: "a".repeat(64), lastReleaseHash: RELEASE_HASH }],
+    vocabularies: runtimeRows,
+    vocabularyMappings: [{ masterSenseId: SENSE_A, masterLexemeId: LEXEME_ID, vocabularyId: 123, projectionContractVersion: "runtime-vocabulary-projection-v2", appliedProjectionFingerprint: fingerprintEffectiveRuntimeProjection(apiEffectiveProjection(mappedRuntime)), lastReleaseHash: RELEASE_HASH }],
     topics: [{ id: 9, slug: "finance", name: "Finance", description: "Financial words.", sortOrder: 0, enabled: true }],
     topicMappings: [{ masterTopicId: TOPIC_ID, topicId: 9 }],
     learningSets: [{ id: 11, slug: "basic-finance", name: "Basic finance", description: "A finance set.", grade: null, enabled: true, sortOrder: 0 }],
@@ -119,6 +125,8 @@ describe("Master V2 runtime import planner", () => {
     const plan = buildMasterVocabularyImportPlan({ artifacts, reconciliation: reconciliation(artifacts) });
     expect(plan.eligibility.canApply).toBe(true);
     expect(plan.vocabulary).toMatchObject([{ action: "CREATE", appVocabularyId: null, nextContentVersion: 1 }]);
+    expect(plan.vocabulary[0]?.runtimeProjection).toMatchObject({ imageUrl: null, audioUrl: null });
+    expect(plan.vocabulary[0]?.fieldOperations).toContainEqual(expect.objectContaining({ field: "imageUrl", action: "PRESERVE", before: null, masterRaw: null, after: null }));
     expect(plan.topics[0]).toMatchObject({ action: "CREATE", appId: null });
     expect(plan.learningSets[0]).toMatchObject({ action: "CREATE", appId: null });
     expect(plan.topicMemberships[0]).toMatchObject({ action: "INSERT", appVocabularyId: null, appContainerId: null });
@@ -175,18 +183,93 @@ describe("Master V2 runtime import planner", () => {
 
   it("updates changed projections with exactly one derived contentVersion increment", () => {
     const artifacts = approvedArtifacts({ records: [record(SENSE_A, { ...PROJECTION_A, vietnamese: "tổ chức tài chính" }, "d".repeat(64))], withMemberships: false });
-    const plan = buildMasterVocabularyImportPlan({ artifacts, reconciliation: mappedReconciliation(artifacts), snapshot: mappedSnapshot() });
+    const runtime = runtimeVocabulary({ imageUrl: "https://legacy.example/image.webp", audioUrl: "https://legacy.example/audio.mp3" });
+    const plan = buildMasterVocabularyImportPlan({ artifacts, reconciliation: mappedReconciliation(artifacts), snapshot: mappedSnapshot({ vocabularies: [runtime] }) });
     expect(plan.vocabulary[0]).toMatchObject({ action: "UPDATE", expectedContentVersion: 4, nextContentVersion: 5 });
+    expect(plan.vocabulary[0]?.runtimeProjection).toMatchObject({ imageUrl: runtime.imageUrl, audioUrl: runtime.audioUrl });
     expect(plan.summary.contentVersionIncrements).toBe(1);
   });
 
-  it("treats identical applied fingerprint as a noop and different fingerprints as one version bump", () => {
+  it("preserves null Master enrichment fields and fingerprints the effective result", () => {
+    const master = { ...PROJECTION_A, ipa: null, imageUrl: null, audioUrl: null, topic: null, level: null };
+    const artifacts = approvedArtifacts({ records: [record(SENSE_A, master)], withMemberships: false });
+    const runtime = runtimeVocabulary({
+      ipa: "/bæŋk/", imageUrl: "https://legacy.example/image.webp", audioUrl: "https://legacy.example/audio.mp3",
+      topic: "Legacy Finance", level: "GRADE_3",
+    });
+    const plan = buildMasterVocabularyImportPlan({ artifacts, reconciliation: mappedReconciliation(artifacts), snapshot: mappedSnapshot({ vocabularies: [runtime] }) });
+    const action = plan.vocabulary[0]!;
+    expect(action).toMatchObject({ action: "NOOP", expectedContentVersion: 4, nextContentVersion: 4 });
+    expect(action.runtimeProjection).toMatchObject({ ipa: "/bæŋk/", imageUrl: runtime.imageUrl, audioUrl: runtime.audioUrl, topic: "Legacy Finance", level: "GRADE_3" });
+    expect(action.effectiveProjection).toMatchObject({ imageUrl: runtime.imageUrl, audioUrl: runtime.audioUrl, ipa: "/bæŋk/", topic: "Legacy Finance", level: "GRADE_3" });
+    expect(action.fieldOperations.filter((operation) => ["ipa", "imageUrl", "audioUrl", "topic", "level"].includes(operation.field))).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ field: "ipa", action: "PRESERVE", before: "/bæŋk/", masterRaw: null, after: "/bæŋk/" }),
+        expect.objectContaining({ field: "imageUrl", action: "PRESERVE", before: runtime.imageUrl, masterRaw: null, after: runtime.imageUrl }),
+        expect.objectContaining({ field: "audioUrl", action: "PRESERVE", before: runtime.audioUrl, masterRaw: null, after: runtime.audioUrl }),
+        expect.objectContaining({ field: "topic", action: "PRESERVE", before: "Legacy Finance", masterRaw: null, after: "Legacy Finance" }),
+        expect.objectContaining({ field: "level", action: "PRESERVE", before: "GRADE_3", masterRaw: null, after: "GRADE_3" }),
+      ]),
+    );
+    expect(action.projectionOutcomes).toContain("PRESERVED_RUNTIME_ENRICHMENT");
+    expect(action.fingerprint).toBe(fingerprintEffectiveRuntimeProjection(action.effectiveProjection!));
+  });
+
+  it("sets a concrete Master image over runtime media and increments once when the effective image changes", () => {
+    const master = { ...PROJECTION_A, imageUrl: "https://master.example/image.webp" };
+    const artifacts = approvedArtifacts({ records: [record(SENSE_A, master)], withMemberships: false });
+    const runtime = runtimeVocabulary({ imageUrl: "https://legacy.example/image.webp" });
+    const plan = buildMasterVocabularyImportPlan({ artifacts, reconciliation: mappedReconciliation(artifacts), snapshot: mappedSnapshot({ vocabularies: [runtime] }) });
+    expect(plan.vocabulary[0]).toMatchObject({ action: "UPDATE", nextContentVersion: 5, runtimeProjection: { imageUrl: master.imageUrl } });
+    expect(plan.vocabulary[0]?.fieldOperations).toContainEqual(expect.objectContaining({ field: "imageUrl", action: "SET", before: runtime.imageUrl, masterRaw: master.imageUrl, after: master.imageUrl }));
+    expect(plan.vocabulary[0]?.projectionOutcomes).toContain("MASTER_FIELD_UPDATE");
+  });
+
+  it("clears an enrichment field only through explicit clearFields", () => {
+    const artifacts = approvedArtifacts({ withMemberships: false });
+    const runtime = runtimeVocabulary({ imageUrl: "https://legacy.example/image.webp" });
+    const review = mappedReconciliation(artifacts, { masterSenseId: SENSE_A, decision: "MAP_EXISTING", appVocabularyId: 123, clearFields: ["imageUrl"] });
+    const plan = buildMasterVocabularyImportPlan({ artifacts, reconciliation: review, snapshot: mappedSnapshot({ vocabularies: [runtime] }) });
+    expect(plan.vocabulary[0]).toMatchObject({ action: "UPDATE", nextContentVersion: 5, runtimeProjection: { imageUrl: null }, effectiveProjection: { imageUrl: null } });
+    expect(plan.vocabulary[0]?.fieldOperations).toContainEqual(expect.objectContaining({ field: "imageUrl", action: "CLEAR", before: runtime.imageUrl, masterRaw: null, after: null }));
+    expect(plan.vocabulary[0]?.projectionOutcomes).toContain("EXPLICIT_CLEAR");
+  });
+
+  it("blocks a silent null for existing Master-authoritative definition until explicitly cleared", () => {
+    const master = { ...PROJECTION_A, definitionEn: null };
+    const artifacts = approvedArtifacts({ records: [record(SENSE_A, master)], withMemberships: false });
+    const runtime = runtimeVocabulary();
+    const blocked = buildMasterVocabularyImportPlan({ artifacts, reconciliation: mappedReconciliation(artifacts), snapshot: mappedSnapshot({ vocabularies: [runtime] }) });
+    expect(blocked.issues.map((issue) => issue.code)).toContain("MASTER_AUTHORITATIVE_NULL_REQUIRES_EXPLICIT_CLEAR");
+    const review = mappedReconciliation(artifacts, { masterSenseId: SENSE_A, decision: "MAP_EXISTING", appVocabularyId: 123, clearFields: ["definitionEn"] });
+    const cleared = buildMasterVocabularyImportPlan({ artifacts, reconciliation: review, snapshot: mappedSnapshot({ vocabularies: [runtime] }) });
+    expect(cleared.vocabulary[0]).toMatchObject({ action: "UPDATE", nextContentVersion: 5, runtimeProjection: { definitionEn: null } });
+    expect(cleared.vocabulary[0]?.fieldOperations).toContainEqual(expect.objectContaining({ field: "definitionEn", action: "CLEAR" }));
+  });
+
+  it("preserves runtime Vietnamese override and image quarantine as separate controls", () => {
+    const artifacts = approvedArtifacts({ withMemberships: false });
+    const runtime = runtimeVocabulary({ vietnameseOverride: "ngân hàng", imageUrl: "https://legacy.example/image.webp", imageQuarantined: true });
+    const review = mappedReconciliation(artifacts, {
+      masterSenseId: SENSE_A, decision: "MAP_EXISTING", appVocabularyId: 123,
+      vietnameseOverridePolicy: "KEEP_IF_MATCHES_PROJECTION", imageQuarantinePolicy: "KEEP_IF_NO_IMAGE",
+    });
+    const plan = buildMasterVocabularyImportPlan({ artifacts, reconciliation: review, snapshot: mappedSnapshot({ vocabularies: [runtime] }) });
+    expect(plan.eligibility.canApply).toBe(true);
+    expect(plan.vocabulary[0]).toMatchObject({ action: "NOOP", nextContentVersion: 4, effectiveProjection: { vietnamese: "ngân hàng", imageUrl: null } });
+    expect(plan.vocabulary[0]?.controlOperations).toEqual(expect.arrayContaining([
+      expect.objectContaining({ field: "vietnameseOverride", action: "PRESERVE", before: "ngân hàng", after: "ngân hàng" }),
+      expect.objectContaining({ field: "imageQuarantined", action: "PRESERVE", before: true, after: true }),
+    ]));
+  });
+
+  it("keeps the effective projection fingerprint stable when only Master provenance changes", () => {
     const artifacts = approvedArtifacts({ withMemberships: false });
     const samePlan = buildMasterVocabularyImportPlan({ artifacts, reconciliation: mappedReconciliation(artifacts), snapshot: mappedSnapshot() });
     expect(samePlan.vocabulary[0]).toMatchObject({ action: "NOOP", expectedContentVersion: 4, nextContentVersion: 4 });
     const changed = approvedArtifacts({ records: [record(SENSE_A, PROJECTION_A, "e".repeat(64))], withMemberships: false });
     const changedPlan = buildMasterVocabularyImportPlan({ artifacts: changed, reconciliation: mappedReconciliation(changed), snapshot: mappedSnapshot() });
-    expect(changedPlan.vocabulary[0]).toMatchObject({ action: "UPDATE", nextContentVersion: 5 });
+    expect(changedPlan.vocabulary[0]).toMatchObject({ action: "NOOP", expectedContentVersion: 4, nextContentVersion: 4 });
   });
 
   it("blocks mismatched Vietnamese overrides, preserves exact-match overrides only by explicit choice, and allows explicit clear", () => {
@@ -214,6 +297,18 @@ describe("Master V2 runtime import planner", () => {
     expect(noPolicy.issues.map((issue) => issue.code)).toContain("IMAGE_QUARANTINE_POLICY_REQUIRED");
     const keepPolicy = mappedReconciliation(noImage, { masterSenseId: SENSE_A, decision: "MAP_EXISTING", appVocabularyId: 123, imageQuarantinePolicy: "KEEP_IF_NO_IMAGE" });
     expect(buildMasterVocabularyImportPlan({ artifacts: noImage, reconciliation: keepPolicy, snapshot }).eligibility.canApply).toBe(true);
+
+    const quarantinedImage = mappedSnapshot({ vocabularies: [runtimeVocabulary({ imageUrl: "https://legacy.example/quarantined.webp", imageQuarantined: true })] });
+    const revealOnly = mappedReconciliation(noImage, { masterSenseId: SENSE_A, decision: "MAP_EXISTING", appVocabularyId: 123, imageQuarantinePolicy: "CLEAR" });
+    const revealBlocked = buildMasterVocabularyImportPlan({ artifacts: noImage, reconciliation: revealOnly, snapshot: quarantinedImage });
+    expect(revealBlocked.issues.map((issue) => issue.code)).toContain("IMAGE_QUARANTINE_REVEAL_REQUIRES_EXPLICIT_IMAGE_CLEAR");
+    const clearBoth = mappedReconciliation(noImage, {
+      masterSenseId: SENSE_A, decision: "MAP_EXISTING", appVocabularyId: 123,
+      imageQuarantinePolicy: "CLEAR", clearFields: ["imageUrl"],
+    });
+    expect(buildMasterVocabularyImportPlan({ artifacts: noImage, reconciliation: clearBoth, snapshot: quarantinedImage }).vocabulary[0]).toMatchObject({
+      action: "UPDATE", effectiveProjection: { imageUrl: null }, runtimeProjection: { imageUrl: null },
+    });
   });
 
   it("requires an explicit contract-version rebase policy", () => {
@@ -253,7 +348,7 @@ describe("Master V2 runtime import planner", () => {
     const artifacts = approvedArtifacts({ records: [record(SENSE_A, { ...PROJECTION_A, vietnamese: "đã đổi" }, "f".repeat(64))], withMemberships: false });
     const review = mappedReconciliation(artifacts);
     const probe = buildMasterVocabularyImportPlan({ artifacts, reconciliation: review, snapshot: mappedSnapshot() });
-    const snapshot = mappedSnapshot({ appliedRuns: [{ datasetId: DATASET_ID, releaseHash: RELEASE_HASH, appImportContractVersion: "app-import-v2", projectionContractVersion: "runtime-vocabulary-projection-v1", reconciliationHash: probe.reconciliation.hash, planFingerprint: probe.planFingerprint }] });
+    const snapshot = mappedSnapshot({ appliedRuns: [{ datasetId: DATASET_ID, releaseHash: RELEASE_HASH, appImportContractVersion: "app-import-v3", projectionContractVersion: "runtime-vocabulary-projection-v2", reconciliationHash: probe.reconciliation.hash, planFingerprint: probe.planFingerprint }] });
     const replay = buildMasterVocabularyImportPlan({ artifacts, reconciliation: review, snapshot });
     expect(replay.issues.map((issue) => issue.code)).toContain("APPLIED_RELEASE_STATE_DRIFT_REQUIRES_REVIEW");
     expect(replay.eligibility.canApply).toBe(false);
@@ -335,7 +430,7 @@ describe("Master V2 runtime import planner", () => {
     expect(first).toMatchObject({ applied: true, idempotent: false });
     expect(transactionCalls).toEqual(["insertImportRun", "insertVocabulary", "writeVocabularyMapping"]);
     expect(snapshot.vocabularies).toMatchObject([{ id: 456, contentVersion: 1, word: "bank" }]);
-    expect(snapshot.vocabularyMappings).toMatchObject([{ masterSenseId: SENSE_A, vocabularyId: 456, appliedProjectionFingerprint: "a".repeat(64) }]);
+    expect(snapshot.vocabularyMappings).toMatchObject([{ masterSenseId: SENSE_A, vocabularyId: 456, appliedProjectionFingerprint: initialPlan.vocabulary[0]!.fingerprint }]);
 
     const stableVocabulary = structuredClone(snapshot.vocabularies);
     const stableMappings = structuredClone(snapshot.vocabularyMappings);
@@ -351,6 +446,71 @@ describe("Master V2 runtime import planner", () => {
     expect(transactionCalls).toEqual(["insertImportRun", "insertVocabulary", "writeVocabularyMapping"]);
     expect(snapshot.vocabularies).toEqual(stableVocabulary);
     expect(snapshot.vocabularyMappings).toEqual(stableMappings);
+  });
+
+  it("replays a mapped semantic update without clearing preserved enrichment", async () => {
+    const artifacts = approvedArtifacts({ records: [record(SENSE_A, { ...PROJECTION_A, vietnamese: "ngân hàng mới" })], withMemberships: false });
+    const review = mappedReconciliation(artifacts);
+    let snapshot = mappedSnapshot({ vocabularies: [runtimeVocabulary({ imageUrl: "https://legacy.example/image.webp", audioUrl: "https://legacy.example/audio.mp3" })] });
+    const calls: string[] = [];
+    const transaction: Pick<MasterImportTransaction,
+      "readSnapshotForUpdate" | "insertImportRun" | "updateVocabulary" | "writeVocabularyMapping" | "writeTopicMapping" | "writeLearningSetMapping"> = {
+      readSnapshotForUpdate: async () => snapshot,
+      insertImportRun: async (input) => {
+        calls.push("insertImportRun");
+        snapshot = { ...snapshot, appliedRuns: [...snapshot.appliedRuns, {
+          datasetId: input.datasetId, releaseHash: input.releaseHash,
+          appImportContractVersion: input.appImportContractVersion,
+          projectionContractVersion: input.projectionContractVersion,
+          reconciliationHash: input.reconciliationHash, planFingerprint: input.planFingerprint,
+        }] };
+      },
+      updateVocabulary: async (input) => {
+        calls.push("updateVocabulary");
+        snapshot = { ...snapshot, vocabularies: snapshot.vocabularies.map((row) => row.id === input.vocabularyId
+          ? { ...row, ...input.projection, contentVersion: input.nextContentVersion }
+          : row) };
+      },
+      writeVocabularyMapping: async (input) => {
+        calls.push("writeVocabularyMapping");
+        snapshot = { ...snapshot, vocabularyMappings: snapshot.vocabularyMappings.map((row) => row.masterSenseId === input.masterSenseId
+          ? { ...row, projectionContractVersion: input.projectionContractVersion, appliedProjectionFingerprint: input.appliedProjectionFingerprint, lastReleaseHash: input.lastReleaseHash }
+          : row) };
+      },
+      writeTopicMapping: async () => { calls.push("writeTopicMapping"); },
+      writeLearningSetMapping: async () => { calls.push("writeLearningSetMapping"); },
+    };
+    const store: MasterImportStore = {
+      readSnapshot: async () => snapshot,
+      transaction: async (operation) => operation(new Proxy(transaction, {
+        get(target, property) {
+          if (property in target) return Reflect.get(target, property);
+          return async () => { throw new Error(`UNEXPECTED_REPLAY_TRANSACTION_METHOD:${String(property)}`); };
+        },
+      }) as unknown as MasterImportTransaction),
+    };
+
+    const initialPlan = buildMasterVocabularyImportPlan({ artifacts, reconciliation: review, snapshot, targetEnvironment: "test" });
+    expect(initialPlan.vocabulary[0]).toMatchObject({ action: "UPDATE", nextContentVersion: 5 });
+    const first = await applyMasterVocabularyImport({
+      store, artifacts, reconciliation: review, target: { environment: "test", branchId: "synthetic-branch" },
+      expectedPlanFingerprint: initialPlan.planFingerprint, newRunId: "0195f85c-7b2a-7d10-8c01-000000000010",
+    });
+    expect(first).toMatchObject({ applied: true, idempotent: false });
+    expect(snapshot.vocabularies[0]).toMatchObject({
+      contentVersion: 5, vietnamese: "ngân hàng mới",
+      imageUrl: "https://legacy.example/image.webp", audioUrl: "https://legacy.example/audio.mp3",
+    });
+    const callsAfterFirst = [...calls];
+    const replayPlan = buildMasterVocabularyImportPlan({ artifacts, reconciliation: review, snapshot, targetEnvironment: "test" });
+    expect(replayPlan.vocabulary[0]).toMatchObject({ action: "NOOP", nextContentVersion: 5, runtimeProjection: { imageUrl: "https://legacy.example/image.webp", audioUrl: "https://legacy.example/audio.mp3" } });
+    const replay = await applyMasterVocabularyImport({
+      store, artifacts, reconciliation: review, target: { environment: "test", branchId: "synthetic-branch" },
+      expectedPlanFingerprint: replayPlan.planFingerprint, newRunId: "0195f85c-7b2a-7d10-8c01-000000000011",
+    });
+    expect(replay).toMatchObject({ applied: false, idempotent: true });
+    expect(calls).toEqual(callsAfterFirst);
+    expect(snapshot.vocabularies[0]).toMatchObject({ contentVersion: 5, imageUrl: "https://legacy.example/image.webp", audioUrl: "https://legacy.example/audio.mp3" });
   });
 
   it("preserves the existing progress/review integer IDs in MAP_EXISTING planning", () => {

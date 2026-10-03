@@ -124,14 +124,14 @@ export async function applyMasterVocabularyImport(input: {
       if (action.action === "SKIP") continue;
       const record = vocabularyRecords.get(action.masterSenseId);
       if (!record) throw new Error("IMPORT_VOCABULARY_RECORD_MISSING_AFTER_PLAN");
-      const projection = vocabularyProjection(record.runtimeProjection);
+      const projection = vocabularyProjection(action.runtimeProjection ?? record.runtimeProjection);
       const lexemeId = requiredString(record.masterLexemeId, "IMPORT_LEXEME_ID_REQUIRED");
       const revisions = record.sourceRevisions as Record<string, unknown> | undefined;
       const mappingInput = (vocabularyId: number): VocabularyMappingInput => ({
         masterSenseId: action.masterSenseId, masterLexemeId: lexemeId, vocabularyId, sourceDatasetId: datasetId,
         sourceDatasetVersion: requiredString(source.datasetVersion, "IMPORT_DATASET_VERSION_REQUIRED"),
         sourceSchemaVersion: requiredString(source.schemaVersion, "IMPORT_SCHEMA_VERSION_REQUIRED"),
-        projectionContractVersion, appliedProjectionFingerprint: requiredString(record.projectionFingerprint, "IMPORT_FINGERPRINT_REQUIRED"),
+        projectionContractVersion, appliedProjectionFingerprint: requiredString(action.fingerprint, "IMPORT_FINGERPRINT_REQUIRED"),
         appliedLexemeRevision: requiredNumber(revisions?.lexemeRevision, "IMPORT_LEXEME_REVISION_REQUIRED"),
         appliedSenseRevision: requiredNumber(revisions?.senseRevision, "IMPORT_SENSE_REVISION_REQUIRED"),
         lastReleaseHash: releaseHash, lastImportRunId: runId,
@@ -356,7 +356,7 @@ export function createPostgresMasterImportStore(sql: SqlClient): MasterImportSto
   }) as Promise<T>;
   return {
     readSnapshot: () => sqlTag.begin(async (tx) => {
-      await tx`SET TRANSACTION READ ONLY`;
+      await tx`SET TRANSACTION ISOLATION LEVEL REPEATABLE READ, READ ONLY`;
       return readSnapshot(tx, false);
     }),
     transaction,

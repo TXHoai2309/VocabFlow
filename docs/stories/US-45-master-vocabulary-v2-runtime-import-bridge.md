@@ -268,3 +268,48 @@ Phase 2E.3 evidence:
 - [`final owner decision sheet`](../../vocabflow-dataset/reports/canary-development-final-owner-decision-sheet.md)
 - [`projection-loss audit`](../../vocabflow-dataset/reports/canary-development-projection-loss-audit.md)
 - [`analysis-only owner-ready artifact`](../../vocabflow-dataset/releases/canary-v2.1.0/import/mappings/runtime-reconciliation-owner-ready-development-v2.json)
+
+## Phase 2E.4A — Runtime projection preservation policy
+
+The runtime import contract now uses `app-import-v3`,
+`runtime-vocabulary-projection-v2`, and `runtime-reconciliation-v3`. The
+approved 2.1.0 release remains immutable at its Master content layer: pinned
+records, dataset schema, and release hash are unchanged; only derived App
+Import artifacts and generated template metadata were regenerated.
+
+Field ownership is explicit. Master-authoritative fields are `word`, base
+Vietnamese, definition, example, and `enabled`. Runtime enrichment fields are
+IPA, image/audio URLs, legacy topic, and level. A concrete Master value is
+`SET`; a null/absent enrichment value is `PRESERVE` for MAP_EXISTING and stays
+null for CREATE_NEW. Master-authoritative null does not erase an existing
+definition/example: a reviewed `clearFields` entry is required. The planner
+reports before/raw-Master/operation/after for every mapped field and keeps
+Vietnamese override and image quarantine as separate policy controls.
+
+The source `masterProjectionFingerprint` remains distinct from the persisted
+fingerprint of the planned API-visible effective projection. Master media uses
+asset/version/byte-hash/availability identity; preserved legacy media uses its
+effective URL identity; quarantined images remain hidden in the effective
+fingerprint. `contentVersion` increments once when that effective projection
+changes and remains stable for preservation-only changes. CREATE_NEW starts at
+1. The same release/reconciliation is replay-idempotent.
+
+Two provider-verified, read-only planner previews simulated apple #1 and apple
+#295 separately. Neither is an owner choice. Both preserve current IPA, media,
+legacy topic and (for #295) grade level; each still increments its version once
+for Master definition/example changes. Bank #871 and reservation #284 update
+their semantic Master fields and enabled state while preserving null-Master
+enrichment. Five CREATE_NEW rows keep null image/audio values. The checked-in
+human reconciliation remains unresolved and previews with `canApply=false`.
+
+The fresh migration scanner saw 18/18 ledger rows but 17 local hash mismatches,
+including 0015–0017, and stopped before catalog discovery. A separate planner
+preview successfully read the development runtime in a REPEATABLE READ / READ
+ONLY transaction;
+the planner itself does not check migration ledger drift in its `canApply`
+gate. No safety conclusion is drawn from that separation. The historical Phase
+2E.3 loss audit and all unresolved owner artifacts remain available.
+
+- [Runtime preservation preview](../../vocabflow-dataset/reports/canary-development-preservation-policy-preview.md)
+- [Old/new projection comparison](../../vocabflow-dataset/reports/canary-development-projection-preservation-comparison.md)
+- [Migration drift scan](../../vocabflow-dataset/reports/canary-development-migration-drift-scan-2026-10-04.md)

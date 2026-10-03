@@ -54,7 +54,7 @@ function addReadyImage(graph: MasterProjectionGraph, senseId: string, url = "htt
   ];
 }
 
-describe("Master V2 to App Import V2 projection", () => {
+describe("Master V2 to App Import V3 projection", () => {
   it("produces deterministic artifacts for identical pinned input", () => {
     const first = buildAppImportV2(sourceGraph, "PREVIEW");
     const second = buildAppImportV2(sourceGraph, "PREVIEW");
@@ -169,8 +169,8 @@ describe("Master V2 to App Import V2 projection", () => {
   it("keeps projection fingerprints stable across repeated calculations", () => {
     const graph = cloneGraph();
     const sense = senseFor(graph, "bank");
-    const a = outputRow(graph, String(sense.masterSenseId)).projectionFingerprint;
-    const b = outputRow(graph, String(sense.masterSenseId)).projectionFingerprint;
+    const a = outputRow(graph, String(sense.masterSenseId)).masterProjectionFingerprint;
+    const b = outputRow(graph, String(sense.masterSenseId)).masterProjectionFingerprint;
     expect(a).toBe(b);
   });
 
@@ -178,20 +178,20 @@ describe("Master V2 to App Import V2 projection", () => {
     const graph = cloneGraph();
     const sense = senseFor(graph, "apple");
     const id = String(sense.masterSenseId);
-    const before = outputRow(graph, id).projectionFingerprint;
+    const before = outputRow(graph, id).masterProjectionFingerprint;
     const translation = rows(sense.translations)[0]!;
     translation.text = `${String(translation.text)} (edited)`;
-    expect(outputRow(graph, id).projectionFingerprint).not.toBe(before);
+    expect(outputRow(graph, id).masterProjectionFingerprint).not.toBe(before);
   });
 
   it("does not change the fingerprint for provenance-only edits", () => {
     const graph = cloneGraph();
     const sense = senseFor(graph, "apple");
     const id = String(sense.masterSenseId);
-    const before = outputRow(graph, id).projectionFingerprint;
+    const before = outputRow(graph, id).masterProjectionFingerprint;
     sense.provenanceIds = ["synthetic-provenance"];
     rows(sense.translations)[0]!.provenanceIds = ["another-provenance"];
-    expect(outputRow(graph, id).projectionFingerprint).toBe(before);
+    expect(outputRow(graph, id).masterProjectionFingerprint).toBe(before);
   });
 
   it("does not change semantic fingerprint when provider URL changes for the same approved media version", () => {
@@ -203,7 +203,7 @@ describe("Master V2 to App Import V2 projection", () => {
     const asset = graph.mediaAssets.find((row) => row.targetId === id && row.mediaKind === "IMAGE")!;
     rows(asset.deliveries)[0]!.url = "https://other-cdn.example.test/apple.webp";
     const after = outputRow(graph, id);
-    expect(after.projectionFingerprint).toBe(before.projectionFingerprint);
+    expect(after.masterProjectionFingerprint).toBe(before.masterProjectionFingerprint);
     expect(runtime(after).imageUrl).not.toBe(runtime(before).imageUrl);
   });
 
@@ -212,13 +212,13 @@ describe("Master V2 to App Import V2 projection", () => {
     const sense = senseFor(graph, "apple");
     const id = String(sense.masterSenseId);
     addReadyImage(graph, id);
-    const before = outputRow(graph, id).projectionFingerprint;
+    const before = outputRow(graph, id).masterProjectionFingerprint;
     const assetId = String(graph.mediaAssets.find((row) => row.targetId === id && row.mediaKind === "IMAGE")!.mediaAssetId);
     const changedHash = "b".repeat(64);
     rows(graph.mediaAssets.find((row) => row.mediaAssetId === assetId)!.versions)[0]!.sha256 = changedHash;
     const versionPin = rows(graph.manifest.includedMediaAssetVersions).find((pin) => pin.mediaAssetId === assetId)!;
     versionPin.sha256 = changedHash;
-    expect(outputRow(graph, id).projectionFingerprint).not.toBe(before);
+    expect(outputRow(graph, id).masterProjectionFingerprint).not.toBe(before);
   });
 
   it("keeps every app vocabulary ID unresolved without authoritative reconciliation", () => {

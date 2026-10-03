@@ -113,7 +113,7 @@ function loadRepositoryEnv() {
 
 function staticEligibility(artifacts: ImportArtifacts) {
   const source = artifacts.vocabulary;
-  if (source.artifactVersion !== "app-import-v2" || source.mode !== "RELEASE"
+  if (source.artifactVersion !== "app-import-v3" || source.mode !== "RELEASE"
       || source.importEligible !== true || source.sourceManifestStatus !== "APPROVED"
       || typeof source.sourceReleaseHash !== "string" || !/^[0-9a-f]{64}$/.test(source.sourceReleaseHash)) {
     throw new Error("IMPORT_ARTIFACT_NOT_ELIGIBLE");

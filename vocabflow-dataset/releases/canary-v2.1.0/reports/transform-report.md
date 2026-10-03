@@ -1,11 +1,11 @@
-# Master Vocabulary V2 → App Import V2 Transform Report
+# Master Vocabulary V2 → App Import V3 Transform Report
 
 - Source dataset version: 2.1.0
 - Source schema version: 2.0.1
 - Source manifest status: APPROVED
 - Source manifest JCS SHA-256: 6c80ef29049f925c8e4c331642eba4fd0222b78fc249d144913f573de8f96b6c
-- App Import contract: app-import-v2
-- Runtime projection contract: runtime-vocabulary-projection-v1
+- App Import contract: app-import-v3
+- Runtime projection contract: runtime-vocabulary-projection-v2
 - Mode: RELEASE
 - importEligible: true
 

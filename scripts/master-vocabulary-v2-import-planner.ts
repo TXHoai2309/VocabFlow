@@ -1,8 +1,36 @@
 import { canonicalJsonSha256 } from "./validate-master-vocabulary-v2";
 
-export const MASTER_APP_IMPORT_VERSION = "app-import-v2";
-export const MASTER_RUNTIME_PROJECTION_VERSION = "runtime-vocabulary-projection-v1";
-export const RUNTIME_RECONCILIATION_VERSION = "runtime-reconciliation-v2";
+export const MASTER_APP_IMPORT_VERSION = "app-import-v3";
+export const MASTER_RUNTIME_PROJECTION_VERSION = "runtime-vocabulary-projection-v2";
+export const RUNTIME_RECONCILIATION_VERSION = "runtime-reconciliation-v3";
+
+export const VOCABULARY_FIELD_OWNERSHIP = {
+  word: "MASTER_AUTHORITATIVE",
+  ipa: "RUNTIME_ENRICHMENT",
+  vietnamese: "MASTER_AUTHORITATIVE",
+  vietnameseOverride: "RUNTIME_OVERRIDE",
+  definitionEn: "MASTER_AUTHORITATIVE",
+  exampleEn: "MASTER_AUTHORITATIVE",
+  imageUrl: "RUNTIME_ENRICHMENT",
+  imageQuarantined: "RUNTIME_OPERATIONAL",
+  audioUrl: "RUNTIME_ENRICHMENT",
+  topic: "RUNTIME_ENRICHMENT",
+  level: "RUNTIME_ENRICHMENT",
+  enabled: "MASTER_AUTHORITATIVE",
+  contentVersion: "RUNTIME_OPERATIONAL",
+  sourceDataset: "IDENTITY_METADATA",
+  sourceRecordId: "IDENTITY_METADATA",
+} as const;
+
+export type VocabularyProjectionField = "word" | "ipa" | "vietnamese" | "definitionEn" | "exampleEn" | "imageUrl" | "audioUrl" | "topic" | "level" | "enabled";
+export type VocabularyFieldOperation = {
+  field: VocabularyProjectionField;
+  ownership: typeof VOCABULARY_FIELD_OWNERSHIP[VocabularyProjectionField];
+  action: "SET" | "PRESERVE" | "CLEAR" | "BLOCKED";
+  before: unknown;
+  masterRaw: unknown;
+  after: unknown;
+};
 
 export type JsonRecord = Record<string, unknown>;
 export type ImportArtifacts = {
@@ -82,7 +110,13 @@ export type VocabularyAction = {
   appVocabularyId: number | null;
   expectedContentVersion: number | null;
   nextContentVersion: number | null;
+  masterProjectionFingerprint: string | null;
   fingerprint: string | null;
+  runtimeProjection: JsonRecord | null;
+  effectiveProjection: JsonRecord | null;
+  fieldOperations: VocabularyFieldOperation[];
+  controlOperations: Array<{ field: "vietnameseOverride" | "imageQuarantined"; action: "PRESERVE" | "CLEAR"; before: unknown; masterRaw: "NOT_PROJECTED"; after: unknown }>;
+  projectionOutcomes: Array<"PRESERVED_RUNTIME_ENRICHMENT" | "MASTER_FIELD_UPDATE" | "EXPLICIT_CLEAR">;
   issues: PlanIssue[];
 };
 export type EntityAction = {
@@ -103,7 +137,7 @@ export type MembershipAction = {
 };
 
 export type ImportPlan = {
-  planVersion: "master-runtime-import-plan-v1";
+  planVersion: "master-runtime-import-plan-v2";
   mode: "DRY_RUN" | "APPLY";
   targetEnvironment: string;
   source: {
@@ -188,6 +222,71 @@ function apiEffectiveProjection(row: RuntimeVocabulary): JsonRecord {
     topic: row.topic, level: row.level, enabled: row.enabled,
   };
 }
+const projectionFields: VocabularyProjectionField[] = [
+  "word", "ipa", "vietnamese", "definitionEn", "exampleEn", "imageUrl", "audioUrl", "topic", "level", "enabled",
+];
+const clearableProjectionFields = new Set<VocabularyProjectionField>([
+  "ipa", "definitionEn", "exampleEn", "imageUrl", "audioUrl", "topic", "level",
+]);
+function runtimeProjectionValue(row: RuntimeVocabulary, field: VocabularyProjectionField): unknown {
+  return row[field];
+}
+function effectiveProjectionFromValues(projection: JsonRecord, vietnameseOverride: string | null, imageQuarantined: boolean): JsonRecord {
+  return {
+    word: projection.word, ipa: projection.ipa, vietnamese: vietnameseOverride ?? projection.vietnamese,
+    definitionEn: projection.definitionEn, exampleEn: projection.exampleEn,
+    imageUrl: imageQuarantined ? null : projection.imageUrl, audioUrl: projection.audioUrl,
+    topic: projection.topic, level: projection.level, enabled: projection.enabled,
+  };
+}
+function normalizeLearnerText(value: unknown): string | null {
+  return typeof value === "string" ? value.replace(/\r\n?/g, "\n").normalize("NFC") : null;
+}
+function semanticMediaIdentity(value: unknown, operation: VocabularyFieldOperation["action"] | undefined): unknown {
+  if (operation === "CLEAR" || value === null || value === undefined) return null;
+  if (isRecord(value)) return value;
+  return { runtimeUrl: value };
+}
+export function fingerprintEffectiveRuntimeProjection(
+  projection: JsonRecord,
+  semantics: JsonRecord = {},
+  operations: VocabularyFieldOperation[] = [],
+): string {
+  const operationByField = new Map(operations.map((operation) => [operation.field, operation.action]));
+  const envelope = {
+    projectionContractVersion: MASTER_RUNTIME_PROJECTION_VERSION,
+    word: normalizeLearnerText(projection.word),
+    wordLanguage: str(semantics.wordLanguage) ?? "en",
+    ipa: normalizeLearnerText(projection.ipa),
+    pronunciationLocale: str(semantics.pronunciationLocale) ?? "en-US",
+    vietnamese: normalizeLearnerText(projection.vietnamese),
+    translationLanguage: str(semantics.translationLanguage) ?? "vi",
+    definitionEn: normalizeLearnerText(projection.definitionEn),
+    definitionLanguage: projection.definitionEn === null ? null : str(semantics.definitionLanguage) ?? "en",
+    exampleEn: normalizeLearnerText(projection.exampleEn),
+    exampleLanguage: projection.exampleEn === null ? null : str(semantics.exampleLanguage) ?? "en",
+    topic: normalizeLearnerText(projection.topic),
+    level: projection.level,
+    image: semanticMediaIdentity(
+      operationByField.get("imageUrl") === "SET" && semantics.image !== null && semantics.image !== undefined ? semantics.image : projection.imageUrl,
+      operationByField.get("imageUrl"),
+    ),
+    audio: semanticMediaIdentity(
+      operationByField.get("audioUrl") === "SET" && semantics.audio !== null && semantics.audio !== undefined ? semantics.audio : projection.audioUrl,
+      operationByField.get("audioUrl"),
+    ),
+    enabled: projection.enabled,
+  };
+  return canonicalJsonSha256(envelope);
+}
+function emptyVocabularyAction(masterSenseId: string, action: VocabularyAction["action"], appVocabularyId: number | null, issues: PlanIssue[], masterFingerprint: string | null = null): VocabularyAction {
+  return {
+    masterSenseId, action, mappingAction: action === "CONFLICT" ? "CONFLICT" : "NONE", appVocabularyId,
+    expectedContentVersion: null, nextContentVersion: null, masterProjectionFingerprint: masterFingerprint,
+    fingerprint: null, runtimeProjection: null, effectiveProjection: null, fieldOperations: [], controlOperations: [],
+    projectionOutcomes: [], issues,
+  };
+}
 function hasValidDigest(value: unknown) { return typeof value === "string" && /^[0-9a-f]{64}$/.test(value); }
 
 function planVocabulary(artifacts: ImportArtifacts, reconciliation: Reconciliation, snapshot: RuntimeSnapshot, issues: PlanIssue[], overrideConflicts: PlanIssue[]) {
@@ -201,30 +300,40 @@ function planVocabulary(artifacts: ImportArtifacts, reconciliation: Reconciliati
 
   for (const record of rows) {
     const masterSenseId = str(record.masterSenseId) ?? "";
-    const projection = projectionOfRecord(record);
+    const masterProjection = projectionOfRecord(record);
+    const masterFingerprint = str(record.masterProjectionFingerprint);
     const decision = decisions.get(masterSenseId);
     const localIssues: PlanIssue[] = [];
-    const fail = (code: string) => { addIssue(localIssues, code, "SENSE", masterSenseId || undefined); addIssue(issues, code, "SENSE", masterSenseId || undefined); };
-    if (!masterSenseId || !projection || !hasValidDigest(record.projectionFingerprint)) fail("IMPORT_VOCABULARY_RECORD_INVALID");
+    const fail = (code: string) => {
+      addIssue(localIssues, code, "SENSE", masterSenseId || undefined);
+      addIssue(issues, code, "SENSE", masterSenseId || undefined);
+    };
+    if (!masterSenseId || !masterProjection || !hasValidDigest(masterFingerprint)
+        || record.projectionContractVersion !== MASTER_RUNTIME_PROJECTION_VERSION) {
+      fail("IMPORT_VOCABULARY_RECORD_INVALID");
+      plan.push(emptyVocabularyAction(masterSenseId, "CONFLICT", null, localIssues, masterFingerprint));
+      continue;
+    }
     if (!decision || decision.decision === "UNRESOLVED") {
       if (decision) fail("RECONCILIATION_UNRESOLVED");
-      plan.push({ masterSenseId, action: "BLOCKED", mappingAction: "NONE", appVocabularyId: null, expectedContentVersion: null, nextContentVersion: null, fingerprint: null, issues: localIssues });
+      plan.push(emptyVocabularyAction(masterSenseId, "BLOCKED", null, localIssues, masterFingerprint));
       continue;
     }
     if (decision.decision === "SKIP") {
       if (!str(decision.reason)?.trim()) fail("RECONCILIATION_SKIP_REASON_REQUIRED");
       if (!reconciliation.allowPartialImport) fail("PARTIAL_IMPORT_NOT_ALLOWED");
-      plan.push({ masterSenseId, action: "SKIP", mappingAction: "NONE", appVocabularyId: null, expectedContentVersion: null, nextContentVersion: null, fingerprint: null, issues: localIssues });
+      plan.push(emptyVocabularyAction(masterSenseId, "SKIP", null, localIssues, masterFingerprint));
       continue;
     }
     if (decision.decision !== "CREATE_NEW" && decision.decision !== "MAP_EXISTING") {
       fail("RECONCILIATION_DECISION_INVALID");
-      plan.push({ masterSenseId, action: "CONFLICT", mappingAction: "CONFLICT", appVocabularyId: null, expectedContentVersion: null, nextContentVersion: null, fingerprint: null, issues: localIssues });
+      plan.push(emptyVocabularyAction(masterSenseId, "CONFLICT", null, localIssues, masterFingerprint));
       continue;
     }
+
     const existingMapping = mappingBySense.get(masterSenseId);
-    let appId: number | null = decision.decision === "MAP_EXISTING" ? num(decision.appVocabularyId)
-      : decision.decision === "CREATE_NEW" ? existingMapping?.vocabularyId ?? null : null;
+    const appId: number | null = decision.decision === "MAP_EXISTING" ? num(decision.appVocabularyId)
+      : existingMapping?.vocabularyId ?? null;
     if (decision.decision === "MAP_EXISTING" && appId === null) fail("MAP_EXISTING_APP_ID_REQUIRED");
     if (existingMapping && (decision.decision === "MAP_EXISTING" && existingMapping.vocabularyId !== appId
         || decision.decision !== "MAP_EXISTING" && decision.decision !== "CREATE_NEW")) fail("EXISTING_MAPPING_CANNOT_MOVE");
@@ -238,81 +347,218 @@ function planVocabulary(artifacts: ImportArtifacts, reconciliation: Reconciliati
       if (!runtimeById.has(appId)) fail("MAPPED_RUNTIME_VOCABULARY_NOT_FOUND");
     }
     if (localIssues.length) {
-      plan.push({ masterSenseId, action: "CONFLICT", mappingAction: "CONFLICT", appVocabularyId: appId, expectedContentVersion: null, nextContentVersion: null, fingerprint: str(record.projectionFingerprint), issues: localIssues });
+      plan.push(emptyVocabularyAction(masterSenseId, "CONFLICT", appId, localIssues, masterFingerprint));
       continue;
     }
+
     if (decision.decision === "CREATE_NEW" && !existingMapping) {
-      plan.push({ masterSenseId, action: "CREATE", mappingAction: "CREATE_MAPPING", appVocabularyId: null, expectedContentVersion: null, nextContentVersion: 1, fingerprint: str(record.projectionFingerprint), issues: [] });
+      const clearFields = decision.clearFields;
+      if (clearFields !== undefined && (!Array.isArray(clearFields) || clearFields.length > 0)) fail("CREATE_NEW_CLEAR_FIELDS_NOT_ALLOWED");
+      const createProjection = Object.fromEntries(projectionFields.map((field) => [field, masterProjection![field] ?? null]));
+      if (typeof createProjection.word !== "string" || typeof createProjection.vietnamese !== "string" || typeof createProjection.enabled !== "boolean") {
+        fail("MASTER_REQUIRED_PROJECTION_FIELD_MISSING");
+      }
+      const createOperations: VocabularyFieldOperation[] = projectionFields.map((field) => {
+        const masterRaw = Object.prototype.hasOwnProperty.call(masterProjection, field) ? masterProjection![field] : "ABSENT";
+        const value = createProjection[field] ?? null;
+        return { field, ownership: VOCABULARY_FIELD_OWNERSHIP[field], action: value === null ? "PRESERVE" : "SET", before: null, masterRaw, after: value };
+      });
+      const effectiveProjection = effectiveProjectionFromValues(createProjection, null, false);
+      const createOutcomes = createOperations.some((operation) => operation.action === "SET") ? ["MASTER_FIELD_UPDATE"] as VocabularyAction["projectionOutcomes"] : [];
+      plan.push({
+        masterSenseId, action: localIssues.length ? "CONFLICT" : "CREATE",
+        mappingAction: localIssues.length ? "CONFLICT" : "CREATE_MAPPING",
+        appVocabularyId: null, expectedContentVersion: null, nextContentVersion: localIssues.length ? null : 1,
+        masterProjectionFingerprint: masterFingerprint,
+        fingerprint: fingerprintEffectiveRuntimeProjection(effectiveProjection, isRecord(record.projectionSemantics) ? record.projectionSemantics : {}, createOperations),
+        runtimeProjection: createProjection, effectiveProjection, fieldOperations: createOperations, controlOperations: [], projectionOutcomes: createOutcomes, issues: localIssues,
+      });
       continue;
     }
+
     const runtime = runtimeById.get(appId!)!;
-    const effectiveMatches = same(apiEffectiveProjection(runtime), projection);
+    const clearFieldsValue: unknown = decision.clearFields;
+    const clearFields = Array.isArray(clearFieldsValue) ? clearFieldsValue : [];
+    if (clearFieldsValue !== undefined && !Array.isArray(clearFieldsValue)) fail("CLEAR_FIELDS_INVALID");
+    const clearSet = new Set<VocabularyProjectionField>();
+    for (const value of clearFields) {
+      if (typeof value !== "string" || !projectionFields.includes(value as VocabularyProjectionField)) {
+        fail("CLEAR_FIELD_UNSUPPORTED");
+        continue;
+      }
+      const field = value as VocabularyProjectionField;
+      if (clearSet.has(field)) fail("CLEAR_FIELD_DUPLICATE");
+      clearSet.add(field);
+      if (!clearableProjectionFields.has(field)) fail("CLEAR_FIELD_NOT_NULLABLE");
+      if (masterProjection![field] !== null && masterProjection![field] !== undefined) fail("CLEAR_FIELD_MASTER_VALUE_PRESENT");
+    }
+
+    const projectedRuntime: JsonRecord = {};
+    const fieldOperations: VocabularyFieldOperation[] = [];
+    const projectionOutcomes = new Set<VocabularyAction["projectionOutcomes"][number]>();
+    for (const field of projectionFields) {
+      const before = runtimeProjectionValue(runtime, field);
+      const hasMasterField = Object.prototype.hasOwnProperty.call(masterProjection, field);
+      const masterRaw = hasMasterField ? masterProjection![field] : "ABSENT";
+      const absent = !hasMasterField || masterRaw === null || masterRaw === undefined;
+      let operation: VocabularyFieldOperation["action"];
+      let after: unknown;
+      if (!absent) {
+        operation = "SET";
+        after = masterRaw;
+      } else if (clearSet.has(field)) {
+        operation = "CLEAR";
+        after = null;
+      } else if (VOCABULARY_FIELD_OWNERSHIP[field] === "RUNTIME_ENRICHMENT") {
+        operation = "PRESERVE";
+        after = before;
+      } else if (clearableProjectionFields.has(field)) {
+        if (before !== null && before !== undefined) {
+          operation = "BLOCKED";
+          after = before;
+          fail("MASTER_AUTHORITATIVE_NULL_REQUIRES_EXPLICIT_CLEAR");
+        } else {
+          operation = "PRESERVE";
+          after = before;
+        }
+      } else {
+        operation = "BLOCKED";
+        after = before;
+        fail("MASTER_REQUIRED_PROJECTION_FIELD_MISSING");
+      }
+      projectedRuntime[field] = after ?? null;
+      fieldOperations.push({ field, ownership: VOCABULARY_FIELD_OWNERSHIP[field], action: operation, before, masterRaw, after: after ?? null });
+      if (operation === "PRESERVE" && after !== null && after !== undefined) projectionOutcomes.add("PRESERVED_RUNTIME_ENRICHMENT");
+      if (operation === "SET" && !same(before, after)) projectionOutcomes.add("MASTER_FIELD_UPDATE");
+      if (operation === "CLEAR") projectionOutcomes.add("EXPLICIT_CLEAR");
+    }
+
+    const projectedVietnamese = typeof projectedRuntime.vietnamese === "string" ? projectedRuntime.vietnamese : null;
     if (runtime.vietnameseOverride !== null) {
       const overridePolicy = decision.vietnameseOverridePolicy;
-      const match = runtime.vietnameseOverride === projection!.vietnamese;
+      const match = runtime.vietnameseOverride === projectedVietnamese;
       if (overridePolicy === "CLEAR") {
-        // Explicit ownership transfer; the effective meaning stays pinned to the reviewed projection.
+        // This is a separate reviewed runtime override decision.
       } else if (overridePolicy === "KEEP_IF_MATCHES_PROJECTION" && match) {
-        // Exact-match exception: the learner-visible value already equals Master.
+        // The retained override already equals the Master base value.
       } else {
-        const issue: PlanIssue = { code: match ? "VIETNAMESE_OVERRIDE_POLICY_REQUIRED" : "VIETNAMESE_OVERRIDE_CONFLICT", entityType: "SENSE", entityId: masterSenseId, message: match ? "VIETNAMESE_OVERRIDE_POLICY_REQUIRED" : "VIETNAMESE_OVERRIDE_CONFLICT" };
+        const issue: PlanIssue = {
+          code: match ? "VIETNAMESE_OVERRIDE_POLICY_REQUIRED" : "VIETNAMESE_OVERRIDE_CONFLICT",
+          entityType: "SENSE", entityId: masterSenseId,
+          message: match ? "VIETNAMESE_OVERRIDE_POLICY_REQUIRED" : "VIETNAMESE_OVERRIDE_CONFLICT",
+        };
         localIssues.push(issue); overrideConflicts.push(issue); issues.push(issue);
       }
     } else if (decision.vietnameseOverridePolicy !== undefined && decision.vietnameseOverridePolicy !== "CLEAR") {
       fail("VIETNAMESE_OVERRIDE_POLICY_INVALID");
     }
+
     if (runtime.imageQuarantined) {
       const policy = decision.imageQuarantinePolicy;
-      if (projection!.imageUrl !== null && policy !== "CLEAR") {
+      const masterSuppliesImage = typeof masterProjection!.imageUrl === "string";
+      if (masterSuppliesImage && policy !== "CLEAR") {
         const issue: PlanIssue = { code: "IMAGE_QUARANTINE_CONFLICT", entityType: "SENSE", entityId: masterSenseId, message: "IMAGE_QUARANTINE_CONFLICT" };
         localIssues.push(issue); overrideConflicts.push(issue); issues.push(issue);
-      } else if (projection!.imageUrl === null && policy !== "CLEAR" && policy !== "KEEP_IF_NO_IMAGE") {
+      } else if (!masterSuppliesImage && policy !== "CLEAR" && policy !== "KEEP_IF_NO_IMAGE") {
         const issue: PlanIssue = { code: "IMAGE_QUARANTINE_POLICY_REQUIRED", entityType: "SENSE", entityId: masterSenseId, message: "IMAGE_QUARANTINE_POLICY_REQUIRED" };
+        localIssues.push(issue); overrideConflicts.push(issue); issues.push(issue);
+      } else if (!masterSuppliesImage && policy === "CLEAR" && runtime.imageUrl !== null && !clearSet.has("imageUrl")) {
+        const issue: PlanIssue = { code: "IMAGE_QUARANTINE_REVEAL_REQUIRES_EXPLICIT_IMAGE_CLEAR", entityType: "SENSE", entityId: masterSenseId, message: "IMAGE_QUARANTINE_REVEAL_REQUIRES_EXPLICIT_IMAGE_CLEAR" };
         localIssues.push(issue); overrideConflicts.push(issue); issues.push(issue);
       }
     } else if (decision.imageQuarantinePolicy !== undefined && decision.imageQuarantinePolicy !== "CLEAR") {
       fail("IMAGE_QUARANTINE_POLICY_INVALID");
     }
-    const policyMutationRequired = runtime.vietnameseOverride !== null && decision.vietnameseOverridePolicy === "CLEAR"
-      || runtime.imageQuarantined && decision.imageQuarantinePolicy === "CLEAR";
+
+    const overrideAfter = runtime.vietnameseOverride !== null && decision.vietnameseOverridePolicy === "CLEAR" ? null : runtime.vietnameseOverride;
+    const quarantineAfter = runtime.imageQuarantined && decision.imageQuarantinePolicy === "CLEAR" ? false : runtime.imageQuarantined;
+    const controlOperations: VocabularyAction["controlOperations"] = [
+      { field: "vietnameseOverride", action: runtime.vietnameseOverride !== null && overrideAfter === null ? "CLEAR" : "PRESERVE", before: runtime.vietnameseOverride, masterRaw: "NOT_PROJECTED", after: overrideAfter },
+      { field: "imageQuarantined", action: runtime.imageQuarantined && !quarantineAfter ? "CLEAR" : "PRESERVE", before: runtime.imageQuarantined, masterRaw: "NOT_PROJECTED", after: quarantineAfter },
+    ];
+    const policyMutationRequired = runtime.vietnameseOverride !== overrideAfter || runtime.imageQuarantined !== quarantineAfter;
+    if (policyMutationRequired) projectionOutcomes.add("EXPLICIT_CLEAR");
+
+    const currentEffective = apiEffectiveProjection(runtime);
+    const effectiveProjection = effectiveProjectionFromValues(projectedRuntime, overrideAfter, quarantineAfter);
+    const effectiveMatches = same(currentEffective, effectiveProjection);
+    const currentStorageProjection = Object.fromEntries(projectionFields.map((field) => [field, runtimeProjectionValue(runtime, field)]));
+    const storageProjectionMatches = same(currentStorageProjection, projectedRuntime) && !policyMutationRequired;
+    const targetFingerprint = fingerprintEffectiveRuntimeProjection(
+      effectiveProjection,
+      isRecord(record.projectionSemantics) ? record.projectionSemantics : {},
+      fieldOperations,
+    );
+
     const baselinePolicy = decision.firstAdoptionPolicy;
     if (!existingMapping) {
       if (baselinePolicy !== "ADOPT_EXISTING_AS_BASELINE" && baselinePolicy !== "UPDATE_TO_MASTER") fail("FIRST_ADOPTION_POLICY_REQUIRED");
-      else if (baselinePolicy === "ADOPT_EXISTING_AS_BASELINE" && !effectiveMatches) fail("BASELINE_PROJECTION_MISMATCH");
+      else if (baselinePolicy === "ADOPT_EXISTING_AS_BASELINE" && (!effectiveMatches || !storageProjectionMatches)) fail("BASELINE_PROJECTION_MISMATCH");
       else if (baselinePolicy === "ADOPT_EXISTING_AS_BASELINE") {
-        plan.push({ masterSenseId, action: localIssues.length ? "CONFLICT" : policyMutationRequired ? "UPDATE" : "NOOP", mappingAction: localIssues.length ? "CONFLICT" : "CREATE_MAPPING", appVocabularyId: appId, expectedContentVersion: runtime.contentVersion, nextContentVersion: runtime.contentVersion, fingerprint: str(record.projectionFingerprint), issues: localIssues });
+        plan.push({
+          masterSenseId, action: localIssues.length ? "CONFLICT" : "NOOP",
+          mappingAction: localIssues.length ? "CONFLICT" : "CREATE_MAPPING",
+          appVocabularyId: appId, expectedContentVersion: runtime.contentVersion, nextContentVersion: runtime.contentVersion,
+          masterProjectionFingerprint: masterFingerprint, fingerprint: targetFingerprint,
+          runtimeProjection: projectedRuntime, effectiveProjection, fieldOperations, controlOperations,
+          projectionOutcomes: [...projectionOutcomes].sort(), issues: localIssues,
+        });
         continue;
       }
     }
+
     if (existingMapping && existingMapping.projectionContractVersion !== str(record.projectionContractVersion)) {
       const upgrade = decision.projectionContractUpgradePolicy;
-      if (upgrade === "REBASE_IF_EFFECTIVE_MATCHES" && effectiveMatches) {
-        plan.push({ masterSenseId, action: localIssues.length ? "CONFLICT" : "NOOP", mappingAction: localIssues.length ? "CONFLICT" : "KEEP_MAPPING", appVocabularyId: appId, expectedContentVersion: runtime.contentVersion, nextContentVersion: runtime.contentVersion, fingerprint: str(record.projectionFingerprint), issues: localIssues });
+      if (upgrade === "REBASE_IF_EFFECTIVE_MATCHES" && effectiveMatches && storageProjectionMatches) {
+        plan.push({
+          masterSenseId, action: localIssues.length ? "CONFLICT" : "NOOP",
+          mappingAction: localIssues.length ? "CONFLICT" : "KEEP_MAPPING",
+          appVocabularyId: appId, expectedContentVersion: runtime.contentVersion, nextContentVersion: runtime.contentVersion,
+          masterProjectionFingerprint: masterFingerprint, fingerprint: targetFingerprint,
+          runtimeProjection: projectedRuntime, effectiveProjection, fieldOperations, controlOperations,
+          projectionOutcomes: [...projectionOutcomes].sort(), issues: localIssues,
+        });
         continue;
       }
       if (upgrade !== "UPDATE_TO_MASTER") fail("PROJECTION_CONTRACT_RECONCILIATION_REQUIRED");
     }
-    if (existingMapping && existingMapping.appliedProjectionFingerprint === record.projectionFingerprint
-        && existingMapping.projectionContractVersion === record.projectionContractVersion) {
-      const explicitRepair = decision.driftPolicy === "UPDATE_TO_MASTER" || decision.vietnameseOverridePolicy === "CLEAR" || decision.imageQuarantinePolicy === "CLEAR";
-      if (!effectiveMatches && !explicitRepair) fail("APPLIED_FINGERPRINT_RUNTIME_MISMATCH");
-      if ((effectiveMatches && !policyMutationRequired) || localIssues.length) {
-        plan.push({ masterSenseId, action: localIssues.length ? "CONFLICT" : "NOOP", mappingAction: localIssues.length ? "CONFLICT" : "KEEP_MAPPING", appVocabularyId: appId, expectedContentVersion: runtime.contentVersion, nextContentVersion: runtime.contentVersion, fingerprint: str(record.projectionFingerprint), issues: localIssues });
+
+    const mappingFingerprintMatches = existingMapping?.appliedProjectionFingerprint === targetFingerprint
+      && existingMapping.projectionContractVersion === str(record.projectionContractVersion);
+    const newRelease = existingMapping?.lastReleaseHash !== undefined
+      && existingMapping.lastReleaseHash !== str(artifacts.vocabulary.sourceReleaseHash);
+    const explicitRepair = decision.driftPolicy === "UPDATE_TO_MASTER" || clearSet.size > 0
+      || decision.vietnameseOverridePolicy === "CLEAR" || decision.imageQuarantinePolicy === "CLEAR" || newRelease;
+    if (existingMapping && mappingFingerprintMatches) {
+      if ((!effectiveMatches || !storageProjectionMatches) && !explicitRepair) fail("APPLIED_FINGERPRINT_RUNTIME_MISMATCH");
+      if (effectiveMatches && storageProjectionMatches && !localIssues.length) {
+        plan.push({
+          masterSenseId, action: "NOOP", mappingAction: "KEEP_MAPPING", appVocabularyId: appId,
+          expectedContentVersion: runtime.contentVersion, nextContentVersion: runtime.contentVersion,
+          masterProjectionFingerprint: masterFingerprint, fingerprint: targetFingerprint,
+          runtimeProjection: projectedRuntime, effectiveProjection, fieldOperations, controlOperations,
+          projectionOutcomes: [...projectionOutcomes].sort(), issues: localIssues,
+        });
         continue;
       }
     }
+
     const learnerFacingChanged = !effectiveMatches;
-    const contractChanged = existingMapping?.projectionContractVersion !== undefined && existingMapping.projectionContractVersion !== str(record.projectionContractVersion);
-    const fingerprintChanged = existingMapping?.appliedProjectionFingerprint !== undefined && existingMapping.appliedProjectionFingerprint !== record.projectionFingerprint;
-    const shouldBump = existingMapping ? contractChanged || fingerprintChanged || !effectiveMatches : learnerFacingChanged;
+    const runtimeFieldsChanged = !storageProjectionMatches;
+    const mappingNeedsUpdate = !existingMapping || !mappingFingerprintMatches || newRelease;
+    if (existingMapping && (!effectiveMatches || runtimeFieldsChanged) && !explicitRepair && mappingFingerprintMatches) {
+      fail("APPLIED_FINGERPRINT_RUNTIME_MISMATCH");
+    }
     plan.push({
       masterSenseId,
-      action: localIssues.length ? "CONFLICT" : "UPDATE",
+      action: localIssues.length ? "CONFLICT" : runtimeFieldsChanged || policyMutationRequired || mappingNeedsUpdate ? "UPDATE" : "NOOP",
       mappingAction: localIssues.length ? "CONFLICT" : existingMapping ? "KEEP_MAPPING" : "CREATE_MAPPING",
       appVocabularyId: appId,
       expectedContentVersion: runtime.contentVersion,
-      nextContentVersion: runtime.contentVersion + (shouldBump ? 1 : 0),
-      fingerprint: str(record.projectionFingerprint),
+      nextContentVersion: runtime.contentVersion + (learnerFacingChanged ? 1 : 0),
+      masterProjectionFingerprint: masterFingerprint, fingerprint: targetFingerprint,
+      runtimeProjection: projectedRuntime, effectiveProjection, fieldOperations, controlOperations,
+      projectionOutcomes: [...projectionOutcomes].sort(),
       issues: localIssues,
     });
   }
@@ -521,7 +767,7 @@ export function buildMasterVocabularyImportPlan(input: {
   const targetEnvironment = input.targetEnvironment ?? "NOT_CONNECTED";
   const snapshotFingerprint = canonicalJsonSha256(snapshot);
   const partial: Omit<ImportPlan, "planFingerprint"> = {
-    planVersion: "master-runtime-import-plan-v1", mode: input.mode ?? "DRY_RUN", targetEnvironment,
+    planVersion: "master-runtime-import-plan-v2", mode: input.mode ?? "DRY_RUN", targetEnvironment,
     source: {
       datasetId: str(source.sourceDatasetId), datasetVersion: str(source.sourceDatasetVersion), schemaVersion: str(source.sourceSchemaVersion),
       manifestStatus: str(source.sourceManifestStatus), releaseHash, appImportContractVersion: str(source.artifactVersion), projectionContractVersion,

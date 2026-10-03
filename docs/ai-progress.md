@@ -1,5 +1,47 @@
 # Current Handoff Snapshot
 
+## 2026-10-04 — Master Vocabulary V2 Phase 2E.4A runtime preservation policy
+
+- Implemented `app-import-v3`, `runtime-vocabulary-projection-v2`, and
+  `runtime-reconciliation-v3` without changing the dataset schema, Master
+  identity/revisions, or 2.1.0 release hash. App Import distinguishes the raw
+  `masterProjectionFingerprint` from the planner's effective runtime
+  fingerprint.
+- Added field ownership and `SET` / `PRESERVE` / explicit `CLEAR` operations.
+  Null/absent IPA, image, audio, legacy topic, and level preserve existing
+  runtime enrichment on mapped rows. CREATE_NEW starts from the exact Master
+  projection. `clearFields` can clear only nullable fields when Master is null
+  or absent. Vietnamese override and image quarantine retain their separate
+  explicit policies.
+- The plan now shows before, raw Master, operation, after, API-visible
+  `effectiveProjection`, and deterministic outcomes. The persisted JCS
+  fingerprint describes that effective result; `contentVersion` increments
+  once only if that result changes. Added explicit preservation, clear,
+  override/quarantine, create, version and replay regressions.
+- Regenerated only the derived App Import projections and generated
+  reconciliation-template metadata for immutable canary release 2.1.0. Its
+  source `dataset.json`, pinned Master records, schema version and release hash
+  `fc67dd2a70adadd311384360c004faa4693ae24ffe4524761ce7075f21c95591` remain
+  unchanged.
+- Read-only planner previews used development target
+  shy-hill-72364426 / br-square-grass-b3af0nte / neondb; snapshot fingerprint
+  `fa8941ef8a458b58b6c2b548a50a1db5618221d4115d4d6f6ef914c2931c5d5d`.
+  Temporary apple #1 and #295 scenarios both preserve their existing runtime
+  enrichment and remain alternatives, not owner decisions. The checked-in
+  human reconciliation still returns `canApply=false` and all eight Sense
+  decisions remain unresolved.
+- A fresh migration read-only check found 18/18 ledger entries but 17 local
+  migration hash mismatches, including 0015–0017; it stopped before catalog
+  discovery. The planner's code path does not read this ledger when computing
+  `canApply`, which does not classify the drift as safe. The prior Phase 2E.3
+  field-loss audit remains intact.
+- Focused planner, transform and release-builder suites pass: 3 files / 50
+  tests. `pnpm typecheck`, `pnpm lint`, and `git diff --check` pass. Local Node
+  22.19.0 emits the repository's Node 22.23.2 engine warning. No database
+  write, APPLY, migration, owner choice, APKG access or media operation
+  occurred. See the preservation preview, policy comparison, and migration
+  drift scan in `vocabflow-dataset/reports/`.
+
 ## 2026-10-03 — Master Vocabulary V2 Phase 2E.3 final owner reconciliation preparation
 
 - Re-ran the development reconciliation scanner through provider/target

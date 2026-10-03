@@ -1,6 +1,6 @@
 # Master Vocabulary V2 → App Import V2 Contract
 
-**Status:** Phase 2C offline projection contract. This document does not authorize database import or alter the current runtime.
+**Status:** Phase 2C offline projection contract, superseded for current runtime import by Phase 2E.4A `app-import-v3` / `runtime-vocabulary-projection-v2`. This document does not authorize database import or alter the current runtime.
 
 ## Boundary and artifacts
 
@@ -15,7 +15,7 @@ The CLI is `pnpm transform:master-vocab-v2`. It defaults to `PREVIEW`; use `--pr
 - `mappings/master-app-map.json`: explicit unresolved Sense→app vocabulary mapping rows.
 - `../reports/transform-report.md`: stable, timestamp-free run summary and lossiness report.
 
-Every JSON artifact declares `artifactVersion: app-import-v2`, source dataset/schema versions, source manifest status/hash, `mode`, and `importEligible`. Vocabulary rows retain `masterLexemeId`, `masterSenseId`, source revisions, `sourceDataset: VOCABFLOW_MASTER_V2`, a projection fingerprint and mapping state. An integer `appVocabularyId` is always `null` until a reviewed reconciliation records a real mapping. Master UUIDs are not written into the old integer `source_record_id`.
+Every current JSON artifact declares `artifactVersion: app-import-v3`, source dataset/schema versions, source manifest status/hash, `mode`, and `importEligible`. Vocabulary rows retain `masterLexemeId`, `masterSenseId`, source revisions, `sourceDataset: VOCABFLOW_MASTER_V2`, `masterProjectionFingerprint`, projection semantics, and mapping state. An integer `appVocabularyId` is always `null` until a reviewed reconciliation records a real mapping. Master UUIDs are not written into the old integer `source_record_id`.
 
 ## Review and enablement
 
@@ -59,9 +59,9 @@ Learning Set `code` produces a deterministic lowercase hyphenated runtime slug. 
 
 ## Fingerprint and contentVersion
 
-`projectionContractVersion` is `runtime-vocabulary-projection-v1`. The SHA-256 input is RFC 8785 JCS over the learner-facing word/language, selected en-US IPA, one Vietnamese translation/language, selected English definition/example, legacy topic, legacy level, enabled state, and selected image/audio semantic media identity. Strings are normalized to NFC and LF before hashing; capitalization and learner text are otherwise preserved.
+`masterProjectionFingerprint` hashes projected Master content and its semantic media identity. The plan's `appliedProjectionFingerprint` is a separate fingerprint of the resulting effective runtime projection; it accounts for preserved runtime enrichment, runtime override, and image quarantine and determines mapping no-op and contentVersion behavior.
 
-For media, fingerprint identity is asset UUID + pinned version + full byte SHA-256 + whether a safe READY delivery is available. Provider URL/public ID, provider identifiers, prompt, reviewer, provenance, timestamps, filesystem paths and file ordering do not enter the fingerprint. A delivery URL change for the same asset/version/hash does not alter the fingerprint; moving between available and unavailable delivery state does. Learning Set membership and Topic membership remain separate endpoint projections and do not affect a vocabulary row fingerprint.
+For Master-supplied media, fingerprint identity is asset UUID + pinned version + full byte SHA-256 + whether a safe READY delivery is available. Provider URL/public ID, provider identifiers, prompt, reviewer, provenance, timestamps, filesystem paths and file ordering do not enter the Master media identity. A delivery URL change for the same asset/version/hash does not alter the fingerprint; moving between available and unavailable delivery state does. If Master is silent and a runtime URL is preserved, that effective URL is fingerprinted because there is no Master media identity for the retained enrichment. A quarantined image is hidden by the API and excluded from the effective fingerprint. Learning Set membership and Topic membership remain separate endpoint projections and do not affect a vocabulary row fingerprint.
 
 `contentVersion` is deliberately not an integer in this artifact. Its state is `PENDING_RUNTIME_RECONCILIATION`; a future runtime materializer must compare the fingerprint with the last fingerprint applied to that app ID and set/increment `contentVersion` transactionally. This transform has no prior runtime state and cannot make that decision.
 
@@ -70,3 +70,34 @@ For media, fingerprint identity is asset UUID + pinned version + full byte SHA-2
 The current DTO cannot represent CEFR, difficulty, age groups, Domain, Exam, POS, grammar/register/region notes, provenance, Vietnamese example translations, multiple translations, multiple pronunciations, hierarchical Topic behavior, detailed media rights/QA/provenance, curriculum metadata, or Learning Set editorial metadata beyond the projected English name/description. The report calls out these reductions and row-level compatibility cases.
 
 Before runtime adoption, a separately reviewed phase needs explicit persistent Master UUID↔integer ID reconciliation, a durable fingerprint store and controlled write boundary, `contentVersion` derivation, topic/set identity collision policy, and a learner progress/review history policy for Sense-level migration. Existing integer IDs referenced by `learner_progress` or `review_events` must never be recycled. None of those runtime or database changes are part of Phase 2C.
+
+That paragraph records the Phase 2C handoff. The later runtime bridge and
+projection policy are documented below and in the runtime import contract;
+they still do not authorize or perform a database APPLY.
+
+## Phase 2E.4A runtime preservation rules
+
+The serializer and plan use separate fingerprints: App Import v3 emits
+`masterProjectionFingerprint`; the planner creates a v2 effective-projection
+fingerprint for each runtime target. This separation allows the immutable 2.1.0
+release content to be interpreted under the new policy without editing its
+pinned Master records or release hash.
+
+Concrete Master values are `SET`. Null/absent `ipa`, `imageUrl`, `audioUrl`,
+legacy `topic`, and `level` are `PRESERVE` for mapped runtime rows and remain
+null for CREATE_NEW. Master-authoritative `word`, Vietnamese base, definition,
+example, and `enabled` are not generically merged with runtime values. A
+non-null runtime definition/example paired with a silent Master null blocks
+until a reviewed `clearFields` entry explicitly clears it. Missing required
+Master fields block. `vietnameseOverride` and `imageQuarantined` remain separate
+runtime controls with their existing explicit policies; source identity fields
+are not projected.
+
+The reconciliation artifact version is `runtime-reconciliation-v3`; only
+nullable projected fields can appear in `clearFields`, and each listed field
+must be null/absent in the Master projection. The planner previews `SET`,
+`PRESERVE`, and `CLEAR` with before/raw/after values and exposes the resulting
+API `effectiveProjection`. `contentVersion` starts at 1 for new rows and
+increments once for mapped rows only when that effective projection changes.
+A preservation-only mapping or fingerprint rebase leaves it unchanged. The
+run ledger makes an exact release/reconciliation replay idempotent.

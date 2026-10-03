@@ -111,11 +111,12 @@ describe("Master V2 canary owner approval and release preparation", () => {
     expect(manifest.includedMediaAssetVersions).toEqual([]);
     const importedRows = importArtifact.records as Array<UnknownRecord & { runtimeProjection?: UnknownRecord }>;
     expect(importedRows).toHaveLength(8);
+    expect(importArtifact).toMatchObject({ artifactVersion: "app-import-v3", projectionContractVersion: "runtime-vocabulary-projection-v2" });
     expect(importedRows.every((row) => row.runtimeProjection?.imageUrl === null
       && row.runtimeProjection.audioUrl === null
       && row.runtimeProjection.topic === null
       && row.runtimeProjection.level === null)).toBe(true);
-    expect(reconciliation.generatedByTransform).toBe(true);
+    expect(reconciliation).toMatchObject({ artifactVersion: "runtime-reconciliation-v3", generatedByTransform: true });
     expect(reconciliation.owner).not.toBe("human-reviewed");
     expect((reconciliation.vocabulary as UnknownRecord[]).every((row) => row.decision === "UNRESOLVED")).toBe(true);
     expect(readFileSync(join(datasetRoot, "dataset.json"), "utf8")).toBe(sourceManifestBefore);

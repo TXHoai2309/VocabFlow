@@ -8,6 +8,10 @@
   guarded catalog writes, and import audit records.
 - Current pilot: `DRAFT`, `IN_REVIEW`, and `importEligible: false`; it cannot be
   applied.
+- Current runtime projection contract: Phase 2E.4A `app-import-v3`,
+  `runtime-vocabulary-projection-v2`, and `runtime-reconciliation-v3`. Earlier
+  ownership statements below describe v1 and are superseded by the current
+  policy section.
 
 ## 1. Identity bridge and persistence
 
@@ -62,10 +66,10 @@ An existing vocabulary row without a fingerprint needs an explicit
 - `ADOPT_EXISTING_AS_BASELINE` succeeds only when the current effective API
   projection exactly matches the reviewed Master projection. It stores the
   mapping/fingerprint and preserves `contentVersion`.
-- `UPDATE_TO_MASTER` authorizes ownership transfer after any detected override
-  conflict is separately resolved. It writes Master fields; `contentVersion`
-  advances only when the effective projection or its persisted fingerprint
-  requires a new version.
+- `UPDATE_TO_MASTER` authorizes a field-by-field update under the selected
+  projection contract. Under v2, concrete Master values are set, null or absent
+  enrichment values are preserved, and Master-authoritative nullable fields
+  require `clearFields` to clear a non-null runtime value.
 
 The runtime projection is compared to what API consumers see:
 `vietnamese_override ?? vietnamese`, and `image_url` becomes `null` when
@@ -76,14 +80,13 @@ transfer. A quarantined row that would expose a Master image requires explicit
 `CLEAR` and remains blocked otherwise. A quarantine masking no image needs
 `KEEP_IF_NO_IMAGE` or `CLEAR`. No override or quarantine is silently removed.
 
-After adoption, the Master projection owns vocabulary learner-facing fields:
-word, IPA, Vietnamese base value, definition, example, image/audio URLs,
-legacy topic string, level, enabled state, and derived `contentVersion`.
-Override and quarantine fields are changed only by the explicit policies above.
-Database triggers in the migration reject catalog changes to mapped rows from
-pre-existing curation/importer paths; the V2 transaction sets its local import
-context while it writes. Operational fields and learner state are not owned by
-the projection.
+After adoption, field ownership follows the current versioned contract in
+“Phase 2E.4A — Runtime projection preservation.” Override and quarantine
+fields are changed only by the explicit policies above. Database triggers in
+the migration reject catalog changes to mapped rows from pre-existing
+curation/importer paths; the V2 transaction sets its local import context while
+it writes. Operational fields and learner state are not owned by the
+projection.
 
 ## 3. Fingerprint and `contentVersion`
 
@@ -110,6 +113,60 @@ mapping, or row identity makes the transaction fail instead of overwriting
 concurrent edits. The run ledger prevents ambiguous replay of the same release
 and reconciliation. An exact replay is a no-op; if that release's runtime
 state has drifted and would need mutation, planning blocks it for review.
+
+## Phase 2E.4A — Runtime projection preservation (current contract)
+
+`app-import-v3` and `runtime-vocabulary-projection-v2` version the change in
+null ownership semantics. `runtime-reconciliation-v3` adds an optional,
+reviewed `clearFields: string[]` per vocabulary decision. Dataset schema,
+Master UUID identity, revisions, and approved 2.1.0 source release hash do not
+change. The v2 file path
+`vocabflow-dataset/import/mappings/runtime-reconciliation-v2.json` remains the
+human-owned location; its checked-in v2 content is stale and unresolved until
+an owner prepares a v3 artifact. This phase does not finalize it.
+
+| Runtime field | Ownership | Import behavior |
+|---|---|---|
+| `word`, Vietnamese base, `definition_en`, `example_en`, `enabled` | `MASTER_AUTHORITATIVE` | Set concrete Master values. A null/absent nullable definition or example cannot erase a non-null runtime value without an explicit clear. Missing required values block. |
+| `ipa`, `image_url`, `audio_url`, legacy `topic`, `level` | `RUNTIME_ENRICHMENT` | Set a concrete Master value. Null/absent means `PRESERVE` for MAP_EXISTING; CREATE_NEW starts null. |
+| `vietnamese_override` | `RUNTIME_OVERRIDE` | Not projected; retained unless the existing explicit override policy says `CLEAR`. |
+| `image_quarantined`, `content_version` | `RUNTIME_OPERATIONAL` | Quarantine is retained unless its existing explicit policy says `CLEAR`; contentVersion is derived by the importer. |
+| `source_dataset`, `source_record_id` | `IDENTITY_METADATA` | Outside the projection and unchanged by this importer. |
+
+For each mapped row, the plan exposes ownership, before value, raw Master
+value (`"ABSENT"` distinguishes omission from JSON null), operation, and after
+value. `SET` writes a concrete Master value; `PRESERVE` keeps the current
+runtime value; `CLEAR` writes null only when the human reconciliation lists
+that nullable field in `clearFields` and Master is null/absent. Duplicate,
+unsupported, non-null, and non-nullable clear requests block. Null alone never
+clears a field. Vietnamese override and image quarantine remain separate
+control operations under their existing explicit policies.
+If Master is silent on image and the quarantined runtime row contains an image,
+clearing quarantine alone is blocked because preservation would expose that
+image. The reconciliation must also explicitly clear `imageUrl`, or Master
+must supply a replacement image.
+
+`effectiveProjection` is the learner-visible API result after the planned
+storage fields, Vietnamese override, and image quarantine. Its v2 SHA-256/JCS
+fingerprint, rather than the raw Master fingerprint, is persisted as
+`applied_projection_fingerprint`. Master-set media uses source asset
+UUID/version/byte-hash/availability identity, preserving the established
+semantic fingerprint rule that a provider URL rotation is not a content
+change. A preserved legacy runtime URL has no Master asset identity, so that
+effective URL participates in the fingerprint. Hidden quarantined image URLs
+do not participate because the API returns null.
+
+`contentVersion` increments once only when the effective learner-facing
+projection changes. A mapping/fingerprint rebase with identical effective
+content does not increment it. CREATE_NEW materializes exactly the Master
+projection with initial version 1. Reapplying the same release and
+reconciliation is stopped by the run ledger and performs no writes; a changed
+snapshot that would require another mutation is blocked for review.
+
+The plan reports field operations and the deterministic outcomes
+`MASTER_FIELD_UPDATE`, `PRESERVED_RUNTIME_ENRICHMENT`, and `EXPLICIT_CLEAR`.
+They replace the ambiguous projection-loss warning for new plans; the Phase
+2E.3 loss audit remains historical evidence.
 
 ## 4. Topics and Learning Sets
 

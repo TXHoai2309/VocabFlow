@@ -2,6 +2,24 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-04 — Master Vocabulary V2 Phase 2E.4A runtime preservation
+
+- Versioned the projection null policy as App Import v3, runtime projection v2
+  and reconciliation v3. Master-present values are set; null/absent runtime
+  enrichment is preserved for mapped rows; explicit `clearFields` is required
+  to clear a nullable value.
+- Planner previews now expose field operations, effective runtime projection
+  and effective fingerprint. `contentVersion` changes only when the
+  API-visible projection changes; replay remains idempotent.
+- Preserved the 2.1.0 source release and release hash while regenerating its
+  derived App Import artifacts. Added read-only development previews and a
+  comparison report; apple #1/#295 remain unresolved.
+- Fresh migration verification found 17 hash mismatches among 18 present
+  ledger entries, including 0015–0017. No migration or database write was run.
+- Focused suites pass: 3 files / 50 tests. Typecheck, lint and `git diff
+  --check` pass. Human reconciliation remains unresolved and the checked-in
+  plan is not applyable.
+
 ## 2026-10-03 — Master Vocabulary V2 Phase 2E.3 owner reconciliation preparation
 
 - Refreshed development runtime reconciliation evidence in a verified

@@ -184,7 +184,7 @@ function referencedMediaIds(value: unknown, result = new Set<string>()): Set<str
 
 function buildUnresolvedReconciliation(manifest: JsonRecord, manifestHash: string, releaseHash: string): JsonRecord {
   return {
-    artifactVersion: "runtime-reconciliation-v2",
+    artifactVersion: "runtime-reconciliation-v3",
     owner: "owner-review-required",
     generatedByTransform: true,
     sourceDatasetId: manifest.datasetId,
