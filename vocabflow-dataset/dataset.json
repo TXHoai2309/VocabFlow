@@ -133,9 +133,9 @@
   "includedSenses": [
     {
       "masterSenseId": "01a0fc13-09ed-70b4-801b-408be3b771e9",
-      "senseRevision": 1,
-      "recordPath": "master/senses/01a0fc13-09ed-70b4-801b-408be3b771e9-r1.json",
-      "contentHash": "b980421c56d4634d9c7cfdb914cc1109ccbb2b2f09b041275cce4d3d4308a921"
+      "senseRevision": 2,
+      "recordPath": "master/senses/01a0fc13-09ed-70b4-801b-408be3b771e9-r2.json",
+      "contentHash": "5fee3829898807a127d3231a07c9160fc52d337dfba9b67203e3a3ff5efc99df"
     },
     {
       "masterSenseId": "01a0fc13-09ee-7211-8e5a-784c689a0c7a",
@@ -163,9 +163,9 @@
     },
     {
       "masterSenseId": "01a0fc13-09ee-71ff-9a0a-a96e48ef7dac",
-      "senseRevision": 1,
-      "recordPath": "master/senses/01a0fc13-09ee-71ff-9a0a-a96e48ef7dac-r1.json",
-      "contentHash": "04e9258a439c3b0dffa02c938eaa5da0cb98f80ca8a200faf4d95e800b75e746"
+      "senseRevision": 2,
+      "recordPath": "master/senses/01a0fc13-09ee-71ff-9a0a-a96e48ef7dac-r2.json",
+      "contentHash": "02848f7b82ef2637582543566fade713a35ad0880643de80446c002c23431697"
     },
     {
       "masterSenseId": "01a0fc13-09ee-7823-95fc-5d1d76f13fa5",
@@ -223,9 +223,9 @@
     },
     {
       "masterSenseId": "01a0fc13-09ef-7d37-a50f-d05db6b1a89c",
-      "senseRevision": 1,
-      "recordPath": "master/senses/01a0fc13-09ef-7d37-a50f-d05db6b1a89c-r1.json",
-      "contentHash": "a518b06b074a9b81aa7437144166fe4b446586178a9638266300852f7ed84987"
+      "senseRevision": 2,
+      "recordPath": "master/senses/01a0fc13-09ef-7d37-a50f-d05db6b1a89c-r2.json",
+      "contentHash": "3947bf2e9d63536f8ce8d269bc0b4181219a583583a74c0637185e989d24bf45"
     },
     {
       "masterSenseId": "01a0fc13-09ef-7141-984b-9ed540913f76",
@@ -2494,6 +2494,10 @@
     {
       "language": "en",
       "text": "Phase 2B editorial architecture pilot: 19 Lexemes, 25 Senses, exact draft pins, and media planning without generated files."
+    },
+    {
+      "language": "en",
+      "text": "Editorial correction for the canary review: apple example translation, record noun recording sense, and reservation translation. Stable Sense identities retained; new Sense revisions pinned."
     }
   ]
 }

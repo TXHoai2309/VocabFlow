@@ -1,0 +1,86 @@
+{
+  "masterSenseId": "01a0fc13-09ed-70b4-801b-408be3b771e9",
+  "masterLexemeId": "01a0fc13-09ed-72c7-aef1-9124d94a6828",
+  "senseRevision": 2,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "fruit"
+    },
+    {
+      "language": "vi",
+      "text": "quả táo"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "NOUN",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a0fc13-09ed-74f7-88ba-a0f8187dc38b",
+      "masterSenseId": "01a0fc13-09ed-70b4-801b-408be3b771e9",
+      "language": "vi",
+      "text": "quả táo",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "provenanceIds": [
+        "01a0fc13-09ed-7edb-8c60-f19069e0f459"
+      ],
+      "status": "IN_REVIEW"
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a0fc13-09ed-7095-9aec-8e6891154c2c",
+      "masterSenseId": "01a0fc13-09ed-70b4-801b-408be3b771e9",
+      "language": "en",
+      "text": "A round fruit with firm flesh and skin that is usually red, green, or yellow.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "provenanceIds": [
+        "01a0fc13-09ed-7658-95fd-3aef16b98db6"
+      ],
+      "status": "IN_REVIEW"
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a0fc13-09ed-7ed8-b9b0-57b9fc8a7c3c",
+      "masterSenseId": "01a0fc13-09ed-70b4-801b-408be3b771e9",
+      "language": "en",
+      "text": "She packed an apple for her afternoon snack.",
+      "register": "NEUTRAL",
+      "levelNotes": "Editorial example for this Sense; this note does not assert CEFR alignment.",
+      "displayOrder": 0,
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a0fc13-09ed-7798-97b4-f528164f1a60",
+          "exampleId": "01a0fc13-09ed-7ed8-b9b0-57b9fc8a7c3c",
+          "language": "vi",
+          "text": "Cô ấy mang theo một quả táo cho bữa ăn nhẹ buổi chiều.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "provenanceIds": [
+            "01a0fc13-09ed-726d-a81f-592356c289de"
+          ],
+          "status": "IN_REVIEW"
+        }
+      ],
+      "audioAssetIds": [],
+      "provenanceIds": [
+        "01a0fc13-09ed-71e0-8a35-671c531c670d"
+      ],
+      "status": "IN_REVIEW"
+    }
+  ],
+  "pronunciationOverrides": [],
+  "provenanceIds": [
+    "01a0fc13-09ed-7e19-9418-c47dc4bbf86a"
+  ],
+  "status": "IN_REVIEW",
+  "createdAt": "2026-10-02T00:00:00Z",
+  "updatedAt": "2026-10-03T02:24:38Z"
+}

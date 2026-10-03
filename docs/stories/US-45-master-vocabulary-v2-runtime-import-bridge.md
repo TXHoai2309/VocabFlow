@@ -157,3 +157,24 @@ does not accept a staging target. No staging config was added, no runtime
 snapshot was read, and the root human-owned reconciliation remains unchanged.
 The complete status and gates are in
 [`Phase 2D.2 readiness`](../architecture/master-vocabulary-v2-phase-2d2-readiness.md).
+
+## 2026-10-03 — Canary editorial correction checkpoint
+
+Before owner approval, created immutable revision 2 for the apple fruit,
+record noun/music recording, and reservation booking Senses. Their stable Sense
+IDs and corrected Translation/Example child IDs are preserved; revision 1 files
+remain unchanged. The DRAFT manifest, App Import previews, canary content review,
+pending approval template, release plan, and generated reconciliation
+candidates pin the new hashes. All owner decisions remain `PENDING`; the
+human-owned reconciliation file is unchanged. The other five canary Senses
+passed an exact source/projection comparison.
+
+Master validator passes with 0 errors, 0 warnings, and one informational DRAFT
+issue; validator tests pass 30/30. Isolated transform tests pass 23/23,
+canary preparation/release-builder tests pass 2/2, and eleven Phase 2D.1 bridge
+tests pass with the stale migration-index assertion skipped. Root TypeScript and
+ESLint pass. The broader focused test run reported one stale migration-index
+assertion (expected 0016, current branch contains 0017) and a transform timeout
+under concurrent load; the isolated transform rerun passed. `git diff --check`
+and branch handoff evidence are recorded after the final review. No runtime or
+database action occurred.

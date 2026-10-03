@@ -3,7 +3,7 @@
 **Owner review only.** This package records a proposed subset from the current pinned DRAFT pilot. It does not approve content, change the manifest, choose runtime identities, or authorize an import.
 
 - Dataset: vocabflow-master-v2 2.0.0; current manifest status: **DRAFT**
-- Source manifest file SHA-256: `ef66192a140c74593ca3a77306a8b70a3dcb050a5553c026a854e78d83bf43a5`
+- Source manifest file SHA-256: `2b0da6b4e8128a894027bdbd08c9ffeaee4ffd913feddfad929290d75a886787`
 - Proposed review set: **8 Senses** across **6 Lexemes**.
 - No runtime target is available. Runtime progress/review counts, overrides, quarantine and contentVersion are unavailable; see the separate reconciliation candidates file.
 - All fields below are a source review aid. Experimental CEFR/difficulty values are explicitly editorial and non-official.
@@ -35,7 +35,7 @@ Review each Sense and its exact selected child IDs below. Record the same decisi
 - Vietnamese translation: quả táo
 - Definition: A round fruit with firm flesh and skin that is usually red, green, or yellow.
 - Example: She packed an apple for her afternoon snack.
-- Example translation: Cô ấy gói một quả táo cho bữa ăn nhẹ buổi chiều.
+- Example translation: Cô ấy mang theo một quả táo cho bữa ăn nhẹ buổi chiều.
 - Selected IPA: none
 - Legacy Topic (full DRAFT preview): Fruit; Level (full DRAFT preview): —. Proposed canary projection omits the unapproved classifications/taxonomy, so runtime Topic and Level are null.
 - Media: image PLANNED; audio no audio slot; runtime imageUrl: null; runtime audioUrl: null. IMAGE: PLANNED.
@@ -110,10 +110,10 @@ Review each Sense and its exact selected child IDs below. Record the same decisi
 
 - Purpose: same Lexeme as the verb; noun stress pattern.
 - Identity: lemma `record`; masterLexemeId `01a0fc13-09ee-781c-8793-6ec31c09956e`; masterSenseId `01a0fc13-09ee-71ff-9a0a-a96e48ef7dac`; POS `NOUN`; lexicalUnitType `WORD`.
-- Vietnamese translation: bản ghi âm
-- Definition: A piece of music or speech preserved as a recording.
-- Example: The band's new record is available online.
-- Example translation: Bản ghi âm mới của ban nhạc đã có trên mạng.
+- Vietnamese translation: bản thu âm
+- Definition: A piece of music or speech that has been recorded so it can be played again.
+- Example: The record of the band's live concert can be streamed online.
+- Example translation: Bản thu buổi hòa nhạc trực tiếp của ban nhạc có thể nghe trực tuyến.
 - Selected IPA: `ˈɹɛk.ɚd` (Lexeme pronunciation)
 - Legacy Topic (full DRAFT preview): Records and information; Level (full DRAFT preview): —. Proposed canary projection omits the unapproved classifications/taxonomy, so runtime Topic and Level are null.
 - Media: image PLANNED; audio no audio slot; runtime imageUrl: null; runtime audioUrl: null. IMAGE: PLANNED.
@@ -214,7 +214,7 @@ Review each Sense and its exact selected child IDs below. Record the same decisi
 
 - Purpose: travel and hospitality; reservation.
 - Identity: lemma `reservation`; masterLexemeId `01a0fc13-09ef-7e5d-b757-aa456f0cd969`; masterSenseId `01a0fc13-09ef-7d37-a50f-d05db6b1a89c`; POS `NOUN`; lexicalUnitType `WORD`.
-- Vietnamese translation: việc đặt chỗ; chỗ đã đặt
+- Vietnamese translation: việc đặt chỗ trước
 - Definition: An arrangement made in advance to keep a place, room, or table for someone.
 - Example: I made a reservation for two at seven o'clock.
 - Example translation: Tôi đã đặt bàn cho hai người lúc bảy giờ.

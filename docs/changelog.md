@@ -2,6 +2,23 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-03 — Master Vocabulary V2 canary editorial correction
+
+- Added immutable Sense revision 2 pins for apple fruit, record noun/music
+  recording, and reservation booking, preserving stable Sense and child IDs.
+- Regenerated the App Import preview and canary review, pending owner approval,
+  release plan, and read-only reconciliation candidates from the DRAFT source.
+  Five other canary Senses and the human-owned reconciliation remain unchanged.
+- Validator (0 errors/0 warnings/1 informational DRAFT issue; tests 30/30),
+  isolated transform tests (23/23), canary preparation/release-builder tests
+  (2/2), eleven Phase 2D.1 bridge checks, TypeScript, and ESLint pass. The
+  broader focused run exposed a stale migration-index assertion for 0016 versus
+  current 0017 and a transform timeout under load; the transform rerun passed
+  in isolation. The known stale assertion was skipped in the focused bridge
+  rerun.
+- No runtime, database, Neon, migration apply, media, reconciliation decision,
+  or Study UI change occurred.
+
 ## 2026-10-03 — Saved vocabulary (US-46)
 
 - Added learner-owned saved words with an additive relation table and explicit

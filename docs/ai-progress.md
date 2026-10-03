@@ -1,5 +1,24 @@
 # Current Handoff Snapshot
 
+## 2026-10-03 — Master Vocabulary V2 canary editorial correction
+
+- Created Sense revision 2 for apple — fruit, record — noun/music recording,
+  and reservation — booking. Stable Sense and corrected child IDs are retained;
+  revision 1 files remain unchanged. The DRAFT manifest pins the new JCS hashes,
+  and the App Import preview, review package, approval template, release plan,
+  and reconciliation candidates were regenerated offline.
+- The five other canary Senses were verified unchanged. All owner decisions are
+  still `PENDING`; the human-owned runtime reconciliation file is unchanged.
+- Master validator: 0 errors, 0 warnings, 1 informational DRAFT issue;
+  validator tests pass 30/30. Transform tests pass 23/23 in isolation;
+  canary preparation/release-builder tests pass 2/2. Eleven Phase 2D.1 bridge
+  tests pass with the known stale migration-index assertion skipped. TypeScript
+  and ESLint pass. The broader focused run reported 63 passing tests, one stale
+  migration-index assertion (expects 0016 while this branch now includes 0017),
+  and a transform timeout under concurrent load; the isolated transform rerun
+  passed. No runtime, database, Neon, migration, media, reconciliation
+  decision, or Study UI change was made.
+
 ## 2026-10-02 — Saved Vocabulary (US-46)
 
 - Owner explicitly started Feature #8. Audit found no prior persistence, API,

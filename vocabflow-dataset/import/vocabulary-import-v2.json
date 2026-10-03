@@ -5,7 +5,7 @@
   "sourceDatasetVersion": "2.0.0",
   "sourceSchemaVersion": "2.0.1",
   "sourceManifestStatus": "DRAFT",
-  "sourceManifestContentHash": "994474516c13728fec63c7c3ec155312c847af33c44a40ceadefdf8357952dc6",
+  "sourceManifestContentHash": "a3b615f0d1e07fb33539a58d6efa8720ebc02aee3e7dfaa3badc8f5ea854d824",
   "sourceReleaseHash": null,
   "mode": "PREVIEW",
   "importEligible": false,
@@ -18,7 +18,7 @@
       "masterSenseId": "01a0fc13-09ed-70b4-801b-408be3b771e9",
       "sourceRevisions": {
         "lexemeRevision": 1,
-        "senseRevision": 1
+        "senseRevision": 2
       },
       "sourceIdentity": {
         "sourceDataset": "VOCABFLOW_MASTER_V2",
@@ -191,7 +191,7 @@
       "masterSenseId": "01a0fc13-09ee-71ff-9a0a-a96e48ef7dac",
       "sourceRevisions": {
         "lexemeRevision": 1,
-        "senseRevision": 1
+        "senseRevision": 2
       },
       "sourceIdentity": {
         "sourceDataset": "VOCABFLOW_MASTER_V2",
@@ -200,9 +200,9 @@
       "runtimeProjection": {
         "word": "record",
         "ipa": "ˈɹɛk.ɚd",
-        "vietnamese": "bản ghi âm",
-        "definitionEn": "A piece of music or speech preserved as a recording.",
-        "exampleEn": "The band's new record is available online.",
+        "vietnamese": "bản thu âm",
+        "definitionEn": "A piece of music or speech that has been recorded so it can be played again.",
+        "exampleEn": "The record of the band's live concert can be streamed online.",
         "imageUrl": null,
         "audioUrl": null,
         "topic": "Records and information",
@@ -210,7 +210,7 @@
         "enabled": false
       },
       "projectionContractVersion": "runtime-vocabulary-projection-v1",
-      "projectionFingerprint": "0f028abeb877016520f071ce32a2a9ac740e99266410a1b36ec918b44a1b02cb",
+      "projectionFingerprint": "b6fdcd32452796ae5ccec7e05e61423d2277bc62d2ef0747f99676917c3ec0ed",
       "appVocabularyId": null,
       "mappingStatus": "UNRESOLVED",
       "contentVersion": {
@@ -535,7 +535,7 @@
       "masterSenseId": "01a0fc13-09ef-7d37-a50f-d05db6b1a89c",
       "sourceRevisions": {
         "lexemeRevision": 1,
-        "senseRevision": 1
+        "senseRevision": 2
       },
       "sourceIdentity": {
         "sourceDataset": "VOCABFLOW_MASTER_V2",
@@ -544,7 +544,7 @@
       "runtimeProjection": {
         "word": "reservation",
         "ipa": null,
-        "vietnamese": "việc đặt chỗ; chỗ đã đặt",
+        "vietnamese": "việc đặt chỗ trước",
         "definitionEn": "An arrangement made in advance to keep a place, room, or table for someone.",
         "exampleEn": "I made a reservation for two at seven o'clock.",
         "imageUrl": null,
@@ -554,7 +554,7 @@
         "enabled": false
       },
       "projectionContractVersion": "runtime-vocabulary-projection-v1",
-      "projectionFingerprint": "a935fa0971f49b3964527305f113f0c4df3a1651b338fd1087a053f00dd89429",
+      "projectionFingerprint": "4b3952a84a5b15f0d7362202079d8f2dfef7fe5234d7a378637da48805a7ecde",
       "appVocabularyId": null,
       "mappingStatus": "UNRESOLVED",
       "contentVersion": {

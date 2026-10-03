@@ -3,7 +3,7 @@
 - Source dataset version: 2.0.0
 - Source schema version: 2.0.1
 - Source manifest status: DRAFT
-- Source manifest JCS SHA-256: 994474516c13728fec63c7c3ec155312c847af33c44a40ceadefdf8357952dc6
+- Source manifest JCS SHA-256: a3b615f0d1e07fb33539a58d6efa8720ebc02aee3e7dfaa3badc8f5ea854d824
 - App Import contract: app-import-v2
 - Runtime projection contract: runtime-vocabulary-projection-v1
 - Mode: PREVIEW

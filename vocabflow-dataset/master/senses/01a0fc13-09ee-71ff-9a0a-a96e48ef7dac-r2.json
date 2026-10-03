@@ -1,0 +1,86 @@
+{
+  "masterSenseId": "01a0fc13-09ee-71ff-9a0a-a96e48ef7dac",
+  "masterLexemeId": "01a0fc13-09ee-781c-8793-6ec31c09956e",
+  "senseRevision": 2,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "music recording"
+    },
+    {
+      "language": "vi",
+      "text": "bản thu âm"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "NOUN",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a0fc13-09ee-7224-8ec2-ecaf1c0b1bb4",
+      "masterSenseId": "01a0fc13-09ee-71ff-9a0a-a96e48ef7dac",
+      "language": "vi",
+      "text": "bản thu âm",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "provenanceIds": [
+        "01a0fc13-09ee-7197-b74d-69abcec8b89e"
+      ],
+      "status": "IN_REVIEW"
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a0fc13-09ee-70be-80e8-750d76467636",
+      "masterSenseId": "01a0fc13-09ee-71ff-9a0a-a96e48ef7dac",
+      "language": "en",
+      "text": "A piece of music or speech that has been recorded so it can be played again.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "provenanceIds": [
+        "01a0fc13-09ee-73f3-8815-2fa7d0fa41f2"
+      ],
+      "status": "IN_REVIEW"
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a0fc13-09ee-7b2b-abac-821ced9ddc1a",
+      "masterSenseId": "01a0fc13-09ee-71ff-9a0a-a96e48ef7dac",
+      "language": "en",
+      "text": "The record of the band's live concert can be streamed online.",
+      "register": "NEUTRAL",
+      "levelNotes": "Editorial example for this Sense; this note does not assert CEFR alignment.",
+      "displayOrder": 0,
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a0fc13-09ee-70ce-ae1b-3e88aa2dc908",
+          "exampleId": "01a0fc13-09ee-7b2b-abac-821ced9ddc1a",
+          "language": "vi",
+          "text": "Bản thu buổi hòa nhạc trực tiếp của ban nhạc có thể nghe trực tuyến.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "provenanceIds": [
+            "01a0fc13-09ee-7518-b4d0-53b1fa63fadf"
+          ],
+          "status": "IN_REVIEW"
+        }
+      ],
+      "audioAssetIds": [],
+      "provenanceIds": [
+        "01a0fc13-09ee-7ac2-b4df-928f7627f8a0"
+      ],
+      "status": "IN_REVIEW"
+    }
+  ],
+  "pronunciationOverrides": [],
+  "provenanceIds": [
+    "01a0fc13-09ee-7fc9-932a-89ae6859a9ed"
+  ],
+  "status": "IN_REVIEW",
+  "createdAt": "2026-10-02T00:00:00Z",
+  "updatedAt": "2026-10-03T02:24:38Z"
+}
