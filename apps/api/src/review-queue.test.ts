@@ -123,9 +123,14 @@ describe("US-08 review queue API boundary", () => {
     expect(saved.status).toBe(200);
     expect(service.list).toHaveBeenCalledWith("parent-1", learnerId, expect.any(Object), "saved");
     expect(await saved.json()).toEqual(queue);
+    const savedAll = await app.request(`http://localhost/api/learners/${learnerId}/review-queue?scope=saved&content=all`);
+    expect(savedAll.status).toBe(200);
+    expect(service.list).toHaveBeenLastCalledWith("parent-1", learnerId, expect.any(Object), "saved-all");
     expect((await app.request(`http://localhost/api/learners/${learnerId}/review-queue?scope=other`)).status).toBe(400);
     expect((await app.request(`http://localhost/api/learners/${learnerId}/review-queue?scope=saved&scope=saved`)).status).toBe(400);
-    expect(service.list).toHaveBeenCalledOnce();
+    expect((await app.request(`http://localhost/api/learners/${learnerId}/review-queue?scope=saved&content=all&content=all`)).status).toBe(400);
+    expect((await app.request(`http://localhost/api/learners/${learnerId}/review-queue?content=all`)).status).toBe(400);
+    expect(service.list).toHaveBeenCalledTimes(2);
   });
 
   it("maps authorization and database failures to safe outward errors", async () => {
@@ -176,6 +181,45 @@ describe("US-08 review queue service", () => {
       expect(statement).toContain("saved.learner_id =");
       expect(statement).not.toContain('"vocabflow_app"."learner_learning_sets"');
     }
+    expect(queries.some(({ params }) => params.includes(learnerId))).toBe(true);
+  });
+
+  it("returns every saved item for explicit saved-all and distinguishes due from voluntary practice", async () => {
+    const queries: Array<{ sql: string; params: unknown[] }> = [];
+    const execute = vi.fn(async (query) => {
+      const rendered = new PgDialect().sqlToQuery(query);
+      queries.push(rendered);
+      if (queries.length === 1) return authorizedRows();
+      if (rendered.sql.includes("SELECT timezone")) return { rows: [{ timezone: "Asia/Ho_Chi_Minh" }] };
+      if (rendered.sql.includes('"learner_saved_vocabulary" saved')) {
+        return { rows: [
+          { ...newRow(1, 4), status: "NEW", next_review_date: null, revision: 0 },
+          { ...dueRow(2, 4, 3, "2026-09-14"), status: "LEARNING" },
+          { ...dueRow(3, 4, 7, "2026-09-15"), status: "LEARNING" },
+          { ...dueRow(4, 4, 12, "2026-10-01"), status: "MASTERED" }
+        ] };
+      }
+      return { rows: [] };
+    });
+    const service = createReviewQueueService({ execute }, { now: () => new Date("2026-09-14T03:00:00.000Z") });
+
+    const result = await service.list("parent-1", learnerId, undefined, "saved-all");
+
+    expect(result.queue.map((entry) => [entry.vocabulary.id, entry.status, entry.queueType])).toEqual([
+      [1, "NEW", "NEW"],
+      [2, "LEARNING", "DUE"],
+      [3, "LEARNING", "VOLUNTARY"],
+      [4, "MASTERED", "VOLUNTARY"]
+    ]);
+    expect(result).toMatchObject({ dueCount: 1, newCount: 1 });
+    expect(new Set(result.queue.map((entry) => entry.vocabulary.id)).size).toBe(4);
+    expect(execute).toHaveBeenCalledTimes(3);
+    const savedQuery = queries[2]?.sql ?? "";
+    expect(savedQuery).toContain('FROM "vocabflow_app"."learner_saved_vocabulary" saved');
+    expect(savedQuery).toContain("saved.learner_id =");
+    expect(savedQuery).toContain('LEFT JOIN "vocabflow_app"."learner_progress"');
+    expect(savedQuery).toContain("v.enabled = true");
+    expect(savedQuery).not.toContain('"vocabflow_app"."learner_learning_sets"');
     expect(queries.some(({ params }) => params.includes(learnerId))).toBe(true);
   });
 

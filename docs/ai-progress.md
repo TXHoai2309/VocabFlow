@@ -1,5 +1,25 @@
 # Current Handoff Snapshot
 
+## 2026-10-03 — Saved Vocabulary all-saved study scope (US-46)
+
+- Root cause: the Saved Words CTA entered the ordinary saved queue, which
+  correctly returned only NEW and genuinely DUE records. Saved LEARNING or
+  MASTERED records with future review dates were therefore excluded, leaving
+  Study Setup empty for a saved collection containing only those states.
+- Added an explicit `saved=1&content=all` Study Setup intent backed by a
+  learner-authorized saved collection query. All enabled saved words are
+  candidates; NEW and DUE keep their real classifications and not-due existing
+  progress is VOLUNTARY practice. Normal New/Review/Mixed semantics and the
+  canonical revision-checked review scheduler remain intact. Study and Summary
+  Continue preserve the all-saved intent, and selection is capped/deduplicated.
+- Focused Saved Words, Study Setup, queue API, review API, study queue, Study
+  Session, and Summary tests pass: 6 files / 97 tests. `pnpm typecheck`,
+  `pnpm build`, feature ESLint, and `git diff --check` pass. Build reports the
+  repository's existing dynamic-import and bundle-size warnings; local Node is
+  22.19.0 versus the 22.23.2 pin.
+- No learner database was queried or mutated. Commit/push results will be
+  recorded after completion.
+
 ## 2026-10-03 — Master Vocabulary V2 canary editorial correction
 
 - Created Sense revision 2 for apple — fruit, record — noun/music recording,

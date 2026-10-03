@@ -146,7 +146,7 @@ function SavedWordsExperience({ activeLearner }: { activeLearner: LearnerDto }) 
           {state === "ready" && savedVocabulary.length > 0 ? <span className="saved-words-total">{savedVocabulary.length} từ</span> : null}
         </div>
         {state === "ready" && savedVocabulary.length > 0 ? (
-          <Link className="saved-words-study-button" to="/study/setup?saved=1">
+          <Link className="saved-words-study-button" to="/study/setup?saved=1&content=all">
             <span aria-hidden="true">▶</span> Học tất cả từ đã lưu ({savedVocabulary.length})
           </Link>
         ) : null}

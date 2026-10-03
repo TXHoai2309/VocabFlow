@@ -207,8 +207,14 @@ function parseReviewQueueScope(request: Request): ReviewQueueScope | undefined |
   const params = new URL(request.url).searchParams;
   const keys = [...params.keys()];
   if (keys.length === 0) return undefined;
-  if (keys.length !== 1 || keys[0] !== "scope" || params.get("scope") !== "saved") return null;
-  return "saved";
+  if (keys.length === 1 && keys[0] === "scope" && params.get("scope") === "saved") return "saved";
+  if (keys.length === 2
+    && new Set(keys).size === 2
+    && keys.includes("scope")
+    && keys.includes("content")
+    && params.get("scope") === "saved"
+    && params.get("content") === "all") return "saved-all";
+  return null;
 }
 
 function parsePositiveInteger(value: string): number | null {

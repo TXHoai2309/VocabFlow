@@ -38,12 +38,12 @@ function vocabulary(id: number, word: string, vietnamese: string): VocabularyDto
   };
 }
 
-function queueItem(id: number, word: string, queueType: ReviewQueueItem["queueType"] = "NEW", expectedRevision = 0): ReviewQueueItem {
+function queueItem(id: number, word: string, queueType: ReviewQueueItem["queueType"] = "NEW", expectedRevision = 0, progressStatus?: ReviewQueueItem["status"]): ReviewQueueItem {
   return {
     vocabulary: vocabulary(id, word, `${word}-nghĩa`),
     queueType,
-    status: queueType === "DUE" ? "LEARNING" : "NEW",
-    nextReviewDate: queueType === "DUE" ? "2026-09-15" : null,
+    status: progressStatus ?? (queueType === "DUE" ? "LEARNING" : queueType === "VOLUNTARY" ? "MASTERED" : "NEW"),
+    nextReviewDate: queueType === "DUE" ? "2026-09-15" : queueType === "VOLUNTARY" ? "2026-10-15" : null,
     expectedRevision
   };
 }
@@ -391,6 +391,37 @@ describe("US-09 flashcard session UX", () => {
 
     expect(screen.getByRole("link", { name: /Học tiếp/ })).toHaveAttribute("href", "/study/setup?saved=1");
     expect(fetchMock).toHaveBeenCalledWith(`/api/learners/${learner.id}/review-queue?scope=saved`, { credentials: "include" });
+    expect(fetchMock.mock.calls.some(([url]) => String(url) === `/api/learners/${learner.id}/review-queue`)).toBe(false);
+  });
+
+  it("studies only the saved-all queue through the canonical review API and preserves intent on summary", async () => {
+    const apple = queueItem(1, "apple", "VOLUNTARY", 5, "LEARNING");
+    let submittedRequest: Record<string, unknown> | undefined;
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation(async (input, init) => {
+      const url = String(input);
+      if (url === `/api/learners/${learner.id}/review-queue?scope=saved&content=all`) return response(queueResponse([apple]));
+      if (url === "/api/reviews") {
+        submittedRequest = JSON.parse(String(init?.body)) as Record<string, unknown>;
+        return response(reviewResponse(apple, "REMEMBERED"), 201);
+      }
+      return response({ error: { code: "NOT_FOUND" } }, 404);
+    });
+    renderStudy(learner, "flashcard", "/study?saved=1&content=all&count=10");
+
+    expect(await screen.findByTestId("study-session-ready")).toBeInTheDocument();
+    expect(screen.getByTestId("session-counter")).toHaveTextContent("Câu 1 / 1");
+    expect(screen.getByText("apple")).toBeInTheDocument();
+    expect(screen.queryByText("book")).not.toBeInTheDocument();
+    expect(screen.getByText("Từ đã lưu")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
+    fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
+    await screen.findByTestId("study-session-summary");
+
+    expect(submittedRequest).toMatchObject({ learnerId: learner.id, vocabularyId: 1, expectedRevision: 5, result: "REMEMBERED" });
+    expect(submittedRequest).not.toHaveProperty("status");
+    expect(submittedRequest).not.toHaveProperty("nextReviewDate");
+    expect(screen.getByRole("link", { name: /Học tiếp/ })).toHaveAttribute("href", "/study/setup?saved=1&content=all");
+    expect(fetchMock).toHaveBeenCalledWith(`/api/learners/${learner.id}/review-queue?scope=saved&content=all`, { credentials: "include" });
     expect(fetchMock.mock.calls.some(([url]) => String(url) === `/api/learners/${learner.id}/review-queue`)).toBe(false);
   });
 

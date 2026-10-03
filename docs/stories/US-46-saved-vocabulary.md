@@ -22,7 +22,8 @@
 
 As a parent using an active learner profile, I can save vocabulary from the
 Catalog or Word Detail, find and filter that learner's saved words, and start a
-New, Review, or Mixed study session restricted to those saved words.
+study session over the saved collection without confusing saved membership
+with New or due Review eligibility.
 
 ## 3. In scope
 
@@ -35,9 +36,12 @@ New, Review, or Mixed study session restricted to those saved words.
   runtime level/topic filters, no-result and empty states, and Study Setup CTA.
 - Optimistic, rollback-capable save controls on Catalog, Detail, and Saved
   Words; audio/image behavior continues using existing shared components.
-- A server-enforced `scope=saved` Review Queue path, retained through Study,
-  Study Setup, and Session Summary. Existing daily-New, due selection,
-  idempotency, revision and scheduler semantics remain canonical.
+- Server-enforced saved collection and `scope=saved` Review Queue paths,
+  retained through Study, Study Setup, and Session Summary. New, Review, and
+  Mixed keep their existing New/Due semantics. An explicit all-saved intent
+  includes every enabled saved word, classifying not-due existing progress as
+  voluntary practice. Existing daily-New, idempotency, revision, and scheduler
+  semantics remain canonical.
 - Additive forward-only migration and offline schema/migration validation.
 
 ## 4. Out of scope
@@ -71,14 +75,20 @@ New, Review, or Mixed study session restricted to those saved words.
 - AC-06: Saved Words displays canonical content, audio, image fallbacks,
   runtime level/topic and actual save date. Successful unsave removes the row
   and updates the count without reload; failure restores the row.
-- AC-07: The Study CTA opens Study Setup with `saved=1`, does not start a
-  session immediately, and remains hidden for an empty list. The API applies
-  saved membership in SQL for both Due and New rows before applying existing
-  queue limits. No vocabulary outside the learner's saved relation can enter
-  this queue.
-- AC-08: New, Review and Mixed setup availability is derived from the saved
-  queue response. Study, leave/back, and Session Summary Continue preserve
-  `saved=1`; a learner switch reloads the saved queue.
+- AC-07: The Study CTA opens Study Setup with `saved=1&content=all`, does not
+  start a session immediately, and remains hidden for an empty list. The API
+  applies saved membership in SQL and returns every enabled saved word, without
+  including non-saved vocabulary. New progress remains NEW, genuinely due
+  progress remains DUE, and existing not-due progress is marked VOLUNTARY; it
+  is never represented as DUE/Review. The selected 5/10/20/30 session size is
+  capped by the available saved collection, with duplicate vocabulary removed.
+- AC-08: The normal saved `saved=1` New/Review/Mixed setup availability is
+  derived from the saved New/Due queue and retains existing mode semantics.
+  Explicit all-saved setup offers the saved collection directly. Study,
+  leave/back, and Session Summary Continue preserve the selected saved intent;
+  a learner switch reloads the saved queue. Voluntary practice writes still
+  use the canonical review API, revision check, and scheduler; New writes still
+  observe the existing daily New limit.
 - AC-09: Migration 0017 is additive and forward-only, with composite
   uniqueness, learner/vocabulary foreign keys, and a learner/save-time index.
   Application reset ordering is dependency-safe. No Dataset V2 file changes.
@@ -93,6 +103,9 @@ New, Review, or Mixed study session restricted to those saved words.
   `{ learnerId, vocabularyId, saved: false, savedAt: null }`.
 - `GET /api/learners/:learnerId/review-queue?scope=saved` → canonical queue
   DTO restricted by the persisted relation for that same learner.
+- `GET /api/learners/:learnerId/review-queue?scope=saved&content=all` → all
+  enabled saved vocabulary for explicit collection study. Existing progress is
+  classified as `NEW`, genuinely due `DUE`, or not-due `VOLUNTARY`.
 - Relationship table: `vocabflow_app.learner_saved_vocabulary`, primary key
   `(learner_id, vocabulary_id)`, `created_at timestamptz NOT NULL DEFAULT now()`.
 - No text, level, topic, status or media is duplicated in the relationship.
@@ -114,11 +127,15 @@ New, Review, or Mixed study session restricted to those saved words.
 
 - API/service: learner authorization, canonical list, enabled-only save,
   idempotency, safe missing unsave, and safe unavailable content.
-- Queue: saved membership in both New and Due SQL, scope parsing/route
-  validation, and absence of active-set eligibility in saved scope.
+- Queue: saved membership in New and Due SQL, all-saved collection membership,
+  state classification for NEW/DUE/not-due LEARNING/MASTERED, scope parsing and
+  route validation, deduplication/capping, and absence of active-set eligibility
+  in saved scope.
 - UI: Saved page rows/empty/search/filter/no-results/unsave rollback/learner
   switch/direct-route return; Catalog and Detail save/unsave/rollback/navigation;
-  Study Setup New/Review/Mixed availability; Study and Summary scope retention.
+  Study Setup New/Review/Mixed semantics and all-saved setup for empty, NEW,
+  DUE, not-due LEARNING, and not-due MASTERED records; Study and Summary scope
+  retention.
 - Existing audio and image fallback regressions remain covered.
 - Run focused tests, `pnpm typecheck`, `pnpm build`, feature ESLint,
   `git diff --check`, and the offline application schema/migration test. Never
@@ -126,6 +143,12 @@ New, Review, or Mixed study session restricted to those saved words.
 
 ## 9. Implementation evidence
 
+- 2026-10-03 saved-all correction: focused Saved Words, Study Setup, queue API,
+  review API, study queue, Study Session, and Summary tests pass (6 files / 97
+  tests). `pnpm typecheck`, `pnpm build`, feature ESLint, and `git diff --check`
+  pass. No learner database was queried or mutated. Build reports the existing
+  dynamic-import and bundle-size warnings; local Node 22.19.0 is below the
+  repository's 22.23.2 pin.
 - Migration 0017 and offline schema checks are added; no live DB command has
   run.
 - Focused API, saved queue, Saved Words, Catalog, Detail, Study Setup, Study

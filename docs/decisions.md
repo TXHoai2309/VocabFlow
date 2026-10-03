@@ -375,14 +375,18 @@ evidence condition is met and the affected source document is updated.
   in an additive table with a composite primary key and foreign keys to the
   learner and runtime vocabulary. Expose authenticated learner-scoped list,
   idempotent POST save, and idempotent DELETE unsave routes. Catalog, Detail
-  and Saved Words read state from that relation. The saved study queue applies
-  the relation in SQL before New/Due selection and retains existing scheduler
-  limits and review-write behavior.
+  and Saved Words read state from that relation. The normal saved study queue
+  applies membership in SQL before New/Due selection and retains existing mode
+  semantics. A separate explicit all-saved intent returns the learner's full
+  enabled saved collection. Not-due LEARNING/MASTERED items are classified as
+  VOLUNTARY practice, never as due Review; writes still use the canonical
+  revision-checked review API and scheduler. Existing daily-New limits remain.
 - Consequences: Vocabulary content remains canonical in `vocabularies`; saved
   state is not copied into client storage or Master Vocabulary Dataset V2.
   `/saved` is the single Saved Words route; its search and filters are
-  URL-backed. The feature is additive and does not change active-set
-  assignment, progress, review history, or content authoring.
+  URL-backed. Saved membership is separate from SRS eligibility. The feature
+  does not change active-set assignment, introduce progress resets, bypass
+  canonical review-history writes, or change content authoring.
 - Evidence/source: [US-46 Saved Vocabulary](stories/US-46-saved-vocabulary.md),
   [Feature UI Specification](design/feature-ui-spec.md#71e-saved-vocabulary-us-46),
   migration `drizzle/migrations/0017_nosy_hellfire_club.sql`.

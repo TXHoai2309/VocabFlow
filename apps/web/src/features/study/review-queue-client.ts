@@ -26,10 +26,12 @@ async function readError(response: Response): Promise<ReviewQueueClientError> {
   return new ReviewQueueClientError(code, response.status);
 }
 
-export async function requestReviewQueue(learnerId: string, scope?: "saved"): Promise<ReviewQueueResponse> {
+export async function requestReviewQueue(learnerId: string, scope?: "saved" | "saved-all"): Promise<ReviewQueueResponse> {
   let response: Response;
   try {
-    const query = scope ? `?scope=${scope}` : "";
+    const query = scope === "saved-all"
+      ? "?scope=saved&content=all"
+      : scope === "saved" ? "?scope=saved" : "";
     response = await fetch(`/api/learners/${encodeURIComponent(learnerId)}/review-queue${query}`, {
       credentials: "include"
     });

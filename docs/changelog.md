@@ -2,6 +2,16 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-03 — Saved Vocabulary all-saved study scope
+
+- Fixed “Học tất cả từ đã lưu” so its explicit Study Setup scope contains all
+  enabled saved vocabulary, including existing progress that is not yet due.
+- Not-due existing progress is voluntary practice and still uses the canonical
+  revision-checked review scheduler. New, Review, Mixed, and daily-New behavior
+  remain unchanged; Study and Summary Continue preserve the collection scope.
+- Focused regression tests pass (6 files / 97 tests), along with typecheck,
+  feature ESLint, build, and diff check. No learner DB mutation or deployment.
+
 ## 2026-10-03 — Master Vocabulary V2 canary editorial correction
 
 - Added immutable Sense revision 2 pins for apple fruit, record noun/music

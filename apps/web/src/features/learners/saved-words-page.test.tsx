@@ -109,7 +109,7 @@ describe("Saved Words page", () => {
     expect(screen.getByTestId("vocabulary-row-1")).toHaveTextContent("Đã lưu 01/10/2026");
     expect(within(screen.getByTestId("vocabulary-row-1")).getByRole("link")).toHaveAttribute("href", "/vocabulary/1");
     expect(screen.getAllByTestId(/vocabulary-row-/)).toHaveLength(2);
-    expect(screen.getByRole("link", { name: /Học tất cả từ đã lưu \(2\)/ })).toHaveAttribute("href", "/study/setup?saved=1");
+    expect(screen.getByRole("link", { name: /Học tất cả từ đã lưu \(2\)/ })).toHaveAttribute("href", "/study/setup?saved=1&content=all");
     expect(within(screen.getByTestId("vocabulary-row-2")).getByRole("button", { name: "Bỏ lưu từ banana" })).toHaveAttribute("aria-pressed", "true");
     expect(within(screen.getByTestId("vocabulary-row-1")).getByRole("button", { name: "Nghe phát âm apple" })).toBeEnabled();
     expect(fetchMock).toHaveBeenCalledWith(`/api/learners/${learnerA.id}/saved-vocabulary`, { credentials: "include" });

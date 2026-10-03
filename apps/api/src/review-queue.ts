@@ -22,7 +22,7 @@ export type ReviewQueueTimings = {
   databaseMs?: number;
 };
 
-export type ReviewQueueScope = "saved";
+export type ReviewQueueScope = "saved" | "saved-all";
 
 export function renderReviewQueueServerTiming(timings: {
   authInitMs?: number;
@@ -173,7 +173,7 @@ async function dailyNewUsage(
 }
 
 function vocabularyMembership(learner: SQL, scope?: ReviewQueueScope): SQL {
-  if (scope === "saved") {
+  if (scope === "saved" || scope === "saved-all") {
     return sql`EXISTS (
       SELECT 1
       FROM "${sql.raw(APP_SCHEMA)}"."learner_saved_vocabulary" saved
@@ -256,6 +256,41 @@ async function newRows(database: ReviewQueueDatabase, learnerId: string, scope?:
   return rowsOf<QueueRow>(result);
 }
 
+async function allSavedRows(database: ReviewQueueDatabase, learnerId: string) {
+  const result = await database.execute(sql`
+    SELECT v.id,
+           v.word,
+           v.ipa,
+           COALESCE(v.vietnamese_override, v.vietnamese) AS vietnamese,
+           v.definition_en,
+           v.example_en,
+           CASE WHEN v.image_quarantined THEN NULL ELSE v.image_url END AS image_url,
+           v.audio_url,
+           v.topic,
+           v.level,
+           v.enabled,
+           v.content_version,
+           COALESCE(lp.status::text, 'NEW') AS status,
+           lp.next_review_date::text AS next_review_date,
+           COALESCE(lp.revision, 0)::bigint AS revision,
+           COUNT(*) OVER() AS total_count
+    FROM "${sql.raw(APP_SCHEMA)}"."learner_saved_vocabulary" saved
+    JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = saved.vocabulary_id
+    LEFT JOIN "${sql.raw(APP_SCHEMA)}"."learner_progress" lp
+      ON lp.learner_id = saved.learner_id
+     AND lp.vocabulary_id = v.id
+    WHERE saved.learner_id = ${learnerId}::uuid
+      AND v.enabled = true
+    ORDER BY v.id ASC
+  `);
+  return rowsOf<QueueRow>(result);
+}
+
+function savedQueueType(row: QueueRow, reviewDate: string): ReviewQueueItem["queueType"] {
+  if (row.status === "NEW") return "NEW";
+  return row.next_review_date && row.next_review_date <= reviewDate ? "DUE" : "VOLUNTARY";
+}
+
 export type ReviewQueueService = {
   list: (userId: string, learnerId: string, timings?: ReviewQueueTimings, scope?: ReviewQueueScope) => Promise<ReviewQueueResponse>;
 };
@@ -288,6 +323,20 @@ export function createReviewQueueService(
         try {
           const timezone = await householdTimezone(database, ownership.householdId);
           reviewDate = householdLocalDate(now(), timezone);
+          if (scope === "saved-all") {
+            const rows = await allSavedRows(database, ownership.learnerId);
+            const queue = rows.map((row) => itemFromRow(row, savedQueueType(row, reviewDate)));
+            const response = {
+              learnerId: ownership.learnerId,
+              reviewDate,
+              dueCount: queue.filter((item) => item.queueType === "DUE").length,
+              newCount: queue.filter((item) => item.queueType === "NEW").length,
+              queue
+            };
+            const parsed = reviewQueueResponseSchema.safeParse(response);
+            if (!parsed.success) throw new ReviewQueueServiceError("INTERNAL_ERROR", 500);
+            return parsed.data;
+          }
           [usage, due, availableNew] = await Promise.all([
             dailyNewUsage(database, ownership.learnerId, reviewDate),
             dueRows(database, ownership.learnerId, reviewDate, scope),

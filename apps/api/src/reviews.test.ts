@@ -352,6 +352,45 @@ describe("US-07 review contracts and orchestration", () => {
     expect(scheduler).not.toHaveBeenCalled();
   });
 
+  it("schedules an explicit voluntary practice for existing progress before its due date", async () => {
+    const database = queuedDatabase([
+      authorizedRows(),
+      vocabularyRows(),
+      emptyEvent(),
+      { rows: [{
+        status: "LEARNING",
+        consecutive_correct: 1,
+        interval_days: 1,
+        first_learned_date: "2026-09-01",
+        last_reviewed_date: "2026-09-13",
+        next_review_date: "2026-09-20",
+        total_correct: 1,
+        total_incorrect: 0,
+        revision: 5
+      }] },
+      insertedReview(6)
+    ]);
+    const result = await createReviewService(database, {
+      now: () => new Date("2026-09-14T03:00:00.000Z")
+    }).write(USER_ID, { ...request, expectedRevision: 5 });
+
+    expect(result).toMatchObject({
+      status: 201,
+      response: {
+        progress: {
+          status: "LEARNING",
+          consecutiveCorrect: 2,
+          intervalDays: 3,
+          nextReviewDate: "2026-09-17",
+          revision: 6
+        }
+      }
+    });
+    const atomicQuery = new PgDialect().sqlToQuery(database.execute.mock.calls[4]?.[0]);
+    expect(atomicQuery.sql).toContain('UPDATE "vocabflow_app"."learner_progress"');
+    expect(atomicQuery.params).toContain(5);
+  });
+
   it("maps a write race to replay or stale without a second scheduler call", async () => {
     const fingerprint = await createReviewFingerprint(request);
     const stored = {

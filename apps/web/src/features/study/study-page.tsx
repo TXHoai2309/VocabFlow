@@ -64,7 +64,10 @@ function studySetupHref(scope: StudyScope | null) {
   if (scope?.type === "topic" || scope?.type === "learning-set") {
     params.set(scope.type === "topic" ? "topicId" : "learningSetId", String(scope.id));
   }
-  if (scope?.type === "saved") params.set("saved", "1");
+  if (scope?.type === "saved") {
+    params.set("saved", "1");
+    if (scope.all) params.set("content", "all");
+  }
   const query = params.toString();
   return query ? `/study/setup?${query}` : "/study/setup";
 }
@@ -81,6 +84,7 @@ function studyContentLabel(content: StudySelection["content"] | undefined) {
   if (content === "new") return "Từ mới";
   if (content === "review") return "Ôn tập";
   if (content === "mixed") return "Kết hợp";
+  if (content === "all") return "Từ đã lưu";
   return null;
 }
 
@@ -138,8 +142,10 @@ export function StudyPage({ mode = "flashcard", exercisePreference }: { mode?: S
   const location = useLocation();
   const [searchParams] = useSearchParams();
   const scope = useMemo(() => studyScopeFromParams(searchParams), [searchParams]);
-  const selection = useMemo(() => studySelectionFromParams(searchParams), [searchParams]);
-  const scopeKey = scope ? `${scope.type}:${"id" in scope ? scope.id : "invalid"}` : "all";
+  const selection = useMemo(() => studySelectionFromParams(searchParams, scope), [searchParams, scope]);
+  const scopeKey = scope?.type === "saved"
+    ? `saved:${scope.all ? "all" : "scheduled"}`
+    : scope ? `${scope.type}:${"id" in scope ? scope.id : "invalid"}` : "all";
   const selectionKey = selection ? `${selection.content}:${selection.amount}` : "default";
   const returnTo = useMemo(() => studyReturnHref(location.state, scope), [location.state, scope]);
   if (!activeLearner) return <Navigate to="/learners" replace />;

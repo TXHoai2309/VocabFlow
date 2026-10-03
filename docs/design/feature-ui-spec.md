@@ -406,7 +406,7 @@ Network/5xx → SAVE_FAILED → giữ nguyên card → Retry cùng reviewId
 | Search | Trimmed, case-insensitive English word and Vietnamese meaning search. |
 | Filters | Runtime vocabulary levels and topics from saved records; search, level and topic combine with AND and remain in URL parameters. |
 | Save controls | Catalog, detail and saved rows expose a semantic bookmark with a learner-specific pressed state. Save/unsave is optimistic, blocks duplicate requests and rolls back with an accessible error on failure. |
-| Study action | “Học tất cả từ đã lưu” opens Study Setup with `saved=1`; the server queue applies saved membership before New/Review selection. |
+| Study action | “Học tất cả từ đã lưu” opens Study Setup with `saved=1&content=all`; this explicit mode studies the enabled saved collection, capped to the chosen session size. Not-due existing progress is voluntary practice, not Review. The regular New/Review/Mixed choices retain their normal meaning. |
 | Empty states | No saved records offers a link to Vocabulary; filter mismatch offers a clear-filters action. |
 | Learner change | Changing active learner reloads the saved relation and never reuses another learner's state. |
 

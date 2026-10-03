@@ -3,19 +3,26 @@ import { requestLearningSet } from "../learning-sets/learning-sets-client";
 import { requestTopicVocabulary } from "../learners/topics-client";
 import { requestReviewQueue } from "./review-queue-client";
 
-export type StudyScope = { type: "topic" | "learning-set"; id: number } | { type: "saved" } | { type: "invalid" };
+export type StudyScope = { type: "topic" | "learning-set"; id: number } | { type: "saved"; all: boolean } | { type: "invalid" };
 export type StudyContentMode = "new" | "review" | "mixed";
-export type StudySelection = { amount: 5 | 10 | 20 | 30; content: StudyContentMode };
+export type StudySelection = { amount: 5 | 10 | 20 | 30; content: StudyContentMode | "all" };
 
 export function studyScopeFromParams(searchParams: URLSearchParams): StudyScope | null {
   const topicId = searchParams.get("topicId");
   const learningSetId = searchParams.get("learningSetId");
   const savedValues = searchParams.getAll("saved");
+  const contentValues = searchParams.getAll("content");
   const saved = savedValues[0] ?? null;
   if ((topicId !== null && learningSetId !== null)
     || savedValues.length > 1
     || (saved !== null && (saved !== "1" || topicId !== null || learningSetId !== null))) return { type: "invalid" };
-  if (saved === "1") return { type: "saved" };
+  if (saved === "1") {
+    if (contentValues.length > 1) return { type: "invalid" };
+    const content = contentValues[0];
+    if (content && !["all", "new", "review", "mixed"].includes(content)) return { type: "invalid" };
+    return { type: "saved", all: content === "all" };
+  }
+  if (contentValues.includes("all")) return { type: "invalid" };
   const type = topicId !== null ? "topic" : learningSetId !== null ? "learning-set" : null;
   if (!type) return null;
   const rawId = topicId ?? learningSetId;
@@ -24,21 +31,28 @@ export function studyScopeFromParams(searchParams: URLSearchParams): StudyScope 
   return Number.isSafeInteger(id) && id > 0 ? { type, id } : { type: "invalid" };
 }
 
-export function studySelectionFromParams(searchParams: URLSearchParams): StudySelection | null {
+export function studySelectionFromParams(searchParams: URLSearchParams, scope?: StudyScope | null): StudySelection | null {
   const rawAmount = searchParams.get("count");
   const rawContent = searchParams.get("content");
+  if (searchParams.getAll("count").length > 1 || searchParams.getAll("content").length > 1) return null;
   const amount = rawAmount === "5" || rawAmount === "10" || rawAmount === "20" || rawAmount === "30"
     ? Number(rawAmount) as StudySelection["amount"]
     : null;
-  const content = rawContent === "new" || rawContent === "review" || rawContent === "mixed"
+  const content = rawContent === "all" && scope?.type === "saved" && scope.all
+    ? "all"
+    : rawContent === "new" || rawContent === "review" || rawContent === "mixed"
     ? rawContent
     : null;
   return amount && content ? { amount, content } : null;
 }
 
 export function selectStudyQueue(response: ReviewQueueResponse, selection: StudySelection): ReviewQueueResponse {
-  const eligible = response.queue.filter((item) => selection.content === "mixed"
-    || (selection.content === "new" ? item.queueType === "NEW" : item.queueType === "DUE"));
+  const source = selection.content === "all"
+    ? [...new Map(response.queue.map((item) => [item.vocabulary.id, item])).values()]
+    : response.queue;
+  const eligible = source.filter((item) => selection.content === "all"
+    || (selection.content === "mixed" ? item.queueType === "NEW" || item.queueType === "DUE"
+      : selection.content === "new" ? item.queueType === "NEW" : item.queueType === "DUE"));
   const queue = eligible.slice(0, selection.amount);
   return {
     ...response,
@@ -65,7 +79,7 @@ export async function requestScopedReviewQueue(
   scopedVocabularyIds?: Promise<number[]>
 ): Promise<ReviewQueueResponse> {
   if (!scope) return requestReviewQueue(learnerId);
-  if (scope.type === "saved") return requestReviewQueue(learnerId, "saved");
+  if (scope.type === "saved") return requestReviewQueue(learnerId, scope.all ? "saved-all" : "saved");
   const response = await requestReviewQueue(learnerId);
   if (scope.type === "invalid") return { ...response, queue: [], dueCount: 0, newCount: 0 };
 

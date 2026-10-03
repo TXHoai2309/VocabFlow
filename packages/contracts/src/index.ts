@@ -447,7 +447,7 @@ export type ResetLearnerProgressResponse = z.infer<typeof resetLearnerProgressRe
 
 export const reviewQueueItemSchema = z.object({
   vocabulary: vocabularyDtoSchema,
-  queueType: z.enum(["DUE", "NEW"]),
+  queueType: z.enum(["DUE", "NEW", "VOLUNTARY"]),
   status: z.enum(["NEW", "LEARNING", "MASTERED"]),
   nextReviewDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).nullable(),
   expectedRevision: z.number().int().nonnegative().safe()

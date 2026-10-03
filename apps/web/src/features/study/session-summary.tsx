@@ -7,7 +7,10 @@ function studySetupHref(scope: StudyScope | null) {
   if (scope?.type === "topic" || scope?.type === "learning-set") {
     params.set(scope.type === "topic" ? "topicId" : "learningSetId", String(scope.id));
   }
-  if (scope?.type === "saved") params.set("saved", "1");
+  if (scope?.type === "saved") {
+    params.set("saved", "1");
+    if (scope.all) params.set("content", "all");
+  }
   const query = params.toString();
   return query ? `/study/setup?${query}` : "/study/setup";
 }

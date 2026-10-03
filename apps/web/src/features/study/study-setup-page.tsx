@@ -84,7 +84,9 @@ export function StudySetupPage() {
   const location = useLocation();
   const [searchParams] = useSearchParams();
   const scope = useMemo(() => studyScopeFromParams(searchParams), [searchParams]);
-  const scopeKey = scope ? `${scope.type}:${"id" in scope ? scope.id : "invalid"}` : "all";
+  const scopeKey = scope?.type === "saved"
+    ? `saved:${scope.all ? "all" : "scheduled"}`
+    : scope ? `${scope.type}:${"id" in scope ? scope.id : "invalid"}` : "all";
   if (!activeLearner) {
     return <Navigate to="/learners" replace state={{ returnTo: `${location.pathname}${location.search}` }} />;
   }
@@ -178,8 +180,9 @@ function StudySetupExperience({ activeLearner, scope, returnTo }: { activeLearne
     review: availableCount(data.queue, "review"),
     mixed: availableCount(data.queue, "mixed")
   };
+  const isSavedAll = scope?.type === "saved" && scope.all;
   const selectedContent = content ?? defaultMode(data.queue);
-  const available = availability[selectedContent];
+  const available = isSavedAll ? data.queue.queue.length : availability[selectedContent];
   const plannedCount = Math.min(amount, available);
 
   function startStudy() {
@@ -190,7 +193,7 @@ function StudySetupExperience({ activeLearner, scope, returnTo }: { activeLearne
     }
     if (scope?.type === "saved") params.set("saved", "1");
     params.set("count", String(amount));
-    params.set("content", selectedContent);
+    params.set("content", isSavedAll ? "all" : selectedContent);
     navigate(`/study?${params.toString()}`, { state: { returnTo } });
   }
 
@@ -219,26 +222,35 @@ function StudySetupExperience({ activeLearner, scope, returnTo }: { activeLearne
             </div>
           </section>
 
-          <section className="study-setup-section study-setup-mode-section" aria-labelledby="study-setup-mode-title">
-            <div className="study-setup-section-heading">
-              <span className="study-setup-section-icon"><SetupIcon name="mixed" /></span>
-              <div><h2 id="study-setup-mode-title">Chế độ học</h2><p>Chọn loại từ để đưa vào buổi học.</p></div>
-            </div>
-            <div className="study-setup-modes" role="group" aria-labelledby="study-setup-mode-title">
-              {(Object.keys(MODE_COPY) as StudyContentMode[]).map((mode) => {
-                const copy = MODE_COPY[mode];
-                const disabled = availability[mode] === 0;
-                return (
-                  <button key={mode} className={`study-setup-mode${selectedContent === mode ? " is-selected" : ""}`} type="button" aria-pressed={selectedContent === mode} disabled={disabled} onClick={() => setContent(mode)}>
-                    <span className="study-setup-mode-icon"><SetupIcon name={copy.icon} /></span>
-                    {selectedContent === mode ? <span className="study-setup-selected-check"><SetupIcon name="check" /></span> : null}
-                    <strong>{copy.title}</strong><span>{copy.description}</span>
-                    {disabled ? <small>{copy.empty}</small> : null}
-                  </button>
-                );
-              })}
-            </div>
-          </section>
+          {isSavedAll ? (
+            <section className="study-setup-section study-setup-mode-section" aria-label="Phạm vi học từ đã lưu" data-testid="study-setup-saved-all">
+              <div className="study-setup-section-heading">
+                <span className="study-setup-section-icon"><SetupIcon name="mixed" /></span>
+                <div><h2>Từ đã lưu</h2><p data-testid="study-setup-saved-all-count">{available} từ có thể học</p></div>
+              </div>
+            </section>
+          ) : (
+            <section className="study-setup-section study-setup-mode-section" aria-labelledby="study-setup-mode-title">
+              <div className="study-setup-section-heading">
+                <span className="study-setup-section-icon"><SetupIcon name="mixed" /></span>
+                <div><h2 id="study-setup-mode-title">Chế độ học</h2><p>Chọn loại từ để đưa vào buổi học.</p></div>
+              </div>
+              <div className="study-setup-modes" role="group" aria-labelledby="study-setup-mode-title">
+                {(Object.keys(MODE_COPY) as StudyContentMode[]).map((mode) => {
+                  const copy = MODE_COPY[mode];
+                  const disabled = availability[mode] === 0;
+                  return (
+                    <button key={mode} className={`study-setup-mode${selectedContent === mode ? " is-selected" : ""}`} type="button" aria-pressed={selectedContent === mode} disabled={disabled} onClick={() => setContent(mode)}>
+                      <span className="study-setup-mode-icon"><SetupIcon name={copy.icon} /></span>
+                      {selectedContent === mode ? <span className="study-setup-selected-check"><SetupIcon name="check" /></span> : null}
+                      <strong>{copy.title}</strong><span>{copy.description}</span>
+                      {disabled ? <small>{copy.empty}</small> : null}
+                    </button>
+                  );
+                })}
+              </div>
+            </section>
+          )}
 
           <div className="study-setup-tip"><span className="study-setup-tip-icon"><SetupIcon name="bulb" /></span><p>Thiết lập mặc định phù hợp cho hầu hết buổi học.</p></div>
           <button className="study-setup-start" type="button" disabled={available === 0} onClick={startStudy}><SetupIcon name="play" />Bắt đầu học<SetupIcon name="back" /></button>
@@ -250,10 +262,10 @@ function StudySetupExperience({ activeLearner, scope, returnTo }: { activeLearne
             <h2 id="study-setup-summary-title"><SetupIcon name="clipboard" />Tóm tắt buổi học</h2>
             <dl>
               <div><dt>Số lượng từ</dt><dd data-testid="study-setup-summary-count">{plannedCount} từ</dd></div>
-              <div><dt>Chế độ học</dt><dd data-testid="study-setup-summary-mode">{MODE_COPY[selectedContent].title}</dd></div>
+              <div><dt>Chế độ học</dt><dd data-testid="study-setup-summary-mode">{isSavedAll ? "Từ đã lưu" : MODE_COPY[selectedContent].title}</dd></div>
               {data.scopeName ? <div><dt>{scope?.type === "topic" ? "Chủ đề" : scope?.type === "learning-set" ? "Bộ từ" : "Phạm vi"}</dt><dd data-testid="study-setup-summary-scope">{data.scopeName}</dd></div> : null}
             </dl>
-            {plannedCount < amount ? <p className="study-setup-availability">Có {plannedCount} từ phù hợp trong phạm vi này.</p> : null}
+            {plannedCount < amount ? <p className="study-setup-availability">{isSavedAll ? `${available} từ có thể học trong phạm vi đã lưu.` : `Có ${plannedCount} từ phù hợp trong phạm vi này.`}</p> : null}
           </section>
           <section className="study-setup-suggestions" aria-labelledby="study-setup-suggestions-title">
             <h2 id="study-setup-suggestions-title"><span><SetupIcon name="bulb" /></span>Gợi ý</h2>
