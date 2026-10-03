@@ -2,7 +2,7 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter, Route, Routes, useLocation, useNavigate } from "react-router";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
-import type { LearnerDto } from "@vocabflow/contracts";
+import type { ContinueLearningCandidate, LearnerDto } from "@vocabflow/contracts";
 import { ActiveLearnerProvider } from "../learners/learner-context-provider";
 import { LearnerPage } from "../learners/learner-page";
 import { AppShell } from "../../components/app-shell";
@@ -11,6 +11,7 @@ import { HomePage } from "./home-page";
 const {
   useSession,
   requestReviewQueue,
+  requestContinueLearningSummary,
   requestProgressSummary,
   requestActivitySummary,
   requestGamification,
@@ -21,6 +22,7 @@ const {
 } = vi.hoisted(() => ({
   useSession: vi.fn(),
   requestReviewQueue: vi.fn(),
+  requestContinueLearningSummary: vi.fn(),
   requestProgressSummary: vi.fn(),
   requestActivitySummary: vi.fn(),
   requestGamification: vi.fn(),
@@ -34,6 +36,10 @@ vi.mock("../auth/auth-client", () => ({ authClient: { useSession } }));
 vi.mock("../study/review-queue-client", async () => ({
   ...(await vi.importActual<typeof import("../study/review-queue-client")>("../study/review-queue-client")),
   requestReviewQueue
+}));
+vi.mock("./continue-learning-client", async () => ({
+  ...(await vi.importActual<typeof import("./continue-learning-client")>("./continue-learning-client")),
+  requestContinueLearningSummary
 }));
 vi.mock("../learners/progress-summary-client", async () => ({
   ...(await vi.importActual<typeof import("../learners/progress-summary-client")>("../learners/progress-summary-client")),
@@ -175,10 +181,24 @@ function renderHome(initialLearner: LearnerDto | null = learner, initialEntries 
   );
 }
 
+function continueCandidate(overrides: Partial<ContinueLearningCandidate> = {}): ContinueLearningCandidate {
+  return {
+    scope: "TOPIC",
+    scopeId: 7,
+    title: "School",
+    totalCount: 20,
+    learnedCount: 6,
+    progressPercent: 30,
+    lastActivityAt: "2026-10-02T08:30:00.000Z",
+    ...overrides
+  };
+}
+
 describe("Home dashboard", () => {
   beforeEach(() => {
     useSession.mockReset();
     requestReviewQueue.mockReset().mockResolvedValue(queue);
+    requestContinueLearningSummary.mockReset().mockResolvedValue({ learnerId: learner.id, candidate: null });
     requestProgressSummary.mockReset().mockResolvedValue(summary);
     requestActivitySummary.mockReset().mockResolvedValue(activity);
     requestGamification.mockReset().mockResolvedValue(gamification);
@@ -216,6 +236,8 @@ describe("Home dashboard", () => {
     expect(await screen.findByText(/5 từ khác nhau đã học vào ngày/)).toBeInTheDocument();
     expect(screen.getByText("6 lượt ôn tập")).toBeInTheDocument();
     expect(requestReviewQueue).toHaveBeenCalledWith(learner.id);
+    expect(requestContinueLearningSummary).toHaveBeenCalledWith(learner.id);
+    expect(requestContinueLearningSummary).toHaveBeenCalledOnce();
     expect(requestProgressSummary).toHaveBeenCalledWith(learner.id);
     expect(requestActivitySummary).toHaveBeenCalledWith(learner.id);
     expect(requestGamification).toHaveBeenCalledWith(learner.id);
@@ -246,6 +268,84 @@ describe("Home dashboard", () => {
     expect(requestActivitySummary).toHaveBeenCalledOnce();
     expect(requestGamification).toHaveBeenCalledOnce();
     expect(requestLearnerLearningSets).toHaveBeenCalledOnce();
+    expect(requestContinueLearningSummary).toHaveBeenCalledOnce();
+  });
+
+  it("continues a real in-progress topic with scoped progress and activity", async () => {
+    requestContinueLearningSummary.mockResolvedValue({ learnerId: learner.id, candidate: continueCandidate() });
+    renderHome();
+
+    const card = await screen.findByRole("region", { name: "Tiếp tục học" });
+    expect(card).toHaveTextContent("Chủ đề");
+    expect(card).toHaveTextContent("School");
+    expect(card).toHaveTextContent("Đã học 6 / 20 từ");
+    expect(card).toHaveTextContent("30%");
+    expect(screen.getByRole("progressbar", { name: "Tiến trình School" })).toHaveAttribute("aria-valuenow", "30");
+    expect(card.querySelector("time")).toHaveAttribute("dateTime", "2026-10-02T08:30:00.000Z");
+    expect(screen.getByRole("link", { name: "Tiếp tục học School" })).toHaveAttribute("href", "/study/setup?topicId=7");
+    expect(screen.queryByText(/mode/i)).not.toBeInTheDocument();
+  });
+
+  it("continues a learning set at the exact set scope", async () => {
+    requestContinueLearningSummary.mockResolvedValue({
+      learnerId: learner.id,
+      candidate: continueCandidate({ scope: "LEARNING_SET", scopeId: 12, title: "School basics", totalCount: 8, learnedCount: 3, progressPercent: 38, lastActivityAt: null })
+    });
+    renderHome();
+
+    expect(await screen.findByRole("link", { name: "Tiếp tục học School basics" })).toHaveAttribute("href", "/study/setup?learningSetId=12");
+    expect(screen.getByRole("region", { name: "Tiếp tục học" })).toHaveTextContent("Đã học 3 / 8 từ");
+    expect(screen.queryByText(/Học gần nhất:/)).not.toBeInTheDocument();
+  });
+
+  it("continues saved vocabulary with its explicit all-saved setup scope", async () => {
+    requestContinueLearningSummary.mockResolvedValue({
+      learnerId: learner.id,
+      candidate: continueCandidate({ scope: "SAVED", scopeId: null, title: "Từ đã lưu", totalCount: 5, learnedCount: 2, progressPercent: 40, lastActivityAt: null })
+    });
+    renderHome();
+
+    expect(await screen.findByRole("link", { name: "Tiếp tục học Từ đã lưu" })).toHaveAttribute("href", "/study/setup?saved=1&content=all");
+    expect(screen.getByRole("region", { name: "Tiếp tục học" })).toHaveTextContent("Đã học 2 / 5 từ");
+  });
+
+  it("does not show an arbitrary item as a saved session when no collection is in progress", async () => {
+    requestContinueLearningSummary.mockResolvedValue({ learnerId: learner.id, candidate: null });
+    renderHome();
+
+    expect(await screen.findByRole("link", { name: "Bắt đầu phiên học" })).toHaveAttribute("href", "/study/setup");
+    expect(screen.queryByRole("link", { name: /Tiếp tục học/ })).not.toBeInTheDocument();
+    expect(requestContinueLearningSummary).toHaveBeenCalledOnce();
+  });
+
+  it("retries only the Continue Learning summary inside its card", async () => {
+    requestContinueLearningSummary
+      .mockRejectedValueOnce(new Error("summary unavailable"))
+      .mockResolvedValueOnce({ learnerId: learner.id, candidate: continueCandidate() });
+    renderHome();
+
+    fireEvent.click(await screen.findByRole("button", { name: "Thử lại" }));
+    expect(await screen.findByRole("link", { name: "Tiếp tục học School" })).toHaveAttribute("href", "/study/setup?topicId=7");
+    expect(requestContinueLearningSummary).toHaveBeenCalledTimes(2);
+    expect(requestReviewQueue).toHaveBeenCalledOnce();
+    expect(requestProgressSummary).toHaveBeenCalledOnce();
+    expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+  });
+
+  it("refreshes Continue Learning for the newly selected learner", async () => {
+    const secondLearner = { ...learner, id: "00000000-0000-4000-8000-000000000022", displayName: "Morgan Nguyen" };
+    requestLearners.mockResolvedValue([learner, secondLearner]);
+    requestContinueLearningSummary.mockImplementation(async (id: string) => ({
+      learnerId: id,
+      candidate: id === secondLearner.id
+        ? continueCandidate({ scope: "LEARNING_SET", scopeId: 12, title: "Morgan's set" })
+        : continueCandidate()
+    }));
+    renderHome(null);
+
+    fireEvent.click(await screen.findByRole("button", { name: "Morgan Nguyen" }));
+    expect(await screen.findByRole("link", { name: "Tiếp tục học Morgan's set" })).toHaveAttribute("href", "/study/setup?learningSetId=12");
+    expect(requestContinueLearningSummary).toHaveBeenCalledWith(secondLearner.id);
   });
 
   it("keeps a long parent name in the greeting without substituting a mock identity", async () => {

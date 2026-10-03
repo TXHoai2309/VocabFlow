@@ -8,6 +8,17 @@
 
 **VOCABFLOW**
 
+## Continue Learning extension (US-47)
+
+Active learner opens Home → the “Tiếp tục học” card requests one learner-scoped
+summary → server selects an actually partial Topic, active assigned Learning
+Set, or Saved collection using collection-local progress and latest review
+event → learner selects “Tiếp tục học” → Study Setup opens with the exact
+Topic/Set/all-saved scope. When no partial collection exists, Home keeps its
+queue-based “Bắt đầu phiên học” fallback. The application does not persist an
+incomplete Study queue or mode, so this flow does not claim to resume an exact
+session.
+
 ## Reward extension (US-39 / US-40)
 
 Learner completes a persisted scheduled review → server evaluates immutable

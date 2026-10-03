@@ -386,6 +386,33 @@ export const topicProgressResponseSchema = z.object({
 }).strict();
 export type TopicProgressResponse = z.infer<typeof topicProgressResponseSchema>;
 
+export const continueLearningCandidateSchema = z.object({
+  scope: z.enum(["TOPIC", "LEARNING_SET", "SAVED"]),
+  scopeId: z.number().int().positive().safe().nullable(),
+  title: z.string().min(1).max(200),
+  totalCount: z.number().int().positive().safe(),
+  learnedCount: z.number().int().positive().safe(),
+  progressPercent: z.number().int().min(0).max(100).safe(),
+  lastActivityAt: z.string().datetime().nullable()
+}).strict().superRefine((candidate, context) => {
+  if (candidate.learnedCount >= candidate.totalCount) {
+    context.addIssue({ code: "custom", message: "Continue candidates must be partially learned." });
+  }
+  if ((candidate.scope === "SAVED") !== (candidate.scopeId === null)) {
+    context.addIssue({ code: "custom", message: "Saved candidates have no collection id." });
+  }
+  if (candidate.progressPercent !== Math.round((candidate.learnedCount / candidate.totalCount) * 100)) {
+    context.addIssue({ code: "custom", message: "Continue candidate progress must match its counts." });
+  }
+});
+export type ContinueLearningCandidate = z.infer<typeof continueLearningCandidateSchema>;
+
+export const continueLearningSummaryResponseSchema = z.object({
+  learnerId: canonicalUuidSchema,
+  candidate: continueLearningCandidateSchema.nullable()
+}).strict();
+export type ContinueLearningSummaryResponse = z.infer<typeof continueLearningSummaryResponseSchema>;
+
 export const dailyGoalSummarySchema = z.object({
   goal: z.number().int().min(DAILY_LEARNING_GOAL_MIN).max(DAILY_LEARNING_GOAL_MAX).safe(),
   reviewedUnique: z.number().int().nonnegative().safe(),

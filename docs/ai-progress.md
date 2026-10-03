@@ -1,5 +1,30 @@
 # Current Handoff Snapshot
 
+## 2026-10-03 — Continue Learning Home card (US-47)
+
+- Audit: the previous Home card previewed `reviewQueue.queue[0]` and linked to
+  unscoped Study Setup. Study queue/index/mode are in-memory React state only;
+  there is no runtime persisted incomplete session or exact-resume endpoint.
+- Added one authenticated, read-only learner summary API. It selects a
+  partially learned active assigned Learning Set, eligible Topic, or Saved
+  scope using that scope's own enabled vocabulary and learner statuses. Latest
+  `review_events.reviewed_at` selects the most recent candidate; deterministic
+  Set → Topic → Saved/sort-order/ID ordering breaks ties and missing timestamps.
+  Topic progress matches Topic Detail and requires active-set-eligible content.
+- Home changes are isolated to the existing Continue card and its styling. Its
+  CTA preserves Topic/Set/all-saved scope in Study Setup; no mode or exact
+  session is fabricated. When there is no candidate or the summary fails, the
+  card keeps the queue fallback and has a local retry. Home requests no
+  vocabulary catalog for this block.
+- Focused regressions pass: 9 files / 92 tests. `pnpm typecheck`, `pnpm build`,
+  ESLint on changed Home/API/contracts TypeScript, and `git diff --check` pass.
+  Build has existing dynamic-import and bundle-size warnings; local Node is
+  22.19.0 versus pin 22.23.2.
+- Dataset V2 and other unrelated changes in the shared workspace were left
+  untouched and will remain unstaged. No database mutation, merge, or
+  deployment. Commit and push status will be recorded after the feature-only
+  commit.
+
 ## 2026-10-03 — Saved Vocabulary all-saved study scope (US-46)
 
 - Root cause: the Saved Words CTA entered the ordinary saved queue, which

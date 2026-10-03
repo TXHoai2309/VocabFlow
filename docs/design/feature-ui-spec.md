@@ -189,6 +189,23 @@ Login success
 | Không due/new | Completed/empty state; không tạo session rỗng. |
 | Summary API fail | Không hiển thị số giả; error vùng summary + Retry. |
 
+### Continue Learning card (US-47)
+
+- Replace content only inside the existing “Tiếp tục học” card. Keep the Home
+  hero, stats, learning-set list, progress chart, recent activity, and AppShell
+  unchanged.
+- Show one in-progress Topic, active assigned Learning Set, or Saved
+  collection, with that collection's real `learned / total` count, semantic
+  progress bar, and rounded percentage.
+- Show latest review-event time only when present. Omit mode because runtime
+  does not persist the most recent mode.
+- “Tiếp tục học” enters Study Setup with the selected Topic, Set, or explicit
+  all-saved scope. It continues the collection, not an exact prior queue.
+- If there is no candidate or the summary cannot load, retain the existing
+  queue fallback (“Bắt đầu phiên học” or the compact empty state).
+- Exact session resume is unavailable; do not infer it from frontend state or
+  browser storage. Stack the content/action on small viewports.
+
 > **Learner switching**
 > Nếu đang ở Study, learner switcher không đổi context trực tiếp. User phải rời/kết thúc session trước, theo §5.4.
 

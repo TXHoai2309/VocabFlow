@@ -392,3 +392,30 @@ evidence condition is met and the affected source document is updated.
   migration `drizzle/migrations/0017_nosy_hellfire_club.sql`.
 - Revisit only if: the owner changes learner ownership, saved queue semantics,
   or the runtime vocabulary identity boundary.
+
+## DEC-022 — Collection Continue and session persistence
+
+- Status: ACCEPTED
+- Date: 2026-10-03
+- Context: Home's previous “Tiếp tục học” block showed the first item in the
+  current review queue, while Study queue/index and selected mode exist only
+  during the current React session. The runtime has no persisted incomplete
+  Study session entity or API.
+- Decision: Continue Learning selects one learner-authorized, partially learned
+  Topic, active assigned Learning Set, or Saved collection. A collection is
+  eligible only when `0 < learnedCount < totalCount`. Rank by the latest actual
+  `review_events.reviewed_at`; ties and missing timestamps use deterministic
+  Set → Topic → Saved, collection sort order, then ID. Continue navigates to
+  Study Setup with the exact collection scope. Do not create fake session
+  resume using browser storage; omit mode unless a future persisted source is
+  introduced.
+- Consequences: Home needs one compact read-only aggregate summary. Progress is
+  calculated from the selected collection's own members and learner statuses.
+  Exact question/queue resume stays unsupported and can be reconsidered only
+  alongside an accepted session persistence model.
+- Evidence/source: [US-47 Continue Learning](stories/US-47-continue-learning.md),
+  [Feature UI Specification](design/feature-ui-spec.md#continue-learning-card-us-47),
+  `apps/api/src/continue-learning.ts`, and the runtime Study state in
+  `apps/web/src/features/study/study-page.tsx`.
+- Revisit only if: a canonical persisted Study session becomes part of the
+  runtime architecture or the owner changes candidate priority.

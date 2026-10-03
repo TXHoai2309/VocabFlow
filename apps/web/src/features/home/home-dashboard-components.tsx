@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 import { Link } from "react-router";
 import type {
   ActivitySummaryResponse,
+  ContinueLearningCandidate,
   LearnerDto,
   LearnerLearningSetDto,
   ProgressHistoryResponse,
@@ -194,15 +195,67 @@ export function QuickStats({
   );
 }
 
-export function ContinueLearningCard({ queue }: { queue: HomeResource<ReviewQueueResponse> }) {
+function continueTarget(candidate: ContinueLearningCandidate) {
+  if (candidate.scope === "TOPIC" && candidate.scopeId !== null) return `/study/setup?topicId=${candidate.scopeId}`;
+  if (candidate.scope === "LEARNING_SET" && candidate.scopeId !== null) return `/study/setup?learningSetId=${candidate.scopeId}`;
+  return "/study/setup?saved=1&content=all";
+}
+
+function continueScopeLabel(scope: ContinueLearningCandidate["scope"]) {
+  if (scope === "TOPIC") return "Chủ đề";
+  if (scope === "LEARNING_SET") return "Bộ từ";
+  return "Từ đã lưu";
+}
+
+function lastActivityLabel(value: string) {
+  return new Intl.DateTimeFormat("vi-VN", { dateStyle: "medium", timeStyle: "short" }).format(new Date(value));
+}
+
+export function ContinueLearningCard({
+  queue,
+  continuation,
+  onRetry
+}: {
+  queue: HomeResource<ReviewQueueResponse>;
+  continuation: HomeResource<ContinueLearningCandidate | null>;
+  onRetry: () => void;
+}) {
   const next = queue.status === "ready" ? queue.data.queue[0] : undefined;
+  const candidate = continuation.status === "ready" ? continuation.data : null;
+  const showFallback = candidate === null && (continuation.status === "ready" || continuation.status === "error");
   return (
     <section className="home-card home-continue-card" aria-labelledby="home-continue-title">
       <div className="home-card-heading"><h2 id="home-continue-title">Tiếp tục học</h2></div>
-      {queue.status === "loading" ? <SectionLoading label="Đang tải danh sách học hiện tại" /> : null}
-      {queue.status === "error" ? <p className="home-inline-state" role="status">Chưa thể tải danh sách học hiện tại. Hãy thử lại.</p> : null}
-      {queue.status === "ready" && !next ? <div className="home-empty-state" role="status"><span aria-hidden="true">✨</span><p>Hiện không có từ nào trong danh sách học.</p><small>Chưa có phiên học nào được lưu; phiên tiếp theo sẽ dùng danh sách học hiện tại.</small></div> : null}
-      {next ? (
+      {continuation.status === "loading" ? <SectionLoading label="Đang kiểm tra mục học tiếp" /> : null}
+      {continuation.status === "error" ? <div className="home-inline-state" role="status"><span>Chưa thể kiểm tra bộ từ đang học dở. Hiển thị danh sách học hiện tại nếu có.</span> <button className="home-continue-retry" type="button" onClick={onRetry}>Thử lại</button></div> : null}
+      {candidate ? (
+        <div className="home-next-item home-continue-candidate">
+          <div className="home-next-art" aria-hidden="true"><span>{candidate.scope === "TOPIC" ? "🏷️" : candidate.scope === "LEARNING_SET" ? "📚" : "🔖"}</span></div>
+          <div className="home-next-copy">
+            <small>{continueScopeLabel(candidate.scope)}</small>
+            <strong>{candidate.title}</strong>
+            <span>Đã học {candidate.learnedCount} / {candidate.totalCount} từ</span>
+            <div
+              className="home-continue-progress"
+              role="progressbar"
+              aria-label={`Tiến trình ${candidate.title}`}
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-valuenow={candidate.progressPercent}
+              aria-valuetext={`${candidate.learnedCount} trên ${candidate.totalCount} từ, ${candidate.progressPercent}%`}
+            >
+              <span style={{ width: `${candidate.progressPercent}%` }} />
+            </div>
+            <small className="home-continue-percent">{candidate.progressPercent}%</small>
+            {candidate.lastActivityAt ? <time className="home-continue-last-activity" dateTime={candidate.lastActivityAt}>Học gần nhất: {lastActivityLabel(candidate.lastActivityAt)}</time> : null}
+          </div>
+          <Link className="home-button home-button-primary" aria-label={`Tiếp tục học ${candidate.title}`} to={continueTarget(candidate)}>Tiếp tục học</Link>
+        </div>
+      ) : null}
+      {showFallback && queue.status === "loading" ? <SectionLoading label="Đang tải danh sách học hiện tại" /> : null}
+      {showFallback && queue.status === "error" ? <p className="home-inline-state" role="status">Chưa thể tải danh sách học hiện tại. Hãy thử lại.</p> : null}
+      {showFallback && queue.status === "ready" && !next ? <div className="home-empty-state" role="status"><span aria-hidden="true">✨</span><p>Chưa có chủ đề hoặc bộ từ nào đang học dở.</p><small>Bạn có thể bắt đầu một phiên học mới từ danh sách hiện tại.</small></div> : null}
+      {showFallback && next ? (
         <div className="home-next-item">
           <div className="home-next-art" aria-hidden="true"><span>📖</span><i>✦</i></div>
           <div className="home-next-copy">

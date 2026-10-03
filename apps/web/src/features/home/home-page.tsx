@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Navigate } from "react-router";
 import type {
   ActivitySummaryResponse,
+  ContinueLearningCandidate,
   GamificationResponse,
   LearnerDto,
   LearnerLearningSetDto,
@@ -12,6 +13,7 @@ import type {
 import { authClient } from "../auth/auth-client";
 import { useActiveLearner } from "../learners/learner-context-hook";
 import { requestActivitySummary } from "../learners/activity-summary-client";
+import { requestContinueLearningSummary } from "./continue-learning-client";
 import { requestGamification } from "../learners/gamification-client";
 import { requestProgressHistory } from "../learners/progress-insights-client";
 import { requestProgressSummary } from "../learners/progress-summary-client";
@@ -40,12 +42,22 @@ function dateMinus(value: string, days: number) {
 
 function HomeDashboard({ learner, parentName }: { learner: LearnerDto; parentName: string }) {
   const [retryIndex, setRetryIndex] = useState(0);
+  const [continueRetryIndex, setContinueRetryIndex] = useState(0);
   const [queue, setQueue] = useState<HomeResource<ReviewQueueResponse>>({ status: "loading" });
+  const [continueLearning, setContinueLearning] = useState<HomeResource<ContinueLearningCandidate | null>>({ status: "loading" });
   const [summary, setSummary] = useState<HomeResource<ProgressSummaryResponse>>({ status: "loading" });
   const [activity, setActivity] = useState<HomeResource<ActivitySummaryResponse>>({ status: "loading" });
   const [gamification, setGamification] = useState<HomeResource<GamificationResponse>>({ status: "loading" });
   const [learningSets, setLearningSets] = useState<HomeResource<LearnerLearningSetDto[]>>({ status: "loading" });
   const [history, setHistory] = useState<HomeResource<ProgressHistoryResponse>>({ status: "loading" });
+
+  useEffect(() => {
+    let cancelled = false;
+    void requestContinueLearningSummary(learner.id)
+      .then(({ candidate }) => { if (!cancelled) setContinueLearning({ status: "ready", data: candidate }); })
+      .catch(() => { if (!cancelled) setContinueLearning({ status: "error" }); });
+    return () => { cancelled = true; };
+  }, [learner.id, continueRetryIndex]);
 
   useEffect(() => {
     let cancelled = false;
@@ -86,13 +98,19 @@ function HomeDashboard({ learner, parentName }: { learner: LearnerDto; parentNam
   }, [learner.id, retryIndex]);
 
   const hasError = [queue, summary, activity, gamification, learningSets, history].some((resource) => resource.status === "error");
+  function retryContinueLearning() {
+    setContinueLearning({ status: "loading" });
+    setContinueRetryIndex((index) => index + 1);
+  }
   function retryDashboard() {
     setQueue({ status: "loading" });
+    setContinueLearning({ status: "loading" });
     setSummary({ status: "loading" });
     setActivity({ status: "loading" });
     setGamification({ status: "loading" });
     setLearningSets({ status: "loading" });
     setHistory({ status: "loading" });
+    setContinueRetryIndex((index) => index + 1);
     setRetryIndex((index) => index + 1);
   }
   const learnerLevel = gamification.status === "ready" ? gamification.data.xp.level : null;
@@ -105,7 +123,7 @@ function HomeDashboard({ learner, parentName }: { learner: LearnerDto; parentNam
         <QuickStats queue={queue} summary={summary} activity={activity} />
         <div className="home-dashboard-grid">
           <div className="home-dashboard-column">
-            <ContinueLearningCard queue={queue} />
+            <ContinueLearningCard queue={queue} continuation={continueLearning} onRetry={retryContinueLearning} />
             <WeeklyProgressCard resource={history} />
           </div>
           <div className="home-dashboard-column">

@@ -2,6 +2,21 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-03 — Continue Learning (US-47)
+
+- Replaced only the Home “Tiếp tục học” card's next-review-queue preview with
+  one real partially learned collection candidate and scope-preserving Study
+  Setup action. Candidate progress is collection-local and recency comes from
+  `review_events.reviewed_at`; mode and exact session resume are omitted because
+  neither is persisted.
+- Added an authenticated learner-scoped read-only API summary. No full
+  vocabulary catalog request, database schema/migration change, database
+  mutation, or Dataset V2 change is part of the feature.
+- Focused Home, Topic, Learning Set, Study Setup/queue, and API tests pass
+  (9 files / 92 tests); `pnpm typecheck`, `pnpm build`, feature ESLint, and
+  `git diff --check` pass. Build retains existing dynamic-import and bundle
+  size warnings. Commit/push results are recorded after implementation.
+
 ## 2026-10-03 — Saved Vocabulary all-saved study scope
 
 - Fixed “Học tất cả từ đã lưu” so its explicit Study Setup scope contains all
