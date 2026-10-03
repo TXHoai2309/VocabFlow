@@ -98,13 +98,12 @@ describe("Master V2 bridge identity hardening", () => {
       entries: Array<{ idx: number; tag: string }>;
     };
     const previous = journal.entries.find((entry) => entry.tag === "0015_clean_yellowjacket");
-    const latest = journal.entries.at(-1);
+    const followUp = journal.entries.find((entry) => entry.tag === "0016_nostalgic_mattie_franklin");
     expect(previous).toMatchObject({ idx: 15, tag: "0015_clean_yellowjacket" });
-    expect(latest?.idx).toBe(16);
-    expect(latest?.tag).toMatch(/^0016_/);
-    const migration = readFileSync(join(migrationRoot, `${latest?.tag}.sql`), "utf8");
+    expect(followUp).toMatchObject({ idx: 16, tag: "0016_nostalgic_mattie_franklin" });
+    const migration = readFileSync(join(migrationRoot, `${followUp?.tag}.sql`), "utf8");
     const oldSnapshot = JSON.parse(readFileSync(join(migrationRoot, "meta", "0015_snapshot.json"), "utf8")) as { id: string };
-    const nextSnapshot = JSON.parse(readFileSync(join(migrationRoot, "meta", `${latest?.tag.slice(0, 4)}_snapshot.json`), "utf8")) as { prevId: string };
+    const nextSnapshot = JSON.parse(readFileSync(join(migrationRoot, "meta", `${followUp?.tag.slice(0, 4)}_snapshot.json`), "utf8")) as { prevId: string };
     expect(nextSnapshot.prevId).toBe(oldSnapshot.id);
     expect(migration).toContain('UNIQUE("master_sense_id","vocabulary_id")');
     expect(migration).toContain('UNIQUE("master_topic_id","topic_id")');

@@ -1,0 +1,1002 @@
+{
+  "artifactVersion": "runtime-reconciliation-candidates-v2",
+  "owner": "analysis-only",
+  "generatedByScan": true,
+  "analysisOnly": true,
+  "readOnlySnapshotOnly": true,
+  "sourceDatasetVersion": "2.1.0",
+  "sourceSchemaVersion": "2.0.1",
+  "sourceReleaseHash": "fc67dd2a70adadd311384360c004faa4693ae24ffe4524761ce7075f21c95591",
+  "target": {
+    "environment": "development",
+    "provider": "neon",
+    "projectId": "shy-hill-72364426",
+    "branchId": "br-square-grass-b3af0nte",
+    "databaseName": "neondb",
+    "pooled": true,
+    "usage": "development",
+    "identityVersion": 1,
+    "purpose": "runtime",
+    "roleName": "vocabflow_runtime"
+  },
+  "migrationState": {
+    "tableExists": true,
+    "current": true,
+    "localMigrationCount": 18,
+    "appliedCount": 18,
+    "latestApplied": {
+      "id": 18,
+      "tag": "0017_nosy_hellfire_club",
+      "hash": "e6f74f0f93a300f6ca7252dca86549034fa74486359296349e807a6d3a43875d",
+      "createdAt": 1790959242981
+    },
+    "requiredMigrations": [
+      {
+        "idx": 15,
+        "tag": "0015_clean_yellowjacket",
+        "expectedHash": "f29a8d6e6d659bd64db5ad79450f99fee1f63c9748e66445570620bdf4ca5640",
+        "appliedHash": "f29a8d6e6d659bd64db5ad79450f99fee1f63c9748e66445570620bdf4ca5640",
+        "applied": true
+      },
+      {
+        "idx": 16,
+        "tag": "0016_nostalgic_mattie_franklin",
+        "expectedHash": "fde7d92ee9baa200d50584379be6826da05e5ebf2adf07f332a62be7864cc820",
+        "appliedHash": "fde7d92ee9baa200d50584379be6826da05e5ebf2adf07f332a62be7864cc820",
+        "applied": true
+      },
+      {
+        "idx": 17,
+        "tag": "0017_nosy_hellfire_club",
+        "expectedHash": "e6f74f0f93a300f6ca7252dca86549034fa74486359296349e807a6d3a43875d",
+        "appliedHash": "e6f74f0f93a300f6ca7252dca86549034fa74486359296349e807a6d3a43875d",
+        "applied": true
+      }
+    ],
+    "missingMigrations": [],
+    "missingJournalRows": [],
+    "historicalHashMismatches": [
+      {
+        "tag": "0001_curious_miss_america",
+        "expectedHash": "7be0fba980471b05c389acf7a218b19c0c99770e255b28116b48acbc43a6a257",
+        "appliedHash": "118c170f0bd351a55e5313d59d3fa819498e4e607bc746aedb87932a7ddd10d3"
+      },
+      {
+        "tag": "0002_smiling_wrecking_crew",
+        "expectedHash": "7b574b08ccba43f02dd7130cd812eb52ddda40abbe5790648625c9952e7baaaa",
+        "appliedHash": "dfd62f6c75b70ab9afa1a20117b766cbd05e6db742747b9d8e010408efb392e2"
+      },
+      {
+        "tag": "0003_lazy_lady_deathstrike",
+        "expectedHash": "6ddbfa3d7ee607a3b88924f48df275e8816fac8b26b38a160ea6f5c26c91c8c9",
+        "appliedHash": "8ea4b7b4d662ba942c662f9d4c2d5992d3ea6ffd3e2d502cc178a68a923f31c0"
+      },
+      {
+        "tag": "0012_us41_owner_content_overrides",
+        "expectedHash": "6360d4a53af14f41175790cb8033ac4802d9f3a1b01e330311bfd6eda729c07e",
+        "appliedHash": "2c5925738743dcf057955c937f2c8838121088fca2411092851132264c70d8b7"
+      },
+      {
+        "tag": "0013_runtime-vocabulary-sequence-privilege",
+        "expectedHash": "6d5f4a2b04a05d7515b258d78417ac837d515b234470debab3ae49a073a0757c",
+        "appliedHash": "f378a186c06f8f225bc25898064e5e40ebe8f4fab92262fee37f9374b3e0c8fd"
+      },
+      {
+        "tag": "0014_vietnamese_catalog_metadata",
+        "expectedHash": "e9de92f426c66213d9412e531e4c1fbf330c72c3d6a8880d50e34fba762a5302",
+        "appliedHash": "40699f1088f69cd07e4a9fb38629b1792789c2c1ab764c4271f328c8ef871c8c"
+      }
+    ],
+    "unexpectedAppliedRows": [],
+    "appliedMigrationsForFingerprint": [
+      {
+        "tag": "0000_application-schema",
+        "hash": "6cc85e79be79afa23b69d7cfbdf9a440b0d7d0ade9c3152492c67cb7a48512d1"
+      },
+      {
+        "tag": "0001_curious_miss_america",
+        "hash": "118c170f0bd351a55e5313d59d3fa819498e4e607bc746aedb87932a7ddd10d3"
+      },
+      {
+        "tag": "0002_smiling_wrecking_crew",
+        "hash": "dfd62f6c75b70ab9afa1a20117b766cbd05e6db742747b9d8e010408efb392e2"
+      },
+      {
+        "tag": "0003_lazy_lady_deathstrike",
+        "hash": "8ea4b7b4d662ba942c662f9d4c2d5992d3ea6ffd3e2d502cc178a68a923f31c0"
+      },
+      {
+        "tag": "0004_scheduled_review_write",
+        "hash": "19d3787f9af28805503db11a2f34d66d8bbbdcd16ca9b8a0edb2dd90fb2f9657"
+      },
+      {
+        "tag": "0005_graceful_eddie_brock",
+        "hash": "028ffe026bd7addfa2cedfe927c95cf669324f6da19e1a1215eb12ffb7aa2f10"
+      },
+      {
+        "tag": "0006_sticky_risque",
+        "hash": "0035f537b27b0732390b60bf057ffab29b4a4eb3012b8ba0625286740f8e2803"
+      },
+      {
+        "tag": "0007_modern_mysterio",
+        "hash": "557f83cb0058389fe969ed336de58f9e4b36b1691c1f4ee6f46b3d75c88d8699"
+      },
+      {
+        "tag": "0008_chief_morph",
+        "hash": "c8af7c9bfc3c99e7221b1a94a5541dbccb5bf9568a560e82303ad7f3ace25a05"
+      },
+      {
+        "tag": "0009_tricky_meggan",
+        "hash": "27f979b2d9f00406f3c6f1e506aeaf15ae916705d9c8606f27579c46626443f0"
+      },
+      {
+        "tag": "0010_gamification-rewards",
+        "hash": "55e7d4f7baa1c5c86a83f360e8eb8097638817ba05f02f93285912e13336f804"
+      },
+      {
+        "tag": "0011_exercise-correct-xp",
+        "hash": "6783f4b66e34f112fb33a3251366755f9069f4fd5829ea508e0c26996319b4dc"
+      },
+      {
+        "tag": "0012_us41_owner_content_overrides",
+        "hash": "2c5925738743dcf057955c937f2c8838121088fca2411092851132264c70d8b7"
+      },
+      {
+        "tag": "0013_runtime-vocabulary-sequence-privilege",
+        "hash": "f378a186c06f8f225bc25898064e5e40ebe8f4fab92262fee37f9374b3e0c8fd"
+      },
+      {
+        "tag": "0014_vietnamese_catalog_metadata",
+        "hash": "40699f1088f69cd07e4a9fb38629b1792789c2c1ab764c4271f328c8ef871c8c"
+      },
+      {
+        "tag": "0015_clean_yellowjacket",
+        "hash": "f29a8d6e6d659bd64db5ad79450f99fee1f63c9748e66445570620bdf4ca5640"
+      },
+      {
+        "tag": "0016_nostalgic_mattie_franklin",
+        "hash": "fde7d92ee9baa200d50584379be6826da05e5ebf2adf07f332a62be7864cc820"
+      },
+      {
+        "tag": "0017_nosy_hellfire_club",
+        "hash": "e6f74f0f93a300f6ca7252dca86549034fa74486359296349e807a6d3a43875d"
+      }
+    ]
+  },
+  "scannedAt": "2026-10-03T04:19:11.093Z",
+  "snapshotFingerprint": "b8eea5ac463cdf05a57e155cedd4e31890c21fd12b7d5c5425fa4e552992fe41",
+  "snapshotFingerprintAlgorithm": "sha256-canonical-json-v1",
+  "snapshotFingerprintContract": "Includes the complete runtime vocabulary and Learning Set discovery universes, candidate search results, relevant Master mappings, candidate history counts and memberships/assignments, applied run identities, verified target identity, release hash and applied migration hashes. Excludes timestamps and learner IDs.",
+  "plannerDryRun": {
+    "mode": "DRY_RUN",
+    "reconciliationComplete": false,
+    "canApply": false,
+    "unresolvedSenses": 8,
+    "unresolvedTopics": 0,
+    "unresolvedLearningSets": 1,
+    "issueCodes": [
+      "LEARNING_SET_MEMBERSHIP_MAPPING_UNRESOLVED",
+      "RECONCILIATION_OWNERSHIP_INVALID",
+      "RECONCILIATION_SOURCE_MISMATCH",
+      "RECONCILIATION_UNRESOLVED"
+    ]
+  },
+  "runtimeSearchPerformed": true,
+  "decisionRule": "Discovery signals never select identity. Every Sense, Topic and Learning Set remains UNRESOLVED until an owner records an explicit reconciliation decision.",
+  "polysemyRule": "If an appVocabularyId is a candidate for multiple Master Senses, mark it ambiguous; in particular, bank and record senses must not share one runtime ID.",
+  "senses": [
+    {
+      "masterLexemeId": "01a0fc13-09ed-72c7-aef1-9124d94a6828",
+      "masterSenseId": "01a0fc13-09ed-70b4-801b-408be3b771e9",
+      "lemma": "apple",
+      "masterProjection": {
+        "word": "apple",
+        "ipa": null,
+        "vietnamese": "quả táo",
+        "definitionEn": "A round fruit with firm flesh and skin that is usually red, green, or yellow.",
+        "exampleEn": "She packed an apple for her afternoon snack.",
+        "imageUrl": null,
+        "audioUrl": null,
+        "topic": null,
+        "level": null,
+        "enabled": true
+      },
+      "existingMasterSenseMapping": null,
+      "runtimeCandidateSearchPerformed": true,
+      "runtimeCandidates": [
+        {
+          "appVocabularyId": 1,
+          "word": "apple",
+          "ipa": "ˈæpəl",
+          "vietnamese": "quả táo",
+          "baseVietnamese": "quả táo",
+          "vietnameseOverride": null,
+          "effectiveVietnamese": "quả táo",
+          "definitionEn": "A fruit with a red or green skin and white flesh.",
+          "definition": "A fruit with a red or green skin and white flesh.",
+          "exampleEn": "she enjoyed a crisp, juicy apple for a snack.",
+          "example": "she enjoyed a crisp, juicy apple for a snack.",
+          "imageUrl": "https://res.cloudinary.com/tuaepr58/image/upload/v1789543012/vocabflow/images/content-v1/6e27070bea876863cbfb4c10dd08d113ec0c7349f07a3354d17d38816735a115.jpg",
+          "imageQuarantined": false,
+          "effectiveImageUrl": "https://res.cloudinary.com/tuaepr58/image/upload/v1789543012/vocabflow/images/content-v1/6e27070bea876863cbfb4c10dd08d113ec0c7349f07a3354d17d38816735a115.jpg",
+          "audioUrl": "https://res.cloudinary.com/tuaepr58/video/upload/v1789542079/vocabflow/audio/content-v1/4ecd6162db1b4b732273869bd3aab3873031cbf335406ea510a2d192ff7e6ae8.mp3",
+          "topic": "Food",
+          "legacyTopic": "Food",
+          "level": null,
+          "enabled": true,
+          "contentVersion": 2,
+          "sourceDataset": null,
+          "sourceRecordId": null,
+          "learnerProgressCount": 3,
+          "learnerProgressReferenceCount": 3,
+          "reviewEventCount": 8,
+          "reviewEventReferenceCount": 8,
+          "existingMasterSenseMapping": null,
+          "masterSenseMapping": null,
+          "matchingSignals": [
+            "EXACT_WORD",
+            "NORMALIZED_WORD",
+            "EXACT_EFFECTIVE_VIETNAMESE"
+          ],
+          "projectionEqualsMaster": false,
+          "candidateClassification": "PARTIAL_MATCH",
+          "vietnameseOverrideStatus": "NONE",
+          "imageQuarantineStatus": "FALSE",
+          "firstAdoptionAnalysis": "WOULD_REQUIRE_UPDATE_TO_MASTER",
+          "firstAdoptionPolicy": null,
+          "firstAdoptionReview": "DRIFT_REVIEW_REQUIRED",
+          "projectionDifferences": [
+            {
+              "field": "ipa",
+              "master": null,
+              "runtime": "ˈæpəl"
+            },
+            {
+              "field": "definitionEn",
+              "master": "A round fruit with firm flesh and skin that is usually red, green, or yellow.",
+              "runtime": "A fruit with a red or green skin and white flesh."
+            },
+            {
+              "field": "exampleEn",
+              "master": "She packed an apple for her afternoon snack.",
+              "runtime": "she enjoyed a crisp, juicy apple for a snack."
+            },
+            {
+              "field": "imageUrl",
+              "master": null,
+              "runtime": "https://res.cloudinary.com/tuaepr58/image/upload/v1789543012/vocabflow/images/content-v1/6e27070bea876863cbfb4c10dd08d113ec0c7349f07a3354d17d38816735a115.jpg"
+            },
+            {
+              "field": "audioUrl",
+              "master": null,
+              "runtime": "https://res.cloudinary.com/tuaepr58/video/upload/v1789542079/vocabflow/audio/content-v1/4ecd6162db1b4b732273869bd3aab3873031cbf335406ea510a2d192ff7e6ae8.mp3"
+            },
+            {
+              "field": "topic",
+              "master": null,
+              "runtime": "Food"
+            }
+          ],
+          "decision": "UNRESOLVED",
+          "sameRuntimeIdCandidateForMasterSenses": [
+            "01a0fc13-09ed-70b4-801b-408be3b771e9"
+          ],
+          "polysemyAmbiguous": false,
+          "reconciliationFlags": []
+        },
+        {
+          "appVocabularyId": 295,
+          "word": "apple",
+          "ipa": "ˈæpəl",
+          "vietnamese": "quả táo",
+          "baseVietnamese": "quả táo",
+          "vietnameseOverride": null,
+          "effectiveVietnamese": "quả táo",
+          "definitionEn": "A fruit with a red or green skin and white flesh.",
+          "definition": "A fruit with a red or green skin and white flesh.",
+          "exampleEn": "she enjoyed a crisp, juicy apple for a snack.",
+          "example": "she enjoyed a crisp, juicy apple for a snack.",
+          "imageUrl": "https://res.cloudinary.com/tuaepr58/image/upload/v1789543012/vocabflow/images/content-v1/6e27070bea876863cbfb4c10dd08d113ec0c7349f07a3354d17d38816735a115.jpg",
+          "imageQuarantined": false,
+          "effectiveImageUrl": "https://res.cloudinary.com/tuaepr58/image/upload/v1789543012/vocabflow/images/content-v1/6e27070bea876863cbfb4c10dd08d113ec0c7349f07a3354d17d38816735a115.jpg",
+          "audioUrl": "https://res.cloudinary.com/tuaepr58/video/upload/v1789542079/vocabflow/audio/content-v1/4ecd6162db1b4b732273869bd3aab3873031cbf335406ea510a2d192ff7e6ae8.mp3",
+          "topic": "Food",
+          "legacyTopic": "Food",
+          "level": "GRADE_1",
+          "enabled": true,
+          "contentVersion": 1,
+          "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+          "sourceRecordId": 265,
+          "learnerProgressCount": 1,
+          "learnerProgressReferenceCount": 1,
+          "reviewEventCount": 1,
+          "reviewEventReferenceCount": 1,
+          "existingMasterSenseMapping": null,
+          "masterSenseMapping": null,
+          "matchingSignals": [
+            "EXACT_WORD",
+            "NORMALIZED_WORD",
+            "EXACT_EFFECTIVE_VIETNAMESE"
+          ],
+          "projectionEqualsMaster": false,
+          "candidateClassification": "PARTIAL_MATCH",
+          "vietnameseOverrideStatus": "NONE",
+          "imageQuarantineStatus": "FALSE",
+          "firstAdoptionAnalysis": "WOULD_REQUIRE_UPDATE_TO_MASTER",
+          "firstAdoptionPolicy": null,
+          "firstAdoptionReview": "DRIFT_REVIEW_REQUIRED",
+          "projectionDifferences": [
+            {
+              "field": "ipa",
+              "master": null,
+              "runtime": "ˈæpəl"
+            },
+            {
+              "field": "definitionEn",
+              "master": "A round fruit with firm flesh and skin that is usually red, green, or yellow.",
+              "runtime": "A fruit with a red or green skin and white flesh."
+            },
+            {
+              "field": "exampleEn",
+              "master": "She packed an apple for her afternoon snack.",
+              "runtime": "she enjoyed a crisp, juicy apple for a snack."
+            },
+            {
+              "field": "imageUrl",
+              "master": null,
+              "runtime": "https://res.cloudinary.com/tuaepr58/image/upload/v1789543012/vocabflow/images/content-v1/6e27070bea876863cbfb4c10dd08d113ec0c7349f07a3354d17d38816735a115.jpg"
+            },
+            {
+              "field": "audioUrl",
+              "master": null,
+              "runtime": "https://res.cloudinary.com/tuaepr58/video/upload/v1789542079/vocabflow/audio/content-v1/4ecd6162db1b4b732273869bd3aab3873031cbf335406ea510a2d192ff7e6ae8.mp3"
+            },
+            {
+              "field": "topic",
+              "master": null,
+              "runtime": "Food"
+            },
+            {
+              "field": "level",
+              "master": null,
+              "runtime": "GRADE_1"
+            }
+          ],
+          "decision": "UNRESOLVED",
+          "sameRuntimeIdCandidateForMasterSenses": [
+            "01a0fc13-09ed-70b4-801b-408be3b771e9"
+          ],
+          "polysemyAmbiguous": false,
+          "reconciliationFlags": []
+        }
+      ],
+      "decision": "UNRESOLVED"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ed-77ca-b066-98b5169c16b8",
+      "masterSenseId": "01a0fc13-09ee-7211-8e5a-784c689a0c7a",
+      "lemma": "bank",
+      "masterProjection": {
+        "word": "bank",
+        "ipa": null,
+        "vietnamese": "ngân hàng",
+        "definitionEn": "An organization that keeps and lends money and provides financial services.",
+        "exampleEn": "She deposited her paycheck at the bank.",
+        "imageUrl": null,
+        "audioUrl": null,
+        "topic": null,
+        "level": null,
+        "enabled": true
+      },
+      "existingMasterSenseMapping": null,
+      "runtimeCandidateSearchPerformed": true,
+      "runtimeCandidates": [
+        {
+          "appVocabularyId": 871,
+          "word": "bank",
+          "ipa": "bæŋk",
+          "vietnamese": "Ngân hàng",
+          "baseVietnamese": "Ngân hàng",
+          "vietnameseOverride": null,
+          "effectiveVietnamese": "Ngân hàng",
+          "definitionEn": "A financial institution that accepts deposits from the public and creates credit.",
+          "definition": "A financial institution that accepts deposits from the public and creates credit.",
+          "exampleEn": null,
+          "example": null,
+          "imageUrl": "https://res.cloudinary.com/tuaepr58/image/upload/v1789543163/vocabflow/images/content-v1/a99c24a75deec5735d2c1a47ca715119a594d1ba3ac7892e87ebbb6edaf17571.png",
+          "imageQuarantined": false,
+          "effectiveImageUrl": "https://res.cloudinary.com/tuaepr58/image/upload/v1789543163/vocabflow/images/content-v1/a99c24a75deec5735d2c1a47ca715119a594d1ba3ac7892e87ebbb6edaf17571.png",
+          "audioUrl": "https://res.cloudinary.com/tuaepr58/video/upload/v1789542166/vocabflow/audio/content-v1/64975747300e7c3c857909e4cea4e71a9a5857779144bc71535619d3435956d5.mp3",
+          "topic": "casual",
+          "legacyTopic": "casual",
+          "level": null,
+          "enabled": false,
+          "contentVersion": 1,
+          "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+          "sourceRecordId": 841,
+          "learnerProgressCount": 0,
+          "learnerProgressReferenceCount": 0,
+          "reviewEventCount": 0,
+          "reviewEventReferenceCount": 0,
+          "existingMasterSenseMapping": null,
+          "masterSenseMapping": null,
+          "matchingSignals": [
+            "EXACT_WORD",
+            "NORMALIZED_WORD",
+            "EXACT_EFFECTIVE_VIETNAMESE"
+          ],
+          "projectionEqualsMaster": false,
+          "candidateClassification": "PARTIAL_MATCH",
+          "vietnameseOverrideStatus": "NONE",
+          "imageQuarantineStatus": "FALSE",
+          "firstAdoptionAnalysis": "IDENTITY_REVIEW_REQUIRED",
+          "firstAdoptionPolicy": null,
+          "firstAdoptionReview": "DRIFT_REVIEW_REQUIRED",
+          "projectionDifferences": [
+            {
+              "field": "ipa",
+              "master": null,
+              "runtime": "bæŋk"
+            },
+            {
+              "field": "vietnamese",
+              "master": "ngân hàng",
+              "runtime": "Ngân hàng"
+            },
+            {
+              "field": "definitionEn",
+              "master": "An organization that keeps and lends money and provides financial services.",
+              "runtime": "A financial institution that accepts deposits from the public and creates credit."
+            },
+            {
+              "field": "exampleEn",
+              "master": "She deposited her paycheck at the bank.",
+              "runtime": null
+            },
+            {
+              "field": "imageUrl",
+              "master": null,
+              "runtime": "https://res.cloudinary.com/tuaepr58/image/upload/v1789543163/vocabflow/images/content-v1/a99c24a75deec5735d2c1a47ca715119a594d1ba3ac7892e87ebbb6edaf17571.png"
+            },
+            {
+              "field": "audioUrl",
+              "master": null,
+              "runtime": "https://res.cloudinary.com/tuaepr58/video/upload/v1789542166/vocabflow/audio/content-v1/64975747300e7c3c857909e4cea4e71a9a5857779144bc71535619d3435956d5.mp3"
+            },
+            {
+              "field": "topic",
+              "master": null,
+              "runtime": "casual"
+            },
+            {
+              "field": "enabled",
+              "master": true,
+              "runtime": false
+            }
+          ],
+          "decision": "UNRESOLVED",
+          "sameRuntimeIdCandidateForMasterSenses": [
+            "01a0fc13-09ee-7211-8e5a-784c689a0c7a",
+            "01a0fc13-09ee-7584-a480-e313e359f744"
+          ],
+          "polysemyAmbiguous": true,
+          "reconciliationFlags": [
+            "AMBIGUOUS_RUNTIME_IDENTITY"
+          ]
+        }
+      ],
+      "decision": "UNRESOLVED"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ed-77ca-b066-98b5169c16b8",
+      "masterSenseId": "01a0fc13-09ee-7584-a480-e313e359f744",
+      "lemma": "bank",
+      "masterProjection": {
+        "word": "bank",
+        "ipa": null,
+        "vietnamese": "bờ sông",
+        "definitionEn": "The sloping ground along the edge of a river.",
+        "exampleEn": "We sat on the bank of the river and watched the boats.",
+        "imageUrl": null,
+        "audioUrl": null,
+        "topic": null,
+        "level": null,
+        "enabled": true
+      },
+      "existingMasterSenseMapping": null,
+      "runtimeCandidateSearchPerformed": true,
+      "runtimeCandidates": [
+        {
+          "appVocabularyId": 871,
+          "word": "bank",
+          "ipa": "bæŋk",
+          "vietnamese": "Ngân hàng",
+          "baseVietnamese": "Ngân hàng",
+          "vietnameseOverride": null,
+          "effectiveVietnamese": "Ngân hàng",
+          "definitionEn": "A financial institution that accepts deposits from the public and creates credit.",
+          "definition": "A financial institution that accepts deposits from the public and creates credit.",
+          "exampleEn": null,
+          "example": null,
+          "imageUrl": "https://res.cloudinary.com/tuaepr58/image/upload/v1789543163/vocabflow/images/content-v1/a99c24a75deec5735d2c1a47ca715119a594d1ba3ac7892e87ebbb6edaf17571.png",
+          "imageQuarantined": false,
+          "effectiveImageUrl": "https://res.cloudinary.com/tuaepr58/image/upload/v1789543163/vocabflow/images/content-v1/a99c24a75deec5735d2c1a47ca715119a594d1ba3ac7892e87ebbb6edaf17571.png",
+          "audioUrl": "https://res.cloudinary.com/tuaepr58/video/upload/v1789542166/vocabflow/audio/content-v1/64975747300e7c3c857909e4cea4e71a9a5857779144bc71535619d3435956d5.mp3",
+          "topic": "casual",
+          "legacyTopic": "casual",
+          "level": null,
+          "enabled": false,
+          "contentVersion": 1,
+          "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+          "sourceRecordId": 841,
+          "learnerProgressCount": 0,
+          "learnerProgressReferenceCount": 0,
+          "reviewEventCount": 0,
+          "reviewEventReferenceCount": 0,
+          "existingMasterSenseMapping": null,
+          "masterSenseMapping": null,
+          "matchingSignals": [
+            "EXACT_WORD",
+            "NORMALIZED_WORD"
+          ],
+          "projectionEqualsMaster": false,
+          "candidateClassification": "PARTIAL_MATCH",
+          "vietnameseOverrideStatus": "NONE",
+          "imageQuarantineStatus": "FALSE",
+          "firstAdoptionAnalysis": "IDENTITY_REVIEW_REQUIRED",
+          "firstAdoptionPolicy": null,
+          "firstAdoptionReview": "DRIFT_REVIEW_REQUIRED",
+          "projectionDifferences": [
+            {
+              "field": "ipa",
+              "master": null,
+              "runtime": "bæŋk"
+            },
+            {
+              "field": "vietnamese",
+              "master": "bờ sông",
+              "runtime": "Ngân hàng"
+            },
+            {
+              "field": "definitionEn",
+              "master": "The sloping ground along the edge of a river.",
+              "runtime": "A financial institution that accepts deposits from the public and creates credit."
+            },
+            {
+              "field": "exampleEn",
+              "master": "We sat on the bank of the river and watched the boats.",
+              "runtime": null
+            },
+            {
+              "field": "imageUrl",
+              "master": null,
+              "runtime": "https://res.cloudinary.com/tuaepr58/image/upload/v1789543163/vocabflow/images/content-v1/a99c24a75deec5735d2c1a47ca715119a594d1ba3ac7892e87ebbb6edaf17571.png"
+            },
+            {
+              "field": "audioUrl",
+              "master": null,
+              "runtime": "https://res.cloudinary.com/tuaepr58/video/upload/v1789542166/vocabflow/audio/content-v1/64975747300e7c3c857909e4cea4e71a9a5857779144bc71535619d3435956d5.mp3"
+            },
+            {
+              "field": "topic",
+              "master": null,
+              "runtime": "casual"
+            },
+            {
+              "field": "enabled",
+              "master": true,
+              "runtime": false
+            }
+          ],
+          "decision": "UNRESOLVED",
+          "sameRuntimeIdCandidateForMasterSenses": [
+            "01a0fc13-09ee-7211-8e5a-784c689a0c7a",
+            "01a0fc13-09ee-7584-a480-e313e359f744"
+          ],
+          "polysemyAmbiguous": true,
+          "reconciliationFlags": [
+            "AMBIGUOUS_RUNTIME_IDENTITY"
+          ]
+        }
+      ],
+      "decision": "UNRESOLVED"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ee-781c-8793-6ec31c09956e",
+      "masterSenseId": "01a0fc13-09ee-71ff-9a0a-a96e48ef7dac",
+      "lemma": "record",
+      "masterProjection": {
+        "word": "record",
+        "ipa": "ˈɹɛk.ɚd",
+        "vietnamese": "bản thu âm",
+        "definitionEn": "A piece of music or speech that has been recorded so it can be played again.",
+        "exampleEn": "The record of the band's live concert can be streamed online.",
+        "imageUrl": null,
+        "audioUrl": null,
+        "topic": null,
+        "level": null,
+        "enabled": true
+      },
+      "existingMasterSenseMapping": null,
+      "runtimeCandidateSearchPerformed": true,
+      "runtimeCandidates": [
+        {
+          "appVocabularyId": 849,
+          "word": "record",
+          "ipa": "ˈrɛkərd",
+          "vietnamese": "Đĩa",
+          "baseVietnamese": "Đĩa",
+          "vietnameseOverride": null,
+          "effectiveVietnamese": "Đĩa",
+          "definitionEn": "A thin grooved disc of a material by which sound is recorded and reproduced, especially a vinyl disc.",
+          "definition": "A thin grooved disc of a material by which sound is recorded and reproduced, especially a vinyl disc.",
+          "exampleEn": null,
+          "example": null,
+          "imageUrl": "https://res.cloudinary.com/tuaepr58/image/upload/v1789543218/vocabflow/images/content-v1/be9fe7864e5001843c63044d47e7f6d2cfac68bd7760d306491d18f8fe67826d.png",
+          "imageQuarantined": false,
+          "effectiveImageUrl": "https://res.cloudinary.com/tuaepr58/image/upload/v1789543218/vocabflow/images/content-v1/be9fe7864e5001843c63044d47e7f6d2cfac68bd7760d306491d18f8fe67826d.png",
+          "audioUrl": "https://res.cloudinary.com/tuaepr58/video/upload/v1789542280/vocabflow/audio/content-v1/8347a699dde737215403b98582ea5a35435c47d7c162f1ba35e389cc91549ad8.mp3",
+          "topic": "casual",
+          "legacyTopic": "casual",
+          "level": null,
+          "enabled": false,
+          "contentVersion": 1,
+          "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+          "sourceRecordId": 819,
+          "learnerProgressCount": 0,
+          "learnerProgressReferenceCount": 0,
+          "reviewEventCount": 0,
+          "reviewEventReferenceCount": 0,
+          "existingMasterSenseMapping": null,
+          "masterSenseMapping": null,
+          "matchingSignals": [
+            "EXACT_WORD",
+            "NORMALIZED_WORD"
+          ],
+          "projectionEqualsMaster": false,
+          "candidateClassification": "PARTIAL_MATCH",
+          "vietnameseOverrideStatus": "NONE",
+          "imageQuarantineStatus": "FALSE",
+          "firstAdoptionAnalysis": "IDENTITY_REVIEW_REQUIRED",
+          "firstAdoptionPolicy": null,
+          "firstAdoptionReview": "DRIFT_REVIEW_REQUIRED",
+          "projectionDifferences": [
+            {
+              "field": "ipa",
+              "master": "ˈɹɛk.ɚd",
+              "runtime": "ˈrɛkərd"
+            },
+            {
+              "field": "vietnamese",
+              "master": "bản thu âm",
+              "runtime": "Đĩa"
+            },
+            {
+              "field": "definitionEn",
+              "master": "A piece of music or speech that has been recorded so it can be played again.",
+              "runtime": "A thin grooved disc of a material by which sound is recorded and reproduced, especially a vinyl disc."
+            },
+            {
+              "field": "exampleEn",
+              "master": "The record of the band's live concert can be streamed online.",
+              "runtime": null
+            },
+            {
+              "field": "imageUrl",
+              "master": null,
+              "runtime": "https://res.cloudinary.com/tuaepr58/image/upload/v1789543218/vocabflow/images/content-v1/be9fe7864e5001843c63044d47e7f6d2cfac68bd7760d306491d18f8fe67826d.png"
+            },
+            {
+              "field": "audioUrl",
+              "master": null,
+              "runtime": "https://res.cloudinary.com/tuaepr58/video/upload/v1789542280/vocabflow/audio/content-v1/8347a699dde737215403b98582ea5a35435c47d7c162f1ba35e389cc91549ad8.mp3"
+            },
+            {
+              "field": "topic",
+              "master": null,
+              "runtime": "casual"
+            },
+            {
+              "field": "enabled",
+              "master": true,
+              "runtime": false
+            }
+          ],
+          "decision": "UNRESOLVED",
+          "sameRuntimeIdCandidateForMasterSenses": [
+            "01a0fc13-09ee-71ff-9a0a-a96e48ef7dac",
+            "01a0fc13-09ee-7823-95fc-5d1d76f13fa5"
+          ],
+          "polysemyAmbiguous": true,
+          "reconciliationFlags": [
+            "AMBIGUOUS_RUNTIME_IDENTITY"
+          ]
+        }
+      ],
+      "decision": "UNRESOLVED"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ee-781c-8793-6ec31c09956e",
+      "masterSenseId": "01a0fc13-09ee-7823-95fc-5d1d76f13fa5",
+      "lemma": "record",
+      "masterProjection": {
+        "word": "record",
+        "ipa": "ɹɪˈkɔɹd",
+        "vietnamese": "ghi âm; ghi lại",
+        "definitionEn": "To capture sound, images, or information so it can be played or used later.",
+        "exampleEn": "She will record the interview tomorrow.",
+        "imageUrl": null,
+        "audioUrl": null,
+        "topic": null,
+        "level": null,
+        "enabled": true
+      },
+      "existingMasterSenseMapping": null,
+      "runtimeCandidateSearchPerformed": true,
+      "runtimeCandidates": [
+        {
+          "appVocabularyId": 849,
+          "word": "record",
+          "ipa": "ˈrɛkərd",
+          "vietnamese": "Đĩa",
+          "baseVietnamese": "Đĩa",
+          "vietnameseOverride": null,
+          "effectiveVietnamese": "Đĩa",
+          "definitionEn": "A thin grooved disc of a material by which sound is recorded and reproduced, especially a vinyl disc.",
+          "definition": "A thin grooved disc of a material by which sound is recorded and reproduced, especially a vinyl disc.",
+          "exampleEn": null,
+          "example": null,
+          "imageUrl": "https://res.cloudinary.com/tuaepr58/image/upload/v1789543218/vocabflow/images/content-v1/be9fe7864e5001843c63044d47e7f6d2cfac68bd7760d306491d18f8fe67826d.png",
+          "imageQuarantined": false,
+          "effectiveImageUrl": "https://res.cloudinary.com/tuaepr58/image/upload/v1789543218/vocabflow/images/content-v1/be9fe7864e5001843c63044d47e7f6d2cfac68bd7760d306491d18f8fe67826d.png",
+          "audioUrl": "https://res.cloudinary.com/tuaepr58/video/upload/v1789542280/vocabflow/audio/content-v1/8347a699dde737215403b98582ea5a35435c47d7c162f1ba35e389cc91549ad8.mp3",
+          "topic": "casual",
+          "legacyTopic": "casual",
+          "level": null,
+          "enabled": false,
+          "contentVersion": 1,
+          "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+          "sourceRecordId": 819,
+          "learnerProgressCount": 0,
+          "learnerProgressReferenceCount": 0,
+          "reviewEventCount": 0,
+          "reviewEventReferenceCount": 0,
+          "existingMasterSenseMapping": null,
+          "masterSenseMapping": null,
+          "matchingSignals": [
+            "EXACT_WORD",
+            "NORMALIZED_WORD"
+          ],
+          "projectionEqualsMaster": false,
+          "candidateClassification": "PARTIAL_MATCH",
+          "vietnameseOverrideStatus": "NONE",
+          "imageQuarantineStatus": "FALSE",
+          "firstAdoptionAnalysis": "IDENTITY_REVIEW_REQUIRED",
+          "firstAdoptionPolicy": null,
+          "firstAdoptionReview": "DRIFT_REVIEW_REQUIRED",
+          "projectionDifferences": [
+            {
+              "field": "ipa",
+              "master": "ɹɪˈkɔɹd",
+              "runtime": "ˈrɛkərd"
+            },
+            {
+              "field": "vietnamese",
+              "master": "ghi âm; ghi lại",
+              "runtime": "Đĩa"
+            },
+            {
+              "field": "definitionEn",
+              "master": "To capture sound, images, or information so it can be played or used later.",
+              "runtime": "A thin grooved disc of a material by which sound is recorded and reproduced, especially a vinyl disc."
+            },
+            {
+              "field": "exampleEn",
+              "master": "She will record the interview tomorrow.",
+              "runtime": null
+            },
+            {
+              "field": "imageUrl",
+              "master": null,
+              "runtime": "https://res.cloudinary.com/tuaepr58/image/upload/v1789543218/vocabflow/images/content-v1/be9fe7864e5001843c63044d47e7f6d2cfac68bd7760d306491d18f8fe67826d.png"
+            },
+            {
+              "field": "audioUrl",
+              "master": null,
+              "runtime": "https://res.cloudinary.com/tuaepr58/video/upload/v1789542280/vocabflow/audio/content-v1/8347a699dde737215403b98582ea5a35435c47d7c162f1ba35e389cc91549ad8.mp3"
+            },
+            {
+              "field": "topic",
+              "master": null,
+              "runtime": "casual"
+            },
+            {
+              "field": "enabled",
+              "master": true,
+              "runtime": false
+            }
+          ],
+          "decision": "UNRESOLVED",
+          "sameRuntimeIdCandidateForMasterSenses": [
+            "01a0fc13-09ee-71ff-9a0a-a96e48ef7dac",
+            "01a0fc13-09ee-7823-95fc-5d1d76f13fa5"
+          ],
+          "polysemyAmbiguous": true,
+          "reconciliationFlags": [
+            "AMBIGUOUS_RUNTIME_IDENTITY"
+          ]
+        }
+      ],
+      "decision": "UNRESOLVED"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ee-73d5-affa-6e017eb9adb3",
+      "masterSenseId": "01a0fc13-09ee-79c7-85ff-cbe0fc14a249",
+      "lemma": "look after",
+      "masterProjection": {
+        "word": "look after",
+        "ipa": null,
+        "vietnamese": "chăm sóc; trông nom",
+        "definitionEn": "To take responsibility for someone or something and make sure they are safe or cared for.",
+        "exampleEn": "Can you look after my dog this weekend?",
+        "imageUrl": null,
+        "audioUrl": null,
+        "topic": null,
+        "level": null,
+        "enabled": true
+      },
+      "existingMasterSenseMapping": null,
+      "runtimeCandidateSearchPerformed": true,
+      "runtimeCandidates": [],
+      "decision": "UNRESOLVED"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ee-7113-8786-38671cd485b7",
+      "masterSenseId": "01a0fc13-09ef-710c-8e76-753a5cfea69c",
+      "lemma": "algorithm",
+      "masterProjection": {
+        "word": "algorithm",
+        "ipa": null,
+        "vietnamese": "thuật toán",
+        "definitionEn": "A defined sequence of steps that a computer follows to solve a problem or process information.",
+        "exampleEn": "The app uses an algorithm to sort the search results.",
+        "imageUrl": null,
+        "audioUrl": null,
+        "topic": null,
+        "level": null,
+        "enabled": true
+      },
+      "existingMasterSenseMapping": null,
+      "runtimeCandidateSearchPerformed": true,
+      "runtimeCandidates": [],
+      "decision": "UNRESOLVED"
+    },
+    {
+      "masterLexemeId": "01a0fc13-09ef-7e5d-b757-aa456f0cd969",
+      "masterSenseId": "01a0fc13-09ef-7d37-a50f-d05db6b1a89c",
+      "lemma": "reservation",
+      "masterProjection": {
+        "word": "reservation",
+        "ipa": null,
+        "vietnamese": "việc đặt chỗ trước",
+        "definitionEn": "An arrangement made in advance to keep a place, room, or table for someone.",
+        "exampleEn": "I made a reservation for two at seven o'clock.",
+        "imageUrl": null,
+        "audioUrl": null,
+        "topic": null,
+        "level": null,
+        "enabled": true
+      },
+      "existingMasterSenseMapping": null,
+      "runtimeCandidateSearchPerformed": true,
+      "runtimeCandidates": [
+        {
+          "appVocabularyId": 284,
+          "word": "reservation",
+          "ipa": "ˌrɛzərˈveɪʃən",
+          "vietnamese": "Đặt chỗ",
+          "baseVietnamese": "Đặt chỗ",
+          "vietnameseOverride": null,
+          "effectiveVietnamese": "Đặt chỗ",
+          "definitionEn": "An arrangement to have something reserved, such as a table at a restaurant.",
+          "definition": "An arrangement to have something reserved, such as a table at a restaurant.",
+          "exampleEn": null,
+          "example": null,
+          "imageUrl": "https://res.cloudinary.com/tuaepr58/image/upload/v1789543292/vocabflow/images/content-v1/da33753a7f38d876c0df7ce81b0d63d31694c0c65a1bcfe7bd5be63f44fba5fc.jpg",
+          "imageQuarantined": false,
+          "effectiveImageUrl": "https://res.cloudinary.com/tuaepr58/image/upload/v1789543292/vocabflow/images/content-v1/da33753a7f38d876c0df7ce81b0d63d31694c0c65a1bcfe7bd5be63f44fba5fc.jpg",
+          "audioUrl": "https://res.cloudinary.com/tuaepr58/video/upload/v1789542061/vocabflow/audio/content-v1/4aeeeec07bedea313bf9b92f09056f5027babc3216832deb56e875c2bc736cdf.mp3",
+          "topic": "CommonPlace",
+          "legacyTopic": "CommonPlace",
+          "level": null,
+          "enabled": false,
+          "contentVersion": 1,
+          "sourceDataset": "2000_COMMON_ENGLISH_VOCABULARY_V1",
+          "sourceRecordId": 254,
+          "learnerProgressCount": 0,
+          "learnerProgressReferenceCount": 0,
+          "reviewEventCount": 0,
+          "reviewEventReferenceCount": 0,
+          "existingMasterSenseMapping": null,
+          "masterSenseMapping": null,
+          "matchingSignals": [
+            "EXACT_WORD",
+            "NORMALIZED_WORD"
+          ],
+          "projectionEqualsMaster": false,
+          "candidateClassification": "PARTIAL_MATCH",
+          "vietnameseOverrideStatus": "NONE",
+          "imageQuarantineStatus": "FALSE",
+          "firstAdoptionAnalysis": "IDENTITY_REVIEW_REQUIRED",
+          "firstAdoptionPolicy": null,
+          "firstAdoptionReview": "DRIFT_REVIEW_REQUIRED",
+          "projectionDifferences": [
+            {
+              "field": "ipa",
+              "master": null,
+              "runtime": "ˌrɛzərˈveɪʃən"
+            },
+            {
+              "field": "vietnamese",
+              "master": "việc đặt chỗ trước",
+              "runtime": "Đặt chỗ"
+            },
+            {
+              "field": "definitionEn",
+              "master": "An arrangement made in advance to keep a place, room, or table for someone.",
+              "runtime": "An arrangement to have something reserved, such as a table at a restaurant."
+            },
+            {
+              "field": "exampleEn",
+              "master": "I made a reservation for two at seven o'clock.",
+              "runtime": null
+            },
+            {
+              "field": "imageUrl",
+              "master": null,
+              "runtime": "https://res.cloudinary.com/tuaepr58/image/upload/v1789543292/vocabflow/images/content-v1/da33753a7f38d876c0df7ce81b0d63d31694c0c65a1bcfe7bd5be63f44fba5fc.jpg"
+            },
+            {
+              "field": "audioUrl",
+              "master": null,
+              "runtime": "https://res.cloudinary.com/tuaepr58/video/upload/v1789542061/vocabflow/audio/content-v1/4aeeeec07bedea313bf9b92f09056f5027babc3216832deb56e875c2bc736cdf.mp3"
+            },
+            {
+              "field": "topic",
+              "master": null,
+              "runtime": "CommonPlace"
+            },
+            {
+              "field": "enabled",
+              "master": true,
+              "runtime": false
+            }
+          ],
+          "decision": "UNRESOLVED",
+          "sameRuntimeIdCandidateForMasterSenses": [
+            "01a0fc13-09ef-7d37-a50f-d05db6b1a89c"
+          ],
+          "polysemyAmbiguous": false,
+          "reconciliationFlags": []
+        }
+      ],
+      "decision": "UNRESOLVED"
+    }
+  ],
+  "topics": [],
+  "learningSets": [
+    {
+      "masterLearningSetId": "01a0fc13-09f2-7709-a32d-5bef5b1f7a51",
+      "code": "TECHNOLOGY_STARTER",
+      "slug": "technology-starter",
+      "name": "Technology starter",
+      "decision": "UNRESOLVED",
+      "runtimeLearningSetCount": 16,
+      "runtimeCandidateSearchPerformed": true,
+      "existingMasterLearningSetMapping": null,
+      "runtimeCandidates": []
+    }
+  ],
+  "redactedSensitiveUrlCount": 0,
+  "decisionsRemainUnresolved": true
+}
