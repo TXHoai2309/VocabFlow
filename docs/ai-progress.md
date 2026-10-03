@@ -1,5 +1,26 @@
 # Current Handoff Snapshot
 
+## 2026-10-03 — Master Vocabulary V2 Phase 2E.2 owner reconciliation review
+
+- Re-verified the approved 2.1.0 release against the development Neon target and
+  refreshed the snapshot in REPEATABLE READ / READ ONLY transactions. The
+  targeted apple audit found both rows reachable through current catalog/topic
+  flows, distinct Learning Set memberships, and one learner with progress on
+  both IDs (`DUPLICATE_LEARNER_HISTORY`). No learner identifiers were selected.
+- Added the analysis-only owner proposal and detailed review report. Apple
+  options A/B/C remain unranked; the other seven Sense proposals and
+  Technology Starter CREATE_NEW proposal remain `ownerDecision=UNRESOLVED`.
+  The human-owned reconciliation file and all runtime/API data remain
+  unchanged.
+- Reconfirmed six historical migration hash mismatches with all 18 rows present
+  and 0015–0017 matching. The planner does not check this ledger when computing
+  `canApply`; the drift remains a separate unresolved integrity concern, not
+  classified as harmless.
+- No database mutation, import APPLY, migration, history merge, mapping change,
+  ID allocation, Cloudinary operation, or Study UI/API change occurred. Focused
+  scanner/proposal/planner tests: 25 passing; Master validator, TypeScript,
+  ESLint, and `git diff --check` results are recorded after final verification.
+
 ## 2026-10-03 — Continue Learning Home card (US-47)
 
 - Audit: the previous Home card previewed `reviewQueue.queue[0]` and linked to
@@ -7,10 +28,11 @@
   there is no runtime persisted incomplete session or exact-resume endpoint.
 - Added one authenticated, read-only learner summary API. It selects a
   partially learned active assigned Learning Set, eligible Topic, or Saved
-  scope using that scope's own enabled vocabulary and learner statuses. Latest
-  `review_events.reviewed_at` selects the most recent candidate; deterministic
+  scope using that scope's own enabled vocabulary and learner statuses. Topic
+  membership now intersects enabled Topic words with active-set vocabulary,
+  matching Study Setup's actual scope. Latest `review_events.reviewed_at` ranks
+  candidates heuristically; source collection is not persisted. Deterministic
   Set → Topic → Saved/sort-order/ID ordering breaks ties and missing timestamps.
-  Topic progress matches Topic Detail and requires active-set-eligible content.
 - Home changes are isolated to the existing Continue card and its styling. Its
   CTA preserves Topic/Set/all-saved scope in Study Setup; no mode or exact
   session is fabricated. When there is no candidate or the summary fails, the
@@ -22,8 +44,27 @@
   22.19.0 versus pin 22.23.2.
 - Dataset V2 and other unrelated changes in the shared workspace were left
   untouched and will remain unstaged. No database mutation, merge, or
-  deployment. Commit and push status will be recorded after the feature-only
-  commit.
+  deployment.
+
+### 2026-10-03 — Continue Learning Topic-domain correction
+
+- Confirmed Study Setup obtains the learner's default review queue (active
+  Learning Set membership), then intersects queue vocabulary IDs with Topic
+  membership. The former Continue Learning query only checked that a Topic had
+  one active-set word, then counted every enabled Topic word (for example,
+  3/23 instead of 3/5).
+- Topic candidate members now use enabled Topic vocabulary ∩ enabled active-set
+  vocabulary. Learner status is aggregated only over that intersection, so
+  outside-set progress cannot create or distort a Topic candidate.
+- Latest review events are pre-aggregated once per learner vocabulary and then
+  joined to collection members; the existing learner/vocabulary/reviewed-at
+  index is used, with no migration. This time is still only a heuristic because
+  events do not store collection provenance. Home now says “Hoạt động gần
+  nhất”; exact session/source resume remains unsupported.
+- Focused Home, Topic/progress, Learning Set, Study Setup/queue and Continue API
+  tests pass: 9 files / 95 tests. `pnpm typecheck`, `pnpm build`, feature
+  ESLint, and `git diff --check` pass. No DB mutation or deployment.
+- Dataset V2 changes in the shared working tree were preserved and not staged.
 
 ## 2026-10-03 — Saved Vocabulary all-saved study scope (US-46)
 

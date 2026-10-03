@@ -234,7 +234,10 @@ export function ContinueLearningCard({
           <div className="home-next-copy">
             <small>{continueScopeLabel(candidate.scope)}</small>
             <strong>{candidate.title}</strong>
-            <span>Đã học {candidate.learnedCount} / {candidate.totalCount} từ</span>
+            <div className="home-continue-progress-copy">
+              <span>Đã học {candidate.learnedCount} / {candidate.totalCount} từ</span>
+              <small>{candidate.progressPercent}%</small>
+            </div>
             <div
               className="home-continue-progress"
               role="progressbar"
@@ -246,8 +249,7 @@ export function ContinueLearningCard({
             >
               <span style={{ width: `${candidate.progressPercent}%` }} />
             </div>
-            <small className="home-continue-percent">{candidate.progressPercent}%</small>
-            {candidate.lastActivityAt ? <time className="home-continue-last-activity" dateTime={candidate.lastActivityAt}>Học gần nhất: {lastActivityLabel(candidate.lastActivityAt)}</time> : null}
+            {candidate.lastActivityAt ? <time className="home-continue-last-activity" dateTime={candidate.lastActivityAt}>Hoạt động gần nhất: {lastActivityLabel(candidate.lastActivityAt)}</time> : null}
           </div>
           <Link className="home-button home-button-primary" aria-label={`Tiếp tục học ${candidate.title}`} to={continueTarget(candidate)}>Tiếp tục học</Link>
         </div>

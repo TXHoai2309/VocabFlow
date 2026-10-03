@@ -90,8 +90,14 @@ describe("continue learning read model", () => {
     expect(aggregate).toContain("t.enabled = true");
     expect(aggregate).toContain("v.enabled = true");
     expect(aggregate).toContain("lsv.learner_id =");
-    expect(aggregate).toContain("eligible_vocabulary ev ON ev.vocabulary_id = eligible_vt.vocabulary_id");
+    expect(aggregate).toContain("JOIN eligible_vocabulary ev ON ev.vocabulary_id = vt.vocabulary_id");
     expect(aggregate).toContain("MAX(re.reviewed_at) AS last_activity_at");
+    expect(aggregate).toContain("collection_vocabulary AS (");
+    expect(aggregate).toContain("latest_review_by_vocabulary AS (");
+    expect(aggregate).toContain("JOIN collection_vocabulary cv ON cv.vocabulary_id = re.vocabulary_id");
+    expect(aggregate).toContain("GROUP BY re.vocabulary_id");
+    expect(aggregate).toContain("LEFT JOIN latest_review_by_vocabulary lr ON lr.vocabulary_id = cm.vocabulary_id");
+    expect(aggregate).not.toContain('LEFT JOIN "vocabflow_app"."review_events" re');
     expect(aggregate).toContain("lp.status::text IN ('LEARNING', 'MASTERED')");
     expect(aggregate).toContain("COUNT(DISTINCT cm.vocabulary_id)");
     expect(aggregate).toContain("WHERE learned_count > 0 AND learned_count < total_count");
@@ -110,6 +116,42 @@ describe("continue learning read model", () => {
     await expect(createContinueLearningService({ execute }).get("parent-1", learnerId))
       .resolves.toEqual({ learnerId, candidate: null });
   });
+
+  it("counts a Topic only over the enabled active-set intersection", async () => {
+    const queries: string[] = [];
+    const database = { execute: vi.fn(async (query) => {
+      queries.push(new PgDialect().sqlToQuery(query).sql);
+      if (queries.length === 1) return authorized();
+      // Fixture: the Topic has 23 enabled words, 5 overlap active Sets, and 3 of those 5 are learned.
+      return { rows: [{ scope: "TOPIC", scope_id: 8, title: "Food", total_count: "5", learned_count: "3", last_activity_at: null }] };
+    }) };
+
+    const result = await createContinueLearningService(database).get("parent-1", learnerId);
+    expect(result.candidate).toMatchObject({
+      scope: "TOPIC", scopeId: 8, title: "Food", totalCount: 5, learnedCount: 3, progressPercent: 60
+    });
+    const aggregate = queries[1] ?? "";
+    expect(aggregate).toContain("JOIN eligible_vocabulary ev ON ev.vocabulary_id = vt.vocabulary_id");
+    expect(aggregate).toContain("WHERE learned_count > 0 AND learned_count < total_count");
+  });
+
+  it.each(["untouched active subset", "complete active subset"])(
+    "does not select a Topic based on learned vocabulary outside its %s",
+    async () => {
+      const queries: string[] = [];
+      const execute = vi.fn(async (query) => {
+        queries.push(new PgDialect().sqlToQuery(query).sql);
+        if (queries.length === 1) return authorized();
+        // Any LEARNING/MASTERED rows outside active Sets are excluded by the membership join.
+        return { rows: [] };
+      });
+      await expect(createContinueLearningService({ execute }).get("parent-1", learnerId))
+        .resolves.toEqual({ learnerId, candidate: null });
+      const aggregate = queries[1] ?? "";
+      expect(aggregate).toContain("JOIN eligible_vocabulary ev ON ev.vocabulary_id = vt.vocabulary_id");
+      expect(aggregate).toContain("WHERE learned_count > 0 AND learned_count < total_count");
+    }
+  );
 
   it("returns only the most recent candidate selected by the server and computes rounded progress", async () => {
     const execute = vi.fn()

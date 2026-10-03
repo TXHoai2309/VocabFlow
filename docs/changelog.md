@@ -2,6 +2,20 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-03 — Align Continue Learning Topic scope
+
+- Restricted Topic candidate progress to enabled Topic vocabulary intersected
+  with the active learner's enabled active-set vocabulary, matching the domain
+  Study Setup can queue. Learning Set and Saved membership remain unchanged.
+- Pre-aggregated latest review time per learner/vocabulary before joining the
+  collections, preventing review-event row multiplication. Since event rows do
+  not persist collection provenance, the card now says “Hoạt động gần nhất”.
+- Added regressions for a 23-word Topic with 5 active eligible words and 3
+  learned, exclusion of out-of-scope progress, unchanged Set/Saved behavior,
+  deterministic ranking, Topic CTA scope, fallback, and wording.
+- Focused validation passes: 9 files / 95 tests, typecheck, build, feature
+  ESLint, and `git diff --check`. No migration or database mutation.
+
 ## 2026-10-03 — Continue Learning (US-47)
 
 - Replaced only the Home “Tiếp tục học” card's next-review-queue preview with

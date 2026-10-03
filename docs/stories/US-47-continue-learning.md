@@ -59,17 +59,22 @@ scope and see its real progress and, when available, its latest review time.
   fetch the full vocabulary catalog for this card.
 - AC-02: Only partially learned scopes are candidates; untouched and completed
   collections are not selected.
-- AC-03: Topic progress matches Topic Detail (all enabled Topic vocabulary;
-  the Topic is available only when it has active-set-eligible content). Set
-  progress is over enabled members of that active assigned set. Saved progress
-  is over that learner's enabled saved vocabulary.
+- AC-03: Topic progress is over the intersection of enabled vocabulary,
+  Topic membership, and the learner's active Learning Set vocabulary, matching
+  Study Setup's actual topic-scoped queue domain. Set progress is over enabled
+  members of that active assigned set. Saved progress is over that learner's
+  enabled saved vocabulary.
 - AC-04: Learned/total counts and rounded progress percentage are derived from
   the selected collection's own learner statuses, not global learner totals.
-- AC-05: Latest activity comes only from that learner's actual review events.
-  If no event exists, hide its timestamp. Do not infer a study mode; mode is
-  omitted because runtime does not persist it.
-- AC-06: Most recent activity wins. Ties and missing timestamps follow the
-  deterministic order in §3. No random or arbitrary candidate is selected.
+- AC-05: Latest activity uses that learner's actual review events. Because
+  events do not persist collection provenance, the timestamp is a candidate
+  ranking heuristic only; the UI says “Hoạt động gần nhất”. Hide the time when
+  no event exists. Do not infer a study mode; mode is omitted because runtime
+  does not persist it.
+- AC-06: The latest vocabulary review activity among each collection's current
+  members ranks first. This does not prove which collection was open when the
+  review occurred. Ties and missing timestamps follow the deterministic order
+  in §3. No random or arbitrary candidate is selected.
 - AC-07: Each candidate's CTA preserves its exact Topic, Set, or all-saved
   scope and enters Study Setup without a full page reload.
 - AC-08: When no candidate exists or its API is unavailable, show the current
@@ -88,6 +93,8 @@ scope and see its real progress and, when available, its latest review time.
 - Keep the existing card position, title, and visual hierarchy. Replace only
   its content with a compact icon/collection label, title, progress, optional
   latest review time, and primary “Tiếp tục học” action.
+- Label the timestamp “Hoạt động gần nhất” so it does not imply collection
+  provenance.
 - Do not show a mode row without a persisted source. Keep the existing
   “Bắt đầu phiên học” fallback when no continuation target is available.
 - On mobile, stack the icon/content/action, let the progress track fill the
@@ -98,11 +105,14 @@ scope and see its real progress and, when available, its latest review time.
 - A collection is in progress only when at least one of its enabled members is
   `LEARNING` or `MASTERED`, and at least one enabled member is still not learned.
 - Candidate time is `MAX(review_events.reviewed_at)` among the selected
-  learner's scoped vocabulary, not assignment/create/update time.
+  learner's scoped vocabulary, not assignment/create/update time. Review events
+  do not persist collection/source provenance, so this time is only a
+  candidate-ordering heuristic.
 - Mode and originating scope are not recorded in review events. The Home card
   makes no claim about the previous mode.
-- This feature continues a collection at Setup; it does not resume the old
-  in-memory queue or question position.
+- No persisted study session or collection source provenance exists. This
+  feature continues a collection at Setup; it does not resume the prior queue,
+  question position, or exact source session.
 
 ## 8. API contract
 
@@ -125,10 +135,13 @@ scope and see its real progress and, when available, its latest review time.
 ## 10. Data and persistence contract
 
 - Progress source: `learner_progress.status`, with absent rows treated as not
-  learned, matching Topic Detail and Learning Set Detail.
-- Recency source: `review_events.reviewed_at`.
+  learned. Topic totals use only its intersection with enabled active-set
+  vocabulary, matching the domain Study Setup can actually queue.
+- Recency source: `review_events.reviewed_at`, used only as a vocabulary-level
+  activity heuristic because collection provenance is not persisted.
 - No `study_sessions` runtime table or persisted queue currently exists; exact
-  session resume is explicitly unavailable.
+  session resume is explicitly unavailable. Exact collection/source resume is
+  also unavailable because review events do not store collection origin.
 
 ## 11. Error and recovery matrix
 
@@ -194,5 +207,12 @@ and progress on entry.
 - `pnpm typecheck`, `pnpm build`, Home/API/contracts feature ESLint, and
   `git diff --check` pass. The build reports existing dynamic-import and
   bundle-size warnings; local Node is 22.19.0 versus the repo pin 22.23.2.
-- No production deployment or database mutation was performed. Commit/push
-  evidence will be added after the branch update.
+- 2026-10-03 follow-up audit: Topic candidate membership is narrowed to enabled
+  Topic vocabulary intersected with enabled active-set vocabulary, matching
+  Study Setup. Latest review time is labelled “Hoạt động gần nhất” because
+  collection provenance is not stored; review events are pre-aggregated once
+  per vocabulary to avoid row multiplication.
+- Follow-up focused Home, Topic, Learning Set, Study Setup/queue, and API tests
+  pass: 9 files / 95 tests. `pnpm typecheck`, `pnpm build`, feature ESLint, and
+  `git diff --check` pass. No migration, database mutation, or production
+  deployment was performed.

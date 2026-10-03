@@ -420,8 +420,9 @@ The owner-verified Hoài/Ngọc metric snapshots are recorded in US-20 and US-21
 - Contract: [`US-47 Continue Learning`](stories/US-47-continue-learning.md).
 - Upgrades only Home's existing “Tiếp tục học” card with one authorized
   candidate from the active learner's partially learned Topic, active Learning
-  Set, or Saved collection. Progress is collection-scoped; last activity is
-  sourced from review events. Study Setup receives the selected scope.
+  Set, or Saved collection. Progress is collection-scoped; latest review time
+  is a vocabulary-level activity heuristic because collection provenance is
+  not persisted. Study Setup receives the selected scope.
 - Exact session resume remains unsupported because the Study queue/index is
   transient and no runtime persisted session exists. No browser storage or
   Dataset V2 content/pipeline change is introduced.

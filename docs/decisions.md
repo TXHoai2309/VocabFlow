@@ -403,16 +403,20 @@ evidence condition is met and the affected source document is updated.
   Study session entity or API.
 - Decision: Continue Learning selects one learner-authorized, partially learned
   Topic, active assigned Learning Set, or Saved collection. A collection is
-  eligible only when `0 < learnedCount < totalCount`. Rank by the latest actual
-  `review_events.reviewed_at`; ties and missing timestamps use deterministic
-  Set → Topic → Saved, collection sort order, then ID. Continue navigates to
-  Study Setup with the exact collection scope. Do not create fake session
-  resume using browser storage; omit mode unless a future persisted source is
-  introduced.
+  eligible only when `0 < learnedCount < totalCount`. Topic membership is
+  intersected with enabled vocabulary in the learner's active assigned Sets,
+  matching the Topic scope Study Setup can actually queue. Rank by the latest
+  actual `review_events.reviewed_at`; this is only a vocabulary-level activity
+  heuristic because collection provenance is not persisted. Ties and missing
+  timestamps use deterministic Set → Topic → Saved, collection sort order, then
+  ID. Continue navigates to Study Setup with the exact collection scope. Do not
+  create fake session/source resume using browser storage; omit mode unless a
+  future persisted source is introduced.
 - Consequences: Home needs one compact read-only aggregate summary. Progress is
   calculated from the selected collection's own members and learner statuses.
-  Exact question/queue resume stays unsupported and can be reconsidered only
-  alongside an accepted session persistence model.
+  Exact question/queue or collection-origin resume stays unsupported and can be
+  reconsidered only alongside an accepted session persistence model that
+  persists collection provenance.
 - Evidence/source: [US-47 Continue Learning](stories/US-47-continue-learning.md),
   [Feature UI Specification](design/feature-ui-spec.md#continue-learning-card-us-47),
   `apps/api/src/continue-learning.ts`, and the runtime Study state in

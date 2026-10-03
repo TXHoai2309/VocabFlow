@@ -186,9 +186,9 @@ function continueCandidate(overrides: Partial<ContinueLearningCandidate> = {}): 
     scope: "TOPIC",
     scopeId: 7,
     title: "School",
-    totalCount: 20,
-    learnedCount: 6,
-    progressPercent: 30,
+    totalCount: 5,
+    learnedCount: 3,
+    progressPercent: 60,
     lastActivityAt: "2026-10-02T08:30:00.000Z",
     ...overrides
   };
@@ -278,10 +278,15 @@ describe("Home dashboard", () => {
     const card = await screen.findByRole("region", { name: "Tiếp tục học" });
     expect(card).toHaveTextContent("Chủ đề");
     expect(card).toHaveTextContent("School");
-    expect(card).toHaveTextContent("Đã học 6 / 20 từ");
-    expect(card).toHaveTextContent("30%");
-    expect(screen.getByRole("progressbar", { name: "Tiến trình School" })).toHaveAttribute("aria-valuenow", "30");
+    expect(card).toHaveTextContent("Đã học 3 / 5 từ");
+    expect(card).toHaveTextContent("60%");
+    const progress = screen.getByRole("progressbar", { name: "Tiến trình School" });
+    expect(progress).toHaveAttribute("aria-valuenow", "60");
+    const progressCopy = card.querySelector(".home-continue-progress-copy");
+    expect(progressCopy).toHaveTextContent("Đã học 3 / 5 từ60%");
+    expect(progressCopy?.nextElementSibling).toBe(progress);
     expect(card.querySelector("time")).toHaveAttribute("dateTime", "2026-10-02T08:30:00.000Z");
+    expect(card.querySelector("time")).toHaveTextContent(/^Hoạt động gần nhất:/);
     expect(screen.getByRole("link", { name: "Tiếp tục học School" })).toHaveAttribute("href", "/study/setup?topicId=7");
     expect(screen.queryByText(/mode/i)).not.toBeInTheDocument();
   });
@@ -295,7 +300,7 @@ describe("Home dashboard", () => {
 
     expect(await screen.findByRole("link", { name: "Tiếp tục học School basics" })).toHaveAttribute("href", "/study/setup?learningSetId=12");
     expect(screen.getByRole("region", { name: "Tiếp tục học" })).toHaveTextContent("Đã học 3 / 8 từ");
-    expect(screen.queryByText(/Học gần nhất:/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Hoạt động gần nhất:/)).not.toBeInTheDocument();
   });
 
   it("continues saved vocabulary with its explicit all-saved setup scope", async () => {

@@ -197,8 +197,9 @@ Login success
 - Show one in-progress Topic, active assigned Learning Set, or Saved
   collection, with that collection's real `learned / total` count, semantic
   progress bar, and rounded percentage.
-- Show latest review-event time only when present. Omit mode because runtime
-  does not persist the most recent mode.
+- Show “Hoạt động gần nhất” with the latest review-event time only when present;
+  it is a vocabulary-level heuristic and does not imply collection provenance.
+  Omit mode because runtime does not persist it.
 - “Tiếp tục học” enters Study Setup with the selected Topic, Set, or explicit
   all-saved scope. It continues the collection, not an exact prior queue.
 - If there is no candidate or the summary cannot load, retain the existing

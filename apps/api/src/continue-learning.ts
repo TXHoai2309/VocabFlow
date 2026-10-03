@@ -57,6 +57,8 @@ function timestamp(value: unknown): string | null {
 }
 
 async function latestCandidate(database: ContinueLearningDatabase, learnerId: string): Promise<ContinueLearningCandidate | null> {
+  // Review events store vocabulary activity, not collection provenance; timestamps are only a ranking heuristic.
+  // Study session queue, index, mode and source provenance are not persisted, so exact session/source resume is unsupported.
   const result = await database.execute(sql`
     WITH active_sets AS (
       SELECT ls.id, ls.name, ls.sort_order
@@ -81,18 +83,13 @@ async function latestCandidate(database: ContinueLearningDatabase, learnerId: st
         ON v.id = lsi.vocabulary_id AND v.enabled = true
       UNION ALL
       SELECT 'TOPIC'::text AS scope, t.id AS scope_id, t.name AS title,
-             t.sort_order AS scope_order, vt.vocabulary_id
+             t.sort_order AS scope_order, ev.vocabulary_id
       FROM "${sql.raw(APP_SCHEMA)}"."topics" t
       JOIN "${sql.raw(APP_SCHEMA)}"."vocabulary_topics" vt ON vt.topic_id = t.id
+      JOIN eligible_vocabulary ev ON ev.vocabulary_id = vt.vocabulary_id
       JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v
-        ON v.id = vt.vocabulary_id AND v.enabled = true
+        ON v.id = ev.vocabulary_id AND v.enabled = true
       WHERE t.enabled = true
-        AND EXISTS (
-          SELECT 1
-          FROM "${sql.raw(APP_SCHEMA)}"."vocabulary_topics" eligible_vt
-          JOIN eligible_vocabulary ev ON ev.vocabulary_id = eligible_vt.vocabulary_id
-          WHERE eligible_vt.topic_id = t.id
-        )
       UNION ALL
       SELECT 'SAVED'::text AS scope, NULL::integer AS scope_id, 'Từ đã lưu'::text AS title,
              2147483647 AS scope_order, lsv.vocabulary_id
@@ -100,6 +97,16 @@ async function latestCandidate(database: ContinueLearningDatabase, learnerId: st
       JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v
         ON v.id = lsv.vocabulary_id AND v.enabled = true
       WHERE lsv.learner_id = ${learnerId}::uuid
+    ),
+    collection_vocabulary AS (
+      SELECT DISTINCT vocabulary_id FROM collection_members
+    ),
+    latest_review_by_vocabulary AS (
+      SELECT re.vocabulary_id, MAX(re.reviewed_at) AS last_activity_at
+      FROM "${sql.raw(APP_SCHEMA)}"."review_events" re
+      JOIN collection_vocabulary cv ON cv.vocabulary_id = re.vocabulary_id
+      WHERE re.learner_id = ${learnerId}::uuid
+      GROUP BY re.vocabulary_id
     ),
     collection_progress AS (
       SELECT
@@ -111,12 +118,11 @@ async function latestCandidate(database: ContinueLearningDatabase, learnerId: st
         COUNT(DISTINCT cm.vocabulary_id) FILTER (
           WHERE lp.status::text IN ('LEARNING', 'MASTERED')
         ) AS learned_count,
-        MAX(re.reviewed_at) AS last_activity_at
+        MAX(lr.last_activity_at) AS last_activity_at
       FROM collection_members cm
       LEFT JOIN "${sql.raw(APP_SCHEMA)}"."learner_progress" lp
         ON lp.learner_id = ${learnerId}::uuid AND lp.vocabulary_id = cm.vocabulary_id
-      LEFT JOIN "${sql.raw(APP_SCHEMA)}"."review_events" re
-        ON re.learner_id = ${learnerId}::uuid AND re.vocabulary_id = cm.vocabulary_id
+      LEFT JOIN latest_review_by_vocabulary lr ON lr.vocabulary_id = cm.vocabulary_id
       GROUP BY cm.scope, cm.scope_id, cm.title, cm.scope_order
     )
     SELECT scope, scope_id, title, total_count, learned_count, last_activity_at
