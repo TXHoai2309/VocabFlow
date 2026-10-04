@@ -313,3 +313,36 @@ gate. No safety conclusion is drawn from that separation. The historical Phase
 - [Runtime preservation preview](../../vocabflow-dataset/reports/canary-development-preservation-policy-preview.md)
 - [Old/new projection comparison](../../vocabflow-dataset/reports/canary-development-projection-preservation-comparison.md)
 - [Migration drift scan](../../vocabflow-dataset/reports/canary-development-migration-drift-scan-2026-10-04.md)
+
+## Phase 2E.4B — Migration hash root-cause audit
+
+Drizzle ORM 0.45.2 hashes the complete SQL text read from each working-tree
+file. It does not normalize line endings, so `core.autocrlf=true` produced
+different digests for identical Git migration blobs in the primary and isolated
+worktrees. This explains the six mismatches in Phase 2E.3 and seventeen in
+Phase 2E.4A; the database hash for each row matches the exact LF/CRLF/bare-CR
+Drizzle digest of the same migration source. No historical migration content
+drift remains, and no migration SQL or ledger row was changed.
+
+The scanner now verifies those exact Drizzle representations while keeping
+SQL edits, BOM changes, trailing content, and terminal-newline changes
+hash-significant. The read-only development scan verified all 18 ledger rows,
+including 0015–0017, and completed catalog discovery. Its Phase 2E.3-contract
+snapshot fingerprint remains `464e6f0d6f9807f2b25d01c7d66b5ef9166c2b0808e19d31cd282a15652f6e7b`.
+The Phase 2E.4A planner fingerprint hashes a full `RuntimeSnapshot`, while the
+Phase 2E.3/current reconciliation fingerprint uses a canary-focused aggregate
+projection; their differing values do not establish a runtime-content change.
+
+The current TXH head is newer than this isolated audit baseline and includes
+migration 0018, while development still has 18 ledger rows. Phase 2E.4B did not
+execute 0018; a new catalog scan against the current chain must stop at the
+migration gate until the trusted migration process handles that pending file.
+
+Canary Master release content and release hash remain immutable. The App
+Import artifacts generated in Phase 2E.4A were not changed here; only
+analysis-only candidate/proposal/review evidence was regenerated. Apple #1/#295
+remain unresolved, the final human-owned reconciliation is unchanged, and the
+planner remains `canApply=false`. No database write, migration, import APPLY,
+or runtime mutation occurred.
+
+Evidence: [`migration hash root-cause report`](../../vocabflow-dataset/reports/canary-development-migration-hash-root-cause.md)

@@ -59,16 +59,19 @@ describe("Vietnamese catalog metadata migration", () => {
     const entry = journal.entries.find((candidate) => candidate.tag === "0014_vietnamese_catalog_metadata");
     const sequenceEntry = journal.entries.find((candidate) => candidate.tag === "0013_runtime-vocabulary-sequence-privilege");
     const bridgeEntry = journal.entries.find((candidate) => candidate.tag === "0015_clean_yellowjacket");
-    const identityHardeningEntry = journal.entries.at(-1);
+    const identityHardeningEntry = journal.entries.find((candidate) => candidate.tag === "0016_nostalgic_mattie_franklin");
+    const runtimeVocabularyEntry = journal.entries.find((candidate) => candidate.tag === "0017_nosy_hellfire_club");
     const migrations = readMigrationFiles({ migrationsFolder: "drizzle/migrations" });
     const migration = migrations.find((candidate) => candidate.folderMillis === entry?.when);
 
     expect(entry).toMatchObject({ idx: 14, tag: "0014_vietnamese_catalog_metadata" });
     expect(bridgeEntry).toMatchObject({ idx: 15, tag: "0015_clean_yellowjacket" });
     expect(identityHardeningEntry).toMatchObject({ idx: 16, tag: "0016_nostalgic_mattie_franklin" });
+    expect(runtimeVocabularyEntry).toMatchObject({ idx: 17, tag: "0017_nosy_hellfire_club" });
     expect(entry?.when).toBeGreaterThan(sequenceEntry?.when ?? 0);
     expect(bridgeEntry?.when).toBeGreaterThan(entry?.when ?? 0);
     expect(identityHardeningEntry?.when).toBeGreaterThan(bridgeEntry?.when ?? 0);
+    expect(runtimeVocabularyEntry?.when).toBeGreaterThan(identityHardeningEntry?.when ?? 0);
     expect(migration?.sql).toHaveLength(expectedUpdates.length);
   });
 

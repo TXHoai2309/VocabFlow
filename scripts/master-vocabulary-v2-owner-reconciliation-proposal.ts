@@ -271,6 +271,13 @@ export function buildOwnerReconciliationProposal(input: {
     warnings: ["Do not allocate an integer ID during proposal preparation; a new ID is allocated only during an approved apply.", "No learner assignments are proposed."],
   };
   const mismatches = records(migration.historicalHashMismatches);
+  const appliedRows = number(migration.appliedCount ?? 0);
+  const localRows = number(migration.localMigrationCount ?? 0);
+  const migrationClassification = mismatches.length > 0
+    ? "HISTORICAL_MIGRATION_HASH_DRIFT"
+    : appliedRows !== localRows
+      ? "MIGRATION_HISTORY_INCOMPLETE"
+      : "ALL_MIGRATION_HASHES_MATCH";
   return {
     artifactVersion: "runtime-reconciliation-owner-proposal-v2",
     owner: "analysis-only",
@@ -287,13 +294,17 @@ export function buildOwnerReconciliationProposal(input: {
     },
     target: { environment: "development", projectId: "shy-hill-72364426", branchId: "br-square-grass-b3af0nte", databaseName: "neondb" },
     migrationAssessment: {
-      classification: "HISTORICAL_MIGRATION_HASH_DRIFT",
-      appliedRows: migration.appliedCount,
-      localRows: migration.localMigrationCount,
+      classification: migrationClassification,
+      appliedRows,
+      localRows,
       historicalHashMismatchCount: mismatches.length,
       mismatchedTags: mismatches.map((row) => row.tag),
       requiredBridgeMigrationsMatched: records(migration.requiredMigrations).every((row) => row.applied === true),
-      importPlannerGate: "The current Master import planner does not read or compare the Drizzle migration ledger when computing canApply. This drift is therefore not an automatic planner blocker, but remains a separate migration-history integrity issue and is not classified as harmless.",
+      importPlannerGate: mismatches.length > 0
+        ? "The current Master import planner does not read or compare the Drizzle migration ledger when computing canApply. Migration hash differences remain a separate integrity issue and are not classified as harmless."
+        : appliedRows !== localRows
+          ? "The current Master import planner does not read or compare the Drizzle migration ledger when computing canApply. The incomplete migration history must be resolved through the trusted migration process before import readiness."
+          : "The current Master import planner does not read or compare the Drizzle migration ledger when computing canApply. This read-only scan verified all applied rows against exact Drizzle hashes for LF, CRLF, or bare-CR serialization; no historical content mismatch was found.",
     },
     senses: proposedSenses,
     learningSets: [learningSetProposal],
@@ -387,11 +398,11 @@ ${sections.join("\n\n---\n\n")}
 - Proposal: CREATE_NEW; do not allocate an integer ID now and do not assign learners. Owner decision: **UNRESOLVED**.
 - Final owner decision: ____________________
 
-## Historical migration hash drift
+## Migration ledger hash assessment
 
-- \`HISTORICAL_MIGRATION_HASH_DRIFT\`: ${md(record(proposal.migrationAssessment).historicalHashMismatchCount)} historical file hashes differ (${md(record(proposal.migrationAssessment).mismatchedTags)}); migration rows are ${md(record(proposal.migrationAssessment).appliedRows)}/${md(record(proposal.migrationAssessment).localRows)} present, while 0015/0016/0017 match exactly.
+- Classification: \`${md(record(proposal.migrationAssessment).classification)}\`; ${md(record(proposal.migrationAssessment).historicalHashMismatchCount)} content-hash mismatches (${md(record(proposal.migrationAssessment).mismatchedTags)}); migration rows ${md(record(proposal.migrationAssessment).appliedRows)}/${md(record(proposal.migrationAssessment).localRows)} present; 0015/0016/0017 ${record(proposal.migrationAssessment).requiredBridgeMigrationsMatched === true ? "match" : "are not all verified"}.
 - Assessment: ${md(record(proposal.migrationAssessment).importPlannerGate)}
-- Older migration files were not changed. This remains separate from Sense identity decisions.
+- Historical SQL files were not changed. This evidence remains separate from Sense identity decisions.
 
 ## Read-only and approval state
 

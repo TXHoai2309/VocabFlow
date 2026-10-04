@@ -10,7 +10,7 @@
     "schemaVersion": "2.0.1",
     "releaseHash": "fc67dd2a70adadd311384360c004faa4693ae24ffe4524761ce7075f21c95591",
     "snapshotFingerprint": "464e6f0d6f9807f2b25d01c7d66b5ef9166c2b0808e19d31cd282a15652f6e7b",
-    "scannedAt": "2026-10-03T16:32:39.003Z"
+    "scannedAt": "2026-10-04T04:13:38.663Z"
   },
   "target": {
     "environment": "development",
@@ -19,20 +19,13 @@
     "databaseName": "neondb"
   },
   "migrationAssessment": {
-    "classification": "HISTORICAL_MIGRATION_HASH_DRIFT",
+    "classification": "ALL_MIGRATION_HASHES_MATCH",
     "appliedRows": 18,
     "localRows": 18,
-    "historicalHashMismatchCount": 6,
-    "mismatchedTags": [
-      "0001_curious_miss_america",
-      "0002_smiling_wrecking_crew",
-      "0003_lazy_lady_deathstrike",
-      "0012_us41_owner_content_overrides",
-      "0013_runtime-vocabulary-sequence-privilege",
-      "0014_vietnamese_catalog_metadata"
-    ],
+    "historicalHashMismatchCount": 0,
+    "mismatchedTags": [],
     "requiredBridgeMigrationsMatched": true,
-    "importPlannerGate": "The current Master import planner does not read or compare the Drizzle migration ledger when computing canApply. This drift is therefore not an automatic planner blocker, but remains a separate migration-history integrity issue and is not classified as harmless."
+    "importPlannerGate": "The current Master import planner does not read or compare the Drizzle migration ledger when computing canApply. This read-only scan verified all applied rows against exact Drizzle hashes for LF, CRLF, or bare-CR serialization; no historical content mismatch was found."
   },
   "senses": [
     {

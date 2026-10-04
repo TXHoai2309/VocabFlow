@@ -2,6 +2,30 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-04 — Master Vocabulary V2 Phase 2E.4B migration hash verification
+
+- Audited Drizzle's actual SHA-256 contract and proved both reported mismatch
+  counts came from checkout line endings: six CRLF files in the Phase 2E.3
+  worktree, then seventeen in the Phase 2E.4A worktree. Migration Git blobs
+  were unchanged; the database rows match LF digests for 17 files and CRLF for
+  `0004_scheduled_review_write`.
+- Added a deterministic verifier that accepts exact Drizzle hashes of LF,
+  CRLF, or bare-CR serializations of the same SQL source. SQL content, BOM, and
+  terminal newline changes still fail verification. Updated owner analysis to
+  report zero historical hash mismatches accurately.
+- The read-only development scan verified all 18 ledger rows and migrations
+  0015–0017, then completed catalog discovery. The Phase 2E.3 comparison
+  fingerprint remains unchanged; the planner's full-snapshot fingerprint uses
+  a different contract.
+- The later current TXH head adds migration 0018 while development remains at
+  18 applied rows; the Phase 2E.4B scan is scoped to its isolated 18-migration
+  baseline. No migration was executed, and a new scan on current TXH must stop
+  before catalog discovery until 0018 is handled through the trusted process.
+- Release 2.1.0 Master content and release hash remain unchanged. Phase 2E.4A
+  App Import files were not changed; analysis-only candidate/proposal/review
+  outputs were regenerated. Apple decisions remain unresolved and
+  `canApply=false`. No database writes, migration execution, or import APPLY.
+
 ## 2026-10-04 — Master Vocabulary V2 Phase 2E.4A runtime preservation
 
 - Versioned the projection null policy as App Import v3, runtime projection v2

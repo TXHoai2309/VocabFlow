@@ -1,5 +1,37 @@
 # Current Handoff Snapshot
 
+## 2026-10-04 — Master Vocabulary V2 Phase 2E.4B migration hash audit
+
+- Confirmed Drizzle ORM 0.45.2 hashes each complete migration file as UTF-8
+  text from the checked-out working tree. It preserves line endings, a terminal
+  newline, and a UTF-8 BOM. Git SQL blobs did not change from `7e76daa` to
+  `b5b22e3`.
+- The 2E.3 six mismatches and 2E.4A seventeen mismatches were caused by
+  worktree CRLF conversion. All 18 ledger hashes match one exact Drizzle hash
+  representation of the same source (LF for 17, CRLF for 0004); no historical
+  SQL-content mismatch remains. The verifier now checks LF, CRLF, and bare-CR
+  serializations while preserving every other content byte.
+- Re-ran the verified development scan in REPEATABLE READ / READ ONLY mode:
+  18/18 migration rows present, 0015–0017 verified, catalog discovery and
+  runtime snapshot ready. The comparable Phase 2E.3 fingerprint is unchanged
+  at `464e6f0d6f9807f2b25d01c7d66b5ef9166c2b0808e19d31cd282a15652f6e7b`;
+  the 2E.4A full-snapshot planner hash uses a different snapshot shape.
+- The current `TXH` head also contains migration 0018 from a later daily-goals
+  commit; the development ledger remains at 18 rows. This audit used the
+  isolated `b5b22e3` 18-migration baseline and did not execute 0018. A new scan
+  against the current TXH chain must stop before catalog discovery until that
+  migration is handled through the trusted process.
+- Canary release content and release hash remain unchanged. App Import files
+  from 2E.4A remain unchanged; only analysis-only candidate/proposal/review
+  evidence was regenerated.
+  Apple #1/#295 remain unresolved, the human-owned reconciliation is untouched,
+  and `canApply=false`.
+- Added regression coverage for line-ending equivalence, SQL edits, appended
+  content, terminal newline, and BOM. Focused migration/scanner checks,
+  typecheck, lint, and diff check pass. No migration, DB write, import APPLY,
+  runtime mutation, production connection, or Cloudinary operation occurred.
+  See `vocabflow-dataset/reports/canary-development-migration-hash-root-cause.md`.
+
 ## 2026-10-04 — Master Vocabulary V2 Phase 2E.4A runtime preservation policy
 
 - Implemented `app-import-v3`, `runtime-vocabulary-projection-v2`, and

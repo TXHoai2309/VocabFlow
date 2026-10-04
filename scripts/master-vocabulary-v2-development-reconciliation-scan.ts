@@ -2,7 +2,6 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { loadEnvFile } from "node:process";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { readMigrationFiles } from "drizzle-orm/migrator";
 import type { TrustedSource } from "@vocabflow/contracts";
 import { getConnectionTarget } from "../config/database-targets";
 import {
@@ -12,6 +11,12 @@ import {
 } from "./vocabulary-curation-access";
 import { assertResolvedTargetBeforeMutation } from "./runtime-validation";
 import { assertPostConnectIdentity, openSql, readContext } from "./db-core";
+import {
+  databaseHashMatchesMigrationSource,
+  matchingMigrationHashRepresentation,
+  readMigrationHashEvidence,
+  type MigrationHashEvidence,
+} from "./migration-hash-verification";
 import { buildMasterVocabularyImportPlan, type ImportArtifacts, type JsonRecord } from "./master-vocabulary-v2-import-planner";
 import {
   fingerprintDevelopmentReconciliationSnapshot,
@@ -50,6 +55,15 @@ type MigrationCheck = {
   historicalHashMismatches: Array<{ tag: string; expectedHash: string; appliedHash: string }>;
   unexpectedAppliedRows: Array<{ id: number; hash: string; createdAt: number | null }>;
   appliedMigrationsForFingerprint: Array<{ tag: string; hash: string }>;
+  hashComparisons: Array<{
+    tag: string;
+    databaseHash: string | null;
+    worktreeRawHash: string | null;
+    lfHash: string | null;
+    crlfHash: string | null;
+    crHash: string | null;
+    matchedRepresentation: "LF" | "CRLF" | "CR" | "NO_MATCH" | null;
+  }>;
 };
 
 function loadRepositoryEnv() {
@@ -188,34 +202,48 @@ function readJournalEntries(): JournalEntry[] {
   return [...journal.entries].sort((left, right) => left.idx - right.idx);
 }
 
-function migrationRowsState(entries: JournalEntry[], dbRows: DbMigrationRow[], localHashes: Map<number, string>, tableExists: boolean): MigrationCheck {
+function migrationRowsState(entries: JournalEntry[], dbRows: DbMigrationRow[], localHashes: Map<number, MigrationHashEvidence>, tableExists: boolean): MigrationCheck {
   const dbByCreatedAt = new Map(dbRows.map((row) => [row.created_at === null ? null : Number(row.created_at), row]));
   const requiredTags = new Set(["0015_clean_yellowjacket", "0016_nostalgic_mattie_franklin", "0017_nosy_hellfire_club"]);
   const requiredMigrations = entries.filter((entry) => requiredTags.has(entry.tag)).map((entry) => {
-    const expectedHash = localHashes.get(entry.when) ?? null;
+    const evidence = localHashes.get(entry.when);
     const actual = dbByCreatedAt.get(entry.when);
     return {
       idx: entry.idx,
       tag: entry.tag,
-      expectedHash,
+      expectedHash: evidence?.lfHash ?? null,
       appliedHash: actual?.hash ?? null,
-      applied: expectedHash !== null && actual?.hash === expectedHash,
+      applied: evidence !== undefined && actual !== undefined && databaseHashMatchesMigrationSource(evidence, actual.hash),
     };
   });
-  const expectedHistory = entries.map((entry) => ({ entry, hash: localHashes.get(entry.when) ?? null }));
+  const expectedHistory = entries.map((entry) => ({ entry, evidence: localHashes.get(entry.when) }));
   const missingJournalRows = expectedHistory
-    .filter(({ entry }) => !dbByCreatedAt.has(entry.when))
+    .filter(({ entry, evidence }) => !evidence || !dbByCreatedAt.has(entry.when))
     .map(({ entry }) => entry.tag);
-  const historicalHashMismatches = expectedHistory.flatMap(({ entry, hash }) => {
+  const historicalHashMismatches = expectedHistory.flatMap(({ entry, evidence }) => {
     const appliedHash = dbByCreatedAt.get(entry.when)?.hash;
-    return hash && appliedHash && hash !== appliedHash
-      ? [{ tag: entry.tag, expectedHash: hash, appliedHash }]
+    return evidence && appliedHash && matchingMigrationHashRepresentation(evidence, appliedHash) === "NO_MATCH"
+      ? [{ tag: entry.tag, expectedHash: evidence.lfHash, appliedHash }]
       : [];
   });
+  const hashComparisons = expectedHistory.map(({ entry, evidence }) => {
+    const appliedHash = dbByCreatedAt.get(entry.when)?.hash ?? null;
+    return {
+      tag: entry.tag,
+      databaseHash: appliedHash,
+      worktreeRawHash: evidence?.worktreeHash ?? null,
+      lfHash: evidence?.lfHash ?? null,
+      crlfHash: evidence?.crlfHash ?? null,
+      crHash: evidence?.crHash ?? null,
+      matchedRepresentation: evidence && appliedHash
+        ? matchingMigrationHashRepresentation(evidence, appliedHash)
+        : null,
+    };
+  });
   const missingMigrations = expectedHistory
-    .filter(({ entry, hash }) => !hash || !dbByCreatedAt.has(entry.when))
+    .filter(({ entry, evidence }) => !evidence || !dbByCreatedAt.has(entry.when))
     .map(({ entry }) => entry.tag);
-  const expectedByWhen = new Map(expectedHistory.map(({ entry, hash }) => [entry.when, hash]));
+  const expectedByWhen = new Map(expectedHistory.map(({ entry, evidence }) => [entry.when, evidence?.lfHash]));
   const unexpectedAppliedRows = dbRows.filter((row) => {
     const createdAt = row.created_at === null ? null : Number(row.created_at);
     return createdAt === null || !expectedByWhen.has(createdAt);
@@ -241,6 +269,7 @@ function migrationRowsState(entries: JournalEntry[], dbRows: DbMigrationRow[], l
     missingJournalRows,
     historicalHashMismatches,
     unexpectedAppliedRows,
+    hashComparisons,
     appliedMigrationsForFingerprint: dbRows.map((row) => {
       const createdAt = row.created_at === null ? null : Number(row.created_at);
       const entry = createdAt === null ? null : entries.find((candidate) => candidate.when === createdAt) ?? null;
@@ -253,7 +282,7 @@ async function readDevelopmentMigrationState(input: {
   url: string;
   target: ReturnType<typeof getConnectionTarget>;
   entries: JournalEntry[];
-  localHashes: Map<number, string>;
+  localHashes: Map<number, MigrationHashEvidence>;
 }): Promise<MigrationCheck> {
   const sql = openSql(input.url);
   try {
@@ -672,9 +701,9 @@ async function main() {
   });
 
   const journalEntries = readJournalEntries();
-  const localMigrations = readMigrationFiles({ migrationsFolder: path.join(repositoryRoot, "drizzle/migrations") });
-  const localHashes = new Map<number, string>();
-  for (const migration of localMigrations) localHashes.set(migration.folderMillis, migration.hash);
+  const localMigrations = readMigrationHashEvidence(path.join(repositoryRoot, "drizzle/migrations"));
+  const localHashes = new Map<number, MigrationHashEvidence>();
+  for (const migration of localMigrations) localHashes.set(migration.folderMillis, migration);
   if (localMigrations.length !== journalEntries.length || journalEntries.some((entry) => !localHashes.has(entry.when))) {
     throw new Error("LOCAL_MIGRATION_JOURNAL_MISMATCH");
   }
@@ -737,6 +766,7 @@ async function main() {
     snapshotFingerprint: fingerprint,
     snapshotFingerprintAlgorithm: "sha256-canonical-json-v1",
     snapshotFingerprintContract: "Includes the complete runtime vocabulary and Learning Set discovery universes, candidate search results, relevant Master mappings, candidate history counts and memberships/assignments, apple progress states/review ranges/learner-overlap count, applied run identities, verified target identity, release hash and applied migration hashes. Excludes learner IDs.",
+    plannerSnapshotFingerprint: plan.snapshotFingerprint,
     appleIdentityAudit: snapshot.appleIdentityAudit,
     plannerDryRun: {
       mode: plan.mode,
@@ -758,7 +788,7 @@ async function main() {
   mkdirSync(path.dirname(candidatePath), { recursive: true });
   mkdirSync(path.dirname(reportPath), { recursive: true });
   writeFileSync(candidatePath, `${JSON.stringify(sanitized.artifact, null, 2)}\n`, "utf8");
-  const report = renderReport({
+  let report = renderReport({
     scannedAt,
     target: runtimeTarget,
     migration,
@@ -768,6 +798,32 @@ async function main() {
     redactedUrlCount: sanitized.redactedUrlCount,
     plan,
   });
+  const migrationDriftTable = migration.historicalHashMismatches.length === 0
+    ? "No historical migration hash differences were found."
+    : [
+      "### Historical migration hash differences",
+      "",
+      "| Migration | Canonical local SHA-256 | Database SHA-256 |",
+      "| --- | --- | --- |",
+      ...migration.historicalHashMismatches.map((row) => `| ${row.tag} | ${row.expectedHash} | ${row.appliedHash} |`),
+      "",
+    ].join("\n");
+  const migrationHashMatrix = [
+    "## Migration hash representation matrix",
+    "",
+    "| Migration | Database SHA-256 | Worktree raw SHA-256 | LF SHA-256 | CRLF SHA-256 | CR SHA-256 | DB representation |",
+    "| --- | --- | --- | --- | --- | --- | --- |",
+    ...migration.hashComparisons.map((row) => `| ${row.tag} | ${row.databaseHash ?? "—"} | ${row.worktreeRawHash ?? "—"} | ${row.lfHash ?? "—"} | ${row.crlfHash ?? "—"} | ${row.crHash ?? "—"} | ${row.matchedRepresentation ?? "NO_DB_ROW"} |`),
+    "",
+  ].join("\n");
+  report = report.replace("\n## Approved release\n", `\n${migrationDriftTable}\n\n${migrationHashMatrix}\n## Approved release\n`);
+  report = report.replace(
+    "\n## Candidate summary\n",
+    `\n- Full planner snapshot fingerprint (canonical JSON of the complete runtime snapshot): \`${plan.snapshotFingerprint}\`\n\n## Candidate summary\n`,
+  );
+  if (!report.includes(`Full planner snapshot fingerprint (canonical JSON of the complete runtime snapshot): \`${plan.snapshotFingerprint}\``)) {
+    throw new Error("RECONCILIATION_REPORT_FINGERPRINT_INSERT_FAILED");
+  }
   writeFileSync(reportPath, report, "utf8");
   const proposalPath = path.join(datasetRoot, OWNER_PROPOSAL_RELATIVE_PATH);
   if (existsSync(proposalPath)) {

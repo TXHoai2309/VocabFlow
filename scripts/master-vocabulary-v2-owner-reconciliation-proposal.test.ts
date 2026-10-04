@@ -142,6 +142,32 @@ describe("analysis-only owner reconciliation proposal", () => {
     expect(proposal.migrationAssessment).toMatchObject({ classification: "HISTORICAL_MIGRATION_HASH_DRIFT", historicalHashMismatchCount: 6 });
   });
 
+  it("reports no historical hash drift when all ledger rows match the migration source", () => {
+    const artifactWithoutDrift = {
+      ...candidateArtifact,
+      migrationState: {
+        ...candidateArtifact.migrationState,
+        historicalHashMismatches: [],
+      },
+    };
+    const proposal = buildOwnerReconciliationProposal({
+      candidateArtifact: artifactWithoutDrift,
+      appleIdentityAudit: audit,
+      scannedAt: "2026-10-04T00:00:00.000Z",
+    });
+
+    expect(proposal.migrationAssessment).toMatchObject({
+      classification: "ALL_MIGRATION_HASHES_MATCH",
+      appliedRows: 18,
+      localRows: 18,
+      historicalHashMismatchCount: 0,
+      mismatchedTags: [],
+    });
+    expect(proposal.migrationAssessment.importPlannerGate).toContain("no historical content mismatch was found");
+    expect(renderOwnerReconciliationReview(proposal)).toContain("ALL_MIGRATION_HASHES_MATCH");
+    expect(renderOwnerReconciliationReview(proposal)).toContain("0 content-hash mismatches");
+  });
+
   it("rejects a scan from the wrong target or release", () => {
     expect(() => buildOwnerReconciliationProposal({
       candidateArtifact: { ...candidateArtifact, target: { ...candidateArtifact.target, environment: "production" } },

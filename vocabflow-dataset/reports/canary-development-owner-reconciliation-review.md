@@ -1,6 +1,6 @@
 # Development Canary Owner Reconciliation Review — Master V2 2.1.0
 
-Generated: 2026-10-03T16:32:39.003Z
+Generated: 2026-10-04T04:13:38.663Z
 
 ## Verified scope
 
@@ -159,11 +159,11 @@ Owner options (unranked):
 - Proposal: CREATE_NEW; do not allocate an integer ID now and do not assign learners. Owner decision: **UNRESOLVED**.
 - Final owner decision: ____________________
 
-## Historical migration hash drift
+## Migration ledger hash assessment
 
-- `HISTORICAL_MIGRATION_HASH_DRIFT`: 6 historical file hashes differ (["0001_curious_miss_america","0002_smiling_wrecking_crew","0003_lazy_lady_deathstrike","0012_us41_owner_content_overrides","0013_runtime-vocabulary-sequence-privilege","0014_vietnamese_catalog_metadata"]); migration rows are 18/18 present, while 0015/0016/0017 match exactly.
-- Assessment: The current Master import planner does not read or compare the Drizzle migration ledger when computing canApply. This drift is therefore not an automatic planner blocker, but remains a separate migration-history integrity issue and is not classified as harmless.
-- Older migration files were not changed. This remains separate from Sense identity decisions.
+- Classification: `ALL_MIGRATION_HASHES_MATCH`; 0 content-hash mismatches ([]); migration rows 18/18 present; 0015/0016/0017 match.
+- Assessment: The current Master import planner does not read or compare the Drizzle migration ledger when computing canApply. This read-only scan verified all applied rows against exact Drizzle hashes for LF, CRLF, or bare-CR serialization; no historical content mismatch was found.
+- Historical SQL files were not changed. This evidence remains separate from Sense identity decisions.
 
 ## Read-only and approval state
 
