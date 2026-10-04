@@ -1,5 +1,32 @@
 # Current Handoff Snapshot
 
+## 2026-10-04 — Master Vocabulary V2 Phase 2E.4D final reconciliation V3
+
+- Reverified the development Neon target, 19/19 migration rows through
+  `0018_panoramic_spirit`, and zero migration hash mismatches. The scanner and
+  importer used read-only repeatable-read snapshots.
+- Re-reviewed the pinned scan change: the refreshed candidate evidence adds one
+  review event to duplicate Apple #295 (count 1 → 2); the explicit owner choice
+  continues to map Apple to #1 and leaves #295 untouched. Repeat scans before
+  and after the final planner returned the same current fingerprint.
+- Finalized the human-owned V3 artifact at the architecture's stable path,
+  `vocabflow-dataset/import/mappings/runtime-reconciliation-v2.json`, pinned to
+  the current target, source contracts, release hashes, and scan fingerprints.
+  Added release-root resolution and development snapshot evidence checks to
+  the importer so the release artifacts and package-level owner file work
+  together and stale evidence blocks planning.
+- Final DRY_RUN: 3 mapped updates, 5 vocabulary creates, 1 Learning Set create,
+  1 algorithm membership insert; `reconciliationComplete=true`, `canApply=true`,
+  0 issues. Plan fingerprint:
+  `4ffcb88ef47c9bdaf3d3dc7d36092fa55e7dec0d4a01417aac97c53d90d8718b`.
+  Mapped runtime enrichment is preserved. #295/#849 are unchanged; no history,
+  learner assignment, runtime ID, or run-ledger mutation is planned.
+- Validation: 8 focused files / 93 tests, typecheck, lint, base and release
+  dataset validation passed. No DB writes, migration execution, or import APPLY.
+  The APKG analysis files remain untouched and excluded.
+- Full plan and preservation audit:
+  `vocabflow-dataset/reports/canary-development-final-apply-plan.md`.
+
 ## 2026-10-04 — Due-first study queue without a New-mode hard gate
 
 - Removed the backend gate in `apps/api/src/review-queue.ts` that suppressed

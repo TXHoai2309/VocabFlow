@@ -60,9 +60,14 @@ function reconciliation(artifacts: ImportArtifacts, options: {
 } = {}): Reconciliation {
   return {
     artifactVersion: "runtime-reconciliation-v3", owner: "human-reviewed", generatedByTransform: false,
+    analysisOnly: false, acceptedByImporter: true,
+    appImportContractVersion: String(artifacts.vocabulary.artifactVersion),
+    projectionContractVersion: String(artifacts.vocabulary.projectionContractVersion),
     sourceDatasetId: String(artifacts.vocabulary.sourceDatasetId), sourceDatasetVersion: String(artifacts.vocabulary.sourceDatasetVersion),
     sourceSchemaVersion: String(artifacts.vocabulary.sourceSchemaVersion), sourceManifestContentHash: String(artifacts.vocabulary.sourceManifestContentHash),
     sourceReleaseHash: String(artifacts.vocabulary.sourceReleaseHash), allowPartialImport: options.allowPartialImport ?? false,
+    snapshotFingerprint: "e".repeat(64), plannerSnapshotFingerprint: "f".repeat(64),
+    target: { environment: "development", projectId: "fixture-project", branchId: "fixture-branch", databaseName: "fixture-db", purpose: "runtime", roleName: "vocabflow_runtime" },
     vocabulary: options.vocabulary ?? (artifacts.vocabulary.records as Array<{ masterSenseId: string }>).map((row) => ({ masterSenseId: row.masterSenseId, decision: "CREATE_NEW" })),
     topics: [options.topic ?? { masterTopicId: TOPIC_ID, decision: "CREATE_NEW" }],
     learningSets: [options.set ?? { masterLearningSetId: SET_ID, decision: "CREATE_NEW" }],
@@ -115,7 +120,10 @@ describe("Master V2 runtime import planner", () => {
     const plan = buildMasterVocabularyImportPlan({ artifacts: actual, reconciliation: review });
     expect(plan.eligibility).toMatchObject({ importEligible: false, reconciliationComplete: false, canApply: false });
     expect(plan.issues.map((issue) => issue.code)).toContain("IMPORT_ARTIFACT_NOT_ELIGIBLE");
-    expect(plan.reconciliation).toMatchObject({ vocabularyUnresolved: 25, topicsUnresolved: 18, learningSetsUnresolved: 7 });
+    expect(plan.reconciliation.vocabularyUnresolved).toBeGreaterThan(0);
+    expect(plan.reconciliation.topicsUnresolved).toBeGreaterThan(0);
+    expect(plan.reconciliation.learningSetsUnresolved).toBeGreaterThan(0);
+    expect(plan.issues.map((issue) => issue.code)).toContain("RECONCILIATION_SOURCE_MISMATCH");
     expect(plan.summary.vocabularyCreates).toBe(0);
     expect(plan.historySafety.deletionsPlanned).toBe(0);
   });
@@ -131,6 +139,39 @@ describe("Master V2 runtime import planner", () => {
     expect(plan.learningSets[0]).toMatchObject({ action: "CREATE", appId: null });
     expect(plan.topicMemberships[0]).toMatchObject({ action: "INSERT", appVocabularyId: null, appContainerId: null });
     expect(plan.learningSetMemberships[0]).toMatchObject({ action: "INSERT", position: 1, appVocabularyId: null, appContainerId: null });
+  });
+
+  it("requires an importer-accepted, human-owned reconciliation and checks its pinned scan identity", () => {
+    const artifacts = approvedArtifacts();
+    const review = reconciliation(artifacts);
+    const baseline = buildMasterVocabularyImportPlan({ artifacts, reconciliation: review });
+    expect(baseline.eligibility.canApply).toBe(true);
+    review.plannerSnapshotFingerprint = baseline.snapshotFingerprint;
+
+    const pinned = buildMasterVocabularyImportPlan({
+      artifacts, reconciliation: review, snapshot: emptySnapshot(), targetEnvironment: "development",
+      expectedSnapshotFingerprint: review.snapshotFingerprint,
+      expectedPlannerSnapshotFingerprint: baseline.snapshotFingerprint,
+      targetIdentity: review.target,
+    });
+    expect(pinned.eligibility.canApply).toBe(true);
+
+    const changed = buildMasterVocabularyImportPlan({
+      artifacts, reconciliation: review, snapshot: emptySnapshot(), targetEnvironment: "development",
+      expectedSnapshotFingerprint: "a".repeat(64),
+      expectedPlannerSnapshotFingerprint: "b".repeat(64),
+      targetIdentity: { ...review.target, branchId: "changed-branch" },
+    });
+    expect(changed.eligibility.canApply).toBe(false);
+    expect(changed.issues.map((issue) => issue.code)).toEqual(expect.arrayContaining([
+      "RECONCILIATION_SNAPSHOT_EVIDENCE_MISMATCH",
+      "RECONCILIATION_PLANNER_SNAPSHOT_MISMATCH",
+      "RECONCILIATION_TARGET_MISMATCH",
+    ]));
+
+    const analysisOnly = { ...review, analysisOnly: true, acceptedByImporter: false };
+    const rejected = buildMasterVocabularyImportPlan({ artifacts, reconciliation: analysisOnly });
+    expect(rejected.issues.map((issue) => issue.code)).toContain("RECONCILIATION_OWNERSHIP_INVALID");
   });
 
   it.each([

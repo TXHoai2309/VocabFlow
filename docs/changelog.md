@@ -2,6 +2,26 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-04 — Master Vocabulary V2 Phase 2E.4D final reconciliation V3
+
+- Finalized the human-owned runtime reconciliation for approved release 2.1.0.
+  Apple maps to runtime #1 with `UPDATE_TO_MASTER`; duplicate #295 remains an
+  independent runtime row with its own history. The other seven Sense decisions
+  and Technology Starter membership follow the explicit owner decision sheet.
+- Reverified all 19 development migrations through 0018 and refreshed the
+  read-only runtime snapshot. The only changed candidate evidence since the
+  pinned scan was one new #295 review event; the current scan fingerprint was
+  stable across repeat scans. The reconciliation is repinned to that snapshot.
+- Updated the importer to resolve the package-level canonical reconciliation
+  when planning from a release directory and to reject mismatched ownership,
+  contracts, target, or scan evidence. Final DRY_RUN produced 3 mapped updates,
+  5 vocabulary creates, 1 set create and 1 algorithm membership insert;
+  `canApply=true`. No runtime IDs were allocated.
+- Focused validation passed: 8 test files / 93 tests, typecheck, lint, and
+  dataset validation. Runtime enrichment is preserved. No database writes,
+  migration execution, learner-history changes, run-ledger writes, or import
+  APPLY occurred. See the final apply-plan report for fingerprints and details.
+
 ## 2026-10-04 — Due-first study queue without a New-mode hard gate
 
 - Removed the review-queue service rule that omitted eligible NEW vocabulary

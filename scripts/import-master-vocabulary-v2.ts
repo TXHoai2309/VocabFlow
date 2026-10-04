@@ -21,6 +21,7 @@ const ARTIFACT_FILES = {
   topicMemberships: "import/topic-memberships-import-v2.json",
   reconciliation: "import/mappings/runtime-reconciliation-v2.json",
 } as const;
+const DEVELOPMENT_SCAN_ARTIFACT = "import/mappings/runtime-reconciliation-candidates-development-v2.json";
 
 type CliOptions = {
   apply: boolean;
@@ -78,6 +79,27 @@ function readJson(root: string, relativePath: string): JsonRecord {
   return parsed as JsonRecord;
 }
 
+export function resolveCanonicalReconciliationRoot(datasetRoot: string): string {
+  const resolvedRoot = path.resolve(datasetRoot);
+  const ancestors: string[] = [];
+  for (let current = resolvedRoot; ; current = path.dirname(current)) {
+    ancestors.push(current);
+    if (path.dirname(current) === current) break;
+  }
+
+  const packageRoot = ancestors.slice(1).find((candidate) =>
+    existsSync(path.join(candidate, "releases"))
+      && existsSync(path.join(candidate, ARTIFACT_FILES.reconciliation)),
+  );
+  if (packageRoot) return packageRoot;
+
+  const reconciliationRoot = ancestors.find((candidate) =>
+    existsSync(path.join(candidate, ARTIFACT_FILES.reconciliation)),
+  );
+  if (reconciliationRoot) return reconciliationRoot;
+  throw new Error(`IMPORT_ARTIFACT_READ_FAILED:${ARTIFACT_FILES.reconciliation}`);
+}
+
 function loadArtifacts(root: string): { artifacts: ImportArtifacts; reconciliation: Reconciliation } {
   const artifacts: ImportArtifacts = {
     vocabulary: readJson(root, ARTIFACT_FILES.vocabulary),
@@ -86,9 +108,72 @@ function loadArtifacts(root: string): { artifacts: ImportArtifacts; reconciliati
     learningSetItems: readJson(root, ARTIFACT_FILES.learningSetItems),
     topicMemberships: readJson(root, ARTIFACT_FILES.topicMemberships),
   };
-  const reconciliation = readJson(root, ARTIFACT_FILES.reconciliation) as unknown as Reconciliation;
+  const reconciliationRoot = resolveCanonicalReconciliationRoot(root);
+  const reconciliation = readJson(reconciliationRoot, ARTIFACT_FILES.reconciliation) as unknown as Reconciliation;
   verifyAgainstMasterTransform(root, artifacts);
   return { artifacts, reconciliation };
+}
+
+function safeTargetIdentity(target: ReturnType<typeof configuredCurationTarget>): JsonRecord {
+  return {
+    environment: target.environment,
+    provider: target.provider,
+    projectId: target.projectId,
+    branchId: target.branchId,
+    databaseName: target.databaseName,
+    pooled: target.pooled,
+    usage: target.usage,
+    identityVersion: target.identityVersion,
+    purpose: target.purpose,
+    roleName: target.roleName,
+  };
+}
+
+function verifyDevelopmentSnapshotEvidence(
+  datasetRoot: string,
+  reconciliation: Reconciliation,
+  currentTarget: JsonRecord,
+): { snapshotFingerprint: string; plannerSnapshotFingerprint: string } {
+  const evidence = readJson(datasetRoot, DEVELOPMENT_SCAN_ARTIFACT);
+  const target = evidence.target;
+  const migration = evidence.migrationState;
+  const migrationState = typeof migration === "object" && migration !== null && !Array.isArray(migration)
+    ? migration as JsonRecord
+    : {};
+  const latestApplied = migrationState.latestApplied;
+  const latestTag = typeof latestApplied === "object" && latestApplied !== null && !Array.isArray(latestApplied)
+    ? (latestApplied as JsonRecord).tag
+    : undefined;
+  const historicalMismatches = Array.isArray(migrationState.historicalHashMismatches)
+    ? migrationState.historicalHashMismatches.length
+    : -1;
+  const missingRows = Array.isArray(migrationState.missingJournalRows)
+    ? migrationState.missingJournalRows.length
+    : -1;
+  const appliedCount = typeof migrationState.appliedCount === "number" ? migrationState.appliedCount : -1;
+  const localMigrationCount = typeof migrationState.localMigrationCount === "number" ? migrationState.localMigrationCount : -1;
+  const snapshotFingerprint = typeof evidence.snapshotFingerprint === "string" ? evidence.snapshotFingerprint : "";
+  const plannerSnapshotFingerprint = typeof evidence.plannerSnapshotFingerprint === "string" ? evidence.plannerSnapshotFingerprint : "";
+  const checks: Record<string, boolean> = {
+    artifactVersion: evidence.artifactVersion === "runtime-reconciliation-candidates-v2",
+    analysisOwnership: evidence.owner === "analysis-only" && evidence.generatedByScan === true
+      && evidence.analysisOnly === true && evidence.readOnlySnapshotOnly === true,
+    sourceDatasetVersion: evidence.sourceDatasetVersion === reconciliation.sourceDatasetVersion,
+    sourceSchemaVersion: evidence.sourceSchemaVersion === reconciliation.sourceSchemaVersion,
+    sourceReleaseHash: evidence.sourceReleaseHash === reconciliation.sourceReleaseHash,
+    snapshotFingerprint: /^[0-9a-f]{64}$/.test(snapshotFingerprint) && snapshotFingerprint === reconciliation.snapshotFingerprint,
+    plannerSnapshotFingerprint: /^[0-9a-f]{64}$/.test(plannerSnapshotFingerprint) && plannerSnapshotFingerprint === reconciliation.plannerSnapshotFingerprint,
+    reviewedTarget: canonicalJsonSha256(target) === canonicalJsonSha256(reconciliation.target),
+    connectedTarget: canonicalJsonSha256(target) === canonicalJsonSha256(currentTarget),
+    migrations: migrationState.current === true && appliedCount > 0
+      && appliedCount === localMigrationCount && typeof latestTag === "string" && latestTag.length > 0
+      && historicalMismatches === 0 && missingRows === 0,
+  };
+  const failedChecks = Object.keys(checks).filter((key) => !checks[key]);
+  if (failedChecks.length) {
+    throw new Error(`RECONCILIATION_DEVELOPMENT_SNAPSHOT_EVIDENCE_MISMATCH:${failedChecks.join("_").toUpperCase()}`);
+  }
+  return { snapshotFingerprint, plannerSnapshotFingerprint };
 }
 
 function verifyAgainstMasterTransform(root: string, artifacts: ImportArtifacts) {
@@ -198,9 +283,19 @@ async function main() {
   const { sql, connection } = await connectAndVerify(options, options.apply ? "apply" : "dry-run");
   try {
     const store = createPostgresMasterImportStore(sql);
+    const evidence = options.target === "development"
+      ? verifyDevelopmentSnapshotEvidence(options.datasetRoot, reconciliation, safeTargetIdentity(connection.target))
+      : undefined;
     if (!options.apply) {
       const snapshot = await store.readSnapshot();
-      const plan = buildMasterVocabularyImportPlan({ artifacts, reconciliation, snapshot, targetEnvironment: options.target, mode: "DRY_RUN" });
+      const plan = buildMasterVocabularyImportPlan({
+        artifacts, reconciliation, snapshot, targetEnvironment: options.target, mode: "DRY_RUN",
+        ...(evidence ? {
+          expectedSnapshotFingerprint: evidence.snapshotFingerprint,
+          expectedPlannerSnapshotFingerprint: evidence.plannerSnapshotFingerprint,
+          targetIdentity: safeTargetIdentity(connection.target),
+        } : {}),
+      });
       writeReport(plan, options.reportPath);
       return;
     }

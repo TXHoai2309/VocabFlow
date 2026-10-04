@@ -120,10 +120,24 @@ state has drifted and would need mutation, planning blocks it for review.
 null ownership semantics. `runtime-reconciliation-v3` adds an optional,
 reviewed `clearFields: string[]` per vocabulary decision. Dataset schema,
 Master UUID identity, revisions, and approved 2.1.0 source release hash do not
-change. The v2 file path
-`vocabflow-dataset/import/mappings/runtime-reconciliation-v2.json` remains the
-human-owned location; its checked-in v2 content is stale and unresolved until
-an owner prepares a v3 artifact. This phase does not finalize it.
+change. The canonical human-owned file remains
+`vocabflow-dataset/import/mappings/runtime-reconciliation-v2.json`; the JSON
+`artifactVersion` identifies its reconciliation contract, so the stable
+filename does not imply v2 semantics.
+
+A finalized V3 owner artifact records `owner: "human-reviewed"`,
+`generatedByTransform: false`, `analysisOnly: false`, and
+`acceptedByImporter: true`, along with the exact App Import and projection
+contract versions, source hashes, development target identity, scanner
+`snapshotFingerprint`, and full planner `plannerSnapshotFingerprint`. The
+planner rejects invalid ownership/contract metadata and rejects a supplied
+scan fingerprint or target that differs from the current verified evidence.
+The development CLI loads approved release artifacts from the selected release
+directory while resolving the canonical reconciliation file from the package
+root. It checks the matching analysis-only candidate artifact, verified target,
+and migration evidence against the owner pins before planning. The importer
+plan also fingerprints its own read-only `RuntimeSnapshot`; that hash covers a
+different serialized shape than the reconciliation scanner's hashes.
 
 | Runtime field | Ownership | Import behavior |
 |---|---|---|

@@ -91,11 +91,18 @@ export type Reconciliation = {
   artifactVersion: string;
   owner: string;
   generatedByTransform: boolean;
+  analysisOnly: boolean;
+  acceptedByImporter: boolean;
+  appImportContractVersion: string;
+  projectionContractVersion: string;
   sourceDatasetId: string;
   sourceDatasetVersion: string;
   sourceSchemaVersion: string;
   sourceManifestContentHash: string;
   sourceReleaseHash: string | null;
+  snapshotFingerprint: string;
+  plannerSnapshotFingerprint: string;
+  target: JsonRecord;
   allowPartialImport: boolean;
   vocabulary: JsonRecord[];
   topics: JsonRecord[];
@@ -196,8 +203,28 @@ function metadataMatches(artifacts: ImportArtifacts, reconciliation: Reconciliat
   }
   if (reconciliation.artifactVersion !== RUNTIME_RECONCILIATION_VERSION
       || reconciliation.owner !== "human-reviewed"
-      || reconciliation.generatedByTransform !== false) {
+      || reconciliation.generatedByTransform !== false
+      || reconciliation.analysisOnly !== false
+      || reconciliation.acceptedByImporter !== true) {
     addIssue(issues, "RECONCILIATION_OWNERSHIP_INVALID", "RECONCILIATION");
+  }
+  if (reconciliation.appImportContractVersion !== artifacts.vocabulary.artifactVersion) {
+    addIssue(issues, "RECONCILIATION_APP_IMPORT_CONTRACT_MISMATCH", "RECONCILIATION");
+  }
+  if (reconciliation.projectionContractVersion !== artifacts.vocabulary.projectionContractVersion) {
+    addIssue(issues, "RECONCILIATION_PROJECTION_CONTRACT_MISMATCH", "RECONCILIATION");
+  }
+  if (!hasValidDigest(reconciliation.snapshotFingerprint) || !hasValidDigest(reconciliation.plannerSnapshotFingerprint)) {
+    addIssue(issues, "RECONCILIATION_SNAPSHOT_IDENTITY_INVALID", "RECONCILIATION");
+  }
+  if (!isRecord(reconciliation.target)
+      || typeof reconciliation.target.environment !== "string"
+      || typeof reconciliation.target.projectId !== "string"
+      || typeof reconciliation.target.branchId !== "string"
+      || typeof reconciliation.target.databaseName !== "string"
+      || typeof reconciliation.target.purpose !== "string"
+      || typeof reconciliation.target.roleName !== "string") {
+    addIssue(issues, "RECONCILIATION_TARGET_IDENTITY_INVALID", "RECONCILIATION");
   }
 }
 
@@ -720,13 +747,28 @@ export function buildMasterVocabularyImportPlan(input: {
   reconciliation: Reconciliation;
   snapshot?: RuntimeSnapshot;
   targetEnvironment?: string;
+  expectedSnapshotFingerprint?: string;
+  expectedPlannerSnapshotFingerprint?: string;
+  targetIdentity?: JsonRecord;
   mode?: "DRY_RUN" | "APPLY";
 }): ImportPlan {
   const { artifacts, reconciliation } = input;
   const snapshot = input.snapshot ?? emptySnapshot();
+  const snapshotFingerprint = canonicalJsonSha256(snapshot);
   const issues: PlanIssue[] = [];
   const overrideConflicts: PlanIssue[] = [];
   metadataMatches(artifacts, reconciliation, issues);
+  if (input.expectedSnapshotFingerprint !== undefined
+      && reconciliation.snapshotFingerprint !== input.expectedSnapshotFingerprint) {
+    addIssue(issues, "RECONCILIATION_SNAPSHOT_EVIDENCE_MISMATCH", "RECONCILIATION");
+  }
+  if (input.expectedPlannerSnapshotFingerprint !== undefined
+      && reconciliation.plannerSnapshotFingerprint !== input.expectedPlannerSnapshotFingerprint) {
+    addIssue(issues, "RECONCILIATION_PLANNER_SNAPSHOT_MISMATCH", "RECONCILIATION");
+  }
+  if (input.targetIdentity !== undefined && !same(reconciliation.target, input.targetIdentity)) {
+    addIssue(issues, "RECONCILIATION_TARGET_MISMATCH", "RECONCILIATION");
+  }
   const source = artifacts.vocabulary;
   const releaseHash = str(source.sourceReleaseHash);
   const projectionContractVersion = str(source.projectionContractVersion);
@@ -765,7 +807,6 @@ export function buildMasterVocabularyImportPlan(input: {
   const mappingSetIds = new Set(snapshot.learningSetMappings.map((row) => row.masterLearningSetId));
   const mappedVocabularyIds = new Set(snapshot.vocabularyMappings.map((row) => row.vocabularyId));
   const targetEnvironment = input.targetEnvironment ?? "NOT_CONNECTED";
-  const snapshotFingerprint = canonicalJsonSha256(snapshot);
   const partial: Omit<ImportPlan, "planFingerprint"> = {
     planVersion: "master-runtime-import-plan-v2", mode: input.mode ?? "DRY_RUN", targetEnvironment,
     source: {
