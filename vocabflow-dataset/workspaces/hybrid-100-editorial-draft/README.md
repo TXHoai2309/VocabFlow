@@ -14,6 +14,8 @@ The direct development dependency `uuid@14.0.2` provides `v7()` generation. This
 
 ## Review boundary
 
+Phase 2F.2A: pnpm vocab:hybrid-100-editorial-review regenerates the owner-review.json and the 100-row owner decision sheet after editorial corrections. It leaves final owner approval pending and never promotes records.
+
 - Oxford structured grouping is the semantic backbone for Oxford-backed candidates. The ten 4600-only candidates were separately reviewed for one coherent teachable meaning.
 - Source and media rights are unverified. No source prose, URL, pronunciation, Provenance, classification, or media is materialized.
 - New Lexeme, Sense, and child records remain DRAFT. Existing canonical Sense reuse is pinned by revision, path, and content hash without changing those records.

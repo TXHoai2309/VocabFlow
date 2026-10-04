@@ -19,6 +19,25 @@ This log records meaningful project milestones and accepted baselines.
 - See [US-49](stories/US-49-weak-words-review.md) and
   [DEC-024](decisions.md#dec-024--weak-word-classification-and-study-scope).
 
+## 2026-10-04 — Master Vocabulary V2 Phase 2F.2A editorial QA
+
+- Corrected 24 candidate-level editorial issue groups in the offline hybrid
+  draft, including natural adjective use for far, a single aligned sense for
+  acute and hopefully, the death-and-injury meaning for toll, countability
+  for textile, and source-target alignment for crawl and compelling.
+- Added the 100-row owner review JSON, readable decision sheet, repeatable
+  review generator, and focused regression tests. Codex recommends
+  APPROVE_DRAFT for all 100; human owner approval remains pending.
+- Confirmed the 90 pinned Oxford groups against local raw-cache references,
+  all ten 4600-only meanings, 2/2 reuse decisions, 3/3 new-on-existing-Lexeme
+  distinctions, and 12/12 polysemy blocks. The identity registry is unchanged,
+  reruns allocate no UUIDs, and source-overlap gates pass.
+- All new records remain DRAFT. Canonical Master, root dataset manifest,
+  canary release, and database remain unchanged; no import, migration,
+  production connection, or media operation occurred.
+- Focused tests passed (16/16), as did workspace validation, the root Master
+  validator, typecheck, full ESLint, and git diff --check.
+
 ## 2026-10-04 — Master Vocabulary V2 Phase 2F.1A source-proof gate correction
 
 - Corrected a source-proof contradiction: two of the selected 90 Oxford

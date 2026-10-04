@@ -34,6 +34,34 @@
   and `git diff --check` PASS. pnpm reports local Node `22.19.0` versus the
   declared `22.23.2` engine.
 
+## 2026-10-04 — Master Vocabulary V2 Phase 2F.2A editorial QA
+
+- Reviewed all 100 candidate decisions and all 98 authored Sense drafts against
+  semantic target, POS, labels, Vietnamese equivalents, definitions, examples,
+  translations, sibling meanings, and language quality. Resolved 24
+  candidate-level issue groups, including the five requested checks plus two
+  additional source-target mismatches found in crawl and compelling.
+- Rechecked all 90 Oxford-backed candidates against their pinned structured
+  groups in the ignored raw cache, including POS, and reviewed the ten
+  4600-only meanings as independent coherent senses. Confirmed 2/2 exact-enough
+  existing Sense reuse decisions, 3/3 distinct new Senses on existing Lexemes,
+  and all 12 polysemy blocks.
+- Re-ran materialization twice. Draft fingerprint is
+  a112a475e896f09038d4dd6834389af2d553d3a509829ef410ef17ae4e37ee1d;
+  the identity registry hash is unchanged and rerun UUID allocation is zero.
+  Source overlap passes: zero exact English matches, zero overlaps of eight or
+  more contiguous tokens, and zero unresolved high-similarity cases.
+- The owner decision sheet recommends APPROVE_DRAFT for 100/100 candidate
+  decisions. This is a Codex recommendation only:
+  OWNER_FINAL_APPROVAL = PENDING and canonical promotion is not authorized.
+  The canonical Master, root dataset manifest, and canary release are
+  unchanged; no database, import, migration, production, or media operation
+  occurred.
+- Verification: focused Phase 2F.2/2F.2A tests 16/16, workspace validator
+  PASS, root Master validator PASS (0 errors, 0 warnings, 1 informational
+  DRAFT issue), typecheck PASS, full ESLint PASS, and git diff --check PASS.
+  Local Node is 22.19.0 versus the declared 22.23.2 engine.
+
 ## 2026-10-04 — Master Vocabulary V2 Phase 2F.1 hybrid 100-Sense source proof
 
 - Added a dependency-free Python APKG parser and synthetic fixture suite. It

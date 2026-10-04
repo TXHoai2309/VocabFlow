@@ -24,7 +24,7 @@ Workspace status: `DRAFT_EDITORIAL_MATERIALIZATION`
 - 4600-only candidates reviewed as coherent teachable meanings: 10; all resolved
 - Source overlap guard: PASS; source text reused: NO; high-similarity items requiring review: 0
 - Schema and cross-file validation: PASS
-- Draft package fingerprint: `ae0c6877f5f91e7225dcfa28c8fb98daed6ae235302b7e5daa19406c7b9ed152`
+- Draft package fingerprint: `a112a475e896f09038d4dd6834389af2d553d3a509829ef410ef17ae4e37ee1d`
 - Second materialization fingerprint identical: YES; UUIDs allocated on rerun: 0
 
 ## Boundary

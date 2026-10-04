@@ -1,0 +1,2090 @@
+{
+  "contractVersion": "HYBRID-100-OWNER-REVIEW-1",
+  "sourceProofFingerprint": "89d6477c3c1a32a0eb1e367f09df37238554f762b3b378c0f590525f3d0a4ccc",
+  "previousDraftFingerprint": "ae0c6877f5f91e7225dcfa28c8fb98daed6ae235302b7e5daa19406c7b9ed152",
+  "draftFingerprint": "a112a475e896f09038d4dd6834389af2d553d3a509829ef410ef17ae4e37ee1d",
+  "recommendationAuthority": "CODEX_EDITORIAL_QA",
+  "summary": {
+    "candidates": 100,
+    "approveDraft": 100,
+    "requestChanges": 0,
+    "rejectIdentity": 0,
+    "blocked": 0,
+    "newLexemes": 84,
+    "newSenses": 98,
+    "existingSenseReuseReviewed": 2,
+    "newSenseExistingLexemeReviewed": 3,
+    "oxfordStructuredGroupsReviewed": 90,
+    "vocab4600OnlyMeaningsReviewed": 10,
+    "semanticSourceCheck": "PASS",
+    "polysemyBlocksReviewed": 12,
+    "editorialIssueGroupsFound": 24,
+    "editorialIssueGroupsCorrected": 24,
+    "sourceOverlap": {
+      "exactEnglishDefinitionMatches": 0,
+      "exactEnglishExampleMatches": 0,
+      "candidatesWithContiguousOverlapAtLeastEightTokens": 0,
+      "highSimilarityUnresolved": 0,
+      "sourceTextReused": false
+    },
+    "semanticSourceReview": {
+      "oxfordStructuredGroupsReviewed": 90,
+      "oxfordRawCacheGroupsConfirmed": 90,
+      "oxfordPosMatches": 90,
+      "vocab4600OnlyMeaningsReviewed": 10,
+      "vocab4600OnlyCoherent": true
+    },
+    "sourceRights": "UNVERIFIED",
+    "identityRegistryChanged": false,
+    "identityRegistrySha256": "db3ab534f96b2de569dc3f85beeaeaf72a21d174c282ae7ccb493a4805fdb450",
+    "newUuidsAllocatedOnRerun": 0,
+    "repeatFingerprintIdentical": true,
+    "canonicalMasterMutation": "NONE",
+    "rootDatasetManifestMutation": "NONE",
+    "canaryReleaseMutation": "NONE",
+    "databaseWrites": "NONE"
+  },
+  "polysemyOwnerReview": {
+    "status": "PASS",
+    "blocksReviewed": 12,
+    "blocks": [
+      {
+        "lemma": "all right",
+        "candidateIds": [
+          "SOURCE-CANDIDATE-5bcbe443d9c60cbcbbaf34fbaed0744b323367854f7d9f22657c9444aea0d9e0",
+          "SOURCE-CANDIDATE-7073688505f4ddb8169baa314eccf17ab42d2689aa15584aca0f1d3cf64d8f28"
+        ],
+        "status": "PASS",
+        "noDuplicateMeaning": true,
+        "labelsDistinguishMeanings": true,
+        "definitionsDistinguishMeanings": true,
+        "examplesDisambiguate": true,
+        "vietnameseLabelsPreserveDistinction": true,
+        "rationale": "Agreement is distinct from an acceptable condition; the dialogue and state examples cannot naturally switch readings."
+      },
+      {
+        "lemma": "direct",
+        "candidateIds": [
+          "SOURCE-CANDIDATE-3572cebb12806a34d69990d38cb2594b72377123a7a310b47511adf7f926b824",
+          "SOURCE-CANDIDATE-7de5cd735943d1818063e38361843af5ffd1936eba1bf84f402225def6943079"
+        ],
+        "status": "PASS",
+        "noDuplicateMeaning": true,
+        "labelsDistinguishMeanings": true,
+        "definitionsDistinguishMeanings": true,
+        "examplesDisambiguate": true,
+        "vietnameseLabelsPreserveDistinction": true,
+        "rationale": "Non-stop travel is distinct from guiding a film production; the adverb and verb examples separate the uses."
+      },
+      {
+        "lemma": "exchange",
+        "candidateIds": [
+          "SOURCE-CANDIDATE-b6f8bcfdc7250deed3f7a6b867e76ce7ed7cdd433e2656470f4f05889a76354e",
+          "SOURCE-CANDIDATE-f50b56841676aac003cf7426d1a499be50547f89651c71c6b0b0165e4ba7a60d"
+        ],
+        "status": "PASS",
+        "noDuplicateMeaning": true,
+        "labelsDistinguishMeanings": true,
+        "definitionsDistinguishMeanings": true,
+        "examplesDisambiguate": true,
+        "vietnameseLabelsPreserveDistinction": true,
+        "rationale": "The verb describes swapping items, while the noun describes an act of reciprocal exchange; the examples and labels separate them."
+      },
+      {
+        "lemma": "integrity",
+        "candidateIds": [
+          "SOURCE-CANDIDATE-472eb5f06a2d2fb2626306b6d75cb9c3ae75ec45201cd05e469591006cdffb52",
+          "SOURCE-CANDIDATE-dbf7df88588b5137ed5b799980124c1ff2997f07fdde89e7f44e9926e3fff5bb"
+        ],
+        "status": "PASS",
+        "noDuplicateMeaning": true,
+        "labelsDistinguishMeanings": true,
+        "definitionsDistinguishMeanings": true,
+        "examplesDisambiguate": true,
+        "vietnameseLabelsPreserveDistinction": true,
+        "rationale": "Structural soundness is distinct from honesty and moral principles; both examples make their domain clear."
+      },
+      {
+        "lemma": "let",
+        "candidateIds": [
+          "SOURCE-CANDIDATE-25993c4faa58bb75796ba9e6f049945db74c20e29b23161011aa878166a64ec1",
+          "SOURCE-CANDIDATE-f1de8d38fed4b5ad485a3de9c80590838ede38c0b75ac7469e463d4d272b3c2f"
+        ],
+        "status": "PASS",
+        "noDuplicateMeaning": true,
+        "labelsDistinguishMeanings": true,
+        "definitionsDistinguishMeanings": true,
+        "examplesDisambiguate": true,
+        "vietnameseLabelsPreserveDistinction": true,
+        "rationale": "Giving a person permission is distinct from allowing an event without stopping it; the coach and open-gate examples separate them."
+      },
+      {
+        "lemma": "light",
+        "candidateIds": [
+          "SOURCE-CANDIDATE-01a6f2b2136d3a76a82ba19aa193778133938ad1dcf42cc88734a23a0ff74c57",
+          "SOURCE-CANDIDATE-24f8162f0d0ad736b2b735017612166a3b2e2c8a6a7e5058e2ba5ecc7ef3e84b",
+          "SOURCE-CANDIDATE-c747aadb1e52b856b33f4c6c2909496ceb1e06d142bd5adf49263ddcd91ded91"
+        ],
+        "status": "PASS",
+        "noDuplicateMeaning": true,
+        "labelsDistinguishMeanings": true,
+        "definitionsDistinguishMeanings": true,
+        "examplesDisambiguate": true,
+        "vietnameseLabelsPreserveDistinction": true,
+        "rationale": "Igniting, low weight, and pale color have distinct parts of speech, labels, definitions, and Vietnamese equivalents."
+      },
+      {
+        "lemma": "moment",
+        "candidateIds": [
+          "SOURCE-CANDIDATE-2a334f43a5dcae06ac202388eb08884fa5d7c1177d1cf62b0096e6de113f8ed9",
+          "SOURCE-CANDIDATE-e96aab94c0f7b66007745905803d7598e61e0f15b36b6049a69a6a79742c3f0d"
+        ],
+        "status": "PASS",
+        "noDuplicateMeaning": true,
+        "labelsDistinguishMeanings": true,
+        "definitionsDistinguishMeanings": true,
+        "examplesDisambiguate": true,
+        "vietnameseLabelsPreserveDistinction": true,
+        "rationale": "A short span of time is distinct from a particular point in time; the examples reinforce duration versus instant."
+      },
+      {
+        "lemma": "per cent",
+        "candidateIds": [
+          "SOURCE-CANDIDATE-31730be890d512b37da89f6ac35288f319e18cb85094e0a1e6065d0eb2d81c84",
+          "SOURCE-CANDIDATE-9664d6839894209a29d0641834468083bab17a238325f326fa50b87743b37a54"
+        ],
+        "status": "PASS",
+        "noDuplicateMeaning": true,
+        "labelsDistinguishMeanings": true,
+        "definitionsDistinguishMeanings": true,
+        "examplesDisambiguate": true,
+        "vietnameseLabelsPreserveDistinction": true,
+        "rationale": "A proportion is distinct from the post-numeral rate modifier; the labels explain their related but different grammatical roles."
+      },
+      {
+        "lemma": "relief",
+        "candidateIds": [
+          "SOURCE-CANDIDATE-6d13dcb4cadcd0e0ddbe0f7fbfb4eeaad944e4f184e43e024fc12b7a18b96166",
+          "SOURCE-CANDIDATE-feb4f8b9a7b535c16ba72278e5323ead94f582a660d9d5b2c03d00643efe0155"
+        ],
+        "status": "PASS",
+        "noDuplicateMeaning": true,
+        "labelsDistinguishMeanings": true,
+        "definitionsDistinguishMeanings": true,
+        "examplesDisambiguate": true,
+        "vietnameseLabelsPreserveDistinction": true,
+        "rationale": "A reduction in pain is distinct from emergency aid; the meanings and examples remain separate in Vietnamese."
+      },
+      {
+        "lemma": "rotate",
+        "candidateIds": [
+          "SOURCE-CANDIDATE-415fdc4cd7e7c56b11011578876315264e107c9a655be7c28e414bd653b37a19",
+          "SOURCE-CANDIDATE-677773ee6d6266c3844d1dfb650ac602e4190d2755585a03d23af163078bab5c"
+        ],
+        "status": "PASS",
+        "noDuplicateMeaning": true,
+        "labelsDistinguishMeanings": true,
+        "definitionsDistinguishMeanings": true,
+        "examplesDisambiguate": true,
+        "vietnameseLabelsPreserveDistinction": true,
+        "rationale": "Turning around a point is distinct from taking turns in sequence; the examples distinguish movement from assigned turns."
+      },
+      {
+        "lemma": "shift",
+        "candidateIds": [
+          "SOURCE-CANDIDATE-860293e079247bb472fc9e936e2785fc9092a3d5b80d0c93ee7d558365f2cca8",
+          "SOURCE-CANDIDATE-f0e3981e096b83feb3a8a024604428654ce713a6e39dfac979871f21679ca4f1"
+        ],
+        "status": "PASS",
+        "noDuplicateMeaning": true,
+        "labelsDistinguishMeanings": true,
+        "definitionsDistinguishMeanings": true,
+        "examplesDisambiguate": true,
+        "vietnameseLabelsPreserveDistinction": true,
+        "rationale": "A scheduled work period is distinct from a change in arrangement or opinion; labels and examples separate them."
+      },
+      {
+        "lemma": "total",
+        "candidateIds": [
+          "SOURCE-CANDIDATE-706caaa1cae42721e1db6a2144e777b5845b1aa296be9ceb7b0ced3f945e231a",
+          "SOURCE-CANDIDATE-82a89160ac6153dd1d5d9df90b8e27da38e4bdd495580bd21338f82461ab0097"
+        ],
+        "status": "PASS",
+        "noDuplicateMeaning": true,
+        "labelsDistinguishMeanings": true,
+        "definitionsDistinguishMeanings": true,
+        "examplesDisambiguate": true,
+        "vietnameseLabelsPreserveDistinction": true,
+        "rationale": "Complete in every part is distinct from the combined amount; examples distinguish degree from arithmetic total."
+      }
+    ]
+  },
+  "editorialIssues": [
+    {
+      "candidateId": "SOURCE-CANDIDATE-0a7dad541e530e2497d77ca7510ce37c5e5d47e56048d8b41abbe2ef1aa29a51",
+      "candidateOrdinal": 5,
+      "fields": [
+        "translation.vi"
+      ],
+      "categories": [
+        "TRANSLATION_TARGET_MISMATCH"
+      ],
+      "status": "CORRECTED",
+      "reason": "Narrowed the Vietnamese equivalent to the skilled-occupation sense."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-0c2cae6a295500c57b7d642a28da7692cc7f2a0b8a36ae7aa99ba9f6a7d4b88f",
+      "candidateOrdinal": 7,
+      "fields": [
+        "semanticTarget",
+        "senseLabel.en",
+        "senseLabel.vi",
+        "translation.vi",
+        "definition.en",
+        "example.en",
+        "example.vi"
+      ],
+      "categories": [
+        "DEFINITION_TARGET_MISMATCH",
+        "EXAMPLE_TARGET_MISMATCH"
+      ],
+      "status": "CORRECTED",
+      "reason": "Realigned the target with the pinned slow-movement meaning; the hands-and-knees sense belongs to another use."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-1bfdf10a871b1f4f3299e0f5d25b31acb5895a658442933cd9428ca6bb7d72d4",
+      "candidateOrdinal": 13,
+      "fields": [
+        "translation.vi"
+      ],
+      "categories": [
+        "TRANSLATION_TARGET_MISMATCH"
+      ],
+      "status": "CORRECTED",
+      "reason": "Broadened the Vietnamese equivalent to include children and young people."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-2616ae8618dcdfbe0a7acd517632ec990586cdfc48a51bcc69a3a560f7af81d4",
+      "candidateOrdinal": 17,
+      "fields": [
+        "semanticTarget",
+        "senseLabel.en",
+        "senseLabel.vi",
+        "translation.vi",
+        "definition.en",
+        "example.vi"
+      ],
+      "categories": [
+        "DEFINITION_TARGET_MISMATCH",
+        "EXAMPLE_TARGET_MISMATCH"
+      ],
+      "status": "CORRECTED",
+      "reason": "Selected the sentential hope use and aligned its labels, definition, and translations."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-3572cebb12806a34d69990d38cb2594b72377123a7a310b47511adf7f926b824",
+      "candidateOrdinal": 23,
+      "fields": [
+        "definition.en",
+        "example.en",
+        "example.vi"
+      ],
+      "categories": [
+        "ENGLISH_UNNATURAL",
+        "EXAMPLE_TARGET_MISMATCH"
+      ],
+      "status": "CORRECTED",
+      "reason": "Replaced the awkward imperative with a natural direct-travel example."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-4630c0cb4a5a2294a0a6cdcc885049892440beb89954cc8dd3342b8c00f88445",
+      "candidateOrdinal": 31,
+      "fields": [
+        "example.en"
+      ],
+      "categories": [
+        "COUNTABILITY_ERROR",
+        "COLLOCATION_ERROR"
+      ],
+      "status": "CORRECTED",
+      "reason": "Used plural textiles for cloth materials made from recycled fibers."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-4804e5a1064d970635ca260f2051e8bef92cae2634105fc25fdc09a45bf00061",
+      "candidateOrdinal": 33,
+      "fields": [
+        "definition.en",
+        "example.en",
+        "example.vi"
+      ],
+      "categories": [
+        "ENGLISH_UNNATURAL",
+        "EXAMPLE_TARGET_MISMATCH"
+      ],
+      "status": "CORRECTED",
+      "reason": "Changed attributive far to a natural predicate adjective construction."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-483ca72bba68a330bdbee912f9dd46f33e16c187ee234ef3c2679ba342c456c1",
+      "candidateOrdinal": 34,
+      "fields": [
+        "senseLabel.vi",
+        "translation.vi"
+      ],
+      "categories": [
+        "TRANSLATION_TARGET_MISMATCH"
+      ],
+      "status": "CORRECTED",
+      "reason": "Expanded the Vietnamese equivalent beyond college students to first-year school or college students."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-5565174c91cbf17ade5418e71beafe248bbfbebab5fe2b7ac92d7c07f8ef5651",
+      "candidateOrdinal": 37,
+      "fields": [
+        "example.en",
+        "example.vi"
+      ],
+      "categories": [
+        "VIETNAMESE_UNNATURAL",
+        "EXAMPLE_TRANSLATION_MISMATCH"
+      ],
+      "status": "CORRECTED",
+      "reason": "Rephrased the example around charging a fair price, giving it a natural Vietnamese translation."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-5c5da7bfd16d72494c038208e25badf621ffc15a4f70b8ee203b06be9c4cc257",
+      "candidateOrdinal": 41,
+      "fields": [
+        "example.en",
+        "example.vi"
+      ],
+      "categories": [
+        "EXAMPLE_TARGET_MISMATCH"
+      ],
+      "status": "CORRECTED",
+      "reason": "Made the example establish that the item is the only surviving copy."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-6df3cbd74441f858e7dbfb989e650b84b905bd2a572b270933be15aad74ca685",
+      "candidateOrdinal": 47,
+      "fields": [
+        "senseLabel.vi",
+        "translation.vi",
+        "definition.en"
+      ],
+      "categories": [
+        "DEFINITION_TARGET_MISMATCH",
+        "TRANSLATION_TARGET_MISMATCH"
+      ],
+      "status": "CORRECTED",
+      "reason": "Kept the pinned severe-and-intense target and removed the conflicting acute-medical framing."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-71158431f16035d34e20f7385234995c7b2646d98f73cee0753311710596daba",
+      "candidateOrdinal": 51,
+      "fields": [
+        "semanticTarget",
+        "senseLabel.en",
+        "senseLabel.vi",
+        "translation.vi",
+        "definition.en",
+        "example.en",
+        "example.vi"
+      ],
+      "categories": [
+        "SEMANTIC_OVERBROAD",
+        "EXAMPLE_TARGET_MISMATCH"
+      ],
+      "status": "CORRECTED",
+      "reason": "Narrowed the persuasive-or-engaging wording to the pinned attention-holding meaning."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-7575479487282ba588c025c8568810fe0507cee430200fc733b2a28ead6e2f9c",
+      "candidateOrdinal": 52,
+      "fields": [
+        "example.en",
+        "example.vi"
+      ],
+      "categories": [
+        "ENGLISH_UNNATURAL",
+        "COLLOCATION_ERROR"
+      ],
+      "status": "CORRECTED",
+      "reason": "Replaced the awkward steep-rock collocation with bare rock across a landscape."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-86d6fc6cc4bd592ebdade6fce43449b174bfba918e14326ce156173320d5f71f",
+      "candidateOrdinal": 59,
+      "fields": [
+        "senseLabel.en",
+        "senseLabel.vi",
+        "example.en",
+        "example.vi"
+      ],
+      "categories": [
+        "EXAMPLE_TRANSLATION_MISMATCH",
+        "TRANSLATION_TARGET_MISMATCH"
+      ],
+      "status": "CORRECTED",
+      "reason": "Named deaths and injuries explicitly in the label and example translation."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-989e2412a07fb9fd5c961af74ee3954b0e0de5c2d5d0db9f2774c29d5124144d",
+      "candidateOrdinal": 65,
+      "fields": [
+        "example.en",
+        "example.vi"
+      ],
+      "categories": [
+        "COLLOCATION_ERROR"
+      ],
+      "status": "CORRECTED",
+      "reason": "Used a natural scrape-paint-off construction with a clear Vietnamese equivalent."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-a6a21ce9e065d758b06afa3de50f842559158c17ed094860dd14b53e5d9fe17a",
+      "candidateOrdinal": 67,
+      "fields": [
+        "translation.vi",
+        "definition.en"
+      ],
+      "categories": [
+        "DEFINITION_TARGET_MISMATCH",
+        "TRANSLATION_TARGET_MISMATCH"
+      ],
+      "status": "CORRECTED",
+      "reason": "Removed the separate cause meaning and replaced the redundant Vietnamese equivalent."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-b6f8bcfdc7250deed3f7a6b867e76ce7ed7cdd433e2656470f4f05889a76354e",
+      "candidateOrdinal": 72,
+      "fields": [
+        "example.en",
+        "example.vi"
+      ],
+      "categories": [
+        "EXAMPLE_TARGET_MISMATCH",
+        "EXAMPLE_TRANSLATION_MISMATCH"
+      ],
+      "status": "CORRECTED",
+      "reason": "Replaced a borrowing-like tool swap with an unambiguous exchange for something else."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-cbd100b99aa318222f4445443aef3df02a84445f398e3f3e163de9755d516f3c",
+      "candidateOrdinal": 80,
+      "fields": [
+        "example.vi"
+      ],
+      "categories": [
+        "VIETNAMESE_UNNATURAL"
+      ],
+      "status": "CORRECTED",
+      "reason": "Removed the repeated word for set from the Vietnamese example translation."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-d0750976f9404833c0388fd54ddf3b6e537eab7df1a37488bf47cccb674da831",
+      "candidateOrdinal": 82,
+      "fields": [
+        "example.en",
+        "example.vi"
+      ],
+      "categories": [
+        "COLLOCATION_ERROR",
+        "VIETNAMESE_UNNATURAL"
+      ],
+      "status": "CORRECTED",
+      "reason": "Changed repayment to regular monthly instalments and translated the payment schedule naturally."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-e9ae57565ae44c6fb2f2b3ab8d5b19debf368fdc2691cb134f6eafeced8823df",
+      "candidateOrdinal": 88,
+      "fields": [
+        "definition.en"
+      ],
+      "categories": [
+        "SEMANTIC_OVERBROAD"
+      ],
+      "status": "CORRECTED",
+      "reason": "Limited leadership to the act of guiding a group toward a shared goal."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-eaadad6c799f4d78737d4a9020edcfbc22e0d86fd6668f5d6780a1ccd5ca20b3",
+      "candidateOrdinal": 89,
+      "fields": [
+        "example.en",
+        "example.vi"
+      ],
+      "categories": [
+        "EXAMPLE_TRANSLATION_MISMATCH",
+        "VIETNAMESE_UNNATURAL"
+      ],
+      "status": "CORRECTED",
+      "reason": "Replaced the unclear missed-connections example with a natural cause-and-result example."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-edd1090de7a2dd8d3692f3458cc1993ebfe573afe167624d4f083bafd51754c4",
+      "candidateOrdinal": 92,
+      "fields": [
+        "example.en",
+        "example.vi"
+      ],
+      "categories": [
+        "ENGLISH_UNNATURAL",
+        "EXAMPLE_TARGET_MISMATCH"
+      ],
+      "status": "CORRECTED",
+      "reason": "Clarified that the firework fuse burns through before the firework explodes."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-efcde4e40d67b7b9820de9ef1eed548cf2bd662bc82668344e35b951d15a3ffa",
+      "candidateOrdinal": 93,
+      "fields": [
+        "example.en",
+        "example.vi"
+      ],
+      "categories": [
+        "ENGLISH_UNNATURAL",
+        "EXAMPLE_TARGET_MISMATCH"
+      ],
+      "status": "CORRECTED",
+      "reason": "Replaced the ambiguous delivery-cost example with a direct price comparison."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-f11ac8a25b9286099389f70cbc63c8fddd3ed025e704b621b09bca6389250462",
+      "candidateOrdinal": 96,
+      "fields": [
+        "example.vi"
+      ],
+      "categories": [
+        "EXAMPLE_TRANSLATION_MISMATCH"
+      ],
+      "status": "CORRECTED",
+      "reason": "Translated calm nature as a person's disposition rather than an abstract essence."
+    }
+  ],
+  "candidateDecisions": [
+    {
+      "candidateId": "SOURCE-CANDIDATE-0193d5c02d4ad6bb90485dac2dde8709905ebdcca01ddab95885f2d96b5827eb",
+      "masterLexemeId": "01a1070c-7c56-71df-b6f0-3750741bcfb0",
+      "masterSenseId": "01a1070c-7c56-71df-b6f0-39632387320e",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-01a6f2b2136d3a76a82ba19aa193778133938ad1dcf42cc88734a23a0ff74c57",
+      "masterLexemeId": "01a0fc13-09ee-7fd1-8ad8-a2026a7620e0",
+      "masterSenseId": "01a1070c-7c57-7676-9acd-d23079256ae2",
+      "identityDecision": "NEW_SENSE_EXISTING_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-05d9af13d045b15eb568626ef7e7f85de8545206ee5a7e23e2dd48b8625359de",
+      "masterLexemeId": "01a1070c-7c57-7676-9acd-e539159ec92f",
+      "masterSenseId": "01a1070c-7c57-7676-9acd-eaf36e6184b3",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-06f9d0147063b37aabfa6c063015793ab2a4aefa94373eaa3ca0a57270ade6e7",
+      "masterLexemeId": "01a1070c-7c57-7676-9acd-fd76f527ed8f",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-014df3449d2e",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-0a7dad541e530e2497d77ca7510ce37c5e5d47e56048d8b41abbe2ef1aa29a51",
+      "masterLexemeId": "01a1070c-7c57-7676-9ace-17d68166d150",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-18656f491ca7",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true,
+      "correctionFields": [
+        "translation.vi"
+      ],
+      "correctionReason": "Narrowed the Vietnamese equivalent to the skilled-occupation sense."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-0b18be4294c77935547c8fc96d5e66cd4bc3ad92f0073d8085d0e58ae895a164",
+      "masterLexemeId": "01a0fc13-09ef-73b3-b970-1a8bd5d48a27",
+      "masterSenseId": "01a0fc13-09ef-75ac-b815-039ab337c01a",
+      "identityDecision": "REUSE_EXISTING_SENSE",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticIdentityExactEnough": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-0c2cae6a295500c57b7d642a28da7692cc7f2a0b8a36ae7aa99ba9f6a7d4b88f",
+      "masterLexemeId": "01a1070c-7c57-7676-9ace-2d5ee1031f79",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-32d1337aab90",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true,
+      "correctionFields": [
+        "semanticTarget",
+        "senseLabel.en",
+        "senseLabel.vi",
+        "translation.vi",
+        "definition.en",
+        "example.en",
+        "example.vi"
+      ],
+      "correctionReason": "Realigned the target with the pinned slow-movement meaning; the hands-and-knees sense belongs to another use."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-0e7ea04a3bfc409aece73ae639ffa01e693bbe50993a6479bd98ee63d4a26368",
+      "masterLexemeId": "01a1070c-7c57-7676-9ace-446fb649e2ed",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-4b581bada298",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-11ff58a982a345fcd41336635a5d17267dd074a64fbba1ae94979197569816a2",
+      "masterLexemeId": "01a1070c-7c57-7676-9ace-5cc488b97e59",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-63a7042782dc",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-18950eb5fa3eaf3a59c939f27d349bb1d1583e7d06cc82be3e98075185cb3fa5",
+      "masterLexemeId": "01a1070c-7c57-7676-9ace-7654c9b464ce",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-79a6118270d8",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-1b03f5ef8c017372c20c42281718632056242edbb5cfb807910f66a6ffa26470",
+      "masterLexemeId": "01a1070c-7c57-7676-9ace-8e851f44ddab",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-93aa39952372",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-1b64d7be9c1fc59280402edb0da818c6e0be9acda0f745b8114b0dd7252e0051",
+      "masterLexemeId": "01a1070c-7c57-7676-9ace-a42d46ebdefe",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-a81c3cdf40fa",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-1bfdf10a871b1f4f3299e0f5d25b31acb5895a658442933cd9428ca6bb7d72d4",
+      "masterLexemeId": "01a1070c-7c57-7676-9ace-bda829e57141",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-c2f9d561c8f4",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true,
+      "correctionFields": [
+        "translation.vi"
+      ],
+      "correctionReason": "Broadened the Vietnamese equivalent to include children and young people."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-230b10a0034f428818bad9bc4ca686a79ac9220951411a0cb332e874121dc84e",
+      "masterLexemeId": "01a1070c-7c57-7676-9ace-d6e5b330dc5f",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-d8831aa1814d",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-24f8162f0d0ad736b2b735017612166a3b2e2c8a6a7e5058e2ba5ecc7ef3e84b",
+      "masterLexemeId": "01a0fc13-09ee-7fd1-8ad8-a2026a7620e0",
+      "masterSenseId": "01a0fc13-09ee-7768-9be6-d20fa32521ee",
+      "identityDecision": "REUSE_EXISTING_SENSE",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticIdentityExactEnough": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-25993c4faa58bb75796ba9e6f049945db74c20e29b23161011aa878166a64ec1",
+      "masterLexemeId": "01a1070c-7c57-7676-9ace-eeab790b4231",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-f28714bdee2e",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-2616ae8618dcdfbe0a7acd517632ec990586cdfc48a51bcc69a3a560f7af81d4",
+      "masterLexemeId": "01a1070c-7c57-7676-9acf-07e31175af99",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-09879397d1e1",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true,
+      "correctionFields": [
+        "semanticTarget",
+        "senseLabel.en",
+        "senseLabel.vi",
+        "translation.vi",
+        "definition.en",
+        "example.vi"
+      ],
+      "correctionReason": "Selected the sentential hope use and aligned its labels, definition, and translations."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-2655a035435cea58d93fab5b374b0fe84c4a4dcc4bc0a8052e21b64be73e30d4",
+      "masterLexemeId": "01a1070c-7c57-7676-9acf-1cc31ebc0b93",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-2166c93ae47a",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-2a334f43a5dcae06ac202388eb08884fa5d7c1177d1cf62b0096e6de113f8ed9",
+      "masterLexemeId": "01a1070c-7c57-7676-9acf-36ec8b14c92d",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-390ac30fd890",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-2f71c2bee6a21197fcc2b973a400addd6f3b4209e08e0dd808b50c89724a1458",
+      "masterLexemeId": "01a1070c-7c57-7676-9acf-4cf8500d49d9",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-51b00d9e4aca",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-300c5a70d2aedc60fde2548a32f2393fb5c92128a7887d89449d012c92f6fa79",
+      "masterLexemeId": "01a1070c-7c57-7676-9acf-648a5a63fad8",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-6a88ac566599",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-31730be890d512b37da89f6ac35288f319e18cb85094e0a1e6065d0eb2d81c84",
+      "masterLexemeId": "01a1070c-7c57-7676-9acf-7f943f6c1e48",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-83edaac99eb9",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-3572cebb12806a34d69990d38cb2594b72377123a7a310b47511adf7f926b824",
+      "masterLexemeId": "01a1070c-7c57-7676-9acf-9752b551d0a1",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-99d8c8592c32",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true,
+      "correctionFields": [
+        "definition.en",
+        "example.en",
+        "example.vi"
+      ],
+      "correctionReason": "Replaced the awkward imperative with a natural direct-travel example."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-3624fa8192fcd04c8d2e072f386c6fc8869aeec39de7891fe6e62bb4978ad264",
+      "masterLexemeId": "01a1070c-7c57-7676-9acf-ad7532f47f33",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-b1c2d0e92475",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-3c7277a33899085a7ba0f8754436899eaf7bb5d7052fb3d82c58a917635e72a6",
+      "masterLexemeId": "01a1070c-7c57-7676-9acf-c627b437efa6",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-c8bb470b0069",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-3d013d43097447db661335b9eb58efe7694b9fbeedf01f0e5b899ecaa1d15ea1",
+      "masterLexemeId": "01a1070c-7c57-7676-9acf-dec187aa6654",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-e2bf85a21c08",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-3f0020f8523bfc56dcc81a0c3c66958409b68794955d496daf59e68c7789dd25",
+      "masterLexemeId": "01a1070c-7c57-7676-9acf-f47211d4f15f",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-fbb6c07854f6",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-3f143bf8fcaa3d639502b8ab6fa9ca2ba3b1447735dce3975be88a5f403bc030",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2a8-ce6bd8416ffe",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a8-d1cd64c3eada",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-413463e2f1c79eefd19302149539c58dafe094b88ca99dc983265555b2d624e6",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2a8-e43bd969817e",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a8-ebb7ee4a97d9",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-415fdc4cd7e7c56b11011578876315264e107c9a655be7c28e414bd653b37a19",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2a8-fff9a54fdf74",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-0030193008ca",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-4630c0cb4a5a2294a0a6cdcc885049892440beb89954cc8dd3342b8c00f88445",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2a9-176810772f4e",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-18ee254ff4be",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true,
+      "correctionFields": [
+        "example.en"
+      ],
+      "correctionReason": "Used plural textiles for cloth materials made from recycled fibers."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-472eb5f06a2d2fb2626306b6d75cb9c3ae75ec45201cd05e469591006cdffb52",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2a9-2ee837ebd4a3",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-3185a807d618",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-4804e5a1064d970635ca260f2051e8bef92cae2634105fc25fdc09a45bf00061",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2a9-46c7a452aaa4",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-4b4562d352c8",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true,
+      "correctionFields": [
+        "definition.en",
+        "example.en",
+        "example.vi"
+      ],
+      "correctionReason": "Changed attributive far to a natural predicate adjective construction."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-483ca72bba68a330bdbee912f9dd46f33e16c187ee234ef3c2679ba342c456c1",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2a9-5f0baf3f5da1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-620e574defe8",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true,
+      "correctionFields": [
+        "senseLabel.vi",
+        "translation.vi"
+      ],
+      "correctionReason": "Expanded the Vietnamese equivalent beyond college students to first-year school or college students."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-51722d2f8baa68b54454b43e12daf3927c28d512bc10f44e52e1185c462a92ca",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2a9-77c0b32d5958",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-78fe16fc29bb",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-521ce0adaa9f904198bc892544ca715c344bc69263b4d3137083dcf496a5f6a0",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2a9-8eb6466e094b",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-92d544914a1a",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-5565174c91cbf17ade5418e71beafe248bbfbebab5fe2b7ac92d7c07f8ef5651",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2a9-a5bb8b3b2028",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-aa41e4cd8ff9",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true,
+      "correctionFields": [
+        "example.en",
+        "example.vi"
+      ],
+      "correctionReason": "Rephrased the example around charging a fair price, giving it a natural Vietnamese translation."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-5612075f600566dae5840afca85e3c574d323b8ddc80559d986707715747e2a5",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2a9-be56a4a82048",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-c1530836b546",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-5a824cc60ce344b2335f8f7661a2f66bf8e781fa9a138cdecc32b6dd254ae607",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2a9-d6f9af783ab6",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-d9fe7b7d857e",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-5bcbe443d9c60cbcbbaf34fbaed0744b323367854f7d9f22657c9444aea0d9e0",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2a9-eeda1efc4dce",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-f257db26d791",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-5c5da7bfd16d72494c038208e25badf621ffc15a4f70b8ee203b06be9c4cc257",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2aa-052cbb68ebbb",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-0a20d4f7ae01",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true,
+      "correctionFields": [
+        "example.en",
+        "example.vi"
+      ],
+      "correctionReason": "Made the example establish that the item is the only surviving copy."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-5f6cd61804c889f2e7c8ab95fc05ab7b05f28a4f26d96548c890f4183a55ba8d",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2aa-1c3612353f47",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-20e7d1e01c66",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-616c853e98fddfbade0001ee43b364e6b5ef6b6ad73efcee81897818e81720b5",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2aa-34434f56a11b",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-397ef521e177",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-677773ee6d6266c3844d1dfb650ac602e4190d2755585a03d23af163078bab5c",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2a8-fff9a54fdf74",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-4d54a373af15",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-6ce32853d2cae03ebc709d39fad8a6934a972092040c5eaaa1eea92e19d297e6",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2aa-60ff4def7394",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-66b0757806fe",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-6d13dcb4cadcd0e0ddbe0f7fbfb4eeaad944e4f184e43e024fc12b7a18b96166",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2aa-785336c8dc64",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-7e0812b069ae",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-6df3cbd74441f858e7dbfb989e650b84b905bd2a572b270933be15aad74ca685",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2aa-9091f194b958",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-97f25323b0a8",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true,
+      "correctionFields": [
+        "senseLabel.vi",
+        "translation.vi",
+        "definition.en"
+      ],
+      "correctionReason": "Kept the pinned severe-and-intense target and removed the conflicting acute-medical framing."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-6e8882fc2e38cee29390b9f54184323995c835e89c148eded5c9a24ec0f609ca",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2aa-aa2829a51609",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-aeb83963a729",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-706caaa1cae42721e1db6a2144e777b5845b1aa296be9ceb7b0ced3f945e231a",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2aa-c3995e3cdc8b",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-c4a190ee77a4",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-7073688505f4ddb8169baa314eccf17ab42d2689aa15584aca0f1d3cf64d8f28",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2a9-eeda1efc4dce",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-db8e56d2cc07",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-71158431f16035d34e20f7385234995c7b2646d98f73cee0753311710596daba",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2aa-ef2e16608a0c",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-f3a4a21a7dc3",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true,
+      "correctionFields": [
+        "semanticTarget",
+        "senseLabel.en",
+        "senseLabel.vi",
+        "translation.vi",
+        "definition.en",
+        "example.en",
+        "example.vi"
+      ],
+      "correctionReason": "Narrowed the persuasive-or-engaging wording to the pinned attention-holding meaning."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-7575479487282ba588c025c8568810fe0507cee430200fc733b2a28ead6e2f9c",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2ab-053cc2f30444",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-0ab34eedf7c6",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true,
+      "correctionFields": [
+        "example.en",
+        "example.vi"
+      ],
+      "correctionReason": "Replaced the awkward steep-rock collocation with bare rock across a landscape."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-78eda8d27df2d18b0240e625ff5c62516368bb55313c82aa89d91f060aa95753",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2ab-1d174cd34a69",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-23b5c52b4d0f",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-7d69b7e4e6b14f1f1e82af0886884db203752824101d0c946224fe01bd57da2e",
+      "masterLexemeId": "01a0fc13-09ef-7e5d-b757-aa456f0cd969",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-369dd574695b",
+      "identityDecision": "NEW_SENSE_EXISTING_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-7de5cd735943d1818063e38361843af5ffd1936eba1bf84f402225def6943079",
+      "masterLexemeId": "01a1070c-7c57-7676-9acf-9752b551d0a1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-48eb58f50cbf",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-80af8ab531f9ced98fc9948a0bd469f6bcf066d18c08c9b8b21409bd609e553e",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2ab-5d81e4b7f8e9",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-6137a474d3c3",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-82a89160ac6153dd1d5d9df90b8e27da38e4bdd495580bd21338f82461ab0097",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2aa-c3995e3cdc8b",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-74b8a6de7e22",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-860293e079247bb472fc9e936e2785fc9092a3d5b80d0c93ee7d558365f2cca8",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2ab-89f2166b2fa6",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-8ebf5829835d",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-86d6fc6cc4bd592ebdade6fce43449b174bfba918e14326ce156173320d5f71f",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2ab-a268368f74c1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-a764716f4128",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true,
+      "correctionFields": [
+        "senseLabel.en",
+        "senseLabel.vi",
+        "example.en",
+        "example.vi"
+      ],
+      "correctionReason": "Named deaths and injuries explicitly in the label and example translation."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-8a35f5357d1792b910f63a859a06237e89a84e96eaa3a2bc654f1303aeebbff1",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2ab-b8fabe34a282",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-be14abe16989",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-8ac6821bde7df79341feefdee4eacfa864b59f20098bfecf1a0a19d50e1331fd",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2ab-d0e82afaadf0",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-d47ce6596f64",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-8b730a86ea8d3ce02b76db59b3ecd029a062de0c6672918914208e6b16c2f1d6",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2ab-ea3cd5cf5ce2",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-ed6693eca162",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-9664d6839894209a29d0641834468083bab17a238325f326fa50b87743b37a54",
+      "masterLexemeId": "01a1070c-7c57-7676-9acf-7f943f6c1e48",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ac-007b8e765c31",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-9778e99282e13db6006303903ab40a2205f4940ea2b8333cb59b2da97111783c",
+      "masterLexemeId": "01a1070c-7c59-726e-88d4-3497fb03486b",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-388175c26836",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-989e2412a07fb9fd5c961af74ee3954b0e0de5c2d5d0db9f2774c29d5124144d",
+      "masterLexemeId": "01a1070c-7c59-726e-88d4-4f526e764455",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-5263bfd63bbf",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true,
+      "correctionFields": [
+        "example.en",
+        "example.vi"
+      ],
+      "correctionReason": "Used a natural scrape-paint-off construction with a clear Vietnamese equivalent."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-a668f749255b80a5683799c344ff31766bdfc36f789d419e51b0c5e90fccb09f",
+      "masterLexemeId": "01a1070c-7c59-726e-88d4-650ecb113f67",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-6b2a61e1e7c4",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-a6a21ce9e065d758b06afa3de50f842559158c17ed094860dd14b53e5d9fe17a",
+      "masterLexemeId": "01a1070c-7c59-726e-88d4-7e7ae1df7d90",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-83e56ae5f536",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true,
+      "correctionFields": [
+        "translation.vi",
+        "definition.en"
+      ],
+      "correctionReason": "Removed the separate cause meaning and replaced the redundant Vietnamese equivalent."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-a8663e5c6478cc250dced54fff1aae633c2960d6262ae6f328c446e753f9eeb9",
+      "masterLexemeId": "01a1070c-7c59-726e-88d4-9602c99a72a2",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-982f187e5653",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-ab5d0dfb9e05eb23a90df6674214dff815ad7a3f6b9a467383488aea160b6b17",
+      "masterLexemeId": "01a1070c-7c59-726e-88d4-adcdd8c12cf1",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-b375a308217e",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-b10678af0b94d27c23313cce5e3a860557f5dfabb31c87ad2bc860929a70ecd8",
+      "masterLexemeId": "01a1070c-7c59-726e-88d4-c4b32e2c699b",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-c8cce3636c7a",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-b4a8289ae36d44a0774547da703cfe7b2cae49e10019936779c68f9fb2218f80",
+      "masterLexemeId": "01a1070c-7c59-726e-88d4-de19d5727766",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-e052bbcb6335",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-b6f8bcfdc7250deed3f7a6b867e76ce7ed7cdd433e2656470f4f05889a76354e",
+      "masterLexemeId": "01a1070c-7c59-726e-88d4-f4bbbedf1005",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-f95f0a11a85e",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true,
+      "correctionFields": [
+        "example.en",
+        "example.vi"
+      ],
+      "correctionReason": "Replaced a borrowing-like tool swap with an unambiguous exchange for something else."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-ba799ba2d3885eefde5b278df2603ac1f148c0a697dda410b1552861b9822546",
+      "masterLexemeId": "01a1070c-7c59-726e-88d5-0f26eea743d4",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-13e0fb40de8c",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-bbeb334edeb83a694bb36579f1171305de2be0af2e6702c71c9caf48c22aafc2",
+      "masterLexemeId": "01a1070c-7c59-726e-88d5-2407b5177e60",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-2a10fa50c2ef",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-c01d1ac17e173686606d610c8236ba034a9a786f92f335fe6f5962ed0b1ab195",
+      "masterLexemeId": "01a1070c-7c59-726e-88d5-3e5d21e4f87a",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-413213f77278",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-c29e0bec420e2d7f8576982a414f15be28b444f32ce6077435fe65b7b48612b3",
+      "masterLexemeId": "01a1070c-7c59-726e-88d5-5490bd22d60b",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-589ec0261ad8",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-c672a94cf9a6befb8835cd2deb9578c31a2bf275b02c42e8f4a4fb741bb88777",
+      "masterLexemeId": "01a1070c-7c59-726e-88d5-6c122e5d6f04",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-700f2c9a47a0",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-c70769e33fd0ee3c0f52cd5baa57da3726d231656f37f6b1a9f50fcbd9a70203",
+      "masterLexemeId": "01a1070c-7c59-726e-88d5-87f1459517e2",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-882b36643f4e",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-c747aadb1e52b856b33f4c6c2909496ceb1e06d142bd5adf49263ddcd91ded91",
+      "masterLexemeId": "01a0fc13-09ee-7fd1-8ad8-a2026a7620e0",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-9c1965cff571",
+      "identityDecision": "NEW_SENSE_EXISTING_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-cbd100b99aa318222f4445443aef3df02a84445f398e3f3e163de9755d516f3c",
+      "masterLexemeId": "01a1070c-7c59-726e-88d5-b2975ff3d1db",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-b778960784d8",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true,
+      "correctionFields": [
+        "example.vi"
+      ],
+      "correctionReason": "Removed the repeated word for set from the Vietnamese example translation."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-d0003453968ccb0e946217280dca3ee3418c4dfb47f9d5961d33dcb126a87ce9",
+      "masterLexemeId": "01a1070c-7c59-726e-88d5-cb855b59039d",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-cff4c73ff34a",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-d0750976f9404833c0388fd54ddf3b6e537eab7df1a37488bf47cccb674da831",
+      "masterLexemeId": "01a1070c-7c59-726e-88d5-e15c28d3dba5",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-e6665424a3b2",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true,
+      "correctionFields": [
+        "example.en",
+        "example.vi"
+      ],
+      "correctionReason": "Changed repayment to regular monthly instalments and translated the payment schedule naturally."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-dbf7df88588b5137ed5b799980124c1ff2997f07fdde89e7f44e9926e3fff5bb",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2a9-2ee837ebd4a3",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-fa99c56877b4",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-df4ad026b1e363bac58a108f963f43dcfc448752c0699383449b76d76ee0a34f",
+      "masterLexemeId": "01a1070c-7c59-726e-88d6-0de8a21078d9",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-12b693a50e53",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-e48631cf504508ae5a7f95254c864b2f09667590b8cb139c2e11dedcd47120df",
+      "masterLexemeId": "01a1070c-7c59-726e-88d6-27683eaf472f",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-2bd02d10cccb",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-e70596a9bb01ddaebb07f96d4f94f2d6317479f53caf923478b7a4a879bcb9fd",
+      "masterLexemeId": "01a1070c-7c59-726e-88d6-3d96a4168abe",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-41334868edc3",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-e96aab94c0f7b66007745905803d7598e61e0f15b36b6049a69a6a79742c3f0d",
+      "masterLexemeId": "01a1070c-7c57-7676-9acf-36ec8b14c92d",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-56be2debcdfe",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-e9ae57565ae44c6fb2f2b3ab8d5b19debf368fdc2691cb134f6eafeced8823df",
+      "masterLexemeId": "01a1070c-7c59-726e-88d6-6bed13c39f09",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-6d55c97117dc",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true,
+      "correctionFields": [
+        "definition.en"
+      ],
+      "correctionReason": "Limited leadership to the act of guiding a group toward a shared goal."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-eaadad6c799f4d78737d4a9020edcfbc22e0d86fd6668f5d6780a1ccd5ca20b3",
+      "masterLexemeId": "01a1070c-7c59-726e-88d6-83c6864f21b4",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-84571ea5dbf5",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true,
+      "correctionFields": [
+        "example.en",
+        "example.vi"
+      ],
+      "correctionReason": "Replaced the unclear missed-connections example with a natural cause-and-result example."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-eb74df6da3109526eec13815cb005b351b9c189785edadedcb27c7703bfeb811",
+      "masterLexemeId": "01a1070c-7c59-726e-88d6-988495690810",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-9edb547352aa",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-ebbeeb8d54fefaac4b8c2558228bf61556de9e20d6846282bac64168bcc770a6",
+      "masterLexemeId": "01a1070c-7c59-726e-88d6-b3d4934f8adb",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-b5d43a60b62f",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-edd1090de7a2dd8d3692f3458cc1993ebfe573afe167624d4f083bafd51754c4",
+      "masterLexemeId": "01a1070c-7c59-726e-88d6-cb73a774b6f2",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-cf9dc05adb73",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true,
+      "correctionFields": [
+        "example.en",
+        "example.vi"
+      ],
+      "correctionReason": "Clarified that the firework fuse burns through before the firework explodes."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-efcde4e40d67b7b9820de9ef1eed548cf2bd662bc82668344e35b951d15a3ffa",
+      "masterLexemeId": "01a1070c-7c59-726e-88d6-e3fa312c5882",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-e7a8d422dbdf",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true,
+      "correctionFields": [
+        "example.en",
+        "example.vi"
+      ],
+      "correctionReason": "Replaced the ambiguous delivery-cost example with a direct price comparison."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-eff74bdfd6b979ae4852a79a9f5be6c6658ae60e0e5f4c834351e80724cd8163",
+      "masterLexemeId": "01a1070c-7c59-726e-88d6-fb5a013f6887",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-fc58f364e770",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-f0e3981e096b83feb3a8a024604428654ce713a6e39dfac979871f21679ca4f1",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2ab-89f2166b2fa6",
+      "masterSenseId": "01a1070c-7c59-726e-88d7-1390989a47b8",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-f11ac8a25b9286099389f70cbc63c8fddd3ed025e704b621b09bca6389250462",
+      "masterLexemeId": "01a1070c-7c5a-7542-a092-bbc32cc229e3",
+      "masterSenseId": "01a1070c-7c5a-7542-a092-beb09c96a03f",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true,
+      "correctionFields": [
+        "example.vi"
+      ],
+      "correctionReason": "Translated calm nature as a person's disposition rather than an abstract essence."
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-f1de8d38fed4b5ad485a3de9c80590838ede38c0b75ac7469e463d4d272b3c2f",
+      "masterLexemeId": "01a1070c-7c57-7676-9ace-eeab790b4231",
+      "masterSenseId": "01a1070c-7c5a-7542-a092-d1d73dd0f634",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-f50b56841676aac003cf7426d1a499be50547f89651c71c6b0b0165e4ba7a60d",
+      "masterLexemeId": "01a1070c-7c59-726e-88d4-f4bbbedf1005",
+      "masterSenseId": "01a1070c-7c5a-7542-a092-e7df11b3bc0a",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-fc84b2651c909a5bbf2c026594a905b931a0bdc17aa3e81de64dcd0e28a33303",
+      "masterLexemeId": "01a1070c-7c5a-7542-a092-fa980262e787",
+      "masterSenseId": "01a1070c-7c5a-7542-a092-ff8307ef6e05",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-feb4f8b9a7b535c16ba72278e5323ead94f582a660d9d5b2c03d00643efe0155",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2aa-785336c8dc64",
+      "masterSenseId": "01a1070c-7c5a-7542-a093-116a29fa3a72",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "editorialReviewStatus": "APPROVE_DRAFT",
+      "semanticTargetApproved": true,
+      "partOfSpeechApproved": true,
+      "englishDefinitionApproved": true,
+      "vietnameseTranslationApproved": true,
+      "englishExampleApproved": true,
+      "vietnameseExampleApproved": true,
+      "polysemyApproved": true
+    }
+  ],
+  "ownerFinalApproval": "PENDING",
+  "canonicalPromotionAuthorized": false
+}
