@@ -2,6 +2,21 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-04 — Master Vocabulary V2 Phase 2E.6 development canary closure
+
+- Added a target-verified, read-only post-apply verifier and package command.
+  Its development run confirmed 19/19 migrations, 8/8 Master Sense mappings,
+  matching effective-projection fingerprints, Technology Starter #17 with
+  algorithm at position 1, one matching import run, and a clean all-NOOP plan.
+- Preserved the approved release, human reconciliation, and reviewed APPLY
+  fingerprint as historical evidence. Documented why the post-apply scanner
+  mismatch is expected stale pre-apply evidence while retaining the APPLY
+  stale-snapshot guard.
+- Closed the development canary. Production remains unauthorized and
+  untouched; bulk ingestion has not started. The 100-Sense gate covers offline
+  package preparation only. No database writes or migrations were performed.
+- Evidence: `vocabflow-dataset/reports/master-v2-development-canary-closure.md`.
+
 ## 2026-10-04 — Master Vocabulary V2 Phase 2E.5 development canary
 
 - Ran one target-verified development APPLY for the approved 2.1.0 release with

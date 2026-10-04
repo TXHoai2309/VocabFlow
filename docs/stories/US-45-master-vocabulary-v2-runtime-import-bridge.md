@@ -1,6 +1,6 @@
 # US-45 — Master Vocabulary V2 Runtime Import Bridge
 
-- Status: `IMPLEMENTED / READY FOR OWNER CHECK`.
+- Status: `IMPLEMENTED / DEVELOPMENT CANARY VERIFIED`; owner acceptance remains explicit.
 - Owner direction: continue the Master Vocabulary Dataset V2 Phase 2D runtime
   identity bridge, adapter, and explicitly reprioritized Phase 2D.1 hardening
   and canary preparation.
@@ -346,6 +346,22 @@ planner remains `canApply=false`. No database write, migration, import APPLY,
 or runtime mutation occurred.
 
 Evidence: [`migration hash root-cause report`](../../vocabflow-dataset/reports/canary-development-migration-hash-root-cause.md)
+
+## Phase 2E.6 — Development canary closure
+
+The approved 2.1.0 / schema 2.0.1 development canary is verified with a
+dedicated read-only verifier. It confirmed the current 19-migration chain,
+eight runtime mappings and effective fingerprints, one matching import run,
+Technology Starter #17 with algorithm at position 1, and a fresh all-NOOP
+plan. The verifier does not change the human reconciliation or relax the
+pre-apply snapshot guard.
+
+Development canary: `VERIFIED`. Production: `NOT AUTHORIZED / NOT EXECUTED`.
+Bulk ingestion: `NOT STARTED`. Apple #295: `OPEN FOLLOW-UP`. The next 100-Sense
+hybrid proof is ready for offline source-package work only. No database write,
+APPLY, migration, or production connection occurred in Phase 2E.6.
+
+See the [sanitized canary closure report](../../vocabflow-dataset/reports/master-v2-development-canary-closure.md).
 
 ## Phase 2E.5 — Development canary APPLY and verification
 

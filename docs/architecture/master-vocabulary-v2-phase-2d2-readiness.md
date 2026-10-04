@@ -1,4 +1,20 @@
-# Phase 2D.2 — Owner approval, canary release, and staging readiness
+# Current Master V2 status — 2026-10-04
+
+Development canary 2.1.0 / schema 2.0.1: **VERIFIED**. The current
+post-apply plan is all `NOOP`; the read-only verifier confirms eight mappings,
+the effective fingerprints, the Technology Starter membership, and the single
+import-run ledger record. The human reconciliation remains pinned to its
+pre-apply evidence and has not been repinned.
+
+Production is **NOT AUTHORIZED / NOT EXECUTED**. Bulk ingestion is
+**NOT STARTED**. Apple #295 is an **OPEN FOLLOW-UP** and does not block source-
+ingestion research. The 100-Sense hybrid proof is ready for offline package
+work only; it does not authorize a development or production import.
+
+See the [Phase 2E.6 closure report](../../vocabflow-dataset/reports/master-v2-development-canary-closure.md)
+for frozen identities, verification results, and operational boundaries.
+
+## Historical checkpoint — Phase 2D.2 (2026-10-03)
 
 **Status as of 2026-10-03:** owner approval and the immutable offline 2.1.0
 canary release are complete. A staging target, runtime snapshot, and runtime

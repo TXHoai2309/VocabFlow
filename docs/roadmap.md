@@ -435,16 +435,17 @@ The owner-verified Hoài/Ngọc metric snapshots are recorded in US-20 and US-21
 
 ### US-45 — Master Vocabulary V2 Runtime Import Bridge
 
-- Status: `IMPLEMENTED / READY FOR OWNER CHECK` by the owner's explicit Phase 2D request; independent
-  of the learner-facing Study and Vocabulary UI stories.
+- Status: development canary `VERIFIED`; owner acceptance is not implied.
 - Contract: [`US-45 Master Vocabulary V2 Runtime Import Bridge`](stories/US-45-master-vocabulary-v2-runtime-import-bridge.md).
 - Adds an additive runtime identity bridge, explicit human-owned reconciliation,
   dry-run/apply adapter, composite identity constraints, write-path audit and
-  owner-review canary package. Migration application and canary import remain
-  later work; the current DRAFT pilot remains ineligible.
-- Phase 2D.1 readiness: bridge invariant `YES`; dedicated staging target `NO`;
-  content review package `YES`; approved canary release `NO`; runtime
-  reconciliation `NO`; Phase 2E staging canary `NO`.
+  owner-review canary package. Approved release 2.1.0 has been applied once to
+  development and independently verified read-only; development migrations
+  are current through 0018.
+- Current gates: development canary `YES`; production authorized `NO`; bulk
+  ingestion `NO`; Apple #295 follow-up `OPEN`; offline 100-Sense hybrid proof
+  package `READY`.
+- See [Phase 2E.6 canary closure](../vocabflow-dataset/reports/master-v2-development-canary-closure.md).
 - See [Phase 2D.1 hardening and canary preparation](architecture/master-vocabulary-v2-phase-2d1-hardening.md).
 
 The Product Specification defines learner selector/create, Learner Home, Study,

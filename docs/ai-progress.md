@@ -1,5 +1,28 @@
 # Current Handoff Snapshot
 
+## 2026-10-04 — Master Vocabulary V2 Phase 2E.6 development canary closure
+
+- Added a dedicated read-only post-apply verifier. The target-verified
+  development run passed all checks: 19/19 migrations through
+  `0018_panoramic_spirit`, eight exact Master mappings and fingerprints, the
+  Technology Starter #17 algorithm membership, one matching import ledger row,
+  and an all-NOOP current plan with zero issues.
+- Frozen release 2.1.0 / schema 2.0.1, reconciliation JCS hash, pre-apply plan
+  fingerprint, and import run remain unchanged. The scanner's post-apply
+  snapshot mismatch is classified as stale pre-apply evidence only after the
+  dedicated verifier passes; the importer's pre-apply stale-snapshot guard is
+  unchanged.
+- Apple #295 and record #849 remain unmapped and untouched. The prior canary
+  evidence records preserved runtime enrichment and unchanged learner history.
+  This phase performed no database writes, APPLY, migrations, or production
+  connection. Production import remains unauthorized; bulk ingestion has not
+  started. The 100-Sense hybrid proof gate authorizes only offline package work.
+- The sanitized closure report is
+  `vocabflow-dataset/reports/master-v2-development-canary-closure.md`.
+- Focused validation passed: 8 test files / 83 tests, Master V2 validation
+  (0 errors, 0 warnings), root typecheck, lint, and `git diff --check`. The
+  local Node 22.19.0 version is below the repository's declared 22.23.2.
+
 ## 2026-10-04 — Master Vocabulary V2 Phase 2E.5 development canary APPLY
 
 - Executed exactly one owner-authorized APPLY against the verified development
