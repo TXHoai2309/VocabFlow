@@ -1,0 +1,66 @@
+{
+  "artifactType": "HYBRID_100_CEFR_CLASSIFICATION_DRAFT",
+  "status": "EDITORIAL_CLASSIFICATION_DRAFT",
+  "candidateCount": 100,
+  "approvedSemanticDraftFingerprint": "a112a475e896f09038d4dd6834389af2d553d3a509829ef410ef17ae4e37ee1d",
+  "canonicalPromotionFingerprint": "5c10618ee72fcc7b99b270764e412ebc51f286eadc750e45a6910830bb15e870",
+  "taxonomyPin": {
+    "taxonomyId": "01a0fc13-09e9-72dd-b49d-ffef077385dd",
+    "taxonomyVersion": "2.0.0",
+    "recordPath": "taxonomy/01a0fc13-09e9-72dd-b49d-ffef077385dd-2.0.0.json",
+    "contentHash": "67ecd13e49e756df6fce2def9f40fe11eb8831ef9a68097299d37324ac588b79"
+  },
+  "frameworkCode": "CEFR",
+  "frameworkVersion": "EDITORIAL-PILOT-1",
+  "rubricVersion": "HYBRID-CEFR-EDITORIAL-RUBRIC-1.0.0",
+  "rubricFingerprint": "89c3a3b27c56214b180b45006ac8a855eb63ff264f25909311a6ff29d33026b5",
+  "sourceProofFingerprint": "89d6477c3c1a32a0eb1e367f09df37238554f762b3b378c0f590525f3d0a4ccc",
+  "canonicalBase": {
+    "datasetVersion": "2.0.0",
+    "schemaVersion": "2.0.1",
+    "status": "DRAFT",
+    "lexemeCount": 103,
+    "senseCount": 123,
+    "provenanceCount": 846,
+    "classificationCount": 122
+  },
+  "identitySplit": {
+    "NEW_SENSE_EXISTING_LEXEME": 3,
+    "NEW_SENSE_NEW_LEXEME": 95,
+    "REUSE_EXISTING_SENSE": 2
+  },
+  "classificationDecisionCounts": {
+    "NEW_EDITORIAL_CLASSIFICATION": 94,
+    "OWNER_REVIEW_REQUIRED": 4,
+    "REUSE_EXISTING_CLASSIFICATION": 1,
+    "UNCLASSIFIED_INSUFFICIENT_EVIDENCE": 1
+  },
+  "proposedCefrDistribution": {
+    "PRE_A1": 0,
+    "A1": 17,
+    "A2": 28,
+    "B1": 21,
+    "B2": 27,
+    "C1": 6,
+    "C2": 0,
+    "UNCLASSIFIED": 1
+  },
+  "newClassificationCount": 94,
+  "newProvenanceCount": 94,
+  "sourceCounts": {
+    "oxfordBacked": 90,
+    "only4600": 10,
+    "oxfordAgreement": 48,
+    "editoriallyAdjusted": 39,
+    "conflictRequiresOwnerReview": 3,
+    "only4600Classified": 9
+  },
+  "noCanonicalClassificationMutation": true,
+  "noReleaseCreated": true,
+  "sourceRightsVerified": false,
+  "releaseReadiness": {
+    "HYBRID_100_CONTENT_COHORT_READY": "YES",
+    "HYBRID_100_APPROVED_RELEASE_READY": "NO"
+  },
+  "cefrDraftFingerprint": "2da4c57ebbd18ce5e2c1fa77749fb7fe79a2f22752ba39506d2f59a7d7804a74"
+}

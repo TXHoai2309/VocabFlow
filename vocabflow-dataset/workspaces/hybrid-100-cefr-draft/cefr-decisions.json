@@ -1,0 +1,4032 @@
+{
+  "artifactType": "HYBRID_100_CEFR_EDITORIAL_DECISIONS",
+  "status": "EDITORIAL_CLASSIFICATION_DRAFT",
+  "frameworkCode": "CEFR",
+  "frameworkVersion": "EDITORIAL-PILOT-1",
+  "candidateCount": 100,
+  "decisionCounts": {
+    "NEW_EDITORIAL_CLASSIFICATION": 94,
+    "OWNER_REVIEW_REQUIRED": 4,
+    "REUSE_EXISTING_CLASSIFICATION": 1,
+    "UNCLASSIFIED_INSUFFICIENT_EVIDENCE": 1
+  },
+  "proposedDistribution": {
+    "PRE_A1": 0,
+    "A1": 17,
+    "A2": 28,
+    "B1": 21,
+    "B2": 27,
+    "C1": 6,
+    "C2": 0,
+    "UNCLASSIFIED": 1
+  },
+  "rows": [
+    {
+      "candidateOrdinal": 1,
+      "candidateId": "SOURCE-CANDIDATE-0193d5c02d4ad6bb90485dac2dde8709905ebdcca01ddab95885f2d96b5827eb",
+      "masterSenseId": "01a1070c-7c56-71df-b6f0-39632387320e",
+      "lemma": "rally",
+      "partOfSpeechCode": "VERB",
+      "senseLabel": "bring people together",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-0193d5c02d4ad6bb90485dac2dde8709905ebdcca01ddab95885f2d96b5827eb",
+        "sourceNoteReferenceHashes": [
+          "NOTE-72f4e5eeaa482667614cd1b5554618e5a7679ab6dbac7ffd0fd51703051b8071"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-6e43004ec487e223826c6d22dac8e67cab6187a41aa427e080ca4c1a14395de3",
+        "sourceCefrEvidence": [
+          "C1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B2",
+        "confidence": 0.8,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Public mobilization is a broader civic use of a common gathering verb.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-7505-b184-f1c8745a87c4"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 2,
+      "candidateId": "SOURCE-CANDIDATE-01a6f2b2136d3a76a82ba19aa193778133938ad1dcf42cc88734a23a0ff74c57",
+      "masterSenseId": "01a1070c-7c57-7676-9acd-d23079256ae2",
+      "lemma": "light",
+      "partOfSpeechCode": "VERB",
+      "senseLabel": "start a flame",
+      "identityDecision": "NEW_SENSE_EXISTING_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-01a6f2b2136d3a76a82ba19aa193778133938ad1dcf42cc88734a23a0ff74c57",
+        "sourceNoteReferenceHashes": [
+          "NOTE-4c613cd18a0c2f302ae3831a4bc3172add79f7fe111a4bcd27e5807a2d7cffa5"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-b114c0d5111e5c0d6e40b06a2fbc72bbc25bba093c1577166acf4e48b1baa8cc",
+        "sourceCefrEvidence": [
+          "A1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A1",
+        "confidence": 0.9,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Igniting a candle is a concrete everyday action expressed with basic vocabulary.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-7fc5-be31-65b1995d71e1"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 3,
+      "candidateId": "SOURCE-CANDIDATE-05d9af13d045b15eb568626ef7e7f85de8545206ee5a7e23e2dd48b8625359de",
+      "masterSenseId": "01a1070c-7c57-7676-9acd-eaf36e6184b3",
+      "lemma": "honour",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "respect shown",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_ONLY",
+        "sourcePackageSha256": [
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-05d9af13d045b15eb568626ef7e7f85de8545206ee5a7e23e2dd48b8625359de",
+        "sourceNoteReferenceHashes": [
+          "NOTE-287b72792fac8f305d9175637c01fd764437808881933b1fba343bb4a3bad5ef"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-10405e26a5757b53b2df4c50cf26188a3c92611e5d1175521d7f49ca13110bd0",
+        "sourceCefrEvidence": [
+          "B2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B2",
+        "confidence": 0.84,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Respect for achievement is an abstract social concept, though widely encountered.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-74c3-ab8c-b2359bb3b853"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 4,
+      "candidateId": "SOURCE-CANDIDATE-06f9d0147063b37aabfa6c063015793ab2a4aefa94373eaa3ca0a57270ade6e7",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-014df3449d2e",
+      "lemma": "gap",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "empty space",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-06f9d0147063b37aabfa6c063015793ab2a4aefa94373eaa3ca0a57270ade6e7",
+        "sourceNoteReferenceHashes": [
+          "NOTE-4311a5ad5e06a2f6146fdf53e88cb0a044392c9676387cf73627b77a73924e77"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-272c7d254c741530de564561e52d2d3a1c523f7f6866e39795a2ad4fa0d7ff25",
+        "sourceCefrEvidence": [
+          "A2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A2",
+        "confidence": 0.88,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "An empty space between objects is a common concrete everyday meaning.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-7263-864d-6c2503204ba1"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 5,
+      "candidateId": "SOURCE-CANDIDATE-0a7dad541e530e2497d77ca7510ce37c5e5d47e56048d8b41abbe2ef1aa29a51",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-18656f491ca7",
+      "lemma": "trade",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "skilled occupation",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_ONLY",
+        "sourcePackageSha256": [
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-0a7dad541e530e2497d77ca7510ce37c5e5d47e56048d8b41abbe2ef1aa29a51",
+        "sourceNoteReferenceHashes": [
+          "NOTE-0744d6c23ee4979127b61109d7eca34ae7fb1046678617c83546cc63a156598e"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-5b4971280afd9d0a17629786d423a7abc0b88803d703ccc05c7da0f0cc36572f",
+        "sourceCefrEvidence": [
+          "B1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B1",
+        "confidence": 0.82,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "A skilled occupation is useful general vocabulary for work and training contexts.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-7a1c-b6ce-ae0683c473f2"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 6,
+      "candidateId": "SOURCE-CANDIDATE-0b18be4294c77935547c8fc96d5e66cd4bc3ad92f0073d8085d0e58ae895a164",
+      "masterSenseId": "01a0fc13-09ef-75ac-b815-039ab337c01a",
+      "lemma": "water",
+      "partOfSpeechCode": "VERB",
+      "senseLabel": "give plants water",
+      "identityDecision": "REUSE_EXISTING_SENSE",
+      "existingClassificationAudit": {
+        "category": "EXISTING_SAME_FRAMEWORK_CEFR",
+        "sameFrameworkCount": 1,
+        "records": [
+          {
+            "classificationId": "01a0fc13-09f2-77bf-93db-1ceefb68082a",
+            "revision": 1,
+            "valueCode": "A2",
+            "frameworkCode": "CEFR",
+            "frameworkVersion": "EDITORIAL-PILOT-1",
+            "status": "IN_REVIEW",
+            "isPrimary": true,
+            "contentHash": "9bf8e322e7b508d43f69ef7b9927d5a83ac04ab6d0c0e79d546fb2a3b9fb1eec",
+            "sourceProvenanceIds": [
+              "01a0fc13-09f2-7af4-96d1-b343085836c2"
+            ]
+          }
+        ],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-0b18be4294c77935547c8fc96d5e66cd4bc3ad92f0073d8085d0e58ae895a164",
+        "sourceNoteReferenceHashes": [
+          "NOTE-e004685c185ecc75b4e5e1a4082b62b813c72c557f5223933e41cdf1423746eb"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-aa7d59f32f494f47590e6c7a9ff4b6d4fd8542540a3f7d923a00cead79a9676e",
+        "sourceCefrEvidence": [
+          "A1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A2",
+        "confidence": 0.78,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "REUSE_EXISTING_CLASSIFICATION",
+        "rationale": "Watering plants is a familiar household task with a specific gardening use; the existing pilot assignment is retained for owner review.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a0fc13-09f2-77bf-93db-1ceefb68082a"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 7,
+      "candidateId": "SOURCE-CANDIDATE-0c2cae6a295500c57b7d642a28da7692cc7f2a0b8a36ae7aa99ba9f6a7d4b88f",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-32d1337aab90",
+      "lemma": "crawl",
+      "partOfSpeechCode": "VERB",
+      "senseLabel": "move very slowly",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-0c2cae6a295500c57b7d642a28da7692cc7f2a0b8a36ae7aa99ba9f6a7d4b88f",
+        "sourceNoteReferenceHashes": [
+          "NOTE-400942335a213f3f980bc25e6535f3163d9dcace8c9e44a5d40c08b8be2c112d"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-5ab4b1f415e3c703eb61c3266b0bbbda0363e73d8593d9770690fd996fd3ddda",
+        "sourceCefrEvidence": [
+          "C1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B2",
+        "confidence": 0.8,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Slow traffic progress extends a physical motion verb to a figurative situation.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-7bb6-8cfa-25188c073394"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 8,
+      "candidateId": "SOURCE-CANDIDATE-0e7ea04a3bfc409aece73ae639ffa01e693bbe50993a6479bd98ee63d4a26368",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-4b581bada298",
+      "lemma": "market",
+      "partOfSpeechCode": "VERB",
+      "senseLabel": "promote for sale",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-0e7ea04a3bfc409aece73ae639ffa01e693bbe50993a6479bd98ee63d4a26368",
+        "sourceNoteReferenceHashes": [
+          "NOTE-947911df6157926b59b6a38b92d62c1a035e0ed43a68412a648be346760e61d2"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-ed4e04b138ac6e047a84faf71ec41113945ff0c7e6bc925c7e42bce89d3f02ec",
+        "sourceCefrEvidence": [
+          "A1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B1",
+        "confidence": 0.79,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Promoting a product is common business vocabulary beyond beginner buying and selling.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-7a21-925a-b9d8c300e727"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 9,
+      "candidateId": "SOURCE-CANDIDATE-11ff58a982a345fcd41336635a5d17267dd074a64fbba1ae94979197569816a2",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-63a7042782dc",
+      "lemma": "tumor",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "abnormal cell growth",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_ONLY",
+        "sourcePackageSha256": [
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-11ff58a982a345fcd41336635a5d17267dd074a64fbba1ae94979197569816a2",
+        "sourceNoteReferenceHashes": [
+          "NOTE-fc38bab08f82e581f6a62328dc6f19e693fcba04cd7a945a40af4cd3f1a890f1"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-7108546cded0ef876f49b1ccadf5b3ba5184497edb315319211192387cdf83c5",
+        "sourceCefrEvidence": [
+          "C1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "C1",
+        "confidence": 0.83,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Abnormal cell growth is a specialized medical concept with lower everyday frequency.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-77a6-8d77-b6efddd51927"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 10,
+      "candidateId": "SOURCE-CANDIDATE-18950eb5fa3eaf3a59c939f27d349bb1d1583e7d06cc82be3e98075185cb3fa5",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-79a6118270d8",
+      "lemma": "withdraw",
+      "partOfSpeechCode": "VERB",
+      "senseLabel": "take back formally",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-18950eb5fa3eaf3a59c939f27d349bb1d1583e7d06cc82be3e98075185cb3fa5",
+        "sourceNoteReferenceHashes": [
+          "NOTE-0c220f9967243066196065c73c39c8393f15377f745bf41c7e68f5f9df4788de"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-47ea30a7d8f1a7c5837eca0ddd0463a40ae8e193ceb5cc755c34f890ce72b0c1",
+        "sourceCefrEvidence": [
+          "B2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B2",
+        "confidence": 0.86,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Retracting an earlier statement, offer, or request is a formal abstract action.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-7b7b-bbbc-27ef19e8ad1c"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 11,
+      "candidateId": "SOURCE-CANDIDATE-1b03f5ef8c017372c20c42281718632056242edbb5cfb807910f66a6ffa26470",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-93aa39952372",
+      "lemma": "confirm",
+      "partOfSpeechCode": "VERB",
+      "senseLabel": "verify as true",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-1b03f5ef8c017372c20c42281718632056242edbb5cfb807910f66a6ffa26470",
+        "sourceNoteReferenceHashes": [
+          "NOTE-8f01a0a401037b3f66a4000fb975b4e3458662c4fd8848e539076fbad01f9d50",
+          "NOTE-d5df626d93d7b2a7dc7adfaacc12f190c0251b68d7e97e4a3ef078a3e8207c6c"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-26fb23bbe68c4cf279b3a501223be8dcb215f205208955bfc3f15c9161fef9f8",
+        "sourceCefrEvidence": [
+          "B1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A2",
+        "confidence": 0.86,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Confirming practical details such as a meeting time is common communication vocabulary.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-75da-bbf4-e4c807a16f54"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 12,
+      "candidateId": "SOURCE-CANDIDATE-1b64d7be9c1fc59280402edb0da818c6e0be9acda0f745b8114b0dd7252e0051",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-a81c3cdf40fa",
+      "lemma": "shake",
+      "partOfSpeechCode": "VERB",
+      "senseLabel": "greet with a handshake",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-1b64d7be9c1fc59280402edb0da818c6e0be9acda0f745b8114b0dd7252e0051",
+        "sourceNoteReferenceHashes": [
+          "NOTE-fe6839efb512b8c9af7b4a86061e9b8977f88767ff87cc54b07b04871333f5ba"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-c6f1ddc2faf44b5a31570d0c4c6e64c6dd1f1e1e3bc802f2e31ac3e037447e48",
+        "sourceCefrEvidence": [
+          "A2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A2",
+        "confidence": 0.91,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "A handshake as greeting or agreement is a familiar social action.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-7f0d-808a-170f24f409ef"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 13,
+      "candidateId": "SOURCE-CANDIDATE-1bfdf10a871b1f4f3299e0f5d25b31acb5895a658442933cd9428ca6bb7d72d4",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-c2f9d561c8f4",
+      "lemma": "junior",
+      "partOfSpeechCode": "ADJECTIVE",
+      "senseLabel": "for younger people",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-1bfdf10a871b1f4f3299e0f5d25b31acb5895a658442933cd9428ca6bb7d72d4",
+        "sourceNoteReferenceHashes": [
+          "NOTE-b8e6d90effc3847b7977b6414e3ee17649536b4c802220fdc28bad6aab7fb69b"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-7f221f5610b28400f2c19b09472f8d8506ea6213df06bf60535faa5292940f9f",
+        "sourceCefrEvidence": [
+          "B2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A2",
+        "confidence": 0.84,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "The younger-user sense is common in school, activity, and product contexts.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-776d-b613-ad3e5b28c880"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 14,
+      "candidateId": "SOURCE-CANDIDATE-230b10a0034f428818bad9bc4ca686a79ac9220951411a0cb332e874121dc84e",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-d8831aa1814d",
+      "lemma": "fossil fuel",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "ancient-source fuel",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "4600_ONLY",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-230b10a0034f428818bad9bc4ca686a79ac9220951411a0cb332e874121dc84e",
+        "sourceNoteReferenceHashes": [
+          "NOTE-fe52fc29a32a390a9069ee850cda6f8d51f1375f1783bbb8136cbad7355f1574"
+        ],
+        "sourceSenseGroupReference": null,
+        "sourceCefrEvidence": null
+      },
+      "editorialDecision": {
+        "valueCode": "B2",
+        "confidence": 0.78,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Fossil fuel is a public-topic compound naming a technical energy category.",
+        "agreementStatus": null,
+        "classificationId": "01a10760-b9f0-746f-961a-1595d4e7c31c"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 15,
+      "candidateId": "SOURCE-CANDIDATE-24f8162f0d0ad736b2b735017612166a3b2e2c8a6a7e5058e2ba5ecc7ef3e84b",
+      "masterSenseId": "01a0fc13-09ee-7768-9be6-d20fa32521ee",
+      "lemma": "light",
+      "partOfSpeechCode": "ADJECTIVE",
+      "senseLabel": "not heavy",
+      "identityDecision": "REUSE_EXISTING_SENSE",
+      "existingClassificationAudit": {
+        "category": "EXISTING_SAME_FRAMEWORK_CEFR",
+        "sameFrameworkCount": 1,
+        "records": [
+          {
+            "classificationId": "01a0fc13-09f1-76b9-8a57-6c6e55e9b438",
+            "revision": 1,
+            "valueCode": "A2",
+            "frameworkCode": "CEFR",
+            "frameworkVersion": "EDITORIAL-PILOT-1",
+            "status": "IN_REVIEW",
+            "isPrimary": true,
+            "contentHash": "08482dae079eb7932bb7254e9a99277f104d58cf73be9f954b63641996c9763c",
+            "sourceProvenanceIds": [
+              "01a0fc13-09f1-7906-a2c4-97011d9dd54d"
+            ]
+          }
+        ],
+        "proposalConflicts": true
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-24f8162f0d0ad736b2b735017612166a3b2e2c8a6a7e5058e2ba5ecc7ef3e84b",
+        "sourceNoteReferenceHashes": [
+          "NOTE-4c613cd18a0c2f302ae3831a4bc3172add79f7fe111a4bcd27e5807a2d7cffa5"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-b098bde9b1b1a8af95be4f0ebfd57cc05257ce72da7679ff12455ef8045ac1e5",
+        "sourceCefrEvidence": [
+          "A1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A1",
+        "confidence": 0.93,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "OWNER_REVIEW_REQUIRED",
+        "rationale": "Low weight is an elementary concrete contrast; the existing same-framework A2 classification conflicts and needs owner resolution.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": null
+      },
+      "reviewStatus": "OWNER_REVIEW_REQUIRED"
+    },
+    {
+      "candidateOrdinal": 16,
+      "candidateId": "SOURCE-CANDIDATE-25993c4faa58bb75796ba9e6f049945db74c20e29b23161011aa878166a64ec1",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-f28714bdee2e",
+      "lemma": "let",
+      "partOfSpeechCode": "VERB",
+      "senseLabel": "give permission",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_ONLY",
+        "sourcePackageSha256": [
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-25993c4faa58bb75796ba9e6f049945db74c20e29b23161011aa878166a64ec1",
+        "sourceNoteReferenceHashes": [
+          "NOTE-05c3952f0bc1c7e5b784407326ce47d842c378cac4757d120680fe0ef4bf62f4"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-cd06c4fdc20ac325eb4f34147788fb8c7dee9337fe9d920033b9d30eae1d3daf",
+        "sourceCefrEvidence": [
+          "A1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A1",
+        "confidence": 0.92,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Giving permission is a basic, frequent conversational verb use.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-790a-bc17-fed7256e27ef"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 17,
+      "candidateId": "SOURCE-CANDIDATE-2616ae8618dcdfbe0a7acd517632ec990586cdfc48a51bcc69a3a560f7af81d4",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-09879397d1e1",
+      "lemma": "hopefully",
+      "partOfSpeechCode": "ADVERB",
+      "senseLabel": "it is hoped that",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-2616ae8618dcdfbe0a7acd517632ec990586cdfc48a51bcc69a3a560f7af81d4",
+        "sourceNoteReferenceHashes": [
+          "NOTE-17b6ab7e1d79af931fea5a142f4da7312aed9074ee3db8bfbbb9d0906faa1f36",
+          "NOTE-9cc989e46dd22f5700ddc02ef3e87c2fcec859ec2d35bb0ceb9591507a2f0f95"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-d88b706d4e55370ee98b440862d851182eea826d5ae2a0f3a21d1712bd7f51b7",
+        "sourceCefrEvidence": [
+          "B2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B1",
+        "confidence": 0.82,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Sentence-initial hope marking is a common discourse use beyond the basic verb.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-73ed-ab62-593d857a1fcc"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 18,
+      "candidateId": "SOURCE-CANDIDATE-2655a035435cea58d93fab5b374b0fe84c4a4dcc4bc0a8052e21b64be73e30d4",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-2166c93ae47a",
+      "lemma": "age",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "historical period",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-2655a035435cea58d93fab5b374b0fe84c4a4dcc4bc0a8052e21b64be73e30d4",
+        "sourceNoteReferenceHashes": [
+          "NOTE-395ab071f5b474097a1de584fc0ac16b847745d88389347d5d73e14c6fc05d5a"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-f5816b9ea9a2951dad6f61103ba096695ae2c190d836dc7c882a9ef0452c044c",
+        "sourceCefrEvidence": [
+          "A1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B1",
+        "confidence": 0.78,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "A named historical period is more abstract than the basic meaning of a person's age.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-74ac-a841-4b76153b6fd6"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 19,
+      "candidateId": "SOURCE-CANDIDATE-2a334f43a5dcae06ac202388eb08884fa5d7c1177d1cf62b0096e6de113f8ed9",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-390ac30fd890",
+      "lemma": "moment",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "short while",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_ONLY",
+        "sourcePackageSha256": [
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-2a334f43a5dcae06ac202388eb08884fa5d7c1177d1cf62b0096e6de113f8ed9",
+        "sourceNoteReferenceHashes": [
+          "NOTE-d2c828f37c6afa690c0075a7d85b255c5985f0b943ed04e33beda74c0a41d3ef"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-3ae543726955e4609e7da540f024ebe3048b8cce5041f9f3bdbd2c9584a7879c",
+        "sourceCefrEvidence": [
+          "A1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A1",
+        "confidence": 0.93,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "A short wait is an elementary time expression.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-773d-b132-f11a9a9665cb"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 20,
+      "candidateId": "SOURCE-CANDIDATE-2f71c2bee6a21197fcc2b973a400addd6f3b4209e08e0dd808b50c89724a1458",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-51b00d9e4aca",
+      "lemma": "forthcoming",
+      "partOfSpeechCode": "ADJECTIVE",
+      "senseLabel": "open with information",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-2f71c2bee6a21197fcc2b973a400addd6f3b4209e08e0dd808b50c89724a1458",
+        "sourceNoteReferenceHashes": [
+          "NOTE-ba615dfef25c3b8796f96921303469cb82f53d6cfdd4a00a6ead401bbbe18e5a"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-4b6120e073960dec74ca0cd33f9db9ead1ce5ec125be68e1e6248f0c40a6cdd9",
+        "sourceCefrEvidence": [
+          "C1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B2",
+        "confidence": 0.8,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Being open and candid when asked is a formal, precise descriptive use.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-745b-92ac-b5609b168981"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 21,
+      "candidateId": "SOURCE-CANDIDATE-300c5a70d2aedc60fde2548a32f2393fb5c92128a7887d89449d012c92f6fa79",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-6a88ac566599",
+      "lemma": "habit",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "regular behavior",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-300c5a70d2aedc60fde2548a32f2393fb5c92128a7887d89449d012c92f6fa79",
+        "sourceNoteReferenceHashes": [
+          "NOTE-268e75aa19a411b0a3d33040f2d2fd134802bb2f29224ef2456f87b27c992ccb",
+          "NOTE-fda7260ca5883aeadb5ed1ab43af757b9531e0a333b33059be8cd1f1dd1ba408"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-df58f6365581bee9500c10a8eaf9222ed4bddabbe89dc4a6177efce1e27bf213",
+        "sourceCefrEvidence": [
+          "A2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A2",
+        "confidence": 0.9,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Regular repeated behavior is a common everyday concept.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-7a52-8a08-0131f5a2e43e"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 22,
+      "candidateId": "SOURCE-CANDIDATE-31730be890d512b37da89f6ac35288f319e18cb85094e0a1e6065d0eb2d81c84",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-83edaac99eb9",
+      "lemma": "per cent",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "amount per hundred",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_ONLY",
+        "sourcePackageSha256": [
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-31730be890d512b37da89f6ac35288f319e18cb85094e0a1e6065d0eb2d81c84",
+        "sourceNoteReferenceHashes": [
+          "NOTE-d9874a43c6135b5dc31ac632d9ed9081943345d95e65711997228cae16fe99e8"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-ef28db4c7f1256b1e9df2c46d322ac8d1d19edf94488a0db95284c4d2a9f29cc",
+        "sourceCefrEvidence": [
+          "A2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A2",
+        "confidence": 0.92,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "A proportion out of one hundred is basic numeracy vocabulary.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-74c8-a07f-e1a5d8a94a1f"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 23,
+      "candidateId": "SOURCE-CANDIDATE-3572cebb12806a34d69990d38cb2594b72377123a7a310b47511adf7f926b824",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-99d8c8592c32",
+      "lemma": "direct",
+      "partOfSpeechCode": "ADVERB",
+      "senseLabel": "straight to a place",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-3572cebb12806a34d69990d38cb2594b72377123a7a310b47511adf7f926b824",
+        "sourceNoteReferenceHashes": [
+          "NOTE-4cdd59b653f2e143f4cdf42bdbd3d723308b046ee31bd53afcb0529f35027eea"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-66957ba9c6abd4145582c43afdc6cfb99d9723ee228e81c605cb8c47cb732b76",
+        "sourceCefrEvidence": [
+          "A2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A2",
+        "confidence": 0.89,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "A direct travel route without stops or changes is a common practical description.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-761c-8fcb-1c09634f7fb0"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 24,
+      "candidateId": "SOURCE-CANDIDATE-3624fa8192fcd04c8d2e072f386c6fc8869aeec39de7891fe6e62bb4978ad264",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-b1c2d0e92475",
+      "lemma": "exact",
+      "partOfSpeechCode": "ADJECTIVE",
+      "senseLabel": "precise and correct",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-3624fa8192fcd04c8d2e072f386c6fc8869aeec39de7891fe6e62bb4978ad264",
+        "sourceNoteReferenceHashes": [
+          "NOTE-7f1528f908272ec1ef66b02a957143ee755171b953d28de0e0c1c14cb9a6c72a",
+          "NOTE-96def45bb6e79b1431b78b7eb793a6af23475fa40251dd5cbfecacd242a379e9"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-d17eb529710618fd503c6a089a208537e6f10a43aa5118631b01139b8ed66054",
+        "sourceCefrEvidence": [
+          "A2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A2",
+        "confidence": 0.93,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Exact accuracy in quantities is a common practical adjective use.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-7e48-9723-6ac13e9fb05e"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 25,
+      "candidateId": "SOURCE-CANDIDATE-3c7277a33899085a7ba0f8754436899eaf7bb5d7052fb3d82c58a917635e72a6",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-c8bb470b0069",
+      "lemma": "rear",
+      "partOfSpeechCode": "ADJECTIVE",
+      "senseLabel": "at the back",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-3c7277a33899085a7ba0f8754436899eaf7bb5d7052fb3d82c58a917635e72a6",
+        "sourceNoteReferenceHashes": [
+          "NOTE-78444c9b94d728f8b29d83d37c001c09bb9d8aea59033bf8b07fb174bd509a12"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-f4e7f009d9472b4909427ab0ecceada9411f596b2021501732dbe9f0a24ee3a8",
+        "sourceCefrEvidence": [
+          "C1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B2",
+        "confidence": 0.77,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Rear as a position adjective is less frequent and more formal than basic back.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-7740-b1b1-f8fa3ebfb6c3"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 26,
+      "candidateId": "SOURCE-CANDIDATE-3d013d43097447db661335b9eb58efe7694b9fbeedf01f0e5b899ecaa1d15ea1",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-e2bf85a21c08",
+      "lemma": "known",
+      "partOfSpeechCode": "ADJECTIVE",
+      "senseLabel": "recognized by people",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "4600_ONLY",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-3d013d43097447db661335b9eb58efe7694b9fbeedf01f0e5b899ecaa1d15ea1",
+        "sourceNoteReferenceHashes": [
+          "NOTE-cf350097c5d965d6149e4f36747106bc121164fa123203dc1386089cab877ad9"
+        ],
+        "sourceSenseGroupReference": null,
+        "sourceCefrEvidence": null
+      },
+      "editorialDecision": {
+        "valueCode": "A2",
+        "confidence": 0.83,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Recognized or familiar status is common descriptive vocabulary.",
+        "agreementStatus": null,
+        "classificationId": "01a10760-b9f0-71de-9e0e-552d2b4b236c"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 27,
+      "candidateId": "SOURCE-CANDIDATE-3f0020f8523bfc56dcc81a0c3c66958409b68794955d496daf59e68c7789dd25",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-fbb6c07854f6",
+      "lemma": "bite",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "bite mark",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-3f0020f8523bfc56dcc81a0c3c66958409b68794955d496daf59e68c7789dd25",
+        "sourceNoteReferenceHashes": [
+          "NOTE-1df50f7c53ed6af9048a8e4283bb8636d8c70d12576587f1f7840aca44a13eb8",
+          "NOTE-e1b2cf8b2e1473fde3f665f9244465c056f6fec52f0dd47b60d365d2e3a290bb"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-1cc81ff9e078d28c840dc6eb00a3293fb21f3656053b44312e057876db13c4b3",
+        "sourceCefrEvidence": [
+          "B1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A2",
+        "confidence": 0.8,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "A bite mark is a concrete, familiar result with a more specific use than bite alone.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-73af-8117-25aa157b8df3"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 28,
+      "candidateId": "SOURCE-CANDIDATE-3f143bf8fcaa3d639502b8ab6fa9ca2ba3b1447735dce3975be88a5f403bc030",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a8-d1cd64c3eada",
+      "lemma": "scholar",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "serious student or researcher",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-3f143bf8fcaa3d639502b8ab6fa9ca2ba3b1447735dce3975be88a5f403bc030",
+        "sourceNoteReferenceHashes": [
+          "NOTE-65b2c83e5d2ca22788a99601fb4b149eda5cf7adffb3cdf9f0d1d6b22250bec2",
+          "NOTE-740e03cc5a557003e877e186ee0c83f69029a3477616a17ec53fa732bd2911c3"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-e6c61d05976239592d1dcdd9965fd47396f3495bb6248d18a75a6a18eb26e9bd",
+        "sourceCefrEvidence": [
+          "B2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B2",
+        "confidence": 0.88,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Scholar is an academic role more specialized than the common word student.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-7683-af08-eea3b2071197"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 29,
+      "candidateId": "SOURCE-CANDIDATE-413463e2f1c79eefd19302149539c58dafe094b88ca99dc983265555b2d624e6",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a8-ebb7ee4a97d9",
+      "lemma": "linguistic",
+      "partOfSpeechCode": "ADJECTIVE",
+      "senseLabel": "related to language",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "4600_ONLY",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-413463e2f1c79eefd19302149539c58dafe094b88ca99dc983265555b2d624e6",
+        "sourceNoteReferenceHashes": [
+          "NOTE-4ab01788ea7b4c23f91b4bedb37bfe1500083f182fb3e403a8ee343ad4412582"
+        ],
+        "sourceSenseGroupReference": null,
+        "sourceCefrEvidence": null
+      },
+      "editorialDecision": {
+        "valueCode": "B2",
+        "confidence": 0.84,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "The language-study adjective is academic terminology with broad educational use.",
+        "agreementStatus": null,
+        "classificationId": "01a10760-b9f0-7ab3-baf5-00d42cb0a66d"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 30,
+      "candidateId": "SOURCE-CANDIDATE-415fdc4cd7e7c56b11011578876315264e107c9a655be7c28e414bd653b37a19",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-0030193008ca",
+      "lemma": "rotate",
+      "partOfSpeechCode": "VERB",
+      "senseLabel": "turn around an axis",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-415fdc4cd7e7c56b11011578876315264e107c9a655be7c28e414bd653b37a19",
+        "sourceNoteReferenceHashes": [
+          "NOTE-c8e92c03944390e0c1d83322a1a48959c8d49e57b618941836ea8a908da5e2d7",
+          "NOTE-feb17e4f3de960f79a5b32843834468cfad794ea570886e46cb59987912f734d"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-cd0d198dc6c3b40c51e2e2041eb940e237f92bdf53e3a5462dd9227ca8b26e4c",
+        "sourceCefrEvidence": [
+          "C1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B1",
+        "confidence": 0.79,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Turning around an axis appears in science and mechanics but builds on familiar motion.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-79d4-a2d5-15762b9b5e8d"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 31,
+      "candidateId": "SOURCE-CANDIDATE-4630c0cb4a5a2294a0a6cdcc885049892440beb89954cc8dd3342b8c00f88445",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-18ee254ff4be",
+      "lemma": "textile",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "cloth material",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "4600_ONLY",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-4630c0cb4a5a2294a0a6cdcc885049892440beb89954cc8dd3342b8c00f88445",
+        "sourceNoteReferenceHashes": [
+          "NOTE-98cc281dd3365be4dc3b08a189c6eec1a6bf3b92e1f9aff88371a73b6436924f"
+        ],
+        "sourceSenseGroupReference": null,
+        "sourceCefrEvidence": null
+      },
+      "editorialDecision": {
+        "valueCode": "B2",
+        "confidence": 0.82,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Textile is a relatively infrequent material term used in production and design.",
+        "agreementStatus": null,
+        "classificationId": "01a10760-b9f0-7441-90c0-8ef7353df869"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 32,
+      "candidateId": "SOURCE-CANDIDATE-472eb5f06a2d2fb2626306b6d75cb9c3ae75ec45201cd05e469591006cdffb52",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-3185a807d618",
+      "lemma": "integrity",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "wholeness and soundness",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-472eb5f06a2d2fb2626306b6d75cb9c3ae75ec45201cd05e469591006cdffb52",
+        "sourceNoteReferenceHashes": [
+          "NOTE-60e368e4d18ad1cc2ce8395cc67d4c155b4b4bcaeffb3321346eb692b24405ed"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-fd1dc3cd9c926dacd61c55ac211488769b25823d965ea1ba67062c294733ead9",
+        "sourceCefrEvidence": [
+          "C1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "C1",
+        "confidence": 0.84,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Structural integrity is a precise technical abstraction.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-774e-9f0e-63b238b250e6"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 33,
+      "candidateId": "SOURCE-CANDIDATE-4804e5a1064d970635ca260f2051e8bef92cae2634105fc25fdc09a45bf00061",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-4b4562d352c8",
+      "lemma": "far",
+      "partOfSpeechCode": "ADJECTIVE",
+      "senseLabel": "distant",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-4804e5a1064d970635ca260f2051e8bef92cae2634105fc25fdc09a45bf00061",
+        "sourceNoteReferenceHashes": [
+          "NOTE-3cdb10a038631d073704d4cc93aa40237bf45b3d2b8901fdd19d7ef1ceedcaf7",
+          "NOTE-6736178184376a586e3e2ba5fab86d3ba33157da5483d0ef27a9d5f6c0f7d434"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-5bab2cf3c9cb0e4d2018d03122b8ce25aa006f96a43627ef3254699c38e43691",
+        "sourceCefrEvidence": [
+          "A1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A1",
+        "confidence": 0.93,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Far as distance is a basic spatial adjective.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-7813-a08d-3f8e573195c4"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 34,
+      "candidateId": "SOURCE-CANDIDATE-483ca72bba68a330bdbee912f9dd46f33e16c187ee234ef3c2679ba342c456c1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-620e574defe8",
+      "lemma": "freshman",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "first-year student",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_ONLY",
+        "sourcePackageSha256": [
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-483ca72bba68a330bdbee912f9dd46f33e16c187ee234ef3c2679ba342c456c1",
+        "sourceNoteReferenceHashes": [
+          "NOTE-8172a75a3b67aa1bf66a697a76be4c5117bcfeb03f87dba92dfe7c335293ee45"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-9fd2e3fbbde78aec85572f9b906212db798a361c8c85c7733ed8bf929684ca9d",
+        "sourceCefrEvidence": [
+          "C1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B1",
+        "confidence": 0.68,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "OWNER_REVIEW_REQUIRED",
+        "rationale": "Freshman is an education-specific label whose familiarity varies by region, so this tentative estimate needs owner review.",
+        "agreementStatus": "CONFLICT_REQUIRES_OWNER_REVIEW",
+        "classificationId": null
+      },
+      "reviewStatus": "OWNER_REVIEW_REQUIRED"
+    },
+    {
+      "candidateOrdinal": 35,
+      "candidateId": "SOURCE-CANDIDATE-51722d2f8baa68b54454b43e12daf3927c28d512bc10f44e52e1185c462a92ca",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-78fe16fc29bb",
+      "lemma": "deviate",
+      "partOfSpeechCode": "VERB",
+      "senseLabel": "move off the planned course",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "4600_ONLY",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-51722d2f8baa68b54454b43e12daf3927c28d512bc10f44e52e1185c462a92ca",
+        "sourceNoteReferenceHashes": [
+          "NOTE-4d177cb00b43a916f393140b40f8cc35407c9d4b69e7d27c55d08cbe85ee44e9"
+        ],
+        "sourceSenseGroupReference": null,
+        "sourceCefrEvidence": null
+      },
+      "editorialDecision": {
+        "valueCode": "B2",
+        "confidence": 0.82,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Deviate is a formal verb for departing from a route, plan, or standard.",
+        "agreementStatus": null,
+        "classificationId": "01a10760-b9f0-72d4-9bad-69d6f5cb6543"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 36,
+      "candidateId": "SOURCE-CANDIDATE-521ce0adaa9f904198bc892544ca715c344bc69263b4d3137083dcf496a5f6a0",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-92d544914a1a",
+      "lemma": "struggle",
+      "partOfSpeechCode": "VERB",
+      "senseLabel": "make a hard effort",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_ONLY",
+        "sourcePackageSha256": [
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-521ce0adaa9f904198bc892544ca715c344bc69263b4d3137083dcf496a5f6a0",
+        "sourceNoteReferenceHashes": [
+          "NOTE-c178da69c0c8ddce21952925b5fae10201689588f4cc142157fd3dda1e2aa44d"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-0950c3bd60f23c7c8b20d3b836ac34757a80895652a0b77f368585ddb3dbb844",
+        "sourceCefrEvidence": [
+          "B2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B1",
+        "confidence": 0.82,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Trying hard when something is difficult is a frequent general verb use.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-7046-8b09-7ef068240509"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 37,
+      "candidateId": "SOURCE-CANDIDATE-5565174c91cbf17ade5418e71beafe248bbfbebab5fe2b7ac92d7c07f8ef5651",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-aa41e4cd8ff9",
+      "lemma": "charge",
+      "partOfSpeechCode": "VERB",
+      "senseLabel": "ask for payment",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-5565174c91cbf17ade5418e71beafe248bbfbebab5fe2b7ac92d7c07f8ef5651",
+        "sourceNoteReferenceHashes": [
+          "NOTE-4892a875145eac0a885b4aff034dedbf8356beb5dae9c045897681d560206cae",
+          "NOTE-e01088208f9a705a47ef1213ae2f685d5281f74c25f8c83bdade9e9051f92fdf"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-cf380fdb8806b48f444479e8a23c5b014a50c1c219f5fd6e2cd0316d0a70520d",
+        "sourceCefrEvidence": [
+          "B1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A2",
+        "confidence": 0.84,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Asking for payment in a service transaction is practical everyday commercial language.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-7f17-a990-481e9dd28fa4"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 38,
+      "candidateId": "SOURCE-CANDIDATE-5612075f600566dae5840afca85e3c574d323b8ddc80559d986707715747e2a5",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-c1530836b546",
+      "lemma": "resident",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "person living locally",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_ONLY",
+        "sourcePackageSha256": [
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-5612075f600566dae5840afca85e3c574d323b8ddc80559d986707715747e2a5",
+        "sourceNoteReferenceHashes": [
+          "NOTE-eab7d093d0476800b70d301283c43fe985be343c215d2eb238661eb0be8dacbd"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-16e8e3458ab00ddb86085197c47a8e529413e00867d1bd32d17d41a3fc104028",
+        "sourceCefrEvidence": [
+          "B2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B1",
+        "confidence": 0.79,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Resident is useful civic vocabulary for local and community contexts.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-721a-bada-12ae79c2bd3a"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 39,
+      "candidateId": "SOURCE-CANDIDATE-5a824cc60ce344b2335f8f7661a2f66bf8e781fa9a138cdecc32b6dd254ae607",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-d9fe7b7d857e",
+      "lemma": "member",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "person in a group",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-5a824cc60ce344b2335f8f7661a2f66bf8e781fa9a138cdecc32b6dd254ae607",
+        "sourceNoteReferenceHashes": [
+          "NOTE-3bd996351bd645bce8df2d1518f0f6d0af97f24af2185c9227d7847c32ee4fd5",
+          "NOTE-512859c7402f5c5f63e8ac1dbf6d89385671f2292b9eaca869a50a3313dfbcff"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-c45e24674d61600c44eb42f7496f3b9b1ac5bdeba88330a1f597560b98305712",
+        "sourceCefrEvidence": [
+          "A1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A1",
+        "confidence": 0.93,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Belonging to a group is a basic social concept.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-79bb-b0bc-5bf05f0e4faa"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 40,
+      "candidateId": "SOURCE-CANDIDATE-5bcbe443d9c60cbcbbaf34fbaed0744b323367854f7d9f22657c9444aea0d9e0",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-f257db26d791",
+      "lemma": "all right",
+      "partOfSpeechCode": "INTERJECTION",
+      "senseLabel": "agreement or acceptance",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_ONLY",
+        "sourcePackageSha256": [
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-5bcbe443d9c60cbcbbaf34fbaed0744b323367854f7d9f22657c9444aea0d9e0",
+        "sourceNoteReferenceHashes": [
+          "NOTE-2a3dde6261c03dbf7477af58b1a85bf1bb6cb2bfa093c32f8756c76aa00c25da"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-fe49d7ebf40bb6761534964ae27beb6bf6836ab6ab7fbf873e46b2aa991976ad",
+        "sourceCefrEvidence": [
+          "A2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A1",
+        "confidence": 0.87,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "All right as agreement is a frequent elementary conversational expression.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-72eb-8a39-4590b2860768"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 41,
+      "candidateId": "SOURCE-CANDIDATE-5c5da7bfd16d72494c038208e25badf621ffc15a4f70b8ee203b06be9c4cc257",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-0a20d4f7ae01",
+      "lemma": "unique",
+      "partOfSpeechCode": "ADJECTIVE",
+      "senseLabel": "one of a kind",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-5c5da7bfd16d72494c038208e25badf621ffc15a4f70b8ee203b06be9c4cc257",
+        "sourceNoteReferenceHashes": [
+          "NOTE-0242069fd51d20cb656dd21e06da6e3a993067a6e19adbb53735a0848be7b836",
+          "NOTE-eee7614dd3c07504dd54ff48799be0fa7ec01cb110c630f77448188840d4449f"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-5629cc53d2b7b6b5db426e01155b97fce3aea71e8f6d281ed27579d3f58fca5d",
+        "sourceCefrEvidence": [
+          "B2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B1",
+        "confidence": 0.82,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Describing something as one of a kind is common vocabulary beyond basic comparison.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-7e41-b3fd-021e48b1f96b"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 42,
+      "candidateId": "SOURCE-CANDIDATE-5f6cd61804c889f2e7c8ab95fc05ab7b05f28a4f26d96548c890f4183a55ba8d",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-20e7d1e01c66",
+      "lemma": "commercial",
+      "partOfSpeechCode": "ADJECTIVE",
+      "senseLabel": "related to business",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-5f6cd61804c889f2e7c8ab95fc05ab7b05f28a4f26d96548c890f4183a55ba8d",
+        "sourceNoteReferenceHashes": [
+          "NOTE-0492ceba4282aa3ec48de453cfb54c5a46562934a8fe112e47b62d839e49ea14",
+          "NOTE-188894d9ad52af73774f2510652b3044a69cfa4245882013107edce2e6fe4bda"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-3251357cf78961dfc95a9070befb1365e7b24ad1aba03ca6bb57f804401c3c0b",
+        "sourceCefrEvidence": [
+          "B1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B2",
+        "confidence": 0.79,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Commercial is a formal business descriptor used for economic and urban contexts.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-7f25-9e6f-8374a26b203c"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 43,
+      "candidateId": "SOURCE-CANDIDATE-616c853e98fddfbade0001ee43b364e6b5ef6b6ad73efcee81897818e81720b5",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-397ef521e177",
+      "lemma": "during",
+      "partOfSpeechCode": "PREPOSITION",
+      "senseLabel": "within a period",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-616c853e98fddfbade0001ee43b364e6b5ef6b6ad73efcee81897818e81720b5",
+        "sourceNoteReferenceHashes": [
+          "NOTE-44eb5e02379bdc459c05f396dd72e77521dfc127db7f9ffb97240f03c1b9a8e3",
+          "NOTE-eb4ea9974a6af902c66d17ace695565c758af1343b4cc2123f48dd53ed45492d"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-7d5a1516f4b61d465fc05a147908c6f668b34e16ac91b14cc7278d29a611abed",
+        "sourceCefrEvidence": [
+          "A1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A1",
+        "confidence": 0.94,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "During is a basic time preposition used in familiar activities.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-75e1-ba29-3ffe3567c9f2"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 44,
+      "candidateId": "SOURCE-CANDIDATE-677773ee6d6266c3844d1dfb650ac602e4190d2755585a03d23af163078bab5c",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-4d54a373af15",
+      "lemma": "rotate",
+      "partOfSpeechCode": "VERB",
+      "senseLabel": "take turns in sequence",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-677773ee6d6266c3844d1dfb650ac602e4190d2755585a03d23af163078bab5c",
+        "sourceNoteReferenceHashes": [
+          "NOTE-c8e92c03944390e0c1d83322a1a48959c8d49e57b618941836ea8a908da5e2d7"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-4f226c3e35217923228d48eeb6a0aab2f1864c4ee53d5141ac5b28db4b0af5d2",
+        "sourceCefrEvidence": [
+          "C1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B1",
+        "confidence": 0.82,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Taking turns in sequence is a common school and workplace process.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-7261-96d2-07e4c9273c04"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 45,
+      "candidateId": "SOURCE-CANDIDATE-6ce32853d2cae03ebc709d39fad8a6934a972092040c5eaaa1eea92e19d297e6",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-66b0757806fe",
+      "lemma": "just",
+      "partOfSpeechCode": "ADVERB",
+      "senseLabel": "very recently",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-6ce32853d2cae03ebc709d39fad8a6934a972092040c5eaaa1eea92e19d297e6",
+        "sourceNoteReferenceHashes": [
+          "NOTE-2edaceffd3801873681b76f462e700781f58dbdc800b0090afc14ea533849ae9"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-3371f80e40aec82ce7ba8cee7718103899724690a39d95e8b44a64ff5b004b6f",
+        "sourceCefrEvidence": [
+          "A1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A1",
+        "confidence": 0.9,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Very recent timing is a frequent everyday adverb use.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-792f-8eea-2f732ac368a4"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 46,
+      "candidateId": "SOURCE-CANDIDATE-6d13dcb4cadcd0e0ddbe0f7fbfb4eeaad944e4f184e43e024fc12b7a18b96166",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-7e0812b069ae",
+      "lemma": "relief",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "lessening of pain",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-6d13dcb4cadcd0e0ddbe0f7fbfb4eeaad944e4f184e43e024fc12b7a18b96166",
+        "sourceNoteReferenceHashes": [
+          "NOTE-f5c3394f53bd4e36c29353acd58f15bd1f8739ff5226f88f6f3703d8e9836247"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-4234b54ff480b5132ca6e360c055f3ba4837b9968b70b4fdd49c983e24769ee1",
+        "sourceCefrEvidence": [
+          "B2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B1",
+        "confidence": 0.81,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Reduction in pain is an everyday health concept expressed as an abstract noun.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-7498-83f9-e1bdde543394"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 47,
+      "candidateId": "SOURCE-CANDIDATE-6df3cbd74441f858e7dbfb989e650b84b905bd2a572b270933be15aad74ca685",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-97f25323b0a8",
+      "lemma": "acute",
+      "partOfSpeechCode": "ADJECTIVE",
+      "senseLabel": "severe and intense",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-6df3cbd74441f858e7dbfb989e650b84b905bd2a572b270933be15aad74ca685",
+        "sourceNoteReferenceHashes": [
+          "NOTE-3e73bd1ba8ef720bbf9e9ee49989d01d834d839d6ee915392147aa3b2f8f156b"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-ae57efb82d2377ee8472f76117f5e3344d15bb7b09c21b939672c5a58c7189a7",
+        "sourceCefrEvidence": [
+          "C1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "C1",
+        "confidence": 0.84,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Acute in the severe or intense sense is a precise medical and formal modifier.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-789d-a7ed-1f374856cf00"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 48,
+      "candidateId": "SOURCE-CANDIDATE-6e8882fc2e38cee29390b9f54184323995c835e89c148eded5c9a24ec0f609ca",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-aeb83963a729",
+      "lemma": "roster",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "organized people list",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_ONLY",
+        "sourcePackageSha256": [
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-6e8882fc2e38cee29390b9f54184323995c835e89c148eded5c9a24ec0f609ca",
+        "sourceNoteReferenceHashes": [
+          "NOTE-844446e748c33099c959379b0e4819494bf400f56e9fff381ce05efddbf13de7"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-bb4421c0a1b14e59348daca1eec388384f6cd8d479f9ed540682be2412949e04",
+        "sourceCefrEvidence": [
+          "C1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B2",
+        "confidence": 0.7,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "OWNER_REVIEW_REQUIRED",
+        "rationale": "Roster is a team and sports-list term whose regional frequency varies; this tentative estimate needs owner review.",
+        "agreementStatus": "CONFLICT_REQUIRES_OWNER_REVIEW",
+        "classificationId": null
+      },
+      "reviewStatus": "OWNER_REVIEW_REQUIRED"
+    },
+    {
+      "candidateOrdinal": 49,
+      "candidateId": "SOURCE-CANDIDATE-706caaa1cae42721e1db6a2144e777b5845b1aa296be9ceb7b0ced3f945e231a",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-c4a190ee77a4",
+      "lemma": "total",
+      "partOfSpeechCode": "ADJECTIVE",
+      "senseLabel": "complete in every part",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-706caaa1cae42721e1db6a2144e777b5845b1aa296be9ceb7b0ced3f945e231a",
+        "sourceNoteReferenceHashes": [
+          "NOTE-71835249b5ded8861b7254d158a1d63ac034d7a8f906003009d1c1ff48e60b8b"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-1a8e8a4cc509ccfcee05d565ef0ea7d510c2f6766869f87bba4e26a01a8e7556",
+        "sourceCefrEvidence": [
+          "B1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B1",
+        "confidence": 0.82,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Complete in every part is a common general adjective use.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-7e5b-b0f9-673464e276d7"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 50,
+      "candidateId": "SOURCE-CANDIDATE-7073688505f4ddb8169baa314eccf17ab42d2689aa15584aca0f1d3cf64d8f28",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-db8e56d2cc07",
+      "lemma": "all right",
+      "partOfSpeechCode": "ADJECTIVE",
+      "senseLabel": "satisfactory condition",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_ONLY",
+        "sourcePackageSha256": [
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-7073688505f4ddb8169baa314eccf17ab42d2689aa15584aca0f1d3cf64d8f28",
+        "sourceNoteReferenceHashes": [
+          "NOTE-2a3dde6261c03dbf7477af58b1a85bf1bb6cb2bfa093c32f8756c76aa00c25da"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-66052fef83761a1b68b03cbce614633edb5a6c59ac1429f2b22c0393af2aa3f1",
+        "sourceCefrEvidence": [
+          "A2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A2",
+        "confidence": 0.89,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "All right as satisfactory condition is a common conversational evaluation.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-782d-947b-5cd2a51ad957"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 51,
+      "candidateId": "SOURCE-CANDIDATE-71158431f16035d34e20f7385234995c7b2646d98f73cee0753311710596daba",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-f3a4a21a7dc3",
+      "lemma": "compelling",
+      "partOfSpeechCode": "ADJECTIVE",
+      "senseLabel": "captivating",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-71158431f16035d34e20f7385234995c7b2646d98f73cee0753311710596daba",
+        "sourceNoteReferenceHashes": [
+          "NOTE-7a1b357f0fb3f1e9a545e7678144b5c3326b6f433f0ab519be484be873cbb677"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-9211360a153db1260555dd4d7cbcb11da1cb3ff5561a1b745ae58f01b7fe6772",
+        "sourceCefrEvidence": [
+          "C1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B2",
+        "confidence": 0.82,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Compelling as attention-holding is evaluative vocabulary used across reading and argument.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-776e-b738-afdaca51be56"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 52,
+      "candidateId": "SOURCE-CANDIDATE-7575479487282ba588c025c8568810fe0507cee430200fc733b2a28ead6e2f9c",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-0ab34eedf7c6",
+      "lemma": "rock",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "solid stone",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-7575479487282ba588c025c8568810fe0507cee430200fc733b2a28ead6e2f9c",
+        "sourceNoteReferenceHashes": [
+          "NOTE-7a5437d1406becd5ef83b232ab829c13f663c45725b6076ea0045cfde04fd91d",
+          "NOTE-e8de2a57d6fec678fa87b3c725377d16c0b648e0a3a09ea44bcd234263846988"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-e6963664ec4eeafd54ec54bd759bc9abbd619e5787103e6b69272364fc7c7e46",
+        "sourceCefrEvidence": [
+          "A2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A2",
+        "confidence": 0.85,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Solid rock is basic natural vocabulary in a concrete setting.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-72a0-b58e-153edb1435d4"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 53,
+      "candidateId": "SOURCE-CANDIDATE-78eda8d27df2d18b0240e625ff5c62516368bb55313c82aa89d91f060aa95753",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-23b5c52b4d0f",
+      "lemma": "quiet",
+      "partOfSpeechCode": "ADJECTIVE",
+      "senseLabel": "with little noise",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-78eda8d27df2d18b0240e625ff5c62516368bb55313c82aa89d91f060aa95753",
+        "sourceNoteReferenceHashes": [
+          "NOTE-66486f2f00a220f5201f376d3e8f8438383d8b839f58821670a24d0b8b2ddbe3",
+          "NOTE-f730bd6f464a72e04d55f9345a98b73316ced860e594edc7511ee7b26ba2f352"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-36cb81a3a22efd1adf13f5f6ff595c5aacc1c936494e35eec170e103b8aebaf4",
+        "sourceCefrEvidence": [
+          "A1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A1",
+        "confidence": 0.93,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Quiet with little noise is a basic everyday adjective.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-79aa-82c4-35e785d149ec"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 54,
+      "candidateId": "SOURCE-CANDIDATE-7d69b7e4e6b14f1f1e82af0886884db203752824101d0c946224fe01bd57da2e",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-369dd574695b",
+      "lemma": "reservation",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "hesitation or doubt",
+      "identityDecision": "NEW_SENSE_EXISTING_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_ONLY",
+        "sourcePackageSha256": [
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-7d69b7e4e6b14f1f1e82af0886884db203752824101d0c946224fe01bd57da2e",
+        "sourceNoteReferenceHashes": [
+          "NOTE-e294e650e960236f16cb255325ad89d68c3ee0a6d682fa0282dcfa1f0c86af11"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-c53b482ef4a9c92610a0192d6d78a1f3de2cc4af91c1a1d038296abac0fcace5",
+        "sourceCefrEvidence": [
+          "B1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B2",
+        "confidence": 0.78,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Reservation as hesitation is an abstract use distinct from booking and often appears in fixed phrasing.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-720a-86bc-f326a730508d"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 55,
+      "candidateId": "SOURCE-CANDIDATE-7de5cd735943d1818063e38361843af5ffd1936eba1bf84f402225def6943079",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-48eb58f50cbf",
+      "lemma": "direct",
+      "partOfSpeechCode": "VERB",
+      "senseLabel": "guide a film production",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-7de5cd735943d1818063e38361843af5ffd1936eba1bf84f402225def6943079",
+        "sourceNoteReferenceHashes": [
+          "NOTE-4cdd59b653f2e143f4cdf42bdbd3d723308b046ee31bd53afcb0529f35027eea"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-7ced9ec820843c8754fc52d72561a26beec82145bb2d48078cda43d4c591116e",
+        "sourceCefrEvidence": [
+          "A2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B2",
+        "confidence": 0.81,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Directing film production is a specialized creative and professional verb use.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-7894-ac0c-1b7f382eba04"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 56,
+      "candidateId": "SOURCE-CANDIDATE-80af8ab531f9ced98fc9948a0bd469f6bcf066d18c08c9b8b21409bd609e553e",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-6137a474d3c3",
+      "lemma": "concentrate",
+      "partOfSpeechCode": "VERB",
+      "senseLabel": "focus attention",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-80af8ab531f9ced98fc9948a0bd469f6bcf066d18c08c9b8b21409bd609e553e",
+        "sourceNoteReferenceHashes": [
+          "NOTE-1d0acdfb819a6fbb4e93ac10f1f6a429a8031d6fbded8746eecc1e91ed4ae987",
+          "NOTE-b093d61a542d61f67b47a251ae8f2d2d10396ce7594fd400002e5188e592a475"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-058fccae8fa40b5034826b4beab0250ec2b0e84303aba2a3a4815f0f4f19c91d",
+        "sourceCefrEvidence": [
+          "B1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B1",
+        "confidence": 0.85,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Sustained focus is general independent-user vocabulary for study and work.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-7ed4-b94c-957d887a4ebc"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 57,
+      "candidateId": "SOURCE-CANDIDATE-82a89160ac6153dd1d5d9df90b8e27da38e4bdd495580bd21338f82461ab0097",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-74b8a6de7e22",
+      "lemma": "total",
+      "partOfSpeechCode": "ADJECTIVE",
+      "senseLabel": "combined amount",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-82a89160ac6153dd1d5d9df90b8e27da38e4bdd495580bd21338f82461ab0097",
+        "sourceNoteReferenceHashes": [
+          "NOTE-3754fcdafd4e5ea0982132874cc75409195277358d971363fc10e4ed16c4df18",
+          "NOTE-71835249b5ded8861b7254d158a1d63ac034d7a8f906003009d1c1ff48e60b8b"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-4397e3ef00c138ed0b9c0081b0c24414a588c2f9ba0f4779a0690039bc24cadc",
+        "sourceCefrEvidence": [
+          "B1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B1",
+        "confidence": 0.82,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "A combined total is common numeracy and budgeting vocabulary.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-77d2-b383-272176fe75bd"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 58,
+      "candidateId": "SOURCE-CANDIDATE-860293e079247bb472fc9e936e2785fc9092a3d5b80d0c93ee7d558365f2cca8",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-8ebf5829835d",
+      "lemma": "shift",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "work period",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-860293e079247bb472fc9e936e2785fc9092a3d5b80d0c93ee7d558365f2cca8",
+        "sourceNoteReferenceHashes": [
+          "NOTE-b36c96f48b861b9169fb1ba23eeb43b741a2792ee79718b1f45102569de643a2"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-19aa22ff57573d4e0ae32fd61365cac59f43ec6629180c1ecc60e0b67b43718e",
+        "sourceCefrEvidence": [
+          "B1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B1",
+        "confidence": 0.82,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "A scheduled work period is familiar workplace vocabulary.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-7769-982d-ae4aac3799fe"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 59,
+      "candidateId": "SOURCE-CANDIDATE-86d6fc6cc4bd592ebdade6fce43449b174bfba918e14326ce156173320d5f71f",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-a764716f4128",
+      "lemma": "toll",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "number of deaths and injuries",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-86d6fc6cc4bd592ebdade6fce43449b174bfba918e14326ce156173320d5f71f",
+        "sourceNoteReferenceHashes": [
+          "NOTE-695835e27aa0d4199ee4ec80b67dd32a9b35112fe3f74a68450bc21599d7673b"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-f9b2b2af92b0942ff25e250fc264309026ccb5b0e6e01d70290ae23e2ca70499",
+        "sourceCefrEvidence": [
+          "C1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "C1",
+        "confidence": 0.82,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Toll for casualties is abstract news vocabulary used in reports of serious events.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-7d48-8eb2-8145f48d433f"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 60,
+      "candidateId": "SOURCE-CANDIDATE-8a35f5357d1792b910f63a859a06237e89a84e96eaa3a2bc654f1303aeebbff1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-be14abe16989",
+      "lemma": "welcome",
+      "partOfSpeechCode": "ADJECTIVE",
+      "senseLabel": "warmly accepted",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-8a35f5357d1792b910f63a859a06237e89a84e96eaa3a2bc654f1303aeebbff1",
+        "sourceNoteReferenceHashes": [
+          "NOTE-36f757b892d46ccc82f1baa2e0fb512914f0ba5c5b18fced381a47397c43e86c"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-6e8982cbfd4ac93483b23c005582abceeb5fd07828dd3e4f9f337e58d5faa0b6",
+        "sourceCefrEvidence": [
+          "A1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A1",
+        "confidence": 0.92,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Wanted and received with pleasure is a frequent basic adjective use.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-7752-8346-4c8e7e67dec4"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 61,
+      "candidateId": "SOURCE-CANDIDATE-8ac6821bde7df79341feefdee4eacfa864b59f20098bfecf1a0a19d50e1331fd",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-d47ce6596f64",
+      "lemma": "spell",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "brief period",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-8ac6821bde7df79341feefdee4eacfa864b59f20098bfecf1a0a19d50e1331fd",
+        "sourceNoteReferenceHashes": [
+          "NOTE-a672370f553f8b1f0a39f4de71d5def1c0317d3bc1a5ba3312cc1acdd596b881"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-da7c7cce90cea8d9a0ee98eaf50a09c35d6dd8297925bbaeffbfc4b580167ad2",
+        "sourceCefrEvidence": [
+          "A1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B2",
+        "confidence": 0.78,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "A spell of weather is an idiomatic period sense less common than basic time words.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-7953-abe6-386b76c2d02c"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 62,
+      "candidateId": "SOURCE-CANDIDATE-8b730a86ea8d3ce02b76db59b3ecd029a062de0c6672918914208e6b16c2f1d6",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-ed6693eca162",
+      "lemma": "broadly",
+      "partOfSpeechCode": "ADVERB",
+      "senseLabel": "across a wide range",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-8b730a86ea8d3ce02b76db59b3ecd029a062de0c6672918914208e6b16c2f1d6",
+        "sourceNoteReferenceHashes": [
+          "NOTE-4c9506dfec6ce8b572432665ac9f52a4eae4b19f6946f2b58dd059c5f1ddc34f",
+          "NOTE-99cfeb87e73945e3a500ce77b28126e03fa6372d3815a41575bb21db0d4e41c6"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-a551144a1ffe652013c1d9e42aea5325109662ac7b32924570e1349c653637b2",
+        "sourceCefrEvidence": [
+          "B2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B2",
+        "confidence": 0.84,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Broadly as across a range is a precise generalizing adverb.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-743e-8006-5f42ff389661"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 63,
+      "candidateId": "SOURCE-CANDIDATE-9664d6839894209a29d0641834468083bab17a238325f326fa50b87743b37a54",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ac-007b8e765c31",
+      "lemma": "per cent",
+      "partOfSpeechCode": "ADJECTIVE",
+      "senseLabel": "per-hundred modifier",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_ONLY",
+        "sourcePackageSha256": [
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-9664d6839894209a29d0641834468083bab17a238325f326fa50b87743b37a54",
+        "sourceNoteReferenceHashes": [
+          "NOTE-d9874a43c6135b5dc31ac632d9ed9081943345d95e65711997228cae16fe99e8"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-ca7a27178a6e2748eb1c16c57987630669e3efe1104800c0b2143688ad3de4ea",
+        "sourceCefrEvidence": [
+          "A2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A2",
+        "confidence": 0.86,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "A per-cent modifier is basic numeracy and pricing vocabulary.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-7c86-9833-56cbf539427b"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 64,
+      "candidateId": "SOURCE-CANDIDATE-9778e99282e13db6006303903ab40a2205f4940ea2b8333cb59b2da97111783c",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-388175c26836",
+      "lemma": "via",
+      "partOfSpeechCode": "PREPOSITION",
+      "senseLabel": "by way of",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-9778e99282e13db6006303903ab40a2205f4940ea2b8333cb59b2da97111783c",
+        "sourceNoteReferenceHashes": [
+          "NOTE-eb2669fb28edc66e6b60e47e66794ff443caa244d19b5b059676f53ad91233c4",
+          "NOTE-f0ea9858c485bb735883d6c3e6221544677251071c24541c891d9bbdb54644a9"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-ecf3512f90fdb4c059a6cc3be8bd92fc61dd7bfd9a2a0a503879ef17d9fd4252",
+        "sourceCefrEvidence": [
+          "B2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B2",
+        "confidence": 0.84,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Via is a compact, somewhat formal way to describe a route or method.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-7e21-aecc-af5843212cdc"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 65,
+      "candidateId": "SOURCE-CANDIDATE-989e2412a07fb9fd5c961af74ee3954b0e0de5c2d5d0db9f2774c29d5124144d",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-5263bfd63bbf",
+      "lemma": "scrape",
+      "partOfSpeechCode": "VERB",
+      "senseLabel": "remove by scraping",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "4600_ONLY",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-989e2412a07fb9fd5c961af74ee3954b0e0de5c2d5d0db9f2774c29d5124144d",
+        "sourceNoteReferenceHashes": [
+          "NOTE-ee2bfa6d6de36d432f4be03b8fcae1e050bb8d9eb8ebbe11b25882d0276f1764"
+        ],
+        "sourceSenseGroupReference": null,
+        "sourceCefrEvidence": null
+      },
+      "editorialDecision": {
+        "valueCode": "A2",
+        "confidence": 0.86,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Removing a thin layer by scraping is a concrete household and repair action.",
+        "agreementStatus": null,
+        "classificationId": "01a10760-b9f0-7072-bb4e-a3e56bcaae91"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 66,
+      "candidateId": "SOURCE-CANDIDATE-a668f749255b80a5683799c344ff31766bdfc36f789d419e51b0c5e90fccb09f",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-6b2a61e1e7c4",
+      "lemma": "portable",
+      "partOfSpeechCode": "ADJECTIVE",
+      "senseLabel": "easy to carry",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "4600_ONLY",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-a668f749255b80a5683799c344ff31766bdfc36f789d419e51b0c5e90fccb09f",
+        "sourceNoteReferenceHashes": [
+          "NOTE-98dbcf89673aeffa35157a815000fef55d05c645d797b211c480933c688ef85d"
+        ],
+        "sourceSenseGroupReference": null,
+        "sourceCefrEvidence": null
+      },
+      "editorialDecision": {
+        "valueCode": "A2",
+        "confidence": 0.86,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Easy to carry describes practical everyday objects and devices.",
+        "agreementStatus": null,
+        "classificationId": "01a10760-b9f0-71cc-b653-9338c19b3bda"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 67,
+      "candidateId": "SOURCE-CANDIDATE-a6a21ce9e065d758b06afa3de50f842559158c17ed094860dd14b53e5d9fe17a",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-83e56ae5f536",
+      "lemma": "liable",
+      "partOfSpeechCode": "ADJECTIVE",
+      "senseLabel": "likely to face a problem",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-a6a21ce9e065d758b06afa3de50f842559158c17ed094860dd14b53e5d9fe17a",
+        "sourceNoteReferenceHashes": [
+          "NOTE-70d85bfd979256970e3f407cafa6d050dc2c74a1cc54e5222585a5b8251f090a"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-316e79f9995939c6fead982eba4a86987be50516b30584f1ea1421d1c76b1fa4",
+        "sourceCefrEvidence": [
+          "C1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B2",
+        "confidence": 0.7,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "OWNER_REVIEW_REQUIRED",
+        "rationale": "Liable in the likely-to-face sense is formal and context-sensitive; this tentative estimate needs owner review.",
+        "agreementStatus": "CONFLICT_REQUIRES_OWNER_REVIEW",
+        "classificationId": null
+      },
+      "reviewStatus": "OWNER_REVIEW_REQUIRED"
+    },
+    {
+      "candidateOrdinal": 68,
+      "candidateId": "SOURCE-CANDIDATE-a8663e5c6478cc250dced54fff1aae633c2960d6262ae6f328c446e753f9eeb9",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-982f187e5653",
+      "lemma": "icon",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "screen symbol",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-a8663e5c6478cc250dced54fff1aae633c2960d6262ae6f328c446e753f9eeb9",
+        "sourceNoteReferenceHashes": [
+          "NOTE-5950073ef724776dc86abf23d8bcd0147dcedc06c9a0c4360753ea6a3c71abde",
+          "NOTE-fe99393b18236a972bf9c2911b7f80781816307d405f000d59d17c6b4b9f9906"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-890545697fa9a243b0db40b4271b033274efac8fbc21443921838ebaebe7d8af",
+        "sourceCefrEvidence": [
+          "B2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A2",
+        "confidence": 0.84,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "A screen symbol is common technology vocabulary in everyday device use.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-7958-ae0f-b757c56c01b0"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 69,
+      "candidateId": "SOURCE-CANDIDATE-ab5d0dfb9e05eb23a90df6674214dff815ad7a3f6b9a467383488aea160b6b17",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-b375a308217e",
+      "lemma": "challenge",
+      "partOfSpeechCode": "VERB",
+      "senseLabel": "question a claim",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-ab5d0dfb9e05eb23a90df6674214dff815ad7a3f6b9a467383488aea160b6b17",
+        "sourceNoteReferenceHashes": [
+          "NOTE-48f340c3ff714cad9364813d9c4c1a33d7c9b1059edf16d049b04a558380287e"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-af71529a0447cc6113e3f163deed4eef84b6838ace97b0d3f5bf868b6ed088f0",
+        "sourceCefrEvidence": [
+          "B1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B2",
+        "confidence": 0.8,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Questioning a decision or claim is an abstract civic and academic use.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-797f-98d3-039dbc48e347"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 70,
+      "candidateId": "SOURCE-CANDIDATE-b10678af0b94d27c23313cce5e3a860557f5dfabb31c87ad2bc860929a70ecd8",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-c8cce3636c7a",
+      "lemma": "architect",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "building designer",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-b10678af0b94d27c23313cce5e3a860557f5dfabb31c87ad2bc860929a70ecd8",
+        "sourceNoteReferenceHashes": [
+          "NOTE-033561d45b0139d00d21558c5cc6f4f7b176f85970d250de502a206c82218ae3",
+          "NOTE-94e2f08a09c900df57e8737253a3b3b8de735dbfee2269fe4aea6f6b6a6ce217"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-8438eca5c3218146ed21cad5d9395b346aa06ef4633bc5a1fed1ade6a5229fc1",
+        "sourceCefrEvidence": [
+          "A2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A2",
+        "confidence": 0.85,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Architect is a familiar occupation noun in building and city contexts.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-7e0b-aa51-cc09a37ce365"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 71,
+      "candidateId": "SOURCE-CANDIDATE-b4a8289ae36d44a0774547da703cfe7b2cae49e10019936779c68f9fb2218f80",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-e052bbcb6335",
+      "lemma": "criticism",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "comments about faults",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-b4a8289ae36d44a0774547da703cfe7b2cae49e10019936779c68f9fb2218f80",
+        "sourceNoteReferenceHashes": [
+          "NOTE-067a9dfd0a864d8eae06537680ce379cef88283e9f45b984d634b8a22863c80a",
+          "NOTE-f6c5d82c424eac60a1d45a3b121ba84c7f348a1b6f7bd0de9e2f69595e41407f"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-345ce027ac13fdfef4058dd740d64a66d6bbee4889c5f8c18472c60bf2d127b2",
+        "sourceCefrEvidence": [
+          "B2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B2",
+        "confidence": 0.84,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Comments that identify faults are abstract vocabulary for school and work review.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-7051-bb97-93a841f20a43"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 72,
+      "candidateId": "SOURCE-CANDIDATE-b6f8bcfdc7250deed3f7a6b867e76ce7ed7cdd433e2656470f4f05889a76354e",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-f95f0a11a85e",
+      "lemma": "exchange",
+      "partOfSpeechCode": "VERB",
+      "senseLabel": "trade one thing for another",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-b6f8bcfdc7250deed3f7a6b867e76ce7ed7cdd433e2656470f4f05889a76354e",
+        "sourceNoteReferenceHashes": [
+          "NOTE-cebf887924ed46fadcd5e1318923c529f2dd692caf3145d774761752357d6dbb"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-cd4d06917ce4cd66db0858134bf010c37cf4836254d5650ccbeb30c1ba4116ac",
+        "sourceCefrEvidence": [
+          "B1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A2",
+        "confidence": 0.82,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Giving one item and receiving another is a common everyday transaction.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-7924-a18e-efb894af1992"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 73,
+      "candidateId": "SOURCE-CANDIDATE-ba799ba2d3885eefde5b278df2603ac1f148c0a697dda410b1552861b9822546",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-13e0fb40de8c",
+      "lemma": "concern",
+      "partOfSpeechCode": "VERB",
+      "senseLabel": "cause worry",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-ba799ba2d3885eefde5b278df2603ac1f148c0a697dda410b1552861b9822546",
+        "sourceNoteReferenceHashes": [
+          "NOTE-61984c7f7806acb209283d83595070ddd9133d20b5f1b0797005377e0efd9e02"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-882ba752d9a1c7e6262b3502f4068d4fb98000aef6a471d416fd8098aeb4fd52",
+        "sourceCefrEvidence": [
+          "B2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B1",
+        "confidence": 0.82,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Causing worry is a common abstract verb in work and news contexts.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-7e3f-88c9-a667c379bdd9"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 74,
+      "candidateId": "SOURCE-CANDIDATE-bbeb334edeb83a694bb36579f1171305de2be0af2e6702c71c9caf48c22aafc2",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-2a10fa50c2ef",
+      "lemma": "creature",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "living animal",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-bbeb334edeb83a694bb36579f1171305de2be0af2e6702c71c9caf48c22aafc2",
+        "sourceNoteReferenceHashes": [
+          "NOTE-a2f379ee3a432c9e6347022ff6db37748bbb48f59e223f525ccf24c7df96a777",
+          "NOTE-cb17c64cf954e2cf1cbfae1c0e3f33e0a7f7888d024af4a57d26a3f45af0679a"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-4e84eed548996c428685a45d3d1e5bf52052929b4bd4c74d48563e054ed47a1d",
+        "sourceCefrEvidence": [
+          "B2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B1",
+        "confidence": 0.83,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Creature is a general but less frequent label for an animal or living being.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-7b46-b8c7-e6e52db7c6ed"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 75,
+      "candidateId": "SOURCE-CANDIDATE-c01d1ac17e173686606d610c8236ba034a9a786f92f335fe6f5962ed0b1ab195",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-413213f77278",
+      "lemma": "lawmaker",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "person who makes laws",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_ONLY",
+        "sourcePackageSha256": [
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-c01d1ac17e173686606d610c8236ba034a9a786f92f335fe6f5962ed0b1ab195",
+        "sourceNoteReferenceHashes": [
+          "NOTE-8a1dfca8925f856fa67e4fdb09c6272151e153101884000f1b6f1210a33e1335"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-5ab5ab1d25d243535d3a94393138edd0b5fda125c1804a6e101ea081f078bb61",
+        "sourceCefrEvidence": [
+          "C1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B2",
+        "confidence": 0.78,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Lawmaker is a formal civic role whose meaning is transparent from its parts.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-78c8-bf78-efdd25d51b2b"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 76,
+      "candidateId": "SOURCE-CANDIDATE-c29e0bec420e2d7f8576982a414f15be28b444f32ce6077435fe65b7b48612b3",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-589ec0261ad8",
+      "lemma": "balloon",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "inflated flexible bag",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-c29e0bec420e2d7f8576982a414f15be28b444f32ce6077435fe65b7b48612b3",
+        "sourceNoteReferenceHashes": [
+          "NOTE-84b7159a72c9357192ddd381cd0f6fbb1f567a24a8c58b3317fbbc51df60d4e8",
+          "NOTE-f0cace1a788704aaa74d4e1e8ec337d1486a81fac9c7ca85acbf605783beb51d"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-2c3bb62ededb8e930a2c0daafff331be53f67f7a9091c0dd7bc2841b353878b7",
+        "sourceCefrEvidence": [
+          "B2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A1",
+        "confidence": 0.82,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "A balloon is a familiar concrete object in basic everyday vocabulary.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-7879-92ed-5e0d1d36c165"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 77,
+      "candidateId": "SOURCE-CANDIDATE-c672a94cf9a6befb8835cd2deb9578c31a2bf275b02c42e8f4a4fb741bb88777",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-700f2c9a47a0",
+      "lemma": "rest",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "recovery break",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-c672a94cf9a6befb8835cd2deb9578c31a2bf275b02c42e8f4a4fb741bb88777",
+        "sourceNoteReferenceHashes": [
+          "NOTE-19164f57c976b33d864c4a40457898756decaf20cad3883071768e74c0feb1b3"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-6f8421075e33e3ef13928b5255316947f7097c9a6ffc1127ab671027dc11be42",
+        "sourceCefrEvidence": [
+          "A2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A1",
+        "confidence": 0.86,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "A short recovery break is a basic everyday use.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-7b4c-99a4-5a8ae9d0ee23"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 78,
+      "candidateId": "SOURCE-CANDIDATE-c70769e33fd0ee3c0f52cd5baa57da3726d231656f37f6b1a9f50fcbd9a70203",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-882b36643f4e",
+      "lemma": "stand",
+      "partOfSpeechCode": "VERB",
+      "senseLabel": "be on your feet",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-c70769e33fd0ee3c0f52cd5baa57da3726d231656f37f6b1a9f50fcbd9a70203",
+        "sourceNoteReferenceHashes": [
+          "NOTE-e8c22600a369426084d55c6e3ac1d69a036f90558e13c32275fac48546fa7c20"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-accd220ce7819a2d565ec61bdb87b33e1e2564e4b8999e32cc04dd38f9b34d4b",
+        "sourceCefrEvidence": [
+          "A1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A1",
+        "confidence": 0.93,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Standing upright is a foundational body-position verb.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-7527-8178-6493a977b7e6"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 79,
+      "candidateId": "SOURCE-CANDIDATE-c747aadb1e52b856b33f4c6c2909496ceb1e06d142bd5adf49263ddcd91ded91",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-9c1965cff571",
+      "lemma": "light",
+      "partOfSpeechCode": "ADJECTIVE",
+      "senseLabel": "pale-colored",
+      "identityDecision": "NEW_SENSE_EXISTING_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-c747aadb1e52b856b33f4c6c2909496ceb1e06d142bd5adf49263ddcd91ded91",
+        "sourceNoteReferenceHashes": [
+          "NOTE-4c613cd18a0c2f302ae3831a4bc3172add79f7fe111a4bcd27e5807a2d7cffa5"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-8674cc82dce1b471421668cc166e0b55f610993f8449c63959a69bc3963e6060",
+        "sourceCefrEvidence": [
+          "A1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A1",
+        "confidence": 0.94,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Pale rather than dark is a basic color adjective use.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-7e16-a07f-c88441d3009e"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 80,
+      "candidateId": "SOURCE-CANDIDATE-cbd100b99aa318222f4445443aef3df02a84445f398e3f3e163de9755d516f3c",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-b778960784d8",
+      "lemma": "set",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "collection of items",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-cbd100b99aa318222f4445443aef3df02a84445f398e3f3e163de9755d516f3c",
+        "sourceNoteReferenceHashes": [
+          "NOTE-3cdf2501667a3c9bbedae961243c6831d714933a8bfaf01d34724a268859b0c0"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-12ce525e04cf5de27d78250fefdc5841c921e0111dcaeb3644d067bb98198f9e",
+        "sourceCefrEvidence": [
+          "B1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A2",
+        "confidence": 0.84,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "A matching collection is common household vocabulary with a specific grouping sense.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-7d4a-b9e3-09491f437ce5"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 81,
+      "candidateId": "SOURCE-CANDIDATE-d0003453968ccb0e946217280dca3ee3418c4dfb47f9d5961d33dcb126a87ce9",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-cff4c73ff34a",
+      "lemma": "addition",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "new item added",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_ONLY",
+        "sourcePackageSha256": [
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-d0003453968ccb0e946217280dca3ee3418c4dfb47f9d5961d33dcb126a87ce9",
+        "sourceNoteReferenceHashes": [
+          "NOTE-d3742f3feab1ecd7257ba64cb9d1bbd3c5450f7ec65770568c8fab79c4998226"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-7b8573b6d586be5b9eb8ec20fec8b0d503256c2476f5e80795336392c19587e1",
+        "sourceCefrEvidence": [
+          "B1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B1",
+        "confidence": 0.8,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "An addition as a newly included item or feature is general abstract vocabulary.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-792f-9b5a-7af08362e3e2"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 82,
+      "candidateId": "SOURCE-CANDIDATE-d0750976f9404833c0388fd54ddf3b6e537eab7df1a37488bf47cccb674da831",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-e6665424a3b2",
+      "lemma": "repay",
+      "partOfSpeechCode": "VERB",
+      "senseLabel": "pay borrowed money back",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "4600_ONLY",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-d0750976f9404833c0388fd54ddf3b6e537eab7df1a37488bf47cccb674da831",
+        "sourceNoteReferenceHashes": [
+          "NOTE-6570e40cc58d055157a25fc3b52d61ecf6eecd4c2ab6f25e1f0ccf1d1134b85b"
+        ],
+        "sourceSenseGroupReference": null,
+        "sourceCefrEvidence": null
+      },
+      "editorialDecision": {
+        "valueCode": "A2",
+        "confidence": 0.82,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Repaying borrowed money is practical financial vocabulary for everyday situations.",
+        "agreementStatus": null,
+        "classificationId": "01a10760-b9f0-729e-b9e8-64f6cbb538a7"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 83,
+      "candidateId": "SOURCE-CANDIDATE-dbf7df88588b5137ed5b799980124c1ff2997f07fdde89e7f44e9926e3fff5bb",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-fa99c56877b4",
+      "lemma": "integrity",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "honesty and principles",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-dbf7df88588b5137ed5b799980124c1ff2997f07fdde89e7f44e9926e3fff5bb",
+        "sourceNoteReferenceHashes": [
+          "NOTE-60e368e4d18ad1cc2ce8395cc67d4c155b4b4bcaeffb3321346eb692b24405ed",
+          "NOTE-ebfee098562b61faeb5df6549e47e4909cec8eebacfce7c0445fef81bee2025c"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-b43dd707b5e2ae244c838cd3eadc6eee4776cc04b2808fee7c27e9979594fe53",
+        "sourceCefrEvidence": [
+          "C1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "C1",
+        "confidence": 0.87,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Integrity as moral honesty and principles is an abstract evaluative noun.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-77cb-bab4-2b692b549b54"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 84,
+      "candidateId": "SOURCE-CANDIDATE-df4ad026b1e363bac58a108f963f43dcfc448752c0699383449b76d76ee0a34f",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-12b693a50e53",
+      "lemma": "champion",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "competition winner",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_ONLY",
+        "sourcePackageSha256": [
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-df4ad026b1e363bac58a108f963f43dcfc448752c0699383449b76d76ee0a34f",
+        "sourceNoteReferenceHashes": [
+          "NOTE-475cc1dfc3c105ec3587279ab9e160ca1146bae25deaa9b443f2a5083ceea458"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-d2d688ebea1401d2cd6b8ebff7b39d1c8aa447ef3da38eb0e5bc2ca1afbb56e9",
+        "sourceCefrEvidence": [
+          "B1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A2",
+        "confidence": 0.8,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "A competition winner is a familiar sports and event role.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-78e2-8043-41dd4918dd2a"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 85,
+      "candidateId": "SOURCE-CANDIDATE-e48631cf504508ae5a7f95254c864b2f09667590b8cb139c2e11dedcd47120df",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-2bd02d10cccb",
+      "lemma": "prominent",
+      "partOfSpeechCode": "ADJECTIVE",
+      "senseLabel": "well known and important",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-e48631cf504508ae5a7f95254c864b2f09667590b8cb139c2e11dedcd47120df",
+        "sourceNoteReferenceHashes": [
+          "NOTE-0186c27e88e5e9b09243ff4c88cb3d794c20fad312c4b34fc38b611e6a5e752d",
+          "NOTE-1f4d93f3463f3140da2aa3b03bae060d55e361565087da28bd9638b9bd483c74"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-2875022cd915570752cfe1fa8934cbba35770f767bfefe48326286748543dc1e",
+        "sourceCefrEvidence": [
+          "C1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "C1",
+        "confidence": 0.84,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Prominent combines public visibility with importance in formal reporting.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-7926-9722-0300f03bc8c7"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 86,
+      "candidateId": "SOURCE-CANDIDATE-e70596a9bb01ddaebb07f96d4f94f2d6317479f53caf923478b7a4a879bcb9fd",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-41334868edc3",
+      "lemma": "attack",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "violent assault",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-e70596a9bb01ddaebb07f96d4f94f2d6317479f53caf923478b7a4a879bcb9fd",
+        "sourceNoteReferenceHashes": [
+          "NOTE-3a214684dc549cdbeccb6a0b40f63267eb1d98fbd14e0e28b78a27239d029b60"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-6c5f99d6e8b2960f2a3aeae60cb9b1dd55d0d22461b2e01b5abf34e6ec5f6cbe",
+        "sourceCefrEvidence": [
+          "A2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A2",
+        "confidence": 0.9,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "An act of violence in the ordinary event sense is common news vocabulary.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-7f7e-97a0-d9f8502a41c7"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 87,
+      "candidateId": "SOURCE-CANDIDATE-e96aab94c0f7b66007745905803d7598e61e0f15b36b6049a69a6a79742c3f0d",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-56be2debcdfe",
+      "lemma": "moment",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "particular instant",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_ONLY",
+        "sourcePackageSha256": [
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-e96aab94c0f7b66007745905803d7598e61e0f15b36b6049a69a6a79742c3f0d",
+        "sourceNoteReferenceHashes": [
+          "NOTE-d2c828f37c6afa690c0075a7d85b255c5985f0b943ed04e33beda74c0a41d3ef"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-87469ca89c6e6c7231177a93ddfe94c6032b20164049e5d9bc9228fc3edd19b5",
+        "sourceCefrEvidence": [
+          "A1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A1",
+        "confidence": 0.93,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "A particular instant is a basic time expression.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-7923-b11a-cafc7ca6087c"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 88,
+      "candidateId": "SOURCE-CANDIDATE-e9ae57565ae44c6fb2f2b3ab8d5b19debf368fdc2691cb134f6eafeced8823df",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-6d55c97117dc",
+      "lemma": "leadership",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "guidance of a group",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_ONLY",
+        "sourcePackageSha256": [
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-e9ae57565ae44c6fb2f2b3ab8d5b19debf368fdc2691cb134f6eafeced8823df",
+        "sourceNoteReferenceHashes": [
+          "NOTE-de7fe06028a977d8a5b21eb5ce6d9101f8f865466cb7c4ffe6643c05a7b9f379"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-e61ce2884fc5a2dd0485dc1a1a9644e7e97ddda8e3bb9470b592c0430376cbbd",
+        "sourceCefrEvidence": [
+          "B2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B2",
+        "confidence": 0.83,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Guiding a group toward goals is abstract organizational vocabulary.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-73a9-b894-4ddf6ef4ae12"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 89,
+      "candidateId": "SOURCE-CANDIDATE-eaadad6c799f4d78737d4a9020edcfbc22e0d86fd6668f5d6780a1ccd5ca20b3",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-84571ea5dbf5",
+      "lemma": "lead",
+      "partOfSpeechCode": "VERB",
+      "senseLabel": "cause a result",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-eaadad6c799f4d78737d4a9020edcfbc22e0d86fd6668f5d6780a1ccd5ca20b3",
+        "sourceNoteReferenceHashes": [
+          "NOTE-602de7930be3d165e8d9b034abd8a2f64e6404d74dae29acf34227a7f78b91fd"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-4466ef470e0c95877d6b19634263667c0e03f96e4c13d7dc1c9210699efe2df6",
+        "sourceCefrEvidence": [
+          "A2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B1",
+        "confidence": 0.79,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Causing a result is an abstract causal use distinct from physically leading.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-7bc9-a9a6-d15a8e3dfa23"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 90,
+      "candidateId": "SOURCE-CANDIDATE-eb74df6da3109526eec13815cb005b351b9c189785edadedcb27c7703bfeb811",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-9edb547352aa",
+      "lemma": "spread",
+      "partOfSpeechCode": "VERB",
+      "senseLabel": "extend over an area",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-eb74df6da3109526eec13815cb005b351b9c189785edadedcb27c7703bfeb811",
+        "sourceNoteReferenceHashes": [
+          "NOTE-696b58dff28787de6f66e0b65f8656a1268caf5082e13d6a5c077bf33255db69"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-a1c3c153499a0470c809194d553729906682b4f2ab1ab756c51a8ba449f726d5",
+        "sourceCefrEvidence": [
+          "B1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A2",
+        "confidence": 0.82,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Extending over an area is a common concrete use of spread.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-794d-8faa-054fecc8ae79"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 91,
+      "candidateId": "SOURCE-CANDIDATE-ebbeeb8d54fefaac4b8c2558228bf61556de9e20d6846282bac64168bcc770a6",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-b5d43a60b62f",
+      "lemma": "aquarium",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "aquatic animal display place",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "4600_ONLY",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-ebbeeb8d54fefaac4b8c2558228bf61556de9e20d6846282bac64168bcc770a6",
+        "sourceNoteReferenceHashes": [
+          "NOTE-0e633fa8e0ccc2b470decf4f8cc78035a778b5dd598f588ff46f8d720c57bf60"
+        ],
+        "sourceSenseGroupReference": null,
+        "sourceCefrEvidence": null
+      },
+      "editorialDecision": {
+        "valueCode": "A2",
+        "confidence": 0.86,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Aquarium is a concrete public place, familiar to learners but less basic than home and school.",
+        "agreementStatus": null,
+        "classificationId": "01a10760-b9f0-7e87-a9e0-251ab7152f69"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 92,
+      "candidateId": "SOURCE-CANDIDATE-edd1090de7a2dd8d3692f3458cc1993ebfe573afe167624d4f083bafd51754c4",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-cf9dc05adb73",
+      "lemma": "fuse",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "ignition cord",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "4600_ONLY",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-edd1090de7a2dd8d3692f3458cc1993ebfe573afe167624d4f083bafd51754c4",
+        "sourceNoteReferenceHashes": [
+          "NOTE-5f0eedd055a9547f6b776fb691d2cbbc66870ac39187088a8db9bc1f81736b9c"
+        ],
+        "sourceSenseGroupReference": null,
+        "sourceCefrEvidence": null
+      },
+      "editorialDecision": {
+        "valueCode": null,
+        "confidence": 0.52,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "UNCLASSIFIED_INSUFFICIENT_EVIDENCE",
+        "rationale": "The firework-fuse sense is narrow and technical; evidence is insufficient for a defensible general CEFR estimate.",
+        "agreementStatus": null,
+        "classificationId": null
+      },
+      "reviewStatus": "UNCLASSIFIED_INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "candidateOrdinal": 93,
+      "candidateId": "SOURCE-CANDIDATE-efcde4e40d67b7b9820de9ef1eed548cf2bd662bc82668344e35b951d15a3ffa",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-e7a8d422dbdf",
+      "lemma": "double",
+      "partOfSpeechCode": "ADVERB",
+      "senseLabel": "two times",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-efcde4e40d67b7b9820de9ef1eed548cf2bd662bc82668344e35b951d15a3ffa",
+        "sourceNoteReferenceHashes": [
+          "NOTE-9ea2e244c78d11fa87fcbbcaa185c83cb41af51970531427683dc78cdb464dfa"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-370135f1fc770cfe25549cc4231b10aca1c951528b5e77747f7f47d8f21f630c",
+        "sourceCefrEvidence": [
+          "A2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A2",
+        "confidence": 0.89,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Double as twice an amount is common numeracy and comparison vocabulary.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-73c5-b7c3-3e08f935de3d"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 94,
+      "candidateId": "SOURCE-CANDIDATE-eff74bdfd6b979ae4852a79a9f5be6c6658ae60e0e5f4c834351e80724cd8163",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-fc58f364e770",
+      "lemma": "officer",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "official with duties",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-eff74bdfd6b979ae4852a79a9f5be6c6658ae60e0e5f4c834351e80724cd8163",
+        "sourceNoteReferenceHashes": [
+          "NOTE-6dfe9bf297d341659b9b315671aabbff2b4e40c960a4ee5a2261b91c9e430b51"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-f6bc2cc700f442105cd2635d170821b6b7332ef0325a2c56ca032851aa8ce6d5",
+        "sourceCefrEvidence": [
+          "A2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A2",
+        "confidence": 0.84,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Officer as a role with official duties is common civic and public-service vocabulary.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-7673-87cd-66d5aaa26e3d"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 95,
+      "candidateId": "SOURCE-CANDIDATE-f0e3981e096b83feb3a8a024604428654ce713a6e39dfac979871f21679ca4f1",
+      "masterSenseId": "01a1070c-7c59-726e-88d7-1390989a47b8",
+      "lemma": "shift",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "change in direction or view",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-f0e3981e096b83feb3a8a024604428654ce713a6e39dfac979871f21679ca4f1",
+        "sourceNoteReferenceHashes": [
+          "NOTE-b36c96f48b861b9169fb1ba23eeb43b741a2792ee79718b1f45102569de643a2"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-a69431160752e476e0c79aeb4060cde668230f2395b68375008685b2dd04d3cd",
+        "sourceCefrEvidence": [
+          "B1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B2",
+        "confidence": 0.82,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "A shift in opinions or arrangements is an abstract change sense, distinct from a work period.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-7aa2-a18f-82fee7079502"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 96,
+      "candidateId": "SOURCE-CANDIDATE-f11ac8a25b9286099389f70cbc63c8fddd3ed025e704b621b09bca6389250462",
+      "masterSenseId": "01a1070c-7c5a-7542-a092-beb09c96a03f",
+      "lemma": "nature",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "basic character",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-f11ac8a25b9286099389f70cbc63c8fddd3ed025e704b621b09bca6389250462",
+        "sourceNoteReferenceHashes": [
+          "NOTE-1dba06d6f57d5fa1eeb2dacb9747623f402a6f1cd6f49e857ca75bad518e418a",
+          "NOTE-bd76649100acffa2564182232a3b39b1de7184af10c05aa2dc63bcf58201fd19"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-c1481691b0d92397051c79b8f3c76b01d59b2a6108d18f7a38cfb74309052bf4",
+        "sourceCefrEvidence": [
+          "A2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B1",
+        "confidence": 0.8,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Nature as basic character is an abstract personal description.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-7d47-993e-8553794e925c"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 97,
+      "candidateId": "SOURCE-CANDIDATE-f1de8d38fed4b5ad485a3de9c80590838ede38c0b75ac7469e463d4d272b3c2f",
+      "masterSenseId": "01a1070c-7c5a-7542-a092-d1d73dd0f634",
+      "lemma": "let",
+      "partOfSpeechCode": "VERB",
+      "senseLabel": "allow something to happen",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_ONLY",
+        "sourcePackageSha256": [
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-f1de8d38fed4b5ad485a3de9c80590838ede38c0b75ac7469e463d4d272b3c2f",
+        "sourceNoteReferenceHashes": [
+          "NOTE-05c3952f0bc1c7e5b784407326ce47d842c378cac4757d120680fe0ef4bf62f4"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-4d0e388eaca67d8e0b625058a9137bb04fd40ae0852c3416a72b75a922351b28",
+        "sourceCefrEvidence": [
+          "A1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "A1",
+        "confidence": 0.93,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Allowing something to happen is a basic, high-frequency verb use.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-770d-a35b-546266f0a7eb"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 98,
+      "candidateId": "SOURCE-CANDIDATE-f50b56841676aac003cf7426d1a499be50547f89651c71c6b0b0165e4ba7a60d",
+      "masterSenseId": "01a1070c-7c5a-7542-a092-e7df11b3bc0a",
+      "lemma": "exchange",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "act of trading",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-f50b56841676aac003cf7426d1a499be50547f89651c71c6b0b0165e4ba7a60d",
+        "sourceNoteReferenceHashes": [
+          "NOTE-cebf887924ed46fadcd5e1318923c529f2dd692caf3145d774761752357d6dbb"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-b28d645e2dbe590e6e007521247e3c42fcad85bd2a4861e62c0b72c76d691bb6",
+        "sourceCefrEvidence": [
+          "B1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B1",
+        "confidence": 0.82,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "An exchange of ideas is common general vocabulary for reciprocal activity.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-7164-a993-5fd1fcc9dc38"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 99,
+      "candidateId": "SOURCE-CANDIDATE-fc84b2651c909a5bbf2c026594a905b931a0bdc17aa3e81de64dcd0e28a33303",
+      "masterSenseId": "01a1070c-7c5a-7542-a092-ff8307ef6e05",
+      "lemma": "shareholder",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "company share owner",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-fc84b2651c909a5bbf2c026594a905b931a0bdc17aa3e81de64dcd0e28a33303",
+        "sourceNoteReferenceHashes": [
+          "NOTE-aad41598564f253b0b899ee75976e76fb247292d8474a08133e666c0f32872e4",
+          "NOTE-c6aa0ecabcd7b5e72c46d0f95d11dd8dbd3fac563f3734e719eea7bfb5b146e4"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-5c8ca882bbf887464e9f4423734e9cef1fa84584a7114792b0267453d573e026",
+        "sourceCefrEvidence": [
+          "C1"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B2",
+        "confidence": 0.8,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Shareholder is a precise financial role that appears in general business reporting.",
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-7e48-b30a-e11fba1822a7"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    },
+    {
+      "candidateOrdinal": 100,
+      "candidateId": "SOURCE-CANDIDATE-feb4f8b9a7b535c16ba72278e5323ead94f582a660d9d5b2c03d00643efe0155",
+      "masterSenseId": "01a1070c-7c5a-7542-a093-116a29fa3a72",
+      "lemma": "relief",
+      "partOfSpeechCode": "NOUN",
+      "senseLabel": "emergency help",
+      "identityDecision": "NEW_SENSE_NEW_LEXEME",
+      "existingClassificationAudit": {
+        "category": "NO_EXISTING_CEFR",
+        "sameFrameworkCount": 0,
+        "records": [],
+        "proposalConflicts": false
+      },
+      "sourceEvidence": {
+        "sourceCoverage": "OXFORD_PLUS_4600",
+        "sourcePackageSha256": [
+          "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+          "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd"
+        ],
+        "sourceCandidateId": "SOURCE-CANDIDATE-feb4f8b9a7b535c16ba72278e5323ead94f582a660d9d5b2c03d00643efe0155",
+        "sourceNoteReferenceHashes": [
+          "NOTE-f5c3394f53bd4e36c29353acd58f15bd1f8739ff5226f88f6f3703d8e9836247"
+        ],
+        "sourceSenseGroupReference": "SENSE-GROUP-5cb48ebb891bd994fa39cf342d0ee40c959e43f3e055b426a73ab37941d62689",
+        "sourceCefrEvidence": [
+          "B2"
+        ]
+      },
+      "editorialDecision": {
+        "valueCode": "B2",
+        "confidence": 0.8,
+        "confidenceMeaning": "Editorial confidence, not statistical probability.",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+        "rationale": "Emergency help is humanitarian vocabulary commonly encountered in public reporting.",
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-7ce4-8c4c-4454da9412e9"
+      },
+      "reviewStatus": "PENDING_OWNER_REVIEW"
+    }
+  ],
+  "cefrDraftFingerprint": "2da4c57ebbd18ce5e2c1fa77749fb7fe79a2f22752ba39506d2f59a7d7804a74"
+}

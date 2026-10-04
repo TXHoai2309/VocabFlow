@@ -1,5 +1,37 @@
 # Current Handoff Snapshot
 
+## 2026-10-04 — Master Vocabulary V2 Phase 2F.4 CEFR editorial draft
+
+- Added a deterministic, offline CEFR classification workspace for the exact
+  owner-approved 100-Sense semantic cohort under `CEFR / EDITORIAL-PILOT-1`.
+  The package audits existing classifications, reuses the matching water A2
+  record, holds four assignments for owner review, leaves one 4600-only Sense
+  unclassified, and drafts 94 new Classification/PROJECT_AUTHORED provenance
+  records. All new records remain workspace-only DRAFT artifacts.
+- CEFR proposal distribution: A1 17, A2 28, B1 21, B2 27, C1 6, unclassified
+  1. Oxford-backed evidence agrees with 48/90 proposals (53.3%); 39 are
+  editorial adjustments and 3 require owner review. The 4600-only row with a
+  defensible estimate was decided independently of source CEFR.
+- Fingerprint `2da4c57ebbd18ce5e2c1fa77749fb7fe79a2f22752ba39506d2f59a7d7804a74`
+  repeated; rerun allocated zero IDs. Semantic promotion remains canonical
+  DRAFT at 2.0.0/schema 2.0.1 (103 Lexemes / 123 Senses / 846 Provenance).
+  No canonical classifications were added, no release was created, no runtime
+  import or database write occurred, and production was untouched. Source and
+  media rights remain unverified.
+- Readiness: content cohort YES; approved release NO. Recommend building a
+  100-Sense release candidate only after owner review, then assess expansion to
+  500. This is analysis, not execution. First-pass corrections remain 24/98
+  (24.49%), so the larger authoring batch should follow the 100-Sense release
+  workflow review.
+- Evidence: [classification draft report](../vocabflow-dataset/reports/hybrid-100-cefr-classification-draft.md),
+  [owner review sheet](../vocabflow-dataset/reports/hybrid-100-cefr-owner-review.md),
+  [Phase 2F.4 workspace](../vocabflow-dataset/workspaces/hybrid-100-cefr-draft/).
+- Verification: focused regression tests 13/13 PASS; workspace materialize and
+  `--check` PASS with the same fingerprint and zero rerun IDs; Master validator
+  PASS (0 errors, 0 warnings, 1 informational DRAFT issue); typecheck, full
+  ESLint, and `git diff --check` PASS. Local Node is 22.19.0 versus the
+  package's 22.23.2 engine.
+
 ## 2026-10-04 — Master Vocabulary V2 Phase 2F.3 canonical promotion
 
 - Recorded the owner's explicit approval for the exact 100/100 Phase 2F.2A

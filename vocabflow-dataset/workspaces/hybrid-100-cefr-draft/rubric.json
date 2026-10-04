@@ -1,0 +1,53 @@
+{
+  "rubricVersion": "HYBRID-CEFR-EDITORIAL-RUBRIC-1.0.0",
+  "frameworkCode": "CEFR",
+  "frameworkVersion": "EDITORIAL-PILOT-1",
+  "claimSemantics": "VocabFlow editorial CEFR estimate; not an official Council of Europe, Oxford, 4600, grade, difficulty, or exam classification.",
+  "method": "Review the teachable Sense using its authored label, definition, part of speech, scope, example, ordinary frequency, source level evidence, and sibling Sense distinctions. Source values inform review but do not determine the assignment.",
+  "confidencePolicy": [
+    {
+      "range": "0.90-1.00",
+      "meaning": "Strong independent editorial confidence and source evidence agrees; editorial confidence is not a statistical probability."
+    },
+    {
+      "range": "0.75-0.89",
+      "meaning": "Reasonable editorial confidence with some ambiguity."
+    },
+    {
+      "range": "0.60-0.74",
+      "meaning": "Tentative; explicit owner review is required before promotion."
+    },
+    {
+      "range": "below 0.60",
+      "meaning": "Do not create a primary classification; leave unclassified or require owner review."
+    }
+  ],
+  "bands": [
+    {
+      "valueCode": "A1",
+      "descriptor": "Very common concrete or basic everyday meanings."
+    },
+    {
+      "valueCode": "A2",
+      "descriptor": "Common everyday meanings used across somewhat broader situations."
+    },
+    {
+      "valueCode": "B1",
+      "descriptor": "Independent-user vocabulary with abstract or general-purpose use."
+    },
+    {
+      "valueCode": "B2",
+      "descriptor": "Less frequent, more precise, abstract, professional, or general academic usage."
+    },
+    {
+      "valueCode": "C1",
+      "descriptor": "Advanced, nuanced, specialized, or lower-frequency general or academic meanings."
+    }
+  ],
+  "levelQuotasAreTargets": false,
+  "unsupportedBands": [
+    "PRE_A1",
+    "C2"
+  ],
+  "senseLevelOnly": true
+}

@@ -1,0 +1,1097 @@
+{
+  "artifactType": "HYBRID_100_CEFR_CLASSIFICATION_REGISTRY",
+  "registryVersion": 1,
+  "idAlgorithm": "DETERMINISTIC_RFC9562_UUIDV7_FROM_APPROVED_DRAFT_AND_SENSE_SCOPE",
+  "mappings": [
+    {
+      "registryKey": "01a0fc13-09ee-7768-9be6-d20fa32521ee|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a0fc13-09ee-7768-9be6-d20fa32521ee",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "OWNER_REVIEW_REQUIRED",
+      "classificationId": null,
+      "provenanceIds": []
+    },
+    {
+      "registryKey": "01a0fc13-09ef-75ac-b815-039ab337c01a|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a0fc13-09ef-75ac-b815-039ab337c01a",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "REUSE_EXISTING_CLASSIFICATION",
+      "classificationId": "01a0fc13-09f2-77bf-93db-1ceefb68082a",
+      "provenanceIds": [
+        "01a0fc13-09f2-7af4-96d1-b343085836c2"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c56-71df-b6f0-39632387320e|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c56-71df-b6f0-39632387320e",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7505-b184-f1c8745a87c4",
+      "provenanceIds": [
+        "01a10760-b9f0-79a2-bfc4-8ab9d6284875"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c57-7676-9acd-d23079256ae2|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c57-7676-9acd-d23079256ae2",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7fc5-be31-65b1995d71e1",
+      "provenanceIds": [
+        "01a10760-b9f0-791d-beda-67f4daa63941"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c57-7676-9acd-eaf36e6184b3|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c57-7676-9acd-eaf36e6184b3",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-74c3-ab8c-b2359bb3b853",
+      "provenanceIds": [
+        "01a10760-b9f0-7613-96f6-757652864324"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c57-7676-9ace-014df3449d2e|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-014df3449d2e",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7263-864d-6c2503204ba1",
+      "provenanceIds": [
+        "01a10760-b9f0-7ebd-859e-97e7504c89e9"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c57-7676-9ace-18656f491ca7|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-18656f491ca7",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7a1c-b6ce-ae0683c473f2",
+      "provenanceIds": [
+        "01a10760-b9f0-7587-bee9-3862d10627a2"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c57-7676-9ace-32d1337aab90|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-32d1337aab90",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7bb6-8cfa-25188c073394",
+      "provenanceIds": [
+        "01a10760-b9f0-7286-852c-9d1c59dfe5fc"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c57-7676-9ace-4b581bada298|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-4b581bada298",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7a21-925a-b9d8c300e727",
+      "provenanceIds": [
+        "01a10760-b9f0-7f86-833c-5eb7605f9d9b"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c57-7676-9ace-63a7042782dc|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-63a7042782dc",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-77a6-8d77-b6efddd51927",
+      "provenanceIds": [
+        "01a10760-b9f0-71dd-9317-912515b20f2d"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c57-7676-9ace-79a6118270d8|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-79a6118270d8",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7b7b-bbbc-27ef19e8ad1c",
+      "provenanceIds": [
+        "01a10760-b9f0-7577-99a2-0e0aa6693dc7"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c57-7676-9ace-93aa39952372|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-93aa39952372",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-75da-bbf4-e4c807a16f54",
+      "provenanceIds": [
+        "01a10760-b9f0-7737-bc37-77d104c109c7"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c57-7676-9ace-a81c3cdf40fa|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-a81c3cdf40fa",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7f0d-808a-170f24f409ef",
+      "provenanceIds": [
+        "01a10760-b9f0-757f-a338-83046fa2177f"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c57-7676-9ace-c2f9d561c8f4|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-c2f9d561c8f4",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-776d-b613-ad3e5b28c880",
+      "provenanceIds": [
+        "01a10760-b9f0-751b-aead-6aeb1805d1ef"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c57-7676-9ace-d8831aa1814d|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-d8831aa1814d",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-746f-961a-1595d4e7c31c",
+      "provenanceIds": [
+        "01a10760-b9f0-7462-8616-94fe067408ca"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c57-7676-9ace-f28714bdee2e|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-f28714bdee2e",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-790a-bc17-fed7256e27ef",
+      "provenanceIds": [
+        "01a10760-b9f0-7e37-b00a-5d99dd9daec6"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c57-7676-9acf-09879397d1e1|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-09879397d1e1",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-73ed-ab62-593d857a1fcc",
+      "provenanceIds": [
+        "01a10760-b9f0-78db-83f4-6f75e2e6162b"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c57-7676-9acf-2166c93ae47a|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-2166c93ae47a",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-74ac-a841-4b76153b6fd6",
+      "provenanceIds": [
+        "01a10760-b9f0-7560-8893-2997b609941e"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c57-7676-9acf-390ac30fd890|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-390ac30fd890",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-773d-b132-f11a9a9665cb",
+      "provenanceIds": [
+        "01a10760-b9f0-76d0-88b9-7dce7b1da563"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c57-7676-9acf-51b00d9e4aca|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-51b00d9e4aca",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-745b-92ac-b5609b168981",
+      "provenanceIds": [
+        "01a10760-b9f0-7cd2-ae81-55eb9d162627"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c57-7676-9acf-6a88ac566599|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-6a88ac566599",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7a52-8a08-0131f5a2e43e",
+      "provenanceIds": [
+        "01a10760-b9f0-7efc-a2fb-c92714669c2b"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c57-7676-9acf-83edaac99eb9|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-83edaac99eb9",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-74c8-a07f-e1a5d8a94a1f",
+      "provenanceIds": [
+        "01a10760-b9f0-7a70-8b9e-8c6078553233"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c57-7676-9acf-99d8c8592c32|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-99d8c8592c32",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-761c-8fcb-1c09634f7fb0",
+      "provenanceIds": [
+        "01a10760-b9f0-7c31-9803-56a9701682af"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c57-7676-9acf-b1c2d0e92475|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-b1c2d0e92475",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7e48-9723-6ac13e9fb05e",
+      "provenanceIds": [
+        "01a10760-b9f0-7ea3-b65a-8ab000135cac"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c57-7676-9acf-c8bb470b0069|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-c8bb470b0069",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7740-b1b1-f8fa3ebfb6c3",
+      "provenanceIds": [
+        "01a10760-b9f0-796f-b452-ddaa21518bb2"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c57-7676-9acf-e2bf85a21c08|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-e2bf85a21c08",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-71de-9e0e-552d2b4b236c",
+      "provenanceIds": [
+        "01a10760-b9f0-749d-b1bd-73ae6734ec0f"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c57-7676-9acf-fbb6c07854f6|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-fbb6c07854f6",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-73af-8117-25aa157b8df3",
+      "provenanceIds": [
+        "01a10760-b9f0-73d8-a58f-3c678928f7d4"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2a8-d1cd64c3eada|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a8-d1cd64c3eada",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7683-af08-eea3b2071197",
+      "provenanceIds": [
+        "01a10760-b9f0-775f-9375-aeb3a8f903f9"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2a8-ebb7ee4a97d9|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a8-ebb7ee4a97d9",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7ab3-baf5-00d42cb0a66d",
+      "provenanceIds": [
+        "01a10760-b9f0-7c83-aa6f-b75f91a8294c"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2a9-0030193008ca|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-0030193008ca",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-79d4-a2d5-15762b9b5e8d",
+      "provenanceIds": [
+        "01a10760-b9f0-7b89-bee1-a8129572540b"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2a9-18ee254ff4be|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-18ee254ff4be",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7441-90c0-8ef7353df869",
+      "provenanceIds": [
+        "01a10760-b9f0-7d2f-8145-b0c83a046296"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2a9-3185a807d618|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-3185a807d618",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-774e-9f0e-63b238b250e6",
+      "provenanceIds": [
+        "01a10760-b9f0-72a3-bcc9-0275c8361706"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2a9-4b4562d352c8|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-4b4562d352c8",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7813-a08d-3f8e573195c4",
+      "provenanceIds": [
+        "01a10760-b9f0-7ae5-9b18-4f902a01c7cf"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2a9-620e574defe8|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-620e574defe8",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "OWNER_REVIEW_REQUIRED",
+      "classificationId": null,
+      "provenanceIds": []
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2a9-78fe16fc29bb|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-78fe16fc29bb",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-72d4-9bad-69d6f5cb6543",
+      "provenanceIds": [
+        "01a10760-b9f0-7626-9714-f4bd743897a9"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2a9-92d544914a1a|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-92d544914a1a",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7046-8b09-7ef068240509",
+      "provenanceIds": [
+        "01a10760-b9f0-713e-9863-7aec6e25e967"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2a9-aa41e4cd8ff9|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-aa41e4cd8ff9",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7f17-a990-481e9dd28fa4",
+      "provenanceIds": [
+        "01a10760-b9f0-7e42-be42-e44dfca69d4b"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2a9-c1530836b546|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-c1530836b546",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-721a-bada-12ae79c2bd3a",
+      "provenanceIds": [
+        "01a10760-b9f0-7b3a-8f21-bb2de3c2177d"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2a9-d9fe7b7d857e|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-d9fe7b7d857e",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-79bb-b0bc-5bf05f0e4faa",
+      "provenanceIds": [
+        "01a10760-b9f0-7da2-b19c-fd8290545e21"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2a9-f257db26d791|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-f257db26d791",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-72eb-8a39-4590b2860768",
+      "provenanceIds": [
+        "01a10760-b9f0-7d6b-aa1b-3f05f23015c6"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2aa-0a20d4f7ae01|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-0a20d4f7ae01",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7e41-b3fd-021e48b1f96b",
+      "provenanceIds": [
+        "01a10760-b9f0-72a4-9fd6-048649b879eb"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2aa-20e7d1e01c66|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-20e7d1e01c66",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7f25-9e6f-8374a26b203c",
+      "provenanceIds": [
+        "01a10760-b9f0-775b-a9a3-3dfaeb90c878"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2aa-397ef521e177|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-397ef521e177",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-75e1-ba29-3ffe3567c9f2",
+      "provenanceIds": [
+        "01a10760-b9f0-712e-a40c-d2515be4b72a"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2aa-4d54a373af15|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-4d54a373af15",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7261-96d2-07e4c9273c04",
+      "provenanceIds": [
+        "01a10760-b9f0-7e99-8cf9-c1026c6df48a"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2aa-66b0757806fe|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-66b0757806fe",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-792f-8eea-2f732ac368a4",
+      "provenanceIds": [
+        "01a10760-b9f0-7bb9-8634-27e587f06369"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2aa-7e0812b069ae|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-7e0812b069ae",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7498-83f9-e1bdde543394",
+      "provenanceIds": [
+        "01a10760-b9f0-7e85-ae85-008dfa53b890"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2aa-97f25323b0a8|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-97f25323b0a8",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-789d-a7ed-1f374856cf00",
+      "provenanceIds": [
+        "01a10760-b9f0-7914-80c1-6ae494864bbb"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2aa-aeb83963a729|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-aeb83963a729",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "OWNER_REVIEW_REQUIRED",
+      "classificationId": null,
+      "provenanceIds": []
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2aa-c4a190ee77a4|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-c4a190ee77a4",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7e5b-b0f9-673464e276d7",
+      "provenanceIds": [
+        "01a10760-b9f0-7108-b6fb-74515d7a9c6c"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2aa-db8e56d2cc07|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-db8e56d2cc07",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-782d-947b-5cd2a51ad957",
+      "provenanceIds": [
+        "01a10760-b9f0-7d7a-843c-df4b30bffa81"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2aa-f3a4a21a7dc3|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-f3a4a21a7dc3",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-776e-b738-afdaca51be56",
+      "provenanceIds": [
+        "01a10760-b9f0-7bb9-9773-46eaf051aa47"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2ab-0ab34eedf7c6|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-0ab34eedf7c6",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-72a0-b58e-153edb1435d4",
+      "provenanceIds": [
+        "01a10760-b9f0-777b-8842-66343c6864c0"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2ab-23b5c52b4d0f|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-23b5c52b4d0f",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-79aa-82c4-35e785d149ec",
+      "provenanceIds": [
+        "01a10760-b9f0-7036-b5ba-4b9cae4f5fe1"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2ab-369dd574695b|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-369dd574695b",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-720a-86bc-f326a730508d",
+      "provenanceIds": [
+        "01a10760-b9f0-7955-a80a-6db9a6f79082"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2ab-48eb58f50cbf|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-48eb58f50cbf",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7894-ac0c-1b7f382eba04",
+      "provenanceIds": [
+        "01a10760-b9f0-7c6a-b5c3-ba89688d4b5d"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2ab-6137a474d3c3|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-6137a474d3c3",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7ed4-b94c-957d887a4ebc",
+      "provenanceIds": [
+        "01a10760-b9f0-7e66-b029-329a7be4f4ba"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2ab-74b8a6de7e22|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-74b8a6de7e22",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-77d2-b383-272176fe75bd",
+      "provenanceIds": [
+        "01a10760-b9f0-777e-8b25-ea83e9ec6d53"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2ab-8ebf5829835d|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-8ebf5829835d",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7769-982d-ae4aac3799fe",
+      "provenanceIds": [
+        "01a10760-b9f0-7e22-9ffc-f0b7e724f2f8"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2ab-a764716f4128|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-a764716f4128",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7d48-8eb2-8145f48d433f",
+      "provenanceIds": [
+        "01a10760-b9f0-77d9-8156-bb0431733605"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2ab-be14abe16989|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-be14abe16989",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7752-8346-4c8e7e67dec4",
+      "provenanceIds": [
+        "01a10760-b9f0-7752-8255-a554761b5eab"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2ab-d47ce6596f64|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-d47ce6596f64",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7953-abe6-386b76c2d02c",
+      "provenanceIds": [
+        "01a10760-b9f0-746b-b5f8-ce4063500ffd"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2ab-ed6693eca162|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-ed6693eca162",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-743e-8006-5f42ff389661",
+      "provenanceIds": [
+        "01a10760-b9f0-719e-8093-cf191b9a1c18"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c58-76b5-a2ac-007b8e765c31|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ac-007b8e765c31",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7c86-9833-56cbf539427b",
+      "provenanceIds": [
+        "01a10760-b9f0-74ff-b36c-d9510d7deb41"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c59-726e-88d4-388175c26836|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-388175c26836",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7e21-aecc-af5843212cdc",
+      "provenanceIds": [
+        "01a10760-b9f0-72ea-93f7-0be01d5dc86d"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c59-726e-88d4-5263bfd63bbf|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-5263bfd63bbf",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7072-bb4e-a3e56bcaae91",
+      "provenanceIds": [
+        "01a10760-b9f0-700e-9ea6-2e2ead7bf1fc"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c59-726e-88d4-6b2a61e1e7c4|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-6b2a61e1e7c4",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-71cc-b653-9338c19b3bda",
+      "provenanceIds": [
+        "01a10760-b9f0-791c-9c8b-724683548777"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c59-726e-88d4-83e56ae5f536|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-83e56ae5f536",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "OWNER_REVIEW_REQUIRED",
+      "classificationId": null,
+      "provenanceIds": []
+    },
+    {
+      "registryKey": "01a1070c-7c59-726e-88d4-982f187e5653|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-982f187e5653",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7958-ae0f-b757c56c01b0",
+      "provenanceIds": [
+        "01a10760-b9f0-7d51-b75a-5def28364219"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c59-726e-88d4-b375a308217e|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-b375a308217e",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-797f-98d3-039dbc48e347",
+      "provenanceIds": [
+        "01a10760-b9f0-731e-b891-dcc68fccd6cc"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c59-726e-88d4-c8cce3636c7a|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-c8cce3636c7a",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7e0b-aa51-cc09a37ce365",
+      "provenanceIds": [
+        "01a10760-b9f0-7423-9b1f-522eff71bf53"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c59-726e-88d4-e052bbcb6335|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-e052bbcb6335",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7051-bb97-93a841f20a43",
+      "provenanceIds": [
+        "01a10760-b9f0-7114-a189-bf45a82cfde0"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c59-726e-88d4-f95f0a11a85e|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-f95f0a11a85e",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7924-a18e-efb894af1992",
+      "provenanceIds": [
+        "01a10760-b9f0-71bf-b9bf-a9afaf6f48a0"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c59-726e-88d5-13e0fb40de8c|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-13e0fb40de8c",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7e3f-88c9-a667c379bdd9",
+      "provenanceIds": [
+        "01a10760-b9f0-755b-8a61-6aa05833cf36"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c59-726e-88d5-2a10fa50c2ef|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-2a10fa50c2ef",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7b46-b8c7-e6e52db7c6ed",
+      "provenanceIds": [
+        "01a10760-b9f0-7820-83d4-12476e270685"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c59-726e-88d5-413213f77278|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-413213f77278",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-78c8-bf78-efdd25d51b2b",
+      "provenanceIds": [
+        "01a10760-b9f0-7fea-855f-b9ac739e2216"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c59-726e-88d5-589ec0261ad8|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-589ec0261ad8",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7879-92ed-5e0d1d36c165",
+      "provenanceIds": [
+        "01a10760-b9f0-73c4-92da-60413e3ac620"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c59-726e-88d5-700f2c9a47a0|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-700f2c9a47a0",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7b4c-99a4-5a8ae9d0ee23",
+      "provenanceIds": [
+        "01a10760-b9f0-7625-a3c0-c7619330df89"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c59-726e-88d5-882b36643f4e|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-882b36643f4e",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7527-8178-6493a977b7e6",
+      "provenanceIds": [
+        "01a10760-b9f0-76b0-b3ef-694e42b31811"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c59-726e-88d5-9c1965cff571|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-9c1965cff571",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7e16-a07f-c88441d3009e",
+      "provenanceIds": [
+        "01a10760-b9f0-74e9-bbfb-fd14a37ec66f"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c59-726e-88d5-b778960784d8|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-b778960784d8",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7d4a-b9e3-09491f437ce5",
+      "provenanceIds": [
+        "01a10760-b9f0-7aa1-a5e0-6dd0502dc90a"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c59-726e-88d5-cff4c73ff34a|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-cff4c73ff34a",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-792f-9b5a-7af08362e3e2",
+      "provenanceIds": [
+        "01a10760-b9f0-7f6b-abce-a74f66764c93"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c59-726e-88d5-e6665424a3b2|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-e6665424a3b2",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-729e-b9e8-64f6cbb538a7",
+      "provenanceIds": [
+        "01a10760-b9f0-7c31-b134-0129a328848d"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c59-726e-88d5-fa99c56877b4|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-fa99c56877b4",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-77cb-bab4-2b692b549b54",
+      "provenanceIds": [
+        "01a10760-b9f0-71a9-8973-caf7880a324e"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c59-726e-88d6-12b693a50e53|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-12b693a50e53",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-78e2-8043-41dd4918dd2a",
+      "provenanceIds": [
+        "01a10760-b9f0-7840-b4b9-a5cd73c11b8f"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c59-726e-88d6-2bd02d10cccb|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-2bd02d10cccb",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7926-9722-0300f03bc8c7",
+      "provenanceIds": [
+        "01a10760-b9f0-7822-b423-e40217016d97"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c59-726e-88d6-41334868edc3|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-41334868edc3",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7f7e-97a0-d9f8502a41c7",
+      "provenanceIds": [
+        "01a10760-b9f0-7f82-bf25-b5bef15e8a7d"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c59-726e-88d6-56be2debcdfe|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-56be2debcdfe",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7923-b11a-cafc7ca6087c",
+      "provenanceIds": [
+        "01a10760-b9f0-7411-b53d-c6d15b765c0c"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c59-726e-88d6-6d55c97117dc|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-6d55c97117dc",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-73a9-b894-4ddf6ef4ae12",
+      "provenanceIds": [
+        "01a10760-b9f0-769c-bb0a-1e1404359daf"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c59-726e-88d6-84571ea5dbf5|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-84571ea5dbf5",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7bc9-a9a6-d15a8e3dfa23",
+      "provenanceIds": [
+        "01a10760-b9f0-7ce4-91b4-5d6dd5388bff"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c59-726e-88d6-9edb547352aa|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-9edb547352aa",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-794d-8faa-054fecc8ae79",
+      "provenanceIds": [
+        "01a10760-b9f0-7878-a5db-6b2415d03447"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c59-726e-88d6-b5d43a60b62f|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-b5d43a60b62f",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7e87-a9e0-251ab7152f69",
+      "provenanceIds": [
+        "01a10760-b9f0-77f9-83ce-5f6456f2efc9"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c59-726e-88d6-cf9dc05adb73|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-cf9dc05adb73",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "UNCLASSIFIED_INSUFFICIENT_EVIDENCE",
+      "classificationId": null,
+      "provenanceIds": []
+    },
+    {
+      "registryKey": "01a1070c-7c59-726e-88d6-e7a8d422dbdf|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-e7a8d422dbdf",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-73c5-b7c3-3e08f935de3d",
+      "provenanceIds": [
+        "01a10760-b9f0-778b-87e7-ab961531a985"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c59-726e-88d6-fc58f364e770|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-fc58f364e770",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7673-87cd-66d5aaa26e3d",
+      "provenanceIds": [
+        "01a10760-b9f0-74ae-87f8-0405b5555552"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c59-726e-88d7-1390989a47b8|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c59-726e-88d7-1390989a47b8",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7aa2-a18f-82fee7079502",
+      "provenanceIds": [
+        "01a10760-b9f0-7c6f-88c9-de5350fcfbbc"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c5a-7542-a092-beb09c96a03f|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c5a-7542-a092-beb09c96a03f",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7d47-993e-8553794e925c",
+      "provenanceIds": [
+        "01a10760-b9f0-79d4-b31e-165b0c3f1782"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c5a-7542-a092-d1d73dd0f634|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c5a-7542-a092-d1d73dd0f634",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-770d-a35b-546266f0a7eb",
+      "provenanceIds": [
+        "01a10760-b9f0-7ccc-b40c-befa80f828ca"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c5a-7542-a092-e7df11b3bc0a|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c5a-7542-a092-e7df11b3bc0a",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7164-a993-5fd1fcc9dc38",
+      "provenanceIds": [
+        "01a10760-b9f0-7da5-b069-89ae08a72a2a"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c5a-7542-a092-ff8307ef6e05|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c5a-7542-a092-ff8307ef6e05",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7e48-b30a-e11fba1822a7",
+      "provenanceIds": [
+        "01a10760-b9f0-745b-8754-f157b4eb7dad"
+      ]
+    },
+    {
+      "registryKey": "01a1070c-7c5a-7542-a093-116a29fa3a72|CEFR|EDITORIAL-PILOT-1",
+      "masterSenseId": "01a1070c-7c5a-7542-a093-116a29fa3a72",
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7ce4-8c4c-4454da9412e9",
+      "provenanceIds": [
+        "01a10760-b9f0-7f1b-9f23-780950db5f5b"
+      ]
+    }
+  ]
+}

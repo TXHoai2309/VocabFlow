@@ -2,6 +2,22 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-04 — Master Vocabulary V2 Phase 2F.4 CEFR editorial draft
+
+- Added a repeatable offline `CEFR / EDITORIAL-PILOT-1` classification draft
+  and owner review sheet for the approved 100-Sense cohort. The decision set
+  contains 1 reused classification, 94 new workspace DRAFT classifications,
+  4 owner-review decisions, and 1 unclassified Sense. Source CEFR tags remain
+  evidence only; source/media rights remain unverified.
+- Root semantic promotion remains DRAFT at 2.0.0/schema 2.0.1. No canonical
+  classifications were added, no release was created, no runtime import or
+  database write occurred, and production was untouched.
+- Deterministic fingerprint repeated with zero IDs allocated on rerun. The
+  100-Sense content cohort is ready to continue dataset work; an approved
+  release is not ready. The focused suite passed (13/13), as did the Master
+  validator, typecheck, full ESLint, and `git diff --check`. See the
+  [classification draft report](../vocabflow-dataset/reports/hybrid-100-cefr-classification-draft.md).
+
 ## 2026-10-04 — Master Vocabulary V2 Phase 2F.3 canonical DRAFT promotion
 
 - Recorded owner authorization for canonical DRAFT promotion of the exact

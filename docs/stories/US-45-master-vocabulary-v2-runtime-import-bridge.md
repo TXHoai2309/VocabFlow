@@ -446,3 +446,18 @@ were preserved; no database or production target was accessed.
 Evidence: [Phase 2F.3 canonical promotion report](../../vocabflow-dataset/reports/hybrid-100-canonical-promotion.md)
 and promotion plan fingerprint
 `5c10618ee72fcc7b99b270764e412ebc51f286eadc750e45a6910830bb15e870`.
+
+## Related Dataset Classification Evidence — Phase 2F.4
+
+Phase 2F.4 created an offline `CEFR / EDITORIAL-PILOT-1` draft for the same
+owner-approved 100-Sense cohort. The draft reuses one existing water
+classification, creates 94 workspace-only DRAFT classifications, holds four
+decisions for owner review, and leaves one Sense unclassified. Its fingerprint
+repeats with zero new IDs on rerun. The 100-Sense content cohort is ready to
+continue dataset work; an approved release is not ready. Root semantic
+promotion remains DRAFT; canonical classifications, releases, runtime, and
+database were not changed. Source/media rights remain unverified.
+
+Evidence: [Phase 2F.4 classification report](../../vocabflow-dataset/reports/hybrid-100-cefr-classification-draft.md)
+and fingerprint
+`2da4c57ebbd18ce5e2c1fa77749fb7fe79a2f22752ba39506d2f59a7d7804a74`.

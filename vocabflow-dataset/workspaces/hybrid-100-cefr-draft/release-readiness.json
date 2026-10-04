@@ -1,0 +1,75 @@
+{
+  "artifactType": "HYBRID_100_RELEASE_READINESS_ASSESSMENT",
+  "assessmentStatus": "OFFLINE_ANALYSIS_ONLY",
+  "cohort": "HYBRID_100_OWNER_APPROVED_SEMANTIC_COHORT",
+  "readiness": {
+    "HYBRID_100_CONTENT_COHORT_READY": "YES",
+    "HYBRID_100_APPROVED_RELEASE_READY": "NO"
+  },
+  "gates": {
+    "SEMANTIC_CONTENT": {
+      "status": "PASS",
+      "ownerApprovedCandidateCount": 100,
+      "expectedCandidateCount": 100,
+      "approvedSemanticFingerprint": "a112a475e896f09038d4dd6834389af2d553d3a509829ef410ef17ae4e37ee1d"
+    },
+    "PROVENANCE": {
+      "status": "PASS",
+      "projectAuthoredSemanticContent": true,
+      "sourceRightsVerified": false
+    },
+    "CEFR": {
+      "status": "OWNER_REVIEW_REQUIRED",
+      "editorialAssignmentsResolved": 95,
+      "editorialAssignmentPercent": 95,
+      "editorialValuesProposed": 99,
+      "editorialValuePercent": 99,
+      "conflictingExistingClassificationCount": 1,
+      "duplicatePrimaryCount": 0,
+      "ownerApproval": "PENDING"
+    },
+    "CLASSIFICATIONS_OTHER_THAN_CEFR": {
+      "status": "NOT_STARTED"
+    },
+    "MEDIA": {
+      "status": "NOT_STARTED_OPTIONAL"
+    },
+    "PRONUNCIATION": {
+      "status": "NOT_STARTED"
+    },
+    "SOURCE_RIGHTS": {
+      "status": "UNVERIFIED",
+      "externalSourceTextReused": false,
+      "externalMediaReused": false
+    },
+    "CANARY_RUNTIME": {
+      "status": "SEPARATE_8_SENSE_CANARY_ONLY",
+      "treeFingerprint": "2c75c7092b89ed343e186d5087c4c99b2a09d8afd666c61f3cab1d746f504547"
+    },
+    "RUNTIME_RECONCILIATION_FOR_100": {
+      "status": "NOT_STARTED"
+    },
+    "RELEASE_APPROVAL": {
+      "status": "NOT_AUTHORIZED"
+    }
+  },
+  "releaseBlockers": [
+    "CEFR recommendations have not received owner approval or canonical promotion.",
+    "An immutable approved release has not been built or reviewed.",
+    "Runtime reconciliation for the 100-Sense cohort has not started.",
+    "Production mutation is not authorized."
+  ],
+  "qualityMetrics": {
+    "editorialFirstPassCorrectionRate": 0.2449,
+    "editorialCorrectionGroups": 24,
+    "newlyAuthoredSenseCount": 98
+  },
+  "recommendedNextScaleOption": "BUILD_100_SENSE_RELEASE_CANDIDATE",
+  "recommendationRationale": "The deterministic 100-Sense identity and authoring pipeline is stable. Resolve the small CEFR owner-review queue and validate classification promotion plus immutable release construction at 100 before multiplying the 24/98 first-pass correction workload across a 500-Sense batch. Keep any future release and runtime work separately authorized; this recommendation does not execute it.",
+  "noReleaseCreated": true,
+  "noCanonicalClassificationMutation": true,
+  "databaseWrites": "NONE",
+  "importApplyExecuted": false,
+  "productionMutation": false,
+  "cefrDraftFingerprint": "2da4c57ebbd18ce5e2c1fa77749fb7fe79a2f22752ba39506d2f59a7d7804a74"
+}
