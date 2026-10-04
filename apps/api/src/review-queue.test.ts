@@ -206,8 +206,8 @@ describe("US-08 review queue service", () => {
     const result = await service.list("parent-1", learnerId, undefined, "saved-all");
 
     expect(result.queue.map((entry) => [entry.vocabulary.id, entry.status, entry.queueType])).toEqual([
-      [1, "NEW", "NEW"],
       [2, "LEARNING", "DUE"],
+      [1, "NEW", "NEW"],
       [3, "LEARNING", "VOLUNTARY"],
       [4, "MASTERED", "VOLUNTARY"]
     ]);
@@ -313,21 +313,31 @@ describe("US-08 review queue service", () => {
     expect(caseName).toBeTruthy();
   });
 
-  it("does not add new words when at least twenty due words exist", async () => {
-    const due = Array.from({ length: 20 }, (_, index) => dueRow(index + 1, 21));
-    const execute = vi.fn()
-      .mockResolvedValueOnce(authorizedRows())
-      .mockResolvedValueOnce({ rows: [{ timezone: "Asia/Ho_Chi_Minh" }] })
-      .mockResolvedValueOnce(dailyUsageRow())
-      .mockResolvedValueOnce({ rows: due })
-      .mockResolvedValueOnce({ rows: [newRow(100, 5)] });
+  it("allows NEW at 36 due based on remaining hard quota, not Daily Goals", async () => {
+    const statements: string[] = [];
+    const due = Array.from({ length: 20 }, (_, index) => dueRow(index + 1, 36));
+    const availableNew = Array.from({ length: 10 }, (_, index) => newRow(index + 100, 10));
+    const execute = vi.fn(async (query) => {
+      const { sql: statement } = new PgDialect().sqlToQuery(query);
+      statements.push(statement);
+      if (statements.length === 1) return authorizedRows();
+      if (statement.includes("SELECT timezone")) return { rows: [{ timezone: "Asia/Ho_Chi_Minh" }] };
+      if (statement.includes("daily_new_word_limit")) return dailyUsageRow(10, 5);
+      if (statement.includes("next_review_date <=")) return { rows: due };
+      if (statement.includes("lp.vocabulary_id IS NULL")) return { rows: availableNew };
+      return { rows: [] };
+    });
     const service = createReviewQueueService({ execute }, { now: () => new Date("2026-09-14T03:00:00.000Z") });
 
     const result = await service.list("parent-1", learnerId);
-    expect(result.dueCount).toBe(21);
-    expect(result.newCount).toBe(5);
-    expect(result.queue).toHaveLength(20);
-    expect(result.queue.every((item) => item.queueType === "DUE")).toBe(true);
+    expect(result.dueCount).toBe(36);
+    expect(result.newCount).toBe(10);
+    expect(result.queue).toHaveLength(25);
+    expect(result.queue.slice(0, 20).every((item) => item.queueType === "DUE")).toBe(true);
+    expect(result.queue.slice(20).map((item) => item.vocabulary.id)).toEqual([100, 101, 102, 103, 104]);
+    const dailyUsageQuery = statements.find((statement) => statement.includes("daily_new_word_limit")) ?? "";
+    expect(dailyUsageQuery).not.toContain("daily_new_word_goal");
+    expect(dailyUsageQuery).not.toContain("daily_review_word_goal");
   });
 
   it("treats an empty progress result as virtual NEW and rejects malformed canonical rows safely", async () => {
@@ -378,16 +388,37 @@ describe("US-08 review queue service", () => {
     expect(result.queue.filter((item) => item.queueType === "NEW").map((item) => item.vocabulary.id)).toEqual([1, 2, 3, 4]);
   });
 
-  it("keeps Due available when the daily NEW allowance is zero", async () => {
-    const execute = vi.fn()
-      .mockResolvedValueOnce(authorizedRows())
-      .mockResolvedValueOnce({ rows: [{ timezone: "Asia/Ho_Chi_Minh" }] })
-      .mockResolvedValueOnce(dailyUsageRow(0, 0))
-      .mockResolvedValueOnce({ rows: [dueRow(1, 1)] })
-      .mockResolvedValueOnce({ rows: [newRow(2, 4)] });
+  it("keeps due Review available with zero New quota and does not read the Review Goal", async () => {
+    const statements: string[] = [];
+    const execute = vi.fn(async (query) => {
+      const { sql: statement } = new PgDialect().sqlToQuery(query);
+      statements.push(statement);
+      if (statements.length === 1) return authorizedRows();
+      if (statement.includes("SELECT timezone")) return { rows: [{ timezone: "Asia/Ho_Chi_Minh" }] };
+      if (statement.includes("daily_new_word_limit")) return dailyUsageRow(0, 0);
+      if (statement.includes("next_review_date <=")) return { rows: [dueRow(1, 1)] };
+      if (statement.includes("lp.vocabulary_id IS NULL")) return { rows: [newRow(2, 4)] };
+      return { rows: [] };
+    });
 
     const result = await createReviewQueueService({ execute }, { now: () => new Date("2026-09-14T03:00:00.000Z") }).list("parent-1", learnerId);
     expect(result.queue).toHaveLength(1);
     expect(result.queue[0]).toMatchObject({ queueType: "DUE", vocabulary: { id: 1 } });
+    const dailyUsageQuery = statements.find((statement) => statement.includes("daily_new_word_limit")) ?? "";
+    expect(dailyUsageQuery).not.toContain("daily_review_word_goal");
+  });
+
+  it("returns no NEW once the hard daily limit is reached but still returns due Review", async () => {
+    const execute = vi.fn()
+      .mockResolvedValueOnce(authorizedRows())
+      .mockResolvedValueOnce({ rows: [{ timezone: "Asia/Ho_Chi_Minh" }] })
+      .mockResolvedValueOnce(dailyUsageRow(10, 10))
+      .mockResolvedValueOnce({ rows: [dueRow(1, 1)] })
+      .mockResolvedValueOnce({ rows: [newRow(2, 4)] });
+
+    const result = await createReviewQueueService({ execute }, { now: () => new Date("2026-09-14T03:00:00.000Z") }).list("parent-1", learnerId);
+
+    expect(result.newCount).toBe(4);
+    expect(result.queue.map((item) => item.queueType)).toEqual(["DUE"]);
   });
 });

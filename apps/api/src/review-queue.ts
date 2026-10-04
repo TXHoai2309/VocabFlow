@@ -325,7 +325,12 @@ export function createReviewQueueService(
           reviewDate = householdLocalDate(now(), timezone);
           if (scope === "saved-all") {
             const rows = await allSavedRows(database, ownership.learnerId);
-            const queue = rows.map((row) => itemFromRow(row, savedQueueType(row, reviewDate)));
+            const items = rows.map((row) => itemFromRow(row, savedQueueType(row, reviewDate)));
+            const queue = [
+              ...items.filter((item) => item.queueType === "DUE"),
+              ...items.filter((item) => item.queueType === "NEW"),
+              ...items.filter((item) => item.queueType === "VOLUNTARY")
+            ];
             const response = {
               learnerId: ownership.learnerId,
               reviewDate,
@@ -348,7 +353,7 @@ export function createReviewQueueService(
         const dueCount = due.length === 0 ? 0 : safeCount(due[0]?.total_count);
         const newCount = availableNew.length === 0 ? 0 : safeCount(availableNew[0]?.total_count);
         const remainingNew = Math.max(0, usage.dailyNewWordLimit - usage.consumedToday);
-        const selectedNew = dueCount >= 20 ? [] : availableNew.slice(0, remainingNew);
+        const selectedNew = availableNew.slice(0, remainingNew);
         const response = {
           learnerId: ownership.learnerId,
           reviewDate,

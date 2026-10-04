@@ -140,8 +140,12 @@ Selection rules:
 - New items are enabled vocabulary with no progress row for this learner,
   using a learner-scoped `LEFT JOIN`, ordered by `vocabulary.id ASC`, capped at
   10.
-- If due count is at least 20, no new items are included.
-- Otherwise all selected due items are followed by up to 10 new items.
+- Up to 20 due items are selected first, followed by up to 10 New items that
+  remain within the learner's daily New allowance. A high due count does not
+  suppress the New candidates.
+- Study Setup keeps New enabled whenever the returned queue contains eligible
+  New items, even when Due items exist. Review remains Due-only; Mixed takes the
+  requested count from Due-first queue order.
 - Missing progress is never treated as an error.
 
 ## 7. API and Authorization Contract
@@ -189,8 +193,8 @@ still open. Neither suite was run by this change.
   vocabulary, with stable date/id ordering.
 - T08-06: Sparse new selection uses a learner-scoped `LEFT JOIN`, stable ID
   ordering and virtual `NEW` revision `0`.
-- T08-07: Due items precede new items; due is capped at 20 and new at 10;
-  due count `>= 20` suppresses new items.
+- T08-07: Due items precede New items; due is capped at 20 and New at 10; due
+  count does not suppress otherwise quota-eligible New items.
 - T08-08: The response exposes canonical learner ID, counts, queue type,
   vocabulary DTO, status, next review date and expected revision.
 - T08-09: Empty due/new data returns a valid empty queue, not a synthetic
@@ -206,8 +210,8 @@ still open. Neither suite was run by this change.
 - Shared contract parsing and response-shape coverage.
 - API `401`, `403`, `200` and safe internal-error mapping.
 - Due ordering, total counts and 20-item cap.
-- Sparse new `LEFT JOIN`, virtual `NEW`, revision `0`, 10-item cap and due
-  priority.
+- Sparse new `LEFT JOIN`, virtual `NEW`, revision `0`, 10-item cap, due-first
+  priority and New availability while Due exists.
 - Household timezone boundary and deterministic date binding.
 - Empty queue and malformed-row safety.
 - Existing unit, E2E, lint, typecheck, build, Drizzle and diff checks.

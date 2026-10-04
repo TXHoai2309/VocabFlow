@@ -1,5 +1,23 @@
 # Current Handoff Snapshot
 
+## 2026-10-04 — Due-first study queue without a New-mode hard gate
+
+- Removed the backend gate in `apps/api/src/review-queue.ts` that suppressed
+  NEW items once at least 20 items were due. Available NEW items now accompany
+  DUE items up to the remaining `daily_new_word_limit`; DUE remains first in
+  mixed ordering. Daily Goal columns are not read for queue admission.
+- Study Setup already derives mode availability from the scoped queue, so the
+  API fix enables New beside due reviews without changing the UI or default
+  mode. Review remains DUE-only; New remains NEW-only. Saved-all retains every
+  item and its NEW/DUE/VOLUNTARY classification, ordered DUE → NEW → VOLUNTARY.
+- Updated US-08/US-14, product, architecture and flow documentation. Regression
+  tests cover due/new availability, hard quota, mode filters, mixed priority,
+  Saved VOLUNTARY and existing Study/Continue Learning/Daily Goal behavior.
+- Validation passed: 9 focused test files / 131 tests, `pnpm typecheck`,
+  `pnpm build`, ESLint on changed TypeScript feature files, and
+  `git diff --check`. No migration, database mutation, or deployment occurred.
+  Dataset V2 changes remain separate and unstaged.
+
 ## 2026-10-04 — Master Vocabulary V2 Phase 2E.4C migration 0018 preflight
 
 - Used the clean local worktree at `c15dff2`; the primary local `TXH` checkout

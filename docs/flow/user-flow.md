@@ -46,7 +46,11 @@ Catalog or Word Detail → opens `/saved` to search/filter that learner's saved
 words → chooses “Học tất cả từ đã lưu” → Study Setup opens the explicit
 `saved=1&content=all` collection → the server returns every enabled saved word
 and classifies new, genuinely due, and voluntary not-due practice separately.
-The ordinary New/Review/Mixed modes keep their existing New/Due behavior.
+The ordinary New/Review/Mixed modes use the learner-scoped New/Due queue. New
+remains selectable while Due exists if New vocabulary and daily New quota
+remain; Review stays Due-only, and Mixed selects Due first before filling any
+remaining slots with New. The daily New hard limit is unchanged; Daily Goals do
+not gate queue availability.
 Learner switching reloads the saved relationship; Study and Summary continue
 actions retain the all-saved intent.
 

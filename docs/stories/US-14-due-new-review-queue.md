@@ -34,6 +34,10 @@ session follows the intended review priority.
 - AC-14-01: due items are selected first and capped deterministically.
 - AC-14-02: new items are derived from missing progress for the active learner.
 - AC-14-03: another learner's progress cannot suppress or add queue items.
+- AC-14-04: Due priority is an ordering recommendation, not a hard gate; New
+  remains selectable when enabled New vocabulary and daily New allowance remain.
+- AC-14-05: Mixed uses DUE first, then fills remaining requested slots with
+  quota-eligible NEW; Review and New modes remain type-exclusive.
 
 ## Authorization and persistence
 

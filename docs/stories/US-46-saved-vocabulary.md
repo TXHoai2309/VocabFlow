@@ -83,8 +83,10 @@ with New or due Review eligibility.
   is never represented as DUE/Review. The selected 5/10/20/30 session size is
   capped by the available saved collection, with duplicate vocabulary removed.
 - AC-08: The normal saved `saved=1` New/Review/Mixed setup availability is
-  derived from the saved New/Due queue and retains existing mode semantics.
-  Explicit all-saved setup offers the saved collection directly. Study,
+  derived from the saved New/Due queue; New stays available beside Due while
+  daily New quota remains, and Mixed selects Due before New. Explicit all-saved
+  setup offers every enabled saved item ordered DUE, NEW, then VOLUNTARY without
+  recasting not-due progress as Review. Study,
   leave/back, and Session Summary Continue preserve the selected saved intent;
   a learner switch reloads the saved queue. Voluntary practice writes still
   use the canonical review API, revision check, and scheduler; New writes still

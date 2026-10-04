@@ -2,6 +2,19 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-04 — Due-first study queue without a New-mode hard gate
+
+- Removed the review-queue service rule that omitted eligible NEW vocabulary
+  whenever at least 20 items were due. The queue continues to place DUE before
+  quota-eligible NEW, while `daily_new_word_limit` remains the hard cap.
+- Saved-all queues now order DUE, NEW and VOLUNTARY items while preserving all
+  saved items and their existing classifications. Daily Goals remain progress
+  targets and do not gate scheduler availability.
+- Added regressions for Study Setup availability, mixed ordering, daily quota,
+  review/new mode exclusivity and Saved VOLUNTARY preservation. Focused
+  validation passed: 9 test files / 131 tests, global typecheck, build and
+  feature ESLint. No migration or database mutation was required.
+
 ## 2026-10-04 — Master Vocabulary V2 Phase 2E.4B migration hash verification
 
 - Audited Drizzle's actual SHA-256 contract and proved both reported mismatch

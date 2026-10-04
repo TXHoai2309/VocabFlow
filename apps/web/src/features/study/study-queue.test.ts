@@ -67,4 +67,34 @@ describe("saved study scope", () => {
     expect(selectStudyQueue(response, { amount: 30, content: "review" }).queue.map((item) => item.queueType)).toEqual(["DUE"]);
     expect(selectStudyQueue(response, { amount: 30, content: "mixed" }).queue.map((item) => item.queueType)).toEqual(["DUE", "NEW"]);
   });
+
+  it("selects DUE first for Mixed and fills remaining slots with NEW", () => {
+    const templates = queueResponse().queue;
+    const dueTemplate = templates[0]!;
+    const newTemplate = templates[1]!;
+    const due = Array.from({ length: 12 }, (_, index) => ({
+      ...dueTemplate,
+      vocabulary: { ...dueTemplate.vocabulary, id: index + 100 }
+    }));
+    const newWords = Array.from({ length: 5 }, (_, index) => ({
+      ...newTemplate,
+      vocabulary: { ...newTemplate.vocabulary, id: index + 200 }
+    }));
+    const response: ReviewQueueResponse = {
+      ...queueResponse(),
+      dueCount: 36,
+      newCount: 8,
+      queue: [...due, ...newWords]
+    };
+
+    const tenWordMixed = selectStudyQueue(response, { amount: 10, content: "mixed" });
+    expect(tenWordMixed.queue).toHaveLength(10);
+    expect(tenWordMixed.queue.every((item) => item.queueType === "DUE")).toBe(true);
+    expect(selectStudyQueue(response, { amount: 30, content: "mixed" }).queue.map((item) => item.queueType)).toEqual([
+      ...Array.from({ length: 12 }, () => "DUE"),
+      ...Array.from({ length: 5 }, () => "NEW")
+    ]);
+    expect(selectStudyQueue(response, { amount: 30, content: "review" }).queue.every((item) => item.queueType === "DUE")).toBe(true);
+    expect(selectStudyQueue(response, { amount: 30, content: "new" }).queue.every((item) => item.queueType === "NEW")).toBe(true);
+  });
 });

@@ -152,12 +152,12 @@ Hết queue hoặc learner chủ động thoát → Summary
 
 | **Tình huống** | **Quy tắc** |
 | --- | --- |
-| Due ≥ 20 | Lấy tối đa 20 due; không thêm new. |
-| 0 < Due < 20 | Lấy toàn bộ due; thêm tối đa 10 new. |
+| Due ≥ 20 | Queue trả tối đa 20 due trước, rồi vẫn có thể trả tối đa 10 new; Mixed chỉ dùng New sau khi đã lấy các Due đứng trước và còn slot. |
+| 0 < Due < 20 | Lấy toàn bộ due trước; thêm tối đa 10 new sau đó, theo số slot còn lại và quota New trong ngày. |
 | Due = 0 | Lấy tối đa 10 new. |
-| Daily New allowance | Mỗi learner mặc định được tối đa 10 vocabulary virtual-New materializations mỗi household-local day; setting 0..100 thay đổi được theo learner. |
-| Unique-word ceiling | Policy ceiling là 30 unique words; với selection rule hiện tại thực tế tối đa 29, không pad thêm. |
-| Ưu tiên | Due luôn đứng trước new. |
+| Daily New allowance | Mỗi learner mặc định được tối đa 10 vocabulary virtual-New materializations mỗi household-local day; setting 0..100 thay đổi được theo learner. Đây là giới hạn duy nhất của New trong scheduler; Daily Goal không khóa queue. |
+| Unique-word ceiling | Policy ceiling là 30 unique words (tối đa 20 Due + 10 New); không pad thêm nếu queue/quota không đủ. |
+| Ưu tiên | Due luôn đứng trước New trong Mixed; đủ Due không làm New mode bị khóa. |
 | Reinforcement | Một từ Chưa nhớ có thể reinsert tối đa 2 lần trong cùng session. |
 | Presentation count | Không hard-cap toàn session ở v1.0; user có thể thoát bất kỳ lúc nào. Reinforcement cap per-word ngăn loop vô hạn. |
 | Kết thúc | Hết queue hoặc user thoát; không ép hoàn thành quota. |

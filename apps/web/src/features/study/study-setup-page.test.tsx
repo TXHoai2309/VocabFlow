@@ -172,6 +172,26 @@ describe("Study Setup", () => {
     expect(screen.getByText("Hiện chưa có từ mới cần học")).toBeInTheDocument();
   });
 
+  it("keeps New enabled beside Due and starts a New-only session when selected", async () => {
+    mockStudyData([item(1, "DUE"), item(2, "DUE"), item(3), item(4)]);
+    renderSetup();
+
+    await screen.findByTestId("study-setup-page");
+    const newMode = screen.getByRole("button", { name: /Từ mới/ });
+    expect(newMode).toBeEnabled();
+    expect(screen.getByRole("button", { name: /Ôn tập/ })).toBeEnabled();
+    expect(screen.getByRole("button", { name: /Kết hợp/ })).toHaveAttribute("aria-pressed", "true");
+
+    fireEvent.click(newMode);
+    expect(screen.getByTestId("study-setup-summary-count")).toHaveTextContent("2 từ");
+    fireEvent.click(screen.getByRole("button", { name: /Bắt đầu học/ }));
+
+    expect(await screen.findByTestId("study-session-ready")).toBeInTheDocument();
+    expect(screen.getByTestId("session-counter")).toHaveTextContent("Câu 1 / 2");
+    expect(screen.getByText("word-3")).toBeInTheDocument();
+    expect(screen.queryByText("word-1")).not.toBeInTheDocument();
+  });
+
   it("uses only topic vocabulary and keeps the scope in the session URL", async () => {
     const queue = [item(1, "DUE"), item(2), item(3), item(4, "DUE")];
     const fetchMock = mockStudyData(queue);

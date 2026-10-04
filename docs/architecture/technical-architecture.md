@@ -794,10 +794,17 @@ Daily session:
   new words: max 10
   max unique words: 30
 
-If due >= 20: 20 due, 0 new
-If due < 20: all due + up to 10 new
-If due == 0: up to 10 new
+If due >= 20: up to 20 due candidates followed by up to 10 quota-eligible NEW
+If due < 20: all due candidates followed by up to 10 quota-eligible NEW
+If due == 0: up to 10 quota-eligible NEW
 ```
+
+These candidate caps do not lock one mode behind the other. New mode selects
+only quota-eligible NEW items even when more DUE items exist. Review mode selects
+only DUE. Mixed selection takes the requested count from the Due-first queue, so
+when DUE fills the chosen count no NEW is selected for that session; remaining
+slots can be filled with NEW. Daily learning goals are progress targets and do
+not participate in scheduler admission.
 
 ## 8.4 Review Queue: due words + new words
 
@@ -827,7 +834,12 @@ New words (sparse progress):
   LIMIT 10
 ```
 
-- Due priority: nếu due >= 20 thì không lấy new; nếu 0 < due < 20 thì lấy tất cả due (tối đa 20) + tối đa 10 new; nếu due = 0 thì tối đa 10 new.
+- Queue order: all selected DUE candidates (up to 20, ordered by due date/id)
+  precede up to 10 NEW candidates. DUE count never suppresses eligible NEW;
+  New remains available when at least one NEW item has remaining daily quota.
+- Explicit saved-all queue preserves all enabled saved candidates and classifies
+  them as DUE, NEW, or VOLUNTARY, ordered by that priority. VOLUNTARY remains
+  practice rather than due Review.
 
 - The 10-New selection cap is also bounded by
   `max(0, daily_new_word_limit - consumedToday)`. `consumedToday` is the
