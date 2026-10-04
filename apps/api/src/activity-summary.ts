@@ -27,12 +27,14 @@ export class ActivitySummaryServiceError extends Error {
 
 type ActivityRow = {
   activity_date: unknown;
-  reviewed_unique: unknown;
+  new_completed: unknown;
+  review_completed: unknown;
 };
 
 type LearnerActivitySettings = {
   timezone: unknown;
-  daily_learning_goal: unknown;
+  daily_new_word_goal: unknown;
+  daily_review_word_goal: unknown;
 };
 
 function rowsOf<T>(result: unknown): T[] {
@@ -124,7 +126,7 @@ async function learnerActivitySettings(
   householdId: string,
 ): Promise<LearnerActivitySettings> {
   const result = await database.execute(sql`
-    SELECT h.timezone, lp.daily_learning_goal
+    SELECT h.timezone, lp.daily_new_word_goal, lp.daily_review_word_goal
     FROM "${sql.raw(APP_SCHEMA)}"."learner_profiles" lp
     JOIN "${sql.raw(APP_SCHEMA)}"."households" h ON h.id = lp.household_id
     WHERE lp.id = ${learnerId}::uuid
@@ -144,13 +146,29 @@ async function activityRows(
 ): Promise<ActivityRow[]> {
   const result = await database.execute(sql`
     SELECT review_date::text AS activity_date,
-           COUNT(DISTINCT vocabulary_id) AS reviewed_unique
+           COUNT(DISTINCT vocabulary_id) FILTER (
+             WHERE previous_status = 'NEW' AND new_status <> 'NEW'
+           ) AS new_completed,
+           COUNT(DISTINCT vocabulary_id) FILTER (
+             WHERE previous_status <> 'NEW'
+           ) AS review_completed
     FROM "${sql.raw(APP_SCHEMA)}"."review_events"
     WHERE learner_id = ${learnerId}::uuid
     GROUP BY review_date
     ORDER BY review_date ASC
   `);
   return rowsOf<ActivityRow>(result);
+}
+
+function dailyGoalProgress(goalValue: unknown, completedValue: unknown) {
+  const goal = safeGoal(goalValue);
+  const completed = safeNonNegativeCount(completedValue);
+  return {
+    goal,
+    completed,
+    remaining: Math.max(0, goal - completed),
+    percent: Math.min(100, Math.round(Math.min(completed, goal) / goal * 100))
+  };
 }
 
 export type ActivitySummaryService = {
@@ -175,8 +193,20 @@ export function createActivitySummaryService(
         const localDate = householdLocalDate(now(), settings.timezone as string);
         const rows = await activityRows(database, ownership.learnerId);
         const dailyRow = rows.find((row) => row.activity_date === localDate);
-        const reviewedUnique = dailyRow ? safeNonNegativeCount(dailyRow.reviewed_unique) : 0;
-        const goal = safeGoal(settings.daily_learning_goal);
+        const dailyGoal = {
+          newWords: dailyGoalProgress(settings.daily_new_word_goal, dailyRow?.new_completed ?? 0),
+          reviews: dailyGoalProgress(settings.daily_review_word_goal, dailyRow?.review_completed ?? 0)
+        };
+        const goalTotal = dailyGoal.newWords.goal + dailyGoal.reviews.goal;
+        const completedTotal = Math.min(dailyGoal.newWords.completed, dailyGoal.newWords.goal)
+          + Math.min(dailyGoal.reviews.completed, dailyGoal.reviews.goal);
+        const isDailyGoalComplete = dailyGoal.newWords.completed >= dailyGoal.newWords.goal
+          && dailyGoal.reviews.completed >= dailyGoal.reviews.goal;
+        const dailyGoalSummary = {
+          ...dailyGoal,
+          overallPercent: Math.min(100, Math.round(completedTotal / goalTotal * 100)),
+          completed: isDailyGoalComplete
+        };
         const streak = deriveStreak(
           rows.map((row) => {
             if (typeof row.activity_date !== "string" || !isLocalDate(row.activity_date)) {
@@ -189,12 +219,7 @@ export function createActivitySummaryService(
         const parsed = activitySummaryResponseSchema.safeParse({
           learnerId: ownership.learnerId,
           localDate,
-          dailyGoal: {
-            goal,
-            reviewedUnique,
-            remaining: Math.max(0, goal - reviewedUnique),
-            completed: reviewedUnique >= goal
-          },
+          dailyGoal: dailyGoalSummary,
           streak
         });
         if (!parsed.success) throw new ActivitySummaryServiceError("INTERNAL_ERROR", 500);

@@ -491,7 +491,9 @@ async function atomicPersist(
       RETURNING review_id::text AS review_id,
                 learner_id::text AS learner_id,
                 vocabulary_id,
-                review_date
+                review_date,
+                previous_status,
+                new_status
     ), inserted_review_xp AS (
       INSERT INTO "${sql.raw(APP_SCHEMA)}"."xp_events" (
         learner_id,
@@ -534,17 +536,24 @@ async function atomicPersist(
              20
       FROM inserted_event ie
       JOIN "${sql.raw(APP_SCHEMA)}"."learner_profiles" lp ON lp.id = ie.learner_id::uuid
-      WHERE (
-        SELECT COUNT(DISTINCT activity.vocabulary_id)
+      CROSS JOIN LATERAL (
+        SELECT COUNT(DISTINCT activity.vocabulary_id) FILTER (
+                 WHERE activity.previous_status = 'NEW' AND activity.new_status <> 'NEW'
+               ) AS new_completed,
+               COUNT(DISTINCT activity.vocabulary_id) FILTER (
+                 WHERE activity.previous_status <> 'NEW'
+               ) AS review_completed
         FROM (
-          SELECT re.vocabulary_id
+          SELECT re.vocabulary_id, re.previous_status, re.new_status
           FROM "${sql.raw(APP_SCHEMA)}"."review_events" re
           WHERE re.learner_id = ie.learner_id::uuid
             AND re.review_date = ie.review_date
           UNION ALL
-          SELECT ie.vocabulary_id
+          SELECT ie.vocabulary_id, ie.previous_status, ie.new_status
         ) activity
-      ) >= lp.daily_learning_goal
+      ) AS daily_activity
+      WHERE daily_activity.new_completed >= lp.daily_new_word_goal
+        AND daily_activity.review_completed >= lp.daily_review_word_goal
       ON CONFLICT (source_type, source_key) DO NOTHING
       RETURNING learner_id
     )

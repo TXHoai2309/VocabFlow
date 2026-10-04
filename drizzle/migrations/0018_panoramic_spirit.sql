@@ -1,0 +1,4 @@
+ALTER TABLE "vocabflow_app"."learner_profiles" ADD COLUMN "daily_new_word_goal" integer DEFAULT 10 NOT NULL;--> statement-breakpoint
+ALTER TABLE "vocabflow_app"."learner_profiles" ADD COLUMN "daily_review_word_goal" integer DEFAULT 20 NOT NULL;--> statement-breakpoint
+ALTER TABLE "vocabflow_app"."learner_profiles" ADD CONSTRAINT "learner_profiles_daily_new_word_goal_check" CHECK ("vocabflow_app"."learner_profiles"."daily_new_word_goal" >= 1 AND "vocabflow_app"."learner_profiles"."daily_new_word_goal" <= 100);--> statement-breakpoint
+ALTER TABLE "vocabflow_app"."learner_profiles" ADD CONSTRAINT "learner_profiles_daily_review_word_goal_check" CHECK ("vocabflow_app"."learner_profiles"."daily_review_word_goal" >= 1 AND "vocabflow_app"."learner_profiles"."daily_review_word_goal" <= 100);

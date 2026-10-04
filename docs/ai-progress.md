@@ -73,6 +73,25 @@
   write, APPLY, migration, owner choice, APKG access or media operation
   occurred. See the preservation preview, policy comparison, and migration
   drift scan in `vocabflow-dataset/reports/`.
+## 2026-10-04 — Feature #10 configurable daily learning goals
+
+- Replaced the active single aggregate goal with learner-specific persisted
+  targets: 10 new words and 20 review words by default. The existing scheduler
+  hard cap remains unchanged; due reviews remain uncapped.
+- Activity Summary derives distinct new/review counts from persisted review
+  events by household-local review date; overall completion requires both
+  targets. Home shows category progress, composite ring and the existing
+  persisted streak. Settings API/UI save and reload per learner.
+- Added additive migration `0018_panoramic_spirit.sql`; it has not been applied.
+  No database mutation or production connection was made.
+- Focused validation passed: 11 files / 153 tests. Contracts/API/web project
+  typecheck, production build, feature ESLint and `git diff --check` passed.
+- Repository-wide `pnpm typecheck` is blocked by 9 missing projection fields
+  in the separately changing Dataset V2 planner. That file and Dataset V2
+  reports remain untouched and unstaged; commit/push were withheld because the
+  full validation gate did not pass.
+- Migration remains unapplied; no database mutation, production access or
+  deployment occurred.
 
 ## 2026-10-03 — Master Vocabulary V2 Phase 2E.3 final owner reconciliation preparation
 

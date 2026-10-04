@@ -52,7 +52,7 @@ export async function requestLearnerSettings(learnerId: string): Promise<Learner
 
 export async function updateLearnerSettings(
   learnerId: string,
-  settings: { dailyNewWordLimit?: number; dailyLearningGoal?: number }
+  settings: { dailyNewWordLimit?: number; dailyNewWordGoal?: number; dailyReviewWordGoal?: number }
 ): Promise<LearnerSettingsResponse> {
   const request = updateLearnerSettingsRequestSchema.safeParse(settings);
   if (!request.success) throw new LearnerSettingsClientError("INVALID_REQUEST", 400);

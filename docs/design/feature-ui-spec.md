@@ -475,9 +475,10 @@ state returned by the canonical API.
 
 | **Capability** | **Behavior** |
 | --- | --- |
-| Daily goal setting | Parent sees and edits `dailyLearningGoal` for the active learner; integer 1–100, default 10. |
-| Separate semantics | Copy clearly distinguishes the motivational unique-reviewed goal from the daily New admission limit. |
-| Daily progress | Progress screen shows `reviewedUnique / goal`, including 0/10, partial, exact and over-goal states; completion is derived. |
+| Daily goal setting | Parent sees and edits `dailyNewWordGoal` (default 10) and `dailyReviewWordGoal` (default 20) for the active learner; both integers 1–100. |
+| Separate semantics | Copy distinguishes both learning targets from `dailyNewWordLimit`, the scheduler's hard cap for NEW admission; due reviews remain first and are not capped. |
+| Home progress | Home shows a composite progress ring, separate new/review counts and progress bars, plus the persisted streak. Completion requires both goals; actual counts are not capped. |
+| Daily progress | Progress screen shows new count, review count and overall percent for the household-local date; per-category percentage caps at 100 and completion is derived. |
 | Current streak | Show “N ngày liên tiếp”; today-active streak ends today, while inactive today may continue from an active yesterday. |
 | Longest streak | Show “Kỷ lục: N ngày”; it is separate from goal completion and accuracy. |
 | Canonical source | Loading reads the learner activity-summary API; no client counter or local persistence is authoritative. |
@@ -494,7 +495,7 @@ state returned by the canonical API.
 | Reset learner progress | P1 / CONDITIONAL — thuộc Family MVP nhưng không thuộc first vertical slice. | Chỉ enable sau khi có reset API contract + learner authorization contract + confirmation behavior được test. |
 | View and assign learning sets | YES | Learning-set catalog/detail and active learner assignment screen. |
 | Edit daily New limit | YES | Active learner settings screen. |
-| Edit daily learning goal | YES | Active learner settings screen. |
+| Edit daily learning goals | YES | Active learner settings screen. |
 | Edit learner name/avatar | DEFERRED | Không expose control trong v1.0 baseline. |
 | Disable/delete learner | OUT v1.0 | Không expose control. |
 

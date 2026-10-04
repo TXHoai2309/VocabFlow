@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { MemoryRouter, Route, Routes, useLocation, useNavigate } from "react-router";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
@@ -116,7 +116,12 @@ const summary = {
 const activity = {
   learnerId: learner.id,
   localDate: "2026-09-30",
-  dailyGoal: { goal: 10, reviewedUnique: 3, remaining: 7, completed: false },
+  dailyGoal: {
+    newWords: { goal: 10, completed: 4, remaining: 6, percent: 40 },
+    reviews: { goal: 20, completed: 13, remaining: 7, percent: 65 },
+    overallPercent: 57,
+    completed: false
+  },
   streak: { currentStreak: 4, longestStreak: 8, todayActive: true }
 };
 
@@ -229,6 +234,11 @@ describe("Home dashboard", () => {
     expect(screen.getByRole("link", { name: "Từ mới: 2" })).toHaveAttribute("href", "/study");
     expect(screen.getByRole("link", { name: "Đã học: 16" })).toHaveAttribute("href", "/progress");
     expect(screen.getByRole("link", { name: "Chuỗi ngày học: 4" })).toHaveAttribute("href", "/progress");
+    expect(screen.getByRole("heading", { name: "Mục tiêu hôm nay" })).toBeInTheDocument();
+    expect(screen.getByText("4 / 10")).toBeInTheDocument();
+    expect(screen.getByText("13 / 20")).toBeInTheDocument();
+    expect(screen.getByRole("progressbar", { name: "Tiến trình mục tiêu hôm nay" })).toHaveAttribute("aria-valuenow", "57");
+    expect(screen.getByLabelText("Chuỗi học hiện tại: 4 ngày liên tiếp")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /bắt đầu học/i })).toHaveAttribute("href", "/study/setup");
     expect(await screen.findByText("Hành động lớp 1")).toBeInTheDocument();
     expect(screen.getAllByRole("link", { name: "Xem tất cả" }).some((link) => link.getAttribute("href") === "/learning-sets")).toBe(true);
@@ -269,6 +279,33 @@ describe("Home dashboard", () => {
     expect(requestGamification).toHaveBeenCalledOnce();
     expect(requestLearnerLearningSets).toHaveBeenCalledOnce();
     expect(requestContinueLearningSummary).toHaveBeenCalledOnce();
+  });
+
+  it("keeps the Home dashboard available and retries when Activity Summary fails", async () => {
+    requestActivitySummary.mockRejectedValueOnce(new Error("activity unavailable")).mockResolvedValueOnce(activity);
+    renderHome();
+
+    const goalCard = await screen.findByRole("region", { name: "Mục tiêu hôm nay" });
+    expect(within(goalCard).getByText("Chưa thể tải mục tiêu hôm nay.")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /chào buổi (sáng|chiều|tối), jordan nguyen/i })).toBeInTheDocument();
+    expect(screen.getByRole("region", { name: "Tiếp tục học" })).toBeInTheDocument();
+
+    fireEvent.click(within(goalCard).getByRole("button", { name: "Thử lại" }));
+    expect(await within(await screen.findByRole("region", { name: "Mục tiêu hôm nay" })).findByRole("progressbar", { name: "Tiến trình mục tiêu hôm nay" })).toHaveAttribute("aria-valuenow", "57");
+  });
+
+  it("shows the calm success state only after both daily goal categories are complete", async () => {
+    requestActivitySummary.mockResolvedValue({ ...activity, dailyGoal: {
+      newWords: { goal: 10, completed: 10, remaining: 0, percent: 100 },
+      reviews: { goal: 20, completed: 20, remaining: 0, percent: 100 },
+      overallPercent: 100,
+      completed: true
+    } });
+    renderHome();
+
+    const goalCard = await screen.findByRole("region", { name: "Mục tiêu hôm nay" });
+    expect(within(goalCard).getByRole("status")).toHaveTextContent("Hoàn thành mục tiêu hôm nay");
+    expect(within(goalCard).getByRole("progressbar", { name: "Tiến trình mục tiêu hôm nay" })).toHaveAttribute("aria-valuenow", "100");
   });
 
   it("continues a real in-progress topic with scoped progress and activity", async () => {
@@ -340,6 +377,14 @@ describe("Home dashboard", () => {
   it("refreshes Continue Learning for the newly selected learner", async () => {
     const secondLearner = { ...learner, id: "00000000-0000-4000-8000-000000000022", displayName: "Morgan Nguyen" };
     requestLearners.mockResolvedValue([learner, secondLearner]);
+    requestActivitySummary.mockImplementation(async (id: string) => id === secondLearner.id
+      ? { ...activity, learnerId: id, dailyGoal: {
+        newWords: { goal: 5, completed: 2, remaining: 3, percent: 40 },
+        reviews: { goal: 10, completed: 1, remaining: 9, percent: 10 },
+        overallPercent: 20,
+        completed: false
+      } }
+      : activity);
     requestContinueLearningSummary.mockImplementation(async (id: string) => ({
       learnerId: id,
       candidate: id === secondLearner.id
@@ -350,7 +395,11 @@ describe("Home dashboard", () => {
 
     fireEvent.click(await screen.findByRole("button", { name: "Morgan Nguyen" }));
     expect(await screen.findByRole("link", { name: "Tiếp tục học Morgan's set" })).toHaveAttribute("href", "/study/setup?learningSetId=12");
+    await waitFor(() => expect(screen.getByRole("progressbar", { name: "Tiến trình mục tiêu hôm nay" })).toHaveAttribute("aria-valuenow", "20"));
+    expect(screen.getByText("2 / 5")).toBeInTheDocument();
+    expect(screen.getByText("1 / 10")).toBeInTheDocument();
     expect(requestContinueLearningSummary).toHaveBeenCalledWith(secondLearner.id);
+    expect(requestActivitySummary).toHaveBeenCalledWith(secondLearner.id);
   });
 
   it("keeps a long parent name in the greeting without substituting a mock identity", async () => {

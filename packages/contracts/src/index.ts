@@ -238,18 +238,28 @@ export const DAILY_NEW_WORD_LIMIT_MAX = 100 as const;
 export const DAILY_LEARNING_GOAL_DEFAULT = 10 as const;
 export const DAILY_LEARNING_GOAL_MIN = 1 as const;
 export const DAILY_LEARNING_GOAL_MAX = 100 as const;
+export const DAILY_NEW_WORD_GOAL_DEFAULT = 10 as const;
+export const DAILY_REVIEW_WORD_GOAL_DEFAULT = 20 as const;
+export const DAILY_WORD_GOAL_MIN = 1 as const;
+export const DAILY_WORD_GOAL_MAX = 100 as const;
 
 export const learnerSettingsResponseSchema = z.object({
   learnerId: canonicalUuidSchema,
   dailyNewWordLimit: z.number().int().min(DAILY_NEW_WORD_LIMIT_MIN).max(DAILY_NEW_WORD_LIMIT_MAX).safe(),
-  dailyLearningGoal: z.number().int().min(DAILY_LEARNING_GOAL_MIN).max(DAILY_LEARNING_GOAL_MAX).safe()
+  dailyNewWordGoal: z.number().int().min(DAILY_WORD_GOAL_MIN).max(DAILY_WORD_GOAL_MAX).safe(),
+  dailyReviewWordGoal: z.number().int().min(DAILY_WORD_GOAL_MIN).max(DAILY_WORD_GOAL_MAX).safe()
 }).strict();
 export type LearnerSettingsResponse = z.infer<typeof learnerSettingsResponseSchema>;
 
 export const updateLearnerSettingsRequestSchema = z.object({
   dailyNewWordLimit: z.number().int().min(DAILY_NEW_WORD_LIMIT_MIN).max(DAILY_NEW_WORD_LIMIT_MAX).safe().optional(),
-  dailyLearningGoal: z.number().int().min(DAILY_LEARNING_GOAL_MIN).max(DAILY_LEARNING_GOAL_MAX).safe().optional()
-}).strict().refine((value) => value.dailyNewWordLimit !== undefined || value.dailyLearningGoal !== undefined);
+  dailyNewWordGoal: z.number().int().min(DAILY_WORD_GOAL_MIN).max(DAILY_WORD_GOAL_MAX).safe().optional(),
+  dailyReviewWordGoal: z.number().int().min(DAILY_WORD_GOAL_MIN).max(DAILY_WORD_GOAL_MAX).safe().optional()
+}).strict().refine((value) =>
+  value.dailyNewWordLimit !== undefined
+  || value.dailyNewWordGoal !== undefined
+  || value.dailyReviewWordGoal !== undefined
+);
 export type UpdateLearnerSettingsRequest = z.infer<typeof updateLearnerSettingsRequestSchema>;
 
 export const learningSetSummarySchema = z.object({
@@ -413,10 +423,18 @@ export const continueLearningSummaryResponseSchema = z.object({
 }).strict();
 export type ContinueLearningSummaryResponse = z.infer<typeof continueLearningSummaryResponseSchema>;
 
-export const dailyGoalSummarySchema = z.object({
-  goal: z.number().int().min(DAILY_LEARNING_GOAL_MIN).max(DAILY_LEARNING_GOAL_MAX).safe(),
-  reviewedUnique: z.number().int().nonnegative().safe(),
+export const dailyGoalProgressSchema = z.object({
+  goal: z.number().int().min(DAILY_WORD_GOAL_MIN).max(DAILY_WORD_GOAL_MAX).safe(),
+  completed: z.number().int().nonnegative().safe(),
   remaining: z.number().int().nonnegative().safe(),
+  percent: z.number().int().min(0).max(100).safe()
+}).strict();
+export type DailyGoalProgress = z.infer<typeof dailyGoalProgressSchema>;
+
+export const dailyGoalSummarySchema = z.object({
+  newWords: dailyGoalProgressSchema,
+  reviews: dailyGoalProgressSchema,
+  overallPercent: z.number().int().min(0).max(100).safe(),
   completed: z.boolean()
 }).strict();
 export type DailyGoalSummary = z.infer<typeof dailyGoalSummarySchema>;

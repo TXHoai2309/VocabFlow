@@ -174,6 +174,8 @@ describe("dedicated application schema", () => {
     const lastExistingSnapshot = JSON.parse(readFileSync(join(process.cwd(), "drizzle", "migrations", "meta", "0016_snapshot.json"), "utf8")) as { id: string; prevId: string; tables: Record<string, unknown>; [key: string]: unknown };
     const savedVocabularyMigration = readFileSync(join(process.cwd(), "drizzle", "migrations", "0017_nosy_hellfire_club.sql"), "utf8");
     const savedVocabularySnapshot = JSON.parse(readFileSync(join(process.cwd(), "drizzle", "migrations", "meta", "0017_snapshot.json"), "utf8")) as { id: string; prevId: string; tables: Record<string, { columns: Record<string, { type: string; notNull?: boolean }>; compositePrimaryKeys: Record<string, unknown>; foreignKeys: Record<string, unknown>; indexes: Record<string, unknown> }>; [key: string]: unknown };
+    const dailyGoalsMigration = readFileSync(join(process.cwd(), "drizzle", "migrations", "0018_panoramic_spirit.sql"), "utf8");
+    const dailyGoalsSnapshot = JSON.parse(readFileSync(join(process.cwd(), "drizzle", "migrations", "meta", "0018_snapshot.json"), "utf8")) as { id: string; prevId: string; tables: Record<string, { columns: Record<string, { type: string; notNull?: boolean; default?: number }>; checkConstraints?: Record<string, unknown> }>; [key: string]: unknown };
     const snapshot = JSON.parse(readFileSync(join(process.cwd(), "drizzle", "migrations", "meta", "0000_snapshot.json"), "utf8")) as {
       schemas: Record<string, string>;
       tables: Record<string, unknown>;
@@ -301,15 +303,20 @@ describe("dedicated application schema", () => {
     expect(savedVocabularyMigration).toContain('REFERENCES "vocabflow_app"."vocabularies"');
     expect(savedVocabularyMigration).toContain('CREATE INDEX "learner_saved_vocabulary_learner_saved_at_idx"');
     expect(savedVocabularyMigration).not.toMatch(/CREATE SCHEMA|DROP TABLE|vocabflow_meta/i);
+    expect(dailyGoalsMigration).toContain(`ADD COLUMN "daily_new_word_goal" integer DEFAULT 10 NOT NULL`);
+    expect(dailyGoalsMigration).toContain(`ADD COLUMN "daily_review_word_goal" integer DEFAULT 20 NOT NULL`);
+    expect(dailyGoalsMigration).toContain("learner_profiles_daily_new_word_goal_check");
+    expect(dailyGoalsMigration).toContain("learner_profiles_daily_review_word_goal_check");
+    expect(dailyGoalsMigration).not.toMatch(/DROP|TRUNCATE|DELETE|RENAME/i);
     expect(learnerSettingsSnapshot.tables[`${APP_SCHEMA}.learner_profiles`]?.columns.daily_new_word_limit).toMatchObject({ type: "integer", notNull: true });
     expect(activitySnapshot.tables[`${APP_SCHEMA}.learner_profiles`]?.columns.daily_learning_goal).toMatchObject({ type: "integer", notNull: true });
     expect(reviewSnapshot.tables[`${APP_SCHEMA}.learner_progress`]?.columns.consecutive_correct.type).toBe("bigint");
     expect(reviewSnapshot.tables[`${APP_SCHEMA}.review_events`]?.columns.expected_revision.type).toBe("bigint");
     expect(reviewSnapshot.tables[`${APP_SCHEMA}.review_events`]?.compositePrimaryKeys.review_events_household_review_pk).toBeDefined();
-    expect(journal.entries.map((entry) => entry.tag)).toEqual(["0000_application-schema", "0001_curious_miss_america", "0002_smiling_wrecking_crew", "0003_lazy_lady_deathstrike", "0004_scheduled_review_write", "0005_graceful_eddie_brock", "0006_sticky_risque", "0007_modern_mysterio", "0008_chief_morph", "0009_tricky_meggan", "0010_gamification-rewards", "0011_exercise-correct-xp", "0012_us41_owner_content_overrides", "0013_runtime-vocabulary-sequence-privilege", "0014_vietnamese_catalog_metadata", "0015_clean_yellowjacket", "0016_nostalgic_mattie_franklin", "0017_nosy_hellfire_club"]);
+    expect(journal.entries.map((entry) => entry.tag)).toEqual(["0000_application-schema", "0001_curious_miss_america", "0002_smiling_wrecking_crew", "0003_lazy_lady_deathstrike", "0004_scheduled_review_write", "0005_graceful_eddie_brock", "0006_sticky_risque", "0007_modern_mysterio", "0008_chief_morph", "0009_tricky_meggan", "0010_gamification-rewards", "0011_exercise-correct-xp", "0012_us41_owner_content_overrides", "0013_runtime-vocabulary-sequence-privilege", "0014_vietnamese_catalog_metadata", "0015_clean_yellowjacket", "0016_nostalgic_mattie_franklin", "0017_nosy_hellfire_club", "0018_panoramic_spirit"]);
     const latestMigration = journal.entries.at(-1);
     const previousMigration = journal.entries.at(-2);
-    expect(latestMigration).toMatchObject({ idx: 17, tag: "0017_nosy_hellfire_club" });
+    expect(latestMigration).toMatchObject({ idx: 18, tag: "0018_panoramic_spirit" });
     expect(latestMigration?.when).toBeGreaterThan(previousMigration?.when ?? 0);
     const { id: previousSnapshotId, prevId: previousSnapshotParent, ...previousSnapshotSchema } = previousMigrationSnapshot;
     const { id: currentSnapshotId, prevId: currentSnapshotParent, ...currentSnapshotSchema } = sequencePrivilegeSnapshot;
@@ -320,6 +327,9 @@ describe("dedicated application schema", () => {
     expect(masterV2Snapshot.prevId).toBe(sequencePrivilegeSnapshot.id);
     expect(lastExistingSnapshot.prevId).toBe(masterV2Snapshot.id);
     expect(savedVocabularySnapshot.prevId).toBe(lastExistingSnapshot.id);
+    expect(dailyGoalsSnapshot.prevId).toBe(savedVocabularySnapshot.id);
+    expect(dailyGoalsSnapshot.tables[`${APP_SCHEMA}.learner_profiles`]?.columns.daily_new_word_goal).toMatchObject({ type: "integer", notNull: true, default: 10 });
+    expect(dailyGoalsSnapshot.tables[`${APP_SCHEMA}.learner_profiles`]?.columns.daily_review_word_goal).toMatchObject({ type: "integer", notNull: true, default: 20 });
     expect(masterV2Migration).toContain(`CREATE TABLE "${APP_SCHEMA}"."master_vocabulary_mappings"`);
     expect(masterV2Migration).toContain(`CREATE TABLE "${APP_SCHEMA}"."master_vocabulary_import_runs"`);
     expect(masterV2Migration).toContain("ON DELETE no action ON UPDATE no action");

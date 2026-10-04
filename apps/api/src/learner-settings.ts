@@ -1,8 +1,8 @@
 import { sql, type SQL } from "drizzle-orm";
 import {
   APP_SCHEMA,
-  DAILY_LEARNING_GOAL_MAX,
-  DAILY_LEARNING_GOAL_MIN,
+  DAILY_WORD_GOAL_MAX,
+  DAILY_WORD_GOAL_MIN,
   learnerSettingsResponseSchema,
   updateLearnerSettingsRequestSchema,
   type LearnerSettingsResponse,
@@ -50,8 +50,8 @@ function safeGoal(value: unknown): number {
   if (
     typeof value !== "number"
     || !Number.isSafeInteger(value)
-    || value < DAILY_LEARNING_GOAL_MIN
-    || value > DAILY_LEARNING_GOAL_MAX
+    || value < DAILY_WORD_GOAL_MIN
+    || value > DAILY_WORD_GOAL_MAX
   ) {
     throw new LearnerSettingsServiceError("INTERNAL_ERROR", 500);
   }
@@ -61,12 +61,14 @@ function safeGoal(value: unknown): number {
 function toResponse(row: {
   learner_id: unknown;
   daily_new_word_limit: unknown;
-  daily_learning_goal: unknown;
+  daily_new_word_goal: unknown;
+  daily_review_word_goal: unknown;
 }): LearnerSettingsResponse {
   const parsed = learnerSettingsResponseSchema.safeParse({
     learnerId: String(row.learner_id),
     dailyNewWordLimit: safeLimit(Number(row.daily_new_word_limit)),
-    dailyLearningGoal: safeGoal(Number(row.daily_learning_goal))
+    dailyNewWordGoal: safeGoal(Number(row.daily_new_word_goal)),
+    dailyReviewWordGoal: safeGoal(Number(row.daily_review_word_goal))
   });
   if (!parsed.success) throw new LearnerSettingsServiceError("INTERNAL_ERROR", 500);
   return parsed.data;
@@ -92,7 +94,8 @@ export function createLearnerSettingsService(database: LearnerSettingsDatabase):
       }
       try {
         const result = await database.execute(sql`
-        SELECT id::text AS learner_id, daily_new_word_limit, daily_learning_goal
+        SELECT id::text AS learner_id, daily_new_word_limit,
+               daily_new_word_goal, daily_review_word_goal
           FROM "${sql.raw(APP_SCHEMA)}"."learner_profiles"
           WHERE id = ${ownership.learnerId}::uuid
           LIMIT 1
@@ -100,7 +103,8 @@ export function createLearnerSettingsService(database: LearnerSettingsDatabase):
         const [row] = rowsOf<{
           learner_id: unknown;
           daily_new_word_limit: unknown;
-          daily_learning_goal: unknown;
+          daily_new_word_goal: unknown;
+          daily_review_word_goal: unknown;
         }>(result);
         if (!row) throw new LearnerSettingsServiceError("INTERNAL_ERROR", 500);
         return toResponse(row);
@@ -120,20 +124,25 @@ export function createLearnerSettingsService(database: LearnerSettingsDatabase):
         if (settings.dailyNewWordLimit !== undefined) {
           updates.push(sql`daily_new_word_limit = ${settings.dailyNewWordLimit}::integer`);
         }
-        if (settings.dailyLearningGoal !== undefined) {
-          updates.push(sql`daily_learning_goal = ${settings.dailyLearningGoal}::integer`);
+        if (settings.dailyNewWordGoal !== undefined) {
+          updates.push(sql`daily_new_word_goal = ${settings.dailyNewWordGoal}::integer`);
+        }
+        if (settings.dailyReviewWordGoal !== undefined) {
+          updates.push(sql`daily_review_word_goal = ${settings.dailyReviewWordGoal}::integer`);
         }
         updates.push(sql`updated_at = now()`);
         const result = await database.execute(sql`
           UPDATE "${sql.raw(APP_SCHEMA)}"."learner_profiles"
           SET ${sql.join(updates, sql`, `)}
           WHERE id = ${ownership.learnerId}::uuid
-          RETURNING id::text AS learner_id, daily_new_word_limit, daily_learning_goal
+          RETURNING id::text AS learner_id, daily_new_word_limit,
+                    daily_new_word_goal, daily_review_word_goal
         `);
         const [row] = rowsOf<{
           learner_id: unknown;
           daily_new_word_limit: unknown;
-          daily_learning_goal: unknown;
+          daily_new_word_goal: unknown;
+          daily_review_word_goal: unknown;
         }>(result);
         if (!row) throw new LearnerSettingsServiceError("INTERNAL_ERROR", 500);
         return toResponse(row);

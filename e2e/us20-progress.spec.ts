@@ -44,7 +44,12 @@ async function mockProgressPage(page: import("@playwright/test").Page) {
       body: JSON.stringify({
         learnerId,
         localDate: "2026-09-20",
-        dailyGoal: { goal: 10, reviewedUnique: 7, remaining: 3, completed: false },
+        dailyGoal: {
+          newWords: { goal: 10, completed: 7, remaining: 3, percent: 70 },
+          reviews: { goal: 20, completed: 4, remaining: 16, percent: 20 },
+          overallPercent: 37,
+          completed: false
+        },
         streak: { currentStreak: 3, longestStreak: 7, todayActive: true }
       })
     });

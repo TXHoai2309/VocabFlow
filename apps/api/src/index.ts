@@ -436,7 +436,7 @@ export function createApp(dependencies: AppDependencies = {}) {
         const message = error.code === "HOUSEHOLD_ACCESS_DENIED"
           ? "Bạn không có quyền thay đổi learner này."
           : error.code === "INVALID_REQUEST"
-            ? "Giới hạn từ mới phải là số nguyên từ 0 đến 100."
+            ? "Mục tiêu và giới hạn từ mới phải là số nguyên trong phạm vi cho phép."
             : "Không thể lưu cài đặt learner lúc này. Vui lòng thử lại.";
         return c.json(errorEnvelope(error.code, message), error.status);
       }

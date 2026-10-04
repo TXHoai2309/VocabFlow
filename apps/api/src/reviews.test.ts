@@ -192,6 +192,11 @@ describe("US-07 review contracts and orchestration", () => {
     expect(atomicQuery.sql).toContain("'REVIEW'");
     expect(atomicQuery.sql).toContain("'EXERCISE_CORRECT'");
     expect(atomicQuery.sql).toContain("'DAILY_GOAL'");
+    expect(atomicQuery.sql).toContain("daily_new_word_goal");
+    expect(atomicQuery.sql).toContain("daily_review_word_goal");
+    expect(atomicQuery.sql).toContain("activity.previous_status = 'NEW'");
+    expect(atomicQuery.sql).toContain("activity.previous_status <> 'NEW'");
+    expect(atomicQuery.sql).not.toContain("daily_learning_goal");
     expect(atomicQuery.sql).toContain("ON CONFLICT (source_type, source_key) DO NOTHING");
     expect(atomicQuery.sql).toContain("ON CONFLICT (learner_id, vocabulary_id) DO NOTHING");
     expect(atomicQuery.sql).toContain("household_id =");

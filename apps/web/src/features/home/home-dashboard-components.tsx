@@ -153,6 +153,93 @@ export function DailyStudyHero({
   );
 }
 
+export function DailyGoalCard({
+  activity,
+  onRetry
+}: {
+  activity: HomeResource<ActivitySummaryResponse>;
+  onRetry: () => void;
+}) {
+  return (
+    <section className="home-card home-daily-goal-card" aria-labelledby="home-daily-goal-title">
+      <div className="home-card-heading">
+        <h2 id="home-daily-goal-title">Mục tiêu hôm nay</h2>
+      </div>
+      {activity.status === "loading" ? <SectionLoading label="Đang tải mục tiêu hôm nay" /> : null}
+      {activity.status === "error" ? (
+        <div className="home-inline-state" role="status">
+          <span>Chưa thể tải mục tiêu hôm nay.</span>
+          <button className="home-continue-retry" type="button" onClick={onRetry}>Thử lại</button>
+        </div>
+      ) : null}
+      {activity.status === "ready" ? (() => {
+        const { dailyGoal, streak } = activity.data;
+        const progressStyle = { "--daily-goal-progress": `${dailyGoal.overallPercent}%` } as CSSProperties;
+        return (
+          <>
+            <div className="home-daily-goal-content">
+              <div
+                className="home-daily-goal-ring"
+                role="progressbar"
+                aria-label="Tiến trình mục tiêu hôm nay"
+                aria-valuemin={0}
+                aria-valuemax={100}
+                aria-valuenow={dailyGoal.overallPercent}
+                aria-valuetext={`${dailyGoal.overallPercent} phần trăm; ${dailyGoal.newWords.completed} trên ${dailyGoal.newWords.goal} từ mới; ${dailyGoal.reviews.completed} trên ${dailyGoal.reviews.goal} từ ôn tập`}
+                style={progressStyle}
+              >
+                <strong>{dailyGoal.overallPercent}%</strong>
+                <span>{Math.min(dailyGoal.newWords.completed, dailyGoal.newWords.goal) + Math.min(dailyGoal.reviews.completed, dailyGoal.reviews.goal)} / {dailyGoal.newWords.goal + dailyGoal.reviews.goal} từ</span>
+              </div>
+              <div className="home-daily-goal-breakdown">
+                <DailyGoalRow label="Từ mới" progress={dailyGoal.newWords} />
+                <DailyGoalRow label="Ôn tập" progress={dailyGoal.reviews} />
+              </div>
+              <div className="home-daily-goal-streak" aria-label={`Chuỗi học hiện tại: ${streak.currentStreak} ngày liên tiếp`}>
+                <span aria-hidden="true">🔥</span>
+                <strong>{streak.currentStreak}</strong>
+                <small>ngày liên tiếp</small>
+              </div>
+            </div>
+            {dailyGoal.completed ? <p className="home-daily-goal-complete" role="status">✓ Hoàn thành mục tiêu hôm nay</p> : null}
+          </>
+        );
+      })() : null}
+    </section>
+  );
+}
+
+function DailyGoalRow({
+  label,
+  progress
+}: {
+  label: string;
+  progress: ActivitySummaryResponse["dailyGoal"]["newWords"];
+}) {
+  return (
+    <div className="home-daily-goal-row">
+      <div className="home-daily-goal-row-copy">
+        <span>{label}</span>
+        <strong>{progress.completed} / {progress.goal}</strong>
+      </div>
+      <div className="home-daily-goal-row-meta">
+        <div
+          className="home-daily-goal-track"
+          role="progressbar"
+          aria-label={`${label} hằng ngày`}
+          aria-valuemin={0}
+          aria-valuemax={progress.goal}
+          aria-valuenow={Math.min(progress.goal, progress.completed)}
+          aria-valuetext={`${progress.completed} trên ${progress.goal} từ; ${progress.percent}%`}
+        >
+          <span style={{ width: `${progress.percent}%` }} />
+        </div>
+        <small>{progress.percent}%</small>
+      </div>
+    </div>
+  );
+}
+
 function StatCard({
   label,
   icon,

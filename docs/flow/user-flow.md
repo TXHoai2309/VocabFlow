@@ -269,21 +269,23 @@ Mở Progress
 ↓
 GET activity-summary cho learner hiện tại
 ↙                                      ↘
-Daily Goal: unique reviewed / goal      Streak: current / longest
+New / review counts and composite goal Streak: current / longest
 ↓                                      ↓
-completed khi reviewedUnique >= goal    active day theo review_date local
+completed khi cả hai goal đạt           active day theo review_date local
 ```
 
-Daily goal và streak là hai chỉ báo độc lập. Daily goal đếm distinct
-`vocabularyId` từ review đã persist trong household-local date; reinforcement,
-retry và nhiều learning set không nhân đôi. Remembered và Forgotten đều tính,
-review lỗi không tính. Streak active khi ngày có ít nhất một review thành công;
-nếu hôm nay chưa học nhưng hôm qua active thì current streak vẫn tiếp tục trong
-ngày hiện tại. Cả hai giá trị được đọc lại từ server sau learner switch,
-reload, logout/login và reset progress.
+Daily goal và streak là hai chỉ báo độc lập. Goal từ mới đếm distinct
+`vocabularyId` đã chuyển khỏi `NEW`; goal ôn tập đếm distinct vocabulary có
+trạng thái trước đó không phải `NEW`. Cả hai lấy từ review đã persist trong
+household-local date; reinforcement, retry và nhiều learning set không nhân
+đôi. Remembered và Forgotten đều tính, review lỗi không tính. Streak active khi
+ngày có ít nhất một review thành công; nếu hôm nay chưa học nhưng hôm qua active
+thì current streak vẫn tiếp tục trong ngày hiện tại. Cả hai giá trị được đọc lại
+từ server sau learner switch, reload, logout/login và reset progress.
 
-Parent mở learner settings để xem/chỉnh Daily New Limit và Daily Learning Goal;
-hai setting không thay thế hoặc giới hạn lẫn nhau.
+Parent mở learner settings để xem/chỉnh Daily New Limit, mục tiêu từ mới và mục
+tiêu ôn tập. Hai goal là target UI/XP; Daily New Limit vẫn là hard cap của
+scheduler cho từ NEW và không giới hạn due reviews.
 
 # 6. Flow Acceptance
 

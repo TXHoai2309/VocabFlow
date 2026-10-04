@@ -232,4 +232,28 @@ describe("US-03 learner service", () => {
     expect(queries[0]?.sql).toContain("starter-vocabulary");
     expect(queries[0]?.sql).toContain("ON CONFLICT");
   });
+
+  it("creates a learner with default daily goals without requiring goal input", async () => {
+    const queries: Array<{ sql: string; params: unknown[] }> = [];
+    const execute = vi.fn()
+      .mockResolvedValueOnce({ rows: [{ household_id: learner.householdId }] })
+      .mockImplementationOnce(async (query) => {
+        queries.push(new PgDialect().sqlToQuery(query));
+        return { rows: [{
+          id: learner.id,
+          household_id: learner.householdId,
+          display_name: learner.displayName,
+          avatar_key: null,
+          enabled: true,
+          created_at: learner.createdAt,
+          updated_at: learner.updatedAt
+        }] };
+      });
+
+    await expect(createLearnerService({ execute }).create("parent-1", { displayName: "An" })).resolves.toMatchObject({ id: learner.id });
+    expect(queries[0]?.sql).toContain("daily_new_word_goal");
+    expect(queries[0]?.sql).toContain("daily_review_word_goal");
+    expect(queries[0]?.params).toContain(10);
+    expect(queries[0]?.params).toContain(20);
+  });
 });

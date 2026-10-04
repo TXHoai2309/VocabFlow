@@ -21,6 +21,7 @@ import { requestReviewQueue } from "../study/review-queue-client";
 import { requestLearnerLearningSets } from "../learning-sets/learning-sets-client";
 import {
   ContinueLearningCard,
+  DailyGoalCard,
   DailyStudyHero,
   DashboardErrorNotice,
   HomeDashboardHeader,
@@ -123,6 +124,7 @@ function HomeDashboard({ learner, parentName }: { learner: LearnerDto; parentNam
         <QuickStats queue={queue} summary={summary} activity={activity} />
         <div className="home-dashboard-grid">
           <div className="home-dashboard-column">
+            <DailyGoalCard activity={activity} onRetry={retryDashboard} />
             <ContinueLearningCard queue={queue} continuation={continueLearning} onRetry={retryContinueLearning} />
             <WeeklyProgressCard resource={history} />
           </div>
