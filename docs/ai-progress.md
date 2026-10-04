@@ -2141,3 +2141,28 @@ registration boundary before feature implementation.
   decision, ID allocation, learner assignment change, Cloudinary operation, or
   Study UI file change occurred. The release report is
   `vocabflow-dataset/reports/canary-release-2.1.0-report.md`.
+
+## 2026-10-04 — Master Vocabulary Dataset V2 Phase 2F.2
+
+- Materialized 100 pinned candidate decisions in the offline
+  `hybrid-100-editorial-draft` workspace: 2 existing Sense reuses, 3 new
+  Senses on existing Lexemes, and 95 new Senses on 84 new Lexemes. The 98 new
+  Senses each have project-authored English definitions/examples and
+  Vietnamese translations; all records remain DRAFT.
+- Reviewed five existing-Master collisions, 12 polysemy groups, and ten
+  4600-only meanings. Stable UUIDv7 identity registry contains 574 new IDs;
+  rerun allocation is zero and the draft package fingerprint is
+  `ae0c6877f5f91e7225dcfa28c8fb98daed6ae235302b7e5daa19406c7b9ed152`.
+- Source exact-match and eight-token overlap checks pass. No source text or
+  media was reused. Source/media rights remain unverified; CEFR stays in
+  editorial evidence and no Classification or Provenance records were added.
+- Canonical Master, root dataset manifest, and canary release are unchanged.
+  The development canary remains verified. No runtime bulk import has begun;
+  there were no database writes, migrations, production connections, or media
+  operations. Owner/editor review and any promotion decision are next.
+- Root Master validator PASS (0 errors, 0 warnings, 1 informational DRAFT
+  issue); root typecheck PASS; focused Phase 2F.2 tests PASS (10/10); focused
+  ESLint and `git diff --check` PASS. Full repository ESLint reports one error
+  in the unrelated, uncommitted `apps/web/src/features/learners/weak-words-page.tsx`
+  effect at line 111. The local Node runtime is 22.19.0; the package engine
+  requests 22.23.2.

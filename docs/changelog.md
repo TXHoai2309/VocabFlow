@@ -1370,3 +1370,19 @@ US-07 remains not started.
 - Added deterministic owner review, subset release plan, and separate unresolved/no-target reconciliation candidate artifacts. The canonical manifest and human-owned reconciliation remain unchanged.
 - Audited existing import, enrichment, curation and read paths; documented the missing dedicated staging target and recommended a later isolated, explicitly configured canary branch.
 - No database, Neon branch, learner/review, production, or media mutation occurred.
+
+## 2026-10-04 — Master Vocabulary Dataset V2 Phase 2F.2 editorial draft
+
+- Added an offline two-pass authoring workspace for the pinned 100-candidate
+  proof and 98 project-authored DRAFT Senses, with 84 DRAFT Lexemes.
+- Added stable UUIDv7 identity allocation, a tracked identity registry,
+  canonical-schema and cross-file validation, deterministic package
+  fingerprinting, local-cache source-overlap audit, and focused regression
+  tests. The five identity collisions and 12 multi-sense groups are recorded
+  for editorial review.
+- The canonical Master, root dataset manifest, canary release, runtime, and
+  database remain unchanged. Source/media rights are unverified; no import,
+  migration, classification, provenance, or media operation occurred.
+- Root Master validation, typecheck, focused tests, and `git diff --check`
+  pass. Full-repository ESLint is blocked by one unrelated uncommitted
+  weak-words page effect warning.

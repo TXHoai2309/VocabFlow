@@ -1,0 +1,70 @@
+{
+  "masterSenseId": "01a1070c-7c58-76b5-a2ab-a764716f4128",
+  "masterLexemeId": "01a1070c-7c58-76b5-a2ab-a268368f74c1",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "human losses"
+    },
+    {
+      "language": "vi",
+      "text": "số người thiệt mạng hoặc bị thương"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "NOUN",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c58-76b5-a2ab-a92d0941a240",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-a764716f4128",
+      "language": "vi",
+      "text": "thiệt hại về người",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c58-76b5-a2ab-aee29974043c",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-a764716f4128",
+      "language": "en",
+      "text": "The number of people killed or injured by an accident or disaster.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c58-76b5-a2ab-b0a4d18ff995",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-a764716f4128",
+      "language": "en",
+      "text": "The storm's human toll became clear by morning.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c58-76b5-a2ab-b4a09d5346a9",
+          "exampleId": "01a1070c-7c58-76b5-a2ab-b0a4d18ff995",
+          "language": "vi",
+          "text": "Đến sáng, số người bị ảnh hưởng bởi cơn bão đã được xác định.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT"
+        }
+      ],
+      "status": "DRAFT"
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "DRAFT",
+  "createdAt": "2026-10-04T13:13:41.208Z",
+  "updatedAt": "2026-10-04T13:13:41.208Z"
+}

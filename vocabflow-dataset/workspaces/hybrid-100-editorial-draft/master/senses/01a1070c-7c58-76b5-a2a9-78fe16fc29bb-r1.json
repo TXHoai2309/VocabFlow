@@ -1,0 +1,70 @@
+{
+  "masterSenseId": "01a1070c-7c58-76b5-a2a9-78fe16fc29bb",
+  "masterLexemeId": "01a1070c-7c58-76b5-a2a9-77c0b32d5958",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "move off the planned course"
+    },
+    {
+      "language": "vi",
+      "text": "lệch khỏi lộ trình dự kiến"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "VERB",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c58-76b5-a2a9-7c60087dbc31",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-78fe16fc29bb",
+      "language": "vi",
+      "text": "đi chệch",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c58-76b5-a2a9-81db49cb9159",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-78fe16fc29bb",
+      "language": "en",
+      "text": "To move away from a planned route, direction, or standard.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c58-76b5-a2a9-87e499627a33",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-78fe16fc29bb",
+      "language": "en",
+      "text": "The hikers deviated from the marked path to avoid flooding.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c58-76b5-a2a9-8baa17c36a04",
+          "exampleId": "01a1070c-7c58-76b5-a2a9-87e499627a33",
+          "language": "vi",
+          "text": "Những người đi bộ rời khỏi lối mòn được đánh dấu để tránh ngập lụt.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT"
+        }
+      ],
+      "status": "DRAFT"
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "DRAFT",
+  "createdAt": "2026-10-04T13:13:41.208Z",
+  "updatedAt": "2026-10-04T13:13:41.208Z"
+}

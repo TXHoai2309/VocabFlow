@@ -1,0 +1,70 @@
+{
+  "masterSenseId": "01a1070c-7c57-7676-9acf-e2bf85a21c08",
+  "masterLexemeId": "01a1070c-7c57-7676-9acf-dec187aa6654",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "recognized by people"
+    },
+    {
+      "language": "vi",
+      "text": "được nhiều người biết đến"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "ADJECTIVE",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c57-7676-9acf-e4a258ad2b66",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-e2bf85a21c08",
+      "language": "vi",
+      "text": "được biết đến",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c57-7676-9acf-ebceddf575f5",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-e2bf85a21c08",
+      "language": "en",
+      "text": "Recognized or familiar to people because they have heard about it.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c57-7676-9acf-ed8735c39a93",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-e2bf85a21c08",
+      "language": "en",
+      "text": "The village is known for its quiet lakeside market.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c57-7676-9acf-f0e2f6bdcfe7",
+          "exampleId": "01a1070c-7c57-7676-9acf-ed8735c39a93",
+          "language": "vi",
+          "text": "Ngôi làng được biết đến nhờ khu chợ yên bình bên hồ.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT"
+        }
+      ],
+      "status": "DRAFT"
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "DRAFT",
+  "createdAt": "2026-10-04T13:13:41.207Z",
+  "updatedAt": "2026-10-04T13:13:41.207Z"
+}

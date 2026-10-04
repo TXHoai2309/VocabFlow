@@ -1,0 +1,70 @@
+{
+  "masterSenseId": "01a1070c-7c57-7676-9ace-93aa39952372",
+  "masterLexemeId": "01a1070c-7c57-7676-9ace-8e851f44ddab",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "verify as true"
+    },
+    {
+      "language": "vi",
+      "text": "xác nhận là đúng"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "VERB",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c57-7676-9ace-9741795b2500",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-93aa39952372",
+      "language": "vi",
+      "text": "xác nhận",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c57-7676-9ace-9aee8a7ec75d",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-93aa39952372",
+      "language": "en",
+      "text": "To show that information or a plan is correct and certain.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c57-7676-9ace-9d744e7950eb",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-93aa39952372",
+      "language": "en",
+      "text": "Please confirm the meeting time by replying to this message.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c57-7676-9ace-a23cd79a7cd4",
+          "exampleId": "01a1070c-7c57-7676-9ace-9d744e7950eb",
+          "language": "vi",
+          "text": "Vui lòng xác nhận giờ họp bằng cách trả lời tin nhắn này.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT"
+        }
+      ],
+      "status": "DRAFT"
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "DRAFT",
+  "createdAt": "2026-10-04T13:13:41.207Z",
+  "updatedAt": "2026-10-04T13:13:41.207Z"
+}

@@ -1,0 +1,70 @@
+{
+  "masterSenseId": "01a1070c-7c59-726e-88d5-589ec0261ad8",
+  "masterLexemeId": "01a1070c-7c59-726e-88d5-5490bd22d60b",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "inflated flexible bag"
+    },
+    {
+      "language": "vi",
+      "text": "quả bóng bơm hơi"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "NOUN",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c59-726e-88d5-5ebc9d23305f",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-589ec0261ad8",
+      "language": "vi",
+      "text": "bóng bay",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c59-726e-88d5-61fb2ad6071f",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-589ec0261ad8",
+      "language": "en",
+      "text": "A flexible bag that expands when filled with air or another gas.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c59-726e-88d5-66c6eb9199d5",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-589ec0261ad8",
+      "language": "en",
+      "text": "The red balloon floated into the trees.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c59-726e-88d5-6a6dfe21a87c",
+          "exampleId": "01a1070c-7c59-726e-88d5-66c6eb9199d5",
+          "language": "vi",
+          "text": "Quả bóng bay màu đỏ trôi vào những tán cây.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT"
+        }
+      ],
+      "status": "DRAFT"
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "DRAFT",
+  "createdAt": "2026-10-04T13:13:41.209Z",
+  "updatedAt": "2026-10-04T13:13:41.209Z"
+}

@@ -1,0 +1,70 @@
+{
+  "masterSenseId": "01a1070c-7c59-726e-88d5-700f2c9a47a0",
+  "masterLexemeId": "01a1070c-7c59-726e-88d5-6c122e5d6f04",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "recovery break"
+    },
+    {
+      "language": "vi",
+      "text": "khoảng nghỉ để hồi sức"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "NOUN",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c59-726e-88d5-75237a58a775",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-700f2c9a47a0",
+      "language": "vi",
+      "text": "sự nghỉ ngơi",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c59-726e-88d5-7ad634b9ca5c",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-700f2c9a47a0",
+      "language": "en",
+      "text": "A period when you stop working or moving to recover your energy.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c59-726e-88d5-7d1fc08f575f",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-700f2c9a47a0",
+      "language": "en",
+      "text": "After the long walk, we sat down for a short rest.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c59-726e-88d5-8029d0750268",
+          "exampleId": "01a1070c-7c59-726e-88d5-7d1fc08f575f",
+          "language": "vi",
+          "text": "Sau chuyến đi bộ dài, chúng tôi ngồi nghỉ một lát.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT"
+        }
+      ],
+      "status": "DRAFT"
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "DRAFT",
+  "createdAt": "2026-10-04T13:13:41.209Z",
+  "updatedAt": "2026-10-04T13:13:41.209Z"
+}

@@ -1,0 +1,70 @@
+{
+  "masterSenseId": "01a1070c-7c59-726e-88d4-388175c26836",
+  "masterLexemeId": "01a1070c-7c59-726e-88d4-3497fb03486b",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "by way of"
+    },
+    {
+      "language": "vi",
+      "text": "thông qua"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "PREPOSITION",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c59-726e-88d4-3da19a592696",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-388175c26836",
+      "language": "vi",
+      "text": "thông qua",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c59-726e-88d4-4072f40e0e5c",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-388175c26836",
+      "language": "en",
+      "text": "By going through a particular place or using a particular method.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c59-726e-88d4-47534636819d",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-388175c26836",
+      "language": "en",
+      "text": "We sent the signed form via the school office.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c59-726e-88d4-4aa6fd4f8c42",
+          "exampleId": "01a1070c-7c59-726e-88d4-47534636819d",
+          "language": "vi",
+          "text": "Chúng tôi gửi biểu mẫu đã ký thông qua văn phòng trường.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT"
+        }
+      ],
+      "status": "DRAFT"
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "DRAFT",
+  "createdAt": "2026-10-04T13:13:41.209Z",
+  "updatedAt": "2026-10-04T13:13:41.209Z"
+}

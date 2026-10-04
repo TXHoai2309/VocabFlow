@@ -1,0 +1,70 @@
+{
+  "masterSenseId": "01a1070c-7c59-726e-88d6-9edb547352aa",
+  "masterLexemeId": "01a1070c-7c59-726e-88d6-988495690810",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "extend over an area"
+    },
+    {
+      "language": "vi",
+      "text": "lan rộng khắp một vùng"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "VERB",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c59-726e-88d6-a386acedfce4",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-9edb547352aa",
+      "language": "vi",
+      "text": "lan rộng",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c59-726e-88d6-a7f477f8802b",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-9edb547352aa",
+      "language": "en",
+      "text": "To extend over a larger area or reach more places over time.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c59-726e-88d6-a9f1805e3470",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-9edb547352aa",
+      "language": "en",
+      "text": "Dark clouds spread across the valley before sunset.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c59-726e-88d6-ac264da27a07",
+          "exampleId": "01a1070c-7c59-726e-88d6-a9f1805e3470",
+          "language": "vi",
+          "text": "Mây đen lan khắp thung lũng trước khi mặt trời lặn.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT"
+        }
+      ],
+      "status": "DRAFT"
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "DRAFT",
+  "createdAt": "2026-10-04T13:13:41.209Z",
+  "updatedAt": "2026-10-04T13:13:41.209Z"
+}

@@ -1,0 +1,70 @@
+{
+  "masterSenseId": "01a1070c-7c58-76b5-a2a9-0030193008ca",
+  "masterLexemeId": "01a1070c-7c58-76b5-a2a8-fff9a54fdf74",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "turn around an axis"
+    },
+    {
+      "language": "vi",
+      "text": "xoay quanh trục"
+    }
+  ],
+  "senseOrder": 2,
+  "partOfSpeechCode": "VERB",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c58-76b5-a2a9-045c963c38c5",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-0030193008ca",
+      "language": "vi",
+      "text": "xoay",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c58-76b5-a2a9-09c7224a100d",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-0030193008ca",
+      "language": "en",
+      "text": "To turn around a central point while remaining in the same general place.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c58-76b5-a2a9-0cf46c40843c",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-0030193008ca",
+      "language": "en",
+      "text": "The display rotates slowly above the entrance.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c58-76b5-a2a9-1163ed19aeb0",
+          "exampleId": "01a1070c-7c58-76b5-a2a9-0cf46c40843c",
+          "language": "vi",
+          "text": "Màn hình xoay chậm phía trên lối vào.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT"
+        }
+      ],
+      "status": "DRAFT"
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "DRAFT",
+  "createdAt": "2026-10-04T13:13:41.208Z",
+  "updatedAt": "2026-10-04T13:13:41.208Z"
+}

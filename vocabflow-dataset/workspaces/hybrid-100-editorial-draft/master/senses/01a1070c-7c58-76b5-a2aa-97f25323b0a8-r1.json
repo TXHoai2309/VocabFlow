@@ -1,0 +1,70 @@
+{
+  "masterSenseId": "01a1070c-7c58-76b5-a2aa-97f25323b0a8",
+  "masterLexemeId": "01a1070c-7c58-76b5-a2aa-9091f194b958",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "severe and intense"
+    },
+    {
+      "language": "vi",
+      "text": "nghiêm trọng và dữ dội"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "ADJECTIVE",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c58-76b5-a2aa-9abf0b77e3e2",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-97f25323b0a8",
+      "language": "vi",
+      "text": "cấp tính",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c58-76b5-a2aa-9d0a64c16040",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-97f25323b0a8",
+      "language": "en",
+      "text": "Very severe and intense, often describing sudden pain or illness.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c58-76b5-a2aa-a3617f42c176",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-97f25323b0a8",
+      "language": "en",
+      "text": "He went to the clinic with acute stomach pain.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c58-76b5-a2aa-a790ccf27cf2",
+          "exampleId": "01a1070c-7c58-76b5-a2aa-a3617f42c176",
+          "language": "vi",
+          "text": "Anh đến phòng khám vì cơn đau bụng dữ dội.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT"
+        }
+      ],
+      "status": "DRAFT"
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "DRAFT",
+  "createdAt": "2026-10-04T13:13:41.208Z",
+  "updatedAt": "2026-10-04T13:13:41.208Z"
+}

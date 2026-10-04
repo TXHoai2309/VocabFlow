@@ -42,6 +42,7 @@
     "scan:master-vocab-v2-development-reconciliation": "tsx scripts/master-vocabulary-v2-development-reconciliation-scan.ts",
     "verify:master-vocab-v2-post-apply": "tsx scripts/master-vocabulary-v2-post-apply-verification.ts",
     "source-proof:master-vocab-v2-hybrid-100": "python scripts/master-vocabulary-v2-hybrid-source-proof.py",
+    "vocab:hybrid-100-editorial": "tsx scripts/hybrid-100-editorial-draft.ts",
     "test:master-vocab-v2-hybrid-source-proof": "python scripts/master-vocabulary-v2-hybrid-source-proof.test.py",
     "prepare:master-vocab-v2-canary": "tsx scripts/master-vocabulary-v2-canary-preparation.ts",
     "dataset:prepare-canary-v2": "tsx scripts/master-vocabulary-v2-canary-release-builder.ts",
@@ -93,6 +94,7 @@
     "tailwindcss": "4.3.3",
     "tsx": "4.23.13",
     "typescript": "5.9.2",
+    "uuid": "14.0.2",
     "vercel": "59.15.1",
     "vite": "8.2.2",
     "vitest": "5.0.0"

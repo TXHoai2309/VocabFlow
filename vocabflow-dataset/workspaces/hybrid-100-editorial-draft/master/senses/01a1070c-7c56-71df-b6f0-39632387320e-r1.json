@@ -1,0 +1,70 @@
+{
+  "masterSenseId": "01a1070c-7c56-71df-b6f0-39632387320e",
+  "masterLexemeId": "01a1070c-7c56-71df-b6f0-3750741bcfb0",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "bring people together"
+    },
+    {
+      "language": "vi",
+      "text": "tập hợp mọi người"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "VERB",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c56-71df-b6f0-3c6124ee48f2",
+      "masterSenseId": "01a1070c-7c56-71df-b6f0-39632387320e",
+      "language": "vi",
+      "text": "tập hợp",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c56-71df-b6f0-41c716130053",
+      "masterSenseId": "01a1070c-7c56-71df-b6f0-39632387320e",
+      "language": "en",
+      "text": "To bring people together for a shared public purpose or event.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c56-71df-b6f0-46eb47479c84",
+      "masterSenseId": "01a1070c-7c56-71df-b6f0-39632387320e",
+      "language": "en",
+      "text": "The organizers rallied neighbors to protect the park.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c56-71df-b6f0-48568c92af92",
+          "exampleId": "01a1070c-7c56-71df-b6f0-46eb47479c84",
+          "language": "vi",
+          "text": "Ban tổ chức tập hợp hàng xóm để bảo vệ công viên.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT"
+        }
+      ],
+      "status": "DRAFT"
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "DRAFT",
+  "createdAt": "2026-10-04T13:13:41.206Z",
+  "updatedAt": "2026-10-04T13:13:41.206Z"
+}

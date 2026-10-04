@@ -1,0 +1,70 @@
+{
+  "masterSenseId": "01a1070c-7c57-7676-9ace-63a7042782dc",
+  "masterLexemeId": "01a1070c-7c57-7676-9ace-5cc488b97e59",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "abnormal cell growth"
+    },
+    {
+      "language": "vi",
+      "text": "khối tế bào bất thường"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "NOUN",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c57-7676-9ace-6482cd2c238d",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-63a7042782dc",
+      "language": "vi",
+      "text": "khối u",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c57-7676-9ace-6a63d795ec0a",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-63a7042782dc",
+      "language": "en",
+      "text": "A mass of cells that grows abnormally in a person's body.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c57-7676-9ace-6f90e9aaa247",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-63a7042782dc",
+      "language": "en",
+      "text": "The scan showed a small tumor near the patient's kidney.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c57-7676-9ace-7293614220c4",
+          "exampleId": "01a1070c-7c57-7676-9ace-6f90e9aaa247",
+          "language": "vi",
+          "text": "Kết quả chụp cho biết người bệnh có khối u nhỏ ở sát thận.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT"
+        }
+      ],
+      "status": "DRAFT"
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "DRAFT",
+  "createdAt": "2026-10-04T13:13:41.207Z",
+  "updatedAt": "2026-10-04T13:13:41.207Z"
+}

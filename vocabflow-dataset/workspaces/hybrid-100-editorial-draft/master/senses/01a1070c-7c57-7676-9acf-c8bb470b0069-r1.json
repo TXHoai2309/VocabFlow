@@ -1,0 +1,70 @@
+{
+  "masterSenseId": "01a1070c-7c57-7676-9acf-c8bb470b0069",
+  "masterLexemeId": "01a1070c-7c57-7676-9acf-c627b437efa6",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "at the back"
+    },
+    {
+      "language": "vi",
+      "text": "ở phía sau"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "ADJECTIVE",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c57-7676-9acf-ce74ef8b08c3",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-c8bb470b0069",
+      "language": "vi",
+      "text": "phía sau",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c57-7676-9acf-d0e095fa38a3",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-c8bb470b0069",
+      "language": "en",
+      "text": "Located at the back of something rather than at its front.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c57-7676-9acf-d6d6fbfdcd44",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-c8bb470b0069",
+      "language": "en",
+      "text": "We entered through the rear door beside the kitchen.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c57-7676-9acf-da2df3c70c63",
+          "exampleId": "01a1070c-7c57-7676-9acf-d6d6fbfdcd44",
+          "language": "vi",
+          "text": "Chúng tôi đi vào qua cửa sau cạnh nhà bếp.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT"
+        }
+      ],
+      "status": "DRAFT"
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "DRAFT",
+  "createdAt": "2026-10-04T13:13:41.207Z",
+  "updatedAt": "2026-10-04T13:13:41.207Z"
+}

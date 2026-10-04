@@ -1,0 +1,70 @@
+{
+  "masterSenseId": "01a1070c-7c59-726e-88d5-882b36643f4e",
+  "masterLexemeId": "01a1070c-7c59-726e-88d5-87f1459517e2",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "be on your feet"
+    },
+    {
+      "language": "vi",
+      "text": "đứng trên chân"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "VERB",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c59-726e-88d5-8e27890ed8b8",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-882b36643f4e",
+      "language": "vi",
+      "text": "đứng",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c59-726e-88d5-92915b51f4e0",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-882b36643f4e",
+      "language": "en",
+      "text": "To be upright on your feet rather than sitting or lying down.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c59-726e-88d5-96831819bdcb",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-882b36643f4e",
+      "language": "en",
+      "text": "Please stand near the window while I adjust the light.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c59-726e-88d5-99b0e0c6bbbc",
+          "exampleId": "01a1070c-7c59-726e-88d5-96831819bdcb",
+          "language": "vi",
+          "text": "Vui lòng đứng gần cửa sổ trong khi tôi chỉnh ánh sáng.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT"
+        }
+      ],
+      "status": "DRAFT"
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "DRAFT",
+  "createdAt": "2026-10-04T13:13:41.209Z",
+  "updatedAt": "2026-10-04T13:13:41.209Z"
+}

@@ -1,0 +1,70 @@
+{
+  "masterSenseId": "01a1070c-7c5a-7542-a092-d1d73dd0f634",
+  "masterLexemeId": "01a1070c-7c57-7676-9ace-eeab790b4231",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "allow something to happen"
+    },
+    {
+      "language": "vi",
+      "text": "để một việc xảy ra"
+    }
+  ],
+  "senseOrder": 2,
+  "partOfSpeechCode": "VERB",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c5a-7542-a092-d5b2f0c89ad2",
+      "masterSenseId": "01a1070c-7c5a-7542-a092-d1d73dd0f634",
+      "language": "vi",
+      "text": "để",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c5a-7542-a092-d9009c0c6e1e",
+      "masterSenseId": "01a1070c-7c5a-7542-a092-d1d73dd0f634",
+      "language": "en",
+      "text": "To allow an action or event to happen without trying to stop it.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c5a-7542-a092-de1c1d5d6ead",
+      "masterSenseId": "01a1070c-7c5a-7542-a092-d1d73dd0f634",
+      "language": "en",
+      "text": "The open gate let the dog wander into the garden.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c5a-7542-a092-e14243ae1fdf",
+          "exampleId": "01a1070c-7c5a-7542-a092-de1c1d5d6ead",
+          "language": "vi",
+          "text": "Cánh cổng mở khiến con chó đi lang thang vào khu vườn.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT"
+        }
+      ],
+      "status": "DRAFT"
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "DRAFT",
+  "createdAt": "2026-10-04T13:13:41.210Z",
+  "updatedAt": "2026-10-04T13:13:41.210Z"
+}

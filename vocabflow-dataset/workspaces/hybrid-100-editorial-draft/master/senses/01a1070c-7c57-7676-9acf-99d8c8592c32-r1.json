@@ -1,0 +1,70 @@
+{
+  "masterSenseId": "01a1070c-7c57-7676-9acf-99d8c8592c32",
+  "masterLexemeId": "01a1070c-7c57-7676-9acf-9752b551d0a1",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "straight to a place"
+    },
+    {
+      "language": "vi",
+      "text": "đi thẳng tới nơi"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "ADVERB",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c57-7676-9acf-9cf36c6e12da",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-99d8c8592c32",
+      "language": "vi",
+      "text": "thẳng",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c57-7676-9acf-a311f1240279",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-99d8c8592c32",
+      "language": "en",
+      "text": "By the shortest route, without stopping or changing direction.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c57-7676-9acf-a49ab1389fdb",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-99d8c8592c32",
+      "language": "en",
+      "text": "Walk direct to the front desk when you arrive.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c57-7676-9acf-aa006eacba3d",
+          "exampleId": "01a1070c-7c57-7676-9acf-a49ab1389fdb",
+          "language": "vi",
+          "text": "Khi đến nơi, hãy đi thẳng tới quầy lễ tân.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT"
+        }
+      ],
+      "status": "DRAFT"
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "DRAFT",
+  "createdAt": "2026-10-04T13:13:41.207Z",
+  "updatedAt": "2026-10-04T13:13:41.207Z"
+}

@@ -1,0 +1,70 @@
+{
+  "masterSenseId": "01a1070c-7c59-726e-88d5-13e0fb40de8c",
+  "masterLexemeId": "01a1070c-7c59-726e-88d5-0f26eea743d4",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "cause worry"
+    },
+    {
+      "language": "vi",
+      "text": "gây lo lắng"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "VERB",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c59-726e-88d5-15d698fe792c",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-13e0fb40de8c",
+      "language": "vi",
+      "text": "làm lo ngại",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c59-726e-88d5-187d8a3b6fff",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-13e0fb40de8c",
+      "language": "en",
+      "text": "To make someone feel worried about a possible problem or risk.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c59-726e-88d5-1d26fb7cab18",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-13e0fb40de8c",
+      "language": "en",
+      "text": "The sudden drop in sales concerned the whole team.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c59-726e-88d5-21ced10b6aae",
+          "exampleId": "01a1070c-7c59-726e-88d5-1d26fb7cab18",
+          "language": "vi",
+          "text": "Doanh số giảm đột ngột khiến cả nhóm lo ngại.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT"
+        }
+      ],
+      "status": "DRAFT"
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "DRAFT",
+  "createdAt": "2026-10-04T13:13:41.209Z",
+  "updatedAt": "2026-10-04T13:13:41.209Z"
+}

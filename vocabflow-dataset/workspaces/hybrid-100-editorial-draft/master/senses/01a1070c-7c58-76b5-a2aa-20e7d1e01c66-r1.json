@@ -1,0 +1,70 @@
+{
+  "masterSenseId": "01a1070c-7c58-76b5-a2aa-20e7d1e01c66",
+  "masterLexemeId": "01a1070c-7c58-76b5-a2aa-1c3612353f47",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "related to business"
+    },
+    {
+      "language": "vi",
+      "text": "thuộc hoạt động kinh doanh"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "ADJECTIVE",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c58-76b5-a2aa-2467e42d0076",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-20e7d1e01c66",
+      "language": "vi",
+      "text": "thuộc thương mại",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c58-76b5-a2aa-28c952c1af3b",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-20e7d1e01c66",
+      "language": "en",
+      "text": "Connected with buying and selling goods or providing services for profit.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c58-76b5-a2aa-2e4c24423172",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-20e7d1e01c66",
+      "language": "en",
+      "text": "The street has become a busy commercial district.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c58-76b5-a2aa-3088a8b4755a",
+          "exampleId": "01a1070c-7c58-76b5-a2aa-2e4c24423172",
+          "language": "vi",
+          "text": "Con phố đã trở thành một khu thương mại sầm uất.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT"
+        }
+      ],
+      "status": "DRAFT"
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "DRAFT",
+  "createdAt": "2026-10-04T13:13:41.208Z",
+  "updatedAt": "2026-10-04T13:13:41.208Z"
+}

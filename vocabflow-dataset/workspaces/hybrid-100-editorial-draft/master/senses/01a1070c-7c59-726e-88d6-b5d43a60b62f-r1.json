@@ -1,0 +1,70 @@
+{
+  "masterSenseId": "01a1070c-7c59-726e-88d6-b5d43a60b62f",
+  "masterLexemeId": "01a1070c-7c59-726e-88d6-b3d4934f8adb",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "aquatic animal display place"
+    },
+    {
+      "language": "vi",
+      "text": "nơi nuôi động vật thủy sinh"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "NOUN",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c59-726e-88d6-bacbf80f2167",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-b5d43a60b62f",
+      "language": "vi",
+      "text": "thủy cung",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c59-726e-88d6-bd94d454a08f",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-b5d43a60b62f",
+      "language": "en",
+      "text": "A public place where fish and other water animals are kept for people to see.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c59-726e-88d6-c137902d8997",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-b5d43a60b62f",
+      "language": "en",
+      "text": "The aquarium opened a new tank for rescued sea turtles.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c59-726e-88d6-c6c85923c760",
+          "exampleId": "01a1070c-7c59-726e-88d6-c137902d8997",
+          "language": "vi",
+          "text": "Thủy cung mở một bể mới dành cho những con rùa biển được cứu hộ.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT"
+        }
+      ],
+      "status": "DRAFT"
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "DRAFT",
+  "createdAt": "2026-10-04T13:13:41.209Z",
+  "updatedAt": "2026-10-04T13:13:41.209Z"
+}

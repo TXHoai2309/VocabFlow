@@ -1,0 +1,70 @@
+{
+  "masterSenseId": "01a1070c-7c57-7676-9acf-6a88ac566599",
+  "masterLexemeId": "01a1070c-7c57-7676-9acf-648a5a63fad8",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "regular behavior"
+    },
+    {
+      "language": "vi",
+      "text": "thói quen thường ngày"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "NOUN",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c57-7676-9acf-6c82deb7273f",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-6a88ac566599",
+      "language": "vi",
+      "text": "thói quen",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c57-7676-9acf-73c16ebb47d4",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-6a88ac566599",
+      "language": "en",
+      "text": "Something that you do regularly, often without thinking about it.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c57-7676-9acf-75861fe4502b",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-6a88ac566599",
+      "language": "en",
+      "text": "Reading before bed became a relaxing habit for him.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c57-7676-9acf-7bbf1c89bb63",
+          "exampleId": "01a1070c-7c57-7676-9acf-75861fe4502b",
+          "language": "vi",
+          "text": "Đọc sách trước khi ngủ trở thành thói quen thư giãn của anh ấy.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT"
+        }
+      ],
+      "status": "DRAFT"
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "DRAFT",
+  "createdAt": "2026-10-04T13:13:41.207Z",
+  "updatedAt": "2026-10-04T13:13:41.207Z"
+}

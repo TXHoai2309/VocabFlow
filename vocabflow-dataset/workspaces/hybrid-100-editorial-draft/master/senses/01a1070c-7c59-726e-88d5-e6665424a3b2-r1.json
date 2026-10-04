@@ -1,0 +1,70 @@
+{
+  "masterSenseId": "01a1070c-7c59-726e-88d5-e6665424a3b2",
+  "masterLexemeId": "01a1070c-7c59-726e-88d5-e15c28d3dba5",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "pay borrowed money back"
+    },
+    {
+      "language": "vi",
+      "text": "hoàn trả tiền đã vay"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "VERB",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c59-726e-88d5-e86efd189959",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-e6665424a3b2",
+      "language": "vi",
+      "text": "hoàn trả",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c59-726e-88d5-ec75fe81141f",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-e6665424a3b2",
+      "language": "en",
+      "text": "To give money back to the person or organization that lent it.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c59-726e-88d5-f11004fd7147",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-e6665424a3b2",
+      "language": "en",
+      "text": "I will repay the loan in small monthly amounts.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c59-726e-88d5-f45ef1001964",
+          "exampleId": "01a1070c-7c59-726e-88d5-f11004fd7147",
+          "language": "vi",
+          "text": "Tôi sẽ hoàn trả khoản vay theo từng khoản nhỏ hằng tháng.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT"
+        }
+      ],
+      "status": "DRAFT"
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "DRAFT",
+  "createdAt": "2026-10-04T13:13:41.209Z",
+  "updatedAt": "2026-10-04T13:13:41.209Z"
+}

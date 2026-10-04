@@ -1,0 +1,70 @@
+{
+  "masterSenseId": "01a1070c-7c58-76b5-a2aa-aeb83963a729",
+  "masterLexemeId": "01a1070c-7c58-76b5-a2aa-aa2829a51609",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "organized people list"
+    },
+    {
+      "language": "vi",
+      "text": "danh sách nhân sự"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "NOUN",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c58-76b5-a2aa-b2890ff93a33",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-aeb83963a729",
+      "language": "vi",
+      "text": "danh sách",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c58-76b5-a2aa-b5696b71512c",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-aeb83963a729",
+      "language": "en",
+      "text": "An official list of people who belong to a team or group.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c58-76b5-a2aa-ba0fcaeee5e5",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-aeb83963a729",
+      "language": "en",
+      "text": "The coach posted the final roster beside the gym entrance.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c58-76b5-a2aa-be1290862dfb",
+          "exampleId": "01a1070c-7c58-76b5-a2aa-ba0fcaeee5e5",
+          "language": "vi",
+          "text": "Huấn luyện viên dán danh sách chính thức cạnh lối vào phòng tập.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT"
+        }
+      ],
+      "status": "DRAFT"
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "DRAFT",
+  "createdAt": "2026-10-04T13:13:41.208Z",
+  "updatedAt": "2026-10-04T13:13:41.208Z"
+}

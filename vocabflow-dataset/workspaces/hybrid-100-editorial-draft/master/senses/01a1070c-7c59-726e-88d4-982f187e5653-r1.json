@@ -1,0 +1,70 @@
+{
+  "masterSenseId": "01a1070c-7c59-726e-88d4-982f187e5653",
+  "masterLexemeId": "01a1070c-7c59-726e-88d4-9602c99a72a2",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "screen symbol"
+    },
+    {
+      "language": "vi",
+      "text": "biểu tượng trên màn hình"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "NOUN",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c59-726e-88d4-9ce75b38e074",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-982f187e5653",
+      "language": "vi",
+      "text": "biểu tượng",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c59-726e-88d4-a2bf3a01d5f9",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-982f187e5653",
+      "language": "en",
+      "text": "A small picture on a screen that represents a program, action, or item.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c59-726e-88d4-a5fcc25bffa6",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-982f187e5653",
+      "language": "en",
+      "text": "Tap the magnifying-glass icon to search the page.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c59-726e-88d4-aa692a4115e9",
+          "exampleId": "01a1070c-7c59-726e-88d4-a5fcc25bffa6",
+          "language": "vi",
+          "text": "Chạm vào biểu tượng kính lúp để tìm kiếm trên trang.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT"
+        }
+      ],
+      "status": "DRAFT"
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "DRAFT",
+  "createdAt": "2026-10-04T13:13:41.209Z",
+  "updatedAt": "2026-10-04T13:13:41.209Z"
+}

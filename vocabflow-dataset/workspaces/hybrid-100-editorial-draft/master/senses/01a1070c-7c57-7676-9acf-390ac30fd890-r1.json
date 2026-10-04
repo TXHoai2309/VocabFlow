@@ -1,0 +1,70 @@
+{
+  "masterSenseId": "01a1070c-7c57-7676-9acf-390ac30fd890",
+  "masterLexemeId": "01a1070c-7c57-7676-9acf-36ec8b14c92d",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "short while"
+    },
+    {
+      "language": "vi",
+      "text": "khoảng thời gian ngắn"
+    }
+  ],
+  "senseOrder": 2,
+  "partOfSpeechCode": "NOUN",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c57-7676-9acf-3d14baf6c096",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-390ac30fd890",
+      "language": "vi",
+      "text": "chốc lát",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c57-7676-9acf-423cae195a08",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-390ac30fd890",
+      "language": "en",
+      "text": "A very short period of time, often lasting only a few seconds.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT"
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c57-7676-9acf-45515b2be66a",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-390ac30fd890",
+      "language": "en",
+      "text": "Wait a moment while I check the address.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c57-7676-9acf-4b99924b4d65",
+          "exampleId": "01a1070c-7c57-7676-9acf-45515b2be66a",
+          "language": "vi",
+          "text": "Chờ một lát trong khi tôi kiểm tra địa chỉ.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT"
+        }
+      ],
+      "status": "DRAFT"
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "DRAFT",
+  "createdAt": "2026-10-04T13:13:41.207Z",
+  "updatedAt": "2026-10-04T13:13:41.207Z"
+}
