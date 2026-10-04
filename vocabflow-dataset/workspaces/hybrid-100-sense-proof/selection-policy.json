@@ -1,0 +1,72 @@
+{
+  "candidateCount": 100,
+  "cefrQuota": {
+    "A1": 18,
+    "A2": 18,
+    "B1": 18,
+    "B2": 18,
+    "C1": 18
+  },
+  "existingMasterCollisionPreferredMinimum": 5,
+  "fallbackReasons": [],
+  "multiword": {
+    "preferredMaximum": 10,
+    "shortageThreshold": 5
+  },
+  "normalizationRules": [
+    "Unicode NFKC",
+    "HTML entity decode and safe text extraction",
+    "trim and collapse whitespace",
+    "casefold normalized match lemma",
+    "preserve source spelling and apostrophes/hyphens",
+    "CEFR remains source evidence; never mapped to GRADE"
+  ],
+  "polysemy": {
+    "distinctMultiSenseLexemesMinimum": 10,
+    "multiSenseCandidatesMinimum": 24,
+    "pairedLexemesMinimum": 8
+  },
+  "posMinimum": {
+    "ADJECTIVE": 15,
+    "ADVERB": 5,
+    "NOUN": 20,
+    "OTHER": 1,
+    "VERB": 20
+  },
+  "quotaPlan": {
+    "A1": {
+      "OXFORD_ONLY": 4,
+      "OXFORD_PLUS_4600": 14
+    },
+    "A2": {
+      "OXFORD_ONLY": 4,
+      "OXFORD_PLUS_4600": 14
+    },
+    "B1": {
+      "OXFORD_ONLY": 4,
+      "OXFORD_PLUS_4600": 14
+    },
+    "B2": {
+      "OXFORD_ONLY": 4,
+      "OXFORD_PLUS_4600": 14
+    },
+    "C1": {
+      "OXFORD_ONLY": 4,
+      "OXFORD_PLUS_4600": 14
+    }
+  },
+  "semanticAlignmentRules": [
+    "exact normalized lemma is discovery only",
+    "require compatible POS and semantic evidence for ALIGNED",
+    "ambiguous polysemy remains unassigned",
+    "a 4600 note can be assigned to at most one Oxford Sense candidate",
+    "image targets require ALIGNED semantic match",
+    "word audio targets Lexeme candidate",
+    "example audio targets Example candidate"
+  ],
+  "sourceQuota": {
+    "4600_ONLY": 10,
+    "OXFORD_ONLY": 20,
+    "OXFORD_PLUS_4600": 70
+  }
+}

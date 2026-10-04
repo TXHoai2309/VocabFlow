@@ -2,6 +2,23 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-04 — Master Vocabulary V2 Phase 2F.1 hybrid 100-Sense source proof
+
+- Added an offline stdlib APKG extractor, deterministic 100-Sense source
+  selector, sanitized candidate/crosswalk/media audit package, and synthetic
+  APKG tests. Raw note data stays in the ignored local cache; source files and
+  media bytes are not committed.
+- Verified the 70/20/10 Oxford-plus/Oxford-only/4600-only split, 18 candidates
+  per Oxford CEFR band, minimum POS/polysemy coverage, 5 multiword candidates,
+  and five existing Master identity/meaning candidates. The 4600 alignment
+  retains ambiguous cases and never broadcasts one note across senses.
+- Repeated source proof fingerprints match. Source and media rights remain
+  unverified; all 99 technical media candidates are non-shippable. No Master
+  content, IDs, database, release, canary, production or runtime import changed.
+- The development canary remains `VERIFIED`; production remains unchanged and
+  bulk runtime import has not started. See
+  `vocabflow-dataset/reports/hybrid-100-sense-source-proof.md`.
+
 ## 2026-10-04 — Master Vocabulary V2 Phase 2E.6 development canary closure
 
 - Added a target-verified, read-only post-apply verifier and package command.

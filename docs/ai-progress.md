@@ -1,5 +1,35 @@
 # Current Handoff Snapshot
 
+## 2026-10-04 — Master Vocabulary V2 Phase 2F.1 hybrid 100-Sense source proof
+
+- Added a dependency-free Python APKG parser and synthetic fixture suite. It
+  recomputes source identities from the local Oxford and 4600 packages, reads
+  Anki collection/model/note/card metadata and the media map, and keeps complete
+  raw note fields only in the ignored `.vocabflow-local` cache.
+- Generated the separate sanitized
+  `vocabflow-dataset/workspaces/hybrid-100-sense-proof` package and report.
+  The exact sample is 70 Oxford + 4600 headword matches, 20 Oxford-only and 10
+  4600-only authoring candidates; the 90 Oxford-backed Senses are 18 per CEFR
+  level. The sample meets POS minima and has 68 Senses from 55 multisense
+  Lexemes, including 12 paired Lexemes, plus 5 multiword candidates.
+- Semantic alignment remains evidence-based: 34 `ALIGNED`, 3
+  `HEADWORD_ONLY`, 33 `AMBIGUOUS`, 20 `NO_MATCH`; all 10 4600-only candidates
+  require later semantic authoring. The selected sample references five
+  existing Master candidates by identity and meaning audit; no new Master IDs
+  were allocated.
+- Recorded 99 selected technical media candidates with sanitized member
+  references, sizes, SHA-256 values and detected/declared types. Example audio
+  has a separate Example candidate; images receive a Sense target only after
+  semantic alignment. Source/media rights remain unknown and every media item
+  is non-shippable.
+- Two independent real-source passes produced fingerprint
+  `276a2c39e311cb9f434976dd4b22f06d2db2f335b8b882b0bdfb2e6af3eb6323` both
+  times. The canonical Master is unchanged; the development canary remains
+  `VERIFIED`; production is unchanged and bulk runtime import has not started.
+- Verification: synthetic fixtures 10/10, Master validator 0 errors / 0
+  warnings / 1 informational DRAFT issue, typecheck PASS, lint PASS, and
+  `git diff --check` PASS. Local Node is 22.19.0 versus the declared 22.23.2.
+
 ## 2026-10-04 — Master Vocabulary V2 Phase 2E.6 development canary closure
 
 - Added a dedicated read-only post-apply verifier. The target-verified

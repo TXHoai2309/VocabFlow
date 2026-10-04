@@ -1,0 +1,167 @@
+{
+  "alignment": {
+    "ALIGNED": 23,
+    "AMBIGUOUS": 44,
+    "HEADWORD_ONLY": 3,
+    "NO_MATCH": 20,
+    "SOURCE_SEMANTIC_AUTHORING_REQUIRED": 10
+  },
+  "alignmentAudit": {
+    "ambiguous4600NoteCount": 454,
+    "unbroadcast4600NoteAssignments": true,
+    "uniqueAssigned4600NoteCount": 36
+  },
+  "cefrSelectedOxford": {
+    "A1": 18,
+    "A2": 18,
+    "B1": 18,
+    "B2": 18,
+    "C1": 18,
+    "unassigned": 0
+  },
+  "distinctSelectedMultiSenseLexemeCount": 55,
+  "existingMaster": {
+    "ambiguous": 0,
+    "existingLexemeNewSenseCandidates": 3,
+    "existingMasterSenseIdsReferenced": [
+      "01a0fc13-09ee-7768-9be6-d20fa32521ee",
+      "01a0fc13-09ef-75ac-b815-039ab337c01a"
+    ],
+    "existingSenseCandidates": 2,
+    "newLexemeCandidates": 95
+  },
+  "masterSnapshot": {
+    "datasetVersion": "2.0.0",
+    "lexemeCount": 19,
+    "schemaVersion": "2.0.1",
+    "senseCount": 25,
+    "status": "DRAFT"
+  },
+  "media": {
+    "ambiguousMediaTargets": 10,
+    "candidateMemberCount": 99,
+    "exampleAudioCandidates": 33,
+    "reusableRightsConfirmed": 0,
+    "technicalImageCandidates": 33,
+    "wordAudioCandidates": 33
+  },
+  "multiSenseLexemeCandidateCount": 55,
+  "multiSenseLexemePairCount": 12,
+  "multiwordPhrasalIdiomCandidateCount": 5,
+  "posDistribution": {
+    "ADJECTIVE": 22,
+    "ADVERB": 5,
+    "NOUN": 45,
+    "OTHER": 3,
+    "UNASSIGNED": 0,
+    "VERB": 25
+  },
+  "proofFingerprint": "276a2c39e311cb9f434976dd4b22f06d2db2f335b8b882b0bdfb2e6af3eb6323",
+  "proofStatus": {
+    "apkgParsingVerified": true,
+    "canonicalMasterMutated": false,
+    "databaseWrites": 0,
+    "existingMasterDedupAudited": true,
+    "masterIdsAllocated": 0,
+    "mediaReuseEligible": false,
+    "mediaTargetGuardVerified": true,
+    "polysemyGuardVerified": true,
+    "proofDeterministic": true,
+    "rawSourceContentCommitted": false,
+    "sampleExactly100Senses": true,
+    "senseSegmentationVerified": false,
+    "sourceFilesVerified": true,
+    "sourceRightsVerified": false
+  },
+  "quality": {
+    "duplicateSourceHeadwordCandidates": 0,
+    "existingMasterAmbiguous": 0,
+    "htmlNoise": 100,
+    "missingDefinition": 67,
+    "missingExample": 0,
+    "missingTranslation": 10,
+    "qaFlagCounts": {
+      "EXAMPLE_AUDIO_NOT_PRONUNCIATION": 33,
+      "HTML_NOISE": 100,
+      "IMAGE_SENSE_TARGET_AMBIGUOUS": 10,
+      "MEDIA_RIGHTS_UNKNOWN": 100,
+      "MISSING_EN_DEFINITION": 67,
+      "MISSING_VI": 10,
+      "MULTIWORD_NORMALIZATION_REVIEW": 5,
+      "POLYSEMY_COLLISION_RISK": 42,
+      "POS_CONFLICT": 22,
+      "SEMANTIC_ALIGNMENT_AMBIGUOUS": 44,
+      "SOURCE_TEXT_RIGHTS_UNKNOWN": 100
+    }
+  },
+  "remotePronunciationReferenceCandidateCount": 0,
+  "repeatFingerprintIdentical": "YES",
+  "rights": {
+    "explicitSourceLicenseMetadataFound": false,
+    "mediaReuseEligible": false,
+    "sourceRightsVerified": false,
+    "unknownRightsItems": 100
+  },
+  "run1ProofFingerprint": "276a2c39e311cb9f434976dd4b22f06d2db2f335b8b882b0bdfb2e6af3eb6323",
+  "run2ProofFingerprint": "276a2c39e311cb9f434976dd4b22f06d2db2f335b8b882b0bdfb2e6af3eb6323",
+  "selectedSenseCandidateCount": 100,
+  "selectedSensesFromMultiSenseLexemes": 68,
+  "selection": {
+    "availableExistingMasterCollisionCandidateCount": 31,
+    "availableMultiwordCandidateCount": 31,
+    "fallbackReasons": [],
+    "quotaPlan": {
+      "A1": {
+        "OXFORD_ONLY": 4,
+        "OXFORD_PLUS_4600": 14
+      },
+      "A2": {
+        "OXFORD_ONLY": 4,
+        "OXFORD_PLUS_4600": 14
+      },
+      "B1": {
+        "OXFORD_ONLY": 4,
+        "OXFORD_PLUS_4600": 14
+      },
+      "B2": {
+        "OXFORD_ONLY": 4,
+        "OXFORD_PLUS_4600": 14
+      },
+      "C1": {
+        "OXFORD_ONLY": 4,
+        "OXFORD_PLUS_4600": 14
+      }
+    },
+    "requested": {
+      "oxfordCefrEach": 18,
+      "oxfordOnly": 20,
+      "oxfordPlus4600": 70,
+      "vocab4600Only": 10
+    },
+    "selectedByBucket": {
+      "OXFORD_ONLY:A1": 4,
+      "OXFORD_ONLY:A2": 4,
+      "OXFORD_ONLY:B1": 4,
+      "OXFORD_ONLY:B2": 4,
+      "OXFORD_ONLY:C1": 4,
+      "OXFORD_PLUS_4600:A1": 14,
+      "OXFORD_PLUS_4600:A2": 14,
+      "OXFORD_PLUS_4600:B1": 14,
+      "OXFORD_PLUS_4600:B2": 14,
+      "OXFORD_PLUS_4600:C1": 14
+    },
+    "unfilledCells": {}
+  },
+  "sourceGroupCounts": {
+    "oxfordMultiSenseLexemeCandidatePool": 2140,
+    "oxfordNoteLevelFallbackCandidates": 68,
+    "oxfordStructuredGroupCandidates": 7935,
+    "oxfordStructuredSenseCandidates": 8003
+  },
+  "sourceSplit": {
+    "oxfordOnly": 20,
+    "oxfordPlus4600Headword": 70,
+    "vocab4600Only": 10
+  },
+  "uniqueOxfordLexemeCandidateCount": 77
+}

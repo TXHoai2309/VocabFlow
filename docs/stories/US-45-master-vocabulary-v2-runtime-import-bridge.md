@@ -357,11 +357,32 @@ plan. The verifier does not change the human reconciliation or relax the
 pre-apply snapshot guard.
 
 Development canary: `VERIFIED`. Production: `NOT AUTHORIZED / NOT EXECUTED`.
-Bulk ingestion: `NOT STARTED`. Apple #295: `OPEN FOLLOW-UP`. The next 100-Sense
-hybrid proof is ready for offline source-package work only. No database write,
-APPLY, migration, or production connection occurred in Phase 2E.6.
+Bulk ingestion: `NOT STARTED`. Apple #295: `OPEN FOLLOW-UP`. The 100-Sense
+hybrid source proof was completed offline in Phase 2F.1; it does not authorize
+bulk runtime import. No database write, APPLY, migration, or production
+connection occurred in Phase 2E.6.
 
 See the [sanitized canary closure report](../../vocabflow-dataset/reports/master-v2-development-canary-closure.md).
+
+## Phase 2F.1 — Hybrid Oxford + 4600 source proof
+
+Created the offline source-candidate package at
+[`hybrid-100-sense-proof`](../../vocabflow-dataset/workspaces/hybrid-100-sense-proof/)
+with its [source-proof report](../../vocabflow-dataset/reports/hybrid-100-sense-source-proof.md).
+The exact sample contains 70 Oxford + 4600 headword candidates, 20 Oxford-only
+candidates and 10 4600-only candidates that require later semantic authoring.
+Oxford CEFR coverage is 18 per level. The selection contains 68 Senses from 55
+multisense Lexemes, 12 paired Lexemes, 5 multiword candidates, and five
+existing Master identity/meaning audit candidates.
+
+The source proof fingerprint repeated exactly. Semantic alignment records
+34 `ALIGNED`, 3 `HEADWORD_ONLY`, 33 `AMBIGUOUS` and 20 `NO_MATCH` Oxford
+candidates; a matching headword alone never assigns Sense identity. The
+sanitized media audit lists 99 technical candidates, but rights remain
+`UNKNOWN_UNVERIFIED` and none are shippable. Raw note fields remain in the
+ignored local cache. No canonical Master record/ID, release 2.1.0, runtime,
+database, migration, development canary or production state changed. Bulk
+runtime import and 100-Sense Master authoring have not started.
 
 ## Phase 2E.5 — Development canary APPLY and verification
 
