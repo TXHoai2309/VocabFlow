@@ -1,5 +1,27 @@
 # Current Handoff Snapshot
 
+## 2026-10-04 — Master Vocabulary V2 Phase 2E.4C migration 0018 preflight
+
+- Used the clean local worktree at `c15dff2`; the primary local `TXH` checkout
+  remained at `d9012af` with its two unrelated APKG analysis files untouched.
+- The protected Neon development target and post-connect identity matched the
+  configured project, branch, database, and `vocabflow_migration` role. Ledger,
+  schema, and aggregate learner count were read in one `REPEATABLE READ, READ
+  ONLY` transaction. No personal learner fields were selected.
+- Development already has all 19 migrations through `0018_panoramic_spirit`.
+  Every ledger digest matches canonical source SQL; the 0018 ledger row is the
+  accepted CRLF serialization of the same source. Its current-worktree Drizzle
+  hash is `eec77c49abbad9a2ea0a69fead9409e0b817978fd3ff3df95b09a55575b114ed`.
+- Both daily goal columns and their defaults, NOT NULL properties, and 1–100
+  checks match the application schema. The migration is additive and does not
+  touch Master V2 runtime tables. The aggregate learner profile count was 8.
+- Pre-apply decision: `0018` is already applied, with no pending migrations or
+  schema/ledger drift. Do not apply it again. Accordingly, the exact-pending
+  preflight gate and `PHASE_2E4C_READY` are NO. Database writes, migration
+  execution, and import APPLY by this phase were none. Canary 2.1.0 validated
+  offline with zero errors or warnings. Details and test results are in
+  `vocabflow-dataset/reports/canary-development-migration-0018-preflight.md`.
+
 ## 2026-10-04 — Master Vocabulary V2 Phase 2E.4B migration hash audit
 
 - Confirmed Drizzle ORM 0.45.2 hashes each complete migration file as UTF-8
