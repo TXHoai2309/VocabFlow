@@ -346,3 +346,28 @@ planner remains `canApply=false`. No database write, migration, import APPLY,
 or runtime mutation occurred.
 
 Evidence: [`migration hash root-cause report`](../../vocabflow-dataset/reports/canary-development-migration-hash-root-cause.md)
+
+## Phase 2E.5 — Development canary APPLY and verification
+
+The first real Master V2 runtime canary APPLY completed on the owner-approved
+development Neon branch `br-square-grass-b3af0nte` for approved release 2.1.0.
+The run used the exact reviewed reconciliation hash and plan fingerprint and
+committed once. No migration, production/test/shared-CI operation, learner
+assignment, or learner-history write was performed.
+
+The import updated apple #1, bank-financial #871, and reservation #284; created
+bank-river #2025, record-noun #2026, record-verb #2027, look-after #2028, and
+algorithm #2029; and created Technology Starter #17 with algorithm at position
+1. Runtime enrichment on the three mapped rows was preserved. Apple #295 and
+record #849 remain unchanged and unmapped. Content versions are 3, 2, 2, and 1
+for each newly created row.
+
+A fresh read-only plan returned NOOP for all eight release Senses, and the
+import ledger contains exactly one matching run. Progress and review aggregates
+remained 87 and 229. The post-apply snapshot no longer matches the pre-apply
+owner-proposal pin; the pin was left unchanged and no second APPLY was run.
+Production readiness and Apple duplicate consolidation remain future work.
+
+Focused validation passed (7 files / 100 tests), as did Master V2 validation
+and `git diff --check`. Root typecheck and lint remain blocked by separate
+progress-dashboard edits. See the [sanitized canary verification report](../../vocabflow-dataset/reports/canary-development-apply-verification.md).

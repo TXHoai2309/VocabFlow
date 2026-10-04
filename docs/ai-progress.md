@@ -1,5 +1,45 @@
 # Current Handoff Snapshot
 
+## 2026-10-04 — Master Vocabulary V2 Phase 2E.5 development canary APPLY
+
+- Executed exactly one owner-authorized APPLY against the verified development
+  Neon target `shy-hill-72364426 / br-square-grass-b3af0nte / neondb`, using the
+  runtime role. No production, test/shared-CI target, migration, or learner
+  assignment was touched.
+- Release `2.1.0` remained immutable at
+  `fc67dd2a70adadd311384360c004faa4693ae24ffe4524761ce7075f21c95591`. The
+  reviewed reconciliation JCS hash remained
+  `75f67d20edc771c931e8cbf1d70118e339374c22f35a5d062160bca3f489efb2`; the
+  exact pre-apply scan and plan fingerprints were `d4e4c7cb…0235a0`,
+  `18b80a1a…7257f4`, and `4ffcb88e…d8718b` respectively.
+- The committed import updated apple #1, bank-financial #871, and reservation
+  #284; created bank-river #2025, record-noun #2026, record-verb #2027,
+  look-after #2028, and algorithm #2029; and created Technology Starter #17
+  with algorithm at position 1. Versions are 3, 2, 2, and 1 for each new row.
+- Post-apply verification found 8/8 release mappings and a fresh read-only plan
+  with 8/8 vocabulary actions `NOOP`. Import run
+  `de0b29c4-db84-4d76-abd4-398f17151099` is recorded once. Runtime enrichment
+  was preserved. Apple #295 and vinyl record #849 remain unmapped and unchanged;
+  Apple consolidation remains future owner work.
+- Progress and review aggregates stayed at 87 and 229. The apply plan reports
+  zero mapped history references, deletions, or learner assignment changes;
+  the import adapter has no write path for learner progress, review events, or
+  learner Learning Set assignments. No API smoke request was made because the
+  catalog routes require an authenticated learner session; direct read-only
+  runtime catalog verification passed.
+- Post-apply scan observed the expected changed runtime snapshot
+  (`34b43959…54c4296`) and refused the old owner-proposal snapshot pin. The
+  human-owned reconciliation was left unchanged; a separate read-only planner
+  against the verified live snapshot returned 8 NOOP actions. No second APPLY
+  was run.
+- Focused validation passed: 7 test files / 100 tests, Master V2 validation,
+  and `git diff --check`. Root typecheck and lint report errors in unrelated,
+  concurrent progress-dashboard edits under `apps/api`, `apps/web`, and
+  `packages/contracts`; these files were not included in the canary evidence.
+- Sanitized evidence:
+  `vocabflow-dataset/reports/canary-development-apply-verification.md`.
+  Generated scanner artifacts and APKG analysis files remain unstaged.
+
 ## 2026-10-04 — Master Vocabulary V2 Phase 2E.4D final reconciliation V3
 
 - Reverified the development Neon target, 19/19 migration rows through

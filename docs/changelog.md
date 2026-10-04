@@ -2,6 +2,20 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-04 — Master Vocabulary V2 Phase 2E.5 development canary
+
+- Ran one target-verified development APPLY for the approved 2.1.0 release with
+  the owner-reviewed reconciliation and exact plan fingerprint. No production,
+  test/shared-CI, migration, or learner assignment mutation occurred.
+- Updated apple #1, bank #871, and reservation #284; created five new vocabulary
+  rows and Technology Starter with algorithm at position 1. Runtime enrichment
+  was preserved, and Apple #295 plus record #849 remain unchanged.
+- Read-only verification confirmed 8/8 mappings, the one import ledger row,
+  correct content versions, unchanged history aggregates, and 8/8 post-apply
+  planner NOOP actions. This is a development canary and does not establish
+  production readiness.
+- Evidence: `vocabflow-dataset/reports/canary-development-apply-verification.md`.
+
 ## 2026-10-04 — Master Vocabulary V2 Phase 2E.4D final reconciliation V3
 
 - Finalized the human-owned runtime reconciliation for approved release 2.1.0.
