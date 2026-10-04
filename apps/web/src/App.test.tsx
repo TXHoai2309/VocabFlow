@@ -1,6 +1,6 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter, useLocation } from "react-router";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import type { LearnerDto } from "@vocabflow/contracts";
 import App, { AppRoutes } from "./App";
@@ -53,6 +53,8 @@ beforeEach(() => {
   });
   requestLearners.mockReset().mockResolvedValue([learner]);
 });
+
+afterEach(() => vi.restoreAllMocks());
 
 describe("application routing", () => {
   it("routes an unauthenticated Home visit through the existing login page", () => {
