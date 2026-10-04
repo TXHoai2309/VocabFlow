@@ -7,6 +7,12 @@ export type StudyScope = { type: "topic" | "learning-set"; id: number } | { type
 export type StudyContentMode = "new" | "review" | "mixed";
 export type StudySelection = { amount: 5 | 10 | 20 | 30; content: StudyContentMode | "all" };
 
+export function studyContentModeFromParams(searchParams: URLSearchParams): StudyContentMode | null {
+  const values = searchParams.getAll("content");
+  if (values.length !== 1 || !["new", "review", "mixed"].includes(values[0] ?? "")) return null;
+  return values[0] as StudyContentMode;
+}
+
 export function studyScopeFromParams(searchParams: URLSearchParams): StudyScope | null {
   const topicId = searchParams.get("topicId");
   const learningSetId = searchParams.get("learningSetId");

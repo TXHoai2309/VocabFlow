@@ -317,7 +317,10 @@ async function loadWeakWordsData(database: WeakWordsDatabase, learnerId: string,
 }
 
 function matchesStatus(item: Candidate, status: WeakWordsStatus | null) {
-  return status === null || item.weaknessStatus.toLocaleLowerCase() === status;
+  if (status !== null) return item.weaknessStatus.toLocaleLowerCase() === status;
+  return item.weaknessStatus === "WEAK"
+    || item.dueStatus === "OVERDUE"
+    || item.dueStatus === "DUE_TODAY";
 }
 
 function matchesSearch(item: Candidate, query: string) {

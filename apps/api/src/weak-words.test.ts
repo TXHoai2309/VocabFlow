@@ -52,7 +52,8 @@ const candidateRows = [
   row(2, { word: "family", meaning: "gia đình", state: "MASTERED", reviewCount: 2, rememberedCount: 1, forgottenCount: 1, nextReviewDate: reviewDate }),
   row(3, { word: "mountain", reviewCount: 2, forgottenCount: 2, nextReviewDate: "2026-10-08" }),
   row(4, { word: "write", reviewCount: 1, forgottenCount: 1, nextReviewDate: "2026-10-05" }),
-  row(5, { word: "book", state: "MASTERED", reviewCount: 5, rememberedCount: 4, forgottenCount: 1, nextReviewDate: "2026-10-02" })
+  row(5, { word: "book", state: "MASTERED", reviewCount: 5, rememberedCount: 4, forgottenCount: 1, nextReviewDate: "2026-10-02" }),
+  row(6, { word: "garden", state: "MASTERED", reviewCount: 5, rememberedCount: 4, forgottenCount: 1, nextReviewDate: "2026-10-08" })
 ];
 
 function authorizedRows() {
@@ -103,7 +104,7 @@ describe("Weak Words read API", () => {
 
     expect(result.reviewDate).toBe(reviewDate);
     expect(result.summary).toEqual({ weakCount: 3, dueCount: 3, recentAccuracy: 53, recentReviewCount: 17 });
-    expect(result.pagination).toEqual({ page: 1, pageSize: 2, totalItems: 5, totalPages: 3 });
+    expect(result.pagination).toEqual({ page: 1, pageSize: 2, totalItems: 4, totalPages: 2 });
     expect(result.items.map((item) => [item.vocabulary.word, item.weaknessStatus, item.dueStatus])).toEqual([
       ["school", "WEAK", "OVERDUE"],
       ["family", "WEAK", "DUE_TODAY"]
@@ -134,15 +135,33 @@ describe("Weak Words read API", () => {
     const english = await service.list("parent-1", learnerId, { q: "school", status: null, page: 1, pageSize: 20 });
     expect(english.items.map((item) => item.vocabulary.word)).toEqual(["school"]);
 
+    const defaultList = await service.list("parent-1", learnerId, { q: "", status: null, page: 1, pageSize: 20 });
+    expect(defaultList.items.map((item) => item.vocabulary.word)).toEqual(["school", "family", "mountain", "book"]);
+    expect(defaultList.pagination.totalItems).toBe(4);
+    expect(defaultList.items.find((item) => item.vocabulary.word === "mountain")).toMatchObject({
+      weaknessStatus: "WEAK",
+      dueStatus: "UPCOMING"
+    });
+    expect(defaultList.items.find((item) => item.vocabulary.word === "book")).toMatchObject({
+      weaknessStatus: "STABLE",
+      dueStatus: "OVERDUE"
+    });
+    expect(defaultList.items.some((item) => item.vocabulary.word === "write" || item.vocabulary.word === "garden")).toBe(false);
+
     const learning = await service.list("parent-1", learnerId, { q: "", status: "learning", page: 1, pageSize: 20 });
     expect(learning.items.map((item) => item.vocabulary.word)).toEqual(["write"]);
+    expect(learning.items[0]).toMatchObject({ weaknessStatus: "LEARNING", dueStatus: "UPCOMING" });
+
+    const stable = await service.list("parent-1", learnerId, { q: "", status: "stable", page: 1, pageSize: 20 });
+    expect(stable.items.map((item) => item.vocabulary.word)).toEqual(["book", "garden"]);
+    expect(stable.items[1]).toMatchObject({ weaknessStatus: "STABLE", dueStatus: "UPCOMING" });
   });
 
   it("keeps one forgotten review Learning and returns null accuracy when no reviews exist", async () => {
     const noHistoryRow = row(9, { reviewCount: 0, rememberedCount: 0, forgottenCount: 0, summaryReviewCount: 0, summaryRememberedCount: 0 });
     const { database } = createMockDatabase([noHistoryRow]);
     const service = createWeakWordsService(database, { now: () => new Date("2026-10-04T03:00:00.000Z") });
-    const result = await service.list("parent-1", learnerId);
+    const result = await service.list("parent-1", learnerId, { q: "", status: "learning", page: 1, pageSize: 20 });
 
     expect(result.summary).toEqual({ weakCount: 0, dueCount: 0, recentAccuracy: null, recentReviewCount: 0 });
     expect(result.items[0]).toMatchObject({ weaknessStatus: "LEARNING", recentAccuracy: null, reviewCount: 0 });

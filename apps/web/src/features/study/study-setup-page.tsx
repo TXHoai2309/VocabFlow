@@ -4,7 +4,7 @@ import { LearningSetsClientError, requestLearningSet } from "../learning-sets/le
 import { useActiveLearner } from "../learners/learner-context-hook";
 import { requestTopicVocabulary, requestTopics, TopicsClientError } from "../learners/topics-client";
 import type { LearnerDto, ReviewQueueResponse } from "@vocabflow/contracts";
-import { requestScopedReviewQueue, studyScopeFromParams, type StudyContentMode, type StudyScope } from "./study-queue";
+import { requestScopedReviewQueue, studyContentModeFromParams, studyScopeFromParams, type StudyContentMode, type StudyScope } from "./study-queue";
 
 const STUDY_AMOUNTS = [5, 10, 20, 30] as const;
 const MODE_COPY: Record<StudyContentMode, { title: string; description: string; empty: string; icon: "new" | "review" | "mixed" }> = {
@@ -87,6 +87,7 @@ export function StudySetupPage() {
   const location = useLocation();
   const [searchParams] = useSearchParams();
   const scope = useMemo(() => studyScopeFromParams(searchParams), [searchParams]);
+  const preferredContent = useMemo(() => studyContentModeFromParams(searchParams), [searchParams]);
   const scopeKey = scope?.type === "saved"
     ? `saved:${scope.all ? "all" : "scheduled"}`
     : scope?.type === "weak" ? "weak"
@@ -94,10 +95,10 @@ export function StudySetupPage() {
   if (!activeLearner) {
     return <Navigate to="/learners" replace state={{ returnTo: `${location.pathname}${location.search}` }} />;
   }
-  return <StudySetupExperience key={`${activeLearner.id}:${scopeKey}`} activeLearner={activeLearner} scope={scope} returnTo={`${location.pathname}${location.search}`} />;
+  return <StudySetupExperience key={`${activeLearner.id}:${scopeKey}:${preferredContent ?? "default"}`} activeLearner={activeLearner} scope={scope} preferredContent={preferredContent} returnTo={`${location.pathname}${location.search}`} />;
 }
 
-function StudySetupExperience({ activeLearner, scope, returnTo }: { activeLearner: LearnerDto; scope: StudyScope | null; returnTo: string }) {
+function StudySetupExperience({ activeLearner, scope, preferredContent, returnTo }: { activeLearner: LearnerDto; scope: StudyScope | null; preferredContent: StudyContentMode | null; returnTo: string }) {
   const navigate = useNavigate();
   const [state, setState] = useState<SetupState>("loading");
   const [data, setData] = useState<StudySetupData | null>(null);
@@ -112,7 +113,7 @@ function StudySetupExperience({ activeLearner, scope, returnTo }: { activeLearne
       .then((nextData) => {
         if (cancelled) return;
         setData(nextData);
-        setContent(defaultMode(nextData.queue));
+        setContent(preferredContent ?? defaultMode(nextData.queue));
         setState("ready");
       })
       .catch((error: unknown) => {
@@ -125,7 +126,7 @@ function StudySetupExperience({ activeLearner, scope, returnTo }: { activeLearne
         setState("error");
       });
     return () => { cancelled = true; };
-  }, [activeLearner.id, retry, scope]);
+  }, [activeLearner.id, preferredContent, retry, scope]);
 
   const backHref = returnHref(scope);
   if (state === "not-found") {

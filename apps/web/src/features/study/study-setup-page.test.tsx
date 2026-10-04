@@ -227,6 +227,25 @@ describe("Study Setup", () => {
     expect(screen.getByText("Ôn tập")).toBeInTheDocument();
   });
 
+  it("honors the Review setup URL and starts only canonical due queue items", async () => {
+    const fetchMock = mockStudyData([item(1, "DUE"), item(2), item(3, "VOLUNTARY")]);
+    renderSetup("/study/setup?content=review");
+
+    await screen.findByTestId("study-setup-page");
+    expect(screen.getByRole("button", { name: /Ôn tập/ })).toHaveAttribute("aria-pressed", "true");
+    expect(screen.getByTestId("study-setup-summary-mode")).toHaveTextContent("Ôn tập");
+    expect(screen.getByTestId("study-setup-summary-count")).toHaveTextContent("1 từ");
+    fireEvent.click(screen.getByRole("button", { name: /Bắt đầu học/ }));
+
+    expect(await screen.findByTestId("study-session-ready")).toBeInTheDocument();
+    expect(screen.getByTestId("session-counter")).toHaveTextContent("Câu 1 / 1");
+    expect(screen.getByText("word-1")).toBeInTheDocument();
+    expect(screen.queryByText("word-2")).not.toBeInTheDocument();
+    expect(screen.queryByText("word-3")).not.toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Thoát buổi học" })).toHaveAttribute("href", "/study/setup?content=review");
+    expect(fetchMock.mock.calls.every(([path]) => String(path) === `/api/learners/${learner.id}/review-queue`)).toBe(true);
+  });
+
   it("uses only learning set vocabulary and displays the real set name", async () => {
     mockStudyData([item(1), item(2, "DUE"), item(3), item(4, "DUE")]);
     renderSetup("/study/setup?learningSetId=4");

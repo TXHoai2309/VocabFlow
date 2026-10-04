@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { ReviewQueueResponse } from "@vocabflow/contracts";
-import { requestScopedReviewQueue, selectStudyQueue, studyScopeFromParams, studySelectionFromParams, type StudyScope } from "./study-queue";
+import { requestScopedReviewQueue, selectStudyQueue, studyContentModeFromParams, studyScopeFromParams, studySelectionFromParams, type StudyScope } from "./study-queue";
 
 const learnerId = "00000000-0000-4000-8000-000000000010";
 
@@ -20,6 +20,15 @@ function queueResponse(): ReviewQueueResponse {
 
 describe("saved study scope", () => {
   beforeEach(() => vi.restoreAllMocks());
+
+  it("parses one explicit setup content mode for the shared study flow", () => {
+    expect(studyContentModeFromParams(new URLSearchParams("content=review"))).toBe("review");
+    expect(studyContentModeFromParams(new URLSearchParams("content=new"))).toBe("new");
+    expect(studyContentModeFromParams(new URLSearchParams("content=mixed"))).toBe("mixed");
+    expect(studyContentModeFromParams(new URLSearchParams("content=review&content=new"))).toBeNull();
+    expect(studyContentModeFromParams(new URLSearchParams("content=all"))).toBeNull();
+    expect(studyContentModeFromParams(new URLSearchParams())).toBeNull();
+  });
 
   it("parses the saved scope and rejects conflicting or repeated scope parameters", () => {
     expect(studyScopeFromParams(new URLSearchParams("saved=1"))).toEqual({ type: "saved", all: false } satisfies StudyScope);

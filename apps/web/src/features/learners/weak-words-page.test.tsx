@@ -97,6 +97,16 @@ describe("Weak Words page", () => {
     expect(fetchMock).toHaveBeenCalledWith(`/api/learners/${learner.id}/weak-words?page=1&pageSize=20`, { credentials: "include" });
   });
 
+  it("offers the canonical Review setup for due words when there are no weak words", async () => {
+    const payload = weakResponse([weakItem(1, "book", "STABLE")], { weakCount: 0, dueCount: 13 });
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(jsonResponse(payload));
+    renderPage();
+
+    const reviewLink = await screen.findByRole("link", { name: "Ôn các từ đến hạn (13)" });
+    expect(reviewLink).toHaveAttribute("href", "/study/setup?content=review");
+    expect(screen.queryByRole("link", { name: /Ôn các từ yếu ngay/ })).not.toBeInTheDocument();
+  });
+
   it("updates search and status in the URL and requests the matching page", async () => {
     const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
       const url = String(input);
@@ -123,13 +133,13 @@ describe("Weak Words page", () => {
 
     expect(await screen.findByTestId("weak-words-page")).toBeInTheDocument();
     expect(screen.getByTestId("weak-words-recent-accuracy")).toHaveTextContent("Chưa đủ dữ liệu");
-    expect(screen.getByText("✓ Chưa có từ nào cần chú ý đặc biệt 🎉")).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Ôn các từ yếu ngay (0)" })).toBeDisabled();
+    expect(screen.getByText("✓ Không có từ cần ôn ngay.")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Không có từ cần ôn ngay" })).toBeDisabled();
     fireEvent.change(screen.getByRole("searchbox", { name: "Tìm theo từ tiếng Anh hoặc nghĩa tiếng Việt" }), { target: { value: "none" } });
     expect(await screen.findByRole("alert")).toHaveTextContent("Không thể tải danh sách từ cần ôn lúc này.");
     expect(screen.getByTestId("weak-words-page")).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "Thử lại" }));
     await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(3));
-    expect(await screen.findByText("✓ Chưa có từ nào cần chú ý đặc biệt 🎉")).toBeInTheDocument();
+    expect(await screen.findByText("✓ Không có từ cần ôn ngay.")).toBeInTheDocument();
   });
 });

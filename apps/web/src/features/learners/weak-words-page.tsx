@@ -161,7 +161,11 @@ function WeakWordsExperience({ learnerId, learnerName }: { learnerId: string; le
         </div>
         {visibleState === "ready" && data?.summary.weakCount
           ? <Link className="weak-words-primary-action" to="/study/setup?weak=1"><span aria-hidden="true">↻</span> Ôn các từ yếu ngay ({data.summary.weakCount})</Link>
-          : <button className="weak-words-primary-action" type="button" disabled><span aria-hidden="true">↻</span> Ôn các từ yếu ngay{visibleState === "ready" && data ? ` (${data.summary.weakCount})` : ""}</button>}
+          : visibleState === "ready" && data?.summary.dueCount
+            ? <Link className="weak-words-primary-action" to="/study/setup?content=review"><span aria-hidden="true">↻</span> Ôn các từ đến hạn ({data.summary.dueCount})</Link>
+            : visibleState === "ready" && data
+              ? <button className="weak-words-primary-action" type="button" disabled><span aria-hidden="true">✓</span> Không có từ cần ôn ngay</button>
+              : <button className="weak-words-primary-action" type="button" disabled><span aria-hidden="true">↻</span> Ôn các từ yếu ngay</button>}
       </header>
 
       {visibleState === "loading" ? <div className="weak-words-state" role="status" aria-busy="true">Đang tải tiến trình ôn tập…</div> : null}
@@ -193,8 +197,8 @@ function WeakWordsExperience({ learnerId, learnerName }: { learnerId: string; le
             </article>
           </section>
 
-          {data.summary.weakCount === 0
-            ? <p className="weak-words-positive-note" role="status">✓ Chưa có từ nào cần chú ý đặc biệt 🎉</p>
+          {data.summary.weakCount === 0 && data.summary.dueCount === 0
+            ? <p className="weak-words-positive-note" role="status">✓ Không có từ cần ôn ngay.</p>
             : null}
 
           <section className="weak-words-controls" aria-label="Tìm kiếm và lọc từ">
