@@ -138,6 +138,97 @@ class HybridSourceProofTests(unittest.TestCase):
         self.assertEqual(candidate["existingMasterStatus"], "EXISTING_LEXEME_NEW_SENSE_CANDIDATE")
         self.assertNotIn("existingMasterSenseId", candidate)
 
+    def test_existing_sense_requires_semantic_and_pos_compatibility(self) -> None:
+        master = [{
+            "masterSenseId": "SENSE-1", "masterLexemeId": "LEXEME-1", "partOfSpeechCode": "NOUN",
+            "_lexeme": {"lexicalUnitType": "WORD"},
+            "translations": [],
+            "senseLabel": [{"language": "vi", "text": "ngân hàng"}],
+        }]
+        compatible = {
+            "normalizedLemma": "bank", "lexicalUnitType": "WORD", "partOfSpeechCode": "NOUN",
+            "_meaningRaw": "ngân hàng", "qaFlags": [],
+        }
+        proof._master_audit(compatible, {"bank": master})
+        self.assertEqual(compatible["existingMasterStatus"], "EXISTING_SENSE_CANDIDATE")
+        self.assertEqual(compatible["existingMasterSenseId"], "SENSE-1")
+
+        pos_mismatch = compatible | {"partOfSpeechCode": "VERB", "qaFlags": []}
+        pos_mismatch.pop("existingMasterStatus", None)
+        pos_mismatch.pop("existingMasterSenseId", None)
+        proof._master_audit(pos_mismatch, {"bank": master})
+        self.assertEqual(pos_mismatch["existingMasterStatus"], "EXISTING_LEXEME_NEW_SENSE_CANDIDATE")
+        self.assertNotIn("existingMasterSenseId", pos_mismatch)
+
+    def test_segmentation_status_requires_structured_group_evidence(self) -> None:
+        structured = {
+            "sourceCoverage": "OXFORD_ONLY", "_structuredGroup": True,
+            "oxfordReference": {"sourceSenseGroupReference": "SAFE-REFERENCE"},
+        }
+        fallback = {
+            "sourceCoverage": "OXFORD_ONLY", "_structuredGroup": False,
+            "oxfordReference": {"sourceSenseGroupReference": "GENERATED-REFERENCE"},
+        }
+        reference_only = {
+            "sourceCoverage": "OXFORD_ONLY",
+            "oxfordReference": {"sourceSenseGroupReference": "GENERATED-REFERENCE"},
+        }
+        self.assertEqual(proof._sense_segmentation_status(structured), "STRUCTURED")
+        self.assertEqual(proof._sense_segmentation_status(fallback), "NOTE_LEVEL_FALLBACK")
+        self.assertEqual(proof._sense_segmentation_status(reference_only), "NOTE_LEVEL_FALLBACK")
+        self.assertEqual(proof._sanitize_candidate(structured)["senseSegmentationStatus"], "STRUCTURED")
+        self.assertEqual(proof._sanitize_candidate(fallback)["senseSegmentationStatus"], "NOTE_LEVEL_FALLBACK")
+
+    def test_fallback_replacement_is_deterministic_and_preserves_selection_cell(self) -> None:
+        fallback = {
+            "candidateId": "FALLBACK", "lexemeCandidateId": "LF", "sourceBucket": "OXFORD_PLUS_4600",
+            "selectedCefr": "A1", "partOfSpeechCode": "PRONOUN", "existingMasterStatus": "NO_EXISTING_LEXEME",
+            "lexicalUnitType": "WORD", "_structuredGroup": False,
+        }
+        replacement = {
+            "candidateId": "STRUCTURED", "lexemeCandidateId": "LS", "sourceBucket": "OXFORD_PLUS_4600",
+            "selectedCefr": "A1", "partOfSpeechCode": "PREPOSITION", "existingMasterStatus": "NO_EXISTING_LEXEME",
+            "lexicalUnitType": "WORD", "_structuredGroup": True,
+        }
+        wrong_cell = replacement | {"candidateId": "WRONG-CELL", "lexemeCandidateId": "LW", "sourceBucket": "OXFORD_ONLY"}
+        first, audit = proof._replace_note_level_fallbacks([fallback], [fallback, replacement, wrong_cell], "test-seed")
+        second, second_audit = proof._replace_note_level_fallbacks([fallback], [fallback, replacement, wrong_cell], "test-seed")
+        self.assertEqual([row["candidateId"] for row in first], ["STRUCTURED"])
+        self.assertEqual(first, second)
+        self.assertEqual(audit, second_audit)
+        self.assertEqual(audit[0]["sourceBucket"], "OXFORD_PLUS_4600")
+        self.assertEqual(audit[0]["selectedCefr"], "A1")
+        self.assertTrue(audit[0]["posDistributionPreserved"])
+        self.assertTrue(audit[0]["polysemyMembershipPreserved"])
+
+    def test_editorial_readiness_requires_every_non_rights_gate(self) -> None:
+        ready = {
+            "sourceFilesVerified": True, "apkgParsingVerified": True, "sampleExactly100Senses": True,
+            "senseSegmentationVerified": True, "polysemyGuardVerified": True, "mediaTargetGuardVerified": True,
+            "existingMasterDedupAudited": True, "selectionCoverageVerified": True, "proofDeterministic": True,
+            "rawSourceContentCommitted": False, "masterIdsAllocated": 0, "canonicalMasterMutated": False,
+            "databaseWrites": 0, "sourceRightsVerified": False, "mediaReuseEligible": False,
+        }
+        proof._refresh_readiness_flags(ready)
+        self.assertTrue(ready["editorialAuthoringReady"])
+        self.assertTrue(ready["phase2f1aReady"])
+        self.assertFalse(ready["sourceReuseEligible"])
+
+        for gate in ("senseSegmentationVerified", "polysemyGuardVerified", "mediaTargetGuardVerified", "existingMasterDedupAudited"):
+            with self.subTest(gate=gate):
+                failed = ready | {gate: False}
+                proof._refresh_readiness_flags(failed)
+                self.assertFalse(failed["editorialAuthoringReady"])
+                self.assertFalse(failed["phase2f1aReady"])
+
+    def test_source_reuse_requires_verified_rights(self) -> None:
+        unknown = {"sourceRightsVerified": False, "mediaReuseEligible": False}
+        self.assertFalse(proof._source_reuse_eligible(unknown))
+        unknown["sourceRightsVerified"] = True
+        self.assertFalse(proof._source_reuse_eligible(unknown))
+        unknown["mediaReuseEligible"] = True
+        self.assertTrue(proof._source_reuse_eligible(unknown))
+
     def test_media_targets_are_typed_and_image_is_not_broadcast(self) -> None:
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
@@ -290,6 +381,20 @@ class HybridSourceProofTests(unittest.TestCase):
             first = proof.build_proof(oxford_path, vocab_path, dataset, None)
             second = proof.build_proof(oxford_path, vocab_path, dataset, None)
             self.assertEqual(first["proofFingerprint"], second["proofFingerprint"])
+            self.assertNotEqual(first["manifest"]["parserContractVersion"], "APKG-SOURCE-PROOF-2")
+            self.assertEqual(first["coverage"]["selectedOxfordSegmentation"]["candidateCount"], 1)
+            self.assertEqual(first["coverage"]["selectedOxfordSegmentation"]["structured"], 1)
+            self.assertEqual(first["coverage"]["selectedOxfordSegmentation"]["fallback"], 0)
+            candidate_statuses = {row["candidateId"]: row["senseSegmentationStatus"] for row in first["candidates"]["candidates"]}
+            oxford_statuses = [row["senseSegmentationStatus"] for row in first["candidates"]["candidates"] if row["sourceCoverage"] != "4600_ONLY"]
+            self.assertEqual(oxford_statuses, ["STRUCTURED"])
+            self.assertEqual(sum(status == "STRUCTURED" for status in candidate_statuses.values()), first["coverage"]["selectedOxfordSegmentation"]["structured"])
+            self.assertEqual(sum(status == "NOTE_LEVEL_FALLBACK" for status in candidate_statuses.values()), first["coverage"]["selectedOxfordSegmentation"]["fallback"])
+            self.assertIn(
+                "Selected Oxford-backed candidates: **1**; structured: **1**; note-level fallback: **0**.",
+                proof._render_report(first),
+            )
+            self.assertNotIn("All selected Oxford candidates use structured groups.", proof._render_report(first))
             payload = proof.canonical_json(first["proofFingerprintInput"])
             self.assertNotIn(str(root), payload)
             self.assertNotIn("masterLexemeId", payload)

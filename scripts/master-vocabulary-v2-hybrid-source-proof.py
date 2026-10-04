@@ -17,7 +17,7 @@ from pathlib import Path
 from typing import Any, Iterable
 
 
-PARSER_CONTRACT_VERSION = "APKG-SOURCE-PROOF-2"
+PARSER_CONTRACT_VERSION = "APKG-SOURCE-PROOF-3"
 NORMALIZATION_POLICY_VERSION = "NFKC-HTMLTEXT-EN-CASEFOLD-1"
 SELECTION_POLICY_VERSION = "HYBRID-100-STRATIFIED-2"
 ALGORITHM_VERSION = "HYBRID-SENSE-ALIGNMENT-3"
@@ -827,6 +827,159 @@ def _candidate_priority(candidate: dict[str, Any], seed: str) -> tuple[int, str]
             sha256_text(seed + "\0" + candidate["candidateId"]))
 
 
+def _pos_distribution_key(candidate: dict[str, Any]) -> str:
+    pos = candidate.get("partOfSpeechCode")
+    return pos if pos in POS_ORDER else "OTHER" if pos else "UNASSIGNED"
+
+
+def _replace_note_level_fallbacks(
+    selected: list[dict[str, Any]], candidates: list[dict[str, Any]], seed: str
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    """Replace selected Oxford note fallbacks with deterministic structured candidates.
+
+    Keep each hard source/CEFR cell fixed. Prefer replacements that also keep
+    the POS distribution, Master-collision status, polysemy membership, and
+    lexical-unit type unchanged.
+    """
+    selected_by_id = {candidate["candidateId"]: candidate for candidate in selected}
+    group_counts = collections.Counter(candidate["lexemeCandidateId"] for candidate in candidates)
+    replacement_audit = []
+    fallbacks = sorted(
+        (candidate for candidate in selected_by_id.values() if not candidate.get("_structuredGroup")),
+        key=lambda candidate: candidate["candidateId"],
+    )
+    for fallback in fallbacks:
+        selected_ids = set(selected_by_id)
+        fallback_multi_sense = group_counts[fallback["lexemeCandidateId"]] > 1
+        eligible = [
+            candidate for candidate in candidates
+            if candidate.get("_structuredGroup")
+            and candidate["candidateId"] not in selected_ids
+            and candidate["sourceBucket"] == fallback["sourceBucket"]
+            and candidate.get("selectedCefr") == fallback.get("selectedCefr")
+        ]
+        if not eligible:
+            continue
+
+        def replacement_priority(candidate: dict[str, Any]) -> tuple[int, int, int, int, str]:
+            return (
+                int(_pos_distribution_key(candidate) != _pos_distribution_key(fallback)),
+                int(candidate.get("existingMasterStatus") != fallback.get("existingMasterStatus")),
+                int((group_counts[candidate["lexemeCandidateId"]] > 1) != fallback_multi_sense),
+                int(candidate.get("lexicalUnitType") != fallback.get("lexicalUnitType")),
+                sha256_text(seed + "\0structured-fallback-replacement\0" + candidate["candidateId"]),
+            )
+
+        replacement = min(eligible, key=replacement_priority)
+        selected_by_id.pop(fallback["candidateId"])
+        selected_by_id[replacement["candidateId"]] = replacement
+        replacement_audit.append({
+            "replacedCandidateId": fallback["candidateId"],
+            "replacementCandidateId": replacement["candidateId"],
+            "sourceBucket": fallback["sourceBucket"],
+            "selectedCefr": fallback.get("selectedCefr"),
+            "posDistributionPreserved": _pos_distribution_key(replacement) == _pos_distribution_key(fallback),
+            "existingMasterStatusPreserved": replacement.get("existingMasterStatus") == fallback.get("existingMasterStatus"),
+            "polysemyMembershipPreserved": (group_counts[replacement["lexemeCandidateId"]] > 1) == fallback_multi_sense,
+            "lexicalUnitTypePreserved": replacement.get("lexicalUnitType") == fallback.get("lexicalUnitType"),
+        })
+    return sorted(selected_by_id.values(), key=lambda candidate: candidate["candidateId"]), replacement_audit
+
+
+def _sense_segmentation_status(candidate: dict[str, Any]) -> str:
+    if candidate.get("sourceCoverage") == "4600_ONLY" or candidate.get("_bucketNotOxford"):
+        return "NOT_APPLICABLE_NO_OXFORD_SENSE"
+    return "STRUCTURED" if candidate.get("_structuredGroup") is True else "NOTE_LEVEL_FALLBACK"
+
+
+def _segmentation_counts(candidates: list[dict[str, Any]]) -> dict[str, int]:
+    statuses = collections.Counter(_sense_segmentation_status(candidate) for candidate in candidates)
+    return {
+        "candidateCount": len(candidates),
+        "structured": statuses["STRUCTURED"],
+        "fallback": statuses["NOTE_LEVEL_FALLBACK"],
+    }
+
+
+def _editorial_authoring_ready(proof_status: dict[str, Any]) -> bool:
+    required_true = (
+        "sourceFilesVerified", "apkgParsingVerified", "sampleExactly100Senses",
+        "senseSegmentationVerified", "polysemyGuardVerified", "mediaTargetGuardVerified",
+        "existingMasterDedupAudited", "selectionCoverageVerified", "proofDeterministic",
+    )
+    return (
+        all(proof_status.get(key) is True for key in required_true)
+        and proof_status.get("rawSourceContentCommitted") is False
+        and proof_status.get("masterIdsAllocated") == 0
+        and proof_status.get("canonicalMasterMutated") is False
+        and proof_status.get("databaseWrites") == 0
+    )
+
+
+def _source_reuse_eligible(proof_status: dict[str, Any]) -> bool:
+    return proof_status.get("sourceRightsVerified") is True and proof_status.get("mediaReuseEligible") is True
+
+
+def _existing_master_dedup_audited(candidates: list[dict[str, Any]]) -> bool:
+    valid_statuses = {
+        "NO_EXISTING_LEXEME", "EXISTING_LEXEME_NEW_SENSE_CANDIDATE",
+        "EXISTING_SENSE_CANDIDATE", "AMBIGUOUS_EXISTING_MASTER",
+    }
+    for candidate in candidates:
+        status = candidate.get("existingMasterStatus")
+        if status not in valid_statuses:
+            return False
+        if status == "NO_EXISTING_LEXEME" and (candidate.get("existingMasterLexemeId") or candidate.get("existingMasterSenseId")):
+            return False
+        if status == "EXISTING_LEXEME_NEW_SENSE_CANDIDATE" and (
+            not candidate.get("existingMasterLexemeId") or candidate.get("existingMasterSenseId")
+        ):
+            return False
+        if status == "EXISTING_SENSE_CANDIDATE" and (
+            not candidate.get("existingMasterLexemeId") or not candidate.get("existingMasterSenseId")
+        ):
+            return False
+    return True
+
+
+def _media_target_guard_verified(candidates: list[dict[str, Any]], media_candidates: list[dict[str, Any]]) -> bool:
+    by_id = {candidate["candidateId"]: candidate for candidate in candidates}
+    for media in media_candidates:
+        for role in media.get("roles", []):
+            kind = role.get("kind")
+            target_type = role.get("targetType")
+            target_id = role.get("targetCandidateId")
+            if target_type == "UNRESOLVED":
+                if target_id is not None:
+                    return False
+                continue
+            if kind == "IMAGE":
+                target = by_id.get(target_id)
+                if target_type != "SENSE" or target is None or target.get("imageCandidateStatus") != "SENSE_TARGET_TECHNICAL_ONLY":
+                    return False
+            elif kind == "WORD_AUDIO":
+                target = next((candidate for candidate in candidates if candidate.get("lexemeCandidateId") == target_id), None)
+                if target_type != "LEXEME" or target is None:
+                    return False
+            elif kind == "EXAMPLE_AUDIO":
+                if target_type != "EXAMPLE" or not isinstance(target_id, str) or not target_id.startswith("EXAMPLE-CANDIDATE-"):
+                    return False
+            else:
+                return False
+    return True
+
+
+def _refresh_readiness_flags(proof_status: dict[str, Any]) -> None:
+    proof_status["sourceReuseEligible"] = _source_reuse_eligible(proof_status)
+    proof_status["editorialAuthoringReady"] = _editorial_authoring_ready(proof_status)
+    proof_status["phase2f1aReady"] = (
+        proof_status["editorialAuthoringReady"]
+        and proof_status.get("sourceRightsVerified") is False
+        and proof_status.get("mediaReuseEligible") is False
+        and proof_status["sourceReuseEligible"] is False
+    )
+
+
 def _solve_level_bucket_quotas(candidates: list[dict[str, Any]]) -> dict[str, dict[str, int]] | None:
     matched = collections.Counter(candidate["selectedCefr"] for candidate in candidates if candidate["sourceBucket"] == "OXFORD_PLUS_4600")
     only = collections.Counter(candidate["selectedCefr"] for candidate in candidates if candidate["sourceBucket"] == "OXFORD_ONLY")
@@ -1165,7 +1318,9 @@ def _sanitize_candidate(candidate: dict[str, Any]) -> dict[str, Any]:
         "rightsStatus", "shipEligible", "qaFlags", "recommendedNextAction", "oxfordReference",
         "vocab4600Reference", "existingMasterLexemeId", "existingMasterSenseId", "technicalMediaCandidates",
     )
-    return {key: candidate.get(key) for key in keep}
+    sanitized = {key: candidate.get(key) for key in keep}
+    sanitized["senseSegmentationStatus"] = _sense_segmentation_status(candidate)
+    return sanitized
 
 
 def build_proof(oxford_path: Path, vocab4600_path: Path, dataset_root: Path, raw_cache_root: Path | None) -> dict[str, Any]:
@@ -1195,6 +1350,9 @@ def build_proof(oxford_path: Path, vocab4600_path: Path, dataset_root: Path, raw
     selected_only = only_candidates[:10]
     multiword_room = max(0, 10 - sum(candidate["lexicalUnitType"] != "WORD" for candidate in selected_only))
     selected_oxford, selection_report = _select_oxford(oxford_candidates, quota_plan, SELECTION_POLICY_VERSION, multiword_room)
+    selected_oxford, segmentation_replacements = _replace_note_level_fallbacks(
+        selected_oxford, oxford_candidates, SELECTION_POLICY_VERSION
+    )
     selected_internal = selected_oxford + selected_only
     selected_internal, media_report = _attach_selected_media(selected_internal, oxford, vocab4600)
     sanitized_candidates = [_sanitize_candidate(candidate) for candidate in sorted(selected_internal, key=lambda row: row["candidateId"])]
@@ -1205,6 +1363,7 @@ def build_proof(oxford_path: Path, vocab4600_path: Path, dataset_root: Path, raw
             "candidateId": candidate["candidateId"],
             "lexemeCandidateId": candidate["lexemeCandidateId"],
             "sourceCoverage": candidate["sourceCoverage"],
+            "senseSegmentationStatus": _sense_segmentation_status(candidate),
             "oxfordReference": candidate["oxfordReference"],
             "vocab4600Reference": candidate["vocab4600Reference"],
             "ambiguousMatchGroupReference": candidate.get("_ambiguousMatchGroupReference"),
@@ -1217,6 +1376,7 @@ def build_proof(oxford_path: Path, vocab4600_path: Path, dataset_root: Path, raw
         crosswalk.append(row)
 
     selected_oxford_after = [candidate for candidate in selected_internal if candidate["sourceCoverage"] != "4600_ONLY"]
+    selected_oxford_segmentation = _segmentation_counts(selected_oxford_after)
     cefr_counts = collections.Counter(candidate["selectedCefr"] or "UNASSIGNED" for candidate in selected_oxford_after)
     pos_counts = collections.Counter(candidate["partOfSpeechCode"] if candidate["partOfSpeechCode"] in POS_ORDER else "OTHER" if candidate["partOfSpeechCode"] else "UNASSIGNED" for candidate in selected_internal)
     source_counts = collections.Counter(candidate["sourceCoverage"] for candidate in selected_internal)
@@ -1302,6 +1462,7 @@ def build_proof(oxford_path: Path, vocab4600_path: Path, dataset_root: Path, raw
             "quotaPlan": selection_report["quotaPlan"],
             "selectedByBucket": selection_report["selectedByBucket"],
             "unfilledCells": selection_report["unfilledCells"],
+            "segmentationReplacements": segmentation_replacements,
             "fallbackReasons": [],
         },
         "masterSnapshot": master_metadata,
@@ -1311,6 +1472,7 @@ def build_proof(oxford_path: Path, vocab4600_path: Path, dataset_root: Path, raw
             "oxfordNoteLevelFallbackCandidates": sum(not candidate["_structuredGroup"] for candidate in oxford_candidates),
             "oxfordMultiSenseLexemeCandidatePool": sum(len(rows) > 1 for rows in all_by_lexeme.values()),
         },
+        "selectedOxfordSegmentation": selected_oxford_segmentation,
         "alignmentAudit": {
             "unbroadcast4600NoteAssignments": media_report["assignedNoteBroadcastCount"] == 0,
             "uniqueAssigned4600NoteCount": media_report["uniqueAssigned4600NoteCount"],
@@ -1319,22 +1481,31 @@ def build_proof(oxford_path: Path, vocab4600_path: Path, dataset_root: Path, raw
         "proofStatus": {
             "sourceFilesVerified": True,
             "apkgParsingVerified": True,
-            "senseSegmentationVerified": bool(oxford_candidates) and all(candidate["_structuredGroup"] for candidate in selected_oxford_after),
-            "polysemyGuardVerified": media_report["assignedNoteBroadcastCount"] == 0,
-            "mediaTargetGuardVerified": all(
-                role["targetType"] != "SENSE" or role["kind"] != "IMAGE" or role["targetCandidateId"] == candidate["candidateId"]
-                for candidate in selected_internal for media in candidate["technicalMediaCandidates"]
-                for role in next((item["roles"] for item in selected_media if item["mediaCandidateId"] == media["mediaCandidateId"]), [])
+            "senseSegmentationVerified": (
+                selected_oxford_segmentation["candidateCount"] == 90
+                and selected_oxford_segmentation["structured"] == 90
+                and selected_oxford_segmentation["fallback"] == 0
             ),
-            "existingMasterDedupAudited": len(sanitized_candidates) == 100,
+            "polysemyGuardVerified": (
+                media_report["assignedNoteBroadcastCount"] == 0
+                and multi_sense_candidate_count >= 24
+                and len(distinct_selected_multisense_lexemes) >= 10
+                and len(selected_multi_lexemes) >= 8
+            ),
+            "mediaTargetGuardVerified": _media_target_guard_verified(selected_internal, selected_media),
+            "existingMasterDedupAudited": False,
+            "selectionCoverageVerified": False,
             "rawSourceContentCommitted": False,
             "sourceRightsVerified": False,
             "mediaReuseEligible": False,
+            "sourceReuseEligible": False,
             "proofDeterministic": False,
             "sampleExactly100Senses": len(sanitized_candidates) == 100,
             "masterIdsAllocated": 0,
             "databaseWrites": 0,
             "canonicalMasterMutated": False,
+            "editorialAuthoringReady": False,
+            "phase2f1aReady": False,
         },
     }
 
@@ -1361,6 +1532,8 @@ def build_proof(oxford_path: Path, vocab4600_path: Path, dataset_root: Path, raw
             fallback_reasons.append(f"POS_{pos}_COVERAGE_UNAVAILABLE")
     if coverage["posDistribution"]["OTHER"] < 1 and any(candidate.get("partOfSpeechCode") not in POS_ORDER and candidate.get("partOfSpeechCode") for candidate in oxford_candidates):
         fallback_reasons.append("POS_OTHER_SOURCE_CANDIDATE_NOT_SELECTED")
+    if selected_oxford_segmentation["fallback"]:
+        fallback_reasons.append("SELECTED_OXFORD_NOTE_LEVEL_FALLBACK_REMAINS")
     available_multiword = sum(candidate["lexicalUnitType"] != "WORD" for candidate in oxford_candidates + only_candidates)
     if available_multiword < 5:
         fallback_reasons.append("SOURCE_MULTIWORD_SHORTAGE")
@@ -1373,10 +1546,9 @@ def build_proof(oxford_path: Path, vocab4600_path: Path, dataset_root: Path, raw
     coverage["selection"]["fallbackReasons"] = fallback_reasons
     coverage["selection"]["availableMultiwordCandidateCount"] = available_multiword
     coverage["selection"]["availableExistingMasterCollisionCandidateCount"] = available_master_collisions
-    coverage["proofStatus"]["existingMasterDedupAudited"] = all(
-        candidate["existingMasterStatus"] in {"NO_EXISTING_LEXEME", "EXISTING_LEXEME_NEW_SENSE_CANDIDATE", "EXISTING_SENSE_CANDIDATE", "AMBIGUOUS_EXISTING_MASTER"}
-        for candidate in selected_internal
-    )
+    coverage["proofStatus"]["existingMasterDedupAudited"] = _existing_master_dedup_audited(selected_internal)
+    coverage["proofStatus"]["selectionCoverageVerified"] = not fallback_reasons
+    _refresh_readiness_flags(coverage["proofStatus"])
 
     candidate_ids = {row["candidateId"] for row in sanitized_candidates}
     for note_row in alignment["crosswalkNotes"]:
@@ -1407,6 +1579,14 @@ def build_proof(oxford_path: Path, vocab4600_path: Path, dataset_root: Path, raw
         "normalizationPolicyVersion": NORMALIZATION_POLICY_VERSION,
         "selectionPolicyVersion": SELECTION_POLICY_VERSION,
         "alignmentAlgorithmVersion": ALGORITHM_VERSION,
+        "segmentationPolicy": {
+            "candidateStatusField": "senseSegmentationStatus",
+            "structuredEvidenceField": "_structuredGroup",
+            "sourceSenseGroupReferenceProvesStructure": False,
+            "selectedOxfordStructuredRequired": 90,
+            "selectedOxfordFallbackAllowed": 0,
+        },
+        "selectionRepairs": segmentation_replacements,
         "selectionPolicy": {
             "sourceQuota": {"OXFORD_PLUS_4600": 70, "OXFORD_ONLY": 20, "4600_ONLY": 10},
             "cefrQuota": {level: 18 for level in CEFR_ORDER},
@@ -1474,7 +1654,7 @@ def build_proof(oxford_path: Path, vocab4600_path: Path, dataset_root: Path, raw
             "fallbackReasons": coverage["selection"]["fallbackReasons"],
             "quotaPlan": selection_report["quotaPlan"],
             "normalizationRules": ["Unicode NFKC", "HTML entity decode and safe text extraction", "trim and collapse whitespace", "casefold normalized match lemma", "preserve source spelling and apostrophes/hyphens", "CEFR remains source evidence; never mapped to GRADE"],
-            "semanticAlignmentRules": ["exact normalized lemma is discovery only", "require compatible POS and semantic evidence for ALIGNED", "ambiguous polysemy remains unassigned", "a 4600 note can be assigned to at most one Oxford Sense candidate", "image targets require ALIGNED semantic match", "word audio targets Lexeme candidate", "example audio targets Example candidate"],
+            "semanticAlignmentRules": ["exact normalized lemma is discovery only", "require compatible POS and semantic evidence for ALIGNED", "ambiguous polysemy remains unassigned and requires human/editorial review", "ambiguous, NO_MATCH, HEADWORD_ONLY, and 4600-only rows remain valid independent-authoring inputs", "do not copy source definitions as authoritative; author independent learner-facing text", "a 4600 note can be assigned to at most one Oxford Sense candidate", "image targets require ALIGNED semantic match", "word audio targets Lexeme candidate", "example audio targets Example candidate", "EXISTING_LEXEME_NEW_SENSE_CANDIDATE reuses the Lexeme ID in a later phase and allocates a new Sense ID only in that later phase"],
         },
         "candidates": {"candidates": sanitized_candidates},
         "crosswalk": {"candidateCrosswalk": crosswalk, "vocab4600NoteCrosswalk": sorted(selected_note_crosswalk, key=lambda row: row["sourceNoteReference"])},
@@ -1507,6 +1687,9 @@ def _render_report(proof: dict[str, Any]) -> str:
     alignment = coverage["alignment"]
     existing = coverage["existingMaster"]
     media = coverage["media"]
+    segmentation = coverage["selectedOxfordSegmentation"]
+    proof_status = coverage["proofStatus"]
+    replacement_audit = coverage["selection"]["segmentationReplacements"]
     lines = [
         "# Hybrid Oxford + 4600 — 100-Sense Offline Source Proof",
         "",
@@ -1535,7 +1718,14 @@ def _render_report(proof: dict[str, Any]) -> str:
         f"| Media-map entries resolved / missing; archive members unreferenced | {oxford['mediaMapResolvedMemberCount']} / {oxford['mediaMapMissingMemberCount']}; {oxford['unmappedArchiveMediaMemberCount']} | {vocab4600['mediaMapResolvedMemberCount']} / {vocab4600['mediaMapMissingMemberCount']}; {vocab4600['unmappedArchiveMediaMemberCount']} |",
         f"| Actual image / audio / other archive members | {oxford['actualImageMemberCount']} / {oxford['actualAudioMemberCount']} / {oxford['otherMediaMemberCount']} | {vocab4600['actualImageMemberCount']} / {vocab4600['actualAudioMemberCount']} / {vocab4600['otherMediaMemberCount']} |",
         "",
-        f"Oxford grouping produced {coverage['sourceGroupCounts']['oxfordStructuredGroupCandidates']} structured sense groups and {coverage['sourceGroupCounts']['oxfordNoteLevelFallbackCandidates']} note-level fallback candidates. All selected Oxford candidates use structured groups. Field presence counts use raw nonempty fields; media types are classified by member signatures where possible and bytes are not extracted to the workspace.",
+        f"Oxford grouping produced {coverage['sourceGroupCounts']['oxfordStructuredGroupCandidates']} structured sense groups and {coverage['sourceGroupCounts']['oxfordNoteLevelFallbackCandidates']} note-level fallback candidates. Field presence counts use raw nonempty fields; media types are classified by member signatures where possible and bytes are not extracted to the workspace.",
+        "",
+        "## Selected Oxford segmentation proof",
+        "",
+        f"- Selected Oxford-backed candidates: **{segmentation['candidateCount']}**; structured: **{segmentation['structured']}**; note-level fallback: **{segmentation['fallback']}**.",
+        f"- Structured segmentation verified: **{'YES' if proof_status['senseSegmentationVerified'] else 'NO'}**. A source sense-group reference is an identity reference and does not itself prove structured source segmentation.",
+        f"- Deterministic fallback replacements: **{len(replacement_audit)}**.",
+        *[f"  - `{row['replacedCandidateId']}` → `{row['replacementCandidateId']}` ({row['sourceBucket']}, {row['selectedCefr']}, POS category preserved: {'YES' if row['posDistributionPreserved'] else 'NO'})." for row in replacement_audit],
         "",
         "## Selected 100 candidates",
         "",
@@ -1552,6 +1742,7 @@ def _render_report(proof: dict[str, Any]) -> str:
         "",
         f"- Alignment: ALIGNED {alignment['ALIGNED']}; HEADWORD_ONLY {alignment['HEADWORD_ONLY']}; AMBIGUOUS {alignment['AMBIGUOUS']}; NO_MATCH {alignment['NO_MATCH']}; 4600-only authoring required {alignment['SOURCE_SEMANTIC_AUTHORING_REQUIRED']}.",
         f"- Existing Master: existing Sense candidates {existing['existingSenseCandidates']}; existing Lexeme / new Sense candidates {existing['existingLexemeNewSenseCandidates']}; new Lexeme candidates {existing['newLexemeCandidates']}; ambiguous {existing['ambiguous']}.",
+        "- An existing Sense match requires compatible lexical-unit type, POS, and semantic evidence. An existing Lexeme / new Sense candidate reuses that Lexeme ID and receives a new Sense ID only in a later authoring phase; this proof allocates no IDs.",
         f"- Technical media candidates: images {media['technicalImageCandidates']}; word audio {media['wordAudioCandidates']}; example audio {media['exampleAudioCandidates']}; ambiguous targets {media['ambiguousMediaTargets']}; rights-confirmed reusable media {media['reusableRightsConfirmed']}.",
         "- Example audio remains Example-targeted and is never labeled pronunciation audio. Images are assigned to a Sense target only after semantic alignment.",
         "- `SOURCE_RIGHTS_VERIFIED=NO`; `MEDIA_REUSE_ELIGIBLE=NO`.",
@@ -1568,6 +1759,8 @@ def _render_report(proof: dict[str, Any]) -> str:
         "",
         f"- Proof fingerprint: `{proof['proofFingerprint']}`.",
         f"- Repeat run: {coverage.get('repeatFingerprintIdentical', 'NOT_RUN')}; both passes recompute the source SHA-256 values and proof fingerprint.",
+        f"- Alignment is not a readiness requirement: ambiguous, NO_MATCH, HEADWORD_ONLY, and 4600-only rows remain authoring inputs; ambiguous cases require human/editorial review and all learner-facing text must be authored independently.",
+        f"- Rights status is independent of authoring readiness: source rights verified **{'YES' if proof_status['sourceRightsVerified'] else 'NO'}**; media reuse eligible **{'YES' if proof_status['mediaReuseEligible'] else 'NO'}**; source reuse eligible **{'YES' if proof_status['sourceReuseEligible'] else 'NO'}**.",
         "- Candidate IDs are SHA-256-derived `SOURCE-CANDIDATE-*` values. No `masterLexemeId`/`masterSenseId` is assigned to new candidates.",
         "- Existing canonical Master package was read only. Master release 2.1.0 and runtime canary remain outside this workspace.",
         "",
@@ -1577,12 +1770,26 @@ def _render_report(proof: dict[str, Any]) -> str:
         "MIGRATIONS_EXECUTED = NONE",
         "MASTER_CANONICAL_MUTATION = NONE",
         "MEDIA_UPLOADS = NONE",
-        f"SOURCE_FILES_VERIFIED = {'YES' if coverage['proofStatus']['sourceFilesVerified'] else 'NO'}",
-        f"SAMPLE_EXACTLY_100_SENSES = {'YES' if coverage['proofStatus']['sampleExactly100Senses'] else 'NO'}",
-        f"PROOF_DETERMINISTIC = {'YES' if coverage['proofStatus']['proofDeterministic'] else 'NO'}",
+        f"SOURCE_FILES_VERIFIED = {'YES' if proof_status['sourceFilesVerified'] else 'NO'}",
+        f"APKG_PARSING_VERIFIED = {'YES' if proof_status['apkgParsingVerified'] else 'NO'}",
+        f"SAMPLE_EXACTLY_100_SENSES = {'YES' if proof_status['sampleExactly100Senses'] else 'NO'}",
+        f"SENSE_SEGMENTATION_VERIFIED = {'YES' if proof_status['senseSegmentationVerified'] else 'NO'}",
+        f"POLYSEMY_GUARD_VERIFIED = {'YES' if proof_status['polysemyGuardVerified'] else 'NO'}",
+        f"MEDIA_TARGET_GUARD_VERIFIED = {'YES' if proof_status['mediaTargetGuardVerified'] else 'NO'}",
+        f"EXISTING_MASTER_DEDUP_AUDITED = {'YES' if proof_status['existingMasterDedupAudited'] else 'NO'}",
+        f"SELECTION_COVERAGE_VERIFIED = {'YES' if proof_status['selectionCoverageVerified'] else 'NO'}",
+        f"PROOF_DETERMINISTIC = {'YES' if proof_status['proofDeterministic'] else 'NO'}",
+        f"RAW_SOURCE_CONTENT_COMMITTED = {'YES' if proof_status['rawSourceContentCommitted'] else 'NO'}",
+        f"MASTER_IDS_ALLOCATED = {proof_status['masterIdsAllocated']}",
+        f"CANONICAL_MASTER_MUTATED = {'YES' if proof_status['canonicalMasterMutated'] else 'NO'}",
+        f"SOURCE_RIGHTS_VERIFIED = {'YES' if proof_status['sourceRightsVerified'] else 'NO'}",
+        f"MEDIA_REUSE_ELIGIBLE = {'YES' if proof_status['mediaReuseEligible'] else 'NO'}",
+        f"SOURCE_REUSE_ELIGIBLE = {'YES' if proof_status['sourceReuseEligible'] else 'NO'}",
+        f"DATABASE_WRITES = {proof_status['databaseWrites']}",
         f"RUN_1_PROOF_FINGERPRINT = {coverage.get('run1ProofFingerprint', 'NOT_RECORDED')}",
         f"RUN_2_PROOF_FINGERPRINT = {coverage.get('run2ProofFingerprint', 'NOT_RECORDED')}",
-        f"HYBRID_100_EDITORIAL_AUTHORING_READY = {'YES' if coverage['proofStatus']['sampleExactly100Senses'] else 'NO'}",
+        f"HYBRID_100_EDITORIAL_AUTHORING_READY = {'YES' if proof_status['editorialAuthoringReady'] else 'NO'}",
+        f"PHASE_2F1A_READY = {'YES' if proof_status['phase2f1aReady'] else 'NO'}",
         "```",
         "",
     ]
@@ -1602,7 +1809,7 @@ def write_workspace(proof: dict[str, Any], workspace: Path, report_path: Path) -
 
 This directory is a sanitized, deterministic source-candidate package. It is **not** a Master release and its `SOURCE-CANDIDATE-*` IDs are not Master UUIDs.
 
-Raw APKG fields and media member names are kept only in the ignored local cache `.vocabflow-local/master-v2-hybrid-source/`. Tracked files include source identity hashes, field hashes, status flags, and candidate references; they do not contain source definitions, examples, translations, remote URLs, absolute paths, or media bytes.
+Raw APKG fields and media member names are kept only in the ignored local cache `.vocabflow-local/master-v2-hybrid-source/`. Tracked files include source identity hashes, field hashes, status flags, and candidate references; they do not contain source definitions, examples, translations, remote URLs, absolute paths, or media bytes. Candidate and crosswalk `senseSegmentationStatus` is based on parsed structured-group evidence; the presence of a `sourceSenseGroupReference` alone does not prove structured segmentation.
 
 Requirements: Python 3.11+ standard library only. From the repository root run `python scripts/master-vocabulary-v2-hybrid-source-proof.py --repeat`. The command verifies both APKG files, recomputes their SHA-256 identities twice, refreshes the local raw cache, checks identical proof fingerprints, and deterministically rewrites this workspace and `vocabflow-dataset/reports/hybrid-100-sense-source-proof.md`.
 
@@ -1646,11 +1853,14 @@ def main(argv: list[str] | None = None) -> int:
     except (FileNotFoundError, ValueError, OSError, sqlite3.Error, zipfile.BadZipFile) as error:
         sys.stderr.write(f"SOURCE_PROOF_FAILED={type(error).__name__}\n")
         return 1
+    _refresh_readiness_flags(proof["coverage"]["proofStatus"])
     if not args.check_only:
         write_workspace(proof, args.workspace, args.report)
     coverage = proof["coverage"]
     print("SOURCE_PROOF_FINGERPRINT=" + proof["proofFingerprint"])
     print("SELECTED_SENSE_CANDIDATES=" + str(coverage["selectedSenseCandidateCount"]))
+    print("SELECTED_OXFORD_STRUCTURED=" + str(coverage["selectedOxfordSegmentation"]["structured"]))
+    print("SELECTED_OXFORD_FALLBACK=" + str(coverage["selectedOxfordSegmentation"]["fallback"]))
     print("SOURCE_SPLIT=" + json.dumps(coverage["sourceSplit"], sort_keys=True))
     print("CEFR=" + json.dumps(coverage["cefrSelectedOxford"], sort_keys=True))
     print("POLYSEMY_PAIRS=" + str(coverage["multiSenseLexemePairCount"]))
@@ -1663,6 +1873,8 @@ def main(argv: list[str] | None = None) -> int:
         print("RUN_2_PROOF_FINGERPRINT=" + coverage["run2ProofFingerprint"])
         print("REPEAT_FINGERPRINT_IDENTICAL=" + coverage["repeatFingerprintIdentical"])
     print("SOURCE_RIGHTS_VERIFIED=NO\nMEDIA_REUSE_ELIGIBLE=NO")
+    print("HYBRID_100_EDITORIAL_AUTHORING_READY=" + ("YES" if coverage["proofStatus"]["editorialAuthoringReady"] else "NO"))
+    print("PHASE_2F1A_READY=" + ("YES" if coverage["proofStatus"]["phase2f1aReady"] else "NO"))
     print("DATABASE_WRITES=NONE\nMASTER_CANONICAL_MUTATION=NONE")
     return 0
 

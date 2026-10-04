@@ -45,7 +45,7 @@
   },
   "reusableMediaCount": 0,
   "selectedCandidateCount": 100,
-  "selectedTechnicalMediaCandidateCount": 99,
+  "selectedTechnicalMediaCandidateCount": 105,
   "sourceRightsVerified": false,
   "sourceTextRightsStatus": "UNKNOWN_UNVERIFIED",
   "technicalMediaCandidates": [
@@ -164,6 +164,25 @@
       "sourcePackage": "vocab4600"
     },
     {
+      "archiveMemberReference": "3567",
+      "declaredType": ".jpg",
+      "detectedType": "image/jpeg",
+      "mediaCandidateId": "MEDIA-CANDIDATE-0d164090389c45ef11d943abd44abc4ff3561e6d715a3705945d6c3f497c8b80",
+      "memberNameHash": "f2991411602d25faea6483e0e4dfff394f56969d8af12f5eb3d14a4717380b89",
+      "rightsStatus": "UNKNOWN_UNVERIFIED",
+      "roles": [
+        {
+          "kind": "IMAGE",
+          "targetCandidateId": "SOURCE-CANDIDATE-9778e99282e13db6006303903ab40a2205f4940ea2b8333cb59b2da97111783c",
+          "targetType": "SENSE"
+        }
+      ],
+      "sha256": "48d15ed1641430529e70e7d6240dcd69f66930c1587aeebdaf7f87a718584036",
+      "shipEligible": false,
+      "sizeBytes": 16644,
+      "sourcePackage": "vocab4600"
+    },
+    {
       "archiveMemberReference": "3886",
       "declaredType": ".mp3",
       "detectedType": "audio/mpeg",
@@ -278,6 +297,25 @@
       "sourcePackage": "vocab4600"
     },
     {
+      "archiveMemberReference": "2960",
+      "declaredType": ".mp3",
+      "detectedType": "audio/mpeg",
+      "mediaCandidateId": "MEDIA-CANDIDATE-15f166eb774ea216a30ba8da012101907f760d81b617b32ab6875d0fee828c2e",
+      "memberNameHash": "bc0dda8cd46215de03735fa37b9d9a5b4462dfc4d0532b5ddef4ad9cb5d414c5",
+      "rightsStatus": "UNKNOWN_UNVERIFIED",
+      "roles": [
+        {
+          "kind": "WORD_AUDIO",
+          "targetCandidateId": "LEXEME-CANDIDATE-6962acba7fcbe0d6d8935c583e317f23cf626720cdc5740e8642161178b9e49c",
+          "targetType": "LEXEME"
+        }
+      ],
+      "sha256": "de3c575027eca0162af865509fd240e7b3d8dff7987470cd5533dd7586608dd1",
+      "shipEligible": false,
+      "sizeBytes": 16196,
+      "sourcePackage": "vocab4600"
+    },
+    {
       "archiveMemberReference": "4811",
       "declaredType": ".mp3",
       "detectedType": "audio/mpeg",
@@ -351,6 +389,25 @@
       "sha256": "90e69680d26154af1adb7603d1a8f9fdff89fb036033ca1c367f9960bc61a02b",
       "shipEligible": false,
       "sizeBytes": 18808,
+      "sourcePackage": "vocab4600"
+    },
+    {
+      "archiveMemberReference": "13626",
+      "declaredType": ".mp3",
+      "detectedType": "audio/mpeg",
+      "mediaCandidateId": "MEDIA-CANDIDATE-1eed81f7f5df3d6c3d97df4cc0eb9ee0851e9ff76229057d2698584acaac8434",
+      "memberNameHash": "5008310d92244d3a91e772ce7e2e51179d5db78ef4d87f685c04677f82256fef",
+      "rightsStatus": "UNKNOWN_UNVERIFIED",
+      "roles": [
+        {
+          "kind": "EXAMPLE_AUDIO",
+          "targetCandidateId": "EXAMPLE-CANDIDATE-aebdce1986cfb7dd04fb0ef65c2fff32ebd2190a445d729d146c524995487c9e",
+          "targetType": "EXAMPLE"
+        }
+      ],
+      "sha256": "edc8519fb2a10faeb26e496e8f3810eb492fc6f84a920e8ae0a54ed1e3c6e7b3",
+      "shipEligible": false,
+      "sizeBytes": 12288,
       "sourcePackage": "vocab4600"
     },
     {
@@ -560,6 +617,25 @@
       "sha256": "99fb50babf7de1a07a9306b7b69a52fce2c937e366d0595805e0e0cc4d1b4864",
       "shipEligible": false,
       "sizeBytes": 34874,
+      "sourcePackage": "vocab4600"
+    },
+    {
+      "archiveMemberReference": "602",
+      "declaredType": ".mp3",
+      "detectedType": "audio/mpeg",
+      "mediaCandidateId": "MEDIA-CANDIDATE-360bb4bf66c2c31977aadf6253a3ada357efc0bb76e8c13c4739a784e36c89e8",
+      "memberNameHash": "634644eb6ef031ffccfb030e2d9e19f314e7e11b441ccff02a7f6aff09011a6b",
+      "rightsStatus": "UNKNOWN_UNVERIFIED",
+      "roles": [
+        {
+          "kind": "EXAMPLE_AUDIO",
+          "targetCandidateId": "EXAMPLE-CANDIDATE-ccea8189e0dbd00dc35566e146bd5458876477d90eb563fe9e62f95149f6d91b",
+          "targetType": "EXAMPLE"
+        }
+      ],
+      "sha256": "3c419cd3571630788a9489eef7c6b5dcb5dfce3c3fb1ce00a7050485fa196fb8",
+      "shipEligible": false,
+      "sizeBytes": 7584,
       "sourcePackage": "vocab4600"
     },
     {
@@ -1551,6 +1627,25 @@
       "sourcePackage": "vocab4600"
     },
     {
+      "archiveMemberReference": "10338",
+      "declaredType": ".jpg",
+      "detectedType": "image/jpeg",
+      "mediaCandidateId": "MEDIA-CANDIDATE-b7194aebf8c3b001d5f9eedccc5f06bf7417f9e132815a22e5dd2621198ecc15",
+      "memberNameHash": "cb2a0378f753c5398b300d8a7a499a6e0966091f406c82ae73142246de893baa",
+      "rightsStatus": "UNKNOWN_UNVERIFIED",
+      "roles": [
+        {
+          "kind": "IMAGE",
+          "targetCandidateId": "SOURCE-CANDIDATE-616c853e98fddfbade0001ee43b364e6b5ef6b6ad73efcee81897818e81720b5",
+          "targetType": "SENSE"
+        }
+      ],
+      "sha256": "2a24c928748262311a673ce120e3d8dee56ae8147aa45206aec853eb5e27ebcc",
+      "shipEligible": false,
+      "sizeBytes": 11537,
+      "sourcePackage": "vocab4600"
+    },
+    {
       "archiveMemberReference": "3162",
       "declaredType": ".jpg",
       "detectedType": "image/jpeg",
@@ -1852,6 +1947,25 @@
       "sha256": "2c4d941be49616197875aeb51d361455aa62fc41c4aca49c9cc04ef27017f8b8",
       "shipEligible": false,
       "sizeBytes": 28200,
+      "sourcePackage": "vocab4600"
+    },
+    {
+      "archiveMemberReference": "6222",
+      "declaredType": ".mp3",
+      "detectedType": "audio/mpeg",
+      "mediaCandidateId": "MEDIA-CANDIDATE-e9310d8f3895c1a6013ed80ec63089c62a608f79736698492b3bbd28c14b01b8",
+      "memberNameHash": "98d88424c4c5637cd3546961612452e8702ec454884cf737f97ef5ede8bef3f8",
+      "rightsStatus": "UNKNOWN_UNVERIFIED",
+      "roles": [
+        {
+          "kind": "WORD_AUDIO",
+          "targetCandidateId": "LEXEME-CANDIDATE-b33ccb9ab3aa36712a8986d81e4a3892b557e146636977a6e2970271f803e8d7",
+          "targetType": "LEXEME"
+        }
+      ],
+      "sha256": "a2df9445c73c7526bae3cbd2703209d7287502b4196aa3a4bccf3069288f9a35",
+      "shipEligible": false,
+      "sizeBytes": 18808,
       "sourcePackage": "vocab4600"
     },
     {

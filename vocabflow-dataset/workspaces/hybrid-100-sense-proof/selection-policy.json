@@ -58,11 +58,14 @@
   "semanticAlignmentRules": [
     "exact normalized lemma is discovery only",
     "require compatible POS and semantic evidence for ALIGNED",
-    "ambiguous polysemy remains unassigned",
+    "ambiguous polysemy remains unassigned and requires human/editorial review",
+    "ambiguous, NO_MATCH, HEADWORD_ONLY, and 4600-only rows remain valid independent-authoring inputs",
+    "do not copy source definitions as authoritative; author independent learner-facing text",
     "a 4600 note can be assigned to at most one Oxford Sense candidate",
     "image targets require ALIGNED semantic match",
     "word audio targets Lexeme candidate",
-    "example audio targets Example candidate"
+    "example audio targets Example candidate",
+    "EXISTING_LEXEME_NEW_SENSE_CANDIDATE reuses the Lexeme ID in a later phase and allocates a new Sense ID only in that later phase"
   ],
   "sourceQuota": {
     "4600_ONLY": 10,

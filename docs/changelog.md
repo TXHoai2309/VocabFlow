@@ -2,6 +2,30 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-04 — Master Vocabulary V2 Phase 2F.1A source-proof gate correction
+
+- Corrected a source-proof contradiction: two of the selected 90 Oxford
+  candidates were note-level fallbacks, despite a hardcoded report claim that
+  every selected candidate used a structured source group. A deterministic
+  repair replaced exactly those two candidates while preserving their source
+  and CEFR cells, POS distribution, Master collision status, polysemy
+  membership, and lexical-unit type.
+- Added sanitized per-candidate/crosswalk segmentation status and bumped the
+  parser contract to `APKG-SOURCE-PROOF-3`. Editorial readiness now requires
+  all source, parsing, segmentation, selection, polysemy, media, dedup, safety,
+  and deterministic-repeat gates. Rights remain unverified and block source
+  reuse while allowing independent editorial authoring.
+- Repeated fingerprint:
+  `89d6477c3c1a32a0eb1e367f09df37238554f762b3b378c0f590525f3d0a4ccc`;
+  selected Oxford segmentation is 90 structured / 0 fallback. The 100-item
+  source split remains 70/20/10. No Master IDs, database writes, migrations,
+  import apply, canonical mutations, or media uploads occurred.
+- Focused tests passed (15/15), the Master validator passed (0 errors, 0
+  warnings, 1 informational DRAFT issue), and typecheck, lint, and
+  `git diff --check` passed. Local Node is 22.19.0 versus required 22.23.2.
+- See `vocabflow-dataset/reports/hybrid-100-sense-source-proof.md` and
+  `docs/ai-progress.md` for the sanitized proof and validation record.
+
 ## 2026-10-04 — Master Vocabulary V2 Phase 2F.1 hybrid 100-Sense source proof
 
 - Added an offline stdlib APKG extractor, deterministic 100-Sense source

@@ -408,3 +408,27 @@ Production readiness and Apple duplicate consolidation remain future work.
 Focused validation passed (7 files / 100 tests), as did Master V2 validation
 and `git diff --check`. Root typecheck and lint remain blocked by separate
 progress-dashboard edits. See the [sanitized canary verification report](../../vocabflow-dataset/reports/canary-development-apply-verification.md).
+
+## Phase 2F.1A — Hybrid source proof gate correction
+
+The 2F.1 report/readiness contradiction was traced to two selected Oxford
+note-level fallbacks: coverage used the internal structured-group bit, the
+sanitized candidate output omitted that evidence, and the report hardcoded an
+all-structured claim. The editorial-ready flag also depended only on the
+100-candidate count. The two fallbacks were replaced deterministically while
+keeping the 70/20/10 source split, CEFR quotas, POS distribution, polysemy
+coverage, and five Master collision candidates. The sanitized candidate and
+crosswalk records now expose a segmentation status distinct from the group
+reference, under parser contract `APKG-SOURCE-PROOF-3`.
+
+The repeated source fingerprint is
+`89d6477c3c1a32a0eb1e367f09df37238554f762b3b378c0f590525f3d0a4ccc` with 90
+structured Oxford candidates and zero fallbacks. Editorial authoring is ready;
+source text/media reuse remains blocked by unknown rights. Ambiguous and
+unmatched alignment remains valid only for independently authored content,
+with human review for ambiguity. The existing Master audit still requires
+compatible POS and semantic evidence for an existing Sense; an existing
+Lexeme/new Sense decision reuses its Lexeme ID only in the later authoring
+phase. No IDs were allocated and no database, canonical Master, migration,
+import, or media state changed. See the
+[sanitized source-proof report](../../vocabflow-dataset/reports/hybrid-100-sense-source-proof.md).

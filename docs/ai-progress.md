@@ -1,5 +1,39 @@
 # Current Handoff Snapshot
 
+## 2026-10-04 — Master Vocabulary V2 Phase 2F.1A source-proof gate correction
+
+- The prior proof had a real contradiction: coverage evaluated the internal
+  `_structuredGroup` bit and found two selected Oxford note-level fallbacks,
+  while the generated report hardcoded an “all structured” claim. Candidate
+  sanitization omitted the bit, so the stable `sourceSenseGroupReference`
+  could not distinguish true structured groups from generated fallback refs.
+  Separately, the editorial-ready flag depended only on the 100-candidate
+  count.
+- Replaced the two verified fallback candidates deterministically in their
+  existing Oxford+4600 / CEFR cells. POS distribution, Master collision
+  status, polysemy membership, and lexical-unit type were preserved. The
+  remaining 88 Oxford selections and 10 4600-only candidates are unchanged.
+  New candidate IDs: `SOURCE-CANDIDATE-616c853e98fddfbade0001ee43b364e6b5ef6b6ad73efcee81897818e81720b5`
+  and `SOURCE-CANDIDATE-9778e99282e13db6006303903ab40a2205f4940ea2b8333cb59b2da97111783c`.
+- Sanitized candidates and crosswalks now include `senseSegmentationStatus`;
+  parser contract `APKG-SOURCE-PROOF-3` versions this proof change. Readiness
+  requires source/APKG verification, 100 candidates, 90 structured Oxford
+  candidates, polysemy/media/dedup/selection gates, deterministic repeat, no
+  committed raw content, zero allocated Master IDs, no canonical mutation,
+  and zero database writes. Rights remain NO and block source reuse, but do
+  not block independently authored editorial content. Alignment need not be
+  100%; ambiguous cases require human/editorial review.
+- Real source proof fingerprint repeated as
+  `89d6477c3c1a32a0eb1e367f09df37238554f762b3b378c0f590525f3d0a4ccc`.
+  Coverage: 90 structured / 0 fallback; 70/20/10 source split; 18 per CEFR;
+  12 polysemy pairs; 55 multi-sense Lexemes; five Master collision candidates.
+  Editorial authoring and Phase 2F.1A gates are YES. Source/media reuse remain
+  NO; no database, Master, or media mutation occurred.
+- Verification: focused source-proof tests 15/15; Master validator PASS (0
+  errors, 0 warnings, 1 informational DRAFT issue); typecheck PASS; lint PASS;
+  and `git diff --check` PASS. pnpm reports local Node `22.19.0` versus the
+  declared `22.23.2` engine.
+
 ## 2026-10-04 — Master Vocabulary V2 Phase 2F.1 hybrid 100-Sense source proof
 
 - Added a dependency-free Python APKG parser and synthetic fixture suite. It

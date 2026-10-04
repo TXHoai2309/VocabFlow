@@ -1,7 +1,7 @@
 {
   "alignment": {
-    "ALIGNED": 23,
-    "AMBIGUOUS": 44,
+    "ALIGNED": 25,
+    "AMBIGUOUS": 42,
     "HEADWORD_ONLY": 3,
     "NO_MATCH": 20,
     "SOURCE_SEMANTIC_AUTHORING_REQUIRED": 10
@@ -9,7 +9,7 @@
   "alignmentAudit": {
     "ambiguous4600NoteCount": 454,
     "unbroadcast4600NoteAssignments": true,
-    "uniqueAssigned4600NoteCount": 36
+    "uniqueAssigned4600NoteCount": 38
   },
   "cefrSelectedOxford": {
     "A1": 18,
@@ -39,11 +39,11 @@
   },
   "media": {
     "ambiguousMediaTargets": 10,
-    "candidateMemberCount": 99,
-    "exampleAudioCandidates": 33,
+    "candidateMemberCount": 105,
+    "exampleAudioCandidates": 35,
     "reusableRightsConfirmed": 0,
-    "technicalImageCandidates": 33,
-    "wordAudioCandidates": 33
+    "technicalImageCandidates": 35,
+    "wordAudioCandidates": 35
   },
   "multiSenseLexemeCandidateCount": 55,
   "multiSenseLexemePairCount": 12,
@@ -56,41 +56,45 @@
     "UNASSIGNED": 0,
     "VERB": 25
   },
-  "proofFingerprint": "276a2c39e311cb9f434976dd4b22f06d2db2f335b8b882b0bdfb2e6af3eb6323",
+  "proofFingerprint": "89d6477c3c1a32a0eb1e367f09df37238554f762b3b378c0f590525f3d0a4ccc",
   "proofStatus": {
     "apkgParsingVerified": true,
     "canonicalMasterMutated": false,
     "databaseWrites": 0,
+    "editorialAuthoringReady": true,
     "existingMasterDedupAudited": true,
     "masterIdsAllocated": 0,
     "mediaReuseEligible": false,
     "mediaTargetGuardVerified": true,
+    "phase2f1aReady": true,
     "polysemyGuardVerified": true,
     "proofDeterministic": true,
     "rawSourceContentCommitted": false,
     "sampleExactly100Senses": true,
-    "senseSegmentationVerified": false,
+    "selectionCoverageVerified": true,
+    "senseSegmentationVerified": true,
     "sourceFilesVerified": true,
+    "sourceReuseEligible": false,
     "sourceRightsVerified": false
   },
   "quality": {
     "duplicateSourceHeadwordCandidates": 0,
     "existingMasterAmbiguous": 0,
     "htmlNoise": 100,
-    "missingDefinition": 67,
+    "missingDefinition": 65,
     "missingExample": 0,
     "missingTranslation": 10,
     "qaFlagCounts": {
-      "EXAMPLE_AUDIO_NOT_PRONUNCIATION": 33,
+      "EXAMPLE_AUDIO_NOT_PRONUNCIATION": 35,
       "HTML_NOISE": 100,
       "IMAGE_SENSE_TARGET_AMBIGUOUS": 10,
       "MEDIA_RIGHTS_UNKNOWN": 100,
-      "MISSING_EN_DEFINITION": 67,
+      "MISSING_EN_DEFINITION": 65,
       "MISSING_VI": 10,
       "MULTIWORD_NORMALIZATION_REVIEW": 5,
       "POLYSEMY_COLLISION_RISK": 42,
-      "POS_CONFLICT": 22,
-      "SEMANTIC_ALIGNMENT_AMBIGUOUS": 44,
+      "POS_CONFLICT": 20,
+      "SEMANTIC_ALIGNMENT_AMBIGUOUS": 42,
       "SOURCE_TEXT_RIGHTS_UNKNOWN": 100
     }
   },
@@ -102,8 +106,13 @@
     "sourceRightsVerified": false,
     "unknownRightsItems": 100
   },
-  "run1ProofFingerprint": "276a2c39e311cb9f434976dd4b22f06d2db2f335b8b882b0bdfb2e6af3eb6323",
-  "run2ProofFingerprint": "276a2c39e311cb9f434976dd4b22f06d2db2f335b8b882b0bdfb2e6af3eb6323",
+  "run1ProofFingerprint": "89d6477c3c1a32a0eb1e367f09df37238554f762b3b378c0f590525f3d0a4ccc",
+  "run2ProofFingerprint": "89d6477c3c1a32a0eb1e367f09df37238554f762b3b378c0f590525f3d0a4ccc",
+  "selectedOxfordSegmentation": {
+    "candidateCount": 90,
+    "fallback": 0,
+    "structured": 90
+  },
   "selectedSenseCandidateCount": 100,
   "selectedSensesFromMultiSenseLexemes": 68,
   "selection": {
@@ -138,6 +147,28 @@
       "oxfordPlus4600": 70,
       "vocab4600Only": 10
     },
+    "segmentationReplacements": [
+      {
+        "existingMasterStatusPreserved": true,
+        "lexicalUnitTypePreserved": true,
+        "polysemyMembershipPreserved": true,
+        "posDistributionPreserved": true,
+        "replacedCandidateId": "SOURCE-CANDIDATE-236f86d71595763dda3b75dba6254598430b2ce32426cfdbf0cae1482e4a438c",
+        "replacementCandidateId": "SOURCE-CANDIDATE-616c853e98fddfbade0001ee43b364e6b5ef6b6ad73efcee81897818e81720b5",
+        "selectedCefr": "A1",
+        "sourceBucket": "OXFORD_PLUS_4600"
+      },
+      {
+        "existingMasterStatusPreserved": true,
+        "lexicalUnitTypePreserved": true,
+        "polysemyMembershipPreserved": true,
+        "posDistributionPreserved": true,
+        "replacedCandidateId": "SOURCE-CANDIDATE-4cefc22bd46ccc348d82f065e05d91de73772bf3264a924d1dee03f53972d5db",
+        "replacementCandidateId": "SOURCE-CANDIDATE-9778e99282e13db6006303903ab40a2205f4940ea2b8333cb59b2da97111783c",
+        "selectedCefr": "B2",
+        "sourceBucket": "OXFORD_PLUS_4600"
+      }
+    ],
     "selectedByBucket": {
       "OXFORD_ONLY:A1": 4,
       "OXFORD_ONLY:A2": 4,

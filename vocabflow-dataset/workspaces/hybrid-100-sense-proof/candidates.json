@@ -38,6 +38,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "C1",
       "semanticLabel": "Oxford source sense group 4; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -86,6 +87,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "A1",
       "semanticLabel": "Oxford source sense group 3; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -129,6 +131,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "B2",
       "semanticLabel": "Oxford source sense group 2; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_ONLY",
       "sourcePosCodes": [
@@ -176,6 +179,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "A2",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -219,6 +223,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "B1",
       "semanticLabel": "Oxford source sense group 2; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_ONLY",
       "sourcePosCodes": [
@@ -267,6 +272,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "A1",
       "semanticLabel": "Oxford source sense group 2; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -314,6 +320,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "C1",
       "semanticLabel": "Oxford source sense group 2; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -362,6 +369,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "A1",
       "semanticLabel": "Oxford source sense group 3; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -405,6 +413,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "C1",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_ONLY",
       "sourcePosCodes": [
@@ -452,6 +461,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "B2",
       "semanticLabel": "Oxford source sense group 3; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -496,6 +506,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "B1",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -561,6 +572,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "A2",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -608,6 +620,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "B2",
       "semanticLabel": "Oxford source sense group 2; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -650,6 +663,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": null,
       "semanticLabel": "4600-only headword candidate; Master Sense authoring required",
+      "senseSegmentationStatus": "NOT_APPLICABLE_NO_OXFORD_SENSE",
       "shipEligible": false,
       "sourceCoverage": "4600_ONLY",
       "sourcePosCodes": [
@@ -677,53 +691,6 @@
         "sourceNoteReference": "NOTE-fe52fc29a32a390a9069ee850cda6f8d51f1375f1783bbb8136cbad7355f1574"
       },
       "wordAudioCandidateStatus": "LEXEME_TARGET_TECHNICAL_ONLY"
-    },
-    {
-      "alignmentStatus": "AMBIGUOUS",
-      "candidateId": "SOURCE-CANDIDATE-236f86d71595763dda3b75dba6254598430b2ce32426cfdbf0cae1482e4a438c",
-      "cefrEvidence": [
-        "A1"
-      ],
-      "definitionEvidenceStatus": "UNALIGNED_SOURCE_DEFINITION_PRESENT",
-      "displayLemma": "they",
-      "exampleAudioCandidateStatus": "NOT_PRESENT",
-      "exampleEvidenceStatus": "SOURCE_EXAMPLE_PRESENT",
-      "existingMasterLexemeId": null,
-      "existingMasterSenseId": null,
-      "existingMasterStatus": "NO_EXISTING_LEXEME",
-      "imageCandidateStatus": "NOT_PRESENT",
-      "lexemeCandidateId": "LEXEME-CANDIDATE-8fd53015bbc3b150b4c64a83a800ae4970c69b29680de51038910a43fcaa058d",
-      "lexicalUnitType": "WORD",
-      "normalizedLemma": "they",
-      "oxfordReference": {
-        "sourceNoteReference": "NOTE-03944f6fd7a0b2a5512ef1cb64b9715db190993c1666620ee0b798afe543a74b",
-        "sourceSenseGroupReference": "SENSE-GROUP-f3485b9046e5cab7ec3b3ae506f9613e6cec681dbc1454abc37cd196ddc8b0bb"
-      },
-      "partOfSpeechCode": "PRONOUN",
-      "pronunciationEvidenceStatus": "PRONUNCIATION_EVIDENCE_PRESENT",
-      "qaFlags": [
-        "HTML_NOISE",
-        "POS_CONFLICT",
-        "MISSING_EN_DEFINITION",
-        "HTML_NOISE",
-        "SEMANTIC_ALIGNMENT_AMBIGUOUS",
-        "MEDIA_RIGHTS_UNKNOWN",
-        "SOURCE_TEXT_RIGHTS_UNKNOWN",
-        "SEMANTIC_ALIGNMENT_AMBIGUOUS"
-      ],
-      "recommendedNextAction": "AUTHOR_AND_REVIEW_MASTER_SENSE",
-      "rightsStatus": "UNKNOWN_UNVERIFIED",
-      "selectedCefr": "A1",
-      "semanticLabel": "Oxford source sense group 1; editorial authoring required",
-      "shipEligible": false,
-      "sourceCoverage": "OXFORD_PLUS_4600",
-      "sourcePosCodes": [
-        "PRONOUN"
-      ],
-      "technicalMediaCandidates": [],
-      "translationEvidenceStatus": "SOURCE_TRANSLATION_PRESENT",
-      "vocab4600Reference": null,
-      "wordAudioCandidateStatus": "NOT_PRESENT"
     },
     {
       "alignmentStatus": "AMBIGUOUS",
@@ -763,6 +730,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "A1",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -806,6 +774,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "A1",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_ONLY",
       "sourcePosCodes": [
@@ -850,6 +819,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "B2",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -900,6 +870,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "A1",
       "semanticLabel": "Oxford source sense group 2; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -943,6 +914,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "A1",
       "semanticLabel": "Oxford source sense group 2; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_ONLY",
       "sourcePosCodes": [
@@ -990,6 +962,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "C1",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -1034,6 +1007,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "A2",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -1096,6 +1070,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "A2",
       "semanticLabel": "Oxford source sense group 3; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_ONLY",
       "sourcePosCodes": [
@@ -1144,6 +1119,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "A2",
       "semanticLabel": "Oxford source sense group 2; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -1188,6 +1164,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "A2",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -1254,6 +1231,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "C1",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -1295,6 +1273,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": null,
       "semanticLabel": "4600-only headword candidate; Master Sense authoring required",
+      "senseSegmentationStatus": "NOT_APPLICABLE_NO_OXFORD_SENSE",
       "shipEligible": false,
       "sourceCoverage": "4600_ONLY",
       "sourcePosCodes": [
@@ -1357,6 +1336,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "B1",
       "semanticLabel": "Oxford source sense group 3; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -1419,6 +1399,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "B2",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -1478,6 +1459,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": null,
       "semanticLabel": "4600-only headword candidate; Master Sense authoring required",
+      "senseSegmentationStatus": "NOT_APPLICABLE_NO_OXFORD_SENSE",
       "shipEligible": false,
       "sourceCoverage": "4600_ONLY",
       "sourcePosCodes": [
@@ -1540,6 +1522,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "C1",
       "semanticLabel": "Oxford source sense group 2; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -1599,6 +1582,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": null,
       "semanticLabel": "4600-only headword candidate; Master Sense authoring required",
+      "senseSegmentationStatus": "NOT_APPLICABLE_NO_OXFORD_SENSE",
       "shipEligible": false,
       "sourceCoverage": "4600_ONLY",
       "sourcePosCodes": [
@@ -1664,6 +1648,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "C1",
       "semanticLabel": "Oxford source sense group 2; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -1708,6 +1693,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "A1",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -1769,57 +1755,11 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "C1",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_ONLY",
       "sourcePosCodes": [
         "NOUN"
-      ],
-      "technicalMediaCandidates": [],
-      "translationEvidenceStatus": "SOURCE_TRANSLATION_PRESENT",
-      "vocab4600Reference": null,
-      "wordAudioCandidateStatus": "NOT_PRESENT"
-    },
-    {
-      "alignmentStatus": "AMBIGUOUS",
-      "candidateId": "SOURCE-CANDIDATE-4cefc22bd46ccc348d82f065e05d91de73772bf3264a924d1dee03f53972d5db",
-      "cefrEvidence": [
-        "B2"
-      ],
-      "definitionEvidenceStatus": "UNALIGNED_SOURCE_DEFINITION_PRESENT",
-      "displayLemma": "whoever",
-      "exampleAudioCandidateStatus": "NOT_PRESENT",
-      "exampleEvidenceStatus": "SOURCE_EXAMPLE_PRESENT",
-      "existingMasterLexemeId": null,
-      "existingMasterSenseId": null,
-      "existingMasterStatus": "NO_EXISTING_LEXEME",
-      "imageCandidateStatus": "NOT_PRESENT",
-      "lexemeCandidateId": "LEXEME-CANDIDATE-058926bfbfbe68b2ebb107a73b74ddc6b102ebb264cff0f2edebc8db36f2177c",
-      "lexicalUnitType": "WORD",
-      "normalizedLemma": "whoever",
-      "oxfordReference": {
-        "sourceNoteReference": "NOTE-25f6b2b8ad7e809633c324abbca18ba793143fc50d617279fe0834704526adf5",
-        "sourceSenseGroupReference": "SENSE-GROUP-071f24a7bc18e94c93831f3739e35681e5960d32aba6606003f27a618c24578d"
-      },
-      "partOfSpeechCode": "PRONOUN",
-      "pronunciationEvidenceStatus": "PRONUNCIATION_EVIDENCE_PRESENT",
-      "qaFlags": [
-        "HTML_NOISE",
-        "POS_CONFLICT",
-        "MISSING_EN_DEFINITION",
-        "HTML_NOISE",
-        "SEMANTIC_ALIGNMENT_AMBIGUOUS",
-        "MEDIA_RIGHTS_UNKNOWN",
-        "SOURCE_TEXT_RIGHTS_UNKNOWN",
-        "SEMANTIC_ALIGNMENT_AMBIGUOUS"
-      ],
-      "recommendedNextAction": "AUTHOR_AND_REVIEW_MASTER_SENSE",
-      "rightsStatus": "UNKNOWN_UNVERIFIED",
-      "selectedCefr": "B2",
-      "semanticLabel": "Oxford source sense group 1; editorial authoring required",
-      "shipEligible": false,
-      "sourceCoverage": "OXFORD_PLUS_4600",
-      "sourcePosCodes": [
-        "PRONOUN"
       ],
       "technicalMediaCandidates": [],
       "translationEvidenceStatus": "SOURCE_TRANSLATION_PRESENT",
@@ -1857,6 +1797,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": null,
       "semanticLabel": "4600-only headword candidate; Master Sense authoring required",
+      "senseSegmentationStatus": "NOT_APPLICABLE_NO_OXFORD_SENSE",
       "shipEligible": false,
       "sourceCoverage": "4600_ONLY",
       "sourcePosCodes": [
@@ -1918,6 +1859,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "B2",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_ONLY",
       "sourcePosCodes": [
@@ -1962,6 +1904,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "B1",
       "semanticLabel": "Oxford source sense group 5; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -2023,6 +1966,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "B2",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_ONLY",
       "sourcePosCodes": [
@@ -2067,6 +2011,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "A1",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -2129,6 +2074,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "A2",
       "semanticLabel": "Oxford source sense group 2; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_ONLY",
       "sourcePosCodes": [
@@ -2173,6 +2119,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "B2",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -2235,6 +2182,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "B1",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -2260,6 +2208,69 @@
       "translationEvidenceStatus": "SOURCE_TRANSLATION_PRESENT",
       "vocab4600Reference": {
         "sourceNoteReference": "NOTE-188894d9ad52af73774f2510652b3044a69cfa4245882013107edce2e6fe4bda"
+      },
+      "wordAudioCandidateStatus": "LEXEME_TARGET_TECHNICAL_ONLY"
+    },
+    {
+      "alignmentStatus": "ALIGNED",
+      "candidateId": "SOURCE-CANDIDATE-616c853e98fddfbade0001ee43b364e6b5ef6b6ad73efcee81897818e81720b5",
+      "cefrEvidence": [
+        "A1"
+      ],
+      "definitionEvidenceStatus": "SOURCE_EN_DEFINITION_PRESENT_UNVERIFIED",
+      "displayLemma": "during",
+      "exampleAudioCandidateStatus": "EXAMPLE_TARGET_TECHNICAL_ONLY",
+      "exampleEvidenceStatus": "SOURCE_EXAMPLE_PRESENT",
+      "existingMasterLexemeId": null,
+      "existingMasterSenseId": null,
+      "existingMasterStatus": "NO_EXISTING_LEXEME",
+      "imageCandidateStatus": "SENSE_TARGET_TECHNICAL_ONLY",
+      "lexemeCandidateId": "LEXEME-CANDIDATE-6962acba7fcbe0d6d8935c583e317f23cf626720cdc5740e8642161178b9e49c",
+      "lexicalUnitType": "WORD",
+      "normalizedLemma": "during",
+      "oxfordReference": {
+        "sourceNoteReference": "NOTE-eb4ea9974a6af902c66d17ace695565c758af1343b4cc2123f48dd53ed45492d",
+        "sourceSenseGroupReference": "SENSE-GROUP-7d5a1516f4b61d465fc05a147908c6f668b34e16ac91b14cc7278d29a611abed"
+      },
+      "partOfSpeechCode": "PREPOSITION",
+      "pronunciationEvidenceStatus": "PRONUNCIATION_EVIDENCE_PRESENT",
+      "qaFlags": [
+        "HTML_NOISE",
+        "HTML_NOISE",
+        "EXAMPLE_AUDIO_NOT_PRONUNCIATION",
+        "MEDIA_RIGHTS_UNKNOWN",
+        "SOURCE_TEXT_RIGHTS_UNKNOWN"
+      ],
+      "recommendedNextAction": "AUTHOR_AND_REVIEW_MASTER_SENSE",
+      "rightsStatus": "UNKNOWN_UNVERIFIED",
+      "selectedCefr": "A1",
+      "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
+      "shipEligible": false,
+      "sourceCoverage": "OXFORD_PLUS_4600",
+      "sourcePosCodes": [
+        "PREPOSITION"
+      ],
+      "technicalMediaCandidates": [
+        {
+          "kind": "EXAMPLE_AUDIO",
+          "mediaCandidateId": "MEDIA-CANDIDATE-360bb4bf66c2c31977aadf6253a3ada357efc0bb76e8c13c4739a784e36c89e8",
+          "targetStatus": "EXAMPLE_TARGET_TECHNICAL_ONLY"
+        },
+        {
+          "kind": "IMAGE",
+          "mediaCandidateId": "MEDIA-CANDIDATE-b7194aebf8c3b001d5f9eedccc5f06bf7417f9e132815a22e5dd2621198ecc15",
+          "targetStatus": "SENSE_TARGET_TECHNICAL_ONLY"
+        },
+        {
+          "kind": "WORD_AUDIO",
+          "mediaCandidateId": "MEDIA-CANDIDATE-15f166eb774ea216a30ba8da012101907f760d81b617b32ab6875d0fee828c2e",
+          "targetStatus": "LEXEME_TARGET_TECHNICAL_ONLY"
+        }
+      ],
+      "translationEvidenceStatus": "SOURCE_TRANSLATION_PRESENT",
+      "vocab4600Reference": {
+        "sourceNoteReference": "NOTE-44eb5e02379bdc459c05f396dd72e77521dfc127db7f9ffb97240f03c1b9a8e3"
       },
       "wordAudioCandidateStatus": "LEXEME_TARGET_TECHNICAL_ONLY"
     },
@@ -2300,6 +2311,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "C1",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -2348,6 +2360,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "A1",
       "semanticLabel": "Oxford source sense group 3; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -2395,6 +2408,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "B2",
       "semanticLabel": "Oxford source sense group 2; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -2442,6 +2456,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "C1",
       "semanticLabel": "Oxford source sense group 2; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -2485,6 +2500,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "C1",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_ONLY",
       "sourcePosCodes": [
@@ -2532,6 +2548,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "B1",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -2576,6 +2593,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "A2",
       "semanticLabel": "Oxford source sense group 3; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_ONLY",
       "sourcePosCodes": [
@@ -2623,6 +2641,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "C1",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -2667,6 +2686,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "A2",
       "semanticLabel": "Oxford source sense group 2; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -2729,6 +2749,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "A1",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -2790,6 +2811,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "B1",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_ONLY",
       "sourcePosCodes": [
@@ -2837,6 +2859,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "A2",
       "semanticLabel": "Oxford source sense group 5; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -2881,6 +2904,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "B1",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -2943,6 +2967,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "B1",
       "semanticLabel": "Oxford source sense group 2; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -3009,6 +3034,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "B1",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -3056,6 +3082,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "C1",
       "semanticLabel": "Oxford source sense group 2; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -3104,6 +3131,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "A1",
       "semanticLabel": "Oxford source sense group 4; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -3151,6 +3179,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "A1",
       "semanticLabel": "Oxford source sense group 3; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -3195,6 +3224,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "B2",
       "semanticLabel": "Oxford source sense group 2; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -3257,6 +3287,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "A2",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_ONLY",
       "sourcePosCodes": [
@@ -3266,6 +3297,69 @@
       "translationEvidenceStatus": "SOURCE_TRANSLATION_PRESENT",
       "vocab4600Reference": null,
       "wordAudioCandidateStatus": "NOT_PRESENT"
+    },
+    {
+      "alignmentStatus": "ALIGNED",
+      "candidateId": "SOURCE-CANDIDATE-9778e99282e13db6006303903ab40a2205f4940ea2b8333cb59b2da97111783c",
+      "cefrEvidence": [
+        "B2"
+      ],
+      "definitionEvidenceStatus": "SOURCE_EN_DEFINITION_PRESENT_UNVERIFIED",
+      "displayLemma": "via",
+      "exampleAudioCandidateStatus": "EXAMPLE_TARGET_TECHNICAL_ONLY",
+      "exampleEvidenceStatus": "SOURCE_EXAMPLE_PRESENT",
+      "existingMasterLexemeId": null,
+      "existingMasterSenseId": null,
+      "existingMasterStatus": "NO_EXISTING_LEXEME",
+      "imageCandidateStatus": "SENSE_TARGET_TECHNICAL_ONLY",
+      "lexemeCandidateId": "LEXEME-CANDIDATE-b33ccb9ab3aa36712a8986d81e4a3892b557e146636977a6e2970271f803e8d7",
+      "lexicalUnitType": "WORD",
+      "normalizedLemma": "via",
+      "oxfordReference": {
+        "sourceNoteReference": "NOTE-eb2669fb28edc66e6b60e47e66794ff443caa244d19b5b059676f53ad91233c4",
+        "sourceSenseGroupReference": "SENSE-GROUP-ecf3512f90fdb4c059a6cc3be8bd92fc61dd7bfd9a2a0a503879ef17d9fd4252"
+      },
+      "partOfSpeechCode": "PREPOSITION",
+      "pronunciationEvidenceStatus": "PRONUNCIATION_EVIDENCE_PRESENT",
+      "qaFlags": [
+        "HTML_NOISE",
+        "HTML_NOISE",
+        "EXAMPLE_AUDIO_NOT_PRONUNCIATION",
+        "MEDIA_RIGHTS_UNKNOWN",
+        "SOURCE_TEXT_RIGHTS_UNKNOWN"
+      ],
+      "recommendedNextAction": "AUTHOR_AND_REVIEW_MASTER_SENSE",
+      "rightsStatus": "UNKNOWN_UNVERIFIED",
+      "selectedCefr": "B2",
+      "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
+      "shipEligible": false,
+      "sourceCoverage": "OXFORD_PLUS_4600",
+      "sourcePosCodes": [
+        "PREPOSITION"
+      ],
+      "technicalMediaCandidates": [
+        {
+          "kind": "EXAMPLE_AUDIO",
+          "mediaCandidateId": "MEDIA-CANDIDATE-1eed81f7f5df3d6c3d97df4cc0eb9ee0851e9ff76229057d2698584acaac8434",
+          "targetStatus": "EXAMPLE_TARGET_TECHNICAL_ONLY"
+        },
+        {
+          "kind": "IMAGE",
+          "mediaCandidateId": "MEDIA-CANDIDATE-0d164090389c45ef11d943abd44abc4ff3561e6d715a3705945d6c3f497c8b80",
+          "targetStatus": "SENSE_TARGET_TECHNICAL_ONLY"
+        },
+        {
+          "kind": "WORD_AUDIO",
+          "mediaCandidateId": "MEDIA-CANDIDATE-e9310d8f3895c1a6013ed80ec63089c62a608f79736698492b3bbd28c14b01b8",
+          "targetStatus": "LEXEME_TARGET_TECHNICAL_ONLY"
+        }
+      ],
+      "translationEvidenceStatus": "SOURCE_TRANSLATION_PRESENT",
+      "vocab4600Reference": {
+        "sourceNoteReference": "NOTE-f0ea9858c485bb735883d6c3e6221544677251071c24541c891d9bbdb54644a9"
+      },
+      "wordAudioCandidateStatus": "LEXEME_TARGET_TECHNICAL_ONLY"
     },
     {
       "alignmentStatus": "SOURCE_SEMANTIC_AUTHORING_REQUIRED",
@@ -3298,6 +3392,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": null,
       "semanticLabel": "4600-only headword candidate; Master Sense authoring required",
+      "senseSegmentationStatus": "NOT_APPLICABLE_NO_OXFORD_SENSE",
       "shipEligible": false,
       "sourceCoverage": "4600_ONLY",
       "sourcePosCodes": [
@@ -3357,6 +3452,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": null,
       "semanticLabel": "4600-only headword candidate; Master Sense authoring required",
+      "senseSegmentationStatus": "NOT_APPLICABLE_NO_OXFORD_SENSE",
       "shipEligible": false,
       "sourceCoverage": "4600_ONLY",
       "sourcePosCodes": [
@@ -3422,6 +3518,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "C1",
       "semanticLabel": "Oxford source sense group 2; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -3466,6 +3563,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "B2",
       "semanticLabel": "Oxford source sense group 2; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -3532,6 +3630,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "B1",
       "semanticLabel": "Oxford source sense group 2; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -3576,6 +3675,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "A2",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -3638,6 +3738,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "B2",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -3703,6 +3804,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "B1",
       "semanticLabel": "Oxford source sense group 3; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -3751,6 +3853,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "B2",
       "semanticLabel": "Oxford source sense group 2; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -3795,6 +3898,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "B2",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -3856,6 +3960,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "C1",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_ONLY",
       "sourcePosCodes": [
@@ -3900,6 +4005,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "B2",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -3951,6 +4057,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "A2",
       "semanticLabel": "Oxford source sense group 3; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -3999,6 +4106,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "A1",
       "semanticLabel": "Oxford source sense group 3; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -4047,6 +4155,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "A1",
       "semanticLabel": "Oxford source sense group 2; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -4095,6 +4204,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "B1",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -4138,6 +4248,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "B1",
       "semanticLabel": "Oxford source sense group 2; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_ONLY",
       "sourcePosCodes": [
@@ -4179,6 +4290,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": null,
       "semanticLabel": "4600-only headword candidate; Master Sense authoring required",
+      "senseSegmentationStatus": "NOT_APPLICABLE_NO_OXFORD_SENSE",
       "shipEligible": false,
       "sourceCoverage": "4600_ONLY",
       "sourcePosCodes": [
@@ -4241,6 +4353,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "C1",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -4302,6 +4415,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "B1",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_ONLY",
       "sourcePosCodes": [
@@ -4346,6 +4460,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "C1",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -4412,6 +4527,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "A2",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -4455,6 +4571,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "A1",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_ONLY",
       "sourcePosCodes": [
@@ -4498,6 +4615,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "B2",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_ONLY",
       "sourcePosCodes": [
@@ -4545,6 +4663,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "A2",
       "semanticLabel": "Oxford source sense group 2; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -4592,6 +4711,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "B1",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -4633,6 +4753,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": null,
       "semanticLabel": "4600-only headword candidate; Master Sense authoring required",
+      "senseSegmentationStatus": "NOT_APPLICABLE_NO_OXFORD_SENSE",
       "shipEligible": false,
       "sourceCoverage": "4600_ONLY",
       "sourcePosCodes": [
@@ -4692,6 +4813,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": null,
       "semanticLabel": "4600-only headword candidate; Master Sense authoring required",
+      "senseSegmentationStatus": "NOT_APPLICABLE_NO_OXFORD_SENSE",
       "shipEligible": false,
       "sourceCoverage": "4600_ONLY",
       "sourcePosCodes": [
@@ -4758,6 +4880,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "A2",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -4805,6 +4928,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "A2",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -4853,6 +4977,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "B1",
       "semanticLabel": "Oxford source sense group 3; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -4897,6 +5022,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "A2",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -4958,6 +5084,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "A1",
       "semanticLabel": "Oxford source sense group 2; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_ONLY",
       "sourcePosCodes": [
@@ -5006,6 +5133,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "B1",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -5050,6 +5178,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "C1",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
@@ -5100,6 +5229,7 @@
       "rightsStatus": "UNKNOWN_UNVERIFIED",
       "selectedCefr": "B2",
       "semanticLabel": "Oxford source sense group 1; editorial authoring required",
+      "senseSegmentationStatus": "STRUCTURED",
       "shipEligible": false,
       "sourceCoverage": "OXFORD_PLUS_4600",
       "sourcePosCodes": [
