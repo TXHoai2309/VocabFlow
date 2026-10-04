@@ -1,5 +1,36 @@
 # Current Handoff Snapshot
 
+## 2026-10-04 — Master Vocabulary V2 Phase 2F.3 canonical promotion
+
+- Recorded the owner's explicit approval for the exact 100/100 Phase 2F.2A
+  draft fingerprint `a112a475e896f09038d4dd6834389af2d553d3a509829ef410ef17ae4e37ee1d`,
+  scoped to canonical DRAFT promotion only. The prior owner-review artifact and
+  frozen identity registry remain unchanged.
+- Promoted 84 new Lexemes and 98 new Senses with the existing allocated IDs.
+  Two existing Sense decisions remain reuse-only; three new Senses attach to
+  the existing light/reservation Lexemes without rewriting them. All promoted
+  records and linguistic children remain DRAFT.
+- Added 590 provenance records: 490 `PROJECT_AUTHORED` records covering Sense
+  labels and learner-facing children, plus 100 `OWNER_REVIEW` records for the
+  candidate decisions. No `LICENSED_SOURCE` or `PUBLIC_DOMAIN_SOURCE` records
+  were added; external source/media rights remain unverified.
+- Root dataset remains DRAFT at datasetVersion 2.0.0 / schemaVersion 2.0.1.
+  Canonical manifest totals are 103 Lexemes, 123 Senses, and 846 Provenance
+  records. No Classification, media, pronunciation, release, runtime import,
+  database, migration, or production change was made.
+- Promotion plan fingerprint:
+  `5c10618ee72fcc7b99b270764e412ebc51f286eadc750e45a6910830bb15e870`.
+  The post-apply `--check` reports materialized, zero canonical diff, and zero
+  provenance IDs to allocate on rerun. Source-overlap evidence and semantic
+  content match the approved workspace. The local canary tree was byte-identical
+  before and after this promotion; existing local canary edits were preserved.
+- Validation: canonical Master validator PASS (0 errors, 0 warnings, 1
+  informational DRAFT note); focused promotion tests 14/14 PASS. Typecheck,
+  ESLint, and `git diff --check` are recorded with the final commit. Local Node
+  is 22.19.0 while package.json requests 22.23.2.
+- Evidence: [canonical promotion report](../vocabflow-dataset/reports/hybrid-100-canonical-promotion.md)
+  and [US-45](stories/US-45-master-vocabulary-v2-runtime-import-bridge.md).
+
 ## 2026-10-04 — Master Vocabulary V2 Phase 2F.1A source-proof gate correction
 
 - The prior proof had a real contradiction: coverage evaluated the internal

@@ -432,3 +432,17 @@ Lexeme/new Sense decision reuses its Lexeme ID only in the later authoring
 phase. No IDs were allocated and no database, canonical Master, migration,
 import, or media state changed. See the
 [sanitized source-proof report](../../vocabflow-dataset/reports/hybrid-100-sense-source-proof.md).
+
+## Related Dataset Authoring Evidence — Phase 2F.3
+
+The owner approved the 100/100 Phase 2F.2A editorial draft for canonical DRAFT
+promotion only. Phase 2F.3 added 84 Lexemes, 98 Senses, and 590 provenance
+records to the root authoring package. The root manifest remains DRAFT at
+2.0.0/schema 2.0.1; no release was approved and no runtime import was started.
+Classifications, media, and pronunciations were not promoted, and source/media
+rights remain unverified. The development canary and existing local changes
+were preserved; no database or production target was accessed.
+
+Evidence: [Phase 2F.3 canonical promotion report](../../vocabflow-dataset/reports/hybrid-100-canonical-promotion.md)
+and promotion plan fingerprint
+`5c10618ee72fcc7b99b270764e412ebc51f286eadc750e45a6910830bb15e870`.

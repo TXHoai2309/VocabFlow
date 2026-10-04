@@ -1,0 +1,86 @@
+{
+  "masterSenseId": "01a1070c-7c59-726e-88d4-b375a308217e",
+  "masterLexemeId": "01a1070c-7c59-726e-88d4-adcdd8c12cf1",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "question a claim"
+    },
+    {
+      "language": "vi",
+      "text": "chất vấn một nhận định"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "VERB",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c59-726e-88d4-b61e88617d49",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-b375a308217e",
+      "language": "vi",
+      "text": "chất vấn",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-758c-93a5-b9ae4d2f0d36"
+      ]
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c59-726e-88d4-bb2f3c97e5fc",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-b375a308217e",
+      "language": "en",
+      "text": "To question whether a decision, claim, or authority is correct.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-7af3-b98f-6a02aa6ebc95"
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c59-726e-88d4-bc9f0cbf510c",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-b375a308217e",
+      "language": "en",
+      "text": "Residents challenged the plan at the public meeting.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c59-726e-88d4-c1692efc50ba",
+          "exampleId": "01a1070c-7c59-726e-88d4-bc9f0cbf510c",
+          "language": "vi",
+          "text": "Cư dân chất vấn kế hoạch tại cuộc họp công khai.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT",
+          "provenanceIds": [
+            "01a10760-b9f0-764e-869a-bb5fde6811bf"
+          ]
+        }
+      ],
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-7ff4-a7f3-fa8c1d11d5a3"
+      ]
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "DRAFT",
+  "createdAt": "2026-10-04T13:13:41.209Z",
+  "updatedAt": "2026-10-04T13:13:41.209Z",
+  "provenanceIds": [
+    "01a10760-b9f0-7358-941a-5bcd524fe8e5",
+    "01a10760-b9f0-7f43-8d61-dc878031c96d"
+  ]
+}

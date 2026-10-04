@@ -2,6 +2,23 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-04 — Master Vocabulary V2 Phase 2F.3 canonical DRAFT promotion
+
+- Recorded owner authorization for canonical DRAFT promotion of the exact
+  Phase 2F.2A draft fingerprint. Promoted 84 Lexemes and 98 Senses using the
+  already allocated Master and child IDs; the two reused Senses and existing
+  light/reservation Lexeme records were not rewritten.
+- Added 490 `PROJECT_AUTHORED` provenance records for authored content and 100
+  `OWNER_REVIEW` records for the 100 reviewed decisions. No external source
+  license or public-domain rights were asserted.
+- Canonical dataset changes were limited to the root DRAFT manifest and
+  canonical authoring records. Version
+  remains 2.0.0 / schema 2.0.1. No Classification, media, pronunciation,
+  approved release, runtime import, database, migration or production change.
+- Canonical validation passed with 0 errors and 0 warnings. The follow-up
+  promotion check is idempotent with zero required canonical diffs.
+- See the [promotion report](../vocabflow-dataset/reports/hybrid-100-canonical-promotion.md).
+
 ## 2026-10-04 — Weak Words / Need Review (Feature #12)
 
 - Added the learner-scoped `/weak-words` page and API with deterministic

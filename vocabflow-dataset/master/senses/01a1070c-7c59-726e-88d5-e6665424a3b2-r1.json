@@ -1,0 +1,86 @@
+{
+  "masterSenseId": "01a1070c-7c59-726e-88d5-e6665424a3b2",
+  "masterLexemeId": "01a1070c-7c59-726e-88d5-e15c28d3dba5",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "pay borrowed money back"
+    },
+    {
+      "language": "vi",
+      "text": "hoàn trả tiền đã vay"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "VERB",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c59-726e-88d5-e86efd189959",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-e6665424a3b2",
+      "language": "vi",
+      "text": "hoàn trả",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-7eaa-bd62-1c0f63c09706"
+      ]
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c59-726e-88d5-ec75fe81141f",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-e6665424a3b2",
+      "language": "en",
+      "text": "To give money back to the person or organization that lent it.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-7f37-8dc3-ff6f975b4255"
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c59-726e-88d5-f11004fd7147",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-e6665424a3b2",
+      "language": "en",
+      "text": "I will repay the loan in monthly instalments.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c59-726e-88d5-f45ef1001964",
+          "exampleId": "01a1070c-7c59-726e-88d5-f11004fd7147",
+          "language": "vi",
+          "text": "Tôi sẽ trả khoản vay theo từng kỳ hằng tháng.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT",
+          "provenanceIds": [
+            "01a10760-b9f0-7f43-8de6-f4129e8774c0"
+          ]
+        }
+      ],
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-7643-b80b-04fecc2b8c32"
+      ]
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "DRAFT",
+  "createdAt": "2026-10-04T13:13:41.209Z",
+  "updatedAt": "2026-10-04T13:49:45.054Z",
+  "provenanceIds": [
+    "01a10760-b9f0-7197-b791-70cac5a08f09",
+    "01a10760-b9f0-7e59-835e-1b8d3dfce27f"
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "masterSenseId": "01a1070c-7c57-7676-9ace-79a6118270d8",
+  "masterLexemeId": "01a1070c-7c57-7676-9ace-7654c9b464ce",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "take back formally"
+    },
+    {
+      "language": "vi",
+      "text": "rút lại chính thức"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "VERB",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c57-7676-9ace-7c4184e3c00e",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-79a6118270d8",
+      "language": "vi",
+      "text": "rút lại",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-7d18-a0c3-ed32a1966d1c"
+      ]
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c57-7676-9ace-8282dec5e2fa",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-79a6118270d8",
+      "language": "en",
+      "text": "To take back a statement, offer, or request that you made earlier.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-7b24-ae8d-6fe62b601f2e"
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c57-7676-9ace-8641a714591c",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-79a6118270d8",
+      "language": "en",
+      "text": "She withdrew her complaint after the issue was resolved.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c57-7676-9ace-88be79559eff",
+          "exampleId": "01a1070c-7c57-7676-9ace-8641a714591c",
+          "language": "vi",
+          "text": "Cô rút đơn khiếu nại sau khi vấn đề được giải quyết.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT",
+          "provenanceIds": [
+            "01a10760-b9f0-7240-9744-93a913c2692b"
+          ]
+        }
+      ],
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-7bad-99fb-8b0575c177d6"
+      ]
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "DRAFT",
+  "createdAt": "2026-10-04T13:13:41.207Z",
+  "updatedAt": "2026-10-04T13:13:41.207Z",
+  "provenanceIds": [
+    "01a10760-b9f0-7379-8efa-72a49f659884",
+    "01a10760-b9f0-7b26-b364-0b92f034e64a"
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "masterSenseId": "01a1070c-7c59-726e-88d5-cff4c73ff34a",
+  "masterLexemeId": "01a1070c-7c59-726e-88d5-cb855b59039d",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "new item added"
+    },
+    {
+      "language": "vi",
+      "text": "thứ được bổ sung"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "NOUN",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c59-726e-88d5-d31fdf23e900",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-cff4c73ff34a",
+      "language": "vi",
+      "text": "sự bổ sung",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-7f74-8fef-9fa8a60de298"
+      ]
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c59-726e-88d5-d6332369390a",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-cff4c73ff34a",
+      "language": "en",
+      "text": "Something added to a group or place that was already there.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-7d65-8bf4-49b258f30644"
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c59-726e-88d5-d9363c388dbc",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-cff4c73ff34a",
+      "language": "en",
+      "text": "The new wing is a welcome addition to the library.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c59-726e-88d5-dc90de91e423",
+          "exampleId": "01a1070c-7c59-726e-88d5-d9363c388dbc",
+          "language": "vi",
+          "text": "Khu nhà mới là một phần bổ sung đáng mừng cho thư viện.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT",
+          "provenanceIds": [
+            "01a10760-b9f0-7c24-a959-7ba1ad0240e1"
+          ]
+        }
+      ],
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-752d-915d-6e2c06750908"
+      ]
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "DRAFT",
+  "createdAt": "2026-10-04T13:13:41.209Z",
+  "updatedAt": "2026-10-04T13:13:41.209Z",
+  "provenanceIds": [
+    "01a10760-b9f0-7784-be1c-f766edb33753",
+    "01a10760-b9f0-7ac3-8f86-175f8bfaad7d"
+  ]
+}
