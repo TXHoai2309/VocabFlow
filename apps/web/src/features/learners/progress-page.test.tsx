@@ -60,15 +60,17 @@ function summary(learnerId: string, values: Partial<Omit<ProgressSummaryResponse
   };
 }
 
-function activity(learnerId: string, values: Partial<ActivitySummaryResponse["dailyGoal"]> = {}): ActivitySummaryResponse {
+function activity(learnerId: string, values: { newCompleted?: number; reviewCompleted?: number } = {}): ActivitySummaryResponse {
+  const newCompleted = values.newCompleted ?? 0;
+  const reviewCompleted = values.reviewCompleted ?? 0;
   return {
     learnerId,
     localDate: "2026-09-20",
     dailyGoal: {
-      goal: values.goal ?? 10,
-      reviewedUnique: values.reviewedUnique ?? 0,
-      remaining: values.remaining ?? Math.max(0, (values.goal ?? 10) - (values.reviewedUnique ?? 0)),
-      completed: values.completed ?? false
+      newWords: { goal: 10, completed: newCompleted, remaining: Math.max(0, 10 - newCompleted), percent: Math.min(100, Math.round(newCompleted / 10 * 100)) },
+      reviews: { goal: 20, completed: reviewCompleted, remaining: Math.max(0, 20 - reviewCompleted), percent: Math.min(100, Math.round(reviewCompleted / 20 * 100)) },
+      overallPercent: Math.min(100, Math.round((Math.min(10, newCompleted) + Math.min(20, reviewCompleted)) / 30 * 100)),
+      completed: newCompleted >= 10 && reviewCompleted >= 20
     },
     streak: { currentStreak: 0, longestStreak: 0, todayActive: false }
   };
@@ -156,7 +158,7 @@ describe("US-20 learner progress UI", () => {
 
     expect(screen.getByTestId("progress-loading")).toBeInTheDocument();
     resolveProgress(response(summary(learnerA.id)));
-    resolveActivity(response(activity(learnerA.id, { reviewedUnique: 7, remaining: 3 })));
+    resolveActivity(response(activity(learnerA.id, { newCompleted: 7, reviewCompleted: 3 })));
 
     expect(await screen.findByTestId("progress-summary")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Tiến trình của An" })).toBeInTheDocument();
@@ -165,7 +167,7 @@ describe("US-20 learner progress UI", () => {
     expect(metric("Đã thành thạo")).toHaveTextContent("3");
     expect(metric("Cần ôn tập")).toHaveTextContent("4");
     expect(metric("Đã học")).toHaveTextContent("5");
-    expect(screen.getByTestId("daily-goal")).toHaveTextContent("7 / 10");
+    expect(screen.getByTestId("daily-goal")).toHaveTextContent("7 / 10 từ mới · 3 / 20 ôn tập");
     expect(screen.getByTestId("streak-summary")).toHaveTextContent("0 ngày liên tiếp");
     expect(fetchMock).toHaveBeenCalledWith("/api/learners/" + learnerA.id + "/progress-summary", { credentials: "include" });
     expect(fetchMock).toHaveBeenCalledWith("/api/learners/" + learnerA.id + "/activity-summary", { credentials: "include" });

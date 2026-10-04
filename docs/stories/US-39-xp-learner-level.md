@@ -15,7 +15,7 @@
 
 - `REVIEW`, `review:<reviewId>`, 10 XP: one successful canonical scheduled review, for both Remembered and Forgotten.
 - `EXERCISE_CORRECT`, `exercise-correct:<reviewId>`, 5 XP: one successful scheduled exercise whose submitted evidence the server independently verifies as correct.
-- `DAILY_GOAL`, `daily-goal:<learnerId>:<reviewDate>`, 20 XP: when that newly persisted review makes household-local distinct reviewed vocabulary reach the learner's daily goal.
+- `DAILY_GOAL`, `daily-goal:<learnerId>:<reviewDate>`, 20 XP: when that newly persisted review makes both household-local distinct new and review vocabulary reach the learner's two daily goals.
 - Reinforcement has no persisted review event and earns 0 XP. Failed writes and idempotent replay insert no ledger row.
 - The optional `exerciseSubmission` is discriminated by exercise type: meaning and typing submit text; listening and image submit a vocabulary ID. The server compares it with canonical target vocabulary data, rejects a recall-result mismatch, and never accepts `correct=true`. TYPE_WORD input is transient: it is not stored in review events, XP events, response payloads or fingerprints.
 

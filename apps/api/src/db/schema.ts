@@ -111,12 +111,16 @@ export const learnerProfiles = vocabflowApp.table("learner_profiles", {
   avatarKey: text("avatar_key"),
   dailyNewWordLimit: integer("daily_new_word_limit").notNull().default(10),
   dailyLearningGoal: integer("daily_learning_goal").notNull().default(10),
+  dailyNewWordGoal: integer("daily_new_word_goal").notNull().default(10),
+  dailyReviewWordGoal: integer("daily_review_word_goal").notNull().default(20),
   enabled: boolean("enabled").notNull().default(true),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow()
 }, (table) => [
   check("learner_profiles_daily_new_word_limit_check", sql`${table.dailyNewWordLimit} >= 0 AND ${table.dailyNewWordLimit} <= 100`),
   check("learner_profiles_daily_learning_goal_check", sql`${table.dailyLearningGoal} >= 1 AND ${table.dailyLearningGoal} <= 100`),
+  check("learner_profiles_daily_new_word_goal_check", sql`${table.dailyNewWordGoal} >= 1 AND ${table.dailyNewWordGoal} <= 100`),
+  check("learner_profiles_daily_review_word_goal_check", sql`${table.dailyReviewWordGoal} >= 1 AND ${table.dailyReviewWordGoal} <= 100`),
   index("learner_profiles_household_enabled_created_id_idx").on(
     table.householdId,
     table.enabled,

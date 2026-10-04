@@ -19,6 +19,22 @@ This log records meaningful project milestones and accepted baselines.
 - Focused suites pass: 3 files / 50 tests. Typecheck, lint and `git diff
   --check` pass. Human reconciliation remains unresolved and the checked-in
   plan is not applyable.
+## 2026-10-04 — Feature #10 configurable daily learning goals
+
+- Added learner-specific daily targets for new words (default 10) and review
+  words (default 20), with persisted Settings API/UI and a derived Home progress
+  ring, category counts and existing streak.
+- Activity counts come from distinct persisted review events on the household
+  local date. The combined goal completes only when both targets are reached;
+  the scheduler's existing daily New hard cap and streak definition are
+  unchanged. The legacy aggregate goal column is retained without cleanup.
+- Added additive migration 0018; it was generated and inspected but not applied.
+- Focused API/UI/schema tests pass (11 files, 153 tests); contracts/API/web
+  project typecheck, production build, feature ESLint and `git diff --check` pass.
+- Repository-wide `pnpm typecheck` remains blocked by 9 missing projection
+  fields in the separate, concurrently changing Dataset V2 planner. That file
+  was left untouched; commit/push were withheld because the full validation gate
+  did not pass. No database mutation, production access or deployment occurred.
 
 ## 2026-10-03 — Master Vocabulary V2 Phase 2E.3 owner reconciliation preparation
 

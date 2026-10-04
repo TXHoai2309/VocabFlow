@@ -165,18 +165,22 @@ export async function runUs30TrustedDbSuite(input: DailyNewWordLimitTrustedDbInp
 
     const existingDefaults = await settingsService.get(ownerUserId, existingLearnerId);
     assert(existingDefaults.dailyNewWordLimit === 10, "EXISTING_LEARNER_DEFAULT_INVALID");
-    assert(existingDefaults.dailyLearningGoal === 10, "EXISTING_LEARNING_GOAL_DEFAULT_INVALID");
+    assert(existingDefaults.dailyNewWordGoal === 10, "EXISTING_NEW_GOAL_DEFAULT_INVALID");
+    assert(existingDefaults.dailyReviewWordGoal === 20, "EXISTING_REVIEW_GOAL_DEFAULT_INVALID");
     const created = await learnerService.create(ownerUserId, { displayName: "US30 new learner" });
     newLearnerId = created.id;
     const newDefaults = await settingsService.get(ownerUserId, newLearnerId);
     assert(newDefaults.dailyNewWordLimit === 10, "NEW_LEARNER_DEFAULT_INVALID");
-    assert(newDefaults.dailyLearningGoal === 10, "NEW_LEARNING_GOAL_DEFAULT_INVALID");
+    assert(newDefaults.dailyNewWordGoal === 10, "NEW_NEW_GOAL_DEFAULT_INVALID");
+    assert(newDefaults.dailyReviewWordGoal === 20, "NEW_REVIEW_GOAL_DEFAULT_INVALID");
     await expectForbidden(async () => settingsService.update(ownerUserId, outsiderLearnerId, { dailyNewWordLimit: 5 }));
-    await expectForbidden(async () => settingsService.update(ownerUserId, outsiderLearnerId, { dailyLearningGoal: 5 }));
+    await expectForbidden(async () => settingsService.update(ownerUserId, outsiderLearnerId, { dailyReviewWordGoal: 5 }));
     const invalidSetting = await expectInvalidSetting(() => settingsService.update(ownerUserId, existingLearnerId, { dailyNewWordLimit: -1 }));
     assert(invalidSetting, "INVALID_SETTING_ACCEPTED");
-    const invalidGoal = await expectInvalidSetting(() => settingsService.update(ownerUserId, existingLearnerId, { dailyLearningGoal: 0 }));
-    assert(invalidGoal, "INVALID_LEARNING_GOAL_ACCEPTED");
+    const invalidGoal = await expectInvalidSetting(() => settingsService.update(ownerUserId, existingLearnerId, { dailyNewWordGoal: 0 }));
+    assert(invalidGoal, "INVALID_NEW_WORD_GOAL_ACCEPTED");
+    const invalidReviewGoal = await expectInvalidSetting(() => settingsService.update(ownerUserId, existingLearnerId, { dailyReviewWordGoal: 101 }));
+    assert(invalidReviewGoal, "INVALID_REVIEW_WORD_GOAL_ACCEPTED");
 
     mark("due-exemption");
     await settingsService.update(ownerUserId, existingLearnerId, { dailyNewWordLimit: 0 });
@@ -208,12 +212,13 @@ export async function runUs30TrustedDbSuite(input: DailyNewWordLimitTrustedDbInp
     assert(afterRetry.queue.filter((item) => item.queueType === "NEW").length === 4, "REINFORCEMENT_CONSUMED_ALLOWANCE");
 
     mark("daily-goal-and-streak-aggregation");
-    await settingsService.update(ownerUserId, existingLearnerId, { dailyLearningGoal: 5 });
+    await settingsService.update(ownerUserId, existingLearnerId, { dailyNewWordGoal: 5, dailyReviewWordGoal: 2 });
     const forgotten = await runReview(reviewService, ownerUserId, existingLearnerId, 3, 1, randomUUID(), "FORGOTTEN");
     assert(forgotten.status === 201, "FORGOTTEN_REVIEW_WRITE_INVALID");
     const sameDay = await activityService.get(ownerUserId, existingLearnerId);
-    assert(sameDay.dailyGoal.reviewedUnique === 6, "UNIQUE_DAILY_ACTIVITY_INVALID");
-    assert(sameDay.dailyGoal.completed && sameDay.dailyGoal.remaining === 0, "DAILY_GOAL_COMPLETION_INVALID");
+    assert(sameDay.dailyGoal.newWords.completed === 6, "UNIQUE_NEW_ACTIVITY_INVALID");
+    assert(sameDay.dailyGoal.reviews.completed === 2, "UNIQUE_REVIEW_ACTIVITY_INVALID");
+    assert(sameDay.dailyGoal.completed && sameDay.dailyGoal.overallPercent === 100, "DAILY_GOAL_COMPLETION_INVALID");
     assert(sameDay.streak.currentStreak === 1 && sameDay.streak.longestStreak === 1, "SINGLE_DAY_STREAK_INVALID");
     const failedEvents = await countFixtureEvents(migration, householdId);
     try {
@@ -227,13 +232,20 @@ export async function runUs30TrustedDbSuite(input: DailyNewWordLimitTrustedDbInp
     await runReview(nextDayReview, ownerUserId, existingLearnerId, 1, 2);
     const nextDayActivity = await createActivitySummaryService(runtimeDatabase, { now: () => new Date("2026-09-14T17:00:00.000Z") }).get(ownerUserId, existingLearnerId);
     assert(nextDayActivity.localDate === "2026-09-15", "LOCAL_DATE_BOUNDARY_INVALID");
-    assert(nextDayActivity.dailyGoal.reviewedUnique === 1, "NEXT_DAY_ACTIVITY_INVALID");
+    assert(nextDayActivity.dailyGoal.newWords.completed === 0, "NEXT_DAY_NEW_ACTIVITY_INVALID");
+    assert(nextDayActivity.dailyGoal.reviews.completed === 1, "NEXT_DAY_REVIEW_ACTIVITY_INVALID");
     assert(nextDayActivity.streak.currentStreak === 2 && nextDayActivity.streak.longestStreak === 2, "CONSECUTIVE_STREAK_INVALID");
     const preservedActivity = await activityService.get(ownerUserId, existingLearnerId);
 
     mark("learner-isolation");
     await settingsService.update(ownerUserId, existingLearnerId, { dailyNewWordLimit: 5 });
     await settingsService.update(ownerUserId, newLearnerId, { dailyNewWordLimit: 10 });
+    await settingsService.update(ownerUserId, existingLearnerId, { dailyNewWordGoal: 5, dailyReviewWordGoal: 15 });
+    await settingsService.update(ownerUserId, newLearnerId, { dailyNewWordGoal: 7, dailyReviewWordGoal: 10 });
+    const learnerAGoals = await settingsService.get(ownerUserId, existingLearnerId);
+    const learnerBGoals = await settingsService.get(ownerUserId, newLearnerId);
+    assert(learnerAGoals.dailyNewWordGoal === 5 && learnerAGoals.dailyReviewWordGoal === 15, "LEARNER_A_GOAL_NOT_ISOLATED");
+    assert(learnerBGoals.dailyNewWordGoal === 7 && learnerBGoals.dailyReviewWordGoal === 10, "LEARNER_B_GOAL_NOT_ISOLATED");
     await runReview(reviewService, ownerUserId, newLearnerId, 10, 0);
     await runReview(reviewService, ownerUserId, newLearnerId, 11, 0);
     const learnerA = await queueService.list(ownerUserId, existingLearnerId);
@@ -280,7 +292,8 @@ export async function runUs30TrustedDbSuite(input: DailyNewWordLimitTrustedDbInp
     const afterReset = await queueService.list(ownerUserId, existingLearnerId);
     assert(afterReset.queue.filter((item) => item.queueType === "NEW").length === 5, "RESET_NEW_LIFECYCLE_INVALID");
     const afterResetActivity = await activityService.get(ownerUserId, existingLearnerId);
-    assert(afterResetActivity.dailyGoal.reviewedUnique === preservedActivity.dailyGoal.reviewedUnique, "RESET_DELETED_DAILY_HISTORY");
+    assert(afterResetActivity.dailyGoal.newWords.completed === preservedActivity.dailyGoal.newWords.completed, "RESET_DELETED_NEW_DAILY_HISTORY");
+    assert(afterResetActivity.dailyGoal.reviews.completed === preservedActivity.dailyGoal.reviews.completed, "RESET_DELETED_REVIEW_DAILY_HISTORY");
     assert(afterResetActivity.streak.currentStreak === preservedActivity.streak.currentStreak, "RESET_DELETED_STREAK");
 
     const afterVocabulary = await countRows(migration, `${APP_SCHEMA}."vocabularies"`);

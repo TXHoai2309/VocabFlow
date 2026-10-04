@@ -423,3 +423,30 @@ evidence condition is met and the affected source document is updated.
   `apps/web/src/features/study/study-page.tsx`.
 - Revisit only if: a canonical persisted Study session becomes part of the
   runtime architecture or the owner changes candidate priority.
+
+## DEC-023 — Separate daily new and review goals
+
+- Status: ACCEPTED
+- Date: 2026-10-04
+- Context: Feature #10 needs learner-configurable daily targets for newly
+  learned and reviewed vocabulary. The existing `daily_learning_goal` is one
+  aggregate unique-review threshold, while `daily_new_word_limit` is a scheduler
+  hard cap for NEW admission and due review is exempt.
+- Decision: Add learner-scoped `daily_new_word_goal` (default 10) and
+  `daily_review_word_goal` (default 20), each constrained to 1–100. Derive daily
+  category counts from distinct vocabulary IDs in persisted `review_events` for
+  the household-local `review_date`: NEW-to-non-NEW transitions count toward
+  new; events whose previous status was non-NEW count toward review. Overall
+  progress combines both targets and completes only when both are met. Keep the
+  scheduler hard cap and streak date/definition unchanged. Retain the legacy
+  `daily_learning_goal` column without backfill, removal or active threshold use.
+  Migration 0018 is additive and must be applied separately by an authorized
+  development/test migration workflow; this implementation does not apply it.
+- Consequences: Settings and activity-summary remain learner-scoped and
+  household-authorized; daily goal display and DAILY_GOAL XP use the same
+  category semantics. No client counter or mutable completion state is added.
+- Evidence/source: [US-35 Daily Learning Goal](stories/US-35-daily-learning-goal.md),
+  [Feature UI Specification](design/feature-ui-spec.md#71d-daily-learning-goal-and-streak-us-35--us-36),
+  `drizzle/migrations/0018_panoramic_spirit.sql`.
+- Revisit only if: the owner changes category semantics, defaults, or the
+  scheduler's separate NEW admission cap.

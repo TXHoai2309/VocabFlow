@@ -671,19 +671,23 @@ US-30 daily New allowance rules:
 
 `GET /api/learners/:learnerId/settings` and
 `PATCH /api/learners/:learnerId/settings` are authorized through the canonical
-household learner ownership helper. The canonical response contains both
-`dailyNewWordLimit` (0..100) and `dailyLearningGoal` (1..100). PATCH accepts one
-or both strict integer fields and returns the saved canonical values;
-cross-household access returns 403 and malformed values return 400.
+household learner ownership helper. The canonical response contains
+`dailyNewWordLimit` (0..100), `dailyNewWordGoal` (1..100) and
+`dailyReviewWordGoal` (1..100). PATCH accepts one or more strict integer fields
+and returns the saved canonical values; cross-household access returns 403 and
+malformed values return 400. The legacy `daily_learning_goal` column is retained
+but is no longer exposed as an active setting.
 
 ## 6.8 Daily activity and streak read model (US-35 / US-36)
 
 `GET /api/learners/:learnerId/activity-summary` is a read-only, authorized
 learner activity endpoint. It resolves today's date with the household IANA
-timezone and aggregates only persisted `review_events`, selecting
-`review_date` and `COUNT(DISTINCT vocabulary_id)` grouped by date. The daily
-goal is derived as `reviewedUnique >= dailyLearningGoal`; no mutable completion
-flag is stored.
+timezone and aggregates only persisted `review_events` for household-local
+`review_date`. Daily new progress counts distinct vocabulary IDs whose status
+transitions from NEW to non-NEW; daily review progress counts distinct IDs with
+a prior non-NEW status. Overall progress combines both configured goals and is
+complete only when both targets are reached. Counts and completion are derived;
+no mutable daily progress state is stored.
 
 An active day has at least one successful persisted review event. Current streak
 ends today when today is active, otherwise may end yesterday while today remains

@@ -222,9 +222,9 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
                 <h2 id="activity-summary-title">Hoạt động hôm nay</h2>
                 <div className="progress-activity-grid">
                   <div data-testid="daily-goal">
-                    <span>Mục tiêu học</span>
-                    <strong>{activity.dailyGoal.reviewedUnique} / {activity.dailyGoal.goal}</strong>
-                    <small>{activity.dailyGoal.completed ? "Đã hoàn thành mục tiêu hôm nay" : `Còn ${activity.dailyGoal.remaining} từ`}</small>
+                    <span>Mục tiêu hôm nay · {activity.dailyGoal.overallPercent}%</span>
+                    <strong>{activity.dailyGoal.newWords.completed} / {activity.dailyGoal.newWords.goal} từ mới · {activity.dailyGoal.reviews.completed} / {activity.dailyGoal.reviews.goal} ôn tập</strong>
+                    <small>{activity.dailyGoal.completed ? "Đã hoàn thành mục tiêu hôm nay" : `Còn ${activity.dailyGoal.newWords.remaining} từ mới và ${activity.dailyGoal.reviews.remaining} từ ôn tập`}</small>
                   </div>
                   <div data-testid="streak-summary">
                     <span>Chuỗi hiện tại</span>

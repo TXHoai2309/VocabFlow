@@ -108,7 +108,12 @@ describe("US-09 flashcard session UX", () => {
     requestActivitySummaryMock.mockReset().mockResolvedValue({
       learnerId: learner.id,
       localDate: "2026-09-15",
-      dailyGoal: { goal: 10, reviewedUnique: 1, remaining: 9, completed: false },
+      dailyGoal: {
+        newWords: { goal: 10, completed: 1, remaining: 9, percent: 10 },
+        reviews: { goal: 20, completed: 0, remaining: 20, percent: 0 },
+        overallPercent: 3,
+        completed: false
+      },
       streak: { currentStreak: 7, longestStreak: 7, todayActive: true }
     });
   });

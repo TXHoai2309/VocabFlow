@@ -345,16 +345,25 @@ reduced to today's allowance.
 
 ### 15.5 Daily learning goal and streak (US-35 / US-36)
 
-Each learner has a separate `dailyLearningGoal`, default `10`, validated from
-`1` to `100`. It is motivational read-only progress: it does not constrain
-queue admission and is not the Daily New Limit.
+Each learner has separate `dailyNewWordGoal` and `dailyReviewWordGoal`
+settings, defaulting to `10` and `20` and validated from `1` to `100`. These are
+motivational progress targets; they never constrain queue admission. The
+`daily_new_word_limit` remains a separate scheduler hard cap for introducing
+NEW vocabulary, and due reviews remain available above the review target.
 
-Daily goal progress counts distinct vocabulary IDs from successful persisted
-review events whose server-owned `review_date` is the current household-local
-date. Reinforcement, repeated review and retry of one vocabulary count once;
-both Remembered and Forgotten count as learning activity, while failed or
-unsaved review requests do not count. Completion is derived when the unique
-count reaches the configured goal and may exceed it.
+Daily New completion counts distinct vocabulary IDs whose persisted review
+event transitions from `previous_status = NEW` to a non-NEW state on the
+household-local `review_date`. Daily Review completion counts distinct IDs
+reviewed that day with progress before the event (`previous_status <> NEW`).
+Both Remembered and Forgotten events count; failed or unsaved requests do not.
+Each category keeps its actual count and clamps only remaining/percentage.
+Overall progress is
+`(min(newCompleted,newGoal) + min(reviewCompleted,reviewGoal)) /
+(newGoal + reviewGoal)`, rounded to an integer percentage and clamped to
+0–100. The combined goal is complete only when both category goals are met.
+The previous single aggregate `daily_learning_goal` is deprecated and retained
+in the database without destructive cleanup; it is no longer the active
+learner-facing goal or the XP completion threshold.
 
 An active learning day is any local date with at least one successful persisted
 review event. Current streak counts consecutive active dates ending today, or

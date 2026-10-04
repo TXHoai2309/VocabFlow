@@ -28,12 +28,14 @@ function createStrictQueryValidationApp() {
     get: vi.fn(async (_userId: string, learnerId: string) => ({
       learnerId,
       dailyNewWordLimit: 5,
-      dailyLearningGoal: 10,
+      dailyNewWordGoal: 5,
+      dailyReviewWordGoal: 15,
     })),
     update: async (_userId: string, learnerId: string) => ({
       learnerId,
       dailyNewWordLimit: 5,
-      dailyLearningGoal: 10,
+      dailyNewWordGoal: 5,
+      dailyReviewWordGoal: 15,
     }),
   };
   const application = createApp({
@@ -284,7 +286,8 @@ describe("Vercel Hono function boundary", () => {
       await expect(response.json()).resolves.toEqual({
         learnerId: "00000000-0000-4000-8000-000000000002",
         dailyNewWordLimit: 5,
-        dailyLearningGoal: 10,
+        dailyNewWordGoal: 5,
+        dailyReviewWordGoal: 15,
       });
       expect(learnerSettingsService.get).toHaveBeenCalledOnce();
     } else {

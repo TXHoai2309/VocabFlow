@@ -52,7 +52,12 @@ test("US-24 confirms a learner-scoped reset and refreshes the progress summary",
       body: JSON.stringify({
         learnerId,
         localDate: "2026-09-20",
-        dailyGoal: { goal: 10, reviewedUnique: reset ? 0 : 7, remaining: reset ? 10 : 3, completed: false },
+        dailyGoal: {
+          newWords: { goal: 10, completed: reset ? 0 : 7, remaining: reset ? 10 : 3, percent: reset ? 0 : 70 },
+          reviews: { goal: 20, completed: reset ? 0 : 4, remaining: reset ? 20 : 16, percent: reset ? 0 : 20 },
+          overallPercent: reset ? 0 : 37,
+          completed: false
+        },
         streak: { currentStreak: reset ? 0 : 3, longestStreak: reset ? 3 : 7, todayActive: !reset }
       })
     });

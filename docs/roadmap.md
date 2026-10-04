@@ -334,12 +334,18 @@ The owner-verified Hoài/Ngọc metric snapshots are recorded in US-20 and US-21
 - Status: `IMPLEMENTED / READY FOR OWNER CHECK`.
 - Contracts: [`US-35 Daily Learning Goal`](stories/US-35-daily-learning-goal.md)
   and [`US-36 Learning Streak`](stories/US-36-learning-streak.md).
-- Added learner-scoped `dailyLearningGoal` with default 10 and range 1–100;
-  it remains separate from the daily New admission limit.
-- Added a canonical learner activity summary derived from persisted review
-  history. Daily progress counts distinct vocabulary per household-local
-  `review_date`; remembered, forgotten and reinforcement events count once per
-  vocabulary.
+- Added learner-scoped `dailyNewWordGoal` (default 10) and
+  `dailyReviewWordGoal` (default 20), both range 1–100, separate from the
+  unchanged daily New admission hard limit.
+- Added additive migration 0018 and a canonical learner activity summary
+  derived from persisted review history. Daily new/review progress counts
+  distinct vocabulary per household-local `review_date`; a goal completes only
+  when both categories reach target. Remembered and forgotten events count;
+  reinforcement and retry do not duplicate a persisted vocabulary count.
+- Home shows a composite daily progress ring and category rows; learner settings
+  persist both goals per learner. The legacy `daily_learning_goal` column is
+  retained without schema/data rewrite and is no longer the active progress or
+  XP threshold.
 - Added derived current/longest local-date streaks. Reset, logout/reload and
   learning-set unassignment preserve historical activity because review events
   remain canonical. No mutable streak counter or parallel progress state was

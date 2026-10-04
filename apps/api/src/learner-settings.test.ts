@@ -8,6 +8,7 @@ import {
 } from "./learner-settings";
 
 const learnerId = "00000000-0000-4000-8000-000000000010";
+const learnerBId = "00000000-0000-4000-8000-000000000011";
 const householdId = "00000000-0000-4000-8000-000000000001";
 
 function authorizedRows() {
@@ -25,23 +26,23 @@ describe("US-30 learner settings API", () => {
 
   it("returns and updates the canonical setting for an owned learner", async () => {
     const service = {
-      get: vi.fn(async () => ({ learnerId, dailyNewWordLimit: 10, dailyLearningGoal: 10 })),
-      update: vi.fn(async () => ({ learnerId, dailyNewWordLimit: 5, dailyLearningGoal: 12 }))
+      get: vi.fn(async () => ({ learnerId, dailyNewWordLimit: 10, dailyNewWordGoal: 10, dailyReviewWordGoal: 20 })),
+      update: vi.fn(async () => ({ learnerId, dailyNewWordLimit: 5, dailyNewWordGoal: 5, dailyReviewWordGoal: 15 }))
     };
     const app = createApp({ readSession: async () => ({ user: { id: "parent-1" } }), learnerSettingsService: service });
 
     const current = await app.request(`http://localhost/api/learners/${learnerId}/settings`);
     expect(current.status).toBe(200);
-    expect(await current.json()).toEqual({ learnerId, dailyNewWordLimit: 10, dailyLearningGoal: 10 });
+    expect(await current.json()).toEqual({ learnerId, dailyNewWordLimit: 10, dailyNewWordGoal: 10, dailyReviewWordGoal: 20 });
 
     const updated = await app.request(`http://localhost/api/learners/${learnerId}/settings`, {
       method: "PATCH",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ dailyNewWordLimit: 5 })
+      body: JSON.stringify({ dailyNewWordLimit: 5, dailyNewWordGoal: 5, dailyReviewWordGoal: 15 })
     });
     expect(updated.status).toBe(200);
-    expect(await updated.json()).toEqual({ learnerId, dailyNewWordLimit: 5, dailyLearningGoal: 12 });
-    expect(service.update).toHaveBeenCalledWith("parent-1", learnerId, { dailyNewWordLimit: 5 });
+    expect(await updated.json()).toEqual({ learnerId, dailyNewWordLimit: 5, dailyNewWordGoal: 5, dailyReviewWordGoal: 15 });
+    expect(service.update).toHaveBeenCalledWith("parent-1", learnerId, { dailyNewWordLimit: 5, dailyNewWordGoal: 5, dailyReviewWordGoal: 15 });
   });
 
   it("maps foreign learner access to 403 and malformed settings to 400", async () => {
@@ -73,14 +74,23 @@ describe("US-30 learner settings API", () => {
 describe("US-30 learner settings service", () => {
   it("accepts the bounded integer contract and rejects unsafe values", () => {
     expect(parseLearnerSettingsRequest({ dailyNewWordLimit: 0 })).toEqual({ dailyNewWordLimit: 0 });
-    expect(parseLearnerSettingsRequest({ dailyLearningGoal: 1 })).toEqual({ dailyLearningGoal: 1 });
-    expect(parseLearnerSettingsRequest({ dailyLearningGoal: 100 })).toEqual({ dailyLearningGoal: 100 });
+    expect(parseLearnerSettingsRequest({ dailyNewWordGoal: 1 })).toEqual({ dailyNewWordGoal: 1 });
+    expect(parseLearnerSettingsRequest({ dailyNewWordGoal: 100 })).toEqual({ dailyNewWordGoal: 100 });
+    expect(parseLearnerSettingsRequest({ dailyReviewWordGoal: 20 })).toEqual({ dailyReviewWordGoal: 20 });
     expect(() => parseLearnerSettingsRequest({ dailyNewWordLimit: -1 })).toThrow("INVALID_REQUEST");
     expect(() => parseLearnerSettingsRequest({ dailyNewWordLimit: 101 })).toThrow("INVALID_REQUEST");
     expect(() => parseLearnerSettingsRequest({ dailyNewWordLimit: 1.5 })).toThrow("INVALID_REQUEST");
     expect(() => parseLearnerSettingsRequest({ dailyNewWordLimit: "10" })).toThrow("INVALID_REQUEST");
-    expect(() => parseLearnerSettingsRequest({ dailyLearningGoal: 0 })).toThrow("INVALID_REQUEST");
-    expect(() => parseLearnerSettingsRequest({ dailyLearningGoal: 101 })).toThrow("INVALID_REQUEST");
+    expect(() => parseLearnerSettingsRequest({ dailyNewWordGoal: 0 })).toThrow("INVALID_REQUEST");
+    expect(() => parseLearnerSettingsRequest({ dailyNewWordGoal: -1 })).toThrow("INVALID_REQUEST");
+    expect(() => parseLearnerSettingsRequest({ dailyNewWordGoal: 101 })).toThrow("INVALID_REQUEST");
+    expect(() => parseLearnerSettingsRequest({ dailyNewWordGoal: "" })).toThrow("INVALID_REQUEST");
+    expect(() => parseLearnerSettingsRequest({ dailyReviewWordGoal: 0 })).toThrow("INVALID_REQUEST");
+    expect(() => parseLearnerSettingsRequest({ dailyReviewWordGoal: -1 })).toThrow("INVALID_REQUEST");
+    expect(() => parseLearnerSettingsRequest({ dailyReviewWordGoal: 101 })).toThrow("INVALID_REQUEST");
+    expect(() => parseLearnerSettingsRequest({ dailyReviewWordGoal: 1.5 })).toThrow("INVALID_REQUEST");
+    expect(() => parseLearnerSettingsRequest({ dailyReviewWordGoal: "" })).toThrow("INVALID_REQUEST");
+    expect(() => parseLearnerSettingsRequest({ dailyReviewWordGoal: Number.NaN })).toThrow("INVALID_REQUEST");
     expect(() => parseLearnerSettingsRequest({})).toThrow("INVALID_REQUEST");
   });
 
@@ -93,7 +103,7 @@ describe("US-30 learner settings service", () => {
       })
       .mockImplementationOnce(async (query) => {
         queries.push(new PgDialect().sqlToQuery(query));
-        return { rows: [{ learner_id: learnerId, daily_new_word_limit: 10, daily_learning_goal: 10 }] };
+        return { rows: [{ learner_id: learnerId, daily_new_word_limit: 10, daily_new_word_goal: 10, daily_review_word_goal: 20 }] };
       })
       .mockImplementationOnce(async (query) => {
         queries.push(new PgDialect().sqlToQuery(query));
@@ -101,14 +111,34 @@ describe("US-30 learner settings service", () => {
       })
       .mockImplementationOnce(async (query) => {
         queries.push(new PgDialect().sqlToQuery(query));
-        return { rows: [{ learner_id: learnerId, daily_new_word_limit: 5, daily_learning_goal: 12 }] };
+        return { rows: [{ learner_id: learnerId, daily_new_word_limit: 5, daily_new_word_goal: 5, daily_review_word_goal: 15 }] };
       });
     const service = createLearnerSettingsService({ execute });
 
-    await expect(service.get("parent-1", learnerId)).resolves.toEqual({ learnerId, dailyNewWordLimit: 10, dailyLearningGoal: 10 });
-    await expect(service.update("parent-1", learnerId, { dailyNewWordLimit: 5 })).resolves.toEqual({ learnerId, dailyNewWordLimit: 5, dailyLearningGoal: 12 });
+    await expect(service.get("parent-1", learnerId)).resolves.toEqual({ learnerId, dailyNewWordLimit: 10, dailyNewWordGoal: 10, dailyReviewWordGoal: 20 });
+    await expect(service.update("parent-1", learnerId, { dailyNewWordLimit: 5, dailyNewWordGoal: 5, dailyReviewWordGoal: 15 })).resolves.toEqual({ learnerId, dailyNewWordLimit: 5, dailyNewWordGoal: 5, dailyReviewWordGoal: 15 });
     expect(queries[1]?.sql).toContain("daily_new_word_limit");
+    expect(queries[1]?.sql).toContain("daily_new_word_goal");
+    expect(queries[1]?.sql).toContain("daily_review_word_goal");
     expect(queries[3]?.sql).toContain("UPDATE");
+    expect(queries[3]?.sql).toContain("daily_new_word_goal");
+    expect(queries[3]?.sql).toContain("daily_review_word_goal");
     expect(queries.map((query) => query.sql).join(" ")).not.toContain("parent-1");
+  });
+
+  it("returns independent saved goals for learners in the same household", async () => {
+    const execute = vi.fn()
+      .mockResolvedValueOnce({ rows: [{ learner_id: learnerId, household_id: householdId }] })
+      .mockResolvedValueOnce({ rows: [{ learner_id: learnerId, daily_new_word_limit: 10, daily_new_word_goal: 10, daily_review_word_goal: 20 }] })
+      .mockResolvedValueOnce({ rows: [{ learner_id: learnerBId, household_id: householdId }] })
+      .mockResolvedValueOnce({ rows: [{ learner_id: learnerBId, daily_new_word_limit: 5, daily_new_word_goal: 5, daily_review_word_goal: 10 }] });
+    const service = createLearnerSettingsService({ execute });
+
+    await expect(service.get("parent-1", learnerId)).resolves.toEqual({
+      learnerId, dailyNewWordLimit: 10, dailyNewWordGoal: 10, dailyReviewWordGoal: 20
+    });
+    await expect(service.get("parent-1", learnerBId)).resolves.toEqual({
+      learnerId: learnerBId, dailyNewWordLimit: 5, dailyNewWordGoal: 5, dailyReviewWordGoal: 10
+    });
   });
 });

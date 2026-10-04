@@ -45,9 +45,9 @@ in one household-local day so that study remains manageable.
 - `GET /api/learners/:learnerId/settings`
 - `PATCH /api/learners/:learnerId/settings` with strict
   `{ dailyNewWordLimit: number }` validation.
-- The shared settings endpoint now also carries the separate US-35
-  `dailyLearningGoal`; the US-30 queue allowance remains unchanged and is not
-  reused as a learning goal.
+- The shared settings endpoint also carries the separate US-35
+  `dailyNewWordGoal` and `dailyReviewWordGoal`; the US-30 queue allowance remains
+  unchanged and is not reused as either learning goal.
 - Parent-only learner ownership is reused; cross-household access returns 403.
 - Learner settings are available from the learner home and refresh when the
   active learner changes. Loading, validation, saving, error and success states

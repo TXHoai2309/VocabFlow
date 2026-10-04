@@ -18,31 +18,41 @@ thành kế hoạch hay chưa.
 
 ## Canonical behavior
 
-- `learner_profiles.daily_learning_goal` là integer learner-scoped, default
-  `10`, range `1..100`. Migration chỉ thêm cột/default/check và không backfill
+- Learner có hai mục tiêu độc lập: `daily_new_word_goal` mặc định `10` và
+  `daily_review_word_goal` mặc định `20`; cả hai là integer learner-scoped trong
+  phạm vi `1..100`. Migration 0018 chỉ thêm cột/default/check, không backfill
   hay sửa progress/history.
-- Daily progress lấy từ canonical persisted `review_events`, theo
-  household-local `review_date`, với `COUNT(DISTINCT vocabulary_id)` cho learner
-  và ngày hiện tại.
-- Một vocabulary được review nhiều lần, reinforcement, retry hoặc xuất hiện
-  qua nhiều learning set vẫn đóng góp đúng `1`.
+- New completion đếm distinct vocabulary đã chuyển khỏi `NEW` trong canonical
+  persisted `review_events` (`previous_status = NEW`, `new_status <> NEW`), theo
+  household-local `review_date`.
+- Review completion đếm distinct vocabulary có trạng thái trước đó khác `NEW`,
+  theo cùng learner và household-local `review_date`. Một vocabulary lặp lại,
+  reinforcement, retry hoặc xuất hiện qua nhiều learning set vẫn đóng góp đúng
+  `1` cho category tương ứng.
 - Cả `REMEMBERED` và `FORGOTTEN` đều là hoạt động học và đều được tính.
   Review thất bại hoặc chưa persist không được tính.
-- `completed = reviewedUnique >= goal`; `remaining = max(0, goal -
-  reviewedUnique)`. Giá trị `reviewedUnique` không bị cap, nên có thể hiển thị
-  `14 / 10`.
-- Daily Learning Goal khác hoàn toàn Daily New Limit: goal đo số vocabulary
-  unique đã review; New Limit chỉ giới hạn số vocabulary NEW được giới thiệu.
+- Mỗi hàng progress dùng `remaining = max(0, goal - completed)` và
+  `percent = min(100, round(completed / goal * 100))`. Overall percent là tổng
+  số từ mới và từ ôn đã hoàn thành chia tổng hai mục tiêu, làm tròn và cap 100.
+  Daily goal chỉ complete khi cả hai category đạt mục tiêu; count thật không bị
+  cap.
+- Daily goals khác hoàn toàn Daily New Limit: goal là mục tiêu UI/XP; New Limit
+  vẫn là hard cap của scheduler cho số từ `NEW` được đưa vào queue. Due review
+  vẫn được ưu tiên và không bị giới hạn bởi New Limit.
+- Streak giữ nguyên nguồn và quy tắc hiện tại từ các ngày `review_date` có ít
+  nhất một review thành công; timezone household là nguồn ngày canonical.
 
 ## API and UI
 
 - `GET /api/learners/:learnerId/activity-summary` trả `localDate`, daily goal
-  status và streak trong một read model learner-scoped.
-- Settings GET/PATCH trả và cập nhật `dailyNewWordLimit` và
-  `dailyLearningGoal`; PATCH hỗ trợ từng field hoặc cả hai, giữ authorization
+  progress mới/ôn, overall progress và streak trong một read model
+  learner-scoped.
+- Settings GET/PATCH trả và cập nhật `dailyNewWordLimit`, `dailyNewWordGoal` và
+  `dailyReviewWordGoal`; PATCH hỗ trợ cập nhật từng field, giữ authorization
   same-household và validation 400/403 hiện hữu.
-- Progress page hiển thị `reviewedUnique / goal`, trạng thái hoàn thành, loading,
-  error và learner switch. Parent settings có hai field, validation, saving và
+- Home hiển thị progress ring tổng hợp, progress từng mục tiêu và streak thật.
+  Progress page hiển thị count mới/ôn và overall percent. Parent settings có hai
+  field goal riêng cùng field hard limit scheduler, validation, saving và
   success/error state.
 
 ## Persistence and interactions
@@ -54,6 +64,6 @@ thành kế hoạch hay chưa.
 
 ## Acceptance evidence
 
-Focused API/service/UI tests, migration assertions, full unit/component tests,
-E2E, lint, typecheck, build, diff check và Trusted DB acceptance phải PASS
-trước owner check.
+Focused API/service/UI tests, migration assertions, typecheck, build, feature
+ESLint and diff check phải PASS trước owner check. Migration không được apply
+trong lúc triển khai feature này.
