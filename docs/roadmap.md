@@ -433,6 +433,17 @@ The owner-verified Hoài/Ngọc metric snapshots are recorded in US-20 and US-21
   transient and no runtime persisted session exists. No browser storage or
   Dataset V2 content/pipeline change is introduced.
 
+### US-48 — Progress Dashboard
+
+- Status: `IN PROGRESS` by the owner's explicit Feature #11 request on
+  2026-10-04.
+- Contract: [`US-48 Progress Dashboard`](stories/US-48-progress-dashboard.md).
+- Reworks only `/progress`: canonical learned/Mastered/review-accuracy/streak
+  metrics, URL-backed 7/30-day activity/accuracy charts, active-set level
+  coverage, and started Topic coverage. It uses existing learner-authorized
+  read models plus one grouped level query; no comparison is fabricated.
+- No migration, database mutation, Dataset V2 change, merge, or deployment.
+
 ### US-45 — Master Vocabulary V2 Runtime Import Bridge
 
 - Status: development canary `VERIFIED`; owner acceptance is not implied.

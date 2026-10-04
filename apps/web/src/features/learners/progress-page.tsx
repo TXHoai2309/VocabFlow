@@ -1,55 +1,62 @@
-import { useCallback, useEffect, useState } from "react";
-import { Link, Navigate } from "react-router";
+import { useEffect, useState } from "react";
+import { Link, Navigate, useSearchParams } from "react-router";
 import type {
   ActivitySummaryResponse,
   LearnerDto,
-  GamificationResponse,
   ProgressHistoryResponse,
   ProgressSummaryResponse,
-  TopicProgressResponse
+  TopicProgressResponse,
+  VocabularyLevel
 } from "@vocabflow/contracts";
 import { useActiveLearner } from "./learner-context-hook";
 import { ProgressSummaryClientError, requestProgressSummary } from "./progress-summary-client";
 import { ActivitySummaryClientError, requestActivitySummary } from "./activity-summary-client";
-import {
-  requestProgressHistory,
-  requestTopicProgress
-} from "./progress-insights-client";
-import { requestGamification } from "./gamification-client";
-import {
-  requestResetLearnerProgress,
-  ResetLearnerProgressClientError
-} from "./reset-progress-client";
+import { requestProgressHistory, requestTopicProgress } from "./progress-insights-client";
+import { requestResetLearnerProgress, ResetLearnerProgressClientError } from "./reset-progress-client";
 
-type ProgressState = "loading" | "ready" | "error";
-type InsightState = "loading" | "ready" | "error";
+type LoadState = "loading" | "ready" | "error";
+type ProgressPeriod = "7d" | "30d";
+
+const LEVEL_ORDER: Record<VocabularyLevel, number> = {
+  GRADE_1: 1,
+  GRADE_2: 2,
+  GRADE_3: 3,
+  GRADE_4: 4,
+  GRADE_5: 5,
+  GENERAL: 6
+};
+
+const LEVEL_LABELS: Record<VocabularyLevel, string> = {
+  GRADE_1: "Lớp 1",
+  GRADE_2: "Lớp 2",
+  GRADE_3: "Lớp 3",
+  GRADE_4: "Lớp 4",
+  GRADE_5: "Lớp 5",
+  GENERAL: "Chung"
+};
+
+function periodFromSearch(searchParams: URLSearchParams): ProgressPeriod {
+  return searchParams.get("period") === "30d" ? "30d" : "7d";
+}
 
 function dateMinus(value: string, days: number): string {
   const [year, month, day] = value.split("-").map(Number);
   return new Date(Date.UTC(year, month - 1, day - days)).toISOString().slice(0, 10);
 }
 
-function weekday(value: string): string {
-  return new Intl.DateTimeFormat("vi-VN", { weekday: "short", timeZone: "UTC" }).format(new Date(`${value}T00:00:00Z`));
-}
-
-function progressErrorMessage(error: unknown) {
+function progressErrorMessage(error: unknown): string {
   if (
     (error instanceof ProgressSummaryClientError || error instanceof ActivitySummaryClientError)
     && (error.status === 401 || error.code === "UNAUTHORIZED")
-  ) {
-    return "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại.";
-  }
+  ) return "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại.";
   if (
     (error instanceof ProgressSummaryClientError || error instanceof ActivitySummaryClientError)
     && (error.status === 403 || error.code === "HOUSEHOLD_ACCESS_DENIED")
-  ) {
-    return "Không thể xem tiến trình của người học này.";
-  }
+  ) return "Không thể xem tiến trình của người học này.";
   return "Không thể tải tiến trình lúc này. Vui lòng thử lại.";
 }
 
-function resetErrorMessage(error: unknown) {
+function resetErrorMessage(error: unknown): string {
   if (error instanceof ResetLearnerProgressClientError && (error.status === 401 || error.code === "UNAUTHORIZED")) {
     return "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại.";
   }
@@ -59,6 +66,290 @@ function resetErrorMessage(error: unknown) {
   return "Không thể đặt lại tiến trình lúc này. Vui lòng thử lại.";
 }
 
+function accuracyFor(history: ProgressHistoryResponse | null) {
+  const remembered = history?.days.reduce((sum, day) => sum + day.remembered, 0) ?? 0;
+  const forgotten = history?.days.reduce((sum, day) => sum + day.forgotten, 0) ?? 0;
+  const total = remembered + forgotten;
+  return {
+    remembered,
+    forgotten,
+    total,
+    percent: total === 0 ? null : Math.round(remembered / total * 100)
+  };
+}
+
+function sortedLevelProgress(summary: ProgressSummaryResponse) {
+  return [...summary.progressByLevel]
+    .filter((level) => level.total > 0)
+    .sort((a, b) => (a.level === null ? 7 : LEVEL_ORDER[a.level]) - (b.level === null ? 7 : LEVEL_ORDER[b.level]));
+}
+
+function relevantTopics(progress: TopicProgressResponse | null) {
+  return (progress?.topics ?? [])
+    .filter((topic) => topic.total > 0 && topic.learningCount + topic.masteredCount > 0)
+    .sort((a, b) => {
+      const aLearned = a.learningCount + a.masteredCount;
+      const bLearned = b.learningCount + b.masteredCount;
+      const aPartial = aLearned < a.total;
+      const bPartial = bLearned < b.total;
+      if (aPartial !== bPartial) return aPartial ? -1 : 1;
+      if (aPartial && bPartial) {
+        const ratioDifference = aLearned / a.total - bLearned / b.total;
+        if (ratioDifference !== 0) return ratioDifference;
+      }
+      return a.name.localeCompare(b.name, "vi");
+    })
+    .slice(0, 5);
+}
+
+function periodDays(period: ProgressPeriod) {
+  return period === "30d" ? 30 : 7;
+}
+
+function periodLabel(period: ProgressPeriod) {
+  return period === "30d" ? "30 ngày gần đây" : "7 ngày gần đây";
+}
+
+function xPosition(index: number, count: number, left: number, width: number) {
+  return left + width * (index + 0.5) / Math.max(1, count);
+}
+
+function labelIndexes(count: number, period: ProgressPeriod) {
+  if (period === "7d") return Array.from({ length: count }, (_, index) => index);
+  return Array.from({ length: count }, (_, index) => index)
+    .filter((index) => index % 5 === 0 || index === count - 1);
+}
+
+function axisDateLabel(date: string, period: ProgressPeriod) {
+  const parsed = new Date(`${date}T00:00:00Z`);
+  return period === "7d"
+    ? new Intl.DateTimeFormat("vi-VN", { weekday: "short", timeZone: "UTC" }).format(parsed)
+    : new Intl.DateTimeFormat("vi-VN", { day: "numeric", month: "numeric", timeZone: "UTC" }).format(parsed);
+}
+
+function dateFullLabel(date: string) {
+  return new Intl.DateTimeFormat("vi-VN", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC"
+  }).format(new Date(`${date}T00:00:00Z`));
+}
+
+function ProgressMetric({
+  testId,
+  label,
+  value,
+  detail
+}: {
+  testId: string;
+  label: string;
+  value: string | number;
+  detail: string;
+}) {
+  return (
+    <div className="progress-metric-card" data-testid={testId}>
+      <dt>{label}</dt>
+      <dd>{value}</dd>
+      <p>{detail}</p>
+    </div>
+  );
+}
+
+function CoverageBar({ label, learned, total }: { label: string; learned: number; total: number }) {
+  const percent = total > 0 ? Math.round(learned / total * 100) : 0;
+  return (
+    <div
+      className="progress-coverage-bar"
+      role="progressbar"
+      aria-label={label}
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-valuenow={percent}
+      aria-valuetext={`${learned} trên ${total} từ, ${percent}%`}
+    >
+      <span style={{ width: `${percent}%` }} />
+    </div>
+  );
+}
+
+function ActivityChart({ history, period }: { history: ProgressHistoryResponse; period: ProgressPeriod }) {
+  const days = history.days;
+  const total = days.reduce((sum, day) => sum + day.uniqueWords, 0);
+  if (total === 0) {
+    return <p className="progress-chart-empty" role="status">Chưa có hoạt động ôn tập trong khoảng thời gian này.</p>;
+  }
+
+  const width = 720;
+  const height = 260;
+  const left = 48;
+  const right = 12;
+  const top = 18;
+  const bottom = 42;
+  const plotWidth = width - left - right;
+  const plotHeight = height - top - bottom;
+  const maxValue = Math.max(1, ...days.map((day) => day.uniqueWords));
+  const maxScale = Math.max(4, Math.ceil(maxValue / 4) * 4);
+  const ticks = [...new Set([0, Math.round(maxScale / 2), maxScale])];
+  const tickIndexes = labelIndexes(days.length, period);
+  const highest = Math.max(...days.map((day) => day.uniqueWords));
+
+  return (
+    <figure className="progress-chart" data-testid="activity-chart">
+      <svg
+        className="progress-chart-svg"
+        viewBox={`0 0 ${width} ${height}`}
+        role="img"
+        aria-label={`${periodLabel(period)}: ${total} lượt từ vựng duy nhất đã được ôn qua ${days.length} ngày.`}
+      >
+        <title>Số từ duy nhất đã ôn mỗi ngày</title>
+        <desc>Các cột thể hiện số vocabulary khác nhau được ôn trong từng ngày địa phương của gia đình.</desc>
+        {ticks.map((tick) => {
+          const y = top + plotHeight - tick / maxScale * plotHeight;
+          return (
+            <g key={tick} className="progress-chart-gridline">
+              <line x1={left} x2={width - right} y1={y} y2={y} />
+              <text x={left - 10} y={y + 4} textAnchor="end">{tick}</text>
+            </g>
+          );
+        })}
+        {days.map((day, index) => {
+          const columnWidth = plotWidth / Math.max(1, days.length);
+          const barWidth = Math.min(34, columnWidth * 0.58);
+          const barHeight = day.uniqueWords / maxScale * plotHeight;
+          const x = xPosition(index, days.length, left, plotWidth) - barWidth / 2;
+          const y = top + plotHeight - barHeight;
+          return (
+            <g className="progress-chart-bar-group" key={day.date}>
+              <title>{dateFullLabel(day.date)}: {day.uniqueWords} từ duy nhất, {day.reviews} lượt ôn</title>
+              <rect x={x} y={y} width={barWidth} height={Math.max(0, barHeight)} rx={5} />
+            </g>
+          );
+        })}
+        {tickIndexes.map((index) => (
+          <text
+            className="progress-chart-date"
+            key={days[index]?.date}
+            x={xPosition(index, days.length, left, plotWidth)}
+            y={height - 12}
+            textAnchor="middle"
+          >
+            {days[index] ? axisDateLabel(days[index].date, period) : ""}
+          </text>
+        ))}
+      </svg>
+      <figcaption>
+        Cao nhất: {highest} từ duy nhất trong một ngày. Mỗi từ chỉ tính một lần mỗi ngày.
+      </figcaption>
+      <ul className="progress-chart-data-list">
+        {days.map((day) => <li key={day.date}>{dateFullLabel(day.date)}: {day.uniqueWords} từ duy nhất, {day.reviews} lượt ôn.</li>)}
+      </ul>
+    </figure>
+  );
+}
+
+function AccuracyChart({ history, period }: { history: ProgressHistoryResponse; period: ProgressPeriod }) {
+  const days = history.days.map((day) => {
+    const validReviews = day.remembered + day.forgotten;
+    return {
+      ...day,
+      validReviews,
+      accuracy: validReviews === 0 ? null : Math.round(day.remembered / validReviews * 100)
+    };
+  });
+  const totalReviews = days.reduce((sum, day) => sum + day.validReviews, 0);
+  if (totalReviews === 0) {
+    return <p className="progress-chart-empty" role="status">Chưa đủ dữ liệu để hiển thị độ chính xác ôn tập trong khoảng thời gian này.</p>;
+  }
+
+  const width = 720;
+  const height = 260;
+  const left = 48;
+  const right = 12;
+  const top = 18;
+  const bottom = 42;
+  const plotWidth = width - left - right;
+  const plotHeight = height - top - bottom;
+  const points = days.map((day, index) => ({
+    date: day.date,
+    accuracy: day.accuracy,
+    validReviews: day.validReviews,
+    x: xPosition(index, days.length, left, plotWidth),
+    y: day.accuracy === null ? null : top + plotHeight - day.accuracy / 100 * plotHeight
+  }));
+  const segments: typeof points[] = [];
+  let segment: typeof points = [];
+  for (const point of points) {
+    if (point.accuracy === null) {
+      if (segment.length > 0) segments.push(segment);
+      segment = [];
+    } else {
+      segment.push(point);
+    }
+  }
+  if (segment.length > 0) segments.push(segment);
+  const tickIndexes = labelIndexes(days.length, period);
+  const observedDays = points.filter((point) => point.accuracy !== null).length;
+
+  return (
+    <figure className="progress-chart" data-testid="accuracy-chart">
+      <svg
+        className="progress-chart-svg"
+        viewBox={`0 0 ${width} ${height}`}
+        role="img"
+        aria-label={`${periodLabel(period)}: độ chính xác ôn tập tổng thể ${Math.round(days.reduce((sum, day) => sum + day.remembered, 0) / totalReviews * 100)}% từ ${totalReviews} lượt, có dữ liệu ở ${observedDays} ngày.`}
+      >
+        <title>Độ chính xác ôn tập theo ngày</title>
+        <desc>Tỉ lệ nhớ được tính từ các lượt REMEMBERED chia cho tổng lượt REMEMBERED và FORGOTTEN. Ngày không có lượt ôn được để trống.</desc>
+        {[0, 25, 50, 75, 100].map((tick) => {
+          const y = top + plotHeight - tick / 100 * plotHeight;
+          return (
+            <g key={tick} className="progress-chart-gridline">
+              <line x1={left} x2={width - right} y1={y} y2={y} />
+              <text x={left - 10} y={y + 4} textAnchor="end">{tick}%</text>
+            </g>
+          );
+        })}
+        {segments.filter((pointsInSegment) => pointsInSegment.length > 1).map((pointsInSegment, index) => (
+          <polyline
+            className="progress-accuracy-line"
+            key={`segment-${index}`}
+            points={pointsInSegment.map((point) => `${point.x},${point.y}`).join(" ")}
+          />
+        ))}
+        {points.map((point) => point.accuracy === null || point.y === null ? null : (
+          <g className="progress-accuracy-point" key={point.date}>
+            <title>{dateFullLabel(point.date)}: {point.accuracy}% từ {point.validReviews} lượt ôn</title>
+            <circle cx={point.x} cy={point.y} r={4.5} />
+          </g>
+        ))}
+        {tickIndexes.map((index) => (
+          <text
+            className="progress-chart-date"
+            key={days[index]?.date}
+            x={xPosition(index, days.length, left, plotWidth)}
+            y={height - 12}
+            textAnchor="middle"
+          >
+            {days[index] ? axisDateLabel(days[index].date, period) : ""}
+          </text>
+        ))}
+      </svg>
+      <figcaption>
+        {totalReviews} lượt ôn hợp lệ trong {observedDays} ngày có dữ liệu.
+        {totalReviews < 5 ? " Mẫu còn ít; hãy xem đây là tín hiệu ban đầu." : ""}
+        {" "}Các ngày trống không có lượt ôn.
+      </figcaption>
+      <ul className="progress-chart-data-list">
+        {days.map((day) => <li key={day.date}>
+          {dateFullLabel(day.date)}: {day.accuracy === null ? "không có lượt ôn" : `${day.accuracy}% từ ${day.validReviews} lượt`}.
+        </li>)}
+      </ul>
+    </figure>
+  );
+}
+
 export function ProgressPage() {
   const { activeLearner } = useActiveLearner();
   if (!activeLearner) return <Navigate to="/learners" replace />;
@@ -66,56 +357,67 @@ export function ProgressPage() {
 }
 
 function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
-  const [state, setState] = useState<ProgressState>("loading");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const period = periodFromSearch(searchParams);
+  const [loadVersion, setLoadVersion] = useState(0);
+  const [summaryState, setSummaryState] = useState<LoadState>("loading");
   const [summary, setSummary] = useState<ProgressSummaryResponse | null>(null);
   const [activity, setActivity] = useState<ActivitySummaryResponse | null>(null);
+  const [summaryMessage, setSummaryMessage] = useState<string | null>(null);
+  const [historyState, setHistoryState] = useState<LoadState>("loading");
   const [history, setHistory] = useState<ProgressHistoryResponse | null>(null);
+  const [topicState, setTopicState] = useState<LoadState>("loading");
   const [topicProgress, setTopicProgress] = useState<TopicProgressResponse | null>(null);
-  const [gamification, setGamification] = useState<GamificationResponse | null>(null);
-  const [gamificationState, setGamificationState] = useState<InsightState>("loading");
-  const [insightState, setInsightState] = useState<InsightState>("loading");
-  const [message, setMessage] = useState<string | null>(null);
   const [resetOpen, setResetOpen] = useState(false);
   const [resetSubmitting, setResetSubmitting] = useState(false);
   const [resetError, setResetError] = useState<string | null>(null);
   const [resetSuccess, setResetSuccess] = useState<string | null>(null);
 
-  const loadSummary = useCallback(async () => {
-    setState("loading");
-    setSummary(null);
-    setActivity(null);
-    setHistory(null);
-    setTopicProgress(null);
-    setGamification(null);
-    setMessage(null);
-    try {
-      const [response, activityResponse] = await Promise.all([
-        requestProgressSummary(activeLearner.id),
-        requestActivitySummary(activeLearner.id)
-      ]);
-      setSummary(response);
+  useEffect(() => {
+    let cancelled = false;
+    void Promise.all([
+      requestProgressSummary(activeLearner.id),
+      requestActivitySummary(activeLearner.id)
+    ]).then(([summaryResponse, activityResponse]) => {
+      if (cancelled) return;
+      setSummary(summaryResponse);
       setActivity(activityResponse);
-      setState("ready");
-      const from = dateMinus(activityResponse.localDate, 6);
-      setInsightState("loading");
-      void Promise.all([
-        requestProgressHistory(activeLearner.id, from, activityResponse.localDate),
-        requestTopicProgress(activeLearner.id)
-      ]).then(([historyResponse, topicResponse]) => {
-        setHistory(historyResponse);
-        setTopicProgress(topicResponse);
-        setInsightState("ready");
-      }).catch(() => setInsightState("error"));
-      setGamificationState("loading");
-      void requestGamification(activeLearner.id).then((response) => {
-        setGamification(response);
-        setGamificationState("ready");
-      }).catch(() => setGamificationState("error"));
-    } catch (error) {
-      setState("error");
-      setMessage(progressErrorMessage(error));
-    }
-  }, [activeLearner.id]);
+      setSummaryState("ready");
+    }).catch((error: unknown) => {
+      if (cancelled) return;
+      setSummaryState("error");
+      setSummaryMessage(progressErrorMessage(error));
+    });
+    return () => { cancelled = true; };
+  }, [activeLearner.id, loadVersion]);
+
+  useEffect(() => {
+    let cancelled = false;
+    void requestTopicProgress(activeLearner.id).then((response) => {
+      if (cancelled) return;
+      setTopicProgress(response);
+      setTopicState("ready");
+    }).catch(() => {
+      if (!cancelled) setTopicState("error");
+    });
+    return () => { cancelled = true; };
+  }, [activeLearner.id, loadVersion]);
+
+  const activityLocalDate = activity?.localDate;
+  useEffect(() => {
+    if (!activityLocalDate) return;
+    let cancelled = false;
+    const to = activityLocalDate;
+    const from = dateMinus(to, periodDays(period) - 1);
+    void requestProgressHistory(activeLearner.id, from, to).then((response) => {
+      if (cancelled) return;
+      setHistory(response);
+      setHistoryState("ready");
+    }).catch(() => {
+      if (!cancelled) setHistoryState("error");
+    });
+    return () => { cancelled = true; };
+  }, [activeLearner.id, activityLocalDate, period]);
 
   async function handleReset() {
     if (resetSubmitting) return;
@@ -125,10 +427,15 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
     try {
       await requestResetLearnerProgress(activeLearner.id);
       setResetOpen(false);
-          setResetSuccess(`Đã đặt lại tiến trình của ${activeLearner.displayName}.`);
-      // Reload the canonical summary immediately; vocabulary and queue are
-      // likewise fetched fresh when their learner-scoped pages open.
-      await loadSummary();
+      setResetSuccess(`Đã đặt lại tiến trình của ${activeLearner.displayName}.`);
+      setSummaryState("loading");
+      setSummary(null);
+      setActivity(null);
+      setHistoryState("loading");
+      setTopicProgress(null);
+      setHistory(null);
+      setTopicState("loading");
+      setLoadVersion((current) => current + 1);
     } catch (error) {
       setResetError(resetErrorMessage(error));
     } finally {
@@ -136,167 +443,206 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
     }
   }
 
-  useEffect(() => {
-    let cancelled = false;
-    void Promise.all([
-      requestProgressSummary(activeLearner.id),
-      requestActivitySummary(activeLearner.id)
-    ])
-      .then(([response, activityResponse]) => {
-        if (cancelled) return;
-        setSummary(response);
-        setActivity(activityResponse);
-        setState("ready");
-        const from = dateMinus(activityResponse.localDate, 6);
-        setInsightState("loading");
-        void Promise.all([
-          requestProgressHistory(activeLearner.id, from, activityResponse.localDate),
-          requestTopicProgress(activeLearner.id)
-        ]).then((insights) => {
-          if (cancelled) return;
-          setHistory(insights[0]);
-          setTopicProgress(insights[1]);
-          setInsightState("ready");
-        }).catch(() => {
-          if (!cancelled) setInsightState("error");
-        });
-        setGamificationState("loading");
-        void requestGamification(activeLearner.id).then((gamificationResponse) => {
-          if (cancelled) return;
-          setGamification(gamificationResponse);
-          setGamificationState("ready");
-        }).catch(() => {
-          if (!cancelled) setGamificationState("error");
-        });
-      })
-      .catch((error: unknown) => {
-        if (cancelled) return;
-        setState("error");
-        setMessage(progressErrorMessage(error));
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, [activeLearner.id]);
+  const accuracy = accuracyFor(history);
+  const levels = summary ? sortedLevelProgress(summary) : [];
+  const topics = relevantTopics(topicProgress);
+  const lowestPartialTopicId = topics.find((topic) => {
+    const learned = topic.learningCount + topic.masteredCount;
+    return learned > 0 && learned < topic.total;
+  })?.topicId;
+
+  function changePeriod(value: string) {
+    const nextPeriod: ProgressPeriod = value === "30d" ? "30d" : "7d";
+    setHistoryState("loading");
+    setHistory(null);
+    setSearchParams((current) => {
+      const next = new URLSearchParams(current);
+      next.set("period", nextPeriod);
+      return next;
+    });
+  }
+
+  function retryDashboard() {
+    setSummaryState("loading");
+    setSummary(null);
+    setActivity(null);
+    setSummaryMessage(null);
+    setHistoryState("loading");
+    setHistory(null);
+    setTopicState("loading");
+    setTopicProgress(null);
+    setLoadVersion((current) => current + 1);
+  }
 
   return (
-    <main className="learner-page" aria-labelledby="progress-title">
-      <section className="learner-card progress-card">
-        <div className="progress-topbar">
-          <Link className="back-link" to="/learners">← Về trang người học</Link>
-          <p className="study-learner">Người học: <strong>{activeLearner.displayName}</strong></p>
-        </div>
-        <p className="auth-eyebrow">Tiến trình</p>
-        <h1 className="auth-title" id="progress-title">Tiến trình của {activeLearner.displayName}</h1>
+    <main className="learner-page progress-page" aria-labelledby="progress-title">
+      <div className="progress-dashboard">
+        <header className="progress-dashboard-header">
+          <div>
+            <p className="progress-dashboard-eyebrow">Tiến trình của {activeLearner.displayName}</p>
+            <h1 id="progress-title">Tiến trình học tập</h1>
+            <p>Theo dõi tiến độ và điểm cần cải thiện của bạn.</p>
+          </div>
+          <label className="progress-period-control">
+            <span>Khoảng thời gian</span>
+            <select aria-label="Khoảng thời gian" data-testid="progress-period" value={period} onChange={(event) => changePeriod(event.target.value)}>
+              <option value="7d">7 ngày gần đây</option>
+              <option value="30d">30 ngày gần đây</option>
+            </select>
+          </label>
+        </header>
 
         {resetSuccess ? <p className="progress-success" role="status">{resetSuccess}</p> : null}
-
-        {state === "loading" ? (
-          <div className="progress-state" data-testid="progress-loading" role="status">Đang tải tiến trình…</div>
-        ) : null}
-
-        {state === "error" ? (
-          <div className="progress-state progress-error" data-testid="progress-error" role="alert">
-            <p>{message}</p>
-            <button className="auth-retry" type="button" onClick={() => void loadSummary()}>Thử lại</button>
+        {summaryState === "loading" ? <div className="progress-dashboard-state" data-testid="progress-loading" role="status">Đang tải tiến trình…</div> : null}
+        {summaryState === "error" ? (
+          <div className="progress-dashboard-state progress-dashboard-error" data-testid="progress-error" role="alert">
+            <p>{summaryMessage}</p>
+            <button className="progress-secondary-button" type="button" onClick={retryDashboard}>Thử lại</button>
           </div>
         ) : null}
 
-        {state === "ready" && summary ? (
-          <div className="progress-content" data-testid="progress-summary">
+        {summaryState === "ready" && summary && activity ? (
+          <div className="progress-dashboard-content" data-testid="progress-summary">
             {summary.learnedCount === 0 ? (
-              <div className="progress-empty" data-testid="progress-empty-state" role="status">
-                <h2>Chưa học từ nào</h2>
-                <p>Bắt đầu phiên học để tạo tiến trình đầu tiên.</p>
-              </div>
-            ) : null}
-            <dl className="progress-grid">
-              <div><dt>Từ mới</dt><dd>{summary.newCount}</dd></div>
-              <div><dt>Đang học</dt><dd>{summary.learningCount}</dd></div>
-              <div><dt>Đã thành thạo</dt><dd>{summary.masteredCount}</dd></div>
-              <div><dt>Cần ôn tập</dt><dd>{summary.dueCount}</dd></div>
-              <div><dt>Đã học</dt><dd>{summary.learnedCount}</dd></div>
-            </dl>
-            {activity ? (
-              <section className="progress-activity" data-testid="activity-summary" aria-labelledby="activity-summary-title">
-                <h2 id="activity-summary-title">Hoạt động hôm nay</h2>
-                <div className="progress-activity-grid">
-                  <div data-testid="daily-goal">
-                    <span>Mục tiêu hôm nay · {activity.dailyGoal.overallPercent}%</span>
-                    <strong>{activity.dailyGoal.newWords.completed} / {activity.dailyGoal.newWords.goal} từ mới · {activity.dailyGoal.reviews.completed} / {activity.dailyGoal.reviews.goal} ôn tập</strong>
-                    <small>{activity.dailyGoal.completed ? "Đã hoàn thành mục tiêu hôm nay" : `Còn ${activity.dailyGoal.newWords.remaining} từ mới và ${activity.dailyGoal.reviews.remaining} từ ôn tập`}</small>
-                  </div>
-                  <div data-testid="streak-summary">
-                    <span>Chuỗi hiện tại</span>
-                    <strong>{activity.streak.currentStreak} ngày liên tiếp</strong>
-                    <small>Kỷ lục: {activity.streak.longestStreak} ngày</small>
-                  </div>
-                </div>
-              </section>
-            ) : null}
-            <section className="progress-insights" aria-labelledby="weekly-progress-title">
-              <div className="progress-insights-heading">
+              <div className="progress-dashboard-empty" data-testid="progress-empty-state" role="status">
                 <div>
-                  <h2 id="weekly-progress-title">7 ngày gần đây</h2>
-                  <p>Gồm hôm nay và 6 ngày trước theo lịch của gia đình.</p>
+                  <h2>Chưa học từ nào</h2>
+                  <p>Bắt đầu học để ghi nhận tiến trình đầu tiên.</p>
                 </div>
+                <Link className="progress-empty-link" to="/study/setup">Bắt đầu học</Link>
               </div>
-              {insightState === "loading" ? <p data-testid="progress-insights-loading" role="status">Đang tải tiến trình theo ngày…</p> : null}
-              {insightState === "error" ? <p data-testid="progress-insights-error" className="progress-inline-error" role="alert">Không thể tải chi tiết theo ngày và chủ đề lúc này.</p> : null}
-              {insightState === "ready" && history ? (
-                <div className="weekly-progress" data-testid="weekly-progress">
-                  {history.days.map((day) => (
-                    <details className="weekly-progress-day" key={day.date}>
-                      <summary><span>{weekday(day.date)}</span><strong>{day.uniqueWords} từ</strong><small>{day.reviews} lượt ôn tập</small></summary>
-                      <dl>
-                        <div><dt>Đã nhớ</dt><dd>{day.remembered}</dd></div>
-                        <div><dt>Chưa nhớ</dt><dd>{day.forgotten}</dd></div>
-                        <div><dt>Từ mới học</dt><dd>{day.newLearned}</dd></div>
-                      </dl>
-                    </details>
-                  ))}
+            ) : null}
+
+            <dl className="progress-metric-grid" aria-label="Tóm tắt tiến trình">
+              <ProgressMetric testId="progress-metric-learned" label="Đã học" value={summary.learnedCount} detail="Từ có tiến trình đã lưu" />
+              <ProgressMetric testId="progress-metric-mastered" label="Đã thành thạo" value={summary.masteredCount} detail="Trạng thái hiện tại" />
+              <ProgressMetric
+                testId="progress-metric-accuracy"
+                label="Độ chính xác ôn tập"
+                value={historyState === "error" || accuracy.percent === null ? "—" : `${accuracy.percent}%`}
+                detail={historyState === "error"
+                  ? "Không tải được dữ liệu ôn tập"
+                  : historyState === "loading"
+                    ? "Đang tải dữ liệu ôn tập"
+                  : accuracy.total === 0
+                    ? `Chưa có lượt ôn trong ${periodLabel(period).toLowerCase()}`
+                    : `${accuracy.total} lượt ôn · ${periodLabel(period).toLowerCase()}`}
+              />
+              <ProgressMetric
+                testId="progress-metric-streak"
+                label="Chuỗi hiện tại"
+                value={`${activity.streak.currentStreak} ngày`}
+                detail="Theo ngày học của gia đình"
+              />
+            </dl>
+
+            <div className="progress-chart-grid">
+              <section className="progress-dashboard-panel" aria-labelledby="progress-activity-title">
+                <div className="progress-panel-heading">
+                  <div>
+                    <h2 id="progress-activity-title">Hoạt động học tập</h2>
+                    <p>Số từ duy nhất đã ôn mỗi ngày · {periodLabel(period)}</p>
+                  </div>
                 </div>
-              ) : null}
-            </section>
-            <section className="progress-insights" aria-labelledby="topic-progress-title">
-              <h2 id="topic-progress-title">Tiến trình theo chủ đề</h2>
-              {insightState === "ready" && topicProgress?.topics.length === 0 ? <p data-testid="topic-progress-empty">Chưa có chủ đề khả dụng.</p> : null}
-              {insightState === "ready" && topicProgress && topicProgress.topics.length > 0 ? (
-                <div className="topic-progress-list" data-testid="topic-progress-list">
-                  {topicProgress.topics.map((topic) => (
-                    <article className="topic-progress-row" key={topic.topicId}>
-                      <div><h3>{topic.name}</h3><p>{topic.masteredCount} / {topic.total} đã thành thạo</p></div>
-                      <dl><div><dt>Từ mới</dt><dd>{topic.newCount}</dd></div><div><dt>Đang học</dt><dd>{topic.learningCount}</dd></div><div><dt>Đã thành thạo</dt><dd>{topic.masteredCount}</dd></div><div><dt>Cần ôn tập</dt><dd>{topic.dueCount}</dd></div></dl>
-                    </article>
-                  ))}
+                {historyState === "loading" ? <p className="progress-panel-state" role="status">Đang tải hoạt động…</p> : null}
+                {historyState === "error" ? (
+                  <div className="progress-panel-state progress-inline-error" role="alert">
+                    <span>Không thể tải hoạt động trong kỳ này.</span>
+                    <button className="progress-inline-retry" type="button" onClick={retryDashboard}>Thử lại</button>
+                  </div>
+                ) : null}
+                {historyState === "ready" && history ? <ActivityChart history={history} period={period} /> : null}
+              </section>
+
+              <section className="progress-dashboard-panel" aria-labelledby="progress-accuracy-title">
+                <div className="progress-panel-heading">
+                  <div>
+                    <h2 id="progress-accuracy-title">Độ chính xác ôn tập</h2>
+                    <p>Đã nhớ / (đã nhớ + chưa nhớ) · {periodLabel(period)}</p>
+                  </div>
                 </div>
-              ) : null}
-              {insightState === "ready" && topicProgress?.topics.every((topic) => topic.total === 0) ? <p className="topic-progress-note">Các từ đang học hiện chưa được phân loại theo chủ đề.</p> : null}
-            </section>
-            <section className="progress-insights" aria-labelledby="gamification-title">
-              <h2 id="gamification-title">Cấp độ và huy hiệu</h2>
-              {gamificationState === "loading" ? <p data-testid="gamification-loading" role="status">Đang tải điểm kinh nghiệm và huy hiệu…</p> : null}
-              {gamificationState === "error" ? <p data-testid="gamification-error" className="progress-inline-error" role="alert">Không thể tải điểm kinh nghiệm và huy hiệu lúc này.</p> : null}
-              {gamificationState === "ready" && gamification ? <>
-                <div className="xp-summary" data-testid="xp-summary">
-                  <div><span>Cấp độ</span><strong>{gamification.xp.level}</strong></div>
-                  <div><span>Tổng điểm kinh nghiệm</span><strong>{gamification.xp.total}</strong></div>
-                  <p>{gamification.xp.xpIntoLevel} / {gamification.xp.xpPerLevel} điểm kinh nghiệm để lên cấp độ {gamification.xp.level + 1}</p>
+                {historyState === "loading" ? <p className="progress-panel-state" role="status">Đang tải kết quả ôn tập…</p> : null}
+                {historyState === "error" ? <p className="progress-panel-state progress-inline-error" role="alert">Không thể tải kết quả ôn tập trong kỳ này.</p> : null}
+                {historyState === "ready" && history ? <AccuracyChart history={history} period={period} /> : null}
+              </section>
+            </div>
+
+            <div className="progress-breakdown-grid">
+              <section className="progress-dashboard-panel" aria-labelledby="progress-level-title">
+                <div className="progress-panel-heading">
+                  <div>
+                    <h2 id="progress-level-title">Tiến độ theo cấp độ</h2>
+                    <p>Từ đã học trên tổng từ trong các bộ đang học</p>
+                  </div>
                 </div>
-                <div className="achievement-list" data-testid="achievement-list">
-                  {gamification.achievements.map((achievement) => <article className="achievement-row" key={achievement.code}>
-                    <div><h3>{achievement.name}</h3><p>{achievement.description}</p></div>
-                    {achievement.unlockedAt ? <time dateTime={achievement.unlockedAt}>Đã mở khóa</time> : <span>Chưa mở khóa</span>}
-                  </article>)}
+                {levels.length === 0 ? (
+                  <p className="progress-panel-state" data-testid="level-progress-empty" role="status">Chưa có từ được phân cấp trong các bộ đang học.</p>
+                ) : (
+                  <ul className="progress-coverage-list" data-testid="level-progress-list">
+                    {levels.map((level) => {
+                      const label = level.level === null ? "Chưa phân cấp" : LEVEL_LABELS[level.level];
+                      return (
+                        <li className="progress-coverage-row" key={level.level ?? "unclassified"}>
+                          <span className="progress-coverage-label">{label}</span>
+                          <div className="progress-coverage-main">
+                            <div className="progress-coverage-numbers"><strong>{level.learnedCount} / {level.total}</strong><span>{Math.round(level.learnedCount / level.total * 100)}%</span></div>
+                            <CoverageBar label={`Tiến độ ${label}`} learned={level.learnedCount} total={level.total} />
+                          </div>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
+              </section>
+
+              <section className="progress-dashboard-panel" aria-labelledby="progress-topic-title">
+                <div className="progress-panel-heading">
+                  <div>
+                    <h2 id="progress-topic-title">Tiến độ theo chủ đề</h2>
+                    <p>Chủ đề đã bắt đầu · tối đa 5 chủ đề</p>
+                  </div>
+                  <Link className="progress-panel-link" to="/topics">Xem tất cả</Link>
                 </div>
-              </> : null}
-            </section>
+                {topicState === "loading" ? <p className="progress-panel-state" role="status">Đang tải tiến độ chủ đề…</p> : null}
+                {topicState === "error" ? (
+                  <div className="progress-panel-state progress-inline-error" role="alert">
+                    <span>Không thể tải tiến độ chủ đề.</span>
+                    <button className="progress-inline-retry" type="button" onClick={retryDashboard}>Thử lại</button>
+                  </div>
+                ) : null}
+                {topicState === "ready" && topicProgress && topics.length === 0 ? (
+                  <p className="progress-panel-state" data-testid="topic-progress-empty" role="status">
+                    Chưa có tiến độ ở các chủ đề thuộc bộ học đang hoạt động.
+                  </p>
+                ) : null}
+                {topicState === "ready" && topics.length > 0 ? (
+                  <ul className="progress-coverage-list" data-testid="topic-progress-list">
+                    {topics.map((topic) => {
+                      const learned = topic.learningCount + topic.masteredCount;
+                      const percent = Math.round(learned / topic.total * 100);
+                      return (
+                        <li className="progress-coverage-row" key={topic.topicId}>
+                          <span className="progress-coverage-label">
+                            {topic.name}
+                            {topic.topicId === lowestPartialTopicId ? <small>Tiến độ thấp nhất</small> : null}
+                          </span>
+                          <div className="progress-coverage-main">
+                            <div className="progress-coverage-numbers"><strong>{learned} / {topic.total}</strong><span>{percent}%</span></div>
+                            <CoverageBar label={`Tiến độ chủ đề ${topic.name}`} learned={learned} total={topic.total} />
+                          </div>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                ) : null}
+              </section>
+            </div>
           </div>
         ) : null}
 
-        <div className="progress-danger-zone">
-          <h2>Quản lý tiến trình</h2>
-          <p>Việc đặt lại chỉ xóa tiến trình hiện tại của người học này. Lịch sử ôn tập vẫn được giữ lại.</p>
+        <details className="progress-reset-details">
+          <summary>Quản lý tiến trình</summary>
+          <p>Đặt lại chỉ xóa trạng thái học hiện tại. Lịch sử ôn tập và chuỗi ngày vẫn được giữ lại.</p>
           <button
             className="progress-reset-button"
             type="button"
@@ -309,18 +655,12 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
           >
             Đặt lại tiến trình
           </button>
-        </div>
-      </section>
+        </details>
+      </div>
 
       {resetOpen ? (
         <div className="reset-dialog-backdrop">
-          <section
-            className="reset-dialog"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="reset-progress-title"
-            aria-describedby="reset-progress-description"
-          >
+          <section className="reset-dialog" role="dialog" aria-modal="true" aria-labelledby="reset-progress-title" aria-describedby="reset-progress-description">
             <h2 id="reset-progress-title">Đặt lại tiến trình của {activeLearner.displayName}?</h2>
             <p id="reset-progress-description">
               Tiến trình học hiện tại của người học này sẽ được đưa về trạng thái từ mới. Chỉ người học này bị ảnh hưởng;
@@ -328,21 +668,8 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
             </p>
             {resetError ? <p className="reset-dialog-error" role="alert">{resetError}</p> : null}
             <div className="reset-dialog-actions">
-              <button
-                className="auth-retry reset-dialog-cancel"
-                type="button"
-                onClick={() => setResetOpen(false)}
-                disabled={resetSubmitting}
-              >
-                Hủy
-              </button>
-              <button
-                className="progress-reset-button"
-                type="button"
-                onClick={() => void handleReset()}
-                disabled={resetSubmitting}
-                aria-busy={resetSubmitting}
-              >
+              <button className="auth-retry reset-dialog-cancel" type="button" onClick={() => setResetOpen(false)} disabled={resetSubmitting}>Hủy</button>
+              <button className="progress-reset-button" type="button" onClick={() => void handleReset()} disabled={resetSubmitting} aria-busy={resetSubmitting}>
                 {resetSubmitting ? "Đang đặt lại…" : "Xác nhận đặt lại"}
               </button>
             </div>

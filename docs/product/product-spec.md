@@ -19,11 +19,24 @@ Historical activity remains after reset; topic state resets with sparse learner
 progress. Topic totals do not imply a global total because a word can be
 unmapped or belong to multiple topics.
 
+## Progress Dashboard extension (US-48)
+
+The active learner's Progress route combines four canonical indicators—unique
+vocabulary with saved progress, current Mastered state, persisted review
+accuracy, and the existing household-local streak—with seven- or thirty-day
+activity and accuracy charts plus current level/topic coverage. Activity is
+unique vocabulary reviewed per local day; review accuracy is
+REMEMBERED / (REMEMBERED + FORGOTTEN). No historical comparison or learning
+recommendation is shown without a defined data source. Level coverage uses the
+existing vocabulary level taxonomy and enabled vocabulary reachable through
+the learner's active assigned learning sets. Topic coverage reuses the
+learner-accessible Topic domain. Empty periods do not imply zero accuracy.
+
 - Status: CURRENT PRODUCT SOURCE OF TRUTH
 - Version: v1.0
 - Source baseline: `VocabFlow_Family_MVP_Product_Specification_v1.0.docx`
 - Canonical format: Markdown
-- Last synchronized: 2026-09-24
+- Last synchronized: 2026-10-04
 
 **VOCABFLOW**
 
@@ -79,7 +92,7 @@ Family MVP vẫn là một hệ thống quản lý trạng thái ghi nhớ, khô
 | Flashcard + audio/image khi có | Nhiều mode Learn/Test/Game |
 | Chưa nhớ / Đã nhớ + spaced scheduler; deterministic XP and badges | Leaderboard, social competition, advanced gamification |
 | Review Queue + session summary | AI tutor / generated content |
-| Progress tối giản | Advanced analytics / reporting |
+| Canonical learner progress plus bounded activity, accuracy, level and topic views (US-48) | Advanced analytics / reporting and unsupported comparisons |
 | Responsive mobile/tablet/desktop | Admin CMS / payment / social |
 
 ```text
@@ -423,7 +436,7 @@ canonical.
 | Study | Flashcard, flip, audio/media fallback, remember/forget. | YES |
 | Exercise mode | Explicit meaning/listening route over the canonical queue and review API. | YES |
 | Session Summary | Reviewed/remembered/forgotten/reinforcement summary. | YES |
-| Progress | New/Learning/Mastered/Due theo active learner. | YES |
+| Progress | Active learner summary, persisted review accuracy/streak and bounded activity, level and Topic coverage. | YES |
 | Vocabulary list / learning sets | Danh sách enabled vocabulary + trạng thái learner tối thiểu; lọc cấp độ, browse theo chủ đề, xem set và gán set cho learner. | YES |
 | Daily New settings | Parent xem/chỉnh giới hạn từ mới theo learner; Due exemption và trạng thái lưu được hiển thị rõ. | YES |
 | Daily learning goal | Parent cấu hình goal 1–100; learner xem unique reviewed/goal và trạng thái hoàn thành theo local day. | YES |

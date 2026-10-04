@@ -17,6 +17,20 @@ This log records meaningful project milestones and accepted baselines.
   package preparation only. No database writes or migrations were performed.
 - Evidence: `vocabflow-dataset/reports/master-v2-development-canary-closure.md`.
 
+## 2026-10-04 — Feature #11 Progress Dashboard
+
+- Replaced the crowded Progress page with four canonical metrics, household-
+  local 7/30-day activity and persisted review-accuracy charts, plus level and
+  learner-accessible Topic coverage. Accuracy gaps remain empty; no fake deltas
+  or unsupported recommendations are shown.
+- Extended Progress Summary with a grouped level aggregate over enabled
+  vocabulary in the learner's active assigned Learning Sets. The aggregate
+  deduplicates repeated membership and keeps the existing learned/mastered
+  definitions.
+- Removed the dashboard's Gamification read because achievement
+  reconciliation has a write side effect. No schema/migration or database
+  mutation was introduced; Dataset V2 remains outside this feature.
+
 ## 2026-10-04 — Master Vocabulary V2 Phase 2E.5 development canary
 
 - Ran one target-verified development APPLY for the approved 2.1.0 release with

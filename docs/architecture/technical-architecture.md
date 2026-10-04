@@ -1,14 +1,14 @@
-# Technical Architecture v1.0.14
+# Technical Architecture v1.0.15
 
 - Status: APPROVED FOR IMPLEMENTATION
-- Version: v1.0.14
-- Source baseline: `VocabFlow_Technical_Architecture_v1.0.4.docx`; this Markdown records the US-25 identity reconciliation, US-26/US-27 vocabulary taxonomy, US-28/US-29 learning-set assignment model, US-30 daily New allowance, US-31 through US-34 exercise interaction layer, US-35/US-36 activity read model, US-39/US-40 rewards, US-41 reviewed catalog activation and US-42 production release automation.
+- Version: v1.0.15
+- Source baseline: `VocabFlow_Technical_Architecture_v1.0.4.docx`; this Markdown records the US-25 identity reconciliation, US-26/US-27 vocabulary taxonomy, US-28/US-29 learning-set assignment model, US-30 daily New allowance, US-31 through US-34 exercise interaction layer, US-35/US-36 activity read model, US-39/US-40 rewards, US-41 reviewed catalog activation, US-42 production release automation and US-48 Progress Dashboard read model.
 - Canonical format: Markdown
-- Last synchronized: 2026-10-01
+- Last synchronized: 2026-10-04
 
 **VOCABFLOW**
 
-**Technical Architecture v1.0.14**
+**Technical Architecture v1.0.15**
 
 ## US-41 content curation and activation
 
@@ -62,9 +62,30 @@ vocabulary, active learner learning-set assignments, `vocabulary_topics` and
 the existing household-local review-date snapshot and zero-fill occurs after a
 single range aggregation. Topic Due is an overlapping current-state subset.
 
+## US-48 Progress Dashboard read model
+
+The existing learner-authorized Progress Summary response retains its original
+New/Learning/Mastered/Due/Learned semantics and adds `progressByLevel`. Level
+rows aggregate enabled vocabulary reachable through the learner's active,
+enabled assigned Learning Sets, deduplicate vocabulary across memberships, and
+group only the existing `vocabularies.level` taxonomy (GRADE_1..GRADE_5,
+GENERAL, or unclassified). Learned is a materialized `learner_progress` row;
+Mastered is the current MASTERED state. The query is set-based and does not
+query once per level.
+
+The dashboard combines the existing Progress Summary, Activity Summary,
+bounded Progress History (7 or 30 household-local dates), and Topic Progress
+read models. Activity uses unique vocabulary IDs per local `review_date`;
+accuracy is grouped from persisted REMEMBERED/FORGOTTEN outcomes only, and
+dates without review outcomes stay null in the client chart. Current streak is
+read from Activity Summary without a second definition. The page does not call
+the Gamification GET path, whose legacy achievement reconciliation has a
+write side effect. Authorization remains the existing session → household →
+learner ownership guard; no migration or write path is introduced.
+
 **Family Learning MVP**
 
-| **Status** | APPROVED FOR IMPLEMENTATION; US-25 through US-42 catalog, taxonomy, learning-set, exercise, activity, reward, activation and release contracts recorded |
+| **Status** | APPROVED FOR IMPLEMENTATION; US-25 through US-48 catalog, taxonomy, learning-set, exercise, activity, reward, activation, release and Progress Dashboard contracts recorded |
 | --- | --- |
 | **Architecture** | React SPA + Hono API + PostgreSQL |
 | **Primary persistence** | Neon PostgreSQL |
@@ -77,7 +98,7 @@ Mục tiêu: khóa kiến trúc kỹ thuật đủ chi tiết để triển khai
 
 | **Mục** | **Giá trị** |
 | --- | --- |
-| Document | VocabFlow Technical Architecture v1.0.14 |
+| Document | VocabFlow Technical Architecture v1.0.15 |
 | Target release | Family MVP / vertical slice đầu tiên |
 | Status | APPROVED FOR IMPLEMENTATION |
 | Verification status | Architecture Acceptance Gates được xác minh trong quá trình triển khai; sau khi P0 gates PASS có thể đổi trạng thái thành ARCHITECTURE VERIFIED. |
@@ -1438,5 +1459,5 @@ Step 7 là mốc xác nhận kiến trúc: parent login → learner → review �
 
 # Appendix B. Approval Statement
 
-> TECHNICAL ARCHITECTURE v1.0.14 — APPROVED FOR IMPLEMENTATION
+> TECHNICAL ARCHITECTURE v1.0.15 — APPROVED FOR IMPLEMENTATION
 > Từ thời điểm tài liệu này được chấp nhận, triển khai phải bám architecture invariants, sparse progress/virtual NEW model, learner-scoped review queue, race-safe household bootstrap, schema constraints, household authorization, review write/idempotency contract, database identity ownership boundary và clean migration contract ở trên. Acceptance Gates được xác minh trong implementation; mọi thay đổi kiến trúc cần blocker/evidence kỹ thuật cụ thể.

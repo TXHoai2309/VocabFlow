@@ -24,6 +24,10 @@ function summaryRow(values: Partial<Record<"new_count" | "learning_count" | "mas
   };
 }
 
+function levelRows(rows: unknown[] = []) {
+  return { rows };
+}
+
 describe("US-20 progress summary API boundary", () => {
   it("returns 401 before invoking the progress summary service", async () => {
     const service = { get: vi.fn() };
@@ -42,7 +46,8 @@ describe("US-20 progress summary API boundary", () => {
       learningCount: 2,
       masteredCount: 3,
       dueCount: 4,
-      learnedCount: 5
+      learnedCount: 5,
+      progressByLevel: []
     };
     const service = { get: vi.fn(async () => summary) };
     const app = createApp({ readSession: async () => ({ user: { id: "parent-1" } }), progressSummaryService: service });
@@ -84,7 +89,12 @@ describe("US-20 progress summary service", () => {
     const results: unknown[] = [
       authorizedRows(),
       { rows: [{ timezone: "America/Los_Angeles" }] },
-      summaryRow({ new_count: 30n, learning_count: "2", mastered_count: 3, due_count: 4n, learned_count: 5 })
+      summaryRow({ new_count: 30n, learning_count: "2", mastered_count: 3, due_count: 4n, learned_count: 5 }),
+      levelRows([
+        { level: "GRADE_1", total: "10", learned_count: "6", mastered_count: "2" },
+        { level: null, total: "2", learned_count: "0", mastered_count: "0" },
+        { level: "GENERAL", total: "4", learned_count: "1", mastered_count: "0" }
+      ])
     ];
     const service = createProgressSummaryService({
       execute: vi.fn(async (query) => {
@@ -99,10 +109,15 @@ describe("US-20 progress summary service", () => {
       learningCount: 2,
       masteredCount: 3,
       dueCount: 4,
-      learnedCount: 5
+      learnedCount: 5,
+      progressByLevel: [
+        { level: "GRADE_1", total: 10, learnedCount: 6, masteredCount: 2 },
+        { level: null, total: 2, learnedCount: 0, masteredCount: 0 },
+        { level: "GENERAL", total: 4, learnedCount: 1, masteredCount: 0 }
+      ]
     });
 
-    expect(queries).toHaveLength(3);
+    expect(queries).toHaveLength(4);
     expect(queries[0]?.sql).toContain("household_members");
     expect(queries[1]?.sql).toContain('FROM "vocabflow_app"."households"');
     expect(queries[2]?.sql).toContain("lp.learner_id = $2::uuid");
@@ -113,13 +128,25 @@ describe("US-20 progress summary service", () => {
     expect(queries[2]?.sql).toContain("COUNT(DISTINCT lp.vocabulary_id)");
     expect(queries[2]?.params).toEqual(["2026-09-14", learnerId]);
     expect(queries[2]?.sql).not.toContain("review_events");
+    const levels = queries[3]?.sql ?? "";
+    expect(levels).toContain("WITH eligible_vocabulary AS");
+    expect(levels).toContain("SELECT DISTINCT v.id, v.level");
+    expect(levels).toContain('"vocabflow_app"."learner_learning_sets"');
+    expect(levels).toContain("lls.active = true");
+    expect(levels).toContain("ls.enabled = true");
+    expect(levels).toContain("v.enabled = true");
+    expect(levels).toContain("GROUP BY ev.level");
+    expect(levels).toContain("WHEN 'GRADE_1' THEN 1");
+    expect(levels).toContain("WHEN 'GENERAL' THEN 6");
+    expect(levels).not.toContain("review_events");
   });
 
   it("returns zero learning metrics when the learner has no materialized progress", async () => {
     const execute = vi.fn()
       .mockResolvedValueOnce(authorizedRows())
       .mockResolvedValueOnce({ rows: [{ timezone: "Asia/Ho_Chi_Minh" }] })
-      .mockResolvedValueOnce(summaryRow({ new_count: 30, learning_count: 0, mastered_count: 0, due_count: 0, learned_count: 0 }));
+      .mockResolvedValueOnce(summaryRow({ new_count: 30, learning_count: 0, mastered_count: 0, due_count: 0, learned_count: 0 }))
+      .mockResolvedValueOnce(levelRows());
 
     await expect(createProgressSummaryService({ execute }).get("parent-1", learnerId)).resolves.toEqual({
       learnerId,
@@ -127,7 +154,8 @@ describe("US-20 progress summary service", () => {
       learningCount: 0,
       masteredCount: 0,
       dueCount: 0,
-      learnedCount: 0
+      learnedCount: 0,
+      progressByLevel: []
     });
   });
 
@@ -136,9 +164,11 @@ describe("US-20 progress summary service", () => {
       .mockResolvedValueOnce(authorizedRows())
       .mockResolvedValueOnce({ rows: [{ timezone: "Asia/Ho_Chi_Minh" }] })
       .mockResolvedValueOnce(summaryRow({ learned_count: 1 }))
+      .mockResolvedValueOnce(levelRows())
       .mockResolvedValueOnce(authorizedRows(otherLearnerId))
       .mockResolvedValueOnce({ rows: [{ timezone: "Asia/Ho_Chi_Minh" }] })
-      .mockResolvedValueOnce(summaryRow({ learned_count: 0 }));
+      .mockResolvedValueOnce(summaryRow({ learned_count: 0 }))
+      .mockResolvedValueOnce(levelRows());
     const service = createProgressSummaryService({ execute });
 
     await expect(service.get("parent-1", learnerId)).resolves.toMatchObject({ learnerId, learnedCount: 1 });
@@ -149,7 +179,7 @@ describe("US-20 progress summary service", () => {
       code: "HOUSEHOLD_ACCESS_DENIED",
       status: 403
     });
-    expect(execute).toHaveBeenCalledTimes(7);
+    expect(execute).toHaveBeenCalledTimes(9);
   });
 
   it("fails closed for unsafe aggregate counts", async () => {

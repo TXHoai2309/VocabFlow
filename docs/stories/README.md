@@ -74,6 +74,7 @@ convenient. Reprioritization or a new story must be explicit.
 - [US-45 Master Vocabulary V2 Runtime Import Bridge](US-45-master-vocabulary-v2-runtime-import-bridge.md) — `IMPLEMENTED / DEVELOPMENT CANARY VERIFIED` (production remains unauthorized; owner acceptance is explicit).
 - [US-46 Saved Vocabulary](US-46-saved-vocabulary.md) — `IN PROGRESS` (explicit owner reprioritization; learner-owned saved words, CRUD API, Saved Words page and scoped study queue).
 - [US-47 Continue Learning](US-47-continue-learning.md) — `IN PROGRESS` (explicit owner reprioritization; one learner-scoped Home continuation candidate with real collection progress and review recency).
+- [US-48 Progress Dashboard](US-48-progress-dashboard.md) — `IN PROGRESS` (owner-requested Feature #11; evidence-based active-learner dashboard with bounded period charts and level/Topic coverage).
 
 ## Story status gate
 

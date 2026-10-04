@@ -352,7 +352,13 @@ export const progressSummaryResponseSchema = z.object({
   learningCount: z.number().int().nonnegative().safe(),
   masteredCount: z.number().int().nonnegative().safe(),
   dueCount: z.number().int().nonnegative().safe(),
-  learnedCount: z.number().int().nonnegative().safe()
+  learnedCount: z.number().int().nonnegative().safe(),
+  progressByLevel: z.array(z.object({
+    level: vocabularyLevelSchema.nullable(),
+    total: z.number().int().nonnegative().safe(),
+    learnedCount: z.number().int().nonnegative().safe(),
+    masteredCount: z.number().int().nonnegative().safe()
+  }).strict()).default([])
 }).strict();
 export type ProgressSummaryResponse = z.infer<typeof progressSummaryResponseSchema>;
 

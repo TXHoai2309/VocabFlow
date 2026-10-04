@@ -4,7 +4,7 @@
 - Version: v1
 - Source baseline: `VocabFlow_User_Flow_v1.docx`
 - Canonical format: Markdown
-- Last synchronized: 2026-10-03
+- Last synchronized: 2026-10-04
 
 **VOCABFLOW**
 
@@ -32,12 +32,17 @@ the canonical target → a matching scheduled review receives its one correct
 exercise bonus; mismatched recall claims are rejected and reinforcement stays
 session-local with zero XP.
 
-## Progress detail extension (US-37 / US-38)
+## Progress detail extension (US-37 / US-38 / US-48)
 
-Parent selects a learner → opens Progress → sees current summary, daily goal
-and streak → inspects the last seven household-local dates and current topic
-state. A learner switch reloads every learner-scoped read model. Reset leaves
-historical weekly activity intact while topic state returns to virtual New.
+Parent selects a learner → opens Progress → sees learned and Mastered current
+state, review accuracy for the selected period, and the existing current
+household-local streak → inspects seven or thirty household-local dates in the
+unique-word activity and persisted-outcome accuracy charts → reviews
+vocabulary-level coverage and up to five started Topics in the active learning
+domain. Period selection is reflected in the URL. Days without review outcomes
+remain gaps; empty history gets explanatory copy. A learner switch reloads
+every learner-scoped read model. Reset leaves historical activity intact while
+current Topic and level state follows sparse learner progress.
 
 ## Saved vocabulary extension (US-46)
 

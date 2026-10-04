@@ -23,6 +23,28 @@
   (0 errors, 0 warnings), root typecheck, lint, and `git diff --check`. The
   local Node 22.19.0 version is below the repository's declared 22.23.2.
 
+## 2026-10-04 — Feature #11 Progress Dashboard
+
+- Progress Dashboard implementation is in progress. The prior audit confirmed
+  learned = unique materialized learner progress rows; Mastered = current
+  `MASTERED`; accuracy = persisted `REMEMBERED / (REMEMBERED + FORGOTTEN)` by
+  household-local `review_date`; current streak reuses Activity Summary.
+- `/progress` now has four evidence-based metrics, 7/30-day URL period
+  selection, grouped activity/accuracy charts with blank no-review dates, and
+  active-learning-set level coverage plus started Topic coverage.
+- Progress Summary adds a set-based `progressByLevel` aggregate. The dashboard
+  no longer calls the Gamification GET path because achievement reconciliation
+  writes. No migration or database mutation is part of this change.
+- Focused validation passed: 10 test files / 107 tests, the `apps/web`,
+  `apps/api` and `packages/contracts` project-reference typecheck, production
+  build, feature-file ESLint and `git diff --check`.
+- Root `pnpm typecheck` initially exposed five errors in the new
+  `scripts/master-vocabulary-v2-post-apply-verification.ts`; Phase 2E.6 fixed
+  them, and the final root typecheck passes. The dashboard edits remain
+  unrelated and are excluded from the Phase 2E.6 commit.
+- Do not stage, commit, or alter unrelated unstaged/untracked Dataset V2 work
+  and do not alter stashes.
+
 ## 2026-10-04 — Master Vocabulary V2 Phase 2E.5 development canary APPLY
 
 - Executed exactly one owner-authorized APPLY against the verified development

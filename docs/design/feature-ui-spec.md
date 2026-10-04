@@ -1,14 +1,14 @@
-# Family MVP Feature UI Specification v1.0.3
+# Family MVP Feature UI Specification v1.0.4
 
 - Status: CURRENT FEATURE UI SOURCE OF TRUTH
-- Version: v1.0.3
-- Source baseline: `VocabFlow_Family_MVP_Feature_UI_Specification_v1.0.1.docx`; this Markdown records the US-26/US-27 taxonomy browse, US-28/US-29 learning-set extension, US-30 daily New settings, US-31 through US-34 exercise mode and US-35/US-36 activity indicators.
+- Version: v1.0.4
+- Source baseline: `VocabFlow_Family_MVP_Feature_UI_Specification_v1.0.1.docx`; this Markdown records the US-26/US-27 taxonomy browse, US-28/US-29 learning-set extension, US-30 daily New settings, US-31 through US-34 exercise mode, US-35/US-36 activity indicators and US-48 Progress Dashboard.
 - Canonical format: Markdown
-- Last synchronized: 2026-09-20
+- Last synchronized: 2026-10-04
 
 **VOCABFLOW**
 
-**Family MVP Feature UI Specification v1.0.3**
+**Family MVP Feature UI Specification v1.0.4**
 
 ## Reward extension (US-39 / US-40)
 
@@ -29,6 +29,22 @@ presents responsive topic rows showing mastered/total plus New, Learning,
 Mastered and Due. Loading, safe error and zero-eligible states are explicit;
 the latter explains that active words may not yet be categorized.
 
+## Progress Dashboard extension (US-48)
+
+The Progress route presents four real summary metrics (learned, currently
+Mastered, review accuracy for the selected period, and the existing current
+streak), followed by no more than two charts: unique words reviewed per local
+day and review accuracy by day. The default period is seven days; a control
+selects thirty days and persists it in `?period=7d|30d`. Accuracy excludes
+non-review events and leaves days without outcomes blank. When there are no
+review outcomes the metric and chart show explanatory empty copy instead of a
+fabricated 0% line. Responsive breakdown panels show current vocabulary-level
+coverage and at most five started Topics, with untouched Topics omitted and
+the lowest partial coverage labeled as progress rather than weakness. The
+panel copy, chart labels and accessible text explain the underlying counts.
+No deltas, speculative recommendations or reward metrics are presented in
+this dashboard. Reset remains available in a collapsed management disclosure.
+
 **Screen behavior, states and responsive contracts for the Family MVP**
 
 > **Vai trò của tài liệu**
@@ -40,7 +56,7 @@ the latter explains that active words may not yet be categorized.
 | Technical Architecture v1.0.7 | Auth, API, persistence, concurrency và backend invariants. |
 | Global Design System v1.0.2 | Token, layout primitives, responsive, component và accessibility rules. |
 | User Flow v1 | Đường đi tổng thể của parent/learner. |
-| Feature UI Spec v1.0.3 | Screen composition, interaction, states, copy và responsive behavior. |
+| Feature UI Spec v1.0.4 | Screen composition, interaction, states, copy và responsive behavior. |
 
 ## Trạng thái
 
@@ -101,7 +117,7 @@ Desktop app shell
 
 ## 2.1 MVP auth scope
 
-| **Feature** | v1.0.3 decision |
+| **Feature** | v1.0.4 decision |
 | --- | --- |
 | Register | Tên phụ huynh + email + password, parent account. `Tên phụ huynh` là display/profile identity được lưu bởi Better Auth. |
 | Login | Email + password. |
@@ -586,6 +602,7 @@ state returned by the canonical API.
 | **FUI-18** | Không implement deferred features: social login, learner login/PIN, edit/delete learner, leaderboard/achievement, offline write sync. |
 | **FUI-19** | Learning-set catalog/detail renders deterministic ordered enabled content with explicit loading/error/empty states. |
 | **FUI-20** | Assignment toggles are learner-scoped, show save feedback, reject cross-household access safely and never imply progress/history deletion. |
+| **FUI-21** | Progress Dashboard metrics reuse canonical progress/streak and persisted review outcomes; selected 7/30-day activity, accuracy gaps, enabled-level coverage and active-set Topic coverage are truthful and accessible. |
 
 ## 9.1 Deferred / not defined here
 
@@ -601,4 +618,4 @@ state returned by the canonical API.
 ## 9.2 Approval statement
 
 > APPROVED FOR UI IMPLEMENTATION
-> Feature UI Specification v1.0.3 là baseline cho Family MVP UI implementation. Backlog/UI code phải bám screen states, interaction contracts, session behavior và responsive rules trong tài liệu này. Product semantics thay đổi phải quay về Family MVP Product Specification; visual language thay đổi phải quay về Global Design System; backend contract thay đổi phải quay về Technical Architecture/contracts.
+> Feature UI Specification v1.0.4 là baseline cho Family MVP UI implementation. Backlog/UI code phải bám screen states, interaction contracts, session behavior và responsive rules trong tài liệu này. Product semantics thay đổi phải quay về Family MVP Product Specification; visual language thay đổi phải quay về Global Design System; backend contract thay đổi phải quay về Technical Architecture/contracts.
