@@ -1,14 +1,14 @@
-# Technical Architecture v1.0.15
+# Technical Architecture v1.0.16
 
 - Status: APPROVED FOR IMPLEMENTATION
-- Version: v1.0.15
-- Source baseline: `VocabFlow_Technical_Architecture_v1.0.4.docx`; this Markdown records the US-25 identity reconciliation, US-26/US-27 vocabulary taxonomy, US-28/US-29 learning-set assignment model, US-30 daily New allowance, US-31 through US-34 exercise interaction layer, US-35/US-36 activity read model, US-39/US-40 rewards, US-41 reviewed catalog activation, US-42 production release automation and US-48 Progress Dashboard read model.
+- Version: v1.0.16
+- Source baseline: `VocabFlow_Technical_Architecture_v1.0.4.docx`; this Markdown records the US-25 identity reconciliation, US-26/US-27 vocabulary taxonomy, US-28/US-29 learning-set assignment model, US-30 daily New allowance, US-31 through US-34 exercise interaction layer, US-35/US-36 activity read model, US-39/US-40 rewards, US-41 reviewed catalog activation, US-42 production release automation, US-48 Progress Dashboard read model and US-49 derived Weak Words read model.
 - Canonical format: Markdown
 - Last synchronized: 2026-10-04
 
 **VOCABFLOW**
 
-**Technical Architecture v1.0.15**
+**Technical Architecture v1.0.16**
 
 ## US-41 content curation and activation
 
@@ -83,9 +83,33 @@ the Gamification GET path, whose legacy achievement reconciliation has a
 write side effect. Authorization remains the existing session → household →
 learner ownership guard; no migration or write path is introduced.
 
+## US-49 Weak Words derived read model and queue scope
+
+`GET /api/learners/:learnerId/weak-words` authorizes through the existing
+session/household/learner guard and returns a bounded page, summary and
+household-local review date. A single set-based read intersects enabled
+vocabulary with active assignments to enabled Learning Sets, then aggregates
+persisted review events in the inclusive last 30 household-local `review_date`
+values. A window function ranks each vocabulary's events by `reviewed_at`
+descending and `review_id` descending; only the ten most recent are used for
+classification, with a two-event minimum and exact accuracy below 60% defining
+Weak. Page accuracy summarizes all valid events in the 30-date window.
+Distinct canonical `review_id` values count as distinct persisted reviews;
+retries of the same idempotent review do not add a row.
+
+Learning is current `learner_progress.status = LEARNING` when not Weak. Stable
+is current `MASTERED` when not Weak. Due remains the independent current-state
+rule `next_review_date <= household-local today`. The Weak queue resolves the
+same derived candidates server-side; due items remain DUE and not-due items are
+VOLUNTARY. All outcomes still use the existing canonical review endpoint and
+scheduler. Existing `(learner_id, reviewed_at)`,
+`(learner_id, vocabulary_id, reviewed_at)`, learner progress due-date, active
+set and set-item indexes are reused. No derived classification is persisted;
+no migration or database write path is introduced.
+
 **Family Learning MVP**
 
-| **Status** | APPROVED FOR IMPLEMENTATION; US-25 through US-48 catalog, taxonomy, learning-set, exercise, activity, reward, activation, release and Progress Dashboard contracts recorded |
+| **Status** | APPROVED FOR IMPLEMENTATION; US-25 through US-49 catalog, taxonomy, learning-set, exercise, activity, reward, activation, release, Progress Dashboard and derived Weak Words contracts recorded |
 | --- | --- |
 | **Architecture** | React SPA + Hono API + PostgreSQL |
 | **Primary persistence** | Neon PostgreSQL |

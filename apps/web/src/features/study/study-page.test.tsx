@@ -430,6 +430,40 @@ describe("US-09 flashcard session UX", () => {
     expect(fetchMock.mock.calls.some(([url]) => String(url) === `/api/learners/${learner.id}/review-queue`)).toBe(false);
   });
 
+  it("studies only the server-resolved weak queue, uses canonical review writes, and preserves weak scope on summary", async () => {
+    const overdueWeak = queueItem(1, "school", "DUE", 4, "LEARNING");
+    const voluntaryWeak = queueItem(2, "family", "VOLUNTARY", 7, "MASTERED");
+    let submittedIds: number[] = [];
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation(async (input, init) => {
+      const url = String(input);
+      if (url === `/api/learners/${learner.id}/review-queue?scope=weak`) return response(queueResponse([overdueWeak, voluntaryWeak]));
+      if (url === "/api/reviews") {
+        const body = JSON.parse(String(init?.body)) as { vocabularyId: number };
+        submittedIds = [...submittedIds, body.vocabularyId];
+        const reviewedItem = body.vocabularyId === overdueWeak.vocabulary.id ? overdueWeak : voluntaryWeak;
+        return response(reviewResponse(reviewedItem, "REMEMBERED"), 201);
+      }
+      return response({ error: { code: "NOT_FOUND" } }, 404);
+    });
+    renderStudy(learner, "flashcard", "/study?weak=1&count=10&content=all");
+
+    expect(await screen.findByTestId("study-session-ready")).toBeInTheDocument();
+    expect(screen.getByTestId("session-counter")).toHaveTextContent("Câu 1 / 2");
+    expect(screen.getByText("school")).toBeInTheDocument();
+    expect(screen.getByText("Ôn từ yếu")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
+    fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
+    expect(await screen.findByText("family")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
+    fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
+    await screen.findByTestId("study-session-summary");
+
+    expect(submittedIds).toEqual([1, 2]);
+    expect(screen.getByRole("link", { name: /Học tiếp/ })).toHaveAttribute("href", "/study/setup?weak=1");
+    expect(fetchMock).toHaveBeenCalledWith(`/api/learners/${learner.id}/review-queue?scope=weak`, { credentials: "include" });
+    expect(fetchMock.mock.calls.some(([url]) => String(url) === `/api/learners/${learner.id}/review-queue`)).toBe(false);
+  });
+
   it("hides the current streak when the summary read fails", async () => {
     requestActivitySummaryMock.mockRejectedValueOnce(new Error("unavailable"));
     const item = queueItem(1, "apple");

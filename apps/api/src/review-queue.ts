@@ -10,6 +10,7 @@ import {
 } from "@vocabflow/contracts";
 import { householdLocalDate } from "./reviews";
 import { authorizeLearnerOwnership } from "./learners";
+import { resolveWeakReviewQueue } from "./weak-words";
 
 export type ReviewQueueDatabase = {
   execute: (query: SQL) => Promise<unknown>;
@@ -22,7 +23,7 @@ export type ReviewQueueTimings = {
   databaseMs?: number;
 };
 
-export type ReviewQueueScope = "saved" | "saved-all";
+export type ReviewQueueScope = "saved" | "saved-all" | "weak";
 
 export function renderReviewQueueServerTiming(timings: {
   authInitMs?: number;
@@ -337,6 +338,19 @@ export function createReviewQueueService(
               dueCount: queue.filter((item) => item.queueType === "DUE").length,
               newCount: queue.filter((item) => item.queueType === "NEW").length,
               queue
+            };
+            const parsed = reviewQueueResponseSchema.safeParse(response);
+            if (!parsed.success) throw new ReviewQueueServiceError("INTERNAL_ERROR", 500);
+            return parsed.data;
+          }
+          if (scope === "weak") {
+            const weak = await resolveWeakReviewQueue(database, ownership.learnerId, reviewDate);
+            const response = {
+              learnerId: ownership.learnerId,
+              reviewDate,
+              dueCount: weak.dueCount,
+              newCount: 0,
+              queue: weak.queue
             };
             const parsed = reviewQueueResponseSchema.safeParse(response);
             if (!parsed.success) throw new ReviewQueueServiceError("INTERNAL_ERROR", 500);

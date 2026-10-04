@@ -2117,6 +2117,25 @@ registration boundary before feature implementation.
 - Readiness gates are recorded in
   [`Phase 2D.2 readiness`](architecture/master-vocabulary-v2-phase-2d2-readiness.md).
 
+## 2026-10-04 — Feature #12 Weak Words / Need Review
+
+- Completed US-49 with a learner-authorized Weak/Learning/Stable read model,
+  review-evidence search/filter/pagination, responsive `/weak-words` UI and a
+  server-resolved weak Study scope. Classification and due state are separate;
+  DUE/VOLUNTARY and Session Summary scope preservation use the existing review
+  queue and canonical scheduler.
+- Rule: latest 10 valid persisted review events per word in the inclusive
+  30-household-local-date window; minimum 2 reviews and exact accuracy below
+  60% is Weak. Non-Weak `LEARNING` is Learning; non-Weak `MASTERED` is Stable.
+- No schema or migration changes, database mutation, deployment, merge or
+  Dataset V2 file changes. Per-word Study target remains deferred.
+- Validation PASS: 15 focused regression files / 152 tests plus one focused
+  AppShell route test; feature TypeScript/TSX ESLint; `pnpm typecheck`;
+  `pnpm build`; `git diff --check`. Local Node is 22.19.0 while the package
+  requests 22.23.2; build completed with existing bundler notices.
+- Evidence: [US-49](stories/US-49-weak-words-review.md),
+  [DEC-024](decisions.md#dec-024--weak-word-classification-and-study-scope).
+
 ## 2026-10-03 — Owner-approved Master Vocabulary V2 canary 2.1.0
 
 - Recorded the owner's explicit approval for all eight canary Senses, the six

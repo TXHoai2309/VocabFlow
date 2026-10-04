@@ -77,7 +77,7 @@ const learningSet = {
 function mockStudyData(queue: ReviewQueueItem[]) {
   return vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
     const path = String(input);
-    if (path === `/api/learners/${learner.id}/review-queue` || path === `/api/learners/${learner.id}/review-queue?scope=saved` || path === `/api/learners/${learner.id}/review-queue?scope=saved&content=all`) return response(queueResponse(queue));
+    if (path === `/api/learners/${learner.id}/review-queue` || path === `/api/learners/${learner.id}/review-queue?scope=saved` || path === `/api/learners/${learner.id}/review-queue?scope=saved&content=all` || path === `/api/learners/${learner.id}/review-queue?scope=weak`) return response(queueResponse(queue));
     if (path === "/api/topics") return response({ topics: [topic] });
     if (path === "/api/topics/7/vocabulary") return response({ vocabulary: topicVocabulary });
     if (path === "/api/learning-sets/4") return response({ learningSet });
@@ -300,6 +300,33 @@ describe("Study Setup", () => {
 
     expect(await screen.findByTestId("study-setup-empty")).toHaveTextContent("Chưa có từ để học");
     expect(screen.queryByTestId("study-setup-saved-all-count")).not.toBeInTheDocument();
+  });
+
+  it("starts a weak-only review scope with due and voluntary candidates and preserves it on exit", async () => {
+    const fetchMock = mockStudyData([item(1, "DUE", "LEARNING"), item(2, "VOLUNTARY", "MASTERED")]);
+    renderSetup("/study/setup?weak=1");
+
+    expect(await screen.findByTestId("study-setup-weak-count")).toHaveTextContent("2 từ có thể ôn");
+    expect(screen.getByTestId("study-setup-summary-scope")).toHaveTextContent("Từ yếu");
+    expect(screen.getByTestId("study-setup-summary-mode")).toHaveTextContent("Ôn tập từ yếu");
+    expect(screen.queryByRole("group", { name: "Chế độ học" })).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: /Bắt đầu học/ }));
+
+    expect(await screen.findByTestId("study-session-ready")).toBeInTheDocument();
+    expect(screen.getByTestId("session-counter")).toHaveTextContent("Câu 1 / 2");
+    expect(screen.getByText("Ôn từ yếu")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Thoát buổi học" })).toHaveAttribute("href", "/study/setup?weak=1");
+    expect(fetchMock).toHaveBeenCalledWith(`/api/learners/${learner.id}/review-queue?scope=weak`, { credentials: "include" });
+    expect(fetchMock.mock.calls.some(([path]) => String(path) === `/api/learners/${learner.id}/review-queue`)).toBe(false);
+  });
+
+  it("shows a specific empty state when no weak candidates remain", async () => {
+    const fetchMock = mockStudyData([]);
+    renderSetup("/study/setup?weak=1");
+
+    expect(await screen.findByTestId("study-setup-empty")).toHaveTextContent("Không còn từ yếu cần ôn");
+    expect(screen.getByRole("link", { name: "Quay lại" })).toHaveAttribute("href", "/weak-words");
+    expect(fetchMock).toHaveBeenCalledWith(`/api/learners/${learner.id}/review-queue?scope=weak`, { credentials: "include" });
   });
 
   it("keeps global study unscoped and does not create a session or mutate progress before Start", async () => {

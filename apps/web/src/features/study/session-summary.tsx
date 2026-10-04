@@ -11,6 +11,7 @@ function studySetupHref(scope: StudyScope | null) {
     params.set("saved", "1");
     if (scope.all) params.set("content", "all");
   }
+  if (scope?.type === "weak") params.set("weak", "1");
   const query = params.toString();
   return query ? `/study/setup?${query}` : "/study/setup";
 }

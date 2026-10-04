@@ -45,6 +45,30 @@ panel copy, chart labels and accessible text explain the underlying counts.
 No deltas, speculative recommendations or reward metrics are presented in
 this dashboard. Reset remains available in a collapsed management disclosure.
 
+## Weak Words (US-49)
+
+`/weak-words` is a learner-scoped attention list that composes the existing
+AppShell, card/surface, form-control and vocabulary media patterns. The header
+shows the learner context, up to three real summary cards (Weak count, unique
+Due count, and 30-local-day review accuracy), plus one primary “Ôn các từ yếu
+ngay” action. Accuracy is “Chưa đủ dữ liệu” when the review denominator is
+zero. Search covers English and Vietnamese; a status selector filters Tất cả,
+Weak, Learning or Stable; the server page size defaults to 20 and never exceeds
+50. The row shows word/meaning, optional image/audio/topic/level, text status,
+real accuracy/history and a separate due label. Due is not merged into status.
+
+Weak rows sort by Weak overdue, Weak due today, Weak not due, Learning overdue,
+Learning due today/upcoming/unscheduled, then Stable overdue/due today/
+upcoming/unscheduled. Within a group, lower recent accuracy appears first,
+then earlier review date, then vocabulary ID. The bulk CTA opens
+`/study/setup?weak=1`; Setup shows the “Từ yếu” source, available queue size and
+a review-only start action. Mobile uses stacked rows/cards with wrapped
+metadata and full-width actions; horizontal table scrolling is not used.
+Loading, retryable error, no Weak candidate, empty list and no-search-match
+states are explicit. Badge text, not color alone, communicates classification;
+the icon-only audio control has a word-specific accessible name and is disabled
+when audio is absent, loading or failed.
+
 **Screen behavior, states and responsive contracts for the Family MVP**
 
 > **Vai trò của tài liệu**

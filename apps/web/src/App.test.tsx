@@ -117,6 +117,19 @@ describe("login route", () => {
 });
 
 describe("shared authenticated app shell", () => {
+  it("routes Weak Words in the shared shell with its navigation item active", async () => {
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(JSON.stringify({ error: { code: "INTERNAL_ERROR" } }), {
+      status: 503,
+      headers: { "Content-Type": "application/json" }
+    }));
+    renderAppRoutes("/weak-words");
+
+    expect(await screen.findByRole("heading", { name: "Từ yếu / Cần ôn lại" })).toBeInTheDocument();
+    expectActiveNav("Cần ôn lại");
+    expect(screen.getByRole("alert")).toHaveTextContent("Không thể tải danh sách từ cần ôn lúc này.");
+    expect(document.querySelector(".app-layout")).toBeInTheDocument();
+  });
+
   it("renders the Home dashboard inside the shared shell", async () => {
     renderAppRoutes("/");
     const dashboard = await screen.findByRole("main", { name: "Trang chủ học tập của Avery Nguyen" });

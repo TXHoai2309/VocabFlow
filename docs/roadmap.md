@@ -444,6 +444,18 @@ The owner-verified Hoài/Ngọc metric snapshots are recorded in US-20 and US-21
   read models plus one grouped level query; no comparison is fabricated.
 - No migration, database mutation, Dataset V2 change, merge, or deployment.
 
+### US-49 — Weak Words / Need Review
+
+- Status: `ACCEPTED`; implementation and acceptance evidence recorded on
+  2026-10-04.
+- Contract: [`US-49 Weak Words / Need Review`](stories/US-49-weak-words-review.md).
+- Adds an evidence-based, learner-authorized Weak/Learning/Stable list with
+  search, filters, pagination and a server-resolved `weak=1` Study scope.
+  Weakness derives from a bounded review-event window; due remains an
+  independent scheduler state. The queue uses canonical DUE/VOLUNTARY types
+  and canonical review writes. No migration, database mutation, Dataset V2
+  change, merge, or deployment.
+
 ### US-45 — Master Vocabulary V2 Runtime Import Bridge
 
 - Status: development canary `VERIFIED`; owner acceptance is not implied.

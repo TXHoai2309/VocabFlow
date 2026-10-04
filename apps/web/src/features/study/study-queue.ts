@@ -3,7 +3,7 @@ import { requestLearningSet } from "../learning-sets/learning-sets-client";
 import { requestTopicVocabulary } from "../learners/topics-client";
 import { requestReviewQueue } from "./review-queue-client";
 
-export type StudyScope = { type: "topic" | "learning-set"; id: number } | { type: "saved"; all: boolean } | { type: "invalid" };
+export type StudyScope = { type: "topic" | "learning-set"; id: number } | { type: "saved"; all: boolean } | { type: "weak" } | { type: "invalid" };
 export type StudyContentMode = "new" | "review" | "mixed";
 export type StudySelection = { amount: 5 | 10 | 20 | 30; content: StudyContentMode | "all" };
 
@@ -11,16 +11,23 @@ export function studyScopeFromParams(searchParams: URLSearchParams): StudyScope 
   const topicId = searchParams.get("topicId");
   const learningSetId = searchParams.get("learningSetId");
   const savedValues = searchParams.getAll("saved");
+  const weakValues = searchParams.getAll("weak");
   const contentValues = searchParams.getAll("content");
   const saved = savedValues[0] ?? null;
   if ((topicId !== null && learningSetId !== null)
     || savedValues.length > 1
-    || (saved !== null && (saved !== "1" || topicId !== null || learningSetId !== null))) return { type: "invalid" };
+    || weakValues.length > 1
+    || (saved !== null && (saved !== "1" || topicId !== null || learningSetId !== null || weakValues.length > 0))
+    || (weakValues.length > 0 && (weakValues[0] !== "1" || topicId !== null || learningSetId !== null))) return { type: "invalid" };
   if (saved === "1") {
     if (contentValues.length > 1) return { type: "invalid" };
     const content = contentValues[0];
     if (content && !["all", "new", "review", "mixed"].includes(content)) return { type: "invalid" };
     return { type: "saved", all: content === "all" };
+  }
+  if (weakValues.length === 1) {
+    if (contentValues.length > 1 || (contentValues.length === 1 && contentValues[0] !== "all")) return { type: "invalid" };
+    return { type: "weak" };
   }
   if (contentValues.includes("all")) return { type: "invalid" };
   const type = topicId !== null ? "topic" : learningSetId !== null ? "learning-set" : null;
@@ -38,7 +45,7 @@ export function studySelectionFromParams(searchParams: URLSearchParams, scope?: 
   const amount = rawAmount === "5" || rawAmount === "10" || rawAmount === "20" || rawAmount === "30"
     ? Number(rawAmount) as StudySelection["amount"]
     : null;
-  const content = rawContent === "all" && scope?.type === "saved" && scope.all
+  const content = rawContent === "all" && ((scope?.type === "saved" && scope.all) || scope?.type === "weak")
     ? "all"
     : rawContent === "new" || rawContent === "review" || rawContent === "mixed"
     ? rawContent
@@ -79,6 +86,7 @@ export async function requestScopedReviewQueue(
   scopedVocabularyIds?: Promise<number[]>
 ): Promise<ReviewQueueResponse> {
   if (!scope) return requestReviewQueue(learnerId);
+  if (scope.type === "weak") return requestReviewQueue(learnerId, "weak");
   if (scope.type === "saved") return requestReviewQueue(learnerId, scope.all ? "saved-all" : "saved");
   const response = await requestReviewQueue(learnerId);
   if (scope.type === "invalid") return { ...response, queue: [], dueCount: 0, newCount: 0 };

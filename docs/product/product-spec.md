@@ -32,6 +32,16 @@ existing vocabulary level taxonomy and enabled vocabulary reachable through
 the learner's active assigned learning sets. Topic coverage reuses the
 learner-accessible Topic domain. Empty periods do not imply zero accuracy.
 
+## Weak Words extension (US-49)
+
+The active learner can find enabled vocabulary in active assigned Learning
+Sets that is currently being learned or mastered, with Weak status derived only
+from persisted recent review outcomes. Weakness and scheduler due state are
+separate: a word may be Weak and not due, or Stable and due. Search covers the
+English word and Vietnamese meaning; the bulk Study action resolves the
+learner's current Weak candidates on the server and uses the existing review
+queue, write API and scheduler. Weakness is derived and is never persisted.
+
 - Status: CURRENT PRODUCT SOURCE OF TRUTH
 - Version: v1.0
 - Source baseline: `VocabFlow_Family_MVP_Product_Specification_v1.0.docx`

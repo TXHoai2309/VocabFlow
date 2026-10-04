@@ -75,6 +75,7 @@ convenient. Reprioritization or a new story must be explicit.
 - [US-46 Saved Vocabulary](US-46-saved-vocabulary.md) — `IN PROGRESS` (explicit owner reprioritization; learner-owned saved words, CRUD API, Saved Words page and scoped study queue).
 - [US-47 Continue Learning](US-47-continue-learning.md) — `IN PROGRESS` (explicit owner reprioritization; one learner-scoped Home continuation candidate with real collection progress and review recency).
 - [US-48 Progress Dashboard](US-48-progress-dashboard.md) — `IN PROGRESS` (owner-requested Feature #11; evidence-based active-learner dashboard with bounded period charts and level/Topic coverage).
+- [US-49 Weak Words / Need Review](US-49-weak-words-review.md) — `ACCEPTED` (owner-requested Feature #12; review-evidence classification and server-resolved Weak study scope).
 
 ## Story status gate
 

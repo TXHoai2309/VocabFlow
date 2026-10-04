@@ -2,6 +2,23 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-04 — Weak Words / Need Review (Feature #12)
+
+- Added the learner-scoped `/weak-words` page and API with deterministic
+  review-history classification, due status, real summary metrics, search,
+  status filtering and bounded pagination. The page includes responsive,
+  accessible word rows and a bulk review action; per-word Study targeting is
+  deferred.
+- Added the server-resolved `weak=1` Study scope. Due Weak items remain DUE,
+  not-yet-due Weak items are VOLUNTARY, and Study Setup and Session Summary
+  preserve the scope while all writes stay on the canonical review flow.
+- No migration or database mutation. Dataset V2 remains outside the feature.
+- Focused Weak Words/API/Study/Saved/Daily Goal/Continue Learning/Progress
+  regressions PASS (15 files, 152 tests), plus the focused AppShell route test
+  PASS (1 test). Changed-feature ESLint, typecheck, build and diff check PASS.
+- See [US-49](stories/US-49-weak-words-review.md) and
+  [DEC-024](decisions.md#dec-024--weak-word-classification-and-study-scope).
+
 ## 2026-10-04 — Master Vocabulary V2 Phase 2F.1A source-proof gate correction
 
 - Corrected a source-proof contradiction: two of the selected 90 Oxford

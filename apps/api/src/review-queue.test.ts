@@ -126,11 +126,14 @@ describe("US-08 review queue API boundary", () => {
     const savedAll = await app.request(`http://localhost/api/learners/${learnerId}/review-queue?scope=saved&content=all`);
     expect(savedAll.status).toBe(200);
     expect(service.list).toHaveBeenLastCalledWith("parent-1", learnerId, expect.any(Object), "saved-all");
+    const weak = await app.request(`http://localhost/api/learners/${learnerId}/review-queue?scope=weak`);
+    expect(weak.status).toBe(200);
+    expect(service.list).toHaveBeenLastCalledWith("parent-1", learnerId, expect.any(Object), "weak");
     expect((await app.request(`http://localhost/api/learners/${learnerId}/review-queue?scope=other`)).status).toBe(400);
     expect((await app.request(`http://localhost/api/learners/${learnerId}/review-queue?scope=saved&scope=saved`)).status).toBe(400);
     expect((await app.request(`http://localhost/api/learners/${learnerId}/review-queue?scope=saved&content=all&content=all`)).status).toBe(400);
     expect((await app.request(`http://localhost/api/learners/${learnerId}/review-queue?content=all`)).status).toBe(400);
-    expect(service.list).toHaveBeenCalledTimes(2);
+    expect(service.list).toHaveBeenCalledTimes(3);
   });
 
   it("maps authorization and database failures to safe outward errors", async () => {
@@ -221,6 +224,47 @@ describe("US-08 review queue service", () => {
     expect(savedQuery).toContain("v.enabled = true");
     expect(savedQuery).not.toContain('"vocabflow_app"."learner_learning_sets"');
     expect(queries.some(({ params }) => params.includes(learnerId))).toBe(true);
+  });
+
+  it("resolves only Weak candidates server-side and keeps due separate from voluntary practice", async () => {
+    const queries: Array<{ sql: string; params: unknown[] }> = [];
+    const weakCandidates = [
+      {
+        ...vocabularyRow(9), summary_review_count: 5, summary_remembered_count: 2,
+        learning_state: "LEARNING", next_review_date: "2026-09-13", revision: 6,
+        review_count: 3, remembered_count: 1, forgotten_count: 2
+      },
+      {
+        ...vocabularyRow(4), summary_review_count: 5, summary_remembered_count: 2,
+        learning_state: "MASTERED", next_review_date: "2026-09-20", revision: 8,
+        review_count: 2, remembered_count: 0, forgotten_count: 2
+      },
+      {
+        ...vocabularyRow(7), summary_review_count: 5, summary_remembered_count: 2,
+        learning_state: "MASTERED", next_review_date: "2026-09-13", revision: 12,
+        review_count: 4, remembered_count: 4, forgotten_count: 0
+      }
+    ];
+    const execute = vi.fn(async (query) => {
+      const rendered = new PgDialect().sqlToQuery(query);
+      queries.push(rendered);
+      if (queries.length === 1) return authorizedRows();
+      if (rendered.sql.includes("SELECT timezone")) return { rows: [{ timezone: "Asia/Ho_Chi_Minh" }] };
+      if (rendered.sql.includes("WITH eligible_vocabulary")) return { rows: weakCandidates };
+      return { rows: [] };
+    });
+    const service = createReviewQueueService({ execute }, { now: () => new Date("2026-09-14T03:00:00.000Z") });
+
+    const result = await service.list("parent-1", learnerId, undefined, "weak");
+
+    expect(result).toMatchObject({ reviewDate: "2026-09-14", dueCount: 1, newCount: 0 });
+    expect(result.queue.map(({ vocabulary, queueType, status }) => [vocabulary.id, queueType, status])).toEqual([
+      [9, "DUE", "LEARNING"],
+      [4, "VOLUNTARY", "MASTERED"]
+    ]);
+    expect(execute).toHaveBeenCalledTimes(3);
+    expect(queries[2]?.sql).toContain("review_events");
+    expect(queries.every(({ sql: statement }) => !/\b(INSERT|UPDATE|DELETE|TRUNCATE)\b/i.test(statement))).toBe(true);
   });
 
   it("authorizes the learner, derives the household date, and returns due before sparse new", async () => {

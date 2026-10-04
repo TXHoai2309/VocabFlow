@@ -450,3 +450,33 @@ evidence condition is met and the affected source document is updated.
   `drizzle/migrations/0018_panoramic_spirit.sql`.
 - Revisit only if: the owner changes category semantics, defaults, or the
   scheduler's separate NEW admission cap.
+
+## DEC-024 — Weak-word classification and study scope
+
+- Status: ACCEPTED by the explicit Feature #12 implementation request.
+- Date: 2026-10-04.
+- Context: Learners need an actionable, truthful attention list without
+  invented weakness scores, duplicated scheduler state, or arbitrary client
+  vocabulary-ID queues.
+- Decision: Derive candidates over enabled vocabulary in the learner's active
+  assigned enabled Learning Sets. Use at most the latest 10 persisted valid
+  review events per word in the inclusive 30-household-local-date window;
+  break equal `reviewed_at` timestamps by descending review UUID. Classify as
+  Weak with at least 2 events and exact accuracy below 60%. Otherwise classify
+  by current state: LEARNING → Learning, MASTERED → Stable. Keep due as a
+  separate `next_review_date <= household-local today` axis. Summary accuracy
+  uses all persisted valid review events in the same 30-day window and is null
+  without data. Rank Weak overdue, Weak due today, Weak not due, then Learning
+  by due urgency, then Stable by due urgency; within a group use lower recent
+  accuracy, older next-review date, then vocabulary ID. `scope=weak` resolves
+  candidates on the server; DUE stays DUE and non-due becomes VOLUNTARY. Writes
+  remain on the canonical review API and scheduler.
+- Consequences: Weak classification is a derived read model with no new table,
+  column, migration, review write mode or client ID list. Existing learner,
+  active-set, due-date and review-history indexes are reused. Insufficient
+  history cannot produce Weak, and a Stable item can independently be Due.
+- Evidence/source: [US-49 Weak Words / Need Review](stories/US-49-weak-words-review.md),
+  [Technical Architecture](architecture/technical-architecture.md#us-49-weak-words-derived-read-model-and-queue-scope),
+  and the persisted `review_events` / `learner_progress` schema.
+- Revisit only if persisted event semantics, active-set eligibility, or the
+  owner-approved threshold/window changes.

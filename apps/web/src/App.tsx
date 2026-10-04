@@ -10,6 +10,7 @@ import { LearnerSettingsPage } from "./features/learners/learner-settings-page";
 import { VocabularyListPage } from "./features/learners/vocabulary-list-page";
 import { VocabularyDetailPage } from "./features/learners/vocabulary-detail-page";
 import { SavedWordsPage } from "./features/learners/saved-words-page";
+import { WeakWordsPage } from "./features/learners/weak-words-page";
 import { TopicDetailPage, TopicsPage } from "./features/learners/topics-page";
 import { ExerciseStudyPage, StudyPage } from "./features/study/study-page";
 import { StudySetupPage } from "./features/study/study-setup-page";
@@ -105,6 +106,7 @@ export function AppRoutes() {
         <Route path="/vocabulary" element={<VocabularyListPage />} />
         <Route path="/vocabulary/:vocabularyId" element={<VocabularyDetailPage />} />
         <Route path="/saved" element={<SavedWordsPage />} />
+        <Route path="/weak-words" element={<WeakWordsPage />} />
         <Route path="/topics" element={<TopicsPage />} />
         <Route path="/topics/:topicId" element={<TopicDetailPage />} />
         <Route path="/learning-sets" element={<LearningSetsPage />} />

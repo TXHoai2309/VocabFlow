@@ -52,6 +52,7 @@ function returnHref(scope: StudyScope | null) {
   if (scope?.type === "topic") return `/topics/${scope.id}`;
   if (scope?.type === "learning-set") return `/learning-sets/${scope.id}`;
   if (scope?.type === "saved") return "/saved";
+  if (scope?.type === "weak") return "/weak-words";
   return "/learners";
 }
 
@@ -63,6 +64,7 @@ async function requestScopeDetails(scope: Exclude<StudyScope, { type: "invalid" 
     return { scopeName: topic.name, vocabularyIds: vocabulary.map((item) => item.id) };
   }
   if (scope.type === "saved") return { scopeName: "Từ đã lưu", vocabularyIds: [] };
+  if (scope.type === "weak") return { scopeName: "Từ yếu", vocabularyIds: [] };
   const learningSet = await requestLearningSet(scope.id);
   return { scopeName: learningSet.name, vocabularyIds: learningSet.items.map((item) => item.vocabulary.id) };
 }
@@ -71,6 +73,7 @@ async function requestSetupData(learnerId: string, scope: StudyScope | null): Pr
   if (scope?.type === "invalid") throw new TopicsClientError("INVALID_SCOPE", 404);
   if (!scope) return { queue: await requestScopedReviewQueue(learnerId, null), scopeName: null };
   if (scope.type === "saved") return { queue: await requestScopedReviewQueue(learnerId, scope), scopeName: "Từ đã lưu" };
+  if (scope.type === "weak") return { queue: await requestScopedReviewQueue(learnerId, scope), scopeName: "Từ yếu" };
   const detailsPromise = requestScopeDetails(scope);
   const [queue, details] = await Promise.all([
     requestScopedReviewQueue(learnerId, scope, detailsPromise.then((details) => details.vocabularyIds)),
@@ -86,6 +89,7 @@ export function StudySetupPage() {
   const scope = useMemo(() => studyScopeFromParams(searchParams), [searchParams]);
   const scopeKey = scope?.type === "saved"
     ? `saved:${scope.all ? "all" : "scheduled"}`
+    : scope?.type === "weak" ? "weak"
     : scope ? `${scope.type}:${"id" in scope ? scope.id : "invalid"}` : "all";
   if (!activeLearner) {
     return <Navigate to="/learners" replace state={{ returnTo: `${location.pathname}${location.search}` }} />;
@@ -140,8 +144,8 @@ function StudySetupExperience({ activeLearner, scope, returnTo }: { activeLearne
     return (
       <main className="study-setup-page" aria-label="Thiết lập buổi học">
         <div className="study-setup-empty" role="status" data-testid="study-setup-empty">
-          <h1>Chưa có từ để học</h1>
-          <p>Nội dung này hiện chưa có từ phù hợp cho buổi học.</p>
+          <h1>{scope?.type === "weak" ? "Không còn từ yếu cần ôn" : "Chưa có từ để học"}</h1>
+          <p>{scope?.type === "weak" ? "Danh sách từ yếu đã được cập nhật. Bạn có thể quay lại xem tiến trình." : "Nội dung này hiện chưa có từ phù hợp cho buổi học."}</p>
           <Link className="study-setup-back-link" to={backHref}>Quay lại</Link>
         </div>
       </main>
@@ -181,8 +185,10 @@ function StudySetupExperience({ activeLearner, scope, returnTo }: { activeLearne
     mixed: availableCount(data.queue, "mixed")
   };
   const isSavedAll = scope?.type === "saved" && scope.all;
+  const isWeak = scope?.type === "weak";
+  const isAllScope = isSavedAll || isWeak;
   const selectedContent = content ?? defaultMode(data.queue);
-  const available = isSavedAll ? data.queue.queue.length : availability[selectedContent];
+  const available = isAllScope ? data.queue.queue.length : availability[selectedContent];
   const plannedCount = Math.min(amount, available);
 
   function startStudy() {
@@ -192,8 +198,9 @@ function StudySetupExperience({ activeLearner, scope, returnTo }: { activeLearne
       params.set(scope.type === "topic" ? "topicId" : "learningSetId", String(scope.id));
     }
     if (scope?.type === "saved") params.set("saved", "1");
+    if (isWeak) params.set("weak", "1");
     params.set("count", String(amount));
-    params.set("content", isSavedAll ? "all" : selectedContent);
+    params.set("content", isAllScope ? "all" : selectedContent);
     navigate(`/study?${params.toString()}`, { state: { returnTo } });
   }
 
@@ -222,11 +229,11 @@ function StudySetupExperience({ activeLearner, scope, returnTo }: { activeLearne
             </div>
           </section>
 
-          {isSavedAll ? (
-            <section className="study-setup-section study-setup-mode-section" aria-label="Phạm vi học từ đã lưu" data-testid="study-setup-saved-all">
+          {isAllScope ? (
+            <section className="study-setup-section study-setup-mode-section" aria-label={`Phạm vi học ${isWeak ? "từ yếu" : "từ đã lưu"}`} data-testid={isWeak ? "study-setup-weak" : "study-setup-saved-all"}>
               <div className="study-setup-section-heading">
                 <span className="study-setup-section-icon"><SetupIcon name="mixed" /></span>
-                <div><h2>Từ đã lưu</h2><p data-testid="study-setup-saved-all-count">{available} từ có thể học</p></div>
+                <div><h2>{isWeak ? "Nguồn học: Từ yếu" : "Từ đã lưu"}</h2><p data-testid={isWeak ? "study-setup-weak-count" : "study-setup-saved-all-count"}>{available} từ có thể {isWeak ? "ôn" : "học"}</p></div>
               </div>
             </section>
           ) : (
@@ -262,7 +269,7 @@ function StudySetupExperience({ activeLearner, scope, returnTo }: { activeLearne
             <h2 id="study-setup-summary-title"><SetupIcon name="clipboard" />Tóm tắt buổi học</h2>
             <dl>
               <div><dt>Số lượng từ</dt><dd data-testid="study-setup-summary-count">{plannedCount} từ</dd></div>
-              <div><dt>Chế độ học</dt><dd data-testid="study-setup-summary-mode">{isSavedAll ? "Từ đã lưu" : MODE_COPY[selectedContent].title}</dd></div>
+              <div><dt>Chế độ học</dt><dd data-testid="study-setup-summary-mode">{isWeak ? "Ôn tập từ yếu" : isSavedAll ? "Từ đã lưu" : MODE_COPY[selectedContent].title}</dd></div>
               {data.scopeName ? <div><dt>{scope?.type === "topic" ? "Chủ đề" : scope?.type === "learning-set" ? "Bộ từ" : "Phạm vi"}</dt><dd data-testid="study-setup-summary-scope">{data.scopeName}</dd></div> : null}
             </dl>
             {plannedCount < amount ? <p className="study-setup-availability">{isSavedAll ? `${available} từ có thể học trong phạm vi đã lưu.` : `Có ${plannedCount} từ phù hợp trong phạm vi này.`}</p> : null}

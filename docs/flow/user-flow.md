@@ -59,6 +59,20 @@ not gate queue availability.
 Learner switching reloads the saved relationship; Study and Summary continue
 actions retain the all-saved intent.
 
+## Weak Words extension (US-49)
+
+Parent selects an active learner → opens `/weak-words` → server authorizes that
+learner and derives Weak/Learning/Stable from enabled vocabulary in active
+assigned Learning Sets and persisted review outcomes → learner searches or
+filters and chooses “Ôn các từ yếu ngay” → Study Setup opens with `weak=1` and
+shows the server-resolved available Weak queue → learner selects session size
+and starts. Truly due Weak words enter as DUE; Weak words with a later or
+missing next review date enter as VOLUNTARY. Both go through the existing
+canonical review write and scheduler. Session Summary “Học tiếp” retains
+`weak=1` and resolves current candidates again; if none remain, Setup shows an
+empty state. No vocabulary IDs, weakness state or session queue are persisted
+in the browser or database.
+
 **User Flow v1**
 
 **Luồng người dùng ngắn gọn cho Family MVP**

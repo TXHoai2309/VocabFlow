@@ -68,6 +68,7 @@ function studySetupHref(scope: StudyScope | null) {
     params.set("saved", "1");
     if (scope.all) params.set("content", "all");
   }
+  if (scope?.type === "weak") params.set("weak", "1");
   const query = params.toString();
   return query ? `/study/setup?${query}` : "/study/setup";
 }
@@ -80,11 +81,11 @@ function studyReturnHref(state: unknown, scope: StudyScope | null) {
   return studySetupHref(scope);
 }
 
-function studyContentLabel(content: StudySelection["content"] | undefined) {
+function studyContentLabel(content: StudySelection["content"] | undefined, scope: StudyScope | null) {
   if (content === "new") return "Từ mới";
   if (content === "review") return "Ôn tập";
   if (content === "mixed") return "Kết hợp";
-  if (content === "all") return "Từ đã lưu";
+  if (content === "all") return scope?.type === "weak" ? "Ôn từ yếu" : "Từ đã lưu";
   return null;
 }
 
@@ -533,7 +534,7 @@ function StudyExperience({ activeLearner, mode, exercisePreference, scope, selec
   const progressTotal = baseQueueLength;
   const currentQuestion = progressTotal === 0 ? 0 : Math.min(progressTotal, metrics.scheduledReviews + 1);
   const progressPercent = progressTotal === 0 ? 0 : Math.round((currentQuestion / progressTotal) * 100);
-  const selectedContentLabel = studyContentLabel(selection?.content);
+  const selectedContentLabel = studyContentLabel(selection?.content, scope);
   const sessionModeLabel = selectedContentLabel ?? (mode === "exercise" ? "Bài tập" : "Flashcard");
   const studyTitle = state === "summary" ? "Tổng kết buổi học" : "Buổi học";
 

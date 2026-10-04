@@ -514,6 +514,46 @@ export const reviewQueueResponseSchema = z.object({
 }).strict();
 export type ReviewQueueResponse = z.infer<typeof reviewQueueResponseSchema>;
 
+export const weakWordsStatusSchema = z.enum(["weak", "learning", "stable"]);
+export type WeakWordsStatus = z.infer<typeof weakWordsStatusSchema>;
+
+export const weakWordsClassificationSchema = z.enum(["WEAK", "LEARNING", "STABLE"]);
+export type WeakWordsClassification = z.infer<typeof weakWordsClassificationSchema>;
+export const weakWordsDueStatusSchema = z.enum(["OVERDUE", "DUE_TODAY", "UPCOMING", "NOT_SCHEDULED"]);
+export const weakWordsItemSchema = z.object({
+  vocabulary: vocabularyDtoSchema,
+  learningState: z.enum(["LEARNING", "MASTERED"]),
+  weaknessStatus: weakWordsClassificationSchema,
+  recentAccuracy: z.number().int().min(0).max(100).nullable(),
+  reviewCount: z.number().int().nonnegative().safe(),
+  rememberedCount: z.number().int().nonnegative().safe(),
+  forgottenCount: z.number().int().nonnegative().safe(),
+  nextReviewDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).nullable(),
+  dueStatus: weakWordsDueStatusSchema,
+  daysUntilDue: z.number().int().safe().nullable(),
+  expectedRevision: z.number().int().nonnegative().safe()
+}).strict();
+export type WeakWordsItem = z.infer<typeof weakWordsItemSchema>;
+
+export const weakWordsResponseSchema = z.object({
+  learnerId: canonicalUuidSchema,
+  reviewDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  summary: z.object({
+    weakCount: z.number().int().nonnegative().safe(),
+    dueCount: z.number().int().nonnegative().safe(),
+    recentAccuracy: z.number().int().min(0).max(100).nullable(),
+    recentReviewCount: z.number().int().nonnegative().safe()
+  }).strict(),
+  items: z.array(weakWordsItemSchema),
+  pagination: z.object({
+    page: z.number().int().positive().safe(),
+    pageSize: z.number().int().positive().max(50).safe(),
+    totalItems: z.number().int().nonnegative().safe(),
+    totalPages: z.number().int().nonnegative().safe()
+  }).strict()
+}).strict();
+export type WeakWordsResponse = z.infer<typeof weakWordsResponseSchema>;
+
 export const reviewResultSchema = z.enum(["REMEMBERED", "FORGOTTEN"]);
 export type ReviewResult = z.infer<typeof reviewResultSchema>;
 

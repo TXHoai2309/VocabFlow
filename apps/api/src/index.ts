@@ -48,6 +48,12 @@ import {
   type LearnerSavedVocabularyService
 } from "./learner-saved-vocabulary";
 import {
+  createWeakWordsService,
+  parseWeakWordsQuery,
+  WeakWordsServiceError,
+  type WeakWordsService
+} from "./weak-words";
+import {
   createResetLearnerProgressService,
   ResetLearnerProgressServiceError,
   type ResetLearnerProgressService
@@ -78,6 +84,7 @@ export type AppDependencies = {
   gamificationService?: GamificationService;
   learnerVocabularyService?: LearnerVocabularyService;
   learnerSavedVocabularyService?: LearnerSavedVocabularyService;
+  weakWordsService?: WeakWordsService;
   resetLearnerProgressService?: ResetLearnerProgressService;
 };
 
@@ -200,6 +207,12 @@ async function runLearnerSavedVocabularyService(env: RuntimeBindings) {
   return createLearnerSavedVocabularyService(createHttpDatabase(env.DATABASE_URL));
 }
 
+async function runWeakWordsService(env: RuntimeBindings) {
+  if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
+  const { createHttpDatabase } = await import("./db/client");
+  return createWeakWordsService(createHttpDatabase(env.DATABASE_URL));
+}
+
 async function runResetLearnerProgressService(env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
@@ -220,6 +233,7 @@ function parseReviewQueueScope(request: Request): ReviewQueueScope | undefined |
   const keys = [...params.keys()];
   if (keys.length === 0) return undefined;
   if (keys.length === 1 && keys[0] === "scope" && params.get("scope") === "saved") return "saved";
+  if (keys.length === 1 && keys[0] === "scope" && params.get("scope") === "weak") return "weak";
   if (keys.length === 2
     && new Set(keys).size === 2
     && keys.includes("scope")
@@ -624,6 +638,27 @@ export function createApp(dependencies: AppDependencies = {}) {
         return withTiming(c.json(errorEnvelope(error.code, message, error.details), error.status));
       }
       return withTiming(c.json(errorEnvelope("INTERNAL_ERROR", "Không thể lưu tiến trình lúc này. Vui lòng thử lại."), 503));
+    }
+  });
+
+  application.get("/api/learners/:learnerId/weak-words", async (c) => {
+    try {
+      const session = await readSession(c.req.raw, c.env);
+      if (!session?.user?.id) return c.json(errorEnvelope("UNAUTHORIZED", "Đăng nhập để tiếp tục."), 401);
+      const query = parseWeakWordsQuery(new URL(c.req.url).searchParams);
+      if (!query) return c.json(errorEnvelope("INVALID_REQUEST", "Bộ lọc từ cần ôn không hợp lệ."), 400);
+      const service = dependencies.weakWordsService ?? await runWeakWordsService(c.env);
+      return c.json(await service.list(session.user.id, c.req.param("learnerId"), query), 200);
+    } catch (error) {
+      if (error instanceof WeakWordsServiceError) {
+        const message = error.code === "HOUSEHOLD_ACCESS_DENIED"
+          ? "Bạn không có quyền truy cập learner này."
+          : error.code === "INVALID_REQUEST"
+            ? "Bộ lọc từ cần ôn không hợp lệ."
+            : "Không thể tải từ cần ôn lúc này. Vui lòng thử lại.";
+        return c.json(errorEnvelope(error.code, message), error.status);
+      }
+      return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể tải từ cần ôn lúc này. Vui lòng thử lại."), 503);
     }
   });
 
