@@ -1,12 +1,12 @@
 # Development Canary Owner Reconciliation Review — Master V2 2.1.0
 
-Generated: 2026-10-04T04:13:38.663Z
+Generated: 2026-10-04T04:59:22.905Z
 
 ## Verified scope
 
 - Approved release 2.1.0; schema 2.0.1; release hash `fc67dd2a70adadd311384360c004faa4693ae24ffe4524761ce7075f21c95591`.
 - Read-only development target: project `shy-hill-72364426`, branch `br-square-grass-b3af0nte`, database `neondb`.
-- Snapshot fingerprint: `464e6f0d6f9807f2b25d01c7d66b5ef9166c2b0808e19d31cd282a15652f6e7b`.
+- Snapshot fingerprint: `bc888e2b615efe3c1380a39a130cc0323340f433e341fb833d412e7ad46abce5`.
 - This is analysis-only. It is not the human-owned reconciliation file, is rejected by the import planner, and does not authorize APPLY.
 
 ## Apple identity audit
@@ -161,7 +161,7 @@ Owner options (unranked):
 
 ## Migration ledger hash assessment
 
-- Classification: `ALL_MIGRATION_HASHES_MATCH`; 0 content-hash mismatches ([]); migration rows 18/18 present; 0015/0016/0017 match.
+- Classification: `ALL_MIGRATION_HASHES_MATCH`; 0 content-hash mismatches ([]); migration rows 19/19 present; 0015/0016/0017 match.
 - Assessment: The current Master import planner does not read or compare the Drizzle migration ledger when computing canApply. This read-only scan verified all applied rows against exact Drizzle hashes for LF, CRLF, or bare-CR serialization; no historical content mismatch was found.
 - Historical SQL files were not changed. This evidence remains separate from Sense identity decisions.
 

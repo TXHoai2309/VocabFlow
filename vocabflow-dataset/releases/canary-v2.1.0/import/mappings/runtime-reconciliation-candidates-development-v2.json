@@ -22,13 +22,13 @@
   "migrationState": {
     "tableExists": true,
     "current": true,
-    "localMigrationCount": 18,
-    "appliedCount": 18,
+    "localMigrationCount": 19,
+    "appliedCount": 19,
     "latestApplied": {
-      "id": 18,
-      "tag": "0017_nosy_hellfire_club",
-      "hash": "e6f74f0f93a300f6ca7252dca86549034fa74486359296349e807a6d3a43875d",
-      "createdAt": 1790959242981
+      "id": 19,
+      "tag": "0018_panoramic_spirit",
+      "hash": "eec77c49abbad9a2ea0a69fead9409e0b817978fd3ff3df95b09a55575b114ed",
+      "createdAt": 1791047402100
     },
     "requiredMigrations": [
       {
@@ -61,7 +61,7 @@
       {
         "tag": "0000_application-schema",
         "databaseHash": "6cc85e79be79afa23b69d7cfbdf9a440b0d7d0ade9c3152492c67cb7a48512d1",
-        "worktreeRawHash": "523e1ff580d5d3da5fd4efaf6bbb9038c45e5bdce73645b4a606bf39d3eb25b2",
+        "worktreeRawHash": "6cc85e79be79afa23b69d7cfbdf9a440b0d7d0ade9c3152492c67cb7a48512d1",
         "lfHash": "6cc85e79be79afa23b69d7cfbdf9a440b0d7d0ade9c3152492c67cb7a48512d1",
         "crlfHash": "523e1ff580d5d3da5fd4efaf6bbb9038c45e5bdce73645b4a606bf39d3eb25b2",
         "crHash": "2cb5b52e60ed7622bc06b9e03b6e9b2c843bad7ae89e21c7fa9d19dc712497b6",
@@ -106,7 +106,7 @@
       {
         "tag": "0005_graceful_eddie_brock",
         "databaseHash": "028ffe026bd7addfa2cedfe927c95cf669324f6da19e1a1215eb12ffb7aa2f10",
-        "worktreeRawHash": "73a1926c454424cc8a8e42f274b3062010882e42da94dea66a681800ccaafaa2",
+        "worktreeRawHash": "028ffe026bd7addfa2cedfe927c95cf669324f6da19e1a1215eb12ffb7aa2f10",
         "lfHash": "028ffe026bd7addfa2cedfe927c95cf669324f6da19e1a1215eb12ffb7aa2f10",
         "crlfHash": "73a1926c454424cc8a8e42f274b3062010882e42da94dea66a681800ccaafaa2",
         "crHash": "144d619350edf0ef1dd648572bd052af774316c25576a663b01272e11c5469cb",
@@ -115,7 +115,7 @@
       {
         "tag": "0006_sticky_risque",
         "databaseHash": "0035f537b27b0732390b60bf057ffab29b4a4eb3012b8ba0625286740f8e2803",
-        "worktreeRawHash": "2f83fbfa02734f517cb45b2385f06c37ee504174478bd97ab4784788dcf8dc42",
+        "worktreeRawHash": "0035f537b27b0732390b60bf057ffab29b4a4eb3012b8ba0625286740f8e2803",
         "lfHash": "0035f537b27b0732390b60bf057ffab29b4a4eb3012b8ba0625286740f8e2803",
         "crlfHash": "2f83fbfa02734f517cb45b2385f06c37ee504174478bd97ab4784788dcf8dc42",
         "crHash": "dbcc8b4d0e58aba1b9d4e080350227cf353ecf32edac2e46b8726d0650a2aab0",
@@ -124,7 +124,7 @@
       {
         "tag": "0007_modern_mysterio",
         "databaseHash": "557f83cb0058389fe969ed336de58f9e4b36b1691c1f4ee6f46b3d75c88d8699",
-        "worktreeRawHash": "bd569a9fb8264063f81aac39ffd29386cb11eb61d81dcdc06aa80c8c86e70829",
+        "worktreeRawHash": "557f83cb0058389fe969ed336de58f9e4b36b1691c1f4ee6f46b3d75c88d8699",
         "lfHash": "557f83cb0058389fe969ed336de58f9e4b36b1691c1f4ee6f46b3d75c88d8699",
         "crlfHash": "bd569a9fb8264063f81aac39ffd29386cb11eb61d81dcdc06aa80c8c86e70829",
         "crHash": "f4a3d6c6d255aea6f07b046e69bf026e450468a61dbb1c575ef74c426845cf65",
@@ -133,7 +133,7 @@
       {
         "tag": "0008_chief_morph",
         "databaseHash": "c8af7c9bfc3c99e7221b1a94a5541dbccb5bf9568a560e82303ad7f3ace25a05",
-        "worktreeRawHash": "bdc9448b065e279e1d54522947cc9dff99783a01a013bf16599fd950966c4067",
+        "worktreeRawHash": "c8af7c9bfc3c99e7221b1a94a5541dbccb5bf9568a560e82303ad7f3ace25a05",
         "lfHash": "c8af7c9bfc3c99e7221b1a94a5541dbccb5bf9568a560e82303ad7f3ace25a05",
         "crlfHash": "bdc9448b065e279e1d54522947cc9dff99783a01a013bf16599fd950966c4067",
         "crHash": "83a050282c1f57205bd4d0f532fca7376eb672d3d6be1b230dc42a341bb3a18a",
@@ -142,7 +142,7 @@
       {
         "tag": "0009_tricky_meggan",
         "databaseHash": "27f979b2d9f00406f3c6f1e506aeaf15ae916705d9c8606f27579c46626443f0",
-        "worktreeRawHash": "afa1d6a1e9a1c067e591e208a9efef3dc7c6c3dee46a0a3cd65d2e672e81ab59",
+        "worktreeRawHash": "27f979b2d9f00406f3c6f1e506aeaf15ae916705d9c8606f27579c46626443f0",
         "lfHash": "27f979b2d9f00406f3c6f1e506aeaf15ae916705d9c8606f27579c46626443f0",
         "crlfHash": "afa1d6a1e9a1c067e591e208a9efef3dc7c6c3dee46a0a3cd65d2e672e81ab59",
         "crHash": "ddfaee38c1129263c965685153ed3dcecc0e681ea4bcf7ebdd565cbf023591a2",
@@ -151,7 +151,7 @@
       {
         "tag": "0010_gamification-rewards",
         "databaseHash": "55e7d4f7baa1c5c86a83f360e8eb8097638817ba05f02f93285912e13336f804",
-        "worktreeRawHash": "5f9a519fc7335b8bfbada949b003dab8d3df28f9b004629136bd31718f3b1dec",
+        "worktreeRawHash": "55e7d4f7baa1c5c86a83f360e8eb8097638817ba05f02f93285912e13336f804",
         "lfHash": "55e7d4f7baa1c5c86a83f360e8eb8097638817ba05f02f93285912e13336f804",
         "crlfHash": "5f9a519fc7335b8bfbada949b003dab8d3df28f9b004629136bd31718f3b1dec",
         "crHash": "70bc272d9eaa4093a791fbb62a649023e8f5b4219164fd48f9d916dfab4c8d61",
@@ -160,7 +160,7 @@
       {
         "tag": "0011_exercise-correct-xp",
         "databaseHash": "6783f4b66e34f112fb33a3251366755f9069f4fd5829ea508e0c26996319b4dc",
-        "worktreeRawHash": "d302c0cee6a26b32edc43d199e767c6ffa678a1c809b40d2216890d18e707001",
+        "worktreeRawHash": "6783f4b66e34f112fb33a3251366755f9069f4fd5829ea508e0c26996319b4dc",
         "lfHash": "6783f4b66e34f112fb33a3251366755f9069f4fd5829ea508e0c26996319b4dc",
         "crlfHash": "d302c0cee6a26b32edc43d199e767c6ffa678a1c809b40d2216890d18e707001",
         "crHash": "495a0d65b1acf7d567df119622f5d856f2fb0731d62a6d0d80ef8923c8bc34c1",
@@ -196,7 +196,7 @@
       {
         "tag": "0015_clean_yellowjacket",
         "databaseHash": "f29a8d6e6d659bd64db5ad79450f99fee1f63c9748e66445570620bdf4ca5640",
-        "worktreeRawHash": "7f30095f9a030efa3656833f322d9bc97b41bf3a4feb146bd632aadac7742a55",
+        "worktreeRawHash": "f29a8d6e6d659bd64db5ad79450f99fee1f63c9748e66445570620bdf4ca5640",
         "lfHash": "f29a8d6e6d659bd64db5ad79450f99fee1f63c9748e66445570620bdf4ca5640",
         "crlfHash": "7f30095f9a030efa3656833f322d9bc97b41bf3a4feb146bd632aadac7742a55",
         "crHash": "daa5e8d6d2ff947a743a50097a46ee49f211e548b2c2f47e772ff103eb28afda",
@@ -205,7 +205,7 @@
       {
         "tag": "0016_nostalgic_mattie_franklin",
         "databaseHash": "fde7d92ee9baa200d50584379be6826da05e5ebf2adf07f332a62be7864cc820",
-        "worktreeRawHash": "b690ba4c84aec0e0562ca1b15c002956674d28c48b4376da27687a4f3554b2e7",
+        "worktreeRawHash": "fde7d92ee9baa200d50584379be6826da05e5ebf2adf07f332a62be7864cc820",
         "lfHash": "fde7d92ee9baa200d50584379be6826da05e5ebf2adf07f332a62be7864cc820",
         "crlfHash": "b690ba4c84aec0e0562ca1b15c002956674d28c48b4376da27687a4f3554b2e7",
         "crHash": "5f3a88974f24bc4ace30e0c418bc7dac511381996b396bc0f78181378c7805b3",
@@ -214,11 +214,20 @@
       {
         "tag": "0017_nosy_hellfire_club",
         "databaseHash": "e6f74f0f93a300f6ca7252dca86549034fa74486359296349e807a6d3a43875d",
-        "worktreeRawHash": "54a6c96e92d91358f588d9ac6f81e47983ae718ac5519e03ae4e5fd6c72651c0",
+        "worktreeRawHash": "e6f74f0f93a300f6ca7252dca86549034fa74486359296349e807a6d3a43875d",
         "lfHash": "e6f74f0f93a300f6ca7252dca86549034fa74486359296349e807a6d3a43875d",
         "crlfHash": "54a6c96e92d91358f588d9ac6f81e47983ae718ac5519e03ae4e5fd6c72651c0",
         "crHash": "c715b37e6fcba9d9e5018eb9a24c1a6060a31e9defc197e27fae30a02cb4e3fe",
         "matchedRepresentation": "LF"
+      },
+      {
+        "tag": "0018_panoramic_spirit",
+        "databaseHash": "eec77c49abbad9a2ea0a69fead9409e0b817978fd3ff3df95b09a55575b114ed",
+        "worktreeRawHash": "eec77c49abbad9a2ea0a69fead9409e0b817978fd3ff3df95b09a55575b114ed",
+        "lfHash": "75564ed643ec886c89f733d0cd554afb1617ee561c5fe9b0b67fcb618a0c7c71",
+        "crlfHash": "eec77c49abbad9a2ea0a69fead9409e0b817978fd3ff3df95b09a55575b114ed",
+        "crHash": "0352db94a7fdb7175a6d63c5dbab35d3e31380f02d51f5daf6c377c332b60a98",
+        "matchedRepresentation": "CRLF"
       }
     ],
     "appliedMigrationsForFingerprint": [
@@ -293,11 +302,15 @@
       {
         "tag": "0017_nosy_hellfire_club",
         "hash": "e6f74f0f93a300f6ca7252dca86549034fa74486359296349e807a6d3a43875d"
+      },
+      {
+        "tag": "0018_panoramic_spirit",
+        "hash": "eec77c49abbad9a2ea0a69fead9409e0b817978fd3ff3df95b09a55575b114ed"
       }
     ]
   },
-  "scannedAt": "2026-10-04T04:13:38.663Z",
-  "snapshotFingerprint": "464e6f0d6f9807f2b25d01c7d66b5ef9166c2b0808e19d31cd282a15652f6e7b",
+  "scannedAt": "2026-10-04T04:59:22.905Z",
+  "snapshotFingerprint": "bc888e2b615efe3c1380a39a130cc0323340f433e341fb833d412e7ad46abce5",
   "snapshotFingerprintAlgorithm": "sha256-canonical-json-v1",
   "snapshotFingerprintContract": "Includes the complete runtime vocabulary and Learning Set discovery universes, candidate search results, relevant Master mappings, candidate history counts and memberships/assignments, apple progress states/review ranges/learner-overlap count, applied run identities, verified target identity, release hash and applied migration hashes. Excludes learner IDs.",
   "plannerSnapshotFingerprint": "9834483fa3017eb801a059dc2adaf4c51843eb011610a0769faac9c445ae2869",
