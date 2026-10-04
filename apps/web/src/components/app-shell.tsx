@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, NavLink, Outlet, useLocation } from "react-router";
+import { Link, Outlet, useLocation } from "react-router";
 
 const destinations = [
   { label: "Trang chủ", to: "/", icon: "home" },
@@ -15,6 +15,16 @@ const destinations = [
 ] as const;
 
 type IconName = typeof destinations[number]["icon"];
+
+function isDestinationActive(pathname: string, destination: string) {
+  if (destination === "/") return pathname === "/";
+
+  if (destination === "/study/setup") {
+    return pathname === "/study" || pathname.startsWith("/study/");
+  }
+
+  return pathname === destination || pathname.startsWith(`${destination}/`);
+}
 
 function NavigationIcon({ name }: { name: IconName }) {
   const paths: Record<IconName, string> = {
@@ -52,18 +62,22 @@ function PrimaryNavigation({ onNavigate }: { onNavigate?: () => void }) {
   const location = useLocation();
   return (
     <nav aria-label="Điều hướng chính" className="app-primary-nav">
-      {destinations.map((item) => (
-        <NavLink
-          key={item.to}
-          to={item.to}
-          end={item.to === "/"}
-          onClick={onNavigate}
-          className={({ isActive }) => (isActive || (item.to === "/study/setup" && location.pathname.startsWith("/study"))) ? "app-nav-link is-active" : "app-nav-link"}
-        >
-          <NavigationIcon name={item.icon} />
-          <span>{item.label}</span>
-        </NavLink>
-      ))}
+      {destinations.map((item) => {
+        const isActive = isDestinationActive(location.pathname, item.to);
+
+        return (
+          <Link
+            key={item.to}
+            to={item.to}
+            onClick={onNavigate}
+            aria-current={isActive ? "page" : undefined}
+            className={isActive ? "app-nav-link is-active" : "app-nav-link"}
+          >
+            <NavigationIcon name={item.icon} />
+            <span>{item.label}</span>
+          </Link>
+        );
+      })}
     </nav>
   );
 }

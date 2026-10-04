@@ -142,11 +142,11 @@ describe("shared authenticated app shell", () => {
   });
 
   it.each([
-    ["/study", "Phiên học hôm nay", "Học tập"],
-    ["/study/exercises", "Phiên học hôm nay", "Học tập"],
+    ["/study", "Buổi học", "Học tập"],
+    ["/study/exercises", "Buổi học", "Học tập"],
     ["/vocabulary", "Từ vựng của Avery Nguyen", "Từ vựng"],
     ["/topics", "Học theo chủ đề", "Chủ đề"],
-    ["/progress", "Tiến trình của Avery Nguyen", "Tiến trình"],
+    ["/progress", "Tiến trình học tập", "Tiến trình"],
     ["/learning-sets", "Bộ từ", "Bộ từ"],
     ["/learning-sets/assign", "Bộ từ của Avery Nguyen", "Bộ từ"],
     ["/learner-settings", "Cài đặt học của Avery Nguyen", "Cài đặt"]
@@ -222,7 +222,9 @@ describe("shared authenticated app shell", () => {
 
     const studyLinks = screen.getAllByRole("link", { name: "Học tập" });
     fireEvent.click(studyLinks[studyLinks.length - 1]!);
-    expect(await screen.findByRole("heading", { name: "Phiên học hôm nay" })).toBeInTheDocument();
+    await waitFor(() => expect(screen.getByTestId("current-location")).toHaveTextContent("/study/setup"));
+    expect(screen.getByRole("main", { name: "Thiết lập buổi học" })).toBeInTheDocument();
+    expectActiveNav("Học tập");
     expect(screen.getByRole("button", { name: "Mở điều hướng" })).toHaveAttribute("aria-expanded", "false");
   });
 });
