@@ -1,0 +1,2367 @@
+{
+  "artifactType": "HYBRID_100_RC_LIFECYCLE_STATUS_INVENTORY",
+  "rcFingerprint": "06b2a4dec2f54438416cae67788e0683fe94907cbce0a60fbb2d6469bc25b82c",
+  "lexemes": {
+    "entityType": "LEXEME",
+    "counts": {
+      "APPROVED": 0,
+      "IN_REVIEW": 3,
+      "DRAFT": 84,
+      "other": 0
+    },
+    "recordsByStatus": {
+      "APPROVED": [],
+      "IN_REVIEW": [
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a0fc13-09ee-7fd1-8ad8-a2026a7620e0",
+          "currentRevision": 1,
+          "currentStatus": "IN_REVIEW",
+          "currentContentHash": "0b07b52abbe3bf40e79f33989007fb490409c1bf5c428bbd1cfe56f1569be52e",
+          "recordPath": "master/lexemes/01a0fc13-09ee-7fd1-8ad8-a2026a7620e0-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a0fc13-09ef-73b3-b970-1a8bd5d48a27",
+          "currentRevision": 1,
+          "currentStatus": "IN_REVIEW",
+          "currentContentHash": "f74b9177ba81219f9ce87a959ff735b593bddfca0ac476f47160605daedbe487",
+          "recordPath": "master/lexemes/01a0fc13-09ef-73b3-b970-1a8bd5d48a27-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a0fc13-09ef-7e5d-b757-aa456f0cd969",
+          "currentRevision": 1,
+          "currentStatus": "IN_REVIEW",
+          "currentContentHash": "c1d9f747fdf3da710bfc67afc5d4a17b94f561e02f0731a74da02d97d242b35d",
+          "recordPath": "master/lexemes/01a0fc13-09ef-7e5d-b757-aa456f0cd969-r1.json"
+        }
+      ],
+      "DRAFT": [
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c56-71df-b6f0-3750741bcfb0",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "8fb7833df20ab854a648e69c626a0d07685fd5feb0bbf10d30253c546b25f319",
+          "recordPath": "master/lexemes/01a1070c-7c56-71df-b6f0-3750741bcfb0-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c57-7676-9acd-e539159ec92f",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "3ba121543a669bb2767a9a839b646330698010a9b332e6288056bc91622819b2",
+          "recordPath": "master/lexemes/01a1070c-7c57-7676-9acd-e539159ec92f-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c57-7676-9acd-fd76f527ed8f",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "bdfec38250690db9da3e72247985fac7543929c76b033cde055efb6001ba9e34",
+          "recordPath": "master/lexemes/01a1070c-7c57-7676-9acd-fd76f527ed8f-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c57-7676-9ace-17d68166d150",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "525f86b8e44d358e0c4f0ac8fa1fbe361efb3374f397a47069c6d9048959d384",
+          "recordPath": "master/lexemes/01a1070c-7c57-7676-9ace-17d68166d150-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c57-7676-9ace-2d5ee1031f79",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "cdf0bf92372e38e95623463066686ff9d01dea06ab05f02d8db29ff7710ab1c2",
+          "recordPath": "master/lexemes/01a1070c-7c57-7676-9ace-2d5ee1031f79-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c57-7676-9ace-446fb649e2ed",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "5dfc1ed6ad3e52192eb949363eaad3f4c429e9ee0e7f595cfd02bf9a1d32b0f6",
+          "recordPath": "master/lexemes/01a1070c-7c57-7676-9ace-446fb649e2ed-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c57-7676-9ace-5cc488b97e59",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "ceddb95fbe5a063101079856601867254eb1ab8cdfdae8d8a032aa3e3bcdba0c",
+          "recordPath": "master/lexemes/01a1070c-7c57-7676-9ace-5cc488b97e59-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c57-7676-9ace-7654c9b464ce",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "8287c6bfa1afa9e08afb77e8573f472e7f4d959e66400e413aeaae11103b6a80",
+          "recordPath": "master/lexemes/01a1070c-7c57-7676-9ace-7654c9b464ce-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c57-7676-9ace-8e851f44ddab",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "ed44809edb770041a11f26a495c4f274771c02c5ab63f7789a1883786bc8db84",
+          "recordPath": "master/lexemes/01a1070c-7c57-7676-9ace-8e851f44ddab-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c57-7676-9ace-a42d46ebdefe",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "dc40821f5e4298d5255b632172118c708873b10a22ae84bf401c58a07ab016f5",
+          "recordPath": "master/lexemes/01a1070c-7c57-7676-9ace-a42d46ebdefe-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c57-7676-9ace-bda829e57141",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "8a3fe75225e2b26456e9b1d5eae534358892e5c935b53fb1df8b365290cd9e8c",
+          "recordPath": "master/lexemes/01a1070c-7c57-7676-9ace-bda829e57141-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c57-7676-9ace-d6e5b330dc5f",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "aa62fb84b51c5be4e57805dc08f211a60b42b44fbaa3c10ffb2ee90bc2923341",
+          "recordPath": "master/lexemes/01a1070c-7c57-7676-9ace-d6e5b330dc5f-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c57-7676-9ace-eeab790b4231",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "9fce1b70c9dc76bf0ac3181fa93d73459d4f81b89a029f97488af2561837070c",
+          "recordPath": "master/lexemes/01a1070c-7c57-7676-9ace-eeab790b4231-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c57-7676-9acf-07e31175af99",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "e8d8f558258bdcc17c72f2f87331d035538000db47dde121b0b1286033248404",
+          "recordPath": "master/lexemes/01a1070c-7c57-7676-9acf-07e31175af99-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c57-7676-9acf-1cc31ebc0b93",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "98decbcadcbf6455dd5e2c074fe0b4cc19b4b406a584ff5a432fe4f0c017d69a",
+          "recordPath": "master/lexemes/01a1070c-7c57-7676-9acf-1cc31ebc0b93-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c57-7676-9acf-36ec8b14c92d",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "77f3de44fe8b54c59a0f3b8f19ac76d5e76abff0a1a88fab7dbd9d1198a13678",
+          "recordPath": "master/lexemes/01a1070c-7c57-7676-9acf-36ec8b14c92d-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c57-7676-9acf-4cf8500d49d9",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "82095a15db55084f5cdeeb2209a1263338974f7a6bc64cd6fbb3ba2c15f9c804",
+          "recordPath": "master/lexemes/01a1070c-7c57-7676-9acf-4cf8500d49d9-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c57-7676-9acf-648a5a63fad8",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "4a1fabdaac21225b0a868d8b965efb0010403e614bbde0ddfcf5fe48847e2dd3",
+          "recordPath": "master/lexemes/01a1070c-7c57-7676-9acf-648a5a63fad8-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c57-7676-9acf-7f943f6c1e48",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "821edb0811c851fd9d8705392b34b18345d5bc194914fd9ce0e2c7264da2e169",
+          "recordPath": "master/lexemes/01a1070c-7c57-7676-9acf-7f943f6c1e48-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c57-7676-9acf-9752b551d0a1",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "7e695d6821d5962b488e137795f6ff56a91b971f6e7d4378a96c108ae86a6139",
+          "recordPath": "master/lexemes/01a1070c-7c57-7676-9acf-9752b551d0a1-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c57-7676-9acf-ad7532f47f33",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "5c06e519dd6ee65c757aed1bc0fba1d5cddafb18bcaee0f2a0520f8675f9d468",
+          "recordPath": "master/lexemes/01a1070c-7c57-7676-9acf-ad7532f47f33-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c57-7676-9acf-c627b437efa6",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "dd260a4d0d97fcfaa1af83a382f4490ff07b258b30fbb3c7f15bbff348773746",
+          "recordPath": "master/lexemes/01a1070c-7c57-7676-9acf-c627b437efa6-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c57-7676-9acf-dec187aa6654",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "84fccd6674ce1b176ae1f649d1215ed93c7c86aa0f23c4763b95be2949d7abad",
+          "recordPath": "master/lexemes/01a1070c-7c57-7676-9acf-dec187aa6654-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c57-7676-9acf-f47211d4f15f",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "1e8f39fe23565ba35673843fb265bc385958ad7b99432d3e1c4d2ff34857991a",
+          "recordPath": "master/lexemes/01a1070c-7c57-7676-9acf-f47211d4f15f-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c58-76b5-a2a8-ce6bd8416ffe",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "92244623c1a0c39bfec76df7b80e165ddfecd9022f45e50d8663e9e2ee4f31cf",
+          "recordPath": "master/lexemes/01a1070c-7c58-76b5-a2a8-ce6bd8416ffe-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c58-76b5-a2a8-e43bd969817e",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "b2fb72ef248de26fab6725bc4389fff2b0bd3ab3539aa9222ed6863ed51f7681",
+          "recordPath": "master/lexemes/01a1070c-7c58-76b5-a2a8-e43bd969817e-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c58-76b5-a2a8-fff9a54fdf74",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "4a210d4d2c3b301e0e173d2881730b43c1b63c6947648307d39e8c5177a1fed4",
+          "recordPath": "master/lexemes/01a1070c-7c58-76b5-a2a8-fff9a54fdf74-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c58-76b5-a2a9-176810772f4e",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "0dee156157bf9ba35bad1d4c14b5cbebc90a365eccf49063240a1ecf1b9cc781",
+          "recordPath": "master/lexemes/01a1070c-7c58-76b5-a2a9-176810772f4e-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c58-76b5-a2a9-2ee837ebd4a3",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "ed40d47208c80608446b9e930d8fe96511a24bf549424eb15d2a6dbeef5167f6",
+          "recordPath": "master/lexemes/01a1070c-7c58-76b5-a2a9-2ee837ebd4a3-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c58-76b5-a2a9-46c7a452aaa4",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "8ff8a8e0e8590c74ce649a82144d82b154a729cb35c218291d126810be36a3b0",
+          "recordPath": "master/lexemes/01a1070c-7c58-76b5-a2a9-46c7a452aaa4-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c58-76b5-a2a9-5f0baf3f5da1",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "304a0041d87ad662f017f91e667c7d8af034b7f654fc322788834d4ce8f5c9e6",
+          "recordPath": "master/lexemes/01a1070c-7c58-76b5-a2a9-5f0baf3f5da1-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c58-76b5-a2a9-77c0b32d5958",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "7fd4c4695f08b824254fc6129c67ad28f90c9bb521b6c68aeb90ced8a21173bf",
+          "recordPath": "master/lexemes/01a1070c-7c58-76b5-a2a9-77c0b32d5958-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c58-76b5-a2a9-8eb6466e094b",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "181384b8f0bc4a759c350905f5b4ee6848c28759b7fd5de5f1ecbafdb136682d",
+          "recordPath": "master/lexemes/01a1070c-7c58-76b5-a2a9-8eb6466e094b-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c58-76b5-a2a9-a5bb8b3b2028",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "aa9d5d0c7181387d67e7af08b488bd0907ba9a2763189a0f66cb0bcb016cfeb0",
+          "recordPath": "master/lexemes/01a1070c-7c58-76b5-a2a9-a5bb8b3b2028-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c58-76b5-a2a9-be56a4a82048",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "5d6fa7591702b15de75eac8c1c1dbe2267f253befc283672f84822b0d032b60c",
+          "recordPath": "master/lexemes/01a1070c-7c58-76b5-a2a9-be56a4a82048-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c58-76b5-a2a9-d6f9af783ab6",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "de8dc9c292543d5dbe55412429d09b15b86e302ca5dfea7bf9b4cf552675b0d0",
+          "recordPath": "master/lexemes/01a1070c-7c58-76b5-a2a9-d6f9af783ab6-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c58-76b5-a2a9-eeda1efc4dce",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "6e21a6ae7df14f332c7fd63482b7499ad0fd9b2b8595a3bd45dc5af4ff99cbb2",
+          "recordPath": "master/lexemes/01a1070c-7c58-76b5-a2a9-eeda1efc4dce-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c58-76b5-a2aa-052cbb68ebbb",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "1356d71e0d45cf172e37f5524308a9ad6e143be9da41dd25c27991acb9ef391c",
+          "recordPath": "master/lexemes/01a1070c-7c58-76b5-a2aa-052cbb68ebbb-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c58-76b5-a2aa-1c3612353f47",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "ba0ec1320d66ae7bff2e7fc1bc5a478e86844811a52edf7d04b8274e183f8578",
+          "recordPath": "master/lexemes/01a1070c-7c58-76b5-a2aa-1c3612353f47-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c58-76b5-a2aa-34434f56a11b",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "09e2bab8a3d1cefdf7c744309e9c11614848419ccc407db9d290d4d7d34d2dce",
+          "recordPath": "master/lexemes/01a1070c-7c58-76b5-a2aa-34434f56a11b-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c58-76b5-a2aa-60ff4def7394",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "cdbd0f9475f5468f4c2d59f7b71a0faa36649af0460d7aeb79ca29de0d19c572",
+          "recordPath": "master/lexemes/01a1070c-7c58-76b5-a2aa-60ff4def7394-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c58-76b5-a2aa-785336c8dc64",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "3a692d8949b26953c1b1ed1b50bf1827d749840dcc38e0f7573295b1784b75e7",
+          "recordPath": "master/lexemes/01a1070c-7c58-76b5-a2aa-785336c8dc64-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c58-76b5-a2aa-9091f194b958",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "5f6022f9c047fabc192bc8f20a003f8705a78f4b58b77c2d2bf0ccc92ebd4f00",
+          "recordPath": "master/lexemes/01a1070c-7c58-76b5-a2aa-9091f194b958-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c58-76b5-a2aa-aa2829a51609",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "c32688c7b833e9386be38a4a496711c6f7b65e3ecc1ba771ac9a5cc93f23e9e9",
+          "recordPath": "master/lexemes/01a1070c-7c58-76b5-a2aa-aa2829a51609-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c58-76b5-a2aa-c3995e3cdc8b",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "e2def6e9458b4552b120b7c663a158e3a94438dbd96635a5b107309ef28de7d1",
+          "recordPath": "master/lexemes/01a1070c-7c58-76b5-a2aa-c3995e3cdc8b-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c58-76b5-a2aa-ef2e16608a0c",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "76f306bea2cbe787a7a2bae086d095dca831093b56729ba739e26a0de2cc7a69",
+          "recordPath": "master/lexemes/01a1070c-7c58-76b5-a2aa-ef2e16608a0c-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c58-76b5-a2ab-053cc2f30444",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "1091853970919185f7b255b147332bc6cf2f2f8c65781551380f4a3dedb58006",
+          "recordPath": "master/lexemes/01a1070c-7c58-76b5-a2ab-053cc2f30444-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c58-76b5-a2ab-1d174cd34a69",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "edf16ce224bd662554844a5ef6bd5bf25310e33e73dfe5aa879a127a5409f4fb",
+          "recordPath": "master/lexemes/01a1070c-7c58-76b5-a2ab-1d174cd34a69-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c58-76b5-a2ab-5d81e4b7f8e9",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "356061670c10d35e9a2dea0bfaef9faae95ed746832d15ec58c450ca3f8edd35",
+          "recordPath": "master/lexemes/01a1070c-7c58-76b5-a2ab-5d81e4b7f8e9-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c58-76b5-a2ab-89f2166b2fa6",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "c60fe3ef8a3dbdfbf28b4f0a5ec3dcc9def1b6538a3ef7560cced51f7a384c4f",
+          "recordPath": "master/lexemes/01a1070c-7c58-76b5-a2ab-89f2166b2fa6-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c58-76b5-a2ab-a268368f74c1",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "ce5ba71356e0d0ed44318768df676bc76d138fdaec4e83055b8bd76714f5f263",
+          "recordPath": "master/lexemes/01a1070c-7c58-76b5-a2ab-a268368f74c1-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c58-76b5-a2ab-b8fabe34a282",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "249ef07f76ac2b1a14f4eaa8c1fd8f65123883e098e58dccf39e2b5b65a20b65",
+          "recordPath": "master/lexemes/01a1070c-7c58-76b5-a2ab-b8fabe34a282-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c58-76b5-a2ab-d0e82afaadf0",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "3e16fec48ca9b2bf1f55b7fcad87c1efedc650fe9d295328615b331331c6898f",
+          "recordPath": "master/lexemes/01a1070c-7c58-76b5-a2ab-d0e82afaadf0-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c58-76b5-a2ab-ea3cd5cf5ce2",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "107f83e734578b162da2d6f0b3121837d17593536b5861fc6d1c901a3a9c5d7d",
+          "recordPath": "master/lexemes/01a1070c-7c58-76b5-a2ab-ea3cd5cf5ce2-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c59-726e-88d4-3497fb03486b",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "79b1aeec78160a8b8120f77e3d6b1e6769f8a2d061e1a6603fadce7d578c9bd2",
+          "recordPath": "master/lexemes/01a1070c-7c59-726e-88d4-3497fb03486b-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c59-726e-88d4-4f526e764455",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "20e0e3f81e1ed69f98d64c2095c5645b311c36adc4ef2047f6aba855565e3dca",
+          "recordPath": "master/lexemes/01a1070c-7c59-726e-88d4-4f526e764455-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c59-726e-88d4-650ecb113f67",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "b28dbde9732f7511536972bd9a97528b035cf07ca88cb58b5cd480068c06adaf",
+          "recordPath": "master/lexemes/01a1070c-7c59-726e-88d4-650ecb113f67-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c59-726e-88d4-7e7ae1df7d90",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "64b1700751632b07fa0e770bff4127825011e7d995e17e65fdd798543bc9ea91",
+          "recordPath": "master/lexemes/01a1070c-7c59-726e-88d4-7e7ae1df7d90-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c59-726e-88d4-9602c99a72a2",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "b5e2ca6b04e5e8a7027b464278446aa9848c1c5c4934aa23182af0c789ee2e70",
+          "recordPath": "master/lexemes/01a1070c-7c59-726e-88d4-9602c99a72a2-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c59-726e-88d4-adcdd8c12cf1",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "55e51ffdcd65e443d440d53723d4adbd002afeb9c2559fdd970707e7f92b10a4",
+          "recordPath": "master/lexemes/01a1070c-7c59-726e-88d4-adcdd8c12cf1-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c59-726e-88d4-c4b32e2c699b",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "7c1c8d8d11f2b9f68416989061779b20fc0a485c8473b52b8ba7452a5ebd0ed8",
+          "recordPath": "master/lexemes/01a1070c-7c59-726e-88d4-c4b32e2c699b-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c59-726e-88d4-de19d5727766",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "9afb6553c64ba8101f8285dd4c71a4708f6cb4f08e7c03215c1283fe1e058b61",
+          "recordPath": "master/lexemes/01a1070c-7c59-726e-88d4-de19d5727766-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c59-726e-88d4-f4bbbedf1005",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "aa8ba90bddf92f6f45252fc32eb87e1cf3ab8a0b5aeb2a8fe6079ef76d661ff4",
+          "recordPath": "master/lexemes/01a1070c-7c59-726e-88d4-f4bbbedf1005-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c59-726e-88d5-0f26eea743d4",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "7ba86b54e5ae7b735d801232807e053cf4d0a5a28ae290f0cbb6044cc0e2ff1e",
+          "recordPath": "master/lexemes/01a1070c-7c59-726e-88d5-0f26eea743d4-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c59-726e-88d5-2407b5177e60",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "42c5f4a101f2eac20aa068bcc15fd3c7d7b01e97ebe11df5648910bfceac0202",
+          "recordPath": "master/lexemes/01a1070c-7c59-726e-88d5-2407b5177e60-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c59-726e-88d5-3e5d21e4f87a",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "a1312368d8697bf91970dddef3e1b1e6f4bd1815e94db96df357cdee9748a84a",
+          "recordPath": "master/lexemes/01a1070c-7c59-726e-88d5-3e5d21e4f87a-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c59-726e-88d5-5490bd22d60b",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "8cde9db01a8f5829ce09c1783e88b5410d37a4f7ea45a354131be01838847650",
+          "recordPath": "master/lexemes/01a1070c-7c59-726e-88d5-5490bd22d60b-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c59-726e-88d5-6c122e5d6f04",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "c8b1c88b0cfcf90d12c535315a0e896367c39c83d298365df307111428af473b",
+          "recordPath": "master/lexemes/01a1070c-7c59-726e-88d5-6c122e5d6f04-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c59-726e-88d5-87f1459517e2",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "8e4d89c7b2bb7054731d68305bd919d7f31c5c9e266dc7064bac99b70c40c322",
+          "recordPath": "master/lexemes/01a1070c-7c59-726e-88d5-87f1459517e2-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c59-726e-88d5-b2975ff3d1db",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "b2c5928a9b199d6f3dd1b775463b72f8ef422322813cb89d1ee7f18ca78434c4",
+          "recordPath": "master/lexemes/01a1070c-7c59-726e-88d5-b2975ff3d1db-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c59-726e-88d5-cb855b59039d",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "a2a1df862807fbd12bc5a17630d43598dc3c52749c78430a9a83e5bc237ac5c7",
+          "recordPath": "master/lexemes/01a1070c-7c59-726e-88d5-cb855b59039d-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c59-726e-88d5-e15c28d3dba5",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "5ba13e5000b75292dbf4aad18d60f2d36faa96b9fa1af8bfff3668357f41b7c4",
+          "recordPath": "master/lexemes/01a1070c-7c59-726e-88d5-e15c28d3dba5-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c59-726e-88d6-0de8a21078d9",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "8331f7205b93163abddee7868b0f54359c58807ad89da917b7e7dbb46c56384b",
+          "recordPath": "master/lexemes/01a1070c-7c59-726e-88d6-0de8a21078d9-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c59-726e-88d6-27683eaf472f",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "3642a57f69aa11af89e80be5e1557eeb321f308ad93e311638bc4767860a0ef4",
+          "recordPath": "master/lexemes/01a1070c-7c59-726e-88d6-27683eaf472f-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c59-726e-88d6-3d96a4168abe",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "11981d34e269b785efbd87fadf2e2d15a1caa9a40ae1fe525f146e7c8f5ae82a",
+          "recordPath": "master/lexemes/01a1070c-7c59-726e-88d6-3d96a4168abe-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c59-726e-88d6-6bed13c39f09",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "28b121badda597d034c1f0bdab40eec3234ba7fd4822b003212fa20c3b96b73c",
+          "recordPath": "master/lexemes/01a1070c-7c59-726e-88d6-6bed13c39f09-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c59-726e-88d6-83c6864f21b4",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "c0fc6b85232770bb5ce44944bc3cec9ab74d84a6a2e0f7f8eb2e88ca40d8bf89",
+          "recordPath": "master/lexemes/01a1070c-7c59-726e-88d6-83c6864f21b4-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c59-726e-88d6-988495690810",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "ae6deda510d30aa32d128ae6d45f4c7787d4042555f39bd74beaa4f0b39458f1",
+          "recordPath": "master/lexemes/01a1070c-7c59-726e-88d6-988495690810-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c59-726e-88d6-b3d4934f8adb",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "02074b1c0f5b93fa053962ecbc2d34e064335c55e636cf161190d9973d4ce6b7",
+          "recordPath": "master/lexemes/01a1070c-7c59-726e-88d6-b3d4934f8adb-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c59-726e-88d6-cb73a774b6f2",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "ec228bdf4d1c7026168c1bd980010a3c82ab48cdb6b5f01061796848ae335897",
+          "recordPath": "master/lexemes/01a1070c-7c59-726e-88d6-cb73a774b6f2-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c59-726e-88d6-e3fa312c5882",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "f85917a5f06520e9b3413600ecf14b5e319ee8b7b33b1e0ee4450be280f539db",
+          "recordPath": "master/lexemes/01a1070c-7c59-726e-88d6-e3fa312c5882-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c59-726e-88d6-fb5a013f6887",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "95e011d58bd692db0510541b331795a62bc083c934c8cae467174e32fa36158d",
+          "recordPath": "master/lexemes/01a1070c-7c59-726e-88d6-fb5a013f6887-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c5a-7542-a092-bbc32cc229e3",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "c0e08935c03d6c009bda00741d2e086b5bf11430a32ebce8649eaef55b859aba",
+          "recordPath": "master/lexemes/01a1070c-7c5a-7542-a092-bbc32cc229e3-r1.json"
+        },
+        {
+          "entityType": "LEXEME",
+          "stableId": "01a1070c-7c5a-7542-a092-fa980262e787",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "ab412da3b7a69b1bf1e9d79e51f4078ea23613733d0f7b266c4beebb6d232875",
+          "recordPath": "master/lexemes/01a1070c-7c5a-7542-a092-fa980262e787-r1.json"
+        }
+      ],
+      "other": []
+    }
+  },
+  "senses": {
+    "entityType": "SENSE",
+    "counts": {
+      "APPROVED": 0,
+      "IN_REVIEW": 2,
+      "DRAFT": 98,
+      "other": 0
+    },
+    "recordsByStatus": {
+      "APPROVED": [],
+      "IN_REVIEW": [
+        {
+          "entityType": "SENSE",
+          "stableId": "01a0fc13-09ee-7768-9be6-d20fa32521ee",
+          "currentRevision": 1,
+          "currentStatus": "IN_REVIEW",
+          "currentContentHash": "01b6decf2226ff75defdbf7c7dd1d65b60647469b4098578a75531ef64bdfde5",
+          "recordPath": "master/senses/01a0fc13-09ee-7768-9be6-d20fa32521ee-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a0fc13-09ef-75ac-b815-039ab337c01a",
+          "currentRevision": 1,
+          "currentStatus": "IN_REVIEW",
+          "currentContentHash": "0e018615d8511daa58a2fdd5778d5c59081cf19aa7718a5f57544f1bed1eb798",
+          "recordPath": "master/senses/01a0fc13-09ef-75ac-b815-039ab337c01a-r1.json"
+        }
+      ],
+      "DRAFT": [
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c56-71df-b6f0-39632387320e",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "386b6ec2d212657abf9d40acf0fe6a11aa86a0a0a2ab1e722010191d03a1ab0c",
+          "recordPath": "master/senses/01a1070c-7c56-71df-b6f0-39632387320e-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c57-7676-9acd-d23079256ae2",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "c8e748486e665efd6b4d1a16eb45315ca3992a10bc0037aaab829260a2883315",
+          "recordPath": "master/senses/01a1070c-7c57-7676-9acd-d23079256ae2-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c57-7676-9acd-eaf36e6184b3",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "6c31949b635cb637fb4dea7bf4700554a786662c10e32ddce626b1b94eeff96a",
+          "recordPath": "master/senses/01a1070c-7c57-7676-9acd-eaf36e6184b3-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c57-7676-9ace-014df3449d2e",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "947a8ea8029173d8a0117eab8fd4b3d592d7409f25b3556a62e1f3b2943e64dc",
+          "recordPath": "master/senses/01a1070c-7c57-7676-9ace-014df3449d2e-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c57-7676-9ace-18656f491ca7",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "cd7aeb1284b0f415ddcd5436576970b7cb027aea052585fb5a6989c3620cbeca",
+          "recordPath": "master/senses/01a1070c-7c57-7676-9ace-18656f491ca7-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c57-7676-9ace-32d1337aab90",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "64bbe8995b264b8036ecb3a257d35f09e6b767f8916974acc7f1449e0fa02cfe",
+          "recordPath": "master/senses/01a1070c-7c57-7676-9ace-32d1337aab90-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c57-7676-9ace-4b581bada298",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "bf8fc6a99edb09bcaf258400f34610c6b4d0a507de72d897466e85929c5daeef",
+          "recordPath": "master/senses/01a1070c-7c57-7676-9ace-4b581bada298-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c57-7676-9ace-63a7042782dc",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "921efd6926cf08d84433a3ecb7612c50847e36ccc6b46ceaa6e81eca536dd19e",
+          "recordPath": "master/senses/01a1070c-7c57-7676-9ace-63a7042782dc-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c57-7676-9ace-79a6118270d8",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "f221ddf55226f6987754603cf76759ab2e1a5f35f6eb489bc98a36721178d65a",
+          "recordPath": "master/senses/01a1070c-7c57-7676-9ace-79a6118270d8-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c57-7676-9ace-93aa39952372",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "556ac5096ca3ca45539fa61818ab30ff6cdd9bdc3d19c59e79f1be0627031431",
+          "recordPath": "master/senses/01a1070c-7c57-7676-9ace-93aa39952372-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c57-7676-9ace-a81c3cdf40fa",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "fe5894bf6049b2459f5bf058596f4b34a524cf90241df39e0e8ce821bc971d39",
+          "recordPath": "master/senses/01a1070c-7c57-7676-9ace-a81c3cdf40fa-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c57-7676-9ace-c2f9d561c8f4",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "f931f78d6eddace2f6361cc318b7ff2381ace7361ebebb94adc1ae86b46646ce",
+          "recordPath": "master/senses/01a1070c-7c57-7676-9ace-c2f9d561c8f4-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c57-7676-9ace-d8831aa1814d",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "aabb00b434848730c336083c635a523a75ecda19b64662074f001de695d2c5f8",
+          "recordPath": "master/senses/01a1070c-7c57-7676-9ace-d8831aa1814d-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c57-7676-9ace-f28714bdee2e",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "634ce7909afdc5c3d6e39ce3be14c8dcf779613997a664d7c4af6dc13b68c6e4",
+          "recordPath": "master/senses/01a1070c-7c57-7676-9ace-f28714bdee2e-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c57-7676-9acf-09879397d1e1",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "9c2d3f886ac279262c865ab8e16ee9936300da586f35f3bfdd8f077592e0bf06",
+          "recordPath": "master/senses/01a1070c-7c57-7676-9acf-09879397d1e1-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c57-7676-9acf-2166c93ae47a",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "e53c81312f989db1079b9d4afc8fffebebdf49d7f24317cd816b5d71e6f98f76",
+          "recordPath": "master/senses/01a1070c-7c57-7676-9acf-2166c93ae47a-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c57-7676-9acf-390ac30fd890",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "2ee3ea87bbc2ef747b8a9c832345fcfb2af323f9d280980adc8e7e0a64405ee6",
+          "recordPath": "master/senses/01a1070c-7c57-7676-9acf-390ac30fd890-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c57-7676-9acf-51b00d9e4aca",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "1b831abb4939c081aa9c8aaf57860707d9a40063b8b936c8e7042c12eb35b9a9",
+          "recordPath": "master/senses/01a1070c-7c57-7676-9acf-51b00d9e4aca-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c57-7676-9acf-6a88ac566599",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "48f36526268449714ffe72adbad0046cdbc5123d0f1ff7a25082f80aad4a040d",
+          "recordPath": "master/senses/01a1070c-7c57-7676-9acf-6a88ac566599-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c57-7676-9acf-83edaac99eb9",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "f1141b02bce94f3b0718695f47b0a3a0d371c3bb5834b8d43a6d0c67485e8f72",
+          "recordPath": "master/senses/01a1070c-7c57-7676-9acf-83edaac99eb9-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c57-7676-9acf-99d8c8592c32",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "80c90a6f049b0c6ec29b9805895f72289009ff24f86e2273f9ad9fe8fa349c4e",
+          "recordPath": "master/senses/01a1070c-7c57-7676-9acf-99d8c8592c32-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c57-7676-9acf-b1c2d0e92475",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "81803c7db1100cbb65925f3e96807333f94eba5286e1718bc17ebfa9100be241",
+          "recordPath": "master/senses/01a1070c-7c57-7676-9acf-b1c2d0e92475-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c57-7676-9acf-c8bb470b0069",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "6fef51e2b668939ca30d364528d0a3d8bb1c8caceba74458d7cbcc63b30cecda",
+          "recordPath": "master/senses/01a1070c-7c57-7676-9acf-c8bb470b0069-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c57-7676-9acf-e2bf85a21c08",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "6d605e490da03814caed3553f159d501d1f1ad1fe5a94bf7231e1c06515e28ea",
+          "recordPath": "master/senses/01a1070c-7c57-7676-9acf-e2bf85a21c08-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c57-7676-9acf-fbb6c07854f6",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "32ccde17b65a58778d5b2af4eea1599e331bbc7ddaa02a597053e7464aea1816",
+          "recordPath": "master/senses/01a1070c-7c57-7676-9acf-fbb6c07854f6-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2a8-d1cd64c3eada",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "fe045d2c343494849cba6dd82f964ef74b623a744f5b856a5cc24b4a8338c0c7",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2a8-d1cd64c3eada-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2a8-ebb7ee4a97d9",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "5d44c52682a6d9664e06673764a0380c9b846adccfd04f8fa9bfa12e7082303a",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2a8-ebb7ee4a97d9-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2a9-0030193008ca",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "69b50397ae64a6794ad802792ab31df3a1b9391f0aed9ca5ab00d9515a30815a",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2a9-0030193008ca-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2a9-18ee254ff4be",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "c3048c5884ac972de29c71ab034f8166ac898d5d48db29d1653a0f355170d6cd",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2a9-18ee254ff4be-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2a9-3185a807d618",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "4bb9cb77584ba523f411c82cdf7d797a356e19a6e3bb87d0dd60fc3767f2491f",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2a9-3185a807d618-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2a9-4b4562d352c8",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "b67ec694ea0bb5741344aaeac02b60cfaf709e89855957194d47bc6659e472da",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2a9-4b4562d352c8-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2a9-620e574defe8",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "617277a6b0f3cc85d707bef26a23995d8b2ddbf82f637b288ef7a62d57cd8953",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2a9-620e574defe8-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2a9-78fe16fc29bb",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "70fdf9fc9085dc85db4e23ed88c01cae19ea295eb82f8d4b4eb5bc1cff086021",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2a9-78fe16fc29bb-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2a9-92d544914a1a",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "fa8e1c52f131f2107e1a8b87884e3b36d6139361fb2810f9890ce5c0852af549",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2a9-92d544914a1a-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2a9-aa41e4cd8ff9",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "47ce516538eb19109f6dd2f49b0b58ae1324556bf1b44d4cf71e6831be71607c",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2a9-aa41e4cd8ff9-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2a9-c1530836b546",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "58fb3bbf9da98815503b09c2a580202dc302120ec3bc6a7a9fec9f66908cb611",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2a9-c1530836b546-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2a9-d9fe7b7d857e",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "73e973fcd1e799a5f3ec3f7979b59a4809cb623ec5ca9d6be8e9770c4c60c592",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2a9-d9fe7b7d857e-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2a9-f257db26d791",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "1ad6d95485c4b87faa2cca989fd0cf93703abcc84c823e0349906077b156697d",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2a9-f257db26d791-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2aa-0a20d4f7ae01",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "2aaee76ed27d10bac5e37a730e842a0c0a38b44752e2c8c24729a6d89f13f298",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2aa-0a20d4f7ae01-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2aa-20e7d1e01c66",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "52d5e6d637dd8adb10dec900112946250cdb68105daed49d924e61d60ebbb6ab",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2aa-20e7d1e01c66-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2aa-397ef521e177",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "3482b0059902ddc6e0dafaa9bdc1b79b553475bc74a516b2a48296bebd24a998",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2aa-397ef521e177-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2aa-4d54a373af15",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "0ca96145d8ec12a75636fb4a9fa438a4f997b389e255c67616bcf25661b04994",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2aa-4d54a373af15-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2aa-66b0757806fe",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "6ae760d42f7dc8c9610f7205c7a9ca44bedf59e4ef27409dcf0508c251a976d2",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2aa-66b0757806fe-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2aa-7e0812b069ae",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "ffc199906dd228d289342da8d58ccdc7bf62a2b021904361a3130c601242704f",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2aa-7e0812b069ae-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2aa-97f25323b0a8",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "4b8e230207348828aa715a00d95febd11ead0fb19e7048d6939fe737069fd3fc",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2aa-97f25323b0a8-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2aa-aeb83963a729",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "f5c1db2f423bc93c169f1fae9f6ae36f4307ff3dc1f12148afd9bb2f75028d61",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2aa-aeb83963a729-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2aa-c4a190ee77a4",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "e5b89ad929085038c8f3f5f7fec8260fb60894397b10f1d1907e64a01e36eb41",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2aa-c4a190ee77a4-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2aa-db8e56d2cc07",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "a44365814319d158d528ec24abdf2aae6b3c0398767859d38cce2dc774d4ea51",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2aa-db8e56d2cc07-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2aa-f3a4a21a7dc3",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "8599edaa9e82bb9592b01977f86ef1ee91922489f7639b47f02b2aa60bb1c145",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2aa-f3a4a21a7dc3-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2ab-0ab34eedf7c6",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "072dd70befc9b4c070561fc26fb0c57a1795824a978a480e06825dad45509c7a",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2ab-0ab34eedf7c6-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2ab-23b5c52b4d0f",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "35e05c9a4753fcc753d7f96bf112d8fde695cca70a2e65aecf40eb82f2c86810",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2ab-23b5c52b4d0f-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2ab-369dd574695b",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "c65b819dda90e10e4efd9d6d5c34d30cd76cab12346927132251a10115d0e88e",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2ab-369dd574695b-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2ab-48eb58f50cbf",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "796fef0ff6b7aed3ca619fd91ca0871fa02a5b61a9939851b4bcd379a6199c4b",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2ab-48eb58f50cbf-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2ab-6137a474d3c3",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "6918c9dda9305b53a3062b28beeaf40cb6e01e41cba2518a409dbfe04546bb81",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2ab-6137a474d3c3-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2ab-74b8a6de7e22",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "3ae2810d367152ec54bb4caf1d568ba3302abd581a0fd3704d0fc2012ed40099",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2ab-74b8a6de7e22-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2ab-8ebf5829835d",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "4d0f6ce58b91f47779c7a3209f7325af10f014c4789caf1c91107d77a6971b88",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2ab-8ebf5829835d-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2ab-a764716f4128",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "5581d198f03b2b67b22df0327d79fd3b75f33cab945286d018e35ff838c17dab",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2ab-a764716f4128-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2ab-be14abe16989",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "e931131798acc4890618b1f138e13e03893b5f95162d947afa4e5b300d1194f7",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2ab-be14abe16989-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2ab-d47ce6596f64",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "8e79bed2b991aa15614b9e7b99fe54220954d19854011a5b04c9e407d9599061",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2ab-d47ce6596f64-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2ab-ed6693eca162",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "da13abf0eb7e4e9c2b7eb2dfadcec38d0f500a34fb9e2e020f1d572ad8760b35",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2ab-ed6693eca162-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c58-76b5-a2ac-007b8e765c31",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "cbfbe3d4dfacd593489148a731d2fadd3c7c1fe01f78abd7d4e4271b60c2fbfb",
+          "recordPath": "master/senses/01a1070c-7c58-76b5-a2ac-007b8e765c31-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c59-726e-88d4-388175c26836",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "891131c370263abca00d621c67318466db8a2cfaed88cf9111bbdcd0f4360b0a",
+          "recordPath": "master/senses/01a1070c-7c59-726e-88d4-388175c26836-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c59-726e-88d4-5263bfd63bbf",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "d72ecbb4bdc9b60d32c13e7b5fc78e1e3ad5af373dde98505901d6d0434f1b06",
+          "recordPath": "master/senses/01a1070c-7c59-726e-88d4-5263bfd63bbf-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c59-726e-88d4-6b2a61e1e7c4",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "520cb986673b600084e5bb55ef8157819b637b31dd15e57cb687841c336d34e9",
+          "recordPath": "master/senses/01a1070c-7c59-726e-88d4-6b2a61e1e7c4-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c59-726e-88d4-83e56ae5f536",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "6995d0394df3d267dacb9d3d480a2081706402e7f07ceac42f9dd69760320fd7",
+          "recordPath": "master/senses/01a1070c-7c59-726e-88d4-83e56ae5f536-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c59-726e-88d4-982f187e5653",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "c8d3f8e7642e7800a8a79ba4aed6da35bd5ccca29a303034de146a40ccd059db",
+          "recordPath": "master/senses/01a1070c-7c59-726e-88d4-982f187e5653-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c59-726e-88d4-b375a308217e",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "f55dc1128a6181d44a73cf3d69d46dd5d053623e41eb2b93a8f420127c67f8c2",
+          "recordPath": "master/senses/01a1070c-7c59-726e-88d4-b375a308217e-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c59-726e-88d4-c8cce3636c7a",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "ba3ab95f8b58ab738fc2834112508f37daf7163b9c59addb61847db9a1eaac2c",
+          "recordPath": "master/senses/01a1070c-7c59-726e-88d4-c8cce3636c7a-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c59-726e-88d4-e052bbcb6335",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "c1c12bf21dba085069920d624953bc78decf2bb0f82c5c46b7305918596f9e3a",
+          "recordPath": "master/senses/01a1070c-7c59-726e-88d4-e052bbcb6335-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c59-726e-88d4-f95f0a11a85e",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "9caa50dc639775630d9924eab7aad2b006ce0726d10dc4589f31dc384d41b9d4",
+          "recordPath": "master/senses/01a1070c-7c59-726e-88d4-f95f0a11a85e-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c59-726e-88d5-13e0fb40de8c",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "bd92308ded81dad8b96daa68ddfc701ce2b85f3939628599bf9387bc94c15863",
+          "recordPath": "master/senses/01a1070c-7c59-726e-88d5-13e0fb40de8c-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c59-726e-88d5-2a10fa50c2ef",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "f0c417f50fe2c32eaf0ed7a01d4c6c930c8993f1e41021c31756535d607ef7f6",
+          "recordPath": "master/senses/01a1070c-7c59-726e-88d5-2a10fa50c2ef-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c59-726e-88d5-413213f77278",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "ae345388a5ce4991494cab4a857c2c8cb03446ea44a7cb2f394f35c0f44cd3ac",
+          "recordPath": "master/senses/01a1070c-7c59-726e-88d5-413213f77278-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c59-726e-88d5-589ec0261ad8",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "215c921a231946dac94997e99f485778e9d4567db8d704e689c39a98123dfb2b",
+          "recordPath": "master/senses/01a1070c-7c59-726e-88d5-589ec0261ad8-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c59-726e-88d5-700f2c9a47a0",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "f49d0e9060f0332d05bef7bfe457bf9b951962f117191ec5d77ac9376c972e18",
+          "recordPath": "master/senses/01a1070c-7c59-726e-88d5-700f2c9a47a0-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c59-726e-88d5-882b36643f4e",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "7b5cba45a9d61979076c657be57d14f921de5608d578c53647245e842f527c2f",
+          "recordPath": "master/senses/01a1070c-7c59-726e-88d5-882b36643f4e-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c59-726e-88d5-9c1965cff571",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "612d503375720028f1f0d51e979af2b441b94f1288e603f114528989be2625e1",
+          "recordPath": "master/senses/01a1070c-7c59-726e-88d5-9c1965cff571-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c59-726e-88d5-b778960784d8",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "f231a8f74871e5ca4d0cf7d7c7fed4a044955e0ce6b249ed6dfca532877e3194",
+          "recordPath": "master/senses/01a1070c-7c59-726e-88d5-b778960784d8-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c59-726e-88d5-cff4c73ff34a",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "049aefce9deddeb11d12fba9868bd11623cb84672da1b857757fb976d004b2f4",
+          "recordPath": "master/senses/01a1070c-7c59-726e-88d5-cff4c73ff34a-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c59-726e-88d5-e6665424a3b2",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "69fb6cfd1db7db1e250f41dafb27dea012d54c8a372b1f7e03a054f86533e5f4",
+          "recordPath": "master/senses/01a1070c-7c59-726e-88d5-e6665424a3b2-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c59-726e-88d5-fa99c56877b4",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "20de2bec9042f5e6a8f360a43b090d15d143120050350f732f5e446df3c14f3b",
+          "recordPath": "master/senses/01a1070c-7c59-726e-88d5-fa99c56877b4-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c59-726e-88d6-12b693a50e53",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "80c1d4321dd5e84f245a23c164a0b357cab6ac6792c8664601c8cb2a63b1f0e7",
+          "recordPath": "master/senses/01a1070c-7c59-726e-88d6-12b693a50e53-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c59-726e-88d6-2bd02d10cccb",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "9b519fb4dbde1582f3c311b03e564f6aadd7502e328ba5f7f3d74b9f2bc8b8ec",
+          "recordPath": "master/senses/01a1070c-7c59-726e-88d6-2bd02d10cccb-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c59-726e-88d6-41334868edc3",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "2ded68640f88f5c2585437efcd976e4337f17d23cf324ffe90f9ecceb0687776",
+          "recordPath": "master/senses/01a1070c-7c59-726e-88d6-41334868edc3-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c59-726e-88d6-56be2debcdfe",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "484ecd4f218cbae5cb0a812e8199c5fb5cbd878894e29e7d05581142fb60a1e1",
+          "recordPath": "master/senses/01a1070c-7c59-726e-88d6-56be2debcdfe-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c59-726e-88d6-6d55c97117dc",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "832d2844ef29e7717bcc7728b185a98e2e0fd123a5e2c5820acf6de19d3bb399",
+          "recordPath": "master/senses/01a1070c-7c59-726e-88d6-6d55c97117dc-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c59-726e-88d6-84571ea5dbf5",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "399edd2cec07b7f11e392c536e8e69e21fd0fa628d22d1fd664902b194f9c4f2",
+          "recordPath": "master/senses/01a1070c-7c59-726e-88d6-84571ea5dbf5-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c59-726e-88d6-9edb547352aa",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "19df115f27b2c78dbc809f1018b0c5b9d4805984487977161059ca66e39c170e",
+          "recordPath": "master/senses/01a1070c-7c59-726e-88d6-9edb547352aa-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c59-726e-88d6-b5d43a60b62f",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "7f4d04666f26407365ec49d32e078f888e661075ead77fff8eb5f2d190d2a6e4",
+          "recordPath": "master/senses/01a1070c-7c59-726e-88d6-b5d43a60b62f-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c59-726e-88d6-cf9dc05adb73",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "2b6654ec8bbe577d1fad0cf894c201e754174e24ffc5a9209596eababf87cb75",
+          "recordPath": "master/senses/01a1070c-7c59-726e-88d6-cf9dc05adb73-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c59-726e-88d6-e7a8d422dbdf",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "474365a678df57a2152b3af2096551371bdf4ee872aaed638e72f65f5d7f4b8a",
+          "recordPath": "master/senses/01a1070c-7c59-726e-88d6-e7a8d422dbdf-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c59-726e-88d6-fc58f364e770",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "5d50e05e3ca8b245f67bd5c673bcc25ecdfd968bbf32d6824e9a429b91b09bf6",
+          "recordPath": "master/senses/01a1070c-7c59-726e-88d6-fc58f364e770-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c59-726e-88d7-1390989a47b8",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "90cf3e840b7a1bd17b9ef63350ce71fb808bc82406aef4bf59dcb6d0ff67a8f9",
+          "recordPath": "master/senses/01a1070c-7c59-726e-88d7-1390989a47b8-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c5a-7542-a092-beb09c96a03f",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "777adfd9d44081163ad8d8161241593a5d0c07f39645833a5b634520de589bdd",
+          "recordPath": "master/senses/01a1070c-7c5a-7542-a092-beb09c96a03f-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c5a-7542-a092-d1d73dd0f634",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "49d31d26b1910fa9335be397136ea50c76f1109cce6925dea413414c7310ab55",
+          "recordPath": "master/senses/01a1070c-7c5a-7542-a092-d1d73dd0f634-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c5a-7542-a092-e7df11b3bc0a",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "ff24c03611791e0ccb1ce7190b051d0ad23254d9cc423137503779d34cd0418b",
+          "recordPath": "master/senses/01a1070c-7c5a-7542-a092-e7df11b3bc0a-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c5a-7542-a092-ff8307ef6e05",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "82d631281388ce046429857da0388da2cabf8effcbdfa6c496b6f221ce295f54",
+          "recordPath": "master/senses/01a1070c-7c5a-7542-a092-ff8307ef6e05-r1.json"
+        },
+        {
+          "entityType": "SENSE",
+          "stableId": "01a1070c-7c5a-7542-a093-116a29fa3a72",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "ed8954c887e24bc7dd7e941b622ed2b545566759d83fa34bd42f13f446847acf",
+          "recordPath": "master/senses/01a1070c-7c5a-7542-a093-116a29fa3a72-r1.json"
+        }
+      ],
+      "other": []
+    }
+  },
+  "classifications": {
+    "entityType": "CLASSIFICATION",
+    "counts": {
+      "APPROVED": 0,
+      "IN_REVIEW": 1,
+      "DRAFT": 98,
+      "other": 0
+    },
+    "recordsByStatus": {
+      "APPROVED": [],
+      "IN_REVIEW": [
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a0fc13-09f2-77bf-93db-1ceefb68082a",
+          "currentRevision": 1,
+          "currentStatus": "IN_REVIEW",
+          "currentContentHash": "9bf8e322e7b508d43f69ef7b9927d5a83ac04ab6d0c0e79d546fb2a3b9fb1eec",
+          "recordPath": "master/classifications/01a0fc13-09f2-77bf-93db-1ceefb68082a-r1.json"
+        }
+      ],
+      "DRAFT": [
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a0fc13-09f1-76b9-8a57-6c6e55e9b438",
+          "currentRevision": 2,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "5cd546f0f752203eb0cb722b33c0dc93de5d796704852d6d34b9cee314ba1ea0",
+          "recordPath": "master/classifications/01a0fc13-09f1-76b9-8a57-6c6e55e9b438-r2.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7046-8b09-7ef068240509",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "4ee2c2bb439548801eae37494c809e3dfb62d030c750f6d32c1787db05d77eb5",
+          "recordPath": "master/classifications/01a10760-b9f0-7046-8b09-7ef068240509-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7051-bb97-93a841f20a43",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "204f4b951f1cecae4d31f2060737e63e35bd940d9baea9503db3da865b9bbaae",
+          "recordPath": "master/classifications/01a10760-b9f0-7051-bb97-93a841f20a43-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7072-bb4e-a3e56bcaae91",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "f3c5021e906e92e1a2d189a1738a9377ed6cf0c02e088d3af8810a458f442ee4",
+          "recordPath": "master/classifications/01a10760-b9f0-7072-bb4e-a3e56bcaae91-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7164-a993-5fd1fcc9dc38",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "b2d58821946705248e78cd76d3da30584d42bd641402aa13879e7b9eace04af7",
+          "recordPath": "master/classifications/01a10760-b9f0-7164-a993-5fd1fcc9dc38-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-71cc-b653-9338c19b3bda",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "069b102796ef9f7c3ae2335d78b92005df5284a0e824cd1ec83c468749823836",
+          "recordPath": "master/classifications/01a10760-b9f0-71cc-b653-9338c19b3bda-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-71de-9e0e-552d2b4b236c",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "38c7556e4dc0137b2a4623680dc5d8cf5ff7a51c3de0eef48decb6a4fa04b442",
+          "recordPath": "master/classifications/01a10760-b9f0-71de-9e0e-552d2b4b236c-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-720a-86bc-f326a730508d",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "a926024938e78a7a08fb4e62a93ed3aac1e5fed576a4eaa9517b7ecb4ffaac4c",
+          "recordPath": "master/classifications/01a10760-b9f0-720a-86bc-f326a730508d-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-721a-bada-12ae79c2bd3a",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "7eb36887bce5dd7885f1b49fee1cfe36c14f3d5c6419e32d7d7bff211edc9da5",
+          "recordPath": "master/classifications/01a10760-b9f0-721a-bada-12ae79c2bd3a-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7241-9f15-019e12914b85",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "805ae6b0d4c07b414802281e1acbf3f864577a2200411fc2dd56e029f626e609",
+          "recordPath": "master/classifications/01a10760-b9f0-7241-9f15-019e12914b85-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7261-96d2-07e4c9273c04",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "a7c8e32286096db7f9ab9345d618d55f99dc7b536d6541d179d1af4c9076381a",
+          "recordPath": "master/classifications/01a10760-b9f0-7261-96d2-07e4c9273c04-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7263-864d-6c2503204ba1",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "6bdd91d9d0fd59a56a8c0014aa43ca90a7bc7c0226733a1ad7d53cb8538fd260",
+          "recordPath": "master/classifications/01a10760-b9f0-7263-864d-6c2503204ba1-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-729e-b9e8-64f6cbb538a7",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "d75dac624e0639d3ea2ca1d43ed1ed63807de404eac9e9ec8b4113f7dec6f1ae",
+          "recordPath": "master/classifications/01a10760-b9f0-729e-b9e8-64f6cbb538a7-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-72a0-b58e-153edb1435d4",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "aa7d1da8f71f6df87b1097c86376b591f713fe5f07c0a5e66cfde5795adde45b",
+          "recordPath": "master/classifications/01a10760-b9f0-72a0-b58e-153edb1435d4-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-72d4-9bad-69d6f5cb6543",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "4a35ebda5865f498ac97b6a49e4617d0e4d62541b4b5ee7d61749a9f036f3d4a",
+          "recordPath": "master/classifications/01a10760-b9f0-72d4-9bad-69d6f5cb6543-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-72eb-8a39-4590b2860768",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "88f08a39ce0f35f772dd999f10dbc579fbe172dcd052648243a47475072cae5c",
+          "recordPath": "master/classifications/01a10760-b9f0-72eb-8a39-4590b2860768-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-73a9-b894-4ddf6ef4ae12",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "ea9be27ba3f903a26155f6ccb0b5c73cdd7958f0094b2f0551d2315ba645c342",
+          "recordPath": "master/classifications/01a10760-b9f0-73a9-b894-4ddf6ef4ae12-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-73af-8117-25aa157b8df3",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "f5ebfa77766ff8ab53d5a3dac89c374bf5831943d8ba55026c1f9bc2430221ec",
+          "recordPath": "master/classifications/01a10760-b9f0-73af-8117-25aa157b8df3-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-73c5-b7c3-3e08f935de3d",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "8aed1bd90e4b91f3aeae99efe429aef4cfae13564624cc2e3f2d4c4103b4210b",
+          "recordPath": "master/classifications/01a10760-b9f0-73c5-b7c3-3e08f935de3d-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-73ed-ab62-593d857a1fcc",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "df5c5c323de482fe96bcca566dbb15798b4d9b9686a71614d18d085495979e96",
+          "recordPath": "master/classifications/01a10760-b9f0-73ed-ab62-593d857a1fcc-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-743e-8006-5f42ff389661",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "58e7bbb5fe2608a32ade22429a776db43e6c538f2549e02626f78e497e4b95ef",
+          "recordPath": "master/classifications/01a10760-b9f0-743e-8006-5f42ff389661-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7441-90c0-8ef7353df869",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "0da35abe5380dbc796d9c98676f11aca927c9fbbd8b2a51ffc3989c40435c2d1",
+          "recordPath": "master/classifications/01a10760-b9f0-7441-90c0-8ef7353df869-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-745b-92ac-b5609b168981",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "f8fe34318a30a4e427fe44eb7c6d676c069bbc6fe17a68357f34cbf9429bd153",
+          "recordPath": "master/classifications/01a10760-b9f0-745b-92ac-b5609b168981-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-746f-961a-1595d4e7c31c",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "4369ab1b0827719c519cb108ac8d916adec38cc35a1143256376b2b94ef73e62",
+          "recordPath": "master/classifications/01a10760-b9f0-746f-961a-1595d4e7c31c-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7498-83f9-e1bdde543394",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "1948284d25b11a50637df4279f4c1e62ea3a6e81a12ae8f91991b624a2873d81",
+          "recordPath": "master/classifications/01a10760-b9f0-7498-83f9-e1bdde543394-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-74ac-a841-4b76153b6fd6",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "5f255d046f7caa7f50a6e346684f04b929c036983968b70d726a24b6ba6b6d44",
+          "recordPath": "master/classifications/01a10760-b9f0-74ac-a841-4b76153b6fd6-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-74c3-ab8c-b2359bb3b853",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "d3efd6e409bda1217cde5b0001df3eb09d62ac1aafb10783da92f1d8860e6201",
+          "recordPath": "master/classifications/01a10760-b9f0-74c3-ab8c-b2359bb3b853-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-74c8-a07f-e1a5d8a94a1f",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "9a8e139fcc3d6953114073445b53d0cb168f37b31308373e23463acff861a320",
+          "recordPath": "master/classifications/01a10760-b9f0-74c8-a07f-e1a5d8a94a1f-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7505-b184-f1c8745a87c4",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "1908d638053620bfc9efdeb394721b53bed548f3b2f60ae87626e342b9df990a",
+          "recordPath": "master/classifications/01a10760-b9f0-7505-b184-f1c8745a87c4-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7527-8178-6493a977b7e6",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "516d3d9aca949da0279e0074ee301da43f1e49cdf269b24c5ae0d33981e67a94",
+          "recordPath": "master/classifications/01a10760-b9f0-7527-8178-6493a977b7e6-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-75da-bbf4-e4c807a16f54",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "834da6c83765629679a08fde1610f02d017570c71371e418f3f55fcdfd2ebb2a",
+          "recordPath": "master/classifications/01a10760-b9f0-75da-bbf4-e4c807a16f54-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-75e1-ba29-3ffe3567c9f2",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "95ac2671c478b5f225517c8626578f46f45f321b3dc859babf4d04825b459c17",
+          "recordPath": "master/classifications/01a10760-b9f0-75e1-ba29-3ffe3567c9f2-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-761c-8fcb-1c09634f7fb0",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "69a7d78679ac010a14ebd82e716c641039670a4e1fd6f14296f796544485a017",
+          "recordPath": "master/classifications/01a10760-b9f0-761c-8fcb-1c09634f7fb0-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7673-87cd-66d5aaa26e3d",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "a17c679ef09c01de722696c152f50acd9df4613ed4474545ebe7d7e5f0c1d5b0",
+          "recordPath": "master/classifications/01a10760-b9f0-7673-87cd-66d5aaa26e3d-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7683-af08-eea3b2071197",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "efbe6bde66d4690cdeb9f57e0aba44731c759fb00e7266fef372b1422e79c2fb",
+          "recordPath": "master/classifications/01a10760-b9f0-7683-af08-eea3b2071197-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-770d-a35b-546266f0a7eb",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "794b5c608a0abde1e7a975473760512b475f0484a28f9125c6801f23c17115dd",
+          "recordPath": "master/classifications/01a10760-b9f0-770d-a35b-546266f0a7eb-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-773d-b132-f11a9a9665cb",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "57610e40655d81d74099ab47609ae850ee120e04053d97e209c54671edfd0fac",
+          "recordPath": "master/classifications/01a10760-b9f0-773d-b132-f11a9a9665cb-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7740-b1b1-f8fa3ebfb6c3",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "8512ff5d8f493b6f97a029ca773b01ad36228d2ceed6731616766d59aa69e799",
+          "recordPath": "master/classifications/01a10760-b9f0-7740-b1b1-f8fa3ebfb6c3-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-774e-9f0e-63b238b250e6",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "a7beaa853f3efd833f1303635dad6d5c78286cd0627f3eedd1cf09752a562723",
+          "recordPath": "master/classifications/01a10760-b9f0-774e-9f0e-63b238b250e6-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7752-8346-4c8e7e67dec4",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "f5872075ba0045e5b7c413bd87973dfd76c57e9025ea6ce79a5dced7de7e12c4",
+          "recordPath": "master/classifications/01a10760-b9f0-7752-8346-4c8e7e67dec4-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7769-982d-ae4aac3799fe",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "387db593ce695ac1051c3b5b3b9ba502ba72c92ba5585eb8d92c7c4e28286f22",
+          "recordPath": "master/classifications/01a10760-b9f0-7769-982d-ae4aac3799fe-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-776d-b613-ad3e5b28c880",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "6873ed2123cdb0a5f9daaebfc68f00d4a53f9a780eaf850499798984f20d3829",
+          "recordPath": "master/classifications/01a10760-b9f0-776d-b613-ad3e5b28c880-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-776e-b738-afdaca51be56",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "1a7c8ce6793bfad1e80454a9d3881d6e4f0622effb98b69aebc8940a24b66598",
+          "recordPath": "master/classifications/01a10760-b9f0-776e-b738-afdaca51be56-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-77a6-8d77-b6efddd51927",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "195305569f3d2d50e6ad3d376f6f42180c8fe2e7f4e97f22d5beb0c4a4de9c88",
+          "recordPath": "master/classifications/01a10760-b9f0-77a6-8d77-b6efddd51927-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-77cb-bab4-2b692b549b54",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "cca490d9643d0807161f9f0b10a96407e8eb9cc53bb3c88a36caeb81640ab96e",
+          "recordPath": "master/classifications/01a10760-b9f0-77cb-bab4-2b692b549b54-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-77d2-b383-272176fe75bd",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "133858c1f1d38bc7a2de16dc2b239f80757d28c0ca8d989cfcb23eb094bb556d",
+          "recordPath": "master/classifications/01a10760-b9f0-77d2-b383-272176fe75bd-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7813-a08d-3f8e573195c4",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "b0ce5865c06b1f98b371640c9a280893361f3ad1cf58ccbba8b2e808ba80694f",
+          "recordPath": "master/classifications/01a10760-b9f0-7813-a08d-3f8e573195c4-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-782d-947b-5cd2a51ad957",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "279a6bde94fa1069f55b1e546c2b9005a77c7d983b5c9425fe69c6d3e0b05e31",
+          "recordPath": "master/classifications/01a10760-b9f0-782d-947b-5cd2a51ad957-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7879-92ed-5e0d1d36c165",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "b79847a4fb06b83aef7ad04f06c38416c6d0889c149aa4bbb2f36d36f8aa3b43",
+          "recordPath": "master/classifications/01a10760-b9f0-7879-92ed-5e0d1d36c165-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7894-ac0c-1b7f382eba04",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "d85f61c04e84e7fb95ea3b78622dc1ff585c307fb72f3f78139f45c30b0e89da",
+          "recordPath": "master/classifications/01a10760-b9f0-7894-ac0c-1b7f382eba04-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-789d-a7ed-1f374856cf00",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "ef88c4604f1f4c23b93564b288fdee59975ebf67a217e27365179dd0809e08db",
+          "recordPath": "master/classifications/01a10760-b9f0-789d-a7ed-1f374856cf00-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-78c8-bf78-efdd25d51b2b",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "657065b9bf6ae3f15ffabb0bb2ab91a1e8b2e15270aa5acb8baa33fa800f52b8",
+          "recordPath": "master/classifications/01a10760-b9f0-78c8-bf78-efdd25d51b2b-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-78e2-8043-41dd4918dd2a",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "5c09cd6db5ea7ac598fecafd76305bb79b3a205bb902bf446d313932380548b8",
+          "recordPath": "master/classifications/01a10760-b9f0-78e2-8043-41dd4918dd2a-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-790a-bc17-fed7256e27ef",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "8c1ec2429b3cfd1471df97be234b366c8ce810c2160a2f68d624373c24c111e4",
+          "recordPath": "master/classifications/01a10760-b9f0-790a-bc17-fed7256e27ef-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7923-b11a-cafc7ca6087c",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "07f6b9848f5b5389f885187d504fa5c9e73a891634bdc39527fb1a46ff20f404",
+          "recordPath": "master/classifications/01a10760-b9f0-7923-b11a-cafc7ca6087c-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7924-a18e-efb894af1992",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "e31b54fbbb09d7c2600b4953777ebe1825c7963959242a7965eb4976a84bae70",
+          "recordPath": "master/classifications/01a10760-b9f0-7924-a18e-efb894af1992-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7926-9722-0300f03bc8c7",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "5d963ea03c0b291c18e87a5710b2ab5e3473205662b50cb42f9227816650014c",
+          "recordPath": "master/classifications/01a10760-b9f0-7926-9722-0300f03bc8c7-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-792f-8eea-2f732ac368a4",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "28227e83c690b79bc46885febf9c3c5a4f4c12a41cf617b4a865d9840ca2a290",
+          "recordPath": "master/classifications/01a10760-b9f0-792f-8eea-2f732ac368a4-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-792f-9b5a-7af08362e3e2",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "282d6920863ae17a41fc91fad127295f2990b65f2fa54d6249ce27cc5fe6556d",
+          "recordPath": "master/classifications/01a10760-b9f0-792f-9b5a-7af08362e3e2-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-794d-8faa-054fecc8ae79",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "483d5444cd3ccb9033a90f2d702924c40b7979eee45c4dc83155146f090f97e8",
+          "recordPath": "master/classifications/01a10760-b9f0-794d-8faa-054fecc8ae79-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7953-abe6-386b76c2d02c",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "05c3206ee6b8bb06ff70e62188b9de2f0df45d3d6486e925db922268a6a9c96f",
+          "recordPath": "master/classifications/01a10760-b9f0-7953-abe6-386b76c2d02c-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7958-ae0f-b757c56c01b0",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "affb7ac18bb2fa17f0b79721957889d82f539abb9e066843611fbfc8f9405e53",
+          "recordPath": "master/classifications/01a10760-b9f0-7958-ae0f-b757c56c01b0-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-797f-98d3-039dbc48e347",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "14da732858044e510e9b42cecb6aef136d15b8dceb626161a67abb433bedaeac",
+          "recordPath": "master/classifications/01a10760-b9f0-797f-98d3-039dbc48e347-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-79aa-82c4-35e785d149ec",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "86471ed3707ecb7011b43c7cac6e8655833183f3439fef955efad9d0c281a1bd",
+          "recordPath": "master/classifications/01a10760-b9f0-79aa-82c4-35e785d149ec-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-79bb-b0bc-5bf05f0e4faa",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "f7a5d62b4f8c258a5c9bc2189cb68332900f26c5391840a95948c6b8e1b60fc8",
+          "recordPath": "master/classifications/01a10760-b9f0-79bb-b0bc-5bf05f0e4faa-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-79d4-a2d5-15762b9b5e8d",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "2d26a8b2e256ef6e5acaa4d2d2ad97b641bb18a4200019a8a3ced8cd27240ed2",
+          "recordPath": "master/classifications/01a10760-b9f0-79d4-a2d5-15762b9b5e8d-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-79e5-b9fd-3cca68d1fca5",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "bb4b069c475740c2ed2719d00d59b4d12cd9b0eed0e826293392612e0f6bb5b1",
+          "recordPath": "master/classifications/01a10760-b9f0-79e5-b9fd-3cca68d1fca5-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7a1c-b6ce-ae0683c473f2",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "7a995a49914039ba8e93f7037fefb3f5da58bd9ecd7e42e64a66be0d3468964e",
+          "recordPath": "master/classifications/01a10760-b9f0-7a1c-b6ce-ae0683c473f2-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7a21-925a-b9d8c300e727",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "d2f55b7d65188808632606a5bc75d64dfe0297d83b39976fe473f3dab5da6c3c",
+          "recordPath": "master/classifications/01a10760-b9f0-7a21-925a-b9d8c300e727-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7a52-8a08-0131f5a2e43e",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "f944bd3e29f5790c1db200f06dd6d7bcd22494d2aa4cfacc9c6f31cc28ddea63",
+          "recordPath": "master/classifications/01a10760-b9f0-7a52-8a08-0131f5a2e43e-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7aa2-a18f-82fee7079502",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "7b32e01ae8e528f651396cff567e06ac316b3122cd64585514c327b57e2ac2a9",
+          "recordPath": "master/classifications/01a10760-b9f0-7aa2-a18f-82fee7079502-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7ab3-baf5-00d42cb0a66d",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "0b6bb05da2418835e188a75d8cd589cc8f2d6eac1b6fa7c2b48763ef7b2e33c5",
+          "recordPath": "master/classifications/01a10760-b9f0-7ab3-baf5-00d42cb0a66d-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7b46-b8c7-e6e52db7c6ed",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "f42ea9b3934ddad4c3c905fff933c47e29ed0711269f4552a952c0b86270dfaf",
+          "recordPath": "master/classifications/01a10760-b9f0-7b46-b8c7-e6e52db7c6ed-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7b4c-99a4-5a8ae9d0ee23",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "0ad0958d54e352ed56271216f19fa61084e3e292a2fb06a1a8c05e90ca772a5b",
+          "recordPath": "master/classifications/01a10760-b9f0-7b4c-99a4-5a8ae9d0ee23-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7b7b-bbbc-27ef19e8ad1c",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "b268062aa800d3235f6e6d733b990155838f33441ac3ceea6355daa3a4bc452b",
+          "recordPath": "master/classifications/01a10760-b9f0-7b7b-bbbc-27ef19e8ad1c-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7bb6-8cfa-25188c073394",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "08669c5736310df0b59fa84085492b83e912494a418b3a41d7787d21f0ea68a3",
+          "recordPath": "master/classifications/01a10760-b9f0-7bb6-8cfa-25188c073394-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7bc9-a9a6-d15a8e3dfa23",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "dc05d07aaa7eacea2879f72be6f0851161d3a0afdec50defacf8c86ce00b593d",
+          "recordPath": "master/classifications/01a10760-b9f0-7bc9-a9a6-d15a8e3dfa23-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7bfb-828e-22a8037cb71c",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "12947db0bef38f52db184bfb05a691faf48d886582459595acc5e81466d46555",
+          "recordPath": "master/classifications/01a10760-b9f0-7bfb-828e-22a8037cb71c-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7c86-9833-56cbf539427b",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "2ca2bd46b484f50707893996cef6b63b13019fb87a274dedc3ea15ab0fc1dcb8",
+          "recordPath": "master/classifications/01a10760-b9f0-7c86-9833-56cbf539427b-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7ce4-8c4c-4454da9412e9",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "fb4845c3bb411f9f98bd5c0d1f82947e2b70cfd8b3894c08d68c5209cb5a1ee0",
+          "recordPath": "master/classifications/01a10760-b9f0-7ce4-8c4c-4454da9412e9-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7d47-993e-8553794e925c",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "83a640c1623d35cf8e62df1b4aadf2ce8285e8e00d3d5005f1beba8be7bcb9d9",
+          "recordPath": "master/classifications/01a10760-b9f0-7d47-993e-8553794e925c-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7d48-8eb2-8145f48d433f",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "1256ee89bfcdbbf73ac16b890db97131bbea80185d5aa9523472e33b9e23cea7",
+          "recordPath": "master/classifications/01a10760-b9f0-7d48-8eb2-8145f48d433f-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7d4a-b9e3-09491f437ce5",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "5f6bc408ebebd4b2ceae700c418d1b5fb0c43dc23906d666b46ebca34bc4129a",
+          "recordPath": "master/classifications/01a10760-b9f0-7d4a-b9e3-09491f437ce5-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7e0b-aa51-cc09a37ce365",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "516985e218bb994ae682df07fa6adcb41d92612104c1f264fa42ef538455c162",
+          "recordPath": "master/classifications/01a10760-b9f0-7e0b-aa51-cc09a37ce365-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7e16-a07f-c88441d3009e",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "1a41ddc442949bc1f9c41e17af94d0364a0ae11c19d0febb49bce63d60c94d6f",
+          "recordPath": "master/classifications/01a10760-b9f0-7e16-a07f-c88441d3009e-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7e21-aecc-af5843212cdc",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "9668dcffa1772aed87f6900f48e45c0ee257dbf63cb6c0eb976395c0ef9ffae5",
+          "recordPath": "master/classifications/01a10760-b9f0-7e21-aecc-af5843212cdc-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7e3f-88c9-a667c379bdd9",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "1f37793de63d86cf076abed13e4b02c8dca989b0fa6f8ddd20531469bb4b2058",
+          "recordPath": "master/classifications/01a10760-b9f0-7e3f-88c9-a667c379bdd9-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7e41-b3fd-021e48b1f96b",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "44846f849119373054f7868dd508e949b62856006f9464380322a3ff76851c21",
+          "recordPath": "master/classifications/01a10760-b9f0-7e41-b3fd-021e48b1f96b-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7e48-9723-6ac13e9fb05e",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "e85c1cffd4e62d946dc594d2e9d89d5e05be3625a22bc8ddd6a6afc3a1c83b8d",
+          "recordPath": "master/classifications/01a10760-b9f0-7e48-9723-6ac13e9fb05e-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7e48-b30a-e11fba1822a7",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "2447873a04fe537e9f142b26dcb26fe46bef81574dee7a56d6c8e53d6a31bb02",
+          "recordPath": "master/classifications/01a10760-b9f0-7e48-b30a-e11fba1822a7-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7e5b-b0f9-673464e276d7",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "63bf2a254e3dd98018b862256aa190b741978b0777ef8327cb2619e33bdb6d5c",
+          "recordPath": "master/classifications/01a10760-b9f0-7e5b-b0f9-673464e276d7-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7e87-a9e0-251ab7152f69",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "e749d013aed0384a2d06844b8e0bcf3beae114bd07e7e981a902b33fb3fccf8c",
+          "recordPath": "master/classifications/01a10760-b9f0-7e87-a9e0-251ab7152f69-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7ed4-b94c-957d887a4ebc",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "423b6632dba8770855d9bcb0e216891e45fcc8e53c84e42f50e0855470869c4c",
+          "recordPath": "master/classifications/01a10760-b9f0-7ed4-b94c-957d887a4ebc-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7f0d-808a-170f24f409ef",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "da2ddc423da2496774d8c9cdc3aeacf0309c106606c2f81e479043904c98e6ec",
+          "recordPath": "master/classifications/01a10760-b9f0-7f0d-808a-170f24f409ef-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7f17-a990-481e9dd28fa4",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "dc998df5c621aac46842158f376b0475bdc3ff0c6bbab38a7833685402cff5f4",
+          "recordPath": "master/classifications/01a10760-b9f0-7f17-a990-481e9dd28fa4-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7f25-9e6f-8374a26b203c",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "6dc181861794325391d603ec83b74e8618db6633d6fcc6af1a76653975f8ac4a",
+          "recordPath": "master/classifications/01a10760-b9f0-7f25-9e6f-8374a26b203c-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7f7e-97a0-d9f8502a41c7",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "7d1cda593a857cb5842ce9c61bb4176be8b12f9fc341d27cf9195fa42c2ffa5e",
+          "recordPath": "master/classifications/01a10760-b9f0-7f7e-97a0-d9f8502a41c7-r1.json"
+        },
+        {
+          "entityType": "CLASSIFICATION",
+          "stableId": "01a10760-b9f0-7fc5-be31-65b1995d71e1",
+          "currentRevision": 1,
+          "currentStatus": "DRAFT",
+          "currentContentHash": "c9449501e81607bb9e1539fe42a2d8e514390566ec3e23a3209c0fa15918f63a",
+          "recordPath": "master/classifications/01a10760-b9f0-7fc5-be31-65b1995d71e1-r1.json"
+        }
+      ],
+      "other": []
+    }
+  },
+  "taxonomy": {
+    "taxonomyId": "01a0fc13-09e9-72dd-b49d-ffef077385dd",
+    "taxonomyVersion": "2.0.0",
+    "currentStatus": "DRAFT",
+    "statusCounts": {
+      "DRAFT": 1,
+      "APPROVED": 0,
+      "IN_REVIEW": 0,
+      "other": 0
+    },
+    "recordsByStatus": {
+      "DRAFT": [
+        {
+          "taxonomyId": "01a0fc13-09e9-72dd-b49d-ffef077385dd",
+          "taxonomyVersion": "2.0.0",
+          "contentHash": "67ecd13e49e756df6fce2def9f40fe11eb8831ef9a68097299d37324ac588b79",
+          "recordPath": "taxonomy/01a0fc13-09e9-72dd-b49d-ffef077385dd-2.0.0.json"
+        }
+      ],
+      "APPROVED": [],
+      "IN_REVIEW": [],
+      "other": []
+    }
+  }
+}

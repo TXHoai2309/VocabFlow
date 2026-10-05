@@ -49,6 +49,8 @@
     "vocab:hybrid-100-cefr-owner-review-closure": "tsx scripts/hybrid-100-cefr-owner-review-closure.ts",
     "vocab:hybrid-100-cefr-full-owner-approval": "tsx scripts/hybrid-100-cefr-full-owner-approval.ts",
     "vocab:hybrid-100-release-candidate": "tsx scripts/hybrid-100-release-candidate.ts",
+    "vocab:hybrid-100-rc-final-audit": "tsx scripts/hybrid-100-rc-final-audit.ts",
+    "test:vocab:hybrid-100-rc-final-audit": "vitest run --pool=threads --maxWorkers=1 --no-file-parallelism scripts/hybrid-100-rc-final-audit.test.ts",
     "test:master-vocab-v2-hybrid-source-proof": "python scripts/master-vocabulary-v2-hybrid-source-proof.test.py",
     "prepare:master-vocab-v2-canary": "tsx scripts/master-vocabulary-v2-canary-preparation.ts",
     "dataset:prepare-canary-v2": "tsx scripts/master-vocabulary-v2-canary-release-builder.ts",

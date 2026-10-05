@@ -2383,3 +2383,26 @@ registration boundary before feature implementation.
 - This is not an APPROVED release. No releaseHash exists. Source and media rights remain unverified. No runtime reconciliation, Neon import, database write, or production mutation occurred.
 - Remaining gates: final RC owner review, DRAFT canonical content review, DRAFT taxonomy review, and separate APPROVED-release authorization.
 <!-- PHASE-2F5-AI-PROGRESS END -->
+
+## 2026-10-05 — Phase 2F.6 Hybrid-100 RC final audit
+
+- Offline audit PASS: immutable 2.2.0-rc.1 retains the pinned fingerprint and
+  exact 87-Lexeme / 100-Sense cohort, 99 CEFR assignments, and 799-record
+  provenance closure. Learner-facing semantic drift is zero; no content
+  correction or rc.2 is required.
+- The release plan calls for approval-only next revisions for 87 Lexemes,
+  100 Senses, and 99 Classifications. No records or IDs were created.
+- Taxonomy 2.0.0 remains an immutable DRAFT snapshot. Repository policy does
+  not define a lifecycle-only approval version step, so option C is recorded:
+  an owner architecture decision is required before release 2.2.0 can be
+  built. No APPROVED release or releaseHash was created; final owner release
+  authorization remains pending.
+- Runtime import and production mutation remain unauthorized. No database,
+  reconciliation, runtime, canonical lifecycle, or RC mutation occurred.
+- Focused audit regression: 6/6 PASS; audit `--check` reports all artifacts
+  materialized with no differences. Master validator, typecheck, global ESLint,
+  and `git diff --check` PASS. pnpm reports the local Node 22.19.0 is below the
+  package's requested 22.23.2 engine; the listed checks completed successfully.
+- Evidence: [final audit report](../vocabflow-dataset/reports/hybrid-100-rc-final-review-2.2.0-rc.1.md),
+  [owner decision](../vocabflow-dataset/reports/hybrid-100-rc-final-owner-decision.md),
+  and [machine-readable review plan](../vocabflow-dataset/workspaces/hybrid-100-rc-final-review/).

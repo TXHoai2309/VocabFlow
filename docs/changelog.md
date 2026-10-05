@@ -1533,3 +1533,20 @@ US-07 remains not started.
 - Built the immutable 2.2.0-rc.1 Hybrid-100 candidate in IN_REVIEW status; it is not an approved release and has no releaseHash.
 - Runtime import, database writes, and production mutation remain unauthorized and were not performed.
 <!-- PHASE-2F5-CHANGELOG END -->
+
+## 2026-10-05 — Hybrid-100 RC final audit and release planning
+
+- Audited the immutable 2.2.0-rc.1 package: exact owner-approved cohort,
+  CEFR decisions, source-content freeze, provenance closure, and canary
+  fingerprint all pass. No content correction is required.
+- Added a read-only audit CLI, focused regression tests, exhaustive lifecycle
+  inventory, approval-only revision plan, taxonomy decision plan, and proposed
+  2.2.0 manifest. No canonical revisions, release, or official releaseHash
+  were created.
+- The taxonomy 2.0.0 approval-version rule remains ambiguous and blocks final
+  release construction pending an owner architecture decision. Owner release
+  authorization is pending; runtime import and production mutation remain
+  unauthorized.
+- Audit regression 6/6, Master validator (0 errors/warnings, 1 informational
+  DRAFT issue), typecheck, global ESLint, and `git diff --check` pass. Local
+  Node 22.19.0 emits the package engine warning (requested 22.23.2).

@@ -543,3 +543,27 @@ The release candidate contains the exact 87-Lexeme / 100-Sense cohort, 99 CEFR a
 
 Final approval remains blocked on RC owner/final review, review of the IN_REVIEW manifest, DRAFT canonical records, DRAFT taxonomy snapshot, and separate authorization for an APPROVED release.
 <!-- PHASE-2F5-US45 END -->
+
+## Phase 2F.6 — Hybrid-100 RC final audit and release plan
+
+The offline final audit passes for immutable 2.2.0-rc.1: fingerprint and tree
+fingerprint match, the owner-approved cohort is exactly 87 Lexemes and 100
+Senses, 99 CEFR assignments are preserved, semantic content drift is zero,
+and all 799 candidate Provenance records close. No rc.2 content correction is
+required.
+
+The plan is approval-only: 87 Lexeme, 100 Sense, and 99 Classification next
+revisions, preserving stable IDs and learner-facing content. Taxonomy 2.0.0 is
+still DRAFT and immutable. Because repository policy has no lifecycle-only
+taxonomy approval version rule, final release construction is blocked pending
+an owner architecture decision. No release 2.2.0 or releaseHash was created;
+owner release authorization remains pending. Runtime import and production
+mutation remain unauthorized and were not performed.
+
+The audit regression passes 6/6; Master validation, typecheck, global ESLint,
+and `git diff --check` pass. The local Node 22.19.0 runtime emits an engine
+warning because the package requests 22.23.2.
+
+Evidence: [Phase 2F.6 final audit](../../vocabflow-dataset/reports/hybrid-100-rc-final-review-2.2.0-rc.1.md),
+[owner decision](../../vocabflow-dataset/reports/hybrid-100-rc-final-owner-decision.md),
+and [machine-readable review plan](../../vocabflow-dataset/workspaces/hybrid-100-rc-final-review/).

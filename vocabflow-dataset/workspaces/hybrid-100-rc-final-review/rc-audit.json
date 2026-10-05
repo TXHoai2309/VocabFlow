@@ -1,0 +1,407 @@
+{
+  "artifactType": "HYBRID_100_RC_FINAL_AUDIT",
+  "status": "PASS",
+  "rc": {
+    "version": "2.2.0-rc.1",
+    "status": "IN_REVIEW",
+    "fingerprint": "06b2a4dec2f54438416cae67788e0683fe94907cbce0a60fbb2d6469bc25b82c",
+    "treeFingerprint": "9d021e151d934a61c577289a4aff3ded8883858bac672e1c27ac546a335966a7",
+    "immutabilityValid": true,
+    "releaseHashPresent": false,
+    "counts": {
+      "lexemes": 87,
+      "senses": 100,
+      "classifications": 99,
+      "provenance": 799,
+      "taxonomySnapshots": 1,
+      "media": 0,
+      "learningSets": 0,
+      "relations": 0
+    },
+    "pinContentMismatches": []
+  },
+  "inputFingerprints": {
+    "authorizedCefrFingerprint": "d0a60b26f75b65c18953e76ed759447151ab81a880e9c3e869cbefc6f12bb622",
+    "semanticDraftFingerprint": "a112a475e896f09038d4dd6834389af2d553d3a509829ef410ef17ae4e37ee1d",
+    "cefrWorkspaceFingerprint": "d0a60b26f75b65c18953e76ed759447151ab81a880e9c3e869cbefc6f12bb622",
+    "canonicalPromotionPlanFingerprint": "969b5090a020b3f4793e6a77dcd78ce46fbb119036c45bfcf93bca81cc7a04db",
+    "authorizationFingerprint": "a2a4243b579bb4a33302665c8b75ee59b6999350da88cad1ba8a886c78079a80"
+  },
+  "cohort": {
+    "senseCohortExact": true,
+    "lexemeCohortExact": true,
+    "approvedOwnerSenseCount": 100,
+    "approvedOwnerLexemeCount": 87,
+    "candidateSenseCount": 100,
+    "candidateLexemeCount": 87,
+    "noExtraRootSense": true,
+    "ownerDecisionStatusCount": 100
+  },
+  "semanticContent": {
+    "semanticDraftFingerprint": "a112a475e896f09038d4dd6834389af2d553d3a509829ef410ef17ae4e37ee1d",
+    "ownerApprovedSemanticFingerprintVerified": true,
+    "semanticComparisonExcludesOnlyLifecycleStatusAndProvenanceReferences": true,
+    "lexemeContentDrift": 0,
+    "senseContentDrift": 0,
+    "totalSemanticContentDrift": 0,
+    "sourceHashMismatches": 0,
+    "comparedLexemes": 87,
+    "comparedSenses": 100,
+    "issues": [],
+    "semanticContentDrift": 0,
+    "knownEditorialSpotChecks": [
+      {
+        "lemma": "far",
+        "masterLexemeIds": [
+          "01a1070c-7c58-76b5-a2a9-46c7a452aaa4"
+        ],
+        "masterSenseIds": [
+          "01a1070c-7c58-76b5-a2a9-4b4562d352c8"
+        ],
+        "present": true,
+        "matchesOwnerReviewedPackage": true
+      },
+      {
+        "lemma": "acute",
+        "masterLexemeIds": [
+          "01a1070c-7c58-76b5-a2aa-9091f194b958"
+        ],
+        "masterSenseIds": [
+          "01a1070c-7c58-76b5-a2aa-97f25323b0a8"
+        ],
+        "present": true,
+        "matchesOwnerReviewedPackage": true
+      },
+      {
+        "lemma": "toll",
+        "masterLexemeIds": [
+          "01a1070c-7c58-76b5-a2ab-a268368f74c1"
+        ],
+        "masterSenseIds": [
+          "01a1070c-7c58-76b5-a2ab-a764716f4128"
+        ],
+        "present": true,
+        "matchesOwnerReviewedPackage": true
+      },
+      {
+        "lemma": "hopefully",
+        "masterLexemeIds": [
+          "01a1070c-7c57-7676-9acf-07e31175af99"
+        ],
+        "masterSenseIds": [
+          "01a1070c-7c57-7676-9acf-09879397d1e1"
+        ],
+        "present": true,
+        "matchesOwnerReviewedPackage": true
+      },
+      {
+        "lemma": "textile",
+        "masterLexemeIds": [
+          "01a1070c-7c58-76b5-a2a9-176810772f4e"
+        ],
+        "masterSenseIds": [
+          "01a1070c-7c58-76b5-a2a9-18ee254ff4be"
+        ],
+        "present": true,
+        "matchesOwnerReviewedPackage": true
+      },
+      {
+        "lemma": "crawl",
+        "masterLexemeIds": [
+          "01a1070c-7c57-7676-9ace-2d5ee1031f79"
+        ],
+        "masterSenseIds": [
+          "01a1070c-7c57-7676-9ace-32d1337aab90"
+        ],
+        "present": true,
+        "matchesOwnerReviewedPackage": true
+      },
+      {
+        "lemma": "compelling",
+        "masterLexemeIds": [
+          "01a1070c-7c58-76b5-a2aa-ef2e16608a0c"
+        ],
+        "masterSenseIds": [
+          "01a1070c-7c58-76b5-a2aa-f3a4a21a7dc3"
+        ],
+        "present": true,
+        "matchesOwnerReviewedPackage": true
+      }
+    ],
+    "allKnownEditorialSpotChecksMatch": true
+  },
+  "cefr": {
+    "classifiedCount": 99,
+    "unclassifiedCount": 1,
+    "distribution": {
+      "PRE_A1": 0,
+      "A1": 17,
+      "A2": 28,
+      "B1": 20,
+      "B2": 27,
+      "C1": 7,
+      "C2": 0,
+      "UNCLASSIFIED": 1
+    },
+    "expectedDistribution": {
+      "PRE_A1": 0,
+      "A1": 17,
+      "A2": 28,
+      "B1": 20,
+      "B2": 27,
+      "C1": 7,
+      "C2": 0,
+      "UNCLASSIFIED": 1
+    },
+    "distributionExact": true,
+    "cefrValueDrift": 0,
+    "classificationIdDrift": 0,
+    "confidenceDrift": 0,
+    "reusedClassificationCount": 1,
+    "reusedClassificationRecordDrift": 0,
+    "reuseConfidenceExcludedFromRevisionComparison": true,
+    "extraClassificationsForUnclassified": 0,
+    "duplicatePrimaryCefrCount": 0,
+    "frameworkCode": "CEFR",
+    "frameworkVersion": "EDITORIAL-PILOT-1",
+    "issues": [],
+    "lightFinalDecisionPreserved": true,
+    "light": {
+      "classificationId": "01a0fc13-09f1-76b9-8a57-6c6e55e9b438",
+      "revision": 2,
+      "valueCode": "A1",
+      "status": "DRAFT"
+    },
+    "waterReusePreserved": true,
+    "water": {
+      "classificationId": "01a0fc13-09f2-77bf-93db-1ceefb68082a",
+      "revision": 1,
+      "valueCode": "A2",
+      "status": "IN_REVIEW"
+    },
+    "fuseUnclassifiedPreserved": true,
+    "fuseSenseId": "01a1070c-7c59-726e-88d6-cf9dc05adb73",
+    "fuseClassificationCount": 0
+  },
+  "provenance": {
+    "candidateProvenanceCount": 799,
+    "sourceTypeCounts": {
+      "PROJECT_AUTHORED": 602,
+      "OWNER_REVIEW": 197
+    },
+    "danglingProvenance": 0,
+    "danglingProvenanceIds": [],
+    "canonicalContentMismatches": 0,
+    "canonicalContentMismatchIds": [],
+    "pinContentMismatches": 0,
+    "prohibitedRightsClaims": [],
+    "closureValid": true,
+    "approvedCefrClassificationsWithoutSourceReferences": 0,
+    "approvedCefrClassificationIdsMissingSourceReferences": [],
+    "additionalApprovalProvenanceRequiredByCurrentValidator": 0,
+    "rationale": "All existing references resolve inside the 799-record closure. The current validator requires non-empty Provenance specifically for approved CEFR, EXAM, and SCHOOL_LEVEL Classifications (line 586); all candidate CEFR Classifications already have sourceProvenanceIds, and those IDs are pinned. It does not require a new OWNER_REVIEW event for each lifecycle transition."
+  },
+  "sourceBoundary": {
+    "sourceRightsVerified": false,
+    "sourceTextReused": false,
+    "sourceMediaReused": false,
+    "rightsMetadataExplicit": true,
+    "sourceTextMetadataExplicit": true,
+    "sourceMediaMetadataExplicit": true,
+    "semanticOverlapAudit": {
+      "exactEnglishDefinitionMatches": 0,
+      "exactEnglishExampleMatches": 0,
+      "candidatesWithContiguousOverlapAtLeastEightTokens": 0,
+      "unresolvedHighSimilarity": 0
+    },
+    "sourceRightsAloneIsNotBlocker": true,
+    "sourceTypesLicensedOrPublicDomain": 0,
+    "mediaAssets": 0
+  },
+  "lifecycle": {
+    "currentStatusCounts": {
+      "LEXEME": {
+        "APPROVED": 0,
+        "IN_REVIEW": 3,
+        "DRAFT": 84,
+        "other": 0
+      },
+      "SENSE": {
+        "APPROVED": 0,
+        "IN_REVIEW": 2,
+        "DRAFT": 98,
+        "other": 0
+      },
+      "CLASSIFICATION": {
+        "APPROVED": 0,
+        "IN_REVIEW": 1,
+        "DRAFT": 98,
+        "other": 0
+      }
+    },
+    "expectedStatusCounts": {
+      "LEXEME": {
+        "APPROVED": 0,
+        "IN_REVIEW": 3,
+        "DRAFT": 84,
+        "other": 0
+      },
+      "SENSE": {
+        "APPROVED": 0,
+        "IN_REVIEW": 2,
+        "DRAFT": 98,
+        "other": 0
+      },
+      "CLASSIFICATION": {
+        "APPROVED": 0,
+        "IN_REVIEW": 1,
+        "DRAFT": 98,
+        "other": 0
+      }
+    },
+    "approvalRevisionCounts": {
+      "LEXEME": 87,
+      "SENSE": 100,
+      "CLASSIFICATION": 99
+    },
+    "approvalPlanRowCount": 286,
+    "stableIdsPreserved": true,
+    "learnerFacingContentChangesRequired": false,
+    "lifecyclePlanReady": true,
+    "newIdsAllocated": 0
+  },
+  "taxonomy": {
+    "decision": "TAXONOMY_APPROVAL_POLICY_AMBIGUOUS",
+    "option": "C",
+    "taxonomyId": "01a0fc13-09e9-72dd-b49d-ffef077385dd",
+    "currentTaxonomyVersion": "2.0.0",
+    "currentStatus": "DRAFT",
+    "currentContentHash": "67ecd13e49e756df6fce2def9f40fe11eb8831ef9a68097299d37324ac588b79",
+    "currentRecordMustRemainImmutable": true,
+    "proposedApprovedTaxonomyVersion": null,
+    "frameworkCode": "CEFR",
+    "frameworkVersion": "EDITORIAL-PILOT-1",
+    "semanticTaxonomyChangeRequired": false,
+    "evidence": {
+      "identityVersioningPolicy": [
+        "docs/architecture/master-vocabulary-v2-identity-versioning-policy.md:49 identifies taxonomyId as a lineage and taxonomyVersion as each immutable snapshot.",
+        "docs/architecture/master-vocabulary-v2-identity-versioning-policy.md:96 says taxonomyVersion changes for taxonomy record/value/hierarchy changes in a new snapshot.",
+        "docs/architecture/master-vocabulary-v2-identity-versioning-policy.md:112-114 requires release pins to exact immutable taxonomy snapshots.",
+        "The repository defines SemVer semantics for datasetVersion but no taxonomy-specific mapping for lifecycle-only status approval."
+      ],
+      "schema": "vocabflow-dataset/schemas/taxonomy.schema.json permits DRAFT or APPROVED and requires a semVer taxonomyVersion; it does not define a status-transition version increment.",
+      "validator": "scripts/validate-master-vocabulary-v2.ts:674-675 rejects a non-APPROVED taxonomy pin in an APPROVED release.",
+      "observedTaxonomySnapshots": [
+        {
+          "path": "vocabflow-dataset/releases/hybrid-100-v2.2.0-rc.1/taxonomy/01a0fc13-09e9-72dd-b49d-ffef077385dd-2.0.0.json",
+          "taxonomyId": "01a0fc13-09e9-72dd-b49d-ffef077385dd",
+          "taxonomyVersion": "2.0.0",
+          "status": "DRAFT",
+          "contentHash": "67ecd13e49e756df6fce2def9f40fe11eb8831ef9a68097299d37324ac588b79"
+        },
+        {
+          "path": "vocabflow-dataset/taxonomy/01a0fc13-09e9-72dd-b49d-ffef077385dd-2.0.0.json",
+          "taxonomyId": "01a0fc13-09e9-72dd-b49d-ffef077385dd",
+          "taxonomyVersion": "2.0.0",
+          "status": "DRAFT",
+          "contentHash": "67ecd13e49e756df6fce2def9f40fe11eb8831ef9a68097299d37324ac588b79"
+        }
+      ],
+      "approvedSnapshotPrecedents": [],
+      "canaryHasTaxonomyPin": false,
+      "repositoryValidVersionBumpForApprovalOnlyStatusChange": null
+    },
+    "lifecycleOnlyStatusChangeWouldPreserveTaxonomySemanticFields": true,
+    "finalReleaseBlockedPendingOwnerArchitectureDecision": true,
+    "currentSnapshot": {
+      "taxonomyId": "01a0fc13-09e9-72dd-b49d-ffef077385dd",
+      "taxonomyVersion": "2.0.0",
+      "status": "DRAFT",
+      "contentHash": "67ecd13e49e756df6fce2def9f40fe11eb8831ef9a68097299d37324ac588b79",
+      "recordPath": "taxonomy/01a0fc13-09e9-72dd-b49d-ffef077385dd-2.0.0.json"
+    }
+  },
+  "finalReleasePlan": {
+    "datasetVersion": "2.2.0",
+    "status": "APPROVED",
+    "datasetId": "0195f85c-7b2a-7d10-8c01-000000000001",
+    "datasetCode": "vocabflow-master-v2",
+    "schemaVersion": "2.0.1",
+    "counts": {
+      "lexemes": 87,
+      "senses": 100,
+      "classifications": 99,
+      "taxonomySnapshots": 1,
+      "provenance": 799,
+      "media": 0,
+      "learningSets": 0,
+      "relations": 0
+    },
+    "taxonomyVersion": null,
+    "provenanceCountRecomputed": 799,
+    "provenanceCountMayChangeIfFutureContractAddsApprovalEvidence": true,
+    "officialReleaseHashCreated": false,
+    "releaseHashAlgorithm": "sha256-canonical-json-v1",
+    "releaseHashRule": "SHA-256 over RFC 8785/JCS canonical JSON of the final APPROVED dataset manifest with releaseHash omitted; calculate only after all record/taxonomy/provenance pins and releasedAt are final.",
+    "releaseBuildTechnicallyReady": false,
+    "blocker": "TAXONOMY_APPROVAL_POLICY_AMBIGUOUS"
+  },
+  "validatorContract": {
+    "approvedReleaseManifestFields": {
+      "schemaPath": "vocabflow-dataset/schemas/dataset.schema.json:160",
+      "required": [
+        "releasedAt",
+        "releaseHash",
+        "releaseHashAlgorithm"
+      ],
+      "releaseHashAlgorithm": "sha256-canonical-json-v1",
+      "validatorPath": "scripts/validate-master-vocabulary-v2.ts:411-420",
+      "releaseHashRule": "SHA-256 of RFC 8785/JCS canonical dataset manifest with releaseHash omitted."
+    },
+    "approvedRecordLifecycle": "scripts/validate-master-vocabulary-v2.ts:669-675 requires included Lexeme, Sense, Classification, Learning Set, Relation, and Taxonomy records to be APPROVED when manifest.status is APPROVED.",
+    "provenanceRule": "scripts/validate-master-vocabulary-v2.ts:498-503 resolves every supplied Provenance reference; line 586 requires non-empty sourceProvenanceIds for APPROVED CEFR/EXAM/SCHOOL_LEVEL Classifications. No OWNER_REVIEW-only sourceType rule is implemented."
+  },
+  "validation": {
+    "rcStatus": "PASS",
+    "rcErrors": 0,
+    "rcWarnings": 0,
+    "rcInfo": 0,
+    "currentCanaryFingerprint": "2c75c7092b89ed343e186d5087c4c99b2a09d8afd666c61f3cab1d746f504547",
+    "expectedCanaryFingerprint": "2c75c7092b89ed343e186d5087c4c99b2a09d8afd666c61f3cab1d746f504547",
+    "canaryChanged": false,
+    "runtimeAudit": {
+      "runtimeImportDirectoryAbsent": true,
+      "runtimeArtifacts": 0,
+      "pathHits": [],
+      "forbiddenKeyHits": []
+    }
+  },
+  "decision": {
+    "rcFinalAuditPass": true,
+    "contentCorrectionRequired": false,
+    "nextRequiredRc": "NONE",
+    "taxonomyApprovalPolicyResolved": false,
+    "approvedReleaseBuildTechnicallyReady": false,
+    "approvedReleaseAuthorized": false,
+    "recommendation": "APPROVE_RC_FOR_FINAL_RELEASE_BUILD",
+    "recommendationRationale": "No semantic or CEFR content defect was found, so rc.2 is not justified. The owner may accept rc.1 for final-release preparation, but an owner architecture decision on taxonomy approval versioning is required before any 2.2.0 manifest is built.",
+    "runtimeImportAuthorized": false,
+    "productionMutationAuthorized": false,
+    "phaseReady": true
+  },
+  "auditInputState": {
+    "canonicalRootMutation": "NONE",
+    "releaseCandidateMutation": "NONE",
+    "databaseConnection": "NONE",
+    "databaseWrites": "NONE",
+    "reconciliationScanExecuted": "NO",
+    "importApplyExecuted": "NO",
+    "migrationsExecuted": "NONE",
+    "developmentRuntimeMutation": "NO",
+    "productionConnection": "NONE",
+    "productionMutation": "NO",
+    "sourceRightsVerified": false,
+    "sourceTextReused": false,
+    "sourceMediaReused": false
+  }
+}
