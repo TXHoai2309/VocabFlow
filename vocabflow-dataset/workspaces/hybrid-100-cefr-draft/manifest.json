@@ -62,7 +62,7 @@
     "HYBRID_100_CONTENT_COHORT_READY": "YES",
     "HYBRID_100_APPROVED_RELEASE_READY": "NO"
   },
-  "cefrDraftFingerprint": "5c2132d01b43a7539d1b7745bf4d65bafe498c13e5fc332437c9ab0b46812dfd",
+  "cefrDraftFingerprint": "d0a60b26f75b65c18953e76ed759447151ab81a880e9c3e869cbefc6f12bb622",
   "parentCefrDraftFingerprint": "2da4c57ebbd18ce5e2c1fa77749fb7fe79a2f22752ba39506d2f59a7d7804a74",
   "ownerReviewClosureFingerprint": "ec0a6e34556a3d484dbdd608e592b912cb8c4ff2ceafdbe46b9cac02ea23b18f",
   "ownerExceptionQueue": "CLOSED",
@@ -86,7 +86,7 @@
   "classificationUuidAllocationsOnRerun": 0,
   "provenanceUuidAllocationsOnRerun": 0,
   "parentOwnerClosureFingerprint": "ec0a6e34556a3d484dbdd608e592b912cb8c4ff2ceafdbe46b9cac02ea23b18f",
-  "fullOwnerApprovalFingerprint": "5c2132d01b43a7539d1b7745bf4d65bafe498c13e5fc332437c9ab0b46812dfd",
+  "fullOwnerApprovalFingerprint": "d0a60b26f75b65c18953e76ed759447151ab81a880e9c3e869cbefc6f12bb622",
   "fullOwnerApprovalStatus": "CLOSED",
   "ownerApprovedDecisionCount": 100,
   "ownerApprovedClassifiedCount": 99,
@@ -100,5 +100,10 @@
   "mediaReuseEligible": false,
   "CEFR_FULL_OWNER_APPROVAL": "YES",
   "classificationUuidAllocationsInFullApproval": 0,
-  "provenanceUuidAllocationsInFullApproval": 95
+  "provenanceUuidAllocationsInFullApproval": 95,
+  "readinessMetadataConsistency": true,
+  "ownerApprovalScope": "FULL_HYBRID_100_CEFR_COHORT",
+  "canonicalPromotionAuthorized": false,
+  "approvedReleaseReady": false,
+  "supersedesFullOwnerApprovedCefrFingerprint": "5c2132d01b43a7539d1b7745bf4d65bafe498c13e5fc332437c9ab0b46812dfd"
 }

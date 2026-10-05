@@ -509,3 +509,27 @@ owner-approved fingerprint:
 Evidence: [full owner approval artifact](../../vocabflow-dataset/workspaces/hybrid-100-cefr-draft/full-owner-approval.json),
 [updated owner review sheet](../../vocabflow-dataset/reports/hybrid-100-cefr-owner-review.md),
 and [classification draft report](../../vocabflow-dataset/reports/hybrid-100-cefr-classification-draft.md).
+
+## Related Dataset Readiness Metadata — Phase 2F.4C
+
+Corrected the generated release-readiness metadata so its root scope agrees
+with the CEFR gate: both now identify the completed `FULL_HYBRID_100_CEFR_COHORT`.
+The stale blocker about 95 pending reviews and the recommendation to resolve
+the closed owner-review queue were replaced with the remaining promotion,
+release-candidate, runtime-reconciliation, and authorization blockers.
+
+The full CEFR owner-approved fingerprint is now
+`d0a60b26f75b65c18953e76ed759447151ab81a880e9c3e869cbefc6f12bb622`,
+superseding `5c2132d01b43a7539d1b7745bf4d65bafe498c13e5fc332437c9ab0b46812dfd`.
+Release-readiness is included in the fingerprint contract, so correcting that
+metadata requires a new deterministic fingerprint. CEFR decision values,
+owner decisions, Classification IDs, and Provenance IDs are unchanged.
+
+Canonical Classification promotion is ready but not authorized or executed.
+Approved release readiness remains NO. No release, canonical record, runtime,
+database, or production state changed.
+
+Acceptance evidence: the 2F.4B/2F.4C focused checks, Master validator,
+typecheck, ESLint, deterministic approval `--check`, and `git diff --check`
+pass. The historical 2F.4A exception-only regression group is skipped once the
+full owner-approval artifact exists.

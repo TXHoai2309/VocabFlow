@@ -23,6 +23,28 @@
   database mutation or deployment performed. Feature files await final
   owner-check/commit workflow.
 
+## 2026-10-05 — Master Vocabulary V2 Phase 2F.4C readiness metadata consistency
+
+- Corrected the full CEFR release-readiness generator so root and CEFR gate
+  owner scopes both state `FULL_HYBRID_100_CEFR_COHORT`. Rebuilt the four
+  blockers and recommendation for the completed 100/100 review; no blocker now
+  says 95 decisions remain pending or asks to resolve the closed review queue.
+- Promotion readiness remains YES while canonical promotion authorization,
+  release authorization, runtime authorization, production authorization, and
+  approved-release readiness remain NO. No CEFR values, decision states,
+  Classification IDs, or Provenance IDs changed.
+- The full CEFR fingerprint is now
+  `d0a60b26f75b65c18953e76ed759447151ab81a880e9c3e869cbefc6f12bb622`.
+  It supersedes `5c2132d01b43a7539d1b7745bf4d65bafe498c13e5fc332437c9ab0b46812dfd`
+  because release-readiness metadata is an input to the fingerprint; only the
+  root scope, blockers, and recommendation were corrected.
+- Master validator PASS (0 errors, 0 warnings, 1 informational DRAFT issue);
+  focused Phase 2F.4B/2F.4C tests PASS (11/11; the historical 2F.4A-only suite
+  is skipped after full closure); approval `--check`, typecheck, ESLint, and
+  `git diff --check` PASS. Local Node is 22.19.0 while the package requests
+  22.23.2. Canonical Master, root dataset manifest, releases, runtime,
+  database, and production were not mutated.
+
 ## 2026-10-05 — Master Vocabulary V2 Phase 2F.4B full CEFR owner approval
 
 - Owner-approved the exact 95 rows pending from the pinned Phase 2F.4A

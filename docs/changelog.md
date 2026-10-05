@@ -21,6 +21,19 @@ This log records meaningful project milestones and accepted baselines.
 - No API, database, migration, scheduler or Dataset V2 change; no database
   mutation or production deployment.
 
+## 2026-10-05 — Master Vocabulary V2 Phase 2F.4C readiness metadata consistency
+
+- Aligned root and CEFR gate owner-approval scope with the completed full
+  cohort, and rebuilt stale release blockers and recommendation wording.
+  Canonical Classification promotion remains ready but unauthorized; release
+  readiness remains NO.
+- No CEFR values, decision states, Classification IDs, or Provenance IDs
+  changed. The deterministic full-owner fingerprint now supersedes the
+  previous fingerprint because release-readiness metadata is covered by its
+  fingerprint contract. Canonical, release, runtime, database, and production
+  state remain unchanged. Validator, 11 focused tests, typecheck, ESLint,
+  approval `--check`, and `git diff --check` pass.
+
 ## 2026-10-05 — Master Vocabulary V2 Phase 2F.4B full CEFR owner approval
 
 - Owner-approved all 95 remaining decisions from the pinned Phase 2F.4A

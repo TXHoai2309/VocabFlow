@@ -7,7 +7,7 @@ OWNER APPROVED CLASSIFIED = 99
 OWNER APPROVED UNCLASSIFIED = 1
 PENDING OWNER REVIEW = 0
 Parent CEFR fingerprint = ec0a6e34556a3d484dbdd608e592b912cb8c4ff2ceafdbe46b9cac02ea23b18f
-Full owner-approved CEFR fingerprint = 5c2132d01b43a7539d1b7745bf4d65bafe498c13e5fc332437c9ab0b46812dfd
+Full owner-approved CEFR fingerprint = d0a60b26f75b65c18953e76ed759447151ab81a880e9c3e869cbefc6f12bb622
 
 Decision counts: Reuse 1 | Revise existing 1 | New editorial 97 | Intentionally unclassified 1
 

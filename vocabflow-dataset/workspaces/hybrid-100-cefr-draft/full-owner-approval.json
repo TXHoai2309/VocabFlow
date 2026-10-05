@@ -773,6 +773,8 @@
     }
   ],
   "approvedBy": "VocabFlow project owner",
+  "supersedesFullOwnerApprovedCefrFingerprint": "5c2132d01b43a7539d1b7745bf4d65bafe498c13e5fc332437c9ab0b46812dfd",
+  "fingerprintRevisionReason": "Release-readiness metadata is part of the full CEFR fingerprint input. Correcting the root owner scope, stale blockers, and recommendation therefore creates a new deterministic fingerprint; no CEFR decision value or identity changed.",
   "nonExceptionDecisionPayloadHashBefore": "c38875f81b831934acb7e3b64e7884e5c4415b193d64248bed58126b3363c54a",
   "nonExceptionDecisionPayloadHashAfter": "c38875f81b831934acb7e3b64e7884e5c4415b193d64248bed58126b3363c54a",
   "nonExceptionCefrValuesChanged": 0,
@@ -993,5 +995,5 @@
     "sourceTextReused": false,
     "sourceClaimedAsOfficial": false
   },
-  "fullOwnerApprovedCefrFingerprint": "5c2132d01b43a7539d1b7745bf4d65bafe498c13e5fc332437c9ab0b46812dfd"
+  "fullOwnerApprovedCefrFingerprint": "d0a60b26f75b65c18953e76ed759447151ab81a880e9c3e869cbefc6f12bb622"
 }

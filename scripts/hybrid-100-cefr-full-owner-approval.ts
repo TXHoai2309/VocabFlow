@@ -25,6 +25,7 @@ type ApprovalPlan = { files: Map<string, string>; summary: JsonObject; workspace
 
 export const PARENT_OWNER_CLOSURE_FINGERPRINT = "ec0a6e34556a3d484dbdd608e592b912cb8c4ff2ceafdbe46b9cac02ea23b18f";
 export const PREVIOUS_CEFR_DRAFT_FINGERPRINT = "2da4c57ebbd18ce5e2c1fa77749fb7fe79a2f22752ba39506d2f59a7d7804a74";
+export const PREVIOUS_FULL_OWNER_APPROVAL_FINGERPRINT = "5c2132d01b43a7539d1b7745bf4d65bafe498c13e5fc332437c9ab0b46812dfd";
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const WORKSPACE = "vocabflow-dataset/workspaces/hybrid-100-cefr-draft";
 const ROOT_DATASET = "vocabflow-dataset/dataset.json";
@@ -36,6 +37,14 @@ const WATER_SENSE_ID = "01a0fc13-09ef-75ac-b815-039ab337c01a";
 const EXPECTED_DISTRIBUTION = { PRE_A1: 0, A1: 17, A2: 28, B1: 20, B2: 27, C1: 7, C2: 0, UNCLASSIFIED: 1 };
 const SOURCE_NAME = "VocabFlow Hybrid 100-Sense CEFR Full Owner Review";
 const OWNER_NOTES = "Owner accepted the VocabFlow editorial CEFR estimate under CEFR / EDITORIAL-PILOT-1 for canonical DRAFT promotion review. This is an owner review record, not an official CEFR classification and not a claim of source approval, source license, or external authority.";
+const STALE_OWNER_REVIEW_BLOCKER = "The five exception decisions are accepted, but this phase does not approve the other 95 pending owner-review decisions.";
+const CORRECTED_RELEASE_BLOCKERS = [
+  "Canonical Classification promotion is ready but has not yet been explicitly authorized or executed.",
+  "An immutable 100-Sense release candidate has not been built or reviewed.",
+  "Runtime reconciliation for the 100-Sense cohort has not started.",
+  "Runtime, database, and production mutation are not authorized.",
+];
+const CORRECTED_RECOMMENDATION = "Full CEFR owner review is complete and canonical Classification promotion is technically ready. The recommended next dataset step remains building and reviewing the 100-Sense release candidate before scaling the 24/98 first-pass correction workload across a 500-Sense batch. Canonical promotion and release construction still require separate authorization; this recommendation does not execute either action.";
 
 function fail(message: string): never {
   throw new Error(message);
@@ -160,6 +169,14 @@ function validateBasePins(root: string): { dataset: JsonObject; manifest: JsonOb
   const closure = readJson<JsonObject>(root, `${WORKSPACE}/owner-review-closure.json`);
   const fullApprovalPath = path.join(root, WORKSPACE, "full-owner-approval.json");
   const priorFullApproval = existsSync(fullApprovalPath) ? readJson<JsonObject>(root, `${WORKSPACE}/full-owner-approval.json`) : null;
+  if (priorFullApproval) {
+    const readiness = readJson<JsonObject>(root, `${WORKSPACE}/release-readiness.json`);
+    if (priorFullApproval.fullOwnerApprovedCefrFingerprint === PREVIOUS_FULL_OWNER_APPROVAL_FINGERPRINT) {
+      if (readiness.ownerApprovalScope !== "CEFR_EXCEPTION_REVIEW" || !(readiness.releaseBlockers as string[]).includes(STALE_OWNER_REVIEW_BLOCKER) || !String(readiness.recommendationRationale).includes("Resolve the small CEFR owner-review queue")) fail("EXPECTED_PINNED_PHASE_2F4A_READINESS_METADATA_DRIFT");
+    } else if (priorFullApproval.fullOwnerApprovedCefrFingerprint === readiness.fullOwnerApprovalFingerprint) {
+      if (readiness.ownerApprovalScope !== "FULL_HYBRID_100_CEFR_COHORT" || readiness.gates.CEFR.ownerApprovalScope !== readiness.ownerApprovalScope || canonicalHash(readiness.releaseBlockers) !== canonicalHash(CORRECTED_RELEASE_BLOCKERS) || readiness.recommendationRationale !== CORRECTED_RECOMMENDATION || readiness.fullOwnerApprovalFingerprintSupersedes !== PREVIOUS_FULL_OWNER_APPROVAL_FINGERPRINT || readiness.canonicalPromotionAuthorized !== false || readiness.releaseCreationAuthorized !== false || readiness.runtimeAuthorized !== false || readiness.productionAuthorized !== false || readiness.OWNER_APPROVED_ALL_FUTURE_RELEASE_ACTIONS !== false) fail("FULL_OWNER_APPROVAL_READINESS_METADATA_DRIFT");
+    } else fail("FULL_OWNER_APPROVAL_READINESS_FINGERPRINT_PIN_INVALID");
+  }
   const inputFingerprint = priorFullApproval?.approvedPackageFingerprint ?? manifest.cefrDraftFingerprint;
   if (inputFingerprint !== PARENT_OWNER_CLOSURE_FINGERPRINT || closure.cefrOwnerClosureFingerprint !== PARENT_OWNER_CLOSURE_FINGERPRINT) fail("PARENT_OWNER_CLOSURE_FINGERPRINT_STALE");
   if (manifest.parentCefrDraftFingerprint !== PREVIOUS_CEFR_DRAFT_FINGERPRINT || closure.previousCefrDraftFingerprint !== PREVIOUS_CEFR_DRAFT_FINGERPRINT) fail("PREVIOUS_CEFR_DRAFT_FINGERPRINT_STALE");
@@ -270,6 +287,11 @@ function renderDraftReport(input: JsonObject): string {
     `- Canonical Classification promotion readiness: ${readiness.canonicalClassificationPromotionReady ? "YES" : "NO"}. Promotion has not happened; canonical mutation is NONE.`,
     `- Approved release ready: ${readiness.readiness.HYBRID_100_APPROVED_RELEASE_READY}; no immutable release has been created.`,
     "- Source/media rights remain unverified. No source text or media was reused, and no official CEFR, Oxford approval, license, or external authority is claimed.",
+    "",
+    "## Phase 2F.4C — Readiness metadata consistency",
+    "",
+    `- Root and CEFR gate owner scope: ${readiness.ownerApprovalScope}; remaining general owner review: ${readiness.gates.CEFR.remainingGeneralOwnerReviewCount}.`,
+    `- The full-owner fingerprint supersedes ${approval.supersedesFullOwnerApprovedCefrFingerprint}; release-readiness metadata is covered by the fingerprint, so the corrected scope, blockers, and recommendation produce a new deterministic fingerprint without changing decisions or identities.`,
     "",
     "## Determinism and boundaries",
     "",
@@ -448,6 +470,7 @@ export function buildFullOwnerApprovalPlan(root: string, mode: "check" | "materi
     pendingOwnerReviewCount: 0,
   };
   const releaseReadiness = readJson<JsonObject>(root, `${WORKSPACE}/release-readiness.json`);
+  const releaseReadinessBeforeCorrection = clone(releaseReadiness);
   delete releaseReadiness.cefrDraftFingerprint;
   delete releaseReadiness.fullOwnerApprovalFingerprint;
   releaseReadiness.gates.CEFR = {
@@ -463,6 +486,11 @@ export function buildFullOwnerApprovalPlan(root: string, mode: "check" | "materi
     fullOwnerApproval: "CLOSED",
   };
   releaseReadiness.gates.CANONICAL_CLASSIFICATION_PROMOTION = { status: "READY", reason: "All 100 CEFR decisions are owner-reviewed, the 99 classified outcomes have unique owner-review evidence, classification and provenance schemas pass, and the pinned canonical predecessor remains unchanged. Promotion has not occurred." };
+  releaseReadiness.ownerApprovalScope = "FULL_HYBRID_100_CEFR_COHORT";
+  releaseReadiness.releaseBlockers = CORRECTED_RELEASE_BLOCKERS;
+  releaseReadiness.recommendationRationale = CORRECTED_RECOMMENDATION;
+  releaseReadiness.fullOwnerApprovalFingerprintSupersedes = PREVIOUS_FULL_OWNER_APPROVAL_FINGERPRINT;
+  releaseReadiness.fullOwnerApprovalFingerprintRevisionReason = "Release-readiness metadata is part of the full CEFR fingerprint input. Correcting the root owner scope, stale blockers, and recommendation therefore creates a new deterministic fingerprint; no CEFR decision value or identity changed.";
   releaseReadiness.readiness = { HYBRID_100_CONTENT_COHORT_READY: "YES", HYBRID_100_APPROVED_RELEASE_READY: "NO" };
   releaseReadiness.canonicalClassificationPromotionReady = true;
   releaseReadiness.canonicalClassificationMutation = "NONE";
@@ -479,6 +507,8 @@ export function buildFullOwnerApprovalPlan(root: string, mode: "check" | "materi
   releaseReadiness.releaseCreationAuthorized = false;
   releaseReadiness.runtimeAuthorized = false;
   releaseReadiness.productionAuthorized = false;
+  const readinessText = JSON.stringify({ releaseBlockers: releaseReadiness.releaseBlockers, recommendationRationale: releaseReadiness.recommendationRationale });
+  if (releaseReadiness.ownerApprovalScope !== "FULL_HYBRID_100_CEFR_COHORT" || releaseReadiness.gates.CEFR.ownerApprovalScope !== releaseReadiness.ownerApprovalScope || releaseReadiness.gates.CEFR.remainingGeneralOwnerReviewCount !== 0 || releaseReadiness.ownerApprovedDecisionCount !== 100 || releaseReadiness.ownerApprovedClassifiedCount !== 99 || releaseReadiness.ownerApprovedUnclassifiedCount !== 1 || releaseReadiness.pendingOwnerReviewCount !== 0 || releaseReadiness.ownerReviewProvenanceCoverage !== "99/99" || releaseReadiness.gates.CANONICAL_CLASSIFICATION_PROMOTION.status !== "READY" || releaseReadiness.canonicalClassificationPromotionReady !== true || releaseReadiness.canonicalPromotionAuthorized !== false || releaseReadiness.OWNER_APPROVED_ALL_FUTURE_RELEASE_ACTIONS !== false || releaseReadiness.readiness.HYBRID_100_APPROVED_RELEASE_READY !== "NO" || /other 95 pending owner-review decisions|remaining 95 owner-review|resolve the (small )?CEFR owner-review queue/iu.test(readinessText)) fail("FULL_OWNER_APPROVAL_READINESS_METADATA_INCONSISTENT");
 
   const parentApprovalDraft = {
     artifactType: "HYBRID_100_CEFR_FULL_OWNER_APPROVAL",
@@ -494,6 +524,8 @@ export function buildFullOwnerApprovalPlan(root: string, mode: "check" | "materi
     newlyApprovedPendingRows: 95,
     newlyApprovedDecisions: approvedRowsPins,
     approvedBy: "VocabFlow project owner",
+    supersedesFullOwnerApprovedCefrFingerprint: PREVIOUS_FULL_OWNER_APPROVAL_FINGERPRINT,
+    fingerprintRevisionReason: "Release-readiness metadata is part of the full CEFR fingerprint input. Correcting the root owner scope, stale blockers, and recommendation therefore creates a new deterministic fingerprint; no CEFR decision value or identity changed.",
     nonExceptionDecisionPayloadHashBefore: initialNonExceptionHash,
     nonExceptionDecisionPayloadHashAfter: afterNonExceptionHash,
     nonExceptionCefrValuesChanged: 0,
@@ -534,8 +566,33 @@ export function buildFullOwnerApprovalPlan(root: string, mode: "check" | "materi
     lightRevisionPlan: ownerClosure.revisionPlans,
     releaseReadiness,
   };
+  if (priorApproval?.fullOwnerApprovedCefrFingerprint === PREVIOUS_FULL_OWNER_APPROVAL_FINGERPRINT) {
+    const legacyApproval = clone(priorApproval);
+    delete legacyApproval.fullOwnerApprovedCefrFingerprint;
+    delete releaseReadinessBeforeCorrection.cefrDraftFingerprint;
+    delete releaseReadinessBeforeCorrection.fullOwnerApprovalFingerprint;
+    const legacyFingerprint = canonicalHash({
+      fingerprintVersion: "HYBRID-100-CEFR-FULL-OWNER-APPROVAL-FINGERPRINT-1",
+      parentOwnerClosureFingerprint: PARENT_OWNER_CLOSURE_FINGERPRINT,
+      previousCefrDraftFingerprint: PREVIOUS_CEFR_DRAFT_FINGERPRINT,
+      approvedSemanticDraftFingerprint: APPROVED_SEMANTIC_DRAFT_FINGERPRINT,
+      canonicalPromotionFingerprint: CANONICAL_PROMOTION_FINGERPRINT,
+      sourceProofFingerprint: SOURCE_PROOF_FINGERPRINT,
+      taxonomyPin: baseManifest.taxonomyPin,
+      parentOwnerClosure: ownerClosure,
+      decisionRows: sorted(rowsFinal, (row) => row.candidateId),
+      fullOwnerApproval: legacyApproval,
+      classificationRegistry: registry,
+      classificationRecords: classPins,
+      projectAuthoredProvenance: normalizedProvenance(finalProvenanceRecords.filter((record) => record.sourceType === "PROJECT_AUTHORED")),
+      ownerReviewProvenance: normalizedProvenance(finalProvenanceRecords.filter((record) => record.sourceType === "OWNER_REVIEW")),
+      lightRevisionPlan: ownerClosure.revisionPlans,
+      releaseReadiness: releaseReadinessBeforeCorrection,
+    });
+    if (legacyFingerprint !== PREVIOUS_FULL_OWNER_APPROVAL_FINGERPRINT) fail("PINNED_PHASE_2F4B_FINGERPRINT_DOES_NOT_MATCH_INPUTS");
+  }
   const fullOwnerApprovalFingerprint = canonicalHash(fingerprintInput);
-  if (priorApproval && priorApproval.fullOwnerApprovedCefrFingerprint !== fullOwnerApprovalFingerprint) fail("FULL_OWNER_APPROVAL_FINGERPRINT_STALE");
+  if (priorApproval && priorApproval.fullOwnerApprovedCefrFingerprint !== fullOwnerApprovalFingerprint && priorApproval.fullOwnerApprovedCefrFingerprint !== PREVIOUS_FULL_OWNER_APPROVAL_FINGERPRINT) fail("FULL_OWNER_APPROVAL_FINGERPRINT_STALE");
   const approval = { ...parentApprovalDraft, fullOwnerApprovedCefrFingerprint: fullOwnerApprovalFingerprint };
   const decisionsWithFingerprint = { ...decisionFinal, fullOwnerApprovalFingerprint };
   const releaseReadinessFinal = { ...releaseReadiness, fullOwnerApprovalFingerprint };
@@ -555,6 +612,11 @@ export function buildFullOwnerApprovalPlan(root: string, mode: "check" | "materi
     newOwnerReviewProvenanceCount: parentApprovalDraft.newOwnerReviewProvenanceIds.length,
     workspaceProvenanceRecordCount: finalProvenanceRecords.length,
     canonicalClassificationPromotionReady: true,
+    readinessMetadataConsistency: true,
+    ownerApprovalScope: "FULL_HYBRID_100_CEFR_COHORT",
+    canonicalPromotionAuthorized: false,
+    approvedReleaseReady: false,
+    supersedesFullOwnerApprovedCefrFingerprint: PREVIOUS_FULL_OWNER_APPROVAL_FINGERPRINT,
     canonicalClassificationPromotionAuthorized: false,
     canonicalClassificationMutation: "NONE",
     canonicalSemanticMutation: "NONE",
@@ -588,6 +650,11 @@ export function buildFullOwnerApprovalPlan(root: string, mode: "check" | "materi
     classificationIdsStable: true,
     provenanceIdsStableOnRerun: true,
     ownerReviewProvenanceCoverage: "99/99",
+    readinessMetadataConsistency: true,
+    ownerApprovalScope: releaseReadiness.ownerApprovalScope,
+    canonicalPromotionAuthorized: false,
+    approvedReleaseReady: false,
+    supersedesFullOwnerApprovedCefrFingerprint: PREVIOUS_FULL_OWNER_APPROVAL_FINGERPRINT,
     noDuplicateOwnerReviewProvenance: true,
     fuseIntentionallyUnclassified: true,
     fuseClassificationProvenance: false,
@@ -611,7 +678,6 @@ export function buildFullOwnerApprovalPlan(root: string, mode: "check" | "materi
     canonicalClassificationMutation: "NONE",
     rootManifestMutation: "NONE",
     releaseCreated: false,
-    approvedReleaseReady: false,
     canaryChanged: false,
     runtimeImportStarted: false,
     databaseWrites: "NONE",
@@ -636,6 +702,7 @@ export function buildFullOwnerApprovalPlan(root: string, mode: "check" | "materi
     "Status: `EDITORIAL_CLASSIFICATION_DRAFT`. All 100 CEFR editorial decision outcomes are owner-reviewed; 99 have values and fuse is intentionally unclassified.",
     "",
     `Parent Phase 2F.4A fingerprint: ${PARENT_OWNER_CLOSURE_FINGERPRINT}. Full owner-approved fingerprint: ${fullOwnerApprovalFingerprint}.`,
+    `Phase 2F.4C readiness metadata correction supersedes fingerprint ${PREVIOUS_FULL_OWNER_APPROVAL_FINGERPRINT}. Release-readiness metadata is part of the fingerprint contract, so correcting its root scope, blockers, and recommendation produces a new deterministic fingerprint without changing CEFR decisions or identities.`,
     "",
     "No CEFR values, confidence, decision types, classification IDs, Sense IDs, rationales, or agreement statuses changed in Phase 2F.4B. The prior five exception outcomes are preserved. The 94 remaining new Classification decisions and the water reuse decision now have workspace owner-review provenance.",
     "",
@@ -736,7 +803,8 @@ export function materialize(plan: ApprovalPlan, mode: "check" | "materialize"): 
   } else {
     if (existsSync(approvalPath)) {
       const existing = readJson<JsonObject>(root, `${WORKSPACE}/full-owner-approval.json`);
-      if (existing.fullOwnerApprovedCefrFingerprint !== plan.fullOwnerApprovalFingerprint) fail("FULL_OWNER_APPROVAL_CONFLICT");
+      const isPinnedReadinessMetadataCorrection = existing.fullOwnerApprovedCefrFingerprint === PREVIOUS_FULL_OWNER_APPROVAL_FINGERPRINT && plan.fullOwnerApprovalFingerprint !== PREVIOUS_FULL_OWNER_APPROVAL_FINGERPRINT;
+      if (existing.fullOwnerApprovedCefrFingerprint !== plan.fullOwnerApprovalFingerprint && !isPinnedReadinessMetadataCorrection) fail("FULL_OWNER_APPROVAL_CONFLICT");
     }
     for (const [relativePath, contents] of plan.files) {
       if (relativePath === `${WORKSPACE}/full-owner-approval.json`) continue;

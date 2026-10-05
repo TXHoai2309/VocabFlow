@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
@@ -15,6 +15,7 @@ const LIGHT_SENSE = "01a0fc13-09ee-7768-9be6-d20fa32521ee";
 const WATER_SENSE = "01a0fc13-09ef-75ac-b815-039ab337c01a";
 const LIGHT_PREDECESSOR_HASH = "08482dae079eb7932bb7254e9a99277f104d58cf73be9f954b63641996c9763c";
 const plan = buildFullOwnerApprovalPlan(REPO_ROOT, "check");
+const readJson = <T,>(file: string): T => JSON.parse(readFileSync(path.join(REPO_ROOT, file), "utf8")) as T;
 const plannedJson = <T,>(relativePath: string): T => {
   const contents = plan.files.get(`${WORKSPACE}/${relativePath}`);
   if (!contents) throw new Error(`Missing planned artifact: ${relativePath}`);
@@ -24,6 +25,7 @@ const approval = plannedJson<JsonObject>("full-owner-approval.json");
 const decisions = plannedJson<{ rows: JsonObject[]; decisionCounts: JsonObject }>("cefr-decisions.json");
 const readiness = plannedJson<JsonObject>("release-readiness.json");
 const manifest = plannedJson<JsonObject>("manifest.json");
+const validationSummary = plannedJson<JsonObject>("validation-summary.json");
 const registry = plannedJson<{ mappings: JsonObject[] }>("classification-registry.json");
 const workspaceProvenance = [...plan.files.entries()]
   .filter(([file]) => file.startsWith(`${WORKSPACE}/provenance/`))
@@ -31,6 +33,12 @@ const workspaceProvenance = [...plan.files.entries()]
 const workspaceClassifications = [...plan.files.entries()]
   .filter(([file]) => file.startsWith(`${WORKSPACE}/classifications/`))
   .map(([, contents]) => JSON.parse(contents) as JsonObject);
+const currentDecisions = readJson<{ rows: JsonObject[] }>(`${WORKSPACE}/cefr-decisions.json`);
+const currentClassifications = readdirSync(path.join(REPO_ROOT, WORKSPACE, "classifications"))
+  .map((file) => readJson<JsonObject>(`${WORKSPACE}/classifications/${file}`));
+const currentProvenanceIds = readdirSync(path.join(REPO_ROOT, WORKSPACE, "provenance"))
+  .map((file) => file.replace(/\.json$/u, ""))
+  .sort();
 const byCandidate = new Map(decisions.rows.map((row) => [row.candidateId, row]));
 const semanticPayload = (row: JsonObject) => ({
   candidateId: row.candidateId,
@@ -127,9 +135,71 @@ describe("Phase 2F.4B full CEFR owner approval", () => {
   it("marks classification promotion ready while approved release remains NO", () => {
     expect(readiness.canonicalClassificationPromotionReady).toBe(true);
     expect(readiness.gates.CANONICAL_CLASSIFICATION_PROMOTION.status).toBe("READY");
+    expect(validationSummary).toMatchObject({
+      status: "PASS",
+      readinessMetadataConsistency: true,
+      ownerApprovalScope: "FULL_HYBRID_100_CEFR_COHORT",
+      canonicalPromotionAuthorized: false,
+      approvedReleaseReady: false,
+      supersedesFullOwnerApprovedCefrFingerprint: "5c2132d01b43a7539d1b7745bf4d65bafe498c13e5fc332437c9ab0b46812dfd",
+    });
     expect(readiness.readiness).toEqual({ HYBRID_100_CONTENT_COHORT_READY: "YES", HYBRID_100_APPROVED_RELEASE_READY: "NO" });
     expect(readiness.canonicalPromotionAuthorized).toBe(false);
     expect(manifest).toMatchObject({ canonicalClassificationPromotionReady: true, canonicalClassificationPromotionAuthorized: false, canonicalClassificationMutation: "NONE", releaseCreated: false, CEFR_FULL_OWNER_APPROVAL: "YES" });
+  });
+
+  it("synchronizes root and CEFR gate owner scope and removes stale queue messaging", () => {
+    expect(readiness.ownerApprovalScope).toBe("FULL_HYBRID_100_CEFR_COHORT");
+    expect(readiness.gates.CEFR.ownerApprovalScope).toBe(readiness.ownerApprovalScope);
+    expect(readiness.gates.CEFR.remainingGeneralOwnerReviewCount).toBe(0);
+    expect(readiness.releaseBlockers).toEqual([
+      "Canonical Classification promotion is ready but has not yet been explicitly authorized or executed.",
+      "An immutable 100-Sense release candidate has not been built or reviewed.",
+      "Runtime reconciliation for the 100-Sense cohort has not started.",
+      "Runtime, database, and production mutation are not authorized.",
+    ]);
+    expect(readiness.recommendationRationale).not.toMatch(/resolve the (small )?CEFR owner-review queue|remaining 95 owner-review/iu);
+    expect(readiness.recommendationRationale).toMatch(/full CEFR owner review is complete/iu);
+    expect(readiness.recommendationRationale).toMatch(/separate authorization/iu);
+    expect(readiness.recommendedNextScaleOption).toBe("BUILD_100_SENSE_RELEASE_CANDIDATE");
+    expect(readiness.fullOwnerApprovalFingerprint).toBe(approval.fullOwnerApprovedCefrFingerprint);
+    expect(readiness.fullOwnerApprovalFingerprintSupersedes).toBe("5c2132d01b43a7539d1b7745bf4d65bafe498c13e5fc332437c9ab0b46812dfd");
+    expect(readiness.fullOwnerApprovalFingerprintRevisionReason).toMatch(/release-readiness metadata is part of the full CEFR fingerprint input/iu);
+    expect(readiness).toMatchObject({
+      ownerApprovedDecisionCount: 100,
+      ownerApprovedClassifiedCount: 99,
+      ownerApprovedUnclassifiedCount: 1,
+      pendingOwnerReviewCount: 0,
+      ownerReviewProvenanceCoverage: "99/99",
+      canonicalClassificationPromotionReady: true,
+      canonicalPromotionAuthorized: false,
+      releaseCreationAuthorized: false,
+      runtimeAuthorized: false,
+      productionAuthorized: false,
+      OWNER_APPROVED_ALL_FUTURE_RELEASE_ACTIONS: false,
+      readiness: { HYBRID_100_APPROVED_RELEASE_READY: "NO" },
+    });
+    expect(readiness.gates.CANONICAL_CLASSIFICATION_PROMOTION.status).toBe("READY");
+    const reportArtifacts = [
+      plan.files.get(OWNER_REPORT)!,
+      plan.files.get("vocabflow-dataset/reports/hybrid-100-cefr-classification-draft.md")!,
+      JSON.stringify(readiness),
+      JSON.stringify(approval),
+    ];
+    for (const artifact of reportArtifacts) {
+      expect(artifact).not.toMatch(/other 95 pending owner-review decisions|remaining 95 owner-review|resolve the (small )?CEFR owner-review queue/iu);
+    }
+  });
+
+  it("preserves every approved decision value and all Classification and Provenance IDs", () => {
+    expect(canonicalHash(decisions.rows.map(semanticPayload))).toBe(canonicalHash(currentDecisions.rows.map(semanticPayload)));
+    expect(canonicalHash(decisions.rows.map((row) => ({ candidateId: row.candidateId, reviewStatus: row.reviewStatus, ownerDecisionStatus: row.ownerDecisionStatus, ownerDecisionScope: row.ownerDecisionScope, reviewedBy: row.reviewedBy }))))
+      .toBe(canonicalHash(currentDecisions.rows.map((row) => ({ candidateId: row.candidateId, reviewStatus: row.reviewStatus, ownerDecisionStatus: row.ownerDecisionStatus, ownerDecisionScope: row.ownerDecisionScope, reviewedBy: row.reviewedBy }))));
+    expect([...workspaceClassifications].map((record) => `${record.classificationId}-r${record.classificationRevision}`).sort())
+      .toEqual(currentClassifications.map((record) => `${record.classificationId}-r${record.classificationRevision}`).sort());
+    expect(workspaceProvenance.map((record) => record.provenanceId).sort()).toEqual(currentProvenanceIds);
+    expect(approval.fullOwnerApprovedCefrFingerprint).not.toBe("5c2132d01b43a7539d1b7745bf4d65bafe498c13e5fc332437c9ab0b46812dfd");
+    expect(approval.supersedesFullOwnerApprovedCefrFingerprint).toBe("5c2132d01b43a7539d1b7745bf4d65bafe498c13e5fc332437c9ab0b46812dfd");
   });
 
   it("retains stable IDs and provenance coverage on rerun with no ID allocations", () => {
@@ -157,5 +227,5 @@ describe("Phase 2F.4B full CEFR owner approval", () => {
     const hashesAfter = [datasetPath, path.join(masterClassifications, `${LIGHT_ID}-r1.json`), waterPath, canaryDataset]
       .map((file) => sha256(readFileSync(file)));
     expect(hashesAfter).toEqual(hashesBefore);
-  });
+  }, 15_000);
 });
