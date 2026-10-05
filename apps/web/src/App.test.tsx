@@ -135,6 +135,7 @@ describe("shared authenticated app shell", () => {
       "Trang chủ", "Từ vựng", "Học tập", "Tiến trình", "Yêu thích", "Cài đặt"
     ]);
     expect(within(navigation).getByRole("link", { name: "Cài đặt" }).closest("li")).toHaveClass("app-nav-divider");
+    expect(screen.getByRole("button", { name: "Tài khoản phụ huynh của Jordan Nguyen" })).toBeInTheDocument();
   });
 
   it("keeps the mobile primary navigation to its five core destinations", () => {
@@ -252,9 +253,21 @@ describe("shared authenticated app shell", () => {
     const accountMenu = document.querySelector(".app-account-menu-wrap.is-mobile");
     expect(accountMenu).not.toBeNull();
     const mobileMenu = within(accountMenu as HTMLElement);
-    const accountButton = mobileMenu.getByRole("button", { name: "Tài khoản phụ huynh của Jordan Nguyen" });
+    const accountButton = mobileMenu.getByRole("button", { name: "Mở menu tài khoản" });
+    expect(accountButton.querySelectorAll(".app-parent-avatar")).toHaveLength(1);
+    expect(accountButton.querySelector(".app-parent-copy")).toBeNull();
+    expect(accountButton.querySelector(".app-account-chevron")).toBeNull();
+    expect(mobileMenu.getByRole("menu", { hidden: true })).toHaveAttribute("aria-label", "Tài khoản");
+    expect(accountButton).toHaveAttribute("aria-haspopup", "menu");
+    expect(accountButton).toHaveAttribute("aria-controls", "app-account-menu-mobile");
     fireEvent.click(accountButton);
     expect(accountButton).toHaveAttribute("aria-expanded", "true");
+    expect(mobileMenu.getByRole("menuitem", { name: "Người học" })).toHaveAttribute("href", "/learners");
+    fireEvent.keyDown(document, { key: "Escape" });
+    await waitFor(() => expect(mobileMenu.queryByRole("menu")).not.toBeInTheDocument());
+    expect(accountButton).toHaveAttribute("aria-expanded", "false");
+    expect(accountButton).toHaveFocus();
+    fireEvent.click(accountButton);
     fireEvent.click(mobileMenu.getByRole("menuitem", { name: "Cài đặt" }));
     await waitFor(() => expect(screen.getByTestId("current-location")).toHaveTextContent("/learner-settings"));
     expect(mobileMenu.queryByRole("menu")).not.toBeInTheDocument();

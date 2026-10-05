@@ -1632,13 +1632,16 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
   .app-mobile-bar { display: flex; min-height: 52px; align-items: center; justify-content: space-between; gap: 12px; margin: -16px -24px 16px; padding: 8px 24px; border-bottom: 1px solid var(--color-border); background: var(--color-surface); }
   .app-mobile-bar .app-brand { padding: 0; font-size: 19px; }
   .app-mobile-bar .app-brand-mark { width: 30px; height: 30px; }
-  .app-account-menu-wrap.is-mobile .app-account-trigger { width: auto; min-height: 44px; gap: 8px; padding: 2px 8px 2px 2px; border-color: var(--color-border); background: var(--color-surface); }
+  .app-account-menu-wrap.is-mobile .app-account-trigger { width: 44px; min-height: 44px; justify-content: center; padding: 2px; border-color: var(--color-border); background: var(--color-surface); }
   .app-account-menu-wrap.is-mobile .app-parent-avatar { width: 36px; height: 36px; flex-basis: 36px; }
+  .app-account-menu-wrap.is-mobile .app-parent-copy,
+  .app-account-menu-wrap.is-mobile .app-account-chevron,
+  .home-learner-switcher { display: none; }
   .app-mobile-bottom-nav { position: fixed; z-index: 50; right: 0; bottom: 0; left: 0; display: block; padding: 5px 10px calc(5px + env(safe-area-inset-bottom)); border-top: 1px solid var(--color-border); background: rgb(255 255 255 / .97); box-shadow: 0 -4px 16px rgb(15 23 42 / .07); backdrop-filter: blur(12px); }
 }
 
 @media (max-width: 760px) {
-  .home-header-actions { flex: 0 1 42%; min-width: 0; gap: 0; }
+  .home-header-actions { flex: 0 0 auto; min-width: 0; gap: 0; }
   .home-learner-label strong { min-width: 0; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .home-hero { grid-template-columns: minmax(0, 1fr) 112px; padding: 20px; }
   .home-hero-art { display: none; }
@@ -1658,8 +1661,6 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
   .app-mobile-bar { min-height: 48px; margin: -12px -16px 12px; padding: 8px 16px; }
   .app-mobile-bar .app-brand { font-size: 18px; }
   .app-mobile-bar .app-brand-mark { width: 28px; height: 28px; }
-  .app-account-menu-wrap.is-mobile .app-parent-copy { display: none; }
-  .app-account-menu-wrap.is-mobile .app-account-chevron { display: none; }
   .app-mobile-bottom-nav { padding-right: 7px; padding-left: 7px; }
   .app-mobile-bottom-nav .app-nav-link { font-size: 9px; }
   .home-header { min-height: 64px; align-items: flex-start; gap: 8px; margin-bottom: 14px; }
@@ -1667,12 +1668,7 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
   .home-header-heading > div { flex: 1 1 auto; }
   .home-header h1 { font-size: clamp(18px, 6vw, 21px); line-height: 1.25; overflow-wrap: anywhere; }
   .home-header p { font-size: 13px; line-height: 19px; }
-  .home-header-actions { flex: 0 1 42%; min-width: 0; gap: 0; }
-  .home-learner-switcher { min-height: 44px; gap: 7px; padding: 3px 8px 3px 3px; }
-  .home-learner-avatar { width: 34px; height: 34px; flex-basis: 34px; }
-  .home-learner-label { display: grid; gap: 0; }
-  .home-learner-label strong { min-width: 0; max-width: 100%; overflow: hidden; font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
-  .home-learner-label > span { font-size: 11px; }
+  .home-header-actions { display: none; }
   .home-notification-visual { display: none; }
   .home-dashboard { gap: 12px; }
   .home-hero { min-height: 250px; grid-template-columns: minmax(0, 1fr) 78px; gap: 8px; padding: 20px 14px; border-radius: var(--radius-feature); }

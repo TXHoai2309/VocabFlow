@@ -115,7 +115,7 @@ function AccountMenu({ parentName, placement }: { parentName: string; placement:
         ref={triggerRef}
         className="app-account-trigger"
         type="button"
-        aria-label={`Tài khoản phụ huynh của ${accountLabel}`}
+        aria-label={placement === "mobile" ? "Mở menu tài khoản" : `Tài khoản phụ huynh của ${accountLabel}`}
         aria-haspopup="menu"
         aria-expanded={open}
         aria-controls={menuId}
@@ -127,11 +127,13 @@ function AccountMenu({ parentName, placement }: { parentName: string; placement:
         }}
       >
         <span className="app-parent-avatar" aria-hidden="true">{initials(accountLabel)}</span>
-        <span className="app-parent-copy">
-          <strong>{accountLabel}</strong>
-          <small>Tài khoản phụ huynh</small>
-        </span>
-        <span className="app-account-chevron" aria-hidden="true">⌄</span>
+        {placement === "sidebar" ? <>
+          <span className="app-parent-copy">
+            <strong>{accountLabel}</strong>
+            <small>Tài khoản phụ huynh</small>
+          </span>
+          <span className="app-account-chevron" aria-hidden="true">⌄</span>
+        </> : null}
       </button>
       <div
         ref={menuRef}
