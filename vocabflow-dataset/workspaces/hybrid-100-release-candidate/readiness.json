@@ -1,0 +1,40 @@
+{
+  "artifactType": "HYBRID_100_RELEASE_CANDIDATE_CURRENT_STATE",
+  "authorizationFingerprint": "a2a4243b579bb4a33302665c8b75ee59b6999350da88cad1ba8a886c78079a80",
+  "authorizedCefrFingerprint": "d0a60b26f75b65c18953e76ed759447151ab81a880e9c3e869cbefc6f12bb622",
+  "canonicalPromotionPlanFingerprint": "969b5090a020b3f4793e6a77dcd78ce46fbb119036c45bfcf93bca81cc7a04db",
+  "candidateVersion": "2.2.0-rc.1",
+  "candidateFingerprint": "06b2a4dec2f54438416cae67788e0683fe94907cbce0a60fbb2d6469bc25b82c",
+  "CANONICAL_CEFR_PROMOTION": "EXECUTED",
+  "RELEASE_CANDIDATE": "BUILT",
+  "RELEASE_CANDIDATE_REVIEW_READY": "YES",
+  "APPROVED_RELEASE": "NOT_AUTHORIZED",
+  "APPROVED_RELEASE_READY": "NO",
+  "RUNTIME_RECONCILIATION_FOR_100": "NOT_STARTED",
+  "RUNTIME_IMPORT": "NOT_AUTHORIZED",
+  "DATABASE_CONNECTION": "NONE",
+  "DATABASE_WRITES": "NONE",
+  "IMPORT_APPLY_EXECUTED": "NO",
+  "RECONCILIATION_SCAN_EXECUTED": "NO",
+  "MIGRATIONS_EXECUTED": "NONE",
+  "DEVELOPMENT_RUNTIME_MUTATION": "NO",
+  "PRODUCTION_CONNECTION": "NONE",
+  "PRODUCTION_MUTATION": "NO",
+  "SOURCE_RIGHTS": "UNVERIFIED",
+  "SOURCE_TEXT_REUSED": "NO",
+  "SOURCE_MEDIA_REUSED": "NO",
+  "finalApprovalBlockers": [
+    "RC owner/final review has not yet been performed.",
+    "Candidate manifest remains IN_REVIEW.",
+    "Canonical promoted CEFR Classification records remain DRAFT.",
+    "Hybrid semantic canonical records remain DRAFT where applicable.",
+    "Taxonomy snapshot 2.0.0 remains DRAFT.",
+    "APPROVED release authorization has not been granted."
+  ],
+  "candidateCounts": {
+    "lexemes": 87,
+    "senses": 100,
+    "classifications": 99,
+    "provenance": 799
+  }
+}

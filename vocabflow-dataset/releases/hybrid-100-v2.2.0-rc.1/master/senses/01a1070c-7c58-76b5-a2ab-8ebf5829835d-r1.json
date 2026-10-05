@@ -1,0 +1,86 @@
+{
+  "masterSenseId": "01a1070c-7c58-76b5-a2ab-8ebf5829835d",
+  "masterLexemeId": "01a1070c-7c58-76b5-a2ab-89f2166b2fa6",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "work period"
+    },
+    {
+      "language": "vi",
+      "text": "ca làm việc"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "NOUN",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c58-76b5-a2ab-90c74fa71b7f",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-8ebf5829835d",
+      "language": "vi",
+      "text": "ca làm việc",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-74ca-8791-c2d97912b7da"
+      ]
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c58-76b5-a2ab-97c8bdd5adb3",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-8ebf5829835d",
+      "language": "en",
+      "text": "A set period when a person is scheduled to work.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-7c47-9501-97ad7bc5ca30"
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c58-76b5-a2ab-9acc1f784f48",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-8ebf5829835d",
+      "language": "en",
+      "text": "Nora starts her evening shift at the hospital at four.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c58-76b5-a2ab-9e32517f9085",
+          "exampleId": "01a1070c-7c58-76b5-a2ab-9acc1f784f48",
+          "language": "vi",
+          "text": "Nora bắt đầu ca tối ở bệnh viện lúc bốn giờ.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT",
+          "provenanceIds": [
+            "01a10760-b9f0-792d-8ad8-741d3283b892"
+          ]
+        }
+      ],
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-7276-af27-1d40cf337365"
+      ]
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "DRAFT",
+  "createdAt": "2026-10-04T13:13:41.208Z",
+  "updatedAt": "2026-10-04T13:13:41.208Z",
+  "provenanceIds": [
+    "01a10760-b9f0-72a5-b5de-f1db4da12e10",
+    "01a10760-b9f0-791c-95b8-3f2f6fea0367"
+  ]
+}

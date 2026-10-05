@@ -2373,3 +2373,13 @@ registration boundary before feature implementation.
   in the unrelated, uncommitted `apps/web/src/features/learners/weak-words-page.tsx`
   effect at line 111. The local Node runtime is 22.19.0; the package engine
   requests 22.23.2.
+
+<!-- PHASE-2F5-AI-PROGRESS START -->
+## 2026-10-05 — Phase 2F.5 Hybrid-100 CEFR Promotion and RC
+
+- Owner-approved 100/100 CEFR decisions under fingerprint d0a60b26f75b65c18953e76ed759447151ab81a880e9c3e869cbefc6f12bb622 were promoted to canonical DRAFT: 97 new Classification identities and light revision 2; water reuses revision 1; fuse remains intentionally unclassified.
+- Promoted 197 immutable CEFR Provenance records. Canonical root remains version 2.0.0 / DRAFT, with 103 Lexemes, 123 Senses, 219 current Classification pins and 1043 Provenance pins.
+- Built immutable 2.2.0-rc.1 from the exact 87-Lexeme / 100-Sense cohort. Candidate status is IN_REVIEW with 99 CEFR assignments and exact provenance closure.
+- This is not an APPROVED release. No releaseHash exists. Source and media rights remain unverified. No runtime reconciliation, Neon import, database write, or production mutation occurred.
+- Remaining gates: final RC owner review, DRAFT canonical content review, DRAFT taxonomy review, and separate APPROVED-release authorization.
+<!-- PHASE-2F5-AI-PROGRESS END -->

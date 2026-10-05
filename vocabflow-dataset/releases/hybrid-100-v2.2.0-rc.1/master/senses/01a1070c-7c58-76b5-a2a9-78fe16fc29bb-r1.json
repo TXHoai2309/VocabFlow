@@ -1,0 +1,86 @@
+{
+  "masterSenseId": "01a1070c-7c58-76b5-a2a9-78fe16fc29bb",
+  "masterLexemeId": "01a1070c-7c58-76b5-a2a9-77c0b32d5958",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "move off the planned course"
+    },
+    {
+      "language": "vi",
+      "text": "lệch khỏi lộ trình dự kiến"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "VERB",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c58-76b5-a2a9-7c60087dbc31",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-78fe16fc29bb",
+      "language": "vi",
+      "text": "đi chệch",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-76ee-a147-2f31436470f8"
+      ]
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c58-76b5-a2a9-81db49cb9159",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-78fe16fc29bb",
+      "language": "en",
+      "text": "To move away from a planned route, direction, or standard.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-72c0-bd3d-464ad0971dbd"
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c58-76b5-a2a9-87e499627a33",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-78fe16fc29bb",
+      "language": "en",
+      "text": "The hikers deviated from the marked path to avoid flooding.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c58-76b5-a2a9-8baa17c36a04",
+          "exampleId": "01a1070c-7c58-76b5-a2a9-87e499627a33",
+          "language": "vi",
+          "text": "Những người đi bộ rời khỏi lối mòn được đánh dấu để tránh ngập lụt.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT",
+          "provenanceIds": [
+            "01a10760-b9f0-763a-a870-83c7f6b24add"
+          ]
+        }
+      ],
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-7540-8f65-e425a2a7a206"
+      ]
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "DRAFT",
+  "createdAt": "2026-10-04T13:13:41.208Z",
+  "updatedAt": "2026-10-04T13:13:41.208Z",
+  "provenanceIds": [
+    "01a10760-b9f0-71a8-8f7d-9b83255f62f6",
+    "01a10760-b9f0-7c2c-a745-e4d51b7ab866"
+  ]
+}

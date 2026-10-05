@@ -1,0 +1,86 @@
+{
+  "masterSenseId": "01a1070c-7c58-76b5-a2a8-ebb7ee4a97d9",
+  "masterLexemeId": "01a1070c-7c58-76b5-a2a8-e43bd969817e",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "related to language"
+    },
+    {
+      "language": "vi",
+      "text": "thuộc về ngôn ngữ"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "ADJECTIVE",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c58-76b5-a2a8-ed911a801291",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a8-ebb7ee4a97d9",
+      "language": "vi",
+      "text": "thuộc ngôn ngữ",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-7c58-89cf-08b1b7a1170e"
+      ]
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c58-76b5-a2a8-f0406a185853",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a8-ebb7ee4a97d9",
+      "language": "en",
+      "text": "Connected with language, the way it works, or its study.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-7716-b943-b8439727a916"
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c58-76b5-a2a8-f78176e8d7d8",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a8-ebb7ee4a97d9",
+      "language": "en",
+      "text": "The team compared linguistic patterns across several regional dialects.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c58-76b5-a2a8-fb5e46d10c88",
+          "exampleId": "01a1070c-7c58-76b5-a2a8-f78176e8d7d8",
+          "language": "vi",
+          "text": "Nhóm nghiên cứu so sánh các đặc điểm ngôn ngữ giữa nhiều phương ngữ vùng miền.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT",
+          "provenanceIds": [
+            "01a10760-b9f0-759a-a3ef-e819f8f65e9d"
+          ]
+        }
+      ],
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-7aa6-bb1f-250be8405bdb"
+      ]
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "DRAFT",
+  "createdAt": "2026-10-04T13:13:41.208Z",
+  "updatedAt": "2026-10-04T13:13:41.208Z",
+  "provenanceIds": [
+    "01a10760-b9f0-7462-9805-8a2cded24b1c",
+    "01a10760-b9f0-7656-bbb3-3fb502c328d6"
+  ]
+}

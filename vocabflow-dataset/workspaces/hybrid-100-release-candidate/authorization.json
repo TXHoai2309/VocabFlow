@@ -1,0 +1,16 @@
+{
+  "artifactType": "HYBRID_100_CANONICAL_PROMOTION_AND_RC_AUTHORIZATION",
+  "authorizedCefrFingerprint": "d0a60b26f75b65c18953e76ed759447151ab81a880e9c3e869cbefc6f12bb622",
+  "authorizationScope": [
+    "CANONICAL_CEFR_CLASSIFICATION_PROMOTION",
+    "IMMUTABLE_RELEASE_CANDIDATE_BUILD"
+  ],
+  "authorizedBy": "VocabFlow project owner",
+  "canonicalClassificationPromotionAuthorized": true,
+  "releaseCandidateBuildAuthorized": true,
+  "approvedReleaseAuthorized": false,
+  "runtimeImportAuthorized": false,
+  "databaseWriteAuthorized": false,
+  "productionMutationAuthorized": false,
+  "createdAt": "2026-10-05T00:00:00Z"
+}

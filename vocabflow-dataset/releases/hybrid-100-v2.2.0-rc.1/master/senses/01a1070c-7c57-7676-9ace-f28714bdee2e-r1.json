@@ -1,0 +1,86 @@
+{
+  "masterSenseId": "01a1070c-7c57-7676-9ace-f28714bdee2e",
+  "masterLexemeId": "01a1070c-7c57-7676-9ace-eeab790b4231",
+  "senseRevision": 1,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "give permission"
+    },
+    {
+      "language": "vi",
+      "text": "cho phép"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "VERB",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c57-7676-9ace-f57cb0373592",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-f28714bdee2e",
+      "language": "vi",
+      "text": "cho phép",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-71e8-9b4a-a66412ca4735"
+      ]
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c57-7676-9ace-f8ecec04ae11",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-f28714bdee2e",
+      "language": "en",
+      "text": "To give someone permission to do something they want to do.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-773f-9ae5-8c2309dd258a"
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c57-7676-9ace-fd88b14e5060",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-f28714bdee2e",
+      "language": "en",
+      "text": "The coach let Maya choose the team captain.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c57-7676-9acf-034ab52142e8",
+          "exampleId": "01a1070c-7c57-7676-9ace-fd88b14e5060",
+          "language": "vi",
+          "text": "Huấn luyện viên cho phép Maya chọn đội trưởng.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT",
+          "provenanceIds": [
+            "01a10760-b9f0-726d-9771-57489b9f25a5"
+          ]
+        }
+      ],
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-7e01-aeba-0a8136169c67"
+      ]
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "DRAFT",
+  "createdAt": "2026-10-04T13:13:41.207Z",
+  "updatedAt": "2026-10-04T13:13:41.207Z",
+  "provenanceIds": [
+    "01a10760-b9f0-7063-849c-a63d92a6f53f",
+    "01a10760-b9f0-7523-98fe-693acd8a97d7"
+  ]
+}

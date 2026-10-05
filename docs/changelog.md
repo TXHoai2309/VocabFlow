@@ -1525,3 +1525,11 @@ US-07 remains not started.
 - Root Master validation, typecheck, focused tests, and `git diff --check`
   pass. Full-repository ESLint is blocked by one unrelated uncommitted
   weak-words page effect warning.
+
+<!-- PHASE-2F5-CHANGELOG START -->
+## 2026-10-05 — Hybrid-100 canonical CEFR promotion and release candidate
+
+- Promoted the owner-approved CEFR package pinned to d0a60b26f75b65c18953e76ed759447151ab81a880e9c3e869cbefc6f12bb622: 97 new classifications, light revision 2, water reuse, and fuse intentionally unclassified.
+- Built the immutable 2.2.0-rc.1 Hybrid-100 candidate in IN_REVIEW status; it is not an approved release and has no releaseHash.
+- Runtime import, database writes, and production mutation remain unauthorized and were not performed.
+<!-- PHASE-2F5-CHANGELOG END -->

@@ -533,3 +533,13 @@ Acceptance evidence: the 2F.4B/2F.4C focused checks, Master validator,
 typecheck, ESLint, deterministic approval `--check`, and `git diff --check`
 pass. The historical 2F.4A exception-only regression group is skipped once the
 full owner-approval artifact exists.
+
+<!-- PHASE-2F5-US45 START -->
+## Phase 2F.5 — Canonical CEFR promotion and Hybrid-100 release candidate
+
+The owner authorized canonical promotion of the full CEFR package fingerprinted as d0a60b26f75b65c18953e76ed759447151ab81a880e9c3e869cbefc6f12bb622 and construction of an immutable 2.2.0-rc.1 candidate. Promotion adds 97 new Classification identities, adds light revision 2 under the existing identity, reuses water revision 1, leaves fuse unclassified, and promotes all 197 CEFR Provenance records.
+
+The release candidate contains the exact 87-Lexeme / 100-Sense cohort, 99 CEFR assignments, the computed Provenance closure, and one DRAFT taxonomy snapshot. Its status is IN_REVIEW. No APPROVED release or releaseHash exists. Runtime reconciliation/import, database access or writes, and production mutation were not authorized or performed. Source and media rights remain unverified.
+
+Final approval remains blocked on RC owner/final review, review of the IN_REVIEW manifest, DRAFT canonical records, DRAFT taxonomy snapshot, and separate authorization for an APPROVED release.
+<!-- PHASE-2F5-US45 END -->
