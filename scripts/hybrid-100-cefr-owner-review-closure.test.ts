@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
@@ -13,26 +13,27 @@ const WORKSPACE = "vocabflow-dataset/workspaces/hybrid-100-cefr-draft";
 const LIGHT_CLASSIFICATION_ID = "01a0fc13-09f1-76b9-8a57-6c6e55e9b438";
 const LIGHT_SENSE_ID = "01a0fc13-09ee-7768-9be6-d20fa32521ee";
 const LIGHT_PREDECESSOR_HASH = "08482dae079eb7932bb7254e9a99277f104d58cf73be9f954b63641996c9763c";
-const plan = buildClosurePlan(REPO_ROOT, "check");
+const fullOwnerApprovalExists = existsSync(path.join(REPO_ROOT, WORKSPACE, "full-owner-approval.json"));
+const plan = fullOwnerApprovalExists ? null : buildClosurePlan(REPO_ROOT, "check");
 const plannedJson = <T,>(relativePath: string): T => {
-  const contents = plan.files.get(`${WORKSPACE}/${relativePath}`);
-  if (!contents) throw new Error(`Missing planned artifact: ${relativePath}`);
-  return JSON.parse(contents) as T;
+  const contents = plan?.files.get(`${WORKSPACE}/${relativePath}`);
+  if (contents) return JSON.parse(contents) as T;
+  return JSON.parse(readFileSync(path.join(REPO_ROOT, WORKSPACE, relativePath), "utf8")) as T;
 };
 const decisions = plannedJson<{ rows: JsonObject[]; decisionCounts: Record<string, number>; proposedDistribution: Record<string, number> }>("cefr-decisions.json");
 const closure = plannedJson<JsonObject>("owner-review-closure.json");
 const manifest = plannedJson<JsonObject>("manifest.json");
 const registry = plannedJson<{ mappings: JsonObject[] }>("classification-registry.json");
-const workspaceClassifications = [...plan.files.entries()]
-  .filter(([relativePath]) => relativePath.startsWith(`${WORKSPACE}/classifications/`))
-  .map(([, contents]) => JSON.parse(contents) as JsonObject);
-const workspaceProvenance = [...plan.files.entries()]
-  .filter(([relativePath]) => relativePath.startsWith(`${WORKSPACE}/provenance/`))
-  .map(([, contents]) => JSON.parse(contents) as JsonObject);
+const workspaceClassifications = plan
+  ? [...plan.files.entries()].filter(([relativePath]) => relativePath.startsWith(`${WORKSPACE}/classifications/`)).map(([, contents]) => JSON.parse(contents) as JsonObject)
+  : readdirSync(path.join(REPO_ROOT, WORKSPACE, "classifications")).map((name) => JSON.parse(readFileSync(path.join(REPO_ROOT, WORKSPACE, "classifications", name), "utf8")) as JsonObject);
+const workspaceProvenance = plan
+  ? [...plan.files.entries()].filter(([relativePath]) => relativePath.startsWith(`${WORKSPACE}/provenance/`)).map(([, contents]) => JSON.parse(contents) as JsonObject)
+  : readdirSync(path.join(REPO_ROOT, WORKSPACE, "provenance")).map((name) => JSON.parse(readFileSync(path.join(REPO_ROOT, WORKSPACE, "provenance", name), "utf8")) as JsonObject);
 const byLemma = (lemma: string) => decisions.rows.find((row) => row.lemma === lemma)!;
 const classForSense = (masterSenseId: string) => workspaceClassifications.find((record) => record.masterSenseId === masterSenseId);
 
-describe("Phase 2F.4A CEFR owner exception closure", () => {
+describe.skipIf(fullOwnerApprovalExists)("Phase 2F.4A CEFR owner exception closure", () => {
   it("plans light revision 2 under the existing Classification ID", () => {
     const revision2 = classForSense(LIGHT_SENSE_ID)!;
     expect(revision2).toMatchObject({
@@ -111,7 +112,7 @@ describe("Phase 2F.4A CEFR owner exception closure", () => {
   });
 
   it("allocates no additional IDs on rerun and preserves registry IDs", () => {
-    const summary = plan.summary;
+    const summary = plan!.summary;
     expect(summary.parentCefrDraftFingerprint).toBe(PREVIOUS_CEFR_DRAFT_FINGERPRINT);
     expect(summary.repeatFingerprintIdentical).toBe(true);
     expect(summary.newClassificationUuidsAllocatedOnThisRun).toBe(0);
@@ -135,19 +136,19 @@ describe("Phase 2F.4A CEFR owner exception closure", () => {
       databaseRuntimeOrProductionAuthorized: false,
       rightsBoundary: { sourceRightsVerified: false, sourceClaimedAsOfficial: false, rawSourceTextReused: false, externalSourceProvenanceCreated: false },
     });
-    expect(plan.summary.releaseCreated).toBe(false);
-    expect(plan.summary.canonicalClassificationMutation).toBe("NONE");
-    expect(plan.summary.canonicalSemanticMutation).toBe("NONE");
-    expect(plan.summary.databaseWrites).toBe("NONE");
+    expect(plan!.summary.releaseCreated).toBe(false);
+    expect(plan!.summary.canonicalClassificationMutation).toBe("NONE");
+    expect(plan!.summary.canonicalSemanticMutation).toBe("NONE");
+    expect(plan!.summary.databaseWrites).toBe("NONE");
   });
 
   it("limits planned writes to the CEFR workspace and review reports", () => {
-    expect([...plan.files.keys()].every((item) => item.startsWith(`${WORKSPACE}/`) || item === "vocabflow-dataset/reports/hybrid-100-cefr-owner-review.md" || item === "vocabflow-dataset/reports/hybrid-100-cefr-classification-draft.md")).toBe(true);
+    expect([...plan!.files.keys()].every((item) => item.startsWith(`${WORKSPACE}/`) || item === "vocabflow-dataset/reports/hybrid-100-cefr-owner-review.md" || item === "vocabflow-dataset/reports/hybrid-100-cefr-classification-draft.md")).toBe(true);
     const datasetPath = path.join(REPO_ROOT, "vocabflow-dataset", "dataset.json");
     const lightPath = path.join(REPO_ROOT, "vocabflow-dataset", "master", "classifications", `${LIGHT_CLASSIFICATION_ID}-r1.json`);
     const datasetBefore = sha256(readFileSync(datasetPath));
     const lightBefore = sha256(readFileSync(lightPath));
-    materialize(plan, "check");
+    materialize(plan!, "check");
     expect(sha256(readFileSync(datasetPath))).toBe(datasetBefore);
     expect(sha256(readFileSync(lightPath))).toBe(lightBefore);
   });

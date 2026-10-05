@@ -847,7 +847,7 @@ export function buildClosurePlan(root: string, mode: "check" | "materialize" = "
   }
   for (const [relativePath, record] of allProvenanceFiles) addJson(relativePath, record);
   files.set(`${WORKSPACE}/README.md`, readme);
-  files.set(OWNER_SHEET, buildOwnerSheet(finalRows, decisionCounts, finalDistribution, lightPredecessor, lightR2, ownerClosure));
+  files.set(OWNER_SHEET, buildOwnerSheet(finalRows, decisionCounts, finalDistribution, { ...lightPredecessor, contentHash: lightPin.contentHash }, lightR2, ownerClosure));
   files.set(DRAFT_REPORT, buildDraftReport({ decisionCounts, distribution: finalDistribution, sourceCounts, releaseReadiness, qaSummary, fingerprint: cefrDraftFingerprint }));
   assertRightsSafe({ ownerDecisionRows, registry, classificationRecords: [...finalClassificationMap.values()], provenanceRecords: finalProvenanceRecords, releaseReadiness, ownerClosure, sourceSummaryFinal });
 

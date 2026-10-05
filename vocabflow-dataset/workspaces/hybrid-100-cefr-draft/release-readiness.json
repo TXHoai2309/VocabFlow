@@ -31,10 +31,13 @@
       "acceptedUnclassifiedCount": 1,
       "unresolvedExistingClassificationConflicts": 0,
       "existingValueMismatchResolvedByWorkspaceRevisionPlan": 1,
-      "remainingGeneralOwnerReviewCount": 95,
+      "remainingGeneralOwnerReviewCount": 0,
       "canonicalClassificationPromotion": "NOT_STARTED",
-      "ownerApprovalScope": "CEFR_EXCEPTION_REVIEW",
-      "CEFR_EXCEPTION_OWNER_APPROVAL": "YES"
+      "ownerApprovalScope": "FULL_HYBRID_100_CEFR_COHORT",
+      "CEFR_EXCEPTION_OWNER_APPROVAL": "YES",
+      "ownerApprovedDecisions": 100,
+      "ownerApprovedClassified": 99,
+      "fullOwnerApproval": "CLOSED"
     },
     "CLASSIFICATIONS_OTHER_THAN_CEFR": {
       "status": "NOT_STARTED"
@@ -61,8 +64,8 @@
       "status": "NOT_AUTHORIZED"
     },
     "CANONICAL_CLASSIFICATION_PROMOTION": {
-      "status": "NOT_READY",
-      "reason": "This owner approval covers only the five CEFR exceptions; the other 95 rows retain their prior pending owner-review status."
+      "status": "READY",
+      "reason": "All 100 CEFR decisions are owner-reviewed, the 99 classified outcomes have unique owner-review evidence, classification and provenance schemas pass, and the pinned canonical predecessor remains unchanged. Promotion has not occurred."
     }
   },
   "releaseBlockers": [
@@ -87,7 +90,7 @@
   "ownerApprovalScope": "CEFR_EXCEPTION_REVIEW",
   "CEFR_EXCEPTION_OWNER_APPROVAL": "YES",
   "OWNER_APPROVED_ALL_FUTURE_RELEASE_ACTIONS": false,
-  "canonicalClassificationPromotionReady": false,
+  "canonicalClassificationPromotionReady": true,
   "finalDecisionCounts": {
     "NEW_EDITORIAL_CLASSIFICATION": 97,
     "REUSE_EXISTING_CLASSIFICATION": 1,
@@ -109,5 +112,15 @@
     "editorialAdjustments": 41,
     "unresolvedSourceConflicts": 0
   },
-  "cefrDraftFingerprint": "ec0a6e34556a3d484dbdd608e592b912cb8c4ff2ceafdbe46b9cac02ea23b18f"
+  "canonicalClassificationMutation": "NONE",
+  "ownerApprovedDecisionCount": 100,
+  "ownerApprovedClassifiedCount": 99,
+  "ownerApprovedUnclassifiedCount": 1,
+  "pendingOwnerReviewCount": 0,
+  "ownerReviewProvenanceCoverage": "99/99",
+  "canonicalPromotionAuthorized": false,
+  "releaseCreationAuthorized": false,
+  "runtimeAuthorized": false,
+  "productionAuthorized": false,
+  "fullOwnerApprovalFingerprint": "5c2132d01b43a7539d1b7745bf4d65bafe498c13e5fc332437c9ab0b46812dfd"
 }

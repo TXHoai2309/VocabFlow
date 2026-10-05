@@ -1,5 +1,29 @@
 # Current Handoff Snapshot
 
+## 2026-10-05 — Master Vocabulary V2 Phase 2F.4B full CEFR owner approval
+
+- Owner-approved the exact 95 rows pending from the pinned Phase 2F.4A
+  closure. All 100 decisions are now resolved: 99 classified and fuse remains
+  intentionally unclassified. Final decisions are 1 reuse, 1 revision plan,
+  97 new editorial classifications, and 1 unclassified; distribution remains
+  A1 17, A2 28, B1 20, B2 27, C1 7, unclassified 1.
+- Added 95 stable workspace `OWNER_REVIEW` provenance IDs and no Classification
+  IDs. Workspace provenance totals are 98 `PROJECT_AUTHORED` and 99
+  `OWNER_REVIEW` (197 total), covering all 99 classified/reused outcomes.
+  Water reuse has workspace governance evidence without a canonical rewrite;
+  fuse has no Classification provenance. Full owner-approved fingerprint:
+  `5c2132d01b43a7539d1b7745bf4d65bafe498c13e5fc332437c9ab0b46812dfd`.
+- Canonical Classification promotion readiness is YES; canonical promotion
+  has NOT occurred and approved release readiness remains NO. No release,
+  runtime import, database operation, or production change occurred. The
+  Phase 2F.4A light predecessor report now renders its pinned SHA-256 from
+  metadata. Source/media rights remain unverified; no official CEFR claim is
+  made.
+- Master validator PASS (0 errors, 0 warnings, 1 informational DRAFT issue),
+  Phase 2F.4B focused regression tests PASS (9/9), typecheck PASS, ESLint PASS,
+  deterministic rerun PASS, and `git diff --check` PASS. Local Node is
+  22.19.0 while the package requests 22.23.2.
+
 ## 2026-10-05 — Master Vocabulary V2 Phase 2F.4A CEFR owner exception closure
 
 - Closed exactly five owner-reviewed CEFR exceptions in the workspace: light

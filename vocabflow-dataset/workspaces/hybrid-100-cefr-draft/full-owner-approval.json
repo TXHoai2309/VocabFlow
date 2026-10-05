@@ -1,0 +1,997 @@
+{
+  "artifactType": "HYBRID_100_CEFR_FULL_OWNER_APPROVAL",
+  "approvedPackageFingerprint": "ec0a6e34556a3d484dbdd608e592b912cb8c4ff2ceafdbe46b9cac02ea23b18f",
+  "previousCefrDraftFingerprint": "2da4c57ebbd18ce5e2c1fa77749fb7fe79a2f22752ba39506d2f59a7d7804a74",
+  "approvedSemanticDraftFingerprint": "a112a475e896f09038d4dd6834389af2d553d3a509829ef410ef17ae4e37ee1d",
+  "canonicalPromotionFingerprint": "5c10618ee72fcc7b99b270764e412ebc51f286eadc750e45a6910830bb15e870",
+  "reviewScope": "FULL_HYBRID_100_CEFR_COHORT",
+  "approvedCandidateCount": 100,
+  "approvedClassifiedDecisionCount": 99,
+  "approvedUnclassifiedDecisionCount": 1,
+  "priorExceptionApprovalCount": 5,
+  "newlyApprovedPendingRows": 95,
+  "newlyApprovedDecisions": [
+    {
+      "candidateId": "SOURCE-CANDIDATE-0193d5c02d4ad6bb90485dac2dde8709905ebdcca01ddab95885f2d96b5827eb",
+      "masterSenseId": "01a1070c-7c56-71df-b6f0-39632387320e",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7505-b184-f1c8745a87c4",
+      "semanticPayloadHash": "90117350b163b36c3302667ae133f0ff5917b9efdcf292a558e663ad90372795",
+      "ownerReviewProvenanceId": "01a10760-b9f0-74fb-8691-aa601d7394ed"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-01a6f2b2136d3a76a82ba19aa193778133938ad1dcf42cc88734a23a0ff74c57",
+      "masterSenseId": "01a1070c-7c57-7676-9acd-d23079256ae2",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7fc5-be31-65b1995d71e1",
+      "semanticPayloadHash": "db5893aa5821b61f57e95ae8830cb47f042847a5fe46ab317b20d79f402b380b",
+      "ownerReviewProvenanceId": "01a10760-b9f0-78eb-aa8b-c0ca8df20977"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-05d9af13d045b15eb568626ef7e7f85de8545206ee5a7e23e2dd48b8625359de",
+      "masterSenseId": "01a1070c-7c57-7676-9acd-eaf36e6184b3",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-74c3-ab8c-b2359bb3b853",
+      "semanticPayloadHash": "225aab4fb0b4535294988c0b5ce39b64fdf88d39a1a1b0f96a03814dbd6dfdcb",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7663-bf20-a4daec72362b"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-06f9d0147063b37aabfa6c063015793ab2a4aefa94373eaa3ca0a57270ade6e7",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-014df3449d2e",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7263-864d-6c2503204ba1",
+      "semanticPayloadHash": "72fa8aa3a366e822d4d5b65930590fbf533d7bae7e2fecbd95ac214c884f0ca8",
+      "ownerReviewProvenanceId": "01a10760-b9f0-790a-8f35-6b0f71b97bc8"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-0a7dad541e530e2497d77ca7510ce37c5e5d47e56048d8b41abbe2ef1aa29a51",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-18656f491ca7",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7a1c-b6ce-ae0683c473f2",
+      "semanticPayloadHash": "739a01c250a4fd0db33952804e21d52581be7f6c4557452d889b48f0fd1e0529",
+      "ownerReviewProvenanceId": "01a10760-b9f0-773d-9951-553818af0d81"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-0b18be4294c77935547c8fc96d5e66cd4bc3ad92f0073d8085d0e58ae895a164",
+      "masterSenseId": "01a0fc13-09ef-75ac-b815-039ab337c01a",
+      "decisionType": "REUSE_EXISTING_CLASSIFICATION",
+      "classificationId": "01a0fc13-09f2-77bf-93db-1ceefb68082a",
+      "semanticPayloadHash": "edb1d8c1ab80bb83a5201fe672e66a5219f75adb58a82c0594ee11ace2fd76b7",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7798-9daa-a8c7c4dd11ce"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-0c2cae6a295500c57b7d642a28da7692cc7f2a0b8a36ae7aa99ba9f6a7d4b88f",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-32d1337aab90",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7bb6-8cfa-25188c073394",
+      "semanticPayloadHash": "7ec0b55b86652612a06ba8e3afc768d1d3af3b10f4edcd786170386440b2eb26",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7abf-a8b7-2dc64a1ea92d"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-0e7ea04a3bfc409aece73ae639ffa01e693bbe50993a6479bd98ee63d4a26368",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-4b581bada298",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7a21-925a-b9d8c300e727",
+      "semanticPayloadHash": "cd2087f3dac4c7fd00de80c38c152312b644a41931ca09fb91deb5350883c407",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7536-9264-3196e26862eb"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-11ff58a982a345fcd41336635a5d17267dd074a64fbba1ae94979197569816a2",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-63a7042782dc",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-77a6-8d77-b6efddd51927",
+      "semanticPayloadHash": "f304ac944b943626bf05bbae202d2243c24f956647f1821f0bfe0953a012b7ed",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7406-a509-db3dd4a8e94b"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-18950eb5fa3eaf3a59c939f27d349bb1d1583e7d06cc82be3e98075185cb3fa5",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-79a6118270d8",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7b7b-bbbc-27ef19e8ad1c",
+      "semanticPayloadHash": "5ca6491157d0221e48069b18c19fd03b724a9a12a0e5d31426fb5808d1835c62",
+      "ownerReviewProvenanceId": "01a10760-b9f0-772b-8699-5d45db542b9d"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-1b03f5ef8c017372c20c42281718632056242edbb5cfb807910f66a6ffa26470",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-93aa39952372",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-75da-bbf4-e4c807a16f54",
+      "semanticPayloadHash": "b970e56d36b87eecb8442b05826d69c3bc4cb086101d6678e20f0dd862ec8b13",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7921-b7bf-044f53fd3f43"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-1b64d7be9c1fc59280402edb0da818c6e0be9acda0f745b8114b0dd7252e0051",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-a81c3cdf40fa",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7f0d-808a-170f24f409ef",
+      "semanticPayloadHash": "fbb46698fab14d797ab0e1203e54ad5113cb89a1052080048e4f2cb61330c39f",
+      "ownerReviewProvenanceId": "01a10760-b9f0-75c3-9b2d-bf0495683865"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-1bfdf10a871b1f4f3299e0f5d25b31acb5895a658442933cd9428ca6bb7d72d4",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-c2f9d561c8f4",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-776d-b613-ad3e5b28c880",
+      "semanticPayloadHash": "aeb99ccd502f29337dddc5897191c417c95a48e02c265a8bbcaaa722cf7febb0",
+      "ownerReviewProvenanceId": "01a10760-b9f0-74c0-8abf-8863edb9d807"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-230b10a0034f428818bad9bc4ca686a79ac9220951411a0cb332e874121dc84e",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-d8831aa1814d",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-746f-961a-1595d4e7c31c",
+      "semanticPayloadHash": "e6b06ce1eab4d8f6effb84fe34d9c4806216e4af2d3df36f3d64d1848e635d01",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7845-86ac-696b9d92aa0c"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-25993c4faa58bb75796ba9e6f049945db74c20e29b23161011aa878166a64ec1",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-f28714bdee2e",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-790a-bc17-fed7256e27ef",
+      "semanticPayloadHash": "7d15ec5bbc1e97d674060bfaf6321e3a38f6f60d1d5c12f440b4d762c2bf1736",
+      "ownerReviewProvenanceId": "01a10760-b9f0-756b-af87-d3c2d87e0550"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-2616ae8618dcdfbe0a7acd517632ec990586cdfc48a51bcc69a3a560f7af81d4",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-09879397d1e1",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-73ed-ab62-593d857a1fcc",
+      "semanticPayloadHash": "22a9baaafb916646e448976ac4876e955e2dee2be8b33a9d5f2cf59b747a4ae4",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7a0c-ab50-22e5244438af"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-2655a035435cea58d93fab5b374b0fe84c4a4dcc4bc0a8052e21b64be73e30d4",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-2166c93ae47a",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-74ac-a841-4b76153b6fd6",
+      "semanticPayloadHash": "0e748b959b98b20b56422ece1d04a29cbb9e877c0945d6fc39fcde75a5e1d579",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7b71-b630-6cbb147278d9"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-2a334f43a5dcae06ac202388eb08884fa5d7c1177d1cf62b0096e6de113f8ed9",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-390ac30fd890",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-773d-b132-f11a9a9665cb",
+      "semanticPayloadHash": "8c56450022cb80b31cd79776c6c0331d35a4a01fdc31d1e64e37d31fb94a948f",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7902-aa16-91ce1d7c1300"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-2f71c2bee6a21197fcc2b973a400addd6f3b4209e08e0dd808b50c89724a1458",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-51b00d9e4aca",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-745b-92ac-b5609b168981",
+      "semanticPayloadHash": "c6ece909905460b2d0fe3026e93823f7ee58c2333e51c6d8048f7852404de011",
+      "ownerReviewProvenanceId": "01a10760-b9f0-71da-8960-5000a13013bd"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-300c5a70d2aedc60fde2548a32f2393fb5c92128a7887d89449d012c92f6fa79",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-6a88ac566599",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7a52-8a08-0131f5a2e43e",
+      "semanticPayloadHash": "bf66a3b91787ef103d3f6b85238c8b3efd3ba39ef8af35d83252aa874591ac94",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7040-b2fa-6f80ff239e0d"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-31730be890d512b37da89f6ac35288f319e18cb85094e0a1e6065d0eb2d81c84",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-83edaac99eb9",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-74c8-a07f-e1a5d8a94a1f",
+      "semanticPayloadHash": "5896a1a60f4826c875cc6adfb00a7497ec4109dde2f1080afcd5e2aa7fc1e457",
+      "ownerReviewProvenanceId": "01a10760-b9f0-73af-9297-69a0cdf51e1a"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-3572cebb12806a34d69990d38cb2594b72377123a7a310b47511adf7f926b824",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-99d8c8592c32",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-761c-8fcb-1c09634f7fb0",
+      "semanticPayloadHash": "ce332eae25732094644bd23800c1486eed8108666d2da1930e526331030b3810",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7385-9cd5-f8fb04fd6300"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-3624fa8192fcd04c8d2e072f386c6fc8869aeec39de7891fe6e62bb4978ad264",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-b1c2d0e92475",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7e48-9723-6ac13e9fb05e",
+      "semanticPayloadHash": "0e96f91d9dd016632dd5806a25a44ec5bd5ac455923d12a7df369cba91583180",
+      "ownerReviewProvenanceId": "01a10760-b9f0-79d6-b340-040697e0efc4"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-3c7277a33899085a7ba0f8754436899eaf7bb5d7052fb3d82c58a917635e72a6",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-c8bb470b0069",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7740-b1b1-f8fa3ebfb6c3",
+      "semanticPayloadHash": "9a63aaa3019d15ce5ceef386b27299afe6b25e5a104249e827f60fbce6ea3eb4",
+      "ownerReviewProvenanceId": "01a10760-b9f0-712d-adab-163d0686cd55"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-3d013d43097447db661335b9eb58efe7694b9fbeedf01f0e5b899ecaa1d15ea1",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-e2bf85a21c08",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-71de-9e0e-552d2b4b236c",
+      "semanticPayloadHash": "5439b30c5898ac17e3a0ee907d83964337e9afbe21764f0c149bb0c632a1b1ca",
+      "ownerReviewProvenanceId": "01a10760-b9f0-74e8-b96e-635086b4e49d"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-3f0020f8523bfc56dcc81a0c3c66958409b68794955d496daf59e68c7789dd25",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-fbb6c07854f6",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-73af-8117-25aa157b8df3",
+      "semanticPayloadHash": "6f02c96e358f1ecef46fa13dd290b846ff0b1034cddf8f269b1185f68271edde",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7c20-8460-60d065b48331"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-3f143bf8fcaa3d639502b8ab6fa9ca2ba3b1447735dce3975be88a5f403bc030",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a8-d1cd64c3eada",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7683-af08-eea3b2071197",
+      "semanticPayloadHash": "9cfa0dda952d3105d87086884d98aad702515d148e6cadd1124f93e7d35ef6b5",
+      "ownerReviewProvenanceId": "01a10760-b9f0-79ed-b257-1d99046c3c5e"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-413463e2f1c79eefd19302149539c58dafe094b88ca99dc983265555b2d624e6",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a8-ebb7ee4a97d9",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7ab3-baf5-00d42cb0a66d",
+      "semanticPayloadHash": "89b7612a3da8638c9d76e85b460e5a7a62f602336410d4695461816901c01975",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7e02-96e3-e17379a0c8fb"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-415fdc4cd7e7c56b11011578876315264e107c9a655be7c28e414bd653b37a19",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-0030193008ca",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-79d4-a2d5-15762b9b5e8d",
+      "semanticPayloadHash": "5d43591b96bf1bf85d7995dd29ffafd0fb87cf00545ae4b6ea11b508235a4bd1",
+      "ownerReviewProvenanceId": "01a10760-b9f0-75c0-b9b0-843631057612"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-4630c0cb4a5a2294a0a6cdcc885049892440beb89954cc8dd3342b8c00f88445",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-18ee254ff4be",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7441-90c0-8ef7353df869",
+      "semanticPayloadHash": "4c22da2502431ba7e8ee20cb63cd19e459fa01048b00d8d9c9d0d7dd41a996e0",
+      "ownerReviewProvenanceId": "01a10760-b9f0-76dd-8d33-73c8b2f3a95f"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-472eb5f06a2d2fb2626306b6d75cb9c3ae75ec45201cd05e469591006cdffb52",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-3185a807d618",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-774e-9f0e-63b238b250e6",
+      "semanticPayloadHash": "7d7626bd5c8ad8ffe4eafdce836081654d60079ecfda1b3d65bfc91101d250c0",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7219-a84c-3666dc8832ae"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-4804e5a1064d970635ca260f2051e8bef92cae2634105fc25fdc09a45bf00061",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-4b4562d352c8",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7813-a08d-3f8e573195c4",
+      "semanticPayloadHash": "42ae675424054020a176ec9d0a679caabdc8379e1a51a6ce0674dd39da10ed44",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7a4f-b432-fc5186683246"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-51722d2f8baa68b54454b43e12daf3927c28d512bc10f44e52e1185c462a92ca",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-78fe16fc29bb",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-72d4-9bad-69d6f5cb6543",
+      "semanticPayloadHash": "b02428301863e0c5c85c7fa63deddd788e28f93c1e31357d801321fbdf626638",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7aa7-8a1e-d24f30647f16"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-521ce0adaa9f904198bc892544ca715c344bc69263b4d3137083dcf496a5f6a0",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-92d544914a1a",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7046-8b09-7ef068240509",
+      "semanticPayloadHash": "ac15c3c1b3357c25dbab5a1f4d42894cb599b8157a19cce9c3d3a08f2d462d23",
+      "ownerReviewProvenanceId": "01a10760-b9f0-70c9-9af1-a47ca516266e"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-5565174c91cbf17ade5418e71beafe248bbfbebab5fe2b7ac92d7c07f8ef5651",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-aa41e4cd8ff9",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7f17-a990-481e9dd28fa4",
+      "semanticPayloadHash": "bf00bd01cc871e053b71dd3e11779aab5b12588964aac4d9525130f9a059037f",
+      "ownerReviewProvenanceId": "01a10760-b9f0-78ee-9f15-6dd5af765254"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-5612075f600566dae5840afca85e3c574d323b8ddc80559d986707715747e2a5",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-c1530836b546",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-721a-bada-12ae79c2bd3a",
+      "semanticPayloadHash": "b44236fb3f4b15a8369340b2c9413b8cea9500ba1a12a4e9885de1c0ed80040e",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7c61-aede-d7bd72060a62"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-5a824cc60ce344b2335f8f7661a2f66bf8e781fa9a138cdecc32b6dd254ae607",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-d9fe7b7d857e",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-79bb-b0bc-5bf05f0e4faa",
+      "semanticPayloadHash": "1fec295310f82ca4547596993806a9877735bb9ab79cc61c8137f5b3dbafdfe7",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7db1-a6c4-d96a0d28e257"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-5bcbe443d9c60cbcbbaf34fbaed0744b323367854f7d9f22657c9444aea0d9e0",
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-f257db26d791",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-72eb-8a39-4590b2860768",
+      "semanticPayloadHash": "99a8f82f35dab0a540bb11136d397347401d8a33d95d9409d46980ab68ce6b14",
+      "ownerReviewProvenanceId": "01a10760-b9f0-796b-ad69-28e022ec0a11"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-5c5da7bfd16d72494c038208e25badf621ffc15a4f70b8ee203b06be9c4cc257",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-0a20d4f7ae01",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7e41-b3fd-021e48b1f96b",
+      "semanticPayloadHash": "a4d7f8f276c902ec05d12b4c0ed0cc0c2bab1ed63a18d9e87dbda09ec1567829",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7de1-ada7-ffcaaaa32702"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-5f6cd61804c889f2e7c8ab95fc05ab7b05f28a4f26d96548c890f4183a55ba8d",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-20e7d1e01c66",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7f25-9e6f-8374a26b203c",
+      "semanticPayloadHash": "406d3173411715c792287791cd19933dff4004ff4a9a7c7702fb18cff36d55d6",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7bcd-a161-72db29af2633"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-616c853e98fddfbade0001ee43b364e6b5ef6b6ad73efcee81897818e81720b5",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-397ef521e177",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-75e1-ba29-3ffe3567c9f2",
+      "semanticPayloadHash": "22df1515ff9415db90a246f0f410361aac574d6d14b730f69b42bbbe202013f9",
+      "ownerReviewProvenanceId": "01a10760-b9f0-769e-8d2a-a48e51d5e1d5"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-677773ee6d6266c3844d1dfb650ac602e4190d2755585a03d23af163078bab5c",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-4d54a373af15",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7261-96d2-07e4c9273c04",
+      "semanticPayloadHash": "43f4cef8516e4fff4d6605f52f2ecc902d1d4eb4c973e9bdbd1bfb241458da72",
+      "ownerReviewProvenanceId": "01a10760-b9f0-77b7-a5da-e067a2a4d594"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-6ce32853d2cae03ebc709d39fad8a6934a972092040c5eaaa1eea92e19d297e6",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-66b0757806fe",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-792f-8eea-2f732ac368a4",
+      "semanticPayloadHash": "064ec88e2c5349324cbab09041c5bf90bf8358f3a69198e21d12f32aacdcc0d6",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7140-9bd0-3ec312bee5a6"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-6d13dcb4cadcd0e0ddbe0f7fbfb4eeaad944e4f184e43e024fc12b7a18b96166",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-7e0812b069ae",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7498-83f9-e1bdde543394",
+      "semanticPayloadHash": "3d473e745b8ba74b1e95fb4bd5e6afea6bdcc55b7db3a5097ca00ab6f884aa8c",
+      "ownerReviewProvenanceId": "01a10760-b9f0-74c8-b5d0-d5ac8487ffe7"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-6df3cbd74441f858e7dbfb989e650b84b905bd2a572b270933be15aad74ca685",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-97f25323b0a8",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-789d-a7ed-1f374856cf00",
+      "semanticPayloadHash": "9693da22222a11ba24ee655be47a10228e7c8e301ce21f91d0f93ad631b5704b",
+      "ownerReviewProvenanceId": "01a10760-b9f0-799a-a71d-29376385c299"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-706caaa1cae42721e1db6a2144e777b5845b1aa296be9ceb7b0ced3f945e231a",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-c4a190ee77a4",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7e5b-b0f9-673464e276d7",
+      "semanticPayloadHash": "ab3f02e2abf39d7f7dd7e8ee0d2016ce111d3e01ac5b5de74b9af053968a6f69",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7b96-8eb7-84da1d15510a"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-7073688505f4ddb8169baa314eccf17ab42d2689aa15584aca0f1d3cf64d8f28",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-db8e56d2cc07",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-782d-947b-5cd2a51ad957",
+      "semanticPayloadHash": "ec4fadc830548bdf6c688fd9f58441bb13daadbd287e5480b9fcb2abcef456a5",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7cec-baf3-a137119256cb"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-71158431f16035d34e20f7385234995c7b2646d98f73cee0753311710596daba",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-f3a4a21a7dc3",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-776e-b738-afdaca51be56",
+      "semanticPayloadHash": "303c920049edbc3308676a40e4bf27d3a31922cb3cc22210950333c14fac5ff2",
+      "ownerReviewProvenanceId": "01a10760-b9f0-74ba-a351-a01b85a42f5a"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-7575479487282ba588c025c8568810fe0507cee430200fc733b2a28ead6e2f9c",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-0ab34eedf7c6",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-72a0-b58e-153edb1435d4",
+      "semanticPayloadHash": "306053212c65db3c146a856e891150c67ad07fecdd7878e8c073f186bd673042",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7f8e-a982-b6d1a5df1275"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-78eda8d27df2d18b0240e625ff5c62516368bb55313c82aa89d91f060aa95753",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-23b5c52b4d0f",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-79aa-82c4-35e785d149ec",
+      "semanticPayloadHash": "4548c53371199166a8a066db234bc89a4bf528763d0c7983383dc9373721e106",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7dd8-bdb9-e9c2bab8407b"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-7d69b7e4e6b14f1f1e82af0886884db203752824101d0c946224fe01bd57da2e",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-369dd574695b",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-720a-86bc-f326a730508d",
+      "semanticPayloadHash": "04d7efa419b600821610522a5df17dbd134e6c0fd8e5f3f2d2ee35539597bd1e",
+      "ownerReviewProvenanceId": "01a10760-b9f0-745d-b055-a7b76d3a694c"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-7de5cd735943d1818063e38361843af5ffd1936eba1bf84f402225def6943079",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-48eb58f50cbf",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7894-ac0c-1b7f382eba04",
+      "semanticPayloadHash": "33cdf03628c25aca8f412e1c603473a6937c41b5bd0d2a5a78d3f6969ec1e096",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7332-a353-59aa334a5775"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-80af8ab531f9ced98fc9948a0bd469f6bcf066d18c08c9b8b21409bd609e553e",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-6137a474d3c3",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7ed4-b94c-957d887a4ebc",
+      "semanticPayloadHash": "4762bd620dd289c733e085b510ea6bdcbdfc3b08bd2b003b3839a757bc01eca8",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7841-a09e-ab577620fcc8"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-82a89160ac6153dd1d5d9df90b8e27da38e4bdd495580bd21338f82461ab0097",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-74b8a6de7e22",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-77d2-b383-272176fe75bd",
+      "semanticPayloadHash": "76030b8a7a0471a63e0196c867b744e6f04879939ff6a3073254e8ffbb4daa14",
+      "ownerReviewProvenanceId": "01a10760-b9f0-727a-aba6-4f096a04700c"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-860293e079247bb472fc9e936e2785fc9092a3d5b80d0c93ee7d558365f2cca8",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-8ebf5829835d",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7769-982d-ae4aac3799fe",
+      "semanticPayloadHash": "4a026d96dd91fa9db99709cc210ad57b21035479f3f455a1a6fb32d564cac00a",
+      "ownerReviewProvenanceId": "01a10760-b9f0-73ab-873c-330d40cd9107"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-86d6fc6cc4bd592ebdade6fce43449b174bfba918e14326ce156173320d5f71f",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-a764716f4128",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7d48-8eb2-8145f48d433f",
+      "semanticPayloadHash": "c71ecf979f7cbe9103db84104ade62837c4a8c6d5ef1f995f03e939e42f0cc98",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7056-b708-b0da5db3a25e"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-8a35f5357d1792b910f63a859a06237e89a84e96eaa3a2bc654f1303aeebbff1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-be14abe16989",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7752-8346-4c8e7e67dec4",
+      "semanticPayloadHash": "68f7d50bed4e40f0db5bfe1617eba7bcc89d59dae7bd724cd7de0f1c4edbbcc9",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7cf8-9f93-2e570dcb98b8"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-8ac6821bde7df79341feefdee4eacfa864b59f20098bfecf1a0a19d50e1331fd",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-d47ce6596f64",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7953-abe6-386b76c2d02c",
+      "semanticPayloadHash": "51a00a953440bc0df97b29d37ed22addd15baa203bea632101b251ff20db9a33",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7cd6-b3e4-7a8bcf60d792"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-8b730a86ea8d3ce02b76db59b3ecd029a062de0c6672918914208e6b16c2f1d6",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-ed6693eca162",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-743e-8006-5f42ff389661",
+      "semanticPayloadHash": "fbc61ad7afd2022ed2a7c1a6fa4771c3285e254138edb467a6444550123ed9e8",
+      "ownerReviewProvenanceId": "01a10760-b9f0-77c6-a836-79d05c929f4a"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-9664d6839894209a29d0641834468083bab17a238325f326fa50b87743b37a54",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ac-007b8e765c31",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7c86-9833-56cbf539427b",
+      "semanticPayloadHash": "150cd6cb50105558ecaac635832677b960a851e2401f872e5424a7b31ce4dbcb",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7ea2-a85e-4d6daf4c997c"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-9778e99282e13db6006303903ab40a2205f4940ea2b8333cb59b2da97111783c",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-388175c26836",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7e21-aecc-af5843212cdc",
+      "semanticPayloadHash": "6681c4693c86e5bab92c6512d6a55bbbc9c7f84eaa6a87b75a6428a17295d15d",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7e29-b8fd-78d923b0f154"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-989e2412a07fb9fd5c961af74ee3954b0e0de5c2d5d0db9f2774c29d5124144d",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-5263bfd63bbf",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7072-bb4e-a3e56bcaae91",
+      "semanticPayloadHash": "f5f66ffbfbb5cba4f74e6c8f26aaf43d1e442153602514e53b7cc8c0e4122055",
+      "ownerReviewProvenanceId": "01a10760-b9f0-78b9-bb83-6b9cc4251860"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-a668f749255b80a5683799c344ff31766bdfc36f789d419e51b0c5e90fccb09f",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-6b2a61e1e7c4",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-71cc-b653-9338c19b3bda",
+      "semanticPayloadHash": "43ba5ee47d6e2609d5083210f15d6b6524d6cf6fa1b556c85d7b9f7aaa6dcd68",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7c54-af2c-dcb579a50f76"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-a8663e5c6478cc250dced54fff1aae633c2960d6262ae6f328c446e753f9eeb9",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-982f187e5653",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7958-ae0f-b757c56c01b0",
+      "semanticPayloadHash": "4da52be216f0a5268cb9c88fa2912fe938a39171c07291b382e13b9b01c0629f",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7414-8a17-0a1302eaa9ee"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-ab5d0dfb9e05eb23a90df6674214dff815ad7a3f6b9a467383488aea160b6b17",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-b375a308217e",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-797f-98d3-039dbc48e347",
+      "semanticPayloadHash": "3221fde24362a9f567996d3743526a41cefbc2403295211a369d462b88e7fbf1",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7910-baea-4d9352eaaccd"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-b10678af0b94d27c23313cce5e3a860557f5dfabb31c87ad2bc860929a70ecd8",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-c8cce3636c7a",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7e0b-aa51-cc09a37ce365",
+      "semanticPayloadHash": "27cf30bc66c970039068d30e40d2719b9eb5af8e7cd83117aa9be2e6602f526b",
+      "ownerReviewProvenanceId": "01a10760-b9f0-70f2-a481-c58e01ccf219"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-b4a8289ae36d44a0774547da703cfe7b2cae49e10019936779c68f9fb2218f80",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-e052bbcb6335",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7051-bb97-93a841f20a43",
+      "semanticPayloadHash": "98bf08ab872140a0223e54aa4aaf5d5a4d7917f9f6ef06b627a041ecbc3c9dea",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7c66-bf26-faef57b50611"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-b6f8bcfdc7250deed3f7a6b867e76ce7ed7cdd433e2656470f4f05889a76354e",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-f95f0a11a85e",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7924-a18e-efb894af1992",
+      "semanticPayloadHash": "a7e787fb9fd0f8799346fcdbddd4fc0197455376d1bb272c281e6abcb96e685c",
+      "ownerReviewProvenanceId": "01a10760-b9f0-72b0-b7ac-8f2557959faa"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-ba799ba2d3885eefde5b278df2603ac1f148c0a697dda410b1552861b9822546",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-13e0fb40de8c",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7e3f-88c9-a667c379bdd9",
+      "semanticPayloadHash": "4cad11a080498f7ac854a7ba99af890f8b402c6975fb14dac741a89a22f2461e",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7caf-9b85-57263d420b77"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-bbeb334edeb83a694bb36579f1171305de2be0af2e6702c71c9caf48c22aafc2",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-2a10fa50c2ef",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7b46-b8c7-e6e52db7c6ed",
+      "semanticPayloadHash": "d3c4e29c881efab035daa4e0e5b6ada30ccc5e9f716e6cacaa5f893a364e1a81",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7ac1-a975-86b3ec846f32"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-c01d1ac17e173686606d610c8236ba034a9a786f92f335fe6f5962ed0b1ab195",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-413213f77278",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-78c8-bf78-efdd25d51b2b",
+      "semanticPayloadHash": "eba90b1b0abf576783b7eef64cc18d0bbcb4c4dd24eb253ce2c2759ba0acdd6c",
+      "ownerReviewProvenanceId": "01a10760-b9f0-76ab-9b8f-68d2f10f8598"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-c29e0bec420e2d7f8576982a414f15be28b444f32ce6077435fe65b7b48612b3",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-589ec0261ad8",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7879-92ed-5e0d1d36c165",
+      "semanticPayloadHash": "37188c4fb028a9c3723ba8244a99e693fea900eb07e17046af53f65fb335922e",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7001-9d14-b83a3dfe65ea"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-c672a94cf9a6befb8835cd2deb9578c31a2bf275b02c42e8f4a4fb741bb88777",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-700f2c9a47a0",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7b4c-99a4-5a8ae9d0ee23",
+      "semanticPayloadHash": "7e1e0295327f4c7a562c145dec9be35531f6340adfea46d853b581fd23e1a754",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7cea-857b-d38b00a0ea3e"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-c70769e33fd0ee3c0f52cd5baa57da3726d231656f37f6b1a9f50fcbd9a70203",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-882b36643f4e",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7527-8178-6493a977b7e6",
+      "semanticPayloadHash": "ac5f1e0284aae0072bb9a965a3e829a0ea9c7c3b0f1de341d1b1cf12d172550d",
+      "ownerReviewProvenanceId": "01a10760-b9f0-708c-8207-456d1300cc2b"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-c747aadb1e52b856b33f4c6c2909496ceb1e06d142bd5adf49263ddcd91ded91",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-9c1965cff571",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7e16-a07f-c88441d3009e",
+      "semanticPayloadHash": "d3e303f3fd872bedf4e11781f328c4ac500e552c08ccc147ad243aa19bd47fdd",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7d8e-af98-5d0c5c320c11"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-cbd100b99aa318222f4445443aef3df02a84445f398e3f3e163de9755d516f3c",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-b778960784d8",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7d4a-b9e3-09491f437ce5",
+      "semanticPayloadHash": "4a0b8123640f9244f527cbbe27844b1c6df5135a67e53f141e6b5ad593ab0189",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7a4b-832f-9a23fe23c1fd"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-d0003453968ccb0e946217280dca3ee3418c4dfb47f9d5961d33dcb126a87ce9",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-cff4c73ff34a",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-792f-9b5a-7af08362e3e2",
+      "semanticPayloadHash": "f47fcc88dab9c4352beca29b505c4015b8414c5b95039759ebdf2a2523bb2d44",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7fa8-b004-a6a7168d950a"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-d0750976f9404833c0388fd54ddf3b6e537eab7df1a37488bf47cccb674da831",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-e6665424a3b2",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-729e-b9e8-64f6cbb538a7",
+      "semanticPayloadHash": "479d422e4d1760732759e5f16e9a5da021c9c8814ec70cbe18af564a1fdb9893",
+      "ownerReviewProvenanceId": "01a10760-b9f0-79b1-95ae-05970171c8ce"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-dbf7df88588b5137ed5b799980124c1ff2997f07fdde89e7f44e9926e3fff5bb",
+      "masterSenseId": "01a1070c-7c59-726e-88d5-fa99c56877b4",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-77cb-bab4-2b692b549b54",
+      "semanticPayloadHash": "6ff8c0b8d818221d6374cf86dfbdab8bdb5d70906824bf3c6dbde2e3b4a09a01",
+      "ownerReviewProvenanceId": "01a10760-b9f0-73f2-9cc5-5569f8ae9432"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-df4ad026b1e363bac58a108f963f43dcfc448752c0699383449b76d76ee0a34f",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-12b693a50e53",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-78e2-8043-41dd4918dd2a",
+      "semanticPayloadHash": "d6fb1a989cc9dc635a574f3e2dc118644d1368b44c81adfb9b26c6f214f0a719",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7097-919d-b1247a76d8d9"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-e48631cf504508ae5a7f95254c864b2f09667590b8cb139c2e11dedcd47120df",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-2bd02d10cccb",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7926-9722-0300f03bc8c7",
+      "semanticPayloadHash": "b7470b4e7bef088e858b9a73ac72e5d8fb59c8adde25be1e58f31cfaab5bf371",
+      "ownerReviewProvenanceId": "01a10760-b9f0-73fd-8f02-ce77bb1b118f"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-e70596a9bb01ddaebb07f96d4f94f2d6317479f53caf923478b7a4a879bcb9fd",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-41334868edc3",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7f7e-97a0-d9f8502a41c7",
+      "semanticPayloadHash": "c5364065e9ef1abf6e3e77b9d90331c20ac53fb7bb682f9ee5894f55b092e535",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7428-af12-1dbb2f409a06"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-e96aab94c0f7b66007745905803d7598e61e0f15b36b6049a69a6a79742c3f0d",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-56be2debcdfe",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7923-b11a-cafc7ca6087c",
+      "semanticPayloadHash": "e82713fcd1d3aa70d7f6c98bf038cbe457a72277e6d404c29caf7bf292c00fd4",
+      "ownerReviewProvenanceId": "01a10760-b9f0-71f7-a79c-186691ba5536"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-e9ae57565ae44c6fb2f2b3ab8d5b19debf368fdc2691cb134f6eafeced8823df",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-6d55c97117dc",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-73a9-b894-4ddf6ef4ae12",
+      "semanticPayloadHash": "261557cddb60abc2d376db118cca0b580a37b5baf6566b4493795c52fa06c4a6",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7230-8fd4-3ee9e0b5707e"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-eaadad6c799f4d78737d4a9020edcfbc22e0d86fd6668f5d6780a1ccd5ca20b3",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-84571ea5dbf5",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7bc9-a9a6-d15a8e3dfa23",
+      "semanticPayloadHash": "694ec030fe43e0c871eaae22b4dd44361f14ecb783e3c77467215e9032f16066",
+      "ownerReviewProvenanceId": "01a10760-b9f0-75a8-9dab-9e8723c0f7c5"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-eb74df6da3109526eec13815cb005b351b9c189785edadedcb27c7703bfeb811",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-9edb547352aa",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-794d-8faa-054fecc8ae79",
+      "semanticPayloadHash": "424e9296e0922d9c5d8e277f121c88f2fba05766592d1ada9169f1037cfeb92f",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7eb3-846d-5a257dc686a6"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-ebbeeb8d54fefaac4b8c2558228bf61556de9e20d6846282bac64168bcc770a6",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-b5d43a60b62f",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7e87-a9e0-251ab7152f69",
+      "semanticPayloadHash": "eaedc3f86295f44807eeb4984800cd8f95945e68e5e5d44eab600da63382b2fc",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7289-8281-933558cb7b00"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-efcde4e40d67b7b9820de9ef1eed548cf2bd662bc82668344e35b951d15a3ffa",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-e7a8d422dbdf",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-73c5-b7c3-3e08f935de3d",
+      "semanticPayloadHash": "fa65832516c6a354130e0595a9119b663ddc66a2e8c91b3f7352f913389e86d7",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7f33-8fbe-eabc4ee63fd1"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-eff74bdfd6b979ae4852a79a9f5be6c6658ae60e0e5f4c834351e80724cd8163",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-fc58f364e770",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7673-87cd-66d5aaa26e3d",
+      "semanticPayloadHash": "65497ad9ffc7bce40d6d7f24d17a9796d51d00942559271fd4fd0c861628af1d",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7e8b-a0e4-a7b3406a6b2a"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-f0e3981e096b83feb3a8a024604428654ce713a6e39dfac979871f21679ca4f1",
+      "masterSenseId": "01a1070c-7c59-726e-88d7-1390989a47b8",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7aa2-a18f-82fee7079502",
+      "semanticPayloadHash": "ad42bfb0cbbee19154d2db44e1ce89bb9bfe6310cd0162d1a81d4f8a90036745",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7f7d-ad0c-48e855318276"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-f11ac8a25b9286099389f70cbc63c8fddd3ed025e704b621b09bca6389250462",
+      "masterSenseId": "01a1070c-7c5a-7542-a092-beb09c96a03f",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7d47-993e-8553794e925c",
+      "semanticPayloadHash": "387d7e189da366166136da3ea917617fa2fae279dc5e162fd0d34fcf35792811",
+      "ownerReviewProvenanceId": "01a10760-b9f0-77fe-be3c-136eed106047"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-f1de8d38fed4b5ad485a3de9c80590838ede38c0b75ac7469e463d4d272b3c2f",
+      "masterSenseId": "01a1070c-7c5a-7542-a092-d1d73dd0f634",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-770d-a35b-546266f0a7eb",
+      "semanticPayloadHash": "fcc23a103a25a9e37ef504b7f8283ad974d376bc440151be45cf5441a50fef51",
+      "ownerReviewProvenanceId": "01a10760-b9f0-796b-809e-b6f28a11a326"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-f50b56841676aac003cf7426d1a499be50547f89651c71c6b0b0165e4ba7a60d",
+      "masterSenseId": "01a1070c-7c5a-7542-a092-e7df11b3bc0a",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7164-a993-5fd1fcc9dc38",
+      "semanticPayloadHash": "716d58ca78e0dc1f18684cabbef4ce634c3e6f0d5b5e966252e0e27285d0cb5f",
+      "ownerReviewProvenanceId": "01a10760-b9f0-73ab-b83c-6c2332265569"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-fc84b2651c909a5bbf2c026594a905b931a0bdc17aa3e81de64dcd0e28a33303",
+      "masterSenseId": "01a1070c-7c5a-7542-a092-ff8307ef6e05",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7e48-b30a-e11fba1822a7",
+      "semanticPayloadHash": "718e0ffadba1a8d2af7b1c41bdb6eeca8d0c094a317bd0d0d3891e07fc5b39c2",
+      "ownerReviewProvenanceId": "01a10760-b9f0-77a8-885e-706d140f2b47"
+    },
+    {
+      "candidateId": "SOURCE-CANDIDATE-feb4f8b9a7b535c16ba72278e5323ead94f582a660d9d5b2c03d00643efe0155",
+      "masterSenseId": "01a1070c-7c5a-7542-a093-116a29fa3a72",
+      "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
+      "classificationId": "01a10760-b9f0-7ce4-8c4c-4454da9412e9",
+      "semanticPayloadHash": "7e222c82312236e4d2da11641707571f13fe7610d56be9616e16a2ae8b18c652",
+      "ownerReviewProvenanceId": "01a10760-b9f0-7453-85f6-2d0542d30d41"
+    }
+  ],
+  "approvedBy": "VocabFlow project owner",
+  "nonExceptionDecisionPayloadHashBefore": "c38875f81b831934acb7e3b64e7884e5c4415b193d64248bed58126b3363c54a",
+  "nonExceptionDecisionPayloadHashAfter": "c38875f81b831934acb7e3b64e7884e5c4415b193d64248bed58126b3363c54a",
+  "nonExceptionCefrValuesChanged": 0,
+  "classificationIdentityMapHashBefore": "1402438b352be294d3fab540276a98f2a40fa1488a47c9119e44474859ac6e3d",
+  "classificationIdentityMapHashAfter": "1402438b352be294d3fab540276a98f2a40fa1488a47c9119e44474859ac6e3d",
+  "classificationIdsChanged": 0,
+  "ownerReviewProvenanceIdCount": 95,
+  "effectiveOwnerReviewProvenanceCount": 99,
+  "projectAuthoredProvenanceCount": 98,
+  "totalWorkspaceProvenanceCount": 197,
+  "ownerReviewDecisionCoverage": "99/99",
+  "ownerReviewProvenanceIdsByClassifiedSense": {
+    "01a0fc13-09ee-7768-9be6-d20fa32521ee": "01a10760-b9f0-70c7-bb0f-1534fe1f6af0",
+    "01a0fc13-09ef-75ac-b815-039ab337c01a": "01a10760-b9f0-7798-9daa-a8c7c4dd11ce",
+    "01a1070c-7c56-71df-b6f0-39632387320e": "01a10760-b9f0-74fb-8691-aa601d7394ed",
+    "01a1070c-7c57-7676-9acd-d23079256ae2": "01a10760-b9f0-78eb-aa8b-c0ca8df20977",
+    "01a1070c-7c57-7676-9acd-eaf36e6184b3": "01a10760-b9f0-7663-bf20-a4daec72362b",
+    "01a1070c-7c57-7676-9ace-014df3449d2e": "01a10760-b9f0-790a-8f35-6b0f71b97bc8",
+    "01a1070c-7c57-7676-9ace-18656f491ca7": "01a10760-b9f0-773d-9951-553818af0d81",
+    "01a1070c-7c57-7676-9ace-32d1337aab90": "01a10760-b9f0-7abf-a8b7-2dc64a1ea92d",
+    "01a1070c-7c57-7676-9ace-4b581bada298": "01a10760-b9f0-7536-9264-3196e26862eb",
+    "01a1070c-7c57-7676-9ace-63a7042782dc": "01a10760-b9f0-7406-a509-db3dd4a8e94b",
+    "01a1070c-7c57-7676-9ace-79a6118270d8": "01a10760-b9f0-772b-8699-5d45db542b9d",
+    "01a1070c-7c57-7676-9ace-93aa39952372": "01a10760-b9f0-7921-b7bf-044f53fd3f43",
+    "01a1070c-7c57-7676-9ace-a81c3cdf40fa": "01a10760-b9f0-75c3-9b2d-bf0495683865",
+    "01a1070c-7c57-7676-9ace-c2f9d561c8f4": "01a10760-b9f0-74c0-8abf-8863edb9d807",
+    "01a1070c-7c57-7676-9ace-d8831aa1814d": "01a10760-b9f0-7845-86ac-696b9d92aa0c",
+    "01a1070c-7c57-7676-9ace-f28714bdee2e": "01a10760-b9f0-756b-af87-d3c2d87e0550",
+    "01a1070c-7c57-7676-9acf-09879397d1e1": "01a10760-b9f0-7a0c-ab50-22e5244438af",
+    "01a1070c-7c57-7676-9acf-2166c93ae47a": "01a10760-b9f0-7b71-b630-6cbb147278d9",
+    "01a1070c-7c57-7676-9acf-390ac30fd890": "01a10760-b9f0-7902-aa16-91ce1d7c1300",
+    "01a1070c-7c57-7676-9acf-51b00d9e4aca": "01a10760-b9f0-71da-8960-5000a13013bd",
+    "01a1070c-7c57-7676-9acf-6a88ac566599": "01a10760-b9f0-7040-b2fa-6f80ff239e0d",
+    "01a1070c-7c57-7676-9acf-83edaac99eb9": "01a10760-b9f0-73af-9297-69a0cdf51e1a",
+    "01a1070c-7c57-7676-9acf-99d8c8592c32": "01a10760-b9f0-7385-9cd5-f8fb04fd6300",
+    "01a1070c-7c57-7676-9acf-b1c2d0e92475": "01a10760-b9f0-79d6-b340-040697e0efc4",
+    "01a1070c-7c57-7676-9acf-c8bb470b0069": "01a10760-b9f0-712d-adab-163d0686cd55",
+    "01a1070c-7c57-7676-9acf-e2bf85a21c08": "01a10760-b9f0-74e8-b96e-635086b4e49d",
+    "01a1070c-7c57-7676-9acf-fbb6c07854f6": "01a10760-b9f0-7c20-8460-60d065b48331",
+    "01a1070c-7c58-76b5-a2a8-d1cd64c3eada": "01a10760-b9f0-79ed-b257-1d99046c3c5e",
+    "01a1070c-7c58-76b5-a2a8-ebb7ee4a97d9": "01a10760-b9f0-7e02-96e3-e17379a0c8fb",
+    "01a1070c-7c58-76b5-a2a9-0030193008ca": "01a10760-b9f0-75c0-b9b0-843631057612",
+    "01a1070c-7c58-76b5-a2a9-18ee254ff4be": "01a10760-b9f0-76dd-8d33-73c8b2f3a95f",
+    "01a1070c-7c58-76b5-a2a9-3185a807d618": "01a10760-b9f0-7219-a84c-3666dc8832ae",
+    "01a1070c-7c58-76b5-a2a9-4b4562d352c8": "01a10760-b9f0-7a4f-b432-fc5186683246",
+    "01a1070c-7c58-76b5-a2a9-620e574defe8": "01a10760-b9f0-7d72-b1f2-515e2fcb618b",
+    "01a1070c-7c58-76b5-a2a9-78fe16fc29bb": "01a10760-b9f0-7aa7-8a1e-d24f30647f16",
+    "01a1070c-7c58-76b5-a2a9-92d544914a1a": "01a10760-b9f0-70c9-9af1-a47ca516266e",
+    "01a1070c-7c58-76b5-a2a9-aa41e4cd8ff9": "01a10760-b9f0-78ee-9f15-6dd5af765254",
+    "01a1070c-7c58-76b5-a2a9-c1530836b546": "01a10760-b9f0-7c61-aede-d7bd72060a62",
+    "01a1070c-7c58-76b5-a2a9-d9fe7b7d857e": "01a10760-b9f0-7db1-a6c4-d96a0d28e257",
+    "01a1070c-7c58-76b5-a2a9-f257db26d791": "01a10760-b9f0-796b-ad69-28e022ec0a11",
+    "01a1070c-7c58-76b5-a2aa-0a20d4f7ae01": "01a10760-b9f0-7de1-ada7-ffcaaaa32702",
+    "01a1070c-7c58-76b5-a2aa-20e7d1e01c66": "01a10760-b9f0-7bcd-a161-72db29af2633",
+    "01a1070c-7c58-76b5-a2aa-397ef521e177": "01a10760-b9f0-769e-8d2a-a48e51d5e1d5",
+    "01a1070c-7c58-76b5-a2aa-4d54a373af15": "01a10760-b9f0-77b7-a5da-e067a2a4d594",
+    "01a1070c-7c58-76b5-a2aa-66b0757806fe": "01a10760-b9f0-7140-9bd0-3ec312bee5a6",
+    "01a1070c-7c58-76b5-a2aa-7e0812b069ae": "01a10760-b9f0-74c8-b5d0-d5ac8487ffe7",
+    "01a1070c-7c58-76b5-a2aa-97f25323b0a8": "01a10760-b9f0-799a-a71d-29376385c299",
+    "01a1070c-7c58-76b5-a2aa-aeb83963a729": "01a10760-b9f0-7463-8f83-aa303b772bfb",
+    "01a1070c-7c58-76b5-a2aa-c4a190ee77a4": "01a10760-b9f0-7b96-8eb7-84da1d15510a",
+    "01a1070c-7c58-76b5-a2aa-db8e56d2cc07": "01a10760-b9f0-7cec-baf3-a137119256cb",
+    "01a1070c-7c58-76b5-a2aa-f3a4a21a7dc3": "01a10760-b9f0-74ba-a351-a01b85a42f5a",
+    "01a1070c-7c58-76b5-a2ab-0ab34eedf7c6": "01a10760-b9f0-7f8e-a982-b6d1a5df1275",
+    "01a1070c-7c58-76b5-a2ab-23b5c52b4d0f": "01a10760-b9f0-7dd8-bdb9-e9c2bab8407b",
+    "01a1070c-7c58-76b5-a2ab-369dd574695b": "01a10760-b9f0-745d-b055-a7b76d3a694c",
+    "01a1070c-7c58-76b5-a2ab-48eb58f50cbf": "01a10760-b9f0-7332-a353-59aa334a5775",
+    "01a1070c-7c58-76b5-a2ab-6137a474d3c3": "01a10760-b9f0-7841-a09e-ab577620fcc8",
+    "01a1070c-7c58-76b5-a2ab-74b8a6de7e22": "01a10760-b9f0-727a-aba6-4f096a04700c",
+    "01a1070c-7c58-76b5-a2ab-8ebf5829835d": "01a10760-b9f0-73ab-873c-330d40cd9107",
+    "01a1070c-7c58-76b5-a2ab-a764716f4128": "01a10760-b9f0-7056-b708-b0da5db3a25e",
+    "01a1070c-7c58-76b5-a2ab-be14abe16989": "01a10760-b9f0-7cf8-9f93-2e570dcb98b8",
+    "01a1070c-7c58-76b5-a2ab-d47ce6596f64": "01a10760-b9f0-7cd6-b3e4-7a8bcf60d792",
+    "01a1070c-7c58-76b5-a2ab-ed6693eca162": "01a10760-b9f0-77c6-a836-79d05c929f4a",
+    "01a1070c-7c58-76b5-a2ac-007b8e765c31": "01a10760-b9f0-7ea2-a85e-4d6daf4c997c",
+    "01a1070c-7c59-726e-88d4-388175c26836": "01a10760-b9f0-7e29-b8fd-78d923b0f154",
+    "01a1070c-7c59-726e-88d4-5263bfd63bbf": "01a10760-b9f0-78b9-bb83-6b9cc4251860",
+    "01a1070c-7c59-726e-88d4-6b2a61e1e7c4": "01a10760-b9f0-7c54-af2c-dcb579a50f76",
+    "01a1070c-7c59-726e-88d4-83e56ae5f536": "01a10760-b9f0-76dc-8013-de5ff444f798",
+    "01a1070c-7c59-726e-88d4-982f187e5653": "01a10760-b9f0-7414-8a17-0a1302eaa9ee",
+    "01a1070c-7c59-726e-88d4-b375a308217e": "01a10760-b9f0-7910-baea-4d9352eaaccd",
+    "01a1070c-7c59-726e-88d4-c8cce3636c7a": "01a10760-b9f0-70f2-a481-c58e01ccf219",
+    "01a1070c-7c59-726e-88d4-e052bbcb6335": "01a10760-b9f0-7c66-bf26-faef57b50611",
+    "01a1070c-7c59-726e-88d4-f95f0a11a85e": "01a10760-b9f0-72b0-b7ac-8f2557959faa",
+    "01a1070c-7c59-726e-88d5-13e0fb40de8c": "01a10760-b9f0-7caf-9b85-57263d420b77",
+    "01a1070c-7c59-726e-88d5-2a10fa50c2ef": "01a10760-b9f0-7ac1-a975-86b3ec846f32",
+    "01a1070c-7c59-726e-88d5-413213f77278": "01a10760-b9f0-76ab-9b8f-68d2f10f8598",
+    "01a1070c-7c59-726e-88d5-589ec0261ad8": "01a10760-b9f0-7001-9d14-b83a3dfe65ea",
+    "01a1070c-7c59-726e-88d5-700f2c9a47a0": "01a10760-b9f0-7cea-857b-d38b00a0ea3e",
+    "01a1070c-7c59-726e-88d5-882b36643f4e": "01a10760-b9f0-708c-8207-456d1300cc2b",
+    "01a1070c-7c59-726e-88d5-9c1965cff571": "01a10760-b9f0-7d8e-af98-5d0c5c320c11",
+    "01a1070c-7c59-726e-88d5-b778960784d8": "01a10760-b9f0-7a4b-832f-9a23fe23c1fd",
+    "01a1070c-7c59-726e-88d5-cff4c73ff34a": "01a10760-b9f0-7fa8-b004-a6a7168d950a",
+    "01a1070c-7c59-726e-88d5-e6665424a3b2": "01a10760-b9f0-79b1-95ae-05970171c8ce",
+    "01a1070c-7c59-726e-88d5-fa99c56877b4": "01a10760-b9f0-73f2-9cc5-5569f8ae9432",
+    "01a1070c-7c59-726e-88d6-12b693a50e53": "01a10760-b9f0-7097-919d-b1247a76d8d9",
+    "01a1070c-7c59-726e-88d6-2bd02d10cccb": "01a10760-b9f0-73fd-8f02-ce77bb1b118f",
+    "01a1070c-7c59-726e-88d6-41334868edc3": "01a10760-b9f0-7428-af12-1dbb2f409a06",
+    "01a1070c-7c59-726e-88d6-56be2debcdfe": "01a10760-b9f0-71f7-a79c-186691ba5536",
+    "01a1070c-7c59-726e-88d6-6d55c97117dc": "01a10760-b9f0-7230-8fd4-3ee9e0b5707e",
+    "01a1070c-7c59-726e-88d6-84571ea5dbf5": "01a10760-b9f0-75a8-9dab-9e8723c0f7c5",
+    "01a1070c-7c59-726e-88d6-9edb547352aa": "01a10760-b9f0-7eb3-846d-5a257dc686a6",
+    "01a1070c-7c59-726e-88d6-b5d43a60b62f": "01a10760-b9f0-7289-8281-933558cb7b00",
+    "01a1070c-7c59-726e-88d6-e7a8d422dbdf": "01a10760-b9f0-7f33-8fbe-eabc4ee63fd1",
+    "01a1070c-7c59-726e-88d6-fc58f364e770": "01a10760-b9f0-7e8b-a0e4-a7b3406a6b2a",
+    "01a1070c-7c59-726e-88d7-1390989a47b8": "01a10760-b9f0-7f7d-ad0c-48e855318276",
+    "01a1070c-7c5a-7542-a092-beb09c96a03f": "01a10760-b9f0-77fe-be3c-136eed106047",
+    "01a1070c-7c5a-7542-a092-d1d73dd0f634": "01a10760-b9f0-796b-809e-b6f28a11a326",
+    "01a1070c-7c5a-7542-a092-e7df11b3bc0a": "01a10760-b9f0-73ab-b83c-6c2332265569",
+    "01a1070c-7c5a-7542-a092-ff8307ef6e05": "01a10760-b9f0-77a8-885e-706d140f2b47",
+    "01a1070c-7c5a-7542-a093-116a29fa3a72": "01a10760-b9f0-7453-85f6-2d0542d30d41"
+  },
+  "newOwnerReviewProvenanceIds": [
+    "01a10760-b9f0-7001-9d14-b83a3dfe65ea",
+    "01a10760-b9f0-7040-b2fa-6f80ff239e0d",
+    "01a10760-b9f0-7056-b708-b0da5db3a25e",
+    "01a10760-b9f0-708c-8207-456d1300cc2b",
+    "01a10760-b9f0-7097-919d-b1247a76d8d9",
+    "01a10760-b9f0-70c9-9af1-a47ca516266e",
+    "01a10760-b9f0-70f2-a481-c58e01ccf219",
+    "01a10760-b9f0-712d-adab-163d0686cd55",
+    "01a10760-b9f0-7140-9bd0-3ec312bee5a6",
+    "01a10760-b9f0-71da-8960-5000a13013bd",
+    "01a10760-b9f0-71f7-a79c-186691ba5536",
+    "01a10760-b9f0-7219-a84c-3666dc8832ae",
+    "01a10760-b9f0-7230-8fd4-3ee9e0b5707e",
+    "01a10760-b9f0-727a-aba6-4f096a04700c",
+    "01a10760-b9f0-7289-8281-933558cb7b00",
+    "01a10760-b9f0-72b0-b7ac-8f2557959faa",
+    "01a10760-b9f0-7332-a353-59aa334a5775",
+    "01a10760-b9f0-7385-9cd5-f8fb04fd6300",
+    "01a10760-b9f0-73ab-873c-330d40cd9107",
+    "01a10760-b9f0-73ab-b83c-6c2332265569",
+    "01a10760-b9f0-73af-9297-69a0cdf51e1a",
+    "01a10760-b9f0-73f2-9cc5-5569f8ae9432",
+    "01a10760-b9f0-73fd-8f02-ce77bb1b118f",
+    "01a10760-b9f0-7406-a509-db3dd4a8e94b",
+    "01a10760-b9f0-7414-8a17-0a1302eaa9ee",
+    "01a10760-b9f0-7428-af12-1dbb2f409a06",
+    "01a10760-b9f0-7453-85f6-2d0542d30d41",
+    "01a10760-b9f0-745d-b055-a7b76d3a694c",
+    "01a10760-b9f0-74ba-a351-a01b85a42f5a",
+    "01a10760-b9f0-74c0-8abf-8863edb9d807",
+    "01a10760-b9f0-74c8-b5d0-d5ac8487ffe7",
+    "01a10760-b9f0-74e8-b96e-635086b4e49d",
+    "01a10760-b9f0-74fb-8691-aa601d7394ed",
+    "01a10760-b9f0-7536-9264-3196e26862eb",
+    "01a10760-b9f0-756b-af87-d3c2d87e0550",
+    "01a10760-b9f0-75a8-9dab-9e8723c0f7c5",
+    "01a10760-b9f0-75c0-b9b0-843631057612",
+    "01a10760-b9f0-75c3-9b2d-bf0495683865",
+    "01a10760-b9f0-7663-bf20-a4daec72362b",
+    "01a10760-b9f0-769e-8d2a-a48e51d5e1d5",
+    "01a10760-b9f0-76ab-9b8f-68d2f10f8598",
+    "01a10760-b9f0-76dd-8d33-73c8b2f3a95f",
+    "01a10760-b9f0-772b-8699-5d45db542b9d",
+    "01a10760-b9f0-773d-9951-553818af0d81",
+    "01a10760-b9f0-7798-9daa-a8c7c4dd11ce",
+    "01a10760-b9f0-77a8-885e-706d140f2b47",
+    "01a10760-b9f0-77b7-a5da-e067a2a4d594",
+    "01a10760-b9f0-77c6-a836-79d05c929f4a",
+    "01a10760-b9f0-77fe-be3c-136eed106047",
+    "01a10760-b9f0-7841-a09e-ab577620fcc8",
+    "01a10760-b9f0-7845-86ac-696b9d92aa0c",
+    "01a10760-b9f0-78b9-bb83-6b9cc4251860",
+    "01a10760-b9f0-78eb-aa8b-c0ca8df20977",
+    "01a10760-b9f0-78ee-9f15-6dd5af765254",
+    "01a10760-b9f0-7902-aa16-91ce1d7c1300",
+    "01a10760-b9f0-790a-8f35-6b0f71b97bc8",
+    "01a10760-b9f0-7910-baea-4d9352eaaccd",
+    "01a10760-b9f0-7921-b7bf-044f53fd3f43",
+    "01a10760-b9f0-796b-809e-b6f28a11a326",
+    "01a10760-b9f0-796b-ad69-28e022ec0a11",
+    "01a10760-b9f0-799a-a71d-29376385c299",
+    "01a10760-b9f0-79b1-95ae-05970171c8ce",
+    "01a10760-b9f0-79d6-b340-040697e0efc4",
+    "01a10760-b9f0-79ed-b257-1d99046c3c5e",
+    "01a10760-b9f0-7a0c-ab50-22e5244438af",
+    "01a10760-b9f0-7a4b-832f-9a23fe23c1fd",
+    "01a10760-b9f0-7a4f-b432-fc5186683246",
+    "01a10760-b9f0-7aa7-8a1e-d24f30647f16",
+    "01a10760-b9f0-7abf-a8b7-2dc64a1ea92d",
+    "01a10760-b9f0-7ac1-a975-86b3ec846f32",
+    "01a10760-b9f0-7b71-b630-6cbb147278d9",
+    "01a10760-b9f0-7b96-8eb7-84da1d15510a",
+    "01a10760-b9f0-7bcd-a161-72db29af2633",
+    "01a10760-b9f0-7c20-8460-60d065b48331",
+    "01a10760-b9f0-7c54-af2c-dcb579a50f76",
+    "01a10760-b9f0-7c61-aede-d7bd72060a62",
+    "01a10760-b9f0-7c66-bf26-faef57b50611",
+    "01a10760-b9f0-7caf-9b85-57263d420b77",
+    "01a10760-b9f0-7cd6-b3e4-7a8bcf60d792",
+    "01a10760-b9f0-7cea-857b-d38b00a0ea3e",
+    "01a10760-b9f0-7cec-baf3-a137119256cb",
+    "01a10760-b9f0-7cf8-9f93-2e570dcb98b8",
+    "01a10760-b9f0-7d8e-af98-5d0c5c320c11",
+    "01a10760-b9f0-7db1-a6c4-d96a0d28e257",
+    "01a10760-b9f0-7dd8-bdb9-e9c2bab8407b",
+    "01a10760-b9f0-7de1-ada7-ffcaaaa32702",
+    "01a10760-b9f0-7e02-96e3-e17379a0c8fb",
+    "01a10760-b9f0-7e29-b8fd-78d923b0f154",
+    "01a10760-b9f0-7e8b-a0e4-a7b3406a6b2a",
+    "01a10760-b9f0-7ea2-a85e-4d6daf4c997c",
+    "01a10760-b9f0-7eb3-846d-5a257dc686a6",
+    "01a10760-b9f0-7f33-8fbe-eabc4ee63fd1",
+    "01a10760-b9f0-7f7d-ad0c-48e855318276",
+    "01a10760-b9f0-7f8e-a982-b6d1a5df1275",
+    "01a10760-b9f0-7fa8-b004-a6a7168d950a"
+  ],
+  "canonicalPromotionReady": true,
+  "canonicalPromotionAuthorized": false,
+  "releaseCreationAuthorized": false,
+  "runtimeAuthorized": false,
+  "productionAuthorized": false,
+  "rightsBoundary": {
+    "sourceRightsVerified": false,
+    "mediaReuseEligible": false,
+    "sourceTextReused": false,
+    "sourceClaimedAsOfficial": false
+  },
+  "fullOwnerApprovedCefrFingerprint": "5c2132d01b43a7539d1b7745bf4d65bafe498c13e5fc332437c9ab0b46812dfd"
+}

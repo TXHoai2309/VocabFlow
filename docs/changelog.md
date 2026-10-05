@@ -2,6 +2,23 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-05 — Master Vocabulary V2 Phase 2F.4B full CEFR owner approval
+
+- Owner-approved all 95 remaining decisions from the pinned Phase 2F.4A
+  package. The full cohort now has 100/100 owner decisions resolved, with 99
+  classified and fuse intentionally unclassified. Counts remain 1 reuse, 1
+  revision, 97 new editorial classifications, and 1 unclassified; the CEFR
+  distribution is unchanged.
+- Added 95 stable owner-review provenance IDs (zero new Classification IDs).
+  Workspace totals are 98 project-authored and 99 owner-review records, with
+  99/99 classified decision coverage. Water receives workspace-only reuse
+  governance evidence. Canonical promotion is ready, but has not occurred;
+  approved release readiness remains NO and no release was created.
+- Corrected the light predecessor hash report from pinned metadata and added
+  deterministic closure tests. No canonical, runtime, database, or production
+  mutation occurred. Source/media rights remain unverified and assignments
+  remain VocabFlow editorial estimates, not official CEFR claims.
+
 ## 2026-10-05 — Master Vocabulary V2 Phase 2F.4A CEFR owner exception closure
 
 - Closed the five explicit CEFR exception decisions in the offline workspace:

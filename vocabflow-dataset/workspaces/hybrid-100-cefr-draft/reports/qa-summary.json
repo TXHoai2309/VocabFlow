@@ -807,7 +807,9 @@
     "existingClassificationAudit": "PASS",
     "duplicatePrimaryCefr": "PASS",
     "ownerExceptionQueue": "CLOSED",
-    "warningsRemainExplicitForOwnerReview": true
+    "warningsRemainExplicitForOwnerReview": true,
+    "fullOwnerReview": "CLOSED",
+    "ownerReviewProvenanceCoverage": "PASS"
   },
   "cefrDraftFingerprint": "ec0a6e34556a3d484dbdd608e592b912cb8c4ff2ceafdbe46b9cac02ea23b18f",
   "sourceCounts": {
@@ -824,5 +826,14 @@
     "acceptedDecisionCount": 5,
     "classifiedDecisionCount": 4,
     "acceptedUnclassifiedCount": 1
-  }
+  },
+  "fullOwnerApproval": {
+    "status": "CLOSED",
+    "approvedDecisions": 100,
+    "approvedClassified": 99,
+    "acceptedUnclassified": 1,
+    "pendingOwnerReview": 0,
+    "ownerReviewProvenanceCoverage": "99/99"
+  },
+  "fullOwnerApprovalFingerprint": "5c2132d01b43a7539d1b7745bf4d65bafe498c13e5fc332437c9ab0b46812dfd"
 }

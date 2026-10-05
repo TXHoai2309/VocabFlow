@@ -1,16 +1,13 @@
-# Hybrid 100 CEFR Editorial Draft — Owner Exception Review Closed
+# Hybrid 100 CEFR Editorial Draft — Full Owner Approval Closed
 
-Status: `EDITORIAL_CLASSIFICATION_DRAFT`. This is a workspace package, not canonical Master content and not an approved release.
+Status: `EDITORIAL_CLASSIFICATION_DRAFT`. All 100 CEFR editorial decision outcomes are owner-reviewed; 99 have values and fuse is intentionally unclassified.
 
-Parent CEFR draft fingerprint: `2da4c57ebbd18ce5e2c1fa77749fb7fe79a2f22752ba39506d2f59a7d7804a74`. Closed-package fingerprint: `ec0a6e34556a3d484dbdd608e592b912cb8c4ff2ceafdbe46b9cac02ea23b18f`.
-Framework: `CEFR / EDITORIAL-PILOT-1`; taxonomy 01a0fc13-09e9-72dd-b49d-ffef077385dd version 2.0.0.
+Parent Phase 2F.4A fingerprint: ec0a6e34556a3d484dbdd608e592b912cb8c4ff2ceafdbe46b9cac02ea23b18f. Full owner-approved fingerprint: 5c2132d01b43a7539d1b7745bf4d65bafe498c13e5fc332437c9ab0b46812dfd.
 
-Five supplied CEFR exceptions are owner-resolved: one existing-classification revision plan, three new DRAFT classifications, and one intentionally unclassified Sense. The other 95 decisions remain unchanged and retain their prior general owner-review state.
+No CEFR values, confidence, decision types, classification IDs, Sense IDs, rationales, or agreement statuses changed in Phase 2F.4B. The prior five exception outcomes are preserved. The 94 remaining new Classification decisions and the water reuse decision now have workspace owner-review provenance.
 
-Light revision 1 is pinned and unchanged; revision 2 is planned in this workspace under the same classificationId. No duplicate light Classifications are added to canonical Master.
+Canonical Classification promotion is ready for a separate operation; it has not occurred. The light A1 revision-2 record remains a workspace DRAFT plan. No canonical record, dataset manifest, canary, or release changed, and no runtime, database, migration, or production operation occurred.
 
-Source labels remain local review evidence only. Rights remain unverified. No source text/media was reused; no canonical classifications, dataset manifest, senses, lexemes, release, runtime, database, or production state changed.
+Source/media rights remain unverified. These CEFR assignments are VocabFlow editorial estimates under `CEFR / EDITORIAL-PILOT-1`, not official classifications or claims of Oxford/source approval.
 
-Canonical Classification promotion and release creation require a separate operation and authorization. This exception approval does not approve future release actions.
-
-Run `pnpm vocab:hybrid-100-cefr-owner-review-closure --check` to verify the closed package. The materializer allocates no new IDs on rerun.
+Run `pnpm vocab:hybrid-100-cefr-full-owner-approval --check` to verify this closure. A repeat run allocates no Classification or Provenance IDs.

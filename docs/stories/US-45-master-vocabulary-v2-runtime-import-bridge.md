@@ -481,3 +481,31 @@ source rights remain unverified.
 Evidence: [Phase 2F.4A classification draft report](../../vocabflow-dataset/reports/hybrid-100-cefr-classification-draft.md),
 [owner review sheet](../../vocabflow-dataset/reports/hybrid-100-cefr-owner-review.md),
 and [machine-readable closure](../../vocabflow-dataset/workspaces/hybrid-100-cefr-draft/owner-review-closure.json).
+
+## Related Dataset Classification Evidence — Phase 2F.4B
+
+The owner approved the remaining 95 pending rows exactly as pinned by the
+Phase 2F.4A closure. All 100 decisions are owner-resolved: 99 classified and
+fuse intentionally unclassified. The outcomes remain 1 reuse, 1 planned
+revision, 97 new editorial classifications, and 1 unclassified, with CEFR
+distribution A1 17, A2 28, B1 20, B2 27, C1 7, and unclassified 1.
+
+The workspace now has 95 additional stable `OWNER_REVIEW` provenance records,
+for totals of 98 `PROJECT_AUTHORED`, 99 `OWNER_REVIEW`, and 197 provenance
+records overall. Owner-review evidence covers all 99 classified/reused
+decisions. Water reuse is recorded in workspace promotion metadata without a
+canonical rewrite; fuse has no Classification provenance. Light revision 2
+remains a DRAFT plan under the existing Classification ID, and its predecessor
+hash is rendered from the pinned metadata.
+
+Canonical Classification promotion readiness is YES, but promotion has NOT
+occurred. Approved release readiness remains NO and no release was created.
+Canonical records, root manifest, releases, runtime, database, and production
+were not changed. Source/media rights remain unverified and the CEFR values
+remain VocabFlow editorial estimates, not official claims. Full
+owner-approved fingerprint:
+`5c2132d01b43a7539d1b7745bf4d65bafe498c13e5fc332437c9ab0b46812dfd`.
+
+Evidence: [full owner approval artifact](../../vocabflow-dataset/workspaces/hybrid-100-cefr-draft/full-owner-approval.json),
+[updated owner review sheet](../../vocabflow-dataset/reports/hybrid-100-cefr-owner-review.md),
+and [classification draft report](../../vocabflow-dataset/reports/hybrid-100-cefr-classification-draft.md).
