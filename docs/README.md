@@ -148,4 +148,7 @@ feature code may start.
 - US-42 Production Release Automation is `IN PROGRESS`; its workflow is
   implemented but requires GitHub Environment `production` protections and
   owner-configured credentials before the first run.
+- US-50 Simplified App Navigation is `IMPLEMENTED / READY FOR OWNER CHECK`;
+  desktop has six primary destinations and tablet/mobile use a five-item
+  bottom navigation with contextual discovery of auxiliary routes.
 - Documentation/agent-pack work does not implement US-01 or any other feature.

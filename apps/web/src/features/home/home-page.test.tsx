@@ -230,7 +230,7 @@ describe("Home dashboard", () => {
     expect(screen.queryByText("Emma")).not.toBeInTheDocument();
     expect(document.querySelector(".home-notification-visual i")).toBeNull();
     expect(document.querySelector(".home-chevron")).toBeNull();
-    expect(screen.getByRole("link", { name: "Cần ôn tập: 3" })).toHaveAttribute("href", "/study");
+    expect(screen.getByRole("link", { name: "Cần ôn tập: 3" })).toHaveAttribute("href", "/weak-words");
     expect(screen.getByRole("link", { name: "Từ mới: 2" })).toHaveAttribute("href", "/study");
     expect(screen.getByRole("link", { name: "Đã học: 16" })).toHaveAttribute("href", "/progress");
     expect(screen.getByRole("link", { name: "Chuỗi ngày học: 4" })).toHaveAttribute("href", "/progress");
@@ -271,7 +271,7 @@ describe("Home dashboard", () => {
     expect(screen.getByRole("link", { name: "Đổi người học. Người học hiện tại: Avery Nguyen, Cấp độ 3" })).toBeInTheDocument();
 
     expect(screen.getByRole("status", { name: "Đang tải danh sách học hiện tại" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Cần ôn tập: …" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Cần ôn tập: …" })).toHaveAttribute("href", "/weak-words");
     expect(screen.getByRole("link", { name: "Từ mới: …" })).toBeInTheDocument();
     expect(requestReviewQueue).toHaveBeenCalledOnce();
     expect(requestProgressSummary).toHaveBeenCalledOnce();
@@ -421,7 +421,7 @@ describe("Home dashboard", () => {
 
     expect(await screen.findByRole("alert")).toHaveTextContent("Không thể tải một số thông tin trên trang chủ.");
     fireEvent.click(screen.getByRole("button", { name: "Thử lại" }));
-    expect(await screen.findByRole("link", { name: "Cần ôn tập: 3" })).toBeInTheDocument();
+    expect(await screen.findByRole("link", { name: "Cần ôn tập: 3" })).toHaveAttribute("href", "/weak-words");
     await waitFor(() => expect(requestReviewQueue).toHaveBeenCalledTimes(2));
   });
 

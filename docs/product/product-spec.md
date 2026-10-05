@@ -1,5 +1,18 @@
 # Family MVP Specification v1.0
 
+## Simplified navigation extension (Feature #13 / US-50)
+
+The authenticated AppShell keeps six primary destinations on desktop: Home,
+Vocabulary, Study, Progress, Favorites and Settings. At widths below 1024px,
+the sidebar is replaced by a five-item bottom navigation for Home, Vocabulary,
+Study, Progress and Favorites; Settings stays in the user menu. Study begins at
+`/study/setup`, while the Study destination remains active on `/study` and
+`/study/exercises`. Auxiliary Weak Words, Topics, Learning Sets and Learner
+routes remain reachable through contextual entry points or the account menu;
+they do not become extra top-level destinations. This owner-requested
+navigation extension changes presentation and route discovery only, not the
+learning domain, APIs or persisted data.
+
 ## Reward extension (US-39 / US-40)
 
 Learners can see a derived level, XP progress and deterministic badges. Rewards
@@ -46,7 +59,7 @@ queue, write API and scheduler. Weakness is derived and is never persisted.
 - Version: v1.0
 - Source baseline: `VocabFlow_Family_MVP_Product_Specification_v1.0.docx`
 - Canonical format: Markdown
-- Last synchronized: 2026-10-04
+- Last synchronized: 2026-10-05
 
 **VOCABFLOW**
 

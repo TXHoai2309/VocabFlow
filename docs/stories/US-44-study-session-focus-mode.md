@@ -13,9 +13,9 @@ feedback and continue without losing the current queue or progress.
 
 ## 2. Outcome
 
-The existing `/study` and `/study/exercises` routes use a compact focus-mode
-shell and a question flow that keeps the canonical server queue, scheduling and
-scope rules unchanged.
+The existing `/study` and `/study/exercises` routes keep the question flow
+focused inside the shared AppShell; the canonical server queue, scheduling and
+scope rules remain unchanged.
 
 ## 3. Source of Truth References
 
@@ -54,8 +54,10 @@ scope rules unchanged.
 
 ## 7. Acceptance Criteria
 
-- AC-01: `/study` and `/study/exercises` reuse their existing routes and hide
-  the application navigation while the session is open.
+- AC-01: `/study` and `/study/exercises` reuse their existing routes; the
+  shared application navigation remains visible with Học tập active. The
+  question content stays focused and centered without a session-specific
+  sidebar. This navigation behavior follows the later US-50 AppShell contract.
 - AC-02: The header and progress use the selected mode and canonical admitted
   queue count; progress advances only after the review response is confirmed.
 - AC-03: Answers show concise feedback in place; no question transition reloads
@@ -81,7 +83,7 @@ scope rules unchanged.
 
 - Use the VocabFlow design tokens and primary color `#635BFF`.
 - Keep a centered content column near 1000px with the progress bar above the
-  question card, soft surfaces, clear feedback and no session sidebar.
+  question card, soft surfaces, clear feedback and no session-specific sidebar.
 - Keep keyboard hints desktop-only and interactive targets at least 44px high.
 - Use semantic question heading, progressbar values, pressed/disabled states,
   focus styling and polite live feedback.

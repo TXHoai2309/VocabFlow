@@ -456,6 +456,21 @@ The owner-verified Hoài/Ngọc metric snapshots are recorded in US-20 and US-21
   and canonical review writes. No migration, database mutation, Dataset V2
   change, merge, or deployment.
 
+### US-50 — Simplified App Navigation (Feature #13)
+
+- Status: `IMPLEMENTED / READY FOR OWNER CHECK`; owner-requested Feature #13
+  completed on 2026-10-05.
+- Contract: [`US-50 Simplified App Navigation`](stories/US-50-simplified-navigation.md).
+- Replaces the crowded navigation with six desktop primary destinations and
+  five tablet/mobile bottom destinations; Settings and Learners are exposed
+  through the account menu. Weak Words, Topics and Learning Sets retain
+  contextual entry points. Primary route activation is explicit and does not
+  assign active items to auxiliary routes.
+- Presentation/routing only: no API, database, migration, Dataset V2 or
+  scheduler changes.
+- Automated regression, global typecheck, production build, feature ESLint and
+  manual responsive viewport evidence are recorded in the story.
+
 ### US-45 — Master Vocabulary V2 Runtime Import Bridge
 
 - Status: development canary `VERIFIED`; owner acceptance is not implied.

@@ -1,14 +1,33 @@
-# Family MVP Feature UI Specification v1.0.4
+# Family MVP Feature UI Specification v1.0.5
 
 - Status: CURRENT FEATURE UI SOURCE OF TRUTH
-- Version: v1.0.4
-- Source baseline: `VocabFlow_Family_MVP_Feature_UI_Specification_v1.0.1.docx`; this Markdown records the US-26/US-27 taxonomy browse, US-28/US-29 learning-set extension, US-30 daily New settings, US-31 through US-34 exercise mode, US-35/US-36 activity indicators and US-48 Progress Dashboard.
+- Version: v1.0.5
+- Source baseline: `VocabFlow_Family_MVP_Feature_UI_Specification_v1.0.1.docx`; this Markdown records the US-26/US-27 taxonomy browse, US-28/US-29 learning-set extension, US-30 daily New settings, US-31 through US-34 exercise mode, US-35/US-36 activity indicators, US-48 Progress Dashboard and US-50 simplified navigation.
 - Canonical format: Markdown
-- Last synchronized: 2026-10-04
+- Last synchronized: 2026-10-05
 
 **VOCABFLOW**
 
-**Family MVP Feature UI Specification v1.0.4**
+**Family MVP Feature UI Specification v1.0.5**
+
+## Simplified navigation extension (Feature #13 / US-50)
+
+Desktop AppShell has exactly six primary destinations: Home (`/`), Từ vựng
+(`/vocabulary`), Học tập (`/study/setup`), Tiến trình (`/progress`), Yêu thích
+(`/saved`), and Cài đặt (`/learner-settings`). Settings follows a subtle
+divider. At widths below 1024px, including tablet, the sidebar is replaced by
+a compact brand/account header and a fixed five-item bottom bar: Home, Từ vựng,
+Học tập, Tiến trình, and Yêu thích. The bottom bar has visible labels, at least
+44px targets, safe-area padding and corresponding content clearance. Settings
+is available from the account menu, not the bottom bar.
+
+Học tập always opens Study Setup; `/study` and `/study/exercises` keep Học tập
+active. Only exact primary paths activate a destination, except vocabulary
+detail routes. Auxiliary `/weak-words`, `/topics`, `/learning-sets` and
+`/learners` pages stay available through contextual links or the account menu;
+these routes do not claim a primary active state. The compact account menu
+contains Người học and Cài đặt. It supports Escape and outside-click dismissal.
+No sign-out action is shown without an existing canonical sign-out flow.
 
 ## Reward extension (US-39 / US-40)
 
@@ -80,11 +99,11 @@ when audio is absent, loading or failed.
 | Technical Architecture v1.0.7 | Auth, API, persistence, concurrency và backend invariants. |
 | Global Design System v1.0.2 | Token, layout primitives, responsive, component và accessibility rules. |
 | User Flow v1 | Đường đi tổng thể của parent/learner. |
-| Feature UI Spec v1.0.4 | Screen composition, interaction, states, copy và responsive behavior. |
+| Feature UI Spec v1.0.5 | Screen composition, interaction, states, copy và responsive behavior. |
 
 ## Trạng thái
 
-**APPROVED FOR UI IMPLEMENTATION — baseline đã khóa cho Family MVP UI implementation.**
+**APPROVED FOR UI IMPLEMENTATION — baseline đã khóa cho Family MVP UI implementation; Feature #13 updates AppShell hierarchy and is implemented per US-50.**
 
 # 1 · INFORMATION ARCHITECTURE & APP SHELL
 
@@ -92,21 +111,27 @@ when audio is absent, loading or failed.
 
 | **Destination** | **Mục đích** | **Learner context** |
 | --- | --- | --- |
-| Home | Tóm tắt hôm nay + CTA bắt đầu học. | Bắt buộc |
-| Từ vựng | Xem danh sách enabled vocabulary, trạng thái learner, lọc cấp độ và mở browse theo chủ đề. | Bắt buộc |
-| Bộ từ | Xem curated learning sets, chi tiết thứ tự từ và gán/tắt set cho active learner. | Parent + learner context |
-| Tiến độ | Xem New / Learning / Mastered / Due / Learned. | Bắt buộc |
-| Cài đặt learner | Parent xem/chỉnh giới hạn từ mới mỗi ngày cho active learner. | Parent + learner context |
-| Study | Focused task, truy cập từ CTA; không phải destination cố định. | Bắt buộc khi học |
-| Learner selector | Chọn/tạo learner; mở từ login flow hoặc profile switcher. | Ngoài learner context |
+| Home (`/`) | Tóm tắt hôm nay + CTA bắt đầu học. | Bắt buộc |
+| Từ vựng (`/vocabulary`) | Danh sách vocabulary; contextual link mở Topics. | Bắt buộc |
+| Học tập (`/study/setup`) | Study Setup và canonical learning flow. | Bắt buộc khi học |
+| Tiến trình (`/progress`) | Xem New / Learning / Mastered / Due / Learned; contextual link mở Topics. | Bắt buộc |
+| Yêu thích (`/saved`) | Saved vocabulary và saved-scope learning. | Active learner |
+| Cài đặt (`/learner-settings`) | Parent chỉnh learning preferences. | Parent + learner context |
+| Routes phụ | Weak Words, Topics, Learning Sets và Learners vẫn có contextual/account entry points. | Theo route |
 
 ## 1.2 Navigation contract
 
-- Mobile: bottom navigation mặc định 3 item — Home / Từ vựng / Tiến độ. Study ẩn bottom navigation để giảm distraction.
+- Desktop (>=1024px): sidebar có đúng sáu primary item Home / Từ vựng / Học tập / Tiến trình / Yêu thích / Cài đặt; Settings đứng sau divider.
 
-- Desktop: sidebar dùng cùng 3 destinations; active learner hiển thị ở vùng đầu sidebar/header.
+- Tablet và mobile (<1024px): không hiện sidebar; dùng brand/account header và fixed bottom navigation đúng năm item Home / Từ vựng / Học tập / Tiến trình / Yêu thích. Học tập trỏ `/study/setup`; Settings nằm trong account menu.
 
-- Đổi learner nằm trong learner/profile switcher, không trở thành bottom-nav item thứ tư.
+- Study routes `/study` và `/study/exercises` giữ Học tập active. Từ vựng active cả ở `/vocabulary/:id`; routes phụ không được gán active state tùy tiện.
+
+- Menu tài khoản tối giản có Người học (`/learners`) và Cài đặt (`/learner-settings`); native button hỗ trợ Enter/Space, `aria-expanded`, Escape, focus return và click ngoài để đóng. Không thêm sign-out giả.
+
+- Weak Words đi từ Home stat “Cần ôn tập”; Topics từ Vocabulary và Progress; Learning Sets từ Home; Learners từ account menu và learner switcher.
+
+- Bottom bar hỗ trợ `env(safe-area-inset-bottom)` và content có khoảng đệm đủ để không bị che.
 
 - Authentication screens không hiển thị app navigation.
 
@@ -119,7 +144,7 @@ Mobile app shell
 │ Main feature content       │
 │                            │
 ├────────────────────────────┤
-│ Home   Từ vựng   Tiến độ   │
+│ Home Vocab Study Progress ♥ │
 └────────────────────────────┘
 ```
 
@@ -129,8 +154,10 @@ Desktop app shell
 │ VocabFlow    │ Header / learner context        │
 │ Home         ├─────────────────────────────────┤
 │ Từ vựng     │ Main feature content            │
-│ Tiến độ     │                                 │
-│ Learner ▼    │                                 │
+│ Học tập     │                                 │
+│ Tiến trình  │                                 │
+│ Yêu thích   │                                 │
+│ ─ Cài đặt   │                        User ▼   │
 └──────────────┴─────────────────────────────────┘
 ```
 
@@ -141,11 +168,11 @@ Desktop app shell
 
 ## 2.1 MVP auth scope
 
-| **Feature** | v1.0.4 decision |
+| **Feature** | v1.0.5 decision |
 | --- | --- |
 | Register | Tên phụ huynh + email + password, parent account. `Tên phụ huynh` là display/profile identity được lưu bởi Better Auth. |
 | Login | Email + password. |
-| Logout | Có trong parent/profile menu. |
+| Logout | Chỉ hiển thị nếu ứng dụng có canonical sign-out flow; hiện chưa có entry point UI. |
 | Social login | OUT v1.0. |
 | Forgot password | DEFERRED trừ khi deployment requirement bắt buộc. |
 | Email verification | Không phải UI flow bắt buộc trong v1.0; chỉ thêm nếu auth configuration yêu cầu. |
@@ -255,7 +282,7 @@ Login success
 ## 4.1 Layout pattern
 
 > **Focused Task**
-> Study dùng Focused Task pattern. Mobile ưu tiên flashcard + action zone; desktop giữ card ở readable width, không kéo full màn hình.
+> Study dùng Focused Task pattern cho question/action content. Shared AppShell navigation vẫn hiện: desktop sidebar hoặc tablet/mobile bottom navigation; Học tập active xuyên suốt session. Không có sidebar riêng bên trong Study task.
 
 ```text
 Study — Front
@@ -574,7 +601,7 @@ state returned by the canonical API.
 
 - Study recall action zone có thể sticky phía dưới nhưng không che card content hoặc browser safe area.
 
-- Bottom navigation 3 items, 44×44px minimum targets, icon + visible label.
+- Bottom navigation 5 items — Home, Từ vựng, Học tập, Tiến trình, Yêu thích; touch target tối thiểu 44×44px, icon + visible label, safe-area inset và content clearance.
 
 - Long back-side flashcard content scrolls page naturally; không nhốt text trong card có fixed height.
 
@@ -642,4 +669,4 @@ state returned by the canonical API.
 ## 9.2 Approval statement
 
 > APPROVED FOR UI IMPLEMENTATION
-> Feature UI Specification v1.0.4 là baseline cho Family MVP UI implementation. Backlog/UI code phải bám screen states, interaction contracts, session behavior và responsive rules trong tài liệu này. Product semantics thay đổi phải quay về Family MVP Product Specification; visual language thay đổi phải quay về Global Design System; backend contract thay đổi phải quay về Technical Architecture/contracts.
+> Feature UI Specification v1.0.5 là baseline cho Family MVP UI implementation. Backlog/UI code phải bám screen states, interaction contracts, session behavior và responsive rules trong tài liệu này. Product semantics thay đổi phải quay về Family MVP Product Specification; visual language thay đổi phải quay về Global Design System; backend contract thay đổi phải quay về Technical Architecture/contracts.

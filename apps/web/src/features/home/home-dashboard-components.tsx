@@ -274,7 +274,7 @@ export function QuickStats({
 }) {
   return (
     <section className="home-quick-stats" aria-label="Tóm tắt việc học">
-      <StatCard label="Cần ôn tập" icon="📘" resource={queue} value={queue.status === "ready" ? queue.data.dueCount : null} href="/study" />
+      <StatCard label="Cần ôn tập" icon="📘" resource={queue} value={queue.status === "ready" ? queue.data.dueCount : null} href="/weak-words" />
       <StatCard label="Từ mới" icon="🟩" resource={queue} value={queue.status === "ready" ? queue.data.newCount : null} href="/study" />
       <StatCard label="Đã học" icon="🎓" resource={summary} value={summary.status === "ready" ? summary.data.learnedCount : null} href="/progress" />
       <StatCard label="Chuỗi ngày học" icon="🔥" resource={activity} value={activity.status === "ready" ? activity.data.streak.currentStreak : null} href="/progress" />

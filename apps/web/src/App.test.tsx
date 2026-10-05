@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { MemoryRouter, useLocation } from "react-router";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
@@ -41,7 +41,16 @@ function renderAppRoutes(path: string, initialLearner: LearnerDto | null = learn
 }
 
 function expectActiveNav(label: string) {
-  expect(screen.getAllByRole("link", { name: label }).some((link) => link.getAttribute("aria-current") === "page")).toBe(true);
+  const navigations = [
+    screen.getByRole("navigation", { name: "Điều hướng chính" }),
+    screen.getByRole("navigation", { name: "Điều hướng chính trên di động" })
+  ];
+  expect(navigations.some((navigation) => within(navigation).getByRole("link", { name: label }).getAttribute("aria-current") === "page")).toBe(true);
+}
+
+function expectNoActivePrimaryNav() {
+  expect(screen.getByRole("navigation", { name: "Điều hướng chính" }).querySelector('[aria-current="page"]')).toBeNull();
+  expect(screen.getByRole("navigation", { name: "Điều hướng chính trên di động" }).querySelector('[aria-current="page"]')).toBeNull();
 }
 
 beforeEach(() => {
@@ -119,7 +128,25 @@ describe("login route", () => {
 });
 
 describe("shared authenticated app shell", () => {
-  it("routes Weak Words in the shared shell with its navigation item active", async () => {
+  it("keeps the desktop primary navigation to its six destinations", () => {
+    renderAppRoutes("/");
+    const navigation = screen.getByRole("navigation", { name: "Điều hướng chính" });
+    expect(within(navigation).getAllByRole("link").map((link) => link.textContent)).toEqual([
+      "Trang chủ", "Từ vựng", "Học tập", "Tiến trình", "Yêu thích", "Cài đặt"
+    ]);
+    expect(within(navigation).getByRole("link", { name: "Cài đặt" }).closest("li")).toHaveClass("app-nav-divider");
+  });
+
+  it("keeps the mobile primary navigation to its five core destinations", () => {
+    renderAppRoutes("/");
+    const navigation = screen.getByRole("navigation", { name: "Điều hướng chính trên di động" });
+    expect(within(navigation).getAllByRole("link").map((link) => link.textContent)).toEqual([
+      "Trang chủ", "Từ vựng", "Học tập", "Tiến trình", "Yêu thích"
+    ]);
+    expect(screen.queryByRole("button", { name: "Mở điều hướng" })).not.toBeInTheDocument();
+  });
+
+  it("routes Weak Words in the shared shell without a primary-navigation destination", async () => {
     vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(JSON.stringify({ error: { code: "INTERNAL_ERROR" } }), {
       status: 503,
       headers: { "Content-Type": "application/json" }
@@ -127,7 +154,7 @@ describe("shared authenticated app shell", () => {
     renderAppRoutes("/weak-words");
 
     expect(await screen.findByRole("heading", { name: "Từ yếu / Cần ôn lại" })).toBeInTheDocument();
-    expectActiveNav("Cần ôn lại");
+    expectNoActivePrimaryNav();
     expect(screen.getByRole("alert")).toHaveTextContent("Không thể tải danh sách từ cần ôn lúc này.");
     expect(document.querySelector(".app-layout")).toBeInTheDocument();
   });
@@ -136,7 +163,7 @@ describe("shared authenticated app shell", () => {
     renderAppRoutes("/");
     const dashboard = await screen.findByRole("main", { name: "Trang chủ học tập của Avery Nguyen" });
     expect(document.querySelector(".app-layout")?.contains(dashboard)).toBe(true);
-    expect(document.querySelector(".app-parent-account strong")).toHaveTextContent("Jordan Nguyen");
+    expect(document.querySelector(".app-account-menu-wrap.is-sidebar .app-parent-copy strong")).toHaveTextContent("Jordan Nguyen");
     expect(screen.getAllByRole("link", { name: "Trang chủ VocabFlow" }).length).toBeGreaterThan(0);
     expectActiveNav("Trang chủ");
   });
@@ -145,23 +172,105 @@ describe("shared authenticated app shell", () => {
     ["/study", "Buổi học", "Học tập"],
     ["/study/exercises", "Buổi học", "Học tập"],
     ["/vocabulary", "Từ vựng của Avery Nguyen", "Từ vựng"],
-    ["/topics", "Học theo chủ đề", "Chủ đề"],
+    ["/topics", "Học theo chủ đề", null],
     ["/progress", "Tiến trình học tập", "Tiến trình"],
-    ["/learning-sets", "Bộ từ", "Bộ từ"],
-    ["/learning-sets/assign", "Bộ từ của Avery Nguyen", "Bộ từ"],
+    ["/learning-sets", "Bộ từ", null],
+    ["/learning-sets/assign", "Bộ từ của Avery Nguyen", null],
     ["/learner-settings", "Cài đặt học của Avery Nguyen", "Cài đặt"]
-  ] as const)("keeps %s inside the shared shell with %s active", async (path, heading, nav) => {
+  ] as const)("keeps %s in the shared shell with the expected active state", async (path, heading, nav) => {
     renderAppRoutes(path);
     const pageHeading = await screen.findByRole("heading", { name: heading });
     expect(document.querySelector(".app-layout")?.contains(pageHeading)).toBe(true);
-    expectActiveNav(nav);
+    if (nav) expectActiveNav(nav);
+    else expectNoActivePrimaryNav();
   });
 
-  it("activates Bộ từ on a learning-set detail route", async () => {
+  it("keeps Learning Set detail inside the shared shell without selecting an unrelated destination", async () => {
     renderAppRoutes("/learning-sets/7");
     const detailState = await screen.findByRole("alert");
     expect(document.querySelector(".app-layout")?.contains(detailState)).toBe(true);
-    expectActiveNav("Bộ từ");
+    expectNoActivePrimaryNav();
+  });
+
+  it.each([
+    ["/", "Trang chủ"],
+    ["/study/setup", "Học tập"],
+    ["/saved", "Yêu thích"]
+  ] as const)("marks %s as the active destination %s", (path, nav) => {
+    renderAppRoutes(path);
+    expectActiveNav(nav);
+  });
+
+  it.each(["/topics", "/topics/7", "/learning-sets", "/learning-sets/7", "/learning-sets/assign", "/learners"]) (
+    "keeps auxiliary route %s outside primary navigation selection", (path) => {
+      renderAppRoutes(path);
+      expectNoActivePrimaryNav();
+      expect(document.querySelector(".app-layout")).toBeInTheDocument();
+    }
+  );
+
+  it("provides auxiliary destinations from the account menu and closes it on Escape", async () => {
+    renderAppRoutes("/learners");
+    expect(await screen.findByRole("heading", { name: "Chọn người học" })).toBeInTheDocument();
+    const accountMenu = document.querySelector(".app-account-menu-wrap.is-sidebar");
+    expect(accountMenu).not.toBeNull();
+    const accountButton = within(accountMenu as HTMLElement).getByRole("button", { name: "Tài khoản phụ huynh của Jordan Nguyen" });
+    expect(accountButton).toHaveAttribute("aria-haspopup", "menu");
+    fireEvent.keyDown(accountButton, { key: "ArrowDown" });
+    expect(accountButton).toHaveAttribute("aria-expanded", "true");
+    const menu = screen.getByRole("menu", { name: "Tài khoản" });
+    expect(accountButton).toHaveAttribute("aria-controls", menu.id);
+    const learnersItem = within(menu).getByRole("menuitem", { name: "Người học" });
+    const settingsItem = within(menu).getByRole("menuitem", { name: "Cài đặt" });
+    expect(learnersItem).toHaveAttribute("href", "/learners");
+    expect(settingsItem).toHaveAttribute("href", "/learner-settings");
+    expect(learnersItem).toHaveFocus();
+    fireEvent.keyDown(learnersItem, { key: "ArrowDown" });
+    expect(settingsItem).toHaveFocus();
+    fireEvent.keyDown(settingsItem, { key: "ArrowDown" });
+    expect(learnersItem).toHaveFocus();
+    fireEvent.keyDown(document, { key: "Escape" });
+    expect(screen.queryByRole("menu", { name: "Tài khoản" })).not.toBeInTheDocument();
+    expect(accountButton).toHaveFocus();
+  });
+
+  it("follows the Settings link from the desktop account menu", async () => {
+    renderAppRoutes("/learners");
+    expect(await screen.findByRole("heading", { name: "Chọn người học" })).toBeInTheDocument();
+    const accountMenu = document.querySelector(".app-account-menu-wrap.is-sidebar");
+    expect(accountMenu).not.toBeNull();
+    const menuScope = within(accountMenu as HTMLElement);
+    fireEvent.click(menuScope.getByRole("button", { name: "Tài khoản phụ huynh của Jordan Nguyen" }));
+    fireEvent.click(menuScope.getByRole("menuitem", { name: "Cài đặt" }));
+    await waitFor(() => expect(screen.getByTestId("current-location")).toHaveTextContent("/learner-settings"));
+    expect(menuScope.queryByRole("menu")).not.toBeInTheDocument();
+  });
+
+  it("opens the mobile account menu and follows the Settings link", async () => {
+    renderAppRoutes("/learners");
+    expect(await screen.findByRole("heading", { name: "Chọn người học" })).toBeInTheDocument();
+    const accountMenu = document.querySelector(".app-account-menu-wrap.is-mobile");
+    expect(accountMenu).not.toBeNull();
+    const mobileMenu = within(accountMenu as HTMLElement);
+    const accountButton = mobileMenu.getByRole("button", { name: "Tài khoản phụ huynh của Jordan Nguyen" });
+    fireEvent.click(accountButton);
+    expect(accountButton).toHaveAttribute("aria-expanded", "true");
+    fireEvent.click(mobileMenu.getByRole("menuitem", { name: "Cài đặt" }));
+    await waitFor(() => expect(screen.getByTestId("current-location")).toHaveTextContent("/learner-settings"));
+    expect(mobileMenu.queryByRole("menu")).not.toBeInTheDocument();
+    expect(accountButton).toHaveFocus();
+  });
+
+  it("closes an open account menu after an outside pointer action", async () => {
+    renderAppRoutes("/learners");
+    expect(await screen.findByRole("heading", { name: "Chọn người học" })).toBeInTheDocument();
+    const accountMenu = document.querySelector(".app-account-menu-wrap.is-sidebar");
+    expect(accountMenu).not.toBeNull();
+    const menuScope = within(accountMenu as HTMLElement);
+    fireEvent.click(menuScope.getByRole("button", { name: "Tài khoản phụ huynh của Jordan Nguyen" }));
+    expect(menuScope.getByRole("menu", { name: "Tài khoản" })).toBeInTheDocument();
+    fireEvent.pointerDown(document.body);
+    await waitFor(() => expect(menuScope.queryByRole("menu")).not.toBeInTheDocument());
   });
 
   it("renders vocabulary detail inside the shared shell with Từ vựng active", async () => {
@@ -194,7 +303,7 @@ describe("shared authenticated app shell", () => {
     renderAppRoutes("/learners", null);
     expect(await screen.findByTestId("learner-context-ready")).toHaveTextContent("Avery Nguyen");
     expect(screen.getByTestId("current-location")).toHaveTextContent("/learners");
-    expectActiveNav("Người học");
+    expectNoActivePrimaryNav();
   });
 
   it("returns a Home learner handoff without a redirect loop", async () => {
@@ -213,18 +322,22 @@ describe("shared authenticated app shell", () => {
     expectActiveNav("Từ vựng");
   });
 
-  it("opens and closes the compact mobile navigation after a route is chosen", async () => {
+  it("navigates from the mobile bottom navigation to Study Setup", async () => {
     renderAppRoutes("/learners");
     expect(await screen.findByRole("heading", { name: "Chọn người học" })).toBeInTheDocument();
-    const menuButton = screen.getByRole("button", { name: "Mở điều hướng" });
-    fireEvent.click(menuButton);
-    expect(menuButton).toHaveAttribute("aria-expanded", "true");
-
-    const studyLinks = screen.getAllByRole("link", { name: "Học tập" });
-    fireEvent.click(studyLinks[studyLinks.length - 1]!);
+    const mobileNavigation = screen.getByRole("navigation", { name: "Điều hướng chính trên di động" });
+    fireEvent.click(within(mobileNavigation).getByRole("link", { name: "Học tập" }));
     await waitFor(() => expect(screen.getByTestId("current-location")).toHaveTextContent("/study/setup"));
     expect(screen.getByRole("main", { name: "Thiết lập buổi học" })).toBeInTheDocument();
     expectActiveNav("Học tập");
-    expect(screen.getByRole("button", { name: "Mở điều hướng" })).toHaveAttribute("aria-expanded", "false");
+  });
+
+  it("navigates from the mobile bottom navigation to Favorites", async () => {
+    renderAppRoutes("/learners");
+    expect(await screen.findByRole("heading", { name: "Chọn người học" })).toBeInTheDocument();
+    const mobileNavigation = screen.getByRole("navigation", { name: "Điều hướng chính trên di động" });
+    fireEvent.click(within(mobileNavigation).getByRole("link", { name: "Yêu thích" }));
+    await waitFor(() => expect(screen.getByTestId("current-location")).toHaveTextContent("/saved"));
+    expectActiveNav("Yêu thích");
   });
 });

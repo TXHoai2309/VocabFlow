@@ -8,6 +8,19 @@
 
 **VOCABFLOW**
 
+## Simplified navigation extension (Feature #13 / US-50)
+
+On desktop, the parent or learner moves among Home, Vocabulary, Study Setup,
+Progress, Favorites and Settings from the six-item sidebar. At widths below
+1024px, the same primary routes are exposed through a fixed five-item bottom
+bar; Settings moves to the compact account menu. Study Setup is the shared
+entry point at `/study/setup`; `/study` and `/study/exercises` remain selected
+as the Study destination while a session or exercise is active. Auxiliary
+routes remain discoverable without becoming primary navigation: Home's due
+stat opens `/weak-words`, Vocabulary and Progress link to `/topics`, Home links
+to `/learning-sets`, and the account menu plus Home learner switcher open
+`/learners`. Auxiliary routes do not claim a primary active state.
+
 ## Continue Learning extension (US-47)
 
 Active learner opens Home → the “Tiếp tục học” card requests one learner-scoped

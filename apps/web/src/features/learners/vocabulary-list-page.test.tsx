@@ -108,6 +108,7 @@ describe("US-22 vocabulary list UI", () => {
     expect(screen.getByRole("searchbox", { name: "Tìm từ tiếng Anh hoặc nghĩa tiếng Việt" })).toBeInTheDocument();
     expect(await screen.findByTestId("vocabulary-grid")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Từ vựng của An" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Duyệt theo chủ đề" })).toHaveAttribute("href", "/topics");
     expect(screen.getByTestId("vocabulary-row-1")).toHaveTextContent("apple");
     expect(screen.getByTestId("vocabulary-row-1")).toHaveTextContent("/ˈæp.əl/");
     expect(screen.getByTestId("vocabulary-row-1")).toHaveTextContent("Lớp 1");

@@ -480,3 +480,31 @@ evidence condition is met and the affected source document is updated.
   and the persisted `review_events` / `learner_progress` schema.
 - Revisit only if persisted event semantics, active-set eligibility, or the
   owner-approved threshold/window changes.
+
+## DEC-025 — Simplified primary navigation
+
+- Status: ACCEPTED by the explicit Feature #13 implementation request.
+- Date: 2026-10-05.
+- Context: The previous shared shell exposed many unrelated level-one routes,
+  while the mobile navigation used a separate menu interaction. Core learning
+  areas should remain immediately available without hiding required secondary
+  routes.
+- Decision: Desktop AppShell has six primary destinations (Home, Vocabulary,
+  Study Setup, Progress, Favorites and Settings), with Settings separated.
+  Tablet/mobile replaces the sidebar with a fixed five-item bottom bar for the
+  first five core destinations; Settings belongs in the account menu. Study
+  remains the selected destination on `/study` and `/study/exercises`. Only
+  canonical destination routes receive active state. Weak Words, Topics,
+  Learning Sets and Learners remain accessible from contextual links or the
+  account menu. Do not add a sign-out action without a canonical existing
+  sign-out flow.
+- Consequences: Presentation and route discovery change without adding
+  requests, routes, APIs, persistence, scheduler behavior or database changes.
+  Fixed mobile navigation must preserve safe-area insets and page content
+  clearance. US-50 supersedes US-44's earlier instruction to hide app navigation
+  during Study; the question experience stays focused within the shared shell.
+- Evidence/source: [US-50 Simplified App Navigation](stories/US-50-simplified-navigation.md),
+  [Feature UI Specification](design/feature-ui-spec.md#simplified-navigation-extension-feature-13--us-50),
+  and `apps/web/src/components/app-shell.tsx`.
+- Revisit only if the owner changes the primary destination model or a canonical
+  route/auth capability changes.

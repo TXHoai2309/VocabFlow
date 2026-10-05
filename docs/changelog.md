@@ -2,6 +2,25 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-05 — Simplified App Navigation (Feature #13 / US-50)
+
+- Replaced the crowded shared navigation with six desktop destinations and a
+  fixed five-item tablet/mobile bottom bar. Settings is separated on desktop
+  and available from a compact accessible account menu; Study opens Setup and
+  stays active throughout the Study routes.
+- Preserved Weak Words, Topics, Learning Sets and Learners routes with
+  contextual/account entry points. Home's due stat now links to Weak Words;
+  Vocabulary and Progress expose Topics, Home exposes Learning Sets, and the
+  account menu/Home switcher expose Learners.
+- Updated route-active and account-menu tests, the Vocabulary Topics entry
+  assertion, navigation UI contract, story, decision and project flow records.
+- Validation: focused regressions 14 files / 207 tests PASS; global typecheck,
+  production build, feature ESLint and `git diff --check` PASS. Manual checks at
+  1440px, 768px and 390px confirmed the desktop/sidebar breakpoint, five mobile
+  items, no horizontal overflow and working mobile account menu.
+- No API, database, migration, scheduler or Dataset V2 change; no database
+  mutation or production deployment.
+
 ## 2026-10-05 — Master Vocabulary V2 Phase 2F.4B full CEFR owner approval
 
 - Owner-approved all 95 remaining decisions from the pinned Phase 2F.4A

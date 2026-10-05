@@ -1,5 +1,28 @@
 # Current Handoff Snapshot
 
+## 2026-10-05 — Simplified App Navigation (Feature #13 / US-50)
+
+- Replaced the oversized primary nav with exactly six desktop destinations:
+  Trang chủ, Từ vựng, Học tập, Tiến trình, Yêu thích, Cài đặt. Below 1024px,
+  the sidebar is replaced with a fixed bottom bar containing the first five.
+- Added responsive account controls on the sidebar/header with Người học and
+  Cài đặt menu links, keyboard focus/arrow/Escape handling and outside-click
+  dismissal. Study Setup is the Học tập link; active state covers `/study` and
+  `/study/exercises`, while auxiliary routes have no unrelated active item.
+- Preserved auxiliary paths. Weak Words is linked from Home's due stat; Topics
+  from Vocabulary and Progress; Learning Sets from Home; Learners from the
+  account menu and existing Home learner switcher. No Home redesign or API
+  request was introduced.
+- Updated US-44's older instruction to hide AppShell navigation during Study;
+  the question/task remains focused inside the shared shell.
+- Validation: focused regressions 14 files / 207 tests PASS; `pnpm typecheck`,
+  `pnpm build`, changed-feature ESLint and `git diff --check` PASS. Browser
+  checks at 1440px/768px/390px confirmed the responsive model, bottom-nav
+  clearance, no horizontal overflow and mobile account-menu open.
+- No Dataset V2 file staged or edited for this feature. No API, DB, migration,
+  database mutation or deployment performed. Feature files await final
+  owner-check/commit workflow.
+
 ## 2026-10-05 — Master Vocabulary V2 Phase 2F.4B full CEFR owner approval
 
 - Owner-approved the exact 95 rows pending from the pinned Phase 2F.4A
