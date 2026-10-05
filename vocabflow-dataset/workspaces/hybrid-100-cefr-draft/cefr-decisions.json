@@ -5,18 +5,18 @@
   "frameworkVersion": "EDITORIAL-PILOT-1",
   "candidateCount": 100,
   "decisionCounts": {
-    "NEW_EDITORIAL_CLASSIFICATION": 94,
-    "OWNER_REVIEW_REQUIRED": 4,
+    "NEW_EDITORIAL_CLASSIFICATION": 97,
     "REUSE_EXISTING_CLASSIFICATION": 1,
+    "REVISE_EXISTING_CLASSIFICATION": 1,
     "UNCLASSIFIED_INSUFFICIENT_EVIDENCE": 1
   },
   "proposedDistribution": {
     "PRE_A1": 0,
     "A1": 17,
     "A2": 28,
-    "B1": 21,
+    "B1": 20,
     "B2": 27,
-    "C1": 6,
+    "C1": 7,
     "C2": 0,
     "UNCLASSIFIED": 1
   },
@@ -637,12 +637,16 @@
         "valueCode": "A1",
         "confidence": 0.93,
         "confidenceMeaning": "Editorial confidence, not statistical probability.",
-        "decisionType": "OWNER_REVIEW_REQUIRED",
+        "decisionType": "REVISE_EXISTING_CLASSIFICATION",
         "rationale": "Low weight is an elementary concrete contrast; the existing same-framework A2 classification conflicts and needs owner resolution.",
         "agreementStatus": "AGREES_WITH_SOURCE",
-        "classificationId": null
+        "classificationId": "01a0fc13-09f1-76b9-8a57-6c6e55e9b438",
+        "classificationRevision": 2
       },
-      "reviewStatus": "OWNER_REVIEW_REQUIRED"
+      "reviewStatus": "OWNER_DECISION_ACCEPTED",
+      "ownerDecisionStatus": "ACCEPTED",
+      "ownerDecisionScope": "CEFR_EXCEPTION_REVIEW",
+      "reviewedBy": "VocabFlow project owner"
     },
     {
       "candidateOrdinal": 16,
@@ -1388,15 +1392,19 @@
         ]
       },
       "editorialDecision": {
-        "valueCode": "B1",
+        "valueCode": "B2",
         "confidence": 0.68,
         "confidenceMeaning": "Editorial confidence, not statistical probability.",
-        "decisionType": "OWNER_REVIEW_REQUIRED",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
         "rationale": "Freshman is an education-specific label whose familiarity varies by region, so this tentative estimate needs owner review.",
-        "agreementStatus": "CONFLICT_REQUIRES_OWNER_REVIEW",
-        "classificationId": null
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-79e5-b9fd-3cca68d1fca5",
+        "classificationRevision": 1
       },
-      "reviewStatus": "OWNER_REVIEW_REQUIRED"
+      "reviewStatus": "OWNER_DECISION_ACCEPTED",
+      "ownerDecisionStatus": "ACCEPTED",
+      "ownerDecisionScope": "CEFR_EXCEPTION_REVIEW",
+      "reviewedBy": "VocabFlow project owner"
     },
     {
       "candidateOrdinal": 35,
@@ -1949,12 +1957,16 @@
         "valueCode": "B2",
         "confidence": 0.7,
         "confidenceMeaning": "Editorial confidence, not statistical probability.",
-        "decisionType": "OWNER_REVIEW_REQUIRED",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
         "rationale": "Roster is a team and sports-list term whose regional frequency varies; this tentative estimate needs owner review.",
-        "agreementStatus": "CONFLICT_REQUIRES_OWNER_REVIEW",
-        "classificationId": null
+        "agreementStatus": "EDITORIALLY_ADJUSTED",
+        "classificationId": "01a10760-b9f0-7bfb-828e-22a8037cb71c",
+        "classificationRevision": 1
       },
-      "reviewStatus": "OWNER_REVIEW_REQUIRED"
+      "reviewStatus": "OWNER_DECISION_ACCEPTED",
+      "ownerDecisionStatus": "ACCEPTED",
+      "ownerDecisionScope": "CEFR_EXCEPTION_REVIEW",
+      "reviewedBy": "VocabFlow project owner"
     },
     {
       "candidateOrdinal": 49,
@@ -2703,15 +2715,19 @@
         ]
       },
       "editorialDecision": {
-        "valueCode": "B2",
+        "valueCode": "C1",
         "confidence": 0.7,
         "confidenceMeaning": "Editorial confidence, not statistical probability.",
-        "decisionType": "OWNER_REVIEW_REQUIRED",
+        "decisionType": "NEW_EDITORIAL_CLASSIFICATION",
         "rationale": "Liable in the likely-to-face sense is formal and context-sensitive; this tentative estimate needs owner review.",
-        "agreementStatus": "CONFLICT_REQUIRES_OWNER_REVIEW",
-        "classificationId": null
+        "agreementStatus": "AGREES_WITH_SOURCE",
+        "classificationId": "01a10760-b9f0-7241-9f15-019e12914b85",
+        "classificationRevision": 1
       },
-      "reviewStatus": "OWNER_REVIEW_REQUIRED"
+      "reviewStatus": "OWNER_DECISION_ACCEPTED",
+      "ownerDecisionStatus": "ACCEPTED",
+      "ownerDecisionScope": "CEFR_EXCEPTION_REVIEW",
+      "reviewedBy": "VocabFlow project owner"
     },
     {
       "candidateOrdinal": 68,
@@ -3704,7 +3720,10 @@
         "agreementStatus": null,
         "classificationId": null
       },
-      "reviewStatus": "UNCLASSIFIED_INSUFFICIENT_EVIDENCE"
+      "reviewStatus": "ACCEPTED_UNCLASSIFIED",
+      "ownerDecisionStatus": "ACCEPTED_UNCLASSIFIED",
+      "ownerDecisionScope": "CEFR_EXCEPTION_REVIEW",
+      "reviewedBy": "VocabFlow project owner"
     },
     {
       "candidateOrdinal": 93,
@@ -4028,5 +4047,7 @@
       "reviewStatus": "PENDING_OWNER_REVIEW"
     }
   ],
-  "cefrDraftFingerprint": "2da4c57ebbd18ce5e2c1fa77749fb7fe79a2f22752ba39506d2f59a7d7804a74"
+  "cefrDraftFingerprint": "ec0a6e34556a3d484dbdd608e592b912cb8c4ff2ceafdbe46b9cac02ea23b18f",
+  "ownerExceptionReviewStatus": "CLOSED",
+  "ownerReviewClosureFingerprint": "ec0a6e34556a3d484dbdd608e592b912cb8c4ff2ceafdbe46b9cac02ea23b18f"
 }

@@ -30,29 +30,29 @@
     "REUSE_EXISTING_SENSE": 2
   },
   "classificationDecisionCounts": {
-    "NEW_EDITORIAL_CLASSIFICATION": 94,
-    "OWNER_REVIEW_REQUIRED": 4,
+    "NEW_EDITORIAL_CLASSIFICATION": 97,
     "REUSE_EXISTING_CLASSIFICATION": 1,
+    "REVISE_EXISTING_CLASSIFICATION": 1,
     "UNCLASSIFIED_INSUFFICIENT_EVIDENCE": 1
   },
   "proposedCefrDistribution": {
     "PRE_A1": 0,
     "A1": 17,
     "A2": 28,
-    "B1": 21,
+    "B1": 20,
     "B2": 27,
-    "C1": 6,
+    "C1": 7,
     "C2": 0,
     "UNCLASSIFIED": 1
   },
-  "newClassificationCount": 94,
-  "newProvenanceCount": 94,
+  "newClassificationCount": 97,
+  "newProvenanceCount": 102,
   "sourceCounts": {
     "oxfordBacked": 90,
     "only4600": 10,
-    "oxfordAgreement": 48,
-    "editoriallyAdjusted": 39,
-    "conflictRequiresOwnerReview": 3,
+    "oxfordAgreement": 49,
+    "editoriallyAdjusted": 41,
+    "conflictRequiresOwnerReview": 0,
     "only4600Classified": 9
   },
   "noCanonicalClassificationMutation": true,
@@ -62,5 +62,27 @@
     "HYBRID_100_CONTENT_COHORT_READY": "YES",
     "HYBRID_100_APPROVED_RELEASE_READY": "NO"
   },
-  "cefrDraftFingerprint": "2da4c57ebbd18ce5e2c1fa77749fb7fe79a2f22752ba39506d2f59a7d7804a74"
+  "cefrDraftFingerprint": "ec0a6e34556a3d484dbdd608e592b912cb8c4ff2ceafdbe46b9cac02ea23b18f",
+  "parentCefrDraftFingerprint": "2da4c57ebbd18ce5e2c1fa77749fb7fe79a2f22752ba39506d2f59a7d7804a74",
+  "ownerReviewClosureFingerprint": "ec0a6e34556a3d484dbdd608e592b912cb8c4ff2ceafdbe46b9cac02ea23b18f",
+  "ownerExceptionQueue": "CLOSED",
+  "ownerApprovedExceptionCount": 5,
+  "classifiedOwnerDecisionCount": 4,
+  "acceptedUnclassifiedCount": 1,
+  "plannedExistingRevisionCount": 1,
+  "workspaceClassificationRecordCount": 98,
+  "projectAuthoredClassificationProvenanceCount": 98,
+  "ownerReviewClassificationProvenanceCount": 4,
+  "closureAddedProvenanceCount": 8,
+  "workspaceProvenanceRecordCount": 102,
+  "canonicalClassificationPromotionReady": false,
+  "canonicalClassificationMutation": "NONE",
+  "canonicalSemanticMutation": "NONE",
+  "releaseCreated": false,
+  "CEFR_EXCEPTION_OWNER_APPROVAL": "YES",
+  "OWNER_APPROVED_ALL_FUTURE_RELEASE_ACTIONS": false,
+  "initialClosureClassificationUuidAllocationCount": 3,
+  "initialClosureProvenanceUuidAllocationCount": 8,
+  "classificationUuidAllocationsOnRerun": 0,
+  "provenanceUuidAllocationsOnRerun": 0
 }

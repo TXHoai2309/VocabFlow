@@ -2,6 +2,27 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-05 — Master Vocabulary V2 Phase 2F.4A CEFR owner exception closure
+
+- Closed the five explicit CEFR exception decisions in the offline workspace:
+  light A1 as a planned revision under the existing Classification ID,
+  freshman B2, roster B2, liable C1, and fuse intentionally unclassified.
+  The other 95 rows remain unchanged with their prior general owner-review
+  status.
+- The closed outcome has 1 reuse, 1 revision plan, 97 new editorial decisions,
+  1 intentional unclassified result, and no exception-queue remainder. The
+  distribution is A1 17, A2 28, B1 20, B2 27, C1 7, and unclassified 1.
+  Three Classification UUIDv7 IDs and eight provenance IDs were added; the
+  stable fingerprint is
+  `ec0a6e34556a3d484dbdd608e592b912cb8c4ff2ceafdbe46b9cac02ea23b18f`.
+- CEFR editorial decision gate PASS; content cohort ready YES, while
+  canonical Classification promotion and approved release readiness remain
+  NO. Canonical Master, release, runtime, database, and production state were
+  not changed. Rights remain unverified and no official CEFR claim is made.
+- Focused regression tests (9/9), Master validator, typecheck, ESLint, and
+  `git diff --check` PASS. See the [owner review closure report](../vocabflow-dataset/reports/hybrid-100-cefr-classification-draft.md)
+  and [owner review sheet](../vocabflow-dataset/reports/hybrid-100-cefr-owner-review.md).
+
 ## 2026-10-04 — Master Vocabulary V2 Phase 2F.4 CEFR editorial draft
 
 - Added a repeatable offline `CEFR / EDITORIAL-PILOT-1` classification draft

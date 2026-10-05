@@ -461,3 +461,23 @@ database were not changed. Source/media rights remain unverified.
 Evidence: [Phase 2F.4 classification report](../../vocabflow-dataset/reports/hybrid-100-cefr-classification-draft.md)
 and fingerprint
 `2da4c57ebbd18ce5e2c1fa77749fb7fe79a2f22752ba39506d2f59a7d7804a74`.
+
+## Related Dataset Classification Evidence — Phase 2F.4A
+
+The owner closed the five explicit CEFR exceptions for the same 100-Sense
+cohort: light A1 as a planned revision 2 under the existing Classification
+identity, freshman B2, roster B2, liable C1, and fuse intentionally
+unclassified. Light revision 1 remains hash-pinned at A2 / `IN_REVIEW`. The
+workspace decision layer now has 100 resolved outcomes and 99 values; the
+other 95 rows retain their general `PENDING_OWNER_REVIEW` status.
+
+The closure fingerprint is
+`ec0a6e34556a3d484dbdd608e592b912cb8c4ff2ceafdbe46b9cac02ea23b18f`;
+the rerun is identical and allocates no additional IDs. Canonical
+Classification promotion is not ready and no approved release was created.
+Canonical Master, runtime, database, and production state remain unchanged;
+source rights remain unverified.
+
+Evidence: [Phase 2F.4A classification draft report](../../vocabflow-dataset/reports/hybrid-100-cefr-classification-draft.md),
+[owner review sheet](../../vocabflow-dataset/reports/hybrid-100-cefr-owner-review.md),
+and [machine-readable closure](../../vocabflow-dataset/workspaces/hybrid-100-cefr-draft/owner-review-closure.json).

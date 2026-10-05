@@ -1,5 +1,33 @@
 # Current Handoff Snapshot
 
+## 2026-10-05 — Master Vocabulary V2 Phase 2F.4A CEFR owner exception closure
+
+- Closed exactly five owner-reviewed CEFR exceptions in the workspace: light
+  A1 as a revision-2 plan under its existing Classification ID, freshman B2,
+  roster B2, liable C1, and fuse intentionally unclassified for insufficient
+  evidence. The other 95 editorial decisions and their general
+  `PENDING_OWNER_REVIEW` statuses remain unchanged.
+- Final outcomes: 1 reused classification, 1 planned revision, 97 new
+  editorial classification decisions, 1 intentionally unclassified, and 0
+  exception-queue items awaiting owner review. Values are present for 99/100;
+  distribution is A1 17, A2 28, B1 20, B2 27, C1 7, unclassified 1.
+- Added three stable UUIDv7 Classification IDs and eight provenance IDs
+  (four project-authored and four `OWNER_REVIEW`). Light revision 1 remains
+  byte/content pinned at A2 / `IN_REVIEW`; revision 2 is a workspace-only
+  DRAFT plan. Closed-package fingerprint
+  `ec0a6e34556a3d484dbdd608e592b912cb8c4ff2ceafdbe46b9cac02ea23b18f`
+  repeated with zero new IDs allocated on rerun.
+- CEFR editorial decision gate PASS; the exact cohort has 100 resolved
+  outcomes and 99 values. Content cohort ready YES; canonical Classification
+  promotion readiness NO; approved release ready NO. Source/media rights
+  remain unverified and no official CEFR/source claim is made.
+- No canonical classifications, semantic records, dataset manifest, or
+  releases changed. No runtime/import scanner, database, migration, or
+  production operation occurred. Master validation PASS (0 errors, 0
+  warnings, 1 informational DRAFT issue); Phase 2F.4A regression tests PASS
+  (9/9), typecheck, full ESLint, and `git diff --check` PASS. Local Node is
+  22.19.0 while the package requests 22.23.2.
+
 ## 2026-10-04 — Master Vocabulary V2 Phase 2F.4 CEFR editorial draft
 
 - Added a deterministic, offline CEFR classification workspace for the exact

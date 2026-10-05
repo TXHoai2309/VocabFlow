@@ -19,14 +19,22 @@
       "sourceRightsVerified": false
     },
     "CEFR": {
-      "status": "OWNER_REVIEW_REQUIRED",
-      "editorialAssignmentsResolved": 95,
-      "editorialAssignmentPercent": 95,
+      "status": "PASS",
+      "editorialAssignmentsResolved": 100,
+      "editorialAssignmentPercent": 100,
       "editorialValuesProposed": 99,
       "editorialValuePercent": 99,
-      "conflictingExistingClassificationCount": 1,
-      "duplicatePrimaryCount": 0,
-      "ownerApproval": "PENDING"
+      "intentionallyUnclassified": 1,
+      "ownerExceptionQueue": "CLOSED",
+      "ownerApprovedExceptionCount": 5,
+      "classifiedOwnerDecisionCount": 4,
+      "acceptedUnclassifiedCount": 1,
+      "unresolvedExistingClassificationConflicts": 0,
+      "existingValueMismatchResolvedByWorkspaceRevisionPlan": 1,
+      "remainingGeneralOwnerReviewCount": 95,
+      "canonicalClassificationPromotion": "NOT_STARTED",
+      "ownerApprovalScope": "CEFR_EXCEPTION_REVIEW",
+      "CEFR_EXCEPTION_OWNER_APPROVAL": "YES"
     },
     "CLASSIFICATIONS_OTHER_THAN_CEFR": {
       "status": "NOT_STARTED"
@@ -51,10 +59,15 @@
     },
     "RELEASE_APPROVAL": {
       "status": "NOT_AUTHORIZED"
+    },
+    "CANONICAL_CLASSIFICATION_PROMOTION": {
+      "status": "NOT_READY",
+      "reason": "This owner approval covers only the five CEFR exceptions; the other 95 rows retain their prior pending owner-review status."
     }
   },
   "releaseBlockers": [
-    "CEFR recommendations have not received owner approval or canonical promotion.",
+    "Canonical Classification promotion is a separate operation and has not occurred.",
+    "The five exception decisions are accepted, but this phase does not approve the other 95 pending owner-review decisions.",
     "An immutable approved release has not been built or reviewed.",
     "Runtime reconciliation for the 100-Sense cohort has not started.",
     "Production mutation is not authorized."
@@ -71,5 +84,30 @@
   "databaseWrites": "NONE",
   "importApplyExecuted": false,
   "productionMutation": false,
-  "cefrDraftFingerprint": "2da4c57ebbd18ce5e2c1fa77749fb7fe79a2f22752ba39506d2f59a7d7804a74"
+  "ownerApprovalScope": "CEFR_EXCEPTION_REVIEW",
+  "CEFR_EXCEPTION_OWNER_APPROVAL": "YES",
+  "OWNER_APPROVED_ALL_FUTURE_RELEASE_ACTIONS": false,
+  "canonicalClassificationPromotionReady": false,
+  "finalDecisionCounts": {
+    "NEW_EDITORIAL_CLASSIFICATION": 97,
+    "REUSE_EXISTING_CLASSIFICATION": 1,
+    "REVISE_EXISTING_CLASSIFICATION": 1,
+    "UNCLASSIFIED_INSUFFICIENT_EVIDENCE": 1
+  },
+  "finalDistribution": {
+    "PRE_A1": 0,
+    "A1": 17,
+    "A2": 28,
+    "B1": 20,
+    "B2": 27,
+    "C1": 7,
+    "C2": 0,
+    "UNCLASSIFIED": 1
+  },
+  "finalOxfordEvidenceSummary": {
+    "agreement": 49,
+    "editorialAdjustments": 41,
+    "unresolvedSourceConflicts": 0
+  },
+  "cefrDraftFingerprint": "ec0a6e34556a3d484dbdd608e592b912cb8c4ff2ceafdbe46b9cac02ea23b18f"
 }

@@ -1,49 +1,49 @@
-# Phase 2F.4 — Hybrid 100 CEFR Classification Draft and Release Readiness
+# Phase 2F.4A — Hybrid 100 CEFR Owner Exception Review Closure
 
-## Scope and pinned base
+## Pinned base and scope
 
-- Candidate cohort: 100; owner-approved semantic fingerprint: `a112a475e896f09038d4dd6834389af2d553d3a509829ef410ef17ae4e37ee1d`. Canonical Master: 103 Lexemes / 123 Senses / 846 Provenance; root remains DRAFT 2.0.0 / schema 2.0.1.
-- Framework: `CEFR / EDITORIAL-PILOT-1`; taxonomy 01a0fc13-09e9-72dd-b49d-ffef077385dd version 2.0.0; rubric HYBRID-CEFR-EDITORIAL-RUBRIC-1.0.0.
-- Decision types: reuse 1; new editorial 94; owner review 4; insufficient evidence 1.
-- Source CEFR tags informed review but did not determine a recommendation. The original 18-per-band draw is sampling design, not a target distribution.
+- Exact owner-approved semantic cohort: 100 Senses; canonical Master remains DRAFT 2.0.0 / schema 2.0.1 with 103 Lexemes, 123 Senses, 846 Provenance, and 122 canonical Classifications.
+- Parent CEFR draft fingerprint: 2da4c57ebbd18ce5e2c1fa77749fb7fe79a2f22752ba39506d2f59a7d7804a74; semantic fingerprint: a112a475e896f09038d4dd6834389af2d553d3a509829ef410ef17ae4e37ee1d; promotion fingerprint: 5c10618ee72fcc7b99b270764e412ebc51f286eadc750e45a6910830bb15e870.
+- Framework: CEFR / EDITORIAL-PILOT-1; taxonomy 01a0fc13-09e9-72dd-b49d-ffef077385dd version 2.0.0.
+- Owner approval is restricted to the five specified CEFR exceptions. The other 95 rows retain their Phase 2F.4 decisions and review statuses.
 
-## Proposed level distribution
+## Closed exception decisions
+
+- light / ADJECTIVE / not heavy: A1; plan revision 2 using the existing Classification ID. Canonical revision 1 (A2 / IN_REVIEW) is hash-pinned and unchanged.
+- freshman: B2; roster: B2; liable: C1. Each has a new workspace DRAFT Classification and project-authored plus owner-review provenance.
+- fuse: accepted as intentionally unclassified due to insufficient evidence; no Classification and no provenance attached to a fake Classification.
+- Decision counts: reuse 1; revise 1; new editorial 97; owner review required 0; intentionally unclassified 1.
+
+## Distribution and evidence
 
 - PRE_A1 = 0
 - A1 = 17
 - A2 = 28
-- B1 = 21
+- B1 = 20
 - B2 = 27
-- C1 = 6
+- C1 = 7
 - C2 = 0
 - UNCLASSIFIED = 1
+- Oxford-backed agreement: 49/90 (54.4%); editorial adjustments 41; unresolved source conflicts 0.
+- 4600-only: 9/10 receive an editorial value. Fuse remains intentionally unclassified; no 4600 CEFR value was inherited.
+- Confidence bands unchanged except the exception decisions: strong 19; reasonable 77; tentative 3; below 0.60 1. The three low-confidence classifications were explicitly accepted by the owner.
+- Existing CEFR audit: 2 candidates have canonical CEFR records; one existing-value mismatch is resolved by the workspace revision-2 plan. Duplicate primary CEFR decisions: 0.
+- Polysemy review: 12 multi-Sense groups; PASS.
 
-## Evidence and review
+## Quality and rights
 
-- Oxford-backed: 90/90. Source agreement: 48/90 (53.3%); editorially adjusted: 39; source disagreement held for owner review: 3.
-- 4600-only: 9/10 have an editorial level; the remaining candidate is unclassified because its narrow technical Sense does not support a defensible general estimate. No 4600 CEFR value was inherited.
-- Confidence: strong 19; reasonable 77; tentative 3; below 0.60 1. Tentative recommendations require explicit owner review.
-- Existing CEFR audit: 2 candidates have existing CEFR records; same framework 2, other framework 0, multiple 0, conflicting records 0. One recommendation conflicts with an existing same-framework pilot value; it is held for owner review. Duplicate primary assignments: 0.
-- Polysemy review: 12 multi-Sense groups checked independently. QA: PASS. Siblings may differ when their meanings differ.
-- QA warnings: 48; each is recorded with the affected candidate and does not silently alter a decision.
+- Editorial first-pass correction rate remains 24/98 (24.49%). Categories overlap: semantic target/label 6; definition 8; translation 8; example 18; naturalness 7; collocation 1.
+- Source and media rights remain UNVERIFIED. No source prose or media was reused; no LICENSED_SOURCE or PUBLIC_DOMAIN_SOURCE provenance was created. Editorial labels are not official CEFR/source claims.
+- Exception queue CLOSED; all 100 rows have a resolved editorial decision outcome, values are present for 99/100, and one is intentionally unclassified. The 95 non-exception rows keep their prior general PENDING_OWNER_REVIEW status.
 
-## Editorial first-pass corrections
+## Readiness boundary
 
-- 24/98 newly authored Senses had at least one correction group: 24.49%.
-- Candidate groups by category (categories overlap): semantic target or Sense label 6; definition 8; Vietnamese translation 8; example 18; naturalness 7; collocation 1.
-- The highest meaning risk came from semantic target/label changes; definition and translation changes affect meaning clarity; example, naturalness, and collocation edits usually carry lower semantic risk while still affecting teaching quality.
-
-## Rights and release readiness
-
-- Source and media rights remain UNVERIFIED. No Oxford or 4600 source prose or media was reused, and no licensed/public-domain source provenance was created. The CEFR label is a VocabFlow editorial estimate, not an official source claim.
-- Content cohort ready: YES. Approved release ready: NO. CEFR recommendations and the existing-value conflict still require owner review.
-- Other classifications, pronunciation, and 100-Sense runtime reconciliation have not started. Runtime evidence remains the separate 8-Sense canary only.
-- No canonical Classification records or root pins were changed. No release was created, no runtime import ran, and no database or production mutation occurred.
-- Recommended next scale option: `BUILD_100_SENSE_RELEASE_CANDIDATE`. Validate promotion and immutable release construction with this 100-Sense cohort after owner review, before expanding authoring to 500. This is a recommendation only; no next-phase work was executed.
+- CEFR editorial decision gate: PASS; exception queue CLOSED. Canonical Classification promotion readiness: NO because this phase approves only five exceptions and leaves the other 95 owner-review states unchanged.
+- Content cohort ready: YES. Approved release ready: NO. Canonical promotion is a separate operation; release construction has not occurred.
+- No canonical classifications, senses, lexemes, root manifest, or releases changed. No runtime import, scanner, database, migration, or production operation was executed.
 
 ## Determinism
 
-- CEFR draft fingerprint: `2da4c57ebbd18ce5e2c1fa77749fb7fe79a2f22752ba39506d2f59a7d7804a74`. The fingerprint covers the exact cohort pins, approved semantic and promotion fingerprints, taxonomy pin/hash, rubric, decisions, identity registry, project-authored provenance draft, and release-readiness contract.
-- Classification and provenance IDs are deterministic RFC 9562 UUIDv7 values. A materialized rerun allocates no additional IDs.
-
-See [owner review sheet](hybrid-100-cefr-owner-review.md) and [workspace](../workspaces/hybrid-100-cefr-draft/README.md).
+- Parent CEFR draft fingerprint: 2da4c57ebbd18ce5e2c1fa77749fb7fe79a2f22752ba39506d2f59a7d7804a74. Closed-package fingerprint: ec0a6e34556a3d484dbdd608e592b912cb8c4ff2ceafdbe46b9cac02ea23b18f.
+- Fingerprint covers the exact cohort pins, owner decisions, updated registry, Classification records, timestamp-normalized provenance records, readiness contract, and closure artifact. Timestamps and absolute paths are excluded.
+- Classification UUIDv7 allocations in this closure: 3; new provenance IDs: 8. The rerun allocates 0 of each.

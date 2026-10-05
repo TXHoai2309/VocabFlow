@@ -3,9 +3,9 @@
   "status": "PASS",
   "candidateCount": 100,
   "decisionCounts": {
-    "NEW_EDITORIAL_CLASSIFICATION": 94,
-    "OWNER_REVIEW_REQUIRED": 4,
+    "NEW_EDITORIAL_CLASSIFICATION": 97,
     "REUSE_EXISTING_CLASSIFICATION": 1,
+    "REVISE_EXISTING_CLASSIFICATION": 1,
     "UNCLASSIFIED_INSUFFICIENT_EVIDENCE": 1
   },
   "sourceCoverageCounts": {
@@ -14,17 +14,16 @@
     "OXFORD_PLUS_4600": 70
   },
   "sourceAgreementCounts": {
-    "AGREES_WITH_SOURCE": 48,
-    "CONFLICT_REQUIRES_OWNER_REVIEW": 3,
-    "EDITORIALLY_ADJUSTED": 39
+    "AGREES_WITH_SOURCE": 49,
+    "EDITORIALLY_ADJUSTED": 41
   },
   "proposedDistribution": {
     "PRE_A1": 0,
     "A1": 17,
     "A2": 28,
-    "B1": 21,
+    "B1": 20,
     "B2": 27,
-    "C1": 6,
+    "C1": 7,
     "C2": 0,
     "UNCLASSIFIED": 1
   },
@@ -41,7 +40,9 @@
     "multiple": 0,
     "conflictingExisting": 0,
     "editorialProposalConflicts": 1,
-    "duplicatePrimary": 0
+    "duplicatePrimary": 0,
+    "resolvedByOwnerRevisionPlan": 1,
+    "remainingUnresolvedProposalConflicts": 0
   },
   "polysemyReview": {
     "status": "PASS",
@@ -224,7 +225,7 @@
             "partOfSpeechCode": "ADJECTIVE",
             "senseLabel": "not heavy",
             "valueCode": "A1",
-            "decisionType": "OWNER_REVIEW_REQUIRED",
+            "decisionType": "REVISE_EXISTING_CLASSIFICATION",
             "rationale": "Low weight is an elementary concrete contrast; the existing same-framework A2 classification conflicts and needs owner resolution."
           },
           {
@@ -242,7 +243,7 @@
         ],
         "levelRange": 0,
         "status": "PASS",
-        "existingClassificationOwnerReview": true,
+        "existingClassificationOwnerReview": false,
         "explanation": "Reviewed as separate teachable Senses; sibling levels are allowed when semantic scope differs."
       },
       {
@@ -479,11 +480,13 @@
       "editorialValue": "A2"
     },
     {
-      "code": "CONFLICTING_EXISTING_CEFR",
-      "severity": "OWNER_REVIEW",
+      "code": "EXISTING_CLASSIFICATION_VALUE_CONFLICT",
+      "severity": "RESOLVED_BY_REVISION_PLAN",
       "candidateId": "SOURCE-CANDIDATE-24f8162f0d0ad736b2b735017612166a3b2e2c8a6a7e5058e2ba5ecc7ef3e84b",
       "existingValue": "A2",
-      "editorialValue": "A1"
+      "editorialValue": "A1",
+      "ownerDecisionStatus": "ACCEPTED",
+      "resolutionStatus": "CLOSED_BY_OWNER"
     },
     {
       "code": "SOURCE_EDITORIAL_DISAGREEMENT",
@@ -532,13 +535,17 @@
       "severity": "WARNING",
       "candidateId": "SOURCE-CANDIDATE-483ca72bba68a330bdbee912f9dd46f33e16c187ee234ef3c2679ba342c456c1",
       "sourceValue": "C1",
-      "editorialValue": "B1"
+      "editorialValue": "B2",
+      "ownerDecisionStatus": "ACCEPTED",
+      "resolutionStatus": "CLOSED_BY_OWNER"
     },
     {
       "code": "LOW_CONFIDENCE_CLASSIFICATION",
-      "severity": "OWNER_REVIEW",
+      "severity": "RESOLVED",
       "candidateId": "SOURCE-CANDIDATE-483ca72bba68a330bdbee912f9dd46f33e16c187ee234ef3c2679ba342c456c1",
-      "confidence": 0.68
+      "confidence": 0.68,
+      "ownerDecisionStatus": "ACCEPTED",
+      "resolutionStatus": "CLOSED_BY_OWNER"
     },
     {
       "code": "SOURCE_EDITORIAL_DISAGREEMENT",
@@ -601,13 +608,17 @@
       "severity": "WARNING",
       "candidateId": "SOURCE-CANDIDATE-6e8882fc2e38cee29390b9f54184323995c835e89c148eded5c9a24ec0f609ca",
       "sourceValue": "C1",
-      "editorialValue": "B2"
+      "editorialValue": "B2",
+      "ownerDecisionStatus": "ACCEPTED",
+      "resolutionStatus": "CLOSED_BY_OWNER"
     },
     {
       "code": "LOW_CONFIDENCE_CLASSIFICATION",
-      "severity": "OWNER_REVIEW",
+      "severity": "RESOLVED",
       "candidateId": "SOURCE-CANDIDATE-6e8882fc2e38cee29390b9f54184323995c835e89c148eded5c9a24ec0f609ca",
-      "confidence": 0.7
+      "confidence": 0.7,
+      "ownerDecisionStatus": "ACCEPTED",
+      "resolutionStatus": "CLOSED_BY_OWNER"
     },
     {
       "code": "SOURCE_EDITORIAL_DISAGREEMENT",
@@ -646,17 +657,12 @@
       "levelGap": 3
     },
     {
-      "code": "SOURCE_EDITORIAL_DISAGREEMENT",
-      "severity": "WARNING",
-      "candidateId": "SOURCE-CANDIDATE-a6a21ce9e065d758b06afa3de50f842559158c17ed094860dd14b53e5d9fe17a",
-      "sourceValue": "C1",
-      "editorialValue": "B2"
-    },
-    {
       "code": "LOW_CONFIDENCE_CLASSIFICATION",
-      "severity": "OWNER_REVIEW",
+      "severity": "RESOLVED",
       "candidateId": "SOURCE-CANDIDATE-a6a21ce9e065d758b06afa3de50f842559158c17ed094860dd14b53e5d9fe17a",
-      "confidence": 0.7
+      "confidence": 0.7,
+      "ownerDecisionStatus": "ACCEPTED",
+      "resolutionStatus": "CLOSED_BY_OWNER"
     },
     {
       "code": "SOURCE_EDITORIAL_DISAGREEMENT",
@@ -792,14 +798,31 @@
     "sourceClaimedAsOfficial": false,
     "licensedSourceProvenanceCreated": false,
     "publicDomainSourceProvenanceCreated": false,
-    "sourceTextReused": false
+    "sourceTextReused": false,
+    "externalMediaReused": false
   },
   "qualityGate": {
     "cefrEditorialQa": "PASS",
     "polysemyCefrQa": "PASS",
     "existingClassificationAudit": "PASS",
     "duplicatePrimaryCefr": "PASS",
+    "ownerExceptionQueue": "CLOSED",
     "warningsRemainExplicitForOwnerReview": true
   },
-  "cefrDraftFingerprint": "2da4c57ebbd18ce5e2c1fa77749fb7fe79a2f22752ba39506d2f59a7d7804a74"
+  "cefrDraftFingerprint": "ec0a6e34556a3d484dbdd608e592b912cb8c4ff2ceafdbe46b9cac02ea23b18f",
+  "sourceCounts": {
+    "oxfordBacked": 90,
+    "only4600": 10,
+    "oxfordAgreement": 49,
+    "editoriallyAdjusted": 41,
+    "conflictRequiresOwnerReview": 0,
+    "only4600Classified": 9
+  },
+  "ownerExceptionReview": {
+    "status": "CLOSED",
+    "requiredDecisionCount": 0,
+    "acceptedDecisionCount": 5,
+    "classifiedDecisionCount": 4,
+    "acceptedUnclassifiedCount": 1
+  }
 }
