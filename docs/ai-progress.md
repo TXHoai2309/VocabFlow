@@ -1,5 +1,36 @@
 # Current Handoff Snapshot
 
+## 2026-10-07 — Phase 2G.2A Hybrid-100 owner reconciliation proposal
+
+- Built a proposal from the checked-in Phase 2G.1C scan only. Recomputed the
+  frozen 2.2.1 / APPROVED releaseHash and ran the official release `--check`:
+  releaseHash `44874b11d1fdef76a515f6285d04c9a417318daa6969e112608a59e7c232613c`,
+  tree `51ab4c5ce31bd38b51742d1aea16602150522da27ad26c123cc17b332f9a406e`.
+- Proposal covers 100 Senses: 97 CREATE_NEW, 3 MAP_EXISTING with
+  UPDATE_TO_MASTER (deviate/#1836, relief pain/#1461, stand/#948), and 0
+  OWNER_CHOICE_REQUIRED. Every actual ownerDecision remains UNRESOLVED.
+- Rejected lexical/semantic candidates conservatively, including exact/precise,
+  rally/muster, rock/kick, fuse's electrical sense, the shared light/#1260
+  candidate, emergency relief/#1461, reservation/#284, water/#11/#405,
+  struggle's three candidates, and mixed-sense liable/#1796. The proposal
+  records #11's 1 progress / 5 review references and preserves #284's existing
+  mapping to its other Master Sense. Runtime enrichment is marked PRESERVE
+  under the projection contract.
+- Added an offline deterministic proposal generator, JSON owner-review
+  artifact, exhaustive grouped report, and 17 focused tests. The artifact is
+  analysisOnly=true, acceptedByImporter=false, and requiresHumanDecision=true.
+- No Phase 2G.1C evidence or frozen release files changed. This phase used no
+  database connection and made no writes, mappings, IDs, migrations, or
+  learner-row changes; importer APPLY and production were untouched.
+- Evidence: [proposal report](../vocabflow-dataset/reports/hybrid-100-owner-reconciliation-proposal-2.2.1.md),
+  [machine-readable proposal](../vocabflow-dataset/workspaces/hybrid-100-runtime-reconciliation-2.2.1/owner-review/owner-reconciliation-proposal.json),
+  and [generator](../scripts/hybrid-100-owner-reconciliation-proposal.ts).
+- Verification: proposal generator `--check`; official frozen-release builder
+  `--check`; focused tests 17/17; scoped ESLint; typecheck; `git diff --check`.
+  Local Node 22.19.0 is below the repository's declared 22.23.2 engine.
+- Next action: owner reviews the proposal and makes explicit identity decisions;
+  no importer dry-run or database action is authorized by this proposal.
+
 ## 2026-10-06 — Phase 2G.1C Hybrid-100 Development candidate discovery
 
 - Verified only the frozen `2.2.1 / APPROVED` source: releaseHash

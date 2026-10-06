@@ -57,6 +57,8 @@
     "test:vocab:hybrid-100-approved-release": "vitest run --pool=threads --maxWorkers=1 --no-file-parallelism scripts/hybrid-100-approved-release.test.ts",
     "vocab:hybrid-100-runtime-eligible-patch-release": "tsx scripts/hybrid-100-runtime-eligible-patch-release.ts",
     "test:vocab:hybrid-100-runtime-eligible-patch-release": "vitest run --pool=threads --maxWorkers=1 --no-file-parallelism scripts/hybrid-100-runtime-eligible-patch-release.test.ts",
+    "vocab:hybrid-100-owner-reconciliation-proposal": "tsx scripts/hybrid-100-owner-reconciliation-proposal.ts",
+    "test:vocab:hybrid-100-owner-reconciliation-proposal": "vitest run --pool=threads --maxWorkers=1 --no-file-parallelism scripts/hybrid-100-owner-reconciliation-proposal.test.ts",
     "test:master-vocab-v2-hybrid-source-proof": "python scripts/master-vocabulary-v2-hybrid-source-proof.test.py",
     "prepare:master-vocab-v2-canary": "tsx scripts/master-vocabulary-v2-canary-preparation.ts",
     "dataset:prepare-canary-v2": "tsx scripts/master-vocabulary-v2-canary-release-builder.ts",

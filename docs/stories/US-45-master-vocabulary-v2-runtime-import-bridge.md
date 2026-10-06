@@ -1,5 +1,34 @@
 # US-45 — Master Vocabulary V2 Runtime Import Bridge
 
+## Phase 2G.2A — Hybrid-100 owner reconciliation proposal ready for review
+
+Prepared an offline, owner-facing proposal from the immutable Phase 2G.1C
+snapshot. The frozen 2.2.1 / APPROVED releaseHash and tree were independently
+checked before authoring. The proposal covers all 100 Senses: 97 CREATE_NEW,
+three MAP_EXISTING + UPDATE_TO_MASTER proposals (deviate/#1836,
+relief pain/#1461, and stand/#948), and no unresolved analysis-level
+OWNER_CHOICE_REQUIRED case. All actual `ownerDecision` values remain
+`UNRESOLVED`; this is not owner authorization or an importer-ready artifact.
+
+Candidate review rejects lexical/translation false positives, separates the
+two relief Senses, and preserves the existing reservation/#284 mapping and
+water/#11 learner history (1 progress reference, 5 review-event references).
+All three light Senses reject #1260. Proposed MAP_EXISTING rows require
+UPDATE_TO_MASTER and preserve runtime enrichment when the Master projection
+is null or absent. Proposal generation and its tests are offline; no database
+connection, runtime ID allocation, bridge mapping, learner mutation, migration,
+importer APPLY, or production activity occurred. Phase 2G.1C evidence and the
+frozen release are unchanged.
+
+Evidence: [Phase 2G.2A report](../../vocabflow-dataset/reports/hybrid-100-owner-reconciliation-proposal-2.2.1.md),
+[machine-readable proposal](../../vocabflow-dataset/workspaces/hybrid-100-runtime-reconciliation-2.2.1/owner-review/owner-reconciliation-proposal.json),
+[offline generator](../../scripts/hybrid-100-owner-reconciliation-proposal.ts),
+and [focused tests](../../scripts/hybrid-100-owner-reconciliation-proposal.test.ts).
+
+Current status: `IN PROGRESS / PHASE 2G.2A OWNER PROPOSAL READY FOR REVIEW`.
+The owner must finalize identity decisions before any importer reconciliation;
+runtime import remains unauthorized.
+
 ## Phase 2G.1C — Hybrid-100 Development candidates discovered; owner review remains open
 
 The 2.2.1 source-specific scan verified the immutable APPROVED release and its

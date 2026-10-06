@@ -2,6 +2,18 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-07 — Phase 2G.2A Hybrid-100 owner reconciliation proposal
+
+- Added a deterministic offline owner-proposal generator and proposal artifacts
+  for all 100 Hybrid-100 2.2.1 Senses. Proposed 97 CREATE_NEW and 3
+  MAP_EXISTING + UPDATE_TO_MASTER; every owner decision remains UNRESOLVED.
+- Captured candidate rejection evidence, existing mapping/history identities,
+  polysemy collisions, projection differences, and preserved runtime
+  enrichment. The proposal is analysis-only and is not importer-accepted.
+- Added 17 focused regressions. The frozen 2.2.1 release and Phase 2G.1C scan
+  evidence remain unchanged; no database access, writes, runtime ID allocation,
+  bridge mapping, migration, importer APPLY, or production mutation occurred.
+
 ## 2026-10-06 — Phase 2G.1C Hybrid-100 Development candidate discovery
 
 - Added a release-scoped, read-only scanner for the frozen Hybrid-100 2.2.1
