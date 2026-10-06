@@ -148,6 +148,31 @@ describe("global search palette", () => {
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
   });
 
+  it("clears a no-results query without closing search or removing recent searches", async () => {
+    window.localStorage.setItem(RECENT_SEARCHES_STORAGE_KEY, JSON.stringify(["family", "food"]));
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(JSON.stringify({
+      query: "zzzz",
+      vocabulary: [],
+      topics: [],
+      learningSets: []
+    }), { status: 200 }));
+    renderPalette();
+    const input = screen.getByRole("searchbox", { name: "Tìm từ vựng, chủ đề hoặc bộ từ" });
+    fireEvent.change(input, { target: { value: "zzzz" } });
+
+    fireEvent.click(await screen.findByRole("button", { name: "Xóa từ khóa" }));
+
+    expect(input).toHaveValue("");
+    expect(input).toHaveFocus();
+    expect(screen.getByRole("dialog")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Tìm kiếm gần đây" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "family" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "food" })).toBeInTheDocument();
+    expect(JSON.parse(window.localStorage.getItem(RECENT_SEARCHES_STORAGE_KEY) ?? "[]")).toEqual(["family", "food"]);
+    expect(screen.getByTestId("location")).toHaveTextContent("/");
+    expect(fetch).toHaveBeenCalledOnce();
+  });
+
   it("shows a safe error and retries the failed query", async () => {
     vi.spyOn(globalThis, "fetch")
       .mockRejectedValueOnce(new Error("internal transport detail"))

@@ -128,6 +128,12 @@ export function GlobalSearchPalette({
 
   const selectResult = (result: GlobalSearchResult) => onSelect(result, normalizedQuery);
 
+  function clearQuery() {
+    setQuery("");
+    setActiveIndex(-1);
+    inputRef.current?.focus();
+  }
+
   function onDialogKeyDown(event: KeyboardEvent<HTMLDivElement>) {
     if (event.key === "Escape") {
       event.preventDefault();
@@ -212,7 +218,7 @@ export function GlobalSearchPalette({
         ) : null}
 
         {currentPhase === "LOADING" ? <LoadingState className="global-search-async-state" label="Đang tìm kiếm…" pattern="search" /> : null}
-        {currentPhase === "NO_RESULTS" ? <EmptyState className="global-search-async-state" icon="search" title="Không tìm thấy kết quả" description="Thử từ khóa khác hoặc kiểm tra chính tả." /> : null}
+        {currentPhase === "NO_RESULTS" ? <EmptyState className="global-search-async-state" icon="search" title="Không tìm thấy kết quả" description="Thử từ khóa khác hoặc kiểm tra chính tả." action={<button type="button" onClick={clearQuery}>Xóa từ khóa</button>} /> : null}
         {currentPhase === "ERROR" ? <ErrorState className="global-search-async-state" title="Không thể tải kết quả" description="Không thể tải kết quả tìm kiếm. Vui lòng thử lại." onRetry={() => setRetryCount((count) => count + 1)} /> : null}
 
         {currentPhase === "READY" ? (
