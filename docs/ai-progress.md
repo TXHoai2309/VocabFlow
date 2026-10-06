@@ -1,5 +1,48 @@
 # Current Handoff Snapshot
 
+## 2026-10-06 — Phase 2G.1A nested lifecycle audit and 2.2.1 plan
+
+- Re-audited frozen `2.2.0 / APPROVED` offline: releaseHash
+  `c82a32a3d7fc3534105b85e14908edd336c2409aa7294d070528a47f6260339d` and
+  release-tree fingerprint
+  `35334eb7769c39029223d2d60311c6faab8c462efd0a340f262bed27543256ae` are
+  unchanged. The owner-reviewed semantic draft fingerprint independently
+  recomputes to `a112a475e896f09038d4dd6834389af2d553d3a509829ef410ef17ae4e37ee1d`.
+- Exact nested status inventory for 100 Senses: Translation, Definition,
+  Example, and ExampleTranslation each have 98 `DRAFT`, 2 `IN_REVIEW`, 0
+  `APPROVED`; Sense and Lexeme Pronunciation counts are both zero. Parent Sense
+  status is 100 `APPROVED`.
+- All 400 existing learner-facing rows trace to the owner-reviewed semantic
+  package or an immutable pinned Sense-reuse decision. Child and parent IDs,
+  languages, text, ordering, preferred selection, and Provenance references
+  match; drift is zero and no rows are blocked. The planned next Sense revision
+  count is exactly 100, derived from the 100 parents with status transitions.
+- An in-memory-only `app-import-v3` / `runtime-vocabulary-projection-v2`
+  simulation projects 100/100 Senses with 0 skipped and `importEligible=true`.
+  It retains 100 Vietnamese translations, 100 English definitions, and 100
+  English examples; IPA is 0. The future immutable release plan is `2.2.1`
+  `PATCH`, with the cohort unchanged: 87 Lexemes, 100 Senses, 99
+  Classifications, 799 Provenance records, taxonomy 2.0.1, and no media, sets,
+  or relations.
+- The publication validator allows a valid APPROVED Master release whose
+  nested review statuses do not make the current RELEASE projection complete;
+  the transform correctly filters those children. Recommendation: retain
+  separate release-approval and runtime-readiness gates. No validator contract
+  was changed.
+- This phase only audited and planned. No nested statuses or canonical records
+  changed, no new revisions or Provenance IDs were created, no 2.2.1 directory
+  was created, and there was no database connection, write, migration, importer
+  apply, or production mutation. All owner authorization flags remain false.
+- Evidence: [audit report](../vocabflow-dataset/reports/hybrid-100-runtime-eligibility-closure-2.2.1.md),
+  [machine-readable workspace](../vocabflow-dataset/workspaces/hybrid-100-runtime-eligibility-closure/),
+  and [US-45 runtime-import story](stories/US-45-master-vocabulary-v2-runtime-import-bridge.md).
+- Verification: focused Phase 2G.1A tests pass (7/7); `pnpm
+  validate:master-vocab-v2` passes with 0 errors, 0 warnings, and 1 info issue;
+  `pnpm typecheck`, `pnpm lint`, and `git diff --check` pass. pnpm reports the
+  local Node 22.19.0 is below the package's declared 22.23.2 engine. The next
+  action requiring authority is nested child approval and patch release
+  materialization; neither is authorized by this audit.
+
 ## 2026-10-06 — Phase 2G.1 Hybrid-100 Development reconciliation preflight
 
 - Verified the frozen `2.2.0 / APPROVED` release and its JCS release hash

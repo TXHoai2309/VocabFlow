@@ -1,0 +1,27 @@
+{
+  "generatedBy": "hybrid-100-runtime-eligibility-closure-v1",
+  "artifactType": "HYBRID_100_RUNTIME_ELIGIBILITY_CLOSURE_MANIFEST",
+  "sourceReleaseVersion": "2.2.0",
+  "sourceReleaseHash": "c82a32a3d7fc3534105b85e14908edd336c2409aa7294d070528a47f6260339d",
+  "sourceReleaseTreeFingerprint": "35334eb7769c39029223d2d60311c6faab8c462efd0a340f262bed27543256ae",
+  "semanticDraftFingerprint": "a112a475e896f09038d4dd6834389af2d553d3a509829ef410ef17ae4e37ee1d",
+  "targetReleasePlan": "2.2.1",
+  "versionBump": "PATCH",
+  "fileInventory": [
+    "nested-lifecycle-inventory.json",
+    "owner-review-trace.json",
+    "sense-revision-plan.json",
+    "patch-release-2.2.1-plan.json",
+    "runtime-projection-simulation.json",
+    "validation-summary.json"
+  ],
+  "noReleaseMaterialized": true,
+  "authorization": {
+    "nestedChildApprovalAuthorized": false,
+    "senseRevisionMaterializationAuthorized": false,
+    "patchRelease221BuildAuthorized": false,
+    "databaseWriteAuthorized": false,
+    "runtimeImportAuthorized": false,
+    "productionMutationAuthorized": false
+  }
+}

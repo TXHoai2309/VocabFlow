@@ -1,5 +1,32 @@
 # US-45 — Master Vocabulary V2 Runtime Import Bridge
 
+## Phase 2G.1A — Nested lifecycle audit complete; 2.2.1 remains a plan
+
+The offline audit verified frozen release 2.2.0 and the exact owner-reviewed
+semantic package fingerprint. In each of the four learner-facing child types
+(Translation, Definition, Example, and ExampleTranslation), the 100 rows are 98
+`DRAFT` and 2 `IN_REVIEW`; neither Sense nor owning Lexeme Pronunciations exist
+in this cohort. Parent Senses remain 100 `APPROVED`.
+
+All 400 learner-facing rows trace to the reviewed semantic package or its exact
+pinned existing-Sense reuse decision. IDs, owners, language, text, order,
+preferred selection, and Provenance references have zero drift, with no blocked
+rows. A future lifecycle-only patch needs one new monotonic Sense revision for
+each of the 100 parents. The in-memory RELEASE simulation yields 100/100
+projected Senses, 0 skipped, and `importEligible=true`, preserving 100
+Vietnamese translations, 100 English definitions, and 100 English examples;
+IPA remains absent.
+
+The technical plan targets immutable dataset `2.2.1` as a `PATCH` with the same
+cohort: 87 Lexemes, 100 Senses, 99 Classifications, 799 Provenance records, and
+taxonomy 2.0.1. This phase did not approve children, create Sense revisions or
+release 2.2.1, connect to a database, write data, run migrations/import, or
+mutate production. All authorization flags remain false. The recommendation is
+to retain separate Master-release approval and runtime-readiness gates.
+
+Evidence: [Phase 2G.1A audit report](../../vocabflow-dataset/reports/hybrid-100-runtime-eligibility-closure-2.2.1.md),
+[machine-readable audit artifacts](../../vocabflow-dataset/workspaces/hybrid-100-runtime-eligibility-closure/).
+
 ## Phase 2G.1 — Development reconciliation preflight blocked at source gate
 
 The read-only Phase 2G.1 preflight verified the frozen Hybrid-100 2.2.0 release
@@ -21,11 +48,13 @@ Evidence: [Phase 2G.1 preflight report](../../vocabflow-dataset/reports/hybrid-1
 [projection gate](../../vocabflow-dataset/workspaces/hybrid-100-runtime-reconciliation/projection/transform-preflight-summary.json),
 and [migration state](../../vocabflow-dataset/workspaces/hybrid-100-runtime-reconciliation/migration-state.json).
 
-Current status: `IN PROGRESS / PHASE 2G.1 BLOCKED AT RELEASE PROJECTION GATE`.
-Resolve the nested Translation lifecycle/projection mismatch in a separately
-approved source revision before discovery. Once a valid RELEASE projection is
-available, run Development candidate discovery and continue to owner review;
-this phase does not authorize import apply.
+Current status: `IN PROGRESS / PHASE 2G.1 BLOCKED AT RELEASE PROJECTION GATE;
+PHASE 2G.1A TECHNICAL PLAN READY, OWNER AUTHORIZATION PENDING`. The offline
+audit proves the content and exact lifecycle-only patch plan, but does not
+authorize status changes, revision materialization, release creation, or
+runtime discovery. Obtain the required owner authorization before materializing
+2.2.1; after a valid RELEASE projection exists, continue with Development
+candidate discovery and owner review. Import apply remains separately gated.
 
 ## Phase 2F.7 — Approved Hybrid-100 release source prepared
 

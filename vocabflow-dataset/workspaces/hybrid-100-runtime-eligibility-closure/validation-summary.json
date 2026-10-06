@@ -1,0 +1,142 @@
+{
+  "generatedBy": "hybrid-100-runtime-eligibility-closure-v1",
+  "artifactType": "HYBRID_100_RUNTIME_ELIGIBILITY_CLOSURE_VALIDATION",
+  "status": "PASS",
+  "sourceRelease": {
+    "datasetVersion": "2.2.0",
+    "releaseHash": "c82a32a3d7fc3534105b85e14908edd336c2409aa7294d070528a47f6260339d",
+    "releaseTreeFingerprint": "35334eb7769c39029223d2d60311c6faab8c462efd0a340f262bed27543256ae",
+    "unchanged": true
+  },
+  "sourceReleaseValidation": {
+    "status": "PASS",
+    "errors": 0,
+    "warnings": 0,
+    "info": 0
+  },
+  "semanticDraftFingerprint": {
+    "expected": "a112a475e896f09038d4dd6834389af2d553d3a509829ef410ef17ae4e37ee1d",
+    "computed": "a112a475e896f09038d4dd6834389af2d553d3a509829ef410ef17ae4e37ee1d",
+    "verified": true
+  },
+  "ownerReview": {
+    "decisions": 100,
+    "approveDraft": 100,
+    "ownerCanonicalDraftPromotionVerified": true,
+    "nestedChildApprovalAuthorized": false
+  },
+  "lifecycleTrace": {
+    "ownerReviewedCandidateDecisions": 100,
+    "ownerReviewApproveDraftCount": 100,
+    "directlyAuthoredSenses": 98,
+    "reviewedReuseSenses": 2,
+    "childRowsTraced": 400,
+    "childRowsPassed": 400,
+    "childRowsBlocked": 0,
+    "childRowsByType": {
+      "TRANSLATION": 100,
+      "DEFINITION": 100,
+      "EXAMPLE": 100,
+      "EXAMPLE_TRANSLATION": 100
+    },
+    "childStatusCounts": {
+      "DRAFT": 392,
+      "IN_REVIEW": 8
+    },
+    "provenanceReferencesValidated": 400,
+    "uniqueChildIds": 400
+  },
+  "revisionPlan": {
+    "exactSenseRevisionCount": 100,
+    "allStableSenseIdsPreserved": true
+  },
+  "patchPlan": {
+    "sourceVersion": "2.2.0",
+    "targetVersion": "2.2.1",
+    "versionBump": "PATCH",
+    "sameCohort": true
+  },
+  "projectionSimulation": {
+    "projectedSenses": 100,
+    "skippedSenses": 0,
+    "importEligible": true,
+    "appImportContractVersion": "app-import-v3",
+    "projectionContractVersion": "runtime-vocabulary-projection-v2",
+    "runtimeFieldCounts": {
+      "vietnameseNonNull": 100,
+      "definitionEnNonNull": 100,
+      "exampleEnNonNull": 100,
+      "ipaNonNull": 0
+    },
+    "invariantChecks": {
+      "learnerFacingAndIdentityFingerprint": {
+        "before": "afdc5cc83a8a51e0a12dbfae866f6f493504bc890a067ffeb7fb4b2eb2ba97a3",
+        "after": "afdc5cc83a8a51e0a12dbfae866f6f493504bc890a067ffeb7fb4b2eb2ba97a3",
+        "unchanged": true
+      },
+      "childProvenanceReferenceFingerprint": {
+        "before": "ffb625183645978670becddb0cfa625dac008bf3124f3b84b2a08817eaf86864",
+        "after": "ffb625183645978670becddb0cfa625dac008bf3124f3b84b2a08817eaf86864",
+        "unchanged": true
+      },
+      "lexemePinFingerprint": {
+        "before": "efdd344f219ff78066ef65db54afea0614c0222e46df6038e72bc85f2f554af4",
+        "after": "efdd344f219ff78066ef65db54afea0614c0222e46df6038e72bc85f2f554af4",
+        "unchanged": true
+      },
+      "classificationPinFingerprint": {
+        "before": "93282e2783f668b3cdd94830a3fcd0dad5b7e911cf538c754e41bc8c2a62e0b8",
+        "after": "93282e2783f668b3cdd94830a3fcd0dad5b7e911cf538c754e41bc8c2a62e0b8",
+        "unchanged": true
+      },
+      "taxonomyFingerprint": {
+        "before": "64f5c98611e8bffca48c67ebfb25fb2d974d9d050df51d0122223a21e678a05c",
+        "after": "64f5c98611e8bffca48c67ebfb25fb2d974d9d050df51d0122223a21e678a05c",
+        "unchanged": true
+      }
+    }
+  },
+  "validatorReadinessGap": {
+    "approvedManifestRequiresApprovedTopLevelSenses": true,
+    "nestedRowsUseIndependentStatus": true,
+    "publicationValidatorRequiresRuntimeProjectionCompleteness": false,
+    "releaseTransformFiltersNestedChildrenByApprovedStatus": true,
+    "recommendation": "KEEP_MASTER_RELEASE_APPROVAL_AND_RUNTIME_IMPORT_READINESS_SEPARATE; add/use a dedicated runtime-readiness gate without silently changing the publication contract."
+  },
+  "immutability": {
+    "releaseTreeBefore": "35334eb7769c39029223d2d60311c6faab8c462efd0a340f262bed27543256ae",
+    "releaseTreeAfter": "35334eb7769c39029223d2d60311c6faab8c462efd0a340f262bed27543256ae",
+    "canonicalMasterTreeBefore": "fbd84795017131bb837b29c9f6edc605c32077511efac3d22b34a31e4d860b01",
+    "canonicalMasterTreeAfter": "fbd84795017131bb837b29c9f6edc605c32077511efac3d22b34a31e4d860b01",
+    "canonicalDatasetStateBefore": "de71184eaa765c4bd3419c20e55f050579fdff12a389e63724344d2483d4422f",
+    "canonicalDatasetStateAfter": "de71184eaa765c4bd3419c20e55f050579fdff12a389e63724344d2483d4422f",
+    "release221DirectoryExisted": false,
+    "release221DirectoryCreated": false,
+    "canonicalRevisionsCreated": false
+  },
+  "sideEffects": {
+    "databaseConnection": "NONE",
+    "databaseWrites": "NONE",
+    "migrations": "NONE",
+    "importerApply": "NO",
+    "runtimeIdsAllocated": 0,
+    "bridgeMappingsCreated": 0,
+    "learnerRowsMutated": 0,
+    "productionConnection": "NONE",
+    "productionMutation": "NO"
+  },
+  "authorization": {
+    "nestedChildApprovalAuthorized": false,
+    "senseRevisionMaterializationAuthorized": false,
+    "patchRelease221BuildAuthorized": false,
+    "databaseWriteAuthorized": false,
+    "runtimeImportAuthorized": false,
+    "productionMutationAuthorized": false
+  },
+  "runtimeEligibilityClosureTechnicallyReady": true,
+  "phase2G1AReady": true,
+  "issues": [],
+  "classificationPinFingerprint": "93282e2783f668b3cdd94830a3fcd0dad5b7e911cf538c754e41bc8c2a62e0b8",
+  "taxonomyFingerprint": "64f5c98611e8bffca48c67ebfb25fb2d974d9d050df51d0122223a21e678a05c",
+  "provenanceIdsFingerprint": "3cce2c6ebd8d2c37ab70fecff6a11cbc2de6306f5a93680b4f3e8e5b397bf136"
+}

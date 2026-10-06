@@ -2,6 +2,27 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-06 — Phase 2G.1A nested lifecycle audit and 2.2.1 patch plan
+
+- Added an offline nested-lifecycle audit for all learner-facing children in
+  the frozen Hybrid-100 2.2.0 release. Each of the 100 Translations,
+  Definitions, Examples, and ExampleTranslations is 98 DRAFT / 2 IN_REVIEW;
+  Sense and Lexeme Pronunciations are absent.
+- Traced all 400 children to the exact owner-reviewed semantic package or its
+  pinned existing-Sense reuse decisions. Identity, learner-facing content,
+  ordering, preferred selection, and Provenance references have zero drift;
+  all 100 parents need one next Sense revision in a future patch.
+- Simulated the planned lifecycle transition in memory only. RELEASE produces
+  100/100 Senses, preserves all 100 Vietnamese translations, Definitions, and
+  Examples, and leaves IPA null. The report plans an immutable `2.2.1` PATCH
+  with the existing release cohort and recommends a separate runtime-readiness
+  gate instead of changing publication validation.
+- No child approval, canonical revision, 2.2.1 release, database connection or
+  write, importer apply, migration, or production mutation was authorized or
+  performed. Release 2.2.0 remains unchanged.
+- Evidence: [audit report](../vocabflow-dataset/reports/hybrid-100-runtime-eligibility-closure-2.2.1.md)
+  and [workspace artifacts](../vocabflow-dataset/workspaces/hybrid-100-runtime-eligibility-closure/).
+
 ## 2026-10-06 — Phase 2G.1 Hybrid-100 Development reconciliation preflight
 
 - Added a read-only Development migration/bridge preflight for frozen release
