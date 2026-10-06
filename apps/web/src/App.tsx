@@ -1,9 +1,10 @@
-import { Link, Navigate, Route, Routes } from "react-router";
+import { Link, Navigate, Route, Routes, useLocation } from "react-router";
 import { AppShell } from "./components/app-shell";
 import { authClient } from "./features/auth/auth-client";
 import { LoginPage } from "./features/auth/login-page";
 import { RegisterPage } from "./features/auth/register-page";
 import { ActiveLearnerProvider } from "./features/learners/learner-context-provider";
+import { useActiveLearner } from "./features/learners/learner-context-hook";
 import { LearnerPage } from "./features/learners/learner-page";
 import { ProgressPage } from "./features/learners/progress-page";
 import { LearnerSettingsPage } from "./features/learners/learner-settings-page";
@@ -60,8 +61,18 @@ function NotFound() {
   );
 }
 
+function AuthenticatedAppShell({ parentName }: { parentName: string }) {
+  const { activeLearner } = useActiveLearner();
+  const location = useLocation();
+  if (!activeLearner && location.pathname !== "/learners") {
+    return <Navigate to="/learners" replace state={{ returnTo: `${location.pathname}${location.search}` }} />;
+  }
+  return <AppShell parentName={parentName} />;
+}
+
 function AppShellRoute() {
   const sessionState = authClient.useSession();
+  const location = useLocation();
 
   if (sessionState.isPending) {
     return (
@@ -91,7 +102,11 @@ function AppShellRoute() {
   if (!user?.id) return <Navigate to="/login" replace />;
 
   const parentName = typeof user.name === "string" ? user.name : "";
-  return <AppShell parentName={parentName} />;
+  return (
+    <ActiveLearnerProvider key={user.id} userId={user.id} validateStoredSelection={location.pathname !== "/learners"}>
+      <AuthenticatedAppShell parentName={parentName} />
+    </ActiveLearnerProvider>
+  );
 }
 
 export function AppRoutes() {
@@ -124,9 +139,5 @@ export function AppRoutes() {
 }
 
 export default function App() {
-  return (
-    <ActiveLearnerProvider>
-      <AppRoutes />
-    </ActiveLearnerProvider>
-  );
+  return <AppRoutes />;
 }

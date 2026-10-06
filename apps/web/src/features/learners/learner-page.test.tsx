@@ -5,6 +5,7 @@ import "@testing-library/jest-dom/vitest";
 import type { LearnerDto } from "@vocabflow/contracts";
 import { LearnerClientError } from "./learner-client";
 import { ActiveLearnerProvider } from "./learner-context-provider";
+import { ACTIVE_LEARNER_STORAGE_KEY } from "./learner-context";
 import { LearnerPage } from "./learner-page";
 import { VocabularyDetailPage } from "./vocabulary-detail-page";
 
@@ -35,10 +36,10 @@ function RouteProbe() {
   return <output data-testid="current-route" data-state-null={String(location.state === null)}>{`${location.pathname}${location.search}`}</output>;
 }
 
-function renderPage(returnTo?: unknown) {
+function renderPage(returnTo?: unknown, userId?: string) {
   return render(
     <MemoryRouter initialEntries={[{ pathname: "/learners", state: returnTo === undefined ? null : { returnTo } }]}>
-      <ActiveLearnerProvider>
+      <ActiveLearnerProvider userId={userId}>
         <RouteProbe />
         <Routes>
           <Route path="/learners" element={<LearnerPage />} />
@@ -189,6 +190,21 @@ describe("US-03 learner resolution UI", () => {
     expect(screen.queryByTestId("learner-context-ready")).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: /Bình/ }));
     expect(await screen.findByTestId("learner-context-ready")).toHaveTextContent("Bình");
+  });
+
+  it("keeps a valid stored learner while showing the selector and persists a replacement selection", async () => {
+    const an = learner("00000000-0000-4000-8000-000000000010", "An");
+    const binh = learner("00000000-0000-4000-8000-000000000011", "Bình");
+    requestLearners.mockResolvedValue([an, binh]);
+    window.localStorage.setItem(ACTIVE_LEARNER_STORAGE_KEY, JSON.stringify({ userId: "parent-1", learner: an }));
+    renderPage(undefined, "parent-1");
+
+    expect(await screen.findByRole("button", { name: "An" })).toBeInTheDocument();
+    expect(JSON.parse(window.localStorage.getItem(ACTIVE_LEARNER_STORAGE_KEY) ?? "{}")).toMatchObject({ userId: "parent-1", learner: { id: an.id } });
+    fireEvent.click(screen.getByRole("button", { name: "Bình" }));
+
+    expect(await screen.findByTestId("learner-context-ready")).toHaveTextContent("Bình");
+    expect(JSON.parse(window.localStorage.getItem(ACTIVE_LEARNER_STORAGE_KEY) ?? "{}")).toMatchObject({ userId: "parent-1", learner: { id: binh.id } });
   });
 
   it("reconciles an uncertain create failure before allowing another create", async () => {

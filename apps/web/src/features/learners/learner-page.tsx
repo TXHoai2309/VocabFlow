@@ -63,10 +63,12 @@ export function LearnerPage() {
       setActiveLearner(enabledLearners[0] ?? null);
       setState("completed");
     } else {
-      clearActiveLearner();
+      const selectedLearner = enabledLearners.find((learner) => learner.id === activeLearner?.id);
+      if (selectedLearner) setActiveLearner(selectedLearner);
+      else if (activeLearner) clearActiveLearner();
       setState("selector");
     }
-  }, [clearActiveLearner, setActiveLearner]);
+  }, [activeLearner, clearActiveLearner, setActiveLearner]);
 
   const loadLearners = useCallback(async (reconciliation = false) => {
     if (requestInFlight.current) return;

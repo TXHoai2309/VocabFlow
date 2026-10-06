@@ -4,7 +4,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import type { LearnerDto } from "@vocabflow/contracts";
 import App, { AppRoutes } from "./App";
-import { ActiveLearnerProvider } from "./features/learners/learner-context-provider";
+import { ACTIVE_LEARNER_STORAGE_KEY } from "./features/learners/learner-context";
 
 const { useSession, requestLearners } = vi.hoisted(() => ({ useSession: vi.fn(), requestLearners: vi.fn() }));
 
@@ -26,16 +26,22 @@ const learner: LearnerDto = {
 
 function LocationProbe() {
   const location = useLocation();
-  return <output data-testid="current-location">{location.pathname}</output>;
+  const returnTo = (location.state as { returnTo?: unknown } | null)?.returnTo;
+  return <><output data-testid="current-location">{`${location.pathname}${location.search}`}</output><output data-testid="route-return-to">{typeof returnTo === "string" ? returnTo : ""}</output></>;
 }
 
-function renderAppRoutes(path: string, initialLearner: LearnerDto | null = learner) {
+function renderAppRoutes(path: string, initialLearner: LearnerDto | null = learner, seedSelection = true) {
+  if (seedSelection) {
+    if (initialLearner) {
+      window.localStorage.setItem(ACTIVE_LEARNER_STORAGE_KEY, JSON.stringify({ userId: "parent-id", learner: initialLearner }));
+    } else {
+      window.localStorage.removeItem(ACTIVE_LEARNER_STORAGE_KEY);
+    }
+  }
   return render(
     <MemoryRouter initialEntries={[path]}>
-      <ActiveLearnerProvider initialLearner={initialLearner}>
-        <LocationProbe />
-        <AppRoutes />
-      </ActiveLearnerProvider>
+      <LocationProbe />
+      <AppRoutes />
     </MemoryRouter>
   );
 }
@@ -54,6 +60,7 @@ function expectNoActivePrimaryNav() {
 }
 
 beforeEach(() => {
+  window.localStorage.clear();
   useSession.mockReset().mockReturnValue({
     data: { user: { id: "parent-id", name: "Jordan Nguyen" } },
     isPending: false,
@@ -136,6 +143,54 @@ describe("shared authenticated app shell", () => {
     ]);
     expect(within(navigation).getByRole("link", { name: "Cài đặt" }).closest("li")).toHaveClass("app-nav-divider");
     expect(screen.getByRole("button", { name: "Tài khoản phụ huynh của Jordan Nguyen" })).toBeInTheDocument();
+  });
+
+  it.each(["/progress", "/vocabulary", "/study/setup"])("restores the selected learner synchronously after reloading %s", async (path) => {
+    const firstRender = renderAppRoutes(path);
+    expect(screen.getByTestId("current-location")).toHaveTextContent(path);
+    expect(screen.getByRole("button", { name: "Tìm từ vựng, chủ đề hoặc bộ từ" })).toBeEnabled();
+    firstRender.unmount();
+
+    renderAppRoutes(path, undefined, false);
+    expect(screen.getByTestId("current-location")).toHaveTextContent(path);
+    expect(screen.getByRole("button", { name: "Tìm từ vựng, chủ đề hoặc bộ từ" })).toBeEnabled();
+    expect(screen.queryByRole("heading", { name: "Chọn người học" })).not.toBeInTheDocument();
+    await waitFor(() => expect(requestLearners).toHaveBeenCalled());
+  });
+
+  it("sends an unselected protected route to the multi-learner selector and preserves its query on selection", async () => {
+    const secondLearner = { ...learner, id: "00000000-0000-4000-8000-000000000022", displayName: "Ngọc" };
+    requestLearners.mockResolvedValue([learner, secondLearner]);
+    renderAppRoutes("/progress?tab=weekly", null);
+
+    expect(await screen.findByRole("button", { name: "Avery Nguyen" })).toBeInTheDocument();
+    expect(screen.getByTestId("current-location")).toHaveTextContent("/learners");
+    expect(screen.getByTestId("route-return-to")).toHaveTextContent("/progress?tab=weekly");
+    fireEvent.click(screen.getByRole("button", { name: "Ngọc" }));
+
+    await waitFor(() => expect(screen.getByTestId("current-location")).toHaveTextContent("/progress?tab=weekly"));
+    expect(JSON.parse(window.localStorage.getItem(ACTIVE_LEARNER_STORAGE_KEY) ?? "{}")).toMatchObject({ userId: "parent-id", learner: { id: secondLearner.id } });
+  });
+
+  it("does not restore a learner selection owned by another parent", async () => {
+    const secondLearner = { ...learner, id: "00000000-0000-4000-8000-000000000022", displayName: "Ngọc" };
+    useSession.mockReturnValue({ data: { user: { id: "parent-b", name: "Parent B" } }, isPending: false, error: null, refetch: vi.fn() });
+    requestLearners.mockResolvedValue([learner, secondLearner]);
+    window.localStorage.setItem(ACTIVE_LEARNER_STORAGE_KEY, JSON.stringify({ userId: "parent-a", learner }));
+    render(<MemoryRouter initialEntries={["/progress"]}><LocationProbe /><AppRoutes /></MemoryRouter>);
+
+    expect(await screen.findByRole("button", { name: "Avery Nguyen" })).toBeInTheDocument();
+    expect(screen.getByTestId("current-location")).toHaveTextContent("/learners");
+    expect(window.localStorage.getItem(ACTIVE_LEARNER_STORAGE_KEY)).toBeNull();
+  });
+
+  it("clears a stored learner missing from the canonical enabled learner list", async () => {
+    requestLearners.mockResolvedValue([]);
+    renderAppRoutes("/progress");
+
+    expect(await screen.findByTestId("learner-empty-state")).toBeInTheDocument();
+    expect(screen.getByTestId("current-location")).toHaveTextContent("/learners");
+    expect(window.localStorage.getItem(ACTIVE_LEARNER_STORAGE_KEY)).toBeNull();
   });
 
   it("keeps the mobile primary navigation to its five core destinations", () => {
