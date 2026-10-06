@@ -188,7 +188,12 @@ describe("Feature #11 learner progress dashboard", () => {
     requestProgressHistory.mockReturnValue(new Promise((resolve) => { resolveHistory = resolve; }));
     renderProgress();
 
-    expect(screen.getByTestId("progress-loading")).toBeInTheDocument();
+    const loadingState = screen.getByTestId("progress-loading");
+    const dashboardSkeleton = loadingState.querySelector(".async-skeleton-dashboard");
+    expect(loadingState).toHaveClass("async-loading", "progress-dashboard-state");
+    expect(dashboardSkeleton).toBeInTheDocument();
+    expect(dashboardSkeleton?.querySelectorAll(".async-skeleton-metrics > i")).toHaveLength(4);
+    expect(dashboardSkeleton?.querySelectorAll(".async-skeleton-panels")).toHaveLength(2);
     expect(await screen.findByTestId("progress-summary")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Tiến trình học tập" })).toBeInTheDocument();
     expect(metric("progress-metric-learned")).toHaveTextContent("5");

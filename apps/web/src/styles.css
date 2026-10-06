@@ -2077,6 +2077,8 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
 .progress-period-control select { min-width: 180px; min-height: 44px; padding: 0 34px 0 12px; border: 1px solid var(--color-border); border-radius: var(--radius-control); color: var(--color-text); background: var(--color-surface); font: inherit; font-size: 14px; }
 .progress-period-control select:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 2px; }
 .progress-dashboard-state { display: flex; min-height: 112px; align-items: center; justify-content: center; gap: 16px; padding: 20px; border: 1px solid var(--color-border); border-radius: var(--radius-card); color: var(--color-text-muted); background: var(--color-surface); }
+.progress-dashboard-state.async-loading { display: block; width: 100%; min-width: 0; min-height: 0; padding: 0; border: 0; border-radius: 0; background: transparent; }
+.progress-dashboard-state.async-loading > .async-skeleton-dashboard { width: 100%; min-width: 0; }
 .progress-dashboard-state p { margin: 0; color: inherit; font-size: 15px; }
 .progress-dashboard-error { justify-content: space-between; border-color: #fecaca; color: var(--color-danger); background: #fffafa; }
 .progress-secondary-button, .progress-inline-retry { min-height: 40px; padding: 8px 14px; border: 1px solid var(--color-border); border-radius: var(--radius-control); color: var(--color-primary); background: var(--color-surface); font: inherit; font-weight: 700; cursor: pointer; }
