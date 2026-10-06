@@ -52,6 +52,8 @@
     "vocab:hybrid-100-rc-final-audit": "tsx scripts/hybrid-100-rc-final-audit.ts",
     "test:vocab:hybrid-100-canary-integrity": "vitest run --pool=threads --maxWorkers=1 --no-file-parallelism scripts/hybrid-100-canary-integrity.test.ts",
     "test:vocab:hybrid-100-rc-final-audit": "vitest run --pool=threads --maxWorkers=1 --no-file-parallelism scripts/hybrid-100-rc-final-audit.test.ts",
+    "vocab:hybrid-100-approved-release": "tsx scripts/hybrid-100-approved-release.ts",
+    "test:vocab:hybrid-100-approved-release": "vitest run --pool=threads --maxWorkers=1 --no-file-parallelism scripts/hybrid-100-approved-release.test.ts",
     "test:master-vocab-v2-hybrid-source-proof": "python scripts/master-vocabulary-v2-hybrid-source-proof.test.py",
     "prepare:master-vocab-v2-canary": "tsx scripts/master-vocabulary-v2-canary-preparation.ts",
     "dataset:prepare-canary-v2": "tsx scripts/master-vocabulary-v2-canary-release-builder.ts",

@@ -1,0 +1,86 @@
+{
+  "masterSenseId": "01a1070c-7c59-726e-88d4-e052bbcb6335",
+  "masterLexemeId": "01a1070c-7c59-726e-88d4-de19d5727766",
+  "senseRevision": 2,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "comments about faults"
+    },
+    {
+      "language": "vi",
+      "text": "lời nhận xét về điểm yếu"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "NOUN",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c59-726e-88d4-e6d01750d4a4",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-e052bbcb6335",
+      "language": "vi",
+      "text": "sự phê bình",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-754b-80c7-d44cc48b5d1e"
+      ]
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c59-726e-88d4-e903c11faf0d",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-e052bbcb6335",
+      "language": "en",
+      "text": "Words that point out faults or weaknesses in someone's work or actions.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-7efd-9bce-8c99c2059651"
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c59-726e-88d4-eea5dfb7fb16",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-e052bbcb6335",
+      "language": "en",
+      "text": "The review offered useful criticism of the first draft.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c59-726e-88d4-f115491374e1",
+          "exampleId": "01a1070c-7c59-726e-88d4-eea5dfb7fb16",
+          "language": "vi",
+          "text": "Bài nhận xét đưa ra lời phê bình hữu ích cho bản nháp đầu tiên.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT",
+          "provenanceIds": [
+            "01a10760-b9f0-7cef-a397-262e867946a3"
+          ]
+        }
+      ],
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-79e2-af72-45c2c3d9e2c2"
+      ]
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "APPROVED",
+  "createdAt": "2026-10-04T13:13:41.209Z",
+  "updatedAt": "2026-10-04T13:13:41.209Z",
+  "provenanceIds": [
+    "01a10760-b9f0-7156-9677-1fcc80da86c1",
+    "01a10760-b9f0-719c-8224-7dbd6f20d9d7"
+  ]
+}

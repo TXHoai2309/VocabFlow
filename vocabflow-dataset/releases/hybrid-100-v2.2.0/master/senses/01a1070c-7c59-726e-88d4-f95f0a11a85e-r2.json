@@ -1,0 +1,86 @@
+{
+  "masterSenseId": "01a1070c-7c59-726e-88d4-f95f0a11a85e",
+  "masterLexemeId": "01a1070c-7c59-726e-88d4-f4bbbedf1005",
+  "senseRevision": 2,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "trade one thing for another"
+    },
+    {
+      "language": "vi",
+      "text": "đổi thứ này lấy thứ khác"
+    }
+  ],
+  "senseOrder": 2,
+  "partOfSpeechCode": "VERB",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c59-726e-88d4-fca826f03130",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-f95f0a11a85e",
+      "language": "vi",
+      "text": "trao đổi",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-75bd-833f-5e4c3ca69859"
+      ]
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c59-726e-88d5-019f1f649169",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-f95f0a11a85e",
+      "language": "en",
+      "text": "To give one thing and receive something else in return.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-7faf-8a82-719c846e2bbd"
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c59-726e-88d5-076ed2965beb",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-f95f0a11a85e",
+      "language": "en",
+      "text": "At the market, she exchanged three apples for a loaf of bread.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c59-726e-88d5-0aa6a51b92d7",
+          "exampleId": "01a1070c-7c59-726e-88d5-076ed2965beb",
+          "language": "vi",
+          "text": "Ở chợ, cô đổi ba quả táo lấy một ổ bánh mì.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT",
+          "provenanceIds": [
+            "01a10760-b9f0-7170-b042-0a8b1ff7e546"
+          ]
+        }
+      ],
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-719e-aad3-647b7a9983fb"
+      ]
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "APPROVED",
+  "createdAt": "2026-10-04T13:13:41.209Z",
+  "updatedAt": "2026-10-04T13:49:45.054Z",
+  "provenanceIds": [
+    "01a10760-b9f0-7203-939e-4a6b04c970cf",
+    "01a10760-b9f0-72df-b315-06742548d6e0"
+  ]
+}

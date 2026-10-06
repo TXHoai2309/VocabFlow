@@ -1,0 +1,86 @@
+{
+  "masterSenseId": "01a1070c-7c57-7676-9acf-99d8c8592c32",
+  "masterLexemeId": "01a1070c-7c57-7676-9acf-9752b551d0a1",
+  "senseRevision": 2,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "straight to a place"
+    },
+    {
+      "language": "vi",
+      "text": "đi thẳng tới nơi"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "ADVERB",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c57-7676-9acf-9cf36c6e12da",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-99d8c8592c32",
+      "language": "vi",
+      "text": "thẳng",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-748e-8292-cc1b5589d96a"
+      ]
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c57-7676-9acf-a311f1240279",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-99d8c8592c32",
+      "language": "en",
+      "text": "By a direct route, without changing direction or stopping.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-7957-85d4-9d584ad254e9"
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c57-7676-9acf-a49ab1389fdb",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-99d8c8592c32",
+      "language": "en",
+      "text": "We flew direct from Hanoi to Singapore.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c57-7676-9acf-aa006eacba3d",
+          "exampleId": "01a1070c-7c57-7676-9acf-a49ab1389fdb",
+          "language": "vi",
+          "text": "Chúng tôi bay thẳng từ Hà Nội đến Singapore.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT",
+          "provenanceIds": [
+            "01a10760-b9f0-77dc-ab90-8cfd1ce62533"
+          ]
+        }
+      ],
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-733b-813f-ed1d575fbbda"
+      ]
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "APPROVED",
+  "createdAt": "2026-10-04T13:13:41.207Z",
+  "updatedAt": "2026-10-04T13:49:45.054Z",
+  "provenanceIds": [
+    "01a10760-b9f0-732e-a007-688e9c393ffb",
+    "01a10760-b9f0-750d-8965-184a8a66c2fc"
+  ]
+}

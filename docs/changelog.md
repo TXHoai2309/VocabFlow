@@ -2,6 +2,24 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-06 — Master Vocabulary V2 Phase 2F.7 approved release 2.2.0
+
+- Published and froze the first official Hybrid-100 release as `2.2.0 / APPROVED`:
+  87 Lexemes, 100 reviewed Senses, 99 editorial CEFR assignments, 799
+  Provenance records, taxonomy snapshot 2.0.1, and no bundled media.
+- Materialized 286 lifecycle-only approved revisions with stable IDs and zero
+  learner-facing semantic or CEFR value drift. Taxonomy 2.0.0 remains immutable;
+  taxonomy 2.0.1 is APPROVED with zero semantic diff. The canonical root remains
+  `2.0.0 / DRAFT`.
+- The official releaseHash is frozen. RC 2.2.0-rc.1 and Canary 2.1.0 remain
+  unchanged under the corrected Canary tree/content fingerprints. Source rights
+  remain unverified; no source prose or media was reused.
+- No runtime reconciliation/import has begun; Neon/database, migrations,
+  development runtime, and production remain untouched. US-45 remains open for
+  the separate runtime-import phase.
+- Evidence: [release report](../vocabflow-dataset/reports/hybrid-100-approved-release-2.2.0.md)
+  and [approval evidence](../vocabflow-dataset/releases/hybrid-100-v2.2.0/reports/release-approval-evidence.json).
+
 ## 2026-10-06 — Master Vocabulary V2 Phase 2F.6A taxonomy policy closure
 
 - Resolved taxonomy approval versioning by owner decision: immutable 2.0.0

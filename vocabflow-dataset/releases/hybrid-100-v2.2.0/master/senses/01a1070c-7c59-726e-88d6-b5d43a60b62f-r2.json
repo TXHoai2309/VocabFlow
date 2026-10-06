@@ -1,0 +1,86 @@
+{
+  "masterSenseId": "01a1070c-7c59-726e-88d6-b5d43a60b62f",
+  "masterLexemeId": "01a1070c-7c59-726e-88d6-b3d4934f8adb",
+  "senseRevision": 2,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "aquatic animal display place"
+    },
+    {
+      "language": "vi",
+      "text": "nơi nuôi động vật thủy sinh"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "NOUN",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c59-726e-88d6-bacbf80f2167",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-b5d43a60b62f",
+      "language": "vi",
+      "text": "thủy cung",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-75d7-b3e4-6d9326e3bba9"
+      ]
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c59-726e-88d6-bd94d454a08f",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-b5d43a60b62f",
+      "language": "en",
+      "text": "A public place where fish and other water animals are kept for people to see.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-7c4c-8376-a60dc676e297"
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c59-726e-88d6-c137902d8997",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-b5d43a60b62f",
+      "language": "en",
+      "text": "The aquarium opened a new tank for rescued sea turtles.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c59-726e-88d6-c6c85923c760",
+          "exampleId": "01a1070c-7c59-726e-88d6-c137902d8997",
+          "language": "vi",
+          "text": "Thủy cung mở một bể mới dành cho những con rùa biển được cứu hộ.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT",
+          "provenanceIds": [
+            "01a10760-b9f0-73ff-a330-b491fbd925a8"
+          ]
+        }
+      ],
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-7c84-85da-a2e89125a04d"
+      ]
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "APPROVED",
+  "createdAt": "2026-10-04T13:13:41.209Z",
+  "updatedAt": "2026-10-04T13:13:41.209Z",
+  "provenanceIds": [
+    "01a10760-b9f0-7bcd-a02a-2fb9d8bd4f85",
+    "01a10760-b9f0-7e59-b32c-3e184f0abf10"
+  ]
+}

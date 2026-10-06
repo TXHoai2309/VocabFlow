@@ -1,0 +1,25 @@
+{
+  "artifactType": "HYBRID_100_APPROVED_RELEASE_BUILD_AUTHORIZATION",
+  "sourceBaseline": "e29ffc7cfa09c2906b6a0604f670f1c8333df1e4",
+  "rcVersion": "2.2.0-rc.1",
+  "rcFingerprint": "06b2a4dec2f54438416cae67788e0683fe94907cbce0a60fbb2d6469bc25b82c",
+  "rcTreeFingerprint": "9d021e151d934a61c577289a4aff3ded8883858bac672e1c27ac546a335966a7",
+  "taxonomyPolicyFingerprint": "9596e407a8448a0aa4b6edb1944154ca4754ac396596501c06b9272318c2779b",
+  "finalManifestPlanFingerprint": "b004c752ea52bdfd732d3c5d44284829b7f9f3070b8c193aa23fca96a4e5f97b",
+  "authorizedCefrFingerprint": "d0a60b26f75b65c18953e76ed759447151ab81a880e9c3e869cbefc6f12bb622",
+  "authorizationScope": [
+    "MATERIALIZE_TAXONOMY_2_0_1_APPROVED",
+    "MATERIALIZE_APPROVAL_ONLY_ENTITY_REVISIONS",
+    "BUILD_APPROVED_RELEASE_2_2_0",
+    "GENERATE_OFFICIAL_RELEASE_HASH",
+    "FREEZE_APPROVED_RELEASE"
+  ],
+  "authorizedBy": "VocabFlow project owner",
+  "runtimeImportAuthorized": false,
+  "databaseWriteAuthorized": false,
+  "productionMutationAuthorized": false,
+  "correctedCanaryGitTreeSha": "f5d4e502be5106da191b5b2ab807f5db12065831",
+  "correctedCanaryCommittedFingerprint": "718c211b8e668d25ffe4ba0c893bda3e73ce8bd2bf578d276ce9216c08c78b2f",
+  "canaryCorrectionArtifact": "vocabflow-dataset/workspaces/hybrid-100-approved-release/canary-baseline-correction.json",
+  "releasedAt": "2026-10-06T04:37:04.375Z"
+}

@@ -1,0 +1,86 @@
+{
+  "masterSenseId": "01a1070c-7c57-7676-9acd-d23079256ae2",
+  "masterLexemeId": "01a0fc13-09ee-7fd1-8ad8-a2026a7620e0",
+  "senseRevision": 2,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "start a flame"
+    },
+    {
+      "language": "vi",
+      "text": "châm lửa"
+    }
+  ],
+  "senseOrder": 4,
+  "partOfSpeechCode": "VERB",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c57-7676-9acd-d53b8b0a86b6",
+      "masterSenseId": "01a1070c-7c57-7676-9acd-d23079256ae2",
+      "language": "vi",
+      "text": "châm lửa",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-7a19-8d83-900ece59290f"
+      ]
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c57-7676-9acd-d9f577b33df6",
+      "masterSenseId": "01a1070c-7c57-7676-9acd-d23079256ae2",
+      "language": "en",
+      "text": "To make something begin burning by giving it a flame.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-79d2-9515-247f32af7112"
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c57-7676-9acd-dcc3254e14b8",
+      "masterSenseId": "01a1070c-7c57-7676-9acd-d23079256ae2",
+      "language": "en",
+      "text": "Maya lit a candle before the power went out.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c57-7676-9acd-e33a9482eb0e",
+          "exampleId": "01a1070c-7c57-7676-9acd-dcc3254e14b8",
+          "language": "vi",
+          "text": "Maya thắp một ngọn nến trước khi mất điện.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT",
+          "provenanceIds": [
+            "01a10760-b9f0-74e2-9de9-018e00677e48"
+          ]
+        }
+      ],
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-7dc8-919a-8d3a7c86140c"
+      ]
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "APPROVED",
+  "createdAt": "2026-10-04T13:13:41.207Z",
+  "updatedAt": "2026-10-04T13:13:41.207Z",
+  "provenanceIds": [
+    "01a10760-b9f0-70e4-9dd8-b15b4a5abe75",
+    "01a10760-b9f0-7710-be26-4541fe6c115f"
+  ]
+}

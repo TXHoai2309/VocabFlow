@@ -1,5 +1,26 @@
 # US-45 — Master Vocabulary V2 Runtime Import Bridge
 
+## Phase 2F.7 — Approved Hybrid-100 release source prepared
+
+The owner-authorized Phase 2F.7 offline release build has materialized and
+frozen the official Hybrid-100 dataset as `2.2.0 / APPROVED`. It contains 87
+Lexemes, 100 reviewed Senses, 99 editorial CEFR Classifications, and 799
+Provenance records. Taxonomy 2.0.1 is APPROVED with zero semantic change;
+taxonomy 2.0.0 remains immutable. Exactly 286 approval-only revisions were
+created while preserving stable IDs and learner-facing content. The canonical
+root remains `2.0.0 / DRAFT`.
+
+The releaseHash is frozen and RC 2.2.0-rc.1 and Canary 2.1.0 are unchanged.
+Rights remain unverified, no source text or media was reused, and the release
+bundles no media. This phase performed no runtime reconciliation or import,
+database/Neon access, migration, development runtime change, or production
+mutation. This story remains **open**: runtime reconciliation/import and its
+separate authorization, implementation, and validation are still outstanding.
+
+Evidence: [Phase 2F.7 approved-release report](../../vocabflow-dataset/reports/hybrid-100-approved-release-2.2.0.md),
+[frozen release package](../../vocabflow-dataset/releases/hybrid-100-v2.2.0/),
+and [materialization summary](../../vocabflow-dataset/workspaces/hybrid-100-approved-release/summary.json).
+
 - Status: `IMPLEMENTED / DEVELOPMENT CANARY VERIFIED`; owner acceptance remains explicit.
 - Owner direction: continue the Master Vocabulary Dataset V2 Phase 2D runtime
   identity bridge, adapter, and explicitly reprioritized Phase 2D.1 hardening

@@ -1,0 +1,168 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.vocabflow.invalid/master-vocabulary/v2/sense.schema.json",
+  "title": "VocabFlow Master Sense revision",
+  "type": "object",
+  "properties": {
+    "masterSenseId": { "$ref": "common.schema.json#/$defs/uuidV7" },
+    "masterLexemeId": { "$ref": "common.schema.json#/$defs/uuidV7" },
+    "senseRevision": { "type": "integer", "minimum": 1 },
+    "senseLabel": {
+      "type": "array",
+      "items": { "$ref": "common.schema.json#/$defs/localizedText" },
+      "uniqueItems": true
+    },
+    "senseOrder": { "type": "integer", "minimum": 1 },
+    "partOfSpeechCode": {
+      "type": "string",
+      "enum": ["NOUN", "VERB", "ADJECTIVE", "ADVERB", "PREPOSITION", "PRONOUN", "DETERMINER", "CONJUNCTION", "INTERJECTION", "OTHER"]
+    },
+    "usageRegister": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]*$" },
+      "uniqueItems": true
+    },
+    "regionCodes": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[A-Z][A-Z0-9_-]*$" },
+      "uniqueItems": true
+    },
+    "grammarNotes": {
+      "type": "array",
+      "items": { "$ref": "common.schema.json#/$defs/localizedText" },
+      "uniqueItems": true
+    },
+    "translations": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/translation" },
+      "uniqueItems": true
+    },
+    "definitions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/definition" },
+      "uniqueItems": true
+    },
+    "examples": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/example" },
+      "uniqueItems": true
+    },
+    "pronunciationOverrides": {
+      "type": "array",
+      "items": { "$ref": "common.schema.json#/$defs/sensePronunciation" },
+      "uniqueItems": true
+    },
+    "provenanceIds": { "$ref": "common.schema.json#/$defs/provenanceIds" },
+    "status": { "$ref": "common.schema.json#/$defs/recordStatus" },
+    "mergedIntoSenseId": { "$ref": "common.schema.json#/$defs/uuidV7" },
+    "createdAt": { "$ref": "common.schema.json#/$defs/timestamp" },
+    "updatedAt": { "$ref": "common.schema.json#/$defs/timestamp" }
+  },
+  "required": ["masterSenseId", "masterLexemeId", "senseRevision", "senseOrder", "status", "createdAt", "updatedAt"],
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "MERGED" } }, "required": ["status"] },
+      "then": { "required": ["mergedIntoSenseId"] },
+      "else": { "not": { "required": ["mergedIntoSenseId"] } }
+    }
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "translation": {
+      "type": "object",
+      "properties": {
+        "translationId": { "$ref": "common.schema.json#/$defs/uuidV7" },
+        "masterSenseId": { "$ref": "common.schema.json#/$defs/uuidV7" },
+        "language": { "$ref": "common.schema.json#/$defs/languageTag" },
+        "text": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
+        "translationKind": { "type": "string", "enum": ["EQUIVALENT", "GLOSS", "EXPLANATORY_TRANSLATION"] },
+        "isPreferred": { "type": "boolean" },
+        "displayOrder": { "type": "integer", "minimum": 0 },
+        "provenanceIds": { "$ref": "common.schema.json#/$defs/provenanceIds" },
+        "status": { "$ref": "common.schema.json#/$defs/reviewStatus" }
+      },
+      "required": ["translationId", "masterSenseId", "language", "translationKind", "isPreferred", "displayOrder", "status"],
+      "allOf": [
+        {
+          "if": { "properties": { "status": { "const": "APPROVED" } }, "required": ["status"] },
+          "then": { "required": ["text", "provenanceIds"], "properties": { "provenanceIds": { "minItems": 1 } } }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "definition": {
+      "type": "object",
+      "properties": {
+        "definitionId": { "$ref": "common.schema.json#/$defs/uuidV7" },
+        "masterSenseId": { "$ref": "common.schema.json#/$defs/uuidV7" },
+        "language": { "$ref": "common.schema.json#/$defs/languageTag" },
+        "text": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
+        "definitionKind": { "type": "string", "enum": ["LEARNER_FRIENDLY", "DICTIONARY_STYLE", "TECHNICAL"] },
+        "displayOrder": { "type": "integer", "minimum": 0 },
+        "provenanceIds": { "$ref": "common.schema.json#/$defs/provenanceIds" },
+        "status": { "$ref": "common.schema.json#/$defs/reviewStatus" }
+      },
+      "required": ["definitionId", "masterSenseId", "language", "definitionKind", "displayOrder", "status"],
+      "allOf": [
+        {
+          "if": { "properties": { "status": { "const": "APPROVED" } }, "required": ["status"] },
+          "then": { "required": ["text", "provenanceIds"], "properties": { "provenanceIds": { "minItems": 1 } } }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "exampleTranslation": {
+      "type": "object",
+      "properties": {
+        "exampleTranslationId": { "$ref": "common.schema.json#/$defs/uuidV7" },
+        "exampleId": { "$ref": "common.schema.json#/$defs/uuidV7" },
+        "language": { "$ref": "common.schema.json#/$defs/languageTag" },
+        "text": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
+        "isPreferred": { "type": "boolean" },
+        "displayOrder": { "type": "integer", "minimum": 0 },
+        "provenanceIds": { "$ref": "common.schema.json#/$defs/provenanceIds" },
+        "status": { "$ref": "common.schema.json#/$defs/reviewStatus" }
+      },
+      "required": ["exampleTranslationId", "exampleId", "language", "isPreferred", "displayOrder", "status"],
+      "allOf": [
+        {
+          "if": { "properties": { "status": { "const": "APPROVED" } }, "required": ["status"] },
+          "then": { "required": ["text", "provenanceIds"], "properties": { "provenanceIds": { "minItems": 1 } } }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "example": {
+      "type": "object",
+      "properties": {
+        "exampleId": { "$ref": "common.schema.json#/$defs/uuidV7" },
+        "masterSenseId": { "$ref": "common.schema.json#/$defs/uuidV7" },
+        "language": { "$ref": "common.schema.json#/$defs/languageTag" },
+        "text": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
+        "register": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]*$" },
+        "levelNotes": { "$ref": "common.schema.json#/$defs/nonEmptyString" },
+        "displayOrder": { "type": "integer", "minimum": 0 },
+        "exampleTranslations": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/exampleTranslation" },
+          "uniqueItems": true
+        },
+        "audioAssetIds": {
+          "type": "array",
+          "items": { "$ref": "common.schema.json#/$defs/uuidV7" },
+          "uniqueItems": true
+        },
+        "provenanceIds": { "$ref": "common.schema.json#/$defs/provenanceIds" },
+        "status": { "$ref": "common.schema.json#/$defs/reviewStatus" }
+      },
+      "required": ["exampleId", "masterSenseId", "language", "displayOrder", "status"],
+      "allOf": [
+        {
+          "if": { "properties": { "status": { "const": "APPROVED" } }, "required": ["status"] },
+          "then": { "required": ["text", "provenanceIds"], "properties": { "provenanceIds": { "minItems": 1 } } }
+        }
+      ],
+      "additionalProperties": false
+    }
+  }
+}

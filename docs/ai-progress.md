@@ -1,5 +1,30 @@
 # Current Handoff Snapshot
 
+## 2026-10-06 — Master Vocabulary V2 Phase 2F.7 approved release freeze
+
+- Materialized and froze the first official Hybrid-100 dataset release as
+  `2.2.0 / APPROVED`, using the owner-authorized 2.2.0-rc.1 source, exact
+  taxonomy-policy and final-manifest-plan fingerprints, and the approved CEFR
+  fingerprint. The release contains 87 Lexemes, 100 Senses, 99 editorial CEFR
+  Classifications, 799 Provenance records, and taxonomy snapshot 2.0.1.
+- Materialized exactly 286 lifecycle-only approval revisions while preserving
+  stable IDs and learner-facing content. Taxonomy 2.0.0 remains byte-identical
+  and DRAFT; 2.0.1 is APPROVED with zero semantic diff. The canonical root stays
+  `2.0.0 / DRAFT` with 103 Lexemes, 123 Senses, 219 Classifications, and 1,043
+  Provenance records.
+- The immutable RC 2.2.0-rc.1 remains unchanged. Canary 2.1.0 remains pinned to
+  Git tree `f5d4e502be5106da191b5b2ab807f5db12065831` and committed-content
+  fingerprint `718c211b8e668d25ffe4ba0c893bda3e73ce8bd2bf578d276ce9216c08c78b2f`;
+  the earlier `2c75…4547` value is superseded evidence only. The official
+  releaseHash and package tree fingerprint are frozen in release evidence.
+- Rights remain unverified; no source text or media was reused and no media is
+  bundled. No runtime reconciliation/import has begun. Neon/database,
+  migrations, development runtime, and production remain untouched. The
+  runtime-import bridge story remains open for its separate phase.
+- Evidence: [approved release report](../vocabflow-dataset/reports/hybrid-100-approved-release-2.2.0.md),
+  [frozen package](../vocabflow-dataset/releases/hybrid-100-v2.2.0/), and
+  [materialization summary](../vocabflow-dataset/workspaces/hybrid-100-approved-release/summary.json).
+
 ## 2026-10-06 — Master Vocabulary V2 Phase 2F.6A taxonomy policy closure
 
 - Recorded the owner's taxonomy approval architecture decision: taxonomy

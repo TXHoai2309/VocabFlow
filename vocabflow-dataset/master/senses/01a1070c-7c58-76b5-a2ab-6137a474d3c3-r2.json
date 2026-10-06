@@ -1,0 +1,86 @@
+{
+  "masterSenseId": "01a1070c-7c58-76b5-a2ab-6137a474d3c3",
+  "masterLexemeId": "01a1070c-7c58-76b5-a2ab-5d81e4b7f8e9",
+  "senseRevision": 2,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "focus attention"
+    },
+    {
+      "language": "vi",
+      "text": "tập trung chú ý"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "VERB",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c58-76b5-a2ab-6500bba6602b",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-6137a474d3c3",
+      "language": "vi",
+      "text": "tập trung",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-73e2-848d-a84c5c2fffc6"
+      ]
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c58-76b5-a2ab-6871e0ec6f0d",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-6137a474d3c3",
+      "language": "en",
+      "text": "To give most of your attention or effort to one thing.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-7091-b287-6a9cda8cd1c9"
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c58-76b5-a2ab-6fe8d34d4031",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-6137a474d3c3",
+      "language": "en",
+      "text": "I need a quiet room to concentrate on this report.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c58-76b5-a2ab-739e3b7475bb",
+          "exampleId": "01a1070c-7c58-76b5-a2ab-6fe8d34d4031",
+          "language": "vi",
+          "text": "Tôi cần một căn phòng yên tĩnh để tập trung làm báo cáo này.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT",
+          "provenanceIds": [
+            "01a10760-b9f0-75e3-9225-2ae9aa3ce454"
+          ]
+        }
+      ],
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-7d49-b408-31d26cd8245d"
+      ]
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "APPROVED",
+  "createdAt": "2026-10-04T13:13:41.208Z",
+  "updatedAt": "2026-10-04T13:13:41.208Z",
+  "provenanceIds": [
+    "01a10760-b9f0-7517-af5c-97c4fb4efd19",
+    "01a10760-b9f0-7615-ba16-8f8b2c392527"
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "masterSenseId": "01a1070c-7c59-726e-88d4-388175c26836",
+  "masterLexemeId": "01a1070c-7c59-726e-88d4-3497fb03486b",
+  "senseRevision": 2,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "by way of"
+    },
+    {
+      "language": "vi",
+      "text": "thông qua"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "PREPOSITION",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c59-726e-88d4-3da19a592696",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-388175c26836",
+      "language": "vi",
+      "text": "thông qua",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-728d-a7c6-27759b793e5b"
+      ]
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c59-726e-88d4-4072f40e0e5c",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-388175c26836",
+      "language": "en",
+      "text": "By going through a particular place or using a particular method.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-71fa-9000-ca2075f58bfb"
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c59-726e-88d4-47534636819d",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-388175c26836",
+      "language": "en",
+      "text": "We sent the signed form via the school office.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c59-726e-88d4-4aa6fd4f8c42",
+          "exampleId": "01a1070c-7c59-726e-88d4-47534636819d",
+          "language": "vi",
+          "text": "Chúng tôi gửi biểu mẫu đã ký thông qua văn phòng trường.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "DRAFT",
+          "provenanceIds": [
+            "01a10760-b9f0-71ef-9f6f-d96a6a65d883"
+          ]
+        }
+      ],
+      "status": "DRAFT",
+      "provenanceIds": [
+        "01a10760-b9f0-7266-8f5f-4bfbbb95810e"
+      ]
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "APPROVED",
+  "createdAt": "2026-10-04T13:13:41.209Z",
+  "updatedAt": "2026-10-04T13:13:41.209Z",
+  "provenanceIds": [
+    "01a10760-b9f0-759a-993a-1864f0c81845",
+    "01a10760-b9f0-78e9-b711-cc0857ab8c43"
+  ]
+}
