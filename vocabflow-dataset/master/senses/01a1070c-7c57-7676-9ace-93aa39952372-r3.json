@@ -1,0 +1,86 @@
+{
+  "masterSenseId": "01a1070c-7c57-7676-9ace-93aa39952372",
+  "masterLexemeId": "01a1070c-7c57-7676-9ace-8e851f44ddab",
+  "senseRevision": 3,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "verify as true"
+    },
+    {
+      "language": "vi",
+      "text": "xác nhận là đúng"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "VERB",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c57-7676-9ace-9741795b2500",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-93aa39952372",
+      "language": "vi",
+      "text": "xác nhận",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-71f3-9f1e-bb5011fb6045"
+      ]
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c57-7676-9ace-9aee8a7ec75d",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-93aa39952372",
+      "language": "en",
+      "text": "To show that information or a plan is correct and certain.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-768d-8870-35cc988377ba"
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c57-7676-9ace-9d744e7950eb",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-93aa39952372",
+      "language": "en",
+      "text": "Please confirm the meeting time by replying to this message.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c57-7676-9ace-a23cd79a7cd4",
+          "exampleId": "01a1070c-7c57-7676-9ace-9d744e7950eb",
+          "language": "vi",
+          "text": "Vui lòng xác nhận giờ họp bằng cách trả lời tin nhắn này.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "APPROVED",
+          "provenanceIds": [
+            "01a10760-b9f0-7e97-ae56-968b23c1200f"
+          ]
+        }
+      ],
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-789f-a904-80de1f7de224"
+      ]
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "APPROVED",
+  "createdAt": "2026-10-04T13:13:41.207Z",
+  "updatedAt": "2026-10-06T10:27:31.456Z",
+  "provenanceIds": [
+    "01a10760-b9f0-781a-8d66-b0782b070b24",
+    "01a10760-b9f0-7bcf-a6e1-c144e859869d"
+  ]
+}

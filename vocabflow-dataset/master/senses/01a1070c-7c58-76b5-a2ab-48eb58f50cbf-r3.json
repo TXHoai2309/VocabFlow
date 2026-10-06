@@ -1,0 +1,86 @@
+{
+  "masterSenseId": "01a1070c-7c58-76b5-a2ab-48eb58f50cbf",
+  "masterLexemeId": "01a1070c-7c57-7676-9acf-9752b551d0a1",
+  "senseRevision": 3,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "guide a film production"
+    },
+    {
+      "language": "vi",
+      "text": "đạo diễn phim"
+    }
+  ],
+  "senseOrder": 2,
+  "partOfSpeechCode": "VERB",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c58-76b5-a2ab-4d33511d3de1",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-48eb58f50cbf",
+      "language": "vi",
+      "text": "đạo diễn",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-7c8c-846d-fc06af160b8b"
+      ]
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c58-76b5-a2ab-52c94e9efc90",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-48eb58f50cbf",
+      "language": "en",
+      "text": "To guide actors and creative work while a film is being made.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-70a4-85dd-2eca0ff3a8c6"
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c58-76b5-a2ab-55c8e2c51a03",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-48eb58f50cbf",
+      "language": "en",
+      "text": "A local filmmaker directed the documentary about the harbor.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c58-76b5-a2ab-5bea99d6ed35",
+          "exampleId": "01a1070c-7c58-76b5-a2ab-55c8e2c51a03",
+          "language": "vi",
+          "text": "Một nhà làm phim địa phương đạo diễn bộ phim tài liệu về bến cảng.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "APPROVED",
+          "provenanceIds": [
+            "01a10760-b9f0-714d-8d03-e90d99b28f1f"
+          ]
+        }
+      ],
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-73bc-a017-176ffbe7df77"
+      ]
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "APPROVED",
+  "createdAt": "2026-10-04T13:13:41.208Z",
+  "updatedAt": "2026-10-06T10:27:31.456Z",
+  "provenanceIds": [
+    "01a10760-b9f0-7390-a282-0620e420fcf5",
+    "01a10760-b9f0-7bbc-9eb7-ddd468560caf"
+  ]
+}

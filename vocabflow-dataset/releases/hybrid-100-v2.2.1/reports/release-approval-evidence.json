@@ -1,0 +1,86 @@
+{
+  "artifactType": "HYBRID_100_RUNTIME_ELIGIBLE_PATCH_RELEASE_EVIDENCE",
+  "datasetVersion": "2.2.1",
+  "status": "APPROVED",
+  "versionBump": "PATCH",
+  "sourceReleaseVersion": "2.2.0",
+  "sourceReleaseHash": "c82a32a3d7fc3534105b85e14908edd336c2409aa7294d070528a47f6260339d",
+  "sourceReleaseTreeFingerprint": "35334eb7769c39029223d2d60311c6faab8c462efd0a340f262bed27543256ae",
+  "phase2G1ABaseline": "a5cb5a65135fb0d10bdc55d205a807dd4a69ebe0",
+  "ownerAuthorizationContentBaseline": "a5cb5a65135fb0d10bdc55d205a807dd4a69ebe0",
+  "firstExecutionBaseline": "bdc99b2d83df08f68cfc0e8dc36e8b2e407fdd63",
+  "currentExecutionBaseline": "4e0e452f057ee38db0d97045a53dfe7dac732232",
+  "remoteAdvanceCommits": [
+    {
+      "sha": "bdc99b2d83df08f68cfc0e8dc36e8b2e407fdd63",
+      "classification": "UNRELATED_APP_UI_CHANGE"
+    },
+    {
+      "sha": "4e0e452f057ee38db0d97045a53dfe7dac732232",
+      "classification": "UNRELATED_APP_UI_CHANGE"
+    }
+  ],
+  "semanticDraftFingerprint": "a112a475e896f09038d4dd6834389af2d553d3a509829ef410ef17ae4e37ee1d",
+  "nestedRowsAudited": 400,
+  "nestedRowsPromoted": 400,
+  "nestedRowsPromotedByType": {
+    "TRANSLATION": 100,
+    "DEFINITION": 100,
+    "EXAMPLE": 100,
+    "EXAMPLE_TRANSLATION": 100
+  },
+  "senseRevisionsCreated": 100,
+  "stableSenseIdsPreserved": true,
+  "stableChildIdsPreserved": true,
+  "newEntityIds": 0,
+  "newProvenanceIds": 0,
+  "learnerFacingSemanticDrift": 0,
+  "identityDrift": 0,
+  "provenanceDrift": 0,
+  "orderingDrift": 0,
+  "preferredSelectionDrift": 0,
+  "cefrDrift": 0,
+  "cefrDistribution": {
+    "A1": 17,
+    "A2": 28,
+    "B1": 20,
+    "B2": 27,
+    "C1": 7,
+    "UNCLASSIFIED": 1
+  },
+  "taxonomyDrift": 0,
+  "taxonomyHash": "64f5c98611e8bffca48c67ebfb25fb2d974d9d050df51d0122223a21e678a05c",
+  "runtimeReleaseProjectionReady": true,
+  "runtimeProjection": {
+    "appImportContractVersion": "app-import-v3",
+    "projectionContractVersion": "runtime-vocabulary-projection-v2",
+    "projectedSenses": 100,
+    "skippedSenses": 0,
+    "importEligible": true,
+    "runtimeFieldCounts": {
+      "vietnameseNonNull": 100,
+      "definitionEnNonNull": 100,
+      "exampleEnNonNull": 100,
+      "ipaNonNull": 0
+    },
+    "matchesAuditedSimulation": true,
+    "semanticDrift": 0
+  },
+  "runtimeImportExecuted": false,
+  "runtimeImportAuthorized": false,
+  "databaseConnection": "NONE",
+  "databaseWrites": "NONE",
+  "productionConnection": "NONE",
+  "productionMutation": false,
+  "sourceRightsVerified": false,
+  "sourceTextReused": false,
+  "sourceMediaReused": false,
+  "releaseHashAlgorithm": "sha256-canonical-json-v1",
+  "releaseHash": "44874b11d1fdef76a515f6285d04c9a417318daa6969e112608a59e7c232613c",
+  "releaseTreeFingerprint": "51ab4c5ce31bd38b51742d1aea16602150522da27ad26c123cc17b332f9a406e",
+  "releaseTreeFingerprintExcludesSelfReferentialEvidenceFile": true,
+  "createdAt": "2026-10-06T10:27:31.456Z",
+  "releasedAt": "2026-10-06T10:27:31.456Z",
+  "canaryGitTree": "f5d4e502be5106da191b5b2ab807f5db12065831",
+  "canaryCommittedFingerprint": "718c211b8e668d25ffe4ba0c893bda3e73ce8bd2bf578d276ce9216c08c78b2f"
+}

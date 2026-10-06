@@ -1,0 +1,86 @@
+{
+  "masterSenseId": "01a1070c-7c59-726e-88d6-cf9dc05adb73",
+  "masterLexemeId": "01a1070c-7c59-726e-88d6-cb73a774b6f2",
+  "senseRevision": 3,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "ignition cord"
+    },
+    {
+      "language": "vi",
+      "text": "dây cháy mồi"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "NOUN",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c59-726e-88d6-d32a59ae1725",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-cf9dc05adb73",
+      "language": "vi",
+      "text": "dây cháy chậm",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-7f5c-a47e-0519c32d4ca3"
+      ]
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c59-726e-88d6-d6a9860faa1e",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-cf9dc05adb73",
+      "language": "en",
+      "text": "A cord that burns slowly to set off a firework or explosive device.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-7d09-86fa-5419a2d12221"
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c59-726e-88d6-dbe53d1279cc",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-cf9dc05adb73",
+      "language": "en",
+      "text": "The firework's fuse burned down before it exploded.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c59-726e-88d6-df3f8600618d",
+          "exampleId": "01a1070c-7c59-726e-88d6-dbe53d1279cc",
+          "language": "vi",
+          "text": "Ngòi pháo cháy hết trước khi quả pháo phát nổ.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "APPROVED",
+          "provenanceIds": [
+            "01a10760-b9f0-773f-bfa7-ba0eab5f1cdc"
+          ]
+        }
+      ],
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-7369-a095-85fde893871b"
+      ]
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "APPROVED",
+  "createdAt": "2026-10-04T13:13:41.209Z",
+  "updatedAt": "2026-10-06T10:27:31.456Z",
+  "provenanceIds": [
+    "01a10760-b9f0-713c-8f4c-82ad6bf90aff",
+    "01a10760-b9f0-73e8-81c9-32926552eefb"
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "masterSenseId": "01a1070c-7c59-726e-88d4-c8cce3636c7a",
+  "masterLexemeId": "01a1070c-7c59-726e-88d4-c4b32e2c699b",
+  "senseRevision": 3,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "building designer"
+    },
+    {
+      "language": "vi",
+      "text": "người thiết kế công trình"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "NOUN",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c59-726e-88d4-cd17db266bbc",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-c8cce3636c7a",
+      "language": "vi",
+      "text": "kiến trúc sư",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-7a25-93bc-77bfed67e271"
+      ]
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c59-726e-88d4-d2fc224b314b",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-c8cce3636c7a",
+      "language": "en",
+      "text": "A trained professional who plans buildings and prepares their designs.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-7960-942f-7c9717172d1f"
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c59-726e-88d4-d667bb10397a",
+      "masterSenseId": "01a1070c-7c59-726e-88d4-c8cce3636c7a",
+      "language": "en",
+      "text": "The architect showed us a model of the new library.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c59-726e-88d4-db793a0ce8f7",
+          "exampleId": "01a1070c-7c59-726e-88d4-d667bb10397a",
+          "language": "vi",
+          "text": "Kiến trúc sư cho chúng tôi xem mô hình thư viện mới.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "APPROVED",
+          "provenanceIds": [
+            "01a10760-b9f0-7e1f-a756-7109df6ab418"
+          ]
+        }
+      ],
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-7efc-a396-360c84f326b9"
+      ]
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "APPROVED",
+  "createdAt": "2026-10-04T13:13:41.209Z",
+  "updatedAt": "2026-10-06T10:27:31.456Z",
+  "provenanceIds": [
+    "01a10760-b9f0-731e-8f43-b906ee930695",
+    "01a10760-b9f0-7b96-85ac-5ebc9e9520f0"
+  ]
+}

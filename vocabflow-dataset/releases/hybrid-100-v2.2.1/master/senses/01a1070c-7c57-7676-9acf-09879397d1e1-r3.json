@@ -1,0 +1,86 @@
+{
+  "masterSenseId": "01a1070c-7c57-7676-9acf-09879397d1e1",
+  "masterLexemeId": "01a1070c-7c57-7676-9acf-07e31175af99",
+  "senseRevision": 3,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "it is hoped that"
+    },
+    {
+      "language": "vi",
+      "text": "mong rằng"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "ADVERB",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c57-7676-9acf-0e012f2f1dcf",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-09879397d1e1",
+      "language": "vi",
+      "text": "mong rằng",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-7396-8d24-236fd15679a9"
+      ]
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c57-7676-9acf-10f12829d278",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-09879397d1e1",
+      "language": "en",
+      "text": "Used at the start of a sentence to say that you hope something will happen.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-7aeb-bcdd-918e679e940c"
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c57-7676-9acf-1492b7199358",
+      "masterSenseId": "01a1070c-7c57-7676-9acf-09879397d1e1",
+      "language": "en",
+      "text": "Hopefully, the rain will stop before the outdoor concert.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c57-7676-9acf-1b0dc40f6fe4",
+          "exampleId": "01a1070c-7c57-7676-9acf-1492b7199358",
+          "language": "vi",
+          "text": "Mong là trời sẽ tạnh mưa trước buổi hòa nhạc ngoài trời.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "APPROVED",
+          "provenanceIds": [
+            "01a10760-b9f0-7fa4-886d-9277f1e892cb"
+          ]
+        }
+      ],
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-78be-8e15-f7a907decd3b"
+      ]
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "APPROVED",
+  "createdAt": "2026-10-04T13:13:41.207Z",
+  "updatedAt": "2026-10-06T10:27:31.456Z",
+  "provenanceIds": [
+    "01a10760-b9f0-7e6f-9f09-4fc1a3c23d63",
+    "01a10760-b9f0-7fbb-9e7b-aba09951e677"
+  ]
+}

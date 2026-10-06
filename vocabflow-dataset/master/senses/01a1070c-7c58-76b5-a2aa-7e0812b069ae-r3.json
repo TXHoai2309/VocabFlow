@@ -1,0 +1,86 @@
+{
+  "masterSenseId": "01a1070c-7c58-76b5-a2aa-7e0812b069ae",
+  "masterLexemeId": "01a1070c-7c58-76b5-a2aa-785336c8dc64",
+  "senseRevision": 3,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "lessening of pain"
+    },
+    {
+      "language": "vi",
+      "text": "sự giảm đau"
+    }
+  ],
+  "senseOrder": 2,
+  "partOfSpeechCode": "NOUN",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c58-76b5-a2aa-8152d8e7f0e8",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-7e0812b069ae",
+      "language": "vi",
+      "text": "sự giảm đau",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-7889-a91e-a88c158715bd"
+      ]
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c58-76b5-a2aa-84f693dcbd1e",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-7e0812b069ae",
+      "language": "en",
+      "text": "A reduction in pain or discomfort after treatment or a change.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-75ed-9ab0-834fc4db66e3"
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c58-76b5-a2aa-8b71cd06ef6c",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-7e0812b069ae",
+      "language": "en",
+      "text": "The cool cloth brought relief to her aching forehead.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c58-76b5-a2aa-8cfeba4921f4",
+          "exampleId": "01a1070c-7c58-76b5-a2aa-8b71cd06ef6c",
+          "language": "vi",
+          "text": "Khăn mát giúp làm dịu cơn đau ở trán cô ấy.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "APPROVED",
+          "provenanceIds": [
+            "01a10760-b9f0-700c-a1c4-7647ed51080d"
+          ]
+        }
+      ],
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-7fd1-8c63-bc1faacc821c"
+      ]
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "APPROVED",
+  "createdAt": "2026-10-04T13:13:41.208Z",
+  "updatedAt": "2026-10-06T10:27:31.456Z",
+  "provenanceIds": [
+    "01a10760-b9f0-77ae-941b-b0c3f4934fcd",
+    "01a10760-b9f0-7c98-8eb2-9a6eb29b4e62"
+  ]
+}

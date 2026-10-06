@@ -1,0 +1,86 @@
+{
+  "masterSenseId": "01a1070c-7c57-7676-9ace-18656f491ca7",
+  "masterLexemeId": "01a1070c-7c57-7676-9ace-17d68166d150",
+  "senseRevision": 3,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "skilled occupation"
+    },
+    {
+      "language": "vi",
+      "text": "nghề chuyên môn"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "NOUN",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c57-7676-9ace-1d2ae4e085bd",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-18656f491ca7",
+      "language": "vi",
+      "text": "nghề chuyên môn",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-7719-9a87-38a8565c2d29"
+      ]
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c57-7676-9ace-2162c02e0562",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-18656f491ca7",
+      "language": "en",
+      "text": "A skilled job that people learn through training and practical work.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-73b2-963a-eecc73a55d24"
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c57-7676-9ace-279c9bfe2c05",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-18656f491ca7",
+      "language": "en",
+      "text": "After training, she found steady work in the building trade.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c57-7676-9ace-2802c6ba2b62",
+          "exampleId": "01a1070c-7c57-7676-9ace-279c9bfe2c05",
+          "language": "vi",
+          "text": "Sau khi được đào tạo, cô tìm được công việc ổn định trong ngành xây dựng.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "APPROVED",
+          "provenanceIds": [
+            "01a10760-b9f0-734c-a70b-d529c192f8be"
+          ]
+        }
+      ],
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-78d3-947e-a454a977d0f4"
+      ]
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "APPROVED",
+  "createdAt": "2026-10-04T13:13:41.207Z",
+  "updatedAt": "2026-10-06T10:27:31.456Z",
+  "provenanceIds": [
+    "01a10760-b9f0-78b3-8718-4ed17c1f96e2",
+    "01a10760-b9f0-7f2f-ac08-a2a05d969e45"
+  ]
+}

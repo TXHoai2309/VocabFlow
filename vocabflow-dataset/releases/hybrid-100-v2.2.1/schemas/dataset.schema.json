@@ -1,0 +1,176 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.vocabflow.invalid/master-vocabulary/v2/dataset.schema.json",
+  "title": "VocabFlow Master Vocabulary V2 dataset release manifest",
+  "type": "object",
+  "properties": {
+    "datasetId": { "$ref": "common.schema.json#/$defs/uuidV7" },
+    "datasetCode": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+    "name": { "$ref": "common.schema.json#/$defs/localizedTextList" },
+    "description": {
+      "type": "array",
+      "items": { "$ref": "common.schema.json#/$defs/localizedText" },
+      "uniqueItems": true
+    },
+    "datasetVersion": { "$ref": "common.schema.json#/$defs/semVer" },
+    "schemaVersion": { "$ref": "common.schema.json#/$defs/semVer" },
+    "status": { "type": "string", "enum": ["DRAFT", "IN_REVIEW", "APPROVED", "RETIRED"] },
+    "includedLexemes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "masterLexemeId": { "$ref": "common.schema.json#/$defs/uuidV7" },
+          "lexemeRevision": { "type": "integer", "minimum": 1 },
+          "recordPath": { "$ref": "#/$defs/recordPath" },
+          "contentHash": { "$ref": "common.schema.json#/$defs/sha256" }
+        },
+        "required": ["masterLexemeId", "lexemeRevision", "recordPath", "contentHash"],
+        "additionalProperties": false
+      },
+      "uniqueItems": true
+    },
+    "includedSenses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "masterSenseId": { "$ref": "common.schema.json#/$defs/uuidV7" },
+          "senseRevision": { "type": "integer", "minimum": 1 },
+          "recordPath": { "$ref": "#/$defs/recordPath" },
+          "contentHash": { "$ref": "common.schema.json#/$defs/sha256" }
+        },
+        "required": ["masterSenseId", "senseRevision", "recordPath", "contentHash"],
+        "additionalProperties": false
+      },
+      "uniqueItems": true
+    },
+    "includedClassifications": {
+      "type": "array",
+      "items": { "$ref": "common.schema.json#/$defs/classificationPin" },
+      "uniqueItems": true
+    },
+    "includedLearningSets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "learningSetId": { "$ref": "common.schema.json#/$defs/uuidV7" },
+          "learningSetRevision": { "type": "integer", "minimum": 1 },
+          "recordPath": { "$ref": "#/$defs/recordPath" },
+          "contentHash": { "$ref": "common.schema.json#/$defs/sha256" }
+        },
+        "required": ["learningSetId", "learningSetRevision", "recordPath", "contentHash"],
+        "additionalProperties": false
+      },
+      "uniqueItems": true
+    },
+    "includedTaxonomySnapshots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "taxonomyId": { "$ref": "common.schema.json#/$defs/uuidV7" },
+          "taxonomyVersion": { "$ref": "common.schema.json#/$defs/semVer" },
+          "recordPath": { "$ref": "#/$defs/recordPath" },
+          "contentHash": { "$ref": "common.schema.json#/$defs/sha256" }
+        },
+        "required": ["taxonomyId", "taxonomyVersion", "recordPath", "contentHash"],
+        "additionalProperties": false
+      },
+      "uniqueItems": true
+    },
+    "includedMediaAssets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "mediaAssetId": { "$ref": "common.schema.json#/$defs/uuidV7" },
+          "recordPath": { "$ref": "#/$defs/recordPath" },
+          "contentHash": { "$ref": "common.schema.json#/$defs/sha256" }
+        },
+        "required": ["mediaAssetId", "recordPath", "contentHash"],
+        "additionalProperties": false
+      },
+      "uniqueItems": true
+    },
+    "includedMediaAssetVersions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "mediaAssetId": { "$ref": "common.schema.json#/$defs/uuidV7" },
+          "mediaAssetVersion": { "type": "integer", "minimum": 1 },
+          "recordPath": { "$ref": "#/$defs/recordPath" },
+          "contentHash": { "$ref": "common.schema.json#/$defs/sha256" },
+          "sha256": { "$ref": "common.schema.json#/$defs/sha256" }
+        },
+        "required": ["mediaAssetId", "mediaAssetVersion", "recordPath", "contentHash", "sha256"],
+        "additionalProperties": false
+      },
+      "uniqueItems": true
+    },
+    "includedRelations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "relationId": { "$ref": "common.schema.json#/$defs/uuidV7" },
+          "relationRevision": { "type": "integer", "minimum": 1 },
+          "recordPath": { "$ref": "#/$defs/recordPath" },
+          "contentHash": { "$ref": "common.schema.json#/$defs/sha256" }
+        },
+        "required": ["relationId", "relationRevision", "recordPath", "contentHash"],
+        "additionalProperties": false
+      },
+      "uniqueItems": true
+    },
+    "includedProvenance": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "provenanceId": { "$ref": "common.schema.json#/$defs/uuidV7" },
+          "recordPath": { "$ref": "#/$defs/recordPath" },
+          "contentHash": { "$ref": "common.schema.json#/$defs/sha256" }
+        },
+        "required": ["provenanceId", "recordPath", "contentHash"],
+        "additionalProperties": false
+      },
+      "uniqueItems": true
+    },
+    "releaseHash": { "$ref": "common.schema.json#/$defs/sha256" },
+    "releaseHashAlgorithm": { "const": "sha256-canonical-json-v1" },
+    "createdAt": { "$ref": "common.schema.json#/$defs/timestamp" },
+    "releasedAt": { "$ref": "common.schema.json#/$defs/timestamp" },
+    "changeSummary": {
+      "type": "array",
+      "items": { "$ref": "common.schema.json#/$defs/localizedText" },
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "datasetId", "datasetCode", "name", "datasetVersion", "schemaVersion", "status",
+    "includedLexemes", "includedSenses", "includedClassifications", "includedLearningSets",
+    "includedTaxonomySnapshots", "includedMediaAssets", "includedMediaAssetVersions", "includedRelations", "includedProvenance", "createdAt"
+  ],
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "APPROVED" } }, "required": ["status"] },
+      "then": { "required": ["releasedAt", "releaseHash", "releaseHashAlgorithm"] }
+    },
+    {
+      "if": { "properties": { "status": { "enum": ["DRAFT", "IN_REVIEW"] } }, "required": ["status"] },
+      "then": { "not": { "anyOf": [{ "required": ["releaseHash"] }, { "required": ["releaseHashAlgorithm"] }] } }
+    }
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "recordPath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?![A-Za-z]:)(?!.*(?:^|/)\\.\\.(?:/|$))[A-Za-z0-9._/-]+$",
+      "description": "Package-relative path; absolute paths and parent-directory traversal are forbidden."
+    }
+  }
+}

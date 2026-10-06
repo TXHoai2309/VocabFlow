@@ -1,0 +1,86 @@
+{
+  "masterSenseId": "01a1070c-7c59-726e-88d6-6d55c97117dc",
+  "masterLexemeId": "01a1070c-7c59-726e-88d6-6bed13c39f09",
+  "senseRevision": 3,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "guidance of a group"
+    },
+    {
+      "language": "vi",
+      "text": "sự dẫn dắt tập thể"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "NOUN",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c59-726e-88d6-707afc172e43",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-6d55c97117dc",
+      "language": "vi",
+      "text": "sự lãnh đạo",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-7e30-b5cd-44422fb0f120"
+      ]
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c59-726e-88d6-76c65adac138",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-6d55c97117dc",
+      "language": "en",
+      "text": "The act of guiding a group toward a shared goal.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-723c-a508-50b8266fd947"
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c59-726e-88d6-795e745913ad",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-6d55c97117dc",
+      "language": "en",
+      "text": "Strong leadership kept the volunteers focused during the storm.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c59-726e-88d6-7ceba11949c3",
+          "exampleId": "01a1070c-7c59-726e-88d6-795e745913ad",
+          "language": "vi",
+          "text": "Khả năng lãnh đạo vững vàng giúp các tình nguyện viên tập trung trong cơn bão.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "APPROVED",
+          "provenanceIds": [
+            "01a10760-b9f0-7205-a45d-22c75f0def7c"
+          ]
+        }
+      ],
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-71b9-8fcf-92346a455372"
+      ]
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "APPROVED",
+  "createdAt": "2026-10-04T13:13:41.209Z",
+  "updatedAt": "2026-10-06T10:27:31.456Z",
+  "provenanceIds": [
+    "01a10760-b9f0-7032-b091-568457163baa",
+    "01a10760-b9f0-7d9c-88de-bca341ea7ab0"
+  ]
+}

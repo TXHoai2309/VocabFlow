@@ -1,0 +1,86 @@
+{
+  "masterSenseId": "01a1070c-7c58-76b5-a2ab-23b5c52b4d0f",
+  "masterLexemeId": "01a1070c-7c58-76b5-a2ab-1d174cd34a69",
+  "senseRevision": 3,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "with little noise"
+    },
+    {
+      "language": "vi",
+      "text": "ít tiếng ồn"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "ADJECTIVE",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c58-76b5-a2ab-264e399823ef",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-23b5c52b4d0f",
+      "language": "vi",
+      "text": "yên tĩnh",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-7b88-9afa-6c1c7d78bc2d"
+      ]
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c58-76b5-a2ab-2b60e221e561",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-23b5c52b4d0f",
+      "language": "en",
+      "text": "Making very little noise or having very little activity around you.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-78ca-ab25-42fa53fb48df"
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c58-76b5-a2ab-2f499403f546",
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-23b5c52b4d0f",
+      "language": "en",
+      "text": "We found a quiet corner to read during lunch.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c58-76b5-a2ab-3131fc63f2a2",
+          "exampleId": "01a1070c-7c58-76b5-a2ab-2f499403f546",
+          "language": "vi",
+          "text": "Chúng tôi tìm được một góc yên tĩnh để đọc sách trong giờ ăn trưa.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "APPROVED",
+          "provenanceIds": [
+            "01a10760-b9f0-7dbb-8368-16bb0c39ba11"
+          ]
+        }
+      ],
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-7970-bc3a-9f3a6129dd03"
+      ]
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "APPROVED",
+  "createdAt": "2026-10-04T13:13:41.208Z",
+  "updatedAt": "2026-10-06T10:27:31.456Z",
+  "provenanceIds": [
+    "01a10760-b9f0-77c4-86b0-385f7cba6de9",
+    "01a10760-b9f0-791b-a00c-47ea85225448"
+  ]
+}

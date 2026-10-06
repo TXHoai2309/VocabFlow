@@ -1,0 +1,86 @@
+{
+  "masterSenseId": "01a1070c-7c58-76b5-a2aa-4d54a373af15",
+  "masterLexemeId": "01a1070c-7c58-76b5-a2a8-fff9a54fdf74",
+  "senseRevision": 3,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "take turns in sequence"
+    },
+    {
+      "language": "vi",
+      "text": "luân phiên theo lượt"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "VERB",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c58-76b5-a2aa-51f4a087ab7a",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-4d54a373af15",
+      "language": "vi",
+      "text": "luân phiên",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-7d92-ab47-20b34cce0a1a"
+      ]
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c58-76b5-a2aa-547aef8419bf",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-4d54a373af15",
+      "language": "en",
+      "text": "To take turns in a planned order so each person has a role.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-78a9-aef8-cab45c45a276"
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c58-76b5-a2aa-590f8a410c89",
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-4d54a373af15",
+      "language": "en",
+      "text": "The students rotate through each station every ten minutes.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c58-76b5-a2aa-5deea2c59453",
+          "exampleId": "01a1070c-7c58-76b5-a2aa-590f8a410c89",
+          "language": "vi",
+          "text": "Học sinh lần lượt chuyển qua từng trạm sau mỗi mười phút.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "APPROVED",
+          "provenanceIds": [
+            "01a10760-b9f0-7fb4-89ea-92a5f563f66d"
+          ]
+        }
+      ],
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-7dd4-9d1b-f8b629875a12"
+      ]
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "APPROVED",
+  "createdAt": "2026-10-04T13:13:41.208Z",
+  "updatedAt": "2026-10-06T10:27:31.456Z",
+  "provenanceIds": [
+    "01a10760-b9f0-77ea-9309-8dc0b4f4b062",
+    "01a10760-b9f0-7c49-a0b9-fefe209313ba"
+  ]
+}

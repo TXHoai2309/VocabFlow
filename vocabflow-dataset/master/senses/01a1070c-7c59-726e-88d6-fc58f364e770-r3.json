@@ -1,0 +1,86 @@
+{
+  "masterSenseId": "01a1070c-7c59-726e-88d6-fc58f364e770",
+  "masterLexemeId": "01a1070c-7c59-726e-88d6-fb5a013f6887",
+  "senseRevision": 3,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "official with duties"
+    },
+    {
+      "language": "vi",
+      "text": "người có nhiệm vụ chính thức"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "NOUN",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c59-726e-88d7-0373cc0c6f0f",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-fc58f364e770",
+      "language": "vi",
+      "text": "viên chức",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-7ef0-b18d-798479a52a5d"
+      ]
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c59-726e-88d7-047dd2ff0448",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-fc58f364e770",
+      "language": "en",
+      "text": "A person with an official position and particular duties or authority.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-702e-8fc7-f8fda74bbdcd"
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c59-726e-88d7-0b0851229f78",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-fc58f364e770",
+      "language": "en",
+      "text": "A park officer explained the new trail rules.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c59-726e-88d7-0e7e7f79637a",
+          "exampleId": "01a1070c-7c59-726e-88d7-0b0851229f78",
+          "language": "vi",
+          "text": "Một nhân viên quản lý công viên giải thích các quy định mới trên đường mòn.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "APPROVED",
+          "provenanceIds": [
+            "01a10760-b9f0-785f-8eba-7873c0b5d9e0"
+          ]
+        }
+      ],
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-7403-abc1-b56d210b24ea"
+      ]
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "APPROVED",
+  "createdAt": "2026-10-04T13:13:41.209Z",
+  "updatedAt": "2026-10-06T10:27:31.456Z",
+  "provenanceIds": [
+    "01a10760-b9f0-71ee-9eaa-cd247a859e1b",
+    "01a10760-b9f0-79a4-aa2c-9ab94aa68a0c"
+  ]
+}

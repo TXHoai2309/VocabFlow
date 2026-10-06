@@ -1,0 +1,86 @@
+{
+  "masterSenseId": "01a1070c-7c59-726e-88d6-12b693a50e53",
+  "masterLexemeId": "01a1070c-7c59-726e-88d6-0de8a21078d9",
+  "senseRevision": 3,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "competition winner"
+    },
+    {
+      "language": "vi",
+      "text": "người chiến thắng cuộc thi"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "NOUN",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c59-726e-88d6-1453ccf32558",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-12b693a50e53",
+      "language": "vi",
+      "text": "nhà vô địch",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-7ee7-8817-e5f28be00294"
+      ]
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c59-726e-88d6-183332509617",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-12b693a50e53",
+      "language": "en",
+      "text": "A person or team that has won an important competition.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-7e8a-adb9-07428be07564"
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c59-726e-88d6-1d39723d0ec0",
+      "masterSenseId": "01a1070c-7c59-726e-88d6-12b693a50e53",
+      "language": "en",
+      "text": "The national champion returned to train with the younger players.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c59-726e-88d6-21c5fff45fca",
+          "exampleId": "01a1070c-7c59-726e-88d6-1d39723d0ec0",
+          "language": "vi",
+          "text": "Nhà vô địch quốc gia trở lại tập luyện cùng các vận động viên trẻ.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "APPROVED",
+          "provenanceIds": [
+            "01a10760-b9f0-749c-a2f5-a9b161b71737"
+          ]
+        }
+      ],
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-720a-8d02-baa1f2701b83"
+      ]
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "APPROVED",
+  "createdAt": "2026-10-04T13:13:41.209Z",
+  "updatedAt": "2026-10-06T10:27:31.456Z",
+  "provenanceIds": [
+    "01a10760-b9f0-7609-b723-b53b0489c602",
+    "01a10760-b9f0-7d09-a26f-a16e3c80be70"
+  ]
+}

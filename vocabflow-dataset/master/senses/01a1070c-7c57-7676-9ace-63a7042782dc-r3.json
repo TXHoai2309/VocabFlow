@@ -1,0 +1,86 @@
+{
+  "masterSenseId": "01a1070c-7c57-7676-9ace-63a7042782dc",
+  "masterLexemeId": "01a1070c-7c57-7676-9ace-5cc488b97e59",
+  "senseRevision": 3,
+  "senseLabel": [
+    {
+      "language": "en",
+      "text": "abnormal cell growth"
+    },
+    {
+      "language": "vi",
+      "text": "khối tế bào bất thường"
+    }
+  ],
+  "senseOrder": 1,
+  "partOfSpeechCode": "NOUN",
+  "usageRegister": [],
+  "regionCodes": [],
+  "grammarNotes": [],
+  "translations": [
+    {
+      "translationId": "01a1070c-7c57-7676-9ace-6482cd2c238d",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-63a7042782dc",
+      "language": "vi",
+      "text": "khối u",
+      "translationKind": "EQUIVALENT",
+      "isPreferred": true,
+      "displayOrder": 0,
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-70fc-b6c5-c95a6bc67779"
+      ]
+    }
+  ],
+  "definitions": [
+    {
+      "definitionId": "01a1070c-7c57-7676-9ace-6a63d795ec0a",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-63a7042782dc",
+      "language": "en",
+      "text": "A mass of cells that grows abnormally in a person's body.",
+      "definitionKind": "LEARNER_FRIENDLY",
+      "displayOrder": 0,
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-7a02-9723-cba04f97795a"
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "01a1070c-7c57-7676-9ace-6f90e9aaa247",
+      "masterSenseId": "01a1070c-7c57-7676-9ace-63a7042782dc",
+      "language": "en",
+      "text": "The scan showed a small tumor near the patient's kidney.",
+      "register": "NEUTRAL",
+      "displayOrder": 0,
+      "audioAssetIds": [],
+      "exampleTranslations": [
+        {
+          "exampleTranslationId": "01a1070c-7c57-7676-9ace-7293614220c4",
+          "exampleId": "01a1070c-7c57-7676-9ace-6f90e9aaa247",
+          "language": "vi",
+          "text": "Kết quả chụp cho biết người bệnh có khối u nhỏ ở sát thận.",
+          "isPreferred": true,
+          "displayOrder": 0,
+          "status": "APPROVED",
+          "provenanceIds": [
+            "01a10760-b9f0-733c-847c-b89fbd587026"
+          ]
+        }
+      ],
+      "status": "APPROVED",
+      "provenanceIds": [
+        "01a10760-b9f0-7c6d-8dae-318566c9d2f2"
+      ]
+    }
+  ],
+  "pronunciationOverrides": [],
+  "status": "APPROVED",
+  "createdAt": "2026-10-04T13:13:41.207Z",
+  "updatedAt": "2026-10-06T10:27:31.456Z",
+  "provenanceIds": [
+    "01a10760-b9f0-7513-8a02-0295348c6288",
+    "01a10760-b9f0-766a-8a48-d47a5c33d829"
+  ]
+}
