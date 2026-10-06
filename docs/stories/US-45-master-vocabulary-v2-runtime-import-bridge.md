@@ -1,5 +1,32 @@
 # US-45 — Master Vocabulary V2 Runtime Import Bridge
 
+## Phase 2G.1 — Development reconciliation preflight blocked at source gate
+
+The read-only Phase 2G.1 preflight verified the frozen Hybrid-100 2.2.0 release
+and the configured Neon Development target. All 19 current migration hashes
+match, and the required bridge schema and write guards are present. The
+migration-only transaction ran with `REPEATABLE READ, READ ONLY`.
+
+The runtime candidate scan did not run. The current RELEASE transform emits
+0/100 eligible Senses because all 100 nested Vietnamese Translation rows are
+still unapproved (98 `DRAFT`, 2 `IN_REVIEW`). The 100-row PREVIEW is diagnostic
+and cannot serve as an import projection. No runtime catalog, mapping, or
+learner aggregates were read; no candidate artifact was produced and all 100
+owner decisions remain unresolved. No writes, migrations, importer apply, or
+production connection occurred. The official release, RC, Canary, canonical
+root, and taxonomy snapshots passed immutability checks.
+
+Evidence: [Phase 2G.1 preflight report](../../vocabflow-dataset/reports/hybrid-100-development-runtime-reconciliation-2.2.0.md),
+[preflight summary](../../vocabflow-dataset/workspaces/hybrid-100-runtime-reconciliation/preflight-summary.json),
+[projection gate](../../vocabflow-dataset/workspaces/hybrid-100-runtime-reconciliation/projection/transform-preflight-summary.json),
+and [migration state](../../vocabflow-dataset/workspaces/hybrid-100-runtime-reconciliation/migration-state.json).
+
+Current status: `IN PROGRESS / PHASE 2G.1 BLOCKED AT RELEASE PROJECTION GATE`.
+Resolve the nested Translation lifecycle/projection mismatch in a separately
+approved source revision before discovery. Once a valid RELEASE projection is
+available, run Development candidate discovery and continue to owner review;
+this phase does not authorize import apply.
+
 ## Phase 2F.7 — Approved Hybrid-100 release source prepared
 
 The owner-authorized Phase 2F.7 offline release build has materialized and
@@ -12,16 +39,18 @@ root remains `2.0.0 / DRAFT`.
 
 The releaseHash is frozen and RC 2.2.0-rc.1 and Canary 2.1.0 are unchanged.
 Rights remain unverified, no source text or media was reused, and the release
-bundles no media. This phase performed no runtime reconciliation or import,
-database/Neon access, migration, development runtime change, or production
-mutation. This story remains **open**: runtime reconciliation/import and its
-separate authorization, implementation, and validation are still outstanding.
+bundles no media. At the time of the Phase 2F.7 release freeze, this phase had
+performed no runtime reconciliation or import, database/Neon access, migration,
+development runtime change, or production mutation. Phase 2G.1 performed the
+later migration-only read-only check described above. This story remains
+**open**: runtime reconciliation/import and its separate authorization,
+implementation, and validation are still outstanding.
 
 Evidence: [Phase 2F.7 approved-release report](../../vocabflow-dataset/reports/hybrid-100-approved-release-2.2.0.md),
 [frozen release package](../../vocabflow-dataset/releases/hybrid-100-v2.2.0/),
 and [materialization summary](../../vocabflow-dataset/workspaces/hybrid-100-approved-release/summary.json).
 
-- Status: `IMPLEMENTED / DEVELOPMENT CANARY VERIFIED`; owner acceptance remains explicit.
+- Historical Phase 2D status: `IMPLEMENTED / DEVELOPMENT CANARY VERIFIED`; owner acceptance remains explicit. Current Phase 2G.1 status is blocked at the release projection gate above.
 - Owner direction: continue the Master Vocabulary Dataset V2 Phase 2D runtime
   identity bridge, adapter, and explicitly reprioritized Phase 2D.1 hardening
   and canary preparation.

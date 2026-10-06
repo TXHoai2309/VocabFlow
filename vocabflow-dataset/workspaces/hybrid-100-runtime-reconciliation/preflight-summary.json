@@ -1,0 +1,20 @@
+{
+  "generatedBy": "hybrid-100-development-reconciliation-preflight-v1",
+  "artifactType": "HYBRID_100_DEVELOPMENT_RUNTIME_RECONCILIATION_PREFLIGHT",
+  "generatedAt": "2026-10-06T05:09:38.503Z",
+  "sourceReleaseHash": "c82a32a3d7fc3534105b85e14908edd336c2409aa7294d070528a47f6260339d",
+  "releaseUnchanged": true,
+  "targetVerified": true,
+  "connectedDatabasePurpose": "migration",
+  "migrationReady": true,
+  "releaseProjectionReady": false,
+  "runtimeCatalogScanned": false,
+  "ownerDecisionsFinalized": 0,
+  "ownerDecisionsUnresolved": 100,
+  "databaseWrites": "NONE",
+  "importerApplyExecuted": false,
+  "productionConnection": "NONE",
+  "frozenSourcesVerifiedBeforeAndAfter": true,
+  "phase2G1Ready": false,
+  "report": "vocabflow-dataset/reports/hybrid-100-development-runtime-reconciliation-2.2.0.md"
+}

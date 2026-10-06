@@ -1,5 +1,34 @@
 # Current Handoff Snapshot
 
+## 2026-10-06 — Phase 2G.1 Hybrid-100 Development reconciliation preflight
+
+- Verified the frozen `2.2.0 / APPROVED` release and its JCS release hash
+  (`c82a32a3d7fc3534105b85e14908edd336c2409aa7294d070528a47f6260339d`);
+  the release validator passes with 0 errors, warnings, or informational issues.
+- A read-only connection verified the configured Neon Development target and
+  migration/bridge readiness: all 19 current migrations and hashes match, and
+  required bridge tables, columns, constraints, and write guards are present.
+- Candidate discovery is **blocked before runtime catalog reads**. The
+  transform's RELEASE projection emits 0/100 eligible Senses because the 100
+  nested Vietnamese Translation rows are not APPROVED (98 DRAFT, 2 IN_REVIEW).
+  PREVIEW emits 100 diagnostic rows but is ineligible and was not used for
+  identity analysis. No child status was inferred and the frozen release was
+  not changed.
+- Runtime vocabulary, mappings, and learner aggregates were not queried. No
+  owner decisions or candidate rows were generated. The owner template keeps
+  all 100 decisions unresolved. The migration-only transaction was
+  `REPEATABLE READ, READ ONLY`; no write, migration, apply, or production
+  connection occurred. RC, Canary, canonical root, and taxonomy snapshots
+  passed pre/post immutability checks.
+- Evidence: [Phase 2G.1 preflight report](../vocabflow-dataset/reports/hybrid-100-development-runtime-reconciliation-2.2.0.md),
+  [summary](../vocabflow-dataset/workspaces/hybrid-100-runtime-reconciliation/preflight-summary.json),
+  [projection gate](../vocabflow-dataset/workspaces/hybrid-100-runtime-reconciliation/projection/transform-preflight-summary.json),
+  and [migration state](../vocabflow-dataset/workspaces/hybrid-100-runtime-reconciliation/migration-state.json).
+- Next gate: resolve the Translation lifecycle/projection mismatch in an
+  separately approved source revision, then rerun the RELEASE projection and
+  Development candidate scan. Owner reconciliation review remains later; this
+  preflight does not authorize importer apply.
+
 ## 2026-10-06 — Master Vocabulary V2 Phase 2F.7 approved release freeze
 
 - Materialized and froze the first official Hybrid-100 dataset release as
@@ -18,9 +47,11 @@
   the earlier `2c75…4547` value is superseded evidence only. The official
   releaseHash and package tree fingerprint are frozen in release evidence.
 - Rights remain unverified; no source text or media was reused and no media is
-  bundled. No runtime reconciliation/import has begun. Neon/database,
-  migrations, development runtime, and production remain untouched. The
-  runtime-import bridge story remains open for its separate phase.
+  bundled. At the time of this Phase 2F.7 freeze, runtime reconciliation/import
+  had not begun. The later Phase 2G.1 preflight connected to Development in a
+  migration-only read-only transaction and stopped before runtime scans. No
+  production connection or mutation occurred. The runtime-import bridge story
+  remains open.
 - Evidence: [approved release report](../vocabflow-dataset/reports/hybrid-100-approved-release-2.2.0.md),
   [frozen package](../vocabflow-dataset/releases/hybrid-100-v2.2.0/), and
   [materialization summary](../vocabflow-dataset/workspaces/hybrid-100-approved-release/summary.json).

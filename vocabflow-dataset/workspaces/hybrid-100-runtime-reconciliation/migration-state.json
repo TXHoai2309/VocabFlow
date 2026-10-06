@@ -1,0 +1,273 @@
+{
+  "generatedBy": "hybrid-100-development-reconciliation-preflight-v1",
+  "target": {
+    "environment": "development",
+    "provider": "neon",
+    "projectId": "shy-hill-72364426",
+    "branchId": "br-square-grass-b3af0nte",
+    "databaseName": "neondb",
+    "pooled": true,
+    "usage": "development",
+    "identityVersion": 1,
+    "purpose": "migration",
+    "roleName": "vocabflow_migration"
+  },
+  "targetVerifiedAfterConnect": true,
+  "currentUser": "vocabflow_migration",
+  "sessionUser": "vocabflow_migration",
+  "databaseName": "neondb",
+  "transaction": "REPEATABLE_READ_READ_ONLY",
+  "migrationJournalTableExists": true,
+  "history": {
+    "current": true,
+    "localMigrationCount": 19,
+    "appliedCount": 19,
+    "latestApplied": {
+      "id": 19,
+      "tag": "0018_panoramic_spirit",
+      "hash": "eec77c49abbad9a2ea0a69fead9409e0b817978fd3ff3df95b09a55575b114ed",
+      "createdAt": 1791047402100
+    },
+    "missingMigrations": [],
+    "missingJournalRows": [],
+    "hashMismatches": [],
+    "unexpectedAppliedRows": [],
+    "hashComparisons": [
+      {
+        "tag": "0000_application-schema",
+        "databaseHash": "6cc85e79be79afa23b69d7cfbdf9a440b0d7d0ade9c3152492c67cb7a48512d1",
+        "expectedLfHash": "6cc85e79be79afa23b69d7cfbdf9a440b0d7d0ade9c3152492c67cb7a48512d1",
+        "representation": "LF"
+      },
+      {
+        "tag": "0001_curious_miss_america",
+        "databaseHash": "118c170f0bd351a55e5313d59d3fa819498e4e607bc746aedb87932a7ddd10d3",
+        "expectedLfHash": "118c170f0bd351a55e5313d59d3fa819498e4e607bc746aedb87932a7ddd10d3",
+        "representation": "LF"
+      },
+      {
+        "tag": "0002_smiling_wrecking_crew",
+        "databaseHash": "dfd62f6c75b70ab9afa1a20117b766cbd05e6db742747b9d8e010408efb392e2",
+        "expectedLfHash": "dfd62f6c75b70ab9afa1a20117b766cbd05e6db742747b9d8e010408efb392e2",
+        "representation": "LF"
+      },
+      {
+        "tag": "0003_lazy_lady_deathstrike",
+        "databaseHash": "8ea4b7b4d662ba942c662f9d4c2d5992d3ea6ffd3e2d502cc178a68a923f31c0",
+        "expectedLfHash": "8ea4b7b4d662ba942c662f9d4c2d5992d3ea6ffd3e2d502cc178a68a923f31c0",
+        "representation": "LF"
+      },
+      {
+        "tag": "0004_scheduled_review_write",
+        "databaseHash": "19d3787f9af28805503db11a2f34d66d8bbbdcd16ca9b8a0edb2dd90fb2f9657",
+        "expectedLfHash": "9031b19eb649e1f4bb9e58bc73c845dedf36ca79ee6912c246c1f303f2a7c97b",
+        "representation": "CRLF"
+      },
+      {
+        "tag": "0005_graceful_eddie_brock",
+        "databaseHash": "028ffe026bd7addfa2cedfe927c95cf669324f6da19e1a1215eb12ffb7aa2f10",
+        "expectedLfHash": "028ffe026bd7addfa2cedfe927c95cf669324f6da19e1a1215eb12ffb7aa2f10",
+        "representation": "LF"
+      },
+      {
+        "tag": "0006_sticky_risque",
+        "databaseHash": "0035f537b27b0732390b60bf057ffab29b4a4eb3012b8ba0625286740f8e2803",
+        "expectedLfHash": "0035f537b27b0732390b60bf057ffab29b4a4eb3012b8ba0625286740f8e2803",
+        "representation": "LF"
+      },
+      {
+        "tag": "0007_modern_mysterio",
+        "databaseHash": "557f83cb0058389fe969ed336de58f9e4b36b1691c1f4ee6f46b3d75c88d8699",
+        "expectedLfHash": "557f83cb0058389fe969ed336de58f9e4b36b1691c1f4ee6f46b3d75c88d8699",
+        "representation": "LF"
+      },
+      {
+        "tag": "0008_chief_morph",
+        "databaseHash": "c8af7c9bfc3c99e7221b1a94a5541dbccb5bf9568a560e82303ad7f3ace25a05",
+        "expectedLfHash": "c8af7c9bfc3c99e7221b1a94a5541dbccb5bf9568a560e82303ad7f3ace25a05",
+        "representation": "LF"
+      },
+      {
+        "tag": "0009_tricky_meggan",
+        "databaseHash": "27f979b2d9f00406f3c6f1e506aeaf15ae916705d9c8606f27579c46626443f0",
+        "expectedLfHash": "27f979b2d9f00406f3c6f1e506aeaf15ae916705d9c8606f27579c46626443f0",
+        "representation": "LF"
+      },
+      {
+        "tag": "0010_gamification-rewards",
+        "databaseHash": "55e7d4f7baa1c5c86a83f360e8eb8097638817ba05f02f93285912e13336f804",
+        "expectedLfHash": "55e7d4f7baa1c5c86a83f360e8eb8097638817ba05f02f93285912e13336f804",
+        "representation": "LF"
+      },
+      {
+        "tag": "0011_exercise-correct-xp",
+        "databaseHash": "6783f4b66e34f112fb33a3251366755f9069f4fd5829ea508e0c26996319b4dc",
+        "expectedLfHash": "6783f4b66e34f112fb33a3251366755f9069f4fd5829ea508e0c26996319b4dc",
+        "representation": "LF"
+      },
+      {
+        "tag": "0012_us41_owner_content_overrides",
+        "databaseHash": "2c5925738743dcf057955c937f2c8838121088fca2411092851132264c70d8b7",
+        "expectedLfHash": "2c5925738743dcf057955c937f2c8838121088fca2411092851132264c70d8b7",
+        "representation": "LF"
+      },
+      {
+        "tag": "0013_runtime-vocabulary-sequence-privilege",
+        "databaseHash": "f378a186c06f8f225bc25898064e5e40ebe8f4fab92262fee37f9374b3e0c8fd",
+        "expectedLfHash": "f378a186c06f8f225bc25898064e5e40ebe8f4fab92262fee37f9374b3e0c8fd",
+        "representation": "LF"
+      },
+      {
+        "tag": "0014_vietnamese_catalog_metadata",
+        "databaseHash": "40699f1088f69cd07e4a9fb38629b1792789c2c1ab764c4271f328c8ef871c8c",
+        "expectedLfHash": "40699f1088f69cd07e4a9fb38629b1792789c2c1ab764c4271f328c8ef871c8c",
+        "representation": "LF"
+      },
+      {
+        "tag": "0015_clean_yellowjacket",
+        "databaseHash": "f29a8d6e6d659bd64db5ad79450f99fee1f63c9748e66445570620bdf4ca5640",
+        "expectedLfHash": "f29a8d6e6d659bd64db5ad79450f99fee1f63c9748e66445570620bdf4ca5640",
+        "representation": "LF"
+      },
+      {
+        "tag": "0016_nostalgic_mattie_franklin",
+        "databaseHash": "fde7d92ee9baa200d50584379be6826da05e5ebf2adf07f332a62be7864cc820",
+        "expectedLfHash": "fde7d92ee9baa200d50584379be6826da05e5ebf2adf07f332a62be7864cc820",
+        "representation": "LF"
+      },
+      {
+        "tag": "0017_nosy_hellfire_club",
+        "databaseHash": "e6f74f0f93a300f6ca7252dca86549034fa74486359296349e807a6d3a43875d",
+        "expectedLfHash": "e6f74f0f93a300f6ca7252dca86549034fa74486359296349e807a6d3a43875d",
+        "representation": "LF"
+      },
+      {
+        "tag": "0018_panoramic_spirit",
+        "databaseHash": "eec77c49abbad9a2ea0a69fead9409e0b817978fd3ff3df95b09a55575b114ed",
+        "expectedLfHash": "75564ed643ec886c89f733d0cd554afb1617ee561c5fe9b0b67fcb618a0c7c71",
+        "representation": "CRLF"
+      }
+    ],
+    "appliedMigrationsForFingerprint": [
+      {
+        "tag": "0000_application-schema",
+        "hash": "6cc85e79be79afa23b69d7cfbdf9a440b0d7d0ade9c3152492c67cb7a48512d1"
+      },
+      {
+        "tag": "0001_curious_miss_america",
+        "hash": "118c170f0bd351a55e5313d59d3fa819498e4e607bc746aedb87932a7ddd10d3"
+      },
+      {
+        "tag": "0002_smiling_wrecking_crew",
+        "hash": "dfd62f6c75b70ab9afa1a20117b766cbd05e6db742747b9d8e010408efb392e2"
+      },
+      {
+        "tag": "0003_lazy_lady_deathstrike",
+        "hash": "8ea4b7b4d662ba942c662f9d4c2d5992d3ea6ffd3e2d502cc178a68a923f31c0"
+      },
+      {
+        "tag": "0004_scheduled_review_write",
+        "hash": "19d3787f9af28805503db11a2f34d66d8bbbdcd16ca9b8a0edb2dd90fb2f9657"
+      },
+      {
+        "tag": "0005_graceful_eddie_brock",
+        "hash": "028ffe026bd7addfa2cedfe927c95cf669324f6da19e1a1215eb12ffb7aa2f10"
+      },
+      {
+        "tag": "0006_sticky_risque",
+        "hash": "0035f537b27b0732390b60bf057ffab29b4a4eb3012b8ba0625286740f8e2803"
+      },
+      {
+        "tag": "0007_modern_mysterio",
+        "hash": "557f83cb0058389fe969ed336de58f9e4b36b1691c1f4ee6f46b3d75c88d8699"
+      },
+      {
+        "tag": "0008_chief_morph",
+        "hash": "c8af7c9bfc3c99e7221b1a94a5541dbccb5bf9568a560e82303ad7f3ace25a05"
+      },
+      {
+        "tag": "0009_tricky_meggan",
+        "hash": "27f979b2d9f00406f3c6f1e506aeaf15ae916705d9c8606f27579c46626443f0"
+      },
+      {
+        "tag": "0010_gamification-rewards",
+        "hash": "55e7d4f7baa1c5c86a83f360e8eb8097638817ba05f02f93285912e13336f804"
+      },
+      {
+        "tag": "0011_exercise-correct-xp",
+        "hash": "6783f4b66e34f112fb33a3251366755f9069f4fd5829ea508e0c26996319b4dc"
+      },
+      {
+        "tag": "0012_us41_owner_content_overrides",
+        "hash": "2c5925738743dcf057955c937f2c8838121088fca2411092851132264c70d8b7"
+      },
+      {
+        "tag": "0013_runtime-vocabulary-sequence-privilege",
+        "hash": "f378a186c06f8f225bc25898064e5e40ebe8f4fab92262fee37f9374b3e0c8fd"
+      },
+      {
+        "tag": "0014_vietnamese_catalog_metadata",
+        "hash": "40699f1088f69cd07e4a9fb38629b1792789c2c1ab764c4271f328c8ef871c8c"
+      },
+      {
+        "tag": "0015_clean_yellowjacket",
+        "hash": "f29a8d6e6d659bd64db5ad79450f99fee1f63c9748e66445570620bdf4ca5640"
+      },
+      {
+        "tag": "0016_nostalgic_mattie_franklin",
+        "hash": "fde7d92ee9baa200d50584379be6826da05e5ebf2adf07f332a62be7864cc820"
+      },
+      {
+        "tag": "0017_nosy_hellfire_club",
+        "hash": "e6f74f0f93a300f6ca7252dca86549034fa74486359296349e807a6d3a43875d"
+      },
+      {
+        "tag": "0018_panoramic_spirit",
+        "hash": "eec77c49abbad9a2ea0a69fead9409e0b817978fd3ff3df95b09a55575b114ed"
+      }
+    ]
+  },
+  "bridgeSchema": {
+    "tables": [
+      "master_learning_set_mappings",
+      "master_learning_set_memberships",
+      "master_topic_mappings",
+      "master_vocabulary_import_runs",
+      "master_vocabulary_mappings",
+      "master_vocabulary_topic_memberships"
+    ],
+    "missingTables": [],
+    "missingColumns": [],
+    "presentConstraints": [
+      "master_learning_set_memberships_runtime_link_fk",
+      "master_learning_set_memberships_sense_vocabulary_fk",
+      "master_learning_set_memberships_set_runtime_fk",
+      "master_vocabulary_mappings_identity_pair_unique",
+      "master_vocabulary_topic_memberships_runtime_link_fk",
+      "master_vocabulary_topic_memberships_sense_vocabulary_fk",
+      "master_vocabulary_topic_memberships_topic_runtime_fk"
+    ],
+    "missingConstraints": [],
+    "presentWriteGuardTriggers": [
+      "learning_set_items_master_managed_write_guard",
+      "learning_sets_master_managed_write_guard",
+      "master_learning_set_mappings_identity_guard",
+      "master_learning_set_mappings_write_guard",
+      "master_learning_set_memberships_identity_guard",
+      "master_learning_set_memberships_write_guard",
+      "master_topic_mappings_identity_guard",
+      "master_topic_mappings_write_guard",
+      "master_vocabulary_import_runs_immutable_guard",
+      "master_vocabulary_import_runs_write_guard",
+      "master_vocabulary_mappings_identity_guard",
+      "master_vocabulary_mappings_write_guard",
+      "master_vocabulary_topic_memberships_identity_guard",
+      "master_vocabulary_topic_memberships_write_guard",
+      "topics_master_managed_write_guard",
+      "vocabularies_master_managed_write_guard"
+    ],
+    "missingWriteGuardTriggers": [],
+    "ready": true
+  },
+  "migrationReady": true
+}

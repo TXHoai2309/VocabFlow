@@ -2,6 +2,25 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-06 — Phase 2G.1 Hybrid-100 Development reconciliation preflight
+
+- Added a read-only Development migration/bridge preflight for frozen release
+  2.2.0. The configured Neon target was verified; the current migration journal
+  is 19/19 with matching hashes, and required bridge schema/write guards are
+  ready.
+- Candidate discovery stopped at the RELEASE projection gate: 0/100 eligible
+  rows because nested Vietnamese Translation statuses are 98 DRAFT and 2
+  IN_REVIEW. PREVIEW's 100 rows are diagnostic only. No runtime vocabulary,
+  mapping, or learner aggregate scan was performed, and no candidate artifact
+  or owner decision was generated.
+- The release validator and frozen-source checks passed before and after the
+  migration-only `REPEATABLE READ, READ ONLY` transaction. No writes, migrations,
+  importer apply, runtime ID allocation, bridge mappings, or production
+  connection occurred. `PHASE_2G1_READY = NO` pending a separately approved
+  source revision that resolves translation eligibility.
+- Evidence: [preflight report](../vocabflow-dataset/reports/hybrid-100-development-runtime-reconciliation-2.2.0.md)
+  and [workspace artifacts](../vocabflow-dataset/workspaces/hybrid-100-runtime-reconciliation/).
+
 ## 2026-10-06 — Master Vocabulary V2 Phase 2F.7 approved release 2.2.0
 
 - Published and froze the first official Hybrid-100 release as `2.2.0 / APPROVED`:
@@ -14,9 +33,11 @@ This log records meaningful project milestones and accepted baselines.
 - The official releaseHash is frozen. RC 2.2.0-rc.1 and Canary 2.1.0 remain
   unchanged under the corrected Canary tree/content fingerprints. Source rights
   remain unverified; no source prose or media was reused.
-- No runtime reconciliation/import has begun; Neon/database, migrations,
-  development runtime, and production remain untouched. US-45 remains open for
-  the separate runtime-import phase.
+- At this release-freeze milestone, no runtime reconciliation/import had begun.
+  Phase 2G.1 later verified Development migration readiness in a read-only
+  migration-role transaction, then stopped before runtime scans because the
+  frozen release cannot produce an eligible RELEASE projection. Production
+  remains untouched. US-45 remains open.
 - Evidence: [release report](../vocabflow-dataset/reports/hybrid-100-approved-release-2.2.0.md)
   and [approval evidence](../vocabflow-dataset/releases/hybrid-100-v2.2.0/reports/release-approval-evidence.json).
 
