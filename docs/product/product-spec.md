@@ -1,5 +1,15 @@
 # Family MVP Specification v1.0
 
+## Loading / Empty / Error states extension (Feature #15 / US-52)
+
+Data-fetching screens show structure-matched loading skeletons inside their
+normal page shell, truthful empty guidance for successful zero-result reads,
+and safe recoverable errors for retryable failures. Retry repeats the failed
+read while preserving the current route, selected learner, query and filters.
+Resource-not-found and existing authentication/permission flows remain distinct
+from retryable errors. These states do not fabricate learning data or change
+product, scheduler, API, persistence or database semantics.
+
 ## Global Search extension (Feature #14 / US-51)
 
 Authenticated learners can search real Vocabulary, enabled Topics that contain
@@ -73,7 +83,7 @@ queue, write API and scheduler. Weakness is derived and is never persisted.
 - Version: v1.0
 - Source baseline: `VocabFlow_Family_MVP_Product_Specification_v1.0.docx`
 - Canonical format: Markdown
-- Last synchronized: 2026-10-05
+- Last synchronized: 2026-10-06
 
 **VOCABFLOW**
 

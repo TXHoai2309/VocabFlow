@@ -4,6 +4,7 @@ import { authClient } from "../auth/auth-client";
 import type { LearnerDto } from "@vocabflow/contracts";
 import { createLearner, LearnerClientError, requestLearners } from "./learner-client";
 import { useActiveLearner } from "./learner-context-hook";
+import { EmptyState, ErrorState, LoadingState } from "../../components/async-states";
 
 type ResolutionState =
   | "loading"
@@ -133,7 +134,7 @@ export function LearnerPage() {
   }
 
   if (sessionState.isPending) {
-    return <main className="learner-page"><p role="status">Đang kiểm tra phiên…</p></main>;
+    return <main className="learner-page" aria-busy="true"><LoadingState className="learner-session-loading" label="Đang kiểm tra phiên…" pattern="form" /></main>;
   }
   if (!sessionState.data?.user?.id) return <Navigate to="/login" replace />;
 
@@ -152,18 +153,15 @@ export function LearnerPage() {
         <p className="auth-copy">Chọn hồ sơ để tiếp tục đúng tiến trình của từng người học.</p>
 
         <div className="learner-status" aria-live="polite">
-          {state === "loading" ? <p role="status">Đang tải hồ sơ người học…</p> : null}
+          {state === "loading" ? <LoadingState className="learner-list-loading" label="Đang tải hồ sơ người học…" pattern="rows" /> : null}
           {state === "auto-resolving" ? <p role="status">Đang mở hồ sơ người học…</p> : null}
           {state === "reconciling" ? <p role="status">Đang đồng bộ danh sách người học…</p> : null}
-          {state === "error" ? <p role="alert">{message ?? SAFE_LIST_ERROR}</p> : null}
+          {state === "error" ? <ErrorState className="learner-list-error" title="Không thể tải hồ sơ người học" description={message ?? SAFE_LIST_ERROR} onRetry={() => void loadLearners()} retrying={isBusy} /> : null}
           {message && state !== "error" ? <p role="status">{message}</p> : null}
         </div>
 
         {state === "empty" ? (
-          <div className="learner-empty" data-testid="learner-empty-state">
-            <h2>Chưa có hồ sơ học</h2>
-            <p>Tạo hồ sơ đầu tiên để bắt đầu học.</p>
-          </div>
+          <EmptyState className="learner-empty" icon="learners" title="Chưa có hồ sơ học" description="Tạo hồ sơ đầu tiên bên dưới để bắt đầu học." testId="learner-empty-state" />
         ) : null}
 
         {state === "selector" ? (
@@ -213,11 +211,6 @@ export function LearnerPage() {
           </form>
         ) : null}
 
-        {state === "error" ? (
-          <button className="auth-retry" type="button" onClick={() => void loadLearners()} disabled={isBusy}>
-            Thử lại tải danh sách
-          </button>
-        ) : null}
 
         {state === "completed" && activeLearner ? (
           <div className="learner-ready" data-testid="learner-context-ready" role="status">

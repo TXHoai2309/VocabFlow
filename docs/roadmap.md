@@ -1,5 +1,14 @@
 # VocabFlow Roadmap and Batch Index
 
+## Feature #15 — Loading / Empty / Error States / US-52
+
+- Status: IMPLEMENTED / READY FOR OWNER CHECK.
+- Scope: reusable accessible UI states and data-loading, empty, error and retry
+  patterns across learner pages and Global Search, while preserving page shells.
+- Evidence: shape-matched skeletons, truthful empty guidance and safe retries;
+  no API, scheduler, migration, database or Dataset V2 changes.
+- Contract: [US-52 Async Data States](stories/US-52-async-data-states.md).
+
 ## Feature #14 — Global Search / US-51
 
 - Status: IMPLEMENTED / READY FOR OWNER CHECK.

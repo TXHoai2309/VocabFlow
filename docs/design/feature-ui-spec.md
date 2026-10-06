@@ -1,14 +1,34 @@
-# Family MVP Feature UI Specification v1.0.6
+# Family MVP Feature UI Specification v1.0.7
 
 - Status: CURRENT FEATURE UI SOURCE OF TRUTH
-- Version: v1.0.6
-- Source baseline: `VocabFlow_Family_MVP_Feature_UI_Specification_v1.0.1.docx`; this Markdown records the US-26/US-27 taxonomy browse, US-28/US-29 learning-set extension, US-30 daily New settings, US-31 through US-34 exercise mode, US-35/US-36 activity indicators, US-48 Progress Dashboard and US-50 simplified navigation.
+- Version: v1.0.7
+- Source baseline: `VocabFlow_Family_MVP_Feature_UI_Specification_v1.0.1.docx`; this Markdown records the US-26/US-27 taxonomy browse, US-28/US-29 learning-set extension, US-30 daily New settings, US-31 through US-34 exercise mode, US-35/US-36 activity indicators, US-48 Progress Dashboard, US-50 simplified navigation and US-52 asynchronous data states.
 - Canonical format: Markdown
 - Last synchronized: 2026-10-06
 
 **VOCABFLOW**
 
-**Family MVP Feature UI Specification v1.0.6**
+**Family MVP Feature UI Specification v1.0.7**
+
+## Loading / Empty / Error states (Feature #15 / US-52)
+
+Data-fetching pages keep their existing AppShell/navigation mounted and place a
+layout-matched skeleton in the page content; the Study focus shell may use its
+own lightweight skeleton. Loading containers expose `role="status"`,
+`aria-busy="true"`, a concise screen-reader label and hide decorative skeleton
+blocks from assistive technology. Skeletons fit the content shape (card grid,
+rows, dashboard, detail, form/setup, chart or grouped search), do not contain
+sample learner data and respect reduced-motion preferences.
+
+Successful empty results use an illustrative icon, specific title, short
+guidance and a real contextual action when one exists. Filter/search misses are
+distinct from a genuinely empty collection. Retryable failures use a safe
+error title and description plus “Thử lại”; retry repeats the relevant read
+without resetting learner, route, query or filters. Authentication,
+permission, and detail 404/not-found handling keep their existing recovery
+semantics and are not converted to generic empty or retry states. Mutations
+retain their existing inline pending/success/failure behavior. No state adds
+polling, artificial delay, fabricated counts or domain/API changes.
 
 ## Global Search (US-51)
 
@@ -668,6 +688,7 @@ state returned by the canonical API.
 | **FUI-19** | Learning-set catalog/detail renders deterministic ordered enabled content with explicit loading/error/empty states. |
 | **FUI-20** | Assignment toggles are learner-scoped, show save feedback, reject cross-household access safely and never imply progress/history deletion. |
 | **FUI-21** | Progress Dashboard metrics reuse canonical progress/streak and persisted review outcomes; selected 7/30-day activity, accuracy gaps, enabled-level coverage and active-set Topic coverage are truthful and accessible. |
+| **FUI-22** | Fetch states use layout-matched accessible skeletons, contextual empty guidance, safe retry for retryable failures, and preserve AppShell plus learner/query/filter context; 404/auth/permission and mutation states remain distinct. |
 
 ## 9.1 Deferred / not defined here
 
@@ -683,4 +704,4 @@ state returned by the canonical API.
 ## 9.2 Approval statement
 
 > APPROVED FOR UI IMPLEMENTATION
-> Feature UI Specification v1.0.5 là baseline cho Family MVP UI implementation. Backlog/UI code phải bám screen states, interaction contracts, session behavior và responsive rules trong tài liệu này. Product semantics thay đổi phải quay về Family MVP Product Specification; visual language thay đổi phải quay về Global Design System; backend contract thay đổi phải quay về Technical Architecture/contracts.
+> Feature UI Specification v1.0.7 là baseline cho Family MVP UI implementation. Backlog/UI code phải bám screen states, interaction contracts, session behavior và responsive rules trong tài liệu này. Product semantics thay đổi phải quay về Family MVP Product Specification; visual language thay đổi phải quay về Global Design System; backend contract thay đổi phải quay về Technical Architecture/contracts.

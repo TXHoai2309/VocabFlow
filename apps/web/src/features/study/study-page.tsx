@@ -16,6 +16,7 @@ import { ReviewClientError, submitReview } from "./review-client";
 import { Flashcard } from "./flashcard";
 import { ExerciseCard, type ExerciseAnswer } from "./exercise-card";
 import { SessionSummary } from "./session-summary";
+import { EmptyState, ErrorState, LoadingState } from "../../components/async-states";
 import { createStudySessionResult, type StudySessionResult, type StudySessionWrongItem } from "./study-session-result";
 import {
   createExercise,
@@ -563,32 +564,15 @@ function StudyExperience({ activeLearner, mode, exercisePreference, scope, selec
         <h1 className="sr-only" id="study-title">{studyTitle}</h1>
 
         {state === "error" ? (
-          <div className="study-state" data-testid="study-error-state" role="alert">
-            <h2>Không thể mở phiên học</h2>
-            <p>{message ?? SAFE_QUEUE_ERROR}</p>
-            {message === "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại." ? (
-              <Link className="auth-retry study-state-link" to="/login">Đăng nhập lại</Link>
-            ) : message === "Không thể tiếp tục với người học này. Vui lòng chọn lại." ? (
-              <Link className="auth-retry study-state-link" to="/learners">Chọn lại người học</Link>
-            ) : (
-              <button className="auth-retry" type="button" onClick={() => void loadQueue()}>Thử lại</button>
-            )}
-          </div>
+          <ErrorState className="study-state" title="Không thể mở phiên học" description={message ?? SAFE_QUEUE_ERROR} action={message === "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại." ? <Link className="auth-retry study-state-link" to="/login">Đăng nhập lại</Link> : message === "Không thể tiếp tục với người học này. Vui lòng chọn lại." ? <Link className="auth-retry study-state-link" to="/learners">Chọn lại người học</Link> : undefined} onRetry={message !== "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại." && message !== "Không thể tiếp tục với người học này. Vui lòng chọn lại." ? () => void loadQueue() : undefined} testId="study-error-state" />
         ) : null}
 
         {state === "empty" ? (
-          <div className="study-state" data-testid="study-empty-state" role="status">
-            <h2>Không có từ phù hợp cho buổi học này</h2>
-            <p>Thay đổi số từ, chế độ hoặc phạm vi học để bắt đầu.</p>
-            <Link className="register-submit study-state-link" to={returnTo}>Quay lại thiết lập</Link>
-          </div>
+          <EmptyState className="study-state" icon="book" title="Không có từ phù hợp cho buổi học này" description="Thay đổi số từ, chế độ hoặc phạm vi học để bắt đầu." action={<Link className="register-submit study-state-link" to={returnTo}>Quay lại thiết lập</Link>} testId="study-empty-state" />
         ) : null}
 
         {state === "loading" ? (
-          <div className="study-state study-loading-state" data-testid="study-loading" role="status" aria-busy="true">
-            <span className="study-loading-indicator" aria-hidden="true" />
-            <span>Đang chuẩn bị buổi học…</span>
-          </div>
+          <LoadingState className="study-state study-loading-state" label="Đang chuẩn bị buổi học…" pattern="study" testId="study-loading" />
         ) : null}
 
         {state === "summary" ? (

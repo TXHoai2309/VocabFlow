@@ -5,6 +5,7 @@ import {
   clearPersistedRecentSearches,
   readRecentSearches
 } from "./recent-searches";
+import { EmptyState, ErrorState, LoadingState } from "../../components/async-states";
 
 type SearchPhase = "EMPTY_QUERY" | "LOADING" | "READY" | "NO_RESULTS" | "ERROR";
 type SearchResult = GlobalSearchResponse["vocabulary"][number]
@@ -210,9 +211,9 @@ export function GlobalSearchPalette({
           </section>
         ) : null}
 
-        {currentPhase === "LOADING" ? <p className="global-search-state" role="status"><span className="global-search-spinner" aria-hidden="true" />Đang tìm kiếm…</p> : null}
-        {currentPhase === "NO_RESULTS" ? <p className="global-search-state" role="status">Không tìm thấy kết quả cho “{normalizedQuery}”. Thử từ khóa ngắn hơn.</p> : null}
-        {currentPhase === "ERROR" ? <div className="global-search-state" role="alert"><p>Không thể tìm kiếm lúc này. Vui lòng thử lại.</p><button type="button" onClick={() => setRetryCount((count) => count + 1)}>Thử lại</button></div> : null}
+        {currentPhase === "LOADING" ? <LoadingState className="global-search-async-state" label="Đang tìm kiếm…" pattern="search" /> : null}
+        {currentPhase === "NO_RESULTS" ? <EmptyState className="global-search-async-state" icon="search" title="Không tìm thấy kết quả" description="Thử từ khóa khác hoặc kiểm tra chính tả." /> : null}
+        {currentPhase === "ERROR" ? <ErrorState className="global-search-async-state" title="Không thể tải kết quả" description="Không thể tải kết quả tìm kiếm. Vui lòng thử lại." onRetry={() => setRetryCount((count) => count + 1)} /> : null}
 
         {currentPhase === "READY" ? (
           <div className="global-search-results" id={`${dialogId}-results`} role="listbox" aria-label={`Kết quả tìm kiếm: ${normalizedQuery}`}>

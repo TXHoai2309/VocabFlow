@@ -5,6 +5,7 @@ import { useActiveLearner } from "../learners/learner-context-hook";
 import { requestTopicVocabulary, requestTopics, TopicsClientError } from "../learners/topics-client";
 import type { LearnerDto, ReviewQueueResponse } from "@vocabflow/contracts";
 import { requestScopedReviewQueue, studyContentModeFromParams, studyScopeFromParams, type StudyContentMode, type StudyScope } from "./study-queue";
+import { EmptyState, ErrorState, LoadingState } from "../../components/async-states";
 
 const STUDY_AMOUNTS = [5, 10, 20, 30] as const;
 const MODE_COPY: Record<StudyContentMode, { title: string; description: string; empty: string; icon: "new" | "review" | "mixed" }> = {
@@ -132,11 +133,7 @@ function StudySetupExperience({ activeLearner, scope, preferredContent, returnTo
   if (state === "not-found") {
     return (
       <main className="study-setup-page" aria-label="Thiết lập buổi học">
-        <div className="study-setup-empty" role="status" data-testid="study-setup-scope-not-found">
-          <h1>Không tìm thấy nội dung học</h1>
-          <p>Nội dung này hiện không khả dụng.</p>
-          <Link className="study-setup-back-link" to={backHref}>Quay lại</Link>
-        </div>
+        <EmptyState className="study-setup-empty" icon="book" title="Không tìm thấy nội dung học" description="Nội dung này hiện không khả dụng." action={<Link className="study-setup-back-link" to={backHref}>Quay lại</Link>} testId="study-setup-scope-not-found" />
       </main>
     );
   }
@@ -144,11 +141,7 @@ function StudySetupExperience({ activeLearner, scope, preferredContent, returnTo
   if (state === "ready" && data && data.queue.queue.length === 0) {
     return (
       <main className="study-setup-page" aria-label="Thiết lập buổi học">
-        <div className="study-setup-empty" role="status" data-testid="study-setup-empty">
-          <h1>{scope?.type === "weak" ? "Không còn từ yếu cần ôn" : "Chưa có từ để học"}</h1>
-          <p>{scope?.type === "weak" ? "Danh sách từ yếu đã được cập nhật. Bạn có thể quay lại xem tiến trình." : "Nội dung này hiện chưa có từ phù hợp cho buổi học."}</p>
-          <Link className="study-setup-back-link" to={backHref}>Quay lại</Link>
-        </div>
+        <EmptyState className="study-setup-empty" icon="book" title={scope?.type === "weak" ? "Không còn từ yếu cần ôn" : "Chưa có từ để học"} description={scope?.type === "weak" ? "Danh sách từ yếu đã được cập nhật. Bạn có thể quay lại xem tiến trình." : "Nội dung này hiện chưa có từ phù hợp cho buổi học."} action={<Link className="study-setup-back-link" to={backHref}>Quay lại</Link>} testId="study-setup-empty" />
       </main>
     );
   }
@@ -156,7 +149,7 @@ function StudySetupExperience({ activeLearner, scope, preferredContent, returnTo
   if (state === "loading") {
     return (
       <main className="study-setup-page" aria-label="Thiết lập buổi học" aria-busy="true">
-        <div className="study-setup-status" role="status" data-testid="study-setup-loading">Đang tải danh sách học…</div>
+        <LoadingState label="Đang tải thiết lập buổi học…" pattern="study-setup" testId="study-setup-loading" />
       </main>
     );
   }
@@ -164,10 +157,7 @@ function StudySetupExperience({ activeLearner, scope, preferredContent, returnTo
   if (state === "error") {
     return (
       <main className="study-setup-page" aria-label="Thiết lập buổi học">
-        <div className="study-setup-empty" role="alert" data-testid="study-setup-error">
-          <p>{message}</p>
-          <button className="study-setup-secondary-button" type="button" onClick={() => { setState("loading"); setData(null); setMessage(null); setRetry((value) => value + 1); }}>Thử lại</button>
-        </div>
+        <ErrorState className="study-setup-empty" title="Không thể tải nội dung học" description={message ?? "Vui lòng thử lại."} onRetry={() => { setState("loading"); setData(null); setMessage(null); setRetry((value) => value + 1); }} testId="study-setup-error" />
       </main>
     );
   }
@@ -175,7 +165,7 @@ function StudySetupExperience({ activeLearner, scope, preferredContent, returnTo
   if (!data) {
     return (
       <main className="study-setup-page" aria-label="Thiết lập buổi học" aria-busy="true">
-        <div className="study-setup-status" role="status" data-testid="study-setup-loading">Đang tải danh sách học…</div>
+        <LoadingState label="Đang tải thiết lập buổi học…" pattern="study-setup" testId="study-setup-loading" />
       </main>
     );
   }

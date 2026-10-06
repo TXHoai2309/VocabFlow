@@ -69,6 +69,20 @@ describe("US-30 learner settings UI", () => {
     await waitFor(() => expect(screen.getByRole("status")).toHaveTextContent("Đã lưu cài đặt học của An."));
   });
 
+  it("retries a failed settings load using the same learner", async () => {
+    requestLearnerSettings
+      .mockRejectedValueOnce(new Error("offline"))
+      .mockResolvedValueOnce({ learnerId: learner.id, dailyNewWordLimit: 10, dailyNewWordGoal: 10, dailyReviewWordGoal: 20 });
+    renderPage();
+
+    expect(await screen.findByTestId("learner-settings-error")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Thử lại" }));
+
+    expect(await screen.findByLabelText("Từ mới mỗi ngày")).toHaveValue(10);
+    expect(requestLearnerSettings).toHaveBeenNthCalledWith(1, learner.id);
+    expect(requestLearnerSettings).toHaveBeenNthCalledWith(2, learner.id);
+  });
+
   it("rejects invalid values before the API call and renders API errors", async () => {
     requestLearnerSettings.mockResolvedValue({ learnerId: learner.id, dailyNewWordLimit: 10, dailyNewWordGoal: 10, dailyReviewWordGoal: 20 });
     updateLearnerSettings.mockRejectedValue(new LearnerSettingsClientError("INTERNAL_ERROR", 503));

@@ -271,8 +271,8 @@ describe("Home dashboard", () => {
     expect(screen.getByRole("link", { name: "Đổi người học. Người học hiện tại: Avery Nguyen, Cấp độ 3" })).toBeInTheDocument();
 
     expect(screen.getByRole("status", { name: "Đang tải danh sách học hiện tại" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Cần ôn tập: …" })).toHaveAttribute("href", "/weak-words");
-    expect(screen.getByRole("link", { name: "Từ mới: …" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Cần ôn tập" })).toHaveAttribute("href", "/weak-words");
+    expect(screen.getByRole("link", { name: "Từ mới" })).toBeInTheDocument();
     expect(requestReviewQueue).toHaveBeenCalledOnce();
     expect(requestProgressSummary).toHaveBeenCalledOnce();
     expect(requestActivitySummary).toHaveBeenCalledOnce();
@@ -419,7 +419,7 @@ describe("Home dashboard", () => {
     requestReviewQueue.mockRejectedValueOnce(new Error("fixture failure")).mockResolvedValueOnce(queue);
     renderHome();
 
-    expect(await screen.findByRole("alert")).toHaveTextContent("Không thể tải một số thông tin trên trang chủ.");
+    expect(await screen.findByRole("heading", { name: "Không thể tải một số thông tin trên trang chủ" })).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "Thử lại" }));
     expect(await screen.findByRole("link", { name: "Cần ôn tập: 3" })).toHaveAttribute("href", "/weak-words");
     await waitFor(() => expect(requestReviewQueue).toHaveBeenCalledTimes(2));

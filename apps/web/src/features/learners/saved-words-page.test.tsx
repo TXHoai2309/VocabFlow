@@ -93,10 +93,24 @@ describe("Saved Words page", () => {
     vi.spyOn(globalThis, "fetch").mockResolvedValue(savedResponse([]));
     renderSaved();
 
-    expect(await screen.findByRole("heading", { name: "Chưa có từ nào được lưu" })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: "Chưa có từ yêu thích" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Khám phá từ vựng" })).toHaveAttribute("href", "/vocabulary");
     expect(screen.queryByTestId("saved-words-search")).not.toBeInTheDocument();
     expect(screen.queryByRole("link", { name: /Học tất cả từ đã lưu/ })).not.toBeInTheDocument();
+  });
+
+  it("retries a failed saved vocabulary request without losing the current route", async () => {
+    const fetchMock = vi.spyOn(globalThis, "fetch")
+      .mockRejectedValueOnce(new Error("offline"))
+      .mockResolvedValueOnce(savedResponse([entry(1, "apple")]));
+    renderSaved();
+
+    expect(await screen.findByRole("heading", { name: "Không thể tải từ đã lưu" })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Thử lại" }));
+
+    expect(await screen.findByTestId("vocabulary-row-1")).toHaveTextContent("apple");
+    expect(screen.getByTestId("location")).toHaveTextContent("/saved");
+    expect(fetchMock).toHaveBeenCalledTimes(2);
   });
 
   it("renders real saved rows, saved count, audio control and scoped Study Setup CTA", async () => {
@@ -206,7 +220,7 @@ describe("Saved Words page", () => {
     const row = await screen.findByTestId("vocabulary-row-1");
     fireEvent.click(within(row).getByRole("button", { name: "Bỏ lưu từ apple" }));
 
-    expect(await screen.findByRole("heading", { name: "Chưa có từ nào được lưu" })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: "Chưa có từ yêu thích" })).toBeInTheDocument();
     expect(screen.queryByRole("link", { name: /Học tất cả từ đã lưu/ })).not.toBeInTheDocument();
     expect(fetchMock.mock.calls.some(([url, init]) => String(url).endsWith("/saved-vocabulary/1") && init?.method === "DELETE")).toBe(true);
     expect(fetchMock.mock.calls.filter(([url]) => String(url).endsWith("/saved-vocabulary") && !String(url).includes("/1"))).toHaveLength(1);

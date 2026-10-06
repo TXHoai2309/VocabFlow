@@ -132,6 +132,21 @@ describe("US-28/29 learning set UI", () => {
     expect(fetchMock).toHaveBeenCalledWith("/api/learning-sets", { credentials: "include" });
   });
 
+  it("retries a failed Learning Set catalog request", async () => {
+    const fetchMock = vi.spyOn(globalThis, "fetch")
+      .mockRejectedValueOnce(new Error("offline"))
+      .mockResolvedValueOnce(response({ learningSets: [learningSet] }));
+    render(<MemoryRouter initialEntries={["/learning-sets"]}><Routes><Route path="/learning-sets" element={<LearningSetsPage />} /></Routes></MemoryRouter>);
+
+    expect(await screen.findByTestId("learning-sets-error")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Thử lại" }));
+
+    expect(await screen.findByTestId("learning-sets-list")).toHaveTextContent(learningSet.name);
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(fetchMock).toHaveBeenNthCalledWith(1, "/api/learning-sets", { credentials: "include" });
+    expect(fetchMock).toHaveBeenNthCalledWith(2, "/api/learning-sets", { credentials: "include" });
+  });
+
   it("renders ordered vocabulary and real partial progress", async () => {
     const items = [vocabulary(1, "apple"), vocabulary(2, "bread")];
     const fetchMock = mockDetail(items, [learnerVocabulary(items[0]!, "MASTERED"), learnerVocabulary(items[1]!, "NEW"), learnerVocabulary(vocabulary(99, "water"), "NEW")]);
@@ -236,5 +251,26 @@ describe("US-28/29 learning set UI", () => {
     expect(await screen.findByRole("button", { name: "Đã gán" })).toBeInTheDocument();
     await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(2));
     expect(fetchMock).toHaveBeenNthCalledWith(2, `/api/learners/${learner.id}/learning-sets/1`, { method: "PUT", credentials: "include" });
+  });
+
+  it("retries a failed learner Learning Set assignment list request", async () => {
+    const fetchMock = vi.spyOn(globalThis, "fetch")
+      .mockRejectedValueOnce(new Error("offline"))
+      .mockResolvedValueOnce(response({ learningSets: [{ learningSet, active: false }] }));
+    render(
+      <ActiveLearnerProvider initialLearner={learner}>
+        <MemoryRouter initialEntries={["/learning-sets/assign"]}>
+          <Routes><Route path="/learning-sets/assign" element={<LearnerLearningSetsPage />} /></Routes>
+        </MemoryRouter>
+      </ActiveLearnerProvider>
+    );
+
+    expect(await screen.findByTestId("learner-learning-sets-error")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Thử lại" }));
+
+    expect(await screen.findByTestId("learner-learning-sets-list")).toBeInTheDocument();
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(fetchMock).toHaveBeenNthCalledWith(1, `/api/learners/${learner.id}/learning-sets`, { credentials: "include" });
+    expect(fetchMock).toHaveBeenNthCalledWith(2, `/api/learners/${learner.id}/learning-sets`, { credentials: "include" });
   });
 });

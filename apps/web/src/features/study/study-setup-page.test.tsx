@@ -367,6 +367,21 @@ describe("Study Setup", () => {
     expect(screen.getByRole("link", { name: "Quay lại" })).toHaveAttribute("href", "/learners");
   });
 
+  it("retries the canonical queue request after a setup load error", async () => {
+    const fetchMock = vi.spyOn(globalThis, "fetch")
+      .mockRejectedValueOnce(new Error("offline"))
+      .mockResolvedValueOnce(response(queueResponse([item(1)])));
+    renderSetup();
+
+    expect(await screen.findByTestId("study-setup-error")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Thử lại" }));
+
+    expect(await screen.findByTestId("study-setup-page")).toBeInTheDocument();
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(fetchMock).toHaveBeenNthCalledWith(1, `/api/learners/${learner.id}/review-queue`, { credentials: "include" });
+    expect(fetchMock).toHaveBeenNthCalledWith(2, `/api/learners/${learner.id}/review-queue`, { credentials: "include" });
+  });
+
   it("preserves setup path and query when redirecting a learner without an active profile", async () => {
     const fetchMock = vi.spyOn(globalThis, "fetch");
     renderSetup("/study/setup?topicId=7&continue=1", null);

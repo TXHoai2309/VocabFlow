@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router";
 import type { VocabularyLevel } from "@vocabflow/contracts";
 import { VocabularyCard, type VocabularyCardItem } from "./vocabulary-card";
+import { EmptyState } from "../../components/async-states";
 
 export type CollectionKind = "topic" | "learning-set";
 
@@ -130,15 +131,9 @@ export function CollectionDetailView({
             </div>
 
             {items.length === 0 ? (
-              <div className="collection-detail-empty" data-testid="collection-detail-empty" role="status">
-                <h3>Chưa có từ vựng trong nội dung này.</h3>
-                <p>Nội dung sẽ xuất hiện tại đây khi có từ đang bật.</p>
-              </div>
+              <EmptyState className="collection-detail-empty" icon="book" title="Chưa có từ vựng trong nội dung này." description="Nội dung sẽ xuất hiện tại đây khi có từ đang bật." testId="collection-detail-empty" />
             ) : matchingItems.length === 0 ? (
-              <div className="collection-detail-empty" data-testid="collection-detail-no-results" role="status">
-                <h3>Không tìm thấy từ phù hợp</h3>
-                <p>Thử từ khóa tiếng Anh hoặc nghĩa tiếng Việt khác.</p>
-              </div>
+              <EmptyState className="collection-detail-empty" icon="search" title="Không tìm thấy từ phù hợp" description="Thử từ khóa tiếng Anh hoặc nghĩa tiếng Việt khác." action={<button type="button" className="button secondary" onClick={() => setQuery("")}>Xóa tìm kiếm</button>} testId="collection-detail-no-results" />
             ) : (
               <ul className="vocabulary-grid" data-testid="collection-vocabulary-list">
                 {matchingItems.map((item) => <VocabularyCard key={item.id} item={item} showStatus />)}

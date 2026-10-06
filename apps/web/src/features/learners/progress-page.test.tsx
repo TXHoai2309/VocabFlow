@@ -308,6 +308,37 @@ describe("Feature #11 learner progress dashboard", () => {
     expect(fetchMock).toHaveBeenCalledTimes(4);
   });
 
+  it("retries a failed Topic progress read without reloading dashboard summary", async () => {
+    const fetchMock = mockDashboardFetch();
+    requestTopicProgress
+      .mockRejectedValueOnce(new Error("offline"))
+      .mockResolvedValueOnce(topicProgress(learnerA.id));
+    renderProgress();
+
+    expect(await screen.findByRole("heading", { name: "Không thể tải tiến độ chủ đề" })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Thử lại" }));
+
+    await waitFor(() => expect(requestTopicProgress).toHaveBeenCalledTimes(2));
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(screen.getByTestId("topic-progress-list")).toBeInTheDocument();
+  });
+
+  it("retries only the selected-period history read after chart failure", async () => {
+    const fetchMock = mockDashboardFetch();
+    requestProgressHistory
+      .mockRejectedValueOnce(new Error("offline"))
+      .mockResolvedValueOnce(history(learnerA.id));
+    renderProgress();
+
+    expect(await screen.findByRole("heading", { name: "Không thể tải hoạt động" })).toBeInTheDocument();
+    fireEvent.click(screen.getAllByRole("button", { name: "Thử lại" })[0]!);
+
+    await waitFor(() => expect(requestProgressHistory).toHaveBeenCalledTimes(2));
+    expect(requestProgressHistory).toHaveBeenLastCalledWith(learnerA.id, "2026-09-14", "2026-09-20");
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(await screen.findByTestId("activity-chart")).toBeInTheDocument();
+  });
+
   it("refreshes on learner changes without retaining the previous learner's data", async () => {
     const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation((input) => {
       const url = String(input);

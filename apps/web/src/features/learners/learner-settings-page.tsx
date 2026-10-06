@@ -8,6 +8,7 @@ import {
   type LearnerDto
 } from "@vocabflow/contracts";
 import { useActiveLearner } from "./learner-context-hook";
+import { ErrorState, LoadingState } from "../../components/async-states";
 import {
   LearnerSettingsClientError,
   requestLearnerSettings,
@@ -51,6 +52,7 @@ function LearnerSettingsExperience({ activeLearner }: { activeLearner: LearnerDt
   });
   const [success, setSuccess] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
+  const [retryCount, setRetryCount] = useState(0);
 
   useEffect(() => {
     let cancelled = false;
@@ -68,7 +70,13 @@ function LearnerSettingsExperience({ activeLearner }: { activeLearner: LearnerDt
         setMessage(errorMessage(error));
       });
     return () => { cancelled = true; };
-  }, [activeLearner.id]);
+  }, [activeLearner.id, retryCount]);
+
+  function retrySettings() {
+    setState("loading");
+    setMessage(null);
+    setRetryCount((value) => value + 1);
+  }
 
   async function handleSave(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -114,12 +122,9 @@ function LearnerSettingsExperience({ activeLearner }: { activeLearner: LearnerDt
         <h1 className="auth-title" id="learner-settings-title">Cài đặt học của {activeLearner.displayName}</h1>
         <p className="auth-copy">Mục tiêu là kế hoạch học trong ngày. Giới hạn từ mới chỉ kiểm soát số từ mới scheduler được giới thiệu; không giới hạn số từ ôn đến hạn.</p>
 
-        {state === "loading" ? <div className="progress-state" data-testid="learner-settings-loading" role="status">Đang tải cài đặt…</div> : null}
+        {state === "loading" ? <LoadingState className="progress-state" label="Đang tải cài đặt học…" pattern="form" testId="learner-settings-loading" /> : null}
         {state === "error" ? (
-          <div className="progress-state progress-error" data-testid="learner-settings-error" role="alert">
-            <p>{message}</p>
-            <button className="auth-retry" type="button" onClick={() => window.location.reload()}>Thử lại</button>
-          </div>
+          <ErrorState className="progress-state progress-error" title="Không thể tải cài đặt học" description={message ?? "Vui lòng thử lại."} onRetry={retrySettings} testId="learner-settings-error" />
         ) : null}
         {success ? <p className="progress-success" role="status">{success}</p> : null}
 

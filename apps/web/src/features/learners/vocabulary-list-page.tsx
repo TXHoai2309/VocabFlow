@@ -4,6 +4,7 @@ import type { LearnerDto, LearnerVocabularyDto, VocabularyLevel } from "@vocabfl
 import { useActiveLearner } from "./learner-context-hook";
 import { LearnerVocabularyClientError, requestLearnerVocabulary } from "./vocabulary-list-client";
 import { VocabularyCard } from "./vocabulary-card";
+import { EmptyState, ErrorState, LoadingState } from "../../components/async-states";
 import { requestSavedVocabulary, saveVocabulary, unsaveVocabulary } from "./saved-vocabulary-client";
 
 type VocabularyListState = "loading" | "ready" | "error";
@@ -275,14 +276,11 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
       </section>
 
       {state === "loading" ? (
-        <div className="vocabulary-list-state" data-testid="vocabulary-loading" role="status">Đang tải từ vựng…</div>
+        <LoadingState className="vocabulary-list-state" label="Đang tải từ vựng…" pattern="cards" testId="vocabulary-loading" />
       ) : null}
 
       {state === "error" ? (
-        <div className="vocabulary-list-state vocabulary-list-error" data-testid="vocabulary-error" role="alert">
-          <p>{message}</p>
-          <button className="auth-retry" type="button" onClick={() => void loadVocabulary()}>Thử lại</button>
-        </div>
+        <ErrorState className="vocabulary-list-state vocabulary-list-error" title="Không thể tải danh sách từ vựng" description={message ?? "Vui lòng thử lại."} onRetry={() => void loadVocabulary()} testId="vocabulary-error" />
       ) : null}
 
       {savedVocabularyState === "error" ? (
@@ -295,18 +293,9 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
 
       {state === "ready" ? (
         vocabulary.length === 0 ? (
-          <div className="vocabulary-empty" data-testid="vocabulary-empty-state" role="status">
-            <h2>Chưa có từ vựng</h2>
-            <p>Danh sách từ vựng hiện đang trống.</p>
-          </div>
+          <EmptyState className="vocabulary-empty" icon="book" title="Chưa có từ vựng" description="Danh sách từ vựng hiện đang trống." testId="vocabulary-empty-state" />
         ) : filteredVocabulary.length === 0 ? (
-          <div className="vocabulary-empty" data-testid="vocabulary-no-results" role="status">
-            <h2>Không tìm thấy từ phù hợp</h2>
-            <p>Thử từ khóa khác hoặc thay đổi bộ lọc.</p>
-            <button className="vocabulary-empty-clear" type="button" data-testid="vocabulary-empty-clear" onClick={normalizedQuery ? clearQuery : clearLevel}>
-              {normalizedQuery ? "Xóa tìm kiếm" : "Xóa bộ lọc"}
-            </button>
-          </div>
+          <EmptyState className="vocabulary-empty" icon="search" title="Không tìm thấy từ vựng" description="Thử từ khóa khác hoặc thay đổi bộ lọc." testId="vocabulary-no-results" action={<button className="vocabulary-empty-clear" type="button" data-testid="vocabulary-empty-clear" onClick={normalizedQuery ? clearQuery : clearLevel}>{normalizedQuery ? "Xóa tìm kiếm" : "Xóa bộ lọc"}</button>} />
         ) : (
           <>
             <div className="vocabulary-results-row">

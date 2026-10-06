@@ -10,6 +10,7 @@ import type {
   ReviewQueueResponse,
   VocabularyLevel
 } from "@vocabflow/contracts";
+import { ErrorState, LoadingState, type LoadingPattern } from "../../components/async-states";
 
 export type HomeResource<T> =
   | { status: "loading" }
@@ -58,24 +59,11 @@ export function HomeDashboardHeader({
 }
 
 export function HomeSessionLoading() {
-  return (
-    <main className="home-session-state" aria-busy="true">
-      <div className="home-session-skeleton" role="status"><span className="home-skeleton home-skeleton-title" /><span className="home-skeleton home-skeleton-line" />Đang tải trang học tập…</div>
-      <div className="home-session-skeleton-cards" aria-hidden="true">{Array.from({ length: 4 }, (_, index) => <span className="home-skeleton" key={index} />)}</div>
-    </main>
-  );
+  return <main className="home-session-state"><LoadingState className="home-session-skeleton" label="Đang tải trang học tập…" pattern="dashboard" /></main>;
 }
 
 export function HomeSessionError({ onRetry }: { onRetry: () => void }) {
-  return (
-    <main className="home-session-state">
-      <section className="home-session-error" role="alert">
-        <h1>Không thể kiểm tra phiên đăng nhập.</h1>
-        <p>Vui lòng thử lại. Dữ liệu học tập của bạn chưa bị thay đổi.</p>
-        <button className="home-button home-button-primary" type="button" onClick={onRetry}>Thử lại</button>
-      </section>
-    </main>
-  );
+  return <main className="home-session-state"><ErrorState className="home-session-error" title="Không thể kiểm tra phiên đăng nhập" description="Vui lòng thử lại. Dữ liệu học tập của bạn chưa bị thay đổi." onRetry={onRetry} /></main>;
 }
 
 function StudyIllustration() {
@@ -108,8 +96,8 @@ function StudyIllustration() {
   );
 }
 
-function SectionLoading({ label }: { label: string }) {
-  return <div className="home-section-loading" role="status" aria-label={label}><span className="home-skeleton home-skeleton-line" /><span className="home-skeleton home-skeleton-line short" /></div>;
+function SectionLoading({ label, pattern = "card" }: { label: string; pattern?: LoadingPattern }) {
+  return <LoadingState className="home-section-loading" label={label} pattern={pattern} />;
 }
 
 function gradeLabel(grade: VocabularyLevel | null) {
@@ -133,7 +121,7 @@ export function DailyStudyHero({
       <div className="home-hero-copy">
         <p className="home-eyebrow">VocabFlow</p>
         <h2 id="home-hero-title">Sẵn sàng học chưa?</h2>
-        {queue.status === "loading" ? <p>Đang kiểm tra danh sách học hôm nay…</p> : null}
+        {queue.status === "loading" ? <LoadingState className="home-hero-loading" label="Đang kiểm tra danh sách học hôm nay…" pattern="hero" /> : null}
         {queue.status === "error" ? <p>Không thể tải danh sách học hôm nay. Nhấn Thử lại bên dưới để kiểm tra lại.</p> : null}
         {queue.status === "ready" && hasQueue ? <p>Hôm nay bạn có {dueCount} từ cần ôn tập và {newCount} từ mới. Hãy duy trì chuỗi ngày học nhé!</p> : null}
         {queue.status === "ready" && !hasQueue ? <p>Hôm nay bạn đã hoàn thành danh sách học. Hãy quay lại khi có thêm từ mới nhé.</p> : null}
@@ -165,7 +153,7 @@ export function DailyGoalCard({
       <div className="home-card-heading">
         <h2 id="home-daily-goal-title">Mục tiêu hôm nay</h2>
       </div>
-      {activity.status === "loading" ? <SectionLoading label="Đang tải mục tiêu hôm nay" /> : null}
+      {activity.status === "loading" ? <SectionLoading label="Đang tải mục tiêu hôm nay" pattern="goal" /> : null}
       {activity.status === "error" ? (
         <div className="home-inline-state" role="status">
           <span>Chưa thể tải mục tiêu hôm nay.</span>
@@ -253,11 +241,11 @@ function StatCard({
   value: number | null;
   href: string;
 }) {
-  const displayed = resource.status === "loading" ? "…" : resource.status === "error" || value === null ? "—" : value;
+  const displayed = resource.status === "error" || value === null ? "—" : value;
   return (
-    <Link className="home-stat-card" to={href} aria-label={`${label}: ${displayed}`}>
+    <Link className="home-stat-card" to={href} aria-label={resource.status === "loading" ? label : `${label}: ${displayed}`}>
       <span className="home-stat-icon" aria-hidden="true">{icon}</span>
-      <span className="home-stat-copy"><strong>{displayed}</strong><span>{label}</span></span>
+      <span className="home-stat-copy">{resource.status === "loading" ? <LoadingState className="home-stat-loading" label={`Đang tải ${label.toLocaleLowerCase("vi-VN")}`} pattern="metric" /> : <strong>{displayed}</strong>}<span>{label}</span></span>
       <span className="home-stat-chevron" aria-hidden="true">›</span>
     </Link>
   );
@@ -313,7 +301,7 @@ export function ContinueLearningCard({
   return (
     <section className="home-card home-continue-card" aria-labelledby="home-continue-title">
       <div className="home-card-heading"><h2 id="home-continue-title">Tiếp tục học</h2></div>
-      {continuation.status === "loading" ? <SectionLoading label="Đang kiểm tra mục học tiếp" /> : null}
+      {continuation.status === "loading" ? <SectionLoading label="Đang kiểm tra mục học tiếp" pattern="rows" /> : null}
       {continuation.status === "error" ? <div className="home-inline-state" role="status"><span>Chưa thể kiểm tra bộ từ đang học dở. Hiển thị danh sách học hiện tại nếu có.</span> <button className="home-continue-retry" type="button" onClick={onRetry}>Thử lại</button></div> : null}
       {candidate ? (
         <div className="home-next-item home-continue-candidate">
@@ -341,7 +329,7 @@ export function ContinueLearningCard({
           <Link className="home-button home-button-primary" aria-label={`Tiếp tục học ${candidate.title}`} to={continueTarget(candidate)}>Tiếp tục học</Link>
         </div>
       ) : null}
-      {showFallback && queue.status === "loading" ? <SectionLoading label="Đang tải danh sách học hiện tại" /> : null}
+      {showFallback && queue.status === "loading" ? <SectionLoading label="Đang tải danh sách học hiện tại" pattern="rows" /> : null}
       {showFallback && queue.status === "error" ? <p className="home-inline-state" role="status">Chưa thể tải danh sách học hiện tại. Hãy thử lại.</p> : null}
       {showFallback && queue.status === "ready" && !next ? <div className="home-empty-state" role="status"><span aria-hidden="true">✨</span><p>Chưa có chủ đề hoặc bộ từ nào đang học dở.</p><small>Bạn có thể bắt đầu một phiên học mới từ danh sách hiện tại.</small></div> : null}
       {showFallback && next ? (
@@ -373,7 +361,7 @@ export function LearningSetsCard({
         <h2 id="home-learning-sets-title">Bộ từ của {learnerName}</h2>
         <Link to="/learning-sets">Xem tất cả</Link>
       </div>
-      {resource.status === "loading" ? <SectionLoading label="Đang tải các bộ từ đã chọn" /> : null}
+      {resource.status === "loading" ? <SectionLoading label="Đang tải các bộ từ đã chọn" pattern="rows" /> : null}
       {resource.status === "error" ? <p className="home-inline-state" role="status">Không thể tải các bộ từ đã chọn. Hãy thử lại.</p> : null}
       {resource.status === "ready" && active.length === 0 ? (
         <div className="home-empty-state home-sets-empty" role="status">
@@ -446,7 +434,7 @@ export function WeeklyProgressCard({ resource }: { resource: HomeResource<Progre
   return (
     <section className="home-card home-week-card" aria-labelledby="home-week-title">
       <div className="home-card-heading"><h2 id="home-week-title">Tiến trình của bạn</h2><span className="home-period-label">7 ngày gần đây</span></div>
-      {resource.status === "loading" ? <SectionLoading label="Đang tải tiến trình trong tuần" /> : null}
+      {resource.status === "loading" ? <SectionLoading label="Đang tải tiến trình trong tuần" pattern="chart" /> : null}
       {resource.status === "error" ? <p className="home-inline-state" role="status">Không thể tải tiến trình trong tuần. Hãy thử lại.</p> : null}
       {resource.status === "ready" && resource.data.days.every((day) => day.uniqueWords === 0) ? <p className="home-chart-empty" role="status">Hoạt động học tập sẽ hiển thị tại đây khi bạn bắt đầu học.</p> : null}
       {resource.status === "ready" && resource.data.days.some((day) => day.uniqueWords > 0) ? <HomeHistoryContent history={resource.data} mode="chart" /> : null}
@@ -458,7 +446,7 @@ export function RecentActivityCard({ resource }: { resource: HomeResource<Progre
   return (
     <section className="home-card home-activity-card" aria-labelledby="home-activity-title">
       <div className="home-card-heading"><h2 id="home-activity-title">Hoạt động gần đây</h2><Link to="/progress">Xem tất cả</Link></div>
-      {resource.status === "loading" ? <SectionLoading label="Đang tải hoạt động gần đây" /> : null}
+      {resource.status === "loading" ? <SectionLoading label="Đang tải hoạt động gần đây" pattern="rows" /> : null}
       {resource.status === "error" ? <p className="home-inline-state" role="status">Không thể tải hoạt động gần đây. Hãy thử lại.</p> : null}
       {resource.status === "ready" ? <HomeHistoryContent history={resource.data} mode="activity" /> : null}
     </section>
@@ -466,10 +454,5 @@ export function RecentActivityCard({ resource }: { resource: HomeResource<Progre
 }
 
 export function DashboardErrorNotice({ onRetry }: { onRetry: () => void }) {
-  return (
-    <div className="home-error-notice" role="alert">
-      <p>Không thể tải một số thông tin trên trang chủ.</p>
-      <button className="home-button home-button-secondary" type="button" onClick={onRetry}>Thử lại</button>
-    </div>
-  );
+  return <ErrorState className="home-error-notice" title="Không thể tải một số thông tin trên trang chủ" description="Dữ liệu học tập chưa đầy đủ. Hãy thử tải lại." onRetry={onRetry} />;
 }

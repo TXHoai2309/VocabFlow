@@ -1,5 +1,16 @@
 # User Flow v1
 
+## Async data state extension (Feature #15 / US-52)
+
+On any data-backed page, retain the current app navigation while the page read
+is pending and show a skeleton matching the page's content shape → when a
+successful read returns no applicable records, explain the empty or
+no-match condition and offer a real next action when available → when a
+retryable read fails, show safe guidance and retry that read with the current
+learner, route, query and filters intact. Keep authentication/permission
+recovery and resource 404/not-found on their established paths. No data state
+starts a study session, mutates progress, or changes scheduler behavior.
+
 ## Global Search extension (Feature #14 / US-51)
 
 From any non-session AppShell route, the learner opens search using the desktop
@@ -16,7 +27,7 @@ Escape closes the palette; the original trigger regains focus.
 - Version: v1
 - Source baseline: `VocabFlow_User_Flow_v1.docx`
 - Canonical format: Markdown
-- Last synchronized: 2026-10-04
+- Last synchronized: 2026-10-06
 
 **VOCABFLOW**
 

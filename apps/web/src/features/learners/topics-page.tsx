@@ -7,6 +7,7 @@ import { ProgressInsightsClientError, requestTopicProgress } from "./progress-in
 import { requestTopicVocabulary, requestTopics, TopicsClientError } from "./topics-client";
 import { CollectionDetailView } from "./collection-detail-view";
 import type { VocabularyCardItem } from "./vocabulary-card";
+import { EmptyState, ErrorState, LoadingState } from "../../components/async-states";
 
 type LoadState = "loading" | "ready" | "error";
 
@@ -25,6 +26,8 @@ export function TopicsPage() {
   const [vocabulary, setVocabulary] = useState<VocabularyDto[]>([]);
   const [vocabularyState, setVocabularyState] = useState<LoadState>("ready");
   const [vocabularyMessage, setVocabularyMessage] = useState<string | null>(null);
+  const [topicsRetry, setTopicsRetry] = useState(0);
+  const [vocabularyRetry, setVocabularyRetry] = useState(0);
 
   useEffect(() => {
     let cancelled = false;
@@ -41,7 +44,7 @@ export function TopicsPage() {
         setTopicMessage(errorMessage(error));
       });
     return () => { cancelled = true; };
-  }, []);
+  }, [topicsRetry]);
 
   useEffect(() => {
     if (selectedTopicId === null) return;
@@ -58,12 +61,24 @@ export function TopicsPage() {
         setVocabularyMessage(errorMessage(error, true));
       });
     return () => { cancelled = true; };
-  }, [selectedTopicId]);
+  }, [selectedTopicId, vocabularyRetry]);
 
   function selectTopic(topicId: number) {
     setSelectedTopicId(topicId);
     setVocabularyState("loading");
     setVocabularyMessage(null);
+  }
+
+  function retryTopics() {
+    setTopicState("loading");
+    setTopicMessage(null);
+    setTopicsRetry((value) => value + 1);
+  }
+
+  function retryTopicVocabulary() {
+    setVocabularyState("loading");
+    setVocabularyMessage(null);
+    setVocabularyRetry((value) => value + 1);
   }
 
   const selectedTopic = topics.find((topic) => topic.id === selectedTopicId) ?? null;
@@ -77,13 +92,10 @@ export function TopicsPage() {
         <p className="auth-eyebrow">Chủ đề</p>
         <h1 className="auth-title" id="topics-title">Học theo chủ đề</h1>
 
-        {topicState === "loading" ? <div className="vocabulary-list-state" data-testid="topics-loading" role="status">Đang tải chủ đề…</div> : null}
-        {topicState === "error" ? <div className="vocabulary-list-state vocabulary-list-error" data-testid="topics-error" role="alert">{topicMessage}</div> : null}
+        {topicState === "loading" ? <LoadingState className="vocabulary-list-state" label="Đang tải chủ đề…" pattern="cards" testId="topics-loading" /> : null}
+        {topicState === "error" ? <ErrorState className="vocabulary-list-state vocabulary-list-error" title="Không thể tải chủ đề" description={topicMessage ?? "Vui lòng thử lại."} onRetry={retryTopics} testId="topics-error" /> : null}
         {topicState === "ready" && topics.length === 0 ? (
-          <div className="vocabulary-empty" data-testid="topics-empty-state" role="status">
-            <h2>Chưa có chủ đề</h2>
-            <p>Danh mục chủ đề hiện đang trống.</p>
-          </div>
+          <EmptyState className="vocabulary-empty" icon="topic" title="Nội dung chủ đề chưa sẵn sàng" description="Hiện chưa có chủ đề nào khả dụng. Bạn có thể khám phá từ vựng trong danh mục." action={<Link className="button secondary" to="/vocabulary">Khám phá từ vựng</Link>} testId="topics-empty-state" />
         ) : null}
         {topicState === "ready" && topics.length > 0 ? (
           <div className="topics-layout">
@@ -106,9 +118,9 @@ export function TopicsPage() {
               {!selectedTopic ? <p data-testid="topic-select-prompt">Chọn một chủ đề để xem từ vựng.</p> : <>
                 <h2>{selectedTopic.name}</h2>
                 <Link className="topic-detail-link" to={`/topics/${selectedTopic.id}`}>Xem chi tiết chủ đề</Link>
-                {vocabularyState === "loading" ? <div className="vocabulary-list-state" data-testid="topic-vocabulary-loading" role="status">Đang tải từ vựng…</div> : null}
-                {vocabularyState === "error" ? <div className="vocabulary-list-state vocabulary-list-error" data-testid="topic-vocabulary-error" role="alert">{vocabularyMessage}</div> : null}
-                {vocabularyState === "ready" && vocabulary.length === 0 ? <p data-testid="topic-vocabulary-empty">Chủ đề này chưa có từ vựng nào đang bật.</p> : null}
+                {vocabularyState === "loading" ? <LoadingState className="vocabulary-list-state" label="Đang tải từ vựng theo chủ đề…" pattern="rows" testId="topic-vocabulary-loading" /> : null}
+                {vocabularyState === "error" ? <ErrorState className="vocabulary-list-state vocabulary-list-error" title="Không thể tải từ vựng theo chủ đề" description={vocabularyMessage ?? "Vui lòng thử lại."} onRetry={retryTopicVocabulary} testId="topic-vocabulary-error" /> : null}
+                {vocabularyState === "ready" && vocabulary.length === 0 ? <EmptyState className="topic-vocabulary-empty" icon="book" title="Chủ đề chưa có từ vựng" description="Chưa có từ vựng nào đang bật trong chủ đề này." testId="topic-vocabulary-empty" /> : null}
                 {vocabularyState === "ready" && vocabulary.length > 0 ? (
                   <ul className="vocabulary-list" data-testid="topic-vocabulary-list">
                     {vocabulary.map((item) => <li className="vocabulary-list-row" key={item.id}><div className="vocabulary-list-copy"><strong>{item.word}</strong><span>{item.vietnamese}</span></div></li>)}
@@ -241,11 +253,9 @@ function TopicDetailExperience({ learner, topicId }: { learner: LearnerDto; topi
 
   return (
     <main className="collection-detail-page" aria-label="Chi tiết chủ đề">
-      {state === "loading" ? <div className="collection-detail-state" role="status" data-testid="topic-detail-loading">Đang tải chi tiết chủ đề…</div> : null}
+      {state === "loading" ? <LoadingState className="collection-detail-state" label="Đang tải chi tiết chủ đề…" pattern="detail" testId="topic-detail-loading" /> : null}
       {state === "error" ? (
-        <div className="collection-detail-state collection-detail-error" role="alert" data-testid="topic-detail-error">
-          <p>{message}</p><button className="auth-retry" type="button" onClick={() => { setState("loading"); setData(null); setMessage(null); setRetryCount((current) => current + 1); }}>Thử lại</button>
-        </div>
+        <ErrorState className="collection-detail-state collection-detail-error" title="Không thể tải chi tiết chủ đề" description={message ?? "Vui lòng thử lại."} onRetry={() => { setState("loading"); setData(null); setMessage(null); setRetryCount((current) => current + 1); }} testId="topic-detail-error" />
       ) : null}
     </main>
   );

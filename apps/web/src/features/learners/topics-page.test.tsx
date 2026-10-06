@@ -60,4 +60,22 @@ describe("US-27 topic browse UI", () => {
     fireEvent.click(await screen.findByTestId("topic-family"));
     await waitFor(() => expect(screen.getByTestId("topic-vocabulary-empty")).toBeInTheDocument());
   });
+
+  it("retries a failed topic catalog request", async () => {
+    let resolveTopics: ((value: Response) => void) | undefined;
+    const fetchMock = vi.spyOn(globalThis, "fetch")
+      .mockRejectedValueOnce(new Error("offline"))
+      .mockImplementationOnce(() => new Promise((resolve) => { resolveTopics = resolve; }));
+    renderPage();
+
+    expect(await screen.findByTestId("topics-error")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Thử lại" }));
+    await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(2));
+    expect(screen.getByTestId("topics-loading")).toBeInTheDocument();
+    resolveTopics?.(new Response(JSON.stringify({ topics }), { status: 200 }));
+
+    expect(await screen.findByTestId("topic-family")).toBeInTheDocument();
+    expect(fetchMock).toHaveBeenNthCalledWith(1, "/api/topics", { credentials: "include" });
+    expect(fetchMock).toHaveBeenNthCalledWith(2, "/api/topics", { credentials: "include" });
+  });
 });

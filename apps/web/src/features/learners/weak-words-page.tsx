@@ -4,6 +4,7 @@ import type { WeakWordsItem, WeakWordsResponse, WeakWordsStatus } from "@vocabfl
 import { usePronunciationAudio } from "../study/pronunciation-audio";
 import { useActiveLearner } from "./learner-context-hook";
 import { requestWeakWords, WeakWordsClientError } from "./weak-words-client";
+import { EmptyState, ErrorState, LoadingState } from "../../components/async-states";
 
 type PageState = "loading" | "ready" | "error";
 const PAGE_SIZE = 20;
@@ -168,12 +169,9 @@ function WeakWordsExperience({ learnerId, learnerName }: { learnerId: string; le
               : <button className="weak-words-primary-action" type="button" disabled><span aria-hidden="true">↻</span> Ôn các từ yếu ngay</button>}
       </header>
 
-      {visibleState === "loading" ? <div className="weak-words-state" role="status" aria-busy="true">Đang tải tiến trình ôn tập…</div> : null}
+      {visibleState === "loading" ? <LoadingState className="weak-words-state" label="Đang tải tiến trình ôn tập…" pattern="rows" /> : null}
       {visibleState === "error" ? (
-        <div className="weak-words-state is-error" role="alert">
-          <p>{message}</p>
-          <button type="button" onClick={() => setRetry((value) => value + 1)}>Thử lại</button>
-        </div>
+        <ErrorState className="weak-words-state is-error" title="Không thể tải danh sách ôn tập" description={message ?? "Vui lòng thử lại."} onRetry={() => setRetry((value) => value + 1)} />
       ) : null}
 
       {visibleState === "ready" && data ? (
@@ -230,16 +228,9 @@ function WeakWordsExperience({ learnerId, learnerName }: { learnerId: string; le
               ) : null}
             </>
           ) : hasFilters ? (
-            <section className="weak-words-empty" role="status">
-              <h2>Không tìm thấy từ phù hợp</h2>
-              <button className="weak-words-secondary-action" type="button" onClick={clearFilters}>Xóa bộ lọc</button>
-            </section>
+            <EmptyState className="weak-words-empty" icon="search" title="Không tìm thấy từ phù hợp" description="Thử thay đổi từ khóa hoặc trạng thái." action={<button className="weak-words-secondary-action" type="button" onClick={clearFilters}>Xóa bộ lọc</button>} />
           ) : (
-            <section className="weak-words-empty" role="status">
-              <h2>Chưa có từ nào cần chú ý</h2>
-              <p>Học và ôn từ trong các bộ đang hoạt động; trạng thái sẽ xuất hiện tại đây khi có dữ liệu.</p>
-              <Link className="weak-words-secondary-action" to="/vocabulary">Khám phá từ vựng</Link>
-            </section>
+            <EmptyState className="weak-words-empty" icon="chart" title="Không có từ cần ôn ngay" description="Tiến trình ôn tập sẽ xuất hiện tại đây khi có từ cần chú ý." action={<Link className="weak-words-secondary-action" to="/study/setup">Học tiếp</Link>} />
           )}
         </>
       ) : null}

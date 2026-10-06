@@ -13,6 +13,7 @@ import { ProgressSummaryClientError, requestProgressSummary } from "./progress-s
 import { ActivitySummaryClientError, requestActivitySummary } from "./activity-summary-client";
 import { requestProgressHistory, requestTopicProgress } from "./progress-insights-client";
 import { requestResetLearnerProgress, ResetLearnerProgressClientError } from "./reset-progress-client";
+import { EmptyState, ErrorState, LoadingState } from "../../components/async-states";
 
 type LoadState = "loading" | "ready" | "error";
 type ProgressPeriod = "7d" | "30d";
@@ -178,7 +179,7 @@ function ActivityChart({ history, period }: { history: ProgressHistoryResponse; 
   const days = history.days;
   const total = days.reduce((sum, day) => sum + day.uniqueWords, 0);
   if (total === 0) {
-    return <p className="progress-chart-empty" role="status">Chưa có hoạt động ôn tập trong khoảng thời gian này.</p>;
+    return <EmptyState className="progress-chart-empty async-state-compact" icon="chart" title="Chưa có hoạt động ôn tập" description="Hoạt động sẽ xuất hiện tại đây khi bạn học trong khoảng thời gian này." />;
   }
 
   const width = 720;
@@ -260,7 +261,7 @@ function AccuracyChart({ history, period }: { history: ProgressHistoryResponse; 
   });
   const totalReviews = days.reduce((sum, day) => sum + day.validReviews, 0);
   if (totalReviews === 0) {
-    return <p className="progress-chart-empty" role="status">Chưa đủ dữ liệu để hiển thị độ chính xác ôn tập trong khoảng thời gian này.</p>;
+    return <EmptyState className="progress-chart-empty async-state-compact" icon="chart" title="Chưa đủ dữ liệu ôn tập" description="Độ chính xác sẽ hiển thị khi có lượt ôn trong khoảng thời gian này." />;
   }
 
   const width = 720;
@@ -359,7 +360,9 @@ export function ProgressPage() {
 function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const period = periodFromSearch(searchParams);
-  const [loadVersion, setLoadVersion] = useState(0);
+  const [summaryRetry, setSummaryRetry] = useState(0);
+  const [historyRetry, setHistoryRetry] = useState(0);
+  const [topicRetry, setTopicRetry] = useState(0);
   const [summaryState, setSummaryState] = useState<LoadState>("loading");
   const [summary, setSummary] = useState<ProgressSummaryResponse | null>(null);
   const [activity, setActivity] = useState<ActivitySummaryResponse | null>(null);
@@ -389,7 +392,7 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
       setSummaryMessage(progressErrorMessage(error));
     });
     return () => { cancelled = true; };
-  }, [activeLearner.id, loadVersion]);
+  }, [activeLearner.id, summaryRetry]);
 
   useEffect(() => {
     let cancelled = false;
@@ -401,7 +404,7 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
       if (!cancelled) setTopicState("error");
     });
     return () => { cancelled = true; };
-  }, [activeLearner.id, loadVersion]);
+  }, [activeLearner.id, topicRetry]);
 
   const activityLocalDate = activity?.localDate;
   useEffect(() => {
@@ -417,7 +420,7 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
       if (!cancelled) setHistoryState("error");
     });
     return () => { cancelled = true; };
-  }, [activeLearner.id, activityLocalDate, period]);
+  }, [activeLearner.id, activityLocalDate, period, historyRetry]);
 
   async function handleReset() {
     if (resetSubmitting) return;
@@ -435,7 +438,9 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
       setTopicProgress(null);
       setHistory(null);
       setTopicState("loading");
-      setLoadVersion((current) => current + 1);
+      setSummaryRetry((current) => current + 1);
+      setHistoryRetry((current) => current + 1);
+      setTopicRetry((current) => current + 1);
     } catch (error) {
       setResetError(resetErrorMessage(error));
     } finally {
@@ -462,16 +467,26 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
     });
   }
 
-  function retryDashboard() {
+  function retrySummary() {
     setSummaryState("loading");
     setSummary(null);
     setActivity(null);
     setSummaryMessage(null);
     setHistoryState("loading");
     setHistory(null);
+    setSummaryRetry((current) => current + 1);
+  }
+
+  function retryHistory() {
+    setHistoryState("loading");
+    setHistory(null);
+    setHistoryRetry((current) => current + 1);
+  }
+
+  function retryTopics() {
     setTopicState("loading");
     setTopicProgress(null);
-    setLoadVersion((current) => current + 1);
+    setTopicRetry((current) => current + 1);
   }
 
   return (
@@ -493,24 +508,13 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
         </header>
 
         {resetSuccess ? <p className="progress-success" role="status">{resetSuccess}</p> : null}
-        {summaryState === "loading" ? <div className="progress-dashboard-state" data-testid="progress-loading" role="status">Đang tải tiến trình…</div> : null}
-        {summaryState === "error" ? (
-          <div className="progress-dashboard-state progress-dashboard-error" data-testid="progress-error" role="alert">
-            <p>{summaryMessage}</p>
-            <button className="progress-secondary-button" type="button" onClick={retryDashboard}>Thử lại</button>
-          </div>
-        ) : null}
+        {summaryState === "loading" ? <LoadingState className="progress-dashboard-state" label="Đang tải tiến trình…" pattern="dashboard" testId="progress-loading" /> : null}
+        {summaryState === "error" ? <ErrorState className="progress-dashboard-state progress-dashboard-error" title="Không thể tải tiến trình" description={summaryMessage ?? "Vui lòng thử lại."} onRetry={retrySummary} testId="progress-error" /> : null}
 
         {summaryState === "ready" && summary && activity ? (
           <div className="progress-dashboard-content" data-testid="progress-summary">
             {summary.learnedCount === 0 ? (
-              <div className="progress-dashboard-empty" data-testid="progress-empty-state" role="status">
-                <div>
-                  <h2>Chưa học từ nào</h2>
-                  <p>Bắt đầu học để ghi nhận tiến trình đầu tiên.</p>
-                </div>
-                <Link className="progress-empty-link" to="/study/setup">Bắt đầu học</Link>
-              </div>
+              <EmptyState className="progress-dashboard-empty" icon="chart" title="Chưa học từ nào" description="Bắt đầu học để ghi nhận tiến trình đầu tiên." action={<Link className="progress-empty-link" to="/study/setup">Bắt đầu học</Link>} testId="progress-empty-state" />
             ) : null}
 
             <dl className="progress-metric-grid" aria-label="Tóm tắt tiến trình">
@@ -544,13 +548,8 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
                     <p>Số từ duy nhất đã ôn mỗi ngày · {periodLabel(period)}</p>
                   </div>
                 </div>
-                {historyState === "loading" ? <p className="progress-panel-state" role="status">Đang tải hoạt động…</p> : null}
-                {historyState === "error" ? (
-                  <div className="progress-panel-state progress-inline-error" role="alert">
-                    <span>Không thể tải hoạt động trong kỳ này.</span>
-                    <button className="progress-inline-retry" type="button" onClick={retryDashboard}>Thử lại</button>
-                  </div>
-                ) : null}
+                {historyState === "loading" ? <LoadingState className="progress-panel-state" label="Đang tải hoạt động học tập…" pattern="chart" /> : null}
+                {historyState === "error" ? <ErrorState className="progress-panel-state progress-inline-error" title="Không thể tải hoạt động" description="Không thể tải hoạt động trong kỳ này." onRetry={retryHistory} /> : null}
                 {historyState === "ready" && history ? <ActivityChart history={history} period={period} /> : null}
               </section>
 
@@ -561,8 +560,8 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
                     <p>Đã nhớ / (đã nhớ + chưa nhớ) · {periodLabel(period)}</p>
                   </div>
                 </div>
-                {historyState === "loading" ? <p className="progress-panel-state" role="status">Đang tải kết quả ôn tập…</p> : null}
-                {historyState === "error" ? <p className="progress-panel-state progress-inline-error" role="alert">Không thể tải kết quả ôn tập trong kỳ này.</p> : null}
+                {historyState === "loading" ? <LoadingState className="progress-panel-state" label="Đang tải độ chính xác ôn tập…" pattern="chart" /> : null}
+                {historyState === "error" ? <ErrorState className="progress-panel-state progress-inline-error" title="Không thể tải độ chính xác" description="Không thể tải kết quả ôn tập trong kỳ này." onRetry={retryHistory} /> : null}
                 {historyState === "ready" && history ? <AccuracyChart history={history} period={period} /> : null}
               </section>
             </div>
@@ -576,7 +575,7 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
                   </div>
                 </div>
                 {levels.length === 0 ? (
-                  <p className="progress-panel-state" data-testid="level-progress-empty" role="status">Chưa có từ được phân cấp trong các bộ đang học.</p>
+                  <EmptyState className="progress-panel-state async-state-compact" icon="book" title="Chưa có từ được phân cấp" description="Không có cấp độ khả dụng trong các bộ đang học." testId="level-progress-empty" />
                 ) : (
                   <ul className="progress-coverage-list" data-testid="level-progress-list">
                     {levels.map((level) => {
@@ -603,17 +602,10 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
                   </div>
                   <Link className="progress-panel-link" to="/topics">Xem tất cả</Link>
                 </div>
-                {topicState === "loading" ? <p className="progress-panel-state" role="status">Đang tải tiến độ chủ đề…</p> : null}
-                {topicState === "error" ? (
-                  <div className="progress-panel-state progress-inline-error" role="alert">
-                    <span>Không thể tải tiến độ chủ đề.</span>
-                    <button className="progress-inline-retry" type="button" onClick={retryDashboard}>Thử lại</button>
-                  </div>
-                ) : null}
+                {topicState === "loading" ? <LoadingState className="progress-panel-state" label="Đang tải tiến độ chủ đề…" pattern="rows" /> : null}
+                {topicState === "error" ? <ErrorState className="progress-panel-state progress-inline-error" title="Không thể tải tiến độ chủ đề" description="Vui lòng thử lại." onRetry={retryTopics} /> : null}
                 {topicState === "ready" && topicProgress && topics.length === 0 ? (
-                  <p className="progress-panel-state" data-testid="topic-progress-empty" role="status">
-                    Chưa có tiến độ ở các chủ đề thuộc bộ học đang hoạt động.
-                  </p>
+                  <EmptyState className="progress-panel-state async-state-compact" icon="topic" title="Chưa có tiến độ chủ đề" description="Tiến độ sẽ xuất hiện khi bạn học từ trong các chủ đề đang hoạt động." testId="topic-progress-empty" />
                 ) : null}
                 {topicState === "ready" && topics.length > 0 ? (
                   <ul className="progress-coverage-list" data-testid="topic-progress-list">

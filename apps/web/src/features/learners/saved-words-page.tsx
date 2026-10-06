@@ -3,6 +3,7 @@ import { Link, Navigate, useLocation, useSearchParams } from "react-router";
 import type { LearnerDto, LearnerSavedVocabularyDto, VocabularyLevel } from "@vocabflow/contracts";
 import { useActiveLearner } from "./learner-context-hook";
 import { VocabularyCard } from "./vocabulary-card";
+import { EmptyState, ErrorState, LoadingState } from "../../components/async-states";
 import { requestSavedVocabulary, unsaveVocabulary } from "./saved-vocabulary-client";
 
 type PageState = "loading" | "ready" | "error";
@@ -152,22 +153,14 @@ function SavedWordsExperience({ activeLearner }: { activeLearner: LearnerDto }) 
         ) : null}
       </header>
 
-      {state === "loading" ? <div className="saved-words-state" role="status" aria-busy="true">Đang tải từ đã lưu…</div> : null}
+      {state === "loading" ? <LoadingState className="saved-words-state" label="Đang tải từ đã lưu…" pattern="rows" /> : null}
       {state === "error" ? (
-        <div className="saved-words-state saved-words-error" role="alert">
-          <p>{message}</p>
-          <button type="button" onClick={() => void loadSavedVocabulary()}>Thử lại</button>
-        </div>
+        <ErrorState className="saved-words-state saved-words-error" title="Không thể tải từ đã lưu" description={message ?? "Vui lòng thử lại."} onRetry={() => void loadSavedVocabulary()} />
       ) : null}
       {message && state === "ready" ? <p className="saved-words-feedback" role="alert">{message}</p> : null}
 
       {state === "ready" && savedVocabulary.length === 0 ? (
-        <section className="saved-words-empty" aria-labelledby="saved-words-empty-title">
-          <span className="saved-words-empty-icon" aria-hidden="true">♡</span>
-          <h2 id="saved-words-empty-title">Chưa có từ nào được lưu</h2>
-          <p>Lưu những từ bạn muốn ôn lại để chúng xuất hiện ở đây.</p>
-          <Link className="saved-words-empty-link" to="/vocabulary">Khám phá từ vựng</Link>
-        </section>
+        <EmptyState className="saved-words-empty" icon="bookmark" title="Chưa có từ yêu thích" description="Hãy lưu những từ bạn muốn học lại sau." action={<Link className="saved-words-empty-link" to="/vocabulary">Khám phá từ vựng</Link>} />
       ) : null}
 
       {state === "ready" && savedVocabulary.length > 0 ? (
@@ -201,10 +194,7 @@ function SavedWordsExperience({ activeLearner }: { activeLearner: LearnerDto }) 
           </section>
 
           {filteredVocabulary.length === 0 ? (
-            <section className="saved-words-empty saved-words-no-results" role="status">
-              <h2>Không tìm thấy từ phù hợp</h2>
-              <button className="saved-words-empty-link" type="button" onClick={clearFilters}>Xóa bộ lọc</button>
-            </section>
+            <EmptyState className="saved-words-empty saved-words-no-results" icon="search" title="Không tìm thấy từ phù hợp" description="Thử thay đổi từ khóa hoặc bộ lọc." action={<button className="saved-words-empty-link" type="button" onClick={clearFilters}>Xóa bộ lọc</button>} />
           ) : (
             <>
               <p className="saved-words-result-count" aria-live="polite"><strong>{filteredVocabulary.length}</strong> {hasFilters ? "kết quả" : "từ đã lưu"}</p>

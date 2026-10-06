@@ -166,7 +166,7 @@ describe("US-22 vocabulary list UI", () => {
     await screen.findByTestId("vocabulary-row-1");
     fireEvent.change(screen.getByTestId("vocabulary-search"), { target: { value: "kiwi" } });
 
-    expect(screen.getByTestId("vocabulary-no-results")).toHaveTextContent("Không tìm thấy từ phù hợp");
+    expect(screen.getByRole("heading", { name: "Không tìm thấy từ vựng" })).toBeInTheDocument();
     expect(screen.getByTestId("vocabulary-no-results")).toHaveTextContent("Thử từ khóa khác hoặc thay đổi bộ lọc.");
     fireEvent.click(screen.getByTestId("vocabulary-empty-clear"));
 

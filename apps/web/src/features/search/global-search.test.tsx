@@ -94,11 +94,14 @@ describe("global search palette", () => {
 
   it("debounces a single request and renders typed vocabulary, topic and Learning Set groups", async () => {
     vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(JSON.stringify(response()), { status: 200 }));
-    renderPalette();
+    const { container } = renderPalette();
     const input = screen.getByRole("searchbox", { name: "Tìm từ vựng, chủ đề hoặc bộ từ" });
 
     fireEvent.change(input, { target: { value: "fam" } });
     expect(screen.getByText("Đang tìm kiếm…")).toBeInTheDocument();
+    expect(screen.getByRole("status", { name: "Đang tìm kiếm…" })).toHaveAttribute("aria-busy", "true");
+    expect(container.querySelectorAll(".async-skeleton-search-group")).toHaveLength(3);
+    expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
     expect(fetch).not.toHaveBeenCalled();
     fireEvent.change(input, { target: { value: "family" } });
 
@@ -140,7 +143,8 @@ describe("global search palette", () => {
     renderPalette();
     fireEvent.change(screen.getByRole("searchbox", { name: "Tìm từ vựng, chủ đề hoặc bộ từ" }), { target: { value: "zzzz" } });
 
-    expect(await screen.findByText("Không tìm thấy kết quả cho “zzzz”. Thử từ khóa ngắn hơn.")).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: "Không tìm thấy kết quả" })).toBeInTheDocument();
+    expect(screen.getByText("Thử từ khóa khác hoặc kiểm tra chính tả.")).toBeInTheDocument();
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
   });
 
@@ -151,7 +155,8 @@ describe("global search palette", () => {
     renderPalette();
     fireEvent.change(screen.getByRole("searchbox", { name: "Tìm từ vựng, chủ đề hoặc bộ từ" }), { target: { value: "family" } });
 
-    expect(await screen.findByRole("alert")).toHaveTextContent("Không thể tìm kiếm lúc này. Vui lòng thử lại.");
+    expect(await screen.findByRole("heading", { name: "Không thể tải kết quả" })).toBeInTheDocument();
+    expect(screen.getByText("Không thể tải kết quả tìm kiếm. Vui lòng thử lại.")).toBeInTheDocument();
     expect(screen.queryByText("internal transport detail")).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "Thử lại" }));
     expect((await screen.findAllByRole("option"))[0]).toHaveTextContent("family");

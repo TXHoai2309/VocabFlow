@@ -5,6 +5,7 @@ import { useActiveLearner } from "./learner-context-hook";
 import { LearnerVocabularyClientError, requestLearnerVocabulary } from "./vocabulary-list-client";
 import { usePronunciationAudio } from "../study/pronunciation-audio";
 import { requestSavedVocabulary, saveVocabulary, unsaveVocabulary } from "./saved-vocabulary-client";
+import { ErrorState, LoadingState } from "../../components/async-states";
 
 type DetailState = "loading" | "ready" | "error";
 
@@ -203,12 +204,9 @@ function VocabularyDetailExperience({ activeLearner, vocabularyId }: { activeLea
         </nav>
       </header>
 
-      {state === "loading" ? <div className="vocabulary-detail-state" data-testid="vocabulary-detail-loading" role="status">Đang tải chi tiết từ vựng…</div> : null}
+      {state === "loading" ? <LoadingState className="vocabulary-detail-state" label="Đang tải chi tiết từ vựng…" pattern="detail" testId="vocabulary-detail-loading" /> : null}
       {state === "error" ? (
-        <div className="vocabulary-detail-error" data-testid="vocabulary-detail-error" role="alert">
-          <p>{message}</p>
-          <button className="auth-retry" type="button" onClick={() => void loadVocabulary()}>Thử lại</button>
-        </div>
+        <ErrorState className="vocabulary-detail-error" title="Không thể tải từ vựng này" description={message ?? "Vui lòng thử lại."} onRetry={() => void loadVocabulary()} testId="vocabulary-detail-error" />
       ) : null}
       {state === "ready" && !vocabulary ? (
         <section className="vocabulary-detail-missing" data-testid="vocabulary-detail-not-found" role="status">

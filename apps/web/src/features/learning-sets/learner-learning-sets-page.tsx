@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, Navigate } from "react-router";
 import type { LearnerDto, LearnerLearningSetDto } from "@vocabflow/contracts";
 import { useActiveLearner } from "../learners/learner-context-hook";
+import { EmptyState, ErrorState, LoadingState } from "../../components/async-states";
 import {
   assignLearningSet,
   LearningSetsClientError,
@@ -29,6 +30,7 @@ function LearnerLearningSetsExperience({ activeLearner }: { activeLearner: Learn
   const [message, setMessage] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const [busyId, setBusyId] = useState<number | null>(null);
+  const [retryCount, setRetryCount] = useState(0);
 
   useEffect(() => {
     let cancelled = false;
@@ -44,7 +46,13 @@ function LearnerLearningSetsExperience({ activeLearner }: { activeLearner: Learn
         setMessage(messageFor(error));
       });
     return () => { cancelled = true; };
-  }, [activeLearner.id]);
+  }, [activeLearner.id, retryCount]);
+
+  function retryList() {
+    setState("loading");
+    setMessage(null);
+    setRetryCount((value) => value + 1);
+  }
 
   async function toggle(item: LearnerLearningSetDto) {
     if (busyId !== null) return;
@@ -77,9 +85,9 @@ function LearnerLearningSetsExperience({ activeLearner }: { activeLearner: Learn
         <h1 className="auth-title" id="learner-learning-sets-title">Bộ từ của {activeLearner.displayName}</h1>
         <p className="auth-copy">Bật hoặc tắt bộ từ để chọn những từ vựng xuất hiện trong danh sách học. Tiến trình và lịch sử ôn tập sẽ không bị xóa.</p>
         {success ? <p className="learning-sets-success" role="status">{success}</p> : null}
-        {state === "loading" ? <div className="learning-sets-state" data-testid="learner-learning-sets-loading" role="status">Đang tải bộ từ…</div> : null}
-        {state === "error" ? <div className="learning-sets-state learning-sets-error" data-testid="learner-learning-sets-error" role="alert">{message}</div> : null}
-        {state === "ready" && items.length === 0 ? <div className="vocabulary-empty" data-testid="learner-learning-sets-empty" role="status"><h2>Chưa có bộ từ khả dụng</h2><p>Danh mục bộ từ hiện đang trống.</p></div> : null}
+        {state === "loading" ? <LoadingState className="learning-sets-state" label="Đang tải các bộ từ của người học…" pattern="form" testId="learner-learning-sets-loading" /> : null}
+        {state === "error" ? <ErrorState className="learning-sets-state learning-sets-error" title="Không thể tải bộ từ của người học" description={message ?? "Vui lòng thử lại."} onRetry={retryList} testId="learner-learning-sets-error" /> : null}
+        {state === "ready" && items.length === 0 ? <EmptyState className="vocabulary-empty" icon="folder" title="Chưa có bộ từ khả dụng" description="Danh mục bộ từ hiện đang trống." testId="learner-learning-sets-empty" /> : null}
         {state === "ready" && items.length > 0 ? (
           <div className="learner-set-toggle-list" data-testid="learner-learning-sets-list">
             {items.map((item) => (

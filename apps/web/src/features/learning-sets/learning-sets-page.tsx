@@ -5,6 +5,7 @@ import { LearningSetsClientError, requestLearnerLearningSets, requestLearningSet
 import { useActiveLearner } from "../learners/learner-context-hook";
 import { requestLearnerVocabulary } from "../learners/vocabulary-list-client";
 import { CollectionDetailView } from "../learners/collection-detail-view";
+import { EmptyState, ErrorState, LoadingState } from "../../components/async-states";
 import type { VocabularyCardItem } from "../learners/vocabulary-card";
 
 type LoadState = "loading" | "ready" | "error";
@@ -65,16 +66,12 @@ export function LearningSetsPage() {
         <h1 className="auth-title" id="learning-sets-title">Bộ từ</h1>
         <p className="auth-copy">Các bộ từ được tuyển chọn sẵn, có thứ tự ổn định để gia đình chọn nội dung học.</p>
 
-        {state === "loading" ? <div className="learning-sets-state" data-testid="learning-sets-loading" role="status">Đang tải bộ từ…</div> : null}
+        {state === "loading" ? <LoadingState className="learning-sets-state" label="Đang tải danh sách bộ từ…" pattern="rows" testId="learning-sets-loading" /> : null}
         {state === "error" ? (
-          <div className="learning-sets-state learning-sets-error" data-testid="learning-sets-error" role="alert">
-            <span>{message}</span><button className="auth-retry" type="button" onClick={load}>Thử lại</button>
-          </div>
+          <ErrorState className="learning-sets-state learning-sets-error" title="Không thể tải danh sách bộ từ" description={message ?? "Vui lòng thử lại."} onRetry={() => void load()} testId="learning-sets-error" />
         ) : null}
         {state === "ready" && learningSets.length === 0 ? (
-          <div className="vocabulary-empty" data-testid="learning-sets-empty" role="status">
-            <h2>Chưa có bộ từ</h2><p>Danh mục bộ từ hiện đang trống.</p>
-          </div>
+          <EmptyState className="vocabulary-empty" icon="folder" title="Chưa có bộ từ phù hợp" description="Danh mục bộ từ hiện đang trống." testId="learning-sets-empty" />
         ) : null}
         {state === "ready" && learningSets.length > 0 ? (
           <ul className="learning-set-list" data-testid="learning-sets-list">
@@ -188,11 +185,9 @@ function LearningSetDetailExperience({ learner, learningSetId }: { learner: Lear
 
   return (
     <main className="collection-detail-page" aria-label="Chi tiết bộ từ">
-      {state === "loading" ? <div className="collection-detail-state" role="status" data-testid="learning-set-detail-loading">Đang tải chi tiết bộ từ…</div> : null}
+      {state === "loading" ? <LoadingState className="collection-detail-state" label="Đang tải chi tiết bộ từ…" pattern="detail" testId="learning-set-detail-loading" /> : null}
       {state === "error" ? (
-        <div className="collection-detail-state collection-detail-error" role="alert" data-testid="learning-set-detail-error">
-          <p>{message}</p><button className="auth-retry" type="button" onClick={() => { setState("loading"); setData(null); setMessage(null); setRetryCount((current) => current + 1); }}>Thử lại</button>
-        </div>
+        <ErrorState className="collection-detail-state collection-detail-error" title="Không thể tải chi tiết bộ từ" description={message ?? "Vui lòng thử lại."} onRetry={() => { setState("loading"); setData(null); setMessage(null); setRetryCount((current) => current + 1); }} testId="learning-set-detail-error" />
       ) : null}
     </main>
   );
