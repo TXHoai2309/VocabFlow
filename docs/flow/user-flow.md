@@ -1,5 +1,17 @@
 # User Flow v1
 
+## Global Search extension (Feature #14 / US-51)
+
+From any non-session AppShell route, the learner opens search using the desktop
+trigger or Ctrl/Cmd+K, or the compact mobile header icon → enters a trimmed
+query → one learner-scoped request returns bounded Vocabulary, Topic and
+Learning Set groups → the learner moves with Arrow Up/Down and presses Enter
+or clicks a result → the recent query is saved locally, the dialog closes and
+React Router opens /vocabulary/:id, /topics/:id or /learning-sets/:id.
+With an empty query, up to five recent searches are shown; selecting one runs
+that query. Search is unavailable during /study and /study/exercises.
+Escape closes the palette; the original trigger regains focus.
+
 - Status: CURRENT FLOW BASELINE
 - Version: v1
 - Source baseline: `VocabFlow_User_Flow_v1.docx`

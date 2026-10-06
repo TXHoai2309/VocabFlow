@@ -327,6 +327,43 @@ export const learnerVocabularyListResponseSchema = z.object({
 });
 export type LearnerVocabularyListResponse = z.infer<typeof learnerVocabularyListResponseSchema>;
 
+export const globalSearchVocabularyResultSchema = z.object({
+  type: z.literal("VOCABULARY"),
+  id: z.number().int().positive(),
+  title: z.string().min(1),
+  subtitle: z.string().min(1),
+  imageUrl: z.string().nullable(),
+  topic: z.string().nullable(),
+  level: vocabularyLevelSchema.nullable()
+}).strict();
+export const globalSearchTopicResultSchema = z.object({
+  type: z.literal("TOPIC"),
+  id: z.number().int().positive(),
+  title: z.string().min(1),
+  description: z.string().min(1)
+}).strict();
+export const globalSearchLearningSetResultSchema = z.object({
+  type: z.literal("LEARNING_SET"),
+  id: z.number().int().positive(),
+  title: z.string().min(1),
+  description: z.string().min(1),
+  vocabularyCount: z.number().int().nonnegative().safe(),
+  grade: vocabularyLevelSchema.nullable()
+}).strict();
+export const globalSearchResultSchema = z.discriminatedUnion("type", [
+  globalSearchVocabularyResultSchema,
+  globalSearchTopicResultSchema,
+  globalSearchLearningSetResultSchema
+]);
+export type GlobalSearchResult = z.infer<typeof globalSearchResultSchema>;
+export const globalSearchResponseSchema = z.object({
+  query: z.string().max(100),
+  vocabulary: z.array(globalSearchVocabularyResultSchema).max(10),
+  topics: z.array(globalSearchTopicResultSchema).max(10),
+  learningSets: z.array(globalSearchLearningSetResultSchema).max(10)
+}).strict();
+export type GlobalSearchResponse = z.infer<typeof globalSearchResponseSchema>;
+
 export const learnerSavedVocabularyDtoSchema = z.object({
   vocabulary: learnerVocabularyDtoSchema,
   savedAt: z.string().datetime()

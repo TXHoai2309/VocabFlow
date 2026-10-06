@@ -1,5 +1,15 @@
 # VocabFlow Roadmap and Batch Index
 
+## Feature #14 — Global Search / US-51
+
+- Status: IMPLEMENTED / READY FOR OWNER CHECK.
+- Scope: one shared, learner-scoped search across Vocabulary, accessible Topics
+  and enabled Learning Sets; desktop command palette, responsive mobile sheet,
+  bounded recent queries and keyboard navigation.
+- Evidence: unified read-only API and typed contract; no migration, persisted
+  search history, scheduler change or database mutation.
+- Contract: [US-51 Global Search](stories/US-51-global-search.md).
+
 This roadmap promotes only work supported by the current product documents and
 the accepted/backfilled user-story evidence. US-26 through US-36 are
 implemented and awaiting owner check. US-37 and US-38 extend the learner progress

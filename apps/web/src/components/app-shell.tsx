@@ -1,5 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, Outlet, useLocation } from "react-router";
+import { Link, Outlet, useLocation, useNavigate } from "react-router";
+import type { GlobalSearchResult } from "@vocabflow/contracts";
+import { useActiveLearner } from "../features/learners/learner-context-hook";
+import { GlobalSearchPalette } from "../features/search/global-search-palette";
+import { addRecentSearch, persistRecentSearches, readRecentSearches } from "../features/search/recent-searches";
 
 const destinations = [
   { label: "Trang chủ", to: "/", icon: "home" },
@@ -43,6 +47,10 @@ function Brand() {
       <span>Vocab<span className="app-brand-accent">Flow</span></span>
     </Link>
   );
+}
+
+function SearchIcon() {
+  return <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="10.8" cy="10.8" r="6.8" /><path d="m16 16 5 5" /></svg>;
 }
 
 function initials(value: string) {
@@ -164,6 +172,53 @@ function AccountMenu({ parentName, placement }: { parentName: string; placement:
 }
 
 export function AppShell({ parentName }: { parentName: string }) {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { activeLearner } = useActiveLearner();
+  const [searchState, setSearchState] = useState<{ open: boolean; locationKey: string }>({
+    open: false,
+    locationKey: location.key
+  });
+  const desktopSearchRef = useRef<HTMLButtonElement>(null);
+  const mobileSearchRef = useRef<HTMLButtonElement>(null);
+  const lastSearchTriggerRef = useRef<HTMLButtonElement | null>(null);
+  const isStudySession = ["/study", "/study/exercises"].includes(location.pathname);
+  const searchOpen = searchState.open && searchState.locationKey === location.key && !isStudySession;
+  const shortcutLabel = typeof navigator !== "undefined" && /Mac|iPhone|iPad/.test(navigator.platform) ? "⌘ K" : "Ctrl K";
+
+  useEffect(() => {
+    if (searchOpen || isStudySession) return;
+    const onShortcut = (event: KeyboardEvent) => {
+      if (!(event.ctrlKey || event.metaKey) || event.key.toLowerCase() !== "k") return;
+      const target = event.target;
+      if (target instanceof HTMLElement && (target.tagName === "TEXTAREA" || target.isContentEditable)) return;
+      event.preventDefault();
+      lastSearchTriggerRef.current = typeof window.matchMedia === "function" && window.matchMedia("(max-width: 1023px)").matches
+        ? mobileSearchRef.current
+        : desktopSearchRef.current;
+      setSearchState({ open: true, locationKey: location.key });
+    };
+    document.addEventListener("keydown", onShortcut);
+    return () => document.removeEventListener("keydown", onShortcut);
+  }, [isStudySession, location.key, searchOpen]);
+
+  const openFromTrigger = (trigger: HTMLButtonElement) => {
+    lastSearchTriggerRef.current = trigger;
+    setSearchState({ open: true, locationKey: location.key });
+  };
+  const closeSearch = () => {
+    setSearchState({ open: false, locationKey: location.key });
+    lastSearchTriggerRef.current?.focus();
+  };
+  const openResult = (result: GlobalSearchResult, query: string) => {
+    persistRecentSearches(addRecentSearch(readRecentSearches(), query));
+    setSearchState({ open: false, locationKey: location.key });
+    lastSearchTriggerRef.current?.focus();
+    if (result.type === "VOCABULARY") navigate(`/vocabulary/${result.id}`);
+    else if (result.type === "TOPIC") navigate(`/topics/${result.id}`);
+    else navigate(`/learning-sets/${result.id}`);
+  };
+
   return (
     <div className="app-layout">
       <aside className="app-sidebar" aria-label="Thanh điều hướng ứng dụng">
@@ -172,13 +227,24 @@ export function AppShell({ parentName }: { parentName: string }) {
         <AccountMenu parentName={parentName} placement="sidebar" />
       </aside>
       <div className="app-main-column">
+        {!isStudySession ? (
+          <div className="app-desktop-search-row">
+            <button ref={desktopSearchRef} className="global-search-trigger is-desktop" type="button" disabled={!activeLearner} aria-label="Tìm từ vựng, chủ đề hoặc bộ từ" aria-haspopup="dialog" aria-expanded={searchOpen} aria-controls="global-search-dialog" onClick={(event) => openFromTrigger(event.currentTarget)}>
+              <SearchIcon /><span>Tìm từ vựng, chủ đề hoặc bộ từ...</span><kbd>{shortcutLabel}</kbd>
+            </button>
+          </div>
+        ) : null}
         <header className="app-mobile-bar">
           <Brand />
-          <AccountMenu parentName={parentName} placement="mobile" />
+          <div className="app-mobile-header-actions">
+            {!isStudySession ? <button ref={mobileSearchRef} className="global-search-trigger is-mobile" type="button" disabled={!activeLearner} aria-label="Mở tìm kiếm toàn cục" aria-haspopup="dialog" aria-expanded={searchOpen} aria-controls="global-search-dialog" onClick={(event) => openFromTrigger(event.currentTarget)}><SearchIcon /></button> : null}
+            <AccountMenu parentName={parentName} placement="mobile" />
+          </div>
         </header>
         <Outlet />
         <PrimaryNavigation variant="mobile" />
       </div>
+      {searchOpen ? <GlobalSearchPalette learnerId={activeLearner?.id ?? null} onClose={closeSearch} onSelect={openResult} /> : null}
     </div>
   );
 }

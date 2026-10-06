@@ -77,6 +77,7 @@ convenient. Reprioritization or a new story must be explicit.
 - [US-48 Progress Dashboard](US-48-progress-dashboard.md) — `IN PROGRESS` (owner-requested Feature #11; evidence-based active-learner dashboard with bounded period charts and level/Topic coverage).
 - [US-49 Weak Words / Need Review](US-49-weak-words-review.md) — `ACCEPTED` (owner-requested Feature #12; review-evidence classification and server-resolved Weak study scope).
 - [US-50 Simplified App Navigation](US-50-simplified-navigation.md) — `IMPLEMENTED / READY FOR OWNER CHECK` (Feature #13; six desktop destinations, five tablet/mobile destinations and contextual discovery of auxiliary routes).
+- [US-51 Global Search](US-51-global-search.md) — `IMPLEMENTED / READY FOR OWNER CHECK` (Feature #14; learner-scoped Vocabulary, Topic and Learning Set search, command palette/mobile sheet and bounded local recent queries).
 
 ## Story status gate
 

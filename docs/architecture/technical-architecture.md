@@ -1,14 +1,30 @@
-# Technical Architecture v1.0.16
+# Technical Architecture v1.0.17
 
 - Status: APPROVED FOR IMPLEMENTATION
-- Version: v1.0.16
+- Version: v1.0.17
 - Source baseline: `VocabFlow_Technical_Architecture_v1.0.4.docx`; this Markdown records the US-25 identity reconciliation, US-26/US-27 vocabulary taxonomy, US-28/US-29 learning-set assignment model, US-30 daily New allowance, US-31 through US-34 exercise interaction layer, US-35/US-36 activity read model, US-39/US-40 rewards, US-41 reviewed catalog activation, US-42 production release automation, US-48 Progress Dashboard read model and US-49 derived Weak Words read model.
 - Canonical format: Markdown
-- Last synchronized: 2026-10-04
+- Last synchronized: 2026-10-06
 
 **VOCABFLOW**
 
-**Technical Architecture v1.0.16**
+**Technical Architecture v1.0.17**
+
+## US-51 learner-scoped Global Search
+
+GET /api/learners/:learnerId/search?q=…&limit=… uses the existing
+authenticated session and canonical household/learner ownership guard. The
+strict query parser trims and NFC-normalizes q, accepts 1–100 Unicode code
+points, rejects unknown or duplicate parameters, and bounds limit to 1–10
+(default 5). A parameterized set-based SQL read ranks enabled Vocabulary in
+active assigned enabled Learning Sets, enabled Topics with at least one such
+Vocabulary, and all enabled Learning Sets (the existing browseable catalog
+scope). Each entity group is independently capped and ordered by exact match,
+prefix, contains/description match, canonical sort order where available,
+normalized title and ID. The ownership guard and unified search each use one
+Neon HTTP SQL round trip; there is no N+1 access and no write. The client stores
+only up to five normalized query strings in versioned localStorage. No schema,
+history table, migration or scheduler behavior is added.
 
 ## US-41 content curation and activation
 
@@ -1483,5 +1499,5 @@ Step 7 là mốc xác nhận kiến trúc: parent login → learner → review �
 
 # Appendix B. Approval Statement
 
-> TECHNICAL ARCHITECTURE v1.0.15 — APPROVED FOR IMPLEMENTATION
+> TECHNICAL ARCHITECTURE v1.0.17 — APPROVED FOR IMPLEMENTATION
 > Từ thời điểm tài liệu này được chấp nhận, triển khai phải bám architecture invariants, sparse progress/virtual NEW model, learner-scoped review queue, race-safe household bootstrap, schema constraints, household authorization, review write/idempotency contract, database identity ownership boundary và clean migration contract ở trên. Acceptance Gates được xác minh trong implementation; mọi thay đổi kiến trúc cần blocker/evidence kỹ thuật cụ thể.

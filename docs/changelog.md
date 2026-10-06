@@ -1573,3 +1573,17 @@ US-07 remains not started.
 - Audit regression 6/6, Master validator (0 errors/warnings, 1 informational
   DRAFT issue), typecheck, global ESLint, and `git diff --check` pass. Local
   Node 22.19.0 emits the package engine warning (requested 22.23.2).
+
+## 2026-10-06 — Global Search (Feature #14 / US-51)
+
+- Added one learner-scoped search API and typed Vocabulary, Topic and Learning
+  Set results with deterministic ranking, escaped parameterized matching and
+  per-group result caps. Enabled Learning Sets retain the existing catalog
+  discovery scope, while Vocabulary and Topic results stay in the active
+  learner's accessible content domain.
+- Added the AppShell desktop command palette and responsive mobile search
+  sheet, Ctrl/Cmd+K, arrow/Enter/Escape controls and localStorage recent
+  searches. Existing primary navigation remains six desktop items and five
+  mobile items; active Study sessions hide the search trigger.
+- No migration, persisted history, scheduler change, database mutation or
+  production deployment was introduced.

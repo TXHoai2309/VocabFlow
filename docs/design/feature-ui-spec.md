@@ -1,14 +1,28 @@
-# Family MVP Feature UI Specification v1.0.5
+# Family MVP Feature UI Specification v1.0.6
 
 - Status: CURRENT FEATURE UI SOURCE OF TRUTH
-- Version: v1.0.5
+- Version: v1.0.6
 - Source baseline: `VocabFlow_Family_MVP_Feature_UI_Specification_v1.0.1.docx`; this Markdown records the US-26/US-27 taxonomy browse, US-28/US-29 learning-set extension, US-30 daily New settings, US-31 through US-34 exercise mode, US-35/US-36 activity indicators, US-48 Progress Dashboard and US-50 simplified navigation.
 - Canonical format: Markdown
-- Last synchronized: 2026-10-05
+- Last synchronized: 2026-10-06
 
 **VOCABFLOW**
 
-**Family MVP Feature UI Specification v1.0.5**
+**Family MVP Feature UI Specification v1.0.6**
+
+## Global Search (US-51)
+
+The shared AppShell adds one shell-level desktop search trigger above page
+content and one icon trigger in the existing compact mobile header. No search
+tab is added: desktop navigation remains six items and the mobile bottom bar
+remains five. The trigger opens an accessible centered desktop command palette
+or a full-screen mobile sheet; active /study and /study/exercises sessions
+hide both triggers to preserve focus. The dialog autofocuses its query field,
+shows up to five locally stored recent query strings when empty, and groups
+real results under Từ vựng, Chủ đề and Bộ từ. Loading, no-result and safe retry
+states are compact. Arrow keys move the active result, Enter opens it, Escape
+closes the dialog, and Tab remains within the modal. At widths below 1024px the
+desktop trigger is hidden and only the mobile trigger is shown.
 
 ## Simplified navigation extension (Feature #13 / US-50)
 

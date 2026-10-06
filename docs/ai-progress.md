@@ -2434,3 +2434,17 @@ registration boundary before feature implementation.
 - Evidence: [final audit report](../vocabflow-dataset/reports/hybrid-100-rc-final-review-2.2.0-rc.1.md),
   [owner decision](../vocabflow-dataset/reports/hybrid-100-rc-final-owner-decision.md),
   and [machine-readable review plan](../vocabflow-dataset/workspaces/hybrid-100-rc-final-review/).
+
+## 2026-10-06 — Global Search (Feature #14 / US-51)
+
+- Added a learner-scoped, read-only global search API for enabled Vocabulary,
+  accessible Topics and enabled Learning Sets, plus a shared typed result
+  contract. Search is bounded to five results per group by default, ranks
+  matches deterministically, uses parameterized SQL, and performs one grouped
+  search read after the canonical ownership guard.
+- Added the desktop Ctrl/Cmd+K command palette and compact-header mobile
+  full-screen search, accessible grouped results, keyboard navigation and up
+  to five deduplicated local recent query strings. Study focus routes keep
+  search hidden; existing desktop/mobile navigation counts remain unchanged.
+- Added API, web, recent-search and AppShell tests. No migration, scheduler
+  change, database mutation or production deployment was made.

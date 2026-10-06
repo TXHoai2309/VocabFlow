@@ -54,6 +54,12 @@ import {
   type WeakWordsService
 } from "./weak-words";
 import {
+  createGlobalSearchService,
+  GlobalSearchServiceError,
+  parseGlobalSearchQuery,
+  type GlobalSearchService
+} from "./global-search";
+import {
   createResetLearnerProgressService,
   ResetLearnerProgressServiceError,
   type ResetLearnerProgressService
@@ -85,6 +91,7 @@ export type AppDependencies = {
   learnerVocabularyService?: LearnerVocabularyService;
   learnerSavedVocabularyService?: LearnerSavedVocabularyService;
   weakWordsService?: WeakWordsService;
+  globalSearchService?: GlobalSearchService;
   resetLearnerProgressService?: ResetLearnerProgressService;
 };
 
@@ -211,6 +218,12 @@ async function runWeakWordsService(env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
   return createWeakWordsService(createHttpDatabase(env.DATABASE_URL));
+}
+
+async function runGlobalSearchService(env: RuntimeBindings) {
+  if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
+  const { createHttpDatabase } = await import("./db/client");
+  return createGlobalSearchService(createHttpDatabase(env.DATABASE_URL));
 }
 
 async function runResetLearnerProgressService(env: RuntimeBindings) {
@@ -901,6 +914,25 @@ export function createApp(dependencies: AppDependencies = {}) {
         return c.json(errorEnvelope(error.code, message), error.status);
       }
       return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể tải vocabulary lúc này. Vui lòng thử lại."), 503);
+    }
+  });
+
+  application.get("/api/learners/:learnerId/search", async (c) => {
+    try {
+      const session = await readSession(c.req.raw, c.env);
+      if (!session?.user?.id) return c.json(errorEnvelope("UNAUTHORIZED", "Đăng nhập để tiếp tục."), 401);
+      const query = parseGlobalSearchQuery(new URL(c.req.url).searchParams);
+      if (!query) return c.json(errorEnvelope("INVALID_REQUEST", "Từ khóa tìm kiếm không hợp lệ."), 400);
+      const service = dependencies.globalSearchService ?? await runGlobalSearchService(c.env);
+      return c.json(await service.search(session.user.id, c.req.param("learnerId"), query), 200);
+    } catch (error) {
+      if (error instanceof GlobalSearchServiceError) {
+        const message = error.code === "HOUSEHOLD_ACCESS_DENIED"
+          ? "Bạn không có quyền truy cập learner này."
+          : "Không thể tìm kiếm lúc này. Vui lòng thử lại.";
+        return c.json(errorEnvelope(error.code, message), error.status);
+      }
+      return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể tìm kiếm lúc này. Vui lòng thử lại."), 503);
     }
   });
 

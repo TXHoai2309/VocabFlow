@@ -156,7 +156,7 @@ describe("shared authenticated app shell", () => {
 
     expect(await screen.findByRole("heading", { name: "Từ yếu / Cần ôn lại" })).toBeInTheDocument();
     expectNoActivePrimaryNav();
-    expect(screen.getByRole("alert")).toHaveTextContent("Không thể tải danh sách từ cần ôn lúc này.");
+    expect(await screen.findByRole("alert")).toHaveTextContent("Không thể tải danh sách từ cần ôn lúc này.");
     expect(document.querySelector(".app-layout")).toBeInTheDocument();
   });
 

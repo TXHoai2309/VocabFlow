@@ -1,5 +1,19 @@
 # Family MVP Specification v1.0
 
+## Global Search extension (Feature #14 / US-51)
+
+Authenticated learners can search real Vocabulary, enabled Topics that contain
+learner-accessible vocabulary, and enabled Learning Sets from the shared
+AppShell. Vocabulary search is limited to enabled words in the active learner's
+active assigned Learning Sets; Learning Set discovery follows the existing
+catalog behavior and includes all enabled sets. Search accepts a trimmed,
+case-insensitive Unicode query of 1–100 characters, with at most five
+deterministically ranked results per entity group by default. Desktop supports
+Ctrl/Cmd+K and a command palette; tablet/mobile opens a full-screen search
+sheet. Up to five recent query strings are stored locally, with no search
+history or result data persisted server-side. Search is hidden during active
+Study sessions. This is a read-only feature and requires no schema migration.
+
 ## Simplified navigation extension (Feature #13 / US-50)
 
 The authenticated AppShell keeps six primary destinations on desktop: Home,
