@@ -10,9 +10,10 @@ import {
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import {
-  canonicalHash,
-  computeCanaryFingerprint,
-} from "./hybrid-100-release-candidate";
+  assertCanaryRepositoryState,
+  SUPERSEDED_DIRTY_WORKTREE_FINGERPRINT,
+} from "./hybrid-100-canary-integrity";
+import { canonicalHash } from "./hybrid-100-release-candidate";
 import { validateMasterVocabularyV2 } from "./validate-master-vocabulary-v2";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -33,7 +34,6 @@ export const RC_FINGERPRINT = "06b2a4dec2f54438416cae67788e0683fe94907cbce0a60fb
 export const RC_TREE_FINGERPRINT = "9d021e151d934a61c577289a4aff3ded8883858bac672e1c27ac546a335966a7";
 export const AUTHORIZED_CEFR_FINGERPRINT = "d0a60b26f75b65c18953e76ed759447151ab81a880e9c3e869cbefc6f12bb622";
 export const CANONICAL_PROMOTION_PLAN_FINGERPRINT = "969b5090a020b3f4793e6a77dcd78ce46fbb119036c45bfcf93bca81cc7a04db";
-export const CANARY_FINGERPRINT = "2c75c7092b89ed343e186d5087c4c99b2a09d8afd666c61f3cab1d746f504547";
 export const LIGHT_ID = "01a0fc13-09f1-76b9-8a57-6c6e55e9b438";
 export const LIGHT_SENSE_ID = "01a0fc13-09ee-7768-9be6-d20fa32521ee";
 export const WATER_ID = "01a0fc13-09f2-77bf-93db-1ceefb68082a";
@@ -920,8 +920,7 @@ function buildAudit(root: string): JsonObject {
 
   const taxonomyPlan = checkTaxonomyPlan(root, taxonomyRecord);
   const runtimeAudit = runtimeArtifacts(rcPackageRoot);
-  const currentCanaryFingerprint = computeCanaryFingerprint(root);
-  if (currentCanaryFingerprint !== CANARY_FINGERPRINT) fail("CANARY_FINGERPRINT_MISMATCH", currentCanaryFingerprint);
+  const canaryRepositoryState = assertCanaryRepositoryState(root);
   const rcValidation = validateMasterVocabularyV2({
     datasetRoot: rcPackageRoot,
     schemaRoot: path.join(rcPackageRoot, "schemas"),
@@ -976,7 +975,9 @@ function buildAudit(root: string): JsonObject {
     && waterReusePreserved
     && fuseUnclassifiedPreserved
     && runtimeAudit.runtimeArtifacts === 0
-    && currentCanaryFingerprint === CANARY_FINGERPRINT
+    && canaryRepositoryState.canaryWorkingTreeClean
+    && canaryRepositoryState.headCanaryGitTreeSha === canaryRepositoryState.authoritativeCanaryGitTreeSha
+    && canaryRepositoryState.remoteCanaryGitTreeSha === canaryRepositoryState.authoritativeCanaryGitTreeSha
     && rightsMetadataExplicit
     && sourceTextMetadataExplicit
     && sourceMediaMetadataExplicit
@@ -1007,7 +1008,9 @@ function buildAudit(root: string): JsonObject {
     waterReusePreserved,
     fuseUnclassifiedPreserved,
     runtimeArtifacts: runtimeAudit.runtimeArtifacts,
-    canaryMatches: currentCanaryFingerprint === CANARY_FINGERPRINT,
+    canaryIntegrityValid: canaryRepositoryState.canaryWorkingTreeClean
+      && canaryRepositoryState.headCanaryGitTreeSha === canaryRepositoryState.authoritativeCanaryGitTreeSha
+      && canaryRepositoryState.remoteCanaryGitTreeSha === canaryRepositoryState.authoritativeCanaryGitTreeSha,
     rightsMetadataExplicit,
     sourceTextMetadataExplicit,
     sourceMediaMetadataExplicit,
@@ -1172,8 +1175,14 @@ function buildAudit(root: string): JsonObject {
       rcErrors: rcValidation.errorCount,
       rcWarnings: rcValidation.warningCount,
       rcInfo: rcValidation.infoCount,
-      currentCanaryFingerprint,
-      expectedCanaryFingerprint: CANARY_FINGERPRINT,
+      authoritativeCanaryGitTreeSha: canaryRepositoryState.authoritativeCanaryGitTreeSha,
+      headCanaryGitTreeSha: canaryRepositoryState.headCanaryGitTreeSha,
+      remoteCanaryGitTreeSha: canaryRepositoryState.remoteCanaryGitTreeSha,
+      lastCanaryCommit: canaryRepositoryState.lastCanaryCommit,
+      lastCanaryCommitTreeSha: canaryRepositoryState.lastCanaryCommitTreeSha,
+      canaryWorkingTreeClean: canaryRepositoryState.canaryWorkingTreeClean,
+      canaryCommittedTreeFingerprint: canaryRepositoryState.canaryCommittedTreeFingerprint,
+      supersededHistoricalCanaryFingerprint: SUPERSEDED_DIRTY_WORKTREE_FINGERPRINT,
       canaryChanged: false,
       runtimeAudit,
     },
@@ -1574,7 +1583,7 @@ function createOutputFiles(plan: JsonObject): Map<string, string> {
     candidateRevalidationIsReadOnly: true,
     canonicalValidatorWasNotUsedToPromoteLifecycle: true,
     approvedReleaseValidationNotExecutedBecauseNoApprovedReleaseWasCreated: true,
-    canaryFingerprint: CANARY_FINGERPRINT,
+    canaryCommittedTreeFingerprint: plan.audit.validation.canaryCommittedTreeFingerprint,
     runtimeArtifactCount: audit.validation.runtimeAudit.runtimeArtifacts,
   };
   const workspaceManifest = {

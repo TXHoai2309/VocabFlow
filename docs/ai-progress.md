@@ -2448,3 +2448,23 @@ registration boundary before feature implementation.
   search hidden; existing desktop/mobile navigation counts remain unchanged.
 - Added API, web, recent-search and AppShell tests. No migration, scheduler
   change, database mutation or production deployment was made.
+
+## 2026-10-06 — Phase 2F.7A canary baseline correction
+
+- Phase 2F.7 correctly stopped before writing release data after its clean
+  worktree did not match the historical canary fingerprint. That fingerprint
+  came from non-authoritative dirty working-tree bytes and is superseded for
+  current-state checks; prior Phase 2F.6 artifacts retain it as historical
+  evidence.
+- The committed canary Git tree is
+  `f5d4e502be5106da191b5b2ab807f5db12065831` at both the last canary-changing
+  commit `7ce73b7c8e0d2f14e4d7c34366bf6cd08544f847` and the approved baseline.
+  The guard now checks the pinned Git tree at HEAD and origin/TXH, the last
+  canary-changing commit, tracked working-tree status, and untracked files.
+- The committed-content SHA-256 is recorded in the correction artifact.
+  Canary files, RC/CEFR content, taxonomy plans, approval-only revision plans,
+  and release data were not changed. No taxonomy 2.0.1, approval revisions, or
+  release 2.2.0 were created; no database, runtime reconciliation, or
+  production access occurred.
+- Phase 2F.7 owner authorization remains valid. Resume it only after this
+  correction is reviewed remotely.

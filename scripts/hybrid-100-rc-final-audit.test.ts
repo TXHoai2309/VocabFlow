@@ -54,6 +54,19 @@ describe("Hybrid-100 RC final audit", () => {
     expect(plan.audit.phase2F6BaselineCommit).toBe("b3db6c38213cc05e0fa8437c42f4c236c671c629");
   });
 
+  it("uses the pinned Git tree for current canary validation and labels the old value as historical", () => {
+    expect(plan.audit.validation).toMatchObject({
+      authoritativeCanaryGitTreeSha: "f5d4e502be5106da191b5b2ab807f5db12065831",
+      headCanaryGitTreeSha: "f5d4e502be5106da191b5b2ab807f5db12065831",
+      remoteCanaryGitTreeSha: "f5d4e502be5106da191b5b2ab807f5db12065831",
+      lastCanaryCommit: "7ce73b7c8e0d2f14e4d7c34366bf6cd08544f847",
+      canaryWorkingTreeClean: true,
+      supersededHistoricalCanaryFingerprint: "2c75c7092b89ed343e186d5087c4c99b2a09d8afd666c61f3cab1d746f504547",
+    });
+    expect(plan.audit.validation).not.toHaveProperty("currentCanaryFingerprint");
+    expect(plan.audit.validation).not.toHaveProperty("expectedCanaryFingerprint");
+  });
+
   it("confirms the exact 87-Lexeme / 100-Sense cohort and CEFR outcomes", () => {
     expect(plan.audit.cohort).toMatchObject({
       senseCohortExact: true,

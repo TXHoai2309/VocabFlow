@@ -1587,3 +1587,12 @@ US-07 remains not started.
   mobile items; active Study sessions hide the search trigger.
 - No migration, persisted history, scheduler change, database mutation or
   production deployment was introduced.
+
+## 2026-10-06 — Phase 2F.7A canary baseline correction
+
+- Replaced the clean-release canary byte-hash guard with a pinned committed Git
+  tree check and Git-visible canary-directory cleanliness check. Added a
+  supersession artifact for the former dirty-worktree-derived fingerprint;
+  existing Phase 2F.6 evidence remains unchanged and historical.
+- The canary tree and all release data remain unchanged. Phase 2F.7 is still
+  authorized and may resume after this correction is reviewed remotely.

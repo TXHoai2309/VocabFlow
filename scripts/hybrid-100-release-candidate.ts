@@ -13,6 +13,7 @@ import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import canonicalize from "canonicalize";
+import { assertCanaryRepositoryState, computeCanaryCommittedTreeFingerprint } from "./hybrid-100-canary-integrity";
 import { validateMasterVocabularyV2 } from "./validate-master-vocabulary-v2";
 import { preparePlan as prepareSemanticPromotion } from "./hybrid-100-canonical-promote";
 import { buildFullOwnerApprovalPlan } from "./hybrid-100-cefr-full-owner-approval";
@@ -27,7 +28,6 @@ export const SEMANTIC_DRAFT_FINGERPRINT = "a112a475e896f09038d4dd6834389af2d553d
 export const SEMANTIC_CANONICAL_PROMOTION_FINGERPRINT = "5c10618ee72fcc7b99b270764e412ebc51f286eadc750e45a6910830bb15e870";
 export const RC_VERSION = "2.2.0-rc.1";
 export const RC_CREATED_AT = "2026-10-05T00:00:00Z";
-export const EXPECTED_CANARY_FINGERPRINT = "2c75c7092b89ed343e186d5087c4c99b2a09d8afd666c61f3cab1d746f504547";
 export const LIGHT_ID = "01a0fc13-09f1-76b9-8a57-6c6e55e9b438";
 export const LIGHT_SENSE_ID = "01a0fc13-09ee-7768-9be6-d20fa32521ee";
 export const WATER_ID = "01a0fc13-09f2-77bf-93db-1ceefb68082a";
@@ -408,28 +408,19 @@ function readWorkspaceSource(root: string): JsonObject {
   };
 }
 
-function treeSnapshot(root: string, relativeDirectory: string): JsonObject[] {
+function listDirectoryFiles(root: string, relativeDirectory: string): string[] {
   const absolute = path.join(root, relativeDirectory);
   if (!existsSync(absolute)) return [];
-  const output: JsonObject[] = [];
+  const output: string[] = [];
   const visit = (directory: string): void => {
     for (const entry of readdirSync(directory, { withFileTypes: true }).sort((left, right) => left.name.localeCompare(right.name, "en"))) {
       const child = path.join(directory, entry.name);
       if (entry.isDirectory()) visit(child);
-      else if (entry.isFile()) {
-        output.push({
-          path: path.relative(root, child).split(path.sep).join("/"),
-          sha256: sha256(readFileSync(child)),
-        });
-      }
+      else if (entry.isFile()) output.push(path.relative(root, child).split(path.sep).join("/"));
     }
   };
   visit(absolute);
-  return output.sort((left, right) => String(left.path).localeCompare(String(right.path), "en"));
-}
-
-export function computeCanaryFingerprint(root: string): string {
-  return canonicalHash(treeSnapshot(root, DATASET + "/releases/canary-v2.1.0"));
+  return output.sort((left, right) => left.localeCompare(right, "en"));
 }
 
 function baselineManifestForCurrentState(root: string, model: JsonObject): { state: "BASE" | "PROMOTED"; manifest: JsonObject } {
@@ -477,7 +468,7 @@ function baselineManifestForCurrentState(root: string, model: JsonObject): { sta
   }
   const datasetRoot = path.join(root, DATASET);
   verifyPinRecords(datasetRoot, current);
-  if (computeCanaryFingerprint(root) !== EXPECTED_CANARY_FINGERPRINT) fail("CANARY_V2_1_0_CHANGED");
+  assertCanaryRepositoryState(root);
   return { state: promotedState ? "PROMOTED" : "BASE", manifest: normalized };
 }
 
@@ -878,7 +869,7 @@ function renderReport(input: {
   canonicalManifest: JsonObject;
   candidateManifest: JsonObject;
   taxonomyPin: Pin;
-  canaryFingerprint: string;
+  canaryCommittedTreeFingerprint: string;
   validation: JsonObject;
 }): string {
   const distributionLine = Object.entries(EXPECTED_DISTRIBUTION)
@@ -918,7 +909,7 @@ function renderReport(input: {
     "- Media assets and versions: 0; Learning Sets: 0; Relations: 0.",
     "- CEFR distribution: " + distributionLine + ".",
     "- Candidate fingerprint: " + input.candidateFingerprint + " (not an official releaseHash).",
-    "- Candidate releaseHash: absent. Canary v2.1.0 unchanged at " + input.canaryFingerprint + ".",
+    "- Candidate releaseHash: absent. Canary v2.1.0 committed-content SHA-256: " + input.canaryCommittedTreeFingerprint + ".",
     "- Candidate validator: " + input.validation.candidateStatus + "; "
       + input.validation.candidateErrors + " errors, " + input.validation.candidateWarnings + " warnings.",
     "- Canonical validator: " + input.validation.canonicalStatus + "; "
@@ -1137,7 +1128,7 @@ export function buildPhasePlan(root = REPO_ROOT): PhasePlan {
     canonicalManifest: promotion.manifest,
     candidateManifest: candidate.manifest,
     taxonomyPin: workspace.taxonomyPin,
-    canaryFingerprint: computeCanaryFingerprint(root),
+    canaryCommittedTreeFingerprint: computeCanaryCommittedTreeFingerprint(root),
     validation: validationPlaceholder,
   });
   const files: FilePlan = new Map();
@@ -1186,7 +1177,7 @@ export function buildPhasePlan(root = REPO_ROOT): PhasePlan {
     databaseWrites: "NONE",
     productionMutation: false,
     candidateTreeFingerprint: candidateFingerprints.treeFingerprint,
-    canaryFingerprint: computeCanaryFingerprint(root),
+    canaryCommittedTreeFingerprint: computeCanaryCommittedTreeFingerprint(root),
     candidateDirectory: "releases/hybrid-100-v2.2.0-rc.1",
     sourceRightsVerified: false,
     sourceTextReused: false,
@@ -1221,7 +1212,7 @@ function compareFiles(root: string, files: FilePlan, manifest: JsonObject, candi
   const candidateExists = existsSync(candidateRoot);
   const candidateExpected = new Set([...candidateFiles.keys()].map((file) => file.slice((RC_RELEASE + "/").length)));
   if (candidateExists) {
-    const actual = treeSnapshot(root, RC_RELEASE).map((entry) => String(entry.path).slice((RC_RELEASE + "/").length));
+    const actual = listDirectoryFiles(root, RC_RELEASE).map((file) => file.slice((RC_RELEASE + "/").length));
     const actualSet = new Set(actual);
     const extras = actual.filter((file) => !candidateExpected.has(file));
     if (extras.length || actualSet.size !== candidateExpected.size) fail("RC_IMMUTABILITY_VIOLATION: unexpected or missing RC files");
@@ -1273,7 +1264,7 @@ function createPromotionPlanArtifact(root: string): void {
   }
   verifyPinRecords(datasetRoot, model.rootManifest);
   if (canonicalHash(model.rootManifest) !== model.semanticSummary.datasetManifestHashAfter) fail("CANONICAL_SEMANTIC_BASE_STALE");
-  if (computeCanaryFingerprint(root) !== EXPECTED_CANARY_FINGERPRINT) fail("CANARY_V2_1_0_CHANGED");
+  assertCanaryRepositoryState(root);
   validatePinnedInputsAgainstExistingTools(root);
   const absolute = path.join(root, AUTHORIZATION_PATH);
   const contents = jsonBytes(authArtifact());
@@ -1342,9 +1333,9 @@ function validatePlannedPackages(root: string, plan: PhasePlan): JsonObject {
 }
 
 function materializePlan(root: string, plan: PhasePlan): void {
-  const beforeCanary = computeCanaryFingerprint(root);
+  const beforeCanary = assertCanaryRepositoryState(root);
   const stagedValidation = validatePlannedPackages(root, plan);
-  if (beforeCanary !== EXPECTED_CANARY_FINGERPRINT) fail("CANARY_V2_1_0_CHANGED");
+  assertCanaryRepositoryState(root);
   const backup = new Map<string, Buffer | undefined>();
   const candidateRoot = path.join(root, RC_RELEASE);
   const candidateExisted = existsSync(candidateRoot);
@@ -1356,7 +1347,10 @@ function materializePlan(root: string, plan: PhasePlan): void {
       mkdirSync(path.dirname(absolute), { recursive: true });
       writeFileSync(absolute, contents, "utf8");
     }
-    if (computeCanaryFingerprint(root) !== beforeCanary) fail("CANARY_V2_1_0_CHANGED_DURING_APPLY");
+    const afterCanary = assertCanaryRepositoryState(root);
+    if (afterCanary.authoritativeCanaryGitTreeSha !== beforeCanary.authoritativeCanaryGitTreeSha) {
+      fail("CANARY_GIT_TREE_CHANGED_DURING_APPLY");
+    }
     const rechecked = buildPhasePlan(root);
     if (rechecked.differences.length !== 0) fail("POST_APPLY_DIFF_REQUIRED:" + rechecked.differences.join(","));
     if (rechecked.candidateFingerprint !== plan.candidateFingerprint) fail("POST_APPLY_RC_FINGERPRINT_MISMATCH");
@@ -1423,7 +1417,7 @@ export function main(args = process.argv.slice(2), root = REPO_ROOT): void {
     rootManifestPinsMatch: true,
     rcHashesMatch: true,
     rcDependencyClosureValid: true,
-    canaryUnchanged: computeCanaryFingerprint(root) === EXPECTED_CANARY_FINGERPRINT,
+    canaryUnchanged: assertCanaryRepositoryState(root).canaryWorkingTreeClean,
   };
   process.stdout.write(JSON.stringify(finalSummary, null, 2) + "\n");
 }
