@@ -1,5 +1,49 @@
 # Current Handoff Snapshot
 
+## 2026-10-06 — Phase 2G.1C Hybrid-100 Development candidate discovery
+
+- Verified only the frozen `2.2.1 / APPROVED` source: releaseHash
+  `44874b11d1fdef76a515f6285d04c9a417318daa6969e112608a59e7c232613c`, tree
+  fingerprint `51ab4c5ce31bd38b51742d1aea16602150522da27ad26c123cc17b332f9a406e`.
+  The existing release builder check, independent release hash, release
+  validator, and normal RELEASE transform all passed: 100 projected, 0 skipped,
+  `importEligible=true`, 100 Vietnamese / English definition / English example
+  fields, 0 IPA, and no Topics, Learning Sets, memberships, or items.
+- Verified the configured Neon Development target. The migration role was
+  inspected first in a `REPEATABLE READ, READ ONLY` transaction: 19/19 local
+  migrations match, latest `0018_panoramic_spirit`; required bridge tables,
+  columns, constraints, and write guards are present. Candidate discovery then
+  used one runtime `REPEATABLE READ, READ ONLY` snapshot.
+- Scanned exactly 100 release Senses. Existing Master mappings: 0; unmapped:
+  100; zero/one/multiple candidates: 85/13/2; candidate rows: 18. Candidate
+  classifications: 0 exact effective, 1 partial, 4 semantic, 13 conflicting
+  meaning. Analysis recommendations: 0 mapping no-op, 0 mapping update review,
+  4 map-existing candidate, 85 create-new candidate, 11 identity review, 0
+  override review, 0 quarantine review, and 0 blocked. Two polysemy groups were
+  flagged. One candidate ID has learner-progress references and one has review
+  event references; only aggregate counts were queried.
+- Snapshot fingerprint:
+  `89bfe022122209e0d11031d4f970a9029fd92186bce46ddfca77b95870a51f8e`; repeated
+  from the same in-memory snapshot with an identical result. No learner
+  identities or rows were serialized. URLs in candidate artifacts have their
+  paths redacted.
+- Generated the source-specific workspace and report:
+  [candidate workspace](../vocabflow-dataset/workspaces/hybrid-100-runtime-reconciliation-2.2.1/),
+  [Development reconciliation report](../vocabflow-dataset/reports/hybrid-100-development-runtime-reconciliation-2.2.1.md),
+  and [scanner](../scripts/hybrid-100-development-reconciliation-scan.ts).
+  All 100 owner decisions remain `UNRESOLVED`; no importer-accepted artifact,
+  mapping choice, clearFields decision, or runtime ID was created.
+- The 2.2.1 release and tree, 2.2.0, RC, Canary, canonical root, and taxonomy
+  passed the pre/post frozen-source checks. Database writes, IDs allocated,
+  mappings created, learner mutations, importer apply, migrations, production
+  connection, and production mutation are all zero/none.
+- Verification: focused 2G.1C tests 10/10; `pnpm validate:master-vocab-v2`
+  passes with 0 errors, 0 warnings, and 1 info issue; `pnpm typecheck`,
+  `pnpm lint`, and `git diff --check` pass. pnpm reports local Node 22.19.0
+  below the repository's declared 22.23.2 engine.
+- Next step: owner review of the candidate/decision template. Runtime import is
+  still unauthorized.
+
 ## 2026-10-06 — Phase 2G.1A nested lifecycle audit and 2.2.1 plan
 
 - Re-audited frozen `2.2.0 / APPROVED` offline: releaseHash

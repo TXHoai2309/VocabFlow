@@ -2,6 +2,31 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-06 — Phase 2G.1C Hybrid-100 Development candidate discovery
+
+- Added a release-scoped, read-only scanner for the frozen Hybrid-100 2.2.1
+  release. Its RELEASE projection passes at 100/100, with zero skipped Senses
+  and no Topic, Learning Set, media, or runtime CEFR-level scope.
+- Verified Development migration/bridge readiness at 19/19 migrations, then
+  scanned the runtime catalog and relevant Master mappings in a
+  `REPEATABLE READ, READ ONLY` snapshot. The 100-Sense cohort has 0 existing
+  Master mappings and 18 runtime candidate rows; 2 polysemy groups are flagged.
+  Learner progress and review history were queried as candidate-ID aggregates
+  only.
+- Added a new 2.2.1 candidate workspace, collision audit, owner decision
+  template, validation summary, and report. All 100 decisions remain
+  `UNRESOLVED`; URLs are redacted and no learner identities are serialized.
+- The immutable 2.2.1 source and historical RC, Canary, canonical root, and
+  taxonomy passed pre/post checks. No database writes, migrations, importer
+  apply, runtime IDs, mappings, learner mutations, or production connection
+  occurred. Owner reconciliation remains required; import is unauthorized.
+- Verification: focused tests 10/10; Master validator passes with 0 errors,
+  0 warnings, 1 informational issue; typecheck, lint, and `git diff --check`
+  pass. The local Node 22.19.0 is below the declared 22.23.2 engine.
+- Evidence: [reconciliation report](../vocabflow-dataset/reports/hybrid-100-development-runtime-reconciliation-2.2.1.md),
+  [workspace artifacts](../vocabflow-dataset/workspaces/hybrid-100-runtime-reconciliation-2.2.1/),
+  and [scanner](../scripts/hybrid-100-development-reconciliation-scan.ts).
+
 ## 2026-10-06 — Phase 2G.1A nested lifecycle audit and 2.2.1 patch plan
 
 - Added an offline nested-lifecycle audit for all learner-facing children in

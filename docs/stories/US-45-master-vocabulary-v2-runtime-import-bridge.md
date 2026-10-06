@@ -1,5 +1,35 @@
 # US-45 — Master Vocabulary V2 Runtime Import Bridge
 
+## Phase 2G.1C — Hybrid-100 Development candidates discovered; owner review remains open
+
+The 2.2.1 source-specific scan verified the immutable APPROVED release and its
+exact hash/tree, then verified the configured Neon Development target. The
+migration role reported 19/19 current migration hashes and all required bridge
+tables, columns, constraints, and write guards. Runtime discovery ran only after
+that gate, using the `vocabflow_runtime` role in one `REPEATABLE READ, READ
+ONLY` snapshot.
+
+All 100 release Senses were compared with the runtime catalog. There are no
+existing Master mappings; 85 Senses have no runtime candidates, 13 have one,
+and 2 have multiple candidates, for 18 candidate rows total. The scan reports
+2 polysemy collision groups. One candidate ID has learner progress references
+and one has review-event references; only grouped counts were queried. No
+learner identities or rows were serialized. Every owner decision is still
+`UNRESOLVED`; the artifact is analysis-only and is not accepted by the importer.
+
+No runtime IDs were allocated, mappings created, or learner rows changed. No
+importer apply, migration, or production connection occurred. The official
+2.2.1 release, 2.2.0, RC, Canary, canonical root, and taxonomy pins passed the
+pre/post immutability gate.
+
+Evidence: [Phase 2G.1C report](../../vocabflow-dataset/reports/hybrid-100-development-runtime-reconciliation-2.2.1.md),
+[candidate and owner-review artifacts](../../vocabflow-dataset/workspaces/hybrid-100-runtime-reconciliation-2.2.1/),
+and [read-only scanner](../../scripts/hybrid-100-development-reconciliation-scan.ts).
+
+Current status: `IN PROGRESS / PHASE 2G.1C CANDIDATES READY FOR OWNER REVIEW`.
+Owner reconciliation is required before any mapping decision. Runtime import
+remains unauthorized and separately gated.
+
 ## Phase 2G.1A — Nested lifecycle audit complete; 2.2.1 remains a plan
 
 The offline audit verified frozen release 2.2.0 and the exact owner-reviewed
@@ -27,7 +57,7 @@ to retain separate Master-release approval and runtime-readiness gates.
 Evidence: [Phase 2G.1A audit report](../../vocabflow-dataset/reports/hybrid-100-runtime-eligibility-closure-2.2.1.md),
 [machine-readable audit artifacts](../../vocabflow-dataset/workspaces/hybrid-100-runtime-eligibility-closure/).
 
-## Phase 2G.1 — Development reconciliation preflight blocked at source gate
+## Phase 2G.1 — Historical 2.2.0 Development reconciliation preflight blocked at source gate
 
 The read-only Phase 2G.1 preflight verified the frozen Hybrid-100 2.2.0 release
 and the configured Neon Development target. All 19 current migration hashes
@@ -48,13 +78,10 @@ Evidence: [Phase 2G.1 preflight report](../../vocabflow-dataset/reports/hybrid-1
 [projection gate](../../vocabflow-dataset/workspaces/hybrid-100-runtime-reconciliation/projection/transform-preflight-summary.json),
 and [migration state](../../vocabflow-dataset/workspaces/hybrid-100-runtime-reconciliation/migration-state.json).
 
-Current status: `IN PROGRESS / PHASE 2G.1 BLOCKED AT RELEASE PROJECTION GATE;
-PHASE 2G.1A TECHNICAL PLAN READY, OWNER AUTHORIZATION PENDING`. The offline
-audit proves the content and exact lifecycle-only patch plan, but does not
-authorize status changes, revision materialization, release creation, or
-runtime discovery. Obtain the required owner authorization before materializing
-2.2.1; after a valid RELEASE projection exists, continue with Development
-candidate discovery and owner review. Import apply remains separately gated.
+This is a historical 2.2.0 result. Phase 2G.1B later materialized the approved
+2.2.1 source, and Phase 2G.1C completed the read-only Development candidate
+discovery described above. Owner review and any future runtime import remain
+separate gates.
 
 ## Phase 2F.7 — Approved Hybrid-100 release source prepared
 
@@ -79,7 +106,7 @@ Evidence: [Phase 2F.7 approved-release report](../../vocabflow-dataset/reports/h
 [frozen release package](../../vocabflow-dataset/releases/hybrid-100-v2.2.0/),
 and [materialization summary](../../vocabflow-dataset/workspaces/hybrid-100-approved-release/summary.json).
 
-- Historical Phase 2D status: `IMPLEMENTED / DEVELOPMENT CANARY VERIFIED`; owner acceptance remains explicit. Current Phase 2G.1 status is blocked at the release projection gate above.
+- Historical Phase 2D status: `IMPLEMENTED / DEVELOPMENT CANARY VERIFIED`; owner acceptance remains explicit. Current Phase 2G.1C status is ready for owner review; runtime import remains unauthorized.
 - Owner direction: continue the Master Vocabulary Dataset V2 Phase 2D runtime
   identity bridge, adapter, and explicitly reprioritized Phase 2D.1 hardening
   and canary preparation.

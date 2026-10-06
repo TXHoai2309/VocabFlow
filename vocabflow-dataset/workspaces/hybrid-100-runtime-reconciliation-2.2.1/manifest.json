@@ -1,0 +1,20 @@
+{
+  "artifactType": "HYBRID_100_DEVELOPMENT_RUNTIME_RECONCILIATION",
+  "generatedBy": "hybrid-100-development-reconciliation-scan-2.2.1-v1",
+  "generatedAt": "2026-10-06T15:25:00.396Z",
+  "sourceDatasetVersion": "2.2.1",
+  "sourceSchemaVersion": "2.0.1",
+  "sourceReleaseHash": "44874b11d1fdef76a515f6285d04c9a417318daa6969e112608a59e7c232613c",
+  "releaseTreeFingerprint": "51ab4c5ce31bd38b51742d1aea16602150522da27ad26c123cc17b332f9a406e",
+  "targetEnvironment": "development",
+  "migrationReady": true,
+  "candidateDiscoveryPerformed": true,
+  "snapshotFingerprint": "89bfe022122209e0d11031d4f970a9029fd92186bce46ddfca77b95870a51f8e",
+  "fingerprintRepeatIdentical": true,
+  "ownerDecisionsFinalized": 0,
+  "ownerDecisionsUnresolved": 100,
+  "databaseConnection": "READ_ONLY_DEVELOPMENT",
+  "databaseTransaction": "REPEATABLE_READ_READ_ONLY",
+  "databaseWrites": "NONE",
+  "runtimeImportAuthorized": false
+}

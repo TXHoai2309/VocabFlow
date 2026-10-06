@@ -1,0 +1,194 @@
+{
+  "generatedBy": "hybrid-100-development-reconciliation-scan-2.2.1-v1",
+  "oneRuntimeIdCandidateForMultipleMasterSenses": [
+    {
+      "appVocabularyId": 1260,
+      "masterSenseIds": [
+        "01a0fc13-09ee-7768-9be6-d20fa32521ee",
+        "01a1070c-7c57-7676-9acd-d23079256ae2",
+        "01a1070c-7c59-726e-88d5-9c1965cff571"
+      ]
+    },
+    {
+      "appVocabularyId": 1461,
+      "masterSenseIds": [
+        "01a1070c-7c58-76b5-a2aa-7e0812b069ae",
+        "01a1070c-7c5a-7542-a093-116a29fa3a72"
+      ]
+    }
+  ],
+  "duplicateNormalizedMasterLemmaGroups": [
+    {
+      "normalizedLemma": "all right",
+      "masterSenseIds": [
+        "01a1070c-7c58-76b5-a2a9-f257db26d791",
+        "01a1070c-7c58-76b5-a2aa-db8e56d2cc07"
+      ]
+    },
+    {
+      "normalizedLemma": "direct",
+      "masterSenseIds": [
+        "01a1070c-7c57-7676-9acf-99d8c8592c32",
+        "01a1070c-7c58-76b5-a2ab-48eb58f50cbf"
+      ]
+    },
+    {
+      "normalizedLemma": "exchange",
+      "masterSenseIds": [
+        "01a1070c-7c59-726e-88d4-f95f0a11a85e",
+        "01a1070c-7c5a-7542-a092-e7df11b3bc0a"
+      ]
+    },
+    {
+      "normalizedLemma": "integrity",
+      "masterSenseIds": [
+        "01a1070c-7c58-76b5-a2a9-3185a807d618",
+        "01a1070c-7c59-726e-88d5-fa99c56877b4"
+      ]
+    },
+    {
+      "normalizedLemma": "let",
+      "masterSenseIds": [
+        "01a1070c-7c57-7676-9ace-f28714bdee2e",
+        "01a1070c-7c5a-7542-a092-d1d73dd0f634"
+      ]
+    },
+    {
+      "normalizedLemma": "moment",
+      "masterSenseIds": [
+        "01a1070c-7c57-7676-9acf-390ac30fd890",
+        "01a1070c-7c59-726e-88d6-56be2debcdfe"
+      ]
+    },
+    {
+      "normalizedLemma": "per cent",
+      "masterSenseIds": [
+        "01a1070c-7c57-7676-9acf-83edaac99eb9",
+        "01a1070c-7c58-76b5-a2ac-007b8e765c31"
+      ]
+    },
+    {
+      "normalizedLemma": "relief",
+      "masterSenseIds": [
+        "01a1070c-7c58-76b5-a2aa-7e0812b069ae",
+        "01a1070c-7c5a-7542-a093-116a29fa3a72"
+      ]
+    },
+    {
+      "normalizedLemma": "rotate",
+      "masterSenseIds": [
+        "01a1070c-7c58-76b5-a2a9-0030193008ca",
+        "01a1070c-7c58-76b5-a2aa-4d54a373af15"
+      ]
+    },
+    {
+      "normalizedLemma": "shift",
+      "masterSenseIds": [
+        "01a1070c-7c58-76b5-a2ab-8ebf5829835d",
+        "01a1070c-7c59-726e-88d7-1390989a47b8"
+      ]
+    },
+    {
+      "normalizedLemma": "total",
+      "masterSenseIds": [
+        "01a1070c-7c58-76b5-a2aa-c4a190ee77a4",
+        "01a1070c-7c58-76b5-a2ab-74b8a6de7e22"
+      ]
+    },
+    {
+      "normalizedLemma": "light",
+      "masterSenseIds": [
+        "01a0fc13-09ee-7768-9be6-d20fa32521ee",
+        "01a1070c-7c57-7676-9acd-d23079256ae2",
+        "01a1070c-7c59-726e-88d5-9c1965cff571"
+      ]
+    }
+  ],
+  "duplicateNormalizedRuntimeWordGroups": [
+    {
+      "normalizedWord": "struggle",
+      "appVocabularyIds": [
+        1313,
+        1477
+      ]
+    },
+    {
+      "normalizedWord": "water",
+      "appVocabularyIds": [
+        11,
+        405
+      ]
+    }
+  ],
+  "existingMappingToMissingRuntimeRow": [],
+  "bridgeIdentityConflicts": [],
+  "exactWordWithConflictingMeaning": [
+    {
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-78fe16fc29bb",
+      "lemma": "deviate",
+      "appVocabularyId": 1836
+    },
+    {
+      "masterSenseId": "01a1070c-7c59-726e-88d6-cf9dc05adb73",
+      "lemma": "fuse",
+      "appVocabularyId": 846
+    },
+    {
+      "masterSenseId": "01a1070c-7c59-726e-88d4-83e56ae5f536",
+      "lemma": "liable",
+      "appVocabularyId": 1796
+    },
+    {
+      "masterSenseId": "01a1070c-7c5a-7542-a093-116a29fa3a72",
+      "lemma": "relief",
+      "appVocabularyId": 1461
+    },
+    {
+      "masterSenseId": "01a1070c-7c58-76b5-a2aa-7e0812b069ae",
+      "lemma": "relief",
+      "appVocabularyId": 1461
+    },
+    {
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-92d544914a1a",
+      "lemma": "struggle",
+      "appVocabularyId": 1313
+    },
+    {
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-92d544914a1a",
+      "lemma": "struggle",
+      "appVocabularyId": 1477
+    },
+    {
+      "masterSenseId": "01a0fc13-09ee-7768-9be6-d20fa32521ee",
+      "lemma": "light",
+      "appVocabularyId": 1260
+    },
+    {
+      "masterSenseId": "01a1070c-7c59-726e-88d5-9c1965cff571",
+      "lemma": "light",
+      "appVocabularyId": 1260
+    },
+    {
+      "masterSenseId": "01a1070c-7c57-7676-9acd-d23079256ae2",
+      "lemma": "light",
+      "appVocabularyId": 1260
+    },
+    {
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-369dd574695b",
+      "lemma": "reservation",
+      "appVocabularyId": 284
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-75ac-b815-039ab337c01a",
+      "lemma": "water",
+      "appVocabularyId": 11
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-75ac-b815-039ab337c01a",
+      "lemma": "water",
+      "appVocabularyId": 405
+    }
+  ],
+  "sourceIdentityCollisions": [],
+  "contentVersionAnomalies": []
+}

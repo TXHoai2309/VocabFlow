@@ -1,0 +1,24 @@
+{
+  "generatedBy": "hybrid-100-development-reconciliation-scan-2.2.1-v1",
+  "sourceDatasetVersion": "2.2.1",
+  "sourceSchemaVersion": "2.0.1",
+  "sourceReleaseHash": "44874b11d1fdef76a515f6285d04c9a417318daa6969e112608a59e7c232613c",
+  "releaseTreeFingerprint": "51ab4c5ce31bd38b51742d1aea16602150522da27ad26c123cc17b332f9a406e",
+  "projected": 100,
+  "skipped": 0,
+  "importEligible": true,
+  "fieldCounts": {
+    "vietnameseNonNull": 100,
+    "definitionEnNonNull": 100,
+    "exampleEnNonNull": 100,
+    "ipaNonNull": 0
+  },
+  "projectionScope": {
+    "appImportContract": "app-import-v3",
+    "projectionContract": "runtime-vocabulary-projection-v2",
+    "topics": 0,
+    "topicMemberships": 0,
+    "learningSets": 0,
+    "learningSetItems": 0
+  }
+}
