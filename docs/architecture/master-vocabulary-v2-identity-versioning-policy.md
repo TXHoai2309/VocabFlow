@@ -93,9 +93,46 @@ Retired IDs remain reserved and resolvable for old releases, import mappings, me
 | `classificationRevision` | One typed classification assignment | Its dimension value, scope, evidence, or lifecycle state changes | An unrelated Sense semantic edit changes. |
 | `relationRevision` | One reviewed relationship edge | Its endpoints, relation meaning, evidence, or lifecycle state changes | An unrelated Lexeme or Sense edit changes. |
 | `learningSetRevision` | One set definition and ordered membership | The set meaning, metadata, membership, or item order changes | A referenced Sense changes. |
-| `taxonomyVersion` | One immutable taxonomy snapshot | A taxonomy record/value/hierarchy changes in a new snapshot | A Sense or set changes. |
+| `taxonomyVersion` | One immutable taxonomy snapshot | A lifecycle/governance-only taxonomy transition, metadata correction, or semantic taxonomy change is serialized in a new snapshot under the taxonomy version policy below | A Sense or set changes. |
 | `mediaAssetVersion` | One editorial media slot | A replacement deliverable or learner-visible media rendition is approved for the same slot | Provider delivery moves to another URL with the same asset version/bytes. |
 | `runtimeContentVersion` | One app vocabulary projection row | The learner-facing projection fingerprint differs from the last applied fingerprint | Nonprojected source/provenance/reviewer metadata changes. |
+
+### Taxonomy snapshot lifecycle/version rule
+
+A taxonomy snapshot identified by `(taxonomyId, taxonomyVersion)` is immutable
+once serialized or pinned. A lifecycle change that changes the serialized
+snapshot, including `DRAFT` → `APPROVED`, must never overwrite the existing
+snapshot. Create a new snapshot version in the same `taxonomyId` lineage. There
+is no `taxonomyRevision` field; taxonomy approval is represented by a new
+`taxonomyVersion`, not by an entity revision.
+
+Taxonomy version bumps use this policy:
+
+- **PATCH**: lifecycle/governance-only transitions or metadata-only corrections
+  that preserve semantic taxonomy meaning, identifiers, values, and hierarchy.
+- **MINOR**: backward-compatible additive semantic changes, such as adding a
+  Topic, Domain, Framework, taxonomy value, or additive hierarchy/content.
+- **MAJOR**: breaking semantic changes, such as an incompatible interpretation,
+  breaking code/identity or hierarchy semantics, or a release-line reset that
+  requires migration.
+
+The stable `taxonomyId` remains unchanged across the version lineage. An
+approval-only PATCH must compare the complete serialized taxonomy payload after
+excluding exactly these **top-level snapshot metadata** fields:
+`taxonomyVersion`, `status`, `createdAt`, and `updatedAt`. No other field is
+excluded. In particular, nested child `ACTIVE`/`RETIRED` lifecycle values stay
+inside the semantic comparison and cannot be silently changed during approval.
+
+The compared semantic payload therefore includes, at minimum, `taxonomyId`,
+`cefrFrameworks`, `topics`, `domains`, `exams`, `curricula`, `schoolLevels`, and
+`difficultyScales`. Preserve all stable child IDs, codes, hierarchy references,
+labels, definitions/descriptors, framework code/version, child lifecycle
+statuses, and scale/framework semantic metadata. Unknown or future fields also
+remain included because the comparison excludes only the four named
+top-level metadata properties. For a lifecycle-only approval snapshot, the
+canonical semantic diff must be zero. The diff can only be verified after the
+new snapshot is authored; a plan stating the invariant is not proof that the
+target snapshot already exists or has passed comparison.
 
 ### Dataset version policy
 

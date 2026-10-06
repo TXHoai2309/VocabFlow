@@ -1,0 +1,107 @@
+{
+  "artifactType": "TAXONOMY_VERSION_POLICY_OWNER_DECISION",
+  "decisionDate": "2026-10-06",
+  "taxonomyId": "01a0fc13-09e9-72dd-b49d-ffef077385dd",
+  "currentVersion": "2.0.0",
+  "currentVersionStatus": "DRAFT",
+  "currentContentHash": "67ecd13e49e756df6fce2def9f40fe11eb8831ef9a68097299d37324ac588b79",
+  "currentVersionImmutable": true,
+  "approvalTargetVersion": "2.0.1",
+  "approvalTargetStatus": "APPROVED",
+  "approvalTargetMaterialized": false,
+  "versionBump": "PATCH",
+  "semanticChange": false,
+  "policy": {
+    "PATCH": "Lifecycle/governance-only transitions or metadata-only corrections that preserve taxonomy semantic meaning, identifiers, values, and hierarchy.",
+    "MINOR": "Backward-compatible additive semantic taxonomy changes, such as adding a Topic, Domain, Framework, taxonomy value, or additive hierarchy/content extension.",
+    "MAJOR": "Breaking semantic taxonomy changes, such as incompatible interpretation, code/identity semantics, hierarchy semantics, or a release-line reset requiring migration."
+  },
+  "semanticEqualityContract": {
+    "includedFields": [
+      "taxonomyId",
+      "cefrFrameworks",
+      "topics",
+      "domains",
+      "exams",
+      "curricula",
+      "schoolLevels",
+      "difficultyScales"
+    ],
+    "excludedTopLevelSnapshotMetadataFields": [
+      "taxonomyVersion",
+      "status",
+      "createdAt",
+      "updatedAt"
+    ],
+    "nestedSemanticLifecycleFieldsIncluded": true,
+    "requiredFutureDiff": 0,
+    "futureDiffCurrentlyVerified": false
+  },
+  "frameworkCode": "CEFR",
+  "frameworkVersion": "EDITORIAL-PILOT-1",
+  "authorizedBy": "VocabFlow project owner",
+  "ownerArchitectureDecision": "APPROVED",
+  "approvalTargetMaterializationAuthorized": false,
+  "finalReleaseBuildAuthorized": false,
+  "runtimeImportAuthorized": false,
+  "productionMutationAuthorized": false,
+  "newIdsAllocated": 0,
+  "rcFingerprint": "06b2a4dec2f54438416cae67788e0683fe94907cbce0a60fbb2d6469bc25b82c",
+  "rcTreeFingerprint": "9d021e151d934a61c577289a4aff3ded8883858bac672e1c27ac546a335966a7",
+  "finalManifestPlanFingerprint": "b004c752ea52bdfd732d3c5d44284829b7f9f3070b8c193aa23fca96a4e5f97b",
+  "fingerprintPayload": {
+    "artifactType": "TAXONOMY_VERSION_POLICY_FINGERPRINT_PAYLOAD",
+    "ownerArchitectureDecision": "APPROVED",
+    "decision": "CREATE_NEW_APPROVED_TAXONOMY_SNAPSHOT",
+    "taxonomyId": "01a0fc13-09e9-72dd-b49d-ffef077385dd",
+    "currentSnapshot": {
+      "taxonomyVersion": "2.0.0",
+      "status": "DRAFT",
+      "contentHash": "67ecd13e49e756df6fce2def9f40fe11eb8831ef9a68097299d37324ac588b79",
+      "immutable": true
+    },
+    "approvalTarget": {
+      "taxonomyVersion": "2.0.1",
+      "status": "APPROVED",
+      "versionBump": "PATCH",
+      "semanticChange": false,
+      "sameTaxonomyId": true,
+      "materialized": false
+    },
+    "versionPolicy": {
+      "PATCH": "Lifecycle/governance-only transitions or metadata-only corrections that preserve taxonomy semantic meaning, identifiers, values, and hierarchy.",
+      "MINOR": "Backward-compatible additive semantic taxonomy changes, such as adding a Topic, Domain, Framework, taxonomy value, or additive hierarchy/content extension.",
+      "MAJOR": "Breaking semantic taxonomy changes, such as incompatible interpretation, code/identity semantics, hierarchy semantics, or a release-line reset requiring migration."
+    },
+    "semanticEqualityContract": {
+      "includedFields": [
+        "taxonomyId",
+        "cefrFrameworks",
+        "topics",
+        "domains",
+        "exams",
+        "curricula",
+        "schoolLevels",
+        "difficultyScales"
+      ],
+      "excludedTopLevelSnapshotMetadataFields": [
+        "taxonomyVersion",
+        "status",
+        "createdAt",
+        "updatedAt"
+      ],
+      "nestedSemanticLifecycleFieldsIncluded": true,
+      "requiredSemanticDiff": 0
+    },
+    "framework": {
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1"
+    },
+    "rcFingerprint": "06b2a4dec2f54438416cae67788e0683fe94907cbce0a60fbb2d6469bc25b82c",
+    "rcTreeFingerprint": "9d021e151d934a61c577289a4aff3ded8883858bac672e1c27ac546a335966a7",
+    "finalManifestPlanFingerprint": "b004c752ea52bdfd732d3c5d44284829b7f9f3070b8c193aa23fca96a4e5f97b"
+  },
+  "policyFingerprint": "9596e407a8448a0aa4b6edb1944154ca4754ac396596501c06b9272318c2779b",
+  "repeatedPolicyFingerprint": "9596e407a8448a0aa4b6edb1944154ca4754ac396596501c06b9272318c2779b",
+  "repeatIdentical": true
+}

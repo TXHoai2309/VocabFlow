@@ -567,3 +567,36 @@ warning because the package requests 22.23.2.
 Evidence: [Phase 2F.6 final audit](../../vocabflow-dataset/reports/hybrid-100-rc-final-review-2.2.0-rc.1.md),
 [owner decision](../../vocabflow-dataset/reports/hybrid-100-rc-final-owner-decision.md),
 and [machine-readable review plan](../../vocabflow-dataset/workspaces/hybrid-100-rc-final-review/).
+
+## Phase 2F.6A — Taxonomy approval policy closure and final release readiness
+
+The owner resolved the taxonomy lifecycle/versioning architecture. Taxonomy
+`01a0fc13-09e9-72dd-b49d-ffef077385dd` version 2.0.0 remains immutable DRAFT;
+approval is planned as a new 2.0.1 APPROVED snapshot using PATCH, with the
+same taxonomy ID and `CEFR / EDITORIAL-PILOT-1` framework. PATCH is reserved for
+lifecycle/governance-only changes, MINOR for additive semantic changes, and
+MAJOR for breaking semantic changes. The future comparison excludes only
+top-level `taxonomyVersion`, `status`, `createdAt`, and `updatedAt`; nested
+child lifecycle status remains part of the semantic payload. Required future
+semantic diff is zero, but has not yet been verified because 2.0.1 does not
+exist.
+
+The pinned 2.2.0-rc.1 remains unchanged and passes the final audit. The
+approval-only plan remains 87 Lexeme, 100 Sense, and 99 Classification next
+revisions with stable IDs and no learner-facing content change. The final
+2.2.0 build is technically ready; separate release-build authorization remains
+pending. No taxonomy 2.0.1, entity revisions, release 2.2.0, releaseHash,
+runtime/DB changes, migrations, or production mutations were performed.
+
+Phase 2F.6A verification: focused audit tests PASS (7/7), Master Dataset
+validator PASS (0 errors, 0 warnings, 1 informational issue), two final audit
+`--check` runs PASS with no differences and an identical policy fingerprint,
+Phase 2F.6A script ESLint PASS, and `git diff --check` PASS. Root typecheck and
+lint encounter errors in concurrent, uncommitted global-search UI edits under
+`apps/web`; those files are outside this phase and remain untouched. The local
+Node 22.19.0 runtime warns that the package requests Node 22.23.2.
+
+Evidence: [current RC audit](../../vocabflow-dataset/reports/hybrid-100-rc-final-review-2.2.0-rc.1.md),
+[current owner decision](../../vocabflow-dataset/reports/hybrid-100-rc-final-owner-decision.md),
+[taxonomy approval plan](../../vocabflow-dataset/workspaces/hybrid-100-rc-final-review/taxonomy-approval-plan.json),
+and [policy decision fingerprint](../../vocabflow-dataset/workspaces/hybrid-100-rc-final-review/taxonomy-version-policy-decision.json).

@@ -2,7 +2,14 @@ import { existsSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { beforeAll, describe, expect, it } from "vitest";
-import { buildFinalAudit } from "./hybrid-100-rc-final-audit";
+import { canonicalHash } from "./hybrid-100-release-candidate";
+import {
+  APPROVED_TAXONOMY_VERSION,
+  buildFinalAudit,
+  TAXONOMY_APPROVAL_SNAPSHOT_METADATA_FIELDS,
+  TAXONOMY_SEMANTIC_PAYLOAD_FIELDS,
+  taxonomySemanticProjection,
+} from "./hybrid-100-rc-final-audit";
 
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const DATASET_ROOT = path.join(REPO_ROOT, "vocabflow-dataset");
@@ -42,6 +49,9 @@ describe("Hybrid-100 RC final audit", () => {
     expect(plan.audit.inputFingerprints.authorizedCefrFingerprint).toBe("d0a60b26f75b65c18953e76ed759447151ab81a880e9c3e869cbefc6f12bb622");
     expect(plan.audit.inputFingerprints.canonicalPromotionPlanFingerprint).toBe("969b5090a020b3f4793e6a77dcd78ce46fbb119036c45bfcf93bca81cc7a04db");
     expect(existsSync(RC_ROOT)).toBe(true);
+    expect(plan.audit.rc.immutabilityValid).toBe(true);
+    expect(plan.audit.phase2F6BaselineAncestryVerified).toBe(true);
+    expect(plan.audit.phase2F6BaselineCommit).toBe("b3db6c38213cc05e0fa8437c42f4c236c671c629");
   });
 
   it("confirms the exact 87-Lexeme / 100-Sense cohort and CEFR outcomes", () => {
@@ -136,30 +146,123 @@ describe("Hybrid-100 RC final audit", () => {
     expect(plan.audit.lifecycle.newIdsAllocated).toBe(0);
   });
 
-  it("blocks release construction on the ambiguous DRAFT taxonomy and creates no release hash", () => {
+  it("closes owner taxonomy policy while keeping both current and planned snapshots immutable", () => {
     expect(plan.taxonomyPlan).toMatchObject({
-      decision: "TAXONOMY_APPROVAL_POLICY_AMBIGUOUS",
-      option: "C",
+      decision: "CREATE_NEW_APPROVED_TAXONOMY_SNAPSHOT",
+      option: "A",
+      taxonomyId: "01a0fc13-09e9-72dd-b49d-ffef077385dd",
       currentTaxonomyVersion: "2.0.0",
       currentStatus: "DRAFT",
       currentRecordMustRemainImmutable: true,
-      proposedApprovedTaxonomyVersion: null,
+      currentSnapshotMustRemainImmutable: true,
+      targetTaxonomyVersion: "2.0.1",
+      targetStatus: "APPROVED",
+      versionBump: "PATCH",
+      ownerArchitectureDecision: "APPROVED",
       semanticTaxonomyChangeRequired: false,
-      finalReleaseBlockedPendingOwnerArchitectureDecision: true,
+      frameworkCode: "CEFR",
+      frameworkVersion: "EDITORIAL-PILOT-1",
+      targetRecordCreated: false,
+      taxonomyRevisionFieldUsed: false,
+      requiredSemanticDiff: 0,
+      futureSemanticDiffCurrentlyVerified: false,
+      finalReleaseBlockedPendingOwnerArchitectureDecision: false,
     });
+    expect(existsSync(path.join(DATASET_ROOT, "taxonomy", `01a0fc13-09e9-72dd-b49d-ffef077385dd-${APPROVED_TAXONOMY_VERSION}.json`))).toBe(false);
+    expect(TAXONOMY_SEMANTIC_PAYLOAD_FIELDS).toEqual([
+      "taxonomyId", "cefrFrameworks", "topics", "domains", "exams", "curricula", "schoolLevels", "difficultyScales",
+    ]);
+    expect(TAXONOMY_APPROVAL_SNAPSHOT_METADATA_FIELDS).toEqual(["taxonomyVersion", "status", "createdAt", "updatedAt"]);
+
+    const current = JSON.parse(JSON.stringify(plan.taxonomyRecord));
+    const target = {
+      ...current,
+      taxonomyVersion: "2.0.1",
+      status: "APPROVED",
+      createdAt: "2099-01-01T00:00:00.000Z",
+      updatedAt: "2099-01-01T00:00:00.000Z",
+    };
+    expect(taxonomySemanticProjection(target)).toEqual(taxonomySemanticProjection(current));
+    const nestedStatusChange = JSON.parse(JSON.stringify(target));
+    nestedStatusChange.topics = [{ topicId: "test-topic", status: "RETIRED" }];
+    const currentWithNested = { ...current, topics: [{ topicId: "test-topic", status: "ACTIVE" }] };
+    expect(taxonomySemanticProjection(nestedStatusChange)).not.toEqual(taxonomySemanticProjection(currentWithNested));
+
+    const policy = plan.taxonomyPolicyDecisionArtifact;
+    expect(policy).toMatchObject({
+      artifactType: "TAXONOMY_VERSION_POLICY_OWNER_DECISION",
+      taxonomyId: "01a0fc13-09e9-72dd-b49d-ffef077385dd",
+      currentVersion: "2.0.0",
+      currentVersionStatus: "DRAFT",
+      currentVersionImmutable: true,
+      approvalTargetVersion: "2.0.1",
+      approvalTargetStatus: "APPROVED",
+      versionBump: "PATCH",
+      semanticChange: false,
+      frameworkCode: "CEFR",
+      frameworkVersion: "EDITORIAL-PILOT-1",
+      approvalTargetMaterializationAuthorized: false,
+      finalReleaseBuildAuthorized: false,
+      runtimeImportAuthorized: false,
+      productionMutationAuthorized: false,
+      newIdsAllocated: 0,
+      repeatIdentical: true,
+    });
+    expect(policy.policyFingerprint).toBe(canonicalHash(policy.fingerprintPayload));
+    expect(policy.repeatedPolicyFingerprint).toBe(canonicalHash(JSON.parse(JSON.stringify(policy.fingerprintPayload))));
+    expect(policy.policyFingerprint).toBe(policy.repeatedPolicyFingerprint);
+    expect(JSON.stringify(policy.fingerprintPayload)).not.toMatch(/[A-Z]:\\|C:\\Users\\|2026-10-06|User/i);
+    expect(policy.versionBump).toBe("PATCH");
+    expect(policy.policy.PATCH).toMatch(/lifecycle|governance|metadata/i);
+    expect(policy.policy.MINOR).toMatch(/additive/i);
+    expect(policy.policy.MAJOR).toMatch(/breaking/i);
+  });
+
+  it("plans the exact final manifest with recomputed closure but creates no release", () => {
     expect(plan.audit.finalReleasePlan).toMatchObject({
       datasetVersion: "2.2.0",
-      releaseBuildTechnicallyReady: false,
+      status: "APPROVED",
+      taxonomyVersion: "2.0.1",
+      taxonomyStatus: "APPROVED",
+      taxonomyVersionBump: "PATCH",
+      taxonomySemanticDiffRequired: 0,
+      taxonomySemanticDiffCurrentlyVerified: false,
+      provenanceCountRecomputed: 799,
+      releaseBuildTechnicallyReady: true,
       officialReleaseHashCreated: false,
-      blocker: "TAXONOMY_APPROVAL_POLICY_AMBIGUOUS",
+      blocker: null,
+      releaseBuildAuthorization: "PENDING",
+      releaseCreated: false,
     });
     const releasePlan = JSON.parse(plan.outputFiles.get("vocabflow-dataset/workspaces/hybrid-100-rc-final-review/final-release-manifest-plan.json")!);
     expect(releasePlan.status).toBe("PLAN_ONLY_NOT_A_MANIFEST");
+    expect(releasePlan.datasetVersion).toBe("2.2.0");
+    expect(releasePlan.targetStatus).toBe("APPROVED");
+    expect(releasePlan.includedTaxonomySnapshots[0]).toMatchObject({
+      taxonomyId: "01a0fc13-09e9-72dd-b49d-ffef077385dd",
+      currentVersion: "2.0.0",
+      targetVersion: "2.0.1",
+      targetRecordPath: "taxonomy/01a0fc13-09e9-72dd-b49d-ffef077385dd-2.0.1.json",
+      targetContentHash: null,
+      status: "APPROVED_REQUIRED",
+      versionBump: "PATCH",
+      semanticDiffRequired: 0,
+      semanticDiffCurrentlyVerified: false,
+      targetArtifactCreated: false,
+    });
+    expect(releasePlan.counts).toEqual({ lexemes: 87, senses: 100, classifications: 99, taxonomySnapshots: 1, provenance: 799, media: 0, learningSets: 0, relations: 0 });
     expect(releasePlan.releaseHash).toBeNull();
     expect(releasePlan.officialReleaseHashCreated).toBe(false);
+    expect(existsSync(path.join(DATASET_ROOT, "releases", "hybrid-100-v2.2.0"))).toBe(false);
+    expect(releasePlan.taxonomyApprovalPolicyResolved).toBe(true);
+    expect(releasePlan.approvedReleaseBuildTechnicallyReady).toBe(true);
+    const releasePlanFingerprintInput = { ...releasePlan };
+    delete releasePlanFingerprintInput.taxonomyPolicyFingerprint;
+    expect(canonicalHash(releasePlanFingerprintInput)).toBe(plan.taxonomyPolicyDecisionArtifact.finalManifestPlanFingerprint);
     expect(plan.audit.decision.approvedReleaseAuthorized).toBe(false);
     expect(plan.audit.decision.runtimeImportAuthorized).toBe(false);
     expect(plan.audit.decision.productionMutationAuthorized).toBe(false);
+    expect(plan.audit.decision.recommendation).toBe("REQUEST_FINAL_RELEASE_BUILD_AUTHORIZATION");
   });
 
   it("keeps the audit offline and leaves canonical and RC inputs unchanged", () => {
@@ -182,9 +285,19 @@ describe("Hybrid-100 RC final audit", () => {
       rcFinalAuditPass: true,
       contentCorrectionRequired: false,
       nextRequiredRc: "NONE",
-      taxonomyApprovalPolicyResolved: false,
-      approvedReleaseBuildTechnicallyReady: false,
+      taxonomyPolicyOwnerApproved: true,
+      taxonomyApprovalPolicyResolved: true,
+      approvedReleaseBuildTechnicallyReady: true,
       approvedReleaseAuthorized: false,
     });
+    expect(plan.audit.historicalPhase2F6Decision).toMatchObject({
+      asOfDate: "2026-10-05",
+      rcFinalAuditPass: true,
+      contentCorrectionRequired: false,
+      nextRequiredRc: "NONE",
+      taxonomyApprovalPolicyResolved: false,
+      approvedReleaseBuildTechnicallyReady: false,
+    });
+    expect(plan.outputFiles.has("vocabflow-dataset/workspaces/hybrid-100-rc-final-review/taxonomy-version-policy-decision.json")).toBe(true);
   });
 });

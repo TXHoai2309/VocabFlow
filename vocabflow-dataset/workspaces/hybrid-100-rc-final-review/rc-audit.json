@@ -1,6 +1,19 @@
 {
   "artifactType": "HYBRID_100_RC_FINAL_AUDIT",
   "status": "PASS",
+  "historicalPhase2F6Decision": {
+    "asOfDate": "2026-10-05",
+    "rcFinalAuditPass": true,
+    "contentCorrectionRequired": false,
+    "nextRequiredRc": "NONE",
+    "taxonomyApprovalPolicyResolved": false,
+    "approvedReleaseBuildTechnicallyReady": false,
+    "approvedReleaseAuthorized": false,
+    "recommendation": "APPROVE_RC_FOR_FINAL_RELEASE_BUILD",
+    "historicalTaxonomyDecision": "TAXONOMY_APPROVAL_POLICY_AMBIGUOUS"
+  },
+  "phase2F6BaselineCommit": "b3db6c38213cc05e0fa8437c42f4c236c671c629",
+  "phase2F6BaselineAncestryVerified": true,
   "rc": {
     "version": "2.2.0-rc.1",
     "status": "IN_REVIEW",
@@ -271,23 +284,53 @@
     "newIdsAllocated": 0
   },
   "taxonomy": {
-    "decision": "TAXONOMY_APPROVAL_POLICY_AMBIGUOUS",
-    "option": "C",
+    "decision": "CREATE_NEW_APPROVED_TAXONOMY_SNAPSHOT",
+    "option": "A",
     "taxonomyId": "01a0fc13-09e9-72dd-b49d-ffef077385dd",
     "currentTaxonomyVersion": "2.0.0",
     "currentStatus": "DRAFT",
     "currentContentHash": "67ecd13e49e756df6fce2def9f40fe11eb8831ef9a68097299d37324ac588b79",
     "currentRecordMustRemainImmutable": true,
-    "proposedApprovedTaxonomyVersion": null,
+    "currentSnapshotMustRemainImmutable": true,
+    "targetTaxonomyVersion": "2.0.1",
+    "targetStatus": "APPROVED",
+    "targetRecordPath": "taxonomy/01a0fc13-09e9-72dd-b49d-ffef077385dd-2.0.1.json",
+    "targetRecordCreated": false,
+    "proposedApprovedTaxonomyVersion": "2.0.1",
+    "versionBump": "PATCH",
+    "ownerArchitectureDecision": "APPROVED",
+    "ownerArchitectureDecisionDate": "2026-10-06",
     "frameworkCode": "CEFR",
     "frameworkVersion": "EDITORIAL-PILOT-1",
     "semanticTaxonomyChangeRequired": false,
+    "semanticPayloadFields": [
+      "taxonomyId",
+      "cefrFrameworks",
+      "topics",
+      "domains",
+      "exams",
+      "curricula",
+      "schoolLevels",
+      "difficultyScales"
+    ],
+    "semanticPayloadFingerprint": "1e7b04156d9dace8106f677ecf0afe078d0a940fd5c08160d4545bee88cba63d",
+    "approvalOnlySnapshotMetadataFields": [
+      "taxonomyVersion",
+      "status",
+      "createdAt",
+      "updatedAt"
+    ],
+    "nestedSemanticLifecycleFieldsRemainInComparison": true,
+    "requiredSemanticDiff": 0,
+    "futureSemanticDiffValidationRequired": true,
+    "futureSemanticDiffCurrentlyVerified": false,
+    "taxonomyRevisionFieldUsed": false,
     "evidence": {
       "identityVersioningPolicy": [
-        "docs/architecture/master-vocabulary-v2-identity-versioning-policy.md:49 identifies taxonomyId as a lineage and taxonomyVersion as each immutable snapshot.",
-        "docs/architecture/master-vocabulary-v2-identity-versioning-policy.md:96 says taxonomyVersion changes for taxonomy record/value/hierarchy changes in a new snapshot.",
-        "docs/architecture/master-vocabulary-v2-identity-versioning-policy.md:112-114 requires release pins to exact immutable taxonomy snapshots.",
-        "The repository defines SemVer semantics for datasetVersion but no taxonomy-specific mapping for lifecycle-only status approval."
+        "docs/architecture/master-vocabulary-v2-identity-versioning-policy.md#taxonomy-snapshot-lifecycleversion-rule defines immutable taxonomy snapshots and lifecycle version bumps.",
+        "docs/architecture/master-vocabulary-v2-identity-versioning-policy.md#taxonomy-snapshot-lifecycleversion-rule maps lifecycle-only, additive, and breaking taxonomy changes to PATCH, MINOR, and MAJOR.",
+        "The reproducible release snapshot policy requires release pins to exact immutable taxonomy snapshots.",
+        "The Phase 2F.6A owner architecture decision explicitly maps lifecycle/governance-only changes to PATCH, additive semantic changes to MINOR, and breaking semantic changes to MAJOR."
       ],
       "schema": "vocabflow-dataset/schemas/taxonomy.schema.json permits DRAFT or APPROVED and requires a semVer taxonomyVersion; it does not define a status-transition version increment.",
       "validator": "scripts/validate-master-vocabulary-v2.ts:674-675 rejects a non-APPROVED taxonomy pin in an APPROVED release.",
@@ -309,17 +352,29 @@
       ],
       "approvedSnapshotPrecedents": [],
       "canaryHasTaxonomyPin": false,
-      "repositoryValidVersionBumpForApprovalOnlyStatusChange": null
+      "repositoryValidVersionBumpForApprovalOnlyStatusChange": "PATCH_BY_PHASE_2F6A_OWNER_DECISION",
+      "sameVersionArtifactCanBePinnedAlongsideCurrentSnapshot": false
     },
     "lifecycleOnlyStatusChangeWouldPreserveTaxonomySemanticFields": true,
-    "finalReleaseBlockedPendingOwnerArchitectureDecision": true,
+    "finalReleaseBlockedPendingOwnerArchitectureDecision": false,
     "currentSnapshot": {
       "taxonomyId": "01a0fc13-09e9-72dd-b49d-ffef077385dd",
       "taxonomyVersion": "2.0.0",
       "status": "DRAFT",
       "contentHash": "67ecd13e49e756df6fce2def9f40fe11eb8831ef9a68097299d37324ac588b79",
       "recordPath": "taxonomy/01a0fc13-09e9-72dd-b49d-ffef077385dd-2.0.0.json"
-    }
+    },
+    "approvalTarget": {
+      "taxonomyId": "01a0fc13-09e9-72dd-b49d-ffef077385dd",
+      "taxonomyVersion": "2.0.1",
+      "status": "APPROVED",
+      "recordPath": "taxonomy/01a0fc13-09e9-72dd-b49d-ffef077385dd-2.0.1.json",
+      "contentHash": null,
+      "snapshotCreated": false,
+      "frameworkCode": "CEFR",
+      "frameworkVersion": "EDITORIAL-PILOT-1"
+    },
+    "policyFingerprint": "9596e407a8448a0aa4b6edb1944154ca4754ac396596501c06b9272318c2779b"
   },
   "finalReleasePlan": {
     "datasetVersion": "2.2.0",
@@ -337,14 +392,22 @@
       "learningSets": 0,
       "relations": 0
     },
-    "taxonomyVersion": null,
+    "taxonomyVersion": "2.0.1",
+    "taxonomyStatus": "APPROVED",
+    "taxonomyVersionBump": "PATCH",
+    "taxonomySemanticDiffRequired": 0,
+    "taxonomySemanticDiffCurrentlyVerified": false,
     "provenanceCountRecomputed": 799,
     "provenanceCountMayChangeIfFutureContractAddsApprovalEvidence": true,
     "officialReleaseHashCreated": false,
     "releaseHashAlgorithm": "sha256-canonical-json-v1",
     "releaseHashRule": "SHA-256 over RFC 8785/JCS canonical JSON of the final APPROVED dataset manifest with releaseHash omitted; calculate only after all record/taxonomy/provenance pins and releasedAt are final.",
-    "releaseBuildTechnicallyReady": false,
-    "blocker": "TAXONOMY_APPROVAL_POLICY_AMBIGUOUS"
+    "releaseBuildTechnicallyReady": true,
+    "taxonomyPolicyDecisionFingerprint": "9596e407a8448a0aa4b6edb1944154ca4754ac396596501c06b9272318c2779b",
+    "buildAuthorization": "NOT_AUTHORIZED",
+    "blocker": null,
+    "releaseBuildAuthorization": "PENDING",
+    "releaseCreated": false
   },
   "validatorContract": {
     "approvedReleaseManifestFields": {
@@ -380,11 +443,12 @@
     "rcFinalAuditPass": true,
     "contentCorrectionRequired": false,
     "nextRequiredRc": "NONE",
-    "taxonomyApprovalPolicyResolved": false,
-    "approvedReleaseBuildTechnicallyReady": false,
+    "taxonomyPolicyOwnerApproved": true,
+    "taxonomyApprovalPolicyResolved": true,
+    "approvedReleaseBuildTechnicallyReady": true,
     "approvedReleaseAuthorized": false,
-    "recommendation": "APPROVE_RC_FOR_FINAL_RELEASE_BUILD",
-    "recommendationRationale": "No semantic or CEFR content defect was found, so rc.2 is not justified. The owner may accept rc.1 for final-release preparation, but an owner architecture decision on taxonomy approval versioning is required before any 2.2.0 manifest is built.",
+    "recommendation": "REQUEST_FINAL_RELEASE_BUILD_AUTHORIZATION",
+    "recommendationRationale": "The owner resolved lifecycle-only taxonomy versioning as a new immutable PATCH snapshot at 2.0.1. RC and approval-revision plans pass, so the approved-release build is technically ready; this phase does not authorize creating taxonomy 2.0.1, entity revisions, release 2.2.0, or its releaseHash.",
     "runtimeImportAuthorized": false,
     "productionMutationAuthorized": false,
     "phaseReady": true

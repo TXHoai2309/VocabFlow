@@ -29,7 +29,16 @@
     "total": 286,
     "newIdsAllocated": 0,
     "recordsCreated": 0,
-    "learnerFacingContentChangesRequired": false
+    "learnerFacingContentChangesRequired": false,
+    "approvalOnlyTransition": true,
+    "semanticContentChange": false,
+    "targetStatus": "APPROVED"
+  },
+  "lifecyclePolicy": {
+    "lexeme": "Same masterLexemeId; create the next lexemeRevision; do not overwrite an existing revision file.",
+    "sense": "Same masterSenseId; create the next senseRevision; do not overwrite an existing revision file.",
+    "classification": "Same classificationId; create the next classificationRevision; do not overwrite an existing revision file.",
+    "taxonomy": "Not an entity revision; keep taxonomyId and create a new immutable taxonomyVersion snapshot. No taxonomyRevision field is used."
   },
   "rows": [
     {

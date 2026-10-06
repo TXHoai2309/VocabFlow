@@ -2,6 +2,29 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-06 — Master Vocabulary V2 Phase 2F.6A taxonomy policy closure
+
+- Resolved taxonomy approval versioning by owner decision: immutable 2.0.0
+  remains DRAFT; a new immutable 2.0.1 APPROVED snapshot is planned as a PATCH
+  with no semantic taxonomy change. PATCH is lifecycle/governance-only, MINOR
+  is additive semantic content, and MAJOR is breaking semantic content.
+- Defined the approval semantic equality contract: compare the full taxonomy
+  payload while excluding only top-level snapshot metadata (`taxonomyVersion`,
+  `status`, `createdAt`, `updatedAt`). Nested lifecycle state remains semantic.
+  The future 2.0.0→2.0.1 diff must be zero and is not yet verified because the
+  target snapshot remains uncreated.
+- Recomputed the final 2.2.0 plan against the unchanged RC: 87 Lexemes, 100
+  Senses, 99 Classifications, one planned taxonomy pin, and the current
+  Provenance closure. Technical readiness is YES; final build authorization is
+  still pending. No taxonomy snapshot, approved entity revisions, final
+  release, releaseHash, database/runtime, or production changes were created.
+- Verification: focused audit regressions 7/7, Master validator 0 errors / 0
+  warnings, two deterministic audit checks with no differences, Phase 2F.6A
+  script ESLint, and `git diff --check` pass. Root typecheck/lint report errors
+  in concurrent, uncommitted `apps/web` global-search edits; those files are
+  outside this phase and were left untouched. The local Node 22.19.0 runtime
+  warns against the package's 22.23.2 engine requirement.
+
 ## 2026-10-05 — Simplified App Navigation (Feature #13 / US-50)
 
 - Replaced the crowded shared navigation with six desktop destinations and a

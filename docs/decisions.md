@@ -508,3 +508,28 @@ evidence condition is met and the affected source document is updated.
   and `apps/web/src/components/app-shell.tsx`.
 - Revisit only if the owner changes the primary destination model or a canonical
   route/auth capability changes.
+
+## DEC-026 — Immutable taxonomy snapshots and semantic version bumps
+
+- Status: ACCEPTED
+- Date: Recorded 2026-10-06
+- Context: The Hybrid-100 release candidate pins taxonomy 2.0.0 as DRAFT, while
+  an APPROVED release requires an APPROVED taxonomy pin. The prior identity
+  policy did not specify a lifecycle-only taxonomy version bump.
+- Decision: `(taxonomyId, taxonomyVersion)` identifies an immutable snapshot.
+  Lifecycle changes such as DRAFT → APPROVED create a new snapshot in the same
+  taxonomy lineage. PATCH covers lifecycle/governance-only or metadata-only
+  changes preserving semantic content; MINOR covers backward-compatible
+  additive semantic changes; MAJOR covers breaking semantic changes. An
+  approval-only PATCH compares the complete taxonomy payload excluding only
+  top-level `taxonomyVersion`, `status`, `createdAt`, and `updatedAt`. Nested
+  child lifecycle status remains semantic. There is no `taxonomyRevision`.
+- Consequences: Taxonomy 2.0.0 remains immutable DRAFT. A 2.0.1 APPROVED PATCH
+  snapshot is planned for the Hybrid-100 release; its semantic diff must be
+  zero and must be verified after materialization. The owner decision does not
+  authorize creating that snapshot, entity approval revisions, release 2.2.0,
+  a releaseHash, runtime import, database changes, or production mutation.
+- Evidence/source: [Taxonomy snapshot version policy](architecture/master-vocabulary-v2-identity-versioning-policy.md#taxonomy-snapshot-lifecycleversion-rule),
+  Phase 2F.6A [owner decision artifact](../vocabflow-dataset/workspaces/hybrid-100-rc-final-review/taxonomy-version-policy-decision.json).
+- Revisit only if a taxonomy semantic-versioning contract change receives
+  explicit owner approval and includes migration/compatibility rules.

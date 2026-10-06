@@ -2306,11 +2306,18 @@
       "currentVersion": "2.0.0",
       "currentRecordPath": "taxonomy/01a0fc13-09e9-72dd-b49d-ffef077385dd-2.0.0.json",
       "currentContentHash": "67ecd13e49e756df6fce2def9f40fe11eb8831ef9a68097299d37324ac588b79",
-      "targetVersion": null,
-      "targetRecordPath": null,
+      "targetVersion": "2.0.1",
+      "targetRecordPath": "taxonomy/01a0fc13-09e9-72dd-b49d-ffef077385dd-2.0.1.json",
       "targetContentHash": null,
+      "currentStatus": "DRAFT",
       "status": "APPROVED_REQUIRED",
-      "approvalMechanism": "PENDING_OWNER_ARCHITECTURE_DECISION"
+      "versionBump": "PATCH",
+      "semanticChangeRequired": false,
+      "semanticDiffRequired": 0,
+      "semanticDiffCurrentlyVerified": false,
+      "targetArtifactCreated": false,
+      "currentSnapshotMustRemainImmutable": true,
+      "approvalMechanism": "NEW_IMMUTABLE_SNAPSHOT"
     }
   ],
   "includedProvenanceCount": 799,
@@ -5532,8 +5539,12 @@
   "releaseHashCalculation": "SHA-256 of RFC 8785/JCS canonical JSON of the final APPROVED manifest with releaseHash omitted, after all pins and releasedAt are final.",
   "releaseCreated": false,
   "officialReleaseHashCreated": false,
-  "taxonomyApprovalPolicyResolved": false,
+  "taxonomyApprovalPolicyResolved": true,
+  "taxonomyPolicyDecision": "CREATE_NEW_APPROVED_TAXONOMY_SNAPSHOT",
+  "taxonomyPolicyFingerprint": "9596e407a8448a0aa4b6edb1944154ca4754ac396596501c06b9272318c2779b",
+  "approvedReleaseBuildTechnicallyReady": true,
   "approvedReleaseAuthorization": "PENDING",
   "runtimeImportAuthorized": false,
-  "productionMutationAuthorized": false
+  "productionMutationAuthorized": false,
+  "databaseWrites": "NONE"
 }

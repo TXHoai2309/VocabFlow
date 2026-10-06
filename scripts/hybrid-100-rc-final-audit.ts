@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { execFileSync } from "node:child_process";
 import {
   existsSync,
   mkdirSync,
@@ -25,6 +26,9 @@ type PlanAction =
   | "BLOCKED_PROVENANCE";
 
 export const RC_VERSION = "2.2.0-rc.1";
+export const REQUIRED_PHASE_2F6_BASELINE = "b3db6c38213cc05e0fa8437c42f4c236c671c629";
+export const FINAL_RELEASE_RELATIVE = "vocabflow-dataset/releases/hybrid-100-v2.2.0";
+export const APPROVED_TAXONOMY_VERSION = "2.0.1";
 export const RC_FINGERPRINT = "06b2a4dec2f54438416cae67788e0683fe94907cbce0a60fbb2d6469bc25b82c";
 export const RC_TREE_FINGERPRINT = "9d021e151d934a61c577289a4aff3ded8883858bac672e1c27ac546a335966a7";
 export const AUTHORIZED_CEFR_FINGERPRINT = "d0a60b26f75b65c18953e76ed759447151ab81a880e9c3e869cbefc6f12bb622";
@@ -48,6 +52,29 @@ const CEFR_WORKSPACE_RELATIVE = DATASET + "/workspaces/hybrid-100-cefr-draft";
 const AUDIT_WORKSPACE_RELATIVE = DATASET + "/workspaces/hybrid-100-rc-final-review";
 const AUDIT_REPORT_RELATIVE = DATASET + "/reports/hybrid-100-rc-final-review-2.2.0-rc.1.md";
 const OWNER_DECISION_RELATIVE = DATASET + "/reports/hybrid-100-rc-final-owner-decision.md";
+const TAXONOMY_POLICY_DECISION_RELATIVE = AUDIT_WORKSPACE_RELATIVE + "/taxonomy-version-policy-decision.json";
+const TAXONOMY_DECISION_DATE = "2026-10-06";
+export const TAXONOMY_SEMANTIC_PAYLOAD_FIELDS = [
+  "taxonomyId",
+  "cefrFrameworks",
+  "topics",
+  "domains",
+  "exams",
+  "curricula",
+  "schoolLevels",
+  "difficultyScales",
+] as const;
+export const TAXONOMY_APPROVAL_SNAPSHOT_METADATA_FIELDS = [
+  "taxonomyVersion",
+  "status",
+  "createdAt",
+  "updatedAt",
+] as const;
+const TAXONOMY_VERSION_POLICY = {
+  PATCH: "Lifecycle/governance-only transitions or metadata-only corrections that preserve taxonomy semantic meaning, identifiers, values, and hierarchy.",
+  MINOR: "Backward-compatible additive semantic taxonomy changes, such as adding a Topic, Domain, Framework, taxonomy value, or additive hierarchy/content extension.",
+  MAJOR: "Breaking semantic taxonomy changes, such as incompatible interpretation, code/identity semantics, hierarchy semantics, or a release-line reset requiring migration.",
+};
 const EXPECTED_STATUS_KEYS = ["APPROVED", "IN_REVIEW", "DRAFT", "other"] as const;
 const EXPECTED_DISTRIBUTION: JsonObject = {
   PRE_A1: 0,
@@ -79,6 +106,7 @@ const OUTPUTS = [
   AUDIT_WORKSPACE_RELATIVE + "/validation-summary.json",
   AUDIT_REPORT_RELATIVE,
   OWNER_DECISION_RELATIVE,
+  TAXONOMY_POLICY_DECISION_RELATIVE,
 ] as const;
 
 function fail(code: string, detail?: string): never {
@@ -201,6 +229,12 @@ function semanticProjection(record: JsonObject, revisionField: string): JsonObje
   const projection = JSON.parse(JSON.stringify(record)) as JsonObject;
   delete projection.status;
   delete projection[revisionField];
+  return projection;
+}
+
+export function taxonomySemanticProjection(snapshot: JsonObject): JsonObject {
+  const projection = JSON.parse(JSON.stringify(snapshot)) as JsonObject;
+  for (const field of TAXONOMY_APPROVAL_SNAPSHOT_METADATA_FIELDS) delete projection[field];
   return projection;
 }
 
@@ -585,7 +619,16 @@ function findSpotChecks(lexemeRecords: JsonObject[], senseRecords: JsonObject[],
 }
 
 function checkTaxonomyPlan(root: string, taxonomy: JsonObject): JsonObject {
+  const targetRecordPath = "taxonomy/" + TAXONOMY_ID + "-" + APPROVED_TAXONOMY_VERSION + ".json";
+  const targetExists = existsSync(path.join(root, DATASET, targetRecordPath));
+  if (targetExists) fail("TAXONOMY_2_0_1_MUST_NOT_BE_CREATED_IN_PHASE_2F6A", targetRecordPath);
+  if (taxonomy.taxonomyId !== TAXONOMY_ID || taxonomy.taxonomyVersion !== "2.0.0"
+    || taxonomy.status !== "DRAFT"
+    || canonicalHash(taxonomy) !== "67ecd13e49e756df6fce2def9f40fe11eb8831ef9a68097299d37324ac588b79") {
+    fail("TAXONOMY_2_0_0_BASE_STALE");
+  }
   const history = taxonomyHistory(root);
+  const semanticPayloadFingerprint = canonicalHash(taxonomySemanticProjection(taxonomy));
   const current = {
     taxonomyId: taxonomy.taxonomyId,
     taxonomyVersion: taxonomy.taxonomyVersion,
@@ -595,40 +638,84 @@ function checkTaxonomyPlan(root: string, taxonomy: JsonObject): JsonObject {
   };
   const approvedPrecedents = history.filter((row) => row.status === "APPROVED");
   return {
-    decision: "TAXONOMY_APPROVAL_POLICY_AMBIGUOUS",
-    option: "C",
+    decision: "CREATE_NEW_APPROVED_TAXONOMY_SNAPSHOT",
+    option: "A",
     taxonomyId: taxonomy.taxonomyId,
     currentTaxonomyVersion: taxonomy.taxonomyVersion,
     currentStatus: taxonomy.status,
     currentContentHash: canonicalHash(taxonomy),
     currentRecordMustRemainImmutable: true,
-    proposedApprovedTaxonomyVersion: null,
+    currentSnapshotMustRemainImmutable: true,
+    targetTaxonomyVersion: APPROVED_TAXONOMY_VERSION,
+    targetStatus: "APPROVED",
+    targetRecordPath,
+    targetRecordCreated: false,
+    proposedApprovedTaxonomyVersion: APPROVED_TAXONOMY_VERSION,
+    versionBump: "PATCH",
+    ownerArchitectureDecision: "APPROVED",
+    ownerArchitectureDecisionDate: TAXONOMY_DECISION_DATE,
     frameworkCode: taxonomy.cefrFrameworks?.find((row: JsonObject) => row.frameworkCode === FRAMEWORK_CODE)?.frameworkCode ?? null,
     frameworkVersion: taxonomy.cefrFrameworks?.find((row: JsonObject) => row.frameworkCode === FRAMEWORK_CODE)?.frameworkVersion ?? null,
     semanticTaxonomyChangeRequired: false,
+    semanticPayloadFields: TAXONOMY_SEMANTIC_PAYLOAD_FIELDS,
+    semanticPayloadFingerprint: semanticPayloadFingerprint,
+    approvalOnlySnapshotMetadataFields: TAXONOMY_APPROVAL_SNAPSHOT_METADATA_FIELDS,
+    nestedSemanticLifecycleFieldsRemainInComparison: true,
+    requiredSemanticDiff: 0,
+    futureSemanticDiffValidationRequired: true,
+    futureSemanticDiffCurrentlyVerified: false,
+    taxonomyRevisionFieldUsed: false,
     evidence: {
       identityVersioningPolicy: [
-        "docs/architecture/master-vocabulary-v2-identity-versioning-policy.md:49 identifies taxonomyId as a lineage and taxonomyVersion as each immutable snapshot.",
-        "docs/architecture/master-vocabulary-v2-identity-versioning-policy.md:96 says taxonomyVersion changes for taxonomy record/value/hierarchy changes in a new snapshot.",
-        "docs/architecture/master-vocabulary-v2-identity-versioning-policy.md:112-114 requires release pins to exact immutable taxonomy snapshots.",
-        "The repository defines SemVer semantics for datasetVersion but no taxonomy-specific mapping for lifecycle-only status approval.",
+        "docs/architecture/master-vocabulary-v2-identity-versioning-policy.md#taxonomy-snapshot-lifecycleversion-rule defines immutable taxonomy snapshots and lifecycle version bumps.",
+        "docs/architecture/master-vocabulary-v2-identity-versioning-policy.md#taxonomy-snapshot-lifecycleversion-rule maps lifecycle-only, additive, and breaking taxonomy changes to PATCH, MINOR, and MAJOR.",
+        "The reproducible release snapshot policy requires release pins to exact immutable taxonomy snapshots.",
+        "The Phase 2F.6A owner architecture decision explicitly maps lifecycle/governance-only changes to PATCH, additive semantic changes to MINOR, and breaking semantic changes to MAJOR.",
       ],
       schema: "vocabflow-dataset/schemas/taxonomy.schema.json permits DRAFT or APPROVED and requires a semVer taxonomyVersion; it does not define a status-transition version increment.",
       validator: "scripts/validate-master-vocabulary-v2.ts:674-675 rejects a non-APPROVED taxonomy pin in an APPROVED release.",
       observedTaxonomySnapshots: history,
       approvedSnapshotPrecedents: approvedPrecedents,
       canaryHasTaxonomyPin: (readJson<JsonObject>(root, DATASET + "/releases/canary-v2.1.0/dataset.json").includedTaxonomySnapshots ?? []).length > 0,
-      repositoryValidVersionBumpForApprovalOnlyStatusChange: null,
+      repositoryValidVersionBumpForApprovalOnlyStatusChange: "PATCH_BY_PHASE_2F6A_OWNER_DECISION",
+      sameVersionArtifactCanBePinnedAlongsideCurrentSnapshot: false,
     },
     lifecycleOnlyStatusChangeWouldPreserveTaxonomySemanticFields: true,
-    finalReleaseBlockedPendingOwnerArchitectureDecision: true,
+    finalReleaseBlockedPendingOwnerArchitectureDecision: false,
     currentSnapshot: current,
+    approvalTarget: {
+      taxonomyId: taxonomy.taxonomyId,
+      taxonomyVersion: APPROVED_TAXONOMY_VERSION,
+      status: "APPROVED",
+      recordPath: targetRecordPath,
+      contentHash: null,
+      snapshotCreated: false,
+      frameworkCode: FRAMEWORK_CODE,
+      frameworkVersion: FRAMEWORK_VERSION,
+    },
   };
 }
 
 function buildAudit(root: string): JsonObject {
   const datasetRoot = path.join(root, DATASET);
   const rcPackageRoot = path.join(root, RC_RELATIVE);
+  const previousAudit = readJson<JsonObject>(root, AUDIT_WORKSPACE_RELATIVE + "/rc-audit.json");
+  const phase2F6Decision = previousAudit.historicalPhase2F6Decision ?? previousAudit.decision;
+  if (previousAudit.rc?.fingerprint !== RC_FINGERPRINT
+    || previousAudit.rc?.treeFingerprint !== RC_TREE_FINGERPRINT
+    || phase2F6Decision?.rcFinalAuditPass !== true
+    || phase2F6Decision?.contentCorrectionRequired !== false
+    || phase2F6Decision?.nextRequiredRc !== "NONE"
+    || phase2F6Decision?.taxonomyApprovalPolicyResolved !== false
+    || phase2F6Decision?.approvedReleaseBuildTechnicallyReady !== false) {
+    fail("PHASE_2F6_BASE_AUDIT_STALE");
+  }
+  try {
+    execFileSync("git", ["merge-base", "--is-ancestor", REQUIRED_PHASE_2F6_BASELINE, "HEAD"], { cwd: root, stdio: "ignore" });
+  } catch {
+    fail("PHASE_2F6_BASELINE_NOT_IN_ANCESTRY", REQUIRED_PHASE_2F6_BASELINE);
+  }
+  if (existsSync(path.join(root, FINAL_RELEASE_RELATIVE))) fail("FINAL_RELEASE_MUST_NOT_EXIST_IN_PHASE_2F6A");
   const manifest = readJson<JsonObject>(rcPackageRoot, "dataset.json");
   const rcEvidence = readJson<JsonObject>(rcPackageRoot, "reports/release-candidate-evidence.json");
   const rcWorkspace = readJson<JsonObject>(root, RC_WORKSPACE_RELATIVE + "/summary.json");
@@ -943,6 +1030,19 @@ function buildAudit(root: string): JsonObject {
   const audit = {
     artifactType: "HYBRID_100_RC_FINAL_AUDIT",
     status: "PASS",
+    historicalPhase2F6Decision: {
+      asOfDate: "2026-10-05",
+      rcFinalAuditPass: true,
+      contentCorrectionRequired: false,
+      nextRequiredRc: "NONE",
+      taxonomyApprovalPolicyResolved: false,
+      approvedReleaseBuildTechnicallyReady: false,
+      approvedReleaseAuthorized: false,
+      recommendation: "APPROVE_RC_FOR_FINAL_RELEASE_BUILD",
+      historicalTaxonomyDecision: "TAXONOMY_APPROVAL_POLICY_AMBIGUOUS",
+    },
+    phase2F6BaselineCommit: REQUIRED_PHASE_2F6_BASELINE,
+    phase2F6BaselineAncestryVerified: true,
     rc: {
       version: manifest.datasetVersion,
       status: manifest.status,
@@ -1038,15 +1138,33 @@ function buildAudit(root: string): JsonObject {
       datasetId: manifest.datasetId,
       datasetCode: manifest.datasetCode,
       schemaVersion: manifest.schemaVersion,
-      counts: { lexemes: 87, senses: 100, classifications: 99, taxonomySnapshots: 1, provenance: 799, media: 0, learningSets: 0, relations: 0 },
-      taxonomyVersion: null,
-      provenanceCountRecomputed: 799,
+      counts: {
+        lexemes: counts.lexemes,
+        senses: counts.senses,
+        classifications: counts.classifications,
+        taxonomySnapshots: counts.taxonomySnapshots,
+        provenance: provenanceRecords.length,
+        media: counts.media,
+        learningSets: counts.learningSets,
+        relations: counts.relations,
+      },
+      taxonomyVersion: APPROVED_TAXONOMY_VERSION,
+      taxonomyStatus: "APPROVED",
+      taxonomyVersionBump: "PATCH",
+      taxonomySemanticDiffRequired: 0,
+      taxonomySemanticDiffCurrentlyVerified: false,
+      provenanceCountRecomputed: provenanceRecords.length,
       provenanceCountMayChangeIfFutureContractAddsApprovalEvidence: true,
       officialReleaseHashCreated: false,
       releaseHashAlgorithm: "sha256-canonical-json-v1",
       releaseHashRule: "SHA-256 over RFC 8785/JCS canonical JSON of the final APPROVED dataset manifest with releaseHash omitted; calculate only after all record/taxonomy/provenance pins and releasedAt are final.",
-      releaseBuildTechnicallyReady: false,
-      blocker: "TAXONOMY_APPROVAL_POLICY_AMBIGUOUS",
+      releaseBuildTechnicallyReady: auditPass && approvalPlanReady && taxonomyPlan.decision === "CREATE_NEW_APPROVED_TAXONOMY_SNAPSHOT"
+        && taxonomyPlan.ownerArchitectureDecision === "APPROVED" && taxonomyPlan.semanticTaxonomyChangeRequired === false,
+      taxonomyPolicyDecisionFingerprint: null as string | null,
+      buildAuthorization: "NOT_AUTHORIZED",
+      blocker: null,
+      releaseBuildAuthorization: "PENDING",
+      releaseCreated: false,
     },
     validatorContract: validationContract,
     validation: {
@@ -1063,11 +1181,12 @@ function buildAudit(root: string): JsonObject {
       rcFinalAuditPass: true,
       contentCorrectionRequired: false,
       nextRequiredRc: "NONE",
-      taxonomyApprovalPolicyResolved: false,
-      approvedReleaseBuildTechnicallyReady: false,
+      taxonomyPolicyOwnerApproved: true,
+      taxonomyApprovalPolicyResolved: true,
+      approvedReleaseBuildTechnicallyReady: auditPass && approvalPlanReady && taxonomyPlan.decision === "CREATE_NEW_APPROVED_TAXONOMY_SNAPSHOT",
       approvedReleaseAuthorized: false,
-      recommendation: "APPROVE_RC_FOR_FINAL_RELEASE_BUILD",
-      recommendationRationale: "No semantic or CEFR content defect was found, so rc.2 is not justified. The owner may accept rc.1 for final-release preparation, but an owner architecture decision on taxonomy approval versioning is required before any 2.2.0 manifest is built.",
+      recommendation: "REQUEST_FINAL_RELEASE_BUILD_AUTHORIZATION",
+      recommendationRationale: "The owner resolved lifecycle-only taxonomy versioning as a new immutable PATCH snapshot at 2.0.1. RC and approval-revision plans pass, so the approved-release build is technically ready; this phase does not authorize creating taxonomy 2.0.1, entity revisions, release 2.2.0, or its releaseHash.",
       runtimeImportAuthorized: false,
       productionMutationAuthorized: false,
       phaseReady: true,
@@ -1089,7 +1208,7 @@ function buildAudit(root: string): JsonObject {
     },
   };
 
-  return {
+  const plan = {
     audit,
     inventories,
     approvalRows,
@@ -1106,10 +1225,28 @@ function buildAudit(root: string): JsonObject {
     candidateDataPins,
     schemaHashes,
   };
+  const taxonomyPolicyDecisionArtifact = buildTaxonomyVersionPolicyDecision(plan);
+  audit.taxonomy.policyFingerprint = taxonomyPolicyDecisionArtifact.policyFingerprint;
+  audit.finalReleasePlan.taxonomyPolicyDecisionFingerprint = taxonomyPolicyDecisionArtifact.policyFingerprint;
+  audit.finalReleasePlan.buildAuthorization = "NOT_AUTHORIZED";
+  return { ...plan, taxonomyPolicyDecisionArtifact };
 }
 
 function finalManifestPlan(plan: JsonObject): JsonObject {
   const rows = plan.approvalRows as JsonObject[];
+  const provenancePins = (plan.candidateDataPins as JsonObject[])
+    .filter((pin) => String(pin.recordPath).startsWith("provenance/"))
+    .map((pin) => ({ recordPath: pin.recordPath, contentHash: pin.contentHash }));
+  const counts = {
+    lexemes: rows.filter((row) => row.entityType === "LEXEME").length,
+    senses: rows.filter((row) => row.entityType === "SENSE").length,
+    classifications: rows.filter((row) => row.entityType === "CLASSIFICATION").length,
+    taxonomySnapshots: 1,
+    provenance: provenancePins.length,
+    media: Number(plan.audit.rc.counts.media),
+    learningSets: Number(plan.audit.rc.counts.learningSets),
+    relations: Number(plan.audit.rc.counts.relations),
+  };
   const byKind = (kind: EntityKind): JsonObject[] => rows
     .filter((row) => row.entityType === kind)
     .map((row) => {
@@ -1147,31 +1284,117 @@ function finalManifestPlan(plan: JsonObject): JsonObject {
       currentVersion: plan.taxonomyPin.taxonomyVersion,
       currentRecordPath: plan.taxonomyPin.recordPath,
       currentContentHash: plan.taxonomyPin.contentHash,
-      targetVersion: null,
-      targetRecordPath: null,
+      targetVersion: APPROVED_TAXONOMY_VERSION,
+      targetRecordPath: "taxonomy/" + TAXONOMY_ID + "-" + APPROVED_TAXONOMY_VERSION + ".json",
       targetContentHash: null,
+      currentStatus: plan.taxonomyRecord.status,
       status: "APPROVED_REQUIRED",
-      approvalMechanism: "PENDING_OWNER_ARCHITECTURE_DECISION",
+      versionBump: "PATCH",
+      semanticChangeRequired: false,
+      semanticDiffRequired: 0,
+      semanticDiffCurrentlyVerified: false,
+      targetArtifactCreated: false,
+      currentSnapshotMustRemainImmutable: true,
+      approvalMechanism: "NEW_IMMUTABLE_SNAPSHOT",
     }],
-    includedProvenanceCount: 799,
-    includedProvenancePins: (plan.candidateDataPins as JsonObject[])
-      .filter((pin) => String(pin.recordPath).startsWith("provenance/"))
-      .map((pin) => ({ recordPath: pin.recordPath, contentHash: pin.contentHash })),
+    includedProvenanceCount: provenancePins.length,
+    includedProvenancePins: provenancePins,
     includedMediaAssets: [],
     includedMediaAssetVersions: [],
     includedLearningSets: [],
     includedRelations: [],
-    counts: { lexemes: 87, senses: 100, classifications: 99, taxonomySnapshots: 1, provenance: 799, media: 0, learningSets: 0, relations: 0 },
+    counts,
     releaseHash: null,
     releaseHashAlgorithm: "sha256-canonical-json-v1",
     releasedAt: "TO_BE_SET_ONLY_IN_A_SEPARATELY_AUTHORIZED_RELEASE_BUILD",
     releaseHashCalculation: "SHA-256 of RFC 8785/JCS canonical JSON of the final APPROVED manifest with releaseHash omitted, after all pins and releasedAt are final.",
     releaseCreated: false,
     officialReleaseHashCreated: false,
-    taxonomyApprovalPolicyResolved: false,
+    taxonomyApprovalPolicyResolved: true,
+    taxonomyPolicyDecision: "CREATE_NEW_APPROVED_TAXONOMY_SNAPSHOT",
+    taxonomyPolicyFingerprint: plan.taxonomyPolicyDecisionArtifact?.policyFingerprint ?? null,
+    approvedReleaseBuildTechnicallyReady: true,
     approvedReleaseAuthorization: "PENDING",
     runtimeImportAuthorized: false,
     productionMutationAuthorized: false,
+    databaseWrites: "NONE",
+  };
+}
+
+function buildTaxonomyVersionPolicyDecision(plan: JsonObject): JsonObject {
+  const manifestPlan = finalManifestPlan(plan);
+  delete manifestPlan.taxonomyPolicyFingerprint;
+  const fingerprintPayload = {
+    artifactType: "TAXONOMY_VERSION_POLICY_FINGERPRINT_PAYLOAD",
+    ownerArchitectureDecision: "APPROVED",
+    decision: "CREATE_NEW_APPROVED_TAXONOMY_SNAPSHOT",
+    taxonomyId: TAXONOMY_ID,
+    currentSnapshot: {
+      taxonomyVersion: "2.0.0",
+      status: "DRAFT",
+      contentHash: "67ecd13e49e756df6fce2def9f40fe11eb8831ef9a68097299d37324ac588b79",
+      immutable: true,
+    },
+    approvalTarget: {
+      taxonomyVersion: APPROVED_TAXONOMY_VERSION,
+      status: "APPROVED",
+      versionBump: "PATCH",
+      semanticChange: false,
+      sameTaxonomyId: true,
+      materialized: false,
+    },
+    versionPolicy: TAXONOMY_VERSION_POLICY,
+    semanticEqualityContract: {
+      includedFields: TAXONOMY_SEMANTIC_PAYLOAD_FIELDS,
+      excludedTopLevelSnapshotMetadataFields: TAXONOMY_APPROVAL_SNAPSHOT_METADATA_FIELDS,
+      nestedSemanticLifecycleFieldsIncluded: true,
+      requiredSemanticDiff: 0,
+    },
+    framework: { frameworkCode: FRAMEWORK_CODE, frameworkVersion: FRAMEWORK_VERSION },
+    rcFingerprint: RC_FINGERPRINT,
+    rcTreeFingerprint: RC_TREE_FINGERPRINT,
+    finalManifestPlanFingerprint: canonicalHash(manifestPlan),
+  };
+  const policyFingerprint = canonicalHash(fingerprintPayload);
+  const repeatedPolicyFingerprint = canonicalHash(JSON.parse(JSON.stringify(fingerprintPayload)));
+  if (policyFingerprint !== repeatedPolicyFingerprint) fail("TAXONOMY_POLICY_FINGERPRINT_NOT_DETERMINISTIC");
+  return {
+    artifactType: "TAXONOMY_VERSION_POLICY_OWNER_DECISION",
+    decisionDate: TAXONOMY_DECISION_DATE,
+    taxonomyId: TAXONOMY_ID,
+    currentVersion: "2.0.0",
+    currentVersionStatus: "DRAFT",
+    currentContentHash: "67ecd13e49e756df6fce2def9f40fe11eb8831ef9a68097299d37324ac588b79",
+    currentVersionImmutable: true,
+    approvalTargetVersion: APPROVED_TAXONOMY_VERSION,
+    approvalTargetStatus: "APPROVED",
+    approvalTargetMaterialized: false,
+    versionBump: "PATCH",
+    semanticChange: false,
+    policy: TAXONOMY_VERSION_POLICY,
+    semanticEqualityContract: {
+      includedFields: TAXONOMY_SEMANTIC_PAYLOAD_FIELDS,
+      excludedTopLevelSnapshotMetadataFields: TAXONOMY_APPROVAL_SNAPSHOT_METADATA_FIELDS,
+      nestedSemanticLifecycleFieldsIncluded: true,
+      requiredFutureDiff: 0,
+      futureDiffCurrentlyVerified: false,
+    },
+    frameworkCode: FRAMEWORK_CODE,
+    frameworkVersion: FRAMEWORK_VERSION,
+    authorizedBy: "VocabFlow project owner",
+    ownerArchitectureDecision: "APPROVED",
+    approvalTargetMaterializationAuthorized: false,
+    finalReleaseBuildAuthorized: false,
+    runtimeImportAuthorized: false,
+    productionMutationAuthorized: false,
+    newIdsAllocated: 0,
+    rcFingerprint: RC_FINGERPRINT,
+    rcTreeFingerprint: RC_TREE_FINGERPRINT,
+    finalManifestPlanFingerprint: fingerprintPayload.finalManifestPlanFingerprint,
+    fingerprintPayload,
+    policyFingerprint,
+    repeatedPolicyFingerprint,
+    repeatIdentical: policyFingerprint === repeatedPolicyFingerprint,
   };
 }
 
@@ -1206,8 +1429,9 @@ function renderReport(plan: JsonObject): string {
   const sourceTypes = Object.entries(audit.provenance.sourceTypeCounts)
     .map(([key, count]) => `${key}=${count}`).join(", ");
   const taxonomyDecision = audit.taxonomy.decision;
+  const historical = audit.historicalPhase2F6Decision;
   return [
-    "# PHASE 2F.6 — Hybrid-100 RC Final Audit",
+    "# Hybrid-100 RC Final Audit — Current State after Phase 2F.6A",
     "",
     `RC fingerprint: ${audit.rc.fingerprint}`,
     `RC tree fingerprint: ${audit.rc.treeFingerprint}`,
@@ -1237,36 +1461,51 @@ function renderReport(plan: JsonObject): string {
     `- Approval-only next revisions required: ${lifecycle.approvalRevisionCounts.LEXEME} Lexemes, ${lifecycle.approvalRevisionCounts.SENSE} Senses, ${lifecycle.approvalRevisionCounts.CLASSIFICATION} Classifications (286 total). Stable IDs are preserved; target revisions change only revision/status fields; learner-facing content change required: NO. No record has been created.`,
     "- Existing owner-review and project-authored Provenance already close the approved-content references. The current validator requires resolvable Provenance references, not a new OWNER_REVIEW record for each lifecycle transition; no new IDs are planned.",
     "",
-    "## Validator contract and taxonomy decision",
+    "## Historical Phase 2F.6 decision (2026-10-05)",
+    "",
+    `- Historical decision: RC pass = ${historical.rcFinalAuditPass ? "YES" : "NO"}; content correction required = ${historical.contentCorrectionRequired ? "YES" : "NO"}; next required RC = ${historical.nextRequiredRc}.`,
+    `- At that time, taxonomy policy resolved = ${historical.taxonomyApprovalPolicyResolved ? "YES" : "NO"}; approved release technically ready = ${historical.approvedReleaseBuildTechnicallyReady ? "YES" : "NO"}. The taxonomy approval version policy was unresolved then.`,
+    "",
+    "## Current state — Phase 2F.6A (2026-10-06)",
+    "",
+    "- Owner taxonomy architecture decision: APPROVED. Taxonomy policy is resolved; this decision authorizes the architecture only.",
+    `- Taxonomy ${audit.taxonomy.taxonomyId}: 2.0.0 / DRAFT remains immutable (${audit.taxonomy.currentContentHash}); planned new snapshot 2.0.1 / APPROVED, PATCH, same taxonomyId, framework ${audit.taxonomy.frameworkCode} / ${audit.taxonomy.frameworkVersion}.`,
+    `- Approval-only semantic projection fields: ${TAXONOMY_SEMANTIC_PAYLOAD_FIELDS.join(", ")}. Excluded only top-level snapshot metadata: ${TAXONOMY_APPROVAL_SNAPSHOT_METADATA_FIELDS.join(", ")}. Nested lifecycle fields remain in the comparison. Required future semantic diff = 0; actual 2.0.0→2.0.1 comparison is NOT YET VERIFIED because the target snapshot does not exist.`,
+    `- Policy fingerprint: ${plan.taxonomyPolicyDecisionArtifact.policyFingerprint}; repeated canonical computation identical: ${plan.taxonomyPolicyDecisionArtifact.repeatIdentical ? "YES" : "NO"}.`,
+    `- Version policy: PATCH = ${TAXONOMY_VERSION_POLICY.PATCH} MINOR = ${TAXONOMY_VERSION_POLICY.MINOR} MAJOR = ${TAXONOMY_VERSION_POLICY.MAJOR}`,
+    "- The target snapshot is plan-only and was not materialized. No taxonomyRevision field is used.",
+    "",
+    "### Validator contract",
     "",
     "- `vocabflow-dataset/schemas/dataset.schema.json:160` requires `releasedAt`, `releaseHash`, and `releaseHashAlgorithm` for APPROVED manifests; algorithm is `sha256-canonical-json-v1`.",
     "- `scripts/validate-master-vocabulary-v2.ts:411-420` verifies SHA-256 over RFC 8785/JCS canonical manifest JSON with `releaseHash` omitted.",
     "- `scripts/validate-master-vocabulary-v2.ts:669-675` requires included Lexeme, Sense, Classification, Learning Set, Relation, and Taxonomy records to be APPROVED. Lines 498-503 require approved content's Provenance references to resolve.",
-    `- Taxonomy option C: ${taxonomyDecision}. Current ${audit.taxonomy.taxonomyId} / ${audit.taxonomy.currentTaxonomyVersion} is DRAFT. It must remain immutable; direct APPROVED release fails the validator. Framework stays ${audit.taxonomy.frameworkCode} / ${audit.taxonomy.frameworkVersion}.`,
-    "- The identity policy makes each taxonomyVersion an immutable snapshot and requires a new version for taxonomy record/value/hierarchy changes, but has no lifecycle-only approval version rule or taxonomy-specific PATCH/MINOR mapping. Existing repository snapshots are DRAFT; the canary has no taxonomy pin. Do not invent 2.0.1 or 2.1.0. Final build is blocked until the owner resolves this architecture decision.",
+    `- Historical Phase 2F.6 taxonomy decision was ${historical.historicalTaxonomyDecision}; current resolved decision is ${taxonomyDecision}. Directly pinning the existing DRAFT snapshot in an APPROVED release fails the validator.`,
     "",
-    "## Proposed final manifest (not created)",
+    "## Proposed final manifest plan (not created)",
     "",
     `- datasetId/code unchanged; datasetVersion 2.2.0; schemaVersion ${audit.finalReleasePlan.schemaVersion}; eventual status APPROVED.`,
-    "- Proposed pins: 87 Lexemes, 100 Senses, 99 Classifications, 1 approved Taxonomy snapshot (version pending owner decision), 799 Provenance, no Media, Learning Sets, or Relations.",
-    "- No new approval Provenance is required under the current validator contract; closure recomputes to 799. If a future contract requires release/lifecycle evidence, recompute that closure during the authorized build.",
-    "- The official releaseHash has not been created. In a later authorized build, set releasedAt and all final pins first, then compute SHA-256/JCS with releaseHash omitted.",
+    `- Planned exact pins: ${audit.finalReleasePlan.counts.lexemes} Lexemes, ${audit.finalReleasePlan.counts.senses} Senses, ${audit.finalReleasePlan.counts.classifications} Classifications, taxonomy ${APPROVED_TAXONOMY_VERSION} / APPROVED, ${audit.finalReleasePlan.provenanceCountRecomputed} Provenance, ${audit.finalReleasePlan.counts.media} Media, ${audit.finalReleasePlan.counts.learningSets} Learning Sets, ${audit.finalReleasePlan.counts.relations} Relations.`,
+    `- Approval-only next revisions: ${audit.lifecycle.approvalRevisionCounts.LEXEME} Lexemes, ${audit.lifecycle.approvalRevisionCounts.SENSE} Senses, ${audit.lifecycle.approvalRevisionCounts.CLASSIFICATION} Classifications (${audit.lifecycle.approvalRevisionCounts.LEXEME + audit.lifecycle.approvalRevisionCounts.SENSE + audit.lifecycle.approvalRevisionCounts.CLASSIFICATION} total); stable IDs preserved; semantic content changes required: NO. Provenance closure is recomputed from pinned candidate data.`,
+    "- Final release build is technically ready, but remains unauthorized. No target revisions or final package artifacts have been created.",
+    "- The official releaseHash has not been created. In a separately authorized build, set releasedAt and all final pins first, then compute SHA-256/JCS with releaseHash omitted.",
     "",
     "## Decision",
     "",
     "- RC_FINAL_AUDIT_PASS = YES",
     "- CONTENT_CORRECTION_REQUIRED = NO",
     "- NEXT_REQUIRED_RC = NONE",
-    "- TAXONOMY_APPROVAL_POLICY_RESOLVED = NO",
-    "- APPROVED_RELEASE_BUILD_TECHNICALLY_READY = NO (taxonomy architecture decision pending)",
-    "- APPROVED_RELEASE_AUTHORIZED = NO; owner authorization remains pending.",
-    "- Recommendation: APPROVE_RC_FOR_FINAL_RELEASE_BUILD after the taxonomy versioning decision is resolved. This does not create or authorize the release.",
+    "- TAXONOMY_POLICY_OWNER_APPROVED = YES",
+    "- TAXONOMY_APPROVAL_POLICY_RESOLVED = YES",
+    "- APPROVED_RELEASE_BUILD_TECHNICALLY_READY = YES",
+    "- APPROVED_RELEASE_AUTHORIZED = NO; separate final-build authorization is pending.",
+    "- Recommendation: REQUEST_FINAL_RELEASE_BUILD_AUTHORIZATION. This phase does not create or authorize the release build.",
     "- RUNTIME_IMPORT_AUTHORIZED = NO; PRODUCTION_MUTATION_AUTHORIZED = NO.",
     "",
     "## Execution boundary",
     "",
     "Database connection: NONE. Database writes: NONE. Reconciliation scan: NO. Import apply: NO. Migrations: NONE. Development runtime mutation: NO. Production connection/mutation: NO.",
-    "No canonical records, lifecycle states, RC.1 files, release 2.2.0, or official releaseHash were modified or created.",
+    "No canonical records, lifecycle states, taxonomy 2.0.1, approved entity revisions, RC.1 files, release 2.2.0, or official releaseHash were modified or created.",
     "",
   ].join("\n");
 }
@@ -1274,19 +1513,23 @@ function renderReport(plan: JsonObject): string {
 function renderOwnerDecision(plan: JsonObject): string {
   const audit = plan.audit;
   return [
-    "# Hybrid-100 RC Final Owner Decision",
+    "# Hybrid-100 RC Final Owner Decision — Current State after Phase 2F.6A",
     "",
     "RC: 2.2.0-rc.1",
     `Fingerprint: ${audit.rc.fingerprint}`,
     "",
     "- Audit result: PASS",
     "- Content changes required: NO",
-    "- Taxonomy policy resolved: NO — owner architecture decision required on immutable approval snapshot versioning.",
-    "- Final release build technically ready: NO until that decision is resolved.",
-    "- Recommendation: APPROVE_RC_FOR_FINAL_RELEASE_BUILD after taxonomy policy closure; no rc.2 is required for content.",
-    "- APPROVED release authorization: PENDING",
+    "- Taxonomy policy resolved: YES — owner-approved architecture decision recorded.",
+    "- Taxonomy lineage plan: 2.0.0 / DRAFT remains immutable → 2.0.1 / APPROVED as PATCH; semantic change required: NO; future semantic diff must equal 0 and has not yet been verified because 2.0.1 is not created.",
+    "- Framework: CEFR / EDITORIAL-PILOT-1.",
+    "- Final release build technically ready: YES. Final build authorization: PENDING; this phase does not authorize execution.",
+    "- Recommendation: REQUEST_FINAL_RELEASE_BUILD_AUTHORIZATION; no rc.2 is required for content.",
+    "- Taxonomy 2.0.1 created: NO; approved entity revisions created: NO; release 2.2.0 created: NO; official releaseHash created: NO.",
     "- Runtime authorization: NO",
     "- Production authorization: NO",
+    "- Database connection/writes: NONE; canonical mutation: NONE.",
+    `- Taxonomy policy fingerprint: ${plan.taxonomyPolicyDecisionArtifact.policyFingerprint}`,
     "",
   ].join("\n");
 }
@@ -1308,6 +1551,15 @@ function createOutputFiles(plan: JsonObject): Map<string, string> {
       newIdsAllocated: 0,
       recordsCreated: 0,
       learnerFacingContentChangesRequired: false,
+      approvalOnlyTransition: true,
+      semanticContentChange: false,
+      targetStatus: "APPROVED",
+    },
+    lifecyclePolicy: {
+      lexeme: "Same masterLexemeId; create the next lexemeRevision; do not overwrite an existing revision file.",
+      sense: "Same masterSenseId; create the next senseRevision; do not overwrite an existing revision file.",
+      classification: "Same classificationId; create the next classificationRevision; do not overwrite an existing revision file.",
+      taxonomy: "Not an entity revision; keep taxonomyId and create a new immutable taxonomyVersion snapshot. No taxonomyRevision field is used.",
     },
     rows: plan.approvalRows,
   };
@@ -1327,7 +1579,7 @@ function createOutputFiles(plan: JsonObject): Map<string, string> {
   };
   const workspaceManifest = {
     artifactType: "HYBRID_100_RC_FINAL_REVIEW_WORKSPACE",
-    phase: "2F.6",
+    phase: "2F.6A",
     reviewOnly: true,
     rcVersion: RC_VERSION,
     rcFingerprint: RC_FINGERPRINT,
@@ -1342,13 +1594,15 @@ function createOutputFiles(plan: JsonObject): Map<string, string> {
       "lifecycle-status-inventory.json",
       "approval-revision-plan.json",
       "taxonomy-approval-plan.json",
+      "taxonomy-version-policy-decision.json",
       "final-release-manifest-plan.json",
       "validation-summary.json",
     ],
     reportOutputs: [AUDIT_REPORT_RELATIVE, OWNER_DECISION_RELATIVE],
     auditResult: "PASS",
-    taxonomyApprovalPolicyResolved: false,
-    approvedReleaseBuildTechnicallyReady: false,
+    taxonomyApprovalPolicyResolved: true,
+    taxonomyPolicyFingerprint: plan.taxonomyPolicyDecisionArtifact.policyFingerprint,
+    approvedReleaseBuildTechnicallyReady: true,
     approvedReleaseAuthorized: false,
     runtimeImportAuthorized: false,
     productionMutationAuthorized: false,
@@ -1366,16 +1620,11 @@ function createOutputFiles(plan: JsonObject): Map<string, string> {
   files.set(OUTPUTS[6], jsonText(validationSummary));
   files.set(OUTPUTS[7], renderReport(plan));
   files.set(OUTPUTS[8], renderOwnerDecision(plan));
+  files.set(OUTPUTS[9], jsonText(plan.taxonomyPolicyDecisionArtifact));
   return files;
 }
 
 function writeAuditFiles(root: string, files: Map<string, string>): void {
-  for (const [relativePath, contents] of files) {
-    const absolutePath = path.join(root, relativePath);
-    if (existsSync(absolutePath) && readFileSync(absolutePath, "utf8") !== contents) {
-      fail("AUDIT_ARTIFACT_CONFLICT", relativePath);
-    }
-  }
   for (const [relativePath, contents] of files) {
     const absolutePath = path.join(root, relativePath);
     mkdirSync(path.dirname(absolutePath), { recursive: true });
@@ -1406,12 +1655,13 @@ export function main(args = process.argv.slice(2), root = REPO_ROOT): JsonObject
     rcFinalAuditPass: true,
     contentCorrectionRequired: false,
     nextRequiredRc: "NONE",
-    taxonomyApprovalPolicyResolved: false,
-    approvedReleaseBuildTechnicallyReady: false,
+    taxonomyApprovalPolicyResolved: true,
+    approvedReleaseBuildTechnicallyReady: true,
     approvedReleaseAuthorized: false,
-    recommendation: "APPROVE_RC_FOR_FINAL_RELEASE_BUILD",
+    recommendation: "REQUEST_FINAL_RELEASE_BUILD_AUTHORIZATION",
     approvedRevisionsToPlan: { lexemes: 87, senses: 100, classifications: 99 },
-    taxonomyDecision: "TAXONOMY_APPROVAL_POLICY_AMBIGUOUS",
+    taxonomyDecision: "CREATE_NEW_APPROVED_TAXONOMY_SNAPSHOT",
+    taxonomyPolicyFingerprint: plan.taxonomyPolicyDecisionArtifact.policyFingerprint,
     officialReleaseHashCreated: false,
     canaryChanged: false,
     databaseConnection: "NONE",

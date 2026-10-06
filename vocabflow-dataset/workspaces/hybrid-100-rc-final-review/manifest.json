@@ -1,6 +1,6 @@
 {
   "artifactType": "HYBRID_100_RC_FINAL_REVIEW_WORKSPACE",
-  "phase": "2F.6",
+  "phase": "2F.6A",
   "reviewOnly": true,
   "rcVersion": "2.2.0-rc.1",
   "rcFingerprint": "06b2a4dec2f54438416cae67788e0683fe94907cbce0a60fbb2d6469bc25b82c",
@@ -15,6 +15,7 @@
     "lifecycle-status-inventory.json",
     "approval-revision-plan.json",
     "taxonomy-approval-plan.json",
+    "taxonomy-version-policy-decision.json",
     "final-release-manifest-plan.json",
     "validation-summary.json"
   ],
@@ -23,8 +24,9 @@
     "vocabflow-dataset/reports/hybrid-100-rc-final-owner-decision.md"
   ],
   "auditResult": "PASS",
-  "taxonomyApprovalPolicyResolved": false,
-  "approvedReleaseBuildTechnicallyReady": false,
+  "taxonomyApprovalPolicyResolved": true,
+  "taxonomyPolicyFingerprint": "9596e407a8448a0aa4b6edb1944154ca4754ac396596501c06b9272318c2779b",
+  "approvedReleaseBuildTechnicallyReady": true,
   "approvedReleaseAuthorized": false,
   "runtimeImportAuthorized": false,
   "productionMutationAuthorized": false,

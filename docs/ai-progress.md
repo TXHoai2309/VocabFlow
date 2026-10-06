@@ -1,5 +1,33 @@
 # Current Handoff Snapshot
 
+## 2026-10-06 — Master Vocabulary V2 Phase 2F.6A taxonomy policy closure
+
+- Recorded the owner's taxonomy approval architecture decision: taxonomy
+  `01a0fc13-09e9-72dd-b49d-ffef077385dd` version 2.0.0 remains immutable
+  `DRAFT`; approval is planned as a new immutable 2.0.1 `APPROVED` snapshot
+  using a `PATCH` bump. Semantic taxonomy change is prohibited and the future
+  full-payload comparison must have zero diff; 2.0.1 has not been created, so
+  that future comparison is not yet verified.
+- Added taxonomy-specific PATCH/MINOR/MAJOR version policy and the exact
+  approval semantic projection rule. Only top-level `taxonomyVersion`,
+  `status`, `createdAt`, and `updatedAt` are excluded; nested child lifecycle
+  statuses remain in the comparison.
+- Pinned the unchanged 2.2.0-rc.1 fingerprints. The 87 Lexeme / 100 Sense / 99
+  Classification next-revision plan and recomputed Provenance closure remain
+  approval-only; final 2.2.0 is technically ready but final build authorization
+  is still pending.
+- No taxonomy 2.0.1, approved entity revisions, release 2.2.0, releaseHash,
+  runtime import, database access/write, migration, or production mutation was
+  performed. The Phase 2F.6A focused suite passes (7/7); the dataset validator
+  passes (0 errors, 0 warnings, 1 informational issue); the deterministic
+  audit reports ALREADY_MATERIALIZED twice with the same policy fingerprint;
+  targeted ESLint and `git diff --check` pass. Root `pnpm typecheck` and
+  `pnpm lint` report errors only in concurrent, uncommitted global-search UI
+  files under `apps/web`; these changes are outside this phase and were left
+  untouched. Root typecheck also required rebuilding the existing workspace
+  contract declarations from the concurrent `packages/contracts` source edit.
+  The local Node 22.19.0 runtime emits the package's Node 22.23.2 engine warning.
+
 ## 2026-10-05 — Simplified App Navigation (Feature #13 / US-50)
 
 - Replaced the oversized primary nav with exactly six desktop destinations:
