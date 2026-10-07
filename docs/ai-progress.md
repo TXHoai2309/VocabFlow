@@ -1,5 +1,31 @@
 # Current Handoff Snapshot
 
+## 2026-10-07 — Phase 2G.3C legacy content disposition / Master expansion planning
+
+Planning complete on origin/TXH baseline ad1aa6813628c73504baa016e9059a9d165a53be.
+A fresh Development capture used vocabflow_runtime, REPEATABLE READ / READ ONLY.
+All 2018 legacy rows are assigned once: 2005 provisional Master expansion
+candidates, 13 identity-review cases, zero retirement/history-only/undecided
+cases. History protection is independent and preserves all 75 runtime identities.
+#11 retains 1 progress / 5 reviews; #295 duplicate and #849 noun/verb ambiguity
+remain review gates. Reviewed non-identity pairs remain NONE. #284 stays outside
+legacy planning; total/Master/legacy remains 2126/108/2018, Hybrid 100/100.
+
+The new workspace and report preserve current Vietnamese/overrides, available
+English definitions/examples, topics, set order, source identities and grades.
+School grades are not CEFR; repeated lemmas are not proven polysemy. No evidence
+supports treating disabled/unmapped content as obsolete. A/B/C/D review cohorts
+are 75/166/1777/0, with 11 bounded batches: 75, 166, eight of 200, and 177.
+Each batch records lexical estimates, topic/set impact, source obligations,
+content gaps and human review order. All retirement dependencies remain unresolved.
+
+Planning fingerprint: d60ea07432633de6ab4bb0516ce9401252c6d03982c77710f0b2a71c0968ac09.
+Accepted semantic and retirement fingerprints are unchanged. Offline replay uses
+`pnpm plan:legacy-master-expansion --check`. Master authoring/apply, relationship
+migration, disable, delete and Production authorization all remain NO. No Master
+IDs, mappings, canonical content or import artifacts were created. Database
+writes NONE; Production untouched. Learner-management application files unchanged.
+
 ## 2026-10-07 — Learner management flow correction
 
 - Synced TXH by fast-forward after preserving unrelated Dataset/report and
