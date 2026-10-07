@@ -1,6 +1,6 @@
 # Current Handoff Snapshot
 
-## 2026-10-07 — Phase 2G.2D Hybrid-100 Development runtime verified; typecheck gate blocked
+## 2026-10-07 — Phase 2G.2D Hybrid-100 Development runtime closure PASS
 
 - Closed the 2G.2B/2G.2C rollout against remote baseline
   `53443aa7818b5fe6b5dc3fea30f8ac8967805e02`. Owner reconciliation was finalized
@@ -33,15 +33,14 @@
   second APPLY, migration, Production connection, or Production mutation
   occurred. Development runtime is VERIFIED; Production remains NOT
   AUTHORIZED / NOT EXECUTED.
-- Runtime closure/API smoke and focused tests passed (7 files / 94 tests);
-  frozen release check and `git diff --check` passed. `pnpm exec tsc --noEmit
-  -p tsconfig.json` passed, but the required `pnpm typecheck` (`tsc -b`) is
-  BLOCKED by nine TS2339 errors in unchanged
-  `scripts/hybrid-100-owner-reconciliation-dry-run.ts` (including stale
-  `analysisOnly`, `acceptedByImporter`, `snapshotFingerprint`, `targetVerified`,
-  `transaction`, and `releaseHash` fields). No unrelated code was changed.
-  Runtime status is VERIFIED; Phase 2G.2D status is BLOCKED pending that
-  repository typecheck issue.
+- Phase 2G.2D.1 closed the typecheck blocker with runtime guards for proposal
+  ownership and scanner results, plus a pre/post comparison of the verified
+  manifest release hash and frozen tree. Canonical `pnpm typecheck` (`tsc -b`)
+  passes on Node `v22.23.2` / pnpm `11.17.0`. The focused type-safety suite
+  passes 3 files / 69 tests; the original runtime closure suite remains 7 files
+  / 94 tests. Frozen release check and `git diff --check` pass. Phase 2G.2D
+  closure: PASS; Development runtime: VERIFIED; Production: NOT AUTHORIZED /
+  NOT EXECUTED.
 - Evidence: [sanitized closure report](../vocabflow-dataset/reports/hybrid-100-development-runtime-closure-2.2.1.md)
   and [machine-readable closure](../vocabflow-dataset/workspaces/hybrid-100-runtime-reconciliation-2.2.1/owner-review/development-runtime-closure.json).
 

@@ -70,6 +70,54 @@ type OwnerDecisionRow = {
 
 function fail(code: string): never { throw new Error(code); }
 
+function isJsonRecord(value: unknown): value is JsonRecord {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+export function assertApprovedProposalOwnership(value: unknown): asserts value is JsonRecord {
+  if (!isJsonRecord(value) || value.analysisOnly !== true || value.acceptedByImporter !== false) {
+    fail("PHASE_2G2B_APPROVED_PROPOSAL_PIN_MISMATCH");
+  }
+}
+
+type SuccessfulDevelopmentScan = {
+  status: "CANDIDATES_READY_FOR_OWNER_REVIEW";
+  targetVerified: true;
+  migrationReady: true;
+  transaction: "REPEATABLE_READ_READ_ONLY";
+  snapshotFingerprint: string;
+};
+
+export function isSuccessfulDevelopmentScan(value: unknown): value is SuccessfulDevelopmentScan {
+  if (!isJsonRecord(value)) return false;
+  return value.status === "CANDIDATES_READY_FOR_OWNER_REVIEW"
+    && value.targetVerified === true
+    && value.migrationReady === true
+    && value.transaction === "REPEATABLE_READ_READ_ONLY"
+    && typeof value.snapshotFingerprint === "string"
+    && /^[0-9a-f]{64}$/.test(value.snapshotFingerprint);
+}
+
+function readDevelopmentSnapshotFingerprint(value: unknown): string | undefined {
+  if (!isJsonRecord(value) || typeof value.snapshotFingerprint !== "string"
+    || !/^[0-9a-f]{64}$/.test(value.snapshotFingerprint)) return undefined;
+  return value.snapshotFingerprint;
+}
+
+function readDevelopmentMigrationReady(value: unknown): boolean {
+  return isJsonRecord(value) && value.migrationReady === true;
+}
+
+export function assertFrozenHybrid100ReleaseUnchanged(
+  before: ReturnType<typeof verifyHybrid100SourceRelease>,
+  after: ReturnType<typeof verifyHybrid100SourceRelease>,
+): void {
+  if (after.manifest.releaseHash !== before.manifest.releaseHash
+    || after.releaseTreeFingerprint !== before.releaseTreeFingerprint) {
+    fail("PHASE_2G2B_FROZEN_RELEASE_CHANGED");
+  }
+}
+
 function readJson<T>(filePath: string): T {
   try { return JSON.parse(readFileSync(filePath, "utf8")) as T; }
   catch { return fail("PHASE_2G2B_ARTIFACT_READ_FAILED"); }
@@ -109,10 +157,11 @@ function verifyProposal(root: string): { proposal: JsonRecord & { senses: Propos
   const fingerprint = canonicalJsonSha256(proposal);
   if (fingerprint !== APPROVED_PROPOSAL_FINGERPRINT
     || proposal.artifactType !== "HYBRID_100_OWNER_RECONCILIATION_PROPOSAL"
-    || proposal.senses.length !== HYBRID_100_2_2_1.senses
-    || proposal.ownership?.analysisOnly !== true
-    || proposal.ownership?.acceptedByImporter !== false
-    || proposal.senses.some((sense) => sense.ownerDecision !== "UNRESOLVED")) {
+    || proposal.senses.length !== HYBRID_100_2_2_1.senses) {
+    fail("PHASE_2G2B_APPROVED_PROPOSAL_PIN_MISMATCH");
+  }
+  assertApprovedProposalOwnership(proposal.ownership);
+  if (proposal.senses.some((sense) => sense.ownerDecision !== "UNRESOLVED")) {
     fail("PHASE_2G2B_APPROVED_PROPOSAL_PIN_MISMATCH");
   }
   const selected = proposal.senses.filter((sense) => sense.proposedDecision === "MAP_EXISTING");
@@ -587,13 +636,12 @@ export async function runPhase2G2BOwnerApprovedDryRun(root = process.cwd()) {
   }
 
   try {
-    const firstScan = await runHybrid100DevelopmentReconciliationScan(root, { outputRoot: tempRoot });
-    const firstFingerprint = firstScan.snapshotFingerprint;
-    if (firstScan.status !== "CANDIDATES_READY_FOR_OWNER_REVIEW" || firstScan.targetVerified !== true
-      || firstScan.migrationReady !== true || firstScan.transaction !== "REPEATABLE_READ_READ_ONLY"
-      || firstFingerprint !== APPROVED_SOURCE_SNAPSHOT) {
+    const firstScanResult = await runHybrid100DevelopmentReconciliationScan(root, { outputRoot: tempRoot });
+    const firstFingerprint = readDevelopmentSnapshotFingerprint(firstScanResult);
+    if (!isSuccessfulDevelopmentScan(firstScanResult) || firstFingerprint !== APPROVED_SOURCE_SNAPSHOT) {
+      const snapshotStale = firstFingerprint !== APPROVED_SOURCE_SNAPSHOT;
       const ownerAuthorization = makeOwnerAuthorization({
-        proposalFingerprint, freshScanFingerprints: [firstFingerprint], snapshotStale: firstFingerprint !== APPROVED_SOURCE_SNAPSHOT,
+        proposalFingerprint, freshScanFingerprints: firstFingerprint ? [firstFingerprint] : [], snapshotStale,
         target: targetIdentity,
       });
       writeJson(path.join(artifactRoot(root), "owner-authorization.json"), ownerAuthorization);
@@ -602,36 +650,37 @@ export async function runPhase2G2BOwnerApprovedDryRun(root = process.cwd()) {
         ownerAuthorizationFingerprint: ownerAuthorization.ownerAuthorizationFingerprint,
         approvedProposalFingerprint: proposalFingerprint,
         sourceSnapshotFingerprint: APPROVED_SOURCE_SNAPSHOT,
-        currentDevelopmentSnapshotFingerprint: firstFingerprint,
-        OWNER_AUTHORIZATION_SNAPSHOT_STALE: firstFingerprint !== APPROVED_SOURCE_SNAPSHOT,
-        migrationReady: firstScan.migrationReady === true,
+        currentDevelopmentSnapshotFingerprint: firstFingerprint ?? null,
+        OWNER_AUTHORIZATION_SNAPSHOT_STALE: snapshotStale,
+        migrationReady: readDevelopmentMigrationReady(firstScanResult),
         databaseConnection: "READ_ONLY_DEVELOPMENT",
         databaseWrites: "NONE",
         importerApplyExecuted: false,
         productionConnection: "NONE",
-        blockedReason: firstScan.status === "CANDIDATES_READY_FOR_OWNER_REVIEW" ? "OWNER_AUTHORIZATION_SNAPSHOT_STALE" : "DEVELOPMENT_READINESS_FAILED",
+        blockedReason: snapshotStale ? "OWNER_AUTHORIZATION_SNAPSHOT_STALE" : "DEVELOPMENT_READINESS_FAILED",
       };
       writeDevelopmentEvidence(root, blockedEvidence);
       writeBlockedReport(root, {
         reason: String(blockedEvidence.blockedReason),
         ownerAuthorizationFingerprint: String(ownerAuthorization.ownerAuthorizationFingerprint),
-        freshFingerprints: [firstFingerprint],
-        snapshotStale: firstFingerprint !== APPROVED_SOURCE_SNAPSHOT,
+        freshFingerprints: firstFingerprint ? [firstFingerprint] : [],
+        snapshotStale,
         target: targetIdentity,
-        migrationReady: firstScan.migrationReady === true,
+        migrationReady: readDevelopmentMigrationReady(firstScanResult),
       });
       return blockedEvidence;
     }
+    const verifiedFirstFingerprint = firstScanResult.snapshotFingerprint;
 
     const plannerCapture = await captureDevelopmentPlannerSnapshot();
     const plannerSnapshotFingerprint = canonicalJsonSha256(plannerCapture.snapshot);
-    const secondScan = await runHybrid100DevelopmentReconciliationScan(root, { outputRoot: tempRoot });
-    const secondFingerprint = secondScan.snapshotFingerprint;
-    const snapshotStale = secondFingerprint !== APPROVED_SOURCE_SNAPSHOT || firstFingerprint !== secondFingerprint;
-    if (secondScan.status !== "CANDIDATES_READY_FOR_OWNER_REVIEW" || secondScan.targetVerified !== true
-      || secondScan.migrationReady !== true || secondScan.transaction !== "REPEATABLE_READ_READ_ONLY") {
+    const secondScanResult = await runHybrid100DevelopmentReconciliationScan(root, { outputRoot: tempRoot });
+    const blockedSecondFingerprint = readDevelopmentSnapshotFingerprint(secondScanResult);
+    if (!isSuccessfulDevelopmentScan(secondScanResult)) {
+      const snapshotStale = blockedSecondFingerprint !== APPROVED_SOURCE_SNAPSHOT
+        || verifiedFirstFingerprint !== blockedSecondFingerprint;
       const ownerAuthorization = makeOwnerAuthorization({
-        proposalFingerprint, freshScanFingerprints: [firstFingerprint, secondFingerprint ?? "UNAVAILABLE"],
+        proposalFingerprint, freshScanFingerprints: [verifiedFirstFingerprint, blockedSecondFingerprint ?? "UNAVAILABLE"],
         plannerSnapshotFingerprint, snapshotStale, target: targetIdentity,
       });
       writeJson(path.join(artifactRoot(root), "owner-authorization.json"), ownerAuthorization);
@@ -640,10 +689,10 @@ export async function runPhase2G2BOwnerApprovedDryRun(root = process.cwd()) {
         ownerAuthorizationFingerprint: ownerAuthorization.ownerAuthorizationFingerprint,
         approvedProposalFingerprint: proposalFingerprint,
         sourceSnapshotFingerprint: APPROVED_SOURCE_SNAPSHOT,
-        currentDevelopmentSnapshotFingerprint: secondFingerprint ?? null,
+        currentDevelopmentSnapshotFingerprint: blockedSecondFingerprint ?? null,
         plannerSnapshotFingerprint,
         OWNER_AUTHORIZATION_SNAPSHOT_STALE: snapshotStale,
-        migrationReady: secondScan.migrationReady === true,
+        migrationReady: readDevelopmentMigrationReady(secondScanResult),
         importerReadiness: "BLOCKED",
         databaseConnection: "READ_ONLY_DEVELOPMENT",
         databaseWrites: "NONE",
@@ -655,13 +704,16 @@ export async function runPhase2G2BOwnerApprovedDryRun(root = process.cwd()) {
       writeBlockedReport(root, {
         reason: String(blockedEvidence.blockedReason),
         ownerAuthorizationFingerprint: String(ownerAuthorization.ownerAuthorizationFingerprint),
-        freshFingerprints: [firstFingerprint, secondFingerprint ?? "UNAVAILABLE"],
+        freshFingerprints: [verifiedFirstFingerprint, blockedSecondFingerprint ?? "UNAVAILABLE"],
         snapshotStale,
         target: targetIdentity,
-        migrationReady: secondScan.migrationReady === true,
+        migrationReady: readDevelopmentMigrationReady(secondScanResult),
       });
       return blockedEvidence;
     }
+    const secondScan = secondScanResult;
+    const secondFingerprint = secondScan.snapshotFingerprint;
+    const snapshotStale = secondFingerprint !== APPROVED_SOURCE_SNAPSHOT || verifiedFirstFingerprint !== secondFingerprint;
     const migration = summarizeFreshMigration(tempRoot);
     const liveTargetEvidence = readJson<JsonRecord>(path.join(tempRoot, FRESH_SCAN_ARTIFACT_ROOT, "development-target.json"));
     if (canonicalJsonSha256(liveTargetEvidence.target) !== canonicalJsonSha256(targetIdentity)) fail("PHASE_2G2B_DEVELOPMENT_TARGET_MISMATCH");
@@ -741,8 +793,7 @@ export async function runPhase2G2BOwnerApprovedDryRun(root = process.cwd()) {
     const counts = actionCounts(plan);
     const updates = selectedUpdateDetails({ plan, snapshot: plannerCapture.snapshot, decisionRows });
     const finalRelease = verifyHybrid100SourceRelease(root);
-    if (finalRelease.releaseHash !== releaseBefore.releaseHash
-      || finalRelease.releaseTreeFingerprint !== releaseBefore.releaseTreeFingerprint) fail("PHASE_2G2B_FROZEN_RELEASE_CHANGED");
+    assertFrozenHybrid100ReleaseUnchanged(releaseBefore, finalRelease);
     const evidence = {
       status: "PASS",
       remoteBaseline: PHASE_2G2B_BASELINE,

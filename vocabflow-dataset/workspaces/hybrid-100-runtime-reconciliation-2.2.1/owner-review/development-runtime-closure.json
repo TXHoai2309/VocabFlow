@@ -2,7 +2,7 @@
   "artifactType": "HYBRID_100_DEVELOPMENT_RUNTIME_CLOSURE",
   "artifactVersion": 1,
   "phase": "2G.2D",
-  "status": "BLOCKED",
+  "status": "PASS",
   "runtimeVerification": "PASS",
   "generatedAt": "2026-10-07T15:09:53+07:00",
   "repositoryBaseline": "53443aa7818b5fe6b5dc3fea30f8ac8967805e02",
@@ -124,17 +124,20 @@
       "files": 7,
       "tests": 94
     },
+    "typeSafetyRegressionTests": {
+      "status": "PASS",
+      "files": 3,
+      "tests": 69
+    },
     "frozenReleaseCheck": "PASS",
     "gitDiffCheck": "PASS",
-    "rootTscNoEmit": "PASS: pnpm exec tsc --noEmit -p tsconfig.json",
     "canonicalTypecheck": {
-      "status": "FAIL",
+      "status": "PASS",
       "command": "pnpm typecheck (tsc -b)",
-      "errorCount": 9,
-      "errorCode": "TS2339",
-      "unchangedFile": "scripts/hybrid-100-owner-reconciliation-dry-run.ts",
-      "affectedProperties": ["analysisOnly", "acceptedByImporter", "snapshotFingerprint", "targetVerified", "transaction", "releaseHash"],
-      "phaseDisposition": "BLOCKED; runtime and consumer verification passed"
+      "errorCount": 0,
+      "node": "v22.23.2",
+      "pnpm": "11.17.0",
+      "phaseDisposition": "PASS"
     }
   },
   "unrelatedAppsWebImplementationChanges": 0,

@@ -10,7 +10,10 @@ import {
   PHASE_2G2B_BASELINE,
   APPROVED_PROPOSAL_FINGERPRINT,
   APPROVED_SOURCE_SNAPSHOT,
+  assertApprovedProposalOwnership,
+  assertFrozenHybrid100ReleaseUnchanged,
   assertOwnerApprovedDevelopmentTarget,
+  isSuccessfulDevelopmentScan,
   makeOwnerAuthorization,
   materializeFinalizedReconciliation,
   materializeOwnerDecisionRows,
@@ -227,8 +230,80 @@ describe("Phase 2G.2B owner-approved Hybrid-100 dry-run", () => {
     const after = readFileSync(manifestPath);
     expect(source.manifest.releaseHash).toBe("44874b11d1fdef76a515f6285d04c9a417318daa6969e112608a59e7c232613c");
     expect(source.releaseTreeFingerprint).toBe("51ab4c5ce31bd38b51742d1aea16602150522da27ad26c123cc17b332f9a406e");
+    expect(() => assertFrozenHybrid100ReleaseUnchanged(source, source)).not.toThrow();
     expect(after.equals(before)).toBe(true);
   }, 60_000);
+
+  it("compares pre/post frozen release identity using the verified manifest and tree", () => {
+    const source = verifyHybrid100SourceRelease(ROOT);
+    const changedManifest = { ...source, manifest: { ...source.manifest, releaseHash: "f".repeat(64) } };
+    const changedTree = { ...source, releaseTreeFingerprint: "e".repeat(64) };
+
+    expect(() => assertFrozenHybrid100ReleaseUnchanged(source, changedManifest)).toThrow("PHASE_2G2B_FROZEN_RELEASE_CHANGED");
+    expect(() => assertFrozenHybrid100ReleaseUnchanged(source, changedTree)).toThrow("PHASE_2G2B_FROZEN_RELEASE_CHANGED");
+  }, 60_000);
+
+  it("validates ownership is a non-array object before checking the proposal flags", () => {
+    const validOwnership: unknown = { analysisOnly: true, acceptedByImporter: false };
+    expect(() => assertApprovedProposalOwnership(validOwnership)).not.toThrow();
+
+    let arrayPropertyRead = false;
+    const malformedArray: unknown[] = [];
+    Object.defineProperty(malformedArray, "analysisOnly", {
+      get() {
+        arrayPropertyRead = true;
+        throw new Error("ownership fields must not be read on an array");
+      },
+    });
+    expect(() => assertApprovedProposalOwnership(malformedArray)).toThrow("PHASE_2G2B_APPROVED_PROPOSAL_PIN_MISMATCH");
+    expect(arrayPropertyRead).toBe(false);
+  });
+
+  it("rejects malformed or non-object proposal ownership", () => {
+    for (const ownership of [
+      null,
+      undefined,
+      "analysis",
+      12,
+      [],
+      { analysisOnly: true },
+      { analysisOnly: false, acceptedByImporter: false },
+      { analysisOnly: true, acceptedByImporter: true },
+    ]) {
+      expect(() => assertApprovedProposalOwnership(ownership)).toThrow("PHASE_2G2B_APPROVED_PROPOSAL_PIN_MISMATCH");
+    }
+  });
+
+  it("narrows only a successful scanner result with the complete read-only gate", () => {
+    const successfulResult: unknown = {
+      status: "CANDIDATES_READY_FOR_OWNER_REVIEW",
+      targetVerified: true,
+      migrationReady: true,
+      transaction: "REPEATABLE_READ_READ_ONLY",
+      snapshotFingerprint: "a".repeat(64),
+    };
+
+    if (!isSuccessfulDevelopmentScan(successfulResult)) throw new Error("expected scan result to narrow");
+    expect(successfulResult.snapshotFingerprint).toBe("a".repeat(64));
+  });
+
+  it("does not treat blocked, malformed, or unsafe scanner results as success", () => {
+    const blocked: unknown = { status: "BLOCKED", migrationReady: false, blockedReason: "MIGRATION_NOT_READY" };
+    const base = {
+      status: "CANDIDATES_READY_FOR_OWNER_REVIEW",
+      targetVerified: true,
+      migrationReady: true,
+      transaction: "REPEATABLE_READ_READ_ONLY",
+      snapshotFingerprint: "a".repeat(64),
+    };
+
+    expect(isSuccessfulDevelopmentScan(blocked)).toBe(false);
+    expect(isSuccessfulDevelopmentScan({ ...base, snapshotFingerprint: undefined })).toBe(false);
+    expect(isSuccessfulDevelopmentScan({ ...base, targetVerified: false })).toBe(false);
+    expect(isSuccessfulDevelopmentScan({ ...base, transaction: "READ_COMMITTED_READ_ONLY" })).toBe(false);
+    expect(isSuccessfulDevelopmentScan({ ...base, migrationReady: false })).toBe(false);
+    expect(isSuccessfulDevelopmentScan([])).toBe(false);
+  });
 
   it("blocks a changed live snapshot instead of silently rebasing the approved planner pin", () => {
     const changedSnapshot = { ...snapshot, vocabularies: [...snapshot.vocabularies, runtimeVocabulary(999, "changed")] };

@@ -2,7 +2,7 @@
 
 ## Phase 2G.2D — Hybrid-100 Development runtime closure
 
-**Current status:** `IN PROGRESS / DEVELOPMENT RUNTIME VERIFIED; PHASE 2G.2D BLOCKED ON TYPECHECK`.
+**Current status:** `IN PROGRESS / DEVELOPMENT RUNTIME VERIFIED; PHASE 2G.2D CLOSURE PASS`.
 **Production:** `NOT AUTHORIZED / NOT EXECUTED`.
 
 Phases 2G.2B and 2G.2C closed the owner and Development import gates for the
@@ -42,12 +42,15 @@ mutation, migration, or Production access occurred in Phase 2G.2D. The story
 remains IN PROGRESS because this closure covers the Hybrid-100 vocabulary
 rollout only; Production and other bridge scope remain separate work.
 
-Runtime and API verification passed, with 7 focused test files / 94 tests,
-the frozen release check, and `git diff --check` passing. The phase status is
-BLOCKED because canonical `pnpm typecheck` (`tsc -b`) reports nine TS2339
-errors in unchanged `scripts/hybrid-100-owner-reconciliation-dry-run.ts`;
-`pnpm exec tsc --noEmit -p tsconfig.json` passed. The runtime outcome remains
-verified while that repository typecheck issue is outstanding.
+Runtime and API verification passed, with the original closure suite passing 7
+files / 94 tests. Phase 2G.2D.1 added validated ownership-object checks and a
+scanner success guard that requires the expected status, target verification,
+migration readiness, read-only transaction mode, and a valid snapshot hash.
+The frozen release comparison now uses the verified manifest release hash and
+tree fingerprint. Canonical `pnpm typecheck` (`tsc -b`) passes; the focused
+type-safety regressions pass 3 files / 69 tests, as do the frozen release check
+and `git diff --check`. Phase 2G.2D closure is PASS. Production remains
+`NOT AUTHORIZED / NOT EXECUTED`.
 
 Evidence: [sanitized closure report](../../vocabflow-dataset/reports/hybrid-100-development-runtime-closure-2.2.1.md),
 [machine-readable closure](../../vocabflow-dataset/workspaces/hybrid-100-runtime-reconciliation-2.2.1/owner-review/development-runtime-closure.json),

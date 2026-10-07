@@ -1,7 +1,7 @@
 # Phase 2G.2D — Hybrid-100 Development Runtime Closure
 
-STATUS: `BLOCKED` — runtime closure and consumer smoke passed; canonical
-repository typecheck is blocked by existing errors in an unchanged script.
+STATUS: `PASS` — Development runtime closure, consumer smoke, and canonical
+repository typecheck passed after the Phase 2G.2D.1 source/type-safety fix.
 
 REMOTE_BASELINE: `53443aa7818b5fe6b5dc3fea30f8ac8967805e02`
 
@@ -69,15 +69,17 @@ EXECUTED` and was not accessed.
 
 - Focused tests: **PASS**, 7 files / 94 tests. Command:
   `pnpm exec vitest run scripts/master-vocabulary-v2-import-planner.test.ts scripts/hybrid-100-owner-reconciliation-dry-run.test.ts scripts/hybrid-100-development-reconciliation-scan.test.ts scripts/master-vocabulary-v2-read-only-reconciliation-scan.test.ts scripts/master-vocabulary-v2-post-apply-verification.test.ts apps/api/src/vocabulary.test.ts apps/api/src/learner-vocabulary.test.ts`.
+- Phase 2G.2D.1 type-safety regressions: **PASS**, 3 files / 69 tests. Command:
+  `pnpm exec vitest run scripts/hybrid-100-owner-reconciliation-dry-run.test.ts scripts/hybrid-100-development-reconciliation-scan.test.ts scripts/master-vocabulary-v2-import-planner.test.ts`.
 - Frozen Hybrid-100 2.2.1 release check: **PASS**.
-- `pnpm exec tsc --noEmit -p tsconfig.json`: **PASS**.
+- Canonical `pnpm typecheck` (`tsc -b`): **PASS**, 0 errors (Node `v22.23.2`, pnpm `11.17.0`).
 - `git diff --check`: **PASS**.
-- `pnpm typecheck` (`tsc -b`): **FAIL**, nine TS2339 diagnostics in unchanged
-  `scripts/hybrid-100-owner-reconciliation-dry-run.ts` involving stale
-  `analysisOnly`, `acceptedByImporter`, `snapshotFingerprint`, `targetVerified`,
-  `transaction`, and `releaseHash` properties. This leaves Phase 2G.2D
-  **BLOCKED** pending resolution of the repository typecheck issue; runtime
-  and API verification remain **PASS**.
+- Phase 2G.2D.1 validates ownership before reading its authorization flags,
+  accepts scanner output only after all success gates and snapshot fingerprint
+  validate, keeps blocked scan results blocked, and compares the verified
+  manifest release hash plus frozen tree before and after the run.
+- Phase 2G.2D closure: **PASS**. No Development connection or write, migration,
+  second APPLY, or Production access occurred in the typecheck-fix phase.
 - Unrelated `apps/web` implementation changes: **0**.
 
 Machine-readable evidence: [development-runtime-closure.json](../workspaces/hybrid-100-runtime-reconciliation-2.2.1/owner-review/development-runtime-closure.json).

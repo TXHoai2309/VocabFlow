@@ -19,12 +19,14 @@ This log records meaningful project milestones and accepted baselines.
   reads passed. No learner identity or PII was serialized.
 - Development runtime is VERIFIED. No write, second APPLY, or migration ran in
   this phase. Production remains NOT AUTHORIZED / NOT EXECUTED.
-- Runtime/API verification and focused tests passed (7 files / 94 tests), as
-  did the frozen release check and `git diff --check`. Phase status remains
-  BLOCKED because canonical `pnpm typecheck` (`tsc -b`) reports nine TS2339
-  errors in the unchanged `scripts/hybrid-100-owner-reconciliation-dry-run.ts`;
-  `pnpm exec tsc --noEmit -p tsconfig.json` passed. No out-of-scope code was
-  changed.
+- Runtime/API verification and the original focused tests passed (7 files / 94
+  tests). Phase 2G.2D.1 added runtime narrowing for proposal ownership and
+  scanner success results and corrected the frozen release comparison to use
+  the verified manifest hash and tree. Canonical `pnpm typecheck` (`tsc -b`)
+  now passes on Node `v22.23.2` / pnpm `11.17.0`; type-safety regressions pass
+  (3 files / 69 tests). Frozen release check and `git diff --check` pass.
+  Phase 2G.2D closure is PASS. No Development write, second APPLY, migration,
+  or Production access occurred.
 - Evidence: [closure report](../vocabflow-dataset/reports/hybrid-100-development-runtime-closure-2.2.1.md)
   and [sanitized closure JSON](../vocabflow-dataset/workspaces/hybrid-100-runtime-reconciliation-2.2.1/owner-review/development-runtime-closure.json).
 
