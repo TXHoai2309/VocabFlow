@@ -60,7 +60,7 @@ function LearnerRouteProbe() {
 
 function renderSaved(initialLearner: LearnerDto | null = learnerA, path = "/saved") {
   return render(
-    <MemoryRouter initialEntries={[path]}>
+    <MemoryRouter initialEntries={[path]}><AccountRouteProbe />
       <ToastProvider>
         <ActiveLearnerProvider initialLearner={initialLearner}>
           <LocationProbe />
@@ -84,12 +84,14 @@ function savedResponse(savedVocabulary: LearnerSavedVocabularyDto[], status = 20
 describe("Saved Words page", () => {
   beforeEach(() => vi.restoreAllMocks());
 
-  it("redirects direct routes through learner selection and preserves search/filter query", async () => {
+  it("waits for internal identity at the original route without learner selection", async () => {
     const fetchMock = vi.spyOn(globalThis, "fetch");
     renderSaved(null, "/saved?q=apple&level=GRADE_1&topic=Food");
 
-    expect(await screen.findByTestId("learner-return-to")).toHaveTextContent("/saved?q=apple&level=GRADE_1&topic=Food");
     expect(fetchMock).not.toHaveBeenCalled();
+    expect(await screen.findByRole("status", { name: "Đang chuẩn bị học tập…" })).toBeInTheDocument();
+    expect(screen.getByTestId("account-route")).toHaveTextContent("/saved?q=apple&level=GRADE_1&topic=Food");
+    expect(screen.queryByText("learners-route")).not.toBeInTheDocument();
   });
 
   it("shows a dedicated empty state without filters or a study action", async () => {
@@ -238,7 +240,7 @@ describe("Saved Words page", () => {
       const { setActiveLearner } = useActiveLearner();
       return <><button type="button" onClick={() => setActiveLearner(learnerB)}>Switch learner</button><SavedWordsPage /></>;
     }
-    render(<MemoryRouter initialEntries={["/saved"]}><ToastProvider><ActiveLearnerProvider initialLearner={learnerA}><SwitchHarness /></ActiveLearnerProvider></ToastProvider></MemoryRouter>);
+    render(<MemoryRouter initialEntries={["/saved"]}><AccountRouteProbe /><ToastProvider><ActiveLearnerProvider initialLearner={learnerA}><SwitchHarness /></ActiveLearnerProvider></ToastProvider></MemoryRouter>);
 
     expect(await screen.findByTestId("vocabulary-row-1")).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "Switch learner" }));
@@ -247,3 +249,5 @@ describe("Saved Words page", () => {
     expect(fetchMock).toHaveBeenCalledWith(`/api/learners/${learnerB.id}/saved-vocabulary`, { credentials: "include" });
   });
 });
+
+function AccountRouteProbe() { const route = useLocation(); return <output data-testid="account-route">{route.pathname}{route.search}</output>; }

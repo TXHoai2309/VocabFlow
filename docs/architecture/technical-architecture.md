@@ -1,5 +1,31 @@
 # Technical Architecture v1.0.17
 
+## Single-account learning baseline (2026-10-07)
+
+This owner-approved baseline supersedes the earlier learner-management flow and
+all historical create/select/switch instructions below.
+
+- USER_MODEL: 1 authenticated account = 1 learning identity in the UX.
+- INTERNAL_MODEL: learner_profile, household/membership, learner_id foreign keys
+  and learner-scoped APIs remain for compatibility.
+- MULTI_LEARNER_LEGACY: all existing profiles and their progress, reviews,
+  saved words and settings remain intact; only one canonical ID is used in UI.
+- CANONICAL_RESOLUTION: valid same-user legacy stored ID present and enabled in
+  the canonical API list wins; otherwise earliest enabled createdAt, then ID.
+  Persist the canonical DTO under vocabflow.activeLearner.v1 scoped by userId.
+- FUTURE_MULTI_PROFILE: schema intentionally retained; no unique constraint,
+  migration, cleanup, delete, disable, merge or learner-data reassignment.
+- LOGOUT: supported through Better Auth signOut; clear internal storage only
+  on success, then replace navigation with /login. Failure preserves the app
+  and storage and displays “Không thể đăng xuất. Vui lòng thử lại.”
+
+The authenticated React provider resolves the account’s internal canonical
+LearnerDto before AppShell mounts. Its lifecycle is resolving/ready/error with
+safe retry and stale-response invalidation. Internal IDs continue through the
+same API/authz boundaries. Resolution is client orchestration of existing list,
+bootstrap and create operations; it introduces no server schema/contract change.
+
+
 - Status: APPROVED FOR IMPLEMENTATION
 - Version: v1.0.17
 - Source baseline: `VocabFlow_Technical_Architecture_v1.0.4.docx`; this Markdown records the US-25 identity reconciliation, US-26/US-27 vocabulary taxonomy, US-28/US-29 learning-set assignment model, US-30 daily New allowance, US-31 through US-34 exercise interaction layer, US-35/US-36 activity read model, US-39/US-40 rewards, US-41 reviewed catalog activation, US-42 production release automation, US-48 Progress Dashboard read model and US-49 derived Weak Words read model.

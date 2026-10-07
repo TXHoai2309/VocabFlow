@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router";
 import type { GlobalSearchResult } from "@vocabflow/contracts";
 import { useActiveLearner } from "../features/learners/learner-context-hook";
+import { authClient } from "../features/auth/auth-client";
+import { useToast } from "./toast/toast-context";
 import { GlobalSearchPalette } from "../features/search/global-search-palette";
 import { addRecentSearch, persistRecentSearches, readRecentSearches } from "../features/search/recent-searches";
 
@@ -84,9 +86,9 @@ function PrimaryNavigation({ variant }: { variant: NavigationVariant }) {
   );
 }
 
-function AccountMenu({ parentName, placement }: { parentName: string; placement: AccountPlacement }) {
+function AccountMenu({ parentName, placement, signingOut, onLogout }: { parentName: string; placement: AccountPlacement; signingOut: boolean; onLogout: () => void }) {
   const displayName = parentName.trim();
-  const accountLabel = displayName || "Tài khoản phụ huynh";
+  const accountLabel = displayName || "Tài khoản";
   const menuId = `app-account-menu-${placement}`;
   const rootRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -123,7 +125,7 @@ function AccountMenu({ parentName, placement }: { parentName: string; placement:
         ref={triggerRef}
         className="app-account-trigger"
         type="button"
-        aria-label={placement === "mobile" ? "Mở menu tài khoản" : `Tài khoản phụ huynh của ${accountLabel}`}
+        aria-label={placement === "mobile" ? "Mở menu tài khoản" : `Tài khoản của ${accountLabel}`}
         aria-haspopup="menu"
         aria-expanded={open}
         aria-controls={menuId}
@@ -138,7 +140,7 @@ function AccountMenu({ parentName, placement }: { parentName: string; placement:
         {placement === "sidebar" ? <>
           <span className="app-parent-copy">
             <strong>{accountLabel}</strong>
-            <small>Tài khoản phụ huynh</small>
+            <small>Tài khoản học tập</small>
           </span>
           <span className="app-account-chevron" aria-hidden="true">⌄</span>
         </> : null}
@@ -164,8 +166,9 @@ function AccountMenu({ parentName, placement }: { parentName: string; placement:
         }}
       >
         <p className="app-account-menu-heading" role="presentation">{accountLabel}</p>
-        <Link role="menuitem" to="/learners" onClick={closeMenu}>Người học</Link>
         <Link role="menuitem" to="/learner-settings" onClick={closeMenu}>Cài đặt</Link>
+        <hr role="separator" />
+        <button role="menuitem" type="button" disabled={signingOut} onClick={onLogout}>{signingOut ? "Đang đăng xuất…" : "Đăng xuất"}</button>
       </div>
     </div>
   );
@@ -174,7 +177,26 @@ function AccountMenu({ parentName, placement }: { parentName: string; placement:
 export function AppShell({ parentName }: { parentName: string }) {
   const location = useLocation();
   const navigate = useNavigate();
-  const { activeLearner } = useActiveLearner();
+  const { activeLearner, clearActiveLearner, status } = useActiveLearner();
+  const toast = useToast();
+  const logoutPending = useRef(false);
+  const [signingOut, setSigningOut] = useState(false);
+  async function logout() {
+    if (logoutPending.current) return;
+    logoutPending.current = true;
+    setSigningOut(true);
+    try {
+      const result = await authClient.signOut();
+      if (result.error) throw new Error("SIGN_OUT_FAILED");
+      clearActiveLearner();
+      navigate("/login", { replace: true });
+    } catch {
+      toast.error("Không thể đăng xuất. Vui lòng thử lại.");
+    } finally {
+      logoutPending.current = false;
+      setSigningOut(false);
+    }
+  }
   const [searchState, setSearchState] = useState<{ open: boolean; locationKey: string }>({
     open: false,
     locationKey: location.key
@@ -187,7 +209,7 @@ export function AppShell({ parentName }: { parentName: string }) {
   const shortcutLabel = typeof navigator !== "undefined" && /Mac|iPhone|iPad/.test(navigator.platform) ? "⌘ K" : "Ctrl K";
 
   useEffect(() => {
-    if (searchOpen || isStudySession) return;
+    if (searchOpen || isStudySession || status !== "ready" || !activeLearner) return;
     const onShortcut = (event: KeyboardEvent) => {
       if (!(event.ctrlKey || event.metaKey) || event.key.toLowerCase() !== "k") return;
       const target = event.target;
@@ -200,7 +222,7 @@ export function AppShell({ parentName }: { parentName: string }) {
     };
     document.addEventListener("keydown", onShortcut);
     return () => document.removeEventListener("keydown", onShortcut);
-  }, [isStudySession, location.key, searchOpen]);
+  }, [activeLearner, isStudySession, location.key, searchOpen, status]);
 
   const openFromTrigger = (trigger: HTMLButtonElement) => {
     lastSearchTriggerRef.current = trigger;
@@ -224,7 +246,7 @@ export function AppShell({ parentName }: { parentName: string }) {
       <aside className="app-sidebar" aria-label="Thanh điều hướng ứng dụng">
         <Brand />
         <PrimaryNavigation variant="desktop" />
-        <AccountMenu parentName={parentName} placement="sidebar" />
+        <AccountMenu parentName={parentName} placement="sidebar" signingOut={signingOut} onLogout={() => void logout()} />
       </aside>
       <div className="app-main-column">
         {!isStudySession ? (
@@ -238,7 +260,7 @@ export function AppShell({ parentName }: { parentName: string }) {
           <Brand />
           <div className="app-mobile-header-actions">
             {!isStudySession ? <button ref={mobileSearchRef} className="global-search-trigger is-mobile" type="button" disabled={!activeLearner} aria-label="Mở tìm kiếm toàn cục" aria-haspopup="dialog" aria-expanded={searchOpen} aria-controls="global-search-dialog" onClick={(event) => openFromTrigger(event.currentTarget)}><SearchIcon /></button> : null}
-            <AccountMenu parentName={parentName} placement="mobile" />
+            <AccountMenu parentName={parentName} placement="mobile" signingOut={signingOut} onLogout={() => void logout()} />
           </div>
         </header>
         <Outlet />

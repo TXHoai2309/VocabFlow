@@ -1,44 +1,10 @@
 import { expect, test } from "@playwright/test";
-
-test("US-01 submits the registration pipeline with a native Enter key", async ({ page }) => {
-  let signupCount = 0;
-  let bootstrapCount = 0;
-
-  await page.route("**/api/auth/sign-up/email", async (route) => {
-    signupCount += 1;
-    await route.fulfill({
-      status: 200,
-      contentType: "application/json",
-      body: JSON.stringify({
-        token: "test-session-token",
-        user: { id: "user-1", name: "Nguyễn An", email: "parent@example.com" }
-      })
-    });
-  });
-
-  await page.route("**/api/bootstrap", async (route) => {
-    bootstrapCount += 1;
-    await route.fulfill({
-      status: 200,
-      contentType: "application/json",
-      body: JSON.stringify({
-        household: {
-          id: "00000000-0000-4000-8000-000000000001",
-          name: "Gia đình VocabFlow",
-          timezone: "Asia/Ho_Chi_Minh"
-        }
-      })
-    });
-  });
-
-  await page.goto("/register");
-  await page.getByLabel("Tên phụ huynh").fill("Nguyễn An");
-  await page.getByLabel("Email").fill("parent@example.com");
-  const password = page.getByRole("textbox", { name: "Mật khẩu" });
-  await password.fill("secret");
-  await password.press("Enter");
-
-  await expect(page.getByRole("status")).toContainText("Tài khoản và gia đình đã được thiết lập.");
-  expect(signupCount).toBe(1);
-  expect(bootstrapCount).toBe(1);
+import { mockAccount } from "./account-learning-fixture";
+test("signup with Enter provisions internal identity and opens Home directly", async ({ page }) => {
+  const state = await mockAccount(page, [], false);
+  const visits: string[] = []; page.on("framenavigated", (frame) => { if (frame === page.mainFrame()) visits.push(new URL(frame.url()).pathname); });
+  await page.goto("/register"); await page.getByLabel("Tên của bạn").fill("Nguyễn An"); await page.getByLabel("Email").fill("account@example.com"); await page.getByRole("textbox", { name: "Mật khẩu" }).fill("secret"); await page.getByRole("textbox", { name: "Mật khẩu" }).press("Enter");
+  await expect(page.locator(".app-layout")).toBeVisible(); await expect(page).toHaveURL(/\/$/);
+  expect(state.signUps).toBe(1); expect(state.bootstraps).toBe(1); expect(state.creates).toBe(1); expect(state.rows[0]?.displayName).toBe("Nguyễn An"); expect(visits).not.toContain("/learners");
+  await expect(page.getByText("Tiếp tục tạo hồ sơ người học")).toHaveCount(0); await expect(page.getByRole("button", { name: "Tạo hồ sơ học" })).toHaveCount(0); await expect(page.getByTestId("toast-success")).toHaveCount(0);
 });

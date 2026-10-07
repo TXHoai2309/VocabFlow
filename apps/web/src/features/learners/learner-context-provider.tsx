@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { learnerDtoSchema, type LearnerDto } from "@vocabflow/contracts";
 import { ActiveLearnerContext, ACTIVE_LEARNER_STORAGE_KEY } from "./learner-context";
-import { LearnerClientError, requestLearners } from "./learner-client";
+import { resolveAccountLearning } from "./account-learning-client";
 
 type StoredLearnerSelection = { userId: string; learner: LearnerDto };
 
@@ -48,76 +48,59 @@ function persistSelection(userId: string, learner: LearnerDto) {
   }
 }
 
-export function ActiveLearnerProvider({
-  children,
-  initialLearner = null,
-  userId,
-  validateStoredSelection = false
-}: {
+type IdentityState = {
+  userId: string | null | undefined;
+  activeLearner: LearnerDto | null;
+  status: "resolving" | "ready" | "error";
+  error: string | null;
+};
+
+export function ActiveLearnerProvider({ children, initialLearner = null, userId, userName }: {
   children: ReactNode;
   initialLearner?: LearnerDto | null;
   userId?: string | null;
-  validateStoredSelection?: boolean;
+  userName?: string;
 }) {
-  const [activeLearner, setActiveLearnerState] = useState<LearnerDto | null>(() => initialLearner ?? readStoredSelection(userId));
-  const activeLearnerRef = useRef(activeLearner);
-  const validatedSelectionRef = useRef<string | null>(initialLearner && userId ? `${userId}:${initialLearner.id}` : null);
-  const validatingSelectionRef = useRef<string | null>(null);
+  const [identity, setIdentity] = useState<IdentityState>({ userId, activeLearner: initialLearner, status: initialLearner ? "ready" : "resolving", error: null });
+  const generation = useRef(0);
+  const pending = useRef<{ userId: string; promise: Promise<LearnerDto> } | null>(null);
   const setActiveLearner = useCallback((learner: LearnerDto) => {
-    setActiveLearnerState(learner);
-    activeLearnerRef.current = learner;
-    if (userId) {
-      persistSelection(userId, learner);
-      validatedSelectionRef.current = `${userId}:${learner.id}`;
-    }
+    generation.current += 1;
+    if (userId) persistSelection(userId, learner);
+    setIdentity({ userId, activeLearner: learner, status: "ready", error: null });
   }, [userId]);
   const clearActiveLearner = useCallback(() => {
-    const currentLearner = activeLearnerRef.current;
-    setActiveLearnerState(null);
-    activeLearnerRef.current = null;
-    validatedSelectionRef.current = null;
-    if (!userId) return;
-    try {
-      const raw = window.localStorage.getItem(ACTIVE_LEARNER_STORAGE_KEY);
-      if (!raw) return;
-      const value: unknown = JSON.parse(raw);
-      if (value && typeof value === "object" && "userId" in value && value.userId === userId) {
-        removeStoredSelection();
-      } else if (!currentLearner) {
-        removeStoredSelection();
-      }
-    } catch {
-      removeStoredSelection();
-    }
+    generation.current += 1;
+    removeStoredSelection();
+    setIdentity({ userId, activeLearner: null, status: "resolving", error: null });
   }, [userId]);
-
+  const resolve = useCallback(async () => {
+    if (!userId) return;
+    if (pending.current?.userId === userId) return;
+    const currentGeneration = ++generation.current;
+    setIdentity({ userId, activeLearner: null, status: "resolving", error: null });
+    const operation = { userId, promise: resolveAccountLearning(userName, readStoredSelection(userId)?.id, () => currentGeneration === generation.current) };
+    pending.current = operation;
+    try {
+      const canonical = await operation.promise;
+      if (currentGeneration !== generation.current) return;
+      persistSelection(userId, canonical);
+      setIdentity({ userId, activeLearner: canonical, status: "ready", error: null });
+    } catch {
+      if (currentGeneration !== generation.current) return;
+      setIdentity({ userId, activeLearner: null, status: "error", error: "Không thể tải dữ liệu học tập lúc này. Vui lòng thử lại." });
+    } finally {
+      if (pending.current === operation) pending.current = null;
+    }
+  }, [userId, userName]);
   useEffect(() => {
-    if (!userId || !validateStoredSelection || !activeLearner) return;
-    const selectionKey = `${userId}:${activeLearner.id}`;
-    if (validatedSelectionRef.current === selectionKey || validatingSelectionRef.current === selectionKey) return;
-    validatingSelectionRef.current = selectionKey;
-    void requestLearners().then((learners) => {
-      if (activeLearnerRef.current?.id !== activeLearner.id) return;
-      const canonicalLearner = learners.find((learner) => learner.id === activeLearner.id && learner.enabled);
-      if (!canonicalLearner) clearActiveLearner();
-      else setActiveLearner(canonicalLearner);
-    }).catch((error: unknown) => {
-      if (activeLearnerRef.current?.id !== activeLearner.id) return;
-      if (error instanceof LearnerClientError && (error.status === 403 || error.status === 404)) clearActiveLearner();
-    }).finally(() => {
-      if (validatingSelectionRef.current === selectionKey) validatingSelectionRef.current = null;
-    });
-  }, [activeLearner, clearActiveLearner, setActiveLearner, userId, validateStoredSelection]);
-
-  const value = useMemo(() => ({
-    activeLearner,
-    setActiveLearner,
-    clearActiveLearner
-  }), [activeLearner, clearActiveLearner, setActiveLearner]);
-
-  return (
-    <ActiveLearnerContext.Provider value={value}>
-      {children}
-    </ActiveLearnerContext.Provider>
-  );
+    let cancelled = false;
+    void Promise.resolve().then(() => { if (userId && !cancelled) void resolve(); });
+    return () => { cancelled = true; };
+  }, [resolve, userId]);
+  useEffect(() => () => { generation.current += 1; }, [userId]);
+  const retry = useCallback(() => { void resolve(); }, [resolve]);
+  const current = identity.userId === userId ? identity : { activeLearner: null, status: "resolving" as const, error: null };
+  const value = useMemo(() => ({ activeLearner: current.activeLearner, status: current.status, error: current.error, retry, setActiveLearner, clearActiveLearner }), [current.activeLearner, current.status, current.error, retry, setActiveLearner, clearActiveLearner]);
+  return <ActiveLearnerContext.Provider value={value}>{children}</ActiveLearnerContext.Provider>;
 }

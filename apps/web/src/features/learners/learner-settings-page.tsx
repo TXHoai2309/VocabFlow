@@ -1,5 +1,6 @@
+import { AccountLearningState } from "./account-learning-state";
 import { useEffect, useState } from "react";
-import { Link, Navigate } from "react-router";
+import { Link } from "react-router";
 import {
   DAILY_WORD_GOAL_MAX,
   DAILY_WORD_GOAL_MIN,
@@ -21,13 +22,13 @@ type SettingsField = "dailyNewWordLimit" | "dailyNewWordGoal" | "dailyReviewWord
 
 function errorMessage(error: unknown) {
   if (error instanceof LearnerSettingsClientError && error.status === 401) return "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại.";
-  if (error instanceof LearnerSettingsClientError && error.status === 403) return "Bạn không có quyền thay đổi hồ sơ người học này.";
-  return "Không thể tải cài đặt người học lúc này. Vui lòng thử lại.";
+  if (error instanceof LearnerSettingsClientError && error.status === 403) return "Bạn không có quyền thay đổi dữ liệu học tập này.";
+  return "Không thể tải cài đặt học tập lúc này. Vui lòng thử lại.";
 }
 
 function saveErrorMessage(error: unknown) {
   if (error instanceof LearnerSettingsClientError && error.status === 401) return "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại.";
-  if (error instanceof LearnerSettingsClientError && error.status === 403) return "Bạn không có quyền thay đổi hồ sơ người học này.";
+  if (error instanceof LearnerSettingsClientError && error.status === 403) return "Bạn không có quyền thay đổi dữ liệu học tập này.";
   return "Không thể lưu cài đặt. Vui lòng thử lại.";
 }
 
@@ -42,7 +43,7 @@ function validateDraft(value: string, min: number, max: number): string | null {
 
 export function LearnerSettingsPage() {
   const { activeLearner } = useActiveLearner();
-  if (!activeLearner) return <Navigate to="/learners" replace />;
+  if (!activeLearner) return <AccountLearningState />;
   return <LearnerSettingsExperience key={activeLearner.id} activeLearner={activeLearner} />;
 }
 
@@ -121,11 +122,10 @@ function LearnerSettingsExperience({ activeLearner }: { activeLearner: LearnerDt
     <main className="learner-page" aria-labelledby="learner-settings-title">
       <section className="learner-card progress-card">
         <div className="progress-topbar">
-          <Link className="back-link" to="/learners">← Về trang người học</Link>
-          <p className="study-learner">Người học: <strong>{activeLearner.displayName}</strong></p>
+          <Link className="back-link" to="/">← Về trang chủ</Link>
         </div>
         <p className="auth-eyebrow">Học tập mỗi ngày</p>
-        <h1 className="auth-title" id="learner-settings-title">Cài đặt học của {activeLearner.displayName}</h1>
+        <h1 className="auth-title" id="learner-settings-title">Cài đặt học tập</h1>
         <p className="auth-copy">Mục tiêu là kế hoạch học trong ngày. Giới hạn từ mới chỉ kiểm soát số từ mới scheduler được giới thiệu; không giới hạn số từ ôn đến hạn.</p>
 
         {state === "loading" ? <LoadingState className="progress-state" label="Đang tải cài đặt học…" pattern="form" testId="learner-settings-loading" /> : null}

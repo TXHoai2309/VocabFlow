@@ -1,5 +1,6 @@
+import { AccountLearningState } from "./account-learning-state";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Link, Navigate, useLocation, useSearchParams } from "react-router";
+import { Link, useSearchParams } from "react-router";
 import type { LearnerDto, LearnerVocabularyDto, VocabularyLevel } from "@vocabflow/contracts";
 import { useActiveLearner } from "./learner-context-hook";
 import { LearnerVocabularyClientError, requestLearnerVocabulary } from "./vocabulary-list-client";
@@ -48,16 +49,15 @@ function listErrorMessage(error: unknown) {
     return "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại.";
   }
   if (error instanceof LearnerVocabularyClientError && (error.status === 403 || error.code === "HOUSEHOLD_ACCESS_DENIED")) {
-    return "Không thể xem từ vựng của người học này.";
+    return "Không thể xem từ vựng của bạn.";
   }
   return "Không thể tải từ vựng lúc này. Vui lòng thử lại.";
 }
 
 export function VocabularyListPage() {
   const { activeLearner } = useActiveLearner();
-  const location = useLocation();
   if (!activeLearner) {
-    return <Navigate to="/learners" replace state={{ returnTo: `${location.pathname}${location.search}` }} />;
+    return <AccountLearningState />;
   }
   return <VocabularyListExperience key={activeLearner.id} activeLearner={activeLearner} />;
 }
@@ -229,7 +229,7 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
         </nav>
         <div className="vocabulary-heading-row">
           <div className="vocabulary-heading-copy">
-            <h1 id="vocabulary-list-title">Từ vựng của {activeLearner.displayName}</h1>
+            <h1 id="vocabulary-list-title">Từ vựng của bạn</h1>
             <p>Khám phá và ôn tập các từ vựng theo chương trình học.</p>
           </div>
           <Link className="vocabulary-topics-link" to="/topics">

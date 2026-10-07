@@ -1,39 +1,37 @@
-# Family MVP Feature UI Specification v1.0.8
+# VocabFlow Feature UI Specification — Single-account learning
 
-## Learner management correction (2026-10-07)
+## Single-account learning baseline (2026-10-07)
 
-The owner-requested correction supersedes the historical completed/handoff UI.
-`/learners` is a persistent management and selection page: zero profiles show
-EmptyState plus creation; one or more profiles show their list plus creation.
-The active profile has a visible “Đang dùng” label and `aria-current="true"`.
-Canonical list responses refresh the persisted active DTO; multiple profiles
-alone do not clear a valid selection. The existing `vocabflow.activeLearner.v1`
-account-scoped storage remains intact.
+This owner-approved baseline supersedes the earlier learner-management flow and
+all historical create/select/switch instructions below.
 
-Selecting or creating a profile returns to a safe internal `returnTo` including
-its query only when that intent exists. Otherwise the user stays on `/learners`.
-A sole profile may become active on load, but returning requires explicit
-selection. Successful creation resets the form and shows the existing toast
-“Đã tạo hồ sơ người học”; no completed panel or extra navigation hub remains.
+- USER_MODEL: 1 authenticated account = 1 learning identity in the UX.
+- INTERNAL_MODEL: learner_profile, household/membership, learner_id foreign keys
+  and learner-scoped APIs remain for compatibility.
+- MULTI_LEARNER_LEGACY: all existing profiles and their progress, reviews,
+  saved words and settings remain intact; only one canonical ID is used in UI.
+- CANONICAL_RESOLUTION: valid same-user legacy stored ID present and enabled in
+  the canonical API list wins; otherwise earliest enabled createdAt, then ID.
+  Persist the canonical DTO under vocabflow.activeLearner.v1 scoped by userId.
+- FUTURE_MULTI_PROFILE: schema intentionally retained; no unique constraint,
+  migration, cleanup, delete, disable, merge or learner-data reassignment.
+- LOGOUT: supported through Better Auth signOut; clear internal storage only
+  on success, then replace navigation with /login. Failure preserves the app
+  and storage and displays “Không thể đăng xuất. Vui lòng thử lại.”
 
-Only a definitive `HOUSEHOLD_ACCESS_DENIED` learner read/create failure triggers
-the existing idempotent bootstrap, followed by one retry of that operation.
-Bootstrap or retry failure exits to normal read ErrorState/Retry or mutation
-error feedback. Ordinary network failures never bootstrap; uncertain creates
-still reconcile with GET before another explicit submit. Registration retains
-its existing bootstrap. No API, authorization, migration or database model
-changes are introduced.
+Authenticated bootstrap has resolving/ready/error states. Resolving uses the
+Feature #15 dashboard skeleton; errors use safe ErrorState and “Thử lại”. The
+requested protected pathname and query remain stable throughout resolution.
+Old /learners bookmarks replace-navigate to / without rendering management UI.
 
+Account dropdown contains Cài đặt, a separator, and Đăng xuất. Both desktop and
+mobile share a pending lock; duplicate requests are blocked. Keyboard menu and
+focus behavior remain available. Home shows the account name; settings title
+is “Cài đặt học tập” while /learner-settings remains compatible.
+Feature #13 keeps six desktop and five mobile primary items. Feature #14 Search
+uses the canonical internal ID and enables only at ready. Feature #16 retains
+normal mutation toasts and adds logout failure feedback; provisioning is silent.
 
-- Status: CURRENT FEATURE UI SOURCE OF TRUTH
-- Version: v1.0.8
-- Source baseline: `VocabFlow_Family_MVP_Feature_UI_Specification_v1.0.1.docx`; this Markdown records the US-26/US-27 taxonomy browse, US-28/US-29 learning-set extension, US-30 daily New settings, US-31 through US-34 exercise mode, US-35/US-36 activity indicators, US-48 Progress Dashboard, US-50 simplified navigation, US-52 asynchronous data states and US-53 toast feedback.
-- Canonical format: Markdown
-- Last synchronized: 2026-10-07
-
-**VOCABFLOW**
-
-**Family MVP Feature UI Specification v1.0.8**
 
 ## Toast & mutation feedback (Feature #16 / US-53)
 

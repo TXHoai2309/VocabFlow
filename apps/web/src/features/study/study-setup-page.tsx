@@ -1,5 +1,6 @@
+import { AccountLearningState } from "../learners/account-learning-state";
 import { useEffect, useMemo, useState } from "react";
-import { Link, Navigate, useLocation, useNavigate, useSearchParams } from "react-router";
+import { Link, useLocation, useNavigate, useSearchParams } from "react-router";
 import { LearningSetsClientError, requestLearningSet } from "../learning-sets/learning-sets-client";
 import { useActiveLearner } from "../learners/learner-context-hook";
 import { requestTopicVocabulary, requestTopics, TopicsClientError } from "../learners/topics-client";
@@ -54,7 +55,7 @@ function returnHref(scope: StudyScope | null) {
   if (scope?.type === "learning-set") return `/learning-sets/${scope.id}`;
   if (scope?.type === "saved") return "/saved";
   if (scope?.type === "weak") return "/weak-words";
-  return "/learners";
+  return "/";
 }
 
 async function requestScopeDetails(scope: Exclude<StudyScope, { type: "invalid" }>): Promise<StudyScopeDetails> {
@@ -94,7 +95,7 @@ export function StudySetupPage() {
     : scope?.type === "weak" ? "weak"
     : scope ? `${scope.type}:${"id" in scope ? scope.id : "invalid"}` : "all";
   if (!activeLearner) {
-    return <Navigate to="/learners" replace state={{ returnTo: `${location.pathname}${location.search}` }} />;
+    return <AccountLearningState />;
   }
   return <StudySetupExperience key={`${activeLearner.id}:${scopeKey}:${preferredContent ?? "default"}`} activeLearner={activeLearner} scope={scope} preferredContent={preferredContent} returnTo={`${location.pathname}${location.search}`} />;
 }

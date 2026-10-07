@@ -3,7 +3,6 @@ import { Link } from "react-router";
 import type {
   ActivitySummaryResponse,
   ContinueLearningCandidate,
-  LearnerDto,
   LearnerLearningSetDto,
   ProgressHistoryResponse,
   ProgressSummaryResponse,
@@ -30,11 +29,9 @@ function greetingForNow() {
 
 export function HomeDashboardHeader({
   parentName,
-  learner,
   level
 }: {
   parentName: string;
-  learner: LearnerDto;
   level: number | null;
 }) {
   return (
@@ -46,10 +43,10 @@ export function HomeDashboardHeader({
         </div>
       </div>
       <div className="home-header-actions">
-        <Link className="home-learner-switcher" to="/learners" aria-label={`Đổi người học. Người học hiện tại: ${learner.displayName}${level === null ? "" : `, Cấp độ ${level}`}`}>
-          <span className="home-learner-avatar" aria-hidden="true">{initials(learner.displayName)}</span>
-          <span className="home-learner-label"><strong>{learner.displayName}</strong>{level === null ? null : <span>Cấp độ {level}</span>}</span>
-        </Link>
+        <div className="home-learner-switcher" aria-label="Tài khoản học tập">
+          <span className="home-learner-avatar" aria-hidden="true">{initials(parentName)}</span>
+          <span className="home-learner-label"><strong>{parentName}</strong>{level === null ? null : <span>Cấp độ {level}</span>}</span>
+        </div>
         <span className="home-notification-visual" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4" /></svg>
         </span>
@@ -348,24 +345,22 @@ export function ContinueLearningCard({
 }
 
 export function LearningSetsCard({
-  learnerName,
   resource
 }: {
-  learnerName: string;
   resource: HomeResource<LearnerLearningSetDto[]>;
 }) {
   const active = resource.status === "ready" ? resource.data.filter((item) => item.active) : [];
   return (
     <section className="home-card home-learning-sets-card" aria-labelledby="home-learning-sets-title">
       <div className="home-card-heading">
-        <h2 id="home-learning-sets-title">Bộ từ của {learnerName}</h2>
+        <h2 id="home-learning-sets-title">Bộ từ của bạn</h2>
         <Link to="/learning-sets">Xem tất cả</Link>
       </div>
       {resource.status === "loading" ? <SectionLoading label="Đang tải các bộ từ đã chọn" pattern="rows" /> : null}
       {resource.status === "error" ? <p className="home-inline-state" role="status">Không thể tải các bộ từ đã chọn. Hãy thử lại.</p> : null}
       {resource.status === "ready" && active.length === 0 ? (
         <div className="home-empty-state home-sets-empty" role="status">
-          <span aria-hidden="true">📚</span><p>Người học này chưa có bộ từ nào.</p>
+          <span aria-hidden="true">📚</span><p>Bạn chưa có bộ từ nào.</p>
           <Link className="home-text-link" to="/learning-sets/assign">Chọn bộ từ</Link>
         </div>
       ) : null}

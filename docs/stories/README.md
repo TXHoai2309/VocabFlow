@@ -1,5 +1,31 @@
 # VocabFlow User Story System
 
+## Single-account learning baseline (2026-10-07)
+
+This owner-approved baseline supersedes the earlier learner-management flow and
+all historical create/select/switch instructions below.
+
+- USER_MODEL: 1 authenticated account = 1 learning identity in the UX.
+- INTERNAL_MODEL: learner_profile, household/membership, learner_id foreign keys
+  and learner-scoped APIs remain for compatibility.
+- MULTI_LEARNER_LEGACY: all existing profiles and their progress, reviews,
+  saved words and settings remain intact; only one canonical ID is used in UI.
+- CANONICAL_RESOLUTION: valid same-user legacy stored ID present and enabled in
+  the canonical API list wins; otherwise earliest enabled createdAt, then ID.
+  Persist the canonical DTO under vocabflow.activeLearner.v1 scoped by userId.
+- FUTURE_MULTI_PROFILE: schema intentionally retained; no unique constraint,
+  migration, cleanup, delete, disable, merge or learner-data reassignment.
+- LOGOUT: supported through Better Auth signOut; clear internal storage only
+  on success, then replace navigation with /login. Failure preserves the app
+  and storage and displays “Không thể đăng xuất. Vui lòng thử lại.”
+
+US-03 now implements internal account learning identity resolution and logout.
+Its original multi-learner onboarding/management acceptance is historical;
+current replacement is IMPLEMENTED / READY FOR OWNER CHECK. US-01/US-02 hand off
+to Home with automatic internal resolution. Do not implement a selector from
+older story text. See US-03 and ../ai-progress.md for current evidence.
+
+
 One story is one implementation contract for one vertical slice. Only one
 story is active by default, and its status controls whether implementation may
 begin.
@@ -20,8 +46,8 @@ convenient. Reprioritization or a new story must be explicit.
 - [US template](US-TEMPLATE.md)
 - [US-01 Parent Registration](US-01-parent-registration.md) — `ACCEPTED`
 - [US-02 Parent Login](US-02-parent-login.md) — `ACCEPTED`
-- [US-03 Learner Profile Creation & Resolution](US-03-learner-profile-resolution.md)
-  — `ACCEPTED`.
+- [US-03 Internal Account Learning Identity Resolution](US-03-learner-profile-resolution.md)
+  — `IMPLEMENTED / READY FOR OWNER CHECK` (single-account replacement).
 - [US-04 Vocabulary Content Seed & Read Foundation](US-04-vocabulary-content-foundation.md)
   — `ACCEPTED`.
 - [US-05 First Real Flashcard](US-05-first-real-flashcard.md)

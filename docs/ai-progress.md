@@ -1,5 +1,68 @@
 # Current Handoff Snapshot
 
+## Single-account learning baseline (2026-10-07)
+
+This owner-approved baseline supersedes the earlier learner-management flow and
+all historical create/select/switch instructions below.
+
+- USER_MODEL: 1 authenticated account = 1 learning identity in the UX.
+- INTERNAL_MODEL: learner_profile, household/membership, learner_id foreign keys
+  and learner-scoped APIs remain for compatibility.
+- MULTI_LEARNER_LEGACY: all existing profiles and their progress, reviews,
+  saved words and settings remain intact; only one canonical ID is used in UI.
+- CANONICAL_RESOLUTION: valid same-user legacy stored ID present and enabled in
+  the canonical API list wins; otherwise earliest enabled createdAt, then ID.
+  Persist the canonical DTO under vocabflow.activeLearner.v1 scoped by userId.
+- FUTURE_MULTI_PROFILE: schema intentionally retained; no unique constraint,
+  migration, cleanup, delete, disable, merge or learner-data reassignment.
+- LOGOUT: supported through Better Auth signOut; clear internal storage only
+  on success, then replace navigation with /login. Failure preserves the app
+  and storage and displays “Không thể đăng xuất. Vui lòng thử lại.”
+
+TXH was fast-forwarded to da4aa11 after stashing unrelated Dataset/report work
+under temp-before-single-account-refactor (exact object
+ d16020455c208e3530e3333f9a901173bad321e2). Restore only after successful push.
+No live database access, migration, dataset edit, main merge or deployment.
+
+Implementation is complete; live-account owner manual acceptance is pending.
+Automated acceptance uses mocked APIs and component fixtures, so database row
+preservation is supported by unchanged backend/schema and absence of cleanup
+requests, rather than a new live-database inspection. Current validation
+results follow in the verification subsection below.
+
+
+### Verification — single-account replacement
+
+- Focused auth/provider/routing/logout plus broader web regression: 29 files /
+  339 tests PASS. Final personal-copy checks: Home + Weak Words 22/22 PASS.
+  Typecheck, build, changed TS/TSX ESLint and diff check PASS.
+  Stale management tests were replaced with
+  observable automatic resolution, preserved-route and mutation-request checks.
+  Internal context changes still test refreshed feature data and proper IDs;
+  the removed selector is not reintroduced in the product.
+- Focused Chromium signup/login/resolution/logout E2E: 10/10 PASS. Broader probe
+  of 22 tests: 15 PASS, 7 FAIL on historical assertions/fixtures outside this
+  flow. These failures are not a green E2E claim:
+  - us05-study: historical summary labels “Đã ôn tập” / “Lượt ôn lại”.
+  - us20-progress: historical heading “Tiến trình của An”.
+  - us22-vocabulary (2): obsolete status text / vocabulary-list grid marker.
+  - us26-27-vocabulary-taxonomy (2): expects server filter instead of current
+    local filtering; topic fixture omits canonical authenticated learner read.
+  - us28-29-learning-sets: catalog fixture omits canonical learner read and uses
+    obsolete list/detail markers.
+  The obsolete learner prerequisite was removed from direct Study entry; it
+  now passes with exactly one queue read and no write requests. Learning Set
+  assignment and Settings mutation toasts match current personal copy and pass.
+- Automated legacy-row preservation uses three distinct profiles, same-user
+  stored choice and reload; fixture data stays identical and no create, delete,
+  disable, merge or reassignment request occurs. No live DB acceptance claimed.
+- No schema/API/migration/authz/scheduler/domain/dataset changes. Existing
+  account-scoped storage is an internal detail, removed only after successful
+  logout. Pending resolution cannot continue provisioning or repersist an old
+  account after identity changes/logout.
+- Build warnings remain Node 22.19.0 vs 22.23.2, >500kB chunk, and ineffective
+  API dynamic import; build and client secret/source-map checks succeed.
+
 ## 2026-10-07 — Phase 2G.3C legacy content disposition / Master expansion planning
 
 Planning complete on origin/TXH baseline ad1aa6813628c73504baa016e9059a9d165a53be.

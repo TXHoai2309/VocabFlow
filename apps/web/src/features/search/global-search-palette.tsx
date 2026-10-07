@@ -260,7 +260,7 @@ export function GlobalSearchPalette({
         <div className="global-search-keyboard-hint" aria-hidden="true">
           <span><kbd>Enter</kbd> để mở</span><span><kbd>↑</kbd><kbd>↓</kbd> để di chuyển</span><span><kbd>Esc</kbd> để đóng</span>
         </div>
-        {!learnerId ? <p className="global-search-learner-hint">Chọn người học trước khi tìm kiếm.</p> : null}
+        {!learnerId ? <p className="global-search-learner-hint">Dữ liệu học tập chưa sẵn sàng. Vui lòng thử lại.</p> : null}
       </div>
     </div>
   );

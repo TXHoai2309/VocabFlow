@@ -71,7 +71,7 @@ function expectProgressRow(label: "Đã học" | "Chưa học", words: number, p
 
 function renderTopic(path = `/topics/${topic.id}`, initialLearner: LearnerDto | null = learner) {
   return render(
-    <MemoryRouter initialEntries={[path]}>
+    <MemoryRouter initialEntries={[path]}><AccountRouteProbe />
       <ActiveLearnerProvider initialLearner={initialLearner}>
         <LocationProbe />
         <Routes>
@@ -205,9 +205,13 @@ describe("Topic Detail", () => {
     expect(await screen.findByTestId("topic-detail-not-found")).toHaveTextContent("Chủ đề này hiện không khả dụng.");
   });
 
-  it("redirects direct visits through learner selection and preserves the full detail URL", async () => {
+  it("waits for internal identity at the original route without learner selection", async () => {
     renderTopic("/topics/7?from=link", null);
 
-    expect(await screen.findByTestId("learner-return-to")).toHaveTextContent("/topics/7?from=link");
+    expect(await screen.findByRole("status", { name: "Đang chuẩn bị học tập…" })).toBeInTheDocument();
+    expect(screen.getByTestId("account-route")).toHaveTextContent("/topics/7?from=link");
+    expect(screen.queryByText("learners-route")).not.toBeInTheDocument();
   });
 });
+
+function AccountRouteProbe() { const route = useLocation(); return <output data-testid="account-route">{route.pathname}{route.search}</output>; }

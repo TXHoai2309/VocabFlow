@@ -1,15 +1,31 @@
 # VocabFlow Project Decisions
 
-## Learner management and bounded household recovery (2026-10-07)
+## Single-account learning baseline (2026-10-07)
 
-The owner replaces the historical US-03 completed panel with management at
-`/learners`, keeping create available for every learner count. A valid persisted
-learner is reconciled with canonical DTOs and marked active. Selection/create
-honor internal return intent; a direct management visit stays on the page.
-Missing household access alone triggers one idempotent bootstrap plus one
-retry per user-initiated read/create attempt. Rejected 403 creates may retry;
-uncertain writes are never replayed automatically. Existing signup bootstrap,
-authorization and learner persistence remain authoritative.
+This owner-approved baseline supersedes the earlier learner-management flow and
+all historical create/select/switch instructions below.
+
+- USER_MODEL: 1 authenticated account = 1 learning identity in the UX.
+- INTERNAL_MODEL: learner_profile, household/membership, learner_id foreign keys
+  and learner-scoped APIs remain for compatibility.
+- MULTI_LEARNER_LEGACY: all existing profiles and their progress, reviews,
+  saved words and settings remain intact; only one canonical ID is used in UI.
+- CANONICAL_RESOLUTION: valid same-user legacy stored ID present and enabled in
+  the canonical API list wins; otherwise earliest enabled createdAt, then ID.
+  Persist the canonical DTO under vocabflow.activeLearner.v1 scoped by userId.
+- FUTURE_MULTI_PROFILE: schema intentionally retained; no unique constraint,
+  migration, cleanup, delete, disable, merge or learner-data reassignment.
+- LOGOUT: supported through Better Auth signOut; clear internal storage only
+  on success, then replace navigation with /login. Failure preserves the app
+  and storage and displays “Không thể đăng xuất. Vui lòng thử lại.”
+
+The frontend preserves the legacy account-scoped canonical choice to avoid
+silently changing existing learning history. Automatic resolution belongs in
+the authenticated provider, with stale async results invalidated on identity
+changes/unmount/logout and duplicate pending operations shared. Only internal
+provisioning invokes POST /api/learners; user-facing create controls are removed.
+Authorization remains session → household membership → learner household.
+No database operation or deployment is authorized by this product decision.
 
 
 ## Legacy candidate identity precedence — Phase 2G.3A.1 (2026-10-07)

@@ -73,7 +73,7 @@ function LocationProbe() {
 
 function renderList(initialLearner: LearnerDto | null = learnerA, path = "/vocabulary") {
   return render(
-    <MemoryRouter initialEntries={[path]}>
+    <MemoryRouter initialEntries={[path]}><AccountRouteProbe />
       <ToastProvider>
         <ActiveLearnerProvider initialLearner={initialLearner}>
           <LocationProbe />
@@ -110,7 +110,7 @@ describe("US-22 vocabulary list UI", () => {
 
     expect(screen.getByRole("searchbox", { name: "Tìm từ tiếng Anh hoặc nghĩa tiếng Việt" })).toBeInTheDocument();
     expect(await screen.findByTestId("vocabulary-grid")).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Từ vựng của An" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Từ vựng của bạn" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Duyệt theo chủ đề" })).toHaveAttribute("href", "/topics");
     expect(screen.getByTestId("vocabulary-row-1")).toHaveTextContent("apple");
     expect(screen.getByTestId("vocabulary-row-1")).toHaveTextContent("/ˈæp.əl/");
@@ -234,11 +234,12 @@ describe("US-22 vocabulary list UI", () => {
     await waitFor(() => expect(screen.getByTestId("current-url")).toHaveTextContent("/vocabulary"));
   });
 
-  it("redirects without a learner and preserves the complete search URL", async () => {
+  it("waits for internal identity at the original route without learner selection", async () => {
     renderList(null, "/vocabulary?q=apple&level=GRADE_1");
 
-    expect(await screen.findByText("learners-route")).toBeInTheDocument();
-    expect(screen.getByTestId("learner-return-to")).toHaveTextContent("/vocabulary?q=apple&level=GRADE_1");
+    expect(await screen.findByRole("status", { name: "Đang chuẩn bị học tập…" })).toBeInTheDocument();
+    expect(screen.getByTestId("account-route")).toHaveTextContent("/vocabulary?q=apple&level=GRADE_1");
+    expect(screen.queryByText("learners-route")).not.toBeInTheDocument();
   });
 
   it("navigates to the vocabulary detail when a card link is activated", async () => {
@@ -380,16 +381,18 @@ describe("US-22 vocabulary list UI", () => {
     }
 
     render(
-      <MemoryRouter initialEntries={["/vocabulary"]}>
+      <MemoryRouter initialEntries={["/vocabulary"]}><AccountRouteProbe />
         <ToastProvider><ActiveLearnerProvider initialLearner={learnerA}><SwitchHarness /></ActiveLearnerProvider></ToastProvider>
       </MemoryRouter>
     );
 
     expect(await screen.findByTestId("vocabulary-row-1")).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "Switch learner" }));
-    await waitFor(() => expect(screen.getByRole("heading", { name: "Từ vựng của Bình" })).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByRole("heading", { name: "Từ vựng của bạn" })).toBeInTheDocument());
     await waitFor(() => expect(fetchMock.mock.calls.some(([url]) => String(url) === `/api/learners/${learnerB.id}/vocabulary`)).toBe(true));
     expect(fetchMock).toHaveBeenNthCalledWith(1, `/api/learners/${learnerA.id}/vocabulary`, { credentials: "include" });
     expect(fetchMock).toHaveBeenCalledWith(`/api/learners/${learnerB.id}/vocabulary`, { credentials: "include" });
   });
 });
+
+function AccountRouteProbe() { const route = useLocation(); return <output data-testid="account-route">{route.pathname}{route.search}</output>; }

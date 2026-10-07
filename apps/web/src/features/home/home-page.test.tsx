@@ -1,10 +1,9 @@
 import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
-import { MemoryRouter, Route, Routes, useLocation, useNavigate } from "react-router";
+import { MemoryRouter, Navigate, Route, Routes, useLocation, useNavigate } from "react-router";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import type { ContinueLearningCandidate, LearnerDto } from "@vocabflow/contracts";
 import { ActiveLearnerProvider } from "../learners/learner-context-provider";
-import { LearnerPage } from "../learners/learner-page";
 import { AppShell } from "../../components/app-shell";
 import { ToastProvider } from "../../components/toast/toast-provider";
 import { HomePage } from "./home-page";
@@ -172,12 +171,12 @@ function renderHome(initialLearner: LearnerDto | null = learner, initialEntries 
   return render(
     <MemoryRouter initialEntries={initialEntries} initialIndex={initialEntries.length - 1}>
       <ToastProvider>
-        <ActiveLearnerProvider initialLearner={initialLearner}>
+        <ActiveLearnerProvider initialLearner={initialLearner} userId={initialLearner ? undefined : "parent-id"} userName="Jordan Nguyen">
           <LocationProbe />
           <Routes>
             <Route element={<AppShell parentName="Jordan Nguyen" />}>
               <Route path="/" element={<HomePage />} />
-              <Route path="/learners" element={<LearnerPage />} />
+              <Route path="/learners" element={<Navigate to="/" replace />} />
             </Route>
             <Route path="/login" element={<p data-testid="login-route">Login route</p>} />
             <Route path="/previous" element={<p data-testid="previous-route">Previous page</p>} />
@@ -226,9 +225,10 @@ describe("Home dashboard", () => {
     renderHome();
 
     expect(await screen.findByRole("heading", { name: /chào buổi (sáng|chiều|tối), jordan nguyen/i })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Đổi người học. Người học hiện tại: Avery Nguyen, Cấp độ 3" })).toHaveAttribute("href", "/learners");
+    expect(screen.queryByRole("link", { name: /Đổi người học/ })).not.toBeInTheDocument();
+    expect(screen.getByLabelText("Tài khoản học tập")).toHaveTextContent("Jordan Nguyen");
     expect(screen.getAllByRole("link", { name: "Trang chủ" }).some((link) => link.getAttribute("aria-current") === "page")).toBe(true);
-    expect(screen.getByText("Avery Nguyen")).toBeInTheDocument();
+    expect(screen.getAllByText("Jordan Nguyen").length).toBeGreaterThan(0);
     expect(screen.queryByText("Sarah")).not.toBeInTheDocument();
     expect(screen.queryByText("Emma")).not.toBeInTheDocument();
     expect(document.querySelector(".home-notification-visual i")).toBeNull();
@@ -271,7 +271,7 @@ describe("Home dashboard", () => {
     expect(await screen.findByRole("link", { name: "Đã học: 16" })).toBeInTheDocument();
     expect(await screen.findByText("Hành động lớp 1")).toBeInTheDocument();
     expect(await screen.findByText(/5 từ khác nhau đã học vào ngày/)).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Đổi người học. Người học hiện tại: Avery Nguyen, Cấp độ 3" })).toBeInTheDocument();
+    expect(screen.getByLabelText("Tài khoản học tập")).toHaveTextContent("Cấp độ 3");
 
     expect(screen.getByRole("status", { name: "Đang tải danh sách học hiện tại" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Cần ôn tập" })).toHaveAttribute("href", "/weak-words");
@@ -377,33 +377,6 @@ describe("Home dashboard", () => {
     expect(screen.queryByRole("alert")).not.toBeInTheDocument();
   });
 
-  it("refreshes Continue Learning for the newly selected learner", async () => {
-    const secondLearner = { ...learner, id: "00000000-0000-4000-8000-000000000022", displayName: "Morgan Nguyen" };
-    requestLearners.mockResolvedValue([learner, secondLearner]);
-    requestActivitySummary.mockImplementation(async (id: string) => id === secondLearner.id
-      ? { ...activity, learnerId: id, dailyGoal: {
-        newWords: { goal: 5, completed: 2, remaining: 3, percent: 40 },
-        reviews: { goal: 10, completed: 1, remaining: 9, percent: 10 },
-        overallPercent: 20,
-        completed: false
-      } }
-      : activity);
-    requestContinueLearningSummary.mockImplementation(async (id: string) => ({
-      learnerId: id,
-      candidate: id === secondLearner.id
-        ? continueCandidate({ scope: "LEARNING_SET", scopeId: 12, title: "Morgan's set" })
-        : continueCandidate()
-    }));
-    renderHome(null);
-
-    fireEvent.click(await screen.findByRole("button", { name: "Morgan Nguyen" }));
-    expect(await screen.findByRole("link", { name: "Tiếp tục học Morgan's set" })).toHaveAttribute("href", "/study/setup?learningSetId=12");
-    await waitFor(() => expect(screen.getByRole("progressbar", { name: "Tiến trình mục tiêu hôm nay" })).toHaveAttribute("aria-valuenow", "20"));
-    expect(screen.getByText("2 / 5")).toBeInTheDocument();
-    expect(screen.getByText("1 / 10")).toBeInTheDocument();
-    expect(requestContinueLearningSummary).toHaveBeenCalledWith(secondLearner.id);
-    expect(requestActivitySummary).toHaveBeenCalledWith(secondLearner.id);
-  });
 
   it("keeps a long parent name in the greeting without substituting a mock identity", async () => {
     const parentName = "Alexandria-Worthington-Supercalifragilistic-Parent";
@@ -428,72 +401,28 @@ describe("Home dashboard", () => {
     await waitFor(() => expect(requestReviewQueue).toHaveBeenCalledTimes(2));
   });
 
-  it("uses the established learner-selection route when there is no active learner", () => {
+  it("resolves one identity on Home without a route bounce", async () => {
     renderHome(null);
-    expect(screen.getByRole("heading", { name: "Chọn người học" })).toBeInTheDocument();
-    expect(screen.getByTestId("current-location")).toHaveTextContent("/learners");
-  });
-
-  it("selects one enabled learner and returns to Home", async () => {
-    requestLearners.mockResolvedValue([
-      learner,
-      { ...learner, id: "disabled-learner", displayName: "Disabled", enabled: false }
-    ]);
-    renderHome(null);
-
-    fireEvent.click(await screen.findByRole("button", { name: /Avery Nguyen/ }));
-    expect(await screen.findByRole("main", { name: "Trang chủ học tập của Avery Nguyen" })).toBeInTheDocument();
+    expect(await screen.findByRole("main", { name: "Trang chủ học tập" })).toBeInTheDocument();
     expect(screen.getByTestId("current-location")).toHaveTextContent("/");
+    expect(screen.queryByRole("heading", { name: "Chọn người học" })).not.toBeInTheDocument();
   });
-
-  it("waits for an explicit choice when multiple learners exist, then returns Home", async () => {
-    requestLearners.mockResolvedValue([learner, { ...learner, id: "learner-2", displayName: "Morgan Nguyen" }]);
-    renderHome(null);
-
-    expect(await screen.findByRole("button", { name: "Avery Nguyen" })).toBeInTheDocument();
-    expect(screen.getByTestId("current-location")).toHaveTextContent("/learners");
-    fireEvent.click(screen.getByRole("button", { name: "Morgan Nguyen" }));
-    expect(await screen.findByRole("main", { name: "Trang chủ học tập của Morgan Nguyen" })).toBeInTheDocument();
-    expect(screen.getByTestId("current-location")).toHaveTextContent("/");
+  it("provisions zero profiles automatically and keeps Home usable", async () => {
+    requestLearners.mockResolvedValue([]); createLearner.mockResolvedValue(learner); renderHome(null);
+    expect(await screen.findByRole("main", { name: "Trang chủ học tập" })).toBeInTheDocument();
+    expect(createLearner).toHaveBeenCalledExactlyOnceWith({ displayName: "Jordan Nguyen" });
+    expect(screen.queryByRole("button", { name: "Tạo hồ sơ học" })).not.toBeInTheDocument();
   });
-
-  it("keeps a direct learner-page visit visible without a Home return intent", async () => {
+  it("uses canonical oldest identity when multiple profiles exist without a selector", async () => {
+    requestLearners.mockResolvedValue([learner, { ...learner, id: "00000000-0000-4000-8000-000000000022", displayName: "Morgan" }]); renderHome(null);
+    expect(await screen.findByRole("main", { name: "Trang chủ học tập" })).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /Morgan/ })).not.toBeInTheDocument();
+    expect(createLearner).not.toHaveBeenCalled();
+  });
+  it("redirects the retired management bookmark to Home", async () => {
     renderHome(null, ["/learners"]);
-
-    expect(await screen.findByRole("button", { name: "Avery Nguyen Đang dùng" })).toHaveAttribute("aria-current", "true");
-    expect(screen.getByRole("button", { name: "Tạo hồ sơ học" })).toBeEnabled();
-    expect(screen.getByTestId("current-location")).toHaveTextContent("/learners");
-  });
-
-  it("keeps zero-learner users on the creation page", async () => {
-    requestLearners.mockResolvedValue([]);
-    renderHome(null);
-
-    expect(await screen.findByTestId("learner-empty-state")).toBeInTheDocument();
-    expect(screen.getByTestId("current-location")).toHaveTextContent("/learners");
-  });
-
-  it("returns to Home after creating the first learner from a Home handoff", async () => {
-    requestLearners.mockResolvedValue([]);
-    createLearner.mockResolvedValue(learner);
-    renderHome(null);
-
-    expect(await screen.findByTestId("learner-empty-state")).toBeInTheDocument();
-    fireEvent.change(screen.getByLabelText("Tên người học"), { target: { value: "Avery Nguyen" } });
-    fireEvent.submit(screen.getByRole("button", { name: "Tạo hồ sơ học" }).closest("form")!);
-
-    expect(await screen.findByRole("main", { name: "Trang chủ học tập của Avery Nguyen" })).toBeInTheDocument();
+    expect(await screen.findByRole("main", { name: "Trang chủ học tập" })).toBeInTheDocument();
     expect(screen.getByTestId("current-location")).toHaveTextContent("/");
-  });
-
-  it("replaces the Home handoff history so Back does not loop through learner selection", async () => {
-    renderHome(null, ["/previous", "/"]);
-
-    fireEvent.click(await screen.findByRole("button", { name: /Avery Nguyen/ }));
-    expect(await screen.findByRole("main", { name: "Trang chủ học tập của Avery Nguyen" })).toBeInTheDocument();
-    fireEvent.click(screen.getByRole("button", { name: "Go back" }));
-    expect(await screen.findByTestId("previous-route")).toBeInTheDocument();
-    expect(screen.getByTestId("current-location")).toHaveTextContent("/previous");
   });
 
   it("shows a non-blank loading skeleton while the parent session is pending", () => {

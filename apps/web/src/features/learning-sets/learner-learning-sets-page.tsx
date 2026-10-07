@@ -1,5 +1,6 @@
+import { AccountLearningState } from "../learners/account-learning-state";
 import { useEffect, useState } from "react";
-import { Link, Navigate } from "react-router";
+import { Link } from "react-router";
 import type { LearnerDto, LearnerLearningSetDto } from "@vocabflow/contracts";
 import { useActiveLearner } from "../learners/learner-context-hook";
 import { EmptyState, ErrorState, LoadingState } from "../../components/async-states";
@@ -14,14 +15,14 @@ import {
 type LoadState = "loading" | "ready" | "error";
 
 function messageFor(error: unknown) {
-  if (error instanceof LearningSetsClientError && error.status === 403) return "Bạn không có quyền thay đổi hồ sơ người học này.";
+  if (error instanceof LearningSetsClientError && error.status === 403) return "Bạn không có quyền thay đổi dữ liệu học tập này.";
   if (error instanceof LearningSetsClientError && error.status === 401) return "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại.";
   return "Không thể cập nhật bộ từ lúc này. Vui lòng thử lại.";
 }
 
 export function LearnerLearningSetsPage() {
   const { activeLearner } = useActiveLearner();
-  if (!activeLearner) return <Navigate to="/learners" replace />;
+  if (!activeLearner) return <AccountLearningState />;
   return <LearnerLearningSetsExperience key={activeLearner.id} activeLearner={activeLearner} />;
 }
 
@@ -65,7 +66,7 @@ function LearnerLearningSetsExperience({ activeLearner }: { activeLearner: Learn
       setItems((current) => current.map((candidate) => candidate.learningSet.id === result.learningSetId
         ? { ...candidate, active: result.active }
         : candidate));
-      toast.info(result.active ? "Đã thêm bộ từ cho người học" : "Đã gỡ bộ từ khỏi người học");
+      toast.info(result.active ? "Đã thêm bộ từ vào học tập" : "Đã gỡ bộ từ khỏi học tập");
     } catch (error) {
       toast.error(messageFor(error));
     } finally {
@@ -77,14 +78,14 @@ function LearnerLearningSetsExperience({ activeLearner }: { activeLearner: Learn
     <main className="learner-page" aria-labelledby="learner-learning-sets-title">
       <section className="learner-card learning-sets-card">
         <div className="learning-sets-topbar">
-          <Link className="back-link" to="/learners">← Về trang người học</Link>
+          <Link className="back-link" to="/">← Về trang chủ</Link>
           <Link className="learning-sets-manage-link" to="/learning-sets">Xem danh mục</Link>
         </div>
         <p className="auth-eyebrow">Bộ từ</p>
-        <h1 className="auth-title" id="learner-learning-sets-title">Bộ từ của {activeLearner.displayName}</h1>
+        <h1 className="auth-title" id="learner-learning-sets-title">Bộ từ của bạn</h1>
         <p className="auth-copy">Bật hoặc tắt bộ từ để chọn những từ vựng xuất hiện trong danh sách học. Tiến trình và lịch sử ôn tập sẽ không bị xóa.</p>
-        {state === "loading" ? <LoadingState className="learning-sets-state" label="Đang tải các bộ từ của người học…" pattern="form" testId="learner-learning-sets-loading" /> : null}
-        {state === "error" ? <ErrorState className="learning-sets-state learning-sets-error" title="Không thể tải bộ từ của người học" description={message ?? "Vui lòng thử lại."} onRetry={retryList} testId="learner-learning-sets-error" /> : null}
+        {state === "loading" ? <LoadingState className="learning-sets-state" label="Đang tải các bộ từ học tập…" pattern="form" testId="learner-learning-sets-loading" /> : null}
+        {state === "error" ? <ErrorState className="learning-sets-state learning-sets-error" title="Không thể tải bộ từ học tập" description={message ?? "Vui lòng thử lại."} onRetry={retryList} testId="learner-learning-sets-error" /> : null}
         {state === "ready" && items.length === 0 ? <EmptyState className="vocabulary-empty" icon="folder" title="Chưa có bộ từ khả dụng" description="Danh mục bộ từ hiện đang trống." testId="learner-learning-sets-empty" /> : null}
         {state === "ready" && items.length > 0 ? (
           <div className="learner-set-toggle-list" data-testid="learner-learning-sets-list">

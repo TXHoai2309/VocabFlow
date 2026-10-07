@@ -1,5 +1,30 @@
 # VocabFlow Roadmap and Batch Index
 
+## Single-account learning baseline (2026-10-07)
+
+This owner-approved baseline supersedes the earlier learner-management flow and
+all historical create/select/switch instructions below.
+
+- USER_MODEL: 1 authenticated account = 1 learning identity in the UX.
+- INTERNAL_MODEL: learner_profile, household/membership, learner_id foreign keys
+  and learner-scoped APIs remain for compatibility.
+- MULTI_LEARNER_LEGACY: all existing profiles and their progress, reviews,
+  saved words and settings remain intact; only one canonical ID is used in UI.
+- CANONICAL_RESOLUTION: valid same-user legacy stored ID present and enabled in
+  the canonical API list wins; otherwise earliest enabled createdAt, then ID.
+  Persist the canonical DTO under vocabflow.activeLearner.v1 scoped by userId.
+- FUTURE_MULTI_PROFILE: schema intentionally retained; no unique constraint,
+  migration, cleanup, delete, disable, merge or learner-data reassignment.
+- LOGOUT: supported through Better Auth signOut; clear internal storage only
+  on success, then replace navigation with /login. Failure preserves the app
+  and storage and displays “Không thể đăng xuất. Vui lòng thử lại.”
+
+Status: IMPLEMENTED / READY FOR OWNER CHECK. US-03’s management UX is superseded
+by internal canonical resolution and logout. Features #13–#16 remain in place.
+Live-account owner acceptance is pending; backend multi-profile capability
+remains available for a future explicit product decision.
+
+
 ## Feature #16 — Toast & Feedback / US-53
 
 - Status: IMPLEMENTED / READY FOR OWNER CHECK.

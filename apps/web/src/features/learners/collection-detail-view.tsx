@@ -75,7 +75,7 @@ export function CollectionDetailView({
   const actionLabel = !items.length
     ? "Chưa có từ để học"
     : !studyReady
-      ? kind === "learning-set" ? "Gán bộ từ cho người học" : "Chọn bộ từ để bắt đầu"
+      ? kind === "learning-set" ? "Thêm bộ từ vào học tập" : "Chọn bộ từ để bắt đầu"
       : complete
         ? "Ôn tập lại"
         : learned > 0
@@ -160,12 +160,12 @@ export function CollectionDetailView({
             <div className="collection-progress-track" role="progressbar" aria-label={`Tiến độ học ${title}`} aria-valuemin={0} aria-valuemax={Math.max(total, 1)} aria-valuenow={learned} aria-valuetext={`${learned} / ${total} từ, ${percent}%`}>
               <span style={{ width: `${percent}%` }} />
             </div>
-            {kind === "topic" ? <p className="collection-progress-note">Tiến độ tính trên từ thuộc các bộ đang gán cho người học.</p> : null}
+            {kind === "topic" ? <p className="collection-progress-note">Tiến độ tính trên từ thuộc các bộ học tập của bạn.</p> : null}
           </section>
 
           <section className="collection-detail-card collection-detail-action-card" aria-labelledby="collection-action-title">
             <h2 id="collection-action-title"><CollectionIcon name="play" />Học {kind === "topic" ? "chủ đề" : "bộ từ"} này</h2>
-            <p>{canStudy ? complete ? "Bạn đã hoàn thành nội dung này." : "Tiến trình được lưu theo từng từ." : items.length === 0 ? "Chưa có nội dung để bắt đầu." : kind === "learning-set" ? "Gán bộ từ cho người học để mở phiên học." : "Chưa có từ thuộc các bộ đang gán cho người học."}</p>
+            <p>{canStudy ? complete ? "Bạn đã hoàn thành nội dung này." : "Tiến trình được lưu theo từng từ." : items.length === 0 ? "Chưa có nội dung để bắt đầu." : kind === "learning-set" ? "Thêm bộ từ vào học tập để mở phiên học." : "Chưa có từ thuộc các bộ học tập của bạn."}</p>
             {actionHref ? (
               <Link className="collection-detail-study-button" to={actionHref}><CollectionIcon name="play" />{actionLabel}</Link>
             ) : (

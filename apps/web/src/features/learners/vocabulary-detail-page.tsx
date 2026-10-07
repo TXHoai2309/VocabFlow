@@ -1,5 +1,6 @@
+import { AccountLearningState } from "./account-learning-state";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Link, Navigate, useLocation, useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import type { LearnerDto, LearnerVocabularyDto } from "@vocabflow/contracts";
 import { useActiveLearner } from "./learner-context-hook";
 import { LearnerVocabularyClientError, requestLearnerVocabulary } from "./vocabulary-list-client";
@@ -77,7 +78,7 @@ function detailErrorMessage(error: unknown) {
     return "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại.";
   }
   if (error instanceof LearnerVocabularyClientError && (error.status === 403 || error.code === "HOUSEHOLD_ACCESS_DENIED")) {
-    return "Không thể xem từ vựng của người học này.";
+    return "Không thể xem từ vựng của bạn.";
   }
   return "Không thể tải chi tiết từ vựng lúc này. Vui lòng thử lại.";
 }
@@ -85,9 +86,8 @@ function detailErrorMessage(error: unknown) {
 export function VocabularyDetailPage() {
   const { activeLearner } = useActiveLearner();
   const { vocabularyId } = useParams();
-  const location = useLocation();
   if (!activeLearner) {
-    return <Navigate to="/learners" replace state={{ returnTo: `${location.pathname}${location.search}` }} />;
+    return <AccountLearningState />;
   }
   const id = vocabularyId && /^\d+$/.test(vocabularyId) ? Number(vocabularyId) : NaN;
   return <VocabularyDetailExperience key={`${activeLearner.id}:${vocabularyId ?? "missing"}`} activeLearner={activeLearner} vocabularyId={id} />;
@@ -211,7 +211,7 @@ function VocabularyDetailExperience({ activeLearner, vocabularyId }: { activeLea
       {state === "ready" && !vocabulary ? (
         <section className="vocabulary-detail-missing" data-testid="vocabulary-detail-not-found" role="status">
           <h1 id="vocabulary-detail-title">Không tìm thấy từ vựng</h1>
-          <p>Từ này không có trong danh sách hiện tại của người học.</p>
+          <p>Từ này không có trong danh sách học tập hiện tại của bạn.</p>
           <Link className="vocabulary-detail-primary-link" to="/vocabulary">Về danh sách từ vựng</Link>
         </section>
       ) : null}

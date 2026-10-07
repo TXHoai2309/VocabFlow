@@ -132,7 +132,7 @@ function response(body: unknown, status = 200) {
 
 function renderProgress(initialLearner: LearnerDto | null = learnerA, initialPath = "/progress") {
   return render(
-    <MemoryRouter initialEntries={[initialPath]}>
+    <MemoryRouter initialEntries={[initialPath]}><AccountRouteProbe />
       <ToastProvider>
         <ActiveLearnerProvider initialLearner={initialLearner}>
           <Routes>
@@ -248,7 +248,7 @@ describe("Feature #11 learner progress dashboard", () => {
   it("supports 7-day default and URL-backed 30-day activity periods", async () => {
     mockDashboardFetch();
     render(
-      <MemoryRouter initialEntries={["/progress?tab=overview"]}>
+      <MemoryRouter initialEntries={["/progress?tab=overview"]}><AccountRouteProbe />
         <ToastProvider><ActiveLearnerProvider initialLearner={learnerA}><LocationCapture /><ProgressPage /></ActiveLearnerProvider></ToastProvider>
       </MemoryRouter>
     );
@@ -364,26 +364,28 @@ describe("Feature #11 learner progress dashboard", () => {
     }
 
     render(
-      <MemoryRouter initialEntries={["/progress"]}>
+      <MemoryRouter initialEntries={["/progress"]}><AccountRouteProbe />
         <ToastProvider><ActiveLearnerProvider initialLearner={learnerA}><SwitchHarness /></ActiveLearnerProvider></ToastProvider>
       </MemoryRouter>
     );
 
     expect(await screen.findByRole("heading", { name: "Tiến trình học tập" })).toBeInTheDocument();
-    expect(screen.getByText("Tiến trình của An")).toBeInTheDocument();
+    expect(screen.queryByText("Tiến trình của An")).not.toBeInTheDocument();
     expect(metric("progress-metric-learned")).toHaveTextContent("1");
     fireEvent.click(screen.getByRole("button", { name: "Switch learner" }));
     expect(await screen.findByRole("heading", { name: "Tiến trình học tập" })).toBeInTheDocument();
-    expect(screen.getByText("Tiến trình của Bình")).toBeInTheDocument();
+    expect(screen.queryByText("Tiến trình của Bình")).not.toBeInTheDocument();
     await waitFor(() => expect(metric("progress-metric-learned")).toHaveTextContent("9"));
     expect(screen.queryByText("Tiến trình của An")).not.toBeInTheDocument();
     expect(fetchMock).toHaveBeenNthCalledWith(1, `/api/learners/${learnerA.id}/progress-summary`, { credentials: "include" });
     expect(fetchMock).toHaveBeenNthCalledWith(3, `/api/learners/${learnerB.id}/progress-summary`, { credentials: "include" });
   });
 
-  it("redirects to learner selection when no active learner exists", async () => {
+  it("waits for internal identity at the original route without learner selection", async () => {
     renderProgress(null);
-    expect(await screen.findByText("learners-route")).toBeInTheDocument();
+    expect(await screen.findByRole("status", { name: "Đang chuẩn bị học tập…" })).toBeInTheDocument();
+    expect(screen.getByTestId("account-route")).toHaveTextContent("/progress");
+    expect(screen.queryByText("learners-route")).not.toBeInTheDocument();
   });
 
   it("retains reset confirmation, duplicate-submit protection, and refresh", async () => {
@@ -401,7 +403,7 @@ describe("Feature #11 learner progress dashboard", () => {
     fireEvent.click(screen.getByText("Quản lý tiến trình"));
     const resetTrigger = screen.getByRole("button", { name: "Đặt lại tiến trình" });
     fireEvent.click(resetTrigger);
-    expect(screen.getByRole("dialog")).toHaveTextContent("Đặt lại tiến trình của An?");
+    expect(screen.getByRole("dialog")).toHaveTextContent("Đặt lại tiến trình của bạn?");
     expect(screen.getByRole("dialog")).toHaveTextContent("lịch sử ôn tập vẫn được giữ lại");
     expect(screen.getByRole("button", { name: "Hủy" })).toHaveFocus();
     fireEvent.click(screen.getByRole("button", { name: "Hủy" }));
@@ -457,3 +459,5 @@ describe("Feature #11 learner progress dashboard", () => {
     expect(screen.getByRole("button", { name: "Xác nhận đặt lại" })).toBeEnabled();
   });
 });
+
+function AccountRouteProbe() { const route = useLocation(); return <output data-testid="account-route">{route.pathname}{route.search}</output>; }

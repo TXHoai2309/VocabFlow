@@ -1,3 +1,4 @@
+import { AccountLearningState } from "../learners/account-learning-state";
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router";
 import type {
@@ -117,8 +118,8 @@ function HomeDashboard({ learner, parentName }: { learner: LearnerDto; parentNam
   const learnerLevel = gamification.status === "ready" ? gamification.data.xp.level : null;
   return (
     <>
-      <HomeDashboardHeader parentName={parentName} learner={learner} level={learnerLevel} />
-      <main className="home-dashboard" aria-label={`Trang chủ học tập của ${learner.displayName}`}>
+      <HomeDashboardHeader parentName={parentName} level={learnerLevel} />
+      <main className="home-dashboard" aria-label="Trang chủ học tập">
         {hasError ? <DashboardErrorNotice onRetry={retryDashboard} /> : null}
         <DailyStudyHero queue={queue} activity={activity} />
         <QuickStats queue={queue} summary={summary} activity={activity} />
@@ -129,7 +130,7 @@ function HomeDashboard({ learner, parentName }: { learner: LearnerDto; parentNam
             <WeeklyProgressCard resource={history} />
           </div>
           <div className="home-dashboard-column">
-            <LearningSetsCard learnerName={learner.displayName} resource={learningSets} />
+            <LearningSetsCard resource={learningSets} />
             <RecentActivityCard resource={history} />
           </div>
         </div>
@@ -144,7 +145,7 @@ export function HomePage() {
   if (sessionState.isPending) return <HomeSessionLoading />;
   if (sessionState.error) return <HomeSessionError onRetry={() => void sessionState.refetch()} />;
   if (!sessionState.data?.user?.id) return <Navigate to="/login" replace />;
-  if (!activeLearner) return <Navigate to="/learners" replace state={{ returnTo: "/" }} />;
+  if (!activeLearner) return <AccountLearningState />;
   const parentName = typeof sessionState.data.user.name === "string" ? sessionState.data.user.name.trim() : "";
   return <HomeDashboard key={activeLearner.id} learner={activeLearner} parentName={parentName} />;
 }

@@ -1,5 +1,5 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import { MemoryRouter } from "react-router";
+import { MemoryRouter, Route, Routes } from "react-router";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { RegisterPage } from "./register-page";
 
@@ -10,11 +10,11 @@ vi.mock("./auth-client", () => ({
 }));
 
 function renderPage() {
-  return render(<MemoryRouter><RegisterPage /></MemoryRouter>);
+  return render(<MemoryRouter initialEntries={["/register"]}><Routes><Route path="/register" element={<RegisterPage />} /><Route path="/" element={<p data-testid="home-route">Home</p>} /></Routes></MemoryRouter>);
 }
 
 function fillValidForm() {
-  fireEvent.change(screen.getByLabelText("Tên phụ huynh"), { target: { value: "  Nguyễn An  " } });
+  fireEvent.change(screen.getByLabelText("Tên của bạn"), { target: { value: "  Nguyễn An  " } });
   fireEvent.change(screen.getByLabelText("Địa chỉ email"), { target: { value: "parent@example.com" } });
   fireEvent.change(screen.getByLabelText("Mật khẩu"), { target: { value: "secret" } });
   fireEvent.submit(screen.getByRole("button", { name: "Tạo tài khoản" }).closest("form")!);
@@ -41,7 +41,7 @@ describe("RegisterPage integration pipeline", () => {
     expect(signUpEmail).toHaveBeenCalledWith({ name: "Nguyễn An", email: "parent@example.com", password: "secret" });
     await waitFor(() => expect(fetch).toHaveBeenCalledTimes(1));
     expect(fetch).toHaveBeenCalledWith("/api/bootstrap", expect.objectContaining({ method: "POST", credentials: "include", body: "{}" }));
-    expect(await screen.findByRole("status")).toHaveTextContent("Tài khoản và gia đình đã được thiết lập.");
+    expect(await screen.findByTestId("home-route")).toBeInTheDocument();
   });
 
   it("maps the verified account-exists code without calling bootstrap", async () => {
@@ -61,7 +61,7 @@ describe("RegisterPage integration pipeline", () => {
 
     expect(await screen.findByRole("alert")).toHaveTextContent("Không thể tạo tài khoản lúc này. Vui lòng thử lại.");
     expect(screen.getByRole("alert")).not.toHaveTextContent("secret stack trace");
-    expect(screen.getByLabelText("Tên phụ huynh")).toHaveValue("  Nguyễn An  ");
+    expect(screen.getByLabelText("Tên của bạn")).toHaveValue("  Nguyễn An  ");
     expect(screen.getByLabelText("Địa chỉ email")).toHaveValue("parent@example.com");
     expect(fetch).not.toHaveBeenCalled();
   });
@@ -73,11 +73,11 @@ describe("RegisterPage integration pipeline", () => {
     renderPage();
     fillValidForm();
 
-    expect(await screen.findByRole("alert")).toHaveTextContent("Đã tạo tài khoản nhưng chưa hoàn tất thiết lập gia đình.");
+    expect(await screen.findByRole("alert")).toHaveTextContent("Đã tạo tài khoản nhưng chưa hoàn tất thiết lập tài khoản.");
     fireEvent.click(screen.getByRole("button", { name: "Thử lại thiết lập" }));
     await waitFor(() => expect(bootstrap).toHaveBeenCalledTimes(2));
     expect(signUpEmail).toHaveBeenCalledTimes(1);
-    expect(await screen.findByRole("status")).toHaveTextContent("Tài khoản và gia đình đã được thiết lập.");
+    expect(await screen.findByTestId("home-route")).toBeInTheDocument();
   });
 
   it("keeps the submit action disabled across signup and bootstrap", async () => {
@@ -90,6 +90,6 @@ describe("RegisterPage integration pipeline", () => {
     expect(submit).toBeDisabled();
     resolveSignup?.({ data: { user: { id: "user-1" } }, error: null });
     vi.mocked(fetch).mockResolvedValue(bootstrapResponse(true) as Response);
-    await waitFor(() => expect(screen.getByRole("status")).toBeInTheDocument());
+    expect(await screen.findByTestId("home-route")).toBeInTheDocument();
   });
 });

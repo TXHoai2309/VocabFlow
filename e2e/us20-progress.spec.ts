@@ -60,8 +60,7 @@ test("US-20 opens learner progress and renders all summary metrics", async ({ pa
   await mockProgressPage(page);
   await page.goto("/learners");
 
-  await expect(page.getByRole("button", { name: /An/ })).toHaveAttribute("aria-current", "true");
-  await expect(page.getByRole("button", { name: /An/ })).toHaveAttribute("aria-current", "true");
+  await expect(page.locator(".app-layout")).toBeVisible();
   await page.goto("/progress");
   await expect(page).toHaveURL(/\/progress$/);
   await expect(page.getByRole("heading", { name: "Tiến trình của An" })).toBeVisible();
@@ -78,7 +77,7 @@ test("US-20 keeps the progress dashboard within a mobile viewport", async ({ pag
   await page.setViewportSize({ width: 375, height: 812 });
   await mockProgressPage(page);
   await page.goto("/learners");
-  await expect(page.getByRole("button", { name: /An/ })).toHaveAttribute("aria-current", "true");
+  await expect(page.locator(".app-layout")).toBeVisible();
   await page.goto("/progress");
 
   await expect(page.getByTestId("progress-summary")).toBeVisible();

@@ -15,7 +15,7 @@ export function validateRegisterForm(values: RegisterFormValues): RegisterFieldE
   const email = values.email.trim();
 
   if (!name) {
-    errors.name = "Vui lòng nhập tên phụ huynh.";
+    errors.name = "Vui lòng nhập tên của bạn.";
   }
 
   if (!email) {

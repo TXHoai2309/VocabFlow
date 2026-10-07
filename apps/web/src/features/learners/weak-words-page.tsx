@@ -1,5 +1,6 @@
+import { AccountLearningState } from "./account-learning-state";
 import { useEffect, useState } from "react";
-import { Link, Navigate, useLocation, useSearchParams } from "react-router";
+import { Link, useSearchParams } from "react-router";
 import type { WeakWordsItem, WeakWordsResponse, WeakWordsStatus } from "@vocabflow/contracts";
 import { usePronunciationAudio } from "../study/pronunciation-audio";
 import { useActiveLearner } from "./learner-context-hook";
@@ -86,18 +87,17 @@ function WeakWordRow({ item }: { item: WeakWordsItem }) {
 
 function errorMessage(error: unknown) {
   if (error instanceof WeakWordsClientError && error.status === 401) return "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại.";
-  if (error instanceof WeakWordsClientError && error.status === 403) return "Không thể xem danh sách ôn tập của người học này.";
+  if (error instanceof WeakWordsClientError && error.status === 403) return "Không thể xem danh sách ôn tập của bạn.";
   return "Không thể tải danh sách từ cần ôn lúc này. Vui lòng thử lại.";
 }
 
 export function WeakWordsPage() {
   const { activeLearner } = useActiveLearner();
-  const location = useLocation();
-  if (!activeLearner) return <Navigate to="/learners" replace state={{ returnTo: `${location.pathname}${location.search}` }} />;
-  return <WeakWordsExperience key={activeLearner.id} learnerId={activeLearner.id} learnerName={activeLearner.displayName} />;
+  if (!activeLearner) return <AccountLearningState />;
+  return <WeakWordsExperience key={activeLearner.id} learnerId={activeLearner.id} />;
 }
 
-function WeakWordsExperience({ learnerId, learnerName }: { learnerId: string; learnerName: string }) {
+function WeakWordsExperience({ learnerId }: { learnerId: string }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get("q") ?? "";
   const status = statusValue(searchParams.get("status"));
@@ -156,7 +156,7 @@ function WeakWordsExperience({ learnerId, learnerName }: { learnerId: string; le
     <main className="weak-words-page" aria-labelledby="weak-words-title" data-testid="weak-words-page">
       <header className="weak-words-header">
         <div>
-          <p className="weak-words-eyebrow">Tiến độ của {learnerName}</p>
+          <p className="weak-words-eyebrow">Tiến độ của bạn</p>
           <h1 id="weak-words-title">Từ yếu / Cần ôn lại <span aria-hidden="true">◎</span></h1>
           <p>Danh sách các từ có review gần đây cần bạn chú ý. Ôn tập theo trạng thái thật của từ và lịch ôn hiện tại.</p>
         </div>

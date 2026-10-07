@@ -73,7 +73,7 @@ function mockDetailApi(items: LearnerVocabularyDto[], initiallySaved: number[] =
 
 function renderDetail(id = "1", initialLearner: LearnerDto | null = learner) {
   return render(
-    <MemoryRouter initialEntries={[`/vocabulary/${id}`]}>
+    <MemoryRouter initialEntries={[`/vocabulary/${id}`]}><AccountRouteProbe />
       <ToastProvider>
         <ActiveLearnerProvider initialLearner={initialLearner}>
           <Routes>
@@ -147,13 +147,14 @@ describe("vocabulary detail page", () => {
     expect(fetchMock).not.toHaveBeenCalled();
   });
 
-  it("returns to LearnerPage with the detail route when no active learner exists", async () => {
+  it("waits for internal identity at the original route without learner selection", async () => {
     const fetchMock = vi.spyOn(globalThis, "fetch");
     renderDetail("1", null);
 
-    expect(await screen.findByText("learners-route")).toBeInTheDocument();
-    expect(screen.getByTestId("learner-return-to")).toHaveTextContent("/vocabulary/1");
     expect(fetchMock).not.toHaveBeenCalled();
+    expect(await screen.findByRole("status", { name: "Đang chuẩn bị học tập…" })).toBeInTheDocument();
+    expect(screen.getByTestId("account-route")).toHaveTextContent("/vocabulary/1");
+    expect(screen.queryByText("learners-route")).not.toBeInTheDocument();
   });
 
   it("shows a recoverable request error", async () => {
@@ -210,3 +211,5 @@ describe("vocabulary detail page", () => {
     expect(screen.getByRole("button", { name: "Lưu từ apple" })).toHaveAttribute("aria-pressed", "false");
   });
 });
+
+function AccountRouteProbe() { const route = useLocation(); return <output data-testid="account-route">{route.pathname}{route.search}</output>; }

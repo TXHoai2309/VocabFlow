@@ -1,5 +1,6 @@
+import { AccountLearningState } from "../learners/account-learning-state";
 import { useEffect, useState } from "react";
-import { Link, Navigate, useLocation, useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import type { LearnerDto, LearningSetDetail, LearningSetSummary, VocabularyLevel } from "@vocabflow/contracts";
 import { LearningSetsClientError, requestLearnerLearningSets, requestLearningSet, requestLearningSets } from "./learning-sets-client";
 import { useActiveLearner } from "../learners/learner-context-hook";
@@ -59,12 +60,12 @@ export function LearningSetsPage() {
     <main className="learner-page" aria-labelledby="learning-sets-title">
       <section className="learner-card learning-sets-card">
         <div className="learning-sets-topbar">
-          <Link className="back-link" to="/learners">← Về trang người học</Link>
-          <Link className="learning-sets-manage-link" to="/learning-sets/assign">Gán cho người học</Link>
+          <Link className="back-link" to="/">← Về trang chủ</Link>
+          <Link className="learning-sets-manage-link" to="/learning-sets/assign">Thêm vào học tập</Link>
         </div>
         <p className="auth-eyebrow">Bộ từ</p>
         <h1 className="auth-title" id="learning-sets-title">Bộ từ</h1>
-        <p className="auth-copy">Các bộ từ được tuyển chọn sẵn, có thứ tự ổn định để gia đình chọn nội dung học.</p>
+        <p className="auth-copy">Các bộ từ được tuyển chọn sẵn, có thứ tự ổn định để bạn chọn nội dung học.</p>
 
         {state === "loading" ? <LoadingState className="learning-sets-state" label="Đang tải danh sách bộ từ…" pattern="rows" testId="learning-sets-loading" /> : null}
         {state === "error" ? (
@@ -94,10 +95,9 @@ export function LearningSetsPage() {
 
 export function LearningSetDetailPage() {
   const { activeLearner } = useActiveLearner();
-  const location = useLocation();
   const { learningSetId } = useParams();
   if (!activeLearner) {
-    return <Navigate to="/learners" replace state={{ returnTo: `${location.pathname}${location.search}` }} />;
+    return <AccountLearningState />;
   }
   const parsedId = learningSetId && /^\d+$/.test(learningSetId) ? Number(learningSetId) : NaN;
   return <LearningSetDetailExperience key={`${activeLearner.id}:${learningSetId ?? "missing"}`} learner={activeLearner} learningSetId={parsedId} />;

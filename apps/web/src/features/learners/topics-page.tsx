@@ -1,5 +1,6 @@
+import { AccountLearningState } from "./account-learning-state";
 import { useEffect, useState } from "react";
-import { Link, Navigate, useLocation, useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import type { LearnerDto, TopicDto, VocabularyDto, VocabularyLevel } from "@vocabflow/contracts";
 import { useActiveLearner } from "./learner-context-hook";
 import { LearnerVocabularyClientError, requestLearnerVocabulary } from "./vocabulary-list-client";
@@ -152,17 +153,16 @@ function topicDetailError(error: unknown) {
     return "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại.";
   }
   if ((error instanceof TopicsClientError || error instanceof ProgressInsightsClientError || error instanceof LearnerVocabularyClientError) && error.status === 403) {
-    return "Không thể xem nội dung của người học này.";
+    return "Không thể xem nội dung học tập của bạn.";
   }
   return "Không thể tải chi tiết chủ đề lúc này. Vui lòng thử lại.";
 }
 
 export function TopicDetailPage() {
   const { activeLearner } = useActiveLearner();
-  const location = useLocation();
   const { topicId } = useParams();
   if (!activeLearner) {
-    return <Navigate to="/learners" replace state={{ returnTo: `${location.pathname}${location.search}` }} />;
+    return <AccountLearningState />;
   }
   const parsedId = topicId && /^\d+$/.test(topicId) ? Number(topicId) : NaN;
   return <TopicDetailExperience key={`${activeLearner.id}:${topicId ?? "missing"}`} learner={activeLearner} topicId={parsedId} />;

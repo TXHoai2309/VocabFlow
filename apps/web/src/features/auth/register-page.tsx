@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router";
-import type { HouseholdBootstrapResponse } from "@vocabflow/contracts";
+import { Link, Navigate } from "react-router";
 import { authClient } from "./auth-client";
 import { requestBootstrap } from "./bootstrap-client";
 import { RegisterForm } from "./register-form";
@@ -17,7 +16,7 @@ export type RegistrationState =
 const ACCOUNT_EXISTS_CODE = "USER_ALREADY_EXISTS_USE_ANOTHER_EMAIL";
 const ACCOUNT_EXISTS_MESSAGE = "Địa chỉ email này đã được đăng ký. Hãy đăng nhập để tiếp tục.";
 const AUTH_ERROR_MESSAGE = "Không thể tạo tài khoản lúc này. Vui lòng thử lại.";
-const BOOTSTRAP_ERROR_MESSAGE = "Đã tạo tài khoản nhưng chưa hoàn tất thiết lập gia đình.";
+const BOOTSTRAP_ERROR_MESSAGE = "Đã tạo tài khoản nhưng chưa hoàn tất thiết lập tài khoản.";
 
 function safeAuthErrorMessage(error: { code?: string } | null | undefined) {
   return error?.code === ACCOUNT_EXISTS_CODE ? ACCOUNT_EXISTS_MESSAGE : AUTH_ERROR_MESSAGE;
@@ -25,15 +24,13 @@ function safeAuthErrorMessage(error: { code?: string } | null | undefined) {
 
 export function RegisterPage() {
   const [state, setState] = useState<RegistrationState>("idle");
-  const [household, setHousehold] = useState<HouseholdBootstrapResponse["household"] | null>(null);
   const [message, setMessage] = useState<string | null>(null);
 
   async function bootstrapFamily() {
     setState("bootstrap-pending");
     setMessage(null);
     try {
-      const result = await requestBootstrap();
-      setHousehold(result.household);
+      await requestBootstrap();
       setState("completed");
     } catch {
       setState("bootstrap-recovery");
@@ -66,6 +63,8 @@ export function RegisterPage() {
 
   const isCompleted = state === "completed";
 
+  if (state === "completed") return <Navigate to="/" replace />;
+
   return (
     <main className="auth-page" aria-labelledby="register-title">
       <section className="auth-card">
@@ -73,13 +72,13 @@ export function RegisterPage() {
           <span className="auth-brand-mark" aria-hidden="true">V</span>
           <span>VocabFlow</span>
         </Link>
-        <p className="auth-eyebrow">Dành cho gia đình</p>
+        <p className="auth-eyebrow">Học từ vựng mỗi ngày</p>
         <h1 className="auth-title" id="register-title">Tạo tài khoản</h1>
-        <p className="auth-copy">Tạo tài khoản để bắt đầu quản lý việc học từ vựng của gia đình.</p>
+        <p className="auth-copy">Tạo tài khoản để bắt đầu học từ vựng và lưu tiến trình của bạn.</p>
         <RegisterForm onValidSubmit={handleValidSubmit} submitDisabled={isCompleted} />
         <div className="auth-status" aria-live="polite">
           {state === "signup-pending" ? <p>Đang tạo tài khoản…</p> : null}
-          {state === "bootstrap-pending" ? <p>Đang thiết lập gia đình…</p> : null}
+          {state === "bootstrap-pending" ? <p>Đang thiết lập tài khoản…</p> : null}
           {state === "auth-error" ? <p role="alert">{message ?? AUTH_ERROR_MESSAGE}</p> : null}
           {state === "bootstrap-recovery" ? (
             <div role="alert">
@@ -87,13 +86,6 @@ export function RegisterPage() {
               <button className="auth-retry" type="button" onClick={() => void bootstrapFamily()}>
                 Thử lại thiết lập
               </button>
-            </div>
-          ) : null}
-          {state === "completed" ? (
-            <div role="status">
-              Tài khoản và gia đình đã được thiết lập.
-              {household ? ` ${household.name}` : ""}
-              <Link className="auth-next-link" to="/learners">Tiếp tục tạo hồ sơ người học</Link>
             </div>
           ) : null}
         </div>

@@ -1,5 +1,6 @@
+import { AccountLearningState } from "../learners/account-learning-state";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Link, Navigate, useLocation, useSearchParams } from "react-router";
+import { Link, useLocation, useSearchParams } from "react-router";
 import type {
   LearnerDto,
   ExerciseSubmission,
@@ -118,7 +119,7 @@ function queueErrorMessage(error: unknown) {
     return "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại.";
   }
   if (error.status === 403 || error.code === "HOUSEHOLD_ACCESS_DENIED") {
-    return "Không thể tiếp tục với người học này. Vui lòng chọn lại.";
+    return "Không thể truy cập dữ liệu học tập. Vui lòng thử lại.";
   }
   return SAFE_QUEUE_ERROR;
 }
@@ -135,7 +136,7 @@ function isLearnerAccessError(error: unknown) {
 
 function saveErrorMessage(error: unknown) {
   if (isLoginError(error)) return "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại.";
-  if (isLearnerAccessError(error)) return "Không thể tiếp tục với người học này. Vui lòng chọn lại.";
+  if (isLearnerAccessError(error)) return "Không thể truy cập dữ liệu học tập. Vui lòng thử lại.";
   return SAFE_SAVE_ERROR;
 }
 
@@ -150,7 +151,7 @@ export function StudyPage({ mode = "flashcard", exercisePreference }: { mode?: S
     : scope ? `${scope.type}:${"id" in scope ? scope.id : "invalid"}` : "all";
   const selectionKey = selection ? `${selection.content}:${selection.amount}` : "default";
   const returnTo = useMemo(() => studyReturnHref(location.state, scope), [location.state, scope]);
-  if (!activeLearner) return <Navigate to="/learners" replace />;
+  if (!activeLearner) return <AccountLearningState />;
   return <StudyExperience key={`${activeLearner.id}:${mode}:${exercisePreference ?? "default"}:${scopeKey}:${selectionKey}`} activeLearner={activeLearner} mode={mode} exercisePreference={exercisePreference} scope={scope} selection={selection} returnTo={returnTo} />;
 }
 
@@ -264,7 +265,7 @@ function StudyExperience({ activeLearner, mode, exercisePreference, scope, selec
       setMessage(isLoginError(error)
         ? "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại."
         : isLearnerAccessError(error)
-          ? "Không thể tiếp tục với người học này. Vui lòng chọn lại."
+          ? "Không thể truy cập dữ liệu học tập. Vui lòng thử lại."
           : "Không thể cập nhật tiến trình lúc này. Vui lòng tải lại danh sách học.");
     }
   }, [activeLearner.id, replaceCards, scope, selection]);
@@ -564,7 +565,7 @@ function StudyExperience({ activeLearner, mode, exercisePreference, scope, selec
         <h1 className="sr-only" id="study-title">{studyTitle}</h1>
 
         {state === "error" ? (
-          <ErrorState className="study-state" title="Không thể mở phiên học" description={message ?? SAFE_QUEUE_ERROR} action={message === "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại." ? <Link className="auth-retry study-state-link" to="/login">Đăng nhập lại</Link> : message === "Không thể tiếp tục với người học này. Vui lòng chọn lại." ? <Link className="auth-retry study-state-link" to="/learners">Chọn lại người học</Link> : undefined} onRetry={message !== "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại." && message !== "Không thể tiếp tục với người học này. Vui lòng chọn lại." ? () => void loadQueue() : undefined} testId="study-error-state" />
+          <ErrorState className="study-state" title="Không thể mở phiên học" description={message ?? SAFE_QUEUE_ERROR} action={message === "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại." ? <Link className="auth-retry study-state-link" to="/login">Đăng nhập lại</Link> : message === "Không thể truy cập dữ liệu học tập. Vui lòng thử lại." ? <Link className="auth-retry study-state-link" to="/">Về trang chủ</Link> : undefined} onRetry={message !== "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại." && message !== "Không thể truy cập dữ liệu học tập. Vui lòng thử lại." ? () => void loadQueue() : undefined} testId="study-error-state" />
         ) : null}
 
         {state === "empty" ? (

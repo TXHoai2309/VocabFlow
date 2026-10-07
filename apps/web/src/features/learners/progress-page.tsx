@@ -1,5 +1,6 @@
+import { AccountLearningState } from "./account-learning-state";
 import { useEffect, useRef, useState } from "react";
-import { Link, Navigate, useSearchParams } from "react-router";
+import { Link, useSearchParams } from "react-router";
 import type {
   ActivitySummaryResponse,
   LearnerDto,
@@ -54,7 +55,7 @@ function progressErrorMessage(error: unknown): string {
   if (
     (error instanceof ProgressSummaryClientError || error instanceof ActivitySummaryClientError)
     && (error.status === 403 || error.code === "HOUSEHOLD_ACCESS_DENIED")
-  ) return "Không thể xem tiến trình của người học này.";
+  ) return "Không thể xem tiến trình học tập của bạn.";
   return "Không thể tải tiến trình lúc này. Vui lòng thử lại.";
 }
 
@@ -63,7 +64,7 @@ function resetErrorMessage(error: unknown): string {
     return "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại.";
   }
   if (error instanceof ResetLearnerProgressClientError && (error.status === 403 || error.code === "HOUSEHOLD_ACCESS_DENIED")) {
-    return "Không thể đặt lại tiến trình của người học này.";
+    return "Không thể đặt lại tiến trình học tập của bạn.";
   }
   return "Không thể đặt lại tiến trình lúc này. Vui lòng thử lại.";
 }
@@ -206,7 +207,7 @@ function ActivityChart({ history, period }: { history: ProgressHistoryResponse; 
         aria-label={`${periodLabel(period)}: ${total} lượt từ vựng duy nhất đã được ôn qua ${days.length} ngày.`}
       >
         <title>Số từ duy nhất đã ôn mỗi ngày</title>
-        <desc>Các cột thể hiện số vocabulary khác nhau được ôn trong từng ngày địa phương của gia đình.</desc>
+        <desc>Các cột thể hiện số vocabulary khác nhau được ôn trong từng ngày theo múi giờ học tập.</desc>
         {ticks.map((tick) => {
           const y = top + plotHeight - tick / maxScale * plotHeight;
           return (
@@ -354,7 +355,7 @@ function AccuracyChart({ history, period }: { history: ProgressHistoryResponse; 
 
 export function ProgressPage() {
   const { activeLearner } = useActiveLearner();
-  if (!activeLearner) return <Navigate to="/learners" replace />;
+  if (!activeLearner) return <AccountLearningState />;
   return <ProgressExperience key={activeLearner.id} activeLearner={activeLearner} />;
 }
 
@@ -542,7 +543,7 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
       <div className="progress-dashboard">
         <header className="progress-dashboard-header">
           <div>
-            <p className="progress-dashboard-eyebrow">Tiến trình của {activeLearner.displayName}</p>
+            <p className="progress-dashboard-eyebrow">Tiến trình học tập</p>
             <h1 id="progress-title">Tiến trình học tập</h1>
             <p>Theo dõi tiến độ và điểm cần cải thiện của bạn.</p>
           </div>
@@ -583,7 +584,7 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
                 testId="progress-metric-streak"
                 label="Chuỗi hiện tại"
                 value={`${activity.streak.currentStreak} ngày`}
-                detail="Theo ngày học của gia đình"
+                detail="Theo ngày học của bạn"
               />
             </dl>
 
@@ -701,9 +702,9 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
         <div className="reset-dialog-backdrop">
           <section ref={resetDialogRef} className="reset-dialog" tabIndex={-1} role="dialog" aria-modal="true" aria-labelledby="reset-progress-title" aria-describedby="reset-progress-description">
             <span className="reset-dialog-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 7h16M10 11v6m4-6v6M6 7l1 14h10l1-14M9 7V4h6v3" /></svg></span>
-            <h2 id="reset-progress-title">Đặt lại tiến trình của {activeLearner.displayName}?</h2>
+            <h2 id="reset-progress-title">Đặt lại tiến trình của bạn?</h2>
             <p id="reset-progress-description">
-              Tiến trình học hiện tại của người học này sẽ được đưa về trạng thái từ mới. Chỉ người học này bị ảnh hưởng;
+              Tiến trình học hiện tại của bạn sẽ được đưa về trạng thái từ mới;
               lịch sử ôn tập vẫn được giữ lại.
             </p>
             {resetError ? <p className="reset-dialog-error" role="alert">{resetError}</p> : null}

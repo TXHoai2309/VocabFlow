@@ -1,5 +1,5 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import { MemoryRouter } from "react-router";
+import { MemoryRouter, Route, Routes } from "react-router";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { LoginPage } from "./login-page";
 
@@ -17,7 +17,7 @@ vi.mock("./auth-client", () => ({
 }));
 
 function renderPage() {
-  return render(<MemoryRouter><LoginPage /></MemoryRouter>);
+  return render(<MemoryRouter initialEntries={["/login"]}><Routes><Route path="/login" element={<LoginPage />} /><Route path="/" element={<p data-testid="home-route">Home</p>} /></Routes></MemoryRouter>);
 }
 
 function bootstrapResponse(ok: boolean, payload: unknown = {
@@ -81,7 +81,7 @@ describe("LoginPage integration pipeline", () => {
       credentials: "include",
       body: "{}"
     }));
-    expect(await screen.findByTestId("authenticated-household-ready")).toHaveTextContent("Gia đình đã sẵn sàng.");
+    expect(await screen.findByTestId("home-route")).toBeInTheDocument();
   });
 
   it("maps invalid credentials to a safe inline error", async () => {
@@ -123,12 +123,12 @@ describe("LoginPage integration pipeline", () => {
     renderPage();
 
     fillValidForm();
-    expect(await screen.findByRole("alert")).toHaveTextContent("Đã đăng nhập nhưng chưa hoàn tất thiết lập gia đình.");
+    expect(await screen.findByRole("alert")).toHaveTextContent("Đã đăng nhập nhưng chưa hoàn tất thiết lập tài khoản.");
     fireEvent.click(screen.getByRole("button", { name: "Thử lại thiết lập" }));
 
     await waitFor(() => expect(bootstrap).toHaveBeenCalledTimes(2));
     expect(signInEmail).toHaveBeenCalledTimes(1);
-    expect(await screen.findByTestId("authenticated-household-ready")).toBeInTheDocument();
+    expect(await screen.findByTestId("home-route")).toBeInTheDocument();
   });
 
   it.each([
@@ -145,7 +145,7 @@ describe("LoginPage integration pipeline", () => {
 
     fillValidForm();
 
-    expect(await screen.findByRole("alert")).toHaveTextContent("Đã đăng nhập nhưng chưa hoàn tất thiết lập gia đình.");
+    expect(await screen.findByRole("alert")).toHaveTextContent("Đã đăng nhập nhưng chưa hoàn tất thiết lập tài khoản.");
     expect(screen.getByRole("button", { name: "Đăng nhập" })).toBeDisabled();
     expect(signInEmail).toHaveBeenCalledTimes(1);
   });
@@ -161,7 +161,7 @@ describe("LoginPage integration pipeline", () => {
     expect(signInEmail).toHaveBeenCalledTimes(1);
     resolveSignIn?.({ data: { user: { id: "user-1" } }, error: null });
     vi.mocked(fetch).mockResolvedValue(bootstrapResponse(true) as Response);
-    await waitFor(() => expect(screen.getByTestId("authenticated-household-ready")).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByTestId("home-route")).toBeInTheDocument());
   });
 
   it("uses the existing session without asking for credentials again", async () => {
@@ -175,7 +175,7 @@ describe("LoginPage integration pipeline", () => {
     vi.mocked(fetch).mockResolvedValue(bootstrapResponse(true) as Response);
     renderPage();
 
-    expect(await screen.findByTestId("authenticated-household-ready")).toBeInTheDocument();
+    expect(await screen.findByTestId("home-route")).toBeInTheDocument();
     expect(signInEmail).not.toHaveBeenCalled();
     expect(fetch).toHaveBeenCalledTimes(1);
   });

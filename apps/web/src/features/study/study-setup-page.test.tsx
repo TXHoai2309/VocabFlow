@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { MemoryRouter, Route, Routes, useLocation } from "react-router";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
@@ -98,7 +98,7 @@ function LearnerReturnProbe() {
 
 function renderSetup(path = "/study/setup", activeLearner: LearnerDto | null = learner) {
   return render(
-    <MemoryRouter initialEntries={[path]}>
+    <MemoryRouter initialEntries={[path]}><AccountRouteProbe />
       <ActiveLearnerProvider initialLearner={activeLearner}>
         <Routes>
           <Route path="/study/setup" element={<StudySetupPage />} />
@@ -364,7 +364,7 @@ describe("Study Setup", () => {
 
     expect(await screen.findByTestId("study-setup-empty")).toHaveTextContent("Chưa có từ để học");
     expect(screen.getByText("Nội dung này hiện chưa có từ phù hợp cho buổi học.")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Quay lại" })).toHaveAttribute("href", "/learners");
+    expect(screen.getByRole("link", { name: "Quay lại" })).toHaveAttribute("href", "/");
   });
 
   it("retries the canonical queue request after a setup load error", async () => {
@@ -382,11 +382,15 @@ describe("Study Setup", () => {
     expect(fetchMock).toHaveBeenNthCalledWith(2, `/api/learners/${learner.id}/review-queue`, { credentials: "include" });
   });
 
-  it("preserves setup path and query when redirecting a learner without an active profile", async () => {
+  it("waits for internal identity at the original route without learner selection", async () => {
     const fetchMock = vi.spyOn(globalThis, "fetch");
     renderSetup("/study/setup?topicId=7&continue=1", null);
 
-    await waitFor(() => expect(screen.getByTestId("learner-return-to")).toHaveTextContent("/study/setup?topicId=7&continue=1"));
     expect(fetchMock).not.toHaveBeenCalled();
+    expect(await screen.findByRole("status", { name: "Đang chuẩn bị học tập…" })).toBeInTheDocument();
+    expect(screen.getByTestId("account-route")).toHaveTextContent("/study/setup?topicId=7&continue=1");
+    expect(screen.queryByText("learners-route")).not.toBeInTheDocument();
   });
 });
+
+function AccountRouteProbe() { const route = useLocation(); return <output data-testid="account-route">{route.pathname}{route.search}</output>; }

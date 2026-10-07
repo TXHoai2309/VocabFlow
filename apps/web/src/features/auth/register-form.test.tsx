@@ -14,8 +14,8 @@ function renderForm(onValidSubmit = vi.fn()) {
 describe("RegisterForm", () => {
   it("shows visible labels and registration autocomplete values", () => {
     renderForm();
-    expect(screen.getByLabelText("Tên phụ huynh")).toHaveAttribute("type", "text");
-    expect(screen.getByLabelText("Tên phụ huynh")).toHaveAttribute("autocomplete", "name");
+    expect(screen.getByLabelText("Tên của bạn")).toHaveAttribute("type", "text");
+    expect(screen.getByLabelText("Tên của bạn")).toHaveAttribute("autocomplete", "name");
     expect(screen.getByLabelText("Địa chỉ email")).toHaveAttribute("type", "email");
     expect(screen.getByLabelText("Địa chỉ email")).toHaveAttribute("autocomplete", "email");
     expect(screen.getByLabelText("Mật khẩu")).toHaveAttribute("type", "password");
@@ -25,17 +25,17 @@ describe("RegisterForm", () => {
   it("reports required errors for an empty submit", () => {
     renderForm();
     fireEvent.submit(screen.getByRole("button", { name: "Tạo tài khoản" }).closest("form")!);
-    expect(screen.getByText("Vui lòng nhập tên phụ huynh.")).toBeInTheDocument();
+    expect(screen.getByText("Vui lòng nhập tên của bạn.")).toBeInTheDocument();
     expect(screen.getByText("Vui lòng nhập địa chỉ email.")).toBeInTheDocument();
     expect(screen.getByText("Vui lòng nhập mật khẩu.")).toBeInTheDocument();
-    expect(screen.getByLabelText("Tên phụ huynh")).toHaveAttribute("aria-invalid", "true");
+    expect(screen.getByLabelText("Tên của bạn")).toHaveAttribute("aria-invalid", "true");
     expect(screen.getByLabelText("Địa chỉ email")).toHaveAttribute("aria-invalid", "true");
     expect(screen.getByLabelText("Mật khẩu")).toHaveAttribute("aria-invalid", "true");
   });
 
   it("distinguishes invalid email format", () => {
     renderForm();
-    fireEvent.change(screen.getByLabelText("Tên phụ huynh"), { target: { value: "Phụ huynh" } });
+    fireEvent.change(screen.getByLabelText("Tên của bạn"), { target: { value: "Phụ huynh" } });
     fireEvent.change(screen.getByLabelText("Địa chỉ email"), { target: { value: "not-an-email" } });
     fireEvent.change(screen.getByLabelText("Mật khẩu"), { target: { value: "secret" } });
     fireEvent.submit(screen.getByRole("button", { name: "Tạo tài khoản" }).closest("form")!);
@@ -45,7 +45,7 @@ describe("RegisterForm", () => {
   it("passes normalized valid values to the Phase-1 submission seam", () => {
     const onValidSubmit = vi.fn();
     renderForm(onValidSubmit);
-    fireEvent.change(screen.getByLabelText("Tên phụ huynh"), { target: { value: "  Nguyễn Thị Lan  " } });
+    fireEvent.change(screen.getByLabelText("Tên của bạn"), { target: { value: "  Nguyễn Thị Lan  " } });
     fireEvent.change(screen.getByLabelText("Địa chỉ email"), { target: { value: "  parent@example.com  " } });
     fireEvent.change(screen.getByLabelText("Mật khẩu"), { target: { value: "secret" } });
     fireEvent.submit(screen.getByRole("button", { name: "Tạo tài khoản" }).closest("form")!);
@@ -54,15 +54,15 @@ describe("RegisterForm", () => {
 
   it("rejects an empty or whitespace-only parent name", () => {
     renderForm();
-    fireEvent.change(screen.getByLabelText("Tên phụ huynh"), { target: { value: "   " } });
+    fireEvent.change(screen.getByLabelText("Tên của bạn"), { target: { value: "   " } });
     fireEvent.submit(screen.getByRole("button", { name: "Tạo tài khoản" }).closest("form")!);
-    expect(screen.getByText("Vui lòng nhập tên phụ huynh.")).toBeInTheDocument();
+    expect(screen.getByText("Vui lòng nhập tên của bạn.")).toBeInTheDocument();
   });
 
   it("accepts Vietnamese Unicode names", () => {
     const onValidSubmit = vi.fn();
     renderForm(onValidSubmit);
-    fireEvent.change(screen.getByLabelText("Tên phụ huynh"), { target: { value: "Đặng Thùy Trang" } });
+    fireEvent.change(screen.getByLabelText("Tên của bạn"), { target: { value: "Đặng Thùy Trang" } });
     fireEvent.change(screen.getByLabelText("Địa chỉ email"), { target: { value: "parent@example.com" } });
     fireEvent.change(screen.getByLabelText("Mật khẩu"), { target: { value: "secret" } });
     fireEvent.submit(screen.getByRole("button", { name: "Tạo tài khoản" }).closest("form")!);
@@ -71,9 +71,9 @@ describe("RegisterForm", () => {
 
   it("keeps the entered parent name after validation failure", () => {
     renderForm();
-    fireEvent.change(screen.getByLabelText("Tên phụ huynh"), { target: { value: "Nguyễn An" } });
+    fireEvent.change(screen.getByLabelText("Tên của bạn"), { target: { value: "Nguyễn An" } });
     fireEvent.submit(screen.getByRole("button", { name: "Tạo tài khoản" }).closest("form")!);
-    expect(screen.getByLabelText("Tên phụ huynh")).toHaveValue("Nguyễn An");
+    expect(screen.getByLabelText("Tên của bạn")).toHaveValue("Nguyễn An");
   });
 
   it("preserves the password while toggling visibility", () => {
@@ -91,7 +91,7 @@ describe("RegisterForm", () => {
   it("submits through the semantic form when Enter submits", () => {
     const onValidSubmit = vi.fn();
     renderForm(onValidSubmit);
-    fireEvent.change(screen.getByLabelText("Tên phụ huynh"), { target: { value: "Parent" } });
+    fireEvent.change(screen.getByLabelText("Tên của bạn"), { target: { value: "Parent" } });
     fireEvent.change(screen.getByLabelText("Địa chỉ email"), { target: { value: "parent@example.com" } });
     fireEvent.change(screen.getByLabelText("Mật khẩu"), { target: { value: "secret" } });
     const form = screen.getByLabelText("Địa chỉ email").closest("form")!;
@@ -103,10 +103,10 @@ describe("RegisterForm", () => {
   it("associates inline errors with fields", () => {
     renderForm();
     fireEvent.submit(screen.getByRole("button", { name: "Tạo tài khoản" }).closest("form")!);
-    expect(screen.getByLabelText("Tên phụ huynh")).toHaveAttribute("aria-describedby", "register-name-error");
+    expect(screen.getByLabelText("Tên của bạn")).toHaveAttribute("aria-describedby", "register-name-error");
     expect(screen.getByLabelText("Địa chỉ email")).toHaveAttribute("aria-describedby", "register-email-error");
     expect(screen.getByLabelText("Mật khẩu")).toHaveAttribute("aria-describedby", "register-password-error");
-    expect(screen.getAllByRole("alert")[0]).toHaveTextContent("Vui lòng nhập tên phụ huynh.");
+    expect(screen.getAllByRole("alert")[0]).toHaveTextContent("Vui lòng nhập tên của bạn.");
     expect(screen.getAllByRole("alert")[1]).toHaveTextContent("Vui lòng nhập địa chỉ email.");
     expect(screen.getAllByRole("alert")[2]).toHaveTextContent("Vui lòng nhập mật khẩu.");
   });
@@ -115,7 +115,7 @@ describe("RegisterForm", () => {
     let resolveSubmit: (() => void) | undefined;
     const onValidSubmit = vi.fn(() => new Promise<void>((resolve) => { resolveSubmit = resolve; }));
     renderForm(onValidSubmit);
-    fireEvent.change(screen.getByLabelText("Tên phụ huynh"), { target: { value: "Parent" } });
+    fireEvent.change(screen.getByLabelText("Tên của bạn"), { target: { value: "Parent" } });
     fireEvent.change(screen.getByLabelText("Địa chỉ email"), { target: { value: "parent@example.com" } });
     fireEvent.change(screen.getByLabelText("Mật khẩu"), { target: { value: "secret" } });
     const form = screen.getByLabelText("Địa chỉ email").closest("form")!;

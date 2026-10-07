@@ -106,7 +106,7 @@ function ReturnToProbe() {
 
 function renderDetail(path = `/learning-sets/${learningSet.id}`, initialLearner: LearnerDto | null = learner) {
   return render(
-    <MemoryRouter initialEntries={[path]}>
+    <MemoryRouter initialEntries={[path]}><AccountRouteProbe />
       <ActiveLearnerProvider initialLearner={initialLearner}>
         <LocationProbe />
         <Routes>
@@ -128,7 +128,7 @@ describe("US-28/29 learning set UI", () => {
 
   it("loads the catalog", async () => {
     const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValue(response({ learningSets: [learningSet] }));
-    render(<MemoryRouter initialEntries={["/learning-sets"]}><Routes><Route path="/learning-sets" element={<LearningSetsPage />} /></Routes></MemoryRouter>);
+    render(<MemoryRouter initialEntries={["/learning-sets"]}><AccountRouteProbe /><Routes><Route path="/learning-sets" element={<LearningSetsPage />} /></Routes></MemoryRouter>);
     expect(await screen.findByTestId("learning-sets-list")).toHaveTextContent("Bộ từ khởi đầu VocabFlow");
     expect(fetchMock).toHaveBeenCalledWith("/api/learning-sets", { credentials: "include" });
   });
@@ -137,7 +137,7 @@ describe("US-28/29 learning set UI", () => {
     const fetchMock = vi.spyOn(globalThis, "fetch")
       .mockRejectedValueOnce(new Error("offline"))
       .mockResolvedValueOnce(response({ learningSets: [learningSet] }));
-    render(<MemoryRouter initialEntries={["/learning-sets"]}><Routes><Route path="/learning-sets" element={<LearningSetsPage />} /></Routes></MemoryRouter>);
+    render(<MemoryRouter initialEntries={["/learning-sets"]}><AccountRouteProbe /><Routes><Route path="/learning-sets" element={<LearningSetsPage />} /></Routes></MemoryRouter>);
 
     expect(await screen.findByTestId("learning-sets-error")).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "Thử lại" }));
@@ -194,7 +194,7 @@ describe("US-28/29 learning set UI", () => {
     mockDetail([vocabulary(1, "apple")], [learnerVocabulary(vocabulary(1, "apple"), "NEW")], false);
     renderDetail();
 
-    fireEvent.click(await screen.findByRole("link", { name: "Gán bộ từ cho người học" }));
+    fireEvent.click(await screen.findByRole("link", { name: "Thêm bộ từ vào học tập" }));
     expect(await screen.findByTestId("assignment-route")).toBeInTheDocument();
     expect(screen.getByTestId("current-url")).toHaveTextContent("/learning-sets/assign");
   });
@@ -232,9 +232,11 @@ describe("US-28/29 learning set UI", () => {
     expect(await screen.findByTestId("learning-set-detail-not-found")).toHaveTextContent("Bộ từ này hiện không khả dụng.");
   });
 
-  it("preserves the complete returnTo URL when a learner must be selected", async () => {
+  it("waits for internal identity at the original route without learner selection", async () => {
     renderDetail("/learning-sets/1?from=link", null);
-    expect(await screen.findByTestId("learner-return-to")).toHaveTextContent("/learning-sets/1?from=link");
+    expect(await screen.findByRole("status", { name: "Đang chuẩn bị học tập…" })).toBeInTheDocument();
+    expect(screen.getByTestId("account-route")).toHaveTextContent("/learning-sets/1?from=link");
+    expect(screen.queryByText("learners-route")).not.toBeInTheDocument();
   });
 
   it("shows current assignment and refreshes only the selected toggle after save", async () => {
@@ -244,17 +246,17 @@ describe("US-28/29 learning set UI", () => {
       .mockResolvedValueOnce(response({ learnerId: learner.id, learningSetId: 1, active: false }));
     render(
       <ActiveLearnerProvider initialLearner={learner}>
-        <MemoryRouter initialEntries={["/learning-sets/assign"]}>
+        <MemoryRouter initialEntries={["/learning-sets/assign"]}><AccountRouteProbe />
           <ToastProvider><Routes><Route path="/learning-sets/assign" element={<LearnerLearningSetsPage />} /></Routes></ToastProvider>
         </MemoryRouter>
       </ActiveLearnerProvider>
     );
     fireEvent.click(await screen.findByRole("button", { name: "Gán bộ từ" }));
     expect(await screen.findByRole("button", { name: "Đã gán" })).toBeInTheDocument();
-    expect(await screen.findByText("Đã thêm bộ từ cho người học")).toBeInTheDocument();
+    expect(await screen.findByText("Đã thêm bộ từ vào học tập")).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "Đã gán" }));
     expect(await screen.findByRole("button", { name: "Gán bộ từ" })).toBeInTheDocument();
-    expect(await screen.findByText("Đã gỡ bộ từ khỏi người học")).toBeInTheDocument();
+    expect(await screen.findByText("Đã gỡ bộ từ khỏi học tập")).toBeInTheDocument();
     await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(3));
     expect(fetchMock).toHaveBeenNthCalledWith(2, `/api/learners/${learner.id}/learning-sets/1`, { method: "PUT", credentials: "include" });
     expect(fetchMock).toHaveBeenNthCalledWith(3, `/api/learners/${learner.id}/learning-sets/1`, { method: "DELETE", credentials: "include" });
@@ -266,7 +268,7 @@ describe("US-28/29 learning set UI", () => {
       .mockResolvedValueOnce(response({ error: { code: "INTERNAL_ERROR" } }, 503));
     render(
       <ActiveLearnerProvider initialLearner={learner}>
-        <MemoryRouter initialEntries={["/learning-sets/assign"]}>
+        <MemoryRouter initialEntries={["/learning-sets/assign"]}><AccountRouteProbe />
           <ToastProvider><Routes><Route path="/learning-sets/assign" element={<LearnerLearningSetsPage />} /></Routes></ToastProvider>
         </MemoryRouter>
       </ActiveLearnerProvider>
@@ -285,7 +287,7 @@ describe("US-28/29 learning set UI", () => {
       .mockResolvedValueOnce(response({ learningSets: [{ learningSet, active: false }] }));
     render(
       <ActiveLearnerProvider initialLearner={learner}>
-        <MemoryRouter initialEntries={["/learning-sets/assign"]}>
+        <MemoryRouter initialEntries={["/learning-sets/assign"]}><AccountRouteProbe />
           <ToastProvider><Routes><Route path="/learning-sets/assign" element={<LearnerLearningSetsPage />} /></Routes></ToastProvider>
         </MemoryRouter>
       </ActiveLearnerProvider>
@@ -300,3 +302,5 @@ describe("US-28/29 learning set UI", () => {
     expect(fetchMock).toHaveBeenNthCalledWith(2, `/api/learners/${learner.id}/learning-sets`, { credentials: "include" });
   });
 });
+
+function AccountRouteProbe() { const route = useLocation(); return <output data-testid="account-route">{route.pathname}{route.search}</output>; }

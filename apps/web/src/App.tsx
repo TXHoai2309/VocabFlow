@@ -1,4 +1,4 @@
-import { Link, Navigate, Route, Routes, useLocation } from "react-router";
+import { Link, Navigate, Route, Routes } from "react-router";
 import { AppShell } from "./components/app-shell";
 import { ToastProvider } from "./components/toast/toast-provider";
 import { authClient } from "./features/auth/auth-client";
@@ -6,7 +6,7 @@ import { LoginPage } from "./features/auth/login-page";
 import { RegisterPage } from "./features/auth/register-page";
 import { ActiveLearnerProvider } from "./features/learners/learner-context-provider";
 import { useActiveLearner } from "./features/learners/learner-context-hook";
-import { LearnerPage } from "./features/learners/learner-page";
+import { AccountLearningState } from "./features/learners/account-learning-state";
 import { ProgressPage } from "./features/learners/progress-page";
 import { LearnerSettingsPage } from "./features/learners/learner-settings-page";
 import { VocabularyListPage } from "./features/learners/vocabulary-list-page";
@@ -33,7 +33,7 @@ function Shell({ children }: { children: React.ReactNode }) {
         </nav>
       </header>
       <main className="app-main">{children}</main>
-      <footer className="app-footer">Nền tảng học tập gia đình · Đợt 0</footer>
+      <footer className="app-footer">Nền tảng học từ vựng · Đợt 0</footer>
     </div>
   );
 }
@@ -63,17 +63,13 @@ function NotFound() {
 }
 
 function AuthenticatedAppShell({ parentName }: { parentName: string }) {
-  const { activeLearner } = useActiveLearner();
-  const location = useLocation();
-  if (!activeLearner && location.pathname !== "/learners") {
-    return <Navigate to="/learners" replace state={{ returnTo: `${location.pathname}${location.search}` }} />;
-  }
+  const { activeLearner, status } = useActiveLearner();
+  if (status !== "ready" || !activeLearner) return <AccountLearningState />;
   return <ToastProvider><AppShell parentName={parentName} /></ToastProvider>;
 }
 
 function AppShellRoute() {
   const sessionState = authClient.useSession();
-  const location = useLocation();
 
   if (sessionState.isPending) {
     return (
@@ -104,7 +100,7 @@ function AppShellRoute() {
 
   const parentName = typeof user.name === "string" ? user.name : "";
   return (
-    <ActiveLearnerProvider key={user.id} userId={user.id} validateStoredSelection={location.pathname !== "/learners"}>
+    <ActiveLearnerProvider key={user.id} userId={user.id} userName={parentName}>
       <AuthenticatedAppShell parentName={parentName} />
     </ActiveLearnerProvider>
   );
@@ -113,10 +109,10 @@ function AppShellRoute() {
 export function AppRoutes() {
   return (
     <Routes>
+      <Route path="/learners" element={<Navigate to="/" replace />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route element={<AppShellRoute />}>
-        <Route path="/learners" element={<LearnerPage />} />
         <Route path="/progress" element={<ProgressPage />} />
         <Route path="/learner-settings" element={<LearnerSettingsPage />} />
         <Route path="/vocabulary" element={<VocabularyListPage />} />

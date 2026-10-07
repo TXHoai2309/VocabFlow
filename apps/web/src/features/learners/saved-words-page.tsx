@@ -1,5 +1,6 @@
+import { AccountLearningState } from "./account-learning-state";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Link, Navigate, useLocation, useSearchParams } from "react-router";
+import { Link, useSearchParams } from "react-router";
 import type { LearnerDto, LearnerSavedVocabularyDto, VocabularyLevel } from "@vocabflow/contracts";
 import { useActiveLearner } from "./learner-context-hook";
 import { VocabularyCard } from "./vocabulary-card";
@@ -26,16 +27,15 @@ function savedErrorMessage(error: unknown) {
   if (error instanceof Error && "status" in error) {
     const status = (error as { status?: unknown }).status;
     if (status === 401) return "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại.";
-    if (status === 403) return "Không thể xem từ đã lưu của người học này.";
+    if (status === 403) return "Không thể xem từ đã lưu của bạn.";
   }
   return "Không thể tải từ đã lưu lúc này. Vui lòng thử lại.";
 }
 
 export function SavedWordsPage() {
   const { activeLearner } = useActiveLearner();
-  const location = useLocation();
   if (!activeLearner) {
-    return <Navigate to="/learners" replace state={{ returnTo: `${location.pathname}${location.search}` }} />;
+    return <AccountLearningState />;
   }
   return <SavedWordsExperience key={activeLearner.id} activeLearner={activeLearner} />;
 }

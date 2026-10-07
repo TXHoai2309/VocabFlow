@@ -76,7 +76,7 @@ export function RegisterForm({ onValidSubmit, submitDisabled = false }: Register
   return (
     <form className="register-form" noValidate onSubmit={handleSubmit} aria-busy={isSubmitting}>
       <div className="field-group">
-        <label className="form-label" htmlFor="register-name">Tên phụ huynh</label>
+        <label className="form-label" htmlFor="register-name">Tên của bạn</label>
         <input
           id="register-name"
           name="name"

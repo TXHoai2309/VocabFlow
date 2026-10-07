@@ -1,28 +1,34 @@
-# Family MVP Specification v1.0
+# VocabFlow Product Specification — Single-account learning
 
-## Learner management correction (2026-10-07)
+## Single-account learning baseline (2026-10-07)
 
-The owner-requested correction supersedes the historical completed/handoff UI.
-`/learners` is a persistent management and selection page: zero profiles show
-EmptyState plus creation; one or more profiles show their list plus creation.
-The active profile has a visible “Đang dùng” label and `aria-current="true"`.
-Canonical list responses refresh the persisted active DTO; multiple profiles
-alone do not clear a valid selection. The existing `vocabflow.activeLearner.v1`
-account-scoped storage remains intact.
+This owner-approved baseline supersedes the earlier learner-management flow and
+all historical create/select/switch instructions below.
 
-Selecting or creating a profile returns to a safe internal `returnTo` including
-its query only when that intent exists. Otherwise the user stays on `/learners`.
-A sole profile may become active on load, but returning requires explicit
-selection. Successful creation resets the form and shows the existing toast
-“Đã tạo hồ sơ người học”; no completed panel or extra navigation hub remains.
+- USER_MODEL: 1 authenticated account = 1 learning identity in the UX.
+- INTERNAL_MODEL: learner_profile, household/membership, learner_id foreign keys
+  and learner-scoped APIs remain for compatibility.
+- MULTI_LEARNER_LEGACY: all existing profiles and their progress, reviews,
+  saved words and settings remain intact; only one canonical ID is used in UI.
+- CANONICAL_RESOLUTION: valid same-user legacy stored ID present and enabled in
+  the canonical API list wins; otherwise earliest enabled createdAt, then ID.
+  Persist the canonical DTO under vocabflow.activeLearner.v1 scoped by userId.
+- FUTURE_MULTI_PROFILE: schema intentionally retained; no unique constraint,
+  migration, cleanup, delete, disable, merge or learner-data reassignment.
+- LOGOUT: supported through Better Auth signOut; clear internal storage only
+  on success, then replace navigation with /login. Failure preserves the app
+  and storage and displays “Không thể đăng xuất. Vui lòng thử lại.”
 
-Only a definitive `HOUSEHOLD_ACCESS_DENIED` learner read/create failure triggers
-the existing idempotent bootstrap, followed by one retry of that operation.
-Bootstrap or retry failure exits to normal read ErrorState/Retry or mutation
-error feedback. Ordinary network failures never bootstrap; uncertain creates
-still reconcile with GET before another explicit submit. Registration retains
-its existing bootstrap. No API, authorization, migration or database model
-changes are introduced.
+Signup creates the auth account, ensures household, and navigates to Home.
+Login navigates to Home. The authenticated provider resolves or provisions the
+internal learning identity before rendering the app. There is no profile form,
+selector, switching UI, management page or learner onboarding toast.
+
+An empty canonical list provisions once using trimmed valid user.name (1–80
+characters), otherwise the internal name “Người học”. HOUSEHOLD_ACCESS_DENIED
+on the initial GET alone triggers bootstrap once and GET retry once. Ordinary
+network failures do not bootstrap. Uncertain create reconciles with GET; no
+blind replay. A user retry starts with a fresh read before any further create.
 
 
 ## Toast & mutation feedback extension (Feature #16 / US-53)

@@ -87,7 +87,7 @@ test("US-22 opens vocabulary list and shows learner-scoped statuses", async ({ p
   await mockVocabularyPage(page);
   await page.goto("/learners");
 
-  await expect(page.getByRole("button", { name: /An/ })).toHaveAttribute("aria-current", "true");
+  await expect(page.locator(".app-layout")).toBeVisible();
   await page.getByRole("navigation", { name: "Điều hướng chính", exact: true }).getByRole("link", { name: "Từ vựng", exact: true }).click();
   await expect(page).toHaveURL(/\/vocabulary$/);
   await expect(page.getByRole("heading", { name: "Từ vựng của An" })).toBeVisible();
@@ -100,7 +100,7 @@ test("US-22 keeps the vocabulary list within a mobile viewport", async ({ page }
   await page.setViewportSize({ width: 375, height: 812 });
   await mockVocabularyPage(page);
   await page.goto("/learners");
-  await expect(page.getByRole("button", { name: /An/ })).toHaveAttribute("aria-current", "true");
+  await expect(page.locator(".app-layout")).toBeVisible();
   await page.getByRole("navigation", { name: "Điều hướng chính trên di động", exact: true }).getByRole("link", { name: "Từ vựng", exact: true }).click();
 
   await expect(page.getByTestId("vocabulary-list")).toBeVisible();

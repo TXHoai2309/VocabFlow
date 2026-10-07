@@ -1,3 +1,4 @@
+import { ToastProvider } from "../../components/toast/toast-provider";
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import { Route, Routes, MemoryRouter } from "react-router";
 import { describe, expect, it } from "vitest";
@@ -19,13 +20,13 @@ const learner: LearnerDto = {
 function renderShell(path: string) {
   return render(
     <MemoryRouter initialEntries={[path]}>
-      <ActiveLearnerProvider initialLearner={learner}>
+      <ToastProvider><ActiveLearnerProvider initialLearner={learner}>
         <Routes>
           <Route element={<AppShell parentName="Jordan Nguyen" />}>
             <Route path="*" element={<div />} />
           </Route>
         </Routes>
-      </ActiveLearnerProvider>
+      </ActiveLearnerProvider></ToastProvider>
     </MemoryRouter>
   );
 }

@@ -652,14 +652,15 @@ describe("US-09 flashcard session UX", () => {
     expect(fetchMock).toHaveBeenCalledTimes(2);
   });
 
-  it("shows a valid empty state and redirects without learner context", async () => {
+  it("shows a valid empty state and waits for internal identity without route bounce", async () => {
     vi.spyOn(globalThis, "fetch").mockResolvedValue(response(queueResponse([])));
     renderStudy();
     expect(await screen.findByTestId("study-empty-state")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Quay lại thiết lập" })).toHaveAttribute("href", "/study/setup");
 
     renderStudy(null);
-    await waitFor(() => expect(screen.getByText("learners-route")).toBeInTheDocument());
+    expect(await screen.findByRole("status", { name: "Đang chuẩn bị học tập…" })).toBeInTheDocument();
+    expect(screen.queryByText("learners-route")).not.toBeInTheDocument();
   });
 
   it("continues a topic session from only its vocabulary in the canonical queue", async () => {

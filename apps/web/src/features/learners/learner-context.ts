@@ -5,6 +5,9 @@ export type ActiveLearnerContextValue = {
   activeLearner: LearnerDto | null;
   setActiveLearner: (learner: LearnerDto) => void;
   clearActiveLearner: () => void;
+  status: "resolving" | "ready" | "error";
+  error: string | null;
+  retry: () => void;
 };
 
 export const ACTIVE_LEARNER_STORAGE_KEY = "vocabflow.activeLearner.v1";
