@@ -105,6 +105,10 @@ function mappedReconciliation(artifacts: ImportArtifacts, vocabularyDecision: Re
     set: { masterLearningSetId: SET_ID, decision: "MAP_EXISTING", appLearningSetId: 11, membershipPolicy: "MANAGE_LISTED_MASTER_ITEMS" },
   });
 }
+function expectMappingSummary(plan: ReturnType<typeof buildMasterVocabularyImportPlan>) {
+  expect(plan.summary.newMappings).toBe(plan.vocabulary.filter((row) => row.mappingAction === "CREATE_MAPPING").length);
+  expect(plan.summary.existingMappings).toBe(plan.vocabulary.filter((row) => row.mappingAction === "KEEP_MAPPING").length);
+}
 
 describe("Master V2 runtime import planner", () => {
   it("blocks the checked-in DRAFT pilot and counts its unresolved identities without a database", () => {
@@ -132,7 +136,10 @@ describe("Master V2 runtime import planner", () => {
     const artifacts = approvedArtifacts();
     const plan = buildMasterVocabularyImportPlan({ artifacts, reconciliation: reconciliation(artifacts) });
     expect(plan.eligibility.canApply).toBe(true);
-    expect(plan.vocabulary).toMatchObject([{ action: "CREATE", appVocabularyId: null, nextContentVersion: 1 }]);
+    expect(plan.vocabulary).toMatchObject([{ action: "CREATE", mappingAction: "CREATE_MAPPING", appVocabularyId: null, nextContentVersion: 1 }]);
+    expectMappingSummary(plan);
+    expect(plan.summary.newMappings).toBe(1);
+    expect(plan.summary.existingMappings).toBe(0);
     expect(plan.vocabulary[0]?.runtimeProjection).toMatchObject({ imageUrl: null, audioUrl: null });
     expect(plan.vocabulary[0]?.fieldOperations).toContainEqual(expect.objectContaining({ field: "imageUrl", action: "PRESERVE", before: null, masterRaw: null, after: null }));
     expect(plan.topics[0]).toMatchObject({ action: "CREATE", appId: null });
@@ -242,10 +249,25 @@ describe("Master V2 runtime import planner", () => {
     const snapshot = mappedSnapshot({ vocabularyMappings: [] });
     const plan = buildMasterVocabularyImportPlan({ artifacts, reconciliation: review, snapshot });
     expect(plan.vocabulary[0]).toMatchObject({ action: "NOOP", mappingAction: "CREATE_MAPPING", expectedContentVersion: 4, nextContentVersion: 4 });
+    expectMappingSummary(plan);
+    expect(plan.summary.newMappings).toBe(1);
+    expect(plan.summary.existingMappings).toBe(0);
     const mismatch = buildMasterVocabularyImportPlan({ artifacts, reconciliation: review, snapshot: mappedSnapshot({ vocabularyMappings: [], vocabularies: [runtimeVocabulary({ vietnamese: "khác" })] }) });
     expect(mismatch.issues.map((issue) => issue.code)).toContain("BASELINE_PROJECTION_MISMATCH");
     const missingPolicy = buildMasterVocabularyImportPlan({ artifacts, reconciliation: mappedReconciliation(artifacts), snapshot: mappedSnapshot({ vocabularyMappings: [] }) });
     expect(missingPolicy.issues.map((issue) => issue.code)).toContain("FIRST_ADOPTION_POLICY_REQUIRED");
+  });
+
+  it("counts a first MAP_EXISTING UPDATE_TO_MASTER as a new mapping", () => {
+    const artifacts = approvedArtifacts({ records: [record(SENSE_A, { ...PROJECTION_A, vietnamese: "ngân hàng đã chuẩn hóa" })], withMemberships: false });
+    const review = mappedReconciliation(artifacts, {
+      masterSenseId: SENSE_A, decision: "MAP_EXISTING", appVocabularyId: 123, firstAdoptionPolicy: "UPDATE_TO_MASTER",
+    });
+    const plan = buildMasterVocabularyImportPlan({ artifacts, reconciliation: review, snapshot: mappedSnapshot({ vocabularyMappings: [] }) });
+    expect(plan.vocabulary[0]).toMatchObject({ action: "UPDATE", mappingAction: "CREATE_MAPPING" });
+    expectMappingSummary(plan);
+    expect(plan.summary.newMappings).toBe(1);
+    expect(plan.summary.existingMappings).toBe(0);
   });
 
   it("updates changed projections with exactly one derived contentVersion increment", () => {
@@ -253,6 +275,9 @@ describe("Master V2 runtime import planner", () => {
     const runtime = runtimeVocabulary({ imageUrl: "https://legacy.example/image.webp", audioUrl: "https://legacy.example/audio.mp3" });
     const plan = buildMasterVocabularyImportPlan({ artifacts, reconciliation: mappedReconciliation(artifacts), snapshot: mappedSnapshot({ vocabularies: [runtime] }) });
     expect(plan.vocabulary[0]).toMatchObject({ action: "UPDATE", expectedContentVersion: 4, nextContentVersion: 5 });
+    expectMappingSummary(plan);
+    expect(plan.summary.newMappings).toBe(0);
+    expect(plan.summary.existingMappings).toBe(1);
     expect(plan.vocabulary[0]?.runtimeProjection).toMatchObject({ imageUrl: runtime.imageUrl, audioUrl: runtime.audioUrl });
     expect(plan.summary.contentVersionIncrements).toBe(1);
   });
@@ -487,7 +512,10 @@ describe("Master V2 runtime import planner", () => {
     };
 
     const initialPlan = buildMasterVocabularyImportPlan({ artifacts, reconciliation: review, snapshot, targetEnvironment: "test" });
-    expect(initialPlan.vocabulary[0]).toMatchObject({ action: "CREATE", appVocabularyId: null, nextContentVersion: 1 });
+    expect(initialPlan.vocabulary[0]).toMatchObject({ action: "CREATE", mappingAction: "CREATE_MAPPING", appVocabularyId: null, nextContentVersion: 1 });
+    expectMappingSummary(initialPlan);
+    expect(initialPlan.summary.newMappings).toBe(1);
+    expect(initialPlan.summary.existingMappings).toBe(0);
     const first = await applyMasterVocabularyImport({
       store, artifacts, reconciliation: review,
       target: { environment: "test", branchId: "synthetic-branch" },
@@ -503,6 +531,9 @@ describe("Master V2 runtime import planner", () => {
     const stableMappings = structuredClone(snapshot.vocabularyMappings);
     const replayPlan = buildMasterVocabularyImportPlan({ artifacts, reconciliation: review, snapshot, targetEnvironment: "test" });
     expect(replayPlan.vocabulary[0]).toMatchObject({ action: "NOOP", mappingAction: "KEEP_MAPPING", appVocabularyId: 456, nextContentVersion: 1 });
+    expectMappingSummary(replayPlan);
+    expect(replayPlan.summary.newMappings).toBe(0);
+    expect(replayPlan.summary.existingMappings).toBe(1);
     const replay = await applyMasterVocabularyImport({
       store, artifacts, reconciliation: review,
       target: { environment: "test", branchId: "synthetic-branch" },

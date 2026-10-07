@@ -157,6 +157,10 @@ describe("Phase 2G.2B owner-approved Hybrid-100 dry-run", () => {
     expect(plan.vocabulary.filter((row) => row.action === "CREATE")).toHaveLength(97);
     expect(plan.vocabulary.filter((row) => row.action === "UPDATE")).toHaveLength(3);
     expect(plan.vocabulary.filter((row) => ["NOOP", "SKIP", "CONFLICT", "BLOCKED"].includes(row.action))).toHaveLength(0);
+    expect(plan.vocabulary.filter((row) => row.mappingAction === "CREATE_MAPPING")).toHaveLength(100);
+    expect(plan.vocabulary.filter((row) => row.mappingAction === "KEEP_MAPPING")).toHaveLength(0);
+    expect(plan.summary.newMappings).toBe(100);
+    expect(plan.summary.existingMappings).toBe(0);
     expect(plan.eligibility).toMatchObject({ reconciliationComplete: true, canApply: true });
   });
 
