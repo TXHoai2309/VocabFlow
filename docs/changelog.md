@@ -2,6 +2,18 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-07 — Phase 2G.3B legacy reference decomposition / retirement planning
+
+Added a read-only, fail-closed Development planning audit for all 2018 legacy
+rows, preserving the accepted 2G.3A.1 semantic fingerprint and owner exclusions.
+New artifacts include exact overlaps, semantic cross-tabs, product relationship
+enumeration, migration readiness and S0–S3 offline scenarios. The progress/review
+intersection is 75 rows; product-only planning covers 1943 rows, all still
+carrying source identity obligations. Current DELETE_SAFE remains zero.
+Corrected inconsistent runtime-code coverage lookup keys without changing
+historical counts. Updated 2G.3A.1 publication wording to record commit bc421ab,
+push and owner-confirmed successful Vercel Preview; Production is untouched.
+
 ## 2026-10-07 — Phase 2G.3A.1 legacy semantic exclusion closure
 
 Legacy candidate analysis now respects finalized owner CREATE_NEW decisions

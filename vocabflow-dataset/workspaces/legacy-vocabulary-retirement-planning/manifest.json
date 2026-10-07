@@ -1,0 +1,50 @@
+{
+  "artifactType": "DEVELOPMENT_LEGACY_REFERENCE_RETIREMENT_PLANNING",
+  "artifactVersion": 1,
+  "phase": "2G.3B",
+  "planningOnly": true,
+  "fingerprint": "04feaa380fa441633ef8a4c84b8d0e5a5aee48d03a7a5ff020866c789eb8cdd1",
+  "legacyRetirementPlanningFingerprint": "04feaa380fa441633ef8a4c84b8d0e5a5aee48d03a7a5ff020866c789eb8cdd1",
+  "authorization": {
+    "cleanup": false,
+    "delete": false,
+    "disable": false,
+    "merge": false,
+    "mappingWrites": false,
+    "relationshipMigration": false,
+    "masterExpansion": false
+  },
+  "sourceBaseline": "bc421abf51ddeb0e0213b5f3b7364c11f57c008a",
+  "acceptedSemanticFingerprint": "5115d7021d7a66466fe87ded8ae49f24ceb399edf1e1c9981b990f3443acdfea",
+  "databaseTransaction": {
+    "isolation": "REPEATABLE_READ",
+    "readOnly": true
+  },
+  "fingerprintEvidenceHashes": {
+    "snapshot": "9f4bd183efcf1bb5229d4c1e6fa282c9cb3a9dc478565c6d6299c8d40fe62f0f",
+    "rows": "3314129d046489845c490e2d4d01d7e757777ca5932b75af368bb5de6ac65edd",
+    "planning": "21ea3448c64145c182290dea680854f19a75a7c846f8548318de61aa88c50bdc",
+    "scenarios": "669c2fb27ede115299e584ba29f71aa0f069c956e924b100d4f343cfb790b5d9",
+    "catalog": "221dfd8ecbdd24725cff20d4b7a0ce6ecb26c3d1758181b0d49da8e89159641d",
+    "overlapMatrix": "f2f5b018cc8b59583672c7851a3844b36e1b65e13ab6299cee8fa7e0051c0bf8",
+    "semanticCrossTab": "e56c54b9257cbd3e072b40b6d364871956d581bf9011d190cad325295b3cd88e",
+    "readiness": "d3dcc616e63de1003991b9e6b96d10bf4def59d9e44c510a299041b032937348",
+    "summary": "02127256b965642c2abda7aef5a10309b13c2e690f672459514394997a046154",
+    "authorization": "90c4211c23b22aca34aa446340966a066a2c87d3a0980aedd20d584e0486569e"
+  },
+  "files": [
+    "development-target.json",
+    "read-only-snapshot.json",
+    "reference-domain-inventory.json",
+    "legacy-reference-decomposition.json",
+    "retirement-groups.json",
+    "retirement-planning.json",
+    "hypothetical-retirement-scenarios.json",
+    "reference-overlap-matrix.json",
+    "semantic-reference-cross-tab.json",
+    "relationship-migration-readiness.json",
+    "validation-summary.json",
+    "manifest.json",
+    "../../reports/development-legacy-vocabulary-retirement-planning.md"
+  ]
+}

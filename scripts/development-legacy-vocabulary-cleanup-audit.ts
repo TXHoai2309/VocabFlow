@@ -230,7 +230,7 @@ function localizableTexts(value: unknown, language?: string): string[] {
   });
 }
 
-function readApprovedMasterCorpus(root = ROOT): { candidates: MasterCandidate[]; hybridSenseIds: Set<string>; sources: JsonObject[] } {
+export function readApprovedMasterCorpus(root = ROOT): { candidates: MasterCandidate[]; hybridSenseIds: Set<string>; sources: JsonObject[] } {
   const releaseSpecs = [
     { relative: HYBRID_RELEASE_RELATIVE, expectedVersion: "2.2.1", expectedHash: EXPECTED_HYBRID_RELEASE_HASH, hybrid: true },
     { relative: CANARY_RELEASE_RELATIVE, expectedVersion: "2.1.0", expectedHash: undefined, hybrid: false }
@@ -613,6 +613,10 @@ function filesUnder(directory: string, suffix: string): string[] {
   }).sort();
 }
 
+export function directTablesWithoutRuntimeCode(tables: string[], evidenceByTable: Record<string, string[]>): string[] {
+  return tables.filter((table) => (evidenceByTable[table] ?? []).length === 0).sort();
+}
+
 function deriveRepositoryCrossCheck(root: string, databaseForeignKeys: ReferenceDescriptor[]): JsonObject {
   const schemaPath = path.join(root, "apps/api/src/db/schema.ts");
   const schemaSource = readFileSync(schemaPath, "utf8");
@@ -639,7 +643,7 @@ function deriveRepositoryCrossCheck(root: string, databaseForeignKeys: Reference
   const dbDirectTables = new Set(databaseForeignKeys.filter((fk) => fk.foreignKeys.some((foreignKey) => foreignKey.referencedColumn === "id")).map((fk) => fk.table));
   const schemaMatches = [...dbDirectTables].every((table) => schemaDirectTables.includes(table));
   const migrationMatches = [...dbDirectTables].every((table) => migrationDirectTables.has(table));
-  const referenceTablesWithoutRuntimeCode = [...dbDirectTables].filter((table) => (runtimeCodeEvidence[`vocabflow_app.${table}`] ?? []).length === 0);
+  const referenceTablesWithoutRuntimeCode = directTablesWithoutRuntimeCode([...dbDirectTables], runtimeCodeEvidence);
   return {
     drizzleSchema: { file: "apps/api/src/db/schema.ts", directVocabularyForeignKeyTables: [...new Set(schemaDirectTables)].sort(), databaseForeignKeyTablesCovered: schemaMatches },
     migrations: { directory: "drizzle/migrations", directVocabularyForeignKeyTables: [...migrationDirectTables].sort(), evidence: migrationEvidence.sort(), databaseForeignKeyTablesCovered: migrationMatches },
@@ -654,7 +658,7 @@ async function queryJson<T extends Record<string, unknown>>(tx: ReturnType<typeo
   return await tx.unsafe<T[]>(sqlText, params as never[] | undefined) as T[];
 }
 
-async function captureDatabaseSnapshot(tx: ReturnType<typeof postgres>, target: ReturnType<typeof getTarget>, masterSource: ReturnType<typeof readApprovedMasterCorpus>): Promise<AuditSnapshot> {
+export async function captureDatabaseSnapshot(tx: ReturnType<typeof postgres>, target: ReturnType<typeof getTarget>, masterSource: ReturnType<typeof readApprovedMasterCorpus>): Promise<AuditSnapshot> {
   const transactionModeSql = "SET TRANSACTION ISOLATION LEVEL REPEATABLE READ READ ONLY";
   assertReadOnlySql(transactionModeSql);
   await tx.unsafe(transactionModeSql);
@@ -1035,7 +1039,7 @@ function writeArtifacts(snapshot: AuditSnapshot, result: JsonObject): string[] {
   return [...[...files.keys()].map((file) => `${WORKSPACE}/${file}`), REPORT];
 }
 
-function loadLocalDevelopmentEnvironment(): void {
+export function loadLocalDevelopmentEnvironment(): void {
   if (!process.env.DATABASE_URL) {
     const envCandidates = [path.resolve(ROOT, "..", "VocabFlow", ".env"), path.resolve(ROOT, "..", ".env")];
     const envFile = envCandidates.find(existsSync);

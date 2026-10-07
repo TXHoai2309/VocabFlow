@@ -1,5 +1,45 @@
 # Current Handoff Snapshot
 
+## 2026-10-07 — Phase 2G.3B legacy reference decomposition / retirement planning
+
+- Verified `origin/TXH` and local HEAD exactly match
+  `bc421abf51ddeb0e0213b5f3b7364c11f57c008a` before implementation and again
+  before the Development scan. Provider identity and database identity verified
+  Development / shy-hill-72364426 / br-square-grass-b3af0nte / neondb /
+  vocabflow_runtime; the transaction was REPEATABLE READ, READ ONLY.
+- Fresh read-only evidence matches the accepted 2126-row inventory byte-for-byte
+  at canonical JSON content level: 108 Master-managed, 2018 legacy, zero mapping
+  anomalies. Legacy totals remain 84 progress, 221 reviews, 0 saved words,
+  2026 topic memberships, 279 set items, zero Master/unknown references.
+- Exact progress/review intersection: 75 rows; progress-only and review-only:
+  zero. All 75 history rows have topic and set links. Topic-only: 1777;
+  topic+set: 241; set-only: zero. A=75, B=1943, C1=2005, C2=13, D=1943.
+  C2 retains eleven owner-excluded rows, #295 duplicate review and #849 ambiguity.
+- S0: no zero-reference legacy rows. S1: removing only product links offline
+  leaves 1943 zero-reference rows and 305 history references on 75 rows. S2
+  additionally assumes future approved disposition, but resolves no source or
+  preservation obligation. S3 disable-only still yields zero hypothetical
+  delete candidates; its fully conditioned branch assumes source resolution,
+  approved disposition, separate disable and cleared preservation policy,
+  yielding E=1943 as a theoretical ceiling only. Current DELETE_SAFE remains 0.
+- All 1943 no-history rows have source identity obligations; 1989 total legacy
+  rows do. #11 retains 1 progress / 5 reviews; #284 booking remains mapped;
+  Hybrid checkpoint remains 100/100. No learner history or relationship moves.
+- Corrected the runtime-code cross-check's unqualified/qualified key mismatch
+  and added a regression. The new workspace includes sanitized decomposition,
+  product relationship enumeration, overlap matrix, semantic cross-tab, schema
+  constraints/readiness, S0–S3 scenarios and deterministic replay evidence.
+  Accepted 2G.3A/2G.3A.1 artifacts and fingerprint remain unchanged.
+- LEGACY_RETIREMENT_PLANNING_FINGERPRINT:
+  `04feaa380fa441633ef8a4c84b8d0e5a5aee48d03a7a5ff020866c789eb8cdd1`.
+  [Report](../vocabflow-dataset/reports/development-legacy-vocabulary-retirement-planning.md).
+- Validation: 79/79 focused tests, root typecheck, focused lint and offline
+  artifact replay pass. All seven authorization flags remain NO. No database
+  writes, cleanup, mapping creation, relationship migration or Master expansion;
+  Production was never connected, queried, mutated or deployed.
+- Commit/push to `origin/TXH` is explicitly authorized for this phase. No merge,
+  rebase, force push, or deletion phase is part of this work.
+
 ## 2026-10-07 — Phase 2G.3A.1 owner-reviewed semantic exclusion closure
 
 - Implemented on the verified `origin/TXH` baseline
@@ -18,8 +58,11 @@
   candidate claims and exclusions. Corrected fingerprint:
   `5115d7021d7a66466fe87ded8ae49f24ceb399edf1e1c9981b990f3443acdfea`.
   Offline replay command: `pnpm audit:legacy-semantic-exclusion-closure --check`.
-- No database connection, mutation, cleanup, mapping creation, commit, push or
-  deployment. See the [corrected audit report](../vocabflow-dataset/reports/development-legacy-vocabulary-cleanup-audit.md).
+- The implementation made no database connection, mutation, cleanup, mapping
+  creation or Production deployment operation. The closure was subsequently
+  committed as `bc421abf51ddeb0e0213b5f3b7364c11f57c008a` and pushed to
+  `origin/TXH`; Vercel Preview succeeded (owner-confirmed). Production remains
+  untouched. See the [corrected audit report](../vocabflow-dataset/reports/development-legacy-vocabulary-cleanup-audit.md).
 - Verification: final focused regression PASS (48/48), root TypeScript PASS,
   focused ESLint PASS, repeated offline `--check` PASS, `git diff --check` PASS.
   Broader owner-package suites: 93/94 pass; the historical Phase 2G.2A assertion

@@ -1,5 +1,51 @@
 # US-45 — Master Vocabulary V2 Runtime Import Bridge
 
+## Phase 2G.3B — Legacy reference decomposition / retirement planning
+
+**Status:** implementation complete; read-only planning and automated checks
+pass. Owner review will use the published remote commit.
+
+Owner authorization covers Development read-only analysis and commit/push on
+the exact `origin/TXH` baseline `bc421abf51ddeb0e0213b5f3b7364c11f57c008a`.
+Database catalog discovery, runtime-role identity and REPEATABLE READ / READ
+ONLY are verified. Fresh evidence reproduces 2126 total, 108 Master-managed,
+2018 legacy, zero mapping anomalies; Hybrid remains 100/100. #11 preserves
+1 progress / 5 reviews; #284 booking and all accepted owner exclusions remain
+unchanged. No Production connection or query occurred.
+
+Every legacy row has sanitized reference decomposition and enumerated topic
+IDs / learning-set IDs with sort order. Exact overlaps show the same 75 rows
+have both progress and reviews; topic-only=1777, topic+set=241, set-only=0.
+Groups overlap: A=75, B=1943, C1=2005, C2=13, D=1943. Semantic cross-tab:
+NO_MASTER has 73 history / 1932 product-only rows; owner exclusions have 1 / 10;
+#295 is history-protected duplicate review and #849 is product-only ambiguous.
+
+S1 models removal only of topic/set references: 1943 zero-reference rows,
+75 history-protected rows, 305 remaining history references. S2 assumes approved
+future disposition but not source resolution. S3 disable-only cannot satisfy
+source/preservation prerequisites. Group E=1943 is only S3's explicit
+all-prerequisites-assumed upper bound; current DELETE_SAFE remains 0 and no
+delete is recommended. All 1943 no-history rows still have real source identity
+obligations. Planned disposition paths are 2005 Master coverage, 11 owner
+content retirement and 2 successor review; these are requirements, not approvals.
+
+Readiness records real catalog constraints and runtime usage for topic/set
+relationships, existing Master ownership infrastructure, successor identity,
+duplicate-key, ordering and assigned-set review gates. No executable migration
+SQL is generated. The runtime-code coverage helper now looks up the same
+unqualified table keys it stores; its regression passes without rewriting old
+reference counts or accepted audit evidence.
+
+New planning fingerprint:
+`04feaa380fa441633ef8a4c84b8d0e5a5aee48d03a7a5ff020866c789eb8cdd1`.
+Acceptance evidence: 79/79 focused tests, root typecheck, focused ESLint,
+deterministic offline replay. All seven authorization flags are NO. Vocabulary,
+learner history, mappings, product/Master relationships and Production remain
+untouched. Commit and non-force push are owner-authorized; no cleanup follows.
+
+Evidence: [planning report](../../vocabflow-dataset/reports/development-legacy-vocabulary-retirement-planning.md),
+[planning workspace](../../vocabflow-dataset/workspaces/legacy-vocabulary-retirement-planning/manifest.json).
+
 ## Phase 2G.3A.1 — Owner-reviewed legacy semantic exclusion closure
 
 **Status:** implementation complete; offline semantic closure. Existing
@@ -31,7 +77,10 @@ Validation: 48/48 focused tests, root typecheck, focused lint, deterministic
 offline replay and diff whitespace checks pass. Broader owner-package suites
 pass 93/94; one historical assertion expects no UI changes since the older
 Phase 2G.1C baseline, but b8f2ef7 already contains later UI commits. No UI file
-was changed by this closure. No commit, push or deployment occurred.
+was changed by this closure. The implementation performed no database or
+Production deployment operation. The closure was later committed as
+`bc421abf51ddeb0e0213b5f3b7364c11f57c008a` and pushed to `origin/TXH`;
+Vercel Preview succeeded (owner-confirmed). Production remains untouched.
 
 ## Phase 2G.2D — Hybrid-100 Development runtime closure
 

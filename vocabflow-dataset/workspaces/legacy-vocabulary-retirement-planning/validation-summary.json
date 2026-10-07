@@ -1,0 +1,161 @@
+{
+  "status": "PASS",
+  "sourceBaseline": "bc421abf51ddeb0e0213b5f3b7364c11f57c008a",
+  "acceptedSemanticFingerprint": "5115d7021d7a66466fe87ded8ae49f24ceb399edf1e1c9981b990f3443acdfea",
+  "partitions": {
+    "total": 2126,
+    "masterManaged": 108,
+    "legacyUnmapped": 2018,
+    "mappingAnomaly": 0
+  },
+  "referenceTotals": {
+    "learnerProgress": 84,
+    "reviewEvents": 221,
+    "savedVocabulary": 0,
+    "topicMemberships": 2026,
+    "learningSetItems": 279,
+    "masterTopics": 0,
+    "masterLearningSets": 0,
+    "masterMappings": 0,
+    "other": 0
+  },
+  "legacyRows": 2018,
+  "semanticDistribution": {
+    "EXISTING_MASTER_RUNTIME_DUPLICATE": 1,
+    "MULTIPLE_MASTER_CANDIDATES": 1,
+    "NO_MASTER_CANDIDATE": 2005,
+    "OWNER_REVIEWED_NOT_SAME_IDENTITY": 11
+  },
+  "referenceDomainTotals": {
+    "LEARNER_HISTORY": 305,
+    "PRODUCT_RELATIONSHIP": 2305,
+    "MASTER_RELATIONSHIP": 0,
+    "MASTER_MAPPING": 0,
+    "OTHER_OR_UNKNOWN": 0
+  },
+  "sourceIdentityObligationRows": 1989,
+  "enabledLegacyRows": 241,
+  "currentlyRetireSafe": 0,
+  "deleteRecommendations": 0,
+  "groupsOverlap": true,
+  "groups": {
+    "A_LEARNER_HISTORY_PROTECTED": 75,
+    "B_PRODUCT_RELATIONSHIP_ONLY": 1943,
+    "C1_MASTER_COVERAGE_REQUIRED": 2005,
+    "C2_EXISTING_MASTER_IDENTITY_REVIEW": 13,
+    "D_RETIREMENT_AFTER_RELATIONSHIP_MIGRATION_PLANNING": 1943,
+    "E_HYPOTHETICAL_POST_MIGRATION_DELETE_CANDIDATE": 1943
+  },
+  "hypotheticalPostMigrationDeleteCandidates": 1943,
+  "currentDeleteSafeCandidate": 0,
+  "referenceOverlaps": {
+    "learnerProgressOnlyAmongHistory": 0,
+    "reviewEventsOnlyAmongHistory": 0,
+    "learnerProgressAndReviewEvents": 75,
+    "savedVocabulary": 0,
+    "learnerHistoryAndTopic": 75,
+    "learnerHistoryAndLearningSet": 75,
+    "topicWithoutLearningSet": 1777,
+    "learningSetWithoutTopic": 0,
+    "topicOnlyAllDomains": 1777,
+    "learningSetOnlyAllDomains": 0,
+    "topicAndLearningSet": 241,
+    "masterRelationship": 0,
+    "otherOrUnknown": 0
+  },
+  "semanticReferenceCrossTab": [
+    {
+      "relation": "NO_MASTER_CANDIDATE",
+      "totalRows": 2005,
+      "learnerHistoryRows": 73,
+      "productOnlyRows": 1932,
+      "masterReferenceRows": 0,
+      "otherReferenceRows": 0,
+      "sourceIdentityObligationRows": 1977
+    },
+    {
+      "relation": "OWNER_REVIEWED_NOT_SAME_IDENTITY",
+      "totalRows": 11,
+      "learnerHistoryRows": 1,
+      "productOnlyRows": 10,
+      "masterReferenceRows": 0,
+      "otherReferenceRows": 0,
+      "sourceIdentityObligationRows": 10
+    },
+    {
+      "relation": "EXISTING_MASTER_RUNTIME_DUPLICATE",
+      "totalRows": 1,
+      "learnerHistoryRows": 1,
+      "productOnlyRows": 0,
+      "masterReferenceRows": 0,
+      "otherReferenceRows": 0,
+      "sourceIdentityObligationRows": 1
+    },
+    {
+      "relation": "MULTIPLE_MASTER_CANDIDATES",
+      "totalRows": 1,
+      "learnerHistoryRows": 0,
+      "productOnlyRows": 1,
+      "masterReferenceRows": 0,
+      "otherReferenceRows": 0,
+      "sourceIdentityObligationRows": 1
+    }
+  ],
+  "scenarioResults": {
+    "S0": {
+      "zeroReference": 0,
+      "hypotheticalCandidates": 0
+    },
+    "S1": {
+      "zeroReference": 1943,
+      "historyProtected": 75,
+      "masterBlocked": 0,
+      "otherBlocked": 0,
+      "remainingReferences": 305,
+      "hypotheticalCandidates": 0
+    },
+    "S2": {
+      "zeroReference": 1943,
+      "dispositionCounts": {
+        "MASTER_SUCCESSOR_REQUIRES_APPROVAL": {
+          "totalRows": 2,
+          "zeroReferenceRows": 1,
+          "hypotheticalCandidates": 0
+        },
+        "MASTER_COVERAGE_REQUIRED": {
+          "totalRows": 2005,
+          "zeroReferenceRows": 1932,
+          "hypotheticalCandidates": 0
+        },
+        "CONTENT_RETIREMENT_REQUIRES_OWNER_APPROVAL": {
+          "totalRows": 11,
+          "zeroReferenceRows": 10,
+          "hypotheticalCandidates": 0
+        }
+      },
+      "hypotheticalCandidates": 0
+    },
+    "S3": {
+      "disableOnlyCandidates": 0,
+      "allPrerequisitesAssumedCandidates": 1943
+    }
+  },
+  "runtime11History": {
+    "progress": 1,
+    "reviews": 5
+  },
+  "runtime284BookingMapping": "UNCHANGED_FROM_ACCEPTED_INVENTORY",
+  "databaseWrites": "NONE",
+  "production": "NOT_CONNECTED / NOT_QUERIED / NOT_MUTATED",
+  "authorization": {
+    "cleanup": false,
+    "delete": false,
+    "disable": false,
+    "merge": false,
+    "mappingWrites": false,
+    "relationshipMigration": false,
+    "masterExpansion": false
+  },
+  "fingerprint": "04feaa380fa441633ef8a4c84b8d0e5a5aee48d03a7a5ff020866c789eb8cdd1",
+  "legacyRetirementPlanningFingerprint": "04feaa380fa441633ef8a4c84b8d0e5a5aee48d03a7a5ff020866c789eb8cdd1"
+}

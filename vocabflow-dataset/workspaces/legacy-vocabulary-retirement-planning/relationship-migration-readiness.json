@@ -1,0 +1,404 @@
+{
+  "phase": "2G.3B",
+  "planningOnly": true,
+  "fingerprint": "04feaa380fa441633ef8a4c84b8d0e5a5aee48d03a7a5ff020866c789eb8cdd1",
+  "legacyRetirementPlanningFingerprint": "04feaa380fa441633ef8a4c84b8d0e5a5aee48d03a7a5ff020866c789eb8cdd1",
+  "authorization": {
+    "cleanup": false,
+    "delete": false,
+    "disable": false,
+    "merge": false,
+    "mappingWrites": false,
+    "relationshipMigration": false,
+    "masterExpansion": false
+  },
+  "analysisOnly": true,
+  "executableMigrationSqlCreated": false,
+  "databaseConstraints": [
+    {
+      "table": "learning_set_items",
+      "name": "learning_set_items_learning_set_id_learning_sets_id_fk",
+      "type": "f",
+      "definition": "FOREIGN KEY (learning_set_id) REFERENCES vocabflow_app.learning_sets(id) ON DELETE CASCADE"
+    },
+    {
+      "table": "learning_set_items",
+      "name": "learning_set_items_learning_set_id_not_null",
+      "type": "n",
+      "definition": "NOT NULL learning_set_id"
+    },
+    {
+      "table": "learning_set_items",
+      "name": "learning_set_items_set_vocabulary_pk",
+      "type": "p",
+      "definition": "PRIMARY KEY (learning_set_id, vocabulary_id)"
+    },
+    {
+      "table": "learning_set_items",
+      "name": "learning_set_items_sort_order_check",
+      "type": "c",
+      "definition": "CHECK ((sort_order >= 0))"
+    },
+    {
+      "table": "learning_set_items",
+      "name": "learning_set_items_sort_order_not_null",
+      "type": "n",
+      "definition": "NOT NULL sort_order"
+    },
+    {
+      "table": "learning_set_items",
+      "name": "learning_set_items_vocabulary_id_not_null",
+      "type": "n",
+      "definition": "NOT NULL vocabulary_id"
+    },
+    {
+      "table": "learning_set_items",
+      "name": "learning_set_items_vocabulary_id_vocabularies_id_fk",
+      "type": "f",
+      "definition": "FOREIGN KEY (vocabulary_id) REFERENCES vocabflow_app.vocabularies(id)"
+    },
+    {
+      "table": "master_learning_set_memberships",
+      "name": "master_learning_set_members_master_learning_set_item_i_not_null",
+      "type": "n",
+      "definition": "NOT NULL master_learning_set_item_id"
+    },
+    {
+      "table": "master_learning_set_memberships",
+      "name": "master_learning_set_memberships_last_release_hash_not_null",
+      "type": "n",
+      "definition": "NOT NULL last_release_hash"
+    },
+    {
+      "table": "master_learning_set_memberships",
+      "name": "master_learning_set_memberships_learning_set_id_not_null",
+      "type": "n",
+      "definition": "NOT NULL learning_set_id"
+    },
+    {
+      "table": "master_learning_set_memberships",
+      "name": "master_learning_set_memberships_master_learning_set_id_not_null",
+      "type": "n",
+      "definition": "NOT NULL master_learning_set_id"
+    },
+    {
+      "table": "master_learning_set_memberships",
+      "name": "master_learning_set_memberships_master_sense_id_not_null",
+      "type": "n",
+      "definition": "NOT NULL master_sense_id"
+    },
+    {
+      "table": "master_learning_set_memberships",
+      "name": "master_learning_set_memberships_pk",
+      "type": "p",
+      "definition": "PRIMARY KEY (master_learning_set_item_id)"
+    },
+    {
+      "table": "master_learning_set_memberships",
+      "name": "master_learning_set_memberships_release_hash_check",
+      "type": "c",
+      "definition": "CHECK ((last_release_hash ~ '^[0-9a-f]{64}$'::text))"
+    },
+    {
+      "table": "master_learning_set_memberships",
+      "name": "master_learning_set_memberships_runtime_link_fk",
+      "type": "f",
+      "definition": "FOREIGN KEY (learning_set_id, vocabulary_id) REFERENCES vocabflow_app.learning_set_items(learning_set_id, vocabulary_id)"
+    },
+    {
+      "table": "master_learning_set_memberships",
+      "name": "master_learning_set_memberships_sense_fk",
+      "type": "f",
+      "definition": "FOREIGN KEY (master_sense_id) REFERENCES vocabflow_app.master_vocabulary_mappings(master_sense_id)"
+    },
+    {
+      "table": "master_learning_set_memberships",
+      "name": "master_learning_set_memberships_sense_vocabulary_fk",
+      "type": "f",
+      "definition": "FOREIGN KEY (master_sense_id, vocabulary_id) REFERENCES vocabflow_app.master_vocabulary_mappings(master_sense_id, vocabulary_id)"
+    },
+    {
+      "table": "master_learning_set_memberships",
+      "name": "master_learning_set_memberships_set_fk",
+      "type": "f",
+      "definition": "FOREIGN KEY (master_learning_set_id) REFERENCES vocabflow_app.master_learning_set_mappings(master_learning_set_id)"
+    },
+    {
+      "table": "master_learning_set_memberships",
+      "name": "master_learning_set_memberships_set_runtime_fk",
+      "type": "f",
+      "definition": "FOREIGN KEY (master_learning_set_id, learning_set_id) REFERENCES vocabflow_app.master_learning_set_mappings(master_learning_set_id, learning_set_id)"
+    },
+    {
+      "table": "master_learning_set_memberships",
+      "name": "master_learning_set_memberships_set_sense_unique",
+      "type": "u",
+      "definition": "UNIQUE (master_learning_set_id, master_sense_id)"
+    },
+    {
+      "table": "master_learning_set_memberships",
+      "name": "master_learning_set_memberships_sort_order_check",
+      "type": "c",
+      "definition": "CHECK ((sort_order >= 0))"
+    },
+    {
+      "table": "master_learning_set_memberships",
+      "name": "master_learning_set_memberships_sort_order_not_null",
+      "type": "n",
+      "definition": "NOT NULL sort_order"
+    },
+    {
+      "table": "master_learning_set_memberships",
+      "name": "master_learning_set_memberships_updated_at_not_null",
+      "type": "n",
+      "definition": "NOT NULL updated_at"
+    },
+    {
+      "table": "master_learning_set_memberships",
+      "name": "master_learning_set_memberships_vocabulary_id_not_null",
+      "type": "n",
+      "definition": "NOT NULL vocabulary_id"
+    },
+    {
+      "table": "master_vocabulary_topic_memberships",
+      "name": "master_vocabulary_topic_memberships_app_pair_unique",
+      "type": "u",
+      "definition": "UNIQUE (vocabulary_id, topic_id)"
+    },
+    {
+      "table": "master_vocabulary_topic_memberships",
+      "name": "master_vocabulary_topic_memberships_created_at_not_null",
+      "type": "n",
+      "definition": "NOT NULL created_at"
+    },
+    {
+      "table": "master_vocabulary_topic_memberships",
+      "name": "master_vocabulary_topic_memberships_last_release_hash_not_null",
+      "type": "n",
+      "definition": "NOT NULL last_release_hash"
+    },
+    {
+      "table": "master_vocabulary_topic_memberships",
+      "name": "master_vocabulary_topic_memberships_master_sense_id_not_null",
+      "type": "n",
+      "definition": "NOT NULL master_sense_id"
+    },
+    {
+      "table": "master_vocabulary_topic_memberships",
+      "name": "master_vocabulary_topic_memberships_master_topic_id_not_null",
+      "type": "n",
+      "definition": "NOT NULL master_topic_id"
+    },
+    {
+      "table": "master_vocabulary_topic_memberships",
+      "name": "master_vocabulary_topic_memberships_pk",
+      "type": "p",
+      "definition": "PRIMARY KEY (master_sense_id, master_topic_id)"
+    },
+    {
+      "table": "master_vocabulary_topic_memberships",
+      "name": "master_vocabulary_topic_memberships_release_hash_check",
+      "type": "c",
+      "definition": "CHECK ((last_release_hash ~ '^[0-9a-f]{64}$'::text))"
+    },
+    {
+      "table": "master_vocabulary_topic_memberships",
+      "name": "master_vocabulary_topic_memberships_runtime_link_fk",
+      "type": "f",
+      "definition": "FOREIGN KEY (vocabulary_id, topic_id) REFERENCES vocabflow_app.vocabulary_topics(vocabulary_id, topic_id)"
+    },
+    {
+      "table": "master_vocabulary_topic_memberships",
+      "name": "master_vocabulary_topic_memberships_sense_fk",
+      "type": "f",
+      "definition": "FOREIGN KEY (master_sense_id) REFERENCES vocabflow_app.master_vocabulary_mappings(master_sense_id)"
+    },
+    {
+      "table": "master_vocabulary_topic_memberships",
+      "name": "master_vocabulary_topic_memberships_sense_vocabulary_fk",
+      "type": "f",
+      "definition": "FOREIGN KEY (master_sense_id, vocabulary_id) REFERENCES vocabflow_app.master_vocabulary_mappings(master_sense_id, vocabulary_id)"
+    },
+    {
+      "table": "master_vocabulary_topic_memberships",
+      "name": "master_vocabulary_topic_memberships_topic_fk",
+      "type": "f",
+      "definition": "FOREIGN KEY (master_topic_id) REFERENCES vocabflow_app.master_topic_mappings(master_topic_id)"
+    },
+    {
+      "table": "master_vocabulary_topic_memberships",
+      "name": "master_vocabulary_topic_memberships_topic_id_not_null",
+      "type": "n",
+      "definition": "NOT NULL topic_id"
+    },
+    {
+      "table": "master_vocabulary_topic_memberships",
+      "name": "master_vocabulary_topic_memberships_topic_runtime_fk",
+      "type": "f",
+      "definition": "FOREIGN KEY (master_topic_id, topic_id) REFERENCES vocabflow_app.master_topic_mappings(master_topic_id, topic_id)"
+    },
+    {
+      "table": "master_vocabulary_topic_memberships",
+      "name": "master_vocabulary_topic_memberships_vocabulary_id_not_null",
+      "type": "n",
+      "definition": "NOT NULL vocabulary_id"
+    },
+    {
+      "table": "vocabulary_topics",
+      "name": "vocabulary_topics_topic_id_not_null",
+      "type": "n",
+      "definition": "NOT NULL topic_id"
+    },
+    {
+      "table": "vocabulary_topics",
+      "name": "vocabulary_topics_topic_id_topics_id_fk",
+      "type": "f",
+      "definition": "FOREIGN KEY (topic_id) REFERENCES vocabflow_app.topics(id) ON DELETE CASCADE"
+    },
+    {
+      "table": "vocabulary_topics",
+      "name": "vocabulary_topics_vocabulary_id_not_null",
+      "type": "n",
+      "definition": "NOT NULL vocabulary_id"
+    },
+    {
+      "table": "vocabulary_topics",
+      "name": "vocabulary_topics_vocabulary_id_vocabularies_id_fk",
+      "type": "f",
+      "definition": "FOREIGN KEY (vocabulary_id) REFERENCES vocabflow_app.vocabularies(id) ON DELETE CASCADE"
+    },
+    {
+      "table": "vocabulary_topics",
+      "name": "vocabulary_topics_vocabulary_topic_pk",
+      "type": "p",
+      "definition": "PRIMARY KEY (vocabulary_id, topic_id)"
+    }
+  ],
+  "relationships": [
+    {
+      "table": "vocabflow_app.vocabulary_topics",
+      "key": [
+        "vocabulary_id",
+        "topic_id"
+      ],
+      "payload": [],
+      "vocabularyFkDeleteAction": "CASCADE",
+      "topicFkDeleteAction": "CASCADE",
+      "masterInfrastructure": "vocabflow_app.master_vocabulary_topic_memberships",
+      "masterKey": [
+        "master_sense_id",
+        "master_topic_id"
+      ],
+      "masterRuntimePair": [
+        "vocabulary_id",
+        "topic_id"
+      ],
+      "runtimeUsage": [
+        "topic browse",
+        "topic progress",
+        "continue learning",
+        "global search"
+      ],
+      "runtimeEvidence": [
+        "apps/api/src/continue-learning.ts",
+        "apps/api/src/db/schema.ts",
+        "apps/api/src/global-search.ts",
+        "apps/api/src/topic-progress.ts",
+        "apps/api/src/topics.ts"
+      ],
+      "cautions": [
+        "Cascade is a storage constraint, not retirement approval",
+        "Master membership ownership has composite runtime-link FKs with NO ACTION"
+      ],
+      "schemaEvidence": "apps/api/src/db/schema.ts",
+      "toolingEvidence": "scripts/master-vocabulary-v2-import-store.ts",
+      "equivalentMasterInfrastructureExists": true,
+      "successorRuntimeVocabularyIdRequiredForMigration": true,
+      "successorRuntimeVocabularyIdRequiredForApprovedRelationshipRemoval": false,
+      "currentlyDeterministic": false,
+      "deterministicOnlyAfter": [
+        "Owner approves precise vocabulary disposition and successor identity",
+        "Successor is materialized under separate approval",
+        "Topic/set identity is approved and mapping exists if Master ownership is required",
+        "Resolve duplicate keys, sort order and enabled-set assignment impact",
+        "Approve relationship migration/removal separately"
+      ],
+      "ownerContentDecisionsRequired": true,
+      "authorization": {
+        "cleanup": false,
+        "delete": false,
+        "disable": false,
+        "merge": false,
+        "mappingWrites": false,
+        "relationshipMigration": false,
+        "masterExpansion": false
+      }
+    },
+    {
+      "table": "vocabflow_app.learning_set_items",
+      "key": [
+        "learning_set_id",
+        "vocabulary_id"
+      ],
+      "payload": [
+        "sort_order"
+      ],
+      "vocabularyFkDeleteAction": "NO ACTION",
+      "learningSetFkDeleteAction": "CASCADE",
+      "masterInfrastructure": "vocabflow_app.master_learning_set_memberships",
+      "masterKey": [
+        "master_learning_set_item_id"
+      ],
+      "masterRuntimePair": [
+        "learning_set_id",
+        "vocabulary_id"
+      ],
+      "runtimeUsage": [
+        "active assigned-set study eligibility",
+        "review queue",
+        "weak words",
+        "progress",
+        "continue learning",
+        "global search"
+      ],
+      "runtimeEvidence": [
+        "apps/api/src/continue-learning.ts",
+        "apps/api/src/db/schema.ts",
+        "apps/api/src/global-search.ts",
+        "apps/api/src/learning-sets.ts",
+        "apps/api/src/progress-summary.ts",
+        "apps/api/src/review-queue.ts",
+        "apps/api/src/topic-progress.ts",
+        "apps/api/src/weak-words.ts"
+      ],
+      "cautions": [
+        "Preserve set membership and sort_order",
+        "Successor collisions require an explicit order/deduplication policy",
+        "Master ownership has composite runtime-link FKs with NO ACTION"
+      ],
+      "schemaEvidence": "apps/api/src/db/schema.ts",
+      "toolingEvidence": "scripts/master-vocabulary-v2-import-store.ts",
+      "equivalentMasterInfrastructureExists": true,
+      "successorRuntimeVocabularyIdRequiredForMigration": true,
+      "successorRuntimeVocabularyIdRequiredForApprovedRelationshipRemoval": false,
+      "currentlyDeterministic": false,
+      "deterministicOnlyAfter": [
+        "Owner approves precise vocabulary disposition and successor identity",
+        "Successor is materialized under separate approval",
+        "Topic/set identity is approved and mapping exists if Master ownership is required",
+        "Resolve duplicate keys, sort order and enabled-set assignment impact",
+        "Approve relationship migration/removal separately"
+      ],
+      "ownerContentDecisionsRequired": true,
+      "authorization": {
+        "cleanup": false,
+        "delete": false,
+        "disable": false,
+        "merge": false,
+        "mappingWrites": false,
+        "relationshipMigration": false,
+        "masterExpansion": false
+      }
+    }
+  ]
+}
