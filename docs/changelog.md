@@ -25,6 +25,13 @@ bounded missing-household recovery, uncertain-create reconciliation, stable
 protected routes, account-oriented copy and desktop/mobile logout. Legacy
 /learners redirects home. Tests cover the new flow; no backend/schema change.
 
+## 2026-10-07 — Reset auth state across logout
+
+LoginPage now handles credentials and redirects only. Household bootstrap and
+recovery run through authenticated account-learning resolution. Successful
+logout clears scoped learning storage and replaces the document with /login,
+forcing a fresh Better Auth session check; failures preserve the current app.
+
 ## 2026-10-07 — Phase 2H.1 full source inventory / normalization / dedupe
 
 Initially generated on da4aa11ed9d41623f41e8a6da591d0cbb71bc567;

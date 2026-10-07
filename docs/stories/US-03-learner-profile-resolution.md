@@ -22,8 +22,10 @@ all historical create/select/switch instructions below.
 - FUTURE_MULTI_PROFILE: schema intentionally retained; no unique constraint,
   migration, cleanup, delete, disable, merge or learner-data reassignment.
 - LOGOUT: supported through Better Auth signOut; clear internal storage only
-  on success, then replace navigation with /login. Failure preserves the app
-  and storage and displays “Không thể đăng xuất. Vui lòng thử lại.”
+  on success, then hard-replace the document with /login for a fresh session
+  check. Failure preserves the app and storage and displays
+  “Không thể đăng xuất. Vui lòng thử lại.” LoginPage does not bootstrap; the
+  authenticated provider owns household and learner recovery.
 
 The owner explicitly reprioritized this story to automatic internal identity
 resolution. Status: IMPLEMENTED / READY FOR OWNER CHECK for this replacement;

@@ -5,8 +5,9 @@ import type { LearnerDto } from "@vocabflow/contracts";
 import { AppRoutes } from "./App";
 import { ACTIVE_LEARNER_STORAGE_KEY } from "./features/learners/learner-context";
 import { LearnerClientError } from "./features/learners/learner-client";
-const { useSession, requestLearners, createLearner, signOut, requestBootstrap } = vi.hoisted(() => ({ useSession: vi.fn(), requestLearners: vi.fn(), createLearner: vi.fn(), signOut: vi.fn(), requestBootstrap: vi.fn() }));
+const { useSession, requestLearners, createLearner, signOut, requestBootstrap, replacePage } = vi.hoisted(() => ({ useSession: vi.fn(), requestLearners: vi.fn(), createLearner: vi.fn(), signOut: vi.fn(), requestBootstrap: vi.fn(), replacePage: vi.fn() }));
 vi.mock("./features/auth/auth-client", () => ({ authClient: { useSession, signOut } }));
+vi.mock("./features/auth/auth-navigation", () => ({ replacePage }));
 vi.mock("./features/auth/bootstrap-client", () => ({ requestBootstrap }));
 vi.mock("./features/learners/learner-client", async () => ({ ...await vi.importActual<typeof import("./features/learners/learner-client")>("./features/learners/learner-client"), requestLearners, createLearner }));
 const learner: LearnerDto = { id: "00000000-0000-4000-8000-000000000021", householdId: "00000000-0000-4000-8000-000000000001", displayName: "Avery Nguyen", avatarKey: null, enabled: true, createdAt: "2026-09-10T00:00:00.000Z", updatedAt: "2026-09-10T00:00:00.000Z" };
@@ -24,6 +25,7 @@ beforeEach(() => {
   window.localStorage.clear();
   useSession.mockReset().mockReturnValue({ data: { user: { id: "account-a", name: "Jordan Nguyen" } }, isPending: false, error: null, refetch: vi.fn() });
   requestLearners.mockReset().mockResolvedValue([learner]); createLearner.mockReset().mockResolvedValue(learner); requestBootstrap.mockReset().mockResolvedValue({});
+  replacePage.mockReset();
   signOut.mockReset().mockImplementation(async () => { useSession.mockReturnValue({ data: null, isPending: false, error: null, refetch: vi.fn() }); return { data: { success: true }, error: null }; });
   vi.spyOn(globalThis, "fetch").mockImplementation(async () => new Response(JSON.stringify({ error: { code: "INTERNAL_ERROR" } }), { status: 503, headers: { "Content-Type": "application/json" } }));
 });
@@ -72,19 +74,21 @@ describe("single-account routing and navigation", () => {
     fireEvent.keyDown(document, { key: "Escape" }); expect(menu.queryByRole("menu")).not.toBeInTheDocument();
     openMenu(placement); fireEvent.click(menu.getByRole("menuitem", { name: "Cài đặt" })); await waitFor(() => expect(screen.getByTestId("location")).toHaveTextContent("/learner-settings"));
   });
-  it("logout calls Better Auth once, clears storage and replaces history", async () => {
+  it("logout calls Better Auth once, clears storage and replaces the document with login", async () => {
+    const removeItem = vi.spyOn(Storage.prototype, "removeItem");
     mount("/", ["/foundation", "/"]); await readyShell(); fireEvent.click(openMenu().getByRole("menuitem", { name: "Đăng xuất" }));
-    expect(await screen.findByRole("heading", { name: "Đăng nhập" })).toBeInTheDocument(); expect(signOut).toHaveBeenCalledTimes(1); expect(window.localStorage.getItem(ACTIVE_LEARNER_STORAGE_KEY)).toBeNull();
-    fireEvent.click(screen.getByRole("button", { name: "Back" })); expect(await screen.findByRole("heading", { name: "Trang nền tảng đang hoạt động." })).toBeInTheDocument();
+    await waitFor(() => expect(replacePage).toHaveBeenCalledExactlyOnceWith("/login")); expect(signOut).toHaveBeenCalledTimes(1); expect(window.localStorage.getItem(ACTIVE_LEARNER_STORAGE_KEY)).toBeNull();
+    expect(removeItem).toHaveBeenCalledWith(ACTIVE_LEARNER_STORAGE_KEY);
+    expect(removeItem.mock.invocationCallOrder[0]).toBeLessThan(replacePage.mock.invocationCallOrder[0]);
   });
   it.each(["returned", "thrown"])("keeps session and storage on %s logout failure", async (kind) => {
     if (kind === "returned") signOut.mockResolvedValue({ error: { code: "INTERNAL_ERROR" } }); else signOut.mockRejectedValue(new Error("offline"));
     mount(); await readyShell(); fireEvent.click(openMenu().getByRole("menuitem", { name: "Đăng xuất" }));
-    expect(await screen.findByTestId("toast-error")).toHaveTextContent("Không thể đăng xuất. Vui lòng thử lại."); expect(screen.getByTestId("location")).toHaveTextContent("/"); expect(window.localStorage.getItem(ACTIVE_LEARNER_STORAGE_KEY)).not.toBeNull(); expect(document.querySelector(".app-layout")).toBeInTheDocument();
+    expect(await screen.findByTestId("toast-error")).toHaveTextContent("Không thể đăng xuất. Vui lòng thử lại."); expect(replacePage).not.toHaveBeenCalled(); expect(screen.getByTestId("location")).toHaveTextContent("/"); expect(window.localStorage.getItem(ACTIVE_LEARNER_STORAGE_KEY)).not.toBeNull(); expect(document.querySelector(".app-layout")).toBeInTheDocument();
   });
   it("locks rapid logout clicks across both account menus", async () => {
     let resolveLogout: ((value: { error: null }) => void) | undefined; signOut.mockImplementation(() => new Promise((resolve) => { resolveLogout = resolve; })); mount(); await readyShell();
     const button = openMenu().getByRole("menuitem", { name: "Đăng xuất" }); fireEvent.click(button); fireEvent.click(button); const mobile = openMenu("mobile"); expect(mobile.getByRole("menuitem", { name: "Đang đăng xuất…" })).toBeDisabled(); expect(signOut).toHaveBeenCalledTimes(1);
-    useSession.mockReturnValue({ data: null, isPending: false }); resolveLogout?.({ error: null }); expect(await screen.findByRole("heading", { name: "Đăng nhập" })).toBeInTheDocument();
+    resolveLogout?.({ error: null }); await waitFor(() => expect(replacePage).toHaveBeenCalledWith("/login")); expect(window.localStorage.getItem(ACTIVE_LEARNER_STORAGE_KEY)).toBeNull();
   });
 });

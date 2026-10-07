@@ -1,5 +1,27 @@
 # Current Handoff Snapshot
 
+## 2026-10-07 — Auth logout/login session boundary
+
+Root cause: LoginPage performed bootstrap both after sign-in and when it saw an
+existing session, duplicating provider-owned household/learner provisioning.
+Removed LoginPage bootstrap/recovery states. Authenticated `/login` and valid
+sign-in now replace-route directly to Home. Successful logout clears the
+account-scoped active identity and calls `window.location.replace('/login')`;
+failed sign-out keeps UI/storage and shows the existing safe toast. This forces
+LoginPage to start with a fresh Better Auth session cache.
+
+Validation: 333 web tests across 29 files PASS; focused auth/App/provider run
+57 tests PASS and the final Login/App rerun passed 36 tests. Chromium auth,
+registration, account-resolution and logout: 10/10 PASS. Typecheck, changed-file
+ESLint and build PASS; `git diff --check` PASS. Build warnings: Node 22.19 vs
+22.23.2, >500kB JS chunk, ineffective API dynamic import.
+
+Dataset work was preserved in stash `temp-before-auth-logout-session-fix`
+(59c6655f4aa0924cd7b9a8fd6215c61bb852b135). The incoming `origin/TXH` commit
+changed the same dirty report/mapping paths, so the exact stash remains
+recoverable and was not reapplied over newer Dataset outputs. No
+migration/schema/API changes, main merge or production deploy.
+
 ## Single-account learning baseline (2026-10-07)
 
 This owner-approved baseline supersedes the earlier learner-management flow and
@@ -62,6 +84,19 @@ results follow in the verification subsection below.
   account after identity changes/logout.
 - Build warnings remain Node 22.19.0 vs 22.23.2, >500kB chunk, and ineffective
   API dynamic import; build and client secret/source-map checks succeed.
+
+### Auth session reset verification
+
+- Login tests cover enabled unauthenticated form, no provisioning recovery copy,
+  authenticated-session redirect, direct sign-in redirect, and retryable safe
+  credential/network errors. In both authenticated cases requestBootstrap is
+  never called. Registration still bootstraps.
+- Logout unit tests assert one signOut, persistence removal then hard page
+  replacement, failure without replacement/storage clearing, and double-click
+  lock. Chromium E2E observes a new session check after logout navigation.
+- The current remote TXH Dataset update overlaps all four local dirty tracked
+  Dataset files. Those four and three untracked user artifacts remain preserved
+  in the exact new stash; none are staged or included in this fix.
 
 ## 2026-10-07 — Phase 2H.1 full source inventory / normalization / dedupe
 

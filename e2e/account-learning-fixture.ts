@@ -5,13 +5,13 @@ export function profile(id = "00000000-0000-4000-8000-000000000010", displayName
   return { id, householdId, displayName, avatarKey: null, enabled: true, createdAt, updatedAt: createdAt };
 }
 export async function mockAccount(page: Page, rows: LearnerDto[] = [profile()], authenticated = true, missingHousehold = false) {
-  const state = { authenticated, rows, creates: 0, reads: 0, bootstraps: 0, signIns: 0, signUps: 0, signOuts: 0, logoutFails: false, userName: "Nguyễn An", scopedRequests: [] as string[] };
+  const state = { authenticated, rows, creates: 0, reads: 0, bootstraps: 0, sessionReads: 0, signIns: 0, signUps: 0, signOuts: 0, logoutFails: false, userName: "Nguyễn An", scopedRequests: [] as string[] };
   await page.route("**/api/**", async (route) => {
     const path = new URL(route.request().url()).pathname;
     state.scopedRequests.push(path);
     await route.fulfill({ status: 503, contentType: "application/json", body: JSON.stringify({ error: { code: "INTERNAL_ERROR" } }) });
   });
-  await page.route("**/api/auth/get-session", async (route) => route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(state.authenticated ? { session: { id: "session-1", userId: "account-a" }, user: { id: "account-a", name: state.userName, email: "account@example.com" } } : null) }));
+  await page.route("**/api/auth/get-session", async (route) => { state.sessionReads += 1; await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(state.authenticated ? { session: { id: "session-1", userId: "account-a" }, user: { id: "account-a", name: state.userName, email: "account@example.com" } } : null) }); });
   for (const action of ["sign-in", "sign-up"]) {
     await page.route("**/api/auth/" + action + "/email", async (route) => {
       state.authenticated = true;

@@ -3,6 +3,7 @@ import { Link, Outlet, useLocation, useNavigate } from "react-router";
 import type { GlobalSearchResult } from "@vocabflow/contracts";
 import { useActiveLearner } from "../features/learners/learner-context-hook";
 import { authClient } from "../features/auth/auth-client";
+import { replacePage } from "../features/auth/auth-navigation";
 import { useToast } from "./toast/toast-context";
 import { GlobalSearchPalette } from "../features/search/global-search-palette";
 import { addRecentSearch, persistRecentSearches, readRecentSearches } from "../features/search/recent-searches";
@@ -189,7 +190,7 @@ export function AppShell({ parentName }: { parentName: string }) {
       const result = await authClient.signOut();
       if (result.error) throw new Error("SIGN_OUT_FAILED");
       clearActiveLearner();
-      navigate("/login", { replace: true });
+      replacePage("/login");
     } catch {
       toast.error("Không thể đăng xuất. Vui lòng thử lại.");
     } finally {
