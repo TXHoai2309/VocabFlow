@@ -766,6 +766,10 @@ export function buildMasterVocabularyImportPlan(input: {
       && reconciliation.plannerSnapshotFingerprint !== input.expectedPlannerSnapshotFingerprint) {
     addIssue(issues, "RECONCILIATION_PLANNER_SNAPSHOT_MISMATCH", "RECONCILIATION");
   }
+  if (input.expectedPlannerSnapshotFingerprint !== undefined
+      && snapshotFingerprint !== input.expectedPlannerSnapshotFingerprint) {
+    addIssue(issues, "PLANNER_SNAPSHOT_FINGERPRINT_MISMATCH", "RUNTIME_SNAPSHOT");
+  }
   if (input.targetIdentity !== undefined && !same(reconciliation.target, input.targetIdentity)) {
     addIssue(issues, "RECONCILIATION_TARGET_MISMATCH", "RECONCILIATION");
   }

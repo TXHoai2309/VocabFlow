@@ -1,0 +1,40 @@
+{
+  "ownerAuthorizationSnapshotFingerprint": "89bfe022122209e0d11031d4f970a9029fd92186bce46ddfca77b95870a51f8e",
+  "firstReadOnlySnapshotFingerprint": "89bfe022122209e0d11031d4f970a9029fd92186bce46ddfca77b95870a51f8e",
+  "secondReadOnlySnapshotFingerprint": "89bfe022122209e0d11031d4f970a9029fd92186bce46ddfca77b95870a51f8e",
+  "plannerSnapshotFingerprint": "4e98667da86b87cce4a966bf46b80d587630c6e80f3f3b3a82ebe34d531788f1",
+  "snapshotStale": false,
+  "target": {
+    "environment": "development",
+    "provider": "neon",
+    "projectId": "shy-hill-72364426",
+    "branchId": "br-square-grass-b3af0nte",
+    "databaseName": "neondb",
+    "pooled": true,
+    "usage": "development",
+    "identityVersion": 1,
+    "purpose": "runtime",
+    "roleName": "vocabflow_runtime"
+  },
+  "migration": {
+    "current": true,
+    "localMigrationCount": 19,
+    "appliedCount": 19,
+    "latestAppliedTag": "0018_panoramic_spirit",
+    "hashMismatchCount": 0,
+    "missingJournalRowCount": 0,
+    "bridgeReady": true,
+    "missingBridgeTables": 0,
+    "missingBridgeColumns": 0,
+    "missingBridgeConstraints": 0,
+    "missingWriteGuards": 0
+  },
+  "databaseConnection": "READ_ONLY_DEVELOPMENT",
+  "runtimeInspectionTransactions": [
+    "SET TRANSACTION ISOLATION LEVEL REPEATABLE READ, READ ONLY"
+  ],
+  "databaseWrites": "NONE",
+  "runtimeIdsAllocated": 0,
+  "bridgeMappingsCreated": 0,
+  "learnerIdentitiesQueried": false
+}

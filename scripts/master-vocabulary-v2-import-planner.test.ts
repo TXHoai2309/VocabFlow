@@ -174,6 +174,32 @@ describe("Master V2 runtime import planner", () => {
     expect(rejected.issues.map((issue) => issue.code)).toContain("RECONCILIATION_OWNERSHIP_INVALID");
   });
 
+  it("blocks when the live repeatable-read planner snapshot differs from the approved planner pin", () => {
+    const artifacts = approvedArtifacts();
+    const review = reconciliation(artifacts);
+    const baseline = buildMasterVocabularyImportPlan({ artifacts, reconciliation: review });
+    review.plannerSnapshotFingerprint = baseline.snapshotFingerprint;
+    const changedSnapshot = {
+      ...emptySnapshot(),
+      vocabularies: [{
+        id: 999, word: "changed", ipa: null, vietnamese: "đã đổi", vietnameseOverride: null,
+        definitionEn: null, exampleEn: null, imageUrl: null, imageQuarantined: false,
+        audioUrl: null, topic: null, level: null, enabled: true, contentVersion: 1,
+      }],
+    };
+
+    const plan = buildMasterVocabularyImportPlan({
+      artifacts, reconciliation: review, snapshot: changedSnapshot, targetEnvironment: "development",
+      expectedSnapshotFingerprint: review.snapshotFingerprint,
+      expectedPlannerSnapshotFingerprint: baseline.snapshotFingerprint,
+      targetIdentity: review.target,
+      mode: "DRY_RUN",
+    });
+
+    expect(plan.eligibility.canApply).toBe(false);
+    expect(plan.issues.map((issue) => issue.code)).toContain("PLANNER_SNAPSHOT_FINGERPRINT_MISMATCH");
+  });
+
   it.each([
     ["DRAFT", "IMPORT_ARTIFACT_NOT_ELIGIBLE"],
     ["IN_REVIEW", "IMPORT_ARTIFACT_NOT_ELIGIBLE"],

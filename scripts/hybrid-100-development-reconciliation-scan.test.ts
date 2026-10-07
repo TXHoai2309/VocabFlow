@@ -150,6 +150,13 @@ describe("Phase 2G.1C Hybrid-100 Development candidate scan", () => {
   it("pins repeatable-read read-only mode and does not accept apply flags", () => {
     expect(HYBRID_100_READ_ONLY_TRANSACTION).toBe("SET TRANSACTION ISOLATION LEVEL REPEATABLE READ, READ ONLY");
     expect(parseHybrid100ScannerArgs(["--env-file", ".env"]).envFile).toBe(".env");
+    expect(parseHybrid100ScannerArgs([
+      "--env-file", ".env", "--output-root", "temp/scan", "--report", "temp/scan/report.md",
+    ])).toMatchObject({
+      envFile: ".env",
+      outputRoot: path.resolve("temp/scan"),
+      reportPath: path.resolve("temp/scan/report.md"),
+    });
     expect(() => parseHybrid100ScannerArgs(["--apply"])).toThrow("SCANNER_ARGUMENT_INVALID");
   });
 

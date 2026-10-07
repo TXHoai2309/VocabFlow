@@ -794,8 +794,8 @@ function writeJsonArtifact(filePath: string, value: unknown): void {
   writeFileSync(filePath, `${JSON.stringify(secureArtifactString(value), null, 2)}\n`, "utf8");
 }
 
-function writeReport(report: string, repositoryRoot: string): void {
-  const filePath = path.join(repositoryRoot, REPORT_RELATIVE_PATH);
+function writeReport(report: string, outputRoot: string, reportPath?: string): void {
+  const filePath = reportPath ? path.resolve(reportPath) : path.join(outputRoot, REPORT_RELATIVE_PATH);
   const marker = `<!-- generatedBy: ${GENERATED_BY} -->`;
   if (existsSync(filePath) && !readFileSync(filePath, "utf8").includes(marker)) fail("SCAN_REFUSING_TO_OVERWRITE_NON_GENERATED_REPORT");
   mkdirSync(path.dirname(filePath), { recursive: true });
@@ -1204,8 +1204,8 @@ function readJournal(root: string): JournalEntry[] {
   return journal.entries.map((entry, idx) => ({ idx, when: entry.when, tag: entry.tag }));
 }
 
-function safeWriteBlockedReport(repositoryRoot: string, target: ReturnType<typeof getConnectionTarget>, source: ReturnType<typeof verifyHybrid100SourceRelease>, migration: Awaited<ReturnType<typeof inspectMigrationState>>, blockedReason: string) {
-  const workspace = path.join(repositoryRoot, WORKSPACE_RELATIVE_ROOT);
+function safeWriteBlockedReport(repositoryRoot: string, target: ReturnType<typeof getConnectionTarget>, source: ReturnType<typeof verifyHybrid100SourceRelease>, migration: Awaited<ReturnType<typeof inspectMigrationState>>, blockedReason: string, outputRoot = repositoryRoot, reportPath?: string) {
+  const workspace = path.join(outputRoot, WORKSPACE_RELATIVE_ROOT);
   const generatedAt = new Date().toISOString();
   writeJsonArtifact(path.join(workspace, "manifest.json"), {
     artifactType: "HYBRID_100_DEVELOPMENT_RUNTIME_RECONCILIATION_BLOCKED",
@@ -1241,24 +1241,38 @@ function safeWriteBlockedReport(repositoryRoot: string, target: ReturnType<typeo
     migrationsExecuted: "NONE",
     productionConnection: "NONE",
   });
-  writeReport(renderReport({ target, migrationReady: false, history: migration.history as unknown as JsonObject, bridge: migration.bridgeSchema as unknown as JsonObject, projection: source as unknown as JsonObject, blockedReason }), repositoryRoot);
+  writeReport(renderReport({ target, migrationReady: false, history: migration.history as unknown as JsonObject, bridge: migration.bridgeSchema as unknown as JsonObject, projection: source as unknown as JsonObject, blockedReason }), outputRoot, reportPath);
   return { status: "BLOCKED", migrationReady: false, blockedReason, report: REPORT_RELATIVE_PATH };
 }
 
-export function parseHybrid100ScannerArgs(args: readonly string[]): { envFile?: string } {
+export function parseHybrid100ScannerArgs(args: readonly string[]): { envFile?: string; outputRoot?: string; reportPath?: string } {
   let envFile: string | undefined;
+  let outputRoot: string | undefined;
+  let reportPath: string | undefined;
   for (let i = 0; i < args.length; i += 1) {
     if (args[i] === "--env-file" && args[i + 1] && !args[i + 1]!.startsWith("--") && !envFile) {
       envFile = args[i + 1];
       i += 1;
+    } else if (args[i] === "--output-root" && args[i + 1] && !args[i + 1]!.startsWith("--") && !outputRoot) {
+      outputRoot = path.resolve(args[++i]!);
+    } else if (args[i] === "--report" && args[i + 1] && !args[i + 1]!.startsWith("--") && !reportPath) {
+      reportPath = path.resolve(args[++i]!);
     } else {
       fail("SCANNER_ARGUMENT_INVALID");
     }
   }
-  return envFile ? { envFile } : {};
+  return {
+    ...(envFile ? { envFile } : {}),
+    ...(outputRoot ? { outputRoot } : {}),
+    ...(reportPath ? { reportPath } : {}),
+  };
 }
 
-export async function runHybrid100DevelopmentReconciliationScan(repositoryRoot = process.cwd()) {
+export async function runHybrid100DevelopmentReconciliationScan(
+  repositoryRoot = process.cwd(),
+  options: { outputRoot?: string; reportPath?: string } = {},
+) {
+  const outputRoot = path.resolve(options.outputRoot ?? repositoryRoot);
   const source = verifyHybrid100SourceRelease(repositoryRoot);
   const context = (process.env.EXECUTION_CONTEXT ?? "local-development") as ExecutionContext;
   const environment = (process.env.VOCABFLOW_ENV ?? "development") as Environment;
@@ -1296,7 +1310,7 @@ export async function runHybrid100DevelopmentReconciliationScan(repositoryRoot =
   });
   if (!migration.migrationReady) {
     assertFrozenRelease(repositoryRoot);
-    return safeWriteBlockedReport(repositoryRoot, runtimeTarget, source, migration, "MIGRATION_OR_BRIDGE_STATE_NOT_CURRENT");
+    return safeWriteBlockedReport(repositoryRoot, runtimeTarget, source, migration, "MIGRATION_OR_BRIDGE_STATE_NOT_CURRENT", outputRoot, options.reportPath);
   }
 
   const runtime = await captureRuntimeSnapshot({ url: runtimeConnection.url, target: runtimeTarget, sources: source.sources });
@@ -1321,7 +1335,7 @@ export async function runHybrid100DevelopmentReconciliationScan(repositoryRoot =
   if (frozenAfter.releaseHash !== source.frozenBefore.releaseHash
     || frozenAfter.releaseTreeFingerprint !== source.frozenBefore.releaseTreeFingerprint) fail("HYBRID_100_FROZEN_SOURCE_CHANGED_DURING_SCAN");
 
-  const workspace = path.join(repositoryRoot, WORKSPACE_RELATIVE_ROOT);
+  const workspace = path.join(outputRoot, WORKSPACE_RELATIVE_ROOT);
   const generatedAt = new Date().toISOString();
   writeJsonArtifact(path.join(workspace, "manifest.json"), {
     artifactType: "HYBRID_100_DEVELOPMENT_RUNTIME_RECONCILIATION",
@@ -1414,7 +1428,7 @@ export async function runHybrid100DevelopmentReconciliationScan(repositoryRoot =
     fingerprint: fingerprint.fingerprint,
     counts,
     scan: runtime.scan,
-  }), repositoryRoot);
+  }), outputRoot, options.reportPath);
   return {
     status: "CANDIDATES_READY_FOR_OWNER_REVIEW",
     sourceReleaseHash: HYBRID_100_2_2_1.releaseHash,
@@ -1424,9 +1438,9 @@ export async function runHybrid100DevelopmentReconciliationScan(repositoryRoot =
     snapshotFingerprint: fingerprint.fingerprint,
     fingerprintRepeatIdentical: fingerprint.repeatIdentical,
     counts,
-    candidateArtifact: `${WORKSPACE_RELATIVE_ROOT}/runtime-reconciliation-candidates-development.json`,
-    ownerDecisionTemplate: `${WORKSPACE_RELATIVE_ROOT}/owner-decision-template.json`,
-    report: REPORT_RELATIVE_PATH,
+      candidateArtifact: path.join(outputRoot, WORKSPACE_RELATIVE_ROOT, "runtime-reconciliation-candidates-development.json"),
+      ownerDecisionTemplate: path.join(outputRoot, WORKSPACE_RELATIVE_ROOT, "owner-decision-template.json"),
+      report: options.reportPath ? path.resolve(options.reportPath) : path.join(outputRoot, REPORT_RELATIVE_PATH),
     databaseWrites: "NONE",
     importerApplyExecuted: false,
     migrationsExecuted: "NONE",
@@ -1448,7 +1462,7 @@ if (isMain()) {
     process.exitCode = 1;
   }
   if (process.exitCode !== 1) {
-    runHybrid100DevelopmentReconciliationScan().then((result) => {
+    runHybrid100DevelopmentReconciliationScan(process.cwd(), args).then((result) => {
       process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
     }).catch((error: unknown) => {
       const message = error instanceof Error && /^[A-Z][A-Z0-9_:.-]{2,120}$/.test(error.message) ? error.message : "HYBRID_100_SCAN_FAILED";
