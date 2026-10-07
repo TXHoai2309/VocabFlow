@@ -36,7 +36,7 @@
 | DELETE_SAFE_CANDIDATE | 0 |
 | ANOMALY_REVIEW_REQUIRED | 0 |
 
-Candidate discovery checks exact normalized English lemmas as possible identity evidence. Alias and Vietnamese translation matches are labeled related, never same identity. No mapping is created. Owner-rejected collision IDs #1260, #944, #1463, #1482 and #405 are forced to conflict/review when they appear as unmapped candidates.
+Finalized owner-reviewed CREATE_NEW decisions take precedence over exact lemma, duplicate, alias and translation heuristics for each reviewed runtime/Master Sense pair. Excluded candidates have relation OWNER_REVIEWED_NOT_SAME_IDENTITY and identityClaim=NONE. No mapping is created.
 
 ## Impact simulation
 
@@ -57,4 +57,14 @@ CLEANUP_AUTHORIZED = NO; DELETE_AUTHORIZED = NO; DISABLE_AUTHORIZED = NO; MERGE_
 
 No vocabulary was deleted or disabled; mappings and learner rows were not changed. The classification is an owner-review artifact only.
 
-**LEGACY_AUDIT_SNAPSHOT_FINGERPRINT:** `6b3af8b7db4e8262b8a04751de8641a86bf4c5273baf8e07344d9e6687ab4c36`
+**LEGACY_AUDIT_SNAPSHOT_FINGERPRINT:** `5115d7021d7a66466fe87ded8ae49f24ceb399edf1e1c9981b990f3443acdfea`
+
+<!-- PHASE-2G3A1 START -->
+## Phase 2G.3A.1 — Owner-reviewed semantic exclusion closure
+
+Offline correction from baseline `b8f2ef7e2f38d107d5f53bdca5b0b2b834e845ad`; database connection NONE. The accepted Phase 2G.3A inventory and transaction above are historical evidence, not a fresh database scan.
+
+Derived 15 reviewed pairs from proposal candidate IDs joined to finalized CREATE_NEW decisions. 11 legacy rows are excluded. #295 apple and #849 record retain their existing conservative candidate treatment. All 2126 vocabulary rows, 108 mappings, 2018 referenced legacy rows, #11 history (1 progress / 5 reviews), and #284 booking mapping remain unchanged.
+
+Fingerprint v2 includes sanitized inventory, mapping/reference evidence, classifications, candidate identities and owner exclusions. Reproducible payload: `semantic-fingerprint-payload.json`. Corrected fingerprint: `5115d7021d7a66466fe87ded8ae49f24ceb399edf1e1c9981b990f3443acdfea`. This replaces the Phase 2G.3A fingerprint; it is not a new database snapshot.
+<!-- PHASE-2G3A1 END -->

@@ -107,7 +107,7 @@
       "runtimeVocabularyId": 11,
       "word": "water",
       "normalizedWord": "water",
-      "relation": "EXISTING_MASTER_RUNTIME_DUPLICATE",
+      "relation": "OWNER_REVIEWED_NOT_SAME_IDENTITY",
       "candidates": [
         {
           "masterSenseId": "01a0fc13-09ef-75ac-b815-039ab337c01a",
@@ -115,12 +115,13 @@
           "lemma": "water",
           "partOfSpeech": "VERB",
           "matchKind": "EXACT_CANONICAL_LEMMA",
-          "identityClaim": "POSSIBLE"
+          "identityClaim": "NONE",
+          "ownerReviewedRelation": "OWNER_REVIEWED_NOT_SAME_IDENTITY"
         }
       ],
       "automaticMappingCreated": false,
       "reviewRequired": true,
-      "exclusionReason": "Same Master Sense already maps to runtime #2126; no mapping was created"
+      "exclusionReason": "Finalized owner CREATE_NEW rejects reuse of the reviewed runtime/Master Sense pairs; lexical, alias and translation heuristics cannot override these decisions"
     },
     {
       "runtimeVocabularyId": 12,
@@ -3664,7 +3665,7 @@
       "runtimeVocabularyId": 405,
       "word": "water",
       "normalizedWord": "water",
-      "relation": "HOMONYM_OR_POLYSEMY_CONFLICT",
+      "relation": "OWNER_REVIEWED_NOT_SAME_IDENTITY",
       "candidates": [
         {
           "masterSenseId": "01a0fc13-09ef-75ac-b815-039ab337c01a",
@@ -3672,12 +3673,13 @@
           "lemma": "water",
           "partOfSpeech": "VERB",
           "matchKind": "EXACT_CANONICAL_LEMMA",
-          "identityClaim": "NONE"
+          "identityClaim": "NONE",
+          "ownerReviewedRelation": "OWNER_REVIEWED_NOT_SAME_IDENTITY"
         }
       ],
       "automaticMappingCreated": false,
       "reviewRequired": true,
-      "exclusionReason": "OWNER_REJECTED_COLLISION_ID; lexical or translation similarity is not identity evidence"
+      "exclusionReason": "Finalized owner CREATE_NEW rejects reuse of the reviewed runtime/Master Sense pairs; lexical, alias and translation heuristics cannot override these decisions"
     },
     {
       "runtimeVocabularyId": 406,
@@ -7643,7 +7645,7 @@
       "runtimeVocabularyId": 846,
       "word": "fuse",
       "normalizedWord": "fuse",
-      "relation": "EXISTING_MASTER_RUNTIME_DUPLICATE",
+      "relation": "OWNER_REVIEWED_NOT_SAME_IDENTITY",
       "candidates": [
         {
           "masterSenseId": "01a1070c-7c59-726e-88d6-cf9dc05adb73",
@@ -7651,12 +7653,13 @@
           "lemma": "fuse",
           "partOfSpeech": "NOUN",
           "matchKind": "EXACT_CANONICAL_LEMMA",
-          "identityClaim": "POSSIBLE"
+          "identityClaim": "NONE",
+          "ownerReviewedRelation": "OWNER_REVIEWED_NOT_SAME_IDENTITY"
         }
       ],
       "automaticMappingCreated": false,
       "reviewRequired": true,
-      "exclusionReason": "Same Master Sense already maps to runtime #2063; no mapping was created"
+      "exclusionReason": "Finalized owner CREATE_NEW rejects reuse of the reviewed runtime/Master Sense pairs; lexical, alias and translation heuristics cannot override these decisions"
     },
     {
       "runtimeVocabularyId": 847,
@@ -8543,11 +8546,21 @@
       "runtimeVocabularyId": 944,
       "word": "kick",
       "normalizedWord": "kick",
-      "relation": "HOMONYM_OR_POLYSEMY_CONFLICT",
-      "candidates": [],
+      "relation": "OWNER_REVIEWED_NOT_SAME_IDENTITY",
+      "candidates": [
+        {
+          "masterSenseId": "01a1070c-7c58-76b5-a2ab-0ab34eedf7c6",
+          "masterLexemeId": "01a1070c-7c58-76b5-a2ab-053cc2f30444",
+          "lemma": "rock",
+          "partOfSpeech": "NOUN",
+          "matchKind": "OWNER_REVIEWED_CANDIDATE",
+          "identityClaim": "NONE",
+          "ownerReviewedRelation": "OWNER_REVIEWED_NOT_SAME_IDENTITY"
+        }
+      ],
       "automaticMappingCreated": false,
       "reviewRequired": true,
-      "exclusionReason": "OWNER_REJECTED_COLLISION_ID; lexical or translation similarity is not identity evidence"
+      "exclusionReason": "Finalized owner CREATE_NEW rejects reuse of the reviewed runtime/Master Sense pairs; lexical, alias and translation heuristics cannot override these decisions"
     },
     {
       "runtimeVocabularyId": 945,
@@ -11379,7 +11392,7 @@
       "runtimeVocabularyId": 1260,
       "word": "light",
       "normalizedWord": "light",
-      "relation": "HOMONYM_OR_POLYSEMY_CONFLICT",
+      "relation": "OWNER_REVIEWED_NOT_SAME_IDENTITY",
       "candidates": [
         {
           "masterSenseId": "01a0fc13-09ee-7768-9be6-d20fa32521ee",
@@ -11387,7 +11400,8 @@
           "lemma": "light",
           "partOfSpeech": "ADJECTIVE",
           "matchKind": "EXACT_CANONICAL_LEMMA",
-          "identityClaim": "NONE"
+          "identityClaim": "NONE",
+          "ownerReviewedRelation": "OWNER_REVIEWED_NOT_SAME_IDENTITY"
         },
         {
           "masterSenseId": "01a1070c-7c57-7676-9acd-d23079256ae2",
@@ -11395,7 +11409,8 @@
           "lemma": "light",
           "partOfSpeech": "VERB",
           "matchKind": "EXACT_CANONICAL_LEMMA",
-          "identityClaim": "NONE"
+          "identityClaim": "NONE",
+          "ownerReviewedRelation": "OWNER_REVIEWED_NOT_SAME_IDENTITY"
         },
         {
           "masterSenseId": "01a1070c-7c59-726e-88d5-9c1965cff571",
@@ -11403,12 +11418,13 @@
           "lemma": "light",
           "partOfSpeech": "ADJECTIVE",
           "matchKind": "EXACT_CANONICAL_LEMMA",
-          "identityClaim": "NONE"
+          "identityClaim": "NONE",
+          "ownerReviewedRelation": "OWNER_REVIEWED_NOT_SAME_IDENTITY"
         }
       ],
       "automaticMappingCreated": false,
       "reviewRequired": true,
-      "exclusionReason": "OWNER_REJECTED_COLLISION_ID; lexical or translation similarity is not identity evidence"
+      "exclusionReason": "Finalized owner CREATE_NEW rejects reuse of the reviewed runtime/Master Sense pairs; lexical, alias and translation heuristics cannot override these decisions"
     },
     {
       "runtimeVocabularyId": 1261,
@@ -11882,7 +11898,7 @@
       "runtimeVocabularyId": 1313,
       "word": "struggle",
       "normalizedWord": "struggle",
-      "relation": "EXISTING_MASTER_RUNTIME_DUPLICATE",
+      "relation": "OWNER_REVIEWED_NOT_SAME_IDENTITY",
       "candidates": [
         {
           "masterSenseId": "01a1070c-7c58-76b5-a2a9-92d544914a1a",
@@ -11890,12 +11906,13 @@
           "lemma": "struggle",
           "partOfSpeech": "VERB",
           "matchKind": "EXACT_CANONICAL_LEMMA",
-          "identityClaim": "POSSIBLE"
+          "identityClaim": "NONE",
+          "ownerReviewedRelation": "OWNER_REVIEWED_NOT_SAME_IDENTITY"
         }
       ],
       "automaticMappingCreated": false,
       "reviewRequired": true,
-      "exclusionReason": "Same Master Sense already maps to runtime #2111; no mapping was created"
+      "exclusionReason": "Finalized owner CREATE_NEW rejects reuse of the reviewed runtime/Master Sense pairs; lexical, alias and translation heuristics cannot override these decisions"
     },
     {
       "runtimeVocabularyId": 1314,
@@ -12045,7 +12062,7 @@
       "runtimeVocabularyId": 1330,
       "word": "grapple",
       "normalizedWord": "grapple",
-      "relation": "SEMANTIC_RELATED_NOT_SAME_IDENTITY",
+      "relation": "OWNER_REVIEWED_NOT_SAME_IDENTITY",
       "candidates": [
         {
           "masterSenseId": "01a1070c-7c58-76b5-a2a9-92d544914a1a",
@@ -12053,11 +12070,13 @@
           "lemma": "struggle",
           "partOfSpeech": "VERB",
           "matchKind": "TRANSLATION_ONLY",
-          "identityClaim": "NONE"
+          "identityClaim": "NONE",
+          "ownerReviewedRelation": "OWNER_REVIEWED_NOT_SAME_IDENTITY"
         }
       ],
       "automaticMappingCreated": false,
-      "reviewRequired": true
+      "reviewRequired": true,
+      "exclusionReason": "Finalized owner CREATE_NEW rejects reuse of the reviewed runtime/Master Sense pairs; lexical, alias and translation heuristics cannot override these decisions"
     },
     {
       "runtimeVocabularyId": 1331,
@@ -13242,11 +13261,21 @@
       "runtimeVocabularyId": 1463,
       "word": "precise",
       "normalizedWord": "precise",
-      "relation": "HOMONYM_OR_POLYSEMY_CONFLICT",
-      "candidates": [],
+      "relation": "OWNER_REVIEWED_NOT_SAME_IDENTITY",
+      "candidates": [
+        {
+          "masterSenseId": "01a1070c-7c57-7676-9acf-b1c2d0e92475",
+          "masterLexemeId": "01a1070c-7c57-7676-9acf-ad7532f47f33",
+          "lemma": "exact",
+          "partOfSpeech": "ADJECTIVE",
+          "matchKind": "OWNER_REVIEWED_CANDIDATE",
+          "identityClaim": "NONE",
+          "ownerReviewedRelation": "OWNER_REVIEWED_NOT_SAME_IDENTITY"
+        }
+      ],
       "automaticMappingCreated": false,
       "reviewRequired": true,
-      "exclusionReason": "OWNER_REJECTED_COLLISION_ID; lexical or translation similarity is not identity evidence"
+      "exclusionReason": "Finalized owner CREATE_NEW rejects reuse of the reviewed runtime/Master Sense pairs; lexical, alias and translation heuristics cannot override these decisions"
     },
     {
       "runtimeVocabularyId": 1464,
@@ -13369,7 +13398,7 @@
       "runtimeVocabularyId": 1477,
       "word": "struggle",
       "normalizedWord": "struggle",
-      "relation": "EXISTING_MASTER_RUNTIME_DUPLICATE",
+      "relation": "OWNER_REVIEWED_NOT_SAME_IDENTITY",
       "candidates": [
         {
           "masterSenseId": "01a1070c-7c58-76b5-a2a9-92d544914a1a",
@@ -13377,12 +13406,13 @@
           "lemma": "struggle",
           "partOfSpeech": "VERB",
           "matchKind": "EXACT_CANONICAL_LEMMA",
-          "identityClaim": "POSSIBLE"
+          "identityClaim": "NONE",
+          "ownerReviewedRelation": "OWNER_REVIEWED_NOT_SAME_IDENTITY"
         }
       ],
       "automaticMappingCreated": false,
       "reviewRequired": true,
-      "exclusionReason": "Same Master Sense already maps to runtime #2111; no mapping was created"
+      "exclusionReason": "Finalized owner CREATE_NEW rejects reuse of the reviewed runtime/Master Sense pairs; lexical, alias and translation heuristics cannot override these decisions"
     },
     {
       "runtimeVocabularyId": 1478,
@@ -13424,11 +13454,21 @@
       "runtimeVocabularyId": 1482,
       "word": "muster",
       "normalizedWord": "muster",
-      "relation": "HOMONYM_OR_POLYSEMY_CONFLICT",
-      "candidates": [],
+      "relation": "OWNER_REVIEWED_NOT_SAME_IDENTITY",
+      "candidates": [
+        {
+          "masterSenseId": "01a1070c-7c56-71df-b6f0-39632387320e",
+          "masterLexemeId": "01a1070c-7c56-71df-b6f0-3750741bcfb0",
+          "lemma": "rally",
+          "partOfSpeech": "VERB",
+          "matchKind": "OWNER_REVIEWED_CANDIDATE",
+          "identityClaim": "NONE",
+          "ownerReviewedRelation": "OWNER_REVIEWED_NOT_SAME_IDENTITY"
+        }
+      ],
       "automaticMappingCreated": false,
       "reviewRequired": true,
-      "exclusionReason": "OWNER_REJECTED_COLLISION_ID; lexical or translation similarity is not identity evidence"
+      "exclusionReason": "Finalized owner CREATE_NEW rejects reuse of the reviewed runtime/Master Sense pairs; lexical, alias and translation heuristics cannot override these decisions"
     },
     {
       "runtimeVocabularyId": 1483,
@@ -16251,7 +16291,7 @@
       "runtimeVocabularyId": 1796,
       "word": "liable",
       "normalizedWord": "liable",
-      "relation": "EXISTING_MASTER_RUNTIME_DUPLICATE",
+      "relation": "OWNER_REVIEWED_NOT_SAME_IDENTITY",
       "candidates": [
         {
           "masterSenseId": "01a1070c-7c59-726e-88d4-83e56ae5f536",
@@ -16259,12 +16299,13 @@
           "lemma": "liable",
           "partOfSpeech": "ADJECTIVE",
           "matchKind": "EXACT_CANONICAL_LEMMA",
-          "identityClaim": "POSSIBLE"
+          "identityClaim": "NONE",
+          "ownerReviewedRelation": "OWNER_REVIEWED_NOT_SAME_IDENTITY"
         }
       ],
       "automaticMappingCreated": false,
       "reviewRequired": true,
-      "exclusionReason": "Same Master Sense already maps to runtime #2079; no mapping was created"
+      "exclusionReason": "Finalized owner CREATE_NEW rejects reuse of the reviewed runtime/Master Sense pairs; lexical, alias and translation heuristics cannot override these decisions"
     },
     {
       "runtimeVocabularyId": 1797,

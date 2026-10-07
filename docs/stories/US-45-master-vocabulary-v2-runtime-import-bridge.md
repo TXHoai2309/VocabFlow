@@ -1,5 +1,38 @@
 # US-45 — Master Vocabulary V2 Runtime Import Bridge
 
+## Phase 2G.3A.1 — Owner-reviewed legacy semantic exclusion closure
+
+**Status:** implementation complete; offline semantic closure. Existing
+Development runtime verification remains historical evidence.
+
+The owner explicitly authorized correction of the candidate layer against
+`origin/TXH` at `b8f2ef7e2f38d107d5f53bdca5b0b2b834e845ad`. Finalized
+CREATE_NEW decisions, joined to reviewed runtime candidate IDs, exclude each
+runtime/Master Sense pair from identity claims. The derived package contains
+15 pairs; 11 unmapped rows receive OWNER_REVIEWED_NOT_SAME_IDENTITY, with
+identityClaim NONE and automaticMappingCreated false. Unrelated Senses remain
+independent candidates. #295 apple and #849 record preserve existing treatment.
+
+No cleanup or Development connection occurred. Accepted inventory remains
+2126 total, 108 Master-managed, 2018 referenced legacy, zero mapping anomalies,
+zero delete-safe candidates. #11 history remains 1 progress / 5 reviews;
+#284 booking mapping and finalized owner artifacts remain unchanged.
+
+The corrected fingerprint is
+`5115d7021d7a66466fe87ded8ae49f24ceb399edf1e1c9981b990f3443acdfea`.
+Fingerprint v2 includes canonical content hashes of candidate analysis and
+owner exclusions; the persisted payload and offline `--check` replay enable
+verification without raw translations or database access.
+
+Evidence: [corrected audit](../../vocabflow-dataset/reports/development-legacy-vocabulary-cleanup-audit.md),
+[derived exclusions](../../vocabflow-dataset/workspaces/legacy-vocabulary-cleanup-audit/owner-reviewed-exclusions.json).
+
+Validation: 48/48 focused tests, root typecheck, focused lint, deterministic
+offline replay and diff whitespace checks pass. Broader owner-package suites
+pass 93/94; one historical assertion expects no UI changes since the older
+Phase 2G.1C baseline, but b8f2ef7 already contains later UI commits. No UI file
+was changed by this closure. No commit, push or deployment occurred.
+
 ## Phase 2G.2D — Hybrid-100 Development runtime closure
 
 **Current status:** `IN PROGRESS / DEVELOPMENT RUNTIME VERIFIED; PHASE 2G.2D CLOSURE PASS`.

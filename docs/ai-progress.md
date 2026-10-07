@@ -1,5 +1,33 @@
 # Current Handoff Snapshot
 
+## 2026-10-07 — Phase 2G.3A.1 owner-reviewed semantic exclusion closure
+
+- Implemented on the verified `origin/TXH` baseline
+  `b8f2ef7e2f38d107d5f53bdca5b0b2b834e845ad` in an isolated local checkout.
+- Joined the pinned Hybrid-100 proposal candidate IDs to authoritative finalized
+  owner CREATE_NEW decisions: 15 exclusions, affecting 11 legacy rows. Removed
+  the collision-ID heuristic; each reviewed pair now has
+  `OWNER_REVIEWED_NOT_SAME_IDENTITY`, `identityClaim=NONE`, no automatic mapping.
+  Mixed candidates retain independent treatment for unreviewed Senses.
+- Replayed only semantic evidence offline. Inventory remains 2126 / 108
+  Master-managed / 2018 referenced legacy / zero mapping anomalies or delete
+  candidates. #11 retains 1 progress and 5 review references; #284 booking,
+  #295 apple, and #849 record treatment remain unchanged. Historical owner
+  artifacts, finalized reconciliation, releases and accepted inventory are untouched.
+- Fingerprint v2 pins canonical content hashes of sanitized evidence, including
+  candidate claims and exclusions. Corrected fingerprint:
+  `5115d7021d7a66466fe87ded8ae49f24ceb399edf1e1c9981b990f3443acdfea`.
+  Offline replay command: `pnpm audit:legacy-semantic-exclusion-closure --check`.
+- No database connection, mutation, cleanup, mapping creation, commit, push or
+  deployment. See the [corrected audit report](../vocabflow-dataset/reports/development-legacy-vocabulary-cleanup-audit.md).
+- Verification: final focused regression PASS (48/48), root TypeScript PASS,
+  focused ESLint PASS, repeated offline `--check` PASS, `git diff --check` PASS.
+  Broader owner-package suites: 93/94 pass; the historical Phase 2G.2A assertion
+  comparing apps/web to the older Phase 2G.1C baseline fails on pre-existing
+  UI commits in b8f2ef7. This task has zero apps/web changes. API runtime build
+  was generated locally to satisfy typecheck's declaration dependency; ignored
+  build output is not part of the change.
+
 ## 2026-10-07 — Phase 2G.2D Hybrid-100 Development runtime closure PASS
 
 - Closed the 2G.2B/2G.2C rollout against remote baseline

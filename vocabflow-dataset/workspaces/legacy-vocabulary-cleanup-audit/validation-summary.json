@@ -69,7 +69,15 @@
   "disableAuthorized": false,
   "mergeAuthorized": false,
   "mappingWritesAuthorized": false,
-  "legacyAuditSnapshotFingerprint": "6b3af8b7db4e8262b8a04751de8641a86bf4c5273baf8e07344d9e6687ab4c36",
+  "legacyAuditSnapshotFingerprint": "5115d7021d7a66466fe87ded8ae49f24ceb399edf1e1c9981b990f3443acdfea",
   "fingerprintRepeatIdentical": true,
-  "serializationPIIFieldsIncluded": false
+  "serializationPIIFieldsIncluded": false,
+  "semanticClosure": {
+    "phase": "2G.3A.1",
+    "databaseConnection": "NONE",
+    "sourceBaseline": "b8f2ef7e2f38d107d5f53bdca5b0b2b834e845ad",
+    "fingerprintVersion": 2,
+    "excludedPairs": 15,
+    "excludedLegacyRows": 11
+  }
 }

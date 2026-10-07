@@ -3,6 +3,8 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   analyzeLegacyCandidate,
+  deriveOwnerReviewedExclusions,
+  readOwnerReviewedExclusions,
   assertDevelopmentTarget,
   assertReadOnlySql,
   classifyRuntimeVocabulary,
@@ -12,6 +14,7 @@ import {
   sanitizeRuntimeRows,
   simulateDeleteImpact
 } from "./development-legacy-vocabulary-cleanup-audit";
+import { closeLegacySemanticExclusions } from "./development-legacy-semantic-exclusion-closure";
 
 const mapping = (runtimeVocabularyId: number, masterSenseId = "sense-1", masterLexemeId = "lexeme-1") => ({
   masterSenseId, masterLexemeId, runtimeVocabularyId, sourceDatasetId: "dataset-1", sourceDatasetVersion: "2.2.1",
@@ -168,9 +171,10 @@ describe("Phase 2G.3A cleanup classification safety", () => {
     expect(normalizeWord("  ＬＩＧＨＴ\t Word ")).toBe("light word");
   });
 
-  it("24. forces owner-rejected collision IDs to a conflict and never claims identity", () => {
-    const result = analyzeLegacyCandidate({ ...row({ runtimeVocabularyId: 1260, word: "light", normalizedWord: "light" }), vietnameseForAnalysis: "nhẹ" }, [{ ...exactMaster, normalizedLemma: "light", lemma: "light" }], new Map(), new Map());
-    expect(result.relation).toBe("HOMONYM_OR_POLYSEMY_CONFLICT");
+  it("24. gives reviewed light exclusions precedence over exact lemma", () => {
+    const result = analyzeLegacyCandidate({ ...row({ runtimeVocabularyId: 1260, word: "light", normalizedWord: "light" }), vietnameseForAnalysis: "nhẹ" }, [], new Map(), new Map());
+    expect(result.relation).toBe("OWNER_REVIEWED_NOT_SAME_IDENTITY");
+    expect(result.candidates).toHaveLength(3);
     expect(result.candidates[0]?.identityClaim).toBe("NONE");
     expect(result.automaticMappingCreated).toBe(false);
   });
@@ -183,5 +187,59 @@ describe("Phase 2G.3A cleanup classification safety", () => {
   it("26. preserves source identity obligations from hard-delete recommendations", () => {
     const result = classify(row({ sourceDataset: "legacy-import", sourceRecordId: 18, sourceIdentityObligation: true }));
     expect(result.cleanupClass).toBe("DISABLE_CANDIDATE");
+  });
+});
+
+describe("Phase 2G.3A.1 owner-reviewed semantic precedence", () => {
+  const excluded = readOwnerReviewedExclusions().exclusions;
+  it.each([11, 405, 846, 1313, 1330, 1477, 1796, 944, 1260, 1463, 1482])("excludes reviewed pairs for runtime #%i even when already mapped", (id) => {
+    const pairs = excluded.filter((pair) => pair.runtimeVocabularyId === id);
+    expect(pairs.length).toBeGreaterThan(0);
+    const corpus = pairs.map((pair) => ({ ...exactMaster, ...pair, normalizedLemma: normalizeWord(pair.lemma), aliases: ["test"], translations: ["test"] }));
+    const result = analyzeLegacyCandidate({ ...row({ runtimeVocabularyId: id, normalizedWord: corpus[0]!.normalizedLemma }), vietnameseForAnalysis: "test" }, corpus,
+      new Map(pairs.map((pair) => [pair.masterSenseId, mapping(9999, pair.masterSenseId)])), new Map());
+    expect(result.relation).toBe("OWNER_REVIEWED_NOT_SAME_IDENTITY");
+    expect(result.candidates.every((candidate) => candidate.identityClaim === "NONE")).toBe(true);
+    expect(result.automaticMappingCreated).toBe(false);
+  });
+
+  it("uses finalized decisions rather than proposal recommendations and preserves adopted rows", () => {
+    const proposal = { senses: [{ masterSenseId: "other-sense", masterLexemeId: "lexeme", lemma: "test", partOfSpeech: "VERB", runtimeCandidateIds: [9001, 9001], proposedDecision: "MAP_EXISTING", evidence: { semanticIdentityReason: "reviewed" } }] };
+    expect(deriveOwnerReviewedExclusions(proposal, { vocabulary: [{ masterSenseId: "other-sense", decision: "CREATE_NEW", appVocabularyId: null }] })).toHaveLength(1);
+    expect(deriveOwnerReviewedExclusions(proposal, { vocabulary: [{ masterSenseId: "other-sense", decision: "MAP_EXISTING", appVocabularyId: 9001 }] })).toEqual([]);
+    expect(excluded.some((pair) => [1836, 948].includes(pair.runtimeVocabularyId))).toBe(false);
+    expect(excluded.filter((pair) => pair.runtimeVocabularyId === 1461)).toHaveLength(1); // emergency aid only, not adopted pain relief
+    expect(() => deriveOwnerReviewedExclusions(proposal, { vocabulary: [] })).toThrow("OWNER_REVIEW_DECISION_COVERAGE_INVALID");
+  });
+
+  it("does not suppress a different, unreviewed Master Sense sharing the lemma", () => {
+    const pair = excluded.find((pair) => pair.runtimeVocabularyId === 11)!;
+    const corpus = [{ ...exactMaster, ...pair, normalizedLemma: "water" }, { ...exactMaster, masterSenseId: "unreviewed-water", normalizedLemma: "water" }];
+    const result = analyzeLegacyCandidate({ ...row({ runtimeVocabularyId: 11, normalizedWord: "water" }), vietnameseForAnalysis: "" }, corpus, new Map(), new Map());
+    expect(result.relation).toBe("MULTIPLE_MASTER_CANDIDATES");
+    expect(result.candidates.find((candidate) => candidate.masterSenseId === pair.masterSenseId)?.identityClaim).toBe("NONE");
+    expect(result.candidates.find((candidate) => candidate.masterSenseId === "unreviewed-water")?.identityClaim).toBe("POSSIBLE");
+  });
+
+  it.each(["alias", "translation", "absent"])("preserves owner evidence even with %s discovery", (kind) => {
+    const pair = excluded.find((pair) => pair.runtimeVocabularyId === 11)!;
+    const corpus = kind === "absent" ? [] : [{ ...exactMaster, ...pair, normalizedLemma: "different", aliases: kind === "alias" ? ["obsolete"] : [], translations: ["match"] }];
+    const result = analyzeLegacyCandidate({ ...row({ runtimeVocabularyId: 11 }), vietnameseForAnalysis: "match" }, corpus, new Map(), new Map());
+    expect(result.relation).toBe("OWNER_REVIEWED_NOT_SAME_IDENTITY");
+    expect(result.candidates[0]?.identityClaim).toBe("NONE");
+  });
+
+  it("replays the persisted fingerprint and closure twice without database access or artifact drift", () => {
+    const fingerprint = closeLegacySemanticExclusions(true);
+    expect(closeLegacySemanticExclusions(true)).toBe(fingerprint);
+    const workspace = path.join(process.cwd(), "vocabflow-dataset/workspaces/legacy-vocabulary-cleanup-audit");
+    const payload = JSON.parse(readFileSync(path.join(workspace, "semantic-fingerprint-payload.json"), "utf8"));
+    expect(deterministicAuditFingerprint(payload)).toBe(fingerprint);
+    expect(fingerprint).not.toBe("6b3af8b7db4e8262b8a04751de8641a86bf4c5273baf8e07344d9e6687ab4c36");
+    const candidates = JSON.parse(readFileSync(path.join(workspace, "legacy-master-candidates.json"), "utf8")).candidates as Array<{ runtimeVocabularyId: number; relation: string; candidates: Array<{ identityClaim: string }> }>;
+    expect(payload.candidateAnalysis).toBe(deterministicAuditFingerprint(candidates));
+    expect(candidates).toHaveLength(2018);
+    expect(candidates.find((candidate) => candidate.runtimeVocabularyId === 295)?.relation).toBe("EXISTING_MASTER_RUNTIME_DUPLICATE");
+    expect(candidates.find((candidate) => candidate.runtimeVocabularyId === 849)?.relation).toBe("MULTIPLE_MASTER_CANDIDATES");
   });
 });

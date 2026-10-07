@@ -8,7 +8,7 @@ import { assertResolvedTargetBeforeMutation, getTarget } from "./runtime-validat
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const WORKSPACE = "vocabflow-dataset/workspaces/legacy-vocabulary-cleanup-audit";
 const REPORT = "vocabflow-dataset/reports/development-legacy-vocabulary-cleanup-audit.md";
-const EXPECTED_REMOTE_BASELINE = "8e4c88e4506453553bc0c3e0900bead1f49e4091";
+const EXPECTED_REMOTE_BASELINE = "b8f2ef7e2f38d107d5f53bdca5b0b2b834e845ad";
 const HYBRID_RELEASE_RELATIVE = "vocabflow-dataset/releases/hybrid-100-v2.2.1";
 const CANARY_RELEASE_RELATIVE = "vocabflow-dataset/releases/canary-v2.1.0";
 const EXPECTED_HYBRID_RELEASE_HASH = "44874b11d1fdef76a515f6285d04c9a417318daa6969e112608a59e7c232613c";
@@ -18,8 +18,8 @@ const EXPECTED_HYBRID_RECONCILIATION = "4c3d86eb3a4b06a04c68e870847f97fa432fdf24
 const EXPECTED_POST_APPLY_SNAPSHOT = "5ebcadbfd95619e8b6e7a5c8cc4a4fca16600f7e947cda5932d1ff16bf4fc85a";
 const EXPECTED_HYBRID_SENSE_COUNT = 100;
 const PRESERVED_RUNTIME_IDS = new Set([11, 284]);
-const REJECTED_COLLISION_IDS = new Set([1260, 944, 1463, 1482, 405]);
 const SAFE_AUDIT_ERROR_CODES = new Set([
+  "OWNER_REVIEW_PACKAGE_PIN_MISMATCH", "OWNER_REVIEW_DECISION_COVERAGE_INVALID", "OWNER_REVIEW_FINAL_DECISION_INVALID", "OWNER_REVIEW_CANDIDATE_ID_INVALID",
   "APPROVED_MASTER_LEXEME_INVALID", "APPROVED_MASTER_LEXEME_MISSING", "APPROVED_MASTER_RECORD_PATH_INVALID", "APPROVED_MASTER_RELEASE_PIN_MISMATCH", "APPROVED_MASTER_SENSE_INVALID",
   "AUDIT_FINGERPRINT_NOT_DETERMINISTIC", "BRANCH_NOT_FOUND", "CANARY_BOOKING_LEXEME_NOT_FOUND", "CANARY_BOOKING_SENSE_NOT_UNIQUE", "CLEANUP_CLASSIFICATION_NOT_EXACTLY_ONCE",
   "CONNECTION_TARGET_MISMATCH", "DATABASE_IDENTITY_MISMATCH", "DELETE_SAFE_CLASSIFICATION_HAS_REFERENCES", "DEVELOPMENT_RUNTIME_TARGET_MISMATCH", "HYBRID_100_STATE_BLOCKED",
@@ -42,6 +42,7 @@ export const CLEANUP_CLASSES = [
 ] as const;
 export type CleanupClass = typeof CLEANUP_CLASSES[number];
 export type CandidateRelation =
+  | "OWNER_REVIEWED_NOT_SAME_IDENTITY"
   | "NO_MASTER_CANDIDATE"
   | "POSSIBLE_SAME_IDENTITY"
   | "SEMANTIC_RELATED_NOT_SAME_IDENTITY"
@@ -126,10 +127,11 @@ type CandidateEvidence = {
   masterLexemeId: string;
   lemma: string;
   partOfSpeech: string;
-  matchKind: "EXACT_CANONICAL_LEMMA" | "ALIAS_ONLY" | "TRANSLATION_ONLY";
+  matchKind: "EXACT_CANONICAL_LEMMA" | "ALIAS_ONLY" | "TRANSLATION_ONLY" | "OWNER_REVIEWED_CANDIDATE";
   identityClaim: "POSSIBLE" | "NONE";
+  ownerReviewedRelation?: "OWNER_REVIEWED_NOT_SAME_IDENTITY";
 };
-type CandidateAnalysis = {
+export type CandidateAnalysis = {
   runtimeVocabularyId: number;
   word: string;
   normalizedWord: string;
@@ -283,7 +285,86 @@ function readApprovedMasterCorpus(root = ROOT): { candidates: MasterCandidate[];
   return { candidates: [...bySense.values()].sort((a, b) => a.masterSenseId.localeCompare(b.masterSenseId)), hybridSenseIds, sources };
 }
 
-export function analyzeLegacyCandidate(row: RuntimeRow & { vietnameseForAnalysis: string }, masterCorpus: MasterCandidate[], mappedBySense: Map<string, MappingRow>, mappedWordsById: Map<number, string>): CandidateAnalysis {
+export type OwnerReviewedExclusion = {
+  masterSenseId: string;
+  masterLexemeId: string;
+  runtimeVocabularyId: number;
+  lemma: string;
+  partOfSpeech: string;
+  finalDecision: "CREATE_NEW";
+  reason: string;
+};
+
+const OWNER_REVIEW = "vocabflow-dataset/workspaces/hybrid-100-runtime-reconciliation-2.2.1/owner-review";
+export function deriveOwnerReviewedExclusions(
+  proposal: { senses: Array<{ masterSenseId: string; masterLexemeId: string; lemma: string; partOfSpeech: string; runtimeCandidateIds: number[]; evidence: { semanticIdentityReason: string } }> },
+  finalized: { vocabulary: Array<{ masterSenseId: string; decision: string; appVocabularyId: number | null }> }
+): OwnerReviewedExclusion[] {
+  const decisions = new Map(finalized.vocabulary.map((row) => [row.masterSenseId, row]));
+  if (decisions.size !== finalized.vocabulary.length || proposal.senses.length !== decisions.size || new Set(proposal.senses.map((row) => row.masterSenseId)).size !== decisions.size) throw new Error("OWNER_REVIEW_DECISION_COVERAGE_INVALID");
+  return proposal.senses.flatMap((sense) => {
+    const final = decisions.get(sense.masterSenseId);
+    if (!final || !["CREATE_NEW", "MAP_EXISTING"].includes(final.decision) ||
+        (final.decision === "CREATE_NEW" ? final.appVocabularyId !== null : !Number.isSafeInteger(final.appVocabularyId))) throw new Error("OWNER_REVIEW_FINAL_DECISION_INVALID");
+    // Proposal recommendations are not authority: use only the finalized decision.
+    if (final.decision !== "CREATE_NEW") return [];
+    return [...new Set(sense.runtimeCandidateIds)].map((runtimeVocabularyId) => {
+      if (!Number.isSafeInteger(runtimeVocabularyId) || runtimeVocabularyId <= 0) throw new Error("OWNER_REVIEW_CANDIDATE_ID_INVALID");
+      return { masterSenseId: sense.masterSenseId, masterLexemeId: sense.masterLexemeId, runtimeVocabularyId,
+        lemma: sense.lemma, partOfSpeech: sense.partOfSpeech, finalDecision: "CREATE_NEW" as const, reason: sense.evidence.semanticIdentityReason };
+    });
+  }).sort((a, b) => a.masterSenseId.localeCompare(b.masterSenseId) || a.runtimeVocabularyId - b.runtimeVocabularyId);
+}
+
+// Version 2 hashes persisted, sanitized evidence, including semantic candidates.
+// It can be independently replayed without live DB access or raw translations.
+export function semanticAuditFingerprintPayload(input: {
+  target: JsonObject; runtimeVocabularyInventory: unknown; masterMappings: unknown;
+  schemaReferenceInventory: unknown; cleanupClassification: unknown; candidateAnalysis: unknown;
+  ownerReviewedExclusions: unknown; hybridCheckpoint: unknown; repositoryBaseline: string;
+}): JsonObject {
+  const { target, repositoryBaseline, ...evidence } = input;
+  return { ...Object.fromEntries(Object.entries(evidence).map(([key, value]) => [key, deterministicAuditFingerprint(value)])), repositoryBaseline, fingerprintVersion: 2, target: Object.fromEntries(
+    ["environment", "provider", "projectId", "branchId", "databaseName", "roleName"].map((key) => [key, target[key]])
+  ) };
+}
+
+export function readOwnerReviewedExclusions(root = ROOT) {
+  const proposalPath = `${OWNER_REVIEW}/owner-reconciliation-proposal.json`;
+  const finalizedPath = `${OWNER_REVIEW}/import/mappings/runtime-reconciliation-v2.json`;
+  const authorizationPath = `${OWNER_REVIEW}/owner-authorization.json`;
+  const proposal = readJsonFile(path.join(root, proposalPath));
+  const finalized = readJsonFile(path.join(root, finalizedPath));
+  const authorization = readJsonFile(path.join(root, authorizationPath));
+  const proposalFingerprint = deterministicAuditFingerprint(proposal);
+  const reconciliationHash = deterministicAuditFingerprint(finalized);
+  if (proposalFingerprint !== "6033cb0d217578aeab7b7e3fb750fda0476c2b880e9958f3865992604b2be6c0" ||
+      proposalFingerprint !== authorization.approvedProposalFingerprint || reconciliationHash !== EXPECTED_HYBRID_RECONCILIATION ||
+      authorization.ownerAuthorizationStatus !== "APPROVED" || authorization.sourceSnapshotFingerprint !== finalized.snapshotFingerprint ||
+      authorization.ownerAuthorizationFingerprint !== finalized.ownerAuthorizationFingerprint || finalized.owner !== "human-reviewed" ||
+      finalized.analysisOnly !== false || finalized.acceptedByImporter !== true || finalized.sourceReleaseHash !== EXPECTED_HYBRID_RELEASE_HASH) throw new Error("OWNER_REVIEW_PACKAGE_PIN_MISMATCH");
+  const exclusions = deriveOwnerReviewedExclusions(proposal as unknown as Parameters<typeof deriveOwnerReviewedExclusions>[0], finalized as unknown as Parameters<typeof deriveOwnerReviewedExclusions>[1]);
+  return { artifactType: "OWNER_REVIEWED_LEGACY_SEMANTIC_EXCLUSIONS", artifactVersion: 1,
+    sources: { proposalPath, finalizedPath, authorizationPath, proposalFingerprint, reconciliationHash }, exclusions };
+}
+
+export function applyOwnerReviewedExclusions(analysis: CandidateAnalysis, exclusions: OwnerReviewedExclusion[]): CandidateAnalysis {
+  const reviewed = exclusions.filter((pair) => pair.runtimeVocabularyId === analysis.runtimeVocabularyId);
+  if (!reviewed.length) return analysis;
+  const bySense = new Map(analysis.candidates.map((candidate) => [candidate.masterSenseId, { ...candidate }]));
+  for (const pair of reviewed) {
+    const existing = bySense.get(pair.masterSenseId);
+    bySense.set(pair.masterSenseId, { masterSenseId: pair.masterSenseId, masterLexemeId: pair.masterLexemeId,
+      lemma: pair.lemma, partOfSpeech: pair.partOfSpeech, matchKind: existing?.matchKind ?? "OWNER_REVIEWED_CANDIDATE",
+      identityClaim: "NONE", ownerReviewedRelation: "OWNER_REVIEWED_NOT_SAME_IDENTITY" });
+  }
+  const candidates = [...bySense.values()].sort((a, b) => a.masterSenseId.localeCompare(b.masterSenseId));
+  return { ...analysis, candidates, automaticMappingCreated: false, reviewRequired: true,
+    relation: candidates.every((candidate) => candidate.ownerReviewedRelation) ? "OWNER_REVIEWED_NOT_SAME_IDENTITY" : "MULTIPLE_MASTER_CANDIDATES",
+    exclusionReason: "Finalized owner CREATE_NEW rejects reuse of the reviewed runtime/Master Sense pairs; lexical, alias and translation heuristics cannot override these decisions" };
+}
+
+export function analyzeLegacyCandidate(row: RuntimeRow & { vietnameseForAnalysis: string }, masterCorpus: MasterCandidate[], mappedBySense: Map<string, MappingRow>, mappedWordsById: Map<number, string>, exclusions = readOwnerReviewedExclusions().exclusions): CandidateAnalysis {
   const exact = masterCorpus.filter((candidate) => candidate.normalizedLemma === row.normalizedWord);
   const alias = masterCorpus.filter((candidate) => candidate.aliases.includes(row.normalizedWord));
   const translated = masterCorpus.filter((candidate) => candidate.translations.includes(normalizeWord(row.vietnameseForAnalysis)));
@@ -292,11 +373,7 @@ export function analyzeLegacyCandidate(row: RuntimeRow & { vietnameseForAnalysis
   let candidates = evidenceFor(exact, "EXACT_CANONICAL_LEMMA", "POSSIBLE");
   let relation: CandidateRelation = "NO_MASTER_CANDIDATE";
   let exclusionReason: string | undefined;
-  if (REJECTED_COLLISION_IDS.has(row.runtimeVocabularyId)) {
-    candidates = evidenceFor(exact, "EXACT_CANONICAL_LEMMA", "NONE");
-    relation = "HOMONYM_OR_POLYSEMY_CONFLICT";
-    exclusionReason = "OWNER_REJECTED_COLLISION_ID; lexical or translation similarity is not identity evidence";
-  } else if (exact.length > 1) {
+  if (exact.length > 1) {
     relation = "MULTIPLE_MASTER_CANDIDATES";
   } else if (exact.length === 1) {
     const exactCandidate = exact[0];
@@ -316,7 +393,7 @@ export function analyzeLegacyCandidate(row: RuntimeRow & { vietnameseForAnalysis
     if (candidates.length === 1) relation = "SEMANTIC_RELATED_NOT_SAME_IDENTITY";
     else if (candidates.length > 1) relation = "MULTIPLE_MASTER_CANDIDATES";
   }
-  return { runtimeVocabularyId: row.runtimeVocabularyId, word: row.word, normalizedWord: row.normalizedWord, relation, candidates, automaticMappingCreated: false, reviewRequired: relation !== "NO_MASTER_CANDIDATE", ...(exclusionReason ? { exclusionReason } : {}) };
+  return applyOwnerReviewedExclusions({ runtimeVocabularyId: row.runtimeVocabularyId, word: row.word, normalizedWord: row.normalizedWord, relation, candidates, automaticMappingCreated: false, reviewRequired: relation !== "NO_MASTER_CANDIDATE", ...(exclusionReason ? { exclusionReason } : {}) }, exclusions);
 }
 
 // vietnamese is kept only in the in-memory candidate-analysis input and is never serialized.
@@ -349,7 +426,7 @@ export function classifyRuntimeVocabulary(input: {
       reasons.push("ONE_OR_MORE_DATABASE_OR_APPLICATION_REFERENCES");
       if (candidate?.reviewRequired) reasons.push("MASTER_CANDIDATE_REQUIRES_SEPARATE_IDENTITY_REVIEW");
       if (PRESERVED_RUNTIME_IDS.has(row.runtimeVocabularyId)) reasons.push("OWNER_PRESERVED_HISTORICAL_RUNTIME_ID");
-    } else if (relation === "EXISTING_MASTER_RUNTIME_DUPLICATE" || relation === "HOMONYM_OR_POLYSEMY_CONFLICT" || relation === "MULTIPLE_MASTER_CANDIDATES" || relation === "SEMANTIC_RELATED_NOT_SAME_IDENTITY" || relation === "REVIEW_REQUIRED") {
+    } else if (relation === "OWNER_REVIEWED_NOT_SAME_IDENTITY" || relation === "EXISTING_MASTER_RUNTIME_DUPLICATE" || relation === "HOMONYM_OR_POLYSEMY_CONFLICT" || relation === "MULTIPLE_MASTER_CANDIDATES" || relation === "SEMANTIC_RELATED_NOT_SAME_IDENTITY" || relation === "REVIEW_REQUIRED") {
       cleanupClass = "LEGACY_DUPLICATE_REVIEW";
       reasons.push("SEMANTIC_OR_IDENTITY_AMBIGUITY_REQUIRES_OWNER_REVIEW");
     } else if (relation === "POSSIBLE_SAME_IDENTITY") {
@@ -391,7 +468,8 @@ export function classifySnapshot(snapshot: Pick<AuditSnapshot, "target" | "runti
   const mappedBySense = new Map(snapshot.mappings.map((mapping) => [mapping.masterSenseId, mapping]));
   const mappedWordsById = new Map(snapshot.runtimeRows.filter((row) => row.mappings.length > 0).map((row) => [row.runtimeVocabularyId, row.word]));
   const candidateRows = snapshot.runtimeRows.filter((row) => row.topLevelPartition === "LEGACY_UNMAPPED") as RuntimeRowWithAnalysis[];
-  const candidates = candidateRows.map((row) => analyzeLegacyCandidate(row, snapshot.masterCandidates, mappedBySense, mappedWordsById));
+  const ownerReviewedExclusions = readOwnerReviewedExclusions();
+  const candidates = candidateRows.map((row) => analyzeLegacyCandidate(row, snapshot.masterCandidates, mappedBySense, mappedWordsById, ownerReviewedExclusions.exclusions));
   const hybridRuntimeIds = new Set(snapshot.mappings.filter((mapping) => snapshot.hybridSenseIds.has(mapping.masterSenseId)).map((mapping) => mapping.runtimeVocabularyId));
   const classifications = classifyRuntimeVocabulary({ rows: snapshot.runtimeRows, candidates, referenceInventoryComplete, hybridRuntimeIds });
   const classCounts = Object.fromEntries(CLEANUP_CLASSES.map((cleanupClass) => [cleanupClass, classifications.filter((row) => row.cleanupClass === cleanupClass).length]));
@@ -462,21 +540,23 @@ export function classifySnapshot(snapshot: Pick<AuditSnapshot, "target" | "runti
   if (classifications.length !== snapshot.runtimeRows.length || new Set(classifications.map((row) => row.runtimeVocabularyId)).size !== snapshot.runtimeRows.length) throw new Error("CLEANUP_CLASSIFICATION_NOT_EXACTLY_ONCE");
   if (classCounts.KEEP_MASTER_MANAGED !== partitionCounts.MASTER_MANAGED) throw new Error("MASTER_MANAGED_CLASSIFICATION_MISMATCH");
   if (hybrid.status !== "VERIFIED") throw new Error("HYBRID_100_STATE_BLOCKED");
-  const fingerprintPayload = {
+  const fingerprintPayload = semanticAuditFingerprintPayload({
     target: snapshot.target,
-    runtimeVocabularyInventory: snapshot.runtimeRows,
+    runtimeVocabularyInventory: sanitizeRuntimeRows(snapshot.runtimeRows),
     masterMappings: snapshot.mappings,
-    aggregateReferenceCounts: snapshot.references,
     schemaReferenceInventory: snapshot.schemaInventory,
     cleanupClassification: classifications,
+    candidateAnalysis: candidates,
+    ownerReviewedExclusions,
     hybridCheckpoint: hybrid,
     repositoryBaseline: snapshot.repositoryBaseline
-  };
+  });
   return {
     partitionCounts,
     cleanupClassCounts: classCounts,
     classifications,
     candidateAnalysis: candidates,
+    ownerReviewedExclusions,
     legacyReferenceCounts: legacyReferences,
     deleteImpact,
     disableImpact,
@@ -889,7 +969,7 @@ function renderReport(snapshot: AuditSnapshot, result: JsonObject): string {
     `- Discovered reference columns: ${snapshot.references.length} across ${referenceTableNames.length} tables: ${referenceTableNames.map((name) => `\`${name}\``).join(", ")}. Database catalog is the primary truth; FK discovery and application-column references were cross-checked against Drizzle schema, migrations, API source and scripts.\n\n` +
     `| Schema.table.column | Constraint / referential action |\n|---|---|\n${refsList}\n\n` +
     `## Cleanup classification (recommendations only)\n\n| Class | Rows |\n|---|---:|\n${classList}\n\n` +
-    `Candidate discovery checks exact normalized English lemmas as possible identity evidence. Alias and Vietnamese translation matches are labeled related, never same identity. No mapping is created. Owner-rejected collision IDs #1260, #944, #1463, #1482 and #405 are forced to conflict/review when they appear as unmapped candidates.\n\n` +
+    `Finalized owner-reviewed CREATE_NEW decisions take precedence over exact lemma, duplicate, alias and translation heuristics for each reviewed runtime/Master Sense pair. Excluded candidates have relation OWNER_REVIEWED_NOT_SAME_IDENTITY and identityClaim=NONE. No mapping is created.\n\n` +
     `## Impact simulation\n\n` +
     `- Hypothetical DELETE_SAFE rows: ${String(impact.hypotheticalRowsRemoved)}; remaining runtime rows: ${String(impact.remainingRuntimeRows)}.\n` +
     `- Mapping references affected: ${String(impact.masterMappingsAffected)}; progress: ${String(impact.learnerProgressAffected)}; review events: ${String(impact.reviewEventsAffected)}; all other discovered references: ${String(impact.otherReferencesAffected)}.\n` +
@@ -929,13 +1009,15 @@ function writeArtifacts(snapshot: AuditSnapshot, result: JsonObject): string[] {
     artifactType: "DEVELOPMENT_LEGACY_VOCABULARY_CLEANUP_AUDIT", artifactVersion: 1,
     sourceBaseline: snapshot.repositoryBaseline,
     target: targetArtifact,
-    files: ["development-target.json", "schema-reference-inventory.json", "runtime-vocabulary-inventory.json", "master-mappings.json", "legacy-master-candidates.json", "cleanup-classification.json", "cleanup-impact-simulation.json", "validation-summary.json", "manifest.json", "../../reports/development-legacy-vocabulary-cleanup-audit.md"],
+    files: ["development-target.json", "schema-reference-inventory.json", "runtime-vocabulary-inventory.json", "master-mappings.json", "legacy-master-candidates.json", "cleanup-classification.json", "cleanup-impact-simulation.json", "validation-summary.json", "manifest.json", "owner-reviewed-exclusions.json", "semantic-fingerprint-payload.json", "../../reports/development-legacy-vocabulary-cleanup-audit.md"],
     legacyAuditSnapshotFingerprint: result.legacyAuditSnapshotFingerprint,
     fingerprintPayloadKeys: Object.keys(fingerprintPayload as object).sort(),
     outputSanitization: { learnerIds: false, householdIds: false, userIds: false, emails: false, sessions: false, connectionStrings: false },
     authorization: { cleanup: false, delete: false, disable: false, merge: false, mappingWrites: false }
   };
   const files = new Map<string, unknown>([
+    ["owner-reviewed-exclusions.json", result.ownerReviewedExclusions],
+    ["semantic-fingerprint-payload.json", result.fingerprintPayload],
     ["development-target.json", targetArtifact],
     ["schema-reference-inventory.json", schemaArtifact],
     ["runtime-vocabulary-inventory.json", runtimeArtifact],

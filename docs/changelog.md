@@ -2,6 +2,17 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-07 — Phase 2G.3A.1 legacy semantic exclusion closure
+
+Legacy candidate analysis now respects finalized owner CREATE_NEW decisions
+before applying lemma, duplicate, alias or translation heuristics. Fifteen
+reviewed runtime/Sense pairs are derived from the pinned Hybrid-100 package;
+eleven legacy rows have explicit non-identity evidence. Offline replay corrects
+the audit without rescanning Development or changing vocabulary, mappings,
+references, history or historical owner artifacts. Fingerprint v2 includes
+candidate and exclusion content hashes and can be verified from persisted,
+sanitized artifacts.
+
 ## 2026-10-07 — Phase 2G.2D Hybrid-100 Development runtime closure
 
 - Closed the approved 2.2.1 Hybrid-100 Development rollout after owner

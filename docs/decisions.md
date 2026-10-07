@@ -1,5 +1,18 @@
 # VocabFlow Project Decisions
 
+## Legacy candidate identity precedence — Phase 2G.3A.1 (2026-10-07)
+
+The explicit owner correction requires finalized reconciliation to outrank
+candidate heuristics. A runtime candidate reviewed for a Master Sense whose
+final decision is CREATE_NEW becomes an excluded runtime/Sense pair:
+OWNER_REVIEWED_NOT_SAME_IDENTITY, identityClaim NONE, no automatic mapping.
+The analysis-only proposal supplies candidate IDs and semantic evidence; the
+human-reviewed final reconciliation supplies authority. Exclusions are derived
+from pinned immutable inputs and cannot be overridden by exact lemma,
+existing-runtime, alias or translation similarity. They do not exclude other
+Master Senses for the runtime row. This changes offline analysis only and
+authorizes no database operation.
+
 These decisions are accepted baselines. Revisit one only when the stated
 evidence condition is met and the affected source document is updated.
 

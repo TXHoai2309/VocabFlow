@@ -1,0 +1,148 @@
+{
+  "artifactType": "OWNER_REVIEWED_LEGACY_SEMANTIC_EXCLUSIONS",
+  "artifactVersion": 1,
+  "sources": {
+    "proposalPath": "vocabflow-dataset/workspaces/hybrid-100-runtime-reconciliation-2.2.1/owner-review/owner-reconciliation-proposal.json",
+    "finalizedPath": "vocabflow-dataset/workspaces/hybrid-100-runtime-reconciliation-2.2.1/owner-review/import/mappings/runtime-reconciliation-v2.json",
+    "authorizationPath": "vocabflow-dataset/workspaces/hybrid-100-runtime-reconciliation-2.2.1/owner-review/owner-authorization.json",
+    "proposalFingerprint": "6033cb0d217578aeab7b7e3fb750fda0476c2b880e9958f3865992604b2be6c0",
+    "reconciliationHash": "4c3d86eb3a4b06a04c68e870847f97fa432fdf247595c577eb758888d62315db"
+  },
+  "exclusions": [
+    {
+      "masterSenseId": "01a0fc13-09ee-7768-9be6-d20fa32521ee",
+      "masterLexemeId": "01a0fc13-09ee-7fd1-8ad8-a2026a7620e0",
+      "runtimeVocabularyId": 1260,
+      "lemma": "light",
+      "partOfSpeech": "ADJECTIVE",
+      "finalDecision": "CREATE_NEW",
+      "reason": "No discovered runtime row establishes both the same English lexical identity and the same intended Sense with sufficient evidence. CREATE_NEW preserves each candidate's existing identity and history; no candidate ID is selected."
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-75ac-b815-039ab337c01a",
+      "masterLexemeId": "01a0fc13-09ef-73b3-b970-1a8bd5d48a27",
+      "runtimeVocabularyId": 11,
+      "lemma": "water",
+      "partOfSpeech": "VERB",
+      "finalDecision": "CREATE_NEW",
+      "reason": "No discovered runtime row establishes both the same English lexical identity and the same intended Sense with sufficient evidence. CREATE_NEW preserves each candidate's existing identity and history; no candidate ID is selected."
+    },
+    {
+      "masterSenseId": "01a0fc13-09ef-75ac-b815-039ab337c01a",
+      "masterLexemeId": "01a0fc13-09ef-73b3-b970-1a8bd5d48a27",
+      "runtimeVocabularyId": 405,
+      "lemma": "water",
+      "partOfSpeech": "VERB",
+      "finalDecision": "CREATE_NEW",
+      "reason": "No discovered runtime row establishes both the same English lexical identity and the same intended Sense with sufficient evidence. CREATE_NEW preserves each candidate's existing identity and history; no candidate ID is selected."
+    },
+    {
+      "masterSenseId": "01a1070c-7c56-71df-b6f0-39632387320e",
+      "masterLexemeId": "01a1070c-7c56-71df-b6f0-3750741bcfb0",
+      "runtimeVocabularyId": 1482,
+      "lemma": "rally",
+      "partOfSpeech": "VERB",
+      "finalDecision": "CREATE_NEW",
+      "reason": "No discovered runtime row establishes both the same English lexical identity and the same intended Sense with sufficient evidence. CREATE_NEW preserves each candidate's existing identity and history; no candidate ID is selected."
+    },
+    {
+      "masterSenseId": "01a1070c-7c57-7676-9acd-d23079256ae2",
+      "masterLexemeId": "01a0fc13-09ee-7fd1-8ad8-a2026a7620e0",
+      "runtimeVocabularyId": 1260,
+      "lemma": "light",
+      "partOfSpeech": "VERB",
+      "finalDecision": "CREATE_NEW",
+      "reason": "No discovered runtime row establishes both the same English lexical identity and the same intended Sense with sufficient evidence. CREATE_NEW preserves each candidate's existing identity and history; no candidate ID is selected."
+    },
+    {
+      "masterSenseId": "01a1070c-7c57-7676-9acf-b1c2d0e92475",
+      "masterLexemeId": "01a1070c-7c57-7676-9acf-ad7532f47f33",
+      "runtimeVocabularyId": 1463,
+      "lemma": "exact",
+      "partOfSpeech": "ADJECTIVE",
+      "finalDecision": "CREATE_NEW",
+      "reason": "No discovered runtime row establishes both the same English lexical identity and the same intended Sense with sufficient evidence. CREATE_NEW preserves each candidate's existing identity and history; no candidate ID is selected."
+    },
+    {
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-92d544914a1a",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2a9-8eb6466e094b",
+      "runtimeVocabularyId": 1313,
+      "lemma": "struggle",
+      "partOfSpeech": "VERB",
+      "finalDecision": "CREATE_NEW",
+      "reason": "No discovered runtime row establishes both the same English lexical identity and the same intended Sense with sufficient evidence. CREATE_NEW preserves each candidate's existing identity and history; no candidate ID is selected."
+    },
+    {
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-92d544914a1a",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2a9-8eb6466e094b",
+      "runtimeVocabularyId": 1330,
+      "lemma": "struggle",
+      "partOfSpeech": "VERB",
+      "finalDecision": "CREATE_NEW",
+      "reason": "No discovered runtime row establishes both the same English lexical identity and the same intended Sense with sufficient evidence. CREATE_NEW preserves each candidate's existing identity and history; no candidate ID is selected."
+    },
+    {
+      "masterSenseId": "01a1070c-7c58-76b5-a2a9-92d544914a1a",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2a9-8eb6466e094b",
+      "runtimeVocabularyId": 1477,
+      "lemma": "struggle",
+      "partOfSpeech": "VERB",
+      "finalDecision": "CREATE_NEW",
+      "reason": "No discovered runtime row establishes both the same English lexical identity and the same intended Sense with sufficient evidence. CREATE_NEW preserves each candidate's existing identity and history; no candidate ID is selected."
+    },
+    {
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-0ab34eedf7c6",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2ab-053cc2f30444",
+      "runtimeVocabularyId": 944,
+      "lemma": "rock",
+      "partOfSpeech": "NOUN",
+      "finalDecision": "CREATE_NEW",
+      "reason": "No discovered runtime row establishes both the same English lexical identity and the same intended Sense with sufficient evidence. CREATE_NEW preserves each candidate's existing identity and history; no candidate ID is selected."
+    },
+    {
+      "masterSenseId": "01a1070c-7c58-76b5-a2ab-369dd574695b",
+      "masterLexemeId": "01a0fc13-09ef-7e5d-b757-aa456f0cd969",
+      "runtimeVocabularyId": 284,
+      "lemma": "reservation",
+      "partOfSpeech": "NOUN",
+      "finalDecision": "CREATE_NEW",
+      "reason": "No discovered runtime row establishes both the same English lexical identity and the same intended Sense with sufficient evidence. CREATE_NEW preserves each candidate's existing identity and history; no candidate ID is selected."
+    },
+    {
+      "masterSenseId": "01a1070c-7c59-726e-88d4-83e56ae5f536",
+      "masterLexemeId": "01a1070c-7c59-726e-88d4-7e7ae1df7d90",
+      "runtimeVocabularyId": 1796,
+      "lemma": "liable",
+      "partOfSpeech": "ADJECTIVE",
+      "finalDecision": "CREATE_NEW",
+      "reason": "No discovered runtime row establishes both the same English lexical identity and the same intended Sense with sufficient evidence. CREATE_NEW preserves each candidate's existing identity and history; no candidate ID is selected."
+    },
+    {
+      "masterSenseId": "01a1070c-7c59-726e-88d5-9c1965cff571",
+      "masterLexemeId": "01a0fc13-09ee-7fd1-8ad8-a2026a7620e0",
+      "runtimeVocabularyId": 1260,
+      "lemma": "light",
+      "partOfSpeech": "ADJECTIVE",
+      "finalDecision": "CREATE_NEW",
+      "reason": "No discovered runtime row establishes both the same English lexical identity and the same intended Sense with sufficient evidence. CREATE_NEW preserves each candidate's existing identity and history; no candidate ID is selected."
+    },
+    {
+      "masterSenseId": "01a1070c-7c59-726e-88d6-cf9dc05adb73",
+      "masterLexemeId": "01a1070c-7c59-726e-88d6-cb73a774b6f2",
+      "runtimeVocabularyId": 846,
+      "lemma": "fuse",
+      "partOfSpeech": "NOUN",
+      "finalDecision": "CREATE_NEW",
+      "reason": "No discovered runtime row establishes both the same English lexical identity and the same intended Sense with sufficient evidence. CREATE_NEW preserves each candidate's existing identity and history; no candidate ID is selected."
+    },
+    {
+      "masterSenseId": "01a1070c-7c5a-7542-a093-116a29fa3a72",
+      "masterLexemeId": "01a1070c-7c58-76b5-a2aa-785336c8dc64",
+      "runtimeVocabularyId": 1461,
+      "lemma": "relief",
+      "partOfSpeech": "NOUN",
+      "finalDecision": "CREATE_NEW",
+      "reason": "No discovered runtime row establishes both the same English lexical identity and the same intended Sense with sufficient evidence. CREATE_NEW preserves each candidate's existing identity and history; no candidate ID is selected."
+    }
+  ]
+}
