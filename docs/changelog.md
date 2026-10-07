@@ -25,6 +25,38 @@ bounded missing-household recovery, uncertain-create reconciliation, stable
 protected routes, account-oriented copy and desktop/mobile logout. Legacy
 /learners redirects home. Tests cover the new flow; no backend/schema change.
 
+## 2026-10-07 — Phase 2H.1 full source inventory / normalization / dedupe
+
+Initially generated on da4aa11ed9d41623f41e8a6da591d0cbb71bc567;
+reconciled and revalidated on origin/TXH
+23d88be687f0fa460e1f239fa589355d92628357.
+Oxford: 5004 source notes, 5001 unique normalized headwords, 3 repeated groups,
+8092 structured source sense/example groups, POS and CEFR evidence on 5004 notes,
+no explicit English definition field. English Vocab: 4673 notes, 4654 unique
+normalized headwords, 19 repeated groups, POS on 4670 notes, CEFR evidence on
+4673, 4664 heuristic English text segments in its mixed Meaning field.
+
+NFC/visible text/whitespace/casefold yields 3512 overlapping headwords, 1489
+Oxford-only, 1142 4600-only, union 6143. POS-compatible candidates 3450;
+61 POS conflicts after recognized alias normalization; 96 CEFR conflicts;
+2191 possible polysemy groups, 22 multiple-record groups and zero punctuation
+normalization collisions. Definition/content review=19, example variants=3510,
+Vietnamese meaning variants=1993, human review queue=4170, including 24 multiword/phrasal source-only
+review cases. These are review signals only; headword matching does not establish Lexeme or Sense identity.
+All raw note fields, source IDs/GUIDs, models, tags, card/deck IDs, structured
+source group evidence and media references remain traceable. Source rights stay
+UNKNOWN / REVIEW_REQUIRED. The approved Hybrid-100 v2.2.1 remains 87 Lexemes /
+100 Senses, release hash 44874b11d1fdef76a515f6285d04c9a417318daa6969e112608a59e7c232613c.
+Legacy coverage is read-only over 2018 rows: 440 possible, 294 ambiguous,
+1284 without exact source headword coverage.
+
+Fingerprint: db21e13f409a3873478962db13841b42d1fc13d49399f21c628809cf3019d3a1.
+11 focused tests, syntax check, Node 22.23.2 / pnpm 11.17.0 typecheck,
+repository lint, offline replay, dataset validation, Master V2 schema check and
+Hybrid-100 frozen release check PASS. Dataset validation reports 30 missing IPA,
+30 image and 30 audio warnings in the current starter dataset; Master V2 validator
+reports 0 errors, 0 warnings, 1 info. No DB access/writes, authoring, apply,
+mappings, legacy mutations, media publication or Production access.
 
 ## 2026-10-07 — Phase 2G.3C legacy content disposition / Master expansion planning
 

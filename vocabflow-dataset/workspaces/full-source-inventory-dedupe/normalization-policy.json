@@ -1,0 +1,18 @@
+{
+  "policyVersion": "2H1-NFC-VISIBLE-HEADWORD-CASEFOLD-1",
+  "unicodeNormalization": "NFC",
+  "visibleHeadwordExtraction": "HTML-unescape text after replacing <br> with whitespace and removing markup; raw field separately preserved",
+  "trimAndWhitespace": "Unicode strip, collapse every Unicode whitespace run to one ASCII space",
+  "case": "Python Unicode casefold",
+  "diacritics": "Preserve; no accent stripping",
+  "apostrophes": "Preserve original apostrophe code point; NFC/casefold only",
+  "hyphens": "Preserve; do not equate hyphen variants",
+  "punctuation": "Preserve in primary normalizedHeadword key",
+  "parentheticalVariants": "Preserve all parenthetical text",
+  "multiwordExpressionsAndPhrasalVerbs": "Preserve token order and full expression; mark as review type, never split for identity",
+  "inflectionalLookingForms": "Preserve; no lemmatization/stemming",
+  "spellingVariants": "Remain separate unless exact policy key collides",
+  "duplicateNotesOrCards": "Retain all note/card identities; duplicate group is a review queue, never silent deduplication",
+  "secondaryPunctuationComparison": "Replace Unicode punctuation/symbol characters with spaces, collapse whitespace, and generate normalization-collision review only; never used as match key",
+  "identityLimit": "NORMALIZED_HEADWORD_MATCH != CANDIDATE_LEXEME_MATCH != CANDIDATE_SENSE_MATCH; all remain human review unless accepted identity proof exists"
+}

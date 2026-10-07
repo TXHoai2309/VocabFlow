@@ -1,0 +1,62 @@
+{
+  "phase": "2H.1",
+  "artifactType": "FULL_SOURCE_INVENTORY_NORMALIZATION_DEDUPE",
+  "fingerprintAlgorithm": "SHA256_CANONICAL_JSON_SORTED_KEYS_UTF8_NO_TIMESTAMPS",
+  "sourceFiles": {
+    "OXFORD_5000": {
+      "relativePath": "../5000_T_vng_Ting_Anh_Oxford_5000_A1-C1.apkg",
+      "byteLength": 1893404,
+      "sha256": "7efd68822a49fd984948cbbf8cb5b1249d602a5f47d1a4693e1dbdc3a60e1abd",
+      "collectionMember": "collection.anki21",
+      "records": 5004,
+      "cards": 10008
+    },
+    "ENGLISH_VOCAB_4600": {
+      "relativePath": "../4600 English Vocab.apkg",
+      "byteLength": 584090331,
+      "sha256": "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+      "collectionMember": "collection.anki21",
+      "records": 4673,
+      "cards": 4673
+    }
+  },
+  "acceptedHybrid100": {
+    "datasetVersion": "2.2.1",
+    "status": "APPROVED",
+    "releaseHash": "44874b11d1fdef76a515f6285d04c9a417318daa6969e112608a59e7c232613c",
+    "lexemeCount": 87,
+    "senseCount": 100
+  },
+  "acceptedPhase2G3C": {
+    "planningFingerprint": "d60ea07432633de6ab4bb0516ce9401252c6d03982c77710f0b2a71c0968ac09",
+    "semanticFingerprint": "5115d7021d7a66466fe87ded8ae49f24ceb399edf1e1c9981b990f3443acdfea",
+    "retirementFingerprint": "04feaa380fa441633ef8a4c84b8d0e5a5aee48d03a7a5ff020866c789eb8cdd1"
+  },
+  "acceptedInventoryFingerprint": "db21e13f409a3873478962db13841b42d1fc13d49399f21c628809cf3019d3a1",
+  "artifactFiles": [
+    "source-inventory.json",
+    "normalization-policy.json",
+    "oxford-normalized-inventory.json",
+    "vocab4600-normalized-inventory.json",
+    "cross-source-overlap.json",
+    "duplicate-headword-groups.json",
+    "lexical-candidate-groups.json",
+    "sense-review-queue.json",
+    "master-coverage-readonly.json",
+    "legacy-source-coverage-readonly.json",
+    "provenance-rights-inventory.json",
+    "validation-summary.json",
+    "manifest.json"
+  ],
+  "reportPath": "vocabflow-dataset/reports/full-source-inventory-dedupe.md",
+  "authorization": {
+    "databaseWrite": false,
+    "masterAuthoring": false,
+    "masterApply": false,
+    "legacyMappingWrite": false,
+    "relationshipMigration": false,
+    "disable": false,
+    "delete": false,
+    "production": false
+  }
+}
