@@ -4,6 +4,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import type { LearnerDto, LearnerVocabularyDto } from "@vocabflow/contracts";
 import { ActiveLearnerProvider } from "./learner-context-provider";
+import { ToastProvider } from "../../components/toast/toast-provider";
 import { VocabularyDetailPage } from "./vocabulary-detail-page";
 
 const learner: LearnerDto = {
@@ -73,13 +74,15 @@ function mockDetailApi(items: LearnerVocabularyDto[], initiallySaved: number[] =
 function renderDetail(id = "1", initialLearner: LearnerDto | null = learner) {
   return render(
     <MemoryRouter initialEntries={[`/vocabulary/${id}`]}>
-      <ActiveLearnerProvider initialLearner={initialLearner}>
-        <Routes>
-          <Route path="/vocabulary/:vocabularyId" element={<VocabularyDetailPage />} />
-          <Route path="/vocabulary" element={<p>vocabulary-list-route</p>} />
-          <Route path="/learners" element={<LearnerRouteProbe />} />
-        </Routes>
-      </ActiveLearnerProvider>
+      <ToastProvider>
+        <ActiveLearnerProvider initialLearner={initialLearner}>
+          <Routes>
+            <Route path="/vocabulary/:vocabularyId" element={<VocabularyDetailPage />} />
+            <Route path="/vocabulary" element={<p>vocabulary-list-route</p>} />
+            <Route path="/learners" element={<LearnerRouteProbe />} />
+          </Routes>
+        </ActiveLearnerProvider>
+      </ToastProvider>
     </MemoryRouter>
   );
 }
@@ -182,6 +185,7 @@ describe("vocabulary detail page", () => {
     expect(await screen.findByRole("button", { name: "Lưu từ apple" })).toHaveAttribute("aria-pressed", "false");
     expect(fetchMock.mock.calls.some(([url, init]) => String(url).endsWith("/saved-vocabulary/1") && init?.method === "POST")).toBe(true);
     expect(fetchMock.mock.calls.some(([url, init]) => String(url).endsWith("/saved-vocabulary/1") && init?.method === "DELETE")).toBe(true);
+    expect(screen.getByText("Đã bỏ khỏi Yêu thích")).toBeInTheDocument();
   });
 
   it("hydrates the bookmark state from the learner's saved list", async () => {
@@ -202,7 +206,7 @@ describe("vocabulary detail page", () => {
 
     fireEvent.click(await screen.findByRole("button", { name: "Lưu từ apple" }));
 
-    expect(await screen.findByRole("alert")).toHaveTextContent("Không thể lưu từ. Vui lòng thử lại.");
+    expect(await screen.findByRole("alert")).toHaveTextContent("Không thể cập nhật Yêu thích. Vui lòng thử lại.");
     expect(screen.getByRole("button", { name: "Lưu từ apple" })).toHaveAttribute("aria-pressed", "false");
   });
 });

@@ -1,5 +1,6 @@
 import { Link, Navigate, Route, Routes, useLocation } from "react-router";
 import { AppShell } from "./components/app-shell";
+import { ToastProvider } from "./components/toast/toast-provider";
 import { authClient } from "./features/auth/auth-client";
 import { LoginPage } from "./features/auth/login-page";
 import { RegisterPage } from "./features/auth/register-page";
@@ -67,7 +68,7 @@ function AuthenticatedAppShell({ parentName }: { parentName: string }) {
   if (!activeLearner && location.pathname !== "/learners") {
     return <Navigate to="/learners" replace state={{ returnTo: `${location.pathname}${location.search}` }} />;
   }
-  return <AppShell parentName={parentName} />;
+  return <ToastProvider><AppShell parentName={parentName} /></ToastProvider>;
 }
 
 function AppShellRoute() {

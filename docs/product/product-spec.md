@@ -1,5 +1,17 @@
 # Family MVP Specification v1.0
 
+## Toast & mutation feedback extension (Feature #16 / US-53)
+
+Normal, reversible actions give immediate, non-blocking toast feedback after
+the mutation succeeds. Mutation failures use a safe error toast or field-level
+validation where the learner can correct the input. Destructive actions keep
+an explicit confirmation step and show a toast only after successful
+completion. Page-data fetch failures remain in the Feature #15 ErrorState;
+study-answer correctness feedback remains part of the learning interaction.
+Toast state is transient, shared across authenticated route changes, accessible,
+bounded and never stored in local persistence. This presentation policy does
+not change API, scheduler, learner selection or database semantics.
+
 ## Loading / Empty / Error states extension (Feature #15 / US-52)
 
 Data-fetching screens show structure-matched loading skeletons inside their

@@ -4,6 +4,7 @@ import type { LearnerDto, LearnerSavedVocabularyDto, VocabularyLevel } from "@vo
 import { useActiveLearner } from "./learner-context-hook";
 import { VocabularyCard } from "./vocabulary-card";
 import { EmptyState, ErrorState, LoadingState } from "../../components/async-states";
+import { useToast } from "../../components/toast/toast-context";
 import { requestSavedVocabulary, unsaveVocabulary } from "./saved-vocabulary-client";
 
 type PageState = "loading" | "ready" | "error";
@@ -40,6 +41,7 @@ export function SavedWordsPage() {
 }
 
 function SavedWordsExperience({ activeLearner }: { activeLearner: LearnerDto }) {
+  const toast = useToast();
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get("q") ?? "";
   const normalizedQuery = query.trim().toLocaleLowerCase();
@@ -121,11 +123,12 @@ function SavedWordsExperience({ activeLearner }: { activeLearner: LearnerDto }) 
     try {
       const response = await unsaveVocabulary(activeLearner.id, vocabularyId);
       if (response.saved) throw new Error("INVALID_RESPONSE");
+      toast.success("Đã bỏ khỏi Yêu thích");
     } catch {
       setSavedVocabulary((current) => current.some((item) => item.vocabulary.id === vocabularyId)
         ? current
         : [...current, entry].sort((left, right) => right.savedAt.localeCompare(left.savedAt)));
-      setMessage("Không thể bỏ lưu từ. Vui lòng thử lại.");
+      toast.error("Không thể cập nhật Yêu thích. Vui lòng thử lại.");
     } finally {
       mutationInFlight.current.delete(vocabularyId);
       setSavingIds((current) => {
@@ -134,7 +137,7 @@ function SavedWordsExperience({ activeLearner }: { activeLearner: LearnerDto }) 
         return next;
       });
     }
-  }, [activeLearner.id]);
+  }, [activeLearner.id, toast]);
 
   return (
     <main className="saved-words-page" aria-labelledby="saved-words-title">
@@ -157,8 +160,6 @@ function SavedWordsExperience({ activeLearner }: { activeLearner: LearnerDto }) 
       {state === "error" ? (
         <ErrorState className="saved-words-state saved-words-error" title="Không thể tải từ đã lưu" description={message ?? "Vui lòng thử lại."} onRetry={() => void loadSavedVocabulary()} />
       ) : null}
-      {message && state === "ready" ? <p className="saved-words-feedback" role="alert">{message}</p> : null}
-
       {state === "ready" && savedVocabulary.length === 0 ? (
         <EmptyState className="saved-words-empty" icon="bookmark" title="Chưa có từ yêu thích" description="Hãy lưu những từ bạn muốn học lại sau." action={<Link className="saved-words-empty-link" to="/vocabulary">Khám phá từ vựng</Link>} />
       ) : null}

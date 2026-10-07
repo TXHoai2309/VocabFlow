@@ -5,6 +5,7 @@ import type { LearnerDto } from "@vocabflow/contracts";
 import { createLearner, LearnerClientError, requestLearners } from "./learner-client";
 import { useActiveLearner } from "./learner-context-hook";
 import { EmptyState, ErrorState, LoadingState } from "../../components/async-states";
+import { useToast } from "../../components/toast/toast-context";
 
 type ResolutionState =
   | "loading"
@@ -36,6 +37,7 @@ function localNameError(value: string) {
 }
 
 export function LearnerPage() {
+  const toast = useToast();
   const sessionState = authClient.useSession();
   const { activeLearner, setActiveLearner, clearActiveLearner } = useActiveLearner();
   const location = useLocation();
@@ -106,6 +108,8 @@ export function LearnerPage() {
     event.preventDefault();
     if (requestInFlight.current) return;
     const error = localNameError(displayName);
+    const previousState = state;
+    const previousMessage = message;
     setFieldError(error);
     if (error) return;
     requestInFlight.current = true;
@@ -118,6 +122,7 @@ export function LearnerPage() {
       setLearners((current) => [...current, created].sort((a, b) => a.createdAt.localeCompare(b.createdAt) || a.id.localeCompare(b.id)));
       setActiveLearner(created);
       setState("completed");
+      toast.success("Đã tạo hồ sơ người học");
     } catch (error) {
       if (error instanceof LearnerClientError && error.uncertain) {
         requestInFlight.current = false;
@@ -126,10 +131,13 @@ export function LearnerPage() {
         setMessage((current) => current ?? "Danh sách đã được cập nhật. Vui lòng kiểm tra trước khi tạo lại.");
         return;
       }
-      setState("error");
-      setMessage(error instanceof LearnerClientError && error.code === "LEARNER_DISPLAY_NAME_INVALID"
-        ? "Tên người học không hợp lệ."
-        : SAFE_CREATE_ERROR);
+      setState(previousState);
+      setMessage(previousMessage);
+      if (error instanceof LearnerClientError && error.code === "LEARNER_DISPLAY_NAME_INVALID") {
+        setFieldError("Tên người học không hợp lệ.");
+      } else {
+        toast.error(SAFE_CREATE_ERROR);
+      }
     } finally {
       requestInFlight.current = false;
     }

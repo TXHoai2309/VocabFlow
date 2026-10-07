@@ -5,6 +5,7 @@ import "@testing-library/jest-dom/vitest";
 import type { LearnerDto, LearnerVocabularyDto, VocabularyDto } from "@vocabflow/contracts";
 import { ActiveLearnerProvider } from "../learners/learner-context-provider";
 import { LearnerLearningSetsPage } from "./learner-learning-sets-page";
+import { ToastProvider } from "../../components/toast/toast-provider";
 import { LearningSetDetailPage, LearningSetsPage } from "./learning-sets-page";
 
 const learner: LearnerDto = {
@@ -239,18 +240,43 @@ describe("US-28/29 learning set UI", () => {
   it("shows current assignment and refreshes only the selected toggle after save", async () => {
     const fetchMock = vi.spyOn(globalThis, "fetch")
       .mockResolvedValueOnce(response({ learningSets: [{ learningSet: { ...learningSet, grade: null, vocabularyCount: 1 }, active: false }] }))
-      .mockResolvedValueOnce(response({ learnerId: learner.id, learningSetId: 1, active: true }));
+      .mockResolvedValueOnce(response({ learnerId: learner.id, learningSetId: 1, active: true }))
+      .mockResolvedValueOnce(response({ learnerId: learner.id, learningSetId: 1, active: false }));
     render(
       <ActiveLearnerProvider initialLearner={learner}>
         <MemoryRouter initialEntries={["/learning-sets/assign"]}>
-          <Routes><Route path="/learning-sets/assign" element={<LearnerLearningSetsPage />} /></Routes>
+          <ToastProvider><Routes><Route path="/learning-sets/assign" element={<LearnerLearningSetsPage />} /></Routes></ToastProvider>
         </MemoryRouter>
       </ActiveLearnerProvider>
     );
     fireEvent.click(await screen.findByRole("button", { name: "Gán bộ từ" }));
     expect(await screen.findByRole("button", { name: "Đã gán" })).toBeInTheDocument();
-    await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(2));
+    expect(await screen.findByText("Đã thêm bộ từ cho người học")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Đã gán" }));
+    expect(await screen.findByRole("button", { name: "Gán bộ từ" })).toBeInTheDocument();
+    expect(await screen.findByText("Đã gỡ bộ từ khỏi người học")).toBeInTheDocument();
+    await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(3));
     expect(fetchMock).toHaveBeenNthCalledWith(2, `/api/learners/${learner.id}/learning-sets/1`, { method: "PUT", credentials: "include" });
+    expect(fetchMock).toHaveBeenNthCalledWith(3, `/api/learners/${learner.id}/learning-sets/1`, { method: "DELETE", credentials: "include" });
+  });
+
+  it("announces assignment failures without showing a modal", async () => {
+    vi.spyOn(globalThis, "fetch")
+      .mockResolvedValueOnce(response({ learningSets: [{ learningSet, active: false }] }))
+      .mockResolvedValueOnce(response({ error: { code: "INTERNAL_ERROR" } }, 503));
+    render(
+      <ActiveLearnerProvider initialLearner={learner}>
+        <MemoryRouter initialEntries={["/learning-sets/assign"]}>
+          <ToastProvider><Routes><Route path="/learning-sets/assign" element={<LearnerLearningSetsPage />} /></Routes></ToastProvider>
+        </MemoryRouter>
+      </ActiveLearnerProvider>
+    );
+
+    fireEvent.click(await screen.findByRole("button", { name: "Gán bộ từ" }));
+
+    expect(await screen.findByTestId("toast-error")).toHaveTextContent("Không thể cập nhật bộ từ lúc này. Vui lòng thử lại.");
+    expect(screen.getByRole("button", { name: "Gán bộ từ" })).toBeEnabled();
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   });
 
   it("retries a failed learner Learning Set assignment list request", async () => {
@@ -260,7 +286,7 @@ describe("US-28/29 learning set UI", () => {
     render(
       <ActiveLearnerProvider initialLearner={learner}>
         <MemoryRouter initialEntries={["/learning-sets/assign"]}>
-          <Routes><Route path="/learning-sets/assign" element={<LearnerLearningSetsPage />} /></Routes>
+          <ToastProvider><Routes><Route path="/learning-sets/assign" element={<LearnerLearningSetsPage />} /></Routes></ToastProvider>
         </MemoryRouter>
       </ActiveLearnerProvider>
     );

@@ -80,6 +80,8 @@ convenient. Reprioritization or a new story must be explicit.
 - [US-51 Global Search](US-51-global-search.md) — `IMPLEMENTED / READY FOR OWNER CHECK` (Feature #14; learner-scoped Vocabulary, Topic and Learning Set search, command palette/mobile sheet and bounded local recent queries).
 - [US-52 Loading / Empty / Error States](US-52-async-data-states.md) — `IMPLEMENTED / READY FOR OWNER CHECK` (Feature #15; shared accessible skeleton, empty, safe error and retry states across learner data pages and Global Search).
 
+- [US-53 Toast & Feedback](US-53-toast-feedback.md) — `IMPLEMENTED / READY FOR OWNER CHECK` (Feature #16; shared mutation feedback, success toasts for normal actions and confirmation for destructive actions).
+
 ## Story status gate
 
 - `DRAFT`: the story is being written and is not ready for review.

@@ -6,6 +6,7 @@ import { LearnerVocabularyClientError, requestLearnerVocabulary } from "./vocabu
 import { usePronunciationAudio } from "../study/pronunciation-audio";
 import { requestSavedVocabulary, saveVocabulary, unsaveVocabulary } from "./saved-vocabulary-client";
 import { ErrorState, LoadingState } from "../../components/async-states";
+import { useToast } from "../../components/toast/toast-context";
 
 type DetailState = "loading" | "ready" | "error";
 
@@ -93,6 +94,7 @@ export function VocabularyDetailPage() {
 }
 
 function VocabularyDetailExperience({ activeLearner, vocabularyId }: { activeLearner: LearnerDto; vocabularyId: number }) {
+  const toast = useToast();
   const hasValidVocabularyId = Number.isSafeInteger(vocabularyId) && vocabularyId > 0;
   const [state, setState] = useState<DetailState>(hasValidVocabularyId ? "loading" : "ready");
   const [vocabulary, setVocabulary] = useState<LearnerVocabularyDto | null>(null);
@@ -101,7 +103,6 @@ function VocabularyDetailExperience({ activeLearner, vocabularyId }: { activeLea
   const [savedVocabularyState, setSavedVocabularyState] = useState<"loading" | "ready" | "error">("loading");
   const [isSaved, setIsSaved] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
-  const [savedMessage, setSavedMessage] = useState<string | null>(null);
   const mutationInFlight = useRef(false);
 
   const loadVocabulary = useCallback(async () => {
@@ -126,7 +127,6 @@ function VocabularyDetailExperience({ activeLearner, vocabularyId }: { activeLea
 
   const loadSavedVocabulary = useCallback(async () => {
     setSavedVocabularyState("loading");
-    setSavedMessage(null);
     try {
       const saved = await requestSavedVocabulary(activeLearner.id);
       setIsSaved(saved.some((entry) => entry.vocabulary.id === vocabularyId));
@@ -141,21 +141,21 @@ function VocabularyDetailExperience({ activeLearner, vocabularyId }: { activeLea
     const wasSaved = isSaved;
     mutationInFlight.current = true;
     setIsSaving(true);
-    setSavedMessage(null);
     setIsSaved(!wasSaved);
     try {
       const response = wasSaved
         ? await unsaveVocabulary(activeLearner.id, item.id)
         : await saveVocabulary(activeLearner.id, item.id);
       if (response.saved === wasSaved) throw new Error("INVALID_RESPONSE");
+      toast.success(wasSaved ? "Đã bỏ khỏi Yêu thích" : "Đã thêm vào Yêu thích");
     } catch {
       setIsSaved(wasSaved);
-      setSavedMessage("Không thể lưu từ. Vui lòng thử lại.");
+      toast.error("Không thể cập nhật Yêu thích. Vui lòng thử lại.");
     } finally {
       mutationInFlight.current = false;
       setIsSaving(false);
     }
-  }, [activeLearner.id, isSaved, savedVocabularyState]);
+  }, [activeLearner.id, isSaved, savedVocabularyState, toast]);
 
   useEffect(() => {
     let cancelled = false;
@@ -222,7 +222,6 @@ function VocabularyDetailExperience({ activeLearner, vocabularyId }: { activeLea
           isSaved={isSaved}
           isSaving={isSaving}
           savedVocabularyState={savedVocabularyState}
-          savedMessage={savedMessage}
           onToggleSaved={() => void toggleSaved(vocabulary)}
           onRetrySaved={() => void loadSavedVocabulary()}
         />
@@ -231,13 +230,12 @@ function VocabularyDetailExperience({ activeLearner, vocabularyId }: { activeLea
   );
 }
 
-function VocabularyDetailContent({ vocabulary, allVocabulary, isSaved, isSaving, savedVocabularyState, savedMessage, onToggleSaved, onRetrySaved }: {
+function VocabularyDetailContent({ vocabulary, allVocabulary, isSaved, isSaving, savedVocabularyState, onToggleSaved, onRetrySaved }: {
   vocabulary: LearnerVocabularyDto;
   allVocabulary: LearnerVocabularyDto[];
   isSaved: boolean;
   isSaving: boolean;
   savedVocabularyState: "loading" | "ready" | "error";
-  savedMessage: string | null;
   onToggleSaved: () => void;
   onRetrySaved: () => void;
 }) {
@@ -311,7 +309,6 @@ function VocabularyDetailContent({ vocabulary, allVocabulary, isSaved, isSaving,
               </Link>
             </div>
             {savedVocabularyState === "error" ? <p className="vocabulary-detail-save-error" role="alert">Không thể tải trạng thái từ đã lưu. <button type="button" onClick={onRetrySaved}>Thử lại</button></p> : null}
-            {savedMessage ? <p className="vocabulary-detail-save-error" role="alert">{savedMessage}</p> : null}
             {audio.state === "error" ? <p className="vocabulary-detail-audio-error" role="status">Âm thanh không khả dụng lúc này.</p> : null}
           </div>
 

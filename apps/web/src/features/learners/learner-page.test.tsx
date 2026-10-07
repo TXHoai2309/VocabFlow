@@ -8,6 +8,7 @@ import { ActiveLearnerProvider } from "./learner-context-provider";
 import { ACTIVE_LEARNER_STORAGE_KEY } from "./learner-context";
 import { LearnerPage } from "./learner-page";
 import { VocabularyDetailPage } from "./vocabulary-detail-page";
+import { ToastProvider } from "../../components/toast/toast-provider";
 
 const { useSession, requestLearners, createLearner } = vi.hoisted(() => ({
   useSession: vi.fn(),
@@ -39,14 +40,16 @@ function RouteProbe() {
 function renderPage(returnTo?: unknown, userId?: string) {
   return render(
     <MemoryRouter initialEntries={[{ pathname: "/learners", state: returnTo === undefined ? null : { returnTo } }]}>
-      <ActiveLearnerProvider userId={userId}>
-        <RouteProbe />
-        <Routes>
-          <Route path="/learners" element={<LearnerPage />} />
-          <Route path="/vocabulary/:vocabularyId" element={<VocabularyDetailPage />} />
-          <Route path="/vocabulary" element={<p data-testid="returned-vocabulary-list">Từ vựng</p>} />
-        </Routes>
-      </ActiveLearnerProvider>
+      <ToastProvider>
+        <ActiveLearnerProvider userId={userId}>
+          <RouteProbe />
+          <Routes>
+            <Route path="/learners" element={<LearnerPage />} />
+            <Route path="/vocabulary/:vocabularyId" element={<VocabularyDetailPage />} />
+            <Route path="/vocabulary" element={<p data-testid="returned-vocabulary-list">Từ vựng</p>} />
+          </Routes>
+        </ActiveLearnerProvider>
+      </ToastProvider>
     </MemoryRouter>
   );
 }
@@ -71,6 +74,7 @@ describe("US-03 learner resolution UI", () => {
 
     await waitFor(() => expect(createLearner).toHaveBeenCalledWith({ displayName: "An" }));
     expect(await screen.findByTestId("learner-context-ready")).toHaveTextContent("An");
+    expect(screen.getByTestId("toast-success")).toHaveTextContent("Đã tạo hồ sơ người học");
     expect(screen.getByRole("link", { name: "Bắt đầu học" })).toHaveAttribute("href", "/study/setup");
     expect(screen.getByRole("link", { name: "Luyện bài tập trắc nghiệm" })).toHaveAttribute("href", "/study/exercises");
     expect(screen.getByRole("link", { name: "Luyện qua hình ảnh" })).toHaveAttribute("href", "/study/exercises?type=IMAGE_TO_WORD");
@@ -154,6 +158,7 @@ describe("US-03 learner resolution UI", () => {
     fireEvent.submit(screen.getByRole("button", { name: "Tạo hồ sơ học" }).closest("form")!);
 
     expect(await screen.findByRole("heading", { name: "apple" })).toBeInTheDocument();
+    expect(screen.getByTestId("toast-success")).toHaveTextContent("Đã tạo hồ sơ người học");
     expect(screen.getByTestId("current-route")).toHaveTextContent("/vocabulary/1");
     expect(createLearner).toHaveBeenCalledTimes(1);
   });

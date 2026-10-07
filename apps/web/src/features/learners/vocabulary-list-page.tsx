@@ -5,6 +5,7 @@ import { useActiveLearner } from "./learner-context-hook";
 import { LearnerVocabularyClientError, requestLearnerVocabulary } from "./vocabulary-list-client";
 import { VocabularyCard } from "./vocabulary-card";
 import { EmptyState, ErrorState, LoadingState } from "../../components/async-states";
+import { useToast } from "../../components/toast/toast-context";
 import { requestSavedVocabulary, saveVocabulary, unsaveVocabulary } from "./saved-vocabulary-client";
 
 type VocabularyListState = "loading" | "ready" | "error";
@@ -62,6 +63,7 @@ export function VocabularyListPage() {
 }
 
 function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto }) {
+  const toast = useToast();
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get("q") ?? "";
   const normalizedQuery = query.trim().toLowerCase();
@@ -75,7 +77,6 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
   const [savedVocabularyState, setSavedVocabularyState] = useState<"loading" | "ready" | "error">("loading");
   const [savedIds, setSavedIds] = useState<Set<number>>(new Set());
   const [savingIds, setSavingIds] = useState<Set<number>>(new Set());
-  const [savedMessage, setSavedMessage] = useState<string | null>(null);
   const mutationInFlight = useRef(new Set<number>());
 
   const loadVocabulary = useCallback(async () => {
@@ -93,7 +94,6 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
 
   const loadSavedVocabulary = useCallback(async () => {
     setSavedVocabularyState("loading");
-    setSavedMessage(null);
     try {
       const saved = await requestSavedVocabulary(activeLearner.id);
       setSavedIds(new Set(saved.map((item) => item.vocabulary.id)));
@@ -108,7 +108,6 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
     const wasSaved = savedIds.has(item.id);
     mutationInFlight.current.add(item.id);
     setSavingIds((current) => new Set(current).add(item.id));
-    setSavedMessage(null);
     setSavedIds((current) => {
       const next = new Set(current);
       if (wasSaved) next.delete(item.id);
@@ -120,6 +119,7 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
         ? await unsaveVocabulary(activeLearner.id, item.id)
         : await saveVocabulary(activeLearner.id, item.id);
       if (response.saved === wasSaved) throw new Error("INVALID_RESPONSE");
+      toast.success(wasSaved ? "Đã bỏ khỏi Yêu thích" : "Đã thêm vào Yêu thích");
     } catch {
       setSavedIds((current) => {
         const next = new Set(current);
@@ -127,7 +127,7 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
         else next.delete(item.id);
         return next;
       });
-      setSavedMessage("Không thể lưu từ. Vui lòng thử lại.");
+      toast.error("Không thể cập nhật Yêu thích. Vui lòng thử lại.");
     } finally {
       mutationInFlight.current.delete(item.id);
       setSavingIds((current) => {
@@ -136,7 +136,7 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
         return next;
       });
     }
-  }, [activeLearner.id, savedIds, savedVocabularyState]);
+  }, [activeLearner.id, savedIds, savedVocabularyState, toast]);
 
   useEffect(() => {
     let cancelled = false;
@@ -289,7 +289,6 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
           <button type="button" onClick={() => void loadSavedVocabulary()}>Thử lại</button>
         </div>
       ) : null}
-      {savedMessage ? <p className="saved-vocabulary-inline-error" role="alert">{savedMessage}</p> : null}
 
       {state === "ready" ? (
         vocabulary.length === 0 ? (

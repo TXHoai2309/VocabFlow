@@ -5,6 +5,7 @@ import "@testing-library/jest-dom/vitest";
 import type { LearnerDto } from "@vocabflow/contracts";
 import { LearnerSettingsClientError } from "./learner-settings-client";
 import { LearnerSettingsPage } from "./learner-settings-page";
+import { ToastProvider } from "../../components/toast/toast-provider";
 
 const { requestLearnerSettings, updateLearnerSettings } = vi.hoisted(() => ({
   requestLearnerSettings: vi.fn(),
@@ -34,7 +35,7 @@ let activeLearner: LearnerDto | null = learner;
 function renderPage() {
   return render(
     <MemoryRouter>
-      <LearnerSettingsPage />
+      <ToastProvider><LearnerSettingsPage /></ToastProvider>
     </MemoryRouter>
   );
 }
@@ -66,7 +67,9 @@ describe("US-30 learner settings UI", () => {
     expect(updateLearnerSettings).toHaveBeenCalledWith(learner.id, { dailyNewWordLimit: 5, dailyNewWordGoal: 5, dailyReviewWordGoal: 15 });
     expect(screen.getByRole("button", { name: "Đang lưu…" })).toBeDisabled();
     resolveSave?.({ learnerId: learner.id, dailyNewWordLimit: 5, dailyNewWordGoal: 5, dailyReviewWordGoal: 15 });
-    await waitFor(() => expect(screen.getByRole("status")).toHaveTextContent("Đã lưu cài đặt học của An."));
+    await waitFor(() => expect(screen.getByTestId("toast-success")).toHaveTextContent("Đã lưu cài đặt"));
+    expect(screen.queryByText("Đã lưu cài đặt học của An.")).not.toBeInTheDocument();
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   });
 
   it("retries a failed settings load using the same learner", async () => {
@@ -111,7 +114,7 @@ describe("US-30 learner settings UI", () => {
     fireEvent.change(reviewGoalInput, { target: { value: "20" } });
     fireEvent.change(input, { target: { value: "5" } });
     fireEvent.click(screen.getByRole("button", { name: "Lưu cài đặt" }));
-    expect(await screen.findByRole("alert")).toHaveTextContent("Không thể tải cài đặt người học lúc này. Vui lòng thử lại.");
+    expect(await screen.findByRole("alert")).toHaveTextContent("Không thể lưu cài đặt. Vui lòng thử lại.");
     expect(input).toHaveValue(5);
   });
 
@@ -127,7 +130,7 @@ describe("US-30 learner settings UI", () => {
     fireEvent.change(await screen.findByLabelText("Từ mới mỗi ngày"), { target: { value: "5" } });
     fireEvent.change(screen.getByLabelText("Từ ôn tập mỗi ngày"), { target: { value: "15" } });
     fireEvent.click(screen.getByRole("button", { name: "Lưu cài đặt" }));
-    expect(await screen.findByRole("status")).toHaveTextContent("Đã lưu cài đặt học của An.");
+    expect(await screen.findByTestId("toast-success")).toHaveTextContent("Đã lưu cài đặt");
     firstView.unmount();
 
     renderPage();
@@ -144,7 +147,7 @@ describe("US-30 learner settings UI", () => {
     const view = renderPage();
     expect(await screen.findByLabelText("Từ mới mỗi ngày")).toHaveValue(10);
     activeLearner = learnerB;
-    view.rerender(<MemoryRouter><LearnerSettingsPage /></MemoryRouter>);
+    view.rerender(<MemoryRouter><ToastProvider><LearnerSettingsPage /></ToastProvider></MemoryRouter>);
     expect(await screen.findByLabelText("Từ mới mỗi ngày")).toHaveValue(5);
     expect(screen.getByLabelText("Từ ôn tập mỗi ngày")).toHaveValue(10);
     expect(requestLearnerSettings).toHaveBeenLastCalledWith(learnerB.id);

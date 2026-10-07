@@ -9,6 +9,7 @@ import {
 } from "@vocabflow/contracts";
 import { useActiveLearner } from "./learner-context-hook";
 import { ErrorState, LoadingState } from "../../components/async-states";
+import { useToast } from "../../components/toast/toast-context";
 import {
   LearnerSettingsClientError,
   requestLearnerSettings,
@@ -22,6 +23,12 @@ function errorMessage(error: unknown) {
   if (error instanceof LearnerSettingsClientError && error.status === 401) return "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại.";
   if (error instanceof LearnerSettingsClientError && error.status === 403) return "Bạn không có quyền thay đổi hồ sơ người học này.";
   return "Không thể tải cài đặt người học lúc này. Vui lòng thử lại.";
+}
+
+function saveErrorMessage(error: unknown) {
+  if (error instanceof LearnerSettingsClientError && error.status === 401) return "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại.";
+  if (error instanceof LearnerSettingsClientError && error.status === 403) return "Bạn không có quyền thay đổi hồ sơ người học này.";
+  return "Không thể lưu cài đặt. Vui lòng thử lại.";
 }
 
 function validateDraft(value: string, min: number, max: number): string | null {
@@ -40,6 +47,7 @@ export function LearnerSettingsPage() {
 }
 
 function LearnerSettingsExperience({ activeLearner }: { activeLearner: LearnerDto }) {
+  const toast = useToast();
   const [state, setState] = useState<LoadState>("loading");
   const [dailyNewWordLimit, setDailyNewWordLimit] = useState("");
   const [dailyNewWordGoal, setDailyNewWordGoal] = useState("");
@@ -50,7 +58,6 @@ function LearnerSettingsExperience({ activeLearner }: { activeLearner: LearnerDt
     dailyNewWordGoal: null,
     dailyReviewWordGoal: null
   });
-  const [success, setSuccess] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [retryCount, setRetryCount] = useState(0);
 
@@ -91,7 +98,6 @@ function LearnerSettingsExperience({ activeLearner }: { activeLearner: LearnerDt
     };
     setFieldErrors(nextErrors);
     setMessage(null);
-    setSuccess(null);
     if (newLimitError || newGoalError || reviewGoalError) return;
     setSaving(true);
     try {
@@ -103,9 +109,9 @@ function LearnerSettingsExperience({ activeLearner }: { activeLearner: LearnerDt
       setDailyNewWordLimit(String(saved.dailyNewWordLimit));
       setDailyNewWordGoal(String(saved.dailyNewWordGoal));
       setDailyReviewWordGoal(String(saved.dailyReviewWordGoal));
-      setSuccess(`Đã lưu cài đặt học của ${activeLearner.displayName}.`);
+      toast.success("Đã lưu cài đặt");
     } catch (error) {
-      setMessage(errorMessage(error));
+      toast.error(saveErrorMessage(error));
     } finally {
       setSaving(false);
     }
@@ -126,7 +132,6 @@ function LearnerSettingsExperience({ activeLearner }: { activeLearner: LearnerDt
         {state === "error" ? (
           <ErrorState className="progress-state progress-error" title="Không thể tải cài đặt học" description={message ?? "Vui lòng thử lại."} onRetry={retrySettings} testId="learner-settings-error" />
         ) : null}
-        {success ? <p className="progress-success" role="status">{success}</p> : null}
 
         {state === "ready" ? (
           <form className="learner-settings-form" onSubmit={(event) => void handleSave(event)} noValidate>
@@ -148,7 +153,6 @@ function LearnerSettingsExperience({ activeLearner }: { activeLearner: LearnerDt
                     setDailyNewWordGoal(event.target.value);
                     setFieldErrors((current) => ({ ...current, dailyNewWordGoal: null }));
                     setMessage(null);
-                    setSuccess(null);
                   }}
                   aria-invalid={Boolean(fieldErrors.dailyNewWordGoal)}
                   aria-describedby={fieldErrors.dailyNewWordGoal ? "daily-new-word-goal-error" : undefined}
@@ -171,7 +175,6 @@ function LearnerSettingsExperience({ activeLearner }: { activeLearner: LearnerDt
                     setDailyReviewWordGoal(event.target.value);
                     setFieldErrors((current) => ({ ...current, dailyReviewWordGoal: null }));
                     setMessage(null);
-                    setSuccess(null);
                   }}
                   aria-invalid={Boolean(fieldErrors.dailyReviewWordGoal)}
                   aria-describedby={fieldErrors.dailyReviewWordGoal ? "daily-review-word-goal-error" : undefined}
@@ -195,7 +198,6 @@ function LearnerSettingsExperience({ activeLearner }: { activeLearner: LearnerDt
                   setDailyNewWordLimit(event.target.value);
                   setFieldErrors((current) => ({ ...current, dailyNewWordLimit: null }));
                   setMessage(null);
-                  setSuccess(null);
                 }}
                 aria-invalid={Boolean(fieldErrors.dailyNewWordLimit)}
                 aria-describedby={fieldErrors.dailyNewWordLimit ? "daily-new-word-limit-error" : undefined}
@@ -203,7 +205,6 @@ function LearnerSettingsExperience({ activeLearner }: { activeLearner: LearnerDt
               />
               {fieldErrors.dailyNewWordLimit ? <p className="form-error" id="daily-new-word-limit-error" role="alert">{fieldErrors.dailyNewWordLimit}</p> : null}
             </div>
-            {message ? <p className="form-error" role="alert">{message}</p> : null}
             <button className="register-submit" type="submit" disabled={saving} aria-busy={saving}>
               {saving ? "Đang lưu…" : "Lưu cài đặt"}
             </button>

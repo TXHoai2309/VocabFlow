@@ -13,6 +13,7 @@ import type {
 import { ActiveLearnerProvider } from "./learner-context-provider";
 import { useActiveLearner } from "./learner-context-hook";
 import { ProgressPage } from "./progress-page";
+import { ToastProvider } from "../../components/toast/toast-provider";
 
 const { requestResetLearnerProgress, requestProgressHistory, requestTopicProgress } = vi.hoisted(() => ({
   requestResetLearnerProgress: vi.fn(),
@@ -132,12 +133,14 @@ function response(body: unknown, status = 200) {
 function renderProgress(initialLearner: LearnerDto | null = learnerA, initialPath = "/progress") {
   return render(
     <MemoryRouter initialEntries={[initialPath]}>
-      <ActiveLearnerProvider initialLearner={initialLearner}>
-        <Routes>
-          <Route path="/progress" element={<ProgressPage />} />
-          <Route path="/learners" element={<p>learners-route</p>} />
-        </Routes>
-      </ActiveLearnerProvider>
+      <ToastProvider>
+        <ActiveLearnerProvider initialLearner={initialLearner}>
+          <Routes>
+            <Route path="/progress" element={<ProgressPage />} />
+            <Route path="/learners" element={<p>learners-route</p>} />
+          </Routes>
+        </ActiveLearnerProvider>
+      </ToastProvider>
     </MemoryRouter>
   );
 }
@@ -246,10 +249,7 @@ describe("Feature #11 learner progress dashboard", () => {
     mockDashboardFetch();
     render(
       <MemoryRouter initialEntries={["/progress?tab=overview"]}>
-        <ActiveLearnerProvider initialLearner={learnerA}>
-          <LocationCapture />
-          <ProgressPage />
-        </ActiveLearnerProvider>
+        <ToastProvider><ActiveLearnerProvider initialLearner={learnerA}><LocationCapture /><ProgressPage /></ActiveLearnerProvider></ToastProvider>
       </MemoryRouter>
     );
 
@@ -365,9 +365,7 @@ describe("Feature #11 learner progress dashboard", () => {
 
     render(
       <MemoryRouter initialEntries={["/progress"]}>
-        <ActiveLearnerProvider initialLearner={learnerA}>
-          <SwitchHarness />
-        </ActiveLearnerProvider>
+        <ToastProvider><ActiveLearnerProvider initialLearner={learnerA}><SwitchHarness /></ActiveLearnerProvider></ToastProvider>
       </MemoryRouter>
     );
 
@@ -401,13 +399,16 @@ describe("Feature #11 learner progress dashboard", () => {
     await screen.findByTestId("progress-summary");
 
     fireEvent.click(screen.getByText("Quản lý tiến trình"));
-    fireEvent.click(screen.getByRole("button", { name: "Đặt lại tiến trình" }));
+    const resetTrigger = screen.getByRole("button", { name: "Đặt lại tiến trình" });
+    fireEvent.click(resetTrigger);
     expect(screen.getByRole("dialog")).toHaveTextContent("Đặt lại tiến trình của An?");
     expect(screen.getByRole("dialog")).toHaveTextContent("lịch sử ôn tập vẫn được giữ lại");
+    expect(screen.getByRole("button", { name: "Hủy" })).toHaveFocus();
     fireEvent.click(screen.getByRole("button", { name: "Hủy" }));
     expect(requestResetLearnerProgress).not.toHaveBeenCalled();
+    expect(resetTrigger).toHaveFocus();
 
-    fireEvent.click(screen.getByRole("button", { name: "Đặt lại tiến trình" }));
+    fireEvent.click(resetTrigger);
     fireEvent.click(screen.getByRole("button", { name: "Xác nhận đặt lại" }));
     fireEvent.click(screen.getByRole("button", { name: "Đang đặt lại…" }));
     expect(requestResetLearnerProgress).toHaveBeenCalledTimes(1);
@@ -415,7 +416,31 @@ describe("Feature #11 learner progress dashboard", () => {
     resolveReset(resetResponse);
 
     await waitFor(() => expect(screen.getByTestId("progress-empty-state")).toBeInTheDocument());
-    expect(screen.getByText("Đã đặt lại tiến trình của An.")).toBeInTheDocument();
+    expect(screen.getByTestId("toast-success")).toHaveTextContent("Đã đặt lại tiến trình");
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    expect(resetTrigger).toHaveFocus();
+  });
+
+  it("closes reset confirmation with Escape and traps keyboard focus", async () => {
+    mockDashboardFetch();
+    renderProgress();
+    await screen.findByTestId("progress-summary");
+    fireEvent.click(screen.getByText("Quản lý tiến trình"));
+    const resetTrigger = screen.getByRole("button", { name: "Đặt lại tiến trình" });
+    fireEvent.click(resetTrigger);
+    const cancel = screen.getByRole("button", { name: "Hủy" });
+    const confirm = screen.getByRole("button", { name: "Xác nhận đặt lại" });
+
+    expect(cancel).toHaveFocus();
+    fireEvent.keyDown(document, { key: "Tab", shiftKey: true });
+    expect(confirm).toHaveFocus();
+    fireEvent.keyDown(document, { key: "Tab" });
+    expect(cancel).toHaveFocus();
+    fireEvent.keyDown(document, { key: "Escape" });
+
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    expect(resetTrigger).toHaveFocus();
+    expect(requestResetLearnerProgress).not.toHaveBeenCalled();
   });
 
   it("keeps reset dialog usable after a reset error", async () => {

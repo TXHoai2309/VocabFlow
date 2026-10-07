@@ -1,14 +1,34 @@
-# Family MVP Feature UI Specification v1.0.7
+# Family MVP Feature UI Specification v1.0.8
 
 - Status: CURRENT FEATURE UI SOURCE OF TRUTH
-- Version: v1.0.7
-- Source baseline: `VocabFlow_Family_MVP_Feature_UI_Specification_v1.0.1.docx`; this Markdown records the US-26/US-27 taxonomy browse, US-28/US-29 learning-set extension, US-30 daily New settings, US-31 through US-34 exercise mode, US-35/US-36 activity indicators, US-48 Progress Dashboard, US-50 simplified navigation and US-52 asynchronous data states.
+- Version: v1.0.8
+- Source baseline: `VocabFlow_Family_MVP_Feature_UI_Specification_v1.0.1.docx`; this Markdown records the US-26/US-27 taxonomy browse, US-28/US-29 learning-set extension, US-30 daily New settings, US-31 through US-34 exercise mode, US-35/US-36 activity indicators, US-48 Progress Dashboard, US-50 simplified navigation, US-52 asynchronous data states and US-53 toast feedback.
 - Canonical format: Markdown
-- Last synchronized: 2026-10-06
+- Last synchronized: 2026-10-07
 
 **VOCABFLOW**
 
-**Family MVP Feature UI Specification v1.0.7**
+**Family MVP Feature UI Specification v1.0.8**
+
+## Toast & mutation feedback (Feature #16 / US-53)
+
+Authenticated routes share one non-blocking toast viewport. Success and info
+messages use polite status semantics; failures use assertive alert semantics.
+Each toast has a concise message, a subtle type accent, and a 44px close target.
+Success/info dismiss after four seconds and errors after 6.5 seconds; identical
+type/message entries replace one another and at most three remain visible.
+Desktop toasts sit below the global-search trigger at the upper right; mobile
+toasts stack above the fixed bottom navigation, wrap within narrow viewports,
+and respect safe areas. They do not steal focus. Global Search remains above
+toast UI; destructive confirmation dialogs remain above toasts. Toast entrance
+motion is disabled for reduced-motion preferences.
+
+Normal mutation success uses a toast instead of a success modal/banner.
+Mutation failures use safe toast copy, with field validation kept inline.
+Page-read failures continue to use Feature #15 ErrorState. Progress reset and
+leaving Study with unsaved answers retain confirmation; Study answer
+correctness remains inline learning feedback rather than a generic success
+toast.
 
 ## Loading / Empty / Error states (Feature #15 / US-52)
 

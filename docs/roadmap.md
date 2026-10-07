@@ -1,5 +1,16 @@
 # VocabFlow Roadmap and Batch Index
 
+## Feature #16 — Toast & Feedback / US-53
+
+- Status: IMPLEMENTED / READY FOR OWNER CHECK.
+- Scope: shared accessible transient feedback for existing normal mutations;
+  retain confirmation for destructive actions and keep page-fetch errors in
+  Feature #15 states.
+- Evidence: 98 focused tests and 166 relevant regression tests pass; global
+  typecheck, production build, changed-file ESLint and `git diff --check` pass.
+- Boundaries: no API, scheduler, migration, database or Dataset V2 changes.
+- Contract: [US-53 Toast & Feedback](stories/US-53-toast-feedback.md).
+
 ## Feature #15 — Loading / Empty / Error States / US-52
 
 - Status: IMPLEMENTED / READY FOR OWNER CHECK.

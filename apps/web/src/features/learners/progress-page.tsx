@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, Navigate, useSearchParams } from "react-router";
 import type {
   ActivitySummaryResponse,
@@ -14,6 +14,7 @@ import { ActivitySummaryClientError, requestActivitySummary } from "./activity-s
 import { requestProgressHistory, requestTopicProgress } from "./progress-insights-client";
 import { requestResetLearnerProgress, ResetLearnerProgressClientError } from "./reset-progress-client";
 import { EmptyState, ErrorState, LoadingState } from "../../components/async-states";
+import { useToast } from "../../components/toast/toast-context";
 
 type LoadState = "loading" | "ready" | "error";
 type ProgressPeriod = "7d" | "30d";
@@ -358,6 +359,7 @@ export function ProgressPage() {
 }
 
 function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
+  const toast = useToast();
   const [searchParams, setSearchParams] = useSearchParams();
   const period = periodFromSearch(searchParams);
   const [summaryRetry, setSummaryRetry] = useState(0);
@@ -374,7 +376,52 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
   const [resetOpen, setResetOpen] = useState(false);
   const [resetSubmitting, setResetSubmitting] = useState(false);
   const [resetError, setResetError] = useState<string | null>(null);
-  const [resetSuccess, setResetSuccess] = useState<string | null>(null);
+  const resetTriggerRef = useRef<HTMLButtonElement>(null);
+  const resetCancelRef = useRef<HTMLButtonElement>(null);
+  const resetDialogRef = useRef<HTMLElement>(null);
+  const resetSubmittingRef = useRef(false);
+  const restoreResetFocusRef = useRef(false);
+
+  useEffect(() => {
+    resetSubmittingRef.current = resetSubmitting;
+  }, [resetSubmitting]);
+
+  useEffect(() => {
+    if (!resetOpen) {
+      if (restoreResetFocusRef.current) {
+        restoreResetFocusRef.current = false;
+        resetTriggerRef.current?.focus();
+      }
+      return;
+    }
+    resetCancelRef.current?.focus();
+    const onDialogKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && !resetSubmittingRef.current) {
+        event.preventDefault();
+        restoreResetFocusRef.current = true;
+        setResetOpen(false);
+        return;
+      }
+      if (event.key !== "Tab") return;
+      const focusable = Array.from(resetDialogRef.current?.querySelectorAll<HTMLElement>("button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex='-1'])") ?? []);
+      const first = focusable[0];
+      const last = focusable.at(-1);
+      if (!first || !last) {
+        event.preventDefault();
+        resetDialogRef.current?.focus();
+        return;
+      }
+      if (event.shiftKey && (document.activeElement === first || !resetDialogRef.current?.contains(document.activeElement))) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && (document.activeElement === last || !resetDialogRef.current?.contains(document.activeElement))) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener("keydown", onDialogKeyDown);
+    return () => document.removeEventListener("keydown", onDialogKeyDown);
+  }, [resetOpen]);
 
   useEffect(() => {
     let cancelled = false;
@@ -424,13 +471,14 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
 
   async function handleReset() {
     if (resetSubmitting) return;
+    resetDialogRef.current?.focus();
     setResetSubmitting(true);
     setResetError(null);
-    setResetSuccess(null);
     try {
       await requestResetLearnerProgress(activeLearner.id);
+      restoreResetFocusRef.current = true;
       setResetOpen(false);
-      setResetSuccess(`Đã đặt lại tiến trình của ${activeLearner.displayName}.`);
+      toast.success("Đã đặt lại tiến trình");
       setSummaryState("loading");
       setSummary(null);
       setActivity(null);
@@ -507,7 +555,6 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
           </label>
         </header>
 
-        {resetSuccess ? <p className="progress-success" role="status">{resetSuccess}</p> : null}
         {summaryState === "loading" ? <LoadingState className="progress-dashboard-state" label="Đang tải tiến trình…" pattern="dashboard" testId="progress-loading" /> : null}
         {summaryState === "error" ? <ErrorState className="progress-dashboard-state progress-dashboard-error" title="Không thể tải tiến trình" description={summaryMessage ?? "Vui lòng thử lại."} onRetry={retrySummary} testId="progress-error" /> : null}
 
@@ -636,11 +683,11 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
           <summary>Quản lý tiến trình</summary>
           <p>Đặt lại chỉ xóa trạng thái học hiện tại. Lịch sử ôn tập và chuỗi ngày vẫn được giữ lại.</p>
           <button
+            ref={resetTriggerRef}
             className="progress-reset-button"
             type="button"
             onClick={() => {
               setResetError(null);
-              setResetSuccess(null);
               setResetOpen(true);
             }}
             disabled={resetSubmitting}
@@ -652,7 +699,8 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
 
       {resetOpen ? (
         <div className="reset-dialog-backdrop">
-          <section className="reset-dialog" role="dialog" aria-modal="true" aria-labelledby="reset-progress-title" aria-describedby="reset-progress-description">
+          <section ref={resetDialogRef} className="reset-dialog" tabIndex={-1} role="dialog" aria-modal="true" aria-labelledby="reset-progress-title" aria-describedby="reset-progress-description">
+            <span className="reset-dialog-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 7h16M10 11v6m4-6v6M6 7l1 14h10l1-14M9 7V4h6v3" /></svg></span>
             <h2 id="reset-progress-title">Đặt lại tiến trình của {activeLearner.displayName}?</h2>
             <p id="reset-progress-description">
               Tiến trình học hiện tại của người học này sẽ được đưa về trạng thái từ mới. Chỉ người học này bị ảnh hưởng;
@@ -660,7 +708,7 @@ function ProgressExperience({ activeLearner }: { activeLearner: LearnerDto }) {
             </p>
             {resetError ? <p className="reset-dialog-error" role="alert">{resetError}</p> : null}
             <div className="reset-dialog-actions">
-              <button className="auth-retry reset-dialog-cancel" type="button" onClick={() => setResetOpen(false)} disabled={resetSubmitting}>Hủy</button>
+              <button ref={resetCancelRef} className="auth-retry reset-dialog-cancel" type="button" onClick={() => { restoreResetFocusRef.current = true; setResetOpen(false); }} disabled={resetSubmitting}>Hủy</button>
               <button className="progress-reset-button" type="button" onClick={() => void handleReset()} disabled={resetSubmitting} aria-busy={resetSubmitting}>
                 {resetSubmitting ? "Đang đặt lại…" : "Xác nhận đặt lại"}
               </button>

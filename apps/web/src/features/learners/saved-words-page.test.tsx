@@ -5,6 +5,7 @@ import "@testing-library/jest-dom/vitest";
 import type { LearnerDto, LearnerSavedVocabularyDto, LearnerVocabularyDto } from "@vocabflow/contracts";
 import { ActiveLearnerProvider } from "./learner-context-provider";
 import { useActiveLearner } from "./learner-context-hook";
+import { ToastProvider } from "../../components/toast/toast-provider";
 import { SavedWordsPage } from "./saved-words-page";
 
 const learnerA: LearnerDto = {
@@ -60,16 +61,18 @@ function LearnerRouteProbe() {
 function renderSaved(initialLearner: LearnerDto | null = learnerA, path = "/saved") {
   return render(
     <MemoryRouter initialEntries={[path]}>
-      <ActiveLearnerProvider initialLearner={initialLearner}>
-        <LocationProbe />
-        <Routes>
-          <Route path="/saved" element={<SavedWordsPage />} />
-          <Route path="/learners" element={<LearnerRouteProbe />} />
-          <Route path="/vocabulary" element={<p>Vocabulary catalog</p>} />
-          <Route path="/vocabulary/:vocabularyId" element={<p>Vocabulary detail</p>} />
-          <Route path="/study/setup" element={<p>Study setup</p>} />
-        </Routes>
-      </ActiveLearnerProvider>
+      <ToastProvider>
+        <ActiveLearnerProvider initialLearner={initialLearner}>
+          <LocationProbe />
+          <Routes>
+            <Route path="/saved" element={<SavedWordsPage />} />
+            <Route path="/learners" element={<LearnerRouteProbe />} />
+            <Route path="/vocabulary" element={<p>Vocabulary catalog</p>} />
+            <Route path="/vocabulary/:vocabularyId" element={<p>Vocabulary detail</p>} />
+            <Route path="/study/setup" element={<p>Study setup</p>} />
+          </Routes>
+        </ActiveLearnerProvider>
+      </ToastProvider>
     </MemoryRouter>
   );
 }
@@ -199,7 +202,7 @@ describe("Saved Words page", () => {
 
     fireEvent.click(within(row).getByRole("button", { name: "Bỏ lưu từ apple" }));
 
-    await waitFor(() => expect(screen.getByRole("alert")).toHaveTextContent("Không thể bỏ lưu từ. Vui lòng thử lại."));
+    await waitFor(() => expect(screen.getByRole("alert")).toHaveTextContent("Không thể cập nhật Yêu thích. Vui lòng thử lại."));
     expect(screen.getByTestId("vocabulary-row-1")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /Học tất cả từ đã lưu \(1\)/ })).toBeInTheDocument();
   });
@@ -235,7 +238,7 @@ describe("Saved Words page", () => {
       const { setActiveLearner } = useActiveLearner();
       return <><button type="button" onClick={() => setActiveLearner(learnerB)}>Switch learner</button><SavedWordsPage /></>;
     }
-    render(<MemoryRouter initialEntries={["/saved"]}><ActiveLearnerProvider initialLearner={learnerA}><SwitchHarness /></ActiveLearnerProvider></MemoryRouter>);
+    render(<MemoryRouter initialEntries={["/saved"]}><ToastProvider><ActiveLearnerProvider initialLearner={learnerA}><SwitchHarness /></ActiveLearnerProvider></ToastProvider></MemoryRouter>);
 
     expect(await screen.findByTestId("vocabulary-row-1")).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "Switch learner" }));

@@ -2,6 +2,20 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-07 — Toast & Feedback (Feature #16 / US-53)
+
+- Added the shared accessible toast system for favorite/save, learner creation,
+  settings and Learning Set assignment feedback. Toasts use a bounded,
+  deduplicated stack and timed dismissal on desktop and mobile.
+- Kept page-read failures in Feature #15 ErrorState and retained keyboard
+  confirmation for destructive progress reset and leaving Study with unsaved
+  answers.
+- Validation: focused feedback tests `98/98`, relevant regressions `166/166`,
+  global typecheck, production build, changed-file ESLint and
+  `git diff --check` PASS.
+- No API, scheduler, migration, database, Dataset V2, merge or production
+  deployment change.
+
 ## 2026-10-07 — Phase 2G.2A Hybrid-100 owner reconciliation proposal
 
 - Added a deterministic offline owner-proposal generator and proposal artifacts

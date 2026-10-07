@@ -5,6 +5,7 @@ import "@testing-library/jest-dom/vitest";
 import type { LearnerDto, LearnerVocabularyDto, VocabularyLevel } from "@vocabflow/contracts";
 import { ActiveLearnerProvider } from "./learner-context-provider";
 import { useActiveLearner } from "./learner-context-hook";
+import { ToastProvider } from "../../components/toast/toast-provider";
 import { VocabularyListPage } from "./vocabulary-list-page";
 
 const learner = (id: string, displayName: string): LearnerDto => ({
@@ -73,14 +74,16 @@ function LocationProbe() {
 function renderList(initialLearner: LearnerDto | null = learnerA, path = "/vocabulary") {
   return render(
     <MemoryRouter initialEntries={[path]}>
-      <ActiveLearnerProvider initialLearner={initialLearner}>
-        <LocationProbe />
-        <Routes>
-          <Route path="/vocabulary" element={<VocabularyListPage />} />
-          <Route path="/vocabulary/:vocabularyId" element={<div data-testid="detail-route">detail route</div>} />
-          <Route path="/learners" element={<LearnerRouteProbe />} />
-        </Routes>
-      </ActiveLearnerProvider>
+      <ToastProvider>
+        <ActiveLearnerProvider initialLearner={initialLearner}>
+          <LocationProbe />
+          <Routes>
+            <Route path="/vocabulary" element={<VocabularyListPage />} />
+            <Route path="/vocabulary/:vocabularyId" element={<div data-testid="detail-route">detail route</div>} />
+            <Route path="/learners" element={<LearnerRouteProbe />} />
+          </Routes>
+        </ActiveLearnerProvider>
+      </ToastProvider>
     </MemoryRouter>
   );
 }
@@ -292,6 +295,10 @@ describe("US-22 vocabulary list UI", () => {
     expect(screen.getByTestId("current-url")).toHaveTextContent("/vocabulary");
     expect(fetchMock.mock.calls.some(([url, init]) => String(url).endsWith("/saved-vocabulary/1") && init?.method === "POST")).toBe(true);
     expect(screen.queryByTestId("detail-route")).not.toBeInTheDocument();
+    expect(screen.getByText("Đã thêm vào Yêu thích")).toBeInTheDocument();
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    fireEvent.click(within(card).getByRole("button", { name: "Bỏ lưu từ apple" }));
+    expect(await screen.findByText("Đã bỏ khỏi Yêu thích")).toBeInTheDocument();
   });
 
   it("rolls back a failed save with an accessible message", async () => {
@@ -304,7 +311,7 @@ describe("US-22 vocabulary list UI", () => {
 
     fireEvent.click(within(card).getByRole("button", { name: "Lưu từ apple" }));
 
-    expect(await screen.findByRole("alert")).toHaveTextContent("Không thể lưu từ. Vui lòng thử lại.");
+    expect(await screen.findByRole("alert")).toHaveTextContent("Không thể cập nhật Yêu thích. Vui lòng thử lại.");
     expect(within(card).getByRole("button", { name: "Lưu từ apple" })).toHaveAttribute("aria-pressed", "false");
   });
 
@@ -374,7 +381,7 @@ describe("US-22 vocabulary list UI", () => {
 
     render(
       <MemoryRouter initialEntries={["/vocabulary"]}>
-        <ActiveLearnerProvider initialLearner={learnerA}><SwitchHarness /></ActiveLearnerProvider>
+        <ToastProvider><ActiveLearnerProvider initialLearner={learnerA}><SwitchHarness /></ActiveLearnerProvider></ToastProvider>
       </MemoryRouter>
     );
 

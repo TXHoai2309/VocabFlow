@@ -1,5 +1,21 @@
 # Current Handoff Snapshot
 
+## 2026-10-07 — Toast & Feedback (Feature #16 / US-53) implemented
+
+- Audited alert/confirm and dialog usage plus success/error/pending states
+  before implementation. Favorites, Saved Words, learner Settings, learner
+  creation and reversible Learning Set assignment now use shared toasts.
+  Progress reset remains destructive and confirmed; leaving Study with
+  unsaved answers retains native confirmation. Global Search remains a
+  command palette, not a feedback modal.
+- Focused feedback suite: 8 files / 98 tests PASS. Relevant AppShell/navigation,
+  Global Search, Home, vocabulary, Weak Words, Topics, learner persistence,
+  Study and async-state regressions: 12 files / 166 tests PASS.
+- Global `pnpm typecheck`, `pnpm build`, changed-file ESLint and
+  `git diff --check` PASS. Page-read errors remain Feature #15 ErrorState.
+- No new dependency, API, scheduler, migration, database mutation, Dataset V2,
+  main merge or production deployment.
+
 ## 2026-10-07 — Phase 2G.2A Hybrid-100 owner reconciliation proposal
 
 - Built a proposal from the checked-in Phase 2G.1C scan only. Recomputed the

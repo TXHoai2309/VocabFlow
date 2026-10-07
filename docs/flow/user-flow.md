@@ -1,5 +1,17 @@
 # User Flow v1
 
+## Mutation feedback extension (Feature #16 / US-53)
+
+Parent or learner performs an ordinary reversible action → the control keeps
+its immediate pending/state update → success is announced in a shared toast
+that survives in-app route navigation. A mutation failure gives safe toast
+feedback; correctable field validation remains beside the field. Favorites,
+settings, learner creation and learner Learning Set assignment use this path.
+For destructive progress reset, the user first reviews and confirms the
+consequence; only after the API succeeds does the dialog close and a success
+toast appear. Page-data fetch failure stays in its page ErrorState, and
+correct/incorrect Study feedback stays with the active learning interaction.
+
 ## Async data state extension (Feature #15 / US-52)
 
 On any data-backed page, retain the current app navigation while the page read
