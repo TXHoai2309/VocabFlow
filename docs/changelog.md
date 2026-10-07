@@ -2,6 +2,32 @@
 
 This log records meaningful project milestones and accepted baselines.
 
+## 2026-10-07 — Phase 2G.2D Hybrid-100 Development runtime closure
+
+- Closed the approved 2.2.1 Hybrid-100 Development rollout after owner
+  reconciliation and the single authorized 2G.2C APPLY: 97 runtime creates,
+  3 adopted-row updates, and 100 mappings. The post-apply reconciliation
+  snapshot remains `5ebcadbfd95619e8b6e7a5c8cc4a4fca16600f7e947cda5932d1ff16bf4fc85a`.
+- Read-only Development verification found one matching import run, 100/100
+  mapped rows, content versions 1 for the 97 new rows and 2 for the three
+  adopted rows, unchanged Master projections, and unchanged learner aggregates
+  (87 progress rows / 229 review events). Replay returned 100 NOOP and 100
+  KEEP_MAPPING.
+- Existing catalog and learner vocabulary API handlers/services returned all
+  100 Hybrid rows, with 100 enabled, 0 disabled, 0 unreadable, and 0
+  projection mismatches. Polysemy safety examples and preserved enrichment
+  reads passed. No learner identity or PII was serialized.
+- Development runtime is VERIFIED. No write, second APPLY, or migration ran in
+  this phase. Production remains NOT AUTHORIZED / NOT EXECUTED.
+- Runtime/API verification and focused tests passed (7 files / 94 tests), as
+  did the frozen release check and `git diff --check`. Phase status remains
+  BLOCKED because canonical `pnpm typecheck` (`tsc -b`) reports nine TS2339
+  errors in the unchanged `scripts/hybrid-100-owner-reconciliation-dry-run.ts`;
+  `pnpm exec tsc --noEmit -p tsconfig.json` passed. No out-of-scope code was
+  changed.
+- Evidence: [closure report](../vocabflow-dataset/reports/hybrid-100-development-runtime-closure-2.2.1.md)
+  and [sanitized closure JSON](../vocabflow-dataset/workspaces/hybrid-100-runtime-reconciliation-2.2.1/owner-review/development-runtime-closure.json).
+
 ## 2026-10-07 — Toast & Feedback (Feature #16 / US-53)
 
 - Added the shared accessible toast system for favorite/save, learner creation,
@@ -43,9 +69,10 @@ This log records meaningful project milestones and accepted baselines.
   template, validation summary, and report. All 100 decisions remain
   `UNRESOLVED`; URLs are redacted and no learner identities are serialized.
 - The immutable 2.2.1 source and historical RC, Canary, canonical root, and
-  taxonomy passed pre/post checks. No database writes, migrations, importer
-  apply, runtime IDs, mappings, learner mutations, or production connection
-  occurred. Owner reconciliation remains required; import is unauthorized.
+  taxonomy passed pre/post checks. At the end of Phase 2G.1C, owner
+  reconciliation remained required and import was unauthorized. Phases 2G.2B
+  and 2G.2C later closed those Development gates; Phase 2G.2D records the
+  verified outcome. Production remains separately unauthorized.
 - Verification: focused tests 10/10; Master validator passes with 0 errors,
   0 warnings, 1 informational issue; typecheck, lint, and `git diff --check`
   pass. The local Node 22.19.0 is below the declared 22.23.2 engine.

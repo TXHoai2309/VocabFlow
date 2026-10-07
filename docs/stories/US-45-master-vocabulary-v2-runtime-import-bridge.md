@@ -1,5 +1,59 @@
 # US-45 — Master Vocabulary V2 Runtime Import Bridge
 
+## Phase 2G.2D — Hybrid-100 Development runtime closure
+
+**Current status:** `IN PROGRESS / DEVELOPMENT RUNTIME VERIFIED; PHASE 2G.2D BLOCKED ON TYPECHECK`.
+**Production:** `NOT AUTHORIZED / NOT EXECUTED`.
+
+Phases 2G.2B and 2G.2C closed the owner and Development import gates for the
+immutable Hybrid-100 `2.2.1 / APPROVED` release. The finalized reconciliation
+fingerprint is
+`4c3d86eb3a4b06a04c68e870847f97fa432fdf247595c577eb758888d62315db`; its
+decisions are 97 CREATE_NEW and three MAP_EXISTING + UPDATE_TO_MASTER rows:
+deviate → #1836, pain-relief → #1461, and stand → #948. The Development
+pre-apply dry-run passed. The owner-authorized APPLY committed once under plan
+fingerprint
+`7cb18d5c475d3f65538bb55e9bba5c4ad2b666bb7b2678a2e19d8b447b2f9929`, creating
+97 runtime rows, updating the three adopted rows, and creating 100 mappings.
+Import run:
+`5062fc01-8615-48ab-80e6-ed91d6b77a60`.
+
+The post-apply Development reconciliation snapshot remains
+`5ebcadbfd95619e8b6e7a5c8cc4a4fca16600f7e947cda5932d1ff16bf4fc85a`. Current
+read-only checks found the one matching import run, 100 mappings, content
+version 1 on all 97 new rows, and content version 2 on #1836/#1461/#948. The
+current Master projections match all 100 rows. Learner history remains 87
+progress rows and 229 review events; runtime #11 retains 1 progress and 5
+review references, and the #284 booking mapping remains unchanged.
+
+The existing `GET /api/vocabulary` and
+`GET /api/learners/:learnerId/vocabulary` handlers/services returned all 100
+mapped rows. Catalog availability is 100 enabled, 0 disabled, 0 unreadable,
+and 0 projection mismatches. The consumer smoke verified the reservation
+doubt, water verb, three light Senses, rock, exact, and rally against the
+rejected collision IDs. It also read all five preserved enrichment fields on
+each adopted row. The in-process API smoke used the existing `readSession`
+injection seam with a verified Development household member; Better Auth
+cookie issuance was outside this smoke. No learner IDs or PII were serialized.
+
+A live Development DRY_RUN replay returned 100 NOOP, 100 KEEP_MAPPING, and zero
+CREATE, UPDATE, CONFLICT, BLOCKED, or CREATE_MAPPING actions. No APPLY, learner
+mutation, migration, or Production access occurred in Phase 2G.2D. The story
+remains IN PROGRESS because this closure covers the Hybrid-100 vocabulary
+rollout only; Production and other bridge scope remain separate work.
+
+Runtime and API verification passed, with 7 focused test files / 94 tests,
+the frozen release check, and `git diff --check` passing. The phase status is
+BLOCKED because canonical `pnpm typecheck` (`tsc -b`) reports nine TS2339
+errors in unchanged `scripts/hybrid-100-owner-reconciliation-dry-run.ts`;
+`pnpm exec tsc --noEmit -p tsconfig.json` passed. The runtime outcome remains
+verified while that repository typecheck issue is outstanding.
+
+Evidence: [sanitized closure report](../../vocabflow-dataset/reports/hybrid-100-development-runtime-closure-2.2.1.md),
+[machine-readable closure](../../vocabflow-dataset/workspaces/hybrid-100-runtime-reconciliation-2.2.1/owner-review/development-runtime-closure.json),
+[2G.2C apply evidence](../../vocabflow-dataset/workspaces/hybrid-100-runtime-reconciliation-2.2.1/owner-review/post-apply-report.md),
+and [2G.2C verification JSON](../../vocabflow-dataset/workspaces/hybrid-100-runtime-reconciliation-2.2.1/owner-review/post-apply-verification.json).
+
 ## Phase 2G.2A — Hybrid-100 owner reconciliation proposal ready for review
 
 Prepared an offline, owner-facing proposal from the immutable Phase 2G.1C
@@ -25,9 +79,9 @@ Evidence: [Phase 2G.2A report](../../vocabflow-dataset/reports/hybrid-100-owner-
 [offline generator](../../scripts/hybrid-100-owner-reconciliation-proposal.ts),
 and [focused tests](../../scripts/hybrid-100-owner-reconciliation-proposal.test.ts).
 
-Current status: `IN PROGRESS / PHASE 2G.2A OWNER PROPOSAL READY FOR REVIEW`.
-The owner must finalize identity decisions before any importer reconciliation;
-runtime import remains unauthorized.
+Status at the end of Phase 2G.2A: `OWNER PROPOSAL READY FOR REVIEW`. At that
+stage, the owner still needed to finalize identity decisions. Phase 2G.2B later
+finalized them, and Phase 2G.2C performed the authorized Development APPLY.
 
 ## Phase 2G.1C — Hybrid-100 Development candidates discovered; owner review remains open
 
@@ -55,9 +109,9 @@ Evidence: [Phase 2G.1C report](../../vocabflow-dataset/reports/hybrid-100-develo
 [candidate and owner-review artifacts](../../vocabflow-dataset/workspaces/hybrid-100-runtime-reconciliation-2.2.1/),
 and [read-only scanner](../../scripts/hybrid-100-development-reconciliation-scan.ts).
 
-Current status: `IN PROGRESS / PHASE 2G.1C CANDIDATES READY FOR OWNER REVIEW`.
-Owner reconciliation is required before any mapping decision. Runtime import
-remains unauthorized and separately gated.
+Status at the end of Phase 2G.1C: `CANDIDATES READY FOR OWNER REVIEW`. At that
+stage, owner reconciliation was still required before mapping decisions.
+Phases 2G.2B and 2G.2C later closed the Development identity and import gates.
 
 ## Phase 2G.1A — Nested lifecycle audit complete; 2.2.1 remains a plan
 
@@ -135,7 +189,7 @@ Evidence: [Phase 2F.7 approved-release report](../../vocabflow-dataset/reports/h
 [frozen release package](../../vocabflow-dataset/releases/hybrid-100-v2.2.0/),
 and [materialization summary](../../vocabflow-dataset/workspaces/hybrid-100-approved-release/summary.json).
 
-- Historical Phase 2D status: `IMPLEMENTED / DEVELOPMENT CANARY VERIFIED`; owner acceptance remains explicit. Current Phase 2G.1C status is ready for owner review; runtime import remains unauthorized.
+- Historical Phase 2D status: `IMPLEMENTED / DEVELOPMENT CANARY VERIFIED`; owner acceptance remains explicit. At the end of Phase 2G.1C, owner review was pending. Current Hybrid-100 Development runtime status is `VERIFIED` by Phase 2G.2D; Production remains `NOT AUTHORIZED / NOT EXECUTED`.
 - Owner direction: continue the Master Vocabulary Dataset V2 Phase 2D runtime
   identity bridge, adapter, and explicitly reprioritized Phase 2D.1 hardening
   and canary preparation.
@@ -491,11 +545,13 @@ Technology Starter #17 with algorithm at position 1, and a fresh all-NOOP
 plan. The verifier does not change the human reconciliation or relax the
 pre-apply snapshot guard.
 
-Development canary: `VERIFIED`. Production: `NOT AUTHORIZED / NOT EXECUTED`.
-Bulk ingestion: `NOT STARTED`. Apple #295: `OPEN FOLLOW-UP`. The 100-Sense
-hybrid source proof was completed offline in Phase 2F.1; it does not authorize
-bulk runtime import. No database write, APPLY, migration, or production
-connection occurred in Phase 2E.6.
+The Phase 2D development canary remains `VERIFIED`. The Hybrid-100 2.2.1
+Development runtime is `VERIFIED` by Phase 2G.2D. Production is
+`NOT AUTHORIZED / NOT EXECUTED`. Bulk ingestion remains `NOT STARTED`; Apple
+#295 remains an `OPEN FOLLOW-UP`. The offline Phase 2F.1 source proof did not
+authorize runtime writes; the later Development APPLY was separately approved
+and completed in Phase 2G.2C. No database write, APPLY, migration, or
+Production connection occurred in Phase 2E.6.
 
 See the [sanitized canary closure report](../../vocabflow-dataset/reports/master-v2-development-canary-closure.md).
 

@@ -1,5 +1,50 @@
 # Current Handoff Snapshot
 
+## 2026-10-07 — Phase 2G.2D Hybrid-100 Development runtime verified; typecheck gate blocked
+
+- Closed the 2G.2B/2G.2C rollout against remote baseline
+  `53443aa7818b5fe6b5dc3fea30f8ac8967805e02`. Owner reconciliation was finalized
+  for the frozen 2.2.1 release: 97 CREATE_NEW and three MAP_EXISTING +
+  UPDATE_TO_MASTER decisions (`deviate` #1836, `pain-relief` #1461, `stand`
+  #948). The pre-apply Development dry-run passed; the authorized APPLY was
+  committed exactly once (97 creates, 3 updates, 100 mappings) as recorded in
+  the 2G.2C evidence.
+- Rechecked only the authorized Development target using read-only transactions.
+  The existing reconciliation scanner reproduced post-apply snapshot
+  `5ebcadbfd95619e8b6e7a5c8cc4a4fca16600f7e947cda5932d1ff16bf4fc85a`. There
+  is one matching import run, all 100 mappings remain, 97 new rows are content
+  version 1, and the three adopted rows are version 2. Master projection
+  matches are 100/100.
+- Exercised the existing `GET /api/vocabulary` and
+  `GET /api/learners/:learnerId/vocabulary` Hono handlers/services with a
+  verified Development household member held in memory. Both returned all 100
+  mapped Hybrid rows. Catalog availability: 100 enabled, 0 disabled, 0
+  unreadable, 0 projection mismatches. Reservation doubt, water verb, all
+  three light Senses, rock, exact, and rally resolve away from the rejected
+  collision IDs. All five preserved enrichment fields for each adopted row
+  remain readable. The smoke used the existing `readSession` injection seam;
+  Better Auth cookie issuance was not part of this smoke.
+- A live-snapshot planner replay returned 100 NOOP / 100 KEEP_MAPPING, with
+  zero CREATE, UPDATE, conflict, blocked action, mapping creation, or issue.
+  Learner history remains 87 progress rows / 229 review events; runtime #11
+  retains 1 progress and 5 review references, and the #284 booking mapping is
+  unchanged. No learner IDs or PII were serialized.
+- Official frozen 2.2.1 release verification passed. No Development writes,
+  second APPLY, migration, Production connection, or Production mutation
+  occurred. Development runtime is VERIFIED; Production remains NOT
+  AUTHORIZED / NOT EXECUTED.
+- Runtime closure/API smoke and focused tests passed (7 files / 94 tests);
+  frozen release check and `git diff --check` passed. `pnpm exec tsc --noEmit
+  -p tsconfig.json` passed, but the required `pnpm typecheck` (`tsc -b`) is
+  BLOCKED by nine TS2339 errors in unchanged
+  `scripts/hybrid-100-owner-reconciliation-dry-run.ts` (including stale
+  `analysisOnly`, `acceptedByImporter`, `snapshotFingerprint`, `targetVerified`,
+  `transaction`, and `releaseHash` fields). No unrelated code was changed.
+  Runtime status is VERIFIED; Phase 2G.2D status is BLOCKED pending that
+  repository typecheck issue.
+- Evidence: [sanitized closure report](../vocabflow-dataset/reports/hybrid-100-development-runtime-closure-2.2.1.md)
+  and [machine-readable closure](../vocabflow-dataset/workspaces/hybrid-100-runtime-reconciliation-2.2.1/owner-review/development-runtime-closure.json).
+
 ## 2026-10-07 — Toast & Feedback (Feature #16 / US-53) implemented
 
 - Audited alert/confirm and dialog usage plus success/error/pending states
@@ -44,8 +89,9 @@
 - Verification: proposal generator `--check`; official frozen-release builder
   `--check`; focused tests 17/17; scoped ESLint; typecheck; `git diff --check`.
   Local Node 22.19.0 is below the repository's declared 22.23.2 engine.
-- Next action: owner reviews the proposal and makes explicit identity decisions;
-  no importer dry-run or database action is authorized by this proposal.
+- At the time this proposal closed, the next gate was owner review; Phase 2G.2B
+  later finalized those decisions, and Phase 2G.2C performed the separately
+  authorized Development APPLY.
 
 ## 2026-10-06 — Phase 2G.1C Hybrid-100 Development candidate discovery
 
