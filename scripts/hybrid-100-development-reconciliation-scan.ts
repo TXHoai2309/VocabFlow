@@ -1448,26 +1448,32 @@ export async function runHybrid100DevelopmentReconciliationScan(
   };
 }
 
+export async function runHybrid100DevelopmentReconciliationScanCli(
+  cliArgs: readonly string[],
+  dependencies: {
+    repositoryRoot?: string;
+    loadEnvFile?: (filePath: string) => void;
+    runScan?: (repositoryRoot: string, options: { outputRoot?: string; reportPath?: string }) => Promise<unknown>;
+  } = {},
+): Promise<unknown> {
+  const parsed = parseHybrid100ScannerArgs(cliArgs);
+  const { envFile, ...scanOptions } = parsed;
+  if (envFile) (dependencies.loadEnvFile ?? ((filePath) => process.loadEnvFile(filePath)))(envFile);
+  const runScan = dependencies.runScan ?? runHybrid100DevelopmentReconciliationScan;
+  return runScan(dependencies.repositoryRoot ?? process.cwd(), scanOptions);
+}
+
 function isMain(): boolean {
   const scriptPath = process.argv[1];
   return Boolean(scriptPath && path.resolve(scriptPath) === path.resolve(fileURLToPath(import.meta.url)));
 }
 
 if (isMain()) {
-  try {
-    const args = parseHybrid100ScannerArgs(process.argv.slice(2));
-    if (args.envFile) process.loadEnvFile(args.envFile);
-  } catch {
-    process.stderr.write("SCANNER_ARGUMENT_INVALID\n");
+  runHybrid100DevelopmentReconciliationScanCli(process.argv.slice(2)).then((result) => {
+    process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+  }).catch((error: unknown) => {
+    const message = error instanceof Error && /^[A-Z][A-Z0-9_:.-]{2,120}$/.test(error.message) ? error.message : "HYBRID_100_SCAN_FAILED";
+    process.stderr.write(`${message}\n`);
     process.exitCode = 1;
-  }
-  if (process.exitCode !== 1) {
-    runHybrid100DevelopmentReconciliationScan(process.cwd(), args).then((result) => {
-      process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
-    }).catch((error: unknown) => {
-      const message = error instanceof Error && /^[A-Z][A-Z0-9_:.-]{2,120}$/.test(error.message) ? error.message : "HYBRID_100_SCAN_FAILED";
-      process.stderr.write(`${message}\n`);
-      process.exitCode = 1;
-    });
-  }
+  });
 }

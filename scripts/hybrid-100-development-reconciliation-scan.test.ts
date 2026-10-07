@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
-import { beforeAll, describe, expect, it } from "vitest";
+import { beforeAll, describe, expect, it, vi } from "vitest";
 import { getConnectionTarget } from "../config/database-targets";
 import { emptySnapshot, type RuntimeVocabulary } from "./master-vocabulary-v2-import-planner";
 import type { MasterRuntimeCandidate, ReadOnlySnapshot } from "./master-vocabulary-v2-read-only-reconciliation-scan";
@@ -14,6 +14,7 @@ import {
   nullEnrichmentDisposition,
   parseHybrid100ScannerArgs,
   redactSensitiveReconciliationValue,
+  runHybrid100DevelopmentReconciliationScanCli,
   verifyHybrid100SourceRelease,
 } from "./hybrid-100-development-reconciliation-scan";
 
@@ -158,6 +159,39 @@ describe("Phase 2G.1C Hybrid-100 Development candidate scan", () => {
       reportPath: path.resolve("temp/scan/report.md"),
     });
     expect(() => parseHybrid100ScannerArgs(["--apply"])).toThrow("SCANNER_ARGUMENT_INVALID");
+  });
+
+  it("routes CLI arguments through the scanner entrypoint without an args scope failure", async () => {
+    const runScan = vi.fn(async (repositoryRoot: string, options: { outputRoot?: string; reportPath?: string }) => ({
+      status: "CANDIDATES_READY_FOR_OWNER_REVIEW",
+      repositoryRoot,
+      options,
+    }));
+    const loadEnvFile = vi.fn();
+    const cliArgs = ["--env-file", ".env", "--output-root", "temp/scan", "--report", "temp/scan/report.md"];
+
+    await expect(runHybrid100DevelopmentReconciliationScanCli(cliArgs, {
+      repositoryRoot: "test/repository",
+      loadEnvFile,
+      runScan,
+    })).resolves.toEqual({
+      status: "CANDIDATES_READY_FOR_OWNER_REVIEW",
+      repositoryRoot: "test/repository",
+      options: { outputRoot: path.resolve("temp/scan"), reportPath: path.resolve("temp/scan/report.md") },
+    });
+    expect(loadEnvFile).toHaveBeenCalledWith(".env");
+    expect(runScan).toHaveBeenCalledTimes(1);
+    expect(runScan).toHaveBeenCalledWith("test/repository", {
+      outputRoot: path.resolve("temp/scan"),
+      reportPath: path.resolve("temp/scan/report.md"),
+    });
+  });
+
+  it("keeps CLI argument validation ahead of scanner execution", async () => {
+    const runScan = vi.fn(async () => ({ status: "SHOULD_NOT_RUN" }));
+    await expect(runHybrid100DevelopmentReconciliationScanCli(["--apply"], { runScan }))
+      .rejects.toThrow("SCANNER_ARGUMENT_INVALID");
+    expect(runScan).not.toHaveBeenCalled();
   });
 
   it("redacts database URLs, URL credentials, query strings and external URL paths", () => {
