@@ -1,5 +1,38 @@
 # Current Handoff Snapshot
 
+## 2026-10-07 — Learner management flow correction
+
+- Synced TXH by fast-forward after preserving unrelated Dataset/report and
+  Python cache work in a task-specific stash; restore follows successful push.
+- Removed the legacy completed/handoff panel and auto-resolving state. Every
+  loaded learner count retains creation; one/multiple profiles remain visible,
+  with “Đang dùng” and aria-current for the active row. Creation resets the form,
+  adds/selects the canonical DTO and retains the Feature #16 success toast.
+- Safe returnTo preserves pathname/query on explicit selection or creation;
+  direct management remains on /learners. Persisted active selection is
+  reconciled with canonical list responses using the existing account-scoped key.
+- Missing household reads/definitively rejected creates call existing bootstrap
+  once and retry the operation once per attempt. Bootstrap/retry failures exit
+  normally. Network failures do not bootstrap; uncertain creates reconcile
+  without replay. Signup bootstrap remains unchanged.
+- Automated web regressions: 20 files / 248 tests PASS; two additional App
+  returnTo regressions PASS (updated App suite 48/48). Relevant coverage includes
+  auth/signup bootstrap, active context persistence, Home, Progress, Vocabulary,
+  Study Setup, AppShell/navigation, async states and toast feedback.
+- Focused Chromium learner/auth E2E: 9 tests PASS, including missing-household
+  recovery, first/second creation, keyboard switching, reload and mobile width.
+  These use mocked APIs; live-account manual acceptance remains pending.
+- Broader historical E2E probe: 8/17 passed, 9 fail on pre-existing stale
+  expectations/fixtures outside this learner correction: Study summary copy,
+  Progress heading, Vocabulary status/grid markers, taxonomy filter/read and
+  missing authenticated learner context, Learning Set context/toast copy.
+  Legacy panel references in those tests were migrated; unrelated feature
+  implementations and historical assertions were not changed.
+- Global typecheck/build and changed-file ESLint PASS; diff check PASS. Local
+  Node is 22.19.0 versus requested 22.23.2; build completes with existing chunk
+  and API dynamic-import warnings. No Dataset edit, live database operation,
+  API/migration change, main merge or production deployment.
+
 ## 2026-10-07 — Phase 2G.3B legacy reference decomposition / retirement planning
 
 - Verified `origin/TXH` and local HEAD exactly match

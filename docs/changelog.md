@@ -1,5 +1,16 @@
 # VocabFlow Changelog
 
+## 2026-10-07 — Learner management flow fix
+
+Removed the legacy green learner handoff panel and completed/auto-resolving
+states. The learner list and creation form stay usable with one or multiple
+profiles, with accessible active-row feedback. Creation selects the new
+profile, resets the form and preserves the Feature #16 success toast.
+Selection/create preserve internal returnTo queries. Missing household access
+self-heals through the existing bootstrap with a single bounded retry;
+registration bootstrap and uncertain-write reconciliation remain intact.
+No Dataset, API, migration, database foundation or deployment change.
+
 This log records meaningful project milestones and accepted baselines.
 
 ## 2026-10-07 — Phase 2G.3B legacy reference decomposition / retirement planning

@@ -434,13 +434,14 @@ describe("Home dashboard", () => {
     expect(screen.getByTestId("current-location")).toHaveTextContent("/learners");
   });
 
-  it("auto-selects one enabled learner and returns to Home", async () => {
+  it("selects one enabled learner and returns to Home", async () => {
     requestLearners.mockResolvedValue([
       learner,
       { ...learner, id: "disabled-learner", displayName: "Disabled", enabled: false }
     ]);
     renderHome(null);
 
+    fireEvent.click(await screen.findByRole("button", { name: /Avery Nguyen/ }));
     expect(await screen.findByRole("main", { name: "Trang chủ học tập của Avery Nguyen" })).toBeInTheDocument();
     expect(screen.getByTestId("current-location")).toHaveTextContent("/");
   });
@@ -459,7 +460,8 @@ describe("Home dashboard", () => {
   it("keeps a direct learner-page visit visible without a Home return intent", async () => {
     renderHome(null, ["/learners"]);
 
-    expect(await screen.findByTestId("learner-context-ready")).toHaveTextContent("Avery Nguyen");
+    expect(await screen.findByRole("button", { name: "Avery Nguyen Đang dùng" })).toHaveAttribute("aria-current", "true");
+    expect(screen.getByRole("button", { name: "Tạo hồ sơ học" })).toBeEnabled();
     expect(screen.getByTestId("current-location")).toHaveTextContent("/learners");
   });
 
@@ -487,6 +489,7 @@ describe("Home dashboard", () => {
   it("replaces the Home handoff history so Back does not loop through learner selection", async () => {
     renderHome(null, ["/previous", "/"]);
 
+    fireEvent.click(await screen.findByRole("button", { name: /Avery Nguyen/ }));
     expect(await screen.findByRole("main", { name: "Trang chủ học tập của Avery Nguyen" })).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "Go back" }));
     expect(await screen.findByTestId("previous-route")).toBeInTheDocument();

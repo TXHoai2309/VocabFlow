@@ -68,7 +68,8 @@ test("US-26 filters vocabulary by nullable grade level without changing the lear
   });
 
   await page.goto("/learners");
-  await page.getByTestId("learner-context-ready").getByRole("link", { name: "Từ vựng" }).click();
+  await expect(page.getByRole("button", { name: /An/ })).toHaveAttribute("aria-current", "true");
+  await page.getByRole("navigation", { name: "Điều hướng chính", exact: true }).getByRole("link", { name: "Từ vựng", exact: true }).click();
   await expect(page.getByTestId("vocabulary-row-2")).toBeVisible();
   await page.getByTestId("vocabulary-level-filter").selectOption("GRADE_1");
 

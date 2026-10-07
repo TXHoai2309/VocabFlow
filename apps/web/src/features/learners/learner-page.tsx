@@ -1,20 +1,19 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, Navigate, useLocation, useNavigate } from "react-router";
 import { authClient } from "../auth/auth-client";
+import { requestBootstrap } from "../auth/bootstrap-client";
 import type { LearnerDto } from "@vocabflow/contracts";
 import { createLearner, LearnerClientError, requestLearners } from "./learner-client";
 import { useActiveLearner } from "./learner-context-hook";
 import { EmptyState, ErrorState, LoadingState } from "../../components/async-states";
 import { useToast } from "../../components/toast/toast-context";
 
-type ResolutionState =
+type ManagementState =
   | "loading"
   | "empty"
-  | "auto-resolving"
-  | "selector"
+  | "ready"
   | "creating"
   | "reconciling"
-  | "completed"
   | "error";
 
 const SAFE_LIST_ERROR = "Không thể tải danh sách người học lúc này. Vui lòng thử lại.";
@@ -36,6 +35,18 @@ function localNameError(value: string) {
   return trimmed.length < 1 || trimmed.length > 80 ? "Tên người học cần từ 1 đến 80 ký tự." : null;
 }
 
+async function withHouseholdRecovery<T>(request: () => Promise<T>, onRecovery: () => void): Promise<T> {
+  try {
+    return await request();
+  } catch (error) {
+    if (!(error instanceof LearnerClientError) || error.code !== "HOUSEHOLD_ACCESS_DENIED" || error.uncertain) throw error;
+    onRecovery();
+    await requestBootstrap();
+    // Retry only the rejected operation once; failures here propagate normally.
+    return request();
+  }
+}
+
 export function LearnerPage() {
   const toast = useToast();
   const sessionState = authClient.useSession();
@@ -43,7 +54,7 @@ export function LearnerPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const returnTo = parseReturnTo((location.state as { returnTo?: unknown } | null)?.returnTo);
-  const [state, setState] = useState<ResolutionState>("loading");
+  const [state, setState] = useState<ManagementState>("loading");
   const [learners, setLearners] = useState<LearnerDto[]>([]);
   const [displayName, setDisplayName] = useState("");
   const [fieldError, setFieldError] = useState<string | null>(null);
@@ -60,15 +71,12 @@ export function LearnerPage() {
     if (enabledLearners.length === 0) {
       clearActiveLearner();
       setState("empty");
-    } else if (enabledLearners.length === 1) {
-      setState("auto-resolving");
-      setActiveLearner(enabledLearners[0] ?? null);
-      setState("completed");
     } else {
       const selectedLearner = enabledLearners.find((learner) => learner.id === activeLearner?.id);
       if (selectedLearner) setActiveLearner(selectedLearner);
+      else if (enabledLearners.length === 1) setActiveLearner(enabledLearners[0]!);
       else if (activeLearner) clearActiveLearner();
-      setState("selector");
+      setState("ready");
     }
   }, [activeLearner, clearActiveLearner, setActiveLearner]);
 
@@ -78,7 +86,8 @@ export function LearnerPage() {
     setState(reconciliation ? "reconciling" : "loading");
     setMessage(null);
     try {
-      classifyLearners(await requestLearners());
+      classifyLearners(await withHouseholdRecovery(requestLearners, () => setMessage("Đang chuẩn bị hồ sơ gia đình…")));
+      setMessage(null);
     } catch {
       setState("error");
       setMessage(SAFE_LIST_ERROR);
@@ -98,12 +107,6 @@ export function LearnerPage() {
     void loadLearners();
   }, [clearActiveLearner, loadLearners, sessionState.data?.user?.id]);
 
-  useEffect(() => {
-    if (returnTo && state === "completed" && activeLearner) {
-      navigate(returnTo, { replace: true, state: null });
-    }
-  }, [activeLearner, navigate, returnTo, state]);
-
   async function handleCreate(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (requestInFlight.current) return;
@@ -116,19 +119,23 @@ export function LearnerPage() {
     setState("creating");
     setMessage(null);
     try {
-      const created = await createLearner({ displayName: displayName.trim() });
+      const input = { displayName: displayName.trim() };
+      const created = await withHouseholdRecovery(() => createLearner(input), () => setMessage("Đang chuẩn bị hồ sơ gia đình…"));
       setDisplayName("");
       setFieldError(null);
       setLearners((current) => [...current, created].sort((a, b) => a.createdAt.localeCompare(b.createdAt) || a.id.localeCompare(b.id)));
       setActiveLearner(created);
-      setState("completed");
+      setState("ready");
+      setMessage(null);
       toast.success("Đã tạo hồ sơ người học");
+      if (returnTo) navigate(returnTo, { replace: true, state: null });
     } catch (error) {
       if (error instanceof LearnerClientError && error.uncertain) {
         requestInFlight.current = false;
         setMessage("Đang kiểm tra kết quả tạo hồ sơ người học…");
         await loadLearners(true);
         setMessage((current) => current ?? "Danh sách đã được cập nhật. Vui lòng kiểm tra trước khi tạo lại.");
+        toast.error(SAFE_CREATE_ERROR);
         return;
       }
       setState(previousState);
@@ -148,8 +155,8 @@ export function LearnerPage() {
   }
   if (!sessionState.data?.user?.id) return <Navigate to="/login" replace />;
 
-  const isBusy = state === "creating" || state === "reconciling" || state === "loading" || state === "auto-resolving";
-  const showCreate = state === "empty" || state === "selector" || state === "creating" || state === "error";
+  const isBusy = state === "creating" || state === "reconciling" || state === "loading";
+  const showCreate = state !== "loading";
 
   return (
     <main className="learner-page" aria-labelledby="learner-title">
@@ -164,7 +171,6 @@ export function LearnerPage() {
 
         <div className="learner-status" aria-live="polite">
           {state === "loading" ? <LoadingState className="learner-list-loading" label="Đang tải hồ sơ người học…" pattern="rows" /> : null}
-          {state === "auto-resolving" ? <p role="status">Đang mở hồ sơ người học…</p> : null}
           {state === "reconciling" ? <p role="status">Đang đồng bộ danh sách người học…</p> : null}
           {state === "error" ? <ErrorState className="learner-list-error" title="Không thể tải hồ sơ người học" description={message ?? SAFE_LIST_ERROR} onRetry={() => void loadLearners()} retrying={isBusy} /> : null}
           {message && state !== "error" ? <p role="status">{message}</p> : null}
@@ -174,7 +180,7 @@ export function LearnerPage() {
           <EmptyState className="learner-empty" icon="learners" title="Chưa có hồ sơ học" description="Tạo hồ sơ đầu tiên bên dưới để bắt đầu học." testId="learner-empty-state" />
         ) : null}
 
-        {state === "selector" ? (
+        {learners.length > 0 && state !== "loading" ? (
           <div className="learner-selector" aria-label="Danh sách người học">
             {learners.map((learner) => (
               <button
@@ -182,14 +188,16 @@ export function LearnerPage() {
                 type="button"
                 key={learner.id}
                 disabled={isBusy}
+                aria-current={activeLearner?.id === learner.id ? "true" : undefined}
+                aria-label={activeLearner?.id === learner.id ? `${learner.displayName} Đang dùng` : learner.displayName}
                 onClick={() => {
                   if (requestInFlight.current) return;
                   setActiveLearner(learner);
-                  setState("completed");
+                  if (returnTo) navigate(returnTo, { replace: true, state: null });
                 }}
               >
                 <span>{learner.displayName}</span>
-                <span aria-hidden="true">→</span>
+                {activeLearner?.id === learner.id ? <span>Đang dùng</span> : <span aria-hidden="true">→</span>}
               </button>
             ))}
           </div>
@@ -219,25 +227,6 @@ export function LearnerPage() {
               {state === "creating" ? "Đang tạo…" : "Tạo hồ sơ học"}
             </button>
           </form>
-        ) : null}
-
-
-        {state === "completed" && activeLearner ? (
-          <div className="learner-ready" data-testid="learner-context-ready" role="status">
-            <p>Đã chọn người học: <strong>{activeLearner.displayName}</strong></p>
-            <p className="learner-handoff-note">Sẵn sàng cho thẻ học đầu tiên.</p>
-            <Link className="learner-progress-link" to="/vocabulary">Từ vựng</Link>
-            <Link aria-label="Bộ từ" className="learner-progress-link" to="/learning-sets">Bộ từ</Link>
-            <Link className="learner-progress-link" to="/learning-sets/assign">Quản lý bộ từ của người học</Link>
-            <Link className="learner-progress-link" to="/learner-settings">Cài đặt số từ mới mỗi ngày</Link>
-            <Link className="learner-progress-link" to="/progress">Xem tiến trình</Link>
-            <Link className="register-submit learner-study-submit" to="/study/setup">Bắt đầu học</Link>
-            <div className="learner-exercise-links" aria-label="Các bài tập">
-              <Link className="learner-exercise-submit" to="/study/exercises">Luyện bài tập trắc nghiệm</Link>
-              <Link className="learner-exercise-submit" to="/study/exercises?type=IMAGE_TO_WORD">Luyện qua hình ảnh</Link>
-              <Link className="learner-exercise-submit" to="/study/exercises?type=TYPE_WORD">Luyện gõ từ</Link>
-            </div>
-          </div>
         ) : null}
       </section>
     </main>

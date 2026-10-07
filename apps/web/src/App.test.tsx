@@ -369,15 +369,27 @@ describe("shared authenticated app shell", () => {
 
   it("keeps a direct Learners visit visible after resolving one learner", async () => {
     renderAppRoutes("/learners", null);
-    expect(await screen.findByTestId("learner-context-ready")).toHaveTextContent("Avery Nguyen");
+    expect(await screen.findByRole("button", { name: "Avery Nguyen Đang dùng" })).toHaveAttribute("aria-current", "true");
+    expect(screen.getByRole("button", { name: "Tạo hồ sơ học" })).toBeEnabled();
     expect(screen.getByTestId("current-location")).toHaveTextContent("/learners");
     expectNoActivePrimaryNav();
   });
 
   it("returns a Home learner handoff without a redirect loop", async () => {
     renderAppRoutes("/", null);
+    fireEvent.click(await screen.findByRole("button", { name: /Avery Nguyen/ }));
     expect(await screen.findByRole("main", { name: "Trang chủ học tập của Avery Nguyen" })).toBeInTheDocument();
     await waitFor(() => expect(screen.getByTestId("current-location")).toHaveTextContent("/"));
+  });
+
+  it.each(["/progress", "/study/setup?weak=1"])("returns to %s after missing-learner selection", async (path) => {
+    renderAppRoutes(path, null);
+    expect(await screen.findByRole("button", { name: /Avery Nguyen/ })).toBeInTheDocument();
+    expect(screen.getByTestId("current-location")).toHaveTextContent("/learners");
+    expect(screen.getByTestId("route-return-to")).toHaveTextContent(path);
+    fireEvent.click(screen.getByRole("button", { name: /Avery Nguyen/ }));
+    await waitFor(() => expect(screen.getByTestId("current-location")).toHaveTextContent(path));
+    expect(screen.getByTestId("route-return-to")).toBeEmptyDOMElement();
   });
 
   it("keeps the same navigation shell while changing routes", async () => {

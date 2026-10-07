@@ -67,8 +67,9 @@ test("US-29 assigns a set to the active learner and shows success", async ({ pag
     await route.continue();
   });
   await page.goto("/learners");
-  await expect(page.getByTestId("learner-context-ready")).toContainText("An");
-  await page.getByRole("link", { name: "Quản lý bộ từ của người học" }).click();
+  await expect(page.getByRole("button", { name: /An/ })).toHaveAttribute("aria-current", "true");
+  await expect(page.getByRole("button", { name: /An/ })).toHaveAttribute("aria-current", "true");
+  await page.goto("/learning-sets/assign");
   await expect(page.getByTestId("learner-learning-sets-list")).toBeVisible();
   await page.getByRole("button", { name: "Gán bộ từ" }).click();
   await expect(page.getByRole("button", { name: "Đã gán" })).toBeVisible();
@@ -90,8 +91,9 @@ test("US-30 edits the active learner daily NEW-word limit", async ({ page }) => 
     await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ learnerId, dailyNewWordLimit: 10, dailyNewWordGoal: 10, dailyReviewWordGoal: 20 }) });
   });
   await page.goto("/learners");
-  await expect(page.getByTestId("learner-context-ready")).toContainText("An");
-  await page.getByRole("link", { name: "Cài đặt số từ mới mỗi ngày" }).click();
+  await expect(page.getByRole("button", { name: /An/ })).toHaveAttribute("aria-current", "true");
+  await expect(page.getByRole("button", { name: /An/ })).toHaveAttribute("aria-current", "true");
+  await page.goto("/learner-settings");
   await expect(page.getByLabel("Từ mới mỗi ngày")).toHaveValue("10");
   await expect(page.getByLabel("Từ ôn tập mỗi ngày")).toHaveValue("20");
   await expect(page.getByLabel("Giới hạn từ mới scheduler mỗi ngày")).toHaveValue("10");

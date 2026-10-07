@@ -1,5 +1,30 @@
 # User Flow v1
 
+## Learner management correction (2026-10-07)
+
+The owner-requested correction supersedes the historical completed/handoff UI.
+`/learners` is a persistent management and selection page: zero profiles show
+EmptyState plus creation; one or more profiles show their list plus creation.
+The active profile has a visible “Đang dùng” label and `aria-current="true"`.
+Canonical list responses refresh the persisted active DTO; multiple profiles
+alone do not clear a valid selection. The existing `vocabflow.activeLearner.v1`
+account-scoped storage remains intact.
+
+Selecting or creating a profile returns to a safe internal `returnTo` including
+its query only when that intent exists. Otherwise the user stays on `/learners`.
+A sole profile may become active on load, but returning requires explicit
+selection. Successful creation resets the form and shows the existing toast
+“Đã tạo hồ sơ người học”; no completed panel or extra navigation hub remains.
+
+Only a definitive `HOUSEHOLD_ACCESS_DENIED` learner read/create failure triggers
+the existing idempotent bootstrap, followed by one retry of that operation.
+Bootstrap or retry failure exits to normal read ErrorState/Retry or mutation
+error feedback. Ordinary network failures never bootstrap; uncertain creates
+still reconcile with GET before another explicit submit. Registration retains
+its existing bootstrap. No API, authorization, migration or database model
+changes are introduced.
+
+
 ## Mutation feedback extension (Feature #16 / US-53)
 
 Parent or learner performs an ordinary reversible action → the control keeps

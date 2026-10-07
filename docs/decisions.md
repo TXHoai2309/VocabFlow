@@ -1,5 +1,17 @@
 # VocabFlow Project Decisions
 
+## Learner management and bounded household recovery (2026-10-07)
+
+The owner replaces the historical US-03 completed panel with management at
+`/learners`, keeping create available for every learner count. A valid persisted
+learner is reconciled with canonical DTOs and marked active. Selection/create
+honor internal return intent; a direct management visit stays on the page.
+Missing household access alone triggers one idempotent bootstrap plus one
+retry per user-initiated read/create attempt. Rejected 403 creates may retry;
+uncertain writes are never replayed automatically. Existing signup bootstrap,
+authorization and learner persistence remain authoritative.
+
+
 ## Legacy candidate identity precedence — Phase 2G.3A.1 (2026-10-07)
 
 The explicit owner correction requires finalized reconciliation to outrank

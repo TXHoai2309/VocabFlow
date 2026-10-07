@@ -72,8 +72,9 @@ test("US-09 enters the queue-backed study session and flips the first card", asy
   });
 
   await page.goto("/learners");
-  await expect(page.getByTestId("learner-context-ready")).toContainText("An");
-  await page.getByRole("link", { name: "Bắt đầu học" }).click();
+  await expect(page.getByRole("button", { name: /An/ })).toHaveAttribute("aria-current", "true");
+  await expect(page.getByRole("button", { name: /An/ })).toHaveAttribute("aria-current", "true");
+  await page.goto("/study");
 
   await expect(page).toHaveURL(/\/study$/);
   await expect(page.getByTestId("study-session-ready")).toBeVisible();
@@ -106,7 +107,7 @@ test("US-09 sends direct or reload study entry without context back through lear
   await page.goto("/study");
 
   await expect(page).toHaveURL(/\/learners$/);
-  await expect(page.getByTestId("learner-context-ready")).toContainText("An");
+  await expect(page.getByRole("button", { name: /An/ })).toHaveAttribute("aria-current", "true");
   expect(queueReadCount).toBe(0);
 });
 
@@ -176,7 +177,8 @@ test("US-09 persists a confirmed evaluation and shows the session summary", asyn
   });
 
   await page.goto("/learners");
-  await page.getByRole("link", { name: "Bắt đầu học" }).click();
+  await expect(page.getByRole("button", { name: /An/ })).toHaveAttribute("aria-current", "true");
+  await page.goto("/study");
   await expect(page.getByTestId("study-session-ready")).toBeVisible();
   await page.getByRole("button", { name: "Lật để xem nghĩa" }).click();
   await expect(page.getByRole("button", { name: "Đã nhớ" })).toBeVisible();
