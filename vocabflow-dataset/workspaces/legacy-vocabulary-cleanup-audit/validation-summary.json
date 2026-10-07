@@ -1,0 +1,75 @@
+{
+  "status": "PASS",
+  "totalRuntimeVocabulary": 2126,
+  "orphanMappingCount": 0,
+  "MASTER_MANAGED": 108,
+  "LEGACY_UNMAPPED": 2018,
+  "MAPPING_ANOMALY": 0,
+  "cleanupClassCounts": {
+    "KEEP_MASTER_MANAGED": 108,
+    "KEEP_REFERENCED_LEGACY": 2018,
+    "LEGACY_MAPPING_REVIEW": 0,
+    "LEGACY_DUPLICATE_REVIEW": 0,
+    "DISABLE_CANDIDATE": 0,
+    "DELETE_SAFE_CANDIDATE": 0,
+    "ANOMALY_REVIEW_REQUIRED": 0
+  },
+  "legacyReferenceCounts": {
+    "withLearnerProgress": 75,
+    "withReviewEvents": 75,
+    "withFavoriteOrSaveReferences": 0,
+    "favoriteReferenceCount": "NOT_PRESENT",
+    "savedWordReferenceCount": 0,
+    "withTopicOrSetReferences": 2018,
+    "withAnyReference": 2018,
+    "zeroReference": 0,
+    "learnerProgressReferenceTotal": 84,
+    "reviewEventReferenceTotal": 221,
+    "savedWordReferenceTotal": 0,
+    "topicMembershipReferenceTotal": 2026,
+    "learningSetItemReferenceTotal": 279
+  },
+  "hybridCheckpoint": {
+    "status": "VERIFIED",
+    "referencePostApplySnapshot": "5ebcadbfd95619e8b6e7a5c8cc4a4fca16600f7e947cda5932d1ff16bf4fc85a",
+    "currentSnapshotComparison": "COMPATIBLE_ON_PINNED_HYBRID_COHORT_AND_KNOWN_HISTORY_TOTALS; full historical scanner fingerprint is not recomputed under the runtime-role-only boundary",
+    "currentLearnerProgressRows": 87,
+    "currentReviewEventRows": 229,
+    "referenceLearnerProgressRows": 87,
+    "referenceReviewEventRows": 229,
+    "matchingImportRuns": 1,
+    "hybridMasterMappings": 100,
+    "newlyCreatedRuntimeRows": 97,
+    "reusedRuntimeRows": 3,
+    "contentVersion1": 97,
+    "contentVersion2": 3,
+    "expectedReleaseHash": "44874b11d1fdef76a515f6285d04c9a417318daa6969e112608a59e7c232613c",
+    "expectedPlanFingerprint": "7cb18d5c475d3f65538bb55e9bba5c4ad2b666bb7b2678a2e19d8b447b2f9929",
+    "expectedImportRunId": "5062fc01-8615-48ab-80e6-ed91d6b77a60",
+    "mappingProblems": [],
+    "orphanMappingCount": 0,
+    "expectedBookingMasterSenseId": "01a0fc13-09ef-7d37-a50f-d05db6b1a89c",
+    "runtime284MappingSenseId": "01a0fc13-09ef-7d37-a50f-d05db6b1a89c"
+  },
+  "runtime11History": {
+    "progress": 1,
+    "reviews": 5
+  },
+  "runtime284": {
+    "mappingStatus": "UNCHANGED",
+    "masterSenseId": "01a0fc13-09ef-7d37-a50f-d05db6b1a89c"
+  },
+  "transaction": {
+    "isolation": "REPEATABLE_READ",
+    "readOnly": true
+  },
+  "databaseWrites": "NONE",
+  "cleanupAuthorized": false,
+  "deleteAuthorized": false,
+  "disableAuthorized": false,
+  "mergeAuthorized": false,
+  "mappingWritesAuthorized": false,
+  "legacyAuditSnapshotFingerprint": "6b3af8b7db4e8262b8a04751de8641a86bf4c5273baf8e07344d9e6687ab4c36",
+  "fingerprintRepeatIdentical": true,
+  "serializationPIIFieldsIncluded": false
+}

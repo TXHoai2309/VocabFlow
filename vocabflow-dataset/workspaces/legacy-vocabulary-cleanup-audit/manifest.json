@@ -1,0 +1,70 @@
+{
+  "artifactType": "DEVELOPMENT_LEGACY_VOCABULARY_CLEANUP_AUDIT",
+  "artifactVersion": 1,
+  "sourceBaseline": "8e4c88e4506453553bc0c3e0900bead1f49e4091",
+  "target": {
+    "environment": "development",
+    "provider": "neon",
+    "projectId": "shy-hill-72364426",
+    "branchId": "br-square-grass-b3af0nte",
+    "databaseName": "neondb",
+    "roleName": "vocabflow_runtime",
+    "providerPreconnectVerified": true,
+    "transaction": {
+      "isolation": "REPEATABLE_READ",
+      "readOnly": true
+    },
+    "databaseIdentity": {
+      "environment": "development",
+      "provider": "neon",
+      "projectId": "shy-hill-72364426",
+      "branchId": "br-square-grass-b3af0nte",
+      "databaseName": "neondb",
+      "currentRole": "vocabflow_runtime",
+      "transactionReadOnly": true,
+      "transactionIsolation": "repeatable read"
+    },
+    "remoteBaseline": "8e4c88e4506453553bc0c3e0900bead1f49e4091",
+    "databaseConnection": "READ_ONLY_DEVELOPMENT",
+    "databaseWrites": "NONE",
+    "production": "NOT_AUTHORIZED / UNTOUCHED"
+  },
+  "files": [
+    "development-target.json",
+    "schema-reference-inventory.json",
+    "runtime-vocabulary-inventory.json",
+    "master-mappings.json",
+    "legacy-master-candidates.json",
+    "cleanup-classification.json",
+    "cleanup-impact-simulation.json",
+    "validation-summary.json",
+    "manifest.json",
+    "../../reports/development-legacy-vocabulary-cleanup-audit.md"
+  ],
+  "legacyAuditSnapshotFingerprint": "6b3af8b7db4e8262b8a04751de8641a86bf4c5273baf8e07344d9e6687ab4c36",
+  "fingerprintPayloadKeys": [
+    "aggregateReferenceCounts",
+    "cleanupClassification",
+    "hybridCheckpoint",
+    "masterMappings",
+    "repositoryBaseline",
+    "runtimeVocabularyInventory",
+    "schemaReferenceInventory",
+    "target"
+  ],
+  "outputSanitization": {
+    "learnerIds": false,
+    "householdIds": false,
+    "userIds": false,
+    "emails": false,
+    "sessions": false,
+    "connectionStrings": false
+  },
+  "authorization": {
+    "cleanup": false,
+    "delete": false,
+    "disable": false,
+    "merge": false,
+    "mappingWrites": false
+  }
+}

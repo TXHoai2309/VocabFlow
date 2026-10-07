@@ -41,6 +41,7 @@
     "import:master-vocab-v2": "tsx scripts/import-master-vocabulary-v2.ts",
     "scan:master-vocab-v2-development-reconciliation": "tsx scripts/master-vocabulary-v2-development-reconciliation-scan.ts",
     "verify:master-vocab-v2-post-apply": "tsx scripts/master-vocabulary-v2-post-apply-verification.ts",
+    "audit:development-legacy-vocabulary": "tsx scripts/development-legacy-vocabulary-cleanup-audit.ts",
     "source-proof:master-vocab-v2-hybrid-100": "python scripts/master-vocabulary-v2-hybrid-source-proof.py",
     "vocab:hybrid-100-editorial": "tsx scripts/hybrid-100-editorial-draft.ts",
     "vocab:hybrid-100-editorial-review": "tsx scripts/hybrid-100-editorial-review.ts",
