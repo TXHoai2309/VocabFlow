@@ -6,7 +6,7 @@ function word(id: number) { return { vocabulary: { id, word: `word-${id}`, ipa: 
 async function fixture(page: import("@playwright/test").Page) {
   await mockAccount(page);
   const writes: string[] = [];
-  page.on("request", (request) => { if (["PUT", "DELETE", "PATCH"].includes(request.method())) writes.push(request.url()); });
+  page.on("request", (request) => { if (["POST", "PUT", "DELETE", "PATCH"].includes(request.method())) writes.push(request.url()); });
   await page.route("**/api/learning-sets", (route) => route.fulfill({ json: { learningSets: sets } }));
   await page.route("**/review-queue**", (route) => route.fulfill({ json: { learnerId: profile().id, reviewDate: "2026-10-08", dueCount: 0, newCount: 2, queue: [word(101), word(202)] } }));
   return writes;
@@ -29,7 +29,20 @@ for (const width of [320, 390, 768, 1440]) {
     if (width < 640) expect(Math.round(bounds!.y + bounds!.height)).toBe(812);
     else expect(bounds!.width).toBeGreaterThanOrEqual(520);
     const footer = await dialog.locator("footer").boundingBox(); expect(footer!.y + footer!.height).toBeLessThanOrEqual(812);
-    await dialog.getByRole("searchbox").fill("Bộ từ 35"); await expect(dialog.getByRole("checkbox")).toHaveCount(1);
+    await dialog.getByRole("checkbox", { name: "Chọn tất cả", exact: true }).check();
+    await expect(dialog.getByText("35 bộ từ đã chọn")).toBeVisible();
+    await expect(dialog.getByRole("button", { name: "Áp dụng (35)" })).toBeVisible();
+    await dialog.getByRole("checkbox", { name: "Bỏ chọn tất cả" }).uncheck();
+    await expect(dialog.getByText("0 bộ từ đã chọn")).toBeVisible();
+    await dialog.getByRole("searchbox").fill("Bộ từ 35"); await expect(dialog.locator(".learning-set-picker-list").getByRole("checkbox")).toHaveCount(1);
+    await dialog.getByRole("checkbox", { name: "Chọn tất cả kết quả" }).focus(); await page.keyboard.press("Space");
+    await expect(dialog.getByRole("checkbox", { name: "Bỏ chọn kết quả" })).toBeChecked();
+    await expect(dialog.getByText("1 bộ từ đã chọn")).toBeVisible();
+    expect(await dialog.evaluate((element) => element.scrollWidth <= element.clientWidth)).toBe(true);
+    const bulkBounds = await dialog.locator(".learning-set-picker-bulk").boundingBox();
+    expect(bulkBounds!.x).toBeGreaterThanOrEqual(0); expect(bulkBounds!.x + bulkBounds!.width).toBeLessThanOrEqual(width);
+    const filteredFooter = await dialog.locator("footer").boundingBox(); expect(filteredFooter!.y + filteredFooter!.height).toBeLessThanOrEqual(812);
+    await dialog.getByRole("checkbox", { name: "Bỏ chọn kết quả" }).uncheck();
     await dialog.getByRole("checkbox", { name: "Bộ từ 35", exact: true }).check(); await dialog.getByRole("searchbox").fill("");
     await dialog.getByRole("checkbox", { name: "Bộ từ 1", exact: true }).check(); await dialog.getByRole("button", { name: "Áp dụng (2)" }).click();
     await expect(page.getByText("2 bộ từ đã chọn")).toBeVisible(); await expect(page.getByTestId("study-setup-summary-count")).toHaveText("2 từ");
@@ -46,6 +59,51 @@ for (const width of [320, 390, 768, 1440]) {
     expect(writes).toEqual([]);
   });
 }
+
+test("bulk draft cancel, filtered updates and unchanged Apply keep cached reads and exact committed Start IDs", async ({ page }) => {
+  const writes = await fixture(page); let catalogs = 0; let queues = 0;
+  page.on("request", (request) => { if (request.url().endsWith("/api/learning-sets")) catalogs += 1; if (request.url().includes("/review-queue")) queues += 1; });
+  await page.addInitScript(() => {
+    const original = Storage.prototype.setItem;
+    Object.assign(window, { preferenceWrites: 0 });
+    Storage.prototype.setItem = function (key, value) {
+      if (key.startsWith("vocabflow.study-source")) Object.assign(window, { preferenceWrites: Reflect.get(window, "preferenceWrites") + 1 });
+      original.call(this, key, value);
+    };
+  });
+  await page.goto("/study/setup"); const source = page.getByRole("combobox");
+  await expect(page.getByTestId("study-setup-summary-count")).toHaveText("2 từ");
+  await page.getByTestId("study-setup-page").evaluate((element) => element.setAttribute("data-mount-probe", "bulk"));
+  const initialUrl = page.url();
+  await source.selectOption("custom"); const dialog = page.getByRole("dialog");
+  await dialog.getByRole("checkbox", { name: "Chọn tất cả", exact: true }).check();
+  await dialog.getByRole("button", { name: "Hủy" }).click();
+  await source.selectOption("custom"); await expect(dialog.getByRole("button", { name: "Áp dụng (0)" })).toBeDisabled();
+  await dialog.getByRole("checkbox", { name: "Chọn tất cả", exact: true }).check(); await page.keyboard.press("Escape");
+  expect(queues).toBe(1); expect(catalogs).toBe(1); expect(await page.evaluate(() => Reflect.get(window, "preferenceWrites"))).toBe(0);
+  await source.selectOption("custom");
+  await dialog.getByRole("checkbox", { name: "Bộ từ 35", exact: true }).check();
+  await dialog.getByRole("searchbox").fill("Bộ từ 1");
+  await dialog.getByRole("checkbox", { name: "Chọn tất cả kết quả" }).check();
+  await expect(dialog.getByText("12 bộ từ đã chọn")).toBeVisible();
+  await dialog.getByRole("checkbox", { name: "Bỏ chọn kết quả" }).uncheck();
+  await expect(dialog.getByText("1 bộ từ đã chọn")).toBeVisible();
+  await dialog.getByRole("searchbox").fill("");
+  await expect(dialog.getByRole("checkbox", { name: "Chọn tất cả", exact: true })).toHaveJSProperty("indeterminate", true);
+  await dialog.getByRole("checkbox", { name: "Chọn tất cả", exact: true }).check();
+  expect(page.url()).toBe(initialUrl); expect(queues).toBe(1); expect(catalogs).toBe(1);
+  await dialog.getByRole("button", { name: "Áp dụng (35)" }).click();
+  await expect(page.getByRole("button", { name: /Bắt đầu học/ })).toBeEnabled();
+  expect(queues).toBe(2); expect(await page.evaluate(() => Reflect.get(window, "preferenceWrites"))).toBe(1);
+  await page.getByRole("button", { name: "Thay đổi" }).click();
+  await expect(dialog.getByRole("checkbox", { name: "Bỏ chọn tất cả" })).toBeChecked();
+  await dialog.getByRole("button", { name: "Áp dụng (35)" }).click();
+  expect(queues).toBe(2); expect(catalogs).toBe(1); expect(await page.evaluate(() => Reflect.get(window, "preferenceWrites"))).toBe(1);
+  expect(page.url()).toBe(initialUrl); await expect(page.getByTestId("study-setup-page")).toHaveAttribute("data-mount-probe", "bulk");
+  await page.getByRole("button", { name: /Bắt đầu học/ }).click();
+  await expect(page.getByTestId("study-session-ready")).toBeVisible();
+  expect(new URL(page.url()).searchParams.get("setIds")).toBe(sets.map((set) => set.id).join(",")); expect(writes).toEqual([]);
+});
 test("stored selection is validated against canonical sets and URL intent wins", async ({ page }) => {
   await fixture(page);
   await page.addInitScript(() => localStorage.setItem("vocabflow.study-source.v1:account-a", JSON.stringify({ source: "custom", ids: [1, 999] })));
@@ -68,7 +126,7 @@ test("picker shell opens during lazy catalog read; repeated cancel keeps URL, so
   await expect(page.getByTestId("study-setup-loading")).toHaveCount(0); expect(page.url()).toBe(initialUrl);
   const currentBackground = await page.getByTestId("study-setup-page").boundingBox(); expect(currentBackground).toEqual(background);
   await dialog.getByRole("button", { name: "Hủy" }).click(); await source.selectOption("custom"); release();
-  await expect(dialog.getByRole("checkbox")).toHaveCount(35); await page.keyboard.press("Escape");
+  await expect(dialog.locator(".learning-set-picker-list").getByRole("checkbox")).toHaveCount(35); await page.keyboard.press("Escape");
   await source.selectOption("custom"); await dialog.getByRole("button", { name: "Hủy" }).click();
   expect(catalogReads).toBe(1); expect(page.url()).toBe(initialUrl); await expect(source).toHaveValue("pathway");
   await expect(page.getByTestId("study-setup-summary-scope")).toHaveText("Food");

@@ -1,5 +1,33 @@
 # Current Handoff Snapshot
 
+## 2026-10-08 — US-54 bulk learning-set selection
+
+Owner-authorized feature and commit/push on TXH, remote baseline
+6c06e99ae8f40020d826c7aa140b4da1a107a6c2 (Dataset-only advance from the known
+UI fix). Native bulk checkbox below search exposes checked/unchecked/mixed
+state and supports Space. It selects/deselects enabled matches only, retaining
+hidden selections and showing the total count beside Apply(N). Empty results
+disable bulk selection. Set union deduplicates IDs; over-50 attempts reject
+atomically with inline guidance, including 47 existing plus 5 new matches.
+Individual selection keeps the 50 limit and deselection remains available.
+
+Only picker draft/UI/styles and tests changed. Setup architecture, cached
+catalog request, focus trap/restore, scroll lock, entrance animation and
+source persistence remain intact. Cancel paths discard bulk drafts; changed
+Apply persists once, unchanged Apply does not fetch again. Mocked Chromium
+counts catalog/queue reads and preference writes, preserves URL/Setup DOM,
+and verifies Start serializes all applied IDs. Dataset/scripts edits appearing
+concurrently in the shared checkout remain outside this task and its staging.
+
+Validation: focused picker + Setup 2 files / 42 tests PASS; full web regression
+32 files / 371 tests PASS; Chromium Study source picker 9 tests PASS at
+320/390/768/1440px, including Space toggle, visible footer and no horizontal
+overflow. pnpm typecheck, pnpm build, pnpm lint and task diff check PASS.
+Client secret and source-map scans PASS. Existing Node version, chunk-size and
+API import build warnings remain. No live API/DB,
+physical-device verification, migration, Dataset edit by this task, old stash
+restore, main merge, force push or Production deployment.
+
 ## 2026-10-08 — Small scoped Study picker jank fix
 
 Owner-authorized patch on TXH, baseline

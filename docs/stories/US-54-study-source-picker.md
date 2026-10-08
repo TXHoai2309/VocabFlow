@@ -86,6 +86,25 @@ changes no API, review/SRS code, Dataset, DB migration or deployment behavior.
 
 ## Verification results
 
+### 2026-10-08 — Owner-approved bulk draft selection
+
+The Custom picker adds a native tri-state checkbox directly below search and
+a total selected count, using existing design tokens. Empty search selects or
+deselects every enabled set; a search affects only matching sets and preserves
+hidden selections. Zero results disable the unchecked bulk control. Partial
+selection uses native indeterminate state; Space toggles the focused control.
+Bulk union uses unique IDs. A union exceeding MAX_STUDY_SETS=50 leaves the
+entire draft unchanged and shows inline guidance to use All; deselection is
+always available. Individual checkboxes retain the same limit.
+
+Bulk edits only local draft. Cancel/X/Escape/backdrop discard, changed Apply
+commits once, unchanged Apply closes without extra reads, and reopening uses
+committed IDs. Setup/cache/navigation/scroll/focus/animation behavior is
+unchanged. Exact applied IDs reach Start. No API, scheduler, SRS, assignments,
+DB, Dataset or global navigation changes.
+
+Evidence and final validation counts are in docs/ai-progress.md.
+
 178 final focused tests; 638 broader regression tests; 265 expanded relevant
 tests; 23 identity/preference tests; 16 Chromium E2E PASS. Typecheck, build,
 full repository lint and diff check PASS. Live Preview/device verification

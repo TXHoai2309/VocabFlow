@@ -2364,6 +2364,11 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
 .learning-set-picker-search { display: block; margin: var(--space-4) 0; font-size: var(--text-small); flex-shrink: 0; }
 .learning-set-picker-search input { display: block; width: 100%; min-height: 44px; margin-top: var(--space-2); padding: var(--space-3); border: var(--border-default); border-radius: var(--radius-control); }
 .learning-set-picker-list { overflow-y: auto; min-height: 0; overscroll-behavior: contain; }
+.learning-set-picker-bulk { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-2) var(--space-3); flex-shrink: 0; padding-bottom: var(--space-3); margin-bottom: var(--space-3); border-bottom: var(--border-default); }
+.learning-set-picker-bulk label { display: flex; align-items: center; gap: var(--space-3); min-height: 44px; cursor: pointer; }
+.learning-set-picker-bulk input { width: 20px; height: 20px; flex-shrink: 0; accent-color: var(--color-primary); }
+.learning-set-picker-bulk > span { margin-left: auto; font-size: var(--text-small); color: var(--color-text-muted); }
+.learning-set-picker-limit { flex-shrink: 0; margin-bottom: var(--space-3); font-size: var(--text-small); color: var(--color-text-muted); }
 .learning-set-picker-row { display: flex; align-items: center; gap: var(--space-3); min-height: 64px; padding: var(--space-3); margin-bottom: var(--space-2); border: var(--border-default); border-radius: var(--radius-control); cursor: pointer; }
 .learning-set-picker-row.is-selected { border-color: var(--color-primary); background: var(--color-primary-soft); }
 .learning-set-picker-row input { width: 20px; height: 20px; flex-shrink: 0; accent-color: var(--color-primary); }

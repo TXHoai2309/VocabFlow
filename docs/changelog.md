@@ -1,5 +1,15 @@
 # VocabFlow Changelog
 
+## 2026-10-08 — Bulk selection in the Custom Study picker
+
+- Add native tri-state Select All / Deselect All below search, operating on
+  matching enabled sets while preserving hidden selections and total count.
+- Reject bulk selections above 50 atomically with inline guidance to use All.
+  Preserve draft cancellation, Apply persistence, cached reads and Setup state.
+- 42 focused tests, 371 web regressions and 9 Chromium picker tests PASS;
+  typecheck/build/lint/diff PASS. Keyboard/layout evidence is in US-54/ai-progress.
+  No API, SRS, assignment, DB migration or Dataset edits by this task.
+
 ## 2026-10-08 — Smooth Study source picker interactions
 
 - Keep source selection and modal drafts local until Start, avoiding Setup
