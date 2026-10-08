@@ -1,0 +1,115 @@
+{
+  "relatively": {
+    "recommendation": "REVISE",
+    "confidence": "CAO_CHO_NOI_DUNG_KHONG_PHAI_APPROVAL",
+    "meaningAssessmentVi": "Definition mô tả mức độ tương đối khi so sánh, phù hợp với quiet. Gloss 'so với' đứng riêng là cụm cần bổ ngữ, không phải cách thay trực tiếp adverb trong câu này; giữ ý tương đối và nêu chuẩn so sánh trong phần giải thích.",
+    "exampleAssessmentVi": "This route is relatively quiet và Tuyến đường này tương đối yên tĩnh khớp nhau; không có khẳng định tuyến đường hoàn toàn yên tĩnh. Giữ cả hai câu.",
+    "grammarAssessmentVi": "ADVERB bổ nghĩa quiet; ghi chú often modifies adjective phù hợp với ví dụ, không tuyên bố chỉ được bổ nghĩa adjective.",
+    "boundaryAssessmentVi": "So sánh mức độ với một chuẩn ngầm/hiện; không phải relative to + danh từ và không tự merge với comparatively. Giữ candidate key.",
+    "referenceUrl": "https://dictionary.cambridge.org/dictionary/learner-english/relatively",
+    "referenceCefr": "B2",
+    "changes": [{"field": "/content/meaningVi", "after": "tương đối (khi so sánh với những điều tương tự)", "code": "VI_GLOSS_INCOMPLETE_COMPARATOR", "reasonVi": "Loại bỏ gloss so với đứng riêng, giữ cách dùng adverb thể hiện mức độ tương đối."}]
+  },
+  "formerly": {
+    "recommendation": "KEEP",
+    "confidence": "CAO_CHO_NOI_DUNG_KHONG_PHAI_APPROVAL",
+    "meaningAssessmentVi": "At an earlier time, before the present situation và trước đây diễn đạt đúng trạng thái trong quá khứ; không mang nghĩa formally là một cách trang trọng.",
+    "exampleAssessmentVi": "The building was formerly a school diễn đạt công năng trước đây; Tòa nhà trước đây là một trường học giữ đúng thông tin và thì. Không thêm công năng hiện tại chưa được nêu.",
+    "grammarAssessmentVi": "ADVERB về trạng thái quá khứ, đứng sau was trong câu; ghi chú Adverb of past status đủ đúng cho proposal này.",
+    "boundaryAssessmentVi": "Một trạng thái/công năng trước đây, không tự đồng nhất mọi nghĩa của previously hoặc đổi identity do từ đồng nghĩa.",
+    "referenceUrl": "https://dictionary.cambridge.org/us/dictionary/english/formerly",
+    "referenceCefr": "B2",
+    "changes": []
+  },
+  "hence": {
+    "recommendation": "KEEP",
+    "confidence": "CAO_CHO_NOI_DUNG_KHONG_PHAI_APPROVAL",
+    "meaningAssessmentVi": "For that reason or as a result khớp vì thế; do đó, trong register trang trọng. Việc đường đóng giải thích sự chậm trễ.",
+    "exampleAssessmentVi": "Hence the delay là cấu trúc hence + noun phrase hợp lệ; không phải hai mệnh đề độc lập nối bằng comma sai. Bản dịch giữ quan hệ kết quả.",
+    "grammarAssessmentVi": "Formal linking adverb; consequence phù hợp. Không yêu cầu thêm therefore hay đổi dấu câu khi ví dụ hiện tại đã đúng.",
+    "boundaryAssessmentVi": "Chỉ consequence/therefore; không bao gồm nghĩa thời gian trong six months hence. Từ đồng nghĩa therefore không cho phép tái sử dụng Sense ID.",
+    "referenceUrl": "https://dictionary.cambridge.org/us/dictionary/english/hence",
+    "referenceCefr": "C1",
+    "changes": []
+  },
+  "accidentally": {
+    "recommendation": "KEEP",
+    "confidence": "CAO_CHO_NOI_DUNG_KHONG_PHAI_APPROVAL",
+    "meaningAssessmentVi": "Not planned or intended và một cách không chủ ý phù hợp nghĩa unintentionally. Không phải mọi việc bất ngờ đều do một lựa chọn cố ý.",
+    "exampleAssessmentVi": "Gửi tin nhắn nhầm người minh họa sai sót không chủ ý; vô tình và nhầm người giữ cả manner và wrong recipient. Giữ nguyên ví dụ.",
+    "grammarAssessmentVi": "ADVERB bổ nghĩa sent; ghi chú phân biệt intentional choice chính xác trong phạm vi này.",
+    "boundaryAssessmentVi": "Proposal unintentionally phù hợp ví dụ; không tự gộp thêm tình cờ gặp một người hay idiom accidentally on purpose vào cùng identity.",
+    "referenceUrl": "https://dictionary.cambridge.org/us/dictionary/english/accidentally",
+    "referenceCefr": "B1",
+    "changes": []
+  },
+  "successfully": {
+    "recommendation": "REVISE",
+    "confidence": "CAO_CHO_NOI_DUNG_KHONG_PHAI_APPROVAL",
+    "meaningAssessmentVi": "Definition achieves what was intended và gloss thành công/đạt điều dự định khớp; thành công không có nghĩa hành động hoàn hảo ở mọi mặt.",
+    "exampleAssessmentVi": "Nhóm chuyển được đàn piano nặng lên tầng trên là kết quả được dự định; bản dịch giữ subject, piano, upstairs và mức độ thành công. Giữ nguyên.",
+    "grammarAssessmentVi": "Completed action mô tả ví dụ quá khứ nhưng không phải ràng buộc ngữ pháp: successfully cũng dùng với hiện tại hoặc dự đoán. Cần bỏ hạn chế completed.",
+    "boundaryAssessmentVi": "Manner/result của một hành động đạt mục tiêu, không phải danh tiếng hay thành công chung của một người; không merge với successful adjective.",
+    "referenceUrl": "https://dictionary.cambridge.org/dictionary/english/successfully",
+    "referenceCefr": "B2",
+    "changes": [{"field": "/content/grammarNotesEn", "after": "Modifies an action to indicate that it achieves the intended result; success does not imply perfection.", "code": "GRAMMAR_UNSUPPORTED_COMPLETED_ONLY", "reasonVi": "Không giới hạn adverb vào hành động đã hoàn thành; giữ phân biệt success và perfection."}]
+  },
+  "why": {
+    "recommendation": "KEEP",
+    "confidence": "CAO_CHO_NOI_DUNG_KHONG_PHAI_APPROVAL",
+    "meaningAssessmentVi": "Used to ask the reason và tại sao/vì sao khớp câu hỏi trực tiếp. Không lẫn câu hỏi cách thức how hay thời gian when.",
+    "exampleAssessmentVi": "Why did the meeting end early dùng did + end đúng cấu trúc; bản dịch giữ meeting, early và câu hỏi nguyên nhân. Giữ nguyên.",
+    "grammarAssessmentVi": "Question reason adverb và ADVERB phù hợp cách phân loại của từ điển cho nghĩa câu hỏi. Các cách dùng relative/exclamation/noun nằm ngoài proposal.",
+    "boundaryAssessmentVi": "Chỉ câu hỏi nguyên nhân; không tự gộp why not để đề xuất, exclamation why hay the whys. Không suy ra identity từ POS alone.",
+    "referenceUrl": "https://dictionary.cambridge.org/dictionary/english/why",
+    "referenceCefr": "A1",
+    "changes": []
+  },
+  "openly": {
+    "recommendation": "KEEP",
+    "confidence": "CAO_CHO_NOI_DUNG_KHONG_PHAI_APPROVAL",
+    "meaningAssessmentVi": "Without concealing feelings, facts, or actions và công khai/cởi mở diễn đạt sự không che giấu. Không nhất thiết diễn ra trước một đám đông.",
+    "exampleAssessmentVi": "Thảo luận về bất đồng một cách không che giấu là ví dụ phù hợp; công khai không thêm nội dung cuộc thảo luận. Giữ câu gốc, owner xác nhận scope public/frank.",
+    "grammarAssessmentVi": "ADVERB manner bổ nghĩa discussed; ghi chú Manner adverb đúng nhưng không cấp identity approval.",
+    "boundaryAssessmentVi": "Slug publicly là nhãn proposal, không bằng chứng identity. Nội dung bao gồm openness/frankness; owner cần xác nhận public và frank thuộc cùng Sense hay cần boundary hẹp hơn. Chưa có reviewed target cho MERGE/SPLIT.",
+    "referenceUrl": "https://dictionary.cambridge.org/dictionary/english/openly",
+    "referenceCefr": "C1",
+    "changes": []
+  },
+  "always": {
+    "recommendation": "KEEP",
+    "confidence": "CAO_CHO_NOI_DUNG_KHONG_PHAI_APPROVAL",
+    "meaningAssessmentVi": "Every occasion hoặc suốt một khoảng thời gian đều là cách dùng thông thường trong phạm vi every-time/all-time. Luôn luôn phù hợp; không tự đổi definition đúng chỉ vì có nhiều cách dùng khác.",
+    "exampleAssessmentVi": "He always checks the lock before leaving chỉ thói quen mỗi lần trước khi đi; bản dịch giữ frequency, object lock và before leaving. Không hàm ý đang kiểm tra liên tục.",
+    "grammarAssessmentVi": "Usually before main verb, after be là quy tắc vị trí thường gặp, đúng với checks. Không dùng note này để phủ nhận vị trí sau modal/auxiliary.",
+    "boundaryAssessmentVi": "Owner xác nhận every occasion/all-time; các nghĩa forever, can always như một giải pháp, hoặc continuous diễn tả phàn nàn không được tự thêm. Không tự split hay sửa identity.",
+    "referenceUrl": "https://dictionary.cambridge.org/us/dictionary/english/always",
+    "referenceCefr": "A1",
+    "changes": []
+  },
+  "furthermore": {
+    "recommendation": "KEEP",
+    "confidence": "CAO_CHO_NOI_DUNG_KHONG_PHAI_APPROVAL",
+    "meaningAssessmentVi": "Bổ sung một fact/reason để hỗ trợ điều vừa nói phù hợp hơn nữa; cảnh quan vườn là điểm bổ sung cùng hướng với phòng sáng.",
+    "exampleAssessmentVi": "Dấu semicolon tách hai mệnh đề, comma sau furthermore đúng; bản dịch giữ room bright và overlooks garden, không đổi thành phòng ở trong vườn.",
+    "grammarAssessmentVi": "Formal linking adverb và punctuation separates clauses phù hợp. Không nhầm với further về khoảng cách hay conjunction and.",
+    "boundaryAssessmentVi": "Một discourse connector thêm luận điểm; không tự merge với moreover chỉ vì synonym hay tạo identity theo topic.",
+    "referenceUrl": "https://dictionary.cambridge.org/dictionary/learner-english/furthermore",
+    "referenceCefr": "B2",
+    "changes": []
+  },
+  "fully": {
+    "recommendation": "REVISE",
+    "confidence": "CAO_CHO_NOI_DUNG_KHONG_PHAI_APPROVAL",
+    "meaningAssessmentVi": "Definition complete/greatest relevant extent phù hợp, nhưng đến mức cần thiết dễ bị hiểu là chỉ đủ mức tối thiểu. Cần gloss biểu thị mức đầy đủ/hoàn toàn.",
+    "exampleAssessmentVi": "Fully understood the instructions và hiểu đầy đủ các hướng dẫn khớp nhau; giữ cả hai câu, không biến thành một claim về learner ngoài ví dụ.",
+    "grammarAssessmentVi": "Phần no promise ... objectively verified là ghi chú của tooling/editor, không hướng dẫn ngữ pháp cho người học. Thay bằng cách dùng degree adverb trực tiếp.",
+    "boundaryAssessmentVi": "Nghĩa degree complete/relevant full extent; không thêm fully + number nghĩa at least. Owner xác nhận complete và maximal participation trong phạm vi Sense; không cấp new ID.",
+    "referenceUrl": "https://dictionary.cambridge.org/us/dictionary/english/fully",
+    "referenceCefr": "B1",
+    "changes": [
+      {"field": "/content/meaningVi", "after": "hoàn toàn; một cách đầy đủ", "code": "VI_GLOSS_MINIMUM_THRESHOLD", "reasonVi": "Loại bỏ hàm ý chỉ đạt mức cần thiết, giữ complete/full extent."},
+      {"field": "/content/grammarNotesEn", "after": "Degree adverb used with verbs, adjectives, or participles to express completeness or the full relevant extent.", "code": "GRAMMAR_TOOLING_COMMENT", "reasonVi": "Bỏ chi tiết kiểm chứng/tooling khỏi ghi chú dành cho người học, thay bằng quy tắc dùng từ."}
+    ]
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "acceptedApprovalGateFingerprint": "7b81c06de08b75412039cb28b1b72490da51e0a82595d68fb54de33c57740e18",
+  "acceptedBytePinsChecked": 6278,
+  "acceptedBytePinsUnchanged": true,
+  "attemptHistory": [
+    {
+      "command": "python -B scripts/phase-2h2e-approval-gate-test.py",
+      "exit": 5,
+      "failure": "MemoryError during corpus initialization when running concurrent jobs; no tests executed",
+      "log": "D:/hoctienganh/phase-2h2f-safety/approval-first-attempt-memoryerror.log",
+      "logSha256": "68d68560e599cbc4fa43a4192c19e659f9adc7c5b5652a0b6405d3696a86d9f5",
+      "resolution": "Unchanged accepted suite rerun serially: 71 PASS; final result in closure-00.log",
+      "tests": 0
+    }
+  ],
+  "canonicalPnpmTypecheck": "NOT_RUN_NOT_CLAIMED_PASS; historical non-TTY limitation retained; direct tsc -b exit 0",
+  "commands": [
+    {
+      "command": "python -B scripts/phase-2h2e-approval-gate-test.py",
+      "environment": {
+        "PYTHONHASHSEED": "987"
+      },
+      "exit": 0,
+      "log": "D:/hoctienganh/phase-2h2f-safety/closure-00.log",
+      "logSha256": "3ff5f2ef2d4901076bccfa1f0b5410df51ea1138522bc499d1541a97ce56fb5f",
+      "tests": 71
+    },
+    {
+      "command": "python -B scripts/phase-2h2f-owner-session-test.py",
+      "environment": {
+        "PYTHONHASHSEED": "987"
+      },
+      "exit": 0,
+      "log": "D:/hoctienganh/phase-2h2f-safety/closure-01.log",
+      "logSha256": "c4fdc22ac698ed314cc535fd76d766d946cee77467b234e60add4c0a5df7d7f8",
+      "tests": 35
+    },
+    {
+      "command": "python -B scripts/phase-2h2f-owner-session.py --check",
+      "environment": {
+        "PYTHONHASHSEED": "987"
+      },
+      "exit": 0,
+      "log": "D:/hoctienganh/phase-2h2f-safety/closure-02.log",
+      "logSha256": "ba69a6f9f77b4fbb70007c66fb39f2a074ae6e1864c1a79a18253164c983c6e6"
+    },
+    {
+      "command": "python -B scripts/phase-2h2d-bulk-editorial-test.py",
+      "exit": 0,
+      "log": "D:/hoctienganh/phase-2h2f-safety/prior-00.log",
+      "logSha256": "230c13892e8197b619daa7ae910bd95689261b26e1ab8f4dd1615017e2738421",
+      "tests": 41
+    },
+    {
+      "command": "python -B scripts/phase-2h2c-stratified-editorial-test.py",
+      "exit": 0,
+      "log": "D:/hoctienganh/phase-2h2f-safety/prior-01.log",
+      "logSha256": "26d45d1c681d58fd9ac5b4db97d7bf5c1870acdcce8e9a4a5944e0330dbf6efa",
+      "tests": 35
+    },
+    {
+      "command": "python -B scripts/phase-2h2b-qa1-corrections-test.py",
+      "exit": 0,
+      "log": "D:/hoctienganh/phase-2h2f-safety/prior-02.log",
+      "logSha256": "417d5913267c26572ebefe8e8c7ad52c7bf1b604c085012a041a90b91cc0e67d",
+      "tests": 19
+    },
+    {
+      "command": "python -B scripts/phase-2h2b-editorial-draft-test.py",
+      "exit": 0,
+      "log": "D:/hoctienganh/phase-2h2f-safety/prior-03.log",
+      "logSha256": "1605a83214fbaf0cd7b5cbe6b97104901fd75e70830806f749e0f7fc54cf004b",
+      "tests": 23
+    },
+    {
+      "command": "python -B scripts/phase-2h2a-master-expansion-test.py",
+      "exit": 0,
+      "log": "D:/hoctienganh/phase-2h2f-safety/prior-04.log",
+      "logSha256": "87b8f88f7a16e1b88a86247e5294ce1a1ec8a5fa20ec73e03e542b7147ad8917",
+      "tests": 21
+    },
+    {
+      "command": "python -B scripts/phase-2h1-source-inventory-test.py",
+      "exit": 0,
+      "log": "D:/hoctienganh/phase-2h2f-safety/prior-05.log",
+      "logSha256": "0fbdad584d28c11c42c83c9701dcb0147e8f5af3ebf276e5df209e99ea80d4f7",
+      "tests": 13
+    },
+    {
+      "command": "python -B scripts/phase-2h2f-owner-session.py --check",
+      "exit": 0,
+      "log": "D:/hoctienganh/phase-2h2f-safety/replay-00.log",
+      "logSha256": "ba69a6f9f77b4fbb70007c66fb39f2a074ae6e1864c1a79a18253164c983c6e6"
+    },
+    {
+      "command": "python -B scripts/phase-2h2e-approval-gate.py --check",
+      "exit": 0,
+      "log": "D:/hoctienganh/phase-2h2f-safety/replay-01.log",
+      "logSha256": "7b661a66b0fb9651ed27304475b3df6b8cc3876b0ef75d3a37da4af26950c2ef"
+    },
+    {
+      "command": "python -B scripts/phase-2h2d-bulk-editorial.py --check",
+      "exit": 0,
+      "log": "D:/hoctienganh/phase-2h2f-safety/replay-02.log",
+      "logSha256": "dbb32c8947f48659ba633fddcdfb61b75b602c433414e6c9694b6f49cc4d4098"
+    },
+    {
+      "command": "python -B scripts/phase-2h2c-stratified-editorial.py --check",
+      "exit": 0,
+      "log": "D:/hoctienganh/phase-2h2f-safety/replay-03.log",
+      "logSha256": "045c6bce0ce1a3d86d5eaf127aabc7c4b7c9ca80704614b9cdf796441e70ccd2"
+    },
+    {
+      "command": "python -B scripts/phase-2h2b-qa1-corrections.py --check",
+      "exit": 0,
+      "log": "D:/hoctienganh/phase-2h2f-safety/replay-04.log",
+      "logSha256": "3360b0dfd1f552de10a8eaeb2d7b902e87398dfa4e7f076daf418605f554193e"
+    },
+    {
+      "command": "python -B scripts/phase-2h2b-editorial-draft.py --check",
+      "exit": 0,
+      "log": "D:/hoctienganh/phase-2h2f-safety/replay-05.log",
+      "logSha256": "7dbdd627e84ee609a805d8b9a255cf3eac6a816d67c0f0b5f556859b9584c0a4"
+    },
+    {
+      "command": "python -B scripts/phase-2h2a-master-expansion.py --check",
+      "exit": 0,
+      "log": "D:/hoctienganh/phase-2h2f-safety/replay-06.log",
+      "logSha256": "64604c558e88d50cd09ca98ba4efa1319f8f80a104b3def525e7e3ca1e6fdaee"
+    },
+    {
+      "command": "python -B scripts/phase-2h1-source-inventory.py --check",
+      "exit": 0,
+      "log": "D:/hoctienganh/phase-2h2f-safety/replay-07.log",
+      "logSha256": "a0327d7abf709fd17da8de2ee114d7c96a5b2d02c0119393d5dcae2deb4eb9e0"
+    },
+    {
+      "command": "node node_modules/typescript/bin/tsc -b",
+      "exit": 0,
+      "log": "D:/hoctienganh/phase-2h2f-safety/typescript-00.log",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node node_modules/eslint/bin/eslint.js . --max-warnings=0",
+      "exit": 0,
+      "log": "D:/hoctienganh/phase-2h2f-safety/typescript-01.log",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "node node_modules/tsx/dist/cli.mjs scripts/hybrid-100-runtime-eligible-patch-release.ts --check",
+      "exit": 0,
+      "log": "D:/hoctienganh/phase-2h2f-safety/typescript-02.log",
+      "logSha256": "e1511fab8496a3106561d9715c6d1b3dcf770660631a4ed6a2f7a0e0f99b801d"
+    }
+  ],
+  "databaseAccess": "NONE",
+  "databaseWrites": "NONE",
+  "deterministicReplayHashSeed": 987,
+  "existingPhase2hRegressionTests": 223,
+  "frozenReleaseChanged": false,
+  "gitDiffCheck": {
+    "command": "git diff --check",
+    "exit": 0
+  },
+  "humanImportPerformed": false,
+  "humanSubmissionsReceived": 0,
+  "legacyChanged": false,
+  "production": "UNTOUCHED",
+  "receiptCreated": false,
+  "scope": "EXTERNAL_COMMAND_RESULTS_SEPARATE_FROM_GENERATOR",
+  "sessionFingerprint": "e99b806bf48de54eec3f9f468b2cbf73f72d52e47709be187990a718fbd260f9",
+  "sessionFocusedTests": 35,
+  "totalPassingTests": 258,
+  "worktreeSafety": {
+    "branch": "TXH",
+    "prePublicationHead": "f848033c232737a26962bee4a0b0c6f2fcc2e641",
+    "stashesPreserved": 7,
+    "worktreesPreserved": 11
+  }
+}

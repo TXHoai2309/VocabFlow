@@ -2164,3 +2164,50 @@ belong to this publication. Owner workflow:
 Next: actual owner content/identity/classification decisions and documented
 intended-publication rights, then a separately authorized canonical materialization
 and Development planning phase. Stop after scoped commit/push; no DB apply.
+
+
+### 2026-10-08 — Phase 2H.2F owner session 01 prepared; OWNER_INPUT_PENDING
+
+Reviewed exactly the frozen first 10 Senses with substantive AI linguistic
+analysis: 7 KEEP recommendations, 3 REVISE, 4 proposed field corrections.
+BEFORE/AFTER covers relatively's standalone comparator gloss, successfully's
+unsupported completed-action restriction, and fully's minimum-threshold gloss
+and tooling comment in grammar notes. No accepted content or hash was changed.
+Cambridge search extracts were actually returned for all 10 entries; attempted
+direct-page 403s are not claimed successful. Five source/dictionary CEFR label
+disagreements remain review evidence, not automatic classification changes.
+
+Vietnamese owner table, exact keys/hashes, boundary/classification assessment,
+provenance/rights notes and existing-gate recomputation are additive under
+`vocabflow-dataset/workspaces/master-editorial-approval-gate/owner-session-01/`.
+The existing 2H.2E validator/ledger is reused, not rebuilt. No actual owner
+submission or independently owner-verified bundle has arrived. Owner decisions
+received/validated/imported, content human-approved, identity/POS/classification,
+similarity/rights and canonical-ready counts all 0. Original decision CSV remains
+blank; no trust bundle, human approval or receipt was fabricated. New correction
+refs are unregistered proposals; existing intake rejects them until an explicit
+owner-authorized revision/correction registration preserves the old snapshot.
+
+35 session tests + 223 existing Phase 2H regressions PASS (258 total). An initial
+2H.2E suite initialization hit MemoryError under concurrent corpus jobs (0 tests,
+exit 5); unchanged suite rerun serially passed 71/71. Both attempts are recorded.
+Direct tsc -b, ESLint, deterministic offline replay (PYTHONHASHSEED=987), frozen
+Hybrid check and 6,278 accepted byte pins PASS. External commands/exit codes and
+log hashes remain separate in session `verification-results.json`. Canonical
+pnpm typecheck was not run/not claimed PASS; historical non-TTY limitation retained.
+
+Accepted 2H.2E fingerprint unchanged:
+`7b81c06de08b75412039cb28b1b72490da51e0a82595d68fb54de33c57740e18`.
+Session fingerprint: `e99b806bf48de54eec3f9f468b2cbf73f72d52e47709be187990a718fbd260f9`.
+Hybrid 2.2.1 APPROVED 87/100, release hash
+`44874b11d1fdef76a515f6285d04c9a417318daa6969e112608a59e7c232613c`,
+2018 legacy rows/history75/#11/#284/#295/#849/protected exclusions and mappings
+remain unchanged (offline pins; no live query). Canonical IDs allocated 0;
+Master release/schema/runtime mappings unchanged. DB access/writes NONE/NONE;
+Production UNTOUCHED. Stashes, worktrees, backups and unrelated work preserved.
+
+Next owner action: read `owner-session-01/owner-review-10.md`, submit actual
+decisions/rationale and review scope for these 10, with actual reviewer/evidence
+and independent owner authorization. KEEP content does not approve identity,
+CEFR, rights or release. Stop after publishing this verified offline package;
+no next pack, canonical materialization or Development apply.
