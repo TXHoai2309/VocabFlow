@@ -1,0 +1,365 @@
+{
+  "batch": 38,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:weakness",
+    "NORMALIZED_HEADWORD:chin",
+    "NORMALIZED_HEADWORD:grapefruit",
+    "NORMALIZED_HEADWORD:middle",
+    "NORMALIZED_HEADWORD:port"
+  ],
+  "replayEvidence": "Persisted PSV parsed; source-supported POS/ordinals and exact frozen slice verified; original content hashes bound to AI review. Full replay recorded externally.",
+  "reviewNotesSha256": "14abcce51cef1a6b6bae0cb2b8eade6e447bbe022ae009883319800030611097",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "System limitation and lack of bodily strength are distinct ordinals/countability. Booking review and post-journey legs align in Vietnamese without diagnosing a disease or claiming a medical cause.",
+      "proposalKey": "EDITORIAL_2H2H:weakness:limitation",
+      "reviewedContentHash": "14be1b250d70488dd6c4e939b2da062f193bb06cbfacb8bedb945f031de175cc",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "System limitation and lack of bodily strength are distinct ordinals/countability. Booking review and post-journey legs align in Vietnamese without diagnosing a disease or claiming a medical cause.",
+      "proposalKey": "EDITORIAL_2H2H:weakness:lack-strength",
+      "reviewedContentHash": "36caa939e9a9d5ce563fe92e107227ce35b1af3a3811494a00ef81751dbd55d5",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Lower-face projection rather than any hard facial part. Hand-resting example preserves reading context; Vietnamese cằm is unambiguous and no anatomical measurement is fabricated.",
+      "proposalKey": "EDITORIAL_2H2H:chin:lower-face",
+      "reviewedContentHash": "8cf80e858e91dd2c812511cdf79fa963460b2e3f0010efae6cf56eaab28ae834",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Citrus fruit distinguished from pomelo using UCR botanical evidence; Vietnamese bưởi chùm avoids generic bưởi confusion. Tart/bitter taste is qualified often; cutting and bowl example has no nutrition claim.",
+      "proposalKey": "EDITORIAL_2H2H:grapefruit:citrus-fruit",
+      "reviewedContentHash": "4a5c3df2b65432e07287df28e627e691abcde671e6d67c12cd453d183ad81741",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Central noun and relative-position adjective separated with ordinal support. Room/table and shelf examples translate accurately; exact arithmetic equal halves are not imposed on every use.",
+      "proposalKey": "EDITORIAL_2H2H:middle:central-part",
+      "reviewedContentHash": "ef0c79e9367b100b68b84d876c25a92ec8c1dc651e2e7249fbcca13f7648028b",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Central noun and relative-position adjective separated with ordinal support. Room/table and shelf examples translate accurately; exact arithmetic equal halves are not imposed on every use.",
+      "proposalKey": "EDITORIAL_2H2H:middle:central-adjective",
+      "reviewedContentHash": "e29c6f15c381418719ab7a5d1f0ee1898a76c21249c6b43601a8a3f5ca1a7d4c",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Ship harbour/loading place includes inland navigable waterways, avoiding sea-only overrestriction. Arrival-before-dawn translates faithfully; computer connector or fortified wine senses are not claimed covered.",
+      "proposalKey": "EDITORIAL_2H2H:port:ship-harbour",
+      "reviewedContentHash": "b97b1918a6e77e4ecf48470c30aa281614255820a3d2fd1c6011dee59b3273f6",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 7,
+  "sha256": "eeeb4f5d11794600fe2c5328a730226e5126d4d6287d06bf8812d0d5e338be55",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:chin": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1290/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1290/rawHeadword",
+        "rawPosEvidencePointer": "/records/1290/sourcePosRaw",
+        "recordEvidenceSha256": "b7fa497fc118b3304a6634ad01cc9423be43417eb5ccd08dd1bdfc6929f83668",
+        "recordIndex": 1290,
+        "sourceNoteGuid": "knaT^i[@u!",
+        "sourceRecordId": "1559931008084",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:grapefruit": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/2353/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2353/rawHeadword",
+        "rawPosEvidencePointer": "/records/2353/sourcePosRaw",
+        "recordEvidenceSha256": "a25ae61519b15116bbb451dc2286ba8ac36f7d70dc8e9231ccadf2c66bee70a6",
+        "recordIndex": 2353,
+        "sourceNoteGuid": "OS_DKf<?]_",
+        "sourceRecordId": "1559931009186",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:middle": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE",
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1016/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1016/rawHeadword",
+        "rawPosEvidencePointer": "/records/1016/sourcePosRaw",
+        "recordEvidenceSha256": "7bddbf691d4684f6cecb171ad8e97420c9e66e3d2f1ef718024e9f3a0a738ac0",
+        "recordIndex": 1016,
+        "sourceNoteGuid": "k>5M6(4r!_",
+        "sourceRecordId": "1788223607034",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::A2",
+            "value": "A2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "A2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/2358/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2358/rawHeadword",
+        "rawPosEvidencePointer": "/records/2358/sourcePosRaw",
+        "recordEvidenceSha256": "184de5d0f06172c99724407669cae00720566c20817c97f88d525634ff664572",
+        "recordIndex": 2358,
+        "sourceNoteGuid": "}M;Bb>,E&",
+        "sourceRecordId": "1559931009191",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:port": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1918/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1918/rawHeadword",
+        "rawPosEvidencePointer": "/records/1918/sourcePosRaw",
+        "recordEvidenceSha256": "36e33c26e40b65935c670ac1b61e801576f1c3446087b0a9699ae52f7fd2f6f8",
+        "recordIndex": 1918,
+        "sourceNoteGuid": "paX4_d^,7?",
+        "sourceRecordId": "1788223607957",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B1",
+            "value": "B1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1409/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1409/rawHeadword",
+        "rawPosEvidencePointer": "/records/1409/sourcePosRaw",
+        "recordEvidenceSha256": "5e10a5468773d805daf7b1ef1c364634618ff56819dd6f1d49bb0163d38c2325",
+        "recordIndex": 1409,
+        "sourceNoteGuid": "JSBRwX,4~n",
+        "sourceRecordId": "1559931008210",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:weakness": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/2868/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2868/rawHeadword",
+        "rawPosEvidencePointer": "/records/2868/sourcePosRaw",
+        "recordEvidenceSha256": "57a7862904aa67554ef6b6b707be6ccb68ebd460a3c549baf2ebee4de420d06e",
+        "recordIndex": 2868,
+        "sourceNoteGuid": "H7,80{Qu9P",
+        "sourceRecordId": "1788223608907",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "substantiveDefectsFound": 0
+}

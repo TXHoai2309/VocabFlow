@@ -1,0 +1,364 @@
+{
+  "batch": 21,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:tongue",
+    "NORMALIZED_HEADWORD:web",
+    "NORMALIZED_HEADWORD:chew",
+    "NORMALIZED_HEADWORD:habitual",
+    "NORMALIZED_HEADWORD:motorcycle"
+  ],
+  "replayEvidence": "Persisted PSV parsed; source-supported POS/ordinals and exact frozen slice verified; original content hashes bound to AI review. Full replay recorded externally.",
+  "reviewNotesSha256": "a26b24d21f227b087149d2704912fb663fdd7c0901998b76c8923643043a91fd",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Mouth organ and language meanings retain separate source ordinals; no inherited single-gene trait claim. Loose tooth and grandmother narrative align in Vietnamese; native tongue remains a linguistic expression rather than anatomy.",
+      "proposalKey": "EDITORIAL_2H2H:tongue:mouth-part",
+      "reviewedContentHash": "de42d6906e4b7ddb7fb941cbe5bcca8078e61413985dc6bb3f9d177bf21141b3",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Mouth organ and language meanings retain separate source ordinals; no inherited single-gene trait claim. Loose tooth and grandmother narrative align in Vietnamese; native tongue remains a linguistic expression rather than anatomy.",
+      "proposalKey": "EDITORIAL_2H2H:tongue:language",
+      "reviewedContentHash": "92b19389df5ef66307e0de7dff56d29534595978b0b2f216cae6632ce8b92091",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Spider structure and linked online resources are distinct source-supported nouns. Threads versus museum hours contexts align; definition distinguishes web from all internet services and does not assert every spider uses webs identically.",
+      "proposalKey": "EDITORIAL_2H2H:web:spider-threads",
+      "reviewedContentHash": "78344066eff22a7faa9ee3a2772029546fe203209dda15ccfc2d2b53c8dc64ce",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Spider structure and linked online resources are distinct source-supported nouns. Threads versus museum hours contexts align; definition distinguishes web from all internet services and does not assert every spider uses webs identically.",
+      "proposalKey": "EDITORIAL_2H2H:web:online-system",
+      "reviewedContentHash": "3b5dfd9aebaead7cd04ea4181db7e2942d51a689466ca3f4519447be9f054bcd",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Food-breaking action demonstrated by slowly chewing bread, with simultaneous listening preserved. Teeth action is not confused with swallowing; transitive and intransitive notes do not impose a tense restriction.",
+      "proposalKey": "EDITORIAL_2H2H:chew:break-food",
+      "reviewedContentHash": "67c94397bf2cde8f398a0e07f28fa0037034ce8f51a0c84cd2b420c357f286ff",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Repeated established pattern is separated from compulsory or addictive behaviour. Early-arrival example and Vietnamese convey a routine; the gloss is complete and the grammar does not assert every habitual action is negative.",
+      "proposalKey": "EDITORIAL_2H2H:habitual:regular-pattern",
+      "reviewedContentHash": "6e5a94919ce135a52bbecd55306e0277a4de037e26c17cf9587543c6fecdb8a0",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Two-wheel motor vehicle boundary fits parking example; Vietnamese xe máy/mô tô is natural. Ride versus drive note is qualified as ordinary usage rather than an absolute grammatical prohibition or vehicle identity approval.",
+      "proposalKey": "EDITORIAL_2H2H:motorcycle:motor-powered-bike",
+      "reviewedContentHash": "acebc0a295bdd71d30f7eb118649d732b5106f3bc52068f2518bc7772d123c31",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 7,
+  "sha256": "afb51f632bb9bd18e8b8717b29a8b38ace14cb501ace6c46adb832db23b64ef6",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:chew": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C2",
+            "value": "C2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/1037/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1037/rawHeadword",
+        "rawPosEvidencePointer": "/records/1037/sourcePosRaw",
+        "recordEvidenceSha256": "bdc77c445ddc380e2942921d00436eb7e719d297c75f829585dd806f0da5fa32",
+        "recordIndex": 1037,
+        "sourceNoteGuid": "EUdUr?PpPA",
+        "sourceRecordId": "1559931007821",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:habitual": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C2",
+            "value": "C2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/2295/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2295/rawHeadword",
+        "rawPosEvidencePointer": "/records/2295/sourcePosRaw",
+        "recordEvidenceSha256": "65f305f3550083421d4ae9320cdadfbcc93820ba177a520e02c85baa2e11bc10",
+        "recordIndex": 2295,
+        "sourceNoteGuid": "hX:xhEi_!W",
+        "sourceRecordId": "1559931009124",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:motorcycle": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1639/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1639/rawHeadword",
+        "rawPosEvidencePointer": "/records/1639/sourcePosRaw",
+        "recordEvidenceSha256": "7ca4268152c4ceaae70b525081488763e379921454471c8a3f49a5e6dc19253a",
+        "recordIndex": 1639,
+        "sourceNoteGuid": "sKwWRg8hRZ",
+        "sourceRecordId": "1788223607678",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:tongue": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/2166/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2166/rawHeadword",
+        "rawPosEvidencePointer": "/records/2166/sourcePosRaw",
+        "recordEvidenceSha256": "716044aa4a7d5b853165a9c9a20f0ccd90dc85dbe8d5f99ff1a6ae14788a6aee",
+        "recordIndex": 2166,
+        "sourceNoteGuid": "e$b5/-lXYZ",
+        "sourceRecordId": "1788223608205",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B1",
+            "value": "B1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/954/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/954/rawHeadword",
+        "rawPosEvidencePointer": "/records/954/sourcePosRaw",
+        "recordEvidenceSha256": "ceefbb16e86212e1eac55f5c9e889eba0773d1a7bc497e90ff5567d5ed669728",
+        "recordIndex": 954,
+        "sourceNoteGuid": "s*:HCXQ)4s",
+        "sourceRecordId": "1559931007734",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:web": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1305/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1305/rawHeadword",
+        "rawPosEvidencePointer": "/records/1305/sourcePosRaw",
+        "recordEvidenceSha256": "d14a8e63f6140943508b3a7ca884aafd8f69a86ee0c3dafd7bb600b3209c3bc4",
+        "recordIndex": 1305,
+        "sourceNoteGuid": "A|&mO,c1@`",
+        "sourceRecordId": "1788223607330",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::A2",
+            "value": "A2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "A2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/448/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/448/rawHeadword",
+        "rawPosEvidencePointer": "/records/448/sourcePosRaw",
+        "recordEvidenceSha256": "40113d8da84c384b7cac4633d0fab86cb5d68f27b719f6d57a5298c4eea58b11",
+        "recordIndex": 448,
+        "sourceNoteGuid": "sr0okG^*|,",
+        "sourceRecordId": "1556384731257",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ]
+  },
+  "substantiveDefectsFound": 0
+}

@@ -1,0 +1,342 @@
+{
+  "batch": 31,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:ceremony",
+    "NORMALIZED_HEADWORD:exclude",
+    "NORMALIZED_HEADWORD:leash",
+    "NORMALIZED_HEADWORD:proximity",
+    "NORMALIZED_HEADWORD:thunder"
+  ],
+  "replayEvidence": "Persisted PSV parsed; source-supported POS/ordinals and exact frozen slice verified; original content hashes bound to AI review. Full replay recorded externally.",
+  "reviewNotesSha256": "acbefc5c0fe33b177198d9756ecf88f981e88e20dffaef807b6ecce690fae707",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Formal/traditional occasion not necessarily celebration or religion. Welcome timing and organiser translate faithfully; countable noun supports solemn occasions too.",
+      "proposalKey": "EDITORIAL_2H2H:ceremony:formal-event",
+      "reviewedContentHash": "986954433132be3b65ba68f0bc626c900b57015283757dc0ed5016f2c7da1804",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Leaving a cost outside a total and barring participation are distinct supported boundaries. Delivery-price and age-rule examples preserve scope without asserting a real policy; from valency checked.",
+      "proposalKey": "EDITORIAL_2H2H:exclude:not-include",
+      "reviewedContentHash": "9bd4f5485c86ebb6ed2988b33416101fe255088b022de5d53e83555a10b5221e",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Leaving a cost outside a total and barring participation are distinct supported boundaries. Delivery-price and age-rule examples preserve scope without asserting a real policy; from valency checked.",
+      "proposalKey": "EDITORIAL_2H2H:exclude:bar-participation",
+      "reviewedContentHash": "74cea5df4c9868c952df5610b835a6b48494c77a1432ebfd5b7525d55b6c1924",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Animal restraint strap/cord definition includes non-chain forms. Shortened dog lead and crossing context match Vietnamese; on relation is idiomatic and not a literal surface.",
+      "proposalKey": "EDITORIAL_2H2H:leash:animal-lead",
+      "reviewedContentHash": "fe59d45531ddd7473f9fa81ba0582affcbae4be80f2ac086f4d27e24104a8467",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Nearness broad across spatial/time/relationship contexts, with spatial example selected. Vietnamese natural rephrasing retains station convenience without adding a distance measure.",
+      "proposalKey": "EDITORIAL_2H2H:proximity:nearness",
+      "reviewedContentHash": "c3d8cbfcf37e2c1efc6143a5fe6b4eb840b48d01cde4aa852ee42a42e8c64d25",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Sound related to lightning rather than lightning itself. Interrupted conversation and singular clap align; countability note avoids using a thunder for one noise and makes no weather prediction.",
+      "proposalKey": "EDITORIAL_2H2H:thunder:storm-sound",
+      "reviewedContentHash": "138d661adb6882fb18a688fb5190059866eb85417c9870fb04f6339073c4b311",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 6,
+  "sha256": "267f6e64583bc076948bcdf9a81976da29c76695007988d15eb4aeb389fc2a61",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:ceremony": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/2120/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2120/rawHeadword",
+        "rawPosEvidencePointer": "/records/2120/sourcePosRaw",
+        "recordEvidenceSha256": "d6592cfdd2d344c1a9721601c750d89e8663f245d7d49cd6c6085347211c89f7",
+        "recordIndex": 2120,
+        "sourceNoteGuid": "vSY2:J%I3n",
+        "sourceRecordId": "1788223608159",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B1",
+            "value": "B1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/2521/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2521/rawHeadword",
+        "rawPosEvidencePointer": "/records/2521/sourcePosRaw",
+        "recordEvidenceSha256": "54dc9964678f09c978202d7178dff1e24fafcf8d5140e67021be8176abca5c65",
+        "recordIndex": 2521,
+        "sourceNoteGuid": "bm_-ChyM7m",
+        "sourceRecordId": "1559931009364",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:exclude": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/3613/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3613/rawHeadword",
+        "rawPosEvidencePointer": "/records/3613/sourcePosRaw",
+        "recordEvidenceSha256": "3271b2dce78c9d75aecb00f78ec4e29f01aff97ba4e199e03c1a65ef795909f5",
+        "recordIndex": 3613,
+        "sourceNoteGuid": "lw(:^znik8",
+        "sourceRecordId": "1788223609652",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/3385/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3385/rawHeadword",
+        "rawPosEvidencePointer": "/records/3385/sourcePosRaw",
+        "recordEvidenceSha256": "57600d27d4a1d72d7ef8016de835507ede90c06bdfe7c9b10b932c81127074ae",
+        "recordIndex": 3385,
+        "sourceNoteGuid": "l1;cswa`?A",
+        "sourceRecordId": "1559931010283",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:leash": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C2",
+            "value": "C2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/2601/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2601/rawHeadword",
+        "rawPosEvidencePointer": "/records/2601/sourcePosRaw",
+        "recordEvidenceSha256": "4f53169f25a9b77fa4b3d0f9b7a5aa39bd88ae14204a6a75a54c2861e8200771",
+        "recordIndex": 2601,
+        "sourceNoteGuid": "qT#gAU;ik,",
+        "sourceRecordId": "1559931009449",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:proximity": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C2",
+            "value": "C2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1961/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1961/rawHeadword",
+        "rawPosEvidencePointer": "/records/1961/sourcePosRaw",
+        "recordEvidenceSha256": "b1234acd18c9b7e3b8640fc8fdb8f8e742b70679f9ea253f045146bbad93afd8",
+        "recordIndex": 1961,
+        "sourceNoteGuid": "LZ8vMoLi.f",
+        "sourceRecordId": "1559931008772",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:thunder": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1512/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1512/rawHeadword",
+        "rawPosEvidencePointer": "/records/1512/sourcePosRaw",
+        "recordEvidenceSha256": "4cce5f45887779302db7e522dd52468dea79f15bf975663acb733e08f5e9bc30",
+        "recordIndex": 1512,
+        "sourceNoteGuid": "x]Hir>YWuR",
+        "sourceRecordId": "1559931008314",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ]
+  },
+  "substantiveDefectsFound": 0
+}

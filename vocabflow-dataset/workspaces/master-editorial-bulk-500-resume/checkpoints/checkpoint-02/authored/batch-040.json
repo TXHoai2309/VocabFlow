@@ -1,0 +1,364 @@
+{
+  "batch": 40,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:personalize",
+    "NORMALIZED_HEADWORD:sacrifice",
+    "NORMALIZED_HEADWORD:warn",
+    "NORMALIZED_HEADWORD:apparently",
+    "NORMALIZED_HEADWORD:human"
+  ],
+  "replayEvidence": "Persisted PSV parsed; source-supported POS/ordinals and exact frozen slice verified; original content hashes bound to AI review. Full replay recorded externally.",
+  "reviewNotesSha256": "8be47714d0656adcd7824426982fbc76cd848013dbaf5210b7034bfbbb8db6de",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Adaptation to individual learner needs distinct from merely naming an object. Source key American spelling preserved, British example form is noted rather than identity merged; Vietnamese exercise tailoring faithful.",
+      "proposalKey": "EDITORIAL_2H2H:personalize:adapt-to-person",
+      "reviewedContentHash": "c4d8d95c2d52488f47109ea8adb9109e0a4de7c9914a15160cc7ca621f75eb15",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Giving up/value-loss noun and purposeful surrender verb are separate source ordinals. Living-space tradeoff and donated afternoon align; not restricted to religious killing or physical injury.",
+      "proposalKey": "EDITORIAL_2H2H:sacrifice:giving-up",
+      "reviewedContentHash": "a1f96ef81cfb161c6fd13511c0790447610dd4f1678378b45bfbc342b6be7506",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Giving up/value-loss noun and purposeful surrender verb are separate source ordinals. Living-space tradeoff and donated afternoon align; not restricted to religious killing or physical injury.",
+      "proposalKey": "EDITORIAL_2H2H:sacrifice:give-up",
+      "reviewedContentHash": "74904130c0d00aee6b075ebb512d5a8cee0c7d5effb4f57c616167d2c76c29e5",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Risk information not guaranteed harm or fabricated expertise. Loose stones/path and guide recipients translate correctly; about/of and negative infinitive constructions checked.",
+      "proposalKey": "EDITORIAL_2H2H:warn:give-danger-notice",
+      "reviewedContentHash": "e82174333255a08cd8031f9bf572ebe0d7014c973be2bba11a8210f6dfee8d78",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Reported/seeming claim preserves uncertainty, neither certainty nor automatic falsehood. Delayed train example has Vietnamese nghe nói and no real schedule assertion.",
+      "proposalKey": "EDITORIAL_2H2H:apparently:reported-or-seeming",
+      "reviewedContentHash": "e73c388006ff5ff7cb3fc96ffeecbdb777ced28fb62ad7dba02418bd01a82a8d",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Relational adjective and person noun have separate supported ordinals. Communication display and fictional robot distinguish POS; biology note avoids implying humans are outside animal classification.",
+      "proposalKey": "EDITORIAL_2H2H:human:people-related",
+      "reviewedContentHash": "dc52ac0e2d3b4d91ca186b7d54af42d41848f8219c6690aae6c13e8dcf8330ae",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Relational adjective and person noun have separate supported ordinals. Communication display and fictional robot distinguish POS; biology note avoids implying humans are outside animal classification.",
+      "proposalKey": "EDITORIAL_2H2H:human:person",
+      "reviewedContentHash": "0d23d2e24cc23b7e39441fe22f0eacb672f8ebdc1d3001f74e715f3b0b2afee0",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 7,
+  "sha256": "0decaf0421c3526b01137a4befd263ee67087291603c354e8d0744172ed92477",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:apparently": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADVERB"
+        ],
+        "rawContentPointer": "/records/2495/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2495/rawHeadword",
+        "rawPosEvidencePointer": "/records/2495/sourcePosRaw",
+        "recordEvidenceSha256": "746d869e005dc05e31c7209610395b5afa0c5b9633f701826e75f25f4d2ebe3f",
+        "recordIndex": 2495,
+        "sourceNoteGuid": "AsIL_ETreV",
+        "sourceRecordId": "1788223608534",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:human": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE",
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/969/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/969/rawHeadword",
+        "rawPosEvidencePointer": "/records/969/sourcePosRaw",
+        "recordEvidenceSha256": "5f48ff9cfa0159fbb5fc48636a922e4770758fdc4fad77393dd90c2ce9862b06",
+        "recordIndex": 969,
+        "sourceNoteGuid": "ou11r~&n+Y",
+        "sourceRecordId": "1788223606987",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:personalize": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C2",
+            "value": "C2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/2264/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2264/rawHeadword",
+        "rawPosEvidencePointer": "/records/2264/sourcePosRaw",
+        "recordEvidenceSha256": "4cf4a1b422bb0df5c8dd42211f09174f6a4c065f6c85f252718beae6c3e5a945",
+        "recordIndex": 2264,
+        "sourceNoteGuid": "pOR*,VMaW@",
+        "sourceRecordId": "1559931009092",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:sacrifice": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN",
+          "VERB"
+        ],
+        "rawContentPointer": "/records/3901/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3901/rawHeadword",
+        "rawPosEvidencePointer": "/records/3901/sourcePosRaw",
+        "recordEvidenceSha256": "dd2755bd812b9ffc86c551555921e79f2e36abdee21e089be7bc287a3aee78f9",
+        "recordIndex": 3901,
+        "sourceNoteGuid": "f}b{&YYYOv",
+        "sourceRecordId": "1788223609940",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/1864/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1864/rawHeadword",
+        "rawPosEvidencePointer": "/records/1864/sourcePosRaw",
+        "recordEvidenceSha256": "1dae5b9817235aadf4a1a7b8b6ccec6fef596275a9ba5d2fe8a3079e02716221",
+        "recordIndex": 1864,
+        "sourceNoteGuid": "Lwlj.mNjkk",
+        "sourceRecordId": "1559931008672",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:warn": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/2335/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2335/rawHeadword",
+        "rawPosEvidencePointer": "/records/2335/sourcePosRaw",
+        "recordEvidenceSha256": "443068750142c37728ebef2b33473ffa6371f7d131b648d5c3ba21f06733481b",
+        "recordIndex": 2335,
+        "sourceNoteGuid": "K0O61T%zNs",
+        "sourceRecordId": "1788223608374",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B1",
+            "value": "B1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/2572/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2572/rawHeadword",
+        "rawPosEvidencePointer": "/records/2572/sourcePosRaw",
+        "recordEvidenceSha256": "99809d4c5b3ebc06d5f0b6fb73ee7de9c1fe40d6f2e84a09215202b2ce8d08dd",
+        "recordIndex": 2572,
+        "sourceNoteGuid": "o4#z0t-J|(",
+        "sourceRecordId": "1559931009416",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ]
+  },
+  "substantiveDefectsFound": 0
+}

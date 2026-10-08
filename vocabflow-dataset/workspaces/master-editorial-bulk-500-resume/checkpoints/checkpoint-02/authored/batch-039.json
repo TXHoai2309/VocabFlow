@@ -1,0 +1,342 @@
+{
+  "batch": 39,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:tract",
+    "NORMALIZED_HEADWORD:welfare",
+    "NORMALIZED_HEADWORD:drastic",
+    "NORMALIZED_HEADWORD:frequent",
+    "NORMALIZED_HEADWORD:irrigate"
+  ],
+  "replayEvidence": "Persisted PSV parsed; source-supported POS/ordinals and exact frozen slice verified; original content hashes bound to AI review. Full replay recorded externally.",
+  "reviewNotesSha256": "ee23401f81b749dcd4a8d5579200572ccfc297e1c3a6f5ea9cb546e950d42372",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Land-area noun supported; anatomical and pamphlet senses explicitly not covered. Park allocation translates faithfully, without identifying real land ownership or a current local authority decision.",
+      "proposalKey": "EDITORIAL_2H2H:tract:land-area",
+      "reviewedContentHash": "3a9a4eda7aa9464f68429dfe5720424977db907787cbceec5df546e9a107fbb0",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "General well-being and public support have distinct ordinals. Worker priorities and applying for support align; no invented eligibility rule, actual benefit rate or guaranteed approval.",
+      "proposalKey": "EDITORIAL_2H2H:welfare:well-being",
+      "reviewedContentHash": "a4dd8ab854fcd340edcc8153daa821583cfa288fc0eabe6af7670a2e26ace3db",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "General well-being and public support have distinct ordinals. Worker priorities and applying for support align; no invented eligibility rule, actual benefit rate or guaranteed approval.",
+      "proposalKey": "EDITORIAL_2H2H:welfare:social-support",
+      "reviewedContentHash": "32e8cfc54c4a88f803e25173c7e22d236800e904ea1977604c0f9df8ba466669",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Large/extreme effect distinguished from compulsory violence or sudden injury. Opening-hours reduction preserves force and shortage; Vietnamese degree matches without adding a numerical magnitude.",
+      "proposalKey": "EDITORIAL_2H2H:drastic:far-reaching",
+      "reviewedContentHash": "c04a54d0421629c676ca5e81e02387ddb7c8ea86219bdafefbd63a0d874a7ba0",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Often-occurring adjective rather than adverb or visiting verb. Delays and difficult journey translate accurately; repeated short intervals does not promise a fixed schedule.",
+      "proposalKey": "EDITORIAL_2H2H:frequent:often-occurring",
+      "reviewedContentHash": "f6b794ac0b97f477dfbcdd7fbb13328f52267893ee5ffc86a9f949b6e4ac89ce",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Crop/land water supply rather than drinking-water delivery. Farmer/channel example and transitive land object align; no fabricated yield guarantee or environmental recommendation.",
+      "proposalKey": "EDITORIAL_2H2H:irrigate:supply-crop-water",
+      "reviewedContentHash": "0e984d17e119b0c43e06cdb581f2f2be56082fe1c9796286acfa6c4d8fe5fa7b",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 6,
+  "sha256": "302ffbac4219c28ed1accfcf670edde7b237db0b003578885ce91e043370ea97",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:drastic": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C2",
+            "value": "C2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/3474/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3474/rawHeadword",
+        "rawPosEvidencePointer": "/records/3474/sourcePosRaw",
+        "recordEvidenceSha256": "a84a522e98ed3e61058bd325a3d04a020139b6aa08d527ba35f6a6815387d2b8",
+        "recordIndex": 3474,
+        "sourceNoteGuid": "hv-i%>?ySG",
+        "sourceRecordId": "1614168789570",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:frequent": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/3238/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3238/rawHeadword",
+        "rawPosEvidencePointer": "/records/3238/sourcePosRaw",
+        "recordEvidenceSha256": "0fcaeffc33186075dfaca531aa6df56a883d26233893cab5e4c106463bb6b324",
+        "recordIndex": 3238,
+        "sourceNoteGuid": "xZ7A@jD2Yw",
+        "sourceRecordId": "1788223609277",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/2810/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2810/rawHeadword",
+        "rawPosEvidencePointer": "/records/2810/sourcePosRaw",
+        "recordEvidenceSha256": "d9c1163b25ad0b33b5a6575e2ef1fbb0d354fd76b17e9b1adc00625ccadbed82",
+        "recordIndex": 2810,
+        "sourceNoteGuid": "q<@N._.-d-",
+        "sourceRecordId": "1559931009667",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:irrigate": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C2",
+            "value": "C2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/3019/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3019/rawHeadword",
+        "rawPosEvidencePointer": "/records/3019/sourcePosRaw",
+        "recordEvidenceSha256": "f5843c239d9bf41074ad7caf39154fd7a4721ca3fa40de0d35ad3ea3552b3afa",
+        "recordIndex": 3019,
+        "sourceNoteGuid": "P*#`|}!O|)",
+        "sourceRecordId": "1559931009888",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:tract": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C2",
+            "value": "C2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3309/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3309/rawHeadword",
+        "rawPosEvidencePointer": "/records/3309/sourcePosRaw",
+        "recordEvidenceSha256": "deff25de986d5b68410f450b0adb1a5bf3f598959d382c5c51add6835189b423",
+        "recordIndex": 3309,
+        "sourceNoteGuid": "Dw{GCJB(GE",
+        "sourceRecordId": "1559931010196",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:welfare": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3126/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3126/rawHeadword",
+        "rawPosEvidencePointer": "/records/3126/sourcePosRaw",
+        "recordEvidenceSha256": "0bf3e73d928a9ae7ddbd94917b31f904100449eb68259e8b59891d7b12d9b0ed",
+        "recordIndex": 3126,
+        "sourceNoteGuid": "rXw%|Eq2O)",
+        "sourceRecordId": "1788223609165",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3143/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3143/rawHeadword",
+        "rawPosEvidencePointer": "/records/3143/sourcePosRaw",
+        "recordEvidenceSha256": "cf895ea787971ae8eccf53c59ac7a0c16905a75beb089b698a6de036220c350d",
+        "recordIndex": 3143,
+        "sourceNoteGuid": "IFeP7Rey)B",
+        "sourceRecordId": "1559931010018",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ]
+  },
+  "substantiveDefectsFound": 0
+}

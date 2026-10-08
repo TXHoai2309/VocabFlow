@@ -2306,3 +2306,52 @@ canonical identity assignment or Development materialization is authorized.
 Final external verification: 335 tests PASS (48 new / 287 prior), zero
 failed/skipped; direct tsc -b, lint, frozen-release and zero-write offline
 replay PASS. All accepted byte pins/stashes/existing worktrees remain unchanged.
+
+
+## 2026-10-08 — Phase 2H.2H-R1 frozen bulk-500 continuation
+
+Resume the exact first 100 pending keys from the accepted original checkpoint,
+without selection or ranking. Persist 20 batches (021–040), each five groups,
+with original bilingual prose, batch receipts and content-bound AI self-review.
+New output: 100 groups / 148 Sense drafts, including 40 multi-Sense groups.
+Cumulative cohort: 200 authored / 300 pending; full corpus: 720 authored groups,
+5,423 remaining groups and 1,108 effective Sense drafts (960 prior + 148 new).
+
+AI QA: 121 PASS / 27 REVIEW / 0 FAIL. Four additive field corrections improve
+rupture grammar, September capitalization and both liquid definitions; original
+manuscripts are retained. Gene, liquid, grapefruit, rugby and cold factual checks
+are recorded with primary source links in authored/fact-verification.json.
+Unresolved Sense identity, CEFR evidence and rights remain review obligations.
+AI author self-review does not constitute independent human review or approval.
+
+All 6,520 accepted byte pins are preserved, including the original 100 groups /
+147 Senses, prior 813 effective drafts, 2H.2G DRAFT V2 revisions and Hybrid 2.2.1.
+Original selection fingerprint:
+`ed303558ab029cdf24f49ca9226b2910bd4beb79d41b6d1d27edb5f4dfc52076`.
+Original editorial checkpoint fingerprint:
+`e265662b54119ec242aabcf5935770161c87133ad07d9a03dc2132744670509d`.
+New additive checkpoint fingerprint:
+`d9a2fbaf95ae482131051e9bb755304c146f56437d22e311026d961d1f338363`.
+
+Continuation artifacts live under master-editorial-bulk-500-resume/checkpoints/
+checkpoint-02. The new report includes real bilingual previews and unresolved QA
+findings. External commands/results are recorded separately in verification-results.json;
+the generator does not claim to execute external tests, typecheck or lint.
+Direct Node 22.23.2 tsc -b and ESLint passed. Canonical pnpm typecheck was not run;
+the historical non-TTY wrapper limitation remains documented, without a PASS claim.
+
+The additive tool validates the full parent chain, hashes and exact record inheritance.
+Only a separately authorized next run may invoke --prepare --checkpoint 3, then
+write batches 041–060 and substantive reviews before --seal-batch. Preparation
+freezes keys only; sealing requires explicit assessments and never authors prose
+or invents semantic PASS. No checkpoint-03 files have been created in this run.
+
+Owner approvals: 0; canonical IDs: 0; rights UNKNOWN_REVIEW_REQUIRED.
+No database access/writes, Neon operations, Master publication, legacy changes,
+runtime/UI changes or Production operations. Hybrid 2.2.1 stays frozen at 87/100.
+
+Final verification: 35 new focused + 335 prior tests PASS (370 total, zero failed/skipped).
+Original and cumulative replay PASS with hash seed 314159; 153 workspace/report files
+unchanged before/after each replay. Direct typecheck, lint and frozen Hybrid PASS.
+All 6,520 accepted byte pins, seven stashes and the eleven initial worktrees preserved.
+A concurrent VocabFlow-us55 worktree was observed and left untouched; this run creates none.

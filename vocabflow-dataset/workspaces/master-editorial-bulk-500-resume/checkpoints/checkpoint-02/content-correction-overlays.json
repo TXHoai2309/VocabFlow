@@ -1,0 +1,78 @@
+{
+  "corrections": [
+    {
+      "after": "Intransitive when something ruptures; transitive when someone ruptures a material or structure.",
+      "afterSha256": "bdda23f11ebce3ed832cce2f488a7a3da1f6c738ce8e118ecba0385805e0effb",
+      "before": "Intransitive something ruptures or transitive rupture something; this example concerns a pipe, not medical advice.",
+      "beforeSha256": "bd6c5bc13c5ef8c083eb92242900bde47d34a884427d10bffc7ceab4be75267a",
+      "field": "/content/grammarNotesEn",
+      "humanReviewer": null,
+      "ownerDecision": "UNRESOLVED",
+      "parentContentHash": "bcde39eba83fd479ee5c06b7d659382c3d71843981aefff9427850991de945fc",
+      "proposalKey": "EDITORIAL_2H2H:rupture:burst-open",
+      "reason": "Remove non-learning editorial commentary; retain useful transitivity guidance.",
+      "reviewedAfterContentHash": "6e0b9357ce6e963dc7ddd31dad38ea6b9e71cbc8acc28f8c50574af86f17f534",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "severity": "SUBSTANTIVE"
+    },
+    {
+      "after": "September",
+      "afterSha256": "cd559ea0abca085ef144273caaf7266183bba222f39d894e74966fc04b8fff18",
+      "before": "september",
+      "beforeSha256": "249d1f9cb846410c407c6569aa28ba7ac9f8cd6d95685ba6321a627fa0997db5",
+      "field": "/displayFormProposal",
+      "humanReviewer": null,
+      "ownerDecision": "UNRESOLVED",
+      "parentContentHash": "53bdd943d095c92c70cd9bdd291f80fe0faf2ee206185c655c95f5434c7cd8ba",
+      "proposalKey": "EDITORIAL_2H2H:september:calendar-month",
+      "reason": "Use proper-name capitalization without changing normalized group identity.",
+      "reviewedAfterContentHash": "53bdd943d095c92c70cd9bdd291f80fe0faf2ee206185c655c95f5434c7cd8ba",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "severity": "FORM"
+    },
+    {
+      "after": "A form of matter that flows, keeps a definite volume, and changes shape to fit its container.",
+      "afterSha256": "2d578fcf6d6ab6ccdaafb8a330f3f95a977a8a5a0254d58f8ad386d0ab3002b7",
+      "before": "A substance that flows and takes the shape of its container rather than keeping a fixed shape.",
+      "beforeSha256": "542ef448415950c09670b703fd0b8c091993737b30583097fd2578d53be1bb6d",
+      "field": "/content/definitionEn",
+      "humanReviewer": null,
+      "ownerDecision": "UNRESOLVED",
+      "parentContentHash": "4398fecea2d2030bd5481460bf2e0af715cea91b2863d42ed8122397541d1f96",
+      "proposalKey": "EDITORIAL_2H2H:liquid:fluid-substance",
+      "reason": "Distinguish liquid from gas using volume as well as shape; checked against OpenStax.",
+      "reviewedAfterContentHash": "3167d3a32d101ba8c141cbc9ee34cf0011e9df9a542e7c43d491e502c1c36e82",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "severity": "SUBSTANTIVE"
+    },
+    {
+      "after": "In a flowing physical state with a definite volume but no fixed shape.",
+      "afterSha256": "51828c7dedbaa2496c031976bd4ac388144df1a11cf603d8d10eb0a20fa3511b",
+      "before": "In a physical state that can flow and take the shape of a container.",
+      "beforeSha256": "67ed0f17cea3368887412810e71fc5bf41a2d946768bde011a6a1875c600fb5a",
+      "field": "/content/definitionEn",
+      "humanReviewer": null,
+      "ownerDecision": "UNRESOLVED",
+      "parentContentHash": "50330b94a5423d9820082ce3ac8df573fdda7c1ac03c4c42409490195551fd0f",
+      "proposalKey": "EDITORIAL_2H2H:liquid:fluid-state",
+      "reason": "Clarify the adjective boundary relative to a gas without changing the wax example.",
+      "reviewedAfterContentHash": "ea503280329da15e3459b526712adfd2967f68f076964ad2088faa9315561f24",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "severity": "SUBSTANTIVE"
+    }
+  ],
+  "reReviewedBatches": [
+    {
+      "batch": 23,
+      "note": "Rechecked music countability, rupture transitivity after removing internal commentary, September capitalization and month sequence, both whenever boundaries/time-clause grammar, clay material/shape and all Vietnamese examples. No further substantive issue found.",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": "ALL_SIX_SENSES"
+    },
+    {
+      "batch": 36,
+      "note": "Rechecked grateful recipient/cause, both liquid definitions against definite-volume distinction and unchanged pouring/wax translations, artistic/operational performance, physical/abstract strand, and all three whose constructions/possession translations. Original definitions retained in overlay lineage.",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": "ALL_TEN_SENSES"
+    }
+  ]
+}

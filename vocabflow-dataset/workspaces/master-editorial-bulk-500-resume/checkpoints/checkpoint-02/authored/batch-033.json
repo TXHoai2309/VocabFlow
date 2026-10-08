@@ -1,0 +1,388 @@
+{
+  "batch": 33,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:visit",
+    "NORMALIZED_HEADWORD:zero",
+    "NORMALIZED_HEADWORD:cold",
+    "NORMALIZED_HEADWORD:grace",
+    "NORMALIZED_HEADWORD:inferior"
+  ],
+  "replayEvidence": "Persisted PSV parsed; source-supported POS/ordinals and exact frozen slice verified; original content hashes bound to AI review. Full replay recorded externally.",
+  "reviewNotesSha256": "c2bb8493cee359a2869cbd39345885a57c913a851cdcdc3550caed6b9ca3b959",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Visiting action and countable occasion have separate ordinals. Museum vacation and one-week island visit align; verb direct object distinguished from noun visit to.",
+      "proposalKey": "EDITORIAL_2H2H:visit:go-and-spend-time",
+      "reviewedContentHash": "1f7a4f20d2bb48028bb4318bd11c4ec70c7bba79100b80813f26c572b861f2a9",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Visiting action and countable occasion have separate ordinals. Museum vacation and one-week island visit align; verb direct object distinguished from noun visit to.",
+      "proposalKey": "EDITORIAL_2H2H:visit:occasion-of-visiting",
+      "reviewedContentHash": "ba05bb1cc82413e0654484ac2340f8e54cdb53b5327ba0f0ae387d7ae6118c37",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Absence of messages represented by zero, with plural messages. Vietnamese natural negation preserves amount; source NUMBER supported only in continuation, and scale point is not invented as absolute no temperature.",
+      "proposalKey": "EDITORIAL_2H2H:zero:number",
+      "reviewedContentHash": "b56992692b92388b9ee4da551acc79f2adce1148295b57304a3583f3b3b06cca",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Temperature adjective and illness noun distinguished by source ordinals. Floor sensation and common cold examples translate separately; definition avoids diagnosis or treatment recommendations and source taxonomy remains unverified.",
+      "proposalKey": "EDITORIAL_2H2H:cold:low-temperature",
+      "reviewedContentHash": "05989c009be0f5d96202c6ddddcccffa15b898531027a01f3453eb27b30c1f32",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Temperature adjective and illness noun distinguished by source ordinals. Floor sensation and common cold examples translate separately; definition avoids diagnosis or treatment recommendations and source taxonomy remains unverified.",
+      "proposalKey": "EDITORIAL_2H2H:cold:common-illness",
+      "reviewedContentHash": "0bc934833c3b2cf2d780d4002411090e8a19bcf5310daad4e80590161783270e",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Physical movement and courteous response are distinct noun meanings. Dancer and disappointing outcome preserve contrast; Vietnamese accepts điềm đạm without claiming happiness at the bad result.",
+      "proposalKey": "EDITORIAL_2H2H:grace:smooth-movement",
+      "reviewedContentHash": "aa770c0257685556e3e031cb50b70561c1ca0c1e40b6046bd8b33949f1233de6",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Physical movement and courteous response are distinct noun meanings. Dancer and disappointing outcome preserve contrast; Vietnamese accepts điềm đạm without claiming happiness at the bad result.",
+      "proposalKey": "EDITORIAL_2H2H:grace:courteous-conduct",
+      "reviewedContentHash": "5569db92916803ab4d73292979642c0293b3b65f72b71e88df6cbea7a124018a",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Source-supported person noun interpreted as hierarchy, not a moral judgment of worth. Officer example avoids endorsing demeaning conduct; negation and subordinate relationship preserved in Vietnamese.",
+      "proposalKey": "EDITORIAL_2H2H:inferior:lower-rank-person",
+      "reviewedContentHash": "22bd3ede9e0f1ad76af52edcbc4730af9d8105a68bcfeff7327035196e92cef1",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 8,
+  "sha256": "15e3f7b108e6e1680abba93a714ec7a02e6939ac02f83df5d822a4c96d7f8e3c",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:cold": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE",
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/506/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/506/rawHeadword",
+        "rawPosEvidencePointer": "/records/506/sourcePosRaw",
+        "recordEvidenceSha256": "4006ff51e6867142713bc647842300266734f8c58a1ac80a0aebdb7fb81d985b",
+        "recordIndex": 506,
+        "sourceNoteGuid": "LNZhu;46oo",
+        "sourceRecordId": "1788223606462",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:grace": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3754/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3754/rawHeadword",
+        "rawPosEvidencePointer": "/records/3754/sourcePosRaw",
+        "recordEvidenceSha256": "b9e38333665401f46f316e5bcbbc9b92e40d812624069ce4cf15ae60b75c5de9",
+        "recordIndex": 3754,
+        "sourceNoteGuid": "m@g-$Jt(ZY",
+        "sourceRecordId": "1788223609793",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/4339/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4339/rawHeadword",
+        "rawPosEvidencePointer": "/records/4339/sourcePosRaw",
+        "recordEvidenceSha256": "5334adc0938c9b0c9b7895a0a4f2aa345f7f612678d472415dae99afbf70ab8e",
+        "recordIndex": 4339,
+        "sourceNoteGuid": "p]d8:pXk9a",
+        "sourceRecordId": "1646317636122",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:inferior": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C2",
+            "value": "C2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1215/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1215/rawHeadword",
+        "rawPosEvidencePointer": "/records/1215/sourcePosRaw",
+        "recordEvidenceSha256": "e39899f6f583ef608b6d9182f09bf44bef2bc75258173f3dc21aefc4a46e7279",
+        "recordIndex": 1215,
+        "sourceNoteGuid": "wutglm5g3p",
+        "sourceRecordId": "1559931008007",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:visit": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN",
+          "VERB"
+        ],
+        "rawContentPointer": "/records/496/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/496/rawHeadword",
+        "rawPosEvidencePointer": "/records/496/sourcePosRaw",
+        "recordEvidenceSha256": "0f8a4d94b9c4f7c965c58aad09354da353ae6db183adb3db77727bb8d4f8dbc0",
+        "recordIndex": 496,
+        "sourceNoteGuid": "q6I_P5d9Ss",
+        "sourceRecordId": "1788223606450",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::A1",
+            "value": "A1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "A1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/16/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/16/rawHeadword",
+        "rawPosEvidencePointer": "/records/16/sourcePosRaw",
+        "recordEvidenceSha256": "15bceb6deef3c4a9be5f47313cfe9ac52cb915370ab82020dbd3c99faf58ae71",
+        "recordIndex": 16,
+        "sourceNoteGuid": "gGu)2>JBWk",
+        "sourceRecordId": "1556384730814",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:zero": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NUMBER"
+        ],
+        "rawContentPointer": "/records/1381/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1381/rawHeadword",
+        "rawPosEvidencePointer": "/records/1381/sourcePosRaw",
+        "recordEvidenceSha256": "143b12a6a610101718c37dc196211acdc11f32ef011a4df0911c4ab5cf9a0b43",
+        "recordIndex": 1381,
+        "sourceNoteGuid": "y80z3TkJh5",
+        "sourceRecordId": "1788223607420",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ]
+  },
+  "substantiveDefectsFound": 0
+}

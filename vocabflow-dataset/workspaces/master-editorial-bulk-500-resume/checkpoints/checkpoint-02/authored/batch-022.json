@@ -1,0 +1,436 @@
+{
+  "batch": 22,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:pleasant",
+    "NORMALIZED_HEADWORD:site",
+    "NORMALIZED_HEADWORD:worldwide",
+    "NORMALIZED_HEADWORD:crowd",
+    "NORMALIZED_HEADWORD:further"
+  ],
+  "replayEvidence": "Persisted PSV parsed; source-supported POS/ordinals and exact frozen slice verified; original content hashes bound to AI review. Full replay recorded externally.",
+  "reviewNotesSha256": "c42eacdcd29af75cd7de9dd5c67de51dbbc5e89debbe8830452ae8adcc21f1e0",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Breeze gives enjoyment/comfort rather than being pleased itself. Cooling after lunch and Vietnamese agree; the adjective is not restricted to weather or a person's manner.",
+      "proposalKey": "EDITORIAL_2H2H:pleasant:enjoyable",
+      "reviewedContentHash": "dbec42a1cd9dd223557c0a47932f4fe74084b55da637eb0252e989b0cb3d6945",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Physical location and website are distinct ordinal-supported boundaries. Planned future garden and present volunteer listings translate correctly; online visit is explicitly distinguished from travel.",
+      "proposalKey": "EDITORIAL_2H2H:site:physical-location",
+      "reviewedContentHash": "554c9ff41e95f69370426d4786180d9e645a18d42d336cbd81a0ce9be33b199d",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Physical location and website are distinct ordinal-supported boundaries. Planned future garden and present volunteer listings translate correctly; online visit is explicitly distinguished from travel.",
+      "proposalKey": "EDITORIAL_2H2H:site:website",
+      "reviewedContentHash": "50053afbb536e876325149fb70915b07b04a7af0328be600abd08fcea53b8880",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Adjective reach and adverb distribution have different POS and examples, with both source ordinals. Vietnamese global reach is natural without claiming literal universal coverage.",
+      "proposalKey": "EDITORIAL_2H2H:worldwide:global-adjective",
+      "reviewedContentHash": "ee0885f8cb21cadf7ca3e684d6fa8cc08f5b390627a1b54496855cdbb8ee2fe7",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Adjective reach and adverb distribution have different POS and examples, with both source ordinals. Vietnamese global reach is natural without claiming literal universal coverage.",
+      "proposalKey": "EDITORIAL_2H2H:worldwide:global-adverb",
+      "reviewedContentHash": "fff7c0b1e9625148e4e7e7531720a0a46a41dac5e857bdc4fe59df873b145f66",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Gathered people noun matches welcome scene and musician participants. Countable collective usage checked; source noun evidence does not authorize a separate crowd verb or canonical identity.",
+      "proposalKey": "EDITORIAL_2H2H:crowd:gathered-people",
+      "reviewedContentHash": "fcc5295785742ae55c12f40bd10a9574afda164713e04153e6a172d0bd1e2270",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Additional adjective and greater-distance adverb separated. Details versus walking contexts align; contradictory PREPOSITION evidence is not silently accepted and remains an undrafted source classification concern.",
+      "proposalKey": "EDITORIAL_2H2H:further:additional",
+      "reviewedContentHash": "0876616d3d087f37949bdde04a87dd9915aae5a5c41e4980900c7c28b15d4853",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Additional adjective and greater-distance adverb separated. Details versus walking contexts align; contradictory PREPOSITION evidence is not silently accepted and remains an undrafted source classification concern.",
+      "proposalKey": "EDITORIAL_2H2H:further:greater-distance",
+      "reviewedContentHash": "b98d29471e3cb2a6fbea228832c12a464dc899e315863a770b9c62cf4a147878",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 8,
+  "sha256": "3b5a828b890384e6c877d450dea80b3b976d5634718deb84b3da746a8f9a007f",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:crowd": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1331/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1331/rawHeadword",
+        "rawPosEvidencePointer": "/records/1331/sourcePosRaw",
+        "recordEvidenceSha256": "47d8e6292b16b4c28aa8007f6c3045e162a506e98d4157ee6db4af6bd38c3e01",
+        "recordIndex": 1331,
+        "sourceNoteGuid": "kFzz-Aa/v%",
+        "sourceRecordId": "1788223607370",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::A2",
+            "value": "A2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "A2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1019/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1019/rawHeadword",
+        "rawPosEvidencePointer": "/records/1019/sourcePosRaw",
+        "recordEvidenceSha256": "68706888120eaf14b221eabe2515fa80904cda3530cceeec7f065c2f36b02e41",
+        "recordIndex": 1019,
+        "sourceNoteGuid": "gT!cU(:mK>",
+        "sourceRecordId": "1559931007801",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:further": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE",
+          "ADVERB"
+        ],
+        "rawContentPointer": "/records/978/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/978/rawHeadword",
+        "rawPosEvidencePointer": "/records/978/sourcePosRaw",
+        "recordEvidenceSha256": "1ffb961956589955f10aa2fdf118a5470b92311aa704242faaa99ca7d31b1eb2",
+        "recordIndex": 978,
+        "sourceNoteGuid": "hBH,ij_HX8",
+        "sourceRecordId": "1788223606996",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::A2",
+            "value": "A2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "A2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "PREPOSITION"
+        ],
+        "rawContentPointer": "/records/496/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/496/rawHeadword",
+        "rawPosEvidencePointer": "/records/496/sourcePosRaw",
+        "recordEvidenceSha256": "b5f5749c484da292cabcfa38b42f47a135d873e775a7ce5f1d55754bcd075bc3",
+        "recordIndex": 496,
+        "sourceNoteGuid": "MlGJ]GB@<v",
+        "sourceRecordId": "1556384731305",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:pleasant": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/2242/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2242/rawHeadword",
+        "rawPosEvidencePointer": "/records/2242/sourcePosRaw",
+        "recordEvidenceSha256": "4079eecb9bc8820976bc3480b3d80376389b88aa15a055efa251b35ca083ccd7",
+        "recordIndex": 2242,
+        "sourceNoteGuid": "Movw%{KW6I",
+        "sourceRecordId": "1788223608281",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B1",
+            "value": "B1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/754/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/754/rawHeadword",
+        "rawPosEvidencePointer": "/records/754/sourcePosRaw",
+        "recordEvidenceSha256": "22166eb110f5b1aab8877f30f5cfd27f8276cd27052e45797bb5fe1b7d973b80",
+        "recordIndex": 754,
+        "sourceNoteGuid": "i-QI83DS`!",
+        "sourceRecordId": "1559931007529",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:site": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1003/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1003/rawHeadword",
+        "rawPosEvidencePointer": "/records/1003/sourcePosRaw",
+        "recordEvidenceSha256": "f37118c850a2f0dd018dfba65720c40b97f31141ba0f7b73f619984e96a43ddf",
+        "recordIndex": 1003,
+        "sourceNoteGuid": "i`|x&ZIy88",
+        "sourceRecordId": "1788223607021",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::A2",
+            "value": "A2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "A2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/194/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/194/rawHeadword",
+        "rawPosEvidencePointer": "/records/194/sourcePosRaw",
+        "recordEvidenceSha256": "b4277774ec429f5aa5b7150b0cd9a49ec4b13231d348e656a2112d995fd95ec4",
+        "recordIndex": 194,
+        "sourceNoteGuid": "ov<nnHuY+8",
+        "sourceRecordId": "1556384730995",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:worldwide": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE",
+          "ADVERB"
+        ],
+        "rawContentPointer": "/records/2037/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2037/rawHeadword",
+        "rawPosEvidencePointer": "/records/2037/sourcePosRaw",
+        "recordEvidenceSha256": "1708150414b90d553c876eddf4b0c7caa8f11652bd5ea4549db5b04425011866",
+        "recordIndex": 2037,
+        "sourceNoteGuid": "qPOM6*yz^g",
+        "sourceRecordId": "1788223608076",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "substantiveDefectsFound": 0
+}

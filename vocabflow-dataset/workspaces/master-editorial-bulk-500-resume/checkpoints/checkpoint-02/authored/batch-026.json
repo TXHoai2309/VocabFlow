@@ -1,0 +1,289 @@
+{
+  "batch": 26,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:warming",
+    "NORMALIZED_HEADWORD:driver",
+    "NORMALIZED_HEADWORD:homogeneous",
+    "NORMALIZED_HEADWORD:indifferent",
+    "NORMALIZED_HEADWORD:radio"
+  ],
+  "replayEvidence": "Persisted PSV parsed; source-supported POS/ordinals and exact frozen slice verified; original content hashes bound to AI review. Full replay recorded externally.",
+  "reviewNotesSha256": "6e0303134c10275882aaba4113572c2810abbf72f260d9cd27895a4ec3e05f94",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "General temperature increase fits gradual room heating; no unsupported global-climate claim. Vietnamese preserves heater timing and gradual change; process noun is distinct from the participial adjective.",
+      "proposalKey": "EDITORIAL_2H2H:warming:getting-warmer",
+      "reviewedContentHash": "20b864f8f4939c4c9d87351db0398c4e8b535dd702763481fc56d8a0090f98d8",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Operator meaning is not equated with all passengers. Seat-belt waiting scene preserves until and participants in Vietnamese without claiming a current legal rule.",
+      "proposalKey": "EDITORIAL_2H2H:driver:vehicle-operator",
+      "reviewedContentHash": "3f0eb1c9806bee7c4510295ec190288b97e2c4833dce8e6cecd123849e33c958",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Uniform or similar composition rather than absolute identical atoms is intended. Mixing instruction is descriptive and qualified by appearance; no fabricated scientific measurement or social stereotype.",
+      "proposalKey": "EDITORIAL_2H2H:homogeneous:uniform-composition",
+      "reviewedContentHash": "c129ac8a40045ef54a38177cedd46fcd13af0974173caa4290165da59a178669",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Lack of concern about restaurant choice is not dislike or hostility. Vietnamese keeps seemed uncertainty; to complement is appropriate and no temporal constraint is inferred.",
+      "proposalKey": "EDITORIAL_2H2H:indifferent:uninterested",
+      "reviewedContentHash": "ba02e8f253c5bd87eedc973658a19f63cc164a6cd4e7dcd0c1771f510c54d749",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Physical receiver and sound broadcasting medium differentiated within the same broad Oxford group. Volume and future local interview contexts align; both countability and on relation reviewed without artificial tense splitting.",
+      "proposalKey": "EDITORIAL_2H2H:radio:receiver",
+      "reviewedContentHash": "a188764bf1b6d86b76ba9ce20566b31a3fdb3fad79627060daf1accea2b7933a",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Physical receiver and sound broadcasting medium differentiated within the same broad Oxford group. Volume and future local interview contexts align; both countability and on relation reviewed without artificial tense splitting.",
+      "proposalKey": "EDITORIAL_2H2H:radio:broadcast-medium",
+      "reviewedContentHash": "3cd4b7d381529c011b871cf5cc229ce36d04a7026e8344f1d6924e24e3649478",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 6,
+  "sha256": "fd90f80471e95fa4c8edc576b7fc12d08dc8e1008cc2bdcf42ada63830a57631",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:driver": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/650/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/650/rawHeadword",
+        "rawPosEvidencePointer": "/records/650/sourcePosRaw",
+        "recordEvidenceSha256": "3f9459acf7d5e7f8564a85e83fa6509d7cd4006e5d0e0786914af32527f5cca1",
+        "recordIndex": 650,
+        "sourceNoteGuid": "oyRQd||S&Z",
+        "sourceRecordId": "1788223606636",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:homogeneous": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C2",
+            "value": "C2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/2149/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2149/rawHeadword",
+        "rawPosEvidencePointer": "/records/2149/sourcePosRaw",
+        "recordEvidenceSha256": "05f5121dcf90486f93a8c6e720a39642336b7cc6c43404ad0a31c6f59f7f15a5",
+        "recordIndex": 2149,
+        "sourceNoteGuid": "J`+=#4<vPV",
+        "sourceRecordId": "1559931008967",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:indifferent": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C2",
+            "value": "C2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/3018/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3018/rawHeadword",
+        "rawPosEvidencePointer": "/records/3018/sourcePosRaw",
+        "recordEvidenceSha256": "e84a7bae52b8292412dbb4121b4e2d9a563db5f97becbd8c57452ff7c2189774",
+        "recordIndex": 3018,
+        "sourceNoteGuid": "vNteX9HK4[",
+        "sourceRecordId": "1559931009887",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:radio": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/518/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/518/rawHeadword",
+        "rawPosEvidencePointer": "/records/518/sourcePosRaw",
+        "recordEvidenceSha256": "1a63f6fdb0561274718d6a352bd8839e601d656087584dfa5950d0483b6969e8",
+        "recordIndex": 518,
+        "sourceNoteGuid": "u{afV{dT+x",
+        "sourceRecordId": "1788223606476",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:warming": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3452/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3452/rawHeadword",
+        "rawPosEvidencePointer": "/records/3452/sourcePosRaw",
+        "recordEvidenceSha256": "ab8585d3a2ff95567db1304a501cd1e70782dfebe3e5e0dfb3b5fbd1e2f13db8",
+        "recordIndex": 3452,
+        "sourceNoteGuid": "ptt(i5%!<J",
+        "sourceRecordId": "1788223609491",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ]
+  },
+  "substantiveDefectsFound": 0
+}
