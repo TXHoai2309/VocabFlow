@@ -1,0 +1,109 @@
+{
+  "corrections": [
+    {
+      "after": "Existing or available in large quantities.",
+      "afterSha256": "3688dd31579e781c2a117ce79653375f3af08ff676394c1ad1914ead821c4c01",
+      "before": "Present in a quantity that easily meets the need.",
+      "beforeSha256": "55b171b83a111b21a3fa8bfb5e919052ca527b13bfab39df912e58bfcaeb1ab5",
+      "correctionRef": "2H2E_CORRECTION_01",
+      "field": "/content/definitionEn",
+      "originalContentHash": "4a882cdbe30b98453f605b475af4d2dcd9b3bdf8d8f4959a40c26ef7d89b3da3",
+      "ownerDecision": "UNRESOLVED",
+      "proposalKey": "EDITORIAL_2H2B:abundant:plentiful",
+      "provenance": "GENERATED_AI_EDITORIAL_CORRECTION_PROPOSAL",
+      "rationale": "Abundant means existing in large quantity, not necessarily enough for a particular demand. Definition and Vietnamese gloss wrongly bind abundance to meeting a need. Fruit example otherwise appropriate."
+    },
+    {
+      "after": "dồi dào; có nhiều",
+      "afterSha256": "a072250fb7229573355c3abd7b385be015af7c06cbcd5db4533d68b873652358",
+      "before": "có nhiều và đủ đáp ứng nhu cầu",
+      "beforeSha256": "8ed851fa12e60926cb99343fc349f8b3ff6b788e3fc208a76c0641018c82c988",
+      "correctionRef": "2H2E_CORRECTION_02",
+      "field": "/content/meaningVi",
+      "originalContentHash": "4a882cdbe30b98453f605b475af4d2dcd9b3bdf8d8f4959a40c26ef7d89b3da3",
+      "ownerDecision": "UNRESOLVED",
+      "proposalKey": "EDITORIAL_2H2B:abundant:plentiful",
+      "provenance": "GENERATED_AI_EDITORIAL_CORRECTION_PROPOSAL",
+      "rationale": "Abundant means existing in large quantity, not necessarily enough for a particular demand. Definition and Vietnamese gloss wrongly bind abundance to meeting a need. Fruit example otherwise appropriate."
+    },
+    {
+      "after": "Very strange or unusual.",
+      "afterSha256": "9e755d0bfe4ac3bd14fdedf84db02ff2f4603cddacefafbc2aa5b2c790a1305f",
+      "before": "Strange or unusual in a way that attracts attention.",
+      "beforeSha256": "a1e64b92be007270b7d699e2daa6c6ebe151b6e5a89817b205a563210c97c4b2",
+      "correctionRef": "2H2E_CORRECTION_03",
+      "field": "/content/definitionEn",
+      "originalContentHash": "06ea4d21f1bd6fc63e09b8e5b0440409b647453e6ffaa4cc585f2416542ed037",
+      "ownerDecision": "UNRESOLVED",
+      "proposalKey": "EDITORIAL_2H2D:weird:strange",
+      "provenance": "GENERATED_AI_EDITORIAL_CORRECTION_PROPOSAL",
+      "rationale": "Weird can mean strange without necessarily attracting attention. Remove this nonessential restriction from the definition; clicking sound and kỳ lạ align."
+    },
+    {
+      "after": "Các tình nguyện viên ủng hộ một mục đích tốt đẹp ở địa phương.",
+      "afterSha256": "bfa9a5b307eb5b75b4f87b70692942dd7210316ff887f4258971733b4d4a76f7",
+      "before": "Các tình nguyện viên ủng hộ một hoạt động địa phương đáng trân trọng.",
+      "beforeSha256": "3877d084c848136d366b84a267cf37277f654ab4371cbb6d9451abefea3a734f",
+      "correctionRef": "2H2E_CORRECTION_04",
+      "field": "/content/examples/0/vi",
+      "originalContentHash": "cebeab9c1f7d42f4ce25777118625adf0c0d8896ee172732d93dda81ceafeb99",
+      "ownerDecision": "UNRESOLVED",
+      "proposalKey": "EDITORIAL_2H2C:worthy:deserving",
+      "provenance": "GENERATED_AI_EDITORIAL_CORRECTION_PROPOSAL",
+      "rationale": "Worthy describes deserving support, not objective worth certification. Local cause refers to an aim deserving support; hoạt động đáng trân trọng is understandable but narrower and shifts support to respect."
+    },
+    {
+      "after": "đuổi khỏi; trục xuất; khai trừ khỏi tổ chức",
+      "afterSha256": "5d8674893c0f7529255c534918b14152e2179e167150a4b6a9245e6deb81efd9",
+      "before": "trục xuất; đuổi khỏi",
+      "beforeSha256": "9e6fae9f53ee8ebee13e568fedd244b9b302d0cd0f48076d3fb0fe24140daca9",
+      "correctionRef": "2H2E_CORRECTION_05",
+      "field": "/content/meaningVi",
+      "originalContentHash": "9ae6110a49333d2214e98c571c0329c5f679e1d9597d2ad2224f1bd591fb9dac",
+      "ownerDecision": "UNRESOLVED",
+      "proposalKey": "EDITORIAL_2H2D:expel:force-out",
+      "provenance": "GENERATED_AI_EDITORIAL_CORRECTION_PROPOSAL",
+      "rationale": "Expel from an organization covers club exclusion. Khai trừ is accurate in the example, but primary gloss omits this supported sense and could misleadingly suggest only geographic removal."
+    },
+    {
+      "after": "Anh ấy hét lên để người khác nghe được giữa tiếng ồn.",
+      "afterSha256": "8fd887428e021c90fdacd5df03e32141f90f6e86ddbf456b304099a2c0ed7593",
+      "before": "Anh ấy hét lên để át tiếng ồn.",
+      "beforeSha256": "a805141eb5d9fab83b38c1b40fc6f36aa910a292ef205bc7b61e678117ff71d4",
+      "correctionRef": "2H2E_CORRECTION_06",
+      "field": "/content/examples/0/vi",
+      "originalContentHash": "d340cffe0348ecd8e7641c9bd70c75a91330bbcea9d86d7ac4621c03b343d493",
+      "ownerDecision": "UNRESOLVED",
+      "proposalKey": "EDITORIAL_2H2D:yell:shout",
+      "provenance": "GENERATED_AI_EDITORIAL_CORRECTION_PROPOSAL",
+      "rationale": "Yelled to be heard is speaking loudly enough for others to hear over noise. Vietnamese để át tiếng ồn can suggest drowning noise out rather than being audible; propose more faithful purpose wording."
+    },
+    {
+      "after": "kinh phí; tiền tài trợ",
+      "afterSha256": "64b55466926af6d5d017879888c49f93af4cc80b355eeadb4ffeb213b78a2684",
+      "before": "kinh phí; sự tài trợ",
+      "beforeSha256": "bb388ad80e35d25a633238225aa0bf3c889dc21bb9a4de600e4cb57ab8948be1",
+      "correctionRef": "2H2E_CORRECTION_07",
+      "field": "/content/meaningVi",
+      "originalContentHash": "006204d061ae0e91b44a87f4f3e58f60db303eb4365a3028dcc7b21791625b65",
+      "ownerDecision": "UNRESOLVED",
+      "proposalKey": "EDITORIAL_2H2D:funding:money",
+      "provenance": "GENERATED_AI_EDITORIAL_CORRECTION_PROPOSAL",
+      "rationale": "Funding definition denotes money provided, whereas sự tài trợ names support process. Kinh phí is right; add tiền tài trợ as primary monetary gloss to avoid process/material ambiguity."
+    },
+    {
+      "after": "Countable restriction in this proposal; the uncountable act of limiting needs separate boundary review before inclusion.",
+      "afterSha256": "19b26883f7cebf6b11572f812676a4d4faa63bb8f914d1e216242f79199607c2",
+      "before": "Countable restriction; uncountable limiting process also possible.",
+      "beforeSha256": "556860b6d6e506dd94e901986e07066b591227c3e61b97fd5b4f9ffaf3cf46a8",
+      "correctionRef": "2H2E_CORRECTION_08",
+      "field": "/content/grammarNotesEn",
+      "originalContentHash": "f1b311758bc6eef1eb94170fcc9d36f4fb10b02e40871d06209dd69053030809",
+      "ownerDecision": "UNRESOLVED",
+      "proposalKey": "EDITORIAL_2H2D:limitation:restriction",
+      "provenance": "GENERATED_AI_EDITORIAL_CORRECTION_PROPOSAL",
+      "rationale": "Restriction Sense fits battery limitation. Grammar also mentions uncountable limiting process absent from the definition; clarify that note so owner can decide separate process usage rather than assume exhaustive coalescence."
+    }
+  ],
+  "originalAcceptedArtifactsUnchanged": true
+}

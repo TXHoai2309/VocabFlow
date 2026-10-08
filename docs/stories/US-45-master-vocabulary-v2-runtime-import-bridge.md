@@ -2123,3 +2123,44 @@ Production UNTOUCHED. Next gate is actual owner content/identity decisions,
 independent linguistic QA and documented rights disposition, followed only by a
 separately authorized canonical release and Development dry-run/apply. Stop here;
 no new bulk batch, canonical materialization, DB apply or legacy cleanup.
+
+
+### 2026-10-08 — Phase 2H.2E offline editorial approval and rights gate
+
+Technical package complete; human acceptance remains pending. Audited 813 Sense
+proposals in 520 groups without changing the accepted 2H.2D queue. Reclassified
+103 risk tiers: LOW 193 / MEDIUM 25 / HIGH 588 / CRITICAL 7. The overlooked
+`a, an` alias and `abnormal` legacy link are HIGH; preserved identity blockers
+survive wording corrections. Reviewed all 18 short-gloss signals without merges.
+
+Frozen cohort: 40 Senses, 10 each noun/verb/adjective/adverb, three source
+memberships and A1-C1 evidence represented. AI self-review covers 14 dimensions,
+finds 7 issues and proposes 8 immutable field overlays. Four 10-Sense bilingual
+review packs and six CSV templates support resumable owner review. Partial
+validate/import checks exact revision, actual authorized human reviewer/date,
+independent identity/classification/rights evidence, idempotency and conflict
+preservation. Empty files and pending/DEFER states are valid. AI output and KEEP
+alone never grant approval or rights. Trusted reviewer registry and real ledger
+remain empty: human decisions, identity resolved, classification reviewed, rights
+resolved, canonical-ready and release-ready all 0. Preview has 40 noncanonical
+records; no IDs, runtime mappings or published Master release.
+
+Accepted queue fingerprint:
+`53fb17292af49e1c2c144a13630275386c7bdd7edc5a4d7e6c5e8ba8aa9b107e`.
+Approval gate fingerprint: `7b81c06de08b75412039cb28b1b72490da51e0a82595d68fb54de33c57740e18`.
+71 focused + 152 previous Phase 2H regressions PASS (223 total). Direct `tsc -b`,
+ESLint, offline replay (including PYTHONHASHSEED=987), frozen Hybrid check and
+accepted byte pins PASS. External commands/log hashes are separate from generator
+checks in `master-editorial-approval-gate/verification-results.json`; canonical
+`pnpm typecheck` historical non-TTY limitation remains, not claimed PASS.
+
+Hybrid 2.2.1 APPROVED 87/100 is unchanged, as are all original drafts, canonical
+contracts, 2018 legacy rows/history75/#11/#284/#295/#849/owner exclusions (offline
+pins, no live query). Database access/writes NONE/NONE; Production UNTOUCHED.
+Existing stashes/worktrees/backups and concurrent Study/API changes preserved.
+Only this offline workspace, script/tests, report and these handoff additions
+belong to this publication. Owner workflow:
+`vocabflow-dataset/reports/master-editorial-approval-gate.md`.
+Next: actual owner content/identity/classification decisions and documented
+intended-publication rights, then a separately authorized canonical materialization
+and Development planning phase. Stop after scoped commit/push; no DB apply.
