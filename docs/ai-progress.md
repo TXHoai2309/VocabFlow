@@ -6176,3 +6176,97 @@ pending rights, identity, content/classification and separate release permission
 Next recommendation: separate annotation from multiword signals before selecting
 future cohorts; scale small reviewed bilingual batches with independent human
 QA. Do not restart inventory or automatically author the next batch.
+
+
+## Phase 2H.2D — 300-group bulk editorial and owner-review queue (2026-10-08)
+
+Offline noncanonical deliverables completed on TXH, baseline
+477bb5c087b0ede7f50045054aabe92505c78bba. Scoped commit/push is explicitly
+owner-authorized; no canonical publication or Development operation authorized.
+
+Exactly 300 new groups (50 per alphabet bucket) outside the prior 220 are frozen
+under PHASE_2H2D_BULK_300_V1. All source/POS/CEFR quota targets achieved;
+three source annotation groups excluded before freeze. 60 persisted batches of
+five groups, each with exact byte receipt and Sense accounting. 300 authored,
+zero blocked; 471 new Senses, including 115 multi-Sense groups. Exactly 471 each
+English definitions/examples and Vietnamese meanings/example translations.
+Total 520 groups / 813 Senses; 5623 groups remain undrafted. Hybrid-100 is separate.
+
+Source groups: Oxford-only 85 / 4600-only 66 / both 149. Overlapping source POS:
+noun 161, verb 85, adjective 67, adverb 38. Draft Sense POS: noun 194, verb 115,
+adjective 80, adverb 49, other grammatical proposals 33. CEFR evidence groups:
+A1 60 / A2 45 / B1 30 / B2 63 / C1 70 / C2 45; no verified Sense CEFR assigned.
+All supported Oxford ordinals represented; second coalesces its two ordinal
+classification records. Coverage does not establish exhaustive dictionary identity.
+
+AI self-review covers all 471 Senses, not independent human acceptance.
+35 field corrections across 20 Senses are overlays; original PSV files and hashes
+remain unchanged. These include example/source-wording collisions, least POS
+example ambiguity, natural Vietnamese for way, and display capitals/IT acronym.
+Initial display validation was insufficient for Sunday/Valentine's Day/IT;
+explicit correction findings preserve the frozen group keys, not silent replacement.
+Source POS defects and the numeral policy for seven remain owner-review findings.
+Final source scan: no example collisions; 18 short conventional gloss similarities
+remain visible for human review and never imply rights clearance.
+All 471 new identities/content approvals remain pending; structural errors zero.
+Human reviewed 0, owner approved 0, IDs/maps/release-ready Senses 0.
+
+Consolidated queue includes corrected QA1 155 + 2H.2C 187 + new 471 = 813,
+without duplicate proposal keys. Existing corrected content remains exact.
+41 Markdown exports contain at most 20 Senses each, plus a CSV decision template.
+KEEP / REVISE / MERGE / SPLIT / DEFER / REJECT are requested decisions only.
+Priority tiers 1–6: 237 / 13 / 46 / 432 / 43 / 42. Rights UNKNOWN_REVIEW_REQUIRED
+for all 813, independent of content-review ordering. Every record has content,
+source/CEFR evidence, Master overlap, legacy dependencies, QA, provenance and
+separate readiness axes. Rights checklist is evidence requirements, not clearance.
+
+Selection fingerprint: 63894bd46027524528c01c44a57e45af99b54cf48910c3f605219d2fd9faf388
+Editorial fingerprint: 6d9b4c758c0be6f60ee4feb3a38c90dacce7dd053488fc7ff6a680b19f080e85
+Owner-review queue fingerprint: 53fb17292af49e1c2c144a13630275386c7bdd7edc5a4d7e6c5e8ba8aa9b107e
+
+[Full bilingual drafts and BEFORE/AFTER](../vocabflow-dataset/reports/master-editorial-bulk-300.md).
+[Owner review workspace](../vocabflow-dataset/workspaces/master-editorial-owner-review-queue/manifest.json).
+
+Actually executed verification (generator does not run these external commands):
+
+| Command | Exit |
+|---|---|
+| `python -B scripts/phase-2h2d-bulk-editorial-test.py` (41 tests) | 0 |
+| `python -B scripts/phase-2h2c-stratified-editorial-test.py` | 0 |
+| `python -B scripts/phase-2h2c-stratified-editorial.py --check` | 0 |
+| `python -B scripts/phase-2h2b-qa1-corrections-test.py` | 0 |
+| `python -B scripts/phase-2h2b-qa1-corrections.py --check` | 0 |
+| `python -B scripts/phase-2h2b-editorial-draft-test.py` | 0 |
+| `python -B scripts/phase-2h2b-editorial-draft.py --check` | 0 |
+| `python -B scripts/phase-2h2a-master-expansion-test.py` | 0 |
+| `python -B scripts/phase-2h1-source-inventory-test.py` | 0 |
+| `node node_modules/typescript/bin/tsc -b` | 0 |
+| `node node_modules/eslint/bin/eslint.js . --max-warnings=0` | 0 |
+| `node node_modules/tsx/dist/cli.mjs scripts/hybrid-100-runtime-eligible-patch-release.ts --check` | 0 |
+| `git diff --check` | 0 |
+
+Prior regression suites: 2H.1 13, 2H.2A 21, 2H.2B 23, QA1 19, 2H.2C 35;
+111 accepted regressions plus 41 new tests = 152 PASS. New replay includes a
+separate process with PYTHONHASHSEED=117 and mutation-CLI rejection. Previous
+four fingerprints plus 2H.2C selection/editorial and all accepted Dataset/tooling
+byte pins remain unchanged. Direct tsc exit 0 is separate evidence; canonical
+pnpm typecheck wrapper limitation remains documented and is not claimed PASS.
+No dependency reinstall or module removal. Frozen release command was --check.
+
+QA found the owner queue initially interpreted an empty Master metadata envelope
+as a collision. The helper now checks the actual overlap signal and a regression
+keeps dancer in tier 1; generic human-review warnings do not erase low-risk order.
+
+All seven historical stashes, worktrees, staged older pilot backups and unrelated
+files preserved. Safety inventory/logs: D:/hoctienganh/phase-2h2d-safety.
+Only the two new workspaces, phase script/tests, report and three handoff docs
+belong to this publication. No apps/web, migrations, raw decks/media or pyc files.
+Hybrid 2.2.1 remains APPROVED 87 Lexemes/100 Senses; release
+44874b11d1fdef76a515f6285d04c9a417318daa6969e112608a59e7c232613c;
+tree 51ab4c5ce31bd38b51742d1aea16602150522da27ad26c123cc17b332f9a406e.
+Legacy 2018/history 75/#11/#284/#295/#849/owner exclusions pinned offline;
+no live database verification claimed. Database access/writes NONE/NONE;
+Production UNTOUCHED. Next gate is actual owner content/identity decisions,
+independent linguistic QA and documented rights disposition, followed only by a
+separately authorized canonical release and Development dry-run/apply. Stop here;
+no new bulk batch, canonical materialization, DB apply or legacy cleanup.

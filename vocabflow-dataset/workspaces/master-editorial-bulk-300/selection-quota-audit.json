@@ -1,0 +1,133 @@
+{
+  "achieved": {
+    "ADJECTIVE": 67,
+    "ADVERB": 38,
+    "BOTH": 149,
+    "BOTH_SOURCE_CLEAN_LEXICAL": 125,
+    "CEFR_A1": 60,
+    "CEFR_A2": 45,
+    "CEFR_B1": 30,
+    "CEFR_B2": 63,
+    "CEFR_C1": 70,
+    "CEFR_C2": 45,
+    "CEFR_CONFLICT": 12,
+    "CONJUNCTION": 3,
+    "CONTENT_GAP": 300,
+    "DETERMINER": 5,
+    "EXISTING_MASTER_LEMMA": 7,
+    "INTERJECTION": 2,
+    "LEGACY_HISTORY": 9,
+    "LEGACY_PRODUCT": 38,
+    "MULTIWORD_PHRASAL": 5,
+    "NOUN": 161,
+    "OXFORD_ONLY": 85,
+    "POSSIBLE_POLYSEMY": 106,
+    "POS_CONFLICT": 12,
+    "PREPOSITION": 3,
+    "PRONOUN": 11,
+    "RIGHTS_GAP": 300,
+    "SOURCE_DUPLICATES": 1,
+    "VERB": 85,
+    "VOCAB4600_ONLY": 66
+  },
+  "alphabet": {
+    "a-d": {
+      "available": 1666,
+      "selected": 50,
+      "target": 50
+    },
+    "e-h": {
+      "available": 935,
+      "selected": 50,
+      "target": 50
+    },
+    "i-m": {
+      "available": 837,
+      "selected": 50,
+      "target": 50
+    },
+    "n-r": {
+      "available": 1134,
+      "selected": 50,
+      "target": 50
+    },
+    "s-v": {
+      "available": 1185,
+      "selected": 50,
+      "target": 50
+    },
+    "w-z": {
+      "available": 165,
+      "selected": 50,
+      "target": 50
+    }
+  },
+  "annotationExclusions": [
+    {
+      "key": "NORMALIZED_HEADWORD:visible (adj)",
+      "reason": "SOURCE_METADATA_NOT_VERIFIED_LEXICAL_UNIT"
+    },
+    {
+      "key": "NORMALIZED_HEADWORD:warming (n)",
+      "reason": "SOURCE_METADATA_NOT_VERIFIED_LEXICAL_UNIT"
+    },
+    {
+      "key": "NORMALIZED_HEADWORD:whip (v)",
+      "reason": "SOURCE_METADATA_NOT_VERIFIED_LEXICAL_UNIT"
+    }
+  ],
+  "available": {
+    "ADJECTIVE": 1304,
+    "ADVERB": 345,
+    "BOTH": 3392,
+    "BOTH_SOURCE_CLEAN_LEXICAL": 3280,
+    "CEFR_A1": 865,
+    "CEFR_A2": 793,
+    "CEFR_B1": 725,
+    "CEFR_B2": 1428,
+    "CEFR_C1": 1581,
+    "CEFR_C2": 614,
+    "CEFR_CONFLICT": 73,
+    "CONJUNCTION": 34,
+    "CONTENT_GAP": 5922,
+    "DETERMINER": 40,
+    "EXISTING_MASTER_LEMMA": 64,
+    "INTERJECTION": 18,
+    "LEGACY_HISTORY": 37,
+    "LEGACY_PRODUCT": 667,
+    "MULTIWORD_PHRASAL": 5,
+    "NOUN": 3460,
+    "OXFORD_ONLY": 1428,
+    "POSSIBLE_POLYSEMY": 2105,
+    "POS_CONFLICT": 41,
+    "PREPOSITION": 63,
+    "PRONOUN": 72,
+    "RIGHTS_GAP": 5922,
+    "SOURCE_DUPLICATES": 22,
+    "VERB": 1516,
+    "VOCAB4600_ONLY": 1102
+  },
+  "posAndCefrCountsAreOverlappingSourceEvidence": true,
+  "shortfalls": [],
+  "targets": {
+    "ADJECTIVE": 50,
+    "ADVERB": 35,
+    "BOTH": 120,
+    "CEFR_A1": 10,
+    "CEFR_A2": 10,
+    "CEFR_B1": 10,
+    "CEFR_B2": 10,
+    "CEFR_C1": 10,
+    "CEFR_C2": 10,
+    "CEFR_CONFLICT": 12,
+    "EXISTING_MASTER_LEMMA": 5,
+    "LEGACY_HISTORY": 8,
+    "MULTIWORD_PHRASAL": 5,
+    "NOUN": 60,
+    "OXFORD_ONLY": 65,
+    "POSSIBLE_POLYSEMY": 50,
+    "POS_CONFLICT": 12,
+    "VERB": 50,
+    "VOCAB4600_ONLY": 65
+  }
+}

@@ -1,0 +1,6878 @@
+{
+  "artifactType": "NONCANONICAL_EDITORIAL_DRAFT",
+  "authorization": {
+    "canonicalAuthoring": false,
+    "canonicalIdentity": false,
+    "databaseAccess": false,
+    "databaseWrite": false,
+    "developmentApply": false,
+    "legacyCleanup": false,
+    "mediaPublishing": false,
+    "ownerApproval": false,
+    "production": false,
+    "releasePublication": false,
+    "runtimeMapping": false
+  },
+  "boundaryCoverage": [
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:component",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:corporate",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:dancer",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:deny",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:disrupt",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:apply",
+      "representedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:bird",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:ad",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:crystal",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:bench",
+      "representedOrdinals": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:area",
+      "representedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:dye",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:avail",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:always",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:disruption",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:cram",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:accompany",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:daily",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:alternate",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:aunt",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:agent",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:bait",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:cycle",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:dull",
+      "representedOrdinals": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:commence",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:circus",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:channel",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:bet",
+      "representedOrdinals": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:dissatisfaction",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:avoid",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:devise",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:check-up",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:corps",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:dual",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:analysis",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:brilliant",
+      "representedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:ashore",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:curtain",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:butter",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:cop",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:clear",
+      "representedOrdinals": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:concern",
+      "representedOrdinals": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:chocolate",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:consensus",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:cup",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:clock",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:blonde",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:comprise",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:critique",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:clash",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:funding",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:economics",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:exist",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:formal",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:frame",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:flammable",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:groom",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:have",
+      "representedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:firstly",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:farmer",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:favourite",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:frustrating",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:express",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:film",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:faction",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:expel",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:folk",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:gain",
+      "representedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:gaze",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:habitat",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:eventually",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:finish",
+      "representedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:fixed",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:formerly",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:frighten",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:extremely",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:haste",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:escort",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:hazardous",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:entice",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:gratitude",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:emperor",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:hermit",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:heir",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:electron",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:enlighten",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:excite",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:engrave",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:glucose",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:happily",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:field",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:hood",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:exterior",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:ergonomic",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:foe",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:hence",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:how",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:hopefully",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:fellow",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:engineer",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:interpretation",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:incorrect",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:indictment",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:ill",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:inhabit",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:impolite",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:lose",
+      "representedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:mine",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:it",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:lion",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:limitation",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:jet",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:intend",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:insertion",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:loom",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:inform",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:ignore",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:medicine",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:independence",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:mainstream",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:inflame",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:manufacturing",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:motive",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:implement",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:mathematics",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:mature",
+      "representedOrdinals": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:lad",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:indigenous",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:militant",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:lesser",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:must",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:married",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:mount",
+      "representedOrdinals": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:impair",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:longevity",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:inevitably",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:impulse",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:messenger",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:if",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:mourn",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:mammal",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:ironically",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:monetary",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:invalid",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:jealous",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:microbe",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:intellect",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:least",
+      "representedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:many",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:loyal",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:rational",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:overcome",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:objection",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:national",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:near",
+      "representedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:regulate",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:pill",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:reliability",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:overly",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:oblige",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:recipient",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:primary",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:notice",
+      "representedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:parent",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:poverty",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:pick",
+      "representedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:provincial",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:night",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:provide",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:rot",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:pet",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:pop",
+      "representedOrdinals": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:parade",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:probability",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:rating",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:paragraph",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:question",
+      "representedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:pup",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:punishment",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:partially",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:purple",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:non-profit",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:reconcile",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:organization",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:package",
+      "representedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:representative",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:poster",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:needy",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:portable",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:reasonably",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:openly",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:relatively",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:once",
+      "representedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:rental",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:panic",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:ocean",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:refrigerator",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:puzzle",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:presently",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:regardless of",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:teaching",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:scenario",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:terrace",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:studio",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:skilled",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:shirt",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:sponsor",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:spark",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:theology",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:sunday",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:sandy",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:specimen",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:stroll",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:steer",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:spread",
+      "representedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:sale",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:valley",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:secular",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:tiny",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:vote",
+      "representedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:scholar",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:thick",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:sharp",
+      "representedOrdinals": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:undergo",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:suspect",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:testify",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:somewhere",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:sympathetic",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:stranded",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:seriously",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:textile",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:strictly",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:supply chain",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:sadly",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:sweat",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:simultaneously",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:somehow",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:second",
+      "representedOrdinals": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:through",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:say",
+      "representedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:tonight",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:same",
+      "representedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:soundly",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:senator",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:speak",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:sad",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:seven",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:used to",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:valentine's day",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:vice versa",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wrestle",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:well",
+      "representedOrdinals": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:young",
+      "representedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:witch",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:whereabouts",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:yours",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wire",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wholesale",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:year",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:with",
+      "representedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:youngster",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:warm",
+      "representedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:workforce",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:welcome",
+      "representedOrdinals": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:weird",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:widow",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wonderful",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:weary",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wheel",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wood",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wool",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wind",
+      "representedOrdinals": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:worried",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wrist",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:worship",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:yesterday",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:yield",
+      "representedOrdinals": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:winter",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:you",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wife",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:worry",
+      "representedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:while",
+      "representedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wake",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:what",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:who",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wet",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:walk",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wave",
+      "representedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:widespread",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:your",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:why",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wonder",
+      "representedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:western",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:yell",
+      "representedOrdinals": [
+        0
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:white-collar",
+      "representedOrdinals": [],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wit",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:warrant",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:whip",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:yourself",
+      "representedOrdinals": [
+        0,
+        1
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1
+      ],
+      "unrepresentedOrdinals": []
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:way",
+      "representedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "state": "HUMAN_BOUNDARY_REVIEW_PENDING",
+      "supportedOrdinals": [
+        0,
+        1,
+        2
+      ],
+      "unrepresentedOrdinals": []
+    }
+  ],
+  "offlineAuthorization": {
+    "authoring": true,
+    "ownerReviewPackaging": true,
+    "scopedGitPublication": true
+  },
+  "phase": "2H.2D",
+  "selectionFingerprint": "63894bd46027524528c01c44a57e45af99b54cf48910c3f605219d2fd9faf388",
+  "senses": [
+    {
+      "proposalKey": "EDITORIAL_2H2D:component:part",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:corporate:business",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:dancer:performer",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:deny:dispute",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:deny:refuse",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "POLARITY_SIGNAL_REQUIRES_CONTEXT_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:disrupt:interrupt",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:apply:request",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:apply:use",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:apply:spread",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:bird:animal",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:ad:advertisement",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:crystal:solid",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:crystal:glass",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "POLARITY_SIGNAL_REQUIRES_CONTEXT_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:bench:seat",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:bench:judge-seat",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:bench:work-surface",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:bench:judiciary",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:area:region",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:area:field",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:area:measurement",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:dye:colour",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:avail:benefit",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:always:every-time",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:disruption:interruption",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:cram:pack",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:accompany:go-with",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:accompany:come-with",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:daily:adjective",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:daily:adverb",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:alternate:alternative",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:aunt:relative",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:agent:representative",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:agent:operative",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:bait:lure",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:cycle:sequence",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:cycle:ride",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:dull:boring",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:dull:not-shiny",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:dull:pain",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:dull:blunt",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:commence:begin",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:circus:show",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:channel:television",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:channel:waterway",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:bet:wager-verb",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:bet:certainty",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:bet:wager-noun",
+      "sourceSimilarity": [
+        {
+          "exactFiveTokens": true,
+          "field": "/content/meaningVi",
+          "sharedEightTokenWindows": 0
+        }
+      ],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "SOURCE_SIMILARITY_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:bet:option",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:dissatisfaction:displeasure",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "POLARITY_SIGNAL_REQUIRES_CONTEXT_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:avoid:keep-away",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:devise:plan",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:check-up:examination",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:corps:group",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:dual:twofold",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:analysis:examination",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:brilliant:excellent",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:brilliant:intelligent",
+      "sourceSimilarity": [
+        {
+          "exactFiveTokens": true,
+          "field": "/content/meaningVi",
+          "sharedEightTokenWindows": 0
+        }
+      ],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "SOURCE_SIMILARITY_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:brilliant:bright",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:ashore:land",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "SOURCE_POS_OR_CONSTRUCTION_POLICY_REQUIRES_OWNER_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:curtain:window",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:butter:food",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:cop:officer",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:clear:understandable",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:clear:sky",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:clear:remove",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:clear:transparent",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:concern:worry",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:concern:issue",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:concern:relate",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:concern:trouble",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:chocolate:food",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:consensus:agreement",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:cup:vessel",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:clock:timepiece",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:blonde:hair",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:blonde:person",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:comprise:include",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "SOURCE_POS_OR_CONSTRUCTION_POLICY_REQUIRES_OWNER_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:critique:noun",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:critique:verb",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:clash:noun",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:clash:verb",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:funding:money",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:economics:study",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:exist:be-real",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:formal:ceremonial",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:formal:official",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:frame:border",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:frame:enclose",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:flammable:burnable",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:groom:bridegroom",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:have:possess",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:have:experience",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:have:perfect",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:firstly:first-point",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:farmer:agriculture",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:favourite:adjective",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:favourite:noun",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:frustrating:annoying",
+      "sourceSimilarity": [
+        {
+          "exactFiveTokens": true,
+          "field": "/content/meaningVi",
+          "sharedEightTokenWindows": 0
+        }
+      ],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "SOURCE_SIMILARITY_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:express:communicate",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:film:movie",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:film:record",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:faction:subgroup",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:expel:force-out",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:folk:people",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:folk:traditional",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:gain:obtain",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:gain:increase",
+      "sourceSimilarity": [
+        {
+          "exactFiveTokens": true,
+          "field": "/content/meaningVi",
+          "sharedEightTokenWindows": 0
+        }
+      ],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "SOURCE_SIMILARITY_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:gain:benefit",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:gaze:noun",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:gaze:verb",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:habitat:home",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:eventually:finally",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:finish:complete",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:finish:surface",
+      "sourceSimilarity": [
+        {
+          "exactFiveTokens": true,
+          "field": "/content/meaningVi",
+          "sharedEightTokenWindows": 0
+        }
+      ],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "SOURCE_SIMILARITY_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:finish:ending",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:fixed:unchanging",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:formerly:previously",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:frighten:scare",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:extremely:very",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:haste:hurry",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:escort:accompany",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:hazardous:dangerous",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:entice:attract",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:gratitude:thanks",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:emperor:ruler",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:hermit:recluse",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:heir:inheritor",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:electron:particle",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:enlighten:explain",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "POLARITY_SIGNAL_REQUIRES_CONTEXT_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:excite:interest",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:engrave:carve",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:glucose:sugar",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:happily:cheerfully",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:happily:willingly",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:field:land",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:field:discipline",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:hood:clothing",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:exterior:outside",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:ergonomic:design",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:foe:enemy",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:hence:therefore",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:how:manner",
+      "sourceSimilarity": [
+        {
+          "exactFiveTokens": true,
+          "field": "/content/meaningVi",
+          "sharedEightTokenWindows": 0
+        }
+      ],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "SOURCE_SIMILARITY_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:how:degree",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:hopefully:hope",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:fellow:adjective",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:fellow:person",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:engineer:professional",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:engineer:arrange",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:interpretation:understanding",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:incorrect:wrong",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:indictment:charge",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "POLARITY_SIGNAL_REQUIRES_CONTEXT_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:indictment:criticism",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:ill:sick",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "POLARITY_SIGNAL_REQUIRES_CONTEXT_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:inhabit:live",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:impolite:rude",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:lose:misplace",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:lose:defeat",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:lose:deprivation",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:mine:possessive",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:mine:excavation",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:it:reference",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:it:dummy",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:it:technology",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:lion:animal",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:limitation:restriction",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:jet:aircraft",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:jet:stream",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:intend:plan",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:insertion:putting-in",
+      "sourceSimilarity": [
+        {
+          "exactFiveTokens": true,
+          "field": "/content/meaningVi",
+          "sharedEightTokenWindows": 0
+        }
+      ],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "SOURCE_SIMILARITY_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:loom:shape",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:loom:threat",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:inform:tell",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:ignore:disregard",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:medicine:drug",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:medicine:discipline",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:independence:freedom",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:mainstream:noun",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:mainstream:adjective",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:inflame:intensify",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:manufacturing:production",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:motive:reason",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:implement:carry-out",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:mathematics:subject",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:mature:judgement",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:mature:age-food",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:mature:grown",
+      "sourceSimilarity": [
+        {
+          "exactFiveTokens": true,
+          "field": "/content/meaningVi",
+          "sharedEightTokenWindows": 0
+        }
+      ],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "SOURCE_SIMILARITY_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:mature:grow",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:lad:boy",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:indigenous:native",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:militant:person",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:militant:adjective",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:lesser:smaller",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:must:obligation",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:must:inference",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:married:spouse",
+      "sourceSimilarity": [
+        {
+          "exactFiveTokens": true,
+          "field": "/content/meaningVi",
+          "sharedEightTokenWindows": 0
+        }
+      ],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "SOURCE_SIMILARITY_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:mount:increase",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:mount:organize",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:mount:climb",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:mount:attach",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:impair:weaken",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:longevity:long-life",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:inevitably:unavoidably",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:impulse:urge",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:messenger:carrier",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:if:condition",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:if:whether",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "POLARITY_SIGNAL_REQUIRES_CONTEXT_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:mourn:grieve",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:mammal:animal",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:ironically:unexpected",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:ironically:tone",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:monetary:money",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:invalid:not-valid",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "POLARITY_SIGNAL_REQUIRES_CONTEXT_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:jealous:envy",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:jealous:relationship",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:microbe:organism",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:intellect:mind",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:least:determiner",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:least:pronoun",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:least:adverb",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:many:determiner",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:many:pronoun",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:loyal:faithful",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "SOURCE_POS_OR_CONSTRUCTION_POLICY_REQUIRES_OWNER_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:rational:reasonable",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:overcome:resolve",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:objection:opposition",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:national:adjective",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:national:citizen",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:near:preposition",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:near:adjective",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:near:adverb",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:regulate:control",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:pill:tablet",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:reliability:dependability",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:overly:excessively",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:oblige:require",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:oblige:help",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "POLARITY_SIGNAL_REQUIRES_CONTEXT_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:recipient:receiver",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:primary:main",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:primary:school",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:notice:observe",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:notice:announcement",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:notice:advance",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:parent:family",
+      "sourceSimilarity": [
+        {
+          "exactFiveTokens": true,
+          "field": "/content/meaningVi",
+          "sharedEightTokenWindows": 0
+        }
+      ],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "SOURCE_SIMILARITY_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:poverty:deprivation",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:pick:choose",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:pick:choice",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:pick:harvest",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:provincial:regional",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:night:dark-period",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:night:occasion",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:provide:supply",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "POLARITY_SIGNAL_REQUIRES_CONTEXT_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:rot:decay",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:pet:animal",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:pop:music-noun",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:pop:music-adjective",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:pop:burst",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:pop:visit",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:parade:procession",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:probability:likelihood",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:rating:assessment",
+      "sourceSimilarity": [
+        {
+          "exactFiveTokens": true,
+          "field": "/content/meaningVi",
+          "sharedEightTokenWindows": 0
+        }
+      ],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "SOURCE_SIMILARITY_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:paragraph:text",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:question:query",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:question:interview",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:question:doubt",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:pup:young-dog",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:punishment:penalty",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:partially:partly",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:purple:adjective",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:purple:noun",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:non-profit:organization",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:reconcile:restore-friendship",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:organization:group",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:organization:arrangement",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:package:parcel",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:package:verb",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:package:bundle",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:representative:person",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:representative:typical",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:poster:notice",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:needy:poor",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:portable:movable",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:reasonably:sensibly",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:reasonably:fairly",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:openly:publicly",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:relatively:comparatively",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:once:one-time",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:once:condition",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:once:formerly",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:rental:activity",
+      "sourceSimilarity": [
+        {
+          "exactFiveTokens": true,
+          "field": "/content/meaningVi",
+          "sharedEightTokenWindows": 0
+        }
+      ],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "SOURCE_SIMILARITY_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:rental:fee",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:panic:noun",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:panic:verb",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:ocean:sea",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:refrigerator:appliance",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:puzzle:game",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:puzzle:mystery",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:puzzle:confuse",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:presently:now",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "SOURCE_POS_OR_CONSTRUCTION_POLICY_REQUIRES_OWNER_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:presently:soon",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "SOURCE_POS_OR_CONSTRUCTION_POLICY_REQUIRES_OWNER_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:regardless of:irrespective",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "SOURCE_POS_OR_CONSTRUCTION_POLICY_REQUIRES_OWNER_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:teaching:instruction",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:scenario:possibility",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:terrace:outdoor-space",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:studio:artist",
+      "sourceSimilarity": [
+        {
+          "exactFiveTokens": true,
+          "field": "/content/meaningVi",
+          "sharedEightTokenWindows": 0
+        }
+      ],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "POLARITY_SIGNAL_REQUIRES_CONTEXT_REVIEW",
+        "SOURCE_SIMILARITY_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:studio:production",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:skilled:capable",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:shirt:clothing",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:sponsor:verb",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:sponsor:noun",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:spark:cause",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:spark:emit",
+      "sourceSimilarity": [
+        {
+          "exactFiveTokens": true,
+          "field": "/content/meaningVi",
+          "sharedEightTokenWindows": 0
+        }
+      ],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "SOURCE_SIMILARITY_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:theology:study",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:sunday:weekday",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:sandy:sand",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:specimen:sample",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:specimen:example",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:stroll:walk",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:steer:vehicle",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:steer:guide",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:spread:verb",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:spread:noun",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:spread:coat",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:sale:selling",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:sale:discount",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:valley:landform",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:secular:nonreligious",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:tiny:small",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:vote:choice",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:vote:verb",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:vote:event",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:scholar:researcher",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:thick:dimension",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:thick:consistency",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:sharp:edge",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:sharp:change",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:sharp:pain",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:sharp:mind",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:undergo:experience",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:suspect:verb",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:suspect:person",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:testify:witness",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:somewhere:adverb",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:somewhere:pronoun",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:sympathetic:understanding",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:stranded:stuck",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:seriously:earnestly",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:seriously:severely",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:textile:cloth",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:strictly:rigorously",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:strictly:only",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:supply chain:processes",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:sadly:manner",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:sadly:regret",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:sweat:perspire",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:simultaneously:same-time",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:somehow:unknown-method",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:somehow:unknown-reason",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "POLARITY_SIGNAL_REQUIRES_CONTEXT_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:second:ordinal",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "SOURCE_POS_OR_CONSTRUCTION_POLICY_REQUIRES_OWNER_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:second:sequence",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "SOURCE_POS_OR_CONSTRUCTION_POLICY_REQUIRES_OWNER_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:second:time",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "SOURCE_POS_OR_CONSTRUCTION_POLICY_REQUIRES_OWNER_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:through:preposition",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:through:adverb",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:say:utter",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:say:report",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:say:influence",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:tonight:adverb",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:tonight:noun",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:same:adjective",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:same:pronoun",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:same:adverb",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:soundly:sleep",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:senator:legislator",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:speak:converse",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:speak:utter",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:sad:unhappy",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:seven:number",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "CONSTRUCTION_OR_NUMERAL_POLICY_PENDING",
+        "SOURCE_POS_OR_CONSTRUCTION_POLICY_REQUIRES_OWNER_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:used to:past-habit",
+      "sourceSimilarity": [
+        {
+          "exactFiveTokens": true,
+          "field": "/content/meaningVi",
+          "sharedEightTokenWindows": 0
+        }
+      ],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "SOURCE_SIMILARITY_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:valentine's day:occasion",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:vice versa:reverse",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:wrestle:sport",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:well:adverb",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:well:healthy",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:well:interjection",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:well:water",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:young:adjective",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:young:people",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:young:offspring",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:witch:magic",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:whereabouts:location",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:yours:possessive",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:wire:material",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:wholesale:trade",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "SOURCE_POS_OR_CONSTRUCTION_POLICY_REQUIRES_OWNER_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:year:calendar",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:year:academic",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:with:together",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:with:instrument",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:with:feature",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:youngster:person",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:warm:temperature",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:warm:heat",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:warm:friendly",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:workforce:workers",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:welcome:greeting",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:welcome:verb",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:welcome:adjective",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:welcome:noun",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:weird:strange",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:widow:bereaved-spouse",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:wonderful:excellent",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:weary:tired",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:wheel:part",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:wood:material",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:wood:trees",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:wool:fibre",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:wind:air",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:wind:curve",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:wind:wrap",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:wind:mechanism",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:worried:anxious",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:wrist:joint",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:worship:noun",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:worship:verb",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:yesterday:adverb",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:yesterday:noun",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:yield:harvest",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:yield:produce",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:yield:traffic",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:yield:return",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:yield:give-in",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:winter:season",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:you:addressee",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:you:people-generally",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:wife:spouse",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:worry:verb",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "POLARITY_SIGNAL_REQUIRES_CONTEXT_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:worry:feeling",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:worry:concern",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:while:time",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:while:period",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:while:contrast",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:wake:awaken",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:what:pronoun",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:what:determiner",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:who:question",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:who:relative",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:wet:water",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:walk:verb",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:walk:noun",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:wave:water",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "POLARITY_SIGNAL_REQUIRES_CONTEXT_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:wave:verb",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:wave:gesture",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:widespread:common",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:your:possessive",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:why:reason",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:wonder:verb",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:wonder:feeling",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:wonder:marvel",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:western:direction",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:western:culture",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:yell:shout",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:white-collar:office",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:wit:humour",
+      "sourceSimilarity": [
+        {
+          "exactFiveTokens": true,
+          "field": "/content/meaningVi",
+          "sharedEightTokenWindows": 0
+        }
+      ],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "SOURCE_SIMILARITY_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:wit:person",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:warrant:document",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:warrant:justify",
+      "sourceSimilarity": [
+        {
+          "exactFiveTokens": true,
+          "field": "/content/meaningVi",
+          "sharedEightTokenWindows": 0
+        }
+      ],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "SOURCE_SIMILARITY_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:whip:strike",
+      "sourceSimilarity": [
+        {
+          "exactFiveTokens": true,
+          "field": "/content/meaningVi",
+          "sharedEightTokenWindows": 0
+        }
+      ],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "SOURCE_SIMILARITY_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:whip:beat",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:yourself:reflexive",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:yourself:emphatic",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:way:method",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:way:route",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": [
+        "POLARITY_SIGNAL_REQUIRES_CONTEXT_REVIEW"
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2D:way:degree",
+      "sourceSimilarity": [],
+      "status": "HUMAN_REVIEW_PENDING",
+      "structuralErrors": [],
+      "warnings": []
+    }
+  ]
+}
