@@ -6402,3 +6402,49 @@ decisions/rationale and review scope for these 10, with actual reviewer/evidence
 and independent owner authorization. KEEP content does not approve identity,
 CEFR, rights or release. Stop after publishing this verified offline package;
 no next pack, canonical materialization or Development apply.
+
+
+## 2026-10-08 — Phase 2H.2G owner-authorized DRAFT V2 corrections
+
+The latest owner instruction supersedes the earlier wording-preservation preference
+for relatively, successfully and fully. Exactly four 2H.2F correction fields are
+applied in the additive master-editorial-draft-v2-session-01 workspace. The exact
+original hashes, BEFORE/AFTER text, field provenance and parent revision are
+verified. This authorizes draft editing only, not formal human content approval.
+
+Effective lookup preserves QA1 → 2H.2C → 2H.2D → 2H.2E preview layers before the
+new overlay. 813 effective entries: 810 unchanged, three revised, four changed
+fields, no additions/deletions/key changes or canonical IDs. The seven reviewed
+KEEP records remain content/hash-equivalent. All ten remain available with EN/VI
+definitions/examples and grammar in the new human-readable report.
+
+Use `python -B scripts/phase-2h2g-draft-v2.py --lookup EXACT_PROPOSAL_KEY` for the
+latest draft; `--check` verifies deterministic offline replay. Existing files are
+never overwritten with differing output. Hashing reuses the accepted noncanonical
+editorial revision algorithm; it does not allocate canonical Sense revisions.
+
+New V2 regression: 29 PASS. Existing Phase 2H suites: 258 PASS (287 total), run
+serially. External typecheck/lint/frozen/replay results are recorded separately
+in the new workspace verification-results.json, not fabricated by the generator.
+Accepted 2H.2E/2H.2F fingerprints remain unchanged. DRAFT V2 fingerprint:
+`6633405d49aa0e211265d38be37b074e99cd783d787681d4a25909843a7fe071`.
+
+AI QA verifies exact corrected meanings/grammar against preserved definitions,
+examples and POS; the accepted F replay recomputes full pinned corpus similarity.
+This is not independent human acceptance or exhaustive web originality evidence.
+Original source PSV/JSON/frozen review artifacts and human decision pipeline/ledger
+are untouched. No human content/identity approvals, rights clearance or canonical
+IDs are added; rights remain UNKNOWN_REVIEW_REQUIRED. Hybrid 2.2.1 APPROVED 87/100,
+legacy 2018/history75/exclusions and reference evidence remain protected offline.
+Database access/writes NONE/NONE; Production UNTOUCHED; no media/migration/release.
+
+Publish only the scoped offline draft package to origin/TXH. Preserve all seven
+stashes, eleven existing worktrees and backups; no new branch/worktree. Stop after
+this phase. Next recommendation: scale the improved editorial pipeline to the
+remaining 5,623 headword groups with risk-based QA and separate publication gates.
+Do not start another approval cycle, canonical materialization or Development apply.
+
+Final external validation PASS: direct Node 22.23.2 `tsc -b`, ESLint with zero
+warnings, offline V2 replay at PYTHONHASHSEED=987 and frozen Hybrid release
+validation. All 6,278 accepted byte pins unchanged. Canonical `pnpm typecheck`
+was not run/not claimed PASS; the historical non-TTY limitation remains recorded.

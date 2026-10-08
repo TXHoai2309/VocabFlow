@@ -1,0 +1,84 @@
+{
+  "applicationStatus": "DRAFT_V2_OWNER_AUTHORIZED_CORRECTION",
+  "authorization": {
+    "canonicalAuthorized": false,
+    "canonicalIdsAllocated": 0,
+    "databaseAccess": "NONE",
+    "databaseWrites": "NONE",
+    "exactCorrectionRefs": [
+      "2H2F_SESSION01:relatively:1",
+      "2H2F_SESSION01:successfully:1",
+      "2H2F_SESSION01:fully:1",
+      "2H2F_SESSION01:fully:2"
+    ],
+    "formalHumanContentApprovalsAdded": 0,
+    "identityApprovalsAdded": 0,
+    "production": "UNTOUCHED",
+    "publicationAuthorized": false,
+    "rightsClearancesAdded": 0,
+    "scope": "OWNER_INSTRUCTION_IN_CURRENT_CONVERSATION_CREATE_DRAFT_V2_ONLY"
+  },
+  "corrections": [
+    {
+      "after": "tương đối (khi so sánh với những điều tương tự)",
+      "afterSha256": "f94e7c38f2c1c9e0692187b967eb7abbb51464d3f7c96189609d091fa3417f45",
+      "before": "tương đối; so với",
+      "beforeSha256": "9d80ede2a09c885287f96d26f94fcda3d1b8e91585089363ad80a234cd1e95b9",
+      "correctionRef": "2H2F_SESSION01:relatively:1",
+      "field": "/content/meaningVi",
+      "issueCode": "VI_GLOSS_INCOMPLETE_COMPARATOR",
+      "originalContentHash": "fd113711d3ca42f7a65cb73725629a18ad1627e3df7f30cbd81da23135210498",
+      "ownerDecision": "UNRESOLVED",
+      "proposalKey": "EDITORIAL_2H2D:relatively:comparatively",
+      "rationaleVi": "Loại bỏ gloss so với đứng riêng, giữ cách dùng adverb thể hiện mức độ tương đối.",
+      "registeredInAccepted2H2EOverlayList": false,
+      "sourceType": "GENERATED"
+    },
+    {
+      "after": "Modifies an action to indicate that it achieves the intended result; success does not imply perfection.",
+      "afterSha256": "e6c7d322ee23491666becc0a253117a5c1485d760b3cdf737009037d14b97fa6",
+      "before": "Adverb modifies completed action; does not require perfection.",
+      "beforeSha256": "151bd777902674e643240eebdca23ad1361a900ebb4c7a61f200b31b89a27d82",
+      "correctionRef": "2H2F_SESSION01:successfully:1",
+      "field": "/content/grammarNotesEn",
+      "issueCode": "GRAMMAR_UNSUPPORTED_COMPLETED_ONLY",
+      "originalContentHash": "99646043ac45074b48e9337b63e0c67fc738c9e4952b589c10957fb2d399ba6a",
+      "ownerDecision": "UNRESOLVED",
+      "proposalKey": "EDITORIAL_2H2C:successfully:achieve-result",
+      "rationaleVi": "Không giới hạn adverb vào hành động đã hoàn thành; giữ phân biệt success và perfection.",
+      "registeredInAccepted2H2EOverlayList": false,
+      "sourceType": "GENERATED"
+    },
+    {
+      "after": "hoàn toàn; một cách đầy đủ",
+      "afterSha256": "63da8efe4cd29fc01ca7d500b9520a40df713ab28282c1b68f2a1916fb8b5ac8",
+      "before": "đầy đủ hoặc hoàn toàn đến mức cần thiết",
+      "beforeSha256": "4f75ab20a056b58f96939a21610037944376fa587717397f9d21b94628d3756d",
+      "correctionRef": "2H2F_SESSION01:fully:1",
+      "field": "/content/meaningVi",
+      "issueCode": "VI_GLOSS_MINIMUM_THRESHOLD",
+      "originalContentHash": "a5be2171ca0f8cf79b3591823016f9560b79bb662711a370844679943981209e",
+      "ownerDecision": "UNRESOLVED",
+      "proposalKey": "EDITORIAL_2H2C:fully:completely",
+      "rationaleVi": "Loại bỏ hàm ý chỉ đạt mức cần thiết, giữ complete/full extent.",
+      "registeredInAccepted2H2EOverlayList": false,
+      "sourceType": "GENERATED"
+    },
+    {
+      "after": "Degree adverb used with verbs, adjectives, or participles to express completeness or the full relevant extent.",
+      "afterSha256": "06085745bed658055b0e87bc15f848a9093ff8329e057076e7bfb754ffeaf3e4",
+      "before": "Degree modifier; no promise that understood is objectively verified outside the example.",
+      "beforeSha256": "8ba2ade60b6a66c7696309a1063327a007e748dcd23d603de137ad3882969398",
+      "correctionRef": "2H2F_SESSION01:fully:2",
+      "field": "/content/grammarNotesEn",
+      "issueCode": "GRAMMAR_TOOLING_COMMENT",
+      "originalContentHash": "a5be2171ca0f8cf79b3591823016f9560b79bb662711a370844679943981209e",
+      "ownerDecision": "UNRESOLVED",
+      "proposalKey": "EDITORIAL_2H2C:fully:completely",
+      "rationaleVi": "Bỏ chi tiết kiểm chứng/tooling khỏi ghi chú dành cho người học, thay bằng quy tắc dùng từ.",
+      "registeredInAccepted2H2EOverlayList": false,
+      "sourceType": "GENERATED"
+    }
+  ],
+  "originalProposalOwnerDecisionUnchanged": "UNRESOLVED"
+}

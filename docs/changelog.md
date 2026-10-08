@@ -1,5 +1,17 @@
 # VocabFlow Changelog
 
+## 2026-10-08 — Phase 2H.2G DRAFT V2 correction overlay
+
+- Apply four exact owner-authorized AI correction fields to relatively,
+  successfully and fully in a new additive offline workspace; preserve originals.
+- Resolve 813 effective drafts through existing overlay layers: 810 unchanged,
+  three revised; seven KEEP records unchanged. Include ten-Sense review report.
+- Preserve 2H.2E/2H.2F fingerprints, human approval pipeline, Hybrid 2.2.1 and
+  legacy/history evidence. No formal approval, identity/rights clearance, ID,
+  database access/write, media publication, migration or canonical release.
+- New regression 29 PASS plus 258 existing Phase 2H tests PASS. External check
+  evidence is separate in the new workspace verification-results.json.
+
 ## 2026-10-08 — Balanced Mixed Study queue
 
 - Mixed targets half DUE/half eligible NEW, with the odd slot going to DUE;
