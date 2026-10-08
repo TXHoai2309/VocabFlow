@@ -1,0 +1,3448 @@
+{
+  "actualMultiwordShortfall": {
+    "actual": 8,
+    "cause": "visible (adj) and warming (n) are metadata annotations, not multiword lexical units; frozen selection retained",
+    "sourceFlagCount": 10,
+    "target": 10
+  },
+  "artifactType": "NONCANONICAL_EDITORIAL_DRAFT",
+  "authorization": {
+    "canonicalAuthoring": false,
+    "canonicalIdentity": false,
+    "databaseAccess": false,
+    "databaseWrite": false,
+    "developmentApply": false,
+    "legacyCleanup": false,
+    "mediaPublishing": false,
+    "ownerApproval": false,
+    "production": false,
+    "releasePublication": false,
+    "runtimeMapping": false
+  },
+  "inputFingerprints": {
+    "phase2h1": "58928e98845e326f8d9a268aa160c867443e8497436d9c58fa2b9a5647f10a53",
+    "phase2h2a": "5b754405d9072e79b603e6b008bd8788a7dae7aed4f2eedde3087482fc0bc7ff",
+    "phase2h2b": "a42e4c25cebdf98cdd24f9e9231be81fff36bbdd571496eeff2886b4d1f1bdad",
+    "qa1": "b75b0522e64db5d61cff4adbccd2fb553c72f5d475d6e4370b2075e656b6a40d"
+  },
+  "phase": "2H.2C",
+  "qa1Lessons": [
+    "POS_AND_CONSTRUCTION",
+    "LABEL_EXAMPLE_ALIGNMENT",
+    "DEFINITION_SCOPE",
+    "COLLOCATIONS",
+    "SINGULAR_PLURAL_IDENTITY",
+    "SPECIALIST_FACT_CHECKS",
+    "VALENCY",
+    "COALESCENCE",
+    "HEURISTIC_FALSE_POSITIVES"
+  ],
+  "quotaAudit": {
+    "achieved": {
+      "ADJECTIVE": 35,
+      "ADVERB": 18,
+      "BOTH": 64,
+      "CEFR_A1": 31,
+      "CEFR_A2": 27,
+      "CEFR_B1": 12,
+      "CEFR_B2": 27,
+      "CEFR_C1": 20,
+      "CEFR_CONFLICT": 10,
+      "CEFR_MISSING": 0,
+      "EXISTING_MASTER_LEMMA": 10,
+      "LEGACY_HISTORY": 10,
+      "MULTIWORD_PHRASAL": 10,
+      "NOUN": 72,
+      "OXFORD_ONLY": 36,
+      "POSSIBLE_POLYSEMY": 49,
+      "POS_CONFLICT": 10,
+      "VERB": 26,
+      "VOCAB4600_ONLY": 20
+    },
+    "alphabetBuckets": {
+      "b-d": {
+        "available": 1295,
+        "selected": 20,
+        "target": 20
+      },
+      "e-h": {
+        "available": 955,
+        "selected": 20,
+        "target": 20
+      },
+      "i-m": {
+        "available": 857,
+        "selected": 20,
+        "target": 20
+      },
+      "n-r": {
+        "available": 1154,
+        "selected": 20,
+        "target": 20
+      },
+      "s-v": {
+        "available": 1205,
+        "selected": 20,
+        "target": 20
+      },
+      "w-z": {
+        "available": 186,
+        "selected": 20,
+        "target": 20
+      }
+    },
+    "availableCapacity": {
+      "ADJECTIVE": 1256,
+      "ADVERB": 331,
+      "BOTH": 3225,
+      "CEFR_A1": 856,
+      "CEFR_A2": 770,
+      "CEFR_B1": 693,
+      "CEFR_B2": 1357,
+      "CEFR_C1": 1492,
+      "CEFR_CONFLICT": 83,
+      "CEFR_MISSING": 0,
+      "EXISTING_MASTER_LEMMA": 74,
+      "LEGACY_HISTORY": 47,
+      "MULTIWORD_PHRASAL": 16,
+      "NOUN": 3327,
+      "OXFORD_ONLY": 1391,
+      "POSSIBLE_POLYSEMY": 2041,
+      "POS_CONFLICT": 51,
+      "VERB": 1453,
+      "VOCAB4600_ONLY": 1036
+    },
+    "capacityByAlphabetBucket": {
+      "b-d": {
+        "ADJECTIVE": 247,
+        "ADVERB": 48,
+        "BOTH": 781,
+        "CEFR_A1": 172,
+        "CEFR_A2": 171,
+        "CEFR_B1": 145,
+        "CEFR_B2": 317,
+        "CEFR_C1": 385,
+        "CEFR_CONFLICT": 20,
+        "CEFR_MISSING": 0,
+        "EXISTING_MASTER_LEMMA": 15,
+        "LEGACY_HISTORY": 20,
+        "MULTIWORD_PHRASAL": 0,
+        "NOUN": 805,
+        "OXFORD_ONLY": 272,
+        "POSSIBLE_POLYSEMY": 482,
+        "POS_CONFLICT": 10,
+        "VERB": 373,
+        "VOCAB4600_ONLY": 242
+      },
+      "e-h": {
+        "ADJECTIVE": 227,
+        "ADVERB": 65,
+        "BOTH": 540,
+        "CEFR_A1": 156,
+        "CEFR_A2": 124,
+        "CEFR_B1": 127,
+        "CEFR_B2": 249,
+        "CEFR_C1": 230,
+        "CEFR_CONFLICT": 21,
+        "CEFR_MISSING": 0,
+        "EXISTING_MASTER_LEMMA": 10,
+        "LEGACY_HISTORY": 9,
+        "MULTIWORD_PHRASAL": 0,
+        "NOUN": 541,
+        "OXFORD_ONLY": 238,
+        "POSSIBLE_POLYSEMY": 339,
+        "POS_CONFLICT": 11,
+        "VERB": 243,
+        "VOCAB4600_ONLY": 177
+      },
+      "i-m": {
+        "ADJECTIVE": 222,
+        "ADVERB": 41,
+        "BOTH": 495,
+        "CEFR_A1": 122,
+        "CEFR_A2": 116,
+        "CEFR_B1": 89,
+        "CEFR_B2": 200,
+        "CEFR_C1": 244,
+        "CEFR_CONFLICT": 8,
+        "CEFR_MISSING": 0,
+        "EXISTING_MASTER_LEMMA": 14,
+        "LEGACY_HISTORY": 6,
+        "MULTIWORD_PHRASAL": 4,
+        "NOUN": 510,
+        "OXFORD_ONLY": 202,
+        "POSSIBLE_POLYSEMY": 264,
+        "POS_CONFLICT": 10,
+        "VERB": 191,
+        "VOCAB4600_ONLY": 160
+      },
+      "n-r": {
+        "ADJECTIVE": 250,
+        "ADVERB": 84,
+        "BOTH": 667,
+        "CEFR_A1": 159,
+        "CEFR_A2": 153,
+        "CEFR_B1": 162,
+        "CEFR_B2": 276,
+        "CEFR_C1": 302,
+        "CEFR_CONFLICT": 16,
+        "CEFR_MISSING": 0,
+        "EXISTING_MASTER_LEMMA": 16,
+        "LEGACY_HISTORY": 3,
+        "MULTIWORD_PHRASAL": 5,
+        "NOUN": 679,
+        "OXFORD_ONLY": 276,
+        "POSSIBLE_POLYSEMY": 438,
+        "POS_CONFLICT": 10,
+        "VERB": 296,
+        "VOCAB4600_ONLY": 211
+      },
+      "s-v": {
+        "ADJECTIVE": 272,
+        "ADVERB": 77,
+        "BOTH": 656,
+        "CEFR_A1": 191,
+        "CEFR_A2": 176,
+        "CEFR_B1": 150,
+        "CEFR_B2": 280,
+        "CEFR_C1": 297,
+        "CEFR_CONFLICT": 15,
+        "CEFR_MISSING": 0,
+        "EXISTING_MASTER_LEMMA": 17,
+        "LEGACY_HISTORY": 7,
+        "MULTIWORD_PHRASAL": 5,
+        "NOUN": 687,
+        "OXFORD_ONLY": 327,
+        "POSSIBLE_POLYSEMY": 441,
+        "POS_CONFLICT": 9,
+        "VERB": 306,
+        "VOCAB4600_ONLY": 222
+      },
+      "w-z": {
+        "ADJECTIVE": 38,
+        "ADVERB": 16,
+        "BOTH": 86,
+        "CEFR_A1": 56,
+        "CEFR_A2": 30,
+        "CEFR_B1": 20,
+        "CEFR_B2": 35,
+        "CEFR_C1": 34,
+        "CEFR_CONFLICT": 3,
+        "CEFR_MISSING": 0,
+        "EXISTING_MASTER_LEMMA": 2,
+        "LEGACY_HISTORY": 2,
+        "MULTIWORD_PHRASAL": 2,
+        "NOUN": 105,
+        "OXFORD_ONLY": 76,
+        "POSSIBLE_POLYSEMY": 77,
+        "POS_CONFLICT": 1,
+        "VERB": 44,
+        "VOCAB4600_ONLY": 24
+      }
+    },
+    "dimensionsOverlap": true,
+    "pairwiseAvailableIntersections": {
+      "ADJECTIVE & ADVERB": 71,
+      "ADJECTIVE & CEFR_A1": 157,
+      "ADJECTIVE & CEFR_A2": 159,
+      "ADJECTIVE & CEFR_B1": 175,
+      "ADJECTIVE & CEFR_B2": 312,
+      "ADJECTIVE & CEFR_C1": 325,
+      "ADJECTIVE & CEFR_CONFLICT": 27,
+      "ADJECTIVE & CEFR_MISSING": 0,
+      "ADJECTIVE & EXISTING_MASTER_LEMMA": 21,
+      "ADJECTIVE & LEGACY_HISTORY": 7,
+      "ADJECTIVE & MULTIWORD_PHRASAL": 2,
+      "ADJECTIVE & POSSIBLE_POLYSEMY": 479,
+      "ADJECTIVE & POS_CONFLICT": 28,
+      "ADVERB & CEFR_A1": 102,
+      "ADVERB & CEFR_A2": 57,
+      "ADVERB & CEFR_B1": 48,
+      "ADVERB & CEFR_B2": 86,
+      "ADVERB & CEFR_C1": 38,
+      "ADVERB & CEFR_CONFLICT": 6,
+      "ADVERB & CEFR_MISSING": 0,
+      "ADVERB & EXISTING_MASTER_LEMMA": 6,
+      "ADVERB & LEGACY_HISTORY": 2,
+      "ADVERB & MULTIWORD_PHRASAL": 3,
+      "ADVERB & POSSIBLE_POLYSEMY": 160,
+      "ADVERB & POS_CONFLICT": 11,
+      "BOTH & ADJECTIVE": 722,
+      "BOTH & ADVERB": 154,
+      "BOTH & CEFR_A1": 292,
+      "BOTH & CEFR_A2": 424,
+      "BOTH & CEFR_B1": 371,
+      "BOTH & CEFR_B2": 1019,
+      "BOTH & CEFR_C1": 1192,
+      "BOTH & CEFR_CONFLICT": 83,
+      "BOTH & CEFR_MISSING": 0,
+      "BOTH & EXISTING_MASTER_LEMMA": 52,
+      "BOTH & LEGACY_HISTORY": 23,
+      "BOTH & MULTIWORD_PHRASAL": 0,
+      "BOTH & NOUN": 1983,
+      "BOTH & POSSIBLE_POLYSEMY": 1449,
+      "BOTH & POS_CONFLICT": 51,
+      "BOTH & VERB": 928,
+      "CEFR_A1 & CEFR_A2": 9,
+      "CEFR_A1 & CEFR_B1": 5,
+      "CEFR_A1 & CEFR_B2": 4,
+      "CEFR_A1 & CEFR_C1": 7,
+      "CEFR_A1 & CEFR_MISSING": 0,
+      "CEFR_A2 & CEFR_B1": 6,
+      "CEFR_A2 & CEFR_B2": 13,
+      "CEFR_A2 & CEFR_C1": 5,
+      "CEFR_A2 & CEFR_MISSING": 0,
+      "CEFR_B1 & CEFR_B2": 11,
+      "CEFR_B1 & CEFR_C1": 3,
+      "CEFR_B1 & CEFR_MISSING": 0,
+      "CEFR_B2 & CEFR_C1": 12,
+      "CEFR_B2 & CEFR_MISSING": 0,
+      "CEFR_C1 & CEFR_MISSING": 0,
+      "CEFR_CONFLICT & CEFR_A1": 20,
+      "CEFR_CONFLICT & CEFR_A2": 32,
+      "CEFR_CONFLICT & CEFR_B1": 24,
+      "CEFR_CONFLICT & CEFR_B2": 40,
+      "CEFR_CONFLICT & CEFR_C1": 32,
+      "CEFR_CONFLICT & CEFR_MISSING": 0,
+      "CEFR_CONFLICT & EXISTING_MASTER_LEMMA": 5,
+      "CEFR_CONFLICT & LEGACY_HISTORY": 0,
+      "EXISTING_MASTER_LEMMA & CEFR_A1": 11,
+      "EXISTING_MASTER_LEMMA & CEFR_A2": 12,
+      "EXISTING_MASTER_LEMMA & CEFR_B1": 14,
+      "EXISTING_MASTER_LEMMA & CEFR_B2": 18,
+      "EXISTING_MASTER_LEMMA & CEFR_C1": 19,
+      "EXISTING_MASTER_LEMMA & CEFR_MISSING": 0,
+      "EXISTING_MASTER_LEMMA & LEGACY_HISTORY": 0,
+      "LEGACY_HISTORY & CEFR_A1": 37,
+      "LEGACY_HISTORY & CEFR_A2": 4,
+      "LEGACY_HISTORY & CEFR_B1": 4,
+      "LEGACY_HISTORY & CEFR_B2": 1,
+      "LEGACY_HISTORY & CEFR_C1": 1,
+      "LEGACY_HISTORY & CEFR_MISSING": 0,
+      "MULTIWORD_PHRASAL & CEFR_A1": 3,
+      "MULTIWORD_PHRASAL & CEFR_A2": 3,
+      "MULTIWORD_PHRASAL & CEFR_B1": 0,
+      "MULTIWORD_PHRASAL & CEFR_B2": 3,
+      "MULTIWORD_PHRASAL & CEFR_C1": 3,
+      "MULTIWORD_PHRASAL & CEFR_CONFLICT": 0,
+      "MULTIWORD_PHRASAL & CEFR_MISSING": 0,
+      "MULTIWORD_PHRASAL & EXISTING_MASTER_LEMMA": 1,
+      "MULTIWORD_PHRASAL & LEGACY_HISTORY": 0,
+      "MULTIWORD_PHRASAL & POS_CONFLICT": 0,
+      "NOUN & ADJECTIVE": 192,
+      "NOUN & ADVERB": 35,
+      "NOUN & CEFR_A1": 547,
+      "NOUN & CEFR_A2": 532,
+      "NOUN & CEFR_B1": 414,
+      "NOUN & CEFR_B2": 812,
+      "NOUN & CEFR_C1": 880,
+      "NOUN & CEFR_CONFLICT": 66,
+      "NOUN & CEFR_MISSING": 0,
+      "NOUN & EXISTING_MASTER_LEMMA": 47,
+      "NOUN & LEGACY_HISTORY": 37,
+      "NOUN & MULTIWORD_PHRASAL": 9,
+      "NOUN & POSSIBLE_POLYSEMY": 1357,
+      "NOUN & POS_CONFLICT": 36,
+      "NOUN & VERB": 547,
+      "OXFORD_ONLY & ADJECTIVE": 297,
+      "OXFORD_ONLY & ADVERB": 169,
+      "OXFORD_ONLY & BOTH": 0,
+      "OXFORD_ONLY & CEFR_A1": 559,
+      "OXFORD_ONLY & CEFR_A2": 324,
+      "OXFORD_ONLY & CEFR_B1": 284,
+      "OXFORD_ONLY & CEFR_B2": 208,
+      "OXFORD_ONLY & CEFR_C1": 18,
+      "OXFORD_ONLY & CEFR_CONFLICT": 0,
+      "OXFORD_ONLY & CEFR_MISSING": 0,
+      "OXFORD_ONLY & EXISTING_MASTER_LEMMA": 14,
+      "OXFORD_ONLY & LEGACY_HISTORY": 23,
+      "OXFORD_ONLY & MULTIWORD_PHRASAL": 5,
+      "OXFORD_ONLY & NOUN": 835,
+      "OXFORD_ONLY & POSSIBLE_POLYSEMY": 592,
+      "OXFORD_ONLY & POS_CONFLICT": 0,
+      "OXFORD_ONLY & VERB": 251,
+      "OXFORD_ONLY & VOCAB4600_ONLY": 0,
+      "POSSIBLE_POLYSEMY & CEFR_A1": 440,
+      "POSSIBLE_POLYSEMY & CEFR_A2": 367,
+      "POSSIBLE_POLYSEMY & CEFR_B1": 277,
+      "POSSIBLE_POLYSEMY & CEFR_B2": 471,
+      "POSSIBLE_POLYSEMY & CEFR_C1": 539,
+      "POSSIBLE_POLYSEMY & CEFR_CONFLICT": 49,
+      "POSSIBLE_POLYSEMY & CEFR_MISSING": 0,
+      "POSSIBLE_POLYSEMY & EXISTING_MASTER_LEMMA": 46,
+      "POSSIBLE_POLYSEMY & LEGACY_HISTORY": 17,
+      "POSSIBLE_POLYSEMY & MULTIWORD_PHRASAL": 1,
+      "POSSIBLE_POLYSEMY & POS_CONFLICT": 27,
+      "POS_CONFLICT & CEFR_A1": 11,
+      "POS_CONFLICT & CEFR_A2": 5,
+      "POS_CONFLICT & CEFR_B1": 4,
+      "POS_CONFLICT & CEFR_B2": 15,
+      "POS_CONFLICT & CEFR_C1": 17,
+      "POS_CONFLICT & CEFR_CONFLICT": 3,
+      "POS_CONFLICT & CEFR_MISSING": 0,
+      "POS_CONFLICT & EXISTING_MASTER_LEMMA": 0,
+      "POS_CONFLICT & LEGACY_HISTORY": 0,
+      "VERB & ADJECTIVE": 48,
+      "VERB & ADVERB": 8,
+      "VERB & CEFR_A1": 229,
+      "VERB & CEFR_A2": 213,
+      "VERB & CEFR_B1": 176,
+      "VERB & CEFR_B2": 311,
+      "VERB & CEFR_C1": 363,
+      "VERB & CEFR_CONFLICT": 27,
+      "VERB & CEFR_MISSING": 0,
+      "VERB & EXISTING_MASTER_LEMMA": 31,
+      "VERB & LEGACY_HISTORY": 9,
+      "VERB & MULTIWORD_PHRASAL": 1,
+      "VERB & POSSIBLE_POLYSEMY": 836,
+      "VERB & POS_CONFLICT": 20,
+      "VOCAB4600_ONLY & ADJECTIVE": 237,
+      "VOCAB4600_ONLY & ADVERB": 8,
+      "VOCAB4600_ONLY & BOTH": 0,
+      "VOCAB4600_ONLY & CEFR_A1": 5,
+      "VOCAB4600_ONLY & CEFR_A2": 22,
+      "VOCAB4600_ONLY & CEFR_B1": 38,
+      "VOCAB4600_ONLY & CEFR_B2": 130,
+      "VOCAB4600_ONLY & CEFR_C1": 282,
+      "VOCAB4600_ONLY & CEFR_CONFLICT": 0,
+      "VOCAB4600_ONLY & CEFR_MISSING": 0,
+      "VOCAB4600_ONLY & EXISTING_MASTER_LEMMA": 8,
+      "VOCAB4600_ONLY & LEGACY_HISTORY": 1,
+      "VOCAB4600_ONLY & MULTIWORD_PHRASAL": 11,
+      "VOCAB4600_ONLY & NOUN": 509,
+      "VOCAB4600_ONLY & POSSIBLE_POLYSEMY": 0,
+      "VOCAB4600_ONLY & POS_CONFLICT": 0,
+      "VOCAB4600_ONLY & VERB": 274
+    },
+    "posCountMeaning": "SOURCE_POS_EVIDENCE_MEMBERSHIP; NOT_APPROVED_PRIMARY_POS",
+    "quotaTargets": {
+      "ADJECTIVE": 15,
+      "ADVERB": 15,
+      "BOTH": 40,
+      "CEFR_A1": 1,
+      "CEFR_A2": 1,
+      "CEFR_B1": 1,
+      "CEFR_B2": 1,
+      "CEFR_C1": 1,
+      "CEFR_CONFLICT": 10,
+      "CEFR_MISSING": 1,
+      "EXISTING_MASTER_LEMMA": 10,
+      "LEGACY_HISTORY": 10,
+      "MULTIWORD_PHRASAL": 10,
+      "NOUN": 15,
+      "OXFORD_ONLY": 20,
+      "POSSIBLE_POLYSEMY": 20,
+      "POS_CONFLICT": 10,
+      "VERB": 15,
+      "VOCAB4600_ONLY": 20
+    },
+    "shortages": [
+      {
+        "achieved": 0,
+        "available": 0,
+        "quota": "CEFR_MISSING",
+        "reason": "INSUFFICIENT_ELIGIBLE_CAPACITY",
+        "shortage": 1,
+        "target": 1
+      }
+    ]
+  },
+  "selectionFingerprint": "2d380a64570532fd3afce23b5b84bd9a63dc525d2d56b67453b38f4418456a79",
+  "senses": [
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:breakdown:machine-failure",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:breakdown:relationship-failure",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:breakdown:itemized-analysis",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:behaviour:way-of-acting",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:captive:held-person",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:contingent:subgroup",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:deprive:take-away",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED",
+        "POLARITY_SIGNAL_REQUIRES_CONTEXT_REVIEW"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:cave:rock-chamber",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:dwell:live-in-place",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:both:two-together-determiner",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:both:two-together-pronoun",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:disease:illness",
+      "risks": [
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:bail:conditional-release",
+      "risks": [
+        "POSSIBLE_POLYSEMY",
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:bail:security-money",
+      "risks": [
+        "POSSIBLE_POLYSEMY",
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:combine:join-together",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:clearly:easy-to-understand",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:capitalist:economic-system",
+      "risks": [
+        "POS_CONFLICT",
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:capitalist:owner-investor",
+      "risks": [
+        "POS_CONFLICT",
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:charm:appeal",
+      "risks": [
+        "POSSIBLE_POLYSEMY",
+        "POS_CONFLICT"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:charm:lucky-object",
+      "risks": [
+        "POSSIBLE_POLYSEMY",
+        "POS_CONFLICT"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:drink:liquid-for-drinking",
+      "risks": [
+        "LEGACY_HISTORY",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:drink:swallow-liquid",
+      "risks": [
+        "LEGACY_HISTORY",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:closet:storage-space",
+      "risks": [
+        "CEFR_CONFLICT"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:creature:living-being",
+      "risks": [
+        "EXISTING_MASTER_LEMMA"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:deviate:leave-course",
+      "risks": [
+        "EXISTING_MASTER_LEMMA"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:can:ability",
+      "risks": [
+        "CEFR_CONFLICT",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:can:permission",
+      "risks": [
+        "CEFR_CONFLICT",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:can:metal-container",
+      "risks": [
+        "CEFR_CONFLICT",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:desk:work-table",
+      "risks": [
+        "LEGACY_HISTORY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:furthermore:additional-point",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:exceptional:outstanding",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:exceptional:unusual",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:editor:prepare-publication",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:full:filled-capacity",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:full:not-hungry",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:finger:hand-part",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:grade:assessment-mark",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:grade:quality-level",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:grade:school-year",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:grade:mark-work",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:entrance:way-in",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:entirely:completely",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:embassy:diplomatic-office",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:goodbye:parting-word",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:goodbye:parting-event",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:fully:completely",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:figure:number",
+      "risks": [
+        "CEFR_CONFLICT",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:figure:important-person",
+      "risks": [
+        "CEFR_CONFLICT",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:figure:body-shape",
+      "risks": [
+        "CEFR_CONFLICT",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:figure:calculate",
+      "risks": [
+        "CEFR_CONFLICT",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:effectively:with-good-result",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:effectively:in-practice",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:even:unexpected-inclusion",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:even:divisible-by-two",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:even:level-surface",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:fat:body-fat",
+      "risks": [
+        "CEFR_CONFLICT",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:fat:thick-body",
+      "risks": [
+        "CEFR_CONFLICT",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:fluid:flowing-substance",
+      "risks": [
+        "POSSIBLE_POLYSEMY",
+        "POS_CONFLICT",
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED",
+        "POLARITY_SIGNAL_REQUIRES_CONTEXT_REVIEW"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:fluid:changing",
+      "risks": [
+        "POSSIBLE_POLYSEMY",
+        "POS_CONFLICT",
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:exact:precise",
+      "risks": [
+        "EXISTING_MASTER_LEMMA"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:happy:pleased-feeling",
+      "risks": [
+        "LEGACY_HISTORY",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:happy:willing",
+      "risks": [
+        "LEGACY_HISTORY",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:far:at-distance",
+      "risks": [
+        "EXISTING_MASTER_LEMMA",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:far:distant-side",
+      "risks": [
+        "EXISTING_MASTER_LEMMA",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:go:travel-leave",
+      "risks": [
+        "LEGACY_HISTORY",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:go:attempt-turn",
+      "risks": [
+        "LEGACY_HISTORY",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED",
+        "POLARITY_SIGNAL_REQUIRES_CONTEXT_REVIEW"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:inner:inside",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:idiom:fixed-expression",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:monkey:primate",
+      "risks": [
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:kind:considerate",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:kind:type",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:intriguing:interesting-mysterious",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:importance:significance",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:industry:economic-sector",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:managerial:management-related",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:implicate:link-to-wrongdoing",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:mandarin:chinese-language",
+      "risks": [
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:lodge:rural-holiday-building",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:low:small-height-level",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:low:at-small-height",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:low:minimum-level",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:leg:body-part",
+      "risks": [
+        "LEGACY_HISTORY",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:leg:furniture-support",
+      "risks": [
+        "LEGACY_HISTORY",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:listen:pay-attention-to-sound",
+      "risks": [
+        "LEGACY_HISTORY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:mayor:city-leader",
+      "risks": [
+        "CEFR_CONFLICT"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:martial art:combat-discipline",
+      "risks": [
+        "MULTIWORD_PHRASAL"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:immune system:body-defences",
+      "risks": [
+        "MULTIWORD_PHRASAL",
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:mirror:reflecting-surface",
+      "risks": [
+        "LEGACY_HISTORY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:ice cream:frozen-dessert",
+      "risks": [
+        "MULTIWORD_PHRASAL"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:junk food:low-nutrient-food",
+      "risks": [
+        "MULTIWORD_PHRASAL",
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:repair:fix-damage",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:repair:fixing-work",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:reduce:make-less",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:precede:come-before",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:restaurant:food-business",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:pier:waterside-platform",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:resident:person-living-there",
+      "risks": [
+        "EXISTING_MASTER_LEMMA",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:resident:living-in-place",
+      "risks": [
+        "EXISTING_MASTER_LEMMA",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:plenty:more-than-enough",
+      "risks": [
+        "POS_CONFLICT"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:peer:equal-status",
+      "risks": [
+        "POSSIBLE_POLYSEMY",
+        "POS_CONFLICT"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:peer:look-carefully",
+      "risks": [
+        "POSSIBLE_POLYSEMY",
+        "POS_CONFLICT"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:nature:natural-world",
+      "risks": [
+        "EXISTING_MASTER_LEMMA",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:nature:essential-character",
+      "risks": [
+        "EXISTING_MASTER_LEMMA",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:neither:not-one-of-two-determiner",
+      "risks": [
+        "CEFR_CONFLICT",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:neither:not-one-of-two-pronoun",
+      "risks": [
+        "CEFR_CONFLICT",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:neither:also-not",
+      "risks": [
+        "CEFR_CONFLICT",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:overnight:during-night",
+      "risks": [
+        "POSSIBLE_POLYSEMY",
+        "POS_CONFLICT"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:overnight:very-quickly",
+      "risks": [
+        "POSSIBLE_POLYSEMY",
+        "POS_CONFLICT"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:no one:no-person",
+      "risks": [
+        "MULTIWORD_PHRASAL"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:patch:repair-piece",
+      "risks": [
+        "CEFR_CONFLICT",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:patch:software-fix",
+      "risks": [
+        "CEFR_CONFLICT",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:patch:small-area",
+      "risks": [
+        "CEFR_CONFLICT",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:premium:insurance-payment",
+      "risks": [
+        "POSSIBLE_POLYSEMY",
+        "POS_CONFLICT",
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:premium:extra-price",
+      "risks": [
+        "POSSIBLE_POLYSEMY",
+        "POS_CONFLICT",
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:quiet:little-noise",
+      "risks": [
+        "EXISTING_MASTER_LEMMA",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:quiet:not-talkative",
+      "risks": [
+        "EXISTING_MASTER_LEMMA",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:physician:medical-doctor",
+      "risks": [
+        "CEFR_CONFLICT",
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:read:understand-writing",
+      "risks": [
+        "LEGACY_HISTORY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:per cent:per-hundred",
+      "risks": [
+        "EXISTING_MASTER_LEMMA",
+        "MULTIWORD_PHRASAL",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED",
+        "CONSTRUCTION_OR_NUMERAL_POLICY_PENDING"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:pipe dream:unrealistic-plan",
+      "risks": [
+        "MULTIWORD_PHRASAL"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:next to:beside",
+      "risks": [
+        "MULTIWORD_PHRASAL"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:sponsorship:support-for-activity",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:sympathy:care-for-suffering",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:skiing:sport-on-skis",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:susceptible:easily-affected",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:utter:say",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:scan:make-digital-copy",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:scan:look-over-quickly",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:sick:unwell",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED",
+        "POLARITY_SIGNAL_REQUIRES_CONTEXT_REVIEW"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:sick:nauseated",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:stand:upright-position",
+      "risks": [
+        "CEFR_CONFLICT",
+        "EXISTING_MASTER_LEMMA",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:stand:support-object",
+      "risks": [
+        "CEFR_CONFLICT",
+        "EXISTING_MASTER_LEMMA",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:stand:tolerate",
+      "risks": [
+        "CEFR_CONFLICT",
+        "EXISTING_MASTER_LEMMA",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:solemn:serious",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:station:railway-place",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:station:broadcast-organization",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:shareholder:share-owner",
+      "risks": [
+        "EXISTING_MASTER_LEMMA",
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:terminal:transport-building",
+      "risks": [
+        "CEFR_CONFLICT",
+        "POSSIBLE_POLYSEMY",
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:terminal:end-stage-illness",
+      "risks": [
+        "CEFR_CONFLICT",
+        "POSSIBLE_POLYSEMY",
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:terminal:computer-device",
+      "risks": [
+        "CEFR_CONFLICT",
+        "POSSIBLE_POLYSEMY",
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:successfully:achieve-result",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:subject:topic",
+      "risks": [
+        "POSSIBLE_POLYSEMY",
+        "POS_CONFLICT",
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:subject:liable-to",
+      "risks": [
+        "POSSIBLE_POLYSEMY",
+        "POS_CONFLICT",
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:subject:school-discipline",
+      "risks": [
+        "POSSIBLE_POLYSEMY",
+        "POS_CONFLICT",
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:subject:grammar-role",
+      "risks": [
+        "POSSIBLE_POLYSEMY",
+        "POS_CONFLICT",
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:straight:directly-ahead",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:straight:not-curved",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:teacher:educator",
+      "risks": [
+        "LEGACY_HISTORY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:thereby:as-a-result",
+      "risks": [
+        "POS_CONFLICT"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:small:little-size",
+      "risks": [
+        "LEGACY_HISTORY",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:small:little-amount",
+      "risks": [
+        "LEGACY_HISTORY",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:substantially:considerably",
+      "risks": [
+        "POS_CONFLICT"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:visible (adj):can-be-seen",
+      "risks": [
+        "MULTIWORD_PHRASAL"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:whole:entire",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:whole:complete-unit",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:which:choice-determiner",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:which:choice-pronoun",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:weapon:harm-instrument",
+      "risks": [
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:worsen:become-worse",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:worthy:deserving",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:washing:clothes-to-wash",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:washing:cleaning-with-water",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:wrap:cover-with-material",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:week:seven-day-period",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:worse:less-good",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:worse:less-well",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:worse:more-bad-things",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:zone:defined-area",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:whereas:contrast",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:wound:physical-injury",
+      "risks": [
+        "POSSIBLE_POLYSEMY",
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:wound:injure",
+      "risks": [
+        "POSSIBLE_POLYSEMY",
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:wound:hurt-feelings",
+      "risks": [
+        "POSSIBLE_POLYSEMY",
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:wear:have-on-body",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:whisper:speak-softly",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:whisper:soft-voice",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED",
+        "POLARITY_SIGNAL_REQUIRES_CONTEXT_REVIEW"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:wild:not-domesticated",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:wild:not-cultivated",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:wrong:incorrect",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:wrong:incorrectly",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:wrong:unjust-act",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:wrong:not-working-properly",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED",
+        "POLARITY_SIGNAL_REQUIRES_CONTEXT_REVIEW"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:worker:person-who-works",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:worst:least-good",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:worst:least-well",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:worst:most-bad-things",
+      "risks": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:written:in-writing",
+      "risks": [],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    },
+    {
+      "automatedMeaningVerification": "NOT_POSSIBLE; AI_SELF_REVIEW_NOT_INDEPENDENT_HUMAN_VERIFICATION",
+      "proposalKey": "EDITORIAL_2H2C:warming (n):becoming-warmer",
+      "risks": [
+        "MULTIWORD_PHRASAL"
+      ],
+      "sourceSimilarity": [],
+      "status": "REVIEW",
+      "structuralErrors": [],
+      "warnings": [
+        "HUMAN_CONTENT_REVIEW",
+        "SENSE_IDENTITY_UNRESOLVED",
+        "SENSE_CEFR_UNVERIFIED",
+        "RIGHTS_UNRESOLVED"
+      ]
+    }
+  ]
+}

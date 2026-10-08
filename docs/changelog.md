@@ -3591,3 +3591,17 @@ Accepted fingerprints and all original byte hashes remain unchanged. No app/API,
 runtime mapping, DB, release/legacy or Production change. Separate authorization
 required before Phase 2H.2C or canonical materialization. See ai-progress for
 exact commands and wrapper limits.
+
+
+## 2026-10-08 — Phase 2H.2C offline stratified editorial drafts
+
+- Author 120 new groups / 187 bilingual Sense proposals with zero pilot overlap;
+  freeze deterministic quota/hash selection, six 20-group alphabet buckets.
+- Add source-linked noncanonical structures, GENERATED field provenance,
+  24 five-group full AI review batches, rights/similarity checks and drift replay.
+- Record 11 actual field corrections in seven drafts; report complete previews
+  and honest quota limits: no missing-CEFR candidates, 10 source multiword flags
+  but only eight actual units after annotation review. No human approval implied.
+- 35 new + 76 previous focused tests, replay, direct typecheck/lint and frozen
+  release check PASS. Rights/content/identity/CEFR remain pending; no Master
+  IDs, runtime/DB/legacy or Production operation. Concurrent Study/UI preserved.

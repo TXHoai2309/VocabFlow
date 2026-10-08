@@ -1,0 +1,5268 @@
+{
+  "artifactType": "NONCANONICAL_EDITORIAL_DRAFT",
+  "authorization": {
+    "canonicalAuthoring": false,
+    "canonicalIdentity": false,
+    "databaseAccess": false,
+    "databaseWrite": false,
+    "developmentApply": false,
+    "legacyCleanup": false,
+    "mediaPublishing": false,
+    "ownerApproval": false,
+    "production": false,
+    "releasePublication": false,
+    "runtimeMapping": false
+  },
+  "batches": [
+    {
+      "availableGroups": 5,
+      "batch": 1,
+      "cefrEvidenceCoverage": {
+        "A2": 1,
+        "C1": 2,
+        "C2": 2
+      },
+      "coverage": "FULL_BATCH_AI_REVIEW; SAMPLE_TARGET_EXCEEDS_FIVE_GROUP_BATCH_CAPACITY",
+      "escalationAlreadyCovered": true,
+      "groupCount": 5,
+      "groupKeys": [
+        "NORMALIZED_HEADWORD:breakdown",
+        "NORMALIZED_HEADWORD:behaviour",
+        "NORMALIZED_HEADWORD:captive",
+        "NORMALIZED_HEADWORD:contingent",
+        "NORMALIZED_HEADWORD:deprive"
+      ],
+      "policy": "CONSERVATIVE_FULL_AI_REVIEW_ALL_FIVE_GROUPS",
+      "posCoverage": {
+        "NOUN": 6,
+        "VERB": 1
+      },
+      "requestedLowRiskSample": 10,
+      "sampledKeys": [
+        "NORMALIZED_HEADWORD:breakdown",
+        "NORMALIZED_HEADWORD:deprive",
+        "NORMALIZED_HEADWORD:contingent",
+        "NORMALIZED_HEADWORD:captive",
+        "NORMALIZED_HEADWORD:behaviour"
+      ],
+      "sizeLimit": 5,
+      "sourceCoverage": {
+        "ENGLISH_VOCAB_4600": 4,
+        "OXFORD_5000": 3
+      }
+    },
+    {
+      "availableGroups": 5,
+      "batch": 2,
+      "cefrEvidenceCoverage": {
+        "A1": 1,
+        "A2": 1,
+        "B2": 1,
+        "C1": 1,
+        "C2": 1
+      },
+      "coverage": "FULL_BATCH_AI_REVIEW; SAMPLE_TARGET_EXCEEDS_FIVE_GROUP_BATCH_CAPACITY",
+      "escalationAlreadyCovered": true,
+      "groupCount": 5,
+      "groupKeys": [
+        "NORMALIZED_HEADWORD:cave",
+        "NORMALIZED_HEADWORD:dwell",
+        "NORMALIZED_HEADWORD:both",
+        "NORMALIZED_HEADWORD:disease",
+        "NORMALIZED_HEADWORD:bail"
+      ],
+      "policy": "CONSERVATIVE_FULL_AI_REVIEW_ALL_FIVE_GROUPS",
+      "posCoverage": {
+        "DETERMINER": 1,
+        "NOUN": 4,
+        "PRONOUN": 1,
+        "VERB": 1
+      },
+      "requestedLowRiskSample": 10,
+      "sampledKeys": [
+        "NORMALIZED_HEADWORD:dwell",
+        "NORMALIZED_HEADWORD:bail",
+        "NORMALIZED_HEADWORD:cave",
+        "NORMALIZED_HEADWORD:disease",
+        "NORMALIZED_HEADWORD:both"
+      ],
+      "sizeLimit": 5,
+      "sourceCoverage": {
+        "ENGLISH_VOCAB_4600": 4,
+        "OXFORD_5000": 4
+      }
+    },
+    {
+      "availableGroups": 5,
+      "batch": 3,
+      "cefrEvidenceCoverage": {
+        "A1": 1,
+        "A2": 1,
+        "B1": 1,
+        "C1": 2
+      },
+      "coverage": "FULL_BATCH_AI_REVIEW; SAMPLE_TARGET_EXCEEDS_FIVE_GROUP_BATCH_CAPACITY",
+      "escalationAlreadyCovered": true,
+      "groupCount": 5,
+      "groupKeys": [
+        "NORMALIZED_HEADWORD:combine",
+        "NORMALIZED_HEADWORD:clearly",
+        "NORMALIZED_HEADWORD:capitalist",
+        "NORMALIZED_HEADWORD:charm",
+        "NORMALIZED_HEADWORD:drink"
+      ],
+      "policy": "CONSERVATIVE_FULL_AI_REVIEW_ALL_FIVE_GROUPS",
+      "posCoverage": {
+        "ADJECTIVE": 1,
+        "ADVERB": 1,
+        "NOUN": 4,
+        "VERB": 2
+      },
+      "requestedLowRiskSample": 10,
+      "sampledKeys": [
+        "NORMALIZED_HEADWORD:clearly",
+        "NORMALIZED_HEADWORD:combine",
+        "NORMALIZED_HEADWORD:charm",
+        "NORMALIZED_HEADWORD:drink",
+        "NORMALIZED_HEADWORD:capitalist"
+      ],
+      "sizeLimit": 5,
+      "sourceCoverage": {
+        "ENGLISH_VOCAB_4600": 4,
+        "OXFORD_5000": 5
+      }
+    },
+    {
+      "availableGroups": 5,
+      "batch": 4,
+      "cefrEvidenceCoverage": {
+        "A1": 2,
+        "A2": 2,
+        "B2": 2,
+        "C2": 1
+      },
+      "coverage": "FULL_BATCH_AI_REVIEW; SAMPLE_TARGET_EXCEEDS_FIVE_GROUP_BATCH_CAPACITY",
+      "escalationAlreadyCovered": true,
+      "groupCount": 5,
+      "groupKeys": [
+        "NORMALIZED_HEADWORD:closet",
+        "NORMALIZED_HEADWORD:creature",
+        "NORMALIZED_HEADWORD:deviate",
+        "NORMALIZED_HEADWORD:can",
+        "NORMALIZED_HEADWORD:desk"
+      ],
+      "policy": "CONSERVATIVE_FULL_AI_REVIEW_ALL_FIVE_GROUPS",
+      "posCoverage": {
+        "NOUN": 4,
+        "VERB": 3
+      },
+      "requestedLowRiskSample": 10,
+      "sampledKeys": [
+        "NORMALIZED_HEADWORD:closet",
+        "NORMALIZED_HEADWORD:creature",
+        "NORMALIZED_HEADWORD:deviate",
+        "NORMALIZED_HEADWORD:desk",
+        "NORMALIZED_HEADWORD:can"
+      ],
+      "sizeLimit": 5,
+      "sourceCoverage": {
+        "ENGLISH_VOCAB_4600": 5,
+        "OXFORD_5000": 4
+      }
+    },
+    {
+      "availableGroups": 5,
+      "batch": 5,
+      "cefrEvidenceCoverage": {
+        "A1": 1,
+        "A2": 1,
+        "B1": 1,
+        "B2": 1,
+        "C1": 1
+      },
+      "coverage": "FULL_BATCH_AI_REVIEW; SAMPLE_TARGET_EXCEEDS_FIVE_GROUP_BATCH_CAPACITY",
+      "escalationAlreadyCovered": true,
+      "groupCount": 5,
+      "groupKeys": [
+        "NORMALIZED_HEADWORD:furthermore",
+        "NORMALIZED_HEADWORD:exceptional",
+        "NORMALIZED_HEADWORD:editor",
+        "NORMALIZED_HEADWORD:full",
+        "NORMALIZED_HEADWORD:finger"
+      ],
+      "policy": "CONSERVATIVE_FULL_AI_REVIEW_ALL_FIVE_GROUPS",
+      "posCoverage": {
+        "ADJECTIVE": 4,
+        "ADVERB": 1,
+        "NOUN": 2
+      },
+      "requestedLowRiskSample": 10,
+      "sampledKeys": [
+        "NORMALIZED_HEADWORD:furthermore",
+        "NORMALIZED_HEADWORD:exceptional",
+        "NORMALIZED_HEADWORD:editor",
+        "NORMALIZED_HEADWORD:full",
+        "NORMALIZED_HEADWORD:finger"
+      ],
+      "sizeLimit": 5,
+      "sourceCoverage": {
+        "ENGLISH_VOCAB_4600": 2,
+        "OXFORD_5000": 5
+      }
+    },
+    {
+      "availableGroups": 5,
+      "batch": 6,
+      "cefrEvidenceCoverage": {
+        "A1": 1,
+        "B1": 2,
+        "B2": 1,
+        "C1": 1
+      },
+      "coverage": "FULL_BATCH_AI_REVIEW; SAMPLE_TARGET_EXCEEDS_FIVE_GROUP_BATCH_CAPACITY",
+      "escalationAlreadyCovered": true,
+      "groupCount": 5,
+      "groupKeys": [
+        "NORMALIZED_HEADWORD:grade",
+        "NORMALIZED_HEADWORD:entrance",
+        "NORMALIZED_HEADWORD:entirely",
+        "NORMALIZED_HEADWORD:embassy",
+        "NORMALIZED_HEADWORD:goodbye"
+      ],
+      "policy": "CONSERVATIVE_FULL_AI_REVIEW_ALL_FIVE_GROUPS",
+      "posCoverage": {
+        "ADVERB": 1,
+        "INTERJECTION": 1,
+        "NOUN": 6,
+        "VERB": 1
+      },
+      "requestedLowRiskSample": 10,
+      "sampledKeys": [
+        "NORMALIZED_HEADWORD:grade",
+        "NORMALIZED_HEADWORD:entirely",
+        "NORMALIZED_HEADWORD:entrance",
+        "NORMALIZED_HEADWORD:goodbye",
+        "NORMALIZED_HEADWORD:embassy"
+      ],
+      "sizeLimit": 5,
+      "sourceCoverage": {
+        "ENGLISH_VOCAB_4600": 3,
+        "OXFORD_5000": 5
+      }
+    },
+    {
+      "availableGroups": 5,
+      "batch": 7,
+      "cefrEvidenceCoverage": {
+        "A1": 2,
+        "A2": 2,
+        "B1": 1,
+        "B2": 2
+      },
+      "coverage": "FULL_BATCH_AI_REVIEW; SAMPLE_TARGET_EXCEEDS_FIVE_GROUP_BATCH_CAPACITY",
+      "escalationAlreadyCovered": true,
+      "groupCount": 5,
+      "groupKeys": [
+        "NORMALIZED_HEADWORD:fully",
+        "NORMALIZED_HEADWORD:figure",
+        "NORMALIZED_HEADWORD:effectively",
+        "NORMALIZED_HEADWORD:even",
+        "NORMALIZED_HEADWORD:fat"
+      ],
+      "policy": "CONSERVATIVE_FULL_AI_REVIEW_ALL_FIVE_GROUPS",
+      "posCoverage": {
+        "ADJECTIVE": 3,
+        "ADVERB": 4,
+        "NOUN": 4,
+        "VERB": 1
+      },
+      "requestedLowRiskSample": 10,
+      "sampledKeys": [
+        "NORMALIZED_HEADWORD:figure",
+        "NORMALIZED_HEADWORD:even",
+        "NORMALIZED_HEADWORD:effectively",
+        "NORMALIZED_HEADWORD:fat",
+        "NORMALIZED_HEADWORD:fully"
+      ],
+      "sizeLimit": 5,
+      "sourceCoverage": {
+        "ENGLISH_VOCAB_4600": 2,
+        "OXFORD_5000": 5
+      }
+    },
+    {
+      "availableGroups": 5,
+      "batch": 8,
+      "cefrEvidenceCoverage": {
+        "A1": 3,
+        "A2": 1,
+        "C1": 1
+      },
+      "coverage": "FULL_BATCH_AI_REVIEW; SAMPLE_TARGET_EXCEEDS_FIVE_GROUP_BATCH_CAPACITY",
+      "escalationAlreadyCovered": true,
+      "groupCount": 5,
+      "groupKeys": [
+        "NORMALIZED_HEADWORD:fluid",
+        "NORMALIZED_HEADWORD:exact",
+        "NORMALIZED_HEADWORD:happy",
+        "NORMALIZED_HEADWORD:far",
+        "NORMALIZED_HEADWORD:go"
+      ],
+      "policy": "CONSERVATIVE_FULL_AI_REVIEW_ALL_FIVE_GROUPS",
+      "posCoverage": {
+        "ADJECTIVE": 5,
+        "ADVERB": 1,
+        "NOUN": 2,
+        "VERB": 1
+      },
+      "requestedLowRiskSample": 10,
+      "sampledKeys": [
+        "NORMALIZED_HEADWORD:go",
+        "NORMALIZED_HEADWORD:exact",
+        "NORMALIZED_HEADWORD:fluid",
+        "NORMALIZED_HEADWORD:happy",
+        "NORMALIZED_HEADWORD:far"
+      ],
+      "sizeLimit": 5,
+      "sourceCoverage": {
+        "ENGLISH_VOCAB_4600": 3,
+        "OXFORD_5000": 5
+      }
+    },
+    {
+      "availableGroups": 5,
+      "batch": 9,
+      "cefrEvidenceCoverage": {
+        "A1": 1,
+        "A2": 1,
+        "B2": 1,
+        "C1": 2
+      },
+      "coverage": "FULL_BATCH_AI_REVIEW; SAMPLE_TARGET_EXCEEDS_FIVE_GROUP_BATCH_CAPACITY",
+      "escalationAlreadyCovered": true,
+      "groupCount": 5,
+      "groupKeys": [
+        "NORMALIZED_HEADWORD:inner",
+        "NORMALIZED_HEADWORD:idiom",
+        "NORMALIZED_HEADWORD:monkey",
+        "NORMALIZED_HEADWORD:kind",
+        "NORMALIZED_HEADWORD:intriguing"
+      ],
+      "policy": "CONSERVATIVE_FULL_AI_REVIEW_ALL_FIVE_GROUPS",
+      "posCoverage": {
+        "ADJECTIVE": 3,
+        "NOUN": 3
+      },
+      "requestedLowRiskSample": 10,
+      "sampledKeys": [
+        "NORMALIZED_HEADWORD:intriguing",
+        "NORMALIZED_HEADWORD:inner",
+        "NORMALIZED_HEADWORD:idiom",
+        "NORMALIZED_HEADWORD:monkey",
+        "NORMALIZED_HEADWORD:kind"
+      ],
+      "sizeLimit": 5,
+      "sourceCoverage": {
+        "ENGLISH_VOCAB_4600": 2,
+        "OXFORD_5000": 4
+      }
+    },
+    {
+      "availableGroups": 5,
+      "batch": 10,
+      "cefrEvidenceCoverage": {
+        "A2": 1,
+        "B1": 1,
+        "C1": 1,
+        "C2": 2
+      },
+      "coverage": "FULL_BATCH_AI_REVIEW; SAMPLE_TARGET_EXCEEDS_FIVE_GROUP_BATCH_CAPACITY",
+      "escalationAlreadyCovered": true,
+      "groupCount": 5,
+      "groupKeys": [
+        "NORMALIZED_HEADWORD:importance",
+        "NORMALIZED_HEADWORD:industry",
+        "NORMALIZED_HEADWORD:managerial",
+        "NORMALIZED_HEADWORD:implicate",
+        "NORMALIZED_HEADWORD:mandarin"
+      ],
+      "policy": "CONSERVATIVE_FULL_AI_REVIEW_ALL_FIVE_GROUPS",
+      "posCoverage": {
+        "ADJECTIVE": 1,
+        "NOUN": 3,
+        "VERB": 1
+      },
+      "requestedLowRiskSample": 10,
+      "sampledKeys": [
+        "NORMALIZED_HEADWORD:importance",
+        "NORMALIZED_HEADWORD:implicate",
+        "NORMALIZED_HEADWORD:industry",
+        "NORMALIZED_HEADWORD:mandarin",
+        "NORMALIZED_HEADWORD:managerial"
+      ],
+      "sizeLimit": 5,
+      "sourceCoverage": {
+        "ENGLISH_VOCAB_4600": 5,
+        "OXFORD_5000": 2
+      }
+    },
+    {
+      "availableGroups": 5,
+      "batch": 11,
+      "cefrEvidenceCoverage": {
+        "A1": 2,
+        "A2": 2,
+        "B2": 1,
+        "C2": 1
+      },
+      "coverage": "FULL_BATCH_AI_REVIEW; SAMPLE_TARGET_EXCEEDS_FIVE_GROUP_BATCH_CAPACITY",
+      "escalationAlreadyCovered": true,
+      "groupCount": 5,
+      "groupKeys": [
+        "NORMALIZED_HEADWORD:lodge",
+        "NORMALIZED_HEADWORD:low",
+        "NORMALIZED_HEADWORD:leg",
+        "NORMALIZED_HEADWORD:listen",
+        "NORMALIZED_HEADWORD:mayor"
+      ],
+      "policy": "CONSERVATIVE_FULL_AI_REVIEW_ALL_FIVE_GROUPS",
+      "posCoverage": {
+        "ADJECTIVE": 1,
+        "ADVERB": 1,
+        "NOUN": 5,
+        "VERB": 1
+      },
+      "requestedLowRiskSample": 10,
+      "sampledKeys": [
+        "NORMALIZED_HEADWORD:lodge",
+        "NORMALIZED_HEADWORD:leg",
+        "NORMALIZED_HEADWORD:low",
+        "NORMALIZED_HEADWORD:listen",
+        "NORMALIZED_HEADWORD:mayor"
+      ],
+      "sizeLimit": 5,
+      "sourceCoverage": {
+        "ENGLISH_VOCAB_4600": 5,
+        "OXFORD_5000": 4
+      }
+    },
+    {
+      "availableGroups": 5,
+      "batch": 12,
+      "cefrEvidenceCoverage": {
+        "A1": 1,
+        "A2": 2,
+        "B2": 1,
+        "C2": 1
+      },
+      "coverage": "FULL_BATCH_AI_REVIEW; SAMPLE_TARGET_EXCEEDS_FIVE_GROUP_BATCH_CAPACITY",
+      "escalationAlreadyCovered": true,
+      "groupCount": 5,
+      "groupKeys": [
+        "NORMALIZED_HEADWORD:martial art",
+        "NORMALIZED_HEADWORD:immune system",
+        "NORMALIZED_HEADWORD:mirror",
+        "NORMALIZED_HEADWORD:ice cream",
+        "NORMALIZED_HEADWORD:junk food"
+      ],
+      "policy": "CONSERVATIVE_FULL_AI_REVIEW_ALL_FIVE_GROUPS",
+      "posCoverage": {
+        "NOUN": 5
+      },
+      "requestedLowRiskSample": 10,
+      "sampledKeys": [
+        "NORMALIZED_HEADWORD:mirror",
+        "NORMALIZED_HEADWORD:junk food",
+        "NORMALIZED_HEADWORD:immune system",
+        "NORMALIZED_HEADWORD:ice cream",
+        "NORMALIZED_HEADWORD:martial art"
+      ],
+      "sizeLimit": 5,
+      "sourceCoverage": {
+        "ENGLISH_VOCAB_4600": 4,
+        "OXFORD_5000": 2
+      }
+    },
+    {
+      "availableGroups": 5,
+      "batch": 13,
+      "cefrEvidenceCoverage": {
+        "A1": 1,
+        "A2": 2,
+        "B2": 1,
+        "C1": 1
+      },
+      "coverage": "FULL_BATCH_AI_REVIEW; SAMPLE_TARGET_EXCEEDS_FIVE_GROUP_BATCH_CAPACITY",
+      "escalationAlreadyCovered": true,
+      "groupCount": 5,
+      "groupKeys": [
+        "NORMALIZED_HEADWORD:repair",
+        "NORMALIZED_HEADWORD:reduce",
+        "NORMALIZED_HEADWORD:precede",
+        "NORMALIZED_HEADWORD:restaurant",
+        "NORMALIZED_HEADWORD:pier"
+      ],
+      "policy": "CONSERVATIVE_FULL_AI_REVIEW_ALL_FIVE_GROUPS",
+      "posCoverage": {
+        "NOUN": 3,
+        "VERB": 3
+      },
+      "requestedLowRiskSample": 10,
+      "sampledKeys": [
+        "NORMALIZED_HEADWORD:repair",
+        "NORMALIZED_HEADWORD:pier",
+        "NORMALIZED_HEADWORD:restaurant",
+        "NORMALIZED_HEADWORD:precede",
+        "NORMALIZED_HEADWORD:reduce"
+      ],
+      "sizeLimit": 5,
+      "sourceCoverage": {
+        "ENGLISH_VOCAB_4600": 5,
+        "OXFORD_5000": 4
+      }
+    },
+    {
+      "availableGroups": 5,
+      "batch": 14,
+      "cefrEvidenceCoverage": {
+        "A2": 2,
+        "B1": 2,
+        "B2": 2
+      },
+      "coverage": "FULL_BATCH_AI_REVIEW; SAMPLE_TARGET_EXCEEDS_FIVE_GROUP_BATCH_CAPACITY",
+      "escalationAlreadyCovered": true,
+      "groupCount": 5,
+      "groupKeys": [
+        "NORMALIZED_HEADWORD:resident",
+        "NORMALIZED_HEADWORD:plenty",
+        "NORMALIZED_HEADWORD:peer",
+        "NORMALIZED_HEADWORD:nature",
+        "NORMALIZED_HEADWORD:neither"
+      ],
+      "policy": "CONSERVATIVE_FULL_AI_REVIEW_ALL_FIVE_GROUPS",
+      "posCoverage": {
+        "ADJECTIVE": 1,
+        "ADVERB": 1,
+        "DETERMINER": 1,
+        "NOUN": 4,
+        "PRONOUN": 2,
+        "VERB": 1
+      },
+      "requestedLowRiskSample": 10,
+      "sampledKeys": [
+        "NORMALIZED_HEADWORD:resident",
+        "NORMALIZED_HEADWORD:peer",
+        "NORMALIZED_HEADWORD:nature",
+        "NORMALIZED_HEADWORD:neither",
+        "NORMALIZED_HEADWORD:plenty"
+      ],
+      "sizeLimit": 5,
+      "sourceCoverage": {
+        "ENGLISH_VOCAB_4600": 4,
+        "OXFORD_5000": 5
+      }
+    },
+    {
+      "availableGroups": 5,
+      "batch": 15,
+      "cefrEvidenceCoverage": {
+        "A1": 2,
+        "B2": 2,
+        "C1": 2
+      },
+      "coverage": "FULL_BATCH_AI_REVIEW; SAMPLE_TARGET_EXCEEDS_FIVE_GROUP_BATCH_CAPACITY",
+      "escalationAlreadyCovered": true,
+      "groupCount": 5,
+      "groupKeys": [
+        "NORMALIZED_HEADWORD:overnight",
+        "NORMALIZED_HEADWORD:no one",
+        "NORMALIZED_HEADWORD:patch",
+        "NORMALIZED_HEADWORD:premium",
+        "NORMALIZED_HEADWORD:quiet"
+      ],
+      "policy": "CONSERVATIVE_FULL_AI_REVIEW_ALL_FIVE_GROUPS",
+      "posCoverage": {
+        "ADJECTIVE": 2,
+        "ADVERB": 2,
+        "NOUN": 5,
+        "PRONOUN": 1
+      },
+      "requestedLowRiskSample": 10,
+      "sampledKeys": [
+        "NORMALIZED_HEADWORD:patch",
+        "NORMALIZED_HEADWORD:quiet",
+        "NORMALIZED_HEADWORD:premium",
+        "NORMALIZED_HEADWORD:no one",
+        "NORMALIZED_HEADWORD:overnight"
+      ],
+      "sizeLimit": 5,
+      "sourceCoverage": {
+        "ENGLISH_VOCAB_4600": 4,
+        "OXFORD_5000": 5
+      }
+    },
+    {
+      "availableGroups": 5,
+      "batch": 16,
+      "cefrEvidenceCoverage": {
+        "A1": 2,
+        "A2": 1,
+        "B2": 1,
+        "C1": 1,
+        "C2": 1
+      },
+      "coverage": "FULL_BATCH_AI_REVIEW; SAMPLE_TARGET_EXCEEDS_FIVE_GROUP_BATCH_CAPACITY",
+      "escalationAlreadyCovered": true,
+      "groupCount": 5,
+      "groupKeys": [
+        "NORMALIZED_HEADWORD:physician",
+        "NORMALIZED_HEADWORD:read",
+        "NORMALIZED_HEADWORD:per cent",
+        "NORMALIZED_HEADWORD:pipe dream",
+        "NORMALIZED_HEADWORD:next to"
+      ],
+      "policy": "CONSERVATIVE_FULL_AI_REVIEW_ALL_FIVE_GROUPS",
+      "posCoverage": {
+        "NOUN": 2,
+        "OTHER": 1,
+        "PREPOSITION": 1,
+        "VERB": 1
+      },
+      "requestedLowRiskSample": 10,
+      "sampledKeys": [
+        "NORMALIZED_HEADWORD:next to",
+        "NORMALIZED_HEADWORD:per cent",
+        "NORMALIZED_HEADWORD:read",
+        "NORMALIZED_HEADWORD:pipe dream",
+        "NORMALIZED_HEADWORD:physician"
+      ],
+      "sizeLimit": 5,
+      "sourceCoverage": {
+        "ENGLISH_VOCAB_4600": 2,
+        "OXFORD_5000": 4
+      }
+    },
+    {
+      "availableGroups": 5,
+      "batch": 17,
+      "cefrEvidenceCoverage": {
+        "A2": 1,
+        "B2": 2,
+        "C2": 2
+      },
+      "coverage": "FULL_BATCH_AI_REVIEW; SAMPLE_TARGET_EXCEEDS_FIVE_GROUP_BATCH_CAPACITY",
+      "escalationAlreadyCovered": true,
+      "groupCount": 5,
+      "groupKeys": [
+        "NORMALIZED_HEADWORD:sponsorship",
+        "NORMALIZED_HEADWORD:sympathy",
+        "NORMALIZED_HEADWORD:skiing",
+        "NORMALIZED_HEADWORD:susceptible",
+        "NORMALIZED_HEADWORD:utter"
+      ],
+      "policy": "CONSERVATIVE_FULL_AI_REVIEW_ALL_FIVE_GROUPS",
+      "posCoverage": {
+        "ADJECTIVE": 1,
+        "NOUN": 3,
+        "VERB": 1
+      },
+      "requestedLowRiskSample": 10,
+      "sampledKeys": [
+        "NORMALIZED_HEADWORD:sympathy",
+        "NORMALIZED_HEADWORD:sponsorship",
+        "NORMALIZED_HEADWORD:skiing",
+        "NORMALIZED_HEADWORD:utter",
+        "NORMALIZED_HEADWORD:susceptible"
+      ],
+      "sizeLimit": 5,
+      "sourceCoverage": {
+        "ENGLISH_VOCAB_4600": 4,
+        "OXFORD_5000": 3
+      }
+    },
+    {
+      "availableGroups": 5,
+      "batch": 18,
+      "cefrEvidenceCoverage": {
+        "A1": 3,
+        "B1": 1,
+        "B2": 1,
+        "C2": 1
+      },
+      "coverage": "FULL_BATCH_AI_REVIEW; SAMPLE_TARGET_EXCEEDS_FIVE_GROUP_BATCH_CAPACITY",
+      "escalationAlreadyCovered": true,
+      "groupCount": 5,
+      "groupKeys": [
+        "NORMALIZED_HEADWORD:scan",
+        "NORMALIZED_HEADWORD:sick",
+        "NORMALIZED_HEADWORD:stand",
+        "NORMALIZED_HEADWORD:solemn",
+        "NORMALIZED_HEADWORD:station"
+      ],
+      "policy": "CONSERVATIVE_FULL_AI_REVIEW_ALL_FIVE_GROUPS",
+      "posCoverage": {
+        "ADJECTIVE": 3,
+        "NOUN": 3,
+        "VERB": 4
+      },
+      "requestedLowRiskSample": 10,
+      "sampledKeys": [
+        "NORMALIZED_HEADWORD:scan",
+        "NORMALIZED_HEADWORD:stand",
+        "NORMALIZED_HEADWORD:sick",
+        "NORMALIZED_HEADWORD:station",
+        "NORMALIZED_HEADWORD:solemn"
+      ],
+      "sizeLimit": 5,
+      "sourceCoverage": {
+        "ENGLISH_VOCAB_4600": 3,
+        "OXFORD_5000": 4
+      }
+    },
+    {
+      "availableGroups": 5,
+      "batch": 19,
+      "cefrEvidenceCoverage": {
+        "A1": 1,
+        "A2": 1,
+        "B1": 1,
+        "B2": 1,
+        "C1": 2
+      },
+      "coverage": "FULL_BATCH_AI_REVIEW; SAMPLE_TARGET_EXCEEDS_FIVE_GROUP_BATCH_CAPACITY",
+      "escalationAlreadyCovered": true,
+      "groupCount": 5,
+      "groupKeys": [
+        "NORMALIZED_HEADWORD:shareholder",
+        "NORMALIZED_HEADWORD:terminal",
+        "NORMALIZED_HEADWORD:successfully",
+        "NORMALIZED_HEADWORD:subject",
+        "NORMALIZED_HEADWORD:straight"
+      ],
+      "policy": "CONSERVATIVE_FULL_AI_REVIEW_ALL_FIVE_GROUPS",
+      "posCoverage": {
+        "ADJECTIVE": 3,
+        "ADVERB": 2,
+        "NOUN": 6
+      },
+      "requestedLowRiskSample": 10,
+      "sampledKeys": [
+        "NORMALIZED_HEADWORD:straight",
+        "NORMALIZED_HEADWORD:terminal",
+        "NORMALIZED_HEADWORD:successfully",
+        "NORMALIZED_HEADWORD:subject",
+        "NORMALIZED_HEADWORD:shareholder"
+      ],
+      "sizeLimit": 5,
+      "sourceCoverage": {
+        "ENGLISH_VOCAB_4600": 3,
+        "OXFORD_5000": 5
+      }
+    },
+    {
+      "availableGroups": 5,
+      "batch": 20,
+      "cefrEvidenceCoverage": {
+        "A1": 2,
+        "B2": 1,
+        "C1": 2
+      },
+      "coverage": "FULL_BATCH_AI_REVIEW; SAMPLE_TARGET_EXCEEDS_FIVE_GROUP_BATCH_CAPACITY",
+      "escalationAlreadyCovered": true,
+      "groupCount": 5,
+      "groupKeys": [
+        "NORMALIZED_HEADWORD:teacher",
+        "NORMALIZED_HEADWORD:thereby",
+        "NORMALIZED_HEADWORD:small",
+        "NORMALIZED_HEADWORD:substantially",
+        "NORMALIZED_HEADWORD:visible (adj)"
+      ],
+      "policy": "CONSERVATIVE_FULL_AI_REVIEW_ALL_FIVE_GROUPS",
+      "posCoverage": {
+        "ADJECTIVE": 3,
+        "ADVERB": 2,
+        "NOUN": 1
+      },
+      "requestedLowRiskSample": 10,
+      "sampledKeys": [
+        "NORMALIZED_HEADWORD:substantially",
+        "NORMALIZED_HEADWORD:thereby",
+        "NORMALIZED_HEADWORD:small",
+        "NORMALIZED_HEADWORD:visible (adj)",
+        "NORMALIZED_HEADWORD:teacher"
+      ],
+      "sizeLimit": 5,
+      "sourceCoverage": {
+        "ENGLISH_VOCAB_4600": 3,
+        "OXFORD_5000": 4
+      }
+    },
+    {
+      "availableGroups": 5,
+      "batch": 21,
+      "cefrEvidenceCoverage": {
+        "A1": 1,
+        "A2": 1,
+        "B1": 1,
+        "C1": 1,
+        "C2": 1
+      },
+      "coverage": "FULL_BATCH_AI_REVIEW; SAMPLE_TARGET_EXCEEDS_FIVE_GROUP_BATCH_CAPACITY",
+      "escalationAlreadyCovered": true,
+      "groupCount": 5,
+      "groupKeys": [
+        "NORMALIZED_HEADWORD:whole",
+        "NORMALIZED_HEADWORD:which",
+        "NORMALIZED_HEADWORD:weapon",
+        "NORMALIZED_HEADWORD:worsen",
+        "NORMALIZED_HEADWORD:worthy"
+      ],
+      "policy": "CONSERVATIVE_FULL_AI_REVIEW_ALL_FIVE_GROUPS",
+      "posCoverage": {
+        "ADJECTIVE": 2,
+        "DETERMINER": 1,
+        "NOUN": 2,
+        "PRONOUN": 1,
+        "VERB": 1
+      },
+      "requestedLowRiskSample": 10,
+      "sampledKeys": [
+        "NORMALIZED_HEADWORD:weapon",
+        "NORMALIZED_HEADWORD:which",
+        "NORMALIZED_HEADWORD:worthy",
+        "NORMALIZED_HEADWORD:whole",
+        "NORMALIZED_HEADWORD:worsen"
+      ],
+      "sizeLimit": 5,
+      "sourceCoverage": {
+        "ENGLISH_VOCAB_4600": 3,
+        "OXFORD_5000": 4
+      }
+    },
+    {
+      "availableGroups": 5,
+      "batch": 22,
+      "cefrEvidenceCoverage": {
+        "A1": 1,
+        "A2": 2,
+        "B2": 2
+      },
+      "coverage": "FULL_BATCH_AI_REVIEW; SAMPLE_TARGET_EXCEEDS_FIVE_GROUP_BATCH_CAPACITY",
+      "escalationAlreadyCovered": true,
+      "groupCount": 5,
+      "groupKeys": [
+        "NORMALIZED_HEADWORD:washing",
+        "NORMALIZED_HEADWORD:wrap",
+        "NORMALIZED_HEADWORD:week",
+        "NORMALIZED_HEADWORD:worse",
+        "NORMALIZED_HEADWORD:zone"
+      ],
+      "policy": "CONSERVATIVE_FULL_AI_REVIEW_ALL_FIVE_GROUPS",
+      "posCoverage": {
+        "ADJECTIVE": 1,
+        "ADVERB": 1,
+        "NOUN": 5,
+        "VERB": 1
+      },
+      "requestedLowRiskSample": 10,
+      "sampledKeys": [
+        "NORMALIZED_HEADWORD:worse",
+        "NORMALIZED_HEADWORD:zone",
+        "NORMALIZED_HEADWORD:washing",
+        "NORMALIZED_HEADWORD:wrap",
+        "NORMALIZED_HEADWORD:week"
+      ],
+      "sizeLimit": 5,
+      "sourceCoverage": {
+        "ENGLISH_VOCAB_4600": 4,
+        "OXFORD_5000": 5
+      }
+    },
+    {
+      "availableGroups": 5,
+      "batch": 23,
+      "cefrEvidenceCoverage": {
+        "A1": 1,
+        "A2": 1,
+        "B2": 3
+      },
+      "coverage": "FULL_BATCH_AI_REVIEW; SAMPLE_TARGET_EXCEEDS_FIVE_GROUP_BATCH_CAPACITY",
+      "escalationAlreadyCovered": true,
+      "groupCount": 5,
+      "groupKeys": [
+        "NORMALIZED_HEADWORD:whereas",
+        "NORMALIZED_HEADWORD:wound",
+        "NORMALIZED_HEADWORD:wear",
+        "NORMALIZED_HEADWORD:whisper",
+        "NORMALIZED_HEADWORD:wild"
+      ],
+      "policy": "CONSERVATIVE_FULL_AI_REVIEW_ALL_FIVE_GROUPS",
+      "posCoverage": {
+        "ADJECTIVE": 2,
+        "CONJUNCTION": 1,
+        "NOUN": 2,
+        "VERB": 4
+      },
+      "requestedLowRiskSample": 10,
+      "sampledKeys": [
+        "NORMALIZED_HEADWORD:wound",
+        "NORMALIZED_HEADWORD:wild",
+        "NORMALIZED_HEADWORD:whisper",
+        "NORMALIZED_HEADWORD:whereas",
+        "NORMALIZED_HEADWORD:wear"
+      ],
+      "sizeLimit": 5,
+      "sourceCoverage": {
+        "ENGLISH_VOCAB_4600": 5,
+        "OXFORD_5000": 5
+      }
+    },
+    {
+      "availableGroups": 5,
+      "batch": 24,
+      "cefrEvidenceCoverage": {
+        "A1": 2,
+        "A2": 1,
+        "B1": 1,
+        "B2": 1
+      },
+      "coverage": "FULL_BATCH_AI_REVIEW; SAMPLE_TARGET_EXCEEDS_FIVE_GROUP_BATCH_CAPACITY",
+      "escalationAlreadyCovered": true,
+      "groupCount": 5,
+      "groupKeys": [
+        "NORMALIZED_HEADWORD:wrong",
+        "NORMALIZED_HEADWORD:worker",
+        "NORMALIZED_HEADWORD:worst",
+        "NORMALIZED_HEADWORD:written",
+        "NORMALIZED_HEADWORD:warming (n)"
+      ],
+      "policy": "CONSERVATIVE_FULL_AI_REVIEW_ALL_FIVE_GROUPS",
+      "posCoverage": {
+        "ADJECTIVE": 4,
+        "ADVERB": 2,
+        "NOUN": 4
+      },
+      "requestedLowRiskSample": 10,
+      "sampledKeys": [
+        "NORMALIZED_HEADWORD:warming (n)",
+        "NORMALIZED_HEADWORD:worker",
+        "NORMALIZED_HEADWORD:written",
+        "NORMALIZED_HEADWORD:worst",
+        "NORMALIZED_HEADWORD:wrong"
+      ],
+      "sizeLimit": 5,
+      "sourceCoverage": {
+        "ENGLISH_VOCAB_4600": 1,
+        "OXFORD_5000": 4
+      }
+    }
+  ],
+  "dimensions": [
+    "SEMANTICS",
+    "BOUNDARIES",
+    "POS_CONSTRUCTION",
+    "EN_DEFINITION",
+    "EN_NATURALNESS",
+    "VI_MEANING",
+    "VI_EXAMPLE",
+    "GRAMMAR",
+    "CEFR_UNCERTAINTY",
+    "REDUNDANCY",
+    "PROVENANCE_COPYING",
+    "MASTER_LEGACY",
+    "RIGHTS"
+  ],
+  "escalation": {
+    "fullReviewBatches": [],
+    "fullReviewStrata": [
+      "SOURCE_SIMILARITY"
+    ],
+    "promotionBlocked": true
+  },
+  "externalFactChecks": [
+    {
+      "accessDate": "2026-10-08",
+      "humanApproval": false,
+      "licenseEvidence": null,
+      "reviewerKind": "AI_ASSISTANT",
+      "scope": "Network of cells, tissues and organs; no diagnostic inference.",
+      "textCopied": false,
+      "title": "NIH immune-system overview",
+      "url": "https://research.nih.gov/research-at-nih/immune-system"
+    },
+    {
+      "accessDate": "2026-10-08",
+      "humanApproval": false,
+      "licenseEvidence": null,
+      "reviewerKind": "AI_ASSISTANT",
+      "scope": "Bail release versus possible bond-money sense; jurisdiction caveat retained.",
+      "textCopied": false,
+      "title": "US Courts glossary for journalists",
+      "url": "https://www.mied.uscourts.gov/PDFFIles/JournalistGuideFederalCourts.pdf"
+    },
+    {
+      "accessDate": "2026-10-08",
+      "humanApproval": false,
+      "licenseEvidence": null,
+      "reviewerKind": "AI_ASSISTANT",
+      "scope": "Per-hundred numerical concept and spelling variant; no automatic source POS approval.",
+      "textCopied": false,
+      "title": "Cambridge percent",
+      "url": "https://dictionary.cambridge.org/dictionary/english/percent"
+    },
+    {
+      "accessDate": "2026-10-08",
+      "humanApproval": false,
+      "licenseEvidence": null,
+      "reviewerKind": "AI_ASSISTANT",
+      "scope": "Changing-plans adjective checked separately from physical flowing-substance noun.",
+      "textCopied": false,
+      "title": "Cambridge fluid",
+      "url": "https://dictionary.cambridge.org/us/dictionary/english/fluid?q=fluid_3"
+    },
+    {
+      "accessDate": "2026-10-08",
+      "humanApproval": false,
+      "licenseEvidence": null,
+      "reviewerKind": "AI_ASSISTANT",
+      "scope": "Most monkeys have visible tails; exceptions disclosed; apes excluded in ordinary lexical description.",
+      "textCopied": false,
+      "title": "Smithsonian gibbons and monkey tails",
+      "url": "https://nationalzoo.si.edu/animals/news/how-long-are-gibbons-arms-and-more-gibbon-facts"
+    },
+    {
+      "accessDate": "2026-10-08",
+      "humanApproval": false,
+      "licenseEvidence": null,
+      "reviewerKind": "AI_ASSISTANT",
+      "scope": "End-stage prognosis concept; does not establish an individual outcome or restrict the draft solely to cancer.",
+      "textCopied": false,
+      "title": "NCI terminal cancer",
+      "url": "https://www.cancer.gov/publications/dictionaries/cancer-terms/def/terminal-cancer"
+    }
+  ],
+  "findingsAndCorrections": [
+    {
+      "after": "A primate, distinct from an ape, that usually has a tail and can use its hands to hold things.",
+      "before": "An animal belonging to a group of primates that commonly have tails and can climb.",
+      "field": "definitionEn",
+      "proposalKey": "EDITORIAL_2H2C:monkey:primate",
+      "rationale": "Initial definition did not explicitly exclude apes and could overgeneralize primates. Smithsonian concept check supports most-visible-tail caveat; field clarified without a universal tail claim.",
+      "severity": "SUBSTANTIVE",
+      "stratum": "ANIMAL_TERMINOLOGY",
+      "type": "MEANING"
+    },
+    {
+      "after": "gợi sự tò mò, khiến người ta muốn tìm hiểu thêm",
+      "before": "hấp dẫn, khiến người ta tò mò muốn tìm hiểu thêm",
+      "field": "meaningVi",
+      "proposalKey": "EDITORIAL_2H2C:intriguing:interesting-mysterious",
+      "rationale": "Hấp dẫn alone may suggest general attractiveness; Vietnamese draft narrowed to curiosity. Example remains an intriguing hidden note; owner naturalness review pending.",
+      "severity": "SUBSTANTIVE",
+      "stratum": "ADJECTIVE_AFFECT",
+      "type": "TRANSLATION"
+    },
+    {
+      "after": "To make one's home in a place, usually for a long time.",
+      "before": "To live in a particular place.",
+      "field": "definitionEn",
+      "proposalKey": "EDITORIAL_2H2C:dwell:live-in-place",
+      "rationale": "Full-source exact/8-token screen found overlap in the initial draft or its paired field. AI revised original wording and rechecked bilingual equivalence. A similarity signal is not a legal conclusion; no license or owner approval inferred.",
+      "severity": "SUBSTANTIVE",
+      "stratum": "SOURCE_SIMILARITY",
+      "type": "RIGHTS"
+    },
+    {
+      "after": "To bring separate things together into a single mixture, arrangement or activity.",
+      "before": "To join two or more things so that they work or form something together.",
+      "field": "definitionEn",
+      "proposalKey": "EDITORIAL_2H2C:combine:join-together",
+      "rationale": "Full-source exact/8-token screen found overlap in the initial draft or its paired field. AI revised original wording and rechecked bilingual equivalence. A similarity signal is not a legal conclusion; no license or owner approval inferred.",
+      "severity": "SUBSTANTIVE",
+      "stratum": "SOURCE_SIMILARITY",
+      "type": "RIGHTS"
+    },
+    {
+      "after": "kết hợp những thứ riêng rẽ thành một hỗn hợp, cách sắp xếp hoặc hoạt động chung",
+      "before": "kết hợp hai hay nhiều thứ để chúng cùng hoạt động hoặc tạo thành một thứ",
+      "field": "meaningVi",
+      "proposalKey": "EDITORIAL_2H2C:combine:join-together",
+      "rationale": "Full-source exact/8-token screen found overlap in the initial draft or its paired field. AI revised original wording and rechecked bilingual equivalence. A similarity signal is not a legal conclusion; no license or owner approval inferred.",
+      "severity": "SUBSTANTIVE",
+      "stratum": "SOURCE_SIMILARITY",
+      "type": "TRANSLATION"
+    },
+    {
+      "after": "The teacher asked us to name an even number larger than ten.",
+      "before": "Eight is an even number.",
+      "field": "exampleEn",
+      "proposalKey": "EDITORIAL_2H2C:even:divisible-by-two",
+      "rationale": "Full-source exact/8-token screen found overlap in the initial draft or its paired field. AI revised original wording and rechecked bilingual equivalence. A similarity signal is not a legal conclusion; no license or owner approval inferred.",
+      "severity": "SUBSTANTIVE",
+      "stratum": "SOURCE_SIMILARITY",
+      "type": "RIGHTS"
+    },
+    {
+      "after": "Giáo viên yêu cầu chúng tôi nêu một số chẵn lớn hơn mười.",
+      "before": "Tám là một số chẵn.",
+      "field": "exampleVi",
+      "proposalKey": "EDITORIAL_2H2C:even:divisible-by-two",
+      "rationale": "Full-source exact/8-token screen found overlap in the initial draft or its paired field. AI revised original wording and rechecked bilingual equivalence. A similarity signal is not a legal conclusion; no license or owner approval inferred.",
+      "severity": "SUBSTANTIVE",
+      "stratum": "SOURCE_SIMILARITY",
+      "type": "TRANSLATION"
+    },
+    {
+      "after": "The workshop explored the nature of trust between neighbours.",
+      "before": "We need to understand the nature of the problem.",
+      "field": "exampleEn",
+      "proposalKey": "EDITORIAL_2H2C:nature:essential-character",
+      "rationale": "Full-source exact/8-token screen found overlap in the initial draft or its paired field. AI revised original wording and rechecked bilingual equivalence. A similarity signal is not a legal conclusion; no license or owner approval inferred.",
+      "severity": "CRITICAL",
+      "stratum": "SOURCE_SIMILARITY",
+      "type": "RIGHTS"
+    },
+    {
+      "after": "Buổi thảo luận tìm hiểu bản chất của sự tin tưởng giữa những người hàng xóm.",
+      "before": "Chúng ta cần hiểu bản chất của vấn đề.",
+      "field": "exampleVi",
+      "proposalKey": "EDITORIAL_2H2C:nature:essential-character",
+      "rationale": "Full-source exact/8-token screen found overlap in the initial draft or its paired field. AI revised original wording and rechecked bilingual equivalence. A similarity signal is not a legal conclusion; no license or owner approval inferred.",
+      "severity": "SUBSTANTIVE",
+      "stratum": "SOURCE_SIMILARITY",
+      "type": "TRANSLATION"
+    },
+    {
+      "after": "My boarding pass shows the terminal on the east side of the airport.",
+      "before": "Our flight leaves from the smaller airport terminal.",
+      "field": "exampleEn",
+      "proposalKey": "EDITORIAL_2H2C:terminal:transport-building",
+      "rationale": "Full-source exact/8-token screen found overlap in the initial draft or its paired field. AI revised original wording and rechecked bilingual equivalence. A similarity signal is not a legal conclusion; no license or owner approval inferred.",
+      "severity": "SUBSTANTIVE",
+      "stratum": "SOURCE_SIMILARITY",
+      "type": "RIGHTS"
+    },
+    {
+      "after": "Thẻ lên máy bay của tôi ghi nhà ga nằm ở phía đông sân bay.",
+      "before": "Chuyến bay của chúng tôi khởi hành từ nhà ga sân bay nhỏ hơn.",
+      "field": "exampleVi",
+      "proposalKey": "EDITORIAL_2H2C:terminal:transport-building",
+      "rationale": "Full-source exact/8-token screen found overlap in the initial draft or its paired field. AI revised original wording and rechecked bilingual equivalence. A similarity signal is not a legal conclusion; no license or owner approval inferred.",
+      "severity": "SUBSTANTIVE",
+      "stratum": "SOURCE_SIMILARITY",
+      "type": "TRANSLATION"
+    }
+  ],
+  "groups": [
+    {
+      "actualReviewNote": "Three contexts distinguish machine failure, failed communication and itemized costs; no emotional-diagnosis Sense. Each Vietnamese example retains its event and participants.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:breakdown",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:breakdown:machine-failure",
+        "EDITORIAL_2H2C:breakdown:relationship-failure",
+        "EDITORIAL_2H2C:breakdown:itemized-analysis"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Animal behaviour example is neutral; uncountable noun and UK spelling noted. The translation renders observed reactions without adding a motive.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:behaviour",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:behaviour:way-of-acting"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Noun prisoner scope matches the evidence; no lawful-detention inference. The transfer event and guards remain in Vietnamese.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:captive",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:captive:held-person"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "A representative subgroup is supported; adjective contingency not drafted. Parade example demonstrates membership, not uncertainty.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:contingent",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:contingent:subgroup"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Object plus of-complement explicitly reviewed; village/water deprivation stays causally tied to the power cut.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:deprive",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:deprive:take-away"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Natural hollow in rock excludes buildings; bats are context, not a required feature. Vietnamese keeps the location near the entrance.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:cave",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:cave:rock-chamber"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Live-in-place source supports a literary verb; dwell on is not included. Formal register and intransitive preposition are disclosed.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:dwell",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:dwell:live-in-place"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Shared two-member meaning has two grammatical proposals; possible coalescence is pending. Plural noun versus standalone pronoun checked in the paired examples.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:both",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:both:two-together-determiner",
+        "EDITORIAL_2H2C:both:two-together-pronoun"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Definition avoids equating all disease with infection. Some diseases in the example is faithfully limited in Vietnamese; specialist verification remains pending.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:disease",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:disease:illness"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Release and security-money uses are related but contextually distinct. Financial conditions are not universal; US court evidence checks the concept, not global legal uniformity.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:bail",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POSSIBLE_POLYSEMY",
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:bail:conditional-release",
+        "EDITORIAL_2H2C:bail:security-money"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Transitive object and joined result match; objects remain tables in both languages. Other valencies are usage notes, not automatic new Senses.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:combine",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:combine:join-together"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Understandable manner is demonstrated by explain, not inferred obviousness. The command and recipients remain in translation.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:clearly",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:clearly:easy-to-understand"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Adjective system and noun investor require POS review. Neutral economy description and investor example avoid implying every supporter owns capital.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:capitalist",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POS_CONFLICT",
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:capitalist:economic-system",
+        "EDITORIAL_2H2C:capitalist:owner-investor"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Place appeal and believed lucky object have distinct references. Belief is attributed, not claimed true; the unsupported verb is left for later evidence review.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:charm",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POSSIBLE_POLYSEMY",
+        "POS_CONFLICT"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:charm:appeal",
+        "EDITORIAL_2H2C:charm:lucky-object"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Noun beverage versus verb swallowing distinguished. Water example is not alcohol use; irregular forms and transitivity checked.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:drink",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "LEGACY_HISTORY",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:drink:liquid-for-drinking",
+        "EDITORIAL_2H2C:drink:swallow-liquid"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Cupboard/storage room boundary combined provisionally. Blankets preserve a real storage use; figurative closeted identity not inferred.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:closet",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "CEFR_CONFLICT"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:closet:storage-space"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Unnamed living being is supported. Wet-leaf example and Vietnamese sinh vật correspond; Master overlap is no identity proof.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:creature",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "EXISTING_MASTER_LEMMA"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:creature:living-being"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Deviate from checked; a route can diverge spatially. Proper course in source does not require an ethical judgment in the draft.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:deviate",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "EXISTING_MASTER_LEMMA"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:deviate:leave-course"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Ability, permission and container distinguished. Modal morphology and bare infinitive reviewed; permission example is not mistaken for ability.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:can",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "CEFR_CONFLICT",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:can:ability",
+        "EDITORIAL_2H2C:can:permission",
+        "EDITORIAL_2H2C:can:metal-container"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Work/study table has a concrete location example. History linkage remains an identity blocker, not reuse permission.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:desk",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "LEGACY_HISTORY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:desk:work-table"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Linking adverb adds a supporting fact; semicolon connects independent clauses. Vietnamese hơn nữa preserves addition.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:furthermore",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:furthermore:additional-point"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Outstanding versus unusual distinguished; unusual circumstances are not automatically beneficial. Memory example demonstrates outstanding quality.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:exceptional",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:exceptional:outstanding",
+        "EDITORIAL_2H2C:exceptional:unusual"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Human publication role limited deliberately; software-editor Sense needs other evidence. Paragraph revision has matching participants.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:editor",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:editor:prepare-publication"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Container capacity and satiation are separately contextualized. Full of and predicative full constructions checked; translations preserve the contrast.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:full",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:full:filled-capacity",
+        "EDITORIAL_2H2C:full:not-hungry"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Hand-part meaning retained without resolving thumb conventions. Pointing with one finger supplies the physical use.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:finger",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:finger:hand-part"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "School mark, quality rank, school year and grading action reviewed as distinct proposals. Fourth grade remains source-context school year, not a Vietnamese curriculum classification.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:grade",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:grade:assessment-mark",
+        "EDITORIAL_2H2C:grade:quality-level",
+        "EDITORIAL_2H2C:grade:school-year",
+        "EDITORIAL_2H2C:grade:mark-work"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Physical opening, not admission fee or dramatic arrival. Behind the tree remains a location and does not shift the noun meaning.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:entrance",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:entrance:way-in"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Complete scope is expressed by entirely yours; Vietnamese retains ownership of the decision. No partial hedge introduced.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:entirely",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:entirely:completely"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Institution/building uses coalesced provisionally. Waiting outside illustrates the physical office; no consular-service promise or immigration advice.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:embassy",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:embassy:diplomatic-office"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Expression and nominal parting-use distinguished for representation review. Interjection mapping is a schema-compatible proposal; same core meaning may coalesce.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:goodbye",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:goodbye:parting-word",
+        "EDITORIAL_2H2C:goodbye:parting-event"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Degree modifier of understand reviewed; two students and instructions retained. Completeness is narrative, not a claimed external validation.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:fully",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:fully:completely"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Number data, role-person, body outline and calculated amount reviewed separately. Source understand/figure out group remains unrepresented, not erased or silently merged.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:figure",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "CEFR_CONFLICT",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:figure:number",
+        "EDITORIAL_2H2C:figure:important-person",
+        "EDITORIAL_2H2C:figure:body-shape",
+        "EDITORIAL_2H2C:figure:calculate"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": [
+        2
+      ]
+    },
+    {
+      "actualReviewNote": "Successful action differs from in-practice isolation. The closed bridge and practical consequence remain coupled in Vietnamese.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:effectively",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:effectively:with-good-result",
+        "EDITORIAL_2H2C:effectively:in-practice"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Unexpected inclusion, number parity and flat surface distinguished. Zero/negative whole numbers are not excluded; youngest-child focus retained.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:even",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:even:unexpected-inclusion",
+        "EDITORIAL_2H2C:even:divisible-by-two",
+        "EDITORIAL_2H2C:even:level-surface"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Food/body substance and animal-body adjective distinguished. Label example is descriptive; animal context avoids pejorative person labeling.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:fat",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "CEFR_CONFLICT",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:fat:body-fat",
+        "EDITORIAL_2H2C:fat:thick-body"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Liquid and gas coalesced in one inclusive physical definition. Changing-timetable adjective is abstract; source POS/meaning ambiguity remains pending.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:fluid",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POSSIBLE_POLYSEMY",
+        "POS_CONFLICT",
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:fluid:flowing-substance",
+        "EDITORIAL_2H2C:fluid:changing"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Precision without approximation is demonstrated by the clock instruction. No automatic Master identity or Sense CEFR from lemma matching.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:exact",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "EXISTING_MASTER_LEMMA"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:exact:precise"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Joy/satisfaction coalesced, willingness separate. Happy with and happy to constructions align with their Vietnamese pairs.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:happy",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "LEGACY_HISTORY",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:happy:pleased-feeling",
+        "EDITORIAL_2H2C:happy:willing"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Distance adverb and attributive far end distinguished. Negative did not walk far remains negative in Vietnamese.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:far",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "EXISTING_MASTER_LEMMA",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:far:at-distance",
+        "EDITORIAL_2H2C:far:distant-side"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Travel/leaving coalesced; an activity attempt is separate. Irregular morphology and go to versus a go at checked.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:go",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "LEGACY_HISTORY",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:go:travel-leave",
+        "EDITORIAL_2H2C:go:attempt-turn"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Physical inside position, not private thoughts. Inner pocket and zipper preserve the exact relation.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:inner",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:inner:inside"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Established nonliteral expression distinguished from any multiword string. Break the ice example includes a Vietnamese explanation without claiming a source lexical mapping.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:idiom",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:idiom:fixed-expression"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Primate description excludes apes and avoids universal tail claims. Fruit-reaching is neutral; species boundary still warrants specialist review.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:monkey",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:monkey:primate"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Consideration adjective versus type noun distinguished. Kind of you differs from what kind of paper, with matching Vietnamese constructions.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:kind",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:kind:considerate",
+        "EDITORIAL_2H2C:kind:type"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Stimulus adjective, not a person's intrigued state. Hidden-note example creates curiosity; translation preserves an appealing mystery.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:intriguing",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:intriguing:interesting-mysterious"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Uncountable significance noun; importance of keeping the path clear checked. Vietnamese retains the action as its complement.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:importance",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:importance:significance"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Sector can include services, not only factories. Fishing example matches the economic sense; diligence not invented.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:industry",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:industry:economic-sector"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Management-related adjective supported. Skills example does not impose an executive rank or job classification.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:managerial",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:managerial:management-related"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Evidence suggests involvement, not proven guilt. Revised definition and Vietnamese example retain uncertainty; legal reasoning not offered.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:implicate",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:implicate:link-to-wrongdoing"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Capitalized language display proposed without merging the source key. Mandarin varieties and Standard Chinese relationship checked; source two-language simplification not reused.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:mandarin",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:mandarin:chinese-language"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Rural/mountain accommodation noun only. Overnight walking-group context does not require every lodge to serve hunters exclusively.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:lodge",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:lodge:rural-holiday-building"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Scalar adjective, manner/position adverb and a minimum-level nominal use distinguished. Source enum mappings and possible usage coalescence remain pending.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:low",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:low:small-height-level",
+        "EDITORIAL_2H2C:low:at-small-height",
+        "EDITORIAL_2H2C:low:minimum-level"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Body limb and furniture support are separately demonstrated. Same metaphorical relationship does not justify canonical identity reuse.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:leg",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "LEGACY_HISTORY",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:leg:body-part",
+        "EDITORIAL_2H2C:leg:furniture-support"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Listen to complement mandatory in example; deliberate attention not mere hearing. Vietnamese command targets the same announcement.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:listen",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "LEGACY_HISTORY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:listen:pay-attention-to-sound"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Municipal official description accommodates jurisdiction variation. Town-hall welcome is descriptive and not evidence of appointment method.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:mayor",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "CEFR_CONFLICT"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:mayor:city-leader"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Countable discipline, not an instruction in combat. Judo example illustrates membership; singular/plural convention disclosed.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:martial art",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "MULTIWORD_PHRASAL"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:martial art:combat-discipline"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Network of cells/tissues/organs checked against NIH overview; no single-organ or guaranteed-cure claim. Diagram example contains no medical guidance.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:immune system",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "MULTIWORD_PHRASAL",
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:immune system:body-defences"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Reflective object only; scarf checking is natural and faithfully paired. No figurative verb or history reassignment.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:mirror",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "LEGACY_HISTORY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:mirror:reflecting-surface"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Frozen dessert allows varying ingredients; not an absolute dairy rule. Shared mango serving is unchanged in translation.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:ice cream",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "MULTIWORD_PHRASAL"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:ice cream:frozen-dessert"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Draft corrected away from equating every quick snack with junk food. Nutrient-based usual pattern is descriptive; personalized diet advice absent.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:junk food",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "MULTIWORD_PHRASAL",
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:junk food:low-nutrient-food"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Fixing damage action and repair work noun distinguished. Handle/screw and roof-before-rainy-season examples preserve their separate references.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:repair",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:repair:fix-damage",
+        "EDITORIAL_2H2C:repair:fixing-work"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Make-less meaning with electricity-use object reviewed. By/to distinction is usage guidance, not an unsupported new classification.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:reduce",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:reduce:make-less"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Direct object, order before, no to-complement. Welcome speech before concert matches Vietnamese timing.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:precede",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:precede:come-before"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Meal business not restricted to waiter service. Lunch deadline retained; no imported cuisine taxonomy.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:restaurant",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:restaurant:food-business"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Projects from shore over water, does not require a second-bank span. Boat-viewing example supports recreational use without making it exclusive.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:pier",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:pier:waterside-platform"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Person noun and residential adjective share core living-place meaning. Local/longer-term residence is not a legal immigration status determination.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:resident",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "EXISTING_MASTER_LEMMA",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:resident:person-living-there",
+        "EDITORIAL_2H2C:resident:living-in-place"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Sufficient amount expressed in plenty of chairs; nominal/pronoun convention unresolved. Enough chairs for guests, not an invented precise count.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:plenty",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POS_CONFLICT"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:plenty:more-than-enough"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Age/status noun groups combined provisionally; careful-looking verb separate. Through gap is intransitive and distinct from peers as classmates.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:peer",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POSSIBLE_POLYSEMY",
+        "POS_CONFLICT"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:peer:equal-status",
+        "EDITORIAL_2H2C:peer:look-carefully"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Natural world and essential character distinguished. River study versus nature of trust provide corresponding contextual cues. Initial problem example matched source wording; paired example revised and full-source stratum rechecked.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:nature",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "EXISTING_MASTER_LEMMA",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:nature:natural-world",
+        "EDITORIAL_2H2C:nature:essential-character"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Two-member exclusion determiner/pronoun versus negative addition reviewed. Inversion neither can checked; neither of agreement convention remains pending.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:neither",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "CEFR_CONFLICT",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:neither:not-one-of-two-determiner",
+        "EDITORIAL_2H2C:neither:not-one-of-two-pronoun",
+        "EDITORIAL_2H2C:neither:also-not"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Literal duration and figurative sudden fame distinguished. Almost qualifier preserved; metaphor is not translated as a verified one-night duration.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:overnight",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POSSIBLE_POLYSEMY",
+        "POS_CONFLICT"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:overnight:during-night",
+        "EDITORIAL_2H2C:overnight:very-quickly"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Indefinite two-word pronoun and singular agreement checked. No one knew translates to không ai biết, without loss of negation.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:no one",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "MULTIWORD_PHRASAL"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:no one:no-person"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Repair material, software update and localized area distinguished. Each paired example demonstrates its intended domain without taxonomy allocation.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:patch",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "CEFR_CONFLICT",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:patch:repair-piece",
+        "EDITORIAL_2H2C:patch:software-fix",
+        "EDITORIAL_2H2C:patch:small-area"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Insurance payment and extra-price noun senses distinguished. Revised seat example excludes default adjective assumptions; no financial recommendation.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:premium",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POSSIBLE_POLYSEMY",
+        "POS_CONFLICT",
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:premium:insurance-payment",
+        "EDITORIAL_2H2C:premium:extra-price"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Little noise and little speech separately contextualized. Smiling does not disprove quiet behaviour or imply a diagnosis.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:quiet",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "EXISTING_MASTER_LEMMA",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:quiet:little-noise",
+        "EDITORIAL_2H2C:quiet:not-talkative"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Qualified medical-doctor noun; regional surgeon contrast noted. Educational talk example is not diagnosis or treatment.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:physician",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "CEFR_CONFLICT",
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:physician:medical-doctor"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Comprehension of writing with silent/aloud use combined. Irregular pronunciation noted without audio output; instructions translated faithfully.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:read",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "LEGACY_HISTORY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:read:understand-writing"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Per-hundred numerical expression reviewed; source NOUN/ADJECTIVE/ADVERB assignments not auto-approved. OTHER fallback leaves numeral/lexical-unit policy explicit.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:per cent",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "EXISTING_MASTER_LEMMA",
+        "MULTIWORD_PHRASAL",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:per cent:per-hundred"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Unrealistic hope idiom, not literal pipe. Funding condition and still-unrealized garden remain paired; no prediction of absolute impossibility.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:pipe dream",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "MULTIWORD_PHRASAL"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:pipe dream:unrealistic-plan"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Spatial beside preposition only. Bicycle/gate example demonstrates proximity; nearly construction not invented.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:next to",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "MULTIWORD_PHRASAL"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:next to:beside"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Support beyond money allowed; shops/concert context concrete. Publicity is possible but not made universal.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:sponsorship",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:sponsorship:support-for-activity"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Care for suffering, not automatic agreement. Pet loss and neighbours remain in Vietnamese without medical claims.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:sympathy",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:sympathy:care-for-suffering"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Snow-skis activity excludes water-skiing in this proposal. Gentle slope is narrative context, not a safety recommendation.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:skiing",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:skiing:sport-on-skis"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Susceptible to complement; material fading avoids medical prognosis. Thin curtains and sunlight remain in both languages.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:susceptible",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:susceptible:easily-affected"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Transitive saying verb, not adjective complete. Did not utter a word preserves negation in the paired translation.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:utter",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:utter:say"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Digital capture versus targeted quick reading distinguished. Signed form and brother's name separate the meanings; no template substitution.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:scan",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:scan:make-digital-copy",
+        "EDITORIAL_2H2C:scan:look-over-quickly"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "General illness versus nausea distinguished and regional context stated. Winding-road example shows nausea, not a diagnosed disease.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:sick",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:sick:unwell",
+        "EDITORIAL_2H2C:sick:nauseated"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Upright verb, support noun and tolerate verb distinguished. Cannot stand is a negative tolerance construction; object fan noise preserved.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:stand",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "CEFR_CONFLICT",
+        "EXISTING_MASTER_LEMMA",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:stand:upright-position",
+        "EDITORIAL_2H2C:stand:support-object",
+        "EDITORIAL_2H2C:stand:tolerate"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Serious manner need not imply honesty. Ceremony example matches; source honesty overstatement is not reused.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:solemn",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:solemn:serious"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Railway facility and broadcasting institution distinguished. Arrival versus interview demonstrate different referents.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:station",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:station:railway-place",
+        "EDITORIAL_2H2C:station:broadcast-organization"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Individual/organization holding shares supported; no automatic manager status. Company report example does not offer investment advice.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:shareholder",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "EXISTING_MASTER_LEMMA",
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:shareholder:share-owner"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Transport building, end-stage illness and computer device distinguished. Medical wording remains expected prognosis, not guaranteed timing; specialist review pending.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:terminal",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "CEFR_CONFLICT",
+        "POSSIBLE_POLYSEMY",
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:terminal:transport-building",
+        "EDITORIAL_2H2C:terminal:end-stage-illness",
+        "EDITORIAL_2H2C:terminal:computer-device"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Intended outcome, not perfection. Piano/upstairs participants and result retained.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:successfully",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:successfully:achieve-result"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Topic, condition-sensitive adjective, school discipline and grammatical subject reviewed. Passive clauses show why subject cannot always mean doer; verb source evidence remains unrepresented.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:subject",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POSSIBLE_POLYSEMY",
+        "POS_CONFLICT",
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:subject:topic",
+        "EDITORIAL_2H2C:subject:liable-to",
+        "EDITORIAL_2H2C:subject:school-discipline",
+        "EDITORIAL_2H2C:subject:grammar-role"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Direction adverb versus shape adjective distinguished. Flat-adverb construction in walk straight is retained as valid; no identity-related colloquial meaning introduced.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:straight",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:straight:directly-ahead",
+        "EDITORIAL_2H2C:straight:not-curved"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Education profession noun; paper-folding example demonstrates instruction. History linkage remains preserved and unresolved.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:teacher",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "LEGACY_HISTORY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:teacher:educator"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Result-linking adverb with participial clause checked. Labeling boxes makes unpacking easier; source CONJUNCTION conflict left pending.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:thereby",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POS_CONFLICT"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:thereby:as-a-result"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Physical size versus low amount/chance proposals. Scale separation is tentative and requires boundary review; example translations retain dimensions.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:small",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "LEGACY_HISTORY",
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:small:little-size",
+        "EDITORIAL_2H2C:small:little-amount"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Degree adverb of reduction, not an adjective despite source conflict. Considerable change does not impose a numerical threshold.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:substantially",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POS_CONFLICT"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:substantially:considerably"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Annotation removal is a display proposal only; candidate key stays exact. Can-be-seen definition and viewpoint example checked; false multiword source flag disclosed.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:visible (adj)",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "MULTIWORD_PHRASAL"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:visible (adj):can-be-seen"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Complete adjective and nominal complete-unit use distinguished provisionally. Entire afternoon versus book-as-unit context retained.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:whole",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:whole:entire",
+        "EDITORIAL_2H2C:whole:complete-unit"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Limited-choice interrogative determiner/pronoun usages reviewed. Relative uses not mechanically drafted from the two source groups.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:which",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:which:choice-determiner",
+        "EDITORIAL_2H2C:which:choice-pronoun"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Designed-or-used harm instrument avoids limiting to firearms. Museum example is descriptive; no weapon-use instruction.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:weapon",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:weapon:harm-instrument"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Intransitive become-worse example matches source. Transitive valency noted conditionally, no forced new Sense or wrong object in example.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:worsen",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:worsen:become-worse"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Deserving evaluative adjective, not objective approval. Worthy of pattern checked; volunteer example contextual.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:worthy",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:worthy:deserving"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Laundry objects versus washing activity reviewed. Clothes hanging differs from time spent washing curtains; representation may coalesce.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:washing",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:washing:clothes-to-wash",
+        "EDITORIAL_2H2C:washing:cleaning-with-water"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Wrap object in material checked; towel protects a cup. Alternative around construction noted without extra Sense allocation.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wrap",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:wrap:cover-with-material"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Seven-day period coalesces source periodic construction. In a week remains a duration; no arbitrary first-day convention.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:week",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:week:seven-day-period"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Comparative adjective, adverb and nominal worse distinct by syntax. Played worse is comparative badly; nominal form still representation pending.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:worse",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:worse:less-good",
+        "EDITORIAL_2H2C:worse:less-well",
+        "EDITORIAL_2H2C:worse:more-bad-things"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Purpose/rule/feature-defined area supported. Pedestrian zone example matches without creating a canonical topic or location.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:zone",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:zone:defined-area"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Contrast of two clauses, not a time adverb. Sunny versus cool remains faithful, no invented cause.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:whereas",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:whereas:contrast"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Physical injury noun/verb and emotional-hurt verb reviewed. Distinct pronunciation from wind noted; nurse example provides no treatment directions.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wound",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POSSIBLE_POLYSEMY",
+        "SPECIALIST_OR_SENSITIVE"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:wound:physical-injury",
+        "EDITORIAL_2H2C:wound:injure",
+        "EDITORIAL_2H2C:wound:hurt-feelings"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Having clothing on, not putting it on. Scarf example and wore morphology checked; Vietnamese quàng keeps the worn state in context.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wear",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:wear:have-on-body"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Soft-speech action and utterance/voice noun proposals. Nearby audibility and rain context natural; no claim all whispers are secrets.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:whisper",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:whisper:speak-softly",
+        "EDITORIAL_2H2C:whisper:soft-voice"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Animal untamed and plant uncultivated proposals may coalesce. Rabbits/flowers contexts match; wild does not automatically mean aggressive.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wild",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:wild:not-domesticated",
+        "EDITORIAL_2H2C:wild:not-cultivated"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Incorrect adjective, flat adverb, moral act and fault-state adjective reviewed. Spelled wrong remains valid adverb; wrong with construction checked.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wrong",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:wrong:incorrect",
+        "EDITORIAL_2H2C:wrong:incorrectly",
+        "EDITORIAL_2H2C:wrong:unjust-act",
+        "EDITORIAL_2H2C:wrong:not-working-properly"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Job/work person not limited to factories. Carrying shelves is plausible; employment status not inferred.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:worker",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:worker:person-who-works"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Superlative adjective/adverb and nominal possibility reviewed. Three-team comparison checked; the is not forced before performed worst.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:worst",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "POSSIBLE_POLYSEMY"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:worst:least-good",
+        "EDITORIAL_2H2C:worst:least-well",
+        "EDITORIAL_2H2C:worst:most-bad-things"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Writing-versus-speech adjective, not merely any past-tense verb. Parcel instructions context matches; participial relation pending.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:written",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:written:in-writing"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    },
+    {
+      "actualReviewNote": "Annotation removed only in proposed display. Temperature-rise nominal includes causative/inchoative variation; no automatic global-climate topic or history merge.",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:warming (n)",
+      "coverageCaution": "Draft set is not an exhaustive approved source-to-Sense mapping; unrepresented uses need later evidence and boundary review",
+      "fullGroupReviewPerformed": true,
+      "highRiskFlags": [
+        "MULTIWORD_PHRASAL"
+      ],
+      "humanLinguisticReview": "PENDING",
+      "humanReviewer": null,
+      "identityDecision": "UNRESOLVED",
+      "ownerDecision": "UNRESOLVED",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "senseKeys": [
+        "EDITORIAL_2H2C:warming (n):becoming-warmer"
+      ],
+      "sourceRights": "UNKNOWN_REVIEW_REQUIRED",
+      "unrepresentedOxfordOrdinals": []
+    }
+  ],
+  "inputFingerprints": {
+    "phase2h1": "58928e98845e326f8d9a268aa160c867443e8497436d9c58fa2b9a5647f10a53",
+    "phase2h2a": "5b754405d9072e79b603e6b008bd8788a7dae7aed4f2eedde3087482fc0bc7ff",
+    "phase2h2b": "a42e4c25cebdf98cdd24f9e9231be81fff36bbdd571496eeff2886b4d1f1bdad",
+    "qa1": "b75b0522e64db5d61cff4adbccd2fb553c72f5d475d6e4370b2075e656b6a40d"
+  },
+  "phase": "2H.2C",
+  "reviewLimitation": "AI_AUTHOR_SELF_REVIEW; NO_INDEPENDENT_HUMAN_EDITORIAL_ACCEPTANCE",
+  "selectionFingerprint": "2d380a64570532fd3afce23b5b84bd9a63dc525d2d56b67453b38f4418456a79"
+}

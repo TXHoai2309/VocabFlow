@@ -1,0 +1,112 @@
+[
+  {
+    "proposalKey": "EDITORIAL_2H2C:monkey:primate",
+    "field": "definitionEn",
+    "before": "An animal belonging to a group of primates that commonly have tails and can climb.",
+    "after": "A primate, distinct from an ape, that usually has a tail and can use its hands to hold things.",
+    "type": "MEANING",
+    "severity": "SUBSTANTIVE",
+    "stratum": "ANIMAL_TERMINOLOGY",
+    "rationale": "Initial definition did not explicitly exclude apes and could overgeneralize primates. Smithsonian concept check supports most-visible-tail caveat; field clarified without a universal tail claim."
+  },
+  {
+    "proposalKey": "EDITORIAL_2H2C:intriguing:interesting-mysterious",
+    "field": "meaningVi",
+    "before": "hấp dẫn, khiến người ta tò mò muốn tìm hiểu thêm",
+    "after": "gợi sự tò mò, khiến người ta muốn tìm hiểu thêm",
+    "type": "TRANSLATION",
+    "severity": "SUBSTANTIVE",
+    "stratum": "ADJECTIVE_AFFECT",
+    "rationale": "Hấp dẫn alone may suggest general attractiveness; Vietnamese draft narrowed to curiosity. Example remains an intriguing hidden note; owner naturalness review pending."
+  },
+  {
+    "proposalKey": "EDITORIAL_2H2C:dwell:live-in-place",
+    "field": "definitionEn",
+    "before": "To live in a particular place.",
+    "after": "To make one's home in a place, usually for a long time.",
+    "type": "RIGHTS",
+    "severity": "SUBSTANTIVE",
+    "stratum": "SOURCE_SIMILARITY",
+    "rationale": "Full-source exact/8-token screen found overlap in the initial draft or its paired field. AI revised original wording and rechecked bilingual equivalence. A similarity signal is not a legal conclusion; no license or owner approval inferred."
+  },
+  {
+    "proposalKey": "EDITORIAL_2H2C:combine:join-together",
+    "field": "definitionEn",
+    "before": "To join two or more things so that they work or form something together.",
+    "after": "To bring separate things together into a single mixture, arrangement or activity.",
+    "type": "RIGHTS",
+    "severity": "SUBSTANTIVE",
+    "stratum": "SOURCE_SIMILARITY",
+    "rationale": "Full-source exact/8-token screen found overlap in the initial draft or its paired field. AI revised original wording and rechecked bilingual equivalence. A similarity signal is not a legal conclusion; no license or owner approval inferred."
+  },
+  {
+    "proposalKey": "EDITORIAL_2H2C:combine:join-together",
+    "field": "meaningVi",
+    "before": "kết hợp hai hay nhiều thứ để chúng cùng hoạt động hoặc tạo thành một thứ",
+    "after": "kết hợp những thứ riêng rẽ thành một hỗn hợp, cách sắp xếp hoặc hoạt động chung",
+    "type": "TRANSLATION",
+    "severity": "SUBSTANTIVE",
+    "stratum": "SOURCE_SIMILARITY",
+    "rationale": "Full-source exact/8-token screen found overlap in the initial draft or its paired field. AI revised original wording and rechecked bilingual equivalence. A similarity signal is not a legal conclusion; no license or owner approval inferred."
+  },
+  {
+    "proposalKey": "EDITORIAL_2H2C:even:divisible-by-two",
+    "field": "exampleEn",
+    "before": "Eight is an even number.",
+    "after": "The teacher asked us to name an even number larger than ten.",
+    "type": "RIGHTS",
+    "severity": "SUBSTANTIVE",
+    "stratum": "SOURCE_SIMILARITY",
+    "rationale": "Full-source exact/8-token screen found overlap in the initial draft or its paired field. AI revised original wording and rechecked bilingual equivalence. A similarity signal is not a legal conclusion; no license or owner approval inferred."
+  },
+  {
+    "proposalKey": "EDITORIAL_2H2C:even:divisible-by-two",
+    "field": "exampleVi",
+    "before": "Tám là một số chẵn.",
+    "after": "Giáo viên yêu cầu chúng tôi nêu một số chẵn lớn hơn mười.",
+    "type": "TRANSLATION",
+    "severity": "SUBSTANTIVE",
+    "stratum": "SOURCE_SIMILARITY",
+    "rationale": "Full-source exact/8-token screen found overlap in the initial draft or its paired field. AI revised original wording and rechecked bilingual equivalence. A similarity signal is not a legal conclusion; no license or owner approval inferred."
+  },
+  {
+    "proposalKey": "EDITORIAL_2H2C:nature:essential-character",
+    "field": "exampleEn",
+    "before": "We need to understand the nature of the problem.",
+    "after": "The workshop explored the nature of trust between neighbours.",
+    "type": "RIGHTS",
+    "severity": "CRITICAL",
+    "stratum": "SOURCE_SIMILARITY",
+    "rationale": "Full-source exact/8-token screen found overlap in the initial draft or its paired field. AI revised original wording and rechecked bilingual equivalence. A similarity signal is not a legal conclusion; no license or owner approval inferred."
+  },
+  {
+    "proposalKey": "EDITORIAL_2H2C:nature:essential-character",
+    "field": "exampleVi",
+    "before": "Chúng ta cần hiểu bản chất của vấn đề.",
+    "after": "Buổi thảo luận tìm hiểu bản chất của sự tin tưởng giữa những người hàng xóm.",
+    "type": "TRANSLATION",
+    "severity": "SUBSTANTIVE",
+    "stratum": "SOURCE_SIMILARITY",
+    "rationale": "Full-source exact/8-token screen found overlap in the initial draft or its paired field. AI revised original wording and rechecked bilingual equivalence. A similarity signal is not a legal conclusion; no license or owner approval inferred."
+  },
+  {
+    "proposalKey": "EDITORIAL_2H2C:terminal:transport-building",
+    "field": "exampleEn",
+    "before": "Our flight leaves from the smaller airport terminal.",
+    "after": "My boarding pass shows the terminal on the east side of the airport.",
+    "type": "RIGHTS",
+    "severity": "SUBSTANTIVE",
+    "stratum": "SOURCE_SIMILARITY",
+    "rationale": "Full-source exact/8-token screen found overlap in the initial draft or its paired field. AI revised original wording and rechecked bilingual equivalence. A similarity signal is not a legal conclusion; no license or owner approval inferred."
+  },
+  {
+    "proposalKey": "EDITORIAL_2H2C:terminal:transport-building",
+    "field": "exampleVi",
+    "before": "Chuyến bay của chúng tôi khởi hành từ nhà ga sân bay nhỏ hơn.",
+    "after": "Thẻ lên máy bay của tôi ghi nhà ga nằm ở phía đông sân bay.",
+    "type": "TRANSLATION",
+    "severity": "SUBSTANTIVE",
+    "stratum": "SOURCE_SIMILARITY",
+    "rationale": "Full-source exact/8-token screen found overlap in the initial draft or its paired field. AI revised original wording and rechecked bilingual equivalence. A similarity signal is not a legal conclusion; no license or owner approval inferred."
+  }
+]

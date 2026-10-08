@@ -6091,3 +6091,88 @@ loaded. This authorizes draft Git publication only; Phase 2H.2C remains separate
 
 New publication index: regular `git diff --cached --check` returns exit 2
 (677 CRLF-only intake diagnostics); CRLF-aware check returns exit 0.
+
+
+## Phase 2H.2C — stratified 120-group editorial drafts (2026-10-08)
+
+IMPLEMENTED OFFLINE / READY FOR OWNER CHECK; human editorial, identity and
+rights decisions PENDING. This owner instruction separately authorizes 120 NEW
+groups and scoped draft publication; it does not mark US-45 as ACCEPTED or grant
+canonical materialization, runtime mapping, Development apply or Production.
+
+Existing local TXH checkout used, no branch/worktree created. Started from
+6c06e99ae8f40020d826c7aa140b4da1a107a6c2 after safe fast-forward. Concurrent
+Study/UI commit 7f01d22860386836c90188af0adb841c1b3de15f is retained. No app/API/contracts/E2E/schema
+changes are part of this Dataset task. All prior handoff sections retained.
+
+120 selected/new groups, 0 pilot overlap, six buckets of 20; 187 original
+bilingual Sense drafts, 48 multi-Sense groups; all 120 groups have drafts,
+0 blocked. Exactly 187 each definitions, EN examples, VI meanings/translations.
+24 batches of five; all 120 groups fully AI-self-reviewed across 13 dimensions,
+78 high-risk groups explicitly flagged. No independent human review claimed.
+35 new tests and 76 upstream tests PASS.
+
+Source strata: Oxford-only 36 / 4600-only 20 / both 64. Draft POS group coverage
+(overlapping): noun 70, verb 24, adjective 31, adverb 17. Source CEFR evidence
+A1 31 / A2 27 / B1 12 / B2 27 / C1 20 / C2 13; no Sense classification assigned.
+Polysemy signals 49, POS conflicts 10, CEFR conflicts 10, Master overlaps 10,
+history dependencies 10. Source multiword signals 10; actual multiword units 8.
+visible (adj) and warming (n) are deck annotations, not phrases: real-unit
+target short by two, cohort remains frozen. Missing CEFR evidence quota has
+zero capacity in the eligible pool. Do not claim all linguistic quotas met.
+
+QA status PASS/REVIEW/FAIL = 0/187/0. AI review found two scope/translation
+clarifications and five initial source-wording collisions; 11 changed fields
+across seven Sense drafts are recorded BEFORE/AFTER. A critical potential-copy
+signal conservatively escalated SOURCE_SIMILARITY; full-source/full-AI-stratum
+review completed. Final exact-five-token/eight-token source scan has zero
+flags, not rights clearance. Semantic boundaries, grammatical representations,
+translation naturalness, specialist claims and CEFR remain pending human review.
+All 187 identities unresolved; owner approvals/IDs/maps zero. Rights
+UNKNOWN_REVIEW_REQUIRED; GENERATED field hashes, no invented author/license.
+
+Selection fingerprint: 2d380a64570532fd3afce23b5b84bd9a63dc525d2d56b67453b38f4418456a79
+Editorial fingerprint: a84e173137c48a1f9258c9c74d84b63f642b15651f8bd1f72378c72fe825a935
+All four previous fingerprints unchanged; no historical Git/source repin.
+
+[Full bilingual preview, corrections and evidence](../vocabflow-dataset/reports/master-editorial-stratified-120.md).
+
+Final commands actually executed:
+
+| Command | Exit |
+|---|---|
+| `python -B scripts/phase-2h2c-stratified-editorial-test.py` | 0 |
+| `python -B scripts/phase-2h2c-stratified-editorial.py --check` | 0 |
+| `python -B scripts/phase-2h2b-qa1-corrections-test.py` | 0 |
+| `python -B scripts/phase-2h2b-qa1-corrections.py --check` | 0 |
+| `python -B scripts/phase-2h2b-editorial-draft-test.py` | 0 |
+| `python -B scripts/phase-2h2b-editorial-draft.py --check` | 0 |
+| `python -B scripts/phase-2h2a-master-expansion-test.py` | 0 |
+| `python -B scripts/phase-2h1-source-inventory-test.py` | 0 |
+| `node node_modules/typescript/bin/tsc -b` | 0 |
+| `node node_modules/eslint/bin/eslint.js . --max-warnings=0` | 0 |
+| `node node_modules/tsx/dist/cli.mjs scripts/hybrid-100-runtime-eligible-patch-release.ts --check` | 0 |
+| `git diff --check` | 0 |
+
+During development a regression test used the wrong QA1 preview key; corrected
+to senseProposals. Cross-process replay then exposed unordered statistic keys;
+sorted serialization fixes it, with a distinct PYTHONHASHSEED regression test.
+Final 35/35 rerun and --check pass; no prose regeneration used to fix replay.
+Canonical pnpm wrapper is not claimed PASS; no dependency reinstall/removal.
+
+Windows checkout initially smudged accepted pilot LF blobs to CRLF. Exact
+published Git bytes were restored only after backing up all 31 prior editorial
+files; accepted pins and content unchanged, no old artifact diff committed.
+Local stat refresh removed false dirty indications without staging old files.
+New workspace JSON/PSV files pin LF locally for raw authoring hash replay.
+Safety inventory and command outputs: D:/hoctienganh/phase-2h2c-safety-20261008-153818.
+Seven historical stashes/older worktrees and backups preserved.
+
+Hybrid 2.2.1 / APPROVED, 87 Lexemes / 100 Senses remains frozen; exact release
+hash/tree retained. Legacy 2018, history 75, #11/#284/#295/#849 and owner
+exclusions preserved under accepted offline evidence; no live DB query.
+Database access/writes NONE/NONE; Production UNTOUCHED. Canonical release BLOCKED
+pending rights, identity, content/classification and separate release permission.
+Next recommendation: separate annotation from multiword signals before selecting
+future cohorts; scale small reviewed bilingual batches with independent human
+QA. Do not restart inventory or automatically author the next batch.

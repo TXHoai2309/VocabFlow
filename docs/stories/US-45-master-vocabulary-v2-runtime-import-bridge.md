@@ -2004,3 +2004,28 @@ Accepted fingerprints and all original byte hashes remain unchanged. No app/API,
 runtime mapping, DB, release/legacy or Production change. Separate authorization
 required before Phase 2H.2C or canonical materialization. See ai-progress for
 exact commands and wrapper limits.
+
+
+## Phase 2H.2C — owner-authorized offline extension (2026-10-08)
+
+IMPLEMENTED OFFLINE / READY FOR OWNER CHECK; overall US-45 acceptance unchanged.
+Owner separately authorized 120 new group drafts and scoped Git publication.
+[Editorial report](../../vocabflow-dataset/reports/master-editorial-stratified-120.md)
+contains every draft/example pair, actual corrections and review limitations.
+120 groups outside prior pilot, 187 Senses, 48 multi-Sense groups, 24 batches;
+all 120 drafted and fully AI-self-reviewed. No independent human approval.
+35 new / 76 previous tests and replay/direct typecheck/lint/frozen checks pass.
+
+Selection fingerprint: 2d380a64570532fd3afce23b5b84bd9a63dc525d2d56b67453b38f4418456a79
+Editorial fingerprint: a84e173137c48a1f9258c9c74d84b63f642b15651f8bd1f72378c72fe825a935
+Original four input fingerprints and all original pilot bytes unchanged.
+Source quotas and overlapping strata recorded; missing CEFR capacity zero,
+source multiword flags 10 but actual units eight after annotation review.
+No silent source-key normalization or invented quota fulfillment.
+
+All 187 remain REVIEW/identity UNRESOLVED, owner approvals zero, rights
+UNKNOWN_REVIEW_REQUIRED. Semantic, grammar, translations, classification and
+rights need human decisions; canonical release BLOCKED. No UUID allocation,
+runtime mapping, DB/Development operation, legacy change or Production work.
+Frozen approved 87-Lexeme/100-Sense release preserved. New authoring is complete
+for this cohort; further scaling requires separate authorization.
