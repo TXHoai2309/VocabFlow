@@ -1,5 +1,15 @@
 # US-45 — Master Vocabulary V2 Runtime Import Bridge
 
+## 2026-10-08 — Phase 2H.1 validation provenance closure
+
+Generator evidence now covers deterministic inventory checks only; external
+command results are recorded separately in the [closure handoff](../ai-progress.md#phase-2h1-validation-provenance-closure-2026-10-08).
+Corrected fingerprint 58928e98845e326f8d9a268aa160c867443e8497436d9c58fa2b9a5647f10a53
+supersedes db21e13f409a3873478962db13841b42d1fc13d49399f21c628809cf3019d3a1
+solely for validation provenance. Source semantics and review queue 4170 are
+unchanged; no Sense identity, mappings, DB writes, release changes or Production
+operation is authorized. No corrective commit/push; owner review pending.
+
 ## 2026-10-07 — Phase 2G.3C legacy content disposition / Master expansion planning
 
 Planning complete on origin/TXH baseline ad1aa6813628c73504baa016e9059a9d165a53be.

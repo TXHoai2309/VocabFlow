@@ -32,7 +32,13 @@
     "semanticFingerprint": "5115d7021d7a66466fe87ded8ae49f24ceb399edf1e1c9981b990f3443acdfea",
     "retirementFingerprint": "04feaa380fa441633ef8a4c84b8d0e5a5aee48d03a7a5ff020866c789eb8cdd1"
   },
-  "acceptedInventoryFingerprint": "db21e13f409a3873478962db13841b42d1fc13d49399f21c628809cf3019d3a1",
+  "acceptedInventoryFingerprint": "58928e98845e326f8d9a268aa160c867443e8497436d9c58fa2b9a5647f10a53",
+  "fingerprintProvenance": {
+    "previousFingerprint": "db21e13f409a3873478962db13841b42d1fc13d49399f21c628809cf3019d3a1",
+    "previousStatus": "SUPERSEDED_BY_VALIDATION_PROVENANCE_CORRECTION",
+    "changeReason": "VALIDATION_PROVENANCE_CORRECTION_ONLY",
+    "dataSemanticsChanged": false
+  },
   "artifactFiles": [
     "source-inventory.json",
     "normalization-policy.json",

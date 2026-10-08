@@ -45,8 +45,12 @@ Policy: NFC, visible headword extraction with raw source field preserved, Unicod
 
 No APKG, approved release file, runtime database or mapping was modified. Database access NONE. Database writes NONE. Master authoring/apply NONE. Legacy cleanup NONE. Production UNTOUCHED.
 
-Verification: 11 focused tests PASS; Python syntax, Node 22.23.2 / pnpm 11.17.0 typecheck and repository lint PASS; dataset validation PASS (starter catalog reports 30 missing IPA, 30 images and 30 audio warnings); Master V2 schema validation PASS (0 errors / 0 warnings / 1 info); Hybrid-100 frozen release replay PASS.
+Validation scope: PASS covers only the deterministic inventory checks computed by this generator. Python syntax compilation, focused tests, repository typecheck/lint, dataset/Master validators and the frozen release validator are NOT_EXECUTED_BY_GENERATOR / EXTERNAL_VERIFICATION_REQUIRED. The generator checks the declared release-manifest hash against its pin and counts the loaded inventory; it does not recompute the Hybrid release hash or tree fingerprint. Frozen fingerprint constants are expectations, not observed validator results.
 
-PHASE_2H1_FINGERPRINT: `db21e13f409a3873478962db13841b42d1fc13d49399f21c628809cf3019d3a1`
+Separately executed closure evidence, exact commands, exit codes and environment limitations: [docs/ai-progress.md#phase-2h1-validation-provenance-closure-2026-10-08](../../docs/ai-progress.md#phase-2h1-validation-provenance-closure-2026-10-08). These external results are not included in deterministic generated evidence.
 
-Offline deterministic replay: `python scripts/phase-2h1-source-inventory.py --check`
+Previous Phase 2H.1 fingerprint: `db21e13f409a3873478962db13841b42d1fc13d49399f21c628809cf3019d3a1` — SUPERSEDED_BY_VALIDATION_PROVENANCE_CORRECTION. Reason: validation provenance correction only; source hashes, data semantics and review queue remain unchanged.
+
+PHASE_2H1_FINGERPRINT: `58928e98845e326f8d9a268aa160c867443e8497436d9c58fa2b9a5647f10a53`
+
+Offline deterministic replay: `python scripts/phase-2h1-source-inventory.py --check`. This rereads source evidence, rebuilds artifacts and compares them to disk without DB access or file mutation. It does not rerun external tools.

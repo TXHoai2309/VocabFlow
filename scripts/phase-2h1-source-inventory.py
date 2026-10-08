@@ -24,6 +24,8 @@ WORKSPACE = ROOT / "vocabflow-dataset/workspaces/full-source-inventory-dedupe"
 REPORT = ROOT / "vocabflow-dataset/reports/full-source-inventory-dedupe.md"
 RELEASE = ROOT / "vocabflow-dataset/releases/hybrid-100-v2.2.1"
 LEGACY_SNAPSHOT = ROOT / "vocabflow-dataset/workspaces/legacy-master-expansion-planning/content-snapshot.json"
+PREVIOUS_INVENTORY_FINGERPRINT = "db21e13f409a3873478962db13841b42d1fc13d49399f21c628809cf3019d3a1"
+EXTERNAL_EVIDENCE_LOCATION = "docs/ai-progress.md#phase-2h1-validation-provenance-closure-2026-10-08"
 SOURCES = {
     "OXFORD_5000": SOURCE_DIR / "5000_T_vng_Ting_Anh_Oxford_5000_A1-C1.apkg",
     "ENGLISH_VOCAB_4600": SOURCE_DIR / "4600 English Vocab.apkg",
@@ -692,27 +694,42 @@ def artifacts_and_report() -> tuple[dict[str, Any], str, str]:
         "overlapPartitionExhaustive": cross_summary["exactNormalizedHeadwordOverlap"] + cross_summary["oxfordOnlyNormalizedHeadwords"] == ox_stats["uniqueNormalizedHeadwords"] and cross_summary["exactNormalizedHeadwordOverlap"] + cross_summary["vocab4600OnlyNormalizedHeadwords"] == vocab_stats["uniqueNormalizedHeadwords"],
         "masterReleaseApprovedAndHashPinned": master["release"]["status"] == "APPROVED" and master["release"]["releaseHash"] == "44874b11d1fdef76a515f6285d04c9a417318daa6969e112608a59e7c232613c",
         "legacyCoverageStillExactly2018Rows": legacy.get("legacyRows") == 2018,
-        "hybridReleaseUnmodifiedByInventory": True, "masterIdsAllocated": 0, "runtimeMappingsCreated": 0,
+        "masterInventoryMatchesPinnedCounts": master["release"]["lexemeCount"] == 87 and master["release"]["senseCount"] == 100,
+        "noMasterIdsAllocated": master["noMasterIdAllocated"],
+        "noRuntimeMappingsCreated": master["noRuntimeMappingCreated"] and legacy["noRuntimeMappingsCreated"] and all(not row["runtimeMappingCreated"] for row in legacy["rows"]),
         "databaseAccess": "NONE", "databaseMutation": "NONE", "production": "UNTOUCHED",
-        "phase2g3cAcceptedPlanningFingerprint": "d60ea07432633de6ab4bb0516ce9401252c6d03982c77710f0b2a71c0968ac09",
-        "phase2g3cSemanticFingerprint": "5115d7021d7a66466fe87ded8ae49f24ceb399edf1e1c9981b990f3443acdfea",
-        "phase2g3cRetirementFingerprint": "04feaa380fa441633ef8a4c84b8d0e5a5aee48d03a7a5ff020866c789eb8cdd1"}
+        "masterPinnedHashScope": "DECLARED_RELEASE_MANIFEST_HASH_AND_LOADED_INVENTORY_ONLY; release hash/tree not recomputed"}
     bool_checks = [value for value in checks.values() if isinstance(value, bool)]
-    verification = {
-        "pythonSyntax": {"status": "PASS", "command": "python -m py_compile scripts/phase-2h1-source-inventory.py scripts/phase-2h1-source-inventory-test.py"},
-        "focusedTests": {"status": "PASS", "passed": 11, "failed": 0},
-        "node": "v22.23.2", "pnpm": "11.17.0",
-        "typecheck": {"status": "PASS", "command": "pnpm typecheck"},
-        "repositoryLint": {"status": "PASS", "command": "pnpm lint"},
-        "datasetValidation": {"status": "PASS", "records": 30, "warnings": ["MISSING_IPA count=30", "MISSING_IMAGE count=30", "MISSING_AUDIO count=30"]},
-        "masterVocabularySchemaValidation": {"status": "PASS", "errors": 0, "warnings": 0, "info": 1},
-        "offlineReplay": "PASS",
-        "frozenHybrid100Release": {"status": "PASS", "releaseHash": "44874b11d1fdef76a515f6285d04c9a417318daa6969e112608a59e7c232613c",
-            "releaseTreeFingerprint": "51ab4c5ce31bd38b51742d1aea16602150522da27ad26c123cc17b332f9a406e", "releaseHashRepeatIdentical": True,
-            "releaseTreeFingerprintRepeatIdentical": True, "writesPerformed": False},
+    external_commands = {
+        "pythonSyntax": "python -m py_compile scripts/phase-2h1-source-inventory.py scripts/phase-2h1-source-inventory-test.py",
+        "focusedTests": "python -B scripts/phase-2h1-source-inventory-test.py",
+        "typecheck": "pnpm typecheck",
+        "repositoryLint": "pnpm lint",
+        "datasetValidation": "pnpm dataset:validate",
+        "masterVocabularySchemaValidation": "pnpm validate:master-vocab-v2",
+        "frozenHybrid100Release": "node node_modules/tsx/dist/cli.mjs scripts/hybrid-100-runtime-eligible-patch-release.ts --check",
     }
-    validation = {"status": "PASS" if all(bool_checks) and all(item["status"] == "PASS" for item in verification.values() if isinstance(item, dict)) else "FAIL",
-        "checks": checks, "verification": verification}
+    validation = {
+        "status": "PASS" if all(bool_checks) else "FAIL",
+        "statusScope": "DETERMINISTIC_INVENTORY_CHECKS_ONLY",
+        "deterministicChecks": checks,
+        "externalVerification": {
+            "status": "EXTERNAL_VERIFICATION_REQUIRED",
+            "generatorExecution": "NOT_EXECUTED_BY_GENERATOR",
+            "evidenceLocation": EXTERNAL_EVIDENCE_LOCATION,
+            "requiredChecks": {name: {"status": "NOT_EXECUTED_BY_GENERATOR", "requiredCommand": command}
+                               for name, command in external_commands.items()},
+        },
+        "expectedFrozenInvariants": {
+            "scope": "PINNED_EXPECTATIONS_ONLY_NOT_RECOMPUTED_BY_GENERATOR",
+            "hybridReleaseHash": "44874b11d1fdef76a515f6285d04c9a417318daa6969e112608a59e7c232613c",
+            "hybridReleaseTreeFingerprint": "51ab4c5ce31bd38b51742d1aea16602150522da27ad26c123cc17b332f9a406e",
+            "phase2g3cAcceptedPlanningFingerprint": "d60ea07432633de6ab4bb0516ce9401252c6d03982c77710f0b2a71c0968ac09",
+            "phase2g3cSemanticFingerprint": "5115d7021d7a66466fe87ded8ae49f24ceb399edf1e1c9981b990f3443acdfea",
+            "phase2g3cRetirementFingerprint": "04feaa380fa441633ef8a4c84b8d0e5a5aee48d03a7a5ff020866c789eb8cdd1",
+        },
+        "offlineReplayContract": "--check rereads local source evidence, rebuilds and compares artifacts; does not execute external verification commands",
+    }
     artifacts: dict[str, Any] = {
         "source-inventory.json": source_inventory, "normalization-policy.json": policy,
         "oxford-normalized-inventory.json": {"source": source_meta["OXFORD_5000"], "statistics": ox_stats, "records": ox},
@@ -729,7 +746,11 @@ def artifacts_and_report() -> tuple[dict[str, Any], str, str]:
         "sourceFiles": {source_id: {key: meta[key] for key in ("relativePath", "byteLength", "sha256", "collectionMember", "records", "cards")} for source_id, meta in source_meta.items()},
         "acceptedHybrid100": master["release"], "acceptedPhase2G3C": {"planningFingerprint": "d60ea07432633de6ab4bb0516ce9401252c6d03982c77710f0b2a71c0968ac09",
             "semanticFingerprint": "5115d7021d7a66466fe87ded8ae49f24ceb399edf1e1c9981b990f3443acdfea", "retirementFingerprint": "04feaa380fa441633ef8a4c84b8d0e5a5aee48d03a7a5ff020866c789eb8cdd1"},
-        "acceptedInventoryFingerprint": fingerprint, "artifactFiles": ARTIFACT_NAMES + ["manifest.json"],
+        "acceptedInventoryFingerprint": fingerprint,
+        "fingerprintProvenance": {"previousFingerprint": PREVIOUS_INVENTORY_FINGERPRINT,
+            "previousStatus": "SUPERSEDED_BY_VALIDATION_PROVENANCE_CORRECTION",
+            "changeReason": "VALIDATION_PROVENANCE_CORRECTION_ONLY", "dataSemanticsChanged": False},
+        "artifactFiles": ARTIFACT_NAMES + ["manifest.json"],
         "reportPath": "vocabflow-dataset/reports/full-source-inventory-dedupe.md", "authorization": {"databaseWrite": False, "masterAuthoring": False,
             "masterApply": False, "legacyMappingWrite": False, "relationshipMigration": False, "disable": False, "delete": False, "production": False}}
     artifacts["manifest.json"] = manifest
@@ -757,8 +778,10 @@ def make_report(meta: dict[str, Any], ox: dict[str, Any], vocab: dict[str, Any],
         "## Provenance and rights", "", "The inspected note-field schemas contain no dedicated license/attribution field. This inventory does not establish whether a license exists elsewhere. Text rights and media rights remain **UNKNOWN / REVIEW_REQUIRED**. Media reference names, index IDs and byte lengths are inventoried; no image/audio file was promoted or copied into the Master release. Local availability is not evidence of redistribution permission.", "",
         "## Identity and safety", "", "Policy: NFC, visible headword extraction with raw source field preserved, Unicode whitespace collapse, Unicode casefold; retain punctuation, accents, parentheses, token order, multiword phrases and apparent inflections. No stemming or accent folding. A secondary punctuation-insensitive key only creates collision review tasks.", "",
         "No APKG, approved release file, runtime database or mapping was modified. Database access NONE. Database writes NONE. Master authoring/apply NONE. Legacy cleanup NONE. Production UNTOUCHED.", "",
-        "Verification: 11 focused tests PASS; Python syntax, Node 22.23.2 / pnpm 11.17.0 typecheck and repository lint PASS; dataset validation PASS (starter catalog reports 30 missing IPA, 30 images and 30 audio warnings); Master V2 schema validation PASS (0 errors / 0 warnings / 1 info); Hybrid-100 frozen release replay PASS.", "",
-        f"PHASE_2H1_FINGERPRINT: `{fingerprint}`", "", "Offline deterministic replay: `python scripts/phase-2h1-source-inventory.py --check`", ""])
+        "Validation scope: PASS covers only the deterministic inventory checks computed by this generator. Python syntax compilation, focused tests, repository typecheck/lint, dataset/Master validators and the frozen release validator are NOT_EXECUTED_BY_GENERATOR / EXTERNAL_VERIFICATION_REQUIRED. The generator checks the declared release-manifest hash against its pin and counts the loaded inventory; it does not recompute the Hybrid release hash or tree fingerprint. Frozen fingerprint constants are expectations, not observed validator results.", "",
+        f"Separately executed closure evidence, exact commands, exit codes and environment limitations: [{EXTERNAL_EVIDENCE_LOCATION}](../../{EXTERNAL_EVIDENCE_LOCATION}). These external results are not included in deterministic generated evidence.", "",
+        f"Previous Phase 2H.1 fingerprint: `{PREVIOUS_INVENTORY_FINGERPRINT}` — SUPERSEDED_BY_VALIDATION_PROVENANCE_CORRECTION. Reason: validation provenance correction only; source hashes, data semantics and review queue remain unchanged.", "",
+        f"PHASE_2H1_FINGERPRINT: `{fingerprint}`", "", "Offline deterministic replay: `python scripts/phase-2h1-source-inventory.py --check`. This rereads source evidence, rebuilds artifacts and compares them to disk without DB access or file mutation. It does not rerun external tools.", ""])
     return "\n".join(lines)
 
 
@@ -775,12 +798,15 @@ def run(check: bool) -> dict[str, Any]:
         for name, content in expected.items():
             path = REPORT if name == "REPORT" else WORKSPACE / name
             path.parent.mkdir(parents=True, exist_ok=True)
-            path.write_text(content, encoding="utf-8", newline="\n")
+            if not path.is_file() or path.read_text(encoding="utf-8") != content:
+                path.write_text(content, encoding="utf-8", newline="\n")
     summary = artifacts["validation-summary.json"]
     return {"status": summary["status"], "fingerprint": fingerprint,
         "sources": {source: artifacts["source-inventory.json"]["sources"][source]["records"] for source in SOURCES},
         "uniqueHeadwordOverlap": artifacts["cross-source-overlap.json"]["summary"]["exactNormalizedHeadwordOverlap"],
-        "databaseAccess": "NONE", "databaseWrites": "NONE", "production": "UNTOUCHED", "mode": "CHECK" if check else "WRITE_ARTIFACTS"}
+        "databaseAccess": "NONE", "databaseWrites": "NONE", "production": "UNTOUCHED", "mode": "CHECK" if check else "WRITE_ARTIFACTS",
+        "artifactComparison": "PASS" if check else "NOT_EXECUTED",
+        "externalVerification": "NOT_EXECUTED_BY_GENERATOR"}
 
 
 def main() -> int:

@@ -5,6 +5,7 @@ import subprocess
 import sys
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts/phase-2h1-source-inventory.py"
@@ -83,7 +84,11 @@ class FullCorpusTests(unittest.TestCase):
         self.assertEqual(len(set(self.cross["normalizedHeadwordOverlap"])), 3512)
         self.assertEqual(cross["posConflictHeadwordGroups"], 61)
         self.assertEqual(cross["cefrConflictHeadwordGroups"], 96)
-        self.assertGreater(cross["possiblePolysemyGroupCount"], 0)
+        self.assertEqual(cross["samePosCandidateOverlapHeadwords"], 3450)
+        self.assertEqual(cross["possiblePolysemyGroupCount"], 2191)
+        self.assertEqual(cross["ambiguousHumanReviewGroupCount"], 4170)
+        self.assertEqual(self.queue["reviewGroupCount"], 4170)
+        self.assertEqual(len(self.queue["groups"]), 4170)
         self.assertGreater(cross["definitionContentConflictGroupCount"], 0)
 
     def test_no_source_record_or_field_loses_its_provenance(self):
@@ -131,6 +136,11 @@ class FullCorpusTests(unittest.TestCase):
         self.assertTrue(self.master["noRuntimeMappingCreated"])
         self.assertEqual(self.legacy["legacyRows"], 2018)
         self.assertEqual(sum(self.legacy["coverageCategoryCounts"].values()), 2018)
+        self.assertEqual(self.legacy["coverageCategoryCounts"], {
+            "POTENTIAL_HEADWORD_COVERAGE_REQUIRES_HUMAN_COMPARISON": 440,
+            "AMBIGUOUS_POTENTIAL_COVERAGE_REQUIRES_HUMAN_REVIEW": 294,
+            "NO_EXACT_NORMALIZED_SOURCE_HEADWORD_FOUND": 1284,
+        })
         self.assertTrue(all(not row["candidateSenseMatch"] and not row["runtimeMappingCreated"] for row in self.legacy["rows"]))
 
     def test_rights_are_unknown_and_media_are_only_referenced(self):
@@ -142,15 +152,53 @@ class FullCorpusTests(unittest.TestCase):
         self.assertEqual(self.source["sources"]["ENGLISH_VOCAB_4600"]["mediaIndexMissingArchiveEntries"], 0)
 
     def test_safety_checks_and_accepted_fingerprints(self):
-        checks = self.validation["checks"]
+        checks = self.validation["deterministicChecks"]
+        pins = self.validation["expectedFrozenInvariants"]
         self.assertEqual(self.validation["status"], "PASS")
-        self.assertEqual(checks["phase2g3cAcceptedPlanningFingerprint"], "d60ea07432633de6ab4bb0516ce9401252c6d03982c77710f0b2a71c0968ac09")
-        self.assertEqual(checks["phase2g3cSemanticFingerprint"], "5115d7021d7a66466fe87ded8ae49f24ceb399edf1e1c9981b990f3443acdfea")
-        self.assertEqual(checks["phase2g3cRetirementFingerprint"], "04feaa380fa441633ef8a4c84b8d0e5a5aee48d03a7a5ff020866c789eb8cdd1")
+        self.assertEqual(self.validation["statusScope"], "DETERMINISTIC_INVENTORY_CHECKS_ONLY")
+        self.assertEqual(pins["phase2g3cAcceptedPlanningFingerprint"], "d60ea07432633de6ab4bb0516ce9401252c6d03982c77710f0b2a71c0968ac09")
+        self.assertEqual(pins["phase2g3cSemanticFingerprint"], "5115d7021d7a66466fe87ded8ae49f24ceb399edf1e1c9981b990f3443acdfea")
+        self.assertEqual(pins["phase2g3cRetirementFingerprint"], "04feaa380fa441633ef8a4c84b8d0e5a5aee48d03a7a5ff020866c789eb8cdd1")
+        self.assertEqual(pins["hybridReleaseTreeFingerprint"], "51ab4c5ce31bd38b51742d1aea16602150522da27ad26c123cc17b332f9a406e")
         self.assertEqual(self.manifest["acceptedHybrid100"]["releaseHash"], checks["masterReleaseApprovedAndHashPinned"] and "44874b11d1fdef76a515f6285d04c9a417318daa6969e112608a59e7c232613c")
         self.assertFalse(any(self.manifest["authorization"].values()))
-        self.assertEqual(checks["databaseAccess"], checks["databaseMutation"], "NONE")
+        self.assertTrue(checks["noMasterIdsAllocated"])
+        self.assertTrue(checks["noRuntimeMappingsCreated"])
+        self.assertEqual(checks["databaseAccess"], "NONE")
+        self.assertEqual(checks["databaseMutation"], "NONE")
         self.assertEqual(checks["production"], "UNTOUCHED")
+        provenance = self.manifest["fingerprintProvenance"]
+        self.assertEqual(provenance["previousFingerprint"], inventory.PREVIOUS_INVENTORY_FINGERPRINT)
+        self.assertEqual(provenance["previousStatus"], "SUPERSEDED_BY_VALIDATION_PROVENANCE_CORRECTION")
+        self.assertFalse(provenance["dataSemanticsChanged"])
+        self.assertNotEqual(self.manifest["acceptedInventoryFingerprint"], provenance["previousFingerprint"])
+
+    def test_generated_validation_never_claims_external_command_execution(self):
+        with patch("subprocess.run", side_effect=AssertionError("external command was executed")):
+            artifacts, report, fingerprint = inventory.artifacts_and_report()
+        validation = artifacts["validation-summary.json"]
+        external = validation["externalVerification"]
+        self.assertEqual(external["generatorExecution"], "NOT_EXECUTED_BY_GENERATOR")
+        self.assertEqual(external["status"], "EXTERNAL_VERIFICATION_REQUIRED")
+        expected = {"pythonSyntax", "focusedTests", "typecheck", "repositoryLint", "datasetValidation",
+                    "masterVocabularySchemaValidation", "frozenHybrid100Release"}
+        self.assertEqual(set(external["requiredChecks"]), expected)
+        for check in external["requiredChecks"].values():
+            self.assertEqual(check["status"], "NOT_EXECUTED_BY_GENERATOR")
+            self.assertNotIn("exitCode", check)
+        self.assertNotIn("verification", validation)
+        self.assertNotIn("Verification: 11 focused tests PASS", report)
+        self.assertIn("it does not recompute the Hybrid release hash or tree fingerprint", report)
+        self.assertEqual(fingerprint, self.manifest["acceptedInventoryFingerprint"])
+
+    def test_offline_replay_does_not_write_files_or_execute_external_commands(self):
+        with patch("subprocess.run", side_effect=AssertionError("external command was executed")), \
+             patch.object(Path, "write_text", side_effect=AssertionError("replay wrote a file")):
+            result = inventory.run(check=True)
+        self.assertEqual(result["artifactComparison"], "PASS")
+        self.assertEqual(result["externalVerification"], "NOT_EXECUTED_BY_GENERATOR")
+        self.assertEqual(result["mode"], "CHECK")
+        self.assertEqual(result["databaseAccess"], "NONE")
 
     def test_fingerprint_is_deterministic_and_sensitive_to_source_evidence(self):
         blank = {name: {} for name in inventory.ARTIFACT_NAMES}
@@ -175,6 +223,8 @@ class FullCorpusTests(unittest.TestCase):
         self.assertEqual(result["fingerprint"], self.manifest["acceptedInventoryFingerprint"])
         self.assertEqual(result["databaseAccess"], "NONE")
         self.assertEqual(result["production"], "UNTOUCHED")
+        self.assertEqual(result["artifactComparison"], "PASS")
+        self.assertEqual(result["externalVerification"], "NOT_EXECUTED_BY_GENERATOR")
 
 
 if __name__ == "__main__":

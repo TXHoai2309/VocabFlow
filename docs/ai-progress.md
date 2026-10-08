@@ -132,13 +132,94 @@ UNKNOWN / REVIEW_REQUIRED. The approved Hybrid-100 v2.2.1 remains 87 Lexemes /
 Legacy coverage is read-only over 2018 rows: 440 possible, 294 ambiguous,
 1284 without exact source headword coverage.
 
-Fingerprint: db21e13f409a3873478962db13841b42d1fc13d49399f21c628809cf3019d3a1.
-11 focused tests, syntax check, Node 22.23.2 / pnpm 11.17.0 typecheck,
-repository lint, offline replay, dataset validation, Master V2 schema check and
-Hybrid-100 frozen release check PASS. Dataset validation reports 30 missing IPA,
-30 image and 30 audio warnings in the current starter dataset; Master V2 validator
-reports 0 errors, 0 warnings, 1 info. No DB access/writes, authoring, apply,
-mappings, legacy mutations, media publication or Production access.
+Original fingerprint: db21e13f409a3873478962db13841b42d1fc13d49399f21c628809cf3019d3a1,
+now SUPERSEDED_BY_VALIDATION_PROVENANCE_CORRECTION. Original external checks
+were run outside the generator. The direct TypeScript and ESLint CLIs passed;
+the pnpm typecheck wrapper was blocked by a non-TTY module-purge guard. Generated
+PASS fields were not execution evidence and have been corrected as described below.
+No DB access/writes, authoring, apply, mappings, legacy mutations or Production access.
+
+## Phase 2H.1 validation provenance closure (2026-10-08)
+
+Initially implemented on bd3778876cb7ff8f5e6ae8716c479714a1b308ab;
+reconciled and revalidated on origin/TXH / local HEAD
+11156900a472f8eb8cd36644d03ada131e52b941. The auth/logout code, latest account-menu
+implementation and their documentation entries are preserved. Owner review of the inventory semantics
+is unchanged; review queue 4170 includes the 24 multiword/phrasal source-only cases.
+
+The generated validation summary now separates deterministicChecks from
+externalVerification. PASS means only inventory/accounting checks computed by
+the generator. External commands are NOT_EXECUTED_BY_GENERATOR /
+EXTERNAL_VERIFICATION_REQUIRED, with required commands and a link to this evidence.
+The declared Hybrid release manifest hash is checked against its pin and loaded
+inventory counts are checked; release hash/tree validation is an external check.
+Frozen fingerprint constants are explicitly pinned expectations, not recomputations.
+The --check path only rebuilds and compares deterministic artifacts; it neither
+runs external tools nor writes files. Generation skips unchanged output files.
+
+Corrected fingerprint:
+58928e98845e326f8d9a268aa160c867443e8497436d9c58fa2b9a5647f10a53.
+Previous fingerprint:
+db21e13f409a3873478962db13841b42d1fc13d49399f21c628809cf3019d3a1
+(SUPERSEDED_BY_VALIDATION_PROVENANCE_CORRECTION).
+Reason: validation provenance correction only. The 11 other semantic JSON
+artifacts remain byte-identical, and both APKG hashes remain unchanged.
+Oxford 5004/5001/3; 4600 4673/4654/19; overlap/Oxford-only/4600-only/union
+3512/1489/1142/6143; POS-compatible/conflicts/CEFR conflicts/polysemy/review
+3450/61/96/2191/4170. Legacy 440/294/1284=2018; Master lemma alignment 87,
+Sense identity unconfirmed; rights UNKNOWN / REVIEW_REQUIRED.
+
+### Separately executed external closure verification
+
+All commands below were rerun after reconciliation on baseline
+11156900a472f8eb8cd36644d03ada131e52b941 on 2026-10-08; these are current-baseline
+outcomes, not reused execution evidence from the earlier bd377887 pass.
+
+Working directory: D:\hoctienganh\VocabFlow-phase-2g3a1. PowerShell with piped
+non-interactive input; PATH prefixed by
+D:\hoctienganh\.tools\node-v22.23.2-win-x64; Node v22.23.2, pnpm 11.17.0,
+Python 3.13.1; PYTHONDONTWRITEBYTECODE=1 for Python test/replay runs. CI was unset
+for the canonical wrapper. These are actual command outcomes recorded outside
+the generator and outside the inventory fingerprint.
+
+| Check | Exact command | Exit code | Result |
+|---|---|---:|---|
+| Python syntax | `python -m py_compile scripts/phase-2h1-source-inventory.py scripts/phase-2h1-source-inventory-test.py` | 0 | PASS |
+| Focused tests | `python -B scripts/phase-2h1-source-inventory-test.py` | 0 | PASS, 13/13 |
+| Canonical typecheck wrapper | `pnpm typecheck` | 1 | WRAPPER_BLOCKED_BY_ENVIRONMENT |
+| Direct typecheck | `node node_modules/typescript/bin/tsc -b` | 0 | PASS |
+| Direct repository lint | `node node_modules/eslint/bin/eslint.js . --max-warnings=0` | 0 | PASS |
+| Dataset validator | `node node_modules/tsx/dist/cli.mjs scripts/validate-dataset.ts` | 0 | PASS, 30 records |
+| Master V2 validator | `node node_modules/tsx/dist/cli.mjs scripts/validate-master-vocabulary-v2.ts` | 0 | PASS, 0 errors / 0 warnings / 1 info |
+| Frozen Hybrid validator | `node node_modules/tsx/dist/cli.mjs scripts/hybrid-100-runtime-eligible-patch-release.ts --check` | 0 | PASS, NOOP_ALREADY_MATERIALIZED_AND_FROZEN |
+| Offline artifact replay | `python -B scripts/phase-2h1-source-inventory.py --check` | 0 | PASS, artifactComparison PASS, corrected fingerprint identical |
+
+pnpm typecheck invoked its pre-run dependency-install path and stopped with
+ERR_PNPM_ABORTED_REMOVE_MODULES_DIR_NO_TTY. It did not run TypeScript and is not
+reported as PASS. The cleanup guard was retained; no node_modules deletion or
+dependency installation was authorized. The canonical lint/dataset/Master pnpm
+wrappers were not run through the same blocked pre-run gate; the exact direct
+commands above provide their separate evidence.
+Dataset gaps remain 30 missing IPA, 30 image and 30 audio warnings.
+Frozen release output has writesPerformed=false, hash
+44874b11d1fdef76a515f6285d04c9a417318daa6969e112608a59e7c232613c,
+tree 51ab4c5ce31bd38b51742d1aea16602150522da27ad26c123cc17b332f9a406e,
+and both repeat-identical flags true. Phase 2G.3C manifest pins remain
+d60ea07432633de6ab4bb0516ce9401252c6d03982c77710f0b2a71c0968ac09,
+5115d7021d7a66466fe87ded8ae49f24ceb399edf1e1c9981b990f3443acdfea,
+04feaa380fa441633ef8a4c84b8d0e5a5aee48d03a7a5ff020866c789eb8cdd1.
+No accepted Phase 2G or frozen release artifact is modified.
+
+Database access/writes, Master authoring/apply, runtime mapping writes, legacy
+cleanup and relationship migration NONE; Production untouched. No apps/web diff.
+Python bytecode remains untracked and unstaged; backup stashes are preserved.
+Reconciliation used a new include-untracked stash
+6d3a8df4a2242f7e3a84167556ef903ee65b98fc, a dedicated branch
+phase-2h1-provenance-closure from origin/TXH, and application of that stash only.
+Both overlapping documentation files merged cleanly; no historical entry was
+removed. The new stash and all earlier backup stashes remain available.
+Implementation is ready for owner review; no corrective commit or push created.
+Phase 2H.2 has not started.
 
 ## 2026-10-07 — Phase 2G.3C legacy content disposition / Master expansion planning
 
