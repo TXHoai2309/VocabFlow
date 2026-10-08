@@ -172,6 +172,7 @@ function StudyExperience({ activeLearner, mode, exercisePreference, scope, selec
   const [exerciseFallbackType, setExerciseFallbackType] = useState<ExerciseType | "flashcard" | null>(null);
   const [exerciseBlockedCues, setExerciseBlockedCues] = useState<TypeWordCue[]>([]);
   const cardsRef = useRef<SessionCard[]>([]);
+  const answeredIds = useRef(new Set<number>());
   const feedbackTransitionRef = useRef<FeedbackTransition | null>(null);
   const submitInFlightRef = useRef(false);
 
@@ -202,9 +203,10 @@ function StudyExperience({ activeLearner, mode, exercisePreference, scope, selec
     setExerciseBlockedCues([]);
     setIsFlipped(false);
     try {
-      const scopedResponse = await requestScopedReviewQueue(activeLearner.id, scope);
+      const scopedResponse = await requestScopedReviewQueue(activeLearner.id, scope, selection?.amount);
       const response = selection ? selectStudyQueue(scopedResponse, selection) : scopedResponse;
       const nextCards = sessionCards(response.queue);
+      answeredIds.current.clear();
       cardsRef.current = nextCards;
       setBaseQueueLength(response.queue.length);
       setCards(nextCards);
@@ -233,8 +235,9 @@ function StudyExperience({ activeLearner, mode, exercisePreference, scope, selec
     setState("reconciling");
     setMessage("Đang tải lại tiến trình mới nhất…");
     try {
-      const scopedResponse = await requestScopedReviewQueue(activeLearner.id, scope);
-      const response = selection ? selectStudyQueue(scopedResponse, selection) : scopedResponse;
+      const scopedResponse = await requestScopedReviewQueue(activeLearner.id, scope, selection?.amount);
+      const unanswered = { ...scopedResponse, queue: scopedResponse.queue.filter((item) => !answeredIds.current.has(item.vocabulary.id)) };
+      const response = selection ? selectStudyQueue(unanswered, { ...selection, amount: Math.max(0, selection.amount - answeredIds.current.size) }) : unanswered;
       const canonicalCards = sessionCards(response.queue);
       const matchingCard = canonicalCards.find((candidate) => candidate.item.vocabulary.id === card.item.vocabulary.id);
       const nextCards = matchingCard
@@ -307,6 +310,7 @@ function StudyExperience({ activeLearner, mode, exercisePreference, scope, selec
   const saveScheduledReview = useCallback(async (request: ReviewRequest, card: SessionCard, answerDetails: Pick<PendingReview, "learnerAnswer" | "correctAnswer"> = {}) => {
     try {
       const response = await submitReview(request);
+      answeredIds.current.add(card.item.vocabulary.id);
       setMetrics((current) => ({ scheduledReviews: current.scheduledReviews + 1 }));
       setSessionResult((current) => {
         if (!current) return current;
@@ -434,6 +438,7 @@ function StudyExperience({ activeLearner, mode, exercisePreference, scope, selec
     replaceCards(nextCards);
     setBaseQueueLength(nextCards.length);
     setMetrics({ scheduledReviews: 0 });
+    answeredIds.current.clear();
     setSessionResult(createStudySessionResult(uniqueWrongItems));
     setSummaryStreak(null);
     setPending(null);

@@ -1,4 +1,4 @@
-import { parseStudySetIds, positiveStudyId } from "@vocabflow/contracts";
+import { parseStudySetIds, positiveStudyId, parseStudyQueueCapacity } from "@vocabflow/contracts";
 import { Hono } from "hono";
 import { performance } from "node:perf_hooks";
 import type { RuntimeBindings } from "./runtime-bindings";
@@ -244,6 +244,7 @@ function parseVocabularyLevelQuery(request: Request): VocabularyLevel | undefine
 
 function parseReviewQueueScope(request: Request): ReviewQueueScope | undefined | null {
   const params = new URL(request.url).searchParams;
+  params.delete("capacity");
   const keys = [...params.keys()];
   if (keys.length === 0) return undefined;
   if (new Set(keys).size !== keys.length) return null;
@@ -714,9 +715,13 @@ export function createApp(dependencies: AppDependencies = {}) {
         return withTiming(c.json(errorEnvelope("UNAUTHORIZED", "Đăng nhập để tiếp tục."), 401));
       }
       const scope = parseReviewQueueScope(c.req.raw);
-      if (scope === null) return withTiming(c.json(errorEnvelope("INVALID_REQUEST", "Dữ liệu gửi lên không hợp lệ."), 400));
+      const capacities = new URL(c.req.url).searchParams.getAll("capacity");
+      const capacity = capacities.length ? parseStudyQueueCapacity(capacities[0]!) : undefined;
+      if (scope === null || capacities.length > 1 || capacity === null || (capacity !== undefined && (scope === "saved-all" || scope === "weak"))) return withTiming(c.json(errorEnvelope("INVALID_REQUEST", "Dữ liệu gửi lên không hợp lệ."), 400));
       const service = dependencies.reviewQueueService ?? await runReviewQueueService(c.env);
-      const queue = scope === undefined
+      const queue = capacity !== undefined
+        ? await service.list(session.user.id, c.req.param("learnerId"), timings, scope, capacity)
+        : scope === undefined
         ? await service.list(session.user.id, c.req.param("learnerId"), timings)
         : await service.list(session.user.id, c.req.param("learnerId"), timings, scope);
       return withTiming(c.json(queue, 200));

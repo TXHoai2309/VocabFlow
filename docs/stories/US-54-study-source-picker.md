@@ -41,7 +41,7 @@ set items never multiply words. Vocabulary must be enabled; quarantined media
 continues to be suppressed by the existing media projection. There is no new
 quarantine state or migration.
 
-Due date/order, 20 Due / 10 New presentation bounds, canonical daily allowance,
+Due date/order, default 20 Due / 10 New candidate bounds, canonical daily allowance,
 sparse progress, review revision/idempotency, reinforcement and XP are retained.
 The review write service and learning-domain scheduler are unchanged.
 
@@ -55,6 +55,32 @@ Explicit URL scope wins initially. Source changes are local committed state;
 only Start serializes the chosen scope into the Study URL and return link.
 Start, refresh/reconcile, session exit and Summary → Học tiếp serialize the
 same exact source. Canceled async reads cannot publish old availability.
+
+## 2026-10-08 — Balanced Mixed Study correction
+
+Owner-approved policy: select ceil(amount/2) DUE and floor(amount/2) eligible
+NEW. Fill shortages with remaining NEW, then DUE, without duplicates or changing
+the canonical order within either type. Present DUE first. Pure NEW/Review
+never borrow from the other type; Saved-all/Weak retain their special policy.
+Setup plannedCount and Study use the same selectStudyQueue allocator.
+
+Add optional review-queue `capacity=5|10|20|30` (candidate count per type),
+validated without repeated/unknown parameters. Without capacity, the existing
+20 DUE / 10 NEW contract and counts remain. Normal Study Setup requests 30 per
+type once per committed source, allowing amount/mode changes without refetch.
+Study/reconcile request the selected amount. Capacity returns a candidate pool,
+not a final allocation. Membership EXISTS and ordering remain before SQL LIMIT;
+up to 60 candidates are returned, with the same query count/concurrency.
+No capacity applies to Saved-all/Weak. NEW candidates are clipped to canonical
+dailyNewWordLimit minus consumedToday; review writes remain the final atomic
+allowance/revision/idempotency authority. Concurrent changes may shorten a session.
+
+Reconcile preserves source/content/requested amount, excludes confirmed
+answers, and runs the allocator against the remaining session budget. It does
+not restart the DUE-first truncation or reintroduce answered vocabulary.
+No scheduler/review-write, migration, Dataset or picker UI changes.
+
+Validation counts and mocked-vs-live limitations are in docs/ai-progress.md.
 
 ## Verification boundary
 

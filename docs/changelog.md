@@ -1,5 +1,17 @@
 # VocabFlow Changelog
 
+## 2026-10-08 — Balanced Mixed Study queue
+
+- Mixed targets half DUE/half eligible NEW, with the odd slot going to DUE;
+  shortages fill from remaining NEW then DUE. Deduplicate IDs and preserve order.
+- Optional bounded candidate capacity supports sessions up to 30; default queue
+  remains 20 DUE/10 NEW. Daily New allowance and atomic review checks remain.
+- Setup and Study share allocation; reconcile excludes confirmed answers and
+  retains source/mode/capacity within the remaining session budget.
+- 194 focused tests, 582 broader tests and 15 Chromium tests PASS;
+  typecheck/build/lint/diff PASS. SQL evidence uses mocks, not live PostgreSQL.
+- No picker redesign, scheduler/review-write, migration, Dataset or deployment.
+
 ## 2026-10-08 — Bulk selection in the Custom Study picker
 
 - Add native tri-state Select All / Deselect All below search, operating on

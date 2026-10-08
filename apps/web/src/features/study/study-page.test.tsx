@@ -118,6 +118,37 @@ describe("US-09 flashcard session UX", () => {
     });
   });
 
+  it("reconciles with identical capacity/scope/selection and excludes confirmed answers from the refreshed pool", async () => {
+    const due = Array.from({ length: 5 }, (_, i) => queueItem(i + 1, `due-${i + 1}`, "DUE", 4));
+    const fresh = Array.from({ length: 5 }, (_, i) => queueItem(i + 100, `new-${i + 100}`));
+    const queue = [...due, ...fresh];
+    const fetchMock = vi.spyOn(globalThis, "fetch")
+      .mockImplementation(async (_input, init) => {
+        const body = JSON.parse(String(init?.body));
+        return response(reviewResponse({ ...queue.find((item) => item.vocabulary.id === body.vocabularyId)!, expectedRevision: body.expectedRevision }, "REMEMBERED"), 201);
+      })
+      .mockResolvedValueOnce(response(queueResponse(queue)))
+      .mockResolvedValueOnce(response(reviewResponse(due[0]!, "REMEMBERED"), 201))
+      .mockResolvedValueOnce(response({ error: { code: "STALE_REVISION" } }, 409))
+      .mockResolvedValueOnce(response(queueResponse(queue.map((item) => item.vocabulary.id === 2 ? { ...item, expectedRevision: 9 } : item))));
+    renderStudy(learner, "flashcard", "/study?source=custom&setIds=1,2&count=5&content=mixed");
+    await screen.findByTestId("study-session-ready");
+    fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" })); fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
+    await screen.findByText("due-2");
+    fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" })); fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
+    await screen.findByText("Tiến trình đã thay đổi. Hãy đánh giá lại thẻ này.");
+    expect(screen.queryByText("due-1")).not.toBeInTheDocument();
+    const gets = fetchMock.mock.calls.filter(([, init]) => !init?.method);
+    expect(gets.map(([url]) => String(url))).toEqual(Array(2).fill(`/api/learners/${learner.id}/review-queue?source=custom&setIds=1%2C2&capacity=5`));
+    expect(screen.getByText("due-2")).toBeInTheDocument();
+    for (const word of ["due-2", "due-3", "new-100", "new-101"]) {
+      await screen.findByText(word);
+      fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" })); fireEvent.click(screen.getByRole("button", { name: "Đã nhớ" }));
+    }
+    await screen.findByTestId("study-session-summary");
+    expect(screen.getByTestId("summary-answered-total")).toHaveTextContent("5 / 5");
+    expect(fetchMock.mock.calls.filter(([, init]) => init?.body).map(([, init]) => JSON.parse(String(init?.body)).vocabularyId)).toEqual([1, 2, 2, 3, 100, 101]);
+  });
   it("loads the canonical due-first queue and keeps Vietnamese off the front", async () => {
     const due = queueItem(1, "apple", "DUE", 3);
     due.vocabulary.audioUrl = "/audio/apple.mp3";

@@ -146,7 +146,7 @@ test("a delayed old source response cannot replace current availability", async 
   let release!: () => void;
   const delayed = new Promise<void>((resolve) => { release = resolve; });
   let allRequested = false;
-  await page.route("**/review-queue?source=all", async (route) => {
+  await page.route("**/review-queue?source=all&capacity=*", async (route) => {
     allRequested = true; await delayed;
     await route.fulfill({ json: { learnerId: profile().id, reviewDate: "2026-10-08", dueCount: 0, newCount: 1, queue: [word(999)] } });
   });

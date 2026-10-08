@@ -77,7 +77,7 @@ const learningSet = {
 
 function mockStudyData(queue: ReviewQueueItem[]) {
   return vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
-    const path = String(input);
+    const path = String(input).replace(/[?&]capacity=\d+$/, "");
     if (path === "/api/learners") return response({ learners: [learner] });
     if (path === "/api/learning-sets") return response({ learningSets: [learningSetSummary, { ...learningSetSummary, id: 5, name: "Family" }] });
     if (path === `/api/learners/${learner.id}/review-queue?topicId=7`) return response(queueResponse(queue.filter((entry) => topicVocabulary.some((v) => v.id === entry.vocabulary.id))));
@@ -120,6 +120,26 @@ function renderSetup(path = "/study/setup", activeLearner: LearnerDto | null = l
 
 describe("Study Setup", () => {
   beforeEach(() => { vi.restoreAllMocks(); localStorage.clear(); });
+
+  it.each([5, 10, 20, 30] as const)("uses the same bounded candidate pool and policy for Mixed amount %i", async (amount) => {
+    const queue = [...Array.from({ length: 30 }, (_, i) => item(i + 1, "DUE")), ...Array.from({ length: 30 }, (_, i) => item(i + 100))];
+    const fetchMock = mockStudyData(queue); renderSetup(); await screen.findByTestId("study-setup-page");
+    fireEvent.click(screen.getByRole("button", { name: new RegExp(`${amount}\\s*từ`) }));
+    expect(screen.getByTestId("study-setup-summary-count")).toHaveTextContent(`${amount} từ`);
+    expect(fetchMock.mock.calls.filter(([url]) => String(url).includes("review-queue"))).toHaveLength(1);
+    expect(fetchMock.mock.calls.some(([url]) => String(url).endsWith("capacity=30"))).toBe(true);
+    fireEvent.click(screen.getByRole("button", { name: /Bắt đầu học/ }));
+    await screen.findByTestId("study-session-ready");
+    expect(screen.getByTestId("session-counter")).toHaveTextContent(`Câu 1 / ${amount}`);
+    expect(fetchMock.mock.calls.some(([url]) => String(url).endsWith(`capacity=${amount}`))).toBe(true);
+  });
+  it("summarizes only available eligible candidates after the daily New cap", async () => {
+    mockStudyData([item(1, "DUE"), item(2, "DUE"), ...[100, 101, 102, 103].map((id) => item(id))]);
+    renderSetup(); await screen.findByTestId("study-setup-page");
+    expect(screen.getByTestId("study-setup-summary-count")).toHaveTextContent("6 từ");
+    fireEvent.click(screen.getByRole("button", { name: /Bắt đầu học/ })); await screen.findByTestId("study-session-ready");
+    expect(screen.getByTestId("session-counter")).toHaveTextContent("Câu 1 / 6");
+  });
 
   it.each(["Hủy", "Đóng chọn bộ từ", "Escape", "backdrop"])("%s keeps source, URL, amount/mode and mounted background without queue/catalog reads", async (action) => {
     const fetchMock = mockStudyData([item(1, "DUE"), item(2)]); renderSetup();
@@ -308,7 +328,7 @@ describe("Study Setup", () => {
     expect(screen.getByRole("link", { name: "Thoát buổi học" })).toHaveAttribute("href", "/study/setup?topicId=7");
     expect(screen.getByText("word-3")).toBeInTheDocument();
     expect(screen.queryByText("word-2")).not.toBeInTheDocument();
-    expect(fetchMock).toHaveBeenCalledWith(`/api/learners/${learner.id}/review-queue?topicId=7`, { credentials: "include" });
+    expect(fetchMock).toHaveBeenCalledWith(`/api/learners/${learner.id}/review-queue?topicId=7&capacity=30`, { credentials: "include" });
   });
 
   it("starts exactly the selected number of due Review words", async () => {
@@ -342,7 +362,10 @@ describe("Study Setup", () => {
     expect(screen.queryByText("word-2")).not.toBeInTheDocument();
     expect(screen.queryByText("word-3")).not.toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Thoát buổi học" })).toHaveAttribute("href", "/study/setup?source=pathway");
-    expect(fetchMock.mock.calls.filter(([path]) => String(path).includes("review-queue")).every(([path]) => String(path) === `/api/learners/${learner.id}/review-queue?source=pathway`)).toBe(true);
+    expect(fetchMock.mock.calls.filter(([path]) => String(path).includes("review-queue")).map(([path]) => String(path))).toEqual([
+      `/api/learners/${learner.id}/review-queue?source=pathway&capacity=30`,
+      `/api/learners/${learner.id}/review-queue?source=pathway&capacity=10`
+    ]);
   });
 
   it("uses only learning set vocabulary and displays the real set name", async () => {
@@ -373,7 +396,7 @@ describe("Study Setup", () => {
 
     expect(await screen.findByTestId("study-session-ready")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Thoát buổi học" })).toHaveAttribute("href", "/study/setup?saved=1");
-    expect(fetchMock).toHaveBeenCalledWith(`/api/learners/${learner.id}/review-queue?scope=saved`, { credentials: "include" });
+    expect(fetchMock).toHaveBeenCalledWith(`/api/learners/${learner.id}/review-queue?scope=saved&capacity=30`, { credentials: "include" });
     expect(fetchMock.mock.calls.some(([url]) => String(url) === `/api/learners/${learner.id}/review-queue`)).toBe(false);
   });
 
@@ -453,7 +476,7 @@ describe("Study Setup", () => {
 
     expect(await screen.findByTestId("study-setup-page")).toBeInTheDocument();
     expect(screen.queryByTestId("study-session-ready")).not.toBeInTheDocument();
-    expect(fetchMock.mock.calls.map(([path]) => String(path))).toEqual(["/api/learning-sets", `/api/learners/${learner.id}/review-queue?source=pathway`]);
+    expect(fetchMock.mock.calls.map(([path]) => String(path))).toEqual(["/api/learning-sets", `/api/learners/${learner.id}/review-queue?source=pathway&capacity=30`]);
     expect(fetchMock.mock.calls.every(([, init]) => !init?.method || init.method === "GET")).toBe(true);
   });
 

@@ -1,5 +1,49 @@
 # Current Handoff Snapshot
 
+## 2026-10-08 — Balanced New/Due Mixed Study fix
+
+Owner-authorized bug fix on TXH, remote baseline
+70b085b115f14ff45a8c57d1fcd4d83100ca0918. Preserved concurrently created
+Dataset approval-gate scripts/reports/workspaces and old stashes.
+Root cause: DUE-first frontend truncation consumed the whole Mixed amount,
+and the default server pool could never supply 15 NEW for amount=30.
+
+Single allocator in selectStudyQueue now uses ceil(N/2) DUE + floor(N/2) NEW,
+then fills shortages from remaining eligible NEW, followed by DUE. Deduplicates
+IDs, preserves each type's canonical order, and presents DUE first. NEW and
+Review only select their own type; Saved-all/Weak retain their special rules.
+Setup summary uses this allocator and canonical eligible candidates.
+
+Optional API capacity=5|10|20|30 bounds each candidate query, preserving default
+20 DUE/10 NEW and raw availability counts. Membership EXISTS precedes LIMIT;
+the same parallel usage/Due/New reads remain, with no N+1 or extra round-trip.
+Setup fetches at most 30 per type per source so controls do not refetch; Study
+and reconcile request the selected amount. At most 60 candidates return, often
+fewer after the canonical daily New allowance. No queue/progress cache across
+accounts. Atomic review-write checks, scheduler, idempotency and XP unchanged.
+Reconcile uses the same scope/mode/capacity, removes confirmed answer IDs and
+allocates only the remaining budget. Manual concurrent writes can shorten the
+actual session; backend candidates and writes remain canonical.
+
+Validation:
+- Focused queue/API/Setup/Study/Summary/review writes: 6 files / 194 tests PASS.
+- Broader full web, queue/review/Weak/Saved/set/settings/app and learning-domain
+  regression: 40 files / 582 tests PASS (the final added ownership test also
+  passes in the focused run). No unrelated assertions were weakened.
+- Chromium: 15 tests PASS, six complete NEW/Review/Mixed sessions including
+  Mixed 5/10/20/30 and exact 15-set Custom IDs, counts and continuation; nine
+  existing picker tests cover mobile, account isolation and stale sources.
+- pnpm typecheck, pnpm build, pnpm lint and task diff check PASS. Client secret
+  and source-map scans PASS. Existing Node 22.19 vs 22.23.2 / chunk-size / API
+  import warnings remain. Earlier focused failures were old URL assertions,
+  updated to assert the new bounded capacity requests exactly.
+- SQL/service tests use generated SQL and mocked rows, not live PostgreSQL.
+  Full historical E2E suite and real mobile/device/live Preview checks were
+  not run. No benchmark or live Neon query plan is claimed; candidate payload
+  can grow from 30 to 60 maximum, with existing query count and parallel reads.
+
+No Production deployment, DB migration or Dataset edit by this task.
+
 ## 2026-10-08 — US-54 bulk learning-set selection
 
 Owner-authorized feature and commit/push on TXH, remote baseline

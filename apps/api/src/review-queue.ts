@@ -3,6 +3,8 @@ import { performance } from "node:perf_hooks";
 import {
   APP_SCHEMA,
   type CatalogStudyScope,
+  type StudyQueueCapacity,
+  parseStudyQueueCapacity,
   reviewQueueResponseSchema,
   type ReviewQueueItem,
   type ReviewQueueResponse,
@@ -210,7 +212,7 @@ function vocabularyMembership(learner: SQL, scope?: ReviewQueueScope): SQL {
   )`;
 }
 
-async function dueRows(database: ReviewQueueDatabase, learnerId: string, reviewDate: string, scope?: ReviewQueueScope) {
+async function dueRows(database: ReviewQueueDatabase, learnerId: string, reviewDate: string, scope?: ReviewQueueScope, capacity?: StudyQueueCapacity) {
   const membership = vocabularyMembership(sql.raw("lp.learner_id"), scope);
   const result = await database.execute(sql`
     SELECT v.id,
@@ -236,12 +238,12 @@ async function dueRows(database: ReviewQueueDatabase, learnerId: string, reviewD
       AND v.enabled = true
       AND ${membership}
     ORDER BY lp.next_review_date ASC, v.id ASC
-    LIMIT 20
+    LIMIT ${capacity ?? sql.raw("20")}
   `);
   return rowsOf<QueueRow>(result);
 }
 
-async function newRows(database: ReviewQueueDatabase, learnerId: string, scope?: ReviewQueueScope) {
+async function newRows(database: ReviewQueueDatabase, learnerId: string, scope?: ReviewQueueScope, capacity?: StudyQueueCapacity) {
   const membership = vocabularyMembership(sql`${learnerId}::uuid`, scope);
   const result = await database.execute(sql`
     SELECT v.id,
@@ -268,7 +270,7 @@ async function newRows(database: ReviewQueueDatabase, learnerId: string, scope?:
       AND lp.vocabulary_id IS NULL
       AND ${membership}
     ORDER BY v.id ASC
-    LIMIT 10
+    LIMIT ${capacity ?? sql.raw("10")}
   `);
   return rowsOf<QueueRow>(result);
 }
@@ -309,7 +311,7 @@ function savedQueueType(row: QueueRow, reviewDate: string): ReviewQueueItem["que
 }
 
 export type ReviewQueueService = {
-  list: (userId: string, learnerId: string, timings?: ReviewQueueTimings, scope?: ReviewQueueScope) => Promise<ReviewQueueResponse>;
+  list: (userId: string, learnerId: string, timings?: ReviewQueueTimings, scope?: ReviewQueueScope, capacity?: StudyQueueCapacity) => Promise<ReviewQueueResponse>;
 };
 
 export function createReviewQueueService(
@@ -319,7 +321,8 @@ export function createReviewQueueService(
   const now = options.now ?? (() => new Date());
 
   return {
-    async list(userId, learnerId, timings, scope) {
+    async list(userId, learnerId, timings, scope, capacity) {
+      if (capacity !== undefined && !parseStudyQueueCapacity(String(capacity))) throw new ReviewQueueServiceError("INTERNAL_ERROR", 500);
       const authorizationStarted = timings ? performance.now() : 0;
       let ownership: Awaited<ReturnType<typeof authorizeLearnerOwnership>>;
       try {
@@ -400,8 +403,8 @@ export function createReviewQueueService(
           }
           [usage, due, availableNew] = await Promise.all([
             dailyNewUsage(database, ownership.learnerId, reviewDate),
-            dueRows(database, ownership.learnerId, reviewDate, scope),
-            newScope && typeof newScope === "object" && newScope.type === "custom" && newScope.ids.length === 0 ? Promise.resolve([]) : newRows(database, ownership.learnerId, newScope)
+            dueRows(database, ownership.learnerId, reviewDate, scope, capacity),
+            newScope && typeof newScope === "object" && newScope.type === "custom" && newScope.ids.length === 0 ? Promise.resolve([]) : newRows(database, ownership.learnerId, newScope, capacity)
           ]);
         } finally {
           if (timings) timings.databaseMs = performance.now() - databaseStarted;

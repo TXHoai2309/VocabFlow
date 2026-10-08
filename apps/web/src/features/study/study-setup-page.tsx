@@ -7,7 +7,7 @@ import { LearningSetsClientError, requestLearningSets } from "../learning-sets/l
 import { useActiveLearner } from "../learners/learner-context-hook";
 import { requestTopics, TopicsClientError } from "../learners/topics-client";
 import type { LearnerDto, ReviewQueueResponse, LearningSetSummary, LearningSourceScope } from "@vocabflow/contracts";
-import { requestScopedReviewQueue, studyContentModeFromParams, studyScopeFromParams, type StudyContentMode, type StudyScope, studyScopeParams } from "./study-queue";
+import { requestScopedReviewQueue, selectStudyQueue, studyContentModeFromParams, studyScopeFromParams, type StudyContentMode, type StudyScope, studyScopeParams } from "./study-queue";
 import { EmptyState, ErrorState, LoadingState } from "../../components/async-states";
 
 const STUDY_AMOUNTS = [5, 10, 20, 30] as const;
@@ -77,12 +77,12 @@ async function requestScopeDetails(scope: Exclude<StudyScope, { type: "invalid" 
 
 async function requestSetupData(learnerId: string, scope: StudyScope | null, sets: LearningSetSummary[] | null): Promise<StudySetupData> {
   if (scope?.type === "invalid") throw new TopicsClientError("INVALID_SCOPE", 404);
-  if (!scope) return { queue: await requestScopedReviewQueue(learnerId, null), scopeName: null };
-  if (scope.type === "saved") return { queue: await requestScopedReviewQueue(learnerId, scope), scopeName: "Từ đã lưu" };
+  if (!scope) return { queue: await requestScopedReviewQueue(learnerId, null, 30), scopeName: null };
+  if (scope.type === "saved") return { queue: await requestScopedReviewQueue(learnerId, scope, 30), scopeName: "Từ đã lưu" };
   if (scope.type === "weak") return { queue: await requestScopedReviewQueue(learnerId, scope), scopeName: "Từ yếu" };
   const detailsPromise = requestScopeDetails(scope, sets);
   const [queue, details] = await Promise.all([
-    requestScopedReviewQueue(learnerId, scope),
+    requestScopedReviewQueue(learnerId, scope, 30),
     detailsPromise
   ]);
   return { queue, scopeName: details.scopeName };
@@ -220,7 +220,7 @@ function StudySetupExperience({ activeLearner, scope: urlScope, userId, preferre
   const isAllScope = isSavedAll || isWeak;
   const selectedContent = content ?? defaultMode(data.queue);
   const available = isAllScope ? (state === "ready" ? data.queue.queue.length : 0) : availability[selectedContent];
-  const plannedCount = Math.min(amount, available);
+  const plannedCount = state === "ready" ? selectStudyQueue(data.queue, { amount, content: isAllScope ? "all" : selectedContent }).queue.length : 0;
 
   function startStudy() {
     if (available === 0) return;

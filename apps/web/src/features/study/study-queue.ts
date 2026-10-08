@@ -1,4 +1,4 @@
-import { parseStudySetIds, type LearningSourceScope, type ReviewQueueResponse } from "@vocabflow/contracts";
+import { parseStudySetIds, type LearningSourceScope, type ReviewQueueResponse, type StudyQueueCapacity } from "@vocabflow/contracts";
 import { requestReviewQueue } from "./review-queue-client";
 
 export type StudyScope = { type: "topic" | "learning-set"; id: number } | { type: "saved"; all: boolean } | { type: "weak" } | { type: "invalid" } | LearningSourceScope;
@@ -66,14 +66,25 @@ export function studySelectionFromParams(searchParams: URLSearchParams, scope?: 
   return amount && content ? { amount, content } : null;
 }
 
-export function selectStudyQueue(response: ReviewQueueResponse, selection: StudySelection): ReviewQueueResponse {
-  const source = selection.content === "all"
-    ? [...new Map(response.queue.map((item) => [item.vocabulary.id, item])).values()]
-    : response.queue;
+export function selectStudyQueue(response: ReviewQueueResponse, selection: { amount: number; content: StudySelection["content"] }): ReviewQueueResponse {
+  const seen = new Set<number>();
+  const source = response.queue.filter((item) => {
+    if (seen.has(item.vocabulary.id)) return false;
+    seen.add(item.vocabulary.id); return true;
+  });
   const eligible = source.filter((item) => selection.content === "all"
     || (selection.content === "mixed" ? item.queueType === "NEW" || item.queueType === "DUE"
       : selection.content === "new" ? item.queueType === "NEW" : item.queueType === "DUE"));
-  const queue = eligible.slice(0, selection.amount);
+  let queue = eligible.slice(0, selection.amount);
+  if (selection.content === "mixed") {
+    const due = eligible.filter((item) => item.queueType === "DUE");
+    const newWords = eligible.filter((item) => item.queueType === "NEW");
+    let dueCount = Math.min(Math.ceil(selection.amount / 2), due.length);
+    let newCount = Math.min(Math.floor(selection.amount / 2), newWords.length);
+    newCount += Math.min(selection.amount - dueCount - newCount, newWords.length - newCount);
+    dueCount += Math.min(selection.amount - dueCount - newCount, due.length - dueCount);
+    queue = [...due.slice(0, dueCount), ...newWords.slice(0, newCount)];
+  }
   return {
     ...response,
     queue,
@@ -94,9 +105,9 @@ export function studyScopeParams(scope: StudyScope | null): URLSearchParams {
   return params;
 }
 
-export async function requestScopedReviewQueue(learnerId: string, scope: StudyScope | null): Promise<ReviewQueueResponse> {
+export async function requestScopedReviewQueue(learnerId: string, scope: StudyScope | null, capacity?: StudyQueueCapacity): Promise<ReviewQueueResponse> {
   if (scope?.type === "invalid") throw new Error("INVALID_SCOPE");
   if (scope?.type === "weak") return requestReviewQueue(learnerId, "weak");
-  if (scope?.type === "saved") return requestReviewQueue(learnerId, scope.all ? "saved-all" : "saved");
-  return requestReviewQueue(learnerId, scope ?? undefined);
+  if (scope?.type === "saved") return requestReviewQueue(learnerId, scope.all ? "saved-all" : "saved", scope.all ? undefined : capacity);
+  return requestReviewQueue(learnerId, scope ?? undefined, capacity);
 }

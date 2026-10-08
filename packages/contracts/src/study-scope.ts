@@ -1,4 +1,8 @@
 export const MAX_STUDY_SETS = 50;
+export type StudyQueueCapacity = 5 | 10 | 20 | 30;
+export function parseStudyQueueCapacity(raw: string): StudyQueueCapacity | null {
+  return ["5", "10", "20", "30"].includes(raw) ? Number(raw) as StudyQueueCapacity : null;
+}
 export type LearningSourceScope = { type: "pathway" } | { type: "all" } | { type: "custom"; ids: number[] };
 export type CatalogStudyScope = LearningSourceScope | { type: "topic" | "learning-set"; id: number };
 

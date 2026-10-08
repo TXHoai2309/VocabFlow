@@ -8,6 +8,17 @@ const learnerId = "00000000-0000-4000-8000-000000000010";
 const householdId = "00000000-0000-4000-8000-000000000001";
 
 describe("Study source API contract", () => {
+  it.each(["capacity=5", "capacity=10", "capacity=20", "capacity=30", "source=custom&setIds=1,2&capacity=30", "source=pathway&capacity=30", "source=all&capacity=30", "topicId=7&capacity=30", "learningSetId=4&capacity=30", "scope=saved&capacity=30"])("accepts bounded candidate %s without changing scope", async (query) => {
+    const list = vi.fn(async () => ({ learnerId, reviewDate: "2026-10-08", dueCount: 0, newCount: 0, queue: [] }));
+    const app = createApp({ readSession: async () => ({ user: { id: "A" } }), reviewQueueService: { list } });
+    expect((await app.request(`http://localhost/api/learners/${learnerId}/review-queue?${query}`)).status).toBe(200);
+    expect(list).toHaveBeenCalledWith("A", learnerId, expect.any(Object), query.startsWith("capacity=") ? undefined : expect.anything(), Number(new URLSearchParams(query).get("capacity")));
+  });
+  it.each(["capacity=0", "capacity=31", "capacity=100000", "capacity=15", "capacity=05", "capacity=", "capacity=30&capacity=30", "capacity=30&content=mixed", "scope=weak&capacity=30", "scope=saved&content=all&capacity=30"])("rejects invalid candidate contract %s", async (query) => {
+    const list = vi.fn();
+    const app = createApp({ readSession: async () => ({ user: { id: "A" } }), reviewQueueService: { list } });
+    expect((await app.request(`http://localhost/api/learners/${learnerId}/review-queue?${query}`)).status).toBe(400); expect(list).not.toHaveBeenCalled();
+  });
   it.each(["source=pathway", "source=all", "source=custom&setIds=2,1", "learningSetId=4", "topicId=7"])("accepts %s with authenticated ownership handoff", async (query) => {
     const list = vi.fn(async (_userId: string) => ({ learnerId, reviewDate: "2026-10-08", dueCount: 0, newCount: 0, queue: [] }));
     const app = createApp({ readSession: async () => ({ user: { id: "A" } }), reviewQueueService: { list } });
@@ -92,6 +103,57 @@ describe("Scoped membership SQL before bounds", () => {
     for (const query of queries.filter(({ sql }) => sql.includes("COUNT(*) OVER()"))) {
       expect(query.sql).toContain('"learner_learning_sets"'); expect(query.sql).toContain('"vocabulary_topics"'); expect(query.params).toContain(7);
     }
+  });
+});
+
+describe("Bounded Study candidate capacity", () => {
+  it("does not bypass session authentication or learner ownership when capacity is requested", async () => {
+    const list = vi.fn();
+    const app = createApp({ readSession: async () => null, reviewQueueService: { list } });
+    expect((await app.request(`http://localhost/api/learners/${learnerId}/review-queue?capacity=30`)).status).toBe(401);
+    expect(list).not.toHaveBeenCalled();
+    const execute = vi.fn(async () => ({ rows: [] }));
+    await expect(createReviewQueueService({ execute }).list("other-account", learnerId, undefined, { type: "custom", ids: [1] }, 30)).rejects.toMatchObject({ status: 403, code: "HOUSEHOLD_ACCESS_DENIED" });
+    expect(execute).toHaveBeenCalledTimes(1);
+  });
+  it.each([undefined, { type: "all" }, { type: "pathway" }, { type: "custom", ids: [1, 2, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17] }, { type: "learning-set", id: 4 }, { type: "topic", id: 7 }, "saved"] as const)("supplies up to 30 of each type within scope %j", async (scope) => {
+    const queries: Array<{ sql: string; params: unknown[] }> = [];
+    const execute = vi.fn(async (query) => {
+      const rendered = new PgDialect().sqlToQuery(query); queries.push(rendered);
+      const statement = rendered.sql;
+      if (queries.length === 1) return authorizedRows();
+      if (statement.includes("SELECT id FROM")) return { rows: rendered.params.filter((value) => typeof value === "number").map((id) => ({ id })) };
+      if (statement.includes("SELECT ls.id")) return { rows: [{ id: 1 }] };
+      if (statement.includes("SELECT timezone")) return { rows: [{ timezone: "Asia/Ho_Chi_Minh" }] };
+      if (statement.includes("daily_new_word_limit")) return dailyUsageRow(100, 0);
+      const limit = Number(rendered.params.at(-1));
+      if (statement.includes("next_review_date <=")) return { rows: Array.from({ length: limit }, (_, i) => dueRow(i + 1, 45)) };
+      if (statement.includes("lp.vocabulary_id IS NULL")) return { rows: Array.from({ length: limit }, (_, i) => newRow(i + 100, 147)) };
+      throw new Error("Unexpected query");
+    });
+    const service = createReviewQueueService({ execute });
+    const result = await service.list("A", learnerId, undefined, scope as import("./review-queue").ReviewQueueScope | undefined, 30);
+    expect(result.queue.filter((item) => item.queueType === "DUE")).toHaveLength(30);
+    expect(result.queue.filter((item) => item.queueType === "NEW")).toHaveLength(30);
+    expect(result.dueCount).toBe(45); expect(result.newCount).toBe(147);
+    expect(new Set(result.queue.map((item) => item.vocabulary.id)).size).toBe(60);
+    for (const query of queries.filter((query) => query.sql.includes("COUNT(*) OVER()"))) {
+      expect(query.params.at(-1)).toBe(30); expect(query.sql.indexOf("EXISTS")).toBeLessThan(query.sql.lastIndexOf("LIMIT"));
+    }
+    expect(queries.length).toBeLessThanOrEqual(6);
+  });
+  it.each([0, 4])("caps 30 candidates at canonical remaining allowance %i", async (remaining) => {
+    const execute = vi.fn(async (query) => {
+      const { sql: statement } = new PgDialect().sqlToQuery(query);
+      if (execute.mock.calls.length === 1) return authorizedRows();
+      if (statement.includes("SELECT timezone")) return { rows: [{ timezone: "Asia/Ho_Chi_Minh" }] };
+      if (statement.includes("daily_new_word_limit")) return dailyUsageRow(10, 10 - remaining);
+      if (statement.includes("next_review_date <=")) return { rows: Array.from({ length: 20 }, (_, i) => dueRow(i + 1, 20)) };
+      return { rows: Array.from({ length: 30 }, (_, i) => newRow(i + 100, 40)) };
+    });
+    const result = await createReviewQueueService({ execute }).list("A", learnerId, undefined, undefined, 30);
+    expect(result.queue.filter((item) => item.queueType === "NEW")).toHaveLength(remaining);
+    expect(result.newCount).toBe(40);
   });
 });
 

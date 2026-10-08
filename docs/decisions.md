@@ -1,5 +1,14 @@
 # VocabFlow Project Decisions
 
+## Mixed Study allocation and bounded candidates (2026-10-08)
+
+Owner approved a Mixed bug fix: frontend selectStudyQueue owns deterministic
+ceil(N/2) DUE / floor(N/2) NEW allocation, filling shortages from NEW then DUE.
+Backend remains a canonical candidate provider with optional per-type capacity
+5/10/20/30; omitted capacity preserves 20 DUE/10 NEW. Setup and Study share the
+allocator; daily New eligibility and final atomic review checks stay canonical.
+Saved-all/Weak keep their policy. See [US-54](stories/US-54-study-source-picker.md).
+
 ## Study scope is independent of assignment (2026-10-08)
 
 Owner approved US-54's compact Pathway/Custom/All source choice. Queue scope

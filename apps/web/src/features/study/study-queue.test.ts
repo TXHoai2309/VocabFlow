@@ -88,7 +88,7 @@ describe("saved study scope", () => {
     expect(selectStudyQueue(response, { amount: 30, content: "mixed" }).queue.map((item) => item.queueType)).toEqual(["DUE", "NEW"]);
   });
 
-  it("selects DUE first for Mixed and fills remaining slots with NEW", () => {
+  it("balances Mixed while retaining DUE-first presentation and shortage fallback", () => {
     const templates = queueResponse().queue;
     const dueTemplate = templates[0]!;
     const newTemplate = templates[1]!;
@@ -109,12 +109,32 @@ describe("saved study scope", () => {
 
     const tenWordMixed = selectStudyQueue(response, { amount: 10, content: "mixed" });
     expect(tenWordMixed.queue).toHaveLength(10);
-    expect(tenWordMixed.queue.every((item) => item.queueType === "DUE")).toBe(true);
+    expect(tenWordMixed.dueCount).toBe(5);
+    expect(tenWordMixed.newCount).toBe(5);
     expect(selectStudyQueue(response, { amount: 30, content: "mixed" }).queue.map((item) => item.queueType)).toEqual([
       ...Array.from({ length: 12 }, () => "DUE"),
       ...Array.from({ length: 5 }, () => "NEW")
     ]);
     expect(selectStudyQueue(response, { amount: 30, content: "review" }).queue.every((item) => item.queueType === "DUE")).toBe(true);
     expect(selectStudyQueue(response, { amount: 30, content: "new" }).queue.every((item) => item.queueType === "NEW")).toBe(true);
+  });
+  it.each([
+    [5, 10, 10, 3, 2], [10, 45, 147, 5, 5], [20, 30, 30, 10, 10], [30, 30, 30, 15, 15],
+    [10, 1, 50, 1, 9], [10, 50, 2, 8, 2], [10, 0, 20, 0, 10], [10, 20, 0, 10, 0],
+    [10, 2, 3, 2, 3], [10, 20, 4, 6, 4], [10, 2, 4, 2, 4]
+  ] as const)("Mixed %i with %i Due / %i eligible New produces %i/%i", (amount, dueAvailable, newAvailable, dueExpected, newExpected) => {
+    const templates = queueResponse().queue;
+    const due = Array.from({ length: dueAvailable }, (_, i) => ({ ...templates[0]!, vocabulary: { ...templates[0]!.vocabulary, id: i + 1 } }));
+    const newWords = Array.from({ length: newAvailable }, (_, i) => ({ ...templates[1]!, vocabulary: { ...templates[1]!.vocabulary, id: i + 1000 } }));
+    const response = { ...queueResponse(), queue: [...due, ...newWords, ...due, ...newWords] };
+    const result = selectStudyQueue(response, { amount, content: "mixed" });
+    expect(result.dueCount).toBe(dueExpected); expect(result.newCount).toBe(newExpected);
+    expect(result.queue.map((item) => item.vocabulary.id)).toEqual([...due.slice(0, dueExpected), ...newWords.slice(0, newExpected)].map((item) => item.vocabulary.id));
+    expect(selectStudyQueue({ ...response, queue: [...newWords, ...due] }, { amount, content: "mixed" })).toEqual(result);
+  });
+  it.each<StudyScope>([{ type: "pathway" }, { type: "all" }, { type: "custom", ids: [1, 2] }, { type: "topic", id: 7 }, { type: "learning-set", id: 4 }, { type: "saved", all: false }])("requests bounded capacity for $type", async (scope) => {
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(JSON.stringify(queueResponse())));
+    await requestScopedReviewQueue(learnerId, scope, 30);
+    expect(String(fetchMock.mock.calls[0]?.[0])).toContain("capacity=30");
   });
 });

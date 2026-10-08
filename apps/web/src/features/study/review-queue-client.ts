@@ -1,6 +1,7 @@
 import {
   reviewQueueResponseSchema,
   type CatalogStudyScope,
+  type StudyQueueCapacity,
   type ReviewQueueResponse
 } from "@vocabflow/contracts";
 
@@ -27,7 +28,7 @@ async function readError(response: Response): Promise<ReviewQueueClientError> {
   return new ReviewQueueClientError(code, response.status);
 }
 
-export async function requestReviewQueue(learnerId: string, scope?: "saved" | "saved-all" | "weak" | CatalogStudyScope): Promise<ReviewQueueResponse> {
+export async function requestReviewQueue(learnerId: string, scope?: "saved" | "saved-all" | "weak" | CatalogStudyScope, capacity?: StudyQueueCapacity): Promise<ReviewQueueResponse> {
   let response: Response;
   try {
     const params = new URLSearchParams();
@@ -35,10 +36,11 @@ export async function requestReviewQueue(learnerId: string, scope?: "saved" | "s
       if (scope.type === "topic" || scope.type === "learning-set") params.set(scope.type === "topic" ? "topicId" : "learningSetId", String(scope.id));
       else { params.set("source", scope.type); if (scope.type === "custom") params.set("setIds", scope.ids.join(",")); }
     }
-    const query = typeof scope === "object" ? `?${params}` : scope === "saved-all"
+    const scopeQuery = typeof scope === "object" ? `?${params}` : scope === "saved-all"
       ? "?scope=saved&content=all"
       : scope === "saved" ? "?scope=saved"
         : scope === "weak" ? "?scope=weak" : "";
+    const query = capacity === undefined ? scopeQuery : `${scopeQuery}${scopeQuery ? "&" : "?"}capacity=${capacity}`;
     response = await fetch(`/api/learners/${encodeURIComponent(learnerId)}/review-queue${query}`, {
       credentials: "include"
     });
