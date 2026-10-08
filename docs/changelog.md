@@ -1,5 +1,19 @@
 # VocabFlow Changelog
 
+## 2026-10-08 — Phase 2H.2A expansion candidate preparation
+
+Added an offline deterministic evidence ledger for the full 6143 source union
+and a 100-group editorial pilot with unresolved owner decisions. Reuses Master
+V2 contracts and preserves all 4170 source review groups, 87 existing lemma
+candidates, 75 history-protected runtime identities and owner-excluded pairs.
+Rights remain UNKNOWN_REVIEW_REQUIRED; materialization is blocked on identity,
+rights, original content/provenance, owner decision and separate authorization.
+No Master IDs/content/release or runtime mappings created; no media promoted.
+21 focused regressions, offline replay, direct typecheck, lint and frozen release
+checks pass; canonical pnpm typecheck remains blocked by the non-TTY install
+guard. Exact evidence is in [the handoff](ai-progress.md#phase-2h2a-candidate-preparation-2026-10-08).
+No DB, app, migration, Production, cleanup, commit or push operation.
+
 ## 2026-10-08 — Account menu simplification
 
 Removed duplicate desktop Settings from the account menu and its trigger

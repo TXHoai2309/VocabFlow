@@ -1,5 +1,23 @@
 # US-45 — Master Vocabulary V2 Runtime Import Bridge
 
+## 2026-10-08 — Phase 2H.2A full expansion candidate preparation
+
+Offline planning is READY FOR OWNER REVIEW: full ledger 6143 groups, 4170
+accepted review groups discoverable, deterministic pilot 100 with all decisions
+UNRESOLVED. [The report](../../vocabflow-dataset/reports/full-master-expansion-candidate-preparation.md)
+documents how future materialization must use existing Master V2 schemas,
+stable UUIDv7 identities and immutable revision/release pins. Source grouping,
+Master lemma overlap and runtime content comparison never establish Sense identity.
+All rights remain UNKNOWN_REVIEW_REQUIRED; original verified content/provenance,
+identity proof, owner decisions and separate authoring permission remain gates.
+The frozen 87 Lexemes/100 Senses, all 75 legacy history identities, #11/#284,
+#295/#849 and prior owner exclusions remain unchanged. No Master authoring,
+Development apply, runtime mapping, migration, media or cleanup is authorized.
+21 focused tests, deterministic replay, direct typecheck/lint and frozen release
+check pass; [external evidence](../ai-progress.md#phase-2h2a-candidate-preparation-2026-10-08)
+records the canonical wrapper limitation separately. No commit/push; review the
+candidate materialization contract and pilot before authorizing Phase 2H.2B.
+
 ## 2026-10-08 — Phase 2H.1 validation provenance closure
 
 Generator evidence now covers deterministic inventory checks only; external

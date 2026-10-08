@@ -1,5 +1,84 @@
 # Current Handoff Snapshot
 
+## Phase 2H.2A candidate preparation (2026-10-08)
+
+READY FOR OWNER REVIEW. Remote/local baseline
+6a1fe9889162cfec3e7bc102aa64a84da2b1bc73; accepted Phase 2H.1 input fingerprint
+58928e98845e326f8d9a268aa160c867443e8497436d9c58fa2b9a5647f10a53.
+The Phase 2H.1 correction was subsequently committed and pushed at that baseline;
+its earlier no-commit/no-push handoff below is historical.
+
+The offline pipeline produces 6143 unique source-headword groups, zero missing
+or duplicate keys, exact references to all 9677 notes/GUIDs/record hashes and
+8092 Oxford source sense groups, and preserves discoverability of all 4170
+accepted review groups. Candidate keys are source grouping keys, never Master
+UUIDs. No raw source definition/example/media payload is copied into Master.
+The report documents the existing Lexeme/Sense, POS, pronunciation, linguistic
+children, Classification, taxonomy, Provenance, UUIDv7/revision and release-pin
+contracts. No parallel Master schema or approved identity is introduced.
+
+Source counts remain Oxford 5004/5001/3; 4600 4673/4654/19; overlap 3512,
+Oxford-only 1489, 4600-only 1142, union 6143; polysemy 2191, POS conflicts 61,
+CEFR conflicts 96. Existing approved Master lemma overlap is 87, not Sense proof.
+Overlapping ledger dependencies: 58 history groups, 708 product groups.
+734 legacy rows link to source groups; 1284 remain unmatched, without implying
+invalid content. All 75 history identities remain protected: 58 linked,
+17 unmatched. #11 retains 1 progress / 5 reviews; #295 duplicate, #849 ambiguous
+and prior owner-excluded pairs remain non-identity. The pinned offline Hybrid
+checkpoint is 100 mappings; #284 retains its booking Sense reference. No live
+database checkpoint is claimed.
+
+Disjoint processing counts: existing Master 87; history 57; product 646;
+complex review 1950; clean both-source lexical 1677; Oxford-only 717; 4600-only
+1009. The dimension/intersection matrix is separate from this 6143 partition.
+The pilot has exactly 100 unique groups: 5 structural patterns; then 10 each
+for Master overlap, history, product, POS conflict, CEFR conflict, multiword,
+polysemy, Oxford-only and 4600-only; finally 5 straightforward overlaps.
+All quota shortfalls are zero. Selection is sorted and deterministic; every
+owner decision defaults to UNRESOLVED. Overlapping pilot strata include Master
+13, history 11, product 24, POS 10, CEFR 13, polysemy 37, multiword 11,
+Oxford-only 25 and 4600-only 19.
+
+Text/media rights remain UNKNOWN_REVIEW_REQUIRED for all groups. Oxford lacks
+an explicit canonical English definition; 4600 Meaning text remains heuristic.
+New content needs genuine original definitions/examples, verified Vietnamese
+translations/pronunciations, authorship provenance and rights disposition.
+School grade, CEFR, difficulty, age, topic/domain, exam and Learning Set remain
+independent decisions. Unresolved identities 6143; currently materializable 0;
+owner-approved for authoring 0; Master IDs/runtime mappings/media published 0.
+
+PHASE_2H2A_FINGERPRINT:
+5b754405d9072e79b603e6b008bd8788a7dae7aed4f2eedde3087482fc0bc7ff.
+Generated PASS covers computed offline accounting/pin checks only. External
+results below are actual separate executions, outside fingerprinted artifacts.
+Working directory D:\hoctienganh\VocabFlow-phase-2g3a1; PowerShell, portable Node
+v22.23.2, pnpm 11.17.0, Python 3.13.1. No dependencies installed or module purge.
+
+| Exact command | Exit | Result |
+|---|---:|---|
+| `python -B -c "import ast,pathlib; [ast.parse(pathlib.Path(p).read_text(encoding='utf-8'), filename=p) for p in ['scripts/phase-2h2a-master-expansion.py','scripts/phase-2h2a-master-expansion-test.py']]"` | 0 | Syntax PASS, no bytecode written |
+| `python -B scripts/phase-2h2a-master-expansion-test.py` | 0 | 21/21 PASS |
+| `python -B scripts/phase-2h2a-master-expansion.py --check` | 0 | Offline replay PASS, identical fingerprint |
+| `pnpm typecheck` | 1 | WRAPPER_BLOCKED_BY_ENVIRONMENT: ERR_PNPM_ABORTED_REMOVE_MODULES_DIR_NO_TTY |
+| `node node_modules/typescript/bin/tsc -b` | 0 | Direct typecheck PASS |
+| `node node_modules/eslint/bin/eslint.js . --max-warnings=0` | 0 | Repository lint PASS |
+| `node node_modules/tsx/dist/cli.mjs scripts/hybrid-100-runtime-eligible-patch-release.ts --check` | 0 | Frozen release PASS; NOOP_ALREADY_MATERIALIZED_AND_FROZEN, writesPerformed=false |
+
+The canonical wrapper did not reach TypeScript and is not PASS. The direct CLI
+is separate evidence. Frozen hash remains
+44874b11d1fdef76a515f6285d04c9a417318daa6969e112608a59e7c232613c;
+tree remains 51ab4c5ce31bd38b51742d1aea16602150522da27ad26c123cc17b332f9a406e.
+Both repeated calculations are identical. All Phase 2H.1 inputs, Phase 2G.3C
+evidence, schemas and frozen release bytes are unchanged.
+
+Evidence: [planning report](../vocabflow-dataset/reports/full-master-expansion-candidate-preparation.md)
+and [dedicated workspace](../vocabflow-dataset/workspaces/full-master-expansion-candidate-preparation/).
+No apps/web, apps/api, migrations, Master authoring/apply, live Neon queries,
+DB writes, media publication, relationship mutation, disable/delete or Production
+operation. Existing untracked bytecode and all seven stashes remain preserved.
+No commit/push. Next: owner review of materialization contract and pilot before
+any separately authorized Phase 2H.2B. Phase 2H.3 has not started.
+
 ## 2026-10-08 — Remove duplicate Settings and account chevron
 
 Desktop Settings remains only in the primary sidebar; the account menu shows
