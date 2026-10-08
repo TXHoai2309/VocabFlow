@@ -1,0 +1,438 @@
+{
+  "batch": 6,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:enforcement",
+    "NORMALIZED_HEADWORD:imaginary",
+    "NORMALIZED_HEADWORD:primate",
+    "NORMALIZED_HEADWORD:surprised",
+    "NORMALIZED_HEADWORD:waste"
+  ],
+  "replayEvidence": "PSV parsed, supported POS/ordinals checked, exact content review hashes bound; full artifact replay recorded separately",
+  "reviewNotesSha256": "61621e843cc37f7ecf6d5c7ea7c06dd4b796e8d2b5be38ff162ed82ca7825284",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Ensuring compliance rather than merely publishing a rule is the boundary. Parking example is fictional, not a statement of current law; Vietnamese and enforcement of construction align.",
+      "proposalKey": "EDITORIAL_2H2H:enforcement:making-rules-observed",
+      "reviewedContentHash": "1350c7e0b5c9fb68f45b23192db2c7d70f1b35cd82a243609b641f9d22ab9bc0",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Non-real imagined entity is distinguished from creativity. Island example makes no unsupported geography claim, and Vietnamese tưởng tượng functions naturally as a modifier and standalone gloss.",
+      "proposalKey": "EDITORIAL_2H2H:imaginary:not-real",
+      "reviewedContentHash": "ec0e7788ba43d6264c99c154e8a77decb2084c2eec1c259dc5fa4bfb0398172b",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Biological boundary checked against Smithsonian primate classification including humans. Hands example avoids universal behavioural claims; religious title explicitly kept outside this draft meaning.",
+      "proposalKey": "EDITORIAL_2H2H:primate:animal-group",
+      "reviewedContentHash": "95bad8a24cffc37c0b50fc1690bfa27d323f79e5fcf5f92a8678c8f43364816a",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Experiencer adjective aligns with unexpectedly early library opening. Infinitive, clause and prepositional complements are sense-specific; no past-tense restriction derived from was surprised.",
+      "proposalKey": "EDITORIAL_2H2H:surprised:unexpected-feeling",
+      "reviewedContentHash": "05850a0991103ebff4c3e794e3b32ce7499d60293847936d599fb7bf5b647f97",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Discarded substance, resource loss, transitive use and attributive adjective are separate supported ordinals. Vietnamese preserves materials, one hour and wrong folder; no artificial tense-based split.",
+      "proposalKey": "EDITORIAL_2H2H:waste:discarded-material",
+      "reviewedContentHash": "e966fe691d38fb21145d9ed1b1d11effcc677196c8a2084257c95ec1a654ca3a",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Discarded substance, resource loss, transitive use and attributive adjective are separate supported ordinals. Vietnamese preserves materials, one hour and wrong folder; no artificial tense-based split.",
+      "proposalKey": "EDITORIAL_2H2H:waste:poor-use",
+      "reviewedContentHash": "b010025a9acf77a11c651acad97c4ac5ab281e7417ef008fcf7f92c06f2ff523",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Discarded substance, resource loss, transitive use and attributive adjective are separate supported ordinals. Vietnamese preserves materials, one hour and wrong folder; no artificial tense-based split.",
+      "proposalKey": "EDITORIAL_2H2H:waste:use-badly",
+      "reviewedContentHash": "39f7785581b6267282e8e5823f93966ae13de0892c5d804022e7a5a4b6a97e0c",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Discarded substance, resource loss, transitive use and attributive adjective are separate supported ordinals. Vietnamese preserves materials, one hour and wrong folder; no artificial tense-based split.",
+      "proposalKey": "EDITORIAL_2H2H:waste:discarded",
+      "reviewedContentHash": "cc3c77f65009259f6ccbd28b0ada3320cc7832d03521c483d0488882d617448e",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 8,
+  "sha256": "860e22fb166c7f695db5b8d486f92a2e85c67e0d41676e5ffdc9c39aa437abcf",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:enforcement": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3786/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3786/rawHeadword",
+        "rawPosEvidencePointer": "/records/3786/sourcePosRaw",
+        "recordEvidenceSha256": "2765aee7b6ae8f5fdf7a0130eb57d4b0049519890d57f7948e5abb9c4a62c956",
+        "recordIndex": 3786,
+        "sourceNoteGuid": "CPD%q;~]}K",
+        "sourceRecordId": "1788223609825",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/4289/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4289/rawHeadword",
+        "rawPosEvidencePointer": "/records/4289/sourcePosRaw",
+        "recordEvidenceSha256": "bf5c86516c645001056de260114b223c2a9f0fa647ca06457fb50c9a76dd6a4f",
+        "recordIndex": 4289,
+        "sourceNoteGuid": "LA(QVR>,^]",
+        "sourceRecordId": "1646317636072",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:imaginary": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/2386/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2386/rawHeadword",
+        "rawPosEvidencePointer": "/records/2386/sourcePosRaw",
+        "recordEvidenceSha256": "cb9757bf44cb4eea259852ae13528300bf492d0693ff6f0b7b2c8992ad3fcfe9",
+        "recordIndex": 2386,
+        "sourceNoteGuid": "fQSgw7Kv{a",
+        "sourceRecordId": "1788223608425",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:primate": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3136/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3136/rawHeadword",
+        "rawPosEvidencePointer": "/records/3136/sourcePosRaw",
+        "recordEvidenceSha256": "219c7c5fced6f29836d97c349e0dc907351c2ca5e7b9a0849a9a15c66fd1fe02",
+        "recordIndex": 3136,
+        "sourceNoteGuid": "s@b)j`Gpg*",
+        "sourceRecordId": "1559931010010",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:surprised": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/1350/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1350/rawHeadword",
+        "rawPosEvidencePointer": "/records/1350/sourcePosRaw",
+        "recordEvidenceSha256": "5f918b9a66be202ee02e44e92475ae4bdad177d7e38ad2124d1df772805ce087",
+        "recordIndex": 1350,
+        "sourceNoteGuid": "n??#lON&_[",
+        "sourceRecordId": "1788223607389",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::A2",
+            "value": "A2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "A2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/114/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/114/rawHeadword",
+        "rawPosEvidencePointer": "/records/114/sourcePosRaw",
+        "recordEvidenceSha256": "0ea27bf15416e4912e9f560b18e5e5e03018ac527cdd187a1fbfa232c4500c04",
+        "recordIndex": 114,
+        "sourceNoteGuid": "kz_AGEm@j9",
+        "sourceRecordId": "1556384730914",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:waste": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE",
+          "NOUN",
+          "VERB"
+        ],
+        "rawContentPointer": "/records/1867/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1867/rawHeadword",
+        "rawPosEvidencePointer": "/records/1867/sourcePosRaw",
+        "recordEvidenceSha256": "d3d067f0116d1115d0aaf6caa962af3ea890018616062c7541ddd422e2586c17",
+        "recordIndex": 1867,
+        "sourceNoteGuid": "Kx(pi{IrcE",
+        "sourceRecordId": "1788223607906",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B1",
+            "value": "B1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/329/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/329/rawHeadword",
+        "rawPosEvidencePointer": "/records/329/sourcePosRaw",
+        "recordEvidenceSha256": "bbe8fb90d32a0d212e145091d1b8e93aafbe68d908e087f5eedd632af567dd67",
+        "recordIndex": 329,
+        "sourceNoteGuid": "mMMCrz7gP]",
+        "sourceRecordId": "1556384731136",
+        "structuredOxfordSenseGroupOrdinals": []
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B1",
+            "value": "B1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3562/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3562/rawHeadword",
+        "rawPosEvidencePointer": "/records/3562/sourcePosRaw",
+        "recordEvidenceSha256": "8f3113e399c5d77b3e2b71ef581ffaeca256e9599bd99bcdb2d3a8b414f205ba",
+        "recordIndex": 3562,
+        "sourceNoteGuid": "kKfNgpM&7u",
+        "sourceRecordId": "1615645031490",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ]
+  },
+  "substantiveDefectsFound": 0
+}

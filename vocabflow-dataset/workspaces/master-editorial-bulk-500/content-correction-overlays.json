@@ -1,0 +1,42 @@
+{
+  "corrections": [
+    {
+      "after": "The students examined the legislative process in their civics lesson.",
+      "afterSha256": "125a53023adc79e7e7b896e53ee8cea7806102354b2ea4cb92a9639bd78f0cea",
+      "before": "The committee examined the legislative process in its civics lesson.",
+      "beforeSha256": "ecb092e86988582d4540be6bea6a54810504c2ca0c5496d9174496ef0226e995",
+      "field": "/content/examples/0/en",
+      "humanReviewer": null,
+      "ownerDecision": "UNRESOLVED",
+      "parentContentHash": "898953659841bb5e83f8c12c1d522763ec77080f3791833ab2d64872ff72d055",
+      "proposalKey": "EDITORIAL_2H2H:legislative:law-making",
+      "reason": "Students studying the legislative process is a natural civics context; coupled Vietnamese keeps the same participants and lesson.",
+      "reviewedAfterContentHash": "7552c2151c2e9fb40012fae6aaadf80766272d7603d98d412d38066b150a8242",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "severity": "SUBSTANTIVE"
+    },
+    {
+      "after": "Học sinh xem xét quy trình lập pháp trong giờ học về công dân.",
+      "afterSha256": "dfed085c795784d6542467ca8e49012fdbe134c40ad9261c93e17bbee2a6addd",
+      "before": "Ủy ban xem xét quy trình lập pháp trong buổi học về công dân.",
+      "beforeSha256": "b5b4fd1ac2b7cc0ee91a7f6c5e2a29396418308f9e5294a23d1733c798977fc1",
+      "field": "/content/examples/0/vi",
+      "humanReviewer": null,
+      "ownerDecision": "UNRESOLVED",
+      "parentContentHash": "898953659841bb5e83f8c12c1d522763ec77080f3791833ab2d64872ff72d055",
+      "proposalKey": "EDITORIAL_2H2H:legislative:law-making",
+      "reason": "Students studying the legislative process is a natural civics context; coupled Vietnamese keeps the same participants and lesson.",
+      "reviewedAfterContentHash": "7552c2151c2e9fb40012fae6aaadf80766272d7603d98d412d38066b150a8242",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "severity": "SUBSTANTIVE"
+    }
+  ],
+  "reReviewedBatches": [
+    {
+      "batch": 18,
+      "kind": "AI_SELF_REVIEW",
+      "note": "Rechecked generate cause-result and Vietnamese purpose, legislative student/lesson collocation and coupled translation, protection from dust, testing light negation, and all three withdraw boundaries/irregular forms. No further substantive defects identified; no human approval.",
+      "scope": "ALL_SEVEN_SENSES"
+    }
+  ]
+}

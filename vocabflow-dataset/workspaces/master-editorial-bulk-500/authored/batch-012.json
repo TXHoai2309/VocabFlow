@@ -1,0 +1,411 @@
+{
+  "batch": 12,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:education",
+    "NORMALIZED_HEADWORD:insight",
+    "NORMALIZED_HEADWORD:over",
+    "NORMALIZED_HEADWORD:shore",
+    "NORMALIZED_HEADWORD:wardrobe"
+  ],
+  "replayEvidence": "PSV parsed, supported POS/ordinals checked, exact content review hashes bound; full artifact replay recorded separately",
+  "reviewNotesSha256": "ff823c348931caf6e1949edff2afe4086abd94e415b5715f1b3c003217c2cae0",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Learning process broader than attending school is retained. Access improvement is an aim, not a completed result; Vietnamese remote-village context and uncountable system use match.",
+      "proposalKey": "EDITORIAL_2H2H:education:learning-process",
+      "reviewedContentHash": "3abea540341a4c4d30f859e2f72a9abc82eae195080035e94172fa0529a5eeea",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Understanding rather than only a fact is the boundary. Family park use example aligns, with into complement and optional countable observations explained; classification remains unresolved.",
+      "proposalKey": "EDITORIAL_2H2H:insight:deep-understanding",
+      "reviewedContentHash": "2cda1a1070eb8447211fbdd05c258ec17872ebb3186f80cb36e93009f2bf6a7b",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Spatial above, movement across and visiting adverb have separate ordinals and syntactic complements. Lamp, dog and lunch visit are distinct contexts; Vietnamese preserves invitation rather than completed visit.",
+      "proposalKey": "EDITORIAL_2H2H:over:above",
+      "reviewedContentHash": "71ff509fee5dfb01a8550317956cf888f62aa3735fcff457bf7895c353fd6944",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Spatial above, movement across and visiting adverb have separate ordinals and syntactic complements. Lamp, dog and lunch visit are distinct contexts; Vietnamese preserves invitation rather than completed visit.",
+      "proposalKey": "EDITORIAL_2H2H:over:across",
+      "reviewedContentHash": "d7696487097c4677f354cee620f284ed8ba9eb595bcdba9a489e8deed6dbe3bd",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Spatial above, movement across and visiting adverb have separate ordinals and syntactic complements. Lamp, dog and lunch visit are distinct contexts; Vietnamese preserves invitation rather than completed visit.",
+      "proposalKey": "EDITORIAL_2H2H:over:visit-nearby",
+      "reviewedContentHash": "a88bb56c0dbfdba9bfc51281de65323ef3d00ab30d3aa7b18026896d441b2f15",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Land-water edge not the water itself. Boat location and walk to village translate faithfully; sea/lake scope remains broad without asserting a specific geography or canonical synonym identity.",
+      "proposalKey": "EDITORIAL_2H2H:shore:land-edge",
+      "reviewedContentHash": "c1886e65154d9a53035e412184fd681a776c96953e0111c59739bd133000533c",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Source definition supports furniture while source example supports clothing collection; both distinct noun boundaries are drafted without Oxford ordinals. Vietnamese and examples deliberately distinguish storage from owned clothes.",
+      "proposalKey": "EDITORIAL_2H2H:wardrobe:clothes-cupboard",
+      "reviewedContentHash": "01d880c440f07e16774fe00077a70d22d618d75cddc550d7425ec2bb66aeb8ec",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Source definition supports furniture while source example supports clothing collection; both distinct noun boundaries are drafted without Oxford ordinals. Vietnamese and examples deliberately distinguish storage from owned clothes.",
+      "proposalKey": "EDITORIAL_2H2H:wardrobe:clothes-collection",
+      "reviewedContentHash": "dad6993685de4b099aa229f98c7643d37c0f256ece478dfc14e52d841eedb5b1",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 8,
+  "sha256": "31cc94ecec2e59d104c542d56441a198d5ba306d66b4039c4744aabe0426ba07",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:education": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/987/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/987/rawHeadword",
+        "rawPosEvidencePointer": "/records/987/sourcePosRaw",
+        "recordEvidenceSha256": "f331a166aa65c89a3a57348a6d56e198e052dbef6c872805d1c4bc170c390b5c",
+        "recordIndex": 987,
+        "sourceNoteGuid": "KRzdcjBy$=",
+        "sourceRecordId": "1788223607005",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::A2",
+            "value": "A2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "A2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1813/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1813/rawHeadword",
+        "rawPosEvidencePointer": "/records/1813/sourcePosRaw",
+        "recordEvidenceSha256": "2d3836de905b0f51d0c2d0dfc3b334682fc5b7fea6e1295d5475da91b8bc1059",
+        "recordIndex": 1813,
+        "sourceNoteGuid": "yw]aVHCQ|X",
+        "sourceRecordId": "1559931008620",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:insight": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/2864/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2864/rawHeadword",
+        "rawPosEvidencePointer": "/records/2864/sourcePosRaw",
+        "recordEvidenceSha256": "a52811215465261a100edc5318f5dbbee6b7f75ca899daa76266beebee5e5997",
+        "recordIndex": 2864,
+        "sourceNoteGuid": "x.AB:4;39O",
+        "sourceRecordId": "1788223608903",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1745/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1745/rawHeadword",
+        "rawPosEvidencePointer": "/records/1745/sourcePosRaw",
+        "recordEvidenceSha256": "1030c646c5f4db5b157c6f59be8d9cab69a7f40e38e6b3f63940d2128bfd8c2a",
+        "recordIndex": 1745,
+        "sourceNoteGuid": "l:(-GAfx|Y",
+        "sourceRecordId": "1559931008547",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:over": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADVERB",
+          "PREPOSITION"
+        ],
+        "rawContentPointer": "/records/78/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/78/rawHeadword",
+        "rawPosEvidencePointer": "/records/78/sourcePosRaw",
+        "recordEvidenceSha256": "8c6faa89d7e58c12a73ff7a8bfec8a7eacaf4b5c91d151756ee6fdb7b7ca7f0f",
+        "recordIndex": 78,
+        "sourceNoteGuid": "E7YR*Eii[9",
+        "sourceRecordId": "1788223606029",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1,
+          2
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:shore": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3191/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3191/rawHeadword",
+        "rawPosEvidencePointer": "/records/3191/sourcePosRaw",
+        "recordEvidenceSha256": "06680619eb8d0f41221d07adc8d4e613d28d96f74e9a5701a261fd2a31017519",
+        "recordIndex": 3191,
+        "sourceNoteGuid": "wbuyMVeRDE",
+        "sourceRecordId": "1788223609230",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1146/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1146/rawHeadword",
+        "rawPosEvidencePointer": "/records/1146/sourcePosRaw",
+        "recordEvidenceSha256": "6ab8497d93801bd9328329a9a2274cdfe29c33652972c99d5e2eef99ad425758",
+        "recordIndex": 1146,
+        "sourceNoteGuid": "p%Pszo()1u",
+        "sourceRecordId": "1559931007936",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:wardrobe": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B1",
+            "value": "B1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/2897/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2897/rawHeadword",
+        "rawPosEvidencePointer": "/records/2897/sourcePosRaw",
+        "recordEvidenceSha256": "f0dc395e5f93687121436289cb3e1ea08b21798cfb9c753a608427da697cbabd",
+        "recordIndex": 2897,
+        "sourceNoteGuid": "Ara!t|djHB",
+        "sourceRecordId": "1559931009758",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ]
+  },
+  "substantiveDefectsFound": 0
+}

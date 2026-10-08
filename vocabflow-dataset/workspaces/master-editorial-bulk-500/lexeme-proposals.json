@@ -1,0 +1,4264 @@
+{
+  "authorization": {
+    "canonicalIdsAllocated": 0,
+    "databaseAccess": "NONE",
+    "databaseWrites": "NONE",
+    "offlineDraftAuthoring": true,
+    "ownerApprovalsAdded": 0,
+    "production": "UNTOUCHED",
+    "releaseEligible": false,
+    "scopedGitPublication": true
+  },
+  "contentStatus": "DRAFT",
+  "groups": [
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:convincing",
+      "canonicalId": null,
+      "displayFormProposal": "convincing",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:convincing:persuasive"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:exercise",
+      "canonicalId": null,
+      "displayFormProposal": "exercise",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:exercise:physical-activity",
+        "EDITORIAL_2H2H:exercise:work-out",
+        "EDITORIAL_2H2H:exercise:practice-task",
+        "EDITORIAL_2H2H:exercise:use-authority"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:law",
+      "canonicalId": null,
+      "displayFormProposal": "law",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:law:rule",
+        "EDITORIAL_2H2H:law:legal-study"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:participation",
+      "canonicalId": null,
+      "displayFormProposal": "participation",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:participation:taking-part"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:shelter",
+      "canonicalId": null,
+      "displayFormProposal": "shelter",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:shelter:safe-place",
+        "EDITORIAL_2H2H:shelter:protect"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:willingness",
+      "canonicalId": null,
+      "displayFormProposal": "willingness",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:willingness:ready-to-help"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:commentator",
+      "canonicalId": null,
+      "displayFormProposal": "commentator",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:commentator:broadcast-speaker"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:guest",
+      "canonicalId": null,
+      "displayFormProposal": "guest",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:guest:invited-person"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:melody",
+      "canonicalId": null,
+      "displayFormProposal": "melody",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:melody:musical-line"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:overwhelm",
+      "canonicalId": null,
+      "displayFormProposal": "overwhelm",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:overwhelm:strong-feeling",
+        "EDITORIAL_2H2H:overwhelm:exceed-capacity",
+        "EDITORIAL_2H2H:overwhelm:defeat"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:subtract",
+      "canonicalId": null,
+      "displayFormProposal": "subtract",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:subtract:take-away-number"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:warehouse",
+      "canonicalId": null,
+      "displayFormProposal": "warehouse",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:warehouse:storage-building"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:daisy",
+      "canonicalId": null,
+      "displayFormProposal": "daisy",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:daisy:flower"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:flag",
+      "canonicalId": null,
+      "displayFormProposal": "flag",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:flag:cloth-symbol"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:licence",
+      "canonicalId": null,
+      "displayFormProposal": "licence",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:licence:official-permission"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:palace",
+      "canonicalId": null,
+      "displayFormProposal": "palace",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:palace:royal-residence"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:vary",
+      "canonicalId": null,
+      "displayFormProposal": "vary",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:vary:differ",
+        "EDITORIAL_2H2H:vary:make-different"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wolf",
+      "canonicalId": null,
+      "displayFormProposal": "wolf",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:wolf:wild-animal"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:backing",
+      "canonicalId": null,
+      "displayFormProposal": "backing",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:backing:support"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:employer",
+      "canonicalId": null,
+      "displayFormProposal": "employer",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:employer:hiring-person"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:job",
+      "canonicalId": null,
+      "displayFormProposal": "job",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:job:paid-work",
+        "EDITORIAL_2H2H:job:task"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:primitive",
+      "canonicalId": null,
+      "displayFormProposal": "primitive",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:primitive:basic"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:theatre",
+      "canonicalId": null,
+      "displayFormProposal": "theatre",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:theatre:performance-building",
+        "EDITORIAL_2H2H:theatre:dramatic-art"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:whereby",
+      "canonicalId": null,
+      "displayFormProposal": "whereby",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:whereby:by-which"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:diagnose",
+      "canonicalId": null,
+      "displayFormProposal": "diagnose",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:diagnose:identify-illness",
+        "EDITORIAL_2H2H:diagnose:identify-problem"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:enforcement",
+      "canonicalId": null,
+      "displayFormProposal": "enforcement",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:enforcement:making-rules-observed"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:imaginary",
+      "canonicalId": null,
+      "displayFormProposal": "imaginary",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:imaginary:not-real"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:primate",
+      "canonicalId": null,
+      "displayFormProposal": "primate",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:primate:animal-group"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:surprised",
+      "canonicalId": null,
+      "displayFormProposal": "surprised",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:surprised:unexpected-feeling"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:waste",
+      "canonicalId": null,
+      "displayFormProposal": "waste",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:waste:discarded-material",
+        "EDITORIAL_2H2H:waste:poor-use",
+        "EDITORIAL_2H2H:waste:use-badly",
+        "EDITORIAL_2H2H:waste:discarded"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:condensed",
+      "canonicalId": null,
+      "displayFormProposal": "condensed",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:condensed:shortened"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:fashion",
+      "canonicalId": null,
+      "displayFormProposal": "fashion",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:fashion:popular-style",
+        "EDITORIAL_2H2H:fashion:manner"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:long-time",
+      "canonicalId": null,
+      "displayFormProposal": "long-time",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:long-time:long-standing"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:prepare",
+      "canonicalId": null,
+      "displayFormProposal": "prepare",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:prepare:make-ready"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:suffer",
+      "canonicalId": null,
+      "displayFormProposal": "suffer",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:suffer:experience-distress",
+        "EDITORIAL_2H2H:suffer:be-damaged"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:witness",
+      "canonicalId": null,
+      "displayFormProposal": "witness",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:witness:observer",
+        "EDITORIAL_2H2H:witness:see-happen"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:approximate",
+      "canonicalId": null,
+      "displayFormProposal": "approximate",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:approximate:not-exact"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:honour",
+      "canonicalId": null,
+      "displayFormProposal": "honour",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:honour:privilege",
+        "EDITORIAL_2H2H:honour:respect",
+        "EDITORIAL_2H2H:honour:recognize",
+        "EDITORIAL_2H2H:honour:integrity",
+        "EDITORIAL_2H2H:honour:keep-commitment"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:merry",
+      "canonicalId": null,
+      "displayFormProposal": "merry",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:merry:cheerful"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:omit",
+      "canonicalId": null,
+      "displayFormProposal": "omit",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:omit:leave-out"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:satisfied",
+      "canonicalId": null,
+      "displayFormProposal": "satisfied",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:satisfied:content"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wish",
+      "canonicalId": null,
+      "displayFormProposal": "wish",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:wish:want-unreal",
+        "EDITORIAL_2H2H:wish:desire",
+        "EDITORIAL_2H2H:wish:goodwill-message"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:choir",
+      "canonicalId": null,
+      "displayFormProposal": "choir",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:choir:singing-group"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:hail",
+      "canonicalId": null,
+      "displayFormProposal": "hail",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:hail:praise",
+        "EDITORIAL_2H2H:hail:weather",
+        "EDITORIAL_2H2H:hail:call-vehicle"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:index",
+      "canonicalId": null,
+      "displayFormProposal": "index",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:index:measure",
+        "EDITORIAL_2H2H:index:book-list"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:optimistic",
+      "canonicalId": null,
+      "displayFormProposal": "optimistic",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:optimistic:expect-good"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:soup",
+      "canonicalId": null,
+      "displayFormProposal": "soup",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:soup:liquid-food"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:widely",
+      "canonicalId": null,
+      "displayFormProposal": "widely",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:widely:many-places"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:culminate",
+      "canonicalId": null,
+      "displayFormProposal": "culminate",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:culminate:reach-final-outcome"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:ethnic",
+      "canonicalId": null,
+      "displayFormProposal": "ethnic",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:ethnic:cultural-group"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:matter",
+      "canonicalId": null,
+      "displayFormProposal": "matter",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:matter:issue",
+        "EDITORIAL_2H2H:matter:be-important",
+        "EDITORIAL_2H2H:matter:physical-substance"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:overcrowded",
+      "canonicalId": null,
+      "displayFormProposal": "overcrowded",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:overcrowded:too-full"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:so-called",
+      "canonicalId": null,
+      "displayFormProposal": "so-called",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:so-called:named-with-distance"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:weight",
+      "canonicalId": null,
+      "displayFormProposal": "weight",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:weight:heaviness"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:author",
+      "canonicalId": null,
+      "displayFormProposal": "author",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:author:writer"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:education",
+      "canonicalId": null,
+      "displayFormProposal": "education",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:education:learning-process"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:insight",
+      "canonicalId": null,
+      "displayFormProposal": "insight",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:insight:deep-understanding"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:over",
+      "canonicalId": null,
+      "displayFormProposal": "over",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:over:above",
+        "EDITORIAL_2H2H:over:across",
+        "EDITORIAL_2H2H:over:visit-nearby"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:shore",
+      "canonicalId": null,
+      "displayFormProposal": "shore",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:shore:land-edge"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wardrobe",
+      "canonicalId": null,
+      "displayFormProposal": "wardrobe",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:wardrobe:clothes-cupboard",
+        "EDITORIAL_2H2H:wardrobe:clothes-collection"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:chapter",
+      "canonicalId": null,
+      "displayFormProposal": "chapter",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:chapter:book-division"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:endorsement",
+      "canonicalId": null,
+      "displayFormProposal": "endorsement",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:endorsement:public-support"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:initiative",
+      "canonicalId": null,
+      "displayFormProposal": "initiative",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:initiative:new-plan",
+        "EDITORIAL_2H2H:initiative:independent-action"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:ordeal",
+      "canonicalId": null,
+      "displayFormProposal": "ordeal",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:ordeal:difficult-experience"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:sailor",
+      "canonicalId": null,
+      "displayFormProposal": "sailor",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:sailor:boat-worker"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wail",
+      "canonicalId": null,
+      "displayFormProposal": "wail",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:wail:cry-loudly"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:bizarre",
+      "canonicalId": null,
+      "displayFormProposal": "bizarre",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:bizarre:very-strange"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:from",
+      "canonicalId": null,
+      "displayFormProposal": "from",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:from:origin",
+        "EDITORIAL_2H2H:from:starting-time"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:last",
+      "canonicalId": null,
+      "displayFormProposal": "last",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:last:final-in-order",
+        "EDITORIAL_2H2H:last:most-recently",
+        "EDITORIAL_2H2H:last:final-person",
+        "EDITORIAL_2H2H:last:continue"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:reform",
+      "canonicalId": null,
+      "displayFormProposal": "reform",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:reform:improvement-change",
+        "EDITORIAL_2H2H:reform:change-for-better"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:society",
+      "canonicalId": null,
+      "displayFormProposal": "society",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:society:community-system",
+        "EDITORIAL_2H2H:society:organized-group"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:weekly",
+      "canonicalId": null,
+      "displayFormProposal": "weekly",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:weekly:each-week"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:celebration",
+      "canonicalId": null,
+      "displayFormProposal": "celebration",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:celebration:special-event"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:fossil",
+      "canonicalId": null,
+      "displayFormProposal": "fossil",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:fossil:ancient-evidence"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:into",
+      "canonicalId": null,
+      "displayFormProposal": "into",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:into:movement-inside",
+        "EDITORIAL_2H2H:into:change-result"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:river",
+      "canonicalId": null,
+      "displayFormProposal": "river",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:river:watercourse"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:to",
+      "canonicalId": null,
+      "displayFormProposal": "to",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:to:destination"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:willing",
+      "canonicalId": null,
+      "displayFormProposal": "willing",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:willing:ready-without-force"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:accomplishment",
+      "canonicalId": null,
+      "displayFormProposal": "accomplishment",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:accomplishment:achievement"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:fortunate",
+      "canonicalId": null,
+      "displayFormProposal": "fortunate",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:fortunate:lucky"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:influence",
+      "canonicalId": null,
+      "displayFormProposal": "influence",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:influence:effect",
+        "EDITORIAL_2H2H:influence:affect"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:recycle",
+      "canonicalId": null,
+      "displayFormProposal": "recycle",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:recycle:process-again"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:speech",
+      "canonicalId": null,
+      "displayFormProposal": "speech",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:speech:address",
+        "EDITORIAL_2H2H:speech:speaking"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:well-being",
+      "canonicalId": null,
+      "displayFormProposal": "well-being",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:well-being:health-comfort"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:aggregate",
+      "canonicalId": null,
+      "displayFormProposal": "aggregate",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:aggregate:combined-total"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:generate",
+      "canonicalId": null,
+      "displayFormProposal": "generate",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:generate:produce"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:legislative",
+      "canonicalId": null,
+      "displayFormProposal": "legislative",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:legislative:law-making"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:protection",
+      "canonicalId": null,
+      "displayFormProposal": "protection",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:protection:keeping-safe"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:testing",
+      "canonicalId": null,
+      "displayFormProposal": "testing",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:testing:checking-performance"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:withdraw",
+      "canonicalId": null,
+      "displayFormProposal": "withdraw",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:withdraw:take-money-out",
+        "EDITORIAL_2H2H:withdraw:leave",
+        "EDITORIAL_2H2H:withdraw:take-back"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:advise",
+      "canonicalId": null,
+      "displayFormProposal": "advise",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:advise:recommend"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:gold",
+      "canonicalId": null,
+      "displayFormProposal": "gold",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:gold:metal",
+        "EDITORIAL_2H2H:gold:colour"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:mandate",
+      "canonicalId": null,
+      "displayFormProposal": "mandate",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:mandate:authority"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:rumor",
+      "canonicalId": null,
+      "displayFormProposal": "rumor",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:rumor:unverified-story"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:united",
+      "canonicalId": null,
+      "displayFormProposal": "united",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:united:acting-together"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:white",
+      "canonicalId": null,
+      "displayFormProposal": "white",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:white:colour",
+        "EDITORIAL_2H2H:white:colour-noun"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:actual",
+      "canonicalId": null,
+      "displayFormProposal": "actual",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:actual:real"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:hopeful",
+      "canonicalId": null,
+      "displayFormProposal": "hopeful",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:hopeful:feeling-hope",
+        "EDITORIAL_2H2H:hopeful:promising"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:mental",
+      "canonicalId": null,
+      "displayFormProposal": "mental",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:mental:mind-related"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:responsibility",
+      "canonicalId": null,
+      "displayFormProposal": "responsibility",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [
+        "EDITORIAL_2H2H:responsibility:duty",
+        "EDITORIAL_2H2H:responsibility:accountability"
+      ],
+      "state": "AUTHORED"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:tongue",
+      "canonicalId": null,
+      "displayFormProposal": "tongue",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:web",
+      "canonicalId": null,
+      "displayFormProposal": "web",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:chew",
+      "canonicalId": null,
+      "displayFormProposal": "chew",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:habitual",
+      "canonicalId": null,
+      "displayFormProposal": "habitual",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:motorcycle",
+      "canonicalId": null,
+      "displayFormProposal": "motorcycle",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:pleasant",
+      "canonicalId": null,
+      "displayFormProposal": "pleasant",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:site",
+      "canonicalId": null,
+      "displayFormProposal": "site",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:worldwide",
+      "canonicalId": null,
+      "displayFormProposal": "worldwide",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:crowd",
+      "canonicalId": null,
+      "displayFormProposal": "crowd",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:further",
+      "canonicalId": null,
+      "displayFormProposal": "further",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:music",
+      "canonicalId": null,
+      "displayFormProposal": "music",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:rupture",
+      "canonicalId": null,
+      "displayFormProposal": "rupture",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:september",
+      "canonicalId": null,
+      "displayFormProposal": "september",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:whenever",
+      "canonicalId": null,
+      "displayFormProposal": "whenever",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:clay",
+      "canonicalId": null,
+      "displayFormProposal": "clay",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:engineering",
+      "canonicalId": null,
+      "displayFormProposal": "engineering",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:inadvertent",
+      "canonicalId": null,
+      "displayFormProposal": "inadvertent",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:nod",
+      "canonicalId": null,
+      "displayFormProposal": "nod",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:throne",
+      "canonicalId": null,
+      "displayFormProposal": "throne",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:width",
+      "canonicalId": null,
+      "displayFormProposal": "width",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:alarm",
+      "canonicalId": null,
+      "displayFormProposal": "alarm",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:forth",
+      "canonicalId": null,
+      "displayFormProposal": "forth",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:increase",
+      "canonicalId": null,
+      "displayFormProposal": "increase",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:return",
+      "canonicalId": null,
+      "displayFormProposal": "return",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:trace",
+      "canonicalId": null,
+      "displayFormProposal": "trace",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:warming",
+      "canonicalId": null,
+      "displayFormProposal": "warming",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:driver",
+      "canonicalId": null,
+      "displayFormProposal": "driver",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:homogeneous",
+      "canonicalId": null,
+      "displayFormProposal": "homogeneous",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:indifferent",
+      "canonicalId": null,
+      "displayFormProposal": "indifferent",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:radio",
+      "canonicalId": null,
+      "displayFormProposal": "radio",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:self",
+      "canonicalId": null,
+      "displayFormProposal": "self",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wooden",
+      "canonicalId": null,
+      "displayFormProposal": "wooden",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:councillor",
+      "canonicalId": null,
+      "displayFormProposal": "councillor",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:evaluate",
+      "canonicalId": null,
+      "displayFormProposal": "evaluate",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:leading",
+      "canonicalId": null,
+      "displayFormProposal": "leading",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:observation",
+      "canonicalId": null,
+      "displayFormProposal": "observation",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:thirteen",
+      "canonicalId": null,
+      "displayFormProposal": "thirteen",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:write",
+      "canonicalId": null,
+      "displayFormProposal": "write",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:accident",
+      "canonicalId": null,
+      "displayFormProposal": "accident",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:federal",
+      "canonicalId": null,
+      "displayFormProposal": "federal",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:intimidate",
+      "canonicalId": null,
+      "displayFormProposal": "intimidate",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:rugby",
+      "canonicalId": null,
+      "displayFormProposal": "rugby",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:sensitive",
+      "canonicalId": null,
+      "displayFormProposal": "sensitive",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wise",
+      "canonicalId": null,
+      "displayFormProposal": "wise",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:design",
+      "canonicalId": null,
+      "displayFormProposal": "design",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:happen",
+      "canonicalId": null,
+      "displayFormProposal": "happen",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:memorable",
+      "canonicalId": null,
+      "displayFormProposal": "memorable",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:prohibit",
+      "canonicalId": null,
+      "displayFormProposal": "prohibit",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:vegetarian",
+      "canonicalId": null,
+      "displayFormProposal": "vegetarian",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wooded",
+      "canonicalId": null,
+      "displayFormProposal": "wooded",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:ceremony",
+      "canonicalId": null,
+      "displayFormProposal": "ceremony",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:exclude",
+      "canonicalId": null,
+      "displayFormProposal": "exclude",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:leash",
+      "canonicalId": null,
+      "displayFormProposal": "leash",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:proximity",
+      "canonicalId": null,
+      "displayFormProposal": "proximity",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:thunder",
+      "canonicalId": null,
+      "displayFormProposal": "thunder",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wavy",
+      "canonicalId": null,
+      "displayFormProposal": "wavy",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:decent",
+      "canonicalId": null,
+      "displayFormProposal": "decent",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:elastic",
+      "canonicalId": null,
+      "displayFormProposal": "elastic",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:moving",
+      "canonicalId": null,
+      "displayFormProposal": "moving",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:postpone",
+      "canonicalId": null,
+      "displayFormProposal": "postpone",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:visit",
+      "canonicalId": null,
+      "displayFormProposal": "visit",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:zero",
+      "canonicalId": null,
+      "displayFormProposal": "zero",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:cold",
+      "canonicalId": null,
+      "displayFormProposal": "cold",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:grace",
+      "canonicalId": null,
+      "displayFormProposal": "grace",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:inferior",
+      "canonicalId": null,
+      "displayFormProposal": "inferior",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:protester",
+      "canonicalId": null,
+      "displayFormProposal": "protester",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:skeletal",
+      "canonicalId": null,
+      "displayFormProposal": "skeletal",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:willpower",
+      "canonicalId": null,
+      "displayFormProposal": "willpower",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:drum",
+      "canonicalId": null,
+      "displayFormProposal": "drum",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:fierce",
+      "canonicalId": null,
+      "displayFormProposal": "fierce",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:largely",
+      "canonicalId": null,
+      "displayFormProposal": "largely",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:reflection",
+      "canonicalId": null,
+      "displayFormProposal": "reflection",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:tax",
+      "canonicalId": null,
+      "displayFormProposal": "tax",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:whoever",
+      "canonicalId": null,
+      "displayFormProposal": "whoever",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:any",
+      "canonicalId": null,
+      "displayFormProposal": "any",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:grateful",
+      "canonicalId": null,
+      "displayFormProposal": "grateful",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:liquid",
+      "canonicalId": null,
+      "displayFormProposal": "liquid",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:performance",
+      "canonicalId": null,
+      "displayFormProposal": "performance",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:strand",
+      "canonicalId": null,
+      "displayFormProposal": "strand",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:whose",
+      "canonicalId": null,
+      "displayFormProposal": "whose",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:awful",
+      "canonicalId": null,
+      "displayFormProposal": "awful",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:gene",
+      "canonicalId": null,
+      "displayFormProposal": "gene",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:introduction",
+      "canonicalId": null,
+      "displayFormProposal": "introduction",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:racist",
+      "canonicalId": null,
+      "displayFormProposal": "racist",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:stream",
+      "canonicalId": null,
+      "displayFormProposal": "stream",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:weakness",
+      "canonicalId": null,
+      "displayFormProposal": "weakness",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:chin",
+      "canonicalId": null,
+      "displayFormProposal": "chin",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:grapefruit",
+      "canonicalId": null,
+      "displayFormProposal": "grapefruit",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:middle",
+      "canonicalId": null,
+      "displayFormProposal": "middle",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:port",
+      "canonicalId": null,
+      "displayFormProposal": "port",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:tract",
+      "canonicalId": null,
+      "displayFormProposal": "tract",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:welfare",
+      "canonicalId": null,
+      "displayFormProposal": "welfare",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:drastic",
+      "canonicalId": null,
+      "displayFormProposal": "drastic",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:frequent",
+      "canonicalId": null,
+      "displayFormProposal": "frequent",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:irrigate",
+      "canonicalId": null,
+      "displayFormProposal": "irrigate",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:personalize",
+      "canonicalId": null,
+      "displayFormProposal": "personalize",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:sacrifice",
+      "canonicalId": null,
+      "displayFormProposal": "sacrifice",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:warn",
+      "canonicalId": null,
+      "displayFormProposal": "warn",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:apparently",
+      "canonicalId": null,
+      "displayFormProposal": "apparently",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:human",
+      "canonicalId": null,
+      "displayFormProposal": "human",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:intense",
+      "canonicalId": null,
+      "displayFormProposal": "intense",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:privilege",
+      "canonicalId": null,
+      "displayFormProposal": "privilege",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:submit",
+      "canonicalId": null,
+      "displayFormProposal": "submit",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:workout",
+      "canonicalId": null,
+      "displayFormProposal": "workout",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:creative",
+      "canonicalId": null,
+      "displayFormProposal": "creative",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:fuse",
+      "canonicalId": null,
+      "displayFormProposal": "fuse",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:medication",
+      "canonicalId": null,
+      "displayFormProposal": "medication",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:ring",
+      "canonicalId": null,
+      "displayFormProposal": "ring",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:sceptical",
+      "canonicalId": null,
+      "displayFormProposal": "sceptical",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:weigh",
+      "canonicalId": null,
+      "displayFormProposal": "weigh",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:contempt",
+      "canonicalId": null,
+      "displayFormProposal": "contempt",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:eligible",
+      "canonicalId": null,
+      "displayFormProposal": "eligible",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:inclusion",
+      "canonicalId": null,
+      "displayFormProposal": "inclusion",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:regain",
+      "canonicalId": null,
+      "displayFormProposal": "regain",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:school",
+      "canonicalId": null,
+      "displayFormProposal": "school",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:worth",
+      "canonicalId": null,
+      "displayFormProposal": "worth",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:dramatic",
+      "canonicalId": null,
+      "displayFormProposal": "dramatic",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:foster",
+      "canonicalId": null,
+      "displayFormProposal": "foster",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:mission",
+      "canonicalId": null,
+      "displayFormProposal": "mission",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:page",
+      "canonicalId": null,
+      "displayFormProposal": "page",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:some",
+      "canonicalId": null,
+      "displayFormProposal": "some",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:whether",
+      "canonicalId": null,
+      "displayFormProposal": "whether",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:companion",
+      "canonicalId": null,
+      "displayFormProposal": "companion",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:fundamentally",
+      "canonicalId": null,
+      "displayFormProposal": "fundamentally",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:inclined",
+      "canonicalId": null,
+      "displayFormProposal": "inclined",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:prison",
+      "canonicalId": null,
+      "displayFormProposal": "prison",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:toddler",
+      "canonicalId": null,
+      "displayFormProposal": "toddler",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wedding",
+      "canonicalId": null,
+      "displayFormProposal": "wedding",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:deforestation",
+      "canonicalId": null,
+      "displayFormProposal": "deforestation",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:everything",
+      "canonicalId": null,
+      "displayFormProposal": "everything",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:inhibit",
+      "canonicalId": null,
+      "displayFormProposal": "inhibit",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:october",
+      "canonicalId": null,
+      "displayFormProposal": "october",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:series",
+      "canonicalId": null,
+      "displayFormProposal": "series",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wreck",
+      "canonicalId": null,
+      "displayFormProposal": "wreck",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:banner",
+      "canonicalId": null,
+      "displayFormProposal": "banner",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:fog",
+      "canonicalId": null,
+      "displayFormProposal": "fog",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:lifelong",
+      "canonicalId": null,
+      "displayFormProposal": "lifelong",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:park",
+      "canonicalId": null,
+      "displayFormProposal": "park",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:throw",
+      "canonicalId": null,
+      "displayFormProposal": "throw",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:zip",
+      "canonicalId": null,
+      "displayFormProposal": "zip",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:college",
+      "canonicalId": null,
+      "displayFormProposal": "college",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:extent",
+      "canonicalId": null,
+      "displayFormProposal": "extent",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:maths",
+      "canonicalId": null,
+      "displayFormProposal": "maths",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:reassure",
+      "canonicalId": null,
+      "displayFormProposal": "reassure",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:terrible",
+      "canonicalId": null,
+      "displayFormProposal": "terrible",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:weak",
+      "canonicalId": null,
+      "displayFormProposal": "weak",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:disgraceful",
+      "canonicalId": null,
+      "displayFormProposal": "disgraceful",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:heavy",
+      "canonicalId": null,
+      "displayFormProposal": "heavy",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:mad",
+      "canonicalId": null,
+      "displayFormProposal": "mad",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:orchestra",
+      "canonicalId": null,
+      "displayFormProposal": "orchestra",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:saturated",
+      "canonicalId": null,
+      "displayFormProposal": "saturated",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:widen",
+      "canonicalId": null,
+      "displayFormProposal": "widen",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:adapt",
+      "canonicalId": null,
+      "displayFormProposal": "adapt",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:foundation",
+      "canonicalId": null,
+      "displayFormProposal": "foundation",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:inequality",
+      "canonicalId": null,
+      "displayFormProposal": "inequality",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:obsolete",
+      "canonicalId": null,
+      "displayFormProposal": "obsolete",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:totally",
+      "canonicalId": null,
+      "displayFormProposal": "totally",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:window",
+      "canonicalId": null,
+      "displayFormProposal": "window",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:aisle",
+      "canonicalId": null,
+      "displayFormProposal": "aisle",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:early",
+      "canonicalId": null,
+      "displayFormProposal": "early",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:lake",
+      "canonicalId": null,
+      "displayFormProposal": "lake",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:risky",
+      "canonicalId": null,
+      "displayFormProposal": "risky",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:surrounding",
+      "canonicalId": null,
+      "displayFormProposal": "surrounding",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wealth",
+      "canonicalId": null,
+      "displayFormProposal": "wealth",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:determined",
+      "canonicalId": null,
+      "displayFormProposal": "determined",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:gay",
+      "canonicalId": null,
+      "displayFormProposal": "gay",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:injury",
+      "canonicalId": null,
+      "displayFormProposal": "injury",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:penalty",
+      "canonicalId": null,
+      "displayFormProposal": "penalty",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:severe",
+      "canonicalId": null,
+      "displayFormProposal": "severe",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:weed",
+      "canonicalId": null,
+      "displayFormProposal": "weed",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:apprentice",
+      "canonicalId": null,
+      "displayFormProposal": "apprentice",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:heating",
+      "canonicalId": null,
+      "displayFormProposal": "heating",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:message",
+      "canonicalId": null,
+      "displayFormProposal": "message",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:possibility",
+      "canonicalId": null,
+      "displayFormProposal": "possibility",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:share",
+      "canonicalId": null,
+      "displayFormProposal": "share",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wander",
+      "canonicalId": null,
+      "displayFormProposal": "wander",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:cultivate",
+      "canonicalId": null,
+      "displayFormProposal": "cultivate",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:format",
+      "canonicalId": null,
+      "displayFormProposal": "format",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:methodology",
+      "canonicalId": null,
+      "displayFormProposal": "methodology",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:network",
+      "canonicalId": null,
+      "displayFormProposal": "network",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:sudden",
+      "canonicalId": null,
+      "displayFormProposal": "sudden",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:warrior",
+      "canonicalId": null,
+      "displayFormProposal": "warrior",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:anybody",
+      "canonicalId": null,
+      "displayFormProposal": "anybody",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:firearm",
+      "canonicalId": null,
+      "displayFormProposal": "firearm",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:lunch",
+      "canonicalId": null,
+      "displayFormProposal": "lunch",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:proceedings",
+      "canonicalId": null,
+      "displayFormProposal": "proceedings",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:spiral",
+      "canonicalId": null,
+      "displayFormProposal": "spiral",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:weekend",
+      "canonicalId": null,
+      "displayFormProposal": "weekend",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:craft",
+      "canonicalId": null,
+      "displayFormProposal": "craft",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:electronics",
+      "canonicalId": null,
+      "displayFormProposal": "electronics",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:lord",
+      "canonicalId": null,
+      "displayFormProposal": "lord",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:rid",
+      "canonicalId": null,
+      "displayFormProposal": "rid",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:sunlight",
+      "canonicalId": null,
+      "displayFormProposal": "sunlight",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:writing",
+      "canonicalId": null,
+      "displayFormProposal": "writing",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:competence",
+      "canonicalId": null,
+      "displayFormProposal": "competence",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:expected",
+      "canonicalId": null,
+      "displayFormProposal": "expected",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:list",
+      "canonicalId": null,
+      "displayFormProposal": "list",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:renew",
+      "canonicalId": null,
+      "displayFormProposal": "renew",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:skull",
+      "canonicalId": null,
+      "displayFormProposal": "skull",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:we",
+      "canonicalId": null,
+      "displayFormProposal": "we",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:criminal",
+      "canonicalId": null,
+      "displayFormProposal": "criminal",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:homework",
+      "canonicalId": null,
+      "displayFormProposal": "homework",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:mouse",
+      "canonicalId": null,
+      "displayFormProposal": "mouse",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:register",
+      "canonicalId": null,
+      "displayFormProposal": "register",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:seventy",
+      "canonicalId": null,
+      "displayFormProposal": "seventy",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:war",
+      "canonicalId": null,
+      "displayFormProposal": "war",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:appreciate",
+      "canonicalId": null,
+      "displayFormProposal": "appreciate",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:gallon",
+      "canonicalId": null,
+      "displayFormProposal": "gallon",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:injure",
+      "canonicalId": null,
+      "displayFormProposal": "injure",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:painting",
+      "canonicalId": null,
+      "displayFormProposal": "painting",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:sink",
+      "canonicalId": null,
+      "displayFormProposal": "sink",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wall",
+      "canonicalId": null,
+      "displayFormProposal": "wall",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:aspect",
+      "canonicalId": null,
+      "displayFormProposal": "aspect",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:glad",
+      "canonicalId": null,
+      "displayFormProposal": "glad",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:key",
+      "canonicalId": null,
+      "displayFormProposal": "key",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:naturally",
+      "canonicalId": null,
+      "displayFormProposal": "naturally",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:stair",
+      "canonicalId": null,
+      "displayFormProposal": "stair",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:yawn",
+      "canonicalId": null,
+      "displayFormProposal": "yawn",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:dentist",
+      "canonicalId": null,
+      "displayFormProposal": "dentist",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:faint",
+      "canonicalId": null,
+      "displayFormProposal": "faint",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:kettle",
+      "canonicalId": null,
+      "displayFormProposal": "kettle",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:proceed",
+      "canonicalId": null,
+      "displayFormProposal": "proceed",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:thirty",
+      "canonicalId": null,
+      "displayFormProposal": "thirty",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:weather",
+      "canonicalId": null,
+      "displayFormProposal": "weather",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:deserve",
+      "canonicalId": null,
+      "displayFormProposal": "deserve",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:habit",
+      "canonicalId": null,
+      "displayFormProposal": "habit",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:illegal",
+      "canonicalId": null,
+      "displayFormProposal": "illegal",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:outdoor",
+      "canonicalId": null,
+      "displayFormProposal": "outdoor",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:sometimes",
+      "canonicalId": null,
+      "displayFormProposal": "sometimes",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:winding",
+      "canonicalId": null,
+      "displayFormProposal": "winding",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:discharge",
+      "canonicalId": null,
+      "displayFormProposal": "discharge",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:hospitality",
+      "canonicalId": null,
+      "displayFormProposal": "hospitality",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:layer",
+      "canonicalId": null,
+      "displayFormProposal": "layer",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:rope",
+      "canonicalId": null,
+      "displayFormProposal": "rope",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:termite",
+      "canonicalId": null,
+      "displayFormProposal": "termite",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:yet",
+      "canonicalId": null,
+      "displayFormProposal": "yet",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:comply",
+      "canonicalId": null,
+      "displayFormProposal": "comply",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:high",
+      "canonicalId": null,
+      "displayFormProposal": "high",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:inflate",
+      "canonicalId": null,
+      "displayFormProposal": "inflate",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:prescribe",
+      "canonicalId": null,
+      "displayFormProposal": "prescribe",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:unemployed",
+      "canonicalId": null,
+      "displayFormProposal": "unemployed",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:west",
+      "canonicalId": null,
+      "displayFormProposal": "west",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:conservation",
+      "canonicalId": null,
+      "displayFormProposal": "conservation",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:folklore",
+      "canonicalId": null,
+      "displayFormProposal": "folklore",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:import",
+      "canonicalId": null,
+      "displayFormProposal": "import",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:necklace",
+      "canonicalId": null,
+      "displayFormProposal": "necklace",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:slip",
+      "canonicalId": null,
+      "displayFormProposal": "slip",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:yard",
+      "canonicalId": null,
+      "displayFormProposal": "yard",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:cotton",
+      "canonicalId": null,
+      "displayFormProposal": "cotton",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:exactly",
+      "canonicalId": null,
+      "displayFormProposal": "exactly",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:lung",
+      "canonicalId": null,
+      "displayFormProposal": "lung",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:reportedly",
+      "canonicalId": null,
+      "displayFormProposal": "reportedly",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:statute",
+      "canonicalId": null,
+      "displayFormProposal": "statute",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:warning",
+      "canonicalId": null,
+      "displayFormProposal": "warning",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:carriage",
+      "canonicalId": null,
+      "displayFormProposal": "carriage",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:hinder",
+      "canonicalId": null,
+      "displayFormProposal": "hinder",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:impression",
+      "canonicalId": null,
+      "displayFormProposal": "impression",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:peel",
+      "canonicalId": null,
+      "displayFormProposal": "peel",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:surprising",
+      "canonicalId": null,
+      "displayFormProposal": "surprising",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wait",
+      "canonicalId": null,
+      "displayFormProposal": "wait",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:dynamics",
+      "canonicalId": null,
+      "displayFormProposal": "dynamics",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:grocery",
+      "canonicalId": null,
+      "displayFormProposal": "grocery",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:loan",
+      "canonicalId": null,
+      "displayFormProposal": "loan",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:nevertheless",
+      "canonicalId": null,
+      "displayFormProposal": "nevertheless",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:seldom",
+      "canonicalId": null,
+      "displayFormProposal": "seldom",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wide",
+      "canonicalId": null,
+      "displayFormProposal": "wide",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:bible",
+      "canonicalId": null,
+      "displayFormProposal": "bible",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:federation",
+      "canonicalId": null,
+      "displayFormProposal": "federation",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:morals",
+      "canonicalId": null,
+      "displayFormProposal": "morals",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:quite",
+      "canonicalId": null,
+      "displayFormProposal": "quite",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:skillful",
+      "canonicalId": null,
+      "displayFormProposal": "skillful",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:word",
+      "canonicalId": null,
+      "displayFormProposal": "word",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:amazed",
+      "canonicalId": null,
+      "displayFormProposal": "amazed",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:freight",
+      "canonicalId": null,
+      "displayFormProposal": "freight",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:logical",
+      "canonicalId": null,
+      "displayFormProposal": "logical",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:prehistoric",
+      "canonicalId": null,
+      "displayFormProposal": "prehistoric",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:sew",
+      "canonicalId": null,
+      "displayFormProposal": "sew",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:yellow",
+      "canonicalId": null,
+      "displayFormProposal": "yellow",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:double",
+      "canonicalId": null,
+      "displayFormProposal": "double",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:etiquette",
+      "canonicalId": null,
+      "displayFormProposal": "etiquette",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:intertwine",
+      "canonicalId": null,
+      "displayFormProposal": "intertwine",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:ruins",
+      "canonicalId": null,
+      "displayFormProposal": "ruins",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:sideways",
+      "canonicalId": null,
+      "displayFormProposal": "sideways",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:whilst",
+      "canonicalId": null,
+      "displayFormProposal": "whilst",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:district",
+      "canonicalId": null,
+      "displayFormProposal": "district",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:foresee",
+      "canonicalId": null,
+      "displayFormProposal": "foresee",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:increasingly",
+      "canonicalId": null,
+      "displayFormProposal": "increasingly",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:peninsula",
+      "canonicalId": null,
+      "displayFormProposal": "peninsula",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:stern",
+      "canonicalId": null,
+      "displayFormProposal": "stern",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wax",
+      "canonicalId": null,
+      "displayFormProposal": "wax",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:better",
+      "canonicalId": null,
+      "displayFormProposal": "better",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:humid",
+      "canonicalId": null,
+      "displayFormProposal": "humid",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:lump",
+      "canonicalId": null,
+      "displayFormProposal": "lump",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:rust",
+      "canonicalId": null,
+      "displayFormProposal": "rust",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:stricken",
+      "canonicalId": null,
+      "displayFormProposal": "stricken",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:youth",
+      "canonicalId": null,
+      "displayFormProposal": "youth",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:deliberately",
+      "canonicalId": null,
+      "displayFormProposal": "deliberately",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:enchant",
+      "canonicalId": null,
+      "displayFormProposal": "enchant",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:idle",
+      "canonicalId": null,
+      "displayFormProposal": "idle",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:part-time",
+      "canonicalId": null,
+      "displayFormProposal": "part-time",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:starch",
+      "canonicalId": null,
+      "displayFormProposal": "starch",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:yes",
+      "canonicalId": null,
+      "displayFormProposal": "yes",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:considerably",
+      "canonicalId": null,
+      "displayFormProposal": "considerably",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:handbook",
+      "canonicalId": null,
+      "displayFormProposal": "handbook",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:lot",
+      "canonicalId": null,
+      "displayFormProposal": "lot",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:offense",
+      "canonicalId": null,
+      "displayFormProposal": "offense",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:turbine",
+      "canonicalId": null,
+      "displayFormProposal": "turbine",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:whatsoever",
+      "canonicalId": null,
+      "displayFormProposal": "whatsoever",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:all",
+      "canonicalId": null,
+      "displayFormProposal": "all",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:harmonize",
+      "canonicalId": null,
+      "displayFormProposal": "harmonize",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:intrigue",
+      "canonicalId": null,
+      "displayFormProposal": "intrigue",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:pessimistic",
+      "canonicalId": null,
+      "displayFormProposal": "pessimistic",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:stubborn",
+      "canonicalId": null,
+      "displayFormProposal": "stubborn",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wash",
+      "canonicalId": null,
+      "displayFormProposal": "wash",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:down",
+      "canonicalId": null,
+      "displayFormProposal": "down",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:exit",
+      "canonicalId": null,
+      "displayFormProposal": "exit",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:mist",
+      "canonicalId": null,
+      "displayFormProposal": "mist",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:raisin",
+      "canonicalId": null,
+      "displayFormProposal": "raisin",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:ton",
+      "canonicalId": null,
+      "displayFormProposal": "ton",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wicked",
+      "canonicalId": null,
+      "displayFormProposal": "wicked",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:around",
+      "canonicalId": null,
+      "displayFormProposal": "around",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:harness",
+      "canonicalId": null,
+      "displayFormProposal": "harness",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:laundry",
+      "canonicalId": null,
+      "displayFormProposal": "laundry",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:outlaw",
+      "canonicalId": null,
+      "displayFormProposal": "outlaw",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:shake",
+      "canonicalId": null,
+      "displayFormProposal": "shake",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:woman",
+      "canonicalId": null,
+      "displayFormProposal": "woman",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:class",
+      "canonicalId": null,
+      "displayFormProposal": "class",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:fond",
+      "canonicalId": null,
+      "displayFormProposal": "fond",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:irritate",
+      "canonicalId": null,
+      "displayFormProposal": "irritate",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:not",
+      "canonicalId": null,
+      "displayFormProposal": "not",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:since",
+      "canonicalId": null,
+      "displayFormProposal": "since",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:whatever",
+      "canonicalId": null,
+      "displayFormProposal": "whatever",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:commonly",
+      "canonicalId": null,
+      "displayFormProposal": "commonly",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:fiery",
+      "canonicalId": null,
+      "displayFormProposal": "fiery",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:junior",
+      "canonicalId": null,
+      "displayFormProposal": "junior",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:namely",
+      "canonicalId": null,
+      "displayFormProposal": "namely",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:temporarily",
+      "canonicalId": null,
+      "displayFormProposal": "temporarily",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wisdom",
+      "canonicalId": null,
+      "displayFormProposal": "wisdom",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:downtown",
+      "canonicalId": null,
+      "displayFormProposal": "downtown",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:highway",
+      "canonicalId": null,
+      "displayFormProposal": "highway",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:more",
+      "canonicalId": null,
+      "displayFormProposal": "more",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:pedestrian",
+      "canonicalId": null,
+      "displayFormProposal": "pedestrian",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:somewhat",
+      "canonicalId": null,
+      "displayFormProposal": "somewhat",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wildlife",
+      "canonicalId": null,
+      "displayFormProposal": "wildlife",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:dog",
+      "canonicalId": null,
+      "displayFormProposal": "dog",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:hygiene",
+      "canonicalId": null,
+      "displayFormProposal": "hygiene",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:magnet",
+      "canonicalId": null,
+      "displayFormProposal": "magnet",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:o’clock",
+      "canonicalId": null,
+      "displayFormProposal": "o’clock",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:upwards",
+      "canonicalId": null,
+      "displayFormProposal": "upwards",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:will",
+      "canonicalId": null,
+      "displayFormProposal": "will",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:continent",
+      "canonicalId": null,
+      "displayFormProposal": "continent",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:eat",
+      "canonicalId": null,
+      "displayFormProposal": "eat",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:lightly",
+      "canonicalId": null,
+      "displayFormProposal": "lightly",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:potentially",
+      "canonicalId": null,
+      "displayFormProposal": "potentially",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:unfortunately",
+      "canonicalId": null,
+      "displayFormProposal": "unfortunately",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:win",
+      "canonicalId": null,
+      "displayFormProposal": "win",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:content",
+      "canonicalId": null,
+      "displayFormProposal": "content",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:fridge",
+      "canonicalId": null,
+      "displayFormProposal": "fridge",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:instrumental",
+      "canonicalId": null,
+      "displayFormProposal": "instrumental",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:nowadays",
+      "canonicalId": null,
+      "displayFormProposal": "nowadays",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:up",
+      "canonicalId": null,
+      "displayFormProposal": "up",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wage",
+      "canonicalId": null,
+      "displayFormProposal": "wage",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:carrot",
+      "canonicalId": null,
+      "displayFormProposal": "carrot",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:fast",
+      "canonicalId": null,
+      "displayFormProposal": "fast",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:kin",
+      "canonicalId": null,
+      "displayFormProposal": "kin",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:normally",
+      "canonicalId": null,
+      "displayFormProposal": "normally",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:south",
+      "canonicalId": null,
+      "displayFormProposal": "south",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:weave",
+      "canonicalId": null,
+      "displayFormProposal": "weave",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:cookie",
+      "canonicalId": null,
+      "displayFormProposal": "cookie",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:forward",
+      "canonicalId": null,
+      "displayFormProposal": "forward",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:intermittent",
+      "canonicalId": null,
+      "displayFormProposal": "intermittent",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:nearby",
+      "canonicalId": null,
+      "displayFormProposal": "nearby",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:shift",
+      "canonicalId": null,
+      "displayFormProposal": "shift",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:withdrawal",
+      "canonicalId": null,
+      "displayFormProposal": "withdrawal",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:chest",
+      "canonicalId": null,
+      "displayFormProposal": "chest",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:guilty",
+      "canonicalId": null,
+      "displayFormProposal": "guilty",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:million",
+      "canonicalId": null,
+      "displayFormProposal": "million",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:portion",
+      "canonicalId": null,
+      "displayFormProposal": "portion",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:sentence",
+      "canonicalId": null,
+      "displayFormProposal": "sentence",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:worthwhile",
+      "canonicalId": null,
+      "displayFormProposal": "worthwhile",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:morning",
+      "canonicalId": null,
+      "displayFormProposal": "morning",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:rock",
+      "canonicalId": null,
+      "displayFormProposal": "rock",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:today",
+      "canonicalId": null,
+      "displayFormProposal": "today",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:writer",
+      "canonicalId": null,
+      "displayFormProposal": "writer",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:kitchen",
+      "canonicalId": null,
+      "displayFormProposal": "kitchen",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:principal",
+      "canonicalId": null,
+      "displayFormProposal": "principal",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:thus",
+      "canonicalId": null,
+      "displayFormProposal": "thus",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:watch",
+      "canonicalId": null,
+      "displayFormProposal": "watch",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:might",
+      "canonicalId": null,
+      "displayFormProposal": "might",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:new",
+      "canonicalId": null,
+      "displayFormProposal": "new",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:unlike",
+      "canonicalId": null,
+      "displayFormProposal": "unlike",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wizard",
+      "canonicalId": null,
+      "displayFormProposal": "wizard",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:instant",
+      "canonicalId": null,
+      "displayFormProposal": "instant",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:pound",
+      "canonicalId": null,
+      "displayFormProposal": "pound",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:stall",
+      "canonicalId": null,
+      "displayFormProposal": "stall",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:warp",
+      "canonicalId": null,
+      "displayFormProposal": "warp",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:including",
+      "canonicalId": null,
+      "displayFormProposal": "including",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:noble",
+      "canonicalId": null,
+      "displayFormProposal": "noble",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:therefore",
+      "canonicalId": null,
+      "displayFormProposal": "therefore",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:want",
+      "canonicalId": null,
+      "displayFormProposal": "want",
+      "ownerDecision": "UNRESOLVED",
+      "senseProposalKeys": [],
+      "state": "PENDING_AUTHORING"
+    }
+  ],
+  "phase": "2H.2H",
+  "selectionFingerprint": "ed303558ab029cdf24f49ca9226b2910bd4beb79d41b6d1d27edb5f4dfc52076"
+}

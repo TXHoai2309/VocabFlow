@@ -1,5 +1,28 @@
 # VocabFlow Changelog
 
+## 2026-10-08 — Phase 2H.2H bulk 500 PARTIAL editorial checkpoint
+
+- Freeze 500 new groups with seed PHASE_2H2H_BULK_500_V1, excluding the previous
+  520. Suggested alphabet quotas are feasible; the multiword ledger quota has
+  zero remaining eligible capacity and is reported as unmet.
+- Persist original bilingual prose for 100 groups / 147 Sense proposals in 20
+  batches of five groups, including 32 groups with multiple meanings. The other
+  400 selected groups remain PENDING_AUTHORING due to the run's context budget;
+  they are not insufficient-evidence blockers or completed content.
+- Preserve the prior 813 effective drafts and all DRAFT V2 corrections through
+  original lookup layers. Totals: 620 groups / 960 effective Senses, 5,523 groups
+  still undrafted. Apply two coupled legislative example-field corrections via
+  an exact-parent overlay without changing its original manuscript.
+- Add content-bound 14-dimension AI self-review, source/POS/ordinal checks,
+  full-corpus similarity and long-field near-duplicate checks against prior/new
+  drafts. AI QA: 131 PASS / 16 REVIEW / 0 FAIL; human review and rights unresolved.
+- No canonical IDs, owner approvals, media, runtime/legacy edits or database
+  access/writes. Hybrid 2.2.1 remains frozen; Production untouched. External
+  command evidence is recorded separately in verification-results.json.
+- Final verification: 48 new + 287 prior regression tests PASS (335 total,
+  zero failed/skipped), direct tsc -b, lint, frozen Hybrid and zero-write replay
+  PASS. All 6,440 accepted byte pins, seven stashes and eleven worktrees preserved.
+
 ## 2026-10-08 — Phase 2H.2G DRAFT V2 correction overlay
 
 - Apply four exact owner-authorized AI correction fields to relatively,

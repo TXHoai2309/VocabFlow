@@ -1,0 +1,144 @@
+{
+  "acceptedBytePins": {
+    "count": 6440,
+    "unchanged": true
+  },
+  "authorization": "OFFLINE_DRAFT_AND_SCOPED_GIT_PUBLICATION_ONLY",
+  "commands": [
+    {
+      "command": "node node_modules/typescript/bin/tsc -b",
+      "exitCode": 0,
+      "log": "typecheck.log",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": "PASS"
+    },
+    {
+      "command": "node node_modules/eslint/bin/eslint.js . --max-warnings=0",
+      "exitCode": 0,
+      "log": "lint.log",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": "PASS"
+    },
+    {
+      "command": "node node_modules/tsx/dist/cli.mjs scripts/hybrid-100-runtime-eligible-patch-release.ts --check",
+      "exitCode": 0,
+      "log": "frozen-release.log",
+      "logSha256": "e1511fab8496a3106561d9715c6d1b3dcf770660631a4ed6a2f7a0e0f99b801d",
+      "status": "PASS"
+    },
+    {
+      "PYTHONHASHSEED": "271828",
+      "command": "python -B scripts/phase-2h2h-bulk-500.py --check",
+      "exitCode": 0,
+      "log": "offline-replay.log",
+      "logSha256": "1dfbb9ec5eb5608abf23236a8bd0adaa0d5c372d2731c0d451707b0b77e2799e",
+      "status": "PASS",
+      "zeroWriteVerified": true
+    },
+    {
+      "command": "pnpm typecheck",
+      "reason": "Direct tsc -b used; historical canonical non-TTY limitation remains documented. No canonical command PASS claim.",
+      "status": "NOT_RUN"
+    }
+  ],
+  "databaseAccess": "NONE",
+  "databaseWrites": "NONE",
+  "earlierFocusedRun": {
+    "status": "PASS",
+    "supersededByFinalFocused48": true,
+    "tests": 46
+  },
+  "finalFocusedLogSha256": "23dfcbbb8faf2eaffa8a2006281f2fdeaeb440153b2cd33ced2e98084515c908",
+  "node": "22.23.2",
+  "phase": "2H.2H",
+  "production": "UNTOUCHED",
+  "scope": {
+    "appsWebChanges": 0,
+    "existingWorktreesPreserved": 11,
+    "newWorktrees": 0,
+    "pycFiles": 0,
+    "stashesPreserved": 7
+  },
+  "status": "PARTIAL_DRAFT_CHECKPOINT_EXTERNAL_VALIDATION_PASS",
+  "tests": [
+    {
+      "command": "python -B scripts/phase-2h2h-bulk-500-test.py",
+      "environment": {
+        "PYTHONUTF8": "1"
+      },
+      "exitCode": 0,
+      "seconds": 29.719,
+      "seedNote": "Final LF-normalization rerun did not explicitly set PYTHONHASHSEED; earlier 48-test pass used 987. Offline replay explicitly used 271828.",
+      "status": "PASS",
+      "tests": 48
+    },
+    {
+      "command": "python -B scripts/phase-2h1-source-inventory-test.py",
+      "exitCode": 0,
+      "seconds": 15.4,
+      "status": "PASS",
+      "tests": 13
+    },
+    {
+      "command": "python -B scripts/phase-2h2a-master-expansion-test.py",
+      "exitCode": 0,
+      "seconds": 13.6,
+      "status": "PASS",
+      "tests": 21
+    },
+    {
+      "command": "python -B scripts/phase-2h2b-editorial-draft-test.py",
+      "exitCode": 0,
+      "seconds": 24.8,
+      "status": "PASS",
+      "tests": 23
+    },
+    {
+      "command": "python -B scripts/phase-2h2b-qa1-corrections-test.py",
+      "exitCode": 0,
+      "seconds": 9.5,
+      "status": "PASS",
+      "tests": 19
+    },
+    {
+      "command": "python -B scripts/phase-2h2c-stratified-editorial-test.py",
+      "exitCode": 0,
+      "seconds": 36.2,
+      "status": "PASS",
+      "tests": 35
+    },
+    {
+      "command": "python -B scripts/phase-2h2d-bulk-editorial-test.py",
+      "exitCode": 0,
+      "seconds": 25.5,
+      "status": "PASS",
+      "tests": 41
+    },
+    {
+      "command": "python -B scripts/phase-2h2e-approval-gate-test.py",
+      "exitCode": 0,
+      "seconds": 18.2,
+      "status": "PASS",
+      "tests": 71
+    },
+    {
+      "command": "python -B scripts/phase-2h2f-owner-session-test.py",
+      "exitCode": 0,
+      "seconds": 26.7,
+      "status": "PASS",
+      "tests": 35
+    },
+    {
+      "command": "python -B scripts/phase-2h2g-draft-v2-test.py",
+      "exitCode": 0,
+      "seconds": 20.6,
+      "status": "PASS",
+      "tests": 29
+    }
+  ],
+  "testsFailed": 0,
+  "testsPassed": 335,
+  "testsSkipped": 0,
+  "verificationKind": "ACTUALLY_EXECUTED_EXTERNAL_COMMANDS_NOT_GENERATOR_ASSERTIONS",
+  "verifiedOn": "2026-10-08"
+}

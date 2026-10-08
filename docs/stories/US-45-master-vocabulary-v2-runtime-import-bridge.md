@@ -2257,3 +2257,52 @@ Final external validation PASS: direct Node 22.23.2 `tsc -b`, ESLint with zero
 warnings, offline V2 replay at PYTHONHASHSEED=987 and frozen Hybrid release
 validation. All 6,278 accepted byte pins unchanged. Canonical `pnpm typecheck`
 was not run/not claimed PASS; the historical non-TTY limitation remains recorded.
+
+### Phase 2H.2H — bulk 500 PARTIAL editorial checkpoint
+
+Freeze exactly 500 new candidate groups, excluding all previous 520, with seed
+PHASE_2H2H_BULK_500_V1. Capacity permits the suggested alphabet allocation.
+The remaining ledger has no eligible MULTIWORD_PHRASAL signal; quota audit
+records true lack of capacity rather than adding unsupported expressions.
+
+This run checkpoints original EN/VI content for 100 groups / 147 Senses, in
+20 bounded five-group batches, with 32 multiple-Sense groups. It does not claim
+the full 500-group objective is complete: 400 keys remain PENDING_AUTHORING due
+to the context/execution budget, not insufficient lexical evidence. Total
+coverage is 620 groups / 960 effective drafts; 5,523 groups remain undrafted.
+
+Every authored Sense has source references, POS/CEFR evidence, generated field
+hashes, original and effective content-bound AI author reviews across 14
+dimensions, unresolved rights and no canonical IDs. AI assessment 131 PASS /
+16 REVIEW / 0 FAIL; these are not human approvals. All source CEFR remains
+headword evidence, with verified Sense CEFR and topic classification null.
+Full pinned source similarity and long-field near-duplicate checks retain
+signals for review. The latter compares all 813 prior effective drafts and new
+drafts; no overlap >=0.85 is found. Short shared glosses are not identity proof.
+
+Two legislative EN/VI example corrections improve the civics context via an
+exact-parent, field-hashed overlay. Batch 018 receives full second-pass AI
+review. Original manuscripts/receipts are preserved. Effective lookup retains
+QA1 -> 2H2C -> 2H2D -> 2H2E preview -> 2H2G DRAFT V2 -> new 2H2H proposals.
+All 813 earlier effective hashes and three DRAFT V2 revisions remain intact.
+
+The new workspace/report and generator have zero-write --check replay and
+immutable snapshot guards. Tests and other external commands are recorded
+separately in verification-results.json; deterministic generation does not
+pretend to execute them. Canonical pnpm typecheck is not claimed PASS; direct
+Node 22.23.2 tsc -b is the recorded verification path.
+
+Selection fingerprint ed303558ab029cdf24f49ca9226b2910bd4beb79d41b6d1d27edb5f4dfc52076.
+Editorial fingerprint e265662b54119ec242aabcf5935770161c87133ad07d9a03dc2132744670509d.
+Accepted 2H.2G fingerprint remains unchanged. Preserve 6,440 accepted byte pins,
+Hybrid 2.2.1 87/100, legacy/history/exclusions/mappings, seven stashes and eleven
+existing worktrees. No DB access/writes, media, runtime edits or canonical
+release; Production untouched. Publish scoped offline checkpoint only.
+
+Next recommendation: continue the 400 pending frozen keys in an additive
+checkpoint, with the same authoring/QA requirements. No new owner-review cycle,
+canonical identity assignment or Development materialization is authorized.
+
+Final external verification: 335 tests PASS (48 new / 287 prior), zero
+failed/skipped; direct tsc -b, lint, frozen-release and zero-write offline
+replay PASS. All accepted byte pins/stashes/existing worktrees remain unchanged.

@@ -1,0 +1,339 @@
+{
+  "batch": 19,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:advise",
+    "NORMALIZED_HEADWORD:gold",
+    "NORMALIZED_HEADWORD:mandate",
+    "NORMALIZED_HEADWORD:rumor",
+    "NORMALIZED_HEADWORD:united"
+  ],
+  "replayEvidence": "PSV parsed, supported POS/ordinals checked, exact content review hashes bound; full artifact replay recorded separately",
+  "reviewNotesSha256": "e5fddadbf3ebd202a93ebf2a10e2abc0f92e03c4c151a6a9f1a4beeef2b3f919",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Recommendation rather than binding instruction is intended. Person-to-infinitive and bare gerund constructions checked; Vietnamese extra water and walking purpose are retained without adding health claims.",
+      "proposalKey": "EDITORIAL_2H2H:advise:recommend",
+      "reviewedContentHash": "ccf543ae5e82d65f0b7a79b95507c559053c90874b96f7be16e738a1d31335a2",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Metal noun and colour adjective split with supported ordinals. Jewellery processing and curtain colour translate directly; gold curtains are not assumed to be made of gold metal.",
+      "proposalKey": "EDITORIAL_2H2H:gold:metal",
+      "reviewedContentHash": "7337cafc14681019a09283b5f8834120444baaad871a24198e97caf6f00e0721",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Metal noun and colour adjective split with supported ordinals. Jewellery processing and curtain colour translate directly; gold curtains are not assumed to be made of gold metal.",
+      "proposalKey": "EDITORIAL_2H2H:gold:colour",
+      "reviewedContentHash": "06acd95da09eacf4dfea40e37d8f75ec341f930538df2a2fde6a0761bd694dc6",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Delegated authority/task matches committee review, with no claim of a real political mandate. Vietnamese stays standalone and the construction distinguishes granting body from authorized activity.",
+      "proposalKey": "EDITORIAL_2H2H:mandate:authority",
+      "reviewedContentHash": "83a1b35460377fe908f86fadbbe20fc1e91e54b16be8b4b620a56bab010c78fa",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Unconfirmed does not mean proven false, avoiding an overly narrow definition. Closure claim and timing before owner response preserve uncertainty in Vietnamese; regional spelling is not canonical identity approval.",
+      "proposalKey": "EDITORIAL_2H2H:rumor:unverified-story",
+      "reviewedContentHash": "0b7d634f4bdbd59645827cb3756fa5991b1d076d33d987f8f3db1a5ace580f43",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Shared aim or agreement fits garden protection effort. Still united does not imply unanimity on every topic; Vietnamese preserves continuing cooperation and the in complement.",
+      "proposalKey": "EDITORIAL_2H2H:united:acting-together",
+      "reviewedContentHash": "1e39629ab1e5f0ed330a21d08d375e70ed9b87e80806dd78e3fecf711511b444",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 6,
+  "sha256": "0ff4328970432758a6a20ae4ee5cc51e5f1ac421837a04fc9e712915878320f4",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:advise": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/2301/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2301/rawHeadword",
+        "rawPosEvidencePointer": "/records/2301/sourcePosRaw",
+        "recordEvidenceSha256": "683cb87a75a3e1d46b6bd1e0973a3487d92f4b26b89bbf1a8f4a60a1b9af6a92",
+        "recordIndex": 2301,
+        "sourceNoteGuid": "oo.h1a)G^^",
+        "sourceRecordId": "1788223608340",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B1",
+            "value": "B1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/371/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/371/rawHeadword",
+        "rawPosEvidencePointer": "/records/371/sourcePosRaw",
+        "recordEvidenceSha256": "612a1ad2e4ab88c736ba71365388806f74fd16df2b2500630a9c6d936c8b0213",
+        "recordIndex": 371,
+        "sourceNoteGuid": "nxoj)yBv+j",
+        "sourceRecordId": "1556384731179",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:gold": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE",
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1020/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1020/rawHeadword",
+        "rawPosEvidencePointer": "/records/1020/sourcePosRaw",
+        "recordEvidenceSha256": "6c0378f6bcf8a052b104a8a6be0b6edf713f5cb6e825347c43f53af01675034e",
+        "recordIndex": 1020,
+        "sourceNoteGuid": "C@TmQ^=hU5",
+        "sourceRecordId": "1788223607038",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:mandate": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/4375/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4375/rawHeadword",
+        "rawPosEvidencePointer": "/records/4375/sourcePosRaw",
+        "recordEvidenceSha256": "ab7e4073ae0014893c2413c0b80a18cf9d521ee8607f6a694f447bc1b85ab729",
+        "recordIndex": 4375,
+        "sourceNoteGuid": "Mg^j-xnu+4",
+        "sourceRecordId": "1788223610414",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/4430/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4430/rawHeadword",
+        "rawPosEvidencePointer": "/records/4430/sourcePosRaw",
+        "recordEvidenceSha256": "9f65f46680254fb3c0229c841af5d9040b2b43bb99c36857ea080005098d36ec",
+        "recordIndex": 4430,
+        "sourceNoteGuid": "AX<OTrMgJh",
+        "sourceRecordId": "1646317636213",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:rumor": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1690/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1690/rawHeadword",
+        "rawPosEvidencePointer": "/records/1690/sourcePosRaw",
+        "recordEvidenceSha256": "5a4f0c314504788d3af78e660be2701de88ba660ed0381f62fcff8b678762bf5",
+        "recordIndex": 1690,
+        "sourceNoteGuid": "i:Za,a:tdY",
+        "sourceRecordId": "1559931008492",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:united": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/942/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/942/rawHeadword",
+        "rawPosEvidencePointer": "/records/942/sourcePosRaw",
+        "recordEvidenceSha256": "e2ed440535c18bb58168556e85ad70e2d616c9671f232939839bdd8b82f12399",
+        "recordIndex": 942,
+        "sourceNoteGuid": "jNEu;MP0Ce",
+        "sourceRecordId": "1788223606960",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ]
+  },
+  "substantiveDefectsFound": 0
+}

@@ -6448,3 +6448,67 @@ Final external validation PASS: direct Node 22.23.2 `tsc -b`, ESLint with zero
 warnings, offline V2 replay at PYTHONHASHSEED=987 and frozen Hybrid release
 validation. All 6,278 accepted byte pins unchanged. Canonical `pnpm typecheck`
 was not run/not claimed PASS; the historical non-TTY limitation remains recorded.
+
+### Phase 2H.2H — bulk 500 PARTIAL editorial checkpoint (2026-10-08)
+
+Owner authorizes offline draft authoring and scoped Git publication. Baseline
+`fb8b3c21207534442d13352dec97bf1852dc4792`; branch TXH, no new worktree. This
+checkpoint is PARTIAL, not the requested completed 500-group corpus expansion.
+
+Frozen selection: 500 distinct keys, no overlap with previous 520 groups, seed
+`PHASE_2H2H_BULK_500_V1`. Alphabet allocation 80/80/85/85/85/85 is feasible.
+Stable scarce-quota rotation and SHA256 ranking preserve source/POS/CEFR,
+polysemy, conflict, Master and legacy evidence. Multiword quota is unmet with
+zero eligible capacity in the remaining ledger; no fabricated lexical units.
+
+Actual prose: 100 groups / 147 Senses across 20 persisted five-group batches,
+32 multiple-Sense groups. EN definitions/examples and VI meanings/translations:
+147 each. Authored source coverage: Oxford-only 25 / 4600-only 15 / both 60.
+Remaining selected groups: 400 PENDING_AUTHORING, zero genuine evidence blockers.
+The context/execution budget checkpoint does not count pending as authored.
+Corpus totals: 620 groups / 960 effective drafts / 5,523 still undrafted.
+
+All new records remain DRAFT, noncanonical, identity unresolved, rights
+UNKNOWN_REVIEW_REQUIRED. Explicit AI author self-review checks 14 dimensions
+(the inherited 13 grouped dimensions plus lexical identity) and binds the exact
+effective content hash. 131 AI PASS / 16 REVIEW / 0 FAIL. Source similarity and
+construction signals remain review findings, not false proof of error or rights
+clearance. Near-duplicate scan against prior/new drafts finds no long-field
+token-set overlap >=0.85. Human approvals and canonical IDs remain zero.
+
+An unnatural legislative example context was found during second-pass review.
+Two coupled EN/VI example fields now use students in their civics lesson rather
+than a committee. Exact original parent, before/after field hashes, full batch
+018 re-review and effective review hashes are preserved in an additive overlay;
+the original PSV and original review receipt are unchanged.
+
+The compact effective index keeps QA1 -> 2H2C -> 2H2D -> 2H2E preview -> 2H2G
+DRAFT V2 lookup hierarchy, then adds the new drafts. All 813 prior effective
+hashes, the three DRAFT V2 revisions and earlier input fingerprints/bytes remain
+unchanged. 6,440 accepted scripts/dataset files are byte-pinned. Hybrid 2.2.1
+87 Lexemes / 100 Senses, legacy 2018/history75/exclusions/mappings remain
+protected offline; no live verification, Neon access or database writes.
+Production UNTOUCHED. No branch/worktree/stash manipulation.
+
+Selection fingerprint:
+`ed303558ab029cdf24f49ca9226b2910bd4beb79d41b6d1d27edb5f4dfc52076`.
+Editorial checkpoint fingerprint:
+`e265662b54119ec242aabcf5935770161c87133ad07d9a03dc2132744670509d`.
+Accepted 2H.2G remains:
+`6633405d49aa0e211265d38be37b074e99cd783d787681d4a25909843a7fe071`.
+
+Replay: `python -B scripts/phase-2h2h-bulk-500.py --check`; reads persisted prose
+without regeneration or writes. External tests/typecheck/lint/frozen checks are
+recorded independently in the new workspace verification-results.json. Direct
+typecheck uses Node 22.23.2 `tsc -b`; canonical pnpm typecheck is not claimed PASS
+and its historical non-TTY limitation remains documented.
+
+Next: continue the 400 pending keys in the unchanged cohort using additive
+checkpoint versioning and bounded authoring/review batches. Do not reselect,
+start a manual approval cycle, allocate canonical IDs or apply to Development.
+
+Final external verification: 48 new focused tests plus 287 prior Phase 2H
+regressions PASS (335 total; zero failed/skipped). Direct tsc -b, ESLint,
+frozen Hybrid release and hash-seed 271828 offline replay PASS. Replay changed
+or created zero workspace/report files. All 6,440 accepted byte pins remain
+unchanged; seven stashes and eleven existing worktrees are preserved.

@@ -1,0 +1,413 @@
+{
+  "batch": 11,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:matter",
+    "NORMALIZED_HEADWORD:overcrowded",
+    "NORMALIZED_HEADWORD:so-called",
+    "NORMALIZED_HEADWORD:weight",
+    "NORMALIZED_HEADWORD:author"
+  ],
+  "replayEvidence": "PSV parsed, supported POS/ordinals checked, exact content review hashes bound; full artifact replay recorded separately",
+  "reviewNotesSha256": "12eb52c3849d8bb1a05c791ecd06d8132c5b6c20e4f5589d1c1ec8bfbfc72da8",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Issue noun, important intransitive verb and physical substance noun are separate source boundaries. Vietnamese preserves letter timing, apology context and microscope observation; no technical mass/weight equivalence is asserted.",
+      "proposalKey": "EDITORIAL_2H2H:matter:issue",
+      "reviewedContentHash": "29402487922cf1ef91d44765ee276ae3fde9339278022dbbf263f72d49f9b2e0",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Issue noun, important intransitive verb and physical substance noun are separate source boundaries. Vietnamese preserves letter timing, apology context and microscope observation; no technical mass/weight equivalence is asserted.",
+      "proposalKey": "EDITORIAL_2H2H:matter:be-important",
+      "reviewedContentHash": "f09d1fa0bac21f9011f6872c3c222df02df46477ad62d72e2aebf397de01c28c",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Issue noun, important intransitive verb and physical substance noun are separate source boundaries. Vietnamese preserves letter timing, apology context and microscope observation; no technical mass/weight equivalence is asserted.",
+      "proposalKey": "EDITORIAL_2H2H:matter:physical-substance",
+      "reviewedContentHash": "080e3398cec606d0a819d65b5ebecde47b5d82b4958392d9753eeb1c36b7169a",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Excess over usable space rather than simply busy is the meaning. Bus arrival causes waiting-room crowding in both languages; with complement and adjective syntax are checked.",
+      "proposalKey": "EDITORIAL_2H2H:overcrowded:too-full",
+      "reviewedContentHash": "b26c815b76fcb66401107110a521b51e7c5c6c73a2cceea951905b198b814686",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Label may signal doubt or be neutral; noisy carriage example deliberately illustrates ironic doubt. Vietnamese retains the named quietness and actual conversations without implying a factual universal rule.",
+      "proposalKey": "EDITORIAL_2H2H:so-called:named-with-distance",
+      "reviewedContentHash": "9b45ea39992d4da7ae67d03b0dcc2322a8f32271f0a917be58908bfa8e14db93",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Everyday heaviness meaning is kept without claiming technical equivalence to mass. Parcel and label comparison align in Vietnamese; noun article use concerns the particular parcel's weight.",
+      "proposalKey": "EDITORIAL_2H2H:weight:heaviness",
+      "reviewedContentHash": "6be9a7537f1e0dc8a2b6f200b503b38f5f80acde891e3ec077f5b1b88a11cf67",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Written-work creator rather than rights owner is the boundary. Novel questions example preserves feminine possessive content naturally; no ownership, license or human authorship evidence is inferred.",
+      "proposalKey": "EDITORIAL_2H2H:author:writer",
+      "reviewedContentHash": "10c532ba02e403ecf760ac8fbf27c97b80392da8644473c38cc4ec5b3a484451",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 7,
+  "sha256": "2e158cd460c39bea4c3dcd456c8fb9aecf785410d3523069fd37e317b75eff42",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:author": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1147/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1147/rawHeadword",
+        "rawPosEvidencePointer": "/records/1147/sourcePosRaw",
+        "recordEvidenceSha256": "660e90910311e01915e9f9c1f6649f191d4c600841e929afec6f5c7d1eed22ae",
+        "recordIndex": 1147,
+        "sourceNoteGuid": "bU9hL[TAs(",
+        "sourceRecordId": "1788223607165",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::A2",
+            "value": "A2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "A2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/2670/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2670/rawHeadword",
+        "rawPosEvidencePointer": "/records/2670/sourcePosRaw",
+        "recordEvidenceSha256": "b760bfbeecc110741df55613d1ed27639c4c8d7de5a5a643dd7c8d5dae560d62",
+        "recordIndex": 2670,
+        "sourceNoteGuid": "PvwYNZ_67t",
+        "sourceRecordId": "1559931009522",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:matter": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN",
+          "VERB"
+        ],
+        "rawContentPointer": "/records/964/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/964/rawHeadword",
+        "rawPosEvidencePointer": "/records/964/sourcePosRaw",
+        "recordEvidenceSha256": "2f613313f1352dba2bf70ae6c87445d180ff2faba4bc69d88d22f4009c00984b",
+        "recordIndex": 964,
+        "sourceNoteGuid": "zzf5op(P^s",
+        "sourceRecordId": "1788223606982",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::A2",
+            "value": "A2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "A2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3463/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3463/rawHeadword",
+        "rawPosEvidencePointer": "/records/3463/sourcePosRaw",
+        "recordEvidenceSha256": "b6975b148cf63d3be9088e121162e0e2f2ebd4c6a28457b186dfcbf104b980e9",
+        "recordIndex": 3463,
+        "sourceNoteGuid": "F+Z2L[mY>f",
+        "sourceRecordId": "1613639437591",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:overcrowded": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C2",
+            "value": "C2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/2244/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2244/rawHeadword",
+        "rawPosEvidencePointer": "/records/2244/sourcePosRaw",
+        "recordEvidenceSha256": "10832703b92167798a7f342cf7a28af47f5970c1b84ec4c6e34305b68d52ac64",
+        "recordIndex": 2244,
+        "sourceNoteGuid": "ih1bWNYYgh",
+        "sourceRecordId": "1559931009070",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:so-called": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/3018/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3018/rawHeadword",
+        "rawPosEvidencePointer": "/records/3018/sourcePosRaw",
+        "recordEvidenceSha256": "f4790573686a9a6052443cb4736d25544e3d229e64e4a6c0e0df9c831cae124f",
+        "recordIndex": 3018,
+        "sourceNoteGuid": "qu!(KX#Nb{",
+        "sourceRecordId": "1788223609057",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/3731/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3731/rawHeadword",
+        "rawPosEvidencePointer": "/records/3731/sourcePosRaw",
+        "recordEvidenceSha256": "ef5c163e41ae59a7187f29346098e5bf7d5acb51ebde4146d2eb66de6f2b6588",
+        "recordIndex": 3731,
+        "sourceNoteGuid": "L.=9m6N|Qh",
+        "sourceRecordId": "1623660519892",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:weight": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1105/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1105/rawHeadword",
+        "rawPosEvidencePointer": "/records/1105/sourcePosRaw",
+        "recordEvidenceSha256": "cca0e10a7236ad2ba7d5655d02a682fb7fed340423049b1390ce02b63cb37a60",
+        "recordIndex": 1105,
+        "sourceNoteGuid": "A[Nq2O,Ggw",
+        "sourceRecordId": "1788223607123",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::A2",
+            "value": "A2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "A2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/97/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/97/rawHeadword",
+        "rawPosEvidencePointer": "/records/97/sourcePosRaw",
+        "recordEvidenceSha256": "0c46c70920c9acc78591fff6e75f8fe84eae9847850707a1b7e9743f09579eae",
+        "recordIndex": 97,
+        "sourceNoteGuid": "rA1M3i774m",
+        "sourceRecordId": "1556384730897",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ]
+  },
+  "substantiveDefectsFound": 0
+}

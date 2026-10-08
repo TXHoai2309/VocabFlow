@@ -1,0 +1,313 @@
+{
+  "batch": 16,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:river",
+    "NORMALIZED_HEADWORD:to",
+    "NORMALIZED_HEADWORD:willing",
+    "NORMALIZED_HEADWORD:accomplishment",
+    "NORMALIZED_HEADWORD:fortunate"
+  ],
+  "replayEvidence": "PSV parsed, supported POS/ordinals checked, exact content review hashes bound; full artifact replay recorded separately",
+  "reviewNotesSha256": "517f2b2ebfc0b530602c2e90ff482647c2c2261323869419049f8ea73f7a6567",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Flowing watercourse rather than lake is intended; destination wording avoids claiming every river reaches the sea. Footpath and old mill translate faithfully, and legacy overlap stays evidence only.",
+      "proposalKey": "EDITORIAL_2H2H:river:watercourse",
+      "reviewedContentHash": "8e8bc86041863412e9429c10e4dbdc6bce220bdf012a98458367b919ea18c4f4",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Destination preposition is supported by Oxford ordinal zero. Infinitive marker source ordinal one is not drafted because ledger POS does not support its category; the gap remains visible in boundary audit.",
+      "proposalKey": "EDITORIAL_2H2H:to:destination",
+      "reviewedContentHash": "4d0f7da3aee73f0de8dfa60f9c96b9ea4605e15ec0a8b99048162d3bf55ce33c",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Chosen readiness is distinct from ability or successful completion. Help-to construction and natural standalone Vietnamese sẵn lòng checked, with no restriction to a particular tense.",
+      "proposalKey": "EDITORIAL_2H2H:willing:ready-without-force",
+      "reviewedContentHash": "9d9072e78efedc754762b40a0c158fcb5410f70365b6c75208ee61a58cf7f3db",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Effortful achievement rather than any completed activity is the boundary. Trail completion and volunteer attribution align in Vietnamese; major is example intensity, not a required property.",
+      "proposalKey": "EDITORIAL_2H2H:accomplishment:achievement",
+      "reviewedContentHash": "c0fce5d72b609ae38f707bcf3d5a2eccaae6091ea84e0cc5f4d3659a5c1d0e1b",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Luck and favourable opportunity are not equated with wealth. Finding accommodation before rain translates faithfully and does not imply the finding caused the favourable weather.",
+      "proposalKey": "EDITORIAL_2H2H:fortunate:lucky",
+      "reviewedContentHash": "57a9aa33a8ba02bb4303d10b6508b572a8d8c48c6e080eace3ff85111127545c",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 5,
+  "sha256": "5909560a6a13030c2ba7b30e89a9f84b02aafa72be6d787e071751edbd90992c",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:accomplishment": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/4749/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4749/rawHeadword",
+        "rawPosEvidencePointer": "/records/4749/sourcePosRaw",
+        "recordEvidenceSha256": "37915c99a1ee0a51f23e217e243a2479405193089ae6856bac0d274fba6e5f0a",
+        "recordIndex": 4749,
+        "sourceNoteGuid": "g82?84w>lS",
+        "sourceRecordId": "1788223610788",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/4127/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4127/rawHeadword",
+        "rawPosEvidencePointer": "/records/4127/sourcePosRaw",
+        "recordEvidenceSha256": "3add20adba3330b0be173d02b56a9f423cfa842032c68e601f855dd995251395",
+        "recordIndex": 4127,
+        "sourceNoteGuid": "NA~0bSwMfd",
+        "sourceRecordId": "1646317635910",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:fortunate": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/3511/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3511/rawHeadword",
+        "rawPosEvidencePointer": "/records/3511/sourcePosRaw",
+        "recordEvidenceSha256": "0550d9cbb13c4f71c51b48b1ba13d4ec22a1ae02830dfe621915b9595857cfef",
+        "recordIndex": 3511,
+        "sourceNoteGuid": "!qkA,JHr<M",
+        "sourceRecordId": "1788223609550",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/281/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/281/rawHeadword",
+        "rawPosEvidencePointer": "/records/281/sourcePosRaw",
+        "recordEvidenceSha256": "d819e929cf18772781f2e8a508d1293309958f602edcde3201c774ca34b5f5d1",
+        "recordIndex": 281,
+        "sourceNoteGuid": "I4OF?eEqg|",
+        "sourceRecordId": "1556384731085",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:river": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/501/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/501/rawHeadword",
+        "rawPosEvidencePointer": "/records/501/sourcePosRaw",
+        "recordEvidenceSha256": "104cc36620a6fa2a6bac02fa5c44b629153029d756382087710d95eb84c0f2e4",
+        "recordIndex": 501,
+        "sourceNoteGuid": "xRNFIPLt1e",
+        "sourceRecordId": "1788223606457",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:to": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "PREPOSITION"
+        ],
+        "rawContentPointer": "/records/1/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1/rawHeadword",
+        "rawPosEvidencePointer": "/records/1/sourcePosRaw",
+        "recordEvidenceSha256": "74b6a2bea62ea913f15fa839194a9fbdeefe72f13deb75f17deb93ca30a74173",
+        "recordIndex": 1,
+        "sourceNoteGuid": "g8.>Ba<l&#",
+        "sourceRecordId": "1788223605933",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:willing": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/2531/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2531/rawHeadword",
+        "rawPosEvidencePointer": "/records/2531/sourcePosRaw",
+        "recordEvidenceSha256": "e45652201575f895d4d26a30cb91b563a5410e2f92fc7b8a62074c3e3f37e4d6",
+        "recordIndex": 2531,
+        "sourceNoteGuid": "At_toPo0aZ",
+        "sourceRecordId": "1788223608570",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ]
+  },
+  "substantiveDefectsFound": 0
+}

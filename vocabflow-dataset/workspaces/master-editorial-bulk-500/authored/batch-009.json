@@ -1,0 +1,483 @@
+{
+  "batch": 9,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:satisfied",
+    "NORMALIZED_HEADWORD:wish",
+    "NORMALIZED_HEADWORD:choir",
+    "NORMALIZED_HEADWORD:hail",
+    "NORMALIZED_HEADWORD:index"
+  ],
+  "replayEvidence": "PSV parsed, supported POS/ordinals checked, exact content review hashes bound; full artifact replay recorded separately",
+  "reviewNotesSha256": "1a92d56be5dfb63cdda45d5f9710696f727ddcbbf5dd88a9fe30deb2ab6a40d5",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Meeting expectations is not absolute perfection. Bicycle repair and collection align in translation; with complement checked and no inference of completed action as a lexical grammar restriction.",
+      "proposalKey": "EDITORIAL_2H2H:satisfied:content",
+      "reviewedContentHash": "65e91b8f808edf58d4b554ce51188d7e6816c2eb88d51fc3c7e5360b844c5fbc",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Unreal desire verb, countable desired outcome and goodwill message have separate source ordinals. Present unreal wish uses past came deliberately; Vietnamese keeps Sunday frequency and family companions.",
+      "proposalKey": "EDITORIAL_2H2H:wish:want-unreal",
+      "reviewedContentHash": "37bcb1bf511da0ad45955763a77bf54fa93ae084b3a27f30ed3619e41c83d6e7",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Unreal desire verb, countable desired outcome and goodwill message have separate source ordinals. Present unreal wish uses past came deliberately; Vietnamese keeps Sunday frequency and family companions.",
+      "proposalKey": "EDITORIAL_2H2H:wish:desire",
+      "reviewedContentHash": "3af8de8ff7b3a18e5fa76e3dbb00c79133dcbd7612ee6a77f23d4b2b49e9188b",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Unreal desire verb, countable desired outcome and goodwill message have separate source ordinals. Present unreal wish uses past came deliberately; Vietnamese keeps Sunday frequency and family companions.",
+      "proposalKey": "EDITORIAL_2H2H:wish:goodwill-message",
+      "reviewedContentHash": "b9f06fcbb96754968dd5f2549970cdf5505b69b8cc175a14690117d10de19967",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Organized singing group is not restricted to church. Quiet practice example retains concert timing and hall; collective noun does not imply every group member is a soloist or professionally employed.",
+      "proposalKey": "EDITORIAL_2H2H:choir:singing-group",
+      "reviewedContentHash": "ea026a074392df85160e9b6c6f6d5e02f89947e3995498794fc3326325958e3b",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Praise, impersonal ice weather and calling a taxi reviewed separately with appropriate valency. Oxford verb evidence used despite conflicting noun evidence; noun hail is not silently claimed covered.",
+      "proposalKey": "EDITORIAL_2H2H:hail:praise",
+      "reviewedContentHash": "a2c04d4262c8f1fe51ed2c7685ce9d19aff3991ec8602cafdc565cb2f1e3855b",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Praise, impersonal ice weather and calling a taxi reviewed separately with appropriate valency. Oxford verb evidence used despite conflicting noun evidence; noun hail is not silently claimed covered.",
+      "proposalKey": "EDITORIAL_2H2H:hail:weather",
+      "reviewedContentHash": "78fc054c89a70efcbb0171da6bd9918739fccbaa0f3e045d869c426c5fe878bf",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Praise, impersonal ice weather and calling a taxi reviewed separately with appropriate valency. Oxford verb evidence used despite conflicting noun evidence; noun hail is not silently claimed covered.",
+      "proposalKey": "EDITORIAL_2H2H:hail:call-vehicle",
+      "reviewedContentHash": "e3c44823229fe430a72041321d1128e53a2861052c2cf9ffc66eddf1c059598a",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Numerical indicator and searchable book list distinguished. Definition avoids an unsupported market-only restriction; Vietnamese and grammar notes separate index from chapter contents without asserting universal placement.",
+      "proposalKey": "EDITORIAL_2H2H:index:measure",
+      "reviewedContentHash": "a1a8c66905cf2f5adf2dc99ac3ebb222803a4921c7a17b2c446a9dc40342ab9f",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "Numerical indicator and searchable book list distinguished. Definition avoids an unsupported market-only restriction; Vietnamese and grammar notes separate index from chapter contents without asserting universal placement.",
+      "proposalKey": "EDITORIAL_2H2H:index:book-list",
+      "reviewedContentHash": "8c7ee6b0f663404df86f33a0d9ebe2a7093ecec853b55cbcce50fbd7f35b3ebc",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 10,
+  "sha256": "4f5951597fae8e39b5fdc390694810729ce80f00192954a3f1758f23035972a7",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:choir": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3562/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3562/rawHeadword",
+        "rawPosEvidencePointer": "/records/3562/sourcePosRaw",
+        "recordEvidenceSha256": "9814d1d4c7d88e6e5b1ddc90c45091f0eb92929bcdb959263cc58e503e4b44f5",
+        "recordIndex": 3562,
+        "sourceNoteGuid": "*6!}@O*L?W",
+        "sourceRecordId": "1788223609601",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/2654/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2654/rawHeadword",
+        "rawPosEvidencePointer": "/records/2654/sourcePosRaw",
+        "recordEvidenceSha256": "a3e341e07c2b7bee0b8e77db44f01dc71d49251044c815d55be0d5ae4c1cf605",
+        "recordIndex": 2654,
+        "sourceNoteGuid": "x&3@B^le!k",
+        "sourceRecordId": "1559931009504",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:hail": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/4469/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4469/rawHeadword",
+        "rawPosEvidencePointer": "/records/4469/sourcePosRaw",
+        "recordEvidenceSha256": "9dd25ba81f45c5e00c2b6a8763ce3e71dead8be324b6194487b9ffb851db15cd",
+        "recordIndex": 4469,
+        "sourceNoteGuid": "HOj&:-9s3O",
+        "sourceRecordId": "1788223610508",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1543/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1543/rawHeadword",
+        "rawPosEvidencePointer": "/records/1543/sourcePosRaw",
+        "recordEvidenceSha256": "579072f13a8594a6d73e828e98aadb3192ddbb19186bcf3061551a980b725504",
+        "recordIndex": 1543,
+        "sourceNoteGuid": "j4SooU/T,c",
+        "sourceRecordId": "1559931008345",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:index": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3056/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3056/rawHeadword",
+        "rawPosEvidencePointer": "/records/3056/sourcePosRaw",
+        "recordEvidenceSha256": "51518aed67ae3c4ded3d0924d88c505d048a40350a0df5bda2d9157efdff4fac",
+        "recordIndex": 3056,
+        "sourceNoteGuid": "jK>tT&g0hM",
+        "sourceRecordId": "1788223609095",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/2414/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2414/rawHeadword",
+        "rawPosEvidencePointer": "/records/2414/sourcePosRaw",
+        "recordEvidenceSha256": "8956878712bd540f28c07aa078f132038370dd23a082e1b137b031d578833838",
+        "recordIndex": 2414,
+        "sourceNoteGuid": "Oq{p@Jhx70",
+        "sourceRecordId": "1559931009249",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:satisfied": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/2813/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2813/rawHeadword",
+        "rawPosEvidencePointer": "/records/2813/sourcePosRaw",
+        "recordEvidenceSha256": "b8890949411bb667139f068afa6b7fd95bf9f3793f696cc69a4fe32cb9663462",
+        "recordIndex": 2813,
+        "sourceNoteGuid": "cYWUIm1E3d",
+        "sourceRecordId": "1788223608852",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/154/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/154/rawHeadword",
+        "rawPosEvidencePointer": "/records/154/sourcePosRaw",
+        "recordEvidenceSha256": "7a84a2315e4d48feb16a225a132b63aa60bdca9dfbd782e092e8add95edeabca",
+        "recordIndex": 154,
+        "sourceNoteGuid": "Lq,jL[O1TF",
+        "sourceRecordId": "1556384730954",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:wish": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN",
+          "VERB"
+        ],
+        "rawContentPointer": "/records/1018/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1018/rawHeadword",
+        "rawPosEvidencePointer": "/records/1018/sourcePosRaw",
+        "recordEvidenceSha256": "01df4271b3252e15f766510e9bbb2920f43ba16798605f7376ef7895a9876fbf",
+        "recordIndex": 1018,
+        "sourceNoteGuid": "pg]&P;}G*c",
+        "sourceRecordId": "1788223607036",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  "substantiveDefectsFound": 0
+}
