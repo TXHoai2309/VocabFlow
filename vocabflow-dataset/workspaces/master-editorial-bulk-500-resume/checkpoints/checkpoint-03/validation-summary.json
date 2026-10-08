@@ -1,0 +1,106 @@
+{
+  "authorization": {
+    "canonicalIdsAllocated": 0,
+    "databaseAccess": "NONE",
+    "databaseWrites": "NONE",
+    "offlineDraftAuthoring": true,
+    "ownerApprovalsAdded": 0,
+    "production": "UNTOUCHED",
+    "releaseEligible": false,
+    "scopedGitPublication": true
+  },
+  "checkpointNumber": 3,
+  "contentStatus": "DRAFT",
+  "counts": {
+    "aiQa": {
+      "PASS": 83,
+      "REVIEW": 57
+    },
+    "cefrEvidenceCoverage": {
+      "A1": 17,
+      "A2": 14,
+      "B1": 10,
+      "B2": 28,
+      "C1": 27,
+      "C2": 4
+    },
+    "cohortPending": 200,
+    "correctionsApplied": 14,
+    "correctionsProposed": 14,
+    "cumulativeCohortAuthored": 300,
+    "frozenSelection": 500,
+    "multiSenseGroups": 32,
+    "newGroups": 100,
+    "newSenses": 140,
+    "originalAuthored": 100,
+    "posCoverage": {
+      "ADJECTIVE": 28,
+      "ADVERB": 3,
+      "CONJUNCTION": 1,
+      "DETERMINER": 1,
+      "NOUN": 73,
+      "PRONOUN": 5,
+      "VERB": 29
+    },
+    "previousTotalSenses": 1108,
+    "remainingCorpusGroups": 5323,
+    "sourceCoverage": {
+      "ENGLISH_VOCAB_4600": 13,
+      "ENGLISH_VOCAB_4600+OXFORD_5000": 57,
+      "OXFORD_5000": 30
+    },
+    "totalCorpusGroups": 820,
+    "totalSenses": 1248
+  },
+  "draftV2Preserved": true,
+  "externalChecks": "Separate verification-results.json; not executed by deterministic assembly",
+  "frozenSelectionFingerprint": "ed303558ab029cdf24f49ca9226b2910bd4beb79d41b6d1d27edb5f4dfc52076",
+  "originalBatchesUnchanged": true,
+  "parentCheckpointFingerprint": "d9a2fbaf95ae482131051e9bb755304c146f56437d22e311026d961d1f338363",
+  "phase": "2H.2H-R2",
+  "previous147Preserved": true,
+  "previous813Preserved": true,
+  "protectedState": {
+    "historicalHybridCheckpoint": {
+      "mappingCount": 100,
+      "runtime284SenseReference": "01a0fc13-09ef-7d37-a50f-d05db6b1a89c",
+      "scope": "PINNED_OFFLINE_CAPTURE; NOT_A_LIVE_DATABASE_RECHECK"
+    },
+    "hybridReleaseBase": "vocabflow-dataset/releases/hybrid-100-v2.2.1",
+    "hybridReleaseHash": "44874b11d1fdef76a515f6285d04c9a417318daa6969e112608a59e7c232613c",
+    "hybridReleaseTreeExpected": "51ab4c5ce31bd38b51742d1aea16602150522da27ad26c123cc17b332f9a406e",
+    "inputArtifactCanonicalHashes": {
+      "cross-source-overlap.json": "89ecfed0ec123c6789b9727d3333869857392c16c3eb5d2383a213126d8241ca",
+      "duplicate-headword-groups.json": "4af66c62ef113ccaadef1a64e253c89cc35f4a85b39dcb9184cf3fabb90b5059",
+      "legacy-source-coverage-readonly.json": "13d1c9cefcb2489ba59afe9b9f60f3999277e5ce6b86fd3299417f94d94ef91a",
+      "lexical-candidate-groups.json": "465a13995d15b3035f59f7f7148b5e44b335d9e99ab775c1b07837930cc69549",
+      "master-coverage-readonly.json": "28ce9e817224bb0f2f7ebefbf88114f53afe87940441013531f8bfbc58d243ca",
+      "normalization-policy.json": "c56f39c4192c5daaa7a028f9cc84afca6137f1b0e92c102299ced2443a4055bf",
+      "oxford-normalized-inventory.json": "c2b83ed7a9dfb85a7a20bf6a121bb08e0a4ab8822bbf4bfcc67344cc50881606",
+      "provenance-rights-inventory.json": "edcd02e826cdf9aba1606a586e5e877b5f70c39c52e5fc520e5897e8c3242db0",
+      "sense-review-queue.json": "353b13236d5168e90b213f1b35145e53b2e55928c7742331d7b59dddc9ea2fc1",
+      "source-inventory.json": "65eabf362f6f70a0d1fc84ef7120ac13df5beac14037084a7ae7d4529e45f72d",
+      "validation-summary.json": "5cea4e3286101188a88c0dddf283be7fc28cf0747d9c4b9b3ad4a56543f2bb1b",
+      "vocab4600-normalized-inventory.json": "42e9597c4cbdc66402db89648262744429e39991d84f637a3314beff19fbe568"
+    },
+    "legacyDispositionCanonicalHash": "e6a54e135c34ae60dd8187e50a7d5725009257bc72bb07751dd4069b32755912",
+    "legacyEvidenceBase": "vocabflow-dataset/workspaces/legacy-master-expansion-planning",
+    "legacySnapshotCanonicalHash": "c4cac8f87aabe32e7f7e41f2e11e52a55cd909fbb4b2354d6b28198099e24807",
+    "phase2g3cFingerprint": "d60ea07432633de6ab4bb0516ce9401252c6d03982c77710f0b2a71c0968ac09",
+    "phase2h1EvidenceBase": "vocabflow-dataset/workspaces/full-source-inventory-dedupe",
+    "phase2h1Fingerprint": "58928e98845e326f8d9a268aa160c867443e8497436d9c58fa2b9a5647f10a53",
+    "releaseTreeVerification": "EXTERNAL_COMMAND_REQUIRED",
+    "remoteBaseline": "6a1fe9889162cfec3e7bc102aa64a84da2b1bc73",
+    "schemaCanonicalHashes": {
+      "common.schema.json": "6c210ec949e68382734948db5f3e040afb98828c9b0f8e2cb65d00d366466509",
+      "dataset.schema.json": "c6b1762638cb9a3fe39d0ee57d573ffae51ad9d4de62bea67ba8dc7ca74845a3",
+      "learning-set.schema.json": "d2d8921808b1518f69a3b3daf3d77dc303b4bb475c0c95661dcb4e8624973be3",
+      "lexeme.schema.json": "4357777f0592ccf93d803556b479a8c2d7296b4768d9b38213d554999c7d42ea",
+      "media-asset.schema.json": "9811e901d74561441e4576d10f2359b29176431d41c8ea20d1b79bda7721c8a3",
+      "provenance.schema.json": "79625337d3391dab2e937f02830f0ec691105b0839f28ef56218743aa7ca39b6",
+      "sense.schema.json": "10a99369237449cf4f773a8e343551854af8806f1a272313b792598813e1fd92",
+      "taxonomy.schema.json": "a09e15d80138fff105290422c4de0f8d45ce8ea1df3f2ba6ea47c7bfd550e65d"
+    }
+  },
+  "status": "PASS_DRAFT_ONLY"
+}

@@ -1,0 +1,339 @@
+{
+  "batch": 55,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:apprentice",
+    "NORMALIZED_HEADWORD:heating",
+    "NORMALIZED_HEADWORD:message",
+    "NORMALIZED_HEADWORD:possibility",
+    "NORMALIZED_HEADWORD:share"
+  ],
+  "replayEvidence": "Persisted PSV parsed; source-supported POS/ordinals and exact frozen slice verified; original content hashes bound to AI review. Full replay recorded externally.",
+  "reviewNotesSha256": "6c8d7669f73ae68226c715b2742c8983b5b9905b8057e3deeeba6d5d89eb314f",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Learning a skilled trade through experienced supervision fits the source noun. The hinge example supplies observation rather than certification law; apprentice and apprenticeship are distinguished without guessing employment status.",
+      "proposalKey": "EDITORIAL_2H2H:apprentice:person-learning-a-trade",
+      "reviewedContentHash": "62e8c67cced44f41746f37bfe88e0403d2afeda7696d55bb981264c69b6c7b88",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Room-warming system/process is kept separate from general heat increase. Turned down is reduction, not switched off; the last-visitor sequence and usually uncountable grammar are preserved.",
+      "proposalKey": "EDITORIAL_2H2H:heating:warming-system",
+      "reviewedContentHash": "4db3c1cf442470556773019a95c1feabac60049929de2554a727515d3e7e5ba8",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Noticeboard communication fits the broad source noun without requiring an electronic channel. Sender/topic complements are checked; the Vietnamese explanation of where to collect costumes preserves the communicative purpose.",
+      "proposalKey": "EDITORIAL_2H2H:message:communication",
+      "reviewedContentHash": "4b731227114910e2d632d80cff9119d95d1739e03bfc189cff73e4ea3a4638c5",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: A feasible option and something that may happen are combined under the broad source boundary. The courtyard example illustrates an option, not a probability estimate; possible sub-Sense splitting remains unresolved.",
+      "proposalKey": "EDITORIAL_2H2H:possibility:chance-or-option",
+      "reviewedContentHash": "4cdf59c8bb780b5c4d57cc57e383436838abbc5eb8901a71d836335a6af39630",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Joint use as a verb and allotted portion as a noun keep distinct source ordinals. The studio storage room need not be physically divided; equal supplies and with/of complement guidance are coherent.",
+      "proposalKey": "EDITORIAL_2H2H:share:use-together",
+      "reviewedContentHash": "b9958f61e2c09fe86c91358464dce9288267f38c8f9a81cad5d9e2bdb0879f01",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Joint use as a verb and allotted portion as a noun keep distinct source ordinals. The studio storage room need not be physically divided; equal supplies and with/of complement guidance are coherent.",
+      "proposalKey": "EDITORIAL_2H2H:share:portion",
+      "reviewedContentHash": "7b8c8c0f335d8f07fc3c954b2751ea94fa07f40dfcc33028b7b0d54a1f86beef",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 6,
+  "sha256": "c893411940e35cb0ce301ba9bc2ffd422031e8bd9e5a31744800a428e1e071d4",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:apprentice": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1418/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1418/rawHeadword",
+        "rawPosEvidencePointer": "/records/1418/sourcePosRaw",
+        "recordEvidenceSha256": "ea45e7568c906a0d640a80555e72da6a63e4ac1b1cf25787dd7d9a9a876d93d9",
+        "recordIndex": 1418,
+        "sourceNoteGuid": "D6urMdzqZ3",
+        "sourceRecordId": "1559931008219",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:heating": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/2267/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2267/rawHeadword",
+        "rawPosEvidencePointer": "/records/2267/sourcePosRaw",
+        "recordEvidenceSha256": "2d9bf6868052c63455e9860bd3692059b3dafcab9644cabeb2dbbc15ccc5f909",
+        "recordIndex": 2267,
+        "sourceNoteGuid": "gB_}p<H!FI",
+        "sourceRecordId": "1788223608306",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:message": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/527/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/527/rawHeadword",
+        "rawPosEvidencePointer": "/records/527/sourcePosRaw",
+        "recordEvidenceSha256": "8394d02a6921e07da3afe74afd92c6eed4c404b7210d26bdbe7b3d50bf8d737c",
+        "recordIndex": 527,
+        "sourceNoteGuid": "bcUftV[DJQ",
+        "sourceRecordId": "1788223606485",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::A1",
+            "value": "A1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "A1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/537/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/537/rawHeadword",
+        "rawPosEvidencePointer": "/records/537/sourcePosRaw",
+        "recordEvidenceSha256": "714ad1e9bf23c00555a43b43b57ebb7ba7d142d53a98457b410a524bd045f6c3",
+        "recordIndex": 537,
+        "sourceNoteGuid": "mAT#e$^g4C",
+        "sourceRecordId": "1556384731347",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:possibility": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1405/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1405/rawHeadword",
+        "rawPosEvidencePointer": "/records/1405/sourcePosRaw",
+        "recordEvidenceSha256": "f87171fcac0f3a0ea7902e2a6f6aacd26340199e98d175c2b2f546be15289fde",
+        "recordIndex": 1405,
+        "sourceNoteGuid": "ra=BiPM9t%",
+        "sourceRecordId": "1788223607444",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:share": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN",
+          "VERB"
+        ],
+        "rawContentPointer": "/records/384/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/384/rawHeadword",
+        "rawPosEvidencePointer": "/records/384/sourcePosRaw",
+        "recordEvidenceSha256": "5a06d82faa92e3baaac0c58aeb918348ea96c1ff3676fc308f34587c195891c8",
+        "recordIndex": 384,
+        "sourceNoteGuid": "sX!<p1%-@$",
+        "sourceRecordId": "1788223606335",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::A1",
+            "value": "A1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "A1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/544/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/544/rawHeadword",
+        "rawPosEvidencePointer": "/records/544/sourcePosRaw",
+        "recordEvidenceSha256": "0dd75d98ec13d839567376c4fc9590778a0126303f6372d5fc5b351e5558f19d",
+        "recordIndex": 544,
+        "sourceNoteGuid": "OByH-a*(VM",
+        "sourceRecordId": "1556384731354",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ]
+  },
+  "substantiveDefectsFound": 0
+}

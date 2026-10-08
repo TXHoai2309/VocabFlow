@@ -2355,3 +2355,84 @@ Original and cumulative replay PASS with hash seed 314159; 153 workspace/report 
 unchanged before/after each replay. Direct typecheck, lint and frozen Hybrid PASS.
 All 6,520 accepted byte pins, seven stashes and the eleven initial worktrees preserved.
 A concurrent VocabFlow-us55 worktree was observed and left untouched; this run creates none.
+
+
+## 2026-10-09 — Phase 2H.2H-R2 checkpoint 03
+
+Continue the accepted frozen bulk-500 cohort from checkpoint 02 without
+reselection: exact next 100 pending keys, batches 041–060, five groups per batch.
+The first five are intense, privilege, submit, workout and creative. Persist
+original bilingual manuscripts, substantive review notes, explicit AI decisions,
+CLI-sealed receipts and content-bound 14-dimension effective reviews.
+
+Actual new output: 100 groups / 140 Sense drafts, including 32 multi-Sense groups.
+Cumulative: 300/500 cohort groups authored, 200 pending; 820 corpus groups authored,
+5,323 undrafted; 1,248 effective Senses (1,108 exact parent records + 140 new).
+Source groups: 30 Oxford-only, 13 4600-only, 57 shared. CEFR remains source evidence,
+not a reviewed Sense classification. AI QA: 83 PASS / 57 REVIEW / 0 FAIL, comprising
+47 explicitly retained author REVIEW assessments plus 10 generated signals.
+
+Apply 14 exact-parent field overlays and re-review all Senses in eight affected
+batches. Corrections address foster translation, October display capitalization,
+deforestation scope, wreck/cultivate/electronics grammar, orchestra tuning,
+aisle example location, early wording, craft translation and competence fidelity.
+Original manuscripts and review notes are retained; revised content hashes,
+BEFORE/AFTER field hashes and correction references are bound to effective review.
+Primary fact/lexical verification is recorded separately from content ownership
+and rights clearance in authored/fact-verification.json.
+
+Checkpoint-02's 27 REVIEW objects and all 148 assessments remain exact in the
+additive qa-history.json, separately from checkpoint-03 findings. Earlier QA and
+DRAFT V2 corrections remain accessible via pinned evidence paths. None of the
+prior 1,108 content or metadata records is modified or newly approved. Original
+checkpoint, checkpoint 02, the frozen cohort, human approval ledgers and Hybrid
+2.2.1 remain unchanged.
+
+Frozen selection fingerprint:
+`ed303558ab029cdf24f49ca9226b2910bd4beb79d41b6d1d27edb5f4dfc52076`.
+Parent checkpoint 02:
+`d9a2fbaf95ae482131051e9bb755304c146f56437d22e311026d961d1f338363`.
+Core checkpoint 03:
+`7f29d6e83de770a5b2825fe9a1bf30dc164736fa2744b993e501a08cf8593b2c`.
+Additive QA handoff fingerprint:
+`7d423683adaee9e587355c0722e0d1e745728e91f338c089086476eac591bb02`.
+
+The accepted continuation script is unchanged. A prior regression test now
+asserts zero file writes by comparing actual before/after hashes, rather than
+assuming the subsequently authorized checkpoint-03 directory must be absent.
+This is the only prior tooling-source exception; all 6,597 other script/dataset
+byte pins remain unchanged. The additive handoff verifies exact old/new QA
+separation and pins the source exception with before/after hashes.
+
+Reports and artifacts are versioned within master-editorial-bulk-500-resume/
+checkpoints/checkpoint-03. report.md contains actual bilingual previews;
+editorial-handoff.md contains unresolved findings, fingerprints, fact links and
+the full ordered 200-key pending list. External command evidence is recorded
+separately in verification-results.json; generators do not execute external checks.
+Direct Node 22.23.2 tsc -b and ESLint passed. Canonical pnpm typecheck was not run;
+the historical non-TTY wrapper limitation remains documented without a PASS claim.
+
+No owner approvals, canonical UUIDs, source media, runtime/API/UI changes,
+Master publication, legacy operations, Neon access, database writes or Production
+operations. All new content stays DRAFT, rights UNKNOWN_REVIEW_REQUIRED.
+Hybrid 2.2.1 remains frozen at 87 Lexemes / 100 Senses. Existing stashes and
+worktrees, including VocabFlow-us55, remain untouched.
+
+After separate authorization, --prepare --checkpoint 4 freezes the next 100
+pending keys; write/review/seal batches 061–080, then assemble/check checkpoint 04.
+This run does not prepare or author checkpoint 04 and starts no new selection.
+
+Final verification: 33 new R2 tests + 370 previous Dataset tests PASS (403 total,
+zero failed/skipped). Original, checkpoint-02, checkpoint-03 and QA-handoff replay
+PASS with hash seed 20261009; each compared 6,698 script/dataset files before/after
+and wrote none. Direct typecheck, lint and frozen Hybrid checks PASS. All 6,597
+parent byte pins and seven stashes preserved. All twelve worktree paths retained;
+VocabFlow-us55 advanced concurrently to 3213aaa3c0bce8a53b2bbaeb2228193c14c673a3
+and was not modified by this run. No branch/worktree or checkpoint-04 was created.
+
+Publication source-hash closure: normalize one trailing CRLF in the modified
+regression source to its Git-index LF bytes. Re-run 33 R2 + 35 continuation tests
+PASS and the final QA-handoff replay PASS, comparing 6,699 files with zero writes.
+Core checkpoint 03 and all semantic content remain unchanged; only the additive
+handoff fingerprint changes with the corrected source pin. Full Dataset total
+remains 403 passing tests; typecheck/lint/frozen checks remain applicable.

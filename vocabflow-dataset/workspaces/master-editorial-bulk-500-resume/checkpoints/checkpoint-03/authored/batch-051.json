@@ -1,0 +1,484 @@
+{
+  "batch": 51,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:saturated",
+    "NORMALIZED_HEADWORD:widen",
+    "NORMALIZED_HEADWORD:adapt",
+    "NORMALIZED_HEADWORD:foundation",
+    "NORMALIZED_HEADWORD:inequality"
+  ],
+  "replayEvidence": "Persisted PSV parsed; source-supported POS/ordinals and exact frozen slice verified; original content hashes bound to AI review. Full replay recorded externally.",
+  "reviewNotesSha256": "d3e19b8f92c2cf76e0af4624faa0fb6cff5ba1778a47d8661366e0986ec9264c",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Completely wet is the only supplied 4600 boundary. Solutions, fats and colour are explicitly separated rather than assigned unsupported scientific Senses; the leaking-tap cloth example matches thấm đẫm.",
+      "proposalKey": "EDITORIAL_2H2H:saturated:soaked",
+      "reviewedContentHash": "c50e624d86ce1a3dd67da266eaf2c7139353cae1b80e0dd81c834450601f5455",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Physical pavement width and time gap are distinct source-supported boundaries. Both transitive and intransitive patterns are checked; the Vietnamese temporal phrase avoids treating departure spacing as road width.",
+      "proposalKey": "EDITORIAL_2H2H:widen:become-broader",
+      "reviewedContentHash": "e298bc76d562faaebd7550c740b32c28dd91f50cda52a963278702dcb4d628a0",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Physical pavement width and time gap are distinct source-supported boundaries. Both transitive and intransitive patterns are checked; the Vietnamese temporal phrase avoids treating departure spacing as road width.",
+      "proposalKey": "EDITORIAL_2H2H:widen:increase-a-range-or-gap",
+      "reviewedContentHash": "6a76ecd2e2b03e837e1d37350f9aec220dc4635c1949f35d5a229d7ea9d9758a",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Person adjusting, creative-work conversion and object modification keep three source ordinals and different complements. Radio adaptation, earlier starts and carpentry examples preserve their object and purpose in Vietnamese.",
+      "proposalKey": "EDITORIAL_2H2H:adapt:adjust-yourself",
+      "reviewedContentHash": "7af585ece094856080167be2249003acc0083523f33100c5ae83aefd13220aa0",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Person adjusting, creative-work conversion and object modification keep three source ordinals and different complements. Radio adaptation, earlier starts and carpentry examples preserve their object and purpose in Vietnamese.",
+      "proposalKey": "EDITORIAL_2H2H:adapt:convert-a-work",
+      "reviewedContentHash": "5c0ca02aaf8f206d35afd2c6da87e73a18fd3f72375d01e69d8f6d13a4ef8a8d",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Person adjusting, creative-work conversion and object modification keep three source ordinals and different complements. Radio adaptation, earlier starts and carpentry examples preserve their object and purpose in Vietnamese.",
+      "proposalKey": "EDITORIAL_2H2H:adapt:modify-for-use",
+      "reviewedContentHash": "a9543ce0e718c5b389438a4d6ccaff7083254b36e63e9b08f919ad40c40fdb33",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Building support, developmental basis and funding organisation are kept distinct. The archive example makes no financial-law claim; plural foundations and proper-name capitalization are useful qualified grammar guidance.",
+      "proposalKey": "EDITORIAL_2H2H:foundation:building-base",
+      "reviewedContentHash": "243ea067f98e31d19e869d66add44e20e6fbaf241601a2ac9c2af9a4f8c940be",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Building support, developmental basis and funding organisation are kept distinct. The archive example makes no financial-law claim; plural foundations and proper-name capitalization are useful qualified grammar guidance.",
+      "proposalKey": "EDITORIAL_2H2H:foundation:basic-support",
+      "reviewedContentHash": "6cc3c4d2c6974e1f7b6462b52b77b984a5842c497c4909ab5e107eaaef1dbbf7",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Building support, developmental basis and funding organisation are kept distinct. The archive example makes no financial-law claim; plural foundations and proper-name capitalization are useful qualified grammar guidance.",
+      "proposalKey": "EDITORIAL_2H2H:foundation:funding-organisation",
+      "reviewedContentHash": "ac676569c9f79237fffcaffccb56436557df59548fe640c542b8e9b19b0f0e07",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Social/resource inequality is separated from mathematical notation. The survey's topic does not assert a measured disparity; singular/plural guidance and access-to-transport translation are coherent.",
+      "proposalKey": "EDITORIAL_2H2H:inequality:unequal-treatment-or-opportunity",
+      "reviewedContentHash": "55d7c5b98f407e1ed0faa1e83e1457b58b8b3f92540631d141fded7ab4b46d06",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 10,
+  "sha256": "7c6102818104f2bcabba7f0da5d4e18b79776544df4b59dc602d2d8d583aafc2",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:adapt": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/2946/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2946/rawHeadword",
+        "rawPosEvidencePointer": "/records/2946/sourcePosRaw",
+        "recordEvidenceSha256": "033f20a9ffa5015dbd992e808f2333c965458498a40454dd5157a3310bdbd70a",
+        "recordIndex": 2946,
+        "sourceNoteGuid": "h0{%E>eIxN",
+        "sourceRecordId": "1788223608985",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/2086/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2086/rawHeadword",
+        "rawPosEvidencePointer": "/records/2086/sourcePosRaw",
+        "recordEvidenceSha256": "772cc879120fd1df8e4be40d8497d2c2da3ba287e2d0ebd52a6b5200245a416c",
+        "recordIndex": 2086,
+        "sourceNoteGuid": "vM}xt&tR$,",
+        "sourceRecordId": "1559931008899",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:foundation": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3029/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3029/rawHeadword",
+        "rawPosEvidencePointer": "/records/3029/sourcePosRaw",
+        "recordEvidenceSha256": "feb265b6ee8d675be85ca15605a812c840e8781ea90033e7a2182f30e2a45f23",
+        "recordIndex": 3029,
+        "sourceNoteGuid": "g4[s?3-bRG",
+        "sourceRecordId": "1788223609068",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/874/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/874/rawHeadword",
+        "rawPosEvidencePointer": "/records/874/sourcePosRaw",
+        "recordEvidenceSha256": "4e123cbceac722b5c9dd5de43da2a3909eea16b2ae6ac5870c10641534aa325f",
+        "recordIndex": 874,
+        "sourceNoteGuid": "OrJPC|{AeT",
+        "sourceRecordId": "1559931007651",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:inequality": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/4471/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4471/rawHeadword",
+        "rawPosEvidencePointer": "/records/4471/sourcePosRaw",
+        "recordEvidenceSha256": "0bd462c20ae7c7b00bf4fcc5064a4a139019bf1f54c6111c80fd17424c58d775",
+        "recordIndex": 4471,
+        "sourceNoteGuid": ",@)#tgY=.q",
+        "sourceRecordId": "1788223610510",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/4368/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4368/rawHeadword",
+        "rawPosEvidencePointer": "/records/4368/sourcePosRaw",
+        "recordEvidenceSha256": "a27d4d4971d777c2846534739083d0772e819b2a832582cdc0e1ed4d36e03544",
+        "recordIndex": 4368,
+        "sourceNoteGuid": "t,LY~J}]/@",
+        "sourceRecordId": "1646317636151",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:saturated": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C2",
+            "value": "C2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/3085/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3085/rawHeadword",
+        "rawPosEvidencePointer": "/records/3085/sourcePosRaw",
+        "recordEvidenceSha256": "edc7778bb61e174338f41d155c91d7af10fde0d1856bbffb36a0d541ada648ff",
+        "recordIndex": 3085,
+        "sourceNoteGuid": "dYB$_cOCsc",
+        "sourceRecordId": "1559931009957",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:widen": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/4965/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4965/rawHeadword",
+        "rawPosEvidencePointer": "/records/4965/sourcePosRaw",
+        "recordEvidenceSha256": "cbcca8e33b34ce23ccb954c0cbf623e3b41db3d856a28b9fe2626333101315da",
+        "recordIndex": 4965,
+        "sourceNoteGuid": "u)?x>isWaq",
+        "sourceRecordId": "1788223611004",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/4671/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4671/rawHeadword",
+        "rawPosEvidencePointer": "/records/4671/sourcePosRaw",
+        "recordEvidenceSha256": "994e6ab7cafd772ffd298a43a20a589b308b1a66ed956a656b690a3214c158d1",
+        "recordIndex": 4671,
+        "sourceNoteGuid": "KUq3VdGo[c",
+        "sourceRecordId": "1646317636457",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ]
+  },
+  "substantiveDefectsFound": 0
+}

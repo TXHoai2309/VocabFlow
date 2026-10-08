@@ -1,0 +1,338 @@
+{
+  "batch": 47,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:inhibit",
+    "NORMALIZED_HEADWORD:october",
+    "NORMALIZED_HEADWORD:series",
+    "NORMALIZED_HEADWORD:wreck",
+    "NORMALIZED_HEADWORD:banner"
+  ],
+  "replayEvidence": "Persisted PSV parsed; source-supported POS/ordinals and exact frozen slice verified; original content hashes bound to AI review. Full replay recorded externally.",
+  "reviewNotesSha256": "cb2b653b2c26e71e39a1e11bb10c01b2bcea7ceaf444813fc03dca3561167c6f",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Restraining participation is not automatically preventing it completely. Vietnamese bị hạn chế preserves the modal can and the social example; the from construction is reusable beyond the sentence.",
+      "proposalKey": "EDITORIAL_2H2H:inhibit:restrain-or-slow",
+      "reviewedContentHash": "10451ce188daad87e42f27dd729995bdb9b8f60be266b20fb48847caf351482d",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: The tenth-month boundary and in/on distinction are correct; display capitalization needs an additive October form overlay while the frozen lowercase key remains unchanged. No calendar or lexical identity approval is inferred.",
+      "proposalKey": "EDITORIAL_2H2H:october:calendar-month",
+      "reviewedContentHash": "e73ce00d2326c5e0ef9337ffb3f32a8b8d23d917778fe8676b1160bc848f0c4e",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: General sequence and related television programmes retain separate source ordinals. Number-invariant spelling and singular agreement are checked; documentary families and farming season translate faithfully.",
+      "proposalKey": "EDITORIAL_2H2H:series:connected-sequence",
+      "reviewedContentHash": "2c223a9ad991e5fb301c3c46ef98c84155fce7d4ae8d57481f614e71000741ed",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: General sequence and related television programmes retain separate source ordinals. Number-invariant spelling and singular agreement are checked; documentary families and farming season translate faithfully.",
+      "proposalKey": "EDITORIAL_2H2H:series:television-programmes",
+      "reviewedContentHash": "ad4573d4ae288d18c424635376d0d10a419ae3d1e2989201693c7c8f3f7c569f",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: Severe damage is supported by the 4600 verb evidence. The falling-tree example is natural, but the grammar field includes implementation commentary; replace that sentence through an additive learner-facing overlay.",
+      "proposalKey": "EDITORIAL_2H2H:wreck:destroy-or-damage",
+      "reviewedContentHash": "360ed5f19c119a1069f73ee92e6ad8736b9420f3eb5aa6256fb79650dc979481",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Physical welcoming sign matches the source noun and does not assert an unsupported web-advertising Sense. Handmade and returning choir are kept in Vietnamese; hang/carry/on collocations are applicable generally.",
+      "proposalKey": "EDITORIAL_2H2H:banner:displayed-message",
+      "reviewedContentHash": "fac1a3a28c2e6be2a50de18f52dc30a09d7d54b6f729ca5985f535ea392b2cf9",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 6,
+  "sha256": "5980728736d38392699accfecca8dd61ed3325bd3b0783d34685a18121517810",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:banner": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/4123/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4123/rawHeadword",
+        "rawPosEvidencePointer": "/records/4123/sourcePosRaw",
+        "recordEvidenceSha256": "198059416a780dc6de0827e571504b7a3c0b4a537b0899adafe4491420f02a6b",
+        "recordIndex": 4123,
+        "sourceNoteGuid": "FA_!9hiYIa",
+        "sourceRecordId": "1788223610162",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/4161/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4161/rawHeadword",
+        "rawPosEvidencePointer": "/records/4161/sourcePosRaw",
+        "recordEvidenceSha256": "46976170cd7979aa98b29fda8e0c7c663963dd9d007fe5280f0943c5f27ceb25",
+        "recordIndex": 4161,
+        "sourceNoteGuid": "nML2S&~F5#",
+        "sourceRecordId": "1646317635944",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:inhibit": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/4944/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4944/rawHeadword",
+        "rawPosEvidencePointer": "/records/4944/sourcePosRaw",
+        "recordEvidenceSha256": "5127f917d66a015895f0d94912a42fd834f9cb23c419344ad35fc42a7aa02f72",
+        "recordIndex": 4944,
+        "sourceNoteGuid": "=mSmP&|gLZ",
+        "sourceRecordId": "1788223610983",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/1956/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1956/rawHeadword",
+        "rawPosEvidencePointer": "/records/1956/sourcePosRaw",
+        "recordEvidenceSha256": "0929da6a2dd06246b519a9914d863c428361a24485b95d3d9566e203100d7d60",
+        "recordIndex": 1956,
+        "sourceNoteGuid": "q}R4?2MP:b",
+        "sourceRecordId": "1559931008767",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:october": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/444/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/444/rawHeadword",
+        "rawPosEvidencePointer": "/records/444/sourcePosRaw",
+        "recordEvidenceSha256": "3c52e9e540ed22ec93bba87087e59d5c412d194421e5f7a16d4776741aa2b5ad",
+        "recordIndex": 444,
+        "sourceNoteGuid": "A}1.|qAi;4",
+        "sourceRecordId": "1788223606397",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:series": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/970/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/970/rawHeadword",
+        "rawPosEvidencePointer": "/records/970/sourcePosRaw",
+        "recordEvidenceSha256": "124d6235d37ba30ea493276b01713472895d9037c9705c836f2de57e30d2665d",
+        "recordIndex": 970,
+        "sourceNoteGuid": "Ow!h3SCbFC",
+        "sourceRecordId": "1788223606988",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:wreck": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/2365/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2365/rawHeadword",
+        "rawPosEvidencePointer": "/records/2365/sourcePosRaw",
+        "recordEvidenceSha256": "77e5d57f164a18e85f0b443ce3f04160f16224686f3ee60f198fa0c095c52fec",
+        "recordIndex": 2365,
+        "sourceNoteGuid": "B,Qz|C)lQt",
+        "sourceRecordId": "1559931009198",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ]
+  },
+  "substantiveDefectsFound": 1
+}

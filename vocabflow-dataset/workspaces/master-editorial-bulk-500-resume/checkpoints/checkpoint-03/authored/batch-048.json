@@ -1,0 +1,341 @@
+{
+  "batch": 48,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:fog",
+    "NORMALIZED_HEADWORD:lifelong",
+    "NORMALIZED_HEADWORD:park",
+    "NORMALIZED_HEADWORD:throw",
+    "NORMALIZED_HEADWORD:zip"
+  ],
+  "replayEvidence": "Persisted PSV parsed; source-supported POS/ordinals and exact frozen slice verified; original content hashes bound to AI review. Full replay recorded externally.",
+  "reviewNotesSha256": "6331ed80e937f678bc0f251fac6536d2f68fb69a476d33e192cbeda620eadb96",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Near-ground cloud and reduced visibility match the supplied noun boundary. Countability is qualified rather than absolute; the river-bank example introduces no quantitative weather claim or travel instruction.",
+      "proposalKey": "EDITORIAL_2H2H:fog:low-cloud",
+      "reviewedContentHash": "a156e5472648168d124f99d400427e70fbc7ab30d4a67acc1a585dd6d1093e59",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Duration through a person's life is distinct from frequency or merely long duration. Notebook observations support the interest example; Vietnamese cả đời and suốt đời are natural standalone glosses.",
+      "proposalKey": "EDITORIAL_2H2H:lifelong:whole-life",
+      "reviewedContentHash": "80a7aa17fe35186af860b1d3b24b5188c3ff5489957f2a3b971ac71d7ab73f8b",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Recreation area and leaving a vehicle keep distinct noun/verb POS and source ordinals. Car park is mentioned only as a contrast; the theatre unloading context and quiet canal path are translated independently.",
+      "proposalKey": "EDITORIAL_2H2H:park:public-green-area",
+      "reviewedContentHash": "783c16affeb6bc4b0f29700c325119c2054c0a88445280226adbeaec415debde",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Recreation area and leaving a vehicle keep distinct noun/verb POS and source ordinals. Car park is mentioned only as a contrast; the theatre unloading context and quiet canal path are translated independently.",
+      "proposalKey": "EDITORIAL_2H2H:park:leave-a-vehicle",
+      "reviewedContentHash": "58f4ac76e24a93ce0e3c706692df521bdd70f600d31f12179bbc5f5abe346949",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Hand release defines the selected literal boundary; threw/thrown and to-versus-at complements are checked. The soft-ball example conveys transfer rather than an attack or an unsupported figurative Sense.",
+      "proposalKey": "EDITORIAL_2H2H:throw:send-through-the-air",
+      "reviewedContentHash": "11a57caaf3fe82992aa4f98107c52d5b9646f6efaf0f826bd8ea1914b522083c",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: The source supports zipper fastening, not fast movement or file compression. Zipped/zipping doubling and zip up are valid; the windy-street example preserves the before relationship in Vietnamese.",
+      "proposalKey": "EDITORIAL_2H2H:zip:close-with-a-zipper",
+      "reviewedContentHash": "bc66a80e8c2c5db70d4c1e7a5956a14810bb9b5f5f04cad7edfed614b112be06",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 6,
+  "sha256": "042299a6e6defe454360f748fe2f4974ea69a407e1576311bf816c316a30163e",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:fog": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/769/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/769/rawHeadword",
+        "rawPosEvidencePointer": "/records/769/sourcePosRaw",
+        "recordEvidenceSha256": "a7e9519661e44c6c992898357f5374e0c653bba47a1cc26210cce4a34e98678c",
+        "recordIndex": 769,
+        "sourceNoteGuid": "B?,!R-Z77u",
+        "sourceRecordId": "1559931007544",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:lifelong": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/4694/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4694/rawHeadword",
+        "rawPosEvidencePointer": "/records/4694/sourcePosRaw",
+        "recordEvidenceSha256": "1e1e911c9d71ee2051a1cc6fb10871b01e805faed9cbc8ebb1beb2a1607896e3",
+        "recordIndex": 4694,
+        "sourceNoteGuid": "L<4fV=2mOJ",
+        "sourceRecordId": "1788223610733",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/4414/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4414/rawHeadword",
+        "rawPosEvidencePointer": "/records/4414/sourcePosRaw",
+        "recordEvidenceSha256": "e804bd98e59c67f15bbe7421c83c22c6a6ddc88ca8ea25f46949618ba0b17c58",
+        "recordIndex": 4414,
+        "sourceNoteGuid": "vAq9_8r-8z",
+        "sourceRecordId": "1646317636197",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:park": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN",
+          "VERB"
+        ],
+        "rawContentPointer": "/records/412/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/412/rawHeadword",
+        "rawPosEvidencePointer": "/records/412/sourcePosRaw",
+        "recordEvidenceSha256": "ae992651eb213cc5e31bcd855803b5390de59e8026c6c914616996fca94a993b",
+        "recordIndex": 412,
+        "sourceNoteGuid": "Ge5E%&c[Co",
+        "sourceRecordId": "1788223606365",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:throw": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/1239/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1239/rawHeadword",
+        "rawPosEvidencePointer": "/records/1239/sourcePosRaw",
+        "recordEvidenceSha256": "f71fe7f8155caa5e1c986798027f95c5e813c71d3c23e791f873fd0b9c8956ad",
+        "recordIndex": 1239,
+        "sourceNoteGuid": "lvab;xO]p/",
+        "sourceRecordId": "1788223607257",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::A2",
+            "value": "A2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "A2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/762/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/762/rawHeadword",
+        "rawPosEvidencePointer": "/records/762/sourcePosRaw",
+        "recordEvidenceSha256": "c0313c5766e46f3d1e91dd0050ca3e86afe2d8a6da7131638875e43617372471",
+        "recordIndex": 762,
+        "sourceNoteGuid": "puA#3T6w-M",
+        "sourceRecordId": "1559931007537",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:zip": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/3362/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3362/rawHeadword",
+        "rawPosEvidencePointer": "/records/3362/sourcePosRaw",
+        "recordEvidenceSha256": "b87142012c6d63a4d2bd9ad6b9f252b3100f16f97273298750df18d3f2cf31fb",
+        "recordIndex": 3362,
+        "sourceNoteGuid": "utPwB8v-LE",
+        "sourceRecordId": "1559931010258",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ]
+  },
+  "substantiveDefectsFound": 0
+}

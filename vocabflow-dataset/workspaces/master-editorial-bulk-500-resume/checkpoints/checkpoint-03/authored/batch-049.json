@@ -1,0 +1,337 @@
+{
+  "batch": 49,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:college",
+    "NORMALIZED_HEADWORD:extent",
+    "NORMALIZED_HEADWORD:maths",
+    "NORMALIZED_HEADWORD:reassure",
+    "NORMALIZED_HEADWORD:terrible"
+  ],
+  "replayEvidence": "Persisted PSV parsed; source-supported POS/ordinals and exact frozen slice verified; original content hashes bound to AI review. Full replay recorded externally.",
+  "reviewNotesSha256": "b9b85d74d87b94ac03f99c11081991c680ea149b1072ffa192a345d7e2fdc44b",
+  "reviews": [
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: Further/higher/specialist education avoids claiming a single national degree level. The Vietnamese gloss offers context-dependent choices; the example uses a plausible local college but the regional institution boundary remains unresolved.",
+      "proposalKey": "EDITORIAL_2H2H:college:educational-institution",
+      "reviewedContentHash": "2dc0b462f84c1fd0991e548f60b8b60162ca0a64def881b3b7f0bae83e96bf63",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Degree and range are illustrated by assessing storm damage after daylight, with no invented measurement. Full extent and to some extent are reusable constructions; the Vietnamese preserves the delayed knowledge.",
+      "proposalKey": "EDITORIAL_2H2H:extent:degree-or-range",
+      "reviewedContentHash": "f9adac3d159b46f16d6e39eb42d8ff5108acfc25766a72432eb644e521c7fbc9",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Number, shape and relationship coverage is appropriate for the subject noun. British maths and American math are spelling guidance, not identity claims; singular agreement and the folding-symmetry example are checked.",
+      "proposalKey": "EDITORIAL_2H2H:maths:study-of-number-and-shape",
+      "reviewedContentHash": "e1299f28efcc36abfc93e80cbb9ffb724358434958084af7a303bc6d67b0de97",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: The guide's statement reduces concern without claiming that reassurance guarantees truth. Someone that and about complements are distinguished; catching the ferry is naturally rendered by kịp chuyến phà.",
+      "proposalKey": "EDITORIAL_2H2H:reassure:make-less-worried",
+      "reviewedContentHash": "577561a49b084f390badb31a07e64f7db81980f5653173d44daa0c11363edc35",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Strong negative evaluation covers an unpleasant microphone sound without asserting a medical condition. Vietnamese rất khó chịu is suitable for noise; at an activity is separate reusable grammar guidance.",
+      "proposalKey": "EDITORIAL_2H2H:terrible:very-bad",
+      "reviewedContentHash": "31949335262b904658e12a59c68e23477736926cb33742a3bb5f2b8067adda66",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 5,
+  "sha256": "c81ebe2ed2a97f0f0c917889eb2693a52d70d9d91ad698b04b2ca5ed09736449",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:college": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/340/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/340/rawHeadword",
+        "rawPosEvidencePointer": "/records/340/sourcePosRaw",
+        "recordEvidenceSha256": "8ed91e4ab522979839364c5a529da13210068681cd9c03e27cc98275c90f0147",
+        "recordIndex": 340,
+        "sourceNoteGuid": "bxSvTaB5k+",
+        "sourceRecordId": "1788223606291",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:extent": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/2690/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2690/rawHeadword",
+        "rawPosEvidencePointer": "/records/2690/sourcePosRaw",
+        "recordEvidenceSha256": "82f3aff667d76bf61e662ace7574de25d9c3f2f98994dbc9fe379169402c2222",
+        "recordIndex": 2690,
+        "sourceNoteGuid": "c8sZS%U_&h",
+        "sourceRecordId": "1788223608729",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1583/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1583/rawHeadword",
+        "rawPosEvidencePointer": "/records/1583/sourcePosRaw",
+        "recordEvidenceSha256": "42de069573966d9682cee2212aa30220b3b022a3f32a55583f57c84d8f38c7d6",
+        "recordIndex": 1583,
+        "sourceNoteGuid": "O,_3L)4?r8",
+        "sourceRecordId": "1559931008385",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:maths": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1496/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1496/rawHeadword",
+        "rawPosEvidencePointer": "/records/1496/sourcePosRaw",
+        "recordEvidenceSha256": "6010e70c8697014c7e6c12015e9ae56462ec81ac7cd7546316bfa85015c34bb1",
+        "recordIndex": 1496,
+        "sourceNoteGuid": "p@4w7*k+5>",
+        "sourceRecordId": "1788223607535",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:reassure": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/4956/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4956/rawHeadword",
+        "rawPosEvidencePointer": "/records/4956/sourcePosRaw",
+        "recordEvidenceSha256": "6e5e31cca5cadb57bb0a4ba8099669ce5ee597fafeb078d6cae897bbc21a5e79",
+        "recordIndex": 4956,
+        "sourceNoteGuid": "bo?).MT#<L",
+        "sourceRecordId": "1788223610995",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/3817/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3817/rawHeadword",
+        "rawPosEvidencePointer": "/records/3817/sourcePosRaw",
+        "recordEvidenceSha256": "bff6581df58aaa7c9b8844d0dcf6ea42d0f4f0b8c38939c3736fad4adb626ba1",
+        "recordIndex": 3817,
+        "sourceNoteGuid": "x-09G6QqV.",
+        "sourceRecordId": "1623660520438",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:terrible": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/677/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/677/rawHeadword",
+        "rawPosEvidencePointer": "/records/677/sourcePosRaw",
+        "recordEvidenceSha256": "574716193b873e98c33cc9e5db2ccf9399b72fcac7fcf166505065cb938ea4de",
+        "recordIndex": 677,
+        "sourceNoteGuid": "p;+z-7yEW,",
+        "sourceRecordId": "1788223606682",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::A1",
+            "value": "A1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "A1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/38/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/38/rawHeadword",
+        "rawPosEvidencePointer": "/records/38/sourcePosRaw",
+        "recordEvidenceSha256": "8df87acd0374e9f4fa31a61099556e076c534be3a698c3c88791e8596b1f9034",
+        "recordIndex": 38,
+        "sourceNoteGuid": "H?/i%`6K}}",
+        "sourceRecordId": "1556384730836",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ]
+  },
+  "substantiveDefectsFound": 0
+}

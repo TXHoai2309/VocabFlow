@@ -1,0 +1,410 @@
+{
+  "batch": 41,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:intense",
+    "NORMALIZED_HEADWORD:privilege",
+    "NORMALIZED_HEADWORD:submit",
+    "NORMALIZED_HEADWORD:workout",
+    "NORMALIZED_HEADWORD:creative"
+  ],
+  "replayEvidence": "Persisted PSV parsed; source-supported POS/ordinals and exact frozen slice verified; original content hashes bound to AI review. Full replay recorded externally.",
+  "reviewNotesSha256": "b381fef023616ad7f86080a27d4576994bb36772675fab59e530957b4ed3f692",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Concentration illustrates strength without inventing a scientific claim. Vietnamese cao độ fits the collocation; the intensive contrast is qualified by usually rather than an absolute prohibition.",
+      "proposalKey": "EDITORIAL_2H2H:intense:very-strong",
+      "reviewedContentHash": "d3ef54b74d4f7049b9c8b01db4ee2de747796eba65a08d9e16f80e5c9cbd3b92",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Exclusive workshop access and appreciated literary opportunity are distinct source-supported noun boundaries. Vietnamese distinguishes đặc quyền from vinh dự; the latter makes no legal entitlement claim.",
+      "proposalKey": "EDITORIAL_2H2H:privilege:special-right",
+      "reviewedContentHash": "f39973e7e0f32e6ae5d90ad4dbf4598ffee25604af0fc174a5391e685fc8eebf",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Exclusive workshop access and appreciated literary opportunity are distinct source-supported noun boundaries. Vietnamese distinguishes đặc quyền from vinh dự; the latter makes no legal entitlement claim.",
+      "proposalKey": "EDITORIAL_2H2H:privilege:honour",
+      "reviewedContentHash": "a2b5cf2c7d6cba91aeab3c8c717ac4113820337b470c1b7541be66b81d2963f0",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Transitive document delivery and intransitive submission to authority keep different complements. Submitted spelling and both source ordinals are checked; the rebel narrative translates resistance faithfully.",
+      "proposalKey": "EDITORIAL_2H2H:submit:send-for-consideration",
+      "reviewedContentHash": "5c0336f6864989e3a48bf3c700143867ec72a12b53438f160480e676ecd76c25",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Transitive document delivery and intransitive submission to authority keep different complements. Submitted spelling and both source ordinals are checked; the rebel narrative translates resistance faithfully.",
+      "proposalKey": "EDITORIAL_2H2H:submit:accept-authority",
+      "reviewedContentHash": "0da51c51cd3ed7b2246ba81f80452d9bbd8160ea63167f91483be77ad8e42d79",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: A single exercise session is countable and distinguished from the two-word verb. Packing a mat away avoids a promised health benefit; the Vietnamese example preserves the sequence after exercise.",
+      "proposalKey": "EDITORIAL_2H2H:workout:exercise-session",
+      "reviewedContentHash": "9d5f3bfeb7ba94ea6245c9693a767c30b37b5f503ea11ef7c99a691fa1286531",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Imaginative use of stage shadows supports the adjective without requiring an invented noun or creativity score. The example's apparent enlargement is faithfully rendered by có vẻ rộng hơn.",
+      "proposalKey": "EDITORIAL_2H2H:creative:producing-original-ideas",
+      "reviewedContentHash": "7314363de2caf9ecd37952cad1ef80de27dea8d8ad7e22433cf108fed009b51e",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 7,
+  "sha256": "4ba168d22070ba848e347a7cb12edcd8a470c9e02550ee120436127002e77244",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:creative": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/1390/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1390/rawHeadword",
+        "rawPosEvidencePointer": "/records/1390/sourcePosRaw",
+        "recordEvidenceSha256": "8cd2bc25ce895bffc59109a5483c6f8c7b31a0316c9a3977b84fce16cb20fb8d",
+        "recordIndex": 1390,
+        "sourceNoteGuid": "OU=~mtss3>",
+        "sourceRecordId": "1788223607429",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:intense": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/2744/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2744/rawHeadword",
+        "rawPosEvidencePointer": "/records/2744/sourcePosRaw",
+        "recordEvidenceSha256": "0d6bad58ed22202a1a3ff9350b1a983afe6e46d0876263794bba24daf634e680",
+        "recordIndex": 2744,
+        "sourceNoteGuid": "fgfCQAO(+w",
+        "sourceRecordId": "1788223608783",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/832/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/832/rawHeadword",
+        "rawPosEvidencePointer": "/records/832/sourcePosRaw",
+        "recordEvidenceSha256": "516b61bdb6ea19be2d837481471b6d11d64fe49b7659370db05ea1c5a003a365",
+        "recordIndex": 832,
+        "sourceNoteGuid": "fs|yUhIFC=",
+        "sourceRecordId": "1559931007609",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:privilege": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/4000/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4000/rawHeadword",
+        "rawPosEvidencePointer": "/records/4000/sourcePosRaw",
+        "recordEvidenceSha256": "f1b37373a00dedf3934ab75633bac22b7216804f9f3fea083b49700ec53147ac",
+        "recordIndex": 4000,
+        "sourceNoteGuid": "yu,f%7zy2M",
+        "sourceRecordId": "1788223610039",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3249/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3249/rawHeadword",
+        "rawPosEvidencePointer": "/records/3249/sourcePosRaw",
+        "recordEvidenceSha256": "d98fa82ba362e5c25de349f2dc96359a5d3963de30b1238f0cd8a121ba8e691a",
+        "recordIndex": 3249,
+        "sourceNoteGuid": "J30j)J+dOW",
+        "sourceRecordId": "1559931010132",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:submit": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/2816/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2816/rawHeadword",
+        "rawPosEvidencePointer": "/records/2816/sourcePosRaw",
+        "recordEvidenceSha256": "072b03c49c8ea789725e3171ec5db34bea7ad10328a24bb95decb8e7a73456c8",
+        "recordIndex": 2816,
+        "sourceNoteGuid": "O)=)#+SK;j",
+        "sourceRecordId": "1788223608855",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/3609/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3609/rawHeadword",
+        "rawPosEvidencePointer": "/records/3609/sourcePosRaw",
+        "recordEvidenceSha256": "e0b4eb2824f7cd19da91e04640d113f636d2d10e9209ac5a4cd1f468460a3b8f",
+        "recordIndex": 3609,
+        "sourceNoteGuid": "m<VBabXzcE",
+        "sourceRecordId": "1617541581723",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:workout": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/4301/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4301/rawHeadword",
+        "rawPosEvidencePointer": "/records/4301/sourcePosRaw",
+        "recordEvidenceSha256": "8ca1149877fe6629896db17fc5b303ebd47b3e0786631972f7e6314bd6a41cc7",
+        "recordIndex": 4301,
+        "sourceNoteGuid": "DV;v((45@B",
+        "sourceRecordId": "1788223610340",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/2573/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2573/rawHeadword",
+        "rawPosEvidencePointer": "/records/2573/sourcePosRaw",
+        "recordEvidenceSha256": "118e32b6b6b12d072307c77e1477d78ebfeed24fcd8741bccdf9bc4ff9f28152",
+        "recordIndex": 2573,
+        "sourceNoteGuid": "LqPzH@U4ZY",
+        "sourceRecordId": "1559931009417",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ]
+  },
+  "substantiveDefectsFound": 0
+}

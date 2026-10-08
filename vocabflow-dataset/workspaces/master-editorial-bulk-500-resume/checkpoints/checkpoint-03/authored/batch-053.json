@@ -1,0 +1,336 @@
+{
+  "batch": 53,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:lake",
+    "NORMALIZED_HEADWORD:risky",
+    "NORMALIZED_HEADWORD:surrounding",
+    "NORMALIZED_HEADWORD:wealth",
+    "NORMALIZED_HEADWORD:determined"
+  ],
+  "replayEvidence": "Persisted PSV parsed; source-supported POS/ordinals and exact frozen slice verified; original content hashes bound to AI review. Full replay recorded externally.",
+  "reviewNotesSha256": "3c58b8bf97873803a753709807bffc0b8c88bcb89033f41fead7231b3fabe4e9",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Inland water surrounded by land matches the literal noun without restricting all lakes to fresh water. The route and old mill are fictional; in/by/around constructions and capitalization guidance are qualified.",
+      "proposalKey": "EDITORIAL_2H2H:lake:inland-water",
+      "reviewedContentHash": "dbbc914562b9e13cc913665ca163d8b4fb78582a0b3e6ebf5821ac50f08418f3",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: A possible adverse outcome is distinguished from certainty of harm. The stopped-delivery example grounds business risk without advice; riskier/riskiest and the Vietnamese causal timing are accurate.",
+      "proposalKey": "EDITORIAL_2H2H:risky:involving-risk",
+      "reviewedContentHash": "ae7a276f361e2b8c383507895898b7032d8dca7e0bd109696609dcd4169978ba",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Relative nearby position is explained without inventing an absolute distance. The market serves both town and villages; normally attributive guidance distinguishes the adjective from an independent place noun.",
+      "proposalKey": "EDITORIAL_2H2H:surrounding:nearby-on-all-sides",
+      "reviewedContentHash": "f40ba207e41830547b27071c5e165ba1f87f8243c7c78a9d9213265a84d0c4b9",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Financial riches and figurative abundance retain separate source ordinals. A wealth of information is not assigned countable-money status; trading-business origin and archive examples translate faithfully.",
+      "proposalKey": "EDITORIAL_2H2H:wealth:riches",
+      "reviewedContentHash": "8fa045cc50cadc6d9308fc0a0eea068ca57917c586b6b07aea18b079f79020b1",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Financial riches and figurative abundance retain separate source ordinals. A wealth of information is not assigned countable-money status; trading-business origin and archive examples translate faithfully.",
+      "proposalKey": "EDITORIAL_2H2H:wealth:abundance",
+      "reviewedContentHash": "6978d5edd949e1b9adeccb6ad19abb93233fa5bce1d4a93d22e74811b5013dab",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Firm intention is separated from a passive determination of a date. Mastering rhythm illustrates purposeful persistence; determined to and determined effort provide reusable construction guidance.",
+      "proposalKey": "EDITORIAL_2H2H:determined:firm-in-intention",
+      "reviewedContentHash": "32fa430de4b7e78482a2e9c8c1c767c6576604325a908c0d53f0e5c52e2ab455",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 6,
+  "sha256": "508ab5f2237931b674dffcf4765b2d22391eac362c5240a0e9f2365033080134",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:determined": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/1959/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1959/rawHeadword",
+        "rawPosEvidencePointer": "/records/1959/sourcePosRaw",
+        "recordEvidenceSha256": "46d26bc595ef9ee68c7b1f3d995f3e7f1f73a3fb0e4ca87bf83de7d7f85c595f",
+        "recordIndex": 1959,
+        "sourceNoteGuid": "o:DIH^||@u",
+        "sourceRecordId": "1788223607998",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:lake": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1233/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1233/rawHeadword",
+        "rawPosEvidencePointer": "/records/1233/sourcePosRaw",
+        "recordEvidenceSha256": "c876c0d87bbd35d09e2bd0e8ec8dd81e66d92e5c9de41b212ed643999a1b1229",
+        "recordIndex": 1233,
+        "sourceNoteGuid": "ilrZy@v8dn",
+        "sourceRecordId": "1788223607251",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:risky": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/3535/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3535/rawHeadword",
+        "rawPosEvidencePointer": "/records/3535/sourcePosRaw",
+        "recordEvidenceSha256": "4d2eed51e6250347cb20ae06d742c816ae6849d012d8b58918e9ab576157eece",
+        "recordIndex": 3535,
+        "sourceNoteGuid": "y$Il2HE|Y.",
+        "sourceRecordId": "1788223609574",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/4064/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4064/rawHeadword",
+        "rawPosEvidencePointer": "/records/4064/sourcePosRaw",
+        "recordEvidenceSha256": "d7ee0ed06f04d554f5218e24470d672ae0c82cf01f16561577bd067537a8bc21",
+        "recordIndex": 4064,
+        "sourceNoteGuid": "P7CE*;S+0h",
+        "sourceRecordId": "1646317635846",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:surrounding": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/2680/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2680/rawHeadword",
+        "rawPosEvidencePointer": "/records/2680/sourcePosRaw",
+        "recordEvidenceSha256": "7440181a61e42c58290608bb2344669893b6c21e02787c3ecf8aadfa77a0ea0c",
+        "recordIndex": 2680,
+        "sourceNoteGuid": "GJM-`[$vYG",
+        "sourceRecordId": "1788223608719",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:wealth": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/2665/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2665/rawHeadword",
+        "rawPosEvidencePointer": "/records/2665/sourcePosRaw",
+        "recordEvidenceSha256": "2536e4cbddb659ed13171941cc3f0ee223fbef2184f152bc922e63b4872da7a4",
+        "recordIndex": 2665,
+        "sourceNoteGuid": "E:L#r@iO_1",
+        "sourceRecordId": "1788223608704",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/901/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/901/rawHeadword",
+        "rawPosEvidencePointer": "/records/901/sourcePosRaw",
+        "recordEvidenceSha256": "95e1a6e4923797cbe80b8d154c6cf907c06ed696c7feec84ee56fa6a69cbb34b",
+        "recordIndex": 901,
+        "sourceNoteGuid": "q{Jl&Bp`{&",
+        "sourceRecordId": "1559931007678",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ]
+  },
+  "substantiveDefectsFound": 0
+}

@@ -1,0 +1,266 @@
+{
+  "batch": 46,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:prison",
+    "NORMALIZED_HEADWORD:toddler",
+    "NORMALIZED_HEADWORD:wedding",
+    "NORMALIZED_HEADWORD:deforestation",
+    "NORMALIZED_HEADWORD:everything"
+  ],
+  "replayEvidence": "Persisted PSV parsed; source-supported POS/ordinals and exact frozen slice verified; original content hashes bound to AI review. Full replay recorded externally.",
+  "reviewNotesSha256": "8e87632470a38dd79dc79333f3560402c7d154a919913644aa54e7f4fbe7d596",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: A converted prison museum illustrates the institution noun without inventing detention law. Especially qualifies punishment after a court decision; article omission is limited to the imprisonment construction.",
+      "proposalKey": "EDITORIAL_2H2H:prison:place-of-confinement",
+      "reviewedContentHash": "b9e9c6f4044da020d14e8aaa9419a19728b1c23785b8d98364d51e978b4aa71d",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Recently walking is a developmental boundary, not a universal numerical age. The example contains no safety recommendation; low steps and holding the father's hand align naturally in Vietnamese.",
+      "proposalKey": "EDITORIAL_2H2H:toddler:young-walking-child",
+      "reviewedContentHash": "35b0d2df12752fabad59c422b2f434b4e9def9b65473fc4dd21a5e0c29b29c10",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Event and associated celebration are distinguished from the continuing marriage relationship. The garden location is fictional and translated faithfully; the noun is countable rather than an abstract institution.",
+      "proposalKey": "EDITORIAL_2H2H:wedding:marriage-celebration",
+      "reviewedContentHash": "8c8e929dffc19f9d1d4119119d6595f12497f3d8c59de0f39ea6736682307d16",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: The proposal describes forest removal rather than pruning, but the broad draft boundary needs comparison with formal land-use definitions. The map example makes no unsupported causal or statistical claim.",
+      "proposalKey": "EDITORIAL_2H2H:deforestation:forest-removal",
+      "reviewedContentHash": "3c7f9386006d64f29df2ef796d9d19ab3f9813a91125a2afa5050890e56a8c2f",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: Singular agreement and context-limited totality are explicit. The repair-bag translation preserves all needed things rather than every object in existence; full pronoun identity and pragmatic coverage remain unresolved.",
+      "proposalKey": "EDITORIAL_2H2H:everything:all-things",
+      "reviewedContentHash": "e931b4738b3f9596ae27adc69bbe96d9eef032ebc8f9d503b2f7f1eb50cf94df",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 5,
+  "sha256": "c0b03f0dc0da3186681bfdf6477d7b438e72521b1534c94cc892b047dbb46893",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:deforestation": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3595/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3595/rawHeadword",
+        "rawPosEvidencePointer": "/records/3595/sourcePosRaw",
+        "recordEvidenceSha256": "fbd12739092476496b0f9354b8556c09aec94269e27b4481beece1a09910466b",
+        "recordIndex": 3595,
+        "sourceNoteGuid": "lx$$s?WIot",
+        "sourceRecordId": "1616499876731",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:everything": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "PRONOUN"
+        ],
+        "rawContentPointer": "/records/198/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/198/rawHeadword",
+        "rawPosEvidencePointer": "/records/198/sourcePosRaw",
+        "recordEvidenceSha256": "3be2b384ba9118f96940cf7b0d39faa9e7e0c7d0b40c42f7cde179d5988b51b8",
+        "recordIndex": 198,
+        "sourceNoteGuid": "y5L]>G>cPA",
+        "sourceRecordId": "1788223606149",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:prison": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1260/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1260/rawHeadword",
+        "rawPosEvidencePointer": "/records/1260/sourcePosRaw",
+        "recordEvidenceSha256": "c5440a2a807c328a27d26cd3030c650f41488738140bf924a5985a115b8a3def",
+        "recordIndex": 1260,
+        "sourceNoteGuid": "u+,$_^msP#",
+        "sourceRecordId": "1788223607279",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:toddler": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3502/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3502/rawHeadword",
+        "rawPosEvidencePointer": "/records/3502/sourcePosRaw",
+        "recordEvidenceSha256": "3186ebd118bb140a79dfd79daf1beb270d168d0edcc896f4c484e1d7192fccb5",
+        "recordIndex": 3502,
+        "sourceNoteGuid": "GTer@F=eQa",
+        "sourceRecordId": "1614606717521",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:wedding": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1240/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1240/rawHeadword",
+        "rawPosEvidencePointer": "/records/1240/sourcePosRaw",
+        "recordEvidenceSha256": "e933852837dc5af2fac9972d32e8126d7a5df502f75c021dee0de34e3007f629",
+        "recordIndex": 1240,
+        "sourceNoteGuid": "D!kj|8<H%5",
+        "sourceRecordId": "1788223607258",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ]
+  },
+  "substantiveDefectsFound": 0
+}

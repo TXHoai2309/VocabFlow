@@ -1,0 +1,434 @@
+{
+  "batch": 44,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:worth",
+    "NORMALIZED_HEADWORD:dramatic",
+    "NORMALIZED_HEADWORD:foster",
+    "NORMALIZED_HEADWORD:mission",
+    "NORMALIZED_HEADWORD:page"
+  ],
+  "replayEvidence": "Persisted PSV parsed; source-supported POS/ordinals and exact frozen slice verified; original content hashes bound to AI review. Full replay recorded externally.",
+  "reviewNotesSha256": "deb5536a0539cc5557d4b98a3868f9b5aba0204d57254a727122143d5d813492",
+  "reviews": [
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: Predicative monetary worth, noun value and worth the effort remain distinct. The noun example extends value to practical importance beyond the source's money example; that extension and adjective taxonomy remain owner-review obligations.",
+      "proposalKey": "EDITORIAL_2H2H:worth:monetary-value",
+      "reviewedContentHash": "5c5e678d910f805dfb573e6beaddfd18b678cbb0c3213a3b273acef65129bba4",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: Predicative monetary worth, noun value and worth the effort remain distinct. The noun example extends value to practical importance beyond the source's money example; that extension and adjective taxonomy remain owner-review obligations.",
+      "proposalKey": "EDITORIAL_2H2H:worth:value",
+      "reviewedContentHash": "1bbeeea05f9f46f0811c17994d5dd2a60debe290264dd431731c2a857ec073f2",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: Predicative monetary worth, noun value and worth the effort remain distinct. The noun example extends value to practical importance beyond the source's money example; that extension and adjective taxonomy remain owner-review obligations.",
+      "proposalKey": "EDITORIAL_2H2H:worth:deserving-effort",
+      "reviewedContentHash": "8b948e8c07157e87edc0e3224a32f1e482abb3fd7f7a07e9872960c74236bfec",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: A striking change in lighting is separated from techniques used in theatre. The new definition allows gradual but striking effects; Vietnamese rõ rệt and thuộc sân khấu match their respective examples.",
+      "proposalKey": "EDITORIAL_2H2H:dramatic:striking-change",
+      "reviewedContentHash": "cb18adf0762903b245c82498106519594f17783f8c36f47dfa05c3dde7c016dd",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: A striking change in lighting is separated from techniques used in theatre. The new definition allows gradual but striking effects; Vietnamese rõ rệt and thuộc sân khấu match their respective examples.",
+      "proposalKey": "EDITORIAL_2H2H:dramatic:theatre",
+      "reviewedContentHash": "b2de0006614609cfc40639751fafc528402166ff4f846e508ae24548b876774a",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: Encouraging trust and caring for a child preserve separate source ordinals and complements. The temporary-care boundary was checked with Oxford; the Vietnamese siblings example needs a gender-neutral overlay and full-batch re-review.",
+      "proposalKey": "EDITORIAL_2H2H:foster:encourage-development",
+      "reviewedContentHash": "8e58d5ab771cc69ca43e74d37f65d3675d704c30a3197c049399f7fd4264e5f2",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: Encouraging trust and caring for a child preserve separate source ordinals and complements. The temporary-care boundary was checked with Oxford; the Vietnamese siblings example needs a gender-neutral overlay and full-batch re-review.",
+      "proposalKey": "EDITORIAL_2H2H:foster:temporary-child-care",
+      "reviewedContentHash": "2242d23480222032bfa27a7efb782b821ad1e85cc54d8807f4ae83025d78dda3",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: A rescue team's assigned purpose illustrates the countable task noun without turning every religious or diplomatic usage into the same Sense. Missing walkers translates directly and the infinitive names the task.",
+      "proposalKey": "EDITORIAL_2H2H:mission:important-task",
+      "reviewedContentHash": "77096b21c42f47740e0edf84b84687e3ef26e9217c9c06f0d5de35fee763d6b2",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Printed or written sheet side is distinguished from a whole leaf. On page and turn a page provide reusable collocations; the diary example does not invent a web-page ordinal or verb proposal.",
+      "proposalKey": "EDITORIAL_2H2H:page:sheet-or-side",
+      "reviewedContentHash": "669d37df353486daca680c0d8330b2edb481fa5df128e7271e6b82b0dc8c74b5",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 9,
+  "sha256": "40252b2a4e0d04e97e03725ebb17aee9d10b374c3929edf1abde8545f4d85ffe",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:dramatic": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/2728/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2728/rawHeadword",
+        "rawPosEvidencePointer": "/records/2728/sourcePosRaw",
+        "recordEvidenceSha256": "b4761d4532bc47516d54de6f35a2e356ad03923acafe7c2b9411601b7cc820c3",
+        "recordIndex": 2728,
+        "sourceNoteGuid": "f(<xgj}%_l",
+        "sourceRecordId": "1788223608767",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:foster": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/3857/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3857/rawHeadword",
+        "rawPosEvidencePointer": "/records/3857/sourcePosRaw",
+        "recordEvidenceSha256": "836430414c6dfe46ac5dd48760cdae8d7e3d737ab433c70e7e6353815e60d5ab",
+        "recordIndex": 3857,
+        "sourceNoteGuid": "y*B#_xx6A=",
+        "sourceRecordId": "1788223609896",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/1818/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1818/rawHeadword",
+        "rawPosEvidencePointer": "/records/1818/sourcePosRaw",
+        "recordEvidenceSha256": "35992844a96821110732edb79d202709ecab65120196eac25964ef018d36e2dd",
+        "recordIndex": 1818,
+        "sourceNoteGuid": "d=mIld[].P",
+        "sourceRecordId": "1559931008626",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:mission": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/2470/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2470/rawHeadword",
+        "rawPosEvidencePointer": "/records/2470/sourcePosRaw",
+        "recordEvidenceSha256": "f7d79dd04a25d502114a63e613b663867bb8029fcaa1d784eb5ad379ed8cc2b1",
+        "recordIndex": 2470,
+        "sourceNoteGuid": "L+q46}:k7:",
+        "sourceRecordId": "1788223608509",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/715/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/715/rawHeadword",
+        "rawPosEvidencePointer": "/records/715/sourcePosRaw",
+        "recordEvidenceSha256": "eae21fb0292bbae04850ab4412abf4854b37eff7560392616b2f55dd806a53c0",
+        "recordIndex": 715,
+        "sourceNoteGuid": "G]A|g%SXd*",
+        "sourceRecordId": "1559931007489",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:page": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/436/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/436/rawHeadword",
+        "rawPosEvidencePointer": "/records/436/sourcePosRaw",
+        "recordEvidenceSha256": "a2c4b4d1c3711cec8890959fd89590c9db4899cd4690b414686f727a91e3da0f",
+        "recordIndex": 436,
+        "sourceNoteGuid": "b,n/8eQ6$Y",
+        "sourceRecordId": "1788223606389",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:worth": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE",
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1741/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1741/rawHeadword",
+        "rawPosEvidencePointer": "/records/1741/sourcePosRaw",
+        "recordEvidenceSha256": "feb2a154b612a1e1018975c2cf6833f429d158779125eef0408c7eed796cd69d",
+        "recordIndex": 1741,
+        "sourceNoteGuid": "c6IpB~#N12",
+        "sourceRecordId": "1788223607780",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B1",
+            "value": "B1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/389/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/389/rawHeadword",
+        "rawPosEvidencePointer": "/records/389/sourcePosRaw",
+        "recordEvidenceSha256": "13f430723551603035c3398ce2bf15d8515ad1d8c5a5d95ecda1c24f6f3365d6",
+        "recordIndex": 389,
+        "sourceNoteGuid": "b*:Aa3kYv3",
+        "sourceRecordId": "1556384731197",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ]
+  },
+  "substantiveDefectsFound": 1
+}

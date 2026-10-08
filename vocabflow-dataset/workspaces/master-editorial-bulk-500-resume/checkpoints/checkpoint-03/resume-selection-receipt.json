@@ -1,0 +1,4314 @@
+{
+  "algorithm": "EXACT_FIRST_100_PARENT_PENDING_KEYS_NO_RERANK_NO_NEW_SELECTION",
+  "candidateGroupKeys": [
+    "NORMALIZED_HEADWORD:intense",
+    "NORMALIZED_HEADWORD:privilege",
+    "NORMALIZED_HEADWORD:submit",
+    "NORMALIZED_HEADWORD:workout",
+    "NORMALIZED_HEADWORD:creative",
+    "NORMALIZED_HEADWORD:fuse",
+    "NORMALIZED_HEADWORD:medication",
+    "NORMALIZED_HEADWORD:ring",
+    "NORMALIZED_HEADWORD:sceptical",
+    "NORMALIZED_HEADWORD:weigh",
+    "NORMALIZED_HEADWORD:contempt",
+    "NORMALIZED_HEADWORD:eligible",
+    "NORMALIZED_HEADWORD:inclusion",
+    "NORMALIZED_HEADWORD:regain",
+    "NORMALIZED_HEADWORD:school",
+    "NORMALIZED_HEADWORD:worth",
+    "NORMALIZED_HEADWORD:dramatic",
+    "NORMALIZED_HEADWORD:foster",
+    "NORMALIZED_HEADWORD:mission",
+    "NORMALIZED_HEADWORD:page",
+    "NORMALIZED_HEADWORD:some",
+    "NORMALIZED_HEADWORD:whether",
+    "NORMALIZED_HEADWORD:companion",
+    "NORMALIZED_HEADWORD:fundamentally",
+    "NORMALIZED_HEADWORD:inclined",
+    "NORMALIZED_HEADWORD:prison",
+    "NORMALIZED_HEADWORD:toddler",
+    "NORMALIZED_HEADWORD:wedding",
+    "NORMALIZED_HEADWORD:deforestation",
+    "NORMALIZED_HEADWORD:everything",
+    "NORMALIZED_HEADWORD:inhibit",
+    "NORMALIZED_HEADWORD:october",
+    "NORMALIZED_HEADWORD:series",
+    "NORMALIZED_HEADWORD:wreck",
+    "NORMALIZED_HEADWORD:banner",
+    "NORMALIZED_HEADWORD:fog",
+    "NORMALIZED_HEADWORD:lifelong",
+    "NORMALIZED_HEADWORD:park",
+    "NORMALIZED_HEADWORD:throw",
+    "NORMALIZED_HEADWORD:zip",
+    "NORMALIZED_HEADWORD:college",
+    "NORMALIZED_HEADWORD:extent",
+    "NORMALIZED_HEADWORD:maths",
+    "NORMALIZED_HEADWORD:reassure",
+    "NORMALIZED_HEADWORD:terrible",
+    "NORMALIZED_HEADWORD:weak",
+    "NORMALIZED_HEADWORD:disgraceful",
+    "NORMALIZED_HEADWORD:heavy",
+    "NORMALIZED_HEADWORD:mad",
+    "NORMALIZED_HEADWORD:orchestra",
+    "NORMALIZED_HEADWORD:saturated",
+    "NORMALIZED_HEADWORD:widen",
+    "NORMALIZED_HEADWORD:adapt",
+    "NORMALIZED_HEADWORD:foundation",
+    "NORMALIZED_HEADWORD:inequality",
+    "NORMALIZED_HEADWORD:obsolete",
+    "NORMALIZED_HEADWORD:totally",
+    "NORMALIZED_HEADWORD:window",
+    "NORMALIZED_HEADWORD:aisle",
+    "NORMALIZED_HEADWORD:early",
+    "NORMALIZED_HEADWORD:lake",
+    "NORMALIZED_HEADWORD:risky",
+    "NORMALIZED_HEADWORD:surrounding",
+    "NORMALIZED_HEADWORD:wealth",
+    "NORMALIZED_HEADWORD:determined",
+    "NORMALIZED_HEADWORD:gay",
+    "NORMALIZED_HEADWORD:injury",
+    "NORMALIZED_HEADWORD:penalty",
+    "NORMALIZED_HEADWORD:severe",
+    "NORMALIZED_HEADWORD:weed",
+    "NORMALIZED_HEADWORD:apprentice",
+    "NORMALIZED_HEADWORD:heating",
+    "NORMALIZED_HEADWORD:message",
+    "NORMALIZED_HEADWORD:possibility",
+    "NORMALIZED_HEADWORD:share",
+    "NORMALIZED_HEADWORD:wander",
+    "NORMALIZED_HEADWORD:cultivate",
+    "NORMALIZED_HEADWORD:format",
+    "NORMALIZED_HEADWORD:methodology",
+    "NORMALIZED_HEADWORD:network",
+    "NORMALIZED_HEADWORD:sudden",
+    "NORMALIZED_HEADWORD:warrior",
+    "NORMALIZED_HEADWORD:anybody",
+    "NORMALIZED_HEADWORD:firearm",
+    "NORMALIZED_HEADWORD:lunch",
+    "NORMALIZED_HEADWORD:proceedings",
+    "NORMALIZED_HEADWORD:spiral",
+    "NORMALIZED_HEADWORD:weekend",
+    "NORMALIZED_HEADWORD:craft",
+    "NORMALIZED_HEADWORD:electronics",
+    "NORMALIZED_HEADWORD:lord",
+    "NORMALIZED_HEADWORD:rid",
+    "NORMALIZED_HEADWORD:sunlight",
+    "NORMALIZED_HEADWORD:writing",
+    "NORMALIZED_HEADWORD:competence",
+    "NORMALIZED_HEADWORD:expected",
+    "NORMALIZED_HEADWORD:list",
+    "NORMALIZED_HEADWORD:renew",
+    "NORMALIZED_HEADWORD:skull",
+    "NORMALIZED_HEADWORD:we"
+  ],
+  "checkpointNumber": 3,
+  "expectedRemainingKeys": [
+    "NORMALIZED_HEADWORD:criminal",
+    "NORMALIZED_HEADWORD:homework",
+    "NORMALIZED_HEADWORD:mouse",
+    "NORMALIZED_HEADWORD:register",
+    "NORMALIZED_HEADWORD:seventy",
+    "NORMALIZED_HEADWORD:war",
+    "NORMALIZED_HEADWORD:appreciate",
+    "NORMALIZED_HEADWORD:gallon",
+    "NORMALIZED_HEADWORD:injure",
+    "NORMALIZED_HEADWORD:painting",
+    "NORMALIZED_HEADWORD:sink",
+    "NORMALIZED_HEADWORD:wall",
+    "NORMALIZED_HEADWORD:aspect",
+    "NORMALIZED_HEADWORD:glad",
+    "NORMALIZED_HEADWORD:key",
+    "NORMALIZED_HEADWORD:naturally",
+    "NORMALIZED_HEADWORD:stair",
+    "NORMALIZED_HEADWORD:yawn",
+    "NORMALIZED_HEADWORD:dentist",
+    "NORMALIZED_HEADWORD:faint",
+    "NORMALIZED_HEADWORD:kettle",
+    "NORMALIZED_HEADWORD:proceed",
+    "NORMALIZED_HEADWORD:thirty",
+    "NORMALIZED_HEADWORD:weather",
+    "NORMALIZED_HEADWORD:deserve",
+    "NORMALIZED_HEADWORD:habit",
+    "NORMALIZED_HEADWORD:illegal",
+    "NORMALIZED_HEADWORD:outdoor",
+    "NORMALIZED_HEADWORD:sometimes",
+    "NORMALIZED_HEADWORD:winding",
+    "NORMALIZED_HEADWORD:discharge",
+    "NORMALIZED_HEADWORD:hospitality",
+    "NORMALIZED_HEADWORD:layer",
+    "NORMALIZED_HEADWORD:rope",
+    "NORMALIZED_HEADWORD:termite",
+    "NORMALIZED_HEADWORD:yet",
+    "NORMALIZED_HEADWORD:comply",
+    "NORMALIZED_HEADWORD:high",
+    "NORMALIZED_HEADWORD:inflate",
+    "NORMALIZED_HEADWORD:prescribe",
+    "NORMALIZED_HEADWORD:unemployed",
+    "NORMALIZED_HEADWORD:west",
+    "NORMALIZED_HEADWORD:conservation",
+    "NORMALIZED_HEADWORD:folklore",
+    "NORMALIZED_HEADWORD:import",
+    "NORMALIZED_HEADWORD:necklace",
+    "NORMALIZED_HEADWORD:slip",
+    "NORMALIZED_HEADWORD:yard",
+    "NORMALIZED_HEADWORD:cotton",
+    "NORMALIZED_HEADWORD:exactly",
+    "NORMALIZED_HEADWORD:lung",
+    "NORMALIZED_HEADWORD:reportedly",
+    "NORMALIZED_HEADWORD:statute",
+    "NORMALIZED_HEADWORD:warning",
+    "NORMALIZED_HEADWORD:carriage",
+    "NORMALIZED_HEADWORD:hinder",
+    "NORMALIZED_HEADWORD:impression",
+    "NORMALIZED_HEADWORD:peel",
+    "NORMALIZED_HEADWORD:surprising",
+    "NORMALIZED_HEADWORD:wait",
+    "NORMALIZED_HEADWORD:dynamics",
+    "NORMALIZED_HEADWORD:grocery",
+    "NORMALIZED_HEADWORD:loan",
+    "NORMALIZED_HEADWORD:nevertheless",
+    "NORMALIZED_HEADWORD:seldom",
+    "NORMALIZED_HEADWORD:wide",
+    "NORMALIZED_HEADWORD:bible",
+    "NORMALIZED_HEADWORD:federation",
+    "NORMALIZED_HEADWORD:morals",
+    "NORMALIZED_HEADWORD:quite",
+    "NORMALIZED_HEADWORD:skillful",
+    "NORMALIZED_HEADWORD:word",
+    "NORMALIZED_HEADWORD:amazed",
+    "NORMALIZED_HEADWORD:freight",
+    "NORMALIZED_HEADWORD:logical",
+    "NORMALIZED_HEADWORD:prehistoric",
+    "NORMALIZED_HEADWORD:sew",
+    "NORMALIZED_HEADWORD:yellow",
+    "NORMALIZED_HEADWORD:double",
+    "NORMALIZED_HEADWORD:etiquette",
+    "NORMALIZED_HEADWORD:intertwine",
+    "NORMALIZED_HEADWORD:ruins",
+    "NORMALIZED_HEADWORD:sideways",
+    "NORMALIZED_HEADWORD:whilst",
+    "NORMALIZED_HEADWORD:district",
+    "NORMALIZED_HEADWORD:foresee",
+    "NORMALIZED_HEADWORD:increasingly",
+    "NORMALIZED_HEADWORD:peninsula",
+    "NORMALIZED_HEADWORD:stern",
+    "NORMALIZED_HEADWORD:wax",
+    "NORMALIZED_HEADWORD:better",
+    "NORMALIZED_HEADWORD:humid",
+    "NORMALIZED_HEADWORD:lump",
+    "NORMALIZED_HEADWORD:rust",
+    "NORMALIZED_HEADWORD:stricken",
+    "NORMALIZED_HEADWORD:youth",
+    "NORMALIZED_HEADWORD:deliberately",
+    "NORMALIZED_HEADWORD:enchant",
+    "NORMALIZED_HEADWORD:idle",
+    "NORMALIZED_HEADWORD:part-time",
+    "NORMALIZED_HEADWORD:starch",
+    "NORMALIZED_HEADWORD:yes",
+    "NORMALIZED_HEADWORD:considerably",
+    "NORMALIZED_HEADWORD:handbook",
+    "NORMALIZED_HEADWORD:lot",
+    "NORMALIZED_HEADWORD:offense",
+    "NORMALIZED_HEADWORD:turbine",
+    "NORMALIZED_HEADWORD:whatsoever",
+    "NORMALIZED_HEADWORD:all",
+    "NORMALIZED_HEADWORD:harmonize",
+    "NORMALIZED_HEADWORD:intrigue",
+    "NORMALIZED_HEADWORD:pessimistic",
+    "NORMALIZED_HEADWORD:stubborn",
+    "NORMALIZED_HEADWORD:wash",
+    "NORMALIZED_HEADWORD:down",
+    "NORMALIZED_HEADWORD:exit",
+    "NORMALIZED_HEADWORD:mist",
+    "NORMALIZED_HEADWORD:raisin",
+    "NORMALIZED_HEADWORD:ton",
+    "NORMALIZED_HEADWORD:wicked",
+    "NORMALIZED_HEADWORD:around",
+    "NORMALIZED_HEADWORD:harness",
+    "NORMALIZED_HEADWORD:laundry",
+    "NORMALIZED_HEADWORD:outlaw",
+    "NORMALIZED_HEADWORD:shake",
+    "NORMALIZED_HEADWORD:woman",
+    "NORMALIZED_HEADWORD:class",
+    "NORMALIZED_HEADWORD:fond",
+    "NORMALIZED_HEADWORD:irritate",
+    "NORMALIZED_HEADWORD:not",
+    "NORMALIZED_HEADWORD:since",
+    "NORMALIZED_HEADWORD:whatever",
+    "NORMALIZED_HEADWORD:commonly",
+    "NORMALIZED_HEADWORD:fiery",
+    "NORMALIZED_HEADWORD:junior",
+    "NORMALIZED_HEADWORD:namely",
+    "NORMALIZED_HEADWORD:temporarily",
+    "NORMALIZED_HEADWORD:wisdom",
+    "NORMALIZED_HEADWORD:downtown",
+    "NORMALIZED_HEADWORD:highway",
+    "NORMALIZED_HEADWORD:more",
+    "NORMALIZED_HEADWORD:pedestrian",
+    "NORMALIZED_HEADWORD:somewhat",
+    "NORMALIZED_HEADWORD:wildlife",
+    "NORMALIZED_HEADWORD:dog",
+    "NORMALIZED_HEADWORD:hygiene",
+    "NORMALIZED_HEADWORD:magnet",
+    "NORMALIZED_HEADWORD:o’clock",
+    "NORMALIZED_HEADWORD:upwards",
+    "NORMALIZED_HEADWORD:will",
+    "NORMALIZED_HEADWORD:continent",
+    "NORMALIZED_HEADWORD:eat",
+    "NORMALIZED_HEADWORD:lightly",
+    "NORMALIZED_HEADWORD:potentially",
+    "NORMALIZED_HEADWORD:unfortunately",
+    "NORMALIZED_HEADWORD:win",
+    "NORMALIZED_HEADWORD:content",
+    "NORMALIZED_HEADWORD:fridge",
+    "NORMALIZED_HEADWORD:instrumental",
+    "NORMALIZED_HEADWORD:nowadays",
+    "NORMALIZED_HEADWORD:up",
+    "NORMALIZED_HEADWORD:wage",
+    "NORMALIZED_HEADWORD:carrot",
+    "NORMALIZED_HEADWORD:fast",
+    "NORMALIZED_HEADWORD:kin",
+    "NORMALIZED_HEADWORD:normally",
+    "NORMALIZED_HEADWORD:south",
+    "NORMALIZED_HEADWORD:weave",
+    "NORMALIZED_HEADWORD:cookie",
+    "NORMALIZED_HEADWORD:forward",
+    "NORMALIZED_HEADWORD:intermittent",
+    "NORMALIZED_HEADWORD:nearby",
+    "NORMALIZED_HEADWORD:shift",
+    "NORMALIZED_HEADWORD:withdrawal",
+    "NORMALIZED_HEADWORD:chest",
+    "NORMALIZED_HEADWORD:guilty",
+    "NORMALIZED_HEADWORD:million",
+    "NORMALIZED_HEADWORD:portion",
+    "NORMALIZED_HEADWORD:sentence",
+    "NORMALIZED_HEADWORD:worthwhile",
+    "NORMALIZED_HEADWORD:morning",
+    "NORMALIZED_HEADWORD:rock",
+    "NORMALIZED_HEADWORD:today",
+    "NORMALIZED_HEADWORD:writer",
+    "NORMALIZED_HEADWORD:kitchen",
+    "NORMALIZED_HEADWORD:principal",
+    "NORMALIZED_HEADWORD:thus",
+    "NORMALIZED_HEADWORD:watch",
+    "NORMALIZED_HEADWORD:might",
+    "NORMALIZED_HEADWORD:new",
+    "NORMALIZED_HEADWORD:unlike",
+    "NORMALIZED_HEADWORD:wizard",
+    "NORMALIZED_HEADWORD:instant",
+    "NORMALIZED_HEADWORD:pound",
+    "NORMALIZED_HEADWORD:stall",
+    "NORMALIZED_HEADWORD:warp",
+    "NORMALIZED_HEADWORD:including",
+    "NORMALIZED_HEADWORD:noble",
+    "NORMALIZED_HEADWORD:therefore",
+    "NORMALIZED_HEADWORD:want"
+  ],
+  "firstBatch": 41,
+  "frozenSelectionFingerprint": "ed303558ab029cdf24f49ca9226b2910bd4beb79d41b6d1d27edb5f4dfc52076",
+  "lastBatch": 60,
+  "originalCheckpointFingerprint": "e265662b54119ec242aabcf5935770161c87133ad07d9a03dc2132744670509d",
+  "parentCheckpointFingerprint": "d9a2fbaf95ae482131051e9bb755304c146f56437d22e311026d961d1f338363",
+  "publishedOriginalBaseline": "a63d1be3559fd54fb9628ac78f11d15fb8b74611",
+  "resumedKeyListHash": "07316f30fc54278bf823b98de6330a4de2d4c9902ecbfb0e80132d8e9f288d2f",
+  "sourceEvidence": {
+    "NORMALIZED_HEADWORD:adapt": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/2946/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2946/rawHeadword",
+        "rawPosEvidencePointer": "/records/2946/sourcePosRaw",
+        "recordEvidenceSha256": "033f20a9ffa5015dbd992e808f2333c965458498a40454dd5157a3310bdbd70a",
+        "recordIndex": 2946,
+        "sourceNoteGuid": "h0{%E>eIxN",
+        "sourceRecordId": "1788223608985",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/2086/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2086/rawHeadword",
+        "rawPosEvidencePointer": "/records/2086/sourcePosRaw",
+        "recordEvidenceSha256": "772cc879120fd1df8e4be40d8497d2c2da3ba287e2d0ebd52a6b5200245a416c",
+        "recordIndex": 2086,
+        "sourceNoteGuid": "vM}xt&tR$,",
+        "sourceRecordId": "1559931008899",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:aisle": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/2668/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2668/rawHeadword",
+        "rawPosEvidencePointer": "/records/2668/sourcePosRaw",
+        "recordEvidenceSha256": "d808d5b2aaaf1c3c70d128132859d919ff67ab0f90d5a2261a716bb3bc2936ce",
+        "recordIndex": 2668,
+        "sourceNoteGuid": "P~Ye.9n-I<",
+        "sourceRecordId": "1559931009520",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:anybody": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "PRONOUN"
+        ],
+        "rawContentPointer": "/records/1412/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1412/rawHeadword",
+        "rawPosEvidencePointer": "/records/1412/sourcePosRaw",
+        "recordEvidenceSha256": "9130ad7e454607bc3ea013df8ec4bc3a5374574d28387d808f1d296ab5ebd5d3",
+        "recordIndex": 1412,
+        "sourceNoteGuid": "vw`(s$wST|",
+        "sourceRecordId": "1788223607451",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:apprentice": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1418/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1418/rawHeadword",
+        "rawPosEvidencePointer": "/records/1418/sourcePosRaw",
+        "recordEvidenceSha256": "ea45e7568c906a0d640a80555e72da6a63e4ac1b1cf25787dd7d9a9a876d93d9",
+        "recordIndex": 1418,
+        "sourceNoteGuid": "D6urMdzqZ3",
+        "sourceRecordId": "1559931008219",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:banner": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/4123/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4123/rawHeadword",
+        "rawPosEvidencePointer": "/records/4123/sourcePosRaw",
+        "recordEvidenceSha256": "198059416a780dc6de0827e571504b7a3c0b4a537b0899adafe4491420f02a6b",
+        "recordIndex": 4123,
+        "sourceNoteGuid": "FA_!9hiYIa",
+        "sourceRecordId": "1788223610162",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/4161/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4161/rawHeadword",
+        "rawPosEvidencePointer": "/records/4161/sourcePosRaw",
+        "recordEvidenceSha256": "46976170cd7979aa98b29fda8e0c7c663963dd9d007fe5280f0943c5f27ceb25",
+        "recordIndex": 4161,
+        "sourceNoteGuid": "nML2S&~F5#",
+        "sourceRecordId": "1646317635944",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:college": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/340/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/340/rawHeadword",
+        "rawPosEvidencePointer": "/records/340/sourcePosRaw",
+        "recordEvidenceSha256": "8ed91e4ab522979839364c5a529da13210068681cd9c03e27cc98275c90f0147",
+        "recordIndex": 340,
+        "sourceNoteGuid": "bxSvTaB5k+",
+        "sourceRecordId": "1788223606291",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:companion": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/4105/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4105/rawHeadword",
+        "rawPosEvidencePointer": "/records/4105/sourcePosRaw",
+        "recordEvidenceSha256": "1149c34a17df08286e9a43fec9a8f92550dfc617f9fbebb7a4cce2f68a6ee768",
+        "recordIndex": 4105,
+        "sourceNoteGuid": "sqkG6D<2)I",
+        "sourceRecordId": "1788223610144",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/2978/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2978/rawHeadword",
+        "rawPosEvidencePointer": "/records/2978/sourcePosRaw",
+        "recordEvidenceSha256": "599e2561103a4ee6b98b457535d37057b6ab359d0772a57ed4187e79678a97e2",
+        "recordIndex": 2978,
+        "sourceNoteGuid": "DMiaE@3wTT",
+        "sourceRecordId": "1559931009844",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:competence": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/4836/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4836/rawHeadword",
+        "rawPosEvidencePointer": "/records/4836/sourcePosRaw",
+        "recordEvidenceSha256": "5a1461df41974873ef0dd6992831db2d75d2f1ca1463a1c1fecf61c351468a7f",
+        "recordIndex": 4836,
+        "sourceNoteGuid": "uh7z/4S:3g",
+        "sourceRecordId": "1788223610875",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3034/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3034/rawHeadword",
+        "rawPosEvidencePointer": "/records/3034/sourcePosRaw",
+        "recordEvidenceSha256": "88fdf206d22b13e7fe6295eebc87a4cad29f26938b28acb5f1ed4a45558c6977",
+        "recordIndex": 3034,
+        "sourceNoteGuid": "iu%`WoUxl_",
+        "sourceRecordId": "1559931009903",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:contempt": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/4701/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4701/rawHeadword",
+        "rawPosEvidencePointer": "/records/4701/sourcePosRaw",
+        "recordEvidenceSha256": "35d2bae1373c6e4ba181eb81b2b82681ff84f4be7aee25d28b902c93fb4a5d91",
+        "recordIndex": 4701,
+        "sourceNoteGuid": "!)8fck~,9p",
+        "sourceRecordId": "1788223610740",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3012/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3012/rawHeadword",
+        "rawPosEvidencePointer": "/records/3012/sourcePosRaw",
+        "recordEvidenceSha256": "c1dc655626aa2d51471e361c6047e828ca86b1667d9698c9e6c31d6d3dafb62f",
+        "recordIndex": 3012,
+        "sourceNoteGuid": "FGvp8GdYEQ",
+        "sourceRecordId": "1559931009881",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:craft": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN",
+          "VERB"
+        ],
+        "rawContentPointer": "/records/3214/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3214/rawHeadword",
+        "rawPosEvidencePointer": "/records/3214/sourcePosRaw",
+        "recordEvidenceSha256": "6d95c076e0fca6beb6ec50d8efefa825ed0caeedf5c090e0c21b7e78ea36c7c5",
+        "recordIndex": 3214,
+        "sourceNoteGuid": "LXzZz{emPF",
+        "sourceRecordId": "1788223609253",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/550/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/550/rawHeadword",
+        "rawPosEvidencePointer": "/records/550/sourcePosRaw",
+        "recordEvidenceSha256": "f631f6f3e7e78c8afc95b5f2bc4a3edb4586d5c47d2d41c88061ca266d76b9d4",
+        "recordIndex": 550,
+        "sourceNoteGuid": "H27{#qcUr&",
+        "sourceRecordId": "1556384731360",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:creative": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/1390/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1390/rawHeadword",
+        "rawPosEvidencePointer": "/records/1390/sourcePosRaw",
+        "recordEvidenceSha256": "8cd2bc25ce895bffc59109a5483c6f8c7b31a0316c9a3977b84fce16cb20fb8d",
+        "recordIndex": 1390,
+        "sourceNoteGuid": "OU=~mtss3>",
+        "sourceRecordId": "1788223607429",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:cultivate": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/4911/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4911/rawHeadword",
+        "rawPosEvidencePointer": "/records/4911/sourcePosRaw",
+        "recordEvidenceSha256": "e1480da2f298144e997eedfe3640b9e22cf60f9172b68bcfca170690e2529a9d",
+        "recordIndex": 4911,
+        "sourceNoteGuid": "oo]_]`(5qj",
+        "sourceRecordId": "1788223610950",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/2334/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2334/rawHeadword",
+        "rawPosEvidencePointer": "/records/2334/sourcePosRaw",
+        "recordEvidenceSha256": "b924898763012be19cb8e21917d36b8db43a580733688031acee8a4ca089efa9",
+        "recordIndex": 2334,
+        "sourceNoteGuid": "KJl0-0a.fX",
+        "sourceRecordId": "1559931009165",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:deforestation": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3595/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3595/rawHeadword",
+        "rawPosEvidencePointer": "/records/3595/sourcePosRaw",
+        "recordEvidenceSha256": "fbd12739092476496b0f9354b8556c09aec94269e27b4481beece1a09910466b",
+        "recordIndex": 3595,
+        "sourceNoteGuid": "lx$$s?WIot",
+        "sourceRecordId": "1616499876731",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:determined": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/1959/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1959/rawHeadword",
+        "rawPosEvidencePointer": "/records/1959/sourcePosRaw",
+        "recordEvidenceSha256": "46d26bc595ef9ee68c7b1f3d995f3e7f1f73a3fb0e4ca87bf83de7d7f85c595f",
+        "recordIndex": 1959,
+        "sourceNoteGuid": "o:DIH^||@u",
+        "sourceRecordId": "1788223607998",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:disgraceful": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C2",
+            "value": "C2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/1232/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1232/rawHeadword",
+        "rawPosEvidencePointer": "/records/1232/sourcePosRaw",
+        "recordEvidenceSha256": "9ed53a91716fc318e556d6ae2a05aa70c452f0e6205131f9a38b5e87fc53d424",
+        "recordIndex": 1232,
+        "sourceNoteGuid": "F_)TV{iP9&",
+        "sourceRecordId": "1559931008024",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:dramatic": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/2728/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2728/rawHeadword",
+        "rawPosEvidencePointer": "/records/2728/sourcePosRaw",
+        "recordEvidenceSha256": "b4761d4532bc47516d54de6f35a2e356ad03923acafe7c2b9411601b7cc820c3",
+        "recordIndex": 2728,
+        "sourceNoteGuid": "f(<xgj}%_l",
+        "sourceRecordId": "1788223608767",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:early": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE",
+          "ADVERB"
+        ],
+        "rawContentPointer": "/records/245/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/245/rawHeadword",
+        "rawPosEvidencePointer": "/records/245/sourcePosRaw",
+        "recordEvidenceSha256": "934c50660c9c09553adcffe3ef73b0d18dba6f5cab52fefce13a6259c9425e31",
+        "recordIndex": 245,
+        "sourceNoteGuid": "N?L}T4#:v[",
+        "sourceRecordId": "1788223606196",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:electronics": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3315/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3315/rawHeadword",
+        "rawPosEvidencePointer": "/records/3315/sourcePosRaw",
+        "recordEvidenceSha256": "69579bf7c9380d24760b5b1b9c930eb5eeb9109f14b5e43242313e3af6b800f3",
+        "recordIndex": 3315,
+        "sourceNoteGuid": "w_Y`xB?aRs",
+        "sourceRecordId": "1788223609354",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3923/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3923/rawHeadword",
+        "rawPosEvidencePointer": "/records/3923/sourcePosRaw",
+        "recordEvidenceSha256": "70c88fc63efe0595423a6296956a5862feac9d5ff2dd1fd7577620e6f2086f31",
+        "recordIndex": 3923,
+        "sourceNoteGuid": "Lu_I(uDWMS",
+        "sourceRecordId": "1646317635705",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:eligible": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/3895/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3895/rawHeadword",
+        "rawPosEvidencePointer": "/records/3895/sourcePosRaw",
+        "recordEvidenceSha256": "8e90a935a13bbc58dd90ea2549d0ae64d86f066cd840e2bae01b0073ab86398f",
+        "recordIndex": 3895,
+        "sourceNoteGuid": "b*-jB)CDK(",
+        "sourceRecordId": "1788223609934",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/2963/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2963/rawHeadword",
+        "rawPosEvidencePointer": "/records/2963/sourcePosRaw",
+        "recordEvidenceSha256": "3d2d295f7e84a63c9e8653c1f4778f6e89c83d6657cec51ef72c3523b0b46388",
+        "recordIndex": 2963,
+        "sourceNoteGuid": "l9O:C74:(}",
+        "sourceRecordId": "1559931009828",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:everything": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "PRONOUN"
+        ],
+        "rawContentPointer": "/records/198/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/198/rawHeadword",
+        "rawPosEvidencePointer": "/records/198/sourcePosRaw",
+        "recordEvidenceSha256": "3be2b384ba9118f96940cf7b0d39faa9e7e0c7d0b40c42f7cde179d5988b51b8",
+        "recordIndex": 198,
+        "sourceNoteGuid": "y5L]>G>cPA",
+        "sourceRecordId": "1788223606149",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:expected": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/1798/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1798/rawHeadword",
+        "rawPosEvidencePointer": "/records/1798/sourcePosRaw",
+        "recordEvidenceSha256": "6c57fc6b301c1ecbec5e6f944a1e0454d088a3724386924a8f6bceeacabf4161",
+        "recordIndex": 1798,
+        "sourceNoteGuid": "cxODvH[F-6",
+        "sourceRecordId": "1788223607837",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:extent": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/2690/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2690/rawHeadword",
+        "rawPosEvidencePointer": "/records/2690/sourcePosRaw",
+        "recordEvidenceSha256": "82f3aff667d76bf61e662ace7574de25d9c3f2f98994dbc9fe379169402c2222",
+        "recordIndex": 2690,
+        "sourceNoteGuid": "c8sZS%U_&h",
+        "sourceRecordId": "1788223608729",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1583/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1583/rawHeadword",
+        "rawPosEvidencePointer": "/records/1583/sourcePosRaw",
+        "recordEvidenceSha256": "42de069573966d9682cee2212aa30220b3b022a3f32a55583f57c84d8f38c7d6",
+        "recordIndex": 1583,
+        "sourceNoteGuid": "O,_3L)4?r8",
+        "sourceRecordId": "1559931008385",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:firearm": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/4756/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4756/rawHeadword",
+        "rawPosEvidencePointer": "/records/4756/sourcePosRaw",
+        "recordEvidenceSha256": "023003674d69fc898ea6010ea39c3833d37e921f9e02af16120b852eb2704dc6",
+        "recordIndex": 4756,
+        "sourceNoteGuid": "NtUw^:xH{K",
+        "sourceRecordId": "1788223610795",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/4319/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4319/rawHeadword",
+        "rawPosEvidencePointer": "/records/4319/sourcePosRaw",
+        "recordEvidenceSha256": "a8d48c5f6f92bb5085919971b6c697dc2d6753603282847b8b2e4bb3d769778c",
+        "recordIndex": 4319,
+        "sourceNoteGuid": "AQ[c,=L5*T",
+        "sourceRecordId": "1646317636102",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:fog": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/769/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/769/rawHeadword",
+        "rawPosEvidencePointer": "/records/769/sourcePosRaw",
+        "recordEvidenceSha256": "a7e9519661e44c6c992898357f5374e0c653bba47a1cc26210cce4a34e98678c",
+        "recordIndex": 769,
+        "sourceNoteGuid": "B?,!R-Z77u",
+        "sourceRecordId": "1559931007544",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:format": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3099/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3099/rawHeadword",
+        "rawPosEvidencePointer": "/records/3099/sourcePosRaw",
+        "recordEvidenceSha256": "274f3c4f3f15f3ec7077e5ff57d7025dc116d4f5c91fee7f5ec2a38bbfea2aaa",
+        "recordIndex": 3099,
+        "sourceNoteGuid": "mRrdd{gs=q",
+        "sourceRecordId": "1788223609138",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3939/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3939/rawHeadword",
+        "rawPosEvidencePointer": "/records/3939/sourcePosRaw",
+        "recordEvidenceSha256": "a3c30602869f755445967193c1737253e0ef8d59df620a344d5d3eedf2e87430",
+        "recordIndex": 3939,
+        "sourceNoteGuid": "fsaT7,f+-Z",
+        "sourceRecordId": "1646317635721",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:foster": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/3857/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3857/rawHeadword",
+        "rawPosEvidencePointer": "/records/3857/sourcePosRaw",
+        "recordEvidenceSha256": "836430414c6dfe46ac5dd48760cdae8d7e3d737ab433c70e7e6353815e60d5ab",
+        "recordIndex": 3857,
+        "sourceNoteGuid": "y*B#_xx6A=",
+        "sourceRecordId": "1788223609896",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/1818/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1818/rawHeadword",
+        "rawPosEvidencePointer": "/records/1818/sourcePosRaw",
+        "recordEvidenceSha256": "35992844a96821110732edb79d202709ecab65120196eac25964ef018d36e2dd",
+        "recordIndex": 1818,
+        "sourceNoteGuid": "d=mIld[].P",
+        "sourceRecordId": "1559931008626",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:foundation": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3029/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3029/rawHeadword",
+        "rawPosEvidencePointer": "/records/3029/sourcePosRaw",
+        "recordEvidenceSha256": "feb265b6ee8d675be85ca15605a812c840e8781ea90033e7a2182f30e2a45f23",
+        "recordIndex": 3029,
+        "sourceNoteGuid": "g4[s?3-bRG",
+        "sourceRecordId": "1788223609068",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/874/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/874/rawHeadword",
+        "rawPosEvidencePointer": "/records/874/sourcePosRaw",
+        "recordEvidenceSha256": "4e123cbceac722b5c9dd5de43da2a3909eea16b2ae6ac5870c10641534aa325f",
+        "recordIndex": 874,
+        "sourceNoteGuid": "OrJPC|{AeT",
+        "sourceRecordId": "1559931007651",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:fundamentally": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADVERB"
+        ],
+        "rawContentPointer": "/records/3619/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3619/rawHeadword",
+        "rawPosEvidencePointer": "/records/3619/sourcePosRaw",
+        "recordEvidenceSha256": "168aab1f0cd06da385cc0bee0759e05b05e3c0c5edadbb0b53cdfafe2400b511",
+        "recordIndex": 3619,
+        "sourceNoteGuid": "MD%:A$G+fV",
+        "sourceRecordId": "1788223609658",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADVERB"
+        ],
+        "rawContentPointer": "/records/3945/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3945/rawHeadword",
+        "rawPosEvidencePointer": "/records/3945/sourcePosRaw",
+        "recordEvidenceSha256": "e3aceaccc53a9f253db4e22351d7b36069b0c3a293c54bc4de12689986924012",
+        "recordIndex": 3945,
+        "sourceNoteGuid": "E=PE^9TMZt",
+        "sourceRecordId": "1646317635727",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:fuse": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C2",
+            "value": "C2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1670/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1670/rawHeadword",
+        "rawPosEvidencePointer": "/records/1670/sourcePosRaw",
+        "recordEvidenceSha256": "e60a66ba8949c9875e7301596338f206ff6f7bdd89997536f57fbac90958b1b3",
+        "recordIndex": 1670,
+        "sourceNoteGuid": "Kep|2!kMY:",
+        "sourceRecordId": "1559931008472",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:gay": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/3025/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3025/rawHeadword",
+        "rawPosEvidencePointer": "/records/3025/sourcePosRaw",
+        "recordEvidenceSha256": "85c9acf2c95e27e9d9f0e6293497df9d735d997972bf54d760d9690954fb6cda",
+        "recordIndex": 3025,
+        "sourceNoteGuid": "G-S,c,+o3-",
+        "sourceRecordId": "1788223609064",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/3948/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3948/rawHeadword",
+        "rawPosEvidencePointer": "/records/3948/sourcePosRaw",
+        "recordEvidenceSha256": "b1bed065f146c6eb40a0ccd16ef578bdb02057219f6e8ab80cf3782715b3f8a6",
+        "recordIndex": 3948,
+        "sourceNoteGuid": "k{<z>9pR3y",
+        "sourceRecordId": "1646317635730",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:heating": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/2267/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2267/rawHeadword",
+        "rawPosEvidencePointer": "/records/2267/sourcePosRaw",
+        "recordEvidenceSha256": "2d9bf6868052c63455e9860bd3692059b3dafcab9644cabeb2dbbc15ccc5f909",
+        "recordIndex": 2267,
+        "sourceNoteGuid": "gB_}p<H!FI",
+        "sourceRecordId": "1788223608306",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:heavy": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/1142/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1142/rawHeadword",
+        "rawPosEvidencePointer": "/records/1142/sourcePosRaw",
+        "recordEvidenceSha256": "a2f893b89316893b731b54098e0af819d63f99f53453eafd72299584b25746f0",
+        "recordIndex": 1142,
+        "sourceNoteGuid": "nPMfLO3Nd:",
+        "sourceRecordId": "1788223607160",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:inclined": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/4545/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4545/rawHeadword",
+        "rawPosEvidencePointer": "/records/4545/sourcePosRaw",
+        "recordEvidenceSha256": "c68695954c2160b42ccae08620259c5c9b899a4be7f32cd636147404b9758f7b",
+        "recordIndex": 4545,
+        "sourceNoteGuid": "e}E/%HtamK",
+        "sourceRecordId": "1788223610584",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/4362/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4362/rawHeadword",
+        "rawPosEvidencePointer": "/records/4362/sourcePosRaw",
+        "recordEvidenceSha256": "8a8320bfb74c16b1cfe3dd4df6c5546507b4476b2c54f100abbc60852d7b4136",
+        "recordIndex": 4362,
+        "sourceNoteGuid": "L0-d@.,b)B",
+        "sourceRecordId": "1646317636145",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:inclusion": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/4292/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4292/rawHeadword",
+        "rawPosEvidencePointer": "/records/4292/sourcePosRaw",
+        "recordEvidenceSha256": "4315e2b932f20e587f9c9f98911cda964e77c8714c1a6852ebcd4f8c8c0e9fcd",
+        "recordIndex": 4292,
+        "sourceNoteGuid": "g|2;rs>aHm",
+        "sourceRecordId": "1788223610331",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/4363/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4363/rawHeadword",
+        "rawPosEvidencePointer": "/records/4363/sourcePosRaw",
+        "recordEvidenceSha256": "0214291efb7bd4886d03a9d4dd089cace779e2ba01484648820723b3d89ea78b",
+        "recordIndex": 4363,
+        "sourceNoteGuid": "j*p`gYJLQ^",
+        "sourceRecordId": "1646317636146",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:inequality": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/4471/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4471/rawHeadword",
+        "rawPosEvidencePointer": "/records/4471/sourcePosRaw",
+        "recordEvidenceSha256": "0bd462c20ae7c7b00bf4fcc5064a4a139019bf1f54c6111c80fd17424c58d775",
+        "recordIndex": 4471,
+        "sourceNoteGuid": ",@)#tgY=.q",
+        "sourceRecordId": "1788223610510",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/4368/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4368/rawHeadword",
+        "rawPosEvidencePointer": "/records/4368/sourcePosRaw",
+        "recordEvidenceSha256": "a27d4d4971d777c2846534739083d0772e819b2a832582cdc0e1ed4d36e03544",
+        "recordIndex": 4368,
+        "sourceNoteGuid": "t,LY~J}]/@",
+        "sourceRecordId": "1646317636151",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:inhibit": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/4944/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4944/rawHeadword",
+        "rawPosEvidencePointer": "/records/4944/sourcePosRaw",
+        "recordEvidenceSha256": "5127f917d66a015895f0d94912a42fd834f9cb23c419344ad35fc42a7aa02f72",
+        "recordIndex": 4944,
+        "sourceNoteGuid": "=mSmP&|gLZ",
+        "sourceRecordId": "1788223610983",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/1956/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1956/rawHeadword",
+        "rawPosEvidencePointer": "/records/1956/sourcePosRaw",
+        "recordEvidenceSha256": "0929da6a2dd06246b519a9914d863c428361a24485b95d3d9566e203100d7d60",
+        "recordIndex": 1956,
+        "sourceNoteGuid": "q}R4?2MP:b",
+        "sourceRecordId": "1559931008767",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:injury": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1301/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1301/rawHeadword",
+        "rawPosEvidencePointer": "/records/1301/sourcePosRaw",
+        "recordEvidenceSha256": "0bd01d5017d2f03494a296fda2fd6ad04791ce0747737efc9ace741d1521b992",
+        "recordIndex": 1301,
+        "sourceNoteGuid": "bDi5NssY4L",
+        "sourceRecordId": "1788223607325",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:intense": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/2744/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2744/rawHeadword",
+        "rawPosEvidencePointer": "/records/2744/sourcePosRaw",
+        "recordEvidenceSha256": "0d6bad58ed22202a1a3ff9350b1a983afe6e46d0876263794bba24daf634e680",
+        "recordIndex": 2744,
+        "sourceNoteGuid": "fgfCQAO(+w",
+        "sourceRecordId": "1788223608783",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/832/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/832/rawHeadword",
+        "rawPosEvidencePointer": "/records/832/sourcePosRaw",
+        "recordEvidenceSha256": "516b61bdb6ea19be2d837481471b6d11d64fe49b7659370db05ea1c5a003a365",
+        "recordIndex": 832,
+        "sourceNoteGuid": "fs|yUhIFC=",
+        "sourceRecordId": "1559931007609",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:lake": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1233/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1233/rawHeadword",
+        "rawPosEvidencePointer": "/records/1233/sourcePosRaw",
+        "recordEvidenceSha256": "c876c0d87bbd35d09e2bd0e8ec8dd81e66d92e5c9de41b212ed643999a1b1229",
+        "recordIndex": 1233,
+        "sourceNoteGuid": "ilrZy@v8dn",
+        "sourceRecordId": "1788223607251",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:lifelong": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/4694/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4694/rawHeadword",
+        "rawPosEvidencePointer": "/records/4694/sourcePosRaw",
+        "recordEvidenceSha256": "1e1e911c9d71ee2051a1cc6fb10871b01e805faed9cbc8ebb1beb2a1607896e3",
+        "recordIndex": 4694,
+        "sourceNoteGuid": "L<4fV=2mOJ",
+        "sourceRecordId": "1788223610733",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/4414/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4414/rawHeadword",
+        "rawPosEvidencePointer": "/records/4414/sourcePosRaw",
+        "recordEvidenceSha256": "e804bd98e59c67f15bbe7421c83c22c6a6ddc88ca8ea25f46949618ba0b17c58",
+        "recordIndex": 4414,
+        "sourceNoteGuid": "vAq9_8r-8z",
+        "sourceRecordId": "1646317636197",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:list": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN",
+          "VERB"
+        ],
+        "rawContentPointer": "/records/334/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/334/rawHeadword",
+        "rawPosEvidencePointer": "/records/334/sourcePosRaw",
+        "recordEvidenceSha256": "62492fd9054980b477c86fa58ea7caeff7326b0ff0410294b127340bec473494",
+        "recordIndex": 334,
+        "sourceNoteGuid": "fJ8=/rF1kw",
+        "sourceRecordId": "1788223606285",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::A1",
+            "value": "A1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "A1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/535/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/535/rawHeadword",
+        "rawPosEvidencePointer": "/records/535/sourcePosRaw",
+        "recordEvidenceSha256": "709d9310b8fc73309faca23a838457b3546caeb78009424befbc60319151bb8f",
+        "recordIndex": 535,
+        "sourceNoteGuid": "K?*u%V2h-_",
+        "sourceRecordId": "1556384731345",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:lord": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/2430/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2430/rawHeadword",
+        "rawPosEvidencePointer": "/records/2430/sourcePosRaw",
+        "recordEvidenceSha256": "96dd19a6fa48f31d0dc77c5c56e1760c8f0776b1d4dbb4678cdf4a2d98c7d19d",
+        "recordIndex": 2430,
+        "sourceNoteGuid": "tF3Xqmn<v%",
+        "sourceRecordId": "1788223608469",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:lunch": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/701/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/701/rawHeadword",
+        "rawPosEvidencePointer": "/records/701/sourcePosRaw",
+        "recordEvidenceSha256": "35b6fc29e517dcb440766a2836953842fb1ba203a7cfe90d1f8a9036a9794412",
+        "recordIndex": 701,
+        "sourceNoteGuid": "tgW_ZrIw[p",
+        "sourceRecordId": "1788223606711",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:mad": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/1911/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1911/rawHeadword",
+        "rawPosEvidencePointer": "/records/1911/sourcePosRaw",
+        "recordEvidenceSha256": "c6dc4a451113c296c306caa2433779736a6cb7a467759ab51ab388299db88fc8",
+        "recordIndex": 1911,
+        "sourceNoteGuid": "fvq7?c$%U~",
+        "sourceRecordId": "1788223607950",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B1",
+            "value": "B1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/774/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/774/rawHeadword",
+        "rawPosEvidencePointer": "/records/774/sourcePosRaw",
+        "recordEvidenceSha256": "29a2fde926902119a4eb4ba5d52531fd9e600c60022c74d4868032518b11613f",
+        "recordIndex": 774,
+        "sourceNoteGuid": "DsfY+Ja=*F",
+        "sourceRecordId": "1559931007549",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:maths": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1496/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1496/rawHeadword",
+        "rawPosEvidencePointer": "/records/1496/sourcePosRaw",
+        "recordEvidenceSha256": "6010e70c8697014c7e6c12015e9ae56462ec81ac7cd7546316bfa85015c34bb1",
+        "recordIndex": 1496,
+        "sourceNoteGuid": "p@4w7*k+5>",
+        "sourceRecordId": "1788223607535",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:medication": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3354/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3354/rawHeadword",
+        "rawPosEvidencePointer": "/records/3354/sourcePosRaw",
+        "recordEvidenceSha256": "3cfdb69d684bc5e8a31d4d0bd9a73b994dade60810611df25d8c4568cdb38398",
+        "recordIndex": 3354,
+        "sourceNoteGuid": "jB!DEb|^Iy",
+        "sourceRecordId": "1788223609393",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/2774/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2774/rawHeadword",
+        "rawPosEvidencePointer": "/records/2774/sourcePosRaw",
+        "recordEvidenceSha256": "f6f9f30a0750724686b29296eaa4bf128d715648173f593d8d52ec017c62d292",
+        "recordIndex": 2774,
+        "sourceNoteGuid": "ihv;7@[u*d",
+        "sourceRecordId": "1559931009630",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:message": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/527/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/527/rawHeadword",
+        "rawPosEvidencePointer": "/records/527/sourcePosRaw",
+        "recordEvidenceSha256": "8394d02a6921e07da3afe74afd92c6eed4c404b7210d26bdbe7b3d50bf8d737c",
+        "recordIndex": 527,
+        "sourceNoteGuid": "bcUftV[DJQ",
+        "sourceRecordId": "1788223606485",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::A1",
+            "value": "A1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "A1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/537/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/537/rawHeadword",
+        "rawPosEvidencePointer": "/records/537/sourcePosRaw",
+        "recordEvidenceSha256": "714ad1e9bf23c00555a43b43b57ebb7ba7d142d53a98457b410a524bd045f6c3",
+        "recordIndex": 537,
+        "sourceNoteGuid": "mAT#e$^g4C",
+        "sourceRecordId": "1556384731347",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:methodology": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/4620/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4620/rawHeadword",
+        "rawPosEvidencePointer": "/records/4620/sourcePosRaw",
+        "recordEvidenceSha256": "41ff4c466d358439cb171c2c1ebeb869abd4ca30b0f69de87a208be047c971c8",
+        "recordIndex": 4620,
+        "sourceNoteGuid": "St_7Rb/s|N",
+        "sourceRecordId": "1788223610659",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/4445/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4445/rawHeadword",
+        "rawPosEvidencePointer": "/records/4445/sourcePosRaw",
+        "recordEvidenceSha256": "2ed1ab540d0af0d1bfde23cdc77cbf66859aef305c87ec03adc78cf4356065f4",
+        "recordIndex": 4445,
+        "sourceNoteGuid": "hK#bu<}b0~",
+        "sourceRecordId": "1646317636229",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:mission": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/2470/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2470/rawHeadword",
+        "rawPosEvidencePointer": "/records/2470/sourcePosRaw",
+        "recordEvidenceSha256": "f7d79dd04a25d502114a63e613b663867bb8029fcaa1d784eb5ad379ed8cc2b1",
+        "recordIndex": 2470,
+        "sourceNoteGuid": "L+q46}:k7:",
+        "sourceRecordId": "1788223608509",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/715/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/715/rawHeadword",
+        "rawPosEvidencePointer": "/records/715/sourcePosRaw",
+        "recordEvidenceSha256": "eae21fb0292bbae04850ab4412abf4854b37eff7560392616b2f55dd806a53c0",
+        "recordIndex": 715,
+        "sourceNoteGuid": "G]A|g%SXd*",
+        "sourceRecordId": "1559931007489",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:network": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1101/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1101/rawHeadword",
+        "rawPosEvidencePointer": "/records/1101/sourcePosRaw",
+        "recordEvidenceSha256": "ccd16fab19fc2a3ac0e66b8b900c4a83d07f4743be3d949d921acc80f3edb16d",
+        "recordIndex": 1101,
+        "sourceNoteGuid": "r$u:snVo?S",
+        "sourceRecordId": "1788223607119",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::A2",
+            "value": "A2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "A2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1804/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1804/rawHeadword",
+        "rawPosEvidencePointer": "/records/1804/sourcePosRaw",
+        "recordEvidenceSha256": "efb22966d6afa335f9e883ae14f0597bb9e65eb2b8a2182a44e5c25c5621b5d6",
+        "recordIndex": 1804,
+        "sourceNoteGuid": "GnpV+FC81k",
+        "sourceRecordId": "1559931008610",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:obsolete": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C2",
+            "value": "C2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/3001/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3001/rawHeadword",
+        "rawPosEvidencePointer": "/records/3001/sourcePosRaw",
+        "recordEvidenceSha256": "0f17e2f8ec0fec2657cc6825cd2f29a4dae55b54ada0786df74ea7c5477c0578",
+        "recordIndex": 3001,
+        "sourceNoteGuid": "GeY)3h,NGM",
+        "sourceRecordId": "1559931009870",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:october": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/444/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/444/rawHeadword",
+        "rawPosEvidencePointer": "/records/444/sourcePosRaw",
+        "recordEvidenceSha256": "3c52e9e540ed22ec93bba87087e59d5c412d194421e5f7a16d4776741aa2b5ad",
+        "recordIndex": 444,
+        "sourceNoteGuid": "A}1.|qAi;4",
+        "sourceRecordId": "1788223606397",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:orchestra": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3483/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3483/rawHeadword",
+        "rawPosEvidencePointer": "/records/3483/sourcePosRaw",
+        "recordEvidenceSha256": "862e5ea016d99e2448df317fa604f5cf6bdac9f57d3da5661443a8c07c1400ab",
+        "recordIndex": 3483,
+        "sourceNoteGuid": "[*1nu,wMoc",
+        "sourceRecordId": "1788223609522",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/4020/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4020/rawHeadword",
+        "rawPosEvidencePointer": "/records/4020/sourcePosRaw",
+        "recordEvidenceSha256": "71fa7b8692980955ea13da33bc92740dae07459ca80786b67777989c35a6be8d",
+        "recordIndex": 4020,
+        "sourceNoteGuid": "Qx6_qsJoq-",
+        "sourceRecordId": "1646317635802",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:page": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/436/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/436/rawHeadword",
+        "rawPosEvidencePointer": "/records/436/sourcePosRaw",
+        "recordEvidenceSha256": "a2c4b4d1c3711cec8890959fd89590c9db4899cd4690b414686f727a91e3da0f",
+        "recordIndex": 436,
+        "sourceNoteGuid": "b,n/8eQ6$Y",
+        "sourceRecordId": "1788223606389",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:park": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN",
+          "VERB"
+        ],
+        "rawContentPointer": "/records/412/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/412/rawHeadword",
+        "rawPosEvidencePointer": "/records/412/sourcePosRaw",
+        "recordEvidenceSha256": "ae992651eb213cc5e31bcd855803b5390de59e8026c6c914616996fca94a993b",
+        "recordIndex": 412,
+        "sourceNoteGuid": "Ge5E%&c[Co",
+        "sourceRecordId": "1788223606365",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:penalty": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3115/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3115/rawHeadword",
+        "rawPosEvidencePointer": "/records/3115/sourcePosRaw",
+        "recordEvidenceSha256": "d5acac745758ee33c72cfd0b81d3ce810533aef35d9ea17765d7a29a258916fd",
+        "recordIndex": 3115,
+        "sourceNoteGuid": "L&_[PT0`)^",
+        "sourceRecordId": "1788223609154",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/4030/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4030/rawHeadword",
+        "rawPosEvidencePointer": "/records/4030/sourcePosRaw",
+        "recordEvidenceSha256": "efeaca5d5e9778eb9f7f1f39308a9242f813db46ef70e4e424c799501a8bafce",
+        "recordIndex": 4030,
+        "sourceNoteGuid": "hO<TqROk&a",
+        "sourceRecordId": "1646317635812",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:possibility": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1405/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1405/rawHeadword",
+        "rawPosEvidencePointer": "/records/1405/sourcePosRaw",
+        "recordEvidenceSha256": "f87171fcac0f3a0ea7902e2a6f6aacd26340199e98d175c2b2f546be15289fde",
+        "recordIndex": 1405,
+        "sourceNoteGuid": "ra=BiPM9t%",
+        "sourceRecordId": "1788223607444",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:prison": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1260/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1260/rawHeadword",
+        "rawPosEvidencePointer": "/records/1260/sourcePosRaw",
+        "recordEvidenceSha256": "c5440a2a807c328a27d26cd3030c650f41488738140bf924a5985a115b8a3def",
+        "recordIndex": 1260,
+        "sourceNoteGuid": "u+,$_^msP#",
+        "sourceRecordId": "1788223607279",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:privilege": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/4000/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4000/rawHeadword",
+        "rawPosEvidencePointer": "/records/4000/sourcePosRaw",
+        "recordEvidenceSha256": "f1b37373a00dedf3934ab75633bac22b7216804f9f3fea083b49700ec53147ac",
+        "recordIndex": 4000,
+        "sourceNoteGuid": "yu,f%7zy2M",
+        "sourceRecordId": "1788223610039",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3249/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3249/rawHeadword",
+        "rawPosEvidencePointer": "/records/3249/sourcePosRaw",
+        "recordEvidenceSha256": "d98fa82ba362e5c25de349f2dc96359a5d3963de30b1238f0cd8a121ba8e691a",
+        "recordIndex": 3249,
+        "sourceNoteGuid": "J30j)J+dOW",
+        "sourceRecordId": "1559931010132",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:proceedings": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/4029/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4029/rawHeadword",
+        "rawPosEvidencePointer": "/records/4029/sourcePosRaw",
+        "recordEvidenceSha256": "c4ddf5bb56f899cb0a8f9862908fced70acbcb00b91a61ff9a4e0610d3132e1b",
+        "recordIndex": 4029,
+        "sourceNoteGuid": "Z9?dskpXDk",
+        "sourceRecordId": "1788223610068",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/4516/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4516/rawHeadword",
+        "rawPosEvidencePointer": "/records/4516/sourcePosRaw",
+        "recordEvidenceSha256": "29b225f21b10e5b17abf8c9c3dc92476ccdedbb805e7260d48fb0715294b01ee",
+        "recordIndex": 4516,
+        "sourceNoteGuid": "d6UTf;pQd/",
+        "sourceRecordId": "1646317636301",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:reassure": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/4956/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4956/rawHeadword",
+        "rawPosEvidencePointer": "/records/4956/sourcePosRaw",
+        "recordEvidenceSha256": "6e5e31cca5cadb57bb0a4ba8099669ce5ee597fafeb078d6cae897bbc21a5e79",
+        "recordIndex": 4956,
+        "sourceNoteGuid": "bo?).MT#<L",
+        "sourceRecordId": "1788223610995",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/3817/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3817/rawHeadword",
+        "rawPosEvidencePointer": "/records/3817/sourcePosRaw",
+        "recordEvidenceSha256": "bff6581df58aaa7c9b8844d0dcf6ea42d0f4f0b8c38939c3736fad4adb626ba1",
+        "recordIndex": 3817,
+        "sourceNoteGuid": "x-09G6QqV.",
+        "sourceRecordId": "1623660520438",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:regain": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/4714/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4714/rawHeadword",
+        "rawPosEvidencePointer": "/records/4714/sourcePosRaw",
+        "recordEvidenceSha256": "cf34758223779d04f351cec5478ead7990c9200713a68d2638d484ce993b5f8a",
+        "recordIndex": 4714,
+        "sourceNoteGuid": "Rd&8hL_*LF",
+        "sourceRecordId": "1788223610753",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/4546/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4546/rawHeadword",
+        "rawPosEvidencePointer": "/records/4546/sourcePosRaw",
+        "recordEvidenceSha256": "af898b36ac8ce7edfa001f3b47c434e3493edbfcfd52024601c3bf25c8b7e3c8",
+        "recordIndex": 4546,
+        "sourceNoteGuid": "vFgw{09+1S",
+        "sourceRecordId": "1646317636331",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:renew": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/4715/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4715/rawHeadword",
+        "rawPosEvidencePointer": "/records/4715/sourcePosRaw",
+        "recordEvidenceSha256": "7dfd05136be52bb6895d58ee5d9175a45fba908880e6b196443c560268b92604",
+        "recordIndex": 4715,
+        "sourceNoteGuid": "EmtV/R:yVX",
+        "sourceRecordId": "1788223610754",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/4556/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4556/rawHeadword",
+        "rawPosEvidencePointer": "/records/4556/sourcePosRaw",
+        "recordEvidenceSha256": "cc6d464d7d75f9e9cd11b97b0b590790b82617027db72423d24b32bbd4a32d91",
+        "recordIndex": 4556,
+        "sourceNoteGuid": "PNPhvdR&dH",
+        "sourceRecordId": "1646317636341",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:rid": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/2671/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2671/rawHeadword",
+        "rawPosEvidencePointer": "/records/2671/sourcePosRaw",
+        "recordEvidenceSha256": "2df6c5fac56870c39285f663d3051d329a87a74bf8da702bcbf1225622553816",
+        "recordIndex": 2671,
+        "sourceNoteGuid": "J;Fn0}#RFp",
+        "sourceRecordId": "1788223608710",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:ring": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN",
+          "VERB"
+        ],
+        "rawContentPointer": "/records/1255/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1255/rawHeadword",
+        "rawPosEvidencePointer": "/records/1255/sourcePosRaw",
+        "recordEvidenceSha256": "754293a4d3be7d25cd47adbb98c6597f9ca08402601ef2d50374b8d577d519ad",
+        "recordIndex": 1255,
+        "sourceNoteGuid": "O8/Y)Xb#%0",
+        "sourceRecordId": "1788223607274",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:risky": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/3535/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3535/rawHeadword",
+        "rawPosEvidencePointer": "/records/3535/sourcePosRaw",
+        "recordEvidenceSha256": "4d2eed51e6250347cb20ae06d742c816ae6849d012d8b58918e9ab576157eece",
+        "recordIndex": 3535,
+        "sourceNoteGuid": "y$Il2HE|Y.",
+        "sourceRecordId": "1788223609574",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/4064/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4064/rawHeadword",
+        "rawPosEvidencePointer": "/records/4064/sourcePosRaw",
+        "recordEvidenceSha256": "d7ee0ed06f04d554f5218e24470d672ae0c82cf01f16561577bd067537a8bc21",
+        "recordIndex": 4064,
+        "sourceNoteGuid": "P7CE*;S+0h",
+        "sourceRecordId": "1646317635846",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:saturated": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C2",
+            "value": "C2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/3085/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3085/rawHeadword",
+        "rawPosEvidencePointer": "/records/3085/sourcePosRaw",
+        "recordEvidenceSha256": "edc7778bb61e174338f41d155c91d7af10fde0d1856bbffb36a0d541ada648ff",
+        "recordIndex": 3085,
+        "sourceNoteGuid": "dYB$_cOCsc",
+        "sourceRecordId": "1559931009957",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:sceptical": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/4769/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4769/rawHeadword",
+        "rawPosEvidencePointer": "/records/4769/sourcePosRaw",
+        "recordEvidenceSha256": "a8a19283f3384c0859a4e43940c1da7799ea1871dbc57c41c0db8625dbcb53b9",
+        "recordIndex": 4769,
+        "sourceNoteGuid": "kzS{l5Wo2P",
+        "sourceRecordId": "1788223610808",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/4580/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4580/rawHeadword",
+        "rawPosEvidencePointer": "/records/4580/sourcePosRaw",
+        "recordEvidenceSha256": "aba7a9be19b7ef66632e78a6a10e39a84551efd398ccec3bef069ffc83e4f8ee",
+        "recordIndex": 4580,
+        "sourceNoteGuid": "x!9?<KZp1h",
+        "sourceRecordId": "1646317636365",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:school": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/151/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/151/rawHeadword",
+        "rawPosEvidencePointer": "/records/151/sourcePosRaw",
+        "recordEvidenceSha256": "302d1ecae152ff87da1ab9cd452b8ffba93efa372f0f00e298824aadbc79ea37",
+        "recordIndex": 151,
+        "sourceNoteGuid": "gqz]6SAM$(",
+        "sourceRecordId": "1788223606102",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::A1",
+            "value": "A1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "A1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/175/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/175/rawHeadword",
+        "rawPosEvidencePointer": "/records/175/sourcePosRaw",
+        "recordEvidenceSha256": "1affb3de5921dc1da3815ea61e5c3ee80b28fbd43afb62ff2fdbbeb898c9ebf1",
+        "recordIndex": 175,
+        "sourceNoteGuid": "pO`:8<,%+1",
+        "sourceRecordId": "1556384730975",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:series": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/970/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/970/rawHeadword",
+        "rawPosEvidencePointer": "/records/970/sourcePosRaw",
+        "recordEvidenceSha256": "124d6235d37ba30ea493276b01713472895d9037c9705c836f2de57e30d2665d",
+        "recordIndex": 970,
+        "sourceNoteGuid": "Ow!h3SCbFC",
+        "sourceRecordId": "1788223606988",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:severe": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/2627/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2627/rawHeadword",
+        "rawPosEvidencePointer": "/records/2627/sourcePosRaw",
+        "recordEvidenceSha256": "839cddc766516cf3a86e3f511d24207c34946658a54e636eb0cd11bb8676448d",
+        "recordIndex": 2627,
+        "sourceNoteGuid": "IbEk%R>4x*",
+        "sourceRecordId": "1788223608666",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/857/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/857/rawHeadword",
+        "rawPosEvidencePointer": "/records/857/sourcePosRaw",
+        "recordEvidenceSha256": "b8736197954c06850abfcb5c15f086f3beeded5299f2bb3e1885222c02754782",
+        "recordIndex": 857,
+        "sourceNoteGuid": "M7YcFm0&fA",
+        "sourceRecordId": "1559931007634",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:share": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN",
+          "VERB"
+        ],
+        "rawContentPointer": "/records/384/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/384/rawHeadword",
+        "rawPosEvidencePointer": "/records/384/sourcePosRaw",
+        "recordEvidenceSha256": "5a06d82faa92e3baaac0c58aeb918348ea96c1ff3676fc308f34587c195891c8",
+        "recordIndex": 384,
+        "sourceNoteGuid": "sX!<p1%-@$",
+        "sourceRecordId": "1788223606335",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::A1",
+            "value": "A1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "A1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/544/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/544/rawHeadword",
+        "rawPosEvidencePointer": "/records/544/sourcePosRaw",
+        "recordEvidenceSha256": "0dd75d98ec13d839567376c4fc9590778a0126303f6372d5fc5b351e5558f19d",
+        "recordIndex": 544,
+        "sourceNoteGuid": "OByH-a*(VM",
+        "sourceRecordId": "1556384731354",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:skull": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3412/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3412/rawHeadword",
+        "rawPosEvidencePointer": "/records/3412/sourcePosRaw",
+        "recordEvidenceSha256": "d398e9594d22b4450920794ea30022e3b491fae2f9a538acbf5df95582a2d3cc",
+        "recordIndex": 3412,
+        "sourceNoteGuid": "k!=5t;!:5x",
+        "sourceRecordId": "1788223609451",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1279/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1279/rawHeadword",
+        "rawPosEvidencePointer": "/records/1279/sourcePosRaw",
+        "recordEvidenceSha256": "433a1d1c1754b400e301ba83ff6a9e91bd5358df475a5dab166666526df2435b",
+        "recordIndex": 1279,
+        "sourceNoteGuid": "u&re=c]Kx3",
+        "sourceRecordId": "1559931008073",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:some": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "DETERMINER",
+          "PRONOUN"
+        ],
+        "rawContentPointer": "/records/59/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/59/rawHeadword",
+        "rawPosEvidencePointer": "/records/59/sourcePosRaw",
+        "recordEvidenceSha256": "53819971e46c754ce62e4f9e2a8bc0028120d10bc3c86a9a21766b901e31332d",
+        "recordIndex": 59,
+        "sourceNoteGuid": "hO!)#a^$hQ",
+        "sourceRecordId": "1788223606009",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:spiral": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/2045/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2045/rawHeadword",
+        "rawPosEvidencePointer": "/records/2045/sourcePosRaw",
+        "recordEvidenceSha256": "8ceb009e38e86a5389f6e7ed7074fc7d1411152f9dc02cbcbe42535170d2956f",
+        "recordIndex": 2045,
+        "sourceNoteGuid": "EZtByLS.*1",
+        "sourceRecordId": "1559931008857",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:submit": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/2816/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2816/rawHeadword",
+        "rawPosEvidencePointer": "/records/2816/sourcePosRaw",
+        "recordEvidenceSha256": "072b03c49c8ea789725e3171ec5db34bea7ad10328a24bb95decb8e7a73456c8",
+        "recordIndex": 2816,
+        "sourceNoteGuid": "O)=)#+SK;j",
+        "sourceRecordId": "1788223608855",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/3609/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3609/rawHeadword",
+        "rawPosEvidencePointer": "/records/3609/sourcePosRaw",
+        "recordEvidenceSha256": "e0b4eb2824f7cd19da91e04640d113f636d2d10e9209ac5a4cd1f468460a3b8f",
+        "recordIndex": 3609,
+        "sourceNoteGuid": "m<VBabXzcE",
+        "sourceRecordId": "1617541581723",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:sudden": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/2144/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2144/rawHeadword",
+        "rawPosEvidencePointer": "/records/2144/sourcePosRaw",
+        "recordEvidenceSha256": "c6ea55bf559bb7b0952ac141eea91c1d9d46195953cf83f38e4f7b8deb816f6b",
+        "recordIndex": 2144,
+        "sourceNoteGuid": "s0-ptQLN.N",
+        "sourceRecordId": "1788223608183",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B1",
+            "value": "B1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/136/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/136/rawHeadword",
+        "rawPosEvidencePointer": "/records/136/sourcePosRaw",
+        "recordEvidenceSha256": "b384a0b2b62d1676f32ead81fd81325a6c7ad6e280eecde1e921ded80b138b4c",
+        "recordIndex": 136,
+        "sourceNoteGuid": "xv^Z<jptLK",
+        "sourceRecordId": "1556384730936",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:sunlight": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B1",
+            "value": "B1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1847/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1847/rawHeadword",
+        "rawPosEvidencePointer": "/records/1847/sourcePosRaw",
+        "recordEvidenceSha256": "0dd920bb6558bc35225e283d3707f95348be68e098bdedde5dd9cac011f184d6",
+        "recordIndex": 1847,
+        "sourceNoteGuid": "z],yM*=$f&",
+        "sourceRecordId": "1559931008655",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:surrounding": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/2680/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2680/rawHeadword",
+        "rawPosEvidencePointer": "/records/2680/sourcePosRaw",
+        "recordEvidenceSha256": "7440181a61e42c58290608bb2344669893b6c21e02787c3ecf8aadfa77a0ea0c",
+        "recordIndex": 2680,
+        "sourceNoteGuid": "GJM-`[$vYG",
+        "sourceRecordId": "1788223608719",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:terrible": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/677/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/677/rawHeadword",
+        "rawPosEvidencePointer": "/records/677/sourcePosRaw",
+        "recordEvidenceSha256": "574716193b873e98c33cc9e5db2ccf9399b72fcac7fcf166505065cb938ea4de",
+        "recordIndex": 677,
+        "sourceNoteGuid": "p;+z-7yEW,",
+        "sourceRecordId": "1788223606682",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::A1",
+            "value": "A1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "A1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/38/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/38/rawHeadword",
+        "rawPosEvidencePointer": "/records/38/sourcePosRaw",
+        "recordEvidenceSha256": "8df87acd0374e9f4fa31a61099556e076c534be3a698c3c88791e8596b1f9034",
+        "recordIndex": 38,
+        "sourceNoteGuid": "H?/i%`6K}}",
+        "sourceRecordId": "1556384730836",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:throw": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/1239/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1239/rawHeadword",
+        "rawPosEvidencePointer": "/records/1239/sourcePosRaw",
+        "recordEvidenceSha256": "f71fe7f8155caa5e1c986798027f95c5e813c71d3c23e791f873fd0b9c8956ad",
+        "recordIndex": 1239,
+        "sourceNoteGuid": "lvab;xO]p/",
+        "sourceRecordId": "1788223607257",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::A2",
+            "value": "A2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "A2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/762/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/762/rawHeadword",
+        "rawPosEvidencePointer": "/records/762/sourcePosRaw",
+        "recordEvidenceSha256": "c0313c5766e46f3d1e91dd0050ca3e86afe2d8a6da7131638875e43617372471",
+        "recordIndex": 762,
+        "sourceNoteGuid": "puA#3T6w-M",
+        "sourceRecordId": "1559931007537",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:toddler": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3502/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3502/rawHeadword",
+        "rawPosEvidencePointer": "/records/3502/sourcePosRaw",
+        "recordEvidenceSha256": "3186ebd118bb140a79dfd79daf1beb270d168d0edcc896f4c484e1d7192fccb5",
+        "recordIndex": 3502,
+        "sourceNoteGuid": "GTer@F=eQa",
+        "sourceRecordId": "1614606717521",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:totally": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADVERB"
+        ],
+        "rawContentPointer": "/records/1858/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1858/rawHeadword",
+        "rawPosEvidencePointer": "/records/1858/sourcePosRaw",
+        "recordEvidenceSha256": "a19358cecaf54bcaf3a22ed65243351dc732f838ee2fc4b7c27e16fb6290859c",
+        "recordIndex": 1858,
+        "sourceNoteGuid": "Qx)1Rb>xje",
+        "sourceRecordId": "1788223607897",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B1",
+            "value": "B1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADVERB"
+        ],
+        "rawContentPointer": "/records/116/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/116/rawHeadword",
+        "rawPosEvidencePointer": "/records/116/sourcePosRaw",
+        "recordEvidenceSha256": "a9cc329fa845068f710afb00f5409ff7ded3d9ffac92a7a872795469ac9734f6",
+        "recordIndex": 116,
+        "sourceNoteGuid": "HV(0c.M,X,",
+        "sourceRecordId": "1556384730916",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:wander": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/3662/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3662/rawHeadword",
+        "rawPosEvidencePointer": "/records/3662/sourcePosRaw",
+        "recordEvidenceSha256": "4d4cba87c62b90c14d4f8ff67f358be3e4d075884fefcdb6be5d4154538698f1",
+        "recordIndex": 3662,
+        "sourceNoteGuid": "CGV|qAdcRI",
+        "sourceRecordId": "1788223609701",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/1496/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1496/rawHeadword",
+        "rawPosEvidencePointer": "/records/1496/sourcePosRaw",
+        "recordEvidenceSha256": "3e85dbd700dcb419dab5e98814af75fa4e064dfddad19874f6b0d7609b8dbfd8",
+        "recordIndex": 1496,
+        "sourceNoteGuid": "pa=U+5RZF>",
+        "sourceRecordId": "1559931008298",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:warrior": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/4065/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4065/rawHeadword",
+        "rawPosEvidencePointer": "/records/4065/sourcePosRaw",
+        "recordEvidenceSha256": "ec86adf1d37df6f2043800e8b5f0b3a258c9d4aa419d265eaa6dba4364757833",
+        "recordIndex": 4065,
+        "sourceNoteGuid": "JVsM3|X!w,",
+        "sourceRecordId": "1788223610104",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1514/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1514/rawHeadword",
+        "rawPosEvidencePointer": "/records/1514/sourcePosRaw",
+        "recordEvidenceSha256": "36a174ddf66cf95a8910392d0331e095969437cd14cd61adcfd24c316a3ef46f",
+        "recordIndex": 1514,
+        "sourceNoteGuid": "AgeQ1K>+Y=",
+        "sourceRecordId": "1559931008316",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:we": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "PRONOUN"
+        ],
+        "rawContentPointer": "/records/25/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/25/rawHeadword",
+        "rawPosEvidencePointer": "/records/25/sourcePosRaw",
+        "recordEvidenceSha256": "e7ee2072e4760932eabec76b255b526263282b64cd1969b21b6d902664b02229",
+        "recordIndex": 25,
+        "sourceNoteGuid": "yryV+elm2(",
+        "sourceRecordId": "1788223605957",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:weak": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/1367/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1367/rawHeadword",
+        "rawPosEvidencePointer": "/records/1367/sourcePosRaw",
+        "recordEvidenceSha256": "0d4d179ac4cc71dca861c3969540520505844f6d10dcc6166b74bae64573e4b0",
+        "recordIndex": 1367,
+        "sourceNoteGuid": "C>xRXRs8{0",
+        "sourceRecordId": "1788223607406",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::A2",
+            "value": "A2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "A2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/1928/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1928/rawHeadword",
+        "rawPosEvidencePointer": "/records/1928/sourcePosRaw",
+        "recordEvidenceSha256": "e6ed9ebc8577db770d4c249e3bbbdb728d93216ea592134ad7f465a3177805d1",
+        "recordIndex": 1928,
+        "sourceNoteGuid": "L0wUTjN4::",
+        "sourceRecordId": "1559931008738",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:wealth": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/2665/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2665/rawHeadword",
+        "rawPosEvidencePointer": "/records/2665/sourcePosRaw",
+        "recordEvidenceSha256": "2536e4cbddb659ed13171941cc3f0ee223fbef2184f152bc922e63b4872da7a4",
+        "recordIndex": 2665,
+        "sourceNoteGuid": "E:L#r@iO_1",
+        "sourceRecordId": "1788223608704",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/901/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/901/rawHeadword",
+        "rawPosEvidencePointer": "/records/901/sourcePosRaw",
+        "recordEvidenceSha256": "95e1a6e4923797cbe80b8d154c6cf907c06ed696c7feec84ee56fa6a69cbb34b",
+        "recordIndex": 901,
+        "sourceNoteGuid": "q{Jl&Bp`{&",
+        "sourceRecordId": "1559931007678",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:wedding": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1240/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1240/rawHeadword",
+        "rawPosEvidencePointer": "/records/1240/sourcePosRaw",
+        "recordEvidenceSha256": "e933852837dc5af2fac9972d32e8126d7a5df502f75c021dee0de34e3007f629",
+        "recordIndex": 1240,
+        "sourceNoteGuid": "D!kj|8<H%5",
+        "sourceRecordId": "1788223607258",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:weed": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3926/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3926/rawHeadword",
+        "rawPosEvidencePointer": "/records/3926/sourcePosRaw",
+        "recordEvidenceSha256": "99610b5d2bbde411b6702a2217d730c7bd63857072e1944a43455b8559cf4deb",
+        "recordIndex": 3926,
+        "sourceNoteGuid": "op.&STx?83",
+        "sourceRecordId": "1788223609965",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3865/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3865/rawHeadword",
+        "rawPosEvidencePointer": "/records/3865/sourcePosRaw",
+        "recordEvidenceSha256": "c13d36c014703c3bbdda470fa4214bf0ddbc5b25cc47d7908d4e664dd2f135d5",
+        "recordIndex": 3865,
+        "sourceNoteGuid": "Hk;g6&qzcW",
+        "sourceRecordId": "1623660520612",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:weekend": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/560/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/560/rawHeadword",
+        "rawPosEvidencePointer": "/records/560/sourcePosRaw",
+        "recordEvidenceSha256": "d7b9d861d8da94bd206bcf8068b4bc8c4e0230ee55ef02087e6b0d59594a893e",
+        "recordIndex": 560,
+        "sourceNoteGuid": "p7DLzi|,V(",
+        "sourceRecordId": "1788223606524",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:weigh": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/2344/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2344/rawHeadword",
+        "rawPosEvidencePointer": "/records/2344/sourcePosRaw",
+        "recordEvidenceSha256": "36dcb7e2668830a95fc3dfb9dff95942d3096954bd9e7fc73103efe5256e550e",
+        "recordIndex": 2344,
+        "sourceNoteGuid": "I&diMcZ[a?",
+        "sourceRecordId": "1788223608383",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B1",
+            "value": "B1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/1127/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1127/rawHeadword",
+        "rawPosEvidencePointer": "/records/1127/sourcePosRaw",
+        "recordEvidenceSha256": "e7673a91dbe17c2f4162f91938549a02a1d725f8a8fc889243d180292656125f",
+        "recordIndex": 1127,
+        "sourceNoteGuid": "LQ3E,9~S+)",
+        "sourceRecordId": "1559931007917",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:whether": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "CONJUNCTION"
+        ],
+        "rawContentPointer": "/records/1726/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1726/rawHeadword",
+        "rawPosEvidencePointer": "/records/1726/sourcePosRaw",
+        "recordEvidenceSha256": "8870e81d90c1d2f548537cf23ab297f1961f656464708596a0307af7fe669fb9",
+        "recordIndex": 1726,
+        "sourceNoteGuid": "QDC%8HEM3+",
+        "sourceRecordId": "1788223607765",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B1",
+            "value": "B1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "CONJUNCTION"
+        ],
+        "rawContentPointer": "/records/330/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/330/rawHeadword",
+        "rawPosEvidencePointer": "/records/330/sourcePosRaw",
+        "recordEvidenceSha256": "0c5228927eea568b0a6d76a2bf61dbc8acee0cb0ab7fea61d86ddcab891eaecc",
+        "recordIndex": 330,
+        "sourceNoteGuid": "gZ%8{geEx5",
+        "sourceRecordId": "1556384731137",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:widen": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/4965/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4965/rawHeadword",
+        "rawPosEvidencePointer": "/records/4965/sourcePosRaw",
+        "recordEvidenceSha256": "cbcca8e33b34ce23ccb954c0cbf623e3b41db3d856a28b9fe2626333101315da",
+        "recordIndex": 4965,
+        "sourceNoteGuid": "u)?x>isWaq",
+        "sourceRecordId": "1788223611004",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/4671/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4671/rawHeadword",
+        "rawPosEvidencePointer": "/records/4671/sourcePosRaw",
+        "recordEvidenceSha256": "994e6ab7cafd772ffd298a43a20a589b308b1a66ed956a656b690a3214c158d1",
+        "recordIndex": 4671,
+        "sourceNoteGuid": "KUq3VdGo[c",
+        "sourceRecordId": "1646317636457",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:window": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/629/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/629/rawHeadword",
+        "rawPosEvidencePointer": "/records/629/sourcePosRaw",
+        "recordEvidenceSha256": "27950ae0f9016e935393baf9946ade159c49d0e3a993828ce90729bbc4f91499",
+        "recordIndex": 629,
+        "sourceNoteGuid": "j%X:sjz*}x",
+        "sourceRecordId": "1788223606608",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:workout": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/4301/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4301/rawHeadword",
+        "rawPosEvidencePointer": "/records/4301/sourcePosRaw",
+        "recordEvidenceSha256": "8ca1149877fe6629896db17fc5b303ebd47b3e0786631972f7e6314bd6a41cc7",
+        "recordIndex": 4301,
+        "sourceNoteGuid": "DV;v((45@B",
+        "sourceRecordId": "1788223610340",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/2573/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2573/rawHeadword",
+        "rawPosEvidencePointer": "/records/2573/sourcePosRaw",
+        "recordEvidenceSha256": "118e32b6b6b12d072307c77e1477d78ebfeed24fcd8741bccdf9bc4ff9f28152",
+        "recordIndex": 2573,
+        "sourceNoteGuid": "LqPzH@U4ZY",
+        "sourceRecordId": "1559931009417",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:worth": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE",
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1741/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1741/rawHeadword",
+        "rawPosEvidencePointer": "/records/1741/sourcePosRaw",
+        "recordEvidenceSha256": "feb2a154b612a1e1018975c2cf6833f429d158779125eef0408c7eed796cd69d",
+        "recordIndex": 1741,
+        "sourceNoteGuid": "c6IpB~#N12",
+        "sourceRecordId": "1788223607780",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B1",
+            "value": "B1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/389/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/389/rawHeadword",
+        "rawPosEvidencePointer": "/records/389/sourcePosRaw",
+        "recordEvidenceSha256": "13f430723551603035c3398ce2bf15d8515ad1d8c5a5d95ecda1c24f6f3365d6",
+        "recordIndex": 389,
+        "sourceNoteGuid": "b*:Aa3kYv3",
+        "sourceRecordId": "1556384731197",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:wreck": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/2365/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2365/rawHeadword",
+        "rawPosEvidencePointer": "/records/2365/sourcePosRaw",
+        "recordEvidenceSha256": "77e5d57f164a18e85f0b443ce3f04160f16224686f3ee60f198fa0c095c52fec",
+        "recordIndex": 2365,
+        "sourceNoteGuid": "B,Qz|C)lQt",
+        "sourceRecordId": "1559931009198",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:writing": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/477/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/477/rawHeadword",
+        "rawPosEvidencePointer": "/records/477/sourcePosRaw",
+        "recordEvidenceSha256": "f14af8b54c519bca59474c1fd666fc0e6dd7d3b399d9bd056a01036e8f4f5523",
+        "recordIndex": 477,
+        "sourceNoteGuid": "n?QB?uGPs$",
+        "sourceRecordId": "1788223606430",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:zip": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/3362/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3362/rawHeadword",
+        "rawPosEvidencePointer": "/records/3362/sourcePosRaw",
+        "recordEvidenceSha256": "b87142012c6d63a4d2bd9ad6b9f252b3100f16f97273298750df18d3f2cf31fb",
+        "recordIndex": 3362,
+        "sourceNoteGuid": "utPwB8v-LE",
+        "sourceRecordId": "1559931010258",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ]
+  }
+}

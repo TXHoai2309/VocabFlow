@@ -124,11 +124,12 @@ class ResumeTests(unittest.TestCase):
         self.assertFalse(auth['releaseEligible']);self.assertEqual(auth['databaseAccess'],'NONE')
         self.assertTrue(all(x['rights']=='UNKNOWN_REVIEW_REQUIRED' for x in self.objects['provenance-rights-audit.json']['senses']))
     def test_future_parent_validation_without_starting_next_checkpoint(self):
+        before={p.relative_to(r.WS).as_posix():r.sha(p) for p in r.WS.rglob('*') if p.is_file()}
         future=r.parent_state(3);receipt=r.resume_receipt(future,3)
         self.assertEqual(receipt['candidateGroupKeys'],self.parent['pending'][100:200])
         self.assertEqual((receipt['firstBatch'],receipt['lastBatch']),(41,60))
         self.assertEqual(len(future['records']),1108)
-        self.assertFalse(r.location(3).exists())
+        self.assertEqual(before,{p.relative_to(r.WS).as_posix():r.sha(p) for p in r.WS.rglob('*') if p.is_file()})
     def test_saved_snapshot_and_fingerprint_valid(self):
         manifest,objects,records=r.validate_snapshot(self.path)
         self.assertEqual(manifest['fingerprint'],self.objects['manifest.json']['fingerprint'])

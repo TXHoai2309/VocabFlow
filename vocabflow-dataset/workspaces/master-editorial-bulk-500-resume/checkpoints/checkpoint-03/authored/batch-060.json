@@ -1,0 +1,386 @@
+{
+  "batch": 60,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:expected",
+    "NORMALIZED_HEADWORD:list",
+    "NORMALIZED_HEADWORD:renew",
+    "NORMALIZED_HEADWORD:skull",
+    "NORMALIZED_HEADWORD:we"
+  ],
+  "replayEvidence": "Persisted PSV parsed; source-supported POS/ordinals and exact frozen slice verified; original content hashes bound to AI review. Full replay recorded externally.",
+  "reviewNotesSha256": "387266734af06ed2c966c7ed3316f00ef0d20072bc9b578f6e8d4fa8a2b59ea6",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Anticipated delivery is explicitly not guaranteed, and the negative arrival example preserves the distinction. Adjective placement is checked without treating the passive verb as a new unsupported POS.",
+      "proposalKey": "EDITORIAL_2H2H:expected:anticipated",
+      "reviewedContentHash": "89ba653245f024d191bdf9b0284abde2daef40eb619d8a8ad32c0169096320af",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Written set as noun and enumeration as verb retain source ordinals and do not imply importance ranking. Packing inventory and catalogue image examples are distinct; of/on/as constructions remain learner-facing.",
+      "proposalKey": "EDITORIAL_2H2H:list:written-sequence",
+      "reviewedContentHash": "36dd909ab40ccbc0858d3f3e3a492b5e22cb86a21465d6523b9f058e3c48ffec",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Written set as noun and enumeration as verb retain source ordinals and do not imply importance ranking. Packing inventory and catalogue image examples are distinct; of/on/as constructions remain learner-facing.",
+      "proposalKey": "EDITORIAL_2H2H:list:write-items",
+      "reviewedContentHash": "2602e76f286102e7f74a82c5051cbdb657fce84702cf7e54f8556f370953ce19",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Continuing validity and reviving an interest are separate transitive boundaries. Membership procedure is not claimed as law; the atlas and unfinished-project examples preserve before and renewed attention in Vietnamese.",
+      "proposalKey": "EDITORIAL_2H2H:renew:extend-validity",
+      "reviewedContentHash": "47c318b93f5c53f72b2a634f33ea55886548c35a22ebdec72edbdbff7ef55e2c",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Continuing validity and reviving an interest are separate transitive boundaries. Membership procedure is not claimed as law; the atlas and unfinished-project examples preserve before and renewed attention in Vietnamese.",
+      "proposalKey": "EDITORIAL_2H2H:renew:bring-back",
+      "reviewedContentHash": "655e31d1bb6b37228f7edd697e33b1fdd8531c39b77bb67bc4258b3424c860db",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: The bony head structure is distinct from the whole head. A drawing study avoids diagnostic or protective-health promises; Vietnamese hộp sọ and xương sọ are suitable standalone glosses.",
+      "proposalKey": "EDITORIAL_2H2H:skull:bony-head-structure",
+      "reviewedContentHash": "67d62ec9e2ce5bb1c64dea7d5e4975e6fcd980887893829fd1774013e3d0e1ac",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: Speaker-plus-others is the supplied subject pronoun; us is explicitly object form. The you outside we example supports chúng tôi; inclusive/exclusive context and pronoun identity remain owner-review obligations.",
+      "proposalKey": "EDITORIAL_2H2H:we:speaker-and-others",
+      "reviewedContentHash": "a6a0c488796241033e67e9999bf5bc9f155b36bfe64b19cb7a7de034bf67b178",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 7,
+  "sha256": "158e58d9099341d1f1d8c29fd00db28dbf8f17ef9a936ba1a8b60b433ef571e0",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:expected": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/1798/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1798/rawHeadword",
+        "rawPosEvidencePointer": "/records/1798/sourcePosRaw",
+        "recordEvidenceSha256": "6c57fc6b301c1ecbec5e6f944a1e0454d088a3724386924a8f6bceeacabf4161",
+        "recordIndex": 1798,
+        "sourceNoteGuid": "cxODvH[F-6",
+        "sourceRecordId": "1788223607837",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:list": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN",
+          "VERB"
+        ],
+        "rawContentPointer": "/records/334/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/334/rawHeadword",
+        "rawPosEvidencePointer": "/records/334/sourcePosRaw",
+        "recordEvidenceSha256": "62492fd9054980b477c86fa58ea7caeff7326b0ff0410294b127340bec473494",
+        "recordIndex": 334,
+        "sourceNoteGuid": "fJ8=/rF1kw",
+        "sourceRecordId": "1788223606285",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::A1",
+            "value": "A1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "A1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/535/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/535/rawHeadword",
+        "rawPosEvidencePointer": "/records/535/sourcePosRaw",
+        "recordEvidenceSha256": "709d9310b8fc73309faca23a838457b3546caeb78009424befbc60319151bb8f",
+        "recordIndex": 535,
+        "sourceNoteGuid": "K?*u%V2h-_",
+        "sourceRecordId": "1556384731345",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:renew": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/4715/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4715/rawHeadword",
+        "rawPosEvidencePointer": "/records/4715/sourcePosRaw",
+        "recordEvidenceSha256": "7dfd05136be52bb6895d58ee5d9175a45fba908880e6b196443c560268b92604",
+        "recordIndex": 4715,
+        "sourceNoteGuid": "EmtV/R:yVX",
+        "sourceRecordId": "1788223610754",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/4556/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4556/rawHeadword",
+        "rawPosEvidencePointer": "/records/4556/sourcePosRaw",
+        "recordEvidenceSha256": "cc6d464d7d75f9e9cd11b97b0b590790b82617027db72423d24b32bbd4a32d91",
+        "recordIndex": 4556,
+        "sourceNoteGuid": "PNPhvdR&dH",
+        "sourceRecordId": "1646317636341",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:skull": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3412/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3412/rawHeadword",
+        "rawPosEvidencePointer": "/records/3412/sourcePosRaw",
+        "recordEvidenceSha256": "d398e9594d22b4450920794ea30022e3b491fae2f9a538acbf5df95582a2d3cc",
+        "recordIndex": 3412,
+        "sourceNoteGuid": "k!=5t;!:5x",
+        "sourceRecordId": "1788223609451",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1279/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1279/rawHeadword",
+        "rawPosEvidencePointer": "/records/1279/sourcePosRaw",
+        "recordEvidenceSha256": "433a1d1c1754b400e301ba83ff6a9e91bd5358df475a5dab166666526df2435b",
+        "recordIndex": 1279,
+        "sourceNoteGuid": "u&re=c]Kx3",
+        "sourceRecordId": "1559931008073",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:we": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "PRONOUN"
+        ],
+        "rawContentPointer": "/records/25/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/25/rawHeadword",
+        "rawPosEvidencePointer": "/records/25/sourcePosRaw",
+        "recordEvidenceSha256": "e7ee2072e4760932eabec76b255b526263282b64cd1969b21b6d902664b02229",
+        "recordIndex": 25,
+        "sourceNoteGuid": "yryV+elm2(",
+        "sourceRecordId": "1788223605957",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ]
+  },
+  "substantiveDefectsFound": 0
+}
