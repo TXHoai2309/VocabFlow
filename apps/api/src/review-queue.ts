@@ -2,6 +2,7 @@ import { sql, type SQL } from "drizzle-orm";
 import { performance } from "node:perf_hooks";
 import {
   APP_SCHEMA,
+  type CatalogStudyScope,
   reviewQueueResponseSchema,
   type ReviewQueueItem,
   type ReviewQueueResponse,
@@ -16,14 +17,14 @@ export type ReviewQueueDatabase = {
   execute: (query: SQL) => Promise<unknown>;
 };
 
-export type ReviewQueueServiceErrorCode = "HOUSEHOLD_ACCESS_DENIED" | "INTERNAL_ERROR";
+export type ReviewQueueServiceErrorCode = "HOUSEHOLD_ACCESS_DENIED" | "SCOPE_NOT_FOUND" | "INTERNAL_ERROR";
 
 export type ReviewQueueTimings = {
   authorizationMs?: number;
   databaseMs?: number;
 };
 
-export type ReviewQueueScope = "saved" | "saved-all" | "weak";
+export type ReviewQueueScope = "saved" | "saved-all" | "weak" | CatalogStudyScope;
 
 export function renderReviewQueueServerTiming(timings: {
   authInitMs?: number;
@@ -46,9 +47,9 @@ export function renderReviewQueueServerTiming(timings: {
 
 export class ReviewQueueServiceError extends Error {
   readonly code: ReviewQueueServiceErrorCode;
-  readonly status: 403 | 500;
+  readonly status: 403 | 404 | 500;
 
-  constructor(code: ReviewQueueServiceErrorCode, status: 403 | 500) {
+  constructor(code: ReviewQueueServiceErrorCode, status: 403 | 404 | 500) {
     super(code);
     this.name = "ReviewQueueServiceError";
     this.code = code;
@@ -180,6 +181,21 @@ function vocabularyMembership(learner: SQL, scope?: ReviewQueueScope): SQL {
       FROM "${sql.raw(APP_SCHEMA)}"."learner_saved_vocabulary" saved
       WHERE saved.learner_id = ${learner}
         AND saved.vocabulary_id = v.id
+    )`;
+  }
+  if (typeof scope === "object") {
+    if (scope.type === "topic") return sql`${vocabularyMembership(learner)} AND EXISTS (
+      SELECT 1 FROM "${sql.raw(APP_SCHEMA)}"."vocabulary_topics" vt
+      JOIN "${sql.raw(APP_SCHEMA)}"."topics" t ON t.id = vt.topic_id
+      WHERE vt.vocabulary_id = v.id AND t.enabled = true AND t.id = ${scope.id}
+    )`;
+    const selected = scope.type === "custom"
+      ? sql`AND ls.id IN (${sql.join(scope.ids.map((id) => sql`${id}`), sql`, `)})`
+      : scope.type === "learning-set" ? sql`AND ls.id = ${scope.id}` : sql``;
+    return sql`EXISTS (
+      SELECT 1 FROM "${sql.raw(APP_SCHEMA)}"."learning_sets" ls
+      JOIN "${sql.raw(APP_SCHEMA)}"."learning_set_items" lsi ON lsi.learning_set_id = ls.id
+      WHERE ls.enabled = true AND lsi.vocabulary_id = v.id ${selected}
     )`;
   }
   return sql`EXISTS (
@@ -322,6 +338,32 @@ export function createReviewQueueService(
         let due: QueueRow[];
         let availableNew: QueueRow[];
         try {
+          let newScope = scope;
+          if (typeof scope === "object") {
+            if (scope.type === "custom" || scope.type === "learning-set" || scope.type === "topic") {
+              const ids = scope.type === "custom" ? scope.ids : [scope.id];
+              const table = scope.type === "topic" ? "topics" : "learning_sets";
+              const valid = rowsOf<{ id: number }>(await database.execute(sql`
+                SELECT id FROM "${sql.raw(APP_SCHEMA)}".${sql.identifier(table)}
+                WHERE enabled = true AND id::bigint IN (${sql.join(ids.map((id) => sql`${id}::bigint`), sql`, `)})
+              `));
+              if (valid.length !== ids.length) throw new ReviewQueueServiceError("SCOPE_NOT_FOUND", 404);
+            }
+            if (scope.type === "pathway") {
+              const candidates = rowsOf<{ id: number | string }>(await database.execute(sql`
+                SELECT ls.id FROM "${sql.raw(APP_SCHEMA)}"."learning_sets" ls
+                WHERE ls.enabled = true AND EXISTS (
+                  SELECT 1 FROM "${sql.raw(APP_SCHEMA)}"."learning_set_items" lsi
+                  JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = lsi.vocabulary_id AND v.enabled = true
+                  WHERE lsi.learning_set_id = ls.id AND NOT EXISTS (
+                    SELECT 1 FROM "${sql.raw(APP_SCHEMA)}"."learner_progress" p
+                    WHERE p.learner_id = ${ownership.learnerId}::uuid AND p.vocabulary_id = v.id
+                  )
+                ) ORDER BY ls.sort_order ASC, ls.id ASC LIMIT 1
+              `));
+              newScope = { type: "custom", ids: candidates.length ? [Number(candidates[0]!.id)] : [] };
+            }
+          }
           const timezone = await householdTimezone(database, ownership.householdId);
           reviewDate = householdLocalDate(now(), timezone);
           if (scope === "saved-all") {
@@ -359,7 +401,7 @@ export function createReviewQueueService(
           [usage, due, availableNew] = await Promise.all([
             dailyNewUsage(database, ownership.learnerId, reviewDate),
             dueRows(database, ownership.learnerId, reviewDate, scope),
-            newRows(database, ownership.learnerId, scope)
+            newScope && typeof newScope === "object" && newScope.type === "custom" && newScope.ids.length === 0 ? Promise.resolve([]) : newRows(database, ownership.learnerId, newScope)
           ]);
         } finally {
           if (timings) timings.databaseMs = performance.now() - databaseStarted;

@@ -1,5 +1,17 @@
 # User Flow v1
 
+## Study source flow (US-54, 2026-10-08)
+
+Home/Study → Setup defaults to remembered account source or Pathway. Select
+Custom → searchable draft picker → Apply commits IDs → canonical scoped
+availability → Start retains scope → queue reconcile retains scope → Summary
+Học tiếp retains scope. Cancel/X/Escape/backdrop discard draft. URL Topic,
+Learning Set, Saved-all and Weak intents override preference; explicit source
+switch removes incompatible URL parameters. Logout/login retains only safe
+per-account source preferences, never queue/progress. Assignments are untouched.
+[Contract](../stories/US-54-study-source-picker.md).
+
+
 ## Single-account learning baseline (2026-10-07)
 
 This owner-approved baseline supersedes the earlier learner-management flow and

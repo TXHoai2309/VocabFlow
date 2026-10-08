@@ -2351,3 +2351,31 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
 .app-account-menu button[role="menuitem"] { width: 100%; border: 0; background: transparent; font-family: inherit; text-align: left; cursor: pointer; }
 .app-account-menu button[role="menuitem"]:disabled { opacity: .6; cursor: wait; }
 .app-account-menu hr { width: 100%; margin: 4px 0; border: 0; border-top: var(--border-default); }
+.study-source-label { display: block; font-weight: 600; margin-bottom: var(--space-3); }
+#study-source { width: 100%; min-height: 48px; padding: var(--space-3); border: var(--border-default); border-radius: var(--radius-control); background: var(--color-surface); color: var(--color-text); }
+.study-source-count { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); margin-top: var(--space-3); padding: var(--space-2) var(--space-3); background: var(--color-primary-soft); border-radius: var(--radius-control); }
+.study-source-count button { min-height: 44px; color: var(--color-primary); font-weight: 600; }
+.learning-set-picker-overlay { position: fixed; inset: 0; z-index: 100; display: flex; align-items: flex-end; justify-content: center; background: rgb(15 23 42 / .4); }
+.learning-set-picker-dialog { width: 100%; max-height: calc(100dvh - var(--space-4)); display: flex; flex-direction: column; overflow: hidden; background: var(--color-surface); border: var(--border-default); border-radius: var(--radius-dialog) var(--radius-dialog) 0 0; box-shadow: var(--shadow-floating); padding: var(--space-6) var(--space-4) max(var(--space-4), env(safe-area-inset-bottom)); }
+.learning-set-picker-dialog header { position: relative; padding-right: var(--space-12); flex-shrink: 0; }
+.learning-set-picker-dialog h2 { font-size: var(--text-h2); font-weight: 600; }
+.learning-set-picker-dialog header p { color: var(--color-text-muted); margin-top: var(--space-2); }
+.learning-set-picker-dialog header button { position: absolute; top: 0; right: 0; width: 44px; height: 44px; font-size: var(--text-h2); }
+.learning-set-picker-search { display: block; margin: var(--space-4) 0; font-size: var(--text-small); flex-shrink: 0; }
+.learning-set-picker-search input { display: block; width: 100%; min-height: 44px; margin-top: var(--space-2); padding: var(--space-3); border: var(--border-default); border-radius: var(--radius-control); }
+.learning-set-picker-list { overflow-y: auto; min-height: 0; overscroll-behavior: contain; }
+.learning-set-picker-row { display: flex; align-items: center; gap: var(--space-3); min-height: 64px; padding: var(--space-3); margin-bottom: var(--space-2); border: var(--border-default); border-radius: var(--radius-control); cursor: pointer; }
+.learning-set-picker-row.is-selected { border-color: var(--color-primary); background: var(--color-primary-soft); }
+.learning-set-picker-row input { width: 20px; height: 20px; flex-shrink: 0; accent-color: var(--color-primary); }
+.learning-set-picker-row strong { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.learning-set-picker-row span { flex-shrink: 0; font-size: var(--text-small); color: var(--color-text-muted); }
+.learning-set-picker-dialog footer { flex-shrink: 0; padding-top: var(--space-4); border-top: var(--border-default); margin-top: var(--space-4); }
+.learning-set-picker-dialog footer p { font-size: var(--text-small); margin-bottom: var(--space-2); }
+.learning-set-picker-dialog footer div { display: flex; justify-content: flex-end; gap: var(--space-3); }
+.learning-set-picker-dialog footer button { min-height: 48px; padding: var(--space-3) var(--space-6); border: var(--border-default); border-radius: var(--radius-control); font-weight: 600; }
+.learning-set-picker-dialog footer button.is-primary { background: var(--color-primary); color: white; }
+.learning-set-picker-dialog button:disabled { opacity: .5; cursor: not-allowed; }
+@media (min-width: 640px) {
+  .learning-set-picker-overlay { align-items: center; padding: var(--space-6); }
+  .learning-set-picker-dialog { width: 560px; max-height: calc(100dvh - var(--space-12)); padding: var(--space-6); border-radius: var(--radius-dialog); }
+}

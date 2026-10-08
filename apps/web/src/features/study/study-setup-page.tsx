@@ -1,11 +1,13 @@
+import { LearningSetPickerDialog } from "./learning-set-picker-dialog";
+import { readStudyPreference, saveStudyPreference } from "./study-source-preference";
 import { AccountLearningState } from "../learners/account-learning-state";
 import { useEffect, useMemo, useState } from "react";
 import { Link, useLocation, useNavigate, useSearchParams } from "react-router";
-import { LearningSetsClientError, requestLearningSet } from "../learning-sets/learning-sets-client";
+import { LearningSetsClientError, requestLearningSets } from "../learning-sets/learning-sets-client";
 import { useActiveLearner } from "../learners/learner-context-hook";
-import { requestTopicVocabulary, requestTopics, TopicsClientError } from "../learners/topics-client";
-import type { LearnerDto, ReviewQueueResponse } from "@vocabflow/contracts";
-import { requestScopedReviewQueue, studyContentModeFromParams, studyScopeFromParams, type StudyContentMode, type StudyScope } from "./study-queue";
+import { requestTopics, TopicsClientError } from "../learners/topics-client";
+import type { LearnerDto, ReviewQueueResponse, LearningSetSummary, LearningSourceScope } from "@vocabflow/contracts";
+import { requestScopedReviewQueue, studyContentModeFromParams, studyScopeFromParams, type StudyContentMode, type StudyScope, studyScopeParams } from "./study-queue";
 import { EmptyState, ErrorState, LoadingState } from "../../components/async-states";
 
 const STUDY_AMOUNTS = [5, 10, 20, 30] as const;
@@ -17,7 +19,7 @@ const MODE_COPY: Record<StudyContentMode, { title: string; description: string; 
 
 type SetupState = "loading" | "ready" | "error" | "not-found";
 type StudySetupData = { queue: ReviewQueueResponse; scopeName: string | null };
-type StudyScopeDetails = { scopeName: string; vocabularyIds: number[] };
+type StudyScopeDetails = { scopeName: string };
 
 function availableCount(queue: ReviewQueueResponse, mode: StudyContentMode) {
   if (mode === "mixed") return queue.queue.length;
@@ -58,34 +60,36 @@ function returnHref(scope: StudyScope | null) {
   return "/";
 }
 
-async function requestScopeDetails(scope: Exclude<StudyScope, { type: "invalid" }>): Promise<StudyScopeDetails> {
+async function requestScopeDetails(scope: Exclude<StudyScope, { type: "invalid" }>, sets: LearningSetSummary[] | null): Promise<StudyScopeDetails> {
   if (scope.type === "topic") {
-    const [topics, vocabulary] = await Promise.all([requestTopics(), requestTopicVocabulary(scope.id)]);
+    const topics = await requestTopics();
     const topic = topics.find((item) => item.id === scope.id);
     if (!topic) throw new TopicsClientError("SCOPE_NOT_FOUND", 404);
-    return { scopeName: topic.name, vocabularyIds: vocabulary.map((item) => item.id) };
+    return { scopeName: topic.name };
   }
-  if (scope.type === "saved") return { scopeName: "Từ đã lưu", vocabularyIds: [] };
-  if (scope.type === "weak") return { scopeName: "Từ yếu", vocabularyIds: [] };
-  const learningSet = await requestLearningSet(scope.id);
-  return { scopeName: learningSet.name, vocabularyIds: learningSet.items.map((item) => item.vocabulary.id) };
+  if (scope.type === "all" || scope.type === "pathway" || scope.type === "custom") return { scopeName: scope.type };
+  if (scope.type === "saved") return { scopeName: "Từ đã lưu" };
+  if (scope.type === "weak") return { scopeName: "Từ yếu" };
+  const learningSet = sets?.find((set) => set.id === scope.id);
+  if (!learningSet) throw new LearningSetsClientError("SCOPE_NOT_FOUND", 404);
+  return { scopeName: learningSet.name };
 }
 
-async function requestSetupData(learnerId: string, scope: StudyScope | null): Promise<StudySetupData> {
+async function requestSetupData(learnerId: string, scope: StudyScope | null, sets: LearningSetSummary[] | null): Promise<StudySetupData> {
   if (scope?.type === "invalid") throw new TopicsClientError("INVALID_SCOPE", 404);
   if (!scope) return { queue: await requestScopedReviewQueue(learnerId, null), scopeName: null };
   if (scope.type === "saved") return { queue: await requestScopedReviewQueue(learnerId, scope), scopeName: "Từ đã lưu" };
   if (scope.type === "weak") return { queue: await requestScopedReviewQueue(learnerId, scope), scopeName: "Từ yếu" };
-  const detailsPromise = requestScopeDetails(scope);
+  const detailsPromise = requestScopeDetails(scope, sets);
   const [queue, details] = await Promise.all([
-    requestScopedReviewQueue(learnerId, scope, detailsPromise.then((details) => details.vocabularyIds)),
+    requestScopedReviewQueue(learnerId, scope),
     detailsPromise
   ]);
   return { queue, scopeName: details.scopeName };
 }
 
 export function StudySetupPage() {
-  const { activeLearner } = useActiveLearner();
+  const { activeLearner, userId } = useActiveLearner();
   const location = useLocation();
   const [searchParams] = useSearchParams();
   const scope = useMemo(() => studyScopeFromParams(searchParams), [searchParams]);
@@ -93,17 +97,27 @@ export function StudySetupPage() {
   const scopeKey = scope?.type === "saved"
     ? `saved:${scope.all ? "all" : "scheduled"}`
     : scope?.type === "weak" ? "weak"
-    : scope ? `${scope.type}:${"id" in scope ? scope.id : "invalid"}` : "all";
+    : scope ? JSON.stringify(scope) : "all";
   if (!activeLearner) {
     return <AccountLearningState />;
   }
-  return <StudySetupExperience key={`${activeLearner.id}:${scopeKey}:${preferredContent ?? "default"}`} activeLearner={activeLearner} scope={scope} preferredContent={preferredContent} returnTo={`${location.pathname}${location.search}`} />;
+  return <StudySetupExperience key={`${activeLearner.id}:${scopeKey}:${preferredContent ?? "default"}`} activeLearner={activeLearner} userId={userId} keepSetup={Boolean((location.state as { keepSetup?: boolean } | null)?.keepSetup)} openPicker={Boolean((location.state as { openPicker?: boolean } | null)?.openPicker)} scope={scope} preferredContent={preferredContent} returnTo={`${location.pathname}${location.search}`} />;
 }
 
-function StudySetupExperience({ activeLearner, scope, preferredContent, returnTo }: { activeLearner: LearnerDto; scope: StudyScope | null; preferredContent: StudyContentMode | null; returnTo: string }) {
+function StudySetupExperience({ activeLearner, scope: urlScope, userId, keepSetup, openPicker, preferredContent, returnTo }: { activeLearner: LearnerDto; userId?: string; keepSetup: boolean; openPicker: boolean; scope: StudyScope | null; preferredContent: StudyContentMode | null; returnTo: string }) {
   const navigate = useNavigate();
+  const [preference] = useState(() => readStudyPreference(userId));
+  const [source, setSource] = useState<LearningSourceScope["type"]>(urlScope?.type === "custom" || urlScope?.type === "all" || urlScope?.type === "pathway" ? urlScope.type : urlScope?.type === "learning-set" ? "custom" : preference.source);
+  const [ids, setIds] = useState<number[]>(urlScope?.type === "custom" ? urlScope.ids : urlScope?.type === "learning-set" ? [urlScope.id] : preference.ids);
+  const [override, setOverride] = useState(false);
+  const [catalog, setCatalog] = useState<{ retry: number; sets: LearningSetSummary[] } | null>(null);
+  const sets = catalog?.sets ?? null;
+  const [picker, setPicker] = useState(openPicker);
+  const scope = useMemo<StudyScope>(() => urlScope && !override ? urlScope : source === "custom" ? { type: "custom", ids } : { type: source }, [urlScope, override, source, ids]);
+  const sourceName = source === "pathway" ? "Học theo lộ trình" : source === "all" ? "Tất cả bộ từ" : `${ids.length} bộ từ`;
+
   const [state, setState] = useState<SetupState>("loading");
-  const [data, setData] = useState<StudySetupData | null>(null);
+  const [data, setData] = useState<StudySetupData | null>(() => keepSetup ? { scopeName: null, queue: { learnerId: activeLearner.id, reviewDate: new Date().toISOString().slice(0, 10), queue: [], dueCount: 0, newCount: 0 } } : null);
   const [message, setMessage] = useState<string | null>(null);
   const [amount, setAmount] = useState<(typeof STUDY_AMOUNTS)[number]>(10);
   const [content, setContent] = useState<StudyContentMode | null>(null);
@@ -111,24 +125,44 @@ function StudySetupExperience({ activeLearner, scope, preferredContent, returnTo
 
   useEffect(() => {
     let cancelled = false;
-    void requestSetupData(activeLearner.id, scope)
-      .then((nextData) => {
-        if (cancelled) return;
-        setData(nextData);
-        setContent(preferredContent ?? defaultMode(nextData.queue));
-        setState("ready");
-      })
-      .catch((error: unknown) => {
-        if (cancelled) return;
-        if (isMissingScope(error)) {
-          setState("not-found");
-          return;
-        }
-        setMessage("Không thể tải nội dung học lúc này. Vui lòng thử lại.");
-        setState("error");
-      });
+    if (urlScope && !override && !["pathway", "all", "custom", "learning-set"].includes(urlScope.type)) return;
+    void requestLearningSets().then((list) => {
+      if (cancelled) return;
+      const enabled = list.filter((set) => set.enabled);
+      setCatalog({ retry, sets: enabled });
+      if (!urlScope || override) {
+        setIds((current) => {
+          const valid = current.filter((id) => enabled.some((set) => set.id === id));
+          saveStudyPreference(userId, readStudyPreference(userId).source, valid);
+          return valid.length === current.length ? current : valid;
+        });
+      }
+    }).catch(() => { if (!cancelled) { setMessage("Không thể tải bộ từ. Vui lòng thử lại."); setState("error"); } });
     return () => { cancelled = true; };
-  }, [activeLearner.id, preferredContent, retry, scope]);
+  }, [retry, urlScope, userId, override]);
+
+  useEffect(() => {
+    let cancelled = false;
+    if ((!urlScope || override || ["pathway", "all", "custom", "learning-set"].includes(urlScope.type)) && (!catalog || catalog.retry !== retry)) return;
+    void Promise.resolve().then(async () => {
+      if (cancelled) return;
+      setState("loading");
+      if (scope.type === "custom" && ids.length === 0) {
+        setData({ queue: { learnerId: activeLearner.id, reviewDate: new Date().toISOString().slice(0, 10), queue: [], newCount: 0, dueCount: 0 }, scopeName: null });
+        setState("ready"); return;
+      }
+      try {
+        const nextData = await requestSetupData(activeLearner.id, scope, sets);
+        if (cancelled) return;
+        setData(nextData); setContent(preferredContent ?? defaultMode(nextData.queue)); setState("ready");
+      } catch (error: unknown) {
+        if (cancelled) return;
+        if (isMissingScope(error) || scope.type === "invalid" || (error instanceof Error && "status" in error && error.status === 404)) { setState("not-found"); return; }
+        setMessage("Không thể tải nội dung học lúc này. Vui lòng thử lại."); setState("error");
+      }
+    });
+    return () => { cancelled = true; };
+  }, [activeLearner.id, preferredContent, retry, scope, catalog, sets, ids.length, urlScope, override]);
 
   const backHref = returnHref(scope);
   if (state === "not-found") {
@@ -139,15 +173,11 @@ function StudySetupExperience({ activeLearner, scope, preferredContent, returnTo
     );
   }
 
-  if (state === "ready" && data && data.queue.queue.length === 0) {
-    return (
-      <main className="study-setup-page" aria-label="Thiết lập buổi học">
-        <EmptyState className="study-setup-empty" icon="book" title={scope?.type === "weak" ? "Không còn từ yếu cần ôn" : "Chưa có từ để học"} description={scope?.type === "weak" ? "Danh sách từ yếu đã được cập nhật. Bạn có thể quay lại xem tiến trình." : "Nội dung này hiện chưa có từ phù hợp cho buổi học."} action={<Link className="study-setup-back-link" to={backHref}>Quay lại</Link>} testId="study-setup-empty" />
-      </main>
-    );
+  if (state === "ready" && data?.queue.queue.length === 0 && (scope.type === "saved" || scope.type === "weak")) {
+    return <main className="study-setup-page"><EmptyState testId="study-setup-empty" icon="book" title={scope.type === "weak" ? "Không còn từ yếu cần ôn" : "Chưa có từ để học"} description="Nội dung này hiện chưa có từ phù hợp cho buổi học." action={<Link to={backHref}>Quay lại</Link>} /></main>;
   }
 
-  if (state === "loading") {
+  if (state === "loading" && !data) {
     return (
       <main className="study-setup-page" aria-label="Thiết lập buổi học" aria-busy="true">
         <LoadingState label="Đang tải thiết lập buổi học…" pattern="study-setup" testId="study-setup-loading" />
@@ -158,7 +188,7 @@ function StudySetupExperience({ activeLearner, scope, preferredContent, returnTo
   if (state === "error") {
     return (
       <main className="study-setup-page" aria-label="Thiết lập buổi học">
-        <ErrorState className="study-setup-empty" title="Không thể tải nội dung học" description={message ?? "Vui lòng thử lại."} onRetry={() => { setState("loading"); setData(null); setMessage(null); setRetry((value) => value + 1); }} testId="study-setup-error" />
+        <ErrorState className="study-setup-empty" title="Không thể tải nội dung học" description={message ?? "Vui lòng thử lại."} onRetry={() => { setState("loading"); setMessage(null); setRetry((value) => value + 1); }} testId="study-setup-error" />
       </main>
     );
   }
@@ -172,28 +202,23 @@ function StudySetupExperience({ activeLearner, scope, preferredContent, returnTo
   }
 
   const availability = {
-    new: availableCount(data.queue, "new"),
-    review: availableCount(data.queue, "review"),
-    mixed: availableCount(data.queue, "mixed")
+    new: state === "ready" ? availableCount(data.queue, "new") : 0,
+    review: state === "ready" ? availableCount(data.queue, "review") : 0,
+    mixed: state === "ready" ? availableCount(data.queue, "mixed") : 0
   };
   const isSavedAll = scope?.type === "saved" && scope.all;
   const isWeak = scope?.type === "weak";
   const isAllScope = isSavedAll || isWeak;
   const selectedContent = content ?? defaultMode(data.queue);
-  const available = isAllScope ? data.queue.queue.length : availability[selectedContent];
+  const available = isAllScope ? (state === "ready" ? data.queue.queue.length : 0) : availability[selectedContent];
   const plannedCount = Math.min(amount, available);
 
   function startStudy() {
     if (available === 0) return;
-    const params = new URLSearchParams();
-    if (scope?.type === "topic" || scope?.type === "learning-set") {
-      params.set(scope.type === "topic" ? "topicId" : "learningSetId", String(scope.id));
-    }
-    if (scope?.type === "saved") params.set("saved", "1");
-    if (isWeak) params.set("weak", "1");
+    const params = studyScopeParams(scope);
     params.set("count", String(amount));
     params.set("content", isAllScope ? "all" : selectedContent);
-    navigate(`/study?${params.toString()}`, { state: { returnTo } });
+    navigate(`/study?${params.toString()}`, { state: { returnTo: override || !urlScope ? `/study/setup?${studyScopeParams(scope)}` : returnTo } });
   }
 
   return (
@@ -201,15 +226,31 @@ function StudySetupExperience({ activeLearner, scope, preferredContent, returnTo
       <header className="study-setup-header">
         <Link className="study-setup-back-link" to={backHref}><SetupIcon name="back" />Quay lại</Link>
         <h1 id="study-setup-title">Thiết lập buổi học</h1>
-        <p>Chọn số lượng từ và chế độ học phù hợp với mục tiêu của bạn.</p>
+
       </header>
 
       <div className="study-setup-layout">
         <section className="study-setup-options" aria-label="Tùy chọn buổi học">
+          <section className="study-setup-section">
+            <label className="study-source-label" htmlFor="study-source">Nguồn học</label>
+            <select id="study-source" value={source} onChange={(event) => {
+              const next = event.target.value as LearningSourceScope["type"];
+              setState("loading"); setSource(next); setOverride(true); saveStudyPreference(userId, next, ids);
+              const nextScope: StudyScope | null = next === "custom" ? (ids.length ? { type: "custom", ids } : null) : { type: next };
+              if (next === "custom") setPicker(true);
+              navigate(`/study/setup${nextScope ? `?${studyScopeParams(nextScope)}` : ""}`, { replace: true, state: { keepSetup: true, openPicker: next === "custom" } });
+            }}>
+              <option value="pathway">Học theo lộ trình</option><option value="custom">Bộ từ tôi chọn</option><option value="all">Tất cả bộ từ</option>
+            </select>
+            {urlScope && !override && !["custom", "pathway", "all", "learning-set"].includes(urlScope.type) ? <p>{data.scopeName}</p> : null}
+            {source === "custom" ? <div className="study-source-count"><span>{ids.length} bộ từ đã chọn</span><button type="button" onClick={() => setPicker(true)}>Thay đổi</button></div> : null}
+            {state === "ready" && sets?.length === 0 ? <EmptyState icon="book" title="Chưa có bộ từ" description="Hiện chưa có bộ từ khả dụng." /> : state === "ready" && available === 0 ? <p role="status">{source === "custom" && ids.length === 0 ? "Chọn ít nhất một bộ từ để bắt đầu." : "Nguồn học này chưa có từ mới hoặc từ đến hạn phù hợp."}</p> : null}
+          </section>
+
           <section className="study-setup-section" aria-labelledby="study-setup-amount-title">
             <div className="study-setup-section-heading">
               <span className="study-setup-section-icon"><SetupIcon name="layers" /></span>
-              <div><h2 id="study-setup-amount-title">Số lượng từ</h2><p>Chọn số từ trong mỗi buổi học.</p></div>
+              <div><h2 id="study-setup-amount-title">Số lượng từ</h2></div>
             </div>
             <div className="study-setup-amounts" role="group" aria-labelledby="study-setup-amount-title">
               {STUDY_AMOUNTS.map((value) => (
@@ -232,7 +273,7 @@ function StudySetupExperience({ activeLearner, scope, preferredContent, returnTo
             <section className="study-setup-section study-setup-mode-section" aria-labelledby="study-setup-mode-title">
               <div className="study-setup-section-heading">
                 <span className="study-setup-section-icon"><SetupIcon name="mixed" /></span>
-                <div><h2 id="study-setup-mode-title">Chế độ học</h2><p>Chọn loại từ để đưa vào buổi học.</p></div>
+                <div><h2 id="study-setup-mode-title">Chế độ học</h2></div>
               </div>
               <div className="study-setup-modes" role="group" aria-labelledby="study-setup-mode-title">
                 {(Object.keys(MODE_COPY) as StudyContentMode[]).map((mode) => {
@@ -251,31 +292,24 @@ function StudySetupExperience({ activeLearner, scope, preferredContent, returnTo
             </section>
           )}
 
-          <div className="study-setup-tip"><span className="study-setup-tip-icon"><SetupIcon name="bulb" /></span><p>Thiết lập mặc định phù hợp cho hầu hết buổi học.</p></div>
           <button className="study-setup-start" type="button" disabled={available === 0} onClick={startStudy}><SetupIcon name="play" />Bắt đầu học<SetupIcon name="back" /></button>
-          <p className="study-setup-note">Bạn có thể thay đổi thiết lập bất cứ lúc nào.</p>
+
         </section>
 
-        <aside className="study-setup-aside" aria-label="Tóm tắt và gợi ý">
+        <aside className="study-setup-aside" aria-label="Tóm tắt buổi học">
           <section className="study-setup-summary" aria-labelledby="study-setup-summary-title">
             <h2 id="study-setup-summary-title"><SetupIcon name="clipboard" />Tóm tắt buổi học</h2>
             <dl>
               <div><dt>Số lượng từ</dt><dd data-testid="study-setup-summary-count">{plannedCount} từ</dd></div>
               <div><dt>Chế độ học</dt><dd data-testid="study-setup-summary-mode">{isWeak ? "Ôn tập từ yếu" : isSavedAll ? "Từ đã lưu" : MODE_COPY[selectedContent].title}</dd></div>
-              {data.scopeName ? <div><dt>{scope?.type === "topic" ? "Chủ đề" : scope?.type === "learning-set" ? "Bộ từ" : "Phạm vi"}</dt><dd data-testid="study-setup-summary-scope">{data.scopeName}</dd></div> : null}
+              <div><dt>Nguồn học</dt><dd data-testid="study-setup-summary-scope">{urlScope && !override && !["custom", "pathway", "all"].includes(urlScope.type) ? data.scopeName : sourceName}</dd></div>
             </dl>
-            {plannedCount < amount ? <p className="study-setup-availability">{isSavedAll ? `${available} từ có thể học trong phạm vi đã lưu.` : `Có ${plannedCount} từ phù hợp trong phạm vi này.`}</p> : null}
+
           </section>
-          <section className="study-setup-suggestions" aria-labelledby="study-setup-suggestions-title">
-            <h2 id="study-setup-suggestions-title"><span><SetupIcon name="bulb" /></span>Gợi ý</h2>
-            <ul>
-              <li><span><SetupIcon name="check" /></span>Bắt đầu với 10 từ mỗi buổi để duy trì sự tập trung.</li>
-              <li><span><SetupIcon name="check" /></span>Chọn chế độ phù hợp với mục tiêu học hôm nay.</li>
-              <li><span><SetupIcon name="check" /></span>Bạn luôn có thể điều chỉnh thiết lập sau này.</li>
-            </ul>
-          </section>
+
         </aside>
       </div>
+      {picker && sets ? <LearningSetPickerDialog sets={sets} selected={ids} onCancel={() => { setPicker(false); navigate(returnTo, { replace: true, state: { keepSetup: true } }); }} onApply={(next) => { setState("loading"); setIds(next); setOverride(true); saveStudyPreference(userId, "custom", next); setPicker(false); navigate(`/study/setup?${studyScopeParams({ type: "custom", ids: next })}`, { replace: true, state: { keepSetup: true } }); }} /> : null}
     </main>
   );
 }

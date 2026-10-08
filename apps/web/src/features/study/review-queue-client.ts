@@ -1,5 +1,6 @@
 import {
   reviewQueueResponseSchema,
+  type CatalogStudyScope,
   type ReviewQueueResponse
 } from "@vocabflow/contracts";
 
@@ -26,10 +27,15 @@ async function readError(response: Response): Promise<ReviewQueueClientError> {
   return new ReviewQueueClientError(code, response.status);
 }
 
-export async function requestReviewQueue(learnerId: string, scope?: "saved" | "saved-all" | "weak"): Promise<ReviewQueueResponse> {
+export async function requestReviewQueue(learnerId: string, scope?: "saved" | "saved-all" | "weak" | CatalogStudyScope): Promise<ReviewQueueResponse> {
   let response: Response;
   try {
-    const query = scope === "saved-all"
+    const params = new URLSearchParams();
+    if (typeof scope === "object") {
+      if (scope.type === "topic" || scope.type === "learning-set") params.set(scope.type === "topic" ? "topicId" : "learningSetId", String(scope.id));
+      else { params.set("source", scope.type); if (scope.type === "custom") params.set("setIds", scope.ids.join(",")); }
+    }
+    const query = typeof scope === "object" ? `?${params}` : scope === "saved-all"
       ? "?scope=saved&content=all"
       : scope === "saved" ? "?scope=saved"
         : scope === "weak" ? "?scope=weak" : "";

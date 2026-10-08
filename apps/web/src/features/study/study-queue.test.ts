@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { ReviewQueueResponse } from "@vocabflow/contracts";
-import { requestScopedReviewQueue, selectStudyQueue, studyContentModeFromParams, studyScopeFromParams, studySelectionFromParams, type StudyScope } from "./study-queue";
+import { requestScopedReviewQueue, selectStudyQueue, studyContentModeFromParams, studyScopeFromParams, studyScopeParams, studySelectionFromParams, type StudyScope } from "./study-queue";
 
 const learnerId = "00000000-0000-4000-8000-000000000010";
 
@@ -20,6 +20,17 @@ function queueResponse(): ReviewQueueResponse {
 
 describe("saved study scope", () => {
   beforeEach(() => vi.restoreAllMocks());
+
+  it.each<StudyScope>([{ type: "pathway" }, { type: "all" }, { type: "custom", ids: [1, 2] }, { type: "topic", id: 7 }, { type: "learning-set", id: 4 }])("round trips $type through start/continue URLs and sends only server scope", async (scope) => {
+    expect(studyScopeFromParams(studyScopeParams(scope))).toEqual(scope);
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(JSON.stringify(queueResponse())));
+    await requestScopedReviewQueue(learnerId, scope);
+    expect(fetchMock).toHaveBeenCalledExactlyOnceWith(`/api/learners/${learnerId}/review-queue?${studyScopeParams(scope)}`, { credentials: "include" });
+  });
+
+  it.each(["source=custom&setIds=1,1", "source=custom&setIds=0", "source=all&source=pathway", "source=pathway&topicId=1", "source=custom&setIds=1&setIds=2", "learningSetId=1&learningSetId=2"])("rejects ambiguous scope %s", (query) => {
+    expect(studyScopeFromParams(new URLSearchParams(query))).toEqual({ type: "invalid" });
+  });
 
   it("parses one explicit setup content mode for the shared study flow", () => {
     expect(studyContentModeFromParams(new URLSearchParams("content=review"))).toBe("review");

@@ -1,3 +1,4 @@
+import { parseStudySetIds, positiveStudyId } from "@vocabflow/contracts";
 import { Hono } from "hono";
 import { performance } from "node:perf_hooks";
 import type { RuntimeBindings } from "./runtime-bindings";
@@ -245,6 +246,17 @@ function parseReviewQueueScope(request: Request): ReviewQueueScope | undefined |
   const params = new URL(request.url).searchParams;
   const keys = [...params.keys()];
   if (keys.length === 0) return undefined;
+  if (new Set(keys).size !== keys.length) return null;
+  const source = params.get("source");
+  if (keys.length === 1 && (source === "pathway" || source === "all")) return { type: source };
+  if (keys.length === 2 && source === "custom" && keys.includes("setIds")) {
+    const ids = parseStudySetIds(params.get("setIds") ?? "");
+    return ids ? { type: "custom", ids } : null;
+  }
+  if (keys.length === 1 && (keys[0] === "learningSetId" || keys[0] === "topicId")) {
+    const id = positiveStudyId(params.get(keys[0]) ?? "");
+    return id ? { type: keys[0] === "topicId" ? "topic" : "learning-set", id } : null;
+  }
   if (keys.length === 1 && keys[0] === "scope" && params.get("scope") === "saved") return "saved";
   if (keys.length === 1 && keys[0] === "scope" && params.get("scope") === "weak") return "weak";
   if (keys.length === 2

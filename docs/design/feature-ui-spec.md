@@ -1,5 +1,19 @@
 # VocabFlow Feature UI Specification — Single-account learning
 
+## Study Setup compact sources (US-54, 2026-10-08)
+
+Owner-approved Study Setup order: source select, amount, mode, Start. Exactly
+three source options: Học theo lộ trình, Bộ từ tôi chọn, Tất cả bộ từ. Custom
+shows only a selected-count row and Thay đổi; its searchable multi-set dialog
+uses draft selection, Cancel and Apply(N). Zero disables Apply and Start.
+Desktop dialog width 560px; mobile bottom sheet with bounded viewport, separate
+list scrolling, visible footer and safe-area padding. Accessible dialog title,
+focus trap/restore and Escape cancel are required. Summary contains source,
+actual planned count and mode. Remove tips, repeated note and verbose pathway
+panels. No toast for local source/draft actions. Existing layout and amount/mode
+interaction styles remain. [Contract](../stories/US-54-study-source-picker.md).
+
+
 ## Single-account learning baseline (2026-10-07)
 
 This owner-approved baseline supersedes the earlier learner-management flow and

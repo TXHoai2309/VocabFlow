@@ -43,6 +43,8 @@ convenient. Reprioritization or a new story must be explicit.
 
 ## Files
 
+- [US-54 Study Source Picker](US-54-study-source-picker.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
+
 - [US template](US-TEMPLATE.md)
 - [US-01 Parent Registration](US-01-parent-registration.md) — `ACCEPTED`
 - [US-02 Parent Login](US-02-parent-login.md) — `ACCEPTED`

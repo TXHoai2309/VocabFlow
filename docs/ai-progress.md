@@ -1,5 +1,62 @@
 # Current Handoff Snapshot
 
+## 2026-10-08 — US-54 compact Study Setup sources and server-scoped queues
+
+Status: IMPLEMENTED / READY FOR OWNER CHECK. Owner explicitly approved this
+slice and commit/push to TXH. Initial remote baseline was
+6a1fe9889162cfec3e7bc102aa64a84da2b1bc73. While implementation was in progress,
+remote advanced only in Dataset/docs; non-overlapping fast-forward adopted
+final baseline a2f4f54eefc6734eb7da805f80ff8a9c6ebd4690 without stashing or
+rewriting task files. Historical stashes, including
+59c6655f4aa0924cd7b9a8fd6215c61bb852b135, remain intact.
+
+Compact source dropdown defaults to Pathway and has exactly Pathway/Custom/All.
+Custom uses a searchable draft dialog, 560px desktop and a mobile bottom sheet,
+independently scrolling list, fixed footer, safe-area padding, explicit zero
+validation, focus trap/restore and all cancel paths. Summary shows source,
+actual planned count and mode. Removed verbose tips and repeated note.
+Changing source keeps controls usable while availability loads; late results
+from canceled effects cannot replace the current source. No selection toast.
+
+Queue filtering moved from client vocabulary-ID filtering to parameterized
+server EXISTS predicates before LIMIT. Pathway selects earliest enabled set
+with canonical sparse NEW by sort_order then ID; previously studied Due stays
+eligible across enabled sets, with no mastery gate. Custom/All union enabled-set
+words without assignment mutation or duplicate membership rows. Exact set,
+Topic (preserving assignment access), Saved-all and Weak scopes survive Start,
+reconcile, exit and Summary Học tiếp. Account-scoped local source/ID preferences
+are validated against fresh summaries; queues/progress/history are not stored.
+Daily New allowance and 20 Due / 10 New presentation bounds remain; review write,
+idempotency/revision, scheduler, reinforcement and XP code are unchanged.
+
+Verification:
+- Final Study/API/component suite: 11 files / 178 tests PASS.
+- Broader relevant apps/API/contracts/domain regression: 54 files / 638 tests
+  PASS. Expanded study/review/XP/navigation/search/state/toast run: 19 files /
+  265 tests PASS. Final identity/preference regression: 23 tests PASS.
+- Chromium: 16/16 PASS, including widths 320/390/768/1440, modal/footer bounds,
+  keyboard/draft cancellation, reload, stale-ID pruning, account B isolation,
+  delayed old-source response and login/logout. No assignment write requests.
+- pnpm typecheck, pnpm build, pnpm lint and git diff --check PASS. Client secret
+  and source-map scans PASS. Existing warnings: Node 22.19.0 vs requested
+  22.23.2, >500kB JS chunk, API dynamic-import warning.
+- API SQL tests inspect generated SQL and mocked database rows; no live Neon or
+  new Trusted DB execution was performed. Pathway is dataset sort_order, not
+  an invented CEFR/grade roadmap. Review queues remain unreserved reads.
+- Historical seven unrelated E2E failures documented in the single-account
+  verification remain unclaimed: us05 summary labels, us20 old learner heading,
+  us22 (2) obsolete status/grid markers, us26-27 (2) local-filter expectation /
+  missing canonical identity fixture, us28-29 obsolete catalog fixture/markers.
+  They were not rerun or weakened in this slice.
+- Manual Preview still needed: live authenticated catalog/queue/write flow and
+  real mobile onscreen keyboard / device safe-area behavior. Mocked Chromium
+  evidence does not claim Production or live PostgreSQL acceptance.
+
+No assignment mutation, schema/migration, Dataset modification by this task,
+main merge, force push, old stash restoration or Production deployment.
+See [US-54](stories/US-54-study-source-picker.md) for contract and changed files.
+
+
 ## Phase 2H.2A candidate preparation (2026-10-08)
 
 READY FOR OWNER REVIEW. Remote/local baseline

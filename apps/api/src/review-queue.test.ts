@@ -7,6 +7,94 @@ import type { ReviewQueueResponse } from "@vocabflow/contracts";
 const learnerId = "00000000-0000-4000-8000-000000000010";
 const householdId = "00000000-0000-4000-8000-000000000001";
 
+describe("Study source API contract", () => {
+  it.each(["source=pathway", "source=all", "source=custom&setIds=2,1", "learningSetId=4", "topicId=7"])("accepts %s with authenticated ownership handoff", async (query) => {
+    const list = vi.fn(async (_userId: string) => ({ learnerId, reviewDate: "2026-10-08", dueCount: 0, newCount: 0, queue: [] }));
+    const app = createApp({ readSession: async () => ({ user: { id: "A" } }), reviewQueueService: { list } });
+    expect((await app.request(`http://localhost/api/learners/${learnerId}/review-queue?${query}`)).status).toBe(200);
+    expect(list.mock.calls[0]?.[0]).toBe("A");
+  });
+  it.each(["source=all&source=pathway", "source=custom", "source=custom&setIds=0", "source=custom&setIds=1,1", "source=custom&setIds=1&setIds=2", "source=custom&setIds=9007199254740992", "source=all&learningSetId=1", "topicId=1&topicId=2", "source=all&foo=1", `source=custom&setIds=${Array.from({ length: 51 }, (_, i) => i + 1).join(",")}`])("rejects %s before querying", async (query) => {
+    const list = vi.fn();
+    const app = createApp({ readSession: async () => ({ user: { id: "A" } }), reviewQueueService: { list } });
+    expect((await app.request(`http://localhost/api/learners/${learnerId}/review-queue?${query}`)).status).toBe(400);
+    expect(list).not.toHaveBeenCalled();
+  });
+});
+
+describe("Scoped membership SQL before bounds", () => {
+  function fixture(options: { studied?: number[]; disabled?: boolean; forbidden?: boolean; noNew?: boolean } = {}) {
+    const queries: Array<{ sql: string; params: unknown[] }> = [];
+    const execute = vi.fn(async (query) => {
+      const rendered = new PgDialect().sqlToQuery(query); queries.push(rendered);
+      const statement = rendered.sql;
+      if (queries.length === 1) return options.forbidden ? { rows: [] } : authorizedRows();
+      if (statement.includes("SELECT id FROM")) return { rows: options.disabled ? [] : rendered.params.filter((id) => typeof id === "number").map((id) => ({ id })) };
+      if (statement.includes("SELECT ls.id")) return { rows: options.noNew ? [] : [{ id: options.studied?.includes(101) ? 2 : 1 }] };
+      if (statement.includes("SELECT timezone")) return { rows: [{ timezone: "Asia/Ho_Chi_Minh" }] };
+      if (statement.includes("daily_new_word_limit")) return dailyUsageRow(2, 1);
+      if (statement.includes("next_review_date <=")) return { rows: [dueRow(100, 1)] };
+      if (statement.includes("lp.vocabulary_id IS NULL")) {
+        // Distinct canonical rows outside the old global top ten. Membership
+        // is EXISTS, so overlapping set links never multiply vocabulary rows.
+        return { rows: [newRow(rendered.params.includes(2) ? 202 : 101, 2), newRow(303, 2)] };
+      }
+      return { rows: [] };
+    });
+    return { queries, service: createReviewQueueService({ execute }, { now: () => new Date("2026-10-08T03:00:00Z") }) };
+  }
+  it("binds Custom IDs, scopes before LIMIT, excludes assignment writes and retains due/daily cap", async () => {
+    const { service, queries } = fixture();
+    const queue = await service.list("A", learnerId, undefined, { type: "custom", ids: [1, 2] });
+    expect(queue.queue.map((item) => [item.vocabulary.id, item.queueType])).toEqual([[100, "DUE"], [202, "NEW"]]);
+    for (const query of queries.filter(({ sql }) => sql.includes("COUNT(*) OVER()"))) {
+      expect(query.sql).toContain("EXISTS ("); expect(query.sql).toContain("ls.id IN (");
+      expect(query.params).toContain(1); expect(query.params).toContain(2); expect(query.params).not.toContain(3);
+      expect(query.sql.indexOf("lsi.vocabulary_id = v.id")).toBeLessThan(query.sql.lastIndexOf("LIMIT"));
+      expect(query.sql).not.toContain('"learner_learning_sets"');
+    }
+    expect(new Set(queue.queue.map((item) => item.vocabulary.id)).size).toBe(queue.queue.length);
+    expect(queries.every(({ sql }) => !/\b(INSERT|UPDATE|DELETE)\b/.test(sql))).toBe(true);
+  });
+  it("All is an enabled-set union rather than the legacy catalog or assignments", async () => {
+    const { service, queries } = fixture(); await service.list("A", learnerId, undefined, { type: "all" });
+    for (const query of queries.filter(({ sql }) => sql.includes("COUNT(*) OVER()"))) {
+      expect(query.sql).toContain('"learning_set_items"'); expect(query.sql).toContain("ls.enabled = true"); expect(query.sql).toContain("v.enabled = true");
+      expect(query.sql).not.toContain('"learner_learning_sets"'); expect(query.sql).not.toContain("ls.id IN");
+    }
+  });
+  it("Pathway chooses by canonical missing progress and advances without mastery while retaining past due", async () => {
+    for (const studied of [[], [101]]) {
+      const { service, queries } = fixture({ studied });
+      const queue = await service.list("A", learnerId, undefined, { type: "pathway" });
+      expect(queue.queue.map((item) => item.vocabulary.id)).toEqual([100, studied.length ? 202 : 101]);
+      const progression = queries.find(({ sql }) => sql.includes("SELECT ls.id"))!;
+      expect(progression.sql).toContain("ORDER BY ls.sort_order ASC, ls.id ASC LIMIT 1");
+      expect(progression.sql).toContain('"learner_progress"'); expect(progression.sql).toContain("NOT EXISTS"); expect(progression.params).toContain(learnerId);
+      expect(progression.sql).not.toContain("MASTERED");
+      expect(queries.find(({ sql }) => sql.includes("next_review_date <="))!.sql).not.toContain("ls.id IN");
+    }
+  });
+  it("rejects disabled or missing sets after ownership, and blocks cross-account scope reads", async () => {
+    await expect(fixture({ disabled: true }).service.list("A", learnerId, undefined, { type: "custom", ids: [1] })).rejects.toMatchObject({ code: "SCOPE_NOT_FOUND", status: 404 });
+    const { service, queries } = fixture({ forbidden: true });
+    await expect(service.list("B", learnerId, undefined, { type: "all" })).rejects.toMatchObject({ code: "HOUSEHOLD_ACCESS_DENIED" });
+    expect(queries).toHaveLength(1);
+  });
+  it("keeps Due when every Pathway set has introduced its New words", async () => {
+    const { service, queries } = fixture({ noNew: true });
+    const result = await service.list("A", learnerId, undefined, { type: "pathway" });
+    expect(result.queue.map((item) => item.queueType)).toEqual(["DUE"]);
+    expect(queries.some(({ sql }) => sql.includes("lp.vocabulary_id IS NULL"))).toBe(false);
+  });
+  it("retains learner assignment membership for scoped Topic reads", async () => {
+    const { service, queries } = fixture(); await service.list("A", learnerId, undefined, { type: "topic", id: 7 });
+    for (const query of queries.filter(({ sql }) => sql.includes("COUNT(*) OVER()"))) {
+      expect(query.sql).toContain('"learner_learning_sets"'); expect(query.sql).toContain('"vocabulary_topics"'); expect(query.params).toContain(7);
+    }
+  });
+});
+
 function vocabularyRow(id: number, word = `word-${id}`) {
   return {
     id,

@@ -1,5 +1,14 @@
 # VocabFlow Roadmap and Batch Index
 
+## US-54 — Study Source Picker (2026-10-08)
+
+Owner-approved compact Study Setup source selector and server-scoped queues.
+Implementation complete; 178 focused tests and 16 Chromium E2E pass.
+Status: IMPLEMENTED / READY FOR OWNER CHECK. No Learning Sets
+redesign, assignment mutation, migration, Dataset change or deployment.
+[Contract](stories/US-54-study-source-picker.md).
+
+
 ## Single-account learning baseline (2026-10-07)
 
 This owner-approved baseline supersedes the earlier learner-management flow and

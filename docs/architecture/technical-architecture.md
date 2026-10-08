@@ -1,5 +1,18 @@
 # Technical Architecture v1.0.17
 
+## Study source queue extension (US-54, 2026-10-08)
+
+The additive source/pathway, source/custom + setIds and source/all queue
+queries apply parameterized EXISTS membership before the existing Due/New
+LIMIT. Explicit topicId and learningSetId are now server-scoped too. Custom
+IDs are unique positive safe integers bounded at 50 and checked against enabled
+canonical sets after ownership authorization. Pathway selects the earliest
+sort_order / ID set with enabled sparse NEW, while Due spans studied enabled
+set content. No assignment mutation, scheduler/write changes or migration.
+Only account-scoped UX preferences persist locally; queues remain canonical
+reads. [Contract](../stories/US-54-study-source-picker.md).
+
+
 ## Single-account learning baseline (2026-10-07)
 
 This owner-approved baseline supersedes the earlier learner-management flow and

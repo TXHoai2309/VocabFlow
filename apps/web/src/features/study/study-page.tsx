@@ -1,3 +1,4 @@
+import { studyScopeParams } from "./study-queue";
 import { AccountLearningState } from "../learners/account-learning-state";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useLocation, useSearchParams } from "react-router";
@@ -62,15 +63,7 @@ function sessionCards(queue: ReviewQueueItem[]): SessionCard[] {
 }
 
 function studySetupHref(scope: StudyScope | null) {
-  const params = new URLSearchParams();
-  if (scope?.type === "topic" || scope?.type === "learning-set") {
-    params.set(scope.type === "topic" ? "topicId" : "learningSetId", String(scope.id));
-  }
-  if (scope?.type === "saved") {
-    params.set("saved", "1");
-    if (scope.all) params.set("content", "all");
-  }
-  if (scope?.type === "weak") params.set("weak", "1");
+  const params = studyScopeParams(scope);
   const query = params.toString();
   return query ? `/study/setup?${query}` : "/study/setup";
 }
@@ -148,7 +141,7 @@ export function StudyPage({ mode = "flashcard", exercisePreference }: { mode?: S
   const selection = useMemo(() => studySelectionFromParams(searchParams, scope), [searchParams, scope]);
   const scopeKey = scope?.type === "saved"
     ? `saved:${scope.all ? "all" : "scheduled"}`
-    : scope ? `${scope.type}:${"id" in scope ? scope.id : "invalid"}` : "all";
+    : scope ? JSON.stringify(scope) : "all";
   const selectionKey = selection ? `${selection.content}:${selection.amount}` : "default";
   const returnTo = useMemo(() => studyReturnHref(location.state, scope), [location.state, scope]);
   if (!activeLearner) return <AccountLearningState />;

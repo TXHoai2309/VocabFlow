@@ -1,17 +1,10 @@
+import { studyScopeParams } from "./study-queue";
 import { Link } from "react-router";
 import type { StudyScope } from "./study-queue";
 import { formatStudyDuration, type StudySessionResult } from "./study-session-result";
 
 function studySetupHref(scope: StudyScope | null) {
-  const params = new URLSearchParams();
-  if (scope?.type === "topic" || scope?.type === "learning-set") {
-    params.set(scope.type === "topic" ? "topicId" : "learningSetId", String(scope.id));
-  }
-  if (scope?.type === "saved") {
-    params.set("saved", "1");
-    if (scope.all) params.set("content", "all");
-  }
-  if (scope?.type === "weak") params.set("weak", "1");
+  const params = studyScopeParams(scope);
   const query = params.toString();
   return query ? `/study/setup?${query}` : "/study/setup";
 }

@@ -1,5 +1,18 @@
 # VocabFlow Product Specification — Single-account learning
 
+## Study source extension (US-54, 2026-10-08)
+
+Study Setup has exactly three compact source options: Học theo lộ trình
+(default), Bộ từ tôi chọn (1–50 enabled sets), and Tất cả bộ từ. This scopes
+only today's session and never mutates long-term assignments. Pathway uses
+canonical progress and enabled-set sort_order / ID, advancing after New words
+are introduced without waiting for mastery. Previously studied due words stay
+reviewable. Custom and All use distinct enabled-set vocabulary unions, preserve
+the daily New allowance and SRS, and exclude unrelated legacy catalog content.
+Source preferences are per authenticated account; explicit scoped links win.
+See [US-54](../stories/US-54-study-source-picker.md).
+
+
 ## Single-account learning baseline (2026-10-07)
 
 This owner-approved baseline supersedes the earlier learner-management flow and

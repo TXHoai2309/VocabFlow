@@ -1,5 +1,18 @@
 # VocabFlow Project Decisions
 
+## Study scope is independent of assignment (2026-10-08)
+
+Owner approved US-54's compact Pathway/Custom/All source choice. Queue scope
+belongs to the session, not learner_learning_sets. All unions enabled sets;
+Custom unions selected enabled sets. Pathway picks the earliest sort_order / ID
+set with sparse NEW and keeps Due from previously studied enabled-set words.
+Membership must precede database limits. The daily allowance and atomic review
+write remain authoritative. Preferences contain account-scoped source/IDs only.
+This decision adds no schema, migration or Dataset change. Existing unscoped
+queue and Topic assignment-access semantics remain. See
+[US-54](stories/US-54-study-source-picker.md).
+
+
 ## Single-account learning baseline (2026-10-07)
 
 This owner-approved baseline supersedes the earlier learner-management flow and

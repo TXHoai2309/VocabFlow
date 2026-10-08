@@ -101,6 +101,6 @@ export function ActiveLearnerProvider({ children, initialLearner = null, userId,
   useEffect(() => () => { generation.current += 1; }, [userId]);
   const retry = useCallback(() => { void resolve(); }, [resolve]);
   const current = identity.userId === userId ? identity : { activeLearner: null, status: "resolving" as const, error: null };
-  const value = useMemo(() => ({ activeLearner: current.activeLearner, status: current.status, error: current.error, retry, setActiveLearner, clearActiveLearner }), [current.activeLearner, current.status, current.error, retry, setActiveLearner, clearActiveLearner]);
+  const value = useMemo(() => ({ userId: userId ?? undefined, activeLearner: current.activeLearner, status: current.status, error: current.error, retry, setActiveLearner, clearActiveLearner }), [userId, current.activeLearner, current.status, current.error, retry, setActiveLearner, clearActiveLearner]);
   return <ActiveLearnerContext.Provider value={value}>{children}</ActiveLearnerContext.Provider>;
 }

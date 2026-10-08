@@ -2,6 +2,7 @@ import { createContext } from "react";
 import type { LearnerDto } from "@vocabflow/contracts";
 
 export type ActiveLearnerContextValue = {
+  userId?: string;
   activeLearner: LearnerDto | null;
   setActiveLearner: (learner: LearnerDto) => void;
   clearActiveLearner: () => void;

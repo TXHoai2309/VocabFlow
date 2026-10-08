@@ -330,7 +330,7 @@ describe("US-09 flashcard session UX", () => {
     const item = queueItem(1, "apple");
     vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
       const url = String(input);
-      if (url === `/api/learners/${learner.id}/review-queue`) return response(queueResponse([item]));
+      if (url === `/api/learners/${learner.id}/review-queue?topicId=42`) return response(queueResponse([item]));
       if (url === "/api/topics/42/vocabulary") return response({ vocabulary: [item.vocabulary] });
       return response(reviewResponse(item, "FORGOTTEN"), 201);
     });
@@ -351,7 +351,6 @@ describe("US-09 flashcard session UX", () => {
 
   it("preserves a learning set scope on the continue action", async () => {
     const apple = queueItem(1, "apple");
-    const bread = queueItem(2, "bread");
     const learningSet = {
       id: 4,
       slug: "food",
@@ -365,7 +364,7 @@ describe("US-09 flashcard session UX", () => {
     };
     vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
       const url = String(input);
-      if (url === `/api/learners/${learner.id}/review-queue`) return response(queueResponse([apple, bread]));
+      if (url === `/api/learners/${learner.id}/review-queue?learningSetId=4`) return response(queueResponse([apple]));
       if (url === "/api/learning-sets/4") return response({ learningSet });
       return response(reviewResponse(apple, "REMEMBERED"), 201);
     });
@@ -667,7 +666,7 @@ describe("US-09 flashcard session UX", () => {
     const queue = [queueItem(1, "apple"), queueItem(2, "bread"), queueItem(3, "water", "DUE", 4)];
     const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
       const path = String(input);
-      if (path === `/api/learners/${learner.id}/review-queue`) return response(queueResponse(queue));
+      if (path === `/api/learners/${learner.id}/review-queue?topicId=7`) return response(queueResponse([queue[0]!, queue[2]!]));
       if (path === "/api/topics/7/vocabulary") return response({ vocabulary: [queue[0]!.vocabulary, queue[2]!.vocabulary] });
       return response({ error: { code: "NOT_FOUND" } }, 404);
     });
@@ -677,7 +676,7 @@ describe("US-09 flashcard session UX", () => {
     expect(screen.getByTestId("session-counter")).toHaveTextContent("Câu 1 / 2");
     expect(screen.getByText("apple")).toBeInTheDocument();
     expect(screen.queryByText("bread")).not.toBeInTheDocument();
-    expect(fetchMock).toHaveBeenCalledWith("/api/topics/7/vocabulary", { credentials: "include" });
+    expect(fetchMock).toHaveBeenCalledWith(`/api/learners/${learner.id}/review-queue?topicId=7`, { credentials: "include" });
     expect(fetchMock.mock.calls.every(([, init]) => !init?.method || init.method === "GET")).toBe(true);
   });
 
@@ -685,7 +684,7 @@ describe("US-09 flashcard session UX", () => {
     const queue = [queueItem(1, "apple"), queueItem(2, "bread"), queueItem(3, "water")];
     const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
       const path = String(input);
-      if (path === `/api/learners/${learner.id}/review-queue`) return response(queueResponse(queue));
+      if (path === `/api/learners/${learner.id}/review-queue?learningSetId=4`) return response(queueResponse([queue[1]!, queue[2]!]));
       if (path === "/api/learning-sets/4") {
         return response({ learningSet: {
           id: 4,
@@ -710,7 +709,7 @@ describe("US-09 flashcard session UX", () => {
     expect(screen.getByTestId("session-counter")).toHaveTextContent("Câu 1 / 2");
     expect(screen.getByText("bread")).toBeInTheDocument();
     expect(screen.queryByText("apple")).not.toBeInTheDocument();
-    expect(fetchMock).toHaveBeenCalledWith("/api/learning-sets/4", { credentials: "include" });
+    expect(fetchMock).toHaveBeenCalledWith(`/api/learners/${learner.id}/review-queue?learningSetId=4`, { credentials: "include" });
     expect(fetchMock.mock.calls.every(([, init]) => !init?.method || init.method === "GET")).toBe(true);
   });
 

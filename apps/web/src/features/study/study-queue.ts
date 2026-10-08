@@ -1,9 +1,7 @@
-import type { ReviewQueueItem, ReviewQueueResponse } from "@vocabflow/contracts";
-import { requestLearningSet } from "../learning-sets/learning-sets-client";
-import { requestTopicVocabulary } from "../learners/topics-client";
+import { parseStudySetIds, type LearningSourceScope, type ReviewQueueResponse } from "@vocabflow/contracts";
 import { requestReviewQueue } from "./review-queue-client";
 
-export type StudyScope = { type: "topic" | "learning-set"; id: number } | { type: "saved"; all: boolean } | { type: "weak" } | { type: "invalid" };
+export type StudyScope = { type: "topic" | "learning-set"; id: number } | { type: "saved"; all: boolean } | { type: "weak" } | { type: "invalid" } | LearningSourceScope;
 export type StudyContentMode = "new" | "review" | "mixed";
 export type StudySelection = { amount: 5 | 10 | 20 | 30; content: StudyContentMode | "all" };
 
@@ -14,6 +12,15 @@ export function studyContentModeFromParams(searchParams: URLSearchParams): Study
 }
 
 export function studyScopeFromParams(searchParams: URLSearchParams): StudyScope | null {
+  const scopeKeys = ["source", "setIds", "topicId", "learningSetId", "saved", "weak"];
+  if (scopeKeys.some((key) => searchParams.getAll(key).length > 1)) return { type: "invalid" };
+  const source = searchParams.get("source");
+  if (source !== null || searchParams.has("setIds")) {
+    if (["topicId", "learningSetId", "saved", "weak"].some((key) => searchParams.has(key)) || searchParams.get("content") === "all") return { type: "invalid" };
+    if ((source === "pathway" || source === "all") && !searchParams.has("setIds")) return { type: source };
+    const ids = parseStudySetIds(searchParams.get("setIds") ?? "");
+    return source === "custom" && ids ? { type: "custom", ids } : { type: "invalid" };
+  }
   const topicId = searchParams.get("topicId");
   const learningSetId = searchParams.get("learningSetId");
   const savedValues = searchParams.getAll("saved");
@@ -75,32 +82,21 @@ export function selectStudyQueue(response: ReviewQueueResponse, selection: Study
   };
 }
 
-function restrictQueueToVocabulary(response: ReviewQueueResponse, vocabularyIds: number[]): ReviewQueueResponse {
-  const eligibleIds = new Set(vocabularyIds);
-  const queue = response.queue.filter((item: ReviewQueueItem) => eligibleIds.has(item.vocabulary.id));
-  return {
-    ...response,
-    queue,
-    dueCount: queue.filter((item) => item.queueType === "DUE").length,
-    newCount: queue.filter((item) => item.queueType === "NEW").length
-  };
+export function studyScopeParams(scope: StudyScope | null): URLSearchParams {
+  const params = new URLSearchParams();
+  if (scope?.type === "topic" || scope?.type === "learning-set") params.set(scope.type === "topic" ? "topicId" : "learningSetId", String(scope.id));
+  if (scope?.type === "saved") { params.set("saved", "1"); if (scope.all) params.set("content", "all"); }
+  if (scope?.type === "weak") params.set("weak", "1");
+  if (scope?.type === "all" || scope?.type === "pathway" || scope?.type === "custom") {
+    params.set("source", scope.type);
+    if (scope.type === "custom") params.set("setIds", scope.ids.join(","));
+  }
+  return params;
 }
 
-export async function requestScopedReviewQueue(
-  learnerId: string,
-  scope: StudyScope | null,
-  scopedVocabularyIds?: Promise<number[]>
-): Promise<ReviewQueueResponse> {
-  if (!scope) return requestReviewQueue(learnerId);
-  if (scope.type === "weak") return requestReviewQueue(learnerId, "weak");
-  if (scope.type === "saved") return requestReviewQueue(learnerId, scope.all ? "saved-all" : "saved");
-  const response = await requestReviewQueue(learnerId);
-  if (scope.type === "invalid") return { ...response, queue: [], dueCount: 0, newCount: 0 };
-
-  const vocabularyIds = scopedVocabularyIds
-    ? await scopedVocabularyIds
-    : scope.type === "topic"
-      ? (await requestTopicVocabulary(scope.id)).map((item) => item.id)
-      : (await requestLearningSet(scope.id)).items.map((item) => item.vocabulary.id);
-  return restrictQueueToVocabulary(response, vocabularyIds);
+export async function requestScopedReviewQueue(learnerId: string, scope: StudyScope | null): Promise<ReviewQueueResponse> {
+  if (scope?.type === "invalid") throw new Error("INVALID_SCOPE");
+  if (scope?.type === "weak") return requestReviewQueue(learnerId, "weak");
+  if (scope?.type === "saved") return requestReviewQueue(learnerId, scope.all ? "saved-all" : "saved");
+  return requestReviewQueue(learnerId, scope ?? undefined);
 }

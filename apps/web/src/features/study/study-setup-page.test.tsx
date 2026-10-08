@@ -62,6 +62,7 @@ function response(body: unknown, status = 200) {
 const topicVocabulary = [vocabulary(1, "apple"), vocabulary(3, "water")];
 const topic = { id: 7, slug: "food", name: "Food", description: "Food words", sortOrder: 1, enabled: true };
 const learningSetVocabulary = [vocabulary(2, "bread"), vocabulary(3, "water")];
+const learningSetSummary = { id: 4, slug: "starter-words", name: "Starter Words", description: "A starter set", grade: null, enabled: true, sortOrder: 1, vocabularyCount: 2 };
 const learningSet = {
   id: 4,
   slug: "starter-words",
@@ -77,6 +78,10 @@ const learningSet = {
 function mockStudyData(queue: ReviewQueueItem[]) {
   return vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
     const path = String(input);
+    if (path === "/api/learning-sets") return response({ learningSets: [learningSetSummary, { ...learningSetSummary, id: 5, name: "Family" }] });
+    if (path === `/api/learners/${learner.id}/review-queue?topicId=7`) return response(queueResponse(queue.filter((entry) => topicVocabulary.some((v) => v.id === entry.vocabulary.id))));
+    if (path === `/api/learners/${learner.id}/review-queue?learningSetId=4`) return response(queueResponse(queue.filter((entry) => learningSetVocabulary.some((v) => v.id === entry.vocabulary.id))));
+    if (path.includes("review-queue?source=")) return response(queueResponse(queue));
     if (path === `/api/learners/${learner.id}/review-queue` || path === `/api/learners/${learner.id}/review-queue?scope=saved` || path === `/api/learners/${learner.id}/review-queue?scope=saved&content=all` || path === `/api/learners/${learner.id}/review-queue?scope=weak`) return response(queueResponse(queue));
     if (path === "/api/topics") return response({ topics: [topic] });
     if (path === "/api/topics/7/vocabulary") return response({ vocabulary: topicVocabulary });
@@ -115,6 +120,32 @@ function renderSetup(path = "/study/setup", activeLearner: LearnerDto | null = l
 describe("Study Setup", () => {
   beforeEach(() => vi.restoreAllMocks());
 
+  it("defaults to exactly three compact sources and omits verbose helpers", async () => {
+    mockStudyData([item(101)]); renderSetup(); await screen.findByTestId("study-setup-page");
+    expect(screen.getByRole("combobox", { name: "Nguồn học" })).toHaveValue("pathway");
+    expect(screen.getAllByRole("option").map((option) => option.textContent)).toEqual(["Học theo lộ trình", "Bộ từ tôi chọn", "Tất cả bộ từ"]);
+    expect(screen.queryByText("Gợi ý")).not.toBeInTheDocument(); expect(screen.queryByText("Lộ trình hiện tại")).not.toBeInTheDocument();
+    expect(screen.queryByText("Bạn có thể thay đổi thiết lập bất cứ lúc nào.")).not.toBeInTheDocument();
+  });
+
+  it("Custom opens the picker, commits multiple sets and starts the exact source without assignment writes", async () => {
+    const fetchMock = mockStudyData([item(101), item(202)]); renderSetup(); await screen.findByTestId("study-setup-page");
+    fireEvent.change(screen.getByRole("combobox", { name: "Nguồn học" }), { target: { value: "custom" } });
+    await screen.findByRole("dialog", { name: "Chọn bộ từ" });
+    expect(screen.getByRole("button", { name: /Áp dụng \(0\)/ })).toBeDisabled();
+    expect(screen.getByRole("button", { name: /Bắt đầu học/ })).toBeDisabled();
+    fireEvent.click(screen.getByRole("checkbox", { name: "Starter Words" })); fireEvent.click(screen.getByRole("checkbox", { name: "Family" }));
+    fireEvent.click(screen.getByRole("button", { name: "Áp dụng (2)" }));
+    await screen.findByText("2 bộ từ đã chọn");
+    expect(await screen.findByTestId("study-setup-summary-scope")).toHaveTextContent("2 bộ từ");
+    fireEvent.click(screen.getByRole("button", { name: "Thay đổi" }));
+    expect(screen.getByRole("checkbox", { name: "Family" })).toBeChecked(); fireEvent.click(screen.getByRole("button", { name: "Hủy" }));
+    fireEvent.click(screen.getByRole("button", { name: /Bắt đầu học/ })); await screen.findByTestId("study-session-ready");
+    expect(screen.getByTestId("account-route")).toHaveTextContent("source=custom&setIds=4%2C5");
+    expect(fetchMock.mock.calls.every(([, init]) => !init?.method || init.method === "GET")).toBe(true);
+    expect(fetchMock.mock.calls.some(([url]) => String(url).includes("/learning-sets/") && String(url).includes("/learners/"))).toBe(false);
+  });
+
   it("renders the 10 word preset and prefers mixed when both queue types are available", async () => {
     mockStudyData([item(1, "DUE"), item(2), item(3, "DUE")]);
     renderSetup();
@@ -128,7 +159,7 @@ describe("Study Setup", () => {
     expect(await screen.findByTestId("study-session-ready")).toBeInTheDocument();
     expect(screen.getByTestId("session-counter")).toHaveTextContent("Câu 1 / 3");
     expect(screen.getByText("Kết hợp")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Thoát buổi học" })).toHaveAttribute("href", "/study/setup");
+    expect(screen.getByRole("link", { name: "Thoát buổi học" })).toHaveAttribute("href", "/study/setup?source=pathway");
   });
 
   it("allows each requested amount and New, Review, and Mixed mode selection", async () => {
@@ -209,7 +240,7 @@ describe("Study Setup", () => {
     expect(screen.getByRole("link", { name: "Thoát buổi học" })).toHaveAttribute("href", "/study/setup?topicId=7");
     expect(screen.getByText("word-3")).toBeInTheDocument();
     expect(screen.queryByText("word-2")).not.toBeInTheDocument();
-    expect(fetchMock).toHaveBeenCalledWith("/api/topics/7/vocabulary", { credentials: "include" });
+    expect(fetchMock).toHaveBeenCalledWith(`/api/learners/${learner.id}/review-queue?topicId=7`, { credentials: "include" });
   });
 
   it("starts exactly the selected number of due Review words", async () => {
@@ -242,8 +273,8 @@ describe("Study Setup", () => {
     expect(screen.getByText("word-1")).toBeInTheDocument();
     expect(screen.queryByText("word-2")).not.toBeInTheDocument();
     expect(screen.queryByText("word-3")).not.toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Thoát buổi học" })).toHaveAttribute("href", "/study/setup?content=review");
-    expect(fetchMock.mock.calls.every(([path]) => String(path) === `/api/learners/${learner.id}/review-queue`)).toBe(true);
+    expect(screen.getByRole("link", { name: "Thoát buổi học" })).toHaveAttribute("href", "/study/setup?source=pathway");
+    expect(fetchMock.mock.calls.filter(([path]) => String(path).includes("review-queue")).every(([path]) => String(path) === `/api/learners/${learner.id}/review-queue?source=pathway`)).toBe(true);
   });
 
   it("uses only learning set vocabulary and displays the real set name", async () => {
@@ -348,13 +379,13 @@ describe("Study Setup", () => {
     expect(fetchMock).toHaveBeenCalledWith(`/api/learners/${learner.id}/review-queue?scope=weak`, { credentials: "include" });
   });
 
-  it("keeps global study unscoped and does not create a session or mutate progress before Start", async () => {
+  it("defaults to read-only pathway study and does not create a session or mutate progress before Start", async () => {
     const fetchMock = mockStudyData([item(1), item(2, "DUE")]);
     renderSetup();
 
     expect(await screen.findByTestId("study-setup-page")).toBeInTheDocument();
     expect(screen.queryByTestId("study-session-ready")).not.toBeInTheDocument();
-    expect(fetchMock.mock.calls.map(([path]) => String(path))).toEqual([`/api/learners/${learner.id}/review-queue`]);
+    expect(fetchMock.mock.calls.map(([path]) => String(path))).toEqual(["/api/learning-sets", `/api/learners/${learner.id}/review-queue?source=pathway`]);
     expect(fetchMock.mock.calls.every(([, init]) => !init?.method || init.method === "GET")).toBe(true);
   });
 
@@ -362,24 +393,27 @@ describe("Study Setup", () => {
     mockStudyData([]);
     renderSetup();
 
-    expect(await screen.findByTestId("study-setup-empty")).toHaveTextContent("Chưa có từ để học");
-    expect(screen.getByText("Nội dung này hiện chưa có từ phù hợp cho buổi học.")).toBeInTheDocument();
+    expect(await screen.findByTestId("study-setup-page")).toBeInTheDocument();
+    expect(screen.getByText("Nguồn học này chưa có từ mới hoặc từ đến hạn phù hợp.")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Bắt đầu học/ })).toBeDisabled();
     expect(screen.getByRole("link", { name: "Quay lại" })).toHaveAttribute("href", "/");
   });
 
   it("retries the canonical queue request after a setup load error", async () => {
-    const fetchMock = vi.spyOn(globalThis, "fetch")
-      .mockRejectedValueOnce(new Error("offline"))
-      .mockResolvedValueOnce(response(queueResponse([item(1)])));
+    let failed = false;
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
+      if (String(input) === "/api/learning-sets") return response({ learningSets: [learningSetSummary] });
+      if (!failed) { failed = true; throw new Error("offline"); }
+      return response(queueResponse([item(1)]));
+    });
     renderSetup();
 
     expect(await screen.findByTestId("study-setup-error")).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "Thử lại" }));
 
     expect(await screen.findByTestId("study-setup-page")).toBeInTheDocument();
-    expect(fetchMock).toHaveBeenCalledTimes(2);
-    expect(fetchMock).toHaveBeenNthCalledWith(1, `/api/learners/${learner.id}/review-queue`, { credentials: "include" });
-    expect(fetchMock).toHaveBeenNthCalledWith(2, `/api/learners/${learner.id}/review-queue`, { credentials: "include" });
+    expect(fetchMock.mock.calls.filter(([url]) => String(url).includes("review-queue"))).toHaveLength(2);
+
   });
 
   it("waits for internal identity at the original route without learner selection", async () => {

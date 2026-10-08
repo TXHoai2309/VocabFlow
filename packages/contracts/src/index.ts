@@ -139,6 +139,7 @@ export type ErrorCode =
   | "INVALID_REQUEST"
   | "VALIDATION_ERROR"
   | "NOT_FOUND"
+  | "SCOPE_NOT_FOUND"
   | "TOPIC_NOT_FOUND"
   | "LEARNING_SET_NOT_FOUND"
   | "VOCABULARY_NOT_FOUND"
@@ -685,3 +686,5 @@ export type VocabflowStarterDataset = z.infer<typeof vocabflowStarterDatasetSche
 export function errorEnvelope(code: ErrorCode, message: string, details?: Record<string, unknown>): ErrorEnvelope {
   return details ? { error: { code, message, details } } : { error: { code, message } };
 }
+
+export * from "./study-scope.js";

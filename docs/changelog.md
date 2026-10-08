@@ -1,5 +1,19 @@
 # VocabFlow Changelog
 
+## 2026-10-08 — Study source picker and scoped queues
+
+- Compact Pathway/Custom/All source dropdown; account-scoped preferences and
+  searchable multi-set draft modal / responsive bottom sheet. Remove setup tips
+  and repeated copy; show actual planned count and retain exact source links.
+- Parameterized server membership before queue limits; deterministic canonical
+  Pathway progression, Custom/All enabled-set unions and deduplication. Preserve
+  Topic/Saved/Weak, daily cap and review/SRS/XP invariants; no assignment writes.
+- Final focused 178 tests, broader 638 tests, expanded 265 tests, identity 23
+  tests and 16 Chromium E2E pass; typecheck/build/lint/diff pass. See US-54 and
+  ai-progress for mocked DB / manual Preview limits and historical E2E debt.
+- No migration, Dataset edit by this task or Production deployment.
+
+
 ## 2026-10-08 — Phase 2H.2A expansion candidate preparation
 
 Added an offline deterministic evidence ledger for the full 6143 source union
