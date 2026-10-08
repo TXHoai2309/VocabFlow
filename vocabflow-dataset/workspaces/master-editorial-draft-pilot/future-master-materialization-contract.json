@@ -1,0 +1,112 @@
+{
+  "phase": "2H.2B",
+  "artifactType": "NONCANONICAL_EDITORIAL_PROPOSAL",
+  "inputPins": {
+    "remoteBaseline": "a2f4f54eefc6734eb7da805f80ff8a9c6ebd4690",
+    "phase2h2aFingerprint": "5b754405d9072e79b603e6b008bd8788a7dae7aed4f2eedde3087482fc0bc7ff",
+    "phase2h1Fingerprint": "58928e98845e326f8d9a268aa160c867443e8497436d9c58fa2b9a5647f10a53",
+    "hybridReleaseHash": "44874b11d1fdef76a515f6285d04c9a417318daa6969e112608a59e7c232613c",
+    "hybridTreeExpected": "51ab4c5ce31bd38b51742d1aea16602150522da27ad26c123cc17b332f9a406e",
+    "treeVerification": "EXTERNAL_COMMAND_REQUIRED",
+    "authoredSourceHashes": {
+      "authored/batch-01.psv": {
+        "sha256LfUtf8": "da0ebcaa6b0300ddadcd0881b479c77440e0e8b6e154afb44fd6de94561a27b5",
+        "encoding": "UTF8_UNIVERSAL_NEWLINES_NORMALIZED_TO_LF"
+      },
+      "authored/batch-02.psv": {
+        "sha256LfUtf8": "5402a9dc50e0eb6c14991134029bf6c14817ca84d54bbc0a2ce3f6ba0ca457ef",
+        "encoding": "UTF8_UNIVERSAL_NEWLINES_NORMALIZED_TO_LF"
+      },
+      "authored/batch-03.psv": {
+        "sha256LfUtf8": "cd081319739ace2ac40901d32559158ce251747cf67745ed6845459af57001af",
+        "encoding": "UTF8_UNIVERSAL_NEWLINES_NORMALIZED_TO_LF"
+      },
+      "authored/batch-04.psv": {
+        "sha256LfUtf8": "bf2d0cb29eed2aae57d2fa658a91aa91d7821b3746c4e577fab240ee48963639",
+        "encoding": "UTF8_UNIVERSAL_NEWLINES_NORMALIZED_TO_LF"
+      },
+      "authored/batch-05.psv": {
+        "sha256LfUtf8": "c0ce1ebd0d625a245c7bf5a6037ea74375f133ca44b26edf000d528691e937df",
+        "encoding": "UTF8_UNIVERSAL_NEWLINES_NORMALIZED_TO_LF"
+      }
+    },
+    "schemaHashes": {
+      "common.schema.json": "6c210ec949e68382734948db5f3e040afb98828c9b0f8e2cb65d00d366466509",
+      "dataset.schema.json": "c6b1762638cb9a3fe39d0ee57d573ffae51ad9d4de62bea67ba8dc7ca74845a3",
+      "learning-set.schema.json": "d2d8921808b1518f69a3b3daf3d77dc303b4bb475c0c95661dcb4e8624973be3",
+      "lexeme.schema.json": "4357777f0592ccf93d803556b479a8c2d7296b4768d9b38213d554999c7d42ea",
+      "media-asset.schema.json": "9811e901d74561441e4576d10f2359b29176431d41c8ea20d1b79bda7721c8a3",
+      "provenance.schema.json": "79625337d3391dab2e937f02830f0ec691105b0839f28ef56218743aa7ca39b6",
+      "sense.schema.json": "10a99369237449cf4f773a8e343551854af8806f1a272313b792598813e1fd92",
+      "taxonomy.schema.json": "a09e15d80138fff105290422c4de0f8d45ce8ea1df3f2ba6ea47c7bfd550e65d"
+    },
+    "phase2h2aManifestHash": "89aa653429eaac8ca612f4a252172f03cb67598af91bad58aa5cebbcf68e2cf4"
+  },
+  "authorization": {
+    "canonicalIdentity": false,
+    "canonicalAuthoring": false,
+    "ownerApproval": false,
+    "releasePublication": false,
+    "runtimeMapping": false,
+    "developmentApply": false,
+    "legacyCleanup": false,
+    "mediaPublishing": false,
+    "databaseAccess": false,
+    "databaseWrite": false,
+    "production": false
+  },
+  "contractType": "FUTURE_MAPPING_PLAN_ONLY; NOT_SCHEMA_VALID_MASTER_OBJECTS",
+  "identityAllocation": "Separately authorized creation only: allocate UUIDv7 once with maintained RFC9562 library; persist a reviewed draft-key-to-ID registry. Never derive canonical IDs from spelling, hashes or these editorial keys.",
+  "lexeme": {
+    "schema": "lexeme.schema.json",
+    "mapping": {
+      "lemma": "owner-selected lexical form, not automatic normalized candidate spelling",
+      "normalizedLemma": "Apply existing NFKC-LOWER-EN-1 canonical policy after lexical-unit review; source NFC/casefold remains evidence",
+      "lexicalUnitType": "Owner confirms WORD/MULTIWORD_EXPRESSION/PHRASAL_VERB/IDIOM",
+      "aliases": "Reviewed variants with provenance, never silently merge a, an"
+    },
+    "reuse": "Require lexical identity proof under exact pinned records; otherwise separately approve creation. Compositional expressions may be deferred rather than become Lexemes."
+  },
+  "sense": {
+    "schema": "sense.schema.json",
+    "mapping": {
+      "senseLabel": "senseLabelEn as localized en label",
+      "partOfSpeechCode": "reviewed partOfSpeechProposal; OTHER requires explicit construction/number decision",
+      "translations": "meaningVi -> vi Translation with translationKind and preferred/order selected by owner",
+      "definitions": "definitionEn -> en LEARNER_FRIENDLY Definition",
+      "examples": "each en/vi pair -> Example and distinct ExampleTranslation",
+      "grammarNotes": "reviewed grammarNotesEn -> en localized note"
+    },
+    "reuseOrCreate": "Reuse only with Sense identity proof; similar text/POS is insufficient. Existing accepted identities preserve meaning. A distinct meaning gets a separately allocated ID, not a recycled runtime identity.",
+    "childIds": "Allocate separate UUIDv7 for Definition, Translation, Example and ExampleTranslation at authorized creation; preserve across revisions."
+  },
+  "revisionStrategy": "Append new immutable files with positive entity revision; exact identity continuity reviewed. Never overwrite 87 approved Lexemes/100 Senses or a pinned revision. Same-identity corrections get reviewed next revisions; distinct meanings require separate identities.",
+  "provenance": {
+    "schema": "provenance.schema.json",
+    "sourceType": "GENERATED",
+    "fieldMapping": "One field-level claim per authored child/field with subjectId, fieldPath, drafting process and persisted text hash; create real human OWNER_REVIEW provenance only after actual review",
+    "rightsGate": "Generated draft does not clear source rights or guarantee publication permission. Owner must establish permissible original content, any attribution obligations and license basis; never label AI prose PROJECT_AUTHORED by a fictional human."
+  },
+  "classifications": {
+    "schema": "common.schema.json#/$defs/classification",
+    "cefr": "Source evidence -> separately reviewed Sense classification with CEFR framework/version and Provenance; no default A1, no direct grade conversion",
+    "otherDimensions": "Difficulty needs an approved scale/rubric; school requires curriculum/level; age/topic/domain/exam need explicit evidence and reviewed taxonomy refs; Learning Set requires selection provenance and ordered membership",
+    "taxonomy": "Use pinned immutable taxonomy snapshots and exact existing concepts; no automatic label-to-ID mapping."
+  },
+  "release": {
+    "schema": "dataset.schema.json",
+    "pins": "Exact typed IDs, revisions, recordPath and RFC8785 canonical contentHash; no latest-record fallback",
+    "hash": "Existing sha256-canonical-json-v1; releaseHash over canonical manifest with only releaseHash omitted",
+    "validation": "Existing Ajv schemas plus cross-file release validator, reference/provenance closure, reviewed content, rights and independent explicit release authorization; APPROVED gate only after these pass"
+  },
+  "hardGates": [
+    "HUMAN_CONTENT_QA",
+    "OWNER_LEXEME_AND_SENSE_IDENTITY_DECISIONS",
+    "REJECTED_LEGACY_PAIRS_PRESERVED",
+    "RIGHTS_DISPOSITION",
+    "CLASSIFICATION_REVIEW",
+    "SEPARATE_CANONICAL_AUTHORING_AUTHORIZATION",
+    "SEPARATE_RELEASE_AUTHORIZATION"
+  ],
+  "runtimeBoundary": "No runtime IDs, maps, DB operations or Development apply. New Master -> Approved release -> separately authorized Development reconciliation/apply -> legacy transition."
+}

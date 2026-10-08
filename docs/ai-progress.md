@@ -5695,3 +5695,371 @@ registration boundary before feature implementation.
   production build PASS; changed-file ESLint PASS; final `git diff --check` PASS.
   No API, database, migration, Dataset V2 or production
   deployment change; database mutations: 0.
+
+
+## Phase 2H.2B editorial draft pilot (2026-10-08)
+
+RECONCILED / DRAFT COMPLETENESS READY FOR OWNER REVIEW. Editorial acceptance
+remains pending. All 155 drafts remain EDITORIAL DRAFT - NOT APPROVED.
+
+Git reconciliation parent: 8eca81e84d896fd0449aed04ce646465d4dd4b9b, direct
+child of accepted source artifact baseline a2f4f54eefc6734eb7da805f80ff8a9c6ebd4690.
+Branch: phase-2h2b-editorial-reconciled. Fetch matched the authorized parent;
+merge-base before switching was a2f4f54eefc6734eb7da805f80ff8a9c6ebd4690.
+Created a verified filesystem safety copy of all 16 actual untracked editorial
+files before `git switch -c phase-2h2b-editorial-reconciled origin/TXH`.
+Untracked files carried forward without collisions; every one of the 16 SHA-256
+hashes matched after switching. No stash/rebase/merge/reset or staging operation.
+Safety backup: D:/hoctienganh/phase-2h2b-editorial-safety-20261008/;
+file-hashes.json inventories every path and raw byte hash, stash-backups.txt
+records all seven retained stashes, unrelated-pyc-hashes.json records the two
+retained pre-existing pycs. The backup is outside the Git repository.
+
+Accepted input pins are unchanged:
+- Phase 2H.1: 58928e98845e326f8d9a268aa160c867443e8497436d9c58fa2b9a5647f10a53.
+- Phase 2H.2A: 5b754405d9072e79b603e6b008bd8788a7dae7aed4f2eedde3087482fc0bc7ff.
+- Phase 2H.2B: a42e4c25cebdf98cdd24f9e9231be81fff36bbdd571496eeff2886b4d1f1bdad.
+
+The generated remoteBaseline field continues to mean accepted source artifact
+baseline a2f4f54..., not the current Git parent. No fingerprinted field or input
+pin was changed. All five authored PSV hashes are byte-identical; no draft
+prose was overwritten or regenerated. External observations and owner samples
+are additive documentation, outside the accepted draft fingerprint.
+
+Accounting: 100 distinct pilot groups / 100 with substantive proposals / 0
+blocked; 100 lexical proposal groups, 155 Sense drafts, 37 multi-Sense groups.
+155 English definitions, 155 English examples, 155 Vietnamese meanings and 155
+Vietnamese example translations. Actual pilot membership, key uniqueness,
+source references, draft/group/lexeme links and examples were validated.
+QA PASS/REVIEW/FAIL = 0/155/0, POS review pending 155, CEFR pending 155.
+Existing Master identity review: 13 groups / 29 drafts. Owner approvals 0;
+canonical IDs 0; publication eligibility 0. GENERATED field authorship records
+actual AI composition and text hashes; no fictional human author/reviewer/date,
+license or clearance. Both corpora retain UNKNOWN_REVIEW_REQUIRED.
+
+The original [full reading report](../vocabflow-dataset/reports/master-editorial-draft-pilot.md)
+and eight JSON/five prose sources are preserved. A separate owner review
+companion section in [US-45](stories/US-45-master-vocabulary-v2-runtime-import-bridge.md#phase-2h2b-owner-readable-samples)
+shows 15 unique groups: bank, record, light, run, water; a, an; abnormal; ability;
+above; acre; acute; apple; according to; academic; attorney. Every selected
+Sense includes actual generated EN/VI definition/meaning and example/translation,
+source pointers, CEFR uncertainty, QA, Master/legacy considerations and a pending
+owner decision. No raw APKG learner text is copied into the samples.
+
+All new remote Study Setup/queue/application changes and US-54 documentation
+remain intact. Local task scope is the 16 editorial files plus three append-only
+handoff documents (19 intended files); no apps/web, apps/api, contracts, E2E,
+CSS or unrelated product/architecture/flow/roadmap/decision changes. US-45 is
+not marked fully ACCEPTED and this handoff grants no content approval.
+
+Materialization is blocked on human content QA, Lexeme/Sense identity proof,
+reviewed splits/coalescences, rights disposition, classification decisions and
+separate canonical/release authorization. Hybrid 2.2.1 remains 87 Lexemes /100
+Senses. All 2018 legacy rows, 75 historical identities, #11/#284/#295/#849 and
+owner-excluded non-identity pairs stay protected under pinned offline evidence;
+no live snapshot recapture is claimed. Database access/writes NONE/NONE,
+Production UNTOUCHED; no maps, migration, disable/delete or Master authoring.
+Commit NOT CREATED; push NOT PERFORMED. Next: remote-independent owner review
+of actual prose, Sense boundaries, provenance, rights and QA findings.
+
+### Raw authored file hashes preserved
+
+| Authored file | SHA-256 (raw bytes) |
+|---|---|
+| `batch-01.psv` | `da0ebcaa6b0300ddadcd0881b479c77440e0e8b6e154afb44fd6de94561a27b5` |
+| `batch-02.psv` | `5402a9dc50e0eb6c14991134029bf6c14817ca84d54bbc0a2ce3f6ba0ca457ef` |
+| `batch-03.psv` | `cd081319739ace2ac40901d32559158ce251747cf67745ed6845459af57001af` |
+| `batch-04.psv` | `bf2d0cb29eed2aae57d2fa658a91aa91d7821b3746c4e577fab240ee48963639` |
+| `batch-05.psv` | `c0ce1ebd0d625a245c7bf5a6037ea74375f133ca44b26edf000d528691e937df` |
+
+### Editorial quality observations and unresolved decisions
+
+The AI assistant inspected all 155 definition/meaning pairs and example pairs;
+this is an AI screening, not human editorial acceptance. Exact definition and
+English-example duplicates are zero, and no three-word example opening repeats.
+The persisted source-passage/eight-token screen compares both complete corpora
+(9677 notes) and flags zero matches. These finite checks do not establish
+originality, semantic equivalence, grammatical correctness or rights clearance.
+All 155 Sense drafts remain QA REVIEW; all bilingual, grammar/POS, boundaries,
+CEFR, generated authorship and rights findings remain pending.
+
+Suspected issues are recorded here without altering the persisted prose:
+
+- academic combines source ordinals 0 and 2 into one education/research adjective;
+  have to combines affirmative/negative patterns 0 and 1. Owner must decide
+  whether coalescence preserves meaning; no approved source-to-Sense mapping.
+- bank keeps financial and river-edge meanings separate. record distinguishes
+  best-result/stored-information nouns and capture-information verb, but sound,
+  image and information capture may need finer boundaries. run separates motion,
+  machine operation, management and an exercise noun; transitive operation and
+  other unsupported senses remain outside the proposed scope.
+- light separates illumination, lamp, weight, ignition and colour. Weight wording
+  also asserts ease of carrying, which may overconstrain the meaning. Existing
+  noun/verb Master pins require independent comparison and identity proof.
+- water noun and verb remain separate. Runtime #11 history and its owner-excluded
+  Master verb pair remain NONE. A new verb draft cannot reverse that decision.
+- arm:weapons uses the singular headword arm while its example uses arms. Owner
+  must review plural-only weapons usage, lexical form and identity granularity.
+- billion uses local OTHER because source NUMBER has no direct Master POS enum;
+  at the onset is a whole construction using OTHER rather than blindly copying
+  the noun tag for onset. about:approximately and above:higher-place need usage-
+  level POS analysis; source tags do not prove the proposed POS.
+- acute:rapid-onset needs subject terminology review of onset versus duration.
+  acre omits a conversion/size explanation, which may limit learner usefulness.
+  acquire:gain restricts acquisition to learning/experience while including
+  possessions; owner should review definition scope versus its example.
+- bad:spoiled-food's smelled bad example can also express an unpleasant odour
+  without proving spoilage. absurd's empty-package delivery-fee example depends
+  on context; owner should evaluate whether it clearly teaches unreasonable.
+- attorney has EXAMPLE_POLARITY_MISMATCH: English unclear corresponds to
+  Vietnamese chua ro, but the heuristic recognizes only explicit English
+  not/never. Likely false positive, still UNRESOLVED; no flag was cleared.
+- CEFR is preserved as source/headword evidence only. Conflicting bands, e.g.
+  acre, remain null as a single proposed band. Any unique candidate is still
+  unverified for this Sense; school/age/difficulty/topic/domain/exam/sets remain
+  independent. Scientific and sensitive terms need subject/audience review.
+
+Each draft key supports independent correction, deferment or rejection. No
+meaningful count, QA finding, owner decision or license was improved for reporting.
+
+### External validation on the reconciled baseline
+
+Commands ran with Python 3.13.1 and portable Node 22.23.2 on Git HEAD
+8eca81e84d896fd0449aed04ce646465d4dd4b9b. External command evidence is
+recorded here, outside generated validation/fingerprints.
+
+| Command | Actual result | Exit |
+|---|---|---|
+| `python -B scripts/phase-2h2b-editorial-draft-test.py` | 23/23 PASS | 0 |
+| `python -B scripts/phase-2h2a-master-expansion-test.py` | 21/21 PASS | 0 |
+| `python -B scripts/phase-2h1-source-inventory-test.py` | 13/13 PASS | 0 |
+| `python -B scripts/phase-2h2b-editorial-draft.py --check` | PASS; persisted prose replay, fingerprint unchanged | 0 |
+| `node node_modules/typescript/bin/tsc -b` | PASS | 0 |
+| `node node_modules/eslint/bin/eslint.js . --max-warnings=0` | PASS | 0 |
+| `node node_modules/tsx/dist/cli.mjs scripts/hybrid-100-runtime-eligible-patch-release.ts --check` | NOOP_ALREADY_MATERIALIZED_AND_FROZEN; writesPerformed=false | 0 |
+| `pnpm typecheck` | WRAPPER_BLOCKED_BY_ENVIRONMENT: ERR_PNPM_ABORTED_REMOVE_MODULES_DIR_NO_TTY | 1 |
+
+The pnpm wrapper attempted its installation check and aborted at the non-TTY
+purge guard. No bypass, install retry or node_modules removal was performed;
+direct TypeScript CLI PASS is independent evidence. Frozen release hash:
+44874b11d1fdef76a515f6285d04c9a417318daa6969e112608a59e7c232613c;
+tree: 51ab4c5ce31bd38b51742d1aea16602150522da27ad26c123cc17b332f9a406e.
+
+
+### Reconciliation integrity and final Git scope
+
+All 16 safety-copy hashes still match after documentation closure, including
+all five authored PSV byte hashes. Seven stash entries and both pre-existing
+pyc byte hashes match the saved inventory. The three handoff documents retain
+the complete remote version as their prefix; appended observations/samples
+preserve Study source picker documentation. The companion contains 15 unique
+sample groups / 30 Sense drafts, copied verbatim from existing draft fields.
+
+Actual intended inventory: 19 files (16 new editorial files plus three tracked
+handoff documents). No staged file or staged pyc; no local app/API/contracts/
+E2E/CSS/product/architecture/flow/roadmap/decision diff. `git diff --check`
+PASS, exit 0; a separate read-only whitespace check covers all untracked
+editorial text too. Initial trailing blank lines in newly appended documentation
+were removed; no editorial file changed. The safety inventory records all exact
+paths and SHA-256 values; Git diff alone was not used to inventory new files.
+
+
+## Phase 2H.2B-QA1 editorial corrections (2026-10-08)
+
+EDITORIAL CORRECTIONS PROPOSED - OWNER REVIEW PENDING. Remote/local baseline
+8eca81e84d896fd0449aed04ce646465d4dd4b9b on phase-2h2b-editorial-reconciled.
+The 19 prior intended files remain; changes are confined to a dedicated correction
+workspace, two new Python scripts, one new report and additive handoff sections.
+Original scripts, report, five PSV files and eight generated artifacts retain
+all 16 safety-copy byte hashes. All seven stashes, safety backups and unrelated
+pycs remain. No app/API/contracts/E2E/UI/product/architecture/decision edits.
+
+Independent AI review JSON/Markdown files were not found by exact-name searches
+of D:/hoctienganh and C:/Users/User/.codex/attachments, including hidden/ignored
+files. Used the complete 22 findings in Section 5 of the user request, exactly
+as authorized; preserved its exact bytes in review-intake/qa1-request.txt with
+SHA-256. No unavailable review file was claimed as loaded. Original-file byte
+pins copied from the existing external safety backup into review intake.
+
+Original Phase 2H.1 fingerprint:
+58928e98845e326f8d9a268aa160c867443e8497436d9c58fa2b9a5647f10a53.
+Original Phase 2H.2A fingerprint:
+5b754405d9072e79b603e6b008bd8788a7dae7aed4f2eedde3087482fc0bc7ff.
+Original Phase 2H.2B fingerprint:
+a42e4c25cebdf98cdd24f9e9231be81fff36bbdd571496eeff2886b4d1f1bdad.
+All three remain unchanged. Independent correction fingerprint: b75b0522e64db5d61cff4adbccd2fb553c72f5d475d6e4370b2075e656b6a40d.
+Accepted source baseline remains a2f4f54eefc6734eb7da805f80ff8a9c6ebd4690,
+distinct from the Git reconciliation parent. No source repin or original rewrite.
+
+22 findings: 17 revised preview drafts, 4 explicitly deferred identity cases,
+1 scoped false-positive rejection. Dispositions: ACCEPT_CORRECTION_PROPOSAL 13,
+MODIFY_CORRECTION_PROPOSAL 4 (about/acquire/acute/block), DEFER_IDENTITY_DECISION
+4, REJECT_FINDING_WITH_REASON 1 (attorney). These are AI recommendations only.
+134 retained triage drafts include attorney; four additional identity cases also
+retain their text, giving 138 unchanged preview drafts. All 155 keys, 100 groups,
+37 multi-Sense groups and complete bilingual fields remain. Updated fields:
+9 English definitions, 4 English examples, 12 Vietnamese meanings, 6 Vietnamese
+example translations, 1 POS proposal. Old/new six-field snapshots record coupled
+meaning/label/POS/definition/translation/example review; grammar-note changes and
+field-level GENERATED hashes are also retained. AI review is not human acceptance.
+
+All 155 remain QA REVIEW and identity UNRESOLVED; 15 explicit identity-issue
+records include the four mandatory cases and correction-related blockers.
+No canonical IDs/owner approvals/publication eligibility. Rights remain
+UNKNOWN_REVIEW_REQUIRED; no human author, review date, reviewer or license invented.
+Source evidence/CEFR proposals and Master pins remain unchanged, with reassessment
+required for revised scope/POS. Runtime #11/history and owner exclusions remain
+non-identity; #284/#295/#849 protected under accepted offline pins, without live
+checks. Approved Hybrid 2.2.1 still has 87 Lexemes/100 Senses, release hash
+44874b11d1fdef76a515f6285d04c9a417318daa6969e112608a59e7c232613c and tree
+51ab4c5ce31bd38b51742d1aea16602150522da27ad26c123cc17b332f9a406e.
+
+[Owner side-by-side report](../vocabflow-dataset/reports/master-editorial-quality-corrections.md)
+shows the actual six fields BEFORE/AFTER for all 17 revisions, four representation
+reviews and attorney's unchanged pair. Raw polarity warning is retained in audit
+history; only that exact original pair receives an AI rejection rationale.
+Full-corpus source ngram screening reports zero similarity signals, but neither
+this nor QA completeness clears rights or proves linguistic originality.
+External verification sources in the report support pregnancy-termination scope,
+CO2 formula and conflicting approximate-about POS analyses. NHS page was read;
+PubChem search evidence verified CO2 but full page showed a browser challenge;
+Cambridge excerpt/search and publisher grammar discussion supplied the differing
+labels, while the direct dictionary page returned 403. No licensed wording was
+copied or permission inferred. Subject/grammar review remains pending.
+
+Scaling is CONDITIONAL, plan only. Actual pilot has 73 a-initial groups, so it
+is not a representative statistical corpus sample. Propose 120 new groups,
+20 each across b-d/e-h/i-m/n-r/s-v/w-z, stratified by source/POS/CEFR/risk and
+hash-ranked with a fixed seed to avoid first-n alphabetic bias. Batches <=20,
+<=10 identity-heavy, <=5 sensitive/high-polysemy. Explicit identity review always
+covers Master/history/exclusions, form/construction and split/merge ambiguity.
+Low-risk audit at least 10 per batch or 20 percent, whichever is greater;
+critical defects trigger full stratum review; two substantive grammar/translation
+defects trigger full batch review. Sampling never grants owner/identity/rights
+approval. No full-corpus authoring or actual next-batch selection has begun.
+
+### External validation
+
+Commands executed on the verified baseline with Python 3.13.1 / Node 22.23.2.
+These results are outside deterministic artifact validation/fingerprints.
+
+| Command | Actual result | Exit |
+|---|---|---|
+| `python -B scripts/phase-2h2b-qa1-corrections-test.py` | 19/19 PASS | 0 |
+| `python -B scripts/phase-2h2b-editorial-draft-test.py` | 23/23 PASS | 0 |
+| `python -B scripts/phase-2h2a-master-expansion-test.py` | 21/21 PASS | 0 |
+| `python -B scripts/phase-2h1-source-inventory-test.py` | 13/13 PASS | 0 |
+| `python -B scripts/phase-2h2b-qa1-corrections.py --check` | PASS; deterministic persisted overlay replay | 0 |
+| `node node_modules/typescript/bin/tsc -b` | PASS | 0 |
+| `node node_modules/eslint/bin/eslint.js . --max-warnings=0` | PASS | 0 |
+| `node node_modules/tsx/dist/cli.mjs scripts/hybrid-100-runtime-eligible-patch-release.ts --check` | NOOP_ALREADY_MATERIALIZED_AND_FROZEN; writesPerformed=false | 0 |
+| `pnpm typecheck` | WRAPPER_BLOCKED_BY_ENVIRONMENT: ERR_PNPM_ABORTED_REMOVE_MODULES_DIR_NO_TTY | 1 |
+
+The pnpm wrapper's non-TTY guard aborted before modules removal. No bypass,
+node_modules modification or installation retry. Direct tsc evidence is separate.
+Generated validation covers assembly/structural checks only. Database access/writes
+NONE/NONE, Production UNTOUCHED; no mappings, migrations, cleanup, canonical
+materialization, media or release promotion. No staging, commit or push authorized.
+Next: owner review correction proposals, Sense boundaries, provenance, rights
+and stratified scaling gates before separately authorizing the next phase.
+
+
+QA1 final Git gate: fetch succeeded and origin/TXH/HEAD remain exactly
+8eca81e84d896fd0449aed04ce646465d4dd4b9b. `git diff --check` PASS, exit 0;
+read-only whitespace verification also covers all untracked text. Actual inventory
+has 15 new QA1 files plus the retained 16 original editorial files and three
+handoff documents: 34 intended files total, zero staged files. All original 16
+byte hashes, seven stash entries, two unrelated pyc hashes and safety backups
+match; remote application and documentation prefixes are preserved. No commit
+or push. Owner may now review the correction report and conditional scaling plan.
+
+
+## Phase 2H.2B-QA1 draft artifact publication gate (2026-10-08)
+
+Owner subsequently authorized only a scoped 34-file commit and non-force push
+to origin/TXH with expected parent 8eca81e84d896fd0449aed04ce646465d4dd4b9b.
+Earlier no-commit/no-push statements describe their respective completed phases.
+This publication gate grants no human content/identity approval, source copyright
+clearance, learner-content publication, Master release or Development apply.
+No vocabulary prose, original artifact or accepted fingerprint was changed.
+QA1 intake still accurately identifies prompt Section 5 fallback; no external
+independent JSON/Markdown review file was loaded or hash-verified.
+
+Final verification commands executed again on the expected parent:
+
+| Command | Actual result | Exit |
+|---|---|---|
+| `python -B scripts/phase-2h2b-qa1-corrections-test.py` | 19/19 PASS | 0 |
+| `python -B scripts/phase-2h2b-qa1-corrections.py --check` | PASS; QA1 fingerprint b75b0522e64db5d61cff4adbccd2fb553c72f5d475d6e4370b2075e656b6a40d | 0 |
+| `python -B scripts/phase-2h2b-editorial-draft-test.py` | 23/23 PASS | 0 |
+| `python -B scripts/phase-2h2b-editorial-draft.py --check` | PASS; original fingerprint a42e4c25cebdf98cdd24f9e9231be81fff36bbdd571496eeff2886b4d1f1bdad | 0 |
+| `python -B scripts/phase-2h2a-master-expansion-test.py` | 21/21 PASS | 0 |
+| `python -B scripts/phase-2h1-source-inventory-test.py` | 13/13 PASS | 0 |
+| `node node_modules/typescript/bin/tsc -b` | PASS | 0 |
+| `node node_modules/eslint/bin/eslint.js . --max-warnings=0` | PASS | 0 |
+| `node node_modules/tsx/dist/cli.mjs scripts/hybrid-100-runtime-eligible-patch-release.ts --check` | NOOP_ALREADY_MATERIALIZED_AND_FROZEN; writesPerformed=false | 0 |
+
+The canonical pnpm typecheck wrapper is not claimed PASS; its previously observed
+noninteractive installation guard remains documented. No dependency or modules
+change was made. Original 16 files/five PSV byte hashes match the protected safety
+copy. Scope is 16 original editorial files, 15 correction files and three additive
+handoff documents; unrelated pycs, seven stashes and safety backups are retained.
+All 155 original/corrected keys and 100 pilot groups remain DRAFT/REVIEW,
+identity UNRESOLVED, approvals/allocated IDs/runtime maps zero, source rights
+UNKNOWN_REVIEW_REQUIRED. Hybrid 2.2.1 and legacy/history/exclusion pins unchanged;
+DB access/writes NONE, Production UNTOUCHED. Next Phase 2H.2C 120-group authoring
+requires separate authorization; publication alone does not start it.
+
+Staging verification: exactly 34 intended paths. All 31 new editorial/intake
+files in the index match their accepted working bytes; original 16 match backup.
+The plain cached whitespace check exits 1 because hash-pinned intake CRLF is
+classified as trailing whitespace. `git -c core.whitespace=cr-at-eol diff --cached --check`
+exits 0; an independent line check finds no trailing spaces/tabs. CRLF bytes were
+preserved with per-command core.autocrlf=false for the new files; no persistent
+Git configuration changed. The three additive docs use normal LF index content.
+
+
+## Phase 2H.2B + QA1 safe publication reconciliation (2026-10-08)
+
+Publication worktree/branch phase-2h2b-qa1-publish-4e59 starts at
+4e59c8da980e8ae8bd5bf1fe9fdd705d41949efa. The original staged worktree
+is preserved. All 31 Dataset/script/report/intake files retain exact staged
+SHA-256 bytes; three additive Dataset documentation deltas are appended to
+remote documents. Remote Study picker/scoped queue/jank fix sections are intact.
+Historical input fingerprints and Git pins are unchanged.
+
+Safety snapshot (34 byte copies, hashes, binary patch, old/new Git pins, stash
+and bytecode inventory): D:/hoctienganh/phase-2h2b-qa1-publication-backup-20261008-152102.
+
+Validation on the new baseline:
+
+| Command | Exit/result |
+|---|---|
+| `python -B scripts/phase-2h2b-qa1-corrections-test.py` | 0 |
+| `python -B scripts/phase-2h2b-qa1-corrections.py --check` | 0 |
+| `python -B scripts/phase-2h2b-editorial-draft-test.py` | 0 |
+| `python -B scripts/phase-2h2b-editorial-draft.py --check` | 0 |
+| `python -B scripts/phase-2h2a-master-expansion-test.py` | 0 |
+| `python -B scripts/phase-2h1-source-inventory-test.py` | 0 |
+| `node node_modules/typescript/bin/tsc -b` | 2 initially: missing ignored apps/api/dist/vercel-runtime.mjs; final rerun 0 after runtime build-output preparation |
+| `node node_modules/eslint/bin/eslint.js . --max-warnings=0` | 0 |
+| `node node_modules/tsx/dist/cli.mjs scripts/hybrid-100-runtime-eligible-patch-release.ts --check` | 0 |
+
+Focused suites: 19 + 23 + 21 + 13 = 76 PASS. Both offline replays PASS.
+A new ignored node_modules junction points to existing installed dependencies;
+no reinstall/removal or dependency changes. Existing ignored API dist output
+was copied after confirming API/contracts/learning-domain source trees identical
+between old/new baselines. Direct typecheck rerun exits 0. The canonical pnpm
+wrapper is not claimed PASS. Lint and frozen Hybrid check exit 0; frozen check
+NOOP_ALREADY_MATERIALIZED_AND_FROZEN, no writes.
+
+34-file staged scope and exact immutable bytes are verified. Plain cached
+whitespace checker reports CRLF-only intake lines; cr-at-eol checker exits 0,
+with no actual trailing spaces/tabs or merge markers. No persistent whitespace
+configuration change. No owner approvals, IDs, mappings, DB access/writes,
+legacy changes or Production operation. All drafts remain REVIEW/noncanonical,
+rights UNKNOWN_REVIEW_REQUIRED; QA1 independent external review files were not
+loaded. This authorizes draft Git publication only; Phase 2H.2C remains separate.
+
+New publication index: regular `git diff --cached --check` returns exit 2
+(677 CRLF-only intake diagnostics); CRLF-aware check returns exit 0.

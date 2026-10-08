@@ -3525,3 +3525,59 @@ US-07 remains not started.
   mobile items; active Study sessions hide the search trigger.
 - No migration, persisted history, scheduler change, database mutation or
   production deployment was introduced.
+
+
+## 2026-10-08 - Phase 2H.2B preserved drafts and reconciliation handoff
+
+Preserved the 100-group pilot (155 generated Sense drafts, 37 multi-Sense groups)
+without regenerating prose; QA REVIEW 155, approvals/IDs 0, rights unknown.
+Safely reconciled the 16 new editorial files onto 8eca81e84d896fd0449aed04ce646465d4dd4b9b
+on phase-2h2b-editorial-reconciled. Existing Study source picker/queue changes
+and documentation remain; source baseline a2f4f54 and accepted input/output
+fingerprints are unchanged. Phase 2H.2A:
+5b754405d9072e79b603e6b008bd8788a7dae7aed4f2eedde3087482fc0bc7ff;
+Phase 2H.2B: a42e4c25cebdf98cdd24f9e9231be81fff36bbdd571496eeff2886b4d1f1bdad.
+
+Added 15 owner-readable sample groups in US-45 and recorded suspected content,
+POS, split/coalescence and translation/QA issues without editing draft wording.
+Human linguistic/identity/rights/classification decisions and separate canonical
+permission remain required; this is completeness, not editorial approval.
+23+21+13 focused tests, replay, direct TypeScript, ESLint and frozen release pass;
+pnpm wrapper exits 1 with the non-TTY environment guard. Exact commands/exits,
+hashes and safety details are in [the handoff](ai-progress.md#phase-2h2b-editorial-draft-pilot-2026-10-08).
+No database access/writes, app/API/contracts/E2E/UI edits, release/legacy mutation,
+Production operation, staging, commit or push. Seven stashes and existing pycs
+retained; external safety backup captures all 16 files.
+
+
+## 2026-10-08 - Phase 2H.2B-QA1 correction overlay
+
+Added an immutable-original + persisted-proposal correction layer and 155-Sense
+preview with 17 revised drafts, four deferred identity reviews and attorney's
+scoped false-positive rejection. All 22 prompt findings accounted for; unavailable
+independent AI review files are disclosed. Original 2H.2B fingerprint and byte
+hashes remain unchanged. QA1 fingerprint: b75b0522e64db5d61cff4adbccd2fb553c72f5d475d6e4370b2075e656b6a40d.
+
+Owner report shows actual bilingual BEFORE/AFTER fields; all content/identity
+and rights decisions remain pending, approvals/IDs zero. Scaling readiness is
+CONDITIONAL: a 120-group stratified extension plan addresses the 73/100 a-initial
+pilot bias; no corpus authoring has begun. 19+23+21+13 focused tests, replay,
+direct typecheck, lint and frozen release checks pass; pnpm wrapper remains
+blocked by the non-TTY guard (exit 1). [Exact evidence](ai-progress.md#phase-2h2b-qa1-editorial-corrections-2026-10-08).
+No original prose/source/artifact rewrite, app/UI change, DB operation, release
+or legacy mutation, staging, commit/push or Production operation.
+
+
+## 2026-10-08 - Draft artifact publication gate
+
+Owner subsequently authorized a scoped 34-file commit/non-force push of the
+existing original pilot and separate QA1 proposals, conditional on verified
+origin/TXH parent 8eca81e84d896fd0449aed04ce646465d4dd4b9b. Earlier no-commit
+statements remain historical. This is draft artifact publication only: all owner
+identity/content decisions and source rights remain pending; no Master release
+or learner-content publication permission. Final rerun: 76 focused tests, both
+offline replays, direct TypeScript, ESLint and frozen release check pass (exit 0).
+Accepted fingerprints and all original byte hashes remain unchanged. No app/API,
+runtime mapping, DB, release/legacy or Production change. Separate authorization
+required before Phase 2H.2C or canonical materialization. See ai-progress for
+exact commands and wrapper limits.

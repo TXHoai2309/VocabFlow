@@ -1,0 +1,1159 @@
+{
+  "phase": "2H.2B-QA1",
+  "artifactType": "NONCANONICAL_EDITORIAL_CORRECTION_PROPOSAL",
+  "inputPins": {
+    "gitReconciliationParent": "8eca81e84d896fd0449aed04ce646465d4dd4b9b",
+    "acceptedSourceBaseline": "a2f4f54eefc6734eb7da805f80ff8a9c6ebd4690",
+    "phase2h2bFingerprint": "a42e4c25cebdf98cdd24f9e9231be81fff36bbdd571496eeff2886b4d1f1bdad",
+    "upstreamPins": {
+      "remoteBaseline": "a2f4f54eefc6734eb7da805f80ff8a9c6ebd4690",
+      "phase2h2aFingerprint": "5b754405d9072e79b603e6b008bd8788a7dae7aed4f2eedde3087482fc0bc7ff",
+      "phase2h1Fingerprint": "58928e98845e326f8d9a268aa160c867443e8497436d9c58fa2b9a5647f10a53",
+      "hybridReleaseHash": "44874b11d1fdef76a515f6285d04c9a417318daa6969e112608a59e7c232613c",
+      "hybridTreeExpected": "51ab4c5ce31bd38b51742d1aea16602150522da27ad26c123cc17b332f9a406e",
+      "treeVerification": "EXTERNAL_COMMAND_REQUIRED",
+      "authoredSourceHashes": {
+        "authored/batch-01.psv": {
+          "sha256LfUtf8": "da0ebcaa6b0300ddadcd0881b479c77440e0e8b6e154afb44fd6de94561a27b5",
+          "encoding": "UTF8_UNIVERSAL_NEWLINES_NORMALIZED_TO_LF"
+        },
+        "authored/batch-02.psv": {
+          "sha256LfUtf8": "5402a9dc50e0eb6c14991134029bf6c14817ca84d54bbc0a2ce3f6ba0ca457ef",
+          "encoding": "UTF8_UNIVERSAL_NEWLINES_NORMALIZED_TO_LF"
+        },
+        "authored/batch-03.psv": {
+          "sha256LfUtf8": "cd081319739ace2ac40901d32559158ce251747cf67745ed6845459af57001af",
+          "encoding": "UTF8_UNIVERSAL_NEWLINES_NORMALIZED_TO_LF"
+        },
+        "authored/batch-04.psv": {
+          "sha256LfUtf8": "bf2d0cb29eed2aae57d2fa658a91aa91d7821b3746c4e577fab240ee48963639",
+          "encoding": "UTF8_UNIVERSAL_NEWLINES_NORMALIZED_TO_LF"
+        },
+        "authored/batch-05.psv": {
+          "sha256LfUtf8": "c0ce1ebd0d625a245c7bf5a6037ea74375f133ca44b26edf000d528691e937df",
+          "encoding": "UTF8_UNIVERSAL_NEWLINES_NORMALIZED_TO_LF"
+        }
+      },
+      "schemaHashes": {
+        "common.schema.json": "6c210ec949e68382734948db5f3e040afb98828c9b0f8e2cb65d00d366466509",
+        "dataset.schema.json": "c6b1762638cb9a3fe39d0ee57d573ffae51ad9d4de62bea67ba8dc7ca74845a3",
+        "learning-set.schema.json": "d2d8921808b1518f69a3b3daf3d77dc303b4bb475c0c95661dcb4e8624973be3",
+        "lexeme.schema.json": "4357777f0592ccf93d803556b479a8c2d7296b4768d9b38213d554999c7d42ea",
+        "media-asset.schema.json": "9811e901d74561441e4576d10f2359b29176431d41c8ea20d1b79bda7721c8a3",
+        "provenance.schema.json": "79625337d3391dab2e937f02830f0ec691105b0839f28ef56218743aa7ca39b6",
+        "sense.schema.json": "10a99369237449cf4f773a8e343551854af8806f1a272313b792598813e1fd92",
+        "taxonomy.schema.json": "a09e15d80138fff105290422c4de0f8d45ce8ea1df3f2ba6ea47c7bfd550e65d"
+      },
+      "phase2h2aManifestHash": "89aa653429eaac8ca612f4a252172f03cb67598af91bad58aa5cebbcf68e2cf4"
+    },
+    "originalBytePins": [
+      {
+        "path": "scripts/phase-2h2b-editorial-draft-test.py",
+        "sha256": "64f3251a105c2fed6397fa2503b50ba90f9b8bd0b311351b343b243e36d39623"
+      },
+      {
+        "path": "scripts/phase-2h2b-editorial-draft.py",
+        "sha256": "50fe7676e59773baf3f927b9dc2a7c3ee3b5b7211eff6a9a474fa84581f4c017"
+      },
+      {
+        "path": "vocabflow-dataset/reports/master-editorial-draft-pilot.md",
+        "sha256": "61a3d3c8e273a216e1cfcc7c38e48634a7dd6e0efdac0eccfea29bbbdfd420e5"
+      },
+      {
+        "path": "vocabflow-dataset/workspaces/master-editorial-draft-pilot/authored/batch-01.psv",
+        "sha256": "da0ebcaa6b0300ddadcd0881b479c77440e0e8b6e154afb44fd6de94561a27b5"
+      },
+      {
+        "path": "vocabflow-dataset/workspaces/master-editorial-draft-pilot/authored/batch-02.psv",
+        "sha256": "5402a9dc50e0eb6c14991134029bf6c14817ca84d54bbc0a2ce3f6ba0ca457ef"
+      },
+      {
+        "path": "vocabflow-dataset/workspaces/master-editorial-draft-pilot/authored/batch-03.psv",
+        "sha256": "cd081319739ace2ac40901d32559158ce251747cf67745ed6845459af57001af"
+      },
+      {
+        "path": "vocabflow-dataset/workspaces/master-editorial-draft-pilot/authored/batch-04.psv",
+        "sha256": "bf2d0cb29eed2aae57d2fa658a91aa91d7821b3746c4e577fab240ee48963639"
+      },
+      {
+        "path": "vocabflow-dataset/workspaces/master-editorial-draft-pilot/authored/batch-05.psv",
+        "sha256": "c0ce1ebd0d625a245c7bf5a6037ea74375f133ca44b26edf000d528691e937df"
+      },
+      {
+        "path": "vocabflow-dataset/workspaces/master-editorial-draft-pilot/editorial-draft-batches.json",
+        "sha256": "25195a4f4252a2e0883bfbec396ac32ca8229ee4c5bc3caf64f22c1611ef17d9"
+      },
+      {
+        "path": "vocabflow-dataset/workspaces/master-editorial-draft-pilot/future-master-materialization-contract.json",
+        "sha256": "087f81c58e0f30cc605ee220b8bce5f7ddf40320bdd7a6575ed965b80a31c3c6"
+      },
+      {
+        "path": "vocabflow-dataset/workspaces/master-editorial-draft-pilot/manifest.json",
+        "sha256": "1db1859ff1000bd4e7b83d92a3ce3d2cd38aa5cf1e9ebf45e70b9353cb1280ca"
+      },
+      {
+        "path": "vocabflow-dataset/workspaces/master-editorial-draft-pilot/pilot-editorial-review.json",
+        "sha256": "6428e87269d463b1ee6c01b14131137cbb3daa80b53d80b4d578f986b8dc262a"
+      },
+      {
+        "path": "vocabflow-dataset/workspaces/master-editorial-draft-pilot/pilot-lexeme-proposals.json",
+        "sha256": "e89636374bd75978ba0c78f05d0a05dddce07559578a4b9df3f3b3d06bfae108"
+      },
+      {
+        "path": "vocabflow-dataset/workspaces/master-editorial-draft-pilot/pilot-quality-audit.json",
+        "sha256": "aee1e157c8972d9e754b8072dc379901fbc68ffa4bd74fc015a8fccdfdfda789"
+      },
+      {
+        "path": "vocabflow-dataset/workspaces/master-editorial-draft-pilot/pilot-sense-proposals.json",
+        "sha256": "17119903e4de9e5026718539e48bc6d2f70c21437756023491f60abe61fe0c7d"
+      },
+      {
+        "path": "vocabflow-dataset/workspaces/master-editorial-draft-pilot/validation-summary.json",
+        "sha256": "a8f7e543fb7dd395349437e023cb4768b6d927fd94e5feafcda3a9b437cce77c"
+      }
+    ],
+    "authoredCorrectionByteHash": "265612d96f08a7fd92c05f4caacad99cecab3ad27cff58ab624880aea595bfe4",
+    "promptByteHash": "cd3c343b04a7c616a40a785fde0563c9c155768ad7c00fb1996b0940344ccce5",
+    "originalPinInventoryByteHash": "cda89c034426ae47208f780edba53c8283232ecf09f5740db102a5eb7e1b3441"
+  },
+  "authorization": {
+    "canonicalIdentity": false,
+    "canonicalAuthoring": false,
+    "ownerApproval": false,
+    "releasePublication": false,
+    "runtimeMapping": false,
+    "developmentApply": false,
+    "legacyCleanup": false,
+    "mediaPublishing": false,
+    "databaseAccess": false,
+    "databaseWrite": false,
+    "production": false
+  },
+  "overlays": [
+    {
+      "proposalKey": "EDITORIAL_2H2B:a, an:indefinite",
+      "findingRef": "QA1_PROMPT_SECTION_5:1",
+      "originalDraftCanonicalHash": "4c0c5bddea1faf32f91dd9045f79f3562ab39e0234644e913d098e89f30723f1",
+      "originalValues": {
+        "/content/senseLabelEn": "one unspecified thing",
+        "/content/definitionEn": "Used before a singular countable noun when the listener does not yet know which person or thing is meant.",
+        "/content/meaningVi": "một đối tượng chưa được xác định cụ thể"
+      },
+      "proposedValues": {
+        "/content/senseLabelEn": "the indefinite article",
+        "/content/definitionEn": "Used with a singular countable noun to introduce someone or something, or to describe a member of a class without identifying a particular one.",
+        "/content/meaningVi": "mạo từ không xác định dùng trước danh từ đếm được số ít; có thể biểu đạt ý một người hoặc một vật nhưng không phải lúc nào cũng cần dịch thành một"
+      },
+      "changeReasons": {
+        "/content/senseLabelEn": "The original Vietnamese wording describes an object instead of the grammatical article and the definition overrestricts use to listener ignorance. Retain the existing example, which illustrates indefinite introduction. DETERMINER is a valid local POS. Propose a as the lexical form with an as a sound-conditioned variant, but defer canonical lemma/alias identity; a, an remains only the source grouping key.",
+        "/content/definitionEn": "The original Vietnamese wording describes an object instead of the grammatical article and the definition overrestricts use to listener ignorance. Retain the existing example, which illustrates indefinite introduction. DETERMINER is a valid local POS. Propose a as the lexical form with an as a sound-conditioned variant, but defer canonical lemma/alias identity; a, an remains only the source grouping key.",
+        "/content/meaningVi": "The original Vietnamese wording describes an object instead of the grammatical article and the definition overrestricts use to listener ignorance. Retain the existing example, which illustrates indefinite introduction. DETERMINER is a valid local POS. Propose a as the lexical form with an as a sound-conditioned variant, but defer canonical lemma/alias identity; a, an remains only the source grouping key."
+      },
+      "coupledReview": {
+        "/partOfSpeechProposal": {
+          "before": "DETERMINER",
+          "after": "DETERMINER",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/senseLabelEn": {
+          "before": "one unspecified thing",
+          "after": "the indefinite article",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/definitionEn": {
+          "before": "Used before a singular countable noun when the listener does not yet know which person or thing is meant.",
+          "after": "Used with a singular countable noun to introduce someone or something, or to describe a member of a class without identifying a particular one.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/meaningVi": {
+          "before": "một đối tượng chưa được xác định cụ thể",
+          "after": "mạo từ không xác định dùng trước danh từ đếm được số ít; có thể biểu đạt ý một người hoặc một vật nhưng không phải lúc nào cũng cần dịch thành một",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/examples/0/en": {
+          "before": "I found an envelope under a chair.",
+          "after": "I found an envelope under a chair.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/examples/0/vi": {
+          "before": "Tôi tìm thấy một phong bì dưới một chiếc ghế.",
+          "after": "Tôi tìm thấy một phong bì dưới một chiếc ghế.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        }
+      },
+      "authorship": {
+        "sourceType": "GENERATED",
+        "process": "AI assistant independently examined the exact original draft, sibling proposals and Master V2 rules, then persisted correction wording once. Assembly/replay never generates prose. Dispositions are AI editorial recommendations, not human approvals.",
+        "humanAuthor": null,
+        "humanReviewer": null,
+        "license": null,
+        "reviewDate": null
+      },
+      "ownerDecision": "UNRESOLVED"
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2B:abortion:end-pregnancy",
+      "findingRef": "QA1_PROMPT_SECTION_5:2",
+      "originalDraftCanonicalHash": "3e06efc265b9bb66d3cede77652fbee26caf936d32c238ba3155bb9f366b806d",
+      "originalValues": {
+        "/content/senseLabelEn": "ending a pregnancy",
+        "/content/definitionEn": "The ending of a pregnancy before a baby is born, especially through a medical procedure.",
+        "/content/meaningVi": "việc chấm dứt thai kỳ trước khi em bé được sinh ra, thường bằng can thiệp y tế",
+        "/content/grammarNotesEn": "Neutral language-learning example only; sensitive terminology needs human review, with no medical or legal advice."
+      },
+      "proposedValues": {
+        "/content/senseLabelEn": "deliberately ending a pregnancy",
+        "/content/definitionEn": "The deliberate ending of a pregnancy through medical care before birth.",
+        "/content/meaningVi": "việc chủ động chấm dứt thai kỳ bằng chăm sóc hoặc can thiệp y tế trước khi sinh",
+        "/content/grammarNotesEn": "This proposal concerns induced abortion, not spontaneous pregnancy loss. Medical terminology, audience suitability and scope require subject review; no treatment or jurisdictional advice is offered."
+      },
+      "changeReasons": {
+        "/content/senseLabelEn": "Distinguish the intended induced termination sense from any ending of pregnancy. The original services example and translation remain aligned with that scope. NOUN remains appropriate; no new meaning identity is approved.",
+        "/content/definitionEn": "Distinguish the intended induced termination sense from any ending of pregnancy. The original services example and translation remain aligned with that scope. NOUN remains appropriate; no new meaning identity is approved.",
+        "/content/meaningVi": "Distinguish the intended induced termination sense from any ending of pregnancy. The original services example and translation remain aligned with that scope. NOUN remains appropriate; no new meaning identity is approved.",
+        "/content/grammarNotesEn": "Distinguish the intended induced termination sense from any ending of pregnancy. The original services example and translation remain aligned with that scope. NOUN remains appropriate; no new meaning identity is approved."
+      },
+      "coupledReview": {
+        "/partOfSpeechProposal": {
+          "before": "NOUN",
+          "after": "NOUN",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/senseLabelEn": {
+          "before": "ending a pregnancy",
+          "after": "deliberately ending a pregnancy",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/definitionEn": {
+          "before": "The ending of a pregnancy before a baby is born, especially through a medical procedure.",
+          "after": "The deliberate ending of a pregnancy through medical care before birth.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/meaningVi": {
+          "before": "việc chấm dứt thai kỳ trước khi em bé được sinh ra, thường bằng can thiệp y tế",
+          "after": "việc chủ động chấm dứt thai kỳ bằng chăm sóc hoặc can thiệp y tế trước khi sinh",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/examples/0/en": {
+          "before": "The report discussed access to abortion services.",
+          "after": "The report discussed access to abortion services.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/examples/0/vi": {
+          "before": "Báo cáo bàn về khả năng tiếp cận dịch vụ phá thai.",
+          "after": "Báo cáo bàn về khả năng tiếp cận dịch vụ phá thai.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        }
+      },
+      "authorship": {
+        "sourceType": "GENERATED",
+        "process": "AI assistant independently examined the exact original draft, sibling proposals and Master V2 rules, then persisted correction wording once. Assembly/replay never generates prose. Dispositions are AI editorial recommendations, not human approvals.",
+        "humanAuthor": null,
+        "humanReviewer": null,
+        "license": null,
+        "reviewDate": null
+      },
+      "ownerDecision": "UNRESOLVED"
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2B:about:approximately",
+      "findingRef": "QA1_PROMPT_SECTION_5:3",
+      "originalDraftCanonicalHash": "3edae19d81c740e41672d64fa151de99711f9351ebf45e19f03b5efdd808ebdb",
+      "originalValues": {
+        "/partOfSpeechProposal": "PREPOSITION",
+        "/content/grammarNotesEn": "Source calls this preposition; approximation may be analysed as adverbial, so POS remains pending."
+      },
+      "proposedValues": {
+        "/partOfSpeechProposal": "ADVERB",
+        "/content/grammarNotesEn": "Proposed learner-dictionary ADVERB analysis before an approximate quantity or time. Some grammar frameworks treat this construction as PREPOSITION; owner must select the POS convention. Keep the topic preposition and spatial adverb proposals distinct."
+      },
+      "changeReasons": {
+        "/partOfSpeechProposal": "The forty-minutes example expresses approximation, not topic. Propose ADVERB for evaluation but do not present the source PREPOSITION analysis as universally wrong. Cambridge's learner dictionary excerpt tags approximation as adverb, while its grammar blog calls about before quantities a preposition. The valid schema offers both enums; the analysis convention remains unresolved.",
+        "/content/grammarNotesEn": "The forty-minutes example expresses approximation, not topic. Propose ADVERB for evaluation but do not present the source PREPOSITION analysis as universally wrong. Cambridge's learner dictionary excerpt tags approximation as adverb, while its grammar blog calls about before quantities a preposition. The valid schema offers both enums; the analysis convention remains unresolved."
+      },
+      "coupledReview": {
+        "/partOfSpeechProposal": {
+          "before": "PREPOSITION",
+          "after": "ADVERB",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/senseLabelEn": {
+          "before": "approximately",
+          "after": "approximately",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/definitionEn": {
+          "before": "A little more or less than the stated number or amount.",
+          "after": "A little more or less than the stated number or amount.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/meaningVi": {
+          "before": "khoảng một số lượng được nêu ra",
+          "after": "khoảng một số lượng được nêu ra",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/examples/0/en": {
+          "before": "The journey took about forty minutes.",
+          "after": "The journey took about forty minutes.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/examples/0/vi": {
+          "before": "Chuyến đi mất khoảng bốn mươi phút.",
+          "after": "Chuyến đi mất khoảng bốn mươi phút.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        }
+      },
+      "authorship": {
+        "sourceType": "GENERATED",
+        "process": "AI assistant independently examined the exact original draft, sibling proposals and Master V2 rules, then persisted correction wording once. Assembly/replay never generates prose. Dispositions are AI editorial recommendations, not human approvals.",
+        "humanAuthor": null,
+        "humanReviewer": null,
+        "license": null,
+        "reviewDate": null
+      },
+      "ownerDecision": "UNRESOLVED"
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2B:able:competent",
+      "findingRef": "QA1_PROMPT_SECTION_5:4",
+      "originalDraftCanonicalHash": "cddec6c9c52de190c494bb2e338057697fdf1ccc97a4332614cc96ae2cc24d8b",
+      "originalValues": {
+        "/content/examples/0/vi": "Một trợ lý có năng lực đã giữ cho văn phòng bận rộn hoạt động ngăn nắp."
+      },
+      "proposedValues": {
+        "/content/examples/0/vi": "Một trợ lý có năng lực giúp mọi việc trong văn phòng bận rộn diễn ra có tổ chức."
+      },
+      "changeReasons": {
+        "/content/examples/0/vi": "Replace the awkward Vietnamese kept-office-organized construction with natural wording preserving the assistant's competence and organizational effect. English text and other able Sense remain unchanged. Attributive able modifies assistant; translation preserves that attribution."
+      },
+      "coupledReview": {
+        "/partOfSpeechProposal": {
+          "before": "ADJECTIVE",
+          "after": "ADJECTIVE",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/senseLabelEn": {
+          "before": "competent and skilful",
+          "after": "competent and skilful",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/definitionEn": {
+          "before": "Good at doing the work or tasks expected of you.",
+          "after": "Good at doing the work or tasks expected of you.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/meaningVi": {
+          "before": "có năng lực và làm việc thành thạo",
+          "after": "có năng lực và làm việc thành thạo",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/examples/0/en": {
+          "before": "An able assistant kept the busy office organized.",
+          "after": "An able assistant kept the busy office organized.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/examples/0/vi": {
+          "before": "Một trợ lý có năng lực đã giữ cho văn phòng bận rộn hoạt động ngăn nắp.",
+          "after": "Một trợ lý có năng lực giúp mọi việc trong văn phòng bận rộn diễn ra có tổ chức.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        }
+      },
+      "authorship": {
+        "sourceType": "GENERATED",
+        "process": "AI assistant independently examined the exact original draft, sibling proposals and Master V2 rules, then persisted correction wording once. Assembly/replay never generates prose. Dispositions are AI editorial recommendations, not human approvals.",
+        "humanAuthor": null,
+        "humanReviewer": null,
+        "license": null,
+        "reviewDate": null
+      },
+      "ownerDecision": "UNRESOLVED"
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2B:acquire:gain",
+      "findingRef": "QA1_PROMPT_SECTION_5:5",
+      "originalDraftCanonicalHash": "cd981001fa9e97487ae29fe13603ba3b67bbbb45f1036089962da67410c4ec98",
+      "originalValues": {
+        "/content/definitionEn": "To come to have a skill, quality or possession through learning or experience.",
+        "/content/meaningVi": "có được một kỹ năng, phẩm chất hoặc tài sản qua học hỏi hay trải nghiệm",
+        "/content/grammarNotesEn": "acquire + skill or knowledge; gradual acquisition is not instant understanding."
+      },
+      "proposedValues": {
+        "/content/definitionEn": "To come to have something, such as a possession, a skill or a quality.",
+        "/content/meaningVi": "có được một thứ, chẳng hạn tài sản, kỹ năng hoặc phẩm chất",
+        "/content/grammarNotesEn": "Transitive acquisition may occur through learning, purchase or other means. This broad proposal overlaps the narrower business-purchase sibling; review general versus specialized usage boundaries, without executing a split or merge."
+      },
+      "changeReasons": {
+        "/content/definitionEn": "Choose broad acquisition instead of inventing extra Senses. The existing vocabulary-learning example remains a valid subtype; specialized business purchase may be a usage specialization rather than a separate identity. Keep VERB and direct object; remove the restrictive learning/experience condition on possessions.",
+        "/content/meaningVi": "Choose broad acquisition instead of inventing extra Senses. The existing vocabulary-learning example remains a valid subtype; specialized business purchase may be a usage specialization rather than a separate identity. Keep VERB and direct object; remove the restrictive learning/experience condition on possessions.",
+        "/content/grammarNotesEn": "Choose broad acquisition instead of inventing extra Senses. The existing vocabulary-learning example remains a valid subtype; specialized business purchase may be a usage specialization rather than a separate identity. Keep VERB and direct object; remove the restrictive learning/experience condition on possessions."
+      },
+      "coupledReview": {
+        "/partOfSpeechProposal": {
+          "before": "VERB",
+          "after": "VERB",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/senseLabelEn": {
+          "before": "gain over time",
+          "after": "gain over time",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/definitionEn": {
+          "before": "To come to have a skill, quality or possession through learning or experience.",
+          "after": "To come to have something, such as a possession, a skill or a quality.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/meaningVi": {
+          "before": "có được một kỹ năng, phẩm chất hoặc tài sản qua học hỏi hay trải nghiệm",
+          "after": "có được một thứ, chẳng hạn tài sản, kỹ năng hoặc phẩm chất",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/examples/0/en": {
+          "before": "Children acquire new vocabulary through repeated use.",
+          "after": "Children acquire new vocabulary through repeated use.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/examples/0/vi": {
+          "before": "Trẻ em tiếp thu từ vựng mới thông qua việc sử dụng nhiều lần.",
+          "after": "Trẻ em tiếp thu từ vựng mới thông qua việc sử dụng nhiều lần.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        }
+      },
+      "authorship": {
+        "sourceType": "GENERATED",
+        "process": "AI assistant independently examined the exact original draft, sibling proposals and Master V2 rules, then persisted correction wording once. Assembly/replay never generates prose. Dispositions are AI editorial recommendations, not human approvals.",
+        "humanAuthor": null,
+        "humanReviewer": null,
+        "license": null,
+        "reviewDate": null
+      },
+      "ownerDecision": "UNRESOLVED"
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2B:act:behave",
+      "findingRef": "QA1_PROMPT_SECTION_5:6",
+      "originalDraftCanonicalHash": "7eb09f93ee6a8c26d9d1f58c26e7451c43aa7d3f408dc1e6c58a7c60929b1cae",
+      "originalValues": {
+        "/content/senseLabelEn": "do something or behave",
+        "/content/definitionEn": "To take action or behave in a particular way.",
+        "/content/meaningVi": "hành động hoặc cư xử theo một cách",
+        "/content/grammarNotesEn": "act + manner adverb; a behaviour proposal separate from stage performance."
+      },
+      "proposedValues": {
+        "/content/senseLabelEn": "take action",
+        "/content/definitionEn": "To do something in response to a situation or to achieve a result.",
+        "/content/meaningVi": "hành động để ứng phó với tình huống hoặc đạt một kết quả",
+        "/content/grammarNotesEn": "Intransitive act with a manner adverb, as in act quickly. This response-to-a-situation proposal does not also define behave; the editorial key is retained as an immutable local reference despite its older slug."
+      },
+      "changeReasons": {
+        "/content/senseLabelEn": "The existing rain/equipment example demonstrates taking action, not manner of behaving. Align all meaning fields without combining the two readings. VERB remains intransitive in act quickly; acting-in-a-performance and deed siblings stay separate.",
+        "/content/definitionEn": "The existing rain/equipment example demonstrates taking action, not manner of behaving. Align all meaning fields without combining the two readings. VERB remains intransitive in act quickly; acting-in-a-performance and deed siblings stay separate.",
+        "/content/meaningVi": "The existing rain/equipment example demonstrates taking action, not manner of behaving. Align all meaning fields without combining the two readings. VERB remains intransitive in act quickly; acting-in-a-performance and deed siblings stay separate.",
+        "/content/grammarNotesEn": "The existing rain/equipment example demonstrates taking action, not manner of behaving. Align all meaning fields without combining the two readings. VERB remains intransitive in act quickly; acting-in-a-performance and deed siblings stay separate."
+      },
+      "coupledReview": {
+        "/partOfSpeechProposal": {
+          "before": "VERB",
+          "after": "VERB",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/senseLabelEn": {
+          "before": "do something or behave",
+          "after": "take action",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/definitionEn": {
+          "before": "To take action or behave in a particular way.",
+          "after": "To do something in response to a situation or to achieve a result.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/meaningVi": {
+          "before": "hành động hoặc cư xử theo một cách",
+          "after": "hành động để ứng phó với tình huống hoặc đạt một kết quả",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/examples/0/en": {
+          "before": "We must act quickly before the rain reaches the equipment.",
+          "after": "We must act quickly before the rain reaches the equipment.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/examples/0/vi": {
+          "before": "Chúng ta phải hành động nhanh trước khi mưa làm ướt thiết bị.",
+          "after": "Chúng ta phải hành động nhanh trước khi mưa làm ướt thiết bị.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        }
+      },
+      "authorship": {
+        "sourceType": "GENERATED",
+        "process": "AI assistant independently examined the exact original draft, sibling proposals and Master V2 rules, then persisted correction wording once. Assembly/replay never generates prose. Dispositions are AI editorial recommendations, not human approvals.",
+        "humanAuthor": null,
+        "humanReviewer": null,
+        "license": null,
+        "reviewDate": null
+      },
+      "ownerDecision": "UNRESOLVED"
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2B:action:movement",
+      "findingRef": "QA1_PROMPT_SECTION_5:7",
+      "originalDraftCanonicalHash": "3dba98b0a12810642759a713fb88c519ce75aa03a45ce58a4772f047fc102cfb",
+      "originalValues": {
+        "/content/senseLabelEn": "movement or activity",
+        "/content/definitionEn": "Movement or activity, especially when something is happening rather than resting.",
+        "/content/meaningVi": "sự chuyển động hoặc hoạt động khi điều gì đó đang diễn ra",
+        "/content/grammarNotesEn": "in action; the proposed boundary with general activity needs human review."
+      },
+      "proposedValues": {
+        "/content/senseLabelEn": "activity in progress",
+        "/content/definitionEn": "The activity of someone or something while doing what they normally do.",
+        "/content/meaningVi": "hoạt động của người hoặc vật khi đang thực hiện công việc hay chức năng của mình",
+        "/content/grammarNotesEn": "The pattern in action shows someone or something actively at work. The dancing example includes movement but the proposed meaning is broader activity in progress; distinguish from steps taken to address a problem."
+      },
+      "changeReasons": {
+        "/content/senseLabelEn": "The photographer's dancers in action illustrates active performance. Narrow the proposed reading to the in-action pattern, not arbitrary physical motion. NOUN inside the prepositional phrase in action; phrase behavior remains a usage consideration.",
+        "/content/definitionEn": "The photographer's dancers in action illustrates active performance. Narrow the proposed reading to the in-action pattern, not arbitrary physical motion. NOUN inside the prepositional phrase in action; phrase behavior remains a usage consideration.",
+        "/content/meaningVi": "The photographer's dancers in action illustrates active performance. Narrow the proposed reading to the in-action pattern, not arbitrary physical motion. NOUN inside the prepositional phrase in action; phrase behavior remains a usage consideration.",
+        "/content/grammarNotesEn": "The photographer's dancers in action illustrates active performance. Narrow the proposed reading to the in-action pattern, not arbitrary physical motion. NOUN inside the prepositional phrase in action; phrase behavior remains a usage consideration."
+      },
+      "coupledReview": {
+        "/partOfSpeechProposal": {
+          "before": "NOUN",
+          "after": "NOUN",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/senseLabelEn": {
+          "before": "movement or activity",
+          "after": "activity in progress",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/definitionEn": {
+          "before": "Movement or activity, especially when something is happening rather than resting.",
+          "after": "The activity of someone or something while doing what they normally do.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/meaningVi": {
+          "before": "sự chuyển động hoặc hoạt động khi điều gì đó đang diễn ra",
+          "after": "hoạt động của người hoặc vật khi đang thực hiện công việc hay chức năng của mình",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/examples/0/en": {
+          "before": "The photographer captured the dancers in action.",
+          "after": "The photographer captured the dancers in action.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/examples/0/vi": {
+          "before": "Nhiếp ảnh gia chụp được các vũ công đang biểu diễn.",
+          "after": "Nhiếp ảnh gia chụp được các vũ công đang biểu diễn.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        }
+      },
+      "authorship": {
+        "sourceType": "GENERATED",
+        "process": "AI assistant independently examined the exact original draft, sibling proposals and Master V2 rules, then persisted correction wording once. Assembly/replay never generates prose. Dispositions are AI editorial recommendations, not human approvals.",
+        "humanAuthor": null,
+        "humanReviewer": null,
+        "license": null,
+        "reviewDate": null
+      },
+      "ownerDecision": "UNRESOLVED"
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2B:acute:perceptive",
+      "findingRef": "QA1_PROMPT_SECTION_5:8",
+      "originalDraftCanonicalHash": "3c4a92876a87460ec269e9750bb1c43252fb7f9f3963179f7b20f60b41a8f57c",
+      "originalValues": {
+        "/content/senseLabelEn": "keenly perceptive",
+        "/content/definitionEn": "Able to notice or understand small details very clearly.",
+        "/content/meaningVi": "nhạy bén trong việc nhận ra hoặc hiểu những chi tiết nhỏ",
+        "/content/examples/0/en": "Her acute observation revealed a small error in the chart.",
+        "/content/examples/0/vi": "Sự quan sát nhạy bén của cô ấy giúp phát hiện một lỗi nhỏ trong biểu đồ.",
+        "/content/grammarNotesEn": "acute observation or awareness; do not confuse with pain or illness."
+      },
+      "proposedValues": {
+        "/content/senseLabelEn": "highly sensitive perception",
+        "/content/definitionEn": "Highly sensitive to small differences or details that others may miss.",
+        "/content/meaningVi": "nhạy bén với những khác biệt hoặc chi tiết nhỏ mà người khác có thể bỏ qua",
+        "/content/examples/0/en": "The dog has an acute sense of smell and noticed the food inside the closed bag.",
+        "/content/examples/0/vi": "Con chó có khứu giác nhạy bén và phát hiện thức ăn bên trong chiếc túi đóng kín.",
+        "/content/grammarNotesEn": "acute sense of smell or acute hearing; this sensory-perception proposal needs boundary review against intellectual perceptiveness. Existing medical-onset and severity proposals remain separate."
+      },
+      "changeReasons": {
+        "/content/senseLabelEn": "Use the natural sense-of-smell collocation, but explicitly narrow the former notice/understand wording toward sensitive perception instead of treating sensory and intellectual meanings as proven identical. Attributive ADJECTIVE modifies sense, not the dog directly; both sentences express detecting concealed food.",
+        "/content/definitionEn": "Use the natural sense-of-smell collocation, but explicitly narrow the former notice/understand wording toward sensitive perception instead of treating sensory and intellectual meanings as proven identical. Attributive ADJECTIVE modifies sense, not the dog directly; both sentences express detecting concealed food.",
+        "/content/meaningVi": "Use the natural sense-of-smell collocation, but explicitly narrow the former notice/understand wording toward sensitive perception instead of treating sensory and intellectual meanings as proven identical. Attributive ADJECTIVE modifies sense, not the dog directly; both sentences express detecting concealed food.",
+        "/content/examples/0/en": "Use the natural sense-of-smell collocation, but explicitly narrow the former notice/understand wording toward sensitive perception instead of treating sensory and intellectual meanings as proven identical. Attributive ADJECTIVE modifies sense, not the dog directly; both sentences express detecting concealed food.",
+        "/content/examples/0/vi": "Use the natural sense-of-smell collocation, but explicitly narrow the former notice/understand wording toward sensitive perception instead of treating sensory and intellectual meanings as proven identical. Attributive ADJECTIVE modifies sense, not the dog directly; both sentences express detecting concealed food.",
+        "/content/grammarNotesEn": "Use the natural sense-of-smell collocation, but explicitly narrow the former notice/understand wording toward sensitive perception instead of treating sensory and intellectual meanings as proven identical. Attributive ADJECTIVE modifies sense, not the dog directly; both sentences express detecting concealed food."
+      },
+      "coupledReview": {
+        "/partOfSpeechProposal": {
+          "before": "ADJECTIVE",
+          "after": "ADJECTIVE",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/senseLabelEn": {
+          "before": "keenly perceptive",
+          "after": "highly sensitive perception",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/definitionEn": {
+          "before": "Able to notice or understand small details very clearly.",
+          "after": "Highly sensitive to small differences or details that others may miss.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/meaningVi": {
+          "before": "nhạy bén trong việc nhận ra hoặc hiểu những chi tiết nhỏ",
+          "after": "nhạy bén với những khác biệt hoặc chi tiết nhỏ mà người khác có thể bỏ qua",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/examples/0/en": {
+          "before": "Her acute observation revealed a small error in the chart.",
+          "after": "The dog has an acute sense of smell and noticed the food inside the closed bag.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/examples/0/vi": {
+          "before": "Sự quan sát nhạy bén của cô ấy giúp phát hiện một lỗi nhỏ trong biểu đồ.",
+          "after": "Con chó có khứu giác nhạy bén và phát hiện thức ăn bên trong chiếc túi đóng kín.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        }
+      },
+      "authorship": {
+        "sourceType": "GENERATED",
+        "process": "AI assistant independently examined the exact original draft, sibling proposals and Master V2 rules, then persisted correction wording once. Assembly/replay never generates prose. Dispositions are AI editorial recommendations, not human approvals.",
+        "humanAuthor": null,
+        "humanReviewer": null,
+        "license": null,
+        "reviewDate": null
+      },
+      "ownerDecision": "UNRESOLVED"
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2B:age:grow-older",
+      "findingRef": "QA1_PROMPT_SECTION_5:9",
+      "originalDraftCanonicalHash": "6c4f4920c500dfbad62c87ff5b249ff2c8ac231094b52de9ab31b8282f6ac3cb",
+      "originalValues": {
+        "/content/examples/0/en": "The trees aged slowly in the sheltered valley.",
+        "/content/examples/0/vi": "Những cây ấy già đi chậm rãi trong thung lũng được che chắn."
+      },
+      "proposedValues": {
+        "/content/examples/0/en": "As my grandparents aged, they chose a home with fewer stairs.",
+        "/content/examples/0/vi": "Khi ông bà tôi lớn tuổi hơn, họ chọn một ngôi nhà có ít cầu thang hơn."
+      },
+      "changeReasons": {
+        "/content/examples/0/en": "Human subjects and a practical change naturally illustrate growing older; replace the awkward trees-aged-slowly example. Preserve age noun siblings. Intransitive past-tense aged; Vietnamese preserves the participants, temporal link and choice, without inventing a health claim.",
+        "/content/examples/0/vi": "Human subjects and a practical change naturally illustrate growing older; replace the awkward trees-aged-slowly example. Preserve age noun siblings. Intransitive past-tense aged; Vietnamese preserves the participants, temporal link and choice, without inventing a health claim."
+      },
+      "coupledReview": {
+        "/partOfSpeechProposal": {
+          "before": "VERB",
+          "after": "VERB",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/senseLabelEn": {
+          "before": "grow older",
+          "after": "grow older",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/definitionEn": {
+          "before": "To become older or show changes associated with getting older.",
+          "after": "To become older or show changes associated with getting older.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/meaningVi": {
+          "before": "trở nên già hơn hoặc thay đổi theo tuổi tác",
+          "after": "trở nên già hơn hoặc thay đổi theo tuổi tác",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/examples/0/en": {
+          "before": "The trees aged slowly in the sheltered valley.",
+          "after": "As my grandparents aged, they chose a home with fewer stairs.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/examples/0/vi": {
+          "before": "Những cây ấy già đi chậm rãi trong thung lũng được che chắn.",
+          "after": "Khi ông bà tôi lớn tuổi hơn, họ chọn một ngôi nhà có ít cầu thang hơn.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        }
+      },
+      "authorship": {
+        "sourceType": "GENERATED",
+        "process": "AI assistant independently examined the exact original draft, sibling proposals and Master V2 rules, then persisted correction wording once. Assembly/replay never generates prose. Dispositions are AI editorial recommendations, not human approvals.",
+        "humanAuthor": null,
+        "humanReviewer": null,
+        "license": null,
+        "reviewDate": null
+      },
+      "ownerDecision": "UNRESOLVED"
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2B:arm:weapons",
+      "findingRef": "QA1_PROMPT_SECTION_5:10",
+      "originalDraftCanonicalHash": "08c89d42640d8274fe23c5709b71d59fc529a35209b3ded384b31480cb40114d",
+      "originalValues": {
+        "/content/senseLabelEn": "weapons",
+        "/content/meaningVi": "vũ khí, nhất là trang bị quân sự",
+        "/content/grammarNotesEn": "Usually plural arms in this sense; not a reference to body parts."
+      },
+      "proposedValues": {
+        "/content/senseLabelEn": "weapons, in the plural arms",
+        "/content/meaningVi": "vũ khí; nghĩa này dùng dạng số nhiều arms",
+        "/content/grammarNotesEn": "Weapons usage is plural arms, as in the sale of arms; do not teach a singular arm as one weapon in this reading. Owner must decide whether arms needs a separate lexical form or a reviewed form relationship to arm. Body-part noun and provide-weapons verb are not merged."
+      },
+      "changeReasons": {
+        "/content/senseLabelEn": "The original arms example is valid but the singular source grouping can mislead learners. Make plural-only weapons usage explicit without changing group keys or canonical lemmas. NOUN remains valid; lexical identity and form/alias treatment remain unresolved.",
+        "/content/meaningVi": "The original arms example is valid but the singular source grouping can mislead learners. Make plural-only weapons usage explicit without changing group keys or canonical lemmas. NOUN remains valid; lexical identity and form/alias treatment remain unresolved.",
+        "/content/grammarNotesEn": "The original arms example is valid but the singular source grouping can mislead learners. Make plural-only weapons usage explicit without changing group keys or canonical lemmas. NOUN remains valid; lexical identity and form/alias treatment remain unresolved."
+      },
+      "coupledReview": {
+        "/partOfSpeechProposal": {
+          "before": "NOUN",
+          "after": "NOUN",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/senseLabelEn": {
+          "before": "weapons",
+          "after": "weapons, in the plural arms",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/definitionEn": {
+          "before": "Weapons, especially when considered as military equipment.",
+          "after": "Weapons, especially when considered as military equipment.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/meaningVi": {
+          "before": "vũ khí, nhất là trang bị quân sự",
+          "after": "vũ khí; nghĩa này dùng dạng số nhiều arms",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/examples/0/en": {
+          "before": "The agreement restricted the sale of arms.",
+          "after": "The agreement restricted the sale of arms.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/examples/0/vi": {
+          "before": "Thỏa thuận hạn chế việc bán vũ khí.",
+          "after": "Thỏa thuận hạn chế việc bán vũ khí.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        }
+      },
+      "authorship": {
+        "sourceType": "GENERATED",
+        "process": "AI assistant independently examined the exact original draft, sibling proposals and Master V2 rules, then persisted correction wording once. Assembly/replay never generates prose. Dispositions are AI editorial recommendations, not human approvals.",
+        "humanAuthor": null,
+        "humanReviewer": null,
+        "license": null,
+        "reviewDate": null
+      },
+      "ownerDecision": "UNRESOLVED"
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2B:bad:spoiled-food",
+      "findingRef": "QA1_PROMPT_SECTION_5:11",
+      "originalDraftCanonicalHash": "37e11f1a3f425c77ddb8343d6678af09459c24f6e6d3bbdb69f247b20852be1f",
+      "originalValues": {
+        "/content/examples/0/en": "The milk smelled bad, so we did not use it.",
+        "/content/examples/0/vi": "Sữa có mùi hỏng nên chúng tôi không dùng."
+      },
+      "proposedValues": {
+        "/content/examples/0/en": "The milk had gone bad, so we threw it away without drinking it.",
+        "/content/examples/0/vi": "Sữa đã bị hỏng nên chúng tôi đổ bỏ mà không uống."
+      },
+      "changeReasons": {
+        "/content/examples/0/en": "Had gone bad asserts spoilage rather than relying on an unpleasant smell. English/Vietnamese share the spoilage and disposal sequence; no safety test is claimed. Predicative ADJECTIVE after go, with past perfect marking the prior spoilage; keep general poor-quality sibling separate.",
+        "/content/examples/0/vi": "Had gone bad asserts spoilage rather than relying on an unpleasant smell. English/Vietnamese share the spoilage and disposal sequence; no safety test is claimed. Predicative ADJECTIVE after go, with past perfect marking the prior spoilage; keep general poor-quality sibling separate."
+      },
+      "coupledReview": {
+        "/partOfSpeechProposal": {
+          "before": "ADJECTIVE",
+          "after": "ADJECTIVE",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/senseLabelEn": {
+          "before": "spoiled",
+          "after": "spoiled",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/definitionEn": {
+          "before": "No longer fresh or suitable to eat.",
+          "after": "No longer fresh or suitable to eat.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/meaningVi": {
+          "before": "bị hỏng hoặc không còn phù hợp để ăn",
+          "after": "bị hỏng hoặc không còn phù hợp để ăn",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/examples/0/en": {
+          "before": "The milk smelled bad, so we did not use it.",
+          "after": "The milk had gone bad, so we threw it away without drinking it.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/examples/0/vi": {
+          "before": "Sữa có mùi hỏng nên chúng tôi không dùng.",
+          "after": "Sữa đã bị hỏng nên chúng tôi đổ bỏ mà không uống.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        }
+      },
+      "authorship": {
+        "sourceType": "GENERATED",
+        "process": "AI assistant independently examined the exact original draft, sibling proposals and Master V2 rules, then persisted correction wording once. Assembly/replay never generates prose. Dispositions are AI editorial recommendations, not human approvals.",
+        "humanAuthor": null,
+        "humanReviewer": null,
+        "license": null,
+        "reviewDate": null
+      },
+      "ownerDecision": "UNRESOLVED"
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2B:block:street-section",
+      "findingRef": "QA1_PROMPT_SECTION_5:12",
+      "originalDraftCanonicalHash": "eadf3bc372a8fceab7acda4a3b1f758ff3a5444d6ad7c062cbdb58f86228b8e1",
+      "originalValues": {
+        "/content/senseLabelEn": "a section of streets",
+        "/content/definitionEn": "A section of a town bounded by streets, or the distance along one side of it.",
+        "/content/meaningVi": "khu phố được bao quanh bởi các đường hoặc quãng đường dọc một cạnh của khu đó",
+        "/content/examples/0/vi": "Thư viện cách nhà ga hai dãy phố.",
+        "/content/grammarNotesEn": "Especially useful in grid street layouts; lengths vary."
+      },
+      "proposedValues": {
+        "/content/senseLabelEn": "a city-street distance",
+        "/content/definitionEn": "The distance along a city street from one intersecting street to the next.",
+        "/content/meaningVi": "quãng đường dọc một phố từ chỗ giao với một đường đến chỗ giao tiếp theo",
+        "/content/examples/0/vi": "Thư viện cách nhà ga hai đoạn phố, mỗi đoạn tính từ một giao lộ đến giao lộ tiếp theo.",
+        "/content/grammarNotesEn": "Two blocks from a place describes street distance, not the enclosed area of a city block. Block lengths vary; owner may later propose a separate area Sense if supported. This overlay creates no new Sense."
+      },
+      "changeReasons": {
+        "/content/senseLabelEn": "Choose the distance reading already realized by two blocks from the station. Avoid preserving the original combined area-or-distance definition; record the area interpretation as an unresolved future split possibility. Countable NOUN used as a distance measure; Vietnamese preserves two units and identifies how a block is measured.",
+        "/content/definitionEn": "Choose the distance reading already realized by two blocks from the station. Avoid preserving the original combined area-or-distance definition; record the area interpretation as an unresolved future split possibility. Countable NOUN used as a distance measure; Vietnamese preserves two units and identifies how a block is measured.",
+        "/content/meaningVi": "Choose the distance reading already realized by two blocks from the station. Avoid preserving the original combined area-or-distance definition; record the area interpretation as an unresolved future split possibility. Countable NOUN used as a distance measure; Vietnamese preserves two units and identifies how a block is measured.",
+        "/content/examples/0/vi": "Choose the distance reading already realized by two blocks from the station. Avoid preserving the original combined area-or-distance definition; record the area interpretation as an unresolved future split possibility. Countable NOUN used as a distance measure; Vietnamese preserves two units and identifies how a block is measured.",
+        "/content/grammarNotesEn": "Choose the distance reading already realized by two blocks from the station. Avoid preserving the original combined area-or-distance definition; record the area interpretation as an unresolved future split possibility. Countable NOUN used as a distance measure; Vietnamese preserves two units and identifies how a block is measured."
+      },
+      "coupledReview": {
+        "/partOfSpeechProposal": {
+          "before": "NOUN",
+          "after": "NOUN",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/senseLabelEn": {
+          "before": "a section of streets",
+          "after": "a city-street distance",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/definitionEn": {
+          "before": "A section of a town bounded by streets, or the distance along one side of it.",
+          "after": "The distance along a city street from one intersecting street to the next.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/meaningVi": {
+          "before": "khu phố được bao quanh bởi các đường hoặc quãng đường dọc một cạnh của khu đó",
+          "after": "quãng đường dọc một phố từ chỗ giao với một đường đến chỗ giao tiếp theo",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/examples/0/en": {
+          "before": "The library is two blocks from the station.",
+          "after": "The library is two blocks from the station.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/examples/0/vi": {
+          "before": "Thư viện cách nhà ga hai dãy phố.",
+          "after": "Thư viện cách nhà ga hai đoạn phố, mỗi đoạn tính từ một giao lộ đến giao lộ tiếp theo.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        }
+      },
+      "authorship": {
+        "sourceType": "GENERATED",
+        "process": "AI assistant independently examined the exact original draft, sibling proposals and Master V2 rules, then persisted correction wording once. Assembly/replay never generates prose. Dispositions are AI editorial recommendations, not human approvals.",
+        "humanAuthor": null,
+        "humanReviewer": null,
+        "license": null,
+        "reviewDate": null
+      },
+      "ownerDecision": "UNRESOLVED"
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2B:bread:baked-food",
+      "findingRef": "QA1_PROMPT_SECTION_5:13",
+      "originalDraftCanonicalHash": "1b097918ddf6b4bbb26f94d1a7412c5e9091622491ded76fe55c11384490652c",
+      "originalValues": {
+        "/content/definitionEn": "Food made by baking dough, often sliced or divided into rolls.",
+        "/content/meaningVi": "bánh mì, thực phẩm làm bằng cách nướng bột nhào"
+      },
+      "proposedValues": {
+        "/content/definitionEn": "A staple food made from flour mixed with water and other ingredients, usually baked as loaves or rolls.",
+        "/content/meaningVi": "bánh mì, thực phẩm làm từ bột trộn với nước và các nguyên liệu khác, thường được nướng thành ổ hoặc bánh nhỏ"
+      },
+      "changeReasons": {
+        "/content/definitionEn": "Specify the flour/water staple and familiar forms so the definition does not identify every baked-dough food as bread. Usually leaves room for other preparation traditions. Usually uncountable food noun; the original fresh-bread example and translation remain aligned, not an approved cultural taxonomy.",
+        "/content/meaningVi": "Specify the flour/water staple and familiar forms so the definition does not identify every baked-dough food as bread. Usually leaves room for other preparation traditions. Usually uncountable food noun; the original fresh-bread example and translation remain aligned, not an approved cultural taxonomy."
+      },
+      "coupledReview": {
+        "/partOfSpeechProposal": {
+          "before": "NOUN",
+          "after": "NOUN",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/senseLabelEn": {
+          "before": "a baked staple food",
+          "after": "a baked staple food",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/definitionEn": {
+          "before": "Food made by baking dough, often sliced or divided into rolls.",
+          "after": "A staple food made from flour mixed with water and other ingredients, usually baked as loaves or rolls.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/meaningVi": {
+          "before": "bánh mì, thực phẩm làm bằng cách nướng bột nhào",
+          "after": "bánh mì, thực phẩm làm từ bột trộn với nước và các nguyên liệu khác, thường được nướng thành ổ hoặc bánh nhỏ",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/examples/0/en": {
+          "before": "We bought fresh bread for the family breakfast.",
+          "after": "We bought fresh bread for the family breakfast.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/examples/0/vi": {
+          "before": "Chúng tôi mua bánh mì mới cho bữa sáng của gia đình.",
+          "after": "Chúng tôi mua bánh mì mới cho bữa sáng của gia đình.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        }
+      },
+      "authorship": {
+        "sourceType": "GENERATED",
+        "process": "AI assistant independently examined the exact original draft, sibling proposals and Master V2 rules, then persisted correction wording once. Assembly/replay never generates prose. Dispositions are AI editorial recommendations, not human approvals.",
+        "humanAuthor": null,
+        "humanReviewer": null,
+        "license": null,
+        "reviewDate": null
+      },
+      "ownerDecision": "UNRESOLVED"
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2B:carbon dioxide:gas",
+      "findingRef": "QA1_PROMPT_SECTION_5:14",
+      "originalDraftCanonicalHash": "03aa7ce7a25fde7f5110d0517f48a980b7520d7c07871699e58c35505702965d",
+      "originalValues": {
+        "/content/definitionEn": "A gas made of carbon and oxygen that is released in breathing and many burning processes.",
+        "/content/meaningVi": "khí cacbon đioxit gồm cacbon và oxy, được thải ra khi hô hấp và trong nhiều quá trình đốt cháy"
+      },
+      "proposedValues": {
+        "/content/definitionEn": "A gas whose molecules each contain one carbon atom joined to two oxygen atoms.",
+        "/content/meaningVi": "khí cacbon đioxit (CO₂), mỗi phân tử gồm một nguyên tử cacbon liên kết với hai nguyên tử oxy"
+      },
+      "changeReasons": {
+        "/content/definitionEn": "State molecular composition rather than an imprecise made-of-elements description. The original plant-use example remains in scope; wider scientific teaching still needs subject review. Uncountable compound NOUN; no CEFR or exam suitability inferred.",
+        "/content/meaningVi": "State molecular composition rather than an imprecise made-of-elements description. The original plant-use example remains in scope; wider scientific teaching still needs subject review. Uncountable compound NOUN; no CEFR or exam suitability inferred."
+      },
+      "coupledReview": {
+        "/partOfSpeechProposal": {
+          "before": "NOUN",
+          "after": "NOUN",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/senseLabelEn": {
+          "before": "a carbon-and-oxygen gas",
+          "after": "a carbon-and-oxygen gas",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/definitionEn": {
+          "before": "A gas made of carbon and oxygen that is released in breathing and many burning processes.",
+          "after": "A gas whose molecules each contain one carbon atom joined to two oxygen atoms.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/meaningVi": {
+          "before": "khí cacbon đioxit gồm cacbon và oxy, được thải ra khi hô hấp và trong nhiều quá trình đốt cháy",
+          "after": "khí cacbon đioxit (CO₂), mỗi phân tử gồm một nguyên tử cacbon liên kết với hai nguyên tử oxy",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/examples/0/en": {
+          "before": "The class discussed how plants use carbon dioxide.",
+          "after": "The class discussed how plants use carbon dioxide.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/examples/0/vi": {
+          "before": "Cả lớp thảo luận về cách thực vật sử dụng khí cacbon đioxit.",
+          "after": "Cả lớp thảo luận về cách thực vật sử dụng khí cacbon đioxit.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        }
+      },
+      "authorship": {
+        "sourceType": "GENERATED",
+        "process": "AI assistant independently examined the exact original draft, sibling proposals and Master V2 rules, then persisted correction wording once. Assembly/replay never generates prose. Dispositions are AI editorial recommendations, not human approvals.",
+        "humanAuthor": null,
+        "humanReviewer": null,
+        "license": null,
+        "reviewDate": null
+      },
+      "ownerDecision": "UNRESOLVED"
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2B:coral reef:marine-formation",
+      "findingRef": "QA1_PROMPT_SECTION_5:15",
+      "originalDraftCanonicalHash": "8fb29a867dfd0bc72f0762bdd5afef818fe29034bdf109daa9e10cc46a22bb17",
+      "originalValues": {
+        "/content/meaningVi": "rạn trong biển được tạo nên chủ yếu từ phần vật liệu cứng do san hô tạo ra"
+      },
+      "proposedValues": {
+        "/content/meaningVi": "rạn san hô, cấu trúc trong biển hình thành chủ yếu từ phần vật liệu cứng do san hô tạo ra"
+      },
+      "changeReasons": {
+        "/content/meaningVi": "Lead with the recognizable lexical equivalent instead of a bare descriptive ran. Existing EN definition and paired diving example remain aligned. Countable compound NOUN; explanation does not claim each coral animal is itself a reef."
+      },
+      "coupledReview": {
+        "/partOfSpeechProposal": {
+          "before": "NOUN",
+          "after": "NOUN",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/senseLabelEn": {
+          "before": "a coral-built marine structure",
+          "after": "a coral-built marine structure",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/definitionEn": {
+          "before": "A ridge or larger structure in the sea built mainly from the hard material produced by corals.",
+          "after": "A ridge or larger structure in the sea built mainly from the hard material produced by corals.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/meaningVi": {
+          "before": "rạn trong biển được tạo nên chủ yếu từ phần vật liệu cứng do san hô tạo ra",
+          "after": "rạn san hô, cấu trúc trong biển hình thành chủ yếu từ phần vật liệu cứng do san hô tạo ra",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/examples/0/en": {
+          "before": "Divers observed small fish sheltering in the coral reef.",
+          "after": "Divers observed small fish sheltering in the coral reef.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/examples/0/vi": {
+          "before": "Những người lặn quan sát cá nhỏ trú trong rạn san hô.",
+          "after": "Những người lặn quan sát cá nhỏ trú trong rạn san hô.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        }
+      },
+      "authorship": {
+        "sourceType": "GENERATED",
+        "process": "AI assistant independently examined the exact original draft, sibling proposals and Master V2 rules, then persisted correction wording once. Assembly/replay never generates prose. Dispositions are AI editorial recommendations, not human approvals.",
+        "humanAuthor": null,
+        "humanReviewer": null,
+        "license": null,
+        "reviewDate": null
+      },
+      "ownerDecision": "UNRESOLVED"
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2B:cosmopolitan city:diverse-city",
+      "findingRef": "QA1_PROMPT_SECTION_5:16",
+      "originalDraftCanonicalHash": "db27423c03f48c94930858ff354b8fce440deaf2692649db2c4e01a3c8114740",
+      "originalValues": {
+        "/content/meaningVi": "thành phố nơi nhiều cộng đồng từ các quốc gia và nền văn hóa khác nhau sinh sống hoặc gặp gỡ"
+      },
+      "proposedValues": {
+        "/content/meaningVi": "thành phố đa văn hóa, nơi người từ nhiều quốc gia và nền văn hóa sinh sống hoặc gặp gỡ"
+      },
+      "changeReasons": {
+        "/content/meaningVi": "Lead with a clear Vietnamese equivalent; keep the more extensive description subordinate. The original port-city example translation already conveys cultural diversity. Compositional noun phrase; owner must still decide whether it warrants a Lexeme rather than a construction/example."
+      },
+      "coupledReview": {
+        "/partOfSpeechProposal": {
+          "before": "NOUN",
+          "after": "NOUN",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/senseLabelEn": {
+          "before": "a culturally diverse city",
+          "after": "a culturally diverse city",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/definitionEn": {
+          "before": "A city where people from many countries and cultural backgrounds live or meet.",
+          "after": "A city where people from many countries and cultural backgrounds live or meet.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/meaningVi": {
+          "before": "thành phố nơi nhiều cộng đồng từ các quốc gia và nền văn hóa khác nhau sinh sống hoặc gặp gỡ",
+          "after": "thành phố đa văn hóa, nơi người từ nhiều quốc gia và nền văn hóa sinh sống hoặc gặp gỡ",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/examples/0/en": {
+          "before": "The port developed into a cosmopolitan city over many years.",
+          "after": "The port developed into a cosmopolitan city over many years.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/examples/0/vi": {
+          "before": "Qua nhiều năm, thành phố cảng phát triển thành một đô thị có nhiều cộng đồng văn hóa khác nhau.",
+          "after": "Qua nhiều năm, thành phố cảng phát triển thành một đô thị có nhiều cộng đồng văn hóa khác nhau.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        }
+      },
+      "authorship": {
+        "sourceType": "GENERATED",
+        "process": "AI assistant independently examined the exact original draft, sibling proposals and Master V2 rules, then persisted correction wording once. Assembly/replay never generates prose. Dispositions are AI editorial recommendations, not human approvals.",
+        "humanAuthor": null,
+        "humanReviewer": null,
+        "license": null,
+        "reviewDate": null
+      },
+      "ownerDecision": "UNRESOLVED"
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2B:fossil fuel:ancient-organic-fuel",
+      "findingRef": "QA1_PROMPT_SECTION_5:17",
+      "originalDraftCanonicalHash": "653dfb852ff19b15f4532a18307bde8c1f80e16c3b5e79310e5537e15ac052ee",
+      "originalValues": {
+        "/content/examples/0/en": "The factory is reducing its use of fossil fuel.",
+        "/content/examples/0/vi": "Nhà máy đang giảm việc sử dụng nhiên liệu hóa thạch."
+      },
+      "proposedValues": {
+        "/content/examples/0/en": "The factory is reducing its dependence on fossil fuels.",
+        "/content/examples/0/vi": "Nhà máy đang giảm sự phụ thuộc vào nhiên liệu hóa thạch."
+      },
+      "changeReasons": {
+        "/content/examples/0/en": "General fossil-fuel categories naturally take the plural in this example. Dependence/use context changes are mirrored in Vietnamese; base source lemma remains fossil fuel. Plural fossil fuels is an inflected example form, not a new Lexeme or an automatic identity change.",
+        "/content/examples/0/vi": "General fossil-fuel categories naturally take the plural in this example. Dependence/use context changes are mirrored in Vietnamese; base source lemma remains fossil fuel. Plural fossil fuels is an inflected example form, not a new Lexeme or an automatic identity change."
+      },
+      "coupledReview": {
+        "/partOfSpeechProposal": {
+          "before": "NOUN",
+          "after": "NOUN",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/senseLabelEn": {
+          "before": "fuel from ancient organic matter",
+          "after": "fuel from ancient organic matter",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/definitionEn": {
+          "before": "A fuel such as coal, oil or natural gas formed from ancient organic material.",
+          "after": "A fuel such as coal, oil or natural gas formed from ancient organic material.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/meaningVi": {
+          "before": "nhiên liệu như than đá, dầu mỏ hoặc khí tự nhiên hình thành từ vật chất hữu cơ cổ",
+          "after": "nhiên liệu như than đá, dầu mỏ hoặc khí tự nhiên hình thành từ vật chất hữu cơ cổ",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/examples/0/en": {
+          "before": "The factory is reducing its use of fossil fuel.",
+          "after": "The factory is reducing its dependence on fossil fuels.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        },
+        "/content/examples/0/vi": {
+          "before": "Nhà máy đang giảm việc sử dụng nhiên liệu hóa thạch.",
+          "after": "Nhà máy đang giảm sự phụ thuộc vào nhiên liệu hóa thạch.",
+          "review": "AI_REEVALUATED_HUMAN_PENDING"
+        }
+      },
+      "authorship": {
+        "sourceType": "GENERATED",
+        "process": "AI assistant independently examined the exact original draft, sibling proposals and Master V2 rules, then persisted correction wording once. Assembly/replay never generates prose. Dispositions are AI editorial recommendations, not human approvals.",
+        "humanAuthor": null,
+        "humanReviewer": null,
+        "license": null,
+        "reviewDate": null
+      },
+      "ownerDecision": "UNRESOLVED"
+    }
+  ]
+}

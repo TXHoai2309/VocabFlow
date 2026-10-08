@@ -1,0 +1,150 @@
+{
+  "sourceType": "GENERATED",
+  "process": "AI assistant independently examined the exact original draft, sibling proposals and Master V2 rules, then persisted correction wording once. Assembly/replay never generates prose. Dispositions are AI editorial recommendations, not human approvals.",
+  "humanAuthor": null,
+  "humanReviewer": null,
+  "license": null,
+  "ownerDecision": "UNRESOLVED",
+  "findings": [
+    {
+      "number": 1, "triage": "REVISE", "proposalKey": "EDITORIAL_2H2B:a, an:indefinite", "disposition": "ACCEPT_CORRECTION_PROPOSAL",
+      "changes": {"/content/senseLabelEn": "the indefinite article", "/content/definitionEn": "Used with a singular countable noun to introduce someone or something, or to describe a member of a class without identifying a particular one.", "/content/meaningVi": "mạo từ không xác định dùng trước danh từ đếm được số ít; có thể biểu đạt ý một người hoặc một vật nhưng không phải lúc nào cũng cần dịch thành một"},
+      "semanticRationale": "The original Vietnamese wording describes an object instead of the grammatical article and the definition overrestricts use to listener ignorance. Retain the existing example, which illustrates indefinite introduction.",
+      "grammaticalRationale": "DETERMINER is a valid local POS. Propose a as the lexical form with an as a sound-conditioned variant, but defer canonical lemma/alias identity; a, an remains only the source grouping key.",
+      "identityBlockers": ["ARTICLE_LEMMA_AND_ALIAS_REVIEW"], "confidence": "MEDIUM"
+    },
+    {
+      "number": 2, "triage": "REVISE", "proposalKey": "EDITORIAL_2H2B:abortion:end-pregnancy", "disposition": "ACCEPT_CORRECTION_PROPOSAL",
+      "changes": {"/content/senseLabelEn": "deliberately ending a pregnancy", "/content/definitionEn": "The deliberate ending of a pregnancy through medical care before birth.", "/content/meaningVi": "việc chủ động chấm dứt thai kỳ bằng chăm sóc hoặc can thiệp y tế trước khi sinh", "/content/grammarNotesEn": "This proposal concerns induced abortion, not spontaneous pregnancy loss. Medical terminology, audience suitability and scope require subject review; no treatment or jurisdictional advice is offered."},
+      "semanticRationale": "Distinguish the intended induced termination sense from any ending of pregnancy. The original services example and translation remain aligned with that scope.",
+      "grammaticalRationale": "NOUN remains appropriate; no new meaning identity is approved.", "identityBlockers": ["MEDICAL_TERMINOLOGY_SCOPE_REVIEW"], "confidence": "MEDIUM",
+      "verificationSources": [{"url": "https://www.nhs.uk/tests-and-treatments/abortion/what-is/", "evidence": "NHS describes termination of pregnancy and medicine/surgery; supports intended scope, not a license to copy or medical approval."}]
+    },
+    {
+      "number": 3, "triage": "REVISE", "proposalKey": "EDITORIAL_2H2B:about:approximately", "disposition": "MODIFY_CORRECTION_PROPOSAL",
+      "changes": {"/partOfSpeechProposal": "ADVERB", "/content/grammarNotesEn": "Proposed learner-dictionary ADVERB analysis before an approximate quantity or time. Some grammar frameworks treat this construction as PREPOSITION; owner must select the POS convention. Keep the topic preposition and spatial adverb proposals distinct."},
+      "semanticRationale": "The forty-minutes example expresses approximation, not topic. Propose ADVERB for evaluation but do not present the source PREPOSITION analysis as universally wrong.",
+      "grammaticalRationale": "Cambridge's learner dictionary excerpt tags approximation as adverb, while its grammar blog calls about before quantities a preposition. The valid schema offers both enums; the analysis convention remains unresolved.", "identityBlockers": ["POS_FRAMEWORK_DECISION"], "confidence": "MEDIUM",
+      "verificationSources": [{"url": "https://beckassets.blob.core.windows.net/product/readingsample/12002961/9780521712668_excerpt_001.pdf", "evidence": "Cambridge learner dictionary excerpt has an approximation adverb entry; search excerpt inspected, full dictionary URL returned 403."}, {"url": "https://dictionaryblog.cambridge.org/2022/11/02/at-a-rough-guess-talking-about-approximate-numbers-and-amounts/", "evidence": "Cambridge publisher grammar discussion treats about/around before quantities as prepositions; preserve disagreement rather than approve a universal correction."}]
+    },
+    {
+      "number": 4, "triage": "REVISE", "proposalKey": "EDITORIAL_2H2B:able:competent", "disposition": "ACCEPT_CORRECTION_PROPOSAL",
+      "changes": {"/content/examples/0/vi": "Một trợ lý có năng lực giúp mọi việc trong văn phòng bận rộn diễn ra có tổ chức."},
+      "semanticRationale": "Replace the awkward Vietnamese kept-office-organized construction with natural wording preserving the assistant's competence and organizational effect. English text and other able Sense remain unchanged.",
+      "grammaticalRationale": "Attributive able modifies assistant; translation preserves that attribution.", "identityBlockers": [], "confidence": "MEDIUM"
+    },
+    {
+      "number": 5, "triage": "REVISE", "proposalKey": "EDITORIAL_2H2B:acquire:gain", "disposition": "MODIFY_CORRECTION_PROPOSAL",
+      "changes": {"/content/definitionEn": "To come to have something, such as a possession, a skill or a quality.", "/content/meaningVi": "có được một thứ, chẳng hạn tài sản, kỹ năng hoặc phẩm chất", "/content/grammarNotesEn": "Transitive acquisition may occur through learning, purchase or other means. This broad proposal overlaps the narrower business-purchase sibling; review general versus specialized usage boundaries, without executing a split or merge."},
+      "semanticRationale": "Choose broad acquisition instead of inventing extra Senses. The existing vocabulary-learning example remains a valid subtype; specialized business purchase may be a usage specialization rather than a separate identity.",
+      "grammaticalRationale": "Keep VERB and direct object; remove the restrictive learning/experience condition on possessions.", "identityBlockers": ["GENERAL_VERSUS_BUSINESS_ACQUISITION_BOUNDARY"], "confidence": "MEDIUM"
+    },
+    {
+      "number": 6, "triage": "REVISE", "proposalKey": "EDITORIAL_2H2B:act:behave", "disposition": "ACCEPT_CORRECTION_PROPOSAL",
+      "changes": {"/content/senseLabelEn": "take action", "/content/definitionEn": "To do something in response to a situation or to achieve a result.", "/content/meaningVi": "hành động để ứng phó với tình huống hoặc đạt một kết quả", "/content/grammarNotesEn": "Intransitive act with a manner adverb, as in act quickly. This response-to-a-situation proposal does not also define behave; the editorial key is retained as an immutable local reference despite its older slug."},
+      "semanticRationale": "The existing rain/equipment example demonstrates taking action, not manner of behaving. Align all meaning fields without combining the two readings.",
+      "grammaticalRationale": "VERB remains intransitive in act quickly; acting-in-a-performance and deed siblings stay separate.", "identityBlockers": ["TAKE_ACTION_VERSUS_BEHAVE_SCOPE"], "confidence": "MEDIUM"
+    },
+    {
+      "number": 7, "triage": "REVISE", "proposalKey": "EDITORIAL_2H2B:action:movement", "disposition": "ACCEPT_CORRECTION_PROPOSAL",
+      "changes": {"/content/senseLabelEn": "activity in progress", "/content/definitionEn": "The activity of someone or something while doing what they normally do.", "/content/meaningVi": "hoạt động của người hoặc vật khi đang thực hiện công việc hay chức năng của mình", "/content/grammarNotesEn": "The pattern in action shows someone or something actively at work. The dancing example includes movement but the proposed meaning is broader activity in progress; distinguish from steps taken to address a problem."},
+      "semanticRationale": "The photographer's dancers in action illustrates active performance. Narrow the proposed reading to the in-action pattern, not arbitrary physical motion.",
+      "grammaticalRationale": "NOUN inside the prepositional phrase in action; phrase behavior remains a usage consideration.", "identityBlockers": ["IN_ACTION_CONSTRUCTION_VERSUS_SENSE"], "confidence": "MEDIUM"
+    },
+    {
+      "number": 8, "triage": "REVISE", "proposalKey": "EDITORIAL_2H2B:acute:perceptive", "disposition": "MODIFY_CORRECTION_PROPOSAL",
+      "changes": {"/content/senseLabelEn": "highly sensitive perception", "/content/definitionEn": "Highly sensitive to small differences or details that others may miss.", "/content/meaningVi": "nhạy bén với những khác biệt hoặc chi tiết nhỏ mà người khác có thể bỏ qua", "/content/examples/0/en": "The dog has an acute sense of smell and noticed the food inside the closed bag.", "/content/examples/0/vi": "Con chó có khứu giác nhạy bén và phát hiện thức ăn bên trong chiếc túi đóng kín.", "/content/grammarNotesEn": "acute sense of smell or acute hearing; this sensory-perception proposal needs boundary review against intellectual perceptiveness. Existing medical-onset and severity proposals remain separate."},
+      "semanticRationale": "Use the natural sense-of-smell collocation, but explicitly narrow the former notice/understand wording toward sensitive perception instead of treating sensory and intellectual meanings as proven identical.",
+      "grammaticalRationale": "Attributive ADJECTIVE modifies sense, not the dog directly; both sentences express detecting concealed food.", "identityBlockers": ["SENSORY_VERSUS_INTELLECTUAL_PERCEPTION"], "confidence": "MEDIUM"
+    },
+    {
+      "number": 9, "triage": "REVISE", "proposalKey": "EDITORIAL_2H2B:age:grow-older", "disposition": "ACCEPT_CORRECTION_PROPOSAL",
+      "changes": {"/content/examples/0/en": "As my grandparents aged, they chose a home with fewer stairs.", "/content/examples/0/vi": "Khi ông bà tôi lớn tuổi hơn, họ chọn một ngôi nhà có ít cầu thang hơn."},
+      "semanticRationale": "Human subjects and a practical change naturally illustrate growing older; replace the awkward trees-aged-slowly example. Preserve age noun siblings.",
+      "grammaticalRationale": "Intransitive past-tense aged; Vietnamese preserves the participants, temporal link and choice, without inventing a health claim.", "identityBlockers": [], "confidence": "MEDIUM"
+    },
+    {
+      "number": 10, "triage": "REVISE", "proposalKey": "EDITORIAL_2H2B:arm:weapons", "disposition": "ACCEPT_CORRECTION_PROPOSAL",
+      "changes": {"/content/senseLabelEn": "weapons, in the plural arms", "/content/meaningVi": "vũ khí; nghĩa này dùng dạng số nhiều arms", "/content/grammarNotesEn": "Weapons usage is plural arms, as in the sale of arms; do not teach a singular arm as one weapon in this reading. Owner must decide whether arms needs a separate lexical form or a reviewed form relationship to arm. Body-part noun and provide-weapons verb are not merged."},
+      "semanticRationale": "The original arms example is valid but the singular source grouping can mislead learners. Make plural-only weapons usage explicit without changing group keys or canonical lemmas.",
+      "grammaticalRationale": "NOUN remains valid; lexical identity and form/alias treatment remain unresolved.", "identityBlockers": ["PLURAL_ARMS_LEXICAL_IDENTITY"], "confidence": "MEDIUM"
+    },
+    {
+      "number": 11, "triage": "REVISE", "proposalKey": "EDITORIAL_2H2B:bad:spoiled-food", "disposition": "ACCEPT_CORRECTION_PROPOSAL",
+      "changes": {"/content/examples/0/en": "The milk had gone bad, so we threw it away without drinking it.", "/content/examples/0/vi": "Sữa đã bị hỏng nên chúng tôi đổ bỏ mà không uống."},
+      "semanticRationale": "Had gone bad asserts spoilage rather than relying on an unpleasant smell. English/Vietnamese share the spoilage and disposal sequence; no safety test is claimed.",
+      "grammaticalRationale": "Predicative ADJECTIVE after go, with past perfect marking the prior spoilage; keep general poor-quality sibling separate.", "identityBlockers": [], "confidence": "MEDIUM"
+    },
+    {
+      "number": 12, "triage": "REVISE", "proposalKey": "EDITORIAL_2H2B:block:street-section", "disposition": "MODIFY_CORRECTION_PROPOSAL",
+      "changes": {"/content/senseLabelEn": "a city-street distance", "/content/definitionEn": "The distance along a city street from one intersecting street to the next.", "/content/meaningVi": "quãng đường dọc một phố từ chỗ giao với một đường đến chỗ giao tiếp theo", "/content/examples/0/vi": "Thư viện cách nhà ga hai đoạn phố, mỗi đoạn tính từ một giao lộ đến giao lộ tiếp theo.", "/content/grammarNotesEn": "Two blocks from a place describes street distance, not the enclosed area of a city block. Block lengths vary; owner may later propose a separate area Sense if supported. This overlay creates no new Sense."},
+      "semanticRationale": "Choose the distance reading already realized by two blocks from the station. Avoid preserving the original combined area-or-distance definition; record the area interpretation as an unresolved future split possibility.",
+      "grammaticalRationale": "Countable NOUN used as a distance measure; Vietnamese preserves two units and identifies how a block is measured.", "identityBlockers": ["CITY_BLOCK_AREA_VERSUS_DISTANCE"], "confidence": "MEDIUM"
+    },
+    {
+      "number": 13, "triage": "REVISE", "proposalKey": "EDITORIAL_2H2B:bread:baked-food", "disposition": "ACCEPT_CORRECTION_PROPOSAL",
+      "changes": {"/content/definitionEn": "A staple food made from flour mixed with water and other ingredients, usually baked as loaves or rolls.", "/content/meaningVi": "bánh mì, thực phẩm làm từ bột trộn với nước và các nguyên liệu khác, thường được nướng thành ổ hoặc bánh nhỏ"},
+      "semanticRationale": "Specify the flour/water staple and familiar forms so the definition does not identify every baked-dough food as bread. Usually leaves room for other preparation traditions.",
+      "grammaticalRationale": "Usually uncountable food noun; the original fresh-bread example and translation remain aligned, not an approved cultural taxonomy.", "identityBlockers": [], "confidence": "MEDIUM"
+    },
+    {
+      "number": 14, "triage": "REVISE", "proposalKey": "EDITORIAL_2H2B:carbon dioxide:gas", "disposition": "ACCEPT_CORRECTION_PROPOSAL",
+      "changes": {"/content/definitionEn": "A gas whose molecules each contain one carbon atom joined to two oxygen atoms.", "/content/meaningVi": "khí cacbon đioxit (CO₂), mỗi phân tử gồm một nguyên tử cacbon liên kết với hai nguyên tử oxy"},
+      "semanticRationale": "State molecular composition rather than an imprecise made-of-elements description. The original plant-use example remains in scope; wider scientific teaching still needs subject review.",
+      "grammaticalRationale": "Uncountable compound NOUN; no CEFR or exam suitability inferred.", "identityBlockers": ["SCIENCE_SUBJECT_REVIEW"], "confidence": "MEDIUM",
+      "verificationSources": [{"url": "https://pubchem.ncbi.nlm.nih.gov/compound/carbon_dioxide", "evidence": "PubChem search result identifies molecular formula CO2; full-page access showed a browser challenge. Formula verifies atom counts, not editorial approval or rights."}]
+    },
+    {
+      "number": 15, "triage": "REVISE", "proposalKey": "EDITORIAL_2H2B:coral reef:marine-formation", "disposition": "ACCEPT_CORRECTION_PROPOSAL",
+      "changes": {"/content/meaningVi": "rạn san hô, cấu trúc trong biển hình thành chủ yếu từ phần vật liệu cứng do san hô tạo ra"},
+      "semanticRationale": "Lead with the recognizable lexical equivalent instead of a bare descriptive ran. Existing EN definition and paired diving example remain aligned.",
+      "grammaticalRationale": "Countable compound NOUN; explanation does not claim each coral animal is itself a reef.", "identityBlockers": [], "confidence": "MEDIUM"
+    },
+    {
+      "number": 16, "triage": "REVISE", "proposalKey": "EDITORIAL_2H2B:cosmopolitan city:diverse-city", "disposition": "ACCEPT_CORRECTION_PROPOSAL",
+      "changes": {"/content/meaningVi": "thành phố đa văn hóa, nơi người từ nhiều quốc gia và nền văn hóa sinh sống hoặc gặp gỡ"},
+      "semanticRationale": "Lead with a clear Vietnamese equivalent; keep the more extensive description subordinate. The original port-city example translation already conveys cultural diversity.",
+      "grammaticalRationale": "Compositional noun phrase; owner must still decide whether it warrants a Lexeme rather than a construction/example.", "identityBlockers": ["COMPOSITIONAL_PHRASE_LEXEME_REVIEW"], "confidence": "MEDIUM"
+    },
+    {
+      "number": 17, "triage": "REVISE", "proposalKey": "EDITORIAL_2H2B:fossil fuel:ancient-organic-fuel", "disposition": "ACCEPT_CORRECTION_PROPOSAL",
+      "changes": {"/content/examples/0/en": "The factory is reducing its dependence on fossil fuels.", "/content/examples/0/vi": "Nhà máy đang giảm sự phụ thuộc vào nhiên liệu hóa thạch."},
+      "semanticRationale": "General fossil-fuel categories naturally take the plural in this example. Dependence/use context changes are mirrored in Vietnamese; base source lemma remains fossil fuel.",
+      "grammaticalRationale": "Plural fossil fuels is an inflected example form, not a new Lexeme or an automatic identity change.", "identityBlockers": [], "confidence": "MEDIUM"
+    },
+    {
+      "number": 18, "triage": "REVIEW_IDENTITY", "proposalKey": "EDITORIAL_2H2B:at the onset:at-beginning", "disposition": "DEFER_IDENTITY_DECISION", "changes": {},
+      "semanticRationale": "The whole expression marks the beginning of an event; the source's onset noun tag does not classify the complete expression.",
+      "grammaticalRationale": "Propose MULTIWORD_EXPRESSION pending lexicalization review. It is a prepositional phrase headed by at with adverbial function in the example; keep valid OTHER as a temporary fallback, consider PREPOSITION only under an approved phrase POS convention.",
+      "representationProposal": {"lexicalUnitType": "MULTIWORD_EXPRESSION", "posFallback": "OTHER", "analysis": "prepositional phrase with temporal adverbial function", "alternative": "construction/example rather than a standalone Lexeme"},
+      "identityBlockers": ["CONSTRUCTION_VERSUS_LEXEME", "PHRASE_POS_CONVENTION"], "confidence": "MEDIUM"
+    },
+    {
+      "number": 19, "triage": "REVIEW_IDENTITY", "proposalKey": "EDITORIAL_2H2B:billion:large-number", "disposition": "DEFER_IDENTITY_DECISION", "changes": {},
+      "semanticRationale": "The draft teaches a cardinal number; singular billion after a billion does not prove it is an ordinary count noun.",
+      "grammaticalRationale": "Schema lacks NUMBER/NUMERAL. Keep OTHER, WORD and explicit numeral usage pending owner convention; never fabricate an enum or arbitrarily promote NOUN.",
+      "representationProposal": {"lexicalUnitType": "WORD", "posFallback": "OTHER", "analysis": "cardinal numeral; billion after an exact number, billions of for an indefinite large quantity"},
+      "identityBlockers": ["NUMERAL_CLASSIFICATION_POLICY"], "confidence": "MEDIUM"
+    },
+    {
+      "number": 20, "triage": "REVIEW_IDENTITY", "proposalKey": "EDITORIAL_2H2B:have to:necessity", "disposition": "DEFER_IDENTITY_DECISION", "changes": {},
+      "semanticRationale": "Necessity and absence of necessity may be polarity patterns of one construction; lack of necessity is not prohibition.",
+      "grammaticalRationale": "Propose MULTIWORD_EXPRESSION with VERB under existing enum; semi-modal have to takes a bare infinitive after to, inflects have/has/had, and uses do-support in negatives/questions. Do not equate it to a particle phrasal verb or introduce a new Sense automatically.",
+      "representationProposal": {"lexicalUnitType": "MULTIWORD_EXPRESSION", "partOfSpeechProposal": "VERB", "analysis": "semi-modal construction have to + bare infinitive; don't have to = no necessity"},
+      "identityBlockers": ["SEMI_MODAL_LEXICAL_UNIT", "POLARITY_VERSUS_DISTINCT_SENSE"], "confidence": "MEDIUM"
+    },
+    {
+      "number": 21, "triage": "REVIEW_IDENTITY", "proposalKey": "EDITORIAL_2H2B:run:operate", "disposition": "DEFER_IDENTITY_DECISION", "changes": {},
+      "semanticRationale": "The generator ran quietly is intransitive functioning; running a generator or program is transitive operating. Their relation may warrant a usage distinction or a separately evidenced Sense; the example supports only the former.",
+      "grammaticalRationale": "Keep the current VERB and intransitive example. Propose an intransitive-functioning usage note; a transitive split is conditional on evidence and owner identity decision, not performed here.",
+      "representationProposal": {"lexicalUnitType": "WORD", "partOfSpeechProposal": "VERB", "valency": "INTRANSITIVE_FUNCTION", "structureProposal": "POSSIBLE_SPLIT_REQUIRES_EVIDENCE_AND_OWNER_REVIEW"},
+      "identityBlockers": ["FUNCTION_VERSUS_TRANSITIVE_OPERATION"], "confidence": "MEDIUM"
+    },
+    {
+      "number": 22, "triage": "KEEP", "proposalKey": "EDITORIAL_2H2B:attorney:lawyer", "disposition": "REJECT_FINDING_WITH_REASON", "changes": {},
+      "semanticRationale": "English unclear wording and Vietnamese cách diễn đạt chưa rõ express the same lack of clarity. Participants, explanatory action and contract are unchanged; retain the valid pair.",
+      "grammaticalRationale": "The heuristic sees Vietnamese chưa but misses lexical English negation in unclear. Reject this single code for this exact original pair as an AI review disposition, not an owner approval or global heuristic exemption.",
+      "rejectedQaCode": "EXAMPLE_POLARITY_MISMATCH", "identityBlockers": [], "confidence": "HIGH"
+    }
+  ]
+}

@@ -930,3 +930,1077 @@ Evidence: [current RC audit](../../vocabflow-dataset/reports/hybrid-100-rc-final
 [current owner decision](../../vocabflow-dataset/reports/hybrid-100-rc-final-owner-decision.md),
 [taxonomy approval plan](../../vocabflow-dataset/workspaces/hybrid-100-rc-final-review/taxonomy-approval-plan.json),
 and [policy decision fingerprint](../../vocabflow-dataset/workspaces/hybrid-100-rc-final-review/taxonomy-version-policy-decision.json).
+
+
+## Phase 2H.2B reconciliation and editorial handoff (2026-10-08)
+
+Offline draft completeness is ready for owner review, not editorial acceptance
+or full US-45 ACCEPTED. Git parent 8eca81e84d896fd0449aed04ce646465d4dd4b9b
+preserves US-54's source picker and scoped queues. Accepted source baseline
+remains a2f4f54eefc6734eb7da805f80ff8a9c6ebd4690. Phase 2H.2A input fingerprint
+5b754405d9072e79b603e6b008bd8788a7dae7aed4f2eedde3087482fc0bc7ff and Phase
+2H.2B fingerprint a42e4c25cebdf98cdd24f9e9231be81fff36bbdd571496eeff2886b4d1f1bdad
+remain unchanged; five authored files are byte-identical.
+
+100 pilot groups, 155 Sense drafts, 37 multi-Sense groups; each Sense has original
+generated EN definition/example and VI meaning/example translation. QA REVIEW
+155, approved owner decisions 0, rights UNKNOWN_REVIEW_REQUIRED, canonical
+IDs 0. Human content review, identity/split decisions, rights/classification
+and separate authoring/release authorization remain blockers. No DB operations,
+release change, legacy mutation, Development import, commit or push.
+
+57 focused tests, offline replay, direct typecheck, lint and frozen release check
+pass on the reconciled parent; pnpm typecheck is WRAPPER_BLOCKED_BY_ENVIRONMENT
+(exit 1). Exact commands/exits and safety inventory are in the
+[handoff](../ai-progress.md#phase-2h2b-editorial-draft-pilot-2026-10-08).
+
+### Editorial quality observations and unresolved decisions
+
+The AI assistant inspected all 155 definition/meaning pairs and example pairs;
+this is an AI screening, not human editorial acceptance. Exact definition and
+English-example duplicates are zero, and no three-word example opening repeats.
+The persisted source-passage/eight-token screen compares both complete corpora
+(9677 notes) and flags zero matches. These finite checks do not establish
+originality, semantic equivalence, grammatical correctness or rights clearance.
+All 155 Sense drafts remain QA REVIEW; all bilingual, grammar/POS, boundaries,
+CEFR, generated authorship and rights findings remain pending.
+
+Suspected issues are recorded here without altering the persisted prose:
+
+- academic combines source ordinals 0 and 2 into one education/research adjective;
+  have to combines affirmative/negative patterns 0 and 1. Owner must decide
+  whether coalescence preserves meaning; no approved source-to-Sense mapping.
+- bank keeps financial and river-edge meanings separate. record distinguishes
+  best-result/stored-information nouns and capture-information verb, but sound,
+  image and information capture may need finer boundaries. run separates motion,
+  machine operation, management and an exercise noun; transitive operation and
+  other unsupported senses remain outside the proposed scope.
+- light separates illumination, lamp, weight, ignition and colour. Weight wording
+  also asserts ease of carrying, which may overconstrain the meaning. Existing
+  noun/verb Master pins require independent comparison and identity proof.
+- water noun and verb remain separate. Runtime #11 history and its owner-excluded
+  Master verb pair remain NONE. A new verb draft cannot reverse that decision.
+- arm:weapons uses the singular headword arm while its example uses arms. Owner
+  must review plural-only weapons usage, lexical form and identity granularity.
+- billion uses local OTHER because source NUMBER has no direct Master POS enum;
+  at the onset is a whole construction using OTHER rather than blindly copying
+  the noun tag for onset. about:approximately and above:higher-place need usage-
+  level POS analysis; source tags do not prove the proposed POS.
+- acute:rapid-onset needs subject terminology review of onset versus duration.
+  acre omits a conversion/size explanation, which may limit learner usefulness.
+  acquire:gain restricts acquisition to learning/experience while including
+  possessions; owner should review definition scope versus its example.
+- bad:spoiled-food's smelled bad example can also express an unpleasant odour
+  without proving spoilage. absurd's empty-package delivery-fee example depends
+  on context; owner should evaluate whether it clearly teaches unreasonable.
+- attorney has EXAMPLE_POLARITY_MISMATCH: English unclear corresponds to
+  Vietnamese chua ro, but the heuristic recognizes only explicit English
+  not/never. Likely false positive, still UNRESOLVED; no flag was cleared.
+- CEFR is preserved as source/headword evidence only. Conflicting bands, e.g.
+  acre, remain null as a single proposed band. Any unique candidate is still
+  unverified for this Sense; school/age/difficulty/topic/domain/exam/sets remain
+  independent. Scientific and sensitive terms need subject/audience review.
+
+Each draft key supports independent correction, deferment or rejection. No
+meaningful count, QA finding, owner decision or license was improved for reporting.
+
+## Phase 2H.2B owner-readable samples
+
+EDITORIAL DRAFT - NOT APPROVED. This is the companion review report for the
+preserved [full report](../../vocabflow-dataset/reports/master-editorial-draft-pilot.md).
+All wording below is read from existing pilot-sense-proposals.json, not new
+editorial prose or raw APKG payloads. Evidence pointers refer to the unchanged
+full-source-inventory-dedupe workspace; recordIndex is zero-based.
+
+Deterministic selection: mandatory bank/record/light/run/water first; then the
+lexically first not-yet-selected pilot group for each category in this order:
+Oxford-only, 4600-only, straightforward overlap (both corpora with no POS/CEFR/
+polysemy conflict), POS conflict, CEFR conflict, existing Master, legacy history,
+multiword/phrasal. Add academic and attorney as fixed coalescence/QA cases.
+15 groups total; each Sense can be corrected, deferred or rejected independently.
+No new human review decision has been made.
+
+### Sample 1: bank
+
+EDITORIAL DRAFT - NOT APPROVED. Selection: Mandatory structural case.
+
+Group: `NORMALIZED_HEADWORD:bank`. Proposed Sense count: 2.
+Source membership: OXFORD_5000.
+Rights: UNKNOWN_REVIEW_REQUIRED. Owner decision: UNRESOLVED.
+
+Source evidence pointers (metadata only):
+
+- `oxford-normalized-inventory.json` / records[408] / sourceRecordId `1788223606361` / GUID `Ijpu%aNdx_` / evidence SHA `9d630d28eff4535a32635522db0cecd72cfb868e81e51d2de7b8e2fd9f2bb260`.
+
+Existing Master candidates: `{"identityClaim": "NONE", "lexemeIdReference": null, "senseIdReferences": []}`. Lemma overlap is not Sense identity.
+
+Legacy dependencies: `[]`. History/exclusion obligations cannot be changed by this review.
+
+**a financial institution - NOUN**
+
+Draft key: `EDITORIAL_2H2B:bank:financial-institution`; owner/identity UNRESOLVED; publicationEligible=false.
+
+Definition EN: An organization that keeps money for customers and provides financial services.
+
+Meaning VI: ngân hàng, tổ chức giữ tiền và cung cấp các dịch vụ tài chính
+
+- Example EN: I visited the bank to open a savings account.
+- Example VI: Tôi đến ngân hàng để mở một tài khoản tiết kiệm.
+
+Grammar and boundary caveat: Financial context; do not merge with the river-edge proposal.
+
+Oxford ordinals considered: [0]; not approved Sense mappings.
+
+CEFR candidate for review: `A1`; status UNRESOLVED; contradiction=false. Only a headword-level evidence candidate; no verified Sense classification. Conflicting or missing evidence stays unresolved. Source CEFR evidence: `[{"evidenceRef": {"artifact": "oxford-normalized-inventory.json", "corpus": "OXFORD_5000", "recordIndex": 408, "sourceRecordId": "1788223606361"}, "values": [{"sourceField": "CEFR", "value": "A1"}]}]`.
+
+QA REVIEW: BILINGUAL_MEANING_REVIEW, BILINGUAL_EXAMPLE_REVIEW, GRAMMAR_AND_POS_USAGE_REVIEW, SENSE_BOUNDARY_REVIEW, CEFR_NOT_VERIFIED, GENERATED_AUTHORSHIP_REVIEW, RIGHTS_UNRESOLVED. Every finding has humanDecision=UNRESOLVED.
+
+Master comparisons: `[]`; identityClaim NONE.
+
+Authorship: GENERATED by AI assistant; field hashes/process in pilot-sense-proposals.json. Human author/reviewer/license/review date absent. Rights UNKNOWN_REVIEW_REQUIRED. Owner may request corrections or propose independent future identity dispositions; no approval is granted here.
+
+**the edge of a river - NOUN**
+
+Draft key: `EDITORIAL_2H2B:bank:river-edge`; owner/identity UNRESOLVED; publicationEligible=false.
+
+Definition EN: The land immediately beside a river or similar flowing water.
+
+Meaning VI: bờ đất sát một con sông hoặc dòng nước
+
+- Example EN: We sat on the grassy bank and watched the boats pass.
+- Example VI: Chúng tôi ngồi trên bờ sông phủ cỏ và nhìn thuyền đi qua.
+
+Grammar and boundary caveat: Usually the bank of a river; separate meaning even though POS is also NOUN.
+
+Oxford ordinals considered: [1]; not approved Sense mappings.
+
+CEFR candidate for review: `A1`; status UNRESOLVED; contradiction=false. Only a headword-level evidence candidate; no verified Sense classification. Conflicting or missing evidence stays unresolved. Source CEFR evidence: `[{"evidenceRef": {"artifact": "oxford-normalized-inventory.json", "corpus": "OXFORD_5000", "recordIndex": 408, "sourceRecordId": "1788223606361"}, "values": [{"sourceField": "CEFR", "value": "A1"}]}]`.
+
+QA REVIEW: BILINGUAL_MEANING_REVIEW, BILINGUAL_EXAMPLE_REVIEW, GRAMMAR_AND_POS_USAGE_REVIEW, SENSE_BOUNDARY_REVIEW, CEFR_NOT_VERIFIED, GENERATED_AUTHORSHIP_REVIEW, RIGHTS_UNRESOLVED. Every finding has humanDecision=UNRESOLVED.
+
+Master comparisons: `[]`; identityClaim NONE.
+
+Authorship: GENERATED by AI assistant; field hashes/process in pilot-sense-proposals.json. Human author/reviewer/license/review date absent. Rights UNKNOWN_REVIEW_REQUIRED. Owner may request corrections or propose independent future identity dispositions; no approval is granted here.
+
+### Sample 2: record
+
+EDITORIAL DRAFT - NOT APPROVED. Selection: Mandatory structural case.
+
+Group: `NORMALIZED_HEADWORD:record`. Proposed Sense count: 3.
+Source membership: OXFORD_5000.
+Rights: UNKNOWN_REVIEW_REQUIRED. Owner decision: UNRESOLVED.
+
+Source evidence pointers (metadata only):
+
+- `oxford-normalized-inventory.json` / records[1006] / sourceRecordId `1788223607024` / GUID `c%=DQkcA?:` / evidence SHA `72eb5829c4421e10638af48f3c5d2208018c703ad14895dc08b2b6784cdfb02c`.
+
+Existing Master candidates: `{"identityClaim": "NONE", "lexemeIdReference": null, "senseIdReferences": []}`. Lemma overlap is not Sense identity.
+
+Legacy dependencies: `[{"historyProtected": false, "identityClaim": "NONE", "identityEvidencePointer": "content-disposition.json#/rows/846", "learningSetCount": 0, "ownerReviewedExclusionCount": 0, "phase2h1CoverageCategory": "AMBIGUOUS_POTENTIAL_COVERAGE_REQUIRES_HUMAN_REVIEW", "phase2h1CoveragePointer": "legacy-source-coverage-readonly.json#/rows/846", "progressCount": 0, "reviewCount": 0, "runtimeVocabularyId": 849, "savedWordCount": 0, "semanticReviewDisposition": "MULTIPLE_MASTER_CANDIDATES", "sourceIdentityObligation": true, "topicCount": 1}]`. History/exclusion obligations cannot be changed by this review.
+
+**a best recorded result - NOUN**
+
+Draft key: `EDITORIAL_2H2B:record:best-result`; owner/identity UNRESOLVED; publicationEligible=false.
+
+Definition EN: The best known result achieved in a particular activity.
+
+Meaning VI: thành tích tốt nhất được ghi nhận trong một hoạt động
+
+- Example EN: The runner set a new school record for the race.
+- Example VI: Vận động viên lập kỷ lục mới của trường trong cuộc đua.
+
+Grammar and boundary caveat: set or break a record; not an ordinary written file.
+
+Oxford ordinals considered: [0]; not approved Sense mappings.
+
+CEFR candidate for review: `A2`; status UNRESOLVED; contradiction=false. Only a headword-level evidence candidate; no verified Sense classification. Conflicting or missing evidence stays unresolved. Source CEFR evidence: `[{"evidenceRef": {"artifact": "oxford-normalized-inventory.json", "corpus": "OXFORD_5000", "recordIndex": 1006, "sourceRecordId": "1788223607024"}, "values": [{"sourceField": "CEFR", "value": "A2"}]}]`.
+
+QA REVIEW: BILINGUAL_MEANING_REVIEW, BILINGUAL_EXAMPLE_REVIEW, GRAMMAR_AND_POS_USAGE_REVIEW, SENSE_BOUNDARY_REVIEW, CEFR_NOT_VERIFIED, GENERATED_AUTHORSHIP_REVIEW, RIGHTS_UNRESOLVED. Every finding has humanDecision=UNRESOLVED.
+
+Master comparisons: `[]`; identityClaim NONE.
+
+Authorship: GENERATED by AI assistant; field hashes/process in pilot-sense-proposals.json. Human author/reviewer/license/review date absent. Rights UNKNOWN_REVIEW_REQUIRED. Owner may request corrections or propose independent future identity dispositions; no approval is granted here.
+
+**capture for later use - VERB**
+
+Draft key: `EDITORIAL_2H2B:record:capture-information`; owner/identity UNRESOLVED; publicationEligible=false.
+
+Definition EN: To store sounds, images or information so they can be used later.
+
+Meaning VI: ghi âm, ghi hình hoặc ghi lại thông tin để dùng về sau
+
+- Example EN: We recorded the interview with the guest's permission.
+- Example VI: Chúng tôi ghi âm cuộc phỏng vấn với sự cho phép của khách mời.
+
+Grammar and boundary caveat: Transitive; noun/verb stress differs and requires pronunciation review. Information capture subtypes may need later splitting.
+
+Oxford ordinals considered: [1]; not approved Sense mappings.
+
+CEFR candidate for review: `A2`; status UNRESOLVED; contradiction=false. Only a headword-level evidence candidate; no verified Sense classification. Conflicting or missing evidence stays unresolved. Source CEFR evidence: `[{"evidenceRef": {"artifact": "oxford-normalized-inventory.json", "corpus": "OXFORD_5000", "recordIndex": 1006, "sourceRecordId": "1788223607024"}, "values": [{"sourceField": "CEFR", "value": "A2"}]}]`.
+
+QA REVIEW: BILINGUAL_MEANING_REVIEW, BILINGUAL_EXAMPLE_REVIEW, GRAMMAR_AND_POS_USAGE_REVIEW, SENSE_BOUNDARY_REVIEW, CEFR_NOT_VERIFIED, GENERATED_AUTHORSHIP_REVIEW, RIGHTS_UNRESOLVED. Every finding has humanDecision=UNRESOLVED.
+
+Master comparisons: `[]`; identityClaim NONE.
+
+Authorship: GENERATED by AI assistant; field hashes/process in pilot-sense-proposals.json. Human author/reviewer/license/review date absent. Rights UNKNOWN_REVIEW_REQUIRED. Owner may request corrections or propose independent future identity dispositions; no approval is granted here.
+
+**stored information - NOUN**
+
+Draft key: `EDITORIAL_2H2B:record:stored-information`; owner/identity UNRESOLVED; publicationEligible=false.
+
+Definition EN: Information kept in writing or another stored form about something that happened.
+
+Meaning VI: thông tin được lưu lại bằng văn bản hoặc hình thức khác về một việc đã xảy ra
+
+- Example EN: The office keeps a record of every equipment repair.
+- Example VI: Văn phòng lưu hồ sơ về mọi lần sửa chữa thiết bị.
+
+Grammar and boundary caveat: a record of + event; a physical audio disc is not proposed from this group alone.
+
+Oxford ordinals considered: [2]; not approved Sense mappings.
+
+CEFR candidate for review: `A2`; status UNRESOLVED; contradiction=false. Only a headword-level evidence candidate; no verified Sense classification. Conflicting or missing evidence stays unresolved. Source CEFR evidence: `[{"evidenceRef": {"artifact": "oxford-normalized-inventory.json", "corpus": "OXFORD_5000", "recordIndex": 1006, "sourceRecordId": "1788223607024"}, "values": [{"sourceField": "CEFR", "value": "A2"}]}]`.
+
+QA REVIEW: BILINGUAL_MEANING_REVIEW, BILINGUAL_EXAMPLE_REVIEW, GRAMMAR_AND_POS_USAGE_REVIEW, SENSE_BOUNDARY_REVIEW, CEFR_NOT_VERIFIED, GENERATED_AUTHORSHIP_REVIEW, RIGHTS_UNRESOLVED. Every finding has humanDecision=UNRESOLVED.
+
+Master comparisons: `[]`; identityClaim NONE.
+
+Authorship: GENERATED by AI assistant; field hashes/process in pilot-sense-proposals.json. Human author/reviewer/license/review date absent. Rights UNKNOWN_REVIEW_REQUIRED. Owner may request corrections or propose independent future identity dispositions; no approval is granted here.
+
+### Sample 3: light
+
+EDITORIAL DRAFT - NOT APPROVED. Selection: Mandatory structural case.
+
+Group: `NORMALIZED_HEADWORD:light`. Proposed Sense count: 5.
+Source membership: ENGLISH_VOCAB_4600, OXFORD_5000.
+Rights: UNKNOWN_REVIEW_REQUIRED. Owner decision: UNRESOLVED.
+
+Source evidence pointers (metadata only):
+
+- `oxford-normalized-inventory.json` / records[301] / sourceRecordId `1788223606252` / GUID `D|vh+NAD#6` / evidence SHA `6dd4196c3c1e07ff72d6c2db2ab18174e2da568a6b30e9890650bce7affaf4c5`.
+- `vocab4600-normalized-inventory.json` / records[1026] / sourceRecordId `1559931007808` / GUID `H>!)C@ckkR` / evidence SHA `c51f62ae1fac79bede99da3cae8ede3873b2cf07e431c742d244f6170fbd01ee`.
+
+Existing Master candidates: `{"identityClaim": "NONE", "lexemeIdReference": "01a0fc13-09ee-7fd1-8ad8-a2026a7620e0", "senseIdReferences": ["01a0fc13-09ee-7768-9be6-d20fa32521ee", "01a1070c-7c57-7676-9acd-d23079256ae2", "01a1070c-7c59-726e-88d5-9c1965cff571"]}`. Lemma overlap is not Sense identity.
+
+Legacy dependencies: `[{"historyProtected": false, "identityClaim": "NONE", "identityEvidencePointer": "content-disposition.json#/rows/1255", "learningSetCount": 0, "ownerReviewedExclusionCount": 3, "phase2h1CoverageCategory": "AMBIGUOUS_POTENTIAL_COVERAGE_REQUIRES_HUMAN_REVIEW", "phase2h1CoveragePointer": "legacy-source-coverage-readonly.json#/rows/1255", "progressCount": 0, "reviewCount": 0, "runtimeVocabularyId": 1260, "savedWordCount": 0, "semanticReviewDisposition": "OWNER_REVIEWED_NOT_SAME_IDENTITY", "sourceIdentityObligation": true, "topicCount": 1}]`. History/exclusion obligations cannot be changed by this review.
+
+**illumination - NOUN**
+
+Draft key: `EDITORIAL_2H2B:light:illumination`; owner/identity UNRESOLVED; publicationEligible=false.
+
+Definition EN: The brightness that makes things visible.
+
+Meaning VI: ánh sáng giúp nhìn thấy các vật
+
+- Example EN: Morning light entered through the narrow window.
+- Example VI: Ánh sáng buổi sáng chiếu vào qua cửa sổ hẹp.
+
+Grammar and boundary caveat: Usually uncountable; separate from a lamp or device.
+
+Oxford ordinals considered: [0]; not approved Sense mappings.
+
+CEFR candidate for review: `A1`; status UNRESOLVED; contradiction=false. Only a headword-level evidence candidate; no verified Sense classification. Conflicting or missing evidence stays unresolved. Source CEFR evidence: `[{"evidenceRef": {"artifact": "oxford-normalized-inventory.json", "corpus": "OXFORD_5000", "recordIndex": 301, "sourceRecordId": "1788223606252"}, "values": [{"sourceField": "CEFR", "value": "A1"}]}, {"evidenceRef": {"artifact": "vocab4600-normalized-inventory.json", "corpus": "ENGLISH_VOCAB_4600", "recordIndex": 1026, "sourceRecordId": "1559931007808"}, "values": [{"sourceField": "deck:4600 English Vocab::A1", "value": "A1"}, {"sourceField": "noteTag", "value": "A1"}]}]`.
+
+QA REVIEW: BILINGUAL_MEANING_REVIEW, BILINGUAL_EXAMPLE_REVIEW, GRAMMAR_AND_POS_USAGE_REVIEW, SENSE_BOUNDARY_REVIEW, CEFR_NOT_VERIFIED, GENERATED_AUTHORSHIP_REVIEW, RIGHTS_UNRESOLVED, EXISTING_MASTER_IDENTITY_REVIEW, LEGACY_EXCLUSION_PROTECTED. Every finding has humanDecision=UNRESOLVED.
+
+Master comparisons: `[{"acceptedPos": "ADJECTIVE", "contentHash": "37d1449993fc2fecd4cffb1d8e846be991d76e93f314f28cd6465789aea7b5c9", "identityClaim": "NONE", "posCompatible": false, "recordPath": "master/senses/01a0fc13-09ee-7768-9be6-d20fa32521ee-r3.json", "senseReference": "01a0fc13-09ee-7768-9be6-d20fa32521ee", "sharedDefinitionTokens": [], "similarityStatus": "MEANING_COMPARISON_REQUIRED"}, {"acceptedPos": "VERB", "contentHash": "b02e4913444d51d9e028e81aef602a11a269b9407882837eaff8e43e5ce6e4e5", "identityClaim": "NONE", "posCompatible": false, "recordPath": "master/senses/01a1070c-7c57-7676-9acd-d23079256ae2-r3.json", "senseReference": "01a1070c-7c57-7676-9acd-d23079256ae2", "sharedDefinitionTokens": [], "similarityStatus": "MEANING_COMPARISON_REQUIRED"}, {"acceptedPos": "ADJECTIVE", "contentHash": "75198a176d59575c5c7b96f0b3d3612b45c31fa085a8d14c41d3792d99a0298d", "identityClaim": "NONE", "posCompatible": false, "recordPath": "master/senses/01a1070c-7c59-726e-88d5-9c1965cff571-r3.json", "senseReference": "01a1070c-7c59-726e-88d5-9c1965cff571", "sharedDefinitionTokens": [], "similarityStatus": "MEANING_COMPARISON_REQUIRED"}]`; identityClaim NONE.
+
+Authorship: GENERATED by AI assistant; field hashes/process in pilot-sense-proposals.json. Human author/reviewer/license/review date absent. Rights UNKNOWN_REVIEW_REQUIRED. Owner may request corrections or propose independent future identity dispositions; no approval is granted here.
+
+**a lighting device - NOUN**
+
+Draft key: `EDITORIAL_2H2B:light:lamp`; owner/identity UNRESOLVED; publicationEligible=false.
+
+Definition EN: A device that produces illumination for a room or place.
+
+Meaning VI: đèn hoặc thiết bị tạo ánh sáng cho một nơi
+
+- Example EN: Please switch off the hallway light before leaving.
+- Example VI: Hãy tắt đèn hành lang trước khi rời đi.
+
+Grammar and boundary caveat: Countable device; existing Master noun meanings need comparison, not lemma-only reuse.
+
+Oxford ordinals considered: [1]; not approved Sense mappings.
+
+CEFR candidate for review: `A1`; status UNRESOLVED; contradiction=false. Only a headword-level evidence candidate; no verified Sense classification. Conflicting or missing evidence stays unresolved. Source CEFR evidence: `[{"evidenceRef": {"artifact": "oxford-normalized-inventory.json", "corpus": "OXFORD_5000", "recordIndex": 301, "sourceRecordId": "1788223606252"}, "values": [{"sourceField": "CEFR", "value": "A1"}]}, {"evidenceRef": {"artifact": "vocab4600-normalized-inventory.json", "corpus": "ENGLISH_VOCAB_4600", "recordIndex": 1026, "sourceRecordId": "1559931007808"}, "values": [{"sourceField": "deck:4600 English Vocab::A1", "value": "A1"}, {"sourceField": "noteTag", "value": "A1"}]}]`.
+
+QA REVIEW: BILINGUAL_MEANING_REVIEW, BILINGUAL_EXAMPLE_REVIEW, GRAMMAR_AND_POS_USAGE_REVIEW, SENSE_BOUNDARY_REVIEW, CEFR_NOT_VERIFIED, GENERATED_AUTHORSHIP_REVIEW, RIGHTS_UNRESOLVED, EXISTING_MASTER_IDENTITY_REVIEW, LEGACY_EXCLUSION_PROTECTED. Every finding has humanDecision=UNRESOLVED.
+
+Master comparisons: `[{"acceptedPos": "ADJECTIVE", "contentHash": "37d1449993fc2fecd4cffb1d8e846be991d76e93f314f28cd6465789aea7b5c9", "identityClaim": "NONE", "posCompatible": false, "recordPath": "master/senses/01a0fc13-09ee-7768-9be6-d20fa32521ee-r3.json", "senseReference": "01a0fc13-09ee-7768-9be6-d20fa32521ee", "sharedDefinitionTokens": [], "similarityStatus": "MEANING_COMPARISON_REQUIRED"}, {"acceptedPos": "VERB", "contentHash": "b02e4913444d51d9e028e81aef602a11a269b9407882837eaff8e43e5ce6e4e5", "identityClaim": "NONE", "posCompatible": false, "recordPath": "master/senses/01a1070c-7c57-7676-9acd-d23079256ae2-r3.json", "senseReference": "01a1070c-7c57-7676-9acd-d23079256ae2", "sharedDefinitionTokens": [], "similarityStatus": "MEANING_COMPARISON_REQUIRED"}, {"acceptedPos": "ADJECTIVE", "contentHash": "75198a176d59575c5c7b96f0b3d3612b45c31fa085a8d14c41d3792d99a0298d", "identityClaim": "NONE", "posCompatible": false, "recordPath": "master/senses/01a1070c-7c59-726e-88d5-9c1965cff571-r3.json", "senseReference": "01a1070c-7c59-726e-88d5-9c1965cff571", "sharedDefinitionTokens": [], "similarityStatus": "MEANING_COMPARISON_REQUIRED"}]`; identityClaim NONE.
+
+Authorship: GENERATED by AI assistant; field hashes/process in pilot-sense-proposals.json. Human author/reviewer/license/review date absent. Rights UNKNOWN_REVIEW_REQUIRED. Owner may request corrections or propose independent future identity dispositions; no approval is granted here.
+
+**not heavy - ADJECTIVE**
+
+Draft key: `EDITORIAL_2H2B:light:low-weight`; owner/identity UNRESOLVED; publicationEligible=false.
+
+Definition EN: Having relatively little weight and being easy to lift or carry.
+
+Meaning VI: nhẹ về trọng lượng và dễ nâng hoặc mang
+
+- Example EN: The empty basket was light enough for the child to carry.
+- Example VI: Chiếc giỏ rỗng đủ nhẹ để đứa trẻ mang được.
+
+Grammar and boundary caveat: Weight adjective; does not mean pale in colour.
+
+Oxford ordinals considered: [2]; not approved Sense mappings.
+
+CEFR candidate for review: `A1`; status UNRESOLVED; contradiction=false. Only a headword-level evidence candidate; no verified Sense classification. Conflicting or missing evidence stays unresolved. Source CEFR evidence: `[{"evidenceRef": {"artifact": "oxford-normalized-inventory.json", "corpus": "OXFORD_5000", "recordIndex": 301, "sourceRecordId": "1788223606252"}, "values": [{"sourceField": "CEFR", "value": "A1"}]}, {"evidenceRef": {"artifact": "vocab4600-normalized-inventory.json", "corpus": "ENGLISH_VOCAB_4600", "recordIndex": 1026, "sourceRecordId": "1559931007808"}, "values": [{"sourceField": "deck:4600 English Vocab::A1", "value": "A1"}, {"sourceField": "noteTag", "value": "A1"}]}]`.
+
+QA REVIEW: BILINGUAL_MEANING_REVIEW, BILINGUAL_EXAMPLE_REVIEW, GRAMMAR_AND_POS_USAGE_REVIEW, SENSE_BOUNDARY_REVIEW, CEFR_NOT_VERIFIED, GENERATED_AUTHORSHIP_REVIEW, RIGHTS_UNRESOLVED, EXISTING_MASTER_IDENTITY_REVIEW, LEGACY_EXCLUSION_PROTECTED. Every finding has humanDecision=UNRESOLVED.
+
+Master comparisons: `[{"acceptedPos": "ADJECTIVE", "contentHash": "37d1449993fc2fecd4cffb1d8e846be991d76e93f314f28cd6465789aea7b5c9", "identityClaim": "NONE", "posCompatible": true, "recordPath": "master/senses/01a0fc13-09ee-7768-9be6-d20fa32521ee-r3.json", "senseReference": "01a0fc13-09ee-7768-9be6-d20fa32521ee", "sharedDefinitionTokens": ["carry", "easy", "lift", "little"], "similarityStatus": "POSSIBLE_REUSE_REVIEW_ONLY"}, {"acceptedPos": "VERB", "contentHash": "b02e4913444d51d9e028e81aef602a11a269b9407882837eaff8e43e5ce6e4e5", "identityClaim": "NONE", "posCompatible": false, "recordPath": "master/senses/01a1070c-7c57-7676-9acd-d23079256ae2-r3.json", "senseReference": "01a1070c-7c57-7676-9acd-d23079256ae2", "sharedDefinitionTokens": [], "similarityStatus": "MEANING_COMPARISON_REQUIRED"}, {"acceptedPos": "ADJECTIVE", "contentHash": "75198a176d59575c5c7b96f0b3d3612b45c31fa085a8d14c41d3792d99a0298d", "identityClaim": "NONE", "posCompatible": true, "recordPath": "master/senses/01a1070c-7c59-726e-88d5-9c1965cff571-r3.json", "senseReference": "01a1070c-7c59-726e-88d5-9c1965cff571", "sharedDefinitionTokens": [], "similarityStatus": "MEANING_COMPARISON_REQUIRED"}]`; identityClaim NONE.
+
+Authorship: GENERATED by AI assistant; field hashes/process in pilot-sense-proposals.json. Human author/reviewer/license/review date absent. Rights UNKNOWN_REVIEW_REQUIRED. Owner may request corrections or propose independent future identity dispositions; no approval is granted here.
+
+**make begin burning - VERB**
+
+Draft key: `EDITORIAL_2H2B:light:ignite`; owner/identity UNRESOLVED; publicationEligible=false.
+
+Definition EN: To cause something to start burning.
+
+Meaning VI: châm hoặc thắp để một vật bắt đầu cháy
+
+- Example EN: She lit the candle before the ceremony began.
+- Example VI: Cô ấy thắp nến trước khi buổi lễ bắt đầu.
+
+Grammar and boundary caveat: light, lit or lighted; no procedural instruction for hazardous fire-setting.
+
+Oxford ordinals considered: [3]; not approved Sense mappings.
+
+CEFR candidate for review: `A1`; status UNRESOLVED; contradiction=false. Only a headword-level evidence candidate; no verified Sense classification. Conflicting or missing evidence stays unresolved. Source CEFR evidence: `[{"evidenceRef": {"artifact": "oxford-normalized-inventory.json", "corpus": "OXFORD_5000", "recordIndex": 301, "sourceRecordId": "1788223606252"}, "values": [{"sourceField": "CEFR", "value": "A1"}]}, {"evidenceRef": {"artifact": "vocab4600-normalized-inventory.json", "corpus": "ENGLISH_VOCAB_4600", "recordIndex": 1026, "sourceRecordId": "1559931007808"}, "values": [{"sourceField": "deck:4600 English Vocab::A1", "value": "A1"}, {"sourceField": "noteTag", "value": "A1"}]}]`.
+
+QA REVIEW: BILINGUAL_MEANING_REVIEW, BILINGUAL_EXAMPLE_REVIEW, GRAMMAR_AND_POS_USAGE_REVIEW, SENSE_BOUNDARY_REVIEW, CEFR_NOT_VERIFIED, GENERATED_AUTHORSHIP_REVIEW, RIGHTS_UNRESOLVED, EXISTING_MASTER_IDENTITY_REVIEW, LEGACY_EXCLUSION_PROTECTED. Every finding has humanDecision=UNRESOLVED.
+
+Master comparisons: `[{"acceptedPos": "ADJECTIVE", "contentHash": "37d1449993fc2fecd4cffb1d8e846be991d76e93f314f28cd6465789aea7b5c9", "identityClaim": "NONE", "posCompatible": false, "recordPath": "master/senses/01a0fc13-09ee-7768-9be6-d20fa32521ee-r3.json", "senseReference": "01a0fc13-09ee-7768-9be6-d20fa32521ee", "sharedDefinitionTokens": [], "similarityStatus": "MEANING_COMPARISON_REQUIRED"}, {"acceptedPos": "VERB", "contentHash": "b02e4913444d51d9e028e81aef602a11a269b9407882837eaff8e43e5ce6e4e5", "identityClaim": "NONE", "posCompatible": true, "recordPath": "master/senses/01a1070c-7c57-7676-9acd-d23079256ae2-r3.json", "senseReference": "01a1070c-7c57-7676-9acd-d23079256ae2", "sharedDefinitionTokens": ["burning", "something"], "similarityStatus": "POSSIBLE_REUSE_REVIEW_ONLY"}, {"acceptedPos": "ADJECTIVE", "contentHash": "75198a176d59575c5c7b96f0b3d3612b45c31fa085a8d14c41d3792d99a0298d", "identityClaim": "NONE", "posCompatible": false, "recordPath": "master/senses/01a1070c-7c59-726e-88d5-9c1965cff571-r3.json", "senseReference": "01a1070c-7c59-726e-88d5-9c1965cff571", "sharedDefinitionTokens": [], "similarityStatus": "MEANING_COMPARISON_REQUIRED"}]`; identityClaim NONE.
+
+Authorship: GENERATED by AI assistant; field hashes/process in pilot-sense-proposals.json. Human author/reviewer/license/review date absent. Rights UNKNOWN_REVIEW_REQUIRED. Owner may request corrections or propose independent future identity dispositions; no approval is granted here.
+
+**pale in colour - ADJECTIVE**
+
+Draft key: `EDITORIAL_2H2B:light:pale-colour`; owner/identity UNRESOLVED; publicationEligible=false.
+
+Definition EN: Having a pale colour rather than a dark one.
+
+Meaning VI: có màu nhạt thay vì màu đậm hoặc tối
+
+- Example EN: He chose a light blue shirt for the photograph.
+- Example VI: Anh ấy chọn một chiếc áo sơ mi xanh nhạt để chụp ảnh.
+
+Grammar and boundary caveat: Colour adjective; separate from low weight even though both are adjectives.
+
+Oxford ordinals considered: [4]; not approved Sense mappings.
+
+CEFR candidate for review: `A1`; status UNRESOLVED; contradiction=false. Only a headword-level evidence candidate; no verified Sense classification. Conflicting or missing evidence stays unresolved. Source CEFR evidence: `[{"evidenceRef": {"artifact": "oxford-normalized-inventory.json", "corpus": "OXFORD_5000", "recordIndex": 301, "sourceRecordId": "1788223606252"}, "values": [{"sourceField": "CEFR", "value": "A1"}]}, {"evidenceRef": {"artifact": "vocab4600-normalized-inventory.json", "corpus": "ENGLISH_VOCAB_4600", "recordIndex": 1026, "sourceRecordId": "1559931007808"}, "values": [{"sourceField": "deck:4600 English Vocab::A1", "value": "A1"}, {"sourceField": "noteTag", "value": "A1"}]}]`.
+
+QA REVIEW: BILINGUAL_MEANING_REVIEW, BILINGUAL_EXAMPLE_REVIEW, GRAMMAR_AND_POS_USAGE_REVIEW, SENSE_BOUNDARY_REVIEW, CEFR_NOT_VERIFIED, GENERATED_AUTHORSHIP_REVIEW, RIGHTS_UNRESOLVED, EXISTING_MASTER_IDENTITY_REVIEW, LEGACY_EXCLUSION_PROTECTED. Every finding has humanDecision=UNRESOLVED.
+
+Master comparisons: `[{"acceptedPos": "ADJECTIVE", "contentHash": "37d1449993fc2fecd4cffb1d8e846be991d76e93f314f28cd6465789aea7b5c9", "identityClaim": "NONE", "posCompatible": true, "recordPath": "master/senses/01a0fc13-09ee-7768-9be6-d20fa32521ee-r3.json", "senseReference": "01a0fc13-09ee-7768-9be6-d20fa32521ee", "sharedDefinitionTokens": [], "similarityStatus": "MEANING_COMPARISON_REQUIRED"}, {"acceptedPos": "VERB", "contentHash": "b02e4913444d51d9e028e81aef602a11a269b9407882837eaff8e43e5ce6e4e5", "identityClaim": "NONE", "posCompatible": false, "recordPath": "master/senses/01a1070c-7c57-7676-9acd-d23079256ae2-r3.json", "senseReference": "01a1070c-7c57-7676-9acd-d23079256ae2", "sharedDefinitionTokens": [], "similarityStatus": "MEANING_COMPARISON_REQUIRED"}, {"acceptedPos": "ADJECTIVE", "contentHash": "75198a176d59575c5c7b96f0b3d3612b45c31fa085a8d14c41d3792d99a0298d", "identityClaim": "NONE", "posCompatible": true, "recordPath": "master/senses/01a1070c-7c59-726e-88d5-9c1965cff571-r3.json", "senseReference": "01a1070c-7c59-726e-88d5-9c1965cff571", "sharedDefinitionTokens": ["dark", "pale", "rather", "than"], "similarityStatus": "POSSIBLE_REUSE_REVIEW_ONLY"}]`; identityClaim NONE.
+
+Authorship: GENERATED by AI assistant; field hashes/process in pilot-sense-proposals.json. Human author/reviewer/license/review date absent. Rights UNKNOWN_REVIEW_REQUIRED. Owner may request corrections or propose independent future identity dispositions; no approval is granted here.
+
+### Sample 4: run
+
+EDITORIAL DRAFT - NOT APPROVED. Selection: Mandatory structural case.
+
+Group: `NORMALIZED_HEADWORD:run`. Proposed Sense count: 4.
+Source membership: OXFORD_5000.
+Rights: UNKNOWN_REVIEW_REQUIRED. Owner decision: UNRESOLVED.
+
+Source evidence pointers (metadata only):
+
+- `oxford-normalized-inventory.json` / records[225] / sourceRecordId `1788223606176` / GUID `I7!;{~<qrw` / evidence SHA `dc8e45277048b6698e3832357aa3314180e85eb652704645144cf68064f73468`.
+
+Existing Master candidates: `{"identityClaim": "NONE", "lexemeIdReference": null, "senseIdReferences": []}`. Lemma overlap is not Sense identity.
+
+Legacy dependencies: `[{"historyProtected": false, "identityClaim": "NONE", "identityEvidencePointer": "content-disposition.json#/rows/942", "learningSetCount": 1, "ownerReviewedExclusionCount": 0, "phase2h1CoverageCategory": "AMBIGUOUS_POTENTIAL_COVERAGE_REQUIRES_HUMAN_REVIEW", "phase2h1CoveragePointer": "legacy-source-coverage-readonly.json#/rows/942", "progressCount": 0, "reviewCount": 0, "runtimeVocabularyId": 946, "savedWordCount": 0, "semanticReviewDisposition": "NO_MASTER_CANDIDATE", "sourceIdentityObligation": true, "topicCount": 1}]`. History/exclusion obligations cannot be changed by this review.
+
+**move quickly on foot - VERB**
+
+Draft key: `EDITORIAL_2H2B:run:move-fast`; owner/identity UNRESOLVED; publicationEligible=false.
+
+Definition EN: To move on foot faster than walking, with moments when neither foot touches the ground.
+
+Meaning VI: chạy bằng chân nhanh hơn đi bộ
+
+- Example EN: The children ran across the field to meet their teacher.
+- Example VI: Bọn trẻ chạy qua sân để gặp giáo viên.
+
+Grammar and boundary caveat: run, ran, run; running as movement is distinct from managing an organization.
+
+Oxford ordinals considered: [0]; not approved Sense mappings.
+
+CEFR candidate for review: `A1`; status UNRESOLVED; contradiction=false. Only a headword-level evidence candidate; no verified Sense classification. Conflicting or missing evidence stays unresolved. Source CEFR evidence: `[{"evidenceRef": {"artifact": "oxford-normalized-inventory.json", "corpus": "OXFORD_5000", "recordIndex": 225, "sourceRecordId": "1788223606176"}, "values": [{"sourceField": "CEFR", "value": "A1"}]}]`.
+
+QA REVIEW: BILINGUAL_MEANING_REVIEW, BILINGUAL_EXAMPLE_REVIEW, GRAMMAR_AND_POS_USAGE_REVIEW, SENSE_BOUNDARY_REVIEW, CEFR_NOT_VERIFIED, GENERATED_AUTHORSHIP_REVIEW, RIGHTS_UNRESOLVED. Every finding has humanDecision=UNRESOLVED.
+
+Master comparisons: `[]`; identityClaim NONE.
+
+Authorship: GENERATED by AI assistant; field hashes/process in pilot-sense-proposals.json. Human author/reviewer/license/review date absent. Rights UNKNOWN_REVIEW_REQUIRED. Owner may request corrections or propose independent future identity dispositions; no approval is granted here.
+
+**operate - VERB**
+
+Draft key: `EDITORIAL_2H2B:run:operate`; owner/identity UNRESOLVED; publicationEligible=false.
+
+Definition EN: To operate or function as a machine, program or system.
+
+Meaning VI: chạy hoặc hoạt động, dùng cho máy móc hay hệ thống
+
+- Example EN: The generator ran quietly throughout the evening.
+- Example VI: Máy phát điện chạy êm suốt buổi tối.
+
+Grammar and boundary caveat: Intransitive in this example; run a program is a related transitive use needing boundary review.
+
+Oxford ordinals considered: [1]; not approved Sense mappings.
+
+CEFR candidate for review: `A1`; status UNRESOLVED; contradiction=false. Only a headword-level evidence candidate; no verified Sense classification. Conflicting or missing evidence stays unresolved. Source CEFR evidence: `[{"evidenceRef": {"artifact": "oxford-normalized-inventory.json", "corpus": "OXFORD_5000", "recordIndex": 225, "sourceRecordId": "1788223606176"}, "values": [{"sourceField": "CEFR", "value": "A1"}]}]`.
+
+QA REVIEW: BILINGUAL_MEANING_REVIEW, BILINGUAL_EXAMPLE_REVIEW, GRAMMAR_AND_POS_USAGE_REVIEW, SENSE_BOUNDARY_REVIEW, CEFR_NOT_VERIFIED, GENERATED_AUTHORSHIP_REVIEW, RIGHTS_UNRESOLVED. Every finding has humanDecision=UNRESOLVED.
+
+Master comparisons: `[]`; identityClaim NONE.
+
+Authorship: GENERATED by AI assistant; field hashes/process in pilot-sense-proposals.json. Human author/reviewer/license/review date absent. Rights UNKNOWN_REVIEW_REQUIRED. Owner may request corrections or propose independent future identity dispositions; no approval is granted here.
+
+**manage an organization - VERB**
+
+Draft key: `EDITORIAL_2H2B:run:manage`; owner/identity UNRESOLVED; publicationEligible=false.
+
+Definition EN: To organize and control the work of a business or other organization.
+
+Meaning VI: điều hành công việc của một doanh nghiệp hoặc tổ chức
+
+- Example EN: Her family runs a small bakery near the station.
+- Example VI: Gia đình cô ấy điều hành một tiệm bánh nhỏ gần nhà ga.
+
+Grammar and boundary caveat: run + organization; no identity equivalence with physical motion.
+
+Oxford ordinals considered: [2]; not approved Sense mappings.
+
+CEFR candidate for review: `A1`; status UNRESOLVED; contradiction=false. Only a headword-level evidence candidate; no verified Sense classification. Conflicting or missing evidence stays unresolved. Source CEFR evidence: `[{"evidenceRef": {"artifact": "oxford-normalized-inventory.json", "corpus": "OXFORD_5000", "recordIndex": 225, "sourceRecordId": "1788223606176"}, "values": [{"sourceField": "CEFR", "value": "A1"}]}]`.
+
+QA REVIEW: BILINGUAL_MEANING_REVIEW, BILINGUAL_EXAMPLE_REVIEW, GRAMMAR_AND_POS_USAGE_REVIEW, SENSE_BOUNDARY_REVIEW, CEFR_NOT_VERIFIED, GENERATED_AUTHORSHIP_REVIEW, RIGHTS_UNRESOLVED. Every finding has humanDecision=UNRESOLVED.
+
+Master comparisons: `[]`; identityClaim NONE.
+
+Authorship: GENERATED by AI assistant; field hashes/process in pilot-sense-proposals.json. Human author/reviewer/license/review date absent. Rights UNKNOWN_REVIEW_REQUIRED. Owner may request corrections or propose independent future identity dispositions; no approval is granted here.
+
+**a running session - NOUN**
+
+Draft key: `EDITORIAL_2H2B:run:exercise-session`; owner/identity UNRESOLVED; publicationEligible=false.
+
+Definition EN: A period or outing spent running, usually for exercise.
+
+Meaning VI: một buổi hoặc chặng chạy, thường để tập thể dục
+
+- Example EN: Their Sunday run ended beside the old lighthouse.
+- Example VI: Buổi chạy vào Chủ nhật của họ kết thúc cạnh ngọn hải đăng cũ.
+
+Grammar and boundary caveat: go for a run; countable session, not a verb use.
+
+Oxford ordinals considered: [3]; not approved Sense mappings.
+
+CEFR candidate for review: `A1`; status UNRESOLVED; contradiction=false. Only a headword-level evidence candidate; no verified Sense classification. Conflicting or missing evidence stays unresolved. Source CEFR evidence: `[{"evidenceRef": {"artifact": "oxford-normalized-inventory.json", "corpus": "OXFORD_5000", "recordIndex": 225, "sourceRecordId": "1788223606176"}, "values": [{"sourceField": "CEFR", "value": "A1"}]}]`.
+
+QA REVIEW: BILINGUAL_MEANING_REVIEW, BILINGUAL_EXAMPLE_REVIEW, GRAMMAR_AND_POS_USAGE_REVIEW, SENSE_BOUNDARY_REVIEW, CEFR_NOT_VERIFIED, GENERATED_AUTHORSHIP_REVIEW, RIGHTS_UNRESOLVED. Every finding has humanDecision=UNRESOLVED.
+
+Master comparisons: `[]`; identityClaim NONE.
+
+Authorship: GENERATED by AI assistant; field hashes/process in pilot-sense-proposals.json. Human author/reviewer/license/review date absent. Rights UNKNOWN_REVIEW_REQUIRED. Owner may request corrections or propose independent future identity dispositions; no approval is granted here.
+
+### Sample 5: water
+
+EDITORIAL DRAFT - NOT APPROVED. Selection: Mandatory structural case.
+
+Group: `NORMALIZED_HEADWORD:water`. Proposed Sense count: 2.
+Source membership: ENGLISH_VOCAB_4600, OXFORD_5000.
+Rights: UNKNOWN_REVIEW_REQUIRED. Owner decision: UNRESOLVED.
+
+Source evidence pointers (metadata only):
+
+- `oxford-normalized-inventory.json` / records[211] / sourceRecordId `1788223606162` / GUID `q]w,C,3[zd` / evidence SHA `a76e75da7c72083d77d40f35a31492f5cfa544e7355d0523202f5fcd0e7a559b`.
+- `vocab4600-normalized-inventory.json` / records[349] / sourceRecordId `1556384731157` / GUID `reTsc0n[bc` / evidence SHA `fb5f8f65104d64e24bd1e8e7cf42a3846f788636cfd0f745c4e12f67c81d20cb`.
+
+Existing Master candidates: `{"identityClaim": "NONE", "lexemeIdReference": "01a0fc13-09ef-73b3-b970-1a8bd5d48a27", "senseIdReferences": ["01a0fc13-09ef-75ac-b815-039ab337c01a"]}`. Lemma overlap is not Sense identity.
+
+Legacy dependencies: `[{"historyProtected": true, "identityClaim": "NONE", "identityEvidencePointer": "content-disposition.json#/rows/9", "learningSetCount": 3, "ownerReviewedExclusionCount": 1, "phase2h1CoverageCategory": "AMBIGUOUS_POTENTIAL_COVERAGE_REQUIRES_HUMAN_REVIEW", "phase2h1CoveragePointer": "legacy-source-coverage-readonly.json#/rows/9", "progressCount": 1, "reviewCount": 5, "runtimeVocabularyId": 11, "savedWordCount": 0, "semanticReviewDisposition": "OWNER_REVIEWED_NOT_SAME_IDENTITY", "sourceIdentityObligation": false, "topicCount": 2}, {"historyProtected": false, "identityClaim": "NONE", "identityEvidencePointer": "content-disposition.json#/rows/402", "learningSetCount": 0, "ownerReviewedExclusionCount": 1, "phase2h1CoverageCategory": "AMBIGUOUS_POTENTIAL_COVERAGE_REQUIRES_HUMAN_REVIEW", "phase2h1CoveragePointer": "legacy-source-coverage-readonly.json#/rows/402", "progressCount": 0, "reviewCount": 0, "runtimeVocabularyId": 405, "savedWordCount": 0, "semanticReviewDisposition": "OWNER_REVIEWED_NOT_SAME_IDENTITY", "sourceIdentityObligation": true, "topicCount": 1}]`. History/exclusion obligations cannot be changed by this review.
+
+**the common clear liquid - NOUN**
+
+Draft key: `EDITORIAL_2H2B:water:liquid`; owner/identity UNRESOLVED; publicationEligible=false.
+
+Definition EN: The usually colourless liquid found in rain, rivers and seas that living things need.
+
+Meaning VI: nước, chất lỏng thường không màu có trong mưa, sông và biển, cần cho sự sống
+
+- Example EN: She filled the glass with water from the jug.
+- Example VI: Cô ấy rót nước từ bình vào cốc.
+
+Grammar and boundary caveat: Usually uncountable; runtime #11 remains distinct from the owner-excluded existing Master verb pair.
+
+Oxford ordinals considered: [0]; not approved Sense mappings.
+
+CEFR candidate for review: `A1`; status UNRESOLVED; contradiction=false. Only a headword-level evidence candidate; no verified Sense classification. Conflicting or missing evidence stays unresolved. Source CEFR evidence: `[{"evidenceRef": {"artifact": "oxford-normalized-inventory.json", "corpus": "OXFORD_5000", "recordIndex": 211, "sourceRecordId": "1788223606162"}, "values": [{"sourceField": "CEFR", "value": "A1"}]}, {"evidenceRef": {"artifact": "vocab4600-normalized-inventory.json", "corpus": "ENGLISH_VOCAB_4600", "recordIndex": 349, "sourceRecordId": "1556384731157"}, "values": [{"sourceField": "deck:4600 English Vocab::A1", "value": "A1"}, {"sourceField": "noteTag", "value": "A1"}]}]`.
+
+QA REVIEW: BILINGUAL_MEANING_REVIEW, BILINGUAL_EXAMPLE_REVIEW, GRAMMAR_AND_POS_USAGE_REVIEW, SENSE_BOUNDARY_REVIEW, CEFR_NOT_VERIFIED, GENERATED_AUTHORSHIP_REVIEW, RIGHTS_UNRESOLVED, EXISTING_MASTER_IDENTITY_REVIEW, LEGACY_EXCLUSION_PROTECTED. Every finding has humanDecision=UNRESOLVED.
+
+Master comparisons: `[{"acceptedPos": "VERB", "contentHash": "7efcf85bbc3ed9040ad698efa95d6f8914836639d75b0ccb51c4df860b91b55c", "identityClaim": "NONE", "posCompatible": false, "recordPath": "master/senses/01a0fc13-09ef-75ac-b815-039ab337c01a-r3.json", "senseReference": "01a0fc13-09ef-75ac-b815-039ab337c01a", "sharedDefinitionTokens": [], "similarityStatus": "MEANING_COMPARISON_REQUIRED"}]`; identityClaim NONE.
+
+Authorship: GENERATED by AI assistant; field hashes/process in pilot-sense-proposals.json. Human author/reviewer/license/review date absent. Rights UNKNOWN_REVIEW_REQUIRED. Owner may request corrections or propose independent future identity dispositions; no approval is granted here.
+
+**give water to plants - VERB**
+
+Draft key: `EDITORIAL_2H2B:water:give-water`; owner/identity UNRESOLVED; publicationEligible=false.
+
+Definition EN: To give water to a plant or an area of soil so that plants can grow.
+
+Meaning VI: tưới nước cho cây hoặc đất trồng để cây phát triển
+
+- Example EN: We watered the young trees after sunset.
+- Example VI: Chúng tôi tưới những cây non sau khi mặt trời lặn.
+
+Grammar and boundary caveat: Transitive; possible similarity to the existing Master verb is a review candidate, never approval to map runtime #11.
+
+Oxford ordinals considered: [1]; not approved Sense mappings.
+
+CEFR candidate for review: `A1`; status UNRESOLVED; contradiction=false. Only a headword-level evidence candidate; no verified Sense classification. Conflicting or missing evidence stays unresolved. Source CEFR evidence: `[{"evidenceRef": {"artifact": "oxford-normalized-inventory.json", "corpus": "OXFORD_5000", "recordIndex": 211, "sourceRecordId": "1788223606162"}, "values": [{"sourceField": "CEFR", "value": "A1"}]}, {"evidenceRef": {"artifact": "vocab4600-normalized-inventory.json", "corpus": "ENGLISH_VOCAB_4600", "recordIndex": 349, "sourceRecordId": "1556384731157"}, "values": [{"sourceField": "deck:4600 English Vocab::A1", "value": "A1"}, {"sourceField": "noteTag", "value": "A1"}]}]`.
+
+QA REVIEW: BILINGUAL_MEANING_REVIEW, BILINGUAL_EXAMPLE_REVIEW, GRAMMAR_AND_POS_USAGE_REVIEW, SENSE_BOUNDARY_REVIEW, CEFR_NOT_VERIFIED, GENERATED_AUTHORSHIP_REVIEW, RIGHTS_UNRESOLVED, EXISTING_MASTER_IDENTITY_REVIEW, LEGACY_EXCLUSION_PROTECTED. Every finding has humanDecision=UNRESOLVED.
+
+Master comparisons: `[{"acceptedPos": "VERB", "contentHash": "7efcf85bbc3ed9040ad698efa95d6f8914836639d75b0ccb51c4df860b91b55c", "identityClaim": "NONE", "posCompatible": true, "recordPath": "master/senses/01a0fc13-09ef-75ac-b815-039ab337c01a-r3.json", "senseReference": "01a0fc13-09ef-75ac-b815-039ab337c01a", "sharedDefinitionTokens": ["can", "grow", "plant", "so", "water"], "similarityStatus": "POSSIBLE_REUSE_REVIEW_ONLY"}]`; identityClaim NONE.
+
+Authorship: GENERATED by AI assistant; field hashes/process in pilot-sense-proposals.json. Human author/reviewer/license/review date absent. Rights UNKNOWN_REVIEW_REQUIRED. Owner may request corrections or propose independent future identity dispositions; no approval is granted here.
+
+### Sample 6: a, an
+
+EDITORIAL DRAFT - NOT APPROVED. Selection: Oxford-only.
+
+Group: `NORMALIZED_HEADWORD:a, an`. Proposed Sense count: 1.
+Source membership: OXFORD_5000.
+Rights: UNKNOWN_REVIEW_REQUIRED. Owner decision: UNRESOLVED.
+
+Source evidence pointers (metadata only):
+
+- `oxford-normalized-inventory.json` / records[32] / sourceRecordId `1788223605969` / GUID `Jrr<}F%jLO` / evidence SHA `6f3bc39d5ec80450348b5cfe19626dd7672eba45022b1dda443c9d34dca7b7f4`.
+
+Existing Master candidates: `{"identityClaim": "NONE", "lexemeIdReference": null, "senseIdReferences": []}`. Lemma overlap is not Sense identity.
+
+Legacy dependencies: `[]`. History/exclusion obligations cannot be changed by this review.
+
+**one unspecified thing - DETERMINER**
+
+Draft key: `EDITORIAL_2H2B:a, an:indefinite`; owner/identity UNRESOLVED; publicationEligible=false.
+
+Definition EN: Used before a singular countable noun when the listener does not yet know which person or thing is meant.
+
+Meaning VI: một đối tượng chưa được xác định cụ thể
+
+- Example EN: I found an envelope under a chair.
+- Example VI: Tôi tìm thấy một phong bì dưới một chiếc ghế.
+
+Grammar and boundary caveat: Choose a before a consonant sound and an before a vowel sound; these forms are proposed variants, not two approved identities.
+
+Oxford ordinals considered: [0]; not approved Sense mappings.
+
+CEFR candidate for review: `A1`; status UNRESOLVED; contradiction=false. Only a headword-level evidence candidate; no verified Sense classification. Conflicting or missing evidence stays unresolved. Source CEFR evidence: `[{"evidenceRef": {"artifact": "oxford-normalized-inventory.json", "corpus": "OXFORD_5000", "recordIndex": 32, "sourceRecordId": "1788223605969"}, "values": [{"sourceField": "CEFR", "value": "A1"}]}]`.
+
+QA REVIEW: BILINGUAL_MEANING_REVIEW, BILINGUAL_EXAMPLE_REVIEW, GRAMMAR_AND_POS_USAGE_REVIEW, SENSE_BOUNDARY_REVIEW, CEFR_NOT_VERIFIED, GENERATED_AUTHORSHIP_REVIEW, RIGHTS_UNRESOLVED. Every finding has humanDecision=UNRESOLVED.
+
+Master comparisons: `[]`; identityClaim NONE.
+
+Authorship: GENERATED by AI assistant; field hashes/process in pilot-sense-proposals.json. Human author/reviewer/license/review date absent. Rights UNKNOWN_REVIEW_REQUIRED. Owner may request corrections or propose independent future identity dispositions; no approval is granted here.
+
+### Sample 7: abnormal
+
+EDITORIAL DRAFT - NOT APPROVED. Selection: 4600-only.
+
+Group: `NORMALIZED_HEADWORD:abnormal`. Proposed Sense count: 1.
+Source membership: ENGLISH_VOCAB_4600.
+Rights: UNKNOWN_REVIEW_REQUIRED. Owner decision: UNRESOLVED.
+
+Source evidence pointers (metadata only):
+
+- `vocab4600-normalized-inventory.json` / records[2937] / sourceRecordId `1559931009799` / GUID `QzcGRceMr[` / evidence SHA `3974b8a8a23a60e27946f403360909b8a83ff7e2a97a2dda6c7140e1db4868c3`.
+
+Existing Master candidates: `{"identityClaim": "NONE", "lexemeIdReference": null, "senseIdReferences": []}`. Lemma overlap is not Sense identity.
+
+Legacy dependencies: `[{"historyProtected": false, "identityClaim": "NONE", "identityEvidencePointer": "content-disposition.json#/rows/1629", "learningSetCount": 0, "ownerReviewedExclusionCount": 0, "phase2h1CoverageCategory": "POTENTIAL_HEADWORD_COVERAGE_REQUIRES_HUMAN_COMPARISON", "phase2h1CoveragePointer": "legacy-source-coverage-readonly.json#/rows/1629", "progressCount": 0, "reviewCount": 0, "runtimeVocabularyId": 1635, "savedWordCount": 0, "semanticReviewDisposition": "NO_MASTER_CANDIDATE", "sourceIdentityObligation": true, "topicCount": 1}]`. History/exclusion obligations cannot be changed by this review.
+
+**outside the usual pattern - ADJECTIVE**
+
+Draft key: `EDITORIAL_2H2B:abnormal:unusual`; owner/identity UNRESOLVED; publicationEligible=false.
+
+Definition EN: Different from what is normally expected in a particular situation.
+
+Meaning VI: khác với tình trạng hoặc quy luật thường thấy
+
+- Example EN: The sensor detected an abnormal rise in temperature.
+- Example VI: Cảm biến phát hiện nhiệt độ tăng bất thường.
+
+Grammar and boundary caveat: Use for a specified observation; avoid using it to judge a person's worth.
+
+Oxford ordinals considered: []; not approved Sense mappings.
+
+CEFR candidate for review: `C2`; status UNRESOLVED; contradiction=false. Only a headword-level evidence candidate; no verified Sense classification. Conflicting or missing evidence stays unresolved. Source CEFR evidence: `[{"evidenceRef": {"artifact": "vocab4600-normalized-inventory.json", "corpus": "ENGLISH_VOCAB_4600", "recordIndex": 2937, "sourceRecordId": "1559931009799"}, "values": [{"sourceField": "deck:4600 English Vocab::C2", "value": "C2"}, {"sourceField": "noteTag", "value": "C2"}]}]`.
+
+QA REVIEW: BILINGUAL_MEANING_REVIEW, BILINGUAL_EXAMPLE_REVIEW, GRAMMAR_AND_POS_USAGE_REVIEW, SENSE_BOUNDARY_REVIEW, CEFR_NOT_VERIFIED, GENERATED_AUTHORSHIP_REVIEW, RIGHTS_UNRESOLVED. Every finding has humanDecision=UNRESOLVED.
+
+Master comparisons: `[]`; identityClaim NONE.
+
+Authorship: GENERATED by AI assistant; field hashes/process in pilot-sense-proposals.json. Human author/reviewer/license/review date absent. Rights UNKNOWN_REVIEW_REQUIRED. Owner may request corrections or propose independent future identity dispositions; no approval is granted here.
+
+### Sample 8: ability
+
+EDITORIAL DRAFT - NOT APPROVED. Selection: Straightforward overlap.
+
+Group: `NORMALIZED_HEADWORD:ability`. Proposed Sense count: 1.
+Source membership: ENGLISH_VOCAB_4600, OXFORD_5000.
+Rights: UNKNOWN_REVIEW_REQUIRED. Owner decision: UNRESOLVED.
+
+Source evidence pointers (metadata only):
+
+- `oxford-normalized-inventory.json` / records[1138] / sourceRecordId `1788223607156` / GUID `n>GGZFQAFa` / evidence SHA `d0086fc68160d603820d2d46fa5e8f53b1b9993626ceef83da1bffdc07915f78`.
+- `vocab4600-normalized-inventory.json` / records[922] / sourceRecordId `1559931007699` / GUID `K?Qw5JE>jg` / evidence SHA `3ae4ceb5d965b5a95554b114d33ead4f80af6fdbdcb99f95c8d29282a910ba03`.
+
+Existing Master candidates: `{"identityClaim": "NONE", "lexemeIdReference": null, "senseIdReferences": []}`. Lemma overlap is not Sense identity.
+
+Legacy dependencies: `[]`. History/exclusion obligations cannot be changed by this review.
+
+**capacity to do something - NOUN**
+
+Draft key: `EDITORIAL_2H2B:ability:capacity`; owner/identity UNRESOLVED; publicationEligible=false.
+
+Definition EN: The skill or capacity needed to do a particular thing.
+
+Meaning VI: khả năng thực hiện một việc cụ thể
+
+- Example EN: Her ability to explain difficult ideas helped the whole class.
+- Example VI: Khả năng giải thích những ý tưởng khó của cô ấy đã giúp cả lớp.
+
+Grammar and boundary caveat: ability to + verb; distinguish a skill from permission.
+
+Oxford ordinals considered: [0]; not approved Sense mappings.
+
+CEFR candidate for review: `A2`; status UNRESOLVED; contradiction=false. Only a headword-level evidence candidate; no verified Sense classification. Conflicting or missing evidence stays unresolved. Source CEFR evidence: `[{"evidenceRef": {"artifact": "oxford-normalized-inventory.json", "corpus": "OXFORD_5000", "recordIndex": 1138, "sourceRecordId": "1788223607156"}, "values": [{"sourceField": "CEFR", "value": "A2"}]}, {"evidenceRef": {"artifact": "vocab4600-normalized-inventory.json", "corpus": "ENGLISH_VOCAB_4600", "recordIndex": 922, "sourceRecordId": "1559931007699"}, "values": [{"sourceField": "deck:4600 English Vocab::A2", "value": "A2"}, {"sourceField": "noteTag", "value": "A2"}]}]`.
+
+QA REVIEW: BILINGUAL_MEANING_REVIEW, BILINGUAL_EXAMPLE_REVIEW, GRAMMAR_AND_POS_USAGE_REVIEW, SENSE_BOUNDARY_REVIEW, CEFR_NOT_VERIFIED, GENERATED_AUTHORSHIP_REVIEW, RIGHTS_UNRESOLVED. Every finding has humanDecision=UNRESOLVED.
+
+Master comparisons: `[]`; identityClaim NONE.
+
+Authorship: GENERATED by AI assistant; field hashes/process in pilot-sense-proposals.json. Human author/reviewer/license/review date absent. Rights UNKNOWN_REVIEW_REQUIRED. Owner may request corrections or propose independent future identity dispositions; no approval is granted here.
+
+### Sample 9: above
+
+EDITORIAL DRAFT - NOT APPROVED. Selection: POS conflict.
+
+Group: `NORMALIZED_HEADWORD:above`. Proposed Sense count: 2.
+Source membership: ENGLISH_VOCAB_4600, OXFORD_5000.
+Rights: UNKNOWN_REVIEW_REQUIRED. Owner decision: UNRESOLVED.
+
+Source evidence pointers (metadata only):
+
+- `oxford-normalized-inventory.json` / records[378] / sourceRecordId `1788223606329` / GUID `KhP1OXl|+V` / evidence SHA `ea31366b4718d1c99447bccc7f5155fffe16cb84a5a0c885bd80b174f978ba7d`.
+- `vocab4600-normalized-inventory.json` / records[568] / sourceRecordId `1556384731378` / GUID `v~S@sA=J-5` / evidence SHA `a9e141544b162712543b5fd79324bd398ed1c68d0759296c5bb17051123d2766`.
+
+Existing Master candidates: `{"identityClaim": "NONE", "lexemeIdReference": null, "senseIdReferences": []}`. Lemma overlap is not Sense identity.
+
+Legacy dependencies: `[]`. History/exclusion obligations cannot be changed by this review.
+
+**higher than something - PREPOSITION**
+
+Draft key: `EDITORIAL_2H2B:above:higher-than`; owner/identity UNRESOLVED; publicationEligible=false.
+
+Definition EN: In a position higher than another thing.
+
+Meaning VI: ở vị trí cao hơn một vật khác
+
+- Example EN: A small clock hangs above the kitchen door.
+- Example VI: Một chiếc đồng hồ nhỏ treo phía trên cửa bếp.
+
+Grammar and boundary caveat: above + noun phrase; do not inherit the conflicting source adjective tag automatically.
+
+Oxford ordinals considered: [0]; not approved Sense mappings.
+
+CEFR candidate for review: `A1`; status UNRESOLVED; contradiction=false. Only a headword-level evidence candidate; no verified Sense classification. Conflicting or missing evidence stays unresolved. Source CEFR evidence: `[{"evidenceRef": {"artifact": "oxford-normalized-inventory.json", "corpus": "OXFORD_5000", "recordIndex": 378, "sourceRecordId": "1788223606329"}, "values": [{"sourceField": "CEFR", "value": "A1"}]}, {"evidenceRef": {"artifact": "vocab4600-normalized-inventory.json", "corpus": "ENGLISH_VOCAB_4600", "recordIndex": 568, "sourceRecordId": "1556384731378"}, "values": [{"sourceField": "deck:4600 English Vocab::A1", "value": "A1"}, {"sourceField": "noteTag", "value": "A1"}]}]`.
+
+QA REVIEW: POS_EVIDENCE_REVIEW, BILINGUAL_MEANING_REVIEW, BILINGUAL_EXAMPLE_REVIEW, GRAMMAR_AND_POS_USAGE_REVIEW, SENSE_BOUNDARY_REVIEW, CEFR_NOT_VERIFIED, GENERATED_AUTHORSHIP_REVIEW, RIGHTS_UNRESOLVED. Every finding has humanDecision=UNRESOLVED.
+
+Master comparisons: `[]`; identityClaim NONE.
+
+Authorship: GENERATED by AI assistant; field hashes/process in pilot-sense-proposals.json. Human author/reviewer/license/review date absent. Rights UNKNOWN_REVIEW_REQUIRED. Owner may request corrections or propose independent future identity dispositions; no approval is granted here.
+
+**in a higher place - ADVERB**
+
+Draft key: `EDITORIAL_2H2B:above:higher-place`; owner/identity UNRESOLVED; publicationEligible=false.
+
+Definition EN: In or towards a higher position than the place already mentioned.
+
+Meaning VI: ở phía cao hơn so với vị trí đã nói đến
+
+- Example EN: We heard footsteps from the room above.
+- Example VI: Chúng tôi nghe tiếng bước chân từ căn phòng ở phía trên.
+
+Grammar and boundary caveat: No following object in this example; review the separate adjectival analysis of room above.
+
+Oxford ordinals considered: [1]; not approved Sense mappings.
+
+CEFR candidate for review: `A1`; status UNRESOLVED; contradiction=false. Only a headword-level evidence candidate; no verified Sense classification. Conflicting or missing evidence stays unresolved. Source CEFR evidence: `[{"evidenceRef": {"artifact": "oxford-normalized-inventory.json", "corpus": "OXFORD_5000", "recordIndex": 378, "sourceRecordId": "1788223606329"}, "values": [{"sourceField": "CEFR", "value": "A1"}]}, {"evidenceRef": {"artifact": "vocab4600-normalized-inventory.json", "corpus": "ENGLISH_VOCAB_4600", "recordIndex": 568, "sourceRecordId": "1556384731378"}, "values": [{"sourceField": "deck:4600 English Vocab::A1", "value": "A1"}, {"sourceField": "noteTag", "value": "A1"}]}]`.
+
+QA REVIEW: POS_EVIDENCE_REVIEW, BILINGUAL_MEANING_REVIEW, BILINGUAL_EXAMPLE_REVIEW, GRAMMAR_AND_POS_USAGE_REVIEW, SENSE_BOUNDARY_REVIEW, CEFR_NOT_VERIFIED, GENERATED_AUTHORSHIP_REVIEW, RIGHTS_UNRESOLVED. Every finding has humanDecision=UNRESOLVED.
+
+Master comparisons: `[]`; identityClaim NONE.
+
+Authorship: GENERATED by AI assistant; field hashes/process in pilot-sense-proposals.json. Human author/reviewer/license/review date absent. Rights UNKNOWN_REVIEW_REQUIRED. Owner may request corrections or propose independent future identity dispositions; no approval is granted here.
+
+### Sample 10: acre
+
+EDITORIAL DRAFT - NOT APPROVED. Selection: CEFR conflict.
+
+Group: `NORMALIZED_HEADWORD:acre`. Proposed Sense count: 1.
+Source membership: ENGLISH_VOCAB_4600, OXFORD_5000.
+Rights: UNKNOWN_REVIEW_REQUIRED. Owner decision: UNRESOLVED.
+
+Source evidence pointers (metadata only):
+
+- `oxford-normalized-inventory.json` / records[3538] / sourceRecordId `1788223609577` / GUID `6h@JP%`T/n` / evidence SHA `8c8c4ff3eda2225c5421f711c578ca81f31edb2fc84b0b64a680c51474ee784c`.
+- `vocab4600-normalized-inventory.json` / records[1169] / sourceRecordId `1559931007959` / GUID `yYFmDTtfIn` / evidence SHA `bc42d2730f06c763b5e5f57fa1edff0c86c23e5a6de662741fa6b8ce8f74dfa5`.
+
+Existing Master candidates: `{"identityClaim": "NONE", "lexemeIdReference": null, "senseIdReferences": []}`. Lemma overlap is not Sense identity.
+
+Legacy dependencies: `[]`. History/exclusion obligations cannot be changed by this review.
+
+**a unit of land area - NOUN**
+
+Draft key: `EDITORIAL_2H2B:acre:land-area`; owner/identity UNRESOLVED; publicationEligible=false.
+
+Definition EN: A unit used to measure the area of a piece of land.
+
+Meaning VI: đơn vị acre dùng để đo diện tích đất
+
+- Example EN: The farm covers twelve acres near the river.
+- Example VI: Trang trại có diện tích mười hai acre gần con sông.
+
+Grammar and boundary caveat: Keep acre as a named unit; avoid equating it with a Vietnamese mẫu whose size varies.
+
+Oxford ordinals considered: [0]; not approved Sense mappings.
+
+CEFR candidate for review: `None`; status UNRESOLVED; contradiction=true. Only a headword-level evidence candidate; no verified Sense classification. Conflicting or missing evidence stays unresolved. Source CEFR evidence: `[{"evidenceRef": {"artifact": "oxford-normalized-inventory.json", "corpus": "OXFORD_5000", "recordIndex": 3538, "sourceRecordId": "1788223609577"}, "values": [{"sourceField": "CEFR", "value": "B2"}]}, {"evidenceRef": {"artifact": "vocab4600-normalized-inventory.json", "corpus": "ENGLISH_VOCAB_4600", "recordIndex": 1169, "sourceRecordId": "1559931007959"}, "values": [{"sourceField": "deck:4600 English Vocab::C1", "value": "C1"}, {"sourceField": "noteTag", "value": "C1"}]}]`.
+
+QA REVIEW: BILINGUAL_MEANING_REVIEW, BILINGUAL_EXAMPLE_REVIEW, GRAMMAR_AND_POS_USAGE_REVIEW, SENSE_BOUNDARY_REVIEW, CEFR_NOT_VERIFIED, GENERATED_AUTHORSHIP_REVIEW, RIGHTS_UNRESOLVED. Every finding has humanDecision=UNRESOLVED.
+
+Master comparisons: `[]`; identityClaim NONE.
+
+Authorship: GENERATED by AI assistant; field hashes/process in pilot-sense-proposals.json. Human author/reviewer/license/review date absent. Rights UNKNOWN_REVIEW_REQUIRED. Owner may request corrections or propose independent future identity dispositions; no approval is granted here.
+
+### Sample 11: acute
+
+EDITORIAL DRAFT - NOT APPROVED. Selection: Existing Master overlap.
+
+Group: `NORMALIZED_HEADWORD:acute`. Proposed Sense count: 3.
+Source membership: ENGLISH_VOCAB_4600, OXFORD_5000.
+Rights: UNKNOWN_REVIEW_REQUIRED. Owner decision: UNRESOLVED.
+
+Source evidence pointers (metadata only):
+
+- `oxford-normalized-inventory.json` / records[4319] / sourceRecordId `1788223610358` / GUID `:H8I$3N?vl` / evidence SHA `8f82750bf02905b830f1b2b017ca1d3e93f068db6dcc3279ed29e32464c4b91e`.
+- `vocab4600-normalized-inventory.json` / records[1968] / sourceRecordId `1559931008779` / GUID `hsM`MA[9!k` / evidence SHA `1db6bd3afd2e217e3f81d12886aaed13b0f7e06fafa0cea9e47f4bfd5b98f6ed`.
+
+Existing Master candidates: `{"identityClaim": "NONE", "lexemeIdReference": "01a1070c-7c58-76b5-a2aa-9091f194b958", "senseIdReferences": ["01a1070c-7c58-76b5-a2aa-97f25323b0a8"]}`. Lemma overlap is not Sense identity.
+
+Legacy dependencies: `[]`. History/exclusion obligations cannot be changed by this review.
+
+**rapid in onset - ADJECTIVE**
+
+Draft key: `EDITORIAL_2H2B:acute:rapid-onset`; owner/identity UNRESOLVED; publicationEligible=false.
+
+Definition EN: Describing a condition that develops quickly, in contrast to one that continues over a long period.
+
+Meaning VI: chỉ tình trạng khởi phát nhanh, đối lập với tình trạng kéo dài
+
+- Example EN: The article compared acute and chronic conditions.
+- Example VI: Bài viết so sánh các tình trạng cấp tính và mạn tính.
+
+Grammar and boundary caveat: Medical terminology draft only; not a diagnosis or treatment claim. Human terminology review required.
+
+Oxford ordinals considered: [0]; not approved Sense mappings.
+
+CEFR candidate for review: `C1`; status UNRESOLVED; contradiction=false. Only a headword-level evidence candidate; no verified Sense classification. Conflicting or missing evidence stays unresolved. Source CEFR evidence: `[{"evidenceRef": {"artifact": "oxford-normalized-inventory.json", "corpus": "OXFORD_5000", "recordIndex": 4319, "sourceRecordId": "1788223610358"}, "values": [{"sourceField": "CEFR", "value": "C1"}]}, {"evidenceRef": {"artifact": "vocab4600-normalized-inventory.json", "corpus": "ENGLISH_VOCAB_4600", "recordIndex": 1968, "sourceRecordId": "1559931008779"}, "values": [{"sourceField": "deck:4600 English Vocab::C1", "value": "C1"}, {"sourceField": "noteTag", "value": "C1"}]}]`.
+
+QA REVIEW: BILINGUAL_MEANING_REVIEW, BILINGUAL_EXAMPLE_REVIEW, GRAMMAR_AND_POS_USAGE_REVIEW, SENSE_BOUNDARY_REVIEW, CEFR_NOT_VERIFIED, GENERATED_AUTHORSHIP_REVIEW, RIGHTS_UNRESOLVED, EXISTING_MASTER_IDENTITY_REVIEW. Every finding has humanDecision=UNRESOLVED.
+
+Master comparisons: `[{"acceptedPos": "ADJECTIVE", "contentHash": "bab0fadbe4ca54e1f5119ca10034b834dc1588545671c1c55f8627b513a8795c", "identityClaim": "NONE", "posCompatible": true, "recordPath": "master/senses/01a1070c-7c58-76b5-a2aa-97f25323b0a8-r3.json", "senseReference": "01a1070c-7c58-76b5-a2aa-97f25323b0a8", "sharedDefinitionTokens": ["describing"], "similarityStatus": "POSSIBLE_REUSE_REVIEW_ONLY"}]`; identityClaim NONE.
+
+Authorship: GENERATED by AI assistant; field hashes/process in pilot-sense-proposals.json. Human author/reviewer/license/review date absent. Rights UNKNOWN_REVIEW_REQUIRED. Owner may request corrections or propose independent future identity dispositions; no approval is granted here.
+
+**very severe - ADJECTIVE**
+
+Draft key: `EDITORIAL_2H2B:acute:severe`; owner/identity UNRESOLVED; publicationEligible=false.
+
+Definition EN: Very strong or serious and demanding attention.
+
+Meaning VI: rất nghiêm trọng hoặc gay gắt, cần được quan tâm
+
+- Example EN: An acute shortage of spare parts delayed repairs to the bridge.
+- Example VI: Việc thiếu phụ tùng trầm trọng khiến công tác sửa cầu bị chậm lại.
+
+Grammar and boundary caveat: acute shortage or problem; severity is distinct from rapid onset.
+
+Oxford ordinals considered: [1]; not approved Sense mappings.
+
+CEFR candidate for review: `C1`; status UNRESOLVED; contradiction=false. Only a headword-level evidence candidate; no verified Sense classification. Conflicting or missing evidence stays unresolved. Source CEFR evidence: `[{"evidenceRef": {"artifact": "oxford-normalized-inventory.json", "corpus": "OXFORD_5000", "recordIndex": 4319, "sourceRecordId": "1788223610358"}, "values": [{"sourceField": "CEFR", "value": "C1"}]}, {"evidenceRef": {"artifact": "vocab4600-normalized-inventory.json", "corpus": "ENGLISH_VOCAB_4600", "recordIndex": 1968, "sourceRecordId": "1559931008779"}, "values": [{"sourceField": "deck:4600 English Vocab::C1", "value": "C1"}, {"sourceField": "noteTag", "value": "C1"}]}]`.
+
+QA REVIEW: BILINGUAL_MEANING_REVIEW, BILINGUAL_EXAMPLE_REVIEW, GRAMMAR_AND_POS_USAGE_REVIEW, SENSE_BOUNDARY_REVIEW, CEFR_NOT_VERIFIED, GENERATED_AUTHORSHIP_REVIEW, RIGHTS_UNRESOLVED, EXISTING_MASTER_IDENTITY_REVIEW. Every finding has humanDecision=UNRESOLVED.
+
+Master comparisons: `[{"acceptedPos": "ADJECTIVE", "contentHash": "bab0fadbe4ca54e1f5119ca10034b834dc1588545671c1c55f8627b513a8795c", "identityClaim": "NONE", "posCompatible": true, "recordPath": "master/senses/01a1070c-7c58-76b5-a2aa-97f25323b0a8-r3.json", "senseReference": "01a1070c-7c58-76b5-a2aa-97f25323b0a8", "sharedDefinitionTokens": ["very"], "similarityStatus": "POSSIBLE_REUSE_REVIEW_ONLY"}]`; identityClaim NONE.
+
+Authorship: GENERATED by AI assistant; field hashes/process in pilot-sense-proposals.json. Human author/reviewer/license/review date absent. Rights UNKNOWN_REVIEW_REQUIRED. Owner may request corrections or propose independent future identity dispositions; no approval is granted here.
+
+**keenly perceptive - ADJECTIVE**
+
+Draft key: `EDITORIAL_2H2B:acute:perceptive`; owner/identity UNRESOLVED; publicationEligible=false.
+
+Definition EN: Able to notice or understand small details very clearly.
+
+Meaning VI: nhạy bén trong việc nhận ra hoặc hiểu những chi tiết nhỏ
+
+- Example EN: Her acute observation revealed a small error in the chart.
+- Example VI: Sự quan sát nhạy bén của cô ấy giúp phát hiện một lỗi nhỏ trong biểu đồ.
+
+Grammar and boundary caveat: acute observation or awareness; do not confuse with pain or illness.
+
+Oxford ordinals considered: [2]; not approved Sense mappings.
+
+CEFR candidate for review: `C1`; status UNRESOLVED; contradiction=false. Only a headword-level evidence candidate; no verified Sense classification. Conflicting or missing evidence stays unresolved. Source CEFR evidence: `[{"evidenceRef": {"artifact": "oxford-normalized-inventory.json", "corpus": "OXFORD_5000", "recordIndex": 4319, "sourceRecordId": "1788223610358"}, "values": [{"sourceField": "CEFR", "value": "C1"}]}, {"evidenceRef": {"artifact": "vocab4600-normalized-inventory.json", "corpus": "ENGLISH_VOCAB_4600", "recordIndex": 1968, "sourceRecordId": "1559931008779"}, "values": [{"sourceField": "deck:4600 English Vocab::C1", "value": "C1"}, {"sourceField": "noteTag", "value": "C1"}]}]`.
+
+QA REVIEW: BILINGUAL_MEANING_REVIEW, BILINGUAL_EXAMPLE_REVIEW, GRAMMAR_AND_POS_USAGE_REVIEW, SENSE_BOUNDARY_REVIEW, CEFR_NOT_VERIFIED, GENERATED_AUTHORSHIP_REVIEW, RIGHTS_UNRESOLVED, EXISTING_MASTER_IDENTITY_REVIEW. Every finding has humanDecision=UNRESOLVED.
+
+Master comparisons: `[{"acceptedPos": "ADJECTIVE", "contentHash": "bab0fadbe4ca54e1f5119ca10034b834dc1588545671c1c55f8627b513a8795c", "identityClaim": "NONE", "posCompatible": true, "recordPath": "master/senses/01a1070c-7c58-76b5-a2aa-97f25323b0a8-r3.json", "senseReference": "01a1070c-7c58-76b5-a2aa-97f25323b0a8", "sharedDefinitionTokens": ["very"], "similarityStatus": "POSSIBLE_REUSE_REVIEW_ONLY"}]`; identityClaim NONE.
+
+Authorship: GENERATED by AI assistant; field hashes/process in pilot-sense-proposals.json. Human author/reviewer/license/review date absent. Rights UNKNOWN_REVIEW_REQUIRED. Owner may request corrections or propose independent future identity dispositions; no approval is granted here.
+
+### Sample 12: apple
+
+EDITORIAL DRAFT - NOT APPROVED. Selection: Legacy history dependency.
+
+Group: `NORMALIZED_HEADWORD:apple`. Proposed Sense count: 1.
+Source membership: OXFORD_5000.
+Rights: UNKNOWN_REVIEW_REQUIRED. Owner decision: UNRESOLVED.
+
+Source evidence pointers (metadata only):
+
+- `oxford-normalized-inventory.json` / records[642] / sourceRecordId `1788223606627` / GUID `uYd)257Q$$` / evidence SHA `c09ce4620693f9d2c682d5f3ad20b56245ae0d543af201ecda75905a4b8991c8`.
+
+Existing Master candidates: `{"identityClaim": "NONE", "lexemeIdReference": null, "senseIdReferences": []}`. Lemma overlap is not Sense identity.
+
+Legacy dependencies: `[{"historyProtected": true, "identityClaim": "NONE", "identityEvidencePointer": "content-disposition.json#/rows/292", "learningSetCount": 1, "ownerReviewedExclusionCount": 0, "phase2h1CoverageCategory": "POTENTIAL_HEADWORD_COVERAGE_REQUIRES_HUMAN_COMPARISON", "phase2h1CoveragePointer": "legacy-source-coverage-readonly.json#/rows/292", "progressCount": 1, "reviewCount": 2, "runtimeVocabularyId": 295, "savedWordCount": 0, "semanticReviewDisposition": "EXISTING_MASTER_RUNTIME_DUPLICATE", "sourceIdentityObligation": true, "topicCount": 1}]`. History/exclusion obligations cannot be changed by this review.
+
+**a round tree fruit - NOUN**
+
+Draft key: `EDITORIAL_2H2B:apple:fruit`; owner/identity UNRESOLVED; publicationEligible=false.
+
+Definition EN: A round fruit with firm flesh, a central core and usually red, green or yellow skin.
+
+Meaning VI: quả táo có thịt giòn, lõi ở giữa và vỏ thường đỏ, xanh hoặc vàng
+
+- Example EN: I packed an apple and a sandwich for the trip.
+- Example VI: Tôi chuẩn bị một quả táo và một chiếc bánh mì kẹp cho chuyến đi.
+
+Grammar and boundary caveat: Countable fruit noun; this is not a company-name identity.
+
+Oxford ordinals considered: [0]; not approved Sense mappings.
+
+CEFR candidate for review: `A1`; status UNRESOLVED; contradiction=false. Only a headword-level evidence candidate; no verified Sense classification. Conflicting or missing evidence stays unresolved. Source CEFR evidence: `[{"evidenceRef": {"artifact": "oxford-normalized-inventory.json", "corpus": "OXFORD_5000", "recordIndex": 642, "sourceRecordId": "1788223606627"}, "values": [{"sourceField": "CEFR", "value": "A1"}]}]`.
+
+QA REVIEW: BILINGUAL_MEANING_REVIEW, BILINGUAL_EXAMPLE_REVIEW, GRAMMAR_AND_POS_USAGE_REVIEW, SENSE_BOUNDARY_REVIEW, CEFR_NOT_VERIFIED, GENERATED_AUTHORSHIP_REVIEW, RIGHTS_UNRESOLVED. Every finding has humanDecision=UNRESOLVED.
+
+Master comparisons: `[]`; identityClaim NONE.
+
+Authorship: GENERATED by AI assistant; field hashes/process in pilot-sense-proposals.json. Human author/reviewer/license/review date absent. Rights UNKNOWN_REVIEW_REQUIRED. Owner may request corrections or propose independent future identity dispositions; no approval is granted here.
+
+### Sample 13: according to
+
+EDITORIAL DRAFT - NOT APPROVED. Selection: Multiword/phrasal.
+
+Group: `NORMALIZED_HEADWORD:according to`. Proposed Sense count: 1.
+Source membership: OXFORD_5000.
+Rights: UNKNOWN_REVIEW_REQUIRED. Owner decision: UNRESOLVED.
+
+Source evidence pointers (metadata only):
+
+- `oxford-normalized-inventory.json` / records[985] / sourceRecordId `1788223607003` / GUID `Le}`J|JI8v` / evidence SHA `4c7c2120f1bc7ff40b58e563b4e079720d8f865b9b59b5b12663ef6e3b3ee056`.
+
+Existing Master candidates: `{"identityClaim": "NONE", "lexemeIdReference": null, "senseIdReferences": []}`. Lemma overlap is not Sense identity.
+
+Legacy dependencies: `[]`. History/exclusion obligations cannot be changed by this review.
+
+**as stated by - PREPOSITION**
+
+Draft key: `EDITORIAL_2H2B:according to:reported-source`; owner/identity UNRESOLVED; publicationEligible=false.
+
+Definition EN: Used to name the person or source that provides a statement or piece of information.
+
+Meaning VI: theo lời hoặc thông tin từ một người hay một nguồn
+
+- Example EN: According to the timetable, the first train leaves at six.
+- Example VI: Theo thời gian biểu, chuyến tàu đầu tiên khởi hành lúc sáu giờ.
+
+Grammar and boundary caveat: according to + source; reporting does not endorse the statement as verified truth.
+
+Oxford ordinals considered: [0]; not approved Sense mappings.
+
+CEFR candidate for review: `A2`; status UNRESOLVED; contradiction=false. Only a headword-level evidence candidate; no verified Sense classification. Conflicting or missing evidence stays unresolved. Source CEFR evidence: `[{"evidenceRef": {"artifact": "oxford-normalized-inventory.json", "corpus": "OXFORD_5000", "recordIndex": 985, "sourceRecordId": "1788223607003"}, "values": [{"sourceField": "CEFR", "value": "A2"}]}]`.
+
+QA REVIEW: BILINGUAL_MEANING_REVIEW, BILINGUAL_EXAMPLE_REVIEW, GRAMMAR_AND_POS_USAGE_REVIEW, SENSE_BOUNDARY_REVIEW, CEFR_NOT_VERIFIED, GENERATED_AUTHORSHIP_REVIEW, RIGHTS_UNRESOLVED. Every finding has humanDecision=UNRESOLVED.
+
+Master comparisons: `[]`; identityClaim NONE.
+
+Authorship: GENERATED by AI assistant; field hashes/process in pilot-sense-proposals.json. Human author/reviewer/license/review date absent. Rights UNKNOWN_REVIEW_REQUIRED. Owner may request corrections or propose independent future identity dispositions; no approval is granted here.
+
+### Sample 14: academic
+
+EDITORIAL DRAFT - NOT APPROVED. Selection: Proposed source-group coalescence.
+
+Group: `NORMALIZED_HEADWORD:academic`. Proposed Sense count: 2.
+Source membership: ENGLISH_VOCAB_4600, OXFORD_5000.
+Rights: UNKNOWN_REVIEW_REQUIRED. Owner decision: UNRESOLVED.
+
+Source evidence pointers (metadata only):
+
+- `oxford-normalized-inventory.json` / records[2008] / sourceRecordId `1788223608047` / GUID `x1XOnZegDP` / evidence SHA `834858c8da006b68bb643f1d536b57ae010ffb0746ea88dfcdddfd186014965b`.
+- `vocab4600-normalized-inventory.json` / records[1831] / sourceRecordId `1559931008639` / GUID `t<p40D,-G6` / evidence SHA `e8d0e5e08e66a36a375d5b19186b66332ab7166b3156bf4cad82a0eedb588ee1`.
+
+Existing Master candidates: `{"identityClaim": "NONE", "lexemeIdReference": null, "senseIdReferences": []}`. Lemma overlap is not Sense identity.
+
+Legacy dependencies: `[]`. History/exclusion obligations cannot be changed by this review.
+
+**related to study and research - ADJECTIVE**
+
+Draft key: `EDITORIAL_2H2B:academic:education-research`; owner/identity UNRESOLVED; publicationEligible=false.
+
+Definition EN: Connected with formal education, study or scholarly research.
+
+Meaning VI: thuộc việc học tập, giáo dục chính quy hoặc nghiên cứu học thuật
+
+- Example EN: The journal publishes academic articles about language learning.
+- Example VI: Tạp chí đăng các bài nghiên cứu học thuật về việc học ngôn ngữ.
+
+Grammar and boundary caveat: Source study and scholarship groups are provisionally combined; owner may split educational performance from research use.
+
+Oxford ordinals considered: [0, 2]; not approved Sense mappings.
+
+CEFR candidate for review: `B1`; status UNRESOLVED; contradiction=false. Only a headword-level evidence candidate; no verified Sense classification. Conflicting or missing evidence stays unresolved. Source CEFR evidence: `[{"evidenceRef": {"artifact": "oxford-normalized-inventory.json", "corpus": "OXFORD_5000", "recordIndex": 2008, "sourceRecordId": "1788223608047"}, "values": [{"sourceField": "CEFR", "value": "B1"}]}, {"evidenceRef": {"artifact": "vocab4600-normalized-inventory.json", "corpus": "ENGLISH_VOCAB_4600", "recordIndex": 1831, "sourceRecordId": "1559931008639"}, "values": [{"sourceField": "deck:4600 English Vocab::B1", "value": "B1"}, {"sourceField": "noteTag", "value": "B1"}]}]`.
+
+QA REVIEW: BILINGUAL_MEANING_REVIEW, BILINGUAL_EXAMPLE_REVIEW, GRAMMAR_AND_POS_USAGE_REVIEW, SENSE_BOUNDARY_REVIEW, CEFR_NOT_VERIFIED, GENERATED_AUTHORSHIP_REVIEW, RIGHTS_UNRESOLVED. Every finding has humanDecision=UNRESOLVED.
+
+Master comparisons: `[]`; identityClaim NONE.
+
+Authorship: GENERATED by AI assistant; field hashes/process in pilot-sense-proposals.json. Human author/reviewer/license/review date absent. Rights UNKNOWN_REVIEW_REQUIRED. Owner may request corrections or propose independent future identity dispositions; no approval is granted here.
+
+**a university scholar - NOUN**
+
+Draft key: `EDITORIAL_2H2B:academic:scholar`; owner/identity UNRESOLVED; publicationEligible=false.
+
+Definition EN: A person whose work involves teaching or research at a university.
+
+Meaning VI: người giảng dạy hoặc nghiên cứu ở bậc đại học
+
+- Example EN: Several academics contributed to the public discussion.
+- Example VI: Một số giảng viên và nhà nghiên cứu đại học đã tham gia cuộc thảo luận công khai.
+
+Grammar and boundary caveat: Countable noun; do not use this noun for every student.
+
+Oxford ordinals considered: [1]; not approved Sense mappings.
+
+CEFR candidate for review: `B1`; status UNRESOLVED; contradiction=false. Only a headword-level evidence candidate; no verified Sense classification. Conflicting or missing evidence stays unresolved. Source CEFR evidence: `[{"evidenceRef": {"artifact": "oxford-normalized-inventory.json", "corpus": "OXFORD_5000", "recordIndex": 2008, "sourceRecordId": "1788223608047"}, "values": [{"sourceField": "CEFR", "value": "B1"}]}, {"evidenceRef": {"artifact": "vocab4600-normalized-inventory.json", "corpus": "ENGLISH_VOCAB_4600", "recordIndex": 1831, "sourceRecordId": "1559931008639"}, "values": [{"sourceField": "deck:4600 English Vocab::B1", "value": "B1"}, {"sourceField": "noteTag", "value": "B1"}]}]`.
+
+QA REVIEW: BILINGUAL_MEANING_REVIEW, BILINGUAL_EXAMPLE_REVIEW, GRAMMAR_AND_POS_USAGE_REVIEW, SENSE_BOUNDARY_REVIEW, CEFR_NOT_VERIFIED, GENERATED_AUTHORSHIP_REVIEW, RIGHTS_UNRESOLVED. Every finding has humanDecision=UNRESOLVED.
+
+Master comparisons: `[]`; identityClaim NONE.
+
+Authorship: GENERATED by AI assistant; field hashes/process in pilot-sense-proposals.json. Human author/reviewer/license/review date absent. Rights UNKNOWN_REVIEW_REQUIRED. Owner may request corrections or propose independent future identity dispositions; no approval is granted here.
+
+### Sample 15: attorney
+
+EDITORIAL DRAFT - NOT APPROVED. Selection: Reviewable polarity heuristic.
+
+Group: `NORMALIZED_HEADWORD:attorney`. Proposed Sense count: 1.
+Source membership: ENGLISH_VOCAB_4600, OXFORD_5000.
+Rights: UNKNOWN_REVIEW_REQUIRED. Owner decision: UNRESOLVED.
+
+Source evidence pointers (metadata only):
+
+- `oxford-normalized-inventory.json` / records[2543] / sourceRecordId `1788223608582` / GUID `sqQH1_dQ!Z` / evidence SHA `d754dc8ab3dccb84665218414b4b829f20a05813362db64df4dcd57ff1fd3c02`.
+- `vocab4600-normalized-inventory.json` / records[3087] / sourceRecordId `1559931009959` / GUID `Hd/#M:!T(e` / evidence SHA `56f302f9a744ecef491fecfe07cce320eef241ba1d24a1e614f1444812fde17a`.
+
+Existing Master candidates: `{"identityClaim": "NONE", "lexemeIdReference": null, "senseIdReferences": []}`. Lemma overlap is not Sense identity.
+
+Legacy dependencies: `[]`. History/exclusion obligations cannot be changed by this review.
+
+**a lawyer - NOUN**
+
+Draft key: `EDITORIAL_2H2B:attorney:lawyer`; owner/identity UNRESOLVED; publicationEligible=false.
+
+Definition EN: A lawyer who can act for a client in legal matters.
+
+Meaning VI: luật sư có thể đại diện cho khách hàng trong các vấn đề pháp lý
+
+- Example EN: The attorney explained the contract's unclear wording.
+- Example VI: Luật sư giải thích cách diễn đạt chưa rõ trong hợp đồng.
+
+Grammar and boundary caveat: Especially American English; jurisdiction-specific qualifications need review, not legal advice.
+
+Oxford ordinals considered: [0]; not approved Sense mappings.
+
+CEFR candidate for review: `None`; status UNRESOLVED; contradiction=true. Only a headword-level evidence candidate; no verified Sense classification. Conflicting or missing evidence stays unresolved. Source CEFR evidence: `[{"evidenceRef": {"artifact": "oxford-normalized-inventory.json", "corpus": "OXFORD_5000", "recordIndex": 2543, "sourceRecordId": "1788223608582"}, "values": [{"sourceField": "CEFR", "value": "B2"}]}, {"evidenceRef": {"artifact": "vocab4600-normalized-inventory.json", "corpus": "ENGLISH_VOCAB_4600", "recordIndex": 3087, "sourceRecordId": "1559931009959"}, "values": [{"sourceField": "deck:4600 English Vocab::C1", "value": "C1"}, {"sourceField": "noteTag", "value": "C1"}]}]`.
+
+QA REVIEW: EXAMPLE_POLARITY_MISMATCH, BILINGUAL_MEANING_REVIEW, BILINGUAL_EXAMPLE_REVIEW, GRAMMAR_AND_POS_USAGE_REVIEW, SENSE_BOUNDARY_REVIEW, CEFR_NOT_VERIFIED, GENERATED_AUTHORSHIP_REVIEW, RIGHTS_UNRESOLVED. Every finding has humanDecision=UNRESOLVED.
+
+Master comparisons: `[]`; identityClaim NONE.
+
+Authorship: GENERATED by AI assistant; field hashes/process in pilot-sense-proposals.json. Human author/reviewer/license/review date absent. Rights UNKNOWN_REVIEW_REQUIRED. Owner may request corrections or propose independent future identity dispositions; no approval is granted here.
+
+
+## Phase 2H.2B-QA1 - correction proposals (2026-10-08)
+
+EDITORIAL CORRECTIONS PROPOSED - OWNER REVIEW PENDING; not full US-45 ACCEPTED.
+Baseline 8eca81e84d896fd0449aed04ce646465d4dd4b9b preserves prior Study source
+picker/account UI documentation. [Correction report](../../vocabflow-dataset/reports/master-editorial-quality-corrections.md)
+provides the practical six-field bilingual BEFORE/AFTER review for 17 corrections,
+four pending representation decisions and unchanged attorney example.
+
+Original 2H.2B input fingerprint remains
+a42e4c25cebdf98cdd24f9e9231be81fff36bbdd571496eeff2886b4d1f1bdad;
+QA1 independent fingerprint: b75b0522e64db5d61cff4adbccd2fb553c72f5d475d6e4370b2075e656b6a40d. Five original PSV files, all original
+artifacts and upstream pins are byte-identical. Findings use authorized prompt
+Section 5 fallback because the two AI review files were unavailable.
+
+13 correction recommendations accepted as proposals, four modified, four identity
+cases deferred and one heuristic finding rejected with rationale; no human owner
+approval. Preview preserves 155 Sense keys, 100 groups and 37 multi-Sense groups.
+All 155 remain QA REVIEW and identity pending; rights UNKNOWN_REVIEW_REQUIRED,
+Master IDs zero. about ADVERB is a review proposal with framework disagreement,
+not a verified POS. Split/merge/form/alias decisions remain unexecuted.
+
+76 focused tests, deterministic replay, direct TypeScript/ESLint and frozen release
+check pass; pnpm typecheck exits 1 with the known noninteractive guard. Exact
+commands/exits are in [the handoff](../ai-progress.md#phase-2h2b-qa1-editorial-corrections-2026-10-08).
+Scaling remains CONDITIONAL: 120-group stratified, deterministic hash-ranked
+extension and risk-based batches/audit plan, pending separate authorization.
+Human content QA, identity, source rights, provenance and classification are
+hard gates before canonical authoring/release. No database access/writes,
+Development import, runtime mapping, legacy cleanup, media/release change,
+Production connection, staging, commit or push.
+
+
+## 2026-10-08 - Phase 2H.2B-QA1 scoped draft publication
+
+Owner subsequently authorized a scoped 34-file commit/non-force push of the
+existing original pilot and separate QA1 proposals, conditional on verified
+origin/TXH parent 8eca81e84d896fd0449aed04ce646465d4dd4b9b. Earlier no-commit
+statements remain historical. This is draft artifact publication only: all owner
+identity/content decisions and source rights remain pending; no Master release
+or learner-content publication permission. Final rerun: 76 focused tests, both
+offline replays, direct TypeScript, ESLint and frozen release check pass (exit 0).
+Accepted fingerprints and all original byte hashes remain unchanged. No app/API,
+runtime mapping, DB, release/legacy or Production change. Separate authorization
+required before Phase 2H.2C or canonical materialization. See ai-progress for
+exact commands and wrapper limits.
