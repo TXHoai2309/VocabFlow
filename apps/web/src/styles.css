@@ -2379,3 +2379,10 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
   .learning-set-picker-overlay { align-items: center; padding: var(--space-6); }
   .learning-set-picker-dialog { width: 560px; max-height: calc(100dvh - var(--space-12)); padding: var(--space-6); border-radius: var(--radius-dialog); }
 }
+.learning-set-picker-overlay { animation: study-picker-backdrop-in 180ms ease-out; }
+.learning-set-picker-dialog { animation: study-picker-sheet-in 200ms ease-out; }
+@keyframes study-picker-backdrop-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes study-picker-sheet-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes study-picker-dialog-in { from { opacity: 0; transform: translateY(4px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@media (min-width: 640px) { .learning-set-picker-dialog { animation: study-picker-dialog-in 180ms ease-out; } }
+@media (prefers-reduced-motion: reduce) { .learning-set-picker-overlay, .learning-set-picker-dialog { animation: none; } }

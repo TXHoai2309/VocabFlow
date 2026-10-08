@@ -51,7 +51,8 @@ The review write service and learning-domain scheduler are unchanged.
 and custom IDs. Fresh canonical enabled summaries prune stale remembered IDs.
 Account changes remount authenticated identity; another account receives its
 own preference/default. Logout preserves these per-account preferences.
-Explicit URL scope wins. Switching sources replaces incompatible URL scope.
+Explicit URL scope wins initially. Source changes are local committed state;
+only Start serializes the chosen scope into the Study URL and return link.
 Start, refresh/reconcile, session exit and Summary → Học tiếp serialize the
 same exact source. Canceled async reads cannot publish old availability.
 
@@ -65,6 +66,23 @@ PostgreSQL execution. Existing review/XP tests remain the write-invariant
 evidence. No live Neon, migration, Dataset changes or Production deployment.
 
 Final counts and commands are recorded in docs/ai-progress.md.
+
+## 2026-10-08 — Picker jank correction
+
+Opening Custom, changing its draft, Cancel and Apply no longer navigate or
+remount Setup. Amount, mode, scroll and the background DOM survive. Custom
+opens immediately with an internal loading/error/retry state; one in-flight
+catalog request and its result are reused within the Setup lifecycle. Cancel,
+X, Escape and backdrop discard without changing preferences or availability.
+Apply commits selected IDs and saves once when changed; Pathway/All commit
+locally. Only committed scope changes refresh availability; canceled responses
+cannot publish stale results. Exact direct scopes and Start continuity remain.
+Desktop entrance uses 180ms opacity/scale/translate; mobile uses a 200ms slide,
+with reduced-motion support and scrollbar compensation during scroll lock.
+
+Correction verification: 60 focused component tests, 365 full web tests and
+8 Chromium picker tests PASS; typecheck/build/lint/diff check PASS. This patch
+changes no API, review/SRS code, Dataset, DB migration or deployment behavior.
 
 ## Verification results
 

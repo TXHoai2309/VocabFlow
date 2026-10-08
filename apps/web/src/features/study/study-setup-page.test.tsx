@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter, Route, Routes, useLocation } from "react-router";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
@@ -78,6 +78,7 @@ const learningSet = {
 function mockStudyData(queue: ReviewQueueItem[]) {
   return vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
     const path = String(input);
+    if (path === "/api/learners") return response({ learners: [learner] });
     if (path === "/api/learning-sets") return response({ learningSets: [learningSetSummary, { ...learningSetSummary, id: 5, name: "Family" }] });
     if (path === `/api/learners/${learner.id}/review-queue?topicId=7`) return response(queueResponse(queue.filter((entry) => topicVocabulary.some((v) => v.id === entry.vocabulary.id))));
     if (path === `/api/learners/${learner.id}/review-queue?learningSetId=4`) return response(queueResponse(queue.filter((entry) => learningSetVocabulary.some((v) => v.id === entry.vocabulary.id))));
@@ -101,10 +102,10 @@ function LearnerReturnProbe() {
   return <output data-testid="learner-return-to">{typeof returnTo === "string" ? returnTo : ""}</output>;
 }
 
-function renderSetup(path = "/study/setup", activeLearner: LearnerDto | null = learner) {
+function renderSetup(path = "/study/setup", activeLearner: LearnerDto | null = learner, userId?: string) {
   return render(
     <MemoryRouter initialEntries={[path]}><AccountRouteProbe />
-      <ActiveLearnerProvider initialLearner={activeLearner}>
+      <ActiveLearnerProvider initialLearner={activeLearner} userId={userId}>
         <Routes>
           <Route path="/study/setup" element={<StudySetupPage />} />
           <Route path="/study" element={<StudyPage />} />
@@ -118,7 +119,74 @@ function renderSetup(path = "/study/setup", activeLearner: LearnerDto | null = l
 }
 
 describe("Study Setup", () => {
-  beforeEach(() => vi.restoreAllMocks());
+  beforeEach(() => { vi.restoreAllMocks(); localStorage.clear(); });
+
+  it.each(["Hủy", "Đóng chọn bộ từ", "Escape", "backdrop"])("%s keeps source, URL, amount/mode and mounted background without queue/catalog reads", async (action) => {
+    const fetchMock = mockStudyData([item(1, "DUE"), item(2)]); renderSetup();
+    const page = await screen.findByTestId("study-setup-page");
+    fireEvent.click(screen.getByRole("button", { name: /30\s*từ/ }));
+    fireEvent.click(screen.getByRole("button", { name: /Ôn tập/ }));
+    const before = fetchMock.mock.calls.length;
+    screen.getByRole("combobox").focus();
+    fireEvent.change(screen.getByRole("combobox"), { target: { value: "custom" } });
+    const dialog = screen.getByRole("dialog");
+    fireEvent.click(screen.getByRole("checkbox", { name: "Family" }));
+    if (action === "Escape") fireEvent.keyDown(dialog, { key: "Escape" });
+    else if (action === "backdrop") fireEvent.mouseDown(dialog.parentElement!);
+    else fireEvent.click(screen.getByRole("button", { name: action }));
+    expect(screen.getByRole("combobox")).toHaveValue("pathway");
+    expect(screen.getByTestId("study-setup-page")).toBe(page);
+    expect(screen.queryByTestId("study-setup-loading")).not.toBeInTheDocument();
+    expect(screen.getByTestId("account-route")).toHaveTextContent(/^\/study\/setup$/);
+    expect(screen.getByRole("button", { name: /30\s*từ/ })).toHaveAttribute("aria-pressed", "true");
+    expect(screen.getByRole("button", { name: /Ôn tập/ })).toHaveAttribute("aria-pressed", "true");
+    expect(fetchMock.mock.calls).toHaveLength(before);
+    expect(screen.getByRole("combobox")).toHaveFocus();
+  });
+
+  it("opens a loading shell before catalog finishes, reuses its pending GET and keeps direct topic intent on cancel", async () => {
+    const fetchMock = mockStudyData([item(1, "DUE"), item(3)]);
+    const base = fetchMock.getMockImplementation()!;
+    let resolveCatalog!: (value: Response) => void;
+    const pending = new Promise<Response>((resolve) => { resolveCatalog = resolve; });
+    fetchMock.mockImplementation((input, init) => String(input) === "/api/learning-sets" ? pending : base(input, init));
+    renderSetup("/study/setup?topicId=7"); const page = await screen.findByTestId("study-setup-page");
+    fireEvent.change(screen.getByRole("combobox"), { target: { value: "custom" } });
+    expect(screen.getByRole("dialog")).toBeInTheDocument();
+    expect(screen.getByRole("status", { name: "Đang tải bộ từ…" })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Hủy" }));
+    fireEvent.change(screen.getByRole("combobox"), { target: { value: "custom" } });
+    resolveCatalog(response({ learningSets: [learningSetSummary] }));
+    await screen.findByRole("checkbox", { name: "Starter Words" });
+    fireEvent.click(screen.getByRole("button", { name: "Hủy" }));
+    expect(screen.getByTestId("study-setup-page")).toBe(page);
+    expect(screen.getByTestId("account-route")).toHaveTextContent("/study/setup?topicId=7");
+    expect(screen.getByTestId("study-setup-summary-scope")).toHaveTextContent("Food");
+    expect(fetchMock.mock.calls.filter(([url]) => String(url) === "/api/learning-sets")).toHaveLength(1);
+    expect(fetchMock.mock.calls.filter(([url]) => String(url).includes("review-queue"))).toHaveLength(1);
+  });
+
+  it("Apply persists once, keeps amount/mode and URL, then Start serializes committed Custom", async () => {
+    const fetchMock = mockStudyData([item(1, "DUE"), item(2)]);
+    const storage = vi.spyOn(Storage.prototype, "setItem");
+    renderSetup("/study/setup", learner, "account-a"); await screen.findByTestId("study-setup-page");
+    fireEvent.click(screen.getByRole("button", { name: /30\s*từ/ })); fireEvent.click(screen.getByRole("button", { name: /Ôn tập/ }));
+    fireEvent.change(screen.getByRole("combobox"), { target: { value: "custom" } });
+    fireEvent.click(screen.getByRole("checkbox", { name: "Family" })); fireEvent.click(screen.getByRole("button", { name: "Hủy" }));
+    expect(storage.mock.calls.filter(([key]) => key.startsWith("vocabflow.study-source"))).toHaveLength(0);
+    fireEvent.change(screen.getByRole("combobox"), { target: { value: "custom" } });
+    fireEvent.click(screen.getByRole("checkbox", { name: "Starter Words" })); fireEvent.click(screen.getByRole("button", { name: "Áp dụng (1)" }));
+    await waitFor(() => expect(screen.getByRole("button", { name: /Bắt đầu học/ })).toBeEnabled());
+    expect(storage.mock.calls.filter(([key]) => key.startsWith("vocabflow.study-source"))).toHaveLength(1);
+    expect(screen.getByRole("button", { name: /30\s*từ/ })).toHaveAttribute("aria-pressed", "true");
+    expect(screen.getByRole("button", { name: /Ôn tập/ })).toHaveAttribute("aria-pressed", "true");
+    expect(screen.getByTestId("account-route")).toHaveTextContent(/^\/study\/setup$/);
+    const before = fetchMock.mock.calls.length;
+    fireEvent.click(screen.getByRole("button", { name: "Thay đổi" })); fireEvent.click(screen.getByRole("button", { name: "Áp dụng (1)" }));
+    expect(fetchMock.mock.calls).toHaveLength(before);
+    fireEvent.click(screen.getByRole("button", { name: /Bắt đầu học/ })); await screen.findByTestId("study-session-ready");
+    expect(screen.getByTestId("account-route")).toHaveTextContent("source=custom&setIds=4&count=30&content=review");
+  });
 
   it("defaults to exactly three compact sources and omits verbose helpers", async () => {
     mockStudyData([item(101)]); renderSetup(); await screen.findByTestId("study-setup-page");
@@ -133,7 +201,7 @@ describe("Study Setup", () => {
     fireEvent.change(screen.getByRole("combobox", { name: "Nguồn học" }), { target: { value: "custom" } });
     await screen.findByRole("dialog", { name: "Chọn bộ từ" });
     expect(screen.getByRole("button", { name: /Áp dụng \(0\)/ })).toBeDisabled();
-    expect(screen.getByRole("button", { name: /Bắt đầu học/ })).toBeDisabled();
+    expect(screen.getByRole("button", { name: /Bắt đầu học/ })).toBeEnabled();
     fireEvent.click(screen.getByRole("checkbox", { name: "Starter Words" })); fireEvent.click(screen.getByRole("checkbox", { name: "Family" }));
     fireEvent.click(screen.getByRole("button", { name: "Áp dụng (2)" }));
     await screen.findByText("2 bộ từ đã chọn");

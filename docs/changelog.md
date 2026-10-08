@@ -1,5 +1,16 @@
 # VocabFlow Changelog
 
+## 2026-10-08 — Smooth Study source picker interactions
+
+- Keep source selection and modal drafts local until Start, avoiding Setup
+  remounts, skeleton flashes and amount/mode resets. Cancel discards; changed
+  Apply saves once and refreshes only committed scoped availability.
+- Open the picker immediately during catalog loading and reuse its request and
+  cached result. Preserve background scroll/focus; add reduced-motion-aware
+  180ms desktop / 200ms mobile entrance animations.
+- 60 focused tests, 365 web tests and 8 Chromium picker tests PASS;
+  typecheck/build/lint/diff PASS. No backend, Dataset or migration changes.
+
 ## 2026-10-08 — Study source picker and scoped queues
 
 - Compact Pathway/Custom/All source dropdown; account-scoped preferences and

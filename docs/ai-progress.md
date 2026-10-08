@@ -1,5 +1,39 @@
 # Current Handoff Snapshot
 
+## 2026-10-08 — Small scoped Study picker jank fix
+
+Owner-authorized patch on TXH, baseline
+8eca81e84d896fd0449aed04ce646465d4dd4b9b. Source/modal actions previously
+navigated and changed the scope key, remounting Setup and reloading catalog and
+queue. These actions now use local React state. URL serialization happens at
+Start; amount/mode and background DOM/scroll remain stable. Direct scoped links,
+session summary and continuation keep their existing serialization contract.
+
+Custom opens before catalog completion with internal loading/error/retry states.
+Catalog data and its in-flight promise are reused through the Setup lifecycle.
+Cancel/X/Escape/backdrop discard without preference or queue changes. Changed
+Apply saves the account preference once and refreshes scoped availability;
+unchanged Apply only closes. Pathway/All commit locally. Async cancellation
+guards reject stale availability. Modal focus restore prevents scrolling and
+scroll lock compensates scrollbar width; 180ms desktop / 200ms mobile entrance
+animations respect reduced motion.
+
+Verification:
+- Focused Setup/dialog/Study: 3 files / 60 tests PASS.
+- Full web regression: 32 files / 365 tests PASS with one worker. An earlier
+  run hit an existing Study audio pause timing assertion; the focused rerun
+  and full final rerun passed without changing that test.
+- Chromium picker: 8 tests PASS, covering 320/390/768/1440px, stable DOM/amount,
+  URL unchanged until Start, lazy catalog shell, cancel/reopen request reuse,
+  focus/Escape, exact Start scope, account isolation and stale responses.
+- pnpm typecheck, pnpm build, pnpm lint and git diff --check PASS; client secret
+  and source-map scans PASS. Existing Node version/chunk-size/API import
+  warnings remain. No live API/DB or physical-device acceptance is claimed.
+
+Only Setup, picker, styles, focused tests and required handoff docs changed.
+No backend/review/SRS change, Dataset edit, migration, old stash restoration,
+main merge, force push or Production deployment.
+
 ## 2026-10-08 — US-54 compact Study Setup sources and server-scoped queues
 
 Status: IMPLEMENTED / READY FOR OWNER CHECK. Owner explicitly approved this
