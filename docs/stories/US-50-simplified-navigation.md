@@ -1,5 +1,12 @@
 # US-50 — Simplified App Navigation (Feature #13)
 
+## 2026-10-08 — Owner UI correction
+
+Desktop Settings has one entry in primary navigation. Desktop account menu
+contains Logout only; mobile keeps its sole Settings entry in the account menu.
+Account trigger has no decorative chevron. Keyboard menu access is retained.
+
+
 - Status: `IMPLEMENTED / READY FOR OWNER CHECK`
 - Owner: Project Owner
 - Last updated: 2026-10-05

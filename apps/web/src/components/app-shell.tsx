@@ -143,7 +143,6 @@ function AccountMenu({ parentName, placement, signingOut, onLogout }: { parentNa
             <strong>{accountLabel}</strong>
             <small>Tài khoản học tập</small>
           </span>
-          <span className="app-account-chevron" aria-hidden="true">⌄</span>
         </> : null}
       </button>
       <div
@@ -167,8 +166,10 @@ function AccountMenu({ parentName, placement, signingOut, onLogout }: { parentNa
         }}
       >
         <p className="app-account-menu-heading" role="presentation">{accountLabel}</p>
-        <Link role="menuitem" to="/learner-settings" onClick={closeMenu}>Cài đặt</Link>
-        <hr role="separator" />
+        {placement === "mobile" ? <>
+          <Link role="menuitem" to="/learner-settings" onClick={closeMenu}>Cài đặt</Link>
+          <hr role="separator" />
+        </> : null}
         <button role="menuitem" type="button" disabled={signingOut} onClick={onLogout}>{signingOut ? "Đang đăng xuất…" : "Đăng xuất"}</button>
       </div>
     </div>

@@ -67,12 +67,13 @@ describe("single-account routing and navigation", () => {
     expect(within(screen.getByRole("navigation", { name: "Điều hướng chính trên di động" })).getAllByRole("link")).toHaveLength(5);
   });
   it("preserves desktop search and study focus shell", async () => { mount(); await readyShell(); expect(screen.getByRole("button", { name: "Tìm từ vựng, chủ đề hoặc bộ từ" })).toBeEnabled(); });
-  it.each(["sidebar", "mobile"])("offers Settings and Logout with keyboard navigation in %s", async (placement) => {
+  it.each(["sidebar", "mobile"])("avoids duplicate Settings and keeps keyboard navigation in %s", async (placement) => {
     mount(); await readyShell(); const menu = openMenu(placement);
-    expect(menu.getAllByRole("menuitem").map((item) => item.textContent)).toEqual(["Cài đặt", "Đăng xuất"]);
-    const settings = menu.getByRole("menuitem", { name: "Cài đặt" }); expect(settings).toHaveFocus(); fireEvent.keyDown(settings, { key: "ArrowDown" }); expect(menu.getByRole("menuitem", { name: "Đăng xuất" })).toHaveFocus();
+    expect(menu.getAllByRole("menuitem").map((item) => item.textContent)).toEqual(placement === "mobile" ? ["Cài đặt", "Đăng xuất"] : ["Đăng xuất"]);
+    expect(document.querySelector(".app-account-chevron")).not.toBeInTheDocument();
+    const firstItem = menu.getAllByRole("menuitem")[0]; expect(firstItem).toHaveFocus(); fireEvent.keyDown(firstItem, { key: "ArrowDown" }); expect(menu.getByRole("menuitem", { name: "Đăng xuất" })).toHaveFocus();
     fireEvent.keyDown(document, { key: "Escape" }); expect(menu.queryByRole("menu")).not.toBeInTheDocument();
-    openMenu(placement); fireEvent.click(menu.getByRole("menuitem", { name: "Cài đặt" })); await waitFor(() => expect(screen.getByTestId("location")).toHaveTextContent("/learner-settings"));
+    if (placement === "mobile") { openMenu(placement); fireEvent.click(menu.getByRole("menuitem", { name: "Cài đặt" })); await waitFor(() => expect(screen.getByTestId("location")).toHaveTextContent("/learner-settings")); }
   });
   it("logout calls Better Auth once, clears storage and replaces the document with login", async () => {
     const removeItem = vi.spyOn(Storage.prototype, "removeItem");

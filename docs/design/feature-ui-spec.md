@@ -24,8 +24,10 @@ Feature #15 dashboard skeleton; errors use safe ErrorState and “Thử lại”
 requested protected pathname and query remain stable throughout resolution.
 Old /learners bookmarks replace-navigate to / without rendering management UI.
 
-Account dropdown contains Cài đặt, a separator, and Đăng xuất. Both desktop and
-mobile share a pending lock; duplicate requests are blocked. Keyboard menu and
+Desktop account dropdown contains only Đăng xuất; Cài đặt stays in the sidebar.
+Mobile retains Cài đặt in the account menu because its bottom bar has no Settings
+item. The account trigger has no decorative chevron. Both desktop and mobile
+share a pending lock; duplicate requests are blocked. Keyboard menu and
 focus behavior remain available. Home shows the account name; settings title
 is “Cài đặt học tập” while /learner-settings remains compatible.
 Feature #13 keeps six desktop and five mobile primary items. Feature #14 Search

@@ -1,5 +1,11 @@
 # VocabFlow Changelog
 
+## 2026-10-08 — Account menu simplification
+
+Removed duplicate desktop Settings from the account menu and its trigger
+chevron. Mobile keeps Settings accessible through its account menu.
+
+
 ## Single-account learning baseline (2026-10-07)
 
 This owner-approved baseline supersedes the earlier learner-management flow and

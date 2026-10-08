@@ -1,5 +1,14 @@
 # Current Handoff Snapshot
 
+## 2026-10-08 — Remove duplicate Settings and account chevron
+
+Desktop Settings remains only in the primary sidebar; the account menu shows
+Logout. Mobile retains its sole Settings entry in the account menu. Removed
+the decorative account chevron and its unused styles. Logout behavior is intact.
+Validation: 30 App tests and 6 focused Chromium E2E PASS; typecheck, build,
+changed-file ESLint and diff check PASS.
+
+
 ## 2026-10-07 — Auth logout/login session boundary
 
 Root cause: LoginPage performed bootstrap both after sign-in and when it saw an
