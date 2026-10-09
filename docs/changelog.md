@@ -4079,3 +4079,69 @@ report contains inapplicable checkpoint-06 continuation boilerplate; checkpoint
 05 has nextCheckpointNumber=null, and the CLI rejects 6. This terminal handoff
 is authoritative. Stop after scoped commit/push. Proposed next phase only:
 2H.2I — Aggregate QA and Sense Coverage Audit; not authorized or started here.
+
+
+## Phase 2H.2I — aggregate linguistic QA: PARTIAL checkpoint (2026-10-09)
+
+Owner-authorized offline aggregate audit and scoped Git publication. This run
+uses the partial execution policy; it does not close the full 750-Sense audit.
+Index all 1,563 effective DRAFT Senses / 1,020 authored groups against checkpoint
+05. Content inspected: 107 cohort Senses / 91 groups, plus 20 prior Senses using
+the latest corrected projection. All original 187 REVIEW records are preserved;
+25 triaged with content-bound Vietnamese reasoning, 162 remain PENDING.
+Coverage inventory accounts for all 500 groups / 126 warnings; 17 groups assessed,
+483 PENDING, including 109 warning groups. Source ordinal absence is metadata
+uncertainty, not a confirmed gap or proof of complete lexical coverage.
+
+Findings: 20 minor learner-content hygiene defects (implementation commentary
+in grammar), not confirmed mistranslations or syntax defects. 20 exact-parent
+BEFORE/AFTER field proposals; 5 additional boundary proposals for hail noun,
+harness horse-equipment verb, fiery literal, instrumental noun, and to purpose
+infinitive marker. To requires taxonomy review; no canonical POS enum changed.
+11 source POS conflicts retained as metadata conflicts, unlike remains POSSIBLE.
+No correction applied; no Sense key or canonical ID allocated. Existing
+September capitalization overlay and 2H.2G successfully correction preserved.
+
+Purposive calibration: 60 cohort PASS Senses across 5 checkpoints, A1–C2, 10 POS
+and 3 source memberships; 2 minor hygiene findings. Prior sample 20: 16 hygiene
+findings. Samples are not a prevalence estimate or independent human review.
+Source-similarity flags promote REVIEW, so no flagged final PASS stratum exists;
+actual signals are examined in triage, not fabricated into the PASS sample.
+Repeated process commentary triggers expanded original-batch inspection, still
+PENDING. Queue P0/P1/P2/P3: 0/5/15/38; rights remain separately gated. Each item
+has identity, severity, evidence, proposed action, overlay feasibility and
+unresolved dependencies. One compact taxonomy shortlist; no approval cycle.
+
+Index separates AI author notes, raw deterministic QA flags, exact historical
+QA/correction references, effective revision hashes and field provenance.
+Original author notes do not imply current content approval. All 6,896 prior
+script/Dataset files, checkpoint 01–05 snapshots, all 1,563 effective records,
+previous corrections and QA history remain byte-identical. Hybrid-100 v2.2.1
+remains 87 Lexemes / 100 Senses. No Master release, legacy or runtime changes.
+
+Remote parent: a8015440d41ca4c33c43dbc723fd400e4fc6e8f0.
+Input checkpoint 05: 2007c5a1e67d4dab6228378b5b00b22ab4736cb16d3f5a3e3d03735e2a290e44.
+Aggregate QA fingerprint: 3d29083983cf033b4463d33c7a8ea3bd9337c209e0a5f236167c116a0852b5ce.
+
+Actual final checks: 463 previous Dataset regressions + 31 focused tests PASS
+(494 total, zero failed/skipped). Eight accepted checkpoint/core/handoff replays
+PASS with before/after byte comparisons; latest aggregate replay PASS zero-write
+under two different hash seeds. Direct Node 22.23.2 TypeScript typecheck and
+ESLint PASS. Canonical pnpm wrapper NOT_RUN; its prior documented limitation is
+not claimed fixed. Frozen release check PASS, NOOP / zero writes. Earlier invalid
+measurement interval and corrected counting-helper test failure are disclosed
+in verification-results.json; old documentation is not used as new PASS evidence.
+
+Seven stashes and twelve worktrees preserved, including other worktree HEADs
+and VocabFlow-us55. Existing TXH only; no reset, stash, clean, force push or
+backup deletion. DRAFT / UNKNOWN_REVIEW_REQUIRED. Owner approvals, rights
+clearances, canonical IDs and corrections applied: 0. No database access/writes
+or Production operations.
+
+Handoff: vocabflow-dataset/reports/master-editorial-aggregate-qa.md and
+vocabflow-dataset/workspaces/master-editorial-aggregate-qa/. Complete 162 pending
+REVIEW decisions, 483 coverage assessments and expanded batch inspection before
+full audit closure; then separately authorize targeted DRAFT remediation for
+confirmed issues, followed later by expansion of remaining 5,123 groups.
+STOP after verified PARTIAL publication; no new selection, formal approval
+cycle, automatic correction application or database import.

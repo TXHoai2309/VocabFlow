@@ -1,0 +1,1930 @@
+{
+  "approvalShortlist": [
+    {
+      "approvalCycleStarted": false,
+      "candidateGroupKey": "NORMALIZED_HEADWORD:to",
+      "decision": "UNRESOLVED",
+      "questionVi": "Quy ước đề xuất infinitive marker trước base verb khác preposition chỉ đích đến?"
+    }
+  ],
+  "counts": {
+    "P0": 0,
+    "P1": 5,
+    "P2": 15,
+    "P3": 38
+  },
+  "items": [
+    {
+      "action": "PROPOSE_ONLY; FULL_BATCH_RE_REVIEW_BEFORE_APPLY",
+      "canUseFutureVersionedDraftOverlay": true,
+      "dependency": "Full original batch re-review; separate content/identity/rights decisions before apply.",
+      "evidence": {
+        "artifact": "correction-proposals.json",
+        "beforeSha256": "395040728dc38b79cc991cb694c41defafab097fe6c96039b1924ec04b87d328",
+        "correctionProposalId": "2H2I-P001",
+        "rationaleVi": "Tách bình luận về bản ghi, nguồn, taxonomy hoặc quyết định biên tập khỏi trường grammar; giữ cấu trúc thực hành hữu ích và không đổi nghĩa/ví dụ."
+      },
+      "kind": "CONFIRMED_MINOR_CONTENT_HYGIENE",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2H:last:final-in-order",
+      "proposalRef": "2H2I-P001",
+      "queueId": "FIELD:2H2I-P001",
+      "recordIdentity": {
+        "effectiveContentHash": "3b90b6036ec9ab1d61e76282b27f84cd519318457910ad7654579b0c4e36dcad",
+        "proposalKey": "EDITORIAL_2H2H:last:final-in-order"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "action": "PROPOSE_ONLY; FULL_BATCH_RE_REVIEW_BEFORE_APPLY",
+      "canUseFutureVersionedDraftOverlay": true,
+      "dependency": "Full original batch re-review; separate content/identity/rights decisions before apply.",
+      "evidence": {
+        "artifact": "correction-proposals.json",
+        "beforeSha256": "617eccec1ebb39d51437296578b2311d6148cb1b17e2ebc1424160d6ef78eddd",
+        "correctionProposalId": "2H2I-P002",
+        "rationaleVi": "Tách bình luận về bản ghi, nguồn, taxonomy hoặc quyết định biên tập khỏi trường grammar; giữ cấu trúc thực hành hữu ích và không đổi nghĩa/ví dụ."
+      },
+      "kind": "CONFIRMED_MINOR_CONTENT_HYGIENE",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2H:to:destination",
+      "proposalRef": "2H2I-P002",
+      "queueId": "FIELD:2H2I-P002",
+      "recordIdentity": {
+        "effectiveContentHash": "4d0f7da3aee73f0de8dfa60f9c96b9ea4605e15ec0a8b99048162d3bf55ce33c",
+        "proposalKey": "EDITORIAL_2H2H:to:destination"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "action": "PROPOSE_ONLY; FULL_BATCH_RE_REVIEW_BEFORE_APPLY",
+      "canUseFutureVersionedDraftOverlay": true,
+      "dependency": "Full original batch re-review; separate content/identity/rights decisions before apply.",
+      "evidence": {
+        "artifact": "correction-proposals.json",
+        "beforeSha256": "08034bfd18115dccdcb69cc2ce89f3f603561666b93f0524ed6663ca4e335fdc",
+        "correctionProposalId": "2H2I-P003",
+        "rationaleVi": "Tách bình luận về bản ghi, nguồn, taxonomy hoặc quyết định biên tập khỏi trường grammar; giữ cấu trúc thực hành hữu ích và không đổi nghĩa/ví dụ."
+      },
+      "kind": "CONFIRMED_MINOR_CONTENT_HYGIENE",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2H:aggregate:combined-total",
+      "proposalRef": "2H2I-P003",
+      "queueId": "FIELD:2H2I-P003",
+      "recordIdentity": {
+        "effectiveContentHash": "31422e649ef345905db7c0030c5708bb283d023fc83070630427b550ff6f7ccf",
+        "proposalKey": "EDITORIAL_2H2H:aggregate:combined-total"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "action": "PROPOSE_ONLY; FULL_BATCH_RE_REVIEW_BEFORE_APPLY",
+      "canUseFutureVersionedDraftOverlay": true,
+      "dependency": "Full original batch re-review; separate content/identity/rights decisions before apply.",
+      "evidence": {
+        "artifact": "correction-proposals.json",
+        "beforeSha256": "63720b952eb5dabfa555b0140160ee1b45163fec2ec1585942625dde4b0be2d5",
+        "correctionProposalId": "2H2I-P004",
+        "rationaleVi": "Tách bình luận về bản ghi, nguồn, taxonomy hoặc quyết định biên tập khỏi trường grammar; giữ cấu trúc thực hành hữu ích và không đổi nghĩa/ví dụ."
+      },
+      "kind": "CONFIRMED_MINOR_CONTENT_HYGIENE",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2H:weekly:each-week",
+      "proposalRef": "2H2I-P004",
+      "queueId": "FIELD:2H2I-P004",
+      "recordIdentity": {
+        "effectiveContentHash": "8d38a2a353ed83b376e1cea70a6a581b28774d5c3bf61f3700ef22fd9e8e4db6",
+        "proposalKey": "EDITORIAL_2H2H:weekly:each-week"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "action": "PROPOSE_ONLY; FULL_BATCH_RE_REVIEW_BEFORE_APPLY",
+      "canUseFutureVersionedDraftOverlay": true,
+      "dependency": "Full original batch re-review; separate content/identity/rights decisions before apply.",
+      "evidence": {
+        "artifact": "correction-proposals.json",
+        "beforeSha256": "97e2dc02a1c72a36fee8e183ac47c76f64451c49b1df26575a5afffc510bbe1a",
+        "correctionProposalId": "2H2I-P005",
+        "rationaleVi": "Tách bình luận về bản ghi, nguồn, taxonomy hoặc quyết định biên tập khỏi trường grammar; giữ cấu trúc thực hành hữu ích và không đổi nghĩa/ví dụ."
+      },
+      "kind": "CONFIRMED_MINOR_CONTENT_HYGIENE",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2B:have to:necessity",
+      "proposalRef": "2H2I-P005",
+      "queueId": "FIELD:2H2I-P005",
+      "recordIdentity": {
+        "effectiveContentHash": "687880e1f1d9079c04a4a057eb37a3c445ed29facc77659e8aa2e38d0de4dbbe",
+        "proposalKey": "EDITORIAL_2H2B:have to:necessity"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "action": "PROPOSE_ONLY; FULL_BATCH_RE_REVIEW_BEFORE_APPLY",
+      "canUseFutureVersionedDraftOverlay": true,
+      "dependency": "Full original batch re-review; separate content/identity/rights decisions before apply.",
+      "evidence": {
+        "artifact": "correction-proposals.json",
+        "beforeSha256": "1d9bb824c3c895cf171c02f137ba6b491a642cdbebd3610ba6c1495a793193dd",
+        "correctionProposalId": "2H2I-P006",
+        "rationaleVi": "Tách bình luận về bản ghi, nguồn, taxonomy hoặc quyết định biên tập khỏi trường grammar; giữ cấu trúc thực hành hữu ích và không đổi nghĩa/ví dụ."
+      },
+      "kind": "CONFIRMED_MINOR_CONTENT_HYGIENE",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2B:billion:large-number",
+      "proposalRef": "2H2I-P006",
+      "queueId": "FIELD:2H2I-P006",
+      "recordIdentity": {
+        "effectiveContentHash": "96b87dee7056863d363bf2b7c981f6e27df5d7df9a46c8347e226e9c3f471e11",
+        "proposalKey": "EDITORIAL_2H2B:billion:large-number"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "action": "PROPOSE_ONLY; FULL_BATCH_RE_REVIEW_BEFORE_APPLY",
+      "canUseFutureVersionedDraftOverlay": true,
+      "dependency": "Full original batch re-review; separate content/identity/rights decisions before apply.",
+      "evidence": {
+        "artifact": "correction-proposals.json",
+        "beforeSha256": "d15800675986872ae3eacb364cc24647a347a673a2d4d648c64af8892157e08b",
+        "correctionProposalId": "2H2I-P007",
+        "rationaleVi": "Tách bình luận về bản ghi, nguồn, taxonomy hoặc quyết định biên tập khỏi trường grammar; giữ cấu trúc thực hành hữu ích và không đổi nghĩa/ví dụ."
+      },
+      "kind": "CONFIRMED_MINOR_CONTENT_HYGIENE",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2B:abstract:not-concrete",
+      "proposalRef": "2H2I-P007",
+      "queueId": "FIELD:2H2I-P007",
+      "recordIdentity": {
+        "effectiveContentHash": "697273a6008fa1aa2bb11e0bce364057d3a0b5f93a31750526c22b5948b95f9d",
+        "proposalKey": "EDITORIAL_2H2B:abstract:not-concrete"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "action": "PROPOSE_ONLY; FULL_BATCH_RE_REVIEW_BEFORE_APPLY",
+      "canUseFutureVersionedDraftOverlay": true,
+      "dependency": "Full original batch re-review; separate content/identity/rights decisions before apply.",
+      "evidence": {
+        "artifact": "correction-proposals.json",
+        "beforeSha256": "f9fe91f0d8fccc9e19aa30d4136a4d131af18ae5639e487b9e25a005f563d686",
+        "correctionProposalId": "2H2I-P008",
+        "rationaleVi": "Tách bình luận về bản ghi, nguồn, taxonomy hoặc quyết định biên tập khỏi trường grammar; giữ cấu trúc thực hành hữu ích và không đổi nghĩa/ví dụ."
+      },
+      "kind": "CONFIRMED_MINOR_CONTENT_HYGIENE",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:per cent:per-hundred",
+      "proposalRef": "2H2I-P008",
+      "queueId": "FIELD:2H2I-P008",
+      "recordIdentity": {
+        "effectiveContentHash": "a4df43539de2c285c031a39d82c971a666f4e619eec8b8391ed45241ec3c3da9",
+        "proposalKey": "EDITORIAL_2H2C:per cent:per-hundred"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "action": "PROPOSE_ONLY; FULL_BATCH_RE_REVIEW_BEFORE_APPLY",
+      "canUseFutureVersionedDraftOverlay": true,
+      "dependency": "Full original batch re-review; separate content/identity/rights decisions before apply.",
+      "evidence": {
+        "artifact": "correction-proposals.json",
+        "beforeSha256": "027170ad21f2de0610361fd9b579d9105f2cb034cb0453dfb594be1ad6d73ba4",
+        "correctionProposalId": "2H2I-P009",
+        "rationaleVi": "Tách bình luận về bản ghi, nguồn, taxonomy hoặc quyết định biên tập khỏi trường grammar; giữ cấu trúc thực hành hữu ích và không đổi nghĩa/ví dụ."
+      },
+      "kind": "CONFIRMED_MINOR_CONTENT_HYGIENE",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:visible (adj):can-be-seen",
+      "proposalRef": "2H2I-P009",
+      "queueId": "FIELD:2H2I-P009",
+      "recordIdentity": {
+        "effectiveContentHash": "bfe7e40396018616df711d7d7bb83edd6126f8fec799303d76a4bc35469f3b5c",
+        "proposalKey": "EDITORIAL_2H2C:visible (adj):can-be-seen"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "action": "PROPOSE_ONLY; FULL_BATCH_RE_REVIEW_BEFORE_APPLY",
+      "canUseFutureVersionedDraftOverlay": true,
+      "dependency": "Full original batch re-review; separate content/identity/rights decisions before apply.",
+      "evidence": {
+        "artifact": "correction-proposals.json",
+        "beforeSha256": "d414061f43b7500a76b6a8f2e13ac908fcba12994fc68d274a8650218754f5b9",
+        "correctionProposalId": "2H2I-P010",
+        "rationaleVi": "Tách bình luận về bản ghi, nguồn, taxonomy hoặc quyết định biên tập khỏi trường grammar; giữ cấu trúc thực hành hữu ích và không đổi nghĩa/ví dụ."
+      },
+      "kind": "CONFIRMED_MINOR_CONTENT_HYGIENE",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2B:at the onset:at-beginning",
+      "proposalRef": "2H2I-P010",
+      "queueId": "FIELD:2H2I-P010",
+      "recordIdentity": {
+        "effectiveContentHash": "c62d1274ee96a0ac69e9bb9ff1544b48bd6e0d7957f360bf415cdcd4863dccac",
+        "proposalKey": "EDITORIAL_2H2B:at the onset:at-beginning"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "action": "PROPOSE_ONLY; FULL_BATCH_RE_REVIEW_BEFORE_APPLY",
+      "canUseFutureVersionedDraftOverlay": true,
+      "dependency": "Full original batch re-review; separate content/identity/rights decisions before apply.",
+      "evidence": {
+        "artifact": "correction-proposals.json",
+        "beforeSha256": "c22b64a3ec6d0609897ec2908f9c165ad9872978f82a3cc4fefe4b11b3aab005",
+        "correctionProposalId": "2H2I-P011",
+        "rationaleVi": "Tách bình luận về bản ghi, nguồn, taxonomy hoặc quyết định biên tập khỏi trường grammar; giữ cấu trúc thực hành hữu ích và không đổi nghĩa/ví dụ."
+      },
+      "kind": "CONFIRMED_MINOR_CONTENT_HYGIENE",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2B:academic:education-research",
+      "proposalRef": "2H2I-P011",
+      "queueId": "FIELD:2H2I-P011",
+      "recordIdentity": {
+        "effectiveContentHash": "79a5a571d6d922fb4f45c37fbf0da27445ddcdc0d2809ffed3b4c335887baa03",
+        "proposalKey": "EDITORIAL_2H2B:academic:education-research"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "action": "PROPOSE_ONLY; FULL_BATCH_RE_REVIEW_BEFORE_APPLY",
+      "canUseFutureVersionedDraftOverlay": true,
+      "dependency": "Full original batch re-review; separate content/identity/rights decisions before apply.",
+      "evidence": {
+        "artifact": "correction-proposals.json",
+        "beforeSha256": "86b66f3158a4bc2240b05133f8c5197b95b2d623fc922ad1446ed4a032f225be",
+        "correctionProposalId": "2H2I-P012",
+        "rationaleVi": "Tách bình luận về bản ghi, nguồn, taxonomy hoặc quyết định biên tập khỏi trường grammar; giữ cấu trúc thực hành hữu ích và không đổi nghĩa/ví dụ."
+      },
+      "kind": "CONFIRMED_MINOR_CONTENT_HYGIENE",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:plenty:more-than-enough",
+      "proposalRef": "2H2I-P012",
+      "queueId": "FIELD:2H2I-P012",
+      "recordIdentity": {
+        "effectiveContentHash": "a2cec872a9c8c6360f3f578a6d2b05a00797f13711cfc7f9bf67982e24152974",
+        "proposalKey": "EDITORIAL_2H2C:plenty:more-than-enough"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "action": "PROPOSE_ONLY; FULL_BATCH_RE_REVIEW_BEFORE_APPLY",
+      "canUseFutureVersionedDraftOverlay": true,
+      "dependency": "Full original batch re-review; separate content/identity/rights decisions before apply.",
+      "evidence": {
+        "artifact": "correction-proposals.json",
+        "beforeSha256": "bce9da63ae0c20713f8630d118bfae1736ace95ee0e045eea9b8cf69f6f111dd",
+        "correctionProposalId": "2H2I-P013",
+        "rationaleVi": "Tách bình luận về bản ghi, nguồn, taxonomy hoặc quyết định biên tập khỏi trường grammar; giữ cấu trúc thực hành hữu ích và không đổi nghĩa/ví dụ."
+      },
+      "kind": "CONFIRMED_MINOR_CONTENT_HYGIENE",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2B:aboard:on-transport",
+      "proposalRef": "2H2I-P013",
+      "queueId": "FIELD:2H2I-P013",
+      "recordIdentity": {
+        "effectiveContentHash": "6693d6af7d6e3ec82f575461b209dfc9af316e3372e5cbb22031c20c784e79b4",
+        "proposalKey": "EDITORIAL_2H2B:aboard:on-transport"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "action": "PROPOSE_ONLY; FULL_BATCH_RE_REVIEW_BEFORE_APPLY",
+      "canUseFutureVersionedDraftOverlay": true,
+      "dependency": "Full original batch re-review; separate content/identity/rights decisions before apply.",
+      "evidence": {
+        "artifact": "correction-proposals.json",
+        "beforeSha256": "98a1a33c763cd6750b09d65287825f3e871e80c12b0a175a8de500e14b3ff035",
+        "correctionProposalId": "2H2I-P014",
+        "rationaleVi": "Tách bình luận về bản ghi, nguồn, taxonomy hoặc quyết định biên tập khỏi trường grammar; giữ cấu trúc thực hành hữu ích và không đổi nghĩa/ví dụ."
+      },
+      "kind": "CONFIRMED_MINOR_CONTENT_HYGIENE",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2B:acute:rapid-onset",
+      "proposalRef": "2H2I-P014",
+      "queueId": "FIELD:2H2I-P014",
+      "recordIdentity": {
+        "effectiveContentHash": "d3af89e76f5b7b49f06e772cd8dab9cb54d6b55b4a3a071bb50dd9e89860a015",
+        "proposalKey": "EDITORIAL_2H2B:acute:rapid-onset"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "action": "PROPOSE_ONLY; FULL_BATCH_RE_REVIEW_BEFORE_APPLY",
+      "canUseFutureVersionedDraftOverlay": true,
+      "dependency": "Full original batch re-review; separate content/identity/rights decisions before apply.",
+      "evidence": {
+        "artifact": "correction-proposals.json",
+        "beforeSha256": "5b529ba263399e0865e8454511a1867a1c7854ae1fa14388cc37da880c4e0707",
+        "correctionProposalId": "2H2I-P015",
+        "rationaleVi": "Tách bình luận về bản ghi, nguồn, taxonomy hoặc quyết định biên tập khỏi trường grammar; giữ cấu trúc thực hành hữu ích và không đổi nghĩa/ví dụ."
+      },
+      "kind": "CONFIRMED_MINOR_CONTENT_HYGIENE",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2B:book:written-volume",
+      "proposalRef": "2H2I-P015",
+      "queueId": "FIELD:2H2I-P015",
+      "recordIdentity": {
+        "effectiveContentHash": "2238b7b7dcbd0cfb9adde0ad5624edf84cdfa5f5af9e67e3669a1d82aeef8886",
+        "proposalKey": "EDITORIAL_2H2B:book:written-volume"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "action": "PROPOSE_ONLY; FULL_BATCH_RE_REVIEW_BEFORE_APPLY",
+      "canUseFutureVersionedDraftOverlay": true,
+      "dependency": "Full original batch re-review; separate content/identity/rights decisions before apply.",
+      "evidence": {
+        "artifact": "correction-proposals.json",
+        "beforeSha256": "2b99ca738de9c0ce550cdbcf5bf5efca47781393e9ebb55a3c0b674817a475a6",
+        "correctionProposalId": "2H2I-P016",
+        "rationaleVi": "Tách bình luận về bản ghi, nguồn, taxonomy hoặc quyết định biên tập khỏi trường grammar; giữ cấu trúc thực hành hữu ích và không đổi nghĩa/ví dụ."
+      },
+      "kind": "CONFIRMED_MINOR_CONTENT_HYGIENE",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:warming (n):becoming-warmer",
+      "proposalRef": "2H2I-P016",
+      "queueId": "FIELD:2H2I-P016",
+      "recordIdentity": {
+        "effectiveContentHash": "89c10bb6194482da729de08f473062b62353a733c8fdc89376e870ff1ad0cd05",
+        "proposalKey": "EDITORIAL_2H2C:warming (n):becoming-warmer"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "action": "PROPOSE_ONLY; FULL_BATCH_RE_REVIEW_BEFORE_APPLY",
+      "canUseFutureVersionedDraftOverlay": true,
+      "dependency": "Full original batch re-review; separate content/identity/rights decisions before apply.",
+      "evidence": {
+        "artifact": "correction-proposals.json",
+        "beforeSha256": "fc7cb5bba6819de6e1a690154a998130cda940e72461a3560c91233decf85890",
+        "correctionProposalId": "2H2I-P017",
+        "rationaleVi": "Tách bình luận về bản ghi, nguồn, taxonomy hoặc quyết định biên tập khỏi trường grammar; giữ cấu trúc thực hành hữu ích và không đổi nghĩa/ví dụ."
+      },
+      "kind": "CONFIRMED_MINOR_CONTENT_HYGIENE",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2B:above:higher-than",
+      "proposalRef": "2H2I-P017",
+      "queueId": "FIELD:2H2I-P017",
+      "recordIdentity": {
+        "effectiveContentHash": "cfeef90b455e21fdba7a46b2ee8c96a53fdb7dba1f975eb7cb444088ed131eb3",
+        "proposalKey": "EDITORIAL_2H2B:above:higher-than"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "action": "PROPOSE_ONLY; FULL_BATCH_RE_REVIEW_BEFORE_APPLY",
+      "canUseFutureVersionedDraftOverlay": true,
+      "dependency": "Full original batch re-review; separate content/identity/rights decisions before apply.",
+      "evidence": {
+        "artifact": "correction-proposals.json",
+        "beforeSha256": "a0403039cf484b51d65cef7c6fefdda55f3ea8011281b709f6415a1f90b7d4bf",
+        "correctionProposalId": "2H2I-P018",
+        "rationaleVi": "Tách bình luận về bản ghi, nguồn, taxonomy hoặc quyết định biên tập khỏi trường grammar; giữ cấu trúc thực hành hữu ích và không đổi nghĩa/ví dụ."
+      },
+      "kind": "CONFIRMED_MINOR_CONTENT_HYGIENE",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2B:alone:independently",
+      "proposalRef": "2H2I-P018",
+      "queueId": "FIELD:2H2I-P018",
+      "recordIdentity": {
+        "effectiveContentHash": "2b6c86d7f9b80a930330c1770b33d2e9fcf6041fad814f8fec8c8d1167bf2e74",
+        "proposalKey": "EDITORIAL_2H2B:alone:independently"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "action": "PROPOSE_ONLY; FULL_BATCH_RE_REVIEW_BEFORE_APPLY",
+      "canUseFutureVersionedDraftOverlay": true,
+      "dependency": "Full original batch re-review; separate content/identity/rights decisions before apply.",
+      "evidence": {
+        "artifact": "correction-proposals.json",
+        "beforeSha256": "9d081ac0c97cd56c3fc2fcc00f62796047ac27563b99ff545cf51a6a4365e9c6",
+        "correctionProposalId": "2H2I-P019",
+        "rationaleVi": "Tách bình luận về bản ghi, nguồn, taxonomy hoặc quyết định biên tập khỏi trường grammar; giữ cấu trúc thực hành hữu ích và không đổi nghĩa/ví dụ."
+      },
+      "kind": "CONFIRMED_MINOR_CONTENT_HYGIENE",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:thereby:as-a-result",
+      "proposalRef": "2H2I-P019",
+      "queueId": "FIELD:2H2I-P019",
+      "recordIdentity": {
+        "effectiveContentHash": "0c19f9f8d2b01767698fe310d3176a6a645a287432829121a2de2e7f912b6748",
+        "proposalKey": "EDITORIAL_2H2C:thereby:as-a-result"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "action": "PROPOSE_ONLY; FULL_BATCH_RE_REVIEW_BEFORE_APPLY",
+      "canUseFutureVersionedDraftOverlay": true,
+      "dependency": "Full original batch re-review; separate content/identity/rights decisions before apply.",
+      "evidence": {
+        "artifact": "correction-proposals.json",
+        "beforeSha256": "cfc6989a94f1eb1af2c33e596dde1324afafd94c11531a7beef14ad27af3aa5c",
+        "correctionProposalId": "2H2I-P020",
+        "rationaleVi": "Tách bình luận về bản ghi, nguồn, taxonomy hoặc quyết định biên tập khỏi trường grammar; giữ cấu trúc thực hành hữu ích và không đổi nghĩa/ví dụ."
+      },
+      "kind": "CONFIRMED_MINOR_CONTENT_HYGIENE",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2B:banana:fruit",
+      "proposalRef": "2H2I-P020",
+      "queueId": "FIELD:2H2I-P020",
+      "recordIdentity": {
+        "effectiveContentHash": "27703c06dc727d7af39b64df11e1c663d432b231399f2f15578d4bcbe9f9623c",
+        "proposalKey": "EDITORIAL_2H2B:banana:fruit"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "action": "REVIEW_SOURCE_FUNCTION_AND_TAXONOMY; NO_AUTOMATIC_APPLY",
+      "canUseFutureVersionedDraftOverlay": true,
+      "candidateGroupKey": "NORMALIZED_HEADWORD:hail",
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "sense-coverage-audit.json",
+        "decisionDigest": "8b087e5edb884339ce5f022daacb324f33ec37847ce14b2b0302182e58d62492",
+        "explanationVi": "Danh từ mưa đá có cả 4600 noun và ví dụ hail from storm; ba nghĩa hiện tại đều VERB. Đây là chức năng danh từ thiếu thật, không chỉ lỗi nhãn."
+      },
+      "kind": "CONFIRMED_GAP",
+      "priority": "P1",
+      "queueId": "COVERAGE:NORMALIZED_HEADWORD:hail",
+      "recordIdentity": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:hail",
+        "effectiveContentHashes": {
+          "EDITORIAL_2H2H:hail:call-vehicle": "e3c44823229fe430a72041321d1128e53a2861052c2cf9ffc66eddf1c059598a",
+          "EDITORIAL_2H2H:hail:praise": "a2c04d4262c8f1fe51ed2c7685ce9d19aff3991ec8602cafdc565cb2f1e3855b",
+          "EDITORIAL_2H2H:hail:weather": "78fc054c89a70efcbb0171da6bd9918739fccbaa0f3e045d869c426c5fe878bf"
+        }
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "CONFIRMED_MISSING_FUNCTION"
+    },
+    {
+      "action": "REVIEW_SOURCE_FUNCTION_AND_TAXONOMY; NO_AUTOMATIC_APPLY",
+      "canUseFutureVersionedDraftOverlay": true,
+      "candidateGroupKey": "NORMALIZED_HEADWORD:to",
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "sense-coverage-audit.json",
+        "decisionDigest": "7ccf49d3d2026a2d63326b98c6810bd1dc207979bdeada6459c734a9d36436f3",
+        "explanationVi": "Oxford ordinal 1 ghi infinitive marker chỉ mục đích; destination ordinal 0 chưa bao phủ. Cần proposal chức năng marker và quyết định taxonomy trước author/import; không đổi thành PREPOSITION."
+      },
+      "kind": "CONFIRMED_GAP",
+      "priority": "P1",
+      "queueId": "COVERAGE:NORMALIZED_HEADWORD:to",
+      "recordIdentity": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:to",
+        "effectiveContentHashes": {
+          "EDITORIAL_2H2H:to:destination": "4d0f7da3aee73f0de8dfa60f9c96b9ea4605e15ec0a8b99048162d3bf55ce33c"
+        }
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "CONFIRMED_MISSING_FUNCTION"
+    },
+    {
+      "action": "REVIEW_SOURCE_FUNCTION_AND_TAXONOMY; NO_AUTOMATIC_APPLY",
+      "canUseFutureVersionedDraftOverlay": true,
+      "candidateGroupKey": "NORMALIZED_HEADWORD:harness",
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "sense-coverage-audit.json",
+        "decisionDigest": "771276bd7417d9524e0fe2fb1f458a81deda3d43e46a2a98efffabfca54942d3",
+        "explanationVi": "Nguồn 4600 ví dụ harness a horse và nghĩa thắng ngựa, Oxford entry corroborates harnessing animal. Nghĩa tận dụng năng lượng hiện tại không bao phủ gắn bộ dây kéo."
+      },
+      "kind": "CONFIRMED_GAP",
+      "priority": "P1",
+      "queueId": "COVERAGE:NORMALIZED_HEADWORD:harness",
+      "recordIdentity": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:harness",
+        "effectiveContentHashes": {
+          "EDITORIAL_2H2H:harness:put-energy-to-use": "05ab459ccad67775fb959d52e8981d82fe6809ee34f4ffc2a263137d5e35d674"
+        }
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "CONFIRMED_MISSING_FUNCTION"
+    },
+    {
+      "action": "REVIEW_SOURCE_FUNCTION_AND_TAXONOMY; NO_AUTOMATIC_APPLY",
+      "canUseFutureVersionedDraftOverlay": true,
+      "candidateGroupKey": "NORMALIZED_HEADWORD:fiery",
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "sense-coverage-audit.json",
+        "decisionDigest": "189b4c949ff53e029239541da3afd06688c651a53928e1d808817ab930a407c2",
+        "explanationVi": "4600 nghĩa burning strongly và Cambridge literal flame corroboration; fiery speech hiện tại chỉ cường độ cảm xúc, thiếu nghĩa liên quan lửa."
+      },
+      "kind": "CONFIRMED_GAP",
+      "priority": "P1",
+      "queueId": "COVERAGE:NORMALIZED_HEADWORD:fiery",
+      "recordIdentity": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:fiery",
+        "effectiveContentHashes": {
+          "EDITORIAL_2H2H:fiery:full-of-strong-emotion": "08bd99f7c4f8decc683f54cd78f50728341c3f3d915d135bd89be674eae25d3c"
+        }
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "CONFIRMED_MISSING_FUNCTION"
+    },
+    {
+      "action": "REVIEW_SOURCE_FUNCTION_AND_TAXONOMY; NO_AUTOMATIC_APPLY",
+      "canUseFutureVersionedDraftOverlay": true,
+      "candidateGroupKey": "NORMALIZED_HEADWORD:instrumental",
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "sense-coverage-audit.json",
+        "decisionDigest": "413852620bf153bc3de7732a275621b17702c5030971b8a014e31a4b514d7b0b",
+        "explanationVi": "4600 noun có plural instrumentals và Cambridge countable noun. Hai Sense adjective hiện tại không đại diện bản nhạc không lời như danh từ."
+      },
+      "kind": "CONFIRMED_GAP",
+      "priority": "P1",
+      "queueId": "COVERAGE:NORMALIZED_HEADWORD:instrumental",
+      "recordIdentity": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:instrumental",
+        "effectiveContentHashes": {
+          "EDITORIAL_2H2H:instrumental:important-in-achieving-result": "8b6babdd55828875d46af696442947a2c374b84467534de347a0831fd16f87d3",
+          "EDITORIAL_2H2H:instrumental:music-without-vocals": "bb8f51a55bf1687e2f4577f717e89126b84821d8cfd3179317c5b8e045728a72"
+        }
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "CONFIRMED_MISSING_FUNCTION"
+    },
+    {
+      "action": "REVIEW_SOURCE_FUNCTION_AND_TAXONOMY; NO_AUTOMATIC_APPLY",
+      "canUseFutureVersionedDraftOverlay": false,
+      "candidateGroupKey": "NORMALIZED_HEADWORD:further",
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "sense-coverage-audit.json",
+        "decisionDigest": "75dea22058ab3250b11c8d8a93f69873bf9dafb1446a0266d06b374291d7526b",
+        "explanationVi": "4600 prep không có bổ ngữ chứng minh giới từ; Oxford additional adjective/distance adverb đều đã có. Không tạo nghĩa giới từ từ nhãn."
+      },
+      "kind": "SOURCE_METADATA_CONFLICT",
+      "priority": "P2",
+      "queueId": "COVERAGE:NORMALIZED_HEADWORD:further",
+      "recordIdentity": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:further",
+        "effectiveContentHashes": {
+          "EDITORIAL_2H2H:further:additional": "0876616d3d087f37949bdde04a87dd9915aae5a5c41e4980900c7c28b15d4853",
+          "EDITORIAL_2H2H:further:greater-distance": "b98d29471e3cb2a6fbea228832c12a464dc899e315863a770b9c62cf4a147878"
+        }
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "UNRESOLVED"
+    },
+    {
+      "action": "REVIEW_SOURCE_FUNCTION_AND_TAXONOMY; NO_AUTOMATIC_APPLY",
+      "canUseFutureVersionedDraftOverlay": false,
+      "candidateGroupKey": "NORMALIZED_HEADWORD:decent",
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "sense-coverage-audit.json",
+        "decisionDigest": "558cc46335b90570211f8ca42f6fb67ea5e8a4df3dfa11ae5fae587d1230fe92",
+        "explanationVi": "4600 noun nhưng decent person và decent job có chức năng adjective; hai nguồn nghĩa quality/behaviour đã đại diện."
+      },
+      "kind": "SOURCE_METADATA_CONFLICT",
+      "priority": "P2",
+      "queueId": "COVERAGE:NORMALIZED_HEADWORD:decent",
+      "recordIdentity": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:decent",
+        "effectiveContentHashes": {
+          "EDITORIAL_2H2H:decent:adequate": "c2e07a6e65eef5f61f68670b17e3b6c1e541ff5605985fb1ccaae109cdb51f97",
+          "EDITORIAL_2H2H:decent:respectable": "d21fec052ce0f01265475437e63ee3fba1b82fcd8384e222e1adb307106c5198"
+        }
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "UNRESOLVED"
+    },
+    {
+      "action": "REVIEW_SOURCE_FUNCTION_AND_TAXONOMY; NO_AUTOMATIC_APPLY",
+      "canUseFutureVersionedDraftOverlay": false,
+      "candidateGroupKey": "NORMALIZED_HEADWORD:whoever",
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "sense-coverage-audit.json",
+        "decisionDigest": "83b90cd7b682caa927d614dfb7c40a142630a6d18fd2771b36ba4d190b88aa21",
+        "explanationVi": "4600 noun nhưng whoever says clause sử dụng pronoun; Oxford pronoun và Sense any person hiện tại tương thích."
+      },
+      "kind": "SOURCE_METADATA_CONFLICT",
+      "priority": "P2",
+      "queueId": "COVERAGE:NORMALIZED_HEADWORD:whoever",
+      "recordIdentity": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:whoever",
+        "effectiveContentHashes": {
+          "EDITORIAL_2H2H:whoever:any-person": "31811b4238647afde2005e0f658a7c1a4b1c28cdb25eb9e22c8f2d41fd2b54c9"
+        }
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "UNRESOLVED"
+    },
+    {
+      "action": "REVIEW_SOURCE_FUNCTION_AND_TAXONOMY; NO_AUTOMATIC_APPLY",
+      "canUseFutureVersionedDraftOverlay": false,
+      "candidateGroupKey": "NORMALIZED_HEADWORD:quite",
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "sense-coverage-audit.json",
+        "decisionDigest": "f2568b26ba80400ac9c5fef3ea024b0394ca116371e750e046727759eef05595",
+        "explanationVi": "4600 adjective không chứng minh nghĩa tính từ; Oxford hai adverb degree/completeness đều có, strength phụ thuộc context/variety."
+      },
+      "kind": "SOURCE_METADATA_CONFLICT",
+      "priority": "P2",
+      "queueId": "COVERAGE:NORMALIZED_HEADWORD:quite",
+      "recordIdentity": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:quite",
+        "effectiveContentHashes": {
+          "EDITORIAL_2H2H:quite:completely": "7b40447b542ca5492948c14631f75e3d26328af6baae580a0ccc6551fbf9dff0",
+          "EDITORIAL_2H2H:quite:moderately": "35bde474f7bd03d0cef7bcb0ff6004b4b33cfccceecc08c656e3d3958cc9812a"
+        }
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "UNRESOLVED"
+    },
+    {
+      "action": "REVIEW_SOURCE_FUNCTION_AND_TAXONOMY; NO_AUTOMATIC_APPLY",
+      "canUseFutureVersionedDraftOverlay": false,
+      "candidateGroupKey": "NORMALIZED_HEADWORD:fond",
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "sense-coverage-audit.json",
+        "decisionDigest": "10bbed133fce0c3cf909c9edc986f9647dea497774960e4a2ee3daeb0a3c9f18",
+        "explanationVi": "4600 verb mô tả be fond of, fond vẫn adjective; Oxford đúng adjective. Không tạo verb chỉ vì be là động từ."
+      },
+      "kind": "SOURCE_METADATA_CONFLICT",
+      "priority": "P2",
+      "queueId": "COVERAGE:NORMALIZED_HEADWORD:fond",
+      "recordIdentity": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:fond",
+        "effectiveContentHashes": {
+          "EDITORIAL_2H2H:fond:feeling-affection-or-liking": "72a8c4c561ccf3fcac82ba4ba98f35f29128b6da1ec2a8716def59f953ef80e4"
+        }
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "UNRESOLVED"
+    },
+    {
+      "action": "REVIEW_SOURCE_FUNCTION_AND_TAXONOMY; NO_AUTOMATIC_APPLY",
+      "canUseFutureVersionedDraftOverlay": false,
+      "candidateGroupKey": "NORMALIZED_HEADWORD:forward",
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "sense-coverage-audit.json",
+        "decisionDigest": "8c65240f819516aaf9c6c5afa32fa92cf411efcfc84f6c651c68fe6399de0ad3",
+        "explanationVi": "4600 prep nhưng crawled forward to her là adverb kèm to-phrase; Oxford hai chức năng adjective/adverb đã có."
+      },
+      "kind": "SOURCE_METADATA_CONFLICT",
+      "priority": "P2",
+      "queueId": "COVERAGE:NORMALIZED_HEADWORD:forward",
+      "recordIdentity": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:forward",
+        "effectiveContentHashes": {
+          "EDITORIAL_2H2H:forward:at-or-towards-the-front": "fda073d9920049eef8cc6518dd2a588a44a88ee02d4de58f10b9d4fb2bb6882f",
+          "EDITORIAL_2H2H:forward:towards-the-front": "ab759a7af732fe1def73dc9525138c1c59684a808c43a059cfc94e81ff2aacca"
+        }
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "UNRESOLVED"
+    },
+    {
+      "action": "REVIEW_SOURCE_FUNCTION_AND_TAXONOMY; NO_AUTOMATIC_APPLY",
+      "canUseFutureVersionedDraftOverlay": false,
+      "candidateGroupKey": "NORMALIZED_HEADWORD:guilty",
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "sense-coverage-audit.json",
+        "decisionDigest": "49aa319d1ac668e5b2b02a793ca317bff0160f3014f12618e119f6daf6b8dcbd",
+        "explanationVi": "4600 noun nhưng felt guilty là predicative adjective; responsibility/remorse hiện tại đều có. Không thay cảm giác guilt noun vào key guilty."
+      },
+      "kind": "SOURCE_METADATA_CONFLICT",
+      "priority": "P2",
+      "queueId": "COVERAGE:NORMALIZED_HEADWORD:guilty",
+      "recordIdentity": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:guilty",
+        "effectiveContentHashes": {
+          "EDITORIAL_2H2H:guilty:feeling-remorse": "a59f496b5e3d0893dd47b70a3a85e611423b34ec37423e96544d6c5257816620",
+          "EDITORIAL_2H2H:guilty:responsible-for-wrongdoing": "bca1a89f8514c7c20b14b7b73ac0e2dc5118888b75b8688cc13dbb4e2cb89204"
+        }
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "UNRESOLVED"
+    },
+    {
+      "action": "REVIEW_SOURCE_FUNCTION_AND_TAXONOMY; NO_AUTOMATIC_APPLY",
+      "canUseFutureVersionedDraftOverlay": false,
+      "candidateGroupKey": "NORMALIZED_HEADWORD:million",
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "sense-coverage-audit.json",
+        "decisionDigest": "2af6ebb3e101bf02a0c71e6df3e6d60ed531056fb8cf66185ad5f90346869547",
+        "explanationVi": "NUMBER/NOUN là phân tích khác nhau của numeral và nominal patterns; giá trị triệu đúng. Chưa chứng minh nghĩa mới từ nhãn noun."
+      },
+      "kind": "SOURCE_METADATA_CONFLICT",
+      "priority": "P2",
+      "queueId": "COVERAGE:NORMALIZED_HEADWORD:million",
+      "recordIdentity": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:million",
+        "effectiveContentHashes": {
+          "EDITORIAL_2H2H:million:one-thousand-thousand": "555dd11dab283ff7b7f62335906af132d4b5712a19256a07d47d583e43901b12"
+        }
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "UNRESOLVED"
+    },
+    {
+      "action": "REVIEW_SOURCE_FUNCTION_AND_TAXONOMY; NO_AUTOMATIC_APPLY",
+      "canUseFutureVersionedDraftOverlay": false,
+      "candidateGroupKey": "NORMALIZED_HEADWORD:thus",
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "sense-coverage-audit.json",
+        "decisionDigest": "5f374765dc458fcafe3910011303910257112e8f6ed2c4a625c54c1dff244b8f",
+        "explanationVi": "4600 conjunction nhưng nối kết result không biến thành and; adverb consequence/manner có đủ source ordinals. Không chấp nhận comma splice."
+      },
+      "kind": "SOURCE_METADATA_CONFLICT",
+      "priority": "P2",
+      "queueId": "COVERAGE:NORMALIZED_HEADWORD:thus",
+      "recordIdentity": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:thus",
+        "effectiveContentHashes": {
+          "EDITORIAL_2H2H:thus:as-a-result": "aeb025b44e3f7efbfa6c95a58264b7128306e0b869175090c40496d208bf9dfb",
+          "EDITORIAL_2H2H:thus:in-this-way": "0e79c5c1c74fff0ed8bca6288905cbbc4669027ce27a239b4d894dc743430739"
+        }
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "UNRESOLVED"
+    },
+    {
+      "action": "REVIEW_SOURCE_FUNCTION_AND_TAXONOMY; NO_AUTOMATIC_APPLY",
+      "canUseFutureVersionedDraftOverlay": false,
+      "candidateGroupKey": "NORMALIZED_HEADWORD:unlike",
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "sense-coverage-audit.json",
+        "decisionDigest": "23351d6e7f9d1b9b177561c3e7becfd6046ae1085155210e02663fa10e47f908",
+        "explanationVi": "Nguồn 4600 ví dụ unlike brother thực tế hỗ trợ preposition; từ điển cũng có adjective. Cần quyết định boundary/syntax theo entry đầy đủ trước kết luận thêm Sense riêng."
+      },
+      "kind": "POSSIBLE_GAP",
+      "priority": "P2",
+      "queueId": "COVERAGE:NORMALIZED_HEADWORD:unlike",
+      "recordIdentity": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:unlike",
+        "effectiveContentHashes": {
+          "EDITORIAL_2H2H:unlike:different-from": "ecf99edb9b8879364a7f909221f9a6140bc0d78307254c7d0c2c3123062c299c"
+        }
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "UNRESOLVED"
+    },
+    {
+      "action": "REVIEW_SOURCE_FUNCTION_AND_TAXONOMY; NO_AUTOMATIC_APPLY",
+      "canUseFutureVersionedDraftOverlay": false,
+      "candidateGroupKey": "NORMALIZED_HEADWORD:including",
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "sense-coverage-audit.json",
+        "decisionDigest": "9bcf7544b97c4a541d07b6cf6d7c73897e07115cbb4770c216e5852fb4096d56",
+        "explanationVi": "4600 adjective nhưng including cat là cụm giới từ; Oxford preposition và ví dụ 8 người trong đó 2 mới đúng tổng."
+      },
+      "kind": "SOURCE_METADATA_CONFLICT",
+      "priority": "P2",
+      "queueId": "COVERAGE:NORMALIZED_HEADWORD:including",
+      "recordIdentity": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:including",
+        "effectiveContentHashes": {
+          "EDITORIAL_2H2H:including:with-as-part-of-the-group": "5de9d365d2cb9398461bd727adf10a99bdd8ffea7cdb209f6a27f65560079d31"
+        }
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "UNRESOLVED"
+    },
+    {
+      "action": "REVIEW_SOURCE_FUNCTION_AND_TAXONOMY; NO_AUTOMATIC_APPLY",
+      "canUseFutureVersionedDraftOverlay": false,
+      "candidateGroupKey": "NORMALIZED_HEADWORD:therefore",
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "sense-coverage-audit.json",
+        "decisionDigest": "9108cc712c8043e511450fad8589e35a4ccdc50190d20ab69bd2b7d74d8a978f",
+        "explanationVi": "4600 conjunction là nhãn khác với connecting adverb trong Oxford; meaning consequence đã đủ, hai mệnh đề nối semicolon đúng."
+      },
+      "kind": "SOURCE_METADATA_CONFLICT",
+      "priority": "P2",
+      "queueId": "COVERAGE:NORMALIZED_HEADWORD:therefore",
+      "recordIdentity": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:therefore",
+        "effectiveContentHashes": {
+          "EDITORIAL_2H2H:therefore:logical-result": "ea85c69526568130b5f65991301f8e18a20d40371f4bad0c64519eb1e0e6bc9e"
+        }
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "UNRESOLVED"
+    },
+    {
+      "action": "RESOLVE_LOCAL_TAXONOMY_BEFORE_ANY_CANONICAL_CLAIM",
+      "canUseFutureVersionedDraftOverlay": false,
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "review-triage.json",
+        "explanationVi": "Whereby nối lại hệ thống vừa nêu; theo đó và đổi ca qua mạng khớp nhau. Nhãn ADVERB so với relative linker cần đối chiếu quy ước taxonomy; không suy ra thêm nghĩa chỉ vì khác tên loại.",
+        "proposalKey": "EDITORIAL_2H2H:whereby:by-which"
+      },
+      "kind": "SENSE_BOUNDARY_UNCERTAIN",
+      "priority": "P2",
+      "proposalKey": "EDITORIAL_2H2H:whereby:by-which",
+      "queueId": "IDENTITY:EDITORIAL_2H2H:whereby:by-which",
+      "recordIdentity": {
+        "effectiveContentHash": "596afff08cc149e9f5570f00234039ab35d245d6129399517efbb23b892a20df",
+        "proposalKey": "EDITORIAL_2H2H:whereby:by-which"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "UNRESOLVED"
+    },
+    {
+      "action": "RESOLVE_LOCAL_TAXONOMY_BEFORE_ANY_CANONICAL_CLAIM",
+      "canUseFutureVersionedDraftOverlay": false,
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "review-triage.json",
+        "explanationVi": "Thirteen đúng 12+1, cả hai câu giữ 13 ghế. NUMBER là đề xuất cục bộ; unresolved phân loại không phải lỗi phép tính hay lý do đổi thành danh từ.",
+        "proposalKey": "EDITORIAL_2H2H:thirteen:number"
+      },
+      "kind": "LEXICAL_IDENTITY_UNRESOLVED",
+      "priority": "P2",
+      "proposalKey": "EDITORIAL_2H2H:thirteen:number",
+      "queueId": "IDENTITY:EDITORIAL_2H2H:thirteen:number",
+      "recordIdentity": {
+        "effectiveContentHash": "7ef59445b24baee389056803ff581a3ff53080787ade3f9de442fbbb8e4301b0",
+        "proposalKey": "EDITORIAL_2H2H:thirteen:number"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "UNRESOLVED"
+    },
+    {
+      "action": "PENDING; REVIEW_AFFECTED_PRIOR_BATCHES_AND_REMAINING_PROCESS_NOTES",
+      "canUseFutureVersionedDraftOverlay": false,
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "authoring-qa-lessons.json",
+        "field": "/escalation"
+      },
+      "kind": "REPEATED_PATTERN_REQUIRES_EXPANDED_AUDIT",
+      "priority": "P2",
+      "queueId": "ESCALATION:PROCESS_COMMENTS",
+      "recordIdentity": {
+        "proposalKeys": [
+          "EDITORIAL_2H2H:last:final-in-order",
+          "EDITORIAL_2H2H:to:destination",
+          "EDITORIAL_2H2H:aggregate:combined-total",
+          "EDITORIAL_2H2H:weekly:each-week",
+          "EDITORIAL_2H2B:have to:necessity",
+          "EDITORIAL_2H2B:billion:large-number",
+          "EDITORIAL_2H2B:abstract:not-concrete",
+          "EDITORIAL_2H2C:per cent:per-hundred",
+          "EDITORIAL_2H2C:visible (adj):can-be-seen",
+          "EDITORIAL_2H2B:at the onset:at-beginning",
+          "EDITORIAL_2H2B:academic:education-research",
+          "EDITORIAL_2H2C:plenty:more-than-enough",
+          "EDITORIAL_2H2B:aboard:on-transport",
+          "EDITORIAL_2H2B:acute:rapid-onset",
+          "EDITORIAL_2H2B:book:written-volume",
+          "EDITORIAL_2H2C:warming (n):becoming-warmer",
+          "EDITORIAL_2H2B:above:higher-than",
+          "EDITORIAL_2H2B:alone:independently",
+          "EDITORIAL_2H2C:thereby:as-a-result",
+          "EDITORIAL_2H2B:banana:fruit"
+        ],
+        "scope": "PROCESS_COMMENT_PATTERN"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "UNRESOLVED"
+    },
+    {
+      "action": "PRESERVE_ORIGINAL_REVIEW; REVIEW_SIGNAL_OR_REMAINING_RIGHTS_SCOPE_WITHOUT_CONTENT_REWRITE",
+      "canUseFutureVersionedDraftOverlay": false,
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "review-triage.json",
+        "explanationVi": "Quy tắc do cơ quan có thẩm quyền đặt ra và ví dụ nhãn thực phẩm khớp bản dịch. Similarity chỉ là tín hiệu từ văn bản; chưa chứng minh sao chép hay quyền sử dụng. Không đề nghị sửa nghĩa.",
+        "proposalKey": "EDITORIAL_2H2H:law:rule"
+      },
+      "kind": "HEURISTIC_SIGNAL_ONLY",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2H:law:rule",
+      "queueId": "SIGNAL:EDITORIAL_2H2H:law:rule",
+      "recordIdentity": {
+        "effectiveContentHash": "707243eccfb72c90864837c7c079ce2f47878bab701ed7b8dec05776631fb007",
+        "proposalKey": "EDITORIAL_2H2H:law:rule"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "INFORMATIONAL"
+    },
+    {
+      "action": "PRESERVE_ORIGINAL_REVIEW; REVIEW_SIGNAL_OR_REMAINING_RIGHTS_SCOPE_WITHOUT_CONTENT_REWRITE",
+      "canUseFutureVersionedDraftOverlay": false,
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "review-triage.json",
+        "explanationVi": "Participation in/by đúng cấu trúc; open to all staff được chuyển tự nhiên thành mọi nhân viên có thể tham gia. Việc diễn đạt lại không đảo nghĩa; cần xem phạm vi similarity riêng, không tự đổi PASS.",
+        "proposalKey": "EDITORIAL_2H2H:participation:taking-part"
+      },
+      "kind": "HEURISTIC_SIGNAL_ONLY",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2H:participation:taking-part",
+      "queueId": "SIGNAL:EDITORIAL_2H2H:participation:taking-part",
+      "recordIdentity": {
+        "effectiveContentHash": "178fe0dea1336127e104bd93307347883ce4139c903be5c7ab04d2f7f83b8c75",
+        "proposalKey": "EDITORIAL_2H2H:participation:taking-part"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "INFORMATIONAL"
+    },
+    {
+      "action": "PRESERVE_ORIGINAL_REVIEW; REVIEW_SIGNAL_OR_REMAINING_RIGHTS_SCOPE_WITHOUT_CONTENT_REWRITE",
+      "canUseFutureVersionedDraftOverlay": false,
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "review-triage.json",
+        "explanationVi": "Matters là động từ nội động chỉ tầm quan trọng; cách chọn từ khi xin lỗi được giữ trong câu Việt. Chưa có lỗi nội dung do tín hiệu trùng cụm từ.",
+        "proposalKey": "EDITORIAL_2H2H:matter:be-important"
+      },
+      "kind": "HEURISTIC_SIGNAL_ONLY",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2H:matter:be-important",
+      "queueId": "SIGNAL:EDITORIAL_2H2H:matter:be-important",
+      "recordIdentity": {
+        "effectiveContentHash": "f09d1fa0bac21f9011f6872c3c222df02df46477ad62d72e2aebf397de01c28c",
+        "proposalKey": "EDITORIAL_2H2H:matter:be-important"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "INFORMATIONAL"
+    },
+    {
+      "action": "PRESERVE_ORIGINAL_REVIEW; REVIEW_SIGNAL_OR_REMAINING_RIGHTS_SCOPE_WITHOUT_CONTENT_REWRITE",
+      "canUseFutureVersionedDraftOverlay": false,
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "review-triage.json",
+        "explanationVi": "Education rộng hơn việc đến trường; aims to improve vẫn là mục tiêu trong tiếng Việt. Ghi chú an education không khẳng định mọi cách dùng đều không đếm được.",
+        "proposalKey": "EDITORIAL_2H2H:education:learning-process"
+      },
+      "kind": "HEURISTIC_SIGNAL_ONLY",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2H:education:learning-process",
+      "queueId": "SIGNAL:EDITORIAL_2H2H:education:learning-process",
+      "recordIdentity": {
+        "effectiveContentHash": "3abea540341a4c4d30f859e2f72a9abc82eae195080035e94172fa0529a5eeea",
+        "proposalKey": "EDITORIAL_2H2H:education:learning-process"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "INFORMATIONAL"
+    },
+    {
+      "action": "PRESERVE_ORIGINAL_REVIEW; REVIEW_SIGNAL_OR_REMAINING_RIGHTS_SCOPE_WITHOUT_CONTENT_REWRITE",
+      "canUseFutureVersionedDraftOverlay": false,
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "review-triage.json",
+        "explanationVi": "Over đi qua hàng rào có danh ngữ bổ ngữ, đúng PREPOSITION; câu Việt giữ chuyển động nhảy qua. Không gộp với vị trí above hay adverb thăm nhà.",
+        "proposalKey": "EDITORIAL_2H2H:over:across"
+      },
+      "kind": "HEURISTIC_SIGNAL_ONLY",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2H:over:across",
+      "queueId": "SIGNAL:EDITORIAL_2H2H:over:across",
+      "recordIdentity": {
+        "effectiveContentHash": "d7696487097c4677f354cee620f284ed8ba9eb595bcdba9a489e8deed6dbe3bd",
+        "proposalKey": "EDITORIAL_2H2H:over:across"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "INFORMATIONAL"
+    },
+    {
+      "action": "PRESERVE_ORIGINAL_REVIEW; REVIEW_SIGNAL_OR_REMAINING_RIGHTS_SCOPE_WITHOUT_CONTENT_REWRITE",
+      "canUseFutureVersionedDraftOverlay": false,
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "review-triage.json",
+        "explanationVi": "Last saw mô tả lần gần nhất trước hiện tại; câu Việt giữ thời điểm hội chợ, không biến thành lần cuối mãi mãi. REVIEW ở cấp nhóm không chứng minh lỗi ở nghĩa adverb này.",
+        "proposalKey": "EDITORIAL_2H2H:last:most-recently"
+      },
+      "kind": "NO_SUBSTANTIVE_CONTENT_DEFECT_FOUND_BY_AI",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2H:last:most-recently",
+      "queueId": "SIGNAL:EDITORIAL_2H2H:last:most-recently",
+      "recordIdentity": {
+        "effectiveContentHash": "776ab0af5234f65aa257b7cc99c0660d4f094a4d8c7fb1bb22f21e492fa8c847",
+        "proposalKey": "EDITORIAL_2H2H:last:most-recently"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "INFORMATIONAL"
+    },
+    {
+      "action": "PRESERVE_ORIGINAL_REVIEW; REVIEW_SIGNAL_OR_REMAINING_RIGHTS_SCOPE_WITHOUT_CONTENT_REWRITE",
+      "canUseFutureVersionedDraftOverlay": false,
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "review-triage.json",
+        "explanationVi": "The last to leave chỉ người cuối rời phòng; câu Việt đúng người và hành động. Phân tích noun/pronoun cần quy ước riêng, không tự đổi nội dung hay identity.",
+        "proposalKey": "EDITORIAL_2H2H:last:final-person"
+      },
+      "kind": "NO_SUBSTANTIVE_CONTENT_DEFECT_FOUND_BY_AI",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2H:last:final-person",
+      "queueId": "SIGNAL:EDITORIAL_2H2H:last:final-person",
+      "recordIdentity": {
+        "effectiveContentHash": "ab082d43f927dfd674fdd5a1b6b119194e4f947b62e283f7532cc047276eb250",
+        "proposalKey": "EDITORIAL_2H2H:last:final-person"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "INFORMATIONAL"
+    },
+    {
+      "action": "PRESERVE_ORIGINAL_REVIEW; REVIEW_SIGNAL_OR_REMAINING_RIGHTS_SCOPE_WITHOUT_CONTENT_REWRITE",
+      "canUseFutureVersionedDraftOverlay": false,
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "review-triage.json",
+        "explanationVi": "Lasted longer diễn tả kéo dài, nội động và for/duration đúng. Câu Việt không thay thời lượng bằng chất lượng; REVIEW ban đầu liên quan nhãn của nghĩa khác trong nhóm.",
+        "proposalKey": "EDITORIAL_2H2H:last:continue"
+      },
+      "kind": "NO_SUBSTANTIVE_CONTENT_DEFECT_FOUND_BY_AI",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2H:last:continue",
+      "queueId": "SIGNAL:EDITORIAL_2H2H:last:continue",
+      "recordIdentity": {
+        "effectiveContentHash": "0d264f52330c8cf4ab11a3582ae24567756b7a744f6c65787362c569ef65a270",
+        "proposalKey": "EDITORIAL_2H2H:last:continue"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "INFORMATIONAL"
+    },
+    {
+      "action": "PRESERVE_ORIGINAL_REVIEW; REVIEW_SIGNAL_OR_REMAINING_RIGHTS_SCOPE_WITHOUT_CONTENT_REWRITE",
+      "canUseFutureVersionedDraftOverlay": false,
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "review-triage.json",
+        "explanationVi": "Society trong ví dụ thư viện chỉ đời sống xã hội, không phải câu lạc bộ cụ thể. Nghĩa và bản dịch khớp; trùng cụm ngắn chưa đủ chứng minh sao chép.",
+        "proposalKey": "EDITORIAL_2H2H:society:community-system"
+      },
+      "kind": "HEURISTIC_SIGNAL_ONLY",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2H:society:community-system",
+      "queueId": "SIGNAL:EDITORIAL_2H2H:society:community-system",
+      "recordIdentity": {
+        "effectiveContentHash": "aa48ecebcb2839388754ef4ace486a8f8b37e6d89c01cc400380763a45c3e250",
+        "proposalKey": "EDITORIAL_2H2H:society:community-system"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "INFORMATIONAL"
+    },
+    {
+      "action": "PRESERVE_ORIGINAL_REVIEW; REVIEW_SIGNAL_OR_REMAINING_RIGHTS_SCOPE_WITHOUT_CONTENT_REWRITE",
+      "canUseFutureVersionedDraftOverlay": false,
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "review-triage.json",
+        "explanationVi": "Speech ở đây là lời nói rõ của diễn viên, không phải một bài diễn văn. Câu Việt giữ even at the back; không có suy diễn chẩn đoán.",
+        "proposalKey": "EDITORIAL_2H2H:speech:speaking"
+      },
+      "kind": "HEURISTIC_SIGNAL_ONLY",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2H:speech:speaking",
+      "queueId": "SIGNAL:EDITORIAL_2H2H:speech:speaking",
+      "recordIdentity": {
+        "effectiveContentHash": "18ff370730bf8dbe6b15d7de9a93a186be0ad8c2dd20a434c38d1c5f78c147be",
+        "proposalKey": "EDITORIAL_2H2H:speech:speaking"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "INFORMATIONAL"
+    },
+    {
+      "action": "PRESERVE_ORIGINAL_REVIEW; REVIEW_SIGNAL_OR_REMAINING_RIGHTS_SCOPE_WITHOUT_CONTENT_REWRITE",
+      "canUseFutureVersionedDraftOverlay": false,
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "review-triage.json",
+        "explanationVi": "Can support vẫn là khả năng; tiếng Việt giữ sức khỏe thể chất và tinh thần, không thành cam kết y tế. Similarity không tự động là vi phạm bản quyền; quyền vẫn chưa được xác minh.",
+        "proposalKey": "EDITORIAL_2H2H:well-being:health-comfort"
+      },
+      "kind": "HEURISTIC_SIGNAL_ONLY",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2H:well-being:health-comfort",
+      "queueId": "SIGNAL:EDITORIAL_2H2H:well-being:health-comfort",
+      "recordIdentity": {
+        "effectiveContentHash": "65a27547a6d6c6972045f9b461630ebe22187a39bbc204aefbb19ae8af183733",
+        "proposalKey": "EDITORIAL_2H2H:well-being:health-comfort"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "INFORMATIONAL"
+    },
+    {
+      "action": "PRESERVE_ORIGINAL_REVIEW; REVIEW_SIGNAL_OR_REMAINING_RIGHTS_SCOPE_WITHOUT_CONTENT_REWRITE",
+      "canUseFutureVersionedDraftOverlay": false,
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "review-triage.json",
+        "explanationVi": "Advise us to carry và advise doing đúng bổ ngữ; bản dịch giữ lời khuyên thêm nước cho chuyến đi, không biến thành mệnh lệnh bắt buộc.",
+        "proposalKey": "EDITORIAL_2H2H:advise:recommend"
+      },
+      "kind": "HEURISTIC_SIGNAL_ONLY",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2H:advise:recommend",
+      "queueId": "SIGNAL:EDITORIAL_2H2H:advise:recommend",
+      "recordIdentity": {
+        "effectiveContentHash": "ccf543ae5e82d65f0b7a79b95507c559053c90874b96f7be16e738a1d31335a2",
+        "proposalKey": "EDITORIAL_2H2H:advise:recommend"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "INFORMATIONAL"
+    },
+    {
+      "action": "PRESERVE_ORIGINAL_REVIEW; REVIEW_SIGNAL_OR_REMAINING_RIGHTS_SCOPE_WITHOUT_CONTENT_REWRITE",
+      "canUseFutureVersionedDraftOverlay": false,
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "review-triage.json",
+        "explanationVi": "Mental effort trong giải câu đố là nỗ lực trí óc; nghĩa và bản dịch đúng, không nhầm với bệnh tâm thần. Tín hiệu trùng nguồn cần kiểm chứng riêng.",
+        "proposalKey": "EDITORIAL_2H2H:mental:mind-related"
+      },
+      "kind": "HEURISTIC_SIGNAL_ONLY",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2H:mental:mind-related",
+      "queueId": "SIGNAL:EDITORIAL_2H2H:mental:mind-related",
+      "recordIdentity": {
+        "effectiveContentHash": "52cdcebe89ce87758e6f0ad1ca9440e7f96b94ba26cb7d86a66bc780515cf6d9",
+        "proposalKey": "EDITORIAL_2H2H:mental:mind-related"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "INFORMATIONAL"
+    },
+    {
+      "action": "PRESERVE_ORIGINAL_REVIEW; REVIEW_SIGNAL_OR_REMAINING_RIGHTS_SCOPE_WITHOUT_CONTENT_REWRITE",
+      "canUseFutureVersionedDraftOverlay": false,
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "review-triage.json",
+        "explanationVi": "Overlay hiển thị September đã sửa đúng viết hoa; definition tháng sau August trước October, ví dụ in September và tiếng Việt tháng Chín đều đúng. Finding viết hoa là lịch sử đã sửa, không tự xóa REVIEW.",
+        "proposalKey": "EDITORIAL_2H2H:september:calendar-month"
+      },
+      "kind": "NO_SUBSTANTIVE_CONTENT_DEFECT_FOUND_BY_AI",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2H:september:calendar-month",
+      "queueId": "SIGNAL:EDITORIAL_2H2H:september:calendar-month",
+      "recordIdentity": {
+        "effectiveContentHash": "53bdd943d095c92c70cd9bdd291f80fe0faf2ee206185c655c95f5434c7cd8ba",
+        "proposalKey": "EDITORIAL_2H2H:september:calendar-month"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "INFORMATIONAL"
+    },
+    {
+      "action": "PRESERVE_ORIGINAL_REVIEW; REVIEW_SIGNAL_OR_REMAINING_RIGHTS_SCOPE_WITHOUT_CONTENT_REWRITE",
+      "canUseFutureVersionedDraftOverlay": false,
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "review-triage.json",
+        "explanationVi": "Warming diễn tả quá trình tăng nhiệt; heater came on được giữ đúng sau khi máy sưởi bật, gradual thành ấm dần. Không thêm kết luận khí hậu.",
+        "proposalKey": "EDITORIAL_2H2H:warming:getting-warmer"
+      },
+      "kind": "HEURISTIC_SIGNAL_ONLY",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2H:warming:getting-warmer",
+      "queueId": "SIGNAL:EDITORIAL_2H2H:warming:getting-warmer",
+      "recordIdentity": {
+        "effectiveContentHash": "20b864f8f4939c4c9d87351db0398c4e8b535dd702763481fc56d8a0090f98d8",
+        "proposalKey": "EDITORIAL_2H2H:warming:getting-warmer"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "INFORMATIONAL"
+    },
+    {
+      "action": "PRESERVE_ORIGINAL_REVIEW; REVIEW_SIGNAL_OR_REMAINING_RIGHTS_SCOPE_WITHOUT_CONTENT_REWRITE",
+      "canUseFutureVersionedDraftOverlay": false,
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "review-triage.json",
+        "explanationVi": "Indifferent to đúng cấu trúc và seemed được giữ bằng có vẻ. Không quan tâm trong tiếng Việt là phủ định cần thiết, không phải polarity reversal.",
+        "proposalKey": "EDITORIAL_2H2H:indifferent:uninterested"
+      },
+      "kind": "HEURISTIC_SIGNAL_ONLY",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2H:indifferent:uninterested",
+      "queueId": "SIGNAL:EDITORIAL_2H2H:indifferent:uninterested",
+      "recordIdentity": {
+        "effectiveContentHash": "ba02e8f253c5bd87eedc973658a19f63cc164a6cd4e7dcd0c1771f510c54d749",
+        "proposalKey": "EDITORIAL_2H2H:indifferent:uninterested"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "INFORMATIONAL"
+    },
+    {
+      "action": "PRESERVE_ORIGINAL_REVIEW; REVIEW_SIGNAL_OR_REMAINING_RIGHTS_SCOPE_WITHOUT_CONTENT_REWRITE",
+      "canUseFutureVersionedDraftOverlay": false,
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "review-triage.json",
+        "explanationVi": "Excludes delivery nghĩa không tính giao hàng trong giá; câu Việt giữ phạm vi địa chỉ xa. Không bao gồm là phủ định đúng của exclude, không phải lỗi đổi polarity.",
+        "proposalKey": "EDITORIAL_2H2H:exclude:not-include"
+      },
+      "kind": "HEURISTIC_SIGNAL_ONLY",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2H:exclude:not-include",
+      "queueId": "SIGNAL:EDITORIAL_2H2H:exclude:not-include",
+      "recordIdentity": {
+        "effectiveContentHash": "9bd4f5485c86ebb6ed2988b33416101fe255088b022de5d53e83555a10b5221e",
+        "proposalKey": "EDITORIAL_2H2H:exclude:not-include"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "INFORMATIONAL"
+    },
+    {
+      "action": "PRESERVE_ORIGINAL_REVIEW; REVIEW_SIGNAL_OR_REMAINING_RIGHTS_SCOPE_WITHOUT_CONTENT_REWRITE",
+      "canUseFutureVersionedDraftOverlay": false,
+      "dependency": "Source-function and taxonomy review; no canonical identity or exhaustive coverage approval.",
+      "evidence": {
+        "artifact": "review-triage.json",
+        "explanationVi": "Exclude children from activity là ngăn tham gia; không cho trong tiếng Việt đúng nghĩa. Không gộp việc cấm tham gia với chi phí không nằm trong giá.",
+        "proposalKey": "EDITORIAL_2H2H:exclude:bar-participation"
+      },
+      "kind": "HEURISTIC_SIGNAL_ONLY",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2H:exclude:bar-participation",
+      "queueId": "SIGNAL:EDITORIAL_2H2H:exclude:bar-participation",
+      "recordIdentity": {
+        "effectiveContentHash": "74cea5df4c9868c952df5610b835a6b48494c77a1432ebfd5b7525d55b6c1924",
+        "proposalKey": "EDITORIAL_2H2H:exclude:bar-participation"
+      },
+      "rightsGate": "UNKNOWN_REVIEW_REQUIRED; SEPARATE_FROM_P0_P1_P2_P3",
+      "severity": "INFORMATIONAL"
+    }
+  ],
+  "pendingCoverageKeys": [
+    "NORMALIZED_HEADWORD:accomplishment",
+    "NORMALIZED_HEADWORD:actual",
+    "NORMALIZED_HEADWORD:advise",
+    "NORMALIZED_HEADWORD:aggregate",
+    "NORMALIZED_HEADWORD:approximate",
+    "NORMALIZED_HEADWORD:author",
+    "NORMALIZED_HEADWORD:backing",
+    "NORMALIZED_HEADWORD:bizarre",
+    "NORMALIZED_HEADWORD:celebration",
+    "NORMALIZED_HEADWORD:chapter",
+    "NORMALIZED_HEADWORD:choir",
+    "NORMALIZED_HEADWORD:commentator",
+    "NORMALIZED_HEADWORD:condensed",
+    "NORMALIZED_HEADWORD:convincing",
+    "NORMALIZED_HEADWORD:culminate",
+    "NORMALIZED_HEADWORD:daisy",
+    "NORMALIZED_HEADWORD:diagnose",
+    "NORMALIZED_HEADWORD:education",
+    "NORMALIZED_HEADWORD:employer",
+    "NORMALIZED_HEADWORD:endorsement",
+    "NORMALIZED_HEADWORD:enforcement",
+    "NORMALIZED_HEADWORD:ethnic",
+    "NORMALIZED_HEADWORD:exercise",
+    "NORMALIZED_HEADWORD:fashion",
+    "NORMALIZED_HEADWORD:flag",
+    "NORMALIZED_HEADWORD:fortunate",
+    "NORMALIZED_HEADWORD:fossil",
+    "NORMALIZED_HEADWORD:from",
+    "NORMALIZED_HEADWORD:generate",
+    "NORMALIZED_HEADWORD:gold",
+    "NORMALIZED_HEADWORD:guest",
+    "NORMALIZED_HEADWORD:honour",
+    "NORMALIZED_HEADWORD:hopeful",
+    "NORMALIZED_HEADWORD:imaginary",
+    "NORMALIZED_HEADWORD:index",
+    "NORMALIZED_HEADWORD:influence",
+    "NORMALIZED_HEADWORD:initiative",
+    "NORMALIZED_HEADWORD:insight",
+    "NORMALIZED_HEADWORD:into",
+    "NORMALIZED_HEADWORD:job",
+    "NORMALIZED_HEADWORD:last",
+    "NORMALIZED_HEADWORD:law",
+    "NORMALIZED_HEADWORD:legislative",
+    "NORMALIZED_HEADWORD:licence",
+    "NORMALIZED_HEADWORD:long-time",
+    "NORMALIZED_HEADWORD:mandate",
+    "NORMALIZED_HEADWORD:matter",
+    "NORMALIZED_HEADWORD:melody",
+    "NORMALIZED_HEADWORD:mental",
+    "NORMALIZED_HEADWORD:merry",
+    "NORMALIZED_HEADWORD:omit",
+    "NORMALIZED_HEADWORD:optimistic",
+    "NORMALIZED_HEADWORD:ordeal",
+    "NORMALIZED_HEADWORD:over",
+    "NORMALIZED_HEADWORD:overcrowded",
+    "NORMALIZED_HEADWORD:overwhelm",
+    "NORMALIZED_HEADWORD:palace",
+    "NORMALIZED_HEADWORD:participation",
+    "NORMALIZED_HEADWORD:prepare",
+    "NORMALIZED_HEADWORD:primate",
+    "NORMALIZED_HEADWORD:primitive",
+    "NORMALIZED_HEADWORD:protection",
+    "NORMALIZED_HEADWORD:recycle",
+    "NORMALIZED_HEADWORD:reform",
+    "NORMALIZED_HEADWORD:responsibility",
+    "NORMALIZED_HEADWORD:river",
+    "NORMALIZED_HEADWORD:rumor",
+    "NORMALIZED_HEADWORD:sailor",
+    "NORMALIZED_HEADWORD:satisfied",
+    "NORMALIZED_HEADWORD:shelter",
+    "NORMALIZED_HEADWORD:shore",
+    "NORMALIZED_HEADWORD:so-called",
+    "NORMALIZED_HEADWORD:society",
+    "NORMALIZED_HEADWORD:soup",
+    "NORMALIZED_HEADWORD:speech",
+    "NORMALIZED_HEADWORD:subtract",
+    "NORMALIZED_HEADWORD:suffer",
+    "NORMALIZED_HEADWORD:surprised",
+    "NORMALIZED_HEADWORD:testing",
+    "NORMALIZED_HEADWORD:theatre",
+    "NORMALIZED_HEADWORD:united",
+    "NORMALIZED_HEADWORD:vary",
+    "NORMALIZED_HEADWORD:wail",
+    "NORMALIZED_HEADWORD:wardrobe",
+    "NORMALIZED_HEADWORD:warehouse",
+    "NORMALIZED_HEADWORD:waste",
+    "NORMALIZED_HEADWORD:weekly",
+    "NORMALIZED_HEADWORD:weight",
+    "NORMALIZED_HEADWORD:well-being",
+    "NORMALIZED_HEADWORD:whereby",
+    "NORMALIZED_HEADWORD:white",
+    "NORMALIZED_HEADWORD:widely",
+    "NORMALIZED_HEADWORD:willing",
+    "NORMALIZED_HEADWORD:willingness",
+    "NORMALIZED_HEADWORD:wish",
+    "NORMALIZED_HEADWORD:withdraw",
+    "NORMALIZED_HEADWORD:witness",
+    "NORMALIZED_HEADWORD:wolf",
+    "NORMALIZED_HEADWORD:tongue",
+    "NORMALIZED_HEADWORD:web",
+    "NORMALIZED_HEADWORD:chew",
+    "NORMALIZED_HEADWORD:habitual",
+    "NORMALIZED_HEADWORD:motorcycle",
+    "NORMALIZED_HEADWORD:pleasant",
+    "NORMALIZED_HEADWORD:site",
+    "NORMALIZED_HEADWORD:worldwide",
+    "NORMALIZED_HEADWORD:crowd",
+    "NORMALIZED_HEADWORD:music",
+    "NORMALIZED_HEADWORD:rupture",
+    "NORMALIZED_HEADWORD:september",
+    "NORMALIZED_HEADWORD:whenever",
+    "NORMALIZED_HEADWORD:clay",
+    "NORMALIZED_HEADWORD:engineering",
+    "NORMALIZED_HEADWORD:inadvertent",
+    "NORMALIZED_HEADWORD:nod",
+    "NORMALIZED_HEADWORD:throne",
+    "NORMALIZED_HEADWORD:width",
+    "NORMALIZED_HEADWORD:alarm",
+    "NORMALIZED_HEADWORD:forth",
+    "NORMALIZED_HEADWORD:increase",
+    "NORMALIZED_HEADWORD:return",
+    "NORMALIZED_HEADWORD:trace",
+    "NORMALIZED_HEADWORD:warming",
+    "NORMALIZED_HEADWORD:driver",
+    "NORMALIZED_HEADWORD:homogeneous",
+    "NORMALIZED_HEADWORD:indifferent",
+    "NORMALIZED_HEADWORD:radio",
+    "NORMALIZED_HEADWORD:self",
+    "NORMALIZED_HEADWORD:wooden",
+    "NORMALIZED_HEADWORD:councillor",
+    "NORMALIZED_HEADWORD:evaluate",
+    "NORMALIZED_HEADWORD:leading",
+    "NORMALIZED_HEADWORD:observation",
+    "NORMALIZED_HEADWORD:thirteen",
+    "NORMALIZED_HEADWORD:write",
+    "NORMALIZED_HEADWORD:accident",
+    "NORMALIZED_HEADWORD:federal",
+    "NORMALIZED_HEADWORD:intimidate",
+    "NORMALIZED_HEADWORD:rugby",
+    "NORMALIZED_HEADWORD:sensitive",
+    "NORMALIZED_HEADWORD:wise",
+    "NORMALIZED_HEADWORD:design",
+    "NORMALIZED_HEADWORD:happen",
+    "NORMALIZED_HEADWORD:memorable",
+    "NORMALIZED_HEADWORD:prohibit",
+    "NORMALIZED_HEADWORD:vegetarian",
+    "NORMALIZED_HEADWORD:wooded",
+    "NORMALIZED_HEADWORD:ceremony",
+    "NORMALIZED_HEADWORD:exclude",
+    "NORMALIZED_HEADWORD:leash",
+    "NORMALIZED_HEADWORD:proximity",
+    "NORMALIZED_HEADWORD:thunder",
+    "NORMALIZED_HEADWORD:wavy",
+    "NORMALIZED_HEADWORD:elastic",
+    "NORMALIZED_HEADWORD:moving",
+    "NORMALIZED_HEADWORD:postpone",
+    "NORMALIZED_HEADWORD:visit",
+    "NORMALIZED_HEADWORD:zero",
+    "NORMALIZED_HEADWORD:cold",
+    "NORMALIZED_HEADWORD:grace",
+    "NORMALIZED_HEADWORD:inferior",
+    "NORMALIZED_HEADWORD:protester",
+    "NORMALIZED_HEADWORD:skeletal",
+    "NORMALIZED_HEADWORD:willpower",
+    "NORMALIZED_HEADWORD:drum",
+    "NORMALIZED_HEADWORD:fierce",
+    "NORMALIZED_HEADWORD:largely",
+    "NORMALIZED_HEADWORD:reflection",
+    "NORMALIZED_HEADWORD:tax",
+    "NORMALIZED_HEADWORD:any",
+    "NORMALIZED_HEADWORD:grateful",
+    "NORMALIZED_HEADWORD:liquid",
+    "NORMALIZED_HEADWORD:performance",
+    "NORMALIZED_HEADWORD:strand",
+    "NORMALIZED_HEADWORD:whose",
+    "NORMALIZED_HEADWORD:awful",
+    "NORMALIZED_HEADWORD:gene",
+    "NORMALIZED_HEADWORD:introduction",
+    "NORMALIZED_HEADWORD:racist",
+    "NORMALIZED_HEADWORD:stream",
+    "NORMALIZED_HEADWORD:weakness",
+    "NORMALIZED_HEADWORD:chin",
+    "NORMALIZED_HEADWORD:grapefruit",
+    "NORMALIZED_HEADWORD:middle",
+    "NORMALIZED_HEADWORD:port",
+    "NORMALIZED_HEADWORD:tract",
+    "NORMALIZED_HEADWORD:welfare",
+    "NORMALIZED_HEADWORD:drastic",
+    "NORMALIZED_HEADWORD:frequent",
+    "NORMALIZED_HEADWORD:irrigate",
+    "NORMALIZED_HEADWORD:personalize",
+    "NORMALIZED_HEADWORD:sacrifice",
+    "NORMALIZED_HEADWORD:warn",
+    "NORMALIZED_HEADWORD:apparently",
+    "NORMALIZED_HEADWORD:human",
+    "NORMALIZED_HEADWORD:intense",
+    "NORMALIZED_HEADWORD:privilege",
+    "NORMALIZED_HEADWORD:submit",
+    "NORMALIZED_HEADWORD:workout",
+    "NORMALIZED_HEADWORD:creative",
+    "NORMALIZED_HEADWORD:fuse",
+    "NORMALIZED_HEADWORD:medication",
+    "NORMALIZED_HEADWORD:ring",
+    "NORMALIZED_HEADWORD:sceptical",
+    "NORMALIZED_HEADWORD:weigh",
+    "NORMALIZED_HEADWORD:contempt",
+    "NORMALIZED_HEADWORD:eligible",
+    "NORMALIZED_HEADWORD:inclusion",
+    "NORMALIZED_HEADWORD:regain",
+    "NORMALIZED_HEADWORD:school",
+    "NORMALIZED_HEADWORD:worth",
+    "NORMALIZED_HEADWORD:dramatic",
+    "NORMALIZED_HEADWORD:foster",
+    "NORMALIZED_HEADWORD:mission",
+    "NORMALIZED_HEADWORD:page",
+    "NORMALIZED_HEADWORD:some",
+    "NORMALIZED_HEADWORD:whether",
+    "NORMALIZED_HEADWORD:companion",
+    "NORMALIZED_HEADWORD:fundamentally",
+    "NORMALIZED_HEADWORD:inclined",
+    "NORMALIZED_HEADWORD:prison",
+    "NORMALIZED_HEADWORD:toddler",
+    "NORMALIZED_HEADWORD:wedding",
+    "NORMALIZED_HEADWORD:deforestation",
+    "NORMALIZED_HEADWORD:everything",
+    "NORMALIZED_HEADWORD:inhibit",
+    "NORMALIZED_HEADWORD:october",
+    "NORMALIZED_HEADWORD:series",
+    "NORMALIZED_HEADWORD:wreck",
+    "NORMALIZED_HEADWORD:banner",
+    "NORMALIZED_HEADWORD:fog",
+    "NORMALIZED_HEADWORD:lifelong",
+    "NORMALIZED_HEADWORD:park",
+    "NORMALIZED_HEADWORD:throw",
+    "NORMALIZED_HEADWORD:zip",
+    "NORMALIZED_HEADWORD:college",
+    "NORMALIZED_HEADWORD:extent",
+    "NORMALIZED_HEADWORD:maths",
+    "NORMALIZED_HEADWORD:reassure",
+    "NORMALIZED_HEADWORD:terrible",
+    "NORMALIZED_HEADWORD:weak",
+    "NORMALIZED_HEADWORD:disgraceful",
+    "NORMALIZED_HEADWORD:heavy",
+    "NORMALIZED_HEADWORD:mad",
+    "NORMALIZED_HEADWORD:orchestra",
+    "NORMALIZED_HEADWORD:saturated",
+    "NORMALIZED_HEADWORD:widen",
+    "NORMALIZED_HEADWORD:adapt",
+    "NORMALIZED_HEADWORD:foundation",
+    "NORMALIZED_HEADWORD:inequality",
+    "NORMALIZED_HEADWORD:obsolete",
+    "NORMALIZED_HEADWORD:totally",
+    "NORMALIZED_HEADWORD:window",
+    "NORMALIZED_HEADWORD:aisle",
+    "NORMALIZED_HEADWORD:early",
+    "NORMALIZED_HEADWORD:lake",
+    "NORMALIZED_HEADWORD:risky",
+    "NORMALIZED_HEADWORD:surrounding",
+    "NORMALIZED_HEADWORD:wealth",
+    "NORMALIZED_HEADWORD:determined",
+    "NORMALIZED_HEADWORD:gay",
+    "NORMALIZED_HEADWORD:injury",
+    "NORMALIZED_HEADWORD:penalty",
+    "NORMALIZED_HEADWORD:severe",
+    "NORMALIZED_HEADWORD:weed",
+    "NORMALIZED_HEADWORD:apprentice",
+    "NORMALIZED_HEADWORD:heating",
+    "NORMALIZED_HEADWORD:message",
+    "NORMALIZED_HEADWORD:possibility",
+    "NORMALIZED_HEADWORD:share",
+    "NORMALIZED_HEADWORD:wander",
+    "NORMALIZED_HEADWORD:cultivate",
+    "NORMALIZED_HEADWORD:format",
+    "NORMALIZED_HEADWORD:methodology",
+    "NORMALIZED_HEADWORD:network",
+    "NORMALIZED_HEADWORD:sudden",
+    "NORMALIZED_HEADWORD:warrior",
+    "NORMALIZED_HEADWORD:anybody",
+    "NORMALIZED_HEADWORD:firearm",
+    "NORMALIZED_HEADWORD:lunch",
+    "NORMALIZED_HEADWORD:proceedings",
+    "NORMALIZED_HEADWORD:spiral",
+    "NORMALIZED_HEADWORD:weekend",
+    "NORMALIZED_HEADWORD:craft",
+    "NORMALIZED_HEADWORD:electronics",
+    "NORMALIZED_HEADWORD:lord",
+    "NORMALIZED_HEADWORD:rid",
+    "NORMALIZED_HEADWORD:sunlight",
+    "NORMALIZED_HEADWORD:writing",
+    "NORMALIZED_HEADWORD:competence",
+    "NORMALIZED_HEADWORD:expected",
+    "NORMALIZED_HEADWORD:list",
+    "NORMALIZED_HEADWORD:renew",
+    "NORMALIZED_HEADWORD:skull",
+    "NORMALIZED_HEADWORD:we",
+    "NORMALIZED_HEADWORD:criminal",
+    "NORMALIZED_HEADWORD:homework",
+    "NORMALIZED_HEADWORD:mouse",
+    "NORMALIZED_HEADWORD:register",
+    "NORMALIZED_HEADWORD:seventy",
+    "NORMALIZED_HEADWORD:war",
+    "NORMALIZED_HEADWORD:appreciate",
+    "NORMALIZED_HEADWORD:gallon",
+    "NORMALIZED_HEADWORD:injure",
+    "NORMALIZED_HEADWORD:painting",
+    "NORMALIZED_HEADWORD:sink",
+    "NORMALIZED_HEADWORD:wall",
+    "NORMALIZED_HEADWORD:aspect",
+    "NORMALIZED_HEADWORD:glad",
+    "NORMALIZED_HEADWORD:key",
+    "NORMALIZED_HEADWORD:naturally",
+    "NORMALIZED_HEADWORD:stair",
+    "NORMALIZED_HEADWORD:yawn",
+    "NORMALIZED_HEADWORD:dentist",
+    "NORMALIZED_HEADWORD:faint",
+    "NORMALIZED_HEADWORD:kettle",
+    "NORMALIZED_HEADWORD:proceed",
+    "NORMALIZED_HEADWORD:thirty",
+    "NORMALIZED_HEADWORD:weather",
+    "NORMALIZED_HEADWORD:deserve",
+    "NORMALIZED_HEADWORD:habit",
+    "NORMALIZED_HEADWORD:illegal",
+    "NORMALIZED_HEADWORD:outdoor",
+    "NORMALIZED_HEADWORD:sometimes",
+    "NORMALIZED_HEADWORD:winding",
+    "NORMALIZED_HEADWORD:discharge",
+    "NORMALIZED_HEADWORD:hospitality",
+    "NORMALIZED_HEADWORD:layer",
+    "NORMALIZED_HEADWORD:rope",
+    "NORMALIZED_HEADWORD:termite",
+    "NORMALIZED_HEADWORD:yet",
+    "NORMALIZED_HEADWORD:comply",
+    "NORMALIZED_HEADWORD:high",
+    "NORMALIZED_HEADWORD:inflate",
+    "NORMALIZED_HEADWORD:prescribe",
+    "NORMALIZED_HEADWORD:unemployed",
+    "NORMALIZED_HEADWORD:west",
+    "NORMALIZED_HEADWORD:conservation",
+    "NORMALIZED_HEADWORD:folklore",
+    "NORMALIZED_HEADWORD:import",
+    "NORMALIZED_HEADWORD:necklace",
+    "NORMALIZED_HEADWORD:slip",
+    "NORMALIZED_HEADWORD:yard",
+    "NORMALIZED_HEADWORD:cotton",
+    "NORMALIZED_HEADWORD:exactly",
+    "NORMALIZED_HEADWORD:lung",
+    "NORMALIZED_HEADWORD:reportedly",
+    "NORMALIZED_HEADWORD:statute",
+    "NORMALIZED_HEADWORD:warning",
+    "NORMALIZED_HEADWORD:carriage",
+    "NORMALIZED_HEADWORD:hinder",
+    "NORMALIZED_HEADWORD:impression",
+    "NORMALIZED_HEADWORD:peel",
+    "NORMALIZED_HEADWORD:surprising",
+    "NORMALIZED_HEADWORD:wait",
+    "NORMALIZED_HEADWORD:dynamics",
+    "NORMALIZED_HEADWORD:grocery",
+    "NORMALIZED_HEADWORD:loan",
+    "NORMALIZED_HEADWORD:nevertheless",
+    "NORMALIZED_HEADWORD:seldom",
+    "NORMALIZED_HEADWORD:wide",
+    "NORMALIZED_HEADWORD:bible",
+    "NORMALIZED_HEADWORD:federation",
+    "NORMALIZED_HEADWORD:morals",
+    "NORMALIZED_HEADWORD:skillful",
+    "NORMALIZED_HEADWORD:word",
+    "NORMALIZED_HEADWORD:amazed",
+    "NORMALIZED_HEADWORD:freight",
+    "NORMALIZED_HEADWORD:logical",
+    "NORMALIZED_HEADWORD:prehistoric",
+    "NORMALIZED_HEADWORD:sew",
+    "NORMALIZED_HEADWORD:yellow",
+    "NORMALIZED_HEADWORD:double",
+    "NORMALIZED_HEADWORD:etiquette",
+    "NORMALIZED_HEADWORD:intertwine",
+    "NORMALIZED_HEADWORD:ruins",
+    "NORMALIZED_HEADWORD:sideways",
+    "NORMALIZED_HEADWORD:whilst",
+    "NORMALIZED_HEADWORD:district",
+    "NORMALIZED_HEADWORD:foresee",
+    "NORMALIZED_HEADWORD:increasingly",
+    "NORMALIZED_HEADWORD:peninsula",
+    "NORMALIZED_HEADWORD:stern",
+    "NORMALIZED_HEADWORD:wax",
+    "NORMALIZED_HEADWORD:better",
+    "NORMALIZED_HEADWORD:humid",
+    "NORMALIZED_HEADWORD:lump",
+    "NORMALIZED_HEADWORD:rust",
+    "NORMALIZED_HEADWORD:stricken",
+    "NORMALIZED_HEADWORD:youth",
+    "NORMALIZED_HEADWORD:deliberately",
+    "NORMALIZED_HEADWORD:enchant",
+    "NORMALIZED_HEADWORD:idle",
+    "NORMALIZED_HEADWORD:part-time",
+    "NORMALIZED_HEADWORD:starch",
+    "NORMALIZED_HEADWORD:yes",
+    "NORMALIZED_HEADWORD:considerably",
+    "NORMALIZED_HEADWORD:handbook",
+    "NORMALIZED_HEADWORD:lot",
+    "NORMALIZED_HEADWORD:offense",
+    "NORMALIZED_HEADWORD:turbine",
+    "NORMALIZED_HEADWORD:whatsoever",
+    "NORMALIZED_HEADWORD:all",
+    "NORMALIZED_HEADWORD:harmonize",
+    "NORMALIZED_HEADWORD:intrigue",
+    "NORMALIZED_HEADWORD:pessimistic",
+    "NORMALIZED_HEADWORD:stubborn",
+    "NORMALIZED_HEADWORD:wash",
+    "NORMALIZED_HEADWORD:down",
+    "NORMALIZED_HEADWORD:exit",
+    "NORMALIZED_HEADWORD:mist",
+    "NORMALIZED_HEADWORD:raisin",
+    "NORMALIZED_HEADWORD:ton",
+    "NORMALIZED_HEADWORD:wicked",
+    "NORMALIZED_HEADWORD:around",
+    "NORMALIZED_HEADWORD:laundry",
+    "NORMALIZED_HEADWORD:outlaw",
+    "NORMALIZED_HEADWORD:shake",
+    "NORMALIZED_HEADWORD:woman",
+    "NORMALIZED_HEADWORD:class",
+    "NORMALIZED_HEADWORD:irritate",
+    "NORMALIZED_HEADWORD:not",
+    "NORMALIZED_HEADWORD:since",
+    "NORMALIZED_HEADWORD:whatever",
+    "NORMALIZED_HEADWORD:commonly",
+    "NORMALIZED_HEADWORD:junior",
+    "NORMALIZED_HEADWORD:namely",
+    "NORMALIZED_HEADWORD:temporarily",
+    "NORMALIZED_HEADWORD:wisdom",
+    "NORMALIZED_HEADWORD:downtown",
+    "NORMALIZED_HEADWORD:highway",
+    "NORMALIZED_HEADWORD:more",
+    "NORMALIZED_HEADWORD:pedestrian",
+    "NORMALIZED_HEADWORD:somewhat",
+    "NORMALIZED_HEADWORD:wildlife",
+    "NORMALIZED_HEADWORD:dog",
+    "NORMALIZED_HEADWORD:hygiene",
+    "NORMALIZED_HEADWORD:magnet",
+    "NORMALIZED_HEADWORD:o’clock",
+    "NORMALIZED_HEADWORD:upwards",
+    "NORMALIZED_HEADWORD:will",
+    "NORMALIZED_HEADWORD:continent",
+    "NORMALIZED_HEADWORD:eat",
+    "NORMALIZED_HEADWORD:lightly",
+    "NORMALIZED_HEADWORD:potentially",
+    "NORMALIZED_HEADWORD:unfortunately",
+    "NORMALIZED_HEADWORD:win",
+    "NORMALIZED_HEADWORD:content",
+    "NORMALIZED_HEADWORD:fridge",
+    "NORMALIZED_HEADWORD:nowadays",
+    "NORMALIZED_HEADWORD:up",
+    "NORMALIZED_HEADWORD:wage",
+    "NORMALIZED_HEADWORD:carrot",
+    "NORMALIZED_HEADWORD:fast",
+    "NORMALIZED_HEADWORD:kin",
+    "NORMALIZED_HEADWORD:normally",
+    "NORMALIZED_HEADWORD:south",
+    "NORMALIZED_HEADWORD:weave",
+    "NORMALIZED_HEADWORD:cookie",
+    "NORMALIZED_HEADWORD:intermittent",
+    "NORMALIZED_HEADWORD:nearby",
+    "NORMALIZED_HEADWORD:shift",
+    "NORMALIZED_HEADWORD:withdrawal",
+    "NORMALIZED_HEADWORD:chest",
+    "NORMALIZED_HEADWORD:portion",
+    "NORMALIZED_HEADWORD:sentence",
+    "NORMALIZED_HEADWORD:worthwhile",
+    "NORMALIZED_HEADWORD:morning",
+    "NORMALIZED_HEADWORD:rock",
+    "NORMALIZED_HEADWORD:today",
+    "NORMALIZED_HEADWORD:writer",
+    "NORMALIZED_HEADWORD:kitchen",
+    "NORMALIZED_HEADWORD:principal",
+    "NORMALIZED_HEADWORD:watch",
+    "NORMALIZED_HEADWORD:might",
+    "NORMALIZED_HEADWORD:new",
+    "NORMALIZED_HEADWORD:wizard",
+    "NORMALIZED_HEADWORD:instant",
+    "NORMALIZED_HEADWORD:pound",
+    "NORMALIZED_HEADWORD:stall",
+    "NORMALIZED_HEADWORD:warp",
+    "NORMALIZED_HEADWORD:noble",
+    "NORMALIZED_HEADWORD:want"
+  ],
+  "pendingReviewKeys": [
+    "EDITORIAL_2H2H:decent:respectable",
+    "EDITORIAL_2H2H:elastic:stretch-and-return",
+    "EDITORIAL_2H2H:zero:number",
+    "EDITORIAL_2H2H:inferior:lower-rank-person",
+    "EDITORIAL_2H2H:fierce:intense",
+    "EDITORIAL_2H2H:whoever:any-person",
+    "EDITORIAL_2H2H:any:unspecified-amount",
+    "EDITORIAL_2H2H:any:free-choice",
+    "EDITORIAL_2H2H:any:one-unspecified",
+    "EDITORIAL_2H2H:any:degree",
+    "EDITORIAL_2H2H:whose:question-with-noun",
+    "EDITORIAL_2H2H:whose:question-alone",
+    "EDITORIAL_2H2H:whose:relative-possession",
+    "EDITORIAL_2H2H:introduction:bringing-into-use",
+    "EDITORIAL_2H2H:racist:discriminatory",
+    "EDITORIAL_2H2H:racist:person-with-prejudice",
+    "EDITORIAL_2H2H:warn:give-danger-notice",
+    "EDITORIAL_2H2H:apparently:reported-or-seeming",
+    "EDITORIAL_2H2H:submit:accept-authority",
+    "EDITORIAL_2H2H:fuse:burning-cord",
+    "EDITORIAL_2H2H:contempt:lack-of-respect",
+    "EDITORIAL_2H2H:contempt:court-disrespect",
+    "EDITORIAL_2H2H:worth:monetary-value",
+    "EDITORIAL_2H2H:worth:value",
+    "EDITORIAL_2H2H:worth:deserving-effort",
+    "EDITORIAL_2H2H:foster:encourage-development",
+    "EDITORIAL_2H2H:foster:temporary-child-care",
+    "EDITORIAL_2H2H:mission:important-task",
+    "EDITORIAL_2H2H:some:unspecified-amount",
+    "EDITORIAL_2H2H:some:unspecified-part",
+    "EDITORIAL_2H2H:whether:alternatives",
+    "EDITORIAL_2H2H:inclined:likely-or-willing",
+    "EDITORIAL_2H2H:deforestation:forest-removal",
+    "EDITORIAL_2H2H:everything:all-things",
+    "EDITORIAL_2H2H:october:calendar-month",
+    "EDITORIAL_2H2H:wreck:destroy-or-damage",
+    "EDITORIAL_2H2H:college:educational-institution",
+    "EDITORIAL_2H2H:mad:angry",
+    "EDITORIAL_2H2H:mad:foolish-or-unreasonable",
+    "EDITORIAL_2H2H:orchestra:instrumental-group",
+    "EDITORIAL_2H2H:foundation:funding-organisation",
+    "EDITORIAL_2H2H:inequality:unequal-treatment-or-opportunity",
+    "EDITORIAL_2H2H:obsolete:no-longer-used",
+    "EDITORIAL_2H2H:totally:completely",
+    "EDITORIAL_2H2H:aisle:passage-between-rows",
+    "EDITORIAL_2H2H:early:before-usual-time",
+    "EDITORIAL_2H2H:early:arrive-before-time",
+    "EDITORIAL_2H2H:gay:same-gender-attraction",
+    "EDITORIAL_2H2H:injury:physical-harm",
+    "EDITORIAL_2H2H:penalty:punishment",
+    "EDITORIAL_2H2H:penalty:football-kick",
+    "EDITORIAL_2H2H:severe:very-serious",
+    "EDITORIAL_2H2H:possibility:chance-or-option",
+    "EDITORIAL_2H2H:cultivate:grow-on-land",
+    "EDITORIAL_2H2H:cultivate:develop-deliberately",
+    "EDITORIAL_2H2H:methodology:system-of-methods",
+    "EDITORIAL_2H2H:network:connected-system",
+    "EDITORIAL_2H2H:network:people-with-links",
+    "EDITORIAL_2H2H:anybody:unspecified-person",
+    "EDITORIAL_2H2H:anybody:free-choice-person",
+    "EDITORIAL_2H2H:firearm:gun",
+    "EDITORIAL_2H2H:proceedings:legal-process",
+    "EDITORIAL_2H2H:proceedings:event-activities",
+    "EDITORIAL_2H2H:spiral:winding-shape",
+    "EDITORIAL_2H2H:craft:handmade-items",
+    "EDITORIAL_2H2H:craft:make-carefully",
+    "EDITORIAL_2H2H:craft:skilled-handwork",
+    "EDITORIAL_2H2H:craft:vessel",
+    "EDITORIAL_2H2H:craft:skill",
+    "EDITORIAL_2H2H:electronics:devices",
+    "EDITORIAL_2H2H:electronics:field-of-study",
+    "EDITORIAL_2H2H:lord:nobleman",
+    "EDITORIAL_2H2H:writing:handwriting",
+    "EDITORIAL_2H2H:competence:ability-to-do-well",
+    "EDITORIAL_2H2H:we:speaker-and-others",
+    "EDITORIAL_2H2H:register:enrol-or-record",
+    "EDITORIAL_2H2H:register:official-list",
+    "EDITORIAL_2H2H:war:armed-conflict",
+    "EDITORIAL_2H2H:naturally:as-expected",
+    "EDITORIAL_2H2H:layer:one-level-of-material",
+    "EDITORIAL_2H2H:rope:thick-strong-cord",
+    "EDITORIAL_2H2H:yet:up-to-now",
+    "EDITORIAL_2H2H:unemployed:without-a-job",
+    "EDITORIAL_2H2H:exactly:with-full-precision",
+    "EDITORIAL_2H2H:reportedly:according-to-reports",
+    "EDITORIAL_2H2H:carriage:railway-passenger-car",
+    "EDITORIAL_2H2H:carriage:horse-drawn-vehicle",
+    "EDITORIAL_2H2H:bible:christian-scripture",
+    "EDITORIAL_2H2H:quite:moderately",
+    "EDITORIAL_2H2H:quite:completely",
+    "EDITORIAL_2H2H:freight:transported-goods",
+    "EDITORIAL_2H2H:double:two-part",
+    "EDITORIAL_2H2H:double:twice-quantity-before-noun",
+    "EDITORIAL_2H2H:double:twice-quantity-alone",
+    "EDITORIAL_2H2H:double:become-twice",
+    "EDITORIAL_2H2H:double:pay-twice",
+    "EDITORIAL_2H2H:better:higher-quality",
+    "EDITORIAL_2H2H:better:more-effectively",
+    "EDITORIAL_2H2H:better:improvement",
+    "EDITORIAL_2H2H:humid:moist-air",
+    "EDITORIAL_2H2H:rust:iron-corrosion-material",
+    "EDITORIAL_2H2H:youth:young-period-of-life",
+    "EDITORIAL_2H2H:youth:young-person",
+    "EDITORIAL_2H2H:youth:young-people-collectively",
+    "EDITORIAL_2H2H:idle:not-active",
+    "EDITORIAL_2H2H:lot:quantity-before-noun",
+    "EDITORIAL_2H2H:lot:quantity-without-noun",
+    "EDITORIAL_2H2H:lot:degree-or-frequency",
+    "EDITORIAL_2H2H:offense:punishable-act",
+    "EDITORIAL_2H2H:offense:hurt-or-insult",
+    "EDITORIAL_2H2H:all:whole-quantity-before-noun",
+    "EDITORIAL_2H2H:all:whole-quantity-standing-alone",
+    "EDITORIAL_2H2H:all:complete-degree",
+    "EDITORIAL_2H2H:intrigue:arouse-curiosity",
+    "EDITORIAL_2H2H:stubborn:refusing-to-change",
+    "EDITORIAL_2H2H:ton:large-weight-unit",
+    "EDITORIAL_2H2H:wicked:morally-bad",
+    "EDITORIAL_2H2H:around:in-the-vicinity",
+    "EDITORIAL_2H2H:harness:put-energy-to-use",
+    "EDITORIAL_2H2H:fond:feeling-affection-or-liking",
+    "EDITORIAL_2H2H:whatever:anything-without-restriction",
+    "EDITORIAL_2H2H:fiery:full-of-strong-emotion",
+    "EDITORIAL_2H2H:downtown:central-city-area",
+    "EDITORIAL_2H2H:downtown:in-the-city-centre",
+    "EDITORIAL_2H2H:downtown:to-or-in-the-centre",
+    "EDITORIAL_2H2H:magnet:object-with-magnetic-attraction",
+    "EDITORIAL_2H2H:o’clock:exact-hour-expression",
+    "EDITORIAL_2H2H:upwards:towards-a-higher-position",
+    "EDITORIAL_2H2H:will:future-prediction",
+    "EDITORIAL_2H2H:will:present-decision-or-promise",
+    "EDITORIAL_2H2H:will:determination",
+    "EDITORIAL_2H2H:will:document-about-inheritance",
+    "EDITORIAL_2H2H:content:information-in-a-work",
+    "EDITORIAL_2H2H:content:satisfied-with-situation",
+    "EDITORIAL_2H2H:fridge:refrigerated-storage-appliance",
+    "EDITORIAL_2H2H:instrumental:important-in-achieving-result",
+    "EDITORIAL_2H2H:instrumental:music-without-vocals",
+    "EDITORIAL_2H2H:fast:moving-quickly",
+    "EDITORIAL_2H2H:fast:at-high-speed",
+    "EDITORIAL_2H2H:fast:go-without-food",
+    "EDITORIAL_2H2H:weave:interlace-material",
+    "EDITORIAL_2H2H:weave:move-in-a-winding-route",
+    "EDITORIAL_2H2H:forward:towards-the-front",
+    "EDITORIAL_2H2H:forward:at-or-towards-the-front",
+    "EDITORIAL_2H2H:intermittent:stopping-and-starting",
+    "EDITORIAL_2H2H:withdrawal:removing-from-a-situation",
+    "EDITORIAL_2H2H:withdrawal:taking-money-out",
+    "EDITORIAL_2H2H:withdrawal:effects-after-stopping-a-substance",
+    "EDITORIAL_2H2H:guilty:responsible-for-wrongdoing",
+    "EDITORIAL_2H2H:guilty:feeling-remorse",
+    "EDITORIAL_2H2H:million:one-thousand-thousand",
+    "EDITORIAL_2H2H:sentence:official-punishment",
+    "EDITORIAL_2H2H:thus:as-a-result",
+    "EDITORIAL_2H2H:thus:in-this-way",
+    "EDITORIAL_2H2H:might:uncertain-possibility",
+    "EDITORIAL_2H2H:might:great-power",
+    "EDITORIAL_2H2H:unlike:different-from",
+    "EDITORIAL_2H2H:pound:british-currency-unit",
+    "EDITORIAL_2H2H:pound:weight-unit",
+    "EDITORIAL_2H2H:pound:strike-repeatedly",
+    "EDITORIAL_2H2H:including:with-as-part-of-the-group",
+    "EDITORIAL_2H2H:therefore:logical-result"
+  ],
+  "publicationEligibility": "BLOCKED_BY_SEPARATE_CONTENT_IDENTITY_RIGHTS_GATES"
+}

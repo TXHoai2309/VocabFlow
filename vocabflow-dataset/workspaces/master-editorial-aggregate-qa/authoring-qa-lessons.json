@@ -1,0 +1,85 @@
+{
+  "escalation": {
+    "action": "Expand review to affected original batches and all remaining process-like grammar notes before remediation.",
+    "notAutomaticallyApplied": true,
+    "status": "PENDING",
+    "trigger": "Repeated process commentary found in prior authoring phases"
+  },
+  "findings": [
+    {
+      "confirmed": true,
+      "evidence": [
+        "2H2I-P001",
+        "2H2I-P002",
+        "2H2I-P003",
+        "2H2I-P004",
+        "2H2I-P005",
+        "2H2I-P006",
+        "2H2I-P007",
+        "2H2I-P008",
+        "2H2I-P009",
+        "2H2I-P010",
+        "2H2I-P011",
+        "2H2I-P012",
+        "2H2I-P013",
+        "2H2I-P014",
+        "2H2I-P015",
+        "2H2I-P016",
+        "2H2I-P017",
+        "2H2I-P018",
+        "2H2I-P019",
+        "2H2I-P020"
+      ],
+      "guidanceVi": "Để source/POS/identity uncertainty trong metadata; grammar chỉ chứa countability, inflection, complement, register, contrast thực hành.",
+      "pattern": "Implementation commentary in learner grammar"
+    },
+    {
+      "confirmed": true,
+      "evidence": [
+        "fond",
+        "forward",
+        "guilty",
+        "further",
+        "decent",
+        "including",
+        "thus",
+        "therefore"
+      ],
+      "guidanceVi": "Đọc cú pháp ví dụ và nghĩa nguồn trước tạo Sense; noun label với adjective example không chứng minh noun.",
+      "pattern": "Source POS is not automatic missing meaning"
+    },
+    {
+      "confirmed": true,
+      "evidence": [
+        "hail",
+        "instrumental"
+      ],
+      "guidanceVi": "So nghĩa và chức năng thực tế; một verb thời tiết không thay noun chất mưa đá, adjective instrumental không thay noun bản nhạc.",
+      "pattern": "Same spelling across noun/verb boundaries"
+    },
+    {
+      "confirmed": true,
+      "evidence": [
+        "EDITORIAL_2H2H:law:rule",
+        "EDITORIAL_2H2H:participation:taking-part",
+        "EDITORIAL_2H2H:matter:be-important",
+        "EDITORIAL_2H2H:education:learning-process",
+        "EDITORIAL_2H2H:over:across",
+        "EDITORIAL_2H2H:society:community-system",
+        "EDITORIAL_2H2H:speech:speaking",
+        "EDITORIAL_2H2H:well-being:health-comfort",
+        "EDITORIAL_2H2H:advise:recommend",
+        "EDITORIAL_2H2H:mental:mind-related",
+        "EDITORIAL_2H2H:warming:getting-warmer",
+        "EDITORIAL_2H2H:indifferent:uninterested",
+        "EDITORIAL_2H2H:exclude:not-include",
+        "EDITORIAL_2H2H:exclude:bar-participation"
+      ],
+      "guidanceVi": "Kiểm tra ngữ cảnh từng câu; không quan tâm dịch indifferent đúng, exclude cần phủ định. N-gram match không tự chứng minh sao chép hay quyền.",
+      "pattern": "Heuristic polarity and similarity"
+    }
+  ],
+  "phase": "2H.2I",
+  "samplingLimitation": "Purposive sample, not unbiased prevalence estimate; no claim that uninspected PASS or remaining REVIEW are correct.",
+  "status": "PARTIAL_EVIDENCE_BASED_GUIDANCE"
+}

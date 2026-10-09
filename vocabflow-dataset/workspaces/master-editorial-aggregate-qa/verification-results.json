@@ -1,0 +1,466 @@
+{
+  "acceptedPinnedFiles": 6896,
+  "aggregateFingerprint": "3d29083983cf033b4463d33c7a8ea3bd9337c209e0a5f236167c116a0852b5ce",
+  "allAcceptedFilesByteIdentical": true,
+  "auditStatus": "PARTIAL",
+  "authorization": {
+    "canonicalIdsAllocated": 0,
+    "contentStatus": "DRAFT",
+    "correctionProposalsApplied": 0,
+    "databaseAccess": "NONE",
+    "databaseWrites": "NONE",
+    "legacyModified": false,
+    "masterReleaseChanged": false,
+    "ownerApprovalsAdded": 0,
+    "production": "UNTOUCHED",
+    "rights": "UNKNOWN_REVIEW_REQUIRED",
+    "rightsClearanceAdded": 0,
+    "scopedGitPublicationAuthorized": true
+  },
+  "counts": {
+    "additionalBoundaryProposals": 5,
+    "cohortGroupsContentInspected": 91,
+    "cohortGroupsIndexed": 500,
+    "cohortSensesContentInspected": 107,
+    "cohortSensesIndexed": 750,
+    "confirmedContentDefects": 20,
+    "confirmedGrammarSyntaxDefects": 0,
+    "confirmedMissingMeaningGroups": 5,
+    "confirmedTranslationDefects": 0,
+    "corpusGroupsIndexed": 1020,
+    "corpusSensesIndexed": 1563,
+    "correctionProposalsCreated": 20,
+    "coverageGroupsAssessed": 17,
+    "coverageGroupsPending": 483,
+    "coverageUnknownGroupsAssessed": 0,
+    "coverageWarningGroups": 126,
+    "coverageWarningGroupsPending": 109,
+    "heuristicOnlyFindings": 14,
+    "identityPosUncertaintiesInTriagedReviews": 5,
+    "noStructuredOrdinalMetadataGroups": 111,
+    "originalReviewRecords": 187,
+    "passCalibrationDefectsFound": 2,
+    "passCalibrationSampleSize": 60,
+    "possibleMissingMeaningGroups": 1,
+    "priorCorpusSampleSize": 20,
+    "priorSampleDefectsFound": 16,
+    "queueCounts": {
+      "P0": 0,
+      "P1": 5,
+      "P2": 15,
+      "P3": 38
+    },
+    "reviewRecordsPending": 162,
+    "reviewRecordsTriaged": 25,
+    "rightsClearanceViolationsConfirmed": 0,
+    "rightsPendingCorpusRecords": 1563,
+    "sourcePosConflictGroups": 11
+  },
+  "directChecks": {
+    "canonicalLimitation": "Documented wrapper limitation is not claimed fixed by direct Node checks.",
+    "canonicalPnpmWrapper": "NOT_RUN",
+    "frozenRelease": {
+      "command": [
+        "D:/hoctienganh/.tools/node-v22.23.2-win-x64/node.exe",
+        "node_modules/tsx/dist/cli.mjs",
+        "scripts/hybrid-100-runtime-eligible-patch-release.ts",
+        "--check"
+      ],
+      "exitCode": 0,
+      "seconds": 11.43,
+      "status": "PASS"
+    },
+    "lint": {
+      "command": [
+        "D:/hoctienganh/.tools/node-v22.23.2-win-x64/node.exe",
+        "node_modules/eslint/bin/eslint.js",
+        ".",
+        "--max-warnings=0"
+      ],
+      "exitCode": 0,
+      "seconds": 46.35,
+      "status": "PASS"
+    },
+    "nodeVersion": "v22.23.2",
+    "typecheck": {
+      "command": [
+        "D:/hoctienganh/.tools/node-v22.23.2-win-x64/node.exe",
+        "node_modules/typescript/bin/tsc",
+        "-b"
+      ],
+      "exitCode": 0,
+      "seconds": 24.81,
+      "status": "PASS"
+    }
+  },
+  "earlierAttempts": [
+    {
+      "explanation": "Checkpoint-02 command exited 0 but the before/after snapshot overlapped creation of new aggregate audit artifacts. Initial zero-write result was false and was not accepted. All eight replay commands were rerun in a stable interval; previous 6896 accepted files remained byte-identical.",
+      "kind": "baseline measurement",
+      "result": "INVALID_INTERVAL"
+    },
+    {
+      "explanation": "One test detected a calibration result enum mismatch in the new counting helper: MINOR_CONTENT_HYGIENE vs persisted MINOR_CONTENT_HYGIENE_DEFECT. Fixed helper, without changing linguistic judgments; all 31 final tests passed.",
+      "kind": "initial focused tests",
+      "result": "FAIL_THEN_FIXED"
+    }
+  ],
+  "externalLogs": "D:\\hoctienganh\\phase-2h2i-safety",
+  "failed": 0,
+  "frozenRelease": {
+    "lexemes": 87,
+    "releaseHash": "44874b11d1fdef76a515f6285d04c9a417318daa6969e112608a59e7c232613c",
+    "releaseTreeFingerprint": "51ab4c5ce31bd38b51742d1aea16602150522da27ad26c123cc17b332f9a406e",
+    "senses": 100,
+    "status": "NOOP_ALREADY_MATERIALIZED_AND_FROZEN",
+    "writesPerformed": false
+  },
+  "offlineReplays": [
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h2h-bulk-500.py",
+        "--check"
+      ],
+      "exitCode": 0,
+      "filesCompared": 6922,
+      "hashSeed": "20261011",
+      "name": "original",
+      "seconds": 49.15,
+      "zeroWrites": true
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h2h-bulk-500-resume.py",
+        "--checkpoint",
+        "2",
+        "--check"
+      ],
+      "exitCode": 0,
+      "filesCompared": 6922,
+      "hashSeed": "20261011",
+      "name": "cp02",
+      "seconds": 64.34,
+      "zeroWrites": true
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h2h-bulk-500-resume.py",
+        "--checkpoint",
+        "3",
+        "--check"
+      ],
+      "exitCode": 0,
+      "filesCompared": 6922,
+      "hashSeed": "20261011",
+      "name": "cp03",
+      "seconds": 62.05,
+      "zeroWrites": true
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h2h-checkpoint-03-handoff.py",
+        "--check"
+      ],
+      "exitCode": 0,
+      "filesCompared": 6922,
+      "hashSeed": "20261011",
+      "name": "cp03-handoff",
+      "seconds": 66.95,
+      "zeroWrites": true
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h2h-bulk-500-resume.py",
+        "--checkpoint",
+        "4",
+        "--check"
+      ],
+      "exitCode": 0,
+      "filesCompared": 6922,
+      "hashSeed": "20261011",
+      "name": "cp04",
+      "seconds": 56.58,
+      "zeroWrites": true
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h2h-checkpoint-04-handoff.py",
+        "--check"
+      ],
+      "exitCode": 0,
+      "filesCompared": 6922,
+      "hashSeed": "20261011",
+      "name": "cp04-handoff",
+      "seconds": 160.87,
+      "zeroWrites": true
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h2h-bulk-500-resume.py",
+        "--checkpoint",
+        "5",
+        "--check"
+      ],
+      "exitCode": 0,
+      "filesCompared": 6922,
+      "hashSeed": "20261011",
+      "name": "cp05",
+      "seconds": 55.52,
+      "zeroWrites": true
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h2h-checkpoint-05-handoff.py",
+        "--check"
+      ],
+      "exitCode": 0,
+      "filesCompared": 6922,
+      "hashSeed": "20261011",
+      "name": "cp05-handoff",
+      "seconds": 55.77,
+      "zeroWrites": true
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h2i-aggregate-qa.py",
+        "--check"
+      ],
+      "exitCode": 0,
+      "filesCompared": 6922,
+      "fingerprint": "3d29083983cf033b4463d33c7a8ea3bd9337c209e0a5f236167c116a0852b5ce",
+      "hashSeed": "20261011",
+      "name": "aggregate",
+      "seconds": 5.21,
+      "zeroWrites": true
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h2i-aggregate-qa.py",
+        "--check"
+      ],
+      "exitCode": 0,
+      "filesCompared": 6922,
+      "fingerprint": "3d29083983cf033b4463d33c7a8ea3bd9337c209e0a5f236167c116a0852b5ce",
+      "hashSeed": "20261012",
+      "name": "aggregate",
+      "seconds": 5.17,
+      "zeroWrites": true
+    }
+  ],
+  "phase": "2H.2I",
+  "remoteParent": "a8015440d41ca4c33c43dbc723fd400e4fc6e8f0",
+  "skipped": 0,
+  "tests": [
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h1-source-inventory-test.py"
+      ],
+      "exitCode": 0,
+      "log": "D:\\hoctienganh\\phase-2h2i-safety\\phase-2h1-source-inventory-test.py.log",
+      "seconds": 19.5,
+      "skipped": false,
+      "tests": 13
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h2a-master-expansion-test.py"
+      ],
+      "exitCode": 0,
+      "log": "D:\\hoctienganh\\phase-2h2i-safety\\phase-2h2a-master-expansion-test.py.log",
+      "seconds": 19.33,
+      "skipped": false,
+      "tests": 21
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h2b-editorial-draft-test.py"
+      ],
+      "exitCode": 0,
+      "log": "D:\\hoctienganh\\phase-2h2i-safety\\phase-2h2b-editorial-draft-test.py.log",
+      "seconds": 43.52,
+      "skipped": false,
+      "tests": 23
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h2b-qa1-corrections-test.py"
+      ],
+      "exitCode": 0,
+      "log": "D:\\hoctienganh\\phase-2h2i-safety\\phase-2h2b-qa1-corrections-test.py.log",
+      "seconds": 15.38,
+      "skipped": false,
+      "tests": 19
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h2c-stratified-editorial-test.py"
+      ],
+      "exitCode": 0,
+      "log": "D:\\hoctienganh\\phase-2h2i-safety\\phase-2h2c-stratified-editorial-test.py.log",
+      "seconds": 64.41,
+      "skipped": false,
+      "tests": 35
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h2d-bulk-editorial-test.py"
+      ],
+      "exitCode": 0,
+      "log": "D:\\hoctienganh\\phase-2h2i-safety\\phase-2h2d-bulk-editorial-test.py.log",
+      "seconds": 43.26,
+      "skipped": false,
+      "tests": 41
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h2e-approval-gate-test.py"
+      ],
+      "exitCode": 0,
+      "log": "D:\\hoctienganh\\phase-2h2i-safety\\phase-2h2e-approval-gate-test.py.log",
+      "seconds": 30.83,
+      "skipped": false,
+      "tests": 71
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h2f-owner-session-test.py"
+      ],
+      "exitCode": 0,
+      "log": "D:\\hoctienganh\\phase-2h2i-safety\\phase-2h2f-owner-session-test.py.log",
+      "seconds": 46.38,
+      "skipped": false,
+      "tests": 35
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h2g-draft-v2-test.py"
+      ],
+      "exitCode": 0,
+      "log": "D:\\hoctienganh\\phase-2h2i-safety\\phase-2h2g-draft-v2-test.py.log",
+      "seconds": 32.73,
+      "skipped": false,
+      "tests": 29
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h2h-bulk-500-test.py"
+      ],
+      "exitCode": 0,
+      "log": "D:\\hoctienganh\\phase-2h2i-safety\\phase-2h2h-bulk-500-test.py.log",
+      "seconds": 115.28,
+      "skipped": false,
+      "tests": 48
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h2h-bulk-500-resume-test.py"
+      ],
+      "exitCode": 0,
+      "log": "D:\\hoctienganh\\phase-2h2i-safety\\phase-2h2h-bulk-500-resume-test.py.log",
+      "seconds": 72.1,
+      "skipped": false,
+      "tests": 35
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h2h-checkpoint-03-test.py"
+      ],
+      "exitCode": 0,
+      "log": "D:\\hoctienganh\\phase-2h2i-safety\\phase-2h2h-checkpoint-03-test.py.log",
+      "seconds": 72.73,
+      "skipped": false,
+      "tests": 33
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h2h-checkpoint-04-test.py"
+      ],
+      "exitCode": 0,
+      "log": "D:\\hoctienganh\\phase-2h2i-safety\\phase-2h2h-checkpoint-04-test.py.log",
+      "seconds": 63.84,
+      "skipped": false,
+      "tests": 28
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h2h-checkpoint-05-test.py"
+      ],
+      "exitCode": 0,
+      "log": "D:\\hoctienganh\\phase-2h2i-safety\\phase-2h2h-checkpoint-05-test.py.log",
+      "seconds": 56.6,
+      "skipped": false,
+      "tests": 32
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h2i-aggregate-qa-test.py"
+      ],
+      "exitCode": 0,
+      "log": "D:\\hoctienganh\\phase-2h2i-safety\\phase-2h2i-aggregate-qa-test.py.log",
+      "seconds": 13.3,
+      "skipped": false,
+      "tests": 31
+    }
+  ],
+  "totalTests": 494,
+  "verificationProvenance": "External commands actually executed in this run; deterministic assembly does not execute these commands or treat old docs as test evidence.",
+  "verificationStatus": "PASS",
+  "worktreeSafety": {
+    "allOtherWorktreeHeadsUnchanged": true,
+    "existingBackupsDeleted": false,
+    "newBranchOrWorktree": false,
+    "stashesPreserved": 7,
+    "us55Touched": false,
+    "worktreesPreserved": 12
+  }
+}
