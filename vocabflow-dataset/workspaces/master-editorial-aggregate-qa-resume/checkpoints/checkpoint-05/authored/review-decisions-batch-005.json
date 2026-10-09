@@ -1,0 +1,1229 @@
+{
+  "parentFingerprint": "524b064666d9538cb9774bd50f4a2bd63e82505e8f2a82232a4b59f4baf6724b",
+  "records": [
+    {
+      "categories": [
+        "SOURCE_ORIGINALITY_UNCERTAIN"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "b433b0569f93d74bd37a57b57374923e52c7a9421bff5c267517d04365709ed9",
+      "explanationVi": "Nội dung “whatever remains” diễn đạt phần còn lại, còn ví dụ về whatever + danh từ và đại từ độc lập được phân biệt rõ. Tín hiệu trùng cụm trong meaningVi chỉ là heuristic, không chứng minh sao chép hay lỗi nghĩa.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 145,
+      "nextActionVi": "Giữ nguyên DRAFT và REVIEW lịch sử; chỉ đánh giá provenance bằng quy trình riêng nếu cần, không đổi identity từ tín hiệu similarity.",
+      "ownerApproval": false,
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2H:whatever:anything-without-restriction",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "UNRESOLVED_ORIGINALITY_REVIEW",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "08bd99f7c4f8decc683f54cd78f50728341c3f3d915d135bd89be674eae25d3c",
+      "explanationVi": "Định nghĩa và ví dụ hiện tại mô tả nghĩa cảm xúc của fiery nhất quán; evidence 4600 nêu nghĩa literal “đang cháy”, hiện chưa có trong Sense này. Phạm vi nghĩa chưa thể xem là đầy đủ.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 146,
+      "nextActionVi": "Giữ nghĩa cảm xúc riêng; đối chiếu chính xác source literal trong một lượt coverage riêng và xin quyết định biên tập/owner trước khi thêm Sense.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "proposalKey": "EDITORIAL_2H2H:fiery:full-of-strong-emotion",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "POTENTIAL_UNASSESSED_SOURCE_BOUNDARY",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "a8ce23ea2438a8930406f6b806fede518bbd849d99dd07165600832b40f74f6d",
+      "explanationVi": "Nghĩa danh từ “khu trung tâm” cùng trạng thái thường không đếm được là phù hợp; ví dụ phố và nhà hát đặt đúng khu vực downtown. POS/cấu trúc khu vực Bắc Mỹ chưa được owner chốt thành identity.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 147,
+      "nextActionVi": "Giữ draft NOUN và nhãn REVIEW; chuyển ba cách dùng downtown sang quyết định taxonomy/identity riêng, không hợp nhất theo headword.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "proposalKey": "EDITORIAL_2H2H:downtown:central-city-area",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "OWNER_IDENTITY_REVIEW",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "9fb6029964770b59fbe4aae7cd1e00e5d4b413fffb430bf4177e1e8c1b6ce487",
+      "explanationVi": "“Downtown hotel” minh họa đúng tính từ đứng trước danh từ và thông tin vùng Bắc Mỹ được giới hạn rõ. Sự cùng headword với danh từ và trạng từ không xác lập canonical Sense.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 148,
+      "nextActionVi": "Giữ draft ADJECTIVE; yêu cầu quyết định owner về phân loại các cấu trúc regional trước mọi liên kết identity.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "proposalKey": "EDITORIAL_2H2H:downtown:in-the-city-centre",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "OWNER_IDENTITY_REVIEW",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "e2514bbbcaffba8a099d38dc440bad33fb287b3950d42fb408872584728c8ca5",
+      "explanationVi": "Ví dụ “went downtown” tự nhiên cho trạng từ chỉ đích/hướng; ghi chú nêu chính xác việc không dùng giới từ trong cấu trúc này. Quan hệ taxonomy với downtown NOUN/ADJECTIVE còn cần quyết định riêng.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 149,
+      "nextActionVi": "Giữ draft ADVERB và regional qualifier; không gộp ba POS chỉ vì chung dạng chữ.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "proposalKey": "EDITORIAL_2H2H:downtown:to-or-in-the-centre",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "OWNER_IDENTITY_REVIEW",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "NO_SUBSTANTIVE_CONTENT_DEFECT_FOUND_BY_AI"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "5a241c79621cde9f389346adb800e773d521d9d8fb96af3fe37a777fc6cc290a",
+      "explanationVi": "Định nghĩa giới hạn nam châm ở các vật liệu nhất định như sắt; ví dụ giấy được giữ trên cửa tủ lạnh phù hợp. Ghi chú chủ động tránh khẳng định sai rằng nam châm hút mọi kim loại.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 150,
+      "nextActionVi": "Giữ nội dung hiện tại; không có thay đổi trường người học nào được chứng minh trong lần rà soát này.",
+      "ownerApproval": false,
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2H:magnet:object-with-magnetic-attraction",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "HEURISTIC_ONLY",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "NO_SUBSTANTIVE_CONTENT_DEFECT_FOUND_BY_AI"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "6d81ee06a84ba353ea83ea1e61fe348d742a4eb3d1f29a36d91bc985ff63cf2b",
+      "explanationVi": "Giải thích o’clock cho giờ tròn và ví dụ nine o’clock khớp; cách viết apostrophe thẳng trong câu ví dụ là biến thể trình bày của apostrophe cong ở key. Form/canonical lexical identity vẫn tách khỏi đánh giá nội dung.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 151,
+      "nextActionVi": "Giữ meaning, example và grammar note; nếu có chuẩn hóa display form sau này, xử lý theo quyết định form riêng.",
+      "ownerApproval": false,
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2H:o’clock:exact-hour-expression",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "INFORMATIONAL",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "NO_SUBSTANTIVE_CONTENT_DEFECT_FOUND_BY_AI"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "e04427f23deee37288ca79c8e25400b02056259121873c9a34bef1882e213854",
+      "explanationVi": "“Upwards” nêu hướng lên cao, không phải nghĩa cận dưới số; ví dụ đèn lồng được gió nóng đưa lên dịch đúng. Phân biệt Anh-Anh/Anh-Mỹ được trình bày như xu hướng, không tuyệt đối hóa.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 152,
+      "nextActionVi": "Giữ DRAFT; tín hiệu polarity đơn lẻ không cần sửa nội dung.",
+      "ownerApproval": false,
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2H:upwards:towards-a-higher-position",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "HEURISTIC_ONLY",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "ec65141a452229720519464218f48a8956e77fe1143730890c5ec615a79004e3",
+      "explanationVi": "Will trong ví dụ là trợ động từ modal theo sau bởi base verb; ghi chú không gán biến tố động từ thường. Cách dùng dự đoán không đủ căn cứ để hợp nhất identity với lời hứa hoặc hai danh từ will.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 153,
+      "nextActionVi": "Giữ từng POS/cách dùng riêng ở trạng thái DRAFT; chuyển identity giữa các cấu trúc sang owner review.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "proposalKey": "EDITORIAL_2H2H:will:future-prediction",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "LEXICAL_IDENTITY_REVIEW",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "ab4c22b3f859c4798b6d589d9e5807bc4518e1a601e41fac01d281b84a610558",
+      "explanationVi": "Ví dụ I will return biểu đạt cam kết/hành động người nói dự định; ghi chú đúng cấu trúc modal + base verb. Nó khác chức năng dự đoán nhưng không tự xác lập canonical Sense riêng.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 154,
+      "nextActionVi": "Giữ draft và nghĩa promise/decision; không tạo identity hoặc inflection cho modal.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "proposalKey": "EDITORIAL_2H2H:will:present-decision-or-promise",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "LEXICAL_IDENTITY_REVIEW",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "02d5e88c0129e47c3ab97f09aaec5ca3643b87410eec62c85d2797dec4b040ea",
+      "explanationVi": "Will mang nghĩa ý chí và kết hợp tự nhiên với will to finish; dùng uncountable là phù hợp. Cùng headword với modal và danh từ di chúc không chứng minh identity chung.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 155,
+      "nextActionVi": "Giữ NOUN này riêng; yêu cầu quyết định identity có thẩm quyền trước liên kết với các Sense will khác.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "proposalKey": "EDITORIAL_2H2H:will:determination",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "LEXICAL_IDENTITY_REVIEW",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "937bd3214ce27e6df9e36650a2319d6bf116b0b5281825d19821c1ec3dd84e2b",
+      "explanationVi": "Định nghĩa di chúc và cụm in his will trong truyện khớp; ghi chú không khẳng định hiệu lực pháp lý. Cấu trúc danh từ này khác modal và “ý chí”, nhưng canonical identity vẫn chưa được duyệt.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 156,
+      "nextActionVi": "Giữ DRAFT và giới hạn pháp lý hiện có; không coi nội dung ví dụ là đánh giá một di chúc thật.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "proposalKey": "EDITORIAL_2H2H:will:document-about-inheritance",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "LEXICAL_IDENTITY_REVIEW",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "3fb377b78e99503b47a1dc90bf94621bda3d7f67fa103bb1b8207db8828c2b75",
+      "explanationVi": "Content là danh từ về thông tin/vật liệu trong tác phẩm; câu biên tập booklet minh họa đúng. Lịch sử nêu khác biệt stress và POS với adjective content, nên không đồng nhất bằng spelling.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 157,
+      "nextActionVi": "Giữ noun/adjective tách biệt; để owner quyết định identity/canonical grouping.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "proposalKey": "EDITORIAL_2H2H:content:information-in-a-work",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "LEXICAL_IDENTITY_REVIEW",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "663c0e6cbc728f8561e8ca2df3dc3c0a5f2828193d98d885cd7bf9ea4087d58c",
+      "explanationVi": "Adjective content with a quiet evening diễn đạt hài lòng với tình huống; frame content with và stress được ghi đúng. Khác nghĩa/POS với danh từ content, không suy ra cùng identity từ chữ viết.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 158,
+      "nextActionVi": "Giữ draft ADJECTIVE riêng khỏi noun; unresolved identity vẫn cần owner review.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "proposalKey": "EDITORIAL_2H2H:content:satisfied-with-situation",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "LEXICAL_IDENTITY_REVIEW",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "SOURCE_ORIGINALITY_UNCERTAIN"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "d27bc94dc3fc49a427b2a1e709e1b3896f20a43ee81c072aa4a068b1bad15a23",
+      "explanationVi": "Fridge là danh từ đếm được chỉ thiết bị giữ lạnh; trình tự chờ súp nguội rồi cất vào tủ lạnh hợp lý. Gần trùng với refrigerator là quan hệ rút gọn từ vựng, không phải lỗi nội dung hay bằng chứng cần merge.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 159,
+      "nextActionVi": "Giữ lemma fridge và freezer contrast; không gộp/xóa do near-duplicate signal.",
+      "ownerApproval": false,
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2H:fridge:refrigerated-storage-appliance",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "HEURISTIC_ONLY",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "8b6babdd55828875d46af696442947a2c374b84467534de347a0831fd16f87d3",
+      "explanationVi": "Instrumental in starting mô tả vai trò then chốt; nghĩa adjective âm nhạc “không lời” cũng được giữ riêng. Historical review còn ghi nhận source-supported NOUN “a piece of music” chưa được đại diện.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 160,
+      "nextActionVi": "Giữ hai adjective hiện tại; chuyển source noun chưa đại diện vào lượt coverage riêng trước mọi quyết định bổ sung.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "proposalKey": "EDITORIAL_2H2H:instrumental:important-in-achieving-result",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "POTENTIAL_UNASSESSED_SOURCE_BOUNDARY",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "bb8f51a55bf1687e2f4577f717e89126b84821d8cfd3179317c5b8e045728a72",
+      "explanationVi": "Instrumental version là adjective về nhạc cụ/không lời và dịch phù hợp. Historical review ghi nhận danh từ chỉ một tác phẩm nhạc cụ riêng chưa được đại diện; tín hiệu polarity không biến thành lỗi hiện tại.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 161,
+      "nextActionVi": "Giữ draft ADJECTIVE; xác minh source boundary NOUN trong coverage review và xin phê duyệt trước khi thêm.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "proposalKey": "EDITORIAL_2H2H:instrumental:music-without-vocals",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "POTENTIAL_UNASSESSED_SOURCE_BOUNDARY",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "9ea048c84c8c655ccde71c78caeb8525b92fafecb949565218cd8aed7a54f076",
+      "explanationVi": "Fast adjective chỉ tốc độ chuyển động/sự kiện; train chạy qua ga minh họa đúng. Dạng adjective không dùng fastly như ghi chú; nghĩa động từ nhịn ăn thuộc cấu trúc khác.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 162,
+      "nextActionVi": "Giữ adjective riêng; giữ các POS sibling tách biệt tới khi có quyết định identity.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "proposalKey": "EDITORIAL_2H2H:fast:moving-quickly",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "LEXICAL_IDENTITY_REVIEW",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "1f75f3b7270d45c87346cf6c7b7ff14eacb6ed4ed88e6112f8eb914e1134988f",
+      "explanationVi": "Fast ở vai trò trạng từ bổ nghĩa flowed và bản dịch “chảy nhanh” đúng. Cùng hình thức với adjective là flat adverb, không phải lỗi thiếu fastly hay identity tự động.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 163,
+      "nextActionVi": "Giữ trạng từ và ví dụ; không chuẩn hóa thành fastly.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "proposalKey": "EDITORIAL_2H2H:fast:at-high-speed",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "LEXICAL_IDENTITY_REVIEW",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "3e6d57778f4f965b6c271c222436657cbaff29a99e9650ce0ee8b28fc3893164",
+      "explanationVi": "Động từ fast mô tả kiêng ăn có chủ đích trong bối cảnh nhân vật hư cấu; ví dụ không khuyên thực hành. Khác nghĩa và POS với fast tốc độ.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 164,
+      "nextActionVi": "Giữ wording mô tả và không biến thành hướng dẫn sức khỏe; identity giữa các POS cần quyết định riêng.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "proposalKey": "EDITORIAL_2H2H:fast:go-without-food",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "LEXICAL_IDENTITY_REVIEW",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "NO_SUBSTANTIVE_CONTENT_DEFECT_FOUND_BY_AI"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "80c28eb4fb70d9d2e72acf750b5b60cbec241fd37aa25bfda9f2d3ea1ca43ef8",
+      "explanationVi": "Định nghĩa dệt/đan và ví dụ giỏ từ nan tre khớp nhau; grammar note phân biệt wove/woven cho tạo tác với weaved cho chuyển động. Nguồn local hỗ trợ hai nghĩa nhưng chưa xác minh độc lập biến thể động từ chuyển động.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 165,
+      "nextActionVi": "Giữ nguyên draft; yêu cầu corroboration từ nguồn ngôn ngữ được phép trước khi khẳng định mạnh hơn về conjugation.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "proposalKey": "EDITORIAL_2H2H:weave:interlace-material",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "UNRESOLVED_ORIGINALITY_REVIEW",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "NO_SUBSTANTIVE_CONTENT_DEFECT_FOUND_BY_AI"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "736fdd1ceb64499f6c210b7bdb008fd012fef070846490d7b350d17a265402f0",
+      "explanationVi": "Weaved between the cones là chuyển động luồn lách và bản dịch Việt khớp; grammar note phân biệt mẫu này với wove khi dệt vật liệu. Bằng chứng local chưa tự giải quyết lựa chọn biến tố.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 166,
+      "nextActionVi": "Giữ nghĩa, ví dụ và REVIEW; kiểm chứng lexical form ở bước riêng trước khi xuất bản, không sửa theo cảm tính.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "proposalKey": "EDITORIAL_2H2H:weave:move-in-a-winding-route",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "UNRESOLVED_ORIGINALITY_REVIEW",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "SOURCE_POS_CONFLICT"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "ab759a7af732fe1def73dc9525138c1c59684a808c43a059cfc94e81ff2aacca",
+      "explanationVi": "Step forward là trạng từ chỉ hướng, grammar note forward/forwards có giới hạn vùng hợp lý. Evidence 4600 gắn nhãn PREPOSITION nhưng ví dụ nguồn là trạng từ; giữ nguyên POS draft, không tạo Sense mới từ nhãn lỗi.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 167,
+      "nextActionVi": "Yêu cầu đối soát source POS/raw example trong quy trình editorial riêng; không chuyển canonical POS dựa riêng vào metadata xung đột.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "proposalKey": "EDITORIAL_2H2H:forward:towards-the-front",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "SOURCE_METADATA_CONFLICT",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "SOURCE_POS_CONFLICT"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "fda073d9920049eef8cc6518dd2a588a44a88ee02d4de58f10b9d4fb2bb6882f",
+      "explanationVi": "Forward section minh họa tính từ vị trí trước danh từ; ghi chú giới hạn interpersonal boldness khỏi Sense này. Source 4600 có nhãn PREPOSITION không khớp các cấu trúc hướng trong bộ ví dụ liên quan.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 168,
+      "nextActionVi": "Giữ draft ADJECTIVE; yêu cầu giải quyết metadata/source construction trước mọi taxonomy hoặc mapping.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "proposalKey": "EDITORIAL_2H2H:forward:at-or-towards-the-front",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "SOURCE_METADATA_CONFLICT",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "NO_SUBSTANTIVE_CONTENT_DEFECT_FOUND_BY_AI"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "f5bd797d5ac6842233555513ba78e685d9d48715e1e54a2aa29375a33d737f4a",
+      "explanationVi": "Intermittent rain và bản dịch “mưa lúc có lúc không” nêu đúng sự xuất hiện có quãng ngắt; trạng từ intermittently là ghi chú hữu ích. Polarity signal không chỉ ra lỗi ở nội dung này.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 169,
+      "nextActionVi": "Giữ nguyên DRAFT; không cần sửa trường theo heuristic.",
+      "ownerApproval": false,
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2H:intermittent:stopping-and-starting",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "HEURISTIC_ONLY",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "d499aca08c245d880b654eb3d879b7c25df66d22152254e206991f56ff4dcd50",
+      "explanationVi": "Withdrawal from the contest mô tả rút khỏi hoạt động; ví dụ đội thi rời cuộc thi không hàm ý hậu quả pháp lý. Đây là một cấu trúc danh từ khác rút tiền và triệu chứng sau khi ngừng chất.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 170,
+      "nextActionVi": "Giữ ba ứng viên withdrawal riêng ở DRAFT; yêu cầu owner quyết định identity/coverage nếu cần.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "proposalKey": "EDITORIAL_2H2H:withdrawal:removing-from-a-situation",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "LEXICAL_IDENTITY_REVIEW",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "b9363a7e77ef5bdeb46797c92abc1bb35dca325c99d4e361bba6fbffc0dc92d7",
+      "explanationVi": "Withdrawal trên account record là khoản rút tiền; cụm make a withdrawal/cash withdrawal đúng cách dùng. Không gộp với việc rời hoạt động hay nghĩa sức khỏe chỉ do chung headword.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 171,
+      "nextActionVi": "Giữ ví dụ mô tả tài khoản và không suy ra sản phẩm tài chính cụ thể; xử lý identity riêng.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "proposalKey": "EDITORIAL_2H2H:withdrawal:taking-money-out",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "LEXICAL_IDENTITY_REVIEW",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "930ab8a12f1c9cba8419f44fadc611a2c513c18babb0c1e61c9f1cd2c3553f22",
+      "explanationVi": "Withdrawal symptoms được mô tả trong một tiểu thuyết; note nói tên hiện tượng, không hướng dẫn điều trị. Dùng uncountable trong nghĩa này là tự nhiên và cần giữ ranh giới y tế.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 172,
+      "nextActionVi": "Giữ câu mô tả không chẩn đoán/khuyến nghị; xin quyết định owner cho boundary/rights trước mọi phát hành.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "proposalKey": "EDITORIAL_2H2H:withdrawal:effects-after-stopping-a-substance",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "LEXICAL_IDENTITY_REVIEW",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "SOURCE_POS_CONFLICT"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "bca1a89f8514c7c20b14b7b73ac0e2dc5118888b75b8688cc13dbb4e2cb89204",
+      "explanationVi": "Guilty of theft là tính từ về trách nhiệm và grammar frame đúng; source 4600 có nhãn NOUN nhưng ví dụ của source dùng felt guilty, không chứng minh danh từ.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 173,
+      "nextActionVi": "Giữ ADJECTIVE; yêu cầu sửa/ghi nhận source metadata tại bước riêng, không tạo noun giả.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "proposalKey": "EDITORIAL_2H2H:guilty:responsible-for-wrongdoing",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "SOURCE_METADATA_CONFLICT",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "SOURCE_POS_CONFLICT"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "a59f496b5e3d0893dd47b70a3a85e611423b34ec37423e96544d6c5257816620",
+      "explanationVi": "Felt guilty about forgetting là adjective về cảm giác có lỗi, không phải NOUN như source 4600 gắn nhãn. Bản dịch và phân biệt cảm xúc với trách nhiệm thực tế chính xác.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 174,
+      "nextActionVi": "Giữ ADJECTIVE và ghi xung đột nguồn cho owner/source review; không đổi canonical POS.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "proposalKey": "EDITORIAL_2H2H:guilty:feeling-remorse",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "SOURCE_METADATA_CONFLICT",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "SOURCE_POS_CONFLICT"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "555dd11dab283ff7b7f62335906af132d4b5712a19256a07d47d583e43901b12",
+      "explanationVi": "Million trong ví dụ là NUMBER 1,000,000; quy tắc two million / millions of phân biệt đúng. Source label NOUN không được coi là quyết định phân loại canonical.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 175,
+      "nextActionVi": "Giữ NUMBER; giải quyết metadata POS bằng review riêng, không đổi dựa trên nhãn đơn lẻ.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "proposalKey": "EDITORIAL_2H2H:million:one-thousand-thousand",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "SOURCE_METADATA_CONFLICT",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "NO_SUBSTANTIVE_CONTENT_DEFECT_FOUND_BY_AI"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "d6d93c5678d73ea46fadff86b83f9b17f03b8ea5d9b03f70d08b37784e202427",
+      "explanationVi": "Sentence trong ví dụ pháp lý hư cấu là hình phạt được tuyên; note tách nghĩa đơn vị ngữ pháp và verb sentence. Dấu polarity không biến ngữ liệu mô tả thành tư vấn pháp lý.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 176,
+      "nextActionVi": "Giữ nội dung ở mức từ vựng và bối cảnh tiểu thuyết; không cần thay đổi hiện tại.",
+      "ownerApproval": false,
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2H:sentence:official-punishment",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "HEURISTIC_ONLY",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "SOURCE_POS_CONFLICT"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "aeb025b44e3f7efbfa6c95a58264b7128306e0b869175090c40496d208bf9dfb",
+      "explanationVi": "Thus as a result dùng trạng từ nối mệnh đề với dấu chấm phẩy, tránh comma splice; source POS CONJUNCTION còn xung đột với phân tích hiện tại.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 177,
+      "nextActionVi": "Giữ ADVERB và dấu câu; yêu cầu giải quyết POS taxonomy/source ngoài lượt này.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "proposalKey": "EDITORIAL_2H2H:thus:as-a-result",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "SOURCE_METADATA_CONFLICT",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "SOURCE_POS_CONFLICT"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "0e79c5c1c74fff0ed8bca6288905cbbc4669027ce27a239b4d894dc743430739",
+      "explanationVi": "Thus in this way là trạng từ chỉ cách thức và ví dụ mệnh lệnh + kết quả dễ hiểu; historical source vẫn mang nhãn CONJUNCTION không thống nhất.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 178,
+      "nextActionVi": "Giữ Sense DRAFT hiện có; không đổi POS hay identity trước quyết định được duyệt.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "proposalKey": "EDITORIAL_2H2H:thus:in-this-way",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "SOURCE_METADATA_CONFLICT",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "2aa83db0288c6f06e540b62904b016acaffe96b7a5e548eca5f41d2f5970bd6c",
+      "explanationVi": "Might + base verb diễn đạt khả năng không chắc chắn; mệnh đề điều kiện về đường mở lại giữ đúng tính bất định. Đây là modal khác danh từ might chỉ sức mạnh.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 179,
+      "nextActionVi": "Giữ modal riêng khỏi NOUN sibling; không suy ra canonical identity từ spelling.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "proposalKey": "EDITORIAL_2H2H:might:uncertain-possibility",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "LEXICAL_IDENTITY_REVIEW",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "e5a05f0e6f9cc548c00c5062573465fd093689ca95c073ae90a7f914bdd5266b",
+      "explanationVi": "Military might là danh từ không đếm được về sức mạnh trong truyện; ví dụ không cổ súy hoặc khẳng định sự kiện thực. POS khác modal might.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 180,
+      "nextActionVi": "Giữ NOUN riêng; mọi liên kết giữa hai POS cần owner decision.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "proposalKey": "EDITORIAL_2H2H:might:great-power",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "LEXICAL_IDENTITY_REVIEW",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "SOURCE_POS_CONFLICT"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "ecf99edb9b8879364a7f909221f9a6140bc0d78307254c7d0c2c3123062c299c",
+      "explanationVi": "Unlike the old tent là preposition theo sau bởi noun phrase và nghĩa khác với dislike được ghi rõ. Source note gợi ADJECTIVE nhưng ví dụ hiện tại chỉ chứng minh PREPOSITION.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 181,
+      "nextActionVi": "Giữ preposition; để source/content owner đánh giá adjective boundary bằng bằng chứng riêng, không suy diễn.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "proposalKey": "EDITORIAL_2H2H:unlike:different-from",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "SOURCE_METADATA_CONFLICT",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "NO_SUBSTANTIVE_CONTENT_DEFECT_FOUND_BY_AI"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "f6194f7c59c1fc22e9339ae89c4d90894d4b7532ba5fbfd5095f134e906b19fc",
+      "explanationVi": "Pound tiền tệ Anh được minh họa với three pounds và ký hiệu £; nghĩa tách biệt với đơn vị cân nặng và động từ strike.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 182,
+      "nextActionVi": "Giữ DRAFT; không diễn giải thành khẳng định về identity/rights.",
+      "ownerApproval": false,
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2H:pound:british-currency-unit",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "INFORMATIONAL",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "NO_SUBSTANTIVE_CONTENT_DEFECT_FOUND_BY_AI"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [
+        {
+          "jsonPointer": "/corrections/2",
+          "path": "vocabflow-dataset/workspaces/master-editorial-bulk-500-resume/checkpoints/checkpoint-05/content-correction-overlays.json",
+          "sha256": "603fcdad79065f2db0f11dc3389b9cbfba3a26ed5497a72da240976060ee6211"
+        }
+      ],
+      "effectiveContentHash": "578ddefb11c2cd93638ab52e097faa44df3e315c1e648753ff6dcabc9122877f",
+      "explanationVi": "Nghĩa đơn vị cân nặng có ví dụ một pound; grammar overlay được chấp nhận giới hạn quan hệ 16 ounces cho avoirdupois đời thường và nêu các hệ lịch sử khác. Nội dung hiệu lực đã được rà soát nhưng owner/rights vẫn mở.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 183,
+      "nextActionVi": "Giữ overlay đã có, không ghi đè manuscript hoặc lặp correction; giữ unresolved approval riêng.",
+      "ownerApproval": false,
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2H:pound:weight-unit",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "HISTORICAL_ISSUE_RESOLVED_BY_OVERLAY",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "NO_SUBSTANTIVE_CONTENT_DEFECT_FOUND_BY_AI"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "f34aa385c3077a034359bf105917d8a8215e539c00d5fc05577dc428a2995886",
+      "explanationVi": "Pounded the peg into the ground diễn đạt đập lặp lại để đóng cọc; động từ có đối tượng và biến tố regular được ghi phù hợp. Khác cả hai nghĩa NOUN pound.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 184,
+      "nextActionVi": "Giữ draft verb và bối cảnh; không suy ra mapping từ dạng chữ.",
+      "ownerApproval": false,
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2H:pound:strike-repeatedly",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "INFORMATIONAL",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "SOURCE_POS_CONFLICT"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "5de9d365d2cb9398461bd727adf10a99bdd8ffea7cdb209f6a27f65560079d31",
+      "explanationVi": "Including two new members đặt các thành viên bên trong tổng tám; đây là preposition trước noun phrase. Source 4600 label ADJECTIVE không phù hợp ví dụ/usage này.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 185,
+      "nextActionVi": "Giữ PREPOSITION; yêu cầu xử lý source metadata độc lập, không coi nhãn là approval.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "proposalKey": "EDITORIAL_2H2H:including:with-as-part-of-the-group",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "SOURCE_METADATA_CONFLICT",
+      "status": "TRIAGED"
+    },
+    {
+      "categories": [
+        "SOURCE_POS_CONFLICT"
+      ],
+      "currentLearnerFieldNeedsChange": false,
+      "earlierOverlayEvidence": [],
+      "effectiveContentHash": "ea85c69526568130b5f65991301f8e18a20d40371f4bad0c64519eb1e0e6bc9e",
+      "explanationVi": "Therefore nối kết quả bằng connecting adverb với semicolon, đúng ngữ pháp; source label CONJUNCTION vẫn không giải thích đầy đủ cấu trúc.",
+      "humanApproval": false,
+      "inspectedFields": [
+        "definitionEn",
+        "meaningVi",
+        "examples/en",
+        "examples/vi",
+        "grammarNotesEn",
+        "partOfSpeech",
+        "historicalReview",
+        "sourceEvidence",
+        "priorOverlays"
+      ],
+      "inventoryOrdinal": 186,
+      "nextActionVi": "Giữ trạng từ và dấu câu; để owner/source editorial quyết định phân loại sau.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "proposalKey": "EDITORIAL_2H2H:therefore:logical-result",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "SOURCE_METADATA_CONFLICT",
+      "status": "TRIAGED"
+    }
+  ]
+}

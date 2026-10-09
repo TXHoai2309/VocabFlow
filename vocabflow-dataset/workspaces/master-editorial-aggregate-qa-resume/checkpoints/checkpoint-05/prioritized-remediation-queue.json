@@ -1,0 +1,773 @@
+{
+  "approvalInferred": false,
+  "cumulativePriorityCounts": {
+    "P0": 0,
+    "P1": 7,
+    "P2": 96,
+    "P3": 164
+  },
+  "newItems": [
+    {
+      "categories": [
+        "SOURCE_ORIGINALITY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "b433b0569f93d74bd37a57b57374923e52c7a9421bff5c267517d04365709ed9",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:whatever:anything-without-restriction",
+      "nextActionVi": "Giữ nguyên DRAFT và REVIEW lịch sử; chỉ đánh giá provenance bằng quy trình riêng nếu cần, không đổi identity từ tín hiệu similarity.",
+      "ownerApproval": false,
+      "priority": "P3",
+      "rationaleVi": "Nội dung “whatever remains” diễn đạt phần còn lại, còn ví dụ về whatever + danh từ và đại từ độc lập được phân biệt rõ. Tín hiệu trùng cụm trong meaningVi chỉ là heuristic, không chứng minh sao chép hay lỗi nghĩa.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "UNRESOLVED_ORIGINALITY_REVIEW"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "08bd99f7c4f8decc683f54cd78f50728341c3f3d915d135bd89be674eae25d3c",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:fiery:full-of-strong-emotion",
+      "nextActionVi": "Giữ nghĩa cảm xúc riêng; đối chiếu chính xác source literal trong một lượt coverage riêng và xin quyết định biên tập/owner trước khi thêm Sense.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Định nghĩa và ví dụ hiện tại mô tả nghĩa cảm xúc của fiery nhất quán; evidence 4600 nêu nghĩa literal “đang cháy”, hiện chưa có trong Sense này. Phạm vi nghĩa chưa thể xem là đầy đủ.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "POTENTIAL_UNASSESSED_SOURCE_BOUNDARY"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "a8ce23ea2438a8930406f6b806fede518bbd849d99dd07165600832b40f74f6d",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:downtown:central-city-area",
+      "nextActionVi": "Giữ draft NOUN và nhãn REVIEW; chuyển ba cách dùng downtown sang quyết định taxonomy/identity riêng, không hợp nhất theo headword.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Nghĩa danh từ “khu trung tâm” cùng trạng thái thường không đếm được là phù hợp; ví dụ phố và nhà hát đặt đúng khu vực downtown. POS/cấu trúc khu vực Bắc Mỹ chưa được owner chốt thành identity.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "OWNER_IDENTITY_REVIEW"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "9fb6029964770b59fbe4aae7cd1e00e5d4b413fffb430bf4177e1e8c1b6ce487",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:downtown:in-the-city-centre",
+      "nextActionVi": "Giữ draft ADJECTIVE; yêu cầu quyết định owner về phân loại các cấu trúc regional trước mọi liên kết identity.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "“Downtown hotel” minh họa đúng tính từ đứng trước danh từ và thông tin vùng Bắc Mỹ được giới hạn rõ. Sự cùng headword với danh từ và trạng từ không xác lập canonical Sense.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "OWNER_IDENTITY_REVIEW"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "e2514bbbcaffba8a099d38dc440bad33fb287b3950d42fb408872584728c8ca5",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:downtown:to-or-in-the-centre",
+      "nextActionVi": "Giữ draft ADVERB và regional qualifier; không gộp ba POS chỉ vì chung dạng chữ.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Ví dụ “went downtown” tự nhiên cho trạng từ chỉ đích/hướng; ghi chú nêu chính xác việc không dùng giới từ trong cấu trúc này. Quan hệ taxonomy với downtown NOUN/ADJECTIVE còn cần quyết định riêng.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "OWNER_IDENTITY_REVIEW"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "ec65141a452229720519464218f48a8956e77fe1143730890c5ec615a79004e3",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:will:future-prediction",
+      "nextActionVi": "Giữ từng POS/cách dùng riêng ở trạng thái DRAFT; chuyển identity giữa các cấu trúc sang owner review.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Will trong ví dụ là trợ động từ modal theo sau bởi base verb; ghi chú không gán biến tố động từ thường. Cách dùng dự đoán không đủ căn cứ để hợp nhất identity với lời hứa hoặc hai danh từ will.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "LEXICAL_IDENTITY_REVIEW"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "ab4c22b3f859c4798b6d589d9e5807bc4518e1a601e41fac01d281b84a610558",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:will:present-decision-or-promise",
+      "nextActionVi": "Giữ draft và nghĩa promise/decision; không tạo identity hoặc inflection cho modal.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Ví dụ I will return biểu đạt cam kết/hành động người nói dự định; ghi chú đúng cấu trúc modal + base verb. Nó khác chức năng dự đoán nhưng không tự xác lập canonical Sense riêng.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "LEXICAL_IDENTITY_REVIEW"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "02d5e88c0129e47c3ab97f09aaec5ca3643b87410eec62c85d2797dec4b040ea",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:will:determination",
+      "nextActionVi": "Giữ NOUN này riêng; yêu cầu quyết định identity có thẩm quyền trước liên kết với các Sense will khác.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Will mang nghĩa ý chí và kết hợp tự nhiên với will to finish; dùng uncountable là phù hợp. Cùng headword với modal và danh từ di chúc không chứng minh identity chung.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "LEXICAL_IDENTITY_REVIEW"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "937bd3214ce27e6df9e36650a2319d6bf116b0b5281825d19821c1ec3dd84e2b",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:will:document-about-inheritance",
+      "nextActionVi": "Giữ DRAFT và giới hạn pháp lý hiện có; không coi nội dung ví dụ là đánh giá một di chúc thật.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Định nghĩa di chúc và cụm in his will trong truyện khớp; ghi chú không khẳng định hiệu lực pháp lý. Cấu trúc danh từ này khác modal và “ý chí”, nhưng canonical identity vẫn chưa được duyệt.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "LEXICAL_IDENTITY_REVIEW"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "3fb377b78e99503b47a1dc90bf94621bda3d7f67fa103bb1b8207db8828c2b75",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:content:information-in-a-work",
+      "nextActionVi": "Giữ noun/adjective tách biệt; để owner quyết định identity/canonical grouping.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Content là danh từ về thông tin/vật liệu trong tác phẩm; câu biên tập booklet minh họa đúng. Lịch sử nêu khác biệt stress và POS với adjective content, nên không đồng nhất bằng spelling.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "LEXICAL_IDENTITY_REVIEW"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "663c0e6cbc728f8561e8ca2df3dc3c0a5f2828193d98d885cd7bf9ea4087d58c",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:content:satisfied-with-situation",
+      "nextActionVi": "Giữ draft ADJECTIVE riêng khỏi noun; unresolved identity vẫn cần owner review.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Adjective content with a quiet evening diễn đạt hài lòng với tình huống; frame content with và stress được ghi đúng. Khác nghĩa/POS với danh từ content, không suy ra cùng identity từ chữ viết.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "LEXICAL_IDENTITY_REVIEW"
+    },
+    {
+      "categories": [
+        "SOURCE_ORIGINALITY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "d27bc94dc3fc49a427b2a1e709e1b3896f20a43ee81c072aa4a068b1bad15a23",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:fridge:refrigerated-storage-appliance",
+      "nextActionVi": "Giữ lemma fridge và freezer contrast; không gộp/xóa do near-duplicate signal.",
+      "ownerApproval": false,
+      "priority": "P3",
+      "rationaleVi": "Fridge là danh từ đếm được chỉ thiết bị giữ lạnh; trình tự chờ súp nguội rồi cất vào tủ lạnh hợp lý. Gần trùng với refrigerator là quan hệ rút gọn từ vựng, không phải lỗi nội dung hay bằng chứng cần merge.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "HEURISTIC_ONLY"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "8b6babdd55828875d46af696442947a2c374b84467534de347a0831fd16f87d3",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:instrumental:important-in-achieving-result",
+      "nextActionVi": "Giữ hai adjective hiện tại; chuyển source noun chưa đại diện vào lượt coverage riêng trước mọi quyết định bổ sung.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Instrumental in starting mô tả vai trò then chốt; nghĩa adjective âm nhạc “không lời” cũng được giữ riêng. Historical review còn ghi nhận source-supported NOUN “a piece of music” chưa được đại diện.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "POTENTIAL_UNASSESSED_SOURCE_BOUNDARY"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "bb8f51a55bf1687e2f4577f717e89126b84821d8cfd3179317c5b8e045728a72",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:instrumental:music-without-vocals",
+      "nextActionVi": "Giữ draft ADJECTIVE; xác minh source boundary NOUN trong coverage review và xin phê duyệt trước khi thêm.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Instrumental version là adjective về nhạc cụ/không lời và dịch phù hợp. Historical review ghi nhận danh từ chỉ một tác phẩm nhạc cụ riêng chưa được đại diện; tín hiệu polarity không biến thành lỗi hiện tại.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "POTENTIAL_UNASSESSED_SOURCE_BOUNDARY"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "9ea048c84c8c655ccde71c78caeb8525b92fafecb949565218cd8aed7a54f076",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:fast:moving-quickly",
+      "nextActionVi": "Giữ adjective riêng; giữ các POS sibling tách biệt tới khi có quyết định identity.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Fast adjective chỉ tốc độ chuyển động/sự kiện; train chạy qua ga minh họa đúng. Dạng adjective không dùng fastly như ghi chú; nghĩa động từ nhịn ăn thuộc cấu trúc khác.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "LEXICAL_IDENTITY_REVIEW"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "1f75f3b7270d45c87346cf6c7b7ff14eacb6ed4ed88e6112f8eb914e1134988f",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:fast:at-high-speed",
+      "nextActionVi": "Giữ trạng từ và ví dụ; không chuẩn hóa thành fastly.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Fast ở vai trò trạng từ bổ nghĩa flowed và bản dịch “chảy nhanh” đúng. Cùng hình thức với adjective là flat adverb, không phải lỗi thiếu fastly hay identity tự động.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "LEXICAL_IDENTITY_REVIEW"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "3e6d57778f4f965b6c271c222436657cbaff29a99e9650ce0ee8b28fc3893164",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:fast:go-without-food",
+      "nextActionVi": "Giữ wording mô tả và không biến thành hướng dẫn sức khỏe; identity giữa các POS cần quyết định riêng.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Động từ fast mô tả kiêng ăn có chủ đích trong bối cảnh nhân vật hư cấu; ví dụ không khuyên thực hành. Khác nghĩa và POS với fast tốc độ.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "LEXICAL_IDENTITY_REVIEW"
+    },
+    {
+      "categories": [
+        "SOURCE_POS_CONFLICT"
+      ],
+      "effectiveContentHash": "ab759a7af732fe1def73dc9525138c1c59684a808c43a059cfc94e81ff2aacca",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:forward:towards-the-front",
+      "nextActionVi": "Yêu cầu đối soát source POS/raw example trong quy trình editorial riêng; không chuyển canonical POS dựa riêng vào metadata xung đột.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Step forward là trạng từ chỉ hướng, grammar note forward/forwards có giới hạn vùng hợp lý. Evidence 4600 gắn nhãn PREPOSITION nhưng ví dụ nguồn là trạng từ; giữ nguyên POS draft, không tạo Sense mới từ nhãn lỗi.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "SOURCE_METADATA_CONFLICT"
+    },
+    {
+      "categories": [
+        "SOURCE_POS_CONFLICT"
+      ],
+      "effectiveContentHash": "fda073d9920049eef8cc6518dd2a588a44a88ee02d4de58f10b9d4fb2bb6882f",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:forward:at-or-towards-the-front",
+      "nextActionVi": "Giữ draft ADJECTIVE; yêu cầu giải quyết metadata/source construction trước mọi taxonomy hoặc mapping.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Forward section minh họa tính từ vị trí trước danh từ; ghi chú giới hạn interpersonal boldness khỏi Sense này. Source 4600 có nhãn PREPOSITION không khớp các cấu trúc hướng trong bộ ví dụ liên quan.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "SOURCE_METADATA_CONFLICT"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "d499aca08c245d880b654eb3d879b7c25df66d22152254e206991f56ff4dcd50",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:withdrawal:removing-from-a-situation",
+      "nextActionVi": "Giữ ba ứng viên withdrawal riêng ở DRAFT; yêu cầu owner quyết định identity/coverage nếu cần.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Withdrawal from the contest mô tả rút khỏi hoạt động; ví dụ đội thi rời cuộc thi không hàm ý hậu quả pháp lý. Đây là một cấu trúc danh từ khác rút tiền và triệu chứng sau khi ngừng chất.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "LEXICAL_IDENTITY_REVIEW"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "b9363a7e77ef5bdeb46797c92abc1bb35dca325c99d4e361bba6fbffc0dc92d7",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:withdrawal:taking-money-out",
+      "nextActionVi": "Giữ ví dụ mô tả tài khoản và không suy ra sản phẩm tài chính cụ thể; xử lý identity riêng.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Withdrawal trên account record là khoản rút tiền; cụm make a withdrawal/cash withdrawal đúng cách dùng. Không gộp với việc rời hoạt động hay nghĩa sức khỏe chỉ do chung headword.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "LEXICAL_IDENTITY_REVIEW"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "930ab8a12f1c9cba8419f44fadc611a2c513c18babb0c1e61c9f1cd2c3553f22",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:withdrawal:effects-after-stopping-a-substance",
+      "nextActionVi": "Giữ câu mô tả không chẩn đoán/khuyến nghị; xin quyết định owner cho boundary/rights trước mọi phát hành.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Withdrawal symptoms được mô tả trong một tiểu thuyết; note nói tên hiện tượng, không hướng dẫn điều trị. Dùng uncountable trong nghĩa này là tự nhiên và cần giữ ranh giới y tế.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "LEXICAL_IDENTITY_REVIEW"
+    },
+    {
+      "categories": [
+        "SOURCE_POS_CONFLICT"
+      ],
+      "effectiveContentHash": "bca1a89f8514c7c20b14b7b73ac0e2dc5118888b75b8688cc13dbb4e2cb89204",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:guilty:responsible-for-wrongdoing",
+      "nextActionVi": "Giữ ADJECTIVE; yêu cầu sửa/ghi nhận source metadata tại bước riêng, không tạo noun giả.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Guilty of theft là tính từ về trách nhiệm và grammar frame đúng; source 4600 có nhãn NOUN nhưng ví dụ của source dùng felt guilty, không chứng minh danh từ.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "SOURCE_METADATA_CONFLICT"
+    },
+    {
+      "categories": [
+        "SOURCE_POS_CONFLICT"
+      ],
+      "effectiveContentHash": "a59f496b5e3d0893dd47b70a3a85e611423b34ec37423e96544d6c5257816620",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:guilty:feeling-remorse",
+      "nextActionVi": "Giữ ADJECTIVE và ghi xung đột nguồn cho owner/source review; không đổi canonical POS.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Felt guilty about forgetting là adjective về cảm giác có lỗi, không phải NOUN như source 4600 gắn nhãn. Bản dịch và phân biệt cảm xúc với trách nhiệm thực tế chính xác.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "SOURCE_METADATA_CONFLICT"
+    },
+    {
+      "categories": [
+        "SOURCE_POS_CONFLICT"
+      ],
+      "effectiveContentHash": "555dd11dab283ff7b7f62335906af132d4b5712a19256a07d47d583e43901b12",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:million:one-thousand-thousand",
+      "nextActionVi": "Giữ NUMBER; giải quyết metadata POS bằng review riêng, không đổi dựa trên nhãn đơn lẻ.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Million trong ví dụ là NUMBER 1,000,000; quy tắc two million / millions of phân biệt đúng. Source label NOUN không được coi là quyết định phân loại canonical.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "SOURCE_METADATA_CONFLICT"
+    },
+    {
+      "categories": [
+        "SOURCE_POS_CONFLICT"
+      ],
+      "effectiveContentHash": "aeb025b44e3f7efbfa6c95a58264b7128306e0b869175090c40496d208bf9dfb",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:thus:as-a-result",
+      "nextActionVi": "Giữ ADVERB và dấu câu; yêu cầu giải quyết POS taxonomy/source ngoài lượt này.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Thus as a result dùng trạng từ nối mệnh đề với dấu chấm phẩy, tránh comma splice; source POS CONJUNCTION còn xung đột với phân tích hiện tại.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "SOURCE_METADATA_CONFLICT"
+    },
+    {
+      "categories": [
+        "SOURCE_POS_CONFLICT"
+      ],
+      "effectiveContentHash": "0e79c5c1c74fff0ed8bca6288905cbbc4669027ce27a239b4d894dc743430739",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:thus:in-this-way",
+      "nextActionVi": "Giữ Sense DRAFT hiện có; không đổi POS hay identity trước quyết định được duyệt.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Thus in this way là trạng từ chỉ cách thức và ví dụ mệnh lệnh + kết quả dễ hiểu; historical source vẫn mang nhãn CONJUNCTION không thống nhất.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "SOURCE_METADATA_CONFLICT"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "2aa83db0288c6f06e540b62904b016acaffe96b7a5e548eca5f41d2f5970bd6c",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:might:uncertain-possibility",
+      "nextActionVi": "Giữ modal riêng khỏi NOUN sibling; không suy ra canonical identity từ spelling.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Might + base verb diễn đạt khả năng không chắc chắn; mệnh đề điều kiện về đường mở lại giữ đúng tính bất định. Đây là modal khác danh từ might chỉ sức mạnh.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "LEXICAL_IDENTITY_REVIEW"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "e5a05f0e6f9cc548c00c5062573465fd093689ca95c073ae90a7f914bdd5266b",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:might:great-power",
+      "nextActionVi": "Giữ NOUN riêng; mọi liên kết giữa hai POS cần owner decision.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Military might là danh từ không đếm được về sức mạnh trong truyện; ví dụ không cổ súy hoặc khẳng định sự kiện thực. POS khác modal might.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "LEXICAL_IDENTITY_REVIEW"
+    },
+    {
+      "categories": [
+        "SOURCE_POS_CONFLICT"
+      ],
+      "effectiveContentHash": "ecf99edb9b8879364a7f909221f9a6140bc0d78307254c7d0c2c3123062c299c",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:unlike:different-from",
+      "nextActionVi": "Giữ preposition; để source/content owner đánh giá adjective boundary bằng bằng chứng riêng, không suy diễn.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Unlike the old tent là preposition theo sau bởi noun phrase và nghĩa khác với dislike được ghi rõ. Source note gợi ADJECTIVE nhưng ví dụ hiện tại chỉ chứng minh PREPOSITION.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "SOURCE_METADATA_CONFLICT"
+    },
+    {
+      "categories": [
+        "SOURCE_POS_CONFLICT"
+      ],
+      "effectiveContentHash": "5de9d365d2cb9398461bd727adf10a99bdd8ffea7cdb209f6a27f65560079d31",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:including:with-as-part-of-the-group",
+      "nextActionVi": "Giữ PREPOSITION; yêu cầu xử lý source metadata độc lập, không coi nhãn là approval.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Including two new members đặt các thành viên bên trong tổng tám; đây là preposition trước noun phrase. Source 4600 label ADJECTIVE không phù hợp ví dụ/usage này.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "SOURCE_METADATA_CONFLICT"
+    },
+    {
+      "categories": [
+        "SOURCE_POS_CONFLICT"
+      ],
+      "effectiveContentHash": "ea85c69526568130b5f65991301f8e18a20d40371f4bad0c64519eb1e0e6bc9e",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:therefore:logical-result",
+      "nextActionVi": "Giữ trạng từ và dấu câu; để owner/source editorial quyết định phân loại sau.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Therefore nối kết quả bằng connecting adverb với semicolon, đúng ngữ pháp; source label CONJUNCTION vẫn không giải thích đầy đủ cấu trúc.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "SOURCE_METADATA_CONFLICT"
+    },
+    {
+      "classification": "COVERAGE_UNKNOWN",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:any:degree": "cac02f723f18a74d626917b2d12df3dde9d2e5141302e4f7b2ecee9d4169e50e",
+        "EDITORIAL_2H2H:any:free-choice": "50ffbea7fbab03b0b8d098d8d0e12c0c22dbb470d099dcc64e7830b1746a1a4a",
+        "EDITORIAL_2H2H:any:one-unspecified": "bdb4e4786fe2650c27dda05f60174435a2565381c0e30317a800d2234e3b507e",
+        "EDITORIAL_2H2H:any:unspecified-amount": "c3fa00a3bb32fbe4255c066e99056fd8574f5a5e8fa5fdcfe278c81f9088b599"
+      },
+      "identity": "NORMALIZED_HEADWORD:any",
+      "nextActionVi": "Giữ bốn DRAFT Sense và REVIEW identity riêng; xem xét distinction determiner trong lượt owner/source review. Không thêm/bỏ/merge tự động.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Đã đọc cả 4 Sense hiện hành: ADVERB — To even a small extent, especially with a comparison in a question or negative statement. (VI: chút nào; hơn chút nào); DETERMINER — Used to say that it does not matter which member of a group is chosen. (VI: bất kỳ; bất cứ); PRONOUN — One or some members of a group, without naming which. (VI: cái nào; một ít; bất kỳ cái nào); DETERMINER — Used for an unspecified amount or number, often in a question or negative statement. (VI: nào; chút nào). Oxford ordinals 0–2 thể hiện DET câu hỏi/phủ định, PRON bất kỳ, và ADV trong so sánh/phủ định; ví dụ current draft DET free-choice ‘any chair’ chưa có ordinal DET riêng tương ứng, dù cấu trúc có liên hệ với ví dụ PRON ‘any of these’. Vì vậy chưa đủ căn cứ để kết luận riêng boundary DET này đã được source coverage chứng minh hoặc là gap chắc chắn.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R4-P001",
+      "nextActionVi": "Đánh giá riêng; yêu cầu review lại toàn batch trước khi áp dụng nếu có phase được ủy quyền.",
+      "ownerApproval": false,
+      "parentHash": "4557deb499215d6c9adc1c5ce06f62775ad09a634df94145b2ef5b487b253506",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:cave:rock-chamber",
+      "rationaleVi": "Cụm “no cave-in verb proposal” ghi trạng thái quyết định editorial về Sense chưa đề xuất, không phải hướng dẫn grammar; phần danh từ đếm được và compound cave entrance/mouth là nội dung người học hữu ích.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R4-P002",
+      "nextActionVi": "Đánh giá riêng; yêu cầu review lại toàn batch trước khi áp dụng nếu có phase được ủy quyền.",
+      "ownerApproval": false,
+      "parentHash": "311ba75d3343aba72c1afefb8b3ea0066c54c92ab33dfd2f61166ab2921e9852",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:both:two-together-determiner",
+      "rationaleVi": "Cụm “representation split pending” mô tả trạng thái phân tách bản ghi; phần xác định từ hạn định + danh từ số nhiều được giữ và diễn đạt lại bằng quy tắc hòa hợp hữu ích.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R4-P003",
+      "nextActionVi": "Đánh giá riêng; yêu cầu review lại toàn batch trước khi áp dụng nếu có phase được ủy quyền.",
+      "ownerApproval": false,
+      "parentHash": "d212d21bd602079f58c32a97894a09453c2a11ab5c9226f3cedb4d77cc13b21c",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:both:two-together-pronoun",
+      "rationaleVi": "“May coalesce with determiner” là phương án taxonomy đang chờ, không phải grammar. Thay bằng quy tắc đại từ và hòa hợp số phù hợp ví dụ both worked.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R4-P004",
+      "nextActionVi": "Đánh giá riêng; yêu cầu review lại toàn batch trước khi áp dụng nếu có phase được ủy quyền.",
+      "ownerApproval": false,
+      "parentHash": "0e7b3c06cc5aaacc5fb34297c3867f63f087ba98af7cf4f0b1b59f215ecfcfff",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:bail:security-money",
+      "rationaleVi": "Câu “legal scope needs human review” là trạng thái workflow, không phải grammar; replacement giữ countability và giới hạn vùng pháp lý theo nghĩa từ vựng.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R4-P005",
+      "nextActionVi": "Đánh giá riêng; yêu cầu review lại toàn batch trước khi áp dụng nếu có phase được ủy quyền.",
+      "ownerApproval": false,
+      "parentHash": "81242de187065a31d3e7f8e7da7b55658b126d183ca475e4f20402cf406f2036",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:editor:prepare-publication",
+      "rationaleVi": "“In this proposal” nói về phạm vi bản thảo thay vì cách dùng. Giữ countability và cung cấp frame editor of.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R4-P006",
+      "nextActionVi": "Đánh giá riêng; yêu cầu review lại toàn batch trước khi áp dụng nếu có phase được ủy quyền.",
+      "ownerApproval": false,
+      "parentHash": "4c5034e3c112da4facc0ac9f8412796e1aa7e284de0ae37a94cc6c9eefcfe9ad",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:inner:inside",
+      "rationaleVi": "“Not private feelings in this proposal” ghi phạm vi phân hoạch Sense của dự án. Có thể thay bằng usage/collocation mô tả tính từ vị trí.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R4-P007",
+      "nextActionVi": "Đánh giá riêng; yêu cầu review lại toàn batch trước khi áp dụng nếu có phase được ủy quyền.",
+      "ownerApproval": false,
+      "parentHash": "887bec53733fb4450512510f9b58321a4239e0b49e1c68e862e3a5b8e4523322",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:monkey:primate",
+      "rationaleVi": "“Species review pending” là trạng thái review chưa hoàn tất. Thay bằng ghi chú số nhiều/countability và giữ hai thông tin phân biệt sinh học hiện có.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R4-P008",
+      "nextActionVi": "Đánh giá riêng; yêu cầu review lại toàn batch trước khi áp dụng nếu có phase được ủy quyền.",
+      "ownerApproval": false,
+      "parentHash": "8ea5aeb47aad8ac4d6ba3553180088d45a092b4a2a4208e8b87d2166f746f67b",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:industry:economic-sector",
+      "rationaleVi": "“No diligence proposal without separate evidence” là chỉ dẫn quy trình/source, không phải ngữ pháp; giữ nghĩa bao gồm dịch vụ và loại trừ giới hạn chỉ nhà máy.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R4-P009",
+      "nextActionVi": "Đánh giá riêng; yêu cầu review lại toàn batch trước khi áp dụng nếu có phase được ủy quyền.",
+      "ownerApproval": false,
+      "parentHash": "860cead53aa06698b493417600a6326cf7fa26a965e7977bf811a10e41fb4b44",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:mirror:reflecting-surface",
+      "rationaleVi": "“History-linked identity not remapped” nói về remap identity trong lịch sử dữ liệu; giữ hướng dẫn countability và mô tả vật thể.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R4-P010",
+      "nextActionVi": "Đánh giá riêng; yêu cầu review lại toàn batch trước khi áp dụng nếu có phase được ủy quyền.",
+      "ownerApproval": false,
+      "parentHash": "219dbf19103b85616722b968dcafb775a34621aefc261f3233933d15ac80abe7",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:stand:tolerate",
+      "rationaleVi": "“In this proposal” là giới hạn biên tập, còn stand to + infinitive không được giải thích như một quy tắc learner. Bản đề xuất giữ frame thực sự minh họa.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R4-P011",
+      "nextActionVi": "Đánh giá riêng; yêu cầu review lại toàn batch trước khi áp dụng nếu có phase được ủy quyền.",
+      "ownerApproval": false,
+      "parentHash": "9304515a8da8b61131c4784d7bc6cc56de59fe6e1f35b34c835dfc9958c2b3fa",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:station:broadcast-organization",
+      "rationaleVi": "“Provisionally combined” mô tả quyết định grouping tạm thời. Bản đề xuất thay bằng countability và compound noun cho người học.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R4-P012",
+      "nextActionVi": "Đánh giá riêng; yêu cầu review lại toàn batch trước khi áp dụng nếu có phase được ủy quyền.",
+      "ownerApproval": false,
+      "parentHash": "a6aaad0b381682478632e62cd586cb11ee2d504466255312aba6cabb97b1b538",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:subject:liable-to",
+      "rationaleVi": "“Boundary pending” là trạng thái sense review, không phải grammar. Bản đề xuất ghi frame subject to và hai ngữ cảnh meaning có trong definition.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R4-P013",
+      "nextActionVi": "Đánh giá riêng; yêu cầu review lại toàn batch trước khi áp dụng nếu có phase được ủy quyền.",
+      "ownerApproval": false,
+      "parentHash": "3cfb6f37081d15462b1833dd4e175935d2b6942320ae9d2e5019fab71e887ea8",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:straight:not-curved",
+      "rationaleVi": "“Sensitive identity meanings not introduced” là ghi chú phạm vi phân tích, không dạy grammar; replacement giữ construction tính từ đứng trước danh từ.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R4-P014",
+      "nextActionVi": "Đánh giá riêng; yêu cầu review lại toàn batch trước khi áp dụng nếu có phase được ủy quyền.",
+      "ownerApproval": false,
+      "parentHash": "257452d294c6474826a2abc0e33ad852563674a30a4b20fddc49cc389a90b012",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:wrong:not-working-properly",
+      "rationaleVi": "“Pending boundary review” ghi việc phân định nghĩa chưa hoàn tất; replacement giữ frame wrong with và cấu trúc be + adjective.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R4-P015",
+      "nextActionVi": "Đánh giá riêng; yêu cầu review lại toàn batch trước khi áp dụng nếu có phase được ủy quyền.",
+      "ownerApproval": false,
+      "parentHash": "ec067cd64cc1dd7eb4a7391136d9b00c779e4e8770317f2723b18b2d0e3c2851",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:worst:most-bad-things",
+      "rationaleVi": "“Representation relative to adjective unresolved” là trạng thái quyết định POS/schema. Bản đề xuất chuyển thành mô tả learner về nominal use.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R4-P016",
+      "nextActionVi": "Đánh giá riêng; yêu cầu review lại toàn batch trước khi áp dụng nếu có phase được ủy quyền.",
+      "ownerApproval": false,
+      "parentHash": "029b414595b2ccb107997ecaef61bb1f9332539086068e1a6bbdb752d4f480f5",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2D:ashore:land",
+      "rationaleVi": "“Source adjective label conflicts with construction” là giải thích metadata cho auditor. Bản đề xuất nêu cách ashore theo sau động từ chuyển động bằng chính ví dụ.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R4-P017",
+      "nextActionVi": "Đánh giá riêng; yêu cầu review lại toàn batch trước khi áp dụng nếu có phase được ủy quyền.",
+      "ownerApproval": false,
+      "parentHash": "c14653a801d906c6c42c5a921f27d8fd1f05511098f72d1424fc7baa5ab651a5",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2D:comprise:include",
+      "rationaleVi": "“Source adjective label erroneous” là nhận xét metadata, không phải grammar. Bản đề xuất giữ whole comprises parts và thêm frame bám ví dụ.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R4-P018",
+      "nextActionVi": "Đánh giá riêng; yêu cầu review lại toàn batch trước khi áp dụng nếu có phase được ủy quyền.",
+      "ownerApproval": false,
+      "parentHash": "2ddb5680ee17c6c20e4200971808f9d246d1c22ebb59b064bf053773782b849e",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2D:it:technology",
+      "rationaleVi": "“Distinct lexical identity from it” là ghi chú đối chiếu identity dự án; hướng dẫn viết hoa IT là nội dung thực dụng cho người học.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R4-P019",
+      "nextActionVi": "Đánh giá riêng; yêu cầu review lại toàn batch trước khi áp dụng nếu có phase được ủy quyền.",
+      "ownerApproval": false,
+      "parentHash": "db71084ea8c10bee107645f23f833388a844252444d5c28d7625b0e310e49203",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2D:limitation:restriction",
+      "rationaleVi": "“In this proposal” và “needs separate boundary review before inclusion” nói về trạng thái inclusion/review. Replacement giữ countability và collocation limitation on.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R4-P020",
+      "nextActionVi": "Đánh giá riêng; yêu cầu review lại toàn batch trước khi áp dụng nếu có phase được ủy quyền.",
+      "ownerApproval": false,
+      "parentHash": "3041b96145c88ff38b1b9699ae755f4e80d88b3a222674421c679930fe2a579d",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2D:loyal:faithful",
+      "rationaleVi": "“Source noun label unsupported” báo xung đột metadata nguồn, không phải grammar; frame loyal to khớp ví dụ và nghĩa.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R4-P021",
+      "nextActionVi": "Đánh giá riêng; yêu cầu review lại toàn batch trước khi áp dụng nếu có phase được ủy quyền.",
+      "ownerApproval": false,
+      "parentHash": "f03d4414ec300ab2a5e126b668db3b36a0556aa5287136e8c79563ac6402253c",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2D:scholar:researcher",
+      "rationaleVi": "“Master overlap unresolved” nói về canonical relationship; thay bằng countability và collocation scholar of.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R4-P022",
+      "nextActionVi": "Đánh giá riêng; yêu cầu review lại toàn batch trước khi áp dụng nếu có phase được ủy quyền.",
+      "ownerApproval": false,
+      "parentHash": "475fa0e366ee1fe75c8bf30a136f62d0d00fa559bf3acefb6c9929844b83a403",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2D:wool:fibre",
+      "rationaleVi": "“Source core sheep fibre” là tóm tắt source, không phải hướng dẫn ngữ pháp. Bản mới nêu countability và compound wool blanket.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R4-P023",
+      "nextActionVi": "Đánh giá riêng; yêu cầu review lại toàn batch trước khi áp dụng nếu có phase được ủy quyền.",
+      "ownerApproval": false,
+      "parentHash": "b98d29471e3cb2a6fbea228832c12a464dc899e315863a770b9c62cf4a147878",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2H:further:greater-distance",
+      "rationaleVi": "“This draft concerns distance rather than an additional quantity” ghi phạm vi Sense của bản thảo. Bản đề xuất thay bằng frame learner mô tả đúng ví dụ đi xa hơn dọc bờ.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    }
+  ],
+  "parentQueue": {
+    "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-04/prioritized-remediation-queue.json",
+    "sha256": "f76ab9151abc961fba57a2e3d1df8a691d5bf4ae5de7b1c9e349fc02bb018cdb"
+  },
+  "priorItemsReferenced": {
+    "checkpoint02": {
+      "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/prioritized-remediation-queue.json",
+      "sha256": "81b0feccd3613d9603e01371d643c6ab9577b5790df3bce6b9be555b4c3d3073"
+    },
+    "checkpoint03": {
+      "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-03/prioritized-remediation-queue.json",
+      "sha256": "8a43d7a18a94d68b2e5637a0f6f10fa1ef1b5298f62783305468cd6e9ff3b587"
+    },
+    "checkpoint04": {
+      "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-04/prioritized-remediation-queue.json",
+      "sha256": "f76ab9151abc961fba57a2e3d1df8a691d5bf4ae5de7b1c9e349fc02bb018cdb"
+    },
+    "originalAggregate": {
+      "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/prioritized-remediation-queue.json",
+      "sha256": "2f198ae89bc1cb1da8e919ada0bc5c0a31851f0dbfbbd82a8a14d5bd3644e3c3"
+    }
+  },
+  "unresolvedRights": "UNKNOWN_REVIEW_REQUIRED"
+}
