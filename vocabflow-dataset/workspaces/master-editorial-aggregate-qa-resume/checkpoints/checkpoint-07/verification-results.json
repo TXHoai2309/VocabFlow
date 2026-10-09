@@ -1,0 +1,172 @@
+{
+  "authorization": "Offline aggregate AI audit and content-bound recommendations only; no content/owner/rights approval, canonical identity, Master release, database import, or legacy retirement authorized.",
+  "canonicalPnpmTypecheckWrapper": "NOT_RUN",
+  "checkpoint07Replay": {
+    "recording": "Run after assembly under multiple PYTHONHASHSEED values; kept outside this content-addressed receipt to avoid a self-referential fingerprint."
+  },
+  "checkpointNumber": 7,
+  "commands": [
+    {
+      "command": "python -B scripts/phase-2h2i-aggregate-qa.py --check",
+      "exitCode": 0,
+      "fingerprint": "3d29083983cf033b4463d33c7a8ea3bd9337c209e0a5f236167c116a0852b5ce",
+      "result": "PASS",
+      "zeroWrites": true
+    },
+    {
+      "command": "python -B scripts/phase-2h2i-aggregate-qa-resume.py --checkpoint 2 --check",
+      "exitCode": 0,
+      "fingerprint": "7d462d7bfb2f957c4c1809de18a22a126b8f85194763f90d863551edb15be34d",
+      "result": "PASS",
+      "zeroWrites": true
+    },
+    {
+      "command": "python -B scripts/phase-2h2i-aggregate-qa-checkpoint-03.py --checkpoint 3 --check",
+      "exitCode": 0,
+      "fingerprint": "d5e87509822821b74b0588a5d99f2168a5db47c59299192d540ace84315b0b71",
+      "result": "PASS",
+      "zeroWrites": true
+    },
+    {
+      "command": "python -B scripts/phase-2h2i-aggregate-qa-checkpoint-04.py --check",
+      "exitCode": 0,
+      "fingerprint": "524b064666d9538cb9774bd50f4a2bd63e82505e8f2a82232a4b59f4baf6724b",
+      "result": "PASS",
+      "zeroWrites": true
+    },
+    {
+      "command": "python -B scripts/phase-2h2i-aggregate-qa-checkpoint-05.py --check",
+      "exitCode": 0,
+      "fingerprint": "4a3a5d0f48a07dcdd7e5e2f1d7ca2aa2af58709bae174a02f77d84814bbd078f",
+      "result": "PASS",
+      "zeroWrites": true
+    },
+    {
+      "command": "python -B scripts/phase-2h2i-aggregate-qa-checkpoint-06.py --checkpoint 6 --check",
+      "exitCode": 0,
+      "fingerprint": "5c80c010f6c83fee24614f07831a3016185471d8953e6a6aefa471e5f73e2766",
+      "result": "PASS",
+      "zeroWrites": true
+    },
+    {
+      "command": "python -B scripts/phase-2h2i-aggregate-qa-test.py",
+      "exitCode": 0,
+      "passed": 31,
+      "result": "PASS",
+      "tests": 31
+    },
+    {
+      "command": "python -B scripts/phase-2h2i-aggregate-qa-resume-test.py",
+      "exitCode": 0,
+      "passed": 25,
+      "result": "PASS",
+      "tests": 25
+    },
+    {
+      "command": "python -B scripts/phase-2h2i-aggregate-qa-checkpoint-03-test.py",
+      "exitCode": 0,
+      "passed": 31,
+      "result": "PASS",
+      "tests": 31
+    },
+    {
+      "command": "python -B scripts/phase-2h2i-aggregate-qa-checkpoint-04-test.py",
+      "exitCode": 0,
+      "passed": 37,
+      "result": "PASS",
+      "tests": 37
+    },
+    {
+      "command": "python -B scripts/phase-2h2i-aggregate-qa-checkpoint-05-test.py",
+      "exitCode": 0,
+      "passed": 26,
+      "result": "PASS",
+      "tests": 26
+    },
+    {
+      "command": "python -B scripts/phase-2h2i-aggregate-qa-checkpoint-06-test.py",
+      "exitCode": 0,
+      "lineEndingStabilityRegression": "PASS",
+      "passed": 16,
+      "result": "PASS",
+      "tests": 16
+    },
+    {
+      "command": "python -B scripts/phase-2h2i-aggregate-qa-checkpoint-07-test.py",
+      "exitCode": 0,
+      "passed": 24,
+      "result": "PASS",
+      "tests": 24
+    },
+    {
+      "command": "pnpm exec tsc -b --pretty false",
+      "exitCode": 0,
+      "kind": "direct TypeScript build/typecheck",
+      "result": "PASS"
+    },
+    {
+      "command": "pnpm exec eslint . --max-warnings=0",
+      "exitCode": 0,
+      "result": "PASS"
+    },
+    {
+      "command": "pnpm exec vitest run --pool=threads --maxWorkers=1 --no-file-parallelism scripts/hybrid-100-approved-release.test.ts",
+      "exitCode": 1,
+      "failed": 1,
+      "failure": "APPROVED_RELEASE_IMMUTABILITY_VIOLATION:release-tree",
+      "passed": 4,
+      "result": "KNOWN_LEGACY_FAILURE",
+      "tests": 5
+    },
+    {
+      "command": "pnpm exec vitest run --pool=threads --maxWorkers=1 --no-file-parallelism scripts/hybrid-100-runtime-eligible-patch-release.test.ts",
+      "exitCode": 0,
+      "failed": 0,
+      "passed": 8,
+      "result": "PASS",
+      "tests": 8
+    }
+  ],
+  "databaseAccess": "NONE",
+  "databaseWrites": "NONE",
+  "directTypecheck": {
+    "command": "pnpm exec tsc -b --pretty false",
+    "result": "PASS"
+  },
+  "hybridV2_2_1": {
+    "exitCode": 0,
+    "failed": 0,
+    "passed": 8,
+    "result": "PASS",
+    "tests": 8
+  },
+  "hybridV2_2_1Status": "PASS",
+  "legacyV2_2_0": {
+    "analysis": "Prior accepted diagnostic found 1,096 tracked release JSON files checked out as CRLF on Windows while Git blobs use LF. LF-normalized bytes reproduce the committed fingerprint; raw checkout bytes differ. The integrity test remains failing and unresolved.",
+    "exitCode": 1,
+    "failed": 1,
+    "failure": "APPROVED_RELEASE_IMMUTABILITY_VIOLATION:release-tree",
+    "passed": 4,
+    "releaseOrTestModified": false,
+    "status": "LEGACY_V2_2_0_RELEASE_TREE_DIAGNOSTIC_UNRESOLVED",
+    "tests": 5
+  },
+  "legacyV2_2_0TestStatus": "LEGACY_V2_2_0_RELEASE_TREE_DIAGNOSTIC_UNRESOLVED",
+  "lint": {
+    "command": "pnpm exec eslint . --max-warnings=0",
+    "result": "PASS"
+  },
+  "phase": "2H.2I-R6",
+  "production": "UNTOUCHED",
+  "replayResults": {
+    "aggregate": "PASS",
+    "checkpoint02": "PASS",
+    "checkpoint03": "PASS",
+    "checkpoint04": "PASS",
+    "checkpoint05": "PASS",
+    "checkpoint06": "PASS",
+    "zeroWrites": true
+  },
+  "rootTestSuite": "NOT_RUN; all focused Phase 2H.2I aggregate/checkpoint Python regression suites and both frozen Hybrid release suites were run separately.",
+  "status": "PASS_WITH_KNOWN_LEGACY_FAILURE"
+}

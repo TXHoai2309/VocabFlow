@@ -1,0 +1,51 @@
+{
+  "authorization": {
+    "canonicalIdsAllocated": 0,
+    "contentStatus": "DRAFT",
+    "correctionsApplied": 0,
+    "databaseAccess": "NONE",
+    "databaseWrites": "NONE",
+    "legacyModified": false,
+    "masterReleaseChanged": false,
+    "ownerApprovalsAdded": 0,
+    "production": "UNTOUCHED",
+    "releaseFixApplied": false,
+    "rights": "UNKNOWN_REVIEW_REQUIRED",
+    "rightsClearanceAdded": 0
+  },
+  "boundaryProposals": 8,
+  "contentApproval": "PENDING",
+  "correctionsApplied": 0,
+  "coverage": {
+    "assessed": 500,
+    "classifications": {
+      "CONFIRMED_GAP": 8,
+      "COVERAGE_UNKNOWN": 5,
+      "NO_IDENTIFIED_SOURCE_SUPPORTED_GAP": 461,
+      "POSSIBLE_GAP": 8,
+      "SOURCE_METADATA_CONFLICT": 18
+    },
+    "pending": 0,
+    "total": 500,
+    "unique": 500
+  },
+  "exhaustiveLexicalCoverage": "NOT_ESTABLISHED",
+  "fieldProposals": 141,
+  "fingerprint": "862be642a7223396f43664ca8604d986a5c1f5cbad91c9ab295492f819ff4ed8",
+  "frozenCohortFingerprint": "2007c5a1e67d4dab6228378b5b00b22ab4736cb16d3f5a3e3d03735e2a290e44",
+  "grammar": {
+    "inspected": 107,
+    "pending": 0
+  },
+  "parentFingerprint": "5c80c010f6c83fee24614f07831a3016185471d8953e6a6aefa471e5f73e2766",
+  "phase": "2H.2I-R6",
+  "releaseEligible": false,
+  "remoteBaseline": "c4f45c5265f73780a51ecfb7aacea76b7f53b965",
+  "reviews": {
+    "pending": 0,
+    "triaged": 187
+  },
+  "rights": "UNKNOWN_REVIEW_REQUIRED",
+  "status": "COMPLETE_FOR_AUTHORIZED_AI_AUDIT_INVENTORIES",
+  "warningsPreserved": 126
+}

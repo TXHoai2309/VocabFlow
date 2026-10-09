@@ -1,0 +1,29 @@
+{
+  "canonicalIdsAllocated": 0,
+  "correctionsApplied": 0,
+  "ownerApproval": false,
+  "parentFingerprint": "5c80c010f6c83fee24614f07831a3016185471d8953e6a6aefa471e5f73e2766",
+  "phase": "2H.2I-R6",
+  "records": [
+    {
+      "after": "A lot of leaves were collected beside the garden gate overnight.",
+      "afterSha256": "67bb0ba1cb2ef150f7e131c62c7478ec54cad8d774b4b4cbd8997e2900a50bf3",
+      "applied": false,
+      "before": "A lot of leaves collected beside the garden gate overnight.",
+      "beforeSha256": "8d91a3f9c3b24dbd81933e83b360fff2e38f86a1a9c04920c8605756b3deb0ca",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:lot",
+      "correctionProposalId": "2H2I-R6-P001",
+      "evidenceScope": "Đã đọc toàn bộ ba Sense của lot cùng definition, VI, EN/VI examples, POS, grammar notes, Oxford ordinals, source record 177 và lineage. Chỉ trường examples[0].en của determiner-Sense bị tác động.",
+      "field": "/content/examples/0/en",
+      "fullBatchReReviewRequired": true,
+      "originalEffectiveContentHash": "63b75424e7513161c67ef47e4139a54303e938f2342a09e34806573de8aa5fa1",
+      "ownerApproval": false,
+      "priority": "P1",
+      "proposalKey": "EDITORIAL_2H2H:lot:quantity-before-noun",
+      "rationaleVi": "Câu hiện tại “A lot of leaves collected beside the garden gate overnight.” không có động từ hữu hạn; thêm “were” tạo câu bị động hoàn chỉnh mà không đổi nghĩa tác nhân/đối tượng. Đề xuất chỉ sửa trường ví dụ EN, không áp dụng.",
+      "relatedFieldImpact": "Không đổi meaningVi, definition, POS, Sense identity, source evidence hoặc manuscript. Yêu cầu re-review toàn batch trước mọi overlay.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "CONFIRMED_LEARNER_FACING_EXAMPLE_GRAMMAR_DEFECT"
+    }
+  ]
+}

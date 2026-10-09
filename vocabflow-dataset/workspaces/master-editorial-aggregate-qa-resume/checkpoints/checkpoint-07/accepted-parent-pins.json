@@ -1,0 +1,53 @@
+{
+  "authorization": {
+    "canonicalIdsAllocated": 0,
+    "contentStatus": "DRAFT",
+    "correctionsApplied": 0,
+    "databaseAccess": "NONE",
+    "databaseWrites": "NONE",
+    "legacyModified": false,
+    "masterReleaseChanged": false,
+    "ownerApprovalsAdded": 0,
+    "production": "UNTOUCHED",
+    "releaseFixApplied": false,
+    "rights": "UNKNOWN_REVIEW_REQUIRED",
+    "rightsClearanceAdded": 0
+  },
+  "frozenAuthoringCohortFingerprint": "2007c5a1e67d4dab6228378b5b00b22ab4736cb16d3f5a3e3d03735e2a290e44",
+  "inheritedPinsReference": {
+    "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-06/accepted-parent-pins.json",
+    "sha256": "308a619e4f2f14f114ce6dd57de00dba191387630f3f6d4e46411144e273e0cd"
+  },
+  "inputFiles": {
+    "vocabflow-dataset/workspaces/full-source-inventory-dedupe/oxford-normalized-inventory.json": "cc64b693f2197ee86f8196b9e4d605769b20f990d23e5cc73686cfb24fa74c37",
+    "vocabflow-dataset/workspaces/full-source-inventory-dedupe/vocab4600-normalized-inventory.json": "f76658b5470047e3ec6c9596f2c6bb329507f97f560a0b26fc6978afd713a160",
+    "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/effective-sense-index.json": "53dd8427f322ad74a02070a6ed32257bb602bace3c6b79c7d658a36d24fcd914",
+    "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/sense-coverage-audit.json": "f186623c89c3fb4c3f7490a0b1ce076b39c2156b16feb3d2259fa9d46702458a"
+  },
+  "parentFileCount": 13,
+  "parentFiles": {
+    "scripts/phase-2h2i-aggregate-qa-checkpoint-06-test.py": "2585f4c6e01fb1971216b17c0e57c3aed451bd0c03a41723faa09dd996a6202f",
+    "scripts/phase-2h2i-aggregate-qa-checkpoint-06.py": "7e52aff57b3dd014e3c629419602d089d0a04f17321c0393601258bc4c65fc5d",
+    "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-06/accepted-parent-pins.json": "308a619e4f2f14f114ce6dd57de00dba191387630f3f6d4e46411144e273e0cd",
+    "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-06/authored/coverage-assessment-notes-batch-006.json": "b427549f81e463b61c7a4d5ab761a12be169579cd036b2c7ca38fa3ac03ced4c",
+    "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-06/authored/coverage-decisions-batch-006.json": "86028af0b2b1d0449ea3bbf91a0f090fef7fa2593bbcb912aa316f9c111ed423",
+    "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-06/authored/new-boundary-proposals.json": "e4f0670df5ece60c2b7fa27ef1dac0af7938b9d868d27f97b46d0bb66ba24d6a",
+    "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-06/coverage-audit-cumulative.json": "393e8787dddc5b6587a6c2bd756eb7194b43db167cadbbf998cad63e676c786f",
+    "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-06/manifest.json": "d8e588d906712e057a9578ee90b9c66ffd8f2f129244048839e98afc01d499d9",
+    "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-06/prioritized-remediation-queue.json": "fa859fb0b121ed095335a532e24f17e89a6f07acbff128dfa6331206f319e6f0",
+    "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-06/report.md": "f56a5942d65db84f04280871614f8bd447048d656ddec9ec63ec4551ee52c6ef",
+    "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-06/resume-selection-receipt.json": "2d3383d87eb0341259266b7726f7c3ed8dddc30869ac41fada092f117adcb1d4",
+    "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-06/validation-summary.json": "da25924fe2f1452d1fe29506b6accc92260e578ce4367f8888225a47c6fd40c2",
+    "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-06/verification-results.json": "757836738da282f639079fc1088b23a99c8c78286621cbd957ed9570f3c022f4"
+  },
+  "parentFingerprint": "5c80c010f6c83fee24614f07831a3016185471d8953e6a6aefa471e5f73e2766",
+  "parentManifest": {
+    "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-06/manifest.json",
+    "sha256": "d8e588d906712e057a9578ee90b9c66ffd8f2f129244048839e98afc01d499d9"
+  },
+  "remoteBaseline": "c4f45c5265f73780a51ecfb7aacea76b7f53b965",
+  "selectionSource": {
+    "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-06/coverage-audit-cumulative.json",
+    "sha256": "393e8787dddc5b6587a6c2bd756eb7194b43db167cadbbf998cad63e676c786f"
+  }
+}
