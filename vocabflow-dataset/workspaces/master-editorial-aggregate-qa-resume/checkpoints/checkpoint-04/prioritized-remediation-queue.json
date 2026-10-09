@@ -1,0 +1,716 @@
+{
+  "approvalInferred": false,
+  "cumulativePriorityCounts": {
+    "P0": 0,
+    "P1": 7,
+    "P2": 65,
+    "P3": 139
+  },
+  "newItems": [
+    {
+      "categories": [
+        "SOURCE_ORIGINALITY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "d1fc12e74317ac4b0c4732483a2e25d134cb8873acf6fdd8f40f2fabfc6b7d80",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:reportedly:according-to-reports",
+      "nextActionVi": "Lưu phạm vi similarity; nếu cần, người phụ trách rights/originality đối chiếu toàn passage và nguồn quyền sử dụng riêng.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Ví dụ statue được đặt trong private collection là tình huống khác painting thất lạc trong source; bản dịch theo nguồn tin giữ sắc thái chưa xác nhận. Bốn cửa sổ tám token tương đồng là dấu hiệu để đọc lại, không phải bằng chứng đạo văn hay clearance.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "UNRESOLVED_ORIGINALITY_REVIEW"
+    },
+    {
+      "categories": [
+        "SOURCE_POS_CONFLICT"
+      ],
+      "effectiveContentHash": "35bde474f7bd03d0cef7bcb0ff6004b4b33cfccceecc08c656e3d3958cc9812a",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:quite:moderately",
+      "nextActionVi": "Giữ REVIEW và cờ bất đồng nguồn; yêu cầu quyết định metadata/identity có thẩm quyền trước canonical mapping.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Oxford ordinal 0 là trạng từ chỉ mức khá và ví dụ spacious khớp; 4600 gắn POS adjective cho mục quite. Bản nháp giữ POS adverb có lý do theo cấu trúc, nhưng xung đột metadata giữa hai nguồn chưa phải phê duyệt canonical.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "SOURCE_METADATA_CONFLICT"
+    },
+    {
+      "categories": [
+        "SOURCE_POS_CONFLICT"
+      ],
+      "effectiveContentHash": "7b40447b542ca5492948c14631f75e3d26328af6baae580a0ccc6551fbf9dff0",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:quite:completely",
+      "nextActionVi": "Giữ bản DRAFT và ghi xung đột POS cho adjudication; không đổi POS theo một nguồn đơn lẻ.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Ordinal Oxford 1 dùng quite với agree theo mức hoàn toàn, đúng trạng từ; nguồn 4600 vẫn gắn adjective cho lemma. Ví dụ parcel/correct hợp nghĩa, nhưng không thể xem khác POS nguồn đã được owner duyệt.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "SOURCE_METADATA_CONFLICT"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "15a6c5f7fd813f485c529b2772d6680d8584ade6fd9f43f4002e8f98325569bf",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:double:two-part",
+      "nextActionVi": "Giữ REVIEW cho taxonomy/identity review; không gộp Senses chỉ để ép khớp nhãn POS nguồn.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Ordinal Oxford 0 và nghĩa adjective hai phần tương đồng được thể hiện riêng; ví dụ double door không lẫn phép nhân. Câu hỏi còn lại là ranh giới determiner/pronoun/adverb trong inventory và cách hệ thống hóa POS, không phải lỗi dịch ở Sense này.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "OWNER_IDENTITY_REVIEW"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "c94a68096c179864367f668a22992471404d610d4ab405d659e12ef470e012dd",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:double:twice-quantity-before-noun",
+      "nextActionVi": "Giữ ranh giới theo cấu trúc ví dụ và chờ quyết định taxonomy trước canonical identity.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "“Double the amount” có danh từ theo sau, đúng cấu trúc determiner và khác dùng độc lập ở sibling. Tất cả năm ordinal của Oxford được thể hiện, nhưng cách phân loại det/pronoun/adverb trong nguồn vẫn cần adjudication.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "OWNER_IDENTITY_REVIEW"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "29ab4bad4815e8c0fdea9e3c7b829eb8debb06788f7e8d2400b1fc9c4624056a",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:double:twice-quantity-alone",
+      "nextActionVi": "Bảo toàn bản nháp độc lập; yêu cầu quyết định POS/taxonomy có thẩm quyền trước canonical hóa.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Double đứng thay cho lượng đã nêu trong hai hộp dụng cụ, minh họa cách dùng không có danh từ theo sau; bản dịch giữ phép nhân. Vấn đề còn lại là thuật ngữ pronoun và identity theo taxonomy, không phải thiếu nội dung ví dụ.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "OWNER_IDENTITY_REVIEW"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "5d0d494449a5ab68e7d95eeb267b43e8bba84006d69f34ec6b4050d11e5c7587",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:double:become-twice",
+      "nextActionVi": "Giữ verb Sense riêng; không áp nhãn từ nguồn 4600 adjective cho cấu trúc động từ được chứng thực.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Động từ doubled its membership diễn đạt số thành viên tăng gấp đôi và grammar note nêu cả transitive/intransitive. Oxford có ordinal động từ riêng nên ranh giới nghĩa được hỗ trợ; chỉ taxonomy tổng quát của lemma còn trong REVIEW.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "OWNER_IDENTITY_REVIEW"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "b548ddd0ff2015bf3263286cfd2be29cc17efa84ee1d6ab68a8244ef04ae35d7",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:double:pay-twice",
+      "nextActionVi": "Duy trì phân biệt theo phân bố cú pháp; không coi AI review là duyệt canonical taxonomy.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Pay double bổ nghĩa động từ, khác determiner trước noun và pronoun đứng thế lượng; ví dụ thời điểm tính phí làm nghĩa dễ nhận. Quyết định hệ thống POS/identity toàn lemma vẫn chưa được human review.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "OWNER_IDENTITY_REVIEW"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "b7795e726518fd444e83b29a9fc5f5d51a262e1b7d4ecde8d9f3aad118ab0afd",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:better:higher-quality",
+      "nextActionVi": "Giữ comparative adjective tách biệt với adverb và constructional noun; chuyển identity question chung sang owner review.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Better as adjective đánh giá lựa chọn phù hợp hơn, có đối tượng so sánh rõ; Oxford adjective ordinal khớp. Không có cơ sở trong bản ghi này để tách count noun “a better”.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "LEXICAL_IDENTITY_REVIEW"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "445978d9b3b4a3871555e0b272716c89691f9c9fcd8b327be15d8d5de566804e",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:better:more-effectively",
+      "nextActionVi": "Giữ adverb Sense theo cấu trúc; không nhập vào adjective chỉ vì cùng dạng comparative.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Better modifies worked và diễn đạt hiệu quả hơn; Oxford adverb ordinal corroborates. Definition và tiếng Việt nhất quán, nhưng đối chiếu identity toàn họ good/well vẫn thuộc owner.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "LEXICAL_IDENTITY_REVIEW"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "b46ecb94f4aa3097fb30d3e13b837ffa268a0a527a633298c6d2a7f96d183595",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:better:improvement",
+      "nextActionVi": "Giữ giới hạn construction và chờ owner quyết định phạm vi lemma/phrase trước canonical allocation.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "“A change for the better” là danh từ trừu tượng trong construction nguồn “expect better”, không được bản nháp khái quát thành danh từ đếm được thông thường. Meaning và ví dụ nêu giới hạn hữu ích nhưng identity với good/well cần người duyệt.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "LEXICAL_IDENTITY_REVIEW"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "63b75424e7513161c67ef47e4139a54303e938f2342a09e34806573de8aa5fa1",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:lot:quantity-before-noun",
+      "nextActionVi": "Giữ nguyên proposal key/content DRAFT; owner xử lý lexical identity và phrase normalization trước canonical hóa.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Sense “a lot of/lots of” trước danh từ có ví dụ và subject-verb note phù hợp. Lemma key chuẩn hóa lot trong khi nội dung là multiword expression; việc có nên định danh phrase riêng chưa được quyết định.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MULTIWORD_IDENTITY_REVIEW"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "b08a05c2a6fca74ef3f37f38199ab108f617301f695febbc4b98af4a5af16e75",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:lot:quantity-without-noun",
+      "nextActionVi": "Giữ cấu trúc hiện tại và chuyển câu hỏi phrase/lemma sang identity review.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "A lot đứng thay danh từ đã rõ trong ngữ cảnh, ví dụ some seedlings … a lot died làm rõ pronominal use. Nội dung hữu ích nhưng normalized key lot không tự cấp identity cho cụm a lot.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MULTIWORD_IDENTITY_REVIEW"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "caecbe82e1db1259cc9296c81d40c2ae91af1ce3987cb4ddf9c723d9bfcc2fe2",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:lot:degree-or-frequency",
+      "nextActionVi": "Giữ nội dung draft, chờ quyết định phrase identity và không gộp adverb với quantity determiner.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "A lot theo sau động từ biểu thị mức độ/tần suất, ví dụ đạp xe thường xuyên, đúng ordinal adverb. Đây vẫn là cụm hai từ; không khẳng định nó là một canonical sense riêng của token lot.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MULTIWORD_IDENTITY_REVIEW"
+    },
+    {
+      "categories": [
+        "SOURCE_ORIGINALITY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "e806379bda9a0d09f31f7e4dff66e1409e03ce722360c5c1cbb034bf0a690289",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:offense:punishable-act",
+      "nextActionVi": "Nếu rights/originality review yêu cầu, so sánh cả passage và xác nhận quyền riêng; không xóa ví dụ chỉ dựa trên heuristic.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Tình huống trường học hư cấu đổi thiết bị/khung cảnh so với ví dụ 4600 ăn cắp xe; nội dung pháp lý được giới hạn ở luật hoặc quy tắc. Một cửa sổ VI tương đồng tám token cần lưu kiểm tra, không đủ kết luận copy.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "UNRESOLVED_ORIGINALITY_REVIEW"
+    },
+    {
+      "categories": [
+        "SOURCE_ORIGINALITY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "ff410d1d2fbf8174b6d2704bc0807c42e47b05fe33f0b1cc376157f52e0d55a4",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:offense:hurt-or-insult",
+      "nextActionVi": "Giữ historical similarity flag và chuyển rights/originality sang review riêng nếu cần.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Ví dụ joke gây phật lòng khác tình huống ăn cắp xe ở nguồn và tách rõ nghĩa cảm xúc với hành vi phạm luật. Một shared window tiếng Việt là tín hiệu nhẹ, không chứng minh trùng lặp.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "UNRESOLVED_ORIGINALITY_REVIEW"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "53b112171b9ece3663d8bc2cdc1693b75915ddc6b3484fcbfbdc6cc0e6fb3eff",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:wicked:morally-bad",
+      "nextActionVi": "Giữ scope DRAFT này; giao coverage tổng thể cho audit của group và không tự tạo thêm Sense ngoài selection.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Bản nháp chỉ bao quát nghĩa đạo đức xấu theo source; câu chuyện hư cấu minh họa cruel, không khẳng định colloquial “excellent” hay nghĩa khác. Một record đúng không chứng minh lemma đã exhaustive.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "SENSE_COVERAGE_NOT_EXHAUSTIVE"
+    },
+    {
+      "categories": [
+        "SENSE_BOUNDARY_UNCERTAIN"
+      ],
+      "effectiveContentHash": "05ab459ccad67775fb959d52e8981d82fe6809ee34f4ffc2a263137d5e35d674",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:harness:put-energy-to-use",
+      "nextActionVi": "Giữ Sense năng lượng; kiểm kê các nghĩa source khác trong coverage review có thẩm quyền trước khi quyết định có Sense riêng.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Harness energy phù hợp định nghĩa kiểm soát/khai thác nguồn lực và ví dụ thiết bị dùng ánh nắng; source 4600 còn nêu to harness a horse, một boundary verb khác. Audit này chỉ review record đã chọn nên chưa kết luận coverage group đầy đủ.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "POTENTIAL_UNASSESSED_SOURCE_BOUNDARY"
+    },
+    {
+      "categories": [
+        "SOURCE_POS_CONFLICT"
+      ],
+      "effectiveContentHash": "72a8c4c561ccf3fcac82ba4ba98f35f29128b6da1ec2a8716def59f953ef80e4",
+      "historicalStatus": "REVIEW",
+      "identity": "EDITORIAL_2H2H:fond:feeling-affection-or-liking",
+      "nextActionVi": "Giữ adjective DRAFT cùng bằng chứng hai nguồn; yêu cầu giải quyết metadata trước canonical POS.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Oxford gắn adjective cho fond of music/puzzles; 4600 raw POS “verb” nhưng chính definition “be fond of” là cấu trúc adjective. Ví dụ tomatoes và grammar note đúng adjective, xung đột nhãn nguồn không tạo verb Sense.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "SOURCE_METADATA_CONFLICT"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R3-P001",
+      "nextActionVi": "Đánh giá đề xuất; review toàn batch trước một lượt áp dụng riêng nếu được cho phép.",
+      "ownerApproval": false,
+      "parentHash": "b010025a9acf77a11c651acad97c4ac5ab281e7417ef008fcf7f92c06f2ff523",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2H:waste:poor-use",
+      "rationaleVi": "Bản hiện tại bắt đầu bằng động từ “In cùng một tài liệu hai lần” nhưng thiếu chủ thể/danh từ hóa, làm câu không tự nhiên. “Việc in…” tạo chủ đề rõ, giữ nguyên nội dung lãng phí giấy và không thay nghĩa English.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_TRANSLATION"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R3-P002",
+      "nextActionVi": "Đánh giá đề xuất; review toàn batch trước một lượt áp dụng riêng nếu được cho phép.",
+      "ownerApproval": false,
+      "parentHash": "26ca022aff7fabd43b50ccd5b6537c7c9d97c712c404631dd41a9ace83549e1b",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:fluid:flowing-substance",
+      "rationaleVi": "The final clause records a provisional merger and pending scientific review, which is workflow/taxonomy state rather than learner grammar. English definition, countable/plural example and Oxford two-noun-sense evidence do not need that clause.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R3-P003",
+      "nextActionVi": "Đánh giá đề xuất; review toàn batch trước một lượt áp dụng riêng nếu được cho phép.",
+      "ownerApproval": false,
+      "parentHash": "ecf80864453772fc3bcda1727e783308754481be2bff6346e266ac528669c9b3",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:fluid:changing",
+      "rationaleVi": "“4600 POS evidence” exposes provenance and the fluid label is not a usage rule. The schedule example supports an adjective describing a situation that can change.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R3-P004",
+      "nextActionVi": "Đánh giá đề xuất; review toàn batch trước một lượt áp dụng riêng nếu được cho phép.",
+      "ownerApproval": false,
+      "parentHash": "1c56b18effd66d8d099925436aded5735eea8e639934f4073aacfbfa5fa0192d",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:exact:precise",
+      "rationaleVi": "The Master-overlap and identity-review sentence documents curation, not the adjective’s grammar. Oxford and 4600 both support exact meaning precise/correct.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R3-P005",
+      "nextActionVi": "Đánh giá đề xuất; review toàn batch trước một lượt áp dụng riêng nếu được cho phép.",
+      "ownerApproval": false,
+      "parentHash": "850972cb08a462c27231e7f01bdd715bcedaf2de71cce317b02b2499b637cdb9",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:happy:pleased-feeling",
+      "rationaleVi": "“Source groups provisionally coalesced; owner may split” is an unresolved editorial boundary, not a learner-facing usage note. Happy with the painting provides a clear satisfaction construction.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R3-P006",
+      "nextActionVi": "Đánh giá đề xuất; review toàn batch trước một lượt áp dụng riêng nếu được cho phép.",
+      "ownerApproval": false,
+      "parentHash": "acc74ae4cee563348e3853a70900c2af9facb8ae7f3264a4a53a3e4fc329d90a",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:far:at-distance",
+      "rationaleVi": "The phrase “here” evaluates the current proposal and the note incorrectly labels the example’s “not walk far” as comparative intensification. The draft example is a distance adverb, so replace the process-like, mismatched text with a usable pattern.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R3-P007",
+      "nextActionVi": "Đánh giá đề xuất; review toàn batch trước một lượt áp dụng riêng nếu được cho phép.",
+      "ownerApproval": false,
+      "parentHash": "1bf7f93497e1062149ba882f5a162836d811c3f9dc14186191ad3539c2379be7",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:go:travel-leave",
+      "rationaleVi": "“Source go/leave coalesced for review” is unresolved source-boundary workflow. Destination and irregular-form guidance are useful, while Oxford lists both go-to-a-place and leave uses.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R3-P008",
+      "nextActionVi": "Đánh giá đề xuất; review toàn batch trước một lượt áp dụng riêng nếu được cho phép.",
+      "ownerApproval": false,
+      "parentHash": "8cc10607aa06c449b9784c61f8740e2a2d35028103e390f7a8d83fc398e6e348",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:creature:living-being",
+      "rationaleVi": "“Compare pinned Master meaning without asserting Sense identity” refers to an internal reference and approval boundary, not English grammar. Countability is learner-relevant, and the source permits animals or people.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R3-P009",
+      "nextActionVi": "Đánh giá đề xuất; review toàn batch trước một lượt áp dụng riêng nếu được cho phép.",
+      "ownerApproval": false,
+      "parentHash": "91b88f2677f7e6cf60c65242e77d5be6a8b6c3d77eeb068c868fbd3f3836bfb9",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:can:ability",
+      "rationaleVi": "“VERB is schema-compatible proposal” is a data-model comment. The remaining modal rule is useful, but the current note should describe the non-inflected form directly.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R3-P010",
+      "nextActionVi": "Đánh giá đề xuất; review toàn batch trước một lượt áp dụng riêng nếu được cho phép.",
+      "ownerApproval": false,
+      "parentHash": "edfce804924f4f73c04e8ecffb57492eef95346e4a46fcac0d95d1914927139b",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:desk:work-table",
+      "rationaleVi": "“History-linked runtime identity remains preserved, no mapping” describes technical mapping and history, not grammar. The draft definition and lamp example support ordinary countable noun usage.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R3-P011",
+      "nextActionVi": "Đánh giá đề xuất; review toàn batch trước một lượt áp dụng riêng nếu được cho phép.",
+      "ownerApproval": false,
+      "parentHash": "6aedd821d1eedcc33218b922afaada07893d7f3f47d8b7d62757eb2e10121de6",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:low:small-height-level",
+      "rationaleVi": "“Scalar proposal; exact boundaries pending” explicitly marks an unresolved editorial proposal. It gives no learner guidance despite the adjective’s usable physical-height example.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R3-P012",
+      "nextActionVi": "Đánh giá đề xuất; review toàn batch trước một lượt áp dụng riêng nếu được cho phép.",
+      "ownerApproval": false,
+      "parentHash": "20166bdcc3db68465041637f23ca0341fa6cc5ed1176c2709db831194a2c6f08",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:leg:furniture-support",
+      "rationaleVi": "“Identity metaphor needs owner review” is an internal decision/status note. The example shows ordinary countable leg of furniture construction.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R3-P013",
+      "nextActionVi": "Đánh giá đề xuất; review toàn batch trước một lượt áp dụng riêng nếu được cho phép.",
+      "ownerApproval": false,
+      "parentHash": "497dd095cccc087f35ce0493636bd14ce579a14e56f27b3b4d02709d4a65f91a",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2B:abuse:insults-noun",
+      "rationaleVi": "“No offensive quotation is needed for teaching” is an authoring instruction, not a grammar rule. A learner-facing note can instead show the supported verbal abuse construction without quoting insults.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R3-P014",
+      "nextActionVi": "Đánh giá đề xuất; review toàn batch trước một lượt áp dụng riêng nếu được cho phép.",
+      "ownerApproval": false,
+      "parentHash": "f49cbd81408b99729431b585ba12a01283b99326039b4ef41de7c9397264b740",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2B:accessory:extra-item",
+      "rationaleVi": "“Legal accessory use is not proposed from this evidence” is a scope/proposal status note. The product accessory example supports countable use and with/for constructions.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R3-P015",
+      "nextActionVi": "Đánh giá đề xuất; review toàn batch trước một lượt áp dụng riêng nếu được cho phép.",
+      "ownerApproval": false,
+      "parentHash": "e6112bd8b939c1a205798c040cff96a511c9bca9de3534888e4afd7de8a5c17d",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2B:accommodation:place-to-stay",
+      "rationaleVi": "“Review American plural usage separately” is an unfinished audit task, not learner guidance. The selected evidence supports accommodation as a place/arrangement, commonly uncountable in the example.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R3-P016",
+      "nextActionVi": "Đánh giá đề xuất; review toàn batch trước một lượt áp dụng riêng nếu được cho phép.",
+      "ownerApproval": false,
+      "parentHash": "1cfb4af5c6406238ad54adda2f09a7d4be507eca122cbb2dce195874d90e991f",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2B:ache:continuous-pain",
+      "rationaleVi": "“Noun use requires a separate proposal if later supported” describes proposal workflow and distracts from the inspected verb. The example shows an intransitive body-part subject and past form.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R3-P017",
+      "nextActionVi": "Đánh giá đề xuất; review toàn batch trước một lượt áp dụng riêng nếu được cho phép.",
+      "ownerApproval": false,
+      "parentHash": "db01f7483abc5c2b11446fede65f9c4b427c2726a1156ec6b916d05e1568fcd5",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:embassy:diplomatic-office",
+      "rationaleVi": "“Institution/building use combined; no visa or legal advice” states editorial grouping and a service disclaimer. The definition/example support the organization and its premises as countable uses.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R3-P018",
+      "nextActionVi": "Đánh giá đề xuất; review toàn batch trước một lượt áp dụng riêng nếu được cho phép.",
+      "ownerApproval": false,
+      "parentHash": "fbb51b7f7974bb5c3abb660f8e7fe6bf33f376bc28a6b71b221b86cecd7c19a8",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:goodbye:parting-word",
+      "rationaleVi": "“Exclamation source maps provisionally to INTERJECTION” is an unresolved POS mapping note, not usage. The current example is a direct farewell expression.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R3-P019",
+      "nextActionVi": "Đánh giá đề xuất; review toàn batch trước một lượt áp dụng riêng nếu được cho phép.",
+      "ownerApproval": false,
+      "parentHash": "f4ea4778bdba808d324af47d698b845777b2591f2be9fde5560c8e87576cfb93",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:goodbye:parting-event",
+      "rationaleVi": "“Grammatical representation may coalesce with interjection” is an unresolved taxonomy decision. The noun example and plural form can be described directly.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R3-P020",
+      "nextActionVi": "Đánh giá đề xuất; review toàn batch trước một lượt áp dụng riêng nếu được cho phép.",
+      "ownerApproval": false,
+      "parentHash": "bf6989e3bb511462f5ec77400c9dc3beb058eac9a29b5deca613cc0ffa50d1ec",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:resident:living-in-place",
+      "rationaleVi": "“Grammatical boundary with noun pending” records an unresolved taxonomy decision. The example supports the attributive adjective resident population.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R3-P021",
+      "nextActionVi": "Đánh giá đề xuất; review toàn batch trước một lượt áp dụng riêng nếu được cho phép.",
+      "ownerApproval": false,
+      "parentHash": "c194bad8a8123608e142120dfb91b892f2aa37940b7e718d5c9e02dc88e122cd",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:peer:equal-status",
+      "rationaleVi": "“Source groups provisionally coalesced” is editorial boundary status, and the noble-title exclusion is not grammar for this peer sense. The example supports plural peer with a possessive relation.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R3-P022",
+      "nextActionVi": "Đánh giá đề xuất; review toàn batch trước một lượt áp dụng riêng nếu được cho phép.",
+      "ownerApproval": false,
+      "parentHash": "1018c1fc435a8cd0d16cd0ca17913b283f70885b473a5c4cca05a364be060380",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:neither:not-one-of-two-determiner",
+      "rationaleVi": "“Representation relation to pronoun unresolved” is an internal POS-boundary status. The example directly supports determiner neither before a singular noun.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R3-P023",
+      "nextActionVi": "Đánh giá đề xuất; review toàn batch trước một lượt áp dụng riêng nếu được cho phép.",
+      "ownerApproval": false,
+      "parentHash": "472e9ac7aab2097c6a36b3ac4a1bce693a14fb26f75ab571097fbf410b19cbb8",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:neither:not-one-of-two-pronoun",
+      "rationaleVi": "“No fabricated final convention” is audit commentary. Keep the useful observation about agreement but express the actual construction as a usage note.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R3-P024",
+      "nextActionVi": "Đánh giá đề xuất; review toàn batch trước một lượt áp dụng riêng nếu được cho phép.",
+      "ownerApproval": false,
+      "parentHash": "e0a7d235717156d18f3698670cef360ed8dda128bdc0b5f470ff704685f762c0",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:teacher:educator",
+      "rationaleVi": "“Preserved history-linked runtime identity, no automatic reuse” describes system identity reuse, not grammar. The example shows countable teacher and a complement describing a class.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R3-P025",
+      "nextActionVi": "Đánh giá đề xuất; review toàn batch trước một lượt áp dụng riêng nếu được cho phép.",
+      "ownerApproval": false,
+      "parentHash": "8fdc4d16e49e37daab3abcf744ce8279b4c65a19cb1933e1bb711b58da3421a5",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:small:little-amount",
+      "rationaleVi": "“Provisional distinction from physical size” discloses an unsettled editorial boundary. The small chance example and Oxford ordinal support amount/probability use.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R3-P026",
+      "nextActionVi": "Đánh giá đề xuất; review toàn batch trước một lượt áp dụng riêng nếu được cho phép.",
+      "ownerApproval": false,
+      "parentHash": "394f56a019ad20318344878e1d5187b2a0c0095f7f9558205c835f75d06bd932",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:substantially:considerably",
+      "rationaleVi": "“Source ADJECTIVE conflict needs correction review, no adjective proposed” is unresolved source-taxonomy/proposal commentary. Oxford/4600 examples and the adverb position support degree modification.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R3-P027",
+      "nextActionVi": "Đánh giá đề xuất; review toàn batch trước một lượt áp dụng riêng nếu được cho phép.",
+      "ownerApproval": false,
+      "parentHash": "16be9ec332c240c7ff53fa8fe03d528c53edcca1fee010ea87c3a49fb2782016",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:whereas:contrast",
+      "rationaleVi": "“In this proposal” points to editorial status rather than learner usage. The contrast between the two clauses is useful and is supported by both sources.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R3-P028",
+      "nextActionVi": "Đánh giá đề xuất; review toàn batch trước một lượt áp dụng riêng nếu được cho phép.",
+      "ownerApproval": false,
+      "parentHash": "e5ac3a4e87c2091f8430f0201468926167e02236b324414938d07f20eeba3106",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:wound:physical-injury",
+      "rationaleVi": "“No care instructions” is editorial safety scope, not grammar. The countable noun and pronunciation contrast can be stated without that disclaimer.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R3-P029",
+      "nextActionVi": "Đánh giá đề xuất; review toàn batch trước một lượt áp dụng riêng nếu được cho phép.",
+      "ownerApproval": false,
+      "parentHash": "53ece415fa4679521d3855a6432dbbd8d8e2cbbcf02edabaa811e8ed637033dc",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:wound:hurt-feelings",
+      "rationaleVi": "“No mental-health diagnosis” is a disclaimer rather than a grammar rule. The example supports figurative transitive use with an emotional object.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R3-P030",
+      "nextActionVi": "Đánh giá đề xuất; review toàn batch trước một lượt áp dụng riêng nếu được cho phép.",
+      "ownerApproval": false,
+      "parentHash": "2c189c192fef32a9383e4ed2c025207ce34580b4fc6046fb84edd6ba424969ad",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:whisper:soft-voice",
+      "rationaleVi": "“Voice/utterance provisionally combined” records an unresolved editorial boundary. The noun can instead teach countability across the two ordinary constructions.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R3-P031",
+      "nextActionVi": "Đánh giá đề xuất; review toàn batch trước một lượt áp dụng riêng nếu được cho phép.",
+      "ownerApproval": false,
+      "parentHash": "9cb535aaff639cae7b0310c75bb5db8d6f407a21c8853268cd609416f075ced4",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2C:wild:not-cultivated",
+      "rationaleVi": "“Animal/plant source groups may coalesce” is a pending source-boundary decision. The flower example supports the plant-specific adjective use directly.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R3-P032",
+      "nextActionVi": "Đánh giá đề xuất; review toàn batch trước một lượt áp dụng riêng nếu được cho phép.",
+      "ownerApproval": false,
+      "parentHash": "58ed7ac5d49e6813977c9603a81cd1f259a19bb802d530ec86329d6851737661",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2D:second:ordinal",
+      "rationaleVi": "“NUMBER framework unresolved” reports schema taxonomy rather than ordinal grammar. The example identifies a second item before its noun.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R3-P033",
+      "nextActionVi": "Đánh giá đề xuất; review toàn batch trước một lượt áp dụng riêng nếu được cho phép.",
+      "ownerApproval": false,
+      "parentHash": "79098a62ca0c86c17b458c4ba03aed2a953576e7da202d34214f277cf1af759d",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2D:seven:number",
+      "rationaleVi": "“Source NUMBER not available in proposal POS enum” is a data-schema limitation, not grammar. The plural-noun example supports cardinal number use.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R3-P034",
+      "nextActionVi": "Đánh giá đề xuất; review toàn batch trước một lượt áp dụng riêng nếu được cho phép.",
+      "ownerApproval": false,
+      "parentHash": "d1aa03814558c30278be55c900fbc09b10853d13746b74ffbbad787430a6ef28",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2D:wholesale:trade",
+      "rationaleVi": "“Noun proposal; source construction also supports adjective use requiring review” reports unresolved POS adjudication. The exact note gives no noun usage; current example contrasts wholesale with retail as a trade.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    },
+    {
+      "applied": false,
+      "identity": "2H2I-R3-P035",
+      "nextActionVi": "Đánh giá đề xuất; review toàn batch trước một lượt áp dụng riêng nếu được cho phép.",
+      "ownerApproval": false,
+      "parentHash": "ba6a32b3cead3a68b4a77aa107ba7e3446497a370242c5a37ce1ccdf7f6504e9",
+      "priority": "P3",
+      "proposalKey": "EDITORIAL_2H2D:avail:benefit",
+      "rationaleVi": "“Source in no avail is defective” evaluates source quality rather than teaching current usage. The example correctly uses the fixed phrase to no avail.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "severity": "MINOR_CONTENT_HYGIENE"
+    }
+  ],
+  "parentQueue": {
+    "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-03/prioritized-remediation-queue.json",
+    "sha256": "8a43d7a18a94d68b2e5637a0f6f10fa1ef1b5298f62783305468cd6e9ff3b587"
+  },
+  "priorItemsReferenced": {
+    "checkpoint02": {
+      "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/prioritized-remediation-queue.json",
+      "sha256": "81b0feccd3613d9603e01371d643c6ab9577b5790df3bce6b9be555b4c3d3073"
+    },
+    "checkpoint03": {
+      "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-03/prioritized-remediation-queue.json",
+      "sha256": "8a43d7a18a94d68b2e5637a0f6f10fa1ef1b5298f62783305468cd6e9ff3b587"
+    },
+    "originalAggregate": {
+      "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/prioritized-remediation-queue.json",
+      "sha256": "2f198ae89bc1cb1da8e919ada0bc5c0a31851f0dbfbbd82a8a14d5bd3644e3c3"
+    }
+  },
+  "unresolvedRights": "UNKNOWN_REVIEW_REQUIRED"
+}

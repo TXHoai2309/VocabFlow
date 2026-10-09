@@ -1,0 +1,157 @@
+{
+  "phase": "2H.2I-R3",
+  "verifiedUtc": "2026-10-09T08:31:07Z",
+  "status": "PASS_FOR_BOUNDED_TARGETS",
+  "aggregateStatus": "PARTIAL",
+  "remoteBaseline": "09e0c4b684f2f81028680d5a78ad5bd680224a7b",
+  "parentCheckpoint03Fingerprint": "d5e87509822821b74b0588a5d99f2168a5db47c59299192d540ace84315b0b71",
+  "checkpoint04Fingerprint": "524b064666d9538cb9774bd50f4a2bd63e82505e8f2a82232a4b59f4baf6724b",
+  "boundedSelection": {
+    "reviews": 40,
+    "coverageGroups": 75,
+    "newGrammarCandidates": 25,
+    "fullBatchSenseInspections": 126,
+    "completeOriginalBatches": 13
+  },
+  "cumulativeResults": {
+    "corpusGroups": 1020,
+    "corpusSenses": 1563,
+    "frozenCohortGroups": 500,
+    "frozenCohortSenses": 750,
+    "reviewTriaged": 145,
+    "reviewPending": 42,
+    "coverageAssessed": 242,
+    "coveragePending": 258,
+    "originalCoverageWarningGroupsPreserved": 126,
+    "grammarCandidatesInspected": 83,
+    "grammarCandidatesTotal": 107,
+    "grammarCandidatesPending": 24,
+    "grammarClassifications": {
+      "CONFIRMED_PROCESS_COMMENTARY": 38,
+      "POSSIBLE_PROCESS_COMMENTARY": 3,
+      "VALID_LEARNER_GRAMMAR_NOTE": 85
+    },
+    "newConfirmedContentDefects": 35,
+    "newConfirmedCoverageGaps": 0,
+    "newPossibleCoverageGaps": 0,
+    "newSourceMetadataConflicts": 0,
+    "fieldCorrectionProposalsTotal": 117,
+    "boundaryProposalsTotal": 7,
+    "newFieldCorrectionProposals": 35,
+    "newBoundaryProposals": 0,
+    "correctionsApplied": 0
+  },
+  "tests": {
+    "inheritedSuites": 17,
+    "inheritedTests": 550,
+    "inheritedStatus": "PASS",
+    "checkpoint04FocusedTests": 37,
+    "checkpoint04FocusedStatus": "PASS",
+    "checkpoint04FocusedSeconds": 23.0
+  },
+  "replays": {
+    "parentAndAuthoringReplays": 11,
+    "allZeroWrites": true,
+    "checkpoint03SecondSeed": {
+      "hashSeed": "20261012",
+      "exitCode": 0,
+      "zeroWrites": true,
+      "filesCompared": 6975
+    },
+    "checkpoint04Seeds": [
+      {
+        "command": [
+          "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-B",
+          "scripts/phase-2h2i-aggregate-qa-checkpoint-04.py",
+          "--check"
+        ],
+        "exitCode": 0,
+        "zeroWrites": true,
+        "filesCompared": 6976,
+        "hashSeed": "20261011",
+        "seconds": 16.0
+      },
+      {
+        "command": [
+          "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-B",
+          "scripts/phase-2h2i-aggregate-qa-checkpoint-04.py",
+          "--check"
+        ],
+        "exitCode": 0,
+        "zeroWrites": true,
+        "filesCompared": 6976,
+        "hashSeed": "20261012",
+        "seconds": 16.77
+      }
+    ]
+  },
+  "directChecks": {
+    "nodeVersion": "v22.23.2",
+    "typecheck": {
+      "name": "typecheck",
+      "command": [
+        "D:\\hoctienganh\\.tools\\node-v22.23.2-win-x64\\node.exe",
+        "node_modules/typescript/bin/tsc",
+        "-b"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 70.79,
+      "changedRepoFiles": []
+    },
+    "lint": {
+      "name": "lint",
+      "command": [
+        "D:\\hoctienganh\\.tools\\node-v22.23.2-win-x64\\node.exe",
+        "node_modules/eslint/bin/eslint.js",
+        ".",
+        "--max-warnings=0"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 85.59,
+      "changedRepoFiles": []
+    },
+    "frozenHybridRelease": {
+      "name": "frozenRelease",
+      "command": [
+        "D:\\hoctienganh\\.tools\\node-v22.23.2-win-x64\\node.exe",
+        "node_modules/tsx/dist/cli.mjs",
+        "scripts/hybrid-100-runtime-eligible-patch-release.ts",
+        "--check"
+      ],
+      "exitCode": 0,
+      "status": "PASS",
+      "seconds": 31.4,
+      "changedRepoFiles": []
+    },
+    "canonicalPnpmWrapper": "NOT_RUN",
+    "frozenReleaseIdentity": "Hybrid-100 v2.2.1 (87 Lexemes / 100 Senses)"
+  },
+  "preservation": {
+    "acceptedParentFilesCompared": 6939,
+    "acceptedParentFilesUnchanged": true,
+    "all1563EffectiveSensesPreserved": true,
+    "stashBackups": 7,
+    "stashesPreserved": true,
+    "worktreesPreserved": 12,
+    "vocabFlowUs55Untouched": true,
+    "newBranchOrWorktree": false
+  },
+  "authorization": {
+    "canonicalIdsAllocated": 0,
+    "contentStatus": "DRAFT",
+    "correctionProposalsApplied": 0,
+    "databaseAccess": "NONE",
+    "databaseWrites": "NONE",
+    "legacyModified": false,
+    "masterReleaseChanged": false,
+    "ownerApprovalsAdded": 0,
+    "production": "UNTOUCHED",
+    "rights": "UNKNOWN_REVIEW_REQUIRED",
+    "rightsClearanceAdded": 0,
+    "scopedGitPublicationAuthorized": true
+  }
+}

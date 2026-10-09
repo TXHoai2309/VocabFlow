@@ -2723,3 +2723,17 @@ Remaining identities are explicit in the cumulative inventories and report.
 Resume only with separate owner authorization using the additive inspection
 protocol. STOP after scoped commit/push; no checkpoint 04, correction application,
 formal approval, new cohort, canonical release or database import.
+
+## Phase 2H.2I-R3 — aggregate QA checkpoint 04
+
+This additive checkpoint supersedes the prior checkpoint-03 handoff's “no checkpoint 04” stop: that stop applied to the earlier run, and the owner later authorized this bounded R3 continuation. R3 completed its selected targets; the aggregate audit remains PARTIAL and stops here.
+
+Checkpoint 04 fingerprint: `524b064666d9538cb9774bd50f4a2bd63e82505e8f2a82232a4b59f4baf6724b`; parent checkpoint 03: `d5e87509822821b74b0588a5d99f2168a5db47c59299192d540ace84315b0b71`.
+
+The new 40 review records were triaged, bringing the cumulative inventory to 145/187 with 42 pending. The next 75 coverage groups were assessed, bringing coverage to 242/500 with 258 pending; all 126 original warning groups remain present and coverage is explicitly non-exhaustive. No new source-supported coverage gap was confirmed. Full-manuscript inspection covered 126 Senses across 13 complete batches and evaluated 25 additional grammar candidates: cumulative classification is 38 confirmed process-commentary, 3 possible, and 85 valid learner grammar notes; 24 of 107 dedicated candidates remain pending. Four confirmed items already had a prior proposal; 34 new grammar-note proposals and one Vietnamese example proposal were added, for 35 new unapplied field proposals. Cumulative proposals are 117 field and 7 boundary; applied corrections remain zero. No historical REVIEW was relabeled PASS, and no owner decision, rights clearance, or canonical ID was inferred.
+
+The authoring lesson is to keep provenance, taxonomy, identity, approvals, and proposal workflow out of learner-facing grammar notes; verify grammar against definitions, POS, and examples; review paired EN/VI fields; inspect Sense boundaries before expansion; and treat similarity only as a review signal, not proof of copying or rights clearance. The lesson is a recommendation for separately authorized future cohorts and does not change the workflow.
+
+Validation evidence: 550 inherited regression tests and 37 focused R3 tests PASS. Eleven parent/authoring replays, a second-seed checkpoint-03 replay, and checkpoint-04 `--check` replays with hash seeds `20261011` and `20261012` PASS with zero writes. Direct TypeScript build, ESLint with zero warnings, and frozen Hybrid release check PASS; canonical `pnpm` wrapper was NOT_RUN. Hybrid-100 v2.2.1 remains 87 Lexemes / 100 Senses. Seven stashes and twelve worktrees were preserved, including VocabFlow-us55; no new branch or worktree was created. Existing 1,020 groups and 1,563 effective Sense drafts remain preserved.
+
+All content remains DRAFT and rights remain `UNKNOWN_REVIEW_REQUIRED`. No approval, rights clearance, canonical ID, or correction application was added. No database/Neon access or write, Production operation, Master release, legacy mutation, or new authoring cohort occurred. The prior checkpoint-03 stop wording above describes that earlier run only; R3 ends after its scoped checkpoint-04 publication. Handoff: `vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-04/report.md`. Do not start checkpoint 05, correction application, formal approval, a new cohort, or import.
