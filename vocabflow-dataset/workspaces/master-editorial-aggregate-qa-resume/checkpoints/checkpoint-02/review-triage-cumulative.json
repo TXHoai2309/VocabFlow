@@ -1,0 +1,2413 @@
+{
+  "newDecisions": {
+    "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+    "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+  },
+  "parentFingerprint": "3d29083983cf033b4463d33c7a8ea3bd9337c209e0a5f236167c116a0852b5ce",
+  "records": [
+    {
+      "effectiveContentHash": "707243eccfb72c90864837c7c079ce2f47878bab701ed7b8dec05776631fb007",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/0",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:law:rule",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "178fe0dea1336127e104bd93307347883ce4139c903be5c7ab04d2f7f83b8c75",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/1",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:participation:taking-part",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "596afff08cc149e9f5570f00234039ab35d245d6129399517efbb23b892a20df",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/2",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:whereby:by-which",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "f09d1fa0bac21f9011f6872c3c222df02df46477ad62d72e2aebf397de01c28c",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/3",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:matter:be-important",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "3abea540341a4c4d30f859e2f72a9abc82eae195080035e94172fa0529a5eeea",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/4",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:education:learning-process",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "d7696487097c4677f354cee620f284ed8ba9eb595bcdba9a489e8deed6dbe3bd",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/5",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:over:across",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "3b90b6036ec9ab1d61e76282b27f84cd519318457910ad7654579b0c4e36dcad",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/6",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:last:final-in-order",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "776ab0af5234f65aa257b7cc99c0660d4f094a4d8c7fb1bb22f21e492fa8c847",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/7",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:last:most-recently",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "ab082d43f927dfd674fdd5a1b6b119194e4f947b62e283f7532cc047276eb250",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/8",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:last:final-person",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "0d264f52330c8cf4ab11a3582ae24567756b7a744f6c65787362c569ef65a270",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/9",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:last:continue",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "aa48ecebcb2839388754ef4ace486a8f8b37e6d89c01cc400380763a45c3e250",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/10",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:society:community-system",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "4d0f7da3aee73f0de8dfa60f9c96b9ea4605e15ec0a8b99048162d3bf55ce33c",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/11",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:to:destination",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "18ff370730bf8dbe6b15d7de9a93a186be0ad8c2dd20a434c38d1c5f78c147be",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/12",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:speech:speaking",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "65a27547a6d6c6972045f9b461630ebe22187a39bbc204aefbb19ae8af183733",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/13",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:well-being:health-comfort",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "ccf543ae5e82d65f0b7a79b95507c559053c90874b96f7be16e738a1d31335a2",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/14",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:advise:recommend",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "52cdcebe89ce87758e6f0ad1ca9440e7f96b94ba26cb7d86a66bc780515cf6d9",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/15",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:mental:mind-related",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "0876616d3d087f37949bdde04a87dd9915aae5a5c41e4980900c7c28b15d4853",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/16",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:further:additional",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "b98d29471e3cb2a6fbea228832c12a464dc899e315863a770b9c62cf4a147878",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/17",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:further:greater-distance",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "53bdd943d095c92c70cd9bdd291f80fe0faf2ee206185c655c95f5434c7cd8ba",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/18",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:september:calendar-month",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "20b864f8f4939c4c9d87351db0398c4e8b535dd702763481fc56d8a0090f98d8",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/19",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:warming:getting-warmer",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "ba02e8f253c5bd87eedc973658a19f63cc164a6cd4e7dcd0c1771f510c54d749",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/20",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:indifferent:uninterested",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "7ef59445b24baee389056803ff581a3ff53080787ade3f9de442fbbb8e4301b0",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/21",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:thirteen:number",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "9bd4f5485c86ebb6ed2988b33416101fe255088b022de5d53e83555a10b5221e",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/22",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:exclude:not-include",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "74cea5df4c9868c952df5610b835a6b48494c77a1432ebfd5b7525d55b6c1924",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/23",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:exclude:bar-participation",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "c2e07a6e65eef5f61f68670b17e3b6c1e541ff5605985fb1ccaae109cdb51f97",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/24",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:decent:adequate",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "d21fec052ce0f01265475437e63ee3fba1b82fcd8384e222e1adb307106c5198",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/0",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/25",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:decent:respectable",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "17c827c78f0fd394c58b78c0ce5ea87ce12f57008d21a05e3e0911c7a4731e5b",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/1",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/26",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:elastic:stretch-and-return",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "b56992692b92388b9ee4da551acc79f2adce1148295b57304a3583f3b3b06cca",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/2",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/27",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:zero:number",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "22bd3ede9e0f1ad76af52edcbc4730af9d8105a68bcfeff7327035196e92cef1",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/3",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/28",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:inferior:lower-rank-person",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "445abd720f6ec5e5094631afdbf83655c0f3577c7b9a3301ebfee99ee17a270c",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/4",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/29",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:fierce:intense",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "31811b4238647afde2005e0f658a7c1a4b1c28cdb25eb9e22c8f2d41fd2b54c9",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/5",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/30",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:whoever:any-person",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "c3fa00a3bb32fbe4255c066e99056fd8574f5a5e8fa5fdcfe278c81f9088b599",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/6",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/31",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:any:unspecified-amount",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "50ffbea7fbab03b0b8d098d8d0e12c0c22dbb470d099dcc64e7830b1746a1a4a",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/7",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/32",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:any:free-choice",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "bdb4e4786fe2650c27dda05f60174435a2565381c0e30317a800d2234e3b507e",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/8",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/33",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:any:one-unspecified",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "cac02f723f18a74d626917b2d12df3dde9d2e5141302e4f7b2ecee9d4169e50e",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/9",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/34",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:any:degree",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "dcec7e7d8197c7a6064d3458c132215436b39992e3565161dad500840760b4a1",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/10",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/35",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:whose:question-with-noun",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "f55c833ef4d39b87cce139b07f6787cc2171947f77908c28c68c3cc05cb96cfa",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/11",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/36",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:whose:question-alone",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "e439aff116fe71e10ccd104fcc7f60388b17a2bb6ddf9e5d2ccc2de882402f55",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/12",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/37",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:whose:relative-possession",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "ec76a9d975143b7167b530982e737d0a05aea9b9c2dd812af2afd1f49bd77908",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/13",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/38",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:introduction:bringing-into-use",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "3c244c5fbad33654596d31cb099b55e907ed3cac4c88da1cb16675de8e3ef414",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/14",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/39",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:racist:discriminatory",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "c2c7fc392eca51585d09fec618199f92b3e5200692316931ff409dd313b94e25",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/15",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/40",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:racist:person-with-prejudice",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "e82174333255a08cd8031f9bf572ebe0d7014c973be2bba11a8210f6dfee8d78",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/16",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/41",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:warn:give-danger-notice",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "e73c388006ff5ff7cb3fc96ffeecbdb777ced28fb62ad7dba02418bd01a82a8d",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/17",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/42",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:apparently:reported-or-seeming",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "0da51c51cd3ed7b2246ba81f80452d9bbd8160ea63167f91483be77ad8e42d79",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/18",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/43",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:submit:accept-authority",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "fde6b89e38634f533f450ebc8200fc345d593186af5f6009850f3f91927fecf1",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/19",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/44",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:fuse:burning-cord",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "a16aaecb4dc825b1fa2034a42603ddcc694d6fecaf351f9e9637b1bcb4ddb139",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/20",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/45",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:contempt:lack-of-respect",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "4478f854e6d0f59937c6666b7a2b7e8063837c709d068e3ea8c2521bed7ab1d6",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/21",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/46",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:contempt:court-disrespect",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "5c5e678d910f805dfb573e6beaddfd18b678cbb0c3213a3b273acef65129bba4",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/22",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/47",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:worth:monetary-value",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "1bbeeea05f9f46f0811c17994d5dd2a60debe290264dd431731c2a857ec073f2",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/23",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/48",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:worth:value",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "8b948e8c07157e87edc0e3224a32f1e482abb3fd7f7a07e9872960c74236bfec",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/24",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/49",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:worth:deserving-effort",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "8e58d5ab771cc69ca43e74d37f65d3675d704c30a3197c049399f7fd4264e5f2",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/25",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/50",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:foster:encourage-development",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "e5c15dc3ac8dbf07c3f07600c2f7785203a14ee64ecae3873ea03f96497cc9eb",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/26",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/51",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:foster:temporary-child-care",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "77096b21c42f47740e0edf84b84687e3ef26e9217c9c06f0d5de35fee763d6b2",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/27",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/52",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:mission:important-task",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "782154a417f70f4b28ffb58d87f916d79dad89924c1eb673fa8b93db060c8a68",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/28",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/53",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:some:unspecified-amount",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "daf2078501df3ea9bc7393e4c74064b2f339781145f7f8b593f0844b4cb45ac9",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/29",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/54",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:some:unspecified-part",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "bc350e786da2aefb00f2254b667b02d8ec95be93d9ac37ed48c2c22ab731e11c",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/30",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/55",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:whether:alternatives",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "74c2534c907287831f2721f858cc13f133ffcc19d167eb128d8467282d8dcae3",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/31",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/56",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:inclined:likely-or-willing",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "d495196ddd8f06a1fe8283d3f08c8a1ff8bac1ad9ded891bae7aa503a78f528a",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/32",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/57",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:deforestation:forest-removal",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "e931b4738b3f9596ae27adc69bbe96d9eef032ebc8f9d503b2f7f1eb50cf94df",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/33",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/58",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:everything:all-things",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "e73ce00d2326c5e0ef9337ffb3f32a8b8d23d917778fe8676b1160bc848f0c4e",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/34",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/59",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:october:calendar-month",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "2b7be5aa137a484f9d995173780397cfc33718b4098739c0e8e79bf16a4beb10",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/35",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/60",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:wreck:destroy-or-damage",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "2dc0b462f84c1fd0991e548f60b8b60162ca0a64def881b3b7f0bae83e96bf63",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/36",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/61",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:college:educational-institution",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "f8e07cf645c49b1de6607a7e98b384c1e9cdfb90c2bc9a10e779819c0f00805d",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/37",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/62",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:mad:angry",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "19f1a92e4a0d228b5ebdde6b42e61ac0032ecd4d3e4fce5f1ef93f4f3eaf1272",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/38",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/63",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:mad:foolish-or-unreasonable",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "c3a95a0697dcd7cc1e5bfe873ed0c6a198c1a9da88541a918d7199ccfdd44da3",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": {
+        "jsonPointer": "/records/39",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/review-decisions-batch-002.json",
+        "sha256": "707a8a261c0947838e85fab428846251e4608d0bc8eac7244ebd63be8d3a52d2"
+      },
+      "originalRecord": {
+        "jsonPointer": "/records/64",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:orchestra:instrumental-group",
+      "status": "TRIAGED"
+    },
+    {
+      "effectiveContentHash": "ac676569c9f79237fffcaffccb56436557df59548fe640c542b8e9b19b0f0e07",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/65",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:foundation:funding-organisation",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "55d7c5b98f407e1ed0faa1e83e1457b58b8b3f92540631d141fded7ab4b46d06",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/66",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:inequality:unequal-treatment-or-opportunity",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "0e77a6b61c4828b78996ed1a1f79600ec1721206882852e15067f7d204e17eff",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/67",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:obsolete:no-longer-used",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "e68582f416f3de62aa5679adcb4d787fc78307777273ea351c6721b80c819d43",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/68",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:totally:completely",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "16c4c33345c22aaf71399ee8f12d329d6f063ccab6662d2481bec7cfadf81ec4",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/69",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:aisle:passage-between-rows",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "f7dc2c299bb76a8609eb4eab98aa5d53bbc1796bd314412fd3d0b05599fb92a2",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/70",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:early:before-usual-time",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "23b6ead5b2df350558a533d6c9f7ef68109f78194fc17944c7c9bd172a73a178",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/71",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:early:arrive-before-time",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "3d2f1d7cc95b430d8dfed8188ae626ad0d4b55072401c1702f013793309be618",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/72",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:gay:same-gender-attraction",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "8eaee8800b7214995dab9ee0fc4884343d7fe8be6a3b9b4ad5b7443e950e7c8a",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/73",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:injury:physical-harm",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "391dadddfafa8a862e0d00e2bcaa6528a29fdf8cd81a66c96596fcf78598f82b",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/74",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:penalty:punishment",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "46f79cf2c6b1f46c2897da2a5e6ec4157fdafc1a5a8059cf8085e0a768eedced",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/75",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:penalty:football-kick",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "e610d07d20ce01611e410da998ce20d330e583a54fb95d6b852216c93ff3cbc9",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/76",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:severe:very-serious",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "4cdf59c8bb780b5c4d57cc57e383436838abbc5eb8901a71d836335a6af39630",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/77",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:possibility:chance-or-option",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "e5c70f712e454468d73663321608f313d5cfe9e93b131e035689d4c3d0099e02",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/78",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:cultivate:grow-on-land",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "67cfb9aaceea87e2a340a8c9a7634cfff4e949ede387deaa1b5317b80119ec2c",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/79",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:cultivate:develop-deliberately",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "f674af3c54f5a21ec2ac07a4a0baf51ddf0f860edf77467175d060ec444d63db",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/80",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:methodology:system-of-methods",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "a81ba4bcb4eee2c59b1c9343b66ae09095fdad33161f09e7b592dc459a3afec3",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/81",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:network:connected-system",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "d9f9b984f57e1119e8745cd45bd6ef715058cbf6dff866efa07719274a02f0ff",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/82",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:network:people-with-links",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "75e81b7cf6e4a1c42478d24b45c6c406ea5f3fc495231223491c89f3c7ed6323",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/83",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:anybody:unspecified-person",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "4c1cb278bd44da74ffebda47583292604d2b24624e3233082e7cbcebf5abe24e",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/84",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:anybody:free-choice-person",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "aaff7bff4eb5debeec4754a2b9e6c9e6936a823e4c2afca0269f0f558d56632b",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/85",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:firearm:gun",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "08c0e0c858e9d798575eada451f86d34b228bcfc84e46ad8e9cf7d935d305e47",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/86",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:proceedings:legal-process",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "edaf12bbd492bbacb8c57551776c94887fedcec873e79aeefcf733af77c76912",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/87",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:proceedings:event-activities",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "387ac8f04eda8f5bbdc5e68e2b71f19c39e4afa523f0f548bbfddfaa03443fb3",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/88",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:spiral:winding-shape",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "a5d33c992cce0e19ed3cb593fd7a62cc075a3b0e2a59790bb2e65f25b0e1e651",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/89",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:craft:handmade-items",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "3a3a0aeca10fd0484b41fbcb93dfbd3b725db0d7c0b7dbeff1693285e3f0ed32",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/90",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:craft:make-carefully",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "1c2358d08e632f6d44671c567470a5263db967d91b7661d953a3f21ea44cd15c",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/91",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:craft:skilled-handwork",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "be384b415fe304433c4e6007fa89fee2006bbc9ca639a56b6e3c6f8ab2e84bdb",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/92",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:craft:vessel",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "ce51e1e30b5bf424597ccaa69e4ab377430d4b60f9a0bbcc3f54fa8f6a303ce6",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/93",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:craft:skill",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "bdae3f684b68dac097c5a00208c4d804482b68c52a0c9796adb5708de781d77e",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/94",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:electronics:devices",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "ccf1a7f7e2eea3c75203a3db1a4eae653ad6f3a3c2aad7788f75af010213cf6b",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/95",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:electronics:field-of-study",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "04d43afa422c5a107eb65bf533b05ed284858444cf33ab8fe496784521ba572a",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/96",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:lord:nobleman",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "1b322cf0a28a34bbc9e6065bcef7b771814f83bd96fddf2985572788a5e07409",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/97",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:writing:handwriting",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "3d831603d4d6793ea7759d472751a18a0a1009e523ece581e3b11ec5ca05e953",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/98",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:competence:ability-to-do-well",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "a6a0c488796241033e67e9999bf5bc9f155b36bfe64b19cb7a7de034bf67b178",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/99",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:we:speaker-and-others",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "59707a4d43a792e024ea884badf9dc9238c8cdd4f026e0cd69cc57cf13dbd7e0",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/100",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:register:enrol-or-record",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "fa9301ddfa7fb2fb8c2e6576ab760945070bd83a8a082f80ef8db556ee5f73f4",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/101",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:register:official-list",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "0927468db726083cf90f517881f20d14755168eed25a25d62f22e66e8510ad2b",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/102",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:war:armed-conflict",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "2e97d7d54cdd1f284601dc0860d57266f236736244a6c64d1b4d87f7d49419fe",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/103",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:naturally:as-expected",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "5139e2a2a9fcc14996f4bfc92674fdf0e4d0860719d5c0981e80b5257b95fdb9",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/104",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:layer:one-level-of-material",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "c6da3415490ecaacf75cdbeb7ee0a9afc9a1de1d6849298b790a3266f2f65e36",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/105",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:rope:thick-strong-cord",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "732d051755bc78bf225f6def3781c98a12fef527b6105a5a8e210e405a4b673b",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/106",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:yet:up-to-now",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "c5cb21c0e8e5a997cb9817691711f1dbbdc43f0bd4d1399d2914da40d7f564d2",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/107",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:unemployed:without-a-job",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "bce1e6178d22a69b3dacbec526d7c69ebb31519268b91ed49f7785b3f68d41e5",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/108",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:exactly:with-full-precision",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "d1fc12e74317ac4b0c4732483a2e25d134cb8873acf6fdd8f40f2fabfc6b7d80",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/109",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:reportedly:according-to-reports",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "2da9ee88fc628712f08c887cc7a3e7e5b989f6a6838ba122180ada26469f97e3",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/110",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:carriage:railway-passenger-car",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "269d45c4c73a0c5f0b92fd0999c2107f9fd1f0d8b67bba230c46144ad00c24f3",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/111",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:carriage:horse-drawn-vehicle",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "1e3893161b4d3e254885cd71561a2f93b3f9712dc94df14d40cc7a19356b87bc",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/112",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:bible:christian-scripture",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "35bde474f7bd03d0cef7bcb0ff6004b4b33cfccceecc08c656e3d3958cc9812a",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/113",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:quite:moderately",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "7b40447b542ca5492948c14631f75e3d26328af6baae580a0ccc6551fbf9dff0",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/114",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:quite:completely",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "9ca4a17adc697ee489b8aa20da1c1df485420e9919c195690bb2acdd95b42da0",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/115",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:freight:transported-goods",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "15a6c5f7fd813f485c529b2772d6680d8584ade6fd9f43f4002e8f98325569bf",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/116",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:double:two-part",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "c94a68096c179864367f668a22992471404d610d4ab405d659e12ef470e012dd",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/117",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:double:twice-quantity-before-noun",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "29ab4bad4815e8c0fdea9e3c7b829eb8debb06788f7e8d2400b1fc9c4624056a",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/118",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:double:twice-quantity-alone",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "5d0d494449a5ab68e7d95eeb267b43e8bba84006d69f34ec6b4050d11e5c7587",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/119",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:double:become-twice",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "b548ddd0ff2015bf3263286cfd2be29cc17efa84ee1d6ab68a8244ef04ae35d7",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/120",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:double:pay-twice",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "b7795e726518fd444e83b29a9fc5f5d51a262e1b7d4ecde8d9f3aad118ab0afd",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/121",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:better:higher-quality",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "445978d9b3b4a3871555e0b272716c89691f9c9fcd8b327be15d8d5de566804e",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/122",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:better:more-effectively",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "b46ecb94f4aa3097fb30d3e13b837ffa268a0a527a633298c6d2a7f96d183595",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/123",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:better:improvement",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "ba40f0b934dbdec7bcc811f63b8665a273ea2e2ceeca9a94889db11d59d93ab1",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/124",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:humid:moist-air",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "d43ea111d1e0f8e96e50f259e265d8d8c089126df6e55e4435242056727d37ce",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/125",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:rust:iron-corrosion-material",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "228af610410984010f5ef7749e6289a25b883d7d28e605e56bb119d648b3cf34",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/126",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:youth:young-period-of-life",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "706426df21fe29987b0f87019c84f54f641eefd34da0e9f26d15699e9260186c",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/127",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:youth:young-person",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "79f5c2d1ca13fc9986e754f202285b29a2ed7ae576d271396955232a19e2a3fa",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/128",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:youth:young-people-collectively",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "7fb4499874b6083210b55eb092270b5164bab3fabbfa25d1b04db6bbfd98fead",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/129",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:idle:not-active",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "63b75424e7513161c67ef47e4139a54303e938f2342a09e34806573de8aa5fa1",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/130",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:lot:quantity-before-noun",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "b08a05c2a6fca74ef3f37f38199ab108f617301f695febbc4b98af4a5af16e75",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/131",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:lot:quantity-without-noun",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "caecbe82e1db1259cc9296c81d40c2ae91af1ce3987cb4ddf9c723d9bfcc2fe2",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/132",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:lot:degree-or-frequency",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "e806379bda9a0d09f31f7e4dff66e1409e03ce722360c5c1cbb034bf0a690289",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/133",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:offense:punishable-act",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "ff410d1d2fbf8174b6d2704bc0807c42e47b05fe33f0b1cc376157f52e0d55a4",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/134",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:offense:hurt-or-insult",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "7935d2560d6c70f13f79c23463ee2b100276e2453ab835396033ac8b10a026eb",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/135",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:all:whole-quantity-before-noun",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "03ba4a84f458cb5ac14c4b1f0d97714428dc4dd21f29af7f6da1c7c08edf7b57",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/136",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:all:whole-quantity-standing-alone",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "b48a75ca929465798ac2407e7a5529962a5d122faca99966f7e638b52ed21e39",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/137",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:all:complete-degree",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "9bfc1fd92b97907aa29dd79db1c4b764c5e09052754d5123dc6adfaf63be7e7b",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/138",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:intrigue:arouse-curiosity",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "913dad76b0c52be9474e32b3d4cf218a7f53758db37029a90f96ba93864d83e7",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/139",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:stubborn:refusing-to-change",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "247d32b90580f682720d8c14a58c4ea64fb13dc598c1d1a4c0ebe12bd7e1d82d",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/140",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:ton:large-weight-unit",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "53b112171b9ece3663d8bc2cdc1693b75915ddc6b3484fcbfbdc6cc0e6fb3eff",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/141",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:wicked:morally-bad",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "0cb21fcda10e7ed7c42b9aa9b585e3989c398b5cb09f75f6fed6b3d068a30db6",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/142",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:around:in-the-vicinity",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "05ab459ccad67775fb959d52e8981d82fe6809ee34f4ffc2a263137d5e35d674",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/143",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:harness:put-energy-to-use",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "72a8c4c561ccf3fcac82ba4ba98f35f29128b6da1ec2a8716def59f953ef80e4",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/144",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:fond:feeling-affection-or-liking",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "b433b0569f93d74bd37a57b57374923e52c7a9421bff5c267517d04365709ed9",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/145",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:whatever:anything-without-restriction",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "08bd99f7c4f8decc683f54cd78f50728341c3f3d915d135bd89be674eae25d3c",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/146",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:fiery:full-of-strong-emotion",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "a8ce23ea2438a8930406f6b806fede518bbd849d99dd07165600832b40f74f6d",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/147",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:downtown:central-city-area",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "9fb6029964770b59fbe4aae7cd1e00e5d4b413fffb430bf4177e1e8c1b6ce487",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/148",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:downtown:in-the-city-centre",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "e2514bbbcaffba8a099d38dc440bad33fb287b3950d42fb408872584728c8ca5",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/149",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:downtown:to-or-in-the-centre",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "5a241c79621cde9f389346adb800e773d521d9d8fb96af3fe37a777fc6cc290a",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/150",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:magnet:object-with-magnetic-attraction",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "6d81ee06a84ba353ea83ea1e61fe348d742a4eb3d1f29a36d91bc985ff63cf2b",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/151",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:o’clock:exact-hour-expression",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "e04427f23deee37288ca79c8e25400b02056259121873c9a34bef1882e213854",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/152",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:upwards:towards-a-higher-position",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "ec65141a452229720519464218f48a8956e77fe1143730890c5ec615a79004e3",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/153",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:will:future-prediction",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "ab4c22b3f859c4798b6d589d9e5807bc4518e1a601e41fac01d281b84a610558",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/154",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:will:present-decision-or-promise",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "02d5e88c0129e47c3ab97f09aaec5ca3643b87410eec62c85d2797dec4b040ea",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/155",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:will:determination",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "937bd3214ce27e6df9e36650a2319d6bf116b0b5281825d19821c1ec3dd84e2b",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/156",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:will:document-about-inheritance",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "3fb377b78e99503b47a1dc90bf94621bda3d7f67fa103bb1b8207db8828c2b75",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/157",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:content:information-in-a-work",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "663c0e6cbc728f8561e8ca2df3dc3c0a5f2828193d98d885cd7bf9ea4087d58c",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/158",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:content:satisfied-with-situation",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "d27bc94dc3fc49a427b2a1e709e1b3896f20a43ee81c072aa4a068b1bad15a23",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/159",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:fridge:refrigerated-storage-appliance",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "8b6babdd55828875d46af696442947a2c374b84467534de347a0831fd16f87d3",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/160",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:instrumental:important-in-achieving-result",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "bb8f51a55bf1687e2f4577f717e89126b84821d8cfd3179317c5b8e045728a72",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/161",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:instrumental:music-without-vocals",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "9ea048c84c8c655ccde71c78caeb8525b92fafecb949565218cd8aed7a54f076",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/162",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:fast:moving-quickly",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "1f75f3b7270d45c87346cf6c7b7ff14eacb6ed4ed88e6112f8eb914e1134988f",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/163",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:fast:at-high-speed",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "3e6d57778f4f965b6c271c222436657cbaff29a99e9650ce0ee8b28fc3893164",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/164",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:fast:go-without-food",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "80c28eb4fb70d9d2e72acf750b5b60cbec241fd37aa25bfda9f2d3ea1ca43ef8",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/165",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:weave:interlace-material",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "736fdd1ceb64499f6c210b7bdb008fd012fef070846490d7b350d17a265402f0",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/166",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:weave:move-in-a-winding-route",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "ab759a7af732fe1def73dc9525138c1c59684a808c43a059cfc94e81ff2aacca",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/167",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:forward:towards-the-front",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "fda073d9920049eef8cc6518dd2a588a44a88ee02d4de58f10b9d4fb2bb6882f",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/168",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:forward:at-or-towards-the-front",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "f5bd797d5ac6842233555513ba78e685d9d48715e1e54a2aa29375a33d737f4a",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/169",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:intermittent:stopping-and-starting",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "d499aca08c245d880b654eb3d879b7c25df66d22152254e206991f56ff4dcd50",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/170",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:withdrawal:removing-from-a-situation",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "b9363a7e77ef5bdeb46797c92abc1bb35dca325c99d4e361bba6fbffc0dc92d7",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/171",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:withdrawal:taking-money-out",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "930ab8a12f1c9cba8419f44fadc611a2c513c18babb0c1e61c9f1cd2c3553f22",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/172",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:withdrawal:effects-after-stopping-a-substance",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "bca1a89f8514c7c20b14b7b73ac0e2dc5118888b75b8688cc13dbb4e2cb89204",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/173",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:guilty:responsible-for-wrongdoing",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "a59f496b5e3d0893dd47b70a3a85e611423b34ec37423e96544d6c5257816620",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/174",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:guilty:feeling-remorse",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "555dd11dab283ff7b7f62335906af132d4b5712a19256a07d47d583e43901b12",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/175",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:million:one-thousand-thousand",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "d6d93c5678d73ea46fadff86b83f9b17f03b8ea5d9b03f70d08b37784e202427",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/176",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:sentence:official-punishment",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "aeb025b44e3f7efbfa6c95a58264b7128306e0b869175090c40496d208bf9dfb",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/177",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:thus:as-a-result",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "0e79c5c1c74fff0ed8bca6288905cbbc4669027ce27a239b4d894dc743430739",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/178",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:thus:in-this-way",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "2aa83db0288c6f06e540b62904b016acaffe96b7a5e548eca5f41d2f5970bd6c",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/179",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:might:uncertain-possibility",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "e5a05f0e6f9cc548c00c5062573465fd093689ca95c073ae90a7f914bdd5266b",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/180",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:might:great-power",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "ecf99edb9b8879364a7f909221f9a6140bc0d78307254c7d0c2c3123062c299c",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/181",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:unlike:different-from",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "f6194f7c59c1fc22e9339ae89c4d90894d4b7532ba5fbfd5095f134e906b19fc",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/182",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:pound:british-currency-unit",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "578ddefb11c2cd93638ab52e097faa44df3e315c1e648753ff6dcabc9122877f",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/183",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:pound:weight-unit",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "f34aa385c3077a034359bf105917d8a8215e539c00d5fc05577dc428a2995886",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/184",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:pound:strike-repeatedly",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "5de9d365d2cb9398461bd727adf10a99bdd8ffea7cdb209f6a27f65560079d31",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/185",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:including:with-as-part-of-the-group",
+      "status": "PENDING"
+    },
+    {
+      "effectiveContentHash": "ea85c69526568130b5f65991301f8e18a20d40371f4bad0c64519eb1e0e6bc9e",
+      "historicalReviewStatus": "REVIEW",
+      "newDecision": null,
+      "originalRecord": {
+        "jsonPointer": "/records/186",
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/review-triage.json",
+        "sha256": "f1ffc4ef1ba01ccd84d66cd64a6c5ded4469086de7ad9c5539d375399c066acc"
+      },
+      "proposalKey": "EDITORIAL_2H2H:therefore:logical-result",
+      "status": "PENDING"
+    }
+  ]
+}

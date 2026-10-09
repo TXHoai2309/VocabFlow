@@ -1,0 +1,1073 @@
+{
+  "candidateScanCount": 104,
+  "checkpointNumber": 2,
+  "coverage": [
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:aggregate",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:aggregate:combined-total": "31422e649ef345905db7c0030c5708bb283d023fc83070630427b550ff6f7ccf"
+      },
+      "originalGroupOrdinal": 3,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:approximate",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:approximate:not-exact": "b0bc273632cc3931c347a7c3fe8dcf1e19571a4e420915f8ef72227b6762aa48"
+      },
+      "originalGroupOrdinal": 4,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:condensed",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:condensed:shortened": "65997abda40fd8b39529907c27226abc6f1be4c306bb7e66a965131e06c1df5e"
+      },
+      "originalGroupOrdinal": 12,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:culminate",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:culminate:reach-final-outcome": "1950b8eff315c06f9c337b298063d07388f6e5ecd6e188ac44028d48c72b0a96"
+      },
+      "originalGroupOrdinal": 14,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:daisy",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:daisy:flower": "20833a01dea055e22ffae4fbc0e5ec0449604a4dbcb9b464aa27802e0768aaf5"
+      },
+      "originalGroupOrdinal": 15,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:merry",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:merry:cheerful": "4be5c1b9bcb476c368d65bc300a08557440ad54ecf0e4529f30d25c148b70da0"
+      },
+      "originalGroupOrdinal": 50,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:omit",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:omit:leave-out": "57711a6557103d7c1d4147b30b81b3a4243ad33c73a36295b930832cbadc557b"
+      },
+      "originalGroupOrdinal": 51,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:ordeal",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:ordeal:difficult-experience": "69f475e1e5b56cb8a34339d1dc610b83b960893ed7f8b667bceefc3946849b12"
+      },
+      "originalGroupOrdinal": 53,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:overcrowded",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:overcrowded:too-full": "b26c815b76fcb66401107110a521b51e7c5c6c73a2cceea951905b198b814686"
+      },
+      "originalGroupOrdinal": 55,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:primate",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:primate:animal-group": "95bad8a24cffc37c0b50fc1690bfa27d323f79e5fcf5f92a8678c8f43364816a"
+      },
+      "originalGroupOrdinal": 60,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:primitive",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:primitive:basic": "25af0975bf6d77925ecc65aab2a03030a8c378182dc7f70f13dc9d0a8eaeff6b"
+      },
+      "originalGroupOrdinal": 61,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:rumor",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:rumor:unverified-story": "0b7d634f4bdbd59645827cb3756fa5991b1d076d33d987f8f3db1a5ace580f43"
+      },
+      "originalGroupOrdinal": 67,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:subtract",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:subtract:take-away-number": "a6db21a2549a9f39872a7534ab4a8158913da525663c62f6b2272c7043b0cc4f"
+      },
+      "originalGroupOrdinal": 76,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wail",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:wail:cry-loudly": "9dec72e22b1754fc4ad8e4910fc3d2e1a3df530b287ba6d9e870582416741f5e"
+      },
+      "originalGroupOrdinal": 84,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wardrobe",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:wardrobe:clothes-collection": "dad6993685de4b099aa229f98c7643d37c0f256ece478dfc14e52d841eedb5b1",
+        "EDITORIAL_2H2H:wardrobe:clothes-cupboard": "01d880c440f07e16774fe00077a70d22d618d75cddc550d7425ec2bb66aeb8ec"
+      },
+      "originalGroupOrdinal": 85,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:chew",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:chew:break-food": "67c94397bf2cde8f398a0e07f28fa0037034ce8f51a0c84cd2b420c357f286ff"
+      },
+      "originalGroupOrdinal": 102,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:habitual",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:habitual:regular-pattern": "6e5a94919ce135a52bbecd55306e0277a4de037e26c17cf9587543c6fecdb8a0"
+      },
+      "originalGroupOrdinal": 103,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:rupture",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:rupture:burst-open": "6e0b9357ce6e963dc7ddd31dad38ea6b9e71cbc8acc28f8c50574af86f17f534"
+      },
+      "originalGroupOrdinal": 111,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:clay",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:clay:mouldable-earth": "861c928c7d08244a9cfcee0492a3f340636c4830b4338bfbf3ea1d98fb6a1dfd"
+      },
+      "originalGroupOrdinal": 114,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:inadvertent",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:inadvertent:unintentional": "e638bd7ef18ee4d612846c992b9c96d50cc0dd70ca70b3ab3e50a48bd5b4b5b7"
+      },
+      "originalGroupOrdinal": 116,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:throne",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:throne:royal-seat": "874ff39a461a378e304031989346c8570eaabe50a3797954dbea0761fcbe4762"
+      },
+      "originalGroupOrdinal": 118,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:homogeneous",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:homogeneous:uniform-composition": "c129ac8a40045ef54a38177cedd46fcd13af0974173caa4290165da59a178669"
+      },
+      "originalGroupOrdinal": 127,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:indifferent",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:indifferent:uninterested": "ba02e8f253c5bd87eedc973658a19f63cc164a6cd4e7dcd0c1771f510c54d749"
+      },
+      "originalGroupOrdinal": 128,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:intimidate",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:intimidate:frighten-pressure": "173e96f81d7943d557fa651b0b9bcbf679c4b5d75362e234a7c5bb5e52f5892a"
+      },
+      "originalGroupOrdinal": 140,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:vegetarian",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:vegetarian:person-not-eating-meat": "5cec7a5aea53b8156640a0a01f20b9e74be7f2575dc919d62a6bc94e5ff9a632"
+      },
+      "originalGroupOrdinal": 148,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wooded",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:wooded:having-trees": "0b752e7ffcb524e51807d46c81e9925333d4b5081d9887ac1a280a76329b8714"
+      },
+      "originalGroupOrdinal": 149,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:leash",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:leash:animal-lead": "fe59d45531ddd7473f9fa81ba0582affcbae4be80f2ac086f4d27e24104a8467"
+      },
+      "originalGroupOrdinal": 152,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:proximity",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:proximity:nearness": "c3d8cbfcf37e2c1efc6143a5fe6b4eb840b48d01cde4aa852ee42a42e8c64d25"
+      },
+      "originalGroupOrdinal": 153,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:thunder",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:thunder:storm-sound": "138d661adb6882fb18a688fb5190059866eb85417c9870fb04f6339073c4b311"
+      },
+      "originalGroupOrdinal": 154,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wavy",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:wavy:curved-pattern": "dbe876a7b263aa76bbecfe68498ea507aff7e3dffc518984c0d180b05288e66d"
+      },
+      "originalGroupOrdinal": 155,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:elastic",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:elastic:stretch-and-return": "17c827c78f0fd394c58b78c0ce5ea87ce12f57008d21a05e3e0911c7a4731e5b"
+      },
+      "originalGroupOrdinal": 157,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:inferior",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:inferior:lower-rank-person": "22bd3ede9e0f1ad76af52edcbc4730af9d8105a68bcfeff7327035196e92cef1"
+      },
+      "originalGroupOrdinal": 164,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:skeletal",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:skeletal:bones-related": "bb06d135f4052040fa0272814d0252aa435d6449794677cc249e3aee6e7e97a9"
+      },
+      "originalGroupOrdinal": 166,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:willpower",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:willpower:self-control": "9722a78942c47f60948e7572be58b469270d09b96faba4e3c98d8a386b9cf300"
+      },
+      "originalGroupOrdinal": 167,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:chin",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:chin:lower-face": "8cf80e858e91dd2c812511cdf79fa963460b2e3f0010efae6cf56eaab28ae834"
+      },
+      "originalGroupOrdinal": 186,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:grapefruit",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:grapefruit:citrus-fruit": "4a5c3df2b65432e07287df28e627e691abcde671e6d67c12cd453d183ad81741"
+      },
+      "originalGroupOrdinal": 187,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:tract",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:tract:land-area": "3a9a4eda7aa9464f68429dfe5720424977db907787cbceec5df546e9a107fbb0"
+      },
+      "originalGroupOrdinal": 190,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:drastic",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:drastic:far-reaching": "c04a54d0421629c676ca5e81e02387ddb7c8ea86219bdafefbd63a0d874a7ba0"
+      },
+      "originalGroupOrdinal": 192,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:irrigate",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:irrigate:supply-crop-water": "0e984d17e119b0c43e06cdb581f2f2be56082fe1c9796286acfa6c4d8fe5fa7b"
+      },
+      "originalGroupOrdinal": 194,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:personalize",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:personalize:adapt-to-person": "c4d8d95c2d52488f47109ea8adb9109e0a4de7c9914a15160cc7ca621f75eb15"
+      },
+      "originalGroupOrdinal": 195,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:fuse",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:fuse:burning-cord": "fde6b89e38634f533f450ebc8200fc345d593186af5f6009850f3f91927fecf1"
+      },
+      "originalGroupOrdinal": 205,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:toddler",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:toddler:young-walking-child": "35b0d2df12752fabad59c422b2f434b4e9def9b65473fc4dd21a5e0c29b29c10"
+      },
+      "originalGroupOrdinal": 226,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:deforestation",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:deforestation:forest-removal": "d495196ddd8f06a1fe8283d3f08c8a1ff8bac1ad9ded891bae7aa503a78f528a"
+      },
+      "originalGroupOrdinal": 228,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wreck",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:wreck:destroy-or-damage": "2b7be5aa137a484f9d995173780397cfc33718b4098739c0e8e79bf16a4beb10"
+      },
+      "originalGroupOrdinal": 233,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:fog",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:fog:low-cloud": "a156e5472648168d124f99d400427e70fbc7ab30d4a67acc1a585dd6d1093e59"
+      },
+      "originalGroupOrdinal": 235,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:zip",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:zip:close-with-a-zipper": "bc66a80e8c2c5db70d4c1e7a5956a14810bb9b5f5f04cad7edfed614b112be06"
+      },
+      "originalGroupOrdinal": 239,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:disgraceful",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:disgraceful:unacceptably-bad": "16d88d524bd302821ccb7630034362118b75caa02e75a5936bc65d764668089d"
+      },
+      "originalGroupOrdinal": 246,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:saturated",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:saturated:soaked": "c50e624d86ce1a3dd67da266eaf2c7139353cae1b80e0dd81c834450601f5455"
+      },
+      "originalGroupOrdinal": 250,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:obsolete",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:obsolete:no-longer-used": "0e77a6b61c4828b78996ed1a1f79600ec1721206882852e15067f7d204e17eff"
+      },
+      "originalGroupOrdinal": 255,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:aisle",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:aisle:passage-between-rows": "16c4c33345c22aaf71399ee8f12d329d6f063ccab6662d2481bec7cfadf81ec4"
+      },
+      "originalGroupOrdinal": 258,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:apprentice",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:apprentice:person-learning-a-trade": "62e8c67cced44f41746f37bfe88e0403d2afeda7696d55bb981264c69b6c7b88"
+      },
+      "originalGroupOrdinal": 270,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:spiral",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:spiral:winding-shape": "387ac8f04eda8f5bbdc5e68e2b71f19c39e4afa523f0f548bbfddfaa03443fb3"
+      },
+      "originalGroupOrdinal": 286,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:sunlight",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:sunlight:light-from-the-sun": "2d832201f9a411e175e13921cb700f52e4402bebcbdb355bf2fd3ab43cda09cb"
+      },
+      "originalGroupOrdinal": 292,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:yawn",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:yawn:open-mouth-tired": "a103e3790451c86734f0dccd05d928c7f50d99afca3496ba3ad45ef86dc34929"
+      },
+      "originalGroupOrdinal": 317,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:faint",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:faint:lose-consciousness-briefly": "4590ca451eec9729cdc356721288fdbfd429a2c032b5f554799e749a3109bee8"
+      },
+      "originalGroupOrdinal": 319,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:kettle",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:kettle:water-boiling-vessel": "4d43500630ed23a81db947fe42b2ecde9d9e85d04ecf642f22c3e36be92dc24a"
+      },
+      "originalGroupOrdinal": 320,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:winding",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:winding:having-many-bends": "80f7b4496efbaee378356d125eca4deb926b475dc261462f0bfd22224c673a54"
+      },
+      "originalGroupOrdinal": 329,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:hospitality",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:hospitality:welcoming-guests": "8882aa33629cc8a6aa182fc182790549a90938c838d21f3fc2917756861ab149"
+      },
+      "originalGroupOrdinal": 331,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:termite",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:termite:wood-feeding-insect": "00e9c82a0d495015f98d6af66aa7326382f34577ec58aff53d683d28f80e3198"
+      },
+      "originalGroupOrdinal": 334,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:inflate",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:inflate:fill-with-air": "a41584ed263a8df64b7f5667484fe25f7a3e75b1e5fe3acecb1ec04af94e42ea"
+      },
+      "originalGroupOrdinal": 338,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:folklore",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:folklore:traditional-cultural-stories": "ddc070c761f29bbe3aca77074b1a219c3a00a2dc438255453cd5eb553781a34b"
+      },
+      "originalGroupOrdinal": 343,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:necklace",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:necklace:neck-jewellery": "5844ea698f12c3c1f2cfa5b1e8d8a0177040e658c600e675a0af83d809f5a3d9"
+      },
+      "originalGroupOrdinal": 345,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:statute",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:statute:enacted-written-law": "157602cfc8e72889d9b77843248a8bcd8354e4f283c08abf7c756f66099272de"
+      },
+      "originalGroupOrdinal": 352,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:hinder",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:hinder:make-progress-difficult": "9eee2812e18a58045e9975f1132389a57b3e630ea994de4935da4ed930a90133"
+      },
+      "originalGroupOrdinal": 355,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:peel",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:peel:remove-outer-skin": "8a4bbad4a7da773361185e516608a62e8e2f64a5b5c3e63aed24c43fb75c64d5"
+      },
+      "originalGroupOrdinal": 357,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:dynamics",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:dynamics:forces-within-a-group": "d7eb5ba90da16a474d51095bc2d390ea674af3de1600420936555ae06b524cac"
+      },
+      "originalGroupOrdinal": 360,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:bible",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:bible:christian-scripture": "1e3893161b4d3e254885cd71561a2f93b3f9712dc94df14d40cc7a19356b87bc"
+      },
+      "originalGroupOrdinal": 366,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:federation",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:federation:union-of-organizations": "9aae8c5530bdad14b7df19a83da082658cac264237a591a33bb3de2f072fce5d",
+        "EDITORIAL_2H2H:federation:union-of-states": "325924166f1493b95b0ec1aac116820e3cd45de6c71bc09304aa2dc8553dbf1e"
+      },
+      "originalGroupOrdinal": 367,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:morals",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:morals:principles-of-right-and-wrong": "f18463ec43399117d0dd2bc46b119219f208adb93bfcf3fe62026c9065e67e66"
+      },
+      "originalGroupOrdinal": 368,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:skillful",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:skillful:showing-ability": "5c7ab1bf3bcec1b6ee4ad7c501b2cd09e9ab56599660e937706282d2292635c7"
+      },
+      "originalGroupOrdinal": 370,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:freight",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:freight:transported-goods": "9ca4a17adc697ee489b8aa20da1c1df485420e9919c195690bb2acdd95b42da0"
+      },
+      "originalGroupOrdinal": 373,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:prehistoric",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:prehistoric:before-written-history": "b54f591fc3a13184f8c5a56b2021ab6cae405086830662afe9d5b2697c95c633"
+      },
+      "originalGroupOrdinal": 375,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:sew",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:sew:join-with-thread": "56bf75ffaaa09a53790dda73a4a99ba77037120ab2518cea15dea612923ef1de"
+      },
+      "originalGroupOrdinal": 376,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:etiquette",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:etiquette:rules-of-politeness": "9dbd065726c6d9fd51516987007d4012f796d70e4b1e726b5d7eb9ae4d2c766a"
+      },
+      "originalGroupOrdinal": 379,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:intertwine",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:intertwine:twist-together": "85a2ed56e289b47d0ddcf7885b0fecfd6fea7a21aa534e739009f5d3464b2971"
+      },
+      "originalGroupOrdinal": 380,
+      "originalWarnings": [
+        "NO_STRUCTURED_SENSE_ORDINALS_EXHAUSTIVENESS_UNKNOWN"
+      ]
+    }
+  ],
+  "coverageRule": "FLAGGED_FIRST; MISSING_ORDINAL_COUNT_DESC; MISSING_OR_CONFLICTING_POS_COUNT_DESC; ACCEPTED_ORIGINAL_GROUP_ORDINAL_ASC",
+  "grammarBatches": [
+    {
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2C:washing:cleaning-with-water": "882ace00cf6bfed0d4e7a70afe1196f90ce220be8507354861aad254c5d5414a",
+        "EDITORIAL_2H2C:washing:clothes-to-wash": "861e903f9cf129bc3103edbd6e6203c48db43b7f5ac1522f74cef7be5caa952a",
+        "EDITORIAL_2H2C:week:seven-day-period": "2dc4731e5f49634ab0f63c6f3ff85e7bedcf3bd9b85c7a74704278c9ed73b395",
+        "EDITORIAL_2H2C:worse:less-good": "87e003f394a3f667a2e5e6ceaa76536fae7664ebeec6838bebeb74c3d0ed97ba",
+        "EDITORIAL_2H2C:worse:less-well": "ba238bcba035e946a6149d6a26e3ce9132e1f48e75d729bc06a3ffccbb3d8e93",
+        "EDITORIAL_2H2C:worse:more-bad-things": "99c1a98e4f9b57c860ce6d244cec5b5c1b3a3d0258e8ac99a77d9e27ee349e92",
+        "EDITORIAL_2H2C:wrap:cover-with-material": "00878bd7c96242581a5281be16a5b24f6d541f357fcc5c88b369184a9d5c8a98",
+        "EDITORIAL_2H2C:zone:defined-area": "d69b9e0b3d193f4fc558c1cdf45dc34ef03b204541c0a3aaf3d1860736762fea"
+      },
+      "inspectionKeys": [
+        "EDITORIAL_2H2C:washing:clothes-to-wash",
+        "EDITORIAL_2H2C:washing:cleaning-with-water",
+        "EDITORIAL_2H2C:wrap:cover-with-material",
+        "EDITORIAL_2H2C:week:seven-day-period",
+        "EDITORIAL_2H2C:worse:less-good",
+        "EDITORIAL_2H2C:worse:less-well",
+        "EDITORIAL_2H2C:worse:more-bad-things",
+        "EDITORIAL_2H2C:zone:defined-area"
+      ],
+      "path": "vocabflow-dataset/workspaces/master-editorial-stratified-120/authored/batch-22.psv",
+      "scope": "ENTIRE_ORIGINAL_AUTHORED_BATCH; LATEST_EFFECTIVE_CONTENT",
+      "sha256": "4a3343f2e40a90f078b61401aa5b7c06a22eb54b27631a2ed3f35e3e5f0042ed",
+      "triggerProposalKey": "EDITORIAL_2H2C:worse:more-bad-things"
+    },
+    {
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:happen:by-chance": "6c750c28af0b878f9d2d700c05d299733c661560c03d6ad359d077e4fa21ad70",
+        "EDITORIAL_2H2H:happen:occur": "c254b39f93f1dacb576f91b9f3717a62784fed0988d10b59f3f2b13ff60819d0",
+        "EDITORIAL_2H2H:memorable:worth-remembering": "714372315ca35b7a9acc2d091e98a00d8a9906ce06531ae8f94b249fd09d8378",
+        "EDITORIAL_2H2H:prohibit:forbid": "d71aafb30bd6f561ee28b32a8e11bef400d723d3158e07b00f29f474ea8f25e4",
+        "EDITORIAL_2H2H:vegetarian:person-not-eating-meat": "5cec7a5aea53b8156640a0a01f20b9e74be7f2575dc919d62a6bc94e5ff9a632",
+        "EDITORIAL_2H2H:wooded:having-trees": "0b752e7ffcb524e51807d46c81e9925333d4b5081d9887ac1a280a76329b8714"
+      },
+      "inspectionKeys": [
+        "EDITORIAL_2H2H:happen:occur",
+        "EDITORIAL_2H2H:happen:by-chance",
+        "EDITORIAL_2H2H:memorable:worth-remembering",
+        "EDITORIAL_2H2H:prohibit:forbid",
+        "EDITORIAL_2H2H:vegetarian:person-not-eating-meat",
+        "EDITORIAL_2H2H:wooded:having-trees"
+      ],
+      "path": "vocabflow-dataset/workspaces/master-editorial-bulk-500-resume/checkpoints/checkpoint-02/authored/batch-030.psv",
+      "scope": "ENTIRE_ORIGINAL_AUTHORED_BATCH; LATEST_EFFECTIVE_CONTENT",
+      "sha256": "4a876c3c59af385a8bb36d0192ca89b53ade75625d440852d1ea045a1f9ff4bd",
+      "triggerProposalKey": "EDITORIAL_2H2H:vegetarian:person-not-eating-meat"
+    },
+    {
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:actual:real": "d8f9b0c9636c157e56f43aea0113ca6919ae052c30d72eb1c35be92c5a272294",
+        "EDITORIAL_2H2H:hopeful:feeling-hope": "a66cf1881f00dd98f4f862200b32553fb93f4b60e9727d8a1e3eb92ab4890412",
+        "EDITORIAL_2H2H:hopeful:promising": "a445c6f53195a1a22c9e789b632a590f0b0f7efd8f0121522994768800a45a59",
+        "EDITORIAL_2H2H:mental:mind-related": "52cdcebe89ce87758e6f0ad1ca9440e7f96b94ba26cb7d86a66bc780515cf6d9",
+        "EDITORIAL_2H2H:responsibility:accountability": "f607b6b2aa59ee6e1819848cca58e3c0110cabdec7cb4950fa97c98f10ed9230",
+        "EDITORIAL_2H2H:responsibility:duty": "4bebf7e5ea9093cf39ea7e595d6cd3cdc5dae20bc80a481d0a7ff4407694cda0",
+        "EDITORIAL_2H2H:white:colour": "ea6575d7692bb1e7e5fed9cdaf34cb545f5d437fec5373ea1c0e85207f34373f",
+        "EDITORIAL_2H2H:white:colour-noun": "bae2bac2cf4ff10f9f36c939a7c30deed2a8d94d3b833128b2c9155c393114f1"
+      },
+      "inspectionKeys": [
+        "EDITORIAL_2H2H:white:colour",
+        "EDITORIAL_2H2H:white:colour-noun",
+        "EDITORIAL_2H2H:actual:real",
+        "EDITORIAL_2H2H:hopeful:feeling-hope",
+        "EDITORIAL_2H2H:hopeful:promising",
+        "EDITORIAL_2H2H:mental:mind-related",
+        "EDITORIAL_2H2H:responsibility:duty",
+        "EDITORIAL_2H2H:responsibility:accountability"
+      ],
+      "path": "vocabflow-dataset/workspaces/master-editorial-bulk-500/authored/batch-020.psv",
+      "scope": "ENTIRE_ORIGINAL_AUTHORED_BATCH; LATEST_EFFECTIVE_CONTENT",
+      "sha256": "de3fc6d37fc5ba14046052101fcad2f744a23f0038a1a839bbbb91677939f302",
+      "triggerProposalKey": "EDITORIAL_2H2H:white:colour-noun"
+    }
+  ],
+  "grammarInspectionKeys": [
+    "EDITORIAL_2H2C:washing:clothes-to-wash",
+    "EDITORIAL_2H2C:washing:cleaning-with-water",
+    "EDITORIAL_2H2C:wrap:cover-with-material",
+    "EDITORIAL_2H2C:week:seven-day-period",
+    "EDITORIAL_2H2C:worse:less-good",
+    "EDITORIAL_2H2C:worse:less-well",
+    "EDITORIAL_2H2C:worse:more-bad-things",
+    "EDITORIAL_2H2C:zone:defined-area",
+    "EDITORIAL_2H2H:happen:occur",
+    "EDITORIAL_2H2H:happen:by-chance",
+    "EDITORIAL_2H2H:memorable:worth-remembering",
+    "EDITORIAL_2H2H:prohibit:forbid",
+    "EDITORIAL_2H2H:vegetarian:person-not-eating-meat",
+    "EDITORIAL_2H2H:wooded:having-trees",
+    "EDITORIAL_2H2H:white:colour",
+    "EDITORIAL_2H2H:white:colour-noun",
+    "EDITORIAL_2H2H:actual:real",
+    "EDITORIAL_2H2H:hopeful:feeling-hope",
+    "EDITORIAL_2H2H:hopeful:promising",
+    "EDITORIAL_2H2H:mental:mind-related",
+    "EDITORIAL_2H2H:responsibility:duty",
+    "EDITORIAL_2H2H:responsibility:accountability"
+  ],
+  "grammarRule": "SCAN_ALL_1563; EXCLUDE_ALREADY_PROPOSED_FIELDS_FOR_SEEDS; HIGHEST_SCORED_PRIOR_STRATIFIED120_ONE_AND_COHORT_TWO; THEN_INSPECT_THEIR_ENTIRE_ORIGINAL_BATCHES",
+  "grammarSeedKeys": [
+    "EDITORIAL_2H2C:worse:more-bad-things",
+    "EDITORIAL_2H2H:vegetarian:person-not-eating-meat",
+    "EDITORIAL_2H2H:white:colour-noun"
+  ],
+  "linguisticDecisionsGenerated": false,
+  "parentFingerprint": "3d29083983cf033b4463d33c7a8ea3bd9337c209e0a5f236167c116a0852b5ce",
+  "phase": "2H.2I-R1",
+  "remoteBaseline": "3ad14d262e56dd09883ec67a51e7b1a407ecea0e",
+  "reviewRule": "NEXT_40_PENDING_IN_ACCEPTED_ORIGINAL_INVENTORY_ORDER",
+  "reviews": [
+    {
+      "effectiveContentHash": "d21fec052ce0f01265475437e63ee3fba1b82fcd8384e222e1adb307106c5198",
+      "inventoryOrdinal": 25,
+      "proposalKey": "EDITORIAL_2H2H:decent:respectable"
+    },
+    {
+      "effectiveContentHash": "17c827c78f0fd394c58b78c0ce5ea87ce12f57008d21a05e3e0911c7a4731e5b",
+      "inventoryOrdinal": 26,
+      "proposalKey": "EDITORIAL_2H2H:elastic:stretch-and-return"
+    },
+    {
+      "effectiveContentHash": "b56992692b92388b9ee4da551acc79f2adce1148295b57304a3583f3b3b06cca",
+      "inventoryOrdinal": 27,
+      "proposalKey": "EDITORIAL_2H2H:zero:number"
+    },
+    {
+      "effectiveContentHash": "22bd3ede9e0f1ad76af52edcbc4730af9d8105a68bcfeff7327035196e92cef1",
+      "inventoryOrdinal": 28,
+      "proposalKey": "EDITORIAL_2H2H:inferior:lower-rank-person"
+    },
+    {
+      "effectiveContentHash": "445abd720f6ec5e5094631afdbf83655c0f3577c7b9a3301ebfee99ee17a270c",
+      "inventoryOrdinal": 29,
+      "proposalKey": "EDITORIAL_2H2H:fierce:intense"
+    },
+    {
+      "effectiveContentHash": "31811b4238647afde2005e0f658a7c1a4b1c28cdb25eb9e22c8f2d41fd2b54c9",
+      "inventoryOrdinal": 30,
+      "proposalKey": "EDITORIAL_2H2H:whoever:any-person"
+    },
+    {
+      "effectiveContentHash": "c3fa00a3bb32fbe4255c066e99056fd8574f5a5e8fa5fdcfe278c81f9088b599",
+      "inventoryOrdinal": 31,
+      "proposalKey": "EDITORIAL_2H2H:any:unspecified-amount"
+    },
+    {
+      "effectiveContentHash": "50ffbea7fbab03b0b8d098d8d0e12c0c22dbb470d099dcc64e7830b1746a1a4a",
+      "inventoryOrdinal": 32,
+      "proposalKey": "EDITORIAL_2H2H:any:free-choice"
+    },
+    {
+      "effectiveContentHash": "bdb4e4786fe2650c27dda05f60174435a2565381c0e30317a800d2234e3b507e",
+      "inventoryOrdinal": 33,
+      "proposalKey": "EDITORIAL_2H2H:any:one-unspecified"
+    },
+    {
+      "effectiveContentHash": "cac02f723f18a74d626917b2d12df3dde9d2e5141302e4f7b2ecee9d4169e50e",
+      "inventoryOrdinal": 34,
+      "proposalKey": "EDITORIAL_2H2H:any:degree"
+    },
+    {
+      "effectiveContentHash": "dcec7e7d8197c7a6064d3458c132215436b39992e3565161dad500840760b4a1",
+      "inventoryOrdinal": 35,
+      "proposalKey": "EDITORIAL_2H2H:whose:question-with-noun"
+    },
+    {
+      "effectiveContentHash": "f55c833ef4d39b87cce139b07f6787cc2171947f77908c28c68c3cc05cb96cfa",
+      "inventoryOrdinal": 36,
+      "proposalKey": "EDITORIAL_2H2H:whose:question-alone"
+    },
+    {
+      "effectiveContentHash": "e439aff116fe71e10ccd104fcc7f60388b17a2bb6ddf9e5d2ccc2de882402f55",
+      "inventoryOrdinal": 37,
+      "proposalKey": "EDITORIAL_2H2H:whose:relative-possession"
+    },
+    {
+      "effectiveContentHash": "ec76a9d975143b7167b530982e737d0a05aea9b9c2dd812af2afd1f49bd77908",
+      "inventoryOrdinal": 38,
+      "proposalKey": "EDITORIAL_2H2H:introduction:bringing-into-use"
+    },
+    {
+      "effectiveContentHash": "3c244c5fbad33654596d31cb099b55e907ed3cac4c88da1cb16675de8e3ef414",
+      "inventoryOrdinal": 39,
+      "proposalKey": "EDITORIAL_2H2H:racist:discriminatory"
+    },
+    {
+      "effectiveContentHash": "c2c7fc392eca51585d09fec618199f92b3e5200692316931ff409dd313b94e25",
+      "inventoryOrdinal": 40,
+      "proposalKey": "EDITORIAL_2H2H:racist:person-with-prejudice"
+    },
+    {
+      "effectiveContentHash": "e82174333255a08cd8031f9bf572ebe0d7014c973be2bba11a8210f6dfee8d78",
+      "inventoryOrdinal": 41,
+      "proposalKey": "EDITORIAL_2H2H:warn:give-danger-notice"
+    },
+    {
+      "effectiveContentHash": "e73c388006ff5ff7cb3fc96ffeecbdb777ced28fb62ad7dba02418bd01a82a8d",
+      "inventoryOrdinal": 42,
+      "proposalKey": "EDITORIAL_2H2H:apparently:reported-or-seeming"
+    },
+    {
+      "effectiveContentHash": "0da51c51cd3ed7b2246ba81f80452d9bbd8160ea63167f91483be77ad8e42d79",
+      "inventoryOrdinal": 43,
+      "proposalKey": "EDITORIAL_2H2H:submit:accept-authority"
+    },
+    {
+      "effectiveContentHash": "fde6b89e38634f533f450ebc8200fc345d593186af5f6009850f3f91927fecf1",
+      "inventoryOrdinal": 44,
+      "proposalKey": "EDITORIAL_2H2H:fuse:burning-cord"
+    },
+    {
+      "effectiveContentHash": "a16aaecb4dc825b1fa2034a42603ddcc694d6fecaf351f9e9637b1bcb4ddb139",
+      "inventoryOrdinal": 45,
+      "proposalKey": "EDITORIAL_2H2H:contempt:lack-of-respect"
+    },
+    {
+      "effectiveContentHash": "4478f854e6d0f59937c6666b7a2b7e8063837c709d068e3ea8c2521bed7ab1d6",
+      "inventoryOrdinal": 46,
+      "proposalKey": "EDITORIAL_2H2H:contempt:court-disrespect"
+    },
+    {
+      "effectiveContentHash": "5c5e678d910f805dfb573e6beaddfd18b678cbb0c3213a3b273acef65129bba4",
+      "inventoryOrdinal": 47,
+      "proposalKey": "EDITORIAL_2H2H:worth:monetary-value"
+    },
+    {
+      "effectiveContentHash": "1bbeeea05f9f46f0811c17994d5dd2a60debe290264dd431731c2a857ec073f2",
+      "inventoryOrdinal": 48,
+      "proposalKey": "EDITORIAL_2H2H:worth:value"
+    },
+    {
+      "effectiveContentHash": "8b948e8c07157e87edc0e3224a32f1e482abb3fd7f7a07e9872960c74236bfec",
+      "inventoryOrdinal": 49,
+      "proposalKey": "EDITORIAL_2H2H:worth:deserving-effort"
+    },
+    {
+      "effectiveContentHash": "8e58d5ab771cc69ca43e74d37f65d3675d704c30a3197c049399f7fd4264e5f2",
+      "inventoryOrdinal": 50,
+      "proposalKey": "EDITORIAL_2H2H:foster:encourage-development"
+    },
+    {
+      "effectiveContentHash": "e5c15dc3ac8dbf07c3f07600c2f7785203a14ee64ecae3873ea03f96497cc9eb",
+      "inventoryOrdinal": 51,
+      "proposalKey": "EDITORIAL_2H2H:foster:temporary-child-care"
+    },
+    {
+      "effectiveContentHash": "77096b21c42f47740e0edf84b84687e3ef26e9217c9c06f0d5de35fee763d6b2",
+      "inventoryOrdinal": 52,
+      "proposalKey": "EDITORIAL_2H2H:mission:important-task"
+    },
+    {
+      "effectiveContentHash": "782154a417f70f4b28ffb58d87f916d79dad89924c1eb673fa8b93db060c8a68",
+      "inventoryOrdinal": 53,
+      "proposalKey": "EDITORIAL_2H2H:some:unspecified-amount"
+    },
+    {
+      "effectiveContentHash": "daf2078501df3ea9bc7393e4c74064b2f339781145f7f8b593f0844b4cb45ac9",
+      "inventoryOrdinal": 54,
+      "proposalKey": "EDITORIAL_2H2H:some:unspecified-part"
+    },
+    {
+      "effectiveContentHash": "bc350e786da2aefb00f2254b667b02d8ec95be93d9ac37ed48c2c22ab731e11c",
+      "inventoryOrdinal": 55,
+      "proposalKey": "EDITORIAL_2H2H:whether:alternatives"
+    },
+    {
+      "effectiveContentHash": "74c2534c907287831f2721f858cc13f133ffcc19d167eb128d8467282d8dcae3",
+      "inventoryOrdinal": 56,
+      "proposalKey": "EDITORIAL_2H2H:inclined:likely-or-willing"
+    },
+    {
+      "effectiveContentHash": "d495196ddd8f06a1fe8283d3f08c8a1ff8bac1ad9ded891bae7aa503a78f528a",
+      "inventoryOrdinal": 57,
+      "proposalKey": "EDITORIAL_2H2H:deforestation:forest-removal"
+    },
+    {
+      "effectiveContentHash": "e931b4738b3f9596ae27adc69bbe96d9eef032ebc8f9d503b2f7f1eb50cf94df",
+      "inventoryOrdinal": 58,
+      "proposalKey": "EDITORIAL_2H2H:everything:all-things"
+    },
+    {
+      "effectiveContentHash": "e73ce00d2326c5e0ef9337ffb3f32a8b8d23d917778fe8676b1160bc848f0c4e",
+      "inventoryOrdinal": 59,
+      "proposalKey": "EDITORIAL_2H2H:october:calendar-month"
+    },
+    {
+      "effectiveContentHash": "2b7be5aa137a484f9d995173780397cfc33718b4098739c0e8e79bf16a4beb10",
+      "inventoryOrdinal": 60,
+      "proposalKey": "EDITORIAL_2H2H:wreck:destroy-or-damage"
+    },
+    {
+      "effectiveContentHash": "2dc0b462f84c1fd0991e548f60b8b60162ca0a64def881b3b7f0bae83e96bf63",
+      "inventoryOrdinal": 61,
+      "proposalKey": "EDITORIAL_2H2H:college:educational-institution"
+    },
+    {
+      "effectiveContentHash": "f8e07cf645c49b1de6607a7e98b384c1e9cdfb90c2bc9a10e779819c0f00805d",
+      "inventoryOrdinal": 62,
+      "proposalKey": "EDITORIAL_2H2H:mad:angry"
+    },
+    {
+      "effectiveContentHash": "19f1a92e4a0d228b5ebdde6b42e61ac0032ecd4d3e4fce5f1ef93f4f3eaf1272",
+      "inventoryOrdinal": 63,
+      "proposalKey": "EDITORIAL_2H2H:mad:foolish-or-unreasonable"
+    },
+    {
+      "effectiveContentHash": "c3a95a0697dcd7cc1e5bfe873ed0c6a198c1a9da88541a918d7199ccfdd44da3",
+      "inventoryOrdinal": 64,
+      "proposalKey": "EDITORIAL_2H2H:orchestra:instrumental-group"
+    }
+  ],
+  "unflaggedGroupsRemainEligibleForLaterAudit": true
+}

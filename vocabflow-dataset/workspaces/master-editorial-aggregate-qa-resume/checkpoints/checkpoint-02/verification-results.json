@@ -1,0 +1,476 @@
+{
+  "acceptedCheckpointAndParentFinalReplays": [
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h2h-bulk-500.py",
+        "--check"
+      ],
+      "exitCode": 0,
+      "filesCompared": 6940,
+      "hashSeed": "20261011",
+      "logSha256": "1dfbb9ec5eb5608abf23236a8bd0adaa0d5c372d2731c0d451707b0b77e2799e",
+      "name": "original",
+      "seconds": 50.52,
+      "zeroWrites": true
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h2h-bulk-500-resume.py",
+        "--checkpoint",
+        "2",
+        "--check"
+      ],
+      "exitCode": 0,
+      "filesCompared": 6940,
+      "hashSeed": "20261011",
+      "logSha256": "d046efd688830d4b9c12852b5060a50b84e455c0a4f240ba9ac868856d5b98f5",
+      "name": "cp02",
+      "seconds": 70.22,
+      "zeroWrites": true
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h2h-bulk-500-resume.py",
+        "--checkpoint",
+        "3",
+        "--check"
+      ],
+      "exitCode": 0,
+      "filesCompared": 6940,
+      "hashSeed": "20261011",
+      "logSha256": "82fd4e0a9853379bfd5d9ddaf14c7c34485207f69bd33dca0914e93a2ee78e31",
+      "name": "cp03",
+      "seconds": 58.12,
+      "zeroWrites": true
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h2h-checkpoint-03-handoff.py",
+        "--check"
+      ],
+      "exitCode": 0,
+      "filesCompared": 6940,
+      "hashSeed": "20261011",
+      "logSha256": "f1aaf9fbc23f5de49a946bbbdd231c134499b9ffedc8b3a26fb10682c7da0059",
+      "name": "cp03-handoff",
+      "seconds": 49.41,
+      "zeroWrites": true
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h2h-bulk-500-resume.py",
+        "--checkpoint",
+        "4",
+        "--check"
+      ],
+      "exitCode": 0,
+      "filesCompared": 6940,
+      "hashSeed": "20261011",
+      "logSha256": "0bd8ca75c5af3ee1f187acbfc743fdd46aee4615d57defdb8d2464fa12b673b5",
+      "name": "cp04",
+      "seconds": 55.16,
+      "zeroWrites": true
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h2h-checkpoint-04-handoff.py",
+        "--check"
+      ],
+      "exitCode": 0,
+      "filesCompared": 6940,
+      "hashSeed": "20261011",
+      "logSha256": "61fc56fad046d5ae86a06b816a8de676b11426d7d82f069ee02f3018130ce83d",
+      "name": "cp04-handoff",
+      "seconds": 58.87,
+      "zeroWrites": true
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h2h-bulk-500-resume.py",
+        "--checkpoint",
+        "5",
+        "--check"
+      ],
+      "exitCode": 0,
+      "filesCompared": 6940,
+      "hashSeed": "20261011",
+      "logSha256": "9edac6672541edccd298ff4c96cf2245b5a42a15841b1df6190f638c543b0426",
+      "name": "cp05",
+      "seconds": 59.74,
+      "zeroWrites": true
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h2h-checkpoint-05-handoff.py",
+        "--check"
+      ],
+      "exitCode": 0,
+      "filesCompared": 6940,
+      "hashSeed": "20261011",
+      "logSha256": "9f7c3931999cdf2aa226752d6f917cc4018249e89231df44cf8e6036a951ce2f",
+      "name": "cp05-handoff",
+      "seconds": 44.03,
+      "zeroWrites": true
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h2i-aggregate-qa.py",
+        "--check"
+      ],
+      "exitCode": 0,
+      "filesCompared": 6940,
+      "hashSeed": "20261011",
+      "logSha256": "fdc4cc8897e9768cae6ecd564cd13520981ac17b139188bc76da91af977d800e",
+      "name": "aggregate",
+      "seconds": 5.86,
+      "zeroWrites": true
+    }
+  ],
+  "acceptedParentPreWorkReplay": {
+    "command": [
+      "python",
+      "-B",
+      "scripts/phase-2h2i-aggregate-qa.py",
+      "--check"
+    ],
+    "exitCode": 0,
+    "fingerprint": "3d29083983cf033b4463d33c7a8ea3bd9337c209e0a5f236167c116a0852b5ce",
+    "zeroWrites": true
+  },
+  "build": "NOT_RUN; offline dataset audit has no runtime/build changes",
+  "canonicalPnpmWrapper": "NOT_RUN",
+  "checkpointFingerprint": "7d462d7bfb2f957c4c1809de18a22a126b8f85194763f90d863551edb15be34d",
+  "databaseAccess": "NONE",
+  "databaseWrites": "NONE",
+  "diagnosticHistory": [
+    "The first external stash-preservation helper compared %gd %H against a baseline saved as %H %gd, giving a formatting-only failure. Corrected the outside-repository helper, reran, and compared all seven exact entries successfully; no stash action occurred.",
+    "A read-only additional-batch card print initially requested an absent index POS key. Repeated the complete two-batch content read successfully before persisting judgments.",
+    "An initial new-checkpoint replay passed before a report/queue refinement. Final checkpoint results above come from two replays after that refinement; previous checkpoint replays remain valid because their accepted bytes and code did not change."
+  ],
+  "directChecks": {
+    "canonicalLimitation": "Direct Node commands do not resolve or verify the previously documented canonical pnpm wrapper limitation.",
+    "canonicalPnpmWrapper": "NOT_RUN",
+    "frozenRelease": {
+      "command": [
+        "D:/hoctienganh/.tools/node-v22.23.2-win-x64/node.exe",
+        "node_modules/tsx/dist/cli.mjs",
+        "scripts/hybrid-100-runtime-eligible-patch-release.ts",
+        "--check"
+      ],
+      "exitCode": 0,
+      "logSha256": "c8cb06faa47bb5c1b04aca11c65c5cb02a3b393a8e85d5950f853e76cb4b7183",
+      "seconds": 15.38,
+      "status": "PASS"
+    },
+    "lint": {
+      "command": [
+        "D:/hoctienganh/.tools/node-v22.23.2-win-x64/node.exe",
+        "node_modules/eslint/bin/eslint.js",
+        ".",
+        "--max-warnings=0"
+      ],
+      "exitCode": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 66.99,
+      "status": "PASS"
+    },
+    "nodeVersion": "v22.23.2",
+    "typecheck": {
+      "command": [
+        "D:/hoctienganh/.tools/node-v22.23.2-win-x64/node.exe",
+        "node_modules/typescript/bin/tsc",
+        "-b"
+      ],
+      "exitCode": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "seconds": 46.35,
+      "status": "PASS"
+    }
+  },
+  "finalCheckpointReplayTwoHashSeeds": [
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h2i-aggregate-qa-resume.py",
+        "--checkpoint",
+        "2",
+        "--check"
+      ],
+      "exitCode": 0,
+      "filesCompared": 6940,
+      "fingerprint": "7d462d7bfb2f957c4c1809de18a22a126b8f85194763f90d863551edb15be34d",
+      "hashSeed": "20261013",
+      "logSha256": "a1821faf3b4f8d4ec601c8e6598aedd8a64030fb879325240e236f81c09608ec",
+      "zeroWrites": true
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-B",
+        "scripts/phase-2h2i-aggregate-qa-resume.py",
+        "--checkpoint",
+        "2",
+        "--check"
+      ],
+      "exitCode": 0,
+      "filesCompared": 6940,
+      "fingerprint": "7d462d7bfb2f957c4c1809de18a22a126b8f85194763f90d863551edb15be34d",
+      "hashSeed": "20261014",
+      "logSha256": "a1821faf3b4f8d4ec601c8e6598aedd8a64030fb879325240e236f81c09608ec",
+      "zeroWrites": true
+    }
+  ],
+  "phase": "2H.2I-R1",
+  "preservation": {
+    "acceptedFilesCompared": 6921,
+    "acceptedFilesUnchanged": true,
+    "branch": "TXH",
+    "drift": [],
+    "otherWorktreeHeadsAndPathsPreserved": true,
+    "rootHead": "3ad14d262e56dd09883ec67a51e7b1a407ecea0e",
+    "stashCount": 7,
+    "stashesPreserved": true,
+    "us55Head": "3213aaa3c0bce8a53b2bbaeb2228193c14c673a3",
+    "worktreeCount": 12
+  },
+  "production": "UNTOUCHED",
+  "scope": "Actual external commands; separate from deterministic generator validation. These receipts are deliberately excluded from content fingerprint.",
+  "tests": {
+    "failed": 0,
+    "focusedTests": 25,
+    "priorRegressionsRerun": 494,
+    "results": [
+      {
+        "command": [
+          "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-B",
+          "scripts/phase-2h1-source-inventory-test.py"
+        ],
+        "exitCode": 0,
+        "log": "D:\\hoctienganh\\phase-2h2i-r1-safety\\phase-2h1-source-inventory-test.py.log",
+        "logSha256": "779231f84d2290878a587812479dc33caf07379fa5e5ec9f690eafd42d279386",
+        "seconds": 20.12,
+        "skipped": false,
+        "tests": 13
+      },
+      {
+        "command": [
+          "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-B",
+          "scripts/phase-2h2a-master-expansion-test.py"
+        ],
+        "exitCode": 0,
+        "log": "D:\\hoctienganh\\phase-2h2i-r1-safety\\phase-2h2a-master-expansion-test.py.log",
+        "logSha256": "5fb00c55c915c51ff677f0b696d5a4f8a69065f18fa52df9c74fa1e28152d9af",
+        "seconds": 20.52,
+        "skipped": false,
+        "tests": 21
+      },
+      {
+        "command": [
+          "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-B",
+          "scripts/phase-2h2b-editorial-draft-test.py"
+        ],
+        "exitCode": 0,
+        "log": "D:\\hoctienganh\\phase-2h2i-r1-safety\\phase-2h2b-editorial-draft-test.py.log",
+        "logSha256": "8dcc0f40353afc5e0d0234025bf3f0c8eeab0bb6097eb9e7fa99efb6b251a7e5",
+        "seconds": 44.83,
+        "skipped": false,
+        "tests": 23
+      },
+      {
+        "command": [
+          "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-B",
+          "scripts/phase-2h2b-qa1-corrections-test.py"
+        ],
+        "exitCode": 0,
+        "log": "D:\\hoctienganh\\phase-2h2i-r1-safety\\phase-2h2b-qa1-corrections-test.py.log",
+        "logSha256": "e7b984346a68225734f33ccfef1df6d41de9b9cda02e3784e3562c963f307458",
+        "seconds": 16.78,
+        "skipped": false,
+        "tests": 19
+      },
+      {
+        "command": [
+          "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-B",
+          "scripts/phase-2h2c-stratified-editorial-test.py"
+        ],
+        "exitCode": 0,
+        "log": "D:\\hoctienganh\\phase-2h2i-r1-safety\\phase-2h2c-stratified-editorial-test.py.log",
+        "logSha256": "4048cb8c875a1f18b5b6bf5750feba4005f1d80f082c4e695a5058b8ddf7725a",
+        "seconds": 66.43,
+        "skipped": false,
+        "tests": 35
+      },
+      {
+        "command": [
+          "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-B",
+          "scripts/phase-2h2d-bulk-editorial-test.py"
+        ],
+        "exitCode": 0,
+        "log": "D:\\hoctienganh\\phase-2h2i-r1-safety\\phase-2h2d-bulk-editorial-test.py.log",
+        "logSha256": "d70ec9b39c12420484bcfa8e0688c01d5943c25e2f67a68ad3d24e8ea3cf5205",
+        "seconds": 40.03,
+        "skipped": false,
+        "tests": 41
+      },
+      {
+        "command": [
+          "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-B",
+          "scripts/phase-2h2e-approval-gate-test.py"
+        ],
+        "exitCode": 0,
+        "log": "D:\\hoctienganh\\phase-2h2i-r1-safety\\phase-2h2e-approval-gate-test.py.log",
+        "logSha256": "d86f271e2c3e5d78e8ab47a1f8e7313b34883edf13b9c692e6787466a71acebd",
+        "seconds": 21.74,
+        "skipped": false,
+        "tests": 71
+      },
+      {
+        "command": [
+          "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-B",
+          "scripts/phase-2h2f-owner-session-test.py"
+        ],
+        "exitCode": 0,
+        "log": "D:\\hoctienganh\\phase-2h2i-r1-safety\\phase-2h2f-owner-session-test.py.log",
+        "logSha256": "712897279770b0a68b127d457d0ed7d4f6748a66ae775144b5a1e270c090c62c",
+        "seconds": 35.93,
+        "skipped": false,
+        "tests": 35
+      },
+      {
+        "command": [
+          "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-B",
+          "scripts/phase-2h2g-draft-v2-test.py"
+        ],
+        "exitCode": 0,
+        "log": "D:\\hoctienganh\\phase-2h2i-r1-safety\\phase-2h2g-draft-v2-test.py.log",
+        "logSha256": "c6af68e1b92b744008b4037301548c451d64b45305641dbff45dc1af6feaa8a5",
+        "seconds": 34.81,
+        "skipped": false,
+        "tests": 29
+      },
+      {
+        "command": [
+          "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-B",
+          "scripts/phase-2h2h-bulk-500-test.py"
+        ],
+        "exitCode": 0,
+        "log": "D:\\hoctienganh\\phase-2h2i-r1-safety\\phase-2h2h-bulk-500-test.py.log",
+        "logSha256": "f237b95cde23fbe66d7551088fc22804e35c00af3b82cda90352a93b6d7ab7c5",
+        "seconds": 45.96,
+        "skipped": false,
+        "tests": 48
+      },
+      {
+        "command": [
+          "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-B",
+          "scripts/phase-2h2h-bulk-500-resume-test.py"
+        ],
+        "exitCode": 0,
+        "log": "D:\\hoctienganh\\phase-2h2i-r1-safety\\phase-2h2h-bulk-500-resume-test.py.log",
+        "logSha256": "e4eb88e5f022cbf0d36662ae14491c6aa77e517b15e113cafb8fc3f2889f5efb",
+        "seconds": 71.31,
+        "skipped": false,
+        "tests": 35
+      },
+      {
+        "command": [
+          "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-B",
+          "scripts/phase-2h2h-checkpoint-03-test.py"
+        ],
+        "exitCode": 0,
+        "log": "D:\\hoctienganh\\phase-2h2i-r1-safety\\phase-2h2h-checkpoint-03-test.py.log",
+        "logSha256": "684a0294eeea5b94f655a48088086be91a3bf9bdaafa41a868dadd50b38be758",
+        "seconds": 57.44,
+        "skipped": false,
+        "tests": 33
+      },
+      {
+        "command": [
+          "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-B",
+          "scripts/phase-2h2h-checkpoint-04-test.py"
+        ],
+        "exitCode": 0,
+        "log": "D:\\hoctienganh\\phase-2h2i-r1-safety\\phase-2h2h-checkpoint-04-test.py.log",
+        "logSha256": "556e550e09541ffb823e37762006173bd65af75bee25617f723e2d0d2179beb7",
+        "seconds": 53.14,
+        "skipped": false,
+        "tests": 28
+      },
+      {
+        "command": [
+          "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-B",
+          "scripts/phase-2h2h-checkpoint-05-test.py"
+        ],
+        "exitCode": 0,
+        "log": "D:\\hoctienganh\\phase-2h2i-r1-safety\\phase-2h2h-checkpoint-05-test.py.log",
+        "logSha256": "96e22540ebbf128c9eba911e8d5778abfe97a1d80c9bc97eb364dcbdf124101d",
+        "seconds": 50.67,
+        "skipped": false,
+        "tests": 32
+      },
+      {
+        "command": [
+          "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-B",
+          "scripts/phase-2h2i-aggregate-qa-test.py"
+        ],
+        "exitCode": 0,
+        "log": "D:\\hoctienganh\\phase-2h2i-r1-safety\\phase-2h2i-aggregate-qa-test.py.log",
+        "logSha256": "c952a59e4792394fe5c80759c5212f28625030bc1017ea37c35004a7768e64de",
+        "seconds": 13.16,
+        "skipped": false,
+        "tests": 31
+      },
+      {
+        "command": [
+          "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+          "-B",
+          "scripts/phase-2h2i-aggregate-qa-resume-test.py"
+        ],
+        "exitCode": 0,
+        "log": "D:\\hoctienganh\\phase-2h2i-r1-safety\\phase-2h2i-aggregate-qa-resume-test.py.log",
+        "logSha256": "ebf508d6e939753ce33f9ff5716d244a8c5c0bdaae7de5445440fc58237dbd2c",
+        "seconds": 1.09,
+        "skipped": false,
+        "tests": 25
+      }
+    ],
+    "skipped": 0,
+    "status": "PASS",
+    "suiteCount": 16,
+    "totalTests": 519
+  }
+}

@@ -2617,3 +2617,54 @@ full audit closure; then separately authorize targeted DRAFT remediation for
 confirmed issues, followed later by expansion of remaining 5,123 groups.
 STOP after verified PARTIAL publication; no new selection, formal approval
 cycle, automatic correction application or database import.
+
+
+## 2026-10-09 — Phase 2H.2I-R1 additive aggregate-QA checkpoint 02
+
+Bounded continuation targets completed; full aggregate audit remains PARTIAL.
+Read and persist the next 40 original REVIEW records (ordinals 25–64):
+25 previous + 40 new = 65 triaged, 122 pending of 187. Preserve historical
+REVIEW separately from AI triage; no human approval or automatic PASS promotion.
+Read all drafts and source evidence for the next 75 deterministically prioritized
+coverage groups: 17 previous + 75 new = 92 assessed, 408 pending of 500.
+All 126 warning identities preserved; 34 flagged groups remain pending.
+
+New coverage: 2 confirmed gaps (condensed liquid adjective; elastic material noun),
+1 possible gap (inferior capacity versus rank), 2 source metadata conflicts,
+2 coverage-unknown and 68 with no identified source-supported gap. These findings
+do not establish exhaustive lexical coverage, source ordinals, CEFR or rights.
+
+Scan all 1,563 notes: 107 unique candidates under original and supplementary
+patterns. Actually inspect 38 Senses across five entire original authored batches:
+10 confirmed minor process-commentary defects, 28 valid learner notes. Preserve
+parent calibration evidence; 23 candidates had prior dedicated inspection, 9 have
+new dedicated inspection, and 75 await dedicated classification. The purposive
+sample provides no statistical prevalence claim. Persist 10 actionable field
+proposals and 2 original bilingual boundary proposals; apply none. Keep source
+originality uncertainty for foster/mission separate from copyright clearance.
+
+Accepted parent fingerprint: 3d29083983cf033b4463d33c7a8ea3bd9337c209e0a5f236167c116a0852b5ce.
+Remote parent: 3ad14d262e56dd09883ec67a51e7b1a407ecea0e.
+New checkpoint fingerprint: 7d462d7bfb2f957c4c1809de18a22a126b8f85194763f90d863551edb15be34d.
+All 6,921 accepted script/Dataset files, all 1,563 Senses, previous 25 triage and
+17 coverage decisions, 20 field proposals, 5 boundary proposals and historical
+corrections remain byte-identical. Parent workspace is never regenerated.
+
+Actual checks: 494 previous regressions + 25 new focused tests = 519 PASS,
+zero failures/skips. Eight original checkpoint/core/handoff replays plus parent
+aggregate replay PASS with before/after byte comparison. Final checkpoint replay
+PASS with zero writes under two different hash seeds. Direct Node 22.23.2 tsc -b,
+ESLint and frozen Hybrid release check PASS. Canonical pnpm wrapper NOT_RUN;
+the prior wrapper limitation is not claimed fixed. External command receipts
+are separate from generator checks in verification-results.json.
+
+Seven stashes and twelve worktrees preserved; VocabFlow-us55 unchanged. Existing
+local TXH only. DRAFT / UNKNOWN_REVIEW_REQUIRED; corrections applied, owner
+approvals, rights clearances and canonical IDs: 0. No database access/writes,
+Production operation, Master release, legacy change or new authoring cohort.
+Hybrid-100 v2.2.1 remains 87 Lexemes / 100 Senses.
+
+Handoff: vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/report.md.
+Continue the remaining 122 REVIEW / 408 coverage assessments and bounded grammar
+inspection only in a separately authorized additive checkpoint. STOP after
+scoped publication; no correction application, formal approval or import.
