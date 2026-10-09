@@ -1,0 +1,364 @@
+{
+  "batch": 81,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:starch",
+    "NORMALIZED_HEADWORD:yes",
+    "NORMALIZED_HEADWORD:considerably",
+    "NORMALIZED_HEADWORD:handbook",
+    "NORMALIZED_HEADWORD:lot"
+  ],
+  "replayEvidence": "Persisted PSV parsed; source-supported POS/ordinals and exact frozen slice verified; original content hashes bound to AI review. Full replay recorded externally.",
+  "reviewNotesSha256": "1b009195e02e8e8fe45a67db67e560dff88ab008e953ccfd9875b3d1828cc67a",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Plant carbohydrate and fabric stiffener are distinct noun uses; potato sauce and shirt-collar examples translate faithfully, with uncountable grammar and no nutritional recommendation.",
+      "proposalKey": "EDITORIAL_2H2H:starch:plant-carbohydrate",
+      "reviewedContentHash": "7ae5b03560dafda357dd2902d1665b281f291b007b052b4ab6ae2c306f5ba41d",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Plant carbohydrate and fabric stiffener are distinct noun uses; potato sauce and shirt-collar examples translate faithfully, with uncountable grammar and no nutritional recommendation.",
+      "proposalKey": "EDITORIAL_2H2H:starch:fabric-stiffener",
+      "reviewedContentHash": "d426dec3908ab401b1129f2ccc3b7ddde6981042d6f4253f73ff43bd487fe233",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Permission response fits the interjection, not a noun or verb; vâng matches the polite reply and the example preserves the umbrella and tomorrow limit.",
+      "proposalKey": "EDITORIAL_2H2H:yes:affirmative-response",
+      "reviewedContentHash": "160014815d17050bf3d85f5b1c9bbfbf2785ac9e5d817f16a2788fc2e2c24082",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Shelf-width comparison demonstrates a substantial degree, not frequency; đáng kể preserves the comparative and wider-than grammar is accurate.",
+      "proposalKey": "EDITORIAL_2H2H:considerably:substantial-degree",
+      "reviewedContentHash": "940442b1bce6184c5359b84048401b1592540037af9dceebaa92a4bb61330b0f",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Practical lookup purpose is captured without implying pocket size; projector instructions and volunteer translation match and handbook on is usable grammar.",
+      "proposalKey": "EDITORIAL_2H2H:handbook:practical-reference-book",
+      "reviewedContentHash": "1f142d8ec151b8e455bab1baccdcef69dfe401ebbf5720d0cd7be46dd71da1ac",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: [LEXICAL_IDENTITY] Three source-supported quantity constructions are accurate, but the normalized key lot contains multiword a lot and a lot of uses; no single-word or Master identity approval follows.",
+      "proposalKey": "EDITORIAL_2H2H:lot:quantity-before-noun",
+      "reviewedContentHash": "63b75424e7513161c67ef47e4139a54303e938f2342a09e34806573de8aa5fa1",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: [LEXICAL_IDENTITY] Three source-supported quantity constructions are accurate, but the normalized key lot contains multiword a lot and a lot of uses; no single-word or Master identity approval follows.",
+      "proposalKey": "EDITORIAL_2H2H:lot:quantity-without-noun",
+      "reviewedContentHash": "b08a05c2a6fca74ef3f37f38199ab108f617301f695febbc4b98af4a5af16e75",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: [LEXICAL_IDENTITY] Three source-supported quantity constructions are accurate, but the normalized key lot contains multiword a lot and a lot of uses; no single-word or Master identity approval follows.",
+      "proposalKey": "EDITORIAL_2H2H:lot:degree-or-frequency",
+      "reviewedContentHash": "caecbe82e1db1259cc9296c81d40c2ae91af1ce3987cb4ddf9c723d9bfcc2fe2",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 8,
+  "sha256": "2267f6f9f0939ed9f4e7f0b69720c3c5af8250e64c63aced25a14dfb4b6cf0d5",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:considerably": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADVERB"
+        ],
+        "rawContentPointer": "/records/3488/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3488/rawHeadword",
+        "rawPosEvidencePointer": "/records/3488/sourcePosRaw",
+        "recordEvidenceSha256": "f7beb9dcdfe2fc362dd5dc3bfc23146a9ccb5ab3537d074475c3cb3c1d4c4bdc",
+        "recordIndex": 3488,
+        "sourceNoteGuid": "cbzxCf__c@",
+        "sourceRecordId": "1788223609527",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADVERB"
+        ],
+        "rawContentPointer": "/records/3700/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3700/rawHeadword",
+        "rawPosEvidencePointer": "/records/3700/sourcePosRaw",
+        "recordEvidenceSha256": "7fcbefcfe3fb27edb10136875c249f08c8a0e264e39502ca6bd8c0dc575884d6",
+        "recordIndex": 3700,
+        "sourceNoteGuid": "eH:+7%i9b2",
+        "sourceRecordId": "1623660519682",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:handbook": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C2",
+            "value": "C2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3301/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3301/rawHeadword",
+        "rawPosEvidencePointer": "/records/3301/sourcePosRaw",
+        "recordEvidenceSha256": "3e89c8771ed7adddbd4b984efe5ca81840e77cf96f604a10e0649c4e6549fed3",
+        "recordIndex": 3301,
+        "sourceNoteGuid": "FT>a/O.OH%",
+        "sourceRecordId": "1559931010187",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:lot": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADVERB",
+          "DETERMINER",
+          "PRONOUN"
+        ],
+        "rawContentPointer": "/records/177/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/177/rawHeadword",
+        "rawPosEvidencePointer": "/records/177/sourcePosRaw",
+        "recordEvidenceSha256": "c76af988c876bc1e319da2cf5e9beeab8db089c183619f1de3d095db34b9cd75",
+        "recordIndex": 177,
+        "sourceNoteGuid": "FIEIl$@8}F",
+        "sourceRecordId": "1788223606128",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1,
+          2
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:starch": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C2",
+            "value": "C2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1907/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1907/rawHeadword",
+        "rawPosEvidencePointer": "/records/1907/sourcePosRaw",
+        "recordEvidenceSha256": "48ac101f4352605760e2cde8f7f8a20310c2e727288c2f440e42b483deaa369c",
+        "recordIndex": 1907,
+        "sourceNoteGuid": "jtDydZ^|+$",
+        "sourceRecordId": "1559931008717",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:yes": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "INTERJECTION"
+        ],
+        "rawContentPointer": "/records/220/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/220/rawHeadword",
+        "rawPosEvidencePointer": "/records/220/sourcePosRaw",
+        "recordEvidenceSha256": "3a4f0d1880f7c8c97a3f8a8dc47aa3bb9cad13ec2bfa2b979adf1ef918b37cf7",
+        "recordIndex": 220,
+        "sourceNoteGuid": "P-?$@gQ<nk",
+        "sourceRecordId": "1788223606171",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ]
+  },
+  "substantiveDefectsFound": 0
+}

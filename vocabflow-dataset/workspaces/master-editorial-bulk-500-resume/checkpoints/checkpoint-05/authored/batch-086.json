@@ -1,0 +1,386 @@
+{
+  "batch": 86,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:woman",
+    "NORMALIZED_HEADWORD:class",
+    "NORMALIZED_HEADWORD:fond",
+    "NORMALIZED_HEADWORD:irritate",
+    "NORMALIZED_HEADWORD:not"
+  ],
+  "replayEvidence": "Persisted PSV parsed; source-supported POS/ordinals and exact frozen slice verified; original content hashes bound to AI review. Full replay recorded externally.",
+  "reviewNotesSha256": "b89ed744786fd01502d6c67616242e807fcb28d1dfef69359a6ee56274b51621",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Adult female noun and woman/women irregular plural are accurate; information-desk example assigns no stereotyped ability or status and translates the exhibition context.",
+      "proposalKey": "EDITORIAL_2H2H:woman:adult-female-person",
+      "reviewedContentHash": "77ecd98664523350231a50e475991da93e39fd4e22268f6a5fa4be5250b61897",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Student group, teaching session and social category are distinct countable boundaries; mural, pottery and housing examples preserve each referent without judging personal worth.",
+      "proposalKey": "EDITORIAL_2H2H:class:group-of-students",
+      "reviewedContentHash": "44aeb779da1b52e9707f63c7dd40bc5525188db28d412b941b8b1a17bb2358a2",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Student group, teaching session and social category are distinct countable boundaries; mural, pottery and housing examples preserve each referent without judging personal worth.",
+      "proposalKey": "EDITORIAL_2H2H:class:teaching-session",
+      "reviewedContentHash": "bf6923c2244a47e7a7c50917d888cb885772635370a668a6ded79b5888c093fd",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Student group, teaching session and social category are distinct countable boundaries; mural, pottery and housing examples preserve each referent without judging personal worth.",
+      "proposalKey": "EDITORIAL_2H2H:class:social-category",
+      "reviewedContentHash": "d3a825d2cbb5bf0e132370260fb7e134ae446372afdb3a22ebabf262f52289c9",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: [POS_CLASSIFICATION] Fond of growing is an adjective construction corroborated lexically; the 4600 verb label remains a source conflict, never accepted as a new verb Sense.",
+      "proposalKey": "EDITORIAL_2H2H:fond:feeling-affection-or-liking",
+      "reviewedContentHash": "72a8c4c561ccf3fcac82ba4ba98f35f29128b6da1ec2a8716def59f953ef80e4",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Annoyance and physical irritation are distinct transitive meanings; clicking and rough-collar examples preserve causes and body location without suggesting treatment.",
+      "proposalKey": "EDITORIAL_2H2H:irritate:make-annoyed",
+      "reviewedContentHash": "b93f156c3febfb5e03d0ddce9b256c5379f13cbc0c878575c8cf905c163d8cee",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Annoyance and physical irritation are distinct transitive meanings; clicking and rough-collar examples preserve causes and body location without suggesting treatment.",
+      "proposalKey": "EDITORIAL_2H2H:irritate:cause-physical-discomfort",
+      "reviewedContentHash": "20a12a96b33f5f51c4415076f5e70d66c3838acba6a41d101b1c82197e925f99",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Grammatical negation covers source không and không phải without artificial duplicate Senses; the parcel example preserves not heavy versus too wide and auxiliary guidance.",
+      "proposalKey": "EDITORIAL_2H2H:not:grammatical-negation",
+      "reviewedContentHash": "3b7af0868b0c2629f4a97300850460efce323156cc45853a9ca7f025f0e7ea9a",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 8,
+  "sha256": "ed2f0ce71f4eb4d3ae5f3eeb20b3bf0b77097ce5f41fcf1bff3417de29b60ea3",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:class": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/284/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/284/rawHeadword",
+        "rawPosEvidencePointer": "/records/284/sourcePosRaw",
+        "recordEvidenceSha256": "68f106c28b8993fd217902262f87986c1af954dff0a51a07aac84b4dd707aea1",
+        "recordIndex": 284,
+        "sourceNoteGuid": "x~L5beZh_o",
+        "sourceRecordId": "1788223606235",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B1",
+            "value": "B1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1838/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1838/rawHeadword",
+        "rawPosEvidencePointer": "/records/1838/sourcePosRaw",
+        "recordEvidenceSha256": "373e304b18b712361b0cd76dac277c64311a8bd344cda3dd0f0ee560cf4f395d",
+        "recordIndex": 1838,
+        "sourceNoteGuid": "jNNPT)n]RK",
+        "sourceRecordId": "1559931008646",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:fond": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/3557/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3557/rawHeadword",
+        "rawPosEvidencePointer": "/records/3557/sourcePosRaw",
+        "recordEvidenceSha256": "fe60a3e47ed0171a5c374eaf4385afd84e295ea8c0cf588d70724ffd428579a0",
+        "recordIndex": 3557,
+        "sourceNoteGuid": "E,aw{9D7|V",
+        "sourceRecordId": "1788223609596",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/2699/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2699/rawHeadword",
+        "rawPosEvidencePointer": "/records/2699/sourcePosRaw",
+        "recordEvidenceSha256": "9c7c1e6d95ce5252f905c0a511793b891b14482216e124bf657e473e3e3687c2",
+        "recordIndex": 2699,
+        "sourceNoteGuid": "dFxq$Y^plh",
+        "sourceRecordId": "1559931009551",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:irritate": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/1235/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1235/rawHeadword",
+        "rawPosEvidencePointer": "/records/1235/sourcePosRaw",
+        "recordEvidenceSha256": "f005f15370291760eb9c923ad617c2e50bf02faec7cb8c8ecce00861ba4100ef",
+        "recordIndex": 1235,
+        "sourceNoteGuid": "Fj-7]mJ^rY",
+        "sourceRecordId": "1559931008027",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:not": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADVERB"
+        ],
+        "rawContentPointer": "/records/18/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/18/rawHeadword",
+        "rawPosEvidencePointer": "/records/18/sourcePosRaw",
+        "recordEvidenceSha256": "03536b60be64d8c093e2abbb575ffb21a50f4c3082d29b03210d248eaaaf4e71",
+        "recordIndex": 18,
+        "sourceNoteGuid": "zN;CF~+)Vk",
+        "sourceRecordId": "1788223605950",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:woman": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/293/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/293/rawHeadword",
+        "rawPosEvidencePointer": "/records/293/sourcePosRaw",
+        "recordEvidenceSha256": "3bf71da72bf974cb2b349233b30fbe131f2ae9ee2d114653c575632d59ef48ed",
+        "recordIndex": 293,
+        "sourceNoteGuid": "pVm+B;hI9G",
+        "sourceRecordId": "1788223606244",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ]
+  },
+  "substantiveDefectsFound": 0
+}

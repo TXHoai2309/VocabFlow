@@ -1,0 +1,389 @@
+{
+  "batch": 90,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:hygiene",
+    "NORMALIZED_HEADWORD:magnet",
+    "NORMALIZED_HEADWORD:o’clock",
+    "NORMALIZED_HEADWORD:upwards",
+    "NORMALIZED_HEADWORD:will"
+  ],
+  "replayEvidence": "Persisted PSV parsed; source-supported POS/ordinals and exact frozen slice verified; original content hashes bound to AI review. Full replay recorded externally.",
+  "reviewNotesSha256": "3b5aa455d160b39471534f167efba72377a833e4fd022c10ca556232c8cb9e41",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Cleanliness practices helping prevent illness are accurate at lexical level; hand-hygiene example is descriptive, with uncountable grammar and no clinical regimen.",
+      "proposalKey": "EDITORIAL_2H2H:hygiene:practices-of-cleanliness",
+      "reviewedContentHash": "46f58706b8b81fbd75164fdbf8a73255b7b386d642efdf769855f774772f999e",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Attraction is limited to certain materials, avoiding the false all-metals claim; fridge-note example and magnetic-field definition remain coherent.",
+      "proposalKey": "EDITORIAL_2H2H:magnet:object-with-magnetic-attraction",
+      "reviewedContentHash": "5a241c79621cde9f389346adb800e773d521d9d8fb96af3fe37a777fc6cc290a",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: [FORM] Curly-apostrophe normalized key and straight-apostrophe example are spelling variants; exact-hour adverb is accurate, but lexical-form identity remains unresolved.",
+      "proposalKey": "EDITORIAL_2H2H:o’clock:exact-hour-expression",
+      "reviewedContentHash": "6d81ee06a84ba353ea83ea1e61fe348d742a4eb3d1f29a36d91bc985ff63cf2b",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Higher direction is distinct from a numeric lower bound; warm-air lantern example translates faithfully and upward/upwards variety note is qualified.",
+      "proposalKey": "EDITORIAL_2H2H:upwards:towards-a-higher-position",
+      "reviewedContentHash": "e04427f23deee37288ca79c8e25400b02056259121873c9a34bef1882e213854",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: [POS_CLASSIFICATION] Prediction and promise are modal constructions under source VERB, distinct from determination and inheritance nouns; no ordinary inflected verb or legal document validity is approved.",
+      "proposalKey": "EDITORIAL_2H2H:will:future-prediction",
+      "reviewedContentHash": "ec65141a452229720519464218f48a8956e77fe1143730890c5ec615a79004e3",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: [POS_CLASSIFICATION] Prediction and promise are modal constructions under source VERB, distinct from determination and inheritance nouns; no ordinary inflected verb or legal document validity is approved.",
+      "proposalKey": "EDITORIAL_2H2H:will:present-decision-or-promise",
+      "reviewedContentHash": "ab4c22b3f859c4798b6d589d9e5807bc4518e1a601e41fac01d281b84a610558",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: [POS_CLASSIFICATION] Prediction and promise are modal constructions under source VERB, distinct from determination and inheritance nouns; no ordinary inflected verb or legal document validity is approved.",
+      "proposalKey": "EDITORIAL_2H2H:will:determination",
+      "reviewedContentHash": "02d5e88c0129e47c3ab97f09aaec5ca3643b87410eec62c85d2797dec4b040ea",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: [POS_CLASSIFICATION] Prediction and promise are modal constructions under source VERB, distinct from determination and inheritance nouns; no ordinary inflected verb or legal document validity is approved.",
+      "proposalKey": "EDITORIAL_2H2H:will:document-about-inheritance",
+      "reviewedContentHash": "937bd3214ce27e6df9e36650a2319d6bf116b0b5281825d19821c1ec3dd84e2b",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 8,
+  "sha256": "f728c362562e4d8b911d4a14ca67b7d53fff194ea0bbe163bc123298577c0aff",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:hygiene": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C2",
+            "value": "C2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/2073/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2073/rawHeadword",
+        "rawPosEvidencePointer": "/records/2073/sourcePosRaw",
+        "recordEvidenceSha256": "81edd16bc64a0ec3ef28d094a1df324de59b96c269760a85b2428d064d899e89",
+        "recordIndex": 2073,
+        "sourceNoteGuid": "K@oO:~zg;X",
+        "sourceRecordId": "1559931008886",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:magnet": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/2037/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2037/rawHeadword",
+        "rawPosEvidencePointer": "/records/2037/sourcePosRaw",
+        "recordEvidenceSha256": "e430b1dce3b249ef66a4752e2fbf6f42282867186ad82f1525a5de32debd5512",
+        "recordIndex": 2037,
+        "sourceNoteGuid": "xRPq2Mb/3t",
+        "sourceRecordId": "1559931008849",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:o’clock": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADVERB"
+        ],
+        "rawContentPointer": "/records/874/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/874/rawHeadword",
+        "rawPosEvidencePointer": "/records/874/sourcePosRaw",
+        "recordEvidenceSha256": "df4f54c5a155ab9e85fe6e5f900bc35aff307eea45c08674276d7f262eb9d66a",
+        "recordIndex": 874,
+        "sourceNoteGuid": "o.4v+6`jtR",
+        "sourceRecordId": "1788223606892",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:upwards": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADVERB"
+        ],
+        "rawContentPointer": "/records/2994/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2994/rawHeadword",
+        "rawPosEvidencePointer": "/records/2994/sourcePosRaw",
+        "recordEvidenceSha256": "10538abb716b5b53d7abecfe1c7f8988fda3b5971e0c8b50313bf3a1f70c12cc",
+        "recordIndex": 2994,
+        "sourceNoteGuid": "v;5[`OSp&*",
+        "sourceRecordId": "1788223609033",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADVERB"
+        ],
+        "rawContentPointer": "/records/1323/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1323/rawHeadword",
+        "rawPosEvidencePointer": "/records/1323/sourcePosRaw",
+        "recordEvidenceSha256": "94202f256040ecb64ebef96af8b53f5d87919068e11cb716e94bf88fa8259339",
+        "recordIndex": 1323,
+        "sourceNoteGuid": "rHX/rUs=4z",
+        "sourceRecordId": "1559931008118",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:will": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN",
+          "VERB"
+        ],
+        "rawContentPointer": "/records/36/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/36/rawHeadword",
+        "rawPosEvidencePointer": "/records/36/sourcePosRaw",
+        "recordEvidenceSha256": "612fb70c9c9fc658a069daf385aa2be1202274ce0a3f9d8c0287fc7f8ababcaa",
+        "recordIndex": 36,
+        "sourceNoteGuid": "xWCRXS1yF~",
+        "sourceRecordId": "1788223605973",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B1",
+            "value": "B1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3882/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3882/rawHeadword",
+        "rawPosEvidencePointer": "/records/3882/sourcePosRaw",
+        "recordEvidenceSha256": "7b0566c7f166b16c664cb52f6ea3215b2d7f6eee56e3600da8f9669268dae234",
+        "recordIndex": 3882,
+        "sourceNoteGuid": "GtbB<w{kY#",
+        "sourceRecordId": "1627569627329",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ]
+  },
+  "substantiveDefectsFound": 0
+}

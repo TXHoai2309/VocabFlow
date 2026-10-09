@@ -2494,3 +2494,60 @@ handoff, checkpoint-04 and checkpoint-04 QA-history replay PASS with hash seed
 22.23.2 typecheck and ESLint PASS; frozen Hybrid check is a zero-write NOOP.
 Canonical pnpm wrapper NOT_RUN. All 6,696 prior byte pins, seven stashes and
 twelve worktree paths preserved. Final evidence: checkpoint-04/verification-results.json.
+
+
+## Phase 2H.2H-R4 — terminal frozen bulk-500 checkpoint 05 (2026-10-09)
+
+Complete exactly checkpoint-04's final 100 pending groups in frozen order,
+batches 081–100; no reselection or reranking. New content: 173 bilingual DRAFT
+Senses, 47 multi-Sense groups. Cohort 500/500, pending zero; corpus 1,020 groups
+and 1,563 effective Senses, with 5,123 corpus groups not yet authored. All previous
+1,390 records remain exact. Checkpoints 01–04, all earlier manuscripts,
+corrections and QA history remain byte-identical.
+
+Content-bound 14-dimension AI author self-review: 116 PASS / 57 REVIEW / 0 FAIL.
+Generated flags remain REVIEW: seven source-similarity, nine polarity-context
+and one near-duplicate signal (nonexclusive). These are review signals, not
+proof of copying, semantic identity or a translation defect. Three exact-parent
+field overlays retain originals: singular all-degree example and Vietnamese;
+avoirdupois-pound grammar qualification. All Senses in batches 082 and 099
+were rereviewed; no human approval or cleared-rights claim is manufactured.
+
+Final integrity handoff covers all 500 groups / 750 cohort Sense drafts,
+with cumulative QA 563 PASS / 187 REVIEW / 0 FAIL. All 187 unresolved REVIEW
+records are included verbatim with their original checkpoint and source hash.
+Sense Coverage warnings affect 126 groups; source ordinals, POS conflicts and
+absent structured boundaries do not prove exhaustive lexical coverage. Explicit
+new gaps remain for fiery literal burning and harness horse-equipment use.
+Source-only POS conflicts for fond, guilty, forward, including, thus/therefore
+and million are retained rather than made into unsupported Senses.
+
+Frozen selection: ed303558ab029cdf24f49ca9226b2910bd4beb79d41b6d1d27edb5f4dfc52076.
+Remote parent: 24b1774c60d5fb3bfe5eadf0eada9f3d5dc77660.
+Checkpoint 04: 94166e0c8a0586317a82047c717895ae25968b522fa2a37ca342b1f5da9f7560.
+Checkpoint 05: 2007c5a1e67d4dab6228378b5b00b22ab4736cb16d3f5a3e3d03735e2a290e44.
+Final handoff: 1360ce278597e16cdb33192bae4454d2a5a799d8055eff8521c829fc7f5a3c07.
+
+Executed validation: 431 previous + 32 new Dataset tests PASS (463 total,
+zero failed/skipped). All eight accepted/core/handoff replays PASS with hash
+seed 20261011 and actual before/after byte comparisons proving zero writes.
+Original and checkpoint-02–04 replays also passed before authoring. Direct
+Node 22.23.2 TypeScript build typecheck and ESLint PASS. Canonical pnpm wrapper
+NOT_RUN; no claim that its previously documented limitation is fixed.
+Frozen Hybrid 2.2.1 check PASS / zero-write NOOP, still 87 Lexemes / 100 Senses.
+
+Preserve 6,795 prior script/Dataset byte pins. Sole source exception: replace
+obsolete checkpoint-05 absence assertion in checkpoint-04 regression test with
+actual read-only parent before/after hashes. No checkpoint artifacts or generic
+resume/handoff source change. Seven stashes, twelve worktree paths, prior backups
+and VocabFlow-us55 preserved; existing TXH only. No database access/writes,
+Production, Master release, legacy or runtime changes. All new content remains
+DRAFT / UNKNOWN_REVIEW_REQUIRED; approvals and canonical IDs added zero.
+
+Final artifacts: vocabflow-dataset/workspaces/master-editorial-bulk-500-resume/
+checkpoints/checkpoint-05/final-cohort-handoff.md, cohort-integrity.json,
+cumulative-qa-history.json and verification-results.json. The generic unchanged
+report contains inapplicable checkpoint-06 continuation boilerplate; checkpoint
+05 has nextCheckpointNumber=null, and the CLI rejects 6. This terminal handoff
+is authoritative. Stop after scoped commit/push. Proposed next phase only:
+2H.2I — Aggregate QA and Sense Coverage Audit; not authorized or started here.

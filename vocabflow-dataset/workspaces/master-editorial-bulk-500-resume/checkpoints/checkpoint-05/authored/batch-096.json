@@ -1,0 +1,460 @@
+{
+  "batch": 96,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:guilty",
+    "NORMALIZED_HEADWORD:million",
+    "NORMALIZED_HEADWORD:portion",
+    "NORMALIZED_HEADWORD:sentence",
+    "NORMALIZED_HEADWORD:worthwhile"
+  ],
+  "replayEvidence": "Persisted PSV parsed; source-supported POS/ordinals and exact frozen slice verified; original content hashes bound to AI review. Full replay recorded externally.",
+  "reviewNotesSha256": "4224d811942a2f1891acd738349aaf2b9fd7493bd61d6172f549a04a12f8fd98",
+  "reviews": [
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: [POS_CLASSIFICATION] Responsibility and remorse are accurate adjectives; 4600 NOUN label conflicts with its own felt-guilty example and no noun is manufactured.",
+      "proposalKey": "EDITORIAL_2H2H:guilty:responsible-for-wrongdoing",
+      "reviewedContentHash": "bca1a89f8514c7c20b14b7b73ac0e2dc5118888b75b8688cc13dbb4e2cb89204",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: [POS_CLASSIFICATION] Responsibility and remorse are accurate adjectives; 4600 NOUN label conflicts with its own felt-guilty example and no noun is manufactured.",
+      "proposalKey": "EDITORIAL_2H2H:guilty:feeling-remorse",
+      "reviewedContentHash": "a59f496b5e3d0893dd47b70a3a85e611423b34ec37423e96544d6c5257816620",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: [POS_CLASSIFICATION] NUMBER proposal accurately denotes 1000000 and million/millions-of syntax; source NOUN classification conflict remains unresolved.",
+      "proposalKey": "EDITORIAL_2H2H:million:one-thousand-thousand",
+      "reviewedContentHash": "555dd11dab283ff7b7f62335906af132d4b5712a19256a07d47d583e43901b12",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: A divided amount covers food-serving example without implying only food; portion-of grammar, countability and Vietnamese phần bánh are accurate.",
+      "proposalKey": "EDITORIAL_2H2H:portion:part-of-a-whole",
+      "reviewedContentHash": "ca8318c1a47e9fada20934619f6d4f2f8897bc85d45ea8086cc59257fe293100",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Grammatical unit, punishment-imposing verb and punishment noun differ; fictional judge/appeal contexts and sentence-to construction preserve legal meaning without legal advice.",
+      "proposalKey": "EDITORIAL_2H2H:sentence:grammatical-unit",
+      "reviewedContentHash": "b25b8143a4bb9555c4a5be2f10f0f40768403f25ace887fec1d4c60cc87a3863",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Grammatical unit, punishment-imposing verb and punishment noun differ; fictional judge/appeal contexts and sentence-to construction preserve legal meaning without legal advice.",
+      "proposalKey": "EDITORIAL_2H2H:sentence:impose-a-punishment",
+      "reviewedContentHash": "fefce46cdbe6e20feac94c2508f060a7eed67216041a50cf98a788aaab617326",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Grammatical unit, punishment-imposing verb and punishment noun differ; fictional judge/appeal contexts and sentence-to construction preserve legal meaning without legal advice.",
+      "proposalKey": "EDITORIAL_2H2H:sentence:official-punishment",
+      "reviewedContentHash": "d6d93c5678d73ea46fadff86b83f9b17f03b8ea5d9b03f70d08b37784e202427",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Time/effort justification fits repairing a desk that suits the room; worthwhile versus worth complement patterns are accurate and Vietnamese đáng công is natural.",
+      "proposalKey": "EDITORIAL_2H2H:worthwhile:worth-the-effort",
+      "reviewedContentHash": "3aac1384b2e749401d62a90a32c3bbb94ee79c862e55cf41a99ebd39a9a73be6",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 8,
+  "sha256": "471ba0fe9327621d9315ab775bc76b1d0aca053668edf955e778742f189ee206",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:guilty": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/1981/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1981/rawHeadword",
+        "rawPosEvidencePointer": "/records/1981/sourcePosRaw",
+        "recordEvidenceSha256": "94ef8cb157e3243bbfed2fd03152120d5727abc688b846edee962529e6bf9bff",
+        "recordIndex": 1981,
+        "sourceNoteGuid": "Ds6ubVN^%F",
+        "sourceRecordId": "1788223608020",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B1",
+            "value": "B1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1096/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1096/rawHeadword",
+        "rawPosEvidencePointer": "/records/1096/sourcePosRaw",
+        "recordEvidenceSha256": "20576ecbfc34c8170b844ea94f0c3034e5ba32ce50917196c7b5ada2540c7232",
+        "recordIndex": 1096,
+        "sourceNoteGuid": "AV.4RKL!Ga",
+        "sourceRecordId": "1559931007885",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:million": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NUMBER"
+        ],
+        "rawContentPointer": "/records/302/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/302/rawHeadword",
+        "rawPosEvidencePointer": "/records/302/sourcePosRaw",
+        "recordEvidenceSha256": "81c339febe9c698c427b566acc88763a86fd845745d91c56e3e30e07354c83c0",
+        "recordIndex": 302,
+        "sourceNoteGuid": "g+[yfQe5jj",
+        "sourceRecordId": "1788223606253",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::A1",
+            "value": "A1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "A1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/594/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/594/rawHeadword",
+        "rawPosEvidencePointer": "/records/594/sourcePosRaw",
+        "recordEvidenceSha256": "fb3a73474cddc98e58cc2f8a59d78c8adf18be0d1797cda3492f7372f3303e1a",
+        "recordIndex": 594,
+        "sourceNoteGuid": "cA5K$$>Edc",
+        "sourceRecordId": "1559931007366",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:portion": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3073/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3073/rawHeadword",
+        "rawPosEvidencePointer": "/records/3073/sourcePosRaw",
+        "recordEvidenceSha256": "8a65f8c43291a2184b58485c52fb01cf84b3ed6ccadeaf6b55e244b339bd635a",
+        "recordIndex": 3073,
+        "sourceNoteGuid": "fN%OE?&8z8",
+        "sourceRecordId": "1788223609112",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B1",
+            "value": "B1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/854/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/854/rawHeadword",
+        "rawPosEvidencePointer": "/records/854/sourcePosRaw",
+        "recordEvidenceSha256": "3f93b511bcf01d6c315b5f60d71a71b268fffb9afcf286c4b5101fd4406d6d29",
+        "recordIndex": 854,
+        "sourceNoteGuid": "QXr3M]S);:",
+        "sourceRecordId": "1559931007631",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:sentence": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN",
+          "VERB"
+        ],
+        "rawContentPointer": "/records/735/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/735/rawHeadword",
+        "rawPosEvidencePointer": "/records/735/sourcePosRaw",
+        "recordEvidenceSha256": "d925ad8042e4c861baac6de25cbd76cbea44b6625fc71e7ffe5ab5103a1bff88",
+        "recordIndex": 735,
+        "sourceNoteGuid": "q3#Wan%|w%",
+        "sourceRecordId": "1788223606751",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/2458/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2458/rawHeadword",
+        "rawPosEvidencePointer": "/records/2458/sourcePosRaw",
+        "recordEvidenceSha256": "5cdea789cc3d7c731ae035552e50671ad3747d5bf833bdfdd514a8c1d30097ac",
+        "recordIndex": 2458,
+        "sourceNoteGuid": "Mqm4OWD2F5",
+        "sourceRecordId": "1559931009296",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:worthwhile": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/4709/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4709/rawHeadword",
+        "rawPosEvidencePointer": "/records/4709/sourcePosRaw",
+        "recordEvidenceSha256": "27decf58b06fb3e245029650b529012cefcddcb31f5863505874e983f68d80ce",
+        "recordIndex": 4709,
+        "sourceNoteGuid": "mp#Pzk0HJg",
+        "sourceRecordId": "1788223610748",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/2515/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2515/rawHeadword",
+        "rawPosEvidencePointer": "/records/2515/sourcePosRaw",
+        "recordEvidenceSha256": "04ab1fd4c75ff3c0e9e96dc12d90f90859f3cc329947e7605386adbdd4f06faf",
+        "recordIndex": 2515,
+        "sourceNoteGuid": "b18rml3THR",
+        "sourceRecordId": "1559931009358",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ]
+  },
+  "substantiveDefectsFound": 0
+}

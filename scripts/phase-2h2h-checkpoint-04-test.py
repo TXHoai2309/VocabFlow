@@ -120,8 +120,14 @@ class Checkpoint04Tests(unittest.TestCase):
     def test_read_only_handoff_snapshot_check(self):
         outputs={h.CP/n:r.encode(v) for n,v in self.objects.items()};outputs[h.CP/'editorial-handoff.md']=self.report
         with patch.object(Path,'write_text',side_effect=AssertionError('Unexpected write')):r.h.write_snapshot(outputs,True)
-    def test_no_checkpoint05_prepared(self):
-        self.assertFalse(r.location(5).exists());self.assertEqual(r.load(h.CP/'checkpoint.json')['lastBatch'],80)
+    def test_next_parent_read_does_not_write(self):
+        paths=[p for base in ('scripts','vocabflow-dataset') for p in (r.ROOT/base).rglob('*') if p.is_file()]
+        before={p:r.sha(p) for p in paths}
+        parent=r.parent_state(5);receipt=r.resume_receipt(parent,5)
+        self.assertEqual(len(parent['records']),1390)
+        self.assertEqual((receipt['firstBatch'],receipt['lastBatch']),(81,100))
+        self.assertEqual(len(receipt['candidateGroupKeys']),100)
+        self.assertEqual(before,{p:r.sha(p) for p in paths})
     def test_mutation_cli_arguments_rejected(self):
         for flag in ['--production','--database-url','--apply','--delete']:
             result=subprocess.run([sys.executable,'-B',str(Path(__file__).with_name('phase-2h2h-checkpoint-04-handoff.py')),flag],capture_output=True)

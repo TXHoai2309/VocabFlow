@@ -1,0 +1,437 @@
+{
+  "batch": 88,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:namely",
+    "NORMALIZED_HEADWORD:temporarily",
+    "NORMALIZED_HEADWORD:wisdom",
+    "NORMALIZED_HEADWORD:downtown",
+    "NORMALIZED_HEADWORD:highway"
+  ],
+  "replayEvidence": "Persisted PSV parsed; source-supported POS/ordinals and exact frozen slice verified; original content hashes bound to AI review. Full replay recorded externally.",
+  "reviewNotesSha256": "4566965077b44492777733900eec35158d4eb13deb71700e9aed274e690c3793",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Wood and varnish specify the two materials rather than merely exemplifying a larger list; Vietnamese cụ thể là and punctuation preserve that scope.",
+      "proposalKey": "EDITORIAL_2H2H:namely:specifying-what-was-mentioned",
+      "reviewedContentHash": "bfa05783be288d6efa518d3b478122adf01a261d0177c48d3c24250d8ff11019",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Closure during ceiling repairs is limited rather than permanent; translation does not invent a reopening date and participial modification is natural.",
+      "proposalKey": "EDITORIAL_2H2H:temporarily:for-a-limited-period",
+      "reviewedContentHash": "b6bc277ef1ee5aa66c4446223aa3197b076be5fd5937fa2d6b2d2099a22a63d1",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Sound judgment through understanding fits uncountable wisdom; calmly settling disagreement is coherent and Vietnamese từng trải is natural in the example.",
+      "proposalKey": "EDITORIAL_2H2H:wisdom:good-judgment-from-understanding",
+      "reviewedContentHash": "f881ca1a544d12c2ba1a04bc7158a61b7ff936927687a80ee956141d2b122fc3",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: [POS_CLASSIFICATION] Central district noun, downtown hotel adjective and went downtown adverb are accurate; North American usage and regional construction identity remain unapproved.",
+      "proposalKey": "EDITORIAL_2H2H:downtown:central-city-area",
+      "reviewedContentHash": "a8ce23ea2438a8930406f6b806fede518bbd849d99dd07165600832b40f74f6d",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: [POS_CLASSIFICATION] Central district noun, downtown hotel adjective and went downtown adverb are accurate; North American usage and regional construction identity remain unapproved.",
+      "proposalKey": "EDITORIAL_2H2H:downtown:in-the-city-centre",
+      "reviewedContentHash": "9fb6029964770b59fbe4aae7cd1e00e5d4b413fffb430bf4177e1e8c1b6ce487",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: [POS_CLASSIFICATION] Central district noun, downtown hotel adjective and went downtown adverb are accurate; North American usage and regional construction identity remain unapproved.",
+      "proposalKey": "EDITORIAL_2H2H:downtown:to-or-in-the-centre",
+      "reviewedContentHash": "e2514bbbcaffba8a099d38dc440bad33fb287b3950d42fb408872584728c8ca5",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Major connecting road does not necessarily mean controlled-access motorway; farming-town/port example and quốc lộ are coherent with the stated broad boundary.",
+      "proposalKey": "EDITORIAL_2H2H:highway:major-road",
+      "reviewedContentHash": "d896df3d8eda938f7e8ff2312a1e4c91c2bca905b088995a64f6daca03d42163",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 7,
+  "sha256": "b536a65ca9e2c8e3e92010af6172979ca6c204e6118a4ba2643cc9c3670cb6a0",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:downtown": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE",
+          "ADVERB",
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1525/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1525/rawHeadword",
+        "rawPosEvidencePointer": "/records/1525/sourcePosRaw",
+        "recordEvidenceSha256": "15d817c70eb77bc1431d3f0c7edc2fd2b206e6b30b128c0512d59fac45ce7f75",
+        "recordIndex": 1525,
+        "sourceNoteGuid": "tpI?jMQBNg",
+        "sourceRecordId": "1788223607564",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/240/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/240/rawHeadword",
+        "rawPosEvidencePointer": "/records/240/sourcePosRaw",
+        "recordEvidenceSha256": "4403992c34943a7ae0395c49829fc2f8b07c9f00edfad03a7e9ce9de56a49ffe",
+        "recordIndex": 240,
+        "sourceNoteGuid": "l.hT:vA0f&",
+        "sourceRecordId": "1556384731043",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:highway": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/2068/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2068/rawHeadword",
+        "rawPosEvidencePointer": "/records/2068/sourcePosRaw",
+        "recordEvidenceSha256": "672435605522b18451e1b371b673807c51d80538767c1928311baecc879006f5",
+        "recordIndex": 2068,
+        "sourceNoteGuid": "s~]i3-Y;Vp",
+        "sourceRecordId": "1788223608107",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3962/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3962/rawHeadword",
+        "rawPosEvidencePointer": "/records/3962/sourcePosRaw",
+        "recordEvidenceSha256": "1e58c65f907191194122f6491e49001b1bbb9b60e6c7cc29c116f54e8195b3d1",
+        "recordIndex": 3962,
+        "sourceNoteGuid": "Lj+yI:^,h:",
+        "sourceRecordId": "1646317635744",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:namely": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADVERB"
+        ],
+        "rawContentPointer": "/records/4295/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4295/rawHeadword",
+        "rawPosEvidencePointer": "/records/4295/sourcePosRaw",
+        "recordEvidenceSha256": "c127faf88456d0a32fb87891fc6e0a216949d3437e40f88ee8cad12f8600daa7",
+        "recordIndex": 4295,
+        "sourceNoteGuid": "vK*%%~|=:C",
+        "sourceRecordId": "1788223610334",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADVERB"
+        ],
+        "rawContentPointer": "/records/3803/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3803/rawHeadword",
+        "rawPosEvidencePointer": "/records/3803/sourcePosRaw",
+        "recordEvidenceSha256": "7f1ac3e2c8bce9c2eb62ed1708e56424536746b378053d433b0e062057fa5160",
+        "recordIndex": 3803,
+        "sourceNoteGuid": "w.~/8>tE3m",
+        "sourceRecordId": "1623660520340",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:temporarily": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADVERB"
+        ],
+        "rawContentPointer": "/records/3443/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3443/rawHeadword",
+        "rawPosEvidencePointer": "/records/3443/sourcePosRaw",
+        "recordEvidenceSha256": "3945347f99433e17f76df65181e802bb945295cfa80fd9e4e8230a15561551ef",
+        "recordIndex": 3443,
+        "sourceNoteGuid": "BWfx.pi|mq",
+        "sourceRecordId": "1788223609482",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADVERB"
+        ],
+        "rawContentPointer": "/records/4099/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4099/rawHeadword",
+        "rawPosEvidencePointer": "/records/4099/sourcePosRaw",
+        "recordEvidenceSha256": "902c385564c7c43e88c027cbdbeeabc239a87e31467b35c48f67c5283762ef3e",
+        "recordIndex": 4099,
+        "sourceNoteGuid": "JNlaAE#T45",
+        "sourceRecordId": "1646317635881",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:wisdom": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3218/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3218/rawHeadword",
+        "rawPosEvidencePointer": "/records/3218/sourcePosRaw",
+        "recordEvidenceSha256": "3c84db6525aa3c8cf5df9484c2ab8a7bbf8209cbc9b713651aaad26098ebf912",
+        "recordIndex": 3218,
+        "sourceNoteGuid": "rslM3I|1RJ",
+        "sourceRecordId": "1788223609257",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3535/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3535/rawHeadword",
+        "rawPosEvidencePointer": "/records/3535/sourcePosRaw",
+        "recordEvidenceSha256": "cb66cabb9d23ca51916e666bd62926719da3fa5548b62ac7cbb49e5584ec58c8",
+        "recordIndex": 3535,
+        "sourceNoteGuid": "y?~FhC^cN2",
+        "sourceRecordId": "1615278757357",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ]
+  },
+  "substantiveDefectsFound": 0
+}

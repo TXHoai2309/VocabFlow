@@ -1,0 +1,93 @@
+{
+  "corrections": [
+    {
+      "after": "After drying in the sun, the towel was all dry.",
+      "afterSha256": "5ac39953ab470509b00e91a8183471c12466f8392ee4589c9b2705b16be0f7a2",
+      "before": "After drying in the sun, the towels were all dry.",
+      "beforeSha256": "4c669d97b5c5bdbe6f3a1e72c3b1b60fa851928baa72dcb28e4c02fff332cf70",
+      "correctionRef": "2H2H-R4-C01",
+      "field": "/content/examples/0/en",
+      "humanReviewer": null,
+      "ownerDecision": "UNRESOLVED",
+      "parentContentHash": "9b6d792b6edd8bfb8d899ff90dbfd967298754b56d4e9a2288526847f3e607fe",
+      "proposalKey": "EDITORIAL_2H2H:all:complete-degree",
+      "reason": "Use a singular towel so all demonstrates complete degree without plural every-member ambiguity.",
+      "reviewedAfterContentHash": "b48a75ca929465798ac2407e7a5529962a5d122faca99966f7e638b52ed21e39",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "severity": "SUBSTANTIVE"
+    },
+    {
+      "after": "Sau khi phơi dưới nắng, chiếc khăn đã khô hoàn toàn.",
+      "afterSha256": "ee1a3f6c5d14d5d41ecfac6f17d669634c2c78be41ad084d4d7db90f417bfa05",
+      "before": "Sau khi phơi dưới nắng, những chiếc khăn đã khô hết.",
+      "beforeSha256": "18c19b5e5eaf582b2cc8306cd4d1e2a522847da775ab4e082da7c4008d0c4457",
+      "correctionRef": "2H2H-R4-C02",
+      "field": "/content/examples/0/vi",
+      "humanReviewer": null,
+      "ownerDecision": "UNRESOLVED",
+      "parentContentHash": "9b6d792b6edd8bfb8d899ff90dbfd967298754b56d4e9a2288526847f3e607fe",
+      "proposalKey": "EDITORIAL_2H2H:all:complete-degree",
+      "reason": "Align the singular towel and full degree in natural Vietnamese.",
+      "reviewedAfterContentHash": "b48a75ca929465798ac2407e7a5529962a5d122faca99966f7e638b52ed21e39",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "severity": "SUBSTANTIVE"
+    },
+    {
+      "after": "Countable; two pounds, abbreviated lb. The everyday avoirdupois pound has sixteen ounces; other historical systems differ. Distinguish weight from the currency unit.",
+      "afterSha256": "70c0eb03423d76fda6d5b1e74fa9fc3e5ea808ca927c398f486054659256eaef",
+      "before": "Countable; two pounds, abbreviated lb. Distinguish this weight unit from the currency unit.",
+      "beforeSha256": "5b64a16b275dac6d1d77719dbc535cd59964bfc113d3f3c5cf2cce9c518f68e2",
+      "correctionRef": "2H2H-R4-C03",
+      "field": "/content/grammarNotesEn",
+      "humanReviewer": null,
+      "ownerDecision": "UNRESOLVED",
+      "parentContentHash": "cd15feab680cb54b1beea1aa37ecb55f894b6689b718f839677fa7c16a4d6a6c",
+      "proposalKey": "EDITORIAL_2H2H:pound:weight-unit",
+      "reason": "Name the everyday measurement system explicitly rather than generalizing the ounce relation to every historical pound.",
+      "reviewedAfterContentHash": "578ddefb11c2cd93638ab52e097faa44df3e315c1e648753ff6dcabc9122877f",
+      "reviewerKind": "AI_SELF_REVIEW",
+      "severity": "SUBSTANTIVE"
+    }
+  ],
+  "reReviewedBatches": [
+    {
+      "batch": 82,
+      "humanReviewer": null,
+      "note": "Full revised batch: singular towel was all dry now demonstrates complete degree with faithful singular Vietnamese. Determiner and pronoun all keep distinct constructions. Both offense nouns, turbine, negative whatsoever and both harmonize verbs retain accurate definitions, translations and grammar. No legal advice or generator/turbine conflation appears. All nine Senses rereviewed in the fourteen dimensions; original all ambiguity remains historical.",
+      "reviewedContentHashes": {
+        "EDITORIAL_2H2H:all:complete-degree": "b48a75ca929465798ac2407e7a5529962a5d122faca99966f7e638b52ed21e39",
+        "EDITORIAL_2H2H:all:whole-quantity-before-noun": "7935d2560d6c70f13f79c23463ee2b100276e2453ab835396033ac8b10a026eb",
+        "EDITORIAL_2H2H:all:whole-quantity-standing-alone": "03ba4a84f458cb5ac14c4b1f0d97714428dc4dd21f29af7f6da1c7c08edf7b57",
+        "EDITORIAL_2H2H:harmonize:make-compatible": "b343675e1b79f25f437bae8db55bdbfc2ff028313808f76627ef65531611e7c5",
+        "EDITORIAL_2H2H:harmonize:musical-harmony": "6d030b54bcdee8f57b207d6c5e625a3b4b645e0ce8d15c49f4de827b378fdbab",
+        "EDITORIAL_2H2H:offense:hurt-or-insult": "ff410d1d2fbf8174b6d2704bc0807c42e47b05fe33f0b1cc376157f52e0d55a4",
+        "EDITORIAL_2H2H:offense:punishable-act": "e806379bda9a0d09f31f7e4dff66e1409e03ce722360c5c1cbb034bf0a690289",
+        "EDITORIAL_2H2H:turbine:fluid-driven-rotary-machine": "c084144512aa04c9fed1d09a69eb14681f61fd93903b012f2e99eebe47684585",
+        "EDITORIAL_2H2H:whatsoever:emphatic-absence": "79d0a81a5925cafc764ce3ad103df28675e24de0faabcd7aa417e6eaa745155d"
+      },
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": "ALL_SENSES_IN_BATCH"
+    },
+    {
+      "batch": 99,
+      "humanReviewer": null,
+      "note": "Full revised batch: pound weight grammar now names everyday avoirdupois and historical-system limits. Currency and striking meanings remain distinct and all three examples are faithful. Unlike remains prepositional with source adjective uncertainty; wizard magical/skilled nouns, instant two adjectives/brief-time noun and stall selling/engine/delay meanings remain accurate. All twelve Senses rereviewed in fourteen dimensions; measurement finding retained historically.",
+      "reviewedContentHashes": {
+        "EDITORIAL_2H2H:instant:immediate": "735451c741845bfe9a1dd6b1f2bc6ec0876835b0e7cbf1279b765428480bd99d",
+        "EDITORIAL_2H2H:instant:quickly-prepared-food": "0c44793a8da6f935d68547b434107c500c56b0714bea8dd0f9f5a0189d08306b",
+        "EDITORIAL_2H2H:instant:very-short-time": "aec71b0b5f9dcb5baa6523b44be883cf19966f34478c7d873e3517bcf9340cb7",
+        "EDITORIAL_2H2H:pound:british-currency-unit": "f6194f7c59c1fc22e9339ae89c4d90894d4b7532ba5fbfd5095f134e906b19fc",
+        "EDITORIAL_2H2H:pound:strike-repeatedly": "f34aa385c3077a034359bf105917d8a8215e539c00d5fc05577dc428a2995886",
+        "EDITORIAL_2H2H:pound:weight-unit": "578ddefb11c2cd93638ab52e097faa44df3e315c1e648753ff6dcabc9122877f",
+        "EDITORIAL_2H2H:stall:delay-progress": "1c2bcc980f3a2e81b54cb5adc5b4678ebbc31578e8306465bd85933ba76e25a6",
+        "EDITORIAL_2H2H:stall:engine-stops-running": "dea0868ea861267afd7df6204b3a7dd3b6fa8c5ced7d709e8b1de6413defcd76",
+        "EDITORIAL_2H2H:stall:small-selling-stand": "68dd1c31a34ccadbe077b17980a6d09241e55a4c31520b589fefb7e2c648cccc",
+        "EDITORIAL_2H2H:unlike:different-from": "ecf99edb9b8879364a7f909221f9a6140bc0d78307254c7d0c2c3123062c299c",
+        "EDITORIAL_2H2H:wizard:highly-skilled-person": "0250a82ef84380701608e839db071bb1d4884c443ef437f9865ae1c0564b98d0",
+        "EDITORIAL_2H2H:wizard:magical-person": "bad3ecd2f322807781c033618688dfde8ec6b721d0d5351668d5e1f4a9e335c7"
+      },
+      "reviewerKind": "AI_SELF_REVIEW",
+      "scope": "ALL_SENSES_IN_BATCH"
+    }
+  ]
+}

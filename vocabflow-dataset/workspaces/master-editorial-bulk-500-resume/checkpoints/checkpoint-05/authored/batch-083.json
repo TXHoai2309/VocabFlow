@@ -1,0 +1,365 @@
+{
+  "batch": 83,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:intrigue",
+    "NORMALIZED_HEADWORD:pessimistic",
+    "NORMALIZED_HEADWORD:stubborn",
+    "NORMALIZED_HEADWORD:wash",
+    "NORMALIZED_HEADWORD:down"
+  ],
+  "replayEvidence": "Persisted PSV parsed; source-supported POS/ordinals and exact frozen slice verified; original content hashes bound to AI review. Full replay recorded externally.",
+  "reviewNotesSha256": "879ed28584b343d273f7775211c18d593ecedd0d7e850d9c76855f8f688ef89f",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: The unsigned letter arouses curiosity rather than a conspiratorial noun sense; intrigued person/intriguing cause grammar and museum example are coherent.",
+      "proposalKey": "EDITORIAL_2H2H:intrigue:arouse-curiosity",
+      "reviewedContentHash": "9bfc1fd92b97907aa29dd79db1c4b764c5e09052754d5123dc6adfaf63be7e7b",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Negative expectation is distinguished from certainty; the clear forecast contrast remains coherent and pessimistic about chances translates as bi quan.",
+      "proposalKey": "EDITORIAL_2H2H:pessimistic:expecting-bad-outcomes",
+      "reviewedContentHash": "b4dbfc244afeab9a602ddb7ec3c51d4e16dd6a4a0df77ef2b2adcec3e7031063",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Refusal to change a decision differs from a stain resisting removal; Vietnamese captures the person/object distinction, including the organizer refusing to postpone.",
+      "proposalKey": "EDITORIAL_2H2H:stubborn:refusing-to-change",
+      "reviewedContentHash": "913dad76b0c52be9474e32b3d4cf218a7f53758db37029a90f96ba93864d83e7",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Refusal to change a decision differs from a stain resisting removal; Vietnamese captures the person/object distinction, including the organizer refusing to postpone.",
+      "proposalKey": "EDITORIAL_2H2H:stubborn:hard-to-remove",
+      "reviewedContentHash": "2be8cb2adf09dfebff3226d5282963d5c94223fedfaf47046dcc0202a0f86692",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Water-cleaning hands, laundering curtains and countable washing occasion have supported ordinals; all three translations retain their objects and wash inflection/countability.",
+      "proposalKey": "EDITORIAL_2H2H:wash:clean-with-water",
+      "reviewedContentHash": "80aabba763baa5a6bf90f10552458d90c79844c90d3cb3618751e2e443532394",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Water-cleaning hands, laundering curtains and countable washing occasion have supported ordinals; all three translations retain their objects and wash inflection/countability.",
+      "proposalKey": "EDITORIAL_2H2H:wash:clean-clothes",
+      "reviewedContentHash": "c15f71c3a139fa5b62d3695403fc36553a3341a469f1342f264f40559044233a",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Water-cleaning hands, laundering curtains and countable washing occasion have supported ordinals; all three translations retain their objects and wash inflection/countability.",
+      "proposalKey": "EDITORIAL_2H2H:wash:act-of-cleaning",
+      "reviewedContentHash": "790fcb88d977f8a2c20fc91b001e7e99ab760ee1e9287f3418d2aee058788599",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Lower movement differs from motion along a lane; the prepositional example need not slope, and both Vietnamese route and climbing contexts are faithful.",
+      "proposalKey": "EDITORIAL_2H2H:down:towards-lower-position",
+      "reviewedContentHash": "5c5034604f4df9177c84836b29f78591fa2503b16b9527c3e3d51bc3d07028f4",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Lower movement differs from motion along a lane; the prepositional example need not slope, and both Vietnamese route and climbing contexts are faithful.",
+      "proposalKey": "EDITORIAL_2H2H:down:along-a-route",
+      "reviewedContentHash": "9f8a9c584859b278f4a32e3109d4083092ee46ee492bfa35922fac1c93ba06b3",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 9,
+  "sha256": "be5c2fb2e30f3ba7d10f19b902f35f784e554a4ba1b4f70bfd63797bda99062c",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:down": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADVERB",
+          "PREPOSITION"
+        ],
+        "rawContentPointer": "/records/115/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/115/rawHeadword",
+        "rawPosEvidencePointer": "/records/115/sourcePosRaw",
+        "recordEvidenceSha256": "10590db3be4848bec101864f1149271f5f9dab42ea959386df39dd59925c4ab2",
+        "recordIndex": 115,
+        "sourceNoteGuid": "yJ$azq$Cv#",
+        "sourceRecordId": "1788223606066",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:intrigue": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/3170/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3170/rawHeadword",
+        "rawPosEvidencePointer": "/records/3170/sourcePosRaw",
+        "recordEvidenceSha256": "108fafa2f6c0d0a5241839ebbcf6f3b6382b125a43271b89f7a7a2327105046c",
+        "recordIndex": 3170,
+        "sourceNoteGuid": "F!#zVVI+1B",
+        "sourceRecordId": "1559931010046",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:pessimistic": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/2491/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2491/rawHeadword",
+        "rawPosEvidencePointer": "/records/2491/sourcePosRaw",
+        "recordEvidenceSha256": "169357e837f6909fa020c972edb6ccfd48aa63bdc4e2e1e9636e5a04a2ea629f",
+        "recordIndex": 2491,
+        "sourceNoteGuid": "MI@w+u5AVc",
+        "sourceRecordId": "1559931009332",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:stubborn": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/1713/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1713/rawHeadword",
+        "rawPosEvidencePointer": "/records/1713/sourcePosRaw",
+        "recordEvidenceSha256": "1b10f3579c6d1024ac38b84745b50c993d9b9b0822a3c0cbda8a5eb80baa8704",
+        "recordIndex": 1713,
+        "sourceNoteGuid": "KK5Wx8F%l:",
+        "sourceRecordId": "1559931008515",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:wash": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN",
+          "VERB"
+        ],
+        "rawContentPointer": "/records/782/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/782/rawHeadword",
+        "rawPosEvidencePointer": "/records/782/sourcePosRaw",
+        "recordEvidenceSha256": "bbded0b8cd870a6c775da36924678d83cbbfaf426a4f121d21bdab93ce558b8b",
+        "recordIndex": 782,
+        "sourceNoteGuid": "j:MbUeOO[D",
+        "sourceRecordId": "1788223606800",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  "substantiveDefectsFound": 0
+}
