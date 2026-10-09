@@ -1,0 +1,61 @@
+{
+  "phase": "2H.2J-R2",
+  "records": [
+    {
+      "canonicalIdAllocated": false,
+      "correctionProposalId": "2H2I-R3-P001",
+      "decision": "DEFER_NO_REVISION",
+      "decisionExplanationVi": "Câu tiếng Việt hiện tại có thể dùng cụm động từ “In cùng một tài liệu hai lần” làm chủ ngữ, nên không thể kết luận chắc rằng câu thiếu chủ ngữ hoặc sai ngữ pháp. Bản thêm “Việc” rõ nghĩa và tự nhiên nhưng là một lựa chọn diễn đạt, chưa chứng minh có lỗi cần sửa; defer thay vì biến sở thích văn phong thành defect.",
+      "eligibilityStatus": "DEFER_INSUFFICIENT_EVIDENCE",
+      "ownerApproval": false,
+      "parentEffectiveContentHash": "b010025a9acf77a11c651acad97c4ac5ab281e7417ef008fcf7f92c06f2ff523",
+      "proposalKey": "EDITORIAL_2H2H:waste:poor-use",
+      "rightsClearanceAdded": false
+    },
+    {
+      "canonicalIdAllocated": false,
+      "correctionProposalId": "2H2I-P003",
+      "decision": "DEFER_NO_REVISION",
+      "decisionExplanationVi": "Nội dung định nghĩa, ví dụ “aggregate cost” và bản dịch hiện nhất quán. AFTER thêm collocation “aggregate total”, nhưng nguồn được pin ở đây chỉ hỗ trợ “aggregate cost”; chưa có chứng cứ độc lập trong proposal để đưa collocation mới vào ghi chú người học. Defer tới khi có nguồn hoặc cách sửa chỉ dùng mẫu đã được chứng minh.",
+      "eligibilityStatus": "DEFER_INSUFFICIENT_EVIDENCE",
+      "ownerApproval": false,
+      "parentEffectiveContentHash": "31422e649ef345905db7c0030c5708bb283d023fc83070630427b550ff6f7ccf",
+      "proposalKey": "EDITORIAL_2H2H:aggregate:combined-total",
+      "rightsClearanceAdded": false
+    },
+    {
+      "canonicalIdAllocated": false,
+      "correctionProposalId": "2H2I-R1-P006",
+      "decision": "APPLY_TO_CUMULATIVE_DRAFT_LAYER",
+      "decisionExplanationVi": "Ghi chú hiện có một mệnh đề biên tập về phạm vi Sense. AFTER thay nó bằng vị trí tính từ trước danh từ/sau linking verb và dạng so sánh whiter/whitest; các dạng này đúng với tính từ chỉ màu, khớp ví dụ chiếc rèm trắng, không đổi nghĩa tiếng Việt hay boundary màu sắc.",
+      "eligibilityStatus": "APPLY_ELIGIBLE",
+      "ownerApproval": false,
+      "parentEffectiveContentHash": "ea6575d7692bb1e7e5fed9cdaf34cb545f5d437fec5373ea1c0e85207f34373f",
+      "proposalKey": "EDITORIAL_2H2H:white:colour",
+      "rightsClearanceAdded": false
+    },
+    {
+      "canonicalIdAllocated": false,
+      "correctionProposalId": "2H2I-R1-P007",
+      "decision": "APPLY_TO_CUMULATIVE_DRAFT_LAYER",
+      "decisionExplanationVi": "Ghi chú hiện có câu về phạm vi bản ghi thay vì cách dùng. AFTER giữ tính không đếm được của danh từ màu và minh họa “choose white”/“paint ... in white”; phù hợp nghĩa “màu trắng”, ví dụ chọn màu cho tường và phân biệt với Sense tính từ bên cạnh.",
+      "eligibilityStatus": "APPLY_ELIGIBLE",
+      "ownerApproval": false,
+      "parentEffectiveContentHash": "bae2bac2cf4ff10f9f36c939a7c30deed2a8d94d3b833128b2c9155c393114f1",
+      "proposalKey": "EDITORIAL_2H2H:white:colour-noun",
+      "rightsClearanceAdded": false
+    },
+    {
+      "canonicalIdAllocated": false,
+      "correctionProposalId": "2H2I-R1-P005",
+      "decision": "APPLY_TO_CUMULATIVE_DRAFT_LAYER",
+      "decisionExplanationVi": "Cụm “This record proposes the person noun” là bình luận quy trình. AFTER giữ countability và sự khác nhau giữa vegetarian/vegan đã nêu trong nghĩa và ví dụ; mẫu số ít/số nhiều đúng, từ “some” tránh khái quát rằng mọi vegetarian ăn trứng/sữa.",
+      "eligibilityStatus": "APPLY_ELIGIBLE",
+      "ownerApproval": false,
+      "parentEffectiveContentHash": "5cec7a5aea53b8156640a0a01f20b9e74be7f2575dc919d62a6bc94e5ff9a632",
+      "proposalKey": "EDITORIAL_2H2H:vegetarian:person-not-eating-meat",
+      "rightsClearanceAdded": false
+    }
+  ],
+  "status": "PERSISTED_AI_DRAFT_APPLICATION_DECISIONS"
+}

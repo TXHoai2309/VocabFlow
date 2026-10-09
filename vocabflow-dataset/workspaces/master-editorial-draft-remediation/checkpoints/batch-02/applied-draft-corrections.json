@@ -1,0 +1,98 @@
+{
+  "authorization": {
+    "canonicalIdsAllocated": 0,
+    "contentStatus": "DRAFT",
+    "databaseAccess": "NONE",
+    "databaseWrites": "NONE",
+    "legacyModified": false,
+    "masterReleaseChanged": false,
+    "ownerApprovalsAdded": 0,
+    "phase": "2H.2J-R2",
+    "production": "UNTOUCHED",
+    "publicationEligible": false,
+    "rights": "UNKNOWN_REVIEW_REQUIRED",
+    "rightsClearanceAdded": 0
+  },
+  "corrections": [
+    {
+      "after": "Countable: a vegetarian, several vegetarians. Some vegetarians eat eggs or dairy products, unlike vegans.",
+      "afterFieldSha256": "ca9d2703a3697cf82aa35354df24f39a0c3fd0e42e89d1d0bb5d284f87ceb269",
+      "applicationDecision": "APPLY_TO_CUMULATIVE_DRAFT_LAYER",
+      "before": "Countable; some vegetarians eat eggs or dairy products, unlike vegans. This record proposes the person noun.",
+      "beforeFieldSha256": "dabb1fc0470d9c33b5e52653bce8fe3023352af2f7c84380dcc048ea31765f13",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:vegetarian",
+      "canonicalIdAllocated": false,
+      "contentStatus": "DRAFT",
+      "correctionProposalId": "2H2I-R1-P005",
+      "eligibilityStatus": "APPLY_ELIGIBLE",
+      "fieldPointer": "/content/grammarNotesEn",
+      "historicalProposalReference": {
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/new-correction-proposals.json",
+        "sha256": "d9b611d9cd237cb0ee94d4dbd5c29e0bbe3cdb4ed3821b656d8ef5fbfe053c0b"
+      },
+      "ownerApproval": false,
+      "previousEffectiveContentHash": "5cec7a5aea53b8156640a0a01f20b9e74be7f2575dc919d62a6bc94e5ff9a632",
+      "proposalKey": "EDITORIAL_2H2H:vegetarian:person-not-eating-meat",
+      "revisedContentHash": "abb562139de6eb43dfa4a5307b0537e940dfddb40eadb4c25e61314a9ba399aa",
+      "revisionId": "DRAFT_REMEDIATION_BATCH_02:EDITORIAL_2H2H:vegetarian:person-not-eating-meat",
+      "revisionLayer": "DRAFT_REMEDIATION_BATCH_02",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "sourceAuditCheckpoint": "PHASE_2H.2I_FINAL_CHECKPOINT_07"
+    },
+    {
+      "after": "Before a noun or after a linking verb: a white curtain; the curtain is white. Whiter and whitest are comparative and superlative forms.",
+      "afterFieldSha256": "ec4a953103645438484db34e163a093055f586c3ed4909a447ff31eb97403942",
+      "applicationDecision": "APPLY_TO_CUMULATIVE_DRAFT_LAYER",
+      "before": "Before a noun or after a linking verb; this proposed sense is colour, not a category of people.",
+      "beforeFieldSha256": "f42a0b3a48f2d05740f12673370d70307a2cd2a85592340a5d4e57e13885326a",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:white",
+      "canonicalIdAllocated": false,
+      "contentStatus": "DRAFT",
+      "correctionProposalId": "2H2I-R1-P006",
+      "eligibilityStatus": "APPLY_ELIGIBLE",
+      "fieldPointer": "/content/grammarNotesEn",
+      "historicalProposalReference": {
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/new-correction-proposals.json",
+        "sha256": "d9b611d9cd237cb0ee94d4dbd5c29e0bbe3cdb4ed3821b656d8ef5fbfe053c0b"
+      },
+      "ownerApproval": false,
+      "previousEffectiveContentHash": "ea6575d7692bb1e7e5fed9cdaf34cb545f5d437fec5373ea1c0e85207f34373f",
+      "proposalKey": "EDITORIAL_2H2H:white:colour",
+      "revisedContentHash": "1a6853f69c6f343b8f81dbb6e7154b6ba9b054fc3dd8c0083ff83e333c5311fd",
+      "revisionId": "DRAFT_REMEDIATION_BATCH_02:EDITORIAL_2H2H:white:colour",
+      "revisionLayer": "DRAFT_REMEDIATION_BATCH_02",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "sourceAuditCheckpoint": "PHASE_2H.2I_FINAL_CHECKPOINT_07"
+    },
+    {
+      "after": "Usually uncountable when naming the colour: choose white for the walls; paint something in white.",
+      "afterFieldSha256": "17cb07d44627ac4f4faf5b80acb3cbeb6a98c00536dc13279462dce6e617ff38",
+      "applicationDecision": "APPLY_TO_CUMULATIVE_DRAFT_LAYER",
+      "before": "Usually uncountable for the colour; this record does not propose a racial or other unrelated noun sense.",
+      "beforeFieldSha256": "adbd66c550e270720db03761a6aae77afbb5afbbae336fa2d2dbe199c5827d05",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:white",
+      "canonicalIdAllocated": false,
+      "contentStatus": "DRAFT",
+      "correctionProposalId": "2H2I-R1-P007",
+      "eligibilityStatus": "APPLY_ELIGIBLE",
+      "fieldPointer": "/content/grammarNotesEn",
+      "historicalProposalReference": {
+        "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/new-correction-proposals.json",
+        "sha256": "d9b611d9cd237cb0ee94d4dbd5c29e0bbe3cdb4ed3821b656d8ef5fbfe053c0b"
+      },
+      "ownerApproval": false,
+      "previousEffectiveContentHash": "bae2bac2cf4ff10f9f36c939a7c30deed2a8d94d3b833128b2c9155c393114f1",
+      "proposalKey": "EDITORIAL_2H2H:white:colour-noun",
+      "revisedContentHash": "3c3cf2975a096145b8e379072d31dc6cd46c531e8a2c85c8357c2cd58e009375",
+      "revisionId": "DRAFT_REMEDIATION_BATCH_02:EDITORIAL_2H2H:white:colour-noun",
+      "revisionLayer": "DRAFT_REMEDIATION_BATCH_02",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "sourceAuditCheckpoint": "PHASE_2H.2I_FINAL_CHECKPOINT_07"
+    }
+  ],
+  "historicalProposalStatusRemainsUnapplied": true,
+  "parentPilotAppliedCorrectionsPreserved": 3,
+  "revisionLayer": "DRAFT_REMEDIATION_BATCH_02",
+  "schemaVersion": "OFFLINE_CUMULATIVE_DRAFT_REMEDIATION_BATCH_V1",
+  "status": "APPLIED_TO_NEW_CUMULATIVE_DRAFT_LAYER"
+}

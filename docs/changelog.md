@@ -1,5 +1,24 @@
 # VocabFlow Changelog
 
+## 2026-10-09 — Phase 2H.2J-R2 targeted DRAFT remediation Batch 02
+
+- Apply three independently reviewed grammar-note corrections through a new
+  additive DRAFT overlay; defer two selected proposals for insufficient
+  evidence and preserve the earlier deferred `lot` decision.
+- Re-review all 29 Senses in four affected authored batches (25 PASS / 4 REVIEW /
+  0 FAIL). Preserve all 1,563 effective Senses, 1,020 authored groups, three
+  Pilot 01 revisions, 141 historical field proposals, eight boundary proposals
+  and unresolved REVIEW history.
+- Batch fingerprint `b3d1335e717ab307d0f5b14dcc811c4e5217f94bd98f26898add9eea68dca84e`.
+  Focused Batch 02 16/16, Pilot 01 33/33 and Phase 2H.2G overlay 29/29 passed;
+  direct typecheck, lint, parent replays and two zero-write hash-seed replays
+  passed. Hybrid v2.2.1 passed 8/8. The known v2.2.0 release-tree diagnostic
+  remains 4/5, and the bulk-500 resume regression retains two errors decoding
+  an unchanged checkpoint-02 UTF-8 fixture.
+- No approval, canonical ID, rights clearance, database operation, Master or
+  legacy release mutation, or Production operation. See the Batch 02 report and
+  detached verification receipt under `master-editorial-draft-remediation`.
+
 ## 2026-10-08 — Phase 2H.2H bulk 500 PARTIAL editorial checkpoint
 
 - Freeze 500 new groups with seed PHASE_2H2H_BULK_500_V1, excluding the previous

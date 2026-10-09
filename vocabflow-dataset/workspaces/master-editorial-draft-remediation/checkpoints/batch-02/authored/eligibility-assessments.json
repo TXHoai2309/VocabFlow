@@ -1,0 +1,1366 @@
+{
+  "parentPilotFingerprint": "7b7e93bd26bcbac1d18e02b52b929e382722223c67bbe7455bbf9caf1d3a4283",
+  "phase": "2H.2J-R2",
+  "records": [
+    {
+      "after": "Việc in cùng một tài liệu hai lần là sự lãng phí giấy.",
+      "afterFieldSha256": "2dab9d6bdc3cba6342ff92116ce86061d0bf40496bd6ee9c6a043d3258c2e122",
+      "before": "In cùng một tài liệu hai lần là sự lãng phí giấy.",
+      "beforeFieldSha256": "006e931363434bab06f38c31a17edb62dd29e4ae684ce2f86cd6bbf59d34f22d",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:waste",
+      "canonicalIdAllocated": false,
+      "correctionProposalId": "2H2I-R3-P001",
+      "eligibilityStatus": "DEFER_INSUFFICIENT_EVIDENCE",
+      "field": "/content/examples/0/vi",
+      "historicalParentContentHash": "b010025a9acf77a11c651acad97c4ac5ab281e7417ef008fcf7f92c06f2ff523",
+      "ownerApproval": false,
+      "parentEffectiveContentHash": "b010025a9acf77a11c651acad97c4ac5ab281e7417ef008fcf7f92c06f2ff523",
+      "proposalKey": "EDITORIAL_2H2H:waste:poor-use",
+      "reviewDimensions": {
+        "englishNaturalness": true,
+        "grammar": true,
+        "historicalQa": true,
+        "meaningPreservation": true,
+        "posAndConstruction": true,
+        "priorCorrectionLineage": true,
+        "rightsAndOriginalitySignals": true,
+        "siblingSenseConsistency": true,
+        "sourceEvidence": true,
+        "vietnameseFaithfulness": true
+      },
+      "reviewExplanationVi": "Câu tiếng Việt hiện tại có thể dùng cụm động từ “In cùng một tài liệu hai lần” làm chủ ngữ, nên không thể kết luận chắc rằng câu thiếu chủ ngữ hoặc sai ngữ pháp. Bản thêm “Việc” rõ nghĩa và tự nhiên nhưng là một lựa chọn diễn đạt, chưa chứng minh có lỗi cần sửa; defer thay vì biến sở thích văn phong thành defect.",
+      "reviewKind": "AI_INDEPENDENT_DRAFT_ELIGIBILITY_REVIEW_NOT_OWNER_APPROVAL",
+      "reviewedContentHash": "b010025a9acf77a11c651acad97c4ac5ab281e7417ef008fcf7f92c06f2ff523",
+      "reviewedContentSnapshot": {
+        "content": {
+          "definitionEn": "The unnecessary use or loss of something valuable, such as time, money, or materials.",
+          "examples": [
+            {
+              "en": "Printing the same document twice was a waste of paper.",
+              "vi": "In cùng một tài liệu hai lần là sự lãng phí giấy."
+            }
+          ],
+          "grammarNotesEn": "A waste of names the resource used without a useful result.",
+          "meaningVi": "sự lãng phí",
+          "senseLabelEn": "unnecessary loss of a resource"
+        },
+        "headword": "waste",
+        "historicalQaFindings": [
+          {
+            "aiAssessment": "PASS",
+            "correctionReview": [],
+            "effectiveReviewedContentHash": "b010025a9acf77a11c651acad97c4ac5ab281e7417ef008fcf7f92c06f2ff523",
+            "nearDuplicateSignals": [],
+            "originalReview": {
+              "assessment": "PASS",
+              "dimensions": [
+                "SEMANTICS",
+                "BOUNDARIES",
+                "POS_CONSTRUCTION",
+                "EN_DEFINITION",
+                "EN_NATURALNESS",
+                "VI_MEANING",
+                "VI_EXAMPLE",
+                "GRAMMAR",
+                "CEFR_UNCERTAINTY",
+                "REDUNDANCY",
+                "PROVENANCE_COPYING",
+                "MASTER_LEGACY",
+                "RIGHTS"
+              ],
+              "humanReviewer": null,
+              "note": "Discarded substance, resource loss, transitive use and attributive adjective are separate supported ordinals. Vietnamese preserves materials, one hour and wrong folder; no artificial tense-based split.",
+              "proposalKey": "EDITORIAL_2H2H:waste:poor-use",
+              "reviewedContentHash": "b010025a9acf77a11c651acad97c4ac5ab281e7417ef008fcf7f92c06f2ff523",
+              "reviewerKind": "AI_SELF_REVIEW"
+            },
+            "ownerAssessment": "PENDING",
+            "proposalKey": "EDITORIAL_2H2H:waste:poor-use",
+            "review": {
+              "assessment": "PASS",
+              "dimensions": [
+                "SEMANTICS",
+                "BOUNDARIES",
+                "POS_CONSTRUCTION",
+                "EN_DEFINITION",
+                "EN_NATURALNESS",
+                "VI_MEANING",
+                "VI_EXAMPLE",
+                "GRAMMAR",
+                "CEFR_UNCERTAINTY",
+                "REDUNDANCY",
+                "PROVENANCE_COPYING",
+                "MASTER_LEGACY",
+                "RIGHTS",
+                "LEXICAL_IDENTITY"
+              ],
+              "humanReviewer": null,
+              "lexicalIdentityNote": "Exact frozen key NORMALIZED_HEADWORD:waste and proposed NOUN retain this boundary unnecessary loss of a resource. No identity merge is inferred from spelling, source alignment or Master/legacy overlap; no canonical ID or Sense identity approval. Existing Master lemma candidates remain explicit unresolved evidence. ",
+              "note": "Discarded substance, resource loss, transitive use and attributive adjective are separate supported ordinals. Vietnamese preserves materials, one hour and wrong folder; no artificial tense-based split.",
+              "proposalKey": "EDITORIAL_2H2H:waste:poor-use",
+              "reviewedContentHash": "b010025a9acf77a11c651acad97c4ac5ab281e7417ef008fcf7f92c06f2ff523",
+              "reviewerKind": "AI_SELF_REVIEW"
+            },
+            "riskSignals": [
+              "POSSIBLE_POLYSEMY",
+              "SOURCE_DUPLICATES"
+            ],
+            "signals": [],
+            "sourceSimilarity": [],
+            "structuralErrors": []
+          }
+        ],
+        "partOfSpeech": "NOUN",
+        "pinnedHistoricalQaReferences": [
+          {
+            "exactRecord": {
+              "assessment": "PASS",
+              "dimensions": [
+                "SEMANTICS",
+                "BOUNDARIES",
+                "POS_CONSTRUCTION",
+                "EN_DEFINITION",
+                "EN_NATURALNESS",
+                "VI_MEANING",
+                "VI_EXAMPLE",
+                "GRAMMAR",
+                "CEFR_UNCERTAINTY",
+                "REDUNDANCY",
+                "PROVENANCE_COPYING",
+                "MASTER_LEGACY",
+                "RIGHTS"
+              ],
+              "humanReviewer": null,
+              "note": "Discarded substance, resource loss, transitive use and attributive adjective are separate supported ordinals. Vietnamese preserves materials, one hour and wrong folder; no artificial tense-based split.",
+              "proposalKey": "EDITORIAL_2H2H:waste:poor-use",
+              "reviewedContentHash": "b010025a9acf77a11c651acad97c4ac5ab281e7417ef008fcf7f92c06f2ff523",
+              "reviewerKind": "AI_SELF_REVIEW"
+            },
+            "jsonPointer": "/batches/5/reviews/5",
+            "path": "vocabflow-dataset/workspaces/master-editorial-bulk-500/quality-audit.json",
+            "sha256": "20cd8d74d67883855f75cd4c81548ea4f8a08fcb5f1ed1ee371d2e5314fd3f41"
+          },
+          {
+            "exactRecord": {
+              "aiAssessment": "PASS",
+              "correctionReview": [],
+              "effectiveReviewedContentHash": "b010025a9acf77a11c651acad97c4ac5ab281e7417ef008fcf7f92c06f2ff523",
+              "nearDuplicateSignals": [],
+              "originalReview": {
+                "assessment": "PASS",
+                "dimensions": [
+                  "SEMANTICS",
+                  "BOUNDARIES",
+                  "POS_CONSTRUCTION",
+                  "EN_DEFINITION",
+                  "EN_NATURALNESS",
+                  "VI_MEANING",
+                  "VI_EXAMPLE",
+                  "GRAMMAR",
+                  "CEFR_UNCERTAINTY",
+                  "REDUNDANCY",
+                  "PROVENANCE_COPYING",
+                  "MASTER_LEGACY",
+                  "RIGHTS"
+                ],
+                "humanReviewer": null,
+                "note": "Discarded substance, resource loss, transitive use and attributive adjective are separate supported ordinals. Vietnamese preserves materials, one hour and wrong folder; no artificial tense-based split.",
+                "proposalKey": "EDITORIAL_2H2H:waste:poor-use",
+                "reviewedContentHash": "b010025a9acf77a11c651acad97c4ac5ab281e7417ef008fcf7f92c06f2ff523",
+                "reviewerKind": "AI_SELF_REVIEW"
+              },
+              "ownerAssessment": "PENDING",
+              "proposalKey": "EDITORIAL_2H2H:waste:poor-use",
+              "review": {
+                "assessment": "PASS",
+                "dimensions": [
+                  "SEMANTICS",
+                  "BOUNDARIES",
+                  "POS_CONSTRUCTION",
+                  "EN_DEFINITION",
+                  "EN_NATURALNESS",
+                  "VI_MEANING",
+                  "VI_EXAMPLE",
+                  "GRAMMAR",
+                  "CEFR_UNCERTAINTY",
+                  "REDUNDANCY",
+                  "PROVENANCE_COPYING",
+                  "MASTER_LEGACY",
+                  "RIGHTS",
+                  "LEXICAL_IDENTITY"
+                ],
+                "humanReviewer": null,
+                "lexicalIdentityNote": "Exact frozen key NORMALIZED_HEADWORD:waste and proposed NOUN retain this boundary unnecessary loss of a resource. No identity merge is inferred from spelling, source alignment or Master/legacy overlap; no canonical ID or Sense identity approval. Existing Master lemma candidates remain explicit unresolved evidence. ",
+                "note": "Discarded substance, resource loss, transitive use and attributive adjective are separate supported ordinals. Vietnamese preserves materials, one hour and wrong folder; no artificial tense-based split.",
+                "proposalKey": "EDITORIAL_2H2H:waste:poor-use",
+                "reviewedContentHash": "b010025a9acf77a11c651acad97c4ac5ab281e7417ef008fcf7f92c06f2ff523",
+                "reviewerKind": "AI_SELF_REVIEW"
+              },
+              "riskSignals": [
+                "POSSIBLE_POLYSEMY",
+                "SOURCE_DUPLICATES"
+              ],
+              "signals": [],
+              "sourceSimilarity": [],
+              "structuralErrors": []
+            },
+            "jsonPointer": "/senses/41",
+            "path": "vocabflow-dataset/workspaces/master-editorial-bulk-500/quality-audit.json",
+            "sha256": "20cd8d74d67883855f75cd4c81548ea4f8a08fcb5f1ed1ee371d2e5314fd3f41"
+          }
+        ],
+        "sourceEvidence": [
+          {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "B1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "ADJECTIVE",
+              "NOUN",
+              "VERB"
+            ],
+            "rawContentPointer": "/records/1867/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/1867/rawHeadword",
+            "rawPosEvidencePointer": "/records/1867/sourcePosRaw",
+            "recordEvidenceSha256": "d3d067f0116d1115d0aaf6caa962af3ea890018616062c7541ddd422e2586c17",
+            "recordIndex": 1867,
+            "sourceNoteGuid": "Kx(pi{IrcE",
+            "sourceRecordId": "1788223607906",
+            "structuredOxfordSenseGroupOrdinals": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::B1",
+                "value": "B1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "B1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "VERB"
+            ],
+            "rawContentPointer": "/records/329/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/329/rawHeadword",
+            "rawPosEvidencePointer": "/records/329/sourcePosRaw",
+            "recordEvidenceSha256": "bbe8fb90d32a0d212e145091d1b8e93aafbe68d908e087f5eedd632af567dd67",
+            "recordIndex": 329,
+            "sourceNoteGuid": "mMMCrz7gP]",
+            "sourceRecordId": "1556384731136",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::B1",
+                "value": "B1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "B1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/3562/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/3562/rawHeadword",
+            "rawPosEvidencePointer": "/records/3562/sourcePosRaw",
+            "recordEvidenceSha256": "8f3113e399c5d77b3e2b71ef581ffaeca256e9599bd99bcdb2d3a8b414f205ba",
+            "recordIndex": 3562,
+            "sourceNoteGuid": "kKfNgpM&7u",
+            "sourceRecordId": "1615645031490",
+            "structuredOxfordSenseGroupOrdinals": []
+          }
+        ]
+      },
+      "rightsClearanceAdded": false,
+      "sourceEvidence": [
+        {
+          "artifact": "oxford-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "CEFR",
+              "value": "B1"
+            }
+          ],
+          "corpus": "OXFORD_5000",
+          "normalizedPosCandidates": [
+            "ADJECTIVE",
+            "NOUN",
+            "VERB"
+          ],
+          "rawContentPointer": "/records/1867/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/1867/rawHeadword",
+          "rawPosEvidencePointer": "/records/1867/sourcePosRaw",
+          "recordEvidenceSha256": "d3d067f0116d1115d0aaf6caa962af3ea890018616062c7541ddd422e2586c17",
+          "recordIndex": 1867,
+          "sourceNoteGuid": "Kx(pi{IrcE",
+          "sourceRecordId": "1788223607906",
+          "structuredOxfordSenseGroupOrdinals": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "artifact": "vocab4600-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "deck:4600 English Vocab::B1",
+              "value": "B1"
+            },
+            {
+              "sourceField": "noteTag",
+              "value": "B1"
+            }
+          ],
+          "corpus": "ENGLISH_VOCAB_4600",
+          "normalizedPosCandidates": [
+            "VERB"
+          ],
+          "rawContentPointer": "/records/329/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/329/rawHeadword",
+          "rawPosEvidencePointer": "/records/329/sourcePosRaw",
+          "recordEvidenceSha256": "bbe8fb90d32a0d212e145091d1b8e93aafbe68d908e087f5eedd632af567dd67",
+          "recordIndex": 329,
+          "sourceNoteGuid": "mMMCrz7gP]",
+          "sourceRecordId": "1556384731136",
+          "structuredOxfordSenseGroupOrdinals": []
+        },
+        {
+          "artifact": "vocab4600-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "deck:4600 English Vocab::B1",
+              "value": "B1"
+            },
+            {
+              "sourceField": "noteTag",
+              "value": "B1"
+            }
+          ],
+          "corpus": "ENGLISH_VOCAB_4600",
+          "normalizedPosCandidates": [
+            "NOUN"
+          ],
+          "rawContentPointer": "/records/3562/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/3562/rawHeadword",
+          "rawPosEvidencePointer": "/records/3562/sourcePosRaw",
+          "recordEvidenceSha256": "8f3113e399c5d77b3e2b71ef581ffaeca256e9599bd99bcdb2d3a8b414f205ba",
+          "recordIndex": 3562,
+          "sourceNoteGuid": "kKfNgpM&7u",
+          "sourceRecordId": "1615645031490",
+          "structuredOxfordSenseGroupOrdinals": []
+        }
+      ]
+    },
+    {
+      "after": "Usually before a noun: aggregate cost, aggregate total. The adjective describes amounts considered together.",
+      "afterFieldSha256": "d02d941504bbffec21c47d51ecbd6288675ef93314039ac606942f032c387b45",
+      "before": "Usually before a noun such as cost or total; this record proposes the adjective rather than the related noun or verb.",
+      "beforeFieldSha256": "08034bfd18115dccdcb69cc2ce89f3f603561666b93f0524ed6663ca4e335fdc",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:aggregate",
+      "canonicalIdAllocated": false,
+      "correctionProposalId": "2H2I-P003",
+      "eligibilityStatus": "DEFER_INSUFFICIENT_EVIDENCE",
+      "field": "/content/grammarNotesEn",
+      "historicalParentContentHash": "31422e649ef345905db7c0030c5708bb283d023fc83070630427b550ff6f7ccf",
+      "ownerApproval": false,
+      "parentEffectiveContentHash": "31422e649ef345905db7c0030c5708bb283d023fc83070630427b550ff6f7ccf",
+      "proposalKey": "EDITORIAL_2H2H:aggregate:combined-total",
+      "reviewDimensions": {
+        "englishNaturalness": true,
+        "grammar": false,
+        "historicalQa": true,
+        "meaningPreservation": true,
+        "posAndConstruction": true,
+        "priorCorrectionLineage": true,
+        "rightsAndOriginalitySignals": true,
+        "siblingSenseConsistency": true,
+        "sourceEvidence": false,
+        "vietnameseFaithfulness": true
+      },
+      "reviewExplanationVi": "Nội dung định nghĩa, ví dụ “aggregate cost” và bản dịch hiện nhất quán. AFTER thêm collocation “aggregate total”, nhưng nguồn được pin ở đây chỉ hỗ trợ “aggregate cost”; chưa có chứng cứ độc lập trong proposal để đưa collocation mới vào ghi chú người học. Defer tới khi có nguồn hoặc cách sửa chỉ dùng mẫu đã được chứng minh.",
+      "reviewKind": "AI_INDEPENDENT_DRAFT_ELIGIBILITY_REVIEW_NOT_OWNER_APPROVAL",
+      "reviewedContentHash": "31422e649ef345905db7c0030c5708bb283d023fc83070630427b550ff6f7ccf",
+      "reviewedContentSnapshot": {
+        "content": {
+          "definitionEn": "Representing a combined total of several separate amounts or elements.",
+          "examples": [
+            {
+              "en": "The aggregate cost includes materials from all three workshops.",
+              "vi": "Tổng chi phí gộp bao gồm vật liệu từ cả ba xưởng."
+            }
+          ],
+          "grammarNotesEn": "Usually before a noun such as cost or total; this record proposes the adjective rather than the related noun or verb.",
+          "meaningVi": "tổng hợp; tính gộp",
+          "senseLabelEn": "formed by combining separate amounts"
+        },
+        "headword": "aggregate",
+        "historicalQaFindings": [
+          {
+            "aiAssessment": "PASS",
+            "correctionReview": [],
+            "effectiveReviewedContentHash": "31422e649ef345905db7c0030c5708bb283d023fc83070630427b550ff6f7ccf",
+            "nearDuplicateSignals": [],
+            "originalReview": {
+              "assessment": "PASS",
+              "dimensions": [
+                "SEMANTICS",
+                "BOUNDARIES",
+                "POS_CONSTRUCTION",
+                "EN_DEFINITION",
+                "EN_NATURALNESS",
+                "VI_MEANING",
+                "VI_EXAMPLE",
+                "GRAMMAR",
+                "CEFR_UNCERTAINTY",
+                "REDUNDANCY",
+                "PROVENANCE_COPYING",
+                "MASTER_LEGACY",
+                "RIGHTS"
+              ],
+              "humanReviewer": null,
+              "note": "Adjective source evidence retained for combined cost; three workshops are preserved exactly in translation. No noun aggregate material or verb sense is invented to increase counts.",
+              "proposalKey": "EDITORIAL_2H2H:aggregate:combined-total",
+              "reviewedContentHash": "31422e649ef345905db7c0030c5708bb283d023fc83070630427b550ff6f7ccf",
+              "reviewerKind": "AI_SELF_REVIEW"
+            },
+            "ownerAssessment": "PENDING",
+            "proposalKey": "EDITORIAL_2H2H:aggregate:combined-total",
+            "review": {
+              "assessment": "PASS",
+              "dimensions": [
+                "SEMANTICS",
+                "BOUNDARIES",
+                "POS_CONSTRUCTION",
+                "EN_DEFINITION",
+                "EN_NATURALNESS",
+                "VI_MEANING",
+                "VI_EXAMPLE",
+                "GRAMMAR",
+                "CEFR_UNCERTAINTY",
+                "REDUNDANCY",
+                "PROVENANCE_COPYING",
+                "MASTER_LEGACY",
+                "RIGHTS",
+                "LEXICAL_IDENTITY"
+              ],
+              "humanReviewer": null,
+              "lexicalIdentityNote": "Exact frozen key NORMALIZED_HEADWORD:aggregate and proposed ADJECTIVE retain this boundary formed by combining separate amounts. No identity merge is inferred from spelling, source alignment or Master/legacy overlap; no canonical ID or Sense identity approval. Existing Master lemma candidates remain explicit unresolved evidence. ",
+              "note": "Adjective source evidence retained for combined cost; three workshops are preserved exactly in translation. No noun aggregate material or verb sense is invented to increase counts.",
+              "proposalKey": "EDITORIAL_2H2H:aggregate:combined-total",
+              "reviewedContentHash": "31422e649ef345905db7c0030c5708bb283d023fc83070630427b550ff6f7ccf",
+              "reviewerKind": "AI_SELF_REVIEW"
+            },
+            "riskSignals": [],
+            "signals": [],
+            "sourceSimilarity": [],
+            "structuralErrors": []
+          }
+        ],
+        "partOfSpeech": "ADJECTIVE",
+        "pinnedHistoricalQaReferences": [
+          {
+            "exactRecord": {
+              "assessment": "PASS",
+              "dimensions": [
+                "SEMANTICS",
+                "BOUNDARIES",
+                "POS_CONSTRUCTION",
+                "EN_DEFINITION",
+                "EN_NATURALNESS",
+                "VI_MEANING",
+                "VI_EXAMPLE",
+                "GRAMMAR",
+                "CEFR_UNCERTAINTY",
+                "REDUNDANCY",
+                "PROVENANCE_COPYING",
+                "MASTER_LEGACY",
+                "RIGHTS"
+              ],
+              "humanReviewer": null,
+              "note": "Adjective source evidence retained for combined cost; three workshops are preserved exactly in translation. No noun aggregate material or verb sense is invented to increase counts.",
+              "proposalKey": "EDITORIAL_2H2H:aggregate:combined-total",
+              "reviewedContentHash": "31422e649ef345905db7c0030c5708bb283d023fc83070630427b550ff6f7ccf",
+              "reviewerKind": "AI_SELF_REVIEW"
+            },
+            "jsonPointer": "/batches/16/reviews/6",
+            "path": "vocabflow-dataset/workspaces/master-editorial-bulk-500/quality-audit.json",
+            "sha256": "20cd8d74d67883855f75cd4c81548ea4f8a08fcb5f1ed1ee371d2e5314fd3f41"
+          },
+          {
+            "exactRecord": {
+              "aiAssessment": "PASS",
+              "correctionReview": [],
+              "effectiveReviewedContentHash": "31422e649ef345905db7c0030c5708bb283d023fc83070630427b550ff6f7ccf",
+              "nearDuplicateSignals": [],
+              "originalReview": {
+                "assessment": "PASS",
+                "dimensions": [
+                  "SEMANTICS",
+                  "BOUNDARIES",
+                  "POS_CONSTRUCTION",
+                  "EN_DEFINITION",
+                  "EN_NATURALNESS",
+                  "VI_MEANING",
+                  "VI_EXAMPLE",
+                  "GRAMMAR",
+                  "CEFR_UNCERTAINTY",
+                  "REDUNDANCY",
+                  "PROVENANCE_COPYING",
+                  "MASTER_LEGACY",
+                  "RIGHTS"
+                ],
+                "humanReviewer": null,
+                "note": "Adjective source evidence retained for combined cost; three workshops are preserved exactly in translation. No noun aggregate material or verb sense is invented to increase counts.",
+                "proposalKey": "EDITORIAL_2H2H:aggregate:combined-total",
+                "reviewedContentHash": "31422e649ef345905db7c0030c5708bb283d023fc83070630427b550ff6f7ccf",
+                "reviewerKind": "AI_SELF_REVIEW"
+              },
+              "ownerAssessment": "PENDING",
+              "proposalKey": "EDITORIAL_2H2H:aggregate:combined-total",
+              "review": {
+                "assessment": "PASS",
+                "dimensions": [
+                  "SEMANTICS",
+                  "BOUNDARIES",
+                  "POS_CONSTRUCTION",
+                  "EN_DEFINITION",
+                  "EN_NATURALNESS",
+                  "VI_MEANING",
+                  "VI_EXAMPLE",
+                  "GRAMMAR",
+                  "CEFR_UNCERTAINTY",
+                  "REDUNDANCY",
+                  "PROVENANCE_COPYING",
+                  "MASTER_LEGACY",
+                  "RIGHTS",
+                  "LEXICAL_IDENTITY"
+                ],
+                "humanReviewer": null,
+                "lexicalIdentityNote": "Exact frozen key NORMALIZED_HEADWORD:aggregate and proposed ADJECTIVE retain this boundary formed by combining separate amounts. No identity merge is inferred from spelling, source alignment or Master/legacy overlap; no canonical ID or Sense identity approval. Existing Master lemma candidates remain explicit unresolved evidence. ",
+                "note": "Adjective source evidence retained for combined cost; three workshops are preserved exactly in translation. No noun aggregate material or verb sense is invented to increase counts.",
+                "proposalKey": "EDITORIAL_2H2H:aggregate:combined-total",
+                "reviewedContentHash": "31422e649ef345905db7c0030c5708bb283d023fc83070630427b550ff6f7ccf",
+                "reviewerKind": "AI_SELF_REVIEW"
+              },
+              "riskSignals": [],
+              "signals": [],
+              "sourceSimilarity": [],
+              "structuralErrors": []
+            },
+            "jsonPointer": "/senses/125",
+            "path": "vocabflow-dataset/workspaces/master-editorial-bulk-500/quality-audit.json",
+            "sha256": "20cd8d74d67883855f75cd4c81548ea4f8a08fcb5f1ed1ee371d2e5314fd3f41"
+          }
+        ],
+        "sourceEvidence": [
+          {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::C2",
+                "value": "C2"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "C2"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "ADJECTIVE"
+            ],
+            "rawContentPointer": "/records/2027/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/2027/rawHeadword",
+            "rawPosEvidencePointer": "/records/2027/sourcePosRaw",
+            "recordEvidenceSha256": "f8946e633bcfa84a1686950598a305858986956b0dd16f1cf965011e09e9ca23",
+            "recordIndex": 2027,
+            "sourceNoteGuid": "q>yEnKa7(}",
+            "sourceRecordId": "1559931008839",
+            "structuredOxfordSenseGroupOrdinals": []
+          }
+        ]
+      },
+      "rightsClearanceAdded": false,
+      "sourceEvidence": [
+        {
+          "artifact": "vocab4600-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "deck:4600 English Vocab::C2",
+              "value": "C2"
+            },
+            {
+              "sourceField": "noteTag",
+              "value": "C2"
+            }
+          ],
+          "corpus": "ENGLISH_VOCAB_4600",
+          "normalizedPosCandidates": [
+            "ADJECTIVE"
+          ],
+          "rawContentPointer": "/records/2027/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/2027/rawHeadword",
+          "rawPosEvidencePointer": "/records/2027/sourcePosRaw",
+          "recordEvidenceSha256": "f8946e633bcfa84a1686950598a305858986956b0dd16f1cf965011e09e9ca23",
+          "recordIndex": 2027,
+          "sourceNoteGuid": "q>yEnKa7(}",
+          "sourceRecordId": "1559931008839",
+          "structuredOxfordSenseGroupOrdinals": []
+        }
+      ]
+    },
+    {
+      "after": "Before a noun or after a linking verb: a white curtain; the curtain is white. Whiter and whitest are comparative and superlative forms.",
+      "afterFieldSha256": "ec4a953103645438484db34e163a093055f586c3ed4909a447ff31eb97403942",
+      "before": "Before a noun or after a linking verb; this proposed sense is colour, not a category of people.",
+      "beforeFieldSha256": "f42a0b3a48f2d05740f12673370d70307a2cd2a85592340a5d4e57e13885326a",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:white",
+      "canonicalIdAllocated": false,
+      "correctionProposalId": "2H2I-R1-P006",
+      "eligibilityStatus": "APPLY_ELIGIBLE",
+      "field": "/content/grammarNotesEn",
+      "historicalParentContentHash": "ea6575d7692bb1e7e5fed9cdaf34cb545f5d437fec5373ea1c0e85207f34373f",
+      "ownerApproval": false,
+      "parentEffectiveContentHash": "ea6575d7692bb1e7e5fed9cdaf34cb545f5d437fec5373ea1c0e85207f34373f",
+      "proposalKey": "EDITORIAL_2H2H:white:colour",
+      "reviewDimensions": {
+        "englishNaturalness": true,
+        "grammar": true,
+        "historicalQa": true,
+        "meaningPreservation": true,
+        "posAndConstruction": true,
+        "priorCorrectionLineage": true,
+        "rightsAndOriginalitySignals": true,
+        "siblingSenseConsistency": true,
+        "sourceEvidence": true,
+        "vietnameseFaithfulness": true
+      },
+      "reviewExplanationVi": "Ghi chú hiện có một mệnh đề biên tập về phạm vi Sense. AFTER thay nó bằng vị trí tính từ trước danh từ/sau linking verb và dạng so sánh whiter/whitest; các dạng này đúng với tính từ chỉ màu, khớp ví dụ chiếc rèm trắng, không đổi nghĩa tiếng Việt hay boundary màu sắc.",
+      "reviewKind": "AI_INDEPENDENT_DRAFT_ELIGIBILITY_REVIEW_NOT_OWNER_APPROVAL",
+      "reviewedContentHash": "ea6575d7692bb1e7e5fed9cdaf34cb545f5d437fec5373ea1c0e85207f34373f",
+      "reviewedContentSnapshot": {
+        "content": {
+          "definitionEn": "Having the colour of fresh snow or plain milk.",
+          "examples": [
+            {
+              "en": "A white curtain covered the narrow window.",
+              "vi": "Một tấm rèm trắng che ô cửa sổ hẹp."
+            }
+          ],
+          "grammarNotesEn": "Before a noun or after a linking verb; this proposed sense is colour, not a category of people.",
+          "meaningVi": "màu trắng",
+          "senseLabelEn": "having the lightest ordinary colour"
+        },
+        "headword": "white",
+        "historicalQaFindings": [
+          {
+            "aiAssessment": "PASS",
+            "correctionReview": [],
+            "effectiveReviewedContentHash": "ea6575d7692bb1e7e5fed9cdaf34cb545f5d437fec5373ea1c0e85207f34373f",
+            "nearDuplicateSignals": [],
+            "originalReview": {
+              "assessment": "PASS",
+              "dimensions": [
+                "SEMANTICS",
+                "BOUNDARIES",
+                "POS_CONSTRUCTION",
+                "EN_DEFINITION",
+                "EN_NATURALNESS",
+                "VI_MEANING",
+                "VI_EXAMPLE",
+                "GRAMMAR",
+                "CEFR_UNCERTAINTY",
+                "REDUNDANCY",
+                "PROVENANCE_COPYING",
+                "MASTER_LEGACY",
+                "RIGHTS"
+              ],
+              "humanReviewer": null,
+              "note": "Colour adjective and colour noun retain distinct source ordinals; no racial sense or person identity is inferred. Curtain and paint examples translate colours and objects faithfully; countability is qualified.",
+              "proposalKey": "EDITORIAL_2H2H:white:colour",
+              "reviewedContentHash": "ea6575d7692bb1e7e5fed9cdaf34cb545f5d437fec5373ea1c0e85207f34373f",
+              "reviewerKind": "AI_SELF_REVIEW"
+            },
+            "ownerAssessment": "PENDING",
+            "proposalKey": "EDITORIAL_2H2H:white:colour",
+            "review": {
+              "assessment": "PASS",
+              "dimensions": [
+                "SEMANTICS",
+                "BOUNDARIES",
+                "POS_CONSTRUCTION",
+                "EN_DEFINITION",
+                "EN_NATURALNESS",
+                "VI_MEANING",
+                "VI_EXAMPLE",
+                "GRAMMAR",
+                "CEFR_UNCERTAINTY",
+                "REDUNDANCY",
+                "PROVENANCE_COPYING",
+                "MASTER_LEGACY",
+                "RIGHTS",
+                "LEXICAL_IDENTITY"
+              ],
+              "humanReviewer": null,
+              "lexicalIdentityNote": "Exact frozen key NORMALIZED_HEADWORD:white and proposed ADJECTIVE retain this boundary having the lightest ordinary colour. No identity merge is inferred from spelling, source alignment or Master/legacy overlap; no canonical ID or Sense identity approval. Existing Master lemma candidates remain explicit unresolved evidence. ",
+              "note": "Colour adjective and colour noun retain distinct source ordinals; no racial sense or person identity is inferred. Curtain and paint examples translate colours and objects faithfully; countability is qualified.",
+              "proposalKey": "EDITORIAL_2H2H:white:colour",
+              "reviewedContentHash": "ea6575d7692bb1e7e5fed9cdaf34cb545f5d437fec5373ea1c0e85207f34373f",
+              "reviewerKind": "AI_SELF_REVIEW"
+            },
+            "riskSignals": [
+              "POSSIBLE_POLYSEMY"
+            ],
+            "signals": [],
+            "sourceSimilarity": [],
+            "structuralErrors": []
+          }
+        ],
+        "partOfSpeech": "ADJECTIVE",
+        "pinnedHistoricalQaReferences": [
+          {
+            "exactRecord": {
+              "assessment": "PASS",
+              "dimensions": [
+                "SEMANTICS",
+                "BOUNDARIES",
+                "POS_CONSTRUCTION",
+                "EN_DEFINITION",
+                "EN_NATURALNESS",
+                "VI_MEANING",
+                "VI_EXAMPLE",
+                "GRAMMAR",
+                "CEFR_UNCERTAINTY",
+                "REDUNDANCY",
+                "PROVENANCE_COPYING",
+                "MASTER_LEGACY",
+                "RIGHTS"
+              ],
+              "humanReviewer": null,
+              "note": "Colour adjective and colour noun retain distinct source ordinals; no racial sense or person identity is inferred. Curtain and paint examples translate colours and objects faithfully; countability is qualified.",
+              "proposalKey": "EDITORIAL_2H2H:white:colour",
+              "reviewedContentHash": "ea6575d7692bb1e7e5fed9cdaf34cb545f5d437fec5373ea1c0e85207f34373f",
+              "reviewerKind": "AI_SELF_REVIEW"
+            },
+            "jsonPointer": "/batches/19/reviews/0",
+            "path": "vocabflow-dataset/workspaces/master-editorial-bulk-500/quality-audit.json",
+            "sha256": "20cd8d74d67883855f75cd4c81548ea4f8a08fcb5f1ed1ee371d2e5314fd3f41"
+          },
+          {
+            "exactRecord": {
+              "aiAssessment": "PASS",
+              "correctionReview": [],
+              "effectiveReviewedContentHash": "ea6575d7692bb1e7e5fed9cdaf34cb545f5d437fec5373ea1c0e85207f34373f",
+              "nearDuplicateSignals": [],
+              "originalReview": {
+                "assessment": "PASS",
+                "dimensions": [
+                  "SEMANTICS",
+                  "BOUNDARIES",
+                  "POS_CONSTRUCTION",
+                  "EN_DEFINITION",
+                  "EN_NATURALNESS",
+                  "VI_MEANING",
+                  "VI_EXAMPLE",
+                  "GRAMMAR",
+                  "CEFR_UNCERTAINTY",
+                  "REDUNDANCY",
+                  "PROVENANCE_COPYING",
+                  "MASTER_LEGACY",
+                  "RIGHTS"
+                ],
+                "humanReviewer": null,
+                "note": "Colour adjective and colour noun retain distinct source ordinals; no racial sense or person identity is inferred. Curtain and paint examples translate colours and objects faithfully; countability is qualified.",
+                "proposalKey": "EDITORIAL_2H2H:white:colour",
+                "reviewedContentHash": "ea6575d7692bb1e7e5fed9cdaf34cb545f5d437fec5373ea1c0e85207f34373f",
+                "reviewerKind": "AI_SELF_REVIEW"
+              },
+              "ownerAssessment": "PENDING",
+              "proposalKey": "EDITORIAL_2H2H:white:colour",
+              "review": {
+                "assessment": "PASS",
+                "dimensions": [
+                  "SEMANTICS",
+                  "BOUNDARIES",
+                  "POS_CONSTRUCTION",
+                  "EN_DEFINITION",
+                  "EN_NATURALNESS",
+                  "VI_MEANING",
+                  "VI_EXAMPLE",
+                  "GRAMMAR",
+                  "CEFR_UNCERTAINTY",
+                  "REDUNDANCY",
+                  "PROVENANCE_COPYING",
+                  "MASTER_LEGACY",
+                  "RIGHTS",
+                  "LEXICAL_IDENTITY"
+                ],
+                "humanReviewer": null,
+                "lexicalIdentityNote": "Exact frozen key NORMALIZED_HEADWORD:white and proposed ADJECTIVE retain this boundary having the lightest ordinary colour. No identity merge is inferred from spelling, source alignment or Master/legacy overlap; no canonical ID or Sense identity approval. Existing Master lemma candidates remain explicit unresolved evidence. ",
+                "note": "Colour adjective and colour noun retain distinct source ordinals; no racial sense or person identity is inferred. Curtain and paint examples translate colours and objects faithfully; countability is qualified.",
+                "proposalKey": "EDITORIAL_2H2H:white:colour",
+                "reviewedContentHash": "ea6575d7692bb1e7e5fed9cdaf34cb545f5d437fec5373ea1c0e85207f34373f",
+                "reviewerKind": "AI_SELF_REVIEW"
+              },
+              "riskSignals": [
+                "POSSIBLE_POLYSEMY"
+              ],
+              "signals": [],
+              "sourceSimilarity": [],
+              "structuralErrors": []
+            },
+            "jsonPointer": "/senses/139",
+            "path": "vocabflow-dataset/workspaces/master-editorial-bulk-500/quality-audit.json",
+            "sha256": "20cd8d74d67883855f75cd4c81548ea4f8a08fcb5f1ed1ee371d2e5314fd3f41"
+          }
+        ],
+        "sourceEvidence": [
+          {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "A1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "ADJECTIVE",
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/216/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/216/rawHeadword",
+            "rawPosEvidencePointer": "/records/216/sourcePosRaw",
+            "recordEvidenceSha256": "e5cd26a41379f06af6e94baaa09242614b8f2e9a41d341d35dda89c59b08c8a0",
+            "recordIndex": 216,
+            "sourceNoteGuid": "Ij0>gw&ocz",
+            "sourceRecordId": "1788223606167",
+            "structuredOxfordSenseGroupOrdinals": [
+              0,
+              1
+            ]
+          }
+        ]
+      },
+      "rightsClearanceAdded": false,
+      "sourceEvidence": [
+        {
+          "artifact": "oxford-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "CEFR",
+              "value": "A1"
+            }
+          ],
+          "corpus": "OXFORD_5000",
+          "normalizedPosCandidates": [
+            "ADJECTIVE",
+            "NOUN"
+          ],
+          "rawContentPointer": "/records/216/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/216/rawHeadword",
+          "rawPosEvidencePointer": "/records/216/sourcePosRaw",
+          "recordEvidenceSha256": "e5cd26a41379f06af6e94baaa09242614b8f2e9a41d341d35dda89c59b08c8a0",
+          "recordIndex": 216,
+          "sourceNoteGuid": "Ij0>gw&ocz",
+          "sourceRecordId": "1788223606167",
+          "structuredOxfordSenseGroupOrdinals": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "after": "Usually uncountable when naming the colour: choose white for the walls; paint something in white.",
+      "afterFieldSha256": "17cb07d44627ac4f4faf5b80acb3cbeb6a98c00536dc13279462dce6e617ff38",
+      "before": "Usually uncountable for the colour; this record does not propose a racial or other unrelated noun sense.",
+      "beforeFieldSha256": "adbd66c550e270720db03761a6aae77afbb5afbbae336fa2d2dbe199c5827d05",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:white",
+      "canonicalIdAllocated": false,
+      "correctionProposalId": "2H2I-R1-P007",
+      "eligibilityStatus": "APPLY_ELIGIBLE",
+      "field": "/content/grammarNotesEn",
+      "historicalParentContentHash": "bae2bac2cf4ff10f9f36c939a7c30deed2a8d94d3b833128b2c9155c393114f1",
+      "ownerApproval": false,
+      "parentEffectiveContentHash": "bae2bac2cf4ff10f9f36c939a7c30deed2a8d94d3b833128b2c9155c393114f1",
+      "proposalKey": "EDITORIAL_2H2H:white:colour-noun",
+      "reviewDimensions": {
+        "englishNaturalness": true,
+        "grammar": true,
+        "historicalQa": true,
+        "meaningPreservation": true,
+        "posAndConstruction": true,
+        "priorCorrectionLineage": true,
+        "rightsAndOriginalitySignals": true,
+        "siblingSenseConsistency": true,
+        "sourceEvidence": true,
+        "vietnameseFaithfulness": true
+      },
+      "reviewExplanationVi": "Ghi chú hiện có câu về phạm vi bản ghi thay vì cách dùng. AFTER giữ tính không đếm được của danh từ màu và minh họa “choose white”/“paint ... in white”; phù hợp nghĩa “màu trắng”, ví dụ chọn màu cho tường và phân biệt với Sense tính từ bên cạnh.",
+      "reviewKind": "AI_INDEPENDENT_DRAFT_ELIGIBILITY_REVIEW_NOT_OWNER_APPROVAL",
+      "reviewedContentHash": "bae2bac2cf4ff10f9f36c939a7c30deed2a8d94d3b833128b2c9155c393114f1",
+      "reviewedContentSnapshot": {
+        "content": {
+          "definitionEn": "The light colour seen in fresh snow or plain milk.",
+          "examples": [
+            {
+              "en": "She chose white for the walls and blue for the doors.",
+              "vi": "Cô ấy chọn màu trắng cho tường và màu xanh dương cho cửa."
+            }
+          ],
+          "grammarNotesEn": "Usually uncountable for the colour; this record does not propose a racial or other unrelated noun sense.",
+          "meaningVi": "màu trắng",
+          "senseLabelEn": "the colour white"
+        },
+        "headword": "white",
+        "historicalQaFindings": [
+          {
+            "aiAssessment": "PASS",
+            "correctionReview": [],
+            "effectiveReviewedContentHash": "bae2bac2cf4ff10f9f36c939a7c30deed2a8d94d3b833128b2c9155c393114f1",
+            "nearDuplicateSignals": [],
+            "originalReview": {
+              "assessment": "PASS",
+              "dimensions": [
+                "SEMANTICS",
+                "BOUNDARIES",
+                "POS_CONSTRUCTION",
+                "EN_DEFINITION",
+                "EN_NATURALNESS",
+                "VI_MEANING",
+                "VI_EXAMPLE",
+                "GRAMMAR",
+                "CEFR_UNCERTAINTY",
+                "REDUNDANCY",
+                "PROVENANCE_COPYING",
+                "MASTER_LEGACY",
+                "RIGHTS"
+              ],
+              "humanReviewer": null,
+              "note": "Colour adjective and colour noun retain distinct source ordinals; no racial sense or person identity is inferred. Curtain and paint examples translate colours and objects faithfully; countability is qualified.",
+              "proposalKey": "EDITORIAL_2H2H:white:colour-noun",
+              "reviewedContentHash": "bae2bac2cf4ff10f9f36c939a7c30deed2a8d94d3b833128b2c9155c393114f1",
+              "reviewerKind": "AI_SELF_REVIEW"
+            },
+            "ownerAssessment": "PENDING",
+            "proposalKey": "EDITORIAL_2H2H:white:colour-noun",
+            "review": {
+              "assessment": "PASS",
+              "dimensions": [
+                "SEMANTICS",
+                "BOUNDARIES",
+                "POS_CONSTRUCTION",
+                "EN_DEFINITION",
+                "EN_NATURALNESS",
+                "VI_MEANING",
+                "VI_EXAMPLE",
+                "GRAMMAR",
+                "CEFR_UNCERTAINTY",
+                "REDUNDANCY",
+                "PROVENANCE_COPYING",
+                "MASTER_LEGACY",
+                "RIGHTS",
+                "LEXICAL_IDENTITY"
+              ],
+              "humanReviewer": null,
+              "lexicalIdentityNote": "Exact frozen key NORMALIZED_HEADWORD:white and proposed NOUN retain this boundary the colour white. No identity merge is inferred from spelling, source alignment or Master/legacy overlap; no canonical ID or Sense identity approval. Existing Master lemma candidates remain explicit unresolved evidence. ",
+              "note": "Colour adjective and colour noun retain distinct source ordinals; no racial sense or person identity is inferred. Curtain and paint examples translate colours and objects faithfully; countability is qualified.",
+              "proposalKey": "EDITORIAL_2H2H:white:colour-noun",
+              "reviewedContentHash": "bae2bac2cf4ff10f9f36c939a7c30deed2a8d94d3b833128b2c9155c393114f1",
+              "reviewerKind": "AI_SELF_REVIEW"
+            },
+            "riskSignals": [
+              "POSSIBLE_POLYSEMY"
+            ],
+            "signals": [],
+            "sourceSimilarity": [],
+            "structuralErrors": []
+          }
+        ],
+        "partOfSpeech": "NOUN",
+        "pinnedHistoricalQaReferences": [
+          {
+            "exactRecord": {
+              "assessment": "PASS",
+              "dimensions": [
+                "SEMANTICS",
+                "BOUNDARIES",
+                "POS_CONSTRUCTION",
+                "EN_DEFINITION",
+                "EN_NATURALNESS",
+                "VI_MEANING",
+                "VI_EXAMPLE",
+                "GRAMMAR",
+                "CEFR_UNCERTAINTY",
+                "REDUNDANCY",
+                "PROVENANCE_COPYING",
+                "MASTER_LEGACY",
+                "RIGHTS"
+              ],
+              "humanReviewer": null,
+              "note": "Colour adjective and colour noun retain distinct source ordinals; no racial sense or person identity is inferred. Curtain and paint examples translate colours and objects faithfully; countability is qualified.",
+              "proposalKey": "EDITORIAL_2H2H:white:colour-noun",
+              "reviewedContentHash": "bae2bac2cf4ff10f9f36c939a7c30deed2a8d94d3b833128b2c9155c393114f1",
+              "reviewerKind": "AI_SELF_REVIEW"
+            },
+            "jsonPointer": "/batches/19/reviews/1",
+            "path": "vocabflow-dataset/workspaces/master-editorial-bulk-500/quality-audit.json",
+            "sha256": "20cd8d74d67883855f75cd4c81548ea4f8a08fcb5f1ed1ee371d2e5314fd3f41"
+          },
+          {
+            "exactRecord": {
+              "aiAssessment": "PASS",
+              "correctionReview": [],
+              "effectiveReviewedContentHash": "bae2bac2cf4ff10f9f36c939a7c30deed2a8d94d3b833128b2c9155c393114f1",
+              "nearDuplicateSignals": [],
+              "originalReview": {
+                "assessment": "PASS",
+                "dimensions": [
+                  "SEMANTICS",
+                  "BOUNDARIES",
+                  "POS_CONSTRUCTION",
+                  "EN_DEFINITION",
+                  "EN_NATURALNESS",
+                  "VI_MEANING",
+                  "VI_EXAMPLE",
+                  "GRAMMAR",
+                  "CEFR_UNCERTAINTY",
+                  "REDUNDANCY",
+                  "PROVENANCE_COPYING",
+                  "MASTER_LEGACY",
+                  "RIGHTS"
+                ],
+                "humanReviewer": null,
+                "note": "Colour adjective and colour noun retain distinct source ordinals; no racial sense or person identity is inferred. Curtain and paint examples translate colours and objects faithfully; countability is qualified.",
+                "proposalKey": "EDITORIAL_2H2H:white:colour-noun",
+                "reviewedContentHash": "bae2bac2cf4ff10f9f36c939a7c30deed2a8d94d3b833128b2c9155c393114f1",
+                "reviewerKind": "AI_SELF_REVIEW"
+              },
+              "ownerAssessment": "PENDING",
+              "proposalKey": "EDITORIAL_2H2H:white:colour-noun",
+              "review": {
+                "assessment": "PASS",
+                "dimensions": [
+                  "SEMANTICS",
+                  "BOUNDARIES",
+                  "POS_CONSTRUCTION",
+                  "EN_DEFINITION",
+                  "EN_NATURALNESS",
+                  "VI_MEANING",
+                  "VI_EXAMPLE",
+                  "GRAMMAR",
+                  "CEFR_UNCERTAINTY",
+                  "REDUNDANCY",
+                  "PROVENANCE_COPYING",
+                  "MASTER_LEGACY",
+                  "RIGHTS",
+                  "LEXICAL_IDENTITY"
+                ],
+                "humanReviewer": null,
+                "lexicalIdentityNote": "Exact frozen key NORMALIZED_HEADWORD:white and proposed NOUN retain this boundary the colour white. No identity merge is inferred from spelling, source alignment or Master/legacy overlap; no canonical ID or Sense identity approval. Existing Master lemma candidates remain explicit unresolved evidence. ",
+                "note": "Colour adjective and colour noun retain distinct source ordinals; no racial sense or person identity is inferred. Curtain and paint examples translate colours and objects faithfully; countability is qualified.",
+                "proposalKey": "EDITORIAL_2H2H:white:colour-noun",
+                "reviewedContentHash": "bae2bac2cf4ff10f9f36c939a7c30deed2a8d94d3b833128b2c9155c393114f1",
+                "reviewerKind": "AI_SELF_REVIEW"
+              },
+              "riskSignals": [
+                "POSSIBLE_POLYSEMY"
+              ],
+              "signals": [],
+              "sourceSimilarity": [],
+              "structuralErrors": []
+            },
+            "jsonPointer": "/senses/140",
+            "path": "vocabflow-dataset/workspaces/master-editorial-bulk-500/quality-audit.json",
+            "sha256": "20cd8d74d67883855f75cd4c81548ea4f8a08fcb5f1ed1ee371d2e5314fd3f41"
+          }
+        ],
+        "sourceEvidence": [
+          {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "A1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "ADJECTIVE",
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/216/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/216/rawHeadword",
+            "rawPosEvidencePointer": "/records/216/sourcePosRaw",
+            "recordEvidenceSha256": "e5cd26a41379f06af6e94baaa09242614b8f2e9a41d341d35dda89c59b08c8a0",
+            "recordIndex": 216,
+            "sourceNoteGuid": "Ij0>gw&ocz",
+            "sourceRecordId": "1788223606167",
+            "structuredOxfordSenseGroupOrdinals": [
+              0,
+              1
+            ]
+          }
+        ]
+      },
+      "rightsClearanceAdded": false,
+      "sourceEvidence": [
+        {
+          "artifact": "oxford-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "CEFR",
+              "value": "A1"
+            }
+          ],
+          "corpus": "OXFORD_5000",
+          "normalizedPosCandidates": [
+            "ADJECTIVE",
+            "NOUN"
+          ],
+          "rawContentPointer": "/records/216/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/216/rawHeadword",
+          "rawPosEvidencePointer": "/records/216/sourcePosRaw",
+          "recordEvidenceSha256": "e5cd26a41379f06af6e94baaa09242614b8f2e9a41d341d35dda89c59b08c8a0",
+          "recordIndex": 216,
+          "sourceNoteGuid": "Ij0>gw&ocz",
+          "sourceRecordId": "1788223606167",
+          "structuredOxfordSenseGroupOrdinals": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "after": "Countable: a vegetarian, several vegetarians. Some vegetarians eat eggs or dairy products, unlike vegans.",
+      "afterFieldSha256": "ca9d2703a3697cf82aa35354df24f39a0c3fd0e42e89d1d0bb5d284f87ceb269",
+      "before": "Countable; some vegetarians eat eggs or dairy products, unlike vegans. This record proposes the person noun.",
+      "beforeFieldSha256": "dabb1fc0470d9c33b5e52653bce8fe3023352af2f7c84380dcc048ea31765f13",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:vegetarian",
+      "canonicalIdAllocated": false,
+      "correctionProposalId": "2H2I-R1-P005",
+      "eligibilityStatus": "APPLY_ELIGIBLE",
+      "field": "/content/grammarNotesEn",
+      "historicalParentContentHash": "5cec7a5aea53b8156640a0a01f20b9e74be7f2575dc919d62a6bc94e5ff9a632",
+      "ownerApproval": false,
+      "parentEffectiveContentHash": "5cec7a5aea53b8156640a0a01f20b9e74be7f2575dc919d62a6bc94e5ff9a632",
+      "proposalKey": "EDITORIAL_2H2H:vegetarian:person-not-eating-meat",
+      "reviewDimensions": {
+        "englishNaturalness": true,
+        "grammar": true,
+        "historicalQa": true,
+        "meaningPreservation": true,
+        "posAndConstruction": true,
+        "priorCorrectionLineage": true,
+        "rightsAndOriginalitySignals": true,
+        "siblingSenseConsistency": true,
+        "sourceEvidence": true,
+        "vietnameseFaithfulness": true
+      },
+      "reviewExplanationVi": "Cụm “This record proposes the person noun” là bình luận quy trình. AFTER giữ countability và sự khác nhau giữa vegetarian/vegan đã nêu trong nghĩa và ví dụ; mẫu số ít/số nhiều đúng, từ “some” tránh khái quát rằng mọi vegetarian ăn trứng/sữa.",
+      "reviewKind": "AI_INDEPENDENT_DRAFT_ELIGIBILITY_REVIEW_NOT_OWNER_APPROVAL",
+      "reviewedContentHash": "5cec7a5aea53b8156640a0a01f20b9e74be7f2575dc919d62a6bc94e5ff9a632",
+      "reviewedContentSnapshot": {
+        "content": {
+          "definitionEn": "A person who does not eat meat or fish.",
+          "examples": [
+            {
+              "en": "The vegetarian in our group chose a bean dish.",
+              "vi": "Người ăn chay trong nhóm chúng tôi chọn một món đậu."
+            }
+          ],
+          "grammarNotesEn": "Countable; some vegetarians eat eggs or dairy products, unlike vegans. This record proposes the person noun.",
+          "meaningVi": "người ăn chay",
+          "senseLabelEn": "person avoiding meat and fish"
+        },
+        "headword": "vegetarian",
+        "historicalQaFindings": [
+          {
+            "aiAssessment": "PASS",
+            "correctionRefs": [],
+            "formalHumanReview": false,
+            "nearDuplicateSignals": [],
+            "proposalKey": "EDITORIAL_2H2H:vegetarian:person-not-eating-meat",
+            "review": {
+              "assessment": "PASS",
+              "dimensions": [
+                "SEMANTICS",
+                "BOUNDARIES",
+                "POS_CONSTRUCTION",
+                "EN_DEFINITION",
+                "EN_NATURALNESS",
+                "VI_MEANING",
+                "VI_EXAMPLE",
+                "GRAMMAR",
+                "CEFR_UNCERTAINTY",
+                "REDUNDANCY",
+                "PROVENANCE_COPYING",
+                "MASTER_LEGACY",
+                "RIGHTS",
+                "LEXICAL_IDENTITY"
+              ],
+              "humanReviewer": null,
+              "lexicalIdentityNote": "Exact frozen key NORMALIZED_HEADWORD:vegetarian; this NOUN boundary person avoiding meat and fish remains a noncanonical proposal. Spelling, shared gloss or Master/legacy overlap does not authorize a Sense/Lexeme identity merge; source POS/CEFR remains evidence. ",
+              "note": "Person avoiding meat/fish distinct from vegan, with eggs/dairy qualified as some. Bean choice translates directly without inventing a person's reason, religion or health claim.",
+              "proposalKey": "EDITORIAL_2H2H:vegetarian:person-not-eating-meat",
+              "reviewedContentHash": "5cec7a5aea53b8156640a0a01f20b9e74be7f2575dc919d62a6bc94e5ff9a632",
+              "reviewerKind": "AI_SELF_REVIEW"
+            },
+            "signals": [],
+            "sourceSimilarity": [],
+            "structuralErrors": []
+          }
+        ],
+        "partOfSpeech": "NOUN",
+        "pinnedHistoricalQaReferences": [
+          {
+            "exactRecord": {
+              "assessment": "PASS",
+              "dimensions": [
+                "SEMANTICS",
+                "BOUNDARIES",
+                "POS_CONSTRUCTION",
+                "EN_DEFINITION",
+                "EN_NATURALNESS",
+                "VI_MEANING",
+                "VI_EXAMPLE",
+                "GRAMMAR",
+                "CEFR_UNCERTAINTY",
+                "REDUNDANCY",
+                "PROVENANCE_COPYING",
+                "MASTER_LEGACY",
+                "RIGHTS"
+              ],
+              "humanReviewer": null,
+              "note": "Person avoiding meat/fish distinct from vegan, with eggs/dairy qualified as some. Bean choice translates directly without inventing a person's reason, religion or health claim.",
+              "proposalKey": "EDITORIAL_2H2H:vegetarian:person-not-eating-meat",
+              "reviewedContentHash": "5cec7a5aea53b8156640a0a01f20b9e74be7f2575dc919d62a6bc94e5ff9a632",
+              "reviewerKind": "AI_SELF_REVIEW"
+            },
+            "jsonPointer": "/batches/9/reviews/4",
+            "path": "vocabflow-dataset/workspaces/master-editorial-bulk-500-resume/checkpoints/checkpoint-02/quality-audit.json",
+            "sha256": "d05c499fadc6ca40f2ba68e89829cc7048e89929a6c532f9d9a1a98979f33abf"
+          },
+          {
+            "exactRecord": {
+              "aiAssessment": "PASS",
+              "correctionRefs": [],
+              "formalHumanReview": false,
+              "nearDuplicateSignals": [],
+              "proposalKey": "EDITORIAL_2H2H:vegetarian:person-not-eating-meat",
+              "review": {
+                "assessment": "PASS",
+                "dimensions": [
+                  "SEMANTICS",
+                  "BOUNDARIES",
+                  "POS_CONSTRUCTION",
+                  "EN_DEFINITION",
+                  "EN_NATURALNESS",
+                  "VI_MEANING",
+                  "VI_EXAMPLE",
+                  "GRAMMAR",
+                  "CEFR_UNCERTAINTY",
+                  "REDUNDANCY",
+                  "PROVENANCE_COPYING",
+                  "MASTER_LEGACY",
+                  "RIGHTS",
+                  "LEXICAL_IDENTITY"
+                ],
+                "humanReviewer": null,
+                "lexicalIdentityNote": "Exact frozen key NORMALIZED_HEADWORD:vegetarian; this NOUN boundary person avoiding meat and fish remains a noncanonical proposal. Spelling, shared gloss or Master/legacy overlap does not authorize a Sense/Lexeme identity merge; source POS/CEFR remains evidence. ",
+                "note": "Person avoiding meat/fish distinct from vegan, with eggs/dairy qualified as some. Bean choice translates directly without inventing a person's reason, religion or health claim.",
+                "proposalKey": "EDITORIAL_2H2H:vegetarian:person-not-eating-meat",
+                "reviewedContentHash": "5cec7a5aea53b8156640a0a01f20b9e74be7f2575dc919d62a6bc94e5ff9a632",
+                "reviewerKind": "AI_SELF_REVIEW"
+              },
+              "signals": [],
+              "sourceSimilarity": [],
+              "structuralErrors": []
+            },
+            "jsonPointer": "/senses/70",
+            "path": "vocabflow-dataset/workspaces/master-editorial-bulk-500-resume/checkpoints/checkpoint-02/quality-audit.json",
+            "sha256": "d05c499fadc6ca40f2ba68e89829cc7048e89929a6c532f9d9a1a98979f33abf"
+          }
+        ],
+        "sourceEvidence": [
+          {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::A2",
+                "value": "A2"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "A2"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/2763/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/2763/rawHeadword",
+            "rawPosEvidencePointer": "/records/2763/sourcePosRaw",
+            "recordEvidenceSha256": "379b8569e35115a9be1267af7872b00055dcf41b26c5b970c538e30c69fc5aa0",
+            "recordIndex": 2763,
+            "sourceNoteGuid": "Ezx/vFFQ|q",
+            "sourceRecordId": "1559931009618",
+            "structuredOxfordSenseGroupOrdinals": []
+          }
+        ]
+      },
+      "rightsClearanceAdded": false,
+      "sourceEvidence": [
+        {
+          "artifact": "vocab4600-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "deck:4600 English Vocab::A2",
+              "value": "A2"
+            },
+            {
+              "sourceField": "noteTag",
+              "value": "A2"
+            }
+          ],
+          "corpus": "ENGLISH_VOCAB_4600",
+          "normalizedPosCandidates": [
+            "NOUN"
+          ],
+          "rawContentPointer": "/records/2763/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/2763/rawHeadword",
+          "rawPosEvidencePointer": "/records/2763/sourcePosRaw",
+          "recordEvidenceSha256": "379b8569e35115a9be1267af7872b00055dcf41b26c5b970c538e30c69fc5aa0",
+          "recordIndex": 2763,
+          "sourceNoteGuid": "Ezx/vFFQ|q",
+          "sourceRecordId": "1559931009618",
+          "structuredOxfordSenseGroupOrdinals": []
+        }
+      ]
+    }
+  ]
+}

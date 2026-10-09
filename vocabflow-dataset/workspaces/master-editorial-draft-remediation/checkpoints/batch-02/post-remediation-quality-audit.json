@@ -1,0 +1,243 @@
+{
+  "affectedOriginalBatches": [
+    "master-editorial-bulk-500:006",
+    "master-editorial-bulk-500:017",
+    "master-editorial-bulk-500:020",
+    "checkpoint-02:030"
+  ],
+  "checks": {
+    "duplicateContent": "CHECKED_WITHIN_ALL_AFFECTED_BATCHES",
+    "englishNaturalness": "PASS_FOR_ALL_NEWLY_REVISED_FIELDS",
+    "externalRightsOrOriginalityClearance": "NOT_PERFORMED",
+    "fieldCompleteness": "PASS_FOR_REVISED_FIELDS",
+    "grammar": "PASS_FOR_ALL_NEWLY_REVISED_FIELDS",
+    "historicalReviewConvertedToPass": false,
+    "meaningPreservation": "PASS_FOR_ALL_NEWLY_REVISED_FIELDS",
+    "posAndConstruction": "PASS_FOR_ALL_NEWLY_REVISED_FIELDS",
+    "senseBoundaryStability": "PASS_NO_BOUNDARY_CHANGES",
+    "sourceOriginalitySignals": "REVIEWED_WITHIN_PINNED_SCOPE; NO_RIGHTS_CLEARANCE_INFERRED",
+    "sourceProvenancePreserved": true,
+    "vietnameseFaithfulness": "PASS_FOR_ALL_NEWLY_REVISED_FIELDS"
+  },
+  "cumulativeDraftCorrectionsApplied": 6,
+  "cumulativeRevisedSenseCount": 6,
+  "fail": 0,
+  "fullBatchesReviewed": 4,
+  "newCorrectionsAppliedInBatch02": 3,
+  "newlyRevisedSenseCount": 3,
+  "ownerApproval": false,
+  "pass": 25,
+  "phase": "2H.2J-R2",
+  "releaseEligible": false,
+  "review": 4,
+  "reviewKind": "AI_POST_REMEDIATION_FULL_BATCH_REVIEW_NOT_OWNER_APPROVAL",
+  "reviewedSenseReferences": [
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:actual",
+      "parentEffectiveContentHash": "d8f9b0c9636c157e56f43aea0113ca6919ae052c30d72eb1c35be92c5a272294",
+      "proposalKey": "EDITORIAL_2H2H:actual:real",
+      "reviewStatus": "PASS",
+      "reviewedContentHash": "d8f9b0c9636c157e56f43aea0113ca6919ae052c30d72eb1c35be92c5a272294"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:aggregate",
+      "parentEffectiveContentHash": "31422e649ef345905db7c0030c5708bb283d023fc83070630427b550ff6f7ccf",
+      "proposalKey": "EDITORIAL_2H2H:aggregate:combined-total",
+      "reviewStatus": "REVIEW",
+      "reviewedContentHash": "31422e649ef345905db7c0030c5708bb283d023fc83070630427b550ff6f7ccf"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:enforcement",
+      "parentEffectiveContentHash": "1350c7e0b5c9fb68f45b23192db2c7d70f1b35cd82a243609b641f9d22ab9bc0",
+      "proposalKey": "EDITORIAL_2H2H:enforcement:making-rules-observed",
+      "reviewStatus": "PASS",
+      "reviewedContentHash": "1350c7e0b5c9fb68f45b23192db2c7d70f1b35cd82a243609b641f9d22ab9bc0"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:happen",
+      "parentEffectiveContentHash": "6c750c28af0b878f9d2d700c05d299733c661560c03d6ad359d077e4fa21ad70",
+      "proposalKey": "EDITORIAL_2H2H:happen:by-chance",
+      "reviewStatus": "PASS",
+      "reviewedContentHash": "6c750c28af0b878f9d2d700c05d299733c661560c03d6ad359d077e4fa21ad70"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:happen",
+      "parentEffectiveContentHash": "c254b39f93f1dacb576f91b9f3717a62784fed0988d10b59f3f2b13ff60819d0",
+      "proposalKey": "EDITORIAL_2H2H:happen:occur",
+      "reviewStatus": "PASS",
+      "reviewedContentHash": "c254b39f93f1dacb576f91b9f3717a62784fed0988d10b59f3f2b13ff60819d0"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:hopeful",
+      "parentEffectiveContentHash": "a66cf1881f00dd98f4f862200b32553fb93f4b60e9727d8a1e3eb92ab4890412",
+      "proposalKey": "EDITORIAL_2H2H:hopeful:feeling-hope",
+      "reviewStatus": "PASS",
+      "reviewedContentHash": "a66cf1881f00dd98f4f862200b32553fb93f4b60e9727d8a1e3eb92ab4890412"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:hopeful",
+      "parentEffectiveContentHash": "a445c6f53195a1a22c9e789b632a590f0b0f7efd8f0121522994768800a45a59",
+      "proposalKey": "EDITORIAL_2H2H:hopeful:promising",
+      "reviewStatus": "PASS",
+      "reviewedContentHash": "a445c6f53195a1a22c9e789b632a590f0b0f7efd8f0121522994768800a45a59"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:imaginary",
+      "parentEffectiveContentHash": "ec0e7788ba43d6264c99c154e8a77decb2084c2eec1c259dc5fa4bfb0398172b",
+      "proposalKey": "EDITORIAL_2H2H:imaginary:not-real",
+      "reviewStatus": "PASS",
+      "reviewedContentHash": "ec0e7788ba43d6264c99c154e8a77decb2084c2eec1c259dc5fa4bfb0398172b"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:influence",
+      "parentEffectiveContentHash": "f3bc938339382a3f3c57a2dd457cf330dfc5afa18a43c4f32248e36ac7125fce",
+      "proposalKey": "EDITORIAL_2H2H:influence:affect",
+      "reviewStatus": "PASS",
+      "reviewedContentHash": "f3bc938339382a3f3c57a2dd457cf330dfc5afa18a43c4f32248e36ac7125fce"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:influence",
+      "parentEffectiveContentHash": "7432fe88a82574a3665ea8c15253124dbc90eb72cb9447304e511c291e36db77",
+      "proposalKey": "EDITORIAL_2H2H:influence:effect",
+      "reviewStatus": "PASS",
+      "reviewedContentHash": "7432fe88a82574a3665ea8c15253124dbc90eb72cb9447304e511c291e36db77"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:memorable",
+      "parentEffectiveContentHash": "714372315ca35b7a9acc2d091e98a00d8a9906ce06531ae8f94b249fd09d8378",
+      "proposalKey": "EDITORIAL_2H2H:memorable:worth-remembering",
+      "reviewStatus": "PASS",
+      "reviewedContentHash": "714372315ca35b7a9acc2d091e98a00d8a9906ce06531ae8f94b249fd09d8378"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:mental",
+      "parentEffectiveContentHash": "52cdcebe89ce87758e6f0ad1ca9440e7f96b94ba26cb7d86a66bc780515cf6d9",
+      "proposalKey": "EDITORIAL_2H2H:mental:mind-related",
+      "reviewStatus": "REVIEW",
+      "reviewedContentHash": "52cdcebe89ce87758e6f0ad1ca9440e7f96b94ba26cb7d86a66bc780515cf6d9"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:primate",
+      "parentEffectiveContentHash": "95bad8a24cffc37c0b50fc1690bfa27d323f79e5fcf5f92a8678c8f43364816a",
+      "proposalKey": "EDITORIAL_2H2H:primate:animal-group",
+      "reviewStatus": "PASS",
+      "reviewedContentHash": "95bad8a24cffc37c0b50fc1690bfa27d323f79e5fcf5f92a8678c8f43364816a"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:prohibit",
+      "parentEffectiveContentHash": "d71aafb30bd6f561ee28b32a8e11bef400d723d3158e07b00f29f474ea8f25e4",
+      "proposalKey": "EDITORIAL_2H2H:prohibit:forbid",
+      "reviewStatus": "PASS",
+      "reviewedContentHash": "d71aafb30bd6f561ee28b32a8e11bef400d723d3158e07b00f29f474ea8f25e4"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:recycle",
+      "parentEffectiveContentHash": "cbf3febfae77bafe1cf44e219729e667072aa9485bc02d355810a1dbee6faa72",
+      "proposalKey": "EDITORIAL_2H2H:recycle:process-again",
+      "reviewStatus": "PASS",
+      "reviewedContentHash": "cbf3febfae77bafe1cf44e219729e667072aa9485bc02d355810a1dbee6faa72"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:responsibility",
+      "parentEffectiveContentHash": "f607b6b2aa59ee6e1819848cca58e3c0110cabdec7cb4950fa97c98f10ed9230",
+      "proposalKey": "EDITORIAL_2H2H:responsibility:accountability",
+      "reviewStatus": "PASS",
+      "reviewedContentHash": "f607b6b2aa59ee6e1819848cca58e3c0110cabdec7cb4950fa97c98f10ed9230"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:responsibility",
+      "parentEffectiveContentHash": "4bebf7e5ea9093cf39ea7e595d6cd3cdc5dae20bc80a481d0a7ff4407694cda0",
+      "proposalKey": "EDITORIAL_2H2H:responsibility:duty",
+      "reviewStatus": "PASS",
+      "reviewedContentHash": "4bebf7e5ea9093cf39ea7e595d6cd3cdc5dae20bc80a481d0a7ff4407694cda0"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:speech",
+      "parentEffectiveContentHash": "f6ada266dd7d2a1d8cd9b6f5efd831e6287b8d4ccffcd21b57d2ae5f2552a5a0",
+      "proposalKey": "EDITORIAL_2H2H:speech:address",
+      "reviewStatus": "PASS",
+      "reviewedContentHash": "f6ada266dd7d2a1d8cd9b6f5efd831e6287b8d4ccffcd21b57d2ae5f2552a5a0"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:speech",
+      "parentEffectiveContentHash": "18ff370730bf8dbe6b15d7de9a93a186be0ad8c2dd20a434c38d1c5f78c147be",
+      "proposalKey": "EDITORIAL_2H2H:speech:speaking",
+      "reviewStatus": "REVIEW",
+      "reviewedContentHash": "18ff370730bf8dbe6b15d7de9a93a186be0ad8c2dd20a434c38d1c5f78c147be"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:surprised",
+      "parentEffectiveContentHash": "05850a0991103ebff4c3e794e3b32ce7499d60293847936d599fb7bf5b647f97",
+      "proposalKey": "EDITORIAL_2H2H:surprised:unexpected-feeling",
+      "reviewStatus": "PASS",
+      "reviewedContentHash": "05850a0991103ebff4c3e794e3b32ce7499d60293847936d599fb7bf5b647f97"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:vegetarian",
+      "parentEffectiveContentHash": "5cec7a5aea53b8156640a0a01f20b9e74be7f2575dc919d62a6bc94e5ff9a632",
+      "proposalKey": "EDITORIAL_2H2H:vegetarian:person-not-eating-meat",
+      "reviewStatus": "PASS",
+      "reviewedContentHash": "abb562139de6eb43dfa4a5307b0537e940dfddb40eadb4c25e61314a9ba399aa"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:waste",
+      "parentEffectiveContentHash": "cc3c77f65009259f6ccbd28b0ada3320cc7832d03521c483d0488882d617448e",
+      "proposalKey": "EDITORIAL_2H2H:waste:discarded",
+      "reviewStatus": "PASS",
+      "reviewedContentHash": "cc3c77f65009259f6ccbd28b0ada3320cc7832d03521c483d0488882d617448e"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:waste",
+      "parentEffectiveContentHash": "e966fe691d38fb21145d9ed1b1d11effcc677196c8a2084257c95ec1a654ca3a",
+      "proposalKey": "EDITORIAL_2H2H:waste:discarded-material",
+      "reviewStatus": "PASS",
+      "reviewedContentHash": "e966fe691d38fb21145d9ed1b1d11effcc677196c8a2084257c95ec1a654ca3a"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:waste",
+      "parentEffectiveContentHash": "b010025a9acf77a11c651acad97c4ac5ab281e7417ef008fcf7f92c06f2ff523",
+      "proposalKey": "EDITORIAL_2H2H:waste:poor-use",
+      "reviewStatus": "PASS",
+      "reviewedContentHash": "b010025a9acf77a11c651acad97c4ac5ab281e7417ef008fcf7f92c06f2ff523"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:waste",
+      "parentEffectiveContentHash": "39f7785581b6267282e8e5823f93966ae13de0892c5d804022e7a5a4b6a97e0c",
+      "proposalKey": "EDITORIAL_2H2H:waste:use-badly",
+      "reviewStatus": "PASS",
+      "reviewedContentHash": "39f7785581b6267282e8e5823f93966ae13de0892c5d804022e7a5a4b6a97e0c"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:well-being",
+      "parentEffectiveContentHash": "65a27547a6d6c6972045f9b461630ebe22187a39bbc204aefbb19ae8af183733",
+      "proposalKey": "EDITORIAL_2H2H:well-being:health-comfort",
+      "reviewStatus": "REVIEW",
+      "reviewedContentHash": "65a27547a6d6c6972045f9b461630ebe22187a39bbc204aefbb19ae8af183733"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:white",
+      "parentEffectiveContentHash": "ea6575d7692bb1e7e5fed9cdaf34cb545f5d437fec5373ea1c0e85207f34373f",
+      "proposalKey": "EDITORIAL_2H2H:white:colour",
+      "reviewStatus": "PASS",
+      "reviewedContentHash": "1a6853f69c6f343b8f81dbb6e7154b6ba9b054fc3dd8c0083ff83e333c5311fd"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:white",
+      "parentEffectiveContentHash": "bae2bac2cf4ff10f9f36c939a7c30deed2a8d94d3b833128b2c9155c393114f1",
+      "proposalKey": "EDITORIAL_2H2H:white:colour-noun",
+      "reviewStatus": "PASS",
+      "reviewedContentHash": "3c3cf2975a096145b8e379072d31dc6cd46c531e8a2c85c8357c2cd58e009375"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:wooded",
+      "parentEffectiveContentHash": "0b752e7ffcb524e51807d46c81e9925333d4b5081d9887ac1a280a76329b8714",
+      "proposalKey": "EDITORIAL_2H2H:wooded:having-trees",
+      "reviewStatus": "PASS",
+      "reviewedContentHash": "0b752e7ffcb524e51807d46c81e9925333d4b5081d9887ac1a280a76329b8714"
+    }
+  ],
+  "rights": "UNKNOWN_REVIEW_REQUIRED",
+  "sensesReviewed": 29,
+  "status": "PASS_WITH_REVIEW_ITEMS",
+  "unresolvedHistoricalReviewsNotConvertedToPass": true
+}

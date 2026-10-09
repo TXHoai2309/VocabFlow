@@ -1,0 +1,71 @@
+{
+  "appliedCorrectionCount": 3,
+  "artifactHashes": {
+    "accepted-parent-pins.json": "1776d5aa1e543ab51a2b2afb6ef2fc31ada0ddfccd86b4cfb067b3ef284da48e",
+    "applied-draft-corrections.json": "a419767eb7b061b516a0e88c638130ee61baa4e07f3bac040e1f25b563175cdc",
+    "authored/application-decisions.json": "bebf6dfee240380a705a3928ada20ab8a3c88bc377f4cf9cd9dec8dba11a83d5",
+    "authored/eligibility-assessments.json": "793d65f661e0d0da64541ec950a6f24e7cc311431962dd6b7b4c4e563299db55",
+    "authored/full-batch-review-assessments.json": "79b1b98cb29d675f78278bc409f506bb722f490b030467cbf3b0e6668c51a7d9",
+    "batch-selection-receipt.json": "389aa9a4c8946aecface05e06461a2507b91475d3b931504ab0a956cbd205ccb",
+    "candidate-inventory.json": "8ee4923137cf8feb8a9ab1c3f95ee73c19289febe5795d731bf4d79f6d288695",
+    "cumulative-content-hash-mapping.json": "443c1ce68b2e85a158e3518151efa8ae8bbee1a3c1aac7424e47807c328632f2",
+    "cumulative-remediated-effective-draft-projection.json": "53c191a5973cbd351d94949f2d0e93ff6b0e635afa1f6f30713659b42730a737",
+    "deferred-and-rejected-proposals.json": "8366271635513f4691c37ae86abc743966afa6db2f4777d3ae193b2227761690",
+    "draft-revisions.json": "5ee82bd33c8d6724255082453669910400a41ab8699eed62696b1d4c77736b96",
+    "full-batch-re-review.json": "37445260eb2f18208093fece05c6c851c1610b7f85aebd465399059854e108dd",
+    "post-remediation-quality-audit.json": "8fabf8c673e3811587c42de89981f7bb41ef4d57a918cb8e2fadb65aea1e3caf",
+    "remaining-remediation-queue.json": "7e0a8c1e2395cc8a5e8a1b2e5c111660389af137bd59fbac0cb2730e1bf7edc1",
+    "report.md": "3c2ecd8fa5dcadd3511f7eb9ebcd2d6be18b316929f660394856dea8dc1d4e0c",
+    "validation-summary.json": "2fd319d9e0aa299cb497de194d17a3e51a1b139131301f2e111a7c5e06353ee6"
+  },
+  "authoredInputHashes": {
+    "authored/application-decisions.json": "bebf6dfee240380a705a3928ada20ab8a3c88bc377f4cf9cd9dec8dba11a83d5",
+    "authored/eligibility-assessments.json": "793d65f661e0d0da64541ec950a6f24e7cc311431962dd6b7b4c4e563299db55",
+    "authored/full-batch-review-assessments.json": "79b1b98cb29d675f78278bc409f506bb722f490b030467cbf3b0e6668c51a7d9"
+  },
+  "authorization": {
+    "canonicalIdsAllocated": 0,
+    "contentStatus": "DRAFT",
+    "databaseAccess": "NONE",
+    "databaseWrites": "NONE",
+    "legacyModified": false,
+    "masterReleaseChanged": false,
+    "ownerApprovalsAdded": 0,
+    "phase": "2H.2J-R2",
+    "production": "UNTOUCHED",
+    "publicationEligible": false,
+    "rights": "UNKNOWN_REVIEW_REQUIRED",
+    "rightsClearanceAdded": 0
+  },
+  "batch": "TARGETED_DRAFT_REMEDIATION_BATCH_02",
+  "canonicalIdsAllocated": 0,
+  "cumulativeAppliedCorrectionCount": 6,
+  "databaseAccess": "NONE",
+  "databaseWrites": "NONE",
+  "detachedVerificationReceipt": {
+    "binding": "Detached external command receipt bound to this manifest fingerprint; excluded from self-hash.",
+    "path": "verification-results.json"
+  },
+  "distinctNewlyRevisedSenseCount": 3,
+  "effectiveDraftSenseCount": 1563,
+  "fingerprint": "b3d1335e717ab307d0f5b14dcc811c4e5217f94bd98f26898add9eea68dca84e",
+  "frozenAuthoringCohortFingerprint": "2007c5a1e67d4dab6228378b5b00b22ab4736cb16d3f5a3e3d03735e2a290e44",
+  "fullBatchCount": 4,
+  "fullBatchSenseCount": 29,
+  "ownerApprovalsAdded": 0,
+  "parentCommit": "67a70f5c87030b459f09fa7203404bd7b4e6b69f",
+  "parentFinalAuditFingerprint": "9c90d8c2f2b964e128e19c5db807336d754573467f7f783a8a666e54a242ed77",
+  "parentFinalAuditHandoffFingerprint": "862be642a7223396f43664ca8604d986a5c1f5cbad91c9ab295492f819ff4ed8",
+  "parentPilotFingerprint": "7b7e93bd26bcbac1d18e02b52b929e382722223c67bbe7455bbf9caf1d3a4283",
+  "phase": "2H.2J-R2",
+  "production": "UNTOUCHED",
+  "remoteBaseline": "67a70f5c87030b459f09fa7203404bd7b4e6b69f",
+  "rights": "UNKNOWN_REVIEW_REQUIRED",
+  "selectedCandidateCount": 5,
+  "sourceHashes": {
+    "phase-2h2i-aggregate-qa-checkpoint-07.py": "0edf20839459f818dca86e246d3bd1df50fdc5302ce012370ae035940b4cd335",
+    "phase-2h2j-draft-remediation-batch-02-test.py": "fddf6db61320aea417e8ce5606a87ce2fd0a6e320d49168528c0c7009389a7fa",
+    "phase-2h2j-draft-remediation-batch-02.py": "30389adb3dc87857e30de384fbcc04638e5f855b0d671bd898cd7adf4c97b533",
+    "phase-2h2j-draft-remediation-pilot-01.py": "78bf4b35707dc0a623c87032813bd28291a0b486bb2dcdaf6a4aa24f7a707346"
+  }
+}
