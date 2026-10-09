@@ -6642,3 +6642,61 @@ PASS and the final QA-handoff replay PASS, comparing 6,699 files with zero write
 Core checkpoint 03 and all semantic content remain unchanged; only the additive
 handoff fingerprint changes with the corrected source pin. Full Dataset total
 remains 403 passing tests; typecheck/lint/frozen checks remain applicable.
+
+
+## Phase 2H.2H-R3 — frozen bulk-500 checkpoint 04 (2026-10-09)
+
+Author exactly the next 100 checkpoint-03 pending groups, batches 061–080,
+without reselection. New content: 142 bilingual Sense drafts, 27 multi-Sense
+groups; cumulative cohort 400/500, pending 100, corpus 920 groups / 1,390
+effective Senses, remaining corpus 5,223 groups. AI self-review is 112 PASS /
+30 REVIEW / zero FAIL, with no human approval inferred.
+
+Preserve all prior 1,248 exact records and every earlier QA assessment, including
+original 16, checkpoint-02 27 and checkpoint-03 57 REVIEW objects. New QA history
+records reason categories separately: FORM 1, GRAMMAR 3, LEXICAL_IDENTITY 3,
+POLARITY_CONTEXT_SIGNAL 5, POS_CLASSIFICATION 7, SEMANTICS 1, SENSE_BOUNDARY 2,
+SOURCE_SIMILARITY 1 and TRANSLATION 7. These are nonexclusive counts retaining
+historical corrected findings, not independent statistical quality estimates.
+
+Apply 12 exact-parent field overlays and re-review all Senses in nine affected
+batches. Preserve manuscripts and initial notes. Corrections improve Vietnamese
+rope/equality/carriage phrasing, everyday unemployed scope, Bible display,
+learner grammar for war/freight/rust, stricken register and countable youth.
+Accessible lexical evidence supersedes the initial youth gender-neutral
+recommendation: countable youth is a boy/young man, unlike collective youth.
+No unavailable full dictionary page is claimed as read; actual search-returned
+lexical evidence and failed 403 opens are recorded in fact-verification.json.
+
+Frozen selection: ed303558ab029cdf24f49ca9226b2910bd4beb79d41b6d1d27edb5f4dfc52076.
+Parent checkpoint 03: 7f29d6e83de770a5b2825fe9a1bf30dc164736fa2744b993e501a08cf8593b2c.
+Checkpoint 04: 94166e0c8a0586317a82047c717895ae25968b522fa2a37ca342b1f5da9f7560.
+QA handoff: e2d794086c6214cca16b1182f8aa73d14c56af4b9fb6d1e057efa0c3daa30d18.
+
+Artifacts and concrete bilingual handoff are additive under
+vocabflow-dataset/workspaces/master-editorial-bulk-500-resume/checkpoints/checkpoint-04.
+Generic continuation and checkpoint-03 handoff remain unchanged. The sole prior
+source exception removes a stale checkpoint-04 absence assertion from a test;
+its actual before/after file-hash comparison still verifies zero writes.
+All 6,696 remaining prior script/Dataset byte pins are preserved.
+
+All new records remain DRAFT / UNKNOWN_REVIEW_REQUIRED. No owner approvals,
+canonical IDs, runtime mappings, Master release changes, legacy modifications,
+database access/writes or Production operations. Hybrid 2.2.1 remains frozen at
+87 Lexemes / 100 Senses. Existing seven stashes and twelve worktree paths,
+including VocabFlow-us55, are preserved. External command results are reported
+separately in verification-results.json after actual execution; deterministic
+assembly does not run tests, typecheck or lint. Canonical pnpm wrapper NOT_RUN.
+
+After separate Phase 2H.2H-R4 authorization, --prepare --checkpoint 5 freezes
+the final 100 keys; then author/review/seal batches 081–100. No checkpoint 05
+is prepared or authored in this run.
+
+
+Executed R3 validation: 403 previous + 28 new Dataset tests PASS (431 total,
+zero failed/skipped). Original, checkpoint-02, checkpoint-03, checkpoint-03
+handoff, checkpoint-04 and checkpoint-04 QA-history replay PASS with hash seed
+20261010 and before/after byte comparisons proving zero writes. Direct Node
+22.23.2 typecheck and ESLint PASS; frozen Hybrid check is a zero-write NOOP.
+Canonical pnpm wrapper NOT_RUN. All 6,696 prior byte pins, seven stashes and
+twelve worktree paths preserved. Final evidence: checkpoint-04/verification-results.json.

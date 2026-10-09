@@ -1,0 +1,365 @@
+{
+  "batch": 72,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:hinder",
+    "NORMALIZED_HEADWORD:impression",
+    "NORMALIZED_HEADWORD:peel",
+    "NORMALIZED_HEADWORD:surprising",
+    "NORMALIZED_HEADWORD:wait"
+  ],
+  "replayEvidence": "Persisted PSV parsed; source-supported POS/ordinals and exact frozen slice verified; original content hashes bound to AI review. Full replay recorded externally.",
+  "reviewNotesSha256": "0153103aeea82d7c5bf81557eab862aeba896db41579625135b9427a7b54ca0b",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Traffic delaying shelves illustrates obstruction without falsely requiring a complete stop, improving the source's overly absolute wording. Vietnamese cản trở and delivery object are accurate. Hinder progress/from doing valency is sound.",
+      "proposalKey": "EDITORIAL_2H2H:hinder:make-progress-difficult",
+      "reviewedContentHash": "9eee2812e18a58045e9975f1132389a57b3e630ea994de4935da4ed930a90133",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Effect made by a restored hall and uncertain belief about meeting timing are separate source-supported noun boundaries. Vietnamese distinguishes ấn tượng from có cảm giác. Make an impression on and have the impression that match the examples; neither proposal asserts the belief is fact.",
+      "proposalKey": "EDITORIAL_2H2H:impression:effect-on-observer",
+      "reviewedContentHash": "5260b452ee4aaaf73473165c1e6403d0ea714ec08d890451b4b3ee87f19a8422",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Effect made by a restored hall and uncertain belief about meeting timing are separate source-supported noun boundaries. Vietnamese distinguishes ấn tượng from có cảm giác. Make an impression on and have the impression that match the examples; neither proposal asserts the belief is fact.",
+      "proposalKey": "EDITORIAL_2H2H:impression:belief-from-limited-evidence",
+      "reviewedContentHash": "b3e3ed555683667ce89ae08a2e2cfadc6419896bfcb788591ff2f5415233ac48",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Carrot skin removal fits gọt vỏ, followed faithfully by thin-strip cutting. Transitive peel and regular forms are accurate. The grammatical contrast does not allocate an unsupported noun or figurative boundary.",
+      "proposalKey": "EDITORIAL_2H2H:peel:remove-outer-skin",
+      "reviewedContentHash": "8a4bbad4a7da773361185e516608a62e8e2f64a5b5c3e63aed24c43fb75c64d5",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Unexpected variety of birds fits a cause-of-surprise adjective, with Vietnamese preserving colourful birds rather than changing the garden itself. Surprising versus surprised is useful; no arbitrary species count or scientific fact is asserted.",
+      "proposalKey": "EDITORIAL_2H2H:surprising:unexpected",
+      "reviewedContentHash": "822311412f684a12a99f653527ec8592a262390f51ee5cf3c793e392989d34e6",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Waiting for a guide and a ferry-wait period illustrate verb and countable noun separately. Vietnamese retains beside the ticket office and nearly an hour. For/to complements and exclusion of separate wait-on meanings are accurate.",
+      "proposalKey": "EDITORIAL_2H2H:wait:stay-until-something-happens",
+      "reviewedContentHash": "f0331fa511fc120f63c6eb64a5fb7027f1fcb7db45ba1aa1ecb4c98246314144",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Waiting for a guide and a ferry-wait period illustrate verb and countable noun separately. Vietnamese retains beside the ticket office and nearly an hour. For/to complements and exclusion of separate wait-on meanings are accurate.",
+      "proposalKey": "EDITORIAL_2H2H:wait:period-of-waiting",
+      "reviewedContentHash": "5ed852086527c2a6b18df17a05e4f8889fe79e01f7ce1aa6625bec27972b5da0",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 7,
+  "sha256": "31c344b7d99418d88f912d22dca1f10f3b812d26f9a23b4df29db34d5e0ba335",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:hinder": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C2",
+            "value": "C2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/1461/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1461/rawHeadword",
+        "rawPosEvidencePointer": "/records/1461/sourcePosRaw",
+        "recordEvidenceSha256": "db6cfd548782cda63053c8f921f5d84e222ce6cb46f350238999fa70afc97d98",
+        "recordIndex": 1461,
+        "sourceNoteGuid": "D37X.A;^>n",
+        "sourceRecordId": "1559931008262",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:impression": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/2177/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2177/rawHeadword",
+        "rawPosEvidencePointer": "/records/2177/sourcePosRaw",
+        "recordEvidenceSha256": "4b8e98f5e3bcbd77650786d787c9b47a1019697ef5bed03c6fbf12b4dea13c97",
+        "recordIndex": 2177,
+        "sourceNoteGuid": "P:p`$Q/Ayo",
+        "sourceRecordId": "1788223608216",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B1",
+            "value": "B1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/772/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/772/rawHeadword",
+        "rawPosEvidencePointer": "/records/772/sourcePosRaw",
+        "recordEvidenceSha256": "6599499fd3cd74ed6665a25e844e829c2467cebaf312e536ce6fbeb099f4155b",
+        "recordIndex": 772,
+        "sourceNoteGuid": "sflg_}O8#<",
+        "sourceRecordId": "1559931007547",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:peel": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/2777/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2777/rawHeadword",
+        "rawPosEvidencePointer": "/records/2777/sourcePosRaw",
+        "recordEvidenceSha256": "8dc00e3d8446967a9cb7fe50f5e1d864e3b0402a27a373b3268897c4209a5592",
+        "recordIndex": 2777,
+        "sourceNoteGuid": "F^P3+24rm/",
+        "sourceRecordId": "1559931009633",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:surprising": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/1573/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1573/rawHeadword",
+        "rawPosEvidencePointer": "/records/1573/sourcePosRaw",
+        "recordEvidenceSha256": "c5c522dd04ae0f51c858e2b1ead89cff0ca85691c8bd918f02697b78ca97c337",
+        "recordIndex": 1573,
+        "sourceNoteGuid": "yL^j/q1_&m",
+        "sourceRecordId": "1788223607612",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:wait": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN",
+          "VERB"
+        ],
+        "rawContentPointer": "/records/292/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/292/rawHeadword",
+        "rawPosEvidencePointer": "/records/292/sourcePosRaw",
+        "recordEvidenceSha256": "c583a42651488d0da8ea6480866d21ab14325ed971e67731bded53c0bfa39607",
+        "recordIndex": 292,
+        "sourceNoteGuid": "Q6^;}|3*:]",
+        "sourceRecordId": "1788223606243",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::A1",
+            "value": "A1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "A1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/957/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/957/rawHeadword",
+        "rawPosEvidencePointer": "/records/957/sourcePosRaw",
+        "recordEvidenceSha256": "39e3dab5a7e038b3b87b0c5996d885f92045ebf2f6fcbfe6f343b660d6176be0",
+        "recordIndex": 957,
+        "sourceNoteGuid": "rl5q;G@.&z",
+        "sourceRecordId": "1559931007738",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ]
+  },
+  "substantiveDefectsFound": 0
+}

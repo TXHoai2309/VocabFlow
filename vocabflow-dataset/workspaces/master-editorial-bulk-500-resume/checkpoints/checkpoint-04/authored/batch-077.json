@@ -1,0 +1,342 @@
+{
+  "batch": 77,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:intertwine",
+    "NORMALIZED_HEADWORD:ruins",
+    "NORMALIZED_HEADWORD:sideways",
+    "NORMALIZED_HEADWORD:whilst",
+    "NORMALIZED_HEADWORD:district"
+  ],
+  "replayEvidence": "Persisted PSV parsed; source-supported POS/ordinals and exact frozen slice verified; original content hashes bound to AI review. Full replay recorded externally.",
+  "reviewNotesSha256": "822b87d46d9b6ea8b6cfa90f9c1f322b1229941a480b3c6891c4e0f04ff214c9",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Bean stems twisting around a support illustrate the physical boundary rather than an abstract merger. Vietnamese quấn vào nhau retains both stems and support. Transitive/intransitive and with grammar are correct; figurative use is qualified as an extension, not a canonical identity decision.",
+      "proposalKey": "EDITORIAL_2H2H:intertwine:twist-together",
+      "reviewedContentHash": "85a2ed56e289b47d0ddcf7885b0fecfd6fea7a21aa534e739009f5d3464b2971",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Remaining damaged tower parts improve on the source's merely unused-building wording. Vietnamese tàn tích preserves stone tower. Plural agreement and ruins of are accurate, with ruin-destruction distinguished without changing the frozen plural headword.",
+      "proposalKey": "EDITORIAL_2H2H:ruins:remains-of-buildings",
+      "reviewedContentHash": "01988baec2a373bc81da6941025591e1aa2356de1423a3e9beccb689d239ff52",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Moving a cupboard to one side clears an opening, and Vietnamese sang một bên fits. Forward/backward contrast defines direction rather than speed. Source-only adverb is retained; no adjective is invented to satisfy coverage.",
+      "proposalKey": "EDITORIAL_2H2H:sideways:towards-one-side",
+      "reviewedContentHash": "b70edeb667268df75cad234ec2f842d931cf30bba80134e4e1a38ca59e710768",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Soup/salad simultaneity and simple-but-hard-to-build contrast represent two genuine conjunction boundaries. Vietnamese trong khi versus mặc dù is faithful. British/formal usage is qualified, with no absolute claim that American speakers never use whilst.",
+      "proposalKey": "EDITORIAL_2H2H:whilst:during-the-time",
+      "reviewedContentHash": "f4a9fbe90ebc93ab7603a5f2a9d674045a25b73f5d30adbe8b154c05c0330a73",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Soup/salad simultaneity and simple-but-hard-to-build contrast represent two genuine conjunction boundaries. Vietnamese trong khi versus mặc dù is faithful. British/formal usage is qualified, with no absolute claim that American speakers never use whilst.",
+      "proposalKey": "EDITORIAL_2H2H:whilst:although",
+      "reviewedContentHash": "146e4ea32b953364a1fdc8da8f6bb940f436e45010d2523b7bc9d60141c4c3a2",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Old market area need not be an administrative unit, so the example uses khu rather than forcing quận or huyện. Vietnamese retains river location. Definition and note correctly reserve administrative translations for an actual governance context.",
+      "proposalKey": "EDITORIAL_2H2H:district:defined-local-area",
+      "reviewedContentHash": "53c85c1a1ecb51ed5a08455981ca6256900e424dddf0a1f240beb6951cfb223e",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 6,
+  "sha256": "ddd82b2d360888f65d7b299facc6d8ee9e3eb2f5c1f09b7ecd9d04106fbbc79d",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:district": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1775/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1775/rawHeadword",
+        "rawPosEvidencePointer": "/records/1775/sourcePosRaw",
+        "recordEvidenceSha256": "21ca420184844c7da8debf0fc4c4e35a7510800fb90d4f3592d34a18700db781",
+        "recordIndex": 1775,
+        "sourceNoteGuid": "v)O-Xq^(ua",
+        "sourceRecordId": "1788223607814",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1272/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1272/rawHeadword",
+        "rawPosEvidencePointer": "/records/1272/sourcePosRaw",
+        "recordEvidenceSha256": "d4fc6372dfcfb96b1820377f20c71a8579773f44583bd952e22e8f04bf8dcc9d",
+        "recordIndex": 1272,
+        "sourceNoteGuid": "IIOWP<E*q)",
+        "sourceRecordId": "1559931008066",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:intertwine": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C2",
+            "value": "C2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/3576/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3576/rawHeadword",
+        "rawPosEvidencePointer": "/records/3576/sourcePosRaw",
+        "recordEvidenceSha256": "b0524d01f53a4347e095455575862c51cf1ea3595576f826804ef10ea58ac702",
+        "recordIndex": 3576,
+        "sourceNoteGuid": "J>VxK{3xV!",
+        "sourceRecordId": "1616499876709",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:ruins": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/721/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/721/rawHeadword",
+        "rawPosEvidencePointer": "/records/721/sourcePosRaw",
+        "recordEvidenceSha256": "dec979cb312a45d8184c5b639a07d75ce33e1521621de1d4fcdcd2e66f5cb3b9",
+        "recordIndex": 721,
+        "sourceNoteGuid": "zm/=Wj@J*E",
+        "sourceRecordId": "1559931007495",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:sideways": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C2",
+            "value": "C2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADVERB"
+        ],
+        "rawContentPointer": "/records/3269/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3269/rawHeadword",
+        "rawPosEvidencePointer": "/records/3269/sourcePosRaw",
+        "recordEvidenceSha256": "e88004be5d336b5ed9b150d7c8cce72197b2074638d993ce6bfd7770f1930c14",
+        "recordIndex": 3269,
+        "sourceNoteGuid": "chWzoFyutI",
+        "sourceRecordId": "1559931010154",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:whilst": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "C1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "CONJUNCTION"
+        ],
+        "rawContentPointer": "/records/3819/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3819/rawHeadword",
+        "rawPosEvidencePointer": "/records/3819/sourcePosRaw",
+        "recordEvidenceSha256": "ff79f61b168d77dcd8fd085eb8cca0f233162c1209664be09a001eb8a84cdb9a",
+        "recordIndex": 3819,
+        "sourceNoteGuid": "iYp`1)==YT",
+        "sourceRecordId": "1788223609858",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "CONJUNCTION"
+        ],
+        "rawContentPointer": "/records/4669/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4669/rawHeadword",
+        "rawPosEvidencePointer": "/records/4669/sourcePosRaw",
+        "recordEvidenceSha256": "2642640258891bdcf3fc90e19a54b0a8f96746d44fc0dbb539ec0c20b22a6eb5",
+        "recordIndex": 4669,
+        "sourceNoteGuid": "mKb~/UJ<@j",
+        "sourceRecordId": "1646317636455",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ]
+  },
+  "substantiveDefectsFound": 0
+}

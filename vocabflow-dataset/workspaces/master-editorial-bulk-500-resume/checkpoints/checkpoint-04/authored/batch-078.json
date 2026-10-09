@@ -1,0 +1,270 @@
+{
+  "batch": 78,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:foresee",
+    "NORMALIZED_HEADWORD:increasingly",
+    "NORMALIZED_HEADWORD:peninsula",
+    "NORMALIZED_HEADWORD:stern",
+    "NORMALIZED_HEADWORD:wax"
+  ],
+  "replayEvidence": "Persisted PSV parsed; source-supported POS/ordinals and exact frozen slice verified; original content hashes bound to AI review. Full replay recorded externally.",
+  "reviewNotesSha256": "81455938ee18c5edc4903806691548b7dfe5eae2cfb98b27bc7b8b4bebf24cfe",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Anticipating delays preserves uncertainty better than the source's know-before wording. Vietnamese dự liệu and extra journey time are faithful. Foresaw/foreseen and that/object complements are accurate; no supernatural certainty is implied.",
+      "proposalKey": "EDITORIAL_2H2H:foresee:anticipate-future",
+      "reviewedContentHash": "39c9dc37aee17a966839850ec8b0e75abce865a2aff57f991d1f629de5015c8d",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Popularity rising after longer opening hours demonstrates change over time rather than a fixed strong degree. Vietnamese ngày càng retains the trend. Adverb placement is correct and no causal evidence about an actual library is claimed.",
+      "proposalKey": "EDITORIAL_2H2H:increasingly:more-over-time",
+      "reviewedContentHash": "751831a2f9b180554dd9f73618981ba0d6f8c528c60e5496d1518c153a4a6a6d",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Water on most sides with a land connection is more general than a rigid three-geometric-sides definition. Vietnamese bán đảo and mainland road preserve the distinction from island. No actual geographic location or copied source fact is asserted.",
+      "proposalKey": "EDITORIAL_2H2H:peninsula:land-mostly-surrounded-by-water",
+      "reviewedContentHash": "80894fe24e223ebcade12bc9036442d3182e9510f40344e7a169a02a4dde8a49",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Serious strict attitude and coach's look fit nghiêm nghị. The example expresses a reaction without inventing punishment. Attributive/predicative and with complements are sound, with no unsupported ship-part noun draft.",
+      "proposalKey": "EDITORIAL_2H2H:stern:serious-and-strict",
+      "reviewedContentHash": "b6ea23694f970efa7a0a92be3bc51be5d73b90c13c4840e628f6cfb5656b3b8f",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Heat-softening material and model shaping support sáp rather than solely sáp nến. Vietnamese preserves warming before shaping. Material uncountability and type-countability qualification fit; no exact melting temperature or media is imported.",
+      "proposalKey": "EDITORIAL_2H2H:wax:meltable-substance",
+      "reviewedContentHash": "fa43e2220d79cc575e6682060a543575b264ed7b2e98f2ff927cc734c415ec94",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 5,
+  "sha256": "a99d698669f8acd38dff57b8a8b5db18a9d27e302b5aabf92ac9a9d2f9fc38e1",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:foresee": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C2",
+            "value": "C2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/2616/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2616/rawHeadword",
+        "rawPosEvidencePointer": "/records/2616/sourcePosRaw",
+        "recordEvidenceSha256": "f88036c7e1e8b794cffbfeef5fd66b3c3683f69de74321044131560c70ff6278",
+        "recordIndex": 2616,
+        "sourceNoteGuid": "P2dcSKdSFE",
+        "sourceRecordId": "1559931009464",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:increasingly": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADVERB"
+        ],
+        "rawContentPointer": "/records/2749/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2749/rawHeadword",
+        "rawPosEvidencePointer": "/records/2749/sourcePosRaw",
+        "recordEvidenceSha256": "d8efe9d906625c5368ae26ce7faf2b4b9262647bedaaefa2b9a2afbae20b8be8",
+        "recordIndex": 2749,
+        "sourceNoteGuid": "j${d>q_2x%",
+        "sourceRecordId": "1788223608788",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:peninsula": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3003/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3003/rawHeadword",
+        "rawPosEvidencePointer": "/records/3003/sourcePosRaw",
+        "recordEvidenceSha256": "bee8770ad09040c0b20f0028a973203ae8a039dbecd0d7d0bd7c538782899378",
+        "recordIndex": 3003,
+        "sourceNoteGuid": "s,2L?(|D4b",
+        "sourceRecordId": "1559931009872",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:stern": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C2",
+            "value": "C2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/2627/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2627/rawHeadword",
+        "rawPosEvidencePointer": "/records/2627/sourcePosRaw",
+        "recordEvidenceSha256": "d286d52755466b4778146b70a8960d315c9d3c414f636e6a769a3ccdb6bd4f56",
+        "recordIndex": 2627,
+        "sourceNoteGuid": "ew0=OK/2h5",
+        "sourceRecordId": "1559931009475",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:wax": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C2",
+            "value": "C2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/2006/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2006/rawHeadword",
+        "rawPosEvidencePointer": "/records/2006/sourcePosRaw",
+        "recordEvidenceSha256": "53800899d94478945626e017cd0c7417f9fc0669c394887f7ccaf13e0a4c4181",
+        "recordIndex": 2006,
+        "sourceNoteGuid": "Q}.yxi)+k&",
+        "sourceRecordId": "1559931008818",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ]
+  },
+  "substantiveDefectsFound": 0
+}

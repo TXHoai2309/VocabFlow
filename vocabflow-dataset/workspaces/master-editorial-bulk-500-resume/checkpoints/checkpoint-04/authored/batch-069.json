@@ -1,0 +1,413 @@
+{
+  "batch": 69,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:unemployed",
+    "NORMALIZED_HEADWORD:west",
+    "NORMALIZED_HEADWORD:conservation",
+    "NORMALIZED_HEADWORD:folklore",
+    "NORMALIZED_HEADWORD:import"
+  ],
+  "replayEvidence": "Persisted PSV parsed; source-supported POS/ordinals and exact frozen slice verified; original content hashes bound to AI review. Full replay recorded externally.",
+  "reviewNotesSha256": "076acae5c1a38a264dfb31e75a44bdee07940d12272436942d8ccd483c6c2925",
+  "reviews": [
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: [SEMANTICS] Factory closure and months without work translate faithfully, but definitionEn's able and available qualifier narrows an everyday adjective to a technical employment-statistics category. Remove that qualifier by overlay; no official statistical definition is being approved.",
+      "proposalKey": "EDITORIAL_2H2H:unemployed:without-a-job",
+      "reviewedContentHash": "34caca535532d98c32f693c67cc1a102bd9e45474082657579d00b4ae7263c0f",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Compass-direction noun, attributive west entrance and headed-west adverb use three supported ordinals. Vietnamese retains railway relation, renovation and bridge sequence. Lowercase direction guidance preserves the possibility of proper names; no to is wrongly inserted before the adverb.",
+      "proposalKey": "EDITORIAL_2H2H:west:western-direction",
+      "reviewedContentHash": "1390e9c8ccef8da98a12d959d510b15a86a648bcc1272738e82cf9ee5f5a46a4",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Compass-direction noun, attributive west entrance and headed-west adverb use three supported ordinals. Vietnamese retains railway relation, renovation and bridge sequence. Lowercase direction guidance preserves the possibility of proper names; no to is wrongly inserted before the adverb.",
+      "proposalKey": "EDITORIAL_2H2H:west:western-side",
+      "reviewedContentHash": "99ef5109d97c3a3344253fec97601ee26913f1dc4a39032422b425668909a400",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Compass-direction noun, attributive west entrance and headed-west adverb use three supported ordinals. Vietnamese retains railway relation, renovation and bridge sequence. Lowercase direction guidance preserves the possibility of proper names; no to is wrongly inserted before the adverb.",
+      "proposalKey": "EDITORIAL_2H2H:west:towards-west",
+      "reviewedContentHash": "7e021d86c23b3f79511811790f3cbbf508304fb532625a8775cb54785d94793b",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Forest nursery supports environmental protection rather than resource saving or art restoration. Vietnamese bảo tồn rừng is precise. Careful management avoids equating conservation with a ban on all human activity; no outcome or sustainability certification is claimed.",
+      "proposalKey": "EDITORIAL_2H2H:conservation:protecting-nature",
+      "reviewedContentHash": "791b6261cf1b738f76ae798622f4375024cdb971359d74862e33ff6868c554fd",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Intergenerational stories, beliefs and customs correct the source gloss's overly narrow written-literature association. Vietnamese văn hóa dân gian is broad enough, and older residents' storytelling fits. Uncountability and a story from construction are sound; no particular tradition is fabricated.",
+      "proposalKey": "EDITORIAL_2H2H:folklore:traditional-cultural-stories",
+      "reviewedContentHash": "ddc070c761f29bbe3aca77074b1a219c3a00a2dc438255453cd5eb553781a34b",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Products, bringing products from abroad and the importing activity occupy the three supplied boundaries. Local pottery contrasted with imports preserves directionality, and fabric source is retained. Countable product versus uncountable activity notes are distinct; no digital import Sense is silently introduced.",
+      "proposalKey": "EDITORIAL_2H2H:import:goods-brought-in",
+      "reviewedContentHash": "1e6a337a84e355294b3a83dbaac38e7fd69e131603e19ad560558d202dd00205",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Products, bringing products from abroad and the importing activity occupy the three supplied boundaries. Local pottery contrasted with imports preserves directionality, and fabric source is retained. Countable product versus uncountable activity notes are distinct; no digital import Sense is silently introduced.",
+      "proposalKey": "EDITORIAL_2H2H:import:bring-goods-from-abroad",
+      "reviewedContentHash": "d6d412c26db435403f71def71501118d6ac714fa4eefdbac5b24bd1e5ab53ada",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Products, bringing products from abroad and the importing activity occupy the three supplied boundaries. Local pottery contrasted with imports preserves directionality, and fabric source is retained. Countable product versus uncountable activity notes are distinct; no digital import Sense is silently introduced.",
+      "proposalKey": "EDITORIAL_2H2H:import:activity-of-importing",
+      "reviewedContentHash": "03b656cfc6be1b0b6a6f8b1bfba884e550b8eb24520bc80c96435c2ae7e2fbe4",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 9,
+  "sha256": "60c64bbebcf2a849f588ab85f872387bc33bcd52e1aa643d069afc1601e21619",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:conservation": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3183/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3183/rawHeadword",
+        "rawPosEvidencePointer": "/records/3183/sourcePosRaw",
+        "recordEvidenceSha256": "2db34c62882fe49b64e7c05cf444c44a0ec02765ca6abd13719858dba2336d79",
+        "recordIndex": 3183,
+        "sourceNoteGuid": "bjgd(gGTFr",
+        "sourceRecordId": "1788223609222",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3699/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3699/rawHeadword",
+        "rawPosEvidencePointer": "/records/3699/sourcePosRaw",
+        "recordEvidenceSha256": "eaf2e779b1e86b91f9fc8885ed1d1806e80026dbd90710635a9672aa811dd041",
+        "recordIndex": 3699,
+        "sourceNoteGuid": "oHC!hrkkqd",
+        "sourceRecordId": "1623660519681",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:folklore": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C2",
+            "value": "C2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/2711/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2711/rawHeadword",
+        "rawPosEvidencePointer": "/records/2711/sourcePosRaw",
+        "recordEvidenceSha256": "aeb7465fa3c3bf2ef0364e922260094ecc4d870a7c02691afdbf75aff7ced29f",
+        "recordIndex": 2711,
+        "sourceNoteGuid": "y(aKx{iE;&",
+        "sourceRecordId": "1559931009564",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:import": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN",
+          "VERB"
+        ],
+        "rawContentPointer": "/records/2299/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2299/rawHeadword",
+        "rawPosEvidencePointer": "/records/2299/sourcePosRaw",
+        "recordEvidenceSha256": "105408b8764b93590f43cebd5cf6ae95d0c8a108378e03e4721507d92308fcbe",
+        "recordIndex": 2299,
+        "sourceNoteGuid": "B[_}]FFOY>",
+        "sourceRecordId": "1788223608338",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B1",
+            "value": "B1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/3077/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3077/rawHeadword",
+        "rawPosEvidencePointer": "/records/3077/sourcePosRaw",
+        "recordEvidenceSha256": "564b7e4902f00bf5a5bd258ed0dd7c86b9983d1b5a24d88745dda1fca507fb60",
+        "recordIndex": 3077,
+        "sourceNoteGuid": "EJ_9AwDI#=",
+        "sourceRecordId": "1559931009948",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:unemployed": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/2371/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2371/rawHeadword",
+        "rawPosEvidencePointer": "/records/2371/sourcePosRaw",
+        "recordEvidenceSha256": "4934464f54151cc40e31f217561c61b4d9cdcadcff5ce28c7759331eddd078be",
+        "recordIndex": 2371,
+        "sourceNoteGuid": "ommN.1S4S6",
+        "sourceRecordId": "1788223608410",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:west": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE",
+          "ADVERB",
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/331/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/331/rawHeadword",
+        "rawPosEvidencePointer": "/records/331/sourcePosRaw",
+        "recordEvidenceSha256": "1e61dd928e1c6833f601c58a8eb4da9b08358e00e9cb942293eb62e94cd5e011",
+        "recordIndex": 331,
+        "sourceNoteGuid": "O84{qZT?5-",
+        "sourceRecordId": "1788223606282",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  "substantiveDefectsFound": 1
+}

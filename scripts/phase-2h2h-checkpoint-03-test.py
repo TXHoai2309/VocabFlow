@@ -153,7 +153,8 @@ class Checkpoint03Tests(unittest.TestCase):
         self.assertEqual((receipt['firstBatch'],receipt['lastBatch']),(61,80))
         self.assertEqual(len(parent['records']),1248)
         self.assertEqual(receipt['candidateGroupKeys'],self.parent['pending'][100:200])
-        self.assertFalse(r.location(4).exists())
+        # A later authorized checkpoint may exist; this read-only parent lookup
+        # must preserve every file, rather than require an absent directory.
         self.assertEqual(before,{p.as_posix():r.sha(p) for p in r.WS.rglob('*') if p.is_file()})
     def test_sidecar_no_write_check(self):
         outputs={h.CP/n:r.encode(v) for n,v in self.objects.items()};outputs[h.CP/'editorial-handoff.md']=self.report

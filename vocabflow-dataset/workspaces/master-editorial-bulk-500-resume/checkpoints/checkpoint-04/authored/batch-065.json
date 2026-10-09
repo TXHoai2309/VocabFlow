@@ -1,0 +1,363 @@
+{
+  "batch": 65,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:kettle",
+    "NORMALIZED_HEADWORD:proceed",
+    "NORMALIZED_HEADWORD:thirty",
+    "NORMALIZED_HEADWORD:weather",
+    "NORMALIZED_HEADWORD:deserve"
+  ],
+  "replayEvidence": "Persisted PSV parsed; source-supported POS/ordinals and exact frozen slice verified; original content hashes bound to AI review. Full replay recorded externally.",
+  "reviewNotesSha256": "cd2715f7010916d7d0a07baeeb64894f2745db411866d64ee742909fec7ec981",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Handled boiling-water vessel and automatic electric-kettle example support the source-only noun. Vietnamese retains the simultaneous cup arrangement. Teapot contrast describes primary use rather than an absolute material or design distinction.",
+      "proposalKey": "EDITORIAL_2H2H:kettle:water-boiling-vessel",
+      "reviewedContentHash": "4d43500630ed23a81db947fe42b2ecde9d9e85d04ecf642f22c3e36be92dc24a",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Repairs after reading a plan and directions to a waiting area illustrate the two supplied continuation/movement boundaries. With and to complements are accurate; Vietnamese preserves the sequence and destination. Formal register is marked for each, with no unsupported legal proceeding noun.",
+      "proposalKey": "EDITORIAL_2H2H:proceed:continue-an-activity",
+      "reviewedContentHash": "b794e137cc7cbf9a8d7246582727acf9635b6ccbc779e681879546e2b966c94a",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Repairs after reading a plan and directions to a waiting area illustrate the two supplied continuation/movement boundaries. With and to complements are accurate; Vietnamese preserves the sequence and destination. Formal register is marked for each, with no unsupported legal proceeding noun.",
+      "proposalKey": "EDITORIAL_2H2H:proceed:move-onward",
+      "reviewedContentHash": "64b54808780d2e0b0d71addd3a0d901ab8d529982961797a79de16ec8f72cf3b",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Ten beyond twenty and thirty seedlings agree. Vietnamese cây con correctly translates seedlings. Cardinal, ordinal and decade/age forms are distinguished without claiming an approved numeral taxonomy.",
+      "proposalKey": "EDITORIAL_2H2H:thirty:number-30",
+      "reviewedContentHash": "2cc257e4ad6f2090e17ecd8875a36bd3d9b22656e5fecd5a0e93aa93e6c78470",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Dry conditions during roof repair represent current atmospheric conditions rather than climate. Vietnamese khô ráo and trong lúc retain content. Uncountable weather and a spell of weather explain countability without introducing a weather verb.",
+      "proposalKey": "EDITORIAL_2H2H:weather:atmospheric-conditions",
+      "reviewedContentHash": "d5d788cd58e694811e5d92de1b90b8a78a89301545bb4bf596e89a72057e6e25",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Volunteer recognition illustrates merit without promising a reward. Vietnamese xứng đáng được ghi nhận retains the positive result and shelter operation. Noun and infinitive complements are sound; grammar correctly allows negative consequences in other contexts.",
+      "proposalKey": "EDITORIAL_2H2H:deserve:merit-a-result",
+      "reviewedContentHash": "526b8d370539768b9f508fffc4ddf849e80fd2102c179ac20ba4315f9f8c52b3",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 6,
+  "sha256": "3a02abd67cfd2bc5ed1b5dfa95e0553cf6b5acf6dd13c88fc560c58523efbc4f",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:deserve": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/2603/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2603/rawHeadword",
+        "rawPosEvidencePointer": "/records/2603/sourcePosRaw",
+        "recordEvidenceSha256": "3366b4aee16f6a23be1e5e57be56803c170e4f6142c1917790415a38a0a51786",
+        "recordIndex": 2603,
+        "sourceNoteGuid": "L0&4:>EpqE",
+        "sourceRecordId": "1788223608642",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/1134/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1134/rawHeadword",
+        "rawPosEvidencePointer": "/records/1134/sourcePosRaw",
+        "recordEvidenceSha256": "cc66cf99a87b03ca3f23f15c2aec093223e006648aeec81c9b6cc70cbe846935",
+        "recordIndex": 1134,
+        "sourceNoteGuid": "ftqMah1_o~",
+        "sourceRecordId": "1559931007924",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:kettle": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B1",
+            "value": "B1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3644/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3644/rawHeadword",
+        "rawPosEvidencePointer": "/records/3644/sourcePosRaw",
+        "recordEvidenceSha256": "144cdfba31b61007f49b2c8ca6b95c946c2779cfa6a666d1185a41c421ed1255",
+        "recordIndex": 3644,
+        "sourceNoteGuid": "rZ0_$`}1Yy",
+        "sourceRecordId": "1622618139144",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:proceed": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/3329/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3329/rawHeadword",
+        "rawPosEvidencePointer": "/records/3329/sourcePosRaw",
+        "recordEvidenceSha256": "3844db65aadb6d203dc328e1700ae949031a8c497532fdbd26358d04f7a54075",
+        "recordIndex": 3329,
+        "sourceNoteGuid": "Po;UG<b5lH",
+        "sourceRecordId": "1788223609368",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/677/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/677/rawHeadword",
+        "rawPosEvidencePointer": "/records/677/sourcePosRaw",
+        "recordEvidenceSha256": "d1236cceea82a63114481ab956094fa3830c8f845d6f2680988a16e1f1c65f41",
+        "recordIndex": 677,
+        "sourceNoteGuid": "i.=4Rb@A5i",
+        "sourceRecordId": "1559931007449",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:thirty": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NUMBER"
+        ],
+        "rawContentPointer": "/records/806/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/806/rawHeadword",
+        "rawPosEvidencePointer": "/records/806/sourcePosRaw",
+        "recordEvidenceSha256": "4503e420cb6fe8b65d1ad0e9684f47f13c2d5cff79532a4c9f5af23dd3fe9f6c",
+        "recordIndex": 806,
+        "sourceNoteGuid": "oej{CO@IbV",
+        "sourceRecordId": "1788223606824",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:weather": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/594/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/594/rawHeadword",
+        "rawPosEvidencePointer": "/records/594/sourcePosRaw",
+        "recordEvidenceSha256": "2bf4fa6c876675bf0622e353a040c6e6b4c9b69b892106e571e354817c93eb74",
+        "recordIndex": 594,
+        "sourceNoteGuid": "t3>ba>/nc3",
+        "sourceRecordId": "1788223606566",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::A1",
+            "value": "A1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "A1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/17/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/17/rawHeadword",
+        "rawPosEvidencePointer": "/records/17/sourcePosRaw",
+        "recordEvidenceSha256": "8dfc3f29fbaf325b84bb97c8b5b78525cee7b149d1cfe62b5b2a4794755bb6a6",
+        "recordIndex": 17,
+        "sourceNoteGuid": "M=waO5i^}~",
+        "sourceRecordId": "1556384730815",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ]
+  },
+  "substantiveDefectsFound": 0
+}

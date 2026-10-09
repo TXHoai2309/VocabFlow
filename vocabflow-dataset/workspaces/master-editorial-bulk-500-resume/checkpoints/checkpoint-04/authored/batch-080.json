@@ -1,0 +1,364 @@
+{
+  "batch": 80,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:youth",
+    "NORMALIZED_HEADWORD:deliberately",
+    "NORMALIZED_HEADWORD:enchant",
+    "NORMALIZED_HEADWORD:idle",
+    "NORMALIZED_HEADWORD:part-time"
+  ],
+  "replayEvidence": "Persisted PSV parsed; source-supported POS/ordinals and exact frozen slice verified; original content hashes bound to AI review. Full replay recorded externally.",
+  "reviewNotesSha256": "9eba04d9c7543497aad33f9f56e2da5fcf3641f803920ff6f826b57a0927c6e5",
+  "reviews": [
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: [TRANSLATION] Life period, countable person and collective young people are genuine noun uses, with countability/register distinguished. The countable example leaves gender unspecified, while examples/0/vi thanh niên can suggest a male; change to người trẻ tuổi in an overlay. Keep human identity/age classification unresolved and do not merge all three uses into one canonical Sense.",
+      "proposalKey": "EDITORIAL_2H2H:youth:young-period-of-life",
+      "reviewedContentHash": "228af610410984010f5ef7749e6289a25b883d7d28e605e56bb119d648b3cf34",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: [TRANSLATION] Life period, countable person and collective young people are genuine noun uses, with countability/register distinguished. The countable example leaves gender unspecified, while examples/0/vi thanh niên can suggest a male; change to người trẻ tuổi in an overlay. Keep human identity/age classification unresolved and do not merge all three uses into one canonical Sense.",
+      "proposalKey": "EDITORIAL_2H2H:youth:young-person",
+      "reviewedContentHash": "1b51478eb1ac90d544d52cda24e6f4b34a95102288ae9e7de5d5c6ba9a587e06",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: [TRANSLATION] Life period, countable person and collective young people are genuine noun uses, with countability/register distinguished. The countable example leaves gender unspecified, while examples/0/vi thanh niên can suggest a male; change to người trẻ tuổi in an overlay. Keep human identity/age classification unresolved and do not merge all three uses into one canonical Sense.",
+      "proposalKey": "EDITORIAL_2H2H:youth:young-people-collectively",
+      "reviewedContentHash": "79f5c2d1ca13fc9986e754f202285b29a2ed7ae576d271396955232a19e2a3fa",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Intentional blank final page for notes fits chủ ý and need not imply malicious intent. Vietnamese preserves reader purpose and final-page position. Adverb placement is accurate; no accidental action or slow-careful sense is asserted.",
+      "proposalKey": "EDITORIAL_2H2H:deliberately:on-purpose",
+      "reviewedContentHash": "d467d89c344465f83fed6529b1f491ca63ac2fffb57cca24230f4e62dcee6180",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Storytelling that delights and holds attention matches cuốn hút; wandering fox and audience are faithfully retained. Transitive with and passive by are useful. The spell-casting contrast does not create an unsupported magical Sense draft.",
+      "proposalKey": "EDITORIAL_2H2H:enchant:delight-and-fascinate",
+      "reviewedContentHash": "5533686bd0704209f934b814430a8dda1400aa6bc53af0cd1641b9927844c21f",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Unused sewing machine demonstrates temporary inactivity rather than laziness. Vietnamese không hoạt động is correct, with awaited replacement part retained. Stand/remain idle and person/equipment distinction keep value judgment out of the definition.",
+      "proposalKey": "EDITORIAL_2H2H:idle:not-active",
+      "reviewedContentHash": "7fb4499874b6083210b55eb092270b5164bab3fabbfa25d1b04db6bbfd98fead",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Attributive job adjective and works-part-time adverb preserve two grammatical boundaries with the same schedule relation. Vietnamese bán thời gian and theo chế độ bán thời gian are natural. No fixed number of hours or employment-law classification is inferred.",
+      "proposalKey": "EDITORIAL_2H2H:part-time:shorter-working-schedule",
+      "reviewedContentHash": "472ed6031c165a613f54f277dbef9a85f95dca714c01308ef4b1f4d380fc0661",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Attributive job adjective and works-part-time adverb preserve two grammatical boundaries with the same schedule relation. Vietnamese bán thời gian and theo chế độ bán thời gian are natural. No fixed number of hours or employment-law classification is inferred.",
+      "proposalKey": "EDITORIAL_2H2H:part-time:on-a-shorter-schedule",
+      "reviewedContentHash": "1fc0db6b61e5c99204abde44c336c64d86f857570c75d1825e2be964073b5c19",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 8,
+  "sha256": "ab2c2922091fd1ffd08d325ff8bc34f8c157ae2bcade14851e0be0e87c068824",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:deliberately": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADVERB"
+        ],
+        "rawContentPointer": "/records/2935/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2935/rawHeadword",
+        "rawPosEvidencePointer": "/records/2935/sourcePosRaw",
+        "recordEvidenceSha256": "b7e0dcdfc0fe7b269dc158dc89266bb8efd5051a6ef616c5ca3f9a7a0c77a71a",
+        "recordIndex": 2935,
+        "sourceNoteGuid": "j:OUf7p.WN",
+        "sourceRecordId": "1788223608974",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:enchant": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C2",
+            "value": "C2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/2526/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2526/rawHeadword",
+        "rawPosEvidencePointer": "/records/2526/sourcePosRaw",
+        "recordEvidenceSha256": "e44a4b6971aabdd5c8a3a86339459cc504e1cf969e60970fde52178bb5318419",
+        "recordIndex": 2526,
+        "sourceNoteGuid": "i!F;grdxh1",
+        "sourceRecordId": "1559931009369",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:idle": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C2",
+            "value": "C2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/2677/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2677/rawHeadword",
+        "rawPosEvidencePointer": "/records/2677/sourcePosRaw",
+        "recordEvidenceSha256": "25278e20a7f2dc4deb19353eef8ca8b341ad2dabd895a7428416aaaacada2828",
+        "recordIndex": 2677,
+        "sourceNoteGuid": "dJ(EI~hj*B",
+        "sourceRecordId": "1559931009529",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:part-time": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE",
+          "ADVERB"
+        ],
+        "rawContentPointer": "/records/3016/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3016/rawHeadword",
+        "rawPosEvidencePointer": "/records/3016/sourcePosRaw",
+        "recordEvidenceSha256": "f3f722e1689ecdb9d824cfc17ede0beb51f123665e71cab632a6221adef70fdd",
+        "recordIndex": 3016,
+        "sourceNoteGuid": "kBI&7>!m}G",
+        "sourceRecordId": "1788223609055",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE",
+          "ADVERB"
+        ],
+        "rawContentPointer": "/records/4026/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/4026/rawHeadword",
+        "rawPosEvidencePointer": "/records/4026/sourcePosRaw",
+        "recordEvidenceSha256": "d824ad1003b741c654064ede9af311b71a9b7167bf309cd5725032b551eaa2ff",
+        "recordIndex": 4026,
+        "sourceNoteGuid": "va[cypa@0m",
+        "sourceRecordId": "1646317635808",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:youth": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1906/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1906/rawHeadword",
+        "rawPosEvidencePointer": "/records/1906/sourcePosRaw",
+        "recordEvidenceSha256": "a6f46fa8993bb6ca56ecd424f01e07ba785414d297124706fb3d63443c40cc85",
+        "recordIndex": 1906,
+        "sourceNoteGuid": "brNad(R?r:",
+        "sourceRecordId": "1788223607945",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "substantiveDefectsFound": 1
+}

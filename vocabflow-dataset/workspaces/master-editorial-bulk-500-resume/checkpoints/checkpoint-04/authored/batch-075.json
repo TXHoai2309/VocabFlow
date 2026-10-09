@@ -1,0 +1,266 @@
+{
+  "batch": 75,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:skillful",
+    "NORMALIZED_HEADWORD:word",
+    "NORMALIZED_HEADWORD:amazed",
+    "NORMALIZED_HEADWORD:freight",
+    "NORMALIZED_HEADWORD:logical"
+  ],
+  "replayEvidence": "Persisted PSV parsed; source-supported POS/ordinals and exact frozen slice verified; original content hashes bound to AI review. Full replay recorded externally.",
+  "reviewNotesSha256": "4fdfbc0f7043a2eb236087eec309b4d0635af0f3dd369eba36a4e6d7b40a7f72",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Carpenter's successful repair illustrates practiced ability. Vietnamese keeps the negative without changing chair shape. Skillful/skilful regional spelling is correctly scoped; no duplicate canonical lemma is allocated from spelling alone.",
+      "proposalKey": "EDITORIAL_2H2H:skillful:showing-ability",
+      "reviewedContentHash": "5c7ab1bf3bcec1b6ee4ad7c501b2cd09e9ab56599660e937706282d2292635c7",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Spoken/written unit with meaning fits a language word, not a promise or command. Vietnamese từ preserves each-new-word example. Countability and word for complement are sound; avoiding mandatory spaces makes the definition language-aware without inventing orthographic rules.",
+      "proposalKey": "EDITORIAL_2H2H:word:unit-of-language",
+      "reviewedContentHash": "9f1372f3b6ddd33b4a64e57d68ff8527713a2731b9bc0d698acfd84d6aa3e0d9",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Person's strong reaction to a tiny model is the amazed state, distinct from amazing cause. Vietnamese kinh ngạc trước matches amazed at. Infinitive/that/by alternatives are grammatical and no emotional diagnosis is inferred.",
+      "proposalKey": "EDITORIAL_2H2H:amazed:very-surprised",
+      "reviewedContentHash": "f9e63fc5c9412e5c4d219e6a2fcc6f55fcebb5213ed49bea50959d27058dc9ea",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: [GRAMMAR] Goods transport and uncountability are accurate, with train timing faithfully translated. grammarNotesEn ends with an internal canonical-identity statement rather than learner usage; replace that sentence with a useful goods/passenger contrast in an overlay.",
+      "proposalKey": "EDITORIAL_2H2H:freight:transported-goods",
+      "reviewedContentHash": "cef2a96dca1b0f157a89ddb7fe0e18aac886571918b7781e2c86c6a953cc0e01",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Reasoning definition and timetable justification fit hợp lý without claiming premises must be true. Vietnamese preserves the explanation's role. Grammar correctly separates logical consistency from factual truth, and no formal proof is fabricated.",
+      "proposalKey": "EDITORIAL_2H2H:logical:following-sound-reasoning",
+      "reviewedContentHash": "6fafecec50d0375f41444d3a5ead0a9f150b258dc5895f4e608f23d471e57f80",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 5,
+  "sha256": "1d70e841ff21706bb49b50cd66db96c981d97459ff00b97c5eb3a3f4c7166853",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:amazed": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/2365/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2365/rawHeadword",
+        "rawPosEvidencePointer": "/records/2365/sourcePosRaw",
+        "recordEvidenceSha256": "c9bf340d10ac721abf2982727df166fc184b0460f37e8a530628f8b67895136a",
+        "recordIndex": 2365,
+        "sourceNoteGuid": "dgiV(C`0Z4",
+        "sourceRecordId": "1788223608404",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:freight": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3242/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3242/rawHeadword",
+        "rawPosEvidencePointer": "/records/3242/sourcePosRaw",
+        "recordEvidenceSha256": "e182516c90b75936cc5a509385e47c6465e52836ad4a55e829b7498b22aebfa2",
+        "recordIndex": 3242,
+        "sourceNoteGuid": "Lf0SPT<7Ez",
+        "sourceRecordId": "1559931010124",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:logical": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/2894/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2894/rawHeadword",
+        "rawPosEvidencePointer": "/records/2894/sourcePosRaw",
+        "recordEvidenceSha256": "9ef14b581e19766bdacb5b5b406cc1a2f450bd0c2f0118cdaa79c0065d9efafb",
+        "recordIndex": 2894,
+        "sourceNoteGuid": "h!!<&E}%mu",
+        "sourceRecordId": "1788223608933",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:skillful": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C2",
+            "value": "C2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/2782/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2782/rawHeadword",
+        "rawPosEvidencePointer": "/records/2782/sourcePosRaw",
+        "recordEvidenceSha256": "a5dad7fc84578ff677397f3ad468e020f83b7f92a3effd177dc1343c0b35f9d2",
+        "recordIndex": 2782,
+        "sourceNoteGuid": "u1@3V5-g5D",
+        "sourceRecordId": "1559931009638",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:word": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/350/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/350/rawHeadword",
+        "rawPosEvidencePointer": "/records/350/sourcePosRaw",
+        "recordEvidenceSha256": "3009d7dff25ad6aa08557c086c169a3544244f997fdaef263a8061d90bed4dfa",
+        "recordIndex": 350,
+        "sourceNoteGuid": "Q~?K;0+!vT",
+        "sourceRecordId": "1788223606301",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ]
+  },
+  "substantiveDefectsFound": 1
+}

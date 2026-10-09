@@ -1,0 +1,290 @@
+{
+  "batch": 64,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:naturally",
+    "NORMALIZED_HEADWORD:stair",
+    "NORMALIZED_HEADWORD:yawn",
+    "NORMALIZED_HEADWORD:dentist",
+    "NORMALIZED_HEADWORD:faint"
+  ],
+  "replayEvidence": "Persisted PSV parsed; source-supported POS/ordinals and exact frozen slice verified; original content hashes bound to AI review. Full replay recorded externally.",
+  "reviewNotesSha256": "ff9e0205f1d73e9894f8faee5d8932a1716ee93e592e0ade9e6c5443d69ab7b8",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Rain-filled pond illustrates a natural process; sentence-initial Naturally comments on an expected reaction. Vietnamese chưa được mở faithfully renders unopened, even if a polarity heuristic flags it. The grammar does not make natural equal safe; both ordinal boundaries remain separate.",
+      "proposalKey": "EDITORIAL_2H2H:naturally:without-artificial-help",
+      "reviewedContentHash": "ef1c55e369cff2374d093e061b56b6b668d79a0f54463819ca1fd94061800530",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Rain-filled pond illustrates a natural process; sentence-initial Naturally comments on an expected reaction. Vietnamese chưa được mở faithfully renders unopened, even if a polarity heuristic flags it. The grammar does not make natural equal safe; both ordinal boundaries remain separate.",
+      "proposalKey": "EDITORIAL_2H2H:naturally:as-expected",
+      "reviewedContentHash": "2e97d7d54cdd1f284601dc0860d57266f236736244a6c64d1b4d87f7d49419fe",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: One loose stair illustrates singular bậc, with attic and creak retained in Vietnamese. Grammar distinguishes a single step from plural stairs without claiming a staircase must contain a particular number of steps.",
+      "proposalKey": "EDITORIAL_2H2H:stair:single-step",
+      "reviewedContentHash": "dc8e57c9fb1f19330d00ebed34494eb2b5011adb67417f64cee1159fb40b684c",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Tired mouth movement and late-film example support the source-only verb. Vietnamese retains the decision to sleep. Often tired is appropriately qualified, and no unsupported yawn noun proposal or boredom diagnosis is made.",
+      "proposalKey": "EDITORIAL_2H2H:yawn:open-mouth-tired",
+      "reviewedContentHash": "a103e3790451c86734f0dccd05d928c7f50d99afca3496ba3ad45ef86dc34929",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Teeth-and-gums professional and filling-cleaning example agree. Vietnamese chỗ trám is precise and does not add treatment instructions. Countability and see/make an appointment with constructions are useful; surgery refers to premises in this usage note.",
+      "proposalKey": "EDITORIAL_2H2H:dentist:tooth-care-professional",
+      "reviewedContentHash": "f90af6f23124f6b5650c469ec4a065a5684c9929fc9b0bc4bd3fc0e4d826df3b",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Brief loss of consciousness supports only the supplied verb, with fainted correctly inflected. Actor and stopped rehearsal are faithfully translated. The example assigns no medical cause and the grammar distinguishes the unsupported adjective boundary.",
+      "proposalKey": "EDITORIAL_2H2H:faint:lose-consciousness-briefly",
+      "reviewedContentHash": "4590ca451eec9729cdc356721288fdbfd429a2c032b5f554799e749a3109bee8",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 6,
+  "sha256": "d012b8c13260eb58559c1233d8e301bef6723d70858a5b1ac5c938a3d8fa8789",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:dentist": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1689/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1689/rawHeadword",
+        "rawPosEvidencePointer": "/records/1689/sourcePosRaw",
+        "recordEvidenceSha256": "7395bc2a0a074c5470aa03cafe8279df1142773a1c80091a40e8aaca051b0981",
+        "recordIndex": 1689,
+        "sourceNoteGuid": "bAKm%QZXju",
+        "sourceRecordId": "1788223607728",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:faint": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C2",
+            "value": "C2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/2409/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2409/rawHeadword",
+        "rawPosEvidencePointer": "/records/2409/sourcePosRaw",
+        "recordEvidenceSha256": "101175f6fa945cd859007eb52f4b00a7c7d1edede24bfe23a034a4d8459b0529",
+        "recordIndex": 2409,
+        "sourceNoteGuid": "nNb*8p}kGz",
+        "sourceRecordId": "1559931009244",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:naturally": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADVERB"
+        ],
+        "rawContentPointer": "/records/2075/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2075/rawHeadword",
+        "rawPosEvidencePointer": "/records/2075/sourcePosRaw",
+        "recordEvidenceSha256": "914e2a31e11bb0a36f0160bd2112fa9907b28c4378df8c5b1e7f166155b0ff70",
+        "recordIndex": 2075,
+        "sourceNoteGuid": "w$v2=^bb=b",
+        "sourceRecordId": "1788223608114",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:stair": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1716/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1716/rawHeadword",
+        "rawPosEvidencePointer": "/records/1716/sourcePosRaw",
+        "recordEvidenceSha256": "f2fd0066f22a528adb477204a3f0083c17d39ac5332d9a3cd2aa3570e9ce0957",
+        "recordIndex": 1716,
+        "sourceNoteGuid": "m4*+Q=]c6U",
+        "sourceRecordId": "1788223607755",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:yawn": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C2",
+            "value": "C2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/3416/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3416/rawHeadword",
+        "rawPosEvidencePointer": "/records/3416/sourcePosRaw",
+        "recordEvidenceSha256": "dfca27197b2517d539e02f965dfa1c7f2b3e4cac8229f2ec2f03429671bb3240",
+        "recordIndex": 3416,
+        "sourceNoteGuid": "gcoraEPI7h",
+        "sourceRecordId": "1559931010318",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ]
+  },
+  "substantiveDefectsFound": 0
+}

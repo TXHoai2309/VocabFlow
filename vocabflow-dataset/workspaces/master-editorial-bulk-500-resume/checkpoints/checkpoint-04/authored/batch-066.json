@@ -1,0 +1,314 @@
+{
+  "batch": 66,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:habit",
+    "NORMALIZED_HEADWORD:illegal",
+    "NORMALIZED_HEADWORD:outdoor",
+    "NORMALIZED_HEADWORD:sometimes",
+    "NORMALIZED_HEADWORD:winding"
+  ],
+  "replayEvidence": "Persisted PSV parsed; source-supported POS/ordinals and exact frozen slice verified; original content hashes bound to AI review. Full replay recorded externally.",
+  "reviewNotesSha256": "53f763a02f3bb14979c9039ea9a45bc152b9d5989b990cfdf38a5e0700e83b92",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Repeated gate-checking is a habit, not a moral judgment or clothing sense. Vietnamese preserves grandfather and before-bed timing. The note supports habit of doing and break/get into, with no unsupported countability change.",
+      "proposalKey": "EDITORIAL_2H2H:habit:regular-behaviour",
+      "reviewedContentHash": "739c9236e4b74babae099127471e2a8e69076e56aa772e902fb4609a4f0eb9f8",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Fictional stolen-art trade illustrates law-prohibited activity without giving jurisdiction-specific legal advice. Vietnamese trái phép is natural. The definition's applicable-law qualifier avoids treating every social disapproval as illegality.",
+      "proposalKey": "EDITORIAL_2H2H:illegal:against-the-law",
+      "reviewedContentHash": "3a0ef4c7d09a2916a30f4314b86d2a9e26957422720be95397bf5d83e2f142e6",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Attributive outdoor concert describes an event outside buildings; a covered courtyard can still be outdoors. Vietnamese retains relocation. Grammar explicitly separates outdoor adjective from outdoors adverb, avoiding an unsupported POS workaround.",
+      "proposalKey": "EDITORIAL_2H2H:outdoor:outside-buildings",
+      "reviewedContentHash": "c4979f7f662915797043cc74578e226a211f47641f4ee6601f04f3a83887d129",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Occasional herbs from a neighbour illustrate frequency, and the example naturally places sometimes before brings. Vietnamese đôi khi retains non-universality. Placement guidance says usually rather than prescribing a single position.",
+      "proposalKey": "EDITORIAL_2H2H:sometimes:on-some-occasions",
+      "reviewedContentHash": "32ecffcec4e8785d8db1b54b0806aca54446bfde18b9d558d8afe61fd5a98935",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: A curving path among tea fields matches quanh co and source-only adjective. The vowel comparison to find distinguishes winding from moving-air wind without importing IPA or audio bytes. No verb proposal is allocated.",
+      "proposalKey": "EDITORIAL_2H2H:winding:having-many-bends",
+      "reviewedContentHash": "80f7b4496efbaee378356d125eca4deb926b475dc261462f0bfd22224c673a54",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 5,
+  "sha256": "f99ac7fc334b69c7d280da6aad3327127f8c3732bb288b7b2d7914aaaf5e4ec2",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:habit": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1581/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1581/rawHeadword",
+        "rawPosEvidencePointer": "/records/1581/sourcePosRaw",
+        "recordEvidenceSha256": "c7c81004091bfeb23b42aed1311eb61e22b8d363d9045e9dae58eae6955c5d94",
+        "recordIndex": 1581,
+        "sourceNoteGuid": "P%-x-Y{ee;",
+        "sourceRecordId": "1788223607620",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::A2",
+            "value": "A2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "A2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/67/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/67/rawHeadword",
+        "rawPosEvidencePointer": "/records/67/sourcePosRaw",
+        "recordEvidenceSha256": "17247c43d06a46af2e6269c9ce9302f2b78e4c0f11d533c9cd2ac461746de363",
+        "recordIndex": 67,
+        "sourceNoteGuid": "n:X`n%fRx.",
+        "sourceRecordId": "1556384730866",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:illegal": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/1946/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1946/rawHeadword",
+        "rawPosEvidencePointer": "/records/1946/sourcePosRaw",
+        "recordEvidenceSha256": "82d197de2d3590fb25a78dc5f5f8f31c8aa13e0d68a0c2d6f19c760e117aa2d5",
+        "recordIndex": 1946,
+        "sourceNoteGuid": "HRk3{K?F&A",
+        "sourceRecordId": "1788223607985",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B1",
+            "value": "B1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/3457/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3457/rawHeadword",
+        "rawPosEvidencePointer": "/records/3457/sourcePosRaw",
+        "recordEvidenceSha256": "58f6470e4ca0c3445435a6003fc9fee9475146638d97bb408910f3458aa1c7ea",
+        "recordIndex": 3457,
+        "sourceNoteGuid": "mpe{y%?R(l",
+        "sourceRecordId": "1612700074306",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:outdoor": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/2236/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2236/rawHeadword",
+        "rawPosEvidencePointer": "/records/2236/sourcePosRaw",
+        "recordEvidenceSha256": "ccef8592e723a20e6a704cf6b23b30e24af00c77d966e0296e8c2073b1f48512",
+        "recordIndex": 2236,
+        "sourceNoteGuid": "q}F##vd:]M",
+        "sourceRecordId": "1788223608275",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:sometimes": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADVERB"
+        ],
+        "rawContentPointer": "/records/336/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/336/rawHeadword",
+        "rawPosEvidencePointer": "/records/336/sourcePosRaw",
+        "recordEvidenceSha256": "7178a4605b4bd3fa988cbb2ae10d2fc18acba3633b74f349d386177a8e558859",
+        "recordIndex": 336,
+        "sourceNoteGuid": "xDp3a$&R|>",
+        "sourceRecordId": "1788223606287",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:winding": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C2",
+            "value": "C2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/3361/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3361/rawHeadword",
+        "rawPosEvidencePointer": "/records/3361/sourcePosRaw",
+        "recordEvidenceSha256": "78b619c70912aef26ae5ac6262bc0bd93ab74acf37daa125b281e46dc40a82c0",
+        "recordIndex": 3361,
+        "sourceNoteGuid": "q;$b?ep>o^",
+        "sourceRecordId": "1559931010257",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ]
+  },
+  "substantiveDefectsFound": 0
+}

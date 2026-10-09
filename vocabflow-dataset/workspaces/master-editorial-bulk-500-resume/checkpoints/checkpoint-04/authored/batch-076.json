@@ -1,0 +1,418 @@
+{
+  "batch": 76,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:prehistoric",
+    "NORMALIZED_HEADWORD:sew",
+    "NORMALIZED_HEADWORD:yellow",
+    "NORMALIZED_HEADWORD:double",
+    "NORMALIZED_HEADWORD:etiquette"
+  ],
+  "replayEvidence": "Persisted PSV parsed; source-supported POS/ordinals and exact frozen slice verified; original content hashes bound to AI review. Full replay recorded externally.",
+  "reviewNotesSha256": "48beb0ce466c19770e0459683dfe346369814bcac1ab56de9713d882a1752d4a",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Before written history and museum tools support tiền sử, with no invented date or claim that all regions began history simultaneously. Regional-period note is qualified; source-only adjective and Vietnamese river location are preserved.",
+      "proposalKey": "EDITORIAL_2H2H:prehistoric:before-written-history",
+      "reviewedContentHash": "b54f591fc3a13184f8c5a56b2021ab6cae405086830662afe9d5b2697c95c633",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Needle/thread joining and apron-pocket attachment support khâu/may. Onto accurately identifies attachment. Sewed and sewn/sewed participles are correct; the note allows hand and machine sewing without falsely defining it as embroidery alone.",
+      "proposalKey": "EDITORIAL_2H2H:sew:join-with-thread",
+      "reviewedContentHash": "56bf75ffaaa09a53790dda73a4a99ba77037120ab2518cea15dea612923ef1de",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Attributive ribbon colour and uncountable paint colour distinguish the two Oxford POS boundaries. Vietnamese vàng and xanh lá retain both colours. Yellowish is an appropriate degree contrast; no colour-identity merge is authorized.",
+      "proposalKey": "EDITORIAL_2H2H:yellow:having-yellow-colour",
+      "reviewedContentHash": "6cd5644231c561990b89add5a992c64a8649b345bf12a6880a8d4b53f215dd4a",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Attributive ribbon colour and uncountable paint colour distinguish the two Oxford POS boundaries. Vietnamese vàng and xanh lá retain both colours. Yellowish is an appropriate degree contrast; no colour-identity merge is authorized.",
+      "proposalKey": "EDITORIAL_2H2H:yellow:yellow-colour",
+      "reviewedContentHash": "daf6dbaecf40f4265368b3781a65498ca6f5bb597e5633d9a1bba235a7f99ac3",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: [POS_CLASSIFICATION] All five source ordinals are represented: two-part door adjective, noun-followed quantity determiner, standalone twelve-tool quantity pronoun, membership-change verb and paid-double adverb. Vietnamese preserves each construction. Det/pronoun/adverb taxonomy boundaries need owner review despite source support; accessible Oxford adjective/adverb and published wordlist extracts corroborate usage but do not approve canonical POS.",
+      "proposalKey": "EDITORIAL_2H2H:double:two-part",
+      "reviewedContentHash": "15a6c5f7fd813f485c529b2772d6680d8584ade6fd9f43f4002e8f98325569bf",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: [POS_CLASSIFICATION] All five source ordinals are represented: two-part door adjective, noun-followed quantity determiner, standalone twelve-tool quantity pronoun, membership-change verb and paid-double adverb. Vietnamese preserves each construction. Det/pronoun/adverb taxonomy boundaries need owner review despite source support; accessible Oxford adjective/adverb and published wordlist extracts corroborate usage but do not approve canonical POS.",
+      "proposalKey": "EDITORIAL_2H2H:double:twice-quantity-before-noun",
+      "reviewedContentHash": "c94a68096c179864367f668a22992471404d610d4ab405d659e12ef470e012dd",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: [POS_CLASSIFICATION] All five source ordinals are represented: two-part door adjective, noun-followed quantity determiner, standalone twelve-tool quantity pronoun, membership-change verb and paid-double adverb. Vietnamese preserves each construction. Det/pronoun/adverb taxonomy boundaries need owner review despite source support; accessible Oxford adjective/adverb and published wordlist extracts corroborate usage but do not approve canonical POS.",
+      "proposalKey": "EDITORIAL_2H2H:double:twice-quantity-alone",
+      "reviewedContentHash": "29ab4bad4815e8c0fdea9e3c7b829eb8debb06788f7e8d2400b1fc9c4624056a",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: [POS_CLASSIFICATION] All five source ordinals are represented: two-part door adjective, noun-followed quantity determiner, standalone twelve-tool quantity pronoun, membership-change verb and paid-double adverb. Vietnamese preserves each construction. Det/pronoun/adverb taxonomy boundaries need owner review despite source support; accessible Oxford adjective/adverb and published wordlist extracts corroborate usage but do not approve canonical POS.",
+      "proposalKey": "EDITORIAL_2H2H:double:become-twice",
+      "reviewedContentHash": "5d0d494449a5ab68e7d95eeb267b43e8bba84006d69f34ec6b4050d11e5c7587",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: [POS_CLASSIFICATION] All five source ordinals are represented: two-part door adjective, noun-followed quantity determiner, standalone twelve-tool quantity pronoun, membership-change verb and paid-double adverb. Vietnamese preserves each construction. Det/pronoun/adverb taxonomy boundaries need owner review despite source support; accessible Oxford adjective/adverb and published wordlist extracts corroborate usage but do not approve canonical POS.",
+      "proposalKey": "EDITORIAL_2H2H:double:pay-twice",
+      "reviewedContentHash": "b548ddd0ff2015bf3263286cfd2be29cc17efa84ee1d6ab68a8244ef04ae35d7",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Setting-specific politeness rules and formal dining introduction fit phép lịch sự. Vietnamese retains before-meal timing. Uncountability and culture/setting qualification avoid treating one dining convention as a universal moral rule.",
+      "proposalKey": "EDITORIAL_2H2H:etiquette:rules-of-politeness",
+      "reviewedContentHash": "9dbd065726c6d9fd51516987007d4012f796d70e4b1e726b5d7eb9ae4d2c766a",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 10,
+  "sha256": "78322855edda58a072a68ec98b102fcaa72f43488b271aaf35e44a4d3ad2fde0",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:double": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE",
+          "ADVERB",
+          "DETERMINER",
+          "PRONOUN",
+          "VERB"
+        ],
+        "rawContentPointer": "/records/1109/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1109/rawHeadword",
+        "rawPosEvidencePointer": "/records/1109/sourcePosRaw",
+        "recordEvidenceSha256": "41c231d7e53526c66d9efee27d5b969a56f37fe730ad212cb162f948ed461f22",
+        "recordIndex": 1109,
+        "sourceNoteGuid": "eu3&UkLpI1",
+        "sourceRecordId": "1788223607127",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::A2",
+            "value": "A2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "A2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/872/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/872/rawHeadword",
+        "rawPosEvidencePointer": "/records/872/sourcePosRaw",
+        "recordEvidenceSha256": "57d038939f704f9e7bfc8d3f022689b4bacbaaa8a1d0d908ceda332e1de36891",
+        "recordIndex": 872,
+        "sourceNoteGuid": "xep,)`KmEP",
+        "sourceRecordId": "1559931007649",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:etiquette": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/3240/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/3240/rawHeadword",
+        "rawPosEvidencePointer": "/records/3240/sourcePosRaw",
+        "recordEvidenceSha256": "e42003b686d123acb80ab41209b3751fbd5542ca671c1763b9ffe98de25009bc",
+        "recordIndex": 3240,
+        "sourceNoteGuid": "uHBvlm;%Vv",
+        "sourceRecordId": "1559931010122",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:prehistoric": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "ADJECTIVE"
+        ],
+        "rawContentPointer": "/records/2022/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2022/rawHeadword",
+        "rawPosEvidencePointer": "/records/2022/sourcePosRaw",
+        "recordEvidenceSha256": "455639515d5c91f37ecabe7c956ca143d6953c66e19afea517e6d0348b67ef4f",
+        "recordIndex": 2022,
+        "sourceNoteGuid": "Pg&!EvGSLO",
+        "sourceRecordId": "1559931008834",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:sew": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::C1",
+            "value": "C1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "C1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/1320/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1320/rawHeadword",
+        "rawPosEvidencePointer": "/records/1320/sourcePosRaw",
+        "recordEvidenceSha256": "c9eca6aff7399b450537d9a5f7c5a74059d1f61580d9ce442e248aa40cc09b71",
+        "recordIndex": 1320,
+        "sourceNoteGuid": "hIi`ww{tR0",
+        "sourceRecordId": "1559931008114",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:yellow": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADJECTIVE",
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/686/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/686/rawHeadword",
+        "rawPosEvidencePointer": "/records/686/sourcePosRaw",
+        "recordEvidenceSha256": "f0d1004c5121ab501a51bfc9f5bd02b8689857627f9b3ef5468a390e4d71dcf5",
+        "recordIndex": 686,
+        "sourceNoteGuid": "qtwJ@Fy%N-",
+        "sourceRecordId": "1788223606692",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "substantiveDefectsFound": 0
+}

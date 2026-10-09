@@ -1,0 +1,386 @@
+{
+  "batch": 70,
+  "blockers": [],
+  "criticalDefectsFound": 0,
+  "fullBatchReview": true,
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:necklace",
+    "NORMALIZED_HEADWORD:slip",
+    "NORMALIZED_HEADWORD:yard",
+    "NORMALIZED_HEADWORD:cotton",
+    "NORMALIZED_HEADWORD:exactly"
+  ],
+  "replayEvidence": "Persisted PSV parsed; source-supported POS/ordinals and exact frozen slice verified; original content hashes bound to AI review. Full replay recorded externally.",
+  "reviewNotesSha256": "58c561942e35993eb8b37e496c1568be1ff1b1b32f5c29858273590b5e45a8d5",
+  "reviews": [
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Neck jewellery and leaf-shaped silver pendant are faithfully rendered as dây chuyền and mặt. Pendant contrast avoids collapsing the whole necklace with one ornament. Countability is accurate and no media or source sentence is reused.",
+      "proposalKey": "EDITORIAL_2H2H:necklace:neck-jewellery",
+      "reviewedContentHash": "5844ea698f12c3c1f2cfa5b1e8d8a0177040e658c600e675a0af83d809f5a3d9",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Losing footing need not end in falling; handrail recovery demonstrates that distinction naturally. Vietnamese kịp bám is contextually faithful to caught. Slipped/slipping correctly double p, and the supplied ordinal stays a verb rather than a paper slip noun.",
+      "proposalKey": "EDITORIAL_2H2H:slip:lose-footing",
+      "reviewedContentHash": "a40c8d78c8a3bcbf691c100603ebfc1b2b8feae20b8ffd411e19be1ab398f580",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: School outdoor area and three-foot length unit are distinct source boundaries, not duplicate contexts. Vietnamese sân and thước Anh separate them. Regional-yard qualification is appropriate; measured fabric is original and does not reuse the source example.",
+      "proposalKey": "EDITORIAL_2H2H:yard:outdoor-area",
+      "reviewedContentHash": "7a022f37d5cc24cf147a1acdbb2e7b8eb4e88a77264890ced6e32f06010ebf14",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: School outdoor area and three-foot length unit are distinct source boundaries, not duplicate contexts. Vietnamese sân and thước Anh separate them. Regional-yard qualification is appropriate; measured fabric is original and does not reuse the source example.",
+      "proposalKey": "EDITORIAL_2H2H:yard:length-measure",
+      "reviewedContentHash": "b9471d344cdec05d08aae032f49e61e620df8a1467b4559da5ddec0d589fb976",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Source ordinal combines fibre and cloth; two related material-stage drafts are justified by raw-cotton sorting versus curtain fabric. Vietnamese bông and vải bông distinguish them. Both are uncountable, and no independent canonical identity or botanical taxonomy is claimed.",
+      "proposalKey": "EDITORIAL_2H2H:cotton:plant-fibre",
+      "reviewedContentHash": "22fd0c7c6f512a6b9ff76443178a1de084b45d8d0fbe6b680d9260adb755e397",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "PASS: Source ordinal combines fibre and cloth; two related material-stage drafts are justified by raw-cotton sorting versus curtain fabric. Vietnamese bông and vải bông distinguish them. Both are uncountable, and no independent canonical identity or botanical taxonomy is claimed.",
+      "proposalKey": "EDITORIAL_2H2H:cotton:cotton-fabric",
+      "reviewedContentHash": "4d241d873f5eb0661c6dba997204f23553689347629ffdc8532e723f0844c81f",
+      "reviewerKind": "AI_SELF_REVIEW"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "SEMANTICS",
+        "BOUNDARIES",
+        "POS_CONSTRUCTION",
+        "EN_DEFINITION",
+        "EN_NATURALNESS",
+        "VI_MEANING",
+        "VI_EXAMPLE",
+        "GRAMMAR",
+        "CEFR_UNCERTAINTY",
+        "REDUNDANCY",
+        "PROVENANCE_COPYING",
+        "MASTER_LEGACY",
+        "RIGHTS"
+      ],
+      "humanReviewer": null,
+      "note": "REVIEW: [TRANSLATION] Full equality of board lengths is correct, but examples/0/vi ends with bằng nhau chính xác, which is awkward Vietnamese. Use bằng nhau hoàn toàn in an overlay while retaining the exact-equality meaning and both boards.",
+      "proposalKey": "EDITORIAL_2H2H:exactly:with-full-precision",
+      "reviewedContentHash": "feed618cc1225391bf3503ab8278ec92d398564e287928503886a6fa7af9daf7",
+      "reviewerKind": "AI_SELF_REVIEW"
+    }
+  ],
+  "senseCount": 7,
+  "sha256": "12ee43cd5325fcdbe50f27cd617ae990373d17592b99744d780d60c03b55b59b",
+  "sourcePointers": {
+    "NORMALIZED_HEADWORD:cotton": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/2171/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2171/rawHeadword",
+        "rawPosEvidencePointer": "/records/2171/sourcePosRaw",
+        "recordEvidenceSha256": "7c51da666f537998af6e30e810fe845730baac5077842d8727f90220a65737d6",
+        "recordIndex": 2171,
+        "sourceNoteGuid": "HK<9RNL?oD",
+        "sourceRecordId": "1788223608210",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B1",
+            "value": "B1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1075/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1075/rawHeadword",
+        "rawPosEvidencePointer": "/records/1075/sourcePosRaw",
+        "recordEvidenceSha256": "70c4699a57c75ab098100c7b3d790f45b59d91f409b19900808637b73795ab19",
+        "recordIndex": 1075,
+        "sourceNoteGuid": "DfhpKn7#`E",
+        "sourceRecordId": "1559931007863",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:exactly": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "ADVERB"
+        ],
+        "rawContentPointer": "/records/1032/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1032/rawHeadword",
+        "rawPosEvidencePointer": "/records/1032/sourcePosRaw",
+        "recordEvidenceSha256": "6094d45d3ae2113f44d6705e44ff04bf4ac44072d3feb63a639e59cd29d28f95",
+        "recordIndex": 1032,
+        "sourceNoteGuid": "c{fB->F%()",
+        "sourceRecordId": "1788223607050",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      }
+    ],
+    "NORMALIZED_HEADWORD:necklace": [
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B1",
+            "value": "B1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1686/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1686/rawHeadword",
+        "rawPosEvidencePointer": "/records/1686/sourcePosRaw",
+        "recordEvidenceSha256": "5483005187b00daa2809e3a9de09f9671d1488309e13ba59f16b2eb50da801b0",
+        "recordIndex": 1686,
+        "sourceNoteGuid": "z)|s9%H*B7",
+        "sourceRecordId": "1559931008488",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:slip": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "B2"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/2814/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/2814/rawHeadword",
+        "rawPosEvidencePointer": "/records/2814/sourcePosRaw",
+        "recordEvidenceSha256": "6828cd0b94f35904432d8da7724c63788acedfe54356c755f4779197cc2c43bc",
+        "recordIndex": 2814,
+        "sourceNoteGuid": "N_lt7E<4Os",
+        "sourceRecordId": "1788223608853",
+        "structuredOxfordSenseGroupOrdinals": [
+          0
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B2",
+            "value": "B2"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B2"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "VERB"
+        ],
+        "rawContentPointer": "/records/1013/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1013/rawHeadword",
+        "rawPosEvidencePointer": "/records/1013/sourcePosRaw",
+        "recordEvidenceSha256": "8eea9e487275238c3855a346e9a90d0871316deff69b1d24d43cb798911c407b",
+        "recordIndex": 1013,
+        "sourceNoteGuid": "N<1piJvpxn",
+        "sourceRecordId": "1559931007794",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ],
+    "NORMALIZED_HEADWORD:yard": [
+      {
+        "artifact": "oxford-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "CEFR",
+            "value": "A1"
+          }
+        ],
+        "corpus": "OXFORD_5000",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/745/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/745/rawHeadword",
+        "rawPosEvidencePointer": "/records/745/sourcePosRaw",
+        "recordEvidenceSha256": "2125cd09a40c7232b34bad06a9a1f09f4213f04dd9b8e25e5fddc15705faae9b",
+        "recordIndex": 745,
+        "sourceNoteGuid": "fj+6Q8i/s/",
+        "sourceRecordId": "1788223606762",
+        "structuredOxfordSenseGroupOrdinals": [
+          0,
+          1
+        ]
+      },
+      {
+        "artifact": "vocab4600-normalized-inventory.json",
+        "cefrEvidence": [
+          {
+            "sourceField": "deck:4600 English Vocab::B1",
+            "value": "B1"
+          },
+          {
+            "sourceField": "noteTag",
+            "value": "B1"
+          }
+        ],
+        "corpus": "ENGLISH_VOCAB_4600",
+        "normalizedPosCandidates": [
+          "NOUN"
+        ],
+        "rawContentPointer": "/records/1016/sourceFields",
+        "rawHeadwordEvidencePointer": "/records/1016/rawHeadword",
+        "rawPosEvidencePointer": "/records/1016/sourcePosRaw",
+        "recordEvidenceSha256": "6d56af2f2e899a4f7fccbc48b3ff33423dc64d2d612e308386f957948753be9b",
+        "recordIndex": 1016,
+        "sourceNoteGuid": "f)n896;_Ry",
+        "sourceRecordId": "1559931007798",
+        "structuredOxfordSenseGroupOrdinals": []
+      }
+    ]
+  },
+  "substantiveDefectsFound": 1
+}
