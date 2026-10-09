@@ -2772,3 +2772,8 @@ Checkpoint 07 continues from checkpoint 06 `5c80c010f6c83fee24614f07831a30161854
 - Content remains DRAFT; content approval is PENDING; rights remain `UNKNOWN_REVIEW_REQUIRED`; release eligibility is NO. Owner approvals, canonical IDs, rights clearance, and applied corrections are zero. Database access/writes: none; Production: untouched; Master release and legacy data: unchanged.
 
 See `vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-07/report.md`, `final-audit-handoff.md`, and `verification-results.json` for the findings, remediation inventory, fingerprints, and executed validation evidence. The next recommendation is a separately authorized targeted DRAFT remediation, followed by controlled expansion of the remaining 5,123 corpus groups.
+
+
+## Related offline dataset remediation handoff — 2026-10-09
+
+Phase 2H.2J-R1 produced a separate, content-bound DRAFT overlay for three grammar-note fields and deferred the `lot` example correction because its passive rewrite may conflict with the Vietnamese meaning. The new projection is not part of Hybrid-100 v2.2.1, the runtime import bridge, or a canonical Master release. It changes no runtime IDs, import mappings, release artifacts or database state. The pilot fingerprint is `7b7e93bd26bcbac1d18e02b52b929e382722223c67bbe7455bbf9caf1d3a4283`; details and validation evidence are in `vocabflow-dataset/workspaces/master-editorial-draft-remediation/checkpoints/pilot-01/`.

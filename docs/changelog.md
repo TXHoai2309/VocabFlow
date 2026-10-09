@@ -4300,3 +4300,8 @@ Checkpoint 07 continues from checkpoint 06 `5c80c010f6c83fee24614f07831a30161854
 - Content remains DRAFT; content approval is PENDING; rights remain `UNKNOWN_REVIEW_REQUIRED`; release eligibility is NO. Owner approvals, canonical IDs, rights clearance, and applied corrections are zero. Database access/writes: none; Production: untouched; Master release and legacy data: unchanged.
 
 See `vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-07/report.md`, `final-audit-handoff.md`, and `verification-results.json` for the findings, remediation inventory, fingerprints, and executed validation evidence. The next recommendation is a separately authorized targeted DRAFT remediation, followed by controlled expansion of the remaining 5,123 corpus groups.
+
+
+## 2026-10-09 — Phase 2H.2J-R1 DRAFT remediation pilot
+
+Added a content-bound, immutable downstream overlay for three grammar-note field corrections after reviewing 24 Senses in original batches 068, 072 and 081. The `lot` example correction remains deferred for English/Vietnamese semantic review. The new projection preserves 1,563 DRAFT Senses, the original projection, all 141 field proposals, all eight boundary proposals and historical REVIEW states. No runtime, canonical release, legacy, database or Production data changed. See `vocabflow-dataset/workspaces/master-editorial-draft-remediation/checkpoints/pilot-01/report.md`.

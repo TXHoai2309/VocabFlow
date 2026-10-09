@@ -1,0 +1,180 @@
+{
+  "affectedAuthoredBatches": [
+    68,
+    72,
+    81
+  ],
+  "appliedSenseRevisions": 3,
+  "checks": {
+    "duplicateContent": "CHECKED_FOR_REVIEWED_BATCHES",
+    "englishNaturalness": "PASS_FOR_3_APPLIED_FIELDS",
+    "externalRightsOrOriginalityClearance": "NOT_PERFORMED",
+    "fieldCompleteness": "PASS",
+    "grammar": "PASS_FOR_3_APPLIED_FIELDS",
+    "historicalReviewConvertedToPass": false,
+    "meaningPreservation": "PASS_FOR_3_APPLIED_FIELDS",
+    "posAndConstruction": "PASS_FOR_ALL_REVIEWED_BATCH_SENSES",
+    "senseBoundaryStability": "PASS_NO_BOUNDARY_CHANGES",
+    "sourceOriginalitySignals": "REVIEWED_WITHIN_PINNED_SOURCE_SCOPE; NO_RIGHTS_CLEARANCE_INFERRED",
+    "sourceProvenancePreserved": true,
+    "vietnameseFaithfulness": "PASS_FOR_3_APPLIED_FIELDS"
+  },
+  "fail": 0,
+  "fullBatchesReviewed": 3,
+  "ownerApproval": false,
+  "pass": 20,
+  "phase": "2H.2J-R1",
+  "releaseEligible": false,
+  "review": 4,
+  "reviewKind": "AI_POST_REMEDIATION_BATCH_REVIEW_NOT_OWNER_APPROVAL",
+  "reviewedSenseReferences": [
+    {
+      "parentEffectiveContentHash": "329842be9df0f24e9fefa5c2e24856f5fa333cbb85fa6038beb9d394330029c9",
+      "proposalKey": "EDITORIAL_2H2H:comply:follow-requirements",
+      "remediatedEffectiveContentHash": "329842be9df0f24e9fefa5c2e24856f5fa333cbb85fa6038beb9d394330029c9",
+      "reviewStatus": "PASS"
+    },
+    {
+      "parentEffectiveContentHash": "940442b1bce6184c5359b84048401b1592540037af9dceebaa92a4bb61330b0f",
+      "proposalKey": "EDITORIAL_2H2H:considerably:substantial-degree",
+      "remediatedEffectiveContentHash": "940442b1bce6184c5359b84048401b1592540037af9dceebaa92a4bb61330b0f",
+      "reviewStatus": "PASS"
+    },
+    {
+      "parentEffectiveContentHash": "1f142d8ec151b8e455bab1baccdcef69dfe401ebbf5720d0cd7be46dd71da1ac",
+      "proposalKey": "EDITORIAL_2H2H:handbook:practical-reference-book",
+      "remediatedEffectiveContentHash": "1f142d8ec151b8e455bab1baccdcef69dfe401ebbf5720d0cd7be46dd71da1ac",
+      "reviewStatus": "PASS"
+    },
+    {
+      "parentEffectiveContentHash": "6136a17a98991143f2ca0c390ab971b8f529e6fc06407951d07b97111aa1e7f2",
+      "proposalKey": "EDITORIAL_2H2H:high:at-great-height",
+      "remediatedEffectiveContentHash": "6136a17a98991143f2ca0c390ab971b8f529e6fc06407951d07b97111aa1e7f2",
+      "reviewStatus": "PASS"
+    },
+    {
+      "parentEffectiveContentHash": "55c85c68351489dae856ca04fb7aa88348fc3af673a440bc9b12d632dd19228a",
+      "proposalKey": "EDITORIAL_2H2H:high:far-above-ground",
+      "remediatedEffectiveContentHash": "55c85c68351489dae856ca04fb7aa88348fc3af673a440bc9b12d632dd19228a",
+      "reviewStatus": "PASS"
+    },
+    {
+      "parentEffectiveContentHash": "7962cc2e0e42603331bce4666915b82d9337288427f1c2beb7ce3210f6b4a738",
+      "proposalKey": "EDITORIAL_2H2H:high:peak-level",
+      "remediatedEffectiveContentHash": "7962cc2e0e42603331bce4666915b82d9337288427f1c2beb7ce3210f6b4a738",
+      "reviewStatus": "PASS"
+    },
+    {
+      "parentEffectiveContentHash": "9eee2812e18a58045e9975f1132389a57b3e630ea994de4935da4ed930a90133",
+      "proposalKey": "EDITORIAL_2H2H:hinder:make-progress-difficult",
+      "remediatedEffectiveContentHash": "9eee2812e18a58045e9975f1132389a57b3e630ea994de4935da4ed930a90133",
+      "reviewStatus": "PASS"
+    },
+    {
+      "parentEffectiveContentHash": "b3e3ed555683667ce89ae08a2e2cfadc6419896bfcb788591ff2f5415233ac48",
+      "proposalKey": "EDITORIAL_2H2H:impression:belief-from-limited-evidence",
+      "remediatedEffectiveContentHash": "b3e3ed555683667ce89ae08a2e2cfadc6419896bfcb788591ff2f5415233ac48",
+      "reviewStatus": "PASS"
+    },
+    {
+      "parentEffectiveContentHash": "5260b452ee4aaaf73473165c1e6403d0ea714ec08d890451b4b3ee87f19a8422",
+      "proposalKey": "EDITORIAL_2H2H:impression:effect-on-observer",
+      "remediatedEffectiveContentHash": "5260b452ee4aaaf73473165c1e6403d0ea714ec08d890451b4b3ee87f19a8422",
+      "reviewStatus": "PASS"
+    },
+    {
+      "parentEffectiveContentHash": "a41584ed263a8df64b7f5667484fe25f7a3e75b1e5fe3acecb1ec04af94e42ea",
+      "proposalKey": "EDITORIAL_2H2H:inflate:fill-with-air",
+      "remediatedEffectiveContentHash": "7b0d3d3b320fc5fe398c1dcbd7c8ab16af50ea84c940286e941107f5f2d07821",
+      "reviewStatus": "PASS"
+    },
+    {
+      "parentEffectiveContentHash": "caecbe82e1db1259cc9296c81d40c2ae91af1ce3987cb4ddf9c723d9bfcc2fe2",
+      "proposalKey": "EDITORIAL_2H2H:lot:degree-or-frequency",
+      "remediatedEffectiveContentHash": "caecbe82e1db1259cc9296c81d40c2ae91af1ce3987cb4ddf9c723d9bfcc2fe2",
+      "reviewStatus": "REVIEW"
+    },
+    {
+      "parentEffectiveContentHash": "63b75424e7513161c67ef47e4139a54303e938f2342a09e34806573de8aa5fa1",
+      "proposalKey": "EDITORIAL_2H2H:lot:quantity-before-noun",
+      "remediatedEffectiveContentHash": "63b75424e7513161c67ef47e4139a54303e938f2342a09e34806573de8aa5fa1",
+      "reviewStatus": "REVIEW"
+    },
+    {
+      "parentEffectiveContentHash": "b08a05c2a6fca74ef3f37f38199ab108f617301f695febbc4b98af4a5af16e75",
+      "proposalKey": "EDITORIAL_2H2H:lot:quantity-without-noun",
+      "remediatedEffectiveContentHash": "b08a05c2a6fca74ef3f37f38199ab108f617301f695febbc4b98af4a5af16e75",
+      "reviewStatus": "REVIEW"
+    },
+    {
+      "parentEffectiveContentHash": "8a4bbad4a7da773361185e516608a62e8e2f64a5b5c3e63aed24c43fb75c64d5",
+      "proposalKey": "EDITORIAL_2H2H:peel:remove-outer-skin",
+      "remediatedEffectiveContentHash": "6276c288707d9bb369fdd388fc27c2396b67a27f37cbfc8a6109cc202a26534c",
+      "reviewStatus": "PASS"
+    },
+    {
+      "parentEffectiveContentHash": "c7011ccab092ce15a77c3085643166ef32f42e93b15fe6943845cfcf6ff37a14",
+      "proposalKey": "EDITORIAL_2H2H:prescribe:lay-down-a-rule",
+      "remediatedEffectiveContentHash": "c7011ccab092ce15a77c3085643166ef32f42e93b15fe6943845cfcf6ff37a14",
+      "reviewStatus": "PASS"
+    },
+    {
+      "parentEffectiveContentHash": "1fc1ed7d1a557b37c96e657c9590be8664a13c6f59638af0f8b6de67eff7fc33",
+      "proposalKey": "EDITORIAL_2H2H:prescribe:order-medicine",
+      "remediatedEffectiveContentHash": "3ca28ea182b9a1c166593481e45bda8100987c0065444ab4e68556930c03b297",
+      "reviewStatus": "PASS"
+    },
+    {
+      "parentEffectiveContentHash": "d426dec3908ab401b1129f2ccc3b7ddde6981042d6f4253f73ff43bd487fe233",
+      "proposalKey": "EDITORIAL_2H2H:starch:fabric-stiffener",
+      "remediatedEffectiveContentHash": "d426dec3908ab401b1129f2ccc3b7ddde6981042d6f4253f73ff43bd487fe233",
+      "reviewStatus": "PASS"
+    },
+    {
+      "parentEffectiveContentHash": "7ae5b03560dafda357dd2902d1665b281f291b007b052b4ab6ae2c306f5ba41d",
+      "proposalKey": "EDITORIAL_2H2H:starch:plant-carbohydrate",
+      "remediatedEffectiveContentHash": "7ae5b03560dafda357dd2902d1665b281f291b007b052b4ab6ae2c306f5ba41d",
+      "reviewStatus": "PASS"
+    },
+    {
+      "parentEffectiveContentHash": "822311412f684a12a99f653527ec8592a262390f51ee5cf3c793e392989d34e6",
+      "proposalKey": "EDITORIAL_2H2H:surprising:unexpected",
+      "remediatedEffectiveContentHash": "822311412f684a12a99f653527ec8592a262390f51ee5cf3c793e392989d34e6",
+      "reviewStatus": "PASS"
+    },
+    {
+      "parentEffectiveContentHash": "5ed852086527c2a6b18df17a05e4f8889fe79e01f7ce1aa6625bec27972b5da0",
+      "proposalKey": "EDITORIAL_2H2H:wait:period-of-waiting",
+      "remediatedEffectiveContentHash": "5ed852086527c2a6b18df17a05e4f8889fe79e01f7ce1aa6625bec27972b5da0",
+      "reviewStatus": "PASS"
+    },
+    {
+      "parentEffectiveContentHash": "f0331fa511fc120f63c6eb64a5fb7027f1fcb7db45ba1aa1ecb4c98246314144",
+      "proposalKey": "EDITORIAL_2H2H:wait:stay-until-something-happens",
+      "remediatedEffectiveContentHash": "f0331fa511fc120f63c6eb64a5fb7027f1fcb7db45ba1aa1ecb4c98246314144",
+      "reviewStatus": "PASS"
+    },
+    {
+      "parentEffectiveContentHash": "160014815d17050bf3d85f5b1c9bbfbf2785ac9e5d817f16a2788fc2e2c24082",
+      "proposalKey": "EDITORIAL_2H2H:yes:affirmative-response",
+      "remediatedEffectiveContentHash": "160014815d17050bf3d85f5b1c9bbfbf2785ac9e5d817f16a2788fc2e2c24082",
+      "reviewStatus": "PASS"
+    },
+    {
+      "parentEffectiveContentHash": "c7be5e166ab71061807d5382f15655348b28fde26e66b98c912bc55ec532ba6f",
+      "proposalKey": "EDITORIAL_2H2H:yet:contrast",
+      "remediatedEffectiveContentHash": "c7be5e166ab71061807d5382f15655348b28fde26e66b98c912bc55ec532ba6f",
+      "reviewStatus": "PASS"
+    },
+    {
+      "parentEffectiveContentHash": "732d051755bc78bf225f6def3781c98a12fef527b6105a5a8e210e405a4b673b",
+      "proposalKey": "EDITORIAL_2H2H:yet:up-to-now",
+      "remediatedEffectiveContentHash": "732d051755bc78bf225f6def3781c98a12fef527b6105a5a8e210e405a4b673b",
+      "reviewStatus": "REVIEW"
+    }
+  ],
+  "rights": "UNKNOWN_REVIEW_REQUIRED",
+  "sensesReviewed": 24,
+  "status": "PASS_WITH_REVIEW_ITEMS",
+  "unresolvedHistoricalReviewNotConvertedToPass": true
+}

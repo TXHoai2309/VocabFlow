@@ -6978,3 +6978,16 @@ Checkpoint 07 continues from checkpoint 06 `5c80c010f6c83fee24614f07831a30161854
 - Content remains DRAFT; content approval is PENDING; rights remain `UNKNOWN_REVIEW_REQUIRED`; release eligibility is NO. Owner approvals, canonical IDs, rights clearance, and applied corrections are zero. Database access/writes: none; Production: untouched; Master release and legacy data: unchanged.
 
 See `vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-07/report.md`, `final-audit-handoff.md`, and `verification-results.json` for the findings, remediation inventory, fingerprints, and executed validation evidence. The next recommendation is a separately authorized targeted DRAFT remediation, followed by controlled expansion of the remaining 5,123 corpus groups.
+
+
+## Phase 2H.2J-R1 — targeted DRAFT remediation pilot 01 (2026-10-09)
+
+The owner-authorized pilot verified the accepted Phase 2H.2I checkpoint 07 (`9c90d8c2f2b964e128e19c5db807336d754573467f7f783a8a666e54a242ed77`) and handoff (`862be642a7223396f43664ca8604d986a5c1f5cbad91c9ab295492f819ff4ed8`). The live TXH baseline matched `f0fb9bb7b5013b6c8240eed6bb2a111e572165b0`; the accepted audit retains its own earlier recorded baseline as pinned provenance.
+
+Four unique proposals were selected. The mandatory `lot` example proposal was independently reviewed and deferred: “were collected” fixes the English finite verb but may add a human agent inconsistent with Vietnamese “lá tụ lại”. Three low-risk grammar-note proposals for `inflate`, `prescribe`, and `peel` were applied as additive revisions in a new offline DRAFT layer. No original manuscript, accepted audit proposal or prior checkpoint was changed.
+
+The remediated projection retains 1,563 Senses across 1,020 authored groups; exactly three Sense content hashes changed and 1,560 remain unchanged. Original authored batches 068, 072 and 081 were fully re-reviewed: 24/24 Senses, 20 PASS / 4 REVIEW / 0 FAIL. The four existing REVIEW states remain REVIEW. All 141 field proposal references and eight noncanonical boundary proposals are preserved; both historical priority scopes remain distinct.
+
+Pilot fingerprint: `7b7e93bd26bcbac1d18e02b52b929e382722223c67bbe7455bbf9caf1d3a4283`. The new focused suite passed 33/33; accepted Phase 2H.2G overlay tests passed 29/29; all accepted Phase 2H.2I parent replays passed zero-write checks. Direct TypeScript typecheck and ESLint passed. The frozen Hybrid-100 v2.2.0 test remains 4/5 with its known Windows `APPROVED_RELEASE_IMMUTABILITY_VIOLATION:release-tree` diagnostic; v2.2.1 independently passed 8/8 and remains 87 Lexemes / 100 Senses. The pilot replay passed zero-write checks under `PYTHONHASHSEED=1` and `8675309`.
+
+Content remains DRAFT; rights remain `UNKNOWN_REVIEW_REQUIRED`; owner approvals and canonical IDs added: 0; release eligible: NO. Database access/writes: NONE; Production: UNTOUCHED; Master release and legacy data: unchanged. Handoff: `vocabflow-dataset/workspaces/master-editorial-draft-remediation/checkpoints/pilot-01/`. Recommend a separately authorized DRAFT remediation batch after review of this pilot; do not infer owner approval, rights clearance, a new Sense boundary, or release readiness.

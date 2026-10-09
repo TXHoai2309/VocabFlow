@@ -1,0 +1,155 @@
+{
+  "acceptedAuditReplays": [
+    {
+      "command": "python -B scripts/phase-2h2i-aggregate-qa.py --check",
+      "exitCode": 0,
+      "fingerprint": "3d29083983cf033b4463d33c7a8ea3bd9337c209e0a5f236167c116a0852b5ce",
+      "status": "PARTIAL",
+      "zeroWrites": true
+    },
+    {
+      "command": "python -B scripts/phase-2h2i-aggregate-qa-resume.py --checkpoint 2 --check",
+      "exitCode": 0,
+      "fingerprint": "7d462d7bfb2f957c4c1809de18a22a126b8f85194763f90d863551edb15be34d",
+      "status": "PARTIAL",
+      "zeroWrites": true
+    },
+    {
+      "command": "python -B scripts/phase-2h2i-aggregate-qa-checkpoint-03.py --checkpoint 3 --check",
+      "exitCode": 0,
+      "fingerprint": "d5e87509822821b74b0588a5d99f2168a5db47c59299192d540ace84315b0b71",
+      "status": "PARTIAL",
+      "zeroWrites": true
+    },
+    {
+      "command": "python -B scripts/phase-2h2i-aggregate-qa-checkpoint-04.py --check",
+      "exitCode": 0,
+      "fingerprint": "524b064666d9538cb9774bd50f4a2bd63e82505e8f2a82232a4b59f4baf6724b",
+      "status": "PARTIAL",
+      "zeroWrites": true
+    },
+    {
+      "command": "python -B scripts/phase-2h2i-aggregate-qa-checkpoint-05.py --check",
+      "exitCode": 0,
+      "fingerprint": "4a3a5d0f48a07dcdd7e5e2f1d7ca2aa2af58709bae174a02f77d84814bbd078f",
+      "status": "PARTIAL",
+      "zeroWrites": true
+    },
+    {
+      "command": "python -B scripts/phase-2h2i-aggregate-qa-checkpoint-06.py --check",
+      "exitCode": 0,
+      "fingerprint": "5c80c010f6c83fee24614f07831a3016185471d8953e6a6aefa471e5f73e2766",
+      "status": "PARTIAL",
+      "zeroWrites": true
+    },
+    {
+      "command": "python -B scripts/phase-2h2i-aggregate-qa-checkpoint-07.py --check",
+      "exitCode": 0,
+      "finalHandoffFingerprint": "862be642a7223396f43664ca8604d986a5c1f5cbad91c9ab295492f819ff4ed8",
+      "fingerprint": "9c90d8c2f2b964e128e19c5db807336d754573467f7f783a8a666e54a242ed77",
+      "status": "COMPLETE",
+      "zeroWrites": true
+    }
+  ],
+  "acceptedDraftOverlay": {
+    "changedContentFields": 4,
+    "command": "python -B scripts/phase-2h2g-draft-v2.py --check",
+    "effectiveSenses": 813,
+    "exitCode": 0,
+    "fingerprint": "6633405d49aa0e211265d38be37b074e99cd783d787681d4a25909843a7fe071",
+    "revisedSenses": 3,
+    "testCommand": "python -B scripts/phase-2h2g-draft-v2-test.py",
+    "testsFailed": 0,
+    "testsPassed": 29
+  },
+  "canonicalIdsAllocated": 0,
+  "canonicalPnpmTypecheckWrapper": "NOT_RUN",
+  "contentStatus": "DRAFT",
+  "databaseAccess": "NONE",
+  "databaseWrites": "NONE",
+  "frozenReleaseDiagnostics": {
+    "hybrid100V220": {
+      "command": "pnpm exec vitest run --pool=threads --maxWorkers=1 --no-file-parallelism scripts/hybrid-100-approved-release.test.ts",
+      "diagnosis": "Windows CRLF/LF checkout representation mismatch; frozen release and test were not changed.",
+      "exitCode": 1,
+      "failed": 1,
+      "failure": "APPROVED_RELEASE_IMMUTABILITY_VIOLATION:release-tree",
+      "passed": 4,
+      "status": "KNOWN_LEGACY_RELEASE_TREE_DIAGNOSTIC"
+    },
+    "hybrid100V221": {
+      "command": "pnpm exec vitest run --pool=threads --maxWorkers=1 --no-file-parallelism scripts/hybrid-100-runtime-eligible-patch-release.test.ts",
+      "exitCode": 0,
+      "failed": 0,
+      "passed": 8,
+      "releaseCounts": {
+        "lexemes": 87,
+        "senses": 100
+      },
+      "status": "PASS"
+    }
+  },
+  "legacyModified": false,
+  "lint": {
+    "command": "pnpm exec eslint . --max-warnings=0",
+    "exitCode": 0,
+    "status": "PASS"
+  },
+  "masterReleaseChanged": false,
+  "ownerApprovalsAdded": 0,
+  "parentCheckpoint07Fingerprint": "9c90d8c2f2b964e128e19c5db807336d754573467f7f783a8a666e54a242ed77",
+  "parentHandoffFingerprint": "862be642a7223396f43664ca8604d986a5c1f5cbad91c9ab295492f819ff4ed8",
+  "phase": "2H.2J-R1",
+  "pilotFingerprint": "7b7e93bd26bcbac1d18e02b52b929e382722223c67bbe7455bbf9caf1d3a4283",
+  "pilotFocusedTests": {
+    "command": "python -B scripts/phase-2h2j-draft-remediation-pilot-01-test.py",
+    "status": "PASS",
+    "testsFailed": 0,
+    "testsPassed": 33
+  },
+  "postAssemblyReplay": [
+    {
+      "command": "$env:PYTHONHASHSEED='1'; python -B scripts/phase-2h2j-draft-remediation-pilot-01.py --check",
+      "exitCode": 0,
+      "fingerprint": "7b7e93bd26bcbac1d18e02b52b929e382722223c67bbe7455bbf9caf1d3a4283",
+      "pythonHashSeed": "1",
+      "status": "COMPLETE_WITH_DEFERRED_CANDIDATE_AND_REVIEW_ITEMS",
+      "zeroWrites": true
+    },
+    {
+      "command": "$env:PYTHONHASHSEED='8675309'; python -B scripts/phase-2h2j-draft-remediation-pilot-01.py --check",
+      "exitCode": 0,
+      "fingerprint": "7b7e93bd26bcbac1d18e02b52b929e382722223c67bbe7455bbf9caf1d3a4283",
+      "pythonHashSeed": "8675309",
+      "status": "COMPLETE_WITH_DEFERRED_CANDIDATE_AND_REVIEW_ITEMS",
+      "zeroWrites": true
+    }
+  ],
+  "production": "UNTOUCHED",
+  "productionBuild": "NOT_RUN_NOT_REQUIRED_FOR_OFFLINE_DATASET_OVERLAY",
+  "releaseEligible": false,
+  "remoteBaseline": "f0fb9bb7b5013b6c8240eed6bb2a111e572165b0",
+  "remoteBaselineVerification": {
+    "branch": "TXH",
+    "fetchOriginExitCode": 0,
+    "head": "f0fb9bb7b5013b6c8240eed6bb2a111e572165b0",
+    "originTxh": "f0fb9bb7b5013b6c8240eed6bb2a111e572165b0",
+    "status": "MATCH"
+  },
+  "rights": "UNKNOWN_REVIEW_REQUIRED",
+  "schemaVersion": "OFFLINE_DRAFT_REMEDIATION_VERIFICATION_V1",
+  "status": "PASS_WITH_REVIEW_ITEMS",
+  "typecheck": {
+    "command": "pnpm exec tsc -b --pretty false",
+    "exitCode": 0,
+    "status": "PASS"
+  },
+  "workspaceSafety": {
+    "baselineHead": "f0fb9bb7b5013b6c8240eed6bb2a111e572165b0",
+    "branch": "TXH",
+    "newBranchOrWorktree": false,
+    "stashesPreserved": 7,
+    "vocabflowUs55PreservedAt": "3213aaa3c0bce8a53b2bbaeb2228193c14c673a3",
+    "worktreesPreserved": 12
+  }
+}

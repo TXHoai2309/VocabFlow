@@ -1,0 +1,73 @@
+{
+  "affectedBatches": [
+    68,
+    72,
+    81
+  ],
+  "applicationReference": {
+    "path": "vocabflow-dataset/workspaces/master-editorial-draft-remediation/checkpoints/pilot-01/authored/application-decisions.json",
+    "sha256": "e986c772b09abaf510a50d14b80c6447e07312a64c495d86ed37bb7d97f321a2"
+  },
+  "authorization": {
+    "canonicalIdsAllocated": 0,
+    "contentStatus": "DRAFT",
+    "databaseAccess": "NONE",
+    "databaseWrites": "NONE",
+    "legacyModified": false,
+    "masterReleaseChanged": false,
+    "ownerApprovalsAdded": 0,
+    "phase": "2H.2J-R1",
+    "production": "UNTOUCHED",
+    "publicationEligible": false,
+    "rights": "UNKNOWN_REVIEW_REQUIRED",
+    "rightsClearanceAdded": 0
+  },
+  "batchReviewReference": {
+    "path": "vocabflow-dataset/workspaces/master-editorial-draft-remediation/checkpoints/pilot-01/authored/full-batch-review-assessments.json",
+    "sha256": "589f85954bb847365e4321b91cc0c9ddcd1cd9e8c13c93aa0358c8f27175ac53"
+  },
+  "canonicalIdsAllocated": 0,
+  "correctionsApplied": 3,
+  "databaseAccess": "NONE",
+  "databaseWrites": "NONE",
+  "distinctSensesRevised": 3,
+  "effectiveDraftSenseCount": 1563,
+  "eligibilityReference": {
+    "path": "vocabflow-dataset/workspaces/master-editorial-draft-remediation/checkpoints/pilot-01/authored/eligibility-assessments.json",
+    "sha256": "0e55d9ae0edf318cc6a009089643f0955644f7e63f97549db7dc560484fc54b9"
+  },
+  "fullBatchesReviewed": 3,
+  "historicalReviewStatesPreserved": true,
+  "legacyModified": false,
+  "masterReleaseChanged": false,
+  "newDraftFieldCorrectionsApplied": 3,
+  "originalBoundaryProposalsPreserved": 8,
+  "originalEffectiveProjectionUnchanged": true,
+  "originalFieldProposalsPreserved": 141,
+  "ownerApprovalsAdded": 0,
+  "parentFinalAuditFingerprint": "9c90d8c2f2b964e128e19c5db807336d754573467f7f783a8a666e54a242ed77",
+  "parentFinalAuditHandoffFingerprint": "862be642a7223396f43664ca8604d986a5c1f5cbad91c9ab295492f819ff4ed8",
+  "phase": "2H.2J-R1",
+  "pilotCandidatesDeferred": 1,
+  "pilotCandidatesEligible": 3,
+  "pilotCandidatesRejected": 0,
+  "pilotCandidatesSelected": 4,
+  "postRemediationQa": {
+    "FAIL": 0,
+    "PASS": 20,
+    "REVIEW": 4
+  },
+  "production": "UNTOUCHED",
+  "releaseEligible": false,
+  "rights": "UNKNOWN_REVIEW_REQUIRED",
+  "selectionReference": {
+    "path": "vocabflow-dataset/workspaces/master-editorial-draft-remediation/checkpoints/pilot-01/pilot-selection-receipt.json",
+    "sha256": "f2fc97d93c7412edd94e706cd3101cd70dbd54d79f3959cb4dcee207e5e65b16"
+  },
+  "status": "COMPLETE_WITH_DEFERRED_CANDIDATE_AND_REVIEW_ITEMS",
+  "unselectedSensesPreserved": true,
+  "verificationReference": {
+    "binding": "Detached post-assembly validation receipt; bound by manifest fingerprint, not self-hashed.",
+    "path": "vocabflow-dataset/workspaces/master-editorial-draft-remediation/checkpoints/pilot-01/verification-results.json"
+  }
+}

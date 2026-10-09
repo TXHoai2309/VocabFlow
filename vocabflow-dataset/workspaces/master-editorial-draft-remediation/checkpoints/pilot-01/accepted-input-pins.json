@@ -1,0 +1,221 @@
+{
+  "acceptedAuditRecordedRemoteBaseline": "c4f45c5265f73780a51ecfb7aacea76b7f53b965",
+  "acceptedFinalAudit": {
+    "checkpoint07Manifest": {
+      "fingerprint": "9c90d8c2f2b964e128e19c5db807336d754573467f7f783a8a666e54a242ed77",
+      "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-07/manifest.json",
+      "recordedRemoteBaseline": "c4f45c5265f73780a51ecfb7aacea76b7f53b965",
+      "sha256": "bcb20d458e3c0305d835d8d06053ff01c3a1ec44b5778f35f88f4902923f5419"
+    },
+    "finalHandoffManifest": {
+      "fingerprint": "862be642a7223396f43664ca8604d986a5c1f5cbad91c9ab295492f819ff4ed8",
+      "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-07/final-handoff-manifest.json",
+      "sha256": "27a9015e2128fed853e8b492d81a4610e2a9c6b5bf36dd4d2a47be69832b7e98"
+    }
+  },
+  "boundaryProposalSources": [
+    {
+      "count": 5,
+      "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/correction-proposals.json",
+      "scope": "original aggregate boundary proposals",
+      "sha256": "fd69a2358ecf8874a739d4c39a8005dc9481b65f0f4b30002257da9a043fb449"
+    },
+    {
+      "count": 2,
+      "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/new-correction-proposals.json",
+      "scope": "checkpoint-02 additive boundary proposals",
+      "sha256": "d9b611d9cd237cb0ee94d4dbd5c29e0bbe3cdb4ed3821b656d8ef5fbfe053c0b"
+    },
+    {
+      "count": 1,
+      "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-06/authored/new-boundary-proposals.json",
+      "scope": "checkpoint 06 boundary proposals",
+      "sha256": "da6f219b298aa063f729aa1b5646ea28a00940361f365ca87600b4d1a7959999"
+    }
+  ],
+  "bulk500Projection": {
+    "path": "vocabflow-dataset/workspaces/master-editorial-bulk-500-resume/checkpoints/checkpoint-05/effective-draft-projection.json",
+    "selectionFingerprint": "2007c5a1e67d4dab6228378b5b00b22ab4736cb16d3f5a3e3d03735e2a290e44",
+    "sha256": "b84d1cf891139d7b296f616553d5a9ed247ac3a39966e02c1e5ad2f3dd138ebb"
+  },
+  "checkpoint07NewFieldProposal": {
+    "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-07/authored/new-field-correction-proposals.json",
+    "sha256": "9e90e8a63c3f04eb426f45e46cb93f29715f308a65f8e6ff016724880b052367"
+  },
+  "draftV2OverlayContract": {
+    "acceptedOverlayFingerprint": "6633405d49aa0e211265d38be37b074e99cd783d787681d4a25909843a7fe071",
+    "script": "scripts/phase-2h2g-draft-v2.py",
+    "scriptSha256": "167d57ad0c892f0a7825cc9e1d852012e11a26793aaff8fa2fb2f76305c13145",
+    "test": "scripts/phase-2h2g-draft-v2-test.py",
+    "testSha256": "05d70ac68f83bae0a75b7cebb2feeb00ea7283a2e8f7aa8a986bc5a8c63e92c0"
+  },
+  "effectiveBaseProjection": {
+    "authoredGroups": 1020,
+    "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/effective-sense-index.json",
+    "records": 1563,
+    "sha256": "53dd8427f322ad74a02070a6ed32257bb602bace3c6b79c7d658a36d24fcd914"
+  },
+  "frozenAuthoringCohortFingerprint": "2007c5a1e67d4dab6228378b5b00b22ab4736cb16d3f5a3e3d03735e2a290e44",
+  "fullBatchEvidence": [
+    {
+      "acceptedPriorReviewDecisions": {
+        "path": "vocabflow-dataset/workspaces/master-editorial-bulk-500-resume/checkpoints/checkpoint-04/authored/batch-068.review-decisions.json",
+        "sha256": "53576c4a03c513cea59f1ab0a9018aa54c56da2a99be49f46d0053a597c8a290"
+      },
+      "acceptedQualityAudit": {
+        "checkpointManifestFingerprint": "94166e0c8a0586317a82047c717895ae25968b522fa2a37ca342b1f5da9f7560",
+        "parentProjectionSha256": "cdcd9e5a9ff3d7f8e58e2d07953210660d0ef04fa4f4ac1e2fcd9abff797646b",
+        "path": "vocabflow-dataset/workspaces/master-editorial-bulk-500-resume/checkpoints/checkpoint-04/quality-audit.json",
+        "sha256": "33e13a7c41dfacb9bfc46d0607fa40a2866fe0dae663b656d188d3bd175eebd1"
+      },
+      "batch": 68,
+      "groupKeys": [
+        "NORMALIZED_HEADWORD:yet",
+        "NORMALIZED_HEADWORD:comply",
+        "NORMALIZED_HEADWORD:high",
+        "NORMALIZED_HEADWORD:inflate",
+        "NORMALIZED_HEADWORD:prescribe"
+      ],
+      "originalAuthoredBatch": {
+        "path": "vocabflow-dataset/workspaces/master-editorial-bulk-500-resume/checkpoints/checkpoint-04/authored/batch-068.json",
+        "sha256": "0d729905b59fbca97a50c94edda81704bae5ee52eb8fc1f9242f37177d34243a"
+      },
+      "originalAuthoredPsv": {
+        "path": "vocabflow-dataset/workspaces/master-editorial-bulk-500-resume/checkpoints/checkpoint-04/authored/batch-068.psv",
+        "sha256": "ee97ff67fd77571213b9be602d4638c6e2f32474eb7d815b4f41b843e25bff1b"
+      },
+      "reviewedAllCurrentSenses": true,
+      "senseCount": 9,
+      "sourceCheckpoint": "checkpoint-04"
+    },
+    {
+      "acceptedPriorReviewDecisions": {
+        "path": "vocabflow-dataset/workspaces/master-editorial-bulk-500-resume/checkpoints/checkpoint-04/authored/batch-072.review-decisions.json",
+        "sha256": "fb46a1b9f4a24435d952cdad28eb04af3cd25f2078412091e23a54ecce429b48"
+      },
+      "acceptedQualityAudit": {
+        "checkpointManifestFingerprint": "94166e0c8a0586317a82047c717895ae25968b522fa2a37ca342b1f5da9f7560",
+        "parentProjectionSha256": "cdcd9e5a9ff3d7f8e58e2d07953210660d0ef04fa4f4ac1e2fcd9abff797646b",
+        "path": "vocabflow-dataset/workspaces/master-editorial-bulk-500-resume/checkpoints/checkpoint-04/quality-audit.json",
+        "sha256": "33e13a7c41dfacb9bfc46d0607fa40a2866fe0dae663b656d188d3bd175eebd1"
+      },
+      "batch": 72,
+      "groupKeys": [
+        "NORMALIZED_HEADWORD:hinder",
+        "NORMALIZED_HEADWORD:impression",
+        "NORMALIZED_HEADWORD:peel",
+        "NORMALIZED_HEADWORD:surprising",
+        "NORMALIZED_HEADWORD:wait"
+      ],
+      "originalAuthoredBatch": {
+        "path": "vocabflow-dataset/workspaces/master-editorial-bulk-500-resume/checkpoints/checkpoint-04/authored/batch-072.json",
+        "sha256": "a61e807de5addc05871992829c1055ba831e995ac3ef30a37c2aeb9deec970a1"
+      },
+      "originalAuthoredPsv": {
+        "path": "vocabflow-dataset/workspaces/master-editorial-bulk-500-resume/checkpoints/checkpoint-04/authored/batch-072.psv",
+        "sha256": "31c344b7d99418d88f912d22dca1f10f3b812d26f9a23b4df29db34d5e0ba335"
+      },
+      "reviewedAllCurrentSenses": true,
+      "senseCount": 7,
+      "sourceCheckpoint": "checkpoint-04"
+    },
+    {
+      "acceptedPriorReviewDecisions": {
+        "path": "vocabflow-dataset/workspaces/master-editorial-bulk-500-resume/checkpoints/checkpoint-05/authored/batch-081.review-decisions.json",
+        "sha256": "b93135df429bc85a0e85f28fc346c87723aaa49cd0f23c2343c198f400677535"
+      },
+      "acceptedQualityAudit": {
+        "checkpointManifestFingerprint": "2007c5a1e67d4dab6228378b5b00b22ab4736cb16d3f5a3e3d03735e2a290e44",
+        "parentProjectionSha256": "b84d1cf891139d7b296f616553d5a9ed247ac3a39966e02c1e5ad2f3dd138ebb",
+        "path": "vocabflow-dataset/workspaces/master-editorial-bulk-500-resume/checkpoints/checkpoint-05/quality-audit.json",
+        "sha256": "9877e20d9fe2875b2cd631361c4f3dd508122bf03cc987eebd33325f1cb15592"
+      },
+      "batch": 81,
+      "groupKeys": [
+        "NORMALIZED_HEADWORD:starch",
+        "NORMALIZED_HEADWORD:yes",
+        "NORMALIZED_HEADWORD:considerably",
+        "NORMALIZED_HEADWORD:handbook",
+        "NORMALIZED_HEADWORD:lot"
+      ],
+      "originalAuthoredBatch": {
+        "path": "vocabflow-dataset/workspaces/master-editorial-bulk-500-resume/checkpoints/checkpoint-05/authored/batch-081.json",
+        "sha256": "d4ce5881c25da52a905f06b07277d5c4ae5819e1148b8fa29ac6b8f22257b624"
+      },
+      "originalAuthoredPsv": {
+        "path": "vocabflow-dataset/workspaces/master-editorial-bulk-500-resume/checkpoints/checkpoint-05/authored/batch-081.psv",
+        "sha256": "2267f6f9f0939ed9f4e7f0b69720c3c5af8250e64c63aced25a14dfb4b6cf0d5"
+      },
+      "reviewedAllCurrentSenses": true,
+      "senseCount": 8,
+      "sourceCheckpoint": "checkpoint-05"
+    }
+  ],
+  "fullBatchEvidenceFileHashes": {
+    "vocabflow-dataset/workspaces/master-editorial-bulk-500-resume/checkpoints/checkpoint-04/authored/batch-068.json": "0d729905b59fbca97a50c94edda81704bae5ee52eb8fc1f9242f37177d34243a",
+    "vocabflow-dataset/workspaces/master-editorial-bulk-500-resume/checkpoints/checkpoint-04/authored/batch-068.psv": "ee97ff67fd77571213b9be602d4638c6e2f32474eb7d815b4f41b843e25bff1b",
+    "vocabflow-dataset/workspaces/master-editorial-bulk-500-resume/checkpoints/checkpoint-04/authored/batch-068.review-decisions.json": "53576c4a03c513cea59f1ab0a9018aa54c56da2a99be49f46d0053a597c8a290",
+    "vocabflow-dataset/workspaces/master-editorial-bulk-500-resume/checkpoints/checkpoint-04/authored/batch-072.json": "a61e807de5addc05871992829c1055ba831e995ac3ef30a37c2aeb9deec970a1",
+    "vocabflow-dataset/workspaces/master-editorial-bulk-500-resume/checkpoints/checkpoint-04/authored/batch-072.psv": "31c344b7d99418d88f912d22dca1f10f3b812d26f9a23b4df29db34d5e0ba335",
+    "vocabflow-dataset/workspaces/master-editorial-bulk-500-resume/checkpoints/checkpoint-04/authored/batch-072.review-decisions.json": "fb46a1b9f4a24435d952cdad28eb04af3cd25f2078412091e23a54ecce429b48",
+    "vocabflow-dataset/workspaces/master-editorial-bulk-500-resume/checkpoints/checkpoint-04/effective-draft-projection.json": "cdcd9e5a9ff3d7f8e58e2d07953210660d0ef04fa4f4ac1e2fcd9abff797646b",
+    "vocabflow-dataset/workspaces/master-editorial-bulk-500-resume/checkpoints/checkpoint-04/manifest.json": "8df3bb87adff7b0e849130f3b6605e44726a5f6e4b0d55809d1ebf162db6abbd",
+    "vocabflow-dataset/workspaces/master-editorial-bulk-500-resume/checkpoints/checkpoint-04/quality-audit.json": "33e13a7c41dfacb9bfc46d0607fa40a2866fe0dae663b656d188d3bd175eebd1",
+    "vocabflow-dataset/workspaces/master-editorial-bulk-500-resume/checkpoints/checkpoint-05/authored/batch-081.json": "d4ce5881c25da52a905f06b07277d5c4ae5819e1148b8fa29ac6b8f22257b624",
+    "vocabflow-dataset/workspaces/master-editorial-bulk-500-resume/checkpoints/checkpoint-05/authored/batch-081.psv": "2267f6f9f0939ed9f4e7f0b69720c3c5af8250e64c63aced25a14dfb4b6cf0d5",
+    "vocabflow-dataset/workspaces/master-editorial-bulk-500-resume/checkpoints/checkpoint-05/authored/batch-081.review-decisions.json": "b93135df429bc85a0e85f28fc346c87723aaa49cd0f23c2343c198f400677535",
+    "vocabflow-dataset/workspaces/master-editorial-bulk-500-resume/checkpoints/checkpoint-05/effective-draft-projection.json": "b84d1cf891139d7b296f616553d5a9ed247ac3a39966e02c1e5ad2f3dd138ebb",
+    "vocabflow-dataset/workspaces/master-editorial-bulk-500-resume/checkpoints/checkpoint-05/manifest.json": "88ff11527e0ffef2e571608419c1f1b164c117b5788c4bbf2c3663c2e014b762",
+    "vocabflow-dataset/workspaces/master-editorial-bulk-500-resume/checkpoints/checkpoint-05/quality-audit.json": "9877e20d9fe2875b2cd631361c4f3dd508122bf03cc987eebd33325f1cb15592"
+  },
+  "parentCheckpoint07Fingerprint": "9c90d8c2f2b964e128e19c5db807336d754573467f7f783a8a666e54a242ed77",
+  "parentHandoffFingerprint": "862be642a7223396f43664ca8604d986a5c1f5cbad91c9ab295492f819ff4ed8",
+  "phase": "2H.2J-R1",
+  "priorityAccounting": {
+    "cumulativePriorityCounts": {
+      "P0": 0,
+      "P1": 10,
+      "P2": 103,
+      "P3": 164
+    },
+    "deduplicatedInventoryPriorityCounts": {
+      "P0": 0,
+      "P1": 17,
+      "P2": 31,
+      "P3": 140
+    }
+  },
+  "proposalSources": [
+    {
+      "label": "root-aggregate-proposals",
+      "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa/correction-proposals.json",
+      "proposalCount": 20,
+      "sha256": "fd69a2358ecf8874a739d4c39a8005dc9481b65f0f4b30002257da9a043fb449"
+    },
+    {
+      "label": "checkpoint-02-new-field-proposals",
+      "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-02/authored/new-correction-proposals.json",
+      "proposalCount": 10,
+      "sha256": "d9b611d9cd237cb0ee94d4dbd5c29e0bbe3cdb4ed3821b656d8ef5fbfe053c0b"
+    },
+    {
+      "label": "checkpoint-03-new-field-proposals",
+      "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-03/authored/new-correction-proposals.json",
+      "proposalCount": 52,
+      "sha256": "fe8d96172de339bf93da3261e7d507e4bf06302d9e6afe35a93691392b6ad604"
+    },
+    {
+      "label": "checkpoint-04-new-field-proposals",
+      "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-04/authored/new-correction-proposals.json",
+      "proposalCount": 35,
+      "sha256": "1590829aa993243d5a2200d82a9be0052372f0c84cc98421befdf01f50993cf5"
+    },
+    {
+      "label": "checkpoint-05-new-field-proposals",
+      "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-05/authored/new-correction-proposals.json",
+      "proposalCount": 23,
+      "sha256": "b000e11c98b480bb9a7e22918881ff05cdbc1714d11d4c92e4bfcf93a55a76e9"
+    }
+  ],
+  "remoteBaseline": "f0fb9bb7b5013b6c8240eed6bb2a111e572165b0"
+}
