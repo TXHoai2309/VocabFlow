@@ -1,0 +1,50 @@
+{
+  "acceptedPins": {
+    "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-06/accepted-parent-pins.json",
+    "sha256": "308a619e4f2f14f114ce6dd57de00dba191387630f3f6d4e46411144e273e0cd"
+  },
+  "artifactHashes": {
+    "coverage-audit-cumulative.json": "393e8787dddc5b6587a6c2bd756eb7194b43db167cadbbf998cad63e676c786f",
+    "prioritized-remediation-queue.json": "fa859fb0b121ed095335a532e24f17e89a6f07acbff128dfa6331206f319e6f0",
+    "validation-summary.json": "da25924fe2f1452d1fe29506b6accc92260e578ce4367f8888225a47c6fd40c2"
+  },
+  "authoredHashes": {
+    "authored/coverage-assessment-notes-batch-006.json": "b427549f81e463b61c7a4d5ab761a12be169579cd036b2c7ca38fa3ac03ced4c",
+    "authored/coverage-decisions-batch-006.json": "86028af0b2b1d0449ea3bbf91a0f090fef7fa2593bbcb912aa316f9c111ed423",
+    "authored/new-boundary-proposals.json": "e4f0670df5ece60c2b7fa27ef1dac0af7938b9d868d27f97b46d0bb66ba24d6a"
+  },
+  "authorization": {
+    "canonicalIdsAllocated": 0,
+    "contentStatus": "DRAFT",
+    "correctionsApplied": 0,
+    "databaseAccess": "NONE",
+    "databaseWrites": "NONE",
+    "legacyModified": false,
+    "masterReleaseChanged": false,
+    "ownerApprovalsAdded": 0,
+    "production": "UNTOUCHED",
+    "releaseFixApplied": false,
+    "rights": "UNKNOWN_REVIEW_REQUIRED",
+    "rightsClearanceAdded": 0
+  },
+  "checkpoint02Fingerprint": "7d462d7bfb2f957c4c1809de18a22a126b8f85194763f90d863551edb15be34d",
+  "checkpoint03Fingerprint": "d5e87509822821b74b0588a5d99f2168a5db47c59299192d540ace84315b0b71",
+  "checkpoint04Fingerprint": "524b064666d9538cb9774bd50f4a2bd63e82505e8f2a82232a4b59f4baf6724b",
+  "checkpoint05Fingerprint": "4a3a5d0f48a07dcdd7e5e2f1d7ca2aa2af58709bae174a02f77d84814bbd078f",
+  "checkpointNumber": 6,
+  "fingerprint": "5c80c010f6c83fee24614f07831a3016185471d8953e6a6aefa471e5f73e2766",
+  "originalAggregateFingerprint": "3d29083983cf033b4463d33c7a8ea3bd9337c209e0a5f236167c116a0852b5ce",
+  "parentFingerprint": "4a3a5d0f48a07dcdd7e5e2f1d7ca2aa2af58709bae174a02f77d84814bbd078f",
+  "phase": "2H.2I-R5",
+  "remoteBaseline": "7072cf62c310ab9c724745502d446111c14b9943",
+  "reportSha256": "f56a5942d65db84f04280871614f8bd447048d656ddec9ec63ec4551ee52c6ef",
+  "selection": {
+    "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-06/resume-selection-receipt.json",
+    "sha256": "2d3383d87eb0341259266b7726f7c3ed8dddc30869ac41fada092f117adcb1d4"
+  },
+  "sourceHashes": {
+    "phase-2h2i-aggregate-qa-checkpoint-06-test.py": "2585f4c6e01fb1971216b17c0e57c3aed451bd0c03a41723faa09dd996a6202f",
+    "phase-2h2i-aggregate-qa-checkpoint-06.py": "7e52aff57b3dd014e3c629419602d089d0a04f17321c0393601258bc4c65fc5d"
+  },
+  "verificationSha256": "757836738da282f639079fc1088b23a99c8c78286621cbd957ed9570f3c022f4"
+}

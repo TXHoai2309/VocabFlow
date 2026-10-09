@@ -1,0 +1,99 @@
+{
+  "approvalInferred": false,
+  "cumulativePriorityCounts": {
+    "P0": 0,
+    "P1": 9,
+    "P2": 100,
+    "P3": 164
+  },
+  "newItems": [
+    {
+      "classification": "SOURCE_METADATA_CONFLICT",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:totally:completely": "e68582f416f3de62aa5679adcb4d787fc78307777273ea351c6721b80c819d43"
+      },
+      "identity": "NORMALIZED_HEADWORD:totally",
+      "nextActionVi": "Yêu cầu owner/linguistic review riêng về điểm bất định trước mọi thay đổi; không áp dụng nội dung.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Draft adverb “hoàn toàn” được ví dụ Oxford về đồng ý và khác biệt đối chiếu hỗ trợ; định nghĩa tiếng Anh 4600 cũng thiên về đồng ý hoàn toàn. Tuy nhiên gloss Việt của 4600 còn ghi “tổng cộng”, hàm ý tổng lượng mà phần định nghĩa/ví dụ tiếng Anh đã xem không chứng minh; đây là xung đột metadata dịch, chưa đủ căn cứ xác nhận một nghĩa mới.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED"
+    },
+    {
+      "classification": "POSSIBLE_GAP",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:share:portion": "7b8c8c0f335d8f07fc3c954b2751ea94fa07f40dfcc33028b7b0d54a1f86beef",
+        "EDITORIAL_2H2H:share:use-together": "b9958f61e2c09fe86c91358464dce9288267f38c8f9a81cad5d9e2bdb0879f01"
+      },
+      "identity": "NORMALIZED_HEADWORD:share",
+      "nextActionVi": "Yêu cầu owner/linguistic review riêng về điểm bất định trước mọi thay đổi; không áp dụng nội dung.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Draft noun “phần được chia” và verb “dùng chung” đều có ví dụ riêng, nhưng Oxford nêu động từ share notes with someone và 4600 mô tả đưa một phần cho người khác. Cách trao/gửi quyền dùng nội dung có thể rộng hơn “cùng sử dụng”; chưa đủ để xác định đây là ranh giới verb độc lập hay cùng nghĩa share bị định nghĩa hẹp.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED"
+    },
+    {
+      "classification": "SOURCE_METADATA_CONFLICT",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:competence:ability-to-do-well": "3d831603d4d6793ea7759d472751a18a0a1009e523ece581e3b11ec5ca05e953"
+      },
+      "identity": "NORMALIZED_HEADWORD:competence",
+      "nextActionVi": "Yêu cầu owner/linguistic review riêng về điểm bất định trước mọi thay đổi; không áp dụng nội dung.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Draft diễn đạt năng lực thực hiện công việc đạt yêu cầu, được ví dụ xử lý câu hỏi khách hàng hỗ trợ; Oxford nói năng lực chuyên môn và câu EN 4600 nói làm việc có hiệu quả. Gloss Việt 4600 thêm “chức quyền”, không được mô tả Anh/Oxford ủng hộ, nên đây là conflict metadata thay vì căn cứ thêm nghĩa authority.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED"
+    },
+    {
+      "classification": "CONFIRMED_GAP",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:high:at-great-height": "6136a17a98991143f2ca0c390ab971b8f529e6fc06407951d07b97111aa1e7f2",
+        "EDITORIAL_2H2H:high:far-above-ground": "55c85c68351489dae856ca04fb7aa88348fc3af673a440bc9b12d632dd19228a",
+        "EDITORIAL_2H2H:high:peak-level": "7962cc2e0e42603331bce4666915b82d9337288427f1c2beb7ce3210f6b4a738"
+      },
+      "identity": "NORMALIZED_HEADWORD:high",
+      "nextActionVi": "Giữ đề xuất ranh giới mới ở trạng thái DRAFT, noncanonical; cần owner review riêng trước materialization.",
+      "ownerApproval": false,
+      "priority": "P1",
+      "rationaleVi": "Ba draft hiện có bao quát adjective về chiều cao vật lý, adverb về vị trí phía trên và noun về mức đỉnh. Nhưng English Vocab 4600 ghi adjective cho mức lớn hơn thường lệ về lượng/số/mức độ, kèm ví dụ nhiệt độ cơ thể cao; nghĩa “mức độ/lượng” này không được Sense tính từ “ở cao về chiều dọc” đại diện. Đây là phân biệt nguồn-supported rõ, không chỉ một ordinal bị thiếu.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED"
+    },
+    {
+      "classification": "POSSIBLE_GAP",
+      "effectiveContentHashes": {
+        "EDITORIAL_2H2H:slip:lose-footing": "a40c8d78c8a3bcbf691c100603ebfc1b2b8feae20b8ffd411e19be1ab398f580"
+      },
+      "identity": "NORMALIZED_HEADWORD:slip",
+      "nextActionVi": "Yêu cầu owner/linguistic review riêng về điểm bất định trước mọi thay đổi; không áp dụng nội dung.",
+      "ownerApproval": false,
+      "priority": "P2",
+      "rationaleVi": "Draft verb tập trung vào trượt chân và mất điểm tựa; Oxford cũng có ví dụ chiếc cốc tuột khỏi tay, còn 4600 gắn slip với trượt/ngã. Có thể đây là cùng nét “trượt khỏi vị trí” dùng cho vật, nhưng định nghĩa hiện hành đóng khung vào chân người nên phạm vi draft có vẻ hẹp; một ví dụ chưa đủ xác nhận boundary mới.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED"
+    },
+    {
+      "applied": false,
+      "candidateGroupKey": "NORMALIZED_HEADWORD:high",
+      "classification": "CONFIRMED_GAP",
+      "identity": "2H2I-R5-B001",
+      "nextActionVi": "Yêu cầu owner review ranh giới và nội dung đề xuất trước mọi bước materialization.",
+      "ownerApproval": false,
+      "parentContentHashes": {
+        "EDITORIAL_2H2H:high:far-above-ground": "55c85c68351489dae856ca04fb7aa88348fc3af673a440bc9b12d632dd19228a"
+      },
+      "priority": "P1",
+      "rationaleVi": "Record 4600 định nghĩa high theo lượng/số/mức độ và nêu nhiệt độ cơ thể làm ví dụ. Nghĩa tính từ này khác “ở cao về chiều dọc” trong draft hiện có; chưa thấy Sense adjective nào khác bao quát mức độ/đại lượng. Đây là đề xuất ranh giới mới, không phải nội dung đã duyệt.",
+      "rights": "UNKNOWN_REVIEW_REQUIRED"
+    }
+  ],
+  "parentQueue": {
+    "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-05/prioritized-remediation-queue.json",
+    "sha256": "fd20d904a2a08fe85d11b57900b272a44332438d08666e25dca434d0a60205e0"
+  },
+  "priorItemsReferenced": {
+    "checkpoint05": {
+      "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-05/prioritized-remediation-queue.json",
+      "sha256": "fd20d904a2a08fe85d11b57900b272a44332438d08666e25dca434d0a60205e0"
+    }
+  },
+  "unresolvedRights": "UNKNOWN_REVIEW_REQUIRED"
+}

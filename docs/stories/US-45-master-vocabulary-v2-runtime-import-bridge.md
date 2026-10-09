@@ -2750,3 +2750,14 @@ Checkpoint 05 adds an offline, content-bound continuation on parent checkpoint 0
 - Corrections applied: 0; owner approvals and canonical IDs: 0; database access/writes: none; Production: untouched. Rights remain `UNKNOWN_REVIEW_REQUIRED`.
 
 The aggregate audit remains PARTIAL because 183 coverage groups are pending. See `vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-05/report.md` and `verification-results.json` for bounded findings and executed-command receipts. No later checkpoint or correction application is authorized by this entry.
+
+## Phase 2H.2I-R5 — aggregate QA checkpoint 06 (2026-10-09)
+
+Checkpoint 06 continues from parent checkpoint 05 `4a3a5d0f48a07dcdd7e5e2f1d7ca2aa2af58709bae174a02f77d84814bbd078f` and the verified `TXH` baseline `7072cf62c310ab9c724745502d446111c14b9943`. It assessed exactly the next 100 pending headword groups in original inventory order, inspecting and hashing all 153 effective DRAFT Senses in those groups.
+
+- New coverage assessments: 95 `NO_IDENTIFIED_SOURCE_SUPPORTED_GAP`, 2 `POSSIBLE_GAP`, 2 `SOURCE_METADATA_CONFLICT`, and 1 `CONFIRMED_GAP`. The confirmed adjective distinction for `high` is recorded only as one unapplied, noncanonical boundary proposal; no Sense was added to the effective projection.
+- Coverage is now 417/500, with 83 pending. The original 126 warning identities, 187/187 REVIEW triage records, 107/107 grammar inspections, 140 field proposals, and seven parent boundary proposals remain preserved. Total boundary proposals: 8; corrections applied: 0. Corpus totals remain 1,020 groups and 1,563 effective Senses.
+- The new checkpoint tests passed 16/16; checkpoint-05 regression tests passed 26/26; Hybrid-100 v2.2.1 tests passed 8/8. Direct TypeScript typecheck and ESLint passed. All accepted parent zero-write replays passed. The legacy v2.2.0 suite remains `LEGACY_V2_2_0_RELEASE_TREE_DIAGNOSTIC_UNRESOLVED` (4/5): raw Windows CRLF worktree bytes mismatch the recorded LF fingerprint, while LF-normalized tracked inputs reproduce it. No release or test files were changed.
+- Content remains DRAFT with rights `UNKNOWN_REVIEW_REQUIRED`. No owner approvals, canonical IDs, corrections, database access/writes, Production operation, Master release change, or legacy change occurred.
+
+The aggregate audit remains PARTIAL. See `vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-06/report.md` and `verification-results.json`. A separately authorized checkpoint 07 may assess the final 83 pending groups; no further checkpoint or remediation is started here.
