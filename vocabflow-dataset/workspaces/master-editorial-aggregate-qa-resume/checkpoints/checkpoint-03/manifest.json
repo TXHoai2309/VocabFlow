@@ -1,0 +1,50 @@
+{
+  "acceptedPins": {
+    "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-03/accepted-parent-pins.json",
+    "sha256": "207c21557c2675e9a7760c4db57680141b943f242653666c64ea38eb1a79db36"
+  },
+  "artifactHashes": {
+    "correction-proposals-additive.json": "10f7287a5c8ae9a3321b3b36f81a0f60b5bc42a0510623e8ecae7bf774023b09",
+    "coverage-audit-cumulative.json": "500c6b75ba990210641c89d349a97c48422d53969d5067f2971e991fc7133d28",
+    "grammar-commentary-audit.json": "e47c2b3259cc7cd9e5386ec3cf6abcd9884a7a7eebd2a7f42db9c89f69b01690",
+    "prioritized-remediation-queue.json": "8a43d7a18a94d68b2e5637a0f6f10fa1ef1b5298f62783305468cd6e9ff3b587",
+    "review-triage-cumulative.json": "0944b5dcbd82a8773f4ba93e9effbfcdc114a36893c0ebeb8fcdb036acf15fb1",
+    "validation-summary.json": "a3f3ccba7e66351c332fa70e2af8e6c422fccfa506aa144f7b4dc149efbb2602"
+  },
+  "authoredHashes": {
+    "coverage-decisions-batch-003.json": "edb2c5921f17f64d974d5cd904beb7435cb7cdff51c423c143758a718557dbe8",
+    "grammar-inspection-batch-003.json": "79a8105f06b30029aa606dcb46772821474bf45cc73ac33e4e0b853930fb2f1d",
+    "new-correction-proposals.json": "fe8d96172de339bf93da3261e7d507e4bf06302d9e6afe35a93691392b6ad604",
+    "review-decisions-batch-003.json": "1faa8656ac34ab36048ade2183d64123ed6dd79b81401c57992b63abe5894361"
+  },
+  "authorization": {
+    "canonicalIdsAllocated": 0,
+    "contentStatus": "DRAFT",
+    "correctionProposalsApplied": 0,
+    "databaseAccess": "NONE",
+    "databaseWrites": "NONE",
+    "legacyModified": false,
+    "masterReleaseChanged": false,
+    "ownerApprovalsAdded": 0,
+    "production": "UNTOUCHED",
+    "rights": "UNKNOWN_REVIEW_REQUIRED",
+    "rightsClearanceAdded": 0,
+    "scopedGitPublicationAuthorized": true
+  },
+  "checkpointNumber": 3,
+  "fingerprint": "d5e87509822821b74b0588a5d99f2168a5db47c59299192d540ace84315b0b71",
+  "frozenCheckpoint05": "2007c5a1e67d4dab6228378b5b00b22ab4736cb16d3f5a3e3d03735e2a290e44",
+  "originalAggregateFingerprint": "3d29083983cf033b4463d33c7a8ea3bd9337c209e0a5f236167c116a0852b5ce",
+  "parentFingerprint": "7d462d7bfb2f957c4c1809de18a22a126b8f85194763f90d863551edb15be34d",
+  "phase": "2H.2I-R2",
+  "remoteBaseline": "29a84a268606a4a816c45008e4605da55db803b4",
+  "reportSha256": "6a5cb121484409488de14b8955827ff1f11529de1d954afcccdd6a42622e2dc9",
+  "selection": {
+    "path": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-03/resume-selection-receipt.json",
+    "sha256": "cca78db82784871803d58cfd2fdb0a30f94112225e292a0942196e60df90e3b9"
+  },
+  "sourceHashes": {
+    "phase-2h2i-aggregate-qa-checkpoint-03-test.py": "2395bade4f1d1457a852041c2b8c20a3754635a7f2ee47b0e251b27263ac9a4f",
+    "phase-2h2i-aggregate-qa-checkpoint-03.py": "756ded062dc74e4f775f2b243d3d5d5f008cc1fe09339eafc698026f4be611fb"
+  }
+}

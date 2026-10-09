@@ -4196,3 +4196,58 @@ Handoff: vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/check
 Continue the remaining 122 REVIEW / 408 coverage assessments and bounded grammar
 inspection only in a separately authorized additive checkpoint. STOP after
 scoped publication; no correction application, formal approval or import.
+
+## 2026-10-09 — Phase 2H.2I-R2 checkpoint 03: bounded aggregate audit continuation
+
+Existing TXH continues from remote parent 29a84a268606a4a816c45008e4605da55db803b4.
+Additive checkpoint 03 completes the authorized 40 next REVIEW records, 75 next
+coverage groups and 26 previously uninspected dedicated grammar candidates.
+Full aggregate scope remains PARTIAL: REVIEW 65 + 40 = 105/187, 82 pending;
+coverage 92 + 75 = 167/500, 333 pending; grammar 32 + 26 = 58/107, 49 pending.
+All 34 remaining original warning groups were assessed; all 126 historical
+warning identities remain available. No exhaustive lexical completeness claim.
+
+Read all 126 Senses in four entire original pilot batches: 62 confirmed grammar
+process-commentary findings (10 previously proposed), 62 valid learner notes and
+2 possible disclaimer notes. The sample is purposive; no prevalence estimate.
+Persist 52 new exact, unapplied grammarNotesEn field proposals. Prior 30 field
+and 7 boundary proposals retain exact versioned references: cumulative 82 field
+and 7 boundary proposals, 0 applied. Candidate inventory remains 107; full-batch
+findings outside keyword matches do not silently rewrite that inventory.
+
+Coverage: 69 no identified source-supported gap, 4 possible gaps (sideways,
+lump, mist, laundry), 2 source metadata conflicts (stricken, last), 0 confirmed
+new gaps and 0 new boundary proposals. Source surface/air scope, clean/dirty
+laundry scope, and previous-period POS are unresolved evidence questions;
+they do not allocate canonical identities. REVIEW originality uncertainty for
+inequality/severe remains separate from linguistic correctness and rights.
+
+Original aggregate fingerprint:
+3d29083983cf033b4463d33c7a8ea3bd9337c209e0a5f236167c116a0852b5ce.
+Accepted checkpoint 02 fingerprint:
+7d462d7bfb2f957c4c1809de18a22a126b8f85194763f90d863551edb15be34d.
+New checkpoint 03 fingerprint: d5e87509822821b74b0588a5d99f2168a5db47c59299192d540ace84315b0b71.
+All 6,939 accepted script/Dataset files and all 1,563 effective Sense DRAFTs /
+1,020 corpus groups remain byte-identical. Frozen cohort: 500 groups / 750 Senses.
+Parent generators/scripts, calibration, original checkpoints, QA history and
+earlier corrections remain unchanged. No original generator write mode used.
+
+Actual validation: 519 inherited + 31 focused tests = 550 PASS, no failures or
+skips. Eight authoring core/handoff replays, original aggregate, checkpoint 02,
+and checkpoint 03 PASS with before/after byte comparisons. Checkpoint 03 also
+PASS under a second explicit hash seed, zero writes. Direct Node 22.23.2 tsc -b,
+ESLint --max-warnings=0 and frozen Hybrid release --check PASS. Canonical pnpm
+NOT_RUN; previous wrapper limitation is not claimed repaired. Actual command
+receipts are stored separately in checkpoint-03/verification-results.json.
+
+Seven stashes and twelve worktrees preserved, including VocabFlow-us55; no new
+branch/worktree. Content remains DRAFT / UNKNOWN_REVIEW_REQUIRED. New owner
+approvals, rights clearances, canonical IDs and applied corrections: 0. No Neon
+access/write, Production operation, Master release, legacy/runtime/schema
+change or new authoring cohort. Hybrid-100 v2.2.1: 87 Lexemes / 100 Senses.
+
+Handoff: vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-03/report.md.
+Remaining identities are explicit in the cumulative inventories and report.
+Resume only with separate owner authorization using the additive inspection
+protocol. STOP after scoped commit/push; no checkpoint 04, correction application,
+formal approval, new cohort, canonical release or database import.
