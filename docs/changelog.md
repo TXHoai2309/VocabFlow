@@ -1,5 +1,18 @@
 # VocabFlow Changelog
 
+## 2026-10-10 — Phase 2H.2J-R4 targeted DRAFT remediation Batch 04
+
+- Continue from Batch 03; reconcile 141 proposals, select 29 candidates across
+  two authored batches, apply 22 independently reviewed grammar-note corrections,
+  and defer seven proposals with unresolved identity or semantic evidence.
+- Re-review all 55 affected Senses (39 PASS / 16 REVIEW / 0 FAIL). Preserve the
+  1,563-Sense / 1,020-group projection, all prior corrections and proposal
+  history. Batch fingerprint:
+  `bb669bee71f2dfc6c53b8b9ec3511caae9dc31b13be342044829d674a22ddb82`.
+- Content remains DRAFT with rights `UNKNOWN_REVIEW_REQUIRED` and release
+  eligibility NO. Known decode and legacy release-tree diagnostics remain
+  recorded; no database or Production operation occurred.
+
 ## 2026-10-10 — Phase 2H.2J-R3 targeted DRAFT remediation Batch 03
 
 - Select 22 proposals from the densest original batch; apply 12 independently

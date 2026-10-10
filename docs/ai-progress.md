@@ -7038,4 +7038,24 @@ access/write, Production change, Master release edit, or legacy mutation
 occurred. The two existing R3 `.pyc` files were preserved unchanged as the
 owner-approved baseline exception. See
 `vocabflow-dataset/workspaces/master-editorial-draft-remediation/checkpoints/batch-03/`.
-Stop after Batch 03; do not start Batch 04 without separate authorization.
+### Phase 2H.2J-R4 — targeted DRAFT remediation Batch 04
+
+- Continue from the accepted Batch 03 fingerprint
+  `1da5da50c648995491f16523ca0d3da3d8965c59e4d30dd8ebfab72ddd381eb1`.
+  Reconcile 141 proposals and select 29 candidates from two authored batches;
+  apply 22 independently verified grammar-note corrections and defer seven.
+- Re-review all 55 Senses in the affected authored batches (39 PASS / 16 REVIEW /
+  0 FAIL). Keep the 1,563-Sense / 1,020-group projection, all 18 prior
+  corrections, 141 historical proposals, eight boundary proposals, and all
+  unresolved/deferred decisions intact. Batch 04 fingerprint:
+  `bb669bee71f2dfc6c53b8b9ec3511caae9dc31b13be342044829d674a22ddb82`.
+- Focused tests passed 11/11; accepted Pilot 01, Batch 02 and Batch 03 parent
+  replays passed zero-write checks. Persisted Batch 04 replay passed under
+  `PYTHONHASHSEED=20261010` and `271828` with identical fingerprint and zero
+  writes. Typecheck and lint passed; preserved diagnostics remain documented in
+  the detached verification receipt.
+- The batch remains additive DRAFT work. Rights remain
+  `UNKNOWN_REVIEW_REQUIRED`, release eligibility remains NO, and the known
+  default-code-page bulk-500 decode errors and v2.2.0 release-tree diagnostic
+  remain recorded. No database, Production, approval, canonical-ID, or release
+  operation occurred. Preserve the two existing R3 `.pyc` baseline exceptions.
