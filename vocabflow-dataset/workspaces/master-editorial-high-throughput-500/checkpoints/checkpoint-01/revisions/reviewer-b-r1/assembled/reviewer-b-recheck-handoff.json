@@ -1,0 +1,1849 @@
+{
+  "changedSenses": [
+    {
+      "correction": {
+        "after": "Một thùng lớn đựng sách được quyên góp nằm cạnh lối vào.",
+        "afterFieldSha256": "e3cd3e517da539b5d7043e856f03615829dd1191f3b0d1202bbf4dd7aee5f381",
+        "before": "Một thùng sách được quyên góp lớn nằm cạnh lối vào.",
+        "beforeFieldSha256": "3ec09d6e59eadcd3d5240f0d49ce284a2d55da5554069a888bfcb7ce1f831ddd",
+        "fieldPointer": "/content/examples/0/vi",
+        "independentRecheck": "PENDING",
+        "originalEffectiveContentHash": "ecf4ecbdd86b73383a295156efd96cc48ac8e6e7723327d48054be17547fdeb9",
+        "parentRecordSha256": "cbdb64f8116e5d7f8088cc05fd1c3849aee2e8afc5361dc3410a84a6301c9fb7",
+        "proposalKey": "EDITORIAL_2H2K:large:big-in-size",
+        "reasonVi": "Câu Anh xác định thùng có kích thước lớn, còn sách là đồ quyên góp. Đặt lớn ngay sau thùng và thêm đựng để tránh bổ nghĩa nhầm cho sách; giữ nguyên vật chứa, sách quyên góp và vị trí cạnh lối vào, không thêm người đặt thùng hay sự kiện mới.",
+        "revisedEffectiveContentHash": "16fdd82d0907d5adbc2f8071e88366ccd7bd761121f82ccd29570e8ce6cb738e",
+        "revisedRecordSha256": "085ebd1d999bcce13b082a3a7622560b472a3b3fc6882af73233569596a7667f",
+        "revisionProvenance": "AUTHOR_A_AI_GENERATED_FORWARD_REVISION_NOT_REVIEWER_B_APPROVAL",
+        "sourceEvidence": [
+          {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "A1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "ADJECTIVE"
+            ],
+            "rawContentPointer": "/records/268/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/268/rawHeadword",
+            "rawPosEvidencePointer": "/records/268/sourcePosRaw",
+            "recordEvidenceSha256": "0e4a5206ff21842cb8b7c26793f8a1a1f8fac7b1c24e0b33c215d6ace14e1ab2",
+            "recordIndex": 268,
+            "sourceNoteGuid": "Fp9FBCZ3-3",
+            "sourceRecordId": "1788223606219",
+            "structuredOxfordSenseGroupOrdinals": [
+              0
+            ]
+          },
+          {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::A1",
+                "value": "A1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "A1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "ADJECTIVE"
+            ],
+            "rawContentPointer": "/records/1063/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/1063/rawHeadword",
+            "rawPosEvidencePointer": "/records/1063/sourcePosRaw",
+            "recordEvidenceSha256": "367aea476e42378fa173209594bd2f7ae3680203e3834308117d228321349648",
+            "recordIndex": 1063,
+            "sourceNoteGuid": "QyFx+=W?n;",
+            "sourceRecordId": "1559931007849",
+            "structuredOxfordSenseGroupOrdinals": []
+          }
+        ],
+        "sourceFindingId": "F01"
+      },
+      "originalReviewedSense": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:large",
+        "canonicalIdsAllocated": 0,
+        "content": {
+          "definitionEn": "Greater than usual in physical size or amount.",
+          "examples": [
+            {
+              "en": "A large box of donated books stood beside the entrance.",
+              "exampleKey": "EDITORIAL_2H2K:large:big-in-size:example-1",
+              "vi": "Một thùng sách được quyên góp lớn nằm cạnh lối vào."
+            }
+          ],
+          "grammarNotesEn": "Larger and largest are the usual comparative and superlative forms.",
+          "meaningVi": "lớn về kích thước hoặc số lượng",
+          "senseLabelEn": "big in size or amount"
+        },
+        "contentStatus": "DRAFT",
+        "displayFormProposal": "large",
+        "editorialAuthorship": {
+          "humanAuthor": null,
+          "humanReviewer": null,
+          "kind": "AI_GENERATED_EDITORIAL_DRAFT",
+          "process": "Original manuscript composed from source-supported lexical meaning; assembler only reads persisted text"
+        },
+        "effectiveContentHash": "ecf4ecbdd86b73383a295156efd96cc48ac8e6e7723327d48054be17547fdeb9",
+        "fieldHashes": {
+          "definitionEn": "77d4ecefdb89ecf8eea200ee528b3c4c3906db9915677e35b2ee5d837eeca753",
+          "examples": "b163d887609e91fdcc65df43205cbcf2b24158ec8a4e72a43c1f59bc2e6e142e",
+          "grammarNotesEn": "edee4d810363f66aca05cfc30c8211757912f531cfbb2e781ccc634244f4213b",
+          "meaningVi": "39959d32089beaeade6d48e9d1c502b4f6fadbd37c7fefc6b648ac0fcc5db581",
+          "senseLabelEn": "ea9cb877af490b9c6b498e782041109c88442d39b2f48c58ae1dc63c3a6a5c3d"
+        },
+        "formalApproval": false,
+        "headword": "large",
+        "partOfSpeech": "ADJECTIVE",
+        "proposalKey": "EDITORIAL_2H2K:large:big-in-size",
+        "rights": "UNKNOWN_REVIEW_REQUIRED",
+        "riskFlags": [
+          "EXACT_HEADWORD_SINGLE_RECORD_EACH",
+          "NORMALIZED_HEADWORD_MATCH",
+          "HUMAN_SENSE_REVIEW_REQUIRED",
+          "EXAMPLE_VARIANT_REVIEW",
+          "VIETNAMESE_MEANING_VARIANT_REVIEW"
+        ],
+        "sourceEvidence": [
+          {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "A1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "ADJECTIVE"
+            ],
+            "rawContentPointer": "/records/268/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/268/rawHeadword",
+            "rawPosEvidencePointer": "/records/268/sourcePosRaw",
+            "recordEvidenceSha256": "0e4a5206ff21842cb8b7c26793f8a1a1f8fac7b1c24e0b33c215d6ace14e1ab2",
+            "recordIndex": 268,
+            "sourceNoteGuid": "Fp9FBCZ3-3",
+            "sourceRecordId": "1788223606219",
+            "structuredOxfordSenseGroupOrdinals": [
+              0
+            ]
+          },
+          {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::A1",
+                "value": "A1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "A1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "ADJECTIVE"
+            ],
+            "rawContentPointer": "/records/1063/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/1063/rawHeadword",
+            "rawPosEvidencePointer": "/records/1063/sourcePosRaw",
+            "recordEvidenceSha256": "367aea476e42378fa173209594bd2f7ae3680203e3834308117d228321349648",
+            "recordIndex": 1063,
+            "sourceNoteGuid": "QyFx+=W?n;",
+            "sourceRecordId": "1559931007849",
+            "structuredOxfordSenseGroupOrdinals": []
+          }
+        ],
+        "sourceSenseCoverage": "Selected supported meanings only; no claim of exhaustive dictionary coverage"
+      },
+      "revisedSense": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:large",
+        "canonicalIdsAllocated": 0,
+        "content": {
+          "definitionEn": "Greater than usual in physical size or amount.",
+          "examples": [
+            {
+              "en": "A large box of donated books stood beside the entrance.",
+              "exampleKey": "EDITORIAL_2H2K:large:big-in-size:example-1",
+              "vi": "Một thùng lớn đựng sách được quyên góp nằm cạnh lối vào."
+            }
+          ],
+          "grammarNotesEn": "Larger and largest are the usual comparative and superlative forms.",
+          "meaningVi": "lớn về kích thước hoặc số lượng",
+          "senseLabelEn": "big in size or amount"
+        },
+        "contentStatus": "DRAFT",
+        "displayFormProposal": "large",
+        "editorialAuthorship": {
+          "humanAuthor": null,
+          "humanReviewer": null,
+          "kind": "AI_GENERATED_EDITORIAL_DRAFT",
+          "process": "Original manuscript composed from source-supported lexical meaning; assembler only reads persisted text"
+        },
+        "effectiveContentHash": "16fdd82d0907d5adbc2f8071e88366ccd7bd761121f82ccd29570e8ce6cb738e",
+        "fieldHashes": {
+          "definitionEn": "77d4ecefdb89ecf8eea200ee528b3c4c3906db9915677e35b2ee5d837eeca753",
+          "examples": "d6b43b070035313a2a6d83bea32f4ae9c0c6a8aad8820b44bf1f60a433dabffb",
+          "grammarNotesEn": "edee4d810363f66aca05cfc30c8211757912f531cfbb2e781ccc634244f4213b",
+          "meaningVi": "39959d32089beaeade6d48e9d1c502b4f6fadbd37c7fefc6b648ac0fcc5db581",
+          "senseLabelEn": "ea9cb877af490b9c6b498e782041109c88442d39b2f48c58ae1dc63c3a6a5c3d"
+        },
+        "formalApproval": false,
+        "headword": "large",
+        "partOfSpeech": "ADJECTIVE",
+        "proposalKey": "EDITORIAL_2H2K:large:big-in-size",
+        "rights": "UNKNOWN_REVIEW_REQUIRED",
+        "riskFlags": [
+          "EXACT_HEADWORD_SINGLE_RECORD_EACH",
+          "NORMALIZED_HEADWORD_MATCH",
+          "HUMAN_SENSE_REVIEW_REQUIRED",
+          "EXAMPLE_VARIANT_REVIEW",
+          "VIETNAMESE_MEANING_VARIANT_REVIEW"
+        ],
+        "sourceEvidence": [
+          {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "A1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "ADJECTIVE"
+            ],
+            "rawContentPointer": "/records/268/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/268/rawHeadword",
+            "rawPosEvidencePointer": "/records/268/sourcePosRaw",
+            "recordEvidenceSha256": "0e4a5206ff21842cb8b7c26793f8a1a1f8fac7b1c24e0b33c215d6ace14e1ab2",
+            "recordIndex": 268,
+            "sourceNoteGuid": "Fp9FBCZ3-3",
+            "sourceRecordId": "1788223606219",
+            "structuredOxfordSenseGroupOrdinals": [
+              0
+            ]
+          },
+          {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::A1",
+                "value": "A1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "A1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "ADJECTIVE"
+            ],
+            "rawContentPointer": "/records/1063/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/1063/rawHeadword",
+            "rawPosEvidencePointer": "/records/1063/sourcePosRaw",
+            "recordEvidenceSha256": "367aea476e42378fa173209594bd2f7ae3680203e3834308117d228321349648",
+            "recordIndex": 1063,
+            "sourceNoteGuid": "QyFx+=W?n;",
+            "sourceRecordId": "1559931007849",
+            "structuredOxfordSenseGroupOrdinals": []
+          }
+        ],
+        "sourceSenseCoverage": "Selected supported meanings only; no claim of exhaustive dictionary coverage"
+      }
+    },
+    {
+      "correction": {
+        "after": "Xưởng này dạy may và cũng cung cấp dịch vụ sửa chữa cơ bản.",
+        "afterFieldSha256": "660d7685385c0fe9f520e4763a049664dc0c17a6034552dca160c462120ba126",
+        "before": "Buổi học hướng dẫn may và cũng có dịch vụ sửa chữa cơ bản.",
+        "beforeFieldSha256": "7cf81fb9e580cdd27e490ce36a4387920746b3bf46bd7edd937e7212aa1d76ec",
+        "fieldPointer": "/content/examples/0/vi",
+        "independentRecheck": "PENDING",
+        "originalEffectiveContentHash": "32062d6993e44c6bd2d4c50d218b86ad7e0f7a7ea5677bde276aaf4fe52c859b",
+        "parentRecordSha256": "b2d1a990d1dc2433e35ce07991d89b4f11989c180d054df9a8a8b1e6900d8007",
+        "proposalKey": "EDITORIAL_2H2K:also:in-addition",
+        "reasonVi": "Chọn workshop là xưởng/cơ sở thực hành cung cấp đồng thời việc dạy may và dịch vụ sửa chữa, nhất quán với hai động từ teaches và offers. Giữ nguyên câu Anh và nghĩa bổ sung của also, không thêm loại đồ sửa, mức phí hay phạm vi dịch vụ; Reviewer B cần recheck cách hiểu chủ thể này.",
+        "revisedEffectiveContentHash": "83056ed20f1ef69e4c5abc4c0c7c92268f46002c11ff3bccff0465d8040d11e3",
+        "revisedRecordSha256": "ee6613483b75cd9fd95eb36813664a52c0afb65e20e7e1ed60fd2a275c776ece",
+        "revisionProvenance": "AUTHOR_A_AI_GENERATED_FORWARD_REVISION_NOT_REVIEWER_B_APPROVAL",
+        "sourceEvidence": [
+          {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "A1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "ADVERB"
+            ],
+            "rawContentPointer": "/records/60/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/60/rawHeadword",
+            "rawPosEvidencePointer": "/records/60/sourcePosRaw",
+            "recordEvidenceSha256": "afc09debade81bb119ea710533c065857d84ec7aa21b3cbec9d166d25b681fee",
+            "recordIndex": 60,
+            "sourceNoteGuid": "yPP;}U&UGc",
+            "sourceRecordId": "1788223606010",
+            "structuredOxfordSenseGroupOrdinals": [
+              0
+            ]
+          },
+          {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::A1",
+                "value": "A1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "A1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "ADVERB"
+            ],
+            "rawContentPointer": "/records/687/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/687/rawHeadword",
+            "rawPosEvidencePointer": "/records/687/sourcePosRaw",
+            "recordEvidenceSha256": "10abd58d057f83ff62f31aa59a2b7c0680cd57274771f4276f0d3f5582354e15",
+            "recordIndex": 687,
+            "sourceNoteGuid": "n,e&J?IG{G",
+            "sourceRecordId": "1559931007459",
+            "structuredOxfordSenseGroupOrdinals": []
+          }
+        ],
+        "sourceFindingId": "F02"
+      },
+      "originalReviewedSense": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:also",
+        "canonicalIdsAllocated": 0,
+        "content": {
+          "definitionEn": "Used to add another person, thing, or fact to what has already been mentioned.",
+          "examples": [
+            {
+              "en": "The workshop teaches sewing and also offers basic repairs.",
+              "exampleKey": "EDITORIAL_2H2K:also:in-addition:example-1",
+              "vi": "Buổi học hướng dẫn may và cũng có dịch vụ sửa chữa cơ bản."
+            }
+          ],
+          "grammarNotesEn": "Also usually precedes the main verb but follows be.",
+          "meaningVi": "cũng, thêm vào điều đã nói",
+          "senseLabelEn": "in addition"
+        },
+        "contentStatus": "DRAFT",
+        "displayFormProposal": "also",
+        "editorialAuthorship": {
+          "humanAuthor": null,
+          "humanReviewer": null,
+          "kind": "AI_GENERATED_EDITORIAL_DRAFT",
+          "process": "Original manuscript composed from source-supported lexical meaning; assembler only reads persisted text"
+        },
+        "effectiveContentHash": "32062d6993e44c6bd2d4c50d218b86ad7e0f7a7ea5677bde276aaf4fe52c859b",
+        "fieldHashes": {
+          "definitionEn": "4084a124388ce5a2a5da91878a1cbfba40a4d421e79b25a4efafb9e2b9d61338",
+          "examples": "41ea5934b67cfa1d111365224621b9e5c16a5f3043b0fa18ba950b9cf03a09b7",
+          "grammarNotesEn": "0ba777b5f25049af44a8e022497937acaddd1e81acf11b52b3d6dcb042bb239e",
+          "meaningVi": "c421028286fc930959667277aa4c45c16658441ad58a1f7d68c8f16cd779e85b",
+          "senseLabelEn": "77d80b26ac3838947e96d055ee828cd16c9f2ac0769ba4f8a5e8cc5dbb26520e"
+        },
+        "formalApproval": false,
+        "headword": "also",
+        "partOfSpeech": "ADVERB",
+        "proposalKey": "EDITORIAL_2H2K:also:in-addition",
+        "rights": "UNKNOWN_REVIEW_REQUIRED",
+        "riskFlags": [
+          "EXACT_HEADWORD_SINGLE_RECORD_EACH",
+          "NORMALIZED_HEADWORD_MATCH",
+          "HUMAN_SENSE_REVIEW_REQUIRED",
+          "EXAMPLE_VARIANT_REVIEW",
+          "VIETNAMESE_MEANING_VARIANT_REVIEW"
+        ],
+        "sourceEvidence": [
+          {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "A1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "ADVERB"
+            ],
+            "rawContentPointer": "/records/60/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/60/rawHeadword",
+            "rawPosEvidencePointer": "/records/60/sourcePosRaw",
+            "recordEvidenceSha256": "afc09debade81bb119ea710533c065857d84ec7aa21b3cbec9d166d25b681fee",
+            "recordIndex": 60,
+            "sourceNoteGuid": "yPP;}U&UGc",
+            "sourceRecordId": "1788223606010",
+            "structuredOxfordSenseGroupOrdinals": [
+              0
+            ]
+          },
+          {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::A1",
+                "value": "A1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "A1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "ADVERB"
+            ],
+            "rawContentPointer": "/records/687/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/687/rawHeadword",
+            "rawPosEvidencePointer": "/records/687/sourcePosRaw",
+            "recordEvidenceSha256": "10abd58d057f83ff62f31aa59a2b7c0680cd57274771f4276f0d3f5582354e15",
+            "recordIndex": 687,
+            "sourceNoteGuid": "n,e&J?IG{G",
+            "sourceRecordId": "1559931007459",
+            "structuredOxfordSenseGroupOrdinals": []
+          }
+        ],
+        "sourceSenseCoverage": "Selected supported meanings only; no claim of exhaustive dictionary coverage"
+      },
+      "revisedSense": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:also",
+        "canonicalIdsAllocated": 0,
+        "content": {
+          "definitionEn": "Used to add another person, thing, or fact to what has already been mentioned.",
+          "examples": [
+            {
+              "en": "The workshop teaches sewing and also offers basic repairs.",
+              "exampleKey": "EDITORIAL_2H2K:also:in-addition:example-1",
+              "vi": "Xưởng này dạy may và cũng cung cấp dịch vụ sửa chữa cơ bản."
+            }
+          ],
+          "grammarNotesEn": "Also usually precedes the main verb but follows be.",
+          "meaningVi": "cũng, thêm vào điều đã nói",
+          "senseLabelEn": "in addition"
+        },
+        "contentStatus": "DRAFT",
+        "displayFormProposal": "also",
+        "editorialAuthorship": {
+          "humanAuthor": null,
+          "humanReviewer": null,
+          "kind": "AI_GENERATED_EDITORIAL_DRAFT",
+          "process": "Original manuscript composed from source-supported lexical meaning; assembler only reads persisted text"
+        },
+        "effectiveContentHash": "83056ed20f1ef69e4c5abc4c0c7c92268f46002c11ff3bccff0465d8040d11e3",
+        "fieldHashes": {
+          "definitionEn": "4084a124388ce5a2a5da91878a1cbfba40a4d421e79b25a4efafb9e2b9d61338",
+          "examples": "5a787bf5a8b3288849a7c6abcfe7097916d16576bac59e442507a58a4fcb6286",
+          "grammarNotesEn": "0ba777b5f25049af44a8e022497937acaddd1e81acf11b52b3d6dcb042bb239e",
+          "meaningVi": "c421028286fc930959667277aa4c45c16658441ad58a1f7d68c8f16cd779e85b",
+          "senseLabelEn": "77d80b26ac3838947e96d055ee828cd16c9f2ac0769ba4f8a5e8cc5dbb26520e"
+        },
+        "formalApproval": false,
+        "headword": "also",
+        "partOfSpeech": "ADVERB",
+        "proposalKey": "EDITORIAL_2H2K:also:in-addition",
+        "rights": "UNKNOWN_REVIEW_REQUIRED",
+        "riskFlags": [
+          "EXACT_HEADWORD_SINGLE_RECORD_EACH",
+          "NORMALIZED_HEADWORD_MATCH",
+          "HUMAN_SENSE_REVIEW_REQUIRED",
+          "EXAMPLE_VARIANT_REVIEW",
+          "VIETNAMESE_MEANING_VARIANT_REVIEW"
+        ],
+        "sourceEvidence": [
+          {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "A1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "ADVERB"
+            ],
+            "rawContentPointer": "/records/60/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/60/rawHeadword",
+            "rawPosEvidencePointer": "/records/60/sourcePosRaw",
+            "recordEvidenceSha256": "afc09debade81bb119ea710533c065857d84ec7aa21b3cbec9d166d25b681fee",
+            "recordIndex": 60,
+            "sourceNoteGuid": "yPP;}U&UGc",
+            "sourceRecordId": "1788223606010",
+            "structuredOxfordSenseGroupOrdinals": [
+              0
+            ]
+          },
+          {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::A1",
+                "value": "A1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "A1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "ADVERB"
+            ],
+            "rawContentPointer": "/records/687/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/687/rawHeadword",
+            "rawPosEvidencePointer": "/records/687/sourcePosRaw",
+            "recordEvidenceSha256": "10abd58d057f83ff62f31aa59a2b7c0680cd57274771f4276f0d3f5582354e15",
+            "recordIndex": 687,
+            "sourceNoteGuid": "n,e&J?IG{G",
+            "sourceRecordId": "1559931007459",
+            "structuredOxfordSenseGroupOrdinals": []
+          }
+        ],
+        "sourceSenseCoverage": "Selected supported meanings only; no claim of exhaustive dictionary coverage"
+      }
+    },
+    {
+      "correction": {
+        "after": "Cô ấy giữ một chiếc chìa khóa dự phòng trong ngăn bên trong túi xách của mình.",
+        "afterFieldSha256": "0d056e747e9924f3222b26ca6a9fdf68f3d987209ee8bc35685bcac70b444228",
+        "before": "Cô ấy giữ một chiếc chìa khóa dự phòng trong túi ngăn bên trong chiếc túi xách của mình.",
+        "beforeFieldSha256": "2dc884e614330745d446d20614923901faa0bdac0b5fcdccf12294fb85e72a6b",
+        "fieldPointer": "/content/examples/0/vi",
+        "independentRecheck": "PENDING",
+        "originalEffectiveContentHash": "643aa0d768682a1ffe675330257d449df99d32e88b8f65f929c66cac372121c5",
+        "parentRecordSha256": "0a4a287187d70bb2947ad11c3fd8241367747efa96bbfd410148a48663669a2f",
+        "proposalKey": "EDITORIAL_2H2K:purse:handbag",
+        "reasonVi": "Inside pocket là ngăn bên trong túi xách, không phải túi ngăn. Bỏ tổ hợp không tự nhiên nhưng bảo toàn người giữ, chìa khóa dự phòng và vị trí chứa bên trong; không đổi nghĩa handbag của Mỹ sang ví tiền hay sửa grammar note về khác biệt vùng miền.",
+        "revisedEffectiveContentHash": "9f99df805191c9e50ad43c4009f9b36ceb4eecbd360efa7b237e5365659cb097",
+        "revisedRecordSha256": "8ef18c0fd1da5f771b1a9cb0459b341063530a352b2a76b328fe3563da77b120",
+        "revisionProvenance": "AUTHOR_A_AI_GENERATED_FORWARD_REVISION_NOT_REVIEWER_B_APPROVAL",
+        "sourceEvidence": [
+          {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::A2",
+                "value": "A2"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "A2"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/1611/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/1611/rawHeadword",
+            "rawPosEvidencePointer": "/records/1611/sourcePosRaw",
+            "recordEvidenceSha256": "59ddbe6b6d4449b6a613f75a8f83b886a418798aca9afc28cd625a7505be05e2",
+            "recordIndex": 1611,
+            "sourceNoteGuid": "ou.lgb1aAY",
+            "sourceRecordId": "1559931008413",
+            "structuredOxfordSenseGroupOrdinals": []
+          }
+        ],
+        "sourceFindingId": "F03"
+      },
+      "originalReviewedSense": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:purse",
+        "canonicalIdsAllocated": 0,
+        "content": {
+          "definitionEn": "A bag carried to hold money and small personal belongings such as keys.",
+          "examples": [
+            {
+              "en": "She kept a spare key in the inside pocket of her purse.",
+              "exampleKey": "EDITORIAL_2H2K:purse:handbag:example-1",
+              "vi": "Cô ấy giữ một chiếc chìa khóa dự phòng trong túi ngăn bên trong chiếc túi xách của mình."
+            }
+          ],
+          "grammarNotesEn": "In American English, purse commonly means handbag; British purse often names a smaller money holder.",
+          "meaningVi": "túi xách nhỏ đựng tiền và đồ dùng cá nhân",
+          "senseLabelEn": "a small bag for personal belongings"
+        },
+        "contentStatus": "DRAFT",
+        "displayFormProposal": "purse",
+        "editorialAuthorship": {
+          "humanAuthor": null,
+          "humanReviewer": null,
+          "kind": "AI_GENERATED_EDITORIAL_DRAFT",
+          "process": "Original manuscript composed from source-supported lexical meaning; assembler only reads persisted text"
+        },
+        "effectiveContentHash": "643aa0d768682a1ffe675330257d449df99d32e88b8f65f929c66cac372121c5",
+        "fieldHashes": {
+          "definitionEn": "f13237bb81e416f85063f762f0fa5c3e3c9a720ecb3f23385f8124e0b4af9d65",
+          "examples": "3a560c3dcc2f1afd5e21b61aa6907feed146e72692bfe5708a8f9809495e70db",
+          "grammarNotesEn": "3b61a8cf369c3321fec6de7208831f5dfc21fc966eed0b6639f1d00bdae58092",
+          "meaningVi": "3279116a15c25c3f1e6a7663f1153b88c59c2e636388ed5ef3fcc27ee41b33e0",
+          "senseLabelEn": "84fdcf39e71a92e1f1a8c114bd2cb328173ed53d7db7c30800d3fdf790de2880"
+        },
+        "formalApproval": false,
+        "headword": "purse",
+        "partOfSpeech": "NOUN",
+        "proposalKey": "EDITORIAL_2H2K:purse:handbag",
+        "rights": "UNKNOWN_REVIEW_REQUIRED",
+        "riskFlags": [
+          "SOURCE_ONLY_CONTENT"
+        ],
+        "sourceEvidence": [
+          {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::A2",
+                "value": "A2"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "A2"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/1611/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/1611/rawHeadword",
+            "rawPosEvidencePointer": "/records/1611/sourcePosRaw",
+            "recordEvidenceSha256": "59ddbe6b6d4449b6a613f75a8f83b886a418798aca9afc28cd625a7505be05e2",
+            "recordIndex": 1611,
+            "sourceNoteGuid": "ou.lgb1aAY",
+            "sourceRecordId": "1559931008413",
+            "structuredOxfordSenseGroupOrdinals": []
+          }
+        ],
+        "sourceSenseCoverage": "Selected supported meanings only; no claim of exhaustive dictionary coverage"
+      },
+      "revisedSense": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:purse",
+        "canonicalIdsAllocated": 0,
+        "content": {
+          "definitionEn": "A bag carried to hold money and small personal belongings such as keys.",
+          "examples": [
+            {
+              "en": "She kept a spare key in the inside pocket of her purse.",
+              "exampleKey": "EDITORIAL_2H2K:purse:handbag:example-1",
+              "vi": "Cô ấy giữ một chiếc chìa khóa dự phòng trong ngăn bên trong túi xách của mình."
+            }
+          ],
+          "grammarNotesEn": "In American English, purse commonly means handbag; British purse often names a smaller money holder.",
+          "meaningVi": "túi xách nhỏ đựng tiền và đồ dùng cá nhân",
+          "senseLabelEn": "a small bag for personal belongings"
+        },
+        "contentStatus": "DRAFT",
+        "displayFormProposal": "purse",
+        "editorialAuthorship": {
+          "humanAuthor": null,
+          "humanReviewer": null,
+          "kind": "AI_GENERATED_EDITORIAL_DRAFT",
+          "process": "Original manuscript composed from source-supported lexical meaning; assembler only reads persisted text"
+        },
+        "effectiveContentHash": "9f99df805191c9e50ad43c4009f9b36ceb4eecbd360efa7b237e5365659cb097",
+        "fieldHashes": {
+          "definitionEn": "f13237bb81e416f85063f762f0fa5c3e3c9a720ecb3f23385f8124e0b4af9d65",
+          "examples": "415ee4fbe33b973e5ebe8626f02158f3c5b6ede14e0156128b98e78a10bd0e9e",
+          "grammarNotesEn": "3b61a8cf369c3321fec6de7208831f5dfc21fc966eed0b6639f1d00bdae58092",
+          "meaningVi": "3279116a15c25c3f1e6a7663f1153b88c59c2e636388ed5ef3fcc27ee41b33e0",
+          "senseLabelEn": "84fdcf39e71a92e1f1a8c114bd2cb328173ed53d7db7c30800d3fdf790de2880"
+        },
+        "formalApproval": false,
+        "headword": "purse",
+        "partOfSpeech": "NOUN",
+        "proposalKey": "EDITORIAL_2H2K:purse:handbag",
+        "rights": "UNKNOWN_REVIEW_REQUIRED",
+        "riskFlags": [
+          "SOURCE_ONLY_CONTENT"
+        ],
+        "sourceEvidence": [
+          {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::A2",
+                "value": "A2"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "A2"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/1611/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/1611/rawHeadword",
+            "rawPosEvidencePointer": "/records/1611/sourcePosRaw",
+            "recordEvidenceSha256": "59ddbe6b6d4449b6a613f75a8f83b886a418798aca9afc28cd625a7505be05e2",
+            "recordIndex": 1611,
+            "sourceNoteGuid": "ou.lgb1aAY",
+            "sourceRecordId": "1559931008413",
+            "structuredOxfordSenseGroupOrdinals": []
+          }
+        ],
+        "sourceSenseCoverage": "Selected supported meanings only; no claim of exhaustive dictionary coverage"
+      }
+    },
+    {
+      "correction": {
+        "after": "Countable: a rainforest. The phrase 'rainforest plants' refers to plants that grow there.",
+        "afterFieldSha256": "8430a99e0bf90815a612a35cbc3f587998b3fdba82f518539a50c315247f591a",
+        "before": "Countable: a rainforest; rainforest plants names plants found there.",
+        "beforeFieldSha256": "32a058873e791beb656f9a44c0c0a951d4958ab4ae9bdd1f738e3e18e1671f99",
+        "fieldPointer": "/content/grammarNotesEn",
+        "independentRecheck": "PENDING",
+        "originalEffectiveContentHash": "091a1a46ebded3ef1263559731f775f67bdb068d546931c04063eff57afe950c",
+        "parentRecordSha256": "5682781b4fe438d3b0cf7ba3ba2d2dfe55a43d898e4694d82c3f9713ccfcee26",
+        "proposalKey": "EDITORIAL_2H2K:rainforest:high-rainfall-forest",
+        "reasonVi": "Tách ghi chú countability khỏi phần giải thích cụm danh từ và đánh dấu rainforest plants bằng dấu nháy. Rainforest bổ nghĩa cho plants theo nơi cây mọc; không sửa definition, bản dịch hay ví dụ và không thêm Sense hoặc khẳng định phân loại thực vật mới.",
+        "revisedEffectiveContentHash": "15999fd6f97137b8a55f8cf0ff84ed435985b89d38c3d1f16fe7ee2060093bcb",
+        "revisedRecordSha256": "0e048a6889f9e5753f49a4164e05c2c0300537f388f536b3f39f14abac63c4c8",
+        "revisionProvenance": "AUTHOR_A_AI_GENERATED_FORWARD_REVISION_NOT_REVIEWER_B_APPROVAL",
+        "sourceEvidence": [
+          {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::A2",
+                "value": "A2"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "A2"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/2839/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/2839/rawHeadword",
+            "rawPosEvidencePointer": "/records/2839/sourcePosRaw",
+            "recordEvidenceSha256": "e325f64ba7d4273d56b4018d50f46fbcbaeeb37f7314604735c98d733dfb9f06",
+            "recordIndex": 2839,
+            "sourceNoteGuid": "L67Z3(T$-n",
+            "sourceRecordId": "1559931009696",
+            "structuredOxfordSenseGroupOrdinals": []
+          }
+        ],
+        "sourceFindingId": "F04"
+      },
+      "originalReviewedSense": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:rainforest",
+        "canonicalIdsAllocated": 0,
+        "content": {
+          "definitionEn": "A dense forest growing in a region that receives a great deal of rain.",
+          "examples": [
+            {
+              "en": "The students compared photographs of a rainforest and a dry woodland.",
+              "exampleKey": "EDITORIAL_2H2K:rainforest:high-rainfall-forest:example-1",
+              "vi": "Các học sinh so sánh ảnh của một khu rừng mưa với một khu rừng khô."
+            }
+          ],
+          "grammarNotesEn": "Countable: a rainforest; rainforest plants names plants found there.",
+          "meaningVi": "rừng mưa, rừng rậm ở vùng có lượng mưa lớn",
+          "senseLabelEn": "a forest with frequent heavy rain"
+        },
+        "contentStatus": "DRAFT",
+        "displayFormProposal": "rainforest",
+        "editorialAuthorship": {
+          "humanAuthor": null,
+          "humanReviewer": null,
+          "kind": "AI_GENERATED_EDITORIAL_DRAFT",
+          "process": "Original manuscript composed from source-supported lexical meaning; assembler only reads persisted text"
+        },
+        "effectiveContentHash": "091a1a46ebded3ef1263559731f775f67bdb068d546931c04063eff57afe950c",
+        "fieldHashes": {
+          "definitionEn": "d0e91de5d0b5516f64427ace791be06a5ad2a979d5cd4c94217178e23f8c60b1",
+          "examples": "a2ac6cfdf34ff344cc6bb54deb86de012319a1e1bcb0bacbb1caa7e5aff56c35",
+          "grammarNotesEn": "fc413b0c5f99dd59946e92bf75037ce1d104b3e76ca6a79a9f418e8d706b8791",
+          "meaningVi": "53b01af6845ba9114b7b10b25e364915577732c9a1916c4ec4ef0520db133e12",
+          "senseLabelEn": "f52ae7e3f3227dc9ec9dff7b7e6869c8c83b398131a8d5a4e462592aa5398a6b"
+        },
+        "formalApproval": false,
+        "headword": "rainforest",
+        "partOfSpeech": "NOUN",
+        "proposalKey": "EDITORIAL_2H2K:rainforest:high-rainfall-forest",
+        "rights": "UNKNOWN_REVIEW_REQUIRED",
+        "riskFlags": [
+          "SOURCE_ONLY_CONTENT"
+        ],
+        "sourceEvidence": [
+          {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::A2",
+                "value": "A2"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "A2"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/2839/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/2839/rawHeadword",
+            "rawPosEvidencePointer": "/records/2839/sourcePosRaw",
+            "recordEvidenceSha256": "e325f64ba7d4273d56b4018d50f46fbcbaeeb37f7314604735c98d733dfb9f06",
+            "recordIndex": 2839,
+            "sourceNoteGuid": "L67Z3(T$-n",
+            "sourceRecordId": "1559931009696",
+            "structuredOxfordSenseGroupOrdinals": []
+          }
+        ],
+        "sourceSenseCoverage": "Selected supported meanings only; no claim of exhaustive dictionary coverage"
+      },
+      "revisedSense": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:rainforest",
+        "canonicalIdsAllocated": 0,
+        "content": {
+          "definitionEn": "A dense forest growing in a region that receives a great deal of rain.",
+          "examples": [
+            {
+              "en": "The students compared photographs of a rainforest and a dry woodland.",
+              "exampleKey": "EDITORIAL_2H2K:rainforest:high-rainfall-forest:example-1",
+              "vi": "Các học sinh so sánh ảnh của một khu rừng mưa với một khu rừng khô."
+            }
+          ],
+          "grammarNotesEn": "Countable: a rainforest. The phrase 'rainforest plants' refers to plants that grow there.",
+          "meaningVi": "rừng mưa, rừng rậm ở vùng có lượng mưa lớn",
+          "senseLabelEn": "a forest with frequent heavy rain"
+        },
+        "contentStatus": "DRAFT",
+        "displayFormProposal": "rainforest",
+        "editorialAuthorship": {
+          "humanAuthor": null,
+          "humanReviewer": null,
+          "kind": "AI_GENERATED_EDITORIAL_DRAFT",
+          "process": "Original manuscript composed from source-supported lexical meaning; assembler only reads persisted text"
+        },
+        "effectiveContentHash": "15999fd6f97137b8a55f8cf0ff84ed435985b89d38c3d1f16fe7ee2060093bcb",
+        "fieldHashes": {
+          "definitionEn": "d0e91de5d0b5516f64427ace791be06a5ad2a979d5cd4c94217178e23f8c60b1",
+          "examples": "a2ac6cfdf34ff344cc6bb54deb86de012319a1e1bcb0bacbb1caa7e5aff56c35",
+          "grammarNotesEn": "fc6cc5856c7b3173073072dd3f8316fb4bf721653804c3e3f8c0a59eb0898103",
+          "meaningVi": "53b01af6845ba9114b7b10b25e364915577732c9a1916c4ec4ef0520db133e12",
+          "senseLabelEn": "f52ae7e3f3227dc9ec9dff7b7e6869c8c83b398131a8d5a4e462592aa5398a6b"
+        },
+        "formalApproval": false,
+        "headword": "rainforest",
+        "partOfSpeech": "NOUN",
+        "proposalKey": "EDITORIAL_2H2K:rainforest:high-rainfall-forest",
+        "rights": "UNKNOWN_REVIEW_REQUIRED",
+        "riskFlags": [
+          "SOURCE_ONLY_CONTENT"
+        ],
+        "sourceEvidence": [
+          {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::A2",
+                "value": "A2"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "A2"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/2839/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/2839/rawHeadword",
+            "rawPosEvidencePointer": "/records/2839/sourcePosRaw",
+            "recordEvidenceSha256": "e325f64ba7d4273d56b4018d50f46fbcbaeeb37f7314604735c98d733dfb9f06",
+            "recordIndex": 2839,
+            "sourceNoteGuid": "L67Z3(T$-n",
+            "sourceRecordId": "1559931009696",
+            "structuredOxfordSenseGroupOrdinals": []
+          }
+        ],
+        "sourceSenseCoverage": "Selected supported meanings only; no claim of exhaustive dictionary coverage"
+      }
+    }
+  ],
+  "deferredCoverageQueue": [
+    {
+      "candidateId": "M01",
+      "candidateMeaning": "forget to do something",
+      "canonicalIdsAllocated": 0,
+      "classification": "STRONG_CANDIDATE",
+      "disposition": "DEFERRED_OWNER_DECISION",
+      "existingProposalKey": "EDITORIAL_2H2K:forget:fail-to-remember",
+      "existingSenseAssessment": "VALID_BUT_INCOMPLETE",
+      "existingSenseCorrectButIncomplete": true,
+      "headword": "forget",
+      "newSenseInserted": false,
+      "originalEffectiveContentHash": "fe9185f9e5010267735eaff941b0fe834d45247d727fa09b5411c555fbe6527c",
+      "ownerApproval": false,
+      "reasonVi": "Nghĩa hiện tại là không nhớ lại tên, thông tin hoặc trải nghiệm; hai câu Oxford đều là forget to + động từ, tức bỏ sót việc cần làm vì quên. Đây là khác biệt construction và phạm vi nghĩa có chứng cứ trực tiếp, không phải thay đổi ví dụ cho nghĩa hồi tưởng. Giữ Sense hiện tại, đề xuất nghĩa hành động cho owner quyết định riêng; không tự broaden definition.",
+      "reviewerBExternalReferences": "Preserved in original report; not newly verified or promoted to accepted source evidence",
+      "sourceEvidence": [
+        {
+          "artifact": "oxford-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "CEFR",
+              "value": "A1"
+            }
+          ],
+          "corpus": "OXFORD_5000",
+          "normalizedPosCandidates": [
+            "VERB"
+          ],
+          "rawContentPointer": "/records/478/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/478/rawHeadword",
+          "rawPosEvidencePointer": "/records/478/sourcePosRaw",
+          "recordEvidenceSha256": "898e7660542bf54737da4efd7ddf4c935f86f2560a7f2ede16ada687d33a54c0",
+          "recordIndex": 478,
+          "sourceNoteGuid": "kV@w44Rw9.",
+          "sourceRecordId": "1788223606431",
+          "structuredOxfordSenseGroupOrdinals": [
+            0
+          ]
+        }
+      ],
+      "sourceQuotes": [
+        {
+          "corpus": "OXFORD_5000",
+          "exactSourceText": "Do not forget to bring your passport.",
+          "recordIndex": 478,
+          "sourceField": "Example EN 1"
+        },
+        {
+          "corpus": "OXFORD_5000",
+          "exactSourceText": "I forgot to bring my umbrella.",
+          "recordIndex": 478,
+          "sourceField": "Example EN 2"
+        }
+      ]
+    },
+    {
+      "candidateId": "M02",
+      "candidateMeaning": "combining things",
+      "canonicalIdsAllocated": 0,
+      "classification": "STRONG_CANDIDATE",
+      "disposition": "DEFERRED_OWNER_DECISION",
+      "existingProposalKey": "EDITORIAL_2H2K:together:with-one-another",
+      "existingSenseAssessment": "VALID_BUT_INCOMPLETE",
+      "existingSenseCorrectButIncomplete": true,
+      "headword": "together",
+      "newSenseInserted": false,
+      "originalEffectiveContentHash": "f736408cd7d9917bfed4db3d45a7ab503d5546153e34390106565366708bda87",
+      "ownerApproval": false,
+      "reasonVi": "Nội dung hiện tại giới hạn người cùng làm thay vì làm riêng. Câu trộn bột và nước của Oxford mô tả kết hợp các vật, và gloss Vocab nhắc person or thing. Đây là phạm vi khác với person/people trong definition hiện tại. Ghi nhận thiếu coverage của vật/thành phần; không nhập hai phạm vi hay thêm identity mới trong checkpoint.",
+      "reviewerBExternalReferences": "Preserved in original report; not newly verified or promoted to accepted source evidence",
+      "sourceEvidence": [
+        {
+          "artifact": "oxford-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "CEFR",
+              "value": "A1"
+            }
+          ],
+          "corpus": "OXFORD_5000",
+          "normalizedPosCandidates": [
+            "ADVERB"
+          ],
+          "rawContentPointer": "/records/232/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/232/rawHeadword",
+          "rawPosEvidencePointer": "/records/232/sourcePosRaw",
+          "recordEvidenceSha256": "c222d87522690562a7ecca2c73e8863f21e42057969e1bf13c86c54f207862e2",
+          "recordIndex": 232,
+          "sourceNoteGuid": "LU-U.2nqFf",
+          "sourceRecordId": "1788223606183",
+          "structuredOxfordSenseGroupOrdinals": [
+            0
+          ]
+        },
+        {
+          "artifact": "vocab4600-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "deck:4600 English Vocab::A1",
+              "value": "A1"
+            },
+            {
+              "sourceField": "noteTag",
+              "value": "A1"
+            }
+          ],
+          "corpus": "ENGLISH_VOCAB_4600",
+          "normalizedPosCandidates": [
+            "ADVERB"
+          ],
+          "rawContentPointer": "/records/307/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/307/rawHeadword",
+          "rawPosEvidencePointer": "/records/307/sourcePosRaw",
+          "recordEvidenceSha256": "2c921696f5239e2f3ad4eb92fe262f3935b64dc5885fd06617d3f93b0e94b691",
+          "recordIndex": 307,
+          "sourceNoteGuid": "b%!_UnoGvG",
+          "sourceRecordId": "1556384731114",
+          "structuredOxfordSenseGroupOrdinals": []
+        }
+      ],
+      "sourceQuotes": [
+        {
+          "corpus": "OXFORD_5000",
+          "exactSourceText": "We worked together on the project.",
+          "recordIndex": 232,
+          "sourceField": "Example EN 1"
+        },
+        {
+          "corpus": "OXFORD_5000",
+          "exactSourceText": "Mix the flour and water together.",
+          "recordIndex": 232,
+          "sourceField": "Example EN 2"
+        },
+        {
+          "corpus": "ENGLISH_VOCAB_4600",
+          "exactSourceText": "<i>Together</i> shows an action is done with another person or thing.<br><b>cùng với nhau, chung với nhau</b>",
+          "recordIndex": 307,
+          "sourceField": "Meaning"
+        },
+        {
+          "corpus": "ENGLISH_VOCAB_4600",
+          "exactSourceText": "Let’s work <b>together</b> to finish the project.",
+          "recordIndex": 307,
+          "sourceField": "Example"
+        }
+      ]
+    },
+    {
+      "candidateId": "M03",
+      "candidateMeaning": "British-English pharmacist",
+      "canonicalIdsAllocated": 0,
+      "classification": "NEEDS_MORE_EVIDENCE",
+      "disposition": "DEFERRED_OWNER_DECISION",
+      "existingProposalKey": "EDITORIAL_2H2K:chemist:chemical-scientist",
+      "existingSenseAssessment": "VALID_BUT_INCOMPLETE_IF_CANDIDATE_CONFIRMED",
+      "existingSenseCorrectButIncomplete": null,
+      "headword": "chemist",
+      "newSenseInserted": false,
+      "originalEffectiveContentHash": "fa6731b901138ef0a23db2cc0be390c3f42d3a35c9df6cf212be69e3600cc9bb",
+      "ownerApproval": false,
+      "reasonVi": "Definition và ví dụ tiếng Anh trong Vocab chỉ chứng minh nhà hóa học; gloss Việt có dược sư gợi nghĩa pharmacist nhưng không chỉ rõ vùng Anh-Anh. Reviewer B dẫn từ điển ngoài, nhưng intake không chứa bản chụp nguồn từ điển đã xác minh để làm chứng cứ lexical mới. Vì vậy cần thêm chứng cứ English và regional label trước authoring; scientist hiện tại đúng, không trộn hai nghề và không suy ra shop/pharmacy.",
+      "reviewerBExternalReferences": "Preserved in original report; not newly verified or promoted to accepted source evidence",
+      "sourceEvidence": [
+        {
+          "artifact": "vocab4600-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "deck:4600 English Vocab::A2",
+              "value": "A2"
+            },
+            {
+              "sourceField": "noteTag",
+              "value": "A2"
+            }
+          ],
+          "corpus": "ENGLISH_VOCAB_4600",
+          "normalizedPosCandidates": [
+            "NOUN"
+          ],
+          "rawContentPointer": "/records/1700/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/1700/rawHeadword",
+          "rawPosEvidencePointer": "/records/1700/sourcePosRaw",
+          "recordEvidenceSha256": "dd64dc3eb8c24d9492dee669b3df321765d5e436dc14cce350a572144f457c4d",
+          "recordIndex": 1700,
+          "sourceNoteGuid": "id?KPK!w}:",
+          "sourceRecordId": "1559931008502",
+          "structuredOxfordSenseGroupOrdinals": []
+        }
+      ],
+      "sourceQuotes": [
+        {
+          "corpus": "ENGLISH_VOCAB_4600",
+          "exactSourceText": "A <i>chemist</i> is a scientist who works with chemicals.<br><b>nhà hoá học, dược sư</b>",
+          "recordIndex": 1700,
+          "sourceField": "Meaning"
+        },
+        {
+          "corpus": "ENGLISH_VOCAB_4600",
+          "exactSourceText": "My mother is a successful <b>chemist</b> who helps invent new products.",
+          "recordIndex": 1700,
+          "sourceField": "Example"
+        }
+      ]
+    },
+    {
+      "candidateId": "M04",
+      "candidateMeaning": "past events or development over time",
+      "canonicalIdsAllocated": 0,
+      "classification": "STRONG_CANDIDATE",
+      "disposition": "DEFERRED_OWNER_DECISION",
+      "existingProposalKey": "EDITORIAL_2H2K:history:study-of-past",
+      "existingSenseAssessment": "VALID_BUT_INCOMPLETE",
+      "existingSenseCorrectButIncomplete": true,
+      "headword": "history",
+      "newSenseInserted": false,
+      "originalEffectiveContentHash": "e598a8940213fff13c7722aa35a9cf11aa98f9be72ede8fa58b6bca633ee36b6",
+      "ownerApproval": false,
+      "reasonVi": "Sense hiện tại là hoạt động/môn nghiên cứu quá khứ. Long history của một tòa nhà và turning point in human history nói đến sự kiện/quá trình đã diễn ra, không phải môn học. Hai nguồn hỗ trợ candidate mạnh nhưng owner còn phải quyết định gộp hay tách history of an entity và các sự kiện xã hội. Không broaden definition của môn học.",
+      "reviewerBExternalReferences": "Preserved in original report; not newly verified or promoted to accepted source evidence",
+      "sourceEvidence": [
+        {
+          "artifact": "oxford-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "CEFR",
+              "value": "A1"
+            }
+          ],
+          "corpus": "OXFORD_5000",
+          "normalizedPosCandidates": [
+            "NOUN"
+          ],
+          "rawContentPointer": "/records/267/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/267/rawHeadword",
+          "rawPosEvidencePointer": "/records/267/sourcePosRaw",
+          "recordEvidenceSha256": "6c05b57c81849d6e819639c060ba275e12cd3b94b4b76434f34e1df14ce0042f",
+          "recordIndex": 267,
+          "sourceNoteGuid": "JH.AR)p|`_",
+          "sourceRecordId": "1788223606218",
+          "structuredOxfordSenseGroupOrdinals": [
+            0
+          ]
+        },
+        {
+          "artifact": "vocab4600-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "deck:4600 English Vocab::A1",
+              "value": "A1"
+            },
+            {
+              "sourceField": "noteTag",
+              "value": "A1"
+            }
+          ],
+          "corpus": "ENGLISH_VOCAB_4600",
+          "normalizedPosCandidates": [
+            "NOUN"
+          ],
+          "rawContentPointer": "/records/208/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/208/rawHeadword",
+          "rawPosEvidencePointer": "/records/208/sourcePosRaw",
+          "recordEvidenceSha256": "8f27abbb49bcd293fb8977e3c7504c29ade1f70d95b5ad1a068bd6522fe41527",
+          "recordIndex": 208,
+          "sourceNoteGuid": "jBBNx)_2=a",
+          "sourceRecordId": "1556384731010",
+          "structuredOxfordSenseGroupOrdinals": []
+        }
+      ],
+      "sourceQuotes": [
+        {
+          "corpus": "OXFORD_5000",
+          "exactSourceText": "She is studying the history of her country.",
+          "recordIndex": 267,
+          "sourceField": "Example EN 1"
+        },
+        {
+          "corpus": "OXFORD_5000",
+          "exactSourceText": "The building has a long history.",
+          "recordIndex": 267,
+          "sourceField": "Example EN 2"
+        },
+        {
+          "corpus": "ENGLISH_VOCAB_4600",
+          "exactSourceText": "<i>History</i> is the study of the past.<br><b>lịch sử, môn lịch sử</b>",
+          "recordIndex": 208,
+          "sourceField": "Meaning"
+        },
+        {
+          "corpus": "ENGLISH_VOCAB_4600",
+          "exactSourceText": "The battle was a turning point in human <b>history</b>.",
+          "recordIndex": 208,
+          "sourceField": "Example"
+        }
+      ]
+    },
+    {
+      "candidateId": "M05",
+      "candidateMeaning": "ideally suitable for a purpose",
+      "canonicalIdsAllocated": 0,
+      "classification": "STRONG_CANDIDATE",
+      "disposition": "DEFERRED_OWNER_DECISION",
+      "existingProposalKey": "EDITORIAL_2H2K:perfect:without-faults",
+      "existingSenseAssessment": "VALID_BUT_INCOMPLETE",
+      "existingSenseCorrectButIncomplete": true,
+      "headword": "perfect",
+      "newSenseInserted": false,
+      "originalEffectiveContentHash": "d4c4a54740e6a0ccd920cba8dc03c42a20377c5f94e1e50d8654427260251273",
+      "ownerApproval": false,
+      "reasonVi": "Không lỗi trong chính tả phù hợp Sense đã viết và gloss Vocab. Perfect for a picnic của Oxford đánh giá sự phù hợp với mục đích, không đòi thời tiết không có lỗi ở mọi mặt. Construction for hỗ trợ một candidate nghĩa riêng; ghi deferred để owner đánh giá, giữ nguyên definition không lỗi và không thêm Sense tự động.",
+      "reviewerBExternalReferences": "Preserved in original report; not newly verified or promoted to accepted source evidence",
+      "sourceEvidence": [
+        {
+          "artifact": "oxford-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "CEFR",
+              "value": "A1"
+            }
+          ],
+          "corpus": "OXFORD_5000",
+          "normalizedPosCandidates": [
+            "ADJECTIVE"
+          ],
+          "rawContentPointer": "/records/382/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/382/rawHeadword",
+          "rawPosEvidencePointer": "/records/382/sourcePosRaw",
+          "recordEvidenceSha256": "3fa1a5a50b9d6649488da4e818b945f7113eadb697399a2ffb26f04d9297723c",
+          "recordIndex": 382,
+          "sourceNoteGuid": "Cl~7322a5~",
+          "sourceRecordId": "1788223606333",
+          "structuredOxfordSenseGroupOrdinals": [
+            0
+          ]
+        },
+        {
+          "artifact": "vocab4600-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "deck:4600 English Vocab::A1",
+              "value": "A1"
+            },
+            {
+              "sourceField": "noteTag",
+              "value": "A1"
+            }
+          ],
+          "corpus": "ENGLISH_VOCAB_4600",
+          "normalizedPosCandidates": [
+            "ADJECTIVE"
+          ],
+          "rawContentPointer": "/records/2380/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/2380/rawHeadword",
+          "rawPosEvidencePointer": "/records/2380/sourcePosRaw",
+          "recordEvidenceSha256": "a4ee3c23695cf6d3a4362496606c9c33dc2699286df8c9982ecc23e80b8575d0",
+          "recordIndex": 2380,
+          "sourceNoteGuid": "N^o6ehrz{-",
+          "sourceRecordId": "1559931009214",
+          "structuredOxfordSenseGroupOrdinals": []
+        }
+      ],
+      "sourceQuotes": [
+        {
+          "corpus": "OXFORD_5000",
+          "exactSourceText": "The weather is perfect for a picnic.",
+          "recordIndex": 382,
+          "sourceField": "Example EN 1"
+        },
+        {
+          "corpus": "OXFORD_5000",
+          "exactSourceText": "That is the perfect answer.",
+          "recordIndex": 382,
+          "sourceField": "Example EN 2"
+        },
+        {
+          "corpus": "ENGLISH_VOCAB_4600",
+          "exactSourceText": "If something is <i>perfect</i>, then it is without any mistakes.<br><b>hoàn hảo</b>",
+          "recordIndex": 2380,
+          "sourceField": "Meaning"
+        },
+        {
+          "corpus": "ENGLISH_VOCAB_4600",
+          "exactSourceText": "She got all the questions right, so her score was <b>perfect</b>.",
+          "recordIndex": 2380,
+          "sourceField": "Example"
+        }
+      ]
+    },
+    {
+      "candidateId": "M06",
+      "candidateMeaning": "possibility of being true or happening",
+      "canonicalIdsAllocated": 0,
+      "classification": "STRONG_CANDIDATE",
+      "disposition": "DEFERRED_OWNER_DECISION",
+      "existingProposalKey": "EDITORIAL_2H2K:possible:able-to-be-done",
+      "existingSenseAssessment": "BOUNDARY_REVIEW_REQUIRED",
+      "existingSenseCorrectButIncomplete": null,
+      "headword": "possible",
+      "newSenseInserted": false,
+      "originalEffectiveContentHash": "dbbce8769d3555389310547cbe2815e36d22dc611517cb17048851cd4d1e279d",
+      "ownerApproval": false,
+      "reasonVi": "Definition hiện tại đã chứa happen nên đây là candidate tách nghĩa đang gộp, không phải nghĩa hoàn toàn vắng mặt. Label able to be done và ví dụ đi đến đảo thể hiện khả thi; possible that trong Oxford thể hiện chưa chắc đúng/xảy ra. Chứng cứ tách construction mạnh nhưng ranh giới cần owner quyết định. Giữ nguyên toàn bộ content và flag F10; không tuyên bố coverage hoàn chỉnh hay lặng lẽ mở rộng nghĩa.",
+      "reviewerBExternalReferences": "Preserved in original report; not newly verified or promoted to accepted source evidence",
+      "sourceEvidence": [
+        {
+          "artifact": "oxford-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "CEFR",
+              "value": "A1"
+            }
+          ],
+          "corpus": "OXFORD_5000",
+          "normalizedPosCandidates": [
+            "ADJECTIVE"
+          ],
+          "rawContentPointer": "/records/288/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/288/rawHeadword",
+          "rawPosEvidencePointer": "/records/288/sourcePosRaw",
+          "recordEvidenceSha256": "65f6ebd0503b3fca10c1b297e96543bad94cdcd1ffd9b5cd41dbdb254de550da",
+          "recordIndex": 288,
+          "sourceNoteGuid": "Kt&KkOt#k/",
+          "sourceRecordId": "1788223606239",
+          "structuredOxfordSenseGroupOrdinals": [
+            0
+          ]
+        },
+        {
+          "artifact": "vocab4600-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "deck:4600 English Vocab::A1",
+              "value": "A1"
+            },
+            {
+              "sourceField": "noteTag",
+              "value": "A1"
+            }
+          ],
+          "corpus": "ENGLISH_VOCAB_4600",
+          "normalizedPosCandidates": [
+            "ADJECTIVE"
+          ],
+          "rawContentPointer": "/records/3572/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/3572/rawHeadword",
+          "rawPosEvidencePointer": "/records/3572/sourcePosRaw",
+          "recordEvidenceSha256": "a14d130b95fc9aeeb6ea13cd8eae4e9e776ab8358e443e59099515710a31b400",
+          "recordIndex": 3572,
+          "sourceNoteGuid": "b[YOY!16YP",
+          "sourceRecordId": "1616499876705",
+          "structuredOxfordSenseGroupOrdinals": []
+        }
+      ],
+      "sourceQuotes": [
+        {
+          "corpus": "OXFORD_5000",
+          "exactSourceText": "Is it possible to change the booking?",
+          "recordIndex": 288,
+          "sourceField": "Example EN 1"
+        },
+        {
+          "corpus": "OXFORD_5000",
+          "exactSourceText": "It is possible that she is still at work.",
+          "recordIndex": 288,
+          "sourceField": "Example EN 2"
+        },
+        {
+          "corpus": "ENGLISH_VOCAB_4600",
+          "exactSourceText": "that can be done or achieved.<br><b>khả thi</b>",
+          "recordIndex": 3572,
+          "sourceField": "Meaning"
+        },
+        {
+          "corpus": "ENGLISH_VOCAB_4600",
+          "exactSourceText": "New technology has made it <b>possible</b> to communicate more easily.",
+          "recordIndex": 3572,
+          "sourceField": "Example"
+        }
+      ]
+    }
+  ],
+  "independentRecheck": "PENDING",
+  "instruction": "Independent Reviewer B must examine changed fields and surrounding Sense context; do not rebind original judgments or add Senses.",
+  "originalReportSha256": "c4a22c67d33402a18032f8d8014a69ea6251a2e1e754ccae240a0ae52b80a925",
+  "remainingReviewerBConcerns": [
+    {
+      "affectedFields": [
+        "content.examples[0].vi"
+      ],
+      "effectiveContentHash": "ecf4ecbdd86b73383a295156efd96cc48ac8e6e7723327d48054be17547fdeb9",
+      "proposalKey": "EDITORIAL_2H2K:large:big-in-size",
+      "reviewExplanationVi": "F01: vị trí lớn trong thùng sách được quyên góp lớn làm phạm vi bổ nghĩa không rõ; English xác định box lớn.",
+      "reviewStatus": "REVIEW",
+      "reviewerKind": "INDEPENDENT_AI_SESSION",
+      "severity": "MEDIUM",
+      "sourceEvidenceReferences": [
+        "O268",
+        "V1063"
+      ],
+      "suggestedCorrection": "Một thùng lớn đựng sách được quyên góp được đặt cạnh lối vào."
+    },
+    {
+      "affectedFields": [
+        "content.grammarNotesEn"
+      ],
+      "effectiveContentHash": "091a1a46ebded3ef1263559731f775f67bdb068d546931c04063eff57afe950c",
+      "proposalKey": "EDITORIAL_2H2K:rainforest:high-rainfall-forest",
+      "reviewExplanationVi": "F04: rainforest plants names plants khó đọc vì cụm được nói đến chưa đánh dấu; nghĩa và ví dụ vẫn đúng.",
+      "reviewStatus": "REVIEW",
+      "reviewerKind": "INDEPENDENT_AI_SESSION",
+      "severity": "LOW",
+      "sourceEvidenceReferences": [
+        "V2839"
+      ],
+      "suggestedCorrection": "Countable: a rainforest. The phrase 'rainforest plants' refers to plants that grow there."
+    },
+    {
+      "affectedFields": [
+        "content.examples[0].en",
+        "content.examples[0].vi"
+      ],
+      "effectiveContentHash": "32062d6993e44c6bd2d4c50d218b86ad7e0f7a7ea5677bde276aaf4fe52c859b",
+      "proposalKey": "EDITORIAL_2H2K:also:in-addition",
+      "reviewExplanationVi": "F02: dịch workshop là buổi học chưa nhất quán với chủ thể cung cấp dịch vụ repairs; nghĩa also vẫn đúng.",
+      "reviewStatus": "REVIEW",
+      "reviewerKind": "INDEPENDENT_AI_SESSION",
+      "severity": "MEDIUM",
+      "sourceEvidenceReferences": [
+        "O60",
+        "V687"
+      ],
+      "suggestedCorrection": "Nếu chủ thể là cơ sở: Xưởng này dạy may và cũng cung cấp dịch vụ sửa chữa cơ bản."
+    },
+    {
+      "affectedFields": [
+        "sourceSenseCoverage",
+        "content.definitionEn",
+        "content.grammarNotesEn"
+      ],
+      "effectiveContentHash": "fe9185f9e5010267735eaff941b0fe834d45247d727fa09b5411c555fbe6527c",
+      "proposalKey": "EDITORIAL_2H2K:forget:fail-to-remember",
+      "reviewExplanationVi": "F05/M01: Sense hồi tưởng hợp lệ nhưng ví dụ nguồn đều là forget to do; construction bỏ sót hành động chưa được thể hiện.",
+      "reviewStatus": "REVIEW",
+      "reviewerKind": "INDEPENDENT_AI_SESSION",
+      "severity": "MEDIUM",
+      "sourceEvidenceReferences": [
+        "O478"
+      ],
+      "suggestedCorrection": "Owner xem M01; giữ riêng nghĩa hồi tưởng và chưa tự thêm Sense."
+    },
+    {
+      "affectedFields": [
+        "sourceSenseCoverage",
+        "content.definitionEn"
+      ],
+      "effectiveContentHash": "f736408cd7d9917bfed4db3d45a7ab503d5546153e34390106565366708bda87",
+      "proposalKey": "EDITORIAL_2H2K:together:with-one-another",
+      "reviewExplanationVi": "F06/M02: định nghĩa người cùng làm đúng; nguồn còn thể hiện trộn vật với nhau, ngoài phạm vi person/people.",
+      "reviewStatus": "REVIEW",
+      "reviewerKind": "INDEPENDENT_AI_SESSION",
+      "severity": "MEDIUM",
+      "sourceEvidenceReferences": [
+        "O232",
+        "V307"
+      ],
+      "suggestedCorrection": "Owner xem candidate kết hợp vật M02; không nhập tự động vào Sense hiện có."
+    },
+    {
+      "affectedFields": [
+        "sourceSenseCoverage",
+        "content.senseLabelEn",
+        "content.definitionEn",
+        "content.grammarNotesEn"
+      ],
+      "effectiveContentHash": "dbbce8769d3555389310547cbe2815e36d22dc611517cb17048851cd4d1e279d",
+      "proposalKey": "EDITORIAL_2H2K:possible:able-to-be-done",
+      "reviewExplanationVi": "F10/M06: label khả thi nhưng definition ghép khả năng xảy ra; nguồn có possible to và possible that cần quyết định boundary.",
+      "reviewStatus": "REVIEW",
+      "reviewerKind": "INDEPENDENT_AI_SESSION",
+      "severity": "MEDIUM",
+      "sourceEvidenceReferences": [
+        "O288",
+        "V3572"
+      ],
+      "suggestedCorrection": "Owner xem M06 và quyết định split hoặc ghi rõ phạm vi hai construction."
+    },
+    {
+      "affectedFields": [
+        "sourceSenseCoverage"
+      ],
+      "effectiveContentHash": "fa6731b901138ef0a23db2cc0be390c3f42d3a35c9df6cf212be69e3600cc9bb",
+      "proposalKey": "EDITORIAL_2H2K:chemist:chemical-scientist",
+      "reviewExplanationVi": "F07/M03: scientist đúng; gloss nguồn dược sư gợi pharmacist, cần owner đánh giá chứng cứ từ điển bổ sung.",
+      "reviewStatus": "REVIEW",
+      "reviewerKind": "INDEPENDENT_AI_SESSION",
+      "severity": "MEDIUM",
+      "sourceEvidenceReferences": [
+        "V1700"
+      ],
+      "suggestedCorrection": "Giữ scientist riêng; owner xem candidate pharmacist M03."
+    },
+    {
+      "affectedFields": [
+        "content.examples[0].vi"
+      ],
+      "effectiveContentHash": "643aa0d768682a1ffe675330257d449df99d32e88b8f65f929c66cac372121c5",
+      "proposalKey": "EDITORIAL_2H2K:purse:handbag",
+      "reviewExplanationVi": "F03: túi ngăn bên trong không tự nhiên cho inside pocket; nghĩa handbag Mỹ được nguồn hỗ trợ.",
+      "reviewStatus": "REVIEW",
+      "reviewerKind": "INDEPENDENT_AI_SESSION",
+      "severity": "LOW",
+      "sourceEvidenceReferences": [
+        "V1611"
+      ],
+      "suggestedCorrection": "Cô ấy giữ một chiếc chìa khóa dự phòng trong ngăn bên trong túi xách của mình."
+    },
+    {
+      "affectedFields": [
+        "sourceSenseCoverage",
+        "content.definitionEn"
+      ],
+      "effectiveContentHash": "e598a8940213fff13c7722aa35a9cf11aa98f9be72ede8fa58b6bca633ee36b6",
+      "proposalKey": "EDITORIAL_2H2K:history:study-of-past",
+      "reviewExplanationVi": "F08/M04: Sense môn nghiên cứu đúng nhưng không bao phủ lịch sử tòa nhà và past events trong nguồn; short label match thông thường.",
+      "reviewStatus": "REVIEW",
+      "reviewerKind": "INDEPENDENT_AI_SESSION",
+      "severity": "MEDIUM",
+      "sourceEvidenceReferences": [
+        "O267",
+        "V208"
+      ],
+      "suggestedCorrection": "Owner xem candidate past events/development M04; không tự mở rộng hay thêm Sense."
+    },
+    {
+      "affectedFields": [
+        "sourceSenseCoverage",
+        "content.definitionEn"
+      ],
+      "effectiveContentHash": "d4c4a54740e6a0ccd920cba8dc03c42a20377c5f94e1e50d8654427260251273",
+      "proposalKey": "EDITORIAL_2H2K:perfect:without-faults",
+      "reviewExplanationVi": "F09/M05: spelling không lỗi đúng Sense; nguồn perfect for picnic thể hiện sự phù hợp chưa được bao phủ rõ.",
+      "reviewStatus": "REVIEW",
+      "reviewerKind": "INDEPENDENT_AI_SESSION",
+      "severity": "MEDIUM",
+      "sourceEvidenceReferences": [
+        "O382",
+        "V2380"
+      ],
+      "suggestedCorrection": "Owner xem candidate exactly suitable M05; giữ riêng nghĩa không lỗi."
+    },
+    {
+      "affectedFields": [
+        "partOfSpeech"
+      ],
+      "effectiveContentHash": "927f9a97fed1b9ead4d14778d8ebe997a4b4966de44fc76b64c2b061968b417d",
+      "proposalKey": "EDITORIAL_2H2K:sixty:number-60",
+      "reviewExplanationVi": "F11: nghĩa 60 và plural books đúng; NUMBER hợp lệ ở proposal contract nhưng chưa thuộc canonical POS enum.",
+      "reviewStatus": "REVIEW",
+      "reviewerKind": "INDEPENDENT_AI_SESSION",
+      "severity": "LOW",
+      "sourceEvidenceReferences": [
+        "O888"
+      ],
+      "suggestedCorrection": "Giữ DRAFT NUMBER và chờ taxonomy decision; không tự ánh xạ."
+    }
+  ],
+  "retainedAuthorAConcerns": [
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2K:instructions:directions-for-task",
+      "reviewExplanationVi": "Nguồn ghi headword số nhiều instructions. Nghĩa các bước lắp kệ và bản dịch đúng; vẫn cần owner quyết định quan hệ dạng số nhiều với instruction, không phân bổ Lexeme hay canonical identity ở phase này.",
+      "reviewedContentHash": "a0e54bac36732b799191fb0dfff396fce49b75b7dc70e44f886769618ebfb4f9",
+      "reviewedRecordSha256": "fdbde9537d44a36b10a6a22abdd95d4cccf27415f0a369185c459f5f6f404170",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_SAME_ASSISTANT_NOT_HUMAN_OR_SEPARATE_MODEL"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2K:percent:per-hundred",
+      "reviewExplanationVi": "Định nghĩa và 20% số ghế trống khớp toán học, không nhầm với 20 chiếc ghế. Nguồn đặt percent trong NOUN nhưng cách quản trị ký hiệu và quan hệ percent/per cent cần review identity, chưa chuẩn hóa canonical.",
+      "reviewedContentHash": "81584562e73d7d6eddcc3add75bd7b30fddc12bb92df8fbc74a75b706f3f650e",
+      "reviewedRecordSha256": "4651a639b0818572edaefd0fa20c6cec63367345ff0c38f1c001c74f121b093b",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_SAME_ASSISTANT_NOT_HUMAN_OR_SEPARATE_MODEL"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2K:stairs:steps-between-levels",
+      "reviewExplanationVi": "Nguồn headword stairs số nhiều và nghĩa cầu thang khớp, ví dụ đi xuống giữ hướng và thao tác mang gói hàng. Quan hệ stairs với stair vẫn cần quyết định lexical form, không tự gộp identity.",
+      "reviewedContentHash": "c8d522d750ec9b0ba2dfab37f24e9474bd204e3259189d248bbb83337e3ca009",
+      "reviewedRecordSha256": "2b7b546b6eb0551db69dcb811d08196d661a0c2adb1e6e75e87981556e0b134b",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_SAME_ASSISTANT_NOT_HUMAN_OR_SEPARATE_MODEL"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2K:chemist:chemical-scientist",
+      "reviewExplanationVi": "Nghĩa nhà hóa học được English source hỗ trợ trực tiếp, ví dụ phản ứng nhiệt phù hợp. Gloss Việt nguồn còn gợi dược sư; Sense pharmacy chưa viết vì cần chứng cứ nghĩa Anh đầy đủ và review ranh giới, không tự nhập hai nghề.",
+      "reviewedContentHash": "fa6731b901138ef0a23db2cc0be390c3f42d3a35c9df6cf212be69e3600cc9bb",
+      "reviewedRecordSha256": "23fdff7bc0d2457b707d3b89c563299c801ebd341512901fb2220918763a6717",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_SAME_ASSISTANT_NOT_HUMAN_OR_SEPARATE_MODEL"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2K:august:eighth-month",
+      "reviewExplanationVi": "Tháng thứ tám giữa July và September chính xác, ví dụ dự định nghỉ tháng Tám giữ thì tương lai. Key nguồn lowercase nhưng display August viết hoa; quan hệ với adjective august phải review identity, chưa thêm nghĩa trang trọng.",
+      "reviewedContentHash": "e730fb16059210e6bb2ec99cef57f5954b2ff88e19f41c56ee98b6e63b931358",
+      "reviewedRecordSha256": "ccc0c477d989fa96cc4f0f8469e383a44fe357b65c6386a78c4082238b71838d",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_SAME_ASSISTANT_NOT_HUMAN_OR_SEPARATE_MODEL"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2K:cannot:not-able",
+      "reviewExplanationVi": "Nâng va li cần giúp đỡ thể hiện không có khả năng, bản dịch giữ điều kiện without help. Negative modal dùng base verb đúng; quan hệ cannot với can và can't vẫn cần identity review, không cấp Lexeme mới.",
+      "reviewedContentHash": "7870b9cbf9d84267a191085626ef35d45d5ae386cd96338d37282b393dd7d0d1",
+      "reviewedRecordSha256": "abaa9d86912aed35e1f75928fc0f9bf2883238a8e09dda30af4e9ade1ff7b19e",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_SAME_ASSISTANT_NOT_HUMAN_OR_SEPARATE_MODEL"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2K:cannot:not-permitted",
+      "reviewExplanationVi": "Khách không được vào kho thể hiện lệnh cấm khác với bất lực nâng va li. Nguồn Oxford ghi cả không thể và không được phép; ranh giới là đề xuất DRAFT theo context, chưa phê duyệt identity hay taxonomy modal.",
+      "reviewedContentHash": "cfe4458953ed39228a1f52b0d7a249246378788018f35987df25685384f70fcb",
+      "reviewedRecordSha256": "d35d1d94399a397ad54eaff1de1d7dd47cd211ea1feb26582b2b9fd569893e97",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_SAME_ASSISTANT_NOT_HUMAN_OR_SEPARATE_MODEL"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2K:purse:handbag",
+      "reviewExplanationVi": "Nguồn mô tả bag giữ đồ cá nhân, nên chọn nghĩa handbag và ghi rõ Mỹ. Bản dịch giữ ngăn bên trong và chìa khóa dự phòng; nghĩa ví tiền Anh cần bằng chứng riêng trước khi viết thêm, không giới hạn túi chỉ cho phụ nữ.",
+      "reviewedContentHash": "643aa0d768682a1ffe675330257d449df99d32e88b8f65f929c66cac372121c5",
+      "reviewedRecordSha256": "0a4a287187d70bb2947ad11c3fd8241367747efa96bbfd410148a48663669a2f",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_SAME_ASSISTANT_NOT_HUMAN_OR_SEPARATE_MODEL"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2K:senses:ways-of-perceiving",
+      "reviewExplanationVi": "Nguồn liệt kê năm giác quan, ví dụ chọn nghe/chạm phù hợp và dịch giữ several cùng including. Đây là headword số nhiều, quan hệ sense/senses và nghĩa từ vựng khác vẫn unresolved; không tạo thêm identity.",
+      "reviewedContentHash": "6beb6975b6226b1e0a84037794a251cdda71f45ddc917fa218512a71e25c54bc",
+      "reviewedRecordSha256": "4ff27753c1dda195819fa611801c0e57af0fb04ad4c55b1c846d432e8ded4886",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_SAME_ASSISTANT_NOT_HUMAN_OR_SEPARATE_MODEL"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2K:wednesday:weekday",
+      "reviewExplanationVi": "Ngày giữa Tuesday và Thursday đúng thứ Tư, lịch buổi tập tương lai không bị đổi thành đã tập. Display viết hoa còn key giữ lowercase; cần review lexical-form quản trị tên ngày, chưa chuẩn hóa canonical.",
+      "reviewedContentHash": "2cd9f60a5981da4cd879aeb657ffcde924b7d9019da7bd388545aae2e736c20e",
+      "reviewedRecordSha256": "af3864d63613536bcfaeb99b2ef76019fd568886365af92dc4ba74e5e9858440",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_SAME_ASSISTANT_NOT_HUMAN_OR_SEPARATE_MODEL"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2K:idea:opinion",
+      "reviewExplanationVi": "Nguồn Việt ghi ý kiến bên cạnh ý tưởng, ví dụ quan niệm về lãnh đạo thể hiện belief chứ không kế hoạch cụ thể. Hai nghĩa là ranh giới DRAFT cần review, không thêm canonical split hoặc phê duyệt identity.",
+      "reviewedContentHash": "af54d83455cee62a7fc96c3245873c5ac9d163113d15481943c2445bf0959387",
+      "reviewedRecordSha256": "cde4f506528166dce33e50d67d1ad815bfbe286ff338fe4a606641edb50d1313",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_SAME_ASSISTANT_NOT_HUMAN_OR_SEPARATE_MODEL"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2K:commute:regular-work-journey",
+      "reviewExplanationVi": "Đi tàu tới văn phòng khớp đi làm thường xuyên; bản dịch giữ đoạn cuối đi bộ. Định nghĩa không ép khoảng cách dài dù heuristic nguồn nói long distance; cần owner review phạm vi thuật ngữ và source agreement rộng hơn.",
+      "reviewedContentHash": "15fc1c8a3a6ad2c08b614a223e14a757f125c2b44dcdb8fcab0a511dd722ac31",
+      "reviewedRecordSha256": "a09eca2ba5d55f1261c6f0d34dc9d1ddea1863a95117cb92e9797cbffc217535",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_SAME_ASSISTANT_NOT_HUMAN_OR_SEPARATE_MODEL"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2K:sixty:number-60",
+      "reviewExplanationVi": "Sáu mươi đúng giữa 59/61; sách số nhiều và thời điểm tháng này được giữ trong bản dịch. Source POS NUMBER không tự ánh xạ vào taxonomy Master hiện tại; giữ đề xuất không canonical và review policy numeral.",
+      "reviewedContentHash": "927f9a97fed1b9ead4d14778d8ebe997a4b4966de44fc76b64c2b061968b417d",
+      "reviewedRecordSha256": "6ff17e199364d8808604a8587ac9f7b61b19482d98588095e480c6ca5acec18b",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_SAME_ASSISTANT_NOT_HUMAN_OR_SEPARATE_MODEL"
+    }
+  ],
+  "sourceSimilarityFindings": [
+    {
+      "field": "senseLabelEn",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2K:also:in-addition",
+      "sourceRecordId": "1559931007459",
+      "text": "in addition"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2K:twice:two-times",
+      "sourceRecordId": "1788223606592",
+      "text": "hai lần"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2K:twice:two-times",
+      "sourceRecordId": "1788223606592",
+      "text": "hai lần"
+    },
+    {
+      "field": "senseLabelEn",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2K:history:study-of-past",
+      "sourceRecordId": "1556384731010",
+      "text": "the study of the past"
+    }
+  ]
+}

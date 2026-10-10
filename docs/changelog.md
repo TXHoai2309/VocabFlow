@@ -1,5 +1,11 @@
 # VocabFlow Changelog
 
+## 2026-10-10 — Phase 2H.2K bilingual authoring checkpoint 01
+
+- Freeze a disjoint, source-bound 500-group cohort from 5,123 remaining groups. Persist immutable original bilingual manuscripts and review receipts for 100 new groups / 103 Senses; deterministic assembly yields 1,666 DRAFT Senses / 1,120 authored groups.
+- Record 90 PASS / 13 REVIEW / 0 FAIL; same-assistant second-pass editorial review is not human approval. Preserve sealed content and record one forward-only example revision after cross-corpus copying QA. Four short-match evidence entries retain rights review requirements. Source pool has no eligible remaining multiword phrases.
+- Focused tests 21/21, typecheck and lint pass; two-seed replay is deterministic and zero-write; accepted 488-pin R4P.3 parent verification passes. No historical artifact, release, database or Production change; checkpoint 02 is not started.
+
 ## 2026-10-10 — Phase 2H.2J-R4P.3 published integrity verifier
 
 - Add a standalone verifier, 26 focused negative/positive tests and a complete
@@ -4362,3 +4368,15 @@ See `vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoin
 ## 2026-10-09 — Phase 2H.2J-R1 DRAFT remediation pilot
 
 Added a content-bound, immutable downstream overlay for three grammar-note field corrections after reviewing 24 Senses in original batches 068, 072 and 081. The `lot` example correction remains deferred for English/Vietnamese semantic review. The new projection preserves 1,563 DRAFT Senses, the original projection, all 141 field proposals, all eight boundary proposals and historical REVIEW states. No runtime, canonical release, legacy, database or Production data changed. See `vocabflow-dataset/workspaces/master-editorial-draft-remediation/checkpoints/pilot-01/report.md`.
+
+## 2026-10-10 - Phase 2H.2K-R1 independent review integration
+
+- Import and hash-verify owner-provided Reviewer B report and all 103 review records; preserve original assessments and reconcile 18 disagreements.
+- Add four forward field revisions and a six-candidate deferred coverage queue without rewriting sealed manuscripts or changing the 100-group/103-Sense identities. Effective projection remains 1,666 DRAFT Senses / 1,120 groups; sixty retains unresolved NUMBER taxonomy.
+- R1 focused tests 14/14, authoring tests 21/21, typecheck, lint and deterministic zero-write replay pass; accepted original checkpoint and 488-pin R4P.3 parent remain unchanged. Recheck of four revised hashes is pending; publication, checkpoint 02 and database work are not attempted.
+
+## 2026-10-10 - Phase 2H.2K-R1C final DRAFT publication integration
+
+- Bind the actual owner-supplied independent Reviewer B R1B receipt to four unchanged R1 revised hashes. Final effective QA is 96 PASS / 7 REVIEW / 0 FAIL; preserve original review history, six deferred coverage candidates and unresolved NUMBER taxonomy.
+- Add a final immutable review layer while preserving all five sealed micro-batches, original/R1 projections, 99 unaffected new Senses and the 1,563-Sense parent. Content totals remain 1,666 DRAFT Senses / 1,120 authored groups; no approval, canonical IDs, release or database promotion.
+- Prepublication focused tests 48/48, typecheck, ESLint, two-seed zero-write replay and 488-pin R4P.3 verification pass. Publication is limited to authorized Phase 2H.2K Git artifacts; final remote confirmation and postpublication verification are reported in the handoff.

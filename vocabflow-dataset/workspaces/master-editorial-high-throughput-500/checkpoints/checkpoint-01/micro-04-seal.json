@@ -1,0 +1,49 @@
+{
+  "fingerprint": "ffe9668b56acdcc64d0f7a1692d4df421ddb975d19df22a4ed7f03f9bdb424aa",
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:similar",
+    "NORMALIZED_HEADWORD:quickly",
+    "NORMALIZED_HEADWORD:pea",
+    "NORMALIZED_HEADWORD:sell",
+    "NORMALIZED_HEADWORD:quick",
+    "NORMALIZED_HEADWORD:toward",
+    "NORMALIZED_HEADWORD:artist",
+    "NORMALIZED_HEADWORD:cannot",
+    "NORMALIZED_HEADWORD:purse",
+    "NORMALIZED_HEADWORD:customer",
+    "NORMALIZED_HEADWORD:relax",
+    "NORMALIZED_HEADWORD:difficult",
+    "NORMALIZED_HEADWORD:senses",
+    "NORMALIZED_HEADWORD:history",
+    "NORMALIZED_HEADWORD:believe",
+    "NORMALIZED_HEADWORD:whale",
+    "NORMALIZED_HEADWORD:century",
+    "NORMALIZED_HEADWORD:wednesday",
+    "NORMALIZED_HEADWORD:analyze",
+    "NORMALIZED_HEADWORD:modern"
+  ],
+  "manuscriptSha256": "4cd77f7bb09ab89f0d67fbd988662e972b95d70ebe7d875d7f39710ca8c26d31",
+  "microBatch": 4,
+  "parentFingerprint": "bb669bee71f2dfc6c53b8b9ec3511caae9dc31b13be342044829d674a22ddb82",
+  "qaCounts": {
+    "PASS": 16,
+    "REVIEW": 5
+  },
+  "recordHash": "902dd7ba250e2ea99452a9f4d2e381227038180a7aec36c6404f4eb67ef0ed3a",
+  "reviewHash": "671c587ebb6d9b78101e1ea1e621626376cd90314afff43e2371d14d6e65f880",
+  "reviewManuscriptSha256": "498a05cf4fc5ce06301b61a2f2281d202200e63b86e06cdb25e2e78ff895bbe6",
+  "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_SAME_ASSISTANT_NOT_HUMAN_OR_SEPARATE_MODEL",
+  "selectionFingerprint": "f20e8c59d7b47cdf80f026d16acda8dbb283f948c8d5cb61cfef9c60cb7652c8",
+  "senseCount": 21,
+  "sourceHash": "c9b573056a4abbd7f0d436b45dfaeddea87de9ea3255788ff98d12ce2f1191f2",
+  "sourceSimilarityFindings": [
+    {
+      "field": "senseLabelEn",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2K:history:study-of-past",
+      "sourceRecordId": "1556384731010",
+      "text": "the study of the past"
+    }
+  ],
+  "status": "SEALED_DRAFT_NOT_APPROVED"
+}

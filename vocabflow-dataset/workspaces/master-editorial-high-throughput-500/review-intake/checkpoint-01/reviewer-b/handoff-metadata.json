@@ -1,0 +1,23 @@
+{
+  "authorAExistingStatus": {
+    "PASS": 90,
+    "REVIEW": 13
+  },
+  "blockingItems": [
+    "EDITORIAL_2H2K:large:big-in-size",
+    "EDITORIAL_2H2K:also:in-addition"
+  ],
+  "checkpoint": "2H.2K/checkpoint-01",
+  "checkpointFingerprintAsReviewed": "3b970929ff32949443e3773dcd123367057bd38c38e1f7aa62d282b440f897c1",
+  "frozenCohortFingerprint": "f20e8c59d7b47cdf80f026d16acda8dbb283f948c8d5cb61cfef9c60cb7652c8",
+  "missingSenseCandidates": 6,
+  "purpose": "Offline handoff of user-provided Reviewer B report; no repository modifications or independent provenance authentication",
+  "records": 103,
+  "reviewerKindAsDeclaredInSource": "INDEPENDENT_AI_SESSION",
+  "sourceReportSha256": "c4a22c67d33402a18032f8d8014a69ea6251a2e1e754ccae240a0ae52b80a925",
+  "statusCounts": {
+    "PASS": 92,
+    "REVIEW": 11
+  },
+  "uniqueProposalKeys": 103
+}

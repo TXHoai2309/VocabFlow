@@ -1,0 +1,79 @@
+{
+  "blockingFindingIds": [
+    "F01",
+    "F02"
+  ],
+  "canonicalIdsAllocated": 0,
+  "contentStatus": "DRAFT",
+  "copyingScreen": {
+    "authoredSenseRecordsScanned": 103,
+    "eightWordOverlaps": [],
+    "scope": "All string sourceFields in both complete corpora; heuristic text screen, not rights clearance",
+    "sourceRecordsScanned": 9677
+  },
+  "coverageCandidatesDeferred": 6,
+  "coverageClassifications": {
+    "NEEDS_MORE_EVIDENCE": 1,
+    "STRONG_CANDIDATE": 5
+  },
+  "crossReviewCounts": {
+    "PASS/PASS": 82,
+    "PASS/REVIEW": 8,
+    "REVIEW/PASS": 10,
+    "REVIEW/REVIEW": 3
+  },
+  "databaseAccess": "NONE",
+  "databaseWrites": "NONE",
+  "disagreements": 18,
+  "fieldCorrectionsApplied": 4,
+  "historicalNeighborOverlap": "RETAINED_IN_SEALED_MANUSCRIPT_ABSENT_IN_EFFECTIVE_CONTENT",
+  "humanApprovals": 0,
+  "independentRecheck": "PENDING",
+  "modifiedSensesAwaitingRecheck": 4,
+  "newSensesPreserved": 103,
+  "phase": "2H.2K-R1",
+  "previousSensesPreserved": 1563,
+  "publicationReady": false,
+  "releaseEligible": false,
+  "reviewerBOriginalCounts": {
+    "FAIL": 0,
+    "PASS": 92,
+    "REVIEW": 11
+  },
+  "reviewerProvenance": "OWNER_SUPPLIED_INDEPENDENT_AI_SESSION_DECLARATION_HASH_BOUND_NOT_CRYPTOGRAPHIC_AUTHENTICATION",
+  "rights": "UNKNOWN_REVIEW_REQUIRED",
+  "sixtyTaxonomyReview": "DRAFT_NUMBER_CANONICAL_MAPPING_UNRESOLVED",
+  "sourceSimilarityFindings": [
+    {
+      "field": "senseLabelEn",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2K:also:in-addition",
+      "sourceRecordId": "1559931007459",
+      "text": "in addition"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2K:twice:two-times",
+      "sourceRecordId": "1788223606592",
+      "text": "hai lần"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2K:twice:two-times",
+      "sourceRecordId": "1788223606592",
+      "text": "hai lần"
+    },
+    {
+      "field": "senseLabelEn",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2K:history:study-of-past",
+      "sourceRecordId": "1556384731010",
+      "text": "the study of the past"
+    }
+  ],
+  "status": "PENDING_INDEPENDENT_RECHECK",
+  "totalDraftSenses": 1666,
+  "totalGroups": 1120
+}

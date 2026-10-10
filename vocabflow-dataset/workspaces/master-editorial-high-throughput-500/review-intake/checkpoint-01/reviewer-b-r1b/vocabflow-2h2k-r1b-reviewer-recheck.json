@@ -1,0 +1,97 @@
+{
+  "reviewPhase": "2H.2K-R1B",
+  "reviewerKind": "INDEPENDENT_AI_SESSION",
+  "evidenceOrigin": "Transcribed from the user-provided Reviewer B recheck report in this conversation. Not a cryptographic attestation of reviewer identity.",
+  "status": "INDEPENDENT_RECHECK_COMPLETE",
+  "draftPublicationRecommendation": "READY_FOR_DRAFT_PUBLICATION_INTEGRATION",
+  "reviewedRevisions": 4,
+  "reviewCountsAfterIntegration": {"PASS": 96, "REVIEW": 7, "FAIL": 0},
+  "remainingOldReviewItems": ["forget", "together", "chemist", "history", "perfect", "possible", "sixty"],
+  "missingSenseCandidatesPreserved": 6,
+  "rights": "UNKNOWN_REVIEW_REQUIRED",
+  "databaseAccess": "NONE",
+  "databaseWrites": "NONE",
+  "production": "UNTOUCHED",
+  "records": [
+    {
+      "reviewerKind": "INDEPENDENT_AI_SESSION",
+      "reviewPhase": "2H.2K-R1B",
+      "findingId": "F01",
+      "proposalKey": "EDITORIAL_2H2K:large:big-in-size",
+      "originalReviewedContentHash": "ecf4ecbdd86b73383a295156efd96cc48ac8e6e7723327d48054be17547fdeb9",
+      "revisedEffectiveContentHash": "16fdd82d0907d5adbc2f8071e88366ccd7bd761121f82ccd29570e8ce6cb738e",
+      "exactChangedFields": ["/content/examples/0/vi"],
+      "before": "Một thùng sách được quyên góp lớn nằm cạnh lối vào.",
+      "after": "Một thùng lớn đựng sách được quyên góp nằm cạnh lối vào.",
+      "reviewStatus": "PASS",
+      "reviewExplanationVi": "Hash tính lại khớp đích. Lớn đứng ngay sau thùng nên xác định rõ box lớn; đựng nối thùng với sách được quyên góp. Nằm cạnh lối vào giữ trạng thái và vị trí của stood beside the entrance, không thêm người đặt hoặc hành động đặt. Câu Việt tự nhiên. Definition về kích thước hoặc lượng, meaningVi, adjective POS, ví dụ tiếng Anh và larger/largest đều phù hợp bằng chứng nguồn. Không có bất nhất mới.",
+      "remainingIssue": null,
+      "suggestedCorrection": null,
+      "blocksDraftCheckpointPublication": false,
+      "sourceEvidenceReferences": [
+        "vocabflow-dataset/workspaces/full-source-inventory-dedupe/oxford-normalized-inventory.json#/records/268/sourceFields",
+        "vocabflow-dataset/workspaces/full-source-inventory-dedupe/vocab4600-normalized-inventory.json#/records/1063/sourceFields"
+      ]
+    },
+    {
+      "reviewerKind": "INDEPENDENT_AI_SESSION",
+      "reviewPhase": "2H.2K-R1B",
+      "findingId": "F02",
+      "proposalKey": "EDITORIAL_2H2K:also:in-addition",
+      "originalReviewedContentHash": "32062d6993e44c6bd2d4c50d218b86ad7e0f7a7ea5677bde276aaf4fe52c859b",
+      "revisedEffectiveContentHash": "83056ed20f1ef69e4c5abc4c0c7c92268f46002c11ff3bccff0465d8040d11e3",
+      "exactChangedFields": ["/content/examples/0/vi"],
+      "before": "Buổi học hướng dẫn may và cũng có dịch vụ sửa chữa cơ bản.",
+      "after": "Xưởng này dạy may và cũng cung cấp dịch vụ sửa chữa cơ bản.",
+      "reviewStatus": "PASS",
+      "reviewExplanationVi": "Hash tính lại khớp đích. Trong câu này workshop được hiểu là xưởng/cơ sở thực hành đang hoạt động, dùng làm chủ thể cho hai dịch vụ; không phải chỉ căn phòng trống hoặc một buổi học. Một cơ sở vừa dạy may vừa nhận sửa chữa là ngữ cảnh hợp lý. Xưởng này giữ cùng chủ thể cho teaches và offers; cũng dịch đúng ý bổ sung của also. Basic repairs được giữ, không thêm vật sửa, giá hoặc phí. Definition, meaningVi, adverb POS và ghi chú vị trí also đúng, được nguồn liên kết hỗ trợ. Mismatch ban đầu đã giải quyết.",
+      "remainingIssue": null,
+      "suggestedCorrection": null,
+      "blocksDraftCheckpointPublication": false,
+      "sourceEvidenceReferences": [
+        "vocabflow-dataset/workspaces/full-source-inventory-dedupe/oxford-normalized-inventory.json#/records/60/sourceFields",
+        "vocabflow-dataset/workspaces/full-source-inventory-dedupe/vocab4600-normalized-inventory.json#/records/687/sourceFields",
+        "https://dictionary.cambridge.org/us/dictionary/english/workshop"
+      ]
+    },
+    {
+      "reviewerKind": "INDEPENDENT_AI_SESSION",
+      "reviewPhase": "2H.2K-R1B",
+      "findingId": "F03",
+      "proposalKey": "EDITORIAL_2H2K:purse:handbag",
+      "originalReviewedContentHash": "643aa0d768682a1ffe675330257d449df99d32e88b8f65f929c66cac372121c5",
+      "revisedEffectiveContentHash": "9f99df805191c9e50ad43c4009f9b36ceb4eecbd360efa7b237e5365659cb097",
+      "exactChangedFields": ["/content/examples/0/vi"],
+      "before": "Cô ấy giữ một chiếc chìa khóa dự phòng trong túi ngăn bên trong chiếc túi xách của mình.",
+      "after": "Cô ấy giữ một chiếc chìa khóa dự phòng trong ngăn bên trong túi xách của mình.",
+      "reviewStatus": "PASS",
+      "reviewExplanationVi": "Hash tính lại khớp đích. Ngăn bên trong là cách diễn đạt tự nhiên và chính xác của inside pocket trong ngữ cảnh túi xách. Bản dịch giữ cô ấy là người giữ, một chìa khóa dự phòng là vật được giữ, vị trí bên trong và sở hữu túi xách của cô ấy. Không chuyển handbag sang ví tiền. Definition, meaningVi, noun POS, English example và ghi chú vùng Mỹ/Anh nhất quán với Sense được chọn và nguồn. Không có lỗi mới.",
+      "remainingIssue": null,
+      "suggestedCorrection": null,
+      "blocksDraftCheckpointPublication": false,
+      "sourceEvidenceReferences": [
+        "vocabflow-dataset/workspaces/full-source-inventory-dedupe/vocab4600-normalized-inventory.json#/records/1611/sourceFields",
+        "https://dictionary.cambridge.org/us/dictionary/essential-british-english/purse"
+      ]
+    },
+    {
+      "reviewerKind": "INDEPENDENT_AI_SESSION",
+      "reviewPhase": "2H.2K-R1B",
+      "findingId": "F04",
+      "proposalKey": "EDITORIAL_2H2K:rainforest:high-rainfall-forest",
+      "originalReviewedContentHash": "091a1a46ebded3ef1263559731f775f67bdb068d546931c04063eff57afe950c",
+      "revisedEffectiveContentHash": "15999fd6f97137b8a55f8cf0ff84ed435985b89d38c3d1f16fe7ee2060093bcb",
+      "exactChangedFields": ["/content/grammarNotesEn"],
+      "before": "Countable: a rainforest; rainforest plants names plants found there.",
+      "after": "Countable: a rainforest. The phrase 'rainforest plants' refers to plants that grow there.",
+      "reviewStatus": "PASS",
+      "reviewExplanationVi": "Hash tính lại khớp đích. Ghi chú tách countability thành câu riêng và đánh dấu rõ rainforest plants là cụm đang được giải thích. The phrase là chủ ngữ số ít, refers đúng agreement; there tham chiếu rainforest rõ. Giải thích quan hệ cây mọc trong rừng mưa hữu ích, không tạo nghĩa mới hoặc khẳng định các cây đó chỉ mọc ở rừng mưa. Definition, meaningVi, noun POS và ví dụ so sánh ảnh rừng mưa với rừng khô vẫn đúng và nhất quán với nguồn.",
+      "remainingIssue": null,
+      "suggestedCorrection": null,
+      "blocksDraftCheckpointPublication": false,
+      "sourceEvidenceReferences": [
+        "vocabflow-dataset/workspaces/full-source-inventory-dedupe/vocab4600-normalized-inventory.json#/records/2839/sourceFields"
+      ]
+    }
+  ]
+}

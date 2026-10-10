@@ -1,0 +1,317 @@
+{
+  "records": [
+    {
+      "authorAOriginalReviewConcernRetained": false,
+      "effectiveContentHash": "fe9185f9e5010267735eaff941b0fe834d45247d727fa09b5411c555fbe6527c",
+      "finalReviewerBAssessment": "REVIEW",
+      "humanApproval": false,
+      "independentRecheck": null,
+      "originalAuthorAReview": {
+        "assessment": "PASS",
+        "dimensions": [
+          "MEANING",
+          "EN_DEFINITION",
+          "VI_SCOPE",
+          "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+          "POS_CONSTRUCTION",
+          "GRAMMAR",
+          "SENSE_BOUNDARY",
+          "SOURCE_AGREEMENT",
+          "SPECIALIST_SENSITIVITY"
+        ],
+        "humanApproval": false,
+        "proposalKey": "EDITORIAL_2H2K:forget:fail-to-remember",
+        "reviewExplanationVi": "Nhận ra mặt nhưng không nhớ tên phân biệt được nhận diện và hồi tưởng. Bản dịch quên tên giữ chủ thể người nói, không thêm quên làm nhiệm vụ; forgot/forgotten đúng bất quy tắc.",
+        "reviewedContentHash": "fe9185f9e5010267735eaff941b0fe834d45247d727fa09b5411c555fbe6527c",
+        "reviewedRecordSha256": "528f68c217234277db67986d085714eccd878a913c50cab86e0eb362061331a8",
+        "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_SAME_ASSISTANT_NOT_HUMAN_OR_SEPARATE_MODEL"
+      },
+      "originalReviewerBReview": {
+        "affectedFields": [
+          "sourceSenseCoverage",
+          "content.definitionEn",
+          "content.grammarNotesEn"
+        ],
+        "effectiveContentHash": "fe9185f9e5010267735eaff941b0fe834d45247d727fa09b5411c555fbe6527c",
+        "proposalKey": "EDITORIAL_2H2K:forget:fail-to-remember",
+        "reviewExplanationVi": "F05/M01: Sense hồi tưởng hợp lệ nhưng ví dụ nguồn đều là forget to do; construction bỏ sót hành động chưa được thể hiện.",
+        "reviewStatus": "REVIEW",
+        "reviewerKind": "INDEPENDENT_AI_SESSION",
+        "severity": "MEDIUM",
+        "sourceEvidenceReferences": [
+          "O478"
+        ],
+        "suggestedCorrection": "Owner xem M01; giữ riêng nghĩa hồi tưởng và chưa tự thêm Sense."
+      },
+      "proposalKey": "EDITORIAL_2H2K:forget:fail-to-remember"
+    },
+    {
+      "authorAOriginalReviewConcernRetained": false,
+      "effectiveContentHash": "f736408cd7d9917bfed4db3d45a7ab503d5546153e34390106565366708bda87",
+      "finalReviewerBAssessment": "REVIEW",
+      "humanApproval": false,
+      "independentRecheck": null,
+      "originalAuthorAReview": {
+        "assessment": "PASS",
+        "dimensions": [
+          "MEANING",
+          "EN_DEFINITION",
+          "VI_SCOPE",
+          "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+          "POS_CONSTRUCTION",
+          "GRAMMAR",
+          "SENSE_BOUNDARY",
+          "SOURCE_AGREEMENT",
+          "SPECIALIST_SENSITIVITY"
+        ],
+        "humanApproval": false,
+        "proposalKey": "EDITORIAL_2H2K:together:with-one-another",
+        "reviewExplanationVi": "Hai hàng xóm nấu chung thể hiện cùng nhau thay vì riêng rẽ. Bản dịch giữ hai người, bữa tối và sau giờ làm; không thêm nghĩa ở gần nhau nếu không cùng hoạt động.",
+        "reviewedContentHash": "f736408cd7d9917bfed4db3d45a7ab503d5546153e34390106565366708bda87",
+        "reviewedRecordSha256": "b3e5a0428bf7e3101e48f38808c05d7a4d809f96421478da7871a15795c6af5f",
+        "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_SAME_ASSISTANT_NOT_HUMAN_OR_SEPARATE_MODEL"
+      },
+      "originalReviewerBReview": {
+        "affectedFields": [
+          "sourceSenseCoverage",
+          "content.definitionEn"
+        ],
+        "effectiveContentHash": "f736408cd7d9917bfed4db3d45a7ab503d5546153e34390106565366708bda87",
+        "proposalKey": "EDITORIAL_2H2K:together:with-one-another",
+        "reviewExplanationVi": "F06/M02: định nghĩa người cùng làm đúng; nguồn còn thể hiện trộn vật với nhau, ngoài phạm vi person/people.",
+        "reviewStatus": "REVIEW",
+        "reviewerKind": "INDEPENDENT_AI_SESSION",
+        "severity": "MEDIUM",
+        "sourceEvidenceReferences": [
+          "O232",
+          "V307"
+        ],
+        "suggestedCorrection": "Owner xem candidate kết hợp vật M02; không nhập tự động vào Sense hiện có."
+      },
+      "proposalKey": "EDITORIAL_2H2K:together:with-one-another"
+    },
+    {
+      "authorAOriginalReviewConcernRetained": false,
+      "effectiveContentHash": "dbbce8769d3555389310547cbe2815e36d22dc611517cb17048851cd4d1e279d",
+      "finalReviewerBAssessment": "REVIEW",
+      "humanApproval": false,
+      "independentRecheck": null,
+      "originalAuthorAReview": {
+        "assessment": "PASS",
+        "dimensions": [
+          "MEANING",
+          "EN_DEFINITION",
+          "VI_SCOPE",
+          "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+          "POS_CONSTRUCTION",
+          "GRAMMAR",
+          "SENSE_BOUNDARY",
+          "SOURCE_AGREEMENT",
+          "SPECIALIST_SENSITIVITY"
+        ],
+        "humanApproval": false,
+        "proposalKey": "EDITORIAL_2H2K:possible:able-to-be-done",
+        "reviewExplanationVi": "Có thể đến đảo không ô tô là khả năng thực hiện, chưa khẳng định đã đi. Dịch giữ phủ định không cần ô tô; possible to đúng construction và không biến khả năng thành chắc chắn.",
+        "reviewedContentHash": "dbbce8769d3555389310547cbe2815e36d22dc611517cb17048851cd4d1e279d",
+        "reviewedRecordSha256": "74cf7e7921a70c132d638fc539bdf80a0401777e5b54e614df5468ff2127f7bd",
+        "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_SAME_ASSISTANT_NOT_HUMAN_OR_SEPARATE_MODEL"
+      },
+      "originalReviewerBReview": {
+        "affectedFields": [
+          "sourceSenseCoverage",
+          "content.senseLabelEn",
+          "content.definitionEn",
+          "content.grammarNotesEn"
+        ],
+        "effectiveContentHash": "dbbce8769d3555389310547cbe2815e36d22dc611517cb17048851cd4d1e279d",
+        "proposalKey": "EDITORIAL_2H2K:possible:able-to-be-done",
+        "reviewExplanationVi": "F10/M06: label khả thi nhưng definition ghép khả năng xảy ra; nguồn có possible to và possible that cần quyết định boundary.",
+        "reviewStatus": "REVIEW",
+        "reviewerKind": "INDEPENDENT_AI_SESSION",
+        "severity": "MEDIUM",
+        "sourceEvidenceReferences": [
+          "O288",
+          "V3572"
+        ],
+        "suggestedCorrection": "Owner xem M06 và quyết định split hoặc ghi rõ phạm vi hai construction."
+      },
+      "proposalKey": "EDITORIAL_2H2K:possible:able-to-be-done"
+    },
+    {
+      "authorAOriginalReviewConcernRetained": true,
+      "effectiveContentHash": "fa6731b901138ef0a23db2cc0be390c3f42d3a35c9df6cf212be69e3600cc9bb",
+      "finalReviewerBAssessment": "REVIEW",
+      "humanApproval": false,
+      "independentRecheck": null,
+      "originalAuthorAReview": {
+        "assessment": "REVIEW",
+        "dimensions": [
+          "MEANING",
+          "EN_DEFINITION",
+          "VI_SCOPE",
+          "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+          "POS_CONSTRUCTION",
+          "GRAMMAR",
+          "SENSE_BOUNDARY",
+          "SOURCE_AGREEMENT",
+          "SPECIALIST_SENSITIVITY"
+        ],
+        "humanApproval": false,
+        "proposalKey": "EDITORIAL_2H2K:chemist:chemical-scientist",
+        "reviewExplanationVi": "Nghĩa nhà hóa học được English source hỗ trợ trực tiếp, ví dụ phản ứng nhiệt phù hợp. Gloss Việt nguồn còn gợi dược sư; Sense pharmacy chưa viết vì cần chứng cứ nghĩa Anh đầy đủ và review ranh giới, không tự nhập hai nghề.",
+        "reviewedContentHash": "fa6731b901138ef0a23db2cc0be390c3f42d3a35c9df6cf212be69e3600cc9bb",
+        "reviewedRecordSha256": "23fdff7bc0d2457b707d3b89c563299c801ebd341512901fb2220918763a6717",
+        "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_SAME_ASSISTANT_NOT_HUMAN_OR_SEPARATE_MODEL"
+      },
+      "originalReviewerBReview": {
+        "affectedFields": [
+          "sourceSenseCoverage"
+        ],
+        "effectiveContentHash": "fa6731b901138ef0a23db2cc0be390c3f42d3a35c9df6cf212be69e3600cc9bb",
+        "proposalKey": "EDITORIAL_2H2K:chemist:chemical-scientist",
+        "reviewExplanationVi": "F07/M03: scientist đúng; gloss nguồn dược sư gợi pharmacist, cần owner đánh giá chứng cứ từ điển bổ sung.",
+        "reviewStatus": "REVIEW",
+        "reviewerKind": "INDEPENDENT_AI_SESSION",
+        "severity": "MEDIUM",
+        "sourceEvidenceReferences": [
+          "V1700"
+        ],
+        "suggestedCorrection": "Giữ scientist riêng; owner xem candidate pharmacist M03."
+      },
+      "proposalKey": "EDITORIAL_2H2K:chemist:chemical-scientist"
+    },
+    {
+      "authorAOriginalReviewConcernRetained": false,
+      "effectiveContentHash": "e598a8940213fff13c7722aa35a9cf11aa98f9be72ede8fa58b6bca633ee36b6",
+      "finalReviewerBAssessment": "REVIEW",
+      "humanApproval": false,
+      "independentRecheck": null,
+      "originalAuthorAReview": {
+        "assessment": "PASS",
+        "dimensions": [
+          "MEANING",
+          "EN_DEFINITION",
+          "VI_SCOPE",
+          "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+          "POS_CONSTRUCTION",
+          "GRAMMAR",
+          "SENSE_BOUNDARY",
+          "SOURCE_AGREEMENT",
+          "SPECIALIST_SENSITIVITY"
+        ],
+        "humanApproval": false,
+        "proposalKey": "EDITORIAL_2H2K:history:study-of-past",
+        "reviewExplanationVi": "So sánh hai bản tường thuật trong môn lịch sử minh họa nghiên cứu quá khứ, không nhầm lịch sử bệnh án. Bản dịch giữ cùng một sự kiện và hai nguồn kể; subject history không đếm được đúng.",
+        "reviewedContentHash": "e598a8940213fff13c7722aa35a9cf11aa98f9be72ede8fa58b6bca633ee36b6",
+        "reviewedRecordSha256": "e8d662400abf8b62caa89ecb2fea4346c122a27dee5f3d79eb85e59f98f8ba37",
+        "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_SAME_ASSISTANT_NOT_HUMAN_OR_SEPARATE_MODEL"
+      },
+      "originalReviewerBReview": {
+        "affectedFields": [
+          "sourceSenseCoverage",
+          "content.definitionEn"
+        ],
+        "effectiveContentHash": "e598a8940213fff13c7722aa35a9cf11aa98f9be72ede8fa58b6bca633ee36b6",
+        "proposalKey": "EDITORIAL_2H2K:history:study-of-past",
+        "reviewExplanationVi": "F08/M04: Sense môn nghiên cứu đúng nhưng không bao phủ lịch sử tòa nhà và past events trong nguồn; short label match thông thường.",
+        "reviewStatus": "REVIEW",
+        "reviewerKind": "INDEPENDENT_AI_SESSION",
+        "severity": "MEDIUM",
+        "sourceEvidenceReferences": [
+          "O267",
+          "V208"
+        ],
+        "suggestedCorrection": "Owner xem candidate past events/development M04; không tự mở rộng hay thêm Sense."
+      },
+      "proposalKey": "EDITORIAL_2H2K:history:study-of-past"
+    },
+    {
+      "authorAOriginalReviewConcernRetained": false,
+      "effectiveContentHash": "d4c4a54740e6a0ccd920cba8dc03c42a20377c5f94e1e50d8654427260251273",
+      "finalReviewerBAssessment": "REVIEW",
+      "humanApproval": false,
+      "independentRecheck": null,
+      "originalAuthorAReview": {
+        "assessment": "PASS",
+        "dimensions": [
+          "MEANING",
+          "EN_DEFINITION",
+          "VI_SCOPE",
+          "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+          "POS_CONSTRUCTION",
+          "GRAMMAR",
+          "SENSE_BOUNDARY",
+          "SOURCE_AGREEMENT",
+          "SPECIALIST_SENSITIVITY"
+        ],
+        "humanApproval": false,
+        "proposalKey": "EDITORIAL_2H2K:perfect:without-faults",
+        "reviewExplanationVi": "Chính tả không lỗi dù từ dài minh họa perfect ở khía cạnh xác định, không gán con người hoàn hảo toàn diện. Bản dịch giữ even và longest; ghi chú absolute use không cấm mọi cách so sánh tu từ.",
+        "reviewedContentHash": "d4c4a54740e6a0ccd920cba8dc03c42a20377c5f94e1e50d8654427260251273",
+        "reviewedRecordSha256": "30aa9159008feca82a8210a2b3e292137a6e5fce72513e13776a603347350db8",
+        "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_SAME_ASSISTANT_NOT_HUMAN_OR_SEPARATE_MODEL"
+      },
+      "originalReviewerBReview": {
+        "affectedFields": [
+          "sourceSenseCoverage",
+          "content.definitionEn"
+        ],
+        "effectiveContentHash": "d4c4a54740e6a0ccd920cba8dc03c42a20377c5f94e1e50d8654427260251273",
+        "proposalKey": "EDITORIAL_2H2K:perfect:without-faults",
+        "reviewExplanationVi": "F09/M05: spelling không lỗi đúng Sense; nguồn perfect for picnic thể hiện sự phù hợp chưa được bao phủ rõ.",
+        "reviewStatus": "REVIEW",
+        "reviewerKind": "INDEPENDENT_AI_SESSION",
+        "severity": "MEDIUM",
+        "sourceEvidenceReferences": [
+          "O382",
+          "V2380"
+        ],
+        "suggestedCorrection": "Owner xem candidate exactly suitable M05; giữ riêng nghĩa không lỗi."
+      },
+      "proposalKey": "EDITORIAL_2H2K:perfect:without-faults"
+    },
+    {
+      "authorAOriginalReviewConcernRetained": true,
+      "effectiveContentHash": "927f9a97fed1b9ead4d14778d8ebe997a4b4966de44fc76b64c2b061968b417d",
+      "finalReviewerBAssessment": "REVIEW",
+      "humanApproval": false,
+      "independentRecheck": null,
+      "originalAuthorAReview": {
+        "assessment": "REVIEW",
+        "dimensions": [
+          "MEANING",
+          "EN_DEFINITION",
+          "VI_SCOPE",
+          "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+          "POS_CONSTRUCTION",
+          "GRAMMAR",
+          "SENSE_BOUNDARY",
+          "SOURCE_AGREEMENT",
+          "SPECIALIST_SENSITIVITY"
+        ],
+        "humanApproval": false,
+        "proposalKey": "EDITORIAL_2H2K:sixty:number-60",
+        "reviewExplanationVi": "Sáu mươi đúng giữa 59/61; sách số nhiều và thời điểm tháng này được giữ trong bản dịch. Source POS NUMBER không tự ánh xạ vào taxonomy Master hiện tại; giữ đề xuất không canonical và review policy numeral.",
+        "reviewedContentHash": "927f9a97fed1b9ead4d14778d8ebe997a4b4966de44fc76b64c2b061968b417d",
+        "reviewedRecordSha256": "6ff17e199364d8808604a8587ac9f7b61b19482d98588095e480c6ca5acec18b",
+        "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_SAME_ASSISTANT_NOT_HUMAN_OR_SEPARATE_MODEL"
+      },
+      "originalReviewerBReview": {
+        "affectedFields": [
+          "partOfSpeech"
+        ],
+        "effectiveContentHash": "927f9a97fed1b9ead4d14778d8ebe997a4b4966de44fc76b64c2b061968b417d",
+        "proposalKey": "EDITORIAL_2H2K:sixty:number-60",
+        "reviewExplanationVi": "F11: nghĩa 60 và plural books đúng; NUMBER hợp lệ ở proposal contract nhưng chưa thuộc canonical POS enum.",
+        "reviewStatus": "REVIEW",
+        "reviewerKind": "INDEPENDENT_AI_SESSION",
+        "severity": "LOW",
+        "sourceEvidenceReferences": [
+          "O888"
+        ],
+        "suggestedCorrection": "Giữ DRAFT NUMBER và chờ taxonomy decision; không tự ánh xạ."
+      },
+      "proposalKey": "EDITORIAL_2H2K:sixty:number-60"
+    }
+  ]
+}

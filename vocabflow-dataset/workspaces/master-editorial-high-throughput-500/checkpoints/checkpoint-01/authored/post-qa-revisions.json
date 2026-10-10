@@ -1,0 +1,16 @@
+{
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2K:neighbor:person-living-nearby",
+      "fieldPointer": "/content/examples/0/vi",
+      "before": "Người hàng xóm cho tôi mượn một chiếc thang để sửa đèn hiên nhà.",
+      "after": "Người hàng xóm đã cho tôi mượn thang để sửa chiếc đèn ở hiên.",
+      "reason": "Cross-corpus screen detected the conventional eight-word Vietnamese overlap hàng xóm cho tôi mượn một chiếc thang in Oxford source record 1788223607720. Rephrase the translation without changing lender, borrower, object or purpose; preserve the sealed manuscript.",
+      "reviewState": "PASS",
+      "reviewExplanationVi": "Cách diễn đạt mới vẫn giữ người hàng xóm là người cho mượn, tôi là người nhận, vật là thang và mục đích sửa đèn hiên. Đã thể hiện thời quá khứ lent; bỏ chuỗi tám từ trùng mà không đổi nghĩa câu Anh.",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_SAME_ASSISTANT_NOT_HUMAN_OR_SEPARATE_MODEL",
+      "contentStatus": "DRAFT",
+      "rights": "UNKNOWN_REVIEW_REQUIRED"
+    }
+  ]
+}

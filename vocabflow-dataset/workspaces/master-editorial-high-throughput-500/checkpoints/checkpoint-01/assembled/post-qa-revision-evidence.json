@@ -1,0 +1,24 @@
+{
+  "records": [
+    {
+      "after": "Người hàng xóm đã cho tôi mượn thang để sửa chiếc đèn ở hiên.",
+      "afterFieldSha256": "bca8e5e2879287c0a1d09c83af8f083693e91d61cde1c5779b2e3ef0c35ba907",
+      "before": "Người hàng xóm cho tôi mượn một chiếc thang để sửa đèn hiên nhà.",
+      "beforeFieldSha256": "7ce7422da865d4e7d8a6c85c9970a717ff03f1394a9d4857c647b940e945adf1",
+      "contentStatus": "DRAFT",
+      "fieldPointer": "/content/examples/0/vi",
+      "parentEffectiveContentHash": "3d92544f376d80ff43b44294fbb5270683146849bd9aecec409da7a541684937",
+      "parentRecordSha256": "d9fa783c895d51fd93b95343d03343a755282a79f09af3fc36ca2ec90a77a353",
+      "proposalKey": "EDITORIAL_2H2K:neighbor:person-living-nearby",
+      "reason": "Cross-corpus screen detected the conventional eight-word Vietnamese overlap hàng xóm cho tôi mượn một chiếc thang in Oxford source record 1788223607720. Rephrase the translation without changing lender, borrower, object or purpose; preserve the sealed manuscript.",
+      "reviewExplanationVi": "Cách diễn đạt mới vẫn giữ người hàng xóm là người cho mượn, tôi là người nhận, vật là thang và mục đích sửa đèn hiên. Đã thể hiện thời quá khứ lent; bỏ chuỗi tám từ trùng mà không đổi nghĩa câu Anh.",
+      "reviewState": "PASS",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_SAME_ASSISTANT_NOT_HUMAN_OR_SEPARATE_MODEL",
+      "revisedEffectiveContentHash": "560ab942a49043bb52e4a66573ba4b39606ca6e2cd61eaf88f08ba3680a05e78",
+      "revisedRecordSha256": "0a1c689b368f94d3979694037abcb5a322e5193f18206f3de272c4a13d5a73e9",
+      "revisionManuscriptSha256": "fb023cbd8a521ea4088255e477e3e3aa93a391a32a2d34453536c210237f4eaf",
+      "rights": "UNKNOWN_REVIEW_REQUIRED"
+    }
+  ],
+  "sealedManuscriptsUnchanged": true
+}

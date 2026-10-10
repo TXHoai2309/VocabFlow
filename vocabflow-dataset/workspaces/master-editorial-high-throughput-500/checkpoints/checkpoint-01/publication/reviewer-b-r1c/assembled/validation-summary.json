@@ -1,0 +1,102 @@
+{
+  "authorization": {
+    "humanApprovalGranted": false,
+    "offlineDraftGitPublicationAuthorized": true,
+    "rightsClearanceGranted": false
+  },
+  "canonicalIdsAllocated": 0,
+  "contentCorrectionsApplied": 4,
+  "contentStatus": "DRAFT",
+  "copyingScreen": {
+    "authoredSenseRecordsScanned": 103,
+    "eightWordOverlaps": [],
+    "scope": "All string sourceFields in both complete corpora; heuristic text screen, not rights clearance",
+    "sourceRecordsScanned": 9677
+  },
+  "coverageClassifications": {
+    "NEEDS_MORE_EVIDENCE": 1,
+    "STRONG_CANDIDATE": 5
+  },
+  "cumulativeAuthoredGroups": 1120,
+  "cumulativeDraftSenses": 1666,
+  "databaseAccess": "NONE",
+  "databaseWrites": "NONE",
+  "deferredCoverageCandidates": 6,
+  "draftGitPublicationReady": true,
+  "exactCopiedEnglishSourceExamples": 0,
+  "finalReconciliationMatrix": {
+    "PASS/PASS": 85,
+    "PASS/REVIEW": 5,
+    "REVIEW/PASS": 11,
+    "REVIEW/REVIEW": 2
+  },
+  "historicalCorrectionsPreserved": 40,
+  "historicalNeighborOverlap": "RETAINED_IN_SEALED_MANUSCRIPT_ABSENT_IN_EFFECTIVE_CONTENT",
+  "humanApproval": "NOT_GRANTED",
+  "humanApprovals": 0,
+  "independentReviewStatus": "INDEPENDENT_AI_REVIEW_COMPLETE",
+  "newAuthoredGroups": 100,
+  "newSenses": 103,
+  "originalAuthorACounts": {
+    "PASS": 90,
+    "REVIEW": 13
+  },
+  "originalReviewerBCounts": {
+    "PASS": 92,
+    "REVIEW": 11
+  },
+  "phase": "2H.2K-R1C",
+  "previousAuthoredGroups": 1020,
+  "previousSenses": 1563,
+  "production": "UNTOUCHED",
+  "releaseEligible": false,
+  "remainingReviewItems": [
+    "chemist",
+    "forget",
+    "history",
+    "perfect",
+    "possible",
+    "sixty",
+    "together"
+  ],
+  "remainingUnauthoredGroups": 5023,
+  "reviewProvenance": "OWNER_SUPPLIED_INDEPENDENT_AI_REVIEW_TRANSCRIPTION_NOT_CRYPTOGRAPHIC_IDENTITY_ATTESTATION",
+  "reviewerBFinalEffectiveCounts": {
+    "FAIL": 0,
+    "PASS": 96,
+    "REVIEW": 7
+  },
+  "rights": "UNKNOWN_REVIEW_REQUIRED",
+  "sixtyTaxonomyReview": "DRAFT_NUMBER_CANONICAL_MAPPING_UNRESOLVED",
+  "sourceSimilarityFindings": [
+    {
+      "field": "senseLabelEn",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2K:also:in-addition",
+      "sourceRecordId": "1559931007459",
+      "text": "in addition"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2K:twice:two-times",
+      "sourceRecordId": "1788223606592",
+      "text": "hai lần"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2K:twice:two-times",
+      "sourceRecordId": "1788223606592",
+      "text": "hai lần"
+    },
+    {
+      "field": "senseLabelEn",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2K:history:study-of-past",
+      "sourceRecordId": "1556384731010",
+      "text": "the study of the past"
+    }
+  ],
+  "unaffectedNewSenses": 99
+}

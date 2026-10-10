@@ -7085,3 +7085,26 @@ owner-approved baseline exception. See
   verifications/postpublish-r4p3/. No database, Production, release, approval,
   canonical-ID or Batch 05 operation. Preserve two cache files, seven stashes
   and twelve worktrees including VocabFlow-us55.
+
+### Phase 2H.2K — high-throughput checkpoint 01
+
+- Freeze complete 6,143-group inventory, exact 1,020-group authored exclusion and 5,123-group remaining inventory; select 500 new groups deterministically with source evidence and no overlap.
+- Seal five original bilingual PSV manuscripts/review receipts: 100 groups / 103 Senses, 90 PASS / 13 REVIEW / 0 FAIL. Separate editorial second pass is by the same assistant, not another model or human approval. Append to the preserved parent to reach 1,120 groups / 1,666 DRAFT Senses.
+- Preserve sealed bytes; resolve one cross-corpus Vietnamese example overlap by a hash-bound forward-only post-QA revision. Final screen covers all 9,677 source records with zero long overlaps / exact English example copies; four short evidence entries remain for rights review. No eligible multiword phrases remain in the source pool; report zero rather than fabricate coverage.
+- Newly executed: focused tests 21/21, seven TypeScript projects, lint, two-seed deterministic zero-write replay and 488-pin R4P.3 verification. Evidence and limits: vocabflow-dataset/workspaces/master-editorial-high-throughput-500/reports/checkpoint-01-validation.md. Preserve two untracked cache files, seven stashes and twelve worktrees.
+- Offline DRAFT only, rights UNKNOWN_REVIEW_REQUIRED, no approval/canonical IDs/database/Production/release. Stop after checkpoint 01 publication; checkpoint 02 and remediation Batch 05 require separate authorization.
+
+### Phase 2H.2K-R1 — Reviewer B integration, recheck pending
+
+- Import four owner-supplied review files byte-for-byte. Verify original report SHA256, exact 103-row TSV/JSON consistency and original local content hashes; retain 92 PASS / 11 REVIEW / 0 FAIL and cross-review matrix 82/8/10/3. Independence is declared by the supplied reviewer session, not authenticated by transport.
+- Add a versioned R1 overlay for four field corrections (large, also, purse, rainforest), preserving sealed manuscripts, original checkpoint, cohort and neighbor revision. All four revised hashes await Reviewer B recheck; F01/F02 still gate publication. Retain all 13 Author A review concerns and all original Reviewer B judgments without rebinding them.
+- Adjudicate six deferred coverage candidates: five strong candidates, chemist pharmacist needs more evidence; possible remains a boundary review, not a silently inserted Sense. Preserve sixty DRAFT NUMBER. No new Sense added: 1,563 previous + 103 new = 1,666 Senses / 1,120 groups; all 40 prior corrections preserved.
+- Newly executed: R1 tests 14/14, authoring tests 21/21, seven-project typecheck, lint, two-seed deterministic zero-write R1 replay, original checkpoint replay and 488-pin R4P.3 verification PASS. Four short-match observations preserved; effective long overlaps/exact English copies zero.
+- Report: vocabflow-dataset/workspaces/master-editorial-high-throughput-500/reports/checkpoint-01-r1-integration.md. Recheck request and full-context JSON are under checkpoints/checkpoint-01/revisions/reviewer-b-r1/assembled/. No commit/push pending independent recheck, no checkpoint 02, database, Production, approval, canonical IDs or release. Preserve two cache files, seven stashes and twelve worktrees.
+
+### Phase 2H.2K-R1C - final independent review integration
+
+- Import the owner-supplied R1B receipt byte-for-byte (SHA256 fd9ddfe5dce8839acd08304e69c198fddb426574d9c00459cc465035f3fee151). Verify four PASS verdicts against exact R1 changed fields and original/revised hashes; independence is a supplied session declaration, not cryptographic identity authentication.
+- Add an immutable R1C review integration layer. Final Reviewer B counts: 96 PASS / 7 REVIEW / 0 FAIL; original A 90/13 and B 92/11 histories retained. Preserve seven remaining findings, six deferred candidates, sixty DRAFT NUMBER, 99 unaffected new records, 1,563 inherited Senses and all 40 historical corrections. Effective totals remain 100 new groups / 103 new Senses; 1,120 groups / 1,666 DRAFT Senses.
+- Newly executed prepublication checks: 48 focused tests (21 authoring + 14 R1 + 13 final binding), seven-project typecheck, ESLint, two-seed deterministic zero-write final replay and accepted 488-pin R4P.3 verification PASS. Effective long overlaps/exact English example copies zero; four conventional short-match observations retained.
+- Report: vocabflow-dataset/workspaces/master-editorial-high-throughput-500/reports/checkpoint-01-r1c-publication-validation.md. Git DRAFT publication is explicitly authorized after staged-scope/remote checks; final commit/push and postpublication results are provided in the handoff. No human approval, canonical IDs, rights clearance, Master release, database or Production operation. Stop after checkpoint 01; no checkpoint 02 or Batch 05.

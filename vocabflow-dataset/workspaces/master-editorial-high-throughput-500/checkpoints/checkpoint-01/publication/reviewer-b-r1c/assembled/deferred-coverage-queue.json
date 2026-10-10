@@ -1,0 +1,484 @@
+{
+  "records": [
+    {
+      "candidateId": "M01",
+      "candidateMeaning": "forget to do something",
+      "canonicalIdsAllocated": 0,
+      "classification": "STRONG_CANDIDATE",
+      "disposition": "DEFERRED_OWNER_DECISION",
+      "existingProposalKey": "EDITORIAL_2H2K:forget:fail-to-remember",
+      "existingSenseAssessment": "VALID_BUT_INCOMPLETE",
+      "existingSenseCorrectButIncomplete": true,
+      "headword": "forget",
+      "newSenseInserted": false,
+      "originalEffectiveContentHash": "fe9185f9e5010267735eaff941b0fe834d45247d727fa09b5411c555fbe6527c",
+      "ownerApproval": false,
+      "reasonVi": "Nghĩa hiện tại là không nhớ lại tên, thông tin hoặc trải nghiệm; hai câu Oxford đều là forget to + động từ, tức bỏ sót việc cần làm vì quên. Đây là khác biệt construction và phạm vi nghĩa có chứng cứ trực tiếp, không phải thay đổi ví dụ cho nghĩa hồi tưởng. Giữ Sense hiện tại, đề xuất nghĩa hành động cho owner quyết định riêng; không tự broaden definition.",
+      "reviewerBExternalReferences": "Preserved in original report; not newly verified or promoted to accepted source evidence",
+      "sourceEvidence": [
+        {
+          "artifact": "oxford-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "CEFR",
+              "value": "A1"
+            }
+          ],
+          "corpus": "OXFORD_5000",
+          "normalizedPosCandidates": [
+            "VERB"
+          ],
+          "rawContentPointer": "/records/478/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/478/rawHeadword",
+          "rawPosEvidencePointer": "/records/478/sourcePosRaw",
+          "recordEvidenceSha256": "898e7660542bf54737da4efd7ddf4c935f86f2560a7f2ede16ada687d33a54c0",
+          "recordIndex": 478,
+          "sourceNoteGuid": "kV@w44Rw9.",
+          "sourceRecordId": "1788223606431",
+          "structuredOxfordSenseGroupOrdinals": [
+            0
+          ]
+        }
+      ],
+      "sourceQuotes": [
+        {
+          "corpus": "OXFORD_5000",
+          "exactSourceText": "Do not forget to bring your passport.",
+          "recordIndex": 478,
+          "sourceField": "Example EN 1"
+        },
+        {
+          "corpus": "OXFORD_5000",
+          "exactSourceText": "I forgot to bring my umbrella.",
+          "recordIndex": 478,
+          "sourceField": "Example EN 2"
+        }
+      ]
+    },
+    {
+      "candidateId": "M02",
+      "candidateMeaning": "combining things",
+      "canonicalIdsAllocated": 0,
+      "classification": "STRONG_CANDIDATE",
+      "disposition": "DEFERRED_OWNER_DECISION",
+      "existingProposalKey": "EDITORIAL_2H2K:together:with-one-another",
+      "existingSenseAssessment": "VALID_BUT_INCOMPLETE",
+      "existingSenseCorrectButIncomplete": true,
+      "headword": "together",
+      "newSenseInserted": false,
+      "originalEffectiveContentHash": "f736408cd7d9917bfed4db3d45a7ab503d5546153e34390106565366708bda87",
+      "ownerApproval": false,
+      "reasonVi": "Nội dung hiện tại giới hạn người cùng làm thay vì làm riêng. Câu trộn bột và nước của Oxford mô tả kết hợp các vật, và gloss Vocab nhắc person or thing. Đây là phạm vi khác với person/people trong definition hiện tại. Ghi nhận thiếu coverage của vật/thành phần; không nhập hai phạm vi hay thêm identity mới trong checkpoint.",
+      "reviewerBExternalReferences": "Preserved in original report; not newly verified or promoted to accepted source evidence",
+      "sourceEvidence": [
+        {
+          "artifact": "oxford-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "CEFR",
+              "value": "A1"
+            }
+          ],
+          "corpus": "OXFORD_5000",
+          "normalizedPosCandidates": [
+            "ADVERB"
+          ],
+          "rawContentPointer": "/records/232/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/232/rawHeadword",
+          "rawPosEvidencePointer": "/records/232/sourcePosRaw",
+          "recordEvidenceSha256": "c222d87522690562a7ecca2c73e8863f21e42057969e1bf13c86c54f207862e2",
+          "recordIndex": 232,
+          "sourceNoteGuid": "LU-U.2nqFf",
+          "sourceRecordId": "1788223606183",
+          "structuredOxfordSenseGroupOrdinals": [
+            0
+          ]
+        },
+        {
+          "artifact": "vocab4600-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "deck:4600 English Vocab::A1",
+              "value": "A1"
+            },
+            {
+              "sourceField": "noteTag",
+              "value": "A1"
+            }
+          ],
+          "corpus": "ENGLISH_VOCAB_4600",
+          "normalizedPosCandidates": [
+            "ADVERB"
+          ],
+          "rawContentPointer": "/records/307/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/307/rawHeadword",
+          "rawPosEvidencePointer": "/records/307/sourcePosRaw",
+          "recordEvidenceSha256": "2c921696f5239e2f3ad4eb92fe262f3935b64dc5885fd06617d3f93b0e94b691",
+          "recordIndex": 307,
+          "sourceNoteGuid": "b%!_UnoGvG",
+          "sourceRecordId": "1556384731114",
+          "structuredOxfordSenseGroupOrdinals": []
+        }
+      ],
+      "sourceQuotes": [
+        {
+          "corpus": "OXFORD_5000",
+          "exactSourceText": "We worked together on the project.",
+          "recordIndex": 232,
+          "sourceField": "Example EN 1"
+        },
+        {
+          "corpus": "OXFORD_5000",
+          "exactSourceText": "Mix the flour and water together.",
+          "recordIndex": 232,
+          "sourceField": "Example EN 2"
+        },
+        {
+          "corpus": "ENGLISH_VOCAB_4600",
+          "exactSourceText": "<i>Together</i> shows an action is done with another person or thing.<br><b>cùng với nhau, chung với nhau</b>",
+          "recordIndex": 307,
+          "sourceField": "Meaning"
+        },
+        {
+          "corpus": "ENGLISH_VOCAB_4600",
+          "exactSourceText": "Let’s work <b>together</b> to finish the project.",
+          "recordIndex": 307,
+          "sourceField": "Example"
+        }
+      ]
+    },
+    {
+      "candidateId": "M03",
+      "candidateMeaning": "British-English pharmacist",
+      "canonicalIdsAllocated": 0,
+      "classification": "NEEDS_MORE_EVIDENCE",
+      "disposition": "DEFERRED_OWNER_DECISION",
+      "existingProposalKey": "EDITORIAL_2H2K:chemist:chemical-scientist",
+      "existingSenseAssessment": "VALID_BUT_INCOMPLETE_IF_CANDIDATE_CONFIRMED",
+      "existingSenseCorrectButIncomplete": null,
+      "headword": "chemist",
+      "newSenseInserted": false,
+      "originalEffectiveContentHash": "fa6731b901138ef0a23db2cc0be390c3f42d3a35c9df6cf212be69e3600cc9bb",
+      "ownerApproval": false,
+      "reasonVi": "Definition và ví dụ tiếng Anh trong Vocab chỉ chứng minh nhà hóa học; gloss Việt có dược sư gợi nghĩa pharmacist nhưng không chỉ rõ vùng Anh-Anh. Reviewer B dẫn từ điển ngoài, nhưng intake không chứa bản chụp nguồn từ điển đã xác minh để làm chứng cứ lexical mới. Vì vậy cần thêm chứng cứ English và regional label trước authoring; scientist hiện tại đúng, không trộn hai nghề và không suy ra shop/pharmacy.",
+      "reviewerBExternalReferences": "Preserved in original report; not newly verified or promoted to accepted source evidence",
+      "sourceEvidence": [
+        {
+          "artifact": "vocab4600-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "deck:4600 English Vocab::A2",
+              "value": "A2"
+            },
+            {
+              "sourceField": "noteTag",
+              "value": "A2"
+            }
+          ],
+          "corpus": "ENGLISH_VOCAB_4600",
+          "normalizedPosCandidates": [
+            "NOUN"
+          ],
+          "rawContentPointer": "/records/1700/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/1700/rawHeadword",
+          "rawPosEvidencePointer": "/records/1700/sourcePosRaw",
+          "recordEvidenceSha256": "dd64dc3eb8c24d9492dee669b3df321765d5e436dc14cce350a572144f457c4d",
+          "recordIndex": 1700,
+          "sourceNoteGuid": "id?KPK!w}:",
+          "sourceRecordId": "1559931008502",
+          "structuredOxfordSenseGroupOrdinals": []
+        }
+      ],
+      "sourceQuotes": [
+        {
+          "corpus": "ENGLISH_VOCAB_4600",
+          "exactSourceText": "A <i>chemist</i> is a scientist who works with chemicals.<br><b>nhà hoá học, dược sư</b>",
+          "recordIndex": 1700,
+          "sourceField": "Meaning"
+        },
+        {
+          "corpus": "ENGLISH_VOCAB_4600",
+          "exactSourceText": "My mother is a successful <b>chemist</b> who helps invent new products.",
+          "recordIndex": 1700,
+          "sourceField": "Example"
+        }
+      ]
+    },
+    {
+      "candidateId": "M04",
+      "candidateMeaning": "past events or development over time",
+      "canonicalIdsAllocated": 0,
+      "classification": "STRONG_CANDIDATE",
+      "disposition": "DEFERRED_OWNER_DECISION",
+      "existingProposalKey": "EDITORIAL_2H2K:history:study-of-past",
+      "existingSenseAssessment": "VALID_BUT_INCOMPLETE",
+      "existingSenseCorrectButIncomplete": true,
+      "headword": "history",
+      "newSenseInserted": false,
+      "originalEffectiveContentHash": "e598a8940213fff13c7722aa35a9cf11aa98f9be72ede8fa58b6bca633ee36b6",
+      "ownerApproval": false,
+      "reasonVi": "Sense hiện tại là hoạt động/môn nghiên cứu quá khứ. Long history của một tòa nhà và turning point in human history nói đến sự kiện/quá trình đã diễn ra, không phải môn học. Hai nguồn hỗ trợ candidate mạnh nhưng owner còn phải quyết định gộp hay tách history of an entity và các sự kiện xã hội. Không broaden definition của môn học.",
+      "reviewerBExternalReferences": "Preserved in original report; not newly verified or promoted to accepted source evidence",
+      "sourceEvidence": [
+        {
+          "artifact": "oxford-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "CEFR",
+              "value": "A1"
+            }
+          ],
+          "corpus": "OXFORD_5000",
+          "normalizedPosCandidates": [
+            "NOUN"
+          ],
+          "rawContentPointer": "/records/267/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/267/rawHeadword",
+          "rawPosEvidencePointer": "/records/267/sourcePosRaw",
+          "recordEvidenceSha256": "6c05b57c81849d6e819639c060ba275e12cd3b94b4b76434f34e1df14ce0042f",
+          "recordIndex": 267,
+          "sourceNoteGuid": "JH.AR)p|`_",
+          "sourceRecordId": "1788223606218",
+          "structuredOxfordSenseGroupOrdinals": [
+            0
+          ]
+        },
+        {
+          "artifact": "vocab4600-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "deck:4600 English Vocab::A1",
+              "value": "A1"
+            },
+            {
+              "sourceField": "noteTag",
+              "value": "A1"
+            }
+          ],
+          "corpus": "ENGLISH_VOCAB_4600",
+          "normalizedPosCandidates": [
+            "NOUN"
+          ],
+          "rawContentPointer": "/records/208/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/208/rawHeadword",
+          "rawPosEvidencePointer": "/records/208/sourcePosRaw",
+          "recordEvidenceSha256": "8f27abbb49bcd293fb8977e3c7504c29ade1f70d95b5ad1a068bd6522fe41527",
+          "recordIndex": 208,
+          "sourceNoteGuid": "jBBNx)_2=a",
+          "sourceRecordId": "1556384731010",
+          "structuredOxfordSenseGroupOrdinals": []
+        }
+      ],
+      "sourceQuotes": [
+        {
+          "corpus": "OXFORD_5000",
+          "exactSourceText": "She is studying the history of her country.",
+          "recordIndex": 267,
+          "sourceField": "Example EN 1"
+        },
+        {
+          "corpus": "OXFORD_5000",
+          "exactSourceText": "The building has a long history.",
+          "recordIndex": 267,
+          "sourceField": "Example EN 2"
+        },
+        {
+          "corpus": "ENGLISH_VOCAB_4600",
+          "exactSourceText": "<i>History</i> is the study of the past.<br><b>lịch sử, môn lịch sử</b>",
+          "recordIndex": 208,
+          "sourceField": "Meaning"
+        },
+        {
+          "corpus": "ENGLISH_VOCAB_4600",
+          "exactSourceText": "The battle was a turning point in human <b>history</b>.",
+          "recordIndex": 208,
+          "sourceField": "Example"
+        }
+      ]
+    },
+    {
+      "candidateId": "M05",
+      "candidateMeaning": "ideally suitable for a purpose",
+      "canonicalIdsAllocated": 0,
+      "classification": "STRONG_CANDIDATE",
+      "disposition": "DEFERRED_OWNER_DECISION",
+      "existingProposalKey": "EDITORIAL_2H2K:perfect:without-faults",
+      "existingSenseAssessment": "VALID_BUT_INCOMPLETE",
+      "existingSenseCorrectButIncomplete": true,
+      "headword": "perfect",
+      "newSenseInserted": false,
+      "originalEffectiveContentHash": "d4c4a54740e6a0ccd920cba8dc03c42a20377c5f94e1e50d8654427260251273",
+      "ownerApproval": false,
+      "reasonVi": "Không lỗi trong chính tả phù hợp Sense đã viết và gloss Vocab. Perfect for a picnic của Oxford đánh giá sự phù hợp với mục đích, không đòi thời tiết không có lỗi ở mọi mặt. Construction for hỗ trợ một candidate nghĩa riêng; ghi deferred để owner đánh giá, giữ nguyên definition không lỗi và không thêm Sense tự động.",
+      "reviewerBExternalReferences": "Preserved in original report; not newly verified or promoted to accepted source evidence",
+      "sourceEvidence": [
+        {
+          "artifact": "oxford-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "CEFR",
+              "value": "A1"
+            }
+          ],
+          "corpus": "OXFORD_5000",
+          "normalizedPosCandidates": [
+            "ADJECTIVE"
+          ],
+          "rawContentPointer": "/records/382/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/382/rawHeadword",
+          "rawPosEvidencePointer": "/records/382/sourcePosRaw",
+          "recordEvidenceSha256": "3fa1a5a50b9d6649488da4e818b945f7113eadb697399a2ffb26f04d9297723c",
+          "recordIndex": 382,
+          "sourceNoteGuid": "Cl~7322a5~",
+          "sourceRecordId": "1788223606333",
+          "structuredOxfordSenseGroupOrdinals": [
+            0
+          ]
+        },
+        {
+          "artifact": "vocab4600-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "deck:4600 English Vocab::A1",
+              "value": "A1"
+            },
+            {
+              "sourceField": "noteTag",
+              "value": "A1"
+            }
+          ],
+          "corpus": "ENGLISH_VOCAB_4600",
+          "normalizedPosCandidates": [
+            "ADJECTIVE"
+          ],
+          "rawContentPointer": "/records/2380/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/2380/rawHeadword",
+          "rawPosEvidencePointer": "/records/2380/sourcePosRaw",
+          "recordEvidenceSha256": "a4ee3c23695cf6d3a4362496606c9c33dc2699286df8c9982ecc23e80b8575d0",
+          "recordIndex": 2380,
+          "sourceNoteGuid": "N^o6ehrz{-",
+          "sourceRecordId": "1559931009214",
+          "structuredOxfordSenseGroupOrdinals": []
+        }
+      ],
+      "sourceQuotes": [
+        {
+          "corpus": "OXFORD_5000",
+          "exactSourceText": "The weather is perfect for a picnic.",
+          "recordIndex": 382,
+          "sourceField": "Example EN 1"
+        },
+        {
+          "corpus": "OXFORD_5000",
+          "exactSourceText": "That is the perfect answer.",
+          "recordIndex": 382,
+          "sourceField": "Example EN 2"
+        },
+        {
+          "corpus": "ENGLISH_VOCAB_4600",
+          "exactSourceText": "If something is <i>perfect</i>, then it is without any mistakes.<br><b>hoàn hảo</b>",
+          "recordIndex": 2380,
+          "sourceField": "Meaning"
+        },
+        {
+          "corpus": "ENGLISH_VOCAB_4600",
+          "exactSourceText": "She got all the questions right, so her score was <b>perfect</b>.",
+          "recordIndex": 2380,
+          "sourceField": "Example"
+        }
+      ]
+    },
+    {
+      "candidateId": "M06",
+      "candidateMeaning": "possibility of being true or happening",
+      "canonicalIdsAllocated": 0,
+      "classification": "STRONG_CANDIDATE",
+      "disposition": "DEFERRED_OWNER_DECISION",
+      "existingProposalKey": "EDITORIAL_2H2K:possible:able-to-be-done",
+      "existingSenseAssessment": "BOUNDARY_REVIEW_REQUIRED",
+      "existingSenseCorrectButIncomplete": null,
+      "headword": "possible",
+      "newSenseInserted": false,
+      "originalEffectiveContentHash": "dbbce8769d3555389310547cbe2815e36d22dc611517cb17048851cd4d1e279d",
+      "ownerApproval": false,
+      "reasonVi": "Definition hiện tại đã chứa happen nên đây là candidate tách nghĩa đang gộp, không phải nghĩa hoàn toàn vắng mặt. Label able to be done và ví dụ đi đến đảo thể hiện khả thi; possible that trong Oxford thể hiện chưa chắc đúng/xảy ra. Chứng cứ tách construction mạnh nhưng ranh giới cần owner quyết định. Giữ nguyên toàn bộ content và flag F10; không tuyên bố coverage hoàn chỉnh hay lặng lẽ mở rộng nghĩa.",
+      "reviewerBExternalReferences": "Preserved in original report; not newly verified or promoted to accepted source evidence",
+      "sourceEvidence": [
+        {
+          "artifact": "oxford-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "CEFR",
+              "value": "A1"
+            }
+          ],
+          "corpus": "OXFORD_5000",
+          "normalizedPosCandidates": [
+            "ADJECTIVE"
+          ],
+          "rawContentPointer": "/records/288/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/288/rawHeadword",
+          "rawPosEvidencePointer": "/records/288/sourcePosRaw",
+          "recordEvidenceSha256": "65f6ebd0503b3fca10c1b297e96543bad94cdcd1ffd9b5cd41dbdb254de550da",
+          "recordIndex": 288,
+          "sourceNoteGuid": "Kt&KkOt#k/",
+          "sourceRecordId": "1788223606239",
+          "structuredOxfordSenseGroupOrdinals": [
+            0
+          ]
+        },
+        {
+          "artifact": "vocab4600-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "deck:4600 English Vocab::A1",
+              "value": "A1"
+            },
+            {
+              "sourceField": "noteTag",
+              "value": "A1"
+            }
+          ],
+          "corpus": "ENGLISH_VOCAB_4600",
+          "normalizedPosCandidates": [
+            "ADJECTIVE"
+          ],
+          "rawContentPointer": "/records/3572/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/3572/rawHeadword",
+          "rawPosEvidencePointer": "/records/3572/sourcePosRaw",
+          "recordEvidenceSha256": "a14d130b95fc9aeeb6ea13cd8eae4e9e776ab8358e443e59099515710a31b400",
+          "recordIndex": 3572,
+          "sourceNoteGuid": "b[YOY!16YP",
+          "sourceRecordId": "1616499876705",
+          "structuredOxfordSenseGroupOrdinals": []
+        }
+      ],
+      "sourceQuotes": [
+        {
+          "corpus": "OXFORD_5000",
+          "exactSourceText": "Is it possible to change the booking?",
+          "recordIndex": 288,
+          "sourceField": "Example EN 1"
+        },
+        {
+          "corpus": "OXFORD_5000",
+          "exactSourceText": "It is possible that she is still at work.",
+          "recordIndex": 288,
+          "sourceField": "Example EN 2"
+        },
+        {
+          "corpus": "ENGLISH_VOCAB_4600",
+          "exactSourceText": "that can be done or achieved.<br><b>khả thi</b>",
+          "recordIndex": 3572,
+          "sourceField": "Meaning"
+        },
+        {
+          "corpus": "ENGLISH_VOCAB_4600",
+          "exactSourceText": "New technology has made it <b>possible</b> to communicate more easily.",
+          "recordIndex": 3572,
+          "sourceField": "Example"
+        }
+      ]
+    }
+  ]
+}
