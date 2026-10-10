@@ -1,5 +1,18 @@
 # VocabFlow Changelog
 
+## 2026-10-10 — Phase 2H.2J-R3 targeted DRAFT remediation Batch 03
+
+- Select 22 proposals from the densest original batch; apply 12 independently
+  reviewed grammar-note fields, defer nine and reject one incorrect proposal.
+  Re-review all 37 Senses in the batch (19 PASS / 18 REVIEW / 0 FAIL).
+- Preserve the 1,563-Sense / 1,020-group projection, six prior corrections, 141
+  historical field proposals and eight boundary proposals. New fingerprint:
+  `1da5da50c648995491f16523ca0d3da3d8965c59e4d30dd8ebfab72ddd381eb1`.
+- Focused tests passed 28/28; two zero-write replays and final `--check` passed.
+  Hybrid v2.2.1 remains verified 8/8. The known bulk-500 decode errors and v2.2.0
+  release-tree failure remain preserved. Content stays DRAFT with rights
+  `UNKNOWN_REVIEW_REQUIRED`; no database or Production operation occurred.
+
 ## 2026-10-09 — Phase 2H.2J-R2 targeted DRAFT remediation Batch 02
 
 - Apply three independently reviewed grammar-note corrections through a new

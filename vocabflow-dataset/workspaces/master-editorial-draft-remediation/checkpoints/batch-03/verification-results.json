@@ -1,0 +1,54 @@
+{
+  "batch03Fingerprint": "1da5da50c648995491f16523ca0d3da3d8965c59e4d30dd8ebfab72ddd381eb1",
+  "batch03FocusedTests": {
+    "command": "python -B scripts/phase-2h2j-draft-remediation-batch-03-test.py",
+    "failed": 0,
+    "passed": 28,
+    "status": "PASS"
+  },
+  "bulk500Regression": {
+    "errors": 2,
+    "evidencePath": "vocabflow-dataset/workspaces/master-editorial-draft-remediation/checkpoints/batch-02/verification-results.json",
+    "evidenceSha256": "1b1fe2844b05d27275446301a5f5094254d246307aad55f9122ae5391743c216",
+    "status": "FAIL_PRESERVED",
+    "testsRun": 35
+  },
+  "databaseAccess": "NONE",
+  "databaseWrites": "NONE",
+  "hybridV2_2_1": {
+    "evidencePath": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-07/verification-results.json",
+    "evidenceSha256": "007b9480b0b391e492598aca83386644fcaae5ef4b517e5c0ae5b080e69396ac",
+    "failed": 0,
+    "passed": 8,
+    "status": "PASS"
+  },
+  "legacyV2_2_0": {
+    "evidencePath": "vocabflow-dataset/workspaces/master-editorial-aggregate-qa-resume/checkpoints/checkpoint-07/verification-results.json",
+    "evidenceSha256": "007b9480b0b391e492598aca83386644fcaae5ef4b517e5c0ae5b080e69396ac",
+    "failed": 1,
+    "passed": 4,
+    "status": "FAIL_PRESERVED"
+  },
+  "newBatchReplay": [
+    {
+      "artifactBytesMatch": true,
+      "exitCode": 0,
+      "fingerprint": "1da5da50c648995491f16523ca0d3da3d8965c59e4d30dd8ebfab72ddd381eb1",
+      "outputFiles": 18,
+      "pythonHashSeed": "20261010",
+      "zeroWrites": true
+    },
+    {
+      "artifactBytesMatch": true,
+      "exitCode": 0,
+      "fingerprint": "1da5da50c648995491f16523ca0d3da3d8965c59e4d30dd8ebfab72ddd381eb1",
+      "outputFiles": 18,
+      "pythonHashSeed": "271828",
+      "zeroWrites": true
+    }
+  ],
+  "parentBatch02Fingerprint": "b3d1335e717ab307d0f5b14dcc811c4e5217f94bd98f26898add9eea68dca84e",
+  "phase": "2H.2J-R3",
+  "production": "UNTOUCHED",
+  "status": "PASS_WITH_REVIEW_ITEMS"
+}

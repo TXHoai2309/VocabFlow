@@ -1,0 +1,94 @@
+{
+  "affectedOriginalBatches": [
+    "master-editorial-draft-pilot:5"
+  ],
+  "authoredGroups": 1020,
+  "authorization": {
+    "canonicalIdsAllocated": 0,
+    "contentStatus": "DRAFT",
+    "databaseAccess": "NONE",
+    "databaseWrites": "NONE",
+    "legacyModified": false,
+    "masterReleaseChanged": false,
+    "ownerApprovalsAdded": 0,
+    "phase": "2H.2J-R3",
+    "production": "UNTOUCHED",
+    "publicationEligible": false,
+    "rights": "UNKNOWN_REVIEW_REQUIRED",
+    "rightsClearanceAdded": 0
+  },
+  "batch02ProjectionUnchanged": true,
+  "bulk500Regression": "FAIL_2_UNCHANGED_CP1258_TEMP_FIXTURE_DECODE_ERRORS",
+  "canonicalIdsAllocated": 0,
+  "contentApprovalStatus": "PENDING",
+  "cumulativeCorrectionsApplied": 18,
+  "cumulativeRevisedSenses": 18,
+  "databaseAccess": "NONE",
+  "databaseWrites": "NONE",
+  "deferred": 9,
+  "effectiveDraftSenses": 1563,
+  "eligible": 12,
+  "fullBatchSensesReviewed": 37,
+  "fullBatchesReviewed": 1,
+  "historicalBoundaryProposals": 8,
+  "historicalFieldProposals": 141,
+  "hybridV221": "REQUIRES_EXTERNAL_VALIDATION_RECEIPT",
+  "legacyModified": false,
+  "legacyV220Diagnostic": "APPROVED_RELEASE_IMMUTABILITY_VIOLATION:release-tree; historical 4/5",
+  "masterReleaseChanged": false,
+  "newCorrectionsApplied": 12,
+  "newFieldReview": {
+    "FAIL": 0,
+    "PASS": 12,
+    "REVIEW": 0
+  },
+  "newlyRevisedSenses": 12,
+  "originalBoundariesPreserved": 8,
+  "originalProjectionUnchanged": true,
+  "originalProposalsPreserved": 141,
+  "ownerApprovalsAdded": 0,
+  "parentAggregateAuditFingerprint": "9c90d8c2f2b964e128e19c5db807336d754573467f7f783a8a666e54a242ed77",
+  "parentBatch02Fingerprint": "b3d1335e717ab307d0f5b14dcc811c4e5217f94bd98f26898add9eea68dca84e",
+  "parentPilot01Fingerprint": "7b7e93bd26bcbac1d18e02b52b929e382722223c67bbe7455bbf9caf1d3a4283",
+  "parentReplays": {
+    "aggregateCheckpoint07": {
+      "finalHandoffFingerprint": "862be642a7223396f43664ca8604d986a5c1f5cbad91c9ab295492f819ff4ed8",
+      "fingerprint": "9c90d8c2f2b964e128e19c5db807336d754573467f7f783a8a666e54a242ed77",
+      "status": "COMPLETE",
+      "zeroWrites": true
+    },
+    "batch02": {
+      "cumulativeCorrectionsApplied": 6,
+      "effectiveDraftSenseCount": 1563,
+      "fingerprint": "b3d1335e717ab307d0f5b14dcc811c4e5217f94bd98f26898add9eea68dca84e",
+      "fullBatchSenseCount": 29,
+      "newCorrectionsApplied": 3,
+      "status": "PASS_WITH_REVIEW_ITEMS",
+      "zeroWrites": true
+    },
+    "pilot01": {
+      "correctionsApplied": 3,
+      "distinctSensesRevised": 3,
+      "fingerprint": "7b7e93bd26bcbac1d18e02b52b929e382722223c67bbe7455bbf9caf1d3a4283",
+      "status": "COMPLETE_WITH_DEFERRED_CANDIDATE_AND_REVIEW_ITEMS",
+      "zeroWrites": true
+    }
+  },
+  "phase": "2H.2J-R3",
+  "pilot01ProjectionUnchanged": true,
+  "postRemediationQa": {
+    "FAIL": 0,
+    "PASS": 19,
+    "REVIEW": 18
+  },
+  "previousAppliedCorrections": 6,
+  "production": "UNTOUCHED",
+  "qaHistoryPreserved": true,
+  "rejected": 1,
+  "releaseEligible": false,
+  "rights": "UNKNOWN_REVIEW_REQUIRED",
+  "selected": 22,
+  "status": "PARTIAL_WITH_REVIEW_ITEMS_AND_PRESERVED_REGRESSION_FAILURE",
+  "unselectedSensesPreserved": true,
+  "utf8DiagnosticStatus": "ENVIRONMENT_SPECIFIC_DECODING_DEFECT_CONFIRMED"
+}

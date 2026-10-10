@@ -7001,3 +7001,41 @@ All 29 Senses in the four affected source batches were re-reviewed: 25 PASS / 4 
 Batch 02 focused tests passed 16/16; Pilot 01 tests 33/33; Phase 2H.2G overlay tests 29/29; direct TypeScript typecheck and ESLint passed. The frozen Hybrid-100 v2.2.1 suite passed 8/8 (87 Lexemes / 100 Senses). The legacy v2.2.0 suite remains 4/5 with the known `APPROVED_RELEASE_IMMUTABILITY_VIOLATION:release-tree` Windows line-ending diagnostic. A separate bulk-500 regression run reported two UTF-8 decode errors in the unchanged checkpoint-02 resume-selection fixture; this is recorded as a regression-suite issue, not a pass. Batch 02's 17 artifacts rebuilt identically under `PYTHONHASHSEED=1` and `271828`, with zero writes. The canonical `pnpm typecheck` wrapper was not run.
 
 Content remains DRAFT, rights `UNKNOWN_REVIEW_REQUIRED`, content approval PENDING, and release eligibility NO. No canonical IDs, owner approvals, database operations, Master release changes, legacy changes or Production operations occurred. See `vocabflow-dataset/workspaces/master-editorial-draft-remediation/checkpoints/batch-02/report.md` and `verification-results.json`. Recommend owner review of the batch and remaining queue before separately authorizing another remediation batch.
+
+## Phase 2H.2J-R3 — targeted DRAFT remediation Batch 03 (2026-10-10)
+
+Batch 03 continues from Batch 02 fingerprint
+`b3d1335e717ab307d0f5b14dcc811c4e5217f94bd98f26898add9eea68dca84e`, Pilot 01
+`7b7e93bd26bcbac1d18e02b52b929e382722223c67bbe7455bbf9caf1d3a4283`, and the
+accepted aggregate audit/handoff. The Batch 03 fingerprint is
+`1da5da50c648995491f16523ca0d3da3d8965c59e4d30dd8ebfab72ddd381eb1`.
+
+- Gate A confirms the tracked bulk-500 receipt is valid UTF-8 and byte-identical
+  to its parent, HEAD and index. The two historical test errors arise when a
+  temporary fixture is written using Windows cp1258 default encoding and then
+  read strictly as UTF-8; the fixture and decoder were not changed.
+- Reconcile all 141 proposal IDs without loss or duplication. Select the 22
+  unreviewed proposals in original batch 05, the highest-density batch (22 vs
+  17 in batch 04). Apply 12 field-local corrections; defer nine and reject one.
+  The full 37-Sense batch review is 19 PASS / 18 REVIEW / 0 FAIL. The billion
+  grammar-note field passes independently while the full Sense remains REVIEW
+  for its unresolved POS classification.
+- The cumulative projection retains 1,563 Senses and 1,020 authored groups;
+  exactly 12 new Sense hashes change, bringing cumulative corrections to 18.
+  All six parent corrections, 141 historical proposals, eight boundary
+  proposals, and the `lot`, `waste`, and `aggregate` deferrals remain preserved.
+- Pilot 01, Batch 02 and aggregate checkpoint 07 parent replays passed their
+  pinned fingerprints with zero writes. The focused R3 suite passed 28/28. Two
+  Batch 03 replays with `PYTHONHASHSEED=20261010` and `271828` produced identical
+  outputs and fingerprint with zero writes; final `--check` also passed.
+  Hybrid-100 v2.2.1 is verified 8/8. The existing bulk-500 two-error decode
+  regression and v2.2.0 release-tree diagnostic (4/5) remain explicitly
+  preserved, not repaired in this checkpoint.
+
+Content remains DRAFT, rights remain `UNKNOWN_REVIEW_REQUIRED`, and release
+eligibility is NO. No owner approval, canonical ID, rights clearance, database
+access/write, Production change, Master release edit, or legacy mutation
+occurred. The two existing R3 `.pyc` files were preserved unchanged as the
+owner-approved baseline exception. See
+`vocabflow-dataset/workspaces/master-editorial-draft-remediation/checkpoints/batch-03/`.
+Stop after Batch 03; do not start Batch 04 without separate authorization.
