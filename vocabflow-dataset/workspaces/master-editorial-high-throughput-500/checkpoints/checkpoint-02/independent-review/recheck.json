@@ -1,0 +1,133 @@
+{
+  "reviewerKind": "ISOLATED_AI_REVIEW_AGENT",
+  "blindFirstPass": true,
+  "agentTask": "review_micro_01_recheck",
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2K:millionaire:wealthy-person",
+      "effectiveContentHash": "f0847fca9ec09bb7d626e0d4e0e3b14aa814a7cec34e94c06d793e31fbaa0367",
+      "assessment": "PASS",
+      "explanationVi": "Ba sửa đổi đã đồng bộ định nghĩa dollars, nghĩa Việt một triệu đô la và ghi chú become a millionaire, khép ranh giới tiền tệ từng bị mở quá nguồn. Ví dụ vẫn giữ nữ tác nhân tài trợ thư viện ở quê nhà và quá khứ. Danh từ đếm được và ngưỡng tài sản nay khớp nguồn at least a million dollars.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:endangered:extinction-risk",
+      "effectiveContentHash": "9719d957a13d46f55d485e272d32df38718c2c43a806969aa1b2c541182e2b85",
+      "assessment": "PASS",
+      "explanationVi": "Sau sửa, định nghĩa xác định loài đang có nguy cơ biến mất hoàn toàn, không còn điều kiện chỉ khi không được bảo vệ. Điều này phù hợp nguồn may die out và nghĩa Việt nguy cơ tuyệt chủng. Ví dụ khu bảo tồn cho rùa và ghi chú tính từ giữ đúng phạm vi, không phát sinh lỗi dịch hoặc tác nhân.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:meeting:planned-gathering",
+      "effectiveContentHash": "a3bcafd1d09f86b404e4852b20b08422217bdbd407c91b6a775481fd56f52cf1",
+      "assessment": "PASS",
+      "explanationVi": "Ghi chú trước chỉ giải thích hold a meeting như sắp xếp trước; bản sửa organizing or conducting bao quát việc tổ chức và tiến hành đúng. Định nghĩa, nghĩa Việt và ví dụ họp về vườn trường kéo dài bốn mươi phút giữ nguyên quan hệ và số lượng. Nguồn cuộc họp hỗ trợ nghĩa danh từ này.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:meal:eating-occasion",
+      "effectiveContentHash": "13edba0b743edb4b85f8513ac1b31403be30669b408ff243c5c31f738282b5c3",
+      "assessment": "PASS",
+      "explanationVi": "Bản Việt hiện dùng chuẩn bị ... cho, đã bỏ cả nấu và để mời mà prepared ... for không khẳng định. Bữa ăn giản dị giữ simple meal, người đi đường mệt mỏi giữ tired travellers; tác nhân chúng tôi và đối tượng số nhiều đúng. Định nghĩa bữa ăn/thức ăn trong bữa cùng danh từ đếm được vẫn phù hợp hai nguồn.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:tutor:individual-teacher",
+      "effectiveContentHash": "676d8f58d3312506c3eab0a687d4ce010c6f905257fd450b228359ac26a9d655",
+      "assessment": "PASS",
+      "explanationVi": "Bản sửa bỏ small-group, giữ individual lessons, nay khớp nguồn gives lessons to one student và nghĩa gia sư/dạy kèm. Ví dụ giải thích phân số bằng miếng táo giữ tác nhân gia sư và phương tiện. Ghi chú danh từ đếm được và môn học đúng; vấn đề mở phạm vi nhóm nhỏ trước đã được giải quyết.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:fifty:number-50",
+      "effectiveContentHash": "5e1a7a12d11bc4f2593c6025f71d7ac9f82e8bd64a6c41da4d9c3e236a58c22a",
+      "assessment": "REVIEW",
+      "explanationVi": "Ghi chú mới giải thích fifty với danh từ số nhiều và đúng số 50, không còn đưa quy trình taxonomy vào nội dung học. Định nghĩa five groups of ten, nghĩa năm mươi và ví dụ năm mươi phần ăn giữ số, tác nhân và mục đích. NUMBER vẫn là đề xuất nguồn chưa chốt theo hợp đồng; REVIEW không chặn DRAFT, không cấp identity hay phê duyệt.",
+      "blocksPublication": false,
+      "issues": [
+        {
+          "field": "partOfSpeech",
+          "problemVi": "NUMBER là đề xuất nguồn; taxonomy canonical cố ý chưa chốt theo hợp đồng, không phải lỗi nội dung học.",
+          "minimalCorrectionVi": "Không sửa canonical taxonomy, không cấp identity hoặc phê duyệt; bảo lưu UNRESOLVED."
+        }
+      ],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": [
+        "NUMBER source proposal và canonical taxonomy giữ UNRESOLVED; không chặn bản DRAFT."
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:exciting:causes-excitement",
+      "effectiveContentHash": "9f5c26742d43fedd8658ad26b7d67dc603c42b709dca7d22e0080df310485dff",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa Việt mới thú vị, hấp dẫn; gây hào hứng tách rõ tác nhân gây cảm xúc khỏi trạng thái hào hứng của người, sửa nhập nhằng trước. Định nghĩa making people feel và ghi chú exciting/excited nhất quán nguồn thú vị/hấp dẫn. Ví dụ cuộc săn kho báu giữ trẻ và suốt chiều, không đảo quan hệ cảm xúc.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:calorie:food-energy-unit",
+      "effectiveContentHash": "0de09ce1fdafc33ceb6ead844687f15a678584ed55759aca09910797c39de2dc",
+      "assessment": "PASS",
+      "explanationVi": "Ghi chú đã bỏ chi tiết chuyển đổi kilocalorie, giữ danh từ đếm được và đơn vị năng lượng thực phẩm đúng phạm vi nguồn unit ... energy a food will produce. Định nghĩa không còn phụ thuộc kiến thức đơn vị ngoài nguồn. Ví dụ nhãn ghi số calo trong một khẩu phần giữ số lượng, khẩu phần và chủ thể nhãn; không còn blocker nội dung.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:cathedral:principal-church",
+      "effectiveContentHash": "e528860d6508c3e676c256cf386667a00cb9bc93df71c21599c19d34575c239a",
+      "assessment": "REVIEW",
+      "explanationVi": "Định nghĩa nhà thờ chính của giáo phận nơi có tòa giám mục và ghi chú địa vị thay vì chỉ kích thước là phân biệt từ vựng chính xác, không phải lỗi cần đổi thành nhà thờ lớn. Tuy nhiên nguồn liên kết chỉ nói important/often large church và nhà thờ, chưa chứng minh đặc điểm tòa giám mục. Giữ REVIEW không chặn DRAFT vì giới hạn bằng chứng nguồn; ví dụ du khách ngắm vòm đá dịch đúng.",
+      "blocksPublication": false,
+      "issues": [
+        {
+          "field": "sourceEvidence",
+          "problemVi": "Nguồn giản lược chưa nêu diocese/bishop official seat; định nghĩa chính xác nhưng bằng chứng trực tiếp còn hạn chế.",
+          "minimalCorrectionVi": "Không hạ độ chính xác định nghĩa; bảo lưu giới hạn nguồn để review bằng chứng sau, không chặn DRAFT."
+        }
+      ],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": [
+        "Đặc điểm tòa giám mục chính xác về nghĩa, chưa được ghi đầy đủ trong nguồn liên kết."
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:born:come-into-life",
+      "effectiveContentHash": "04bff3233946bbd6e256a0999f8b9737a84eed1da80efeb8b8970603f29590d5",
+      "assessment": "PASS",
+      "explanationVi": "Ghi chú mới nói rõ born là past participle trong be born và không là động từ nguyên mẫu độc lập, giải quyết nguy cơ dạy dạng base verb. Nguồn Oxford verb với was/were born hỗ trợ đề xuất VERB construction được hợp đồng cho phép. Em gái tôi chào đời trong bão mùa hè giữ younger sister, quá khứ và thời điểm; EN/VI cùng nghĩa được sinh ra.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:arctic:north-polar-region",
+      "effectiveContentHash": "6d574e65fb321fcbb442160dc50f181c034cf6dee5f6c2dd92fc30777f605ede",
+      "assessment": "PASS",
+      "explanationVi": "Ghi chú mới giải thích danh từ địa lý the Arctic, chữ A hoa và in the Arctic, bỏ lời nhắc review khỏi nội dung học. Tuy định nghĩa nguồn thiên tính từ of/from, PoS noun, nghĩa vùng Bắc cực và ví dụ live in the Arctic hỗ trợ vùng quanh Bắc Cực. Tàu nghiên cứu đi vào vùng vào tháng Bảy giữ tác nhân, chuyển động và thời gian.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    }
+  ]
+}

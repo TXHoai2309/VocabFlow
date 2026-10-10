@@ -1,0 +1,2997 @@
+{
+  "authorship": "AUTHOR_A_AI_SOURCE_COVERAGE_PLANNING",
+  "decisionManuscriptSha256": "045ff7468c279f511ed6e15d28f280bc26024ba0947b5527beed22212ed7ed0d",
+  "entries": [
+    {
+      "ambiguityRiskFlags": [
+        "IDENTITY_UNRESOLVED",
+        "RIGHTS_UNKNOWN"
+      ],
+      "candidateGroupKey": "NORMALIZED_HEADWORD:language",
+      "constructionCandidates": [
+        "countable named language",
+        "uncountable language generally"
+      ],
+      "distinctionClass": "B",
+      "missingSenseCandidates": [],
+      "normalizedHeadword": "language",
+      "proposedNumberOfSenses": 1,
+      "proposedPOS": [
+        "NOUN"
+      ],
+      "proposedSenseBoundaries": [
+        "communication-system"
+      ],
+      "rationaleVi": "Oxford có tiếng mẹ đẻ và năng lực ngôn ngữ, Vocab hệ thống giao tiếp; cùng phạm vi với đếm một hệ hoặc nói ngôn ngữ nói chung.",
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "English is not my first language.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Tiếng Anh không phải ngôn ngữ đầu tiên của tôi.",
+                  "focus_en": [
+                    "language"
+                  ],
+                  "focus_vi": [
+                    "ngôn ngữ"
+                  ]
+                },
+                {
+                  "example_en": "Children learn language by listening to people.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Trẻ em học ngôn ngữ bằng cách lắng nghe mọi người.",
+                  "focus_en": [
+                    "language"
+                  ],
+                  "focus_vi": [
+                    "ngôn ngữ"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 0,
+              "sourcePosRaw": "n.",
+              "sourceVietnameseMeaningRaw": "ngôn ngữ",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            }
+          ],
+          "reference": {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "A1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/451/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/451/rawHeadword",
+            "rawPosEvidencePointer": "/records/451/sourcePosRaw",
+            "recordEvidenceSha256": "80b93e9fee40ef702da80c364885d31c7cc83cce8e47dd0239032af862be56ab",
+            "recordIndex": 451,
+            "sourceNoteGuid": "h$_sEsA,N|",
+            "sourceRecordId": "1788223606404",
+            "structuredOxfordSenseGroupOrdinals": [
+              0
+            ]
+          },
+          "sourceFields": {
+            "CEFR": "A1",
+            "Example": "English is not my first <mark class=\"v-target\">language</mark>.<br>Children learn <mark class=\"v-target\">language</mark> by listening to people.",
+            "Example Data": "[{\"pos\":\"n.\",\"meaning_vi\":\"ngôn ngữ\",\"examples\":[{\"example_en\":\"English is not my first language.\",\"example_vi\":\"Tiếng Anh không phải ngôn ngữ đầu tiên của tôi.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"language\"],\"focus_vi\":[\"ngôn ngữ\"]},{\"example_en\":\"Children learn language by listening to people.\",\"example_vi\":\"Trẻ em học ngôn ngữ bằng cách lắng nghe mọi người.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"language\"],\"focus_vi\":[\"ngôn ngữ\"]}]}]",
+            "Example EN 1": "English is not my first language.",
+            "Example EN 2": "Children learn language by listening to people.",
+            "Example EN 3": "",
+            "Example EN 4": "",
+            "Example EN 5": "",
+            "Example EN 6": "",
+            "Example EN 7": "",
+            "Frequency": "657",
+            "Irregular Forms": "[]",
+            "Oxford List": "Oxford 3000",
+            "Part of Speech": "noun",
+            "Phonetic": "/ˈlæŋɡwɪdʒ/",
+            "Pronunciation Data": "[{\"locale\":\"UK\",\"ipa\":[\"/ˈlæŋɡwɪdʒ/\"],\"audio_keys\":[\"uk_pron/l/lan/langu/language__gb_1\"]},{\"locale\":\"US\",\"ipa\":[\"/ˈlæŋɡwɪdʒ/\"],\"audio_keys\":[\"us_pron/l/lan/langu/language__us_1\"]}]",
+            "Sound_uk": "",
+            "Sound_us": "",
+            "Study Order": "452",
+            "Từ loại": "danh từ",
+            "Variant Data": "[]",
+            "Vietnamese": "ngôn ngữ",
+            "Word": "language"
+          }
+        },
+        {
+          "candidateSourceSenseGroups": [],
+          "reference": {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::A1",
+                "value": "A1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "A1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/1099/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/1099/rawHeadword",
+            "rawPosEvidencePointer": "/records/1099/sourcePosRaw",
+            "recordEvidenceSha256": "976e2905fe66e09bcafad35a7311a8577d60685041b17441de2c22ebde3b48da",
+            "recordIndex": 1099,
+            "sourceNoteGuid": "FX^8!^l|JO",
+            "sourceRecordId": "1559931007888",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          "sourceFields": {
+            "Example": "The reporter spoke a <b>language</b> Sally had never heard before.",
+            "IPA": "/ˈlæŋɡwɪdʒ/",
+            "Image": "<img src=\"paste-96648536710604c86d3b7159e6ac46e0368ec24a.jpg\">",
+            "Meaning": "A <i>language</i> is a system of communication.<br><b>ngôn ngữ</b>",
+            "PoS": "noun",
+            "Sound": "[sound:oxford-a8265b65-dcfc66a9-6d0fe29c-d759d8b9-2e1d08a9.mp3]",
+            "Sound_Example": "[sound:googletts-135023e5-45a3f2d0-0d427869-9cab58a5-c93bc087.mp3]",
+            "Word": "language",
+            "noteid": "1559931007888"
+          }
+        }
+      ],
+      "sourceReferences": [
+        {
+          "artifact": "oxford-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "CEFR",
+              "value": "A1"
+            }
+          ],
+          "corpus": "OXFORD_5000",
+          "normalizedPosCandidates": [
+            "NOUN"
+          ],
+          "rawContentPointer": "/records/451/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/451/rawHeadword",
+          "rawPosEvidencePointer": "/records/451/sourcePosRaw",
+          "recordEvidenceSha256": "80b93e9fee40ef702da80c364885d31c7cc83cce8e47dd0239032af862be56ab",
+          "recordIndex": 451,
+          "sourceNoteGuid": "h$_sEsA,N|",
+          "sourceRecordId": "1788223606404",
+          "structuredOxfordSenseGroupOrdinals": [
+            0
+          ]
+        },
+        {
+          "artifact": "vocab4600-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "deck:4600 English Vocab::A1",
+              "value": "A1"
+            },
+            {
+              "sourceField": "noteTag",
+              "value": "A1"
+            }
+          ],
+          "corpus": "ENGLISH_VOCAB_4600",
+          "normalizedPosCandidates": [
+            "NOUN"
+          ],
+          "rawContentPointer": "/records/1099/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/1099/rawHeadword",
+          "rawPosEvidencePointer": "/records/1099/sourcePosRaw",
+          "recordEvidenceSha256": "976e2905fe66e09bcafad35a7311a8577d60685041b17441de2c22ebde3b48da",
+          "recordIndex": 1099,
+          "sourceNoteGuid": "FX^8!^l|JO",
+          "sourceRecordId": "1559931007888",
+          "structuredOxfordSenseGroupOrdinals": []
+        }
+      ],
+      "sourceSupportedMeaningCandidates": [
+        "system used by people to communicate"
+      ],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "ambiguityRiskFlags": [
+        "IDENTITY_UNRESOLVED",
+        "RIGHTS_UNKNOWN"
+      ],
+      "candidateGroupKey": "NORMALIZED_HEADWORD:sit",
+      "constructionCandidates": [
+        "intransitive sit",
+        "sit beside or under"
+      ],
+      "distinctionClass": "B",
+      "missingSenseCandidates": [],
+      "normalizedHeadword": "sit",
+      "proposedNumberOfSenses": 1,
+      "proposedPOS": [
+        "VERB"
+      ],
+      "proposedSenseBoundaries": [
+        "seated-position"
+      ],
+      "rationaleVi": "Lời mời ngồi và trạng thái đã ngồi đều cùng tư thế; sat là biến tố không phải nghĩa riêng, không thêm thi cử hoặc đặt đồ thiếu nguồn.",
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "Please sit beside me.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Hãy ngồi cạnh tôi.",
+                  "focus_en": [
+                    "sit"
+                  ],
+                  "focus_vi": [
+                    "ngồi"
+                  ]
+                },
+                {
+                  "example_en": "We sat under a tree to eat lunch.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Chúng tôi đã ngồi dưới một cái cây để ăn trưa.",
+                  "focus_en": [
+                    "sat"
+                  ],
+                  "focus_vi": [
+                    "đã ngồi"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 0,
+              "sourcePosRaw": "v.",
+              "sourceVietnameseMeaningRaw": "ngồi",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            }
+          ],
+          "reference": {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "A1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "VERB"
+            ],
+            "rawContentPointer": "/records/579/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/579/rawHeadword",
+            "rawPosEvidencePointer": "/records/579/sourcePosRaw",
+            "recordEvidenceSha256": "54c90f50b7bc404fd46ca52a0b3908c0441fd7c4f8bc7e95c8831a87fa7d96cd",
+            "recordIndex": 579,
+            "sourceNoteGuid": "z!@Nf=FyLe",
+            "sourceRecordId": "1788223606549",
+            "structuredOxfordSenseGroupOrdinals": [
+              0
+            ]
+          },
+          "sourceFields": {
+            "CEFR": "A1",
+            "Example": "Please <mark class=\"v-target\">sit</mark> beside me.<br>We <mark class=\"v-target\">sat</mark> under a tree to eat lunch.",
+            "Example Data": "[{\"pos\":\"v.\",\"meaning_vi\":\"ngồi\",\"examples\":[{\"example_en\":\"Please sit beside me.\",\"example_vi\":\"Hãy ngồi cạnh tôi.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"sit\"],\"focus_vi\":[\"ngồi\"]},{\"example_en\":\"We sat under a tree to eat lunch.\",\"example_vi\":\"Chúng tôi đã ngồi dưới một cái cây để ăn trưa.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"sat\"],\"focus_vi\":[\"đã ngồi\"]}]}]",
+            "Example EN 1": "Please sit beside me.",
+            "Example EN 2": "We sat under a tree to eat lunch.",
+            "Example EN 3": "",
+            "Example EN 4": "",
+            "Example EN 5": "",
+            "Example EN 6": "",
+            "Example EN 7": "",
+            "Frequency": "1031",
+            "Irregular Forms": "[{\"pos\":\"v.\",\"forms\":{\"third_person\":[\"sits\"],\"present_participle\":[\"sitting\"],\"past\":[\"sat\"],\"past_participle\":[\"sat\"]}}]",
+            "Oxford List": "Oxford 3000",
+            "Part of Speech": "verb",
+            "Phonetic": "/sɪt/",
+            "Pronunciation Data": "[{\"locale\":\"UK\",\"ipa\":[\"/sɪt/\"],\"audio_keys\":[\"uk_pron/s/sit/sit__/sit__gb_1\"]},{\"locale\":\"US\",\"ipa\":[\"/sɪt/\"],\"audio_keys\":[\"us_pron/s/sit/sit__/sit__us_1\"]}]",
+            "Sound_uk": "",
+            "Sound_us": "",
+            "Study Order": "580",
+            "Từ loại": "động từ",
+            "Variant Data": "[]",
+            "Vietnamese": "ngồi",
+            "Word": "sit"
+          }
+        }
+      ],
+      "sourceReferences": [
+        {
+          "artifact": "oxford-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "CEFR",
+              "value": "A1"
+            }
+          ],
+          "corpus": "OXFORD_5000",
+          "normalizedPosCandidates": [
+            "VERB"
+          ],
+          "rawContentPointer": "/records/579/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/579/rawHeadword",
+          "rawPosEvidencePointer": "/records/579/sourcePosRaw",
+          "recordEvidenceSha256": "54c90f50b7bc404fd46ca52a0b3908c0441fd7c4f8bc7e95c8831a87fa7d96cd",
+          "recordIndex": 579,
+          "sourceNoteGuid": "z!@Nf=FyLe",
+          "sourceRecordId": "1788223606549",
+          "structuredOxfordSenseGroupOrdinals": [
+            0
+          ]
+        }
+      ],
+      "sourceSupportedMeaningCandidates": [
+        "be or move into a seated position"
+      ],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "ambiguityRiskFlags": [
+        "IDENTITY_UNRESOLVED",
+        "RIGHTS_UNKNOWN"
+      ],
+      "candidateGroupKey": "NORMALIZED_HEADWORD:stripe",
+      "constructionCandidates": [
+        "countable stripe",
+        "plural stripes"
+      ],
+      "distinctionClass": "B",
+      "missingSenseCandidates": [],
+      "normalizedHeadword": "stripe",
+      "proposedNumberOfSenses": 1,
+      "proposedPOS": [
+        "NOUN"
+      ],
+      "proposedSenseBoundaries": [
+        "coloured-band"
+      ],
+      "rationaleVi": "Nguồn đường dày và sọc ngựa vằn hỗ trợ dải màu dài; không tách sọc đen với trắng hoặc thêm quân hàm không có bằng chứng.",
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [],
+          "reference": {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::B1",
+                "value": "B1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "B1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/1594/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/1594/rawHeadword",
+            "rawPosEvidencePointer": "/records/1594/sourcePosRaw",
+            "recordEvidenceSha256": "d5c22d2e8506e1ca56e69dbfbe05d29e5cdb3c9de8c4a1c0a591bac89c021b0f",
+            "recordIndex": 1594,
+            "sourceNoteGuid": "zdNro~Y-rk",
+            "sourceRecordId": "1559931008396",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          "sourceFields": {
+            "Example": "Zebra has black and white <b>stripes</b>.",
+            "IPA": "/straɪp/",
+            "Image": "<img src=\"paste-0f6f546b9f86d6a8c0e501b58b784eff95030036.jpg\">",
+            "Meaning": "A <i>stripe</i> is a thick line.<br><b>kẻ sọc, đường sọc</b>",
+            "PoS": "noun",
+            "Sound": "[sound:oxford-b14be398-ed8e5681-cc60023b-253b5f5c-b065069f.mp3]",
+            "Sound_Example": "[sound:googletts-0fc6659f-4949c6cc-21aa948d-3b1e8bf2-79fc8738.mp3]",
+            "Word": "stripe",
+            "noteid": "1559931008396"
+          }
+        }
+      ],
+      "sourceReferences": [
+        {
+          "artifact": "vocab4600-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "deck:4600 English Vocab::B1",
+              "value": "B1"
+            },
+            {
+              "sourceField": "noteTag",
+              "value": "B1"
+            }
+          ],
+          "corpus": "ENGLISH_VOCAB_4600",
+          "normalizedPosCandidates": [
+            "NOUN"
+          ],
+          "rawContentPointer": "/records/1594/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/1594/rawHeadword",
+          "rawPosEvidencePointer": "/records/1594/sourcePosRaw",
+          "recordEvidenceSha256": "d5c22d2e8506e1ca56e69dbfbe05d29e5cdb3c9de8c4a1c0a591bac89c021b0f",
+          "recordIndex": 1594,
+          "sourceNoteGuid": "zdNro~Y-rk",
+          "sourceRecordId": "1559931008396",
+          "structuredOxfordSenseGroupOrdinals": []
+        }
+      ],
+      "sourceSupportedMeaningCandidates": [
+        "long band differing in colour from surrounding surface"
+      ],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "ambiguityRiskFlags": [
+        "IDENTITY_UNRESOLVED",
+        "RIGHTS_UNKNOWN"
+      ],
+      "candidateGroupKey": "NORMALIZED_HEADWORD:horse",
+      "constructionCandidates": [
+        "countable animal noun"
+      ],
+      "distinctionClass": "B",
+      "missingSenseCandidates": [],
+      "normalizedHeadword": "horse",
+      "proposedNumberOfSenses": 1,
+      "proposedPOS": [
+        "NOUN"
+      ],
+      "proposedSenseBoundaries": [
+        "equine-animal"
+      ],
+      "rationaleVi": "Nguồn cưỡi, kéo và cho ăn đều loài ngựa; hoạt động khác nhau không tạo nghĩa mới và không thêm đơn vị công suất.",
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "The girl learned to ride a horse.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Cô bé học cưỡi ngựa.",
+                  "focus_en": [
+                    "horse"
+                  ],
+                  "focus_vi": [
+                    "ngựa"
+                  ]
+                },
+                {
+                  "example_en": "The horse ate an apple from my hand.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Con ngựa ăn một quả táo từ tay tôi.",
+                  "focus_en": [
+                    "horse"
+                  ],
+                  "focus_vi": [
+                    "Con ngựa"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 0,
+              "sourcePosRaw": "n.",
+              "sourceVietnameseMeaningRaw": "ngựa",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            }
+          ],
+          "reference": {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "A1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/645/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/645/rawHeadword",
+            "rawPosEvidencePointer": "/records/645/sourcePosRaw",
+            "recordEvidenceSha256": "f74a18ec9c7964c2cb0f0434e7f3b6ecbddc53b924e6f3ef70a751f8ea906372",
+            "recordIndex": 645,
+            "sourceNoteGuid": "qeED||0l6Q",
+            "sourceRecordId": "1788223606630",
+            "structuredOxfordSenseGroupOrdinals": [
+              0
+            ]
+          },
+          "sourceFields": {
+            "CEFR": "A1",
+            "Example": "The girl learned to ride a <mark class=\"v-target\">horse</mark>.<br>The <mark class=\"v-target\">horse</mark> ate an apple from my hand.",
+            "Example Data": "[{\"pos\":\"n.\",\"meaning_vi\":\"ngựa\",\"examples\":[{\"example_en\":\"The girl learned to ride a horse.\",\"example_vi\":\"Cô bé học cưỡi ngựa.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"horse\"],\"focus_vi\":[\"ngựa\"]},{\"example_en\":\"The horse ate an apple from my hand.\",\"example_vi\":\"Con ngựa ăn một quả táo từ tay tôi.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"horse\"],\"focus_vi\":[\"Con ngựa\"]}]}]",
+            "Example EN 1": "The girl learned to ride a horse.",
+            "Example EN 2": "The horse ate an apple from my hand.",
+            "Example EN 3": "",
+            "Example EN 4": "",
+            "Example EN 5": "",
+            "Example EN 6": "",
+            "Example EN 7": "",
+            "Frequency": "1320",
+            "Irregular Forms": "[]",
+            "Oxford List": "Oxford 3000",
+            "Part of Speech": "noun",
+            "Phonetic": "/hɔːs/",
+            "Pronunciation Data": "[{\"locale\":\"UK\",\"ipa\":[\"/hɔːs/\"],\"audio_keys\":[\"uk_pron/h/hor/horse/horse__gb_1\"]},{\"locale\":\"US\",\"ipa\":[\"/hɔːrs/\"],\"audio_keys\":[\"us_pron/h/hor/horse/horse__us_1\"]}]",
+            "Sound_uk": "",
+            "Sound_us": "",
+            "Study Order": "646",
+            "Từ loại": "danh từ",
+            "Variant Data": "[]",
+            "Vietnamese": "ngựa",
+            "Word": "horse"
+          }
+        },
+        {
+          "candidateSourceSenseGroups": [],
+          "reference": {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::A1",
+                "value": "A1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "A1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/168/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/168/rawHeadword",
+            "rawPosEvidencePointer": "/records/168/sourcePosRaw",
+            "recordEvidenceSha256": "f403234a23e1e4819a92c8a44341dd39fce01923627eff9e91c7fbd7151907f0",
+            "recordIndex": 168,
+            "sourceNoteGuid": "oa3D^Ps1U@",
+            "sourceRecordId": "1556384730968",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          "sourceFields": {
+            "Example": "I went to a farm and saw a <b>horse</b>.",
+            "IPA": "/hɔːs/",
+            "Image": "<img src=\"09_0171.jpg\">",
+            "Meaning": "A <i>horse</i> is a big, strong animal that people ride and use for pulling heavy things.<br><b>loài ngựa, con ngựa</b>",
+            "PoS": "noun",
+            "Sound": "[sound:oxford-5006f673-253ccf5e-2b151017-706a76e8-73c4ebe5.mp3]",
+            "Sound_Example": "[sound:googletts-b7126cbe-719a93f7-376a27c5-434f9e38-63359309.mp3]",
+            "Word": "horse",
+            "noteid": "1556384730968"
+          }
+        }
+      ],
+      "sourceReferences": [
+        {
+          "artifact": "oxford-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "CEFR",
+              "value": "A1"
+            }
+          ],
+          "corpus": "OXFORD_5000",
+          "normalizedPosCandidates": [
+            "NOUN"
+          ],
+          "rawContentPointer": "/records/645/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/645/rawHeadword",
+          "rawPosEvidencePointer": "/records/645/sourcePosRaw",
+          "recordEvidenceSha256": "f74a18ec9c7964c2cb0f0434e7f3b6ecbddc53b924e6f3ef70a751f8ea906372",
+          "recordIndex": 645,
+          "sourceNoteGuid": "qeED||0l6Q",
+          "sourceRecordId": "1788223606630",
+          "structuredOxfordSenseGroupOrdinals": [
+            0
+          ]
+        },
+        {
+          "artifact": "vocab4600-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "deck:4600 English Vocab::A1",
+              "value": "A1"
+            },
+            {
+              "sourceField": "noteTag",
+              "value": "A1"
+            }
+          ],
+          "corpus": "ENGLISH_VOCAB_4600",
+          "normalizedPosCandidates": [
+            "NOUN"
+          ],
+          "rawContentPointer": "/records/168/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/168/rawHeadword",
+          "rawPosEvidencePointer": "/records/168/sourcePosRaw",
+          "recordEvidenceSha256": "f403234a23e1e4819a92c8a44341dd39fce01923627eff9e91c7fbd7151907f0",
+          "recordIndex": 168,
+          "sourceNoteGuid": "oa3D^Ps1U@",
+          "sourceRecordId": "1556384730968",
+          "structuredOxfordSenseGroupOrdinals": []
+        }
+      ],
+      "sourceSupportedMeaningCandidates": [
+        "large hoofed animal often ridden or used to pull loads"
+      ],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "ambiguityRiskFlags": [
+        "IDENTITY_UNRESOLVED",
+        "RIGHTS_UNKNOWN"
+      ],
+      "candidateGroupKey": "NORMALIZED_HEADWORD:boy",
+      "constructionCandidates": [
+        "countable person noun"
+      ],
+      "distinctionClass": "B",
+      "missingSenseCandidates": [],
+      "normalizedHeadword": "boy",
+      "proposedNumberOfSenses": 1,
+      "proposedPOS": [
+        "NOUN"
+      ],
+      "proposedSenseBoundaries": [
+        "male-child"
+      ],
+      "rationaleVi": "Oxford cậu bé chơi bóng và cho vịt ăn; giữ người nam trẻ tuổi, không mở rộng lời gọi người lớn vốn không có nguồn.",
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "The boy kicked the ball across the garden.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Cậu bé đá quả bóng qua khu vườn.",
+                  "focus_en": [
+                    "boy"
+                  ],
+                  "focus_vi": [
+                    "Cậu bé"
+                  ]
+                },
+                {
+                  "example_en": "A boy is feeding the ducks.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Một cậu bé đang cho vịt ăn.",
+                  "focus_en": [
+                    "boy"
+                  ],
+                  "focus_vi": [
+                    "cậu bé"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 0,
+              "sourcePosRaw": "n.",
+              "sourceVietnameseMeaningRaw": "cậu bé",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            }
+          ],
+          "reference": {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "A1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/402/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/402/rawHeadword",
+            "rawPosEvidencePointer": "/records/402/sourcePosRaw",
+            "recordEvidenceSha256": "4c5b5bf70d64ace17705882dcb6601ae4f5f5cfd2906ae9fb2be4d6b037adc62",
+            "recordIndex": 402,
+            "sourceNoteGuid": "CP>0|e2{-d",
+            "sourceRecordId": "1788223606355",
+            "structuredOxfordSenseGroupOrdinals": [
+              0
+            ]
+          },
+          "sourceFields": {
+            "CEFR": "A1",
+            "Example": "The <mark class=\"v-target\">boy</mark> kicked the ball across the garden.<br>A <mark class=\"v-target\">boy</mark> is feeding the ducks.",
+            "Example Data": "[{\"pos\":\"n.\",\"meaning_vi\":\"cậu bé\",\"examples\":[{\"example_en\":\"The boy kicked the ball across the garden.\",\"example_vi\":\"Cậu bé đá quả bóng qua khu vườn.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"boy\"],\"focus_vi\":[\"Cậu bé\"]},{\"example_en\":\"A boy is feeding the ducks.\",\"example_vi\":\"Một cậu bé đang cho vịt ăn.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"boy\"],\"focus_vi\":[\"cậu bé\"]}]}]",
+            "Example EN 1": "The boy kicked the ball across the garden.",
+            "Example EN 2": "A boy is feeding the ducks.",
+            "Example EN 3": "",
+            "Example EN 4": "",
+            "Example EN 5": "",
+            "Example EN 6": "",
+            "Example EN 7": "",
+            "Frequency": "548",
+            "Irregular Forms": "[]",
+            "Oxford List": "Oxford 3000",
+            "Part of Speech": "noun",
+            "Phonetic": "/bɔɪ/",
+            "Pronunciation Data": "[{\"locale\":\"UK\",\"ipa\":[\"/bɔɪ/\"],\"audio_keys\":[\"uk_pron/b/boy/boy__/boy__gb_2\"]},{\"locale\":\"US\",\"ipa\":[\"/bɔɪ/\"],\"audio_keys\":[\"us_pron/b/boy/boy__/boy__us_1\"]}]",
+            "Sound_uk": "",
+            "Sound_us": "",
+            "Study Order": "403",
+            "Từ loại": "danh từ",
+            "Variant Data": "[]",
+            "Vietnamese": "cậu bé",
+            "Word": "boy"
+          }
+        }
+      ],
+      "sourceReferences": [
+        {
+          "artifact": "oxford-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "CEFR",
+              "value": "A1"
+            }
+          ],
+          "corpus": "OXFORD_5000",
+          "normalizedPosCandidates": [
+            "NOUN"
+          ],
+          "rawContentPointer": "/records/402/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/402/rawHeadword",
+          "rawPosEvidencePointer": "/records/402/sourcePosRaw",
+          "recordEvidenceSha256": "4c5b5bf70d64ace17705882dcb6601ae4f5f5cfd2906ae9fb2be4d6b037adc62",
+          "recordIndex": 402,
+          "sourceNoteGuid": "CP>0|e2{-d",
+          "sourceRecordId": "1788223606355",
+          "structuredOxfordSenseGroupOrdinals": [
+            0
+          ]
+        }
+      ],
+      "sourceSupportedMeaningCandidates": [
+        "male child or young male person"
+      ],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "ambiguityRiskFlags": [
+        "IDENTITY_UNRESOLVED",
+        "RIGHTS_UNKNOWN"
+      ],
+      "candidateGroupKey": "NORMALIZED_HEADWORD:astronaut",
+      "constructionCandidates": [
+        "countable profession noun"
+      ],
+      "distinctionClass": "B",
+      "missingSenseCandidates": [],
+      "normalizedHeadword": "astronaut",
+      "proposedNumberOfSenses": 1,
+      "proposedPOS": [
+        "NOUN"
+      ],
+      "proposedSenseBoundaries": [
+        "space-traveller"
+      ],
+      "rationaleVi": "Nguồn người đi không gian và trên Mặt Trăng cùng phi hành gia; không thêm điều kiện đã thực sự bay cho mọi người được đào tạo.",
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [],
+          "reference": {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::B1",
+                "value": "B1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "B1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/979/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/979/rawHeadword",
+            "rawPosEvidencePointer": "/records/979/sourcePosRaw",
+            "recordEvidenceSha256": "bc7a58d52e77d8ef7652807df031a7d0fda26d5f4571594f5bdeed61b253e026",
+            "recordIndex": 979,
+            "sourceNoteGuid": "cYE!U>@pGn",
+            "sourceRecordId": "1559931007760",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          "sourceFields": {
+            "Example": "The <b>astronaut</b> was walking on the moon.",
+            "IPA": "/ˈæstrənɔːt/",
+            "Image": "<img src=\"paste-ede7f46c869ff23b7b8e04363e12e42195a8448a.jpg\">",
+            "Meaning": "An <i>astronaut</i> is a person who goes into outer space.<br><b>phi hành gia</b>",
+            "PoS": "noun",
+            "Sound": "[sound:astronaut__us_2_.mp3]",
+            "Sound_Example": "[sound:googletts-5836c193-303b8bd7-a57cc86b-c600550a-af7c6833.mp3]",
+            "Word": "astronaut",
+            "noteid": "1559931007760"
+          }
+        }
+      ],
+      "sourceReferences": [
+        {
+          "artifact": "vocab4600-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "deck:4600 English Vocab::B1",
+              "value": "B1"
+            },
+            {
+              "sourceField": "noteTag",
+              "value": "B1"
+            }
+          ],
+          "corpus": "ENGLISH_VOCAB_4600",
+          "normalizedPosCandidates": [
+            "NOUN"
+          ],
+          "rawContentPointer": "/records/979/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/979/rawHeadword",
+          "rawPosEvidencePointer": "/records/979/sourcePosRaw",
+          "recordEvidenceSha256": "bc7a58d52e77d8ef7652807df031a7d0fda26d5f4571594f5bdeed61b253e026",
+          "recordIndex": 979,
+          "sourceNoteGuid": "cYE!U>@pGn",
+          "sourceRecordId": "1559931007760",
+          "structuredOxfordSenseGroupOrdinals": []
+        }
+      ],
+      "sourceSupportedMeaningCandidates": [
+        "person trained to travel and work in space"
+      ],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "ambiguityRiskFlags": [
+        "IDENTITY_UNRESOLVED",
+        "RIGHTS_UNKNOWN"
+      ],
+      "candidateGroupKey": "NORMALIZED_HEADWORD:career",
+      "constructionCandidates": [
+        "countable career",
+        "career in a field"
+      ],
+      "distinctionClass": "B",
+      "missingSenseCandidates": [],
+      "normalizedHeadword": "career",
+      "proposedNumberOfSenses": 1,
+      "proposedPOS": [
+        "NOUN"
+      ],
+      "proposedSenseBoundaries": [
+        "working-life"
+      ],
+      "rationaleVi": "Oxford khởi đầu nghề dạy và Vocab công việc lâu dài; diễn đạt sự nghiệp có thể gồm nhiều công việc để không bó thành một vị trí.",
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "She wants a career in medicine.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Cô ấy muốn theo đuổi sự nghiệp y khoa.",
+                  "focus_en": [
+                    "career"
+                  ],
+                  "focus_vi": [
+                    "sự nghiệp"
+                  ]
+                },
+                {
+                  "example_en": "He began his career as a teacher.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Anh ấy bắt đầu sự nghiệp với vai trò giáo viên.",
+                  "focus_en": [
+                    "career"
+                  ],
+                  "focus_vi": [
+                    "sự nghiệp"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 0,
+              "sourcePosRaw": "n.",
+              "sourceVietnameseMeaningRaw": "sự nghiệp",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            }
+          ],
+          "reference": {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "A1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/468/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/468/rawHeadword",
+            "rawPosEvidencePointer": "/records/468/sourcePosRaw",
+            "recordEvidenceSha256": "1bb8f8f5342ee8f95e568a6f3480c278f5b1d0defa34fc609d2dd559c9a0c67e",
+            "recordIndex": 468,
+            "sourceNoteGuid": "t/%$KF3xf[",
+            "sourceRecordId": "1788223606421",
+            "structuredOxfordSenseGroupOrdinals": [
+              0
+            ]
+          },
+          "sourceFields": {
+            "CEFR": "A1",
+            "Example": "She wants a <mark class=\"v-target\">career</mark> in medicine.<br>He began his <mark class=\"v-target\">career</mark> as a teacher.",
+            "Example Data": "[{\"pos\":\"n.\",\"meaning_vi\":\"sự nghiệp\",\"examples\":[{\"example_en\":\"She wants a career in medicine.\",\"example_vi\":\"Cô ấy muốn theo đuổi sự nghiệp y khoa.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"career\"],\"focus_vi\":[\"sự nghiệp\"]},{\"example_en\":\"He began his career as a teacher.\",\"example_vi\":\"Anh ấy bắt đầu sự nghiệp với vai trò giáo viên.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"career\"],\"focus_vi\":[\"sự nghiệp\"]}]}]",
+            "Example EN 1": "She wants a career in medicine.",
+            "Example EN 2": "He began his career as a teacher.",
+            "Example EN 3": "",
+            "Example EN 4": "",
+            "Example EN 5": "",
+            "Example EN 6": "",
+            "Example EN 7": "",
+            "Frequency": "708",
+            "Irregular Forms": "[]",
+            "Oxford List": "Oxford 3000",
+            "Part of Speech": "noun",
+            "Phonetic": "/kəˈrɪə(r)/",
+            "Pronunciation Data": "[{\"locale\":\"UK\",\"ipa\":[\"/kəˈrɪə(r)/\"],\"audio_keys\":[\"uk_pron/c/car/caree/career__gb_2\"]},{\"locale\":\"US\",\"ipa\":[\"/kəˈrɪr/\"],\"audio_keys\":[\"us_pron/c/car/caree/career__us_2\"]}]",
+            "Sound_uk": "",
+            "Sound_us": "",
+            "Study Order": "469",
+            "Từ loại": "danh từ",
+            "Variant Data": "[]",
+            "Vietnamese": "sự nghiệp",
+            "Word": "career"
+          }
+        },
+        {
+          "candidateSourceSenseGroups": [],
+          "reference": {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::A1",
+                "value": "A1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "A1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/393/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/393/rawHeadword",
+            "rawPosEvidencePointer": "/records/393/sourcePosRaw",
+            "recordEvidenceSha256": "009f002c3ff54eedde6a5fc43cb4e0a38be8c01ddadfbd64570731141f516678",
+            "recordIndex": 393,
+            "sourceNoteGuid": "fhg1N7ea@e",
+            "sourceRecordId": "1556384731201",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          "sourceFields": {
+            "Example": "She plans to pursue a <b>career</b> in medicine.",
+            "IPA": "/kəˈrɪr/",
+            "Image": "<img src=\"premed-img_4.jpg\">",
+            "Meaning": "A <i>career</i> is a job that you do for a large part of your life.<br><b>sự nghiệp</b>",
+            "PoS": "noun",
+            "Sound": "[sound:career__us_2.mp3]",
+            "Sound_Example": "[sound:googletts-34137822-f77ce2fc-714f2165-6766d7bf-961790e1.mp3]",
+            "Word": "career",
+            "noteid": "1556384731201"
+          }
+        }
+      ],
+      "sourceReferences": [
+        {
+          "artifact": "oxford-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "CEFR",
+              "value": "A1"
+            }
+          ],
+          "corpus": "OXFORD_5000",
+          "normalizedPosCandidates": [
+            "NOUN"
+          ],
+          "rawContentPointer": "/records/468/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/468/rawHeadword",
+          "rawPosEvidencePointer": "/records/468/sourcePosRaw",
+          "recordEvidenceSha256": "1bb8f8f5342ee8f95e568a6f3480c278f5b1d0defa34fc609d2dd559c9a0c67e",
+          "recordIndex": 468,
+          "sourceNoteGuid": "t/%$KF3xf[",
+          "sourceRecordId": "1788223606421",
+          "structuredOxfordSenseGroupOrdinals": [
+            0
+          ]
+        },
+        {
+          "artifact": "vocab4600-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "deck:4600 English Vocab::A1",
+              "value": "A1"
+            },
+            {
+              "sourceField": "noteTag",
+              "value": "A1"
+            }
+          ],
+          "corpus": "ENGLISH_VOCAB_4600",
+          "normalizedPosCandidates": [
+            "NOUN"
+          ],
+          "rawContentPointer": "/records/393/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/393/rawHeadword",
+          "rawPosEvidencePointer": "/records/393/sourcePosRaw",
+          "recordEvidenceSha256": "009f002c3ff54eedde6a5fc43cb4e0a38be8c01ddadfbd64570731141f516678",
+          "recordIndex": 393,
+          "sourceNoteGuid": "fhg1N7ea@e",
+          "sourceRecordId": "1556384731201",
+          "structuredOxfordSenseGroupOrdinals": []
+        }
+      ],
+      "sourceSupportedMeaningCandidates": [
+        "sequence of work and professional development through life"
+      ],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "ambiguityRiskFlags": [
+        "IDENTITY_UNRESOLVED",
+        "RIGHTS_UNKNOWN"
+      ],
+      "candidateGroupKey": "NORMALIZED_HEADWORD:she",
+      "constructionCandidates": [
+        "third-person singular subject pronoun"
+      ],
+      "distinctionClass": "B",
+      "missingSenseCandidates": [],
+      "normalizedHeadword": "she",
+      "proposedNumberOfSenses": 1,
+      "proposedPOS": [
+        "PRONOUN"
+      ],
+      "proposedSenseBoundaries": [
+        "female-subject"
+      ],
+      "rationaleVi": "Cô, chị và bà là lựa chọn xưng hô Việt theo tuổi chứ không ba nghĩa; giữ she chủ ngữ, không nhầm her tân ngữ.",
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "She works at a school.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Cô ấy làm việc tại một trường học.",
+                  "focus_en": [
+                    "She"
+                  ],
+                  "focus_vi": [
+                    "Cô ấy"
+                  ]
+                },
+                {
+                  "example_en": "She reads to her children every evening.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Cô ấy đọc sách cho các con mỗi tối.",
+                  "focus_en": [
+                    "She"
+                  ],
+                  "focus_vi": [
+                    "Cô ấy"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 0,
+              "sourcePosRaw": "pron.",
+              "sourceVietnameseMeaningRaw": "cô ấy, chị ấy, bà ấy",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            }
+          ],
+          "reference": {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "A1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "PRONOUN"
+            ],
+            "rawContentPointer": "/records/55/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/55/rawHeadword",
+            "rawPosEvidencePointer": "/records/55/sourcePosRaw",
+            "recordEvidenceSha256": "12acff966175bd9daef89c18eaffe84118cc2f192a8e6a1fbdf2b13597860cad",
+            "recordIndex": 55,
+            "sourceNoteGuid": "crYz]my?#y",
+            "sourceRecordId": "1788223606005",
+            "structuredOxfordSenseGroupOrdinals": [
+              0
+            ]
+          },
+          "sourceFields": {
+            "CEFR": "A1",
+            "Example": "<mark class=\"v-target\">She</mark> works at a school.<br><mark class=\"v-target\">She</mark> reads to her children every evening.",
+            "Example Data": "[{\"pos\":\"pron.\",\"meaning_vi\":\"cô ấy, chị ấy, bà ấy\",\"examples\":[{\"example_en\":\"She works at a school.\",\"example_vi\":\"Cô ấy làm việc tại một trường học.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"She\"],\"focus_vi\":[\"Cô ấy\"]},{\"example_en\":\"She reads to her children every evening.\",\"example_vi\":\"Cô ấy đọc sách cho các con mỗi tối.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"She\"],\"focus_vi\":[\"Cô ấy\"]}]}]",
+            "Example EN 1": "She works at a school.",
+            "Example EN 2": "She reads to her children every evening.",
+            "Example EN 3": "",
+            "Example EN 4": "",
+            "Example EN 5": "",
+            "Example EN 6": "",
+            "Example EN 7": "",
+            "Frequency": "57",
+            "Irregular Forms": "[]",
+            "Oxford List": "Oxford 3000",
+            "Part of Speech": "pronoun",
+            "Phonetic": "/ʃi/",
+            "Pronunciation Data": "[{\"locale\":\"UK\",\"ipa\":[\"/ʃi/\",\"/ʃiː/\"],\"audio_keys\":[\"uk_pron/s/she/she__/she__gb_1\",\"uk_pron/s/she/she__/she__gb_2\"]},{\"locale\":\"US\",\"ipa\":[\"/ʃi/\",\"/ʃiː/\"],\"audio_keys\":[\"us_pron/s/she/she__/she__us_1\",\"us_pron/s/she/she__/she__us_2\"]}]",
+            "Sound_uk": "",
+            "Sound_us": "",
+            "Study Order": "56",
+            "Từ loại": "đại từ",
+            "Variant Data": "[]",
+            "Vietnamese": "cô ấy, chị ấy, bà ấy",
+            "Word": "she"
+          }
+        }
+      ],
+      "sourceReferences": [
+        {
+          "artifact": "oxford-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "CEFR",
+              "value": "A1"
+            }
+          ],
+          "corpus": "OXFORD_5000",
+          "normalizedPosCandidates": [
+            "PRONOUN"
+          ],
+          "rawContentPointer": "/records/55/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/55/rawHeadword",
+          "rawPosEvidencePointer": "/records/55/sourcePosRaw",
+          "recordEvidenceSha256": "12acff966175bd9daef89c18eaffe84118cc2f192a8e6a1fbdf2b13597860cad",
+          "recordIndex": 55,
+          "sourceNoteGuid": "crYz]my?#y",
+          "sourceRecordId": "1788223606005",
+          "structuredOxfordSenseGroupOrdinals": [
+            0
+          ]
+        }
+      ],
+      "sourceSupportedMeaningCandidates": [
+        "subject pronoun referring to a female person"
+      ],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "ambiguityRiskFlags": [
+        "IDENTITY_UNRESOLVED",
+        "RIGHTS_UNKNOWN"
+      ],
+      "candidateGroupKey": "NORMALIZED_HEADWORD:vase",
+      "constructionCandidates": [
+        "countable container noun"
+      ],
+      "distinctionClass": "B",
+      "missingSenseCandidates": [],
+      "normalizedHeadword": "vase",
+      "proposedNumberOfSenses": 1,
+      "proposedPOS": [
+        "NOUN"
+      ],
+      "proposedSenseBoundaries": [
+        "flower-container"
+      ],
+      "rationaleVi": "Nguồn bình đẹp để giữ hoa, ví dụ có hoa; vẻ đẹp không phải điều kiện bắt buộc, chỉ viết bình đựng hoa.",
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [],
+          "reference": {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::B1",
+                "value": "B1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "B1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/1696/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/1696/rawHeadword",
+            "rawPosEvidencePointer": "/records/1696/sourcePosRaw",
+            "recordEvidenceSha256": "64cb7e45d1bba665d2f697cc5d7147a8d4db4c8c25c8e2a277ab04e4ee004252",
+            "recordIndex": 1696,
+            "sourceNoteGuid": "e?$R{c>LSd",
+            "sourceRecordId": "1559931008498",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          "sourceFields": {
+            "Example": "The <b>vase</b> was filled with such lovely flowers.",
+            "IPA": "/veɪs/",
+            "Image": "<img src=\"27_1740.jpg\" />",
+            "Meaning": "A <i>vase</i> is an attractive container in which people keep flowers.<br><b>bình hoa</b>",
+            "PoS": "noun",
+            "Sound": "[sound:vase__us_1_rr.mp3]",
+            "Sound_Example": "[sound:googletts-452e2f91-26f1293b-65d65f19-c9c50471-12c5f56f.mp3]",
+            "Word": "vase",
+            "noteid": "1559931008498"
+          }
+        }
+      ],
+      "sourceReferences": [
+        {
+          "artifact": "vocab4600-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "deck:4600 English Vocab::B1",
+              "value": "B1"
+            },
+            {
+              "sourceField": "noteTag",
+              "value": "B1"
+            }
+          ],
+          "corpus": "ENGLISH_VOCAB_4600",
+          "normalizedPosCandidates": [
+            "NOUN"
+          ],
+          "rawContentPointer": "/records/1696/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/1696/rawHeadword",
+          "rawPosEvidencePointer": "/records/1696/sourcePosRaw",
+          "recordEvidenceSha256": "64cb7e45d1bba665d2f697cc5d7147a8d4db4c8c25c8e2a277ab04e4ee004252",
+          "recordIndex": 1696,
+          "sourceNoteGuid": "e?$R{c>LSd",
+          "sourceRecordId": "1559931008498",
+          "structuredOxfordSenseGroupOrdinals": []
+        }
+      ],
+      "sourceSupportedMeaningCandidates": [
+        "container for holding cut flowers"
+      ],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "ambiguityRiskFlags": [
+        "IDENTITY_UNRESOLVED",
+        "RIGHTS_UNKNOWN"
+      ],
+      "candidateGroupKey": "NORMALIZED_HEADWORD:because",
+      "constructionCandidates": [
+        "conjunction before finite clause"
+      ],
+      "distinctionClass": "B",
+      "missingSenseCandidates": [],
+      "normalizedHeadword": "because",
+      "proposedNumberOfSenses": 1,
+      "proposedPOS": [
+        "CONJUNCTION"
+      ],
+      "proposedSenseBoundaries": [
+        "reason-link"
+      ],
+      "rationaleVi": "Các nguồn đều nối nguyên nhân; because of cộng danh từ là cấu trúc khác được ghi chú, không tạo Sense mới.",
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "I stayed home because I was tired.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Tôi ở nhà vì tôi mệt.",
+                  "focus_en": [
+                    "because"
+                  ],
+                  "focus_vi": [
+                    "vì"
+                  ]
+                },
+                {
+                  "example_en": "The ground is wet because it rained last night.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Mặt đất ướt vì tối qua trời mưa.",
+                  "focus_en": [
+                    "because"
+                  ],
+                  "focus_vi": [
+                    "vì"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 0,
+              "sourcePosRaw": "conj.",
+              "sourceVietnameseMeaningRaw": "bởi vì, vì",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            }
+          ],
+          "reference": {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "A1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "CONJUNCTION"
+            ],
+            "rawContentPointer": "/records/86/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/86/rawHeadword",
+            "rawPosEvidencePointer": "/records/86/sourcePosRaw",
+            "recordEvidenceSha256": "8b0178f5b69448d5f1166cddd2d07be33a34baa19c97eadda69d06777e256091",
+            "recordIndex": 86,
+            "sourceNoteGuid": "O},`Wj]U1-",
+            "sourceRecordId": "1788223606037",
+            "structuredOxfordSenseGroupOrdinals": [
+              0
+            ]
+          },
+          "sourceFields": {
+            "CEFR": "A1",
+            "Example": "I stayed home <mark class=\"v-target\">because</mark> I was tired.<br>The ground is wet <mark class=\"v-target\">because</mark> it rained last night.",
+            "Example Data": "[{\"pos\":\"conj.\",\"meaning_vi\":\"bởi vì, vì\",\"examples\":[{\"example_en\":\"I stayed home because I was tired.\",\"example_vi\":\"Tôi ở nhà vì tôi mệt.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"because\"],\"focus_vi\":[\"vì\"]},{\"example_en\":\"The ground is wet because it rained last night.\",\"example_vi\":\"Mặt đất ướt vì tối qua trời mưa.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"because\"],\"focus_vi\":[\"vì\"]}]}]",
+            "Example EN 1": "I stayed home because I was tired.",
+            "Example EN 2": "The ground is wet because it rained last night.",
+            "Example EN 3": "",
+            "Example EN 4": "",
+            "Example EN 5": "",
+            "Example EN 6": "",
+            "Example EN 7": "",
+            "Frequency": "88",
+            "Irregular Forms": "[]",
+            "Oxford List": "Oxford 3000",
+            "Part of Speech": "conjunction",
+            "Phonetic": "/bɪˈkɒz/",
+            "Pronunciation Data": "[{\"locale\":\"UK\",\"ipa\":[\"/bɪˈkəz/\",\"/bɪˈkɒz/\"],\"audio_keys\":[\"uk_pron/b/bec/becau/because__gb_4\",\"uk_pron/b/bec/becau/because__gb_5\"]},{\"locale\":\"US\",\"ipa\":[\"/bɪˈkəz/\",\"/bɪˈkɔːz/\"],\"audio_keys\":[\"us_pron/b/bec/becau/because__us_2\",\"us_pron/b/bec/becau/because__us_1_rr\"]}]",
+            "Sound_uk": "",
+            "Sound_us": "",
+            "Study Order": "87",
+            "Từ loại": "liên từ",
+            "Variant Data": "[]",
+            "Vietnamese": "bởi vì, vì",
+            "Word": "because"
+          }
+        },
+        {
+          "candidateSourceSenseGroups": [],
+          "reference": {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::A1",
+                "value": "A1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "A1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "CONJUNCTION"
+            ],
+            "rawContentPointer": "/records/588/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/588/rawHeadword",
+            "rawPosEvidencePointer": "/records/588/sourcePosRaw",
+            "recordEvidenceSha256": "af601dc9bb1b05a6c4869feb35ba333fa4c063dea99c95a5d556c65ffbdbb97d",
+            "recordIndex": 588,
+            "sourceNoteGuid": "jS-yz4xqj$",
+            "sourceRecordId": "1559931007359",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          "sourceFields": {
+            "Example": "We need to study <b>because</b> we have a test tomorrow.",
+            "IPA": "/bɪˈkəz/",
+            "Image": "<img src=\"paste-7e5cdebc9496715e7dde32cc45ac31a524a4a1c3.jpg\">",
+            "Meaning": "<i>Because</i> introduces a reason for something.<br><b>bởi vì</b>",
+            "PoS": "conj",
+            "Sound": "[sound:oxford-e5547b9c-d6477665-c3b61fa9-7526efa3-9b6f077a.mp3]",
+            "Sound_Example": "[sound:googletts-55bd273b-f712c206-7f6b6cf1-8c19a282-ea002f18.mp3]",
+            "Word": "because",
+            "noteid": "1559931007359"
+          }
+        }
+      ],
+      "sourceReferences": [
+        {
+          "artifact": "oxford-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "CEFR",
+              "value": "A1"
+            }
+          ],
+          "corpus": "OXFORD_5000",
+          "normalizedPosCandidates": [
+            "CONJUNCTION"
+          ],
+          "rawContentPointer": "/records/86/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/86/rawHeadword",
+          "rawPosEvidencePointer": "/records/86/sourcePosRaw",
+          "recordEvidenceSha256": "8b0178f5b69448d5f1166cddd2d07be33a34baa19c97eadda69d06777e256091",
+          "recordIndex": 86,
+          "sourceNoteGuid": "O},`Wj]U1-",
+          "sourceRecordId": "1788223606037",
+          "structuredOxfordSenseGroupOrdinals": [
+            0
+          ]
+        },
+        {
+          "artifact": "vocab4600-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "deck:4600 English Vocab::A1",
+              "value": "A1"
+            },
+            {
+              "sourceField": "noteTag",
+              "value": "A1"
+            }
+          ],
+          "corpus": "ENGLISH_VOCAB_4600",
+          "normalizedPosCandidates": [
+            "CONJUNCTION"
+          ],
+          "rawContentPointer": "/records/588/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/588/rawHeadword",
+          "rawPosEvidencePointer": "/records/588/sourcePosRaw",
+          "recordEvidenceSha256": "af601dc9bb1b05a6c4869feb35ba333fa4c063dea99c95a5d556c65ffbdbb97d",
+          "recordIndex": 588,
+          "sourceNoteGuid": "jS-yz4xqj$",
+          "sourceRecordId": "1559931007359",
+          "structuredOxfordSenseGroupOrdinals": []
+        }
+      ],
+      "sourceSupportedMeaningCandidates": [
+        "introduce a clause giving a reason"
+      ],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "ambiguityRiskFlags": [
+        "IDENTITY_UNRESOLVED",
+        "RIGHTS_UNKNOWN"
+      ],
+      "candidateGroupKey": "NORMALIZED_HEADWORD:autumn",
+      "constructionCandidates": [
+        "season noun",
+        "in autumn"
+      ],
+      "distinctionClass": "B",
+      "missingSenseCandidates": [],
+      "normalizedHeadword": "autumn",
+      "proposedNumberOfSenses": 1,
+      "proposedPOS": [
+        "NOUN"
+      ],
+      "proposedSenseBoundaries": [
+        "season"
+      ],
+      "rationaleVi": "Nguồn lá rụng và đi rừng đều mùa giữa hè và đông; không gán tháng Bắc bán cầu cho mọi nơi, fall chỉ biến thể vùng.",
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "The leaves turn yellow in autumn.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Lá cây chuyển sang màu vàng vào mùa thu.",
+                  "focus_en": [
+                    "autumn"
+                  ],
+                  "focus_vi": [
+                    "mùa thu"
+                  ]
+                },
+                {
+                  "example_en": "We often walk in the forest in autumn.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Chúng tôi thường đi bộ trong rừng vào mùa thu.",
+                  "focus_en": [
+                    "autumn"
+                  ],
+                  "focus_vi": [
+                    "mùa thu"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 0,
+              "sourcePosRaw": "n.",
+              "sourceVietnameseMeaningRaw": "mùa thu",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            }
+          ],
+          "reference": {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "A1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/830/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/830/rawHeadword",
+            "rawPosEvidencePointer": "/records/830/sourcePosRaw",
+            "recordEvidenceSha256": "973e3d9c4dcb104f7cf0e2bea89704a3f500d2a13f2d056cd31905e52cb2ec97",
+            "recordIndex": 830,
+            "sourceNoteGuid": "AYw&X22`H;",
+            "sourceRecordId": "1788223606848",
+            "structuredOxfordSenseGroupOrdinals": [
+              0
+            ]
+          },
+          "sourceFields": {
+            "CEFR": "A1",
+            "Example": "The leaves turn yellow in <mark class=\"v-target\">autumn</mark>.<br>We often walk in the forest in <mark class=\"v-target\">autumn</mark>.",
+            "Example Data": "[{\"pos\":\"n.\",\"meaning_vi\":\"mùa thu\",\"examples\":[{\"example_en\":\"The leaves turn yellow in autumn.\",\"example_vi\":\"Lá cây chuyển sang màu vàng vào mùa thu.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"autumn\"],\"focus_vi\":[\"mùa thu\"]},{\"example_en\":\"We often walk in the forest in autumn.\",\"example_vi\":\"Chúng tôi thường đi bộ trong rừng vào mùa thu.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"autumn\"],\"focus_vi\":[\"mùa thu\"]}]}]",
+            "Example EN 1": "The leaves turn yellow in autumn.",
+            "Example EN 2": "We often walk in the forest in autumn.",
+            "Example EN 3": "",
+            "Example EN 4": "",
+            "Example EN 5": "",
+            "Example EN 6": "",
+            "Example EN 7": "",
+            "Frequency": "2850",
+            "Irregular Forms": "[]",
+            "Oxford List": "Oxford 3000",
+            "Part of Speech": "noun",
+            "Phonetic": "/ˈɔːtəm/",
+            "Pronunciation Data": "[{\"locale\":\"UK\",\"ipa\":[\"/ˈɔːtəm/\"],\"audio_keys\":[\"uk_pron/a/aut/autum/autumn__gb_2\"]},{\"locale\":\"US\",\"ipa\":[\"/ˈɔːtəm/\"],\"audio_keys\":[\"us_pron/a/aut/autum/autumn__us_3\"]}]",
+            "Sound_uk": "",
+            "Sound_us": "",
+            "Study Order": "831",
+            "Từ loại": "danh từ",
+            "Variant Data": "[{\"locale\":\"US\",\"cefr\":\"C1\"}]",
+            "Vietnamese": "mùa thu",
+            "Word": "autumn"
+          }
+        },
+        {
+          "candidateSourceSenseGroups": [],
+          "reference": {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::A1",
+                "value": "A1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "A1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/1659/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/1659/rawHeadword",
+            "rawPosEvidencePointer": "/records/1659/sourcePosRaw",
+            "recordEvidenceSha256": "de5f4ed5e427d85daf6b8019203c802e835e0e39449345f4e7bc26645252ba27",
+            "recordIndex": 1659,
+            "sourceNoteGuid": "HV)IL6EN<m",
+            "sourceRecordId": "1559931008461",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          "sourceFields": {
+            "Example": "I love when the leaves fall in <b>autumn</b> because I can play in them.",
+            "IPA": "/ˈɔːtəm/",
+            "Image": "<img src=\"26_1703.jpg\">",
+            "Meaning": "<i>Autumn</i> is the season of the year between summer and winter.<br><b>mùa thu</b>",
+            "PoS": "noun",
+            "Sound": "[sound:oxford-a79e2ca9-cac670d0-fd6a6887-4bb76cb7-c7016f7d.mp3]",
+            "Sound_Example": "[sound:googletts-a4bd4f56-17c37aa5-f4edbd1f-bf7c7d61-6165b537.mp3]",
+            "Word": "autumn",
+            "noteid": "1559931008461"
+          }
+        }
+      ],
+      "sourceReferences": [
+        {
+          "artifact": "oxford-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "CEFR",
+              "value": "A1"
+            }
+          ],
+          "corpus": "OXFORD_5000",
+          "normalizedPosCandidates": [
+            "NOUN"
+          ],
+          "rawContentPointer": "/records/830/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/830/rawHeadword",
+          "rawPosEvidencePointer": "/records/830/sourcePosRaw",
+          "recordEvidenceSha256": "973e3d9c4dcb104f7cf0e2bea89704a3f500d2a13f2d056cd31905e52cb2ec97",
+          "recordIndex": 830,
+          "sourceNoteGuid": "AYw&X22`H;",
+          "sourceRecordId": "1788223606848",
+          "structuredOxfordSenseGroupOrdinals": [
+            0
+          ]
+        },
+        {
+          "artifact": "vocab4600-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "deck:4600 English Vocab::A1",
+              "value": "A1"
+            },
+            {
+              "sourceField": "noteTag",
+              "value": "A1"
+            }
+          ],
+          "corpus": "ENGLISH_VOCAB_4600",
+          "normalizedPosCandidates": [
+            "NOUN"
+          ],
+          "rawContentPointer": "/records/1659/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/1659/rawHeadword",
+          "rawPosEvidencePointer": "/records/1659/sourcePosRaw",
+          "recordEvidenceSha256": "de5f4ed5e427d85daf6b8019203c802e835e0e39449345f4e7bc26645252ba27",
+          "recordIndex": 1659,
+          "sourceNoteGuid": "HV)IL6EN<m",
+          "sourceRecordId": "1559931008461",
+          "structuredOxfordSenseGroupOrdinals": []
+        }
+      ],
+      "sourceSupportedMeaningCandidates": [
+        "season between summer and winter"
+      ],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "ambiguityRiskFlags": [
+        "IDENTITY_UNRESOLVED",
+        "RIGHTS_UNKNOWN"
+      ],
+      "candidateGroupKey": "NORMALIZED_HEADWORD:box",
+      "constructionCandidates": [
+        "countable box",
+        "in a box"
+      ],
+      "distinctionClass": "B",
+      "missingSenseCandidates": [],
+      "normalizedHeadword": "box",
+      "proposedNumberOfSenses": 1,
+      "proposedPOS": [
+        "NOUN"
+      ],
+      "proposedSenseBoundaries": [
+        "container"
+      ],
+      "rationaleVi": "Oxford đựng giày và ảnh cùng vật chứa; không thêm quyền Anh hay ô vuông vì chỉ noun container được minh chứng.",
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "The shoes came in a large box.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Đôi giày được đựng trong một chiếc hộp lớn.",
+                  "focus_en": [
+                    "box"
+                  ],
+                  "focus_vi": [
+                    "chiếc hộp"
+                  ]
+                },
+                {
+                  "example_en": "She keeps her photographs in a wooden box.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Cô ấy cất ảnh trong một chiếc hộp gỗ.",
+                  "focus_en": [
+                    "box"
+                  ],
+                  "focus_vi": [
+                    "chiếc hộp"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 0,
+              "sourcePosRaw": "n.",
+              "sourceVietnameseMeaningRaw": "chiếc hộp",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            }
+          ],
+          "reference": {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "A1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/490/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/490/rawHeadword",
+            "rawPosEvidencePointer": "/records/490/sourcePosRaw",
+            "recordEvidenceSha256": "13b5335509eda908b9c783539a16bc8d18e3bfca5592e7db7d3645599326fa1a",
+            "recordIndex": 490,
+            "sourceNoteGuid": "u>sm4tT|pQ",
+            "sourceRecordId": "1788223606443",
+            "structuredOxfordSenseGroupOrdinals": [
+              0
+            ]
+          },
+          "sourceFields": {
+            "CEFR": "A1",
+            "Example": "The shoes came in a large <mark class=\"v-target\">box</mark>.<br>She keeps her photographs in a wooden <mark class=\"v-target\">box</mark>.",
+            "Example Data": "[{\"pos\":\"n.\",\"meaning_vi\":\"chiếc hộp\",\"examples\":[{\"example_en\":\"The shoes came in a large box.\",\"example_vi\":\"Đôi giày được đựng trong một chiếc hộp lớn.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"box\"],\"focus_vi\":[\"chiếc hộp\"]},{\"example_en\":\"She keeps her photographs in a wooden box.\",\"example_vi\":\"Cô ấy cất ảnh trong một chiếc hộp gỗ.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"box\"],\"focus_vi\":[\"chiếc hộp\"]}]}]",
+            "Example EN 1": "The shoes came in a large box.",
+            "Example EN 2": "She keeps her photographs in a wooden box.",
+            "Example EN 3": "",
+            "Example EN 4": "",
+            "Example EN 5": "",
+            "Example EN 6": "",
+            "Example EN 7": "",
+            "Frequency": "754",
+            "Irregular Forms": "[]",
+            "Oxford List": "Oxford 3000",
+            "Part of Speech": "noun",
+            "Phonetic": "/bɒks/",
+            "Pronunciation Data": "[{\"locale\":\"UK\",\"ipa\":[\"/bɒks/\"],\"audio_keys\":[\"uk_pron/b/box/box__/box__gb_2\"]},{\"locale\":\"US\",\"ipa\":[\"/bɑːks/\"],\"audio_keys\":[\"us_pron/b/box/box__/box__us_1\"]}]",
+            "Sound_uk": "",
+            "Sound_us": "",
+            "Study Order": "491",
+            "Từ loại": "danh từ",
+            "Variant Data": "[]",
+            "Vietnamese": "chiếc hộp",
+            "Word": "box"
+          }
+        }
+      ],
+      "sourceReferences": [
+        {
+          "artifact": "oxford-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "CEFR",
+              "value": "A1"
+            }
+          ],
+          "corpus": "OXFORD_5000",
+          "normalizedPosCandidates": [
+            "NOUN"
+          ],
+          "rawContentPointer": "/records/490/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/490/rawHeadword",
+          "rawPosEvidencePointer": "/records/490/sourcePosRaw",
+          "recordEvidenceSha256": "13b5335509eda908b9c783539a16bc8d18e3bfca5592e7db7d3645599326fa1a",
+          "recordIndex": 490,
+          "sourceNoteGuid": "u>sm4tT|pQ",
+          "sourceRecordId": "1788223606443",
+          "structuredOxfordSenseGroupOrdinals": [
+            0
+          ]
+        }
+      ],
+      "sourceSupportedMeaningCandidates": [
+        "container with sides and base for storage"
+      ],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "ambiguityRiskFlags": [
+        "IDENTITY_UNRESOLVED",
+        "RIGHTS_UNKNOWN"
+      ],
+      "candidateGroupKey": "NORMALIZED_HEADWORD:semester",
+      "constructionCandidates": [
+        "countable semester",
+        "this semester"
+      ],
+      "distinctionClass": "B",
+      "missingSenseCandidates": [],
+      "normalizedHeadword": "semester",
+      "proposedNumberOfSenses": 1,
+      "proposedPOS": [
+        "NOUN"
+      ],
+      "proposedSenseBoundaries": [
+        "academic-period"
+      ],
+      "rationaleVi": "Vocab học kỳ và học kỳ hai đại học hỗ trợ giai đoạn học; usually tránh ép mọi hệ thống chia chính xác hai kỳ.",
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [],
+          "reference": {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::B1",
+                "value": "B1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "B1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/2421/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/2421/rawHeadword",
+            "rawPosEvidencePointer": "/records/2421/sourcePosRaw",
+            "recordEvidenceSha256": "aed9f9b0f40fce0b51e316236b971343e73bf05e2af6ddb00d4cbac428f4301a",
+            "recordIndex": 2421,
+            "sourceNoteGuid": "pc8E[Q62ws",
+            "sourceRecordId": "1559931009256",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          "sourceFields": {
+            "Example": "Jack is in his second <b>semester</b> of college.",
+            "IPA": "/sɪˈmɛstə/",
+            "Image": "<img src=\"paste-4b994eed806600ab6ed599e3d897db2be61a8020.jpg\">",
+            "Meaning": "A <i>semester</i> is a portion of a school year.<br><b>học kỳ</b>",
+            "PoS": "noun",
+            "Sound": "[sound:oxford-fc16b54f-2c8bec9b-61f28a22-e29d6ae5-026e2483.mp3]",
+            "Sound_Example": "[sound:googletts-31ae34b0-9b5a57ae-1a0bb7f7-b985b506-6949d288.mp3]",
+            "Word": "semester",
+            "noteid": "1559931009256"
+          }
+        }
+      ],
+      "sourceReferences": [
+        {
+          "artifact": "vocab4600-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "deck:4600 English Vocab::B1",
+              "value": "B1"
+            },
+            {
+              "sourceField": "noteTag",
+              "value": "B1"
+            }
+          ],
+          "corpus": "ENGLISH_VOCAB_4600",
+          "normalizedPosCandidates": [
+            "NOUN"
+          ],
+          "rawContentPointer": "/records/2421/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/2421/rawHeadword",
+          "rawPosEvidencePointer": "/records/2421/sourcePosRaw",
+          "recordEvidenceSha256": "aed9f9b0f40fce0b51e316236b971343e73bf05e2af6ddb00d4cbac428f4301a",
+          "recordIndex": 2421,
+          "sourceNoteGuid": "pc8E[Q62ws",
+          "sourceRecordId": "1559931009256",
+          "structuredOxfordSenseGroupOrdinals": []
+        }
+      ],
+      "sourceSupportedMeaningCandidates": [
+        "one of usually two main teaching periods in an academic year"
+      ],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "ambiguityRiskFlags": [
+        "IDENTITY_UNRESOLVED",
+        "RIGHTS_UNKNOWN"
+      ],
+      "candidateGroupKey": "NORMALIZED_HEADWORD:exam",
+      "constructionCandidates": [
+        "countable exam",
+        "take an exam"
+      ],
+      "distinctionClass": "B",
+      "missingSenseCandidates": [],
+      "normalizedHeadword": "exam",
+      "proposedNumberOfSenses": 1,
+      "proposedPOS": [
+        "NOUN"
+      ],
+      "proposedSenseBoundaries": [
+        "knowledge-test"
+      ],
+      "rationaleVi": "Oxford kỳ thi toán và Vocab bài kiểm tra đều đánh giá học tập; không thêm khám y khoa thiếu ví dụ và định nghĩa chuyên biệt.",
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "She is studying for her maths exam.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Cô ấy đang học để chuẩn bị cho kỳ thi toán.",
+                  "focus_en": [
+                    "exam"
+                  ],
+                  "focus_vi": [
+                    "kỳ thi"
+                  ]
+                },
+                {
+                  "example_en": "The exam begins at nine tomorrow morning.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Kỳ thi bắt đầu lúc chín giờ sáng mai.",
+                  "focus_en": [
+                    "exam"
+                  ],
+                  "focus_vi": [
+                    "Kỳ thi"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 0,
+              "sourcePosRaw": "n.",
+              "sourceVietnameseMeaningRaw": "kỳ thi",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            }
+          ],
+          "reference": {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "A1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/831/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/831/rawHeadword",
+            "rawPosEvidencePointer": "/records/831/sourcePosRaw",
+            "recordEvidenceSha256": "19eee4af94a5e16bc023193f8a50d75ca93f1e9b27862dc705af27244d802842",
+            "recordIndex": 831,
+            "sourceNoteGuid": "pDJn+#d,o6",
+            "sourceRecordId": "1788223606849",
+            "structuredOxfordSenseGroupOrdinals": [
+              0
+            ]
+          },
+          "sourceFields": {
+            "CEFR": "A1",
+            "Example": "She is studying for her maths <mark class=\"v-target\">exam</mark>.<br>The <mark class=\"v-target\">exam</mark> begins at nine tomorrow morning.",
+            "Example Data": "[{\"pos\":\"n.\",\"meaning_vi\":\"kỳ thi\",\"examples\":[{\"example_en\":\"She is studying for her maths exam.\",\"example_vi\":\"Cô ấy đang học để chuẩn bị cho kỳ thi toán.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"exam\"],\"focus_vi\":[\"kỳ thi\"]},{\"example_en\":\"The exam begins at nine tomorrow morning.\",\"example_vi\":\"Kỳ thi bắt đầu lúc chín giờ sáng mai.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"exam\"],\"focus_vi\":[\"Kỳ thi\"]}]}]",
+            "Example EN 1": "She is studying for her maths exam.",
+            "Example EN 2": "The exam begins at nine tomorrow morning.",
+            "Example EN 3": "",
+            "Example EN 4": "",
+            "Example EN 5": "",
+            "Example EN 6": "",
+            "Example EN 7": "",
+            "Frequency": "2860",
+            "Irregular Forms": "[]",
+            "Oxford List": "Oxford 3000",
+            "Part of Speech": "noun",
+            "Phonetic": "/ɪɡˈzæm/",
+            "Pronunciation Data": "[{\"locale\":\"UK\",\"ipa\":[\"/ɪɡˈzæm/\"],\"audio_keys\":[\"uk_pron/e/exa/exam_/exam__gb_1\"]},{\"locale\":\"US\",\"ipa\":[\"/ɪɡˈzæm/\"],\"audio_keys\":[\"us_pron/e/exa/exam_/exam__us_1\"]}]",
+            "Sound_uk": "",
+            "Sound_us": "",
+            "Study Order": "832",
+            "Từ loại": "danh từ",
+            "Variant Data": "[]",
+            "Vietnamese": "kỳ thi",
+            "Word": "exam"
+          }
+        },
+        {
+          "candidateSourceSenseGroups": [],
+          "reference": {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::A1",
+                "value": "A1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "A1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/258/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/258/rawHeadword",
+            "rawPosEvidencePointer": "/records/258/sourcePosRaw",
+            "recordEvidenceSha256": "79ad6c0204527b9b56562b9a9d9bb21f115b9b4a4df57fcd36a76000569a2c27",
+            "recordIndex": 258,
+            "sourceNoteGuid": "s}e5P?Tet4",
+            "sourceRecordId": "1556384731062",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          "sourceFields": {
+            "Example": "I did some practice questions for the math <b>exam</b> on the board.",
+            "IPA": "/ɪɡˈzam/",
+            "Image": "<img src=\"paste-83ce7ee3a4107caae6989ad5941f472cf0488063.jpg\">",
+            "Meaning": "An <i>exam</i> is a test.<br><b>bài kiểm tra</b>",
+            "PoS": "noun",
+            "Sound": "[sound:oxford-a65563ac-2b2efc0e-2be0f119-0a9a0655-f1b08694.mp3]",
+            "Sound_Example": "[sound:googletts-815ed54c-e4e20ca1-77042211-cadc64bb-4aaaec51.mp3]",
+            "Word": "exam",
+            "noteid": "1556384731062"
+          }
+        }
+      ],
+      "sourceReferences": [
+        {
+          "artifact": "oxford-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "CEFR",
+              "value": "A1"
+            }
+          ],
+          "corpus": "OXFORD_5000",
+          "normalizedPosCandidates": [
+            "NOUN"
+          ],
+          "rawContentPointer": "/records/831/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/831/rawHeadword",
+          "rawPosEvidencePointer": "/records/831/sourcePosRaw",
+          "recordEvidenceSha256": "19eee4af94a5e16bc023193f8a50d75ca93f1e9b27862dc705af27244d802842",
+          "recordIndex": 831,
+          "sourceNoteGuid": "pDJn+#d,o6",
+          "sourceRecordId": "1788223606849",
+          "structuredOxfordSenseGroupOrdinals": [
+            0
+          ]
+        },
+        {
+          "artifact": "vocab4600-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "deck:4600 English Vocab::A1",
+              "value": "A1"
+            },
+            {
+              "sourceField": "noteTag",
+              "value": "A1"
+            }
+          ],
+          "corpus": "ENGLISH_VOCAB_4600",
+          "normalizedPosCandidates": [
+            "NOUN"
+          ],
+          "rawContentPointer": "/records/258/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/258/rawHeadword",
+          "rawPosEvidencePointer": "/records/258/sourcePosRaw",
+          "recordEvidenceSha256": "79ad6c0204527b9b56562b9a9d9bb21f115b9b4a4df57fcd36a76000569a2c27",
+          "recordIndex": 258,
+          "sourceNoteGuid": "s}e5P?Tet4",
+          "sourceRecordId": "1556384731062",
+          "structuredOxfordSenseGroupOrdinals": []
+        }
+      ],
+      "sourceSupportedMeaningCandidates": [
+        "formal test of knowledge or ability"
+      ],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "ambiguityRiskFlags": [
+        "IDENTITY_UNRESOLVED",
+        "RIGHTS_UNKNOWN"
+      ],
+      "candidateGroupKey": "NORMALIZED_HEADWORD:everybody",
+      "constructionCandidates": [
+        "indefinite pronoun",
+        "singular verb"
+      ],
+      "distinctionClass": "B",
+      "missingSenseCandidates": [],
+      "normalizedHeadword": "everybody",
+      "proposedNumberOfSenses": 1,
+      "proposedPOS": [
+        "PRONOUN"
+      ],
+      "proposedSenseBoundaries": [
+        "all-people"
+      ],
+      "rationaleVi": "Oxford mọi người vui và mọi người cần vé; mỗi ngữ cảnh xác định nhóm liên quan, không ép toàn bộ nhân loại trong mọi câu.",
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "Everybody enjoyed the concert.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Mọi người đều thích buổi hòa nhạc.",
+                  "focus_en": [
+                    "Everybody"
+                  ],
+                  "focus_vi": [
+                    "Mọi người"
+                  ]
+                },
+                {
+                  "example_en": "Everybody needs a ticket to enter.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Tất cả mọi người đều cần vé để vào cửa.",
+                  "focus_en": [
+                    "Everybody"
+                  ],
+                  "focus_vi": [
+                    "Tất cả mọi người"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 0,
+              "sourcePosRaw": "pron.",
+              "sourceVietnameseMeaningRaw": "tất cả mọi người",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            }
+          ],
+          "reference": {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "A1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "PRONOUN"
+            ],
+            "rawContentPointer": "/records/610/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/610/rawHeadword",
+            "rawPosEvidencePointer": "/records/610/sourcePosRaw",
+            "recordEvidenceSha256": "20935c6a0afb3c078707b7c464fcaee90c7846c8078191c1a03d5d49b5eedc3d",
+            "recordIndex": 610,
+            "sourceNoteGuid": "AbTZK}A*~P",
+            "sourceRecordId": "1788223606585",
+            "structuredOxfordSenseGroupOrdinals": [
+              0
+            ]
+          },
+          "sourceFields": {
+            "CEFR": "A1",
+            "Example": "<mark class=\"v-target\">Everybody</mark> enjoyed the concert.<br><mark class=\"v-target\">Everybody</mark> needs a ticket to enter.",
+            "Example Data": "[{\"pos\":\"pron.\",\"meaning_vi\":\"tất cả mọi người\",\"examples\":[{\"example_en\":\"Everybody enjoyed the concert.\",\"example_vi\":\"Mọi người đều thích buổi hòa nhạc.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"Everybody\"],\"focus_vi\":[\"Mọi người\"]},{\"example_en\":\"Everybody needs a ticket to enter.\",\"example_vi\":\"Tất cả mọi người đều cần vé để vào cửa.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"Everybody\"],\"focus_vi\":[\"Tất cả mọi người\"]}]}]",
+            "Example EN 1": "Everybody enjoyed the concert.",
+            "Example EN 2": "Everybody needs a ticket to enter.",
+            "Example EN 3": "",
+            "Example EN 4": "",
+            "Example EN 5": "",
+            "Example EN 6": "",
+            "Example EN 7": "",
+            "Frequency": "1143",
+            "Irregular Forms": "[]",
+            "Oxford List": "Oxford 3000",
+            "Part of Speech": "pronoun",
+            "Phonetic": "/ˈevribɒdi/",
+            "Pronunciation Data": "[{\"locale\":\"UK\",\"ipa\":[\"/ˈevribɒdi/\"],\"audio_keys\":[\"uk_pron/e/eve/every/everybody__gb_3\"]},{\"locale\":\"US\",\"ipa\":[\"/ˈevribɑːdi/\",\"/ˈevribʌdi/\"],\"audio_keys\":[\"us_pron/e/eve/every/everybody__us_1_rr\",\"us_pron/e/eve/every/everybody__us_2_rr\"]}]",
+            "Sound_uk": "",
+            "Sound_us": "",
+            "Study Order": "611",
+            "Từ loại": "đại từ",
+            "Variant Data": "[]",
+            "Vietnamese": "tất cả mọi người",
+            "Word": "everybody"
+          }
+        }
+      ],
+      "sourceReferences": [
+        {
+          "artifact": "oxford-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "CEFR",
+              "value": "A1"
+            }
+          ],
+          "corpus": "OXFORD_5000",
+          "normalizedPosCandidates": [
+            "PRONOUN"
+          ],
+          "rawContentPointer": "/records/610/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/610/rawHeadword",
+          "rawPosEvidencePointer": "/records/610/sourcePosRaw",
+          "recordEvidenceSha256": "20935c6a0afb3c078707b7c464fcaee90c7846c8078191c1a03d5d49b5eedc3d",
+          "recordIndex": 610,
+          "sourceNoteGuid": "AbTZK}A*~P",
+          "sourceRecordId": "1788223606585",
+          "structuredOxfordSenseGroupOrdinals": [
+            0
+          ]
+        }
+      ],
+      "sourceSupportedMeaningCandidates": [
+        "all people in a relevant group"
+      ],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "ambiguityRiskFlags": [
+        "IDENTITY_UNRESOLVED",
+        "RIGHTS_UNKNOWN"
+      ],
+      "candidateGroupKey": "NORMALIZED_HEADWORD:dolphin",
+      "constructionCandidates": [
+        "countable dolphin"
+      ],
+      "distinctionClass": "B",
+      "missingSenseCandidates": [],
+      "normalizedHeadword": "dolphin",
+      "proposedNumberOfSenses": 1,
+      "proposedPOS": [
+        "NOUN"
+      ],
+      "proposedSenseBoundaries": [
+        "aquatic-mammal"
+      ],
+      "rationaleVi": "Nguồn thú biển thở không khí và giao tiếp; nghĩa cá heo là thú có vú, tránh diễn giải thành cá chỉ vì tên tiếng Việt.",
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [],
+          "reference": {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::B1",
+                "value": "B1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "B1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/2905/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/2905/rawHeadword",
+            "rawPosEvidencePointer": "/records/2905/sourcePosRaw",
+            "recordEvidenceSha256": "15519fe0000b5f0d90aca7246c07d0470d7196ff2d7b90c418013e2c9fef22f5",
+            "recordIndex": 2905,
+            "sourceNoteGuid": "cR&2r!L@PR",
+            "sourceRecordId": "1559931009766",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          "sourceFields": {
+            "Example": "Intelligent <b>dolphins</b> have learned to communicate with humans.",
+            "IPA": "/ˈdɑːlfɪn/",
+            "Image": "<img src=\"07.jpg\">",
+            "Meaning": "A <i>dolphin</i> is a large sea mammal that breathes air.<br><b>cá heo</b>",
+            "PoS": "noun",
+            "Sound": "[sound:dolphin__us_1_rr.mp3]",
+            "Sound_Example": "[sound:googletts-e37ee271-ee8f3d87-9b177d06-e6be126d-98423ed8.mp3]",
+            "Word": "dolphin",
+            "noteid": "1559931009766"
+          }
+        }
+      ],
+      "sourceReferences": [
+        {
+          "artifact": "vocab4600-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "deck:4600 English Vocab::B1",
+              "value": "B1"
+            },
+            {
+              "sourceField": "noteTag",
+              "value": "B1"
+            }
+          ],
+          "corpus": "ENGLISH_VOCAB_4600",
+          "normalizedPosCandidates": [
+            "NOUN"
+          ],
+          "rawContentPointer": "/records/2905/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/2905/rawHeadword",
+          "rawPosEvidencePointer": "/records/2905/sourcePosRaw",
+          "recordEvidenceSha256": "15519fe0000b5f0d90aca7246c07d0470d7196ff2d7b90c418013e2c9fef22f5",
+          "recordIndex": 2905,
+          "sourceNoteGuid": "cR&2r!L@PR",
+          "sourceRecordId": "1559931009766",
+          "structuredOxfordSenseGroupOrdinals": []
+        }
+      ],
+      "sourceSupportedMeaningCandidates": [
+        "aquatic mammal with a streamlined body and beaklike snout"
+      ],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "ambiguityRiskFlags": [
+        "IDENTITY_UNRESOLVED",
+        "RIGHTS_UNKNOWN"
+      ],
+      "candidateGroupKey": "NORMALIZED_HEADWORD:breakfast",
+      "constructionCandidates": [
+        "usually no article",
+        "have breakfast"
+      ],
+      "distinctionClass": "B",
+      "missingSenseCandidates": [],
+      "normalizedHeadword": "breakfast",
+      "proposedNumberOfSenses": 1,
+      "proposedPOS": [
+        "NOUN"
+      ],
+      "proposedSenseBoundaries": [
+        "morning-meal"
+      ],
+      "rationaleVi": "Trứng và ăn cùng nhau đều bữa sáng; đồ ăn và dịp ăn là cùng bữa, không dùng chỉ một loại thức ăn để định nghĩa.",
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "I had eggs and toast for breakfast.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Tôi ăn trứng và bánh mì nướng vào bữa sáng.",
+                  "focus_en": [
+                    "breakfast"
+                  ],
+                  "focus_vi": [
+                    "bữa sáng"
+                  ]
+                },
+                {
+                  "example_en": "We eat breakfast together before school.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Chúng tôi ăn bữa sáng cùng nhau trước khi đi học.",
+                  "focus_en": [
+                    "breakfast"
+                  ],
+                  "focus_vi": [
+                    "bữa sáng"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 0,
+              "sourcePosRaw": "n.",
+              "sourceVietnameseMeaningRaw": "bữa sáng",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            }
+          ],
+          "reference": {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "A1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/725/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/725/rawHeadword",
+            "rawPosEvidencePointer": "/records/725/sourcePosRaw",
+            "recordEvidenceSha256": "08e5df2429e08f650f645c1a3c7b69e7acebd4ee7c70d4eebdf7fb29521ce7ff",
+            "recordIndex": 725,
+            "sourceNoteGuid": "h44{7N}&&#",
+            "sourceRecordId": "1788223606740",
+            "structuredOxfordSenseGroupOrdinals": [
+              0
+            ]
+          },
+          "sourceFields": {
+            "CEFR": "A1",
+            "Example": "I had eggs and toast for <mark class=\"v-target\">breakfast</mark>.<br>We eat <mark class=\"v-target\">breakfast</mark> together before school.",
+            "Example Data": "[{\"pos\":\"n.\",\"meaning_vi\":\"bữa sáng\",\"examples\":[{\"example_en\":\"I had eggs and toast for breakfast.\",\"example_vi\":\"Tôi ăn trứng và bánh mì nướng vào bữa sáng.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"breakfast\"],\"focus_vi\":[\"bữa sáng\"]},{\"example_en\":\"We eat breakfast together before school.\",\"example_vi\":\"Chúng tôi ăn bữa sáng cùng nhau trước khi đi học.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"breakfast\"],\"focus_vi\":[\"bữa sáng\"]}]}]",
+            "Example EN 1": "I had eggs and toast for breakfast.",
+            "Example EN 2": "We eat breakfast together before school.",
+            "Example EN 3": "",
+            "Example EN 4": "",
+            "Example EN 5": "",
+            "Example EN 6": "",
+            "Example EN 7": "",
+            "Frequency": "1686",
+            "Irregular Forms": "[]",
+            "Oxford List": "Oxford 3000",
+            "Part of Speech": "noun",
+            "Phonetic": "/ˈbrekfəst/",
+            "Pronunciation Data": "[{\"locale\":\"UK\",\"ipa\":[\"/ˈbrekfəst/\"],\"audio_keys\":[\"uk_pron/b/bre/break/breakfast__gb_1\"]},{\"locale\":\"US\",\"ipa\":[\"/ˈbrekfəst/\"],\"audio_keys\":[\"us_pron/b/bre/break/breakfast__us_1\"]}]",
+            "Sound_uk": "",
+            "Sound_us": "",
+            "Study Order": "726",
+            "Từ loại": "danh từ",
+            "Variant Data": "[]",
+            "Vietnamese": "bữa sáng",
+            "Word": "breakfast"
+          }
+        },
+        {
+          "candidateSourceSenseGroups": [],
+          "reference": {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::A1",
+                "value": "A1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "A1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/5/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/5/rawHeadword",
+            "rawPosEvidencePointer": "/records/5/sourcePosRaw",
+            "recordEvidenceSha256": "0701d2817919555ac6dd13cba3229fc021ada32df0067b4f42817687d41f7091",
+            "recordIndex": 5,
+            "sourceNoteGuid": "Mz)(GQHZ`$",
+            "sourceRecordId": "1556384730803",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          "sourceFields": {
+            "Example": "I ate eggs for <b>breakfast</b>.",
+            "IPA": "/ˈbrɛkfəst/",
+            "Image": "<img src=\"01_0006.jpg\" />",
+            "Meaning": "<i>Breakfast</i> is the morning meal.<br><b>bữa ăn sáng</b>",
+            "PoS": "noun",
+            "Sound": "[sound:oxford-5c7c28f6-5a1e595c-3bc69ad0-cf6aac7a-d3ba11ee.mp3]",
+            "Sound_Example": "[sound:googletts-83e3fbad-7c0e0eeb-b628e9b9-2fd3dac6-dfbc4ee1.mp3]",
+            "Word": "breakfast",
+            "noteid": "1556384730803"
+          }
+        }
+      ],
+      "sourceReferences": [
+        {
+          "artifact": "oxford-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "CEFR",
+              "value": "A1"
+            }
+          ],
+          "corpus": "OXFORD_5000",
+          "normalizedPosCandidates": [
+            "NOUN"
+          ],
+          "rawContentPointer": "/records/725/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/725/rawHeadword",
+          "rawPosEvidencePointer": "/records/725/sourcePosRaw",
+          "recordEvidenceSha256": "08e5df2429e08f650f645c1a3c7b69e7acebd4ee7c70d4eebdf7fb29521ce7ff",
+          "recordIndex": 725,
+          "sourceNoteGuid": "h44{7N}&&#",
+          "sourceRecordId": "1788223606740",
+          "structuredOxfordSenseGroupOrdinals": [
+            0
+          ]
+        },
+        {
+          "artifact": "vocab4600-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "deck:4600 English Vocab::A1",
+              "value": "A1"
+            },
+            {
+              "sourceField": "noteTag",
+              "value": "A1"
+            }
+          ],
+          "corpus": "ENGLISH_VOCAB_4600",
+          "normalizedPosCandidates": [
+            "NOUN"
+          ],
+          "rawContentPointer": "/records/5/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/5/rawHeadword",
+          "rawPosEvidencePointer": "/records/5/sourcePosRaw",
+          "recordEvidenceSha256": "0701d2817919555ac6dd13cba3229fc021ada32df0067b4f42817687d41f7091",
+          "recordIndex": 5,
+          "sourceNoteGuid": "Mz)(GQHZ`$",
+          "sourceRecordId": "1556384730803",
+          "structuredOxfordSenseGroupOrdinals": []
+        }
+      ],
+      "sourceSupportedMeaningCandidates": [
+        "first meal of the day normally eaten in the morning"
+      ],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "ambiguityRiskFlags": [
+        "IDENTITY_UNRESOLVED",
+        "RIGHTS_UNKNOWN"
+      ],
+      "candidateGroupKey": "NORMALIZED_HEADWORD:excited",
+      "constructionCandidates": [
+        "excited about",
+        "excited to do"
+      ],
+      "distinctionClass": "B",
+      "missingSenseCandidates": [],
+      "normalizedHeadword": "excited",
+      "proposedNumberOfSenses": 1,
+      "proposedPOS": [
+        "ADJECTIVE"
+      ],
+      "proposedSenseBoundaries": [
+        "enthusiastic-feeling"
+      ],
+      "rationaleVi": "Ví dụ háo hức về chuyến đi và gặp bạn đều cảm xúc người trải nghiệm; giới từ hoặc nguyên mẫu không tạo nghĩa mới.",
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "The children are excited about the trip.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Bọn trẻ hào hứng về chuyến đi.",
+                  "focus_en": [
+                    "excited"
+                  ],
+                  "focus_vi": [
+                    "hào hứng"
+                  ]
+                },
+                {
+                  "example_en": "I am excited to meet my new classmates.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Tôi rất hào hứng khi sắp gặp các bạn cùng lớp mới.",
+                  "focus_en": [
+                    "excited"
+                  ],
+                  "focus_vi": [
+                    "hào hứng"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 0,
+              "sourcePosRaw": "adj.",
+              "sourceVietnameseMeaningRaw": "hào hứng, phấn khích",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            }
+          ],
+          "reference": {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "A1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "ADJECTIVE"
+            ],
+            "rawContentPointer": "/records/653/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/653/rawHeadword",
+            "rawPosEvidencePointer": "/records/653/sourcePosRaw",
+            "recordEvidenceSha256": "c00beb227b6cdd7bdd15324e28b76c8c021dd0fb9f5eddb9895553826d3678e7",
+            "recordIndex": 653,
+            "sourceNoteGuid": "sR]VXWq3!N",
+            "sourceRecordId": "1788223606644",
+            "structuredOxfordSenseGroupOrdinals": [
+              0
+            ]
+          },
+          "sourceFields": {
+            "CEFR": "A1",
+            "Example": "The children are <mark class=\"v-target\">excited</mark> about the trip.<br>I am <mark class=\"v-target\">excited</mark> to meet my new classmates.",
+            "Example Data": "[{\"pos\":\"adj.\",\"meaning_vi\":\"hào hứng, phấn khích\",\"examples\":[{\"example_en\":\"The children are excited about the trip.\",\"example_vi\":\"Bọn trẻ hào hứng về chuyến đi.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"excited\"],\"focus_vi\":[\"hào hứng\"]},{\"example_en\":\"I am excited to meet my new classmates.\",\"example_vi\":\"Tôi rất hào hứng khi sắp gặp các bạn cùng lớp mới.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"excited\"],\"focus_vi\":[\"hào hứng\"]}]}]",
+            "Example EN 1": "The children are excited about the trip.",
+            "Example EN 2": "I am excited to meet my new classmates.",
+            "Example EN 3": "",
+            "Example EN 4": "",
+            "Example EN 5": "",
+            "Example EN 6": "",
+            "Example EN 7": "",
+            "Frequency": "1363",
+            "Irregular Forms": "[]",
+            "Oxford List": "Oxford 3000",
+            "Part of Speech": "adjective",
+            "Phonetic": "/ɪkˈsaɪtɪd/",
+            "Pronunciation Data": "[{\"locale\":\"UK\",\"ipa\":[\"/ɪkˈsaɪtɪd/\"],\"audio_keys\":[\"uk_pron/e/exc/excit/excited__gb_3\"]},{\"locale\":\"US\",\"ipa\":[\"/ɪkˈsaɪtɪd/\"],\"audio_keys\":[\"us_pron/e/exc/excit/excited__us_1\"]}]",
+            "Sound_uk": "",
+            "Sound_us": "",
+            "Study Order": "654",
+            "Từ loại": "tính từ",
+            "Variant Data": "[]",
+            "Vietnamese": "hào hứng, phấn khích",
+            "Word": "excited"
+          }
+        }
+      ],
+      "sourceReferences": [
+        {
+          "artifact": "oxford-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "CEFR",
+              "value": "A1"
+            }
+          ],
+          "corpus": "OXFORD_5000",
+          "normalizedPosCandidates": [
+            "ADJECTIVE"
+          ],
+          "rawContentPointer": "/records/653/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/653/rawHeadword",
+          "rawPosEvidencePointer": "/records/653/sourcePosRaw",
+          "recordEvidenceSha256": "c00beb227b6cdd7bdd15324e28b76c8c021dd0fb9f5eddb9895553826d3678e7",
+          "recordIndex": 653,
+          "sourceNoteGuid": "sR]VXWq3!N",
+          "sourceRecordId": "1788223606644",
+          "structuredOxfordSenseGroupOrdinals": [
+            0
+          ]
+        }
+      ],
+      "sourceSupportedMeaningCandidates": [
+        "feeling eager and enthusiastic"
+      ],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "ambiguityRiskFlags": [
+        "IDENTITY_UNRESOLVED",
+        "RIGHTS_UNKNOWN"
+      ],
+      "candidateGroupKey": "NORMALIZED_HEADWORD:tornado",
+      "constructionCandidates": [
+        "countable weather event noun"
+      ],
+      "distinctionClass": "B",
+      "missingSenseCandidates": [],
+      "normalizedHeadword": "tornado",
+      "proposedNumberOfSenses": 1,
+      "proposedPOS": [
+        "NOUN"
+      ],
+      "proposedSenseBoundaries": [
+        "rotating-air-column"
+      ],
+      "rationaleVi": "Nguồn ống không khí xoay nhanh và tình huống lốc; chọn hiện tượng lốc xoáy, không sao chép hoặc đưa lời khuyên an toàn nguồn vào ví dụ.",
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [],
+          "reference": {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::B1",
+                "value": "B1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "B1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/2894/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/2894/rawHeadword",
+            "rawPosEvidencePointer": "/records/2894/sourcePosRaw",
+            "recordEvidenceSha256": "0e9922bb135dcf0fda8109657b80154a3d3336d3876589c1c5992cc951abaeea",
+            "recordIndex": 2894,
+            "sourceNoteGuid": "C!3zDD`h]X",
+            "sourceRecordId": "1559931009755",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          "sourceFields": {
+            "Example": "During a <b>tornado</b>, the safest place to be is underground.",
+            "IPA": "/tɔːˈneɪdəʊ/",
+            "Image": "<img src=\"paste-c8bc5c29c03c1f147540825ebc718ec88cd33bc8.jpg\">",
+            "Meaning": "A <i>tornado</i> is a tube-shaped formation of air that spins very quickly.<br><b>lốc xoáy</b><br>",
+            "PoS": "noun",
+            "Sound": "[sound:oxford-3a46ef83-08abb14b-0055eb5c-66eac353-a3d50147.mp3]",
+            "Sound_Example": "[sound:googletts-bad3c0b6-367ddd53-fba27631-77b67ea7-29d3b8d7.mp3]",
+            "Word": "tornado",
+            "noteid": "1559931009755"
+          }
+        }
+      ],
+      "sourceReferences": [
+        {
+          "artifact": "vocab4600-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "deck:4600 English Vocab::B1",
+              "value": "B1"
+            },
+            {
+              "sourceField": "noteTag",
+              "value": "B1"
+            }
+          ],
+          "corpus": "ENGLISH_VOCAB_4600",
+          "normalizedPosCandidates": [
+            "NOUN"
+          ],
+          "rawContentPointer": "/records/2894/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/2894/rawHeadword",
+          "rawPosEvidencePointer": "/records/2894/sourcePosRaw",
+          "recordEvidenceSha256": "0e9922bb135dcf0fda8109657b80154a3d3336d3876589c1c5992cc951abaeea",
+          "recordIndex": 2894,
+          "sourceNoteGuid": "C!3zDD`h]X",
+          "sourceRecordId": "1559931009755",
+          "structuredOxfordSenseGroupOrdinals": []
+        }
+      ],
+      "sourceSupportedMeaningCandidates": [
+        "violent rotating column of air reaching from a storm cloud to the ground"
+      ],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "ambiguityRiskFlags": [
+        "IDENTITY_UNRESOLVED",
+        "RIGHTS_UNKNOWN"
+      ],
+      "candidateGroupKey": "NORMALIZED_HEADWORD:clothes",
+      "constructionCandidates": [
+        "plural noun",
+        "clothes are",
+        "an item of clothing"
+      ],
+      "distinctionClass": "D",
+      "missingSenseCandidates": [],
+      "normalizedHeadword": "clothes",
+      "proposedNumberOfSenses": 1,
+      "proposedPOS": [
+        "NOUN"
+      ],
+      "proposedSenseBoundaries": [
+        "body-garments"
+      ],
+      "rationaleVi": "Nguồn quần áo ấm và đồ ướt là cùng tập hợp đồ mặc; clothes dùng số nhiều không có a clothe, không tách nghĩa theo thời tiết.",
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "Pack warm clothes for the winter trip.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Hãy mang quần áo ấm cho chuyến đi mùa đông.",
+                  "focus_en": [
+                    "clothes"
+                  ],
+                  "focus_vi": [
+                    "quần áo"
+                  ]
+                },
+                {
+                  "example_en": "Her wet clothes are drying by the window.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Quần áo ướt của cô ấy đang khô bên cửa sổ.",
+                  "focus_en": [
+                    "clothes"
+                  ],
+                  "focus_vi": [
+                    "Quần áo"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 0,
+              "sourcePosRaw": "n.",
+              "sourceVietnameseMeaningRaw": "quần áo",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            }
+          ],
+          "reference": {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "A1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/663/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/663/rawHeadword",
+            "rawPosEvidencePointer": "/records/663/sourcePosRaw",
+            "recordEvidenceSha256": "e330f81160bce1ab937aff1362acebd8229b6cf83542219bbfa976b409104e35",
+            "recordIndex": 663,
+            "sourceNoteGuid": "E)z$fjuC_|",
+            "sourceRecordId": "1788223606655",
+            "structuredOxfordSenseGroupOrdinals": [
+              0
+            ]
+          },
+          "sourceFields": {
+            "CEFR": "A1",
+            "Example": "Pack warm <mark class=\"v-target\">clothes</mark> for the winter trip.<br>Her wet <mark class=\"v-target\">clothes</mark> are drying by the window.",
+            "Example Data": "[{\"pos\":\"n.\",\"meaning_vi\":\"quần áo\",\"examples\":[{\"example_en\":\"Pack warm clothes for the winter trip.\",\"example_vi\":\"Hãy mang quần áo ấm cho chuyến đi mùa đông.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"clothes\"],\"focus_vi\":[\"quần áo\"]},{\"example_en\":\"Her wet clothes are drying by the window.\",\"example_vi\":\"Quần áo ướt của cô ấy đang khô bên cửa sổ.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"clothes\"],\"focus_vi\":[\"Quần áo\"]}]}]",
+            "Example EN 1": "Pack warm clothes for the winter trip.",
+            "Example EN 2": "Her wet clothes are drying by the window.",
+            "Example EN 3": "",
+            "Example EN 4": "",
+            "Example EN 5": "",
+            "Example EN 6": "",
+            "Example EN 7": "",
+            "Frequency": "1407",
+            "Irregular Forms": "[]",
+            "Oxford List": "Oxford 3000",
+            "Part of Speech": "noun",
+            "Phonetic": "/kləʊðz/",
+            "Pronunciation Data": "[{\"locale\":\"UK\",\"ipa\":[\"/kləʊðz/\",\"/kləʊz/\"],\"audio_keys\":[\"uk_pron/c/clo/cloth/clothes__gb_1\",\"uk_pron/c/clo/cloth/clothes__gb_2\"]},{\"locale\":\"US\",\"ipa\":[\"/kləʊðz/\",\"/kləʊz/\"],\"audio_keys\":[\"us_pron/c/clo/cloth/clothes__us_2_rr\",\"us_pron/c/clo/cloth/clothes__us_1_rr\"]}]",
+            "Sound_uk": "",
+            "Sound_us": "",
+            "Study Order": "664",
+            "Từ loại": "danh từ",
+            "Variant Data": "[]",
+            "Vietnamese": "quần áo",
+            "Word": "clothes"
+          }
+        },
+        {
+          "candidateSourceSenseGroups": [],
+          "reference": {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::A1",
+                "value": "A1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "A1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/294/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/294/rawHeadword",
+            "rawPosEvidencePointer": "/records/294/sourcePosRaw",
+            "recordEvidenceSha256": "4fd43ae55b88a64458fdbe61478ad8d3e828cd5f9e6be96c8a98dbc477a3c001",
+            "recordIndex": 294,
+            "sourceNoteGuid": "fJrW3YHfk)",
+            "sourceRecordId": "1556384731100",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          "sourceFields": {
+            "Example": "I bought warm <b>clothes</b> for the cold winter.",
+            "IPA": "/kləʊðz/",
+            "Image": "<img src=\"flat-lay-with-comfort-warm-outfit-for-cold-weather-comfortable-autumn-picture-id1058036480.jpg\">",
+            "Meaning": "<i>Clothes</i> are what people wear to cover their bodies.<br><b>quần áo, đồ mặc</b>",
+            "PoS": "noun",
+            "Sound": "[sound:oxford-0a04543c-25aeeffd-91b945c9-31e5c5c4-ea6f1673.mp3]",
+            "Sound_Example": "[sound:googletts-9cac237b-8fa89c73-1b81d1ad-36a6ce21-87a5cb09.mp3]",
+            "Word": "clothes",
+            "noteid": "1556384731100"
+          }
+        }
+      ],
+      "sourceReferences": [
+        {
+          "artifact": "oxford-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "CEFR",
+              "value": "A1"
+            }
+          ],
+          "corpus": "OXFORD_5000",
+          "normalizedPosCandidates": [
+            "NOUN"
+          ],
+          "rawContentPointer": "/records/663/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/663/rawHeadword",
+          "rawPosEvidencePointer": "/records/663/sourcePosRaw",
+          "recordEvidenceSha256": "e330f81160bce1ab937aff1362acebd8229b6cf83542219bbfa976b409104e35",
+          "recordIndex": 663,
+          "sourceNoteGuid": "E)z$fjuC_|",
+          "sourceRecordId": "1788223606655",
+          "structuredOxfordSenseGroupOrdinals": [
+            0
+          ]
+        },
+        {
+          "artifact": "vocab4600-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "deck:4600 English Vocab::A1",
+              "value": "A1"
+            },
+            {
+              "sourceField": "noteTag",
+              "value": "A1"
+            }
+          ],
+          "corpus": "ENGLISH_VOCAB_4600",
+          "normalizedPosCandidates": [
+            "NOUN"
+          ],
+          "rawContentPointer": "/records/294/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/294/rawHeadword",
+          "rawPosEvidencePointer": "/records/294/sourcePosRaw",
+          "recordEvidenceSha256": "4fd43ae55b88a64458fdbe61478ad8d3e828cd5f9e6be96c8a98dbc477a3c001",
+          "recordIndex": 294,
+          "sourceNoteGuid": "fJrW3YHfk)",
+          "sourceRecordId": "1556384731100",
+          "structuredOxfordSenseGroupOrdinals": []
+        }
+      ],
+      "sourceSupportedMeaningCandidates": [
+        "garments worn to cover the body"
+      ],
+      "unresolvedBoundaryItems": []
+    }
+  ],
+  "fingerprint": "da432301b6b2aef66c767fd3eb3482750f8c9d8dc30dd41f08e93da648944070",
+  "microBatch": 4,
+  "parentFingerprint": "1010457b2f4cd0a60917317b0cec1815c2e8bcad023757fb6355ad534894877f",
+  "sourceInventoryCount": 9677
+}

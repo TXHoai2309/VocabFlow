@@ -1,0 +1,247 @@
+{
+  "reviewerKind": "ISOLATED_AI_REVIEW_AGENT",
+  "blindFirstPass": true,
+  "agentTask": "review_micro_01_micro02",
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2K:meeting:planned-gathering",
+      "effectiveContentHash": "2dbe368eee85e5cc552b87f89ad0d7a401103a31b32f3b45e4f39b60d8676981",
+      "assessment": "REVIEW",
+      "explanationVi": "Nguồn cuộc họp và họp để lên kế hoạch hỗ trợ dịp gặp có sắp xếp để thảo luận. Ví dụ giữ cuộc họp của chúng tôi, chủ đề vườn trường và bốn mươi phút. Danh từ đếm được đúng; nhưng hold a meeting là tổ chức/tiến hành cuộc họp, không chỉ việc sắp xếp trước, nên ghi chú cần sửa.",
+      "blocksPublication": true,
+      "issues": [
+        {
+          "field": "grammarNotesEn",
+          "problemVi": "hold a meeting không chỉ nghĩa sắp xếp cuộc họp trước khi diễn ra.",
+          "minimalCorrectionVi": "Đổi describes arranging it thành means organizing or conducting the meeting."
+        }
+      ],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:thank:express-gratitude",
+      "effectiveContentHash": "14cf0eed4b140140ff61da5ddd8dc0c84736bdafafe614c9a87764ca8e52e73d",
+      "assessment": "PASS",
+      "explanationVi": "Nhóm Oxford cảm ơn có thanked for help hỗ trợ định nghĩa bày tỏ biết ơn. Hoa là người cảm ơn, thủ thư là người tìm sách, bản dịch giữ quan hệ tác nhân và việc tìm được sách đã xảy ra. Thank someone for danh từ hoặc dạng ing và tân ngữ chỉ người đều đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:ferry:passenger-boat",
+      "effectiveContentHash": "7b479f8fc7df667a0e085b793ef3f470cc4b6a1aa7cf60f72b733e0cdc04189e",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn boat carries passengers và qua hồ hỗ trợ phà chở người qua vùng nước; xe là đối tượng chuyên chở cùng nghĩa phà. Ví dụ last ferry left before sunset giữ chuyến cuối, rời đảo và thời điểm trước hoàng hôn. Danh từ đếm được, số nhiều ferries và take a ferry đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:town:settlement",
+      "effectiveContentHash": "4c4dfb2d1015eacc82449813b85d4f97ceeb7d41de6e079076467aa040c47e56",
+      "assessment": "PASS",
+      "explanationVi": "Hai nguồn thị trấn và nơi sống làm việc nhỏ hơn thành phố hỗ trợ định nghĩa khu dân cư có nhà và cơ sở kinh doanh. Generally tránh khẳng định tuyệt đối về cấp hành chính. Town opened playground dùng địa danh đại diện cộng đồng, bản dịch giữ sân mới bên chợ. Ghi chú in town đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:reading:written-text-activity",
+      "effectiveContentHash": "6d6be454ab2abd75eff2b05683e6d5301c2471300509526129f820aa1ebfa0f1",
+      "assessment": "PASS",
+      "explanationVi": "Nhóm Oxford việc đọc, đọc sách và reading before bed hỗ trợ hoạt động tiếp nhận văn bản, không lẫn buổi đọc hoặc số đo. An hour of reading helped Bao được dịch một giờ đọc sách giúp Bảo, giữ thời lượng, người hưởng lợi và nội dung sinh vật biển. Ghi chú uncountable trong nghĩa này đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:roast:dry-heat-cooking",
+      "effectiveContentHash": "e24dc7c907e70401b0c7d0aea063716855f61acbf6394212a98d8c3d73a00958",
+      "assessment": "PASS",
+      "explanationVi": "EN nguồn cook in oven or over fire và turkey hỗ trợ nướng bằng nhiệt khô; VI nguồn rang không buộc giữ bản dịch hẹp không phù hợp gà tây. Ví dụ roasted carrots with garlic giữ chúng tôi, cà rốt, tỏi và bữa tối. Ngoại động từ và roasted mô tả thức ăn đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:popular:liked-by-many",
+      "effectiveContentHash": "b48898b760329a5778af8dfd7bc2df3a2e97d8607475c587b4878bb227b92d80",
+      "assessment": "PASS",
+      "explanationVi": "Oxford được yêu thích, phổ biến cùng 4600 liked by many hỗ trợ nghĩa được nhiều người chọn hoặc yêu thích. Bể bơi mới popular with local families giữ nhóm gia đình địa phương và hiện tại. Tính từ, popular with nhóm người và in địa điểm đúng; không thêm nghĩa chất lượng tốt.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:building:roofed-structure",
+      "effectiveContentHash": "e0f9134b3c5052277ae4c0107aece123f10616f0f9b331b1c7b1aca5033ad840",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn tòa nhà và ví dụ thư viện, nhà cạnh ga hỗ trợ công trình vật lý có mái tường, không lẫn hoạt động xây dựng. Brick building shelters fire engine được dịch tòa nhà gạch là nơi để xe cứu hỏa của làng, giữ vật được che chở và sở hữu. Danh từ đếm được đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:tram:street-rail-vehicle",
+      "effectiveContentHash": "ab2ecde53b9f969760c0716e3f5bca832490d4a92af9fead2b73a8adac99859d",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn xe điện trên mặt đất như streetcar và tàu điện trong phố hỗ trợ phương tiện chở khách trên ray đường phố. Ví dụ một chiếc màu vàng dừng ngoài nhà hát giữ số một, màu và vị trí. Ghi chú by tram chỉ phương thức, on a tram chỉ ở trên xe đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:agree:same-opinion",
+      "effectiveContentHash": "20201eb55944edddd4e332f9e7304f8f440da4142125a15cc74027349be24181",
+      "assessment": "PASS",
+      "explanationVi": "4600 định nghĩa same opinion và Oxford agree with suggestion hỗ trợ đồng tình về một nhận định. I agree with Thu that path needs lighting giữ tôi, Thu, ý kiến về lối đi và mức tốt hơn trong VI. Ghi chú agree with người hoặc ý kiến, agree that mệnh đề đúng; tách khỏi chấp thuận hành động hợp lý.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:agree:accept-plan",
+      "effectiveContentHash": "634c55387274bf16ac6aacc3245f40ee422e1d17e3dd0637189504289006ff87",
+      "assessment": "PASS",
+      "explanationVi": "Oxford agreed to meet again hỗ trợ đồng ý thực hiện một hành động riêng với đồng tình quan điểm. Neighbours agreed to share cost giữ tác nhân số nhiều, việc chia sẻ chi phí và hàng rào mới. Agree to do và agree on quyết định chung đúng, định nghĩa không biến thành hứa đã thực hiện việc đó.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:meal:eating-occasion",
+      "effectiveContentHash": "dfd611caefe4b5a0c5f5b43cdc3e7228f84b04ae0d8117ea6cca49aad832a651",
+      "assessment": "REVIEW",
+      "explanationVi": "Nguồn có dịp ăn và hot meal nên định nghĩa bao gồm bữa và thức ăn của bữa hợp lý, danh từ đếm được đúng. Tuy nhiên prepared được dịch nấu và for được thêm để mời; EN không khẳng định có nấu hay mời. Cần giữ chuẩn bị cho khách lữ hành để không thêm hành động ngoài câu.",
+      "blocksPublication": true,
+      "issues": [
+        {
+          "field": "examples[0].vi",
+          "problemVi": "Nấu và để mời thêm thông tin không được prepared ... for khẳng định.",
+          "minimalCorrectionVi": "Chúng tôi chuẩn bị một bữa ăn đơn giản cho những người đi đường mệt mỏi."
+        }
+      ],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:piano:keyboard-instrument",
+      "effectiveContentHash": "a65a6fa84e01f5b7ae02484c3dc295f5b7a669e424665b858d865bda2b131a23",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn đàn piano/dương cầm và luyện đàn xác lập nhạc cụ; mô tả phím điều khiển búa gõ dây là định nghĩa phân biệt phù hợp. Old piano was tuned before students recital giữ đàn cũ, bị động chỉnh dây và thứ tự trước buổi diễn. Play the piano và danh từ đếm được đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:pollute:contaminate-environment",
+      "effectiveContentHash": "bb5b8ff22d8d9b4e417a88e829e8c76d7a0cbf5366949900de14859e1aa018a7",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn make air water land dirty hỗ trợ nghĩa gây ô nhiễm môi trường bằng chất không mong muốn. Discarded batteries can pollute soil giữ pin bị vứt, khả năng có thể và đất quanh bãi rác, không đổi thành sự việc chắc chắn đã xảy ra. Ngoại động từ pollute và with chất ô nhiễm đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:tea:leaf-drink",
+      "effectiveContentHash": "0b7f41414e619240d855079950488abf9b496490ab972f5bc475514d52d92f26",
+      "assessment": "PASS",
+      "explanationVi": "Hai nguồn trà uống và nước nóng lên lá khô hỗ trợ thức uống pha lá trà; bản thảo không thêm nghĩa bữa trà. Host poured warm tea giữ chủ nhà rót, nhiệt độ ấm, chén gốm nhỏ số nhiều. Normally uncountable và a tea là suất phục vụ là ghi chú số lượng phù hợp.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:guitar:string-instrument",
+      "effectiveContentHash": "056ee6d146fd16fa21d449126859e0db80319fc2d47bf07463c5c744dc9382ab",
+      "assessment": "PASS",
+      "explanationVi": "Nhóm ghi-ta và chơi trong ban nhạc hỗ trợ nhạc cụ dây gảy; định nghĩa không lẫn nhạc cụ kéo dây. Linh carried her guitar to rehearsal room giữ người mang, sở hữu của mình và đích phòng tập. Danh từ đếm được, play the guitar và loại acoustic/electric phù hợp.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:jungle:dense-tropical-forest",
+      "effectiveContentHash": "6de37b79594aba859d3b24971c8a74107e06c651f5388c2d36917274459a6aae",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn tropical warm rainy forest with thick plants hỗ trợ rừng rậm nóng ẩm và nghĩa Việt rừng nhiệt đới. Research team followed narrow trail through giữ nhóm nghiên cứu, lối hẹp và chuyển động xuyên qua. Dạng a jungle cho một khu rừng và jungle khái quát địa hình đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:understand:grasp-meaning",
+      "effectiveContentHash": "a7f32b7fe26aa2f2d938580c8037d17e71b05a47a712d4c9cd10196fc3284ac7",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn know what it means và Oxford hiểu câu hỏi hỗ trợ nắm ý nghĩa thông tin, khác thấu hiểu cảm xúc. After demonstration I understood safety instructions giữ tôi, quá khứ đã hiểu và sau buổi hướng dẫn thực hành. Understood là quá khứ lẫn phân từ; tân ngữ danh từ/mệnh đề đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:understand:recognize-feelings",
+      "effectiveContentHash": "73a4661dd488bbcd41bc905587bffa4ab97e328bb640547051715186b45ea02b",
+      "assessment": "PASS",
+      "explanationVi": "Oxford understand how you feel hỗ trợ thấu hiểu người khác, tách hợp lý khỏi hiểu nội dung. Nhi understands why brother feels nervous giữ người thấu hiểu và người lo trước trận đấu; anh trai là lựa chọn quan hệ gia đình cụ thể trong tình huống gốc. Ghi chú hiểu không buộc đồng ý hành động chính xác.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:bored:lack-interest",
+      "effectiveContentHash": "57d9710050c3d507316adbb15a33ace2e05da39597afb9119e5216c0179fd4ac",
+      "assessment": "PASS",
+      "explanationVi": "Nhóm cảm thấy buồn chán với hành trình dài và chờ xe hỗ trợ cảm xúc thiếu hứng thú. Children were bored by repetitive game giữ bọn trẻ là người cảm thấy và trò đoán lặp lại là nguyên nhân trong VI. Ghi chú phân biệt bored là cảm xúc với boring là tác nhân gây chán đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:tutor:individual-teacher",
+      "effectiveContentHash": "44ae1de7ebd7c612a00f2e3985e41e927a55805bc74d9376e544d47c8fa5bda0",
+      "assessment": "REVIEW",
+      "explanationVi": "Nguồn duy nhất định nghĩa người dạy một học sinh, nhưng bản thảo mở thành individual or small-group lessons. Small-group là phạm vi bổ sung chưa có căn cứ trong handoff cần quyết định trước xuất bản. Ví dụ gia sư giải thích phân số bằng miếng táo giữ tác nhân và phương tiện, POS và ghi chú môn học đúng.",
+      "blocksPublication": true,
+      "issues": [
+        {
+          "field": "definitionEn",
+          "problemVi": "Small-group mở số người học ngoài nguồn one student.",
+          "minimalCorrectionVi": "Bỏ or small-group; giữ A teacher who gives individual lessons, often as extra help."
+        }
+      ],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": [
+        "Chốt có cho phép mở nghĩa gia sư một học sinh sang dạy nhóm nhỏ với bằng chứng bổ sung hay không."
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:nurse:healthcare-professional",
+      "effectiveContentHash": "981884877636cc6ed0f6f6978086c683bebf6eb07b233f893a550b7b3dc78c07",
+      "assessment": "PASS",
+      "explanationVi": "Oxford y tá và 4600 người giúp bệnh nhân trong viện hỗ trợ người làm nghề chăm sóc người bệnh; không giới hạn giới tính hoặc nơi làm việc một cách sai lệch. Nurse changed bandage gently giữ người điều dưỡng, hành động thay băng và nhẹ nhàng. Danh từ đếm được cùng nghĩa Việt điều dưỡng phù hợp.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    }
+  ]
+}

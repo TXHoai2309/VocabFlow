@@ -1,0 +1,48 @@
+{
+  "reviewerKind": "ISOLATED_AI_REVIEW_AGENT",
+  "blindFirstPass": false,
+  "agentTask": "review_micro_05",
+  "reviewScope": "Independent recheck of six BEFORE/AFTER changes against included source evidence. Editorial PASS does not resolve DRAFT identity or rights and is not publication approval.",
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2K:month:calendar-period",
+      "effectiveContentHash": "d277565972511ce45218c69e2c409cdaa5344d69deacb6bad12394c01022637d",
+      "assessment": "PASS",
+      "explanationVi": "Bản sửa chậm nhất vào cuối tháng sau giữ đúng by the end, bao gồm thời điểm cuối tháng thay vì bắt buộc sớm hơn. Dự kiến giữ sắc thái should; nghĩa tháng, số đếm được và next month vẫn khớp hai nguồn.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:cousin:aunt-uncle-child",
+      "effectiveContentHash": "e3fa24c5c4ddd1a0d16d9b01c3334145952324b46deb22f7adaff215300a981b",
+      "assessment": "PASS",
+      "explanationVi": "Older cousin và She cung cấp trực tiếp tuổi tương đối và giới tính, nên Chị họ không suy đoán thêm. Hai câu giữ tác nhân giúp sơn cổng gỗ và chọn màu; màu sơn là cách dịch tự nhiên trong ngữ cảnh sơn cổng, nghĩa họ hàng và ghi chú nguồn không đổi.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:hotel:paid-lodging",
+      "effectiveContentHash": "278d7950f9b2377fbf02b17525637bd3ce20c29cbe625cf64870c231e6da89fa",
+      "assessment": "PASS",
+      "explanationVi": "Cụm cho đến giờ chuyến tàu tối khởi hành hoàn chỉnh mốc thời gian hàm ý của until the evening train, giữ khách sạn làm tác nhân và hành lý của chúng tôi. Nghĩa lưu trú trả tiền và cấu trúc stay at/book a room vẫn phù hợp hai nguồn.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:sing:vocal-music",
+      "effectiveContentHash": "a897a3a70b4036748144851f5f40b3aff95aa6a43db875c467de806e03027276",
+      "assessment": "PASS",
+      "explanationVi": "Sang softly được dịch hát khẽ, giữ rõ âm lượng nhỏ thay cho sắc thái nhẹ nhàng của bản trước. Chủ thể dàn hợp xướng, mốc cuối buổi lễ và quá khứ được giữ tự nhiên; động từ sing không tân ngữ đúng ghi chú và nhóm nghĩa hát của nguồn.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    }
+  ]
+}
