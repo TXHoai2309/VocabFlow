@@ -1,0 +1,229 @@
+{
+  "reviewerKind": "ISOLATED_AI_REVIEW_AGENT",
+  "blindFirstPass": true,
+  "agentTask": "/root/cp03_review_03",
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2K:style:manner",
+      "effectiveContentHash": "c8c99c54c2cfc9aa014842767db71160c6982f09fc1a3801950174a5de8e249c",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn 4600 định nghĩa cách làm việc, còn Oxford minh họa diện mạo; nghĩa manner tách đúng khỏi visual-design. Ví dụ giữ người dạy, học sinh và hành vi đặt câu hỏi; danh từ và cấu trúc style of phù hợp.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:style:visual-design",
+      "effectiveContentHash": "c28f3d72010a060c061e57dfeb1c41ade1cb5dd3081abb02ca5de303e9328f34",
+      "assessment": "PASS",
+      "explanationVi": "Các ví dụ phòng và ghế của Oxford cùng quần áo trong 4600 hỗ trợ nghĩa thiết kế này. Hai chiếc đèn, cùng kiểu và khác màu đều được giữ trong bản dịch; danh từ có thể dùng a style và in a style đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:somebody:unspecified-person",
+      "effectiveContentHash": "2dc6ea588618810b1f1eb84463ab59c72536984d1e2e21dcd9349327723b67fe",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn Oxford ghi đại từ ai đó/người nào đó và hai ví dụ người không xác định. Định nghĩa còn cho phép không nêu danh tính; bản dịch giữ khăn xanh, một chiếc, ghế của tôi và kết quả đã để lại; động từ số ít phù hợp.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:communal:shared-by-group",
+      "effectiveContentHash": "898074ca9aa49e11925b73162316e212d632416139dd631e4361f67e1e30555b",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn 4600 nói liên quan nhóm người và công viên chung, hỗ trợ định nghĩa shared/involving. Ví dụ mới giữ các cư dân, ăn cùng nhau và một phòng ăn chung; tính từ bổ nghĩa không gian dùng chung đúng, không cần tách nghĩa mới.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:difference:not-alike",
+      "effectiveContentHash": "9aa7e22ec9b88e2635870f4d147d2ed4f39a75947bed8459bc1a227f3c6585b0",
+      "assessment": "FAIL",
+      "explanationVi": "Định nghĩa và nghĩa Việt khớp cả hai nguồn về sự không giống nhau; cấu trúc between đúng. Tuy nhiên these coats không xác định đúng hai áo, trong khi bản dịch thêm hai; số lượng cần được bảo toàn trước khi xuất bản.",
+      "blocksPublication": true,
+      "issues": [
+        {
+          "field": "content.examples[0].vi",
+          "fix": "Đổi thành Điểm khác biệt chính giữa những chiếc áo khoác này là trọng lượng của chúng.; hoặc thêm two vào câu tiếng Anh nếu thực sự định nói hai áo.",
+          "explanationVi": "These coats chỉ số nhiều; hai chiếc thêm số lượng cụ thể không được câu tiếng Anh xác lập."
+        }
+      ],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:conversation:exchange-of-talk",
+      "effectiveContentHash": "bb76f5115e3bb085fb1aad054b62fec8e22b5b8914b4d90bfcd9f6cea06b1658",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn Oxford có trò chuyện về du lịch và kéo dài trong bữa trưa, hỗ trợ trao đổi bằng lời. Bản dịch giữ người nói là chúng tôi, chuyển chủ đề sang sách đã đọc gần đây; quan hệ trước sau của had read được diễn đạt tự nhiên bằng mới đọc.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:astonish:great-surprise",
+      "effectiveContentHash": "5fd2a630907a34cf94750868da7d426ed91e1ee39fa68ffdbf54911a9fab5d2b",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn 4600 định nghĩa greatly surprise, hỗ trợ extremely surprised và làm kinh ngạc. Bản dịch giữ bức vẽ nhiều chi tiết của một đứa trẻ cùng các khách là người ngạc nhiên; động từ ngoại động và đối tượng cảm nhận được phân biệt đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:geography:earth-study",
+      "effectiveContentHash": "9bbcf2bddcc7b939f676062c7ba5ef6e6cd8bacc1046bd22b5cac6f2c9393fd5",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn 4600 nêu Trái Đất, đất đai, thời tiết; Oxford minh họa môn học về sông và bản đồ. Phạm vi địa lý phù hợp; ví dụ giữ chúng tôi, khí hậu và hai vùng ven biển; ghi chú không đếm được được giới hạn rõ vào môn học.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:sheep:wool-animal",
+      "effectiveContentHash": "46d6deea0a26a3d6c1504bcdaceeb298d0a4ff12d0fbf24cc5f146b0cb7d003b",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn Oxford ghi con cừu và ví dụ một con/nhiều con, hỗ trợ danh từ động vật. Ví dụ mới giữ chính xác ba con, hành động đang nghỉ và bức tường đá; ghi chú sheep giữ nguyên dạng số nhiều đúng, không nhầm thành danh từ khối.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:cage:animal-enclosure",
+      "effectiveContentHash": "2640b84f189af91ff9bf3ef4a7bcd57ab5b3327375e7dbe35b13359f467d8d31",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn 4600 định nghĩa vật giữ động vật không thoát và ví dụ vẹt trong lồng. Định nghĩa có song hoặc lưới làm rõ loại enclosure; bản dịch giữ chúng tôi, đĩa nước sạch và lồng của con thỏ; danh từ đếm được và in a cage đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:reason:explanation",
+      "effectiveContentHash": "cd02b49186748f7e9a3910d0a1e337c6f4f0b45c3c5057473c8ccbc68650cb19",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn Oxford gồm reason for delay và reason to worry, còn 4600 nêu lý do giải thích hành động. Định nghĩa bao quát căn cứ quyết định hợp nghĩa; ví dụ giữ tuyết dày và giao hàng chậm, cấu trúc for/to phù hợp với danh từ.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:team:working-group",
+      "effectiveContentHash": "1fc77b3515bbd35199e7712ce176278649e21bdd3dd687a558a83d9c8ebee749",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn 4600 nêu nhóm làm việc cùng nhau và đội thể thao; Oxford có họp và luyện tập. Định nghĩa task/activity/sport phản ánh cả hai; bản dịch giữ đội chúng tôi, từng kiện hàng và trước khi rời kho; ghi chú danh từ tập hợp có biến thể hòa hợp đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:uncle:male-relative",
+      "effectiveContentHash": "16eec6f737cbcb05ba4504b5b7e7982bd53ba0b2f9edea368973b40968758745",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn Oxford liệt kê chú, bác, cậu, dượng, nên định nghĩa quan hệ cha mẹ hoặc chồng của dì/cô phù hợp. Ví dụ chủ động nêu em trai của mẹ, khiến cậu là chính xác; giữ người sửa và cổng nhà chúng tôi, không suy diễn nhánh họ hàng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:excel:very-good-at",
+      "effectiveContentHash": "242ebb3a7ce4bc2db86f177a789c65b6153bf6266c585b7234abe68d025eed75",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn 4600 định nghĩa rất giỏi một môn/hoạt động và ví dụ excels at playing. Bản dịch giữ Linh, giải thích ý tưởng khó và rõ ràng; định nghĩa exceptionally good phù hợp, ghi chú at với danh từ/ing và in với lĩnh vực đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:city:large-settlement",
+      "effectiveContentHash": "1d562f19988f5fcbac77baec837bb40858ed923a8cdd77855d75f9d0ae24bd3b",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn 4600 mô tả large important town và Oxford thành phố nhiều công viên. Định nghĩa đô thị lớn phù hợp nghĩa được chọn; bản dịch giữ tuyến xe buýt mới đến bệnh viện và has opened thành đã mở; lưu ý phân loại pháp lý tránh tuyệt đối hóa quy mô.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:computer:electronic-device",
+      "effectiveContentHash": "1707af014ec37a21b3457fe667f32b41594915bc97bfe3f5110d50c2ae98e57a",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn Oxford ghi máy tính và sử dụng cho công việc, hỗ trợ thiết bị xử lý thông tin. Bản dịch giữ tôi, mục đích sắp ảnh và tiêu chí ngày; tiếng Việt dùng không đánh dấu thì cho used vẫn tự nhiên; danh từ đếm được và use for đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:attic:roof-space",
+      "effectiveContentHash": "e55d281dbd06c6af8d409d00c9497760ef899501443e7261e12e0fb7b2ca85c9",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn 4600 định nghĩa phòng ngay dưới mái nhà, hỗ trợ roof-space và gác mái. Bản dịch giữ cầu thang hẹp, hướng dẫn lên và vị trí trên các phòng ngủ của chúng tôi; in the attic đúng, mở rộng building không tạo nghĩa khác.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:dinner:main-meal",
+      "effectiveContentHash": "8a45569743c7c5aa688458ab99ea723bcf39d4cbfab8b4e8d5000c881dacf3a7",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn Oxford có bữa tối/bữa chính, còn 4600 nêu bữa chính buổi tối. Định nghĩa thường ăn tối giữ biến thiên thời điểm; ví dụ có hòa nhạc buổi tối nên dịch bữa tối hợp cảnh, giữ ăn sớm và trước sự kiện; have dinner không mạo từ đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:friendly:kind-to-others",
+      "effectiveContentHash": "9cdd52551d16a99f5088acfc9dbdfdf6ac036a7e2b8a210f60f89c2a49b19e20",
+      "assessment": "FAIL",
+      "explanationVi": "Nguồn Oxford hỗ trợ tính từ thân thiện qua hàng xóm và nhân viên cửa hàng. Định nghĩa và giới từ to/towards hợp nghĩa; nhưng where to wait chỉ địa điểm chờ, bản dịch thêm ngồi làm sai tư thế được truyền đạt và cần sửa.",
+      "blocksPublication": true,
+      "issues": [
+        {
+          "field": "content.examples[0].vi",
+          "fix": "Đổi thành Nhân viên lễ tân thân thiện chỉ cho chúng tôi chỗ chờ.",
+          "explanationVi": "Where to wait không xác lập ngồi; bỏ ngồi để không thêm tư thế."
+        }
+      ],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:flavor:food-taste",
+      "effectiveContentHash": "75d7eebc3d17c6ce9dcb314ff239bb58fc7fd84240604f365b51861a17467670",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn 4600 định nghĩa vị thức ăn/thức uống, phù hợp distinctive taste. Bản dịch giữ các hạt rang là tác nhân và bánh mì nhận hương vị bùi; nutty không bị đổi thành hạt cụ thể. Ghi chú flavor/flavour đúng ranh giới chính tả Mỹ/Anh.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:hobby:leisure-activity",
+      "effectiveContentHash": "07de47d6bf1cecc83bd1dee4d9bad8cec6fb165e7f2588cfe497bd5d0114ab01",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn Oxford gồm nhiếp ảnh, làm vườn; 4600 có vẽ trong thời gian rảnh. Định nghĩa hoạt động làm thường xuyên để vui phù hợp; bản dịch giữ làm thuyền mô hình, anh ấy, became và mức ưa thích nhất; hobby đếm được, paid work là giới hạn sử dụng hợp lý.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    }
+  ]
+}

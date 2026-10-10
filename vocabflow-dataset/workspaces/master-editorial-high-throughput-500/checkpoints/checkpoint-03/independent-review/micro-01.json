@@ -1,0 +1,249 @@
+{
+  "reviewerKind": "ISOLATED_AI_REVIEW_AGENT",
+  "blindFirstPass": true,
+  "agentTask": "cp03_review_01",
+  "microBatch": 1,
+  "reviewScope": "Blind first pass against handoff full sourceFields, structured source groups and authored manuscript; Author A review/QA not read. PASS concerns editorial lexical content only; rights and canonical identity remain unresolved DRAFT matters.",
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2K:december:month-twelve",
+      "effectiveContentHash": "83e9788396f9e8248c553dd409eed12fa6d3e01e627f2c07ce28af7f48dc335c",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn xác nhận tháng thứ mười hai; định nghĩa và tháng Mười Hai khớp. Ví dụ giữ chủ thể câu lạc bộ, sở hữu tác phẩm và thời tương lai sẽ; viết hoa và giới từ in/on đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:eighteen:number-18",
+      "effectiveContentHash": "9294541a70cc4847c95e502aa41dba04748642f1c5e96d1ed68e83c73ef7cff9",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn mười tám và các ví dụ tuổi, số phòng hỗ trợ số 18. Bản dịch giữ chúng tôi, đúng 18 đèn và vị trí phía trên sân; quy tắc danh từ số nhiều và tuổi đúng. NUMBER vẫn chờ quyết định mô hình.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": [
+        {
+          "boundary": "NUMBER representation",
+          "status": "INTENTIONALLY_UNRESOLVED_DRAFT_NONBLOCKING",
+          "blocksPublication": false
+        }
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:extinct:no-survivors",
+      "effectiveContentHash": "033f7da16f02ca8390904631de8524c82aafce632533c8d0a89209242c4c3fee",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn nói thực vật hay động vật không còn cá thể; định nghĩa theo loài và nghĩa tuyệt chủng diễn đạt chính xác. Ví dụ không nhầm chim sống với mô hình, bản dịch giữ số nhiều và trạng thái đã tuyệt chủng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:plane:aircraft",
+      "effectiveContentHash": "0daaefba019385f8ad3f809da87688b84941dbe92e91c767c865984f2d296a2b",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn mô tả phương tiện có động cơ, cánh và bay; cánh cố định làm rõ nghĩa máy bay. Ví dụ giữ máy bay nhỏ, vật tư và đảo xa xôi; quá khứ không bắt buộc thêm đã trong tiếng Việt. Danh từ đếm được đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:vacation:holiday-break",
+      "effectiveContentHash": "fd976419976895da51b2f9d9e024236df5e35cf0aac0d7efbe1606960cccee74",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn kỳ nghỉ và các ví dụ nghỉ hè hỗ trợ nghỉ làm hoặc học để thư giãn. Câu về Mai giữ hoạt động học vẽ màu nước trong kỳ nghỉ; sở hữu her được hiểu tự nhiên qua chủ thể Mai. On vacation dùng đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:socialize:spend-time-with-people",
+      "effectiveContentHash": "54da79ab9051999ebd1fd843163f8675798d8a61e3bc73b3c91522a4f54f70ac",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn giao lưu với người khác để vui vẻ hỗ trợ định nghĩa xã giao. Bản dịch giữ hàng xóm, sân và thói quen vào các tối ấm áp; nội động từ và cấu trúc socialize with đúng cho nghĩa này.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:product:made-item",
+      "effectiveContentHash": "21e2ce6ac4e5daa6a9a72e36bb49d58dc14506ad74d2accee0a14ae22a378bc2",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn nêu vật được trồng, sản xuất hay tạo ra thường để bán; định nghĩa và nghĩa Việt không mở sang kết quả trừu tượng. Bản dịch giữ cửa hàng, sản phẩm tẩy rửa mới và tuần trước; đếm được phù hợp.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:oh:emotional-reaction",
+      "effectiveContentHash": "7fc4b91a2f9262fb039dbb160c28f77b57858f863039b274bc424674afff92c7",
+      "assessment": "REVIEW",
+      "explanationVi": "Nguồn hỗ trợ ngạc nhiên, đau đớn và vui thích qua ví dụ bánh thơm; bản dịch ví dụ phong bì giữ lỗi nhầm và cảm thán. Tuy nhiên sudden understanding và à cần xác định ranh giới nguồn riêng trước khi xuất bản.",
+      "blocksPublication": true,
+      "issues": [
+        {
+          "field": "content.definitionEn; content.meaningVi",
+          "explanationVi": "Sudden understanding và à mở công dụng nhận ra điều gì, chưa được nhóm nguồn cảm thán ngạc nhiên/đau đớn xác nhận rõ.",
+          "proposedFix": "Giới hạn định nghĩa vào surprise, pleasure or distress; bỏ à và điều vừa nhận ra, hoặc bổ sung bằng chứng nguồn cho công dụng nhận ra."
+        }
+      ],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": [
+        {
+          "boundary": "emotional reaction versus realization/discourse use",
+          "status": "UNRESOLVED_SOURCE_SCOPE",
+          "blocksPublication": true
+        }
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:calendar:date-chart",
+      "effectiveContentHash": "29ae95ad3da2c5db3ed7a18350e60e8968f668f8fd814fe644179042742f9e25",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn bảng ngày, tuần, tháng cùng ví dụ lịch trực tuyến hỗ trợ bảng hoặc màn hình. Bản dịch giữ người đánh dấu, các ngày tập luyện và lịch trong bếp; danh từ đếm được và on a calendar đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:street:settlement-road",
+      "effectiveContentHash": "e35402e123af4fbeff059687e5231d53c2cda292523085eb204b42fa9f42f338",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn đường trong thành phố hoặc làng hỗ trợ đường phố trong khu dân cư; usually có nhà hai bên là mô tả chứ không điều kiện tuyệt đối. Ví dụ giữ công nhân, cây non và dọc phố; across được giải thích đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:hour:sixty-minutes",
+      "effectiveContentHash": "a576986f372ab8edf75eba7b48dafdc0beca0c71acb87be4b11bbfaeb6ebab7d",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn xác nhận sáu mươi phút; định nghĩa và nghĩa Việt khớp thời lượng. Ví dụ giữ buổi học gốm và một giờ rưỡi, không đổi thành một giờ. Mạo từ an do h câm và for/in chỉ thời gian đều đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:success:achievement",
+      "effectiveContentHash": "7e985366eff194274db7f46faa6d091cc24b6cc7b2623cd7acde073845ed07d1",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn hard work/key to success hỗ trợ thành công như kết quả mong muốn. Bản dịch giữ lập kế hoạch cẩn thận chỉ góp phần, không biến thành nguyên nhân duy nhất; cách dùng không đếm được đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:success:successful-thing",
+      "effectiveContentHash": "3ad603211ef0946142c3d5c2964afdccfab66ab73dd9af5db1b39ebbe8fddcc1",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn small business became a success hỗ trợ đối tượng thành công riêng với mạo từ a, phân biệt thành tựu nói chung. Ví dụ hoạt động trao đổi sách và bản dịch đã thành công khớp; không cần dịch máy móc một thành công.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:fulfill:achieve-complete",
+      "effectiveContentHash": "7ca3faf849624775fec3ccf3bfc933f07031ac5a9064367ac18ed4a569cc57c0",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn achieve or finish và dream hỗ trợ hoàn thành yêu cầu hoặc thực hiện mong muốn. Bản dịch giữ học bổng giúp An và ước mơ của An, không đổi chủ thể; tân ngữ trực tiếp và biến thể fulfil đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:tomato:edible-fruit",
+      "effectiveContentHash": "69f237c2f95cbecb0170d0bb849426cf578580dd1089a10be85032f567790f48",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn quả cà chua và cách ăn như rau hỗ trợ quả dùng món mặn; soft/juicy là làm rõ đặc điểm thông thường, không tạo nghĩa mới. Ví dụ giữ Lan, ba quả và mục đích nấu mì nước; plural tomatoes đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:colour:visual-hue",
+      "effectiveContentHash": "0f6ecdf5905cce3c945cb12142e989eb7046a17b19ddac4f109365581e5e3f7b",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn màu, màu sắc và ví dụ nhiều màu hỗ trợ cả chất lượng chung và sắc màu cụ thể. Câu pha giữ hai màu, mục đích tạo xanh lá đậm; ghi chú colour/color và đếm được theo hue phù hợp.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:reptile:scaled-animal",
+      "effectiveContentHash": "154fd2eb65c07559ac37bedd5d5c4ee5dda721dfe803fb3f2b95343a667df393",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn bò sát có vảy và máu lạnh hỗ trợ giải thích nhiệt độ phụ thuộc môi trường. Ghi chú đẻ trứng thường gặp tránh tuyệt đối hóa nguồn; bản dịch giữ người chăm sóc, một con và khu nuôi ấm hơn.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:beach:shore-area",
+      "effectiveContentHash": "ae18a42c528a9286e96c2a43bb2f3d0103c8125c8bbae74bdad5f2a24040a99a",
+      "assessment": "REVIEW",
+      "explanationVi": "Nguồn chỉ bãi biển ven đại dương và các ví dụ biển; thêm other water/ven nước mở ranh giới sang hồ sông chưa có bằng chứng. Ví dụ giữ chúng tôi và sỏi nhẵn; từ from dịch trên không gây đảo nghĩa hành động.",
+      "blocksPublication": true,
+      "issues": [
+        {
+          "field": "content.definitionEn; content.meaningVi",
+          "explanationVi": "Other water và ven nước bao gồm bãi ven hồ/sông, trong khi nguồn chỉ ocean và bãi biển.",
+          "proposedFix": "Đổi other water thành sea/coast và ven nước thành ven biển, hoặc bổ sung bằng chứng nguồn cho bãi ven hồ/sông."
+        }
+      ],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": [
+        {
+          "boundary": "sea shore versus inland-water shore",
+          "status": "UNRESOLVED_SOURCE_SCOPE",
+          "blocksPublication": true
+        }
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:personal:individual-related",
+      "effectiveContentHash": "4ad3fb90fead65af8c0003f3e12c3a1c71f80302ea6d6c2bf05c6df31f7279a3",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn cá nhân, riêng tư cùng thông tin và ý kiến hỗ trợ đời sống, đồ dùng và quan điểm riêng. Bản dịch giữ cuốn sổ, suy nghĩ của tôi và chuyến đi; ghi chú personal không luôn đồng nghĩa bí mật chính xác.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:couch:long-seat",
+      "effectiveContentHash": "ace840200a2cd63661b36e3f773b3869c64b2b1009cc055fe75f58c9bc8e564d",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn ghế dài mềm nhiều người ngồi hỗ trợ đi văng; tựa lưng là đặc điểm làm rõ đồ nội thất này. Bản dịch giữ trẻ em, ngồi cùng nhau và xanh lá; danh từ đếm được, sofa thay thế hợp nghĩa.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:meat:animal-flesh-food",
+      "effectiveContentHash": "aca395f00bb33c573f7939232c862f683181f3dc134188db5798efe2ff1da1e3",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn thịt động vật dùng làm thức ăn hỗ trợ flesh as food. Bản dịch giữ đầu bếp, thái thịt thành các dải mỏng; ghi chú không đếm được thông thường, a piece và meats theo loại chính xác.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    }
+  ]
+}

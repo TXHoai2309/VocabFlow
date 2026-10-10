@@ -1,0 +1,229 @@
+{
+  "reviewerKind": "ISOLATED_AI_REVIEW_AGENT",
+  "blindFirstPass": true,
+  "agentTask": "cp03_review_01",
+  "microBatch": 2,
+  "reviewScope": "Independent blind first pass using full handoff sourceFields and manuscript; no Author A QA read. Rights/identity stay unresolved nonblocking DRAFT.",
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2K:camera:picture-device",
+      "effectiveContentHash": "77e6e202d22ee89c1d498eb654ed3adb044eabf754b58279e8e0cacd100a446b",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn máy ảnh và thiết bị chụp hình hỗ trợ định nghĩa ảnh chụp. Bản dịch giữ Bảo chỉnh máy ảnh trước khi chụp và cây cầu cũ; danh từ đếm được và with a camera đúng nghĩa thiết bị.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:ear:hearing-part",
+      "effectiveContentHash": "e5fdf287f570ed4e656ec11dbcddcb5c9cd8c3438a4016354660820b385b1236",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn tai và ví dụ tai chó hỗ trợ tai người lẫn động vật, gồm phần ngoài nhìn thấy. Bản dịch giữ chó con, đúng một tai và lúc cửa mở; danh từ đếm được và cấu trúc thì thầm vào tai đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:tattoo:skin-design",
+      "effectiveContentHash": "af92e05330a2b9a01e912110e215c05f721a37a92cf429627761cb0f2b4e0ce2",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn hình xăm bằng kim tồn tại lâu dài hỗ trợ đưa sắc tố vào da thay vì chỉ vẽ trên bề mặt. Bản dịch giữ nữ nhạc công, hình lá nhỏ và cổ tay; get/have phân biệt quá trình và trạng thái đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:hospital:medical-institution",
+      "effectiveContentHash": "88430eee4eb5dfa927ce70665b93f87ddf4bf7366407de271ec9e1a948a2c7ed",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn bệnh viện chăm sóc người bệnh hoặc bị thương hỗ trợ định nghĩa cơ sở y tế. Bản dịch giữ bệnh viện mở khoa mới cho trẻ em; quá khứ tiếng Việt hiểu tự nhiên không cần đã. Quy tắc Anh/Mỹ đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:interesting:holds-attention",
+      "effectiveContentHash": "4b0dd297b9871513cb9ba77cce2e771a719d740eb689b6aa7d93e29569f7f706",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn thú vị hỗ trợ làm người khác chú ý hoặc tò mò, không nhầm người đang hứng thú. Bản dịch giữ khu trưng bày và cách giấy được tái chế, không đảo sang giấy tái chế vật khác; ghi chú interested đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:freshwater:non-salty-water",
+      "effectiveContentHash": "ca01ed57cc03867c365984c7ff27db0904f6312eecde976c4045be4b68b5db62",
+      "assessment": "REVIEW",
+      "explanationVi": "Nguồn PoS noun và nghĩa Việt nước ngọt hỗ trợ nội dung danh từ; câu con suối cung cấp nước ngọt dịch trung thành. Nhưng định nghĩa nguồn living in và ví dụ freshwater lake thể hiện cách dùng bổ nghĩa cần lưu ranh giới chưa giải quyết.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [
+        {
+          "candidateMeaningVi": "sống trong hoặc liên quan đến nước ngọt, dùng bổ nghĩa như freshwater lake",
+          "sourceField": "Meaning; Example",
+          "explanationVi": "Living in water that is not the sea và freshwater lake chứng minh cách dùng bổ nghĩa chưa được ví dụ danh từ đề xuất minh họa; cần rà soát nguồn trước khi tạo Sense/POS riêng.",
+          "blocksPublication": false
+        }
+      ],
+      "unresolvedBoundaryItems": [
+        {
+          "boundary": "Source NOUN label and nước ngọt gloss versus living in definition and attributive freshwater lake example",
+          "status": "INTENTIONALLY_UNRESOLVED_DRAFT_NONBLOCKING",
+          "blocksPublication": false,
+          "explanationVi": "Danh từ đề xuất có hỗ trợ PoS/gloss; nguồn đồng thời biểu đạt thuộc tính môi trường nước ngọt. Không suy ra canonical POS hoặc canonical sense từ mâu thuẫn này."
+        }
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:festival:celebratory-event",
+      "effectiveContentHash": "ed6deb78d36f6ac6e7e7f8c9d934a69bd05a6d7e26fce6d58c8951befff3a3f8",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn lễ hội và âm nhạc hỗ trợ sự kiện hoặc chuỗi sự kiện tôn vinh một chủ đề. Bản dịch giữ lễ hội làng, múa và diễu hành đèn lồng; danh từ đếm được và at a festival đúng phạm vi.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:something:unspecified-thing",
+      "effectiveContentHash": "d43a0a28f6f35f2e39331344209beb34c1247dee496e8ea91a127735e4c60669",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn điều hoặc thứ chưa xác định hỗ trợ định nghĩa đại từ bất định. Bản dịch giữ một thứ sáng bóng nằm cạnh cổng, không thêm người; số ít và tính từ đặt sau something phù hợp.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:arrogant:superior-attitude",
+      "effectiveContentHash": "70e21f5cc604bb306ae984462a266490271bcae90caed720c6a1139a05e758e6",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn tự cho mình quan trọng hơn người khác và ra lệnh cho người khác hỗ trợ thái độ kiêu ngạo. Bản dịch giữ thái độ của anh ấy làm những tình nguyện viên mới khó chịu; tính phê phán khác tự tin đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:opinion:personal-view",
+      "effectiveContentHash": "9fabd222a99a3bbd8a73ef9039eab6c324d77676a941e948c76e9d35a3d9b692",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn ý kiến về người hoặc vật và cấu trúc opinion of hỗ trợ nhận định cá nhân. Bản dịch giữ tôi hỏi độc giả, ý kiến của họ và chương cuối; không đổi người đưa ý kiến. Danh từ đếm được phù hợp.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:january:month-one",
+      "effectiveContentHash": "0b033bd015a843590cea3c2ae02cb8e84ed298349a87243ddfd96adb4b49e9cf",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn xác nhận tháng đầu năm và tháng Một; định nghĩa chính xác. Bản dịch giữ các lớp bơi sẽ trở lại trong tháng Một, đúng tương lai và hoạt động resume; chữ hoa và in/on đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:interested:want-to-learn",
+      "effectiveContentHash": "36d0290ddb7612573ff8a21fd817f70268dc7c342da8cdd01e3d676432f1a45d",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn quan tâm và học tiếng Nhật hỗ trợ muốn tìm hiểu hoặc tham gia hoạt động. Bản dịch giữ Linh quan tâm phục chế đồ cũ; cấu trúc interested in cộng danh từ hoặc dạng ing đúng, phân biệt interesting rõ.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:straw:drinking-tube",
+      "effectiveContentHash": "fd243a983943aec800e56a4e66f110cf268a746416bcdbd0825a141251bed827",
+      "assessment": "REVIEW",
+      "explanationVi": "Nguồn ống hút dùng đưa chất lỏng vào miệng hỗ trợ định nghĩa và đếm được. Bản dịch giữ quán cà phê và một ống hút giấy, nhưng iced drink là đồ uống có đá, không chỉ đồ uống lạnh; cần giữ chi tiết đá.",
+      "blocksPublication": true,
+      "issues": [
+        {
+          "field": "content.examples[0].vi",
+          "explanationVi": "Iced biểu đạt đồ uống có đá; lạnh chỉ giữ nhiệt độ, làm mất chi tiết trong câu gốc.",
+          "proposedFix": "Quán cà phê phục vụ đồ uống có đá kèm một ống hút giấy."
+        }
+      ],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:magazine:periodical",
+      "effectiveContentHash": "79f75f0d453fdc2329da9001022d023d5606ade581c87c6e24d5878b817df501",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn tạp chí xuất bản thường kỳ với bài viết hỗ trợ định nghĩa. Bản dịch giữ tạp chí làm vườn đăng hướng dẫn trồng rau thơm; herbs trong ngữ cảnh này hợp lý. Monthly và magazine article diễn giải đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:anyone:any-person",
+      "effectiveContentHash": "0eceaf6daca911ce4175f475f3c40e50e656cb7a118cb34324464169aa458818",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn bất kỳ người nào hỗ trợ đại từ không chọn người cụ thể. Bản dịch giữ điều kiện tìm thấy khăn thất lạc, khả năng để ở quầy tiếp tân; động từ số ít và phân biệt any one chính xác.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:deaf:hearing-loss",
+      "effectiveContentHash": "da235009f9580ea0838d99ff5a67f7b0a9b57fcff21a21572f081ca3d3e2d7d9",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn người hoặc động vật không nghe được hỗ trợ điếc; nghe rất hạn chế là làm rõ mức độ thực tế, không nghĩa mới. Bản dịch giữ nữ họa sĩ, tranh của mình và qua phiên dịch, không giả định mọi người điếc dùng một cách giao tiếp.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:boat:watercraft",
+      "effectiveContentHash": "e1a89835402d9d72d3e9d00eb9f1c0b348cff74c759ec9597e1e790a2547cd2e",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn phương tiện di chuyển trên nước và tàu/thuyền hỗ trợ định nghĩa vessel. Bản dịch giữ thuyền gỗ, nhiều giỏ rau và qua kênh; không đổi thành đi dọc kênh. Danh từ đếm được và by/on đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:meaning:sense-of-expression",
+      "effectiveContentHash": "f5b404cf8028a97270143d1635e4a5d630129e186ab7bfc2adabe2acec38be0b",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn nghĩa của dấu hiệu và từ trong câu hỗ trợ nội dung biểu đạt. Bản dịch giữ giáo viên giải thích và ký hiệu lạ; nghĩa có thể nhiều theo ngữ cảnh và cấu trúc meaning of đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:honor:show-respect",
+      "effectiveContentHash": "c891208071a55d912b48ae7eb5c0ddccf44dc36089969e8a564b5c54ad60f234",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn show respect và tưởng nhớ người đã mất hỗ trợ tôn vinh/bày tỏ kính trọng. Bản dịch giữ nhà trường sẽ tôn vinh các tình nguyện viên và buổi tập hợp đặc biệt; tân ngữ trực tiếp, honor/honour đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:fruit:edible-plant-produce",
+      "effectiveContentHash": "a2e7cce1934b7398bba319f241b2776a0cff96e4421226d198a5d4b54943cfb1",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn trái cây như táo, lê, cam hỗ trợ thực phẩm thực vật dùng theo nghĩa thông thường. Bản dịch giữ chúng tôi xếp trái cây tươi vào giỏ cho chuyến đi; ghi chú danh từ tập hợp không đếm được và fruits theo loại đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    }
+  ]
+}

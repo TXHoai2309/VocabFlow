@@ -1,0 +1,243 @@
+{
+  "reviewerKind": "ISOLATED_AI_REVIEW_AGENT",
+  "blindFirstPass": true,
+  "agentTask": "/root/cp03_review_03",
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2K:wine:grape-drink",
+      "effectiveContentHash": "c9ac8cec2c8886261f6b706a8826f08aebb18b3f352f8f61f71082f3102986da",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn Oxford nêu rượu trắng/đỏ và nguồn 4600 xác định đồ uống từ nho. Định nghĩa lên men phù hợp; bản dịch giữ họ, phần còn lại và một chai nhỏ hơn. Danh từ khối với wines chỉ các loại được giới hạn đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:visitor:visiting-person",
+      "effectiveContentHash": "df80bb8179b6147f129b5298d47f1752dbd91fdd85cf5fc1f0631d3999c51a77",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn Oxford có khách đăng ký lễ tân và khách bảo tàng, hỗ trợ cả thăm người lẫn tham quan nơi chốn. Ví dụ mới giữ một khách, hành vi xin bản đồ và nhiều khu vườn; visitor đếm được và visitor to phù hợp.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:nutritious:providing-nutrients",
+      "effectiveContentHash": "287bddc774719c4a1fbf72f3dffaca1a6d9d5c052be73e20174659e9e2b7079a",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn 4600 xác định thực phẩm có nhiều chất giúp cơ thể phát triển, khớp nghĩa giàu dinh dưỡng. Ví dụ giữ nhà bếp là bên cung cấp, mục tiêu chứ chưa khẳng định đã cung cấp, các bữa ăn cho công nhân; giới hạn không đồng nghĩa ít calorie hợp lý.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:cinema:film-building",
+      "effectiveContentHash": "7c6c1789703cf65ef78af020711e66c124e62c1ade16f6704867d281bc5083e1",
+      "assessment": "PASS",
+      "explanationVi": "Định nghĩa rạp chiếu phim được hỗ trợ bởi cả Oxford và 4600, không lẫn ngành điện ảnh. Bản dịch giữ bổ sung một suất chiều cho các gia đình; cinema/movie theater phản ánh đúng biến thể Anh/Mỹ của danh từ địa điểm.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:sun:solar-star",
+      "effectiveContentHash": "c5630101b2f239070f3b08236adbf113d4d36882dd56dd2f0573e8ce0697926c",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn Oxford ghi mặt trời và cây cần ánh sáng từ mặt trời, hỗ trợ thiên thể cung cấp sáng. Định nghĩa ngôi sao và chuyển động Trái Đất đúng; bản dịch giữ sơ đồ cùng quan hệ chuyển động quanh, tách khỏi ánh nắng mà không gộp hai nghĩa.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:sun:sunlight",
+      "effectiveContentHash": "04aa7d5261a13ed9771a125e883f817743fbec60044d5b8602df4e913a5b3d18",
+      "assessment": "PASS",
+      "explanationVi": "Ví dụ nguồn Oxford sun was warm on our faces trực tiếp thể hiện ánh nắng và hơi ấm, dù nhãn Việt chung là mặt trời. Ví dụ ghế được chuyển khỏi nắng vào râm giữ đủ tác nhân và hai hướng; ghi chú in/out of the sun tránh hiểu vật lý bên trong sao.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:deceive:mislead",
+      "effectiveContentHash": "c6d487574216bebf6a51eb50b1d4f46ad6528374fbe9491a5b3c58b9d90fae20",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn 4600 định nghĩa làm tin điều không thật, khớp định nghĩa và lừa dối. Ví dụ giữ người bán là tác nhân, chúng tôi là người bị lừa và tuổi chiếc xe là nội dung; ngoại động deceive someone about/into đúng với nghĩa này.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:journey:travel",
+      "effectiveContentHash": "3916c433ac6ef74793608d1055831dd3910aa98accb37d7917d5a1b01ad5b081",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn Oxford có hành trình tàu và dừng giữa chuyến đi, 4600 nêu chuyến dài. Định nghĩa often over some distance tránh bắt buộc mọi journey phải dài; bản dịch giữ sương mù, hành trình chúng tôi và đường thung lũng; danh từ đếm được đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:news:recent-information",
+      "effectiveContentHash": "69dbb2a374ccad8395a3ff2d2cb5bb4a01b1f89493ac0cd70580240368d83f99",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn Oxford ghi tin tức với động từ số ít và thông tin khiến mọi người vui. Định nghĩa việc mới xảy ra hoặc mới biết phù hợp; bản dịch giữ tin mở cửa trở lại, chúng tôi và kênh email. News không đếm được, a piece of news và số ít đều đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:skeleton:bone-framework",
+      "effectiveContentHash": "bdb1517876e69d2d675e205caafd63327d41aa34d4f55dc101fb86d0690d7a98",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn 4600 nói toàn bộ xương của cơ thể, hỗ trợ bộ khung xương sinh học. Bản dịch giữ sơ đồ ghi tên nhiều xương trong một bộ xương người, không đổi thành một xương riêng; danh từ đếm được và giới hạn nghĩa không bóng rõ ràng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:description:account-of-features",
+      "effectiveContentHash": "603b88a305a9e9a5a88d327288d08d6431baa77be0e95bf52e2f306bcf3bcb70",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn Oxford và 4600 đều nói mô tả đặc điểm, hỗ trợ thông tin nói hoặc viết. Bản dịch giữ người mô tả là cô ấy, túi thất lạc và khóa kéo hỏng của túi; cấu trúc description of và give a description đúng, không thấy nghĩa nguồn khác bị bỏ.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:instead:replacement",
+      "effectiveContentHash": "f51f1ef3c0ec1097ee2893de6aa1b7f294d8ec881393f8afc12ed133726060bb",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn Oxford minh họa instead đứng cuối câu, nguồn 4600 nêu instead of; bản thảo xử lý cả hai cấu trúc trong một nghĩa thay thế hợp lý. Ví dụ giữ thang máy hỏng làm nguyên nhân, chúng tôi dùng cầu thang bộ thay thế; trạng từ được phân loại đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:pair:two-together",
+      "effectiveContentHash": "2742cda380577faf5e3e1f56180d049aac8493bff8e8ddce43a554342e241c40",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn Oxford có đôi giày và đôi chim, hỗ trợ hai vật hoặc hai con vật thành cặp. Mở rộng người cũng phù hợp nghĩa cặp; bản dịch giữ một đôi găng tay và cạnh hộp dụng cụ, không nhầm một chiếc. Pair đếm được, two pairs là hai bộ đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:tease:make-fun",
+      "effectiveContentHash": "9449b0c7de7b5bd3781602d36348713a9b3bdba70db19a9276f473310b77903d",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn 4600 định nghĩa laugh at/make fun of, hỗ trợ trêu chọc. Bản dịch giữ lời xin đừng, Minh là đối tượng và chiếc kính mới thuộc Minh; không đảo người trêu với người bị trêu. Ghi chú about và biến thiên đùa vui/gây đau lòng đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:excellent:very-good",
+      "effectiveContentHash": "4235e8bd92178eba0062f297a664655de7178da1f507323f8c2d91939174e35b",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn Oxford có dịch vụ và súp tuyệt vời, 4600 nói very good; định nghĩa very high standard giữ cường độ khen. Bản dịch giữ thợ máy, sửa động cơ cũ và làm rất tốt; tính từ chỉ chất lượng, không nhầm thành excellent nghĩa kỹ năng riêng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:pencil:writing-tool",
+      "effectiveContentHash": "45800849b1285af22bb4b28834d283a14493cd0b8459d12598e8a71c0460be08",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn Oxford có vẽ bằng bút chì và viết in pencil, hỗ trợ dụng cụ viết/vẽ. Định nghĩa lõi rắn đủ bao gồm bút cơ học và bút màu; bản dịch giữ cô ấy, gọt bút và trước khi phác cầu. Đếm được và in pencil là cách viết đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:coral:hard-material",
+      "effectiveContentHash": "20c1dea66fb3379296db3f7ca5c2d40984b648c07e66291d1c790b27f7d928f9",
+      "assessment": "REVIEW",
+      "explanationVi": "Nguồn 4600 định nghĩa vật liệu cứng nhưng ví dụ diver admired coral chưa phân biệt vật liệu và tập đoàn sống. NOAA xác nhận san hô cứng tạo bộ xương ngoài, còn san hô mềm khác; bản thảo đã giới hạn vật liệu, bản dịch giữ một mảnh và trưng bày, song nghĩa sinh vật cần xét riêng.",
+      "blocksPublication": false,
+      "issues": [
+        {
+          "field": "content.examples[0].vi",
+          "explanationVi": "Shell có phạm vi rộng hơn vỏ sò; ngữ cảnh bảo tàng cho phép hiểu vỏ động vật biển nhưng không xác định loài sò.",
+          "fix": "Có thể dùng một chiếc vỏ động vật thân mềm hoặc sửa EN thành a seashell để giảm độ cụ thể không được xác lập.",
+          "blocksPublication": false
+        }
+      ],
+      "missingSenseCandidates": [
+        {
+          "senseLabelEn": "Living marine coral organisms",
+          "status": "DEFERRED_BOUNDARY_REVIEW",
+          "evidence": "Nguồn 4600: The diver admired the beautiful coral under the water. Có thể chỉ tập đoàn sống; NOAA phân biệt polyps và bộ xương calcium carbonate.",
+          "externalEvidenceUrl": "https://oceanservice.noaa.gov/education/tutorial_corals/coral01_intro.html"
+        }
+      ],
+      "unresolvedBoundaryItems": [
+        {
+          "field": "sourceSenseCoverage",
+          "explanationVi": "Chưa xác lập canonical cho nghĩa vật liệu so với sinh vật sống; không đồng nhất một mảnh vật liệu với colony đang sống.",
+          "blocksPublication": false
+        }
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:publish:make-publication",
+      "effectiveContentHash": "634253e8e03bf11c0db8afc6d711714da3cd6df1521676b15f27e66a7c7c268e",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn Oxford có truyện tạp chí và xuất bản sách, 4600 có sách/báo in để bán. Định nghĩa đưa văn bản cho độc giả phù hợp phạm vi được chọn; bản dịch giữ nhà xuất bản, một tuyển tập thơ, tháng Mười và tương lai sẽ, động từ ngoại động đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:angry:feeling-anger",
+      "effectiveContentHash": "e30249bce12777c634b6ea86648e6ddbf4797a547760324f822d2456d8b0eb7d",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn Oxford nêu tức giận về quyết định và khi không ai nghe, hỗ trợ cảm xúc này. Ví dụ giữ cô ấy giận tôi và tôi là người để cửa không khóa, không đổi chủ thể gerund. Ghi chú with/about và for chỉ nguyên nhân sau người phù hợp.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:navy:sea-force",
+      "effectiveContentHash": "96f6623f67e10e8ffce496ec1bf88496b363d4a81ad4d65d2e31e8554b6604c3",
+      "assessment": "FAIL",
+      "explanationVi": "Nguồn 4600 định nghĩa quân đội chiến đấu trên biển, hỗ trợ navy và hải quân; tám năm được giữ đúng. Tuy nhiên aunt chưa xác định bên mẹ hay cha và tuổi, dịch Dì chọn nhánh họ hàng không có trong tiếng Anh; cần làm rõ quan hệ trước khi xuất bản.",
+      "blocksPublication": true,
+      "issues": [
+        {
+          "field": "content.examples[0].vi",
+          "explanationVi": "Aunt không xác lập dì bên mẹ; bản dịch tự chọn quan hệ thân thuộc.",
+          "fix": "Làm rõ câu EN thành His aunt, his mother's younger sister, served in the navy for eight years.; hoặc đổi chủ thể EN/VI sang người không cần suy đoán nhánh gia đình."
+        }
+      ],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:grass:ground-plant",
+      "effectiveContentHash": "5f039021a5b244105cdda6f20a4c7e2d09c457285fba195e48c7531fd99d6548",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn Oxford nói cỏ là nơi ngồi và cỏ ướt, nguồn 4600 nói lá xanh phủ đất. Định nghĩa cây lá hẹp phủ đất hợp nghĩa, không lẫn chất gây nghiện. Bản dịch giữ người làm vườn, cắt cỏ trước khách đến; danh từ khối và grasses chỉ các loài đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    }
+  ]
+}
