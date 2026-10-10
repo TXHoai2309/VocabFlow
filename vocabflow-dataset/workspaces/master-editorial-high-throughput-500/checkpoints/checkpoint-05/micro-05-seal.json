@@ -1,0 +1,160 @@
+{
+  "fingerprint": "ec85c795108ff18ad5bf514fcbfd624df2390f2b0c2222a39d56109b6648415e",
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:disaster",
+    "NORMALIZED_HEADWORD:person",
+    "NORMALIZED_HEADWORD:defense",
+    "NORMALIZED_HEADWORD:spider",
+    "NORMALIZED_HEADWORD:bottle",
+    "NORMALIZED_HEADWORD:equator",
+    "NORMALIZED_HEADWORD:electric",
+    "NORMALIZED_HEADWORD:fourteen",
+    "NORMALIZED_HEADWORD:knight",
+    "NORMALIZED_HEADWORD:celebrate",
+    "NORMALIZED_HEADWORD:among",
+    "NORMALIZED_HEADWORD:statement",
+    "NORMALIZED_HEADWORD:refund",
+    "NORMALIZED_HEADWORD:particular",
+    "NORMALIZED_HEADWORD:money",
+    "NORMALIZED_HEADWORD:antibiotic",
+    "NORMALIZED_HEADWORD:advertise",
+    "NORMALIZED_HEADWORD:elephant",
+    "NORMALIZED_HEADWORD:criteria",
+    "NORMALIZED_HEADWORD:journalist"
+  ],
+  "manuscriptSha256": "8111e3aaca911feee1d6080f830f5f7a26b9b116445202e0377d1e922b27e54e",
+  "microBatch": 5,
+  "parentFingerprint": "88c810c9c831f08e9a6d2e16c1874e12e5b8fb38bf62a346e97cea48a70e23ef",
+  "planningFingerprint": "bec02534c4ca502a4f6e9a9462167fa7dc0ae641d1743eb103e4ae4320356edf",
+  "planningSha256": "4603f584bcff53c2e34057ecbd8f59705dfd2764aba73e2d402ef7c259e431b1",
+  "qaCounts": {
+    "PASS": 18,
+    "REVIEW": 3
+  },
+  "recordHash": "daadb6f2db7191c829b030146c227e29e80eef0ead47cb96928444bd593a5e45",
+  "reviewHash": "4ec240abe8ab70c40ec88bf1b400b41c58cef8c8a1ffbf16408bb92c6ebdbe04",
+  "selfReviewSha256": "f2e8ab385e5b0c24e9f6de7855a433b1925c6f3cb4d0a4a73b829df11f41fe7e",
+  "senseCount": 21,
+  "sourceSimilarityFindings": [
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2K:person:individual-human",
+      "sourceRecordId": "1788223606145",
+      "text": "một người"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2K:person:individual-human",
+      "sourceRecordId": "1788223606145",
+      "text": "một người"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2K:spider:eight-legged-arachnid",
+      "sourceRecordId": "1788223607619",
+      "text": "con nhện"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2K:spider:eight-legged-arachnid",
+      "sourceRecordId": "1788223607619",
+      "text": "con nhện"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2K:spider:eight-legged-arachnid",
+      "sourceRecordId": "1556384731335",
+      "text": "con nhện"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2K:equator:earth-midline",
+      "sourceRecordId": "1559931009689",
+      "text": "đường xích đạo"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2K:fourteen:number-14",
+      "sourceRecordId": "1788223606910",
+      "text": "mười bốn"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2K:fourteen:number-14",
+      "sourceRecordId": "1788223606910",
+      "text": "mười bốn"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2K:celebrate:mark-special-event",
+      "sourceRecordId": "1788223607506",
+      "text": "ăn mừng, kỷ niệm"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2K:celebrate:mark-special-event",
+      "sourceRecordId": "1788223607506",
+      "text": "ăn mừng, kỷ niệm"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2K:antibiotic:bacteria-medicine",
+      "sourceRecordId": "1559931008840",
+      "text": "thuốc kháng sinh"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2K:advertise:public-promotion",
+      "sourceRecordId": "1556384730998",
+      "text": "quảng cáo, quảng bá"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2K:elephant:large-trunk-mammal",
+      "sourceRecordId": "1788223606888",
+      "text": "con voi"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2K:elephant:large-trunk-mammal",
+      "sourceRecordId": "1788223606888",
+      "text": "con voi"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2K:journalist:news-reporter",
+      "sourceRecordId": "1788223607579",
+      "text": "nhà báo"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2K:journalist:news-reporter",
+      "sourceRecordId": "1788223607579",
+      "text": "nhà báo"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2K:journalist:news-reporter",
+      "sourceRecordId": "1559931007788",
+      "text": "nhà báo"
+    }
+  ],
+  "status": "SEALED_AI_DRAFT_NOT_APPROVED"
+}

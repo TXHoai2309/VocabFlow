@@ -1,0 +1,26 @@
+{
+  "reviewerKind": "ISOLATED_AI_REVIEW_AGENT",
+  "agentTask": "/root/cp05_review_01",
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2K:depend:be-determined-by",
+      "effectiveContentHash": "7a24c10a01249ea431d542db4cc9d7353678bbcbc0857a83f58e58daebb1345d",
+      "assessment": "PASS",
+      "explanationVi": "Đã đối chiếu nhận xét độc lập ban đầu, BEFORE/AFTER và bản ghi hiệu lực: thay on is required bằng one of these prepositions is required xử lý đúng sự mơ hồ, cho phép cả on và upon khi nêu yếu tố quyết định. Cấu trúc depends on how many questions arise trong ví dụ đúng; bản dịch giữ độ dài buổi học phụ thuộc số câu hỏi và không đảo vai trò. Nguồn giá phụ thuộc kích thước phòng hỗ trợ ranh giới nghĩa này, khác nguồn dựa vào gậy hoặc ánh nắng. Định nghĩa, nghĩa VI và phần ví dụ không tạo vấn đề còn tồn tại; nhận xét REVIEW cũ được giải quyết ở đúng hash mới.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:breeze:light-wind",
+      "effectiveContentHash": "ac704fa96f79ac9a1886575c107ea99b4874a30b032b4c201aeb81722b4c8e13",
+      "assessment": "PASS",
+      "explanationVi": "Đã đối chiếu nhận xét độc lập ban đầu, BEFORE/AFTER và bản ghi hiệu lực: định nghĩa mới bỏ outdoors và giữ chuyển động nhẹ của không khí như gió nhẹ, phù hợp nguồn soft wind. Nghĩa VI làn gió nhẹ và nhãn Gentle wind nhất quán; không mở sang nghĩa việc dễ làm vì ghi chú giới hạn rõ nghĩa gió. Ví dụ gió mát làm lay động rèm cạnh cửa sổ mở tự nhiên; bản dịch giữ gió là nguyên nhân, rèm là đối tượng, độ mát và cửa mở. Danh từ đếm được đúng; không còn hạn định địa điểm gây hiểu sai, không phát hiện vấn đề còn lại ở hash mới.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    }
+  ]
+}

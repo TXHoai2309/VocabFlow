@@ -4400,3 +4400,10 @@ Added a content-bound, immutable downstream overlay for three grammar-note field
 - Add the next frozen 100 groups / 102 original bilingual DRAFT Senses in five planned/sealed micro-batches. Preserve all 1875 parent records; cumulative 1420 groups / 1977 Senses.
 - Complete isolated AI review with two forward exampleVi corrections and hash-bound rechecks: final 96 PASS / 6 nonblocking REVIEW / 0 FAIL. Preserve two deferred candidates and five boundary items; no approval, canonical IDs or rights clearance.
 - Seventeen integrity tests, seven-project typecheck, lint, four accepted ancestor checks and two-seed zero-write replay PASS. Evidence/publication boundary: checkpoint-04/report.md. Preserve cache exceptions, stashes and worktrees; no database, Production, runtime, release or checkpoint 05 operation.
+
+
+## 2026-10-10 - Phase 2H.2K checkpoint 05 / cohort 500
+
+- Author the final frozen 100 groups / 104 original bilingual DRAFT Senses in five planned/sealed micro-batches. Preserve all 1977 parent records; cumulative 1520 groups / 2081 Senses.
+- Complete isolated AI review with two forward field corrections and independent rechecks: final 89 PASS / 15 nonblocking REVIEW / 0 FAIL. Retain six deferred candidates and seventeen boundary identities.
+- Add reproducible cohort-completion audit: all 500 unique groups authored, 518 new Senses, exact partition and lineage. Twenty-three focused tests, seven-project typecheck, lint, five ancestor verifiers and two-seed zero-write replay PASS. Offline DRAFT publication only; no approval, canonical IDs, rights clearance, database, Production or next-cohort operation.

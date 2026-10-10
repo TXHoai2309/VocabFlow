@@ -1,0 +1,363 @@
+{
+  "changes": [
+    {
+      "after": "Depend on or upon a factor; one of these prepositions is required in this construction.",
+      "afterContentHash": "7a24c10a01249ea431d542db4cc9d7353678bbcbc0857a83f58e58daebb1345d",
+      "before": "Depend on or upon a factor; on is required in this construction.",
+      "beforeContentHash": "b8d04181d46a80bd8b32a94093a4dda71847a6c9e83b14a139e6593a4d693212",
+      "field": "grammarNotesEn",
+      "proposalKey": "EDITORIAL_2H2K:depend:be-determined-by",
+      "reasonVi": "Làm rõ giới từ bắt buộc là on hoặc upon; giữ hai phương án đã nêu thay vì nói chỉ on là bắt buộc."
+    },
+    {
+      "after": "A gentle movement of air, usually felt as a light wind.",
+      "afterContentHash": "ac704fa96f79ac9a1886575c107ea99b4874a30b032b4c201aeb81722b4c8e13",
+      "before": "A gentle movement of air outdoors.",
+      "beforeContentHash": "39ac3e118002fd4d0feb310a39f75e9970e1f4b851d7c74bfc2c7d3fe2f4b0eb",
+      "field": "definitionEn",
+      "proposalKey": "EDITORIAL_2H2K:breeze:light-wind",
+      "reasonVi": "Bỏ hạn định outdoors không cần thiết; giữ nghĩa gió nhẹ, không làm ví dụ rèm cạnh cửa sổ bị giới hạn không gian."
+    }
+  ],
+  "instruction": "Independent recheck of forward corrections; retain original findings, bind new effectiveContentHash.",
+  "records": [
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:depend",
+      "canonicalIdsAllocated": 0,
+      "content": {
+        "definitionEn": "To vary or be decided according to a particular condition or factor.",
+        "examples": [
+          {
+            "en": "The length of the lesson depends on how many questions arise.",
+            "exampleKey": "EDITORIAL_2H2K:depend:be-determined-by:example-1",
+            "vi": "Độ dài của buổi học phụ thuộc vào số câu hỏi được đặt ra."
+          }
+        ],
+        "grammarNotesEn": "Depend on or upon a factor; one of these prepositions is required in this construction.",
+        "meaningVi": "phụ thuộc vào yếu tố quyết định",
+        "senseLabelEn": "Be determined by a factor"
+      },
+      "contentStatus": "DRAFT",
+      "displayFormProposal": "depend",
+      "editorialAuthorship": {
+        "humanAuthor": null,
+        "humanReviewer": null,
+        "kind": "AI_GENERATED_EDITORIAL_DRAFT",
+        "process": "Original manuscript composed from source-supported lexical meaning; assembler only reads persisted text"
+      },
+      "effectiveContentHash": "7a24c10a01249ea431d542db4cc9d7353678bbcbc0857a83f58e58daebb1345d",
+      "fieldHashes": {
+        "definitionEn": "cadb1b227ecd21ae087500c80e5c17fecefa8dd9363146da070877e3537df858",
+        "examples": "637985e3d74579e953dc9cfd5cd1d15fa0c065006a1b8b6a3bffb2cddab9689f",
+        "grammarNotesEn": "c13bbe461b013d81fac1cb4ff75888bc03cabbae264c78d13ac02ade158bbcbc",
+        "meaningVi": "b27df8d6ea3f5e20ad8f5e6c049a8efa19781c27371b213407fc9c6ba6fb3f77",
+        "senseLabelEn": "ed14ca0a6b292802533bd559f6c28d0706500daf27fcfa2fec67efe8547c2247"
+      },
+      "formalApproval": false,
+      "headword": "depend",
+      "partOfSpeech": "VERB",
+      "proposalKey": "EDITORIAL_2H2K:depend:be-determined-by",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "riskFlags": [
+        "EXACT_HEADWORD_SINGLE_RECORD_EACH",
+        "NORMALIZED_HEADWORD_MATCH",
+        "HUMAN_SENSE_REVIEW_REQUIRED",
+        "EXAMPLE_VARIANT_REVIEW"
+      ],
+      "sourceEvidence": [
+        {
+          "artifact": "oxford-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "CEFR",
+              "value": "A2"
+            }
+          ],
+          "corpus": "OXFORD_5000",
+          "normalizedPosCandidates": [
+            "VERB"
+          ],
+          "rawContentPointer": "/records/1602/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/1602/rawHeadword",
+          "rawPosEvidencePointer": "/records/1602/sourcePosRaw",
+          "recordEvidenceSha256": "448fca73677cd0fac1231e6b4c37dd328ac083b10e6945d6d2e6cd052f090449",
+          "recordIndex": 1602,
+          "sourceNoteGuid": "zy5&)$sLjb",
+          "sourceRecordId": "1788223607641",
+          "structuredOxfordSenseGroupOrdinals": [
+            0
+          ]
+        },
+        {
+          "artifact": "vocab4600-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "deck:4600 English Vocab::A2",
+              "value": "A2"
+            },
+            {
+              "sourceField": "noteTag",
+              "value": "A2"
+            }
+          ],
+          "corpus": "ENGLISH_VOCAB_4600",
+          "normalizedPosCandidates": [
+            "VERB"
+          ],
+          "rawContentPointer": "/records/162/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/162/rawHeadword",
+          "rawPosEvidencePointer": "/records/162/sourcePosRaw",
+          "recordEvidenceSha256": "ec260d18cdf241797a9ab29fa457c6a93575eeffaa6af9a3710c2034b36fe935",
+          "recordIndex": 162,
+          "sourceNoteGuid": "OOEOgC|mL$",
+          "sourceRecordId": "1556384730962",
+          "structuredOxfordSenseGroupOrdinals": []
+        }
+      ],
+      "sourceSenseCoverage": "Selected supported meanings only; no claim of exhaustive dictionary coverage"
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:breeze",
+      "canonicalIdsAllocated": 0,
+      "content": {
+        "definitionEn": "A gentle movement of air, usually felt as a light wind.",
+        "examples": [
+          {
+            "en": "A cool breeze stirred the curtains beside the open window.",
+            "exampleKey": "EDITORIAL_2H2K:breeze:light-wind:example-1",
+            "vi": "Một làn gió mát nhẹ làm lay động rèm bên cửa sổ mở."
+          }
+        ],
+        "grammarNotesEn": "Countable; this Sense refers to wind, not something easy to do.",
+        "meaningVi": "làn gió nhẹ",
+        "senseLabelEn": "Gentle wind"
+      },
+      "contentStatus": "DRAFT",
+      "displayFormProposal": "breeze",
+      "editorialAuthorship": {
+        "humanAuthor": null,
+        "humanReviewer": null,
+        "kind": "AI_GENERATED_EDITORIAL_DRAFT",
+        "process": "Original manuscript composed from source-supported lexical meaning; assembler only reads persisted text"
+      },
+      "effectiveContentHash": "ac704fa96f79ac9a1886575c107ea99b4874a30b032b4c201aeb81722b4c8e13",
+      "fieldHashes": {
+        "definitionEn": "24843e3397c38888d62bae569e1ada7ce68858a65c5008a3f3ababeba21f956a",
+        "examples": "37c7675adb399f3c22eacdab5654e130b60ac1844ecb3993701e011a722018f3",
+        "grammarNotesEn": "83ff77716b35932a13f2957f255174cc2c35c163ffe5a940c629650ecc974c38",
+        "meaningVi": "c0481cda89562ab920729c438c2963260ffb6891ec49b3f2518706b1313376e4",
+        "senseLabelEn": "c83c45b1f0bf7aa5a526a8cfbf39840daf53c6bdd54bbd79423baff18207e056"
+      },
+      "formalApproval": false,
+      "headword": "breeze",
+      "partOfSpeech": "NOUN",
+      "proposalKey": "EDITORIAL_2H2K:breeze:light-wind",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "riskFlags": [
+        "SOURCE_ONLY_CONTENT"
+      ],
+      "sourceEvidence": [
+        {
+          "artifact": "vocab4600-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "deck:4600 English Vocab::B2",
+              "value": "B2"
+            },
+            {
+              "sourceField": "noteTag",
+              "value": "B2"
+            }
+          ],
+          "corpus": "ENGLISH_VOCAB_4600",
+          "normalizedPosCandidates": [
+            "NOUN"
+          ],
+          "rawContentPointer": "/records/2483/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/2483/rawHeadword",
+          "rawPosEvidencePointer": "/records/2483/sourcePosRaw",
+          "recordEvidenceSha256": "30f33a19b1887422f2c6c45556bd3345b5fdfc663f06c3e918957d6d56bb21ed",
+          "recordIndex": 2483,
+          "sourceNoteGuid": "pKs67+2gJx",
+          "sourceRecordId": "1559931009322",
+          "structuredOxfordSenseGroupOrdinals": []
+        }
+      ],
+      "sourceSenseCoverage": "Selected supported meanings only; no claim of exhaustive dictionary coverage"
+    }
+  ],
+  "sourceEvidence": [
+    {
+      "evidence": [
+        {
+          "candidateSourceSenseGroups": [
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "The price depends on the size of the room.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Giá phụ thuộc vào kích thước căn phòng.",
+                  "focus_en": [
+                    "depends"
+                  ],
+                  "focus_vi": [
+                    "phụ thuộc"
+                  ]
+                },
+                {
+                  "example_en": "Plants depend on sunlight to grow.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Cây cối phụ thuộc vào ánh nắng để phát triển.",
+                  "focus_en": [
+                    "depend"
+                  ],
+                  "focus_vi": [
+                    "phụ thuộc"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 0,
+              "sourcePosRaw": "v.",
+              "sourceVietnameseMeaningRaw": "phụ thuộc",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            }
+          ],
+          "reference": {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "A2"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "VERB"
+            ],
+            "rawContentPointer": "/records/1602/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/1602/rawHeadword",
+            "rawPosEvidencePointer": "/records/1602/sourcePosRaw",
+            "recordEvidenceSha256": "448fca73677cd0fac1231e6b4c37dd328ac083b10e6945d6d2e6cd052f090449",
+            "recordIndex": 1602,
+            "sourceNoteGuid": "zy5&)$sLjb",
+            "sourceRecordId": "1788223607641",
+            "structuredOxfordSenseGroupOrdinals": [
+              0
+            ]
+          },
+          "sourceFields": {
+            "CEFR": "A2",
+            "Example": "The price <mark class=\"v-target\">depends</mark> on the size of the room.<br>Plants <mark class=\"v-target\">depend</mark> on sunlight to grow.",
+            "Example Data": "[{\"pos\":\"v.\",\"meaning_vi\":\"phụ thuộc\",\"examples\":[{\"example_en\":\"The price depends on the size of the room.\",\"example_vi\":\"Giá phụ thuộc vào kích thước căn phòng.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"depends\"],\"focus_vi\":[\"phụ thuộc\"]},{\"example_en\":\"Plants depend on sunlight to grow.\",\"example_vi\":\"Cây cối phụ thuộc vào ánh nắng để phát triển.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"depend\"],\"focus_vi\":[\"phụ thuộc\"]}]}]",
+            "Example EN 1": "The price depends on the size of the room.",
+            "Example EN 2": "Plants depend on sunlight to grow.",
+            "Example EN 3": "",
+            "Example EN 4": "",
+            "Example EN 5": "",
+            "Example EN 6": "",
+            "Example EN 7": "",
+            "Frequency": "3076",
+            "Irregular Forms": "[]",
+            "Oxford List": "Oxford 3000",
+            "Part of Speech": "verb",
+            "Phonetic": "/dɪˈpend/",
+            "Pronunciation Data": "[{\"locale\":\"UK\",\"ipa\":[\"/dɪˈpend/\"],\"audio_keys\":[\"uk_pron/d/dep/depen/depend__gb_1\"]},{\"locale\":\"US\",\"ipa\":[\"/dɪˈpend/\"],\"audio_keys\":[\"us_pron/d/dep/depen/depend__us_1\"]}]",
+            "Sound_uk": "",
+            "Sound_us": "",
+            "Study Order": "1603",
+            "Từ loại": "động từ",
+            "Variant Data": "[]",
+            "Vietnamese": "phụ thuộc",
+            "Word": "depend"
+          }
+        },
+        {
+          "candidateSourceSenseGroups": [],
+          "reference": {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::A2",
+                "value": "A2"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "A2"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "VERB"
+            ],
+            "rawContentPointer": "/records/162/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/162/rawHeadword",
+            "rawPosEvidencePointer": "/records/162/sourcePosRaw",
+            "recordEvidenceSha256": "ec260d18cdf241797a9ab29fa457c6a93575eeffaa6af9a3710c2034b36fe935",
+            "recordIndex": 162,
+            "sourceNoteGuid": "OOEOgC|mL$",
+            "sourceRecordId": "1556384730962",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          "sourceFields": {
+            "Example": "My grandfather <b>depends</b> on a cane when he walks.",
+            "IPA": "/dɪˈpend/",
+            "Image": "<img src=\"09_0165.jpg\" />",
+            "Meaning": "To <i>depend</i> on something is to need it for support or help.<br><b>phụ thuộc</b>",
+            "PoS": "verb",
+            "Sound": "[sound:oxford-ecf62105-0401d0dd-5d5952e4-734d6e9a-67851fbc.mp3]",
+            "Sound_Example": "[sound:googletts-263218ce-df407f7a-2c550852-ac0ed559-4b2704c9.mp3]",
+            "Word": "depend",
+            "noteid": "1556384730962"
+          }
+        }
+      ],
+      "group": "depend"
+    },
+    {
+      "evidence": [
+        {
+          "candidateSourceSenseGroups": [],
+          "reference": {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::B2",
+                "value": "B2"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "B2"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/2483/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/2483/rawHeadword",
+            "rawPosEvidencePointer": "/records/2483/sourcePosRaw",
+            "recordEvidenceSha256": "30f33a19b1887422f2c6c45556bd3345b5fdfc663f06c3e918957d6d56bb21ed",
+            "recordIndex": 2483,
+            "sourceNoteGuid": "pKs67+2gJx",
+            "sourceRecordId": "1559931009322",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          "sourceFields": {
+            "Example": "The <b>breeze</b> caused the leaves to fall off the tree.",
+            "IPA": "/briːz/",
+            "Image": "<img src=\"09_2564.jpg\" />",
+            "Meaning": "A <i>breeze</i> is a soft wind.<br><b>làn gió nhẹ</b>",
+            "PoS": "noun",
+            "Sound": "[sound:oxford-43265fa8-90c36ced-7ed03ada-d8eb2936-6e0f9adf.mp3]",
+            "Sound_Example": "[sound:googletts-11f924bf-1cf72c74-59b4225d-aaad87d6-1ba91347.mp3]",
+            "Word": "breeze",
+            "noteid": "1559931009322"
+          }
+        }
+      ],
+      "group": "breeze"
+    }
+  ]
+}

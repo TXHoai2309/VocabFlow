@@ -1,0 +1,2367 @@
+{
+  "firstPassRecords": [
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "683c28166c0c2a476c2c72abab47f33720e51040172c19ead9ef1a6200887928",
+      "explanationVi": "Nghĩa xe van có khoang kín phù hợp các nguồn chở hàng; ví dụ thuê xe cho chuyến lưu diễn là cách dùng tự nhiên. Bản dịch giữ nhiều nhạc công, một xe và cuối tuần; rented không đòi hỏi thêm đã trong tiếng Việt. Phạm vi chở người là mở rộng thông thường của cùng loại xe, không phải nghĩa mới.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:van:enclosed-vehicle",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "31f505377715be36a84aad6c574fb648b57396693df440987cfd5a8518474117",
+      "explanationVi": "Nghĩa đơn vị bằng một nghìn mét và danh từ đếm được chính xác. Câu dịch giữ cây cầu mới, hành trình của chúng tôi và mức giảm ba ki-lô-mét, không nhầm giảm đi ba với còn ba. Hai cách viết Anh và Mỹ phù hợp; nguồn minh họa đo khoảng cách.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:kilometre:metric-distance",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "5727a62d56e5a5e745cd8737f33acae7dd6c7f6ab9d55ebef25fcf910c89fbbe",
+      "explanationVi": "Nguồn định nghĩa hoạt động rất gây mệt; bản thảo giữ đúng quan hệ gây mệt thay vì người đã mệt. Việc phân loại hàng trăm sách hư hỏng là chủ thể; bản dịch giữ lượng và tình trạng sách. Cách nói thật mệt mỏi trong ngữ cảnh hoạt động chấp nhận được; ghi chú exhausting/exhausted đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:exhausting:causing-fatigue",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "fff11ecebefde763971d49abdc1d2af9f5a296f9ea0868dc9e1661e4bb3b757b",
+      "explanationVi": "Hai nguồn hỗ trợ tập tục tồn tại lâu trong gia đình hoặc cộng đồng. Định nghĩa cho phép thực hành hoặc niềm tin được tiếp nối phù hợp truyền thống. Ví dụ giữ việc thắp nến, người thân vắng mặt và sự trở thành truyền thống gia đình; không biến vắng mặt thành đã mất. Phân biệt đếm được với không đếm được hợp lý.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:tradition:inherited-custom",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "664dd543c3ffaf64fb720707977ade55f378c59dd0657033bcb499ec1b70a587",
+      "explanationVi": "Nguồn hỗ trợ khu phố và vùng lân cận; bản thảo chủ động chọn khu dân cư quanh nơi ở, không gộp mọi nghĩa vùng gần đó. Ví dụ giữ một thư viện mới, sự mở cửa và mùa xuân năm ngoái. Cách viết neighborhood tương ứng với neighbourhood; không thấy ứng viên nghĩa riêng bắt buộc từ chứng cứ này.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:neighbourhood:local-residential-area",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "REVIEW",
+      "blocksPublication": false,
+      "effectiveContentHash": "5c1d308fd0ce9279f1c7b947786f34d6653088a7be92dfe722875caca55526c3",
+      "explanationVi": "ADN và tên đầy đủ deoxyribonucleic acid chính xác; ví dụ giữ phòng thí nghiệm là chủ thể và hai mẫu thực vật là nguồn mẫu. Định nghĩa về thông tin di truyền hợp lý nhưng nguồn kèm theo chỉ giải thích tên viết tắt và dùng trong điều tra, chưa trực tiếp diễn giải chức năng sinh học. Cần giữ dấu vết cần đối chiếu này ở bản DRAFT; không có lỗi nội dung cụ thể để chặn.",
+      "issues": [
+        {
+          "field": "content.definitionEn",
+          "messageVi": "Nguồn kèm theo xác nhận tên viết tắt DNA nhưng chưa trực tiếp nêu chức năng mang thông tin di truyền; cần đối chiếu bổ sung trước xét duyệt nội dung cuối cùng.",
+          "severity": "REVIEW"
+        }
+      ],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:dna:genetic-material",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "d076554e247e390a89983e8dad2e2dffaeea3c56c7ef17d10e2430c33ec39183",
+      "explanationVi": "Hai nguồn hỗ trợ mức cực lớn. Định nghĩa mở sang lượng vẫn thuộc cùng mức độ, nghĩa tiếng Việt khổng lồ hoặc cực kỳ lớn phù hợp. Câu dịch giữ mái đổ cần dỡ bỏ và một cần cẩu, không đảo vật bị dỡ thành cần cẩu. Cách dùng tính từ trước danh từ và sau động từ nối đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:enormous:extremely-large",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "343d8383b5c565fe2a63150eca03f95c815f0b03ec1500c7f778050159f9c275",
+      "explanationVi": "Nguồn xác nhận đại từ tân ngữ chúng tôi hoặc chúng ta. Định nghĩa và ghi chú giữ người nói cùng người khác, cho phép bao gồm hoặc loại người nghe. Bản dịch giữ người hướng dẫn chờ nhóm người nói bên đài phun nước; cấu trúc waited for us đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:us:object-we",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "f009a18c42d44a2f6378725d871ef83a45d9b1d7fded2e417e458ba88a9131d7",
+      "explanationVi": "Nguồn định nghĩa khối băng chuyển động chậm; bản thảo xác định trên đất liền đúng và tránh lặp ví dụ nguồn về Bắc Cực dễ sai địa lý. Bản dịch giữ sông băng kéo dài xuống thung lũng và hai sườn đá. Danh từ đếm được và phân biệt băng biển nổi phù hợp nghĩa vật lý.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:glacier:moving-land-ice",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "ea781b94826acaae2d73a3844ca5d5c642342ce9da039470fd703802aaf73d5a",
+      "explanationVi": "Hai nguồn hỗ trợ cho mượn tạm thời, nguồn thứ hai còn ghi cho vay. Định nghĩa có điều kiện hoàn trả giữ hướng người cho tới người nhận. Mai cho hàng xóm mượn máy ảnh của Mai để dùng buổi lễ được dịch đúng vai; lent và hai cấu trúc tân ngữ trong ghi chú chính xác.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:lend:temporary-loan",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "d8371a6a93b0232aa6a5aeacb10ddcb3fd1745afe54578c41cb2c2b7f68b76e0",
+      "explanationVi": "Nguồn hỗ trợ kiến thức hoặc sự hiểu biết; định nghĩa bổ sung cách có kiến thức qua học tập hay trải nghiệm vẫn trong nghĩa này. Ví dụ giữ kiến thức động cơ của anh ấy giúp chúng tôi sửa máy bơm, không biến anh ấy thành người sửa duy nhất. Normally uncountable và knowledge of đúng; giới hạn in general use tránh phủ nhận các cách dùng a knowledge of chuyên biệt.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:knowledge:understanding-information",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "877a455b5f19d4b41c28a53c78a59fcafcbe7c892e958c63bbeb41d011a2001b",
+      "explanationVi": "Nguồn hỗ trợ bộ phim. Định nghĩa chuỗi hình ảnh động trình bày câu chuyện hoặc chủ đề phù hợp danh từ đếm được. Bản dịch dùng kể về hành trình để diễn đạt follows, giữ một thủy thủ trẻ và ba đại dương. Ghi chú độ phổ biến trong Anh Mỹ hợp lý.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:movie:motion-picture",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "b58f031d485820f61677b252b3bb00d4fa65ced1ef79ae86b03ef17da55675ce",
+      "explanationVi": "Nguồn nói sinh vật, đặc biệt rất nhỏ, không giới hạn từ vào vi sinh vật. Định nghĩa gồm động vật, thực vật và dạng sống khác giữ đúng phạm vi. Bản dịch giữ sinh vật này, kích thước rất nhỏ, khả năng sống và nước cực kỳ mặn. Ghi chú ngăn suy diễn chỉ sinh vật nhỏ phù hợp.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:organism:living-entity",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "8ff242e59a69e9cb42d1b2228d2b94ecab00a3a92b1cee236cf58229eef8713f",
+      "explanationVi": "Hai nguồn hỗ trợ thân mật, thoải mái, không trang trọng hoặc không chính thức. Định nghĩa gom các biểu hiện cùng ranh giới đối lập với hình thức nghi lễ; ví dụ cuộc thảo luận quanh bàn bếp phù hợp. Bản dịch giữ chúng tôi, một cuộc thảo luận và vị trí quanh bàn, không mất quan hệ không trang trọng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:informal:not-formal",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "26b8b1bbc60d5a1cb65c391ca37ad5e6c3f0f11cb32906e56d61fc868dd3e6be",
+      "explanationVi": "Nguồn xác nhận mạo từ xác định cho đối tượng đã biết; định nghĩa theo khả năng xác định trong ngữ cảnh đúng. Ví dụ giới thiệu một bưu kiện rồi nhắc lại bằng the, bản dịch bưu kiện đó giữ quan hệ đồng tham chiếu và một khăn quàng. Ghi chú nói rõ đây chỉ là một cách dùng nên không nhận bao phủ mọi cấu trúc của the.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:the:definite-article",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "2e47978879fbdf3836009634d95bb9af69683913d122137eedbf50096d7fce03",
+      "explanationVi": "Nguồn hỗ trợ người làm đồ gỗ; định nghĩa thêm sửa kết cấu và đồ vật gỗ vẫn đúng nghề thợ mộc. Câu dịch giữ thợ mộc thay khung mục quanh cửa sổ của chúng tôi, không biến sửa khung thành thay cửa sổ. Danh từ đếm được và ghi chú nghề nghiệp phù hợp.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:carpenter:wood-worker",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "REVIEW",
+      "blocksPublication": false,
+      "effectiveContentHash": "b8d04181d46a80bd8b32a94093a4dda71847a6c9e83b14a139e6593a4d693212",
+      "explanationVi": "Ví dụ giá phụ thuộc kích thước phòng trong nguồn hỗ trợ nghĩa bị yếu tố quyết định, khác với dựa vào nguồn hỗ trợ. Bản dịch giữ độ dài buổi học phụ thuộc số câu hỏi phát sinh; được đặt ra là cách diễn đạt tự nhiên trong bối cảnh học. Ghi chú cho phép on hoặc upon rồi nói on is required gây mơ hồ về lựa chọn giới từ; nên làm rõ cần giới từ on/upon, chưa phải lỗi ví dụ hay ranh giới nghĩa.",
+      "issues": [
+        {
+          "field": "content.grammarNotesEn",
+          "messageVi": "Câu on is required sau khi cho phép on or upon nên đổi thành yêu cầu giới từ on/upon để tránh hiểu rằng upon không hợp lệ.",
+          "severity": "REVIEW"
+        }
+      ],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:depend:be-determined-by",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "f2e1ec5a5a2370d01f1f9da953a51397fe8f356e2518b7d0c3fd9a26bdb6a331",
+      "explanationVi": "Nguồn cây cần ánh nắng và ông dựa vào gậy hỗ trợ nghĩa cần nguồn trợ giúp. Định nghĩa và bản dịch giữ ngôi làng cần giếng để có nước uống. Depend on something for something dùng đúng; tách khỏi nghĩa yếu tố quyết định có chứng cứ rõ và không bỏ sót nghĩa nào khác được nguồn nêu.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:depend:rely-on",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "54c9fb258f609c852caca2681db6b2ab18694af2199da819f04d5fe836fdcf65",
+      "explanationVi": "Nguồn hỗ trợ blog là trang bài viết trực tuyến, danh từ trong cả hai ví dụ. Định nghĩa trang hoặc phần trang được thêm bài thường xuyên phù hợp. Bản dịch giữ blog du lịch của cô ấy, nhiều phác họa và mọi thị trấn cô ấy đến. Giới hạn danh từ, không tự thêm nghĩa động từ chưa có chứng cứ, hợp lý.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:blog:online-journal",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "a135339112f92edb3b5beda8ecd61f459fc6e39b873d290a3f31c5f7982df762",
+      "explanationVi": "Nguồn định nghĩa đất đá bị nước hoặc thời tiết làm mòn; bản thảo nêu sự loại bỏ dần bởi nước, gió hoặc lực tự nhiên, giữ đúng xói mòn vật lý. Ví dụ rễ cỏ giúp bảo vệ bờ sông được dịch đầy đủ, không đổi thành ngăn tuyệt đối. Usually uncountable và ranh giới với suy giảm nghĩa bóng rõ.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:erosion:wearing-away",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "00af3d736b4a754e270ddbb72030c8ee138d565525291a6a9cf9722a41c2be57",
+      "explanationVi": "Hai nguồn hỗ trợ cơ quan trong đầu liên quan suy nghĩ; định nghĩa xử lý thông tin và điều khiển hoạt động cơ thể đúng phạm vi não. Bản dịch giữ lần chụp tạo ảnh chi tiết về não bệnh nhân, không đổi người chụp hay đối tượng ảnh. Ghi chú đếm được và giới hạn cơ quan vật lý không bỏ nghĩa riêng được nguồn chứng minh.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:brain:head-organ",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "990b67f0394b815c12a03b29acac79e174cedfe6c28424f909e515ca4df78286",
+      "explanationVi": "Hai nguồn hỗ trợ rất lớn về kích thước; ví dụ đám đông còn hỗ trợ lượng. Định nghĩa và nghĩa tiếng Việt nhất quán. Bản dịch giữ một đống thư, mức rất lớn và bàn của nhân viên lễ tân bị phủ kín. Cách dùng tính từ trước danh từ hoặc sau động từ nối đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:huge:very-large",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "7a36ef689df5de64b61ee7d3d98b7117fbcacbf0e9266772b2607f6b26e2e2a5",
+      "explanationVi": "Nguồn xác nhận bóng chày là môn thể thao qua play baseball và baseball game. Định nghĩa đánh bóng bằng gậy rồi chạy giữa các chốt phù hợp. Bản dịch giữ chúng tôi nghe một trận trên radio trong chuyến đi xe, không đổi thành xem. Baseball match có thể dùng dù game phổ biến hơn; phân biệt danh từ môn thể thao không đếm được và game đếm được chính xác.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:baseball:bat-and-ball-sport",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "734527af8918aaf699e545878f8a6f5d3c866ec49569230ad867d43aa26acb3b",
+      "explanationVi": "Nguồn hỗ trợ một tập hợp rất lớn các hệ sao; định nghĩa các sao và vật chất liên kết bởi hấp dẫn là đúng thiên hà. Bản dịch giữ nhiều nhà thiên văn, một thiên hà xa và kính thiên văn. Danh từ đếm được; ghi chú Ngân Hà chứa hệ Mặt Trời không nhầm hệ Mặt Trời với thiên hà.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:galaxy:star-system",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "9b1d4a7e6f4a0ad3c817958c6a85ccfa1aac7f61a251769a3776e717727f284f",
+      "explanationVi": "Hai nguồn hỗ trợ phản ứng với sự kiện hoặc thay đổi kích thích. Định nghĩa bao gồm hành động hay thay đổi phù hợp người và thực vật trong nguồn. Bản dịch giữ con chó phản ứng với còi bằng vểnh tai, không đảo còi thành kết quả. React to đúng, không thiếu tân ngữ bắt buộc ngoài giới từ.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:react:respond",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "afa8fd0e7993ca9d9e34d6d55f7066144f7f3983c12f0cc3acd70346edf94cb5",
+      "explanationVi": "Nguồn hỗ trợ áo khoác ngắn. Định nghĩa che thân trên thường tới eo hoặc hông giữ phạm vi thay vì yêu cầu mọi áo cùng chiều dài. Bản dịch giữ anh ấy kéo khóa áo của mình trước khi ra sân ga lộng gió; không bỏ thứ tự hành động. Giới hạn nghĩa quần áo và đếm được phù hợp.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:jacket:short-coat",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "REVIEW",
+      "blocksPublication": false,
+      "effectiveContentHash": "cf81dbc6b07f66f5327fde61bb854df8d26567017cef59dbc23aaca55db1a144",
+      "explanationVi": "Định nghĩa nguồn tiếng Anh xác nhận bữa ăn tối và ví dụ khoảng sáu giờ hỗ trợ bữa tối trong bản thảo. Bản dịch giữ cùng ăn súp và bánh mì mới cho bữa tối. Tuy nhiên nghĩa tiếng Việt nguồn ghi bữa xế trước bữa tối mâu thuẫn với định nghĩa Anh, nên cần ghi rõ giải quyết nguồn này khi xét duyệt. Nội dung bản thảo không có lỗi nghĩa cụ thể; ghi chú khác biệt vùng miền hợp lý.",
+      "issues": [
+        {
+          "field": "sourceEvidence.supper",
+          "messageVi": "Nghĩa VI nguồn bữa xế trước bữa tối mâu thuẫn định nghĩa EN evening meal; bản thảo chọn bữa tối có căn cứ EN, cần lưu quyết định đối chiếu nguồn.",
+          "severity": "REVIEW"
+        }
+      ],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:supper:evening-meal",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "bbbd3d7dd99037aa17bb4ae86cd6ef5c5b8cefabf909699b100c28dcbc4c7a64",
+      "explanationVi": "Hai nguồn cùng hỗ trợ rác hay đồ bỏ đi. Bản dịch giữ nhiều tình nguyện viên nhặt rác bị bỏ lại cạnh nhiều bàn dã ngoại, không đổi thành rác họ tạo ra. Usually uncountable và khác biệt trash/rubbish Anh Mỹ phù hợp; nguồn không bắt buộc thêm nghĩa động từ.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:trash:discarded-waste",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "b330a0f5e7b2dd7d2989b6485ea25cb1da711b2e569938684a2791f4bf6d0582",
+      "explanationVi": "Nguồn ghi bò cái và ví dụ lấy sữa, hỗ trợ nghĩa con bò cái trưởng thành. Bản dịch giữ nông dân là người dắt, bò cái là đối tượng vào chuồng trước bão. Countable và giới hạn giới tính đúng với Sense này, không gộp cách gọi động vật khác bằng cow chưa có chứng cứ.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:cow:female-cattle",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "6b3746ea4c1a3d934268771c7be03ad78d4266bc368edb9b57f9fd978afbb0dd",
+      "explanationVi": "Nguồn định nghĩa vivid là sáng và nhiều màu, nên lựa chọn rực rỡ về màu sắc có hỗ trợ. Bản dịch giữ nhiều bông hoa màu cam rực rỡ dọc lối đi hẹp trong vườn; mọc dọc là cách diễn đạt tự nhiên của lined. Ghi chú không gộp nghĩa ký ức rõ nét giữ ranh giới, không có ví dụ nguồn buộc thêm nghĩa ký ức.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:vivid:bright-colour",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "4427f2b9adfbebf3829febbf08db87ec3efdfd4bc64ce0f9d09bc978a31bad0f",
+      "explanationVi": "Hai nguồn hỗ trợ thiết bị cho mục đích hay hoạt động nhất định. Định nghĩa dụng cụ và thiết bị phù hợp. Bản dịch giữ đội cứu hộ kiểm tra thiết bị lặn của đội trước khởi hành. Danh từ không đếm được và a piece of equipment, không an equipment/equipments, chính xác trong cách dùng phổ thông.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:equipment:purpose-tools",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "0845de25d6fb45e356c1a04a59f35db4a33437d83fa2a2872b8dc82a8ed32817",
+      "explanationVi": "Ví dụ nguồn thay ghế, pin và lốp hỗ trợ loại cũ ra để thay thứ khác. Bản dịch giữ họ, cửa kính nứt và vật liệu kính chắc hơn; không đảo A và B. Định nghĩa và ghi chú replace A with B nhất quán dù định nghĩa nguồn thứ hai diễn đạt hướng thay thế kém rõ.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:replace:substitute",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "7c2071baf0f4e500786172d51da73635dbf2ad4126c19e0df92e9d3b4fea1979",
+      "explanationVi": "Nguồn xác nhận đơn vị bằng một phần trăm đô la hoặc euro. Định nghĩa tiếng Anh mở tới các tiền tệ khác dùng cent hợp lý; bản dịch giữ giá tăng thêm năm xu qua một đêm, không đổi thành tổng giá năm xu. Đếm được và yêu cầu chỉ rõ tiền tệ nếu mơ hồ giúp tránh nhầm hệ tiền.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:cent:currency-unit",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "5923f771cdedc050e5cbe0163d52e39c67bcd122be594353400ab83b2b07b1e0",
+      "explanationVi": "Nguồn định nghĩa thiết bị phản ứng với ánh sáng, nhiệt hoặc áp suất để máy làm hay hiển thị điều gì đó. Định nghĩa phát hiện điều kiện vật lý và tạo tín hiệu/đáp ứng giữ nghĩa cảm biến. Bản dịch giữ một cảm biến bật đèn hành lang khi có người đi vào. Heat sensor và motion sensor phù hợp.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:sensor:detecting-device",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "509765087523e81a41d1bc0685cba53a89be1b294345705090448fb326813f40",
+      "explanationVi": "Hai nguồn hỗ trợ tuyến đường đi từ nơi này sang nơi khác. Câu dịch giữ nhiều người đi xe đạp chọn một tuyến dọc kênh, không chuyển thành con kênh là tuyến đã chọn. Danh từ đếm được và các cấu trúc route to/through đúng; không có chứng cứ yêu cầu thêm nghĩa động từ.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:route:travel-path",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "2f312f3e1353d1c3d181cbd96f7dc511a36aae0f43b7a144b33e1ac852747156",
+      "explanationVi": "Nguồn hỗ trợ hoạt động mua sắm qua do the shopping và go shopping. Định nghĩa cho phép mua qua dịch vụ cũng vẫn trong hoạt động mua hàng. Bản dịch giữ chúng tôi hoãn mua sắm cho tới khi mưa tạnh, không đổi thành hủy bỏ. Usually uncountable và hai cấu trúc ghi chú đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:shopping:buying-activity",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "056a6888b16f8638bb9c3cd9321e8b3bc3d03280b6b1c528a4b675006c0d0714",
+      "explanationVi": "Nguồn định nghĩa rất khó chịu và ví dụ mùi chân hỗ trợ mùi gây ghê tởm. Định nghĩa cùng nghĩa tiếng Việt giữ độ khó chịu mạnh. Bản dịch giữ một mùi bốc từ cống tắc; không thêm chất thải hay nguyên nhân không nêu. Phân biệt disgusting là nguyên nhân với disgusted là phản ứng người đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:disgusting:causing-revulsion",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "6d81ff34151da70a15935475cc40ebef3ee924a63735dea818c3da97ca368992",
+      "explanationVi": "Ví dụ tái chế bảo vệ môi trường của Oxford và ô nhiễm trong nguồn thứ hai hỗ trợ nghĩa thế giới tự nhiên. Bản dịch giữ báo cáo mô tả tác hại của rác nhựa đối với môi trường tự nhiên. The environment đúng trong nghĩa này; tách khỏi môi trường làm việc tránh gộp hai ngữ cảnh.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:environment:natural-world",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "53c7db45af6c20d86e9774c0f8f4f85b3cb2201db40b34491b97db804980e7f9",
+      "explanationVi": "Ví dụ môi trường học tập an toàn và định nghĩa nơi sống/làm việc trong nguồn hỗ trợ điều kiện xung quanh hoạt động. Bản dịch giữ xưởng sáng tạo môi trường thoải mái cho học; bright là sáng sủa, không diễn giải thông minh. Countable khi nói một môi trường cụ thể và environment for đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:environment:surrounding-conditions",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "a82ab606d632b8db2c0e7bf109854b93dae4deff1d5ca714478ad379a9fc8bb2",
+      "explanationVi": "Nguồn xác nhận phòng ngủ; định nghĩa theo mục đích ngủ trong nhà phù hợp. Bản dịch giữ họ sơn các tường phòng ngủ thành xanh lam nhạt; không đổi thành xanh đậm hay chỉ sơn đồ nội thất. Tiếng Việt tường có thể chỉ số nhiều trong ngữ cảnh nên không mất số lượng. Danh từ đếm được đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:bedroom:sleeping-room",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "REVIEW",
+      "blocksPublication": false,
+      "effectiveContentHash": "39ac3e118002fd4d0feb310a39f75e9970e1f4b851d7c74bfc2c7d3fe2f4b0eb",
+      "explanationVi": "Nguồn hỗ trợ gió nhẹ. Ví dụ gió mát làm rèm bên cửa sổ mở lay động và bản dịch giữ đúng vai trò, vị trí, trạng thái cửa mở. Tuy nhiên từ outdoors trong định nghĩa có thể khiến người học hiểu gió nhẹ chỉ tồn tại ngoài trời; nên nới thành chuyển động nhẹ của không khí, không cần ràng buộc vị trí. Đây là tinh chỉnh ranh giới ở DRAFT, ví dụ hiện tại vẫn hợp lý.",
+      "issues": [
+        {
+          "field": "content.definitionEn",
+          "messageVi": "Outdoors là hạn định vị trí không cần thiết trong nghĩa gió nhẹ; nên bỏ để không gây hiểu sai rằng gió qua cửa sổ hoặc trong không gian mở không phải breeze.",
+          "severity": "REVIEW"
+        }
+      ],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:breeze:light-wind",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "REVIEW",
+      "blocksPublication": false,
+      "effectiveContentHash": "74f96cdf463a085a71e50609e46775074991c3cffdcfca484841bfd22ec4a778",
+      "explanationVi": "Nguồn hỗ trợ đều đặn qua tập thể dục và dịch vụ xe buýt; bản thảo định nghĩa khoảng cách tương đối ổn định phù hợp. Bản dịch giữ nhiều chuyến thăm giúp các bạn cũ giữ liên lạc, không thêm hàng ngày. Nguồn còn có regular lunch time là giờ ăn thường lệ, có thể là cách dùng usual/customary chứ không riêng khoảng cách giữa lần lặp; cần xét ranh giới này trước tuyên bố bao phủ toàn nhóm.",
+      "issues": [
+        {
+          "field": "senseBoundary",
+          "messageVi": "Ví dụ nguồn regular lunch time gợi cách dùng giờ thường lệ, cần xét có nằm trong đều đặn hay cần Sense usual/customary riêng.",
+          "severity": "REVIEW"
+        }
+      ],
+      "missingSenseCandidates": [
+        {
+          "blocksPublication": false,
+          "meaningVi": "thường lệ, theo thông lệ",
+          "senseLabelEn": "Usual or customary",
+          "sourceSupport": "Ví dụ nguồn ENGLISH_VOCAB_4600: Our regular lunch time is around noon."
+        }
+      ],
+      "proposalKey": "EDITORIAL_2H2K:regular:repeated-intervals",
+      "unresolvedBoundaryItems": [
+        {
+          "blocksPublication": false,
+          "field": "regular:repeated-intervals",
+          "messageVi": "Chưa quyết định giờ ăn thường lệ thuộc nghĩa lặp đều hay nghĩa usual/customary riêng; không làm sai Sense đều đặn đang có."
+        }
+      ]
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "cd6fd00bd8ce5d42699f1dc1a5816438ea823618fb3faf3fbfa9495a7a1ac08b",
+      "explanationVi": "Hai nguồn hỗ trợ người giảng dạy đại học; Oxford dùng giáo sư còn nguồn 4600 cho cả giáo sư và giảng viên. Định nghĩa và ghi chú giữ khác biệt chức danh theo quốc gia. Ví dụ dịch đúng yêu cầu cả lớp so sánh hai bản đồ lịch sử, không tự gán học hàm cho chủ thể.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:professor:university-teacher",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "REVIEW",
+      "blocksPublication": false,
+      "effectiveContentHash": "fdba5044acf5ca8feba349a87bb5420fb7cc56c0a437c8a6ee72fa5fb3c859b5",
+      "explanationVi": "Nguồn chỉ ghi conjunction/conj. nhưng các ví dụ đều có cụm danh từ sau than; việc phân loại liên từ hay giới từ phụ thuộc cách phân tích ngữ pháp. Nghĩa nối đối tượng so sánh và bản dịch ghế đẩu gỗ nhẹ hơn ghế kim loại đúng. Cần giữ ranh giới POS chờ xét, không coi nhãn nguồn là quyết định chuẩn; không có lỗi nội dung ngăn bản DRAFT ngoại tuyến.",
+      "issues": [
+        {
+          "field": "partOfSpeech",
+          "messageVi": "Cần phân xử CONJUNCTION so với PREPOSITION trong ví dụ than theo sau bởi cụm danh từ; nhãn nguồn chưa giải quyết ranh giới.",
+          "severity": "REVIEW"
+        }
+      ],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:than:comparison-link",
+      "unresolvedBoundaryItems": [
+        "Cần phân xử CONJUNCTION so với PREPOSITION trong ví dụ than theo sau bởi cụm danh từ; nhãn nguồn chưa giải quyết ranh giới."
+      ]
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "d5e54a9ed3cb015285178ac32f96e606c9afad9431c31ec1d5f49dcfad299afe",
+      "explanationVi": "Nguồn 4600 hỗ trợ riêng thức ăn sáng chế biến từ hạt và ăn với sữa. Định nghĩa không mở sang cây lương thực, ghi chú không đếm được phù hợp. Bản dịch giữ chủ thể nữ, hành động đổ, bát xanh lam và thứ tự trước khi thêm sữa.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:cereal:breakfast-grain-food",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "133b158a5bdcd7e6f3a350e07d85c9ea0673d4e7013dc9c213087b72d656bd74",
+      "explanationVi": "Oxford hỗ trợ văn học hư cấu, phù hợp nhãn, định nghĩa và ví dụ hiệu sách. Bản dịch giữ tác phẩm được dịch và vị trí gần lối vào. Nguồn 4600 dùng fictions trong câu Harry Potter và dịch chuyện viễn tưởng, điều hoang đường; đây là diễn đạt nguồn lệch hoặc không tự nhiên, không được nhập thành tính chất bắt buộc của mọi fiction. Ghi chú uncountable và a work of fiction tránh lỗi nguồn.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:fiction:invented-stories",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "d56cf059309538c56b8b8b45f5c0153aa4fca9eb15acd0bbfbe498a4e8709c87",
+      "explanationVi": "Oxford hỗ trợ vật chứa bằng vải và túi đầy, đúng nghĩa túi bằng vật liệu mềm. Ví dụ mới giữ bản đồ đã gấp, hành động nhét và túi đeo vai thuộc cô ấy. Danh từ đếm được và tổ hợp shopping bag phù hợp, không bỏ đối tượng hay đổi sở hữu.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:bag:flexible-container",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "0c8f81f7e7a6d29a89388ea7d443c0d6d0ba651a71505b6bc2682c573c32027d",
+      "explanationVi": "Nguồn 4600 gọi phân tử là đơn vị nhỏ nhất của một chất vật lý, một khái quát quá rộng vì không phải mọi chất đều gồm phân tử riêng rẽ. Bản thảo giới hạn chất phân tử và các nguyên tử liên kết, ghi chú bảo toàn ngoại lệ. Câu dịch giữ sơ đồ, các nguyên tử và một phân tử nước; nghĩa và từ loại phù hợp.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:molecule:chemical-unit",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "2d97412a189c887b5501db57adb4ca66e4681404bc991078c5c993d59cd0ffaf",
+      "explanationVi": "Oxford hỗ trợ truyền thống qua trang phục và bài hát; nguồn 4600 định nghĩa bằng old-fashioned ideas dễ tạo hàm ý lỗi thời quá mức. Định nghĩa phong tục, niềm tin hoặc phương pháp được truyền lại và ghi chú không mặc nhiên lỗi thời giữ ranh giới đúng. Bản dịch đủ các vũ công, một điệu múa cưới và thuộc tính truyền thống.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:traditional:inherited-practice",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "REVIEW",
+      "blocksPublication": false,
+      "effectiveContentHash": "593e6e8fe3e0ecb71150832cf46e6639cdfbc816de587a551f07e2635a5bf523",
+      "explanationVi": "Nguồn Oxford hỗ trợ số mười hai, gồm số lượng tháng và giờ trên đồng hồ. Định nghĩa vị trí giữa 11 và 13 chính xác; bản dịch giữ người thợ, mười hai bánh nhỏ và khay. Cách dùng số đếm đúng nhưng NUMBER là đề xuất taxonomy chưa được chuẩn nhận, cần xét trước ánh xạ Master POS; không chặn bản DRAFT ngoại tuyến.",
+      "issues": [
+        {
+          "field": "partOfSpeech",
+          "messageVi": "NUMBER là đề xuất nguồn chưa chuẩn nhận; cần quyết định taxonomy trước ánh xạ Master POS.",
+          "severity": "REVIEW"
+        }
+      ],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:twelve:number-12",
+      "unresolvedBoundaryItems": [
+        "NUMBER là đề xuất nguồn chưa chuẩn nhận; cần quyết định taxonomy trước ánh xạ Master POS."
+      ]
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "e7c54c27686bc3ec52c857d02fe5b25edf193a4874fa21b10d9635ea87b6fdc4",
+      "explanationVi": "Nguồn 4600 hỗ trợ câu chuyện đời do chính người đó viết; nghĩa tự truyện tránh gộp mọi hồi ký của nguồn thành đồng nghĩa tuyệt đối. Ví dụ và bản dịch giữ sở hữu của cô ấy, tuổi thơ và một đảo nhỏ. Danh từ đếm được và phân biệt biography theo tác giả đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:autobiography:self-written-life",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "7f84f847fdb2b85bae0240d29bc596196895efbcdc5378ccd40de99d451341c0",
+      "explanationVi": "Hai nguồn cùng hỗ trợ nhận thứ được gửi hoặc cho. Ví dụ mới dùng received có tân ngữ và mỗi người tham gia nhận một lịch trình in sẵn ở cửa; bản dịch giữ phân phối mỗi người, số ít và địa điểm. Ghi chú receive something from phù hợp với ranh giới đã chọn.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:receive:get-sent",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "8fc5e45325fead07a2454f65e705737bc2daa212209c32b2f517fb1ed4396e03",
+      "explanationVi": "Hai nguồn hỗ trợ tòa tháp cao và hẹp; định nghĩa cho phép công trình độc lập hoặc một phần tòa nhà. Bản dịch giữ một tháp bằng đá đánh dấu lối vào cảng cũ, không biến hành động thành xây tháp. Danh từ đếm được và nhãn cấu trúc phù hợp.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:tower:tall-structure",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "c1264fa42f5ef4d5cab45a36d67a5291e7c13225ab858818df156dcd305c604e",
+      "explanationVi": "Oxford hỗ trợ đồ uống bia, cả một suất và nhiều loại. Định nghĩa đồ uống có cồn từ quá trình ủ và lên men ngũ cốc phù hợp. Ví dụ dịch giữ người phục vụ mang một cốc bia tới bàn. Ghi chú không đếm được cho chất lỏng, đếm được cho suất hoặc loại phản ánh đúng nguồn.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:beer:grain-alcoholic-drink",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "11fa5d1ee161fefd6c9ae2b73574f299a9d48e91f79cf6d4fa85b7da67670bf9",
+      "explanationVi": "Nguồn 4600 xác định 1000 năm và minh họa số nhiều millennia. Định nghĩa một giai đoạn nghìn năm chính xác; cả millennia và millenniums là dạng số nhiều phù hợp. Bản dịch giữ kho lưu trữ ghi lại thay đổi trong thiên niên kỷ vừa qua, không đổi thành một nghìn hiện vật.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:millennium:thousand-year-period",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "30ba0c30a50851613dd9832ab2d50ba3da03e1da7003aeaa5c99b566632d151a",
+      "explanationVi": "Oxford hỗ trợ đặc trưng của nơi hoặc nhóm, nguồn 4600 hỗ trợ điều thường xảy ra. Định nghĩa kết hợp trong một phạm vi đặc điểm thông thường hợp lý. Ví dụ dịch đủ sương mù cuối mùa hè, thị trấn ven biển này và quan hệ typical of; ghi chú không phải quy luật tuyệt đối tránh thêm mức độ chắc chắn.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:typical:characteristic",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "REVIEW",
+      "blocksPublication": false,
+      "effectiveContentHash": "4612e86e70338e71fa165acee15a22b02a943e27a1764454a57f677623a796d3",
+      "explanationVi": "Nguồn Oxford hỗ trợ số một nghìn và cách dùng five thousand không thêm s. Định nghĩa mười trăm chính xác, ví dụ dịch bảo toàn hai nghìn khách và tuần trước. Ghi chú đúng cho số lượng chính xác; NUMBER vẫn chưa được chuẩn nhận, cần xét taxonomy trước ánh xạ Master POS, không chặn bản DRAFT ngoại tuyến.",
+      "issues": [
+        {
+          "field": "partOfSpeech",
+          "messageVi": "NUMBER là đề xuất nguồn chưa chuẩn nhận; cần quyết định taxonomy trước ánh xạ Master POS.",
+          "severity": "REVIEW"
+        }
+      ],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:thousand:number-1000",
+      "unresolvedBoundaryItems": [
+        "NUMBER là đề xuất nguồn chưa chuẩn nhận; cần quyết định taxonomy trước ánh xạ Master POS."
+      ]
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "5615beba43b5e48de4bf624493ab9e053501c253c8db6ce0bc3f8c420555881a",
+      "explanationVi": "Nguồn 4600 mô tả bão nhiệt đới nhưng ví dụ typhoon hit Australia có lỗi tên gọi vùng khí tượng; không nên kế thừa ví dụ ấy như chứng cứ phạm vi. Bản thảo sửa ranh giới thành Tây Bắc Thái Bình Dương, dùng Philippines phù hợp và ghi chú tên bão tùy vùng. Bản dịch giữ bão buộc dịch vụ phà tại Philippines ngừng hoạt động; tính chất cơn bão được cung cấp trong mục nghĩa.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:typhoon:nw-pacific-storm",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "745967b164ab46a4b3e2a198209bcb07ecb349f7707c820ebb5c21353dab7d5c",
+      "explanationVi": "Hai nguồn hỗ trợ nối hai vật và kết nối thiết bị hoặc mạng. Định nghĩa join hoặc establish a link bao quát cùng ranh giới. Bản dịch giữ một lối đi có mái che nối phòng thí nghiệm với tòa nhà chính, không đảo hai đầu nối; cấu trúc connect A to/with B đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:connect:join",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "REVIEW",
+      "blocksPublication": false,
+      "effectiveContentHash": "a79c049ca566d8135e1bba6c3e9fb3bd25e61eb1c676428b52c59a31a2d4cc5e",
+      "explanationVi": "Nguồn Oxford hỗ trợ bốn mươi phút và bốn mươi ghế mới. Định nghĩa bốn chục, chính tả forty và nghĩa bốn mươi đúng. Bản dịch bảo toàn bốn mươi chỗ ngồi, năm hàng và hội trường. NUMBER là nhãn nguồn chưa được chuẩn nhận, cần xét taxonomy trước ánh xạ Master POS; đây không phải lỗi chặn bản DRAFT ngoại tuyến.",
+      "issues": [
+        {
+          "field": "partOfSpeech",
+          "messageVi": "NUMBER là đề xuất nguồn chưa chuẩn nhận; cần quyết định taxonomy trước ánh xạ Master POS.",
+          "severity": "REVIEW"
+        }
+      ],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:forty:number-40",
+      "unresolvedBoundaryItems": [
+        "NUMBER là đề xuất nguồn chưa chuẩn nhận; cần quyết định taxonomy trước ánh xạ Master POS."
+      ]
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "9ad3bfba89502e3cc06a7276760c10f622e0886b2ac0a4980500c836839d64c8",
+      "explanationVi": "Nguồn 4600 hỗ trợ cơ hội trải nghiệm trước công chúng và ví dụ nghe ca khúc, nên see or experience là mở rộng hợp lý trong cùng nghĩa xem trước. Bản dịch giữ phòng trưng bày mời học sinh địa phương tới một buổi xem trước triển lãm. Danh từ đếm được, preview of và giới hạn noun đúng, không cần đề xuất verb từ bằng chứng này.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:preview:advance-view",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "73186cf19067b397408cdfbd0450e42fc3ce61a26a04781b60eeecd4e1ebc7fb",
+      "explanationVi": "Oxford hỗ trợ hành tinh quanh Mặt Trời và vệ tinh; nguồn 4600 chỉ nói vật lớn tròn trong không gian, quá rộng để phân loại. Định nghĩa học tập thêm quỹ đạo quanh sao và ghi chú không phải tiêu chuẩn thiên văn chính thức tránh nhận là định nghĩa phân loại đầy đủ. Bản dịch giữ tàu vũ trụ gửi về nhiều hình ảnh bầu khí quyển nhiều mây của hành tinh; không đổi thành ảnh mây của tàu.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:planet:orbiting-world",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "9be55b73a47c1fa968898c0cfceaf881f9c447673ca919d876aba05e13ebe246",
+      "explanationVi": "Nguồn xác nhận tính từ thông minh ở người và động vật. Định nghĩa về học, hiểu và giải quyết vấn đề phù hợp; chó con là chủ thể học mở cổng, quickly được giữ bằng nhanh chóng. Ghi chú không đồng nhất trí thông minh với phẩm chất đạo đức đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:intelligent:able-to-learn",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "52c37d3aaefcd58e3dde16015b1951da530e10c4c36160c588f07ce5ec734c60",
+      "explanationVi": "Đại từ chỉ thứ không xác định được nguồn minh họa cả câu hỏi lẫn lựa chọn không hạn chế. Ví dụ cho phép người nghe chọn bất cứ thứ gì ở ngăn trên cùng; bản dịch giữ may và vị trí. Ghi chú về câu khẳng định, phủ định và câu hỏi không mâu thuẫn.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:anything:unspecified-thing",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "214e43aa6bd41d9c05e7f466f0add4f2d28e123e463053e84559449ef86ca885",
+      "explanationVi": "Nguồn định nghĩa ngành nghiên cứu xã hội, tổ chức và vấn đề xã hội. Định nghĩa bản thảo giữ phạm vi ngành học; khóa học của cô ấy nghiên cứu sự thay đổi của nhiều khu phố trong cả hai ngôn ngữ. Danh từ không đếm được khi gọi ngành học phù hợp.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:sociology:society-study",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "45b9a60a28752f5216ecffc4e4fa4739bf6d40da6cdb698ee20a2087de2ab2c0",
+      "explanationVi": "Động từ phát âm từ hoặc tên có hỗ trợ từ cả hai nguồn. Ví dụ giữ người thông báo, việc luyện tập và họ của từng cầu thủ, không đổi thành tên riêng hay cả tên đầy đủ. Cấu trúc practised pronouncing và ghi chú dùng tân ngữ đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:pronounce:speak-sounds",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "REVIEW",
+      "blocksPublication": false,
+      "effectiveContentHash": "8d1a7c6e0bc81a1e19cb102bcd869d6ea900d075e0ada69b32412d60f380b712",
+      "explanationVi": "Giá trị ten tens đúng bằng một trăm; ví dụ ba trăm cây con và các tình nguyện viên dọc sông được dịch đúng số lượng và vai trò. Không thêm s sau three hundred là đúng. Tuy nhiên NUMBER vẫn là đề xuất từ nguồn, cần quyết định taxonomy trước khi ánh xạ canonical.",
+      "issues": [
+        {
+          "field": "partOfSpeech",
+          "messageVi": "NUMBER chưa thuộc Master POS canonical; giữ đề xuất DRAFT, chưa phê duyệt ánh xạ.",
+          "severity": "REVIEW"
+        }
+      ],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:hundred:number-100",
+      "unresolvedBoundaryItems": [
+        "Quyết định taxonomy cho NUMBER phải được xét riêng trước canonical mapping."
+      ]
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "c92fe61d48470102fa344b386a4df04017f9ab38f7272efad5763ad84c20860c",
+      "explanationVi": "Nguồn hỗ trợ thiết bị làm vật nhỏ trông lớn hơn, phù hợp định nghĩa kính hiển vi. Ví dụ giữ chúng tôi, một lát hành, độ mỏng và cách quan sát dưới kính. Danh từ đếm được và cụm under a microscope đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:microscope:magnifying-instrument",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "b73ef7e0b7a1cebb06cebbf2ebead489d90e3a1465af6b721f3167851fa84a33",
+      "explanationVi": "Hai nguồn hỗ trợ vùng đất có vị trí hoặc đặc điểm chung. Ví dụ giữ nông dân ở vùng này, cây ô liu và nhiều sườn đồi dốc. Ghi chú các loại ranh giới địa lý, văn hóa hoặc hành chính phù hợp phạm vi danh từ địa lý đã chọn.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:region:geographic-area",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "a40dc7d66fa1c2dc237efd7c580968e8826fab6371a4274db016264be4b76b74",
+      "explanationVi": "Đại từ chủ ngữ nam số ít được nguồn hỗ trợ. My uncle được dịch thành chú tôi và he tiếp tục trỏ tới cùng người, không đảo người thăm với chúng tôi. On Sundays được giữ dưới dạng các Chủ nhật, thể hiện thói quen; phân biệt he với him đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:he:male-subject",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "47d78abe151e4a1a9b1e20e876ea08437f6470f8e66742e7fd3ce6dfcc2c7209",
+      "explanationVi": "Nguồn nghiên cứu sao và hành tinh hỗ trợ nghĩa ngành thiên văn học. Định nghĩa về thiên thể và hiện tượng ngoài khí quyển phù hợp; ví dụ giữ một buổi nói chuyện công khai, môn học và sự hình thành của nhiều ngôi sao. Phân biệt với astrology đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:astronomy:space-science",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "0729d2dfc21a81cdbecca256282397da1f767fe6a5fc52b52fdf0a2a299dfd5a",
+      "explanationVi": "Nguồn có nhóm bộ phận cùng hoạt động và ví dụ hệ thống sưởi. Nghĩa hệ thống tưới giữ ranh giới kỹ thuật này; hệ thống là chủ thể đưa nước tới mọi hàng cây, every không bị bỏ. Danh từ đếm được và ghi chú tương tác giữa các bộ phận phù hợp.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:system:interacting-parts",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "796b8ce6c5c3745fad7b9433a3a8987ac7102e795c3c5e321b6a26c1857a686c",
+      "explanationVi": "Ví dụ nguồn về hệ thống tìm sách hỗ trợ nghĩa phương pháp tổ chức riêng với hệ thống máy móc. Bản dịch giữ sở hữu của chúng tôi, nhãn màu, hồ sơ lưu trữ và mức dễ hơn. Cấu trúc makes ... easier và ghi chú system for doing something đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:system:organized-method",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "REVIEW",
+      "blocksPublication": false,
+      "effectiveContentHash": "d6fd871723c21c4d33b68cef983f4cfc412612601022b580dccfa6a8ecd609e8",
+      "explanationVi": "Ví dụ nguồn về mặt trời, đường đi và tòa nhà hỗ trợ nghĩa mất khỏi tầm nhìn. Bản dịch giữ chiếc thuyền và khúc cua sông, không suy diễn thuyền không tồn tại. Ghi chú nội động từ đúng; gloss nguồn còn nêu không còn tồn tại nên cần lưu ranh giới chưa được tác giả khai triển.",
+      "issues": [
+        {
+          "field": "sourceSenseCoverage",
+          "messageVi": "Nguồn ENGLISH_VOCAB_4600 có gloss không còn tồn tại bên cạnh biến mất, trong khi bản thảo chỉ chọn mất khỏi tầm nhìn.",
+          "severity": "REVIEW"
+        }
+      ],
+      "missingSenseCandidates": [
+        "Ứng viên nghĩa không còn tồn tại/ngừng hiện hữu theo gloss nguồn; cần bằng chứng ngữ cảnh riêng trước tác giả hóa."
+      ],
+      "proposalKey": "EDITORIAL_2H2K:disappear:cease-visible",
+      "unresolvedBoundaryItems": [
+        "Tách mất khỏi tầm nhìn với ngừng tồn tại; đề xuất hiện tại không tuyên bố bao phủ toàn bộ."
+      ]
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "8b85a0c6a09a8f390a94028408d180214269a8106fb7b0eb22e22b0621e0c217",
+      "explanationVi": "Nguồn minh họa quán cà phê phục vụ bữa sáng, phù hợp đồ uống và món nhẹ. Ví dụ giữ quán gần bến tàu, bán nước chanh tự làm; không đổi bán thành uống. Danh từ đếm được và biến thể café đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:cafe:small-food-drink-place",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "33ea05bcab8cf157752a94d7e738615848cb869d97889413c0c978a36eefd417",
+      "explanationVi": "Nguồn mô tả sinh vật trong quan hệ với môi trường vật lý. Định nghĩa giữ cả hai thành phần và tương tác, không chỉ tập hợp sinh vật. Ví dụ giữ hành động loại bỏ lau sậy và hệ quả giả định would bằng sẽ trong ngữ cảnh giả định; phạm vi địa phương được dịch.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:ecosystem:living-environment-network",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "3ce90e4ee836a15353370e284700bc75b873f33830e9912d036e823476e22304",
+      "explanationVi": "Nguồn hỗ trợ người cùng làm việc. Ví dụ giữ một đồng nghiệp đề nghị làm thay ca của người nói vào thứ Sáu, không đảo người làm thay. Danh từ đếm được, không mặc định tình bạn hay cùng cấp bậc, phù hợp.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:colleague:work-associate",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "1400cfdc00837a0c8af290f5cce08754aa11be3191672c6924e479b633ec163a",
+      "explanationVi": "Nguồn chỉ người cha; định nghĩa male parent đúng, không áp đặt phải là cha sinh học. Bản dịch giữ cha của cô ấy dạy chính cô ấy sửa xích xe đạp. Nghĩa phụ chức danh tôn giáo hoặc người sáng lập không được nguồn này minh họa nên giới hạn nghĩa hiện tại phù hợp.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:father:male-parent",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "REVIEW",
+      "blocksPublication": false,
+      "effectiveContentHash": "6d1d890ae4cd952bb0a975051da12f707c2fb32e23e398abe87f23311c8c2ebc",
+      "explanationVi": "Định nghĩa công sức làm việc và ví dụ sửa tường phù hợp nghĩa act of doing or making something trong nguồn. Vài ngày và độ vất vả được giữ; ghi chú không đếm được cùng labor/labour đúng. Gloss nhân công gợi ranh giới lực lượng lao động khác với công sức, chưa đủ bằng chứng ví dụ để tác giả hóa thêm nghĩa.",
+      "issues": [
+        {
+          "field": "sourceSenseCoverage",
+          "messageVi": "Gloss nhân công có thể chỉ người lao động, khác với công sức; định nghĩa và ví dụ nguồn hiện chỉ hỗ trợ công sức.",
+          "severity": "REVIEW"
+        }
+      ],
+      "missingSenseCandidates": [
+        "Ứng viên nghĩa lực lượng lao động/nhân công theo gloss nguồn, cần xác minh thêm định nghĩa và ví dụ."
+      ],
+      "proposalKey": "EDITORIAL_2H2K:labor:work-effort",
+      "unresolvedBoundaryItems": [
+        "Công sức lao động và tập thể người lao động chưa được nguồn phân tách thành nhóm nghĩa."
+      ]
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "61e80fb22e14214dd51db401b891f1dcf34f12f091fdd61ec8134636ba99f990",
+      "explanationVi": "Liên từ nhượng bộ phù hợp cả hai nguồn. Ví dụ giữ vé đắt và việc cô ấy vẫn mua để xem hòa nhạc; bản dịch không đảo quan hệ nhượng bộ. Mệnh đề phụ với although và khuyến nghị không thêm but ở mệnh đề chính đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:although:concession-link",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "367274a031cdecdafc94bb24710589f3bb3f2f8ce285f5d250e2aab9f1604389",
+      "explanationVi": "Nguồn hỗ trợ danh từ áo khoác; định nghĩa mặc ngoài quần áo khác đúng. Anh ấy là chủ thể của cả gấp và đặt áo lên ghế trống trong bản dịch. Ghi chú đếm được và loại trừ nghĩa lớp sơn giúp giữ ranh giới được nguồn minh họa.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:coat:outer-garment",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "f8a06b443f492ba5a42027ae61cc54fd00574b91a72d15c541bdd46454d56824",
+      "explanationVi": "Nguồn mô tả sinh vật nhỏ có thể gây bệnh, phù hợp vi trùng và động từ can trong định nghĩa. Ví dụ giữ việc giặt vải giúp loại bỏ nhiều vi trùng khỏi bề mặt của chính tấm vải. Danh từ đếm được và lưu ý không phải mọi vi sinh vật đều có hại đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:germ:disease-agent",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "REVIEW",
+      "blocksPublication": false,
+      "effectiveContentHash": "e69e6e7999700d597191c4491a54562436221a851e3e35a8db2b3a14b75bd05a",
+      "explanationVi": "Nguồn minh họa vấn đề lớn, trung tâm lớn và sự kiện quan trọng, hỗ trợ tính từ về tầm quan trọng hoặc quy mô. Ví dụ giữ tuyến đường sắt mới làm nguồn việc làm quan trọng ở địa phương. Variant Data có danh từ nhưng thiếu định nghĩa, nên ranh giới danh từ cần lưu chờ bằng chứng thay vì tự tạo nội dung.",
+      "issues": [
+        {
+          "field": "sourceEvidence",
+          "messageVi": "Variant Data nêu n. và B2 nhưng không có nội dung nghĩa danh từ; không thể suy ra là chuyên ngành hay quân hàm.",
+          "severity": "REVIEW"
+        }
+      ],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:major:very-important",
+      "unresolvedBoundaryItems": [
+        "Danh từ major có POS variant nhưng thiếu nghĩa và ví dụ; chưa đủ bằng chứng để tạo Sense bổ sung."
+      ]
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "17353bc06dae481f73498a310739cb3addc9cf9ac50b9786c44c3d60a0d62657",
+      "explanationVi": "Nguồn cùng hỗ trợ danh từ thảm họa gây hại lớn. Ví dụ sạt lở giữ nguyên sự kiện và các trang trại chịu tác động bên dưới đồi; không đảo vai trò hoặc thu hẹp thành một trang trại. Định nghĩa và ghi chú đếm được phù hợp nghĩa sự kiện nghiêm trọng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:disaster:catastrophic-event",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "5d1c71e2599366eeefb7d3401f3071d221442ea5b862daf2bf1d0966374c56d6",
+      "explanationVi": "Nguồn xác định người riêng lẻ và ghi hai dạng số nhiều people/persons. Ví dụ chỉ một người còn trong phòng chờ được dịch đúng only, one và remained. Ghi chú people thông dụng và persons ở một số văn cảnh trang trọng đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:person:individual-human",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "6250d19b5e786de475a1638ec17a9be7da7de666039e04724f4be2827561bf68",
+      "explanationVi": "Nguồn hỗ trợ sự bảo vệ, phòng thủ. Bức tường tạo biện pháp phòng thủ chống nhiều cuộc tấn công từ thung lũng trong cả hai câu; vị trí xuất phát không bị đảo. Defense/defence và khả năng đếm tùy chỉ biện pháp hoặc hoạt động phù hợp.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:defense:protective-action",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "34a9124cdf2412114f8ba08fb72b875d8a57d4ad29584e1afabce1fd9b0136b3",
+      "explanationVi": "Hai nguồn hỗ trợ con nhện tám chân. Ví dụ giữ một con nhện ẩn dưới mép chậu hoa; bản dịch không đổi thành bên trong chậu. Danh từ đếm được và phân loại arachnid thay vì insect đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:spider:eight-legged-arachnid",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "3b605fb9fa935f1c1bfba243380cc0f7e2eafbfa663fab5979c1796cc92fd84f",
+      "explanationVi": "Nguồn hỗ trợ vật chứa chất lỏng là chai. Câu dịch giữ người nữ, chai rỗng, tráng trước khi đổ đầy nước ép và thứ tự hành động. Ghi chú danh từ đếm được và bottle of chỉ lượng chứa phù hợp.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:bottle:narrow-neck-container",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "3b3d78e6417f10e0c514f07b1e5b1b547dd7500a5e60b415bbaf732335c48063",
+      "explanationVi": "Nguồn xác định đường tưởng tượng chia Trái Đất thành phần bắc và nam. Định nghĩa giữa hai cực và ghi chú hai bán cầu đúng. Ví dụ dịch giữ quả địa cầu, một đường màu đỏ và việc đánh dấu xích đạo; không nhầm globe với Trái Đất thực.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:equator:earth-midline",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "48586c56c9767ce2de9e3ec166d4f0b07460010549d487713deadd1299296bbf",
+      "explanationVi": "Nguồn minh họa thiết bị dùng điện, hỗ trợ nghĩa chạy bằng điện. Máy bơm điện là chủ thể đưa nước vào bồn trong cả hai câu. Cách đặt tính từ trước danh từ thiết bị đúng, không nhập nghĩa hào hứng chưa được nguồn minh họa.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:electric:electricity-powered",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "REVIEW",
+      "blocksPublication": false,
+      "effectiveContentHash": "fb1f6bb187ad81109ec01a08a5ac18a2dafd380844e1e91c9df35f2cb8b35985",
+      "explanationVi": "Số đứng sau mười ba và trước mười lăm đúng là mười bốn. Ví dụ giữ câu lạc bộ, số mười bốn cuốn vở và tính giống nhau. Nội dung ngữ nghĩa đúng nhưng NUMBER vẫn cần xét taxonomy trước canonical mapping; DRAFT không tự cấp phê duyệt.",
+      "issues": [
+        {
+          "field": "partOfSpeech",
+          "messageVi": "NUMBER là đề xuất taxonomy nguồn, chưa thuộc POS canonical được phê duyệt.",
+          "severity": "REVIEW"
+        }
+      ],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:fourteen:number-14",
+      "unresolvedBoundaryItems": [
+        "Chờ quyết định taxonomy; giữ số từ đúng ngữ nghĩa trong DRAFT."
+      ]
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "2189fa739a9ef009b97e72b17b048e3d0c09c983df80d29d3cc01ade242a1bd2",
+      "explanationVi": "Nguồn mô tả chiến binh địa vị cao phục vụ vua, hỗ trợ hiệp sĩ lịch sử. Ví dụ cưỡi ngựa qua cổng lâu đài lúc bình minh được dịch tự nhiên với rode trong ngữ cảnh hiệp sĩ. Ghi chú loại trừ quân cờ và danh hiệu hiện đại giữ ranh giới nghĩa đã chọn.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:knight:medieval-warrior",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "REVIEW",
+      "blocksPublication": false,
+      "effectiveContentHash": "0942214d74cfe2f110300a83a73c4a4cf407abbe6c0bab3643ae22ba9a46cc01",
+      "explanationVi": "Nguồn định nghĩa đánh dấu sự kiện đặc biệt và ví dụ ăn mừng, hỗ trợ bản thảo. Câu dịch giữ họ, việc mở cầu và âm nhạc làm phương thức ăn mừng. Cách dùng có tân ngữ hoặc không tân ngữ đúng; gloss tán dương của nguồn gợi nghĩa khác cần lưu chờ bằng chứng.",
+      "issues": [
+        {
+          "field": "sourceSenseCoverage",
+          "messageVi": "Gloss nguồn có chúc tụng, tán dương nhưng định nghĩa và ví dụ hiện chỉ hỗ trợ ăn mừng sự kiện.",
+          "severity": "REVIEW"
+        }
+      ],
+      "missingSenseCandidates": [
+        "Ứng viên nghĩa tán dương theo gloss ENGLISH_VOCAB_4600; cần thêm ví dụ trước khi tạo Sense."
+      ],
+      "proposalKey": "EDITORIAL_2H2K:celebrate:mark-special-event",
+      "unresolvedBoundaryItems": [
+        "Đánh dấu sự kiện và tán dương người hoặc thành tựu chưa được nguồn phân nhóm rõ."
+      ]
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "012f476ddb90a6c8dea43938e17a8cb504545b1a215e1b341a73a1241669110d",
+      "explanationVi": "Giới từ về vị trí hoặc thành viên trong nhóm có cả hai nguồn hỗ trợ. Bản dịch giữ người nữ, ô xanh lam của cô ấy và nhiều ô đen; ones được giải rõ thành ô. Ghi chú không buộc mọi thành viên phải gần nhau phù hợp phạm vi trong số.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:among:within-group",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "0ad55f7fde03c658f445ac2cc617053b253b3dce26838cf56b469298b028bd2a",
+      "explanationVi": "Nguồn Oxford minh họa tuyên bố công bố thông tin. Ví dụ giữ hội đồng đưa ra thông báo về việc đóng đường, không đổi thành hành động đóng đường của hội đồng. Danh từ đếm được và các kết hợp make/issue/release phù hợp.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:statement:announced-message",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "a8fc67fd466937dac007cb17a258195e45880059c03ccb47b7f35f2f6b6c8f46",
+      "explanationVi": "Nguồn hỗ trợ khoản tiền trả lại khi mua hàng được hoàn trả. Định nghĩa thanh toán bị hủy hoặc đảo ngược nằm trong phạm vi hoàn tiền. Bản dịch giữ cửa hàng đề nghị, hoàn toàn bộ tiền và chiếc đèn hỏng; dạng danh từ được ghi rõ dù tiếng Việt diễn đạt bằng cụm động từ tự nhiên.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:refund:returned-payment",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "REVIEW",
+      "blocksPublication": false,
+      "effectiveContentHash": "648e2cb21a19ea195ab45d47c1ecd3bf7a3f74dc7bc10a4484c35e3df32ec167",
+      "explanationVi": "Ví dụ Oxford về nhà hàng cụ thể hỗ trợ nghĩa xác định một lựa chọn riêng. Câu hỏi về cỡ phong bì giữ người nghe, nhu cầu và tính cụ thể; không biến thành mọi cỡ phong bì. Ghi chú dùng trước danh từ đúng; định nghĩa ENGLISH_VOCAB_4600 về single important part quá mơ hồ nên cần lưu chất lượng bằng chứng nguồn.",
+      "issues": [
+        {
+          "field": "sourceEvidence",
+          "messageVi": "Định nghĩa single, important part of a group của nguồn 4600 không rõ ràng; nghĩa cụ thể được Oxford hỗ trợ trực tiếp.",
+          "severity": "REVIEW"
+        }
+      ],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:particular:specific-one",
+      "unresolvedBoundaryItems": [
+        "Không nhập important như điều kiện nghĩa cụ thể; giữ chất lượng nguồn 4600 chờ đối chiếu."
+      ]
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "007997d259887ffbe948167fd542bce7e3e545c7cf1ae02609f1fda9a3858bd1",
+      "explanationVi": "Ví dụ nguồn no particular interest hỗ trợ nghĩa mức độ đặc biệt, khác nghĩa một lựa chọn xác định. Bản dịch giữ người phụ trách, sự cẩn thận đặc biệt khi chuyển tranh và tính cũ của bức tranh. Ghi chú particular care/interest và phủ định no particular đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:particular:special-degree",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "bad330500dda234b0cfd52fb8d21f5104415cda25eeb49b1c2c740ad65f3a3c0",
+      "explanationVi": "Nguồn hỗ trợ tiền dùng cho thanh toán và tiết kiệm. Bản dịch giữ họ dành riêng tiền mỗi tháng để sửa mái nhà, không đổi thành đã sửa hay xây mái mới. Danh từ thường không đếm được và an amount of money đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:money:payment-funds",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "REVIEW",
+      "blocksPublication": false,
+      "effectiveContentHash": "2619d93e1bbd099d8ccd6bce7119d018579693659748c62a3c5036b13b30121c",
+      "explanationVi": "Định nghĩa nguồn nói thuốc chống vi khuẩn, phù hợp bản thảo. Ví dụ mới chỉ mô tả nhãn nhận diện thuốc nên bản dịch giữ đúng chủ thể nhãn và thuốc. Ghi chú không suy ra tác dụng với nhiễm virus phù hợp; ví dụ nguồn nhắc flu tạo nguy cơ suy diễn cần lưu riêng, không phải lỗi của nội dung mới.",
+      "issues": [
+        {
+          "field": "sourceEvidence",
+          "messageVi": "Ví dụ nguồn nói dùng antibiotic khi got the flu, dễ tạo suy diễn không phù hợp với định nghĩa bacteria trong chính nguồn.",
+          "severity": "REVIEW"
+        }
+      ],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:antibiotic:bacteria-medicine",
+      "unresolvedBoundaryItems": [
+        "Ví dụ nguồn không chứng minh tác dụng trị virus; ví dụ mới và ghi chú không kế thừa suy diễn này."
+      ]
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "97cd1480cfe0b61a97834aab14ec002f6542ed3e32d3fcae85ccdda30b2feb77",
+      "explanationVi": "Hai nguồn hỗ trợ quảng bá công khai. Ví dụ giữ nhà hát làm chủ thể, vở kịch mới của mình và nhiều áp phích gần nhà ga. Tính sở hữu its được giữ; cấu trúc có tân ngữ và không tân ngữ khi hiểu ngầm phù hợp.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:advertise:public-promotion",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "f4394def4f8ff853d1f6eacc4da2f655363dceb38e7e1d99e139d7b2e5d72402",
+      "explanationVi": "Nguồn minh họa voi dùng vòi và uống nước, hỗ trợ danh từ con voi. Định nghĩa thú đất rất lớn có vòi phù hợp. Bản dịch giữ voi phun nước lên chính lưng nó; ghi chú ngà không đồng nhất ở mọi cá thể tránh điều kiện định nghĩa quá chặt.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:elephant:large-trunk-mammal",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "f90561e28f35722ed1360018f759df5a8cd759f484c508a93ffefec9f51d03a6",
+      "explanationVi": "Nguồn định nghĩa và ví dụ đều dùng criteria số nhiều để chỉ tiêu chuẩn đánh giá. Bản dịch giữ ủy ban, nhiều tiêu chí thuộc ủy ban và mục đích chọn một người thắng. Ghi chú criterion số ít, criteria số nhiều và hòa hợp số đúng; IPA nguồn là dạng criterion chưa được nhập vào nội dung đề xuất.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:criteria:judging-standards",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "b673239926a29d2834f28de39da3d391ada19e32c82f2245d34520a3f73c0454",
+      "explanationVi": "Nguồn hỗ trợ người viết và thu thập tin; bản thảo khái quát các phương tiện báo chí phù hợp. Ví dụ giữ nhà báo phỏng vấn nhiều cư dân sau mất điện; không đảo nhà báo với người được hỏi. Danh từ đếm được và ghi chú báo viết, nói, phát sóng đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:journalist:news-reporter",
+      "unresolvedBoundaryItems": []
+    }
+  ],
+  "pendingMicroBatches": [],
+  "publicationReady": true,
+  "records": [
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "97cd1480cfe0b61a97834aab14ec002f6542ed3e32d3fcae85ccdda30b2feb77",
+      "explanationVi": "Hai nguồn hỗ trợ quảng bá công khai. Ví dụ giữ nhà hát làm chủ thể, vở kịch mới của mình và nhiều áp phích gần nhà ga. Tính sở hữu its được giữ; cấu trúc có tân ngữ và không tân ngữ khi hiểu ngầm phù hợp.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:advertise:public-promotion",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "61e80fb22e14214dd51db401b891f1dcf34f12f091fdd61ec8134636ba99f990",
+      "explanationVi": "Liên từ nhượng bộ phù hợp cả hai nguồn. Ví dụ giữ vé đắt và việc cô ấy vẫn mua để xem hòa nhạc; bản dịch không đảo quan hệ nhượng bộ. Mệnh đề phụ với although và khuyến nghị không thêm but ở mệnh đề chính đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:although:concession-link",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "012f476ddb90a6c8dea43938e17a8cb504545b1a215e1b341a73a1241669110d",
+      "explanationVi": "Giới từ về vị trí hoặc thành viên trong nhóm có cả hai nguồn hỗ trợ. Bản dịch giữ người nữ, ô xanh lam của cô ấy và nhiều ô đen; ones được giải rõ thành ô. Ghi chú không buộc mọi thành viên phải gần nhau phù hợp phạm vi trong số.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:among:within-group",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "REVIEW",
+      "blocksPublication": false,
+      "effectiveContentHash": "2619d93e1bbd099d8ccd6bce7119d018579693659748c62a3c5036b13b30121c",
+      "explanationVi": "Định nghĩa nguồn nói thuốc chống vi khuẩn, phù hợp bản thảo. Ví dụ mới chỉ mô tả nhãn nhận diện thuốc nên bản dịch giữ đúng chủ thể nhãn và thuốc. Ghi chú không suy ra tác dụng với nhiễm virus phù hợp; ví dụ nguồn nhắc flu tạo nguy cơ suy diễn cần lưu riêng, không phải lỗi của nội dung mới.",
+      "issues": [
+        {
+          "field": "sourceEvidence",
+          "messageVi": "Ví dụ nguồn nói dùng antibiotic khi got the flu, dễ tạo suy diễn không phù hợp với định nghĩa bacteria trong chính nguồn.",
+          "severity": "REVIEW"
+        }
+      ],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:antibiotic:bacteria-medicine",
+      "unresolvedBoundaryItems": [
+        "Ví dụ nguồn không chứng minh tác dụng trị virus; ví dụ mới và ghi chú không kế thừa suy diễn này."
+      ]
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "52c37d3aaefcd58e3dde16015b1951da530e10c4c36160c588f07ce5ec734c60",
+      "explanationVi": "Đại từ chỉ thứ không xác định được nguồn minh họa cả câu hỏi lẫn lựa chọn không hạn chế. Ví dụ cho phép người nghe chọn bất cứ thứ gì ở ngăn trên cùng; bản dịch giữ may và vị trí. Ghi chú về câu khẳng định, phủ định và câu hỏi không mâu thuẫn.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:anything:unspecified-thing",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "47d78abe151e4a1a9b1e20e876ea08437f6470f8e66742e7fd3ce6dfcc2c7209",
+      "explanationVi": "Nguồn nghiên cứu sao và hành tinh hỗ trợ nghĩa ngành thiên văn học. Định nghĩa về thiên thể và hiện tượng ngoài khí quyển phù hợp; ví dụ giữ một buổi nói chuyện công khai, môn học và sự hình thành của nhiều ngôi sao. Phân biệt với astrology đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:astronomy:space-science",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "e7c54c27686bc3ec52c857d02fe5b25edf193a4874fa21b10d9635ea87b6fdc4",
+      "explanationVi": "Nguồn 4600 hỗ trợ câu chuyện đời do chính người đó viết; nghĩa tự truyện tránh gộp mọi hồi ký của nguồn thành đồng nghĩa tuyệt đối. Ví dụ và bản dịch giữ sở hữu của cô ấy, tuổi thơ và một đảo nhỏ. Danh từ đếm được và phân biệt biography theo tác giả đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:autobiography:self-written-life",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "d56cf059309538c56b8b8b45f5c0153aa4fca9eb15acd0bbfbe498a4e8709c87",
+      "explanationVi": "Oxford hỗ trợ vật chứa bằng vải và túi đầy, đúng nghĩa túi bằng vật liệu mềm. Ví dụ mới giữ bản đồ đã gấp, hành động nhét và túi đeo vai thuộc cô ấy. Danh từ đếm được và tổ hợp shopping bag phù hợp, không bỏ đối tượng hay đổi sở hữu.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:bag:flexible-container",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "7a36ef689df5de64b61ee7d3d98b7117fbcacbf0e9266772b2607f6b26e2e2a5",
+      "explanationVi": "Nguồn xác nhận bóng chày là môn thể thao qua play baseball và baseball game. Định nghĩa đánh bóng bằng gậy rồi chạy giữa các chốt phù hợp. Bản dịch giữ chúng tôi nghe một trận trên radio trong chuyến đi xe, không đổi thành xem. Baseball match có thể dùng dù game phổ biến hơn; phân biệt danh từ môn thể thao không đếm được và game đếm được chính xác.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:baseball:bat-and-ball-sport",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "a82ab606d632b8db2c0e7bf109854b93dae4deff1d5ca714478ad379a9fc8bb2",
+      "explanationVi": "Nguồn xác nhận phòng ngủ; định nghĩa theo mục đích ngủ trong nhà phù hợp. Bản dịch giữ họ sơn các tường phòng ngủ thành xanh lam nhạt; không đổi thành xanh đậm hay chỉ sơn đồ nội thất. Tiếng Việt tường có thể chỉ số nhiều trong ngữ cảnh nên không mất số lượng. Danh từ đếm được đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:bedroom:sleeping-room",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "c1264fa42f5ef4d5cab45a36d67a5291e7c13225ab858818df156dcd305c604e",
+      "explanationVi": "Oxford hỗ trợ đồ uống bia, cả một suất và nhiều loại. Định nghĩa đồ uống có cồn từ quá trình ủ và lên men ngũ cốc phù hợp. Ví dụ dịch giữ người phục vụ mang một cốc bia tới bàn. Ghi chú không đếm được cho chất lỏng, đếm được cho suất hoặc loại phản ánh đúng nguồn.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:beer:grain-alcoholic-drink",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "54c9fb258f609c852caca2681db6b2ab18694af2199da819f04d5fe836fdcf65",
+      "explanationVi": "Nguồn hỗ trợ blog là trang bài viết trực tuyến, danh từ trong cả hai ví dụ. Định nghĩa trang hoặc phần trang được thêm bài thường xuyên phù hợp. Bản dịch giữ blog du lịch của cô ấy, nhiều phác họa và mọi thị trấn cô ấy đến. Giới hạn danh từ, không tự thêm nghĩa động từ chưa có chứng cứ, hợp lý.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:blog:online-journal",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "3b605fb9fa935f1c1bfba243380cc0f7e2eafbfa663fab5979c1796cc92fd84f",
+      "explanationVi": "Nguồn hỗ trợ vật chứa chất lỏng là chai. Câu dịch giữ người nữ, chai rỗng, tráng trước khi đổ đầy nước ép và thứ tự hành động. Ghi chú danh từ đếm được và bottle of chỉ lượng chứa phù hợp.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:bottle:narrow-neck-container",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "00af3d736b4a754e270ddbb72030c8ee138d565525291a6a9cf9722a41c2be57",
+      "explanationVi": "Hai nguồn hỗ trợ cơ quan trong đầu liên quan suy nghĩ; định nghĩa xử lý thông tin và điều khiển hoạt động cơ thể đúng phạm vi não. Bản dịch giữ lần chụp tạo ảnh chi tiết về não bệnh nhân, không đổi người chụp hay đối tượng ảnh. Ghi chú đếm được và giới hạn cơ quan vật lý không bỏ nghĩa riêng được nguồn chứng minh.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:brain:head-organ",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "ac704fa96f79ac9a1886575c107ea99b4874a30b032b4c201aeb81722b4c8e13",
+      "explanationVi": "Đã đối chiếu nhận xét độc lập ban đầu, BEFORE/AFTER và bản ghi hiệu lực: định nghĩa mới bỏ outdoors và giữ chuyển động nhẹ của không khí như gió nhẹ, phù hợp nguồn soft wind. Nghĩa VI làn gió nhẹ và nhãn Gentle wind nhất quán; không mở sang nghĩa việc dễ làm vì ghi chú giới hạn rõ nghĩa gió. Ví dụ gió mát làm lay động rèm cạnh cửa sổ mở tự nhiên; bản dịch giữ gió là nguyên nhân, rèm là đối tượng, độ mát và cửa mở. Danh từ đếm được đúng; không còn hạn định địa điểm gây hiểu sai, không phát hiện vấn đề còn lại ở hash mới.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:breeze:light-wind",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "8b85a0c6a09a8f390a94028408d180214269a8106fb7b0eb22e22b0621e0c217",
+      "explanationVi": "Nguồn minh họa quán cà phê phục vụ bữa sáng, phù hợp đồ uống và món nhẹ. Ví dụ giữ quán gần bến tàu, bán nước chanh tự làm; không đổi bán thành uống. Danh từ đếm được và biến thể café đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:cafe:small-food-drink-place",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "2e47978879fbdf3836009634d95bb9af69683913d122137eedbf50096d7fce03",
+      "explanationVi": "Nguồn hỗ trợ người làm đồ gỗ; định nghĩa thêm sửa kết cấu và đồ vật gỗ vẫn đúng nghề thợ mộc. Câu dịch giữ thợ mộc thay khung mục quanh cửa sổ của chúng tôi, không biến sửa khung thành thay cửa sổ. Danh từ đếm được và ghi chú nghề nghiệp phù hợp.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:carpenter:wood-worker",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "REVIEW",
+      "blocksPublication": false,
+      "effectiveContentHash": "0942214d74cfe2f110300a83a73c4a4cf407abbe6c0bab3643ae22ba9a46cc01",
+      "explanationVi": "Nguồn định nghĩa đánh dấu sự kiện đặc biệt và ví dụ ăn mừng, hỗ trợ bản thảo. Câu dịch giữ họ, việc mở cầu và âm nhạc làm phương thức ăn mừng. Cách dùng có tân ngữ hoặc không tân ngữ đúng; gloss tán dương của nguồn gợi nghĩa khác cần lưu chờ bằng chứng.",
+      "issues": [
+        {
+          "field": "sourceSenseCoverage",
+          "messageVi": "Gloss nguồn có chúc tụng, tán dương nhưng định nghĩa và ví dụ hiện chỉ hỗ trợ ăn mừng sự kiện.",
+          "severity": "REVIEW"
+        }
+      ],
+      "missingSenseCandidates": [
+        "Ứng viên nghĩa tán dương theo gloss ENGLISH_VOCAB_4600; cần thêm ví dụ trước khi tạo Sense."
+      ],
+      "proposalKey": "EDITORIAL_2H2K:celebrate:mark-special-event",
+      "unresolvedBoundaryItems": [
+        "Đánh dấu sự kiện và tán dương người hoặc thành tựu chưa được nguồn phân nhóm rõ."
+      ]
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "7c2071baf0f4e500786172d51da73635dbf2ad4126c19e0df92e9d3b4fea1979",
+      "explanationVi": "Nguồn xác nhận đơn vị bằng một phần trăm đô la hoặc euro. Định nghĩa tiếng Anh mở tới các tiền tệ khác dùng cent hợp lý; bản dịch giữ giá tăng thêm năm xu qua một đêm, không đổi thành tổng giá năm xu. Đếm được và yêu cầu chỉ rõ tiền tệ nếu mơ hồ giúp tránh nhầm hệ tiền.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:cent:currency-unit",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "d5e54a9ed3cb015285178ac32f96e606c9afad9431c31ec1d5f49dcfad299afe",
+      "explanationVi": "Nguồn 4600 hỗ trợ riêng thức ăn sáng chế biến từ hạt và ăn với sữa. Định nghĩa không mở sang cây lương thực, ghi chú không đếm được phù hợp. Bản dịch giữ chủ thể nữ, hành động đổ, bát xanh lam và thứ tự trước khi thêm sữa.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:cereal:breakfast-grain-food",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "367274a031cdecdafc94bb24710589f3bb3f2f8ce285f5d250e2aab9f1604389",
+      "explanationVi": "Nguồn hỗ trợ danh từ áo khoác; định nghĩa mặc ngoài quần áo khác đúng. Anh ấy là chủ thể của cả gấp và đặt áo lên ghế trống trong bản dịch. Ghi chú đếm được và loại trừ nghĩa lớp sơn giúp giữ ranh giới được nguồn minh họa.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:coat:outer-garment",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "3ce90e4ee836a15353370e284700bc75b873f33830e9912d036e823476e22304",
+      "explanationVi": "Nguồn hỗ trợ người cùng làm việc. Ví dụ giữ một đồng nghiệp đề nghị làm thay ca của người nói vào thứ Sáu, không đảo người làm thay. Danh từ đếm được, không mặc định tình bạn hay cùng cấp bậc, phù hợp.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:colleague:work-associate",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "745967b164ab46a4b3e2a198209bcb07ecb349f7707c820ebb5c21353dab7d5c",
+      "explanationVi": "Hai nguồn hỗ trợ nối hai vật và kết nối thiết bị hoặc mạng. Định nghĩa join hoặc establish a link bao quát cùng ranh giới. Bản dịch giữ một lối đi có mái che nối phòng thí nghiệm với tòa nhà chính, không đảo hai đầu nối; cấu trúc connect A to/with B đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:connect:join",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "b330a0f5e7b2dd7d2989b6485ea25cb1da711b2e569938684a2791f4bf6d0582",
+      "explanationVi": "Nguồn ghi bò cái và ví dụ lấy sữa, hỗ trợ nghĩa con bò cái trưởng thành. Bản dịch giữ nông dân là người dắt, bò cái là đối tượng vào chuồng trước bão. Countable và giới hạn giới tính đúng với Sense này, không gộp cách gọi động vật khác bằng cow chưa có chứng cứ.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:cow:female-cattle",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "f90561e28f35722ed1360018f759df5a8cd759f484c508a93ffefec9f51d03a6",
+      "explanationVi": "Nguồn định nghĩa và ví dụ đều dùng criteria số nhiều để chỉ tiêu chuẩn đánh giá. Bản dịch giữ ủy ban, nhiều tiêu chí thuộc ủy ban và mục đích chọn một người thắng. Ghi chú criterion số ít, criteria số nhiều và hòa hợp số đúng; IPA nguồn là dạng criterion chưa được nhập vào nội dung đề xuất.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:criteria:judging-standards",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "6250d19b5e786de475a1638ec17a9be7da7de666039e04724f4be2827561bf68",
+      "explanationVi": "Nguồn hỗ trợ sự bảo vệ, phòng thủ. Bức tường tạo biện pháp phòng thủ chống nhiều cuộc tấn công từ thung lũng trong cả hai câu; vị trí xuất phát không bị đảo. Defense/defence và khả năng đếm tùy chỉ biện pháp hoặc hoạt động phù hợp.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:defense:protective-action",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "7a24c10a01249ea431d542db4cc9d7353678bbcbc0857a83f58e58daebb1345d",
+      "explanationVi": "Đã đối chiếu nhận xét độc lập ban đầu, BEFORE/AFTER và bản ghi hiệu lực: thay on is required bằng one of these prepositions is required xử lý đúng sự mơ hồ, cho phép cả on và upon khi nêu yếu tố quyết định. Cấu trúc depends on how many questions arise trong ví dụ đúng; bản dịch giữ độ dài buổi học phụ thuộc số câu hỏi và không đảo vai trò. Nguồn giá phụ thuộc kích thước phòng hỗ trợ ranh giới nghĩa này, khác nguồn dựa vào gậy hoặc ánh nắng. Định nghĩa, nghĩa VI và phần ví dụ không tạo vấn đề còn tồn tại; nhận xét REVIEW cũ được giải quyết ở đúng hash mới.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:depend:be-determined-by",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "f2e1ec5a5a2370d01f1f9da953a51397fe8f356e2518b7d0c3fd9a26bdb6a331",
+      "explanationVi": "Nguồn cây cần ánh nắng và ông dựa vào gậy hỗ trợ nghĩa cần nguồn trợ giúp. Định nghĩa và bản dịch giữ ngôi làng cần giếng để có nước uống. Depend on something for something dùng đúng; tách khỏi nghĩa yếu tố quyết định có chứng cứ rõ và không bỏ sót nghĩa nào khác được nguồn nêu.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:depend:rely-on",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "REVIEW",
+      "blocksPublication": false,
+      "effectiveContentHash": "d6fd871723c21c4d33b68cef983f4cfc412612601022b580dccfa6a8ecd609e8",
+      "explanationVi": "Ví dụ nguồn về mặt trời, đường đi và tòa nhà hỗ trợ nghĩa mất khỏi tầm nhìn. Bản dịch giữ chiếc thuyền và khúc cua sông, không suy diễn thuyền không tồn tại. Ghi chú nội động từ đúng; gloss nguồn còn nêu không còn tồn tại nên cần lưu ranh giới chưa được tác giả khai triển.",
+      "issues": [
+        {
+          "field": "sourceSenseCoverage",
+          "messageVi": "Nguồn ENGLISH_VOCAB_4600 có gloss không còn tồn tại bên cạnh biến mất, trong khi bản thảo chỉ chọn mất khỏi tầm nhìn.",
+          "severity": "REVIEW"
+        }
+      ],
+      "missingSenseCandidates": [
+        "Ứng viên nghĩa không còn tồn tại/ngừng hiện hữu theo gloss nguồn; cần bằng chứng ngữ cảnh riêng trước tác giả hóa."
+      ],
+      "proposalKey": "EDITORIAL_2H2K:disappear:cease-visible",
+      "unresolvedBoundaryItems": [
+        "Tách mất khỏi tầm nhìn với ngừng tồn tại; đề xuất hiện tại không tuyên bố bao phủ toàn bộ."
+      ]
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "17353bc06dae481f73498a310739cb3addc9cf9ac50b9786c44c3d60a0d62657",
+      "explanationVi": "Nguồn cùng hỗ trợ danh từ thảm họa gây hại lớn. Ví dụ sạt lở giữ nguyên sự kiện và các trang trại chịu tác động bên dưới đồi; không đảo vai trò hoặc thu hẹp thành một trang trại. Định nghĩa và ghi chú đếm được phù hợp nghĩa sự kiện nghiêm trọng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:disaster:catastrophic-event",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "056a6888b16f8638bb9c3cd9321e8b3bc3d03280b6b1c528a4b675006c0d0714",
+      "explanationVi": "Nguồn định nghĩa rất khó chịu và ví dụ mùi chân hỗ trợ mùi gây ghê tởm. Định nghĩa cùng nghĩa tiếng Việt giữ độ khó chịu mạnh. Bản dịch giữ một mùi bốc từ cống tắc; không thêm chất thải hay nguyên nhân không nêu. Phân biệt disgusting là nguyên nhân với disgusted là phản ứng người đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:disgusting:causing-revulsion",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "REVIEW",
+      "blocksPublication": false,
+      "effectiveContentHash": "5c1d308fd0ce9279f1c7b947786f34d6653088a7be92dfe722875caca55526c3",
+      "explanationVi": "ADN và tên đầy đủ deoxyribonucleic acid chính xác; ví dụ giữ phòng thí nghiệm là chủ thể và hai mẫu thực vật là nguồn mẫu. Định nghĩa về thông tin di truyền hợp lý nhưng nguồn kèm theo chỉ giải thích tên viết tắt và dùng trong điều tra, chưa trực tiếp diễn giải chức năng sinh học. Cần giữ dấu vết cần đối chiếu này ở bản DRAFT; không có lỗi nội dung cụ thể để chặn.",
+      "issues": [
+        {
+          "field": "content.definitionEn",
+          "messageVi": "Nguồn kèm theo xác nhận tên viết tắt DNA nhưng chưa trực tiếp nêu chức năng mang thông tin di truyền; cần đối chiếu bổ sung trước xét duyệt nội dung cuối cùng.",
+          "severity": "REVIEW"
+        }
+      ],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:dna:genetic-material",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "33ea05bcab8cf157752a94d7e738615848cb869d97889413c0c978a36eefd417",
+      "explanationVi": "Nguồn mô tả sinh vật trong quan hệ với môi trường vật lý. Định nghĩa giữ cả hai thành phần và tương tác, không chỉ tập hợp sinh vật. Ví dụ giữ hành động loại bỏ lau sậy và hệ quả giả định would bằng sẽ trong ngữ cảnh giả định; phạm vi địa phương được dịch.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:ecosystem:living-environment-network",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "48586c56c9767ce2de9e3ec166d4f0b07460010549d487713deadd1299296bbf",
+      "explanationVi": "Nguồn minh họa thiết bị dùng điện, hỗ trợ nghĩa chạy bằng điện. Máy bơm điện là chủ thể đưa nước vào bồn trong cả hai câu. Cách đặt tính từ trước danh từ thiết bị đúng, không nhập nghĩa hào hứng chưa được nguồn minh họa.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:electric:electricity-powered",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "f4394def4f8ff853d1f6eacc4da2f655363dceb38e7e1d99e139d7b2e5d72402",
+      "explanationVi": "Nguồn minh họa voi dùng vòi và uống nước, hỗ trợ danh từ con voi. Định nghĩa thú đất rất lớn có vòi phù hợp. Bản dịch giữ voi phun nước lên chính lưng nó; ghi chú ngà không đồng nhất ở mọi cá thể tránh điều kiện định nghĩa quá chặt.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:elephant:large-trunk-mammal",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "d076554e247e390a89983e8dad2e2dffaeea3c56c7ef17d10e2430c33ec39183",
+      "explanationVi": "Hai nguồn hỗ trợ mức cực lớn. Định nghĩa mở sang lượng vẫn thuộc cùng mức độ, nghĩa tiếng Việt khổng lồ hoặc cực kỳ lớn phù hợp. Câu dịch giữ mái đổ cần dỡ bỏ và một cần cẩu, không đảo vật bị dỡ thành cần cẩu. Cách dùng tính từ trước danh từ và sau động từ nối đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:enormous:extremely-large",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "6d81ff34151da70a15935475cc40ebef3ee924a63735dea818c3da97ca368992",
+      "explanationVi": "Ví dụ tái chế bảo vệ môi trường của Oxford và ô nhiễm trong nguồn thứ hai hỗ trợ nghĩa thế giới tự nhiên. Bản dịch giữ báo cáo mô tả tác hại của rác nhựa đối với môi trường tự nhiên. The environment đúng trong nghĩa này; tách khỏi môi trường làm việc tránh gộp hai ngữ cảnh.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:environment:natural-world",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "53c7db45af6c20d86e9774c0f8f4f85b3cb2201db40b34491b97db804980e7f9",
+      "explanationVi": "Ví dụ môi trường học tập an toàn và định nghĩa nơi sống/làm việc trong nguồn hỗ trợ điều kiện xung quanh hoạt động. Bản dịch giữ xưởng sáng tạo môi trường thoải mái cho học; bright là sáng sủa, không diễn giải thông minh. Countable khi nói một môi trường cụ thể và environment for đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:environment:surrounding-conditions",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "3b3d78e6417f10e0c514f07b1e5b1b547dd7500a5e60b415bbaf732335c48063",
+      "explanationVi": "Nguồn xác định đường tưởng tượng chia Trái Đất thành phần bắc và nam. Định nghĩa giữa hai cực và ghi chú hai bán cầu đúng. Ví dụ dịch giữ quả địa cầu, một đường màu đỏ và việc đánh dấu xích đạo; không nhầm globe với Trái Đất thực.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:equator:earth-midline",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "4427f2b9adfbebf3829febbf08db87ec3efdfd4bc64ce0f9d09bc978a31bad0f",
+      "explanationVi": "Hai nguồn hỗ trợ thiết bị cho mục đích hay hoạt động nhất định. Định nghĩa dụng cụ và thiết bị phù hợp. Bản dịch giữ đội cứu hộ kiểm tra thiết bị lặn của đội trước khởi hành. Danh từ không đếm được và a piece of equipment, không an equipment/equipments, chính xác trong cách dùng phổ thông.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:equipment:purpose-tools",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "a135339112f92edb3b5beda8ecd61f459fc6e39b873d290a3f31c5f7982df762",
+      "explanationVi": "Nguồn định nghĩa đất đá bị nước hoặc thời tiết làm mòn; bản thảo nêu sự loại bỏ dần bởi nước, gió hoặc lực tự nhiên, giữ đúng xói mòn vật lý. Ví dụ rễ cỏ giúp bảo vệ bờ sông được dịch đầy đủ, không đổi thành ngăn tuyệt đối. Usually uncountable và ranh giới với suy giảm nghĩa bóng rõ.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:erosion:wearing-away",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "5727a62d56e5a5e745cd8737f33acae7dd6c7f6ab9d55ebef25fcf910c89fbbe",
+      "explanationVi": "Nguồn định nghĩa hoạt động rất gây mệt; bản thảo giữ đúng quan hệ gây mệt thay vì người đã mệt. Việc phân loại hàng trăm sách hư hỏng là chủ thể; bản dịch giữ lượng và tình trạng sách. Cách nói thật mệt mỏi trong ngữ cảnh hoạt động chấp nhận được; ghi chú exhausting/exhausted đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:exhausting:causing-fatigue",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "1400cfdc00837a0c8af290f5cce08754aa11be3191672c6924e479b633ec163a",
+      "explanationVi": "Nguồn chỉ người cha; định nghĩa male parent đúng, không áp đặt phải là cha sinh học. Bản dịch giữ cha của cô ấy dạy chính cô ấy sửa xích xe đạp. Nghĩa phụ chức danh tôn giáo hoặc người sáng lập không được nguồn này minh họa nên giới hạn nghĩa hiện tại phù hợp.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:father:male-parent",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "133b158a5bdcd7e6f3a350e07d85c9ea0673d4e7013dc9c213087b72d656bd74",
+      "explanationVi": "Oxford hỗ trợ văn học hư cấu, phù hợp nhãn, định nghĩa và ví dụ hiệu sách. Bản dịch giữ tác phẩm được dịch và vị trí gần lối vào. Nguồn 4600 dùng fictions trong câu Harry Potter và dịch chuyện viễn tưởng, điều hoang đường; đây là diễn đạt nguồn lệch hoặc không tự nhiên, không được nhập thành tính chất bắt buộc của mọi fiction. Ghi chú uncountable và a work of fiction tránh lỗi nguồn.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:fiction:invented-stories",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "REVIEW",
+      "blocksPublication": false,
+      "effectiveContentHash": "a79c049ca566d8135e1bba6c3e9fb3bd25e61eb1c676428b52c59a31a2d4cc5e",
+      "explanationVi": "Nguồn Oxford hỗ trợ bốn mươi phút và bốn mươi ghế mới. Định nghĩa bốn chục, chính tả forty và nghĩa bốn mươi đúng. Bản dịch bảo toàn bốn mươi chỗ ngồi, năm hàng và hội trường. NUMBER là nhãn nguồn chưa được chuẩn nhận, cần xét taxonomy trước ánh xạ Master POS; đây không phải lỗi chặn bản DRAFT ngoại tuyến.",
+      "issues": [
+        {
+          "field": "partOfSpeech",
+          "messageVi": "NUMBER là đề xuất nguồn chưa chuẩn nhận; cần quyết định taxonomy trước ánh xạ Master POS.",
+          "severity": "REVIEW"
+        }
+      ],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:forty:number-40",
+      "unresolvedBoundaryItems": [
+        "NUMBER là đề xuất nguồn chưa chuẩn nhận; cần quyết định taxonomy trước ánh xạ Master POS."
+      ]
+    },
+    {
+      "assessment": "REVIEW",
+      "blocksPublication": false,
+      "effectiveContentHash": "fb1f6bb187ad81109ec01a08a5ac18a2dafd380844e1e91c9df35f2cb8b35985",
+      "explanationVi": "Số đứng sau mười ba và trước mười lăm đúng là mười bốn. Ví dụ giữ câu lạc bộ, số mười bốn cuốn vở và tính giống nhau. Nội dung ngữ nghĩa đúng nhưng NUMBER vẫn cần xét taxonomy trước canonical mapping; DRAFT không tự cấp phê duyệt.",
+      "issues": [
+        {
+          "field": "partOfSpeech",
+          "messageVi": "NUMBER là đề xuất taxonomy nguồn, chưa thuộc POS canonical được phê duyệt.",
+          "severity": "REVIEW"
+        }
+      ],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:fourteen:number-14",
+      "unresolvedBoundaryItems": [
+        "Chờ quyết định taxonomy; giữ số từ đúng ngữ nghĩa trong DRAFT."
+      ]
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "734527af8918aaf699e545878f8a6f5d3c866ec49569230ad867d43aa26acb3b",
+      "explanationVi": "Nguồn hỗ trợ một tập hợp rất lớn các hệ sao; định nghĩa các sao và vật chất liên kết bởi hấp dẫn là đúng thiên hà. Bản dịch giữ nhiều nhà thiên văn, một thiên hà xa và kính thiên văn. Danh từ đếm được; ghi chú Ngân Hà chứa hệ Mặt Trời không nhầm hệ Mặt Trời với thiên hà.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:galaxy:star-system",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "f8a06b443f492ba5a42027ae61cc54fd00574b91a72d15c541bdd46454d56824",
+      "explanationVi": "Nguồn mô tả sinh vật nhỏ có thể gây bệnh, phù hợp vi trùng và động từ can trong định nghĩa. Ví dụ giữ việc giặt vải giúp loại bỏ nhiều vi trùng khỏi bề mặt của chính tấm vải. Danh từ đếm được và lưu ý không phải mọi vi sinh vật đều có hại đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:germ:disease-agent",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "f009a18c42d44a2f6378725d871ef83a45d9b1d7fded2e417e458ba88a9131d7",
+      "explanationVi": "Nguồn định nghĩa khối băng chuyển động chậm; bản thảo xác định trên đất liền đúng và tránh lặp ví dụ nguồn về Bắc Cực dễ sai địa lý. Bản dịch giữ sông băng kéo dài xuống thung lũng và hai sườn đá. Danh từ đếm được và phân biệt băng biển nổi phù hợp nghĩa vật lý.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:glacier:moving-land-ice",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "a40dc7d66fa1c2dc237efd7c580968e8826fab6371a4274db016264be4b76b74",
+      "explanationVi": "Đại từ chủ ngữ nam số ít được nguồn hỗ trợ. My uncle được dịch thành chú tôi và he tiếp tục trỏ tới cùng người, không đảo người thăm với chúng tôi. On Sundays được giữ dưới dạng các Chủ nhật, thể hiện thói quen; phân biệt he với him đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:he:male-subject",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "990b67f0394b815c12a03b29acac79e174cedfe6c28424f909e515ca4df78286",
+      "explanationVi": "Hai nguồn hỗ trợ rất lớn về kích thước; ví dụ đám đông còn hỗ trợ lượng. Định nghĩa và nghĩa tiếng Việt nhất quán. Bản dịch giữ một đống thư, mức rất lớn và bàn của nhân viên lễ tân bị phủ kín. Cách dùng tính từ trước danh từ hoặc sau động từ nối đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:huge:very-large",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "REVIEW",
+      "blocksPublication": false,
+      "effectiveContentHash": "8d1a7c6e0bc81a1e19cb102bcd869d6ea900d075e0ada69b32412d60f380b712",
+      "explanationVi": "Giá trị ten tens đúng bằng một trăm; ví dụ ba trăm cây con và các tình nguyện viên dọc sông được dịch đúng số lượng và vai trò. Không thêm s sau three hundred là đúng. Tuy nhiên NUMBER vẫn là đề xuất từ nguồn, cần quyết định taxonomy trước khi ánh xạ canonical.",
+      "issues": [
+        {
+          "field": "partOfSpeech",
+          "messageVi": "NUMBER chưa thuộc Master POS canonical; giữ đề xuất DRAFT, chưa phê duyệt ánh xạ.",
+          "severity": "REVIEW"
+        }
+      ],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:hundred:number-100",
+      "unresolvedBoundaryItems": [
+        "Quyết định taxonomy cho NUMBER phải được xét riêng trước canonical mapping."
+      ]
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "8ff242e59a69e9cb42d1b2228d2b94ecab00a3a92b1cee236cf58229eef8713f",
+      "explanationVi": "Hai nguồn hỗ trợ thân mật, thoải mái, không trang trọng hoặc không chính thức. Định nghĩa gom các biểu hiện cùng ranh giới đối lập với hình thức nghi lễ; ví dụ cuộc thảo luận quanh bàn bếp phù hợp. Bản dịch giữ chúng tôi, một cuộc thảo luận và vị trí quanh bàn, không mất quan hệ không trang trọng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:informal:not-formal",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "9be55b73a47c1fa968898c0cfceaf881f9c447673ca919d876aba05e13ebe246",
+      "explanationVi": "Nguồn xác nhận tính từ thông minh ở người và động vật. Định nghĩa về học, hiểu và giải quyết vấn đề phù hợp; chó con là chủ thể học mở cổng, quickly được giữ bằng nhanh chóng. Ghi chú không đồng nhất trí thông minh với phẩm chất đạo đức đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:intelligent:able-to-learn",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "afa8fd0e7993ca9d9e34d6d55f7066144f7f3983c12f0cc3acd70346edf94cb5",
+      "explanationVi": "Nguồn hỗ trợ áo khoác ngắn. Định nghĩa che thân trên thường tới eo hoặc hông giữ phạm vi thay vì yêu cầu mọi áo cùng chiều dài. Bản dịch giữ anh ấy kéo khóa áo của mình trước khi ra sân ga lộng gió; không bỏ thứ tự hành động. Giới hạn nghĩa quần áo và đếm được phù hợp.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:jacket:short-coat",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "b673239926a29d2834f28de39da3d391ada19e32c82f2245d34520a3f73c0454",
+      "explanationVi": "Nguồn hỗ trợ người viết và thu thập tin; bản thảo khái quát các phương tiện báo chí phù hợp. Ví dụ giữ nhà báo phỏng vấn nhiều cư dân sau mất điện; không đảo nhà báo với người được hỏi. Danh từ đếm được và ghi chú báo viết, nói, phát sóng đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:journalist:news-reporter",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "31f505377715be36a84aad6c574fb648b57396693df440987cfd5a8518474117",
+      "explanationVi": "Nghĩa đơn vị bằng một nghìn mét và danh từ đếm được chính xác. Câu dịch giữ cây cầu mới, hành trình của chúng tôi và mức giảm ba ki-lô-mét, không nhầm giảm đi ba với còn ba. Hai cách viết Anh và Mỹ phù hợp; nguồn minh họa đo khoảng cách.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:kilometre:metric-distance",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "2189fa739a9ef009b97e72b17b048e3d0c09c983df80d29d3cc01ade242a1bd2",
+      "explanationVi": "Nguồn mô tả chiến binh địa vị cao phục vụ vua, hỗ trợ hiệp sĩ lịch sử. Ví dụ cưỡi ngựa qua cổng lâu đài lúc bình minh được dịch tự nhiên với rode trong ngữ cảnh hiệp sĩ. Ghi chú loại trừ quân cờ và danh hiệu hiện đại giữ ranh giới nghĩa đã chọn.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:knight:medieval-warrior",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "d8371a6a93b0232aa6a5aeacb10ddcb3fd1745afe54578c41cb2c2b7f68b76e0",
+      "explanationVi": "Nguồn hỗ trợ kiến thức hoặc sự hiểu biết; định nghĩa bổ sung cách có kiến thức qua học tập hay trải nghiệm vẫn trong nghĩa này. Ví dụ giữ kiến thức động cơ của anh ấy giúp chúng tôi sửa máy bơm, không biến anh ấy thành người sửa duy nhất. Normally uncountable và knowledge of đúng; giới hạn in general use tránh phủ nhận các cách dùng a knowledge of chuyên biệt.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:knowledge:understanding-information",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "REVIEW",
+      "blocksPublication": false,
+      "effectiveContentHash": "6d1d890ae4cd952bb0a975051da12f707c2fb32e23e398abe87f23311c8c2ebc",
+      "explanationVi": "Định nghĩa công sức làm việc và ví dụ sửa tường phù hợp nghĩa act of doing or making something trong nguồn. Vài ngày và độ vất vả được giữ; ghi chú không đếm được cùng labor/labour đúng. Gloss nhân công gợi ranh giới lực lượng lao động khác với công sức, chưa đủ bằng chứng ví dụ để tác giả hóa thêm nghĩa.",
+      "issues": [
+        {
+          "field": "sourceSenseCoverage",
+          "messageVi": "Gloss nhân công có thể chỉ người lao động, khác với công sức; định nghĩa và ví dụ nguồn hiện chỉ hỗ trợ công sức.",
+          "severity": "REVIEW"
+        }
+      ],
+      "missingSenseCandidates": [
+        "Ứng viên nghĩa lực lượng lao động/nhân công theo gloss nguồn, cần xác minh thêm định nghĩa và ví dụ."
+      ],
+      "proposalKey": "EDITORIAL_2H2K:labor:work-effort",
+      "unresolvedBoundaryItems": [
+        "Công sức lao động và tập thể người lao động chưa được nguồn phân tách thành nhóm nghĩa."
+      ]
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "ea781b94826acaae2d73a3844ca5d5c642342ce9da039470fd703802aaf73d5a",
+      "explanationVi": "Hai nguồn hỗ trợ cho mượn tạm thời, nguồn thứ hai còn ghi cho vay. Định nghĩa có điều kiện hoàn trả giữ hướng người cho tới người nhận. Mai cho hàng xóm mượn máy ảnh của Mai để dùng buổi lễ được dịch đúng vai; lent và hai cấu trúc tân ngữ trong ghi chú chính xác.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:lend:temporary-loan",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "REVIEW",
+      "blocksPublication": false,
+      "effectiveContentHash": "e69e6e7999700d597191c4491a54562436221a851e3e35a8db2b3a14b75bd05a",
+      "explanationVi": "Nguồn minh họa vấn đề lớn, trung tâm lớn và sự kiện quan trọng, hỗ trợ tính từ về tầm quan trọng hoặc quy mô. Ví dụ giữ tuyến đường sắt mới làm nguồn việc làm quan trọng ở địa phương. Variant Data có danh từ nhưng thiếu định nghĩa, nên ranh giới danh từ cần lưu chờ bằng chứng thay vì tự tạo nội dung.",
+      "issues": [
+        {
+          "field": "sourceEvidence",
+          "messageVi": "Variant Data nêu n. và B2 nhưng không có nội dung nghĩa danh từ; không thể suy ra là chuyên ngành hay quân hàm.",
+          "severity": "REVIEW"
+        }
+      ],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:major:very-important",
+      "unresolvedBoundaryItems": [
+        "Danh từ major có POS variant nhưng thiếu nghĩa và ví dụ; chưa đủ bằng chứng để tạo Sense bổ sung."
+      ]
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "c92fe61d48470102fa344b386a4df04017f9ab38f7272efad5763ad84c20860c",
+      "explanationVi": "Nguồn hỗ trợ thiết bị làm vật nhỏ trông lớn hơn, phù hợp định nghĩa kính hiển vi. Ví dụ giữ chúng tôi, một lát hành, độ mỏng và cách quan sát dưới kính. Danh từ đếm được và cụm under a microscope đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:microscope:magnifying-instrument",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "11fa5d1ee161fefd6c9ae2b73574f299a9d48e91f79cf6d4fa85b7da67670bf9",
+      "explanationVi": "Nguồn 4600 xác định 1000 năm và minh họa số nhiều millennia. Định nghĩa một giai đoạn nghìn năm chính xác; cả millennia và millenniums là dạng số nhiều phù hợp. Bản dịch giữ kho lưu trữ ghi lại thay đổi trong thiên niên kỷ vừa qua, không đổi thành một nghìn hiện vật.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:millennium:thousand-year-period",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "0c8f81f7e7a6d29a89388ea7d443c0d6d0ba651a71505b6bc2682c573c32027d",
+      "explanationVi": "Nguồn 4600 gọi phân tử là đơn vị nhỏ nhất của một chất vật lý, một khái quát quá rộng vì không phải mọi chất đều gồm phân tử riêng rẽ. Bản thảo giới hạn chất phân tử và các nguyên tử liên kết, ghi chú bảo toàn ngoại lệ. Câu dịch giữ sơ đồ, các nguyên tử và một phân tử nước; nghĩa và từ loại phù hợp.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:molecule:chemical-unit",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "bad330500dda234b0cfd52fb8d21f5104415cda25eeb49b1c2c740ad65f3a3c0",
+      "explanationVi": "Nguồn hỗ trợ tiền dùng cho thanh toán và tiết kiệm. Bản dịch giữ họ dành riêng tiền mỗi tháng để sửa mái nhà, không đổi thành đã sửa hay xây mái mới. Danh từ thường không đếm được và an amount of money đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:money:payment-funds",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "877a455b5f19d4b41c28a53c78a59fcafcbe7c892e958c63bbeb41d011a2001b",
+      "explanationVi": "Nguồn hỗ trợ bộ phim. Định nghĩa chuỗi hình ảnh động trình bày câu chuyện hoặc chủ đề phù hợp danh từ đếm được. Bản dịch dùng kể về hành trình để diễn đạt follows, giữ một thủy thủ trẻ và ba đại dương. Ghi chú độ phổ biến trong Anh Mỹ hợp lý.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:movie:motion-picture",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "664dd543c3ffaf64fb720707977ade55f378c59dd0657033bcb499ec1b70a587",
+      "explanationVi": "Nguồn hỗ trợ khu phố và vùng lân cận; bản thảo chủ động chọn khu dân cư quanh nơi ở, không gộp mọi nghĩa vùng gần đó. Ví dụ giữ một thư viện mới, sự mở cửa và mùa xuân năm ngoái. Cách viết neighborhood tương ứng với neighbourhood; không thấy ứng viên nghĩa riêng bắt buộc từ chứng cứ này.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:neighbourhood:local-residential-area",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "b58f031d485820f61677b252b3bb00d4fa65ced1ef79ae86b03ef17da55675ce",
+      "explanationVi": "Nguồn nói sinh vật, đặc biệt rất nhỏ, không giới hạn từ vào vi sinh vật. Định nghĩa gồm động vật, thực vật và dạng sống khác giữ đúng phạm vi. Bản dịch giữ sinh vật này, kích thước rất nhỏ, khả năng sống và nước cực kỳ mặn. Ghi chú ngăn suy diễn chỉ sinh vật nhỏ phù hợp.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:organism:living-entity",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "007997d259887ffbe948167fd542bce7e3e545c7cf1ae02609f1fda9a3858bd1",
+      "explanationVi": "Ví dụ nguồn no particular interest hỗ trợ nghĩa mức độ đặc biệt, khác nghĩa một lựa chọn xác định. Bản dịch giữ người phụ trách, sự cẩn thận đặc biệt khi chuyển tranh và tính cũ của bức tranh. Ghi chú particular care/interest và phủ định no particular đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:particular:special-degree",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "REVIEW",
+      "blocksPublication": false,
+      "effectiveContentHash": "648e2cb21a19ea195ab45d47c1ecd3bf7a3f74dc7bc10a4484c35e3df32ec167",
+      "explanationVi": "Ví dụ Oxford về nhà hàng cụ thể hỗ trợ nghĩa xác định một lựa chọn riêng. Câu hỏi về cỡ phong bì giữ người nghe, nhu cầu và tính cụ thể; không biến thành mọi cỡ phong bì. Ghi chú dùng trước danh từ đúng; định nghĩa ENGLISH_VOCAB_4600 về single important part quá mơ hồ nên cần lưu chất lượng bằng chứng nguồn.",
+      "issues": [
+        {
+          "field": "sourceEvidence",
+          "messageVi": "Định nghĩa single, important part of a group của nguồn 4600 không rõ ràng; nghĩa cụ thể được Oxford hỗ trợ trực tiếp.",
+          "severity": "REVIEW"
+        }
+      ],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:particular:specific-one",
+      "unresolvedBoundaryItems": [
+        "Không nhập important như điều kiện nghĩa cụ thể; giữ chất lượng nguồn 4600 chờ đối chiếu."
+      ]
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "5d1c71e2599366eeefb7d3401f3071d221442ea5b862daf2bf1d0966374c56d6",
+      "explanationVi": "Nguồn xác định người riêng lẻ và ghi hai dạng số nhiều people/persons. Ví dụ chỉ một người còn trong phòng chờ được dịch đúng only, one và remained. Ghi chú people thông dụng và persons ở một số văn cảnh trang trọng đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:person:individual-human",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "73186cf19067b397408cdfbd0450e42fc3ce61a26a04781b60eeecd4e1ebc7fb",
+      "explanationVi": "Oxford hỗ trợ hành tinh quanh Mặt Trời và vệ tinh; nguồn 4600 chỉ nói vật lớn tròn trong không gian, quá rộng để phân loại. Định nghĩa học tập thêm quỹ đạo quanh sao và ghi chú không phải tiêu chuẩn thiên văn chính thức tránh nhận là định nghĩa phân loại đầy đủ. Bản dịch giữ tàu vũ trụ gửi về nhiều hình ảnh bầu khí quyển nhiều mây của hành tinh; không đổi thành ảnh mây của tàu.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:planet:orbiting-world",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "9ad3bfba89502e3cc06a7276760c10f622e0886b2ac0a4980500c836839d64c8",
+      "explanationVi": "Nguồn 4600 hỗ trợ cơ hội trải nghiệm trước công chúng và ví dụ nghe ca khúc, nên see or experience là mở rộng hợp lý trong cùng nghĩa xem trước. Bản dịch giữ phòng trưng bày mời học sinh địa phương tới một buổi xem trước triển lãm. Danh từ đếm được, preview of và giới hạn noun đúng, không cần đề xuất verb từ bằng chứng này.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:preview:advance-view",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "cd6fd00bd8ce5d42699f1dc1a5816438ea823618fb3faf3fbfa9495a7a1ac08b",
+      "explanationVi": "Hai nguồn hỗ trợ người giảng dạy đại học; Oxford dùng giáo sư còn nguồn 4600 cho cả giáo sư và giảng viên. Định nghĩa và ghi chú giữ khác biệt chức danh theo quốc gia. Ví dụ dịch đúng yêu cầu cả lớp so sánh hai bản đồ lịch sử, không tự gán học hàm cho chủ thể.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:professor:university-teacher",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "45b9a60a28752f5216ecffc4e4fa4739bf6d40da6cdb698ee20a2087de2ab2c0",
+      "explanationVi": "Động từ phát âm từ hoặc tên có hỗ trợ từ cả hai nguồn. Ví dụ giữ người thông báo, việc luyện tập và họ của từng cầu thủ, không đổi thành tên riêng hay cả tên đầy đủ. Cấu trúc practised pronouncing và ghi chú dùng tân ngữ đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:pronounce:speak-sounds",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "9b1d4a7e6f4a0ad3c817958c6a85ccfa1aac7f61a251769a3776e717727f284f",
+      "explanationVi": "Hai nguồn hỗ trợ phản ứng với sự kiện hoặc thay đổi kích thích. Định nghĩa bao gồm hành động hay thay đổi phù hợp người và thực vật trong nguồn. Bản dịch giữ con chó phản ứng với còi bằng vểnh tai, không đảo còi thành kết quả. React to đúng, không thiếu tân ngữ bắt buộc ngoài giới từ.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:react:respond",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "7f84f847fdb2b85bae0240d29bc596196895efbcdc5378ccd40de99d451341c0",
+      "explanationVi": "Hai nguồn cùng hỗ trợ nhận thứ được gửi hoặc cho. Ví dụ mới dùng received có tân ngữ và mỗi người tham gia nhận một lịch trình in sẵn ở cửa; bản dịch giữ phân phối mỗi người, số ít và địa điểm. Ghi chú receive something from phù hợp với ranh giới đã chọn.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:receive:get-sent",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "a8fc67fd466937dac007cb17a258195e45880059c03ccb47b7f35f2f6b6c8f46",
+      "explanationVi": "Nguồn hỗ trợ khoản tiền trả lại khi mua hàng được hoàn trả. Định nghĩa thanh toán bị hủy hoặc đảo ngược nằm trong phạm vi hoàn tiền. Bản dịch giữ cửa hàng đề nghị, hoàn toàn bộ tiền và chiếc đèn hỏng; dạng danh từ được ghi rõ dù tiếng Việt diễn đạt bằng cụm động từ tự nhiên.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:refund:returned-payment",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "b73ef7e0b7a1cebb06cebbf2ebead489d90e3a1465af6b721f3167851fa84a33",
+      "explanationVi": "Hai nguồn hỗ trợ vùng đất có vị trí hoặc đặc điểm chung. Ví dụ giữ nông dân ở vùng này, cây ô liu và nhiều sườn đồi dốc. Ghi chú các loại ranh giới địa lý, văn hóa hoặc hành chính phù hợp phạm vi danh từ địa lý đã chọn.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:region:geographic-area",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "REVIEW",
+      "blocksPublication": false,
+      "effectiveContentHash": "74f96cdf463a085a71e50609e46775074991c3cffdcfca484841bfd22ec4a778",
+      "explanationVi": "Nguồn hỗ trợ đều đặn qua tập thể dục và dịch vụ xe buýt; bản thảo định nghĩa khoảng cách tương đối ổn định phù hợp. Bản dịch giữ nhiều chuyến thăm giúp các bạn cũ giữ liên lạc, không thêm hàng ngày. Nguồn còn có regular lunch time là giờ ăn thường lệ, có thể là cách dùng usual/customary chứ không riêng khoảng cách giữa lần lặp; cần xét ranh giới này trước tuyên bố bao phủ toàn nhóm.",
+      "issues": [
+        {
+          "field": "senseBoundary",
+          "messageVi": "Ví dụ nguồn regular lunch time gợi cách dùng giờ thường lệ, cần xét có nằm trong đều đặn hay cần Sense usual/customary riêng.",
+          "severity": "REVIEW"
+        }
+      ],
+      "missingSenseCandidates": [
+        {
+          "blocksPublication": false,
+          "meaningVi": "thường lệ, theo thông lệ",
+          "senseLabelEn": "Usual or customary",
+          "sourceSupport": "Ví dụ nguồn ENGLISH_VOCAB_4600: Our regular lunch time is around noon."
+        }
+      ],
+      "proposalKey": "EDITORIAL_2H2K:regular:repeated-intervals",
+      "unresolvedBoundaryItems": [
+        {
+          "blocksPublication": false,
+          "field": "regular:repeated-intervals",
+          "messageVi": "Chưa quyết định giờ ăn thường lệ thuộc nghĩa lặp đều hay nghĩa usual/customary riêng; không làm sai Sense đều đặn đang có."
+        }
+      ]
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "0845de25d6fb45e356c1a04a59f35db4a33437d83fa2a2872b8dc82a8ed32817",
+      "explanationVi": "Ví dụ nguồn thay ghế, pin và lốp hỗ trợ loại cũ ra để thay thứ khác. Bản dịch giữ họ, cửa kính nứt và vật liệu kính chắc hơn; không đảo A và B. Định nghĩa và ghi chú replace A with B nhất quán dù định nghĩa nguồn thứ hai diễn đạt hướng thay thế kém rõ.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:replace:substitute",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "509765087523e81a41d1bc0685cba53a89be1b294345705090448fb326813f40",
+      "explanationVi": "Hai nguồn hỗ trợ tuyến đường đi từ nơi này sang nơi khác. Câu dịch giữ nhiều người đi xe đạp chọn một tuyến dọc kênh, không chuyển thành con kênh là tuyến đã chọn. Danh từ đếm được và các cấu trúc route to/through đúng; không có chứng cứ yêu cầu thêm nghĩa động từ.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:route:travel-path",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "5923f771cdedc050e5cbe0163d52e39c67bcd122be594353400ab83b2b07b1e0",
+      "explanationVi": "Nguồn định nghĩa thiết bị phản ứng với ánh sáng, nhiệt hoặc áp suất để máy làm hay hiển thị điều gì đó. Định nghĩa phát hiện điều kiện vật lý và tạo tín hiệu/đáp ứng giữ nghĩa cảm biến. Bản dịch giữ một cảm biến bật đèn hành lang khi có người đi vào. Heat sensor và motion sensor phù hợp.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:sensor:detecting-device",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "2f312f3e1353d1c3d181cbd96f7dc511a36aae0f43b7a144b33e1ac852747156",
+      "explanationVi": "Nguồn hỗ trợ hoạt động mua sắm qua do the shopping và go shopping. Định nghĩa cho phép mua qua dịch vụ cũng vẫn trong hoạt động mua hàng. Bản dịch giữ chúng tôi hoãn mua sắm cho tới khi mưa tạnh, không đổi thành hủy bỏ. Usually uncountable và hai cấu trúc ghi chú đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:shopping:buying-activity",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "214e43aa6bd41d9c05e7f466f0add4f2d28e123e463053e84559449ef86ca885",
+      "explanationVi": "Nguồn định nghĩa ngành nghiên cứu xã hội, tổ chức và vấn đề xã hội. Định nghĩa bản thảo giữ phạm vi ngành học; khóa học của cô ấy nghiên cứu sự thay đổi của nhiều khu phố trong cả hai ngôn ngữ. Danh từ không đếm được khi gọi ngành học phù hợp.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:sociology:society-study",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "34a9124cdf2412114f8ba08fb72b875d8a57d4ad29584e1afabce1fd9b0136b3",
+      "explanationVi": "Hai nguồn hỗ trợ con nhện tám chân. Ví dụ giữ một con nhện ẩn dưới mép chậu hoa; bản dịch không đổi thành bên trong chậu. Danh từ đếm được và phân loại arachnid thay vì insect đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:spider:eight-legged-arachnid",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "0ad55f7fde03c658f445ac2cc617053b253b3dce26838cf56b469298b028bd2a",
+      "explanationVi": "Nguồn Oxford minh họa tuyên bố công bố thông tin. Ví dụ giữ hội đồng đưa ra thông báo về việc đóng đường, không đổi thành hành động đóng đường của hội đồng. Danh từ đếm được và các kết hợp make/issue/release phù hợp.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:statement:announced-message",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "REVIEW",
+      "blocksPublication": false,
+      "effectiveContentHash": "cf81dbc6b07f66f5327fde61bb854df8d26567017cef59dbc23aaca55db1a144",
+      "explanationVi": "Định nghĩa nguồn tiếng Anh xác nhận bữa ăn tối và ví dụ khoảng sáu giờ hỗ trợ bữa tối trong bản thảo. Bản dịch giữ cùng ăn súp và bánh mì mới cho bữa tối. Tuy nhiên nghĩa tiếng Việt nguồn ghi bữa xế trước bữa tối mâu thuẫn với định nghĩa Anh, nên cần ghi rõ giải quyết nguồn này khi xét duyệt. Nội dung bản thảo không có lỗi nghĩa cụ thể; ghi chú khác biệt vùng miền hợp lý.",
+      "issues": [
+        {
+          "field": "sourceEvidence.supper",
+          "messageVi": "Nghĩa VI nguồn bữa xế trước bữa tối mâu thuẫn định nghĩa EN evening meal; bản thảo chọn bữa tối có căn cứ EN, cần lưu quyết định đối chiếu nguồn.",
+          "severity": "REVIEW"
+        }
+      ],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:supper:evening-meal",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "0729d2dfc21a81cdbecca256282397da1f767fe6a5fc52b52fdf0a2a299dfd5a",
+      "explanationVi": "Nguồn có nhóm bộ phận cùng hoạt động và ví dụ hệ thống sưởi. Nghĩa hệ thống tưới giữ ranh giới kỹ thuật này; hệ thống là chủ thể đưa nước tới mọi hàng cây, every không bị bỏ. Danh từ đếm được và ghi chú tương tác giữa các bộ phận phù hợp.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:system:interacting-parts",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "796b8ce6c5c3745fad7b9433a3a8987ac7102e795c3c5e321b6a26c1857a686c",
+      "explanationVi": "Ví dụ nguồn về hệ thống tìm sách hỗ trợ nghĩa phương pháp tổ chức riêng với hệ thống máy móc. Bản dịch giữ sở hữu của chúng tôi, nhãn màu, hồ sơ lưu trữ và mức dễ hơn. Cấu trúc makes ... easier và ghi chú system for doing something đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:system:organized-method",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "REVIEW",
+      "blocksPublication": false,
+      "effectiveContentHash": "fdba5044acf5ca8feba349a87bb5420fb7cc56c0a437c8a6ee72fa5fb3c859b5",
+      "explanationVi": "Nguồn chỉ ghi conjunction/conj. nhưng các ví dụ đều có cụm danh từ sau than; việc phân loại liên từ hay giới từ phụ thuộc cách phân tích ngữ pháp. Nghĩa nối đối tượng so sánh và bản dịch ghế đẩu gỗ nhẹ hơn ghế kim loại đúng. Cần giữ ranh giới POS chờ xét, không coi nhãn nguồn là quyết định chuẩn; không có lỗi nội dung ngăn bản DRAFT ngoại tuyến.",
+      "issues": [
+        {
+          "field": "partOfSpeech",
+          "messageVi": "Cần phân xử CONJUNCTION so với PREPOSITION trong ví dụ than theo sau bởi cụm danh từ; nhãn nguồn chưa giải quyết ranh giới.",
+          "severity": "REVIEW"
+        }
+      ],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:than:comparison-link",
+      "unresolvedBoundaryItems": [
+        "Cần phân xử CONJUNCTION so với PREPOSITION trong ví dụ than theo sau bởi cụm danh từ; nhãn nguồn chưa giải quyết ranh giới."
+      ]
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "26b8b1bbc60d5a1cb65c391ca37ad5e6c3f0f11cb32906e56d61fc868dd3e6be",
+      "explanationVi": "Nguồn xác nhận mạo từ xác định cho đối tượng đã biết; định nghĩa theo khả năng xác định trong ngữ cảnh đúng. Ví dụ giới thiệu một bưu kiện rồi nhắc lại bằng the, bản dịch bưu kiện đó giữ quan hệ đồng tham chiếu và một khăn quàng. Ghi chú nói rõ đây chỉ là một cách dùng nên không nhận bao phủ mọi cấu trúc của the.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:the:definite-article",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "REVIEW",
+      "blocksPublication": false,
+      "effectiveContentHash": "4612e86e70338e71fa165acee15a22b02a943e27a1764454a57f677623a796d3",
+      "explanationVi": "Nguồn Oxford hỗ trợ số một nghìn và cách dùng five thousand không thêm s. Định nghĩa mười trăm chính xác, ví dụ dịch bảo toàn hai nghìn khách và tuần trước. Ghi chú đúng cho số lượng chính xác; NUMBER vẫn chưa được chuẩn nhận, cần xét taxonomy trước ánh xạ Master POS, không chặn bản DRAFT ngoại tuyến.",
+      "issues": [
+        {
+          "field": "partOfSpeech",
+          "messageVi": "NUMBER là đề xuất nguồn chưa chuẩn nhận; cần quyết định taxonomy trước ánh xạ Master POS.",
+          "severity": "REVIEW"
+        }
+      ],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:thousand:number-1000",
+      "unresolvedBoundaryItems": [
+        "NUMBER là đề xuất nguồn chưa chuẩn nhận; cần quyết định taxonomy trước ánh xạ Master POS."
+      ]
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "8fc5e45325fead07a2454f65e705737bc2daa212209c32b2f517fb1ed4396e03",
+      "explanationVi": "Hai nguồn hỗ trợ tòa tháp cao và hẹp; định nghĩa cho phép công trình độc lập hoặc một phần tòa nhà. Bản dịch giữ một tháp bằng đá đánh dấu lối vào cảng cũ, không biến hành động thành xây tháp. Danh từ đếm được và nhãn cấu trúc phù hợp.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:tower:tall-structure",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "fff11ecebefde763971d49abdc1d2af9f5a296f9ea0868dc9e1661e4bb3b757b",
+      "explanationVi": "Hai nguồn hỗ trợ tập tục tồn tại lâu trong gia đình hoặc cộng đồng. Định nghĩa cho phép thực hành hoặc niềm tin được tiếp nối phù hợp truyền thống. Ví dụ giữ việc thắp nến, người thân vắng mặt và sự trở thành truyền thống gia đình; không biến vắng mặt thành đã mất. Phân biệt đếm được với không đếm được hợp lý.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:tradition:inherited-custom",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "2d97412a189c887b5501db57adb4ca66e4681404bc991078c5c993d59cd0ffaf",
+      "explanationVi": "Oxford hỗ trợ truyền thống qua trang phục và bài hát; nguồn 4600 định nghĩa bằng old-fashioned ideas dễ tạo hàm ý lỗi thời quá mức. Định nghĩa phong tục, niềm tin hoặc phương pháp được truyền lại và ghi chú không mặc nhiên lỗi thời giữ ranh giới đúng. Bản dịch đủ các vũ công, một điệu múa cưới và thuộc tính truyền thống.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:traditional:inherited-practice",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "bbbd3d7dd99037aa17bb4ae86cd6ef5c5b8cefabf909699b100c28dcbc4c7a64",
+      "explanationVi": "Hai nguồn cùng hỗ trợ rác hay đồ bỏ đi. Bản dịch giữ nhiều tình nguyện viên nhặt rác bị bỏ lại cạnh nhiều bàn dã ngoại, không đổi thành rác họ tạo ra. Usually uncountable và khác biệt trash/rubbish Anh Mỹ phù hợp; nguồn không bắt buộc thêm nghĩa động từ.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:trash:discarded-waste",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "REVIEW",
+      "blocksPublication": false,
+      "effectiveContentHash": "593e6e8fe3e0ecb71150832cf46e6639cdfbc816de587a551f07e2635a5bf523",
+      "explanationVi": "Nguồn Oxford hỗ trợ số mười hai, gồm số lượng tháng và giờ trên đồng hồ. Định nghĩa vị trí giữa 11 và 13 chính xác; bản dịch giữ người thợ, mười hai bánh nhỏ và khay. Cách dùng số đếm đúng nhưng NUMBER là đề xuất taxonomy chưa được chuẩn nhận, cần xét trước ánh xạ Master POS; không chặn bản DRAFT ngoại tuyến.",
+      "issues": [
+        {
+          "field": "partOfSpeech",
+          "messageVi": "NUMBER là đề xuất nguồn chưa chuẩn nhận; cần quyết định taxonomy trước ánh xạ Master POS.",
+          "severity": "REVIEW"
+        }
+      ],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:twelve:number-12",
+      "unresolvedBoundaryItems": [
+        "NUMBER là đề xuất nguồn chưa chuẩn nhận; cần quyết định taxonomy trước ánh xạ Master POS."
+      ]
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "5615beba43b5e48de4bf624493ab9e053501c253c8db6ce0bc3f8c420555881a",
+      "explanationVi": "Nguồn 4600 mô tả bão nhiệt đới nhưng ví dụ typhoon hit Australia có lỗi tên gọi vùng khí tượng; không nên kế thừa ví dụ ấy như chứng cứ phạm vi. Bản thảo sửa ranh giới thành Tây Bắc Thái Bình Dương, dùng Philippines phù hợp và ghi chú tên bão tùy vùng. Bản dịch giữ bão buộc dịch vụ phà tại Philippines ngừng hoạt động; tính chất cơn bão được cung cấp trong mục nghĩa.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:typhoon:nw-pacific-storm",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "30ba0c30a50851613dd9832ab2d50ba3da03e1da7003aeaa5c99b566632d151a",
+      "explanationVi": "Oxford hỗ trợ đặc trưng của nơi hoặc nhóm, nguồn 4600 hỗ trợ điều thường xảy ra. Định nghĩa kết hợp trong một phạm vi đặc điểm thông thường hợp lý. Ví dụ dịch đủ sương mù cuối mùa hè, thị trấn ven biển này và quan hệ typical of; ghi chú không phải quy luật tuyệt đối tránh thêm mức độ chắc chắn.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:typical:characteristic",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "343d8383b5c565fe2a63150eca03f95c815f0b03ec1500c7f778050159f9c275",
+      "explanationVi": "Nguồn xác nhận đại từ tân ngữ chúng tôi hoặc chúng ta. Định nghĩa và ghi chú giữ người nói cùng người khác, cho phép bao gồm hoặc loại người nghe. Bản dịch giữ người hướng dẫn chờ nhóm người nói bên đài phun nước; cấu trúc waited for us đúng.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:us:object-we",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "683c28166c0c2a476c2c72abab47f33720e51040172c19ead9ef1a6200887928",
+      "explanationVi": "Nghĩa xe van có khoang kín phù hợp các nguồn chở hàng; ví dụ thuê xe cho chuyến lưu diễn là cách dùng tự nhiên. Bản dịch giữ nhiều nhạc công, một xe và cuối tuần; rented không đòi hỏi thêm đã trong tiếng Việt. Phạm vi chở người là mở rộng thông thường của cùng loại xe, không phải nghĩa mới.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:van:enclosed-vehicle",
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "assessment": "PASS",
+      "blocksPublication": false,
+      "effectiveContentHash": "6b3746ea4c1a3d934268771c7be03ad78d4266bc368edb9b57f9fd978afbb0dd",
+      "explanationVi": "Nguồn định nghĩa vivid là sáng và nhiều màu, nên lựa chọn rực rỡ về màu sắc có hỗ trợ. Bản dịch giữ nhiều bông hoa màu cam rực rỡ dọc lối đi hẹp trong vườn; mọc dọc là cách diễn đạt tự nhiên của lined. Ghi chú không gộp nghĩa ký ức rõ nét giữ ranh giới, không có ví dụ nguồn buộc thêm nghĩa ký ức.",
+      "issues": [],
+      "missingSenseCandidates": [],
+      "proposalKey": "EDITORIAL_2H2K:vivid:bright-colour",
+      "unresolvedBoundaryItems": []
+    }
+  ],
+  "status": "COMPLETE"
+}

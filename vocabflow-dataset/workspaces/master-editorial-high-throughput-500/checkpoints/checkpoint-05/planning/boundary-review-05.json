@@ -1,0 +1,34 @@
+{
+  "records": [
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:fourteen",
+      "proposalKey": "EDITORIAL_2H2K:fourteen:number-14",
+      "assessment": "REVIEW",
+      "canonicalResolution": "UNRESOLVED",
+      "recordedBeforeManuscript": true,
+      "missingSenseCandidate": false,
+      "sourceEvidencePointer": "micro-05.json#/entries/7/sourceEvidence",
+      "issueVi": "Nguồn NUMBER xác nhận số14 nhưng taxonomy Master chưa phê duyệt; bản thảo giữ source proposal chưa canonical và không cấp identity."
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:antibiotic",
+      "proposalKey": "EDITORIAL_2H2K:antibiotic:bacteria-medicine",
+      "assessment": "REVIEW",
+      "canonicalResolution": "UNRESOLVED",
+      "recordedBeforeManuscript": true,
+      "missingSenseCandidate": false,
+      "sourceEvidencePointer": "micro-05.json#/entries/15/sourceEvidence",
+      "issueVi": "Ví dụ nguồn dùng thuốc kháng sinh khi cúm có nguy cơ nhầm nhiễm virus với vi khuẩn; bản thảo theo định nghĩa nhiễm khuẩn và không đưa chỉ định điều trị."
+    },
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:criteria",
+      "proposalKey": "EDITORIAL_2H2K:criteria:judging-standards",
+      "assessment": "REVIEW",
+      "canonicalResolution": "UNRESOLVED",
+      "recordedBeforeManuscript": true,
+      "missingSenseCandidate": false,
+      "sourceEvidencePointer": "micro-05.json#/entries/18/sourceEvidence",
+      "issueVi": "Headword criteria là số nhiều nhưng IPA và audio nguồn thuộc criterion số ít; giữ frozen plural, giải thích criterion trong usage và không sửa dữ liệu nguồn."
+    }
+  ]
+}
