@@ -1,0 +1,53 @@
+{
+  "microBatch": 5,
+  "reviewMode": "INDEPENDENT_RECHECK_CURRENT_EFFECTIVE_CONTENT",
+  "reviewerKind": "ISOLATED_AI_REVIEW_AGENT",
+  "blindFirstPass": false,
+  "humanApproval": false,
+  "publicationReady": true,
+  "recordCount": 2,
+  "passCount": 2,
+  "reviewCount": 0,
+  "failCount": 0,
+  "sourceHandoffSha256": "d4062ab73202457cb40c6d3fc0ee2bc0600e9523ec1ba747a366cc917a2ec0cb",
+  "firstPassReviewSha256": "0f352b13dbb23933e4637b4e7ac6a7a60a1a637bf0f5a4633214a8295e7df6a7",
+  "correctionLedgerSha256": "ac93c490b8c3cfe74bcee30255a53ae5e1373d0ba048ef7a4655c9638a7845d8",
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2L:immigration:number-of-arriving-settlers",
+      "effectiveContentHash": "8a13c9c658c422f8941add13e00e37092a4d177e1cb3eefd392ef938197f4c6f",
+      "reviewedContentHash": "8a13c9c658c422f8941add13e00e37092a4d177e1cb3eefd392ef938197f4c6f",
+      "assessment": "PASS",
+      "explanationVi": "Chuỗi sửa đổi chuyển ví dụ sang “immigration figure ... rose to eight thousand people”, nêu trực tiếp số người nhập cư; nguồn xác nhận immigration cũng chỉ số lượng người chuyển đến, nên ví dụ phân biệt được số liệu với quá trình nhập cư.",
+      "dimensions": {
+        "semanticAlignment": "PASS",
+        "bilingualAccuracy": "PASS",
+        "grammarAndUsage": "PASS",
+        "exampleQuality": "PASS",
+        "senseBoundary": "PASS"
+      },
+      "blockers": [],
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:animation:process-of-making-moving-images",
+      "effectiveContentHash": "dddc9f8f714e92fe6b37ecf4e808c381da41639901eeca5ccb28f0fb0ffa88e5",
+      "reviewedContentHash": "dddc9f8f714e92fe6b37ecf4e808c381da41639901eeca5ccb28f0fb0ffa88e5",
+      "assessment": "PASS",
+      "explanationVi": "Ví dụ mới nói hoạt hình nhân vật bắt đầu bằng việc lên kế hoạch chuyển động của từng nhân vật; đây là công đoạn tạo hoạt hình, khác rõ tác phẩm hoạt hình hoàn chỉnh và phù hợp nguồn về kỹ thuật/quá trình.",
+      "dimensions": {
+        "semanticAlignment": "PASS",
+        "bilingualAccuracy": "PASS",
+        "grammarAndUsage": "PASS",
+        "exampleQuality": "PASS",
+        "senseBoundary": "PASS"
+      },
+      "blockers": [],
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    }
+  ]
+}

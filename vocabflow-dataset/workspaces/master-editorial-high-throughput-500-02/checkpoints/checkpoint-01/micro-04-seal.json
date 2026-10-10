@@ -1,0 +1,70 @@
+{
+  "cohortFingerprint": "9710a47fda875f70412c7440b2969c031dc6eb3c076140a42007aed4f83cf59c",
+  "fingerprint": "33c0f83eaac4b56295eca0f2da45a424c6adf5f57106f7a24969abc6423bdcc5",
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:ground",
+    "NORMALIZED_HEADWORD:identify",
+    "NORMALIZED_HEADWORD:constantly",
+    "NORMALIZED_HEADWORD:crust",
+    "NORMALIZED_HEADWORD:personality",
+    "NORMALIZED_HEADWORD:conclude",
+    "NORMALIZED_HEADWORD:incidence",
+    "NORMALIZED_HEADWORD:tolerant",
+    "NORMALIZED_HEADWORD:boss",
+    "NORMALIZED_HEADWORD:secret",
+    "NORMALIZED_HEADWORD:authority",
+    "NORMALIZED_HEADWORD:stability",
+    "NORMALIZED_HEADWORD:lottery",
+    "NORMALIZED_HEADWORD:cake",
+    "NORMALIZED_HEADWORD:bride",
+    "NORMALIZED_HEADWORD:doubt",
+    "NORMALIZED_HEADWORD:rifle",
+    "NORMALIZED_HEADWORD:printing",
+    "NORMALIZED_HEADWORD:ever",
+    "NORMALIZED_HEADWORD:glide"
+  ],
+  "manuscriptSha256": "96acd0f461e9a3fcd9022f96adb52dfcb89cd31478839a848ef928155a945a99",
+  "microBatch": 4,
+  "parentFingerprint": "6d66f021b215ddddf3d2f5eb325835fd536f86bf83a392b208dc0ef40edce1fc",
+  "phase": "2H.2L",
+  "planningFingerprint": "3e14364151660b3401d2c324c84bb2d010392cf4a9d8d07da7d81130f7fa0d1f",
+  "planningSha256": "d32b23473f3e270e9754f24b3d7cbd7805b70a2ae209910a1393a371c64de97e",
+  "qaCounts": {
+    "PASS": 26
+  },
+  "recordHash": "cfbe331597d40bce3024871a3ad96caf07572f22b2654a34702e8c2533c1ff72",
+  "reviewHash": "2f3179eb1b54d47731220e43a0bdbc1d02bfdd68e8ccdd41453f569f021b4c3c",
+  "selfReviewSha256": "ac462f69526bdc60c275c861137036774b7cab3487937260d10e5a5d2d6a6b08",
+  "senseCount": 26,
+  "sourceSimilarityFindings": [
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:ground:surface-of-earth",
+      "sourceRecordId": "1788223607051",
+      "text": "mặt đất"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:ground:surface-of-earth",
+      "sourceRecordId": "1788223607051",
+      "text": "mặt đất"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:bride:woman-getting-married",
+      "sourceRecordId": "1788223608347",
+      "text": "cô dâu"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:bride:woman-getting-married",
+      "sourceRecordId": "1788223608347",
+      "text": "cô dâu"
+    }
+  ],
+  "status": "SEALED_AI_DRAFT_NOT_APPROVED"
+}

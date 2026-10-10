@@ -1,0 +1,90 @@
+{
+  "microBatch": 3,
+  "reviewMode": "INDEPENDENT_RECHECK_CURRENT_EFFECTIVE_CONTENT",
+  "reviewerKind": "ISOLATED_AI_REVIEW_AGENT",
+  "blindFirstPass": false,
+  "humanApproval": false,
+  "publicationReady": true,
+  "recordCount": 4,
+  "passCount": 4,
+  "reviewCount": 0,
+  "failCount": 0,
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2L:everyone:all-people-in-group",
+      "effectiveContentHash": "ef38ca9f58a1f7c7da41ad1e9f70687ecd5f7a4a56311eee7c32d2cfb6693a3c",
+      "reviewedContentHash": "ef38ca9f58a1f7c7da41ad1e9f70687ecd5f7a4a56311eee7c32d2cfb6693a3c",
+      "reviewedRecordSha256": "f9b03ee9684f585eb5a144ceaa1dd2cf415af227eae2757a05c2ba39eb11556b",
+      "assessment": "PASS",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "semanticAlignment": "PASS",
+        "bilingualAccuracy": "PASS",
+        "grammarAndUsage": "PASS",
+        "exampleQuality": "PASS",
+        "senseBoundary": "PASS"
+      },
+      "rationaleVi": "Ghi chú mới nêu rõ everyone là chủ ngữ ngữ pháp số ít và phải đi với động từ số ít; các ví dụ is/has thể hiện quy tắc trực tiếp, còn nghĩa và ví dụ câu vẫn phù hợp nguồn.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:splash:scatter-liquid-on-impact",
+      "effectiveContentHash": "2f2fad15fd38f3ebdc56e72a835db28dacaa67ab1950262a3380cd612b069c7b",
+      "reviewedContentHash": "2f2fad15fd38f3ebdc56e72a835db28dacaa67ab1950262a3380cd612b069c7b",
+      "reviewedRecordSha256": "1be45683934bbb1f16265c24a00e2d143a0f3978ee14445ea940c5e48753f167",
+      "assessment": "PASS",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "semanticAlignment": "PASS",
+        "bilingualAccuracy": "PASS",
+        "grammarAndUsage": "PASS",
+        "exampleQuality": "PASS",
+        "senseBoundary": "PASS"
+      },
+      "rationaleVi": "Định nghĩa mới bao quát cả chất lỏng tự va vào bề mặt rồi bắn ra lẫn việc tác nhân làm chất lỏng bắn ra; gloss tiếng Việt cũng thể hiện hai cách dùng, đúng nguồn và ví dụ.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:suite:hotel-room-set",
+      "effectiveContentHash": "7aa8d31d628b5e2f48a332a91aaa85115b378075fe064329ef9bb72143577079",
+      "reviewedContentHash": "7aa8d31d628b5e2f48a332a91aaa85115b378075fe064329ef9bb72143577079",
+      "reviewedRecordSha256": "32d5d0dcde3b5666c3efabf6aed225af8fbffce28ae7e5ed3498c74525afa1c5",
+      "assessment": "PASS",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "semanticAlignment": "PASS",
+        "bilingualAccuracy": "PASS",
+        "grammarAndUsage": "PASS",
+        "exampleQuality": "PASS",
+        "senseBoundary": "PASS"
+      },
+      "rationaleVi": "Gloss hiện tại “bộ phòng liền nhau, nhất là trong khách sạn” mô tả chính xác một nhóm phòng được cung cấp như một đơn vị; ví dụ về trẻ ngủ phòng riêng phù hợp và bản dịch dễ hiểu.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:torment:cause-deliberate-suffering",
+      "effectiveContentHash": "a0b6e81b5b1acb241269d3da1e55a4ce12c2f32b95a0a934dedfee4d5a3cd7ac",
+      "reviewedContentHash": "a0b6e81b5b1acb241269d3da1e55a4ce12c2f32b95a0a934dedfee4d5a3cd7ac",
+      "reviewedRecordSha256": "e8ee7db293e121a1f6aadecd3bebfbfb9b5f1208e0222d0bfbdf019afd2d6935",
+      "assessment": "PASS",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "semanticAlignment": "PASS",
+        "bilingualAccuracy": "PASS",
+        "grammarAndUsage": "PASS",
+        "exampleQuality": "PASS",
+        "senseBoundary": "PASS"
+      },
+      "rationaleVi": "Định nghĩa mới giữ rõ yếu tố cố ý gây đau khổ đúng với “on purpose” trong nguồn; ví dụ classmates tormented him cùng nghĩa tiếng Việt dằn vặt phù hợp nội dung đã chọn.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    }
+  ]
+}

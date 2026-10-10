@@ -1,0 +1,47 @@
+{
+  "microBatch": 5,
+  "phase": "2H.2L",
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2L:immigration:number-of-arriving-settlers",
+      "field": "exampleEn",
+      "before": "Immigration brought eight thousand new residents to the province last year.",
+      "after": "The immigration figure for the province rose to eight thousand people last year.",
+      "beforeContentHash": "b7ba12c224a928c1dc4ac59d62b6529f534cbfdd40d7fb59bf7d0fcff3c24263",
+      "afterContentHash": "46c1a55cb1e4781f320a5e5b70540dbe5e9117f7e65f400b653e82a9c1037628",
+      "reasonVi": "Ví dụ mới nêu trực tiếp con số người nhập cư, giúp phân biệt cách đọc số lượng với quá trình nhập cư.",
+      "reviewFindingSource": "independent-review/micro-05.json"
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:immigration:number-of-arriving-settlers",
+      "field": "exampleVi",
+      "before": "Dòng người nhập cư đã mang đến cho tỉnh tám nghìn cư dân mới trong năm ngoái.",
+      "after": "Số liệu nhập cư của tỉnh tăng lên tám nghìn người trong năm ngoái.",
+      "beforeContentHash": "46c1a55cb1e4781f320a5e5b70540dbe5e9117f7e65f400b653e82a9c1037628",
+      "afterContentHash": "8a13c9c658c422f8941add13e00e37092a4d177e1cb3eefd392ef938197f4c6f",
+      "reasonVi": "Bản dịch nhấn vào số liệu người nhập cư để tương ứng với ví dụ tiếng Anh đã chỉnh và nghĩa đang rà soát.",
+      "reviewFindingSource": "independent-review/micro-05.json"
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:animation:process-of-making-moving-images",
+      "field": "exampleEn",
+      "before": "The museum uses animation to show how the old engine works.",
+      "after": "Character animation starts with planning how each figure will move.",
+      "beforeContentHash": "083068a03816cfae73c4ee81990b08ecfcc446f1902d9206503b3cea6a537c21",
+      "afterContentHash": "b23701c3e9e326a54f20f2f2c62fa7f8db8929f607357b7efe7bd6ef72f9420a",
+      "reasonVi": "Ví dụ mới nói rõ hoạt hình là quá trình lên kế hoạch chuyển động, không chỉ một tác phẩm đã hoàn thành.",
+      "reviewFindingSource": "independent-review/micro-05.json"
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:animation:process-of-making-moving-images",
+      "field": "exampleVi",
+      "before": "Bảo tàng dùng hoạt hình để minh họa cách động cơ cũ hoạt động.",
+      "after": "Hoạt hình nhân vật bắt đầu từ việc lên kế hoạch cho từng chuyển động.",
+      "beforeContentHash": "b23701c3e9e326a54f20f2f2c62fa7f8db8929f607357b7efe7bd6ef72f9420a",
+      "afterContentHash": "dddc9f8f714e92fe6b37ecf4e808c381da41639901eeca5ccb28f0fb0ffa88e5",
+      "reasonVi": "Bản dịch chỉ rõ trọng tâm là công đoạn lên kế hoạch chuyển động và khớp nội dung ví dụ tiếng Anh.",
+      "reviewFindingSource": "independent-review/micro-05.json"
+    }
+  ],
+  "status": "IMMUTABLE_FORWARD_CORRECTIONS"
+}

@@ -4407,3 +4407,9 @@ Added a content-bound, immutable downstream overlay for three grammar-note field
 - Author the final frozen 100 groups / 104 original bilingual DRAFT Senses in five planned/sealed micro-batches. Preserve all 1977 parent records; cumulative 1520 groups / 2081 Senses.
 - Complete isolated AI review with two forward field corrections and independent rechecks: final 89 PASS / 15 nonblocking REVIEW / 0 FAIL. Retain six deferred candidates and seventeen boundary identities.
 - Add reproducible cohort-completion audit: all 500 unique groups authored, 518 new Senses, exact partition and lineage. Twenty-three focused tests, seven-project typecheck, lint, five ancestor verifiers and two-seed zero-write replay PASS. Offline DRAFT publication only; no approval, canonical IDs, rights clearance, database, Production or next-cohort operation.
+
+## 2026-10-11 — Phase 2H.2L Checkpoint 01
+
+- Complete the first 100 groups of frozen Cohort 500-02 as five planned and sealed bilingual micro-batches: 145 DRAFT Senses. Preserve the 2,081-record CP05 parent; cumulative projection is 1,620 groups / 2,226 Senses.
+- Complete isolated review and two forward example corrections with independent rechecks. Final review is 143 PASS / 2 nonblocking REVIEW / 0 FAIL; keep the two unresolved boundary questions and UNKNOWN_REVIEW_REQUIRED rights status visible.
+- Focused tests, parent/cohort checks, typecheck, ESLint, full 9,677-source overlap screen and deterministic zero-write replay pass. Offline DRAFT only; no database, Production, human approval, canonical IDs or Checkpoint 02.

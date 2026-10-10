@@ -1,0 +1,574 @@
+{
+  "microBatch": 5,
+  "manuscriptSha256": "a18aa2e1aa9007d46e03b7bd5fd8dff90d59e6bc84eb5987eb6ef06bbb1c75be",
+  "sourceHandoffSha256": "d4062ab73202457cb40c6d3fc0ee2bc0600e9523ec1ba747a366cc917a2ec0cb",
+  "reviewerKind": "ISOLATED_AI_REVIEW_AGENT",
+  "blindFirstPass": true,
+  "humanApproval": false,
+  "publicationReady": false,
+  "recordCount": 29,
+  "passCount": 27,
+  "reviewCount": 2,
+  "failCount": 0,
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2L:strategy:overall-plan",
+      "effectiveContentHash": "ae132c5f34107a3795cb629c8a4b741c8010b537795ca248069967bfe47fe69d",
+      "reviewedContentHash": "ae132c5f34107a3795cb629c8a4b741c8010b537795ca248069967bfe47fe69d",
+      "reviewedRecordSha256": "e293043850be76fe5667a7cfb8031c02e3f31a46e420dfe934deff4d554aff76",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa kế hoạch tổng thể để đạt mục tiêu khớp nguồn; ví dụ thư viện đổi chiến lược để tiếp cận độc giả ở thị trấn nhỏ tự nhiên và bản dịch truyền đạt đúng mục đích.",
+      "dimensions": {
+        "semanticAlignment": "PASS",
+        "bilingualAccuracy": "PASS",
+        "grammarAndUsage": "PASS",
+        "exampleQuality": "PASS",
+        "senseBoundary": "PASS"
+      },
+      "blockers": [],
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:thursday:day-of-week",
+      "effectiveContentHash": "d86e8020e33c7d55ee0d9eeb4e87d6c35ff582692482d5307ee590cb817f6e08",
+      "reviewedContentHash": "d86e8020e33c7d55ee0d9eeb4e87d6c35ff582692482d5307ee590cb817f6e08",
+      "reviewedRecordSha256": "39a0fc931fb004dc8551cfb9201f3fb4b9d7eeff90ef18d5b62d233074bbba2b",
+      "assessment": "PASS",
+      "explanationVi": "Định nghĩa thứ Năm giữa thứ Tư và thứ Sáu chính xác; cách viết tên ngày, cấu trúc on Thursday và câu chuyển lịch tập đều đúng, bản dịch tiếng Việt tự nhiên.",
+      "dimensions": {
+        "semanticAlignment": "PASS",
+        "bilingualAccuracy": "PASS",
+        "grammarAndUsage": "PASS",
+        "exampleQuality": "PASS",
+        "senseBoundary": "PASS"
+      },
+      "blockers": [],
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:shocked:strongly-surprised-or-upset",
+      "effectiveContentHash": "190f8fbe0f8e643d644299ea7a6a1b6bc0bae7af2dc7344868953289ab84e0e3",
+      "reviewedContentHash": "190f8fbe0f8e643d644299ea7a6a1b6bc0bae7af2dc7344868953289ab84e0e3",
+      "reviewedRecordSha256": "1da7d95055f2090e9c9bbcefa356e6caf65b5a2432d853710af016e39dfd4877",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa ngạc nhiên hoặc bàng hoàng vì sự việc bất ngờ phù hợp các ví dụ tin đột ngột và giá thuê tăng; cấu trúc be shocked when dùng đúng.",
+      "dimensions": {
+        "semanticAlignment": "PASS",
+        "bilingualAccuracy": "PASS",
+        "grammarAndUsage": "PASS",
+        "exampleQuality": "PASS",
+        "senseBoundary": "PASS"
+      },
+      "blockers": [],
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:everywhere:in-all-places",
+      "effectiveContentHash": "a7195ef41ba5fb13a4a0837780b951413e9cf465db3c0a0d89fdae8891569225",
+      "reviewedContentHash": "a7195ef41ba5fb13a4a0837780b951413e9cf465db3c0a0d89fdae8891569225",
+      "reviewedRecordSha256": "c95e6e57736102a2fcf18c90db0985e648c0388ff9da3099fcdb372b116665fe",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa ở khắp nơi khớp các ví dụ tìm kiếm và hoa mọc; câu sao giấy rải khắp nơi đúng cách dùng trạng từ và bản dịch dễ hiểu.",
+      "dimensions": {
+        "semanticAlignment": "PASS",
+        "bilingualAccuracy": "PASS",
+        "grammarAndUsage": "PASS",
+        "exampleQuality": "PASS",
+        "senseBoundary": "PASS"
+      },
+      "blockers": [],
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:store:shop-selling-goods",
+      "effectiveContentHash": "8db6671f8c0d62ab8943e62a793f3043c11c0e0ad5bd50cde30af714fd3cbd92",
+      "reviewedContentHash": "8db6671f8c0d62ab8943e62a793f3043c11c0e0ad5bd50cde30af714fd3cbd92",
+      "reviewedRecordSha256": "4a20cc5496281eb1a753364b2796f64bc75a50b22168e13de491a8486a1868db",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa cửa hàng bán hàng hóa phù hợp nguồn; ví dụ mua dây cáp thay thế tại cửa hàng gần ga tự nhiên và dùng đúng danh từ đếm được.",
+      "dimensions": {
+        "semanticAlignment": "PASS",
+        "bilingualAccuracy": "PASS",
+        "grammarAndUsage": "PASS",
+        "exampleQuality": "PASS",
+        "senseBoundary": "PASS"
+      },
+      "blockers": [],
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:store:keep-for-later-use",
+      "effectiveContentHash": "b079843c478d7a5921b6a8d0f3c32a1c6a99d14d6d509a1f2eedc99917c142ac",
+      "reviewedContentHash": "b079843c478d7a5921b6a8d0f3c32a1c6a99d14d6d509a1f2eedc99917c142ac",
+      "reviewedRecordSha256": "6ef068bf89732b13451da9cba85ad8705764b5876fac1b37bd1f735fec555a75",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa cất để dùng sau khớp nguồn và ví dụ gạo được bảo quản trong tủ khô; cấu trúc store something in a place và thì hiện tại đúng.",
+      "dimensions": {
+        "semanticAlignment": "PASS",
+        "bilingualAccuracy": "PASS",
+        "grammarAndUsage": "PASS",
+        "exampleQuality": "PASS",
+        "senseBoundary": "PASS"
+      },
+      "blockers": [],
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:anthem:formal-or-religious-song",
+      "effectiveContentHash": "720150d6262daa0dccda3041b6ea28ee49f9620b292e3b17a78fb9c947c5c08e",
+      "reviewedContentHash": "720150d6262daa0dccda3041b6ea28ee49f9620b292e3b17a78fb9c947c5c08e",
+      "reviewedRecordSha256": "8d184516c95e37953d8e5ab49d1bbd1faaec0bc7198162be09d8a74bd2e0fd09",
+      "assessment": "PASS",
+      "explanationVi": "Định nghĩa bao gồm bài hát trang trọng gắn với cộng đồng và bài hát tôn giáo, phù hợp nguồn; ví dụ bài ca thị trấn trong lễ kỷ niệm dùng danh từ tự nhiên.",
+      "dimensions": {
+        "semanticAlignment": "PASS",
+        "bilingualAccuracy": "PASS",
+        "grammarAndUsage": "PASS",
+        "exampleQuality": "PASS",
+        "senseBoundary": "PASS"
+      },
+      "blockers": [],
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:solo:done-alone",
+      "effectiveContentHash": "e91625db835a940f4e4b4b20d44358b0779da2d43d08776b85f8831e09e26b40",
+      "reviewedContentHash": "e91625db835a940f4e4b4b20d44358b0779da2d43d08776b85f8831e09e26b40",
+      "reviewedRecordSha256": "49d3a96ec14813a64875af42072b01ab54f6e1b4cfae59275c3f21f012a04ecb",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa tính từ chỉ hoạt động một mình, không có người khác tham gia, khớp ví dụ chuyến bay solo; tay đua băng qua tuyến đường một mình và bản dịch đúng ý.",
+      "dimensions": {
+        "semanticAlignment": "PASS",
+        "bilingualAccuracy": "PASS",
+        "grammarAndUsage": "PASS",
+        "exampleQuality": "PASS",
+        "senseBoundary": "PASS"
+      },
+      "blockers": [],
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:solo:musical-passage",
+      "effectiveContentHash": "daee69fbc2d631c7f6794db82030a918c36519a10ae39347fb6a8bec12c14a40",
+      "reviewedContentHash": "daee69fbc2d631c7f6794db82030a918c36519a10ae39347fb6a8bec12c14a40",
+      "reviewedRecordSha256": "e37c458852de68b0766593aea3189d3ebbb8a8019fb5da0d20d7c0803609060c",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa đoạn nhạc dành cho một giọng hoặc nhạc cụ phù hợp ví dụ guitarist solo; đoạn độc tấu sáo mở đầu chương nhạc và cách dịch đều chính xác.",
+      "dimensions": {
+        "semanticAlignment": "PASS",
+        "bilingualAccuracy": "PASS",
+        "grammarAndUsage": "PASS",
+        "exampleQuality": "PASS",
+        "senseBoundary": "PASS"
+      },
+      "blockers": [],
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:insect:six-legged-small-animal",
+      "effectiveContentHash": "f4e8f63d0f5db108f4c599f33350790e31191e091436581855fad7ddbdf206f0",
+      "reviewedContentHash": "f4e8f63d0f5db108f4c599f33350790e31191e091436581855fad7ddbdf206f0",
+      "reviewedRecordSha256": "c952d631d0938bf1919690204d236f01427862951359b132be786a093b9e8e6b",
+      "assessment": "PASS",
+      "explanationVi": "Định nghĩa sáu chân và ba phần cơ thể phù hợp khái niệm côn trùng trong ví dụ nguồn; câu côn trùng bò qua lưới cửa sổ cùng bản dịch tự nhiên.",
+      "dimensions": {
+        "semanticAlignment": "PASS",
+        "bilingualAccuracy": "PASS",
+        "grammarAndUsage": "PASS",
+        "exampleQuality": "PASS",
+        "senseBoundary": "PASS"
+      },
+      "blockers": [],
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:severely:to-a-serious-degree",
+      "effectiveContentHash": "0678382afe0d4ab7f7ce6883c1dbadc200d7dd694bf9e6e46ea02860ff1743f1",
+      "reviewedContentHash": "0678382afe0d4ab7f7ce6883c1dbadc200d7dd694bf9e6e46ea02860ff1743f1",
+      "reviewedRecordSha256": "f831f6645aa577cafc99bcb85b9b6e0723c94e8596c830ac17710be7ab52d348",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa mức độ rất nghiêm trọng hoặc gây thiệt hại khớp nguồn very badly or seriously; nắng nóng làm giảm nước hồ chứa nghiêm trọng là ví dụ đúng.",
+      "dimensions": {
+        "semanticAlignment": "PASS",
+        "bilingualAccuracy": "PASS",
+        "grammarAndUsage": "PASS",
+        "exampleQuality": "PASS",
+        "senseBoundary": "PASS"
+      },
+      "blockers": [],
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:mere:only-a-small-amount",
+      "effectiveContentHash": "a16de83dabf1e8bfbf9583d23112726d910c88c830ed674cf32263839d44b435",
+      "reviewedContentHash": "a16de83dabf1e8bfbf9583d23112726d910c88c830ed674cf32263839d44b435",
+      "reviewedRecordSha256": "133c00643b1d37b619d62f7315c70591d4d5e0e0078fcffa806a8abccdd18c24",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa nhấn mạnh lượng nhỏ hoặc sự không đáng kể phù hợp nguồn; mere six minutes thể hiện khoảng thời gian ngắn và bản dịch “vỏn vẹn” truyền đạt sắc thái.",
+      "dimensions": {
+        "semanticAlignment": "PASS",
+        "bilingualAccuracy": "PASS",
+        "grammarAndUsage": "PASS",
+        "exampleQuality": "PASS",
+        "senseBoundary": "PASS"
+      },
+      "blockers": [],
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:transparency:openness-and-clarity",
+      "effectiveContentHash": "da503e3ff12519f8f53f2b0b8194493358b03346e2ad71f90461844aa35ba297",
+      "reviewedContentHash": "da503e3ff12519f8f53f2b0b8194493358b03346e2ad71f90461844aa35ba297",
+      "reviewedRecordSha256": "8552c03077f7101e86323137b17f8f84d6c2a3dff1a52677b63630fa82e4508e",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa minh bạch giúp hiểu hành động và chi tiêu phù hợp ví dụ nguồn về tổ chức công khai chi tiêu; câu công khai sổ sách quyên góp tự nhiên.",
+      "dimensions": {
+        "semanticAlignment": "PASS",
+        "bilingualAccuracy": "PASS",
+        "grammarAndUsage": "PASS",
+        "exampleQuality": "PASS",
+        "senseBoundary": "PASS"
+      },
+      "blockers": [],
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:transparency:letting-light-through",
+      "effectiveContentHash": "70c0cd1accd1dbd6fea34eacf64dd0f422b80510af093e33e3b3b55581c2f050",
+      "reviewedContentHash": "70c0cd1accd1dbd6fea34eacf64dd0f422b80510af093e33e3b3b55581c2f050",
+      "reviewedRecordSha256": "80420558603bad1eec256efa590bc6a194bf811df84f30a498f09fb340976ba4",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa tính chất vật liệu cho ánh sáng xuyên qua để nhìn thấy phía sau khớp ví dụ cửa sổ; tấm vách giúp ánh sáng tới hành lang hợp lý.",
+      "dimensions": {
+        "semanticAlignment": "PASS",
+        "bilingualAccuracy": "PASS",
+        "grammarAndUsage": "PASS",
+        "exampleQuality": "PASS",
+        "senseBoundary": "PASS"
+      },
+      "blockers": [],
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:campus:school-or-university-grounds",
+      "effectiveContentHash": "c4fa7baae2a94ba288d93a6d91508ec5353f7cd2009c43207ff7c5965d00e04a",
+      "reviewedContentHash": "c4fa7baae2a94ba288d93a6d91508ec5353f7cd2009c43207ff7c5965d00e04a",
+      "reviewedRecordSha256": "066c4e88356328e1d0b227d6e8ff4c9bbb7eb3886862522fc55a2a863cd31708",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa khu nhà và đất thuộc trường học khớp nguồn; cuộc gặp bên ngoài phòng lab trong campus là cách dùng tự nhiên và bản dịch chính xác.",
+      "dimensions": {
+        "semanticAlignment": "PASS",
+        "bilingualAccuracy": "PASS",
+        "grammarAndUsage": "PASS",
+        "exampleQuality": "PASS",
+        "senseBoundary": "PASS"
+      },
+      "blockers": [],
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:surgical:connected-with-surgery",
+      "effectiveContentHash": "74494beff71155d27b92c770007dd277b8b9f0570fa7be35641f3d7aa823c717",
+      "reviewedContentHash": "74494beff71155d27b92c770007dd277b8b9f0570fa7be35641f3d7aa823c717",
+      "reviewedRecordSha256": "5127ca67965bea33cae9df757b63fdd541aff617af1ffa5f9deedab749df12c2",
+      "assessment": "PASS",
+      "explanationVi": "Tính từ chỉ điều trị có phẫu thuật phù hợp nguồn; ví dụ điều trị sau cú ngã đúng ngữ cảnh y khoa và bản dịch không làm lệch nghĩa.",
+      "dimensions": {
+        "semanticAlignment": "PASS",
+        "bilingualAccuracy": "PASS",
+        "grammarAndUsage": "PASS",
+        "exampleQuality": "PASS",
+        "senseBoundary": "PASS"
+      },
+      "blockers": [],
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:surgical:precise-and-selective",
+      "effectiveContentHash": "4194ab87d1affbc983662c64a1425aae2db695297c543a3fc9ee243ef9ef4712",
+      "reviewedContentHash": "4194ab87d1affbc983662c64a1425aae2db695297c543a3fc9ee243ef9ef4712",
+      "reviewedRecordSha256": "d8a416859c2cc1a377b95381d91c51a226ee7aec56f0640223d7d1813bcbba3b",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa ẩn dụ chính xác và giới hạn phạm vi phù hợp nguồn surgical cuts; ví dụ biên tập rút gọn để giữ bằng chứng mạnh minh họa rõ sắc thái.",
+      "dimensions": {
+        "semanticAlignment": "PASS",
+        "bilingualAccuracy": "PASS",
+        "grammarAndUsage": "PASS",
+        "exampleQuality": "PASS",
+        "senseBoundary": "PASS"
+      },
+      "blockers": [],
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:colonial:connected-with-colonies",
+      "effectiveContentHash": "e4e2ab8463897d08ede5d37c1414fb7ed5672576692bf4815adc3542449d78b9",
+      "reviewedContentHash": "e4e2ab8463897d08ede5d37c1414fb7ed5672576692bf4815adc3542449d78b9",
+      "reviewedRecordSha256": "f22e3604c1ca61e460e887e3cabbfc2876f185729ed3fd8cb21341dc790c9968",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa liên quan thuộc địa hoặc thời kỳ kiểm soát lãnh thổ phù hợp các nguồn lịch sử và tòa nhà; ví dụ tour giới thiệu công trình thời thuộc địa tự nhiên.",
+      "dimensions": {
+        "semanticAlignment": "PASS",
+        "bilingualAccuracy": "PASS",
+        "grammarAndUsage": "PASS",
+        "exampleQuality": "PASS",
+        "senseBoundary": "PASS"
+      },
+      "blockers": [],
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:lay:put-flat-or-horizontal",
+      "effectiveContentHash": "6e88d0beb592d2a4539d1b18e544211b3eab16707a303c9a3723692bb20513bd",
+      "reviewedContentHash": "6e88d0beb592d2a4539d1b18e544211b3eab16707a303c9a3723692bb20513bd",
+      "reviewedRecordSha256": "bc10ddff3f2184bb37c0cd2e29d2a0318e60a3a96d0597d5143bc5ca7bd56b3b",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa đặt vật nằm phẳng khớp nguồn; câu mệnh lệnh lay the framed map flat dùng đúng lay transitive, và ghi chú laid ở quá khứ chính xác.",
+      "dimensions": {
+        "semanticAlignment": "PASS",
+        "bilingualAccuracy": "PASS",
+        "grammarAndUsage": "PASS",
+        "exampleQuality": "PASS",
+        "senseBoundary": "PASS"
+      },
+      "blockers": [],
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:lay:produce-eggs",
+      "effectiveContentHash": "0bf46fb45440a989737c4a5dfea0bdbc05793a9be86e68c9c1d7b4d0d47cd3f2",
+      "reviewedContentHash": "0bf46fb45440a989737c4a5dfea0bdbc05793a9be86e68c9c1d7b4d0d47cd3f2",
+      "reviewedRecordSha256": "7957be5b6f210437094ca19d8ea0fc7d2dc59434b526fcb3430516bc001174de",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa gà mái đẻ trứng khớp ví dụ nguồn; câu rescued hen lays an egg tự nhiên, và ghi chú lay/laid phân biệt đúng dạng động từ.",
+      "dimensions": {
+        "semanticAlignment": "PASS",
+        "bilingualAccuracy": "PASS",
+        "grammarAndUsage": "PASS",
+        "exampleQuality": "PASS",
+        "senseBoundary": "PASS"
+      },
+      "blockers": [],
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:lay:place-a-covering",
+      "effectiveContentHash": "ec583aa76ce0b0cf54fbbdea520c595e9385577c0e572f3ac0ef4b2dc13b39ed",
+      "reviewedContentHash": "ec583aa76ce0b0cf54fbbdea520c595e9385577c0e572f3ac0ef4b2dc13b39ed",
+      "reviewedRecordSha256": "937ef237f8a13b179b01bff0305119ac5070cc6d2c03c68c32d714ed551e1625",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa lát mảnh vật liệu phủ bề mặt khớp ví dụ nguồn lay tiles; câu lát đá dọc lối đi dùng đúng động từ và bản dịch sát nghĩa.",
+      "dimensions": {
+        "semanticAlignment": "PASS",
+        "bilingualAccuracy": "PASS",
+        "grammarAndUsage": "PASS",
+        "exampleQuality": "PASS",
+        "senseBoundary": "PASS"
+      },
+      "blockers": [],
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:unfair:not-just-or-equal",
+      "effectiveContentHash": "60a23cc675daa2d609ac3226e86841f73a9e22c2adfc4b8ca0b17d20eb0d6827",
+      "reviewedContentHash": "60a23cc675daa2d609ac3226e86841f73a9e22c2adfc4b8ca0b17d20eb0d6827",
+      "reviewedRecordSha256": "8f8fc69eeeed50b86c48cffff7f42f280e9372ac3a36576aae0f12e75ac713d1",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa không công bằng hoặc không dựa trên lẽ công bằng được ví dụ nguồn hỗ trợ; lịch trình bất công với nhân viên đi xa là câu tự nhiên.",
+      "dimensions": {
+        "semanticAlignment": "PASS",
+        "bilingualAccuracy": "PASS",
+        "grammarAndUsage": "PASS",
+        "exampleQuality": "PASS",
+        "senseBoundary": "PASS"
+      },
+      "blockers": [],
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:configure:set-up-and-arrange",
+      "effectiveContentHash": "50a22d1d9fd5409262931fa370d003c04fdaaebaafb7f2db9f4f9b9fd5d58b3b",
+      "reviewedContentHash": "50a22d1d9fd5409262931fa370d003c04fdaaebaafb7f2db9f4f9b9fd5d58b3b",
+      "reviewedRecordSha256": "30250b89940aec4456e8985122b8fb64db772806a3397752adcf754767e5a301",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa thiết lập và sắp xếp cài đặt hoặc thành phần khớp nguồn; cấu hình máy chiếu để hiện phụ đề là ví dụ cụ thể, đúng ngữ pháp.",
+      "dimensions": {
+        "semanticAlignment": "PASS",
+        "bilingualAccuracy": "PASS",
+        "grammarAndUsage": "PASS",
+        "exampleQuality": "PASS",
+        "senseBoundary": "PASS"
+      },
+      "blockers": [],
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:immigration:process-of-settling-in-another-country",
+      "effectiveContentHash": "af310f719319c9a3ef0f8cf5c952b3e51d234c324848089eaa07a2355a421c0e",
+      "reviewedContentHash": "af310f719319c9a3ef0f8cf5c952b3e51d234c324848089eaa07a2355a421c0e",
+      "reviewedRecordSha256": "96867ff7f9795003b45436d55c14fb1d32a0aef3ba68a5da951ee32a2e25b0fb",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa quá trình định cư ở quốc gia khác phù hợp nguồn; nghiên cứu làn sóng nhập cư vào vùng duyên hải trong thập niên 1990 minh họa đúng quá trình.",
+      "dimensions": {
+        "semanticAlignment": "PASS",
+        "bilingualAccuracy": "PASS",
+        "grammarAndUsage": "PASS",
+        "exampleQuality": "PASS",
+        "senseBoundary": "PASS"
+      },
+      "blockers": [],
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:immigration:number-of-arriving-settlers",
+      "effectiveContentHash": "b7ba12c224a928c1dc4ac59d62b6529f534cbfdd40d7fb59bf7d0fcff3c24263",
+      "reviewedContentHash": "b7ba12c224a928c1dc4ac59d62b6529f534cbfdd40d7fb59bf7d0fcff3c24263",
+      "reviewedRecordSha256": "1f2cca6e78b34206c9067ed6cffebbcef9d06c017041712e6b0f71ba371a4041",
+      "assessment": "REVIEW",
+      "explanationVi": "Định nghĩa theo số người nhập cư có nguồn hỗ trợ rõ, nhưng câu “Immigration brought eight thousand...” diễn đạt dòng di cư như tác nhân chứ chưa minh họa rõ nghĩa số lượng; cần ví dụ làm rõ mức hoặc số người.",
+      "dimensions": {
+        "semanticAlignment": "PASS",
+        "bilingualAccuracy": "PASS",
+        "grammarAndUsage": "PASS",
+        "exampleQuality": "REVIEW",
+        "senseBoundary": "REVIEW"
+      },
+      "blockers": [
+        "The example treats immigration as the process bringing residents, so it does not clearly instantiate the defined sense “number of people”; use an example that evidences a number or level."
+      ],
+      "blocksPublication": true,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": [
+        "The example treats immigration as the process bringing residents, so it does not clearly instantiate the defined sense “number of people”; use an example that evidences a number or level."
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:acceptance:receiving-or-approving",
+      "effectiveContentHash": "1c065afe1c5b58569259990b47b3b9c72dd27b5bbd09410c8b6b3f5fa3a836fe",
+      "reviewedContentHash": "1c065afe1c5b58569259990b47b3b9c72dd27b5bbd09410c8b6b3f5fa3a836fe",
+      "reviewedRecordSha256": "d9aa487483a347c66fe78b2fea415657e0c48f155ed02dd5eb20062f898db537",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa tiếp nhận hoặc chấp thuận lời đề nghị/người/khác biệt phù hợp nguồn; câu nhận được sự chấp nhận lời mời thực tập tự nhiên và bản dịch sát ý.",
+      "dimensions": {
+        "semanticAlignment": "PASS",
+        "bilingualAccuracy": "PASS",
+        "grammarAndUsage": "PASS",
+        "exampleQuality": "PASS",
+        "senseBoundary": "PASS"
+      },
+      "blockers": [],
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:acceptance:agreement-that-claim-is-true",
+      "effectiveContentHash": "05fc6d4795ed3ce3e9f87eefad40c0b0ffb2776647e6ab16a4eccef6bf072f9f",
+      "reviewedContentHash": "05fc6d4795ed3ce3e9f87eefad40c0b0ffb2776647e6ab16a4eccef6bf072f9f",
+      "reviewedRecordSha256": "d85b11aed89e0acda97e3dab3d691d66ff30d60f682466e1372e9b0bcf749cd6",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa đồng thuận rằng phát biểu hoặc giải thích là đúng khớp trực tiếp nguồn; acceptance that the bridge needed testing dùng đúng mệnh đề that.",
+      "dimensions": {
+        "semanticAlignment": "PASS",
+        "bilingualAccuracy": "PASS",
+        "grammarAndUsage": "PASS",
+        "exampleQuality": "PASS",
+        "senseBoundary": "PASS"
+      },
+      "blockers": [],
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:animation:animated-film-or-work",
+      "effectiveContentHash": "7a2cde05ccf676654787f8e19d1bfb9e750de12ff72d45f2c119adb5d24d46df",
+      "reviewedContentHash": "7a2cde05ccf676654787f8e19d1bfb9e750de12ff72d45f2c119adb5d24d46df",
+      "reviewedRecordSha256": "c7da7dd0137b9bdd75db2abf4742a7b44e17bf0846058e57c9b9ea7ae29e1f84",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa tác phẩm hoàn chỉnh từ hình ảnh tạo cảm giác chuyển động khớp ví dụ phim cá voi di cư; cụm an animation và bản dịch phim hoạt hình đúng.",
+      "dimensions": {
+        "semanticAlignment": "PASS",
+        "bilingualAccuracy": "PASS",
+        "grammarAndUsage": "PASS",
+        "exampleQuality": "PASS",
+        "senseBoundary": "PASS"
+      },
+      "blockers": [],
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:animation:process-of-making-moving-images",
+      "effectiveContentHash": "083068a03816cfae73c4ee81990b08ecfcc446f1902d9206503b3cea6a537c21",
+      "reviewedContentHash": "083068a03816cfae73c4ee81990b08ecfcc446f1902d9206503b3cea6a537c21",
+      "reviewedRecordSha256": "c98a1832046b3e988d96470277ff6d0c75f59a0615a5ffaff7336df189d733af",
+      "assessment": "REVIEW",
+      "explanationVi": "Nghĩa quá trình hoặc kỹ thuật tạo hình chuyển động được nguồn hỗ trợ, nhưng ví dụ bảo tàng dùng animation để giải thích động cơ có thể chỉ một đoạn phim hoàn chỉnh, trùng sense 1; cần ví dụ rõ về kỹ thuật/quy trình.",
+      "dimensions": {
+        "semanticAlignment": "PASS",
+        "bilingualAccuracy": "PASS",
+        "grammarAndUsage": "PASS",
+        "exampleQuality": "REVIEW",
+        "senseBoundary": "REVIEW"
+      },
+      "blockers": [
+        "The museum example can refer to a finished animation, overlapping the separate finished-work sense; use an example that clearly names the process or technique."
+      ],
+      "blocksPublication": true,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": [
+        "The museum example can refer to a finished animation, overlapping the separate finished-work sense; use an example that clearly names the process or technique."
+      ]
+    }
+  ]
+}

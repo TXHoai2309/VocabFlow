@@ -1,0 +1,107 @@
+{
+  "microBatch": 1,
+  "phase": "2H.2L",
+  "records": [
+    {
+      "after": "bột mì; bột từ thực vật dùng chế biến thức ăn",
+      "afterContentHash": "c11ac838192c258926de2bb5ee3af6966a9d05d4333bee0d3ef27e01d304c8ab",
+      "before": "bột làm thức ăn, thường làm từ ngũ cốc hoặc thực vật",
+      "beforeContentHash": "67ae60bf6e12a14103d101dc43e5edf254c89a62a610df2be41b7da0329b06d1",
+      "field": "meaningVi",
+      "proposalKey": "EDITORIAL_2H2L:flour:ground-baking-powder",
+      "reasonVi": "Làm rõ nghĩa Việt theo mục từ Oxford và định nghĩa tiếng Anh trong nguồn Vocab4600, tránh hiểu thành mọi loại bột thực vật.",
+      "reviewFindingSource": "independent-review/micro-01.json"
+    },
+    {
+      "after": "To judge someone's or something's quality, value, or ability as lower than it really is.",
+      "afterContentHash": "438289cea8ad3460d2b14cb025353db55ddb47a6c64ecf5472813da0a1797571",
+      "before": "To judge the size, importance, ability, or likely effect of someone or something as lower than it really is.",
+      "beforeContentHash": "caf7cbaca7a820502beefca8006181279519a90fca1a5fac94e8e7860bff8af9",
+      "field": "definitionEn",
+      "proposalKey": "EDITORIAL_2H2L:underestimate:judge-too-low",
+      "reasonVi": "Thu hẹp về đánh giá con người hoặc phẩm chất/năng lực như bằng chứng nguồn hiện có; không áp dụng nghĩa ước lượng quy mô, tác động hay độ khó khi chưa đủ chứng cứ.",
+      "reviewFindingSource": "independent-review/micro-01.json"
+    },
+    {
+      "after": "The scout underestimated the team after seeing one poor performance.",
+      "afterContentHash": "438289cea8ad3460d2b14cb025353db55ddb47a6c64ecf5472813da0a1797571",
+      "before": "We underestimated the mountain trail and ran out of daylight before reaching the shelter.",
+      "beforeContentHash": "caf7cbaca7a820502beefca8006181279519a90fca1a5fac94e8e7860bff8af9",
+      "field": "exampleEn",
+      "proposalKey": "EDITORIAL_2H2L:underestimate:judge-too-low",
+      "reasonVi": "Thay ví dụ về độ khó của đường núi bằng ví dụ đánh giá năng lực đội, sát trực tiếp phạm vi nguồn và ghi chú reviewer.",
+      "reviewFindingSource": "independent-review/micro-01.json"
+    },
+    {
+      "after": "Tuyển trạch viên đánh giá thấp đội bóng sau khi chỉ xem một màn trình diễn kém.",
+      "afterContentHash": "438289cea8ad3460d2b14cb025353db55ddb47a6c64ecf5472813da0a1797571",
+      "before": "Chúng tôi đã đánh giá thấp độ khó của đường núi và trời tối trước khi chúng tôi tới được nơi trú chân.",
+      "beforeContentHash": "caf7cbaca7a820502beefca8006181279519a90fca1a5fac94e8e7860bff8af9",
+      "field": "exampleVi",
+      "proposalKey": "EDITORIAL_2H2L:underestimate:judge-too-low",
+      "reasonVi": "Bản dịch khớp chủ thể, hành động đánh giá và đối tượng ở ví dụ tiếng Anh đã sửa.",
+      "reviewFindingSource": "independent-review/micro-01.json"
+    },
+    {
+      "after": "Deal with + a noun phrase means handle a problem, request, or person; with comes before its object.",
+      "afterContentHash": "74741025aa546f2e2c875c688ab5091bb10acf37ef987f1c150daebd06f7717e",
+      "before": "Deal with a problem, request, or person; the object follows with.",
+      "beforeContentHash": "0155524f1d0ae61c5442faf315a4e6f756c9dadefe649fda23ddb13011d90595",
+      "field": "grammarNotesEn",
+      "proposalKey": "EDITORIAL_2H2L:deal:handle-matter",
+      "reasonVi": "Sửa trật tự cấu trúc để ghi rõ deal with + bổ ngữ và vị trí của giới từ with theo nhận xét độc lập.",
+      "reviewFindingSource": "independent-review/micro-01.json"
+    },
+    {
+      "after": "A state or period in which no sound can be heard.",
+      "afterContentHash": "4f3bf46f8e78b44a5d4cbc99634d4beabde44c633508f4954c46fdb34a6c390b",
+      "before": "A state in which little or no sound can be heard.",
+      "beforeContentHash": "b55bf9edf003d7151778922eef09f5e2f12536b83ff753c0ab9ec768088d5024",
+      "field": "definitionEn",
+      "proposalKey": "EDITORIAL_2H2L:silence:absence-of-sound",
+      "reasonVi": "Bám sát nghĩa complete absence of sound/noise trong nguồn, tránh mở rộng sang trạng thái vẫn còn âm thanh nhỏ.",
+      "reviewFindingSource": "independent-review/micro-01.json"
+    },
+    {
+      "after": "người bị giam giữ hoặc sống trong một cơ sở như nhà tù hay bệnh viện",
+      "afterContentHash": "35c728a50ac1017ea8e2d752a1da414a5e3beb269f3de80602297531c7de1739",
+      "before": "người bị giam hoặc cư trú trong một cơ sở khép kín",
+      "beforeContentHash": "47530d967d595de733b5700c90bb537084baf33ed3a286116d6908a6caad82ef",
+      "field": "meaningVi",
+      "proposalKey": "EDITORIAL_2H2L:inmate:institution-resident",
+      "reasonVi": "Nêu rõ ví dụ loại cơ sở được nguồn hỗ trợ và bỏ cách nói khép kín còn mơ hồ.",
+      "reviewFindingSource": "independent-review/micro-01.json"
+    },
+    {
+      "after": "The new café is super, and the staff are friendly.",
+      "afterContentHash": "1cd68153e7ed2878b0d34677b5edbed6e0680eb5f3222650a064fca608ee8307",
+      "before": "The volunteers gave us a super welcome at the new centre.",
+      "beforeContentHash": "4ce775e6ebae2fd4f23e4242d14bd7b1edf085f948f2f69e3e6bf47e41b0784a",
+      "field": "exampleEn",
+      "proposalKey": "EDITORIAL_2H2L:super:excellent-informal",
+      "reasonVi": "Thay kết hợp super welcome gượng bằng ví dụ tính từ tự nhiên sau linking verb.",
+      "reviewFindingSource": "independent-review/micro-01.json"
+    },
+    {
+      "after": "Quán cà phê mới rất tuyệt, và nhân viên ở đó thân thiện.",
+      "afterContentHash": "1cd68153e7ed2878b0d34677b5edbed6e0680eb5f3222650a064fca608ee8307",
+      "before": "Các tình nguyện viên chào đón chúng tôi rất nồng nhiệt tại trung tâm mới.",
+      "beforeContentHash": "4ce775e6ebae2fd4f23e4242d14bd7b1edf085f948f2f69e3e6bf47e41b0784a",
+      "field": "exampleVi",
+      "proposalKey": "EDITORIAL_2H2L:super:excellent-informal",
+      "reasonVi": "Bản dịch giữ nghĩa super = rất tốt theo văn phong thân mật trong ví dụ mới.",
+      "reviewFindingSource": "independent-review/micro-01.json"
+    },
+    {
+      "after": "việc vặt cần ra ngoài để giao, lấy hoặc mua một thứ gì đó",
+      "afterContentHash": "3f1d100ca131afa978409e391895e897b641032391bc3fdd6c351896aba3643e",
+      "before": "việc cần đi đâu đó để làm hoặc chuyển một việc",
+      "beforeContentHash": "fc451cc93aad1700bdc43c7a5e13261b5519c7b3b9e24e72ab5ba9a9361ef7ef",
+      "field": "meaningVi",
+      "proposalKey": "EDITORIAL_2H2L:errand:short-task-away",
+      "reasonVi": "Viết lại nghĩa Việt tự nhiên, cụ thể hơn và nêu rõ việc vặt gắn với chuyến đi như nguồn hỗ trợ.",
+      "reviewFindingSource": "independent-review/micro-01.json"
+    }
+  ],
+  "status": "IMMUTABLE_FORWARD_CORRECTIONS"
+}

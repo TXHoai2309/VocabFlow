@@ -1,0 +1,1637 @@
+{
+  "instruction": "Independently assess each current record against linked source evidence. Verify correction addresses finding; provide 70+ character Vietnamese rationale, exact effectiveContentHash, assessment PASS/REVIEW/FAIL, blocksPublication boolean, dimensions, missingSenseCandidates, unresolvedBoundaryItems. Do not edit source records or make human-approval claims.",
+  "microBatch": 1,
+  "phase": "2H.2L",
+  "records": [
+    {
+      "priorFinding": {
+        "assessment": "REVIEW",
+        "blockers": [],
+        "blocksPublication": false,
+        "dimensions": [
+          "MEANING",
+          "EN_DEFINITION",
+          "VI_SCOPE",
+          "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+          "POS_CONSTRUCTION",
+          "GRAMMAR",
+          "SENSE_BOUNDARY",
+          "SOURCE_AGREEMENT",
+          "SPECIALIST_SENSITIVITY"
+        ],
+        "effectiveContentHash": "67ae60bf6e12a14103d101dc43e5edf254c89a62a610df2be41b7da0329b06d1",
+        "explanationVi": "Định nghĩa về bột từ ngũ cốc hay thực vật dùng chế biến thức ăn phù hợp nguồn tiếng Anh, ví dụ và cách dùng danh từ cũng ổn. Tuy vậy nguồn Việt ghi “bột mì”, còn “bột làm thức ăn ... hoặc thực vật” dễ bị hiểu rộng thành mọi loại bột thực vật; nên thu gọn hoặc làm rõ nghĩa Việt. Không thấy nghĩa thiếu hay vấn đề nhạy cảm.",
+        "missingSenseCandidates": [],
+        "proposalKey": "EDITORIAL_2H2L:flour:ground-baking-powder",
+        "reviewedContentHash": "67ae60bf6e12a14103d101dc43e5edf254c89a62a610df2be41b7da0329b06d1",
+        "reviewedRecordSha256": "71db3bdc37e99810e1bea460c6ca71928af8566bfd65f9bb46231e7d23ccb1ee",
+        "unresolvedBoundaryItems": []
+      },
+      "record": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:flour",
+        "canonicalIdsAllocated": 0,
+        "content": {
+          "definitionEn": "A fine powder made from grain or another plant and used to prepare food.",
+          "examples": [
+            {
+              "en": "He sifted flour into a bowl before mixing in the warm water.",
+              "exampleKey": "EDITORIAL_2H2L:flour:ground-baking-powder:example-1",
+              "vi": "Anh ấy rây bột vào bát trước khi trộn nước ấm vào."
+            }
+          ],
+          "grammarNotesEn": "Usually uncountable; a type or bag of flour can be countable.",
+          "meaningVi": "bột mì; bột từ thực vật dùng chế biến thức ăn",
+          "senseLabelEn": "Powder used to make food"
+        },
+        "contentStatus": "DRAFT",
+        "displayFormProposal": "flour",
+        "editorialAuthorship": {
+          "humanAuthor": null,
+          "humanReviewer": null,
+          "kind": "AI_GENERATED_EDITORIAL_DRAFT",
+          "process": "Original 2H.2L manuscript composed from linked source evidence"
+        },
+        "effectiveContentHash": "c11ac838192c258926de2bb5ee3af6966a9d05d4333bee0d3ef27e01d304c8ab",
+        "fieldHashes": {
+          "definitionEn": "6b6d179ea753a658d22610da1f3d61bb2c7b81de2e82c8e2eaf7991c02a6f486",
+          "examples": "07fe0dca74764b960b9cabf7b1c1b9ae276b5959e98d9e05b77fb1b80d507894",
+          "grammarNotesEn": "4d45209ce4e70fd9fe368b5c1b06d6f20a002a1fbd74501bde25aad32b782bd3",
+          "meaningVi": "3dfa9837670e9bb1518c8b47792260148774554c305414fdfd64954f9077d379",
+          "senseLabelEn": "6273909ab195c3343aa218228a1f48a758779cfb1884d03b3cfc47b5dd0d89bc"
+        },
+        "formalApproval": false,
+        "headword": "flour",
+        "partOfSpeech": "NOUN",
+        "proposalKey": "EDITORIAL_2H2L:flour:ground-baking-powder",
+        "rights": "UNKNOWN_REVIEW_REQUIRED",
+        "riskFlags": [
+          "EXACT_HEADWORD_SINGLE_RECORD_EACH",
+          "NORMALIZED_HEADWORD_MATCH",
+          "HUMAN_SENSE_REVIEW_REQUIRED",
+          "EXAMPLE_VARIANT_REVIEW"
+        ],
+        "sourceEvidence": [
+          {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "B1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/2338/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/2338/rawHeadword",
+            "rawPosEvidencePointer": "/records/2338/sourcePosRaw",
+            "recordEvidenceSha256": "30331da2dea39f356215262c33b63733a132c5886f5e6ec7289376cd82906c0a",
+            "recordIndex": 2338,
+            "sourceNoteGuid": "DUvm;vuM*9",
+            "sourceRecordId": "1788223608377",
+            "structuredOxfordSenseGroupOrdinals": [
+              0
+            ]
+          },
+          {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::B1",
+                "value": "B1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "B1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/1669/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/1669/rawHeadword",
+            "rawPosEvidencePointer": "/records/1669/sourcePosRaw",
+            "recordEvidenceSha256": "bf65e4d31df033e9ead886c9121a7808ffe3cbc9ef5fb7b9c76b52e4edd38fe3",
+            "recordIndex": 1669,
+            "sourceNoteGuid": "OV?sCGH-<u",
+            "sourceRecordId": "1559931008471",
+            "structuredOxfordSenseGroupOrdinals": []
+          }
+        ],
+        "sourceSenseCoverage": "Selected supported meanings only; no claim of exhaustive dictionary coverage"
+      },
+      "revisionRecords": [
+        {
+          "after": "bột mì; bột từ thực vật dùng chế biến thức ăn",
+          "afterContentHash": "c11ac838192c258926de2bb5ee3af6966a9d05d4333bee0d3ef27e01d304c8ab",
+          "before": "bột làm thức ăn, thường làm từ ngũ cốc hoặc thực vật",
+          "beforeContentHash": "67ae60bf6e12a14103d101dc43e5edf254c89a62a610df2be41b7da0329b06d1",
+          "field": "meaningVi",
+          "proposalKey": "EDITORIAL_2H2L:flour:ground-baking-powder",
+          "reasonVi": "Làm rõ nghĩa Việt theo mục từ Oxford và định nghĩa tiếng Anh trong nguồn Vocab4600, tránh hiểu thành mọi loại bột thực vật.",
+          "reviewFindingSource": "independent-review/micro-01.json"
+        }
+      ],
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "Mix the flour with eggs and milk.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Hãy trộn bột mì với trứng và sữa.",
+                  "focus_en": [
+                    "flour"
+                  ],
+                  "focus_vi": [
+                    "bột mì"
+                  ]
+                },
+                {
+                  "example_en": "She covered the board with flour before rolling out the dough.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Cô ấy phủ bột mì lên tấm gỗ trước khi cán bột bánh.",
+                  "focus_en": [
+                    "flour"
+                  ],
+                  "focus_vi": [
+                    "bột mì"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 0,
+              "sourcePosRaw": "n.",
+              "sourceVietnameseMeaningRaw": "bột mì",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            }
+          ],
+          "reference": {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "B1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/2338/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/2338/rawHeadword",
+            "rawPosEvidencePointer": "/records/2338/sourcePosRaw",
+            "recordEvidenceSha256": "30331da2dea39f356215262c33b63733a132c5886f5e6ec7289376cd82906c0a",
+            "recordIndex": 2338,
+            "sourceNoteGuid": "DUvm;vuM*9",
+            "sourceRecordId": "1788223608377",
+            "structuredOxfordSenseGroupOrdinals": [
+              0
+            ]
+          },
+          "sourceFields": {
+            "CEFR": "B1",
+            "Example": "Mix the <mark class=\"v-target\">flour</mark> with eggs and milk.<br>She covered the board with <mark class=\"v-target\">flour</mark> before rolling out the dough.",
+            "Example Data": "[{\"pos\":\"n.\",\"meaning_vi\":\"bột mì\",\"examples\":[{\"example_en\":\"Mix the flour with eggs and milk.\",\"example_vi\":\"Hãy trộn bột mì với trứng và sữa.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"flour\"],\"focus_vi\":[\"bột mì\"]},{\"example_en\":\"She covered the board with flour before rolling out the dough.\",\"example_vi\":\"Cô ấy phủ bột mì lên tấm gỗ trước khi cán bột bánh.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"flour\"],\"focus_vi\":[\"bột mì\"]}]}]",
+            "Example EN 1": "Mix the flour with eggs and milk.",
+            "Example EN 2": "She covered the board with flour before rolling out the dough.",
+            "Example EN 3": "",
+            "Example EN 4": "",
+            "Example EN 5": "",
+            "Example EN 6": "",
+            "Example EN 7": "",
+            "Frequency": "3862",
+            "Irregular Forms": "[]",
+            "Oxford List": "Oxford 3000",
+            "Part of Speech": "noun",
+            "Phonetic": "/ˈflaʊə(r)/",
+            "Pronunciation Data": "[{\"locale\":\"UK\",\"ipa\":[\"/ˈflaʊə(r)/\"],\"audio_keys\":[\"uk_pron/f/flo/flour/flour__gb_2\"]},{\"locale\":\"US\",\"ipa\":[\"/ˈflaʊər/\"],\"audio_keys\":[\"us_pron/f/flo/flour/flour__us_1\"]}]",
+            "Sound_uk": "",
+            "Sound_us": "",
+            "Study Order": "2339",
+            "Từ loại": "danh từ",
+            "Variant Data": "[]",
+            "Vietnamese": "bột mì",
+            "Word": "flour"
+          }
+        },
+        {
+          "candidateSourceSenseGroups": [],
+          "reference": {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::B1",
+                "value": "B1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "B1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/1669/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/1669/rawHeadword",
+            "rawPosEvidencePointer": "/records/1669/sourcePosRaw",
+            "recordEvidenceSha256": "bf65e4d31df033e9ead886c9121a7808ffe3cbc9ef5fb7b9c76b52e4edd38fe3",
+            "recordIndex": 1669,
+            "sourceNoteGuid": "OV?sCGH-<u",
+            "sourceRecordId": "1559931008471",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          "sourceFields": {
+            "Example": "I wanted to bake a pie, but I needed <b>flour</b>.",
+            "IPA": "/ˈflaʊər/",
+            "Image": "<img src=\"paste-95ee517150174b827656bd4cf6e9d35404e71a37.jpg\">",
+            "Meaning": "Flour is a powder made from plants that is used to make foods like bread.<br><b>bột mì</b>",
+            "PoS": "noun",
+            "Sound": "[sound:oxford-0f3b1a0c-8008eb3e-899b133e-a02247ac-1a562e56.mp3]",
+            "Sound_Example": "[sound:googletts-ef846bd1-84f08ba2-17856d14-0db02cab-12ea9db0.mp3]",
+            "Word": "flour",
+            "noteid": "1559931008471"
+          }
+        }
+      ]
+    },
+    {
+      "priorFinding": {
+        "assessment": "REVIEW",
+        "blockers": [],
+        "blocksPublication": false,
+        "dimensions": [
+          "MEANING",
+          "EN_DEFINITION",
+          "VI_SCOPE",
+          "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+          "POS_CONSTRUCTION",
+          "GRAMMAR",
+          "SENSE_BOUNDARY",
+          "SOURCE_AGREEMENT",
+          "SPECIALIST_SENSITIVITY"
+        ],
+        "effectiveContentHash": "caf7cbaca7a820502beefca8006181279519a90fca1a5fac94e8e7860bff8af9",
+        "explanationVi": "Nghĩa Việt “đánh giá thấp” và cách dùng ngoại động từ đúng; ví dụ cùng bản dịch làm rõ việc đánh giá thấp độ khó của đường núi. Tuy nhiên nguồn duy nhất nêu “think less” về một người hoặc năng lực, còn định nghĩa và ví dụ mở rộng sang quy mô, tác động và độ khó; đây là mở rộng hợp lý nhưng ranh giới cần được xác nhận theo phạm vi nguồn. Không có vấn đề nhạy cảm.",
+        "missingSenseCandidates": [],
+        "proposalKey": "EDITORIAL_2H2L:underestimate:judge-too-low",
+        "reviewedContentHash": "caf7cbaca7a820502beefca8006181279519a90fca1a5fac94e8e7860bff8af9",
+        "reviewedRecordSha256": "e4a85b735fc36f08452019c982d6aa3244ed73530b9b4a750928a2cd1ff4f9a5",
+        "unresolvedBoundaryItems": [
+          "Nguồn và ví dụ chỉ minh họa đánh giá thấp năng lực của một đội; bản ghi mở rộng sang quy mô/tác động/độ khó. Xác nhận đây là một sense khái quát hay cần tách cách dùng estimate-too-low."
+        ]
+      },
+      "record": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:underestimate",
+        "canonicalIdsAllocated": 0,
+        "content": {
+          "definitionEn": "To judge someone's or something's quality, value, or ability as lower than it really is.",
+          "examples": [
+            {
+              "en": "The scout underestimated the team after seeing one poor performance.",
+              "exampleKey": "EDITORIAL_2H2L:underestimate:judge-too-low:example-1",
+              "vi": "Tuyển trạch viên đánh giá thấp đội bóng sau khi chỉ xem một màn trình diễn kém."
+            }
+          ],
+          "grammarNotesEn": "Transitive; underestimate a person, amount, difficulty, or effect.",
+          "meaningVi": "đánh giá thấp mức độ, năng lực hoặc giá trị của ai hay điều gì",
+          "senseLabelEn": "Judge as less than is accurate"
+        },
+        "contentStatus": "DRAFT",
+        "displayFormProposal": "underestimate",
+        "editorialAuthorship": {
+          "humanAuthor": null,
+          "humanReviewer": null,
+          "kind": "AI_GENERATED_EDITORIAL_DRAFT",
+          "process": "Original 2H.2L manuscript composed from linked source evidence"
+        },
+        "effectiveContentHash": "438289cea8ad3460d2b14cb025353db55ddb47a6c64ecf5472813da0a1797571",
+        "fieldHashes": {
+          "definitionEn": "465b87e81fc4586876d6adb0b7b5822216b102b89f64bd4a824db5b3269b5e59",
+          "examples": "5165339d71ab71756b81bd553a92e92875701237b4a9bdc08301b49e0b2fd14d",
+          "grammarNotesEn": "a2211301f27bfcbc63b0da1a1c293ee2192798ee2a039ee327c4f7c8173f800f",
+          "meaningVi": "0d1db3792c55e6816c90ca5cd5a41a8144a8c655b069d192c050a33320ba0155",
+          "senseLabelEn": "58f2d7fc41d866ab177fba145b9474939fc4928576c9f389853a93fa69b679fc"
+        },
+        "formalApproval": false,
+        "headword": "underestimate",
+        "partOfSpeech": "VERB",
+        "proposalKey": "EDITORIAL_2H2L:underestimate:judge-too-low",
+        "rights": "UNKNOWN_REVIEW_REQUIRED",
+        "riskFlags": [
+          "SOURCE_ONLY_CONTENT"
+        ],
+        "sourceEvidence": [
+          {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::C1",
+                "value": "C1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "C1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "VERB"
+            ],
+            "rawContentPointer": "/records/3325/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/3325/rawHeadword",
+            "rawPosEvidencePointer": "/records/3325/sourcePosRaw",
+            "recordEvidenceSha256": "786e36619b2c80a49acf1ab33b3cb83f5a2b2917bef4d8098834854a9d2b9d09",
+            "recordIndex": 3325,
+            "sourceNoteGuid": "G6#na#;vW&",
+            "sourceRecordId": "1559931010217",
+            "structuredOxfordSenseGroupOrdinals": []
+          }
+        ],
+        "sourceSenseCoverage": "Selected supported meanings only; no claim of exhaustive dictionary coverage"
+      },
+      "revisionRecords": [
+        {
+          "after": "To judge someone's or something's quality, value, or ability as lower than it really is.",
+          "afterContentHash": "7eda3766c7fe3a7fac6be31bca1084f6b2f3002e395360ce58d822fb6e49150e",
+          "before": "To judge the size, importance, ability, or likely effect of someone or something as lower than it really is.",
+          "beforeContentHash": "caf7cbaca7a820502beefca8006181279519a90fca1a5fac94e8e7860bff8af9",
+          "field": "definitionEn",
+          "proposalKey": "EDITORIAL_2H2L:underestimate:judge-too-low",
+          "reasonVi": "Thu hẹp về đánh giá con người hoặc phẩm chất/năng lực như bằng chứng nguồn hiện có; không áp dụng nghĩa ước lượng quy mô, tác động hay độ khó khi chưa đủ chứng cứ.",
+          "reviewFindingSource": "independent-review/micro-01.json"
+        },
+        {
+          "after": "The scout underestimated the team after seeing one poor performance.",
+          "afterContentHash": "fcfef08848eb4ec73ec8cb5d024fecbadf80e54c8914a16e862742c7cd6f2357",
+          "before": "We underestimated the mountain trail and ran out of daylight before reaching the shelter.",
+          "beforeContentHash": "7eda3766c7fe3a7fac6be31bca1084f6b2f3002e395360ce58d822fb6e49150e",
+          "field": "exampleEn",
+          "proposalKey": "EDITORIAL_2H2L:underestimate:judge-too-low",
+          "reasonVi": "Thay ví dụ về độ khó của đường núi bằng ví dụ đánh giá năng lực đội, sát trực tiếp phạm vi nguồn và ghi chú reviewer.",
+          "reviewFindingSource": "independent-review/micro-01.json"
+        },
+        {
+          "after": "Tuyển trạch viên đánh giá thấp đội bóng sau khi chỉ xem một màn trình diễn kém.",
+          "afterContentHash": "438289cea8ad3460d2b14cb025353db55ddb47a6c64ecf5472813da0a1797571",
+          "before": "Chúng tôi đã đánh giá thấp độ khó của đường núi và trời tối trước khi chúng tôi tới được nơi trú chân.",
+          "beforeContentHash": "fcfef08848eb4ec73ec8cb5d024fecbadf80e54c8914a16e862742c7cd6f2357",
+          "field": "exampleVi",
+          "proposalKey": "EDITORIAL_2H2L:underestimate:judge-too-low",
+          "reasonVi": "Bản dịch khớp chủ thể, hành động đánh giá và đối tượng ở ví dụ tiếng Anh đã sửa.",
+          "reviewFindingSource": "independent-review/micro-01.json"
+        }
+      ],
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [],
+          "reference": {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::C1",
+                "value": "C1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "C1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "VERB"
+            ],
+            "rawContentPointer": "/records/3325/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/3325/rawHeadword",
+            "rawPosEvidencePointer": "/records/3325/sourcePosRaw",
+            "recordEvidenceSha256": "786e36619b2c80a49acf1ab33b3cb83f5a2b2917bef4d8098834854a9d2b9d09",
+            "recordIndex": 3325,
+            "sourceNoteGuid": "G6#na#;vW&",
+            "sourceRecordId": "1559931010217",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          "sourceFields": {
+            "Example": "We lost the game because we <b>underestimated</b> the other team’s skill.",
+            "IPA": "/ˌʌndərˈestɪmeɪt/",
+            "Image": "<img src=\"23_3459.jpg\" />",
+            "Meaning": "To <i>underestimate</i> something or someone means to think less of them than they really are.<br><b>đánh giá thấp</b>",
+            "PoS": "verb",
+            "Sound": "[sound:underestimate__u.mp3]",
+            "Sound_Example": "[sound:googletts-ec5931d6-eccdd505-f9b4feff-38cfe6ee-db065c05.mp3]",
+            "Word": "underestimate",
+            "noteid": "1559931010217"
+          }
+        }
+      ]
+    },
+    {
+      "priorFinding": {
+        "assessment": "REVIEW",
+        "blockers": [],
+        "blocksPublication": false,
+        "dimensions": [
+          "MEANING",
+          "EN_DEFINITION",
+          "VI_SCOPE",
+          "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+          "POS_CONSTRUCTION",
+          "GRAMMAR",
+          "SENSE_BOUNDARY",
+          "SOURCE_AGREEMENT",
+          "SPECIALIST_SENSITIVITY"
+        ],
+        "effectiveContentHash": "0155524f1d0ae61c5442faf315a4e6f756c9dadefe649fda23ddb13011d90595",
+        "explanationVi": "Định nghĩa và ví dụ bàn hỗ trợ xử lý thắc mắc khớp nguồn deal with complaints; bản dịch tiếng Việt đúng, từ loại động từ cũng phù hợp. Tuy nhiên ghi chú “the object follows with” diễn đạt ngược cấu trúc: deal with + tân ngữ, trong đó with đứng trước bổ ngữ; việc thêm person cũng rộng hơn ví dụ nguồn. Nên sửa ghi chú cho chính xác, đây là điểm không cản trở nghĩa chính.",
+        "missingSenseCandidates": [],
+        "proposalKey": "EDITORIAL_2H2L:deal:handle-matter",
+        "reviewedContentHash": "0155524f1d0ae61c5442faf315a4e6f756c9dadefe649fda23ddb13011d90595",
+        "reviewedRecordSha256": "62bdf44de8e2483156cbc99d9fa0fb7d30b20219c0cf022ed6a75e72e5aa4858",
+        "unresolvedBoundaryItems": []
+      },
+      "record": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:deal",
+        "canonicalIdsAllocated": 0,
+        "content": {
+          "definitionEn": "To manage, respond to, or take action on a problem or situation.",
+          "examples": [
+            {
+              "en": "Our service desk deals with account questions during office hours.",
+              "exampleKey": "EDITORIAL_2H2L:deal:handle-matter:example-1",
+              "vi": "Bộ phận hỗ trợ xử lý các thắc mắc về tài khoản trong giờ làm việc."
+            }
+          ],
+          "grammarNotesEn": "Deal with + a noun phrase means handle a problem, request, or person; with comes before its object.",
+          "meaningVi": "xử lý hoặc giải quyết một vấn đề",
+          "senseLabelEn": "Take action on a matter"
+        },
+        "contentStatus": "DRAFT",
+        "displayFormProposal": "deal",
+        "editorialAuthorship": {
+          "humanAuthor": null,
+          "humanReviewer": null,
+          "kind": "AI_GENERATED_EDITORIAL_DRAFT",
+          "process": "Original 2H.2L manuscript composed from linked source evidence"
+        },
+        "effectiveContentHash": "74741025aa546f2e2c875c688ab5091bb10acf37ef987f1c150daebd06f7717e",
+        "fieldHashes": {
+          "definitionEn": "d7365480439d6b8566526efed25d8a3b2e25f242875a5984faaedd260d914ffa",
+          "examples": "b5b5ef4ec188fa5be3bc42f263994fe524e73d9dd03e2e12a546a6496fc98958",
+          "grammarNotesEn": "63a5e8e10be4dcd4d66568a18ca6b2a0b20e2df3d85c671b25b53387bbee8dc9",
+          "meaningVi": "6f18afea7ac121cccf80438600b2def88b88f01605a4e9a4087b273046139e0b",
+          "senseLabelEn": "18dbfffbff015016cf4a4ea4bf515450d11d4fce438149bb22fd768efb714bc1"
+        },
+        "formalApproval": false,
+        "headword": "deal",
+        "partOfSpeech": "VERB",
+        "proposalKey": "EDITORIAL_2H2L:deal:handle-matter",
+        "rights": "UNKNOWN_REVIEW_REQUIRED",
+        "riskFlags": [
+          "EXACT_HEADWORD_SINGLE_RECORD_EACH",
+          "NORMALIZED_HEADWORD_MATCH",
+          "POSSIBLE_POLYSEMY",
+          "HUMAN_SENSE_REVIEW_REQUIRED",
+          "EXAMPLE_VARIANT_REVIEW",
+          "VIETNAMESE_MEANING_VARIANT_REVIEW"
+        ],
+        "sourceEvidence": [
+          {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "A2"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "NOUN",
+              "VERB"
+            ],
+            "rawContentPointer": "/records/975/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/975/rawHeadword",
+            "rawPosEvidencePointer": "/records/975/sourcePosRaw",
+            "recordEvidenceSha256": "aca764a4f674bbce4ec77917a51ddb49b4369cec30f0a2916578ad3e8cb435ca",
+            "recordIndex": 975,
+            "sourceNoteGuid": "s;C2q{sbZS",
+            "sourceRecordId": "1788223606993",
+            "structuredOxfordSenseGroupOrdinals": [
+              0,
+              1
+            ]
+          },
+          {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::A2",
+                "value": "A2"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "A2"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/512/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/512/rawHeadword",
+            "rawPosEvidencePointer": "/records/512/sourcePosRaw",
+            "recordEvidenceSha256": "a49add7b39b14f4a0d248bae131336e5669d011e94804f429c9fbc96296b04b9",
+            "recordIndex": 512,
+            "sourceNoteGuid": "g#`06g<I$E",
+            "sourceRecordId": "1556384731321",
+            "structuredOxfordSenseGroupOrdinals": []
+          }
+        ],
+        "sourceSenseCoverage": "Selected supported meanings only; no claim of exhaustive dictionary coverage"
+      },
+      "revisionRecords": [
+        {
+          "after": "Deal with + a noun phrase means handle a problem, request, or person; with comes before its object.",
+          "afterContentHash": "74741025aa546f2e2c875c688ab5091bb10acf37ef987f1c150daebd06f7717e",
+          "before": "Deal with a problem, request, or person; the object follows with.",
+          "beforeContentHash": "0155524f1d0ae61c5442faf315a4e6f756c9dadefe649fda23ddb13011d90595",
+          "field": "grammarNotesEn",
+          "proposalKey": "EDITORIAL_2H2L:deal:handle-matter",
+          "reasonVi": "Sửa trật tự cấu trúc để ghi rõ deal with + bổ ngữ và vị trí của giới từ with theo nhận xét độc lập.",
+          "reviewFindingSource": "independent-review/micro-01.json"
+        }
+      ],
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "Managers deal with customer complaints every day.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Các quản lý xử lý khiếu nại của khách hàng mỗi ngày.",
+                  "focus_en": [
+                    "deal"
+                  ],
+                  "focus_vi": [
+                    "xử lý"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 0,
+              "sourcePosRaw": "v.",
+              "sourceVietnameseMeaningRaw": "xử lý",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            },
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "The two companies signed a deal last week.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Hai công ty đã ký một thỏa thuận vào tuần trước.",
+                  "focus_en": [
+                    "deal"
+                  ],
+                  "focus_vi": [
+                    "thỏa thuận"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 1,
+              "sourcePosRaw": "n.",
+              "sourceVietnameseMeaningRaw": "thỏa thuận",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            }
+          ],
+          "reference": {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "A2"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "NOUN",
+              "VERB"
+            ],
+            "rawContentPointer": "/records/975/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/975/rawHeadword",
+            "rawPosEvidencePointer": "/records/975/sourcePosRaw",
+            "recordEvidenceSha256": "aca764a4f674bbce4ec77917a51ddb49b4369cec30f0a2916578ad3e8cb435ca",
+            "recordIndex": 975,
+            "sourceNoteGuid": "s;C2q{sbZS",
+            "sourceRecordId": "1788223606993",
+            "structuredOxfordSenseGroupOrdinals": [
+              0,
+              1
+            ]
+          },
+          "sourceFields": {
+            "CEFR": "A2",
+            "Example": "Managers <mark class=\"v-target\">deal</mark> with customer complaints every day.<br>The two companies signed a <mark class=\"v-target\">deal</mark> last week.",
+            "Example Data": "[{\"pos\":\"v.\",\"meaning_vi\":\"xử lý\",\"examples\":[{\"example_en\":\"Managers deal with customer complaints every day.\",\"example_vi\":\"Các quản lý xử lý khiếu nại của khách hàng mỗi ngày.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"deal\"],\"focus_vi\":[\"xử lý\"]}]},{\"pos\":\"n.\",\"meaning_vi\":\"thỏa thuận\",\"examples\":[{\"example_en\":\"The two companies signed a deal last week.\",\"example_vi\":\"Hai công ty đã ký một thỏa thuận vào tuần trước.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"deal\"],\"focus_vi\":[\"thỏa thuận\"]}]}]",
+            "Example EN 1": "Managers deal with customer complaints every day.",
+            "Example EN 2": "The two companies signed a deal last week.",
+            "Example EN 3": "",
+            "Example EN 4": "",
+            "Example EN 5": "",
+            "Example EN 6": "",
+            "Example EN 7": "",
+            "Frequency": "393",
+            "Irregular Forms": "[{\"pos\":\"v.\",\"forms\":{\"third_person\":[\"deals\"],\"present_participle\":[\"dealing\"],\"past\":[\"dealt\"],\"past_participle\":[\"dealt\"]}}]",
+            "Oxford List": "Oxford 3000",
+            "Part of Speech": "verb, noun",
+            "Phonetic": "/diːl/",
+            "Pronunciation Data": "[{\"locale\":\"UK\",\"ipa\":[\"/diːl/\"],\"audio_keys\":[\"uk_pron/d/dea/deal_/deal__gb_1\"]},{\"locale\":\"US\",\"ipa\":[\"/diːl/\"],\"audio_keys\":[\"us_pron/d/dea/deal_/deal__us_1\"]}]",
+            "Sound_uk": "",
+            "Sound_us": "",
+            "Study Order": "976",
+            "Từ loại": "động từ, danh từ",
+            "Variant Data": "[{\"locale\":\"UK\",\"for_pos\":\"n.\",\"cefr\":\"B1\"}]",
+            "Vietnamese": "xử lý; thỏa thuận",
+            "Word": "deal"
+          }
+        },
+        {
+          "candidateSourceSenseGroups": [],
+          "reference": {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::A2",
+                "value": "A2"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "A2"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/512/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/512/rawHeadword",
+            "rawPosEvidencePointer": "/records/512/sourcePosRaw",
+            "recordEvidenceSha256": "a49add7b39b14f4a0d248bae131336e5669d011e94804f429c9fbc96296b04b9",
+            "recordIndex": 512,
+            "sourceNoteGuid": "g#`06g<I$E",
+            "sourceRecordId": "1556384731321",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          "sourceFields": {
+            "Example": "I made a <b>deal</b> with the other company to give us some money.",
+            "IPA": "/diːl/",
+            "Image": "<img src=\"paste-470bd98f85aeeecc66daab11b02bc6a21a9c52c5.jpg\">",
+            "Meaning": "A <i>deal</i> is an agreement that you have with another person.<br><b>thoả thuận, giao dịch</b>",
+            "PoS": "noun",
+            "Sound": "[sound:oxford-35a36712-1eb30412-bfa58f08-c89f1b3d-15ab21ab.mp3]",
+            "Sound_Example": "[sound:googletts-23d4c229-6226d372-3ea0ebe0-8ca1beca-9136f7d9.mp3]",
+            "Word": "deal",
+            "noteid": "1556384731321"
+          }
+        }
+      ]
+    },
+    {
+      "priorFinding": {
+        "assessment": "REVIEW",
+        "blockers": [],
+        "blocksPublication": false,
+        "dimensions": [
+          "MEANING",
+          "EN_DEFINITION",
+          "VI_SCOPE",
+          "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+          "POS_CONSTRUCTION",
+          "GRAMMAR",
+          "SENSE_BOUNDARY",
+          "SOURCE_AGREEMENT",
+          "SPECIALIST_SENSITIVITY"
+        ],
+        "effectiveContentHash": "b55bf9edf003d7151778922eef09f5e2f12536b83ff753c0ab9ec768088d5024",
+        "explanationVi": "Nguồn diễn đạt “complete absence of sound or noise”, nhưng định nghĩa dùng “little or no sound”, có thể bao gồm cả tình huống vẫn nghe tiếng nhỏ. Nghĩa Việt về sự im lặng và bản dịch câu khán phòng đều đúng; danh từ thường không đếm được cũng phù hợp. Nên cân nhắc sát hơn với “không có âm thanh/tiếng động”; đây là chỉnh độ chính xác không cản trở.",
+        "missingSenseCandidates": [],
+        "proposalKey": "EDITORIAL_2H2L:silence:absence-of-sound",
+        "reviewedContentHash": "b55bf9edf003d7151778922eef09f5e2f12536b83ff753c0ab9ec768088d5024",
+        "reviewedRecordSha256": "e7ade4bdb93041c6edf9a5a1859fedd637267e08e03d8c4b17c667d3cac75536",
+        "unresolvedBoundaryItems": []
+      },
+      "record": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:silence",
+        "canonicalIdsAllocated": 0,
+        "content": {
+          "definitionEn": "A state or period in which no sound can be heard.",
+          "examples": [
+            {
+              "en": "After the projector stopped, a deep silence settled over the auditorium.",
+              "exampleKey": "EDITORIAL_2H2L:silence:absence-of-sound:example-1",
+              "vi": "Sau khi máy chiếu dừng lại, sự im lặng sâu lắng bao trùm khán phòng."
+            }
+          ],
+          "grammarNotesEn": "Usually uncountable; in silence describes doing something without speaking or making noise.",
+          "meaningVi": "sự im lặng, không có âm thanh",
+          "senseLabelEn": "Complete absence of sound"
+        },
+        "contentStatus": "DRAFT",
+        "displayFormProposal": "silence",
+        "editorialAuthorship": {
+          "humanAuthor": null,
+          "humanReviewer": null,
+          "kind": "AI_GENERATED_EDITORIAL_DRAFT",
+          "process": "Original 2H.2L manuscript composed from linked source evidence"
+        },
+        "effectiveContentHash": "4f3bf46f8e78b44a5d4cbc99634d4beabde44c633508f4954c46fdb34a6c390b",
+        "fieldHashes": {
+          "definitionEn": "fb213d7ffff4825916370133a4f09108a91ef814216fb835c57f3b312cc547d1",
+          "examples": "8b8d6ec43a0c81242066ef28aaa98ead6394cc86d1a72fc931e3d4920eb42f90",
+          "grammarNotesEn": "65669d2b1c10021af1e9dd24b9a83d6c10d086ad933a7ac074f4f7dce627baf0",
+          "meaningVi": "21b0356eef73eef03e9ab94cf993524d7aa1e3e8e709974a75ca978f38737c10",
+          "senseLabelEn": "5235099c410a0dcb42f0b738f7d39ab2501db28e8f253e4bb1f2f403d0179c70"
+        },
+        "formalApproval": false,
+        "headword": "silence",
+        "partOfSpeech": "NOUN",
+        "proposalKey": "EDITORIAL_2H2L:silence:absence-of-sound",
+        "rights": "UNKNOWN_REVIEW_REQUIRED",
+        "riskFlags": [
+          "EXACT_HEADWORD_SINGLE_RECORD_EACH",
+          "NORMALIZED_HEADWORD_MATCH",
+          "HUMAN_SENSE_REVIEW_REQUIRED",
+          "EXAMPLE_VARIANT_REVIEW",
+          "VIETNAMESE_MEANING_VARIANT_REVIEW"
+        ],
+        "sourceEvidence": [
+          {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "B2"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/2705/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/2705/rawHeadword",
+            "rawPosEvidencePointer": "/records/2705/sourcePosRaw",
+            "recordEvidenceSha256": "291c1ff7c69f88af687d449d4b2649d7281abe4534efa7e3c08842a8407569d5",
+            "recordIndex": 2705,
+            "sourceNoteGuid": "Exx$|I~y)(",
+            "sourceRecordId": "1788223608744",
+            "structuredOxfordSenseGroupOrdinals": [
+              0
+            ]
+          },
+          {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::B2",
+                "value": "B2"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "B2"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/1865/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/1865/rawHeadword",
+            "rawPosEvidencePointer": "/records/1865/sourcePosRaw",
+            "recordEvidenceSha256": "046a7aeebb95735c42c6a49c090ac5c9fbf702ba83a85651801d3e4151c1c6f4",
+            "recordIndex": 1865,
+            "sourceNoteGuid": "PY^dW^v-hB",
+            "sourceRecordId": "1559931008673",
+            "structuredOxfordSenseGroupOrdinals": []
+          }
+        ],
+        "sourceSenseCoverage": "Selected supported meanings only; no claim of exhaustive dictionary coverage"
+      },
+      "revisionRecords": [
+        {
+          "after": "A state or period in which no sound can be heard.",
+          "afterContentHash": "4f3bf46f8e78b44a5d4cbc99634d4beabde44c633508f4954c46fdb34a6c390b",
+          "before": "A state in which little or no sound can be heard.",
+          "beforeContentHash": "b55bf9edf003d7151778922eef09f5e2f12536b83ff753c0ab9ec768088d5024",
+          "field": "definitionEn",
+          "proposalKey": "EDITORIAL_2H2L:silence:absence-of-sound",
+          "reasonVi": "Bám sát nghĩa complete absence of sound/noise trong nguồn, tránh mở rộng sang trạng thái vẫn còn âm thanh nhỏ.",
+          "reviewFindingSource": "independent-review/micro-01.json"
+        }
+      ],
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "A sudden silence fills the room.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Sự im lặng đột ngột bao trùm căn phòng.",
+                  "focus_en": [
+                    "silence"
+                  ],
+                  "focus_vi": [
+                    "im lặng"
+                  ]
+                },
+                {
+                  "example_en": "The students worked in complete silence.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Các học sinh làm việc trong sự im lặng hoàn toàn.",
+                  "focus_en": [
+                    "silence"
+                  ],
+                  "focus_vi": [
+                    "sự im lặng"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 0,
+              "sourcePosRaw": "n.",
+              "sourceVietnameseMeaningRaw": "sự im lặng",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            }
+          ],
+          "reference": {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "B2"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/2705/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/2705/rawHeadword",
+            "rawPosEvidencePointer": "/records/2705/sourcePosRaw",
+            "recordEvidenceSha256": "291c1ff7c69f88af687d449d4b2649d7281abe4534efa7e3c08842a8407569d5",
+            "recordIndex": 2705,
+            "sourceNoteGuid": "Exx$|I~y)(",
+            "sourceRecordId": "1788223608744",
+            "structuredOxfordSenseGroupOrdinals": [
+              0
+            ]
+          },
+          "sourceFields": {
+            "CEFR": "B2",
+            "Example": "A sudden <mark class=\"v-target\">silence</mark> fills the room.<br>The students worked in complete <mark class=\"v-target\">silence</mark>.",
+            "Example Data": "[{\"pos\":\"n.\",\"meaning_vi\":\"sự im lặng\",\"examples\":[{\"example_en\":\"A sudden silence fills the room.\",\"example_vi\":\"Sự im lặng đột ngột bao trùm căn phòng.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"silence\"],\"focus_vi\":[\"im lặng\"]},{\"example_en\":\"The students worked in complete silence.\",\"example_vi\":\"Các học sinh làm việc trong sự im lặng hoàn toàn.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"silence\"],\"focus_vi\":[\"sự im lặng\"]}]}]",
+            "Example EN 1": "A sudden silence fills the room.",
+            "Example EN 2": "The students worked in complete silence.",
+            "Example EN 3": "",
+            "Example EN 4": "",
+            "Example EN 5": "",
+            "Example EN 6": "",
+            "Example EN 7": "",
+            "Frequency": "2186",
+            "Irregular Forms": "[]",
+            "Oxford List": "Oxford 3000",
+            "Part of Speech": "noun",
+            "Phonetic": "/ˈsaɪləns/",
+            "Pronunciation Data": "[{\"locale\":\"UK\",\"ipa\":[\"/ˈsaɪləns/\"],\"audio_keys\":[\"uk_pron/s/sil/silen/silence__gb_1\"]},{\"locale\":\"US\",\"ipa\":[\"/ˈsaɪləns/\"],\"audio_keys\":[\"us_pron/s/sil/silen/silence__us_2\"]}]",
+            "Sound_uk": "",
+            "Sound_us": "",
+            "Study Order": "2706",
+            "Từ loại": "danh từ",
+            "Variant Data": "[]",
+            "Vietnamese": "sự im lặng",
+            "Word": "silence"
+          }
+        },
+        {
+          "candidateSourceSenseGroups": [],
+          "reference": {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::B2",
+                "value": "B2"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "B2"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/1865/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/1865/rawHeadword",
+            "rawPosEvidencePointer": "/records/1865/sourcePosRaw",
+            "recordEvidenceSha256": "046a7aeebb95735c42c6a49c090ac5c9fbf702ba83a85651801d3e4151c1c6f4",
+            "recordIndex": 1865,
+            "sourceNoteGuid": "PY^dW^v-hB",
+            "sourceRecordId": "1559931008673",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          "sourceFields": {
+            "Example": "I can only sleep in complete <b>silence</b>.",
+            "IPA": "/ˈsaɪləns/",
+            "Image": "<img src=\"kids-sleeping.jpg\">",
+            "Meaning": "<i>Silence</i> is the complete absence of sound or noise.<br><b>sự yên lặng, sự yên ắng</b>",
+            "PoS": "noun",
+            "Sound": "[sound:silence__us_2.mp3]",
+            "Sound_Example": "[sound:googletts-052959a7-8decbaa2-29e1773c-0b8cba1f-60803700.mp3]",
+            "Word": "silence",
+            "noteid": "1559931008673"
+          }
+        }
+      ]
+    },
+    {
+      "priorFinding": {
+        "assessment": "REVIEW",
+        "blockers": [],
+        "blocksPublication": false,
+        "dimensions": [
+          "MEANING",
+          "EN_DEFINITION",
+          "VI_SCOPE",
+          "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+          "POS_CONSTRUCTION",
+          "GRAMMAR",
+          "SENSE_BOUNDARY",
+          "SOURCE_AGREEMENT",
+          "SPECIALIST_SENSITIVITY"
+        ],
+        "effectiveContentHash": "47530d967d595de733b5700c90bb537084baf33ed3a286116d6908a6caad82ef",
+        "explanationVi": "Định nghĩa gồm người sống trong hoặc bị giam tại cơ sở, đặc biệt nhà tù, phù hợp nguồn còn nêu bệnh viện tâm thần; ví dụ trong trung tâm cải huấn và bản dịch tôn trọng sắc thái. Tuy nhiên “cơ sở khép kín” trong nghĩa Việt khá mơ hồ và không chuyển rõ ví dụ cơ sở như nhà tù/bệnh viện; nên làm nghĩa Việt cụ thể hơn. Cách gọi hiện tại không miệt thị, không thấy điểm nhạy cảm cản trở.",
+        "missingSenseCandidates": [],
+        "proposalKey": "EDITORIAL_2H2L:inmate:institution-resident",
+        "reviewedContentHash": "47530d967d595de733b5700c90bb537084baf33ed3a286116d6908a6caad82ef",
+        "reviewedRecordSha256": "999af7e218461135c412c628e88d90a29c4c80028dae45f69da775e226bd122c",
+        "unresolvedBoundaryItems": []
+      },
+      "record": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:inmate",
+        "canonicalIdsAllocated": 0,
+        "content": {
+          "definitionEn": "A person living in or confined to an institution, especially a prison.",
+          "examples": [
+            {
+              "en": "An inmate joined the reading group at the correctional centre.",
+              "exampleKey": "EDITORIAL_2H2L:inmate:institution-resident:example-1",
+              "vi": "Một người bị giam tham gia nhóm đọc sách tại trung tâm cải huấn."
+            }
+          ],
+          "grammarNotesEn": "Countable; often used for a person in prison or another institution.",
+          "meaningVi": "người bị giam giữ hoặc sống trong một cơ sở như nhà tù hay bệnh viện",
+          "senseLabelEn": "Resident of a closed institution"
+        },
+        "contentStatus": "DRAFT",
+        "displayFormProposal": "inmate",
+        "editorialAuthorship": {
+          "humanAuthor": null,
+          "humanReviewer": null,
+          "kind": "AI_GENERATED_EDITORIAL_DRAFT",
+          "process": "Original 2H.2L manuscript composed from linked source evidence"
+        },
+        "effectiveContentHash": "35c728a50ac1017ea8e2d752a1da414a5e3beb269f3de80602297531c7de1739",
+        "fieldHashes": {
+          "definitionEn": "9174defee8cac9a595cf81161aa986ba0e6bc11261b01f0a53ecfdb6a1dbf969",
+          "examples": "31aad711ce03cd355881b1613608d4dc61af14522921e23eae189bb97fec030b",
+          "grammarNotesEn": "bba91b1dbcc115a131e35b78be7ef9345338378866abc654d882017a2dc5a9ac",
+          "meaningVi": "10f6322ffab03a3f451106c7f61817d5d9d5c84d4e1bbc2a0d322787f445560d",
+          "senseLabelEn": "549b904b3610b7d81dcd76f5d79eb7f699dff91a1bd84971396c74e43ea2ddb4"
+        },
+        "formalApproval": false,
+        "headword": "inmate",
+        "partOfSpeech": "NOUN",
+        "proposalKey": "EDITORIAL_2H2L:inmate:institution-resident",
+        "rights": "UNKNOWN_REVIEW_REQUIRED",
+        "riskFlags": [
+          "EXACT_HEADWORD_SINGLE_RECORD_EACH",
+          "NORMALIZED_HEADWORD_MATCH",
+          "HUMAN_SENSE_REVIEW_REQUIRED",
+          "EXAMPLE_VARIANT_REVIEW"
+        ],
+        "sourceEvidence": [
+          {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "C1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/4860/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/4860/rawHeadword",
+            "rawPosEvidencePointer": "/records/4860/sourcePosRaw",
+            "recordEvidenceSha256": "30d0deec1fc0f55fd1e689f19b3ae109b00628d8a7592b857d12f8e289460e1b",
+            "recordIndex": 4860,
+            "sourceNoteGuid": "D4N[?@fc=L",
+            "sourceRecordId": "1788223610899",
+            "structuredOxfordSenseGroupOrdinals": [
+              0
+            ]
+          },
+          {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::C1",
+                "value": "C1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "C1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/4372/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/4372/rawHeadword",
+            "rawPosEvidencePointer": "/records/4372/sourcePosRaw",
+            "recordEvidenceSha256": "f5ab36d0e3d1288f2df685cd89711f772e5e1b53794994a042bb8bf655a23819",
+            "recordIndex": 4372,
+            "sourceNoteGuid": "cU*R,Z,%XO",
+            "sourceRecordId": "1646317636155",
+            "structuredOxfordSenseGroupOrdinals": []
+          }
+        ],
+        "sourceSenseCoverage": "Selected supported meanings only; no claim of exhaustive dictionary coverage"
+      },
+      "revisionRecords": [
+        {
+          "after": "người bị giam giữ hoặc sống trong một cơ sở như nhà tù hay bệnh viện",
+          "afterContentHash": "35c728a50ac1017ea8e2d752a1da414a5e3beb269f3de80602297531c7de1739",
+          "before": "người bị giam hoặc cư trú trong một cơ sở khép kín",
+          "beforeContentHash": "47530d967d595de733b5700c90bb537084baf33ed3a286116d6908a6caad82ef",
+          "field": "meaningVi",
+          "proposalKey": "EDITORIAL_2H2L:inmate:institution-resident",
+          "reasonVi": "Nêu rõ ví dụ loại cơ sở được nguồn hỗ trợ và bỏ cách nói khép kín còn mơ hồ.",
+          "reviewFindingSource": "independent-review/micro-01.json"
+        }
+      ],
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "The programme trains inmates for work after release.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Chương trình đào tạo tù nhân để làm việc sau khi được thả.",
+                  "focus_en": [
+                    "inmates"
+                  ],
+                  "focus_vi": [
+                    "tù nhân"
+                  ]
+                },
+                {
+                  "example_en": "Each inmate can attend classes in the prison library.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Mỗi tù nhân đều có thể tham gia lớp học trong thư viện nhà tù.",
+                  "focus_en": [
+                    "inmate"
+                  ],
+                  "focus_vi": [
+                    "tù nhân"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 0,
+              "sourcePosRaw": "n.",
+              "sourceVietnameseMeaningRaw": "tù nhân",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            }
+          ],
+          "reference": {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "C1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/4860/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/4860/rawHeadword",
+            "rawPosEvidencePointer": "/records/4860/sourcePosRaw",
+            "recordEvidenceSha256": "30d0deec1fc0f55fd1e689f19b3ae109b00628d8a7592b857d12f8e289460e1b",
+            "recordIndex": 4860,
+            "sourceNoteGuid": "D4N[?@fc=L",
+            "sourceRecordId": "1788223610899",
+            "structuredOxfordSenseGroupOrdinals": [
+              0
+            ]
+          },
+          "sourceFields": {
+            "CEFR": "C1",
+            "Example": "The programme trains <mark class=\"v-target\">inmates</mark> for work after release.<br>Each <mark class=\"v-target\">inmate</mark> can attend classes in the prison library.",
+            "Example Data": "[{\"pos\":\"n.\",\"meaning_vi\":\"tù nhân\",\"examples\":[{\"example_en\":\"The programme trains inmates for work after release.\",\"example_vi\":\"Chương trình đào tạo tù nhân để làm việc sau khi được thả.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"inmates\"],\"focus_vi\":[\"tù nhân\"]},{\"example_en\":\"Each inmate can attend classes in the prison library.\",\"example_vi\":\"Mỗi tù nhân đều có thể tham gia lớp học trong thư viện nhà tù.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"inmate\"],\"focus_vi\":[\"tù nhân\"]}]}]",
+            "Example EN 1": "The programme trains inmates for work after release.",
+            "Example EN 2": "Each inmate can attend classes in the prison library.",
+            "Example EN 3": "",
+            "Example EN 4": "",
+            "Example EN 5": "",
+            "Example EN 6": "",
+            "Example EN 7": "",
+            "Frequency": "4806",
+            "Irregular Forms": "[]",
+            "Oxford List": "Oxford 5000",
+            "Part of Speech": "noun",
+            "Phonetic": "/ˈɪnˌmeɪt/",
+            "Pronunciation Data": "[{\"locale\":\"UK\",\"ipa\":[\"/ˈɪnmeɪt/\"],\"audio_keys\":[\"uk_pron/i/inm/inmat/inmate__gb_1\"]},{\"locale\":\"US\",\"ipa\":[\"/ˈɪnmeɪt/\"],\"audio_keys\":[\"us_pron/i/inm/inmat/inmate__us_1\"]}]",
+            "Sound_uk": "",
+            "Sound_us": "",
+            "Study Order": "4861",
+            "Từ loại": "danh từ",
+            "Variant Data": "[]",
+            "Vietnamese": "tù nhân",
+            "Word": "inmate"
+          }
+        },
+        {
+          "candidateSourceSenseGroups": [],
+          "reference": {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::C1",
+                "value": "C1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "C1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/4372/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/4372/rawHeadword",
+            "rawPosEvidencePointer": "/records/4372/sourcePosRaw",
+            "recordEvidenceSha256": "f5ab36d0e3d1288f2df685cd89711f772e5e1b53794994a042bb8bf655a23819",
+            "recordIndex": 4372,
+            "sourceNoteGuid": "cU*R,Z,%XO",
+            "sourceRecordId": "1646317636155",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          "sourceFields": {
+            "Example": "The jail has 500 <b>inmates</b>.",
+            "IPA": "/ˈɪnmeɪt/",
+            "Image": "<img src=\"paste-9249b07b2a139dc4d927e1bc2c37089fca5d1b46.jpg\">",
+            "Meaning": "one of the people living in an institution such as a prison or a&nbsp;psychiatric&nbsp;hospital",
+            "PoS": "n",
+            "Sound": "[sound:inmate noun - Definition, pictures, pronunciation and usage .mp3]",
+            "Sound_Example": " [sound:azure-63d28ca2-fd9de905-93bcdf4f-b81b142e-69bff86d.mp3]",
+            "Word": "inmate",
+            "noteid": "1724"
+          }
+        }
+      ]
+    },
+    {
+      "priorFinding": {
+        "assessment": "REVIEW",
+        "blockers": [],
+        "blocksPublication": false,
+        "dimensions": [
+          "MEANING",
+          "EN_DEFINITION",
+          "VI_SCOPE",
+          "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+          "POS_CONSTRUCTION",
+          "GRAMMAR",
+          "SENSE_BOUNDARY",
+          "SOURCE_AGREEMENT",
+          "SPECIALIST_SENSITIVITY"
+        ],
+        "effectiveContentHash": "4ce775e6ebae2fd4f23e4242d14bd7b1edf085f948f2f69e3e6bf47e41b0784a",
+        "explanationVi": "Nghĩa “rất tốt/tuyệt vời” thân mật và từ loại tính từ được nguồn hỗ trợ; ghi chú vị trí trước danh từ hoặc sau linking verb đúng. Tuy vậy “a super welcome” hơi gượng so với ví dụ nguồn, còn bản dịch “chào đón nồng nhiệt” chuyển sắc thái sang sự nhiệt tình; cân nhắc câu minh họa tự nhiên hơn để thể hiện super = rất tốt. Không có nghĩa thiếu hay điểm nhạy cảm.",
+        "missingSenseCandidates": [],
+        "proposalKey": "EDITORIAL_2H2L:super:excellent-informal",
+        "reviewedContentHash": "4ce775e6ebae2fd4f23e4242d14bd7b1edf085f948f2f69e3e6bf47e41b0784a",
+        "reviewedRecordSha256": "f5edae9ba171b54870ee22c99b31ce54feef01083f9007ca64488f435d7d98ab",
+        "unresolvedBoundaryItems": []
+      },
+      "record": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:super",
+        "canonicalIdsAllocated": 0,
+        "content": {
+          "definitionEn": "Very good or enjoyable, expressed in an informal style.",
+          "examples": [
+            {
+              "en": "The new café is super, and the staff are friendly.",
+              "exampleKey": "EDITORIAL_2H2L:super:excellent-informal:example-1",
+              "vi": "Quán cà phê mới rất tuyệt, và nhân viên ở đó thân thiện."
+            }
+          ],
+          "grammarNotesEn": "Informal adjective; commonly used before a noun or after a linking verb.",
+          "meaningVi": "rất tốt, tuyệt vời theo cách thân mật",
+          "senseLabelEn": "Very good in an informal way"
+        },
+        "contentStatus": "DRAFT",
+        "displayFormProposal": "super",
+        "editorialAuthorship": {
+          "humanAuthor": null,
+          "humanReviewer": null,
+          "kind": "AI_GENERATED_EDITORIAL_DRAFT",
+          "process": "Original 2H.2L manuscript composed from linked source evidence"
+        },
+        "effectiveContentHash": "1cd68153e7ed2878b0d34677b5edbed6e0680eb5f3222650a064fca608ee8307",
+        "fieldHashes": {
+          "definitionEn": "ce35cc565595107765b4317b11944825cf2877e0ebcd4d39e5f2234da8c08d57",
+          "examples": "afcf977a00406904e2985231df1fd2846fc85433f757db6c9111dbfcfc632613",
+          "grammarNotesEn": "5c79e9d80671df7d942a8b503856f3d7ab42aebd8e088e9ddf3545a6344f2489",
+          "meaningVi": "aa5dda74b7a61ab160ce3e32087bd503339bd95fad6ec3db87ac2d11595563e2",
+          "senseLabelEn": "975a1186285e3b4adba8c8fdcfc6b16081a80774b118c5efcd7b87449498aed9"
+        },
+        "formalApproval": false,
+        "headword": "super",
+        "partOfSpeech": "ADJECTIVE",
+        "proposalKey": "EDITORIAL_2H2L:super:excellent-informal",
+        "rights": "UNKNOWN_REVIEW_REQUIRED",
+        "riskFlags": [
+          "EXACT_HEADWORD_SINGLE_RECORD_EACH",
+          "NORMALIZED_HEADWORD_MATCH",
+          "HUMAN_SENSE_REVIEW_REQUIRED",
+          "EXAMPLE_VARIANT_REVIEW",
+          "VIETNAMESE_MEANING_VARIANT_REVIEW"
+        ],
+        "sourceEvidence": [
+          {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "B2"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "ADJECTIVE"
+            ],
+            "rawContentPointer": "/records/3021/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/3021/rawHeadword",
+            "rawPosEvidencePointer": "/records/3021/sourcePosRaw",
+            "recordEvidenceSha256": "704e93c17891c2bd1a291b088ba1d64a1f16809f4f8d9c68267029c9d38b4672",
+            "recordIndex": 3021,
+            "sourceNoteGuid": "r?O/c9`C4C",
+            "sourceRecordId": "1788223609060",
+            "structuredOxfordSenseGroupOrdinals": [
+              0
+            ]
+          },
+          {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::B2",
+                "value": "B2"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "B2"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "ADJECTIVE"
+            ],
+            "rawContentPointer": "/records/800/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/800/rawHeadword",
+            "rawPosEvidencePointer": "/records/800/sourcePosRaw",
+            "recordEvidenceSha256": "6fc93a656b50d4e77e52a0b55573fd9dbd875d16434dae6f7898e6b71be4a580",
+            "recordIndex": 800,
+            "sourceNoteGuid": "vYsSQXM9T|",
+            "sourceRecordId": "1559931007577",
+            "structuredOxfordSenseGroupOrdinals": []
+          }
+        ],
+        "sourceSenseCoverage": "Selected supported meanings only; no claim of exhaustive dictionary coverage"
+      },
+      "revisionRecords": [
+        {
+          "after": "The new café is super, and the staff are friendly.",
+          "afterContentHash": "5e24d4c34676340c7737ec04ca54bdbdd03204fa3281b0d9d5ac6effbc0a02e7",
+          "before": "The volunteers gave us a super welcome at the new centre.",
+          "beforeContentHash": "4ce775e6ebae2fd4f23e4242d14bd7b1edf085f948f2f69e3e6bf47e41b0784a",
+          "field": "exampleEn",
+          "proposalKey": "EDITORIAL_2H2L:super:excellent-informal",
+          "reasonVi": "Thay kết hợp super welcome gượng bằng ví dụ tính từ tự nhiên sau linking verb.",
+          "reviewFindingSource": "independent-review/micro-01.json"
+        },
+        {
+          "after": "Quán cà phê mới rất tuyệt, và nhân viên ở đó thân thiện.",
+          "afterContentHash": "1cd68153e7ed2878b0d34677b5edbed6e0680eb5f3222650a064fca608ee8307",
+          "before": "Các tình nguyện viên chào đón chúng tôi rất nồng nhiệt tại trung tâm mới.",
+          "beforeContentHash": "5e24d4c34676340c7737ec04ca54bdbdd03204fa3281b0d9d5ac6effbc0a02e7",
+          "field": "exampleVi",
+          "proposalKey": "EDITORIAL_2H2L:super:excellent-informal",
+          "reasonVi": "Bản dịch giữ nghĩa super = rất tốt theo văn phong thân mật trong ví dụ mới.",
+          "reviewFindingSource": "independent-review/micro-01.json"
+        }
+      ],
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "We had a super time at the beach.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Chúng tôi đã có khoảng thời gian tuyệt vời ở bãi biển.",
+                  "focus_en": [
+                    "super"
+                  ],
+                  "focus_vi": [
+                    "tuyệt vời"
+                  ]
+                },
+                {
+                  "example_en": "The meal was super.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Bữa ăn thật tuyệt vời.",
+                  "focus_en": [
+                    "super"
+                  ],
+                  "focus_vi": [
+                    "tuyệt vời"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 0,
+              "sourcePosRaw": "adj.",
+              "sourceVietnameseMeaningRaw": "tuyệt vời, rất tốt (thân mật)",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            }
+          ],
+          "reference": {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "B2"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "ADJECTIVE"
+            ],
+            "rawContentPointer": "/records/3021/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/3021/rawHeadword",
+            "rawPosEvidencePointer": "/records/3021/sourcePosRaw",
+            "recordEvidenceSha256": "704e93c17891c2bd1a291b088ba1d64a1f16809f4f8d9c68267029c9d38b4672",
+            "recordIndex": 3021,
+            "sourceNoteGuid": "r?O/c9`C4C",
+            "sourceRecordId": "1788223609060",
+            "structuredOxfordSenseGroupOrdinals": [
+              0
+            ]
+          },
+          "sourceFields": {
+            "CEFR": "B2",
+            "Example": "We had a <mark class=\"v-target\">super</mark> time at the beach.<br>The meal was <mark class=\"v-target\">super</mark>.",
+            "Example Data": "[{\"pos\":\"adj.\",\"meaning_vi\":\"tuyệt vời, rất tốt (thân mật)\",\"examples\":[{\"example_en\":\"We had a super time at the beach.\",\"example_vi\":\"Chúng tôi đã có khoảng thời gian tuyệt vời ở bãi biển.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"super\"],\"focus_vi\":[\"tuyệt vời\"]},{\"example_en\":\"The meal was super.\",\"example_vi\":\"Bữa ăn thật tuyệt vời.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"super\"],\"focus_vi\":[\"tuyệt vời\"]}]}]",
+            "Example EN 1": "We had a super time at the beach.",
+            "Example EN 2": "The meal was super.",
+            "Example EN 3": "",
+            "Example EN 4": "",
+            "Example EN 5": "",
+            "Example EN 6": "",
+            "Example EN 7": "",
+            "Frequency": "704",
+            "Irregular Forms": "[]",
+            "Oxford List": "Oxford 5000",
+            "Part of Speech": "adjective",
+            "Phonetic": "/ˈsupɚ/",
+            "Pronunciation Data": "[{\"locale\":\"UK\",\"ipa\":[\"/ˈsuːpə(r)/\"],\"audio_keys\":[\"uk_pron/s/sup/super/super__gb_1\"]},{\"locale\":\"US\",\"ipa\":[\"/ˈsuːpər/\"],\"audio_keys\":[\"us_pron/s/sup/super/super__us_1\"]}]",
+            "Sound_uk": "",
+            "Sound_us": "",
+            "Study Order": "3022",
+            "Từ loại": "tính từ",
+            "Variant Data": "[]",
+            "Vietnamese": "tuyệt vời, rất tốt (thân mật)",
+            "Word": "super"
+          }
+        },
+        {
+          "candidateSourceSenseGroups": [],
+          "reference": {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::B2",
+                "value": "B2"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "B2"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "ADJECTIVE"
+            ],
+            "rawContentPointer": "/records/800/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/800/rawHeadword",
+            "rawPosEvidencePointer": "/records/800/sourcePosRaw",
+            "recordEvidenceSha256": "6fc93a656b50d4e77e52a0b55573fd9dbd875d16434dae6f7898e6b71be4a580",
+            "recordIndex": 800,
+            "sourceNoteGuid": "vYsSQXM9T|",
+            "sourceRecordId": "1559931007577",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          "sourceFields": {
+            "Example": "My dad said I did a <b>super</b> job cleaning the house.",
+            "IPA": "/ˈsuːpər/",
+            "Image": "<img src=\"paste-419263641acf271c881a52b9da32737ab107a04a.jpg\">",
+            "Meaning": "<i>Super</i> means really good.<br><b>siêu, cực kỳ</b>",
+            "PoS": "adj",
+            "Sound": "[sound:super__us_1.mp3]",
+            "Sound_Example": "[sound:googletts-bb1a0beb-db54ef71-8642c741-04be50f1-c4ada379.mp3]",
+            "Word": "super",
+            "noteid": "1559931007577"
+          }
+        }
+      ]
+    },
+    {
+      "priorFinding": {
+        "assessment": "REVIEW",
+        "blockers": [],
+        "blocksPublication": false,
+        "dimensions": [
+          "MEANING",
+          "EN_DEFINITION",
+          "VI_SCOPE",
+          "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+          "POS_CONSTRUCTION",
+          "GRAMMAR",
+          "SENSE_BOUNDARY",
+          "SOURCE_AGREEMENT",
+          "SPECIALIST_SENSITIVITY"
+        ],
+        "effectiveContentHash": "fc451cc93aad1700bdc43c7a5e13261b5519c7b3b9e24e72ab5ba9a9361ef7ef",
+        "explanationVi": "Định nghĩa về việc ngắn cần đi đâu đó để giao, lấy hoặc mua đồ phù hợp nguồn; ví dụ đi lấy chìa khóa đã sửa và bản dịch tương ứng. Tuy nhiên nghĩa Việt “việc cần đi đâu đó để làm hoặc chuyển một việc” hơi vòng và mơ hồ, đồng thời chưa gợi rõ “việc vặt” như nguồn Việt. Nên viết tự nhiên, cụ thể hơn; danh từ đếm được/cụm run an errand đúng, không thấy nghĩa thiếu hay nhạy cảm.",
+        "missingSenseCandidates": [],
+        "proposalKey": "EDITORIAL_2H2L:errand:short-task-away",
+        "reviewedContentHash": "fc451cc93aad1700bdc43c7a5e13261b5519c7b3b9e24e72ab5ba9a9361ef7ef",
+        "reviewedRecordSha256": "668d3f1fb053f0c768cd2b7ae674c3c09c9322fe9b22118e79917cfbf87f9262",
+        "unresolvedBoundaryItems": []
+      },
+      "record": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:errand",
+        "canonicalIdsAllocated": 0,
+        "content": {
+          "definitionEn": "A short task that involves going somewhere to deliver, collect, or buy something.",
+          "examples": [
+            {
+              "en": "Before dinner, I ran an errand to collect the repaired keys.",
+              "exampleKey": "EDITORIAL_2H2L:errand:short-task-away:example-1",
+              "vi": "Trước bữa tối, tôi đi lấy những chiếc chìa khóa đã sửa xong."
+            }
+          ],
+          "grammarNotesEn": "Countable; run or do an errand, often for another person.",
+          "meaningVi": "việc vặt cần ra ngoài để giao, lấy hoặc mua một thứ gì đó",
+          "senseLabelEn": "Short task involving a trip"
+        },
+        "contentStatus": "DRAFT",
+        "displayFormProposal": "errand",
+        "editorialAuthorship": {
+          "humanAuthor": null,
+          "humanReviewer": null,
+          "kind": "AI_GENERATED_EDITORIAL_DRAFT",
+          "process": "Original 2H.2L manuscript composed from linked source evidence"
+        },
+        "effectiveContentHash": "3f1d100ca131afa978409e391895e897b641032391bc3fdd6c351896aba3643e",
+        "fieldHashes": {
+          "definitionEn": "7395abbf44f0c477aedd842ef718ea8d88389f657890de121df9e18f273e04c3",
+          "examples": "a894ade5b7abeeb9f3557b9dcee02d6408be75123a40de5bd7ec57cde9ed8b0e",
+          "grammarNotesEn": "5b9637f793e7255247bb6039727001f1c0ba7df351df53ffa1b558c61f6a9e2d",
+          "meaningVi": "d935ac68339f7cc007c1dd29a6afe37a74d280ffc88412841b5411498f6b8a50",
+          "senseLabelEn": "81682d0498dc2a86d3c61c0d9bf907af02dbcbf0cbcf3c5a24f7b9e47a5c68cd"
+        },
+        "formalApproval": false,
+        "headword": "errand",
+        "partOfSpeech": "NOUN",
+        "proposalKey": "EDITORIAL_2H2L:errand:short-task-away",
+        "rights": "UNKNOWN_REVIEW_REQUIRED",
+        "riskFlags": [
+          "SOURCE_ONLY_CONTENT"
+        ],
+        "sourceEvidence": [
+          {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::C2",
+                "value": "C2"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "C2"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/3650/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/3650/rawHeadword",
+            "rawPosEvidencePointer": "/records/3650/sourcePosRaw",
+            "recordEvidenceSha256": "309c2e9cdf899f76e4c40b27eca1936a02d2705bc15fbf53f5f3ccfb6d5dcd6c",
+            "recordIndex": 3650,
+            "sourceNoteGuid": "EaHI^@c06g",
+            "sourceRecordId": "1622618139150",
+            "structuredOxfordSenseGroupOrdinals": []
+          }
+        ],
+        "sourceSenseCoverage": "Selected supported meanings only; no claim of exhaustive dictionary coverage"
+      },
+      "revisionRecords": [
+        {
+          "after": "việc vặt cần ra ngoài để giao, lấy hoặc mua một thứ gì đó",
+          "afterContentHash": "3f1d100ca131afa978409e391895e897b641032391bc3fdd6c351896aba3643e",
+          "before": "việc cần đi đâu đó để làm hoặc chuyển một việc",
+          "beforeContentHash": "fc451cc93aad1700bdc43c7a5e13261b5519c7b3b9e24e72ab5ba9a9361ef7ef",
+          "field": "meaningVi",
+          "proposalKey": "EDITORIAL_2H2L:errand:short-task-away",
+          "reasonVi": "Viết lại nghĩa Việt tự nhiên, cụ thể hơn và nêu rõ việc vặt gắn với chuyến đi như nguồn hỗ trợ.",
+          "reviewFindingSource": "independent-review/micro-01.json"
+        }
+      ],
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [],
+          "reference": {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::C2",
+                "value": "C2"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "C2"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/3650/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/3650/rawHeadword",
+            "rawPosEvidencePointer": "/records/3650/sourcePosRaw",
+            "recordEvidenceSha256": "309c2e9cdf899f76e4c40b27eca1936a02d2705bc15fbf53f5f3ccfb6d5dcd6c",
+            "recordIndex": 3650,
+            "sourceNoteGuid": "EaHI^@c06g",
+            "sourceRecordId": "1622618139150",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          "sourceFields": {
+            "Example": "She often <b>runs errands</b> for her dad.",
+            "IPA": "/ˈerənd/",
+            "Image": "<img src=\"paste-b1d0265cad2e8fe3ac4f36661e3eba84e7d8d9ac.jpg\">",
+            "Meaning": "<i>Errand</i> is a job that you do for somebody that involves going somewhere to take a message, to buy something, deliver goods, etc.<br><b>việc vặt <i>(đưa thư, mua thuốc,...)</i></b>",
+            "PoS": "noun",
+            "Sound": "[sound:oxford-4ea448a4-6d1f7886-62a16212-35468ff9-9cb21a3c.mp3]",
+            "Sound_Example": "[sound:googletts-abf5d170-9bc76066-fe07150f-1d70a657-5c4d0cd8.mp3]",
+            "Word": "errand",
+            "noteid": "1622618139150"
+          }
+        }
+      ]
+    }
+  ],
+  "reviewMode": "BLIND_INDEPENDENT_RECHECK_CURRENT_EFFECTIVE_CONTENT"
+}

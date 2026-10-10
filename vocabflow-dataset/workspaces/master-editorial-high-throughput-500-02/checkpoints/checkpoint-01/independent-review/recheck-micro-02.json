@@ -1,0 +1,81 @@
+{
+  "reviewerKind": "ISOLATED_AI_REVIEW_AGENT",
+  "blindFirstPass": false,
+  "humanApproval": false,
+  "microBatch": 2,
+  "recheckOf": "independent-review/micro-02.json",
+  "reviewedRecordCount": 3,
+  "summary": {
+    "PASS": 2,
+    "REVIEW": 1,
+    "FAIL": 0,
+    "blockingFindings": 0
+  },
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2L:ideology:belief-system",
+      "effectiveContentHash": "f4dcff3176c244fbefc07c2048bd58653e88d12959bea7f1b46424c8a15444af",
+      "reviewedContentHash": "f4dcff3176c244fbefc07c2048bd58653e88d12959bea7f1b46424c8a15444af",
+      "reviewedRecordSha256": "8160590c807abcd47d576cdb5928028df48818b8949445ccb97836378c672881",
+      "assessment": "PASS",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "sourceAlignment": "PASS",
+        "definition": "PASS",
+        "vietnamese": "PASS",
+        "grammar": "PASS",
+        "examples": "PASS",
+        "senseBoundary": "PASS",
+        "coverage": "PASS"
+      },
+      "explanationVi": "Ghi chú mới là câu hoàn chỉnh: ideology dùng như danh từ đếm được; các tính từ political, economic, social làm rõ loại hệ tư tưởng, phù hợp với ví dụ nguồn về political ideology và economic ideology.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:freely:openly-willingly",
+      "effectiveContentHash": "9ef8dd4b12e0effb1f6944a68ee722fb5f3ab4442dca8c91287b4389c409764b",
+      "reviewedContentHash": "9ef8dd4b12e0effb1f6944a68ee722fb5f3ab4442dca8c91287b4389c409764b",
+      "reviewedRecordSha256": "bf20c2426ea4ca6deb6416421ed1072a34d633ec27933d5947c351e0a8b070e3",
+      "assessment": "REVIEW",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "sourceAlignment": "PASS",
+        "definition": "PASS",
+        "vietnamese": "PASS",
+        "grammar": "PASS",
+        "examples": "PASS",
+        "senseBoundary": "REVIEW",
+        "coverage": "PASS"
+      },
+      "explanationVi": "Định nghĩa đã bỏ “willing” và thu hẹp vào sự cởi mở, thẳng thắn; ví dụ freely acknowledged và nhóm nguồn ordinal 1 hỗ trợ sắc thái này. Tuy vậy, senseLabel còn “Openly and willingly”, vẫn gợi nghĩa rộng đã được loại khỏi định nghĩa.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": [
+        "Sense label “Openly and willingly” còn giữ willingly, trong khi định nghĩa hiện tại đã được thu hẹp vào frank openness."
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:pirate:copyright-infringer",
+      "effectiveContentHash": "1de759af2f03fb9e9a39e9e4e3ed039b2a376ac7915b5f22c889993a38f99b43",
+      "reviewedContentHash": "1de759af2f03fb9e9a39e9e4e3ed039b2a376ac7915b5f22c889993a38f99b43",
+      "reviewedRecordSha256": "4f449e1d7908ff1df27960e71e6b54a314acfb17d879adb1721d9671f7f11000",
+      "assessment": "PASS",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "sourceAlignment": "PASS",
+        "definition": "PASS",
+        "vietnamese": "PASS",
+        "grammar": "PASS",
+        "examples": "PASS",
+        "senseBoundary": "PASS",
+        "coverage": "PASS"
+      },
+      "explanationVi": "Ví dụ mới dùng nguyên cụm mục tiêu “software pirate” trong câu hoàn chỉnh; điều tra viên nhận diện người đứng sau trang phân phối chương trình trái phép, đúng nghĩa và có bản dịch tiếng Việt tương ứng.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    }
+  ]
+}

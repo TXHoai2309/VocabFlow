@@ -1,0 +1,47 @@
+{
+  "microBatch": 3,
+  "phase": "2H.2L",
+  "records": [
+    {
+      "after": "To strike a surface and scatter as liquid, or to cause liquid to do this.",
+      "afterContentHash": "5c35736efbcc0145eac1942589590d71a4520609ca0bc25a1ec4160b5c0b2240",
+      "before": "To cause liquid to hit a surface and spread into drops or patches.",
+      "beforeContentHash": "787fa011bf80f8582a0ef37f75b56d615a297bb8765f0796abcd8f6faa40d25f",
+      "field": "definitionEn",
+      "proposalKey": "EDITORIAL_2H2L:splash:scatter-liquid-on-impact",
+      "reasonVi": "Bao quát cả chất lỏng tự bắn tung tóe và cách khiến chất lỏng văng ra, phù hợp chứng cứ cùng hai cấu trúc intransitive/transitive.",
+      "reviewFindingSource": "independent-review/micro-03.json"
+    },
+    {
+      "after": "bắn tung tóe hoặc làm chất lỏng bắn tung tóe",
+      "afterContentHash": "2f2fad15fd38f3ebdc56e72a835db28dacaa67ab1950262a3380cd612b069c7b",
+      "before": "làm chất lỏng bắn tung tóe khi va vào bề mặt",
+      "beforeContentHash": "5c35736efbcc0145eac1942589590d71a4520609ca0bc25a1ec4160b5c0b2240",
+      "field": "meaningVi",
+      "proposalKey": "EDITORIAL_2H2L:splash:scatter-liquid-on-impact",
+      "reasonVi": "Mở rộng gloss tiếng Việt để phản ánh cả cách dùng nội động từ và ngoại động từ.",
+      "reviewFindingSource": "independent-review/micro-03.json"
+    },
+    {
+      "after": "Grammatically singular; use everyone with a singular verb, as in everyone is or everyone has.",
+      "afterContentHash": "ef38ca9f58a1f7c7da41ad1e9f70687ecd5f7a4a56311eee7c32d2cfb6693a3c",
+      "before": "Takes a singular verb; everyone refers to people individually as a group.",
+      "beforeContentHash": "825fb98d7808f7850a07491ba7072cfb9bc16a0cf2e0c055739885b1fa0eb057",
+      "field": "grammarNotesEn",
+      "proposalKey": "EDITORIAL_2H2L:everyone:all-people-in-group",
+      "reasonVi": "Nêu trực tiếp quy tắc chủ ngữ everyone đi với động từ số ít và thêm ví dụ ngắn dễ kiểm tra.",
+      "reviewFindingSource": "independent-review/micro-03.json"
+    },
+    {
+      "after": "To deliberately cause someone to suffer, often repeatedly or over a period of time.",
+      "afterContentHash": "a0b6e81b5b1acb241269d3da1e55a4ce12c2f32b95a0a934dedfee4d5a3cd7ac",
+      "before": "To make someone suffer, often through repeated fear, pain, or worry.",
+      "beforeContentHash": "cbfe7737f399cdc3635269f576f9ee4047cb6da9c94e8b398ca085a435eacf78",
+      "field": "definitionEn",
+      "proposalKey": "EDITORIAL_2H2L:torment:cause-deliberate-suffering",
+      "reasonVi": "Khôi phục nét chủ ý làm người khác đau khổ được ghi rõ trong định nghĩa nguồn Vocab4600.",
+      "reviewFindingSource": "independent-review/micro-03.json"
+    }
+  ],
+  "status": "IMMUTABLE_FORWARD_CORRECTIONS"
+}

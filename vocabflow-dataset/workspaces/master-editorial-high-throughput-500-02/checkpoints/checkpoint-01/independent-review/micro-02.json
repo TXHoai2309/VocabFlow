@@ -1,0 +1,653 @@
+{
+  "reviewerKind": "ISOLATED_AI_REVIEW_AGENT",
+  "blindFirstPass": true,
+  "humanApproval": false,
+  "microBatch": 2,
+  "manuscriptSha256": "f74f77fddde2ffc6a64e0f571681633d57f426555bfbe859285d3583be66aec1",
+  "publicationReady": false,
+  "reviewedRecordCount": 30,
+  "summary": {
+    "PASS": 27,
+    "REVIEW": 2,
+    "FAIL": 1,
+    "blockingFindings": 1
+  },
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2L:ideology:belief-system",
+      "effectiveContentHash": "fd5c1e5d48ff4cea02fa65ab926906eb492a5d4773df0a658ee788bfe6aad0ca",
+      "reviewedContentHash": "fd5c1e5d48ff4cea02fa65ab926906eb492a5d4773df0a658ee788bfe6aad0ca",
+      "reviewedRecordSha256": "ae9ce10037f793b13c1ffd430b8c7fe8ecf250761233899fd91b3a1f04f26a6a",
+      "assessment": "REVIEW",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "sourceAlignment": "PASS",
+        "definition": "PASS",
+        "vietnamese": "PASS",
+        "grammar": "REVIEW",
+        "examples": "PASS",
+        "senseBoundary": "PASS",
+        "coverage": "PASS"
+      },
+      "explanationVi": "Ghi chú ngữ pháp có cụm “modified by political, economic, or social” nhưng thiếu danh từ sau chuỗi tính từ; nên sửa thành một cấu trúc hoàn chỉnh, dù phần định nghĩa và nghĩa tiếng Việt vẫn khớp nguồn.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": [
+        "Cụm tính từ ở cuối ghi chú đang thiếu danh từ làm bổ nghĩa nên câu chưa hoàn chỉnh."
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:clean:free-of-dirt",
+      "effectiveContentHash": "5405a43983bafb1ff33336485ef60c05c219665b4ad808c79efc563be2bf22f1",
+      "reviewedContentHash": "5405a43983bafb1ff33336485ef60c05c219665b4ad808c79efc563be2bf22f1",
+      "reviewedRecordSha256": "8892ad811d2720dc7b8bd48903283ffa0e04465c3a5e9995a92ad8a62bae1436",
+      "assessment": "PASS",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "sourceAlignment": "PASS",
+        "definition": "PASS",
+        "vietnamese": "PASS",
+        "grammar": "PASS",
+        "examples": "PASS",
+        "senseBoundary": "PASS",
+        "coverage": "PASS"
+      },
+      "explanationVi": "Định nghĩa chỉ trạng thái không bẩn, ví dụ dùng clean tự nhiên sau động từ nối stayed, và nghĩa “sạch sẽ” phù hợp với ví dụ cùng nghĩa được nguồn hỗ trợ.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:clean:make-clean",
+      "effectiveContentHash": "5af4a1b3f76a6554287ab81c409ced22c3fc8af532b3a33b4bfe43c4623e15ab",
+      "reviewedContentHash": "5af4a1b3f76a6554287ab81c409ced22c3fc8af532b3a33b4bfe43c4623e15ab",
+      "reviewedRecordSha256": "8c972c7d7996af916a7657e6c66bd656b312e31d41516addca476046b41d02a1",
+      "assessment": "PASS",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "sourceAlignment": "PASS",
+        "definition": "PASS",
+        "vietnamese": "PASS",
+        "grammar": "PASS",
+        "examples": "PASS",
+        "senseBoundary": "PASS",
+        "coverage": "PASS"
+      },
+      "explanationVi": "Định nghĩa diễn đạt hành động loại bỏ bụi bẩn, ví dụ dùng clean ngoại động từ tự nhiên, còn ghi chú về quá khứ cleaned và bản dịch đều phù hợp với nghĩa nguồn.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:reject:refuse-to-accept",
+      "effectiveContentHash": "29a572fbdc8415202867cca1c04109b86cd3086344f8c15c037e7459f1e1247b",
+      "reviewedContentHash": "29a572fbdc8415202867cca1c04109b86cd3086344f8c15c037e7459f1e1247b",
+      "reviewedRecordSha256": "856ba4ef415241690215d3291becfcbac9f87005180f24c1b3f222bc9cba19ee",
+      "assessment": "PASS",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "sourceAlignment": "PASS",
+        "definition": "PASS",
+        "vietnamese": "PASS",
+        "grammar": "PASS",
+        "examples": "PASS",
+        "senseBoundary": "PASS",
+        "coverage": "PASS"
+      },
+      "explanationVi": "Định nghĩa bao quát việc không chấp nhận hoặc không tán thành; ví dụ về ủy ban bác yêu cầu tự nhiên và bản dịch tiếng Việt phản ánh đúng cách dùng trong ngữ cảnh.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:find:locate-after-search",
+      "effectiveContentHash": "6e5cc61a991b726cc010a9114ca6f53a23b3ec85b4f3e8e0aace9da908450576",
+      "reviewedContentHash": "6e5cc61a991b726cc010a9114ca6f53a23b3ec85b4f3e8e0aace9da908450576",
+      "reviewedRecordSha256": "638a95c614d8d41a264b87220c12accc5ac661907e663a7caf2f02fd3e31e67d",
+      "assessment": "PASS",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "sourceAlignment": "PASS",
+        "definition": "PASS",
+        "vietnamese": "PASS",
+        "grammar": "PASS",
+        "examples": "PASS",
+        "senseBoundary": "PASS",
+        "coverage": "PASS"
+      },
+      "explanationVi": "Định nghĩa giữ rõ nét nghĩa tìm kiếm rồi phát hiện lại người hoặc vật; ví dụ chìa khóa và bản dịch tương ứng trực tiếp với nghĩa được nguồn minh họa.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:find:consider-or-experience",
+      "effectiveContentHash": "1e225f050e8a821734f5043c913ad9c39f5cc7cc469a6ab079b4f55f8e2252b7",
+      "reviewedContentHash": "1e225f050e8a821734f5043c913ad9c39f5cc7cc469a6ab079b4f55f8e2252b7",
+      "reviewedRecordSha256": "a549a18a550565c8efbcc543f91d9628cd2f11d9518a48b3fdba0e29a6c62e97",
+      "assessment": "PASS",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "sourceAlignment": "PASS",
+        "definition": "PASS",
+        "vietnamese": "PASS",
+        "grammar": "PASS",
+        "examples": "PASS",
+        "senseBoundary": "PASS",
+        "coverage": "PASS"
+      },
+      "explanationVi": "Cấu trúc find cộng tân ngữ và tính từ trong ví dụ thể hiện đúng nghĩa nhận thấy hoặc đánh giá một vật có đặc tính; ghi chú ngữ pháp cũng chính xác.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:attempt:act-of-trying",
+      "effectiveContentHash": "7e9d30cde18a295186a6b1969036bf0bb56ae71ee37bb11e7b279a46e1621c35",
+      "reviewedContentHash": "7e9d30cde18a295186a6b1969036bf0bb56ae71ee37bb11e7b279a46e1621c35",
+      "reviewedRecordSha256": "a1aa1b9e3a14cda06c88d0d1cea38d6065ef156a2fad839e2cca2dfaece995bb",
+      "assessment": "PASS",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "sourceAlignment": "PASS",
+        "definition": "PASS",
+        "vietnamese": "PASS",
+        "grammar": "PASS",
+        "examples": "PASS",
+        "senseBoundary": "PASS",
+        "coverage": "PASS"
+      },
+      "explanationVi": "Danh từ attempt được định nghĩa như một nỗ lực hướng tới mục tiêu, cấu trúc attempt to repair đúng ngữ pháp và bản dịch truyền đạt rõ lần thử đầu tiên.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:attempt:try-to-do",
+      "effectiveContentHash": "3f15c102778fa21645706d5fe440ba9e715a5c6e6a6538958e7079f0f397232e",
+      "reviewedContentHash": "3f15c102778fa21645706d5fe440ba9e715a5c6e6a6538958e7079f0f397232e",
+      "reviewedRecordSha256": "e11d13d6548c9158331af7105469d7861ac32297b266e15eb880fcc66b5275a9",
+      "assessment": "PASS",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "sourceAlignment": "PASS",
+        "definition": "PASS",
+        "vietnamese": "PASS",
+        "grammar": "PASS",
+        "examples": "PASS",
+        "senseBoundary": "PASS",
+        "coverage": "PASS"
+      },
+      "explanationVi": "Động từ attempt được giải thích là cố gắng thực hiện hành động khó, ví dụ attempt to reach dùng đúng mẫu và bản dịch tiếng Việt rõ nghĩa.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:terms:agreement-conditions",
+      "effectiveContentHash": "fa3d9b5a4bcb9f26dbb14ee6e67ab4e9642cb06f9bbf6cad7732c65f3343a026",
+      "reviewedContentHash": "fa3d9b5a4bcb9f26dbb14ee6e67ab4e9642cb06f9bbf6cad7732c65f3343a026",
+      "reviewedRecordSha256": "a96a27b7709646375d2821488eab7a019b3fde17d4fc6cdba392a7856f8e6e1a",
+      "assessment": "PASS",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "sourceAlignment": "PASS",
+        "definition": "PASS",
+        "vietnamese": "PASS",
+        "grammar": "PASS",
+        "examples": "PASS",
+        "senseBoundary": "PASS",
+        "coverage": "PASS"
+      },
+      "explanationVi": "Định nghĩa và ví dụ đều thể hiện terms là các điều kiện trong thỏa thuận; ghi chú nêu đúng cách dùng số nhiều và các kết hợp terms of an agreement.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:lifetime:duration-of-life-or-existence",
+      "effectiveContentHash": "d911c20557231c74615da7ef8240dba1483751a5399c92362d8490d0680f7e85",
+      "reviewedContentHash": "d911c20557231c74615da7ef8240dba1483751a5399c92362d8490d0680f7e85",
+      "reviewedRecordSha256": "d40e2760907d846b6769e62395e590a5c25e51910cd36cf6aae0be6a06566980",
+      "assessment": "PASS",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "sourceAlignment": "PASS",
+        "definition": "PASS",
+        "vietnamese": "PASS",
+        "grammar": "PASS",
+        "examples": "PASS",
+        "senseBoundary": "PASS",
+        "coverage": "PASS"
+      },
+      "explanationVi": "Định nghĩa bao quát quãng thời gian một người sống hoặc một vật tồn tại; ví dụ về tuổi thọ cây cầu và nghĩa tiếng Việt đều nhất quán với nguồn.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:plant:living-organism",
+      "effectiveContentHash": "5ff39a5d7fe22ce14877d66a6f80c75e9c132b1799f6a5978f0a7001706c57e2",
+      "reviewedContentHash": "5ff39a5d7fe22ce14877d66a6f80c75e9c132b1799f6a5978f0a7001706c57e2",
+      "reviewedRecordSha256": "ddb898bd0b5e05f20c05ba663d07a4a1a15a529ce55210912fd62e950ffcdd93",
+      "assessment": "PASS",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "sourceAlignment": "PASS",
+        "definition": "PASS",
+        "vietnamese": "PASS",
+        "grammar": "PASS",
+        "examples": "PASS",
+        "senseBoundary": "PASS",
+        "coverage": "PASS"
+      },
+      "explanationVi": "Định nghĩa phân biệt thực vật sống với các nghĩa còn lại, ví dụ cây non có lá phù hợp và cách dịch cây non nghiêng về cửa sổ tự nhiên.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:plant:industrial-facility",
+      "effectiveContentHash": "198cee5e5c3416535f9760828382a183ae1126f58f7ac223afeef96345322d94",
+      "reviewedContentHash": "198cee5e5c3416535f9760828382a183ae1126f58f7ac223afeef96345322d94",
+      "reviewedRecordSha256": "8afaa1f541226f6b78d7e0d5f78fcde33b820f8d216b06bd5c2e57a7c48cf122",
+      "assessment": "PASS",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "sourceAlignment": "PASS",
+        "definition": "PASS",
+        "vietnamese": "PASS",
+        "grammar": "PASS",
+        "examples": "PASS",
+        "senseBoundary": "PASS",
+        "coverage": "PASS"
+      },
+      "explanationVi": "Nghĩa cơ sở công nghiệp được tách khỏi thực vật và có ví dụ nhà máy xử lý nước phù hợp; cụm nhà máy trong bản dịch diễn đạt đúng loại cơ sở này.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:plant:put-seeds-in-soil",
+      "effectiveContentHash": "7bf3fb04e2523d1bb3987f751738ba90c588378b83a3c4ba8c848934cf118331",
+      "reviewedContentHash": "7bf3fb04e2523d1bb3987f751738ba90c588378b83a3c4ba8c848934cf118331",
+      "reviewedRecordSha256": "fd4deb93fdd43a4feec2cae776d29b95147bcff3a3444fd7e1322c8399f6d857",
+      "assessment": "PASS",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "sourceAlignment": "PASS",
+        "definition": "PASS",
+        "vietnamese": "PASS",
+        "grammar": "PASS",
+        "examples": "PASS",
+        "senseBoundary": "PASS",
+        "coverage": "PASS"
+      },
+      "explanationVi": "Động từ plant được định nghĩa và minh họa đúng hành động gieo trồng; tân ngữ beans cùng bản dịch “trồng đậu” là cách dùng tự nhiên.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:cling:hold-tightly-to",
+      "effectiveContentHash": "024d46dfbb19b284a43df416ba31212be79680f3df8c4323fd120129499f41b3",
+      "reviewedContentHash": "024d46dfbb19b284a43df416ba31212be79680f3df8c4323fd120129499f41b3",
+      "reviewedRecordSha256": "bf479659979f0ca9df8e06127e266c8d2753f1bc4163d0b409b521e9427412a4",
+      "assessment": "PASS",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "sourceAlignment": "PASS",
+        "definition": "PASS",
+        "vietnamese": "PASS",
+        "grammar": "PASS",
+        "examples": "PASS",
+        "senseBoundary": "PASS",
+        "coverage": "PASS"
+      },
+      "explanationVi": "Định nghĩa nêu được cả bám chặt và giữ chặt, ví dụ tắc kè bám tường hợp nghĩa; ghi chú cling to cùng dạng quá khứ clung cũng chính xác.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:rotation:circular-movement",
+      "effectiveContentHash": "9ad2f61ec423b824d7975255869779bdf4cc3068e2a1a6b991cf335c98e441cc",
+      "reviewedContentHash": "9ad2f61ec423b824d7975255869779bdf4cc3068e2a1a6b991cf335c98e441cc",
+      "reviewedRecordSha256": "69e0ec275ba170b684f1abf7373a9fccdcd906b964d1326536c09911e888abbf",
+      "assessment": "PASS",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "sourceAlignment": "PASS",
+        "definition": "PASS",
+        "vietnamese": "PASS",
+        "grammar": "PASS",
+        "examples": "PASS",
+        "senseBoundary": "PASS",
+        "coverage": "PASS"
+      },
+      "explanationVi": "Định nghĩa mô tả chuyển động quanh trục hoặc tâm cố định, ví dụ bánh xe quay phù hợp và bản dịch tiếng Việt giữ đúng nét nghĩa chuyển động quay.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:rotation:scheduled-turn-taking",
+      "effectiveContentHash": "b89deeabcc9a99a0de5577df54222052ab546b22f147669864e33795a8a5750e",
+      "reviewedContentHash": "b89deeabcc9a99a0de5577df54222052ab546b22f147669864e33795a8a5750e",
+      "reviewedRecordSha256": "8f073f4876258f0dab9296885d74f2f8566d77dae723813b37763bda87e8c453",
+      "assessment": "PASS",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "sourceAlignment": "PASS",
+        "definition": "PASS",
+        "vietnamese": "PASS",
+        "grammar": "PASS",
+        "examples": "PASS",
+        "senseBoundary": "PASS",
+        "coverage": "PASS"
+      },
+      "explanationVi": "Nghĩa luân phiên theo lịch được phân biệt với chuyển động quay; ví dụ lịch trực của y tá và bản dịch đều thể hiện việc thay phiên định kỳ.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:premature:too-early",
+      "effectiveContentHash": "b10a7ba9faf63e06de24877ccb9757c08f79e0ca00b692d1af134dadc8e3a67d",
+      "reviewedContentHash": "b10a7ba9faf63e06de24877ccb9757c08f79e0ca00b692d1af134dadc8e3a67d",
+      "reviewedRecordSha256": "7c99b6dc49f023c0dc22a22f584080067ab97e1fb7d90db541abb3c69f9c379a",
+      "assessment": "PASS",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "sourceAlignment": "PASS",
+        "definition": "PASS",
+        "vietnamese": "PASS",
+        "grammar": "PASS",
+        "examples": "PASS",
+        "senseBoundary": "PASS",
+        "coverage": "PASS"
+      },
+      "explanationVi": "Định nghĩa thể hiện rõ việc xảy ra trước thời điểm thích hợp; ví dụ buổi ra mắt bị xem là quá sớm khi kiểm tra an toàn chưa xong khớp với bằng chứng nguồn.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:seventeen:number-17",
+      "effectiveContentHash": "d84173dfbf228557d9e26ff13d561251e0b2e88e4422d120c3595201a7b813d2",
+      "reviewedContentHash": "d84173dfbf228557d9e26ff13d561251e0b2e88e4422d120c3595201a7b813d2",
+      "reviewedRecordSha256": "4816ff20ed4518a2b58f444c6dda3d632800989a583bb1d1384819a1de9dfe3e",
+      "assessment": "PASS",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "sourceAlignment": "PASS",
+        "definition": "PASS",
+        "vietnamese": "PASS",
+        "grammar": "PASS",
+        "examples": "PASS",
+        "senseBoundary": "PASS",
+        "coverage": "PASS"
+      },
+      "explanationVi": "Định nghĩa xác định chính xác vị trí của số mười bảy, ví dụ số đèn lồng phù hợp và ghi chú dùng số đếm trước danh từ số nhiều là đúng.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:freely:without-restriction",
+      "effectiveContentHash": "c4a1c06c87f7740a056fab5251a4db25b5083dec9ebfac0ade5a054944168aab",
+      "reviewedContentHash": "c4a1c06c87f7740a056fab5251a4db25b5083dec9ebfac0ade5a054944168aab",
+      "reviewedRecordSha256": "c64a654a7af2fe79f1adad17f79b0f97e89db84ec7445445a89c5212f59a2e07",
+      "assessment": "PASS",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "sourceAlignment": "PASS",
+        "definition": "PASS",
+        "vietnamese": "PASS",
+        "grammar": "PASS",
+        "examples": "PASS",
+        "senseBoundary": "PASS",
+        "coverage": "PASS"
+      },
+      "explanationVi": "Định nghĩa nêu sự không bị ngăn cản hoặc kiểm soát, phù hợp với ví dụ khách đi tự do trong vườn và các nghĩa tự do, không hạn chế trong nguồn.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:freely:openly-willingly",
+      "effectiveContentHash": "f6a6ccb7d612abcdb6104c3ca78240eb506a5968e50ca2bab996e90e55f0341d",
+      "reviewedContentHash": "f6a6ccb7d612abcdb6104c3ca78240eb506a5968e50ca2bab996e90e55f0341d",
+      "reviewedRecordSha256": "9ad5764ad9f36e39a5188599ae64b6addf8cda5a06c52da077850eccc8e4753e",
+      "assessment": "REVIEW",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "sourceAlignment": "PASS",
+        "definition": "REVIEW",
+        "vietnamese": "PASS",
+        "grammar": "PASS",
+        "examples": "PASS",
+        "senseBoundary": "PASS",
+        "coverage": "PASS"
+      },
+      "explanationVi": "Ví dụ freely acknowledged và nghĩa thẳng thắn được nguồn hỗ trợ, nhưng định nghĩa gộp “willing” với “frank” có thể làm lẫn nghĩa sẵn lòng với nghĩa cởi mở; nên cân nhắc thu hẹp.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": [
+        "Định nghĩa gộp sắc thái sẵn lòng và thẳng thắn, trong khi ví dụ minh họa chủ yếu nghĩa thẳng thắn."
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:invitation:request-to-attend",
+      "effectiveContentHash": "216ba4e3f67ee542ee118010dd2b3d7da32e17540abfe98a50287e4e4b759cc0",
+      "reviewedContentHash": "216ba4e3f67ee542ee118010dd2b3d7da32e17540abfe98a50287e4e4b759cc0",
+      "reviewedRecordSha256": "1e80e99b586b4447e965177ecb6fc3ee7923937308cb5c522dac957badfcaf3e",
+      "assessment": "PASS",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "sourceAlignment": "PASS",
+        "definition": "PASS",
+        "vietnamese": "PASS",
+        "grammar": "PASS",
+        "examples": "PASS",
+        "senseBoundary": "PASS",
+        "coverage": "PASS"
+      },
+      "explanationVi": "Định nghĩa nêu lời mời dự sự kiện hoặc thăm nơi chốn; ví dụ lời mời khai mạc và cách dịch lời mời tham dự đều phù hợp với các mẫu nguồn.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:choice:act-or-option-selected",
+      "effectiveContentHash": "8c1dc615318cb6b4543b6b321f17df34b84e2389f2d9f577aac87189e6beb2cf",
+      "reviewedContentHash": "8c1dc615318cb6b4543b6b321f17df34b84e2389f2d9f577aac87189e6beb2cf",
+      "reviewedRecordSha256": "e2692381513728df6bf4f54b71c83b4daf55e7b45bfc7def6f6ed07c93da799b",
+      "assessment": "PASS",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "sourceAlignment": "PASS",
+        "definition": "PASS",
+        "vietnamese": "PASS",
+        "grammar": "PASS",
+        "examples": "PASS",
+        "senseBoundary": "PASS",
+        "coverage": "PASS"
+      },
+      "explanationVi": "Định nghĩa bao quát hành động lựa chọn và phương án được chọn; ví dụ hai món ăn cùng ghi chú choice between options thể hiện rõ mẫu nghĩa được nguồn hỗ trợ.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:advertising:promotion-activity",
+      "effectiveContentHash": "ef78250e4b4e857266604095491bb6424e273ea02e54bf242efc2ae12a727387",
+      "reviewedContentHash": "ef78250e4b4e857266604095491bb6424e273ea02e54bf242efc2ae12a727387",
+      "reviewedRecordSha256": "800157dd8be799f15104b8c1865fd7fd441a47bd903b31d919e3dbc135f2a5b4",
+      "assessment": "PASS",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "sourceAlignment": "PASS",
+        "definition": "PASS",
+        "vietnamese": "PASS",
+        "grammar": "PASS",
+        "examples": "PASS",
+        "senseBoundary": "PASS",
+        "coverage": "PASS"
+      },
+      "explanationVi": "Nghĩa hoạt động quảng bá sản phẩm hoặc tổ chức phù hợp với nguồn; ví dụ thư viện trả tiền để quảng bá lớp học và ghi chú cách dùng danh từ không đếm được hợp lý.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:politician:public-political-figure",
+      "effectiveContentHash": "556011821be2ace76e25e3283a0bfd010ffcf0e1a184b5f7555bbb7b6fa22b9d",
+      "reviewedContentHash": "556011821be2ace76e25e3283a0bfd010ffcf0e1a184b5f7555bbb7b6fa22b9d",
+      "reviewedRecordSha256": "751556d897d18a8c625031f468ed87e20071b5ec4c16380954691495fd26111b",
+      "assessment": "PASS",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "sourceAlignment": "PASS",
+        "definition": "PASS",
+        "vietnamese": "PASS",
+        "grammar": "PASS",
+        "examples": "PASS",
+        "senseBoundary": "PASS",
+        "coverage": "PASS"
+      },
+      "explanationVi": "Định nghĩa mô tả người hoạt động trong chính trị và thường nắm giữ hoặc tranh cử chức vụ công; ví dụ gặp cử tri ở chợ phù hợp với nguồn.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:pirate:sea-robber",
+      "effectiveContentHash": "821286df285b2651f447ca62db7c79d767a8f0fca5b6828f60c056332ccde721",
+      "reviewedContentHash": "821286df285b2651f447ca62db7c79d767a8f0fca5b6828f60c056332ccde721",
+      "reviewedRecordSha256": "9079676140859090613f8bce9c79fae2f9220c0e8678f0e4ed381f080b9d8fb3",
+      "assessment": "PASS",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "sourceAlignment": "PASS",
+        "definition": "PASS",
+        "vietnamese": "PASS",
+        "grammar": "PASS",
+        "examples": "PASS",
+        "senseBoundary": "PASS",
+        "coverage": "PASS"
+      },
+      "explanationVi": "Định nghĩa nêu đúng người tấn công hoặc cướp tàu trên biển, ví dụ nhân vật cướp biển trong tiểu thuyết phù hợp và được phân biệt rõ với vi phạm bản quyền.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:pirate:copyright-infringer",
+      "effectiveContentHash": "8e39cd8660a9f1728cdd1838d8c1449391994def317223023e8ece4b9e599006",
+      "reviewedContentHash": "8e39cd8660a9f1728cdd1838d8c1449391994def317223023e8ece4b9e599006",
+      "reviewedRecordSha256": "6c6f60c50fc195854a98a2326df07f28575be0ca256583878460e263d22bc0aa",
+      "assessment": "FAIL",
+      "blockers": [
+        "Ví dụ không chứa từ pirate hoặc cụm software pirate nên không minh họa cách dùng của mục từ đang được dạy."
+      ],
+      "blocksPublication": true,
+      "dimensions": {
+        "sourceAlignment": "PASS",
+        "definition": "PASS",
+        "vietnamese": "PASS",
+        "grammar": "PASS",
+        "examples": "FAIL",
+        "senseBoundary": "PASS",
+        "coverage": "PASS"
+      },
+      "explanationVi": "Câu ví dụ nói về người bán phần mềm sao chép trái phép nhưng không dùng pirate hay software pirate, vì vậy người học không thấy từ mục tiêu được dùng trong câu; cần thay ví dụ rồi đánh giá lại.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:conclusion:reasoned-result",
+      "effectiveContentHash": "ce2cc1e786b66e937d5f875a5b64b169c7d9117bfa2be60042d5f31b5ffa674c",
+      "reviewedContentHash": "ce2cc1e786b66e937d5f875a5b64b169c7d9117bfa2be60042d5f31b5ffa674c",
+      "reviewedRecordSha256": "6967ea9192294b7d4de5511e1c35797b7db09038e76faff48f374be9ce3baa0d",
+      "assessment": "PASS",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "sourceAlignment": "PASS",
+        "definition": "PASS",
+        "vietnamese": "PASS",
+        "grammar": "PASS",
+        "examples": "PASS",
+        "senseBoundary": "PASS",
+        "coverage": "PASS"
+      },
+      "explanationVi": "Định nghĩa mô tả kết luận rút ra sau khi xem xét thông tin, ví dụ kỹ sư xem số đo rồi đi đến kết luận khác phù hợp và bản dịch chính xác.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:conclusion:final-part",
+      "effectiveContentHash": "a7bdbfc7c88d37fd90531d2d2a75cebe92b971502d5f97087140e0e47312ed8b",
+      "reviewedContentHash": "a7bdbfc7c88d37fd90531d2d2a75cebe92b971502d5f97087140e0e47312ed8b",
+      "reviewedRecordSha256": "1462fbdf917987488ff1ef7db5bf5d7d57d853fc84b3b1066badf785712da736",
+      "assessment": "PASS",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "sourceAlignment": "PASS",
+        "definition": "PASS",
+        "vietnamese": "PASS",
+        "grammar": "PASS",
+        "examples": "PASS",
+        "senseBoundary": "PASS",
+        "coverage": "PASS"
+      },
+      "explanationVi": "Định nghĩa tách nghĩa phần cuối khỏi kết quả suy luận; ví dụ phần kết của vở kịch và bản dịch khán giả chờ đến phần kết đều tự nhiên.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:tremendous:very-large",
+      "effectiveContentHash": "7c77dab12ff812ef2b34f8cf1c5595589f720efb5cce2a351197d76f92e8af96",
+      "reviewedContentHash": "7c77dab12ff812ef2b34f8cf1c5595589f720efb5cce2a351197d76f92e8af96",
+      "reviewedRecordSha256": "8ed423d96d27cba56468244f918d19abc7616d701c92aaaf608b7e2d3b6ff3b2",
+      "assessment": "PASS",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "sourceAlignment": "PASS",
+        "definition": "PASS",
+        "vietnamese": "PASS",
+        "grammar": "PASS",
+        "examples": "PASS",
+        "senseBoundary": "PASS",
+        "coverage": "PASS"
+      },
+      "explanationVi": "Định nghĩa nêu mức độ hoặc lượng rất lớn, ví dụ thiệt hại do bão minh họa đúng cường độ và nghĩa tiếng Việt khớp với nhóm nghĩa rất lớn trong nguồn.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:tremendous:excellent",
+      "effectiveContentHash": "39ebbeddc1268849450704becede13e17c35204a79c6ecad40a62b11438e9905",
+      "reviewedContentHash": "39ebbeddc1268849450704becede13e17c35204a79c6ecad40a62b11438e9905",
+      "reviewedRecordSha256": "d24387093b0c81564b9b41ec051784d1cd521ccbe6b6386db4c46a72ea205dd8",
+      "assessment": "PASS",
+      "blockers": [],
+      "blocksPublication": false,
+      "dimensions": {
+        "sourceAlignment": "PASS",
+        "definition": "PASS",
+        "vietnamese": "PASS",
+        "grammar": "PASS",
+        "examples": "PASS",
+        "senseBoundary": "PASS",
+        "coverage": "PASS"
+      },
+      "explanationVi": "Định nghĩa biểu đạt sắc thái rất tốt hoặc ấn tượng, ví dụ màn trình diễn tuyệt vời phù hợp với nghĩa khen ngợi được nguồn ghi nhận.",
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    }
+  ]
+}

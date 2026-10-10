@@ -1,0 +1,33 @@
+{
+  "checkpoint": 1,
+  "kind": "REVIEW_SCHEMA_ONLY_NORMALIZATION",
+  "mappings": [
+    {
+      "assessmentCounts": {
+        "PASS": 28,
+        "REVIEW": 4
+      },
+      "canonicalArtifact": "independent-review/micro-03.json",
+      "normalizedSha256": "b380a653ebddc35be308a051d087bcfaa505e57c9f219d982a5f4a1d68035ee1",
+      "onlyFieldChange": "rationaleVi -> explanationVi",
+      "originalSha256": "a717349c2cad6bd36588b793d3193b72de9bbc8121cb03abea1cbdb54ddd4444",
+      "preservedOriginal": "independent-review/prior-schema-original-micro-03.json",
+      "records": 32,
+      "source": "independent-review/micro-03.json"
+    },
+    {
+      "assessmentCounts": {
+        "PASS": 4
+      },
+      "canonicalArtifact": "independent-review/recheck-micro-03.json",
+      "normalizedSha256": "c1142358edc65c3fe567b72ab9b99f180a5c90c8386569977243d63e4893e170",
+      "onlyFieldChange": "rationaleVi -> explanationVi",
+      "originalSha256": "dcc62f251632fe9be552c31c9d11cf551f47185176382eaf780f87500d91eea6",
+      "preservedOriginal": "independent-review/prior-schema-original-recheck-micro-03.json",
+      "records": 4,
+      "source": "independent-review/recheck-micro-03.json"
+    }
+  ],
+  "phase": "2H.2L",
+  "reason": "Reviewer records used rationaleVi while the accepted adapter contract reads explanationVi. Preserve exact source artifacts and normalize only this Vietnamese-rationale key; all judgments, hashes, evidence, and other values remain identical."
+}

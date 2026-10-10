@@ -1,0 +1,838 @@
+{
+  "instruction": "Review the current content and linked evidence independently. Verify each correction resolves its exact finding and remains source-supported. Return one exact current hash per key, PASS/REVIEW/FAIL, blocksPublication, Vietnamese explanation >=70 chars, dimensions, missingSenseCandidates, unresolvedBoundaryItems. No content edits or other writes.",
+  "microBatch": 2,
+  "phase": "2H.2L",
+  "records": [
+    {
+      "priorIndependentFinding": {
+        "assessment": "REVIEW",
+        "blockers": [],
+        "blocksPublication": false,
+        "dimensions": {
+          "coverage": "PASS",
+          "definition": "REVIEW",
+          "examples": "PASS",
+          "grammar": "PASS",
+          "senseBoundary": "PASS",
+          "sourceAlignment": "PASS",
+          "vietnamese": "PASS"
+        },
+        "effectiveContentHash": "f6a6ccb7d612abcdb6104c3ca78240eb506a5968e50ca2bab996e90e55f0341d",
+        "explanationVi": "Ví dụ freely acknowledged và nghĩa thẳng thắn được nguồn hỗ trợ, nhưng định nghĩa gộp “willing” với “frank” có thể làm lẫn nghĩa sẵn lòng với nghĩa cởi mở; nên cân nhắc thu hẹp.",
+        "missingSenseCandidates": [],
+        "proposalKey": "EDITORIAL_2H2L:freely:openly-willingly",
+        "reviewedContentHash": "f6a6ccb7d612abcdb6104c3ca78240eb506a5968e50ca2bab996e90e55f0341d",
+        "reviewedRecordSha256": "9ad5764ad9f36e39a5188599ae64b6addf8cda5a06c52da077850eccc8e4753e",
+        "unresolvedBoundaryItems": [
+          "Định nghĩa gộp sắc thái sẵn lòng và thẳng thắn, trong khi ví dụ minh họa chủ yếu nghĩa thẳng thắn."
+        ]
+      },
+      "record": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:freely",
+        "canonicalIdsAllocated": 0,
+        "content": {
+          "definitionEn": "In an open, frank way, without hiding what one thinks or knows.",
+          "examples": [
+            {
+              "en": "After the results were released, the director freely acknowledged the delay.",
+              "exampleKey": "EDITORIAL_2H2L:freely:openly-willingly:example-1",
+              "vi": "Sau khi kết quả được công bố, giám đốc thẳng thắn thừa nhận sự chậm trễ."
+            }
+          ],
+          "grammarNotesEn": "Often modifies verbs such as admit, acknowledge, or discuss; this sense concerns openness rather than lack of control.",
+          "meaningVi": "một cách cởi mở, thẳng thắn",
+          "senseLabelEn": "Openly and willingly"
+        },
+        "contentStatus": "DRAFT",
+        "displayFormProposal": "freely",
+        "editorialAuthorship": {
+          "humanAuthor": null,
+          "humanReviewer": null,
+          "kind": "AI_GENERATED_EDITORIAL_DRAFT",
+          "process": "Original 2H.2L manuscript composed from linked source evidence"
+        },
+        "effectiveContentHash": "9ef8dd4b12e0effb1f6944a68ee722fb5f3ab4442dca8c91287b4389c409764b",
+        "fieldHashes": {
+          "definitionEn": "5b4d3fa54a479061e495da0a6ad20add9c1661ff32380eb6e00fb43c6160cc15",
+          "examples": "84da373aa786fc23886abaddf3eabb85b03c5e7e10bf234290e94728cc84fcd8",
+          "grammarNotesEn": "7c2c38327ecad3839e4321dde95c01fa2df33138d44b3a6708a2856d1719f115",
+          "meaningVi": "e74053c824330d8e314f2233246785afafda80cf3c167273e520f965cba2eaa8",
+          "senseLabelEn": "3e5f58de2eb6ad6d3c0e53dde85f1e4fa616b49d594fb310748ec5b9df335373"
+        },
+        "formalApproval": false,
+        "headword": "freely",
+        "partOfSpeech": "ADVERB",
+        "proposalKey": "EDITORIAL_2H2L:freely:openly-willingly",
+        "rights": "UNKNOWN_REVIEW_REQUIRED",
+        "riskFlags": [
+          "EXACT_HEADWORD_SINGLE_RECORD_EACH",
+          "NORMALIZED_HEADWORD_MATCH",
+          "POSSIBLE_POLYSEMY",
+          "HUMAN_SENSE_REVIEW_REQUIRED",
+          "EXAMPLE_VARIANT_REVIEW"
+        ],
+        "sourceEvidence": [
+          {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "B2"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "ADVERB"
+            ],
+            "rawContentPointer": "/records/3429/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/3429/rawHeadword",
+            "rawPosEvidencePointer": "/records/3429/sourcePosRaw",
+            "recordEvidenceSha256": "a65fda06b0418bab39f507fd3ff81d344179fa181c55dec41dbd4afae53d2d12",
+            "recordIndex": 3429,
+            "sourceNoteGuid": "C:ZMRVH(Ec",
+            "sourceRecordId": "1788223609468",
+            "structuredOxfordSenseGroupOrdinals": [
+              0,
+              1
+            ]
+          },
+          {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::B2",
+                "value": "B2"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "B2"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "ADVERB"
+            ],
+            "rawContentPointer": "/records/3942/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/3942/rawHeadword",
+            "rawPosEvidencePointer": "/records/3942/sourcePosRaw",
+            "recordEvidenceSha256": "825aaff4854d73524dd468b6c873f31e9563ef68838e04170d19b39f9f8ae7d0",
+            "recordIndex": 3942,
+            "sourceNoteGuid": "P,Q-iF.2Q|",
+            "sourceRecordId": "1646317635724",
+            "structuredOxfordSenseGroupOrdinals": []
+          }
+        ],
+        "sourceSenseCoverage": "Selected supported meanings only; no claim of exhaustive dictionary coverage"
+      },
+      "revisionRecords": [
+        {
+          "after": "In an open, frank way, without hiding what one thinks or knows.",
+          "afterContentHash": "9ef8dd4b12e0effb1f6944a68ee722fb5f3ab4442dca8c91287b4389c409764b",
+          "before": "In a willing or frank way, without hiding what one thinks or knows.",
+          "beforeContentHash": "f6a6ccb7d612abcdb6104c3ca78240eb506a5968e50ca2bab996e90e55f0341d",
+          "field": "definitionEn",
+          "proposalKey": "EDITORIAL_2H2L:freely:openly-willingly",
+          "reasonVi": "Thu hẹp định nghĩa vào sắc thái thẳng thắn/cởi mở được minh họa bởi freely acknowledged, tránh gộp với nghĩa sẵn lòng.",
+          "reviewFindingSource": "independent-review/micro-02.json"
+        }
+      ],
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "Visitors can move freely around the public areas.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Khách tham quan có thể đi lại tự do trong các khu vực công cộng.",
+                  "focus_en": [
+                    "freely"
+                  ],
+                  "focus_vi": [
+                    "tự do"
+                  ]
+                },
+                {
+                  "example_en": "Students may freely borrow books from this shelf.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Học sinh có thể tự do mượn sách ở kệ này.",
+                  "focus_en": [
+                    "freely"
+                  ],
+                  "focus_vi": [
+                    "tự do"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 0,
+              "sourcePosRaw": "adv.",
+              "sourceVietnameseMeaningRaw": "tự do",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            },
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "She freely admits that she made a mistake.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Cô ấy thẳng thắn thừa nhận mình đã mắc lỗi.",
+                  "focus_en": [
+                    "freely"
+                  ],
+                  "focus_vi": [
+                    "thẳng thắn"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 1,
+              "sourcePosRaw": "adv.",
+              "sourceVietnameseMeaningRaw": "thẳng thắn, cởi mở",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            }
+          ],
+          "reference": {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "B2"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "ADVERB"
+            ],
+            "rawContentPointer": "/records/3429/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/3429/rawHeadword",
+            "rawPosEvidencePointer": "/records/3429/sourcePosRaw",
+            "recordEvidenceSha256": "a65fda06b0418bab39f507fd3ff81d344179fa181c55dec41dbd4afae53d2d12",
+            "recordIndex": 3429,
+            "sourceNoteGuid": "C:ZMRVH(Ec",
+            "sourceRecordId": "1788223609468",
+            "structuredOxfordSenseGroupOrdinals": [
+              0,
+              1
+            ]
+          },
+          "sourceFields": {
+            "CEFR": "B2",
+            "Example": "Visitors can move <mark class=\"v-target\">freely</mark> around the public areas.<br>Students may <mark class=\"v-target\">freely</mark> borrow books from this shelf.<br>She <mark class=\"v-target\">freely</mark> admits that she made a mistake.",
+            "Example Data": "[{\"pos\":\"adv.\",\"meaning_vi\":\"tự do\",\"examples\":[{\"example_en\":\"Visitors can move freely around the public areas.\",\"example_vi\":\"Khách tham quan có thể đi lại tự do trong các khu vực công cộng.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"freely\"],\"focus_vi\":[\"tự do\"]},{\"example_en\":\"Students may freely borrow books from this shelf.\",\"example_vi\":\"Học sinh có thể tự do mượn sách ở kệ này.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"freely\"],\"focus_vi\":[\"tự do\"]}]},{\"pos\":\"adv.\",\"meaning_vi\":\"thẳng thắn, cởi mở\",\"examples\":[{\"example_en\":\"She freely admits that she made a mistake.\",\"example_vi\":\"Cô ấy thẳng thắn thừa nhận mình đã mắc lỗi.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"freely\"],\"focus_vi\":[\"thẳng thắn\"]}]}]",
+            "Example EN 1": "Visitors can move freely around the public areas.",
+            "Example EN 2": "Students may freely borrow books from this shelf.",
+            "Example EN 3": "She freely admits that she made a mistake.",
+            "Example EN 4": "",
+            "Example EN 5": "",
+            "Example EN 6": "",
+            "Example EN 7": "",
+            "Frequency": "3591",
+            "Irregular Forms": "[]",
+            "Oxford List": "Oxford 5000",
+            "Part of Speech": "adverb",
+            "Phonetic": "/ˈfriːli/",
+            "Pronunciation Data": "[{\"locale\":\"UK\",\"ipa\":[\"/ˈfriːli/\"],\"audio_keys\":[\"uk_pron/f/fre/freel/freely__gb_1\"]},{\"locale\":\"US\",\"ipa\":[\"/ˈfriːli/\"],\"audio_keys\":[\"us_pron/f/fre/freel/freely__us_1\"]}]",
+            "Sound_uk": "",
+            "Sound_us": "",
+            "Study Order": "3430",
+            "Từ loại": "trạng từ",
+            "Variant Data": "[]",
+            "Vietnamese": "tự do; thẳng thắn, cởi mở",
+            "Word": "freely"
+          }
+        },
+        {
+          "candidateSourceSenseGroups": [],
+          "reference": {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::B2",
+                "value": "B2"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "B2"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "ADVERB"
+            ],
+            "rawContentPointer": "/records/3942/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/3942/rawHeadword",
+            "rawPosEvidencePointer": "/records/3942/sourcePosRaw",
+            "recordEvidenceSha256": "825aaff4854d73524dd468b6c873f31e9563ef68838e04170d19b39f9f8ae7d0",
+            "recordIndex": 3942,
+            "sourceNoteGuid": "P,Q-iF.2Q|",
+            "sourceRecordId": "1646317635724",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          "sourceFields": {
+            "Example": "the country’s first <b>freely </b>elected president",
+            "IPA": "/ˈfriːli/",
+            "Image": "<img src=\"paste-7674712ab891292907bd23a5b126f19e0813e1a7.jpg\">",
+            "Meaning": "without anyone trying to prevent or control something",
+            "PoS": "adv",
+            "Sound": "[sound:freely adverb - Definition, pictures, pronunciation and usag.mp3]",
+            "Sound_Example": " [sound:azure-924a1887-f5f27576-d9d02349-a72ab3c1-bb1a9f04.mp3]",
+            "Word": "freely",
+            "noteid": "1293"
+          }
+        }
+      ]
+    },
+    {
+      "priorIndependentFinding": {
+        "assessment": "REVIEW",
+        "blockers": [],
+        "blocksPublication": false,
+        "dimensions": {
+          "coverage": "PASS",
+          "definition": "PASS",
+          "examples": "PASS",
+          "grammar": "REVIEW",
+          "senseBoundary": "PASS",
+          "sourceAlignment": "PASS",
+          "vietnamese": "PASS"
+        },
+        "effectiveContentHash": "fd5c1e5d48ff4cea02fa65ab926906eb492a5d4773df0a658ee788bfe6aad0ca",
+        "explanationVi": "Ghi chú ngữ pháp có cụm “modified by political, economic, or social” nhưng thiếu danh từ sau chuỗi tính từ; nên sửa thành một cấu trúc hoàn chỉnh, dù phần định nghĩa và nghĩa tiếng Việt vẫn khớp nguồn.",
+        "missingSenseCandidates": [],
+        "proposalKey": "EDITORIAL_2H2L:ideology:belief-system",
+        "reviewedContentHash": "fd5c1e5d48ff4cea02fa65ab926906eb492a5d4773df0a658ee788bfe6aad0ca",
+        "reviewedRecordSha256": "ae9ce10037f793b13c1ffd430b8c7fe8ecf250761233899fd91b3a1f04f26a6a",
+        "unresolvedBoundaryItems": [
+          "Cụm tính từ ở cuối ghi chú đang thiếu danh từ làm bổ nghĩa nên câu chưa hoàn chỉnh."
+        ]
+      },
+      "record": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:ideology",
+        "canonicalIdsAllocated": 0,
+        "content": {
+          "definitionEn": "A connected set of beliefs about how society or politics should be organized.",
+          "examples": [
+            {
+              "en": "The students compared two ideologies while studying the country's history.",
+              "exampleKey": "EDITORIAL_2H2L:ideology:belief-system:example-1",
+              "vi": "Các sinh viên so sánh hai hệ tư tưởng khi tìm hiểu lịch sử đất nước."
+            }
+          ],
+          "grammarNotesEn": "Countable; modifiers such as political, economic, or social specify the kind of ideology.",
+          "meaningVi": "hệ tư tưởng, hệ thống niềm tin về chính trị hoặc xã hội",
+          "senseLabelEn": "System of social or political beliefs"
+        },
+        "contentStatus": "DRAFT",
+        "displayFormProposal": "ideology",
+        "editorialAuthorship": {
+          "humanAuthor": null,
+          "humanReviewer": null,
+          "kind": "AI_GENERATED_EDITORIAL_DRAFT",
+          "process": "Original 2H.2L manuscript composed from linked source evidence"
+        },
+        "effectiveContentHash": "f4dcff3176c244fbefc07c2048bd58653e88d12959bea7f1b46424c8a15444af",
+        "fieldHashes": {
+          "definitionEn": "462fa68a9235ff6eafe630ab3c960da5662c62c0980161b4c736fc7d036662a5",
+          "examples": "764b8c0eeeaf8749d691b453cee06332c12e9b95e6abb29bf119e0d9b6b06c95",
+          "grammarNotesEn": "3e434a1a7cd88b7940d31839053a5f75e2281c7ec68d55909f6be518bd477932",
+          "meaningVi": "c75cf8de9f8a816e4a6f983dfd3602021b4c9c5d3cc54168a168b2a2663ff23a",
+          "senseLabelEn": "760f448d130522643901024e85557e0fbdef070d835bc2818160c6334e6ec76e"
+        },
+        "formalApproval": false,
+        "headword": "ideology",
+        "partOfSpeech": "NOUN",
+        "proposalKey": "EDITORIAL_2H2L:ideology:belief-system",
+        "rights": "UNKNOWN_REVIEW_REQUIRED",
+        "riskFlags": [
+          "EXACT_HEADWORD_SINGLE_RECORD_EACH",
+          "NORMALIZED_HEADWORD_MATCH",
+          "HUMAN_SENSE_REVIEW_REQUIRED",
+          "EXAMPLE_VARIANT_REVIEW",
+          "VIETNAMESE_MEANING_VARIANT_REVIEW"
+        ],
+        "sourceEvidence": [
+          {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "C1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/4291/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/4291/rawHeadword",
+            "rawPosEvidencePointer": "/records/4291/sourcePosRaw",
+            "recordEvidenceSha256": "ce98212d7659c0f73a8c43feb8f5299bade32377b015042f1c38cd7b8e18c2ee",
+            "recordIndex": 4291,
+            "sourceNoteGuid": "qR<P;ws)ef",
+            "sourceRecordId": "1788223610330",
+            "structuredOxfordSenseGroupOrdinals": [
+              0
+            ]
+          },
+          {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::C1",
+                "value": "C1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "C1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/2258/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/2258/rawHeadword",
+            "rawPosEvidencePointer": "/records/2258/sourcePosRaw",
+            "recordEvidenceSha256": "358c196fad1d4b28c7793a542efd4cac04819f9e62a9ac21bf428bf288df9e7e",
+            "recordIndex": 2258,
+            "sourceNoteGuid": "Pp{j0bA|93",
+            "sourceRecordId": "1559931009086",
+            "structuredOxfordSenseGroupOrdinals": []
+          }
+        ],
+        "sourceSenseCoverage": "Selected supported meanings only; no claim of exhaustive dictionary coverage"
+      },
+      "revisionRecords": [
+        {
+          "after": "Countable; modifiers such as political, economic, or social specify the kind of ideology.",
+          "afterContentHash": "f4dcff3176c244fbefc07c2048bd58653e88d12959bea7f1b46424c8a15444af",
+          "before": "Countable for a distinct system of beliefs; often modified by political, economic, or social.",
+          "beforeContentHash": "fd5c1e5d48ff4cea02fa65ab926906eb492a5d4773df0a658ee788bfe6aad0ca",
+          "field": "grammarNotesEn",
+          "proposalKey": "EDITORIAL_2H2L:ideology:belief-system",
+          "reasonVi": "Hoàn chỉnh ví dụ ngữ pháp bằng danh từ được bổ nghĩa và giữ cách ghi chú dùng từ có thể đếm được.",
+          "reviewFindingSource": "independent-review/micro-02.json"
+        }
+      ],
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "The movement rejects the dominant political ideology.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Phong trào bác bỏ hệ tư tưởng chính trị đang chi phối.",
+                  "focus_en": [
+                    "ideology"
+                  ],
+                  "focus_vi": [
+                    "hệ tư tưởng"
+                  ]
+                },
+                {
+                  "example_en": "The course compares the economic ideology of several historical movements.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Khóa học so sánh hệ tư tưởng kinh tế của một số phong trào trong lịch sử.",
+                  "focus_en": [
+                    "ideology"
+                  ],
+                  "focus_vi": [
+                    "hệ tư tưởng"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 0,
+              "sourcePosRaw": "n.",
+              "sourceVietnameseMeaningRaw": "hệ tư tưởng",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            }
+          ],
+          "reference": {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "C1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/4291/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/4291/rawHeadword",
+            "rawPosEvidencePointer": "/records/4291/sourcePosRaw",
+            "recordEvidenceSha256": "ce98212d7659c0f73a8c43feb8f5299bade32377b015042f1c38cd7b8e18c2ee",
+            "recordIndex": 4291,
+            "sourceNoteGuid": "qR<P;ws)ef",
+            "sourceRecordId": "1788223610330",
+            "structuredOxfordSenseGroupOrdinals": [
+              0
+            ]
+          },
+          "sourceFields": {
+            "CEFR": "C1",
+            "Example": "The movement rejects the dominant political <mark class=\"v-target\">ideology</mark>.<br>The course compares the economic <mark class=\"v-target\">ideology</mark> of several historical movements.",
+            "Example Data": "[{\"pos\":\"n.\",\"meaning_vi\":\"hệ tư tưởng\",\"examples\":[{\"example_en\":\"The movement rejects the dominant political ideology.\",\"example_vi\":\"Phong trào bác bỏ hệ tư tưởng chính trị đang chi phối.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"ideology\"],\"focus_vi\":[\"hệ tư tưởng\"]},{\"example_en\":\"The course compares the economic ideology of several historical movements.\",\"example_vi\":\"Khóa học so sánh hệ tư tưởng kinh tế của một số phong trào trong lịch sử.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"ideology\"],\"focus_vi\":[\"hệ tư tưởng\"]}]}]",
+            "Example EN 1": "The movement rejects the dominant political ideology.",
+            "Example EN 2": "The course compares the economic ideology of several historical movements.",
+            "Example EN 3": "",
+            "Example EN 4": "",
+            "Example EN 5": "",
+            "Example EN 6": "",
+            "Example EN 7": "",
+            "Frequency": "3794",
+            "Irregular Forms": "[]",
+            "Oxford List": "Oxford 5000",
+            "Part of Speech": "noun",
+            "Phonetic": "/ˌaɪ.diːˈɒl.ə.d͡ʒiː/",
+            "Pronunciation Data": "[{\"locale\":\"UK\",\"ipa\":[\"/ˌaɪdiˈɒlədʒi/\"],\"audio_keys\":[\"uk_pron/i/ide/ideol/ideology__gb_2\"]},{\"locale\":\"US\",\"ipa\":[\"/ˌaɪdiˈɑːlədʒi/\"],\"audio_keys\":[\"us_pron/i/ide/ideol/ideology__us_1_rr\"]}]",
+            "Sound_uk": "",
+            "Sound_us": "",
+            "Study Order": "4292",
+            "Từ loại": "danh từ",
+            "Variant Data": "[]",
+            "Vietnamese": "hệ tư tưởng",
+            "Word": "ideology"
+          }
+        },
+        {
+          "candidateSourceSenseGroups": [],
+          "reference": {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::C1",
+                "value": "C1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "C1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/2258/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/2258/rawHeadword",
+            "rawPosEvidencePointer": "/records/2258/sourcePosRaw",
+            "recordEvidenceSha256": "358c196fad1d4b28c7793a542efd4cac04819f9e62a9ac21bf428bf288df9e7e",
+            "recordIndex": 2258,
+            "sourceNoteGuid": "Pp{j0bA|93",
+            "sourceRecordId": "1559931009086",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          "sourceFields": {
+            "Example": "Marxist <b>ideology</b>",
+            "IPA": "/ˌaɪdiˈɑːlədʒi/",
+            "Image": "<img src=\"paste-d63bb18fd3a095d6887dc27141e2b8f6833e6211.jpg\">",
+            "Meaning": "An <i>ideology</i> is a system of belief.<br><b>hệ tư tưởng, ý thức hệ</b>",
+            "PoS": "noun",
+            "Sound": "[sound:ideology__us_1_r.mp3]",
+            "Sound_Example": "[sound:googletts-e8db87ce-603d8b4c-44750f8a-bbd73bbc-4a07fc28.mp3]",
+            "Word": "ideology",
+            "noteid": "1559931009086"
+          }
+        }
+      ]
+    },
+    {
+      "priorIndependentFinding": {
+        "assessment": "FAIL",
+        "blockers": [
+          "Ví dụ không chứa từ pirate hoặc cụm software pirate nên không minh họa cách dùng của mục từ đang được dạy."
+        ],
+        "blocksPublication": true,
+        "dimensions": {
+          "coverage": "PASS",
+          "definition": "PASS",
+          "examples": "FAIL",
+          "grammar": "PASS",
+          "senseBoundary": "PASS",
+          "sourceAlignment": "PASS",
+          "vietnamese": "PASS"
+        },
+        "effectiveContentHash": "8e39cd8660a9f1728cdd1838d8c1449391994def317223023e8ece4b9e599006",
+        "explanationVi": "Câu ví dụ nói về người bán phần mềm sao chép trái phép nhưng không dùng pirate hay software pirate, vì vậy người học không thấy từ mục tiêu được dùng trong câu; cần thay ví dụ rồi đánh giá lại.",
+        "missingSenseCandidates": [],
+        "proposalKey": "EDITORIAL_2H2L:pirate:copyright-infringer",
+        "reviewedContentHash": "8e39cd8660a9f1728cdd1838d8c1449391994def317223023e8ece4b9e599006",
+        "reviewedRecordSha256": "6c6f60c50fc195854a98a2326df07f28575be0ca256583878460e263d22bc0aa",
+        "unresolvedBoundaryItems": []
+      },
+      "record": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:pirate",
+        "canonicalIdsAllocated": 0,
+        "content": {
+          "definitionEn": "A person who illegally copies or distributes software or other protected material.",
+          "examples": [
+            {
+              "en": "Investigators identified the software pirate behind a site offering unauthorized programs.",
+              "exampleKey": "EDITORIAL_2H2L:pirate:copyright-infringer:example-1",
+              "vi": "Các điều tra viên xác định được kẻ vi phạm bản quyền phần mềm đứng sau trang web rao bán các chương trình trái phép."
+            }
+          ],
+          "grammarNotesEn": "Countable; software pirate refers to copyright infringement, not robbery at sea.",
+          "meaningVi": "người sao chép hoặc phân phối nội dung có bản quyền trái phép",
+          "senseLabelEn": "Person who copies protected material"
+        },
+        "contentStatus": "DRAFT",
+        "displayFormProposal": "pirate",
+        "editorialAuthorship": {
+          "humanAuthor": null,
+          "humanReviewer": null,
+          "kind": "AI_GENERATED_EDITORIAL_DRAFT",
+          "process": "Original 2H.2L manuscript composed from linked source evidence"
+        },
+        "effectiveContentHash": "1de759af2f03fb9e9a39e9e4e3ed039b2a376ac7915b5f22c889993a38f99b43",
+        "fieldHashes": {
+          "definitionEn": "aa3fe94a0ef5eb12ad6febb289014ff8d36875081ca8df6776f2dc95986f4837",
+          "examples": "2d1d7d5264b0175bb6488e3da94a3cc2b4701d07a46a9d327dc59d5c3c70357f",
+          "grammarNotesEn": "056965e5b14467a705db962dc74c5efe44844e6e5a1c8b31f08fbb511a8a8d99",
+          "meaningVi": "8462e9892398f0e5060bd0899fba76aa2ff76e3cd3015fd6c9f9655d5231eccc",
+          "senseLabelEn": "f749479e7b50156f6d2b439d1f6caf2c4730fa0cfe778e1d06f75f357ff23f78"
+        },
+        "formalApproval": false,
+        "headword": "pirate",
+        "partOfSpeech": "NOUN",
+        "proposalKey": "EDITORIAL_2H2L:pirate:copyright-infringer",
+        "rights": "UNKNOWN_REVIEW_REQUIRED",
+        "riskFlags": [
+          "EXACT_HEADWORD_SINGLE_RECORD_EACH",
+          "NORMALIZED_HEADWORD_MATCH",
+          "POSSIBLE_POLYSEMY",
+          "HUMAN_SENSE_REVIEW_REQUIRED",
+          "EXAMPLE_VARIANT_REVIEW"
+        ],
+        "sourceEvidence": [
+          {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "C1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/4399/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/4399/rawHeadword",
+            "rawPosEvidencePointer": "/records/4399/sourcePosRaw",
+            "recordEvidenceSha256": "b60ef3e4232c61e4ca4cb5247882c1b6cb7747a80a2b5699b84b50f19fa31a2f",
+            "recordIndex": 4399,
+            "sourceNoteGuid": "Uj_!,Y0WSI",
+            "sourceRecordId": "1788223610438",
+            "structuredOxfordSenseGroupOrdinals": [
+              0,
+              1
+            ]
+          },
+          {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::C1",
+                "value": "C1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "C1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/1255/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/1255/rawHeadword",
+            "rawPosEvidencePointer": "/records/1255/sourcePosRaw",
+            "recordEvidenceSha256": "690f2bd6ff81903488c3b2aeb73ac1279665692db6190a51ed02d2aebfb7ffdf",
+            "recordIndex": 1255,
+            "sourceNoteGuid": "EaP0La`e<+",
+            "sourceRecordId": "1559931008049",
+            "structuredOxfordSenseGroupOrdinals": []
+          }
+        ],
+        "sourceSenseCoverage": "Selected supported meanings only; no claim of exhaustive dictionary coverage"
+      },
+      "revisionRecords": [
+        {
+          "after": "Investigators identified the software pirate behind a site offering unauthorized programs.",
+          "afterContentHash": "d87807636557ae8aa52a59f7f793a62b93c5e1ed625b16cc658158baf41eddd4",
+          "before": "An online seller earned money by offering software copies without permission.",
+          "beforeContentHash": "8e39cd8660a9f1728cdd1838d8c1449391994def317223023e8ece4b9e599006",
+          "field": "exampleEn",
+          "proposalKey": "EDITORIAL_2H2L:pirate:copyright-infringer",
+          "reasonVi": "Dùng trực tiếp headword software pirate trong một câu ví dụ nguyên bản để người học thấy đúng cách dùng của mục từ.",
+          "reviewFindingSource": "independent-review/micro-02.json"
+        },
+        {
+          "after": "Các điều tra viên xác định được kẻ vi phạm bản quyền phần mềm đứng sau trang web rao bán các chương trình trái phép.",
+          "afterContentHash": "1de759af2f03fb9e9a39e9e4e3ed039b2a376ac7915b5f22c889993a38f99b43",
+          "before": "Một người bán hàng qua mạng kiếm tiền bằng cách cung cấp phần mềm sao chép trái phép.",
+          "beforeContentHash": "d87807636557ae8aa52a59f7f793a62b93c5e1ed625b16cc658158baf41eddd4",
+          "field": "exampleVi",
+          "proposalKey": "EDITORIAL_2H2L:pirate:copyright-infringer",
+          "reasonVi": "Bản dịch nêu người vi phạm và hành vi tương ứng với câu tiếng Anh mới.",
+          "reviewFindingSource": "independent-review/micro-02.json"
+        }
+      ],
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "The museum displays weapons once used by pirates.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Bảo tàng trưng bày vũ khí từng được cướp biển sử dụng.",
+                  "focus_en": [
+                    "pirates"
+                  ],
+                  "focus_vi": [
+                    "cướp biển"
+                  ]
+                },
+                {
+                  "example_en": "The children's story follows a pirate searching for a hidden island.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Câu chuyện thiếu nhi kể về một tên cướp biển đi tìm hòn đảo bí mật.",
+                  "focus_en": [
+                    "pirate"
+                  ],
+                  "focus_vi": [
+                    "cướp biển"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 0,
+              "sourcePosRaw": "n.",
+              "sourceVietnameseMeaningRaw": "cướp biển",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            },
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "Software pirates sell illegal copies of programs.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Những kẻ vi phạm bản quyền phần mềm bán các bản sao chương trình trái phép.",
+                  "focus_en": [
+                    "pirates"
+                  ],
+                  "focus_vi": [
+                    "kẻ vi phạm bản quyền"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 1,
+              "sourcePosRaw": "n.",
+              "sourceVietnameseMeaningRaw": "kẻ vi phạm bản quyền",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            }
+          ],
+          "reference": {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "C1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/4399/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/4399/rawHeadword",
+            "rawPosEvidencePointer": "/records/4399/sourcePosRaw",
+            "recordEvidenceSha256": "b60ef3e4232c61e4ca4cb5247882c1b6cb7747a80a2b5699b84b50f19fa31a2f",
+            "recordIndex": 4399,
+            "sourceNoteGuid": "Uj_!,Y0WSI",
+            "sourceRecordId": "1788223610438",
+            "structuredOxfordSenseGroupOrdinals": [
+              0,
+              1
+            ]
+          },
+          "sourceFields": {
+            "CEFR": "C1",
+            "Example": "The museum displays weapons once used by <mark class=\"v-target\">pirates</mark>.<br>The children's story follows a <mark class=\"v-target\">pirate</mark> searching for a hidden island.<br>Software <mark class=\"v-target\">pirates</mark> sell illegal copies of programs.",
+            "Example Data": "[{\"pos\":\"n.\",\"meaning_vi\":\"cướp biển\",\"examples\":[{\"example_en\":\"The museum displays weapons once used by pirates.\",\"example_vi\":\"Bảo tàng trưng bày vũ khí từng được cướp biển sử dụng.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"pirates\"],\"focus_vi\":[\"cướp biển\"]},{\"example_en\":\"The children's story follows a pirate searching for a hidden island.\",\"example_vi\":\"Câu chuyện thiếu nhi kể về một tên cướp biển đi tìm hòn đảo bí mật.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"pirate\"],\"focus_vi\":[\"cướp biển\"]}]},{\"pos\":\"n.\",\"meaning_vi\":\"kẻ vi phạm bản quyền\",\"examples\":[{\"example_en\":\"Software pirates sell illegal copies of programs.\",\"example_vi\":\"Những kẻ vi phạm bản quyền phần mềm bán các bản sao chương trình trái phép.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"pirates\"],\"focus_vi\":[\"kẻ vi phạm bản quyền\"]}]}]",
+            "Example EN 1": "The museum displays weapons once used by pirates.",
+            "Example EN 2": "The children's story follows a pirate searching for a hidden island.",
+            "Example EN 3": "Software pirates sell illegal copies of programs.",
+            "Example EN 4": "",
+            "Example EN 5": "",
+            "Example EN 6": "",
+            "Example EN 7": "",
+            "Frequency": "4006",
+            "Irregular Forms": "[]",
+            "Oxford List": "Oxford 5000",
+            "Part of Speech": "noun",
+            "Phonetic": "/ˈpaɪɹət/",
+            "Pronunciation Data": "[{\"locale\":\"UK\",\"ipa\":[\"/ˈpaɪrət/\"],\"audio_keys\":[\"uk_pron/p/pir/pirat/pirate__gb_2\"]},{\"locale\":\"US\",\"ipa\":[\"/ˈpaɪrət/\"],\"audio_keys\":[\"us_pron/p/pir/pirat/pirate__us_1\"]}]",
+            "Sound_uk": "",
+            "Sound_us": "",
+            "Study Order": "4400",
+            "Từ loại": "danh từ",
+            "Variant Data": "[]",
+            "Vietnamese": "cướp biển; kẻ vi phạm bản quyền",
+            "Word": "pirate"
+          }
+        },
+        {
+          "candidateSourceSenseGroups": [],
+          "reference": {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::C1",
+                "value": "C1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "C1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/1255/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/1255/rawHeadword",
+            "rawPosEvidencePointer": "/records/1255/sourcePosRaw",
+            "recordEvidenceSha256": "690f2bd6ff81903488c3b2aeb73ac1279665692db6190a51ed02d2aebfb7ffdf",
+            "recordIndex": 1255,
+            "sourceNoteGuid": "EaP0La`e<+",
+            "sourceRecordId": "1559931008049",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          "sourceFields": {
+            "Example": "<b>Pirates</b> are very scary characters.",
+            "IPA": "/ˈpaɪrət/",
+            "Image": "<img src=\"05_1291.jpg\" />",
+            "Meaning": "A <i>pirate</i> is a sailor who steals things from other boats.<br><b>cướp biển</b>",
+            "PoS": "noun",
+            "Sound": "[sound:oxford-c5ed9b56-86630d8a-0a434998-99cac443-2360f03e.mp3]",
+            "Sound_Example": "[sound:googletts-de4cb24e-308a5cc9-12724815-9fc88fb6-7daf0d90.mp3]",
+            "Word": "pirate",
+            "noteid": "1559931008049"
+          }
+        }
+      ]
+    }
+  ],
+  "reviewMode": "INDEPENDENT_RECHECK_CURRENT_EFFECTIVE_CONTENT"
+}
