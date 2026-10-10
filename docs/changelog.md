@@ -1,5 +1,17 @@
 # VocabFlow Changelog
 
+## 2026-10-10 — Phase 2H.2J-R4P.3 published integrity verifier
+
+- Add a standalone verifier, 26 focused negative/positive tests and a complete
+  488-pin evidence inventory. Exactly two owner-authorized EOL representations
+  retain their distinct raw SHA256 pins; all other parent files match exactly.
+- Verify Batch 04 manifest/artifacts/sources, ancestry and persisted overlay
+  lineage without changing historical builders, source bytes or fingerprints.
+  Zero-write replay is deterministic under two seeds; typecheck and lint pass.
+- Original R4 replay retains its obsolete HEAD assertion. Independent builder
+  regeneration is not reestablished. Content stays DRAFT; no database, release,
+  Production or Batch 05 operation.
+
 ## 2026-10-10 — Phase 2H.2J-R4 targeted DRAFT remediation Batch 04
 
 - Continue from Batch 03; reconcile 141 proposals, select 29 candidates across

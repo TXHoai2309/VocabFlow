@@ -7059,3 +7059,29 @@ owner-approved baseline exception. See
   default-code-page bulk-500 decode errors and v2.2.0 release-tree diagnostic
   remain recorded. No database, Production, approval, canonical-ID, or release
   operation occurred. Preserve the two existing R3 `.pyc` baseline exceptions.
+
+### Phase 2H.2J-R4P.3 — published Batch 04 integrity
+
+- Add an independent read-only verifier and 26 focused mutation tests; keep all
+  historical builders and checkpoints unchanged. Reconcile 1,031 references into
+  488 unique pins: 486 exact matches and exactly two owner-authorized EOL
+  representations. Retain distinct Git-content and accepted working hashes.
+- Verify the accepted Batch 04 fingerprint, 16 artifact hashes, 11 source hashes,
+  Git ancestry, all four persisted overlays and provenance, 1,563 Senses, 1,020
+  authored groups, 40 corrections/40 revised Senses, 141 original field proposals
+  and eight boundary proposals. Rights remain UNKNOWN_REVIEW_REQUIRED.
+- Newly executed: focused tests 26/26; zero-write --check under seeds 20261010
+  and 271828 with identical verification fingerprint
+  bf902b322460203c3ac8d1c7bcc404154c22672977a7063272b6b711b00d00b8;
+  SHA256/status snapshots of all tracked and untracked files unchanged by replay.
+  Seven TypeScript projects passed tsc -p --noEmit --incremental false
+  --composite false; pnpm lint passed (existing Node engine version warning).
+- Original R4 --check was run and stopped at its obsolete prepublication HEAD
+  assertion. Postpublication integrity passes with two explicit EOL equivalences;
+  independent R4 builder regeneration is NOT_INDEPENDENTLY_REESTABLISHED.
+  Historical diagnostics, not rerun here: bulk-500 UTF-8 35/35; Windows default
+  two errors; Hybrid v2.2.0 4/5; Hybrid v2.2.1 8/8.
+- Evidence: vocabflow-dataset/workspaces/master-editorial-draft-remediation/
+  verifications/postpublish-r4p3/. No database, Production, release, approval,
+  canonical-ID or Batch 05 operation. Preserve two cache files, seven stashes
+  and twelve worktrees including VocabFlow-us55.
