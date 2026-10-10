@@ -1,0 +1,276 @@
+{
+  "reviewerKind": "ISOLATED_AI_REVIEW_AGENT",
+  "blindFirstPass": true,
+  "agentTask": "/root/cp04_review_01",
+  "microBatch": 2,
+  "formalApproval": false,
+  "reviewScope": "Actual handoff content and authored PSV; all linked source evidence and planning/boundary-review-02.json; Author A self-review not read. Lexical DRAFT review does not clear rights or canonical identity.",
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2K:adventure:exciting-experience",
+      "effectiveContentHash": "834f6bb6fe706e3979548048d04425ecae11df6afab6962835ba688a540c57e8",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa trải nghiệm khác thường thú vị khớp hai nguồn; rủi ro được nêu như khả năng. Bản dịch giữ việc khám phá ngọn hải đăng bỏ hoang, sở hữu chúng tôi và mức lớn nhất mùa hè ấy; danh từ đếm được phù hợp.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:eleven:number-11",
+      "effectiveContentHash": "d595f1d69bbde44b5e1576fa02af241fca06bf0b8083517e53fb405a30feea32",
+      "assessment": "REVIEW",
+      "explanationVi": "Định nghĩa giữa mười và mười hai và ví dụ mười một cây nến thành hàng trên kệ chính xác. NUMBER được nguồn ghi rõ nhưng vẫn là taxonomy không canonical; không coi bản thảo là phê duyệt ánh xạ POS.",
+      "blocksPublication": false,
+      "issues": [
+        {
+          "field": "partOfSpeech",
+          "severity": "REVIEW",
+          "explanationVi": "Định nghĩa giữa mười và mười hai và ví dụ mười một cây nến thành hàng trên kệ chính xác. NUMBER được nguồn ghi rõ nhưng vẫn là taxonomy không canonical; không coi bản thảo là phê duyệt ánh xạ POS.",
+          "fixVi": "Giữ NUMBER không canonical; quyết định ánh xạ POS trước khi phê duyệt xuất bản.",
+          "blocksPublication": false
+        }
+      ],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": [
+        {
+          "proposalKey": "EDITORIAL_2H2K:eleven:number-11",
+          "field": "partOfSpeech",
+          "status": "NONCANONICAL_TAXONOMY_PROPOSAL",
+          "explanationVi": "Định nghĩa giữa mười và mười hai và ví dụ mười một cây nến thành hàng trên kệ chính xác. NUMBER được nguồn ghi rõ nhưng vẫn là taxonomy không canonical; không coi bản thảo là phê duyệt ánh xạ POS.",
+          "blocksPublication": false
+        }
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:overweight:excess-weight",
+      "effectiveContentHash": "9c6b60f35a61ecb4a741dc614f5edbfe0dd3b4f691bd88a17d4cb49f4ab0677d",
+      "assessment": "PASS",
+      "explanationVi": "Định nghĩa cân nặng vượt mức khỏe mạnh của người hoặc động vật khớp nguồn; không thêm nguyên nhân ăn quá nhiều. Bản dịch giữ bác sĩ thú y nhận xét một con mèo thừa cân, phù hợp tính từ và giới hạn ghi chú.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:completely:entirely",
+      "effectiveContentHash": "77fdc81b9602eac6021b127ef4b742a972159a72c906887f9a9d42124806de8d",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa toàn bộ mức độ khớp nghĩa Việt hoàn toàn và ví dụ hai nguồn, không lẫn chỉ mức rất cao. Bản dịch sơn đã khô hoàn toàn giữ kết quả hoàn tất của has dried; ghi chú bổ nghĩa tính từ hoặc động từ phù hợp.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:newspaper:news-publication",
+      "effectiveContentHash": "89c2419e32abdc94ccf170c9b70c56d604f25623b673bbdfe4af36b868f80f81",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa ấn phẩm tin tức định kỳ và bản cụ thể khớp Oxford. Bản dịch giữ tôi gấp tờ báo rồi đặt cạnh cốc của tôi, đúng sở hữu và thứ tự hành động; danh từ đếm được không bị lẫn nội dung báo trừu tượng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:dumped:discarded-material",
+      "effectiveContentHash": "072643450976921604dc7e59693ac25f0728ef75045d63b48063b3e7f4fc86ec",
+      "assessment": "REVIEW",
+      "explanationVi": "Nguồn headword dumped và ví dụ bị động hỗ trợ dạng quá khứ hoặc phân từ của dump. Nghĩa bỏ vật không muốn và ví dụ chủ động ai đó vứt nhiều ghế hỏng bên cổng đúng; quan hệ lemma canonical vẫn chưa được giải quyết.",
+      "blocksPublication": false,
+      "issues": [
+        {
+          "field": "displayFormProposal",
+          "severity": "REVIEW",
+          "explanationVi": "Nguồn headword dumped và ví dụ bị động hỗ trợ dạng quá khứ hoặc phân từ của dump. Nghĩa bỏ vật không muốn và ví dụ chủ động ai đó vứt nhiều ghế hỏng bên cổng đúng; quan hệ lemma canonical vẫn chưa được giải quyết.",
+          "fixVi": "Giữ dumped trong nhóm đóng băng; giải quyết quan hệ inflection với dump riêng trước khi cấp canonical lemma.",
+          "blocksPublication": false
+        }
+      ],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": [
+        {
+          "proposalKey": "EDITORIAL_2H2K:dumped:discarded-material",
+          "field": "displayFormProposal",
+          "status": "INFLECTION_LEMMA_IDENTITY_UNRESOLVED",
+          "explanationVi": "Nguồn headword dumped và ví dụ bị động hỗ trợ dạng quá khứ hoặc phân từ của dump. Nghĩa bỏ vật không muốn và ví dụ chủ động ai đó vứt nhiều ghế hỏng bên cổng đúng; quan hệ lemma canonical vẫn chưa được giải quyết.",
+          "blocksPublication": false
+        }
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:foreign:other-country",
+      "effectiveContentHash": "894babe0b90241df8f3a926e6c07aae61bf66a7db2ba29a4b43e9eab0d88793d",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa nước ngoài được nhóm Oxford, nghĩa Việt và ví dụ countries của Vocab hỗ trợ. Bản dịch giữ cửa hàng bày bán báo nước ngoài gần lối vào; không nhập với nghĩa xa lạ, ghi chú phân biệt rõ hai phạm vi.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:foreign:unfamiliar",
+      "effectiveContentHash": "c75479d83261a150814dd31c70b07cde06bf77a7d893ba2e729a7bda5aab77bd",
+      "assessment": "PASS",
+      "explanationVi": "Định nghĩa Vocab nói không quen thuộc và nghĩa Việt xa lạ hỗ trợ Sense này độc lập với nghĩa nước ngoài. Ví dụ foreign to him và bản dịch giữ ý tưởng sống một mình xa lạ đối với anh ấy; chưa coi hai nguồn là identity canonical.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:topic:discussion-subject",
+      "effectiveContentHash": "fbbacb4c260232bc1daa397331361a339e95138d0345814f99686353d904a2ed",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa chủ đề nói, viết hoặc nghiên cứu khớp nhóm Oxford và hai ví dụ nguồn. Bản dịch giữ giáo viên viết chủ đề của ngày hôm đó lên bảng, không thêm nhiều chủ đề; cấu trúc topic of và topic for đúng danh từ đếm được.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:avalanche:sliding-snow",
+      "effectiveContentHash": "7cea1c199036a51a0193b2bfb3af1a9a379a4676551d002ebac63abef685aaff",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa khối tuyết băng có thể kèm đá trượt xuống núi giữ phạm vi vật lý nguồn. Bản dịch giữ con đường vẫn đóng sau khi tuyết lở phủ lên, đúng quan hệ thời gian và trạng thái kéo dài; không lẫn nghĩa bóng lượng lớn.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:greet:welcome-person",
+      "effectiveContentHash": "a2c4ac98a56157612d04ffe25513043a56bd7ea6caec86e602c981123e0e46e9",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa chào hoặc chào đón khi gặp khớp hai nguồn. Bản dịch giữ người hướng dẫn chào chúng tôi bằng vẫy tay vui vẻ, không đổi bên thực hiện hay nhận lời chào; động từ ngoại động và cấu trúc with chính xác.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:perhaps:possibly",
+      "effectiveContentHash": "dcb1dfabb61c75f775c6e794ce91c25ddcb9bd482a68457b82a8f3ceff14a6e7",
+      "assessment": "PASS",
+      "explanationVi": "Định nghĩa khả năng chưa chắc và nghĩa có lẽ khớp cả hai nguồn. Bản dịch giữ một trang giấy bị thiếu có thể vẫn trong máy in, không biến suy đoán thành khẳng định; ghi chú phạm vi cả mệnh đề đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:brother:male-sibling",
+      "effectiveContentHash": "3d8d9d59af99e68fe9a64378d4850adce7ecd7407348eb77421085168d3d72e3",
+      "assessment": "PASS",
+      "explanationVi": "Định nghĩa cùng một hoặc hai cha mẹ phù hợp nghĩa anh hoặc em trai. Ví dụ younger brother xác định em trai nên bản dịch không tự thêm tuổi; giữ em giúp tôi mang nhiều hộp lên tầng trên, ghi chú tuổi tương đối rõ.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:rehearse:prepare-performance",
+      "effectiveContentHash": "abc809fdfde3aab9b5bcdd17239ebec8bcab4905d8b239bb75c5f5d0d4d155b9",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa tập trước biểu diễn cho khán giả khớp nguồn công diễn. Bản dịch giữ các diễn viên, cảnh cuối và đúng hai lần tập; ghi chú tân ngữ piece/scene hoặc rehearse for an event phù hợp động từ.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:ordinary:not-special",
+      "effectiveContentHash": "0431b2cb6912ae9678ab978842f0f8d94b095c813bc595590f4303f3066b7c5f",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa bình thường không đặc biệt khớp hai nguồn, không bắt buộc chất lượng kém. Bản dịch giữ chiếc hộp trông bình thường cho đến khi chúng tôi mở ngăn bí mật của nó, đúng sở hữu và giới hạn thời gian.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:police:law-force",
+      "effectiveContentHash": "a16afcec09eeef0f333aa273bd4706034b67dc77e71b44e98fde2184d2b87441",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa lực lượng cảnh sát giữ luật và bảo vệ công chúng phù hợp nguồn. Ví dụ dùng are examining đúng số nhiều; bản dịch đang kiểm tra ổ khóa hỏng giữ tiến hành hiện tại, ghi chú police officer cho một cá nhân chính xác.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:optimist:hopeful-person",
+      "effectiveContentHash": "a77b58ee1c27b35b48f8cc438c84d115105644fc25a27d6a3f3dbe2bc2ccacf7",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa người thường hy vọng kết quả tốt và nhìn mặt tích cực khớp nguồn, không tuyệt đối hóa mọi dự đoán. Bản dịch giữ cô ấy tin đội có thể khắc phục sai sót ban đầu; danh từ đếm được và sắc thái khả năng đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:kill:cause-death",
+      "effectiveContentHash": "f66c603f1021e39eec3a9abacc5ac037e2227d5892bc747fceb75cac58fab83f",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa làm chết sinh vật được hai nguồn hỗ trợ, bao gồm thực vật trong ví dụ Oxford. Bản dịch giữ đám cháy là nguyên nhân làm chết một số cây gần hàng rào, không đổi tác nhân thành người; tân ngữ sinh vật đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:mum:mother-informal",
+      "effectiveContentHash": "537cad78b868184051cf76dd9ccebaed2b782383dfc785332dd1abeb6aaa0b0f",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa mẹ thân mật Anh Anh phù hợp Oxford và cách viết Mum trong ví dụ nguồn. Bản dịch giữ mẹ tôi giúp tôi chọn một món quà cho bố, không đảo người tặng hoặc nhận; ghi chú sở hữu và viết hoa hợp ngữ pháp.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:grocer:food-shop-seller",
+      "effectiveContentHash": "f8488d8cdc114c873766c6027b8dae7b52d1d94f649864038ae10b5397e2f495",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa người bán thực phẩm và tạp hóa phù hợp Meaning cùng nghĩa Việt của nguồn. Bản dịch giữ người bán cân gạo trước khi cho vào túi, đúng thứ tự và vật được cân; ghi chú phân biệt người với cửa hàng grocer’s rõ.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:symbol:representing-thing",
+      "effectiveContentHash": "d3323496d4dbdb1b1e6e7325e0848ff530811ba9d1941b6e60dc27938ff4fb37",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa vật hoặc dấu đại diện cho điều khác khớp cả hai nguồn. Bản dịch giữ trên bản đồ này một hình vuông nhỏ chỉ nhà ga, không đổi ký hiệu hay vật được chỉ; cấu trúc symbol for phù hợp ví dụ và ghi chú.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    }
+  ],
+  "missingSenseCandidates": [],
+  "unresolvedBoundaryItems": [
+    {
+      "proposalKey": "EDITORIAL_2H2K:eleven:number-11",
+      "field": "partOfSpeech",
+      "status": "NONCANONICAL_TAXONOMY_PROPOSAL",
+      "explanationVi": "Định nghĩa giữa mười và mười hai và ví dụ mười một cây nến thành hàng trên kệ chính xác. NUMBER được nguồn ghi rõ nhưng vẫn là taxonomy không canonical; không coi bản thảo là phê duyệt ánh xạ POS.",
+      "blocksPublication": false
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:dumped:discarded-material",
+      "field": "displayFormProposal",
+      "status": "INFLECTION_LEMMA_IDENTITY_UNRESOLVED",
+      "explanationVi": "Nguồn headword dumped và ví dụ bị động hỗ trợ dạng quá khứ hoặc phân từ của dump. Nghĩa bỏ vật không muốn và ví dụ chủ động ai đó vứt nhiều ghế hỏng bên cổng đúng; quan hệ lemma canonical vẫn chưa được giải quyết.",
+      "blocksPublication": false
+    }
+  ],
+  "summary": {
+    "recordCount": 21,
+    "PASS": 19,
+    "REVIEW": 2,
+    "FAIL": 0,
+    "blockerCount": 0
+  }
+}

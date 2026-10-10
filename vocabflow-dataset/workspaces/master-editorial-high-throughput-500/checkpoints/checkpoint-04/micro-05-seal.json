@@ -1,0 +1,76 @@
+{
+  "fingerprint": "15503a3d88f6efd19b2061c1b1d243c8ef91a4361837415a6b5c4d630ffa97e4",
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:successful",
+    "NORMALIZED_HEADWORD:dancing",
+    "NORMALIZED_HEADWORD:bump",
+    "NORMALIZED_HEADWORD:behave",
+    "NORMALIZED_HEADWORD:friday",
+    "NORMALIZED_HEADWORD:canyon",
+    "NORMALIZED_HEADWORD:climate",
+    "NORMALIZED_HEADWORD:midnight",
+    "NORMALIZED_HEADWORD:secondhand",
+    "NORMALIZED_HEADWORD:per",
+    "NORMALIZED_HEADWORD:protect",
+    "NORMALIZED_HEADWORD:internet",
+    "NORMALIZED_HEADWORD:appliance",
+    "NORMALIZED_HEADWORD:effect",
+    "NORMALIZED_HEADWORD:song",
+    "NORMALIZED_HEADWORD:archeological",
+    "NORMALIZED_HEADWORD:sauce",
+    "NORMALIZED_HEADWORD:monday",
+    "NORMALIZED_HEADWORD:orbit",
+    "NORMALIZED_HEADWORD:medical"
+  ],
+  "manuscriptSha256": "53871e08f7e7967c84e3703844d786b555ade5da8ceebd2c5ba5b41565e6deff",
+  "microBatch": 5,
+  "parentFingerprint": "3c1aa8e8266e95810474408727412f96187e3649adb5132c9c35ae32dd448cf7",
+  "planningFingerprint": "7c85c7b9299856aeeb014e7becbf2b0cff2a9641a186167bcdcf127c248ed01b",
+  "planningSha256": "a1d736a86aa90fab9b7f9f0c86cf6d3bbbd4649461e9a789a9121a18ae23777a",
+  "qaCounts": {
+    "PASS": 19,
+    "REVIEW": 1
+  },
+  "recordHash": "bd36019a7db67ddc9d84ca6164e4a0cb9c8e00f8520c9370a3ea900d5d4c8fb9",
+  "reviewHash": "17540512d5ae1f9e23bdce6730bbbefb4a983008bd2ac60c89627dc18e74da7f",
+  "selfReviewSha256": "cb32cc50bf2786e617bd7cb7b5ff9c1cd4f067892752c53fd0f3271a82a8ae2b",
+  "senseCount": 20,
+  "sourceSimilarityFindings": [
+    {
+      "field": "senseLabelEn",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2K:bump:raised-area",
+      "sourceRecordId": "1559931008062",
+      "text": "A small raised area"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2K:friday:weekday-friday",
+      "sourceRecordId": "1788223606507",
+      "text": "thứ Sáu"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2K:friday:weekday-friday",
+      "sourceRecordId": "1788223606507",
+      "text": "thứ Sáu"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2K:monday:weekday-monday",
+      "sourceRecordId": "1788223606605",
+      "text": "thứ Hai"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2K:monday:weekday-monday",
+      "sourceRecordId": "1788223606605",
+      "text": "thứ Hai"
+    }
+  ],
+  "status": "SEALED_AI_DRAFT_NOT_APPROVED"
+}

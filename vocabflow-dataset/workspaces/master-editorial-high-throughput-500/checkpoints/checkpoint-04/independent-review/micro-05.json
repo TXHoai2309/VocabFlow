@@ -1,0 +1,238 @@
+{
+  "reviewerKind": "ISOLATED_AI_REVIEW_AGENT",
+  "blindFirstPass": true,
+  "agentTask": "/root/cp04_review_04",
+  "microBatch": 5,
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2K:successful:achieving-aim",
+      "effectiveContentHash": "ad7b2e84bf7dceaa52ab55d42c471c304c9f54d79c8784921e13da76eb849711",
+      "assessment": "PASS",
+      "explanationVi": "Hai nguồn hỗ trợ đạt mục tiêu đã định, không chỉ giàu có. Ví dụ giữ đội hoàn thành một thử nghiệm thành công với máy mới; lượng một và tính từ mới được dịch. Từ loại tính từ và ghi chú áp dụng cho người, hoạt động hoặc kết quả phù hợp.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:dancing:moving-to-music",
+      "effectiveContentHash": "f9817c993dc1de3896f929bfa5a902b087a3f7f6f6b867934e362c83cb601f7c",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn Oxford xác định danh từ hoạt động nhảy múa, phù hợp định nghĩa có nhịp và thường theo nhạc. Câu dịch giữ quảng trường và thời điểm sau hòa nhạc, không thêm người cụ thể. Ghi chú không đếm được đúng; việc chưa cấp lemma dance không phải một nghĩa bổ sung.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:bump:raised-area",
+      "effectiveContentHash": "01d84020b2f693d3ce38df332d69c2ab7e82ca77143b7b9f97372460f583a276",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn tiếng Anh mô tả chỗ nhô nhỏ trên bề mặt, dù ví dụ nguồn là sưng đầu. Bản thảo chọn mặt bàn đúng phạm vi, không bắt buộc chấn thương. Dịch giữ một chỗ nhô nhỏ làm chiếc thước chòng chành; danh từ đếm được đúng, không đảo nguyên nhân và kết quả.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:behave:act-in-way",
+      "effectiveContentHash": "c81d8572571bec7e06c1e6b1a973f5a25247ed27f2173478c569a308108eb5fd",
+      "assessment": "REVIEW",
+      "explanationVi": "Hai nguồn hỗ trợ động từ cư xử theo cách nào đó, thường không có tân ngữ. Câu tiếng Anh giữ trẻ em hành xử yên lặng trong buổi biểu diễn. Bản dịch cư xử im lặng hiểu được nhưng kết hợp từ không tự nhiên; nên dùng Các em nhỏ giữ im lặng trong suốt buổi biểu diễn. Đây là vấn đề diễn đạt nhỏ, không thay chủ thể hoặc nghĩa chính.",
+      "blocksPublication": false,
+      "issues": [
+        {
+          "field": "examples[0].vi",
+          "severity": "LOW",
+          "issueVi": "Cư xử im lặng là kết hợp từ thiếu tự nhiên dù truyền đạt được ý chính.",
+          "suggestedFixVi": "Các em nhỏ giữ im lặng trong suốt buổi biểu diễn.",
+          "blocksPublication": false
+        }
+      ],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:friday:weekday-friday",
+      "effectiveContentHash": "42d695380a438fbd9fc8f3f94dea81ef9954027875304bfdd12bbc6fcdb6a831",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn hỗ trợ danh từ ngày thứ Sáu và viết hoa Friday. Định nghĩa đúng vị trí sau thứ Năm, trước thứ Bảy. Câu dịch giữ cửa hàng sửa chữa, mở cửa trở lại và tương lai sẽ vào thứ Sáu. Ghi chú on Friday và không dùng giới từ trước this Friday phù hợp.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:canyon:deep-valley",
+      "effectiveContentHash": "d202785e412835173742c38a4e80b5c4481d4a60370159464e7c80106d3563fa",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn mô tả thung lũng hẹp có vách dốc, thường có sông; bản thảo nhấn mạnh sâu và sườn dốc cùng nghĩa hẻm núi. Câu dịch giữ chúng tôi có thể nhìn thấy dòng sông hẹp ở đáy. Ghi chú không bắt buộc mọi hẻm núi đều có sông đang chảy là hợp lý.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:climate:weather-pattern",
+      "effectiveContentHash": "231bcab13c218a54d60cb06653bfceee6cad78769fcb628a0668fd04923331a1",
+      "assessment": "PASS",
+      "explanationVi": "Hai nguồn hỗ trợ thời tiết thông thường của một nơi. Định nghĩa làm rõ tính dài hạn, đúng danh từ khí hậu. Câu dịch giữ khí hậu khô của vùng tác động cách nhà được xây, không đảo thành nhà gây khí hậu khô. Ghi chú phân biệt với thời tiết một ngày chính xác.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:midnight:night-twelve",
+      "effectiveContentHash": "3d2332ab99172ac6ba013dbeb21549330839339384fe935f13d0c4f353768921",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn Oxford hỗ trợ nửa đêm; định nghĩa mười hai giờ đêm khi đổi ngày chính xác. Câu dịch giữ đồng hồ điểm giờ trong lúc chúng tôi đang thu xếp đồ, bảo toàn tính đồng thời và hành động đang diễn ra. Ghi chú at, before và after midnight đúng cấu trúc thời gian.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:secondhand:previously-owned",
+      "effectiveContentHash": "96f39f480d1b5f51fb2a073740f08b9df2a35410f025e755eb961184dda0e569",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn định nghĩa từng thuộc một chủ khác, đúng tính từ của đồ đã qua sử dụng. Ví dụ giữ chúng tôi mua một bàn cho phòng còn trống; nghĩa phòng dự phòng hơi giảm sắc thái nhưng không thay nghĩa secondhand. Ghi chú sở hữu trước không tất yếu tình trạng kém là chính xác.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:per:for-each",
+      "effectiveContentHash": "68be29c11da3ca0b4ce94076269bedfaba65dac11773f60e7f41e02bccd81ab0",
+      "assessment": "PASS",
+      "explanationVi": "Hai nguồn hỗ trợ giới từ mỗi đơn vị cho giá hoặc lượng. Câu dịch bảo toàn máy in, hai mươi trang và mỗi phút; không nhầm tốc độ với tổng số trang. Ghi chú đơn vị thường số ít sau per đúng, định nghĩa không biến per thành danh từ hoặc động từ.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:protect:keep-safe",
+      "effectiveContentHash": "789d3da5088aa44cf252296b74618046059705c120cf1699662976d171431445",
+      "assessment": "PASS",
+      "explanationVi": "Hai nguồn hỗ trợ bảo vệ khỏi tổn hại. Câu dịch giữ tấm phủ làm chủ thể, xe đạp làm vật được bảo vệ và mưa làm nguy cơ; không bỏ from. Định nghĩa bao quát người và vật đúng phạm vi. Ghi chú protect object from hoặc against đúng ngữ pháp.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:internet:global-network",
+      "effectiveContentHash": "d4d5788445320ecccb1f2a2b7a5c9e4d0fe153485a12e8907dbbbc249a096004",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn Oxford hỗ trợ danh từ mạng internet. Định nghĩa mạng máy tính toàn cầu phù hợp và không nhầm một trang web với toàn mạng. Câu dịch giữ chúng tôi gửi tài liệu qua internet thay vì bưu điện; quan hệ lựa chọn instead of được bảo toàn. Ghi chú dùng the và on the internet đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:appliance:household-device",
+      "effectiveContentHash": "0ef56280c7f7d4e70999ad1697dbc9ba66d93f1bd0d6630c336f52477979ebff",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn hỗ trợ thiết bị thực hiện việc trong nhà, có lò và tủ lạnh làm ví dụ. Câu dịch giữ cửa hàng sửa nhiều thiết bị nhà bếp nhỏ; không làm nhỏ bổ nghĩa cửa hàng. Danh từ đếm được và lưu ý không chỉ mọi vật dụng trong nhà là appliance đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:effect:resulting-change",
+      "effectiveContentHash": "704144d46fd78b5a07d4017be75a44d8c2adab6bb64a5867dfa3b40b9b2fb35d",
+      "assessment": "PASS",
+      "explanationVi": "Hai nguồn hỗ trợ ảnh hưởng hoặc thay đổi do nguyên nhân khác tạo ra. Câu dịch giữ ánh sáng bổ sung gây tác động rõ rệt lên diện mạo phòng; không thêm tác động tốt hoặc xấu. Ghi chú effect on và phân biệt danh từ effect với động từ affect chính xác.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:song:sung-music",
+      "effectiveContentHash": "abf48989ba62fcb07d9954f54e9bada89625ea7285cacc15f5d3fe10fbb94a4c",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn Oxford hỗ trợ bài hát; định nghĩa nhạc có lời để hát đúng nghĩa được chọn. Câu dịch giữ dàn hợp xướng tập một bài về biển, không đổi thành sáng tác hay biểu diễn. Lượng một và chủ đề biển còn nguyên. Ghi chú danh từ đếm được và sing/write a song đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:archeological:past-remains-study",
+      "effectiveContentHash": "060e429b237a25c0be0c60456b3be6317b44dd04dadcad044dae3df17809b36d",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn dùng chính tả archeological và từ loại tính từ, nghĩa liên quan khảo cổ học. Bản thảo giữ dạng nguồn, ghi nhận biến thể archaeological hợp lý. Câu dịch giữ nhóm ghi chép nhiều phát hiện trước khi di chuyển chính chúng; đại từ và trình tự before không bị đảo.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:sauce:food-liquid",
+      "effectiveContentHash": "90c5b86d20fedc3a5058d9c464396de229bde6e4f72aeafa75f1d73c5c34033d",
+      "assessment": "PASS",
+      "explanationVi": "Hai nguồn hỗ trợ nước sốt dùng với thức ăn để thêm vị. Định nghĩa chất lỏng hoặc sệt phù hợp, không gộp nghĩa bóng. Câu dịch giữ chủ thể nữ rưới xốt lên khoai tây nướng; không mất roasted hoặc đổi vị trí over. Ghi chú lượng không đếm được và loại xốt đếm được đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:monday:weekday-monday",
+      "effectiveContentHash": "563d15a18278fbb19f3204568aa459b7ba619e56c07f3c689595e9703cbf6571",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn Oxford hỗ trợ thứ Hai và danh từ viết hoa Monday. Định nghĩa sau Chủ nhật, trước thứ Ba chính xác. Câu dịch giữ buổi tập đầu tiên của chúng tôi được lên lịch vào thứ Hai, không biến thành hạn chót. Ghi chú by Monday là hạn chót, on Monday là ngày xảy ra đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:orbit:move-around",
+      "effectiveContentHash": "90c1729bcd9cb76ade7dda0a9f14d34800fb4bb5c1608dc18097c649a34a8e25",
+      "assessment": "REVIEW",
+      "explanationVi": "Nguồn POS verb và ví dụ Moon orbits Earth hỗ trợ động từ chuyển động quanh một vật theo đường cong. Câu dịch bảo toàn vệ tinh, hành tinh, một vòng và mỗi sáu giờ. Tuy nhiên Meaning còn ghi rõ noun quỹ đạo, trong khi POS chuẩn hóa chỉ VERB; đây là candidate danh từ có bằng chứng nhưng ranh giới từ loại chưa giải quyết. Giữ REVIEW và hoãn kết luận bao phủ cho đến khi có quyết định riêng, không tự đổi POS hoặc tạo identity.",
+      "blocksPublication": true,
+      "issues": [
+        {
+          "field": "sourceSenseCoverage",
+          "severity": "MEDIUM",
+          "issueVi": "Gloss nguồn có noun quỹ đạo ngoài POS chuẩn hóa VERB; ranh giới bao phủ chưa được giải quyết.",
+          "suggestedFixVi": "Giữ động từ hiện tại; đưa nghĩa danh từ quỹ đạo vào candidate deferred và yêu cầu quyết định POS/coverage riêng trước khi thông qua.",
+          "blocksPublication": true
+        }
+      ],
+      "missingSenseCandidates": [
+        {
+          "partOfSpeech": "NOUN",
+          "meaningVi": "quỹ đạo",
+          "sourceEvidence": "ENGLISH_VOCAB_4600 Meaning explicitly includes noun: quỹ đạo",
+          "status": "DEFERRED",
+          "canonicalResolution": "UNRESOLVED"
+        }
+      ],
+      "unresolvedBoundaryItems": [
+        {
+          "field": "partOfSpeech",
+          "issueVi": "POS nguồn/chuẩn hóa VERB nhưng gloss Meaning chứa danh từ; không thể tự cấp Sense danh từ.",
+          "status": "UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:medical:health-treatment",
+      "effectiveContentHash": "7a85325b881bc98e758ceb2b0f0446206ae2fc46b51313ce1e3e785e252625e8",
+      "assessment": "PASS",
+      "explanationVi": "Hai nguồn hỗ trợ tính từ y tế hoặc y khoa liên quan bệnh và điều trị. Định nghĩa gồm nghiên cứu, phòng ngừa và chấn thương hợp lý. Câu dịch giữ nhiều tình nguyện viên phân loại vật tư vào nhiều hộp có nhãn; tính từ labelled được dịch. Ghi chú tính từ không đảm bảo hiệu quả không thay nghĩa.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    }
+  ]
+}

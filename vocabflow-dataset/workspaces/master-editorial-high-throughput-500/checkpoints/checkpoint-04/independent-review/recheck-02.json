@@ -1,0 +1,43 @@
+{
+  "reviewerKind": "ISOLATED_AI_REVIEW_AGENT",
+  "blindFirstPass": false,
+  "agentTask": "/root/cp04_review_04",
+  "recheckOf": "independent-review/micro-05.json",
+  "reviewBasis": "Owner explicit CP04 section 9 plus unchanged handoff and pre-manuscript boundary disposition",
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2K:orbit:move-around",
+      "effectiveContentHash": "90c1729bcd9cb76ade7dda0a9f14d34800fb4bb5c1608dc18097c649a34a8e25",
+      "assessment": "REVIEW",
+      "explanationVi": "Xét lại disposition theo CP04 §9 được chủ sở hữu nêu rõ: giới hạn nguồn không chặn và canonical identity chưa giải quyết được phép giữ REVIEW nếu có disposition tường minh. Động từ orbit có bằng chứng độc lập ở POS verb, định nghĩa chuyển động theo đường cong và ví dụ Moon orbits Earth. Nội dung hiện tại không có lỗi chủ thể, tân ngữ, số vòng hoặc khoảng sáu giờ; không tuyên bố bao phủ toàn bộ nghĩa. Nghĩa danh từ quỹ đạo đã được ghi deferred trước bản thảo và ghi chú hiện tại cũng công khai ranh giới đó; canonicalIdsAllocated bằng 0. Vì vậy yêu cầu sửa của lượt đầu đã có trong hồ sơ, không còn lỗi cụ thể ở nghĩa VERB hay gap bị che giấu. Giữ REVIEW, candidate và boundary chưa giải quyết, nhưng không chặn việc thông qua bản thảo offline DRAFT trong phạm vi hợp đồng; đây không phải phê duyệt nghĩa danh từ hoặc canonical identity.",
+      "blocksPublication": false,
+      "disposition": "NONBLOCKING_DEFERRED_SOURCE_LIMITATION_FOR_OFFLINE_DRAFT",
+      "issues": [
+        {
+          "field": "sourceSenseCoverage",
+          "severity": "LOW",
+          "issueVi": "Gloss danh từ quỹ đạo trong nguồn vẫn là giới hạn bao phủ công khai, chưa được phân bổ thành Sense.",
+          "suggestedFixVi": "Giữ deferred và REVIEW trong hồ sơ hiện tại; giải quyết nghĩa NOUN và canonical identity bằng quyết định riêng khi phạm vi đó được cho phép.",
+          "blocksPublication": false
+        }
+      ],
+      "missingSenseCandidates": [
+        {
+          "partOfSpeech": "NOUN",
+          "meaningVi": "quỹ đạo",
+          "sourceEvidence": "ENGLISH_VOCAB_4600 Meaning explicitly includes noun: quỹ đạo",
+          "status": "DEFERRED",
+          "canonicalResolution": "UNRESOLVED"
+        }
+      ],
+      "unresolvedBoundaryItems": [
+        {
+          "field": "partOfSpeech",
+          "issueVi": "POS nguồn/chuẩn hóa VERB nhưng gloss Meaning chứa danh từ; không tự cấp Sense danh từ.",
+          "status": "UNRESOLVED",
+          "disposition": "NONBLOCKING_DEFERRED"
+        }
+      ]
+    }
+  ]
+}

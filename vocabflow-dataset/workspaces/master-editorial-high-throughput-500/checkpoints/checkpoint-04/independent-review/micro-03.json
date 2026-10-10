@@ -1,0 +1,235 @@
+{
+  "reviewerKind": "ISOLATED_AI_REVIEW_AGENT",
+  "blindFirstPass": true,
+  "agentTask": "/root/cp04_review_03",
+  "microBatch": 3,
+  "sourceReadScope": "Read AGENTS.md, authored/micro-03.psv and complete handoff/micro-03.json including sourceFields and source sense groups; no Author A self-review accessed.",
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2K:usual:normal-pattern",
+      "effectiveContentHash": "c29945918c3b8d570af797d404bb52ed0f50f9e0c758f05448e11e83fdd5410e",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa thường lệ và tính từ phù hợp cả hai nguồn. Ví dụ mới dùng chiếc bàn quen thuộc, không sao chép ví dụ nguồn; bản dịch hơi lược sở hữu nhưng vẫn diễn đạt thói quen ngồi và vị trí gần cửa sổ. Ghi chú as usual đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:trousers:leg-garment",
+      "effectiveContentHash": "308c907cb23aeb2e0852e9fbdbb784464b9a6dab6e19a737047cfe109ab29642",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa quần dài phù hợp nguồn Oxford; cấu trúc a pair of trousers với was đúng số ít và ghi chú phân biệt trousers số nhiều chính xác. Bản dịch một chiếc quần dài giữ số lượng, trạng thái treo và vị trí cạnh áo khoác. Ví dụ mới khác nguồn.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:sleeve:arm-cover",
+      "effectiveContentHash": "5845c070801322099985aa858a899c4347ea2c6811402deb1d8cc3eef75fcb6d",
+      "assessment": "FAIL",
+      "explanationVi": "Nghĩa tay áo, danh từ đếm được và phạm vi che toàn bộ hoặc một phần cánh tay đúng. Tuy nhiên hung mô tả sợi chỉ đang thòng xuống, còn bung ra mô tả hành động tuột hoặc bung khỏi áo. Bản dịch thay đổi trạng thái thành sự kiện, cần sửa trước xuất bản.",
+      "blocksPublication": true,
+      "issues": [
+        {
+          "field": "content.examples[0].vi",
+          "severity": "MATERIAL",
+          "explanationVi": "hung from là thòng xuống từ tay áo; bung ra là tuột hoặc bật ra, thay đổi trạng thái và sự kiện của câu Anh.",
+          "suggestedFix": "Một sợi chỉ lỏng thòng xuống từ tay áo khoác của cô ấy."
+        }
+      ],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:discover:find-new",
+      "effectiveContentHash": "abacfd4ab23d2bfdd1614ab0119eadad8f8394eb9717f1ddc8b24e04c6af681c",
+      "assessment": "PASS",
+      "explanationVi": "Định nghĩa giới hạn cái chưa biết đối với người phát hiện phù hợp nguồn, tránh hiểu mọi khám phá đều mới với toàn nhân loại. Ví dụ ngăn kéo mới khác nguồn, giữ chúng tôi, khóa và vị trí bên dưới bàn; động từ quá khứ được diễn đạt tự nhiên trong tiếng Việt.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:classroom:teaching-room",
+      "effectiveContentHash": "6157f9da8962311e52b63082faea0a8a3887acf6e529dbd049fa16b4d7ae1d8a",
+      "assessment": "PASS",
+      "explanationVi": "Danh từ đếm được chỉ phòng dùng cho bài học phù hợp nguồn. Ví dụ mới về phòng trống sau tiết cuối giữ trạng thái và thời điểm trong bản dịch; không thêm chủ thể hay thay đổi phủ định. Ghi chú ngữ pháp và nhãn nghĩa không vượt ranh giới phòng học.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:thrill:excited-feeling",
+      "effectiveContentHash": "24adf02aa73867b6b3511be37b26f644b3e8f3fae0426b45f55f0a8092f645af",
+      "assessment": "REVIEW",
+      "explanationVi": "Nguồn hỗ trợ cảm giác phấn khích; định nghĩa và nghĩa Việt hồi hộp thích thú phù hợp. Ví dụ mới về chiến thắng cuộc đua đúng danh từ a thrill và giữ người nhận cảm giác. Có thể làm rõ cuộc đua đầu tiên của cô ấy trong bản dịch để tránh lược sở hữu.",
+      "blocksPublication": false,
+      "issues": [
+        {
+          "field": "content.examples[0].vi",
+          "severity": "MINOR",
+          "explanationVi": "her first race nên rõ cuộc đua đầu tiên của cô ấy, tránh hiểu cuộc đua đầu tiên trong một chuỗi bất kỳ.",
+          "suggestedFix": "Chiến thắng cuộc đua đầu tiên của mình mang lại cho cô ấy cảm giác hồi hộp thích thú."
+        }
+      ],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:employee:paid-worker",
+      "effectiveContentHash": "190effa260a4dcc486899cc54d01635c1221d0bbc98ee8eb2d63e793eb28d27c",
+      "assessment": "PASS",
+      "explanationVi": "Định nghĩa người được trả công để làm việc cho người hoặc tổ chức phù hợp cả hai nguồn; ghi chú employee khác employer đúng. Ví dụ mới giữ mỗi nhân viên, một bản sao và lịch mới; lịch làm việc là cách diễn đạt hợp ngữ cảnh, không tạo nghĩa mới.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:euro:currency-unit",
+      "effectiveContentHash": "9c3c774581364d8cef1333ad4f6b0f25421fc3083dabcbae3517734365902b4a",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa đơn vị tiền euro phù hợp nguồn và ví dụ mới dùng số ba euros đúng số nhiều. Bản dịch giữ cuốn sổ, giá và số tiền; tiếng Việt euro không cần biến hình. Ghi chú ordinary English có giới hạn hợp lý, tránh khẳng định quy tắc cho mọi văn bản tài chính.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:repetitive:repeated-often",
+      "effectiveContentHash": "bb215e616d16df92d4981036e5802c7d0d90719ac4df3c0a32a68d9d304fef9a",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa lặp đi lặp lại, ít thay đổi phù hợp nguồn; định nghĩa không bắt buộc mọi sự lặp lại đều vô ích. Ví dụ mới diễn đạt cảm nhận công việc gây mệt mỏi, giữ cô ấy và tính chất công việc. Tính từ và ghi chú về đơn điệu không làm lẫn với danh từ repetition.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:suddenly:unexpectedly-quick",
+      "effectiveContentHash": "7216fe91f7380288cc5e67779a3bfd3905d6169e8ec2f45226b5031ac1f29b19",
+      "assessment": "PASS",
+      "explanationVi": "Cả hai nguồn hỗ trợ đột nhiên, nhanh và bất ngờ; định nghĩa cùng ghi chú vị trí trạng từ đúng. Ví dụ mới giữ một con chó, hành động chạy ngang và lối đi, bản dịch đột nhiên biểu đạt nghĩa mục tiêu. Không sao chép câu đèn tắt hoặc sinh nhật trong nguồn.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:destroy:ruin-completely",
+      "effectiveContentHash": "ef718382d6cc54c18fae67370b5f4ba5fb330a0da079e42bec75231abda727d3",
+      "assessment": "PASS",
+      "explanationVi": "Định nghĩa hư hại nghiêm trọng đến mức mất khả năng dùng hoặc tồn tại theo dạng trước phù hợp nguồn phá hủy. Ví dụ mới giữ trận lũ, cầu gỗ và công dụng cho người đi bộ. Động từ ngoại động có tân ngữ rõ; không giảm destroy thành hỏng nhẹ.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:shoe:footwear-item",
+      "effectiveContentHash": "bd18e9fd17a8d88e8e399d3cbeb947e01e812dc2bc9af982a7ba4d2398ecbc94",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa chiếc giày có đế và ghi chú một chiếc cho một chân phù hợp nguồn danh từ. Ví dụ mới giữ viên đá nhỏ, việc đã lọt vào, chiếc giày bên phải và sở hữu của tôi; bản dịch giữ quá khứ hoàn thành qua đã. Không thấy lỗi ranh giới nghĩa hay sao chép ví dụ.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:extinction:species-end",
+      "effectiveContentHash": "2d771c81d0251271da4a9c7ce52cb2e6017772fbcbcda1506706879fb46cbc0f",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn extinction nêu rõ động vật hoặc thực vật ngừng tồn tại. Nghĩa sinh học được tách đúng: không còn cá thể sống của loài, không chỉ giảm số lượng. Ví dụ mới giữ bảng trưng bày, loài cổ đại này và sự tuyệt chủng; ghi chú danh từ thường không đếm được đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:extinction:general-disappearance",
+      "effectiveContentHash": "4178e858d2c48e37c3ebaf596de1b61f27a03425510399f075cda5b0946ca14a",
+      "assessment": "PASS",
+      "explanationVi": "Meaning nguồn nêu rõ custom và skill stops existing, nên nghĩa biến mất hoàn toàn ngoài sinh học được hỗ trợ trực tiếp. Ví dụ mới về truyền thống dệt địa phương giữ đủ bổ nghĩa trong bản dịch. Phân biệt sự chấm dứt hoàn toàn với suy giảm tạm thời đúng; không thiếu nghĩa này.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:method:way-of-doing",
+      "effectiveContentHash": "e5c53f86b103ba5fca23d1a2c55d28550c2f1d8991df1141e3ab759b14c1a405",
+      "assessment": "PASS",
+      "explanationVi": "Cả hai nguồn hỗ trợ phương pháp hoặc cách thức làm việc; định nghĩa và cấu trúc method of doing, method for a task phù hợp. Ví dụ mới giữ chúng tôi, thử phương pháp khác và mục đích làm sạch gạch. Danh từ không bị chuyển sang hành động thử nghiệm hoặc kết quả.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:situation:circumstances",
+      "effectiveContentHash": "e860258083374cae8aa2f20206be0373b87bd1128286cb09bc7819c7bc083591",
+      "assessment": "PASS",
+      "explanationVi": "Định nghĩa hoàn cảnh và điều kiện tại một thời điểm phù hợp nguồn tình hình. Ví dụ mới giữ máy bơm bị hỏng và tác động đưa trang trại vào tình thế khó khăn; bản dịch hơi sát cấu trúc Anh nhưng rõ nghĩa. Ghi chú đếm được và in a situation đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:talkative:talking-often",
+      "effectiveContentHash": "62a3a8b23d5f2cc34dfaa4a1210ffe01aacbea204be48e250cd77bab6934b0b3",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn nghĩa tiếng Anh talks a lot hỗ trợ hay nói, dù chú giải Việt nhiều chuyện dễ gây hiểu nhầm thành ngồi lê đôi mách. Bản thảo tránh lỗi ấy đúng. Ví dụ mới giữ vị khách của chúng tôi, vốn ít nói, sự thay đổi và thời điểm bữa trưa; tính từ dùng đúng.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:nowhere:no-place",
+      "effectiveContentHash": "22f8b0f757a545a7925bd8db288b548e047b53d10c2ea1e182025925270e5e43",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa không nơi nào và trạng từ phù hợp cả hai nguồn; ví dụ mới phủ định nơi cất ghế dư, không phủ định số ghế. Bản dịch giữ những chiếc ghế và mục đích cất. Ghi chú tránh thêm not phù hợp tiếng Anh chuẩn trong cấu trúc này; không cần tách not existing thành nghĩa mới.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:february:second-month",
+      "effectiveContentHash": "fec4f372ff76f7dbf2c41ef18b3db0cdf677950ff21ec8d973d5fb04201d3a85",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa tháng thứ hai phù hợp nguồn và định nghĩa tháng sau January trước March rõ ràng. Display form February cùng ghi chú viết hoa, in cho tháng và on cho ngày đúng. Ví dụ mới giữ bắt đầu tháng Hai, kết thúc tháng Sáu và chủ thể khóa học; không sao chép ví dụ sinh nhật.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:brainstorm:generate-ideas",
+      "effectiveContentHash": "0f4f8cd3bfda6d72e3ff528270be1e1acfa19c779a8613660f2e3f670311ada1",
+      "assessment": "PASS",
+      "explanationVi": "Định nghĩa nghĩ ra và đề xuất nhiều ý tưởng về chủ đề phù hợp nguồn động não; ghi chú có thể làm một mình hoặc cùng nhau không sai. Ví dụ mới giữ chúng tôi và câu lạc bộ đọc sách mới. Bản dịch tên không đánh dấu số nhiều nhưng tự nhiên, không đổi nghĩa hoặc mục đích.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2K:specific:clearly-identified",
+      "effectiveContentHash": "79d51e13af5866684d35d8bf6b99e640ddc8866c66dc4ce6723f4f5f507aaff1",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa cụ thể, được xác định rõ phù hợp cả hai nguồn chính xác hoặc rõ ràng. Ví dụ mới dùng lý do cụ thể cho đề nghị, bản dịch giữ yêu cầu của biểu mẫu và quan hệ lý do với đề nghị đó. Tính từ và ghi chú không nhập nghĩa riêng thuộc về ai khi nguồn chưa chứng minh.",
+      "blocksPublication": false,
+      "issues": [],
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    }
+  ],
+  "missingSenseCandidates": [],
+  "unresolvedBoundaryItems": []
+}
