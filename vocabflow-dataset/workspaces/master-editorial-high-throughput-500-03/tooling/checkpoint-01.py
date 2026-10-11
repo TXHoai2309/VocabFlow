@@ -15,9 +15,45 @@ def encode(x):return V.encode(x)
 def write_new(p,b):return V.write_new(p,b)
 def req(x,m):return V.require(x,m)
 
+def published_selection(root):
+    branch=subprocess.check_output(["git","branch","--show-current"],cwd=ROOT).decode().strip()
+    head=subprocess.check_output(["git","rev-parse","HEAD"],cwd=ROOT).decode().strip()
+    req(branch=="TXH","Not on TXH")
+    ancestry=subprocess.run(["git","merge-base","--is-ancestor",BASE,head],cwd=ROOT,check=False)
+    req(ancestry.returncode==0,"Published HEAD does not descend from the frozen cohort baseline")
+    remote=subprocess.check_output(["git","ls-remote","origin","refs/heads/TXH"],cwd=ROOT).decode().split()
+    tracking=subprocess.check_output(["git","rev-parse","origin/TXH"],cwd=ROOT).decode().strip()
+    req(remote and remote[0]==head==tracking,"Local, tracking, and published TXH heads differ")
+    manifest=V.load(root/"selection-manifest.json");frozen=V.load(root/"frozen-cohort.json")
+    req(manifest.get("baseline")==BASE and manifest.get("parentFingerprint")==PARENT_FP,"Published selection baseline/parent drift")
+    req(manifest.get("frozenCohortFingerprint")==frozen.get("fingerprint")=="ac9cedb8a0f54295eb6eee6630fe141c2477b7a25a368c3c8efbee79feca600e","Published selection fingerprint drift")
+    req(manifest.get("fingerprint")==digest({k:v for k,v in manifest.items() if k!="fingerprint"}),"Published selection manifest fingerprint drift")
+    req(frozen.get("fingerprint")==digest({k:v for k,v in frozen.items() if k!="fingerprint"}),"Published frozen cohort fingerprint drift")
+    req(manifest.get("counts")=={"sourceGroups":6143,"authoredGroups":2020,"eligibleGroups":4123,"selectedGroups":500,"unselectedGroups":3623},"Published selection counts drift")
+    input_pins={
+        "sourceGroupLedgerSha256":sha((ROOT/"vocabflow-dataset/workspaces/full-master-expansion-candidate-preparation/full-master-expansion-candidate-ledger.json").read_bytes()),
+        "sourceInventoryHashes":{name:sha((ROOT/"vocabflow-dataset/workspaces/full-source-inventory-dedupe"/name).read_bytes()) for name in ["oxford-normalized-inventory.json","vocab4600-normalized-inventory.json"]},
+        "parentProjectionSha256":sha((PARENT_DIR/"cumulative-effective-draft-projection.json").read_bytes()),
+        "parentManifestSha256":sha((PARENT_DIR/"manifest.json").read_bytes()),
+        "previousFrozenCohortSha256":sha((PARENT_WS/"selection/frozen-cohort.json").read_bytes()),
+        "previousSelectionManifestSha256":sha((PARENT_WS/"selection/selection-manifest.json").read_bytes()),
+        "freezeToolSha256":sha((WS/"tooling/freeze-cohort.py").read_bytes()),
+    }
+    req(manifest.get("inputPins")==input_pins,"Published selection input pins drift")
+    hashes=manifest.get("artifactHashes",{})
+    req(set(hashes)=={"authored-exclusion.json","frozen-cohort.json","preauthoring-audit.json","remaining-group-inventory.json","selection-rationale.md","selection-statistics.json"},"Published selection artifact scope drift")
+    expected={}
+    for name,pin in hashes.items():
+        data=(root/name).read_bytes();req(sha(data)==pin,"Published selection artifact hash drift: "+name);expected[name]=data
+    expected["selection-manifest.json"]=(root/"selection-manifest.json").read_bytes()
+    return expected
+
 @lru_cache(maxsize=1)
 def selection():
-    expected,_=F.build();root=WS/"selection"
+    root=WS/"selection"
+    head=subprocess.check_output(["git","rev-parse","HEAD"],cwd=ROOT).decode().strip()
+    if head==BASE:expected,_=F.build()
+    else:expected=published_selection(root)
     req({p.name for p in root.iterdir()}==set(expected),"Frozen selection scope drift")
     for n,b in expected.items():req((root/n).read_bytes()==b,"Frozen selection/hash drift: "+n)
     frozen=V.load(root/"frozen-cohort.json");req(frozen["fingerprint"]=="ac9cedb8a0f54295eb6eee6630fe141c2477b7a25a368c3c8efbee79feca600e","Unexpected Cohort 500-03 freeze")
@@ -208,8 +244,17 @@ def build():
     counts={"sourceGroups":6143,"previousAuthoredGroups":2020,"previousEffectiveSenses":2871,"selectedCohortGroups":500,"microBatchesCompleted":len(seals),"newAuthoredGroups":len(newgroups),"newSenses":len(rows),"multiSenseGroups":sum(n>1 for n in Counter(r["candidateGroupKey"] for r in rows).values()),"plannedSourceSupportedMeaningCandidates":sum(len(p["sourceSupportedMeaningCandidates"]) for p in plans),"sourceMeaningCandidatesExamined":sum(len(p["sourceSupportedMeaningCandidates"]) for p in plans)+len(boundary["missingSenseCandidateProposalKeys"]),"missingSenseCandidates":len(boundary["missingSenseCandidateProposalKeys"]),"unresolvedBoundaryItems":len(boundary["unresolvedBoundaryProposalKeys"]),"cumulativeAuthoredGroups":2020+len(newgroups),"cumulativeDraftSenses":2871+len(rows),"remainingUnauthoredGroups":4123-len(newgroups),"selfReview":dict(Counter(q["assessment"] for q in qa)),"independentReview":dict(Counter(q["assessment"] for q in ind["records"]))}
     projection={**{k:v for k,v in parent.items() if k!="records"},"parentFingerprint":PARENT_FP,"inheritedRecordCount":2871,"newRecordCount":len(rows),"records":oldrows+rows};req(projection["records"][:2871]==oldrows,"Inherited parent inequality")
     artifacts={"cumulative-effective-draft-projection.json":projection,"new-sense-proposals.json":{"records":rows},"revision-evidence.json":{"records":changes},"self-review.json":{"records":qa},"independent-review.json":ind,"source-coverage-ledger.json":{"entries":plans,**boundary},"validation-summary.json":{"counts":counts,"sourceSimilarityFindings":[f for z in seals for f in z["sourceSimilarityFindings"]],"crossSourceCopyingScreen":V.cross_source_copying(rows,V.inputs()[3]),"rights":RIGHTS,"canonicalIdsAllocated":0,"ownerApprovals":0,"previousCohortFingerprint":PARENT_FP,"previousParentReviewIdentitiesPreserved":["confess","reconstruction"],"parentRecordsInheritedExactly":True,"databaseAccess":"NONE","databaseWrites":"NONE","publicationReady":len(seals)==5 and ind["publicationReady"]}}
-    files={n:encode(x) for n,x in artifacts.items()};inputs=[p for d in ["planning","authored","self-review","handoff","independent-review","revisions","tooling"] for p in (CP/d).glob("*") if p.is_file()]+list(CP.glob("micro-*-seal.json"))
-    m={"phase":"2H.2L","cohortId":"500-03","checkpoint":1,"parentFingerprint":PARENT_FP,"cohortFingerprint":frozen["fingerprint"],"counts":counts,"rawInputSha256":{str(p.relative_to(CP)).replace("\\","/"):sha(p.read_bytes()) for p in sorted(inputs)},"selectionArtifactSha256":{n:sha((WS/"selection"/n).read_bytes()) for n in ["frozen-cohort.json","selection-manifest.json"]},"microBatchFingerprints":[z["fingerprint"] for z in seals],"artifactHashes":{n:sha(b) for n,b in sorted(files.items())},"contentStatus":"DRAFT","rights":RIGHTS,"publicationReady":artifacts["validation-summary.json"]["publicationReady"]};m["fingerprint"]=digest(m);files["manifest.json"]=encode(m)
+    files={n:encode(x) for n,x in artifacts.items()}
+    inputs=[p for d in ["planning","authored","self-review","handoff","independent-review","revisions"] for p in (CP/d).glob("*") if p.is_file()]
+    inputs += [p for p in (WS/"tooling").glob("*") if p.is_file()]
+    inputs += list(CP.glob("micro-*-seal.json"))+[WS/".gitattributes"]
+    raw_input_sha={}
+    for p in sorted(inputs):
+        if p.is_relative_to(WS/"tooling"):name="tooling/"+p.name
+        elif p==WS/".gitattributes":name="workspace/.gitattributes"
+        else:name=str(p.relative_to(CP)).replace("\\","/")
+        raw_input_sha[name]=sha(p.read_bytes())
+    m={"phase":"2H.2L","cohortId":"500-03","checkpoint":1,"parentFingerprint":PARENT_FP,"cohortFingerprint":frozen["fingerprint"],"counts":counts,"rawInputSha256":raw_input_sha,"selectionArtifactSha256":{n:sha((WS/"selection"/n).read_bytes()) for n in ["frozen-cohort.json","selection-manifest.json"]},"microBatchFingerprints":[z["fingerprint"] for z in seals],"artifactHashes":{n:sha(b) for n,b in sorted(files.items())},"contentStatus":"DRAFT","rights":RIGHTS,"publicationReady":artifacts["validation-summary.json"]["publicationReady"]};m["fingerprint"]=digest(m);files["manifest.json"]=encode(m)
     report="""# Phase 2H.2L — Cohort 500-03 Checkpoint 01\n\n"""+json.dumps(counts,ensure_ascii=False,sort_keys=True,indent=2)+"\n\nAll 2,871 parent records are inherited exactly, including the existing nonblocking REVIEW histories for confess and reconstruction. Author A and isolated reviewer judgments remain separate; no human approval, canonical IDs or rights clearance. Source coverage is evidence-limited, not exhaustive.\nAll content remains offline DRAFT. No database or Production activity. Checkpoint 02 is not started.\n"
     files["report.md"]=report.encode();m["artifactHashes"]["report.md"]=sha(files["report.md"]);m["fingerprint"]=digest({k:v for k,v in m.items() if k!="fingerprint"});files["manifest.json"]=encode(m)
     return files,m
@@ -234,7 +279,7 @@ def reconcile_plan(number):
     print(json.dumps({"status":"RECONCILED_UNSEALED_PLAN","priorPlanSha256":sha(old_plan),"correctedPlanSha256":sha(new_plan_bytes),"groups":len(new_plan["entries"]),"senses":len(rows),"manuscriptMatchesFrozenPlan":True}))
 
 def main():
-    p=argparse.ArgumentParser();g=p.add_mutually_exclusive_group(required=True);g.add_argument("--plan",type=int,choices=range(1,6));g.add_argument("--reconcile-plan",type=int,choices=range(1,6));g.add_argument("--handoff",type=int,choices=range(1,6));g.add_argument("--seal",type=int,choices=range(1,6));g.add_argument("--assemble",action="store_true");g.add_argument("--check",action="store_true");g.add_argument("--resume-status",action="store_true");a=p.parse_args()
+    p=argparse.ArgumentParser();g=p.add_mutually_exclusive_group(required=True);g.add_argument("--plan",type=int,choices=range(1,6));g.add_argument("--reconcile-plan",type=int,choices=range(1,6));g.add_argument("--handoff",type=int,choices=range(1,6));g.add_argument("--seal",type=int,choices=range(1,6));g.add_argument("--assemble",action="store_true");g.add_argument("--refresh-assembled",action="store_true");g.add_argument("--check",action="store_true");g.add_argument("--resume-status",action="store_true");a=p.parse_args()
     if a.reconcile_plan:return reconcile_plan(a.reconcile_plan)
     if a.plan:
         n=a.plan;req(not (CP/f"authored/micro-{n:02d}.psv").exists(),"Persist planning before manuscript");x=plan(n);pp=CP/f"planning/micro-{n:02d}.json";write_new(pp,encode(x));write_new(CP/f"planning/micro-{n:02d}-ready.json",encode({"planningSha256":sha(pp.read_bytes()),"manuscriptAbsentWhenPlanningPersisted":True}));print("PLANNED",n);return
@@ -252,8 +297,11 @@ def main():
     if a.resume_status:print(json.dumps({"completed":m["counts"],"nextMicroBatch":None if m["counts"]["microBatchesCompleted"]==5 else m["counts"]["microBatchesCompleted"]+1}));return
     target=CP/"assembled"
     if a.check:req({p.name for p in target.iterdir()}==set(files),"Assembly scope drift")
+    if a.refresh_assembled:req(target.is_dir() and {p.name for p in target.iterdir()}==set(files),"Refresh requires the exact existing CP01 assembly scope")
     for n,b in files.items():
         if a.check:req((target/n).read_bytes()==b,"Assembly replay drift: "+n)
+        elif a.refresh_assembled:
+            if (target/n).read_bytes()!=b:(target/n).write_bytes(b)
         else:write_new(target/n,b)
     print(json.dumps({"fingerprint":m["fingerprint"],"counts":m["counts"],"publicationReady":m["publicationReady"],"zeroWrites":a.check}))
 if __name__=="__main__":main()

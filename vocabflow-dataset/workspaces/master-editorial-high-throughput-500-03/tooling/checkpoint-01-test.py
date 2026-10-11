@@ -29,6 +29,13 @@ class Checkpoint01RegressionTests(unittest.TestCase):
         self.assertTrue(all("supplementalSourceEvidence" not in row for row in rows))
         self.assertIsNone(M.validate_handoff(1, rows, receipt))
 
+    def test_manifest_pins_checkpoint_tooling_and_lf_checkout_contract(self):
+        _, manifest = M.build()
+        for name in ("checkpoint-01.py", "checkpoint-01-test.py", "freeze-cohort.py"):
+            self.assertEqual(manifest["rawInputSha256"][f"tooling/{name}"], M.sha((WS / "tooling" / name).read_bytes()))
+        self.assertEqual(manifest["rawInputSha256"]["workspace/.gitattributes"], M.sha((WS / ".gitattributes").read_bytes()))
+        self.assertEqual((WS / ".gitattributes").read_text(encoding="utf-8"), "* text eol=lf\n")
+
     def test_external_evidence_is_allowlisted_and_hash_pinned(self):
         records = M.supplemental_evidence()
         identities = {(r["candidateGroupKey"], r["originalSenseSlug"], r["effectiveSenseSlug"], r["targetPOS"]) for r in records}
