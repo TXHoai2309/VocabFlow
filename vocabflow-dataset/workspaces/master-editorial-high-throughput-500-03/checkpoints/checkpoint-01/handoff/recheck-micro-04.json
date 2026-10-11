@@ -1,0 +1,996 @@
+{
+  "instruction": "Independently reassess each corrected current record against linked source evidence. Verify the correction addresses its prior finding; use current effectiveContentHash exactly. Provide substantive Vietnamese explanations of at least 70 characters, assessment PASS/REVIEW/FAIL, and blocksPublication boolean. Do not inspect Author A self-review or edit files other than the assigned recheck receipt. Do not make human-approval, rights-clearance, or canonical-ID claims.",
+  "microBatch": 4,
+  "phase": "2H.2L",
+  "records": [
+    {
+      "priorFinding": {
+        "assessment": "REVIEW",
+        "blocksPublication": false,
+        "effectiveContentHash": "493ceba686b8a90c43af979e2021555e4b106a0f0f4853aaa6a3431342cffd11",
+        "explanationVi": "Nguồn Oxford hỗ trợ bow là chiếc nơ, nhưng câu “bow held the ribbon” khiến nơ như một tác nhân giữ chính dải ruy băng và nghe không tự nhiên; nên cân nhắc ví dụ minh họa trang trí.",
+        "proposalKey": "EDITORIAL_2H2L:bow:decorative-loop"
+      },
+      "record": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:bow",
+        "canonicalIdsAllocated": 0,
+        "content": {
+          "definitionEn": "A decorative knot or loop made by tying ribbon or similar material.",
+          "examples": [
+            {
+              "en": "She tied a small blue bow around the parcel.",
+              "exampleKey": "EDITORIAL_2H2L:bow:decorative-loop:example-1",
+              "vi": "Cô ấy buộc một chiếc nơ xanh nhỏ quanh gói hàng."
+            }
+          ],
+          "grammarNotesEn": "Countable noun; a bow on or in something; plural bows.",
+          "meaningVi": "nơ; chiếc nơ trang trí",
+          "senseLabelEn": "Decorative ribbon loop"
+        },
+        "contentStatus": "DRAFT",
+        "displayFormProposal": "bow",
+        "editorialAuthorship": {
+          "humanAuthor": null,
+          "humanReviewer": null,
+          "kind": "AI_GENERATED_EDITORIAL_DRAFT",
+          "process": "Original 2H.2L manuscript composed from linked source evidence"
+        },
+        "effectiveContentHash": "de58946e17c70e3bfdcd271edd4fde86e4cbb76f408a62d45a33346051c28856",
+        "fieldHashes": {
+          "definitionEn": "e6e0d32a0e0d1a732260e98d86ea6a8242b162a14aaa48750188f7f82690c0f5",
+          "examples": "cc8732b1b2fec0dd1aeee51ac136d7912f2598a13750bcd682bd5854016843e1",
+          "grammarNotesEn": "066602294553f5bb8c0d4c9efc18c6e684bc9835a02b68f46876f3f2d43bb18e",
+          "meaningVi": "9f5c4ea3b90054feda65393de18aace9090990e2809c4c9c94681fc173760a3a",
+          "senseLabelEn": "fd38af1e36b95872410208305d13ffa976db7d737e7399f2e4039f6b2b2e417c"
+        },
+        "formalApproval": false,
+        "headword": "bow",
+        "partOfSpeech": "NOUN",
+        "proposalKey": "EDITORIAL_2H2L:bow:decorative-loop",
+        "rights": "UNKNOWN_REVIEW_REQUIRED",
+        "riskFlags": [
+          "MULTIPLE_RECORDS_SAME_SOURCE",
+          "NORMALIZED_HEADWORD_MATCH",
+          "POSSIBLE_POLYSEMY",
+          "HUMAN_SENSE_REVIEW_REQUIRED",
+          "DEFINITION_CONTENT_CONFLICT_REVIEW",
+          "EXAMPLE_VARIANT_REVIEW",
+          "VIETNAMESE_MEANING_VARIANT_REVIEW"
+        ],
+        "sourceEvidence": [
+          {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "C1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "NOUN",
+              "VERB"
+            ],
+            "rawContentPointer": "/records/3883/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/3883/rawHeadword",
+            "rawPosEvidencePointer": "/records/3883/sourcePosRaw",
+            "recordEvidenceSha256": "a4b9f9ffcccf9391b01d2ef6f880000bd82b0dc6a3b3c732c4ee6978f3d53775",
+            "recordIndex": 3883,
+            "sourceNoteGuid": "o44Lz^Z:j*",
+            "sourceRecordId": "1788223609922",
+            "structuredOxfordSenseGroupOrdinals": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::C1",
+                "value": "C1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "C1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/629/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/629/rawHeadword",
+            "rawPosEvidencePointer": "/records/629/sourcePosRaw",
+            "recordEvidenceSha256": "8511df0662d9ed0d6e988880a1a0278f5933858d1a09fb91d1f6839b70edea69",
+            "recordIndex": 629,
+            "sourceNoteGuid": "Bzunu?XM*_",
+            "sourceRecordId": "1559931007401",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::C1",
+                "value": "C1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "C1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "VERB"
+            ],
+            "rawContentPointer": "/records/3762/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/3762/rawHeadword",
+            "rawPosEvidencePointer": "/records/3762/sourcePosRaw",
+            "recordEvidenceSha256": "248cf45746f8086a7b6bab02e7a13c57e38a5bbbb0479c29c865e1019bf7d4fb",
+            "recordIndex": 3762,
+            "sourceNoteGuid": "nAC}Xe5Nel",
+            "sourceRecordId": "1623660520009",
+            "structuredOxfordSenseGroupOrdinals": []
+          }
+        ],
+        "sourceSenseCoverage": "Selected supported meanings only; no claim of exhaustive dictionary coverage",
+        "supplementalSourceEvidence": []
+      },
+      "revisionRecords": [
+        {
+          "after": "She tied a small blue bow around the parcel.",
+          "afterContentHash": "a9f67acc48776161589152cea1e648a4af84ebd4f115c91bc7a10ff8a68c9cbf",
+          "afterFieldHash": "bc30d3cc58dac64eb116ad912c10ac36f7a1549f40e9c83cfb1f1204939da114",
+          "afterRecordHash": "7f25cac775c492edd98f3c22b71292e56dd9c2f13fb555f278fce8829a487abd",
+          "before": "A small blue bow held the ribbon around the parcel.",
+          "beforeContentHash": "493ceba686b8a90c43af979e2021555e4b106a0f0f4853aaa6a3431342cffd11",
+          "beforeFieldHash": "36d6626f40371054de263ba9236caa21660904e42daa0174d68c51c89a396806",
+          "beforeRecordHash": "958e7bf3c3a627e07af3b63f90e5e150f64595a9ebae06fa5d02398287298558",
+          "field": "exampleEn",
+          "proposalKey": "EDITORIAL_2H2L:bow:decorative-loop",
+          "reasonVi": "Sửa cách gán vai tác nhân cho chiếc nơ thành hành động buộc nơ tự nhiên, phù hợp nghĩa vật trang trí.",
+          "reviewFindingSource": "independent-review/micro-04.json"
+        },
+        {
+          "after": "Cô ấy buộc một chiếc nơ xanh nhỏ quanh gói hàng.",
+          "afterContentHash": "de58946e17c70e3bfdcd271edd4fde86e4cbb76f408a62d45a33346051c28856",
+          "afterFieldHash": "2744caf8a79cb7c881805274ea83c87bb2f46dc771fbbc92029ad0d0bfafc461",
+          "afterRecordHash": "49aaf5b23aa7226325805e7ab0e3724cfb1832c615c63ff57afd67a677d48b50",
+          "before": "Một chiếc nơ xanh nhỏ giữ dải ruy băng quanh gói hàng.",
+          "beforeContentHash": "a9f67acc48776161589152cea1e648a4af84ebd4f115c91bc7a10ff8a68c9cbf",
+          "beforeFieldHash": "efe94a01b25ee13dc5aa066115e48b1e85bbaa1b010d417727822ac04e3a3fee",
+          "beforeRecordHash": "7f25cac775c492edd98f3c22b71292e56dd9c2f13fb555f278fce8829a487abd",
+          "field": "exampleVi",
+          "proposalKey": "EDITORIAL_2H2L:bow:decorative-loop",
+          "reasonVi": "Bản dịch mới khớp cấu trúc chủ thể-hành động của ví dụ đã sửa.",
+          "reviewFindingSource": "independent-review/micro-04.json"
+        }
+      ],
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "Performers bow to the audience after the show.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Các nghệ sĩ cúi chào khán giả sau buổi diễn.",
+                  "focus_en": [
+                    "bow"
+                  ],
+                  "focus_vi": [
+                    "cúi chào"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 0,
+              "sourcePosRaw": "v.",
+              "sourceVietnameseMeaningRaw": "cúi chào",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            },
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "The hunter carries a bow and several arrows.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Người thợ săn mang một cây cung và vài mũi tên.",
+                  "focus_en": [
+                    "bow"
+                  ],
+                  "focus_vi": [
+                    "cung"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 1,
+              "sourcePosRaw": "n.",
+              "sourceVietnameseMeaningRaw": "cung",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            },
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "The actor took a bow after the performance.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Nam diễn viên thực hiện một cái cúi chào sau buổi diễn.",
+                  "focus_en": [
+                    "bow"
+                  ],
+                  "focus_vi": [
+                    "cái cúi chào"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 2,
+              "sourcePosRaw": "n.",
+              "sourceVietnameseMeaningRaw": "cái cúi chào",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            },
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "She tied a bow in her hair.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Cô ấy thắt một chiếc nơ trên tóc.",
+                  "focus_en": [
+                    "bow"
+                  ],
+                  "focus_vi": [
+                    "nơ"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 3,
+              "sourcePosRaw": "n.",
+              "sourceVietnameseMeaningRaw": "nơ",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            },
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "Waves broke against the bow of the ship.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Sóng đập vào mũi tàu.",
+                  "focus_en": [
+                    "bow"
+                  ],
+                  "focus_vi": [
+                    "mũi tàu"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 4,
+              "sourcePosRaw": "n.",
+              "sourceVietnameseMeaningRaw": "mũi tàu",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            },
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "She drew the bow across the violin strings.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Cô ấy kéo vĩ ngang qua dây đàn vi-ô-lông.",
+                  "focus_en": [
+                    "bow"
+                  ],
+                  "focus_vi": [
+                    "vĩ"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 5,
+              "sourcePosRaw": "n.",
+              "sourceVietnameseMeaningRaw": "vĩ (đàn dây)",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            }
+          ],
+          "reference": {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "C1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "NOUN",
+              "VERB"
+            ],
+            "rawContentPointer": "/records/3883/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/3883/rawHeadword",
+            "rawPosEvidencePointer": "/records/3883/sourcePosRaw",
+            "recordEvidenceSha256": "a4b9f9ffcccf9391b01d2ef6f880000bd82b0dc6a3b3c732c4ee6978f3d53775",
+            "recordIndex": 3883,
+            "sourceNoteGuid": "o44Lz^Z:j*",
+            "sourceRecordId": "1788223609922",
+            "structuredOxfordSenseGroupOrdinals": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "sourceFields": {
+            "CEFR": "C1",
+            "Example": "Performers <mark class=\"v-target\">bow</mark> to the audience after the show.<br>The hunter carries a <mark class=\"v-target\">bow</mark> and several arrows.<br>The actor took a <mark class=\"v-target\">bow</mark> after the performance.<br>She tied a <mark class=\"v-target\">bow</mark> in her hair.<br>Waves broke against the <mark class=\"v-target\">bow</mark> of the ship.<br>She drew the <mark class=\"v-target\">bow</mark> across the violin strings.",
+            "Example Data": "[{\"pos\":\"v.\",\"meaning_vi\":\"cúi chào\",\"examples\":[{\"example_en\":\"Performers bow to the audience after the show.\",\"example_vi\":\"Các nghệ sĩ cúi chào khán giả sau buổi diễn.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"bow\"],\"focus_vi\":[\"cúi chào\"]}]},{\"pos\":\"n.\",\"meaning_vi\":\"cung\",\"examples\":[{\"example_en\":\"The hunter carries a bow and several arrows.\",\"example_vi\":\"Người thợ săn mang một cây cung và vài mũi tên.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"bow\"],\"focus_vi\":[\"cung\"]}]},{\"pos\":\"n.\",\"meaning_vi\":\"cái cúi chào\",\"examples\":[{\"example_en\":\"The actor took a bow after the performance.\",\"example_vi\":\"Nam diễn viên thực hiện một cái cúi chào sau buổi diễn.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"bow\"],\"focus_vi\":[\"cái cúi chào\"]}]},{\"pos\":\"n.\",\"meaning_vi\":\"nơ\",\"examples\":[{\"example_en\":\"She tied a bow in her hair.\",\"example_vi\":\"Cô ấy thắt một chiếc nơ trên tóc.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"bow\"],\"focus_vi\":[\"nơ\"]}]},{\"pos\":\"n.\",\"meaning_vi\":\"mũi tàu\",\"examples\":[{\"example_en\":\"Waves broke against the bow of the ship.\",\"example_vi\":\"Sóng đập vào mũi tàu.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"bow\"],\"focus_vi\":[\"mũi tàu\"]}]},{\"pos\":\"n.\",\"meaning_vi\":\"vĩ (đàn dây)\",\"examples\":[{\"example_en\":\"She drew the bow across the violin strings.\",\"example_vi\":\"Cô ấy kéo vĩ ngang qua dây đàn vi-ô-lông.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"bow\"],\"focus_vi\":[\"vĩ\"]}]}]",
+            "Example EN 1": "Performers bow to the audience after the show.",
+            "Example EN 2": "The hunter carries a bow and several arrows.",
+            "Example EN 3": "The actor took a bow after the performance.",
+            "Example EN 4": "She tied a bow in her hair.",
+            "Example EN 5": "Waves broke against the bow of the ship.",
+            "Example EN 6": "She drew the bow across the violin strings.",
+            "Example EN 7": "",
+            "Frequency": "2710",
+            "Irregular Forms": "[]",
+            "Oxford List": "Oxford 5000",
+            "Part of Speech": "verb, noun",
+            "Phonetic": "/bəʊ/",
+            "Pronunciation Data": "[{\"locale\":\"UK\",\"ipa\":[\"/baʊ/\"],\"audio_keys\":[\"uk_pron/b/bow/bow__/bow__gb_3\"]},{\"locale\":\"US\",\"ipa\":[\"/baʊ/\"],\"audio_keys\":[\"us_pron/b/bow/bow__/bow__us_1\"]},{\"locale\":\"UK\",\"ipa\":[\"/bəʊ/\"],\"audio_keys\":[\"uk_pron/b/bow/bow__/bow__gb_4\"]},{\"locale\":\"US\",\"ipa\":[\"/bəʊ/\"],\"audio_keys\":[\"us_pron/b/bow/bow__/bow__us_3\"]}]",
+            "Sound_uk": "",
+            "Sound_us": "",
+            "Study Order": "3884",
+            "Từ loại": "động từ, danh từ",
+            "Variant Data": "[]",
+            "Vietnamese": "cúi chào; cung; cái cúi chào; nơ; mũi tàu; vĩ (đàn dây)",
+            "Word": "bow"
+          }
+        },
+        {
+          "candidateSourceSenseGroups": [],
+          "reference": {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::C1",
+                "value": "C1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "C1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/629/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/629/rawHeadword",
+            "rawPosEvidencePointer": "/records/629/sourcePosRaw",
+            "recordEvidenceSha256": "8511df0662d9ed0d6e988880a1a0278f5933858d1a09fb91d1f6839b70edea69",
+            "recordIndex": 629,
+            "sourceNoteGuid": "Bzunu?XM*_",
+            "sourceRecordId": "1559931007401",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          "sourceFields": {
+            "Example": "He went hunting with a <b>bow</b> and arrow.",
+            "IPA": "/baʊ/",
+            "Image": "<img src=\"paste-73b3130a2ba9d9288c8b88952cdce989b02cf64e.jpg\">",
+            "Meaning": "A <i>bow</i> is a weapon made of curved wood and string that shoots arrows.<br><b>cây cung</b>",
+            "PoS": "noun",
+            "Sound": "[sound:bow1_2noun-Defin.mp3]",
+            "Sound_Example": " [sound:googletts-32dbdcbf-21bc6a8c-e81d996b-97f42591-3cabd054.mp3]",
+            "Word": "bow",
+            "noteid": "1559931007401"
+          }
+        },
+        {
+          "candidateSourceSenseGroups": [],
+          "reference": {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::C1",
+                "value": "C1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "C1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "VERB"
+            ],
+            "rawContentPointer": "/records/3762/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/3762/rawHeadword",
+            "rawPosEvidencePointer": "/records/3762/sourcePosRaw",
+            "recordEvidenceSha256": "248cf45746f8086a7b6bab02e7a13c57e38a5bbbb0479c29c865e1019bf7d4fb",
+            "recordIndex": 3762,
+            "sourceNoteGuid": "nAC}Xe5Nel",
+            "sourceRecordId": "1623660520009",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          "sourceFields": {
+            "Example": "the “<b>bow</b>,” is an essential manner for the Japanese people",
+            "IPA": "/baʊ/",
+            "Image": "<img src=\"paste-e8e0744b98ee8899dcef9568578e8f411f641985.jpg\">",
+            "Meaning": "to move your head or the top half of your body forwards and downwards as a sign of respect or to say hello or goodbye<br><b>Cúi đầu, cúi chào, khòm lưng</b>",
+            "PoS": "verb",
+            "Sound": "[sound:bow1_1 verb - Definition, pictures, pronunciation and usage .mp3]",
+            "Sound_Example": " [sound:googletts-c838452a-7e71e667-fee5736e-1b8e5e3f-12136b94.mp3]",
+            "Word": "bow",
+            "noteid": "1623660520009"
+          }
+        }
+      ]
+    },
+    {
+      "priorFinding": {
+        "assessment": "REVIEW",
+        "blocksPublication": false,
+        "effectiveContentHash": "e2eac720cfbd6f152a1ffd1807dabf18760ddfc488398b786d593f5bd24a5251",
+        "explanationVi": "Nguồn Oxford xác nhận vĩ được kéo qua dây đàn violin, và ví dụ nhạc sĩ lấy vĩ khỏi hộp tự nhiên; tuy nhiên định nghĩa “strings or hair” chưa phân biệt rõ dây đàn với lông của cây vĩ.",
+        "proposalKey": "EDITORIAL_2H2L:bow:string-instrument-playing-stick"
+      },
+      "record": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:bow",
+        "canonicalIdsAllocated": 0,
+        "content": {
+          "definitionEn": "A stick drawn across the strings of a violin or another string instrument to produce music.",
+          "examples": [
+            {
+              "en": "The violinist lifted the bow from its case before rehearsal.",
+              "exampleKey": "EDITORIAL_2H2L:bow:string-instrument-playing-stick:example-1",
+              "vi": "Nghệ sĩ violin lấy cây vĩ ra khỏi hộp trước buổi tập."
+            }
+          ],
+          "grammarNotesEn": "Countable noun; draw or move a bow across the strings of an instrument.",
+          "meaningVi": "vĩ kéo của đàn violin hoặc nhạc cụ dây",
+          "senseLabelEn": "Stick for playing a string instrument"
+        },
+        "contentStatus": "DRAFT",
+        "displayFormProposal": "bow",
+        "editorialAuthorship": {
+          "humanAuthor": null,
+          "humanReviewer": null,
+          "kind": "AI_GENERATED_EDITORIAL_DRAFT",
+          "process": "Original 2H.2L manuscript composed from linked source evidence"
+        },
+        "effectiveContentHash": "121423c630e397bc40662a9713cfda833e62b3d2ded6683754fd2474266a23e4",
+        "fieldHashes": {
+          "definitionEn": "cd8ab2a546d017ae3813a1749ca7d9a578638046d5e9daa4159781e03c1177db",
+          "examples": "a8b0bc5a7a35744c2b0883a02b84037d9daad5efc4b5826e699ba5bddf62f1e1",
+          "grammarNotesEn": "f5063b9734837deba81f888f683ac65eaa8169f513dc74a7528ed7e2eb26ab22",
+          "meaningVi": "387e93d4185d7ca92d30a0218ec0e22b95e72abbe4febb48826a3091495357dd",
+          "senseLabelEn": "53cc3544299060907cfb4311ce224adbad6faa601be8a0c82581a2dd04c78230"
+        },
+        "formalApproval": false,
+        "headword": "bow",
+        "partOfSpeech": "NOUN",
+        "proposalKey": "EDITORIAL_2H2L:bow:string-instrument-playing-stick",
+        "rights": "UNKNOWN_REVIEW_REQUIRED",
+        "riskFlags": [
+          "MULTIPLE_RECORDS_SAME_SOURCE",
+          "NORMALIZED_HEADWORD_MATCH",
+          "POSSIBLE_POLYSEMY",
+          "HUMAN_SENSE_REVIEW_REQUIRED",
+          "DEFINITION_CONTENT_CONFLICT_REVIEW",
+          "EXAMPLE_VARIANT_REVIEW",
+          "VIETNAMESE_MEANING_VARIANT_REVIEW"
+        ],
+        "sourceEvidence": [
+          {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "C1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "NOUN",
+              "VERB"
+            ],
+            "rawContentPointer": "/records/3883/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/3883/rawHeadword",
+            "rawPosEvidencePointer": "/records/3883/sourcePosRaw",
+            "recordEvidenceSha256": "a4b9f9ffcccf9391b01d2ef6f880000bd82b0dc6a3b3c732c4ee6978f3d53775",
+            "recordIndex": 3883,
+            "sourceNoteGuid": "o44Lz^Z:j*",
+            "sourceRecordId": "1788223609922",
+            "structuredOxfordSenseGroupOrdinals": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::C1",
+                "value": "C1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "C1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/629/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/629/rawHeadword",
+            "rawPosEvidencePointer": "/records/629/sourcePosRaw",
+            "recordEvidenceSha256": "8511df0662d9ed0d6e988880a1a0278f5933858d1a09fb91d1f6839b70edea69",
+            "recordIndex": 629,
+            "sourceNoteGuid": "Bzunu?XM*_",
+            "sourceRecordId": "1559931007401",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::C1",
+                "value": "C1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "C1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "VERB"
+            ],
+            "rawContentPointer": "/records/3762/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/3762/rawHeadword",
+            "rawPosEvidencePointer": "/records/3762/sourcePosRaw",
+            "recordEvidenceSha256": "248cf45746f8086a7b6bab02e7a13c57e38a5bbbb0479c29c865e1019bf7d4fb",
+            "recordIndex": 3762,
+            "sourceNoteGuid": "nAC}Xe5Nel",
+            "sourceRecordId": "1623660520009",
+            "structuredOxfordSenseGroupOrdinals": []
+          }
+        ],
+        "sourceSenseCoverage": "Selected supported meanings only; no claim of exhaustive dictionary coverage",
+        "supplementalSourceEvidence": []
+      },
+      "revisionRecords": [
+        {
+          "after": "A stick drawn across the strings of a violin or another string instrument to produce music.",
+          "afterContentHash": "121423c630e397bc40662a9713cfda833e62b3d2ded6683754fd2474266a23e4",
+          "afterFieldHash": "cd8ab2a546d017ae3813a1749ca7d9a578638046d5e9daa4159781e03c1177db",
+          "afterRecordHash": "fb16700300a9975d7ec242084971b2e327b9bb277ff48550ebc5229c48df6476",
+          "before": "A stick with strings or hair that is moved across the strings of a violin or another string instrument to make sound.",
+          "beforeContentHash": "e2eac720cfbd6f152a1ffd1807dabf18760ddfc488398b786d593f5bd24a5251",
+          "beforeFieldHash": "6efa286b1bf48f871cfca76bc55a7b28f0491b7ab8dbbeee69ca1b3fb2dd8840",
+          "beforeRecordHash": "35020d6f94012d83440fd2b07b4389cffa689f73ab884159fb3eec903f38b27d",
+          "field": "definitionEn",
+          "proposalKey": "EDITORIAL_2H2L:bow:string-instrument-playing-stick",
+          "reasonVi": "Loại bỏ mô tả sai “strings or hair”; giữ đúng điều nguồn Oxford chứng minh là bow được kéo qua dây đàn.",
+          "reviewFindingSource": "independent-review/micro-04.json"
+        }
+      ],
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "Performers bow to the audience after the show.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Các nghệ sĩ cúi chào khán giả sau buổi diễn.",
+                  "focus_en": [
+                    "bow"
+                  ],
+                  "focus_vi": [
+                    "cúi chào"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 0,
+              "sourcePosRaw": "v.",
+              "sourceVietnameseMeaningRaw": "cúi chào",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            },
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "The hunter carries a bow and several arrows.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Người thợ săn mang một cây cung và vài mũi tên.",
+                  "focus_en": [
+                    "bow"
+                  ],
+                  "focus_vi": [
+                    "cung"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 1,
+              "sourcePosRaw": "n.",
+              "sourceVietnameseMeaningRaw": "cung",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            },
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "The actor took a bow after the performance.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Nam diễn viên thực hiện một cái cúi chào sau buổi diễn.",
+                  "focus_en": [
+                    "bow"
+                  ],
+                  "focus_vi": [
+                    "cái cúi chào"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 2,
+              "sourcePosRaw": "n.",
+              "sourceVietnameseMeaningRaw": "cái cúi chào",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            },
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "She tied a bow in her hair.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Cô ấy thắt một chiếc nơ trên tóc.",
+                  "focus_en": [
+                    "bow"
+                  ],
+                  "focus_vi": [
+                    "nơ"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 3,
+              "sourcePosRaw": "n.",
+              "sourceVietnameseMeaningRaw": "nơ",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            },
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "Waves broke against the bow of the ship.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Sóng đập vào mũi tàu.",
+                  "focus_en": [
+                    "bow"
+                  ],
+                  "focus_vi": [
+                    "mũi tàu"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 4,
+              "sourcePosRaw": "n.",
+              "sourceVietnameseMeaningRaw": "mũi tàu",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            },
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "She drew the bow across the violin strings.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Cô ấy kéo vĩ ngang qua dây đàn vi-ô-lông.",
+                  "focus_en": [
+                    "bow"
+                  ],
+                  "focus_vi": [
+                    "vĩ"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 5,
+              "sourcePosRaw": "n.",
+              "sourceVietnameseMeaningRaw": "vĩ (đàn dây)",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            }
+          ],
+          "reference": {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "C1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "NOUN",
+              "VERB"
+            ],
+            "rawContentPointer": "/records/3883/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/3883/rawHeadword",
+            "rawPosEvidencePointer": "/records/3883/sourcePosRaw",
+            "recordEvidenceSha256": "a4b9f9ffcccf9391b01d2ef6f880000bd82b0dc6a3b3c732c4ee6978f3d53775",
+            "recordIndex": 3883,
+            "sourceNoteGuid": "o44Lz^Z:j*",
+            "sourceRecordId": "1788223609922",
+            "structuredOxfordSenseGroupOrdinals": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "sourceFields": {
+            "CEFR": "C1",
+            "Example": "Performers <mark class=\"v-target\">bow</mark> to the audience after the show.<br>The hunter carries a <mark class=\"v-target\">bow</mark> and several arrows.<br>The actor took a <mark class=\"v-target\">bow</mark> after the performance.<br>She tied a <mark class=\"v-target\">bow</mark> in her hair.<br>Waves broke against the <mark class=\"v-target\">bow</mark> of the ship.<br>She drew the <mark class=\"v-target\">bow</mark> across the violin strings.",
+            "Example Data": "[{\"pos\":\"v.\",\"meaning_vi\":\"cúi chào\",\"examples\":[{\"example_en\":\"Performers bow to the audience after the show.\",\"example_vi\":\"Các nghệ sĩ cúi chào khán giả sau buổi diễn.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"bow\"],\"focus_vi\":[\"cúi chào\"]}]},{\"pos\":\"n.\",\"meaning_vi\":\"cung\",\"examples\":[{\"example_en\":\"The hunter carries a bow and several arrows.\",\"example_vi\":\"Người thợ săn mang một cây cung và vài mũi tên.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"bow\"],\"focus_vi\":[\"cung\"]}]},{\"pos\":\"n.\",\"meaning_vi\":\"cái cúi chào\",\"examples\":[{\"example_en\":\"The actor took a bow after the performance.\",\"example_vi\":\"Nam diễn viên thực hiện một cái cúi chào sau buổi diễn.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"bow\"],\"focus_vi\":[\"cái cúi chào\"]}]},{\"pos\":\"n.\",\"meaning_vi\":\"nơ\",\"examples\":[{\"example_en\":\"She tied a bow in her hair.\",\"example_vi\":\"Cô ấy thắt một chiếc nơ trên tóc.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"bow\"],\"focus_vi\":[\"nơ\"]}]},{\"pos\":\"n.\",\"meaning_vi\":\"mũi tàu\",\"examples\":[{\"example_en\":\"Waves broke against the bow of the ship.\",\"example_vi\":\"Sóng đập vào mũi tàu.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"bow\"],\"focus_vi\":[\"mũi tàu\"]}]},{\"pos\":\"n.\",\"meaning_vi\":\"vĩ (đàn dây)\",\"examples\":[{\"example_en\":\"She drew the bow across the violin strings.\",\"example_vi\":\"Cô ấy kéo vĩ ngang qua dây đàn vi-ô-lông.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"bow\"],\"focus_vi\":[\"vĩ\"]}]}]",
+            "Example EN 1": "Performers bow to the audience after the show.",
+            "Example EN 2": "The hunter carries a bow and several arrows.",
+            "Example EN 3": "The actor took a bow after the performance.",
+            "Example EN 4": "She tied a bow in her hair.",
+            "Example EN 5": "Waves broke against the bow of the ship.",
+            "Example EN 6": "She drew the bow across the violin strings.",
+            "Example EN 7": "",
+            "Frequency": "2710",
+            "Irregular Forms": "[]",
+            "Oxford List": "Oxford 5000",
+            "Part of Speech": "verb, noun",
+            "Phonetic": "/bəʊ/",
+            "Pronunciation Data": "[{\"locale\":\"UK\",\"ipa\":[\"/baʊ/\"],\"audio_keys\":[\"uk_pron/b/bow/bow__/bow__gb_3\"]},{\"locale\":\"US\",\"ipa\":[\"/baʊ/\"],\"audio_keys\":[\"us_pron/b/bow/bow__/bow__us_1\"]},{\"locale\":\"UK\",\"ipa\":[\"/bəʊ/\"],\"audio_keys\":[\"uk_pron/b/bow/bow__/bow__gb_4\"]},{\"locale\":\"US\",\"ipa\":[\"/bəʊ/\"],\"audio_keys\":[\"us_pron/b/bow/bow__/bow__us_3\"]}]",
+            "Sound_uk": "",
+            "Sound_us": "",
+            "Study Order": "3884",
+            "Từ loại": "động từ, danh từ",
+            "Variant Data": "[]",
+            "Vietnamese": "cúi chào; cung; cái cúi chào; nơ; mũi tàu; vĩ (đàn dây)",
+            "Word": "bow"
+          }
+        },
+        {
+          "candidateSourceSenseGroups": [],
+          "reference": {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::C1",
+                "value": "C1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "C1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/629/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/629/rawHeadword",
+            "rawPosEvidencePointer": "/records/629/sourcePosRaw",
+            "recordEvidenceSha256": "8511df0662d9ed0d6e988880a1a0278f5933858d1a09fb91d1f6839b70edea69",
+            "recordIndex": 629,
+            "sourceNoteGuid": "Bzunu?XM*_",
+            "sourceRecordId": "1559931007401",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          "sourceFields": {
+            "Example": "He went hunting with a <b>bow</b> and arrow.",
+            "IPA": "/baʊ/",
+            "Image": "<img src=\"paste-73b3130a2ba9d9288c8b88952cdce989b02cf64e.jpg\">",
+            "Meaning": "A <i>bow</i> is a weapon made of curved wood and string that shoots arrows.<br><b>cây cung</b>",
+            "PoS": "noun",
+            "Sound": "[sound:bow1_2noun-Defin.mp3]",
+            "Sound_Example": " [sound:googletts-32dbdcbf-21bc6a8c-e81d996b-97f42591-3cabd054.mp3]",
+            "Word": "bow",
+            "noteid": "1559931007401"
+          }
+        },
+        {
+          "candidateSourceSenseGroups": [],
+          "reference": {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::C1",
+                "value": "C1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "C1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "VERB"
+            ],
+            "rawContentPointer": "/records/3762/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/3762/rawHeadword",
+            "rawPosEvidencePointer": "/records/3762/sourcePosRaw",
+            "recordEvidenceSha256": "248cf45746f8086a7b6bab02e7a13c57e38a5bbbb0479c29c865e1019bf7d4fb",
+            "recordIndex": 3762,
+            "sourceNoteGuid": "nAC}Xe5Nel",
+            "sourceRecordId": "1623660520009",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          "sourceFields": {
+            "Example": "the “<b>bow</b>,” is an essential manner for the Japanese people",
+            "IPA": "/baʊ/",
+            "Image": "<img src=\"paste-e8e0744b98ee8899dcef9568578e8f411f641985.jpg\">",
+            "Meaning": "to move your head or the top half of your body forwards and downwards as a sign of respect or to say hello or goodbye<br><b>Cúi đầu, cúi chào, khòm lưng</b>",
+            "PoS": "verb",
+            "Sound": "[sound:bow1_1 verb - Definition, pictures, pronunciation and usage .mp3]",
+            "Sound_Example": " [sound:googletts-c838452a-7e71e667-fee5736e-1b8e5e3f-12136b94.mp3]",
+            "Word": "bow",
+            "noteid": "1623660520009"
+          }
+        }
+      ]
+    },
+    {
+      "priorFinding": {
+        "assessment": "FAIL",
+        "blocksPublication": true,
+        "effectiveContentHash": "bdf4249e960ea247fb3dbe4bfd73e849ef807d8cd4109ca5c7ab0e7e65eee679",
+        "explanationVi": "Định nghĩa yêu cầu vật bị va chạm cũng phải đang chuyển động, nhưng nguồn chỉ nói một vật đang di chuyển đâm vào vật khác; giới hạn sai loại trừ va chạm với vật đứng yên và cần sửa trước khi xuất bản.",
+        "proposalKey": "EDITORIAL_2H2L:collide:hit-while-moving"
+      },
+      "record": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:collide",
+        "canonicalIdsAllocated": 0,
+        "content": {
+          "definitionEn": "To hit another person or thing while moving.",
+          "examples": [
+            {
+              "en": "The carts collided in the narrow hallway.",
+              "exampleKey": "EDITORIAL_2H2L:collide:hit-while-moving:example-1",
+              "vi": "Những chiếc xe đẩy va vào nhau trong hành lang hẹp."
+            }
+          ],
+          "grammarNotesEn": "Usually intransitive; collide with names the other person or thing.",
+          "meaningVi": "va chạm với; đụng vào",
+          "senseLabelEn": "Hit while moving"
+        },
+        "contentStatus": "DRAFT",
+        "displayFormProposal": "collide",
+        "editorialAuthorship": {
+          "humanAuthor": null,
+          "humanReviewer": null,
+          "kind": "AI_GENERATED_EDITORIAL_DRAFT",
+          "process": "Original 2H.2L manuscript composed from linked source evidence"
+        },
+        "effectiveContentHash": "0809a9074c45cf6d0eb87a7a97bca9be014bbecda1eba599cb43621038d3ca2f",
+        "fieldHashes": {
+          "definitionEn": "038a2ff9d93bb8874a7411a0e236fce4f614f6c6d90df6cf43874b4d8da8537e",
+          "examples": "045dfbcfb76856895602bbd86ba51ec451939e524b7ffe9e2a87fee7f948c578",
+          "grammarNotesEn": "233adb17a423c7d94149d55f6c8076d66c1c36adc7a82bd4941ce3758dce030b",
+          "meaningVi": "4aeb047f12ea407c33dcbb3d61a7e699874d62196b36fe332e63367cde63de14",
+          "senseLabelEn": "95e5c401c34ceb5816e10973ee6cce6c1f527806b0eaa2da05d8954abdea1cae"
+        },
+        "formalApproval": false,
+        "headword": "collide",
+        "partOfSpeech": "VERB",
+        "proposalKey": "EDITORIAL_2H2L:collide:hit-while-moving",
+        "rights": "UNKNOWN_REVIEW_REQUIRED",
+        "riskFlags": [
+          "SOURCE_ONLY_CONTENT"
+        ],
+        "sourceEvidence": [
+          {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::C1",
+                "value": "C1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "C1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "VERB"
+            ],
+            "rawContentPointer": "/records/3315/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/3315/rawHeadword",
+            "rawPosEvidencePointer": "/records/3315/sourcePosRaw",
+            "recordEvidenceSha256": "05f24af1064755d9e07f585a92ac66f871cfc2857a5ddd20ac29e6eb23e3c110",
+            "recordIndex": 3315,
+            "sourceNoteGuid": "o2:?L=~#3%",
+            "sourceRecordId": "1559931010204",
+            "structuredOxfordSenseGroupOrdinals": []
+          }
+        ],
+        "sourceSenseCoverage": "Selected supported meanings only; no claim of exhaustive dictionary coverage",
+        "supplementalSourceEvidence": []
+      },
+      "revisionRecords": [
+        {
+          "after": "To hit another person or thing while moving.",
+          "afterContentHash": "0809a9074c45cf6d0eb87a7a97bca9be014bbecda1eba599cb43621038d3ca2f",
+          "afterFieldHash": "038a2ff9d93bb8874a7411a0e236fce4f614f6c6d90df6cf43874b4d8da8537e",
+          "afterRecordHash": "7477cde01ffa2d0056b36dbb811172f4606c4067f8027950a20f247e42dad3ba",
+          "before": "To hit another moving person or thing with force.",
+          "beforeContentHash": "bdf4249e960ea247fb3dbe4bfd73e849ef807d8cd4109ca5c7ab0e7e65eee679",
+          "beforeFieldHash": "378f684d226ed298b0d67e92ec83f9ddf86e61142294e0bfa75b0247520aba9d",
+          "beforeRecordHash": "0982ed8d6e2338d7d5b4abdc906e808ea4baa3469d15ebe7196f111b1d8f85ad",
+          "field": "definitionEn",
+          "proposalKey": "EDITORIAL_2H2L:collide:hit-while-moving",
+          "reasonVi": "Bỏ điều kiện sai rằng đối tượng bị va chạm cũng phải chuyển động; nguồn nêu vật đang di chuyển va vào vật khác.",
+          "reviewFindingSource": "independent-review/micro-04.json"
+        }
+      ],
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [],
+          "reference": {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::C1",
+                "value": "C1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "C1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "VERB"
+            ],
+            "rawContentPointer": "/records/3315/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/3315/rawHeadword",
+            "rawPosEvidencePointer": "/records/3315/sourcePosRaw",
+            "recordEvidenceSha256": "05f24af1064755d9e07f585a92ac66f871cfc2857a5ddd20ac29e6eb23e3c110",
+            "recordIndex": 3315,
+            "sourceNoteGuid": "o2:?L=~#3%",
+            "sourceRecordId": "1559931010204",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          "sourceFields": {
+            "Example": "The two cars <b>collided with</b> each other because their drivers were not careful.",
+            "IPA": "/kəˈlaɪd/",
+            "Image": "<img src=\"GQ6l.gif\">",
+            "Meaning": "To <i>collide with</i> something means to hit it while moving.<br><b>va chạm với, đụng vào</b>",
+            "PoS": "verb",
+            "Sound": "[sound:googletts-af515955-48f5d574-6000010a-447f2850-8b980e40.mp3]",
+            "Sound_Example": "[sound:googletts-c0e9207c-be182d48-5fde7bd9-aeacae96-7105d1fa.mp3]",
+            "Word": "collide",
+            "noteid": "1559931010204"
+          }
+        }
+      ]
+    }
+  ],
+  "reviewMode": "BLIND_INDEPENDENT_RECHECK_CURRENT_EFFECTIVE_CONTENT"
+}

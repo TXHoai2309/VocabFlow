@@ -1,0 +1,31 @@
+{
+  "afterDecision": {
+    "construction": "beat someone repeatedly; beat against a surface",
+    "distinctionClass": "B",
+    "rationaleVi": "Cambridge xác nhận một nghĩa động từ về các tác động lặp lại; nguồn không đòi hỏi lực mạnh. Nghĩa này khác đánh bại trong thi đấu, nhịp nhạc và nhịp tim; không bao gồm nghĩa trộn thức ăn.",
+    "senseSlug": "hit-repeatedly",
+    "sourceSupportedMeaning": "hit a person or object in repeated actions"
+  },
+  "beforeDecision": {
+    "construction": "beat someone or something",
+    "distinctionClass": "B",
+    "rationaleVi": "Bản dịch nghĩa Vocab4600 còn liệt kê đập, nện và đấm, khác với đánh bại; nguồn chưa có câu tiếng Anh minh họa riêng nên cần xác nhận ví dụ trước khi viết nội dung.",
+    "senseSlug": "strike-forcefully",
+    "sourceSupportedMeaning": "hit with force or repeated blows"
+  },
+  "beforePlanFingerprint": "933167319561e450734ac06434920d20b962a94fb5b157e06812a9bb96373498",
+  "beforePlanSha256": "9f0dc60cfd7598f0c67341d2799dffe8f1ddde0bca962a5809d375a10c84aaad",
+  "candidateGroupKey": "NORMALIZED_HEADWORD:beat",
+  "checkpoint": 1,
+  "cohortId": "500-03",
+  "correctedPlanFingerprint": "3dfcd70472bd9b4626b28850eb3354f084fd139578ae208aeadeeb3e5c0a4619",
+  "correctedSenseSlug": "hit-repeatedly",
+  "correctionReason": "The frozen slug and meaning imply force that the verified dictionary sense does not require; retain repeated hitting and separate it from defeat, rhythm, heart motion, and mixing.",
+  "evidenceArtifactHash": "1d28f9a99c01ec5ced47de512eef660e941ab8f6be2b8c9151c3479d7a01d6d8",
+  "microBatch": 3,
+  "originalSenseSlug": "strike-forcefully",
+  "ownerAuthorizationReference": "Cohort 500-03 CP01 Owner Authorization: Narrow Source-Evidence Remediation (2026-10-11)",
+  "parentFingerprint": "23cb5e4fc6786375cfe07581c7c91fcb097621dfe01ba3608cec6db70804e61e",
+  "phase": "2H.2L",
+  "status": "FORWARD_SEMANTIC_BOUNDARY_CORRECTION"
+}

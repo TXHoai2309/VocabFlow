@@ -1,0 +1,35 @@
+{
+  "artifactHashes": {
+    "authored-exclusion.json": "a6f99ca71f3be12fd95ff4e45590c4f73436f728aaaaf931b2f994df13b5f887",
+    "frozen-cohort.json": "ed1fc772c08d2de91c879bc97508c7504e62ab42a48ac9a88f25d63b749cf10c",
+    "preauthoring-audit.json": "0ee92bf577bdbf1266bd31164a6f42c9577d11301da605c40131780cf84022fc",
+    "remaining-group-inventory.json": "04f2dad6531a75131d1cb0886ae2a91ce67c65d578e5323610d7988a52bfa070",
+    "selection-rationale.md": "55fc71cabde22fa2ef631278a1b8ef27b0e0adf9c4868a8f130fa7a6b0da3db5",
+    "selection-statistics.json": "21fdbd51577939302a698ddb345585db15f70b9bfc56ab1fc51ccff8169010b7"
+  },
+  "baseline": "5de34ecad78ec78fe1903d428fc6f82a440cc539",
+  "cohortId": "500-03",
+  "counts": {
+    "authoredGroups": 2020,
+    "eligibleGroups": 4123,
+    "selectedGroups": 500,
+    "sourceGroups": 6143,
+    "unselectedGroups": 3623
+  },
+  "fingerprint": "6a83bb5c713a1026b6b29297d8163538bde4ddf5f5eb028bfc7d93b977e832fc",
+  "frozenCohortFingerprint": "ac9cedb8a0f54295eb6eee6630fe141c2477b7a25a368c3c8efbee79feca600e",
+  "inputPins": {
+    "freezeToolSha256": "2e8648b3acd460b3804ec7ddb4b73d8d7476feef4b1fe01152e4c7124e2208b3",
+    "parentManifestSha256": "a3fc976d226614b6034d5950e983c7baf115427d4ba5c591732857133b7c6bcb",
+    "parentProjectionSha256": "2dcc514bbfe110b3fecbf070001dd8f1c35b187b17be505bd6b9f231f569e27d",
+    "previousFrozenCohortSha256": "00715ace9f8aa45c68d0ff5682dfb94a8f258e8e5b7a97b755dc8d8152b9be05",
+    "previousSelectionManifestSha256": "ce6c215959e6e7aa769924632e325589ee99970ec7bc7d1cf04e5c0ea9ce79ea",
+    "sourceGroupLedgerSha256": "3c611287d71803a24687dc48ddc6302ecc6ec8874ef509dde538cc2304bb4bca",
+    "sourceInventoryHashes": {
+      "oxford-normalized-inventory.json": "72cac30706d097d2117595b38915d30683822b79626bc0334bde33dc15753658",
+      "vocab4600-normalized-inventory.json": "deb450bca71ce918eee2efbdac4e3fbd82081a986359d79277b863cc4b6ca0a9"
+    }
+  },
+  "parentFingerprint": "23cb5e4fc6786375cfe07581c7c91fcb097621dfe01ba3608cec6db70804e61e",
+  "phase": "2H.2L"
+}

@@ -1,0 +1,40 @@
+{
+  "reviewerKind": "ISOLATED_AI_REVIEW_AGENT",
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2L:journalism:news-reporting-work",
+      "effectiveContentHash": "116cf1086a7c7a8f081e8bcc0f1a469dd1cdaef29d34e5cd6dab08e3f65193e0",
+      "assessment": "PASS",
+      "explanationVi": "Ví dụ đổi sang tờ báo địa phương nên khớp trực tiếp với kênh báo chí nêu trong định nghĩa; bản dịch phản ánh đúng việc chuyển sang nghề báo sau công việc phóng viên, nên finding về xung đột với radio đã được giải quyết.",
+      "blocksPublication": false
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:processor:food-processing-machine",
+      "effectiveContentHash": "4381acfa6c02e12bb368b52f799545da7c013d51ea2169d8e4fb931e31af5ead",
+      "assessment": "PASS",
+      "explanationVi": "Ví dụ nay nêu food processor rõ ràng và bản dịch cũng ghi máy chế biến thực phẩm; hạt rang thành vụn phù hợp chức năng máy, nên sự mơ hồ với bộ xử lý máy tính hoặc người chế biến đã được loại bỏ.",
+      "blocksPublication": false
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:range:vary-between-values",
+      "effectiveContentHash": "cf7bc1eeb8465da4c69f778eb7cda27e911ef6b01d42b235fb318a719a6db62b",
+      "assessment": "PASS",
+      "explanationVi": "Ví dụ mới dùng hai đầu mút số cụ thể, cấu trúc nội động từ ranged from...to... tự nhiên, tiếng Việt giữ đúng khoảng 12–18 độ; lỗi so sánh sai loại giữa nhiệt độ và thời điểm đã được khắc phục.",
+      "blocksPublication": false
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:sensible:good-judgment",
+      "effectiveContentHash": "c908450b23096c023cd0e9b70685f22872c167fdd56bb3aee15d6cbd50e3510e",
+      "assessment": "PASS",
+      "explanationVi": "Cụm called for colder weather kết hợp tự nhiên với forecast, và bản dịch truyền đạt dự báo cho biết trời sẽ lạnh hơn; nghĩa phán đoán hợp lý được nguồn hỗ trợ, finding về kết hợp từ đã được giải quyết.",
+      "blocksPublication": false
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:though:sentence-adverb",
+      "effectiveContentHash": "2451c5d24fe0b30fb99cb39a810f0fd9cadebc4aa76eeaffdba5bea163d111ff",
+      "assessment": "PASS",
+      "explanationVi": "Bản dịch đã bỏ ý “đẹp” không có trong tiếng Anh, nên nghĩa no view và tương phản của though được giữ lại; though vẫn ở cuối câu đúng vai trò trạng từ theo ví dụ Oxford.",
+      "blocksPublication": false
+    }
+  ]
+}

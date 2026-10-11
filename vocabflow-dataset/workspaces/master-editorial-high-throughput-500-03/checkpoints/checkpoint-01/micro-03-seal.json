@@ -1,0 +1,168 @@
+{
+  "cohortFingerprint": "ac9cedb8a0f54295eb6eee6630fe141c2477b7a25a368c3c8efbee79feca600e",
+  "fingerprint": "f1ab851476b9e0a18326a7a1174e87d80fa4684d46ab5dca6bf5a4eab4c03d1a",
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:mean",
+    "NORMALIZED_HEADWORD:fishing",
+    "NORMALIZED_HEADWORD:crash",
+    "NORMALIZED_HEADWORD:relate",
+    "NORMALIZED_HEADWORD:aircraft",
+    "NORMALIZED_HEADWORD:drug",
+    "NORMALIZED_HEADWORD:programme",
+    "NORMALIZED_HEADWORD:remark",
+    "NORMALIZED_HEADWORD:smell",
+    "NORMALIZED_HEADWORD:beat",
+    "NORMALIZED_HEADWORD:final",
+    "NORMALIZED_HEADWORD:fur",
+    "NORMALIZED_HEADWORD:quarter",
+    "NORMALIZED_HEADWORD:stop",
+    "NORMALIZED_HEADWORD:assassin",
+    "NORMALIZED_HEADWORD:arrival",
+    "NORMALIZED_HEADWORD:himself",
+    "NORMALIZED_HEADWORD:easy",
+    "NORMALIZED_HEADWORD:mock",
+    "NORMALIZED_HEADWORD:privacy"
+  ],
+  "manuscriptSha256": "3b4ae92465f8e3cedc576ece84e2aa8d21f0bbeb9fe421fa1a00f0aa63030e9c",
+  "microBatch": 3,
+  "parentFingerprint": "23cb5e4fc6786375cfe07581c7c91fcb097621dfe01ba3608cec6db70804e61e",
+  "phase": "2H.2L",
+  "planningFingerprint": "3dfcd70472bd9b4626b28850eb3354f084fd139578ae208aeadeeb3e5c0a4619",
+  "planningSha256": "ad7251d3c1c0a0874938eff89b91ed92ca1ea8d47e8c93eda1168c48aad5386a",
+  "qaCounts": {
+    "PASS": 39
+  },
+  "recordHash": "8abc2a41ac3c5f11b3161596cf5b017ce9aca5a8594ec7fb40b52829239ae9f1",
+  "reviewHash": "099a9400ed4a451cee049b5f1a4570f51fd40bbf1bbe2eefce1ab20220587656",
+  "selfReviewSha256": "7de31d6a8f448870a72f4f0c54253ff81b6cc990e061c128e854d06d987a57f9",
+  "senseCount": 39,
+  "sourceSimilarityFindings": [
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:drug:illegal-intoxicant",
+      "sourceRecordId": "1788223607224",
+      "text": "ma túy bất hợp pháp"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:remark:spoken-comment",
+      "sourceRecordId": "1788223609045",
+      "text": "lời nhận xét"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:remark:spoken-comment",
+      "sourceRecordId": "1788223609045",
+      "text": "lời nhận xét"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:beat:defeat-opponent",
+      "sourceRecordId": "1788223607125",
+      "text": "đánh bại"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:beat:defeat-opponent",
+      "sourceRecordId": "1788223607125",
+      "text": "đánh bại"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:beat:defeat-opponent",
+      "sourceRecordId": "1556384731120",
+      "text": "đánh bại"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:final:last-in-sequence",
+      "sourceRecordId": "1788223606283",
+      "text": "cuối cùng"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:final:last-in-sequence",
+      "sourceRecordId": "1788223606283",
+      "text": "cuối cùng"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:final:championship-match",
+      "sourceRecordId": "1788223606283",
+      "text": "trận chung kết"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:final:championship-match",
+      "sourceRecordId": "1788223606283",
+      "text": "trận chung kết"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:quarter:one-of-four-parts",
+      "sourceRecordId": "1788223606663",
+      "text": "một phần tư"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:quarter:one-of-four-parts",
+      "sourceRecordId": "1788223606663",
+      "text": "một phần tư"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:stop:bus-pickup-place",
+      "sourceRecordId": "1788223606161",
+      "text": "trạm xe buýt"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:himself:emphatic-pronoun",
+      "sourceRecordId": "1788223607010",
+      "text": "chính anh ấy"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:himself:emphatic-pronoun",
+      "sourceRecordId": "1788223607010",
+      "text": "chính anh ấy"
+    },
+    {
+      "field": "senseLabelEn",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:easy:not-difficult",
+      "sourceRecordId": "1559931007804",
+      "text": "not difficult"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:privacy:freedom-from-intrusion",
+      "sourceRecordId": "1788223608804",
+      "text": "sự riêng tư"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:privacy:freedom-from-intrusion",
+      "sourceRecordId": "1788223608804",
+      "text": "sự riêng tư"
+    }
+  ],
+  "status": "SEALED_AI_DRAFT_NOT_APPROVED"
+}

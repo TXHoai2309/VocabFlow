@@ -1,0 +1,523 @@
+{
+  "canonicalIdsAllocated": 0,
+  "counts": {
+    "cumulativeAuthoredGroups": 2120,
+    "cumulativeDraftSenses": 3037,
+    "independentReview": {
+      "PASS": 163,
+      "REVIEW": 3
+    },
+    "microBatchesCompleted": 5,
+    "missingSenseCandidates": 0,
+    "multiSenseGroups": 45,
+    "newAuthoredGroups": 100,
+    "newSenses": 166,
+    "plannedSourceSupportedMeaningCandidates": 166,
+    "previousAuthoredGroups": 2020,
+    "previousEffectiveSenses": 2871,
+    "remainingUnauthoredGroups": 4023,
+    "selectedCohortGroups": 500,
+    "selfReview": {
+      "PASS": 131,
+      "REVIEW": 35
+    },
+    "sourceGroups": 6143,
+    "sourceMeaningCandidatesExamined": 166,
+    "unresolvedBoundaryItems": 0
+  },
+  "crossSourceCopyingScreen": {
+    "authoredSenseRecordsScanned": 166,
+    "eightWordOverlaps": [],
+    "scope": "All string sourceFields in both complete corpora; heuristic text screen, not rights clearance",
+    "sourceRecordsScanned": 9677
+  },
+  "databaseAccess": "NONE",
+  "databaseWrites": "NONE",
+  "ownerApprovals": 0,
+  "parentRecordsInheritedExactly": true,
+  "previousCohortFingerprint": "23cb5e4fc6786375cfe07581c7c91fcb097621dfe01ba3608cec6db70804e61e",
+  "previousParentReviewIdentitiesPreserved": [
+    "confess",
+    "reconstruction"
+  ],
+  "publicationReady": true,
+  "rights": "UNKNOWN_REVIEW_REQUIRED",
+  "sourceSimilarityFindings": [
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:glorious:splendid-and-beautiful",
+      "sourceRecordId": "1788223610220",
+      "text": "rực rỡ, tuyệt đẹp"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:glorious:splendid-and-beautiful",
+      "sourceRecordId": "1788223610220",
+      "text": "rực rỡ, tuyệt đẹp"
+    },
+    {
+      "field": "senseLabelEn",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:across:to-other-side-adverb",
+      "sourceRecordId": "1556384731078",
+      "text": "to the other side"
+    },
+    {
+      "field": "senseLabelEn",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:across:to-other-side-adverb",
+      "sourceRecordId": "1556384731078",
+      "text": "to the other side"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:soldier:person-as-soldier",
+      "sourceRecordId": "1788223607529",
+      "text": "người lính"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:soldier:person-as-soldier",
+      "sourceRecordId": "1788223607529",
+      "text": "người lính"
+    },
+    {
+      "field": "senseLabelEn",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:appealing:attractive-or-interesting",
+      "sourceRecordId": "1623660519976",
+      "text": "attractive or interesting"
+    },
+    {
+      "field": "senseLabelEn",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:attire:special-clothing",
+      "sourceRecordId": "1559931008942",
+      "text": "special clothing"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:founder:person-who-establishes",
+      "sourceRecordId": "1788223609146",
+      "text": "người sáng lập"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:founder:person-who-establishes",
+      "sourceRecordId": "1788223609146",
+      "text": "người sáng lập"
+    },
+    {
+      "field": "senseLabelEn",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:bathe:wash-oneself",
+      "sourceRecordId": "1559931009482",
+      "text": "wash oneself"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:originally:at-the-beginning",
+      "sourceRecordId": "1788223607981",
+      "text": "ban đầu"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:originally:at-the-beginning",
+      "sourceRecordId": "1788223607981",
+      "text": "ban đầu"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:originally:at-the-beginning",
+      "sourceRecordId": "1559931008668",
+      "text": "ban đầu"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:reach:within-touching-distance",
+      "sourceRecordId": "1788223607180",
+      "text": "tầm với"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:reach:within-touching-distance",
+      "sourceRecordId": "1788223607180",
+      "text": "tầm với"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:golf:club-and-ball-sport",
+      "sourceRecordId": "1788223607454",
+      "text": "môn gôn"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:draft:unfinished-written-version",
+      "sourceRecordId": "1788223608630",
+      "text": "bản nháp"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:draft:unfinished-written-version",
+      "sourceRecordId": "1788223608630",
+      "text": "bản nháp"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:draft:unfinished-written-version",
+      "sourceRecordId": "1559931008427",
+      "text": "bản nháp"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:draft:prepare-a-document",
+      "sourceRecordId": "1788223608630",
+      "text": "soạn thảo"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:draft:prepare-a-document",
+      "sourceRecordId": "1788223608630",
+      "text": "soạn thảo"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:track:running-course",
+      "sourceRecordId": "1788223607122",
+      "text": "đường chạy"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:track:running-course",
+      "sourceRecordId": "1788223607122",
+      "text": "đường chạy"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:track:railway-rails",
+      "sourceRecordId": "1788223607122",
+      "text": "đường ray"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:track:railway-rails",
+      "sourceRecordId": "1788223607122",
+      "text": "đường ray"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:track:monitor-progress",
+      "sourceRecordId": "1788223607122",
+      "text": "theo dõi"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:track:monitor-progress",
+      "sourceRecordId": "1788223607122",
+      "text": "theo dõi"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:solution:answer-to-a-problem",
+      "sourceRecordId": "1788223607242",
+      "text": "giải pháp"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:solution:answer-to-a-problem",
+      "sourceRecordId": "1788223607242",
+      "text": "giải pháp"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:solution:answer-to-a-problem",
+      "sourceRecordId": "1556384731135",
+      "text": "giải pháp"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:solution:liquid-mixture",
+      "sourceRecordId": "1788223607242",
+      "text": "dung dịch"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:solution:liquid-mixture",
+      "sourceRecordId": "1788223607242",
+      "text": "dung dịch"
+    },
+    {
+      "field": "senseLabelEn",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:beforehand:in-advance",
+      "sourceRecordId": "1559931010239",
+      "text": "in advance"
+    },
+    {
+      "field": "senseLabelEn",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:natural:not-made-by-people",
+      "sourceRecordId": "1556384730908",
+      "text": "not made by people"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:drug:illegal-intoxicant",
+      "sourceRecordId": "1788223607224",
+      "text": "ma túy bất hợp pháp"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:remark:spoken-comment",
+      "sourceRecordId": "1788223609045",
+      "text": "lời nhận xét"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:remark:spoken-comment",
+      "sourceRecordId": "1788223609045",
+      "text": "lời nhận xét"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:beat:defeat-opponent",
+      "sourceRecordId": "1788223607125",
+      "text": "đánh bại"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:beat:defeat-opponent",
+      "sourceRecordId": "1788223607125",
+      "text": "đánh bại"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:beat:defeat-opponent",
+      "sourceRecordId": "1556384731120",
+      "text": "đánh bại"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:final:last-in-sequence",
+      "sourceRecordId": "1788223606283",
+      "text": "cuối cùng"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:final:last-in-sequence",
+      "sourceRecordId": "1788223606283",
+      "text": "cuối cùng"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:final:championship-match",
+      "sourceRecordId": "1788223606283",
+      "text": "trận chung kết"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:final:championship-match",
+      "sourceRecordId": "1788223606283",
+      "text": "trận chung kết"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:quarter:one-of-four-parts",
+      "sourceRecordId": "1788223606663",
+      "text": "một phần tư"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:quarter:one-of-four-parts",
+      "sourceRecordId": "1788223606663",
+      "text": "một phần tư"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:stop:bus-pickup-place",
+      "sourceRecordId": "1788223606161",
+      "text": "trạm xe buýt"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:himself:emphatic-pronoun",
+      "sourceRecordId": "1788223607010",
+      "text": "chính anh ấy"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:himself:emphatic-pronoun",
+      "sourceRecordId": "1788223607010",
+      "text": "chính anh ấy"
+    },
+    {
+      "field": "senseLabelEn",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:easy:not-difficult",
+      "sourceRecordId": "1559931007804",
+      "text": "not difficult"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:privacy:freedom-from-intrusion",
+      "sourceRecordId": "1788223608804",
+      "text": "sự riêng tư"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:privacy:freedom-from-intrusion",
+      "sourceRecordId": "1788223608804",
+      "text": "sự riêng tư"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:boxed:inside-a-package",
+      "sourceRecordId": "1559931009762",
+      "text": "được đóng hộp"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:bow:act-of-bowing",
+      "sourceRecordId": "1788223609922",
+      "text": "cái cúi chào"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:bow:act-of-bowing",
+      "sourceRecordId": "1788223609922",
+      "text": "cái cúi chào"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:bow:front-of-a-ship",
+      "sourceRecordId": "1788223609922",
+      "text": "mũi tàu"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:bow:front-of-a-ship",
+      "sourceRecordId": "1788223609922",
+      "text": "mũi tàu"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:talk:spoken-conversation",
+      "sourceRecordId": "1788223606205",
+      "text": "cuộc trò chuyện"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:talk:spoken-conversation",
+      "sourceRecordId": "1788223606205",
+      "text": "cuộc trò chuyện"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:experimental:tested-using-new-methods",
+      "sourceRecordId": "1788223609947",
+      "text": "mang tính thử nghiệm"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:attachment:email-file",
+      "sourceRecordId": "1788223609599",
+      "text": "tệp đính kèm"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:attachment:email-file",
+      "sourceRecordId": "1788223609599",
+      "text": "tệp đính kèm"
+    },
+    {
+      "field": "senseLabelEn",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:attachment:act-of-joining",
+      "sourceRecordId": "1646317635677",
+      "text": "Act of joining"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:emotionally:connected-with-feelings",
+      "sourceRecordId": "1788223609494",
+      "text": "về mặt cảm xúc"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:emotionally:connected-with-feelings",
+      "sourceRecordId": "1788223609494",
+      "text": "về mặt cảm xúc"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:range:mountain-chain",
+      "sourceRecordId": "1788223607790",
+      "text": "dãy núi"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:range:mountain-chain",
+      "sourceRecordId": "1788223607790",
+      "text": "dãy núi"
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "cohortFingerprint": "ac9cedb8a0f54295eb6eee6630fe141c2477b7a25a368c3c8efbee79feca600e",
+  "fingerprint": "6e72b73c664baf73ce872a4326c8d8bd6a17852ba121de7df0ccf32a26cdcd53",
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:loudly",
+    "NORMALIZED_HEADWORD:origin",
+    "NORMALIZED_HEADWORD:fool",
+    "NORMALIZED_HEADWORD:battery",
+    "NORMALIZED_HEADWORD:boxed",
+    "NORMALIZED_HEADWORD:collide",
+    "NORMALIZED_HEADWORD:birthplace",
+    "NORMALIZED_HEADWORD:posture",
+    "NORMALIZED_HEADWORD:responsible",
+    "NORMALIZED_HEADWORD:maintenance",
+    "NORMALIZED_HEADWORD:bow",
+    "NORMALIZED_HEADWORD:deter",
+    "NORMALIZED_HEADWORD:talk",
+    "NORMALIZED_HEADWORD:aroma",
+    "NORMALIZED_HEADWORD:experimental",
+    "NORMALIZED_HEADWORD:exclusively",
+    "NORMALIZED_HEADWORD:attachment",
+    "NORMALIZED_HEADWORD:necessity",
+    "NORMALIZED_HEADWORD:emotionally",
+    "NORMALIZED_HEADWORD:apparatus"
+  ],
+  "manuscriptSha256": "1ee99ec45795270af99f43bc638a7140cb8c4b5d4272b0bbc905bcafcad0c71f",
+  "microBatch": 4,
+  "parentFingerprint": "23cb5e4fc6786375cfe07581c7c91fcb097621dfe01ba3608cec6db70804e61e",
+  "phase": "2H.2L",
+  "planningFingerprint": "d02bd590d9fb69682b85e4cfbed833a19eb8f90f27ee464cafcb758cbd820dd4",
+  "planningSha256": "ec33c44ed773ca8984deda9fdaec67638c7f59d92e4610f87fdbba1d8151340e",
+  "qaCounts": {
+    "PASS": 18,
+    "REVIEW": 17
+  },
+  "recordHash": "4e7d2e3c9f277f396c5f3336dc74d599cd065747da65a622c6e718012cbcb653",
+  "reviewHash": "4aee47f8b6427027d5ad1f220a287b9e6c44bb03daa810ccd2e2875426c116a5",
+  "selfReviewSha256": "3a2858515c197e5b43f6bedcaacf99d76471bb03c190251c7c485578d94170a9",
+  "senseCount": 35,
+  "sourceSimilarityFindings": [
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:boxed:inside-a-package",
+      "sourceRecordId": "1559931009762",
+      "text": "được đóng hộp"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:bow:act-of-bowing",
+      "sourceRecordId": "1788223609922",
+      "text": "cái cúi chào"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:bow:act-of-bowing",
+      "sourceRecordId": "1788223609922",
+      "text": "cái cúi chào"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:bow:front-of-a-ship",
+      "sourceRecordId": "1788223609922",
+      "text": "mũi tàu"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:bow:front-of-a-ship",
+      "sourceRecordId": "1788223609922",
+      "text": "mũi tàu"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:talk:spoken-conversation",
+      "sourceRecordId": "1788223606205",
+      "text": "cuộc trò chuyện"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:talk:spoken-conversation",
+      "sourceRecordId": "1788223606205",
+      "text": "cuộc trò chuyện"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:experimental:tested-using-new-methods",
+      "sourceRecordId": "1788223609947",
+      "text": "mang tính thử nghiệm"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:attachment:email-file",
+      "sourceRecordId": "1788223609599",
+      "text": "tệp đính kèm"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:attachment:email-file",
+      "sourceRecordId": "1788223609599",
+      "text": "tệp đính kèm"
+    },
+    {
+      "field": "senseLabelEn",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:attachment:act-of-joining",
+      "sourceRecordId": "1646317635677",
+      "text": "Act of joining"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:emotionally:connected-with-feelings",
+      "sourceRecordId": "1788223609494",
+      "text": "về mặt cảm xúc"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:emotionally:connected-with-feelings",
+      "sourceRecordId": "1788223609494",
+      "text": "về mặt cảm xúc"
+    }
+  ],
+  "status": "SEALED_AI_DRAFT_NOT_APPROVED"
+}

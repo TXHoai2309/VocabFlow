@@ -1,0 +1,47 @@
+{
+  "microBatch": 1,
+  "phase": "2H.2L",
+  "records": [
+    {
+      "after": "Adjective; commonly before a noun; also in the pattern contrary to + noun phrase.",
+      "afterContentHash": "14455058d42a8dbbdece6889e8017c6d9366142257c661260ef4b93e32382ac0",
+      "before": "Adjective; often before a noun, or in contrary to something.",
+      "beforeContentHash": "7155f49447c96b5cd8e4248f10c15a5e4215da99e22402a67bb0003e7911c546",
+      "field": "grammarNotesEn",
+      "proposalKey": "EDITORIAL_2H2L:contrary:opposite-adjective",
+      "reasonVi": "Sửa construction tiếng Anh sai “in contrary to”; cách ghi pattern phản ánh ví dụ Oxford “Contrary to popular belief” và dùng contrary trước danh từ.",
+      "reviewFindingSource": "independent-review/micro-01.json"
+    },
+    {
+      "after": "Involving people practising a skill or carrying out a task.",
+      "afterContentHash": "a68c7d3af269de69660283ef4a0c103dc3192fa0d2b68d53cb39f50b4a730c39",
+      "before": "Related to doing or using something in a real activity.",
+      "beforeContentHash": "41d03da4cc70ed672803f44e738f7fc357b1df20015db1eaca565dab5ed2c61d",
+      "field": "definitionEn",
+      "proposalKey": "EDITORIAL_2H2L:practical:hands-on-or-applied",
+      "reasonVi": "Làm rõ nghĩa thực hành theo gloss và ví dụ practical training, tránh định nghĩa vòng quanh bằng real activity.",
+      "reviewFindingSource": "independent-review/micro-01.json"
+    },
+    {
+      "after": "Hồ sơ cũ xác nhận có một khu định cư ở đó từ trước.",
+      "afterContentHash": "772aa4197719c78f567a736d31adabc35b64f51e75fb4861ff08105897fea3a6",
+      "before": "Hồ sơ lưu trữ cho thấy khu định cư từng có thật tại vùng này.",
+      "beforeContentHash": "f610e636063c3d4b3e030686e09373d4d3b474cc752f2e87e991d493f9ed1d01",
+      "field": "exampleVi",
+      "proposalKey": "EDITORIAL_2H2L:existence:state-of-existing",
+      "reasonVi": "Sửa bản dịch để phản ánh hồ sơ xác nhận khu định cư có từ trước, không thêm hàm ý rằng nơi đó hiện không còn tồn tại.",
+      "reviewFindingSource": "independent-review/micro-01.json"
+    },
+    {
+      "after": "Cô ấy hít thật sâu hương thơm của hoa.",
+      "afterContentHash": "42749243a3c10680a557cb9c45f34f819294fd067239caffe9f19ca1561cbc0a",
+      "before": "Cô ấy hít mùi hương hoa vào trong một hơi thật sâu.",
+      "beforeContentHash": "4f3e1312242115870bdb5dd8e36e81a55f0d68860c79c9b363e2ca649fe28469",
+      "field": "exampleVi",
+      "proposalKey": "EDITORIAL_2H2L:inhale:draw-into-lungs",
+      "reasonVi": "Làm câu Việt tự nhiên hơn, giữ ý hít hương hoa thật sâu và không thêm thông tin mới.",
+      "reviewFindingSource": "independent-review/micro-01.json"
+    }
+  ],
+  "status": "IMMUTABLE_FORWARD_CORRECTIONS"
+}

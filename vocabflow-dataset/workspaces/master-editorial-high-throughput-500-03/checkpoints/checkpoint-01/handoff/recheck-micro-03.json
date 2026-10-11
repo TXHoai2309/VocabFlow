@@ -1,0 +1,555 @@
+{
+  "instruction": "Independently reassess each corrected current record against the linked source evidence. Verify that the correction addresses its prior finding; use the current effectiveContentHash exactly. Provide substantive Vietnamese explanations of at least 70 characters, assessment PASS/REVIEW/FAIL, and blocksPublication boolean. Do not inspect Author A self-review or edit files other than the assigned recheck receipt. Do not make human-approval, rights-clearance, or canonical-ID claims.",
+  "microBatch": 3,
+  "phase": "2H.2L",
+  "records": [
+    {
+      "priorFinding": {
+        "assessment": "REVIEW",
+        "blocksPublication": false,
+        "effectiveContentHash": "c76ee7c144952e7fe4b9ef63a233214379050470da5b69dabd695950b3c539b3",
+        "explanationVi": "Nguồn định nghĩa assassin là người đã sát hại nhân vật quan trọng, nhưng ví dụ nói người đó bị bắt trước khi tới văn phòng quan chức, có thể hàm ý âm mưu chưa hoàn tất; nên cân nhắc “nghi phạm ám sát” nếu đó là ý.",
+        "proposalKey": "EDITORIAL_2H2L:assassin:killer-of-important-person"
+      },
+      "record": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:assassin",
+        "canonicalIdsAllocated": 0,
+        "content": {
+          "definitionEn": "a person who murders an important person",
+          "examples": [
+            {
+              "en": "The assassin was convicted of murdering the head of state.",
+              "exampleKey": "EDITORIAL_2H2L:assassin:killer-of-important-person:example-1",
+              "vi": "Kẻ ám sát bị kết án vì đã sát hại nguyên thủ quốc gia."
+            }
+          ],
+          "grammarNotesEn": "Count noun; concerns the target's importance, not every kind of killer.",
+          "meaningVi": "kẻ ám sát nhân vật quan trọng",
+          "senseLabelEn": "killer of an important person"
+        },
+        "contentStatus": "DRAFT",
+        "displayFormProposal": "assassin",
+        "editorialAuthorship": {
+          "humanAuthor": null,
+          "humanReviewer": null,
+          "kind": "AI_GENERATED_EDITORIAL_DRAFT",
+          "process": "Original 2H.2L manuscript composed from linked source evidence"
+        },
+        "effectiveContentHash": "701c805808624f7800614c75b567d6523e00e94d8bebb73ebb8bf91a3b2f9f23",
+        "fieldHashes": {
+          "definitionEn": "08f670153a424dc4cae42a44a2d3baf8a85605c5a129f36150fc1b7039e5d32d",
+          "examples": "2c29927149bcead877327c31e1511684229e3c0e81645d48b8156da9aa65cbf5",
+          "grammarNotesEn": "3aee45b5bf4642f39694848cbbcfbdbd3534f9d6a2aaa56641cb8fe9d98a301b",
+          "meaningVi": "b703815af14a35bf7f649e9d8d3b9562f1b2b8e227a1bc465c77c6ccb90898f5",
+          "senseLabelEn": "b144643865251edad6ec8fe33c64db4a13cc3c27de400d079aba84e09b9e1cbd"
+        },
+        "formalApproval": false,
+        "headword": "assassin",
+        "partOfSpeech": "NOUN",
+        "proposalKey": "EDITORIAL_2H2L:assassin:killer-of-important-person",
+        "rights": "UNKNOWN_REVIEW_REQUIRED",
+        "riskFlags": [
+          "SOURCE_ONLY_CONTENT"
+        ],
+        "sourceEvidence": [
+          {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::C1",
+                "value": "C1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "C1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/2387/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/2387/rawHeadword",
+            "rawPosEvidencePointer": "/records/2387/sourcePosRaw",
+            "recordEvidenceSha256": "29c703b108547f168184a4f78f9a5c530eecef6d9e06334f425d4b4d858907c2",
+            "recordIndex": 2387,
+            "sourceNoteGuid": "bVq(~OsklK",
+            "sourceRecordId": "1559931009221",
+            "structuredOxfordSenseGroupOrdinals": []
+          }
+        ],
+        "sourceSenseCoverage": "Selected supported meanings only; no claim of exhaustive dictionary coverage",
+        "supplementalSourceEvidence": []
+      },
+      "revisionRecords": [
+        {
+          "after": "The assassin was convicted of murdering the head of state.",
+          "afterContentHash": "c214210284174088fa5868a269c9dff5b0a97f4e61a2173ab280db82107fb6ae",
+          "afterFieldHash": "24f00e1b6062652c69f7921cc5681c0ff359a4576fede0a0dc6a172007bf715b",
+          "afterRecordHash": "4c423420345b6a4f523047fef2b6b34f35e2a4c330772310f02873f87463c0a3",
+          "before": "The assassin was arrested before reaching the official's office.",
+          "beforeContentHash": "c76ee7c144952e7fe4b9ef63a233214379050470da5b69dabd695950b3c539b3",
+          "beforeFieldHash": "ee8f92b1f3f0204b75410a1ad62f0222c5f29ca4d98f9f3b167171b80b028a79",
+          "beforeRecordHash": "d10bf48930768a5475ace1fe6a1848dfb5016e1a2d11bc1f4d6f932f8736145d",
+          "field": "exampleEn",
+          "proposalKey": "EDITORIAL_2H2L:assassin:killer-of-important-person",
+          "reasonVi": "Dùng ví dụ về vụ sát hại đã hoàn tất để tránh hàm ý đây mới là âm mưu chưa thành.",
+          "reviewFindingSource": "independent-review/micro-03.json"
+        },
+        {
+          "after": "Kẻ ám sát bị kết án vì đã sát hại nguyên thủ quốc gia.",
+          "afterContentHash": "701c805808624f7800614c75b567d6523e00e94d8bebb73ebb8bf91a3b2f9f23",
+          "afterFieldHash": "74501bc2f2d9427dec8d879e786a1cf4864fa30134c66b5173e903345818f3fd",
+          "afterRecordHash": "36167d7a44a2f0c57eb268d410437c1725f9ff9a57da601587b7535e2bd90fe6",
+          "before": "Kẻ ám sát bị bắt trước khi tới văn phòng của vị quan chức.",
+          "beforeContentHash": "c214210284174088fa5868a269c9dff5b0a97f4e61a2173ab280db82107fb6ae",
+          "beforeFieldHash": "a9d7aac01deafeb2ab6043c1f7d30359ab3d7512292343c358b2a235c419acf9",
+          "beforeRecordHash": "4c423420345b6a4f523047fef2b6b34f35e2a4c330772310f02873f87463c0a3",
+          "field": "exampleVi",
+          "proposalKey": "EDITORIAL_2H2L:assassin:killer-of-important-person",
+          "reasonVi": "Đồng bộ bản dịch với ví dụ đã hoàn tất và giữ rõ mục tiêu là nhân vật quan trọng.",
+          "reviewFindingSource": "independent-review/micro-03.json"
+        }
+      ],
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [],
+          "reference": {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::C1",
+                "value": "C1"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "C1"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/2387/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/2387/rawHeadword",
+            "rawPosEvidencePointer": "/records/2387/sourcePosRaw",
+            "recordEvidenceSha256": "29c703b108547f168184a4f78f9a5c530eecef6d9e06334f425d4b4d858907c2",
+            "recordIndex": 2387,
+            "sourceNoteGuid": "bVq(~OsklK",
+            "sourceRecordId": "1559931009221",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          "sourceFields": {
+            "Example": "An <b>assassin</b> killed Martin Luther King on April 4, 1968.",
+            "IPA": "/əˈsæsn/",
+            "Image": "<img src=\"04_2463.jpg\" />",
+            "Meaning": "An <i>assassin</i> is someone who murders an important person.<br><b>kẻ ám sát</b>",
+            "PoS": "noun",
+            "Sound": "[sound:assassin__us_1.mp3]",
+            "Sound_Example": "[sound:googletts-87b781fa-edb19363-d17d6f6d-6c97568a-257c438c.mp3]",
+            "Word": "assassin",
+            "noteid": "1559931009221"
+          }
+        }
+      ]
+    },
+    {
+      "priorFinding": {
+        "assessment": "REVIEW",
+        "blocksPublication": false,
+        "effectiveContentHash": "55925a88f43a26d6840229efaf66fb1bd224efafd1586c6815727eb18b83e983",
+        "explanationVi": "Nguồn Oxford nói rõ illegal drugs, nhưng bản dịch câu ví dụ dùng “chất cấm”, rộng hơn ma túy và có thể gồm nhiều loại chất khác; nên giữ từ ngữ xác định drug để song ngữ sát hơn.",
+        "proposalKey": "EDITORIAL_2H2L:drug:illegal-intoxicant"
+      },
+      "record": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:drug",
+        "canonicalIdsAllocated": 0,
+        "content": {
+          "definitionEn": "an illegal substance taken for its physical or mental effects rather than as medical treatment",
+          "examples": [
+            {
+              "en": "The school warned students about illegal drugs.",
+              "exampleKey": "EDITORIAL_2H2L:drug:illegal-intoxicant:example-1",
+              "vi": "Nhà trường cảnh báo học sinh về các loại ma túy trái phép."
+            }
+          ],
+          "grammarNotesEn": "Count noun; distinguishes illicit substances from medical drugs.",
+          "meaningVi": "ma túy bất hợp pháp",
+          "senseLabelEn": "illegal intoxicating substance"
+        },
+        "contentStatus": "DRAFT",
+        "displayFormProposal": "drug",
+        "editorialAuthorship": {
+          "humanAuthor": null,
+          "humanReviewer": null,
+          "kind": "AI_GENERATED_EDITORIAL_DRAFT",
+          "process": "Original 2H.2L manuscript composed from linked source evidence"
+        },
+        "effectiveContentHash": "840c6c2b743c138d0d8355762b080a295ede6c605bf512b2b4a9c1af4ef1845e",
+        "fieldHashes": {
+          "definitionEn": "90c77db5cacc98e8b2e672f9679b315edf25d365c27cf42e8368dec6231e3c0c",
+          "examples": "326bd05c855e1fa8ea538b1b9a3bd8b4790722ce0acfe4566849b047e8532f69",
+          "grammarNotesEn": "ca62be94c864790826346f7d23b60bd27c6f826ad8c63f222300841e4ea2ea57",
+          "meaningVi": "2bbe1d21f2b7fea16e972243f47408084532dda9192eccba2c916708dc83f65a",
+          "senseLabelEn": "a685ab9c9ab2e0c7ebd174eb1e5bae1b4d1f4918205bf033085d76b291bac492"
+        },
+        "formalApproval": false,
+        "headword": "drug",
+        "partOfSpeech": "NOUN",
+        "proposalKey": "EDITORIAL_2H2L:drug:illegal-intoxicant",
+        "rights": "UNKNOWN_REVIEW_REQUIRED",
+        "riskFlags": [
+          "SOURCE_ONLY_CONTENT",
+          "POSSIBLE_POLYSEMY",
+          "HUMAN_SENSE_REVIEW_REQUIRED"
+        ],
+        "sourceEvidence": [
+          {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "A2"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/1206/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/1206/rawHeadword",
+            "rawPosEvidencePointer": "/records/1206/sourcePosRaw",
+            "recordEvidenceSha256": "35c387ac96944d88d27a929cd90765237cf1047eb9f259d05e5709345ab84658",
+            "recordIndex": 1206,
+            "sourceNoteGuid": "zaak)P>?_8",
+            "sourceRecordId": "1788223607224",
+            "structuredOxfordSenseGroupOrdinals": [
+              0,
+              1
+            ]
+          }
+        ],
+        "sourceSenseCoverage": "Selected supported meanings only; no claim of exhaustive dictionary coverage",
+        "supplementalSourceEvidence": []
+      },
+      "revisionRecords": [
+        {
+          "after": "Nhà trường cảnh báo học sinh về các loại ma túy trái phép.",
+          "afterContentHash": "840c6c2b743c138d0d8355762b080a295ede6c605bf512b2b4a9c1af4ef1845e",
+          "afterFieldHash": "b8ea10d7b456f73a3f360728dba99488bec58298ed4443319e69ee02b729e3ce",
+          "afterRecordHash": "29c1bbe99ca47bb2d4870fea5c6353d76fe3d1f2f6a43ea88e7b9b5ea3151ce5",
+          "before": "Nhà trường nhắc nhở học sinh tránh xa chất cấm.",
+          "beforeContentHash": "55925a88f43a26d6840229efaf66fb1bd224efafd1586c6815727eb18b83e983",
+          "beforeFieldHash": "eb9b425209b61c359ef08cd582087d08b33f44d641baab73e2d5772838adcb30",
+          "beforeRecordHash": "ab72c11fcbbf233ee9081e3c77b3168f546d8b29eaf084d0533abbb485371e56",
+          "field": "exampleVi",
+          "proposalKey": "EDITORIAL_2H2L:drug:illegal-intoxicant",
+          "reasonVi": "Thu hẹp “chất cấm” về ma túy trái phép, sát nghĩa drug trong nguồn và không sao chép lại bản dịch dài trùng nguồn.",
+          "reviewFindingSource": "independent-review/micro-03.json"
+        }
+      ],
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "Scientists test a new drug for the disease.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Các nhà khoa học thử nghiệm một loại thuốc mới chữa bệnh.",
+                  "focus_en": [
+                    "drug"
+                  ],
+                  "focus_vi": [
+                    "thuốc"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 0,
+              "sourcePosRaw": "n.",
+              "sourceVietnameseMeaningRaw": "thuốc",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            },
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "The police warn students about illegal drugs.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Cảnh sát cảnh báo học sinh về ma túy bất hợp pháp.",
+                  "focus_en": [
+                    "drugs"
+                  ],
+                  "focus_vi": [
+                    "ma túy"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 1,
+              "sourcePosRaw": "n.",
+              "sourceVietnameseMeaningRaw": "ma túy",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            }
+          ],
+          "reference": {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "A2"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/1206/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/1206/rawHeadword",
+            "rawPosEvidencePointer": "/records/1206/sourcePosRaw",
+            "recordEvidenceSha256": "35c387ac96944d88d27a929cd90765237cf1047eb9f259d05e5709345ab84658",
+            "recordIndex": 1206,
+            "sourceNoteGuid": "zaak)P>?_8",
+            "sourceRecordId": "1788223607224",
+            "structuredOxfordSenseGroupOrdinals": [
+              0,
+              1
+            ]
+          },
+          "sourceFields": {
+            "CEFR": "A2",
+            "Example": "Scientists test a new <mark class=\"v-target\">drug</mark> for the disease.<br>The police warn students about illegal <mark class=\"v-target\">drugs</mark>.",
+            "Example Data": "[{\"pos\":\"n.\",\"meaning_vi\":\"thuốc\",\"examples\":[{\"example_en\":\"Scientists test a new drug for the disease.\",\"example_vi\":\"Các nhà khoa học thử nghiệm một loại thuốc mới chữa bệnh.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"drug\"],\"focus_vi\":[\"thuốc\"]}]},{\"pos\":\"n.\",\"meaning_vi\":\"ma túy\",\"examples\":[{\"example_en\":\"The police warn students about illegal drugs.\",\"example_vi\":\"Cảnh sát cảnh báo học sinh về ma túy bất hợp pháp.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"drugs\"],\"focus_vi\":[\"ma túy\"]}]}]",
+            "Example EN 1": "Scientists test a new drug for the disease.",
+            "Example EN 2": "The police warn students about illegal drugs.",
+            "Example EN 3": "",
+            "Example EN 4": "",
+            "Example EN 5": "",
+            "Example EN 6": "",
+            "Example EN 7": "",
+            "Frequency": "1074",
+            "Irregular Forms": "[]",
+            "Oxford List": "Oxford 3000",
+            "Part of Speech": "noun",
+            "Phonetic": "/drʌɡ/",
+            "Pronunciation Data": "[{\"locale\":\"UK\",\"ipa\":[\"/drʌɡ/\"],\"audio_keys\":[\"uk_pron/d/dru/drug_/drug__gb_2\"]},{\"locale\":\"US\",\"ipa\":[\"/drʌɡ/\"],\"audio_keys\":[\"us_pron/d/dru/drug_/drug__us_1\"]}]",
+            "Sound_uk": "",
+            "Sound_us": "",
+            "Study Order": "1207",
+            "Từ loại": "danh từ",
+            "Variant Data": "[]",
+            "Vietnamese": "thuốc; ma túy",
+            "Word": "drug"
+          }
+        }
+      ]
+    },
+    {
+      "priorFinding": {
+        "assessment": "REVIEW",
+        "blocksPublication": false,
+        "effectiveContentHash": "8b160d4d0fceed5d571b509100121ced3425036b237b7845e113658cb2249f8e",
+        "explanationVi": "Sense chương trình phát sóng được nguồn Oxford hỗ trợ, nhưng câu Anh nói chương trình được phát sau bản tin còn bản dịch thêm “đài” làm tác nhân; nên cân nhắc bản dịch bị động để giữ cùng chủ thể.",
+        "proposalKey": "EDITORIAL_2H2L:programme:broadcast-show"
+      },
+      "record": {
+        "candidateGroupKey": "NORMALIZED_HEADWORD:programme",
+        "canonicalIdsAllocated": 0,
+        "content": {
+          "definitionEn": "a planned television or radio show that is broadcast to an audience",
+          "examples": [
+            {
+              "en": "A wildlife programme aired after the evening news.",
+              "exampleKey": "EDITORIAL_2H2L:programme:broadcast-show:example-1",
+              "vi": "Bản tin buổi tối kết thúc trước khi chương trình về động vật hoang dã bắt đầu được phát sóng."
+            }
+          ],
+          "grammarNotesEn": "Count noun; British spelling programme; watch a programme.",
+          "meaningVi": "chương trình truyền hình; phát thanh",
+          "senseLabelEn": "broadcast show"
+        },
+        "contentStatus": "DRAFT",
+        "displayFormProposal": "programme",
+        "editorialAuthorship": {
+          "humanAuthor": null,
+          "humanReviewer": null,
+          "kind": "AI_GENERATED_EDITORIAL_DRAFT",
+          "process": "Original 2H.2L manuscript composed from linked source evidence"
+        },
+        "effectiveContentHash": "5a641bfaf224d84da693a84608ab341a3bf67c700618d118e602f3c666e25494",
+        "fieldHashes": {
+          "definitionEn": "c95dbc806f076c99d526f512348eed3009b8616a68dc1d78870c65afa46d778a",
+          "examples": "da386e133d2c1c17ab6ee31820ae9c9169ed464c545d1caa16c81c51367f5645",
+          "grammarNotesEn": "4db1072d8ae5397b4a2beaed19746fed909b65eb49eda06262d20dffde838733",
+          "meaningVi": "5cca0c3ec01c6a4f40e99b3b164b1c7a6ef826681d20d024a78052f83db95412",
+          "senseLabelEn": "4147162ae79192b09317d25e2e51aeb43156214a0e9f1f52863524398aa3a1e6"
+        },
+        "formalApproval": false,
+        "headword": "programme",
+        "partOfSpeech": "NOUN",
+        "proposalKey": "EDITORIAL_2H2L:programme:broadcast-show",
+        "rights": "UNKNOWN_REVIEW_REQUIRED",
+        "riskFlags": [
+          "SOURCE_ONLY_CONTENT",
+          "POSSIBLE_POLYSEMY",
+          "HUMAN_SENSE_REVIEW_REQUIRED"
+        ],
+        "sourceEvidence": [
+          {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "A1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/743/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/743/rawHeadword",
+            "rawPosEvidencePointer": "/records/743/sourcePosRaw",
+            "recordEvidenceSha256": "2fa2618fa3a39cb183712a60129fff090c448cb4beb24a0e1e1a91d24282ace7",
+            "recordIndex": 743,
+            "sourceNoteGuid": "F~Ns+lW~Nw",
+            "sourceRecordId": "1788223606760",
+            "structuredOxfordSenseGroupOrdinals": [
+              0,
+              1
+            ]
+          }
+        ],
+        "sourceSenseCoverage": "Selected supported meanings only; no claim of exhaustive dictionary coverage",
+        "supplementalSourceEvidence": []
+      },
+      "revisionRecords": [
+        {
+          "after": "Bản tin buổi tối kết thúc trước khi chương trình về động vật hoang dã bắt đầu được phát sóng.",
+          "afterContentHash": "5a641bfaf224d84da693a84608ab341a3bf67c700618d118e602f3c666e25494",
+          "afterFieldHash": "469c82da0e9031a037d27fc27b4cded046ce4b79b38e8f15f76b36ae611b721f",
+          "afterRecordHash": "6bc046c5b0913c3ab3d4fe7ea3fd5e65ea699cb186c7fa18a5b88402f4a00794",
+          "before": "Sau bản tin tối, đài phát sóng chương trình khám phá thiên nhiên.",
+          "beforeContentHash": "8b160d4d0fceed5d571b509100121ced3425036b237b7845e113658cb2249f8e",
+          "beforeFieldHash": "679a6af971463fa37f58175c8765b06f7f90944dcd62a9c737270f1f1d359358",
+          "beforeRecordHash": "0fdeaa1b78e0b7abc7e7b83e8e90e88f3757800d1e315ccd55687dfb33012fec",
+          "field": "exampleVi",
+          "proposalKey": "EDITORIAL_2H2L:programme:broadcast-show",
+          "reasonVi": "Bỏ tác nhân “đài” không có trong câu Anh; giữ trình tự chương trình phát sau bản tin.",
+          "reviewFindingSource": "independent-review/micro-03.json"
+        }
+      ],
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "We watched a wildlife programme after dinner.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Chúng tôi xem một chương trình về động vật hoang dã sau bữa tối.",
+                  "focus_en": [
+                    "programme"
+                  ],
+                  "focus_vi": [
+                    "chương trình"
+                  ]
+                },
+                {
+                  "example_en": "This radio programme starts at eight.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Chương trình phát thanh này bắt đầu lúc tám giờ.",
+                  "focus_en": [
+                    "programme"
+                  ],
+                  "focus_vi": [
+                    "Chương trình"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 0,
+              "sourcePosRaw": "n.",
+              "sourceVietnameseMeaningRaw": "chương trình (truyền hình, phát thanh)",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            },
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "The school has a new reading programme.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Trường có một chương trình đọc sách mới.",
+                  "focus_en": [
+                    "programme"
+                  ],
+                  "focus_vi": [
+                    "chương trình"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 1,
+              "sourcePosRaw": "n.",
+              "sourceVietnameseMeaningRaw": "chương trình, kế hoạch",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            }
+          ],
+          "reference": {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "A1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/743/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/743/rawHeadword",
+            "rawPosEvidencePointer": "/records/743/sourcePosRaw",
+            "recordEvidenceSha256": "2fa2618fa3a39cb183712a60129fff090c448cb4beb24a0e1e1a91d24282ace7",
+            "recordIndex": 743,
+            "sourceNoteGuid": "F~Ns+lW~Nw",
+            "sourceRecordId": "1788223606760",
+            "structuredOxfordSenseGroupOrdinals": [
+              0,
+              1
+            ]
+          },
+          "sourceFields": {
+            "CEFR": "A1",
+            "Example": "We watched a wildlife <mark class=\"v-target\">programme</mark> after dinner.<br>This radio <mark class=\"v-target\">programme</mark> starts at eight.<br>The school has a new reading <mark class=\"v-target\">programme</mark>.",
+            "Example Data": "[{\"pos\":\"n.\",\"meaning_vi\":\"chương trình (truyền hình, phát thanh)\",\"examples\":[{\"example_en\":\"We watched a wildlife programme after dinner.\",\"example_vi\":\"Chúng tôi xem một chương trình về động vật hoang dã sau bữa tối.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"programme\"],\"focus_vi\":[\"chương trình\"]},{\"example_en\":\"This radio programme starts at eight.\",\"example_vi\":\"Chương trình phát thanh này bắt đầu lúc tám giờ.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"programme\"],\"focus_vi\":[\"Chương trình\"]}]},{\"pos\":\"n.\",\"meaning_vi\":\"chương trình, kế hoạch\",\"examples\":[{\"example_en\":\"The school has a new reading programme.\",\"example_vi\":\"Trường có một chương trình đọc sách mới.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"programme\"],\"focus_vi\":[\"chương trình\"]}]}]",
+            "Example EN 1": "We watched a wildlife programme after dinner.",
+            "Example EN 2": "This radio programme starts at eight.",
+            "Example EN 3": "The school has a new reading programme.",
+            "Example EN 4": "",
+            "Example EN 5": "",
+            "Example EN 6": "",
+            "Example EN 7": "",
+            "Frequency": "1817",
+            "Irregular Forms": "[]",
+            "Oxford List": "Oxford 3000",
+            "Part of Speech": "noun",
+            "Phonetic": "/ˈprəʊɡræm/",
+            "Pronunciation Data": "[{\"locale\":\"UK\",\"ipa\":[\"/ˈprəʊɡræm/\"],\"audio_keys\":[\"uk_pron/p/pro/progr/programme__gb_2\"]},{\"locale\":\"US\",\"ipa\":[\"/ˈprəʊɡræm/\"],\"audio_keys\":[\"us_pron/p/pro/progr/programme__us_1\"]}]",
+            "Sound_uk": "",
+            "Sound_us": "",
+            "Study Order": "744",
+            "Từ loại": "danh từ",
+            "Variant Data": "[{\"only\":\"UK\"}]",
+            "Vietnamese": "chương trình (truyền hình, phát thanh); chương trình, kế hoạch",
+            "Word": "programme"
+          }
+        }
+      ]
+    }
+  ],
+  "reviewMode": "BLIND_INDEPENDENT_RECHECK_CURRENT_EFFECTIVE_CONTENT"
+}

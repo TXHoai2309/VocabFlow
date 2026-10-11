@@ -1,0 +1,34 @@
+narrate|tell-or-recount|REVIEW|Định nghĩa được giới hạn theo cách Vocab4600 mô tả việc viết hoặc đọc câu chuyện; nguồn có cách diễn đạt khác thường và ví dụ Oxford mang nhãn llm_authored, nên cần reviewer xác nhận phạm vi trước khi nâng trạng thái.
+nuance|subtle-difference|PASS|Nguồn Vocab4600 định nghĩa khác biệt nhỏ khó nhận ra; nhãn nghĩa, câu mới và bản dịch đều giữ đúng sắc thái tinh tế mà không tạo thêm ranh giới.
+though|concessive-conjunction|PASS|Định nghĩa Vocab4600 nêu quan hệ tương phản gây bất ngờ và gloss Oxford xác nhận nghĩa mặc dù; ví dụ tự viết dùng đúng liên từ và bản dịch Việt tự nhiên.
+though|sentence-adverb|REVIEW|POS trạng từ và gloss tuy vậy có trong Oxford, nhưng ví dụ nguồn mang nhãn llm_authored; câu mới chỉ minh họa cách dùng tương phản và cần kiểm tra độc lập về ranh giới nghĩa.
+adjust|change-or-set|PASS|Định nghĩa Vocab4600 hỗ trợ việc thay đổi vật để phù hợp hơn; câu mới dùng tân ngữ trực tiếp, nghĩa Việt và ghi chú cấu trúc khớp với kế hoạch.
+adjust|adapt-to-situation|REVIEW|Gloss Oxford ghi thích nghi và POS động từ, còn ví dụ nguồn mang nhãn llm_authored; bản nháp chỉ dùng cấu trúc adjust to và cần reviewer xác nhận phạm vi sense.
+exceed|go-beyond-limit|PASS|Định nghĩa Vocab4600 là vượt một mức và Oxford có các ngưỡng liều lượng, chi phí; câu hóa đơn mới giữ đúng nghĩa cùng valency ngoại động từ.
+mood|emotional-state|PASS|Định nghĩa Vocab4600 nói về cách một người cảm thấy; ví dụ mới, nghĩa Việt và mẫu in someone's mood đều phù hợp với một nghĩa danh từ.
+consolidate|combine-into-one|PASS|Vocab4600 định nghĩa việc đưa nhiều phần thành một và Oxford có gloss hợp nhất; câu mới dùng tổ chức làm tân ngữ, không trộn với nghĩa củng cố.
+consolidate|make-firmer|REVIEW|Gloss nguồn có củng cố và làm vững chắc nhưng ví dụ hỗ trợ chính là Oxford llm_authored; câu mới không sao chép ví dụ, song cần reviewer xác nhận phạm vi mở rộng sang sự ủng hộ.
+processor|computing-device|REVIEW|Gloss Oxford là bộ xử lý và source example mang nhãn llm_authored; định nghĩa máy tính được viết thận trọng từ gloss, cần reviewer xác minh thiết bị cụ thể trước khi promotion.
+processor|food-processing-machine|REVIEW|Gloss Oxford nêu máy xay hoặc máy chế biến thực phẩm nhưng ví dụ được gắn llm_authored; nội dung và bản dịch là bản nháp mới, vẫn cần xác nhận từ điển độc lập.
+freeze|become-ice|REVIEW|Gloss Oxford hỗ trợ đóng băng nhưng ví dụ nhóm nguồn mang nhãn llm_authored; câu mới chọn ao tự đóng băng và dùng nội động từ, cần reviewer kiểm tra cách phân nhóm.
+freeze|freeze-food|REVIEW|Gloss đông lạnh cùng POS Oxford hỗ trợ bản nháp, song ví dụ nguồn mang nhãn llm_authored; nghĩa bảo quản thực phẩm và câu mới cần được reviewer xác nhận độc lập.
+indulge|enjoy-oneself|PASS|Định nghĩa Vocab4600 trực tiếp nói tự cho phép mình tận hưởng điều ưa thích; câu mới dùng indulge in với hoạt động và bản dịch giữ đúng sắc thái tự thưởng.
+indulge|pamper-someone|REVIEW|Gloss Oxford dịch chiều chuộng và POS động từ, nhưng ví dụ nguồn mang nhãn llm_authored; câu mới dùng tân ngữ người rõ ràng và cần reviewer xác minh giới hạn nghĩa.
+civilization|organized-human-society|PASS|Định nghĩa Vocab4600 hỗ trợ xã hội phát triển và có tổ chức; câu mới cùng nghĩa Việt mô tả ghi chép của một xã hội, không thêm phân loại lịch sử.
+novel|fiction-book|PASS|Vocab4600 định nghĩa novel là sách kể chuyện và Oxford phân loại danh từ; câu mượn sách mới phù hợp với POS cùng nghĩa tiểu thuyết.
+novel|new-and-original|REVIEW|POS tính từ và gloss Oxford mới lạ hỗ trợ nghĩa, nhưng ví dụ nguồn mang nhãn llm_authored; câu mới minh họa giải pháp mới và cần reviewer kiểm tra ranh giới.
+vision|future-outlook|REVIEW|Gloss Oxford tầm nhìn gợi nghĩa triển vọng nhưng ví dụ nguồn là llm_authored; bản nháp không dựa vào câu đó làm thẩm quyền và cần xác minh phạm vi định hướng tương lai.
+vision|ability-to-see|PASS|Định nghĩa Vocab4600 nêu khả năng nhìn và Oxford gloss thị lực; câu mới về tròng kính phù hợp nghĩa sinh lý và được diễn đạt riêng.
+journalism|news-reporting-work|PASS|Vocab4600 mô tả công việc thu thập tin để đưa lên truyền thông; ví dụ mới về đài phát thanh, POS và bản dịch cùng thể hiện nghĩa nghề nghiệp.
+sensible|good-judgment|PASS|Vocab4600 hỗ trợ phán đoán theo lý trí và kinh nghiệm; câu áo khoác nêu một lựa chọn hợp lý trong bối cảnh cụ thể mà không thêm sắc thái khác.
+distinct|different-from-others|PASS|Vocab4600 xác nhận khác biệt hoặc nổi bật và Oxford gloss khác biệt; ví dụ kết cấu vải minh họa chính xác, bản dịch giữ nguyên ý.
+distinct|clearly-noticeable|PASS|Gloss rõ rệt cùng định nghĩa Vocab4600 về nổi bật hỗ trợ nghĩa dễ nhận thấy; ví dụ mùi hương mới không tạo một sense mới.
+day|24-hour-period|PASS|Vocab4600 định nghĩa ngày là chu kỳ 24 giờ bắt đầu lúc nửa đêm; câu nhật ký thử nghiệm và bản dịch giữ đúng đơn vị thời gian.
+day|daylight-period|REVIEW|Gloss Oxford ghi ban ngày và POS danh từ nhưng ví dụ tiếng Anh mang nhãn llm_authored; câu mới đối lập với lúc hoàng hôn, cần reviewer xác minh sắc thái.
+day|future-occasion|REVIEW|Gloss một ngày nào đó định hướng dịp tương lai nhưng ví dụ nguồn là llm_authored; câu cực quang được viết mới và cần reviewer kiểm tra cách dùng thành ngữ.
+reaction|response-to-event-or-stimulus|REVIEW|Oxford chỉ cung cấp gloss phản ứng và ví dụ llm_authored, không có định nghĩa tiếng Anh độc lập; định nghĩa rộng giữ DRAFT và cần reviewer xác minh phạm vi.
+electromagnetic|electric-and-magnetic-related|PASS|Định nghĩa Vocab4600 nêu liên hệ với điện và từ trường; sơ đồ cuộn dây là ví dụ mới, còn bản dịch tránh thu hẹp thành chỉ có từ tính.
+range|variety-or-set|PASS|Vocab4600 định nghĩa tập hợp những thứ tương tự và gloss Oxford nhiều loại; ví dụ thảo mộc phù hợp danh từ chỉ lựa chọn đa dạng.
+range|interval-or-extent|REVIEW|Gloss Oxford khoảng và POS danh từ gợi khoảng giá trị nhưng ví dụ nguồn là llm_authored; câu lương mới không sao chép nguồn và cần reviewer xác minh nghĩa chuyên biệt.
+range|vary-between-values|REVIEW|Gloss dao động, POS động từ và cấu trúc range from trong kế hoạch hỗ trợ bản nháp; ví dụ nguồn llm_authored nên ranh giới cần reviewer xác nhận.
+range|mountain-chain|REVIEW|Gloss Oxford dãy núi hỗ trợ nghĩa địa hình nhưng ví dụ nguồn mang nhãn llm_authored; định nghĩa chuỗi núi và ví dụ mới cần xác minh độc lập.

@@ -1,0 +1,57 @@
+{
+  "cohortFingerprint": "ac9cedb8a0f54295eb6eee6630fe141c2477b7a25a368c3c8efbee79feca600e",
+  "fingerprint": "97efca946ba0ced849b43c74ef4459261a411e08d6b0223aad91a0508c2034f3",
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:narrate",
+    "NORMALIZED_HEADWORD:nuance",
+    "NORMALIZED_HEADWORD:though",
+    "NORMALIZED_HEADWORD:adjust",
+    "NORMALIZED_HEADWORD:exceed",
+    "NORMALIZED_HEADWORD:mood",
+    "NORMALIZED_HEADWORD:consolidate",
+    "NORMALIZED_HEADWORD:processor",
+    "NORMALIZED_HEADWORD:freeze",
+    "NORMALIZED_HEADWORD:indulge",
+    "NORMALIZED_HEADWORD:civilization",
+    "NORMALIZED_HEADWORD:novel",
+    "NORMALIZED_HEADWORD:vision",
+    "NORMALIZED_HEADWORD:journalism",
+    "NORMALIZED_HEADWORD:sensible",
+    "NORMALIZED_HEADWORD:distinct",
+    "NORMALIZED_HEADWORD:day",
+    "NORMALIZED_HEADWORD:reaction",
+    "NORMALIZED_HEADWORD:electromagnetic",
+    "NORMALIZED_HEADWORD:range"
+  ],
+  "manuscriptSha256": "0d02c5ba67cb2bd88aec1691b3916de724ecfb271ea2090fc3e28e022bee5f81",
+  "microBatch": 5,
+  "parentFingerprint": "23cb5e4fc6786375cfe07581c7c91fcb097621dfe01ba3608cec6db70804e61e",
+  "phase": "2H.2L",
+  "planningFingerprint": "095f134ced80e02ae16ae8ba32299191f3f757fb7c470e0d5dc8378f6d7a4266",
+  "planningSha256": "b58ad8eeaf57258bf26419be47156670623988cd15b199ab9edc10e74a390c92",
+  "qaCounts": {
+    "PASS": 17,
+    "REVIEW": 17
+  },
+  "recordHash": "fca1a653cf1cd1358e8f05be8c35c0208dc4c233fd97340d90f168ddb3093c33",
+  "reviewHash": "4823e3901820ab07042b4e5a28a05214472b829a6386dde269bd30e31e38e50e",
+  "selfReviewSha256": "8ff8fae724fd5ee05f50aa2adde6f619e0bceabc7137dff9daab9df8c33f76c7",
+  "senseCount": 34,
+  "sourceSimilarityFindings": [
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:range:mountain-chain",
+      "sourceRecordId": "1788223607790",
+      "text": "dãy núi"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:range:mountain-chain",
+      "sourceRecordId": "1788223607790",
+      "text": "dãy núi"
+    }
+  ],
+  "status": "SEALED_AI_DRAFT_NOT_APPROVED"
+}
