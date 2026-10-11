@@ -1,0 +1,30 @@
+{
+  "reviewerKind": "ISOLATED_AI_REVIEW_AGENT",
+  "blindFirstPass": false,
+  "reviewerIdentity": "/root/cp03_blind_a",
+  "firstPassReviewSha256": "0c67feae7ca5f8ddda5919e1342935174c931845f63ffb98636336c6e2b6564c",
+  "microBatch": 2,
+  "recordCount": 1,
+  "passCount": 1,
+  "reviewCount": 0,
+  "failCount": 0,
+  "crossSourceCopying": {
+    "sourceRecordsScanned": 9677,
+    "authoredSenseRecordsScanned": 1,
+    "eightWordOverlaps": [],
+    "scope": "All string sourceFields in both complete corpora; heuristic text screen, not rights clearance"
+  },
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2L:electronic:digital-form",
+      "effectiveContentHash": "b71ab8efa51bba07615328bdeda8da00f49996acbabd3ebb58921442df2a4311",
+      "assessment": "PASS",
+      "explanationVi": "Hóa đơn đã đến giữ đúng arrived và bỏ thay đổi sang hành động gửi của bản trước. Một tệp điện tử và nghĩa stored/sent data khớp nhóm electronic copy Oxford; ghi chú document nouns đúng, không còn lỗi thời điểm cản xuất bản.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    }
+  ]
+}

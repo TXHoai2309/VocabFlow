@@ -1,0 +1,370 @@
+{
+  "reviewerKind": "ISOLATED_AI_REVIEW_AGENT",
+  "blindFirstPass": true,
+  "reviewerIdentity": "/root/cp03_blind_a",
+  "manuscriptSha256": "ab951c3a568c4a30a8e8d3fa321fdc17dbaa1b00cdcde0c040b08aef0b225f94",
+  "microBatch": 2,
+  "recordCount": 31,
+  "passCount": 28,
+  "reviewCount": 2,
+  "failCount": 1,
+  "crossSourceCopying": {
+    "sourceRecordsScanned": 9677,
+    "authoredSenseRecordsScanned": 31,
+    "eightWordOverlaps": [],
+    "scope": "All string sourceFields in both complete corpora; heuristic text screen, not rights clearance"
+  },
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2L:conspiracy:secret-harmful-plan",
+      "effectiveContentHash": "4f200d8a5405a8e5fa453953325226e01b9b6602daadb818c821d1bc45ffb814",
+      "assessment": "PASS",
+      "explanationVi": "Âm mưu đúng hai nguồn về nhóm bí mật làm điều có hại; thám tử phát hiện kế hoạch trộm tranh giữ tác nhân và các tranh số nhiều. Countable và conspiracy to đúng, câu riêng không lặp nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:workshop:practical-session",
+      "effectiveContentHash": "7543467ba7ea20e999833c95a80d89004b86890303970c9b8bb554689401a4dd",
+      "assessment": "PASS",
+      "explanationVi": "Buổi học thực hành đúng nhóm workshop Oxford; chúng tôi tập làm hoa giấy giữ người học và hoạt động. Meeting thực hành và workshop on/for đúng, tách khỏi nhà xưởng.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:workshop:work-building",
+      "effectiveContentHash": "860887be71eb23916b96ac26f90b9587888b43878945d9ee9ae848f67d7a045f",
+      "assessment": "PASS",
+      "explanationVi": "Xưởng đúng hai nguồn về phòng hoặc tòa nhà làm/sửa vật. Thợ mộc đưa ghế hỏng vào xưởng giữ tác nhân, vật hỏng và hướng; countable workshops đúng, khác buổi học.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:sequence:order",
+      "effectiveContentHash": "38ae9d0479d1a41ba16c8b1c8552c00bf18269cd41557ac647c6ab1fdd88f66d",
+      "assessment": "REVIEW",
+      "explanationVi": "Trình tự đúng Oxford và ví dụ mở két giữ quy trình. Tuy nhiên ghi chú Countable cần thêm khả năng không đếm được khi chỉ thứ tự, như in sequence; đây là giới hạn ghi chú chứ không sai ví dụ.",
+      "affectedFields": [
+        "grammarNotesEn"
+      ],
+      "severity": "LOW",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": [
+        "Nghĩa thứ tự có cách dùng không đếm được, ghi chú hiện chỉ Countable."
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:sequence:connected-series",
+      "effectiveContentHash": "36fe63743ae47f8cef0fd224c147106e14e5b216ef2f6e931cd39aed8feb87d5",
+      "assessment": "PASS",
+      "explanationVi": "Chuỗi sự việc/đối tượng đúng hai nguồn; chuỗi cảnh ngắn giới thiệu nhân vật chính giữ chức năng và số nhiều cảnh. A sequence of đúng countable, khác order of arrangement.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:saliva:mouth-fluid",
+      "effectiveContentHash": "7ae33b8eea0b00cbfc60e0594c2807ab0f44f78a0edf10f17ed2b96448c6cc13",
+      "assessment": "PASS",
+      "explanationVi": "Nước bọt đúng nguồn 4600, định nghĩa làm ẩm thức ăn và hỗ trợ tiêu hóa phù hợp. Phòng thí nghiệm thu vào ống nhỏ giữ vật và đích; sample of saliva và uncountable đúng.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:nuisance:annoying-thing-person",
+      "effectiveContentHash": "2ef601e7d33d9bf7c5d22180a520c1c0b427367bf5780c5983aabe53e805b187",
+      "assessment": "PASS",
+      "explanationVi": "Người hoặc việc gây phiền toái đúng nuisance nguồn, định nghĩa cũng bao gồm đồ vật. Tay nắm cửa lỏng gây phiền giữ tình trạng; countable/be a nuisance to đúng, Việt tự nhiên.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:confuse:make-unsure",
+      "effectiveContentHash": "5abc6cbcfb36a67c13ff86e029bfc82ef65fd68aa3a410169532e25cad20049f",
+      "assessment": "PASS",
+      "explanationVi": "Làm ai bối rối đúng nhóm confuse hai nguồn; lịch thay đổi khiến hành khách bối rối giữ nguyên nhân và người chịu tác động. Ngoại động từ và confused/confusing đúng, khác nhầm A với B.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:confuse:mistake-for",
+      "effectiveContentHash": "6fd00ca266ec4f80705f93527d7082d1cb359746198e1ba22a7d8734482a1871",
+      "assessment": "PASS",
+      "explanationVi": "Nhầm một thứ với thứ khác đúng nhóm Oxford; tôi đôi khi nhầm hai tên đường giữ tần suất và số hai. Confuse A with B/two things đúng, khác làm người khác bối rối.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:merely:only",
+      "effectiveContentHash": "0006f4dea9c65bebab4d3dbec876d8a946e0d39399996168d3e20e8d85c763d2",
+      "assessment": "PASS",
+      "explanationVi": "Chỉ, đơn thuần đúng merely hai nguồn; tôi chỉ muốn kiểm tra địa chỉ giữ phạm vi giới hạn ý định. Vị trí trước động từ/after be hợp lý, câu riêng không lặp nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:inflict:cause-harm",
+      "effectiveContentHash": "8bd95ff72777bb53d1766f157c32ed485fadebc6399b3c4bedac0aa025708d7c",
+      "assessment": "PASS",
+      "explanationVi": "Gây đau đớn hoặc thiệt hại đúng inflict hai nguồn; cháy gây mất mát lớn cho chủ cửa hàng giữ nguyên nhân và người chịu. Harm làm direct object và on đúng, không đổi thành người là tân ngữ trực tiếp.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:barn:farm-building",
+      "effectiveContentHash": "65d251e45b722ce0666ba91aa774f4e368086cea703074febe54853c4d8b4df0",
+      "assessment": "PASS",
+      "explanationVi": "Nhà kho/chuồng trang trại đúng barn nguồn. Nông dân đỗ máy kéo cạnh kho giữ tác nhân, phương tiện và beside; định nghĩa bao quát chứa nông sản, thiết bị, gia súc, countable đúng.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:parliamentary:related-to-parliament",
+      "effectiveContentHash": "53aa0badc90d3513b20420aedaf5c4c5653510243748b11cb9c8870335e41445",
+      "assessment": "PASS",
+      "explanationVi": "Thuộc hoặc có quốc hội đúng parliamentary hai nguồn; kho lưu trữ hồ sơ thảo luận tại quốc hội giữ vật và nội dung. Tính từ trước noun và debate/elections/government hợp lý.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:regret:feel-sorry",
+      "effectiveContentHash": "76e40289c142ffbb27478d1cc619c7f732e23d09a672cb195caaa9b893183bc3",
+      "assessment": "PASS",
+      "explanationVi": "Hối tiếc đúng regret hai nguồn; tôi hối tiếc đã bán xe cũ giữ hành động hoàn tất và vật. Regret doing/that và regretted/regretting đúng, tách khỏi noun.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:regret:feeling-noun",
+      "effectiveContentHash": "2b863de29773934caa5c439174e336e5ffff736d3d011a918b945469d673fc39",
+      "assessment": "PASS",
+      "explanationVi": "Sự hối tiếc đúng danh từ Oxford; anh ấy nói về cơ hội bỏ lỡ giữ người cảm xúc và đối tượng. Usually uncountable trong ví dụ đúng, regret about/for phù hợp, không nhập verb.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:coalition:joint-alliance",
+      "effectiveContentHash": "09598477804ce33fffd43e3eff4821db7f6a308156603affd1d677f247ace4b4",
+      "assessment": "PASS",
+      "explanationVi": "Liên minh, liên hiệp đúng hai nguồn; các tổ chức từ thiện liên minh mở văn phòng chung giữ tác nhân và shared. Countable coalition of/form đúng, không giới hạn sai ở các đảng chính trị.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:electronic:circuits",
+      "effectiveContentHash": "65f6a6f119763819f2e47b63252143579f9019c42b920b62740fd5e7a3dd98ad",
+      "assessment": "REVIEW",
+      "explanationVi": "Điện tử đúng nhóm thiết bị hai nguồn; cảm biến đo cửa giữ chủ thể và vật. Nguồn 4600 chỉ nói uses electricity quá rộng với đồ điện nói chung, draft dùng kiểm soát tín hiệu chính xác hơn; nên lưu giới hạn nguồn.",
+      "affectedFields": [
+        "sourceEvidence"
+      ],
+      "severity": "LOW",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": [
+        "Nguồn 4600 đồng nhất electronic với đồ dùng điện quá rộng."
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:electronic:digital-form",
+      "effectiveContentHash": "a4a1265689d407781f8d3943f3e4292c057ff0146cc44fd27d785f20d5c0db01",
+      "assessment": "FAIL",
+      "explanationVi": "Ở dạng điện tử có bằng chứng Oxford electronic copy. Nhưng invoice arrived là hóa đơn đến/được nhận, còn được gửi đến đổi thành hành động gửi. Cần sửa hóa đơn đến dưới dạng tệp điện tử để giữ mốc nhận.",
+      "affectedFields": [
+        "examples"
+      ],
+      "severity": "MEDIUM",
+      "blocksPublication": true,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:rescue:save-action",
+      "effectiveContentHash": "7e58813b318230e046e2e1fe74a4cecf5d385dc044b8f7debcd84a8da4e4d8c1",
+      "assessment": "PASS",
+      "explanationVi": "Cứu, giải cứu đúng động từ hai nguồn; thủy thủ đoàn cứu một thủy thủ khỏi thuyền hỏng giữ tác nhân, một người và from. Ngoại động từ/rescued/rescuing đúng, khác noun.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:rescue:saving-operation",
+      "effectiveContentHash": "d8530307a6fa379ac13cfad08bad87f94f754c3625965397ecd02d1646d0d13e",
+      "assessment": "PASS",
+      "explanationVi": "Cuộc cứu hộ đúng danh từ Oxford; sương mù hoãn đến sáng giữ nguyên nhân và điểm thời gian. Countable operation và come to someone’s rescue hợp lý, không nhập động từ cứu.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:availability:obtainability",
+      "effectiveContentHash": "78336345b0cd6b5a40ef5b0e9387f27dd73b0b00fe1b2c6475edc86b768105a9",
+      "assessment": "PASS",
+      "explanationVi": "Tình trạng sẵn có đúng availability hai nguồn; website liệt kê phụ tùng giữ phạm vi vật có thể dùng/lấy. Availability of và uncountable đúng, ví dụ riêng không lặp nước hoặc thuốc nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:meteorological:weather-science",
+      "effectiveContentHash": "888632b2b279f80cfd5767c021594d26d7bdbf38a4502a033e322dd5fedd64f4",
+      "assessment": "PASS",
+      "explanationVi": "Thuộc khí tượng học đúng meteorological nguồn; nhóm lắp thiết bị trên mái giữ tác nhân và nơi. Định nghĩa học thời tiết/khí quyển và instruments/data phù hợp tính từ.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:dissolve:mix-into-liquid",
+      "effectiveContentHash": "581ac8cbf34e2a1cf46c44f144a2cfed1c3e14bbe10330af246bb4561e914424",
+      "assessment": "PASS",
+      "explanationVi": "Tan/hòa tan đúng hai nguồn; bột tan hoàn toàn trong nước ép giữ mức hoàn toàn và môi trường. Nội động từ dissolve in và ngoại dissolve something in đúng, tách khỏi giải tán.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:dissolve:end-organization",
+      "effectiveContentHash": "ac37ee1a03033a5f7bce5ef649b881ce5c60ae708ed27c25b0c4a1025be3ddc2",
+      "assessment": "PASS",
+      "explanationVi": "Giải tán/chấm dứt đúng nhóm Oxford; thành viên bỏ phiếu giải tán hiệp hội giữ quyết định và tổ chức. Transitive dissolve body/arrangement đúng, không nhập hòa tan vật chất.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:reside:live",
+      "effectiveContentHash": "ae4b41ac849b32a62cd69c02656b1f3d43fa530b63b818643cd32eab8e2fceb6",
+      "assessment": "PASS",
+      "explanationVi": "Cư trú, sinh sống đúng reside hai nguồn; nhà văn sống thị trấn ven biển yên tĩnh giữ chủ thể và nơi. Formal, intransitive reside in/at đúng, không sao chép nguồn thủ đô.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:fine:well-acceptable",
+      "effectiveContentHash": "28d9c8a070432b8fcec56a9561939244ac34c1feb498905fbdd2e4d9409bb5b4",
+      "assessment": "PASS",
+      "explanationVi": "Ổn, tốt đúng fine condition Oxford; camera ổn còn lens cần sửa giữ tương phản và bộ phận. Tính từ sau be/feel đúng, không dùng lẫn adverb fine.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:fine:penalty-noun",
+      "effectiveContentHash": "ea3f71c916846f704829ab90b7263e46bec7cfc96bebee33549b34bb9d39ca19",
+      "assessment": "PASS",
+      "explanationVi": "Khoản tiền phạt đúng noun fine Oxford; tài xế bị phạt vì chặn lối vào giữ người và nguyên nhân. Countable receive/pay/impose a fine đúng, khác verb phạt tiền.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:fine:penalize-money",
+      "effectiveContentHash": "2cbfa3467613f882b7dae2612aaa04d076a1b403bbe01907a2af93794ac16902",
+      "assessment": "PASS",
+      "explanationVi": "Phạt tiền đúng verb hai nguồn; hội đồng phạt cửa hàng do rác trên vỉa hè giữ tác nhân và lỗi. Fine someone for, fined/fining đúng, không nhập danh từ khoản phạt.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:fine:pleasant-weather",
+      "effectiveContentHash": "d6bba4f35500243102428faa087a4c2e38977b81057e3d03501614c853b23e88",
+      "assessment": "PASS",
+      "explanationVi": "Đẹp trời đúng fine day Oxford; thời tiết đẹp cho phép ăn ngoài trời giữ nguyên nhân và người. Before weather/day và weather is fine phù hợp tính từ.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:fine:small-particles",
+      "effectiveContentHash": "bcf486bdbecc629fa92931c04b2e5f26668107203f346d18ce40674fd5235541",
+      "assessment": "PASS",
+      "explanationVi": "Mịn, nhỏ đúng fine sand Oxford; bụi mịn bám nhiều kệ giữ kết cấu và nơi. Fine powder/sand trước noun đúng, khác phạt tiền hoặc tình trạng tốt.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:thereafter:after-mentioned-time",
+      "effectiveContentHash": "bc78de4783eac9fad17ff6c7aa31f8af376e6384314165ee804ba3b38907ad2f",
+      "assessment": "PASS",
+      "explanationVi": "Sau đó, từ đó về sau đúng thereafter hai nguồn; cửa hàng đóng tháng Sáu rồi trống giữ mốc và diễn tiến. Formal và tham chiếu sự kiện đã nêu đúng, ví dụ không sao chép nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    }
+  ]
+}

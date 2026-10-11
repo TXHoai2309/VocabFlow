@@ -1,0 +1,113 @@
+{
+  "cohortFingerprint": "9710a47fda875f70412c7440b2969c031dc6eb3c076140a42007aed4f83cf59c",
+  "fingerprint": "912e6ab5fe946876f0f1d5dec719bcd75987ea52bde484c7b7ee23675dc48dfa",
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:credible",
+    "NORMALIZED_HEADWORD:fill",
+    "NORMALIZED_HEADWORD:position",
+    "NORMALIZED_HEADWORD:dessert",
+    "NORMALIZED_HEADWORD:sophomore",
+    "NORMALIZED_HEADWORD:tune",
+    "NORMALIZED_HEADWORD:so",
+    "NORMALIZED_HEADWORD:consume",
+    "NORMALIZED_HEADWORD:let",
+    "NORMALIZED_HEADWORD:require",
+    "NORMALIZED_HEADWORD:relief",
+    "NORMALIZED_HEADWORD:dig",
+    "NORMALIZED_HEADWORD:realm",
+    "NORMALIZED_HEADWORD:criterion",
+    "NORMALIZED_HEADWORD:rural",
+    "NORMALIZED_HEADWORD:longing",
+    "NORMALIZED_HEADWORD:curb",
+    "NORMALIZED_HEADWORD:awkward",
+    "NORMALIZED_HEADWORD:promote",
+    "NORMALIZED_HEADWORD:bent"
+  ],
+  "manuscriptSha256": "df11c93c506247f00efa9497e6fc02b261f9ebee5081313f1e4a88c3f2944562",
+  "microBatch": 5,
+  "parentFingerprint": "d409f7844c9ef2b1d91b464e20d669da27360e0f4d3de4ba443a0b2612d53436",
+  "phase": "2H.2L",
+  "planningFingerprint": "be35e425fb705d8c6319c7138d781f735c7ea50cbd6177304d326ef0e524adba",
+  "planningSha256": "c1f44dc48c3c85e479f386ddb73effacd431205d0fa11ca62fa91d028f4847c0",
+  "qaCounts": {
+    "PASS": 33,
+    "REVIEW": 1
+  },
+  "recordHash": "efd9124d09066f912fb45cae7dcb0fb6d1d1f409e9b0a5e649680281e4a0d455",
+  "reviewHash": "50bd65d033afe702b6bab2802e29b6414805ece51f516871a332aca2ad626073",
+  "selfReviewSha256": "f2bcc3f55927cc6dcf790c78237b1c663cbe9528ad0d0df9cc031f1c94f1678b",
+  "senseCount": 34,
+  "sourceSimilarityFindings": [
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:tune:melody",
+      "sourceRecordId": "1788223608860",
+      "text": "giai điệu"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:tune:melody",
+      "sourceRecordId": "1788223608860",
+      "text": "giai điệu"
+    },
+    {
+      "field": "senseLabelEn",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:consume:eat-drink",
+      "sourceRecordId": "1556384731081",
+      "text": "eat or drink"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:relief:reassurance",
+      "sourceRecordId": "1788223608673",
+      "text": "sự nhẹ nhõm"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:relief:reassurance",
+      "sourceRecordId": "1788223608673",
+      "text": "sự nhẹ nhõm"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:realm:kingdom",
+      "sourceRecordId": "1788223610271",
+      "text": "vương quốc"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:realm:kingdom",
+      "sourceRecordId": "1788223610271",
+      "text": "vương quốc"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:realm:kingdom",
+      "sourceRecordId": "1559931009995",
+      "text": "vương quốc"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:criterion:standard",
+      "sourceRecordId": "1788223609053",
+      "text": "tiêu chí"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:criterion:standard",
+      "sourceRecordId": "1788223609053",
+      "text": "tiêu chí"
+    }
+  ],
+  "status": "SEALED_AI_DRAFT_NOT_APPROVED"
+}

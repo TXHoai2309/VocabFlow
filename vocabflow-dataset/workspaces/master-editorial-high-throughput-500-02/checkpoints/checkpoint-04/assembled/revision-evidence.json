@@ -1,0 +1,76 @@
+{
+  "records": [
+    {
+      "after": "Vị tổng thống hư cấu bỏ trốn sau một nỗ lực đảo chính.",
+      "afterContentHash": "87be389706113a4079ed27dcfed06b0fc376fc0b486a708a1497f8d4d1897b0a",
+      "afterFieldHash": "526e2155999b2e0d8284a2f0f2c83818378086be8529af43c930dd28a61101b5",
+      "before": "Vị tổng thống hư cấu bỏ trốn sau một cuộc đảo chính bất thành.",
+      "beforeContentHash": "3743816759ca3c26e92dcb0367861892d7a1e84ac65a961dc1cad9d48cd57569",
+      "beforeFieldHash": "898a48167317457c7e9cd4f9236daf4334a060618095aba1891c2e1a468d2a71",
+      "field": "exampleVi",
+      "proposalKey": "EDITORIAL_2H2L:coup:power-seizure",
+      "reasonVi": "Sửa bản dịch attempted coup thành nỗ lực đảo chính, không tự thêm kết quả thất bại; giữ nguyên nhân vật hư cấu, hành động bỏ trốn và quan hệ thời gian sau sự kiện.",
+      "reviewFindingSource": "independent-review/micro-01.json"
+    },
+    {
+      "after": "Trở ngại lớn nhất của dự án là chi phí.",
+      "afterContentHash": "0f905b297326a3a50febbb7ab12c5f6c52ba387df62a9bea0c2ebaea6107de9f",
+      "afterFieldHash": "477de4fd85c5d10f8d8b933160a32bb330cbc9fae1948206d9aac50a5e6f29a2",
+      "before": "Chi phí là trở ngại chính đối với dự án.",
+      "beforeContentHash": "285e562b4473ae9a798d1d760f668d73923f18f348e214fba0cac3a79138b9d4",
+      "beforeFieldHash": "87013ce856b9c159255b6c28c5b78e41e7ca61d37dd61dc44f6bed6ba1be81bb",
+      "field": "exampleVi",
+      "proposalKey": "EDITORIAL_2H2L:chief:principal",
+      "reasonVi": "Viết lại bản dịch nguyên bản để loại bỏ chuỗi tám từ trùng nguồn, đồng thời giữ chi phí là trở ngại quan trọng nhất của cùng dự án; không thêm kết quả hay tình tiết.",
+      "reviewFindingSource": "independent-review/micro-01.json"
+    },
+    {
+      "after": "Vị cảnh sát trưởng mới đã gặp người dân địa phương.",
+      "afterContentHash": "61684fff2f3a737f3af7fc50e86f05a977e229f6efc0a89d1977d3a05b61366b",
+      "afterFieldHash": "07ca7e873dce88755db7c9101b3223477d3c7956f81cd153652bf1756c72f24f",
+      "before": "Người đứng đầu lực lượng cảnh sát mới gặp người dân địa phương.",
+      "beforeContentHash": "bcbd13de0c83aac197879a7db50eb71ab4f12bb29d4b82263c3084ca3208e8cd",
+      "beforeFieldHash": "92e5a4ecd205888bf4fbb13ddda4c3f7d0625324118f1588a32390b3c93ddbd5",
+      "field": "exampleVi",
+      "proposalKey": "EDITORIAL_2H2L:chief:leader",
+      "reasonVi": "Đưa mới ngay sau chức danh cảnh sát trưởng để giữ phạm vi bổ nghĩa cho người lãnh đạo, không biến new thành trạng từ vừa gặp; giữ hành động gặp và cư dân địa phương.",
+      "reviewFindingSource": "independent-review/micro-01.json"
+    },
+    {
+      "after": "Used with a to refer to a small number rather than none.",
+      "afterContentHash": "4e3befd179c3c9642b781f9f0f51632fdbd084e5c41d329ef5ac0e1fa8a98022",
+      "afterFieldHash": "c2529df49391006b8ded337c33325e516bd0830331f59ebd2ee2cb5ce9211f2c",
+      "before": "Used with a to indicate some members of a countable group.",
+      "beforeContentHash": "95dd81ccf2fd4bd7cca9d0708ba0b6d545c35f768848c9c7fd1bd632963a7c11",
+      "beforeFieldHash": "84209d387765d6e2e6cef206bfa51f3fef860e56ecdd0a3bf2d8b236cb6fcfc4",
+      "field": "definitionEn",
+      "proposalKey": "EDITORIAL_2H2L:few:some-small-number",
+      "reasonVi": "Bổ sung ràng buộc số lượng ít và sắc thái có một số, phù hợp a few trong nguồn, nhãn và nghĩa Việt một vài; không đánh đồng mọi tập con của nhóm đếm được.",
+      "reviewFindingSource": "independent-review/micro-01.json"
+    },
+    {
+      "after": "Hóa đơn đã đến dưới dạng một tệp điện tử.",
+      "afterContentHash": "b71ab8efa51bba07615328bdeda8da00f49996acbabd3ebb58921442df2a4311",
+      "afterFieldHash": "4a4417778e114af053cbd2159fd69c50a9bb4e3bda75c36790d54bc169f1e917",
+      "before": "Hóa đơn được gửi đến dưới dạng một tệp điện tử.",
+      "beforeContentHash": "a4a1265689d407781f8d3943f3e4292c057ff0146cc44fd27d785f20d5c0db01",
+      "beforeFieldHash": "63a658d40e4fac0d5871eb8979ad8894ce06b9105c3fe90a7ac9be55a439b3eb",
+      "field": "exampleVi",
+      "proposalKey": "EDITORIAL_2H2L:electronic:digital-form",
+      "reasonVi": "Giữ arrived là hóa đơn đã đến thay vì đổi sang hành động được gửi; bảo toàn mốc đến của hóa đơn và hình thức tệp điện tử, không thêm tác nhân gửi hoặc người nhận.",
+      "reviewFindingSource": "independent-review/micro-02.json"
+    },
+    {
+      "after": "Khách ăn phần lớn số trái cây trong giờ nghỉ.",
+      "afterContentHash": "d54a638255a9d5ae8f65390658339a9d44578965faf297368a3d53e2644132a9",
+      "afterFieldHash": "8e4ab7a3ae5d7bef1a135d47706f97d4f57b5fb0cd9eee8e1060c733861078f2",
+      "before": "Khách ăn gần hết số trái cây trong giờ nghỉ.",
+      "beforeContentHash": "6c5a15edb1592a7a0623a8571f8b58920c92381ef1268f7087a2332d74a8d705",
+      "beforeFieldHash": "4cf81ab7f252b68e20e752291cb1041272c2cad0fddd40f9581a8530369b02ab",
+      "field": "exampleVi",
+      "proposalKey": "EDITORIAL_2H2L:consume:eat-drink",
+      "reasonVi": "Dịch most thành phần lớn thay vì gần hết để không thêm mức độ gần toàn bộ; giữ khách là chủ thể ăn, trái cây là đối tượng và thời điểm trong giờ nghỉ như câu tiếng Anh.",
+      "reviewFindingSource": "independent-review/micro-05.json"
+    }
+  ]
+}

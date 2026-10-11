@@ -1,0 +1,67 @@
+{
+  "reviewerKind": "ISOLATED_AI_REVIEW_AGENT",
+  "blindFirstPass": false,
+  "reviewerIdentity": "/root/cp03_blind_a",
+  "firstPassReviewSha256": "1bcdadcbff34edc4b8ddff7f1f6b3b3108c74a70e70b70e69579613fffa6fa41",
+  "microBatch": 1,
+  "recordCount": 4,
+  "passCount": 3,
+  "reviewCount": 1,
+  "failCount": 0,
+  "crossSourceCopying": {
+    "sourceRecordsScanned": 9677,
+    "authoredSenseRecordsScanned": 4,
+    "eightWordOverlaps": [],
+    "scope": "All string sourceFields in both complete corpora; heuristic text screen, not rights clearance"
+  },
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2L:coup:power-seizure",
+      "effectiveContentHash": "87be389706113a4079ed27dcfed06b0fc376fc0b486a708a1497f8d4d1897b0a",
+      "assessment": "PASS",
+      "explanationVi": "Nỗ lực đảo chính thay bất thành đã bỏ khẳng định kết quả thất bại không có trong attempted. Tổng thống hư cấu, bỏ trốn và thời điểm sau sự kiện giữ nguyên; định nghĩa/nhóm nguồn và countable coup đúng, không còn lỗi dịch cản xuất bản.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:chief:principal",
+      "effectiveContentHash": "0f905b297326a3a50febbb7ab12c5f6c52ba387df62a9bea0c2ebaea6107de9f",
+      "assessment": "PASS",
+      "explanationVi": "Trở ngại lớn nhất của dự án là chi phí giữ chi phí là yếu tố chính như chief obstacle, đổi trật tự câu để bỏ chuỗi sao chép trước. Nghĩa chính và adjective Oxford đúng; cần lấy kết quả kiểm tra toàn nguồn hiện tại để xác nhận không còn trùng tám từ.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:chief:leader",
+      "effectiveContentHash": "61684fff2f3a737f3af7fc50e86f05a977e229f6efc0a89d1977d3a05b61366b",
+      "assessment": "PASS",
+      "explanationVi": "Vị cảnh sát trưởng mới đã gặp đặt mới rõ ngay sau chức danh, loại cách hiểu vừa gặp của bản trước. Cư dân địa phương và hành động quá khứ giữ đúng; chief noun countable có hai nguồn xác nhận, không còn lỗi bổ nghĩa cản xuất bản.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:few:some-small-number",
+      "effectiveContentHash": "4e3befd179c3c9642b781f9f0f51632fdbd084e5c41d329ef5ac0e1fa8a98022",
+      "assessment": "REVIEW",
+      "explanationVi": "Định nghĩa mới small number rather than none đã thêm số lượng ít và sắc thái tồn tại, khớp một vài, guests số nhiều và nguồn 4600. Lỗi nghĩa EN đã sửa; Oxford gắn determiner còn 4600 adjective cho a few nên vẫn ghi nhận bất đồng phân loại không chặn.",
+      "affectedFields": [
+        "partOfSpeech"
+      ],
+      "severity": "LOW",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": [
+        "Oxford phân loại a few determiner, 4600 gắn adjective; giữ bất đồng taxonomy nguồn không chặn."
+      ]
+    }
+  ]
+}

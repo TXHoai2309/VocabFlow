@@ -1,0 +1,91 @@
+{
+  "cohortFingerprint": "9710a47fda875f70412c7440b2969c031dc6eb3c076140a42007aed4f83cf59c",
+  "fingerprint": "c53b00ae8cdecb6d8a10e54bf1e55a2aac4c416e06d1cea46f55b96263d27c31",
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:hate",
+    "NORMALIZED_HEADWORD:fair",
+    "NORMALIZED_HEADWORD:establishment",
+    "NORMALIZED_HEADWORD:devastating",
+    "NORMALIZED_HEADWORD:recognition",
+    "NORMALIZED_HEADWORD:cloth",
+    "NORMALIZED_HEADWORD:matching",
+    "NORMALIZED_HEADWORD:whip (v)",
+    "NORMALIZED_HEADWORD:bug",
+    "NORMALIZED_HEADWORD:unusual",
+    "NORMALIZED_HEADWORD:skirt",
+    "NORMALIZED_HEADWORD:stain",
+    "NORMALIZED_HEADWORD:skin",
+    "NORMALIZED_HEADWORD:most",
+    "NORMALIZED_HEADWORD:supervisor",
+    "NORMALIZED_HEADWORD:consent",
+    "NORMALIZED_HEADWORD:melt",
+    "NORMALIZED_HEADWORD:cooperative",
+    "NORMALIZED_HEADWORD:trophy",
+    "NORMALIZED_HEADWORD:carve"
+  ],
+  "manuscriptSha256": "77560ce3179c0fe55ba2370b3cdb3a7caf74c98f474693bbe721089289881945",
+  "microBatch": 4,
+  "parentFingerprint": "d409f7844c9ef2b1d91b464e20d669da27360e0f4d3de4ba443a0b2612d53436",
+  "phase": "2H.2L",
+  "planningFingerprint": "0e03d8d43b6969308d75881c26f2c7b1de3eb97ae29b63601833e6bc466fe6dc",
+  "planningSha256": "bb5f85e48743ed01baca3d478ce10f1efa306802efa04a65c572683d1df92ee4",
+  "qaCounts": {
+    "PASS": 35
+  },
+  "recordHash": "4c8fcc425f2c259ea65c051a4b39df3e9332cbbd2cb17b1b28e8ebfeca255b43",
+  "reviewHash": "09b2a0a5c4bce8292c4e2475a141fb9fa50b16f4a9f1106264278bb3b53ade0a",
+  "selfReviewSha256": "a1891c24d13cab90b96599a8053e189dc2152cac5dc4474f677100d4db17b5ce",
+  "senseCount": 35,
+  "sourceSimilarityFindings": [
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:bug:software-error",
+      "sourceRecordId": "1788223609341",
+      "text": "lỗi phần mềm"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:bug:software-error",
+      "sourceRecordId": "1788223609341",
+      "text": "lỗi phần mềm"
+    },
+    {
+      "field": "senseLabelEn",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:bug:small-insect",
+      "sourceRecordId": "1559931007881",
+      "text": "Small insect"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:skirt:waist-down-garment",
+      "sourceRecordId": "1788223606901",
+      "text": "chân váy"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:skirt:waist-down-garment",
+      "sourceRecordId": "1788223606901",
+      "text": "chân váy"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:melt:become-liquid",
+      "sourceRecordId": "1788223608994",
+      "text": "tan chảy"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:melt:become-liquid",
+      "sourceRecordId": "1788223608994",
+      "text": "tan chảy"
+    }
+  ],
+  "status": "SEALED_AI_DRAFT_NOT_APPROVED"
+}

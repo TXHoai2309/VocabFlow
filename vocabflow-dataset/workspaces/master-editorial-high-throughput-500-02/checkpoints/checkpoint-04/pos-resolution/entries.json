@@ -1,0 +1,41 @@
+{
+  "entries": [
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:whip (v)",
+      "checkpoint": 4,
+      "frozenCohortOrder": 368,
+      "originalNormalizedPosCandidates": [],
+      "ownerPolicyReference": "owner-authorization-024a8647-e7be-4097-a910-1fd88c2ef0a3",
+      "ownerPolicySha256": "45f43cc85b6d0c05dc409d1cf1aab889eb9544df8f77ac4b1ac636c21014e270",
+      "resolutionRationale": "Pinned rawHeadword and sourceFields.Word explicitly contain the unambiguous parenthetical POS tag (v). The dedicated PoS field is empty. The sole linked source gives an infinitival action definition and a passive whipped example, with no conflicting tag. Owner section 2 permits mapping this verified source tag to VERB for authoring only; frozen identity and source hashes remain unchanged.",
+      "resolvedPOS": [
+        "VERB"
+      ],
+      "sourceProvenance": [
+        {
+          "explicitPOSTags": [
+            {
+              "mappedPOS": "VERB",
+              "pointerSuffix": "rawHeadword",
+              "rawTag": "v"
+            }
+          ],
+          "rawContentPointer": "/records/4670/sourceFields",
+          "rawHeadword": "whip (v)",
+          "rawHeadwordEvidencePointer": "/records/4670/rawHeadword",
+          "rawPosEvidencePointer": "/records/4670/sourcePosRaw",
+          "rawSourcePOS": "",
+          "sourceArtifact": "vocab4600-normalized-inventory.json",
+          "sourceCorpus": "ENGLISH_VOCAB_4600",
+          "sourceNoteGuid": "L4UIPo0yL0",
+          "sourceRecordId": "1646317636456",
+          "sourceRecordIndex": 4670,
+          "sourceRecordSha256": "8dab954deef740c2b25b2382f59f07140309e079fd41c2bc819013a87137632e"
+        }
+      ],
+      "validationStatus": "VERIFIED_EXPLICIT_SOURCE_POS"
+    }
+  ],
+  "frozenCohortFingerprint": "9710a47fda875f70412c7440b2969c031dc6eb3c076140a42007aed4f83cf59c",
+  "scope": "COHORT_500_02_CHECKPOINT_AUTHORING_ONLY"
+}

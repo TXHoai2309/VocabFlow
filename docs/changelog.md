@@ -4435,3 +4435,23 @@ Added a content-bound, immutable downstream overlay for three grammar-note field
 - The effective-content copy screen scans all 9,677 source records without eight-word overlaps or exact copied English examples; sealed short observations remain available for rights review. Unsealed overlap failures were resolved before sealing; immutable manuscripts and first-pass receipts were never replaced.
 - Newly executed: 17 focused no-write integrity/negative tests, first-cohort CP05 replay, CP01/CP02 parent replay, seven-project TypeScript noEmit checks, ESLint and AST syntax checks PASS. Two-seed replay, actual scoped commit/push and postpublication byte/pin verification are reported in the final handoff. CP03 fingerprint: d409f7844c9ef2b1d91b464e20d669da27360e0f4d3de4ba443a0b2612d53436.
 - Evidence: vocabflow-dataset/workspaces/master-editorial-high-throughput-500-02/checkpoints/checkpoint-03/assembled/report.md. Scope is additive CP03 files/tooling and append-only progress/changelog. Preserve two cache exceptions, seven stashes and twelve worktrees including US55. Offline DRAFT; rights UNKNOWN_REVIEW_REQUIRED; no human approvals, canonical IDs, DB, Production, runtime or release activity. Stop after CP03; CP04 not started.
+
+
+### 2026-10-11 — Phase 2H.2L authorized 500-group run: CP04 blocked
+
+- Verified local and origin/TXH baseline b2fb8e5ebb7570c0f90a440f58d34089b974b1ae; CP03 zero-write replay PASS.
+- Mandatory blocker: frozen cohort500-02 order368 NORMALIZED_HEADWORD:whip (v) has normalizedPosCandidates=[] (source record4670, /records/4670/sourcePosRaw). Existing checkpoint-01 parser requires POS membership and complete frozen-group coverage. No valid manuscript row can satisfy both assertions without a contract decision. Frozen selection and historical verifier were preserved.
+- CP04 partial unsealed work retained locally: Micro01 20groups/35Senses and Micro03 20groups/33Senses, with Author A self-reviews; Micro02 decisions and Micro05 planning persisted. These are not independently reviewed, assembled, published or counted in accepted totals.
+- No new checkpoint completed; accepted totals remain1820groups/2547DRAFT Senses,4323remaining. No commit/push, CP05 or new cohort started. Next action: owner review of explicit missing-POS handling contract before resuming retained CP04 work.
+- Both cache exceptions unchanged;7stashes and12worktrees byte-equivalent to baseline inventory. Database access/writes NONE/NONE; Production untouched; rights UNKNOWN_REVIEW_REQUIRED.
+
+
+### 2026-10-11 — Phase 2H.2L CP04 POS resolution and publication gates
+
+- Owner policy024a8647-e7be-4097-a910-1fd88c2ef0a3 implemented as a pinned additive POS overlay. Order368 whip (v) resolves to VERB from verified raw tag(v), record4670 SHA2568dab954deef740c2b25b2382f59f07140309e079fd41c2bc819013a87137632e. Frozen/source/CP01–03 bytes unchanged. Audit200orders301–500 found1emptyPOS,1eligible resolution,0ambiguous/conflicting/insufficient cases; CP05empty0.
+- CP04 completes100groups/168Senses,44multisensegroups; projection1920groups/2715Senses,4223remaining. Existing40groups/68Senses and original manuscripts preserved byte-for-byte.
+- Blind first pass147PASS/15REVIEW/6FAIL; six additive field corrections independently rechecked5PASS/1nonblockingREVIEW/0FAIL. Final152PASS/16nonblockingREVIEW/0FAIL,0missing candidates,16unresolved identities retained. Author A156PASS/12REVIEW/0FAIL.
+- Original chief example copying failure retained as diagnostic evidence; full9677-source screen applies to all corrected effective records, with0eight-word overlaps. No copying exception granted. New CP04 workflow requires complete current-hash independent review/rechecks before seals. Accepted parent tooling unchanged.
+- Fingerprint19cad301827b8f5214a8d93c92c60b1f99125e1b2ad0e1a2311902b851c338ed. POS15tests/focused19testsPASS;7typechecks/lintPASS; two-seed1/8675309zero-write replayPASS over8018visiblefiles with stdoutSHA256ad4520a30b53beb5cea34adae1c158fa3ecc39fa7a0a3593c258ce7a6665d193.
+- Publication is gated on explicit-path staging, normal origin/TXH push and post-publication remote/pin/descendant replay verification. Continue CP05 automatically only after that verification under the existing500-group authorization.
+- CONTENT_STATUS=DRAFT; RIGHTS=UNKNOWN_REVIEW_REQUIRED; HUMAN_APPROVALS=0; CANONICAL_IDS_ALLOCATED=0; DATABASE_ACCESS/WRITES=NONE/NONE; Production untouched. Protected cache/stashes/worktrees preserved.

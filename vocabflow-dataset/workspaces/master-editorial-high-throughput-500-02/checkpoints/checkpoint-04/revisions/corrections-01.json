@@ -1,0 +1,54 @@
+{
+  "parentFingerprint": "d409f7844c9ef2b1d91b464e20d669da27360e0f4d3de4ba443a0b2612d53436",
+  "records": [
+    {
+      "after": "Vị tổng thống hư cấu bỏ trốn sau một nỗ lực đảo chính.",
+      "afterContentHash": "87be389706113a4079ed27dcfed06b0fc376fc0b486a708a1497f8d4d1897b0a",
+      "afterFieldHash": "526e2155999b2e0d8284a2f0f2c83818378086be8529af43c930dd28a61101b5",
+      "before": "Vị tổng thống hư cấu bỏ trốn sau một cuộc đảo chính bất thành.",
+      "beforeContentHash": "3743816759ca3c26e92dcb0367861892d7a1e84ac65a961dc1cad9d48cd57569",
+      "beforeFieldHash": "898a48167317457c7e9cd4f9236daf4334a060618095aba1891c2e1a468d2a71",
+      "field": "exampleVi",
+      "proposalKey": "EDITORIAL_2H2L:coup:power-seizure",
+      "reasonVi": "Sửa bản dịch attempted coup thành nỗ lực đảo chính, không tự thêm kết quả thất bại; giữ nguyên nhân vật hư cấu, hành động bỏ trốn và quan hệ thời gian sau sự kiện.",
+      "reviewFindingSource": "independent-review/micro-01.json"
+    },
+    {
+      "after": "Trở ngại lớn nhất của dự án là chi phí.",
+      "afterContentHash": "0f905b297326a3a50febbb7ab12c5f6c52ba387df62a9bea0c2ebaea6107de9f",
+      "afterFieldHash": "477de4fd85c5d10f8d8b933160a32bb330cbc9fae1948206d9aac50a5e6f29a2",
+      "before": "Chi phí là trở ngại chính đối với dự án.",
+      "beforeContentHash": "285e562b4473ae9a798d1d760f668d73923f18f348e214fba0cac3a79138b9d4",
+      "beforeFieldHash": "87013ce856b9c159255b6c28c5b78e41e7ca61d37dd61dc44f6bed6ba1be81bb",
+      "field": "exampleVi",
+      "proposalKey": "EDITORIAL_2H2L:chief:principal",
+      "reasonVi": "Viết lại bản dịch nguyên bản để loại bỏ chuỗi tám từ trùng nguồn, đồng thời giữ chi phí là trở ngại quan trọng nhất của cùng dự án; không thêm kết quả hay tình tiết.",
+      "reviewFindingSource": "independent-review/micro-01.json"
+    },
+    {
+      "after": "Vị cảnh sát trưởng mới đã gặp người dân địa phương.",
+      "afterContentHash": "61684fff2f3a737f3af7fc50e86f05a977e229f6efc0a89d1977d3a05b61366b",
+      "afterFieldHash": "07ca7e873dce88755db7c9101b3223477d3c7956f81cd153652bf1756c72f24f",
+      "before": "Người đứng đầu lực lượng cảnh sát mới gặp người dân địa phương.",
+      "beforeContentHash": "bcbd13de0c83aac197879a7db50eb71ab4f12bb29d4b82263c3084ca3208e8cd",
+      "beforeFieldHash": "92e5a4ecd205888bf4fbb13ddda4c3f7d0625324118f1588a32390b3c93ddbd5",
+      "field": "exampleVi",
+      "proposalKey": "EDITORIAL_2H2L:chief:leader",
+      "reasonVi": "Đưa mới ngay sau chức danh cảnh sát trưởng để giữ phạm vi bổ nghĩa cho người lãnh đạo, không biến new thành trạng từ vừa gặp; giữ hành động gặp và cư dân địa phương.",
+      "reviewFindingSource": "independent-review/micro-01.json"
+    },
+    {
+      "after": "Used with a to refer to a small number rather than none.",
+      "afterContentHash": "4e3befd179c3c9642b781f9f0f51632fdbd084e5c41d329ef5ac0e1fa8a98022",
+      "afterFieldHash": "c2529df49391006b8ded337c33325e516bd0830331f59ebd2ee2cb5ce9211f2c",
+      "before": "Used with a to indicate some members of a countable group.",
+      "beforeContentHash": "95dd81ccf2fd4bd7cca9d0708ba0b6d545c35f768848c9c7fd1bd632963a7c11",
+      "beforeFieldHash": "84209d387765d6e2e6cef206bfa51f3fef860e56ecdd0a3bf2d8b236cb6fcfc4",
+      "field": "definitionEn",
+      "proposalKey": "EDITORIAL_2H2L:few:some-small-number",
+      "reasonVi": "Bổ sung ràng buộc số lượng ít và sắc thái có một số, phù hợp a few trong nguồn, nhãn và nghĩa Việt một vài; không đánh đồng mọi tập con của nhóm đếm được.",
+      "reviewFindingSource": "independent-review/micro-01.json"
+    }
+  ],
+  "reviewFindingSha256": "1bcdadcbff34edc4b8ddff7f1f6b3b3108c74a70e70b70e69579613fffa6fa41"
+}

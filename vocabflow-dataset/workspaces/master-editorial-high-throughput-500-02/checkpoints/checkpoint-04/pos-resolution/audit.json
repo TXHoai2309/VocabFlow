@@ -1,0 +1,84 @@
+{
+  "ambiguousPOSGroups": 0,
+  "auditKind": "READ_ONLY_SOURCE_POS_PREFLIGHT",
+  "checkpoint05EmptyPOSGroups": 0,
+  "conflictingPOSGroups": 0,
+  "crossInventoryStemDiagnostic": {
+    "conflictingPOSFound": false,
+    "mergePerformed": false,
+    "note": "Separate normalized identity whip is not merged into whip (v); its explicit source verb tag provides supplementary consistency evidence only.",
+    "otherRecord": {
+      "artifact": "oxford-normalized-inventory.json",
+      "rawHeadword": "whip",
+      "recordEvidenceSha256": "8a4c0d0675b86b9271cd9042cfc15cbc0bc2b594f731eb0f7009c541388bc0b3",
+      "recordIndex": 4317,
+      "sourceNoteGuid": "CPvRw*YC_o",
+      "sourcePosRaw": "verb",
+      "sourceRecordId": "1788223610356"
+    }
+  },
+  "emptyPOSGroups": 1,
+  "frozenCohortFingerprint": "9710a47fda875f70412c7440b2969c031dc6eb3c076140a42007aed4f83cf59c",
+  "groups": [
+    {
+      "assessment": "VERIFIED_EXPLICIT_SOURCE_POS",
+      "candidateGroupKey": "NORMALIZED_HEADWORD:whip (v)",
+      "cohortOrder": 368,
+      "effectivePOS": [
+        "VERB"
+      ],
+      "normalizedPosCandidates": [],
+      "sourceProvenance": [
+        {
+          "explicitPOSTags": [
+            {
+              "mappedPOS": "VERB",
+              "pointerSuffix": "rawHeadword",
+              "rawTag": "v"
+            }
+          ],
+          "rawContentPointer": "/records/4670/sourceFields",
+          "rawHeadword": "whip (v)",
+          "rawHeadwordEvidencePointer": "/records/4670/rawHeadword",
+          "rawPosEvidencePointer": "/records/4670/sourcePosRaw",
+          "rawSourcePOS": "",
+          "sourceArtifact": "vocab4600-normalized-inventory.json",
+          "sourceCorpus": "ENGLISH_VOCAB_4600",
+          "sourceNoteGuid": "L4UIPo0yL0",
+          "sourceRecordId": "1646317636456",
+          "sourceRecordIndex": 4670,
+          "sourceRecordSha256": "8dab954deef740c2b25b2382f59f07140309e079fd41c2bc819013a87137632e"
+        }
+      ]
+    }
+  ],
+  "groupsExamined": 200,
+  "insufficientEvidenceGroups": 0,
+  "nextFrozenCohortPresent": false,
+  "normalizationRootCause": {
+    "dedicatedSourcePOSFieldEmpty": true,
+    "groupAssemblyScript": "scripts/phase-2h2a-master-expansion.py",
+    "headwordParentheticalTagNotConsumedByPOSNormalization": true,
+    "inventoryScript": "scripts/phase-2h1-source-inventory.py",
+    "sourceCandidatePOSUnionEmpty": true
+  },
+  "resolutionEntriesPermitted": 1,
+  "scope": {
+    "checkpoints": [
+      4,
+      5
+    ],
+    "cohortId": "500-02",
+    "cohortOrders": [
+      301,
+      500
+    ]
+  },
+  "sourceGroupPOSConflictFlagCount": 0,
+  "sourceInventoryHashes": {
+    "oxford-normalized-inventory.json": "72cac30706d097d2117595b38915d30683822b79626bc0334bde33dc15753658",
+    "vocab4600-normalized-inventory.json": "deb450bca71ce918eee2efbdac4e3fbd82081a986359d79277b863cc4b6ca0a9"
+  },
+  "validExplicitPOSGroups": 1,
+  "zeroSourceOrFrozenWrites": true
+}
