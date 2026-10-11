@@ -1,0 +1,50 @@
+{
+  "cohortFingerprint": "9710a47fda875f70412c7440b2969c031dc6eb3c076140a42007aed4f83cf59c",
+  "fingerprint": "29cd59e2dafc7ebc07972230f3dc5e3e02ed7db1af911864900a945c0778ed29",
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:trade",
+    "NORMALIZED_HEADWORD:multiply",
+    "NORMALIZED_HEADWORD:until",
+    "NORMALIZED_HEADWORD:county",
+    "NORMALIZED_HEADWORD:baby",
+    "NORMALIZED_HEADWORD:dictate",
+    "NORMALIZED_HEADWORD:tumor",
+    "NORMALIZED_HEADWORD:opposed",
+    "NORMALIZED_HEADWORD:reconstruction",
+    "NORMALIZED_HEADWORD:issue",
+    "NORMALIZED_HEADWORD:thorough",
+    "NORMALIZED_HEADWORD:privatization",
+    "NORMALIZED_HEADWORD:indoors",
+    "NORMALIZED_HEADWORD:livelihood",
+    "NORMALIZED_HEADWORD:neighbour",
+    "NORMALIZED_HEADWORD:amuse",
+    "NORMALIZED_HEADWORD:confess",
+    "NORMALIZED_HEADWORD:bonus",
+    "NORMALIZED_HEADWORD:downward",
+    "NORMALIZED_HEADWORD:institutional"
+  ],
+  "manuscriptSha256": "6072cc8727a32cd71164baeb9d23513376c2ef52923e1949083efa46537899fe",
+  "microBatch": 4,
+  "parentFingerprint": "19cad301827b8f5214a8d93c92c60b1f99125e1b2ad0e1a2311902b851c338ed",
+  "phase": "2H.2L",
+  "planningFingerprint": "21b4d8faf281c1ee31c38fc51c628c3187d625270313093a21f19da15898d147",
+  "planningSha256": "ef41a43dec29b6eebbd64303c868f5778dcc04170ead1e854452e5f4afc59dc3",
+  "qaCounts": {
+    "PASS": 30,
+    "REVIEW": 4
+  },
+  "recordHash": "0866b7f28fb5ca9512fcea03a466b7cdadb5e31424f47d30cb3f9a265d86b1d7",
+  "reviewHash": "aef18bcafa3ba899a56e9f6514a96f0283fff2646bd8c68f27728e031b233e2c",
+  "selfReviewSha256": "7656f42765ad3c6151b0dc8f45a72611584709efd8b3d06f7ea90bd23c56ba16",
+  "senseCount": 34,
+  "sourceSimilarityFindings": [
+    {
+      "field": "senseLabelEn",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:multiply:increase-or-reproduce",
+      "sourceRecordId": "1559931009611",
+      "text": "increase in number"
+    }
+  ],
+  "status": "SEALED_AI_DRAFT_NOT_APPROVED"
+}

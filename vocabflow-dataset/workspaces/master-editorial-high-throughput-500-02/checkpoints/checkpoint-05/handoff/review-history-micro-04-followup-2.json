@@ -1,0 +1,164 @@
+{
+  "microBatch": 4,
+  "firstPassReviewSha256": "b58423839cf7ed204f783f98f8b53d0e84a339faaf03706c3f94f8af35af293b",
+  "records": [
+    {
+      "candidateGroupKey": "NORMALIZED_HEADWORD:tumor",
+      "canonicalIdsAllocated": 0,
+      "content": {
+        "definitionEn": "A mass of abnormal tissue that forms in the body; it may or may not be cancerous.",
+        "examples": [
+          {
+            "en": "The doctors measured the tumor before discussing treatment options.",
+            "exampleKey": "EDITORIAL_2H2L:tumor:abnormal-tissue-mass:example-1",
+            "vi": "Các bác sĩ đo khối u trước khi trao đổi về những phương án điều trị."
+          }
+        ],
+        "grammarNotesEn": "Countable; a tumor is not necessarily cancerous; the spelling here follows the selected US source form.",
+        "meaningVi": "khối u; khối mô bất thường",
+        "senseLabelEn": "abnormal mass of tissue"
+      },
+      "contentStatus": "DRAFT",
+      "displayFormProposal": "tumor",
+      "editorialAuthorship": {
+        "humanAuthor": null,
+        "humanReviewer": null,
+        "kind": "AI_GENERATED_EDITORIAL_DRAFT",
+        "process": "Original 2H.2L manuscript composed from linked source evidence"
+      },
+      "effectiveContentHash": "48d0b001c78eb89a72c759d6633ae03b2bfd7936c53e1481f077b81f42d12fb6",
+      "fieldHashes": {
+        "definitionEn": "e3c42d988a4d27470f713c153111779b02f323f4518462441d32a05e1436dd30",
+        "examples": "f131cdb1bbc2db548fdbb0ba761f7c8d0d78d05bb62a7e5e3c831ca5fae96f97",
+        "grammarNotesEn": "2efac915ae4b7971edebb91c8f76465dbdfd36fc577748c2c81ea54533d5f5c0",
+        "meaningVi": "9e3b03fcf3231e59d6bc7939827aea5e0b3f4c28719df3b936730eca8e3c0317",
+        "senseLabelEn": "24282d2b972a020df3030c74cbc1581b43f6410905de3cc509490c22c5f275ed"
+      },
+      "formalApproval": false,
+      "headword": "tumor",
+      "partOfSpeech": "NOUN",
+      "proposalKey": "EDITORIAL_2H2L:tumor:abnormal-tissue-mass",
+      "rights": "UNKNOWN_REVIEW_REQUIRED",
+      "riskFlags": [
+        "SOURCE_ONLY_CONTENT"
+      ],
+      "sourceEvidence": [
+        {
+          "artifact": "oxford-normalized-inventory.json",
+          "cefrEvidence": [
+            {
+              "sourceField": "CEFR",
+              "value": "C1"
+            }
+          ],
+          "corpus": "OXFORD_5000",
+          "normalizedPosCandidates": [
+            "NOUN"
+          ],
+          "rawContentPointer": "/records/4386/sourceFields",
+          "rawHeadwordEvidencePointer": "/records/4386/rawHeadword",
+          "rawPosEvidencePointer": "/records/4386/sourcePosRaw",
+          "recordEvidenceSha256": "2abe4dd1464bfb7f188256e7a5fc7c5f992667ef3f95897e708c3b8734a999f2",
+          "recordIndex": 4386,
+          "sourceNoteGuid": "P)2t*zPUB>",
+          "sourceRecordId": "1788223610425",
+          "structuredOxfordSenseGroupOrdinals": [
+            0
+          ]
+        }
+      ],
+      "sourceSenseCoverage": "Selected supported meanings only; no claim of exhaustive dictionary coverage"
+    }
+  ],
+  "sourceEvidence": [
+    {
+      "evidence": [
+        {
+          "candidateSourceSenseGroups": [
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "The scan revealed a small tumor near the lung.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Ảnh chụp cho thấy một khối u nhỏ gần phổi.",
+                  "focus_en": [
+                    "tumor"
+                  ],
+                  "focus_vi": [
+                    "khối u"
+                  ]
+                },
+                {
+                  "example_en": "Further tests showed that the tumor was not cancerous.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Các xét nghiệm thêm cho thấy khối u không phải ung thư.",
+                  "focus_en": [
+                    "tumor"
+                  ],
+                  "focus_vi": [
+                    "khối u"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 0,
+              "sourcePosRaw": "n.",
+              "sourceVietnameseMeaningRaw": "khối u",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            }
+          ],
+          "reference": {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "C1"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "NOUN"
+            ],
+            "rawContentPointer": "/records/4386/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/4386/rawHeadword",
+            "rawPosEvidencePointer": "/records/4386/sourcePosRaw",
+            "recordEvidenceSha256": "2abe4dd1464bfb7f188256e7a5fc7c5f992667ef3f95897e708c3b8734a999f2",
+            "recordIndex": 4386,
+            "sourceNoteGuid": "P)2t*zPUB>",
+            "sourceRecordId": "1788223610425",
+            "structuredOxfordSenseGroupOrdinals": [
+              0
+            ]
+          },
+          "sourceFields": {
+            "CEFR": "C1",
+            "Example": "The scan revealed a small <mark class=\"v-target\">tumor</mark> near the lung.<br>Further tests showed that the <mark class=\"v-target\">tumor</mark> was not cancerous.",
+            "Example Data": "[{\"pos\":\"n.\",\"meaning_vi\":\"khối u\",\"examples\":[{\"example_en\":\"The scan revealed a small tumor near the lung.\",\"example_vi\":\"Ảnh chụp cho thấy một khối u nhỏ gần phổi.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"tumor\"],\"focus_vi\":[\"khối u\"]},{\"example_en\":\"Further tests showed that the tumor was not cancerous.\",\"example_vi\":\"Các xét nghiệm thêm cho thấy khối u không phải ung thư.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"tumor\"],\"focus_vi\":[\"khối u\"]}]}]",
+            "Example EN 1": "The scan revealed a small tumor near the lung.",
+            "Example EN 2": "Further tests showed that the tumor was not cancerous.",
+            "Example EN 3": "",
+            "Example EN 4": "",
+            "Example EN 5": "",
+            "Example EN 6": "",
+            "Example EN 7": "",
+            "Frequency": "3986",
+            "Irregular Forms": "[]",
+            "Oxford List": "Oxford 5000",
+            "Part of Speech": "noun",
+            "Phonetic": "/tjuː.mə/",
+            "Pronunciation Data": "[]",
+            "Sound_uk": "",
+            "Sound_us": "",
+            "Study Order": "4387",
+            "Từ loại": "danh từ",
+            "Variant Data": "[{\"only\":\"US\"}]",
+            "Vietnamese": "khối u",
+            "Word": "tumor"
+          }
+        }
+      ],
+      "group": "tumor"
+    }
+  ]
+}

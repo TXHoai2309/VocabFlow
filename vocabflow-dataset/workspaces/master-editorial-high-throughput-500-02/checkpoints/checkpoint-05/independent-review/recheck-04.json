@@ -1,0 +1,47 @@
+{
+  "reviewerKind": "ISOLATED_AI_REVIEW_AGENT",
+  "blindFirstPass": false,
+  "reviewerIdentity": "/root/cp05_review_05",
+  "firstPassReviewSha256": "b58423839cf7ed204f783f98f8b53d0e84a339faaf03706c3f94f8af35af293b",
+  "handoffSha256": "e20dc21261953aee342b043a0463fe8f985960bb083429f153ceda183a398518",
+  "microBatch": 4,
+  "recordCount": 3,
+  "passCount": 3,
+  "reviewCount": 0,
+  "failCount": 0,
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2L:trade:buying-selling-activity",
+      "effectiveContentHash": "78561f65ac3a7ef0d36a27408201d85594d6412367df86df6bc48f4f5fede601",
+      "assessment": "PASS",
+      "explanationVi": "Định nghĩa mới vẫn mô tả hoạt động trao đổi thương mại như nhóm nghĩa danh từ và ví dụ Oxford về thương mại quốc tế hỗ trợ; ví dụ riêng cùng bản dịch về buôn bán giữa hai cảng tự nhiên, còn ghi chú phân biệt với nghề nghiệp phù hợp.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:baby:very-young-child",
+      "effectiveContentHash": "344e16a671d13a245cfe0eb8994652caea3608fea9b701a907b61c02841e6846",
+      "assessment": "PASS",
+      "explanationVi": "Định nghĩa rộng “A very young child” phù hợp với nguồn em bé và đã bỏ giới hạn biết đi hoặc nói; ví dụ và bản dịch chính xác, còn ghi chú phân biệt nghĩa em bé với em út được hai nhóm ví dụ nguồn hỗ trợ.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:tumor:abnormal-tissue-mass",
+      "effectiveContentHash": "bec8a96eeb847b3fddb3513e405e57a4349f3b60dc069022a25b34a6bab0520d",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa khối mô bất thường và khả năng không ung thư phù hợp với nguồn; ví dụ bác sĩ đo khối u không khẳng định ung thư, bản dịch trung thành và khác rõ ví dụ chụp phổi ban đầu; ghi chú dùng tumors cho nhiều khối đúng về số nhiều.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    }
+  ]
+}

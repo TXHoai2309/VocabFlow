@@ -1,0 +1,54 @@
+{
+  "parentFingerprint": "19cad301827b8f5214a8d93c92c60b1f99125e1b2ad0e1a2311902b851c338ed",
+  "records": [
+    {
+      "after": "phong thái đĩnh đạc",
+      "afterContentHash": "1e1b10ed2e47d7c35852e4ce35f06c93fc620455b61b54a0ea25a822bf27ac34",
+      "afterFieldHash": "a486cb33f683db6bbea869d65190f87c63fe7adfe19b82257ca662754e0c13ef",
+      "before": "phong thái đĩnh đạc, tự trọng",
+      "beforeContentHash": "065d9487ffe2a28d4a3388ce465a11dbe9815129c7864c96aeb8ad11a802b26d",
+      "beforeFieldHash": "cf0e0495797d8976b962e3c40ec32b7470584c2ead34e17897fefb56dbf9de02",
+      "field": "meaningVi",
+      "proposalKey": "EDITORIAL_2H2L:dignity:composed-manner",
+      "reasonVi": "Giữ nghĩa tiếng Việt riêng cho phong thái điềm đạm có phẩm giá để không chồng với nghĩa dignity là phẩm giá hay lòng tự trọng ở sense khác.",
+      "reviewFindingSource": "independent-review/micro-02.json"
+    },
+    {
+      "after": "A person who belongs to the highest social class in some societies.",
+      "afterContentHash": "77bd6ada5749d97a7618a160883460a093b1fc65d78dc3af111dd96d901b867f",
+      "afterFieldHash": "cc85f385ee36f221c797e49dfe6d8e86624f664f2f60a103bc6cc2e28f16fb69",
+      "before": "A person belonging to a society's hereditary upper class.",
+      "beforeContentHash": "56133f1c5740b2cfe09e58ca774a5ae59b6074c1d82dd4dd6414fc6d545d842c",
+      "beforeFieldHash": "c749913c800da3df79ef39b7f028eb6f49336fb9c04d9f7726c92b362262a95f",
+      "field": "definitionEn",
+      "proposalKey": "EDITORIAL_2H2L:aristocrat:noble-person",
+      "reasonVi": "Sửa định nghĩa để bám nguồn mô tả người thuộc tầng lớp cao nhất trong một số xã hội, không biến nguồn gốc thừa kế thành điều kiện bắt buộc.",
+      "reviewFindingSource": "independent-review/micro-02.json"
+    },
+    {
+      "after": "Use on when something touches and is supported by a surface.",
+      "afterContentHash": "e8cb77f5f5c1d6b8aafede61e5696d1f46deee8eb697898e547cce9e5f03dc97",
+      "afterFieldHash": "64bf2d7f3781e9727b624c586f619bd50fffd56dbc3db270140b8afa4a8b015d",
+      "before": "On plus a surface noun; differs from above without contact.",
+      "beforeContentHash": "74edcde1f5b0c5104c2fe69a83d6600d191f99d57a2c8ae9f658a6955794b478",
+      "beforeFieldHash": "1161cd7a637652cf2ee6d8305106c48441618d4389c63372899f4adf41a45e5f",
+      "field": "grammarNotesEn",
+      "proposalKey": "EDITORIAL_2H2L:on:surface",
+      "reasonVi": "Thay so sánh tuyệt đối với above bằng mô tả tiếp xúc và được bề mặt đỡ, đúng nghĩa và ví dụ phong bì nằm trên kệ.",
+      "reviewFindingSource": "independent-review/micro-02.json"
+    },
+    {
+      "after": "Used before a noun, as in family film or family event.",
+      "afterContentHash": "f7ddddfa715d9f97f5b1184c80a8fae4a47e916d4d0ecc1661c4914428113fad",
+      "afterFieldHash": "6a79fcda219ecdc374b987d72e0c23ee5ed9cba1aa06cf6570cb68731a258284",
+      "before": "Before a noun; family film or family event; source labels ADJECTIVE.",
+      "beforeContentHash": "b118592dc9f65784a565a184e93d08d4bfd916b4800e362c90df339b822d4fa9",
+      "beforeFieldHash": "cde6e0ef8252757ddf3427a43f51638ae6825e95f2ca613afefe4a15ddf5a7a2",
+      "field": "grammarNotesEn",
+      "proposalKey": "EDITORIAL_2H2L:family:suitable-for-families",
+      "reasonVi": "Xóa nhãn từ loại nội bộ khỏi grammarNotesEn và giữ ví dụ family đứng trước danh từ, thể hiện đúng cấu trúc ghép hữu ích cho người học.",
+      "reviewFindingSource": "independent-review/micro-02.json"
+    }
+  ],
+  "reviewFindingSha256": "4afbd90c7e757acce33c73304076fd623ae66cb9f1466fdaeaa0ce5a176d5fb4"
+}

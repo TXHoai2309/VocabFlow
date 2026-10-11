@@ -1,0 +1,358 @@
+{
+  "reviewerKind": "ISOLATED_AI_REVIEW_AGENT",
+  "blindFirstPass": true,
+  "reviewerIdentity": "/root/cp05_review_01_02",
+  "manuscriptSha256": "6ea25205a826cc1a45c9da8de153279aa8a834fbf354a04b5ff286608358d43c",
+  "microBatch": 1,
+  "recordCount": 31,
+  "passCount": 29,
+  "reviewCount": 2,
+  "failCount": 0,
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2L:rise:move-up",
+      "effectiveContentHash": "e272822156d84548182dd0223fbe3ab22399bade27658c9ef0ae940b6bdb8214",
+      "assessment": "PASS",
+      "explanationVi": "Từ loại VERB, nhãn “Moving upwards” và định nghĩa phù hợp với nghĩa nguồn của “rise”; ví dụ tiếng Anh “Bubbles rose slowly through the water.” đúng ngữ pháp, bản dịch “Những bong bóng từ từ nổi lên trong nước.” truyền đạt đúng ý, và ghi chú sử dụng không thêm hạn chế sai. Không phát hiện chi tiết sai đáng kể hoặc dấu hiệu sao chép dài.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:rise:increase",
+      "effectiveContentHash": "403f33d96483fbb550c32533ca629da00b134cdbeda3a6fc34099d60305429dc",
+      "assessment": "PASS",
+      "explanationVi": "Từ loại VERB, nhãn “Increasing in amount” và định nghĩa phù hợp với nghĩa nguồn của “rise”; ví dụ tiếng Anh “Demand for umbrellas rises during wet weeks.” đúng ngữ pháp, bản dịch “Nhu cầu ô tăng trong những tuần mưa nhiều.” truyền đạt đúng ý, và ghi chú sử dụng không thêm hạn chế sai. Không phát hiện chi tiết sai đáng kể hoặc dấu hiệu sao chép dài.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:rise:increase-noun",
+      "effectiveContentHash": "e00f62d53e1cd5bce9d7688d47246dd24c81ee4e0fc3241d97280c0962e0dabe",
+      "assessment": "REVIEW",
+      "explanationVi": "Ghi chú “source regional CEFR differs for noun” là nhận xét nội bộ về dữ liệu nguồn, không hướng dẫn cách dùng từ cho người học. Hãy bỏ câu này hoặc thay bằng thông tin ngữ pháp thực sự; nghĩa danh từ, ví dụ và bản dịch còn lại phù hợp với nguồn.",
+      "affectedFields": [
+        "grammarNotesEn"
+      ],
+      "severity": "MEDIUM",
+      "blocksPublication": true,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:vulnerability:susceptibility",
+      "effectiveContentHash": "8b3ed893ea2f04b7f1931e1594b57b2dc1522f3640755d9760efa1e98abaa9b6",
+      "assessment": "PASS",
+      "explanationVi": "Từ loại NOUN, nhãn “Exposure to harm” và định nghĩa phù hợp với nghĩa nguồn của “vulnerability”; ví dụ tiếng Anh “The review examined the bridge's vulnerability to strong winds.” đúng ngữ pháp, bản dịch “Đợt rà soát xem xét mức dễ bị gió mạnh gây hại của cây cầu.” truyền đạt đúng ý, và ghi chú sử dụng không thêm hạn chế sai. Không phát hiện chi tiết sai đáng kể hoặc dấu hiệu sao chép dài.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:descent:downward-movement",
+      "effectiveContentHash": "a0bbe48542a31d129d15590d8d762054973fa71ed5110ea611ba588834a209f0",
+      "assessment": "PASS",
+      "explanationVi": "Từ loại NOUN, nhãn “Movement downwards” và định nghĩa phù hợp với nghĩa nguồn của “descent”; ví dụ tiếng Anh “The lift's descent stopped at the third floor.” đúng ngữ pháp, bản dịch “Thang máy ngừng đi xuống ở tầng ba.” truyền đạt đúng ý, và ghi chú sử dụng không thêm hạn chế sai. Không phát hiện chi tiết sai đáng kể hoặc dấu hiệu sao chép dài.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:descent:ancestry",
+      "effectiveContentHash": "11318adede60969001a358cac3806e78fac7093c0b3bf997e4c791cd94a33caf",
+      "assessment": "PASS",
+      "explanationVi": "Từ loại NOUN, nhãn “Family origin” và định nghĩa phù hợp với nghĩa nguồn của “descent”; ví dụ tiếng Anh “The musician is of Korean descent.” đúng ngữ pháp, bản dịch “Nhạc sĩ có gốc Hàn Quốc.” truyền đạt đúng ý, và ghi chú sử dụng không thêm hạn chế sai. Không phát hiện chi tiết sai đáng kể hoặc dấu hiệu sao chép dài.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:bee:insect",
+      "effectiveContentHash": "0092b4394fe8bc79d99214eaca6733ca644e9334df2b6ba670937b61826be9fd",
+      "assessment": "PASS",
+      "explanationVi": "Từ loại NOUN, nhãn “Flower-visiting insect” và định nghĩa phù hợp với nghĩa nguồn của “bee”; ví dụ tiếng Anh “Two bees hovered above the lavender.” đúng ngữ pháp, bản dịch “Hai con ong bay lơ lửng trên hoa oải hương.” truyền đạt đúng ý, và ghi chú sử dụng không thêm hạn chế sai. Không phát hiện chi tiết sai đáng kể hoặc dấu hiệu sao chép dài.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:player:participant",
+      "effectiveContentHash": "bd0c1a9d7fb73f372d868a202c7689d25083377e1efaba89b4a2d56d55e8aab2",
+      "assessment": "PASS",
+      "explanationVi": "Từ loại NOUN, nhãn “Game participant” và định nghĩa phù hợp với nghĩa nguồn của “player”; ví dụ tiếng Anh “Each player chose a red token.” đúng ngữ pháp, bản dịch “Mỗi người chơi chọn một quân màu đỏ.” truyền đạt đúng ý, và ghi chú sử dụng không thêm hạn chế sai. Không phát hiện chi tiết sai đáng kể hoặc dấu hiệu sao chép dài.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:player:playback-device",
+      "effectiveContentHash": "33f9639e20f8d64c7f27e381a7a4fb3a9a1b32fdf0f77988bcf2e1ce4005ca6a",
+      "assessment": "PASS",
+      "explanationVi": "Từ loại NOUN, nhãn “Playback device” và định nghĩa phù hợp với nghĩa nguồn của “player”; ví dụ tiếng Anh “The portable player can store hundreds of songs.” đúng ngữ pháp, bản dịch “Máy phát nhạc cầm tay có thể lưu hàng trăm bài hát.” truyền đạt đúng ý, và ghi chú sử dụng không thêm hạn chế sai. Không phát hiện chi tiết sai đáng kể hoặc dấu hiệu sao chép dài.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:nail:finger-covering",
+      "effectiveContentHash": "173ee6a5f27d40b13c71274f774a221e63ec4d2fa711c06e4ed30d3b8c3dc721",
+      "assessment": "REVIEW",
+      "explanationVi": "Câu “source here explicitly supports fingernails” mô tả căn cứ biên tập thay vì ngữ pháp hay cách dùng của nail, nên không phù hợp với ghi chú dành cho người học. Hãy bỏ hoặc thay bằng một chỉ dẫn sử dụng hữu ích; định nghĩa và ví dụ đúng nghĩa móng tay.",
+      "affectedFields": [
+        "grammarNotesEn"
+      ],
+      "severity": "MEDIUM",
+      "blocksPublication": true,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:nail:metal-fastener",
+      "effectiveContentHash": "edae8c375da6157bd37e50ea6a7c25fe980668eb77681938e5d1821e78766549",
+      "assessment": "PASS",
+      "explanationVi": "Từ loại NOUN, nhãn “Metal fastener” và định nghĩa phù hợp với nghĩa nguồn của “nail”; ví dụ tiếng Anh “The builder removed a bent nail from the board.” đúng ngữ pháp, bản dịch “Người thợ xây rút một chiếc đinh cong khỏi tấm ván.” truyền đạt đúng ý, và ghi chú sử dụng không thêm hạn chế sai. Không phát hiện chi tiết sai đáng kể hoặc dấu hiệu sao chép dài.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:prospect:future-possibility",
+      "effectiveContentHash": "da6f6f24071690d6743f0a84448920e9afc1e05f1bf095333b4b6bfdadb691ce",
+      "assessment": "PASS",
+      "explanationVi": "Từ loại NOUN, nhãn “Possible future event” và định nghĩa phù hợp với nghĩa nguồn của “prospect”; ví dụ tiếng Anh “The prospect of a longer holiday pleased the staff.” đúng ngữ pháp, bản dịch “Viễn cảnh có kỳ nghỉ dài hơn khiến nhân viên vui.” truyền đạt đúng ý, và ghi chú sử dụng không thêm hạn chế sai. Không phát hiện chi tiết sai đáng kể hoặc dấu hiệu sao chép dài.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:marketplace:commercial-environment",
+      "effectiveContentHash": "058b635542bd7edf15dcb2f99d89c7fa97491b3f0a9a0df0ad602f259f614859",
+      "assessment": "PASS",
+      "explanationVi": "Từ loại NOUN, nhãn “Commercial arena” và định nghĩa phù hợp với nghĩa nguồn của “marketplace”; ví dụ tiếng Anh “Small producers face strong competition in the online marketplace.” đúng ngữ pháp, bản dịch “Các nhà sản xuất nhỏ đối mặt cạnh tranh mạnh trên thị trường trực tuyến.” truyền đạt đúng ý, và ghi chú sử dụng không thêm hạn chế sai. Không phát hiện chi tiết sai đáng kể hoặc dấu hiệu sao chép dài.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:marketplace:market-area",
+      "effectiveContentHash": "1dc6a8d44291a7d43351bcd01405f1fd2d07cc119433bf8fbdfc1106934ba149",
+      "assessment": "PASS",
+      "explanationVi": "Từ loại NOUN, nhãn “Place with market stalls” và định nghĩa phù hợp với nghĩa nguồn của “marketplace”; ví dụ tiếng Anh “Fresh bread filled the stalls in the marketplace.” đúng ngữ pháp, bản dịch “Bánh mì mới làm được bày khắp các quầy trong khu chợ.” truyền đạt đúng ý, và ghi chú sử dụng không thêm hạn chế sai. Không phát hiện chi tiết sai đáng kể hoặc dấu hiệu sao chép dài.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:approve:official-permission",
+      "effectiveContentHash": "2e9b79d40049e01f0e79117b926a2c6871a21629fdc96ea10434992dbac434b4",
+      "assessment": "PASS",
+      "explanationVi": "Từ loại VERB, nhãn “Giving official permission” và định nghĩa phù hợp với nghĩa nguồn của “approve”; ví dụ tiếng Anh “The panel approved the revised design yesterday.” đúng ngữ pháp, bản dịch “Hội đồng phê duyệt bản thiết kế đã chỉnh sửa hôm qua.” truyền đạt đúng ý, và ghi chú sử dụng không thêm hạn chế sai. Không phát hiện chi tiết sai đáng kể hoặc dấu hiệu sao chép dài.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:approve:favour",
+      "effectiveContentHash": "9ef6a5b8ade9d60f35f347a4462beaca2655ff9c1ceee85dae6d570341adc2f5",
+      "assessment": "PASS",
+      "explanationVi": "Từ loại VERB, nhãn “Thinking something is good” và định nghĩa phù hợp với nghĩa nguồn của “approve”; ví dụ tiếng Anh “I approve of their careful approach.” đúng ngữ pháp, bản dịch “Tôi tán thành cách làm thận trọng của họ.” truyền đạt đúng ý, và ghi chú sử dụng không thêm hạn chế sai. Không phát hiện chi tiết sai đáng kể hoặc dấu hiệu sao chép dài.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:visa:entry-permission",
+      "effectiveContentHash": "2451e25060368645f3cebb3a6a225c06e0fad7dc24a24be122a9f79b665a3d8e",
+      "assessment": "PASS",
+      "explanationVi": "Từ loại NOUN, nhãn “Travel permission document” và định nghĩa phù hợp với nghĩa nguồn của “visa”; ví dụ tiếng Anh “My visa expires at the end of this month.” đúng ngữ pháp, bản dịch “Thị thực của tôi hết hạn vào cuối tháng này.” truyền đạt đúng ý, và ghi chú sử dụng không thêm hạn chế sai. Không phát hiện chi tiết sai đáng kể hoặc dấu hiệu sao chép dài.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:bruise:skin-mark",
+      "effectiveContentHash": "b39dd1a6672849194d1574abe2d4701e9d74b774e2a712c6ae926ec5551aa895",
+      "assessment": "PASS",
+      "explanationVi": "Từ loại NOUN, nhãn “Mark beneath the skin” và định nghĩa phù hợp với nghĩa nguồn của “bruise”; ví dụ tiếng Anh “A purple bruise appeared on his arm.” đúng ngữ pháp, bản dịch “Một vết bầm tím xuất hiện trên cánh tay anh ấy.” truyền đạt đúng ý, và ghi chú sử dụng không thêm hạn chế sai. Không phát hiện chi tiết sai đáng kể hoặc dấu hiệu sao chép dài.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:limb:body-part",
+      "effectiveContentHash": "df05bfe5396474725813b1b813d93c8ea3fee1341e004fca44a1be385c26d5ae",
+      "assessment": "PASS",
+      "explanationVi": "Từ loại NOUN, nhãn “Body appendage” và định nghĩa phù hợp với nghĩa nguồn của “limb”; ví dụ tiếng Anh “The animal stretched its injured limb carefully.” đúng ngữ pháp, bản dịch “Con vật cẩn thận duỗi chi bị thương của nó.” truyền đạt đúng ý, và ghi chú sử dụng không thêm hạn chế sai. Không phát hiện chi tiết sai đáng kể hoặc dấu hiệu sao chép dài.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:limb:large-branch",
+      "effectiveContentHash": "6dcf1f9690e08c0019e92dd29fc8d32bef0dded20eb55eebe56350713e720cdd",
+      "assessment": "PASS",
+      "explanationVi": "Từ loại NOUN, nhãn “Large tree branch” và định nghĩa phù hợp với nghĩa nguồn của “limb”; ví dụ tiếng Anh “A fallen limb blocked the narrow path.” đúng ngữ pháp, bản dịch “Một cành cây lớn bị rơi chắn lối đi hẹp.” truyền đạt đúng ý, và ghi chú sử dụng không thêm hạn chế sai. Không phát hiện chi tiết sai đáng kể hoặc dấu hiệu sao chép dài.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:silk:fabric-material",
+      "effectiveContentHash": "a254b32af429c5cddb7a0061b7bb2441e26fcff6b058a0722c499465df9ed0f7",
+      "assessment": "PASS",
+      "explanationVi": "Từ loại NOUN, nhãn “Silk fibre or cloth” và định nghĩa phù hợp với nghĩa nguồn của “silk”; ví dụ tiếng Anh “A strip of blue silk lined the box.” đúng ngữ pháp, bản dịch “Một dải lụa xanh lót bên trong hộp.” truyền đạt đúng ý, và ghi chú sử dụng không thêm hạn chế sai. Không phát hiện chi tiết sai đáng kể hoặc dấu hiệu sao chép dài.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:army:land-force",
+      "effectiveContentHash": "a6e4860988c5f5d795d7581f14577dfda775dc410b7ae2639c2c166f42b0d97d",
+      "assessment": "PASS",
+      "explanationVi": "Từ loại NOUN, nhãn “Organized military force” và định nghĩa phù hợp với nghĩa nguồn của “army”; ví dụ tiếng Anh “The army built a temporary bridge across the river.” đúng ngữ pháp, bản dịch “Quân đội dựng một cây cầu tạm bắc qua sông.” truyền đạt đúng ý, và ghi chú sử dụng không thêm hạn chế sai. Không phát hiện chi tiết sai đáng kể hoặc dấu hiệu sao chép dài.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:fade:lose-colour",
+      "effectiveContentHash": "534f34803b04df8154481c5153f89dbd65d9b46e26b2bcb86fb51ba9ca70e0ff",
+      "assessment": "PASS",
+      "explanationVi": "Từ loại VERB, nhãn “Losing colour” và định nghĩa phù hợp với nghĩa nguồn của “fade”; ví dụ tiếng Anh “The blue lettering faded after several summers.” đúng ngữ pháp, bản dịch “Chữ màu xanh phai đi sau vài mùa hè.” truyền đạt đúng ý, và ghi chú sử dụng không thêm hạn chế sai. Không phát hiện chi tiết sai đáng kể hoặc dấu hiệu sao chép dài.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:fade:weaken",
+      "effectiveContentHash": "3a62c9e12fd56d233fb08e102422329506321ff906b982f56c97829a717a2c59",
+      "assessment": "PASS",
+      "explanationVi": "Từ loại VERB, nhãn “Becoming less noticeable” và định nghĩa phù hợp với nghĩa nguồn của “fade”; ví dụ tiếng Anh “The applause faded as the hall emptied.” đúng ngữ pháp, bản dịch “Tiếng vỗ tay nhỏ dần khi hội trường vắng người dần.” truyền đạt đúng ý, và ghi chú sử dụng không thêm hạn chế sai. Không phát hiện chi tiết sai đáng kể hoặc dấu hiệu sao chép dài.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:snap:break-suddenly",
+      "effectiveContentHash": "37a5847ee55858d3edb0ac7e0f0e261cc3c9e1d081e6a7aa685883a5b55bfba0",
+      "assessment": "PASS",
+      "explanationVi": "Từ loại VERB, nhãn “Breaking abruptly” và định nghĩa phù hợp với nghĩa nguồn của “snap”; ví dụ tiếng Anh “The dry twig snapped between my fingers.” đúng ngữ pháp, bản dịch “Cành khô gãy giữa các ngón tay tôi.” truyền đạt đúng ý, và ghi chú sử dụng không thêm hạn chế sai. Không phát hiện chi tiết sai đáng kể hoặc dấu hiệu sao chép dài.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:snap:take-photo",
+      "effectiveContentHash": "24d8214bdd1e2158c90bc88ce26e3df14242f365b2987051f9ae67fa181dcff1",
+      "assessment": "PASS",
+      "explanationVi": "Từ loại VERB, nhãn “Taking a quick photograph” và định nghĩa phù hợp với nghĩa nguồn của “snap”; ví dụ tiếng Anh “Mai snapped a picture of the sleeping dog.” đúng ngữ pháp, bản dịch “Mai chụp nhanh một bức ảnh con chó đang ngủ.” truyền đạt đúng ý, và ghi chú sử dụng không thêm hạn chế sai. Không phát hiện chi tiết sai đáng kể hoặc dấu hiệu sao chép dài.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:snap:speak-sharply",
+      "effectiveContentHash": "a585ed2527ec73ba98e738b82915cf7a381cc24e3581700c1eaa03fb0875f3a0",
+      "assessment": "PASS",
+      "explanationVi": "Từ loại VERB, nhãn “Speaking irritably” và định nghĩa phù hợp với nghĩa nguồn của “snap”; ví dụ tiếng Anh “The tired passenger snapped at the attendant.” đúng ngữ pháp, bản dịch “Hành khách mệt mỏi gắt gỏng với nhân viên phục vụ.” truyền đạt đúng ý, và ghi chú sử dụng không thêm hạn chế sai. Không phát hiện chi tiết sai đáng kể hoặc dấu hiệu sao chép dài.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:intent:purpose",
+      "effectiveContentHash": "d1ceb7c8fbb5c872d26d6c700ec321ae6f9117198f0873753bb82021e8afb917",
+      "assessment": "PASS",
+      "explanationVi": "Từ loại NOUN, nhãn “Purpose behind an action” và định nghĩa phù hợp với nghĩa nguồn của “intent”; ví dụ tiếng Anh “Her intent was to make the instructions clearer.” đúng ngữ pháp, bản dịch “Ý định của cô ấy là làm hướng dẫn rõ hơn.” truyền đạt đúng ý, và ghi chú sử dụng không thêm hạn chế sai. Không phát hiện chi tiết sai đáng kể hoặc dấu hiệu sao chép dài.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:genome:genetic-set",
+      "effectiveContentHash": "c1b88988b0d89b8666fb2931ac4b23efc2bea8cbb48a3fc1c5d9724a9cbc0c1d",
+      "assessment": "PASS",
+      "explanationVi": "Từ loại NOUN, nhãn “Complete genetic set” và định nghĩa phù hợp với nghĩa nguồn của “genome”; ví dụ tiếng Anh “The researchers compared the genomes of two plant varieties.” đúng ngữ pháp, bản dịch “Các nhà nghiên cứu so sánh bộ gen của hai giống cây.” truyền đạt đúng ý, và ghi chú sử dụng không thêm hạn chế sai. Không phát hiện chi tiết sai đáng kể hoặc dấu hiệu sao chép dài.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:courtyard:enclosed-outdoor-space",
+      "effectiveContentHash": "f59b1e1225facea4c000a7243f56d5968b8ad3cb73e4e27488c1f8d276d04145",
+      "assessment": "PASS",
+      "explanationVi": "Từ loại NOUN, nhãn “Enclosed outdoor space” và định nghĩa phù hợp với nghĩa nguồn của “courtyard”; ví dụ tiếng Anh “Rain gathered in the empty courtyard.” đúng ngữ pháp, bản dịch “Nước mưa đọng trong sân trong vắng người.” truyền đạt đúng ý, và ghi chú sử dụng không thêm hạn chế sai. Không phát hiện chi tiết sai đáng kể hoặc dấu hiệu sao chép dài.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:deceased:dead",
+      "effectiveContentHash": "13ebadcd7dba7bb501c1d1510a90d4f498545260a60fd8617076c276f5c6cd6f",
+      "assessment": "PASS",
+      "explanationVi": "Từ loại ADJECTIVE, nhãn “No longer alive” và định nghĩa phù hợp với nghĩa nguồn của “deceased”; ví dụ tiếng Anh “The archive holds letters from the deceased poet.” đúng ngữ pháp, bản dịch “Kho lưu trữ giữ các bức thư của nhà thơ đã qua đời.” truyền đạt đúng ý, và ghi chú sử dụng không thêm hạn chế sai. Không phát hiện chi tiết sai đáng kể hoặc dấu hiệu sao chép dài.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    }
+  ]
+}

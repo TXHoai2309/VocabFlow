@@ -1,0 +1,58 @@
+{
+  "reviewerKind": "ISOLATED_AI_REVIEW_AGENT",
+  "blindFirstPass": false,
+  "reviewerIdentity": "/root/cp05_review_05",
+  "firstPassReviewSha256": "4afbd90c7e757acce33c73304076fd623ae66cb9f1466fdaeaa0ce5a176d5fb4",
+  "handoffSha256": "8185ec0466c1f5152f09ddd918b5ef7dc800fa5925d0409ff50ba346e7745ac6",
+  "microBatch": 2,
+  "recordCount": 4,
+  "passCount": 4,
+  "reviewCount": 0,
+  "failCount": 0,
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2L:aristocrat:noble-person",
+      "effectiveContentHash": "c3ad814feca17dc2dd722d08fc9a8939fdf82f03aefdceb6daa54d7510919849",
+      "assessment": "PASS",
+      "explanationVi": "Nhãn “Person in the highest social class” nhất quán với định nghĩa về người thuộc tầng lớp xã hội cao nhất và không còn đặt nguồn gốc thừa kế làm điều kiện; nguồn xác nhận nghĩa này ở một số xã hội, còn ví dụ, nghĩa Việt và ghi chú danh từ đếm được phù hợp.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:dignity:composed-manner",
+      "effectiveContentHash": "1e1b10ed2e47d7c35852e4ce35f06c93fc620455b61b54a0ea25a822bf27ac34",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa Việt “phong thái đĩnh đạc” nay chỉ riêng phong thái bình tĩnh, đáng kính theo định nghĩa và ví dụ; việc bỏ “tự trọng” giữ ranh giới với nghĩa phẩm giá, lòng tự trọng trong nguồn, còn ghi chú uncountable phù hợp.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:family:suitable-for-families",
+      "effectiveContentHash": "f7ddddfa715d9f97f5b1184c80a8fae4a47e916d4d0ecc1661c4914428113fad",
+      "assessment": "PASS",
+      "explanationVi": "Định nghĩa dành cho gia đình, ghi chú dùng family trước danh từ và ví dụ suất chiếu gia đình khớp với nguồn “dành cho gia đình”; bản dịch tự nhiên và ghi chú mới không còn chứa siêu dữ liệu từ loại nội bộ.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:on:surface",
+      "effectiveContentHash": "e8cb77f5f5c1d6b8aafede61e5696d1f46deee8eb697898e547cce9e5f03dc97",
+      "assessment": "PASS",
+      "explanationVi": "Ghi chú mới mô tả on dùng khi vật tiếp xúc và được bề mặt đỡ, nhất quán với định nghĩa phong bì nằm trên kệ và nghĩa Việt “trên”; ví dụ đúng ngữ pháp, bản dịch chính xác, không còn đối lập quá mức với above.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    }
+  ]
+}

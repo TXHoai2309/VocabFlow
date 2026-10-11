@@ -1,0 +1,85 @@
+{
+  "cohortFingerprint": "9710a47fda875f70412c7440b2969c031dc6eb3c076140a42007aed4f83cf59c",
+  "fingerprint": "e96cdd28921bb9bc74e643d9efb9bf8a195d889154b1e1c3cab3c6fcc7d115c1",
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:convict",
+    "NORMALIZED_HEADWORD:directly",
+    "NORMALIZED_HEADWORD:closed",
+    "NORMALIZED_HEADWORD:dissatisfied",
+    "NORMALIZED_HEADWORD:stiff",
+    "NORMALIZED_HEADWORD:translate",
+    "NORMALIZED_HEADWORD:ambassador",
+    "NORMALIZED_HEADWORD:contractor",
+    "NORMALIZED_HEADWORD:illustrate",
+    "NORMALIZED_HEADWORD:engagement",
+    "NORMALIZED_HEADWORD:end",
+    "NORMALIZED_HEADWORD:eye",
+    "NORMALIZED_HEADWORD:villain",
+    "NORMALIZED_HEADWORD:processing",
+    "NORMALIZED_HEADWORD:oversee",
+    "NORMALIZED_HEADWORD:percentage",
+    "NORMALIZED_HEADWORD:scramble",
+    "NORMALIZED_HEADWORD:two",
+    "NORMALIZED_HEADWORD:patriot",
+    "NORMALIZED_HEADWORD:inn"
+  ],
+  "manuscriptSha256": "1850d2ba43cf2d7a7cf593d1ea4d747e4d6443c4999aea8fbb750888aeeef5f7",
+  "microBatch": 5,
+  "parentFingerprint": "19cad301827b8f5214a8d93c92c60b1f99125e1b2ad0e1a2311902b851c338ed",
+  "phase": "2H.2L",
+  "planningFingerprint": "cab098156c95546966377cfefec5e2a3c419c700c2c1fd4caf141fa946890145",
+  "planningSha256": "35d2ade95971334cd43589d77644d9b5ba2536a6618a6ddd9eaf2e051b1e6593",
+  "qaCounts": {
+    "PASS": 25,
+    "REVIEW": 1
+  },
+  "recordHash": "8bcd7445330f1d943fda305148d74433892fd641066b7c9effdcfa4b52a518f8",
+  "reviewHash": "a9c2b6c6b3f27cf4c0cc7d13e07a001cb4f0c1253a8249d0f9b5079543e02aaa",
+  "selfReviewSha256": "88216f49188a3fdaeee207c48b95854009e870da6ae210a1b2a0d2de1540820d",
+  "senseCount": 26,
+  "sourceSimilarityFindings": [
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:ambassador:diplomatic-representative",
+      "sourceRecordId": "1788223609876",
+      "text": "đại sứ"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:ambassador:diplomatic-representative",
+      "sourceRecordId": "1788223609876",
+      "text": "đại sứ"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:ambassador:diplomatic-representative",
+      "sourceRecordId": "1559931008480",
+      "text": "đại sứ"
+    },
+    {
+      "field": "senseLabelEn",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:engagement:betrothal",
+      "sourceRecordId": "1623660520155",
+      "text": "agreement to marry"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:percentage:share-out-of-hundred",
+      "sourceRecordId": "1788223608116",
+      "text": "tỷ lệ phần trăm"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:percentage:share-out-of-hundred",
+      "sourceRecordId": "1788223608116",
+      "text": "tỷ lệ phần trăm"
+    }
+  ],
+  "status": "SEALED_AI_DRAFT_NOT_APPROVED"
+}

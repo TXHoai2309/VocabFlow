@@ -1,0 +1,27 @@
+{
+  "reviewerKind": "ISOLATED_AI_REVIEW_AGENT",
+  "blindFirstPass": false,
+  "reviewerIdentity": "/root/cp05_review_01_02",
+  "microBatch": 4,
+  "firstPassReviewSha256": "b58423839cf7ed204f783f98f8b53d0e84a339faaf03706c3f94f8af35af293b",
+  "handoffSha256": "b7b340c3c1150f864f4b4fe9c5cf94c429a1832094a71405e6bcd791b8cd02af",
+  "recordCount": 1,
+  "passCount": 0,
+  "reviewCount": 1,
+  "failCount": 0,
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2L:trade:buying-selling-activity",
+      "effectiveContentHash": "117e21f12518a7457a53b0b2e9de1b4d896246b7f3845136212088aa72074b39",
+      "assessment": "REVIEW",
+      "explanationVi": "Tôi đánh giá đây là dương tính giả về sao chép thực chất: record ENGLISH_VOCAB_4600 được gắn với headword “speculation”, còn nghĩa trade được nguồn OXFORD_5000 hỗ trợ. Tuy vậy, màn kiểm tra xuất bản hiện từ chối mọi chuỗi khớp 8 từ, nên definitionEn hiện tại vẫn bị chặn. Có thể đổi thành “Commercial exchange involving goods or services between people, businesses, or places.” để bỏ chuỗi khớp mà vẫn giữ nghĩa thương mại.",
+      "affectedFields": [
+        "definitionEn"
+      ],
+      "severity": "LOW",
+      "blocksPublication": true,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    }
+  ]
+}

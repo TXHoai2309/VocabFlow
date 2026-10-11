@@ -1,0 +1,60 @@
+{
+  "reviewerKind": "ISOLATED_AI_REVIEW_AGENT",
+  "blindFirstPass": false,
+  "reviewerIdentity": "/root/cp05_review_03_04",
+  "firstPassReviewSha256": "4afbd90c7e757acce33c73304076fd623ae66cb9f1466fdaeaa0ce5a176d5fb4",
+  "microBatch": 2,
+  "handoffSha256": "de5119792f5c0bb79106649a105f5c3d8203c57871399f43a51e27e0e1c0f5dd",
+  "recordCount": 4,
+  "passCount": 3,
+  "reviewCount": 1,
+  "failCount": 0,
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2L:aristocrat:noble-person",
+      "effectiveContentHash": "77bd6ada5749d97a7618a160883460a093b1fc65d78dc3af111dd96d901b867f",
+      "assessment": "REVIEW",
+      "explanationVi": "Định nghĩa đã được sửa để khớp nguồn, nhưng nhãn senseLabelEn vẫn ghi “hereditary class”, tiếp tục biến nguồn gốc thừa kế thành điều kiện bắt buộc. Cần đổi nhãn sang tầng lớp xã hội cao hoặc quý tộc trước khi duyệt; ví dụ và nghĩa Việt còn lại phù hợp.",
+      "affectedFields": [
+        "senseLabelEn"
+      ],
+      "severity": "MEDIUM",
+      "blocksPublication": true,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:dignity:composed-manner",
+      "effectiveContentHash": "1e1b10ed2e47d7c35852e4ce35f06c93fc620455b61b54a0ea25a822bf27ac34",
+      "assessment": "PASS",
+      "explanationVi": "Đã bỏ “tự trọng” khỏi nghĩa Việt, giữ riêng “phong thái đĩnh đạc” đúng với nghĩa calm manner và tránh nhập với phẩm giá/lòng tự trọng. Ví dụ cùng bản dịch phù hợp; ghi chú danh từ không đếm được cũng chính xác.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:family:suitable-for-families",
+      "effectiveContentHash": "f7ddddfa715d9f97f5b1184c80a8fae4a47e916d4d0ecc1661c4914428113fad",
+      "assessment": "PASS",
+      "explanationVi": "Đã xóa nhãn từ loại nội bộ khỏi grammarNotesEn và giữ mẫu family đứng trước danh từ. Nghĩa tính từ “dành cho gia đình”, định nghĩa, ví dụ family screening và bản dịch đều phù hợp với evidence.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:on:surface",
+      "effectiveContentHash": "e8cb77f5f5c1d6b8aafede61e5696d1f46deee8eb697898e547cce9e5f03dc97",
+      "assessment": "PASS",
+      "explanationVi": "Ghi chú đã bỏ đối lập cứng với above và nay mô tả tiếp xúc, được bề mặt đỡ; điều này khớp định nghĩa, ví dụ phong bì nằm trên kệ và nghĩa “trên”. Không thấy vấn đề còn lại trong câu ví dụ hay bản dịch.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    }
+  ]
+}

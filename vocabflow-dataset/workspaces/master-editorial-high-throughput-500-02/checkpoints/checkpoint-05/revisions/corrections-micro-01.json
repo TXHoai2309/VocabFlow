@@ -1,0 +1,30 @@
+{
+  "parentFingerprint": "19cad301827b8f5214a8d93c92c60b1f99125e1b2ad0e1a2311902b851c338ed",
+  "records": [
+    {
+      "after": "Countable; a rise in something; plural rises.",
+      "afterContentHash": "6b7628e7dddefd77737f49944f504afca4c7f467a041186a766ed9f9f8b0f676",
+      "afterFieldHash": "7d3b072120f7f9d34b4f063cf39c6081c7d88e58539970ed1805329f2a17f1ba",
+      "before": "Countable; a rise in something; source regional CEFR differs for noun.",
+      "beforeContentHash": "e00f62d53e1cd5bce9d7688d47246dd24c81ee4e0fc3241d97280c0962e0dabe",
+      "beforeFieldHash": "4201e164b29c58abfb4a61b651ecbdf21e484865f85e58cede2cc714f28138cc",
+      "field": "grammarNotesEn",
+      "proposalKey": "EDITORIAL_2H2L:rise:increase-noun",
+      "reasonVi": "Loại bỏ ghi chú về chênh lệch CEFR giữa nguồn vì đây là siêu dữ liệu biên tập; giữ hướng dẫn danh từ đếm được và kết hợp a rise in something dành cho người học.",
+      "reviewFindingSource": "independent-review/micro-01.json"
+    },
+    {
+      "after": "Countable; a nail, plural nails.",
+      "afterContentHash": "3cae1e12a0fffd90df96d687b1a6683a03b44227bce819a1d70e1777b77fd818",
+      "afterFieldHash": "81aa249ead1acf1c7c11572e8a7bfb99e317970c7271b61f221bac3e3aedd1dc",
+      "before": "Countable; a nail, plural nails; source here explicitly supports fingernails.",
+      "beforeContentHash": "173ee6a5f27d40b13c71274f774a221e63ec4d2fa711c06e4ed30d3b8c3dc721",
+      "beforeFieldHash": "da1dc56096c663f64a0906c3c89984d2527b976b1124ef7756e56819f7136363",
+      "field": "grammarNotesEn",
+      "proposalKey": "EDITORIAL_2H2L:nail:finger-covering",
+      "reasonVi": "Loại bỏ câu xác nhận căn cứ nguồn khỏi ghi chú người học; giữ thông tin danh từ đếm được và dạng số nhiều, đủ chỉ cách dùng hình thái của danh từ.",
+      "reviewFindingSource": "independent-review/micro-01.json"
+    }
+  ],
+  "reviewFindingSha256": "c11799c5497b3237dd96b808c84eda1d2ed595582e5371e0f9a5e3226f046627"
+}

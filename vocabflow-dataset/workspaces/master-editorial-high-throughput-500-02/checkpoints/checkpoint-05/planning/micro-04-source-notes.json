@@ -1,0 +1,138 @@
+{
+  "microBatch": 4,
+  "records": [
+    {
+      "authorReviewOnly": true,
+      "issueVi": "Dung thú nhận việc quên trước đó, had forgotten giữ quá khứ trước lời thú nhận; VI phụ xưng tội thiếu ngữ cảnh tôn giáo riêng nên để REVIEW phạm vi.",
+      "recordedBeforeManuscript": true,
+      "slug": "admit-unwelcome-truth",
+      "sourceEvidence": [
+        {
+          "candidateSourceSenseGroups": [
+            {
+              "identityStatus": "SOURCE_GROUP_ONLY_SENSE_IDENTITY_UNRESOLVED",
+              "sourceExamples": [
+                {
+                  "example_en": "He decides to confess the truth to the police.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Anh ấy quyết định thú nhận sự thật với cảnh sát.",
+                  "focus_en": [
+                    "confess"
+                  ],
+                  "focus_vi": [
+                    "thú nhận"
+                  ]
+                },
+                {
+                  "example_en": "She confessed that she had accidentally deleted the file.",
+                  "example_source": "llm_authored",
+                  "example_vi": "Cô ấy thú nhận rằng mình đã vô tình xóa tệp.",
+                  "focus_en": [
+                    "confessed"
+                  ],
+                  "focus_vi": [
+                    "thú nhận"
+                  ]
+                }
+              ],
+              "sourceGroupOrdinal": 0,
+              "sourcePosRaw": "v.",
+              "sourceVietnameseMeaningRaw": "thú nhận",
+              "unrecognizedSourceGroupFields": {},
+              "vocabFlowSenseId": null
+            }
+          ],
+          "reference": {
+            "artifact": "oxford-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "CEFR",
+                "value": "B2"
+              }
+            ],
+            "corpus": "OXFORD_5000",
+            "normalizedPosCandidates": [
+              "VERB"
+            ],
+            "rawContentPointer": "/records/3593/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/3593/rawHeadword",
+            "rawPosEvidencePointer": "/records/3593/sourcePosRaw",
+            "recordEvidenceSha256": "49ceffe5427f7e48aa6dbb427ab7a0a520bf16d1d871f95ce63ea2c08266e77f",
+            "recordIndex": 3593,
+            "sourceNoteGuid": "C%(M@4Guv@",
+            "sourceRecordId": "1788223609632",
+            "structuredOxfordSenseGroupOrdinals": [
+              0
+            ]
+          },
+          "sourceFields": {
+            "CEFR": "B2",
+            "Example": "He decides to <mark class=\"v-target\">confess</mark> the truth to the police.<br>She <mark class=\"v-target\">confessed</mark> that she had accidentally deleted the file.",
+            "Example Data": "[{\"pos\":\"v.\",\"meaning_vi\":\"thú nhận\",\"examples\":[{\"example_en\":\"He decides to confess the truth to the police.\",\"example_vi\":\"Anh ấy quyết định thú nhận sự thật với cảnh sát.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"confess\"],\"focus_vi\":[\"thú nhận\"]},{\"example_en\":\"She confessed that she had accidentally deleted the file.\",\"example_vi\":\"Cô ấy thú nhận rằng mình đã vô tình xóa tệp.\",\"example_source\":\"llm_authored\",\"focus_en\":[\"confessed\"],\"focus_vi\":[\"thú nhận\"]}]}]",
+            "Example EN 1": "He decides to confess the truth to the police.",
+            "Example EN 2": "She confessed that she had accidentally deleted the file.",
+            "Example EN 3": "",
+            "Example EN 4": "",
+            "Example EN 5": "",
+            "Example EN 6": "",
+            "Example EN 7": "",
+            "Frequency": "4383",
+            "Irregular Forms": "[]",
+            "Oxford List": "Oxford 5000",
+            "Part of Speech": "verb",
+            "Phonetic": "/kənˈfɛs/",
+            "Pronunciation Data": "[{\"locale\":\"UK\",\"ipa\":[\"/kənˈfes/\"],\"audio_keys\":[\"uk_pron/x/xco/xconf/xconfess__gb_1\"]},{\"locale\":\"US\",\"ipa\":[\"/kənˈfes/\"],\"audio_keys\":[\"us_pron/x/xco/xconf/xconfess__us_1\"]}]",
+            "Sound_uk": "",
+            "Sound_us": "",
+            "Study Order": "3594",
+            "Từ loại": "động từ",
+            "Variant Data": "[]",
+            "Vietnamese": "thú nhận",
+            "Word": "confess"
+          }
+        },
+        {
+          "candidateSourceSenseGroups": [],
+          "reference": {
+            "artifact": "vocab4600-normalized-inventory.json",
+            "cefrEvidence": [
+              {
+                "sourceField": "deck:4600 English Vocab::B2",
+                "value": "B2"
+              },
+              {
+                "sourceField": "noteTag",
+                "value": "B2"
+              }
+            ],
+            "corpus": "ENGLISH_VOCAB_4600",
+            "normalizedPosCandidates": [
+              "VERB"
+            ],
+            "rawContentPointer": "/records/1599/sourceFields",
+            "rawHeadwordEvidencePointer": "/records/1599/rawHeadword",
+            "rawPosEvidencePointer": "/records/1599/sourcePosRaw",
+            "recordEvidenceSha256": "8f58c95ed0014b53418ba0d4c628935c9beae7d298b217ae878b97237129dbd9",
+            "recordIndex": 1599,
+            "sourceNoteGuid": "mYU{hkks.q",
+            "sourceRecordId": "1559931008401",
+            "structuredOxfordSenseGroupOrdinals": []
+          },
+          "sourceFields": {
+            "Example": "The man <b>confessed</b> that he had stolen the money.",
+            "IPA": "/kənˈfɛs/",
+            "Image": "<img src=\"paste-ae6458bf645347680d802cbbd62c779cd98bf410.jpg\">",
+            "Meaning": "To <i>confess</i> is to admit a bad or embarrassing truth.<br><b>thú nhận, xưng tội</b>",
+            "PoS": "verb",
+            "Sound": "[sound:oxford-f2a1a16f-3fa43137-145d2f88-fa7c5487-6f1cd999.mp3]",
+            "Sound_Example": "[sound:googletts-53a8adc0-dbfaa44c-53722e9f-050e5fae-5cbab7c7.mp3]",
+            "Word": "confess",
+            "noteid": "1559931008401"
+          }
+        }
+      ],
+      "word": "confess"
+    }
+  ],
+  "status": "AUTHOR_A_SOURCE_BOUNDARY_NOTES"
+}

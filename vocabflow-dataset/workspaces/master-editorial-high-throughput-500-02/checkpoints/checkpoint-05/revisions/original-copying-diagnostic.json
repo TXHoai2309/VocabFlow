@@ -1,0 +1,33 @@
+{
+  "eightWordOverlap": "the activity of buying and selling goods or",
+  "errorMessage": "Cross-corpus eight-word copying overlap: [{\"corpus\": \"ENGLISH_VOCAB_4600\", \"sourceRecordId\": \"1623660519896\", \"field\": \"Meaning\", \"proposalKeys\": [\"EDITORIAL_2H2L:trade:buying-selling-activity\"], \"eightWordOverlap\": \"the activity of buying and selling goods or\"}]",
+  "errorType": "ValueError",
+  "field": "definitionEn",
+  "finalEffectiveContentHash": "78561f65ac3a7ef0d36a27408201d85594d6412367df86df6bc48f4f5fede601",
+  "originalHandoffsSha256": {
+    "handoff/micro-01.json": "45980708a55c0c636f8e60862cc32dbe4733c8e8ff512860bc216146fa9bc3b3",
+    "handoff/micro-02.json": "c869c4d998b3b153e8c04827b53c05a4295ccbd422410dcf2a78dd8304e02e70",
+    "handoff/micro-03.json": "f1d150925c322022176498366f006f6c1504eeb0fff52abce987d9eda0ff2820",
+    "handoff/micro-04.json": "8000486d16e57d7596605306689324d75384dcfa7b24bd1c5cb8ac4515d62ccd",
+    "handoff/micro-05.json": "5d744d7669515b91bfcd687a6219b8efc6187d5388a3bb80a6b398aea6cccd74"
+  },
+  "originalManuscriptSha256": "6072cc8727a32cd71164baeb9d23513376c2ef52923e1949083efa46537899fe",
+  "originalManuscriptsSha256": {
+    "authored/micro-01.psv": "6ea25205a826cc1a45c9da8de153279aa8a834fbf354a04b5ff286608358d43c",
+    "authored/micro-02.psv": "108bb358eb19feab5a0dbc632291c801b88ef0d79a43cfe710de1a735babb7a7",
+    "authored/micro-03.psv": "f6e1bab29d45924b950f191f94305d5de74bde4d025fe98f54a4b8c951fe8774",
+    "authored/micro-04.psv": "6072cc8727a32cd71164baeb9d23513376c2ef52923e1949083efa46537899fe",
+    "authored/micro-05.psv": "1850d2ba43cf2d7a7cf593d1ea4d747e4d6443c4999aea8fbb750888aeeef5f7"
+  },
+  "originalPreserved": true,
+  "proposalKey": "EDITORIAL_2H2L:trade:buying-selling-activity",
+  "resolution": "The strict screen blocked this exact overlap. Independent review assessed it as a false positive for substantive copying because the other entry is for speculation, but recommended rewriting to clear the mandatory screen. A separate additive correction ledger records BEFORE/AFTER hashes; current-content independent recheck passes. No allowlist or exception granted; full cross-corpus source screen passes after correction.",
+  "reviewFindingReceiptSha256": "9e685cc715c0402134f4d55a0fca07f0e8f979109720f1c575ec279aa2f1c74b",
+  "scope": "ALL_UNCORRECTED_CP05_HANDOFF_RECORDS",
+  "screenHelper": "scripts/phase-2h2k-high-throughput-authoring.py:cross_source_copying",
+  "sourceCorpus": "ENGLISH_VOCAB_4600",
+  "sourceField": "Meaning",
+  "sourceRecordId": "1623660519896",
+  "sourceRecordsScanned": 9677,
+  "status": "BLOCKING_COPYING_FAILURE_IN_ORIGINAL"
+}
