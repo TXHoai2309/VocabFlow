@@ -1,0 +1,35 @@
+{
+  "reviewerKind": "ISOLATED_AI_REVIEW_AGENT",
+  "blindFirstPass": false,
+  "reviewerIdentity": "/root/cp03_blind_a",
+  "microBatch": 1,
+  "firstPassReviewSha256": "2985a009ec680945ebe478d66a6e25751903d61516c0d95ef19fb72b59f3b79c",
+  "recordCount": 2,
+  "passCount": 2,
+  "reviewCount": 0,
+  "failCount": 0,
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2L:excitement:excited-feeling",
+      "effectiveContentHash": "36fdac7823a77d2abf20e1dd3190cb67534326e1486f9957f565917d5081b05d",
+      "assessment": "PASS",
+      "explanationVi": "Bản sửa khi lời mời đến giữ đúng mốc arrived, đã bỏ sự chuyển nghĩa sang hành động gửi ở bản trước. Các vũ công vẫn là nhóm có cảm xúc háo hức; định nghĩa, nghĩa Việt và ghi chú không đếm được phù hợp nhóm Oxford. Ví dụ riêng không sao chép câu nguồn và không còn lỗi cản xuất bản.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:post-war:after-war",
+      "effectiveContentHash": "c6d3ff54d425bcd0836d988484b13ad3199cf9adec354c25638f35459d5e0559",
+      "assessment": "PASS",
+      "explanationVi": "Định nghĩa mới Relating to the years following the end of a war đã thay cấu trúc gần nguyên văn 4600 ở bản trước, vẫn mô tả thời kỳ hậu chiến được hai nguồn hỗ trợ. Ví dụ bản đồ trước chiến tranh và ảnh hậu chiến giữ đối chiếu rõ; nghĩa Việt, tính từ và biến thể postwar đúng, không còn lỗi cản xuất bản.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    }
+  ]
+}

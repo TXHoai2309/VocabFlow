@@ -1,0 +1,457 @@
+{
+  "reviewerKind": "ISOLATED_AI_REVIEW_AGENT",
+  "blindFirstPass": true,
+  "reviewerIdentity": "/root/cp03_blind_c",
+  "manuscriptSha256": "315b17f81b25c2ac529f07cf19b93b32bdaf694cfa4b44ecff7c7f9420778104",
+  "microBatch": 3,
+  "passCount": 34,
+  "reviewCount": 4,
+  "failCount": 1,
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2L:stark:clear-contrast",
+      "effectiveContentHash": "4238b1261ad150e66b2e9f27c5d1af7a23bcdd922c8bb7f1e10fd93911f02827",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa tương phản rõ rệt phù hợp hai nguồn; ví dụ sân chơi và lễ hội giữ đúng đối tượng, thời điểm hôm qua, dùng tính từ tự nhiên và không trùng ví dụ nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:stark:bare",
+      "effectiveContentHash": "2d924545ce4ec076099734ba1c702e2510e9accd674980a97c65ed6d309779cd",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa trơ trụi về diện mạo tách đúng khỏi nghĩa tương phản; bóng đèn không chụp, giới hạn chỉ một bóng và căn phòng đều được giữ trong bản dịch, ngữ pháp phù hợp.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:date:calendar-day",
+      "effectiveContentHash": "e84cfd589fc053540be320a629e73ce53d9adc5c4e62f28937d7012043b4215e",
+      "assessment": "PASS",
+      "explanationVi": "Ngày trên lịch được định nghĩa chính xác, danh từ đếm được và cách dùng date of phù hợp; ví dụ giữ đúng thiệp mời, ngày và việc thiếu giờ bắt đầu, không chép nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:date:romantic-meeting",
+      "effectiveContentHash": "9b9e3ba2b7c2f610656c371ffac18a515f392eb2131cedb28ae3fbe59d264ab9",
+      "assessment": "PASS",
+      "explanationVi": "Danh từ chỉ cuộc hẹn lãng mạn tách đúng với động từ hẹn hò; ví dụ và bản dịch giữ buổi đầu tiên, hai người và cuộc đi dạo bên sông, cấu trúc go on a date đúng.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:date:write-day",
+      "effectiveContentHash": "6e9afe0332f49d9dd5deb2336635fe66f2f94fb5f9bfb3faaef0eb814fe1a06c",
+      "assessment": "PASS",
+      "explanationVi": "Động từ ghi ngày tháng có tân ngữ phù hợp; bản dịch giữ chủ thể nữ, từng mục trong sổ và trình tự trước khi mô tả thí nghiệm, không lẫn nghĩa xác định niên đại.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:date:romantic-relationship",
+      "effectiveContentHash": "878fe591a7a13e755f2c77a3821f252dd5d992c062d0030ba8705ecae7c49bf3",
+      "assessment": "PASS",
+      "explanationVi": "Định nghĩa và ghi chú phân biệt cách dùng ngoại động từ với nội động từ hẹn hò; bản dịch giữ Linh, một đồng nghiệp và việc chuyển phòng ban trước khi bắt đầu quan hệ.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:soothe:calm",
+      "effectiveContentHash": "6c0e034dc6c4e39bdcde4bac0ad012530edbf75898821ac4adfa2c762dc2d85f",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa xoa dịu cảm xúc khớp nguồn, giới hạn rõ với giảm đau thể chất; ví dụ giữ giọng nói dịu dàng của người nam và đứa trẻ sợ hãi, cấu trúc ngoại động từ đúng.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:devil:evil-spirit",
+      "effectiveContentHash": "c82cbe73e56adc84151a5669a59997b5547264f181d7c73276bc8209cee24972",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa quỷ trong tín ngưỡng hoặc truyện khớp bằng chứng; ghi chú a devil và the Devil xử lý danh từ riêng hợp lý, ví dụ giữ bức tranh cổ và hành động cám dỗ lữ khách.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:invest:financial-investment",
+      "effectiveContentHash": "ef65d080d279c5f4723f36f1cc6d8c688cd38e79ae4e571aa442542f0f881ac9",
+      "assessment": "PASS",
+      "explanationVi": "Đầu tư tài chính được giới hạn bằng kỳ vọng sinh lợi, không bảo đảm lợi nhuận; ví dụ giữ một phần tiền tiết kiệm và cơ sở in nhỏ, khác ví dụ nguồn và đúng invest in.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:invest:development-resources",
+      "effectiveContentHash": "698713f07f1d008e885223e1abdfc76570a3b1019fb754d2aa78f77d6bc5ad8c",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa đầu tư nguồn lực cho lợi ích tương lai có bằng chứng giáo dục và thiết bị; ví dụ từ thiện đào tạo tình nguyện viên giữ đúng đối tượng, ghi chú lợi ích phi tài chính rõ.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:defeat:beat-opponent",
+      "effectiveContentHash": "62074c88e4835af78b623ef8cc754f4f589b3cc2efee6d834e3e362a7992da14",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa động từ đánh bại và vai người thắng đúng với nguồn; bản dịch giữ người chơi trẻ nhất, hai đối thủ và mức kinh nghiệm, không đổi chủ thể hoặc số lượng.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:defeat:loss",
+      "effectiveContentHash": "e65817b21326e3eb9c3845091a627ea4a927751ad5ad77cf28f4bf979d103a7c",
+      "assessment": "PASS",
+      "explanationVi": "Danh từ thất bại phù hợp nguồn, ghi chú đếm được và không đếm được chính xác; ví dụ giữ nhóm cầu thủ thua nhưng vẫn cảm ơn người cổ vũ, bản dịch tự nhiên.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:outstanding:excellent",
+      "effectiveContentHash": "e0fd7fc41e5f47367af66bba549b01df1aee20c73d0984cca57f45f825b171e1",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa xuất sắc phù hợp hai nguồn và tách với nghĩa chưa giải quyết; ví dụ giữ thiết kế, chủ thể nam và toàn bộ hội đồng, cách đặt tính từ trước danh từ đúng.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:outstanding:unsettled",
+      "effectiveContentHash": "39594038dfbe20515e9ba4846baecc8f5edc38526383c0f5dff949c46a821439",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa chưa thanh toán hoặc chưa giải quyết khớp nguồn; ví dụ hai câu hỏi còn tồn đọng dịch thành hai vấn đề phù hợp ngữ cảnh quyết định, giữ số lượng và quan hệ nguyên nhân.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:pretend:make-believe",
+      "effectiveContentHash": "07ca9a5ee74939603a482f7618e9b63f80b7e5f1b7d239126b29bc4d809e1f04",
+      "assessment": "REVIEW",
+      "explanationVi": "Bản dịch dùng 'em gái' trong khi sister chỉ cho biết giới tính nữ, không nêu nhỏ tuổi hơn; cần dùng 'chị/em gái' hoặc sửa câu Anh thành younger sister để không thêm quan hệ tuổi.",
+      "affectedFields": [
+        "examples"
+      ],
+      "severity": "MEDIUM",
+      "blocksPublication": true,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": [
+        "Sister không xác định quan hệ lớn hoặc nhỏ tuổi; bản dịch đã tự chọn em gái."
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:either:one-of-two-determiner",
+      "effectiveContentHash": "01354b452da34e3734c5d777ad8fb7ff3ba6cc333c030ae6bd2941abc6cb3b53",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa chọn bất kỳ một trong hai tuyến và danh từ số ít đúng; bản dịch giữ hai lựa chọn và đích đến bến cảng, tránh gloss nguồn 'cả hai, hoặc' vốn không đúng ngữ cảnh này.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:either:one-of-two-pronoun",
+      "effectiveContentHash": "6bb69f2ac2171a8fdc930c82f11c903dd57ade0d094b2131fbc264688872ebcc",
+      "assessment": "PASS",
+      "explanationVi": "Đại từ either thay một trong hai chìa khóa đã nêu, bản dịch giữ số lượng và quyền mượn bất kỳ chiếc nào; ghi chú either of và hòa hợp số ít trong văn phong trang trọng phù hợp.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:either:negative-addition",
+      "effectiveContentHash": "8bf278691da48edcacdd45b4e015a7ceb544d69d08a2bc504d49732dbe34b45c",
+      "assessment": "PASS",
+      "explanationVi": "Trạng từ either bổ sung mệnh đề phủ định đúng nguồn; ví dụ giữ Mai, người nói và thứ Sáu, bản dịch 'cũng không thể' chính xác, ghi chú too hoặc also cho câu khẳng định đúng.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:post:mail",
+      "effectiveContentHash": "cdb1d7b19f9e7afa43d3e7f847ea8cc4b0e403a30e64b9283c2025e06518ab9a",
+      "assessment": "REVIEW",
+      "explanationVi": "Nghĩa thư từ và bưu phẩm đúng, nhưng 'Thư từ hôm nay có ... của người anh em họ của tôi' dài và kém tự nhiên; nên viết 'Thư nhận hôm nay có một bưu thiếp do anh/chị/em họ tôi gửi'.",
+      "affectedFields": [
+        "examples"
+      ],
+      "severity": "LOW",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:post:send-mail",
+      "effectiveContentHash": "f46681a00d30e36fbd8747e8610e629cca10fb99d374012fd46a610610e1cf9f",
+      "assessment": "PASS",
+      "explanationVi": "Động từ gửi qua bưu điện và ghi chú Anh Anh phù hợp; ví dụ giữ Nora, các mẫu và phòng thí nghiệm ở thị trấn khác, không đổi người nhận hoặc phương thức gửi.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:post:online-item",
+      "effectiveContentHash": "f87b06c999b13700402d7112f0252846fe9b3577c5faf90f0d47a4a3a97c1e16",
+      "assessment": "PASS",
+      "explanationVi": "Danh từ bài đăng trực tuyến khớp nguồn; ví dụ giữ bài mới nhất, tác giả nam và việc sửa radio cũ, bản dịch không lẫn với thư bưu điện hay chức vụ, ngữ pháp đếm được đúng.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:post:publish-online",
+      "effectiveContentHash": "678bf2eb47dfd9f453af8507041aedbea46ff9ac12f7a53841743cae1b4404ea",
+      "assessment": "PASS",
+      "explanationVi": "Động từ đăng nội dung trên mạng tách rõ với gửi bưu điện; bản dịch giữ câu lạc bộ, lịch đã chỉnh sửa và trang web của tổ chức, cấu trúc post something on đúng.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:post:upright-support",
+      "effectiveContentHash": "be2dc954c2b676ffcb9cf5aa6fa9bfcc0b33c3f04cf2860835a6c0dcbe83d984",
+      "assessment": "PASS",
+      "explanationVi": "Danh từ cột hoặc trụ khớp bằng chứng và ranh giới vật thể rõ; ví dụ giữ đúng một cột hàng rào đã đổ trong cơn bão, thời gian và số lượng được dịch đầy đủ.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:post:job-position",
+      "effectiveContentHash": "6b2f3b28e471a4b2a66378c2ab1898a465b3864f48df038a84088a956929371a",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa vị trí công việc khớp nguồn, khác cột và bài đăng; ví dụ giữ việc nhận vị trí nghiên cứu ở viện ven biển, ghi chú apply for, accept, hold a post phù hợp.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:practitioner:professional-worker",
+      "effectiveContentHash": "bba4ac5f1e47bbf2c7ff04d4a8b209b2d9d291048c35907b3d549bba2d494e83",
+      "assessment": "PASS",
+      "explanationVi": "Người hành nghề được diễn đạt đúng với nguồn y và luật; ví dụ số nhiều chuyên môn luật, kinh nghiệm và hành động chuẩn bị tài liệu đào tạo được giữ, ghi chú danh từ đếm được đúng.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:rest:relaxation",
+      "effectiveContentHash": "7c297e217e564327fcd809744aed477e46c517dafb3aff85b8bb6af46306afe1",
+      "assessment": "PASS",
+      "explanationVi": "Danh từ nghỉ ngơi phân biệt some rest và a rest đúng; ví dụ giữ khoảng nghỉ ngắn, người nữ, phục hồi năng lượng và thời điểm trước buổi học kế tiếp, cách dịch tự nhiên.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:rest:relax",
+      "effectiveContentHash": "353e384472eab2c6aa21af7bb782c99a171bd788211547c80018d3cadcce32d6",
+      "assessment": "PASS",
+      "explanationVi": "Động từ nghỉ ngơi nội động từ đúng với nguồn; bản dịch giữ nhóm người làm vườn, bóng râm và trình tự sau khi đào luống, không lẫn với đặt vật tựa lên một bề mặt.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:rest:remainder",
+      "effectiveContentHash": "d73797e372e564f357488cd159b26cf4938c9b6755382229e74205c4b9b576e9",
+      "assessment": "PASS",
+      "explanationVi": "Danh từ the rest chỉ phần hoặc các đối tượng còn lại đúng; ngữ cảnh vali cho phép hiểu những chiếc còn lại, bản dịch giữ một chiếc đã xếp đồ và nơi để những chiếc khác.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:consequent:resulting",
+      "effectiveContentHash": "d5d4ff2de1b1d1288fb36eeac98ebcbca48e3764f3b48e5da2ab13eab7f302f1",
+      "assessment": "PASS",
+      "explanationVi": "Tính từ consequent biểu thị quan hệ hệ quả chứ không chỉ thời gian, đúng nguồn; ví dụ giữ đóng đường, chậm trễ và tài xế bực bội, ghi chú consequent on phù hợp văn phong trang trọng.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:exhibit:display",
+      "effectiveContentHash": "ce2b26c244e8080a6d9da7207ee9943b5bfecda5904ae555e6a02ad1d931439b",
+      "assessment": "PASS",
+      "explanationVi": "Động từ trưng bày cho công chúng đúng với nguồn; ví dụ giữ thư viện, các bản đồ quý hiếm và toàn bộ tháng Tư, thời tương lai được dịch bằng 'sẽ', cấu trúc ngoại động từ đúng.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:exhibit:displayed-object",
+      "effectiveContentHash": "c6387b9f411bee6a9a1f6c36823aa6b043aaeb661c06137618c1294446b729ee",
+      "assessment": "PASS",
+      "explanationVi": "Danh từ hiện vật hoặc bộ sưu tập trưng bày phù hợp nguồn; ví dụ giữ thuyền chạm khắc thủ công và vị trí đầu tiên khách nhìn thấy, ghi chú một exhibit có thể gồm nhiều vật hợp lý.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:adopt:start-using",
+      "effectiveContentHash": "8abde9ab14b1364c3b706b1b9791287a0e05855c058a6d9993029d3488903bce",
+      "assessment": "REVIEW",
+      "explanationVi": "Nghĩa áp dụng phương pháp và hệ thống đúng, ví dụ giữ ủy ban cùng mức so sánh đơn giản hơn; nguồn 4600 còn ghi adopt a manner/expression nhưng ví dụ lại nói measures, cần ghi nhận ranh giới này.",
+      "affectedFields": [
+        "sourceSenseCoverage"
+      ],
+      "severity": "LOW",
+      "blocksPublication": false,
+      "missingSenseCandidates": [
+        "adopt a manner, way of speaking or expression: sử dụng một phong thái, cách nói hoặc nét biểu cảm; nguồn 4600 ghi trực tiếp nhưng ví dụ nguồn minh họa measures."
+      ],
+      "unresolvedBoundaryItems": [
+        "Cần quyết định cách dùng manner/expression thuộc nghĩa áp dụng rộng hay là nghĩa riêng; nguồn 4600 có định nghĩa và ví dụ không đồng nhất."
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:adopt:take-as-child",
+      "effectiveContentHash": "4f72830ce49d58ea41ce44b89e2a8e78a4da4b83d824be743888a40e6a61f677",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa nhận con nuôi đúng với nguồn, định nghĩa và ghi chú không áp đặt quy trình pháp lý cụ thể; him cho phép dịch bé trai, bản dịch giữ việc đón trẻ vào gia đình và độ tuổi nhỏ.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:treasure:valuables",
+      "effectiveContentHash": "517fa7e4cb1069bdf1253d19dd8c92e19433b785095e3b57c54880d860447798",
+      "assessment": "PASS",
+      "explanationVi": "Danh từ kho báu và ghi chú thường không đếm được phù hợp bằng chứng; ví dụ giữ nhóm thám hiểm, rương chứa báu vật và vị trí dưới tòa tháp đổ nát, không trùng ví dụ nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:deputy:second-in-command",
+      "effectiveContentHash": "a2c11c91abc5f9aae9222f2ede16bbef4dc4c5a770b56db5eaec2aefe7e41fe7",
+      "assessment": "PASS",
+      "explanationVi": "Cấp phó ngay dưới lãnh đạo và có thể thay nhiệm vụ lúc vắng mặt đúng nguồn; ví dụ giữ giám đốc, cấp phó của bà và báo cáo thường niên, cách dịch không đổi vai chủ thể.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:gratify:please",
+      "effectiveContentHash": "9d6a9ad0e94747318710329b70b7a4035e7c071f344b47777a57d5a011d5e1d8",
+      "assessment": "PASS",
+      "explanationVi": "Động từ làm hài lòng đúng nguồn và cấu trúc ngoại động từ trang trọng; bản dịch chuyển tự nhiên sang cảm xúc của người nam, giữ tình nguyện viên trở lại vào tuần kế tiếp.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:penny:small-coin",
+      "effectiveContentHash": "5549a8dadac71f35f0995c4e207aa8827a9f7f023a77045a0c3f0207de945948",
+      "assessment": "FAIL",
+      "explanationVi": "Định nghĩa ghi 'one pence in the UK' sai hình thái đơn vị tiền: một đơn vị là one penny, pence là số nhiều dùng cho số tiền; cần sửa trước xuất bản vì đây là kiến thức được dạy trực tiếp.",
+      "affectedFields": [
+        "definitionEn"
+      ],
+      "severity": "HIGH",
+      "blocksPublication": true,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:cynical:distrustful",
+      "effectiveContentHash": "5e005ea59f7b556a9056e54863c2aff4eb50a146737214e2188e6f9ba76901df",
+      "assessment": "REVIEW",
+      "explanationVi": "Nghĩa hoài nghi động cơ và lòng thành đúng với hai nguồn, nhưng 'vài lời hứa thất hẹn' kết hợp từ kém tự nhiên; nên dùng 'vài lần thất hứa' hoặc 'một số lời hứa không được thực hiện'.",
+      "affectedFields": [
+        "examples"
+      ],
+      "severity": "LOW",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:cynical:self-serving",
+      "effectiveContentHash": "cd78c20e31ac74491993418f53eb76202d60924fef6d432edabcb92fc6b426e4",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa vụ lợi bất chấp đạo đức được nguồn hỗ trợ riêng; ví dụ khơi gợi nỗi sợ để giành chú ý và bản dịch giữ dụng ý phê phán, ghi chú vị trí trước danh từ phù hợp.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    }
+  ]
+}

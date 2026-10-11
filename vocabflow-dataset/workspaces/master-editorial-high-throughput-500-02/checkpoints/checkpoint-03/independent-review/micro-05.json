@@ -1,0 +1,387 @@
+{
+  "reviewerKind": "ISOLATED_AI_REVIEW_AGENT",
+  "blindFirstPass": true,
+  "reviewerIdentity": "/root/cp03_blind_a",
+  "manuscriptSha256": "976c4bf8e991112802b58eb7e42b221b2b5d1e13b394a2735d8dc87d91a95e00",
+  "microBatch": 5,
+  "recordCount": 32,
+  "passCount": 27,
+  "reviewCount": 5,
+  "failCount": 0,
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2L:curved:bent",
+      "effectiveContentHash": "06ac09a0d1597ec0b56428dd406d4dd7a74add3107a30d96de6950bec2861a74",
+      "assessment": "PASS",
+      "explanationVi": "Cong đúng nhóm mái kính và đường cong trong Oxford; tay cầm nằm vừa tay giữ hình dạng và người sở hữu bàn tay. Định nghĩa và ghi chú không nhất thiết tròn phù hợp tính từ, ví dụ riêng không lặp câu nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:grasp:hold-firmly",
+      "effectiveContentHash": "e92caa6ef909e06f3a0b6d772fb5a5ccdf48201a4222dcaef8f583c29f95b863",
+      "assessment": "PASS",
+      "explanationVi": "Nắm chặt đúng động từ vật lý trong Oxford và 4600. Hai tay và trước khi leo giữ số lượng, tác nhân và thời điểm; nguồn 4600 dùng nghĩa Việt dạng danh hóa nhưng bản thảo đã dùng động từ đúng.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:grasp:understand",
+      "effectiveContentHash": "eaa42c1a004384aae8f8e45d2ddbedd117fa6525df4d2986f3afd2c8e7e79628",
+      "assessment": "PASS",
+      "explanationVi": "Hiểu, nắm bắt đúng nhóm nhận thức Oxford, tách rõ khỏi nắm đồ vật. Vài lần đọc mới hiểu lập luận giữ quá trình và người hiểu; ngoại động từ grasp an idea/how chính xác, không sao chép ví dụ nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:grasp:physical-hold",
+      "effectiveContentHash": "1f2c42c23046fb2d04d2873176ce413278688ac63422a94a1df587672191f4c1",
+      "assessment": "PASS",
+      "explanationVi": "Cái nắm, sự nắm giữ đúng nhóm danh từ vật lý Oxford. Tay cầm tuột khỏi tay anh ấy khi thuyền chao đảo là bản dịch tự nhiên của from his grasp, giữ sở hữu và quan hệ thời gian; ghi chú thường số ít đúng.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:grasp:understanding",
+      "effectiveContentHash": "88be67324ad86569fa8d3b2bc0cda42270a598bbd7a24db5b9c707bfc3286bff",
+      "assessment": "PASS",
+      "explanationVi": "Sự hiểu biết đúng danh từ grasp of trong Oxford. Cô ấy hiểu rõ luật chơi giúp những người chơi mới giữ chủ thể, đối tượng và số nhiều; ghi chú a good/clear grasp of phù hợp, tách khỏi nghĩa vật lý.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:reply:answer",
+      "effectiveContentHash": "c3956a0e6e5a82a840de41b44f57d5d1049a342b4816b0569335423b639e18b0",
+      "assessment": "PASS",
+      "explanationVi": "Trả lời đúng nhóm động từ Oxford, câu người phụ trách trả lời câu hỏi về tranh tự nhiên. Bản dịch giữ câu hỏi của tôi và người trả lời; reply to và reply that đúng, không nhập với danh từ reply.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:reply:response",
+      "effectiveContentHash": "17cc79e94437ef64e03e1fb0ecfe4eb82d761501fa64925bc717dbc0d5082fe1",
+      "assessment": "PASS",
+      "explanationVi": "Câu trả lời, lời hồi đáp đúng nhóm danh từ Oxford. Lời đáp ngắn của anh ấy xác nhận bưu kiện đã đến giữ quan hệ xác nhận và sự kiện hoàn tất; a reply to là cấu trúc danh từ đếm được chính xác.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:certain:sure",
+      "effectiveContentHash": "af79c8a666b48d2db59ef216c78e576297d917d3ef0b07e0d65df1d76f07eee0",
+      "assessment": "PASS",
+      "explanationVi": "Chắc chắn, tin chắc phù hợp cả hai nguồn. Cô ấy tin mình đã để chìa khóa trong áo khoác giữ niềm tin và hành động trước đó; ghi chú phân biệt niềm tin với chứng minh đúng, tránh ngụ ý chắc chắn luôn đúng sự thật.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:certain:particular-unspecified",
+      "effectiveContentHash": "afe407e92b6ab4767aef9973456573162c885e160008056431b71fd279e6124a",
+      "assessment": "PASS",
+      "explanationVi": "Một số, nhất định đúng nhóm certain foods Oxford. Ghế dành cho hành khách khó di chuyển giữ số nhiều và cấu trúc bị động; ghi chú vị trí trước danh từ và a certain đúng, tách khỏi tính từ tin chắc.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:paralysis:loss-of-movement",
+      "effectiveContentHash": "ea317b8863876339ca7ffa88a2df5403349fa726aa84b9e0ae4ca9ef7974e11c",
+      "assessment": "PASS",
+      "explanationVi": "Sự liệt đúng nghĩa mất khả năng cử động trong nguồn 4600. Cánh tay trái và người có tình trạng ấy được giữ trong dịch; ghi chú không chỉ nguyên nhân và không đếm được phù hợp, ví dụ không biến tình trạng thành chẩn đoán.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:trial:court-hearing",
+      "effectiveContentHash": "45c236b78a5088ac378a88a80618e4524131c4e36a675c9fecd97244f72c599f",
+      "assessment": "PASS",
+      "explanationVi": "Phiên tòa, việc xét xử phù hợp nhóm Oxford và 4600. Nhân chứng cung cấp lời khai giữ số nhiều và thời điểm trong phiên tòa; định nghĩa bao quát vụ việc pháp lý và ghi chú on trial for hợp lý trong phạm vi từ vựng.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:trial:test",
+      "effectiveContentHash": "7164e9335d7933821bb7420c6aaa077b7a82b2b97d386089ce578559650c9a89",
+      "assessment": "PASS",
+      "explanationVi": "Cuộc thử nghiệm đúng nhóm clinical trial Oxford, tách khỏi phiên tòa. Bệnh viện công bố thử nghiệm thiết bị theo dõi giữ tác nhân và đối tượng; ghi chú không đảm bảo thành công chính xác, không lặp ví dụ thuốc nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:earthquake:ground-shaking",
+      "effectiveContentHash": "1fb40b66ae2546422bd3c60f2f974168afd08c1293f8bc89adc84df45b81e113",
+      "assessment": "REVIEW",
+      "explanationVi": "Trận động đất và ví dụ cốc rung đúng hai nguồn, số nhiều cốc và tính chất nhỏ được giữ. Tuy nhiên a sudden movement that makes the ground shake quá chung, có thể bao gồm rung do xe máy móc; nên định nghĩa trực tiếp sự rung chuyển đột ngột của bề mặt Trái Đất.",
+      "affectedFields": [
+        "definitionEn"
+      ],
+      "severity": "MEDIUM",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": [
+        "Định nghĩa hiện tại quá chung, chưa nêu trực tiếp bề mặt Trái Đất rung chuyển."
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:marine:sea-related",
+      "effectiveContentHash": "16de3463e144a4b21c5bcf184c62ca6e51706c6e1d5ef42cfcc922e4fb327a23",
+      "assessment": "PASS",
+      "explanationVi": "Thuộc biển, sống ở biển đúng nhóm tính từ hai nguồn. Học sinh chụp sinh vật biển quanh rạn san hô giữ tác nhân và địa điểm; life được chuyển thành sinh vật tự nhiên, ghi chú chỉ đề xuất tính từ tránh nhập với marine danh từ.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:diary:personal-record",
+      "effectiveContentHash": "a588202e69b032c257c3a613f5a012d6301ab18c481b561fbca885bb8d3c6abe",
+      "assessment": "PASS",
+      "explanationVi": "Nhật ký đúng nhóm trải nghiệm cá nhân của hai nguồn. Trong chuyến đi cô ấy ghi về người đã gặp giữ hoạt động và thời điểm; định nghĩa cho phép bản ghi ngoài sách, ghi chú keep/write a diary và ngày tháng hợp lý.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:diary:appointment-book",
+      "effectiveContentHash": "d2d5499d48b5f5f1cdcb7239fd622363a3e92b84fc4f861ef3bfec8dbfe9c85b",
+      "assessment": "PASS",
+      "explanationVi": "Sổ lịch hẹn đúng nhóm put the meeting in my diary Oxford, tách khỏi nhật ký trải nghiệm. Xem lịch trước khi đồng ý họp thứ Năm giữ trình tự và ngày; ghi chú danh từ đếm được và cách dùng Anh Anh phù hợp.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:discipline:rule-following",
+      "effectiveContentHash": "9361372f8e68a217ce7022dd87bee9ab4ebb6e831a448eb733a9df8c36b9c699",
+      "assessment": "PASS",
+      "explanationVi": "Kỷ luật đúng nghĩa rèn luyện và kiểm soát theo quy tắc trong hai nguồn. Hiệu trưởng thảo luận với nhân viên mới giữ tác nhân và đối tượng; classroom discipline không đếm được phù hợp, không nhập với ngành học.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:discipline:self-control",
+      "effectiveContentHash": "f9710d4f42b0f5b123774cd681f140a7b4f09f7f9bb1cb2bac7a86facb4c93b8",
+      "assessment": "PASS",
+      "explanationVi": "Tính kỷ luật, tự kiểm soát có bằng chứng Oxford từ việc học nhạc đòi hỏi discipline. Luyện tập hằng ngày đòi hỏi cao hơn dự kiến giữ so sánh và người dự kiến; tách nghĩa khỏi kiểm soát lớp học là hợp lý dù nguồn gộp cùng nhóm.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:discipline:subject",
+      "effectiveContentHash": "3773356498fa8d522ddadedab18eb799e3c84d3d6be2b69bd80647bcc6133917",
+      "assessment": "PASS",
+      "explanationVi": "Ngành học đúng nhóm academic discipline Oxford. Sinh viên từ nhiều ngành giữ số nhiều và quan hệ tập hợp của khóa học; ghi chú danh từ đếm được và ranh giới với kỷ luật giúp hiểu đúng, không mở rộng sang động từ.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:scribe:manuscript-copyist",
+      "effectiveContentHash": "c79ee524e92b2237cb38f74adf8f24c31bc1fe6da03373b77f0d5ae9fb56337f",
+      "assessment": "REVIEW",
+      "explanationVi": "Người chép bản thảo đúng nguồn 4600 về nghề chép tác phẩm và ghi sự kiện. Bản dịch người ghi chép chép hơi lặp, tờ da nên dùng tờ giấy da để rõ parchment; đây là cải thiện văn phong, không đổi tác nhân hay bản thỏa thuận.",
+      "affectedFields": [
+        "examples"
+      ],
+      "severity": "LOW",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": [
+        "Cần làm mượt người ghi chép chép và diễn đạt giấy da cho parchment."
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:transparent:see-through",
+      "effectiveContentHash": "1d0e8656f1a4923ec0552847823e76d3e6c0848d199848e2edf3fc64f415fd1b",
+      "assessment": "PASS",
+      "explanationVi": "Trong suốt đúng nhóm vật liệu Oxford và 4600. Hộp giúp nhìn rõ hạt bên trong giữ quan hệ khả năng nhìn; định nghĩa và ghi chú phân biệt translucent chính xác, ví dụ mới có ngữ cảnh khác câu nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:transparent:open-process",
+      "effectiveContentHash": "03626c1c9bd0596e51aad835e6a5fe90d7fdd2fdf3e356eb0a53eaf15185b132",
+      "assessment": "PASS",
+      "explanationVi": "Minh bạch đúng nhóm quy trình Oxford. Ngân sách cho thấy từng khoản quyên góp dùng ra sao giữ tính từng khoản; định nghĩa và ghi chú minh bạch không tự đảm bảo công bằng đúng, tách khỏi tính chất nhìn xuyên vật liệu.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:proceeds:money-received",
+      "effectiveContentHash": "087b499e45572a4598338d2681918fb1182b9193a967c41332497261dc953554",
+      "assessment": "REVIEW",
+      "explanationVi": "Số tiền thu được đúng hai nguồn; tiền bán gốm dùng mua dụng cụ giữ mục đích và xưởng. Ghi chú proceeds are và net proceeds đúng; nguồn 4600 thêm profits có thể gây nhầm thu nhập với lợi nhuận, nên ghi nhận bất nhất nguồn đã được bản thảo tránh.",
+      "affectedFields": [
+        "sourceEvidence"
+      ],
+      "severity": "LOW",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": [
+        "Nguồn 4600 thêm profits vào proceeds, cần phân biệt tiền thu và lợi nhuận."
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:farewell:goodbye",
+      "effectiveContentHash": "03d89875bfe25400360d2cae56300236bc5eca39730fc9c9e4bc42842f428c22",
+      "assessment": "PASS",
+      "explanationVi": "Lời từ biệt, việc chia tay phù hợp nguồn 4600. Họ trao nhau lời từ biệt ấm áp tại nhà ga giữ tính tương hỗ và địa điểm; cách dùng countable cho một lần và bid/say farewell to hợp lý, câu không sao chép nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:biodiversity:variety-of-life",
+      "effectiveContentHash": "8bd849aa517decb29f29c1440847159a5bf0c6a3795852b05f4872d21965ed28",
+      "assessment": "REVIEW",
+      "explanationVi": "Đa dạng sinh học đúng sự phong phú sinh vật; vườn trường tạo nhiều môi trường sống giữ quan hệ phương tiện. Nguồn 4600 nói cân bằng môi trường và chỉ động thực vật quá hẹp; bản thảo mở sang organisms đúng, nên ghi nhận giới hạn bằng chứng nguồn.",
+      "affectedFields": [
+        "sourceEvidence"
+      ],
+      "severity": "LOW",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": [
+        "Nguồn định nghĩa sinh vật quá hẹp và gắn điều kiện cân bằng môi trường."
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:storm:severe-weather",
+      "effectiveContentHash": "2f19830eaf2dd7ceee1e6cdb207b93253973ec5e37a9f6a4b5134f3dd9cc5f90",
+      "assessment": "PASS",
+      "explanationVi": "Cơn bão đúng nghĩa thời tiết khắc nghiệt hai nguồn, không bắt buộc xoáy thuận nhiệt đới. Phà ở cảng đến khi bão qua giữ điểm kết thúc và đối tượng; danh từ đếm được đúng, không tự đề xuất động từ từ metadata US.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:native:first-language",
+      "effectiveContentHash": "2a92f4bbdd334b39f0b4423eb7509e614267155f4d1b5c1a2d496f625f0db72d",
+      "assessment": "PASS",
+      "explanationVi": "Bản ngữ, mẹ đẻ đúng nhóm native language Oxford. Cô ấy viết thơ bằng tiếng mẹ đẻ và cả tiếng Anh giữ quan hệ bổ sung; định nghĩa và ghi chú native speaker không đồng nhất quốc tịch đúng, tách khỏi bản địa sinh vật.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:native:indigenous-to-place",
+      "effectiveContentHash": "b82cfaec34cff98f5761104b1191a89fdf395d0f1a9998f4f8c2c47964ad5853",
+      "assessment": "REVIEW",
+      "explanationVi": "Bản địa đúng nhóm cây tự nhiên ở một nơi trong Oxford; dương xỉ và rừng núi được giữ. Nguồn 4600 nói nơi người sinh ra lớn lên nhưng ví dụ native peoples, cần làm rõ phạm vi tính từ về người/quê gốc so với cây bản địa và xem có cần nghĩa bổ sung.",
+      "affectedFields": [
+        "sourceEvidence"
+      ],
+      "severity": "MEDIUM",
+      "blocksPublication": false,
+      "missingSenseCandidates": [
+        "Tính từ native chỉ nơi/quê gốc gắn với người sinh ra, lớn lên: nguồn 4600 có định nghĩa này nhưng ví dụ native peoples; cần xác định nghĩa riêng và chứng cứ."
+      ],
+      "unresolvedBoundaryItems": [
+        "Tính từ native về người bản địa hoặc quê gốc chưa ánh xạ rõ với bản địa sinh vật."
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:native:person-born-there",
+      "effectiveContentHash": "a63baec82a6d406a7f9b05d5e6da87cc9751945be98d8a47a907cba3b6ef6044",
+      "assessment": "PASS",
+      "explanationVi": "Người gốc, người sinh ra ở đúng nhóm native of Da Nang Oxford. Người đàn ông sinh thị trấn ven biển và biết phố hẹp giữ quan hệ nguyên nhân ngầm, số nhiều phố; danh từ đếm được và ghi chú cách gọi nhóm người phù hợp.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:addiction:compulsive-dependence",
+      "effectiveContentHash": "f9729b804bc78e26c651aaa4e3d13b21c58c866cfc1e67f38e1c0b7b78b9259a",
+      "assessment": "PASS",
+      "explanationVi": "Chứng nghiện đúng sự phụ thuộc khó dừng trong hai nguồn. Hồi ký kể cuộc đấu tranh của cô ấy với nghiện cờ bạc giữ người trải nghiệm và đối tượng; addiction to đúng, phân biệt với thích thú mạnh giúp giới hạn nghĩa.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:election:vote",
+      "effectiveContentHash": "8a4a0cd39a32283e0b00fb546cd240f50be6fafbd3fb1b6994ae801c33fa968d",
+      "assessment": "PASS",
+      "explanationVi": "Cuộc bầu cử đúng nhóm lựa chọn bằng bỏ phiếu Oxford. Các thành viên tổ chức để chọn chủ tịch mới giữ tác nhân, mục đích và tính mới; danh từ đếm được, hold/vote in an election đúng, không sao chép ví dụ toàn quốc nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:highly:great-degree",
+      "effectiveContentHash": "02c06fb3fc99574cc8580a89ac1f3d68dd390c6d8d67b81de817534a04a5ff46",
+      "assessment": "PASS",
+      "explanationVi": "Rất, ở mức độ cao đúng trạng từ highly trong Oxford. Buổi tập huấn hữu ích cho người hướng dẫn mới giữ mức độ và đối tượng; highly useful chấp nhận được, ghi chú bổ nghĩa tính từ hoặc phân từ đúng, không đổi thành tính từ.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    }
+  ]
+}

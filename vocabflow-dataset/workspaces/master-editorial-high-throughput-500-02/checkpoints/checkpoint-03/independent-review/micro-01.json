@@ -1,0 +1,397 @@
+{
+  "reviewerKind": "ISOLATED_AI_REVIEW_AGENT",
+  "blindFirstPass": true,
+  "reviewerIdentity": "/root/cp03_blind_a",
+  "manuscriptSha256": "651083ee777f2e05ccae747bab06f7820882c29a91c2c788d013eb91a48d10ff",
+  "microBatch": 1,
+  "recordCount": 32,
+  "passCount": 23,
+  "reviewCount": 7,
+  "failCount": 2,
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2L:disorder:health-condition",
+      "effectiveContentHash": "eb6452e901a5cdf5c18656bd81637db87041d6557a40edbf564278cf681fd6df",
+      "assessment": "PASS",
+      "explanationVi": "Định nghĩa bệnh lý và chứng rối loạn đúng; ví dụ thăng bằng giữ Mina là người đọc. Danh từ đếm được chính xác, không nhập với nghĩa lộn xộn dù nguồn 4600 ghép hai nghĩa Việt trong cùng mục.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:disorder:lack-of-order",
+      "effectiveContentHash": "06ffdf551275e95402370ca62f4cac3884b923ae063b6246dd564873a57f6c98",
+      "assessment": "PASS",
+      "explanationVi": "Sự lộn xộn phù hợp nhóm phòng thiếu trật tự trong Oxford. Ví dụ kho vẫn lộn xộn suốt nhiều tuần giữ diễn tiến và thời lượng; ghi chú không đếm được đúng, tách khỏi chứng rối loạn sức khỏe.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:disadvantage:unfavourable-factor",
+      "effectiveContentHash": "c691846f20e2f09a0ab910dba03e6cdacc45e6cf67e3b598c8b4edaf51694693",
+      "assessment": "REVIEW",
+      "explanationVi": "Điểm bất lợi phù hợp hai nguồn và ví dụ giờ mở cửa hạn chế. Bản dịch giữ một yếu tố bất lợi và đối tượng người mua buổi tối; CEFR B1 trong Oxford khác C1 trong 4600 nên cần giải quyết metadata.",
+      "affectedFields": [
+        "sourceEvidence.cefrEvidence"
+      ],
+      "severity": "LOW",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": [
+        "CEFR B1 và C1 bất đồng giữa hai nguồn."
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:silver:metal",
+      "effectiveContentHash": "dfae3279a23f1d54d2b55e24bd64fa6922cceb71e398fcb2b2c7393b172b123c",
+      "assessment": "PASS",
+      "explanationVi": "Bạc là vật liệu kim loại, được hỗ trợ bởi nhóm vòng cổ Oxford. Tấm bạc thành mặt dây chuyền giữ người thợ là tác nhân; ghi chú không đếm được đúng và tách rõ khỏi tính từ màu bạc.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:silver:colour",
+      "effectiveContentHash": "e10e96bff7cadb8a732f47e36d69f3017e1109dd4ab23ad77b1c187d3f5f828f",
+      "assessment": "PASS",
+      "explanationVi": "Màu bạc đúng nhóm tính từ Oxford. Ruy băng màu bạc quanh hộp xanh giữ cấu trúc bị động và vật thể trong dịch; ghi chú vật màu bạc không nhất thiết làm bằng bạc đúng và hữu ích.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:assemble:gather",
+      "effectiveContentHash": "0b299ba9bf9150fe907c57eed216fd9040c2081a66e6cfebd446634678c87934",
+      "assessment": "REVIEW",
+      "explanationVi": "Tập hợp đúng nghĩa nội động từ Oxford; các nhạc công và thời điểm trước buổi diễn tập được giữ. Nguồn 4600 định nghĩa tụ họp nhưng ví dụ lắp kệ thuộc nghĩa khác, cần chú thích sự lệch nguồn khi ánh xạ.",
+      "affectedFields": [
+        "sourceEvidence"
+      ],
+      "severity": "LOW",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": [
+        "Định nghĩa gather và ví dụ shelves trong 4600 không cùng nghĩa."
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:assemble:put-together",
+      "effectiveContentHash": "acb7a56337f79a5b1e96dc6ee30b18093860d2a18c21a2e0e1f071ff8eb0eec0",
+      "assessment": "REVIEW",
+      "explanationVi": "Lắp ráp đúng nghĩa ghép bộ phận, Jon và các tấm gỗ đánh số được giữ, ngoại động từ đúng. Nguồn 4600 định nghĩa tụ họp nhưng ví dụ lắp kệ, nên không dùng định nghĩa ấy làm chứng cứ trực tiếp cho nghĩa này.",
+      "affectedFields": [
+        "sourceEvidence"
+      ],
+      "severity": "LOW",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": [
+        "Định nghĩa gather và ví dụ shelves trong 4600 không cùng nghĩa."
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:transport:carrying-system",
+      "effectiveContentHash": "e025d33f33c152b7f38fefd8f6f0bf0a5220e593a7e073f601a730c30c61a7c5",
+      "assessment": "PASS",
+      "explanationVi": "Hoạt động hoặc hệ thống vận tải phù hợp hai nguồn. Hòn đảo dựa vào phà vận chuyển nông sản giữ đúng quan hệ và hàng hóa; chuyển danh hóa thành động từ trong dịch tự nhiên, ghi chú không đếm được đúng.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:transport:means-of-travel",
+      "effectiveContentHash": "3d203ad355b4eb5afda52bdfc23feec582793589f651290ed6ee54e18b9e4784",
+      "assessment": "PASS",
+      "explanationVi": "Phương tiện hoặc cách di chuyển phù hợp nhóm Oxford. Đi bộ thuộc other means trong định nghĩa; bản dịch giữ sở thích của cô ấy và điều kiện chuyến đi ngắn, ghi chú form of transport đúng.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:transport:carry",
+      "effectiveContentHash": "9f7c6f00560f2cee1ef876f16cd07845cddc5150a564f8a4128e3008f2ae3110",
+      "assessment": "PASS",
+      "explanationVi": "Vận chuyển người hoặc hàng giữa các nơi đúng nhóm động từ Oxford. Xe tải nhỏ làm lạnh là chủ thể vận chuyển hoa từ vườn ươm tới chợ; dịch giữ đầy đủ hai điểm và cấu trúc ngoại động từ đúng.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:humble:modest",
+      "effectiveContentHash": "cd7227a485af7d63198f8bcec53fd664cc7af291817dce0d51f643d49f57343b",
+      "assessment": "PASS",
+      "explanationVi": "Khiêm tốn đúng nghĩa không coi mình hơn người trong cả hai nguồn. Đầu bếp đoạt giải khiêm tốn về thành tựu của mình giữ quan hệ sở hữu; vẫn thêm sắc thái nhẹ nhưng không đổi ý cốt lõi, humble about đúng.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:humble:simple",
+      "effectiveContentHash": "4c21bc46d6a40ea26538d7aa711f0c8275e851798d9e90f7831907a22d35132f",
+      "assessment": "PASS",
+      "explanationVi": "Đơn sơ, bình dị đúng nhóm Oxford về quán nhỏ, khác sự khiêm tốn của con người. Ngôi nhà có một bếp và hai phòng giữ số lượng; ghi chú home/beginnings giúp nhận biết nghĩa này.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:learning:acquiring-knowledge",
+      "effectiveContentHash": "16a4d7ee93cc318f43d3810b2b7a5dd51138bd431c95fe8f407f3c6b2bce0e06",
+      "assessment": "REVIEW",
+      "explanationVi": "Nghĩa quá trình học và không đếm được phù hợp nguồn. Her learning improved và việc học của cô ấy tiến bộ hơi gượng; nên nói việc học hiệu quả hơn. Partner chỉ người cùng luyện tập, không bắt buộc là bạn bè.",
+      "affectedFields": [
+        "examples"
+      ],
+      "severity": "LOW",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": [
+        "Cách diễn đạt cải thiện việc học và partner cần tự nhiên hơn."
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:intrinsic:inherent",
+      "effectiveContentHash": "90cfa713ea4e1f80115273ad08ae15651b6bcf5efa7cba855138333b748bf1c3",
+      "assessment": "PASS",
+      "explanationVi": "Nội tại, thuộc bản chất đúng định nghĩa 4600. Ví dụ tò mò tìm hiểu thuộc cách nhóm làm việc giữ quan hệ intrinsic to; dịch tự nhiên và ghi chú không nhất thiết tốt hay có giá trị giúp tránh hiểu sai.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:discrimination:unfair-treatment",
+      "effectiveContentHash": "da51ef9088ee33006056209810f44cdf8c0b3a1883a8bdf1b6c2307802b01cf2",
+      "assessment": "PASS",
+      "explanationVi": "Phân biệt đối xử đúng nghĩa bất công với một nhóm. Ví dụ người lao động lớn tuổi có bằng chứng hai nguồn; dịch giữ cuộc khảo sát hỏi nhân viên, không biến nhân viên thành tác nhân phân biệt đối xử.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:pulse:heartbeat",
+      "effectiveContentHash": "92c2db12229cadad45728b5e36ce19cac79a4aa270c0a4947317f16188832dda",
+      "assessment": "PASS",
+      "explanationVi": "Mạch hoặc nhịp mạch phù hợp cả hai nguồn bao gồm nhịp và tần số. Eli chờ nhịp chậm lại sau chạy giữ chủ thể và thời điểm; ghi chú thường số ít và take someone’s pulse đúng.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:pulse:short-burst",
+      "effectiveContentHash": "9b4631c6177a4fb3f97365108ebdf9b2337df6f6e3f5ef7c59d7153c05007b32",
+      "assessment": "PASS",
+      "explanationVi": "Xung năng lượng ngắn phù hợp nhóm pulse of light Oxford. Cảm biến phát xung khi kích hoạt giữ tác nhân và điều kiện bị động; danh từ đếm được đúng, tách rõ với mạch cơ thể.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:bring:carry-towards",
+      "effectiveContentHash": "88b50a608c0c2b7af3c547dab09b5cf9c58336d4d20910b13ae1d5f606da0133",
+      "assessment": "PASS",
+      "explanationVi": "Mang đến, đưa đến phù hợp việc chuyển tới nơi được nhắc đến. Lời nhờ mang ghế tới văn phòng của tôi giữ điểm đích và hình thức câu hỏi; bring/brought/brought đúng, không nhập với mang lại kết quả.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:bring:cause-result",
+      "effectiveContentHash": "712ddc6b57dde2d62f00515d2d19ad4d72c0378943399c399ac89628b3605b4a",
+      "assessment": "PASS",
+      "explanationVi": "Mang lại đúng nghĩa gây kết quả hoặc cảm giác. Chiếu sáng bổ sung gây cảm giác an toàn giữ yếu tố gây ra kết quả trong dịch; dạng brought và cấu trúc bring someone happiness chính xác.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:ironic:unexpected-contrast",
+      "effectiveContentHash": "5d2d730d017eadfe51d4247a2690b2b67b8331d3fbbdf1055321a8753588bf4b",
+      "assessment": "PASS",
+      "explanationVi": "Trớ trêu đúng nghĩa trái kỳ vọng, khác lời nói mỉa mai. Người bán ô bị ướt sũng thể hiện tương phản rõ; bản dịch giữ người bán gặp tình trạng này trên đường về nhà và ghi chú không cần lời nói cố ý đúng.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:ironic:opposite-intent",
+      "effectiveContentHash": "79dace33da2b6757a9a151fe0d340d3d2e354d487fd0e12ee2c21b4ce06f1bbf",
+      "assessment": "PASS",
+      "explanationVi": "Mỉa mai phù hợp nguồn 4600 về ý trái lời nói và nhóm Oxford. Lời khen máy in hỏng thể hiện tương phản, giữ cô ấy là người khen và mọi người cười; ghi chú remark/tone/smile phù hợp.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:correspondent:reporter",
+      "effectiveContentHash": "31514619354fd8a70eec3f9f96c440f08d38d78d3449c5f3f160edf2e1860124",
+      "assessment": "REVIEW",
+      "explanationVi": "Phóng viên chuyên trách phù hợp nhóm Oxford và 4600. Phóng viên khoa học phỏng vấn giữ tác nhân và số nhiều nhà nghiên cứu; định nghĩa 4600 bị cắt ở for a newspaper or, cần đánh dấu chất lượng nguồn.",
+      "affectedFields": [
+        "sourceEvidence"
+      ],
+      "severity": "LOW",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": [
+        "Định nghĩa 4600 bị cắt sau newspaper or."
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:correspondent:letter-writer",
+      "effectiveContentHash": "2bfa4523cc247cce53a62cb74b43c0e9f6d2ff4ce5155a05b6258695c7747a22",
+      "assessment": "REVIEW",
+      "explanationVi": "Người trao đổi thư từ đúng nhóm Oxford và tách khỏi nghề báo. Tuy nhiên với mình ở Lisbon trong bản dịch có thể đặt nhà sử học hoặc việc trao đổi ở Lisbon; nên ghi rõ người trao đổi thư từ sống ở Lisbon để giữ phạm vi bổ nghĩa.",
+      "affectedFields": [
+        "examples"
+      ],
+      "severity": "MEDIUM",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": [
+        "Phạm vi bổ nghĩa vị trí Lisbon trong bản dịch chưa rõ."
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:reservation:booking",
+      "effectiveContentHash": "e29bc945b691c6d1a153e073189cabde21d99e8193f59ebdaf989bb7c981e532",
+      "assessment": "PASS",
+      "explanationVi": "Việc đặt chỗ và thông tin đặt chỗ đều có ví dụ Oxford hỗ trợ. Hai giường tầng dưới trên tàu đêm giữ đúng số lượng; định nghĩa sắp xếp trước và ghi chú make/confirm/cancel a reservation chính xác.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:reservation:doubt",
+      "effectiveContentHash": "24aa53bbbc8d76d7588c272afcc854a01ad118a9f40ef943acecc25815be88af",
+      "assessment": "PASS",
+      "explanationVi": "Sự e ngại, điều băn khoăn đúng nhóm reservations about Oxford. Dịch giữ số nhiều những băn khoăn, cô ấy bày tỏ và báo cáo chưa hoàn thành; ghi chú thường dùng số nhiều đúng, tách khỏi đặt chỗ.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:airway:breathing-passage",
+      "effectiveContentHash": "529951e8f5ef8e8b4032c6753cd88312f19072414d071558d92fa1177922654e",
+      "assessment": "PASS",
+      "explanationVi": "Đường thở đúng đường dẫn khí vào và ra phổi, phù hợp nguồn 4600. Sơ đồ đường thở trên nối khí quản giữ đúng bộ phận và quan hệ trong dịch; ghi chú danh từ đếm được và airways đúng.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:refuge:safe-place",
+      "effectiveContentHash": "fdee24693522b6dfc91923a113246843615bf7efe1003bc6c9f466d2e0cf49c9",
+      "assessment": "PASS",
+      "explanationVi": "Nơi trú ẩn đúng nghĩa địa điểm an toàn trong hai nguồn. Nhà gỗ bỏ hoang trở thành nơi trú cho người đi bộ mắc kẹt giữ chủ thể và số nhiều; ghi chú đếm được phân biệt với sự che chở đúng.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:refuge:protection",
+      "effectiveContentHash": "89868f13aa81151e06e6f3f06bcaea41a16ac56a4dda928150f077a4b2fea768",
+      "assessment": "REVIEW",
+      "explanationVi": "Sự trú ẩn, sự che chở đúng nhóm không đếm được Oxford. Nguồn 4600 định nghĩa địa điểm nhưng found refuge thiên về bảo vệ nên cần chú thích ánh xạ; tìm nơi trú ẩn trên đất cao là dịch tự nhiên của seek refuge.",
+      "affectedFields": [
+        "sourceEvidence"
+      ],
+      "severity": "LOW",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": [
+        "Nguồn 4600 định nghĩa địa điểm nhưng ví dụ thiên về sự bảo vệ."
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:excitement:excited-feeling",
+      "effectiveContentHash": "4db8f4a84de288ea033d1b62ac3d1aae532b777474722d93fc5ba785522dabc8",
+      "assessment": "FAIL",
+      "explanationVi": "Phấn khích đúng nhóm Oxford, nhưng when the invitation arrived là lúc lời mời tới hoặc được nhận. Được gửi đến chuyển sang mốc gửi và không đảm bảo đã tới; cần sửa khi lời mời đến để giữ đúng sự kiện gây háo hức.",
+      "affectedFields": [
+        "examples"
+      ],
+      "severity": "MEDIUM",
+      "blocksPublication": true,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:kit:equipment-set",
+      "effectiveContentHash": "a8cb0836ee310fbee761498d0c52a6023c513af385daa2f711fb0896a249b777",
+      "assessment": "PASS",
+      "explanationVi": "Bộ dụng cụ, bộ vật dụng đúng nghĩa tập hợp đồ dùng trong hai nguồn. Kim, chỉ và kéo nhỏ giữ thành phần và sở hữu của cô ấy; kit có thể gồm vật tư lẫn dụng cụ là ghi chú đúng.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:post-war:after-war",
+      "effectiveContentHash": "144855d6885e96d32614d31b9d04a5956f967aeaefc9a7733e9e560b5a14ed31",
+      "assessment": "FAIL",
+      "explanationVi": "Hậu chiến và ví dụ ảnh chụp sau chiến tranh đúng; biến thể postwar có bằng chứng Oxford. Tuy nhiên định nghĩa gần nguyên văn 4600, giữ chuỗi existing, happening or made in the period và chỉ đổi after thành following. Cần viết lại thực chất để giảm rủi ro sao chép.",
+      "affectedFields": [
+        "definitionEn"
+      ],
+      "severity": "HIGH",
+      "blocksPublication": true,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:bystander:uninvolved-witness",
+      "effectiveContentHash": "c7ffdb67340b6e0352b1630783543a32c832ce640f8bdc64f70f05c224e999f5",
+      "assessment": "PASS",
+      "explanationVi": "Người chứng kiến ngoài cuộc phù hợp nguồn 4600. Ví dụ mô tả vụ va chạm giữ một nhân chứng và đội cứu hộ; báo lại sau đó không thay đổi vai trò trong sự kiện ban đầu, ghi chú đếm được chính xác.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    }
+  ]
+}

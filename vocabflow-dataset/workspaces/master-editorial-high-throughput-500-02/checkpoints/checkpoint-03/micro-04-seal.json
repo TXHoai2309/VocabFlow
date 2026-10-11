@@ -1,0 +1,316 @@
+{
+  "cohortFingerprint": "9710a47fda875f70412c7440b2969c031dc6eb3c076140a42007aed4f83cf59c",
+  "fingerprint": "7a63d3feff66aea179f36d5a0c03193bb34379273b4adb86084f6f1e32b60269",
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:running",
+    "NORMALIZED_HEADWORD:crude",
+    "NORMALIZED_HEADWORD:unsettle",
+    "NORMALIZED_HEADWORD:offspring",
+    "NORMALIZED_HEADWORD:dear",
+    "NORMALIZED_HEADWORD:prescription",
+    "NORMALIZED_HEADWORD:leadership",
+    "NORMALIZED_HEADWORD:heat",
+    "NORMALIZED_HEADWORD:touch",
+    "NORMALIZED_HEADWORD:picture",
+    "NORMALIZED_HEADWORD:table",
+    "NORMALIZED_HEADWORD:duration",
+    "NORMALIZED_HEADWORD:intelligence",
+    "NORMALIZED_HEADWORD:collaboration",
+    "NORMALIZED_HEADWORD:dedication",
+    "NORMALIZED_HEADWORD:artery",
+    "NORMALIZED_HEADWORD:exotic",
+    "NORMALIZED_HEADWORD:queue",
+    "NORMALIZED_HEADWORD:insist",
+    "NORMALIZED_HEADWORD:deck"
+  ],
+  "manuscriptSha256": "cc09df2d98d95243e633f5214b20d7375cc5ef78a6b415df4582acdf458427ed",
+  "microBatch": 4,
+  "parentFingerprint": "965e252cf641eb40111eeb113fd213c0588b240b9a5f3e6386e185fd5e3b945b",
+  "phase": "2H.2L",
+  "planningFingerprint": "73968888a4fbe31a1ec6f9d0d00b16ff07aa94dad84f60809c2ac8aac343c599",
+  "planningSha256": "d6f9820dce3bd24c6cc4b22eed1466fd79c80661ca160823aaebfaf13dbcf6ad",
+  "qaCounts": {
+    "PASS": 21,
+    "REVIEW": 11
+  },
+  "recordHash": "0630ad2c712eefcccef23bcf64be34c3a566dcabe1c5622983c7e1147078db5a",
+  "reviewHash": "595a015ce3ada5c62fb94720fd653e024683e79ebc7b433d9bb2129784744fe3",
+  "selfReviewSha256": "eb56a7f66ce11ebbef7108e77a564ca0ba01a85259aad9810eb795b5abdeb494",
+  "senseCount": 32,
+  "sourceSimilarityFindings": [
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:running:activity",
+      "sourceRecordId": "1788223607019",
+      "text": "chạy bộ"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:running:activity",
+      "sourceRecordId": "1788223607019",
+      "text": "chạy bộ"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:crude:unrefined",
+      "sourceRecordId": "1788223610361",
+      "text": "thô, chưa tinh chế"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:crude:unrefined",
+      "sourceRecordId": "1788223610361",
+      "text": "thô, chưa tinh chế"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:crude:offensive",
+      "sourceRecordId": "1788223610361",
+      "text": "thô tục"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:crude:offensive",
+      "sourceRecordId": "1788223610361",
+      "text": "thô tục"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:crude:roughly-made",
+      "sourceRecordId": "1788223610361",
+      "text": "thô sơ, sơ sài"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:crude:roughly-made",
+      "sourceRecordId": "1788223610361",
+      "text": "thô sơ, sơ sài"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:offspring:children",
+      "sourceRecordId": "1788223610722",
+      "text": "con, con cái"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:offspring:children",
+      "sourceRecordId": "1788223610722",
+      "text": "con, con cái"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:prescription:medicine-order",
+      "sourceRecordId": "1788223610370",
+      "text": "đơn thuốc"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:prescription:medicine-order",
+      "sourceRecordId": "1788223610370",
+      "text": "đơn thuốc"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:prescription:medicine-order",
+      "sourceRecordId": "1559931009634",
+      "text": "đơn thuốc"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:leadership:leading-ability",
+      "sourceRecordId": "1788223608547",
+      "text": "sự lãnh đạo, khả năng lãnh đạo"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:leadership:leading-ability",
+      "sourceRecordId": "1788223608547",
+      "text": "sự lãnh đạo, khả năng lãnh đạo"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:heat:hotness",
+      "sourceRecordId": "1788223607230",
+      "text": "nhiệt, sức nóng"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:heat:hotness",
+      "sourceRecordId": "1788223607230",
+      "text": "nhiệt, sức nóng"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:heat:make-hot",
+      "sourceRecordId": "1788223607230",
+      "text": "làm nóng, đun nóng"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:heat:make-hot",
+      "sourceRecordId": "1788223607230",
+      "text": "làm nóng, đun nóng"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:touch:make-contact",
+      "sourceRecordId": "1788223607205",
+      "text": "chạm vào"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:picture:photograph",
+      "sourceRecordId": "1788223606385",
+      "text": "bức ảnh"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:picture:photograph",
+      "sourceRecordId": "1788223606385",
+      "text": "bức ảnh"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:intelligence:strategic-information",
+      "sourceRecordId": "1788223607976",
+      "text": "tin tình báo"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:intelligence:strategic-information",
+      "sourceRecordId": "1788223607976",
+      "text": "tin tình báo"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:collaboration:working-together",
+      "sourceRecordId": "1788223609945",
+      "text": "sự hợp tác"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:collaboration:working-together",
+      "sourceRecordId": "1788223609945",
+      "text": "sự hợp tác"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:dedication:commitment",
+      "sourceRecordId": "1788223610431",
+      "text": "sự tận tâm, cống hiến"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:dedication:commitment",
+      "sourceRecordId": "1788223610431",
+      "text": "sự tận tâm, cống hiến"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:artery:blood-vessel",
+      "sourceRecordId": "1559931008999",
+      "text": "động mạch"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:exotic:foreign-unfamiliar",
+      "sourceRecordId": "1788223609583",
+      "text": "lạ, ngoại lai"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:exotic:foreign-unfamiliar",
+      "sourceRecordId": "1788223609583",
+      "text": "lạ, ngoại lai"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:exotic:foreign-unfamiliar",
+      "sourceRecordId": "1559931009690",
+      "text": "lạ, ngoại lai"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:deck:ship-floor",
+      "sourceRecordId": "1788223609176",
+      "text": "boong tàu"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:deck:ship-floor",
+      "sourceRecordId": "1788223609176",
+      "text": "boong tàu"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:deck:ship-floor",
+      "sourceRecordId": "1559931007865",
+      "text": "boong tàu"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:deck:outdoor-platform",
+      "sourceRecordId": "1788223609176",
+      "text": "sàn ngoài trời"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:deck:outdoor-platform",
+      "sourceRecordId": "1788223609176",
+      "text": "sàn ngoài trời"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:deck:playing-cards",
+      "sourceRecordId": "1788223609176",
+      "text": "bộ bài"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:deck:playing-cards",
+      "sourceRecordId": "1788223609176",
+      "text": "bộ bài"
+    }
+  ],
+  "status": "SEALED_AI_DRAFT_NOT_APPROVED"
+}

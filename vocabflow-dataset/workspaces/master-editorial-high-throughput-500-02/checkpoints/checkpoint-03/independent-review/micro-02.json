@@ -1,0 +1,350 @@
+{
+  "manuscriptSha256": "50969e215dd9d02a4ea8974186db2bd29bdef4a5298ece022a459fa9b6359681",
+  "microBatch": 2,
+  "reviewerKind": "ISOLATED_AI_REVIEW_AGENT",
+  "blindFirstPass": true,
+  "reviewerIdentity": "/root/cp03_blind_b",
+  "reviewedRecordCount": 28,
+  "counts": {
+    "PASS": 22,
+    "REVIEW": 6,
+    "FAIL": 0,
+    "blocksPublication": 0
+  },
+  "reviewScope": "All 28 records: English definition, Vietnamese meaning, example actors/tense/quantifiers, grammar/POS, sense boundaries, embedded source conflicts, missing or unsupported senses and comparison for originality. Only handoff/micro-02.json was read; no Author A or self-review judgments were viewed.",
+  "originalityFinding": "Examples differ substantively from embedded source examples; ordinary definitional phrasing overlap does not establish copying. Rights UNKNOWN_REVIEW_REQUIRED remains unresolved and this content review is not rights clearance.",
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2L:shocking:disturbing",
+      "effectiveContentHash": "3c5eb82aad154f481122c779240e476dfe2c83bb693f9281473ed657b57126c0",
+      "assessment": "REVIEW",
+      "explanationVi": "Định nghĩa và POS khớp nghĩa gây khó chịu trong hai nguồn; ví dụ mới giữ đúng khách tham quan và nơi trú ẩn. Tuy nhiên disturbed thiên về bị tác động, bất an hoặc khó chịu, còn rất lo lắng nhấn mạnh nỗi lo và thêm cường độ; nên chỉnh bản dịch cho sát cảm xúc gốc.",
+      "affectedFields": [
+        "examples"
+      ],
+      "severity": "LOW",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:banish:expel-as-punishment",
+      "effectiveContentHash": "f035557f9265115292fbcb634e769714fd64d87759dd51bb3c28df69470e0951",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa đày hoặc trục xuất để trừng phạt khớp nguồn banish; cấu trúc ngoại động từ banish someone from đúng. Ví dụ mới về nữ hoàng và kẻ phản bội giữ chủ thể, hành động quá khứ và quan hệ sở hữu, không sao chép ví dụ Adam và Eva.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:claim:assert",
+      "effectiveContentHash": "4fda62ee2aaba39c71014b2f8aeca87bde3e6b1be8f542fd0290ae8a737d9a51",
+      "assessment": "PASS",
+      "explanationVi": "Định nghĩa giữ yếu tố lời nói chưa được chứng minh mà không kết luận là nói dối. Claim to have built diễn tả việc chế tạo trước lời tuyên bố; bản Việt giữ nhà phát minh và động cơ ít ồn hơn. POS động từ và mẫu that/to phù hợp hai nguồn, ví dụ không trùng nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:claim:assertion",
+      "effectiveContentHash": "5f88e91212ed024cb5b031e0b06bec2ff66b931561ef061cbe9184e45014309d",
+      "assessment": "PASS",
+      "explanationVi": "Danh từ claim được tách khỏi động từ và yêu cầu bảo hiểm đúng nhóm nghĩa nguồn. Câu về cầu không an toàn giữ lời khẳng định của cô ấy và cuộc kiểm tra được gây ra trong quá khứ; countable và mệnh đề that đúng, không thấy dấu hiệu sao chép ví dụ nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:claim:compensation-request",
+      "effectiveContentHash": "92b0d44a3678a0ed17b998b66382a80767d21367d91a262d6217f024280e455d",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn có ví dụ insurance claim nên giới hạn nghĩa yêu cầu tiền bảo hiểm là có căn cứ. Bản Việt giữ công ty bảo hiểm yêu cầu ảnh và yêu cầu bồi thường thuộc anh ấy, không đảo người yêu cầu. Danh từ đếm được và make/submit claim đúng; ví dụ mới có bối cảnh riêng.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:claim:request-entitlement",
+      "effectiveContentHash": "ea07e704135e8871c8d8f05171abd328c0025a319163ab57013da749f988d4fc",
+      "assessment": "PASS",
+      "explanationVi": "Nhóm nghĩa nguồn về claim a refund hỗ trợ yêu cầu nhận quyền lợi; định nghĩa không hứa chắc được trả tiền. Ví dụ giữ hành khách, khả năng can và chuyến đi bị hủy trong bản Việt. Ngoại động từ và compensation tự nhiên, tách rõ nghĩa khẳng định sự thật.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:excess:surplus",
+      "effectiveContentHash": "718b6349181d562d722b722b34723d098d069b8031a7ee102ea5f0e5b4a28067",
+      "assessment": "REVIEW",
+      "explanationVi": "Nghĩa danh từ lượng dư thừa và an excess of paint đúng nguồn Oxford; bản Việt giữ lượng sơn và vị trí mép khung, câu mới không trùng nguồn. Nguồn 4600 gắn nhãn adj nhưng ví dụ throw away any excess dùng danh từ; đây là xung đột POS nguồn cần ghi nhận, không làm sai bản thảo.",
+      "affectedFields": [
+        "sourceEvidence"
+      ],
+      "severity": "LOW",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": [
+        "Nguồn 4600: PoS adj nhưng ví dụ any excess là danh từ; dùng nhóm Oxford n. để xác lập bản ghi surplus."
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:excess:extra",
+      "effectiveContentHash": "3e255d676bb0afeef772ea92d3c60f33d2e27cef0c38a98eb7611db5c733a288",
+      "assessment": "REVIEW",
+      "explanationVi": "Định nghĩa tính từ dư thừa và vị trí trước fabric khớp nhóm adj Oxford; người thợ may, phần vải và tay áo được dịch đúng. Ví dụ mới phân biệt được với an excess of fabric. Nguồn 4600 có định nghĩa tính từ nhưng ví dụ any excess lại là danh từ, cần giữ ranh giới POS khi hợp nhất.",
+      "affectedFields": [
+        "sourceEvidence"
+      ],
+      "severity": "LOW",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": [
+        "Nguồn 4600 không thể dùng ví dụ any excess để minh họa tính từ; nhóm Oxford adj. hỗ trợ bản ghi extra."
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:excessive:too-much",
+      "effectiveContentHash": "b8bec3ca41e5fc7b2d825956d032462b5e910ab621a213e1312db508a7277e0b",
+      "assessment": "PASS",
+      "explanationVi": "Excessive được giải thích là vượt giới hạn hợp lý, không nhầm với excess như danh từ. Ví dụ xin lỗi về chậm trễ giữ người tổ chức và lối vào; bản Việt tự nhiên, không thêm lượng hay đổi tác nhân. POS và ghi chú phụ thuộc ngữ cảnh đúng, câu không lặp ví dụ nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:lesbian:same-sex-attraction",
+      "effectiveContentHash": "c2ef7328bfa830dc5262469d7fb93dbf78688d769e69ed7943630cf0dedec83e",
+      "assessment": "PASS",
+      "explanationVi": "Định nghĩa bao gồm phụ nữ có hấp dẫn đồng giới và những điều liên quan, phù hợp nghĩa adjective trong cả hai nguồn. Ví dụ nghệ sĩ đồng tính nữ giữ phạm vi và hành động giới thiệu phim của liên hoan. Dùng trước danh từ hoặc sau be đúng; không tự thêm bản ghi noun ngoài bằng chứng.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:pastor:church-minister",
+      "effectiveContentHash": "318b865bf145f2f338532fa829df4aaf13079dd962bf58b4f4969d62a5d9f1e4",
+      "assessment": "PASS",
+      "explanationVi": "Pastor là người lãnh đạo và chăm sóc cộng đoàn Kitô giáo, phù hợp parish/church trong nguồn; ghi chú truyền thống khác nhau tránh áp một hệ phái duy nhất. Ví dụ giữ mục sư mới và các gia đình ở cửa nhà thờ. Danh từ đếm được đúng, tình huống mới so với nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:breath:breathing-air",
+      "effectiveContentHash": "addb56a255832f20645b883ff7607b56d270bad61f8433fab85f758292382d67",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa hơi thở và phân biệt một hơi thở với cách dùng không đếm được phù hợp nguồn. Ví dụ catch her breath dùng thành ngữ đã được giải thích trong grammarNotes; bản Việt lấy lại hơi giữ cô ấy, việc dừng lại và nửa đường lên đồi. Không nhầm breath với động từ breathe.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:additionally:in-addition",
+      "effectiveContentHash": "c2d9e50f07912ea3af445dfd1c9c6a087434fca70e1ec3b49e00574eff0f2d28",
+      "assessment": "PASS",
+      "explanationVi": "Additionally là trạng từ bổ sung ý đã nêu, phù hợp hai nguồn. Ví dụ tách hai quyền lợi bằng dấu chấm phẩy và dấu phẩy đúng; bản Việt chuyển it sang người có vé hợp ngữ nghĩa quyền tiếp cận, vẫn giữ bữa trưa và vườn mái. Câu mới không sao chép ví dụ xe buýt hoặc thư viện.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:kidnap:abduct",
+      "effectiveContentHash": "db111f0427269026c6c80d72386048767624256ac9a179bbf21dd7a9cdc4f442",
+      "assessment": "PASS",
+      "explanationVi": "Định nghĩa bắt và giữ người trái ý muốn, bất hợp pháp phù hợp nghĩa bắt cóc trong nguồn. Ví dụ chỉ nói điều tra kế hoạch chứ không khẳng định nhân chứng đã bị bắt cóc; bản Việt giữ đúng mức độ này và thám tử. Ngoại động từ và kidnapped đúng, câu không trùng nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:hire:employ",
+      "effectiveContentHash": "d8dbb21d5aff23e01ce1b1192856ba9b145ec9caed23102310dcae7fdf229333",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa thuê người làm việc được nguồn tuyển kỹ sư và trả tiền làm việc hỗ trợ; bản thảo tách rõ thuê đồ vật. Ví dụ hãng phim thuê người dịch làm phụ đề giữ tác nhân và mục đích, quá khứ không bị đổi thành dự định. Cấu trúc hire someone to do đúng và câu có nội dung mới.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:hire:rent",
+      "effectiveContentHash": "d24582b94fb7edc9ed1510ae2781e9bf813821000628959849ea161aab657c04",
+      "assessment": "PASS",
+      "explanationVi": "Hire theo nghĩa trả tiền dùng tạm vật được nhóm Oxford thuê xe đạp hỗ trợ; không cần dựa vào nguồn 4600 chỉ nói thuê người. Máy chiếu và tập huấn cuối tuần giữ đúng trong bản Việt. Ngoại động từ và ghi chú Anh Anh đúng, ví dụ tách rõ rent với employ.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:hire:rental",
+      "effectiveContentHash": "fba1e12aa5fd3397e1b7ebbeb0c32639e3e84fb14b04ae49b0f4d8e51b2707b6",
+      "assessment": "PASS",
+      "explanationVi": "Danh từ hire chỉ việc thuê có căn cứ từ nhóm Oxford và for hire; usually uncountable phù hợp dịch vụ thuê dụng cụ. Bản Việt cho thuê thể hiện đúng phía cửa hàng cung cấp dịch vụ, giữ đơn vị theo ngày. Câu mới không sao chép ví dụ xe đạp gần nhà ga.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:merchant:trader",
+      "effectiveContentHash": "f9cf888404b3e4ee8bf6ac051aa7c56720f0cbe89295169781821516bf284402",
+      "assessment": "REVIEW",
+      "explanationVi": "Bản thảo trader, thương nhân và ví dụ mua toàn bộ vụ thu hoạch khớp nguồn Oxford; entire được giữ thành toàn bộ, không đổi người mua. Nguồn 4600 thêm tàu buôn trong Meaning nhưng định nghĩa và POS không hỗ trợ nghĩa tàu; cần loại nhiễu đó, không coi là nghĩa còn thiếu để xuất bản.",
+      "affectedFields": [
+        "sourceEvidence"
+      ],
+      "severity": "LOW",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": [
+        "Nguồn 4600 có gloss tàu buôn không được định nghĩa person who sells things hoặc ví dụ used cars hỗ trợ; không nhập thành sense merchant noun."
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:astrology:star-based-belief",
+      "effectiveContentHash": "9a3eb0a9d7622ada3e4c753752e22f68b4e368925d81e63ebb24d7f1a9ee0e0d",
+      "assessment": "REVIEW",
+      "explanationVi": "Định nghĩa niềm tin chiêm tinh và bản Việt chiêm tinh học đúng với nội dung tiếng Anh của nguồn. Nguồn lại ghi thiên văn học, trái nghĩa và trái ghi chú phân biệt astronomy; cần ghi nhận sửa lỗi nguồn. Ví dụ nhân vật chọn ngày may mắn giữ chủ thể và không khẳng định niềm tin là khoa học.",
+      "affectedFields": [
+        "sourceEvidence"
+      ],
+      "severity": "LOW",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": [
+        "Nguồn 4600 gloss thiên văn học xung đột với định nghĩa astrology; ưu tiên nội dung niềm tin ảnh hưởng sao và ghi rõ chiêm tinh học."
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:filter:device",
+      "effectiveContentHash": "547a6a0ce4bb6aadd5afd5df7c18de5a8e0c7e3d28fd4287ca423c0da6664557",
+      "assessment": "PASS",
+      "explanationVi": "Bộ lọc loại vật không mong muốn khỏi chất lỏng hoặc khí khớp ví dụ water filter của Oxford và định nghĩa thiết bị trong 4600. Ví dụ bụi trên bộ lọc máy hút bụi giữ vị trí và thiết bị trong bản Việt. Danh từ đếm được đúng, không lẫn với động từ lọc thông tin.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:filter:remove-material",
+      "effectiveContentHash": "62318e8cc511d2bbf9ed8699bf05bdba8928a8fe390e52f73355b37ba2023839",
+      "assessment": "REVIEW",
+      "explanationVi": "Định nghĩa và ví dụ lọc dầu đúng nghĩa vật lý, giữ máy thực hiện và dầu trở về động cơ trong bản Việt; cấu trúc ngoại động từ hợp lý. Tuy nhiên nguồn 4600 nói liquid, light, etc.; nghĩa lọc ánh sáng chưa có ứng viên trong batch. Vì phạm vi chỉ chọn nghĩa được hỗ trợ, đây là thiếu phủ cần theo dõi, không chặn nghĩa hiện tại.",
+      "affectedFields": [
+        "sourceSenseCoverage"
+      ],
+      "severity": "LOW",
+      "blocksPublication": false,
+      "missingSenseCandidates": [
+        "filter VERB: cho ánh sáng đi qua thiết bị lọc để chọn hoặc loại thành phần; nguồn 4600 nêu light nhưng chưa có ví dụ riêng."
+      ],
+      "unresolvedBoundaryItems": [
+        "Xác minh lọc ánh sáng là mở rộng của nghĩa vật lý hay cần một sense riêng trước khi bổ sung."
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:filter:screen-content",
+      "effectiveContentHash": "25ce2362c6a7d90e4b6bbfa7a0bd289b48c369e8490bb6d76690a3ea5c8da0d5",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa lọc thông tin được ví dụ filters harmful content của Oxford hỗ trợ, tách hợp lý khỏi bộ lọc vật lý. Câu ứng dụng lọc tin từ người gửi không xác định giữ tác nhân, đối tượng và nhóm người gửi; không khẳng định đọc nội dung cụ thể. POS động từ và cấu trúc transitive đúng, câu mới có đối tượng khác nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:deterioration:becoming-worse",
+      "effectiveContentHash": "0c512afec63e0759bc59adef90a498f565ec02a33f7bd66442a9f018c318d38e",
+      "assessment": "PASS",
+      "explanationVi": "Deterioration là quá trình trở nên tệ hơn, khớp định nghĩa và ví dụ nhà xuống cấp của nguồn. Bản Việt diễn đạt gradual bằng đang dần và giữ vết nứt cho thấy bức tường xuống cấp, không đổi nguyên nhân thành kết quả. Danh từ thường không đếm được và of/in đúng, câu mới về đá.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:overload:load-too-heavily",
+      "effectiveContentHash": "1c231309639c9328f2df9d951d8e03c6cf8c099b12430ee077d8a3483e37627b",
+      "assessment": "PASS",
+      "explanationVi": "Overload được giới hạn rõ nghĩa chất vượt sức chứa, đúng định nghĩa nguồn về quá nhiều thứ. Ví dụ người chuyển đồ chất thùng nặng lên xe đẩy giữ chủ thể và đối tượng; quá nhiều kết hợp gloss chất quá tải biểu đạt vượt mức. Ngoại động từ với with đúng, không thêm nghĩa điện hay thông tin thiếu bằng chứng.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:nose:body-part",
+      "effectiveContentHash": "3ce6dbc25dd703ae936d1512314bf854864ad5071b815c0908962025b676a02f",
+      "assessment": "PASS",
+      "explanationVi": "Nose là cơ quan thở và ngửi ở mặt, khớp nhóm danh từ mũi của Oxford. Ghi chú cho người và động vật phù hợp ví dụ chó con; bản Việt giữ mũi ướt, hành động áp vào tay và ngôi tôi. Danh từ đếm được đúng, câu không sao chép hai ví dụ mũi người trong nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:steam:water-vapour",
+      "effectiveContentHash": "f787548ed8b1aea701807dcaa22f3898a8a2e1819761836632ce371d5d6650df",
+      "assessment": "PASS",
+      "explanationVi": "Định nghĩa hơi nước dạng khí phù hợp hai nguồn; ghi chú sương nhìn thấy xử lý khác biệt giữa cách nói thông thường và dạng khí. Ví dụ hơi thoát qua lỗ nhỏ trên nắp giữ hướng chuyển động và kích thước nhỏ trong bản Việt. Uncountable đúng, không lặp câu kettle hoặc soup của nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:tact:sensitive-judgment",
+      "effectiveContentHash": "d056fe0013d1f6d3b1b6e18ba0a10ce7d2be21f2b04d78ad526af29cc09dbb09",
+      "assessment": "PASS",
+      "explanationVi": "Tact là khéo léo và tế nhị khi xử lý việc khó mà tránh xúc phạm, phù hợp định nghĩa nguồn. Ví dụ giải thích đề xuất cần làm thêm giữ cô ấy và lý do, bản Việt không biến thành phê phán trực tiếp. Danh từ không đếm được và with tact đúng, câu mới so với dispute and diplomacy.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:effectiveness:achieving-results",
+      "effectiveContentHash": "d67d3aa0883798978393793a7be034cbf178f323c6f036fbbd428c9e769f916e",
+      "assessment": "PASS",
+      "explanationVi": "Effectiveness đo mức đạt kết quả dự định, đúng cả hai nguồn và tách khỏi hiệu suất tài nguyên trong ghi chú. Ví dụ nhóm đo hiệu quả các biển cảnh báo mới giữ chủ thể, số nhiều và tính mới trong bản Việt. Danh từ thường không đếm được, effectiveness of đúng; ví dụ khác treatment/training/security system.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    }
+  ]
+}

@@ -1,0 +1,323 @@
+{
+  "cohortFingerprint": "9710a47fda875f70412c7440b2969c031dc6eb3c076140a42007aed4f83cf59c",
+  "fingerprint": "cfa3fc9393e9af6658419400205068055457889c6ec50b8f7381f9f711e66fa3",
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:curved",
+    "NORMALIZED_HEADWORD:grasp",
+    "NORMALIZED_HEADWORD:reply",
+    "NORMALIZED_HEADWORD:certain",
+    "NORMALIZED_HEADWORD:paralysis",
+    "NORMALIZED_HEADWORD:trial",
+    "NORMALIZED_HEADWORD:earthquake",
+    "NORMALIZED_HEADWORD:marine",
+    "NORMALIZED_HEADWORD:diary",
+    "NORMALIZED_HEADWORD:discipline",
+    "NORMALIZED_HEADWORD:scribe",
+    "NORMALIZED_HEADWORD:transparent",
+    "NORMALIZED_HEADWORD:proceeds",
+    "NORMALIZED_HEADWORD:farewell",
+    "NORMALIZED_HEADWORD:biodiversity",
+    "NORMALIZED_HEADWORD:storm",
+    "NORMALIZED_HEADWORD:native",
+    "NORMALIZED_HEADWORD:addiction",
+    "NORMALIZED_HEADWORD:election",
+    "NORMALIZED_HEADWORD:highly"
+  ],
+  "manuscriptSha256": "976c4bf8e991112802b58eb7e42b221b2b5d1e13b394a2735d8dc87d91a95e00",
+  "microBatch": 5,
+  "parentFingerprint": "965e252cf641eb40111eeb113fd213c0588b240b9a5f3e6386e185fd5e3b945b",
+  "phase": "2H.2L",
+  "planningFingerprint": "0227c1a1d4a3758b67277f0dd1ebe3b980c9c4d033bd7c3f94ef134cbb8a4c18",
+  "planningSha256": "09934c7432c4044eea5239ff6c28a341e59cca3f88f43c1ee4e3edddcbe07e20",
+  "qaCounts": {
+    "PASS": 24,
+    "REVIEW": 8
+  },
+  "recordHash": "defba02234e836e0ac889c643cf594087da5f6c0100ece8aac2a9dc2e1712681",
+  "reviewHash": "464b521c1151695527266d6c6ecda8b6964af6e0b24880bf16819726847712bc",
+  "selfReviewSha256": "4f9516a1abf73fadc213e15e90d44c07e01e668d56345ca7368a177ab48d7c59",
+  "senseCount": 32,
+  "sourceSimilarityFindings": [
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:grasp:hold-firmly",
+      "sourceRecordId": "1788223610412",
+      "text": "nắm chặt"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:grasp:hold-firmly",
+      "sourceRecordId": "1788223610412",
+      "text": "nắm chặt"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:grasp:physical-hold",
+      "sourceRecordId": "1788223610412",
+      "text": "cái nắm, sự nắm giữ"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:grasp:physical-hold",
+      "sourceRecordId": "1788223610412",
+      "text": "cái nắm, sự nắm giữ"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:reply:answer",
+      "sourceRecordId": "1788223607501",
+      "text": "trả lời"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:reply:answer",
+      "sourceRecordId": "1788223607501",
+      "text": "trả lời"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:certain:particular-unspecified",
+      "sourceRecordId": "1788223607043",
+      "text": "một số, nhất định"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:certain:particular-unspecified",
+      "sourceRecordId": "1788223607043",
+      "text": "một số, nhất định"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:trial:test",
+      "sourceRecordId": "1788223608511",
+      "text": "cuộc thử nghiệm"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:trial:test",
+      "sourceRecordId": "1788223608511",
+      "text": "cuộc thử nghiệm"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:earthquake:ground-shaking",
+      "sourceRecordId": "1788223608319",
+      "text": "trận động đất"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:marine:sea-related",
+      "sourceRecordId": "1788223609804",
+      "text": "thuộc biển, sống ở biển"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:marine:sea-related",
+      "sourceRecordId": "1788223609804",
+      "text": "thuộc biển, sống ở biển"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:diary:personal-record",
+      "sourceRecordId": "1788223607668",
+      "text": "nhật ký"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:diary:personal-record",
+      "sourceRecordId": "1788223607668",
+      "text": "nhật ký"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:diary:personal-record",
+      "sourceRecordId": "1559931007706",
+      "text": "nhật ký"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:diary:appointment-book",
+      "sourceRecordId": "1788223607668",
+      "text": "sổ lịch hẹn"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:diary:appointment-book",
+      "sourceRecordId": "1788223607668",
+      "text": "sổ lịch hẹn"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:discipline:rule-following",
+      "sourceRecordId": "1788223608879",
+      "text": "kỷ luật"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:discipline:rule-following",
+      "sourceRecordId": "1788223608879",
+      "text": "kỷ luật"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:discipline:rule-following",
+      "sourceRecordId": "1559931009961",
+      "text": "kỷ luật"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:transparent:see-through",
+      "sourceRecordId": "1788223610355",
+      "text": "trong suốt"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:transparent:see-through",
+      "sourceRecordId": "1788223610355",
+      "text": "trong suốt"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:transparent:open-process",
+      "sourceRecordId": "1788223610355",
+      "text": "minh bạch"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:transparent:open-process",
+      "sourceRecordId": "1788223610355",
+      "text": "minh bạch"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:proceeds:money-received",
+      "sourceRecordId": "1788223610283",
+      "text": "số tiền thu được"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:proceeds:money-received",
+      "sourceRecordId": "1788223610283",
+      "text": "số tiền thu được"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:biodiversity:variety-of-life",
+      "sourceRecordId": "1616499876706",
+      "text": "sự đa dạng sinh học"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:storm:severe-weather",
+      "sourceRecordId": "1788223607405",
+      "text": "cơn bão"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:storm:severe-weather",
+      "sourceRecordId": "1788223607405",
+      "text": "cơn bão"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:storm:severe-weather",
+      "sourceRecordId": "1556384731356",
+      "text": "cơn bão"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:native:first-language",
+      "sourceRecordId": "1788223607980",
+      "text": "bản ngữ, mẹ đẻ"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:native:first-language",
+      "sourceRecordId": "1788223607980",
+      "text": "bản ngữ, mẹ đẻ"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:native:indigenous-to-place",
+      "sourceRecordId": "1788223607980",
+      "text": "bản địa"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:native:indigenous-to-place",
+      "sourceRecordId": "1788223607980",
+      "text": "bản địa"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:native:indigenous-to-place",
+      "sourceRecordId": "1559931008694",
+      "text": "bản địa"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:addiction:compulsive-dependence",
+      "sourceRecordId": "1788223609402",
+      "text": "chứng nghiện, sự nghiện"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:addiction:compulsive-dependence",
+      "sourceRecordId": "1788223609402",
+      "text": "chứng nghiện, sự nghiện"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:election:vote",
+      "sourceRecordId": "1788223607802",
+      "text": "cuộc bầu cử"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:election:vote",
+      "sourceRecordId": "1788223607802",
+      "text": "cuộc bầu cử"
+    }
+  ],
+  "status": "SEALED_AI_DRAFT_NOT_APPROVED"
+}
