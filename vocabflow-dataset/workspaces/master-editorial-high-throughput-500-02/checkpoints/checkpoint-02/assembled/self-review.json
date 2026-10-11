@@ -1,0 +1,3169 @@
+{
+  "records": [
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:overuse:use-excessively",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «lạm dụng; sử dụng quá nhiều», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «If you overuse that phrase, your speech will sound repetitive.» với bản dịch VI. Nguồn gắn nhãn verb nhưng ví dụ dùng danh từ; giữ động từ theo POS đã đóng băng, không suy ra một Sense danh từ mới. Ghi chú ngữ pháp đã rà soát: Transitive: overuse something. The linked source labels a verb but illustrates a noun; that mismatch remains unresolved. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "47c6987acd333fe70697261092a7dae9579b8df3bacc8607cffbb7df7d8fced8",
+      "reviewedRecordSha256": "ae81df0d6084531890ba96ef373f9b835cb265043ef6812605cad52389c7f90f",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:remember:recall",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «nhớ; nhớ lại», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Mai remembers planting this tree with her grandfather.» với bản dịch VI. Nhớ trải nghiệm đã xảy ra được nguồn minh họa bằng remember doing; tách khỏi việc nhớ thực hiện nhiệm vụ chưa làm. Ghi chú ngữ pháp đã rà soát: Use remember doing for recalling a past action; remember something is also possible. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "0ee1f28096412f54c95e34b1c28b7ec0ef36c81559576121929706be073a9389",
+      "reviewedRecordSha256": "21580b9f9a6e0cb0c5f19f86dbe545fcea66ec5db6ad0d18d5efed6e394659ba",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:remember:not-forget-task",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «nhớ làm điều gì», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Please remember to send the revised timetable before noon.» với bản dịch VI. Mẫu remember to do trong nguồn chỉ việc không quên thực hiện hành động; ranh giới chức năng khác nhớ lại quá khứ. Ghi chú ngữ pháp đã rà soát: Remember to do refers to an action that needs to be done, unlike remember doing. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "0605de9dbf23b7d2edd16fd0e6defca263e02b39ea8aa84a738ab8e87afc5d2c",
+      "reviewedRecordSha256": "3fdb363c775b84f617b2e7da20403e5ac1b4885de18bd027b5cce04b888e82fd",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:lonely:lack-company",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «cô đơn», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Even in a crowded dormitory, Linh sometimes felt lonely.» với bản dịch VI. Hai ví dụ nguồn đều nói cảm giác thiếu bầu bạn, không cung cấp nghĩa nơi chốn vắng vẻ để tách thêm Sense. Ghi chú ngữ pháp đã rà soát: Use feel lonely or a lonely person; lonely describes a feeling rather than simply being alone. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "4aef6d2fe460df81e7424451906891b2bbae83018a9ac9a4f291ab198201ee6c",
+      "reviewedRecordSha256": "47913891451128cce51b49bdb7f9028b043debc8578be4410030d737bfa44f9c",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:aristocracy:noble-class",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «tầng lớp quý tộc», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The exhibition shows clothing once worn by the local aristocracy.» với bản dịch VI. Nguồn mô tả một tầng lớp xã hội có địa vị cao; chỉ chọn nghĩa tập thể, không tự thêm nghĩa chế độ cai trị. Ghi chú ngữ pháp đã rà soát: Usually collective: the aristocracy. Aristocracies can refer to such classes in different societies. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "a280b6f565240777bc3d276e9582e5b7f1083265227f4623ce47362f36486bef",
+      "reviewedRecordSha256": "5f05c77485564e68213f97fbaaf503439c98d66ba43506e5a481f6dc144cab71",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:correlation:linked-variation",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «sự tương quan; mối tương quan», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The survey showed a correlation between commute length and reported stress.» với bản dịch VI. Hai nguồn cùng chỉ quan hệ biến thiên giữa các đại lượng; tương quan không khẳng định quan hệ nhân quả. Ghi chú ngữ pháp đã rà soát: Use a correlation between A and B; correlation alone does not establish causation. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "daee9896fae532f3c304c46cd7ff9bdc004e65ac19d5049d5194788bc0c77702",
+      "reviewedRecordSha256": "104460c598ada86e235bb26f75f8bdb28ca2d88b327e5b876b11299be46c695e",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:cruise:holiday-voyage",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «chuyến du ngoạn bằng tàu», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Their weekend cruise included a stop at a small island.» với bản dịch VI. Danh từ chuyến đi được hai nguồn hỗ trợ; không dùng nghĩa chiếc tàu dù nguồn thứ hai có ví dụ cruise ship. Ghi chú ngữ pháp đã rà soát: Countable: a cruise, several cruises; use go on a cruise. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "5ac049d5d4940a0aa8b2b58a271970aba6f859cd6c749c5f9e8275ae682cea4b",
+      "reviewedRecordSha256": "416f357f1225e1b9d4959ec56e7f6f43418e1ab9fe7954c0ade36621df6e98d7",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:cruise:sail-leisurely",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «du ngoạn bằng tàu», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «We cruised around the bay while the guide described the fishing villages.» với bản dịch VI. Oxford tách verb du ngoạn bằng tàu khỏi noun chuyến đi; giữ khác biệt POS và hành động trong bản DRAFT. Ghi chú ngữ pháp đã rà soát: Often intransitive with a route phrase: cruise around a bay or along a coast. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "48d516cc39c9851ffaafcf9556159904df363ffe3a02cf62dda365a3e6cabb0c",
+      "reviewedRecordSha256": "53abd1bfacbffca0ea6e6fbf9515cdde873613715e5a0c466553cecd56c53ae3",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:cruise:move-steadily",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «chạy đều; di chuyển với tốc độ ổn định», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The bus cruised along the flat road after leaving the hills.» với bản dịch VI. Ví dụ chiếc xe chạy đều hỗ trợ nghĩa di chuyển ổn định khác hành trình nghỉ dưỡng bằng tàu. Ghi chú ngữ pháp đã rà soát: Intransitive in cruise along a road; the subject can be a vehicle. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "5cd67dd17880203b469d16fe01f079a3d62eada5c32911fcb2aee2ed2d5cbd79",
+      "reviewedRecordSha256": "aa2368739a5361434595cd21140a4d60f608d1d014f96c76ff8964cc9129a6bd",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:energy:human-vigour",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «sức lực; năng lượng để hoạt động», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «After the long shift, Huy had little energy left for cooking.» với bản dịch VI. Các ví dụ người và trẻ em nói sức lực làm việc; không đánh đồng với điện hay nhiệt trong nghĩa vật lý. Ghi chú ngữ pháp đã rà soát: Uncountable in this sense: have energy, little energy, energy to do something. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "5846505595f2984f73c48d1a8f99f79112e8563329ad70456185bb17bebb00b8",
+      "reviewedRecordSha256": "bc914e3c3ea763b581c00518fb841d718accc40ccb6ec983382869cd6917bd0d",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:energy:physical-power",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «năng lượng», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The village stores energy from its wind turbines in large batteries.» với bản dịch VI. Ví dụ tấm pin mặt trời hỗ trợ nghĩa nguồn năng lượng vật lý; tách với sức lực của người theo bằng chứng nguồn. Ghi chú ngữ pháp đã rà soát: Usually uncountable: wind energy, electrical energy, a source of energy. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "25133096a1a7af02cbc623996f8fbbe3cda209cf531f6eefeec5f8d0e5446634",
+      "reviewedRecordSha256": "919c2538f760be9c27a8a2f3a5b47ea884bdad7a723c6916e0fbc8699fb759ee",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:homeless:without-home",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «vô gia cư; không có nơi ở ổn định», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The housing service found temporary rooms for two homeless families.» với bản dịch VI. Hai nguồn mô tả không có nơi ở ổn định, không khẳng định mọi người vô gia cư đều ngủ trên đường phố. Ghi chú ngữ pháp đã rà soát: Use homeless people or become homeless; the adjective does not imply a particular sleeping location. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "06db8106c944730fa3f2b022255d200819a2a7cc2fcbe2a493285f97907894f6",
+      "reviewedRecordSha256": "cf1826361ae95e7fbabfd731b3704fbab847dd2cc1181b4fa9d2a54be05047a0",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:and:addition",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «và», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The kit contains a brush and three small jars.» với bản dịch VI. Nguồn có phép nối hai danh từ cùng cấp; giữ chức năng conjunction nối thêm thành phần, không thêm POS mới. Ghi chú ngữ pháp đã rà soát: And joins coordinated elements, such as two noun phrases. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "ca607b837b3faefe871c8f80c36e082d3ee11bf5f1cd1b002fba192cf3556335",
+      "reviewedRecordSha256": "5c1e9c4f153776a258cd3fa0f27dfbcf23a3d5c3878c8c3c240ecd4c5bf855c6",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:and:conditional-result",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «thì; và khi đó», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Press the green button, and the screen will display your ticket.» với bản dịch VI. Ví dụ Hurry and trong nguồn hỗ trợ kết quả phụ thuộc hành động trước; tách với phép cộng thông tin đơn thuần. Ghi chú ngữ pháp đã rà soát: Pattern: imperative, and + result clause; the first clause functions as a condition. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "a676aaa8f2a22e84db76765b11d36d6e223db2baaf65c208f053966bfd3931c4",
+      "reviewedRecordSha256": "3c8d9d92a9020cb2237cef976c93451dfe660cbe97e271675c1c8c5454e26840",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:refuse:decline",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «từ chối», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The landlord refused to replace the broken cupboard.» với bản dịch VI. Các nguồn cùng mô tả từ chối, noun object và to-infinitive là mẫu của cùng nghĩa chứ không phải hai Sense. Ghi chú ngữ pháp đã rà soát: Use refuse something or refuse to do something; do not use refuse doing for this pattern. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "49b19ac0782c16bc902c622fe40d17aa646d901189c28f75ee543d192b1c9ff7",
+      "reviewedRecordSha256": "85bdca20906157981a73ad34eff271e480bbc987fc96818ebda525325312cfc5",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:cocktail:mixed-drink",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «cocktail; đồ uống pha rượu», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The menu lists a cocktail made with gin and orange peel.» với bản dịch VI. Hai nguồn cùng hỗ trợ đồ uống pha từ rượu; tách khỏi hỗn hợp chất ở ví dụ điều trị, không khuyến nghị uống rượu. Ghi chú ngữ pháp đã rà soát: Countable: a cocktail, two cocktails; this entry describes the alcoholic sense. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "36030d3fb738cd43e9354ed81ec9723399a938674f383fa074b652d47828bffe",
+      "reviewedRecordSha256": "a2ecfb35b196eef8efc687326c202360f3667269302112d31cff7c97acdcd9a1",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:cocktail:mixture",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «hỗn hợp nhiều chất hoặc thành phần», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The polluted pond contained a cocktail of industrial chemicals.» với bản dịch VI. Oxford có ví dụ hỗn hợp thuốc, hỗ trợ nghĩa mở rộng kết hợp nhiều chất; giữ định nghĩa trung tính không đưa hướng dẫn y tế. Ghi chú ngữ pháp đã rà soát: Use a cocktail of + plural noun; this figurative sense often suggests a complex mixture. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "8a2418db1ff3f1a37228f8d78b77ed427357357fb654d6ba0e1400e278da5c69",
+      "reviewedRecordSha256": "46914bc09e7bb89dada6de4dea4fb541d5f6228d8eae2dbcc141a10e817c0cf7",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:heritage:inherited-culture",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «di sản», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Local musicians recorded old songs to preserve their village's heritage.» với bản dịch VI. Nguồn nói ngôn ngữ văn hóa âm nhạc truyền lại; một nghĩa văn hóa đủ bao phủ, không suy ra nghĩa thừa kế tiền. Ghi chú ngữ pháp đã rà soát: Usually uncountable: cultural heritage, preserve a community's heritage. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "7ab1df1959fd1b399b7edb89d821d6bfab752d5cd847429f16f0a44425a726d3",
+      "reviewedRecordSha256": "8dcbbfe012fc7b4f846e10a5247c52477870b2fe22b38faf15a58b4fd9dbff98",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:fiscal:public-finance",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «thuộc tài khóa; liên quan đến thu chi ngân sách», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The council outlined its fiscal priorities for the coming year.» với bản dịch VI. Ví dụ Oxford về chính phủ và thành phố hỗ trợ tài khóa; ghi giới hạn nhãn US và ví dụ công ty không được chuẩn hóa thành nghĩa mới. Ghi chú ngữ pháp đã rà soát: Used before nouns such as policy and priorities. The source's regional label and corporate example are not resolved into canonical classifications. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "fd28c0bedd5ccd8a2ee908d30baecd41d3ff53ee86f91791cfc9d50711b40729",
+      "reviewedRecordSha256": "2b6f39bbcb6d9748c4da2b02f2095cd507e35a0fa1a884ef572981e82efa1268",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:suicide:self-caused-death",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «sự tự sát; việc tự sát», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The community workshop discussed suicide prevention in a supportive setting.» với bản dịch VI. Chỉ giữ định nghĩa từ vựng và ví dụ hỗ trợ cộng đồng; tránh tái dùng ví dụ nguồn có cách diễn đạt gây tổn hại. Ghi chú ngữ pháp đã rà soát: Often uncountable when discussing prevention; a suicide can refer to an individual occurrence. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "305ad1c6018f44bde44a53f1df364d591acaf3f825e8c8ed715046756e7c3dc4",
+      "reviewedRecordSha256": "c92dc6eabd70f69fb4ff7d02cb2d28208b0c3ee7a0bb2648f49c1970fe0355e7",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:slave:enslaved-person",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «nô lệ; người bị nô dịch», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The historical account describes a slave who secretly learned to read.» với bản dịch VI. Ví dụ tiểu thuyết và bảo tàng cùng chỉ người bị nô dịch; dùng ngữ cảnh lịch sử, không mở rộng sang nghĩa bóng chưa có nguồn. Ghi chú ngữ pháp đã rà soát: Countable: a slave, slaves. Enslaved person is also used to emphasize the person's humanity. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "afe5f83f81cb0b4b7247a4385d912a75af5485c14e8b8bbd47d9bc749aa33663",
+      "reviewedRecordSha256": "faa46ad25e637eee984b2785a4b9ad13029dd064c24013a442234b41b0ccd1e0",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:number:identifier",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «số dùng để nhận diện; số định danh», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Write the parcel number beside the recipient's name.» với bản dịch VI. Nguồn phone number hỗ trợ chuỗi nhận diện; tách khỏi lượng người và hành động đánh số, không tự cấp ID canonical. Ghi chú ngữ pháp đã rà soát: Countable: a reference number, phone numbers; an identifying number may contain several digits. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "47be221751f6e7b2b0fdf44f1b0e8800e2f63bdff13cf43b76ad5fe24c3faecc",
+      "reviewedRecordSha256": "32dd14108599ba0ae604fc765cc2e89e9d6e1081ad9baf789ee47a4ae3674aa3",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:number:quantity",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «số lượng», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The number of empty seats fell after the second announcement.» với bản dịch VI. Nguồn số lượng học sinh hỗ trợ amount; chủ ngữ the number dùng động từ số ít trong grammar của nghĩa này. Ghi chú ngữ pháp đã rà soát: The number of + plural noun takes a singular verb; a number of has a different agreement pattern. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "ae6c044df336fc910bd1be985c98c3131415983784139fa52f1b50818835989b",
+      "reviewedRecordSha256": "cc322b858e61bc88972d01a909f48603a4090fab108076e7edc938ad98b9d6b5",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:number:label-in-sequence",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «đánh số», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The archivist numbered every folder before placing it on the shelf.» với bản dịch VI. Động từ trong nguồn chỉ đánh số trang theo thứ tự; tách khỏi hai danh từ bằng POS và chức năng. Ghi chú ngữ pháp đã rà soát: Transitive: number the items; passive: the items are numbered. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "3f991e3c6bea652f613830c231d27258dde665d0fb53ee4ad645703e2d245b05",
+      "reviewedRecordSha256": "2dcda7971b3615f32431adf2cd7523a7ce6657bee687c7174e8b82e44a775f64",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:confront:challenge-person",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «chất vấn; đối diện với ai để nêu vấn đề», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Lan confronted the supplier about the missing parts.» với bản dịch VI. Hai nguồn có gặp người để nêu vấn đề, không đồng nhất với việc giải quyết khó khăn trừu tượng. Ghi chú ngữ pháp đã rà soát: Use confront someone about something; confront is transitive in this pattern. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "ae450a5304d092659b2405438245d3a6b3bd60d6a1cecba4ce5fe0fa44bea835",
+      "reviewedRecordSha256": "d9eb15c639c6fd437acac1cb80443edb40f129a1e7614f43e2cf8f3c3a70cc3b",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:confront:face-problem",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «đối mặt với; giải quyết trực tiếp», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The committee must confront the shortage of affordable housing.» với bản dịch VI. Oxford có chủ thể chính phủ đối mặt nguyên nhân nghèo đói; giữ đối tượng vấn đề khác người bị chất vấn. Ghi chú ngữ pháp đã rà soát: Transitive: confront a problem or difficulty; no with is required before that object. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "5b2193e1cd1163828445fd3d8647197d5af3e4e7373e22520fca0795f3066fa1",
+      "reviewedRecordSha256": "717b80ff756fe62285e204c2d63387c937607956f36adb201282564761648989",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:therapy:treatment",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «trị liệu; liệu pháp điều trị», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Minh attended speech therapy sessions at the local clinic.» với bản dịch VI. Ví dụ trị liệu thể chất và ngôn ngữ là lĩnh vực áp dụng cùng nghĩa; không tách theo chuyên ngành hay đưa phác đồ điều trị. Ghi chú ngữ pháp đã rà soát: Usually uncountable for treatment generally; therapies refers to different types of treatment. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "920bc5a73166d2b0f1d41d7ca1bd9d2aa5484e055fc37f47e8c3d5aa0f3195f7",
+      "reviewedRecordSha256": "69dafa40b3ccc34ab810a76893b83f770391058e2fcc8f6df99a60f7c7e790dd",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:entitle:give-right",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «cho ai quyền được hưởng hoặc làm điều gì», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «This membership entitles visitors to enter the reading room.» với bản dịch VI. Hai nguồn đều có vé cho quyền hưởng lợi; đây là nghĩa cấp quyền, tách với đặt tiêu đề tác phẩm. Ghi chú ngữ pháp đã rà soát: Use entitle someone to something or entitle someone to do something. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "ed1f92126f7d42056c7cf13590b8490702248c4292016e2580f4beb30e283445",
+      "reviewedRecordSha256": "c77eab21490b362c87c65c2362c282435044ca86e7e20ea836a0a12b23888f22",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:entitle:give-title",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «đặt tên; đặt tiêu đề», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The poet entitled her new collection 'Winter Windows'.» với bản dịch VI. Oxford có chương được đặt tên, hỗ trợ verb đặt tiêu đề; giữ khác biệt semantic với cấp quyền cho người. Ghi chú ngữ pháp đã rà soát: Transitive: entitle a work + title; the passive a work entitled X is common. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "e9a65b5b6f477115a385ef3d1a3910ce419d4b8721ddc08afba18a6e4025bff1",
+      "reviewedRecordSha256": "ded4656ce9784e12c342229ddb39957bbf18f17955c342d47ae4e67e17239dc2",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:vine:climbing-plant",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «cây dây leo», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «A flowering vine spread across the wooden fence.» với bản dịch VI. Nguồn mô tả thân dài leo lên cây; chỉ chọn cây dây leo, không mặc định riêng cây nho hay quả nho. Ghi chú ngữ pháp đã rà soát: Countable: a vine, vines; this general sense is not restricted to grape plants. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "cddf991327664cbfc1ade12f50c02f35fb8873ab191bcdd2d9a2c49dc408ddb7",
+      "reviewedRecordSha256": "2363ea981a4ba8987f7210d61bf2296ec0d4ea4fc982b27a7632df2f9ced395d",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:dress:garment",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «váy liền; đầm», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The tailor shortened the sleeves of Hoa's linen dress.» với bản dịch VI. Nguồn có danh từ trang phục liền thân màu xanh; giữ khác POS với động từ mặc quần áo, không thêm nghĩa lễ phục chung. Ghi chú ngữ pháp đã rà soát: Countable: a dress, dresses; wear a dress. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "c06bd3ae9eff6330df6a22ca0d503c95b6d759d021032e07b8d007cf49bd3d67",
+      "reviewedRecordSha256": "2759ba2e205a5d57c7f6ed18e9a8eabb7ea0e17be7e45aa544de00bd07f20ea1",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:dress:put-on-clothes",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «mặc quần áo; mặc đồ cho ai», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Tuan dressed his young son before making breakfast.» với bản dịch VI. Ví dụ trẻ mặc đồ hỗ trợ verb, hành động khác vật thể dress; không tự thêm nghĩa băng bó hay chế biến thức ăn. Ghi chú ngữ pháp đã rà soát: Intransitive: dress quickly; transitive: dress a child. Get dressed is also common. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "f2204c0b0099fa076415c1b77df9ce3b32a2295296df258d5c8ad68160918c3a",
+      "reviewedRecordSha256": "d5768cc12fd75dfcb5876ef43024535a95c34c202d171bf6c81074bd1422e5d4",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:fraction:small-part",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «một phần nhỏ», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The repairs cost a fraction of the price of a new bicycle.» với bản dịch VI. Hai nguồn có một phần nhỏ rác hoặc bánh; tách khỏi ký hiệu phân số toán học được Oxford hỗ trợ riêng. Ghi chú ngữ pháp đã rà soát: Use a fraction of something; a small fraction emphasizes how little. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "1e2faa1d500c3bde8830ac294439bc0aee8687e6b1da41de737dcdb4ae98b06f",
+      "reviewedRecordSha256": "773a0601191b6c1dbad05143a7dfae4ac2d22349b7a7c83ef952669ebf76ef7d",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "originalReviewedContentHash": "6947665c74548b867e8c9c5128a21a01ea9f46a749c41f5ce39939385c58b767",
+      "proposalKey": "EDITORIAL_2H2L:fraction:mathematical-part",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «phân số», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The teacher wrote the fraction three quarters on the board.» với bản dịch VI. Nguồn one half hỗ trợ phân số toán học, cùng POS nhưng nghĩa biểu diễn số khác phần nhỏ bất kỳ. Ghi chú ngữ pháp đã rà soát: Countable: a fraction, fractions; a numerator and denominator represent the parts. Không có human approval hoặc quyền canonical. Revision BEFORE/AFTER được rà soát; recheck độc lập hash mới được lưu riêng.",
+      "reviewedContentHash": "935de0810750d6d4f82952a41206a38ea06043e61f10041873f5b237effc4c72",
+      "reviewedRecordSha256": "d5baeea1e5e44780bb95342e4aa2721a5d5921dff5fcf81a74f13bc4aa4a43aa",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:immune:disease-resistant",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «miễn dịch với một bệnh cụ thể», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The report described mice that were immune to the virus.» với bản dịch VI. Nguồn người và cây không mắc bệnh hỗ trợ miễn dịch với bệnh cụ thể; không định nghĩa miễn dịch với mọi bệnh. Ghi chú ngữ pháp đã rà soát: Use immune to a disease or virus; the protection is specific rather than universal. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "dde457ef380c79f23f171add6df331c8fe5dbf0b5a6c82f354c206bd5851920d",
+      "reviewedRecordSha256": "9b8943519e92d7ed46a8ef97d70996bc8ac2361e80d3ae69f4fbcf75fd1f16c5",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:immune:unaffected",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «không bị ảnh hưởng bởi», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Even experienced managers are not immune to pressure.» với bản dịch VI. Oxford có công ty không bị tác động bởi chỉ trích; tách nghĩa bóng khỏi phản ứng miễn dịch y học. Ghi chú ngữ pháp đã rà soát: Use immune to + noun; this figurative sense extends beyond disease. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "101a3a61d98b6d4a0209ed61d3d2abe5cf557c1cc060e87fc84018305343bf05",
+      "reviewedRecordSha256": "d73d0e3f095c2dcdef3cc62bffe6a00533827c97ed66887e1fe3e9ace434fbcb",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "originalReviewedContentHash": "d211cae678b3286d57ceba5c215e93ffc40715637f300a2792735978b33d9efb",
+      "proposalKey": "EDITORIAL_2H2L:driving:vehicle-operation",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «việc lái xe; cách lái xe», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Night driving made the delivery route more tiring.» với bản dịch VI. Oxford noun và ví dụ thao tác xe hỗ trợ danh từ; nguồn vocab gắn adj cho định nghĩa noun, ghi rõ mismatch thay vì sửa nguồn. Ghi chú ngữ pháp đã rà soát: Uncountable activity noun. One linked source incorrectly labels its activity definition as an adjective; that provenance conflict is retained. Không có human approval hoặc quyền canonical. Revision BEFORE/AFTER được rà soát; recheck độc lập hash mới được lưu riêng.",
+      "reviewedContentHash": "98e359af9e00d89a4d4cb7b6c40082c0006115330763af1db65ec1690b3463f0",
+      "reviewedRecordSha256": "b7cce8981fd4bafc7f389d9a389e3c03c9a03fcbf61b868df415bd21fd0af8ac",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:driving:motivating",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «thúc đẩy; tạo động lực», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Her curiosity was the driving force behind the experiment.» với bản dịch VI. Oxford tách adjective driving force, hỗ trợ vai trò tạo động lực; không dùng nhãn adj sai của nguồn thứ hai làm bằng chứng riêng. Ghi chú ngữ pháp đã rà soát: Usually attributive in the expression driving force behind something. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "0e1cc50b83609640c16fcf1b9a7bd92a7f4e800038752bc37980f822eda44cc9",
+      "reviewedRecordSha256": "4ef5537995db7dae74dc69c4f242031fd07c0387f40190af98e0b3f49435d711",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:reputable:good-reputation",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «có uy tín; đáng tin cậy», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «We bought the replacement parts from a reputable supplier.» với bản dịch VI. Nguồn nói uy tín và trung thực, một nghĩa đủ bao phủ ví dụ hãng xe; không sao chép tên thương hiệu hoặc lỗi ví dụ nguồn. Ghi chú ngữ pháp đã rà soát: Use a reputable firm or supplier; reputable describes established reputation. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "832889ef78f70939533b7d5f7adaa7bccaa5887854e76dba11deb83ac3e1c722",
+      "reviewedRecordSha256": "d5ee7a2eed10c22ac550550d8b2be760b4c02dc0edd2b6b6a016cc44302b82df",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:soothing:calming",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «êm dịu; làm dịu tinh thần», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Her soothing voice helped the frightened child relax.» với bản dịch VI. Nguồn chỉ tác dụng thư giãn, không có bằng chứng điều trị đau để thêm nghĩa y tế; chọn ngữ cảnh giọng nói nguyên gốc. Ghi chú ngữ pháp đã rà soát: Use soothing + noun, such as voice or music; something can also be soothing. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "fe13517103812ebbc97ae42e4bbcde1f4d320c64fe141e97bdb4a32bc8194276",
+      "reviewedRecordSha256": "8fb29c00d5f847ba1fff77e51cb95a216a28b237339f57e6680679ee3a9ca942",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:contain:hold-inside",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «chứa; có chứa», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The sealed envelope contained a map and two photographs.» với bản dịch VI. Các ví dụ đường trong đồ uống và ảnh trong hộp cùng nghĩa chứa bên trong; không tách vật liệu với đồ đựng. Ghi chú ngữ pháp đã rà soát: Transitive: contain something; contents are the object, not an indirect object. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "faf399030cfcf9c2c75d168955debba36992718a14fc9c10f3b7c82bd84749f9",
+      "reviewedRecordSha256": "8f5a2a1a30b5fdaee50ce4adc7aa41a0386d15d7f586a5c79e1445574b5a6d35",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:contain:limit-spread",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «ngăn chặn; khống chế sự lan rộng», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The crew used sand to contain the spill near the doorway.» với bản dịch VI. Oxford có ngăn lửa, hỗ trợ nghĩa giới hạn sự lan rộng khác chứa sẵn thứ gì bên trong. Ghi chú ngữ pháp đã rà soát: Transitive: contain a fire, spill, or outbreak; containment need not mean complete removal. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "28e55c6a7543e9fb7b04263740aaecbaedb43a28f0be95619c195be816cfcc1c",
+      "reviewedRecordSha256": "6fa484e4fc98481c46e3a7b37864d1cdc73c345b3a8887a96723dadf13e08b36",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:dawn:daybreak",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «bình minh; lúc rạng sáng», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «By dawn, the fishing boats had already left the harbour.» với bản dịch VI. Hai nguồn nói đầu ngày, chỉ một nghĩa thời gian; không tự thêm verb nhận ra hoặc nghĩa bóng mở đầu thời đại. Ghi chú ngữ pháp đã rà soát: Use at dawn, before dawn, or by dawn; an article is usually absent in these time phrases. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "43d7fd862e110f9f9b66d478bb76475ba9f197ab29d6e56691d9f67723845e37",
+      "reviewedRecordSha256": "5eb12e47e19b619f25ea20b64decddf3a7b992308afca2ff57f110ce991c9a1f",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:office:work-room",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «văn phòng; phòng làm việc», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «A narrow staircase leads to the architect's office.» với bản dịch VI. Ví dụ tài liệu trong văn phòng hỗ trợ địa điểm làm việc; tách chức năng quầy dịch vụ ở nguồn ticket office để reviewer kiểm tra ranh giới. Ghi chú ngữ pháp đã rà soát: Countable: an office, offices; use in an office or at the office. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "1329da86ed950e4e3c4e31567194cbd3134e77d2cde13fb690418f399789b396",
+      "reviewedRecordSha256": "2168e299d5f68ec3ff21f19afcb870437a49cf1c33b62dd0969250b220382e5a",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:office:service-place",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «văn phòng hoặc quầy cung cấp dịch vụ», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The ticket office moved to the other side of the station.» với bản dịch VI. Oxford có ticket office phục vụ bán vé, một cách dùng dịch vụ riêng tạm tách; ranh giới room và service institution chưa canonical. Ghi chú ngữ pháp đã rà soát: Often occurs in compounds such as ticket office; the boundary with a general workplace remains provisional. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "9c44d45ac839a906656fe000e46198dcaf164a4a336bda946d47687e1e47cb0a",
+      "reviewedRecordSha256": "cf7a59e5989906f42722143f54989a0c343684172fb51a38febec594e49829b3",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:completion:finishing",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «sự hoàn thành; sự hoàn tất», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Payment is due on completion of the roof repairs.» với bản dịch VI. Hai nguồn cùng chỉ hoàn tất công việc, không thêm pháp lý hay giao dịch vì chưa có bằng chứng tương ứng. Ghi chú ngữ pháp đã rà soát: Usually uncountable: completion of a task, on completion. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "e78420183adefe0b03ff7830f41abd49092591b7da822911b05f86a15d6f6810",
+      "reviewedRecordSha256": "c7f4cd297f8f76552f1c614bfb978450e5e82c2243202357f55bcf4e7dd66e45",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:borrow:temporary-use",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «mượn», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «I borrowed a ladder from my neighbour to reach the gutter.» với bản dịch VI. Nguồn bút sách cùng nghĩa mượn sử dụng rồi trả, không suy ra nghĩa vay tài chính chỉ từ bản dịch mượn vay. Ghi chú ngữ pháp đã rà soát: Use borrow something from someone; the recipient borrows and the provider lends. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "b155cb0071488cc5f436f5125027828ac504816509ba7bdf4ae1ef33df582fce",
+      "reviewedRecordSha256": "7debc0f920b0b41cba41e6f5a3ba96d62d1f28f40ad9df9d21500d9671cc48dc",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:surge:sudden-increase",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «sự tăng đột biến; đợt tăng mạnh», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The bakery saw a surge in orders before the festival.» với bản dịch VI. Oxford có số ca bệnh tăng mạnh; danh từ biến động số lượng tách khỏi đợt nước chuyển động. Ghi chú ngữ pháp đã rà soát: Countable: a surge in orders or demand; in introduces the quantity that rises. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "a6409475e270e72d28912d9bf28efb3393f6dfd4f220a2471d638562905c94f4",
+      "reviewedRecordSha256": "66884f4fff4938e1a191c6c35574c236424e48bd235a00badf25ffbf00448cb4",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:surge:strong-wave",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «đợt dâng mạnh; đợt tràn ào ạt», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «A surge of water knocked the floating barrier aside.» với bản dịch VI. Nguồn có nước tràn boong tàu, hỗ trợ đợt dâng vật lý; khác số lượng bệnh nhân tăng và khác verb. Ghi chú ngữ pháp đã rà soát: Use a surge of water; of identifies the moving substance. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "de77528d759001c2a201defbacc01b6c1e856ceb13e5df16fe4a8a530f7100b1",
+      "reviewedRecordSha256": "39b0512da5c6c7c70213b0af33cfd8a4b2103451f32ef9c395ceaa86039e23f7",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:surge:increase-rapidly",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «tăng vọt», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Umbrella sales surged when the unexpected storms arrived.» với bản dịch VI. Động từ demand surge trong Oxford hỗ trợ biến động nhanh; giữ khác POS với danh từ sudden increase. Ghi chú ngữ pháp đã rà soát: Intransitive: sales surge; use surge by an amount or surge to a level. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "12e45276d76f04d9903e41734570ad83a69170ee70f743dcaa5f23e8081db601",
+      "reviewedRecordSha256": "1525aaee71d9e622c0e0acd5500635e80b98ae4eb442e69b15700b5f54f3463c",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:surge:move-forcefully",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «dồn về; lao tới mạnh mẽ», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The fans surged towards the stage after the final song.» với bản dịch VI. Hai nguồn có đám đông hoặc sóng lao về phía trước; nghĩa chuyển động khác sự tăng số lượng. Ghi chú ngữ pháp đã rà soát: Intransitive with direction phrases, such as surge towards or through. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "31c18d40038ebdfc5bc7deb28033cff28f14028519fe002a708a4cb2d053303b",
+      "reviewedRecordSha256": "253e563735310149840085b9d9ed293a35b58c63348be7a990b2cfd0fe2fe63b",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:alternative:other-option",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «lựa chọn thay thế; phương án khác», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «A video call is an alternative to a long train journey.» với bản dịch VI. Nguồn có phương tiện thay thế tàu và xe đắt tiền; noun lựa chọn khác tính chất thay thế của route adjective. Ghi chú ngữ pháp đã rà soát: Countable: an alternative to something; several alternatives. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "bb644e9ad51dceb9940beb871675da2bc1f34502eff3c0e5dd21a774cda0bf08",
+      "reviewedRecordSha256": "e64e6a7bab3c2dbbe19146ef855007f4550226b3d2fb9e53140444be382f201e",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:alternative:substitute-option",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «thay thế; khác để lựa chọn», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The mechanic suggested an alternative part that would fit the engine.» với bản dịch VI. Oxford có adjective trước route; giữ khác POS theo nguồn, không thêm nghĩa văn hóa alternative chưa được hỗ trợ. Ghi chú ngữ pháp đã rà soát: Attributive: an alternative route, plan, or part. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "4d8dbcbc3a6b5b0d18e3fcc66696e9db1d8afaa08491bf9c1dae7d3625a4932f",
+      "reviewedRecordSha256": "258052857414ad2cb5e7d7a03ac684569af966dc2b3a1f28c60866a1ff16c349",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:production:making-process",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «sự sản xuất; quá trình sản xuất», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Production stopped while technicians inspected the conveyor belt.» với bản dịch VI. Ví dụ nhà máy bắt đầu hoạt động hỗ trợ quá trình sản xuất; tách lượng đầu ra được source gloss và ví dụ tăng sản lượng hỗ trợ. Ghi chú ngữ pháp đã rà soát: Usually uncountable: begin production, stop production, production of goods. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "6b4a607a5db8bf11c86ba074d7df6238c9eb4cbf023118e4c4e31a2869c69e9d",
+      "reviewedRecordSha256": "811bbf285514ca203b8c667b6fca980b6e61b039fda88d3b4d2d73d217de181a",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:production:output",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «sản lượng», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Annual bicycle production rose to eight thousand units.» với bản dịch VI. Nguồn gloss sản lượng và tăng car production hỗ trợ lượng hàng tạo ra; giữ ranh giới lượng và quá trình để độc lập review. Ghi chú ngữ pháp đã rà soát: Uncountable when referring to output; production figures measure the amount made. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "521bd9b6c50793928693dbd49f7156495a045774d5aa895da0474b229821debb",
+      "reviewedRecordSha256": "7ec877c645db50cf4ebd79f622302364bb8a294a69657b6939d868a52bfc523f",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:production:staged-work",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «vở diễn; bộ phim được thực hiện», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The drama club's latest production features a cast of twelve students.» với bản dịch VI. Oxford có vở diễn và phim, cùng sản phẩm nghệ thuật được dàn dựng; không tách chỉ theo phương tiện sân khấu hay màn ảnh. Ghi chú ngữ pháp đã rà soát: Countable: a production, several productions; a theatre production can refer to a staged play. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "e772b5733618c20786f870bf3a92cf1a68c6258fc3bad2ea8b60d06bdf7f568a",
+      "reviewedRecordSha256": "314a0d52c9d4215defff910c948dac779c6e1b36b889c6a0fbcf8f36a04f5b16",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:rank:level",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «cấp bậc; thứ bậc», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The officer held the rank of major when she retired.» với bản dịch VI. Hai nguồn đều nói cấp captain, chỉ một nghĩa vị trí thứ bậc; không thêm nghĩa hàng người hoặc tính từ rank. Ghi chú ngữ pháp đã rà soát: Countable: a rank; use the rank of + title. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "729f9061dba0137c5b3915cdd509a45ca4c1c25b318cdef3972a7d179b78ea37",
+      "reviewedRecordSha256": "d804f60ebb29539c1b31c7ecc7d196e0f91097271a601e7cc9679c93555bc37c",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:rank:place-in-order",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «xếp hạng», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The panel ranked the designs according to their practicality.» với bản dịch VI. Động từ trong Oxford đánh giá vị trí thành phố; giữ khác POS với danh từ cấp bậc. Ghi chú ngữ pháp đã rà soát: Transitive: rank the entries; use rank something first or rank something among the best. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "dd446e6575cb7fda03e72e11625b890196212e2dcd39d8b6c2b4541a143b5fe4",
+      "reviewedRecordSha256": "9d7fcead2172da375164542d30cce13a26533aaf95ad242ac753d6e7a9cd679d",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:dose:medicine-amount",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «liều thuốc; lượng thuốc dùng một lần», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The old bottle's label listed each dose in millilitres.» với bản dịch VI. Hai nguồn cùng chỉ lượng thuốc dùng một lần; ví dụ mô tả nhãn lịch sử, không đưa chỉ dẫn về liều thực tế. Ghi chú ngữ pháp đã rà soát: Countable: a dose of medicine; this example describes a label and gives no dosage instruction. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "3c05bb05ec9f4fa8553d50c71e40aba8c59c12e0d1a721afed15650c1d3f8bac",
+      "reviewedRecordSha256": "f6040a4968e5b9a0774b7ab005e1db256ec5c6a3fb418ff6f2fbb07225eb3584",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:elementary:basic",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «cơ bản; sơ cấp», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The workshop assumes only elementary knowledge of electronics.» với bản dịch VI. Nguồn ngữ pháp toán học sơ cấp hỗ trợ mức cơ bản; tách thuộc bậc tiểu học từ school trong nguồn. Ghi chú ngữ pháp đã rà soát: Use elementary knowledge or skills; this sense concerns a level of difficulty. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "29ffd9f969f8892825497605c2ca4513d5b38e85b395796b535deec58c69daa5",
+      "reviewedRecordSha256": "bdd639644a6b519a2fcd30e8df687f645f14ff8489fb18852b605cf5769e47ae",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:elementary:primary-school",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «thuộc bậc tiểu học», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The new elementary school has a shaded playground.» với bản dịch VI. Nguồn trường học hỗ trợ nghĩa giáo dục tiểu học, ghi usage đặc biệt ở Mỹ nhưng không cấp classification vùng chính thức. Ghi chú ngữ pháp đã rà soát: Elementary school is especially associated with American English; this is a usage note, not an approved regional classification. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "47248ea8d08afb120a81575a05e0e735e0cc8bcf72a517ead9696d20594eb8b0",
+      "reviewedRecordSha256": "6d00069ac80f7e1aa391d93da96cdcfa0c893e0a02d6864abf807d97404e08d5",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:transmit:send-information",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «truyền; truyền dẫn», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The sensor transmits a reading every thirty seconds.» với bản dịch VI. Nguồn thiết bị và tháp phát sóng cùng hỗ trợ truyền tín hiệu; tách khỏi truyền bệnh có ví dụ muỗi. Ghi chú ngữ pháp đã rà soát: Transitive: transmit data or signals; transmit something to a receiver. Past tense: transmitted. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "5aecacae05c8832d71f864dba4c185449664c0e0e621f9bc65835e3c13f9eb28",
+      "reviewedRecordSha256": "2a36680b519b21fa1281e883503ea2294fc69987cd782682ea2a2e827ec0f321",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:transmit:pass-disease",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «truyền bệnh; lây truyền», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The researchers studied how ticks transmit the infection.» với bản dịch VI. Oxford có muỗi truyền sốt rét, hỗ trợ truyền bệnh giữa vật chủ; ví dụ mới chỉ mô tả bối cảnh trung tính không đưa tư vấn y tế. Ghi chú ngữ pháp đã rà soát: Transitive: transmit an infection; transmit something to a host. No treatment advice is implied. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "6bd47965311df79feb358914cfd04da6cf4928aa29c338a8da82a180b6addc9a",
+      "reviewedRecordSha256": "e2e3fa7750cfc45e6d876883e6b07331bb25b7e98fca2d3c8c35240bdefec30e",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:prevention:stopping-harm",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «sự phòng ngừa; việc ngăn ngừa», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The handbook includes a chapter on accident prevention in workshops.» với bản dịch VI. Các nguồn bệnh và nấm mốc đều nói ngăn điều xấu xảy ra; cùng nghĩa dùng trong nhiều lĩnh vực, không tách theo đối tượng. Ghi chú ngữ pháp đã rà soát: Uncountable: prevention of accidents, accident prevention. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "59d8a334a1153ff325afda9bd9491202d67b6421800cf846e91c352ccee1496d",
+      "reviewedRecordSha256": "a8bc54e55b454c781e7386be800b438e1aed201fbd3d6a0f264d68034c29f4fb",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:rookie:newcomer",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «người mới; tân binh», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The rookie asked a senior mechanic to check her work.» với bản dịch VI. Nguồn thể thao và điều dưỡng cùng chỉ người chưa có kinh nghiệm; US flag là bằng chứng nguồn, không canonical hóa hoặc tách theo nghề. Ghi chú ngữ pháp đã rà soát: Countable and informal: a rookie, rookies; common in American usage, with source regional evidence retained. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "d84f448913411190f536b0e49cabad76c22430cd46100d1fb3ff14bb6cad9004",
+      "reviewedRecordSha256": "86a8002c9b7120f9893638d2f5782591a47421579c94948eb41cf4d201e6b0d4",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:chip:potato-slice",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «lát khoai tây chiên giòn», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Bao crushed a few potato chips over his sandwich.» với bản dịch VI. Nguồn ví dụ bag of potato chips phù hợp lát mỏng giòn theo cách dùng Mỹ; chưa đủ bằng chứng riêng cho nghĩa khoai cắt thanh Anh. Ghi chú ngữ pháp đã rà soát: Usually plural for the food; this slice sense is associated with American chips and British crisps. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "9e49012ef57de32e9b27d8a4cea1ce221c51890d77366e10ef7fa2112f006118",
+      "reviewedRecordSha256": "a5e570fa9ad7001f4903ed2cf4e608e4a591892432fa82477c553a7e5156f6cf",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:chip:electronic-component",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «chíp điện tử; vi mạch», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The technician replaced the damaged chip on the circuit board.» với bản dịch VI. Nguồn chip stores information hỗ trợ linh kiện điện tử, tách khỏi đồ ăn và mảnh gỗ vì khác loại vật thể. Ghi chú ngữ pháp đã rà soát: Countable: a chip, chips; computer chip identifies this electronic sense. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "edfe547b0add7d7d34833a9babcb38ccc473e95cc9b73aebda555047b8772556",
+      "reviewedRecordSha256": "0db2f9dfe7a7e1103d3e2f0d01434f943ec2435bdba6c8899e43d9af3dfa8092",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:chip:small-fragment",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «mảnh vụn; mảnh nhỏ», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Tiny chips of stone lay beside the sculptor's tools.» với bản dịch VI. Ví dụ wood chips hỗ trợ mảnh nhỏ vật liệu, không chỉ riêng gỗ; ranh giới các vật liệu là cùng nghĩa fragment. Ghi chú ngữ pháp đã rà soát: Countable: a chip of stone; wood chips is a common plural expression. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "fa6f3a04a70717cdcf0c7180ae485e88369fec32433301c9dc5065ed96a173a9",
+      "reviewedRecordSha256": "eb052183f2c2e541ae7d7e81e72855b2949235516aafe724737a08b759818444",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:comment:remark",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «lời nhận xét; bình luận», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «One brief comment from the visitor changed our plans.» với bản dịch VI. Danh từ lời nhận xét mở thảo luận trong nguồn; không thêm bình luận code hoặc nghĩa phê bình bắt buộc tiêu cực. Ghi chú ngữ pháp đã rà soát: Countable: a comment on something; make a comment. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "5846d2fcd464b098194e9da8046dc0000b3c935b9d19f446c2c3172eab175de4",
+      "reviewedRecordSha256": "cd0f01365e0bf5d721bc7df33c714ac1208cd72cd498b3690eb64a39a607e15c",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:comment:make-remark",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «nhận xét; bình luận», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Several readers commented on the unusual ending of the novel.» với bản dịch VI. Nguồn verb giáo viên nhận xét bài làm hỗ trợ hành động; noun và verb tách bằng POS đã đóng băng. Ghi chú ngữ pháp đã rà soát: Usually intransitive with on: comment on a topic; comment that introduces a clause. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "f03eee49b648aabe02e2a42266a28ebe0604b03f5c33351b5c62a4889114f1f0",
+      "reviewedRecordSha256": "7d459105bc808b2cb87ca0ff656e195b578f40ff2ced47c41e8d26e464fe5d36",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:athletic:sporty-build",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «khỏe khoắn; có vóc dáng thể thao», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «His athletic build helped him climb the steep path.» với bản dịch VI. Nguồn hình thể khỏe khoắn khác cơ sở vật chất thể thao; không khẳng định mọi người khỏe đều là vận động viên chuyên nghiệp. Ghi chú ngữ pháp đã rà soát: Use athletic build or an athletic person; this sense describes physical qualities. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "a1560db0248dbd9088d10b9d744f8628a27f5254d3e509a32718a0ab85fd9ef5",
+      "reviewedRecordSha256": "900a52dd26b1a025593b5308797c8820cf568e8a822bf3f3a144cf63396e720e",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:athletic:sport-related",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «thuộc thể thao», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The college upgraded its athletic facilities during the summer.» với bản dịch VI. Nguồn facilities hỗ trợ adjective quan hệ thể thao; regional flag giữ như giới hạn nguồn không canonical hóa. Ghi chú ngữ pháp đã rà soát: Usually before a noun, as in athletic facilities or events; source regional metadata remains provisional. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "0de70ebebd8b532718ac826e2326d561cfc13c82cd45dfcfea0950e2babdbcc5",
+      "reviewedRecordSha256": "a5182f0efa144ca5665099a15b54ce179f4f883f781ecf293992279b56c6a2e8",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:assure:reassure",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «cam đoan; trấn an», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The organiser assured us that every booking had been recorded.» với bản dịch VI. Nguồn cả hai cùng nói cam đoan điều đúng để giảm lo, không đồng nhất assure người với ensure kết quả. Ghi chú ngữ pháp đã rà soát: Use assure someone that + clause or assure someone of something; assure normally takes a person as object. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "f9fbc75b19356f716410dd0baf613895d60ac501eee2e8cc25abebc057be2e9e",
+      "reviewedRecordSha256": "301e06c148e6d3a088b67cf027ae6712bd1993b240bd1e1740cc5c1f9b2eb867",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:activate:start-operation",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «kích hoạt», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «A timer activates the garden lights at sunset.» với bản dịch VI. Hai nguồn nút bấm đèn và báo động cùng một nghĩa bắt đầu hoạt động; không tách cơ chế thiết bị thành Sense mới. Ghi chú ngữ pháp đã rà soát: Transitive: activate a device; passive: the device is activated. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "f4dc3c7ffa791de76c966218d99787412b91fd2cbbafd3747d993efa34626de9",
+      "reviewedRecordSha256": "55d9d7dea931b7a99eb35c31ca18b2e5a582fd64a22a8e0c2800964fe50c60cc",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:expire:end-validity",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «hết hạn; hết hiệu lực», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Our museum passes expire on the last day of November.» với bản dịch VI. Nguồn hộ chiếu vé bằng lái cùng chỉ hết hiệu lực theo thời gian; không thêm nghĩa chết hay thở ra chưa có bằng chứng. Ghi chú ngữ pháp đã rà soát: Intransitive: a pass expires; use expire on a date or after a period. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "1420e29e8cef7284ac80cab2a7a4855d2d12af1d837c8a883bf74d1ea20cc8eb",
+      "reviewedRecordSha256": "7b1bed1ce03d1a91fb2c1dff75f71c28f2f8596aead0872b5c633a99e7ac3fd5",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:theirs:their-possession",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «của họ», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «We packed our tools, but theirs were still on the workbench.» với bản dịch VI. Nguồn thay thế danh từ garden bicycles bằng possessive pronoun; không thêm dạng adjective hoặc dấu nháy apostrophe. Ghi chú ngữ pháp đã rà soát: Independent possessive pronoun: theirs replaces their + noun; no apostrophe or following noun. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "fde198bfdd9aad7022888e67f31eabd7b0c9c4e441eb523a9ca266dbf7b5a30f",
+      "reviewedRecordSha256": "3bdec91d2f563a3fe2d2eebc412c3378c8770760ea61e51f2c1f56cf3bcaf244",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:dance:movement-pattern",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «điệu múa; điệu nhảy», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The group practised a circle dance for the harvest celebration.» với bản dịch VI. Nguồn học một điệu múa hỗ trợ noun loại động tác; chưa có bằng chứng noun buổi tiệc nên không thêm. Ghi chú ngữ pháp đã rà soát: Countable for a particular type: a dance, several dances. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "a4a8677a21670156a5abfcdd1310402e922baafc58c8620622d7d4bcaeefef03",
+      "reviewedRecordSha256": "21797a38e6fe8d1eb3a66eaac50d75bbc4cc11961508b5ea2cc3a2a7e9e24d31",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:dance:move-rhythmically",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «nhảy múa; khiêu vũ», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The neighbours danced together as the band played in the square.» với bản dịch VI. Oxford có động từ nhảy đến nửa đêm, tách hành động khỏi danh từ điệu múa theo POS. Ghi chú ngữ pháp đã rà soát: Often intransitive: dance to music or dance with someone. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "95312642a734db929737ca9089fc563e7326a65778d4f495315f3d627455c982",
+      "reviewedRecordSha256": "533de7b59bc2c9dd4e7ab82b0ed94da5e5c29cf5b7480961e9f8df34a56b6614",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:imperative:essential",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «cấp thiết; hết sức cần thiết», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «It is imperative to check the address before sending the parcel.» với bản dịch VI. Nguồn adjective công việc bắt buộc cần làm hỗ trợ tính cấp thiết; không thêm noun thuật ngữ ngữ pháp vì frozen POS chỉ adjective. Ghi chú ngữ pháp đã rà soát: Use it is imperative to do or it is imperative that + clause; this entry is adjectival, not a grammar noun. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "76676d208cd84ae0e52fd340a4f92fad8d1894cd17334773cca03360d40cc4d2",
+      "reviewedRecordSha256": "02b6423f73e597a62bcb923e7f2c8f26cb761bc1a3b49d2faf590ac237288244",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:digital:computer-based",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «kỹ thuật số; dạng số», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The archive keeps digital copies of fragile letters.» với bản dịch VI. Hai nguồn dữ liệu ảnh bộ sưu tập thiết bị cùng kỹ thuật số; không tự thêm nghĩa ngón tay dù từ có lịch sử rộng hơn. Ghi chú ngữ pháp đã rà soát: Use digital + noun, such as copy, image, or device; the entry concerns electronic information. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "5ebfe2dfa99aa9264932938d3af8d49b841fcf314915f60f9dccde1e92ebc8ef",
+      "reviewedRecordSha256": "a8b12d96b89aebaae6148785310a68b69c2eca64cac8636c6622ce5d465137e9",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:emphasis:special-attention",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «sự nhấn mạnh; sự chú trọng», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The workshop puts emphasis on repairing items rather than replacing them.» với bản dịch VI. Các nguồn đều chú trọng kỹ năng sức khỏe, không có nghĩa trọng âm ngữ âm đủ rõ để tách riêng. Ghi chú ngữ pháp đã rà soát: Usually uncountable: put or place emphasis on something; plural emphases exists for different areas of focus. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "0e519623d5624b5e16921b37b5b282ea5b94a378354678ad374b7d6c2790c6ee",
+      "reviewedRecordSha256": "c77f81149aa30db5e9a3b09cfd43f3fea1761fabc7c9ffe54a4536f3972f4f3b",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:original:not-copy",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «gốc; nguyên bản», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The original sketch is stored away from direct sunlight.» với bản dịch VI. Hai nguồn tranh gốc hỗ trợ adjective không phải bản sao; tách noun bản gốc và adjective sáng tạo theo Oxford. Ghi chú ngữ pháp đã rà soát: Use the original + noun; this sense identifies a first item rather than praising creativity. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "21a9182123dd4c77e53fa039d9c111cc8d3969313d3a53b24df33373b02cb296",
+      "reviewedRecordSha256": "8fbf314c38f5a336aea39c9383b5a1e8a3cc5e34ef34941d66ecf52ebcd0ef68",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:original:first-version",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «bản gốc», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The clerk returned the original and kept a photocopy.» với bản dịch VI. Nguồn noun copy like original hỗ trợ vật thể gốc; POS khác adjective original painting dù liên hệ nghĩa trực tiếp. Ghi chú ngữ pháp đã rà soát: Countable: an original, originals; the original may replace a fuller noun phrase. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "5d12bd1f07eb1384c1426b6f697910abc48c59a4b19451dc7ed9a0aa3989ddc6",
+      "reviewedRecordSha256": "0f39ffaf680b8049a16a5ee6a131e819e1a8ae2c301e17df54f9e5a65de06936",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:original:creative",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «độc đáo; sáng tạo», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Her original design turned discarded bottles into hanging planters.» với bản dịch VI. Oxford có ý tưởng độc đáo, hỗ trợ sáng tạo khác thứ tự hoặc tính không phải bản sao. Ghi chú ngữ pháp đã rà soát: Use an original idea or design; this evaluative sense differs from original meaning first or not copied. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "b13e11ef8c944a9eeb2d4a7b491da3a1a050f865ffa31d55d1f7ec3a789d9db5",
+      "reviewedRecordSha256": "b60898a8b2f5930116b581d5dc4feaae9c894a01bbf3f89e4303250f10f6d7ca",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:humane:kind-treatment",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «nhân đạo; có lòng trắc ẩn», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The shelter introduced a more humane way to care for injured animals.» với bản dịch VI. Nguồn lòng nhân từ và hỗ trợ người nghèo hỗ trợ đối xử có lòng trắc ẩn; không định nghĩa chỉ đơn giản tốt về mọi mặt. Ghi chú ngữ pháp đã rà soát: Use humane treatment or a humane approach; do not confuse humane with human. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "761b8888c89da668588e47a09c181ae134ee75126d33db220f7a1c3d1b8692a1",
+      "reviewedRecordSha256": "0ac6d33b363c959ff7379307933294301afadd207eba0e18fbe7c5d8334816a4",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:interpret:explain-meaning",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «diễn giải; hiểu ý nghĩa», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The students interpreted the empty chair as a sign of absence.» với bản dịch VI. Nguồn kết quả và thơ hỗ trợ diễn giải ý nghĩa, khác phiên dịch ngôn ngữ nói; không thêm biểu diễn nghệ thuật chưa có bằng chứng. Ghi chú ngữ pháp đã rà soát: Transitive: interpret a text or result; use interpret something as something. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "fc2047a66da5d1e81712891df044d9284b8305826ebeba5800b1f2deda78bb82",
+      "reviewedRecordSha256": "3fb3e5bce52d8350fc897bff95d398a57f3b9f1ae780b838f5d58de2a2af7827",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:interpret:translate-speech",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «phiên dịch», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Nga interpreted for the visiting engineers during the workshop.» với bản dịch VI. Hai nguồn khách Pháp và sign language hỗ trợ chuyển ngôn ngữ giao tiếp, khác interpret kết quả. Ghi chú ngữ pháp đã rà soát: Use interpret for someone or interpret from one language into another; written translation is usually translate. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "55caeda1af36b8ef6b2286e1bf5e28ccc048fe97ed4dccd5a83e19973beab737",
+      "reviewedRecordSha256": "e365a468e6b71e474b3a4451b45735f7e0a27d9f82102bbf5214b4a94f46b0b3",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:cognitive:mental-process",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «thuộc nhận thức; liên quan đến tư duy», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The researcher compared the cognitive skills used in two puzzle games.» với bản dịch VI. Nguồn giấc ngủ và trò chơi đều chỉ quá trình nhận thức, không dùng khẳng định y tế hiệu quả cụ thể để tạo nghĩa. Ghi chú ngữ pháp đã rà soát: Used before nouns such as skills, processes, and development; this is descriptive, not a treatment claim. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "84bb199e81b4452ad2357dfddaaa250087fd30bb33ec836ce27457be70623088",
+      "reviewedRecordSha256": "f43e58e1cec207d5e06737008fbd97cbd44ea5d6ec2f299a3a0a0c6d403f4fbd",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:god:deity",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «vị thần», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The mural depicts a god associated with rain in local legends.» với bản dịch VI. Nguồn nhiều thần Hy Lạp và thần biển hỗ trợ noun đếm được; dùng ngữ cảnh tín ngưỡng trung tính không xác nhận niềm tin là sự thật. Ghi chú ngữ pháp đã rà soát: Countable: a god, gods; use lower case for a general deity. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "f7e2e4783d4d86b08dc189350126277997afa79123460f28f722fbb2fc8d9bad",
+      "reviewedRecordSha256": "5a09f2560a3240dfc3849629ed2d1d73fe69084edfc51a31902b12ed25efb52f",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:god:supreme-being",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «Chúa; Thượng đế», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The speaker described her belief that God listens to prayers.» với bản dịch VI. Ví dụ viết hoa God khi cầu nguyện hỗ trợ cách dùng riêng về đấng tối cao; display giữ hoa, không sửa normalized group. Ghi chú ngữ pháp đã rà soát: Capitalized God normally has no article in this use; the entry describes belief without endorsing it. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "693577817fff72d06d808584094cfc02390e352ad7337cc9eea426eb9616b78b",
+      "reviewedRecordSha256": "4a4d68002f993da585bd6ce239ce61aad27cc5e69443f9e73f67a430f12f2bb3",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:blue:colour-quality",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «xanh dương; xanh lam», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «A blue ribbon marked the entrance to the reading room.» với bản dịch VI. Nguồn adjective bầu trời hỗ trợ tính màu xanh, không thêm buồn bã vì không có nghĩa hoặc ví dụ tương ứng. Ghi chú ngữ pháp đã rà soát: Use blue before a noun or after be; no figurative sadness sense is proposed here. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "61a7cb5f2310f2d033ffd8abd5e48ecc08b7d0e5c9d5d3a13fe159ef913315eb",
+      "reviewedRecordSha256": "cf7a01350fd3506e7fd6e2ae389174608b6f9240d4578be25892071b4a6898d4",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:blue:colour-name",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «màu xanh dương; màu xanh lam», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The designer chose blue for the walls of the waiting area.» với bản dịch VI. Nguồn noun favourite color hỗ trợ tên màu, tách POS khỏi thuộc tính adjective mà không tạo classification màu canonical. Ghi chú ngữ pháp đã rà soát: Usually uncountable for the colour; blues can refer to different shades. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "c34bc9fed1e2285e392cbd3756560394a917047306ffef71869409c077b56784",
+      "reviewedRecordSha256": "d6eadcb633477ebf1f7fcf0e33142c98feccadc7782d01d3d7d1e8507038b2c8",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:diminish:become-reduce",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «giảm; làm giảm», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The curtains diminished the glare from the afternoon sun.» với bản dịch VI. Hai nguồn dùng giảm dần, định nghĩa vocab còn có reduce; transitive và intransitive là hai mẫu cùng nghĩa biến đổi mức độ. Ghi chú ngữ pháp đã rà soát: Transitive: diminish the glare; intransitive: the noise diminishes. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "ad71da410133840e7f32376f2c4f51bb0f3a37f30757c13a062f1f9878acb8ad",
+      "reviewedRecordSha256": "74b7164bbac438c2022d3b6d7a88fdfd7dc3f57d13db0b835598718b804424e2",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:roll:rotate-move",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «lăn; làm lăn», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The loose wheel rolled across the courtyard.» với bản dịch VI. Nguồn quả bóng lăn hỗ trợ động từ chuyển động quay, khác cuộn vật phẳng và danh từ cuộn hay bánh. Ghi chú ngữ pháp đã rà soát: Intransitive: the wheel rolls; transitive: roll a ball across a surface. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "e6984a536fd17569822d1f4cb225c65d4570d52981d83d8bd86b214f1d2bc1fd",
+      "reviewedRecordSha256": "c46c793df13b59c8cd557ff08f34300387b4a93dccb4cac549ba4b1329db77ec",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:roll:coil",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «cuộn», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «An rolled the sleeping mat before packing it in his bag.» với bản dịch VI. Oxford có cuộn poster cho vào ống; giữ verb biến đổi hình dạng khác di chuyển lăn trên mặt đất. Ghi chú ngữ pháp đã rà soát: Transitive: roll a mat; roll something up emphasizes forming a compact bundle. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "bd5a3ccdfe3d4c4cb60805df53006081872f1c901129e17f55ce5f4fdda00f65",
+      "reviewedRecordSha256": "11bd6f25ddf64baf7d4fb26854141579e11aef5125731a2ff0ff6918327e7906",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:roll:coiled-material",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «cuộn vật liệu», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «We used a whole roll of ribbon to decorate the hall.» với bản dịch VI. Nguồn noun băng dính hỗ trợ lượng vật liệu cuộn; tách khỏi động từ cuộn bằng POS. Ghi chú ngữ pháp đã rà soát: Countable: a roll of tape, ribbon, or paper; of names the material. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "3e083f5c29c5b5f8536b7342206468363293079d2fd0434b8db001e187aed7ef",
+      "reviewedRecordSha256": "8ee2cd5ddff3f210b7fd831880bf8e1be87b217a484eda3aac6c9f12db76f7a9",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:roll:small-bread",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «ổ bánh mì nhỏ», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The baker placed a warm roll beside each bowl of soup.» với bản dịch VI. Oxford có bánh mì nhỏ ăn trưa, hỗ trợ noun vật thể thực phẩm khác cuộn băng dính. Ghi chú ngữ pháp đã rà soát: Countable: a bread roll, two rolls; this sense refers to food. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "48fb6726b8734e4e3303be56724f38f5dfa0e7f1950d0763e81b2e164ecf66b6",
+      "reviewedRecordSha256": "7c9799dda416a41b290c8ad206752d38ae8f6792118a216651d5c20c16afa640",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:qualified:trained",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «đủ trình độ; đủ chuyên môn», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «A qualified technician inspected the lift before it reopened.» với bản dịch VI. Nguồn thợ điện nhân viên đủ trình độ cùng một nghĩa chuyên môn; không thêm nghĩa kèm điều kiện hoặc hạn chế chưa có nguồn. Ghi chú ngữ pháp đã rà soát: Use qualified for a role or qualified to do something; a qualified technician is an attributive pattern. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "7fe3ff218f316752d42cd2a2492d4612a55ffcbfee697e2b01607a1555e4dd43",
+      "reviewedRecordSha256": "37897f6ecad954395bacce91a19a1672fa57db14d5df999093a1f1492072633e",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:ignite:start-burning",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «bắt cháy; làm bắt cháy», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «A spark ignited the dry leaves beside the shed.» với bản dịch VI. Định nghĩa nguồn có cả nội động và ngoại động của cùng sự kiện bắt lửa; không tách chỉ vì thay đổi đối tượng ngữ pháp. Ghi chú ngữ pháp đã rà soát: Intransitive: material ignites; transitive: a spark ignites something. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "5a63e90a067d03f4edaffcc8e8bb9a85e98a653f68fa568c3eed05aa064718fd",
+      "reviewedRecordSha256": "feac5a7ccabf4f13a5cc930978f913a1cdc54e4b26ceea2f58df2df06346e73b",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "originalReviewedContentHash": "7586f035050be4d6d5afa7ec9ecacd5efc4b13e242f75b4b05f2e04e8593a45b",
+      "proposalKey": "EDITORIAL_2H2L:incredulous:disbelieving",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «không thể tin; tỏ vẻ không tin», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Nhi gave an incredulous laugh when she heard the ticket price.» với bản dịch VI. Nguồn nói không thể tin và nụ cười không tin, cần giữ mạnh hơn nghi ngờ chung; không thêm nghĩa không đáng tin. Ghi chú ngữ pháp đã rà soát: Use an incredulous look or be incredulous at news; do not confuse incredulous with incredible. Không có human approval hoặc quyền canonical. Revision BEFORE/AFTER được rà soát; recheck độc lập hash mới được lưu riêng.",
+      "reviewedContentHash": "df34ecf34fdb6f21d1a0166d83e4719bf7482716ae59838f286c6179b8a45594",
+      "reviewedRecordSha256": "0633ee0c760a57f8a8cc881c51e489cc98b35318d0dadadcc1bdf186acad075a",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:replacement:substitute",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «người hoặc vật thay thế», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The shop offered a replacement for the faulty kettle.» với bản dịch VI. Oxford có máy tính và cốc thay thế, cùng noun vật thay thế; người hoặc vật là phạm vi nghĩa không phải hai Sense. Ghi chú ngữ pháp đã rà soát: Countable: a replacement for something; replacements may be people or objects. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "a136c4c159a2adeaeca425ee2dff2c636c47abf74cbd2567ea21772a4b0e735b",
+      "reviewedRecordSha256": "4f8bb0377bad0e60287af004dd28e77f54a3052df45c5c2d384001cf32b7263c",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:replacement:replacing-process",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «sự thay thế; việc thay mới», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Replacement of the windows will begin after the rainy season.» với bản dịch VI. Hai nguồn nói việc thay mái hoặc linh kiện, noun quá trình khác người vật cụ thể và khác countability. Ghi chú ngữ pháp đã rà soát: Usually uncountable for the process: replacement of an item. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "6f64d88ced0378b88b6349ccb79b1f01164855e7ab46ae358c4d092fc7f9d02c",
+      "reviewedRecordSha256": "ff5d93661f6e924b0d0b2fc60dff69c30bef7e7a56e6767eff8e418fc2ed0ad7",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:supernatural:beyond-nature",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «siêu nhiên», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The folktale attributes the sudden storm to supernatural powers.» với bản dịch VI. Nguồn đánh đồng không thực với không giải thích bằng tự nhiên; định nghĩa mô tả niềm tin trung tính, không xác nhận hoặc phủ định thế giới quan. Ghi chú ngữ pháp đã rà soát: Use supernatural powers or events; this word can describe a belief without asserting that it is true. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "b605a84bd8550138a09a2a30e4cf706f944b6fe0c28701f3199dafeb5bde47e9",
+      "reviewedRecordSha256": "9c8cc024c1ba8a49edaca825cca391bde9af215d2fb5630e31dd1b40adab6578",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:conventional:usual",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «thông thường; theo cách truyền thống», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The builder used conventional tools to restore the wooden door.» với bản dịch VI. Hai nguồn cách làm quen thuộc, không suy ra adjective vũ khí vì chưa có bằng chứng; phương pháp hữu cơ đối chiếu chỉ là ví dụ. Ghi chú ngữ pháp đã rà soát: Use conventional methods or designs; the adjective contrasts with unusual or newer approaches. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "594ab57dcfc56a2d3a3c0ec633bed7cd1739458845579b471b0c42da2fed2366",
+      "reviewedRecordSha256": "5af258aea697c1751702ee884bb055ad5157229e70059f17e406cc820ad26ac8",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:counselling:professional-guidance",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «sự tư vấn; hỗ trợ tư vấn», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Career counselling helped Bao compare two training programmes.» với bản dịch VI. Oxford và vocab hỗ trợ tư vấn nghề nghiệp và quan hệ; cùng nghĩa hỗ trợ vấn đề, giữ spelling UK counselling và US counseling như usage. Ghi chú ngữ pháp đã rà soát: Uncountable: receive counselling; counselling is the British spelling and counseling the American spelling. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "be99f734e524e79894d7ab50df0eda3faebb0994fc8a34dc817647899d539285",
+      "reviewedRecordSha256": "9e4ffada8ef728c81ecfa281564dd7f030639fab195a1f1cce2ee2b8ac9b51d3",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:racing:speed-competition",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «môn đua; hoạt động thi đua tốc độ», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Her interest in bicycle racing began at a village competition.» với bản dịch VI. Hai ví dụ ngựa và xe đạp cùng môn tranh tốc độ; không tách theo phương tiện hoặc thêm adjective racing chưa frozen. Ghi chú ngữ pháp đã rà soát: Uncountable activity noun; compounds such as horse racing and bicycle racing specify the event. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "8ed83b0148950ff2fa13db86e2f851d9749de84d52d4960daffca031ec984b30",
+      "reviewedRecordSha256": "0489987fdeb807d8be94064a323cb95b8b253a9bdd55a151777aa630e1b8e183",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "originalReviewedContentHash": "c00ec49b8ded4eb5ebc23690ba155c3bc24ad56d3dfe5a9c1f7e59151da248ce",
+      "proposalKey": "EDITORIAL_2H2L:superb:excellent",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «tuyệt hảo; xuất sắc», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The choir gave a superb performance despite the power interruption.» với bản dịch VI. Nguồn adjective và ví dụ chất lượng cao đủ hỗ trợ; bản dịch vocab sai trạng từ không được chuyển thành POS trong DRAFT. Ghi chú ngữ pháp đã rà soát: Use a superb performance or something is superb; superb is an adjective, not an adverb. Không có human approval hoặc quyền canonical. Revision BEFORE/AFTER được rà soát; recheck độc lập hash mới được lưu riêng.",
+      "reviewedContentHash": "f2c46e50af81d25906f578c6a113c42a8a9d2aea696be2f9cb7abee1084a3966",
+      "reviewedRecordSha256": "2d64e222e741cb72e7bf471b492181e94d2e1fef231012a1e0d88a450daf532f",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:soft:yielding",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «mềm», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The soft clay changed shape under the potter's fingers.» với bản dịch VI. Nguồn gối mềm hỗ trợ đặc tính dễ biến dạng khi chạm; khác giọng nhỏ nhẹ là nghĩa âm thanh được nguồn hỗ trợ riêng. Ghi chú ngữ pháp đã rà soát: Use soft material or something feels soft; this sense concerns physical texture. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "fd4f06922503a8f3b260e7368d49b7f05bd9daa1fa8020104cf9a491a8817ea0",
+      "reviewedRecordSha256": "f7bc63df5d68705f5f6c0aba02c1d5cae24e2f11e18a614e6427708782c3e63c",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:soft:gentle-sound",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «nhỏ nhẹ; êm dịu», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «A soft voice came from the other side of the curtain.» với bản dịch VI. Oxford có giọng nói nhỏ nhẹ, không nên định nghĩa mềm vật lý cho âm thanh; tách cùng POS theo khác đối tượng semantic. Ghi chú ngữ pháp đã rà soát: Use a soft voice or soft music; this sound sense differs from physical softness. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "f6612644144876870ac26df0a42d8b01b1d080ef939ccc7f86632ae36baa8fbf",
+      "reviewedRecordSha256": "8911034513b39f2e75549a5f67494cf2cfc2a913cfc17fb13893b76280e1dbaa",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:pregnant:carrying-young",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «mang thai; có thai», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «My pregnant sister chose a loose dress for the family gathering.» với bản dịch VI. Hai nguồn người hoặc động vật mang con hỗ trợ sinh sản; ví dụ mô tả sinh hoạt trung tính, không đưa khuyến nghị y tế. Ghi chú ngữ pháp đã rà soát: Use be pregnant or become pregnant; this lexical example gives no medical advice. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "feef4f6b4dc878d2762d52c5f5526377553be55cd867552dec6bc8f7583672aa",
+      "reviewedRecordSha256": "6c1e0193fcb7f4b6f80c2b382ccb23d678993869e01c518d37068297f2f378ea",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:compensation:making-amends",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «sự bồi thường; tiền bồi thường», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The passengers requested compensation for their lost luggage.» với bản dịch VI. Nguồn bồi thường thương tích hoặc hủy chuyến cùng đền bù tổn thất; tiền và việc chi trả giữ cùng nghĩa thay vì tách không cần thiết. Ghi chú ngữ pháp đã rà soát: Usually uncountable: compensation for loss; this entry does not cover wages or grant a legal entitlement. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "de2eb0b35152600a1a518c4ea1cfb9b0c7d103f14a0d16d6f8ce60ba7c1d46bd",
+      "reviewedRecordSha256": "001a74fc3a6e6a734d0c59da6f76c264f27929fc64422ad57ccc9714ad37d32e",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:set-up:arrangement",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «cách bố trí; cách tổ chức», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Our recording set-up uses two microphones and a small mixer.» với bản dịch VI. Hai nguồn văn phòng máy ảnh gia đình cùng cách tổ chức, giữ noun có dấu gạch theo frozen group và note US setup. Ghi chú ngữ pháp đã rà soát: Countable: a set-up; setup is an American spelling variant. Set up as a verb is written separately. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "ba86390ef6951efd6da8b4320a4d36508a55fda2ba0ae0258836042feea9a83a",
+      "reviewedRecordSha256": "6360f4525ef8a616eec4906071c6f54eb0211b141bcc43ce4f09fac4c33d90c7",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:set-up:deceptive-trap",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «cái bẫy; sự gài bẫy», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «In the film, the detective discovers that the robbery was a set-up.» với bản dịch VI. Oxford có người nói bắt giữ do gài bẫy, hỗ trợ nghĩa lừa và quy trách nhiệm; không mô tả thủ đoạn cụ thể. Ghi chú ngữ pháp đã rà soát: Countable and informal: a set-up; this noun differs from the verb set up. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "8d0b84b4bb123f628d3743297eb4953b0fea40143ee7d3062b9d9828c985c433",
+      "reviewedRecordSha256": "25857ef3451274747cc4737739374d1fdc7de3f658245eefb1673b559ae64dcd",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:distract:divert-attention",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «làm mất tập trung; phân tán sự chú ý», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The ticking clock distracted Mai from the puzzle.» với bản dịch VI. Các nguồn thông báo điện thoại và tiếng ồn đều làm gián đoạn chú ý; không tách theo nguyên nhân gây nhiễu. Ghi chú ngữ pháp đã rà soát: Use distract someone from something or from doing something; the person is the direct object. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "40ff679eacb9fd057325cd637673a79a487aaa415ff78d088bcda9c1e9977ff2",
+      "reviewedRecordSha256": "c398bbe635fb9065ab1e08c66f03820200b710f29ba891f691f989b1ea2712a0",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:bath:washing",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «việc tắm bồn; một lần tắm bồn», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «A warm bath helped him relax after the long walk.» với bản dịch VI. Hai nguồn tắm bồn để sạch hoặc thư giãn, cùng hành động; tách với vật thể bồn tắm noun theo Oxford. Ghi chú ngữ pháp đã rà soát: Countable occurrence: have a bath or take a bath. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "b95cdb7ead587a314ed8d96c20be7e17bf5170502cc37e2c0d7feb5cb4e51827",
+      "reviewedRecordSha256": "0642472cf01a9658eb5d7c5565f6d0a4249c78e9de3068ce918eed261a562c22",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:bath:tub",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «bồn tắm», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The plumber found a leak beneath the bath.» với bản dịch VI. Oxford có bồn đầy nước hỗ trợ vật chứa; ghi British usage của bath cho bathtub mà không thay đổi spelling nguồn. Ghi chú ngữ pháp đã rà soát: Countable; bath for the container is mainly British usage, while bathtub is common in American English. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "015dab6ff163fcd11ec7d5475d360d97740bf25cc5fcc85e0532936623c67a38",
+      "reviewedRecordSha256": "fc0cf3170d6607df4571ad4f6b30f4a6f4cdd59cac758d0096fd05230c5c68c7",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:onion:bulb-vegetable",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «củ hành tây», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Lan chopped a red onion for the bean salad.» với bản dịch VI. Nguồn củ hành tây trong nấu ăn hỗ trợ rau củ, không thêm cây hành nói chung hoặc hành lá chưa có bằng chứng. Ghi chú ngữ pháp đã rà soát: Countable for whole bulbs: an onion, onions; uncountable can describe chopped onion as an ingredient. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "a270d3dcf26727c267bb634932ace9249089e585e05320d2d89d41e93e1d73fe",
+      "reviewedRecordSha256": "971277ada0b667c1b9fc964dbb174720981de1e59d5bb189619b434e0be1db94",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:dilemma:difficult-choice",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «tình thế khó xử; tình huống khó lựa chọn», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Hoa faced a dilemma: accept the distant job or stay near her parents.» với bản dịch VI. Hai nguồn đều cần chọn giữa các phương án khó, giữ nghĩa lựa chọn chứ không đồng nhất mọi vấn đề khó đều là dilemma. Ghi chú ngữ pháp đã rà soát: Countable: a dilemma; use face a dilemma or be in a dilemma. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "9ac2795120b377a7a4f31f1ccf33088a9729a701e0412b67e7409d5bf3afe5a2",
+      "reviewedRecordSha256": "ab850850cceccac2f9a4d8be6a0ceb29e9ef67ec1a1db9aece8d2151fec2cb32",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:collection:gathered-items",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «bộ sưu tập; tập hợp», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Her collection of old maps fills three drawers.» với bản dịch VI. Oxford có tem và tiền cổ cùng tập hợp lưu giữ, không tách chỉ theo loại vật thể; khác hành động thu gom rác. Ghi chú ngữ pháp đã rà soát: Countable: a collection of objects; a map collection is a compound. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "33e4523c0c76f7073cc2865cf0a6150cc20b9e863fd153b59c5ae33813e9643c",
+      "reviewedRecordSha256": "9c7c8ec0e0f1ace17485492d65ccdebdacffae81ac0df6f8826fdf7927e4528f",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:collection:collecting",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «việc thu gom; sự thu nhận», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Regular collection of scrap metal keeps the workshop floor clear.» với bản dịch VI. Nguồn lịch thu gom rác hỗ trợ hành động thu nhận mang đi, tách khỏi bộ sưu tập được giữ lại. Ghi chú ngữ pháp đã rà soát: Usually uncountable for the service: waste collection or collection of materials. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "a0970f8f3af094f8fdfd7e6d4f8b164aed1861649a7640d994edb4c5c1da56e1",
+      "reviewedRecordSha256": "0de1ff0d84497c369c8a77914692762de40cd9a8138709b0199f2e64db3aec82",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:shove:push-forcefully",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «đẩy mạnh; xô đẩy», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «He shoved the heavy crate across the loading platform.» với bản dịch VI. Nguồn định nghĩa đẩy mạnh, ví dụ nguy hiểm không được sao chép; chọn đồ vật để minh họa trung tính cùng nghĩa. Ghi chú ngữ pháp đã rà soát: Transitive: shove something; direction phrases such as across or into can follow. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "1cffa88e16188ccc411a81313c863919b7bc724d7c4d0c1a9ef88a59173dc17d",
+      "reviewedRecordSha256": "4f5681fafa75e67042b62b76fcc2fc2e16f67731bd508070f67e55def572f91e",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:autograph:famous-signature",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «chữ ký của người nổi tiếng», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The young fan framed the singer's autograph.» với bản dịch VI. Nguồn tên viết của người nổi tiếng hỗ trợ chữ ký fan muốn giữ; không khẳng định mọi tên viết tay đều là autograph. Ghi chú ngữ pháp đã rà soát: Countable: an autograph, autographs; ask someone for an autograph. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "b1406390c93f65bbac6e44c8965c574f6b1407401529efd6c11167244abc0b37",
+      "reviewedRecordSha256": "8ed3ad2a1d6ceb659cc34f34768f423d017d4ac3f46d1bccdaae79bb00a0a8f0",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:surface:outer-layer",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «bề mặt», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The rough surface of the stone scratched the wooden shelf.» với bản dịch VI. Hai nguồn bàn hoặc hồ hỗ trợ phần ngoài trên, không thêm verb xuất hiện vì frozen POS chỉ noun. Ghi chú ngữ pháp đã rà soát: Countable: a surface; use the surface of something. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "7c00851696b8593f96922e7960571313ac5d0acf102a4f12259fb5549b22024d",
+      "reviewedRecordSha256": "9239666de03756c21b6a635c6cad07b41288fc0f6ca4b0d32671cfd2ddf90606",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:compromise:agreement",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «sự thỏa hiệp; phương án thỏa hiệp», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The neighbours reached a compromise about the shared parking space.» với bản dịch VI. Oxford có noun thỏa thuận sau tranh luận; nguồn vocab verb nhưng ví dụ noun được giữ như giới hạn metadata, không sửa nguồn. Ghi chú ngữ pháp đã rà soát: Countable: a compromise; reach a compromise. One linked source labels a verb but gives a noun example. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "252693cdc9f1ca121a07b00839c144cea1e764e3278ba9209bd9145cd4bf923e",
+      "reviewedRecordSha256": "71a376640d659f61f48b9fffa4c19a7d5bfae8b4c0adb2b650402785aef16193",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "originalReviewedContentHash": "46e3afa52733915f77988d3604fe0c93bcfc8d56069051139a98dc8ccfbbec69",
+      "proposalKey": "EDITORIAL_2H2L:compromise:make-concessions",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «thỏa hiệp; nhượng bộ để đạt thỏa thuận», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Both teams compromised on the length of the rehearsal.» với bản dịch VI. Động từ hai bên nhượng bộ trong Oxford khác noun thỏa thuận; mẫu on và with giữ cùng nghĩa chứ không tạo Sense riêng. Ghi chú ngữ pháp đã rà soát: Intransitive: compromise on an issue or compromise with someone. Không có human approval hoặc quyền canonical. Revision BEFORE/AFTER được rà soát; recheck độc lập hash mới được lưu riêng.",
+      "reviewedContentHash": "53214b6d9f04f0fb4a1ae1f10190587406ddbb4b125053ac8dc0fbfbe2afd84a",
+      "reviewedRecordSha256": "a666d5bce6d933b84579d09d8f4c1b34b30c1c68ebf82043c56c51da06ac1f85",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:compromise:endanger",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «làm tổn hại; gây nguy hiểm cho», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Leaving the archive unlocked could compromise the safety of the records.» với bản dịch VI. Nguồn chia sẻ mật khẩu làm nguy hiểm bảo mật hỗ trợ nghĩa gây hại, khác nghĩa nhượng bộ giữa người; không thao tác tài khoản thực. Ghi chú ngữ pháp đã rà soát: Transitive: compromise security or safety; this differs from negotiating a compromise. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "4367a92948546d973783ac4062fdb7b15c35c7d01c464be1fb41803cbdd77050",
+      "reviewedRecordSha256": "f7d558b4c0d8b0c9fb7862168a2bbbedb43b7cb2fb360a1a4eb862b8bff803c3",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:graphics:visual-images",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «đồ họa; hình ảnh đồ họa», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The manual uses clear graphics to show how the parts fit together.» với bản dịch VI. Hai nguồn hình thiết kế và trò chơi cùng đồ họa; dùng plural noun theo hình thức hiện có, không thêm graphic adjective. Ghi chú ngữ pháp đã rà soát: Plural noun in this visual-images sense: the graphics are clear. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "db74c8c8649a3011316902652fd6253ffabb89847e41e5f4179f0be963aa095c",
+      "reviewedRecordSha256": "50115f0bf58d405a8ddc4d8579c4b2b150142dc8666070e9399aff8c40fe91d5",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:dialogue:conversation",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «cuộc đối thoại; đoạn hội thoại», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The actors rehearsed the dialogue while waiting for the lighting crew.» với bản dịch VI. Nguồn luyện đoạn hội thoại và phim đều trò chuyện giữa nhân vật, không đủ bằng chứng riêng cho đàm phán quốc tế để thêm Sense. Ghi chú ngữ pháp đã rà soát: Countable for a particular exchange; uncountable can refer to the spoken text in a work. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "b1267533406d46de6a3be97985ac99ba84e6bcaec2d6fcc1bbab59fd66db80fd",
+      "reviewedRecordSha256": "1a11e27abcb2ba62087b34809979c8528ba7daf0b9170a15da0f1b730aed7a0e",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:phrase:word-group",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «cụm từ», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The phrase at the end of her letter sounded unusually formal.» với bản dịch VI. Nguồn cụm từ nghe được và trên biển báo hỗ trợ nhóm từ, không tự giới hạn là grammatical constituent kỹ thuật hoặc thêm verb. Ghi chú ngữ pháp đã rà soát: Countable: a phrase, phrases; this general expression sense does not require a complete sentence. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "976eb25aa4fcb5d3a0bbe8e4bd4658a37bbb83ab1f0b65e6392b11236407257e",
+      "reviewedRecordSha256": "2cf4b242cfc428bd9891e95185865f21bf30cd6f88cf742d06865c019053defb",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:rubbish:waste",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «rác; đồ bỏ đi», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Volunteers removed bags of rubbish from the riverbank.» với bản dịch VI. Hai nguồn rác vật liệu cùng nghĩa; giữ UK usage và US equivalent trong note, không áp regional classification canonical. Ghi chú ngữ pháp đã rà soát: Uncountable; especially British usage. Garbage and trash are common American equivalents. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "8e71c4576073a72b123ca078f93b8b2034575b91d1541b5d740d72b379934382",
+      "reviewedRecordSha256": "d42baf71e3e5b1cc34041331d83dac3623f986492b5ea2fb15753fb2efd1c3be",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:rubbish:nonsense",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «lời nhảm nhí; chuyện vô lý», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «She dismissed the rumour as rubbish and returned to her work.» với bản dịch VI. Oxford có story rubbish hỗ trợ đánh giá lời vô lý, khác rác vật lý; định nghĩa không mặc định mọi lời không thích đều sai. Ghi chú ngữ pháp đã rà soát: Uncountable and informal: complete rubbish; calling something rubbish expresses a negative judgment. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "67d4c66b5fa80eac4019484ce0e413c6ef49bb54e9126c7bff7ddee2b75688c9",
+      "reviewedRecordSha256": "7408719aecad80d0cccf7a68ee53c83516975d67de7c0b3db2b9f1b8211f03bc",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:concerto:solo-orchestra-work",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «bản concerto; tác phẩm cho nhạc cụ độc tấu và dàn nhạc», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The orchestra opened the evening with a violin concerto.» với bản dịch VI. Nguồn có solo instrument cùng orchestra, bản dịch hòa tấu quá rộng nên dùng concerto cùng giải thích cụ thể, không sao chép ví dụ nguồn. Ghi chú ngữ pháp đã rà soát: Countable: a concerto, concertos; the instrument name can precede concerto. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "0124564311d0b386f29a155cf960bd8ffc4874ffe693eb361e12f1df5ce5fa43",
+      "reviewedRecordSha256": "d99b2d5fc57679ef43a6d777f4ec71292da1367da431153db24fc5d6d666cdab",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:periphery:outer-edge",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «vùng ngoại vi; phần rìa», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Small farms remain on the periphery of the growing town.» với bản dịch VI. Nguồn chỉ mép ngoài thành phố, chưa có nghĩa yếu thế trừu tượng đủ rõ; giới hạn spatial không áp nghĩa social tự phát. Ghi chú ngữ pháp đã rà soát: Usually the periphery of an area; on the periphery describes an outer position. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "09eb0245bfd04006a13ec180320c74cbff28a819bcb05d4f525240ebd10a15ea",
+      "reviewedRecordSha256": "49bc701b19053c2d0b71e4815eb60c8a1ce73e0373e3fa10cc13fc5857a5f636",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:specifically:particular-purpose",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «riêng; đặc biệt dành cho», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «These lightweight tools were developed specifically for field surveys.» với bản dịch VI. Nguồn khóa học người mới và bếp nhỏ hỗ trợ mục đích riêng, khác lời yêu cầu rõ ràng ở nghĩa thứ hai. Ghi chú ngữ pháp đã rà soát: Often specifically for + noun phrase; modifies the intended purpose of an action or design. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "067c6531d5e957946b2c3b344837841ea7a1d73b05b558807bb1f68c3d089a94",
+      "reviewedRecordSha256": "222bac8ced5b34c5b86b8cb2fc3de732ad8b4493146e2fc1f981c65a614cda31",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:specifically:explicitly",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «một cách cụ thể; rõ ràng», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The guide specifically asked us not to photograph the documents.» với bản dịch VI. Oxford có yêu cầu phòng yên tĩnh một cách rõ ràng, hỗ trợ explicitness; không tách riêng từng vị trí trạng từ. Ghi chú ngữ pháp đã rà soát: Often modifies a verb of saying or asking; distinguishes an explicit request from an implied one. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "1c04b52fe35f48a47f22bb3c77105d67f50c80e5a7727272bf0fdcdbeebf6c36",
+      "reviewedRecordSha256": "c1345f58978b51b19ecedd2c214729e0d116326aa17ee98d521a7d37dc342d5c",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:ray:light-beam",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «tia sáng», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «A pale ray of light slipped through the gap in the shutters.» với bản dịch VI. Hai nguồn tia nắng và ánh sáng cùng nghĩa light, tách khỏi cá đuối được Oxford hỗ trợ. Ghi chú ngữ pháp đã rà soát: Countable: a ray of light; rays of sunlight. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "7813c4a3a77e87227008366e8cc67fc2f49588de260b29e14a9dc8e15edd56a5",
+      "reviewedRecordSha256": "28f931cbea024e4b65256a9ffdd61765147576f7480e0379278ac84c11447268",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:ray:flat-fish",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «cá đuối», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The aquarium's ray glided slowly above the sandy bottom.» với bản dịch VI. Nguồn cá bơi gần đáy biển hỗ trợ vật thể động vật khác tia sáng, không cố định vào một loài hay khẳng định mọi ray có gai độc. Ghi chú ngữ pháp đã rà soát: Countable: a ray, rays; this fish sense does not imply that every species has a stinging spine. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "527b88b662a54610c9315023e6a84ab2220a3c47c8c743922b332567358f111f",
+      "reviewedRecordSha256": "513375dd571e27e775b7760d87ce4d89b73e4f1976c513a3ca7cdcf8ffd45d8f",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:ultimately:final-result",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «cuối cùng; xét đến kết quả sau cùng», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The committee ultimately selected the smaller building.» với bản dịch VI. Hai ví dụ chọn phương án hoặc quyền lựa chọn ở kết luận cùng trạng từ cuối cùng, không thêm nghĩa cơ bản sâu xa khi nguồn chưa rõ. Ghi chú ngữ pháp đã rà soát: Can modify a clause or a verb; ultimately often highlights the final outcome after earlier possibilities. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "dd986ae544bdcd0ff4e9aa21444c7d8d023db0420de7a0f9e296695a271e9e7a",
+      "reviewedRecordSha256": "4a261138ec983daaca3bec305e34563672ac79063c78a7d2b8a2667b282b56ba",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:diverge:separate-directions",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «rẽ ra; phân nhánh», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The two paths diverge beside the old watchtower.» với bản dịch VI. Nguồn đường tách hai lối hỗ trợ phân nhánh hướng di chuyển, khác becoming different trong định nghĩa nguồn. Ghi chú ngữ pháp đã rà soát: Intransitive: paths diverge; diverge from a route can describe moving away from it. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "3ddbffab9ad2bc0a06737a0cdc6c447b2ee26cbf25e581d814f0987944103da3",
+      "reviewedRecordSha256": "71a1b1ac3f4884822efcc6b6e776ec8d013a45bdd51431f3e51c15e797d30e74",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:diverge:become-different",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «trở nên khác biệt; khác nhau dần», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Their views began to diverge as the discussion continued.» với bản dịch VI. Định nghĩa nguồn có become different hỗ trợ khác biệt trừu tượng; ví dụ mới thể hiện quan điểm, không suy ra nghĩa toán học hội tụ đối nghịch. Ghi chú ngữ pháp đã rà soát: Intransitive: views diverge; use diverge from an opinion or expectation. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "074e83e4adc56bbd4f4b093dc75af7560c292de848a186cb0cfc180af415b0fc",
+      "reviewedRecordSha256": "894c1dcc7222cffc6b27919df7e513829aea12b27932cfb7df425b1f4f029c3c",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:during:within-period",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «trong; trong suốt thời gian diễn ra», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «A power cut interrupted the lecture during the final demonstration.» với bản dịch VI. Các nguồn sự kiện bài học phim hỗ trợ giới từ khoảng thời gian, có thể một phần hoặc toàn bộ; không giả định during luôn nghĩa suốt toàn bộ. Ghi chú ngữ pháp đã rà soát: Follow during with a noun phrase, not a finite clause; use while before a clause. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "55f61908e980ede56763ae6eaa93df2e1d0a835ff0b45d2c465885669e3b0bf1",
+      "reviewedRecordSha256": "167e527939b25d2e71db6e725d3e5daffcb8d678bb452eee9c505b37048f83fc",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:term:school-period",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «học kỳ», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The students will present their projects at the end of term.» với bản dịch VI. Oxford học kỳ bắt đầu tháng Chín hỗ trợ thời kỳ học, tách thời hạn chức vụ vì chức năng cụ thể và nguồn tách meaning. Ghi chú ngữ pháp đã rà soát: Countable: a school term; end of term is also used without an article. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "2997f366d0a81f13b4be4bbab8604bb1ffc716d68ad2d8bd4cce7ec376963ca0",
+      "reviewedRecordSha256": "55f42e584d1e81743876d8bebbb600f54a5bd3d5723546b8b1cc362f2148d470",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:term:name",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «thuật ngữ; tên gọi», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The tutor explained the technical term before showing the diagram.» với bản dịch VI. Hai nguồn thuật ngữ chỉ khái niệm hỗ trợ noun tên gọi; không tái dùng dữ kiện sai năm Generation X trong ví dụ nguồn. Ghi chú ngữ pháp đã rà soát: Countable: a term for something; technical and medical often modify term. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "3e263dbd169b56c57fe26a7bce7218f096545feac6c7edceb38d809f28d5f1fb",
+      "reviewedRecordSha256": "f4f83cdd5268bfe88f77f879896ea60e28cb6c88d07532455c028482f8833c42",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:term:fixed-period",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «nhiệm kỳ; thời hạn», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Her term as chair of the association ended in June.» với bản dịch VI. Oxford nhiệm kỳ bốn năm hỗ trợ thời kỳ chức vụ, giữ khác học kỳ trong bản DRAFT và không đưa thông tin chính trị thực thời gian. Ghi chú ngữ pháp đã rà soát: Countable: a term of office; use a term as + role. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "878d9005838d685aca4c520bf837653ace64c43c9f45b499832b63f05955b5a8",
+      "reviewedRecordSha256": "ea21b35615b314701cfed93576fba5d46ba038e7037f518470908556cb19d5eb",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:term:condition",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «điều khoản; điều kiện thỏa thuận», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «We checked the payment terms before signing the order.» với bản dịch VI. Nguồn hợp đồng có terms hỗ trợ điều kiện thỏa thuận, thường plural; tách noun từ vựng và thời gian. Ghi chú ngữ pháp đã rà soát: Often plural: the terms of an agreement or payment terms. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "a812b1e00fa29d3d1796db027d6285f641b4d94a474ecc9b989e31e265abd835",
+      "reviewedRecordSha256": "9b7ada582a72a0096e465285dbac5293c014c94215a28e47b2487347a5c243fa",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:term:call",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «gọi là; gọi bằng tên», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The researchers termed the new pattern 'delayed recovery'.» với bản dịch VI. Oxford verb gọi quá trình natural selection hỗ trợ đặt nhãn, khác noun thuật ngữ dù liên hệ; không bổ sung ID hay taxonomy canonical. Ghi chú ngữ pháp đã rà soát: Transitive: term something + name or description; formal compared with call. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "ea57e29513491b96411c12832b9eec6d60730ac5bafd0a0d0b09345d69ac411a",
+      "reviewedRecordSha256": "877835fb7d55252d675a80d0e2a8e00d08c038628a1693fa08020dfd665d9914",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:television:broadcast-medium",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «truyền hình», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The debate will be shown on television tomorrow evening.» với bản dịch VI. Nguồn xem chương trình và trận đấu hỗ trợ medium, tách khỏi thiết bị được mua; không tách programme với broadcast system thiếu chứng cứ. Ghi chú ngữ pháp đã rà soát: Uncountable for the medium: on television, watch television; no article in these uses. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "dd59b9eb1e98460ae741f9673c4bf63adc2c7c491c95d75f405a8ac286425c9e",
+      "reviewedRecordSha256": "fbadf09ec5a1ad26da96c4d6a591abc48987b8996eae85137f41e958a893a121",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:television:receiving-set",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «ti vi; máy thu hình», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «They placed a small television on the kitchen shelf.» với bản dịch VI. Oxford mua ti vi hỗ trợ vật thể đếm được, khác on television không article nói phương tiện truyền hình. Ghi chú ngữ pháp đã rà soát: Countable for the device: a television, two televisions. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "e1830a128bb0d7b3877fe072ff2b453ea80064adf64df83c129285a1d0a72093",
+      "reviewedRecordSha256": "62fea84dc5fb1707461a2a42f4640d19c9defbed3da722884845cd9876f891d2",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "REVIEW",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:potential:possible",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «có thể trở thành; tiềm năng», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The team invited potential sponsors to visit the workshop.» với bản dịch VI. Oxford adjective người có thể được tuyển hỗ trợ khả năng tương lai; nguồn vocab gắn adj nhưng ví dụ noun được giữ chưa giải quyết metadata. Ghi chú ngữ pháp đã rà soát: Usually before a noun: a potential sponsor; one linked source illustrates a noun despite an adjective label. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "9dcbc1456bc8c75764fc66d48f0bee4878a3689bb99b3985c62f9420c78b6b2b",
+      "reviewedRecordSha256": "e8bb1138715eff8a15f3cd062982ea51a7ab43e7d3567a02d63b9693c4698401",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:potential:capacity",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «tiềm năng; khả năng phát triển», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The unused courtyard has potential as a community garden.» với bản dịch VI. Nguồn noun vận động viên và musician có khả năng phát triển hỗ trợ tiềm năng; không tách theo nghề. Ghi chú ngữ pháp đã rà soát: Uncountable: have potential, potential for something, potential to do something. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "dd66f40a45961eb08942b3cbb31317b8b9b011d3073d795af27dd3d7823bd76c",
+      "reviewedRecordSha256": "039694a93ae546ec874ff9461dc2732fb5cba1f2684f3e91eaeab018ef551924",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:keep:retain",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «giữ; giữ lại», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «You can keep the spare key until the repairs are finished.» với bản dịch VI. Oxford giữ biên lai hỗ trợ tiếp tục có vật; tách duy trì trạng thái cửa đóng và tiếp tục hành động từ cùng nguồn. Ghi chú ngữ pháp đã rà soát: Transitive: keep something; this sense concerns continued possession. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "6c8ad6f9403f179b9aeb638e2ada55d2be7c5f2bc98dd649de0fd86e683dbd69",
+      "reviewedRecordSha256": "51ad38edd494a4504aa60cb5c29fbf554dbe974c27dd0c045f8099d8f20095f3",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:keep:maintain-state",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «giữ ở một trạng thái; duy trì», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The insulated cover keeps the food warm during delivery.» với bản dịch VI. Nguồn keep door closed hỗ trợ object complement, khác keep vật sở hữu; ghi cấu trúc và semantic trạng thái riêng. Ghi chú ngữ pháp đã rà soát: Pattern: keep + object + adjective, as in keep the food warm. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "f0391f22a5c5beba74ee38db2ce3348222685f7d2462af35423f4cdaef881194",
+      "reviewedRecordSha256": "bb3dedd71054b2a7515f4391fdd43bb2fdb4834cd816fdd5598ca1a92c6f5b63",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:keep:continue",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «tiếp tục», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The dog kept barking until its owner returned.» với bản dịch VI. Hai nguồn keep trying và working hỗ trợ động từ tiếp tục với ing, không dùng keep to do cho nghĩa này. Ghi chú ngữ pháp đã rà soát: Use keep doing, not keep to do, for continuing an action. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "3607253fa9e57616ea3f3996292d7ee5ebbe36944b23c79e0ae842e166b24a77",
+      "reviewedRecordSha256": "ec746a5d0a62b900ccd9de9693dbb3245be1bc53cdba0239e08e97c003611e9f",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:considerable:substantial",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «đáng kể; khá lớn», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Moving the equipment required considerable effort from the crew.» với bản dịch VI. Hai nguồn thời gian tiền quan tâm cùng mức lớn, không đồng nhất considerable với considerate chỉ quan tâm người khác. Ghi chú ngữ pháp đã rà soát: Use considerable + noun; do not confuse considerable with considerate. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "6b9c8fc54383a5fd05e13e1948d664168e02c04b926539248bf071206bdd1dd3",
+      "reviewedRecordSha256": "decaf4aaa395807bd13997b042df2cf0aa05f2090e668f7fdd77f195fb584f02",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:decision-making:choosing-process",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «việc ra quyết định; quá trình quyết định», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Clear records made the group's decision-making more transparent.» với bản dịch VI. Nguồn việc quyết định trong tổ chức hoặc nhóm hỗ trợ quá trình; không tách theo quy mô nhóm, giữ hyphen spelling frozen. Ghi chú ngữ pháp đã rà soát: Uncountable activity noun; decision-making process is a common attributive use. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "ab2bd8557f6e3fdf655762b58d06a4a0657ddd03ab7ca8335c3194bf19debba0",
+      "reviewedRecordSha256": "00923a5c836d199d96668da914ced25739a3b9ffeaf70196187dcead8670229b",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:consistency:steadiness",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «sự nhất quán; sự ổn định», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Consistency in labelling helps workers locate the stored parts.» với bản dịch VI. Nguồn đội thi đấu và spelling cùng giữ tiêu chuẩn ổn định, không tách theo hoạt động; khác độ đặc chất lỏng. Ghi chú ngữ pháp đã rà soát: Uncountable: consistency in an activity; consistency of performance. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "27fb2f6688bb067d398be72f22bda3e8e20f4e2cf1cc911365364f0b75c7e6c6",
+      "reviewedRecordSha256": "948b82b824f8f6ba536ea99bcb6de1441ac13ba752e58eae53e489be03856d73",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:consistency:thickness",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «độ đặc; độ sệt», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «The soup had a thick consistency after cooling.» với bản dịch VI. Nguồn thêm nước vào xốt hỗ trợ đặc tính độ đặc, khác hành vi nhất quán cùng POS và countability uncountable. Ghi chú ngữ pháp đã rà soát: Use the consistency of a substance; an adjective such as thick or smooth can describe it. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "20f445c468b5480378267abccb07e0ac8ef9288ad162bd421d862f8b6ee543b1",
+      "reviewedRecordSha256": "75e076a8a6a07b27c758a199aa720cec119382370feca8ee0e26f8546005513f",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    },
+    {
+      "assessment": "PASS",
+      "dimensions": [
+        "MEANING",
+        "EN_DEFINITION",
+        "VI_SCOPE",
+        "EXAMPLE_AGENCY_TENSE_NUMBER_POLARITY",
+        "POS_CONSTRUCTION",
+        "GRAMMAR",
+        "SENSE_BOUNDARY",
+        "SOURCE_AGREEMENT",
+        "SPECIALIST_SENSITIVITY"
+      ],
+      "humanApproval": false,
+      "proposalKey": "EDITORIAL_2H2L:decision:choice",
+      "reviewExplanationVi": "Đã đối chiếu nghĩa «quyết định», định nghĩa EN và vai chủ thể/đối tượng trong ví dụ «Our decision to repair the roof first saved time later.» với bản dịch VI. Hai ví dụ chọn trường và quyết định chung cùng lựa chọn cuối cùng; không tự thêm năng lực quyết đoán hoặc phán quyết pháp lý. Ghi chú ngữ pháp đã rà soát: Countable: make a decision; a decision to do something. Không có human approval hoặc quyền canonical.",
+      "reviewedContentHash": "079ce830af8cdc7dd1215a6dfa38ccb5fa2c2ebf0fb9c3145382f95e10f71439",
+      "reviewedRecordSha256": "90de372e8c6eeb9daddb1368eb9618812316688a4818d9a0c1d03ca50fedc4fc",
+      "reviewerKind": "AI_SECOND_PASS_EDITORIAL_REVIEW_NOT_HUMAN"
+    }
+  ]
+}

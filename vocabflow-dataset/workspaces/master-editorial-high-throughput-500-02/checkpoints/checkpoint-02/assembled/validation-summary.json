@@ -1,0 +1,574 @@
+{
+  "canonicalIdsAllocated": 0,
+  "counts": {
+    "cumulativeAuthoredGroups": 1720,
+    "cumulativeDraftSenses": 2384,
+    "independentReview": {
+      "PASS": 153,
+      "REVIEW": 5
+    },
+    "microBatchesCompleted": 5,
+    "missingSenseCandidates": 1,
+    "multiSenseGroups": 44,
+    "newAuthoredGroups": 100,
+    "newSenses": 158,
+    "plannedSourceSupportedMeaningCandidates": 158,
+    "previousAuthoredGroups": 1620,
+    "previousEffectiveSenses": 2226,
+    "remainingUnauthoredGroups": 4423,
+    "selectedCohortGroups": 500,
+    "selfReview": {
+      "PASS": 149,
+      "REVIEW": 9
+    },
+    "sourceGroups": 6143,
+    "sourceMeaningCandidatesExamined": 159,
+    "unresolvedBoundaryItems": 5
+  },
+  "crossSourceCopyingScreen": {
+    "authoredSenseRecordsScanned": 158,
+    "eightWordOverlaps": [],
+    "scope": "All string sourceFields in both complete corpora; heuristic text screen, not rights clearance",
+    "sourceRecordsScanned": 9677
+  },
+  "databaseAccess": "NONE",
+  "databaseWrites": "NONE",
+  "inheritedReviewLimitations": {
+    "cp01NonblockingReview": 2,
+    "previousCohortDeferredIdentities": 16,
+    "previousCohortReviewFindings": 34
+  },
+  "ownerApprovals": 0,
+  "parentPostpublicationVerification": {
+    "acceptedCommit": "1bf6748b91d1c4d66127bf12b9f700cb668abe03",
+    "acceptedWorkspaceBytePins": 79,
+    "ancestry": "PASS",
+    "artifactPins": 8,
+    "cohortFingerprint": "9710a47fda875f70412c7440b2969c031dc6eb3c076140a42007aed4f83cf59c",
+    "contentReplay": "PASS",
+    "cumulativeSenses": 2226,
+    "historicalBaselineGuard": "OBSOLETE_FOR_DESCENDANT_REPLAY_NOT_EXECUTED",
+    "inheritedSenses": 2081,
+    "newSenses": 145,
+    "parentFingerprint": "4b968558eb6f2506e1c83c5ca4ebc783e5f01265394f01d6f8ee15abe4fbb773",
+    "rawInputPins": 60,
+    "reviewBindings": "PASS",
+    "status": "PASS",
+    "zeroWrites": true
+  },
+  "publicationReady": true,
+  "rights": "UNKNOWN_REVIEW_REQUIRED",
+  "sourceSimilarityFindings": [
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:lonely:lack-company",
+      "sourceRecordId": "1788223608265",
+      "text": "cô đơn"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:lonely:lack-company",
+      "sourceRecordId": "1788223608265",
+      "text": "cô đơn"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:aristocracy:noble-class",
+      "sourceRecordId": "1559931008940",
+      "text": "tầng lớp quý tộc"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:cruise:holiday-voyage",
+      "sourceRecordId": "1788223609327",
+      "text": "chuyến du ngoạn bằng tàu"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:cruise:holiday-voyage",
+      "sourceRecordId": "1788223609327",
+      "text": "chuyến du ngoạn bằng tàu"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:cruise:sail-leisurely",
+      "sourceRecordId": "1788223609327",
+      "text": "du ngoạn bằng tàu"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:cruise:sail-leisurely",
+      "sourceRecordId": "1788223609327",
+      "text": "du ngoạn bằng tàu"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:energy:physical-power",
+      "sourceRecordId": "1788223607016",
+      "text": "năng lượng"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:energy:physical-power",
+      "sourceRecordId": "1788223607016",
+      "text": "năng lượng"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:energy:physical-power",
+      "sourceRecordId": "1559931009666",
+      "text": "năng lượng"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:refuse:decline",
+      "sourceRecordId": "1788223607574",
+      "text": "từ chối"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:refuse:decline",
+      "sourceRecordId": "1788223607574",
+      "text": "từ chối"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:refuse:decline",
+      "sourceRecordId": "1556384731215",
+      "text": "từ chối"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:heritage:inherited-culture",
+      "sourceRecordId": "1788223609872",
+      "text": "di sản"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:heritage:inherited-culture",
+      "sourceRecordId": "1788223609872",
+      "text": "di sản"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:heritage:inherited-culture",
+      "sourceRecordId": "1559931008485",
+      "text": "di sản"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:number:quantity",
+      "sourceRecordId": "1788223606126",
+      "text": "số lượng"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:number:quantity",
+      "sourceRecordId": "1788223606126",
+      "text": "số lượng"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:number:label-in-sequence",
+      "sourceRecordId": "1788223606126",
+      "text": "đánh số"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:number:label-in-sequence",
+      "sourceRecordId": "1788223606126",
+      "text": "đánh số"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:vine:climbing-plant",
+      "sourceRecordId": "1559931009158",
+      "text": "cây dây leo"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:fraction:small-part",
+      "sourceRecordId": "1788223609559",
+      "text": "một phần nhỏ"
+    },
+    {
+      "field": "senseLabelEn",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:fraction:small-part",
+      "sourceRecordId": "1559931008444",
+      "text": "Small part"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:fraction:small-part",
+      "sourceRecordId": "1559931008444",
+      "text": "một phần nhỏ"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:fraction:mathematical-part",
+      "sourceRecordId": "1788223609559",
+      "text": "phân số"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:fraction:mathematical-part",
+      "sourceRecordId": "1788223609559",
+      "text": "phân số"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:immune:unaffected",
+      "sourceRecordId": "1788223609404",
+      "text": "không bị ảnh hưởng bởi"
+    },
+    {
+      "field": "senseLabelEn",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:completion:finishing",
+      "sourceRecordId": "1623660519676",
+      "text": "Finishing something"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:surge:increase-rapidly",
+      "sourceRecordId": "1788223610664",
+      "text": "tăng vọt"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:surge:increase-rapidly",
+      "sourceRecordId": "1788223610664",
+      "text": "tăng vọt"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:production:output",
+      "sourceRecordId": "1788223607783",
+      "text": "sản lượng"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:production:output",
+      "sourceRecordId": "1788223607783",
+      "text": "sản lượng"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:rank:place-in-order",
+      "sourceRecordId": "1788223608752",
+      "text": "xếp hạng"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:rank:place-in-order",
+      "sourceRecordId": "1788223608752",
+      "text": "xếp hạng"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:rank:place-in-order",
+      "sourceRecordId": "1559931007753",
+      "text": "xếp hạng"
+    },
+    {
+      "field": "senseLabelEn",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:dose:medicine-amount",
+      "sourceRecordId": "1559931008383",
+      "text": "Amount of medicine"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:athletic:sport-related",
+      "sourceRecordId": "1788223609417",
+      "text": "thuộc thể thao"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:athletic:sport-related",
+      "sourceRecordId": "1788223609417",
+      "text": "thuộc thể thao"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:activate:start-operation",
+      "sourceRecordId": "1788223609668",
+      "text": "kích hoạt"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:activate:start-operation",
+      "sourceRecordId": "1788223609668",
+      "text": "kích hoạt"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:activate:start-operation",
+      "sourceRecordId": "1613546480322",
+      "text": "kích hoạt"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:theirs:their-possession",
+      "sourceRecordId": "1788223608388",
+      "text": "của họ"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:theirs:their-possession",
+      "sourceRecordId": "1788223608388",
+      "text": "của họ"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:original:first-version",
+      "sourceRecordId": "1788223607046",
+      "text": "bản gốc"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:original:first-version",
+      "sourceRecordId": "1788223607046",
+      "text": "bản gốc"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:interpret:translate-speech",
+      "sourceRecordId": "1788223609024",
+      "text": "phiên dịch"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:interpret:translate-speech",
+      "sourceRecordId": "1788223609024",
+      "text": "phiên dịch"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:god:deity",
+      "sourceRecordId": "1788223606940",
+      "text": "vị thần"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:god:deity",
+      "sourceRecordId": "1788223606940",
+      "text": "vị thần"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:roll:small-bread",
+      "sourceRecordId": "1788223607941",
+      "text": "ổ bánh mì nhỏ"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:roll:small-bread",
+      "sourceRecordId": "1788223607941",
+      "text": "ổ bánh mì nhỏ"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:supernatural:beyond-nature",
+      "sourceRecordId": "1559931010038",
+      "text": "siêu nhiên"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:bath:tub",
+      "sourceRecordId": "1788223606806",
+      "text": "bồn tắm"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:bath:tub",
+      "sourceRecordId": "1788223606806",
+      "text": "bồn tắm"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:onion:bulb-vegetable",
+      "sourceRecordId": "1788223606907",
+      "text": "củ hành tây"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:onion:bulb-vegetable",
+      "sourceRecordId": "1788223606907",
+      "text": "củ hành tây"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:surface:outer-layer",
+      "sourceRecordId": "1788223607896",
+      "text": "bề mặt"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:surface:outer-layer",
+      "sourceRecordId": "1788223607896",
+      "text": "bề mặt"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:surface:outer-layer",
+      "sourceRecordId": "1559931007978",
+      "text": "bề mặt"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:phrase:word-group",
+      "sourceRecordId": "1788223606843",
+      "text": "cụm từ"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:phrase:word-group",
+      "sourceRecordId": "1788223606843",
+      "text": "cụm từ"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:ray:light-beam",
+      "sourceRecordId": "1788223609771",
+      "text": "tia sáng"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:ray:light-beam",
+      "sourceRecordId": "1559931008453",
+      "text": "tia sáng"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:ray:flat-fish",
+      "sourceRecordId": "1788223609771",
+      "text": "cá đuối"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:ray:flat-fish",
+      "sourceRecordId": "1788223609771",
+      "text": "cá đuối"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:term:school-period",
+      "sourceRecordId": "1788223607020",
+      "text": "học kỳ"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:term:school-period",
+      "sourceRecordId": "1788223607020",
+      "text": "học kỳ"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:television:broadcast-medium",
+      "sourceRecordId": "1788223606618",
+      "text": "truyền hình"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:television:broadcast-medium",
+      "sourceRecordId": "1788223606618",
+      "text": "truyền hình"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:keep:continue",
+      "sourceRecordId": "1788223606117",
+      "text": "tiếp tục"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:keep:continue",
+      "sourceRecordId": "1788223606117",
+      "text": "tiếp tục"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:decision:choice",
+      "sourceRecordId": "1788223607073",
+      "text": "quyết định"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:decision:choice",
+      "sourceRecordId": "1788223607073",
+      "text": "quyết định"
+    }
+  ]
+}

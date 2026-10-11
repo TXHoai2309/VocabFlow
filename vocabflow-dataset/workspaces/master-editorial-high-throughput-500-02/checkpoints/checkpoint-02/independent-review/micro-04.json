@@ -1,0 +1,289 @@
+{
+  "reviewerKind": "ISOLATED_AI_REVIEW_AGENT",
+  "blindFirstPass": true,
+  "reviewerIdentity": "/root/cp02_blind_a",
+  "passCount": 23,
+  "reviewCount": 2,
+  "failCount": 0,
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2L:ignite:start-burning",
+      "effectiveContentHash": "5a63e90a067d03f4edaffcc8e8bb9a85e98a653f68fa568c3eed05aa064718fd",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa bắt cháy hoặc làm bắt cháy khớp nguồn có cả nội động và ngoại động. Ví dụ tia lửa làm lá khô cháy tự nhiên, dịch đủ vị trí cạnh nhà kho; ghi chú hai mẫu đúng và ví dụ mới không trùng câu nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:incredulous:disbelieving",
+      "effectiveContentHash": "7586f035050be4d6d5afa7ec9ecacd5efc4b13e242f75b4b05f2e04e8593a45b",
+      "assessment": "REVIEW",
+      "explanationVi": "Nghĩa không tin nổi, tính từ bổ nghĩa laugh và ghi chú phân biệt incredible đều chính xác. Tuy nhiên câu Việt “Nhi bật cười vẻ không tin nổi” thiếu cách nối tự nhiên giữa hành động và vẻ mặt; cần sửa thành “Nhi bật cười với vẻ không tin nổi khi nghe giá vé” trước khi công bố ví dụ.",
+      "affectedFields": [
+        "examples"
+      ],
+      "severity": "MEDIUM",
+      "blocksPublication": true,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:replacement:substitute",
+      "effectiveContentHash": "a136c4c159a2adeaeca425ee2dff2c636c47abf74cbd2567ea21772a4b0e735b",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa người hoặc vật thay thế tách đúng khỏi quá trình thay thế. Câu cửa hàng đề nghị vật thay chiếc ấm hỏng và bản dịch giữ đúng offered, không biến thành đã gửi; ghi chú đếm được replacement for chuẩn, câu khác nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:replacement:replacing-process",
+      "effectiveContentHash": "6f64d88ced0378b88b6349ccb79b1f01164855e7ab46ae358c4d092fc7f9d02c",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa hành động lấy vật khác thay vào đúng với hai nguồn và được tách khỏi vật thay thế. Câu thay cửa sổ sau mùa mưa tự nhiên, bản dịch giữ thời gian bắt đầu; ghi chú danh từ thường không đếm được cho quá trình phù hợp.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:supernatural:beyond-nature",
+      "effectiveContentHash": "b605a84bd8550138a09a2a30e4cf706f944b6fe0c28701f3199dafeb5bde47e9",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa siêu nhiên được trình bày là vượt các quy luật tự nhiên, đúng từ vựng dù nguồn diễn đạt vụng “not real”. Ví dụ truyện dân gian quy cơn bão cho thế lực siêu nhiên không khẳng định niềm tin có thật; dịch trung thành, tính từ dùng đúng.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:conventional:usual",
+      "effectiveContentHash": "594ab57dcfc56a2d3a3c0ec633bed7cd1739458845579b471b0c42da2fed2366",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa thông thường hoặc theo cách được chấp nhận lâu đời phù hợp cả hai nguồn. Ví dụ công cụ phục chế cửa gỗ thể hiện cách làm quen thuộc, bản dịch đúng; ghi chú conventional methods/designs chuẩn và không nhập nghĩa khác.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:counselling:professional-guidance",
+      "effectiveContentHash": "be99f734e524e79894d7ab50df0eda3faebb0994fc8a34dc817647899d539285",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa sự tư vấn chuyên môn phù hợp chứng cứ nghề nghiệp lẫn quan hệ. Career counselling để so sánh chương trình đào tạo tự nhiên, bản dịch giữ việc so sánh; danh từ không đếm được và biến thể counseling Mỹ ghi chính xác.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:racing:speed-competition",
+      "effectiveContentHash": "8ed83b0148950ff2fa13db86e2f851d9749de84d52d4960daffca031ec984b30",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa hoạt động thi tốc độ đúng môn đua nguồn. Ví dụ sở thích đua xe đạp bắt đầu ở cuộc thi làng có bối cảnh mới, dịch trung thành; danh từ hoạt động không đếm được và cấu tạo horse/bicycle racing phù hợp.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:superb:excellent",
+      "effectiveContentHash": "c00ec49b8ded4eb5ebc23690ba155c3bc24ad56d3dfe5a9c1f7e59151da248ce",
+      "assessment": "REVIEW",
+      "explanationVi": "Nghĩa tuyệt hảo, tính từ superb và câu tiếng Anh về dàn hợp xướng chính xác, không lặp lỗi dịch trạng từ trong nguồn. Tuy nhiên bản dịch “dù bị gián đoạn điện” gán cụm vị ngữ thiếu tự nhiên cho dàn hợp xướng; nên sửa “dù nguồn điện bị gián đoạn” để giữ đúng sự cố điện trong câu gốc.",
+      "affectedFields": [
+        "examples"
+      ],
+      "severity": "MEDIUM",
+      "blocksPublication": true,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:soft:yielding",
+      "effectiveContentHash": "fd4f06922503a8f3b260e7368d49b7f05bd9daa1fa8020104cf9a491a8817ea0",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa mềm khi chạm, ép hoặc uốn phù hợp nhóm nguồn về vật liệu. Đất sét biến dạng dưới ngón tay làm rõ nghĩa vật lý, dịch đầy đủ; tính từ và các mẫu soft material/feels soft đúng, tách khỏi âm thanh nhỏ nhẹ.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:soft:gentle-sound",
+      "effectiveContentHash": "f6612644144876870ac26df0a42d8b01b1d080ef939ccc7f86632ae36baa8fbf",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa nhỏ nhẹ, êm dịu của âm thanh khớp nhóm nguồn soft voice. Giọng nói sau rèm là ví dụ mới tự nhiên và được dịch đúng; ghi chú tính từ dùng với voice/music chính xác, không nhập nghĩa vật liệu mềm.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:pregnant:carrying-young",
+      "effectiveContentHash": "feef4f6b4dc878d2762d52c5f5526377553be55cd867552dec6bc8f7583672aa",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa mang thai bao quát con đang phát triển trước sinh, phù hợp nguồn phụ nữ hoặc động vật. Ví dụ chị gái chọn váy rộng tự nhiên và dịch đúng quan hệ, mục đích; các mẫu be/become pregnant chuẩn và không chứa chỉ dẫn y tế.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:compensation:making-amends",
+      "effectiveContentHash": "de2eb0b35152600a1a518c4ea1cfb9b0c7d103f14a0d16d6f8ce60ba7c1d46bd",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa bồi thường tổn thất hoặc bất tiện phù hợp cả hai nguồn và không lẫn tiền công. Câu hành khách yêu cầu bồi thường hành lý thất lạc dịch đúng requested; compensation for và danh từ thường không đếm được chính xác.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:set-up:arrangement",
+      "effectiveContentHash": "ba86390ef6951efd6da8b4320a4d36508a55fda2ba0ae0258836042feea9a83a",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa cách bố trí hoặc hệ thống làm việc khớp nguồn; hai micrô và bộ trộn âm minh họa trực tiếp cách tổ chức thu âm. Bản dịch hệ thống phù hợp bối cảnh, danh từ đếm được và phân biệt set-up với động từ set up chuẩn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:set-up:deceptive-trap",
+      "effectiveContentHash": "8d0b84b4bb123f628d3743297eb4953b0fea40143ee7d3062b9d9828c985c433",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa tình huống cố ý gài bẫy đúng nhóm Oxford thứ hai và tách khỏi bố trí thiết bị. Câu vụ cướp trong phim là màn gài bẫy tự nhiên, dịch đủ bối cảnh; ghi chú danh từ đếm được, sắc thái thân mật chính xác.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:distract:divert-attention",
+      "effectiveContentHash": "40ff679eacb9fd057325cd637673a79a487aaa415ff78d088bcda9c1e9977ff2",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa làm người khác mất tập trung phù hợp hai nguồn. Tiếng đồng hồ khiến Mai xao nhãng câu đố và bản dịch giữ ý, không thêm kết quả quên việc; mẫu distract someone from something/doing đúng và có tân ngữ trực tiếp.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:bath:washing",
+      "effectiveContentHash": "b95cdb7ead587a314ed8d96c20be7e17bf5170502cc37e2c0d7feb5cb4e51827",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa một lần tắm hoặc ngâm mình trong bồn đúng hai nguồn, tách khỏi đồ chứa. Ví dụ tắm nước ấm sau đi bộ tự nhiên và dịch trung thành; have/take a bath với một lần đếm được phù hợp, cấu trúc phổ thông không chứng tỏ sao chép.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:bath:tub",
+      "effectiveContentHash": "015dab6ff163fcd11ec7d5475d360d97740bf25cc5fcc85e0532936623c67a38",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa bồn tắm được nhóm nguồn riêng hỗ trợ; thợ sửa ống nước thấy rò rỉ dưới bồn là ví dụ mới đúng vật chứa. Bản dịch đầy đủ, danh từ đếm được và ghi chú bath chủ yếu Anh, bathtub thường dùng Mỹ hợp lý.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:onion:bulb-vegetable",
+      "effectiveContentHash": "a270d3dcf26727c267bb634932ace9249089e585e05320d2d89d41e93e1d73fe",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa củ hành tây có lớp và vị mạnh phù hợp nguồn. Ví dụ băm hành đỏ làm salad đậu tự nhiên, bản dịch giữ màu và mục đích; ghi chú đếm được cho củ và không đếm được cho nguyên liệu hành đã cắt chuẩn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:dilemma:difficult-choice",
+      "effectiveContentHash": "9ac2795120b377a7a4f31f1ccf33088a9729a701e0412b67e7409d5bf3afe5a2",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa tình thế phải chọn giữa các lựa chọn khó đúng hai nguồn. Ví dụ công việc xa hoặc ở gần bố mẹ thể hiện xung đột lựa chọn và dịch trung thành; danh từ đếm được cùng face/be in a dilemma hợp lý, câu không trùng nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:collection:gathered-items",
+      "effectiveContentHash": "33e4523c0c76f7073cc2865cf0a6150cc20b9e863fd153b59c5ae33813e9643c",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa bộ vật được gom và giữ cùng nhau đúng nhóm sưu tập trong nguồn. Bộ bản đồ cũ đầy ba ngăn kéo là ví dụ mới tự nhiên, dịch đủ số lượng; danh từ đếm được collection of và compound map collection chính xác.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:collection:collecting",
+      "effectiveContentHash": "a0970f8f3af094f8fdfd7e6d4f8b164aed1861649a7640d994edb4c5c1da56e1",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa việc thu gom vật hoặc dịch vụ lấy chúng đi phù hợp nhóm waste collection nguồn, tách khỏi bộ sưu tập. Câu thu gom kim loại vụn giữ sàn xưởng trống dịch đúng; ghi chú thường không đếm được cho dịch vụ phù hợp.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:shove:push-forcefully",
+      "effectiveContentHash": "1cffa88e16188ccc411a81313c863919b7bc724d7c4d0c1a9ef88a59173dc17d",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa đẩy mạnh, thường thô bạo đúng nguồn. Ví dụ đẩy thùng nặng qua sàn bốc hàng thể hiện lực đẩy, bản dịch giữ hướng và vật; mẫu ngoại động có cụm chỉ hướng đúng, câu mới khác ví dụ gây hại trong nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:autograph:famous-signature",
+      "effectiveContentHash": "b1406390c93f65bbac6e44c8965c574f6b1407401529efd6c11167244abc0b37",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa chữ ký viết tay người nổi tiếng phù hợp nguồn và không mở rộng sang bản thảo autograph. Người hâm mộ đóng khung chữ ký ca sĩ dùng danh từ đúng, dịch trung thành; an autograph và ask for an autograph chuẩn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:surface:outer-layer",
+      "effectiveContentHash": "7c00851696b8593f96922e7960571313ac5d0acf102a4f12259fb5549b22024d",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa phần ngoài hoặc phía trên đúng hai nguồn về bề mặt. Bề mặt đá làm xước kệ minh họa phần ngoài, bản dịch giữ đặc tính thô ráp và tác động; danh từ đếm được, surface of chuẩn, ví dụ mới không trùng nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    }
+  ]
+}

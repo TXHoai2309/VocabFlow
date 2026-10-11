@@ -1,0 +1,141 @@
+{
+  "cohortFingerprint": "9710a47fda875f70412c7440b2969c031dc6eb3c076140a42007aed4f83cf59c",
+  "fingerprint": "776923c265165cf8df7c1e94d73bd79012affc2440870ccd8d2c458fccd68eb7",
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:compromise",
+    "NORMALIZED_HEADWORD:graphics",
+    "NORMALIZED_HEADWORD:dialogue",
+    "NORMALIZED_HEADWORD:phrase",
+    "NORMALIZED_HEADWORD:rubbish",
+    "NORMALIZED_HEADWORD:concerto",
+    "NORMALIZED_HEADWORD:periphery",
+    "NORMALIZED_HEADWORD:specifically",
+    "NORMALIZED_HEADWORD:ray",
+    "NORMALIZED_HEADWORD:ultimately",
+    "NORMALIZED_HEADWORD:diverge",
+    "NORMALIZED_HEADWORD:during",
+    "NORMALIZED_HEADWORD:term",
+    "NORMALIZED_HEADWORD:television",
+    "NORMALIZED_HEADWORD:potential",
+    "NORMALIZED_HEADWORD:keep",
+    "NORMALIZED_HEADWORD:considerable",
+    "NORMALIZED_HEADWORD:decision-making",
+    "NORMALIZED_HEADWORD:consistency",
+    "NORMALIZED_HEADWORD:decision"
+  ],
+  "manuscriptSha256": "7bbb2c66eece3f7849d29f25936ebc0f3a871e644cb92a193eadc954bf94572a",
+  "microBatch": 5,
+  "parentFingerprint": "4b968558eb6f2506e1c83c5ca4ebc783e5f01265394f01d6f8ee15abe4fbb773",
+  "phase": "2H.2L",
+  "planningFingerprint": "ea6ee4c3d0bdec25fd16a9131c3403a9f64be6449f32e29cdb5130b2308b4cce",
+  "planningSha256": "9484c8aea88bd47e3c2b00add9f234982a373e267e53d3367e0224810344b7e8",
+  "qaCounts": {
+    "PASS": 33,
+    "REVIEW": 2
+  },
+  "recordHash": "4658ebacb97d2a535205fe84c1a054b75cf0312a161221fd9eed705405fef55d",
+  "reviewHash": "5f01b7b8ab8a84957f864afebbc580b3d2242a2eca8fc70281aed83604b668e3",
+  "selfReviewSha256": "b506c8a979f1ddf4a3feb854f5a41c7b48392d66819d5d18923f430edec38134",
+  "senseCount": 35,
+  "sourceSimilarityFindings": [
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:phrase:word-group",
+      "sourceRecordId": "1788223606843",
+      "text": "cụm từ"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:phrase:word-group",
+      "sourceRecordId": "1788223606843",
+      "text": "cụm từ"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:ray:light-beam",
+      "sourceRecordId": "1788223609771",
+      "text": "tia sáng"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:ray:light-beam",
+      "sourceRecordId": "1559931008453",
+      "text": "tia sáng"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:ray:flat-fish",
+      "sourceRecordId": "1788223609771",
+      "text": "cá đuối"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:ray:flat-fish",
+      "sourceRecordId": "1788223609771",
+      "text": "cá đuối"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:term:school-period",
+      "sourceRecordId": "1788223607020",
+      "text": "học kỳ"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:term:school-period",
+      "sourceRecordId": "1788223607020",
+      "text": "học kỳ"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:television:broadcast-medium",
+      "sourceRecordId": "1788223606618",
+      "text": "truyền hình"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:television:broadcast-medium",
+      "sourceRecordId": "1788223606618",
+      "text": "truyền hình"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:keep:continue",
+      "sourceRecordId": "1788223606117",
+      "text": "tiếp tục"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:keep:continue",
+      "sourceRecordId": "1788223606117",
+      "text": "tiếp tục"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:decision:choice",
+      "sourceRecordId": "1788223607073",
+      "text": "quyết định"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:decision:choice",
+      "sourceRecordId": "1788223607073",
+      "text": "quyết định"
+    }
+  ],
+  "status": "SEALED_AI_DRAFT_NOT_APPROVED"
+}

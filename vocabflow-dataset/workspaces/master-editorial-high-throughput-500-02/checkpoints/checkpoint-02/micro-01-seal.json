@@ -1,0 +1,190 @@
+{
+  "cohortFingerprint": "9710a47fda875f70412c7440b2969c031dc6eb3c076140a42007aed4f83cf59c",
+  "fingerprint": "e1024fe175204ff8e8992afa1605517284d416af9319b0967ca8b99e26f78e4b",
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:overuse",
+    "NORMALIZED_HEADWORD:remember",
+    "NORMALIZED_HEADWORD:lonely",
+    "NORMALIZED_HEADWORD:aristocracy",
+    "NORMALIZED_HEADWORD:correlation",
+    "NORMALIZED_HEADWORD:cruise",
+    "NORMALIZED_HEADWORD:energy",
+    "NORMALIZED_HEADWORD:homeless",
+    "NORMALIZED_HEADWORD:and",
+    "NORMALIZED_HEADWORD:refuse",
+    "NORMALIZED_HEADWORD:cocktail",
+    "NORMALIZED_HEADWORD:heritage",
+    "NORMALIZED_HEADWORD:fiscal",
+    "NORMALIZED_HEADWORD:suicide",
+    "NORMALIZED_HEADWORD:slave",
+    "NORMALIZED_HEADWORD:number",
+    "NORMALIZED_HEADWORD:confront",
+    "NORMALIZED_HEADWORD:therapy",
+    "NORMALIZED_HEADWORD:entitle",
+    "NORMALIZED_HEADWORD:vine"
+  ],
+  "manuscriptSha256": "43d17dbb027957d00a25ee182331fdf4d70caa2969eee05ddb75bfed8b59ee04",
+  "microBatch": 1,
+  "parentFingerprint": "4b968558eb6f2506e1c83c5ca4ebc783e5f01265394f01d6f8ee15abe4fbb773",
+  "phase": "2H.2L",
+  "planningFingerprint": "1166c0d091f12d42792c82c0956b2be290a65d931fdfec71e9bd0d882efbed2f",
+  "planningSha256": "609500f06364b4bf0de41b30a8661042be77f5c13a99380987f2aba3c5e29baf",
+  "qaCounts": {
+    "PASS": 28,
+    "REVIEW": 2
+  },
+  "recordHash": "cf7f7c33635db5317a1c874b73371c4875480d1adb8b9741cf32f952178a5e48",
+  "reviewHash": "221ec1893de8c0e76a59228a3f28692c79d108c560958d87bf8a0bf18b2e0260",
+  "selfReviewSha256": "5afa06875b5bd6c69ac5e609265fe793f1c577439210d8353eb1b9c3a912671c",
+  "senseCount": 30,
+  "sourceSimilarityFindings": [
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:lonely:lack-company",
+      "sourceRecordId": "1788223608265",
+      "text": "cô đơn"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:lonely:lack-company",
+      "sourceRecordId": "1788223608265",
+      "text": "cô đơn"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:aristocracy:noble-class",
+      "sourceRecordId": "1559931008940",
+      "text": "tầng lớp quý tộc"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:cruise:holiday-voyage",
+      "sourceRecordId": "1788223609327",
+      "text": "chuyến du ngoạn bằng tàu"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:cruise:holiday-voyage",
+      "sourceRecordId": "1788223609327",
+      "text": "chuyến du ngoạn bằng tàu"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:cruise:sail-leisurely",
+      "sourceRecordId": "1788223609327",
+      "text": "du ngoạn bằng tàu"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:cruise:sail-leisurely",
+      "sourceRecordId": "1788223609327",
+      "text": "du ngoạn bằng tàu"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:energy:physical-power",
+      "sourceRecordId": "1788223607016",
+      "text": "năng lượng"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:energy:physical-power",
+      "sourceRecordId": "1788223607016",
+      "text": "năng lượng"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:energy:physical-power",
+      "sourceRecordId": "1559931009666",
+      "text": "năng lượng"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:refuse:decline",
+      "sourceRecordId": "1788223607574",
+      "text": "từ chối"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:refuse:decline",
+      "sourceRecordId": "1788223607574",
+      "text": "từ chối"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:refuse:decline",
+      "sourceRecordId": "1556384731215",
+      "text": "từ chối"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:heritage:inherited-culture",
+      "sourceRecordId": "1788223609872",
+      "text": "di sản"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:heritage:inherited-culture",
+      "sourceRecordId": "1788223609872",
+      "text": "di sản"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:heritage:inherited-culture",
+      "sourceRecordId": "1559931008485",
+      "text": "di sản"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:number:quantity",
+      "sourceRecordId": "1788223606126",
+      "text": "số lượng"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:number:quantity",
+      "sourceRecordId": "1788223606126",
+      "text": "số lượng"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:number:label-in-sequence",
+      "sourceRecordId": "1788223606126",
+      "text": "đánh số"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:number:label-in-sequence",
+      "sourceRecordId": "1788223606126",
+      "text": "đánh số"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:vine:climbing-plant",
+      "sourceRecordId": "1559931009158",
+      "text": "cây dây leo"
+    }
+  ],
+  "status": "SEALED_AI_DRAFT_NOT_APPROVED"
+}

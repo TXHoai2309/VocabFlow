@@ -1,0 +1,404 @@
+{
+  "reviewerKind": "ISOLATED_AI_REVIEW_AGENT",
+  "blindFirstPass": true,
+  "reviewerIdentity": "/root/cp02_blind_b",
+  "passCount": 32,
+  "reviewCount": 1,
+  "failCount": 2,
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2L:dress:garment",
+      "effectiveContentHash": "c06bd3ae9eff6330df6a22ca0d503c95b6d759d021032e07b8d007cf49bd3d67",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa váy liền/đầm phù hợp danh từ chỉ trang phục một mảnh; ví dụ sửa tay áo và bản dịch đúng, ghi chú số đếm đúng. Nguồn hỗ trợ nghĩa, câu mới không trùng ví dụ nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:dress:put-on-clothes",
+      "effectiveContentHash": "f2204c0b0099fa076415c1b77df9ce3b32a2295296df258d5c8ad68160918c3a",
+      "assessment": "PASS",
+      "explanationVi": "Định nghĩa bao quát tự mặc và mặc cho người khác; câu Tuấn mặc cho con tự nhiên, bản dịch giữ đúng chủ thể và hành động. Từ loại và cấu trúc ngoại/nội động từ đúng; nguồn hỗ trợ nghĩa mặc đồ.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:fraction:small-part",
+      "effectiveContentHash": "1e2faa1d500c3bde8830ac294439bc0aee8687e6b1da41de737dcdb4ae98b06f",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa một phần nhỏ tách đúng khỏi phân số toán học; ví dụ chi phí sửa xe chỉ bằng phần nhỏ giá xe mới tự nhiên và dịch đúng. Cấu trúc fraction of đúng; nguồn hỗ trợ, không thấy sao chép câu nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:fraction:mathematical-part",
+      "effectiveContentHash": "6947665c74548b867e8c9c5128a21a01ea9f46a749c41f5ce39939385c58b767",
+      "assessment": "FAIL",
+      "explanationVi": "Định nghĩa toán học thiếu điều kiện các phần bằng nhau, nên có thể khiến người học hiểu rằng mọi cách chia một toàn thể thành các phần bất kỳ đều tạo phân số. Cần thêm equal parts, ví dụ a number representing one or more equal parts of a whole. Ví dụ ba phần tư và bản dịch đúng; chặn cho đến khi sửa định nghĩa.",
+      "affectedFields": [
+        "definitionEn"
+      ],
+      "severity": "MEDIUM",
+      "blocksPublication": true,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:immune:disease-resistant",
+      "effectiveContentHash": "dde457ef380c79f23f171add6df331c8fe5dbf0b5a6c82f354c206bd5851920d",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa miễn dịch được giới hạn với bệnh cụ thể, phù hợp nguồn và tính từ immune to. Ví dụ báo cáo về chuột tự nhiên, dịch đúng, không đưa hướng dẫn y tế; cách diễn đạt khác ví dụ nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:immune:unaffected",
+      "effectiveContentHash": "101a3a61d98b6d4a0209ed61d3d2abe5cf557c1cc060e87fc84018305343bf05",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa bóng không bị ảnh hưởng tách hợp lý khỏi miễn dịch bệnh; câu phủ định về áp lực và bản dịch giữ đúng sắc thái không tránh khỏi tác động. Cấu trúc immune to đúng, có hỗ trợ nguồn và câu mới.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:driving:vehicle-operation",
+      "effectiveContentHash": "d211cae678b3286d57ceba5c215e93ffc40715637f300a2792735978b33d9efb",
+      "assessment": "FAIL",
+      "explanationVi": "Bản dịch khiến tuyến giao hàng trở thành đối tượng mệt mỏi: tuyến đường không tự cảm thấy mệt. Cần sửa thành Việc lái xe ban đêm khiến việc đi giao hàng trên tuyến đó vất vả hơn. Nghĩa và danh từ không đếm được đúng; nguồn Oxford hỗ trợ, xung đột nhãn tính từ của nguồn còn lại đã được nêu rõ.",
+      "affectedFields": [
+        "examples"
+      ],
+      "severity": "MEDIUM",
+      "blocksPublication": true,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:driving:motivating",
+      "effectiveContentHash": "0e1cc50b83609640c16fcf1b9a7bd92a7f4e800038752bc37980f822eda44cc9",
+      "assessment": "PASS",
+      "explanationVi": "Tính từ driving trong driving force thể hiện tác dụng thúc đẩy; ví dụ sự tò mò đứng sau thí nghiệm và bản dịch động lực đúng. Ghi chú dùng trước danh từ hợp lý; nguồn hỗ trợ rõ, câu không trùng nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:reputable:good-reputation",
+      "effectiveContentHash": "832889ef78f70939533b7d5f7adaa7bccaa5887854e76dba11deb83ac3e1c722",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa có uy tín phản ánh sự đánh giá tốt về độ trung thực và tiêu chuẩn; ví dụ nhà cung cấp linh kiện tự nhiên, bản dịch đúng. Tính từ và kết hợp reputable supplier phù hợp, có nguồn hỗ trợ và không trùng câu nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:soothing:calming",
+      "effectiveContentHash": "fe13517103812ebbc97ae42e4bbcde1f4d320c64fe141e97bdb4a32bc8194276",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa làm dịu tinh thần phù hợp calming, không lẫn sang tác dụng giảm đau chưa được chọn. Ví dụ giọng nói giúp trẻ bình tâm và bản dịch tự nhiên; dùng tính từ đúng, nguồn hỗ trợ và câu khác nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:contain:hold-inside",
+      "effectiveContentHash": "faf399030cfcf9c2c75d168955debba36992718a14fc9c10f3b7c82bd84749f9",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa chứa vật bên trong được minh họa rõ bằng phong bì có bản đồ và ảnh; dịch đúng vật chứa và nội dung. Ngoại động từ contain đúng; nguồn hỗ trợ nghĩa này, câu mới không sao chép ví dụ hộp ảnh.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:contain:limit-spread",
+      "effectiveContentHash": "28e55c6a7543e9fb7b04263740aaecbaedb43a28f0be95619c195be816cfcc1c",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa khống chế lan rộng phù hợp contain trong tình huống chất tràn; bản dịch giữ đúng mục đích dùng cát ngăn lan. Ghi chú ngoại động từ và phân biệt với loại bỏ hoàn toàn đúng; nguồn hỗ trợ, câu khác nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:dawn:daybreak",
+      "effectiveContentHash": "43d7fd862e110f9f9b66d478bb76475ba9f197ab29d6e56691d9f67723845e37",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa rạng sáng chính xác hơn việc đồng nhất với lúc mặt trời mọc; by dawn và thì quá khứ hoàn thành thể hiện tàu đã rời cảng trước mốc đó. Bản dịch trung thành, ghi chú thời gian đúng, ví dụ mới có hỗ trợ nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:office:work-room",
+      "effectiveContentHash": "1329da86ed950e4e3c4e31567194cbd3134e77d2cde13fb690418f399789b396",
+      "assessment": "PASS",
+      "explanationVi": "Văn phòng của kiến trúc sư phù hợp nơi làm việc chuyên môn; nghĩa Việt và câu cầu thang dẫn đến phòng tự nhiên, dịch đúng. Danh từ đếm được và giới từ đúng; nguồn hỗ trợ, không thấy trùng ví dụ nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:office:service-place",
+      "effectiveContentHash": "9c44d45ac839a906656fe000e46198dcaf164a4a336bda946d47687e1e47cb0a",
+      "assessment": "REVIEW",
+      "explanationVi": "Nội dung về nơi cung cấp dịch vụ và ví dụ ticket office được nguồn riêng hỗ trợ; bản dịch quầy vé tự nhiên, không có lỗi ngôn ngữ cần chặn. Tuy nhiên ranh giới với work-room đang được khai báo tạm thời, cần rà soát phân tách nghĩa trước khi chốt taxonomy; REVIEW này không chặn công bố nội dung.",
+      "affectedFields": [
+        "sourceSenseCoverage",
+        "grammarNotesEn"
+      ],
+      "severity": "LOW",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": [
+        "Ranh giới service-place với work-room đang tạm thời; cần quyết định phân tách hay gộp dựa trên chính sách sense."
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:completion:finishing",
+      "effectiveContentHash": "e78420183adefe0b03ff7830f41abd49092591b7da822911b05f86a15d6f6810",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa sự hoàn thành bao gồm hành động và trạng thái, phù hợp nguồn. Payment is due on completion dịch đúng thời điểm đến hạn, không nhầm với đã thanh toán; danh từ thường không đếm được đúng và ví dụ được viết mới.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:borrow:temporary-use",
+      "effectiveContentHash": "b155cb0071488cc5f436f5125027828ac504816509ba7bdf4ae1ef33df582fce",
+      "assessment": "PASS",
+      "explanationVi": "Mượn để dùng tạm rồi trả phù hợp nguồn, phân biệt borrow với lend rõ ràng. Câu mượn thang để tới máng nước tự nhiên và dịch đúng; ngoại động từ cùng from người cho mượn đúng, không trùng câu nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:surge:sudden-increase",
+      "effectiveContentHash": "a6409475e270e72d28912d9bf28efb3393f6dfd4f220a2471d638562905c94f4",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa tăng đột biến tách đúng khỏi dòng nước dâng; đơn hàng tăng trước lễ hội và bản dịch trung thành. Cấu trúc a surge in cùng danh từ đếm được đúng, có hỗ trợ nguồn; câu tiệm bánh khác ví dụ nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:surge:strong-wave",
+      "effectiveContentHash": "de77528d759001c2a201defbacc01b6c1e856ceb13e5df16fe4a8a530f7100b1",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa đợt nước dâng mạnh phù hợp rush of water và nguồn đã có nghĩa này. Hàng rào nổi bị hất sang bên dịch đúng hành động; surge of water đúng ngữ pháp, câu mới không trùng ví dụ nước tràn boong.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:surge:increase-rapidly",
+      "effectiveContentHash": "12e45276d76f04d9903e41734570ad83a69170ee70f743dcaa5f23e8081db601",
+      "assessment": "PASS",
+      "explanationVi": "Động từ tăng vọt phù hợp doanh số bán ô tăng khi bão đến; dịch đúng sales thành doanh số và surge thành tăng vọt. Ghi chú nội động từ cùng by/to chính xác, nguồn hỗ trợ nghĩa, ví dụ khác nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:surge:move-forcefully",
+      "effectiveContentHash": "31c18d40038ebdfc5bc7deb28033cff28f14028519fe002a708a4cb2d053303b",
+      "assessment": "PASS",
+      "explanationVi": "Động từ dồn về minh họa chuyển động mạnh của nhóm người về sân khấu; tiếng Việt giữ hướng và thời điểm sau bài cuối. Cấu trúc nội động từ với towards đúng; nguồn hỗ trợ chuyển động có lực và câu không trùng nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:alternative:other-option",
+      "effectiveContentHash": "bb644e9ad51dceb9940beb871675da2bc1f34502eff3c0e5dd21a774cda0bf08",
+      "assessment": "PASS",
+      "explanationVi": "Danh từ alternative chỉ lựa chọn thay thế được thể hiện rõ bằng gọi video thay cho đi tàu; ví dụ và bản dịch tự nhiên. Alternative to và số nhiều đúng; nguồn hỗ trợ nghĩa, không thấy sao chép câu nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:alternative:substitute-option",
+      "effectiveContentHash": "4d8dbcbc3a6b5b0d18e3fcc66696e9db1d8afaa08491bf9c1dae7d3625a4932f",
+      "assessment": "PASS",
+      "explanationVi": "Tính từ alternative dùng trước part phù hợp phương án linh kiện khác có thể dùng thay thế; bản dịch giữ đúng tính lắp vừa động cơ. Định nghĩa và ngữ pháp đúng, nguồn hỗ trợ tính từ, câu khác ví dụ tuyến đường nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:production:making-process",
+      "effectiveContentHash": "6b4a607a5db8bf11c86ba074d7df6238c9eb4cbf023118e4c4e31a2869c69e9d",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa quá trình sản xuất được tách rõ khỏi sản lượng và tác phẩm sân khấu; ví dụ dừng sản xuất để kiểm tra băng chuyền dịch đúng. Danh từ không đếm được và các kết hợp đúng; nguồn hỗ trợ, câu mới.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:production:output",
+      "effectiveContentHash": "521bd9b6c50793928693dbd49f7156495a045774d5aa895da0474b229821debb",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa sản lượng phù hợp việc đo số xe đạp trong năm, không lẫn quá trình sản xuất. Tăng lên tám nghìn chiếc dịch đúng con số và hướng thay đổi; danh từ không đếm được đúng, nguồn hỗ trợ và câu khác nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:production:staged-work",
+      "effectiveContentHash": "e772b5733618c20786f870bf3a92cf1a68c6258fc3bad2ea8b60d06bdf7f568a",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa vở diễn/bộ phim được nguồn minh họa cả sân khấu lẫn màn ảnh; câu câu lạc bộ kịch có mười hai diễn viên và bản dịch đúng. Danh từ đếm được phù hợp sản phẩm trình diễn, ví dụ không sao chép nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:rank:level",
+      "effectiveContentHash": "729f9061dba0137c5b3915cdd509a45ca4c1c25b318cdef3972a7d179b78ea37",
+      "assessment": "PASS",
+      "explanationVi": "Cấp bậc chính thức trong hệ thống tổ chức phù hợp rank of major; bản dịch thiếu tá và mốc nghỉ hưu giữ đúng nghĩa. Danh từ đếm được hợp lệ, nguồn hỗ trợ quân hàm, câu khác ví dụ đại úy nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:rank:place-in-order",
+      "effectiveContentHash": "dd446e6575cb7fda03e72e11625b890196212e2dcd39d8b6c2b4541a143b5fe4",
+      "assessment": "PASS",
+      "explanationVi": "Động từ xếp hạng theo tiêu chuẩn phù hợp hội đồng đánh giá tính thực tiễn thiết kế; bản dịch giữ đúng đối tượng và tiêu chí. Ngoại động từ cùng cấu trúc rank đúng, nguồn hỗ trợ và câu mới không trùng nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:dose:medicine-amount",
+      "effectiveContentHash": "3c05bb05ec9f4fa8553d50c71e40aba8c59c12e0d1a721afed15650c1d3f8bac",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa một lượng thuốc dùng một lần phù hợp dose và nguồn; ví dụ nhãn chai ghi theo mililít dịch đúng, không đưa liều dùng cụ thể. Danh từ đếm được dose of đúng; câu nhãn chai khác ví dụ dùng thuốc nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:elementary:basic",
+      "effectiveContentHash": "29ffd9f969f8892825497605c2ca4513d5b38e85b395796b535deec58c69daa5",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa cơ bản/sơ cấp phù hợp kiến thức điện tử ở mức ban đầu; câu assumes only elementary knowledge được dịch tự nhiên thành chỉ đòi hỏi kiến thức cơ bản. Tính từ và kết hợp đúng, nguồn hỗ trợ và ví dụ mới.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:elementary:primary-school",
+      "effectiveContentHash": "47248ea8d08afb120a81575a05e0e735e0cc8bcf72a517ead9696d20594eb8b0",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa thuộc bậc tiểu học phù hợp elementary school, tách rõ khỏi mức kiến thức cơ bản. Sân chơi được che nắng dịch đúng shaded; ghi chú liên hệ tiếng Anh Mỹ chính xác và không tự cấp nhãn vùng chính thức, nguồn hỗ trợ.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:transmit:send-information",
+      "effectiveContentHash": "5aecacae05c8832d71f864dba4c185449664c0e0e621f9bc65835e3c13f9eb28",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa truyền dữ liệu/tín hiệu phù hợp cảm biến gửi số đo định kỳ; bản dịch mỗi ba mươi giây giữ đúng tần suất. Ngoại động từ và quá khứ transmitted đúng; nguồn hỗ trợ thông tin, ví dụ khác nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:transmit:pass-disease",
+      "effectiveContentHash": "6bd47965311df79feb358914cfd04da6cf4928aa29c338a8da82a180b6addc9a",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa lây truyền bệnh có hỗ trợ trực tiếp từ ví dụ muỗi truyền sốt rét trong nguồn, dù cùng một nhóm nguồn với truyền dữ liệu. Câu bọ ve và bản dịch giữ đúng nội dung nghiên cứu, ngoại động từ đúng và ví dụ mới.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:prevention:stopping-harm",
+      "effectiveContentHash": "59d8a334a1153ff325afda9bd9491202d67b6421800cf846e91c352ccee1496d",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa phòng ngừa việc xấu trước khi xảy ra phù hợp nguồn; ví dụ chương sổ tay về tai nạn trong xưởng dịch trung thành, tự nhiên. Danh từ không đếm được và cấu trúc prevention of đúng, câu khác ví dụ nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:rookie:newcomer",
+      "effectiveContentHash": "d84f448913411190f536b0e49cabad76c22430cd46100d1fb3ff14bb6cad9004",
+      "assessment": "PASS",
+      "explanationVi": "Người mới trong nghề phù hợp rookie và nhãn inexperienced newcomer; ví dụ thợ mới nhờ người lâu năm kiểm tra được dịch đúng. Danh từ đếm được, sắc thái thân mật và ghi chú Mỹ hợp lý; nguồn hỗ trợ, câu mới.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    }
+  ]
+}

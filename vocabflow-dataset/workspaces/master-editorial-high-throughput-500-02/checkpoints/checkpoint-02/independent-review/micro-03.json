@@ -1,0 +1,377 @@
+{
+  "reviewerKind": "ISOLATED_AI_REVIEW_AGENT",
+  "blindFirstPass": true,
+  "reviewerIdentity": "/root/cp02_blind_c",
+  "passCount": 32,
+  "reviewCount": 1,
+  "failCount": 0,
+  "records": [
+    {
+      "proposalKey": "EDITORIAL_2H2L:chip:potato-slice",
+      "effectiveContentHash": "9e49012ef57de32e9b27d8a4cea1ce221c51890d77366e10ef7fa2112f006118",
+      "assessment": "PASS",
+      "explanationVi": "Định nghĩa giới hạn đúng lát khoai tây chiên giòn, không lẫn nghĩa khoai cắt thanh của tiếng Anh Anh. Bản dịch giữ hành động bóp vụn trên bánh mì; ví dụ mới và ghi chú số nhiều phù hợp nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:chip:electronic-component",
+      "effectiveContentHash": "edfe547b0add7d7d34833a9babcb38ccc473e95cc9b73aebda555047b8772556",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa chíp điện tử tách rõ khỏi đồ ăn và mảnh vụn trong nguồn. Ví dụ thay linh kiện trên bảng mạch tự nhiên, bản dịch chính xác và ghi chú danh từ đếm được đúng; không chép ví dụ nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:chip:small-fragment",
+      "effectiveContentHash": "fa6f3a04a70717cdcf0c7180ae485e88369fec32433301c9dc5065ed96a173a9",
+      "assessment": "PASS",
+      "explanationVi": "Định nghĩa và nghĩa Việt diễn đạt đúng mảnh nhỏ tách khỏi vật lớn. Ví dụ mảnh đá ở cạnh dụng cụ minh họa nghĩa này và dịch tự nhiên; cấu trúc chip of và dạng số nhiều phù hợp, khác ví dụ gỗ trong nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:comment:remark",
+      "effectiveContentHash": "5846d2fcd464b098194e9da8046dc0000b3c935b9d19f446c2c3172eab175de4",
+      "assessment": "PASS",
+      "explanationVi": "Danh từ biểu thị lời nhận xét hoặc ý kiến được phân biệt với động từ trong nguồn. Ví dụ lời khách làm thay đổi kế hoạch và bản dịch trung thành; make a comment và comment on đúng, không trùng câu nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:comment:make-remark",
+      "effectiveContentHash": "f03eee49b648aabe02e2a42266a28ebe0604b03f5c33351b5c62a4889114f1f0",
+      "assessment": "PASS",
+      "explanationVi": "Động từ nhận xét được thể hiện bằng commented on đúng cấu trúc. Bản dịch giữ chủ thể độc giả và đoạn kết khác thường; định nghĩa phù hợp nhóm nguồn và ghi chú comment that đúng, ví dụ viết mới.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:athletic:sporty-build",
+      "effectiveContentHash": "a1560db0248dbd9088d10b9d744f8628a27f5254d3e509a32718a0ab85fd9ef5",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa khỏe khoắn, vóc dáng thể thao khớp nhóm tính từ mô tả thể chất của nguồn. Ví dụ leo đường dốc hợp ngữ cảnh, bản dịch tự nhiên và giữ ý; không lẫn nghĩa cơ sở thể thao hay chép câu nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:athletic:sport-related",
+      "effectiveContentHash": "0de70ebebd8b532718ac826e2326d561cfc13c82cd45dfcfea0950e2babdbcc5",
+      "assessment": "REVIEW",
+      "explanationVi": "Nội dung nghĩa thuộc thể thao và bản dịch cơ sở vật chất đều đúng nhóm nguồn; câu ví dụ mới, ngữ pháp phù hợp. Tuy nhiên nguồn đính kèm không xác lập nhãn vùng miền cho nghĩa này, nên giữ mục vùng miền ở trạng thái cần rà soát, không chặn nội dung.",
+      "affectedFields": [
+        "grammarNotesEn"
+      ],
+      "severity": "LOW",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": [
+        "Linked source evidence supports sport-related meaning but supplies no regional label; regional metadata remains provisional."
+      ]
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:assure:reassure",
+      "effectiveContentHash": "f9fbc75b19356f716410dd0baf613895d60ac501eee2e8cc25abebc057be2e9e",
+      "assessment": "PASS",
+      "explanationVi": "Định nghĩa cam đoan để giảm lo lắng đúng cả hai nguồn; assure us that và ghi chú đối tượng chỉ người chính xác. Bản dịch giữ mọi lượt đặt chỗ đã ghi nhận; câu mới, không sao chép ví dụ hoặc định nghĩa nguồn nguyên văn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:activate:start-operation",
+      "effectiveContentHash": "f4dc3c7ffa791de76c966218d99787412b91fd2cbbafd3747d993efa34626de9",
+      "assessment": "PASS",
+      "explanationVi": "Định nghĩa kích hoạt thiết bị hoặc quá trình khớp hai nguồn. Bộ hẹn giờ làm đèn hoạt động là ví dụ tự nhiên, bản dịch giữ thời điểm hoàng hôn; ghi chú ngoại động từ và bị động đúng, câu không trùng nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:expire:end-validity",
+      "effectiveContentHash": "1420e29e8cef7284ac80cab2a7a4855d2d12af1d837c8a883bf74d1ea20cc8eb",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa hết hạn, hết hiệu lực phù hợp hai nguồn và chỉ rõ khoảng thời gian có giá trị. Ví dụ thẻ bảo tàng hết hạn cuối tháng dịch trung thành; expire là nội động từ, giới từ ngày và khoảng thời gian đúng.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:theirs:their-possession",
+      "effectiveContentHash": "fde198bfdd9aad7022888e67f31eabd7b0c9c4e441eb523a9ca266dbf7b5a30f",
+      "assessment": "PASS",
+      "explanationVi": "Đại từ sở hữu độc lập được định nghĩa và ghi chú đúng: thay their cộng danh từ, không dấu nháy. Ví dụ đối chiếu dụng cụ của hai nhóm rõ nghĩa và dịch tự nhiên; khớp nguồn, không chép câu nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:dance:movement-pattern",
+      "effectiveContentHash": "a4a8677a21670156a5abfcdd1310402e922baafc58c8620622d7d4bcaeefef03",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa danh từ điệu múa hoặc điệu nhảy khớp nhóm nguồn, không lẫn sự kiện khiêu vũ. Circle dance cho lễ mùa gặt minh họa đúng và dịch rõ; ghi chú đếm được cho một loại điệu múa chính xác.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:dance:move-rhythmically",
+      "effectiveContentHash": "95312642a734db929737ca9089fc563e7326a65778d4f495315f3d627455c982",
+      "assessment": "PASS",
+      "explanationVi": "Định nghĩa nhảy múa theo nhạc hoặc nhịp phù hợp nhóm động từ nguồn. Ví dụ hàng xóm nhảy khi ban nhạc chơi và bản dịch giữ đầy đủ tình huống; cấu trúc dance to và dance with đúng, ví dụ độc lập.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:imperative:essential",
+      "effectiveContentHash": "76676d208cd84ae0e52fd340a4f92fad8d1894cd17334773cca03360d40cc4d2",
+      "assessment": "PASS",
+      "explanationVi": "Nguồn hỗ trợ tính từ cực kỳ quan trọng và phải thực hiện; nghĩa Việt hết sức cần thiết chính xác hơn cách gợi nghĩa mệnh lệnh. Ví dụ kiểm tra địa chỉ và bản dịch đúng; cấu trúc it is imperative to đúng, không lẫn danh từ ngữ pháp.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:digital:computer-based",
+      "effectiveContentHash": "5ebfe2dfa99aa9264932938d3af8d49b841fcf314915f60f9dccde1e92ebc8ef",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa dữ liệu được mã hóa bằng các giá trị rời rạc diễn đạt đúng kỹ thuật số. Bản sao số của thư dễ hư hỏng là ví dụ phù hợp và dịch tự nhiên; ghi chú tính từ trước danh từ đúng, câu không trùng hai nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:emphasis:special-attention",
+      "effectiveContentHash": "0e519623d5624b5e16921b37b5b282ea5b94a378354678ad374b7d6c2790c6ee",
+      "assessment": "PASS",
+      "explanationVi": "Định nghĩa chú trọng hay dành tầm quan trọng đặc biệt khớp hai nguồn. Câu về sửa đồ thay mới được dịch tự nhiên và trung thành; danh từ thường không đếm được và dạng emphases cho các trọng tâm đều đúng.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:original:not-copy",
+      "effectiveContentHash": "21a9182123dd4c77e53fa039d9c111cc8d3969313d3a53b24df33373b02cb296",
+      "assessment": "PASS",
+      "explanationVi": "Tính từ gốc được phân biệt rõ với sáng tạo và danh từ bản gốc trong nguồn. Ví dụ lưu bản phác thảo tránh nắng dùng đúng nghĩa, bản dịch giữ nội dung; ghi chú the original cộng danh từ phù hợp và câu mới.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:original:first-version",
+      "effectiveContentHash": "5d12bd1f07eb1384c1426b6f697910abc48c59a4b19451dc7ed9a0aa3989ddc6",
+      "assessment": "PASS",
+      "explanationVi": "Danh từ bản gốc làm cơ sở sao chép khớp nhóm danh từ của nguồn. Ví dụ trả bản gốc, giữ photocopy và bản dịch tự nhiên; tính đếm được đúng, không gộp với nghĩa độc đáo và không chép ví dụ nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:original:creative",
+      "effectiveContentHash": "b13e11ef8c944a9eeb2d4a7b491da3a1a050f865ffa31d55d1f7ec3a789d9db5",
+      "assessment": "PASS",
+      "explanationVi": "Định nghĩa ý tưởng hoặc cách làm mới chính xác cho nghĩa độc đáo, sáng tạo. Thiết kế chai thành chậu treo minh họa rõ và dịch trung thành; ghi chú phân biệt bản gốc hữu ích, nhóm nguồn hỗ trợ, câu viết mới.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:humane:kind-treatment",
+      "effectiveContentHash": "761b8888c89da668588e47a09c181ae134ee75126d33db220f7a1c3d1b8692a1",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa nhân đạo, quan tâm đau khổ hoặc phúc lợi diễn đạt chính xác tính từ humane. Ví dụ chăm động vật bị thương và bản dịch tự nhiên; ghi chú phân biệt human đúng, không thêm nghĩa ngoài phạm vi và không chép nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:interpret:explain-meaning",
+      "effectiveContentHash": "fc2047a66da5d1e81712891df044d9284b8305826ebeba5800b1f2deda78bb82",
+      "assessment": "PASS",
+      "explanationVi": "Định nghĩa xác định hoặc giải thích ý nghĩa khớp nhóm diễn giải trong nguồn. Cấu trúc interpreted the empty chair as đúng và bản dịch giữ dấu hiệu vắng mặt; ghi chú ngoại động từ phù hợp, tách khỏi phiên dịch.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:interpret:translate-speech",
+      "effectiveContentHash": "55caeda1af36b8ef6b2286e1bf5e28ccc048fe97ed4dccd5a83e19973beab737",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa phiên dịch bao gồm giao tiếp nói hoặc ký hiệu được nguồn hỗ trợ. Ví dụ Nga phiên dịch cho kỹ sư đúng cấu trúc interpret for và dịch tự nhiên; ghi chú khác dịch văn bản chính xác, không trộn với diễn giải.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:cognitive:mental-process",
+      "effectiveContentHash": "84bb199e81b4452ad2357dfddaaa250087fd30bb33ec836ce27457be70623088",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa thuộc nhận thức và tư duy khớp cả hai nguồn. Ví dụ nghiên cứu kỹ năng trong trò chơi giải đố được dịch đầy đủ, không biến thành tuyên bố điều trị; tính từ dùng với skills và processes đúng, câu độc lập.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:god:deity",
+      "effectiveContentHash": "f7e2e4783d4d86b08dc189350126277997afa79123460f28f722fbb2fc8d9bad",
+      "assessment": "PASS",
+      "explanationVi": "Danh từ đếm được vị thần nói chung tách rõ khỏi God chỉ Thượng đế trong nguồn. Ví dụ bích họa thần gắn với mưa và bản dịch chính xác; ghi chú viết thường đúng và không sao chép ví dụ nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:god:supreme-being",
+      "effectiveContentHash": "693577817fff72d06d808584094cfc02390e352ad7337cc9eea426eb9616b78b",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa Chúa hoặc Thượng đế trong tín ngưỡng một thần khớp nhóm nguồn; dạng hiển thị God và ghi chú viết hoa, không mạo từ đúng. Ví dụ mô tả niềm tin được dịch trung thành và giữ thái độ mô tả trung lập.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:blue:colour-quality",
+      "effectiveContentHash": "61a7cb5f2310f2d033ffd8abd5e48ecc08b7d0e5c9d5d3a13fe159ef913315eb",
+      "assessment": "PASS",
+      "explanationVi": "Tính từ xanh dương, xanh lam được định nghĩa đúng màu trời trong, tách khỏi danh từ màu. Ví dụ ruy băng đánh dấu lối vào dịch đủ ý; vị trí trước danh từ hoặc sau be đúng, không thêm nghĩa buồn ngoài nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:blue:colour-name",
+      "effectiveContentHash": "c34bc9fed1e2285e392cbd3756560394a917047306ffef71869409c077b56784",
+      "assessment": "PASS",
+      "explanationVi": "Danh từ chỉ màu xanh dương khớp nhóm nguồn và tách rõ tính từ. Ví dụ chọn màu tường khu chờ tự nhiên, bản dịch chính xác; thường không đếm được và blues cho nhiều sắc độ là ghi chú hợp lệ, không chép câu nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:diminish:become-reduce",
+      "effectiveContentHash": "ad71da410133840e7f32376f2c4f51bb0f3a37f30757c13a062f1f9878acb8ad",
+      "assessment": "PASS",
+      "explanationVi": "Định nghĩa bao gồm cả giảm và làm giảm được hai nguồn hỗ trợ. Ví dụ rèm giảm ánh chói minh họa ngoại động từ và dịch đúng; ghi chú đối chiếu nội động từ chính xác, không trộn nghĩa hoặc chép ví dụ nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:roll:rotate-move",
+      "effectiveContentHash": "e6984a536fd17569822d1f4cb225c65d4570d52981d83d8bd86b214f1d2bc1fd",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa lăn hoặc làm lăn khớp nhóm nguồn, tách rõ nghĩa cuộn vật liệu. Bánh xe rời lăn qua sân là ví dụ tự nhiên và dịch trung thành; ghi chú hai cách dùng nội, ngoại động từ đúng, câu không trùng nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:roll:coil",
+      "effectiveContentHash": "bd5a3ccdfe3d4c4cb60805df53006081872f1c901129e17f55ce5f4fdda00f65",
+      "assessment": "PASS",
+      "explanationVi": "Định nghĩa cuộn vật mềm phẳng thành bó cong hoặc hình trụ phù hợp nhóm cuộn của nguồn. Câu An cuộn chiếu và bản dịch tự nhiên, đúng động từ; ghi chú roll up hữu ích và không nhầm danh từ cuộn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:roll:coiled-material",
+      "effectiveContentHash": "3e083f5c29c5b5f8536b7342206468363293079d2fd0434b8db001e187aed7ef",
+      "assessment": "PASS",
+      "explanationVi": "Danh từ cuộn vật liệu được định nghĩa rõ cách quấn quanh chính nó hoặc lõi. Ví dụ cả cuộn ruy băng trang trí hội trường dịch chính xác; cấu trúc a roll of và tính đếm được đúng, nguồn hỗ trợ, câu viết mới.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:roll:small-bread",
+      "effectiveContentHash": "48fb6726b8734e4e3303be56724f38f5dfa0e7f1950d0763e81b2e164ecf66b6",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa ổ bánh mì nhỏ được nướng riêng khớp nhóm đồ ăn trong nguồn và tách khỏi cuộn vật liệu. Ví dụ bánh ấm bên mỗi bát súp dịch đầy đủ; danh từ đếm được với bread roll và two rolls đúng, không chép nguồn.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    },
+    {
+      "proposalKey": "EDITORIAL_2H2L:qualified:trained",
+      "effectiveContentHash": "7fe3ff218f316752d42cd2a2492d4612a55ffcbfee697e2b01607a1555e4dd43",
+      "assessment": "PASS",
+      "explanationVi": "Nghĩa đủ đào tạo hoặc chứng nhận để làm công việc diễn đạt đúng đủ chuyên môn trong nguồn. Ví dụ kỹ thuật viên kiểm tra thang máy dịch trung thành; qualified for và qualified to đúng, câu mới không lẫn nghĩa có điều kiện.",
+      "affectedFields": [],
+      "severity": "NONE",
+      "blocksPublication": false,
+      "missingSenseCandidates": [],
+      "unresolvedBoundaryItems": []
+    }
+  ]
+}

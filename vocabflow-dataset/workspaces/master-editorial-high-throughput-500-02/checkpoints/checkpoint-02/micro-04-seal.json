@@ -1,0 +1,99 @@
+{
+  "cohortFingerprint": "9710a47fda875f70412c7440b2969c031dc6eb3c076140a42007aed4f83cf59c",
+  "fingerprint": "8b8b223cbbdee6faa201b42f3076730367e708cbdc57158a828f96183089218c",
+  "groupKeys": [
+    "NORMALIZED_HEADWORD:ignite",
+    "NORMALIZED_HEADWORD:incredulous",
+    "NORMALIZED_HEADWORD:replacement",
+    "NORMALIZED_HEADWORD:supernatural",
+    "NORMALIZED_HEADWORD:conventional",
+    "NORMALIZED_HEADWORD:counselling",
+    "NORMALIZED_HEADWORD:racing",
+    "NORMALIZED_HEADWORD:superb",
+    "NORMALIZED_HEADWORD:soft",
+    "NORMALIZED_HEADWORD:pregnant",
+    "NORMALIZED_HEADWORD:compensation",
+    "NORMALIZED_HEADWORD:set-up",
+    "NORMALIZED_HEADWORD:distract",
+    "NORMALIZED_HEADWORD:bath",
+    "NORMALIZED_HEADWORD:onion",
+    "NORMALIZED_HEADWORD:dilemma",
+    "NORMALIZED_HEADWORD:collection",
+    "NORMALIZED_HEADWORD:shove",
+    "NORMALIZED_HEADWORD:autograph",
+    "NORMALIZED_HEADWORD:surface"
+  ],
+  "manuscriptSha256": "7a7237bc10c25958a21890f08ee0f5fe00627c8d65554aa72cf106f5b67505b7",
+  "microBatch": 4,
+  "parentFingerprint": "4b968558eb6f2506e1c83c5ca4ebc783e5f01265394f01d6f8ee15abe4fbb773",
+  "phase": "2H.2L",
+  "planningFingerprint": "52962975e897aa4761acdcfcedd53b95af9201a416890fd8a3b4b96e8c51b6ac",
+  "planningSha256": "89780c6af111c017e33a252683b5e86023c310e035317702a2dd5e9dabf6e97d",
+  "qaCounts": {
+    "PASS": 24,
+    "REVIEW": 1
+  },
+  "recordHash": "8bbadbaacee0068c4eb7cecada9deaefed2bce51e29e8881507eed48d7a59149",
+  "reviewHash": "4e9b8cb4575fd3077b916df787d34b0b178ac7906d94cb659029911611c213fa",
+  "selfReviewSha256": "ed454e87a5bc76de5cb050e04708d4c473c56c997989cec61d2ed35fd2209987",
+  "senseCount": 25,
+  "sourceSimilarityFindings": [
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:supernatural:beyond-nature",
+      "sourceRecordId": "1559931010038",
+      "text": "siêu nhiên"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:bath:tub",
+      "sourceRecordId": "1788223606806",
+      "text": "bồn tắm"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:bath:tub",
+      "sourceRecordId": "1788223606806",
+      "text": "bồn tắm"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:onion:bulb-vegetable",
+      "sourceRecordId": "1788223606907",
+      "text": "củ hành tây"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:onion:bulb-vegetable",
+      "sourceRecordId": "1788223606907",
+      "text": "củ hành tây"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:surface:outer-layer",
+      "sourceRecordId": "1788223607896",
+      "text": "bề mặt"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:surface:outer-layer",
+      "sourceRecordId": "1788223607896",
+      "text": "bề mặt"
+    },
+    {
+      "field": "meaningVi",
+      "kind": "SHORT_CONVENTIONAL_OVERLAP_REQUIRES_RIGHTS_REVIEW",
+      "proposalKey": "EDITORIAL_2H2L:surface:outer-layer",
+      "sourceRecordId": "1559931007978",
+      "text": "bề mặt"
+    }
+  ],
+  "status": "SEALED_AI_DRAFT_NOT_APPROVED"
+}
