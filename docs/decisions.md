@@ -596,3 +596,52 @@ evidence condition is met and the affected source document is updated.
   Phase 2F.6A [owner decision artifact](../vocabflow-dataset/workspaces/hybrid-100-rc-final-review/taxonomy-version-policy-decision.json).
 - Revisit only if a taxonomy semantic-versioning contract change receives
   explicit owner approval and includes migration/compatibility rules.
+
+## DEC-027 — Scoped LF artifacts and offline DRAFT baseline gate
+
+- Status: ACCEPTED by explicit owner authorization.
+- Date: 2026-10-11.
+- Context: On Windows checkouts with `core.autocrlf=true`, automatic CRLF
+  conversion changed the working bytes of frozen release JSON and seven
+  semantic-closure outputs. Byte-sensitive closure and release integrity
+  checks then failed even though Git blobs remained unchanged.
+- Decision: Preserve LF checkout bytes for tracked JSON recursively under
+  `vocabflow-dataset/releases/`, and for the six exact JSON outputs and one
+  exact Markdown report under the legacy semantic-closure audit. The recursive
+  release rule is valid only for the tracked release JSON set verified by the
+  2026-10-11 EOL audit; it does not cover non-JSON release files. This is a
+  checkout representation rule and does not authorize changing accepted blobs,
+  manifests, fingerprints, or release history.
+- Phase 2H.2L baseline policy: For offline AI-authored DRAFT Git checkpoints
+  only, assess full-suite baseline debt separately from regression status.
+  Keep `FULL_TEST_STATUS` as `PASS` or `FAIL`; classify
+  `BASELINE_NON_REGRESSION` as `PASS`, `FAIL`, or `UNPROVEN`; and report
+  `BASELINE_EXCEPTION_POLICY` as `APPROVED_SCOPED`, `NOT_APPLICABLE`, or
+  `BLOCKED_BY_CONTRACT`. An approved scoped exception can qualify only the
+  explicitly documented full-suite baseline debt. It cannot suppress a
+  candidate-only reproducible deterministic failure, a real release/identity
+  integrity issue, failed focused or parent/frozen checks, incomplete review,
+  blocking findings, failed seals/assembly/replay, or staging/remote/pin
+  failures. Compare accepted baseline and candidate under equivalent Node,
+  pnpm, dependency, runner, and EOL settings; compare exact test identities and
+  normalized error signatures; investigate every candidate-only failure; and
+  keep all historical failures visible.
+- Scope and approval boundaries: This policy applies to one offline DRAFT Git
+  checkpoint at a time. It authorizes no runtime release, database access or
+  import, canonical promotion, Production change, historical release mutation,
+  rights clearance, owner approval, or automatic extension to a later
+  checkpoint. Independent review must cover 100% of new Senses; every blocking
+  finding must be resolved and revised fields independently rechecked before
+  seals, assembly, and two-seed zero-write replay.
+- Revalidation and revocation: Repeat the baseline comparison and all
+  checkpoint-specific integrity gates for every checkpoint. If a candidate-only
+  deterministic failure reproduces, or any baseline failure is shown to be a
+  genuine integrity problem affecting the candidate, mark the exception
+  `BLOCKED_BY_CONTRACT`, keep publication ineligible, preserve the evidence,
+  and require owner review of a forward-only remedy. Never hide the finding by
+  editing historical tests or accepted artifacts.
+- Evidence/source: Owner authorization dated 2026-10-11; isolated EOL matching
+  and Git-blob checks, semantic-closure check, approved-release focused tests,
+  and the CP02 baseline comparison recorded in `docs/ai-progress.md`.
+- Revisit only if the owner changes the offline DRAFT publication contract or
+  the repository adopts a higher-priority immutable validation requirement.

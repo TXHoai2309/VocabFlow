@@ -4455,3 +4455,15 @@ Added a content-bound, immutable downstream overlay for three grammar-note field
 - Fingerprint19cad301827b8f5214a8d93c92c60b1f99125e1b2ad0e1a2311902b851c338ed. POS15tests/focused19testsPASS;7typechecks/lintPASS; two-seed1/8675309zero-write replayPASS over8018visiblefiles with stdoutSHA256ad4520a30b53beb5cea34adae1c158fa3ecc39fa7a0a3593c258ce7a6665d193.
 - Publication is gated on explicit-path staging, normal origin/TXH push and post-publication remote/pin/descendant replay verification. Continue CP05 automatically only after that verification under the existing500-group authorization.
 - CONTENT_STATUS=DRAFT; RIGHTS=UNKNOWN_REVIEW_REQUIRED; HUMAN_APPROVALS=0; CANONICAL_IDS_ALLOCATED=0; DATABASE_ACCESS/WRITES=NONE/NONE; Production untouched. Protected cache/stashes/worktrees preserved.
+
+
+## 2026-10-11 — Scoped EOL contract and Phase 2H.2L baseline policy
+
+- Add exact LF checkout rules for the verified tracked release JSON set and
+  seven semantic-closure outputs; no release blobs or fingerprints are changed.
+- Record DEC-027, a checkpoint-by-checkpoint non-regression procedure for
+  offline DRAFT Git publication. Full-suite failures remain visible and are
+  reported separately from baseline non-regression.
+- CP02 remains unpublished: independent review is unavailable (0/154), so no
+  corrections, seals, assembly, or publication were attempted. See the latest
+  CP02 entry in `docs/ai-progress.md` for the verification evidence and limits.

@@ -7194,3 +7194,40 @@ owner-approved baseline exception. See
 - Fingerprint19cad301827b8f5214a8d93c92c60b1f99125e1b2ad0e1a2311902b851c338ed. POS15tests/focused19testsPASS;7typechecks/lintPASS; two-seed1/8675309zero-write replayPASS over8018visiblefiles with stdoutSHA256ad4520a30b53beb5cea34adae1c158fa3ecc39fa7a0a3593c258ce7a6665d193.
 - Publication is gated on explicit-path staging, normal origin/TXH push and post-publication remote/pin/descendant replay verification. Continue CP05 automatically only after that verification under the existing500-group authorization.
 - CONTENT_STATUS=DRAFT; RIGHTS=UNKNOWN_REVIEW_REQUIRED; HUMAN_APPROVALS=0; CANONICAL_IDS_ALLOCATED=0; DATABASE_ACCESS/WRITES=NONE/NONE; Production untouched. Protected cache/stashes/worktrees preserved.
+
+
+### 2026-10-11 — Phase 2H.2L Cohort 500-03 CP02: EOL and baseline gates
+
+- Start from the accepted `TXH` / `origin/TXH` HEAD
+  `d1ad7c45ac4d156f79152d052eb9bc0bcc8157ab`. Preserve the 100-group / 154-
+  Sense unpublished CP02 draft, five existing handoffs, 40 CP02 artifacts, two
+  cache files, seven stashes, twelve worktrees, and all unrelated files.
+- Add the owner-approved scoped LF checkout contract. In isolated checkouts
+  with `core.autocrlf=true` and `false`, `git check-attr` changed exactly the
+  intended 3,367 tracked JSON files under `vocabflow-dataset/releases/` plus
+  seven exact semantic-closure artifacts; the release Markdown diagnostic was
+  not matched. Fresh index materialization reproduced Git blob bytes for all
+  3,374 targets, including the previously examined 1,103-file set. No accepted
+  blob, release manifest, or fingerprint changed.
+- Validation in an isolated LF checkout: semantic closure `--check` PASS at
+  fingerprint `5115d7021d7a66466fe87ded8ae49f24ceb399edf1e1c9981b990f3443acdfea`;
+  frozen approved-release integrity tests PASS 5/5. The approved-release test
+  was run with Node 22.23.2, Vitest 5.0.0, thread pool, one worker, and no file
+  parallelism; the initial run took 46.44s and two bounded repeats took 9.01s
+  and 8.82s, each PASS 5/5.
+- The previously controlled full suite remains `FAIL`: baseline 1,409 PASS / 18
+  FAIL / 17 PENDING; candidate 1,411 PASS / 16 FAIL / 17 PENDING. Failure
+  identity comparison found 15 matching failures, three baseline-only failures,
+  and one candidate-only 30-second approved-release timeout. The timeout did
+  not recur in the three focused runs, but the full-suite observation remains
+  visible. The signature comparison does not establish that every common
+  historical release/identity failure is harmless; no blanket waiver is
+  claimed. `BASELINE_NON_REGRESSION=UNPROVEN`, not PASS. The scoped policy is
+  documented in DEC-027 and is not a blanket waiver.
+- Independent reviewer availability: none in this session. Review remains
+  0/154; no independent semantic review, corrections, rechecks, seals,
+  assembly, or publication occurred. CP02 publication eligibility is NO until
+  154/154 independent review and every remaining gate pass.
+- Rights remain `UNKNOWN_REVIEW_REQUIRED`; content remains offline DRAFT;
+  approvals/canonical IDs are zero. Database access/writes: NONE/NONE;
+  Production untouched. No push or deployment was attempted.

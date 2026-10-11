@@ -9,3 +9,13 @@
 /scripts/phase-2h2k-checkpoint-02.py text eol=lf
 /scripts/phase-2h2k-checkpoint-02-test.py text eol=lf
 /vocabflow-dataset/workspaces/master-editorial-high-throughput-500/** text eol=lf
+
+# Preserve raw LF bytes for validated historical release and semantic-closure artifacts.
+/vocabflow-dataset/releases/**/*.json text eol=lf
+/vocabflow-dataset/workspaces/legacy-vocabulary-cleanup-audit/owner-reviewed-exclusions.json text eol=lf
+/vocabflow-dataset/workspaces/legacy-vocabulary-cleanup-audit/semantic-fingerprint-payload.json text eol=lf
+/vocabflow-dataset/workspaces/legacy-vocabulary-cleanup-audit/legacy-master-candidates.json text eol=lf
+/vocabflow-dataset/workspaces/legacy-vocabulary-cleanup-audit/cleanup-classification.json text eol=lf
+/vocabflow-dataset/workspaces/legacy-vocabulary-cleanup-audit/validation-summary.json text eol=lf
+/vocabflow-dataset/workspaces/legacy-vocabulary-cleanup-audit/manifest.json text eol=lf
+/vocabflow-dataset/reports/development-legacy-vocabulary-cleanup-audit.md text eol=lf
