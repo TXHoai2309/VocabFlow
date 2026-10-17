@@ -48,13 +48,13 @@ function assertFixtureTrackedSourceUnmodified(root: string, diagnostics: string[
 }
 
 function fixtureGitDiffQuiet(root: string, args: string[]) {
-  const result = spawnSync("git", args, { cwd: root, stdio: "ignore", windowsHide: true });
+  const result = spawnSync("git", [...args, "--", ".", ":(exclude)vocabflow-dataset/**"], { cwd: root, stdio: "ignore", windowsHide: true });
   if (result.error) throw result.error;
   return result.status;
 }
 
 function fixtureGitDiffNames(root: string, args: string[]) {
-  const result = spawnSync("git", [...args, "-z"], {
+  const result = spawnSync("git", [...args, "-z", "--", ".", ":(exclude)vocabflow-dataset/**"], {
     cwd: root,
     encoding: "buffer",
     maxBuffer: 128 * 1024,
@@ -328,6 +328,25 @@ describe("Vercel production build safety", () => {
         () => undefined,
         {},
       )).toThrow("RELEASE_SOURCE_TREE_NOT_CLEAN");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("ignores tracked source artifacts removed by the Vercel ignore rule", () => {
+    const root = trackedSourceFixture();
+    const datasetPath = join(root, "vocabflow-dataset", "dataset.json");
+    mkdirSync(join(root, "vocabflow-dataset"), { recursive: true });
+    writeFileSync(datasetPath, '{"source":"fixture"}\n', "utf8");
+    runGitFixtureCommand(root, ["add", "vocabflow-dataset/dataset.json"]);
+    runGitFixtureCommand(root, ["commit", "--quiet", "-m", "add ignored dataset fixture"]);
+
+    try {
+      rmSync(datasetPath);
+      expect(() => assertFixtureTrackedSourceUnmodified(root)).not.toThrow();
+
+      writeFileSync(join(root, "src", "lesson.ts"), "export const lesson = 'modified';\n", "utf8");
+      expect(() => assertFixtureTrackedSourceUnmodified(root)).toThrow("RELEASE_SOURCE_TREE_NOT_CLEAN");
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

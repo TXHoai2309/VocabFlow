@@ -39,8 +39,17 @@ export function resolveProductionBuildReleaseSha(environment: ReleaseShaEnvironm
   return environment.VOCABFLOW_RELEASE_SHA;
 }
 
+// Vercel removes this tracked, source-only dataset directory before build via
+// .vercelignore. Exclude those intentional removals from the mutation guard;
+// local release builds still use the full clean-tree check.
+const VERCEL_BUILD_EXCLUDED_TRACKED_PATHS = [":(exclude)vocabflow-dataset/**"];
+
+function vercelBuildTrackedDiffArgs(args: string[]) {
+  return [...args, "--", ".", ...VERCEL_BUILD_EXCLUDED_TRACKED_PATHS];
+}
+
 function gitDiffQuietExitCode(args: string[]) {
-  const result = spawnSync("git", args, { stdio: "ignore" });
+  const result = spawnSync("git", vercelBuildTrackedDiffArgs(args), { stdio: "ignore" });
   if (result.error) throw result.error;
   return result.status;
 }
@@ -49,7 +58,7 @@ const MAX_TRACKED_SOURCE_DIAGNOSTIC_FILES = 20;
 const MAX_TRACKED_SOURCE_DIAGNOSTIC_PATH_LENGTH = 240;
 
 function gitDiffNameOnly(args: string[]) {
-  const result = spawnSync("git", [...args, "-z"], { encoding: "buffer", maxBuffer: 128 * 1024 });
+  const result = spawnSync("git", vercelBuildTrackedDiffArgs([...args, "-z"]), { encoding: "buffer", maxBuffer: 128 * 1024 });
   if (result.error || result.status !== 0 || !Buffer.isBuffer(result.stdout)) return null;
   return result.stdout.toString("utf8").split("\0").filter(Boolean);
 }

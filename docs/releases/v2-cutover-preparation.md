@@ -129,3 +129,18 @@ an explicit reconciliation decision; V2 history cannot silently move to V1.
 Private evidence/config: `.vocabflow-local/vercel-v2-cutover/`. Keep the proposed
 env file, Vercel snapshots, backup artifacts and credentials outside Git and
 deployment upload. Neon Dev and staged V2 data remain untouched.
+
+## 2026-10-18 Preview build follow-up
+
+The local `pnpm build:production` passed from a clean clone of release commit
+`37e9dc0d53c78f1d75c42d3512b6217a5c18954e` with Node 22.23.2 and pnpm 11.17.0.
+That exact SHA was pushed only to `v2-release-candidate-20261018`; Vercel
+Production branch `main` remained at `17b1c761a97bfd2fbabcdb04fa43478677dbe749`.
+
+The first Vercel Preview failed because Vercel removed 7,652 tracked files under
+`vocabflow-dataset/`, as configured by `.vercelignore`, and the source mutation
+guard treated those intentional omissions as source changes. The follow-up
+guard excludes only that ignored directory and still blocks any modified
+deployed source file. Regression tests pass. A new Preview build and end-to-end
+Development smoke check remain pending. No Production environment, alias,
+deployment, Neon data, or Cloudinary asset was changed.

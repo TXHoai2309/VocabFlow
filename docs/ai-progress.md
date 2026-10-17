@@ -7238,3 +7238,10 @@ owner-approved baseline exception. See
 - Rights remain `UNKNOWN_REVIEW_REQUIRED`; content remains offline DRAFT;
   approvals/canonical IDs are zero. Database access/writes: NONE/NONE;
   Production untouched. No push or deployment was attempted.
+
+### 2026-10-18 — V2 release candidate Preview follow-up
+
+- Create local release commit 37e9dc0d53c78f1d75c42d3512b6217a5c18954e (release(v2): prepare production cutover) after staging only the approved runtime delta; preserve other local working-tree files. Push only that SHA to v2-release-candidate-20261018; main remains 17b1c761a97bfd2fbabcdb04fa43478677dbe749.
+- Exact-SHA clean-clone pnpm build:production with Node 22.23.2 and pnpm 11.17.0 passes, including runtime/client secret and source-map scans. Focused runtime suite and typechecks pass.
+- Vercel Preview initially failed because Vercel removes the tracked vocabflow-dataset/ path listed in .vercelignore, which the build mutation guard counted as dirty. Fix the guard to exclude only that deployment-ignored path while continuing to block edits in deployed sources; add a regression test. Focused production-build tests pass 71/71. A follow-up Preview build is still required.
+- No Production environment, alias, database, media rights, or deployment changed. V1 backup remains owner-waived; V1 database rollback is unverified. Keep the Production GO gate closed until a READY Preview and required smoke checks pass.
