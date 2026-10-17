@@ -1,5 +1,8 @@
 import {
+  learnerVocabularyBrowseResponseSchema,
   learnerVocabularyListResponseSchema,
+  type LearnerVocabularyBrowseResponse,
+  type VocabularyBrowsePageSize,
   type LearnerVocabularyDto,
   type VocabularyLevel
 } from "@vocabflow/contracts";
@@ -27,8 +30,12 @@ async function readError(response: Response): Promise<LearnerVocabularyClientErr
   return new LearnerVocabularyClientError(code, response.status);
 }
 
-export async function requestLearnerVocabulary(learnerId: string, level?: VocabularyLevel): Promise<LearnerVocabularyDto[]> {
-  const query = level ? `?level=${encodeURIComponent(level)}` : "";
+export async function requestLearnerVocabulary(learnerId: string, level?: VocabularyLevel, vocabularyId?: number): Promise<LearnerVocabularyDto[]> {
+  const params = new URLSearchParams();
+  if (level) params.set("level", level);
+  if (vocabularyId !== undefined) params.set("id", String(vocabularyId));
+  const queryString = params.toString();
+  const query = queryString ? `?${queryString}` : "";
   let response: Response;
   try {
     response = await fetch(`/api/learners/${encodeURIComponent(learnerId)}/vocabulary${query}`, {
@@ -48,4 +55,47 @@ export async function requestLearnerVocabulary(learnerId: string, level?: Vocabu
   const parsed = learnerVocabularyListResponseSchema.safeParse(payload);
   if (!parsed.success) throw new LearnerVocabularyClientError("INVALID_RESPONSE", response.status);
   return parsed.data.vocabulary;
+}
+
+export type LearnerVocabularyBrowseRequest = {
+  page: number;
+  pageSize: VocabularyBrowsePageSize;
+  q?: string;
+  level?: VocabularyLevel;
+  cefr?: string;
+  topic?: string;
+};
+
+export async function requestLearnerVocabularyBrowse(
+  learnerId: string,
+  query: LearnerVocabularyBrowseRequest,
+  signal?: AbortSignal
+): Promise<LearnerVocabularyBrowseResponse> {
+  const params = new URLSearchParams({ page: String(query.page), pageSize: String(query.pageSize) });
+  if (query.q?.trim()) params.set("q", query.q.trim());
+  if (query.level) params.set("level", query.level);
+  if (query.cefr) params.set("cefr", query.cefr);
+  if (query.topic) params.set("topic", query.topic);
+
+  let response: Response;
+  try {
+    response = await fetch(`/api/learners/${encodeURIComponent(learnerId)}/vocabulary/browse?${params}`, {
+      credentials: "include",
+      signal
+    });
+  } catch {
+    if (signal?.aborted) throw new DOMException("Aborted", "AbortError");
+    throw new LearnerVocabularyClientError("NETWORK_ERROR", 0);
+  }
+  if (!response.ok) throw await readError(response);
+
+  let payload: unknown;
+  try {
+    payload = await response.json();
+  } catch {
+    throw new LearnerVocabularyClientError("INVALID_RESPONSE", response.status);
+  }
+  const parsed = learnerVocabularyBrowseResponseSchema.safeParse(payload);
+  if (!parsed.success) throw new LearnerVocabularyClientError("INVALID_RESPONSE", response.status);
+  return parsed.data;
 }

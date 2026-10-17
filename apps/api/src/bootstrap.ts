@@ -56,7 +56,12 @@ export function createBootstrapService(database: BootstrapDatabase): BootstrapSe
         FROM household CROSS JOIN membership_result
       `);
 
-      const row = (result as { rows: BootstrapRow[] }).rows[0];
+      // Neon HTTP returns a `{ rows }` result; postgres-js exposes the rows as
+      // an array-like RowList. Keep the same service usable by both drivers.
+      const rows = Array.isArray(result)
+        ? result as BootstrapRow[]
+        : (result as { rows?: BootstrapRow[] } | null)?.rows ?? [];
+      const row = rows[0];
       const parsed = householdBootstrapResponseSchema.safeParse({ household: row });
       if (!parsed.success) throw new Error("BOOTSTRAP_RESULT_INVALID");
       return parsed.data.household;

@@ -6,6 +6,7 @@ import {
   type ContinueLearningSummaryResponse
 } from "@vocabflow/contracts";
 import { authorizeLearnerOwnership } from "./learners";
+import type { VocabularyDatasetVersion } from "./vocabulary-dataset-version";
 
 export type ContinueLearningDatabase = { execute: (query: SQL) => Promise<unknown> };
 export type ContinueLearningServiceErrorCode = "HOUSEHOLD_ACCESS_DENIED" | "INTERNAL_ERROR";
@@ -161,7 +162,8 @@ export type ContinueLearningService = {
   get: (userId: string, learnerId: string) => Promise<ContinueLearningSummaryResponse>;
 };
 
-export function createContinueLearningService(database: ContinueLearningDatabase): ContinueLearningService {
+export function createContinueLearningService(database: ContinueLearningDatabase, options: { datasetVersion?: VocabularyDatasetVersion } = {}): ContinueLearningService {
+  const datasetVersion = options.datasetVersion ?? "legacy";
   return {
     async get(userId, learnerId) {
       const ownership = await authorizeLearnerOwnership(database, userId, learnerId);
@@ -169,7 +171,9 @@ export function createContinueLearningService(database: ContinueLearningDatabase
         throw new ContinueLearningServiceError("HOUSEHOLD_ACCESS_DENIED", 403);
       }
       try {
-        const candidate = await latestCandidate(database, ownership.learnerId);
+        // The V2 catalog has no learning-set or topic definitions yet; never
+        // surface a legacy collection as a V2 continuation target.
+        const candidate = datasetVersion === "v2" ? null : await latestCandidate(database, ownership.learnerId);
         const parsed = continueLearningSummaryResponseSchema.safeParse({ learnerId: ownership.learnerId, candidate });
         if (!parsed.success) throw new ContinueLearningServiceError("INTERNAL_ERROR", 500);
         return parsed.data;

@@ -1,0 +1,79 @@
+import type { VocabularyDto } from "@vocabflow/contracts";
+
+type DevelopmentMedia = NonNullable<VocabularyDto["developmentMedia"]>;
+type MediaItem = NonNullable<DevelopmentMedia["wordAudio"]>[number];
+type DevelopmentMediaSource = Pick<VocabularyDto, "word" | "developmentMedia">;
+
+function statusLabel(status: MediaItem["reviewStatus"]) {
+  return status === "ACCEPTED_MAPPING" ? "Đã xác nhận mapping" : status === "AMBIGUOUS" ? "Nhiều phương án — cần chọn" : "PROPOSED — chưa kiểm duyệt";
+}
+
+export function DevelopmentWordAudio({ vocabulary }: { vocabulary: DevelopmentMediaSource }) {
+  const items = vocabulary.developmentMedia?.wordAudio ?? [];
+  if (items.length === 0) return null;
+
+  return (
+    <section className="development-media-audio" aria-label={`Phát âm nguồn cho ${vocabulary.word}`}>
+      <p className="development-media-notice">Media nguồn Development · quyền sử dụng chưa xác minh</p>
+      {items.map((item, index) => (
+        <div className="development-media-audio-item" key={`${item.mediaSha256}:${index}`}>
+          <div className="development-media-audio-copy">
+            <strong>{item.pronunciation || `Phát âm ${index + 1}`}</strong>
+            <span>{statusLabel(item.reviewStatus)}</span>
+            <small>{item.sourceNoteIdentity} · SHA256 {item.mediaSha256.slice(0, 12)}…</small>
+          </div>
+          <audio controls preload="none" src={item.url} aria-label={`Nghe ${vocabulary.word}, ${item.pronunciation || `phương án ${index + 1}`}`}>
+            Trình duyệt không hỗ trợ phát audio.
+          </audio>
+        </div>
+      ))}
+    </section>
+  );
+}
+
+export function DevelopmentExampleAudio({ vocabulary, exampleKey }: { vocabulary: DevelopmentMediaSource; exampleKey?: string }) {
+  if (!exampleKey) return null;
+  const items = (vocabulary.developmentMedia?.exampleAudio ?? []).filter((item) => item.exampleKey === exampleKey);
+  if (items.length === 0) return null;
+  return (
+    <div className="development-media-example-audio">
+      {items.map((item, index) => (
+        <div key={`${item.mediaSha256}:${index}`}>
+          <p className="development-media-notice">Audio khớp câu ví dụ · quyền sử dụng chưa xác minh</p>
+          <audio controls preload="none" src={item.url} aria-label={`Nghe câu ví dụ ${index + 1}`} />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export function DevelopmentImageNotice({ vocabulary }: { vocabulary: Pick<VocabularyDto, "word" | "imageUrl" | "masterSenseIdentity" | "imageMediaStatus" | "developmentMedia"> }) {
+  if (!vocabulary.masterSenseIdentity || !vocabulary.imageUrl) return null;
+  const status = vocabulary.imageMediaStatus === "ACCEPTED_MAPPING" ? "Đã xác nhận mapping"
+    : vocabulary.imageMediaStatus === "AMBIGUOUS" ? "Nhiều phương án — cần chọn"
+      : "PROPOSED — chưa kiểm duyệt";
+  const image = vocabulary.developmentMedia?.images?.find((item) => item.url === vocabulary.imageUrl);
+  return (
+    <span className="development-media-notice" title={image ? `${image.sourceNoteIdentity} · SHA256 ${image.mediaSha256}` : undefined}>
+      Media nguồn Development · {status} · quyền chưa xác minh
+    </span>
+  );
+}
+
+export function DevelopmentImagePreviews({ vocabulary }: { vocabulary: Pick<VocabularyDto, "word" | "developmentMedia"> }) {
+  const images = vocabulary.developmentMedia?.images ?? [];
+  if (images.length === 0) return null;
+  return (
+    <div className="development-media-image-list" aria-label={`Ảnh đề xuất cho ${vocabulary.word}`}>
+      {images.map((image, index) => (
+        <figure key={`${image.mediaSha256}:${index}`}>
+          <img src={image.url} alt={`Ảnh nguồn đề xuất ${index + 1} cho ${vocabulary.word}`} loading="lazy" />
+          <figcaption>
+            {statusLabel(image.reviewStatus)} · quyền chưa xác minh<br />
+            <small>{image.sourceNoteIdentity} · SHA256 {image.mediaSha256.slice(0, 12)}…</small>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  );
+}

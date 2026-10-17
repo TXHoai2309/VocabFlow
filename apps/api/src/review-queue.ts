@@ -14,6 +14,7 @@ import {
 import { householdLocalDate } from "./reviews";
 import { authorizeLearnerOwnership } from "./learners";
 import { resolveWeakReviewQueue } from "./weak-words";
+import { jsonArray, jsonObject, vocabularyDatasetPredicate, type VocabularyDatasetVersion } from "./vocabulary-dataset-version";
 
 export type ReviewQueueDatabase = {
   execute: (query: SQL) => Promise<unknown>;
@@ -76,6 +77,17 @@ type QueueRow = {
   next_review_date: string | null;
   revision: number | string | bigint;
   total_count: number | string | bigint;
+  master_sense_identity?: string | null;
+  display_form?: string | null;
+  part_of_speech?: string | null;
+  cefr?: string | null;
+  tags?: unknown;
+  examples?: unknown;
+  content_sha256?: string | null;
+  content_review_decision?: string | null;
+  editorial_status?: string | null;
+  rights_status?: string | null;
+  development_media?: unknown;
 };
 
 type DailyNewUsageRow = {
@@ -106,6 +118,11 @@ function safeCount(value: unknown): number {
 }
 
 function vocabularyFromRow(row: QueueRow): VocabularyDto {
+  const media = jsonObject(row.development_media);
+  const images = jsonArray(media?.images);
+  const singleImage = images?.length === 1 ? jsonObject(images[0]) : undefined;
+  const wordAudio = jsonArray(media?.wordAudio);
+  const exampleAudio = jsonArray(media?.exampleAudio);
   const vocabulary = {
     id: Number(row.id),
     word: row.word,
@@ -113,12 +130,28 @@ function vocabularyFromRow(row: QueueRow): VocabularyDto {
     vietnamese: row.vietnamese,
     definitionEn: row.definition_en,
     exampleEn: row.example_en,
-    imageUrl: row.image_url,
-    audioUrl: row.audio_url,
+    imageUrl: images ? (singleImage ? String(singleImage.url ?? "") : null) : row.image_url,
+    audioUrl: media ? null : row.audio_url,
     topic: row.topic,
     level: row.level == null ? null : String(row.level),
     enabled: row.enabled,
-    contentVersion: Number(row.content_version)
+    contentVersion: Number(row.content_version),
+    ...(row.master_sense_identity ? { masterSenseIdentity: String(row.master_sense_identity) } : {}),
+    ...(row.display_form ? { displayForm: String(row.display_form) } : {}),
+    ...(row.part_of_speech ? { partOfSpeech: String(row.part_of_speech) } : {}),
+    ...(row.cefr ? { cefr: String(row.cefr) } : {}),
+    ...(Array.isArray(row.tags) ? { tags: row.tags } : {}),
+    ...(Array.isArray(row.examples) ? { examples: row.examples } : {}),
+    ...(row.content_sha256 ? { contentHash: String(row.content_sha256) } : {}),
+    ...(row.content_review_decision === "PASS" ? { contentReviewStatus: "PASS" as const } : {}),
+    ...(row.editorial_status === "DRAFT" ? { editorialStatus: "DRAFT" as const } : {}),
+    ...(row.rights_status === "UNKNOWN_REVIEW_REQUIRED" ? { rightsStatus: "UNKNOWN_REVIEW_REQUIRED" as const } : {}),
+    ...(images || wordAudio || exampleAudio ? { developmentMedia: {
+      ...(images ? { images } : {}),
+      ...(wordAudio ? { wordAudio } : {}),
+      ...(exampleAudio ? { exampleAudio } : {})
+    } } : {}),
+    ...(singleImage?.reviewStatus ? { imageMediaStatus: singleImage.reviewStatus === "ACCEPTED_MAPPING" ? "ACCEPTED_MAPPING" as const : singleImage.reviewStatus === "AMBIGUOUS" ? "AMBIGUOUS" as const : "PROPOSED" as const } : {})
   };
   const parsed = vocabularyDtoSchema.safeParse(vocabulary);
   if (!parsed.success) throw new ReviewQueueServiceError("INTERNAL_ERROR", 500);
@@ -155,16 +188,21 @@ async function householdTimezone(database: ReviewQueueDatabase, householdId: str
 async function dailyNewUsage(
   database: ReviewQueueDatabase,
   learnerId: string,
-  reviewDate: string
+  reviewDate: string,
+  datasetVersion: VocabularyDatasetVersion
 ): Promise<{ dailyNewWordLimit: number; consumedToday: number }> {
   const result = await database.execute(sql`
     SELECT lp.daily_new_word_limit,
            COUNT(progress.vocabulary_id) FILTER (
              WHERE progress.first_learned_date = ${reviewDate}::date
+               AND usage_v.id IS NOT NULL
            ) AS consumed_today
     FROM "${sql.raw(APP_SCHEMA)}"."learner_profiles" lp
     LEFT JOIN "${sql.raw(APP_SCHEMA)}"."learner_progress" progress
       ON progress.learner_id = lp.id
+    LEFT JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" usage_v
+      ON usage_v.id = progress.vocabulary_id
+     AND ${vocabularyDatasetPredicate("usage_v", datasetVersion)}
     WHERE lp.id = ${learnerId}::uuid
     GROUP BY lp.daily_new_word_limit
   `);
@@ -176,7 +214,7 @@ async function dailyNewUsage(
   return { dailyNewWordLimit, consumedToday };
 }
 
-function vocabularyMembership(learner: SQL, scope?: ReviewQueueScope): SQL {
+function vocabularyMembership(learner: SQL, scope?: ReviewQueueScope, datasetVersion: VocabularyDatasetVersion = "legacy"): SQL {
   if (scope === "saved" || scope === "saved-all") {
     return sql`EXISTS (
       SELECT 1
@@ -186,7 +224,13 @@ function vocabularyMembership(learner: SQL, scope?: ReviewQueueScope): SQL {
     )`;
   }
   if (typeof scope === "object") {
-    if (scope.type === "topic") return sql`${vocabularyMembership(learner)} AND EXISTS (
+    if (datasetVersion === "v2" && scope.type === "pathway") return vocabularyDatasetPredicate("v", datasetVersion);
+    if (datasetVersion === "v2" && scope.type === "topic") return sql`EXISTS (
+      SELECT 1 FROM "${sql.raw(APP_SCHEMA)}"."vocabulary_topics" vt
+      JOIN "${sql.raw(APP_SCHEMA)}"."topics" t ON t.id = vt.topic_id AND t.enabled = true
+      WHERE vt.vocabulary_id = v.id AND t.id = ${scope.id}
+    )`;
+    if (scope.type === "topic") return sql`${vocabularyMembership(learner, undefined, datasetVersion)} AND EXISTS (
       SELECT 1 FROM "${sql.raw(APP_SCHEMA)}"."vocabulary_topics" vt
       JOIN "${sql.raw(APP_SCHEMA)}"."topics" t ON t.id = vt.topic_id
       WHERE vt.vocabulary_id = v.id AND t.enabled = true AND t.id = ${scope.id}
@@ -200,6 +244,7 @@ function vocabularyMembership(learner: SQL, scope?: ReviewQueueScope): SQL {
       WHERE ls.enabled = true AND lsi.vocabulary_id = v.id ${selected}
     )`;
   }
+  if (datasetVersion === "v2") return vocabularyDatasetPredicate("v", datasetVersion);
   return sql`EXISTS (
     SELECT 1
     FROM "${sql.raw(APP_SCHEMA)}"."learner_learning_sets" lls
@@ -212,8 +257,8 @@ function vocabularyMembership(learner: SQL, scope?: ReviewQueueScope): SQL {
   )`;
 }
 
-async function dueRows(database: ReviewQueueDatabase, learnerId: string, reviewDate: string, scope?: ReviewQueueScope, capacity?: StudyQueueCapacity) {
-  const membership = vocabularyMembership(sql.raw("lp.learner_id"), scope);
+async function dueRows(database: ReviewQueueDatabase, learnerId: string, reviewDate: string, scope?: ReviewQueueScope, capacity?: StudyQueueCapacity, datasetVersion: VocabularyDatasetVersion = "legacy") {
+  const membership = vocabularyMembership(sql.raw("lp.learner_id"), scope, datasetVersion);
   const result = await database.execute(sql`
     SELECT v.id,
            v.word,
@@ -227,15 +272,21 @@ async function dueRows(database: ReviewQueueDatabase, learnerId: string, reviewD
            v.level,
            v.enabled,
            v.content_version,
+           md.proposal_key AS master_sense_identity,
+           md.source_provenance->'masterV2Identity'->>'displayForm' AS display_form,
+           md.part_of_speech, md.cefr, md.tags, md.examples, md.content_sha256,
+           md.content_review_decision, md.editorial_status, md.rights_status, md.development_media,
            lp.status::text AS status,
            lp.next_review_date::text AS next_review_date,
            lp.revision,
            COUNT(*) OVER() AS total_count
     FROM "${sql.raw(APP_SCHEMA)}"."learner_progress" lp
     JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = lp.vocabulary_id
+    LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
     WHERE lp.learner_id = ${learnerId}::uuid
       AND lp.next_review_date <= ${reviewDate}::date
       AND v.enabled = true
+      AND ${vocabularyDatasetPredicate("v", datasetVersion)}
       AND ${membership}
     ORDER BY lp.next_review_date ASC, v.id ASC
     LIMIT ${capacity ?? sql.raw("20")}
@@ -243,8 +294,8 @@ async function dueRows(database: ReviewQueueDatabase, learnerId: string, reviewD
   return rowsOf<QueueRow>(result);
 }
 
-async function newRows(database: ReviewQueueDatabase, learnerId: string, scope?: ReviewQueueScope, capacity?: StudyQueueCapacity) {
-  const membership = vocabularyMembership(sql`${learnerId}::uuid`, scope);
+async function newRows(database: ReviewQueueDatabase, learnerId: string, scope?: ReviewQueueScope, capacity?: StudyQueueCapacity, datasetVersion: VocabularyDatasetVersion = "legacy") {
+  const membership = vocabularyMembership(sql`${learnerId}::uuid`, scope, datasetVersion);
   const result = await database.execute(sql`
     SELECT v.id,
            v.word,
@@ -258,15 +309,21 @@ async function newRows(database: ReviewQueueDatabase, learnerId: string, scope?:
            v.level,
            v.enabled,
            v.content_version,
+           md.proposal_key AS master_sense_identity,
+           md.source_provenance->'masterV2Identity'->>'displayForm' AS display_form,
+           md.part_of_speech, md.cefr, md.tags, md.examples, md.content_sha256,
+           md.content_review_decision, md.editorial_status, md.rights_status, md.development_media,
            'NEW'::text AS status,
            NULL::date AS next_review_date,
            0::bigint AS revision,
            COUNT(*) OVER() AS total_count
     FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v
+    LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
     LEFT JOIN "${sql.raw(APP_SCHEMA)}"."learner_progress" lp
       ON lp.vocabulary_id = v.id
      AND lp.learner_id = ${learnerId}::uuid
     WHERE v.enabled = true
+      AND ${vocabularyDatasetPredicate("v", datasetVersion)}
       AND lp.vocabulary_id IS NULL
       AND ${membership}
     ORDER BY v.id ASC
@@ -275,7 +332,7 @@ async function newRows(database: ReviewQueueDatabase, learnerId: string, scope?:
   return rowsOf<QueueRow>(result);
 }
 
-async function allSavedRows(database: ReviewQueueDatabase, learnerId: string) {
+async function allSavedRows(database: ReviewQueueDatabase, learnerId: string, datasetVersion: VocabularyDatasetVersion) {
   const result = await database.execute(sql`
     SELECT v.id,
            v.word,
@@ -292,14 +349,20 @@ async function allSavedRows(database: ReviewQueueDatabase, learnerId: string) {
            COALESCE(lp.status::text, 'NEW') AS status,
            lp.next_review_date::text AS next_review_date,
            COALESCE(lp.revision, 0)::bigint AS revision,
+           md.proposal_key AS master_sense_identity,
+           md.source_provenance->'masterV2Identity'->>'displayForm' AS display_form,
+           md.part_of_speech, md.cefr, md.tags, md.examples, md.content_sha256,
+           md.content_review_decision, md.editorial_status, md.rights_status, md.development_media,
            COUNT(*) OVER() AS total_count
     FROM "${sql.raw(APP_SCHEMA)}"."learner_saved_vocabulary" saved
     JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = saved.vocabulary_id
+    LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
     LEFT JOIN "${sql.raw(APP_SCHEMA)}"."learner_progress" lp
       ON lp.learner_id = saved.learner_id
      AND lp.vocabulary_id = v.id
     WHERE saved.learner_id = ${learnerId}::uuid
       AND v.enabled = true
+      AND ${vocabularyDatasetPredicate("v", datasetVersion)}
     ORDER BY v.id ASC
   `);
   return rowsOf<QueueRow>(result);
@@ -316,9 +379,10 @@ export type ReviewQueueService = {
 
 export function createReviewQueueService(
   database: ReviewQueueDatabase,
-  options: { now?: () => Date } = {}
+  options: { now?: () => Date; datasetVersion?: VocabularyDatasetVersion } = {}
 ): ReviewQueueService {
   const now = options.now ?? (() => new Date());
+  const datasetVersion = options.datasetVersion ?? "legacy";
 
   return {
     async list(userId, learnerId, timings, scope, capacity) {
@@ -346,13 +410,29 @@ export function createReviewQueueService(
             if (scope.type === "custom" || scope.type === "learning-set" || scope.type === "topic") {
               const ids = scope.type === "custom" ? scope.ids : [scope.id];
               const table = scope.type === "topic" ? "topics" : "learning_sets";
-              const valid = rowsOf<{ id: number }>(await database.execute(sql`
-                SELECT id FROM "${sql.raw(APP_SCHEMA)}".${sql.identifier(table)}
-                WHERE enabled = true AND id::bigint IN (${sql.join(ids.map((id) => sql`${id}::bigint`), sql`, `)})
-              `));
+              const idFilter = sql`id::bigint IN (${sql.join(ids.map((id) => sql`${id}::bigint`), sql`, `)})`;
+              const validQuery = datasetVersion === "v2"
+                ? scope.type === "topic"
+                  ? sql`SELECT t.id FROM "${sql.raw(APP_SCHEMA)}"."topics" t
+                      WHERE t.enabled = true AND ${idFilter}
+                        AND EXISTS (
+                          SELECT 1 FROM "${sql.raw(APP_SCHEMA)}"."vocabulary_topics" vt
+                          JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = vt.vocabulary_id AND v.enabled = true
+                          WHERE vt.topic_id = t.id AND ${vocabularyDatasetPredicate("v", datasetVersion)}
+                        )`
+                  : sql`SELECT ls.id FROM "${sql.raw(APP_SCHEMA)}"."learning_sets" ls
+                      WHERE ls.enabled = true AND ${idFilter}
+                        AND EXISTS (
+                          SELECT 1 FROM "${sql.raw(APP_SCHEMA)}"."learning_set_items" lsi
+                          JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = lsi.vocabulary_id AND v.enabled = true
+                          WHERE lsi.learning_set_id = ls.id AND ${vocabularyDatasetPredicate("v", datasetVersion)}
+                        )`
+                : sql`SELECT id FROM "${sql.raw(APP_SCHEMA)}".${sql.identifier(table)}
+                    WHERE enabled = true AND ${idFilter}`;
+              const valid = rowsOf<{ id: number }>(await database.execute(validQuery));
               if (valid.length !== ids.length) throw new ReviewQueueServiceError("SCOPE_NOT_FOUND", 404);
             }
-            if (scope.type === "pathway") {
+            if (scope.type === "pathway" && datasetVersion !== "v2") {
               const candidates = rowsOf<{ id: number | string }>(await database.execute(sql`
                 SELECT ls.id FROM "${sql.raw(APP_SCHEMA)}"."learning_sets" ls
                 WHERE ls.enabled = true AND EXISTS (
@@ -365,12 +445,14 @@ export function createReviewQueueService(
                 ) ORDER BY ls.sort_order ASC, ls.id ASC LIMIT 1
               `));
               newScope = { type: "custom", ids: candidates.length ? [Number(candidates[0]!.id)] : [] };
+            } else if (scope.type === "pathway" && datasetVersion === "v2") {
+              newScope = undefined;
             }
           }
           const timezone = await householdTimezone(database, ownership.householdId);
           reviewDate = householdLocalDate(now(), timezone);
           if (scope === "saved-all") {
-            const rows = await allSavedRows(database, ownership.learnerId);
+            const rows = await allSavedRows(database, ownership.learnerId, datasetVersion);
             const items = rows.map((row) => itemFromRow(row, savedQueueType(row, reviewDate)));
             const queue = [
               ...items.filter((item) => item.queueType === "DUE"),
@@ -389,7 +471,7 @@ export function createReviewQueueService(
             return parsed.data;
           }
           if (scope === "weak") {
-            const weak = await resolveWeakReviewQueue(database, ownership.learnerId, reviewDate);
+            const weak = await resolveWeakReviewQueue(database, ownership.learnerId, reviewDate, datasetVersion);
             const response = {
               learnerId: ownership.learnerId,
               reviewDate,
@@ -402,9 +484,9 @@ export function createReviewQueueService(
             return parsed.data;
           }
           [usage, due, availableNew] = await Promise.all([
-            dailyNewUsage(database, ownership.learnerId, reviewDate),
-            dueRows(database, ownership.learnerId, reviewDate, scope, capacity),
-            newScope && typeof newScope === "object" && newScope.type === "custom" && newScope.ids.length === 0 ? Promise.resolve([]) : newRows(database, ownership.learnerId, newScope, capacity)
+            dailyNewUsage(database, ownership.learnerId, reviewDate, datasetVersion),
+            dueRows(database, ownership.learnerId, reviewDate, scope, capacity, datasetVersion),
+            newScope && typeof newScope === "object" && newScope.type === "custom" && newScope.ids.length === 0 ? Promise.resolve([]) : newRows(database, ownership.learnerId, newScope, capacity, datasetVersion)
           ]);
         } finally {
           if (timings) timings.databaseMs = performance.now() - databaseStarted;

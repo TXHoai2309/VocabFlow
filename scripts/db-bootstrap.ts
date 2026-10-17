@@ -2,6 +2,7 @@ import postgres from "postgres";
 import { assertApplicationTablesAbsent, BOOTSTRAP_METADATA_VERSION, openSql, PROTECTED_IDENTITY_TABLE, PROTECTED_SCHEMA } from "./db-core";
 import { APP_SCHEMA, MIGRATION_SCHEMA, type ConnectionTarget } from "@vocabflow/contracts";
 import type { ParsedRoleCredential } from "./db-credentials";
+import { DATABASE_TARGETS } from "../config/database-targets";
 
 export { APP_SCHEMA, MIGRATION_SCHEMA };
 
@@ -720,8 +721,8 @@ export function classifyProductionBootstrapState(
   bootstrapRoleName: string,
 ): "FRESH" | "ALREADY_BOOTSTRAPPED" {
   if (target.environment !== "production"
-    || target.projectId !== "shy-hill-72364426"
-    || target.branchId !== "br-rough-silence-b3gbqjcb"
+    || target.projectId !== DATABASE_TARGETS.production.projectId
+    || target.branchId !== DATABASE_TARGETS.production.branchId
     || target.databaseName !== "neondb"
     || snapshot.databaseName !== target.databaseName
     || snapshot.sessionUser !== bootstrapRoleName

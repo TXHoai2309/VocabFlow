@@ -39,6 +39,11 @@ local-data/
 data/raw/
 /vocabflow-dataset/reports/validation-report.json
 .vocabflow-local/master-v2-hybrid-source/
+.vocabflow-local/
+.vocabflow-local/postgres.env
+.vocabflow-local/development.env
+.vocabflow-local/test-account.txt
+.vocabflow-local/backups/
 
 *.apkg
 

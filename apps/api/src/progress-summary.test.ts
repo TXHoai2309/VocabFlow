@@ -126,7 +126,7 @@ describe("US-20 progress summary service", () => {
     expect(queries[2]?.sql).toContain("lp.status::text = 'MASTERED'");
     expect(queries[2]?.sql).toContain("lp.next_review_date <= $1::date");
     expect(queries[2]?.sql).toContain("COUNT(DISTINCT lp.vocabulary_id)");
-    expect(queries[2]?.params).toEqual(["2026-09-14", learnerId]);
+    expect(queries[2]?.params).toEqual(["2026-09-14", learnerId, "VOCABFLOW_MASTER_V2_DEV"]);
     expect(queries[2]?.sql).not.toContain("review_events");
     const levels = queries[3]?.sql ?? "";
     expect(levels).toContain("WITH eligible_vocabulary AS");

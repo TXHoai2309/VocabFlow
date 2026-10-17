@@ -28,6 +28,19 @@ describe("US-01 household bootstrap service", () => {
     expect(database.execute).toHaveBeenCalledTimes(1);
   });
 
+  it("supports the postgres-js row-list result used by local Docker Development", async () => {
+    const database = { execute: vi.fn().mockResolvedValue([{
+      id: HOUSEHOLD_ID,
+      name: DEFAULT_HOUSEHOLD_NAME,
+      timezone: DEFAULT_HOUSEHOLD_TIMEZONE
+    }]) };
+    await expect(createBootstrapService(database).ensureDefaultHousehold("user-1")).resolves.toEqual({
+      id: HOUSEHOLD_ID,
+      name: DEFAULT_HOUSEHOLD_NAME,
+      timezone: DEFAULT_HOUSEHOLD_TIMEZONE
+    });
+  });
+
   it("serializes every dynamic value as a typed bind and never interpolates it into SQL text", async () => {
     const database = successfulDatabase();
     await createBootstrapService(database).ensureDefaultHousehold("user-1");

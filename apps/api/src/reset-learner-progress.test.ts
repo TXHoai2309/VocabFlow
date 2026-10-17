@@ -6,6 +6,7 @@ import {
   createResetLearnerProgressService,
   ResetLearnerProgressServiceError
 } from "./reset-learner-progress";
+import { MASTER_V2_DEVELOPMENT_SOURCE } from "./vocabulary-dataset-version";
 
 const learnerId = "00000000-0000-4000-8000-000000000010";
 const otherLearnerId = "00000000-0000-4000-8000-000000000011";
@@ -82,9 +83,11 @@ describe("US-24 reset progress service", () => {
     expect(queries).toHaveLength(2);
     expect(queries[0]?.sql).toContain("household_members");
     expect(queries[1]?.sql).toContain('DELETE FROM "vocabflow_app"."learner_progress"');
-    expect(queries[1]?.sql).toContain("WHERE learner_id = $1::uuid");
-    expect(queries[1]?.sql).toContain("RETURNING vocabulary_id");
-    expect(queries[1]?.params).toEqual([learnerId]);
+    expect(queries[1]?.sql).toContain("WHERE lp.learner_id = $1::uuid");
+    expect(queries[1]?.sql).toContain("lp.vocabulary_id = v.id");
+    expect(queries[1]?.sql).toContain("v.source_dataset IS DISTINCT FROM $2");
+    expect(queries[1]?.sql).toContain("RETURNING lp.vocabulary_id");
+    expect(queries[1]?.params).toEqual([learnerId, MASTER_V2_DEVELOPMENT_SOURCE]);
     expect(queries[1]?.sql).not.toContain("review_events");
     expect(queries[1]?.sql).not.toMatch(/DELETE\s+FROM[\s\S]+household/i);
   });

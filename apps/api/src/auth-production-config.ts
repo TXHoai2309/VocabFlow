@@ -1,4 +1,5 @@
 export type AuthEnvironment = {
+  DATABASE_DRIVER?: string;
   VOCABFLOW_ENV?: string;
   DATABASE_ENV?: string;
   BETTER_AUTH_URL?: string;

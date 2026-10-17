@@ -7,6 +7,7 @@ import {
   type LearnerSavedVocabularyMutationResponse
 } from "@vocabflow/contracts";
 import { authorizeLearnerOwnership } from "./learners";
+import { jsonArray, jsonObject, vocabularyDatasetPredicate, type VocabularyDatasetVersion } from "./vocabulary-dataset-version";
 
 export type LearnerSavedVocabularyDatabase = {
   execute: (query: SQL) => Promise<unknown>;
@@ -45,6 +46,17 @@ type SavedVocabularyRow = {
   progress_status: unknown;
   next_review_date: unknown;
   saved_at: unknown;
+  master_sense_identity?: unknown;
+  display_form?: unknown;
+  part_of_speech?: unknown;
+  cefr?: unknown;
+  tags?: unknown;
+  examples?: unknown;
+  content_sha256?: unknown;
+  content_review_decision?: unknown;
+  editorial_status?: unknown;
+  rights_status?: unknown;
+  development_media?: unknown;
 };
 
 function rowsOf<T>(result: unknown): T[] {
@@ -72,6 +84,11 @@ function timestampToIso(value: unknown): string {
 }
 
 function toDto(row: SavedVocabularyRow): LearnerSavedVocabularyDto {
+  const media = jsonObject(row.development_media);
+  const images = jsonArray(media?.images);
+  const singleImage = images?.length === 1 ? jsonObject(images[0]) : undefined;
+  const wordAudio = jsonArray(media?.wordAudio);
+  const exampleAudio = jsonArray(media?.exampleAudio);
   const parsed = learnerSavedVocabularyDtoSchema.safeParse({
     vocabulary: {
       id: safeInteger(row.id),
@@ -80,14 +97,30 @@ function toDto(row: SavedVocabularyRow): LearnerSavedVocabularyDto {
       vietnamese: String(row.vietnamese),
       definitionEn: nullableText(row.definition_en),
       exampleEn: nullableText(row.example_en),
-      imageUrl: nullableText(row.image_url),
-      audioUrl: nullableText(row.audio_url),
+      imageUrl: images ? (singleImage ? nullableText(singleImage.url) : null) : nullableText(row.image_url),
+      audioUrl: media ? null : nullableText(row.audio_url),
       topic: nullableText(row.topic),
       level: row.level == null ? null : String(row.level),
       enabled: row.enabled === true,
       contentVersion: safeInteger(row.content_version),
       status: row.progress_status == null ? "NEW" : String(row.progress_status),
-      nextReviewDate: row.next_review_date == null ? null : String(row.next_review_date)
+      nextReviewDate: row.next_review_date == null ? null : String(row.next_review_date),
+      ...(row.master_sense_identity ? { masterSenseIdentity: String(row.master_sense_identity) } : {}),
+      ...(row.display_form ? { displayForm: String(row.display_form) } : {}),
+      ...(row.part_of_speech ? { partOfSpeech: String(row.part_of_speech) } : {}),
+      ...(row.cefr ? { cefr: String(row.cefr) } : {}),
+      ...(Array.isArray(row.tags) ? { tags: row.tags } : {}),
+      ...(Array.isArray(row.examples) ? { examples: row.examples } : {}),
+      ...(row.content_sha256 ? { contentHash: String(row.content_sha256) } : {}),
+      ...(row.content_review_decision === "PASS" ? { contentReviewStatus: "PASS" as const } : {}),
+      ...(row.editorial_status === "DRAFT" ? { editorialStatus: "DRAFT" as const } : {}),
+      ...(row.rights_status === "UNKNOWN_REVIEW_REQUIRED" ? { rightsStatus: "UNKNOWN_REVIEW_REQUIRED" as const } : {}),
+      ...(images || wordAudio || exampleAudio ? { developmentMedia: {
+        ...(images ? { images } : {}),
+        ...(wordAudio ? { wordAudio } : {}),
+        ...(exampleAudio ? { exampleAudio } : {})
+      } } : {}),
+      ...(singleImage?.reviewStatus ? { imageMediaStatus: singleImage.reviewStatus === "ACCEPTED_MAPPING" ? "ACCEPTED_MAPPING" as const : singleImage.reviewStatus === "AMBIGUOUS" ? "AMBIGUOUS" as const : "PROPOSED" as const } : {})
     },
     savedAt: timestampToIso(row.saved_at)
   });
@@ -112,7 +145,8 @@ export type LearnerSavedVocabularyService = {
   unsave: (userId: string, learnerId: string, vocabularyId: number) => Promise<LearnerSavedVocabularyMutationResponse>;
 };
 
-export function createLearnerSavedVocabularyService(database: LearnerSavedVocabularyDatabase): LearnerSavedVocabularyService {
+export function createLearnerSavedVocabularyService(database: LearnerSavedVocabularyDatabase, options: { datasetVersion?: VocabularyDatasetVersion } = {}): LearnerSavedVocabularyService {
+  const datasetVersion = options.datasetVersion ?? "legacy";
   async function requireOwnership(userId: string, learnerId: string) {
     const ownership = await authorizeLearnerOwnership(database, userId, learnerId);
     if (ownership.decision === "FORBIDDEN") {
@@ -140,14 +174,20 @@ export function createLearnerSavedVocabularyService(database: LearnerSavedVocabu
                  v.content_version,
                  lp.status::text AS progress_status,
                  lp.next_review_date::text AS next_review_date,
-                 saved.created_at AS saved_at
+                 saved.created_at AS saved_at,
+                 md.proposal_key AS master_sense_identity,
+                 md.source_provenance->'masterV2Identity'->>'displayForm' AS display_form,
+                 md.part_of_speech, md.cefr, md.tags, md.examples, md.content_sha256,
+                 md.content_review_decision, md.editorial_status, md.rights_status, md.development_media
           FROM "${sql.raw(APP_SCHEMA)}"."learner_saved_vocabulary" saved
           JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = saved.vocabulary_id
+          LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
           LEFT JOIN "${sql.raw(APP_SCHEMA)}"."learner_progress" lp
             ON lp.vocabulary_id = v.id
            AND lp.learner_id = saved.learner_id
           WHERE saved.learner_id = ${ownership.learnerId}::uuid
             AND v.enabled = true
+            AND ${vocabularyDatasetPredicate("v", datasetVersion)}
           ORDER BY saved.created_at DESC, v.id ASC
         `);
         return rowsOf<SavedVocabularyRow>(result).map(toDto);
@@ -166,6 +206,7 @@ export function createLearnerSavedVocabularyService(database: LearnerSavedVocabu
           FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v
           WHERE v.id = ${vocabularyId}::integer
             AND v.enabled = true
+            AND ${vocabularyDatasetPredicate("v", datasetVersion)}
           ON CONFLICT (learner_id, vocabulary_id)
           DO UPDATE SET created_at = "learner_saved_vocabulary".created_at
           RETURNING learner_id::text AS learner_id, vocabulary_id, created_at AS saved_at
@@ -191,6 +232,7 @@ export function createLearnerSavedVocabularyService(database: LearnerSavedVocabu
           DELETE FROM "${sql.raw(APP_SCHEMA)}"."learner_saved_vocabulary"
           WHERE learner_id = ${ownership.learnerId}::uuid
             AND vocabulary_id = ${vocabularyId}::integer
+            AND vocabulary_id IN (SELECT id FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v WHERE ${vocabularyDatasetPredicate("v", datasetVersion)})
         `);
         return toMutationResponse({ learnerId: ownership.learnerId, vocabularyId, saved: false, savedAt: null });
       } catch (error) {

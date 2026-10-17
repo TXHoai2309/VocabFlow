@@ -41,11 +41,27 @@ describe("US-38 topic progress", () => {
     });
     const aggregate = queries[2] ?? "";
     expect(aggregate).toContain("WITH eligible_vocabulary AS");
-    expect(aggregate).toContain("SELECT DISTINCT lsi.vocabulary_id");
+    expect(aggregate).toContain("SELECT DISTINCT vt.vocabulary_id");
     expect(aggregate).toContain("lls.active = true");
     expect(aggregate).toContain("ls.enabled = true");
     expect(aggregate).toContain("v.enabled = true");
     expect(aggregate).toContain("lp.next_review_date <=");
     expect(aggregate).toContain("LEFT JOIN \"vocabflow_app\".\"vocabulary_topics\"");
+  });
+
+  it("counts topic progress over the active V2 dataset without changing SRS state", async () => {
+    const queries: string[] = [];
+    const database = { execute: vi.fn(async (query) => {
+      queries.push(new PgDialect().sqlToQuery(query).sql);
+      if (queries.length === 1) return { rows: [{ learner_id: learnerId, household_id: householdId }] };
+      if (queries.length === 2) return { rows: [{ timezone: "Asia/Ho_Chi_Minh" }] };
+      return { rows: [{ topic_id: 9, slug: "food", name: "Ẩm thực", total: "2", new_count: "1", learning_count: "1", mastered_count: "0", due_count: "1" }] };
+    }) };
+    const result = await createTopicProgressService(database, { datasetVersion: "v2" }).get("parent-1", learnerId);
+    expect(result.topics).toMatchObject([{ topicId: 9, total: 2, newCount: 1, learningCount: 1 }]);
+    expect(queries[2]).toContain("source_dataset =");
+    expect(queries[2]).not.toContain('"learner_learning_sets"');
+    expect(queries[2]).toContain('"learner_progress"');
+    expect(queries[2]).not.toMatch(/\b(INSERT|UPDATE|DELETE)\b/u);
   });
 });

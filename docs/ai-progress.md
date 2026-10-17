@@ -1,5 +1,12 @@
 # Current Handoff Snapshot
 
+## 2026-10-18 — V2 final release candidate
+
+Owner accepts discarding V1 test users/accounts/sessions/progress/reviews and waives a V1 backup for cutover; this does not authorize deleting Neon V1 or Cloudinary V1. Do not retry V1 SQL after PostgreSQL 53000.
+- The staged V2 Production branch remains `silent-sky-84582895 / br-cool-sea-a1ifkf95 / neondb`, starting with no auth or learner-history rows. New Production accounts will be created through Better Auth.
+- The release candidate keeps uncleared media URLs out of deployed API responses. Preview is configured for the V2 Development database; Production variables and deployment remain unchanged pending owner GO.
+- Rollback can restore the prior Vercel deployment, but V1 database availability is not verified and cannot be promised while quota-blocked. V1 resources remain retained.
+
 ## 2026-10-08 — Balanced New/Due Mixed Study fix
 
 Owner-authorized bug fix on TXH, remote baseline

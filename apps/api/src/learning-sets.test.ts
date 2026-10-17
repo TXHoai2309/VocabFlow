@@ -115,6 +115,33 @@ describe("US-28/29 learning set service", () => {
     expect(queries[0]?.sql).toContain("CASE WHEN v.image_quarantined THEN NULL ELSE v.image_url END AS image_url");
   });
 
+  it("exposes evidence-labeled V2 learning sets and details without learner assignment", async () => {
+    const queries: string[] = [];
+    const v2Summary = { ...summaryRow, slug: "v2-cefr-a1", name: "CEFR A1", vocabulary_count: "1" };
+    const v2Vocabulary = {
+      ...vocabularyRow(401), sort_order: 0, cefr: "A1", tags: [],
+      metadata_assignments: { topics: [], subtopics: [], domains: [] }, master_sense_identity: "v2-sense-1",
+      display_form: "word-401", part_of_speech: "NOUN", content_hash: "b".repeat(64), content_review_status: "PASS",
+      editorial_status: "DRAFT", rights_status: "UNKNOWN_REVIEW_REQUIRED",
+      development_media: { images: [], wordAudio: [], exampleAudio: [] }
+    };
+    const execute = vi.fn()
+      .mockResolvedValueOnce({ rows: [{ household_id: householdId }] })
+      .mockImplementationOnce(async (query) => { queries.push(new PgDialect().sqlToQuery(query).sql); return { rows: [v2Summary] }; })
+      .mockResolvedValueOnce({ rows: [{ household_id: householdId }] })
+      .mockResolvedValueOnce({ rows: [v2Summary] })
+      .mockImplementationOnce(async (query) => { queries.push(new PgDialect().sqlToQuery(query).sql); return { rows: [v2Vocabulary] }; });
+    const service = createLearningSetService({ execute }, { datasetVersion: "v2" });
+    await expect(service.list("parent-1")).resolves.toMatchObject([{ slug: "v2-cefr-a1", classificationStatus: "SOURCE_VERIFIED", studyScopeAvailable: true }]);
+    await expect(service.detail("parent-1", 1)).resolves.toMatchObject({
+      slug: "v2-cefr-a1", classificationStatus: "SOURCE_VERIFIED", studyScopeAvailable: true,
+      items: [{ vocabulary: { masterSenseIdentity: "v2-sense-1", contentHash: "b".repeat(64), cefr: "A1" } }]
+    });
+    expect(queries[0]).toContain('v.source_dataset =');
+    expect(queries[1]).toContain('v.source_dataset =');
+    expect(queries[1]).toContain('"master_v2_development_projections"');
+  });
+
   it("returns active assignment state for every enabled set", async () => {
     const execute = vi.fn()
       .mockResolvedValueOnce(authorizedRows())

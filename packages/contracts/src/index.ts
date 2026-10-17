@@ -207,7 +207,46 @@ export const vocabularyDtoSchema = z.object({
   topic: z.string().nullable(),
   level: vocabularyLevelSchema.nullable(),
   enabled: z.boolean(),
-  contentVersion: z.number().int().min(1)
+  contentVersion: z.number().int().min(1),
+  masterSenseIdentity: z.string().optional(),
+  displayForm: z.string().optional(),
+  partOfSpeech: z.string().optional(),
+  cefr: z.string().nullable().optional(),
+  tags: z.array(z.string()).optional(),
+  metadataEvidence: z.array(z.object({
+    dimension: z.enum(["TOPIC", "SUBTOPIC", "DOMAIN"]),
+    code: z.string().min(1),
+    label: z.string().min(1).optional(),
+    parentCode: z.string().min(1).optional(),
+    status: z.literal("INFERRED_REVIEWABLE"),
+    confidence: z.literal("HIGH"),
+    evidenceType: z.string().min(1),
+    matchedEvidence: z.string().min(1)
+  }).strict()).optional(),
+  examples: z.array(z.unknown()).optional(),
+  contentHash: z.string().regex(/^[0-9a-f]{64}$/).optional(),
+  contentReviewStatus: z.literal("PASS").optional(),
+  editorialStatus: z.literal("DRAFT").optional(),
+  rightsStatus: z.literal("UNKNOWN_REVIEW_REQUIRED").optional(),
+  imageMediaStatus: z.enum(["ACCEPTED_MAPPING", "PROPOSED", "AMBIGUOUS"]).optional(),
+  developmentMedia: z.object({
+    images: z.array(z.object({
+      url: z.string().min(1), mediaSha256: z.string().regex(/^[0-9a-f]{64}$/), mimeType: z.string().min(1),
+      sourceNoteIdentity: z.string().min(1), reviewStatus: z.enum(["ACCEPTED_MAPPING", "PROPOSED", "AMBIGUOUS"]),
+      rightsStatus: z.literal("UNKNOWN_REVIEW_REQUIRED"), mappingEvidence: z.string().optional()
+    }).strict()).optional(),
+    wordAudio: z.array(z.object({
+      url: z.string().min(1), mediaSha256: z.string().regex(/^[0-9a-f]{64}$/), mimeType: z.string().min(1),
+      sourceNoteIdentity: z.string().min(1), reviewStatus: z.enum(["ACCEPTED_MAPPING", "PROPOSED", "AMBIGUOUS"]),
+      rightsStatus: z.literal("UNKNOWN_REVIEW_REQUIRED"), pronunciationEvidence: z.string().optional(),
+      pronunciation: z.string().optional(), mappingEvidence: z.string().optional()
+    }).strict()).optional(),
+    exampleAudio: z.array(z.object({
+      url: z.string().min(1), mediaSha256: z.string().regex(/^[0-9a-f]{64}$/), mimeType: z.string().min(1),
+      sourceNoteIdentity: z.string().min(1), reviewStatus: z.enum(["ACCEPTED_MAPPING", "PROPOSED", "AMBIGUOUS"]),
+      rightsStatus: z.literal("UNKNOWN_REVIEW_REQUIRED"), exampleKey: z.string().optional()
+    }).strict()).optional()
+  }).strict().optional()
 });
 export type VocabularyDto = z.infer<typeof vocabularyDtoSchema>;
 
@@ -222,7 +261,8 @@ export const topicDtoSchema = z.object({
   name: z.string().min(1),
   description: z.string().min(1),
   sortOrder: z.number().int().nonnegative(),
-  enabled: z.boolean()
+  enabled: z.boolean(),
+  studyScopeAvailable: z.boolean().optional()
 }).strict();
 export type TopicDto = z.infer<typeof topicDtoSchema>;
 
@@ -271,7 +311,9 @@ export const learningSetSummarySchema = z.object({
   grade: vocabularyLevelSchema.nullable(),
   enabled: z.boolean(),
   sortOrder: z.number().int().nonnegative(),
-  vocabularyCount: z.number().int().nonnegative().safe()
+  vocabularyCount: z.number().int().nonnegative().safe(),
+  studyScopeAvailable: z.boolean().optional(),
+  classificationStatus: z.enum(["SOURCE_VERIFIED", "INFERRED_REVIEWABLE"]).optional()
 }).strict();
 export type LearningSetSummary = z.infer<typeof learningSetSummarySchema>;
 
@@ -327,6 +369,59 @@ export const learnerVocabularyListResponseSchema = z.object({
   vocabulary: z.array(learnerVocabularyDtoSchema)
 });
 export type LearnerVocabularyListResponse = z.infer<typeof learnerVocabularyListResponseSchema>;
+
+/** Compact, server-paged row for the Vocabulary catalog. Full content stays on the detail contract. */
+export const vocabularyBrowsePageSizeSchema = z.union([z.literal(20), z.literal(30), z.literal(50)]);
+export type VocabularyBrowsePageSize = z.infer<typeof vocabularyBrowsePageSizeSchema>;
+
+export const learnerVocabularyBrowseQuerySchema = z.object({
+  page: z.number().int().min(1).max(1_000_000).default(1),
+  pageSize: vocabularyBrowsePageSizeSchema.default(30),
+  q: z.string().trim().max(100).optional(),
+  level: vocabularyLevelSchema.optional(),
+  cefr: z.string().regex(/^[ABC][12]$/).optional(),
+  topic: z.string().trim().min(1).max(100).optional()
+}).strict();
+export type LearnerVocabularyBrowseQuery = z.infer<typeof learnerVocabularyBrowseQuerySchema>;
+
+const vocabularyDevelopmentListMediaSchema = vocabularyDtoSchema.shape.developmentMedia.unwrap()
+  .pick({ images: true, wordAudio: true });
+
+export const learnerVocabularyBrowseItemSchema = z.object({
+  id: z.number().int(),
+  word: z.string().min(1),
+  ipa: z.string().nullable(),
+  vietnamese: z.string().min(1),
+  imageUrl: z.string().nullable(),
+  audioUrl: z.string().nullable(),
+  topic: z.string().nullable(),
+  level: vocabularyLevelSchema.nullable(),
+  enabled: z.boolean(),
+  contentVersion: z.number().int().min(1),
+  status: learnerVocabularyStatusSchema,
+  nextReviewDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).nullable(),
+  masterSenseIdentity: z.string().optional(),
+  displayForm: z.string().optional(),
+  partOfSpeech: z.string().optional(),
+  cefr: z.string().nullable().optional(),
+  tags: z.array(z.string()).optional(),
+  imageMediaStatus: z.enum(["ACCEPTED_MAPPING", "PROPOSED", "AMBIGUOUS"]).optional(),
+  developmentMedia: vocabularyDevelopmentListMediaSchema.optional()
+}).strict();
+export type LearnerVocabularyBrowseItem = z.infer<typeof learnerVocabularyBrowseItemSchema>;
+
+export const learnerVocabularyBrowseResponseSchema = z.object({
+  vocabulary: z.array(learnerVocabularyBrowseItemSchema),
+  total: z.number().int().nonnegative().safe(),
+  page: z.number().int().positive(),
+  pageSize: vocabularyBrowsePageSizeSchema,
+  totalPages: z.number().int().positive(),
+  filters: z.object({
+    cefrOptions: z.array(z.string()),
+    topicOptions: z.array(z.string())
+  }).strict()
+}).strict();
+export type LearnerVocabularyBrowseResponse = z.infer<typeof learnerVocabularyBrowseResponseSchema>;
 
 export const globalSearchVocabularyResultSchema = z.object({
   type: z.literal("VOCABULARY"),

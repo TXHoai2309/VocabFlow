@@ -5,6 +5,7 @@ import {
   type GamificationResponse
 } from "@vocabflow/contracts";
 import { authorizeLearnerOwnership } from "./learners";
+import { vocabularyDatasetPredicate, type VocabularyDatasetVersion } from "./vocabulary-dataset-version";
 
 export const XP_PER_LEVEL = 100 as const;
 
@@ -100,7 +101,23 @@ async function reconcileAchievements(database: GamificationDatabase, learnerId: 
   `);
 }
 
-async function summary(database: GamificationDatabase, learnerId: string): Promise<SummaryRow> {
+async function summary(database: GamificationDatabase, learnerId: string, datasetVersion: VocabularyDatasetVersion): Promise<SummaryRow> {
+  if (datasetVersion === "v2") {
+    const result = await database.execute(sql`
+      SELECT COALESCE(SUM(xe.points), 0) AS total_xp
+      FROM "${sql.raw(APP_SCHEMA)}"."xp_events" xe
+      JOIN "${sql.raw(APP_SCHEMA)}"."review_events" re
+        ON (xe.source_type = 'REVIEW' AND xe.source_key = 'review:' || re.review_id::text)
+        OR (xe.source_type = 'EXERCISE_CORRECT' AND xe.source_key = 'exercise-correct:' || re.review_id::text)
+      JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = re.vocabulary_id
+      WHERE xe.learner_id = ${learnerId}::uuid
+        AND re.learner_id = ${learnerId}::uuid
+        AND ${vocabularyDatasetPredicate("v", datasetVersion)}
+    `);
+    const [row] = rowsOf<SummaryRow>(result);
+    if (!row) throw new GamificationServiceError("INTERNAL_ERROR", 500);
+    return row;
+  }
   const result = await database.execute(sql`
     SELECT COALESCE(SUM(points), 0) AS total_xp
     FROM "${sql.raw(APP_SCHEMA)}"."xp_events"
@@ -126,16 +143,17 @@ async function achievementRows(database: GamificationDatabase, learnerId: string
 
 export type GamificationService = { get: (userId: string, learnerId: string) => Promise<GamificationResponse> };
 
-export function createGamificationService(database: GamificationDatabase): GamificationService {
+export function createGamificationService(database: GamificationDatabase, options: { datasetVersion?: VocabularyDatasetVersion } = {}): GamificationService {
+  const datasetVersion = options.datasetVersion ?? "legacy";
   return {
     async get(userId, learnerId) {
       const ownership = await authorizeLearnerOwnership(database, userId, learnerId);
       if (ownership.decision === "FORBIDDEN") throw new GamificationServiceError("HOUSEHOLD_ACCESS_DENIED", 403);
       try {
-        await reconcileAchievements(database, ownership.learnerId);
+        if (datasetVersion !== "v2") await reconcileAchievements(database, ownership.learnerId);
         const [xpRow, achievements] = await Promise.all([
-          summary(database, ownership.learnerId),
-          achievementRows(database, ownership.learnerId)
+          summary(database, ownership.learnerId, datasetVersion),
+          datasetVersion === "v2" ? Promise.resolve([]) : achievementRows(database, ownership.learnerId)
         ]);
         const total = safeCount(xpRow.total_xp);
         const xpIntoLevel = total % XP_PER_LEVEL;

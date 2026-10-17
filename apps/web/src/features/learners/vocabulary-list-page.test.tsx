@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
+import { act, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { MemoryRouter, Route, Routes, useLocation } from "react-router";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
@@ -47,8 +47,40 @@ function item(
   };
 }
 
-function response(vocabulary: LearnerVocabularyDto[], status = 200) {
-  return new Response(JSON.stringify({ vocabulary }), {
+function response(vocabulary: LearnerVocabularyDto[], status = 200, total = vocabulary.length, page = 1, pageSize = 30) {
+  const compactVocabulary = vocabulary.map((item) => ({
+    id: item.id,
+    word: item.word,
+    ipa: item.ipa,
+    vietnamese: item.vietnamese,
+    imageUrl: item.imageUrl,
+    audioUrl: item.audioUrl,
+    topic: item.topic,
+    level: item.level,
+    enabled: item.enabled,
+    contentVersion: item.contentVersion,
+    status: item.status,
+    nextReviewDate: item.nextReviewDate,
+    ...(item.masterSenseIdentity ? { masterSenseIdentity: item.masterSenseIdentity } : {}),
+    ...(item.displayForm ? { displayForm: item.displayForm } : {}),
+    ...(item.partOfSpeech ? { partOfSpeech: item.partOfSpeech } : {}),
+    ...(item.cefr ? { cefr: item.cefr } : {}),
+    ...(item.tags ? { tags: item.tags } : {}),
+    ...(item.developmentMedia ? {
+      developmentMedia: {
+        ...(item.developmentMedia.images ? { images: item.developmentMedia.images } : {}),
+        ...(item.developmentMedia.wordAudio ? { wordAudio: item.developmentMedia.wordAudio } : {})
+      }
+    } : {})
+  }));
+  return new Response(JSON.stringify({
+    vocabulary: compactVocabulary,
+    total,
+    page,
+    pageSize,
+    totalPages: Math.max(1, Math.ceil(total / pageSize)),
+    filters: { cefrOptions: ["A1", "A2", "B1"], topicOptions: ["Animals", "Food"] }
+  }), {
     status,
     headers: { "Content-Type": "application/json" }
   });
@@ -91,13 +123,43 @@ function renderList(initialLearner: LearnerDto | null = learnerA, path = "/vocab
 function mockVocabulary(items: LearnerVocabularyDto[]) {
   return vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
     const url = String(input);
-    return url.endsWith("/saved-vocabulary") ? savedResponse() : response(items);
+    if (url.endsWith("/saved-vocabulary")) return savedResponse();
+    const params = new URL(url, "http://localhost").searchParams;
+    const query = params.get("q")?.trim().toLocaleLowerCase() ?? "";
+    const level = params.get("level") ?? "";
+    const cefr = params.get("cefr") ?? "";
+    const topic = params.get("topic")?.toLocaleLowerCase() ?? "";
+    const filtered = items.filter((item) =>
+      (!query || item.word.toLocaleLowerCase().includes(query) || item.vietnamese.toLocaleLowerCase().includes(query))
+      && (!level || item.level === level)
+      && (!cefr || item.cefr === cefr)
+      && (!topic || [...(item.tags ?? []), ...(item.topic ? [item.topic] : [])].some((value) => value.toLocaleLowerCase() === topic))
+    );
+    const page = Number(params.get("page") ?? 1);
+    const pageSize = Number(params.get("pageSize") ?? 30);
+    const pageItems = filtered.slice((page - 1) * pageSize, page * pageSize);
+    return response(pageItems, 200, filtered.length, page, pageSize);
   });
 }
 
 describe("US-22 vocabulary list UI", () => {
   beforeEach(() => {
     vi.restoreAllMocks();
+  });
+
+  it("shows the vocabulary skeleton until the paged request resolves", async () => {
+    let resolveBrowse: ((response: Response) => void) | undefined;
+    vi.spyOn(globalThis, "fetch").mockImplementation((input) => {
+      if (String(input).endsWith("/saved-vocabulary")) return Promise.resolve(savedResponse());
+      return new Promise<Response>((resolve) => { resolveBrowse = resolve; });
+    });
+    renderList();
+
+    expect(screen.getByTestId("vocabulary-loading")).toHaveAttribute("aria-busy", "true");
+    expect(screen.queryByTestId("vocabulary-grid")).not.toBeInTheDocument();
+    await act(async () => { resolveBrowse?.(response([item(1, "apple")])); });
+    expect(await screen.findByTestId("vocabulary-row-1")).toBeInTheDocument();
+    expect(screen.queryByTestId("vocabulary-loading")).not.toBeInTheDocument();
   });
 
   it("renders the page heading, labelled search and real vocabulary cards", async () => {
@@ -115,19 +177,21 @@ describe("US-22 vocabulary list UI", () => {
     expect(screen.getByTestId("vocabulary-row-1")).toHaveTextContent("apple");
     expect(screen.getByTestId("vocabulary-row-1")).toHaveTextContent("/ˈæp.əl/");
     expect(screen.getByTestId("vocabulary-row-1")).toHaveTextContent("Lớp 1");
-    expect(fetchMock.mock.calls.filter(([url]) => String(url).endsWith("/vocabulary"))).toHaveLength(1);
-    expect(fetchMock).toHaveBeenCalledWith(`/api/learners/${learnerA.id}/vocabulary`, { credentials: "include" });
+    expect(fetchMock.mock.calls.filter(([url]) => String(url).includes("/vocabulary/browse?")).length).toBe(1);
+    expect(fetchMock).toHaveBeenCalledWith(`/api/learners/${learnerA.id}/vocabulary/browse?page=1&pageSize=30`, expect.objectContaining({ credentials: "include", signal: expect.any(AbortSignal) }));
+    expect(screen.getByTestId("vocabulary-page-size")).toHaveValue("30");
   });
 
-  it("filters by an English word on the client", async () => {
-    mockVocabulary([item(1, "apple"), item(2, "book")]);
+  it("filters by an English word on the server after the debounce", async () => {
+    const fetchMock = mockVocabulary([item(1, "apple"), item(2, "book")]);
     renderList();
     await screen.findByTestId("vocabulary-row-2");
 
     fireEvent.change(screen.getByTestId("vocabulary-search"), { target: { value: "apple" } });
 
+    await waitFor(() => expect(screen.queryByTestId("vocabulary-row-2")).not.toBeInTheDocument());
     expect(screen.getByTestId("vocabulary-row-1")).toBeInTheDocument();
-    expect(screen.queryByTestId("vocabulary-row-2")).not.toBeInTheDocument();
+    expect(fetchMock.mock.calls.some(([url]) => String(url).includes("q=apple"))).toBe(true);
   });
 
   it("filters by Vietnamese meaning", async () => {
@@ -137,8 +201,8 @@ describe("US-22 vocabulary list UI", () => {
 
     fireEvent.change(screen.getByTestId("vocabulary-search"), { target: { value: "quả táo" } });
 
+    await waitFor(() => expect(screen.queryByTestId("vocabulary-row-2")).not.toBeInTheDocument());
     expect(screen.getByTestId("vocabulary-row-1")).toBeInTheDocument();
-    expect(screen.queryByTestId("vocabulary-row-2")).not.toBeInTheDocument();
   });
 
   it("matches English searches without case sensitivity", async () => {
@@ -148,8 +212,8 @@ describe("US-22 vocabulary list UI", () => {
 
     fireEvent.change(screen.getByTestId("vocabulary-search"), { target: { value: "APPLE" } });
 
+    await waitFor(() => expect(screen.queryByTestId("vocabulary-row-2")).not.toBeInTheDocument());
     expect(screen.getByTestId("vocabulary-row-1")).toBeInTheDocument();
-    expect(screen.queryByTestId("vocabulary-row-2")).not.toBeInTheDocument();
   });
 
   it("trims whitespace before matching", async () => {
@@ -159,8 +223,8 @@ describe("US-22 vocabulary list UI", () => {
 
     fireEvent.change(screen.getByTestId("vocabulary-search"), { target: { value: "  APPLE  " } });
 
+    await waitFor(() => expect(screen.queryByTestId("vocabulary-row-2")).not.toBeInTheDocument());
     expect(screen.getByTestId("vocabulary-row-1")).toBeInTheDocument();
-    expect(screen.queryByTestId("vocabulary-row-2")).not.toBeInTheDocument();
   });
 
   it("shows a distinct no-results state and clears the search", async () => {
@@ -169,11 +233,11 @@ describe("US-22 vocabulary list UI", () => {
     await screen.findByTestId("vocabulary-row-1");
     fireEvent.change(screen.getByTestId("vocabulary-search"), { target: { value: "kiwi" } });
 
-    expect(screen.getByRole("heading", { name: "Không tìm thấy từ vựng" })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: "Không tìm thấy từ vựng" })).toBeInTheDocument();
     expect(screen.getByTestId("vocabulary-no-results")).toHaveTextContent("Thử từ khóa khác hoặc thay đổi bộ lọc.");
     fireEvent.click(screen.getByTestId("vocabulary-empty-clear"));
 
-    expect(screen.getByTestId("vocabulary-row-1")).toBeInTheDocument();
+    expect(await screen.findByTestId("vocabulary-row-1")).toBeInTheDocument();
     expect(screen.getByTestId("vocabulary-search")).toHaveValue("");
   });
 
@@ -188,7 +252,7 @@ describe("US-22 vocabulary list UI", () => {
     expect(screen.getByTestId("vocabulary-row-1")).toBeInTheDocument();
   });
 
-  it("combines the level filter and search without another API request", async () => {
+  it("combines the level filter and search in paged API requests", async () => {
     const fetchMock = mockVocabulary([
       item(1, "apple", "NEW", "GRADE_1"),
       item(2, "apple juice", "NEW", "GRADE_2"),
@@ -199,10 +263,27 @@ describe("US-22 vocabulary list UI", () => {
     fireEvent.change(screen.getByTestId("vocabulary-search"), { target: { value: "apple" } });
     fireEvent.change(screen.getByTestId("vocabulary-level-filter"), { target: { value: "GRADE_1" } });
 
+    await waitFor(() => expect(fetchMock.mock.calls.some(([url]) => String(url).includes("q=apple") && String(url).includes("level=GRADE_1"))).toBe(true));
     expect(screen.getByTestId("vocabulary-row-1")).toBeInTheDocument();
     expect(screen.queryByTestId("vocabulary-row-2")).not.toBeInTheDocument();
     expect(screen.queryByTestId("vocabulary-row-3")).not.toBeInTheDocument();
-    expect(fetchMock.mock.calls.filter(([url]) => String(url).endsWith("/vocabulary"))).toHaveLength(1);
+    expect(fetchMock.mock.calls.filter(([url]) => String(url).includes("/vocabulary/browse?")).length).toBeGreaterThan(1);
+  });
+
+  it("applies CEFR and topic filters through the server and resets pagination", async () => {
+    const fetchMock = mockVocabulary([
+      item(1, "apple", "NEW", "GRADE_1", { cefr: "A1", topic: "Food" }),
+      item(2, "book", "NEW", "GRADE_1", { cefr: "A2", topic: "Animals" })
+    ]);
+    renderList(learnerA, "/vocabulary?page=2");
+    await screen.findByTestId("vocabulary-row-2");
+
+    fireEvent.change(screen.getByTestId("vocabulary-cefr-filter"), { target: { value: "A1" } });
+    expect(await screen.findByTestId("vocabulary-row-1")).toBeInTheDocument();
+    await waitFor(() => expect(screen.getByTestId("current-url")).not.toHaveTextContent("page="));
+    fireEvent.change(screen.getByTestId("vocabulary-topic-filter"), { target: { value: "Animals" } });
+    await waitFor(() => expect(fetchMock.mock.calls.some(([url]) => String(url).includes("cefr=A1") && String(url).includes("topic=Animals"))).toBe(true));
+    expect(screen.queryByTestId("vocabulary-row-1")).not.toBeInTheDocument();
   });
 
   it("initializes the search input and results from the q URL parameter", async () => {
@@ -324,27 +405,60 @@ describe("US-22 vocabulary list UI", () => {
     expect(screen.queryByTestId("vocabulary-no-results")).not.toBeInTheDocument();
   });
 
-  it("paginates larger real data at 12 items and resets page when search changes", async () => {
-    mockVocabulary(Array.from({ length: 13 }, (_, index) => item(index + 1, `word-${index + 1}`)));
+  it("paginates 30-item server pages and resets to page one when search changes", async () => {
+    mockVocabulary(Array.from({ length: 31 }, (_, index) => item(index + 1, `word-${index + 1}`)));
     renderList();
 
-    expect(await screen.findByTestId("vocabulary-row-12")).toBeInTheDocument();
-    expect(screen.queryByTestId("vocabulary-row-13")).not.toBeInTheDocument();
+    expect(await screen.findByTestId("vocabulary-row-30")).toBeInTheDocument();
+    expect(screen.queryByTestId("vocabulary-row-31")).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "Trang sau" }));
-    expect(await screen.findByTestId("vocabulary-row-13")).toBeInTheDocument();
+    expect(await screen.findByTestId("vocabulary-row-31")).toBeInTheDocument();
     await waitFor(() => expect(screen.getByTestId("current-url")).toHaveTextContent("page=2"));
 
     fireEvent.change(screen.getByTestId("vocabulary-search"), { target: { value: "word" } });
-    expect(await screen.findByTestId("vocabulary-row-1")).toBeInTheDocument();
     await waitFor(() => expect(screen.getByTestId("current-url")).toHaveTextContent("q=word"));
+    expect(await screen.findByTestId("vocabulary-row-1")).toBeInTheDocument();
     expect(screen.getByTestId("current-url")).not.toHaveTextContent("page=");
   });
 
+  it("supports the 20/30/50 page-size choices without fetching other pages", async () => {
+    const fetchMock = mockVocabulary(Array.from({ length: 51 }, (_, index) => item(index + 1, `word-${index + 1}`)));
+    renderList();
+    await screen.findByTestId("vocabulary-row-30");
+    fireEvent.change(screen.getByTestId("vocabulary-page-size"), { target: { value: "50" } });
+
+    expect(await screen.findByTestId("vocabulary-row-50")).toBeInTheDocument();
+    expect(screen.queryByTestId("vocabulary-row-51")).not.toBeInTheDocument();
+    expect(screen.getByTestId("current-url")).toHaveTextContent("pageSize=50");
+    expect(fetchMock.mock.calls.some(([url]) => String(url).includes("pageSize=50"))).toBe(true);
+  });
+
+  it("aborts a superseded browse request when a committed search replaces it", async () => {
+    let firstSignal: AbortSignal | undefined;
+    let browseCount = 0;
+    vi.spyOn(globalThis, "fetch").mockImplementation((input, init) => {
+      const url = String(input);
+      if (url.endsWith("/saved-vocabulary")) return Promise.resolve(savedResponse());
+      browseCount += 1;
+      if (browseCount === 1) {
+        firstSignal = init?.signal as AbortSignal;
+        return new Promise<Response>((_resolve, reject) => firstSignal?.addEventListener("abort", () => reject(new DOMException("Aborted", "AbortError")), { once: true }));
+      }
+      return Promise.resolve(response([item(1, "apple")], 200, 1));
+    });
+    renderList();
+    fireEvent.change(screen.getByTestId("vocabulary-search"), { target: { value: "apple" } });
+
+    expect(await screen.findByTestId("vocabulary-row-1")).toBeInTheDocument();
+    await waitFor(() => expect(screen.getByTestId("current-url")).toHaveTextContent("q=apple"));
+    expect(firstSignal?.aborted).toBe(true);
+  });
+
   it("restores a valid page URL after the full list has loaded", async () => {
-    mockVocabulary(Array.from({ length: 13 }, (_, index) => item(index + 1, `word-${index + 1}`)));
+    mockVocabulary(Array.from({ length: 31 }, (_, index) => item(index + 1, `word-${index + 1}`)));
     renderList(learnerA, "/vocabulary?page=2");
 
-    expect(await screen.findByTestId("vocabulary-row-13")).toBeInTheDocument();
+    expect(await screen.findByTestId("vocabulary-row-31")).toBeInTheDocument();
     expect(screen.queryByTestId("vocabulary-row-1")).not.toBeInTheDocument();
     expect(screen.getByTestId("current-url")).toHaveTextContent("/vocabulary?page=2");
   });
@@ -361,7 +475,7 @@ describe("US-22 vocabulary list UI", () => {
     expect(await screen.findByTestId("vocabulary-error")).toHaveTextContent("Không thể tải từ vựng lúc này. Vui lòng thử lại.");
     fireEvent.click(screen.getByRole("button", { name: "Thử lại" }));
     expect(await screen.findByTestId("vocabulary-row-1")).toBeInTheDocument();
-    expect(fetchMock.mock.calls.filter(([url]) => String(url).endsWith("/vocabulary"))).toHaveLength(2);
+    expect(fetchMock.mock.calls.filter(([url]) => String(url).includes("/vocabulary/browse?")).length).toBe(2);
   });
 
   it("refreshes the vocabulary using the newly selected learner", async () => {
@@ -389,9 +503,9 @@ describe("US-22 vocabulary list UI", () => {
     expect(await screen.findByTestId("vocabulary-row-1")).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "Switch learner" }));
     await waitFor(() => expect(screen.getByRole("heading", { name: "Từ vựng của bạn" })).toBeInTheDocument());
-    await waitFor(() => expect(fetchMock.mock.calls.some(([url]) => String(url) === `/api/learners/${learnerB.id}/vocabulary`)).toBe(true));
-    expect(fetchMock).toHaveBeenNthCalledWith(1, `/api/learners/${learnerA.id}/vocabulary`, { credentials: "include" });
-    expect(fetchMock).toHaveBeenCalledWith(`/api/learners/${learnerB.id}/vocabulary`, { credentials: "include" });
+    await waitFor(() => expect(fetchMock.mock.calls.some(([url]) => String(url).includes(`/api/learners/${learnerB.id}/vocabulary/browse?`))).toBe(true));
+    expect(fetchMock).toHaveBeenNthCalledWith(1, `/api/learners/${learnerA.id}/vocabulary/browse?page=1&pageSize=30`, expect.objectContaining({ credentials: "include", signal: expect.any(AbortSignal) }));
+    expect(fetchMock).toHaveBeenCalledWith(`/api/learners/${learnerB.id}/vocabulary/browse?page=1&pageSize=30`, expect.objectContaining({ credentials: "include", signal: expect.any(AbortSignal) }));
   });
 });
 

@@ -61,7 +61,9 @@ export function LearningSetsPage() {
       <section className="learner-card learning-sets-card">
         <div className="learning-sets-topbar">
           <Link className="back-link" to="/">← Về trang chủ</Link>
-          <Link className="learning-sets-manage-link" to="/learning-sets/assign">Thêm vào học tập</Link>
+          {!(learningSets.length > 0 && learningSets.every((learningSet) => learningSet.studyScopeAvailable === true))
+            ? <Link className="learning-sets-manage-link" to="/learning-sets/assign">Thêm vào học tập</Link>
+            : null}
         </div>
         <p className="auth-eyebrow">Bộ từ</p>
         <h1 className="auth-title" id="learning-sets-title">Bộ từ</h1>
@@ -79,7 +81,10 @@ export function LearningSetsPage() {
             {learningSets.map((learningSet) => (
               <li className="learning-set-row" key={learningSet.id}>
                 <div className="learning-set-copy">
-                  <div className="learning-set-heading"><strong>{learningSet.name}</strong><span>{gradeLabel(learningSet.grade)}</span></div>
+                  <div className="learning-set-heading"><strong>{learningSet.name}</strong><span>
+                    {learningSet.classificationStatus === "SOURCE_VERIFIED" ? "CEFR · Có nguồn" :
+                      learningSet.classificationStatus === "INFERRED_REVIEWABLE" ? "Gợi ý · Cần xem lại" : gradeLabel(learningSet.grade)}
+                  </span></div>
                   <p>{learningSet.description}</p>
                   <small>{learningSet.vocabularyCount} từ đang bật</small>
                 </div>
@@ -177,8 +182,9 @@ function LearningSetDetailExperience({ learner, learningSetId }: { learner: Lear
         progressTotal={data.items.length}
         masteredCount={data.mastered}
         studyHref={`/study/setup?learningSetId=${data.learningSet.id}`}
-        studyReady={data.assigned}
-        assignmentHref={!data.assigned && data.items.length > 0 ? "/learning-sets/assign" : undefined}
+        studyReady={data.learningSet.studyScopeAvailable === true || data.assigned}
+        directStudyScope={data.learningSet.studyScopeAvailable === true}
+        assignmentHref={!data.learningSet.studyScopeAvailable && !data.assigned && data.items.length > 0 ? "/learning-sets/assign" : undefined}
       />
     );
   }

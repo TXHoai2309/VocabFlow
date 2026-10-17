@@ -133,6 +133,40 @@ describe("US-28/29 learning set UI", () => {
     expect(fetchMock).toHaveBeenCalledWith("/api/learning-sets", { credentials: "include" });
   });
 
+  it("distinguishes source-verified CEFR sets from inferred domain suggestions", async () => {
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValue(response({ learningSets: [
+      { ...learningSet, slug: "v2-cefr-a1", name: "CEFR A1", grade: null, studyScopeAvailable: true, classificationStatus: "SOURCE_VERIFIED" },
+      { ...learningSet, id: 2, slug: "v2-domain-travel-english", name: "Gợi ý chuyên ngành: Travel English", grade: null, studyScopeAvailable: true, classificationStatus: "INFERRED_REVIEWABLE" }
+    ] }));
+    render(<MemoryRouter initialEntries={["/learning-sets"]}><AccountRouteProbe /><Routes><Route path="/learning-sets" element={<LearningSetsPage />} /></Routes></MemoryRouter>);
+
+    const list = await screen.findByTestId("learning-sets-list");
+    expect(list).toHaveTextContent("CEFR · Có nguồn");
+    expect(list).toHaveTextContent("Gợi ý · Cần xem lại");
+    expect(screen.queryByRole("link", { name: "Thêm vào học tập" })).not.toBeInTheDocument();
+    expect(fetchMock).toHaveBeenCalledWith("/api/learning-sets", { credentials: "include" });
+  });
+
+  it("allows a V2 learning set to start study without a legacy learner-set assignment", async () => {
+    const v2LearningSet = { ...learningSet, slug: "v2-cefr-a1", name: "CEFR A1", grade: null,
+      studyScopeAvailable: true, classificationStatus: "SOURCE_VERIFIED" as const };
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
+      const path = String(input);
+      if (path === `/api/learning-sets/${learningSet.id}`) return response({ learningSet: {
+        ...v2LearningSet, vocabularyCount: 1, items: [{ sortOrder: 0, vocabulary: vocabulary(401, "apple") }]
+      } });
+      if (path === `/api/learners/${learner.id}/vocabulary`) return response({ vocabulary: [learnerVocabulary(vocabulary(401, "apple"), "NEW")] });
+      if (path === `/api/learners/${learner.id}/learning-sets`) return response({ learningSets: [] });
+      return response({ error: { code: "NOT_FOUND" } }, 404);
+    });
+    renderDetail();
+
+    expect(await screen.findByRole("heading", { name: "CEFR A1" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Học bộ này" })).toHaveAttribute("href", "/study/setup?learningSetId=1");
+    expect(screen.queryByRole("link", { name: "Thêm bộ từ vào học tập" })).not.toBeInTheDocument();
+    expect(fetchMock).toHaveBeenCalledWith(`/api/learners/${learner.id}/learning-sets`, { credentials: "include" });
+  });
+
   it("retries a failed Learning Set catalog request", async () => {
     const fetchMock = vi.spyOn(globalThis, "fetch")
       .mockRejectedValueOnce(new Error("offline"))

@@ -1,5 +1,12 @@
 # VocabFlow Changelog
 
+## 2026-10-18 — V2 final release candidate
+
+- Prepare the isolated V2 Production runtime behind explicit environment and endpoint checks; Preview targets Neon V2 Development.
+- Keep Better Auth as the only account creation flow and copy no Development test accounts into Production.
+- Withhold uncleared media URLs in Preview/Production API responses, preserve V1 resources, and keep Production env/deployment changes behind the owner GO gate.
+- Run focused API/Web tests, lint, typecheck, and Vite/Hono builds before committing the selected release paths.
+
 ## 2026-10-10 — Phase 2H.2K bilingual authoring checkpoint 01
 
 - Freeze a disjoint, source-bound 500-group cohort from 5,123 remaining groups. Persist immutable original bilingual manuscripts and review receipts for 100 new groups / 103 Senses; deterministic assembly yields 1,666 DRAFT Senses / 1,120 authored groups.

@@ -6,6 +6,7 @@ import {
   type VocabularyDto
 } from "@vocabflow/contracts";
 import { LearnerServiceError, resolveHouseholdId } from "./learners";
+import { jsonArray, jsonObject, vocabularyDatasetPredicate, type VocabularyDatasetVersion } from "./vocabulary-dataset-version";
 
 export type VocabularyDatabase = {
   execute: (query: SQL) => Promise<unknown>;
@@ -48,6 +49,17 @@ type VocabularyRow = {
   level: string | null;
   enabled: boolean;
   content_version: number | string;
+  master_sense_identity?: string | null;
+  display_form?: string | null;
+  part_of_speech?: string | null;
+  cefr?: string | null;
+  tags?: unknown;
+  examples?: unknown;
+  content_sha256?: string | null;
+  content_review_decision?: "PASS" | null;
+  editorial_status?: "DRAFT" | null;
+  rights_status?: "UNKNOWN_REVIEW_REQUIRED" | null;
+  development_media?: unknown;
 };
 
 function nullableText(value: unknown) {
@@ -57,6 +69,11 @@ function nullableText(value: unknown) {
 function toVocabularyDto(row: VocabularyRow): VocabularyDto {
   const id = Number(row.id);
   const contentVersion = Number(row.content_version);
+  const media = jsonObject(row.development_media);
+  const images = jsonArray(media?.images);
+  const wordAudio = jsonArray(media?.wordAudio);
+  const exampleAudio = jsonArray(media?.exampleAudio);
+  const singleImage = images?.length === 1 ? jsonObject(images[0]) : undefined;
   const dto = {
     id,
     word: String(row.word),
@@ -64,12 +81,28 @@ function toVocabularyDto(row: VocabularyRow): VocabularyDto {
     vietnamese: String(row.vietnamese),
     definitionEn: nullableText(row.definition_en),
     exampleEn: nullableText(row.example_en),
-    imageUrl: nullableText(row.image_url),
-    audioUrl: nullableText(row.audio_url),
+    imageUrl: images ? (singleImage ? nullableText(singleImage.url) : null) : nullableText(row.image_url),
+    audioUrl: media ? null : nullableText(row.audio_url),
     topic: nullableText(row.topic),
     level: row.level == null ? null : String(row.level),
     enabled: row.enabled === true,
-    contentVersion
+    contentVersion,
+    ...(row.master_sense_identity ? { masterSenseIdentity: String(row.master_sense_identity) } : {}),
+    ...(row.display_form ? { displayForm: String(row.display_form) } : {}),
+    ...(row.part_of_speech ? { partOfSpeech: String(row.part_of_speech) } : {}),
+    ...(row.cefr ? { cefr: String(row.cefr) } : {}),
+    ...(Array.isArray(row.tags) ? { tags: row.tags as string[] } : {}),
+    ...(Array.isArray(row.examples) ? { examples: row.examples } : {}),
+    ...(row.content_sha256 ? { contentHash: String(row.content_sha256) } : {}),
+    ...(row.content_review_decision === "PASS" ? { contentReviewStatus: "PASS" as const } : {}),
+    ...(row.editorial_status === "DRAFT" ? { editorialStatus: "DRAFT" as const } : {}),
+    ...(row.rights_status === "UNKNOWN_REVIEW_REQUIRED" ? { rightsStatus: "UNKNOWN_REVIEW_REQUIRED" as const } : {}),
+    ...(images || wordAudio || exampleAudio ? { developmentMedia: {
+      ...(images ? { images } : {}),
+      ...(wordAudio ? { wordAudio } : {}),
+      ...(exampleAudio ? { exampleAudio } : {})
+    } } : {}),
+    ...(singleImage?.reviewStatus ? { imageMediaStatus: singleImage.reviewStatus === "ACCEPTED_MAPPING" ? "ACCEPTED_MAPPING" as const : singleImage.reviewStatus === "AMBIGUOUS" ? "AMBIGUOUS" as const : "PROPOSED" as const } : {})
   };
   const parsed = vocabularyDtoSchema.safeParse(dto);
   if (!parsed.success) throw new VocabularyServiceError("INTERNAL_ERROR", 500);
@@ -80,7 +113,8 @@ export type VocabularyService = {
   list: (userId: string, level?: VocabularyLevel) => Promise<VocabularyDto[]>;
 };
 
-export function createVocabularyService(database: VocabularyDatabase): VocabularyService {
+export function createVocabularyService(database: VocabularyDatabase, options: { datasetVersion?: VocabularyDatasetVersion } = {}): VocabularyService {
+  const datasetVersion = options.datasetVersion ?? "legacy";
   return {
     async list(userId, level) {
       try {
@@ -99,11 +133,17 @@ export function createVocabularyService(database: VocabularyDatabase): Vocabular
           SELECT id, word, ipa, COALESCE(vietnamese_override, vietnamese) AS vietnamese,
                  definition_en, example_en,
                  CASE WHEN image_quarantined THEN NULL ELSE image_url END AS image_url,
-                 audio_url, topic, enabled, content_version, level
-          FROM "${sql.raw(APP_SCHEMA)}"."vocabularies"
+                 audio_url, topic, enabled, content_version, level,
+                 md.proposal_key AS master_sense_identity,
+                 md.source_provenance->'masterV2Identity'->>'displayForm' AS display_form,
+                 md.part_of_speech, md.cefr, md.tags, md.examples, md.content_sha256,
+                 md.content_review_decision, md.editorial_status, md.rights_status, md.development_media
+          FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v
+          LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
           WHERE enabled = true
+            AND ${vocabularyDatasetPredicate("v", datasetVersion)}
             ${level ? sql`AND level = ${level}` : sql``}
-          ORDER BY id ASC
+          ORDER BY v.id ASC
         `);
         return rowsOf<VocabularyRow>(result).map(toVocabularyDto);
       } catch (error) {

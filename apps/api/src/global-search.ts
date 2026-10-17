@@ -5,6 +5,7 @@ import {
   type GlobalSearchResponse
 } from "@vocabflow/contracts";
 import { authorizeLearnerOwnership } from "./learners";
+import { vocabularyDatasetPredicate, type VocabularyDatasetVersion } from "./vocabulary-dataset-version";
 
 export type GlobalSearchDatabase = { execute: (query: SQL) => Promise<unknown> };
 export type GlobalSearchQuery = { q: string; limit: number };
@@ -74,26 +75,29 @@ export function parseGlobalSearchQuery(params: URLSearchParams): GlobalSearchQue
 async function searchRows(
   database: GlobalSearchDatabase,
   learnerId: string,
-  query: GlobalSearchQuery
+  query: GlobalSearchQuery,
+  datasetVersion: VocabularyDatasetVersion
 ): Promise<SearchRow[]> {
   const literalQuery = escapeLike(query.q);
   const containsPattern = `%${literalQuery}%`;
   const prefixPattern = `${literalQuery}%`;
   const escapeCharacter = "\\";
+  const eligibleMembership = datasetVersion === "v2"
+    ? vocabularyDatasetPredicate("v", datasetVersion)
+    : sql`EXISTS (
+          SELECT 1
+          FROM "${sql.raw(APP_SCHEMA)}"."learner_learning_sets" lls
+          JOIN "${sql.raw(APP_SCHEMA)}"."learning_sets" ls ON ls.id = lls.learning_set_id AND ls.enabled = true
+          JOIN "${sql.raw(APP_SCHEMA)}"."learning_set_items" lsi ON lsi.learning_set_id = ls.id AND lsi.vocabulary_id = v.id
+          WHERE lls.learner_id = ${learnerId}::uuid AND lls.active = true
+        )`;
+  const legacyEntitiesEnabled = datasetVersion === "v2" ? sql`false` : sql`true`;
   const result = await database.execute(sql`
     WITH eligible_vocabulary AS (
       SELECT DISTINCT v.id
       FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v
       WHERE v.enabled = true
-        AND EXISTS (
-          SELECT 1
-          FROM "${sql.raw(APP_SCHEMA)}"."learner_learning_sets" lls
-          JOIN "${sql.raw(APP_SCHEMA)}"."learning_sets" ls
-            ON ls.id = lls.learning_set_id AND ls.enabled = true
-          JOIN "${sql.raw(APP_SCHEMA)}"."learning_set_items" lsi
-            ON lsi.learning_set_id = ls.id AND lsi.vocabulary_id = v.id
-          WHERE lls.learner_id = ${learnerId}::uuid AND lls.active = true
-        )
+        AND ${eligibleMembership}
     ),
     vocabulary_matches AS (
       SELECT
@@ -140,6 +144,7 @@ async function searchRows(
         t.sort_order AS stable_order
       FROM "${sql.raw(APP_SCHEMA)}"."topics" t
       WHERE t.enabled = true
+        AND ${legacyEntitiesEnabled}
         AND (
           lower(t.name) LIKE lower(${containsPattern}) ESCAPE ${escapeCharacter}
           OR lower(t.description) LIKE lower(${containsPattern}) ESCAPE ${escapeCharacter}
@@ -174,6 +179,7 @@ async function searchRows(
       LEFT JOIN "${sql.raw(APP_SCHEMA)}"."learning_set_items" lsi ON lsi.learning_set_id = ls.id
       LEFT JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = lsi.vocabulary_id
       WHERE ls.enabled = true
+        AND ${legacyEntitiesEnabled}
         AND (
           lower(ls.name) LIKE lower(${containsPattern}) ESCAPE ${escapeCharacter}
           OR lower(ls.description) LIKE lower(${containsPattern}) ESCAPE ${escapeCharacter}
@@ -206,13 +212,14 @@ export type GlobalSearchService = {
   search: (userId: string, learnerId: string, query: GlobalSearchQuery) => Promise<GlobalSearchResponse>;
 };
 
-export function createGlobalSearchService(database: GlobalSearchDatabase): GlobalSearchService {
+export function createGlobalSearchService(database: GlobalSearchDatabase, options: { datasetVersion?: VocabularyDatasetVersion } = {}): GlobalSearchService {
+  const datasetVersion = options.datasetVersion ?? "legacy";
   return {
     async search(userId, learnerId, query) {
       const ownership = await authorizeLearnerOwnership(database, userId, learnerId);
       if (ownership.decision === "FORBIDDEN") throw new GlobalSearchServiceError("HOUSEHOLD_ACCESS_DENIED", 403);
       try {
-        const rows = await searchRows(database, ownership.learnerId, query);
+        const rows = await searchRows(database, ownership.learnerId, query, datasetVersion);
         const vocabulary = [] as GlobalSearchResponse["vocabulary"];
         const topics = [] as GlobalSearchResponse["topics"];
         const learningSets = [] as GlobalSearchResponse["learningSets"];

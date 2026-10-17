@@ -12,10 +12,10 @@ export const DATABASE_TARGETS = {
   development: {
     environment: "development",
     provider: "neon",
-    projectId: "shy-hill-72364426",
-    branchId: "br-square-grass-b3af0nte",
+    projectId: "silent-sky-84582895",
+    branchId: "br-cold-shadow-a17yg4k2",
     databaseName: "neondb",
-    pooled: true,
+    pooled: false,
     usage: "development",
     identityVersion: 1,
     roles: {
@@ -48,8 +48,8 @@ export const DATABASE_TARGETS = {
   production: {
     environment: "production",
     provider: "neon",
-    projectId: "shy-hill-72364426",
-    branchId: "br-rough-silence-b3gbqjcb",
+    projectId: "silent-sky-84582895",
+    branchId: "br-cool-sea-a1ifkf95",
     databaseName: "neondb",
     pooled: true,
     usage: "production",
@@ -65,6 +65,20 @@ export const DATABASE_TARGETS = {
     },
   },
 } as const satisfies Record<string, TargetWithRoles>;
+
+/** Preserved target metadata for documented Development rollback only. */
+export const NEON_DEVELOPMENT_ROLLBACK_TARGET = {
+  projectId: "shy-hill-72364426",
+  branchId: "br-square-grass-b3af0nte",
+  databaseName: "neondb",
+} as const;
+
+/** V1 stays available for an owner-approved deployment rollback. */
+export const NEON_PRODUCTION_V1_ROLLBACK_TARGET = {
+  projectId: "shy-hill-72364426",
+  branchId: "br-rough-silence-b3gbqjcb",
+  databaseName: "neondb",
+} as const;
 
 export function getConnectionTarget(
   environment: keyof typeof DATABASE_TARGETS,

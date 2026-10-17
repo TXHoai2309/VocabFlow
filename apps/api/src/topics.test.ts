@@ -74,8 +74,8 @@ describe("US-27 topic service", () => {
         return { rows: [{ ...topic, sort_order: topic.sortOrder }] };
       });
     await expect(createTopicService({ execute }).list("parent-1")).resolves.toEqual([topic]);
-    expect(queries[0]?.sql).toContain("WHERE enabled = true");
-    expect(queries[0]?.sql).toContain("ORDER BY sort_order ASC, id ASC");
+    expect(queries[0]?.sql).toContain("WHERE t.enabled = true");
+    expect(queries[0]?.sql).toContain("ORDER BY t.sort_order ASC, t.id ASC");
   });
 
   it("returns enabled vocabulary for a topic without learner progress joins", async () => {
@@ -94,6 +94,46 @@ describe("US-27 topic service", () => {
     expect(queries[0]?.sql).toContain("v.enabled = true");
     expect(queries[0]?.sql).toContain("ORDER BY v.id ASC");
     expect(queries[0]?.sql).not.toContain("learner_progress");
+  });
+
+  it("lists only current V2 topics and marks them as direct study scopes", async () => {
+    const queries: string[] = [];
+    const execute = vi.fn()
+      .mockResolvedValueOnce({ rows: [{ household_id: householdId }] })
+      .mockImplementationOnce(async (query) => {
+        queries.push(new PgDialect().sqlToQuery(query).sql);
+        return { rows: [{ ...topic, sort_order: topic.sortOrder, study_scope_available: true }] };
+      });
+    const result = await createTopicService({ execute }, { datasetVersion: "v2" }).list("parent-1");
+    expect(result).toMatchObject([{ slug: "family", studyScopeAvailable: true }]);
+    expect(queries[0]).toContain('v.source_dataset =');
+    expect(queries[0]).toContain('"vocabflow_app"."vocabulary_topics"');
+  });
+
+  it("returns V2 topic content, provenance evidence, and existing Development media", async () => {
+    const queries: string[] = [];
+    const row = {
+      ...vocabularyRow(10),
+      cefr: "A1",
+      tags: ["topic-inferred:food"],
+      metadata_assignments: {
+        topics: [{ code: "FOOD", label: "Ẩm thực", status: "INFERRED_REVIEWABLE", confidence: "HIGH", evidenceType: "EXPLICIT_SEMANTIC_CUE", matchedEvidence: "food" }],
+        subtopics: [{ code: "FRUIT", parentCode: "FOOD", label: "Trái cây", status: "INFERRED_REVIEWABLE", confidence: "HIGH", evidenceType: "EXPLICIT_SEMANTIC_CUE", matchedEvidence: "fruit" }],
+        domains: []
+      },
+      master_sense_identity: "sense-10", display_form: "word-10", part_of_speech: "NOUN", content_hash: "a".repeat(64),
+      content_review_status: "PASS", editorial_status: "DRAFT", rights_status: "UNKNOWN_REVIEW_REQUIRED",
+      development_media: { images: [], wordAudio: [], exampleAudio: [] }
+    };
+    const execute = vi.fn()
+      .mockResolvedValueOnce({ rows: [{ household_id: householdId }] })
+      .mockResolvedValueOnce({ rows: [{ id: 1 }] })
+      .mockImplementationOnce(async (query) => { queries.push(new PgDialect().sqlToQuery(query).sql); return { rows: [row] }; });
+    const result = await createTopicService({ execute }, { datasetVersion: "v2" }).listVocabulary("parent-1", 1);
+    expect(result[0]).toMatchObject({ masterSenseIdentity: "sense-10", contentHash: "a".repeat(64), cefr: "A1", developmentMedia: { images: [] } });
+    expect(result[0]?.metadataEvidence?.[0]).toMatchObject({ dimension: "TOPIC", code: "FOOD" });
+    expect(result[0]?.metadataEvidence?.[1]).toMatchObject({ dimension: "SUBTOPIC", code: "FRUIT", label: "Trái cây" });
+    expect(queries[0]).toContain('v.source_dataset =');
   });
 
   it("denies catalog access before reading topics", async () => {

@@ -6,6 +6,7 @@ import {
 } from "@vocabflow/contracts";
 import { authorizeLearnerOwnership } from "./learners";
 import { householdLocalDate } from "./reviews";
+import { vocabularyDatasetPredicate, type VocabularyDatasetVersion } from "./vocabulary-dataset-version";
 
 export type ActivitySummaryDatabase = {
   execute: (query: SQL) => Promise<unknown>;
@@ -143,6 +144,7 @@ async function learnerActivitySettings(
 async function activityRows(
   database: ActivitySummaryDatabase,
   learnerId: string,
+  datasetVersion: VocabularyDatasetVersion,
 ): Promise<ActivityRow[]> {
   const result = await database.execute(sql`
     SELECT review_date::text AS activity_date,
@@ -153,7 +155,9 @@ async function activityRows(
              WHERE previous_status <> 'NEW'
            ) AS review_completed
     FROM "${sql.raw(APP_SCHEMA)}"."review_events"
+    JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = review_events.vocabulary_id
     WHERE learner_id = ${learnerId}::uuid
+      AND ${vocabularyDatasetPredicate("v", datasetVersion)}
     GROUP BY review_date
     ORDER BY review_date ASC
   `);
@@ -177,9 +181,10 @@ export type ActivitySummaryService = {
 
 export function createActivitySummaryService(
   database: ActivitySummaryDatabase,
-  options: { now?: () => Date } = {},
+  options: { now?: () => Date; datasetVersion?: VocabularyDatasetVersion } = {},
 ): ActivitySummaryService {
   const now = options.now ?? (() => new Date());
+  const datasetVersion = options.datasetVersion ?? "legacy";
 
   return {
     async get(userId, learnerId) {
@@ -191,7 +196,7 @@ export function createActivitySummaryService(
       try {
         const settings = await learnerActivitySettings(database, ownership.learnerId, ownership.householdId);
         const localDate = householdLocalDate(now(), settings.timezone as string);
-        const rows = await activityRows(database, ownership.learnerId);
+        const rows = await activityRows(database, ownership.learnerId, datasetVersion);
         const dailyRow = rows.find((row) => row.activity_date === localDate);
         const dailyGoal = {
           newWords: dailyGoalProgress(settings.daily_new_word_goal, dailyRow?.new_completed ?? 0),

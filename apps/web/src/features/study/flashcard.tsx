@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { VocabularyDto } from "@vocabflow/contracts";
 import { usePronunciationAudio } from "./pronunciation-audio";
+import { DevelopmentExampleAudio, DevelopmentImageNotice, DevelopmentImagePreviews, DevelopmentWordAudio } from "./development-media";
 
 export type FlashcardProps = {
   vocabulary: VocabularyDto;
@@ -11,6 +12,14 @@ export type FlashcardProps = {
 export function Flashcard({ vocabulary, isFlipped, onFlip }: FlashcardProps) {
   const [imageFailed, setImageFailed] = useState(false);
   const audio = usePronunciationAudio(vocabulary.audioUrl, vocabulary.word, vocabulary.id);
+  const developmentAudio = (vocabulary.developmentMedia?.wordAudio?.length ?? 0) > 0;
+  const examples = (vocabulary.examples ?? []).flatMap((example) => {
+    if (typeof example !== "object" || example === null) return [];
+    const value = example as Record<string, unknown>;
+    const english = value.en;
+    const exampleKey = typeof value.exampleKey === "string" ? value.exampleKey : undefined;
+    return typeof english === "string" && english.trim() ? [{ english, exampleKey }] : [];
+  });
 
   const audioLabel = audio.state === "loading"
     ? `Đang tải phát âm ${audio.word}`
@@ -24,7 +33,8 @@ export function Flashcard({ vocabulary, isFlipped, onFlip }: FlashcardProps) {
 
   return (
     <div className="flashcard" data-testid="flashcard">
-      {audio.hasAudio ? (
+      {developmentAudio ? <DevelopmentWordAudio vocabulary={vocabulary} /> : null}
+      {audio.hasAudio && !developmentAudio ? (
         <div className="flashcard-audio-control">
           <button
             className="auth-retry flashcard-audio-button"
@@ -68,11 +78,15 @@ export function Flashcard({ vocabulary, isFlipped, onFlip }: FlashcardProps) {
             {vocabulary.ipa ? <span className="flashcard-optional">{vocabulary.ipa}</span> : null}
             <span className="flashcard-vietnamese">{vocabulary.vietnamese}</span>
             {vocabulary.definitionEn ? <span className="flashcard-optional">{vocabulary.definitionEn}</span> : null}
-            {vocabulary.exampleEn ? <span className="flashcard-example">{vocabulary.exampleEn}</span> : null}
+            {examples.length > 0 ? examples.map((example, index) => (
+              <span className="flashcard-example" key={`${index}:${example.english}`}>{example.english}<DevelopmentExampleAudio vocabulary={vocabulary} exampleKey={example.exampleKey} /></span>
+            )) : vocabulary.exampleEn ? <span className="flashcard-example">{vocabulary.exampleEn}</span> : null}
             {vocabulary.topic ? <span className="flashcard-optional">{vocabulary.topic}</span> : null}
             {vocabulary.imageUrl && !imageFailed ? (
               <img className="flashcard-image" src={vocabulary.imageUrl} alt={`Minh họa cho ${vocabulary.word}`} onError={() => setImageFailed(true)} />
             ) : null}
+            <DevelopmentImageNotice vocabulary={vocabulary} />
+            {!vocabulary.imageUrl || imageFailed ? <DevelopmentImagePreviews vocabulary={vocabulary} /> : null}
           </span>
         )}
       </button>

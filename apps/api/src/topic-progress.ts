@@ -6,6 +6,8 @@ import {
 } from "@vocabflow/contracts";
 import { authorizeLearnerOwnership } from "./learners";
 import { householdLocalDate } from "./reviews";
+import type { VocabularyDatasetVersion } from "./vocabulary-dataset-version";
+import { vocabularyDatasetPredicate } from "./vocabulary-dataset-version";
 
 export type TopicProgressDatabase = { execute: (query: SQL) => Promise<unknown> };
 export type TopicProgressServiceErrorCode = "HOUSEHOLD_ACCESS_DENIED" | "INTERNAL_ERROR";
@@ -67,17 +69,21 @@ async function aggregateRows(
   database: TopicProgressDatabase,
   learnerId: string,
   localDate: string,
+  datasetVersion: VocabularyDatasetVersion,
 ): Promise<TopicProgressRow[]> {
   const result = await database.execute(sql`
     WITH eligible_vocabulary AS (
-      SELECT DISTINCT lsi.vocabulary_id
-      FROM "${sql.raw(APP_SCHEMA)}"."learner_learning_sets" lls
-      JOIN "${sql.raw(APP_SCHEMA)}"."learning_sets" ls
-        ON ls.id = lls.learning_set_id AND ls.enabled = true
-      JOIN "${sql.raw(APP_SCHEMA)}"."learning_set_items" lsi ON lsi.learning_set_id = ls.id
-      JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v
-        ON v.id = lsi.vocabulary_id AND v.enabled = true
-      WHERE lls.learner_id = ${learnerId}::uuid AND lls.active = true
+      SELECT DISTINCT vt.vocabulary_id
+      FROM "${sql.raw(APP_SCHEMA)}"."vocabulary_topics" vt
+      JOIN "${sql.raw(APP_SCHEMA)}"."topics" topic ON topic.id = vt.topic_id AND topic.enabled = true
+      JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = vt.vocabulary_id AND v.enabled = true
+      WHERE ${vocabularyDatasetPredicate("v", datasetVersion)}
+        ${datasetVersion === "legacy" ? sql`AND EXISTS (
+          SELECT 1 FROM "${sql.raw(APP_SCHEMA)}"."learner_learning_sets" lls
+          JOIN "${sql.raw(APP_SCHEMA)}"."learning_sets" ls ON ls.id = lls.learning_set_id AND ls.enabled = true
+          JOIN "${sql.raw(APP_SCHEMA)}"."learning_set_items" lsi ON lsi.learning_set_id = ls.id AND lsi.vocabulary_id = v.id
+          WHERE lls.learner_id = ${learnerId}::uuid AND lls.active = true
+        )` : sql``}
     )
     SELECT
       t.id AS topic_id,
@@ -94,6 +100,11 @@ async function aggregateRows(
     LEFT JOIN "${sql.raw(APP_SCHEMA)}"."learner_progress" lp
       ON lp.vocabulary_id = ev.vocabulary_id AND lp.learner_id = ${learnerId}::uuid
     WHERE t.enabled = true
+      AND EXISTS (
+        SELECT 1 FROM "${sql.raw(APP_SCHEMA)}"."vocabulary_topics" scoped_vt
+        JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = scoped_vt.vocabulary_id AND v.enabled = true
+        WHERE scoped_vt.topic_id = t.id AND ${vocabularyDatasetPredicate("v", datasetVersion)}
+      )
     GROUP BY t.id, t.slug, t.name, t.sort_order
     ORDER BY t.sort_order ASC, t.id ASC
   `);
@@ -104,9 +115,10 @@ export type TopicProgressService = { get: (userId: string, learnerId: string) =>
 
 export function createTopicProgressService(
   database: TopicProgressDatabase,
-  options: { now?: () => Date } = {},
+  options: { now?: () => Date; datasetVersion?: VocabularyDatasetVersion } = {},
 ): TopicProgressService {
   const now = options.now ?? (() => new Date());
+  const datasetVersion = options.datasetVersion ?? "legacy";
   return {
     async get(userId, learnerId) {
       const ownership = await authorizeLearnerOwnership(database, userId, learnerId);
@@ -114,7 +126,7 @@ export function createTopicProgressService(
       try {
         const timezone = await householdTimezone(database, ownership.householdId);
         const localDate = householdLocalDate(now(), timezone);
-        const rows = await aggregateRows(database, ownership.learnerId, localDate);
+        const rows = await aggregateRows(database, ownership.learnerId, localDate, datasetVersion);
         const topics = rows.map((row) => ({
           topicId: safeCount(row.topic_id),
           slug: String(row.slug),

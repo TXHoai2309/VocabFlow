@@ -1,5 +1,13 @@
 # VocabFlow Project Decisions
 
+## DEC-031 — V1 test-data disposition for V2 cutover
+
+- Status: ACCEPTED by explicit owner instruction on 2026-10-18; supersedes the earlier Vercel cutover preparation status where V1 backup or account continuity was described as a prerequisite.
+- Discard V1 test users, accounts, sessions, progress, and review history during the future V2 cutover. The owner waives a V1 backup; do not retry SQL access after PostgreSQL 53000.
+- This decision does not authorize deletion of the V1 Neon database, Cloudinary V1 assets, or Production resources.
+- V2 Production starts without copied test auth or learner-history rows; users register through Better Auth.
+- Rollback to the former Vercel deployment is available as a code action, but V1 database service availability remains unknown while its project is quota-blocked. Do not claim a complete data rollback.
+
 ## Mixed Study allocation and bounded candidates (2026-10-08)
 
 Owner approved a Mixed bug fix: frontend selectStudyQueue owns deterministic

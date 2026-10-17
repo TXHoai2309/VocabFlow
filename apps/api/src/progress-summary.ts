@@ -6,6 +6,7 @@ import {
 } from "@vocabflow/contracts";
 import { householdLocalDate } from "./reviews";
 import { authorizeLearnerOwnership } from "./learners";
+import { vocabularyDatasetPredicate, type VocabularyDatasetVersion } from "./vocabulary-dataset-version";
 
 export type ProgressSummaryDatabase = {
   execute: (query: SQL) => Promise<unknown>;
@@ -80,6 +81,7 @@ async function summaryRow(
   database: ProgressSummaryDatabase,
   learnerId: string,
   reviewDate: string,
+  datasetVersion: VocabularyDatasetVersion,
 ): Promise<SummaryRow> {
   const result = await database.execute(sql`
     SELECT
@@ -95,13 +97,29 @@ async function summaryRow(
     LEFT JOIN "${sql.raw(APP_SCHEMA)}"."learner_progress" lp
       ON lp.vocabulary_id = v.id
      AND lp.learner_id = ${learnerId}::uuid
+    WHERE ${vocabularyDatasetPredicate("v", datasetVersion)}
   `);
   const [row] = rowsOf<SummaryRow>(result);
   if (!row) throw new ProgressSummaryServiceError("INTERNAL_ERROR", 500);
   return row;
 }
 
-async function levelProgressRows(database: ProgressSummaryDatabase, learnerId: string): Promise<LevelProgressRow[]> {
+async function levelProgressRows(database: ProgressSummaryDatabase, learnerId: string, datasetVersion: VocabularyDatasetVersion): Promise<LevelProgressRow[]> {
+  if (datasetVersion === "v2") {
+    const result = await database.execute(sql`
+      SELECT v.level::text AS level,
+             COUNT(*) AS total,
+             COUNT(lp.vocabulary_id) AS learned_count,
+             COUNT(*) FILTER (WHERE lp.status::text = 'MASTERED') AS mastered_count
+      FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v
+      LEFT JOIN "${sql.raw(APP_SCHEMA)}"."learner_progress" lp
+        ON lp.vocabulary_id = v.id AND lp.learner_id = ${learnerId}::uuid
+      WHERE v.enabled = true AND ${vocabularyDatasetPredicate("v", datasetVersion)}
+      GROUP BY v.level
+      ORDER BY v.level NULLS LAST
+    `);
+    return rowsOf<LevelProgressRow>(result);
+  }
   const result = await database.execute(sql`
     WITH eligible_vocabulary AS (
       SELECT DISTINCT v.id, v.level
@@ -145,9 +163,10 @@ export type ProgressSummaryService = {
 
 export function createProgressSummaryService(
   database: ProgressSummaryDatabase,
-  options: { now?: () => Date } = {},
+  options: { now?: () => Date; datasetVersion?: VocabularyDatasetVersion } = {},
 ): ProgressSummaryService {
   const now = options.now ?? (() => new Date());
+  const datasetVersion = options.datasetVersion ?? "legacy";
 
   return {
     async get(userId, learnerId) {
@@ -160,8 +179,8 @@ export function createProgressSummaryService(
         const timezone = await householdTimezone(database, ownership.householdId);
         const reviewDate = householdLocalDate(now(), timezone);
         const [row, levelRows] = await Promise.all([
-          summaryRow(database, ownership.learnerId, reviewDate),
-          levelProgressRows(database, ownership.learnerId)
+          summaryRow(database, ownership.learnerId, reviewDate, datasetVersion),
+          levelProgressRows(database, ownership.learnerId, datasetVersion)
         ]);
         const parsed = progressSummaryResponseSchema.safeParse({
           learnerId: ownership.learnerId,

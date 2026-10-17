@@ -1,5 +1,12 @@
 # US-45 — Master Vocabulary V2 Runtime Import Bridge
 
+## 2026-10-18 — Controlled V2 release candidate
+
+Owner accepts loss of V1 test auth/history and waives V1 backup for cutover. V1 remains retained and undeleted. The release path uses staged Neon V2 Production, while the Preview environment uses Neon V2 Development.
+- Production must preserve its Better Auth secret and create new user accounts through the normal sign-up flow; no Development test accounts are copied.
+- V2 media whose rights remain uncleared is withheld from deployed responses; rights and mapping states are unchanged.
+- No Production environment, deployment, alias, Neon data, or Cloudinary resource has been changed.
+
 ## 2026-10-08 — Phase 2H.2A full expansion candidate preparation
 
 Offline planning is READY FOR OWNER REVIEW: full ledger 6143 groups, 4170

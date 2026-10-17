@@ -26,7 +26,7 @@ const productionEnvironment = {
   VOCABFLOW_ENV: "production",
   DATABASE_ENV: "production",
 };
-const branch = "br-rough-silence-b3gbqjcb";
+const branch = "br-cool-sea-a1ifkf95";
 const bootstrapUrl = "postgresql://neondb_owner:one-shot@ep-prod-pooler.neon.tech/neondb";
 const roleUrls = {
   PRODUCTION_IDENTITY_PROVISION_DATABASE_URL: "postgresql://vocabflow_identity_provision:provision-pass@ep-prod-pooler.neon.tech/neondb",
@@ -104,7 +104,7 @@ describe("guarded fresh production bootstrap", () => {
     expect(bootstrapTargetForEnvironment("development").branchId).toBe(DATABASE_TARGETS.development.branchId);
     expect(bootstrapTargetForEnvironment("test").branchId).toBe(DATABASE_TARGETS.test.branchId);
     expect(() => bootstrapTargetForEnvironment("production")).toThrow("USE_PRODUCTION_BOOTSTRAP_COMMAND");
-    expect(target).toMatchObject({ projectId: "shy-hill-72364426", branchId: branch, databaseName: "neondb", roleName: "neondb_owner" });
+    expect(target).toMatchObject({ projectId: "silent-sky-84582895", branchId: branch, databaseName: "neondb", roleName: "neondb_owner" });
   });
 
   it("requires an explicit target and stays read-only unless apply is explicit", () => {
@@ -169,7 +169,7 @@ describe("guarded fresh production bootstrap", () => {
 
     expect(connection.target.roleName).toBe("neondb_owner");
     expect(provider.getConnectionUri).toHaveBeenCalledWith(expect.objectContaining({
-      projectId: "shy-hill-72364426",
+      projectId: "silent-sky-84582895",
       branchId: branch,
       databaseName: "neondb",
       roleName: "neondb_owner",
@@ -241,7 +241,7 @@ describe("guarded fresh production bootstrap", () => {
       environment: { ...productionEnvironment, PRODUCTION_BOOTSTRAP_DATABASE_URL: bootstrapUrl, NEON_API_KEY: "fixture-key" },
       neonApiClient: correct,
     });
-    expect(result.target).toMatchObject({ projectId: "shy-hill-72364426", branchId: branch, databaseName: "neondb", roleName: "neondb_owner" });
+    expect(result.target).toMatchObject({ projectId: "silent-sky-84582895", branchId: branch, databaseName: "neondb", roleName: "neondb_owner" });
     expect(correct.getBranch).toHaveBeenCalledOnce();
     expect(correct.getConnectionUri).toHaveBeenCalledOnce();
   });

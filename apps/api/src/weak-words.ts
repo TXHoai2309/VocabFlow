@@ -12,6 +12,7 @@ import {
 } from "@vocabflow/contracts";
 import { authorizeLearnerOwnership } from "./learners";
 import { householdLocalDate } from "./reviews";
+import { jsonArray, jsonObject, vocabularyDatasetPredicate, type VocabularyDatasetVersion } from "./vocabulary-dataset-version";
 
 export type WeakWordsDatabase = { execute: (query: SQL) => Promise<unknown> };
 export type WeakWordsQuery = { q: string; status: WeakWordsStatus | null; page: number; pageSize: number };
@@ -51,6 +52,17 @@ type QueryRow = {
   review_count: unknown;
   remembered_count: unknown;
   forgotten_count: unknown;
+  master_sense_identity?: unknown;
+  display_form?: unknown;
+  part_of_speech?: unknown;
+  cefr?: unknown;
+  tags?: unknown;
+  examples?: unknown;
+  content_sha256?: unknown;
+  content_review_decision?: unknown;
+  editorial_status?: unknown;
+  rights_status?: unknown;
+  development_media?: unknown;
 };
 
 type Candidate = WeakWordsItem & { queueType: ReviewQueueItem["queueType"] };
@@ -105,6 +117,11 @@ function dueData(nextReviewDate: string | null, reviewDate: string) {
 }
 
 function vocabularyFromRow(row: QueryRow): VocabularyDto {
+  const media = jsonObject(row.development_media);
+  const images = jsonArray(media?.images);
+  const singleImage = images?.length === 1 ? jsonObject(images[0]) : undefined;
+  const wordAudio = jsonArray(media?.wordAudio);
+  const exampleAudio = jsonArray(media?.exampleAudio);
   const parsed = vocabularyDtoSchema.safeParse({
     id: safeCount(row.id),
     word: row.word,
@@ -112,12 +129,28 @@ function vocabularyFromRow(row: QueryRow): VocabularyDto {
     vietnamese: row.vietnamese,
     definitionEn: row.definition_en,
     exampleEn: row.example_en,
-    imageUrl: row.image_url,
-    audioUrl: row.audio_url,
+    imageUrl: images ? (singleImage ? String(singleImage.url ?? "") : null) : row.image_url,
+    audioUrl: media ? null : row.audio_url,
     topic: row.topic,
     level: row.level,
     enabled: row.enabled,
-    contentVersion: safeCount(row.content_version)
+    contentVersion: safeCount(row.content_version),
+    ...(row.master_sense_identity ? { masterSenseIdentity: String(row.master_sense_identity) } : {}),
+    ...(row.display_form ? { displayForm: String(row.display_form) } : {}),
+    ...(row.part_of_speech ? { partOfSpeech: String(row.part_of_speech) } : {}),
+    ...(row.cefr ? { cefr: String(row.cefr) } : {}),
+    ...(Array.isArray(row.tags) ? { tags: row.tags } : {}),
+    ...(Array.isArray(row.examples) ? { examples: row.examples } : {}),
+    ...(row.content_sha256 ? { contentHash: String(row.content_sha256) } : {}),
+    ...(row.content_review_decision === "PASS" ? { contentReviewStatus: "PASS" as const } : {}),
+    ...(row.editorial_status === "DRAFT" ? { editorialStatus: "DRAFT" as const } : {}),
+    ...(row.rights_status === "UNKNOWN_REVIEW_REQUIRED" ? { rightsStatus: "UNKNOWN_REVIEW_REQUIRED" as const } : {}),
+    ...(images || wordAudio || exampleAudio ? { developmentMedia: {
+      ...(images ? { images } : {}),
+      ...(wordAudio ? { wordAudio } : {}),
+      ...(exampleAudio ? { exampleAudio } : {})
+    } } : {}),
+    ...(singleImage?.reviewStatus ? { imageMediaStatus: singleImage.reviewStatus === "ACCEPTED_MAPPING" ? "ACCEPTED_MAPPING" as const : singleImage.reviewStatus === "AMBIGUOUS" ? "AMBIGUOUS" as const : "PROPOSED" as const } : {})
   });
   if (!parsed.success) throw new WeakWordsServiceError("INTERNAL_ERROR", 500);
   return parsed.data;
@@ -223,17 +256,23 @@ type WeakWordsData = {
   candidates: Candidate[];
 };
 
-async function loadWeakWordsData(database: WeakWordsDatabase, learnerId: string, reviewDate: string): Promise<WeakWordsData> {
+async function loadWeakWordsData(database: WeakWordsDatabase, learnerId: string, reviewDate: string, datasetVersion: VocabularyDatasetVersion): Promise<WeakWordsData> {
   const result = await database.execute(sql`
     WITH eligible_vocabulary AS (
       SELECT DISTINCT v.id, v.word, v.ipa,
              COALESCE(v.vietnamese_override, v.vietnamese) AS vietnamese,
              v.definition_en, v.example_en,
              CASE WHEN v.image_quarantined THEN NULL ELSE v.image_url END AS image_url,
-             v.audio_url, v.topic, v.level, v.enabled, v.content_version
+             v.audio_url, v.topic, v.level, v.enabled, v.content_version,
+             md.proposal_key AS master_sense_identity,
+             md.source_provenance->'masterV2Identity'->>'displayForm' AS display_form,
+             md.part_of_speech, md.cefr, md.tags, md.examples, md.content_sha256,
+             md.content_review_decision, md.editorial_status, md.rights_status, md.development_media
       FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v
+      LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
       WHERE v.enabled = true
-        AND EXISTS (
+        AND ${vocabularyDatasetPredicate("v", datasetVersion)}
+        AND (${datasetVersion === "v2" ? sql`true` : sql`EXISTS (
           SELECT 1
           FROM "${sql.raw(APP_SCHEMA)}"."learner_learning_sets" lls
           JOIN "${sql.raw(APP_SCHEMA)}"."learning_sets" ls
@@ -241,7 +280,7 @@ async function loadWeakWordsData(database: WeakWordsDatabase, learnerId: string,
           JOIN "${sql.raw(APP_SCHEMA)}"."learning_set_items" lsi
             ON lsi.learning_set_id = ls.id AND lsi.vocabulary_id = v.id
           WHERE lls.learner_id = ${learnerId}::uuid AND lls.active = true
-        )
+        )`})
     ),
     review_window AS (
       SELECT re.vocabulary_id, re.result::text AS result, re.review_id, re.reviewed_at
@@ -290,7 +329,9 @@ async function loadWeakWordsData(database: WeakWordsDatabase, learnerId: string,
            c.id, c.word, c.ipa, c.vietnamese, c.definition_en, c.example_en,
            c.image_url, c.audio_url, c.topic, c.level, c.enabled,
            c.content_version, c.learning_state, c.next_review_date,
-           c.revision, c.review_count, c.remembered_count, c.forgotten_count
+           c.revision, c.review_count, c.remembered_count, c.forgotten_count,
+           c.master_sense_identity, c.display_form, c.part_of_speech, c.cefr, c.tags, c.examples,
+           c.content_sha256, c.content_review_decision, c.editorial_status, c.rights_status, c.development_media
     FROM recent_summary rs
     LEFT JOIN candidates c ON true
     ORDER BY c.id ASC NULLS FIRST
@@ -334,8 +375,9 @@ export type WeakWordsService = {
   list: (userId: string, learnerId: string, query?: WeakWordsQuery) => Promise<WeakWordsResponse>;
 };
 
-export function createWeakWordsService(database: WeakWordsDatabase, options: { now?: () => Date } = {}): WeakWordsService {
+export function createWeakWordsService(database: WeakWordsDatabase, options: { now?: () => Date; datasetVersion?: VocabularyDatasetVersion } = {}): WeakWordsService {
   const now = options.now ?? (() => new Date());
+  const datasetVersion = options.datasetVersion ?? "legacy";
   return {
     async list(userId, learnerId, query = { q: "", status: null, page: 1, pageSize: 20 }) {
       const ownership = await authorizeLearnerOwnership(database, userId, learnerId);
@@ -343,7 +385,7 @@ export function createWeakWordsService(database: WeakWordsDatabase, options: { n
       try {
         const timezone = await householdTimezone(database, ownership.householdId);
         const reviewDate = householdLocalDate(now(), timezone);
-        const data = await loadWeakWordsData(database, ownership.learnerId, reviewDate);
+        const data = await loadWeakWordsData(database, ownership.learnerId, reviewDate, datasetVersion);
         const filtered = data.candidates.filter((item) => matchesStatus(item, query.status) && matchesSearch(item, query.q));
         const totalItems = filtered.length;
         const totalPages = totalItems === 0 ? 0 : Math.ceil(totalItems / query.pageSize);
@@ -371,10 +413,11 @@ export function createWeakWordsService(database: WeakWordsDatabase, options: { n
 export async function resolveWeakReviewQueue(
   database: WeakWordsDatabase,
   learnerId: string,
-  reviewDate: string
+  reviewDate: string,
+  datasetVersion: VocabularyDatasetVersion = "legacy"
 ): Promise<{ queue: ReviewQueueItem[]; dueCount: number }> {
   try {
-    const { candidates } = await loadWeakWordsData(database, learnerId, reviewDate);
+    const { candidates } = await loadWeakWordsData(database, learnerId, reviewDate, datasetVersion);
     const weakCandidates = candidates.filter((item) => item.weaknessStatus === "WEAK");
     const dueCount = weakCandidates.filter((item) => item.queueType === "DUE").length;
     const weak = weakCandidates.slice(0, 30);

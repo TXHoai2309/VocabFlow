@@ -2,10 +2,12 @@ import { useState } from "react";
 import { Link } from "react-router";
 import type { LearnerVocabularyDto, VocabularyDto } from "@vocabflow/contracts";
 import { usePronunciationAudio } from "../study/pronunciation-audio";
+import { DevelopmentImageNotice, DevelopmentWordAudio } from "../study/development-media";
 
 export type VocabularyCardItem = Pick<
   VocabularyDto,
-  "id" | "word" | "ipa" | "vietnamese" | "imageUrl" | "audioUrl" | "level" | "topic"
+  | "id" | "word" | "ipa" | "vietnamese" | "imageUrl" | "audioUrl" | "level" | "topic"
+  | "developmentMedia" | "masterSenseIdentity" | "imageMediaStatus" | "cefr" | "tags" | "metadataEvidence"
 > & { status?: LearnerVocabularyDto["status"] };
 
 type VocabularyIconName = "bookmark" | "speaker" | "image";
@@ -55,6 +57,11 @@ export function VocabularyCard({ item, showStatus = false, showTopic = false, va
   const audio = usePronunciationAudio(item.audioUrl, item.word, item.id);
   const imageUrl = item.imageUrl?.trim();
   const level = levelLabel(item.level);
+  const inferredLabels = item.metadataEvidence?.filter((evidence) => evidence.status === "INFERRED_REVIEWABLE").map((evidence) => ({
+    key: `${evidence.dimension}:${evidence.code}`,
+    label: evidence.label ?? evidence.code.replaceAll("_", " "),
+    dimension: evidence.dimension === "SUBTOPIC" ? "Tiểu chủ đề" : evidence.dimension === "DOMAIN" ? "Miền dùng" : "Chủ đề"
+  }));
 
   return (
     <li className={`vocabulary-card-item${variant === "row" ? " is-row" : ""}`} data-testid={`vocabulary-row-${item.id}`}>
@@ -72,10 +79,20 @@ export function VocabularyCard({ item, showStatus = false, showTopic = false, va
             <span className="vocabulary-card-meaning">{item.vietnamese}</span>
             {showStatus && item.status ? <span className={`vocabulary-card-status vocabulary-card-status-${item.status.toLowerCase()}`}>{statusLabel(item.status)}</span> : null}
             {showTopic && item.topic ? <span className="vocabulary-card-topic">{item.topic}</span> : null}
+            {item.masterSenseIdentity && item.cefr ? <span className="vocabulary-card-topic">CEFR {item.cefr}</span> : null}
+            {inferredLabels?.length ? inferredLabels.map((evidence) => (
+              <span className="vocabulary-card-metadata-suggestion" key={evidence.key}>
+                {evidence.dimension} gợi ý · {evidence.label}
+              </span>
+            )) : item.tags?.filter((tag) => tag.startsWith("topic-inferred:") || tag.startsWith("domain-inferred:")).map((tag) => (
+              <span className="vocabulary-card-metadata-suggestion" key={tag}>
+                Gợi ý · {tag.slice(tag.indexOf(":") + 1).replaceAll("-", " ").replaceAll("_", " ")}
+              </span>
+            ))}
           </span>
         </Link>
         {variant === "row" && savedAt ? <span className="vocabulary-card-saved-date">Đã lưu {formattedSavedDate(savedAt)}</span> : null}
-        <button
+        {(item.developmentMedia?.wordAudio?.length ?? 0) === 0 ? <button
           className={`vocabulary-bookmark-button${isSaved ? " is-saved" : ""}`}
           type="button"
           disabled={bookmarkDisabled || isSaving || !onToggleSaved}
@@ -90,7 +107,14 @@ export function VocabularyCard({ item, showStatus = false, showTopic = false, va
           }}
         >
           <VocabularyIcon name="bookmark" filled={isSaved} />
-        </button>
+        </button> : null}
+        {(item.developmentMedia?.wordAudio?.length ?? 0) > 0 ? (
+          <details className="vocabulary-card-development-audio">
+            <summary aria-label={`Chọn phát âm nguồn cho ${item.word}`}><VocabularyIcon name="speaker" /></summary>
+            <DevelopmentWordAudio vocabulary={item} />
+          </details>
+        ) : null}
+        {item.masterSenseIdentity ? <DevelopmentImageNotice vocabulary={item} /> : null}
         <button
           className="vocabulary-audio-button"
           type="button"

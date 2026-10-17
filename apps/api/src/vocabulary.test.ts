@@ -136,7 +136,7 @@ describe("US-04 vocabulary service", () => {
     expect(queries[1]?.sql).toContain("COALESCE(vietnamese_override, vietnamese) AS vietnamese");
     expect(queries[1]?.sql).toContain("CASE WHEN image_quarantined THEN NULL ELSE image_url END AS image_url");
     expect(queries[1]?.sql).toContain("WHERE enabled = true");
-    expect(queries[1]?.sql).toContain("ORDER BY id ASC");
+    expect(queries[1]?.sql).toContain("ORDER BY v.id ASC");
     expect(queries[1]?.sql).not.toContain("household_id");
     expect(queries[1]?.sql).not.toContain("learner_id");
   });
@@ -157,8 +157,8 @@ describe("US-04 vocabulary service", () => {
         return { rows: [{ ...vocabulary[0], level: "GRADE_1", content_version: 1 }] };
       });
     await expect(createVocabularyService({ execute }).list("parent-1", "GRADE_1")).resolves.toMatchObject([{ id: 1, level: "GRADE_1" }]);
-    expect(queries[0]?.sql).toContain("level = $1");
-    expect(queries[0]?.params).toEqual(["GRADE_1"]);
+    expect(queries[0]?.sql).toContain("level = $2");
+    expect(queries[0]?.params).toEqual(["VOCABFLOW_MASTER_V2_DEV", "GRADE_1"]);
   });
 
   it("denies a user without canonical household membership", async () => {

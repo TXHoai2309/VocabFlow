@@ -7,6 +7,8 @@ import {
   type VocabularyDto
 } from "@vocabflow/contracts";
 import { LearnerServiceError, resolveHouseholdId } from "./learners";
+import type { VocabularyDatasetVersion } from "./vocabulary-dataset-version";
+import { jsonArray, jsonObject, vocabularyDatasetPredicate } from "./vocabulary-dataset-version";
 
 export type TopicDatabase = {
   execute: (query: SQL) => Promise<unknown>;
@@ -44,6 +46,7 @@ type TopicRow = {
   description: unknown;
   sort_order: number | string;
   enabled: unknown;
+  study_scope_available?: unknown;
 };
 
 type VocabularyRow = {
@@ -59,6 +62,17 @@ type VocabularyRow = {
   level: unknown;
   enabled: unknown;
   content_version: number | string;
+  cefr?: unknown;
+  tags?: unknown;
+  metadata_assignments?: unknown;
+  master_sense_identity?: unknown;
+  display_form?: unknown;
+  part_of_speech?: unknown;
+  content_hash?: unknown;
+  content_review_status?: unknown;
+  editorial_status?: unknown;
+  rights_status?: unknown;
+  development_media?: unknown;
 };
 
 function safeInteger(value: unknown): number {
@@ -71,20 +85,40 @@ function nullableText(value: unknown): string | null {
   return value == null ? null : String(value);
 }
 
-function toTopicDto(row: TopicRow): TopicDto {
+function toTopicDto(row: TopicRow, datasetVersion: VocabularyDatasetVersion): TopicDto {
   const parsed = topicDtoSchema.safeParse({
     id: safeInteger(row.id),
     slug: String(row.slug),
     name: String(row.name),
     description: String(row.description),
     sortOrder: safeInteger(row.sort_order),
-    enabled: row.enabled === true
+    enabled: row.enabled === true,
+    ...(datasetVersion === "v2" ? { studyScopeAvailable: row.study_scope_available === true } : {})
   });
   if (!parsed.success) throw new TopicServiceError("INTERNAL_ERROR", 500);
   return parsed.data;
 }
 
 function toVocabularyDto(row: VocabularyRow): VocabularyDto {
+  const assignments = jsonObject(row.metadata_assignments);
+  const metadataEvidence = [
+    ...(jsonArray(assignments?.topics) ?? []).map((item) => {
+      const value = jsonObject(item) ?? {};
+      return { dimension: "TOPIC" as const, code: String(value.code ?? ""), label: value.label, status: value.status,
+        confidence: value.confidence, evidenceType: value.evidenceType, matchedEvidence: value.matchedEvidence };
+    }),
+    ...(jsonArray(assignments?.subtopics) ?? []).map((item) => {
+      const value = jsonObject(item) ?? {};
+      return { dimension: "SUBTOPIC" as const, code: String(value.code ?? ""), label: value.label, parentCode: String(value.parentCode ?? ""), status: value.status,
+        confidence: value.confidence, evidenceType: value.evidenceType, matchedEvidence: value.matchedEvidence };
+    }),
+    ...(jsonArray(assignments?.domains) ?? []).map((item) => {
+      const value = jsonObject(item) ?? {};
+      return { dimension: "DOMAIN" as const, code: String(value.code ?? ""), label: value.label, status: value.status,
+        confidence: value.confidence, evidenceType: value.evidenceType, matchedEvidence: value.matchedEvidence };
+    })
+  ];
+  const developmentMedia = jsonObject(row.development_media);
   const parsed = vocabularyDtoSchema.safeParse({
     id: safeInteger(row.id),
     word: String(row.word),
@@ -97,7 +131,18 @@ function toVocabularyDto(row: VocabularyRow): VocabularyDto {
     topic: nullableText(row.topic),
     level: row.level == null ? null : String(row.level),
     enabled: row.enabled === true,
-    contentVersion: safeInteger(row.content_version)
+    contentVersion: safeInteger(row.content_version),
+    ...(row.cefr ? { cefr: String(row.cefr) } : {}),
+    ...(Array.isArray(row.tags) ? { tags: row.tags as string[] } : {}),
+    ...(metadataEvidence.length ? { metadataEvidence } : {}),
+    ...(row.master_sense_identity ? { masterSenseIdentity: String(row.master_sense_identity) } : {}),
+    ...(row.display_form ? { displayForm: String(row.display_form) } : {}),
+    ...(row.part_of_speech ? { partOfSpeech: String(row.part_of_speech) } : {}),
+    ...(row.content_hash ? { contentHash: String(row.content_hash) } : {}),
+    ...(row.content_review_status ? { contentReviewStatus: String(row.content_review_status) } : {}),
+    ...(row.editorial_status ? { editorialStatus: String(row.editorial_status) } : {}),
+    ...(row.rights_status ? { rightsStatus: String(row.rights_status) } : {}),
+    ...(developmentMedia ? { developmentMedia } : {})
   });
   if (!parsed.success) throw new TopicServiceError("INTERNAL_ERROR", 500);
   return parsed.data;
@@ -119,18 +164,26 @@ export type TopicService = {
   listVocabulary: (userId: string, topicId: number) => Promise<VocabularyDto[]>;
 };
 
-export function createTopicService(database: TopicDatabase): TopicService {
+export function createTopicService(database: TopicDatabase, options: { datasetVersion?: VocabularyDatasetVersion } = {}): TopicService {
+  const datasetVersion = options.datasetVersion ?? "legacy";
   return {
     async list(userId) {
       await authorizeCatalogAccess(database, userId);
       try {
         const result = await database.execute(sql`
-          SELECT id, slug, name, description, sort_order, enabled
-          FROM "${sql.raw(APP_SCHEMA)}"."topics"
-          WHERE enabled = true
-          ORDER BY sort_order ASC, id ASC
+          SELECT t.id, t.slug, t.name, t.description, t.sort_order, t.enabled,
+                 ${datasetVersion === "v2" ? sql`true` : sql`false`} AS study_scope_available
+          FROM "${sql.raw(APP_SCHEMA)}"."topics" t
+          WHERE t.enabled = true
+            AND EXISTS (
+              SELECT 1
+              FROM "${sql.raw(APP_SCHEMA)}"."vocabulary_topics" vt
+              JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = vt.vocabulary_id AND v.enabled = true
+              WHERE vt.topic_id = t.id AND ${vocabularyDatasetPredicate("v", datasetVersion)}
+            )
+          ORDER BY t.sort_order ASC, t.id ASC
         `);
-        return rowsOf<TopicRow>(result).map(toTopicDto);
+        return rowsOf<TopicRow>(result).map((row) => toTopicDto(row, datasetVersion));
       } catch (error) {
         if (error instanceof TopicServiceError) throw error;
         throw new TopicServiceError("INTERNAL_ERROR", 500);
@@ -141,10 +194,15 @@ export function createTopicService(database: TopicDatabase): TopicService {
       await authorizeCatalogAccess(database, userId);
       try {
         const topicResult = await database.execute(sql`
-          SELECT id
-          FROM "${sql.raw(APP_SCHEMA)}"."topics"
-          WHERE id = ${topicId}
-            AND enabled = true
+          SELECT t.id
+          FROM "${sql.raw(APP_SCHEMA)}"."topics" t
+          WHERE t.id = ${topicId}
+            AND t.enabled = true
+            AND EXISTS (
+              SELECT 1 FROM "${sql.raw(APP_SCHEMA)}"."vocabulary_topics" vt
+              JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = vt.vocabulary_id AND v.enabled = true
+              WHERE vt.topic_id = t.id AND ${vocabularyDatasetPredicate("v", datasetVersion)}
+            )
           LIMIT 1
         `);
         if (rowsOf<{ id: number | string }>(topicResult).length === 0) {
@@ -164,11 +222,24 @@ export function createTopicService(database: TopicDatabase): TopicService {
             v.topic,
             v.level,
             v.enabled,
-            v.content_version
+            v.content_version,
+            md.cefr,
+            md.tags,
+            md.source_provenance->'developmentLearningMetadataV1'->'assignments' AS metadata_assignments,
+            md.proposal_key AS master_sense_identity,
+            md.source_provenance->'masterV2Identity'->>'displayForm' AS display_form,
+            md.part_of_speech,
+            md.content_sha256 AS content_hash,
+            md.content_review_decision AS content_review_status,
+            md.editorial_status,
+            md.rights_status,
+            md.development_media
           FROM "${sql.raw(APP_SCHEMA)}"."vocabulary_topics" vt
           JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = vt.vocabulary_id
+          LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
           WHERE vt.topic_id = ${topicId}
             AND v.enabled = true
+            AND ${vocabularyDatasetPredicate("v", datasetVersion)}
           ORDER BY v.id ASC
         `);
         return rowsOf<VocabularyRow>(result).map(toVocabularyDto);

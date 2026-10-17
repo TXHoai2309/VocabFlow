@@ -1,9 +1,9 @@
 import { AccountLearningState } from "./account-learning-state";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router";
-import type { LearnerDto, LearnerVocabularyDto, VocabularyLevel } from "@vocabflow/contracts";
+import type { LearnerDto, LearnerVocabularyBrowseItem, VocabularyBrowsePageSize, VocabularyLevel } from "@vocabflow/contracts";
 import { useActiveLearner } from "./learner-context-hook";
-import { LearnerVocabularyClientError, requestLearnerVocabulary } from "./vocabulary-list-client";
+import { LearnerVocabularyClientError, requestLearnerVocabularyBrowse } from "./vocabulary-list-client";
 import { VocabularyCard } from "./vocabulary-card";
 import { EmptyState, ErrorState, LoadingState } from "../../components/async-states";
 import { useToast } from "../../components/toast/toast-context";
@@ -20,10 +20,15 @@ const vocabularyLevels: { value: VocabularyLevel; label: string }[] = [
   { value: "GRADE_5", label: "Lớp 5" },
   { value: "GENERAL", label: "Chung" }
 ];
-const pageSize = 12;
+const pageSizes = [20, 30, 50] as const;
+const defaultPageSize: VocabularyBrowsePageSize = 30;
 
 function isVocabularyLevel(value: string | null): value is VocabularyLevel {
   return vocabularyLevels.some((level) => level.value === value);
+}
+
+function isVocabularyPageSize(value: number): value is VocabularyBrowsePageSize {
+  return pageSizes.includes(value as VocabularyBrowsePageSize);
 }
 
 function VocabularyIcon({ name, className }: { name: VocabularyIconName; className?: string }) {
@@ -54,6 +59,48 @@ function listErrorMessage(error: unknown) {
   return "Không thể tải từ vựng lúc này. Vui lòng thử lại.";
 }
 
+function DebouncedVocabularySearch({ query, updateFilter }: {
+  query: string;
+  updateFilter: (name: "q" | "level" | "cefr" | "topic" | "pageSize", value: string) => void;
+}) {
+  const [searchInput, setSearchInput] = useState(query);
+
+  useEffect(() => {
+    if (searchInput.trim() === query.trim()) return;
+    const timer = window.setTimeout(() => updateFilter("q", searchInput), 300);
+    return () => window.clearTimeout(timer);
+  }, [query, searchInput, updateFilter]);
+
+  const clearQuery = () => updateFilter("q", "");
+
+  return (
+    <div className="vocabulary-search-field">
+      <label className="sr-only" htmlFor="vocabulary-search">Tìm từ tiếng Anh hoặc nghĩa tiếng Việt</label>
+      <VocabularyIcon name="search" />
+      <input
+        id="vocabulary-search"
+        type="search"
+        value={searchInput}
+        maxLength={100}
+        placeholder="Tìm từ tiếng Anh hoặc nghĩa tiếng Việt..."
+        onChange={(event) => setSearchInput(event.target.value)}
+        onKeyDown={(event) => {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            updateFilter("q", searchInput);
+          }
+        }}
+        data-testid="vocabulary-search"
+      />
+      {searchInput ? (
+        <button className="vocabulary-search-clear" type="button" aria-label="Xóa tìm kiếm" data-testid="vocabulary-clear-search" onClick={clearQuery}>
+          <VocabularyIcon name="clear" />
+        </button>
+      ) : null}
+    </div>
+  );
+}
+
 export function VocabularyListPage() {
   const { activeLearner } = useActiveLearner();
   if (!activeLearner) {
@@ -66,31 +113,74 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
   const toast = useToast();
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get("q") ?? "";
-  const normalizedQuery = query.trim().toLowerCase();
+  const normalizedQuery = query.trim();
   const requestedLevel = searchParams.get("level");
   const level = isVocabularyLevel(requestedLevel) ? requestedLevel : "";
+  const cefr = searchParams.get("cefr") ?? "";
+  const topic = searchParams.get("topic") ?? "";
   const requestedPage = Number(searchParams.get("page"));
   const pageFromUrl = Number.isSafeInteger(requestedPage) && requestedPage > 0 ? requestedPage : 1;
+  const requestedPageSize = Number(searchParams.get("pageSize"));
+  const pageSize = isVocabularyPageSize(requestedPageSize) ? requestedPageSize : defaultPageSize;
   const [state, setState] = useState<VocabularyListState>("loading");
-  const [vocabulary, setVocabulary] = useState<LearnerVocabularyDto[]>([]);
+  const [resultKey, setResultKey] = useState<string | null>(null);
+  const [vocabulary, setVocabulary] = useState<LearnerVocabularyBrowseItem[]>([]);
+  const [total, setTotal] = useState(0);
+  const [totalPages, setTotalPages] = useState(1);
+  const [cefrOptions, setCefrOptions] = useState<string[]>([]);
+  const [topicOptions, setTopicOptions] = useState<string[]>([]);
   const [message, setMessage] = useState<string | null>(null);
+  const [reloadToken, setReloadToken] = useState(0);
   const [savedVocabularyState, setSavedVocabularyState] = useState<"loading" | "ready" | "error">("loading");
   const [savedIds, setSavedIds] = useState<Set<number>>(new Set());
   const [savingIds, setSavingIds] = useState<Set<number>>(new Set());
   const mutationInFlight = useRef(new Set<number>());
 
-  const loadVocabulary = useCallback(async () => {
-    setState("loading");
-    setVocabulary([]);
-    setMessage(null);
-    try {
-      setVocabulary(await requestLearnerVocabulary(activeLearner.id));
-      setState("ready");
-    } catch (error) {
-      setState("error");
-      setMessage(listErrorMessage(error));
-    }
-  }, [activeLearner.id]);
+  const updateFilter = useCallback((name: "q" | "level" | "cefr" | "topic" | "pageSize", value: string) => {
+    setSearchParams((current) => {
+      const next = new URLSearchParams(current);
+      const normalizedValue = name === "q" ? value.trim() : value;
+      if (normalizedValue) next.set(name, normalizedValue);
+      else next.delete(name);
+      next.delete("page");
+      return next;
+    }, { replace: true });
+  }, [setSearchParams]);
+
+  const browseRequestKey = JSON.stringify([
+    activeLearner.id, pageFromUrl, pageSize, normalizedQuery, level, cefr, topic, reloadToken
+  ]);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const requestKey = browseRequestKey;
+    void requestLearnerVocabularyBrowse(activeLearner.id, {
+      page: pageFromUrl,
+      pageSize,
+      ...(normalizedQuery ? { q: normalizedQuery } : {}),
+      ...(level ? { level } : {}),
+      ...(cefr ? { cefr } : {}),
+      ...(topic ? { topic } : {})
+    }, controller.signal)
+      .then((result) => {
+        if (controller.signal.aborted) return;
+        setVocabulary(result.vocabulary);
+        setTotal(result.total);
+        setTotalPages(result.totalPages);
+        setCefrOptions(result.filters.cefrOptions);
+        setTopicOptions(result.filters.topicOptions);
+        setState("ready");
+        setMessage(null);
+        setResultKey(requestKey);
+      })
+      .catch((error: unknown) => {
+        if (controller.signal.aborted || (error instanceof Error && error.name === "AbortError")) return;
+        setState("error");
+        setMessage(listErrorMessage(error));
+        setResultKey(requestKey);
+      });
+    return () => controller.abort();
+  }, [activeLearner.id, browseRequestKey, cefr, level, normalizedQuery, pageFromUrl, pageSize, reloadToken, topic]);
 
   const loadSavedVocabulary = useCallback(async () => {
     setSavedVocabularyState("loading");
@@ -101,9 +191,9 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
     } catch {
       setSavedVocabularyState("error");
     }
-  }, [activeLearner.id]);
+  }, [activeLearner.id, setSavedIds, setSavedVocabularyState]);
 
-  const toggleSaved = useCallback(async (item: LearnerVocabularyDto) => {
+  const toggleSaved = useCallback(async (item: LearnerVocabularyBrowseItem) => {
     if (savedVocabularyState !== "ready" || mutationInFlight.current.has(item.id)) return;
     const wasSaved = savedIds.has(item.id);
     mutationInFlight.current.add(item.id);
@@ -136,25 +226,7 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
         return next;
       });
     }
-  }, [activeLearner.id, savedIds, savedVocabularyState, toast]);
-
-  useEffect(() => {
-    let cancelled = false;
-    void requestLearnerVocabulary(activeLearner.id)
-      .then((response) => {
-        if (cancelled) return;
-        setVocabulary(response);
-        setState("ready");
-      })
-      .catch((error: unknown) => {
-        if (cancelled) return;
-        setState("error");
-        setMessage(listErrorMessage(error));
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, [activeLearner.id]);
+  }, [activeLearner.id, savedIds, savedVocabularyState, setSavedIds, setSavingIds, toast]);
 
   useEffect(() => {
     let cancelled = false;
@@ -171,19 +243,12 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
     return () => { cancelled = true; };
   }, [activeLearner.id]);
 
-  const filteredVocabulary = vocabulary.filter((item) => {
-    const matchesQuery = !normalizedQuery
-      || item.word.toLowerCase().includes(normalizedQuery)
-      || item.vietnamese.toLowerCase().includes(normalizedQuery);
-    return matchesQuery && (!level || item.level === level);
-  });
-  const pageCount = Math.max(1, Math.ceil(filteredVocabulary.length / pageSize));
-  const currentPage = Math.min(pageFromUrl, pageCount);
-  const pageVocabulary = filteredVocabulary.slice((currentPage - 1) * pageSize, currentPage * pageSize);
-  const hasFilters = Boolean(normalizedQuery || level);
+  const hasFilters = Boolean(normalizedQuery || level || cefr || topic);
+  const currentPage = Math.min(pageFromUrl, totalPages);
+  const visibleState = resultKey === browseRequestKey ? state : "loading";
 
   useEffect(() => {
-    if (state === "ready" && searchParams.has("page") && pageFromUrl !== currentPage) {
+    if (resultKey === browseRequestKey && state === "ready" && pageFromUrl > totalPages) {
       setSearchParams((current) => {
         const next = new URLSearchParams(current);
         if (currentPage === 1) next.delete("page");
@@ -191,17 +256,7 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
         return next;
       }, { replace: true });
     }
-  }, [currentPage, pageFromUrl, searchParams, setSearchParams, state]);
-
-  const updateFilter = (name: "q" | "level", value: string) => {
-    setSearchParams((current) => {
-      const next = new URLSearchParams(current);
-      if (value) next.set(name, value);
-      else next.delete(name);
-      next.delete("page");
-      return next;
-    }, { replace: true });
-  };
+  }, [browseRequestKey, currentPage, pageFromUrl, resultKey, setSearchParams, state, totalPages]);
 
   const goToPage = (page: number) => {
     setSearchParams((current) => {
@@ -212,11 +267,13 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
     }, { replace: true });
   };
 
-  const clearQuery = () => updateFilter("q", "");
-  const clearLevel = () => updateFilter("level", "");
+  const clearActiveFilter = () => {
+    const filter = normalizedQuery ? "q" : level ? "level" : cefr ? "cefr" : "topic";
+    updateFilter(filter, "");
+  };
   const visiblePageNumbers = Array.from(
-    { length: Math.min(3, pageCount) },
-    (_, index) => Math.max(1, Math.min(currentPage - 1, pageCount - 2)) + index
+    { length: Math.min(3, totalPages) },
+    (_, index) => Math.max(1, Math.min(currentPage - 1, totalPages - 2)) + index
   );
 
   return (
@@ -241,23 +298,7 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
       </header>
 
       <section className="vocabulary-toolbar" aria-label="Tìm kiếm và lọc từ vựng">
-        <div className="vocabulary-search-field">
-          <label className="sr-only" htmlFor="vocabulary-search">Tìm từ tiếng Anh hoặc nghĩa tiếng Việt</label>
-          <VocabularyIcon name="search" />
-          <input
-            id="vocabulary-search"
-            type="search"
-            value={query}
-            placeholder="Tìm từ tiếng Anh hoặc nghĩa tiếng Việt..."
-            onChange={(event) => updateFilter("q", event.target.value)}
-            data-testid="vocabulary-search"
-          />
-          {query ? (
-            <button className="vocabulary-search-clear" type="button" aria-label="Xóa tìm kiếm" data-testid="vocabulary-clear-search" onClick={clearQuery}>
-              <VocabularyIcon name="clear" />
-            </button>
-          ) : null}
-        </div>
+        <DebouncedVocabularySearch key={query} query={query} updateFilter={updateFilter} />
         <label className="vocabulary-level-control">
           <VocabularyIcon name="level" />
           <span className="sr-only">Cấp độ</span>
@@ -273,14 +314,32 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
             {vocabularyLevels.map((option) => <option key={option.value} value={option.value}>Cấp độ: {option.label}</option>)}
           </select>
         </label>
+        {cefrOptions.length > 0 ? (
+          <label className="vocabulary-level-control">
+            <span className="sr-only">CEFR</span>
+            <select aria-label="CEFR" className="vocabulary-level-select" data-testid="vocabulary-cefr-filter" value={cefr} onChange={(event) => updateFilter("cefr", event.target.value)}>
+              <option value="">CEFR: Tất cả</option>
+              {cefrOptions.map((value) => <option key={value} value={value}>CEFR {value}</option>)}
+            </select>
+          </label>
+        ) : null}
+        {topicOptions.length > 0 ? (
+          <label className="vocabulary-level-control">
+            <span className="sr-only">Chủ đề</span>
+            <select aria-label="Chủ đề" className="vocabulary-level-select" data-testid="vocabulary-topic-filter" value={topic} onChange={(event) => updateFilter("topic", event.target.value)}>
+              <option value="">Chủ đề: Tất cả</option>
+              {topicOptions.map((value) => <option key={value} value={value}>{value}</option>)}
+            </select>
+          </label>
+        ) : null}
       </section>
 
-      {state === "loading" ? (
+      {visibleState === "loading" ? (
         <LoadingState className="vocabulary-list-state" label="Đang tải từ vựng…" pattern="cards" testId="vocabulary-loading" />
       ) : null}
 
-      {state === "error" ? (
-        <ErrorState className="vocabulary-list-state vocabulary-list-error" title="Không thể tải danh sách từ vựng" description={message ?? "Vui lòng thử lại."} onRetry={() => void loadVocabulary()} testId="vocabulary-error" />
+      {visibleState === "error" ? (
+        <ErrorState className="vocabulary-list-state vocabulary-list-error" title="Không thể tải danh sách từ vựng" description={message ?? "Vui lòng thử lại."} onRetry={() => setReloadToken((value) => value + 1)} testId="vocabulary-error" />
       ) : null}
 
       {savedVocabularyState === "error" ? (
@@ -290,21 +349,21 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
         </div>
       ) : null}
 
-      {state === "ready" ? (
-        vocabulary.length === 0 ? (
+      {visibleState === "ready" ? (
+        total === 0 && !hasFilters ? (
           <EmptyState className="vocabulary-empty" icon="book" title="Chưa có từ vựng" description="Danh sách từ vựng hiện đang trống." testId="vocabulary-empty-state" />
-        ) : filteredVocabulary.length === 0 ? (
-          <EmptyState className="vocabulary-empty" icon="search" title="Không tìm thấy từ vựng" description="Thử từ khóa khác hoặc thay đổi bộ lọc." testId="vocabulary-no-results" action={<button className="vocabulary-empty-clear" type="button" data-testid="vocabulary-empty-clear" onClick={normalizedQuery ? clearQuery : clearLevel}>{normalizedQuery ? "Xóa tìm kiếm" : "Xóa bộ lọc"}</button>} />
+        ) : total === 0 ? (
+          <EmptyState className="vocabulary-empty" icon="search" title="Không tìm thấy từ vựng" description="Thử từ khóa khác hoặc thay đổi bộ lọc." testId="vocabulary-no-results" action={<button className="vocabulary-empty-clear" type="button" data-testid="vocabulary-empty-clear" onClick={clearActiveFilter}>{normalizedQuery ? "Xóa tìm kiếm" : "Xóa bộ lọc"}</button>} />
         ) : (
           <>
             <div className="vocabulary-results-row">
               <p className="vocabulary-result-count" aria-live="polite">
-                <strong>{filteredVocabulary.length}</strong> {hasFilters ? "kết quả" : "từ"}
+                <strong>{total.toLocaleString("vi-VN")}</strong> {hasFilters ? "kết quả" : "từ"}
               </p>
-              {pageCount > 1 ? <span className="vocabulary-page-summary">Trang {currentPage} / {pageCount}</span> : null}
+              <span className="vocabulary-page-summary">Trang {currentPage} / {totalPages}</span>
             </div>
             <ul className="vocabulary-grid" data-testid="vocabulary-grid">
-              {pageVocabulary.map((item) => (
+              {vocabulary.map((item) => (
                 <VocabularyCard
                   key={item.id}
                   item={item}
@@ -315,7 +374,17 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
                 />
               ))}
             </ul>
-            {pageCount > 1 ? (
+            <div className="vocabulary-pagination-row">
+              <label className="vocabulary-page-size-control">
+                <span>Số từ mỗi trang</span>
+                <select aria-label="Số từ mỗi trang" data-testid="vocabulary-page-size" value={pageSize} onChange={(event) => updateFilter("pageSize", event.target.value)}>
+                  {pageSizes.map((size) => <option key={size} value={size}>{size} từ</option>)}
+                </select>
+              </label>
+              <span className="vocabulary-range-summary" aria-live="polite">
+                {((currentPage - 1) * pageSize + 1).toLocaleString("vi-VN")}–{((currentPage - 1) * pageSize + vocabulary.length).toLocaleString("vi-VN")} / {total.toLocaleString("vi-VN")}
+              </span>
+            {totalPages > 1 ? (
               <nav className="vocabulary-pagination" aria-label="Phân trang từ vựng">
                 <button type="button" aria-label="Trang trước" disabled={currentPage === 1} onClick={() => goToPage(currentPage - 1)}>
                   <VocabularyIcon name="previous" />
@@ -326,12 +395,13 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
                     {page}
                   </button>
                 ))}
-                {currentPage < pageCount - 1 ? <span aria-hidden="true" className="vocabulary-pagination-gap">…</span> : null}
-                <button type="button" aria-label="Trang sau" disabled={currentPage === pageCount} onClick={() => goToPage(currentPage + 1)}>
+                {currentPage < totalPages - 1 ? <span aria-hidden="true" className="vocabulary-pagination-gap">…</span> : null}
+                <button type="button" aria-label="Trang sau" disabled={currentPage === totalPages} onClick={() => goToPage(currentPage + 1)}>
                   <VocabularyIcon name="next" />
                 </button>
               </nav>
             ) : null}
+            </div>
           </>
         )
       ) : null}

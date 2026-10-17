@@ -5,6 +5,7 @@ import type { LearnerDto, LearnerVocabularyDto } from "@vocabflow/contracts";
 import { useActiveLearner } from "./learner-context-hook";
 import { LearnerVocabularyClientError, requestLearnerVocabulary } from "./vocabulary-list-client";
 import { usePronunciationAudio } from "../study/pronunciation-audio";
+import { DevelopmentExampleAudio, DevelopmentImageNotice, DevelopmentImagePreviews, DevelopmentWordAudio } from "../study/development-media";
 import { requestSavedVocabulary, saveVocabulary, unsaveVocabulary } from "./saved-vocabulary-client";
 import { ErrorState, LoadingState } from "../../components/async-states";
 import { useToast } from "../../components/toast/toast-context";
@@ -160,7 +161,7 @@ function VocabularyDetailExperience({ activeLearner, vocabularyId }: { activeLea
   useEffect(() => {
     let cancelled = false;
     if (!hasValidVocabularyId) return () => { cancelled = true; };
-    void requestLearnerVocabulary(activeLearner.id)
+    void requestLearnerVocabulary(activeLearner.id, undefined, vocabularyId)
       .then((response) => {
         if (cancelled) return;
         setAllVocabulary(response);
@@ -241,6 +242,14 @@ function VocabularyDetailContent({ vocabulary, allVocabulary, isSaved, isSaving,
 }) {
   const [imageFailed, setImageFailed] = useState(false);
   const audio = usePronunciationAudio(vocabulary.audioUrl, vocabulary.word, vocabulary.id);
+  const hasDevelopmentAudio = (vocabulary.developmentMedia?.wordAudio?.length ?? 0) > 0;
+  const examples = (vocabulary.examples ?? []).flatMap((example) => {
+    if (typeof example !== "object" || example === null) return [];
+    const value = example as Record<string, unknown>;
+    return typeof value.en === "string" && value.en.trim()
+      ? [{ english: value.en, vietnamese: typeof value.vi === "string" ? value.vi : null, exampleKey: typeof value.exampleKey === "string" ? value.exampleKey : undefined }]
+      : [];
+  });
   const relatedWords = vocabulary.topic
     ? allVocabulary.filter((item) => item.id !== vocabulary.id && item.topic?.trim().toLocaleLowerCase() === vocabulary.topic?.trim().toLocaleLowerCase()).slice(0, 3)
     : [];
@@ -256,7 +265,7 @@ function VocabularyDetailContent({ vocabulary, allVocabulary, isSaved, isSaving,
         <section className="vocabulary-detail-hero" aria-labelledby="vocabulary-detail-title">
           <div className="vocabulary-detail-hero-copy">
             <div className="vocabulary-detail-word-row">
-              <button
+              {!hasDevelopmentAudio ? <button
                 className="vocabulary-detail-speaker"
                 type="button"
                 aria-label={audio.hasAudio ? audioLabel : `Chưa có phát âm cho ${vocabulary.word}`}
@@ -265,7 +274,7 @@ function VocabularyDetailContent({ vocabulary, allVocabulary, isSaved, isSaving,
                 onClick={audio.state === "playing" ? audio.pause : audio.play}
               >
                 <DetailIcon name="speaker" />
-              </button>
+              </button> : null}
               <div className="vocabulary-detail-word-copy">
                 <h1 id="vocabulary-detail-title">{vocabulary.word}</h1>
                 {vocabulary.ipa ? <p className="vocabulary-detail-ipa">{vocabulary.ipa}</p> : null}
@@ -280,7 +289,7 @@ function VocabularyDetailContent({ vocabulary, allVocabulary, isSaved, isSaving,
 
             <p className="vocabulary-detail-meaning">{vocabulary.vietnamese}</p>
             <div className="vocabulary-detail-actions">
-              <button
+              {!hasDevelopmentAudio ? <button
                 className="vocabulary-detail-action vocabulary-detail-action-primary"
                 type="button"
                 disabled={!audio.hasAudio || audio.state === "loading" || audio.state === "error"}
@@ -289,7 +298,7 @@ function VocabularyDetailContent({ vocabulary, allVocabulary, isSaved, isSaving,
               >
                 <DetailIcon name="speaker" />
                 {audio.state === "loading" ? "Đang tải…" : audio.state === "playing" ? "Tạm dừng" : audio.state === "ended" ? "Nghe lại" : "Nghe phát âm"}
-              </button>
+              </button> : null}
               <button
                 className={`vocabulary-detail-action vocabulary-detail-action-secondary${isSaved ? " is-saved" : ""}`}
                 type="button"
@@ -308,6 +317,7 @@ function VocabularyDetailContent({ vocabulary, allVocabulary, isSaved, isSaving,
                 Bắt đầu học
               </Link>
             </div>
+            {hasDevelopmentAudio ? <DevelopmentWordAudio vocabulary={vocabulary} /> : null}
             {savedVocabularyState === "error" ? <p className="vocabulary-detail-save-error" role="alert">Không thể tải trạng thái từ đã lưu. <button type="button" onClick={onRetrySaved}>Thử lại</button></p> : null}
             {audio.state === "error" ? <p className="vocabulary-detail-audio-error" role="status">Âm thanh không khả dụng lúc này.</p> : null}
           </div>
@@ -321,6 +331,8 @@ function VocabularyDetailContent({ vocabulary, allVocabulary, isSaved, isSaving,
                 <span>Chưa có hình minh họa</span>
               </div>
             )}
+            <DevelopmentImageNotice vocabulary={vocabulary} />
+            {!vocabulary.imageUrl || imageFailed ? <DevelopmentImagePreviews vocabulary={vocabulary} /> : null}
           </div>
         </section>
 
@@ -330,7 +342,17 @@ function VocabularyDetailContent({ vocabulary, allVocabulary, isSaved, isSaving,
           </DetailCard>
 
           <DetailCard icon="example" title="Ví dụ" className="vocabulary-detail-examples">
-            {vocabulary.exampleEn ? (
+            {examples.length > 0 ? (
+              <ol className="vocabulary-detail-example-list">
+                {examples.map((example, index) => (
+                  <li key={`${index}:${example.english}`}>
+                    <span lang="en">{example.english}</span>
+                    {example.vietnamese ? <span lang="vi" className="vocabulary-detail-example-translation">{example.vietnamese}</span> : null}
+                    <DevelopmentExampleAudio vocabulary={vocabulary} exampleKey={example.exampleKey} />
+                  </li>
+                ))}
+              </ol>
+            ) : vocabulary.exampleEn ? (
               <ol className="vocabulary-detail-example-list">
                 <li><span lang="en">{vocabulary.exampleEn}</span></li>
               </ol>

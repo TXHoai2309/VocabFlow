@@ -5,6 +5,7 @@ import {
   type ProgressHistoryResponse
 } from "@vocabflow/contracts";
 import { authorizeLearnerOwnership } from "./learners";
+import { vocabularyDatasetPredicate, type VocabularyDatasetVersion } from "./vocabulary-dataset-version";
 
 export const PROGRESS_HISTORY_MAX_DAYS = 90;
 
@@ -84,6 +85,7 @@ async function aggregateRows(
   learnerId: string,
   from: string,
   to: string,
+  datasetVersion: VocabularyDatasetVersion,
 ): Promise<HistoryRow[]> {
   const result = await database.execute(sql`
     SELECT
@@ -94,9 +96,11 @@ async function aggregateRows(
       COUNT(*) FILTER (WHERE result::text = 'FORGOTTEN') AS forgotten,
       COUNT(DISTINCT vocabulary_id) FILTER (WHERE previous_status::text = 'NEW') AS new_learned
     FROM "${sql.raw(APP_SCHEMA)}"."review_events"
+    JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = review_events.vocabulary_id
     WHERE learner_id = ${learnerId}::uuid
       AND review_date >= ${from}::date
       AND review_date <= ${to}::date
+      AND ${vocabularyDatasetPredicate("v", datasetVersion)}
     GROUP BY review_date
     ORDER BY review_date ASC
   `);
@@ -107,7 +111,8 @@ export type ProgressHistoryService = {
   get: (userId: string, learnerId: string, from: string, to: string) => Promise<ProgressHistoryResponse>;
 };
 
-export function createProgressHistoryService(database: ProgressHistoryDatabase): ProgressHistoryService {
+export function createProgressHistoryService(database: ProgressHistoryDatabase, options: { datasetVersion?: VocabularyDatasetVersion } = {}): ProgressHistoryService {
+  const datasetVersion = options.datasetVersion ?? "legacy";
   return {
     async get(userId, learnerId, from, to) {
       const fromOrdinal = ordinal(from);
@@ -122,7 +127,7 @@ export function createProgressHistoryService(database: ProgressHistoryDatabase):
       try {
         const [timezone, rows] = await Promise.all([
           householdTimezone(database, ownership.householdId),
-          aggregateRows(database, ownership.learnerId, from, to)
+          aggregateRows(database, ownership.learnerId, from, to, datasetVersion)
         ]);
         const byDate = new Map(rows.map((row) => [String(row.date), row]));
         const days = Array.from({ length: toOrdinal - fromOrdinal + 1 }, (_, index) => {

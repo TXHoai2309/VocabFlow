@@ -6,7 +6,7 @@ import { productionAuthSettings, type AuthEnvironment } from "./auth-production-
 export function createAuth(connectionString: string, secret: string, environment: AuthEnvironment = {}) {
   if (!secret) throw new Error("BETTER_AUTH_SECRET is required outside core health checks.");
   const productionSettings = productionAuthSettings(environment);
-  const db = createHttpDatabase(connectionString);
+  const db = createHttpDatabase(connectionString, environment.DATABASE_DRIVER);
   return betterAuth({
     secret,
     database: drizzleAdapter(db, { provider: "pg" }),

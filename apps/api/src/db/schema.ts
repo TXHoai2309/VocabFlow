@@ -153,6 +153,52 @@ export const vocabularies = vocabflowApp.table("vocabularies", {
   unique("vocabularies_source_identity_unique").on(table.sourceDataset, table.sourceRecordId)
 ]);
 
+/** Development-only projection of independently reviewed Master V2 DRAFT content. */
+export const masterV2DevelopmentProjections = vocabflowApp.table("master_v2_development_projections", {
+  proposalKey: text("proposal_key").primaryKey(),
+  sourceGroupKey: text("source_group_key").notNull(),
+  vocabularyId: integer("vocabulary_id").notNull().references(() => vocabularies.id, { onDelete: "no action" }),
+  partOfSpeech: text("part_of_speech").notNull(),
+  cefr: text("cefr"),
+  tags: jsonb("tags").$type<string[]>().notNull().default(sql`'[]'::jsonb`),
+  examples: jsonb("examples").$type<unknown[]>().notNull().default(sql`'[]'::jsonb`),
+  usageNotes: text("usage_notes"),
+  sourceProvenance: jsonb("source_provenance").$type<Record<string, unknown>>().notNull(),
+  contentSha256: text("content_sha256").notNull(),
+  reviewerIdentity: text("reviewer_identity").notNull(),
+  reviewReceiptPath: text("review_receipt_path").notNull(),
+  reviewReceiptSha256: text("review_receipt_sha256").notNull(),
+  contentReviewDecision: text("content_review_decision").notNull().default("PASS"),
+  editorialStatus: text("editorial_status").notNull().default("DRAFT"),
+  rightsStatus: text("rights_status").notNull().default("UNKNOWN_REVIEW_REQUIRED"),
+  developmentMedia: jsonb("development_media").$type<Record<string, unknown>>().notNull().default(sql`'{}'::jsonb`),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow()
+}, (table) => [
+  unique("master_v2_development_projections_vocabulary_unique").on(table.vocabularyId),
+  check("master_v2_development_projections_content_sha256_check", sql`${table.contentSha256} ~ '^[0-9a-f]{64}$'`),
+  check("master_v2_development_projections_receipt_sha256_check", sql`${table.reviewReceiptSha256} ~ '^[0-9a-f]{64}$'`),
+  check("master_v2_development_projections_review_gate_check", sql`${table.contentReviewDecision} = 'PASS' AND ${table.editorialStatus} = 'DRAFT' AND ${table.rightsStatus} = 'UNKNOWN_REVIEW_REQUIRED'`),
+  index("master_v2_development_projections_source_group_idx").on(table.sourceGroupKey)
+]);
+
+export const masterV2DevelopmentImportRuns = vocabflowApp.table("master_v2_development_import_runs", {
+  snapshotFingerprint: text("snapshot_fingerprint").primaryKey(),
+  sourceQueueSha256: text("source_queue_sha256").notNull(),
+  releaseCandidateSha256: text("release_candidate_sha256").notNull(),
+  projectionFingerprint: text("projection_fingerprint").notNull(),
+  importedSenseCount: integer("imported_sense_count").notNull(),
+  targetProjectId: text("target_project_id").notNull(),
+  targetBranchId: text("target_branch_id").notNull(),
+  targetDatabase: text("target_database").notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow()
+}, (table) => [
+  check("master_v2_development_import_runs_source_queue_sha256_check", sql`${table.sourceQueueSha256} ~ '^[0-9a-f]{64}$'`),
+  check("master_v2_development_import_runs_release_sha256_check", sql`${table.releaseCandidateSha256} ~ '^[0-9a-f]{64}$'`),
+  check("master_v2_development_import_runs_projection_sha256_check", sql`${table.projectionFingerprint} ~ '^[0-9a-f]{64}$'`),
+  check("master_v2_development_import_runs_count_check", sql`${table.importedSenseCount} >= 0`)
+]);
+
 export const topics = vocabflowApp.table("topics", {
   id: integer("id").primaryKey().generatedByDefaultAsIdentity(),
   slug: text("slug").notNull().unique(),

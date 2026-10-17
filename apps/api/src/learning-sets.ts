@@ -13,6 +13,8 @@ import {
   vocabularyDtoSchema
 } from "@vocabflow/contracts";
 import { authorizeLearnerOwnership, LearnerServiceError, resolveHouseholdId } from "./learners";
+import type { VocabularyDatasetVersion } from "./vocabulary-dataset-version";
+import { jsonArray, jsonObject, vocabularyDatasetPredicate } from "./vocabulary-dataset-version";
 
 export type LearningSetDatabase = {
   execute: (query: SQL) => Promise<unknown>;
@@ -79,11 +81,22 @@ type VocabularyRow = {
   level: unknown;
   enabled: unknown;
   content_version: number | string;
+  cefr?: unknown;
+  tags?: unknown;
+  metadata_assignments?: unknown;
+  master_sense_identity?: unknown;
+  display_form?: unknown;
+  part_of_speech?: unknown;
+  content_hash?: unknown;
+  content_review_status?: unknown;
+  editorial_status?: unknown;
+  rights_status?: unknown;
+  development_media?: unknown;
 };
 
 type AssignmentRow = SummaryRow & { active: unknown };
 
-function toSummary(row: SummaryRow): LearningSetSummary {
+function toSummary(row: SummaryRow, datasetVersion: VocabularyDatasetVersion): LearningSetSummary {
   const parsed = learningSetSummarySchema.safeParse({
     id: safeInteger(row.id),
     slug: String(row.slug),
@@ -92,13 +105,37 @@ function toSummary(row: SummaryRow): LearningSetSummary {
     grade: row.grade == null ? null : String(row.grade),
     enabled: row.enabled === true,
     sortOrder: safeInteger(row.sort_order),
-    vocabularyCount: safeInteger(row.vocabulary_count)
+    vocabularyCount: safeInteger(row.vocabulary_count),
+    ...(datasetVersion === "v2" ? {
+      studyScopeAvailable: true,
+      ...(String(row.slug).startsWith("v2-cefr-") ? { classificationStatus: "SOURCE_VERIFIED" as const } : {}),
+      ...(String(row.slug).startsWith("v2-domain-") ? { classificationStatus: "INFERRED_REVIEWABLE" as const } : {})
+    } : {})
   });
   if (!parsed.success) throw new LearningSetServiceError("INTERNAL_ERROR", 500);
   return parsed.data;
 }
 
 function toVocabulary(row: VocabularyRow): VocabularyDto {
+  const assignments = jsonObject(row.metadata_assignments);
+  const metadataEvidence = [
+    ...(jsonArray(assignments?.topics) ?? []).map((item) => {
+      const value = jsonObject(item) ?? {};
+      return { dimension: "TOPIC" as const, code: String(value.code ?? ""), label: value.label, status: value.status,
+        confidence: value.confidence, evidenceType: value.evidenceType, matchedEvidence: value.matchedEvidence };
+    }),
+    ...(jsonArray(assignments?.subtopics) ?? []).map((item) => {
+      const value = jsonObject(item) ?? {};
+      return { dimension: "SUBTOPIC" as const, code: String(value.code ?? ""), label: value.label, parentCode: String(value.parentCode ?? ""), status: value.status,
+        confidence: value.confidence, evidenceType: value.evidenceType, matchedEvidence: value.matchedEvidence };
+    }),
+    ...(jsonArray(assignments?.domains) ?? []).map((item) => {
+      const value = jsonObject(item) ?? {};
+      return { dimension: "DOMAIN" as const, code: String(value.code ?? ""), label: value.label, status: value.status,
+        confidence: value.confidence, evidenceType: value.evidenceType, matchedEvidence: value.matchedEvidence };
+    })
+  ];
+  const developmentMedia = jsonObject(row.development_media);
   const parsed = vocabularyDtoSchema.safeParse({
     id: safeInteger(row.id),
     word: String(row.word),
@@ -111,7 +148,18 @@ function toVocabulary(row: VocabularyRow): VocabularyDto {
     topic: nullableText(row.topic),
     level: row.level == null ? null : String(row.level),
     enabled: row.enabled === true,
-    contentVersion: safeInteger(row.content_version)
+    contentVersion: safeInteger(row.content_version),
+    ...(row.cefr ? { cefr: String(row.cefr) } : {}),
+    ...(Array.isArray(row.tags) ? { tags: row.tags as string[] } : {}),
+    ...(metadataEvidence.length ? { metadataEvidence } : {}),
+    ...(row.master_sense_identity ? { masterSenseIdentity: String(row.master_sense_identity) } : {}),
+    ...(row.display_form ? { displayForm: String(row.display_form) } : {}),
+    ...(row.part_of_speech ? { partOfSpeech: String(row.part_of_speech) } : {}),
+    ...(row.content_hash ? { contentHash: String(row.content_hash) } : {}),
+    ...(row.content_review_status ? { contentReviewStatus: String(row.content_review_status) } : {}),
+    ...(row.editorial_status ? { editorialStatus: String(row.editorial_status) } : {}),
+    ...(row.rights_status ? { rightsStatus: String(row.rights_status) } : {}),
+    ...(developmentMedia ? { developmentMedia } : {})
   });
   if (!parsed.success) throw new LearningSetServiceError("INTERNAL_ERROR", 500);
   return parsed.data;
@@ -128,7 +176,7 @@ async function authorizeCatalogAccess(database: LearningSetDatabase, userId: str
   }
 }
 
-async function summaryRows(database: LearningSetDatabase, extra: SQL = sql``) {
+async function summaryRows(database: LearningSetDatabase, datasetVersion: VocabularyDatasetVersion, extra: SQL = sql``) {
   const result = await database.execute(sql`
     SELECT ls.id,
            ls.slug,
@@ -137,11 +185,16 @@ async function summaryRows(database: LearningSetDatabase, extra: SQL = sql``) {
            ls.grade::text AS grade,
            ls.enabled,
            ls.sort_order,
-           COUNT(*) FILTER (WHERE v.enabled = true)::bigint AS vocabulary_count
+           COUNT(*) FILTER (WHERE v.enabled = true AND ${vocabularyDatasetPredicate("v", datasetVersion)})::bigint AS vocabulary_count
     FROM "${sql.raw(APP_SCHEMA)}"."learning_sets" ls
     LEFT JOIN "${sql.raw(APP_SCHEMA)}"."learning_set_items" lsi ON lsi.learning_set_id = ls.id
     LEFT JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = lsi.vocabulary_id
     WHERE ls.enabled = true
+      AND EXISTS (
+        SELECT 1 FROM "${sql.raw(APP_SCHEMA)}"."learning_set_items" scoped_lsi
+        JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = scoped_lsi.vocabulary_id AND v.enabled = true
+        WHERE scoped_lsi.learning_set_id = ls.id AND ${vocabularyDatasetPredicate("v", datasetVersion)}
+      )
       ${extra}
     GROUP BY ls.id, ls.slug, ls.name, ls.description, ls.grade, ls.enabled, ls.sort_order
     ORDER BY ls.sort_order ASC, ls.id ASC
@@ -149,10 +202,10 @@ async function summaryRows(database: LearningSetDatabase, extra: SQL = sql``) {
   return rowsOf<SummaryRow>(result);
 }
 
-async function requireSet(database: LearningSetDatabase, learningSetId: number): Promise<LearningSetSummary> {
-  const [row] = await summaryRows(database, sql`AND ls.id = ${learningSetId}`);
+async function requireSet(database: LearningSetDatabase, learningSetId: number, datasetVersion: VocabularyDatasetVersion): Promise<LearningSetSummary> {
+  const [row] = await summaryRows(database, datasetVersion, sql`AND ls.id = ${learningSetId}`);
   if (!row) throw new LearningSetServiceError("LEARNING_SET_NOT_FOUND", 404);
-  return toSummary(row);
+  return toSummary(row, datasetVersion);
 }
 
 async function requireOwnership(database: LearningSetDatabase, userId: string, learnerId: string) {
@@ -171,12 +224,13 @@ export type LearningSetService = {
   unassign: (userId: string, learnerId: string, learningSetId: number) => Promise<LearnerLearningSetMutationResponse>;
 };
 
-export function createLearningSetService(database: LearningSetDatabase): LearningSetService {
+export function createLearningSetService(database: LearningSetDatabase, options: { datasetVersion?: VocabularyDatasetVersion } = {}): LearningSetService {
+  const datasetVersion = options.datasetVersion ?? "legacy";
   return {
     async list(userId) {
       await authorizeCatalogAccess(database, userId);
       try {
-        return (await summaryRows(database)).map(toSummary);
+        return (await summaryRows(database, datasetVersion)).map((row) => toSummary(row, datasetVersion));
       } catch (error) {
         if (error instanceof LearningSetServiceError) throw error;
         throw new LearningSetServiceError("INTERNAL_ERROR", 500);
@@ -186,7 +240,7 @@ export function createLearningSetService(database: LearningSetDatabase): Learnin
     async detail(userId, learningSetId) {
       await authorizeCatalogAccess(database, userId);
       try {
-        const summary = await requireSet(database, learningSetId);
+        const summary = await requireSet(database, learningSetId, datasetVersion);
         const result = await database.execute(sql`
           SELECT v.id,
                  v.word,
@@ -200,11 +254,24 @@ export function createLearningSetService(database: LearningSetDatabase): Learnin
                  v.level,
                  v.enabled,
                  v.content_version,
+                 md.cefr,
+                 md.tags,
+                 md.source_provenance->'developmentLearningMetadataV1'->'assignments' AS metadata_assignments,
+                 md.proposal_key AS master_sense_identity,
+                 md.source_provenance->'masterV2Identity'->>'displayForm' AS display_form,
+                 md.part_of_speech,
+                 md.content_sha256 AS content_hash,
+                 md.content_review_decision AS content_review_status,
+                 md.editorial_status,
+                 md.rights_status,
+                 md.development_media,
                  lsi.sort_order
           FROM "${sql.raw(APP_SCHEMA)}"."learning_set_items" lsi
           JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = lsi.vocabulary_id
+          LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
           WHERE lsi.learning_set_id = ${learningSetId}
             AND v.enabled = true
+            AND ${vocabularyDatasetPredicate("v", datasetVersion)}
           ORDER BY lsi.sort_order ASC, v.id ASC
         `);
         const detail = {
@@ -225,6 +292,7 @@ export function createLearningSetService(database: LearningSetDatabase): Learnin
 
     async listForLearner(userId, learnerId) {
       const ownership = await requireOwnership(database, userId, learnerId);
+      if (datasetVersion === "v2") return [];
       try {
         const result = await database.execute(sql`
           SELECT ls.id,
@@ -234,7 +302,7 @@ export function createLearningSetService(database: LearningSetDatabase): Learnin
                  ls.grade::text AS grade,
                  ls.enabled,
                  ls.sort_order,
-                 COUNT(*) FILTER (WHERE v.enabled = true)::bigint AS vocabulary_count,
+                 COUNT(*) FILTER (WHERE v.enabled = true AND ${vocabularyDatasetPredicate("v", datasetVersion)})::bigint AS vocabulary_count,
                  COALESCE(lls.active, false) AS active
           FROM "${sql.raw(APP_SCHEMA)}"."learning_sets" ls
           LEFT JOIN "${sql.raw(APP_SCHEMA)}"."learning_set_items" lsi ON lsi.learning_set_id = ls.id
@@ -243,13 +311,18 @@ export function createLearningSetService(database: LearningSetDatabase): Learnin
             ON lls.learning_set_id = ls.id
            AND lls.learner_id = ${ownership.learnerId}::uuid
           WHERE ls.enabled = true
+            AND EXISTS (
+              SELECT 1 FROM "${sql.raw(APP_SCHEMA)}"."learning_set_items" scoped_lsi
+              JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = scoped_lsi.vocabulary_id AND v.enabled = true
+              WHERE scoped_lsi.learning_set_id = ls.id AND ${vocabularyDatasetPredicate("v", datasetVersion)}
+            )
           GROUP BY ls.id, ls.slug, ls.name, ls.description, ls.grade, ls.enabled,
                    ls.sort_order, lls.active
           ORDER BY ls.sort_order ASC, ls.id ASC
         `);
         return rowsOf<AssignmentRow>(result).map((row) => {
           const parsed = learnerLearningSetDtoSchema.safeParse({
-            learningSet: toSummary(row),
+            learningSet: toSummary(row, datasetVersion),
             active: row.active === true
           });
           if (!parsed.success) throw new LearningSetServiceError("INTERNAL_ERROR", 500);
@@ -263,8 +336,9 @@ export function createLearningSetService(database: LearningSetDatabase): Learnin
 
     async assign(userId, learnerId, learningSetId) {
       await requireOwnership(database, userId, learnerId);
+      if (datasetVersion === "v2") throw new LearningSetServiceError("LEARNING_SET_NOT_FOUND", 404);
       try {
-        await requireSet(database, learningSetId);
+        await requireSet(database, learningSetId, datasetVersion);
         const result = await database.execute(sql`
           INSERT INTO "${sql.raw(APP_SCHEMA)}"."learner_learning_sets"
             (learner_id, learning_set_id, active)
@@ -289,8 +363,9 @@ export function createLearningSetService(database: LearningSetDatabase): Learnin
 
     async unassign(userId, learnerId, learningSetId) {
       await requireOwnership(database, userId, learnerId);
+      if (datasetVersion === "v2") throw new LearningSetServiceError("LEARNING_SET_NOT_FOUND", 404);
       try {
-        await requireSet(database, learningSetId);
+        await requireSet(database, learningSetId, datasetVersion);
         await database.execute(sql`
           DELETE FROM "${sql.raw(APP_SCHEMA)}"."learner_learning_sets"
           WHERE learner_id = ${learnerId}::uuid

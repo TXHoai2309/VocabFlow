@@ -5,6 +5,7 @@ import {
   type ResetLearnerProgressResponse
 } from "@vocabflow/contracts";
 import { authorizeLearnerOwnership } from "./learners";
+import { vocabularyDatasetPredicate, type VocabularyDatasetVersion } from "./vocabulary-dataset-version";
 
 export type ResetLearnerProgressDatabase = {
   execute: (query: SQL) => Promise<unknown>;
@@ -42,7 +43,9 @@ export type ResetLearnerProgressService = {
 
 export function createResetLearnerProgressService(
   database: ResetLearnerProgressDatabase,
+  options: { datasetVersion?: VocabularyDatasetVersion } = {}
 ): ResetLearnerProgressService {
+  const datasetVersion = options.datasetVersion ?? "legacy";
   return {
     async reset(userId, learnerId) {
       let ownership;
@@ -60,9 +63,12 @@ export function createResetLearnerProgressService(
         // statement also matches the runtime's Neon HTTP database pattern and
         // makes a future partial reset impossible at this boundary.
         const result = await database.execute(sql`
-          DELETE FROM "${sql.raw(APP_SCHEMA)}"."learner_progress"
-          WHERE learner_id = ${ownership.learnerId}::uuid
-          RETURNING vocabulary_id
+          DELETE FROM "${sql.raw(APP_SCHEMA)}"."learner_progress" lp
+          USING "${sql.raw(APP_SCHEMA)}"."vocabularies" v
+          WHERE lp.learner_id = ${ownership.learnerId}::uuid
+            AND lp.vocabulary_id = v.id
+            AND ${vocabularyDatasetPredicate("v", datasetVersion)}
+          RETURNING lp.vocabulary_id
         `);
         const parsed = resetLearnerProgressResponseSchema.safeParse({
           learnerId: ownership.learnerId,

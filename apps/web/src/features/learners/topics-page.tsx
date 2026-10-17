@@ -245,7 +245,8 @@ function TopicDetailExperience({ learner, topicId }: { learner: LearnerDto; topi
         progressTotal={data.total}
         masteredCount={data.mastered}
         studyHref={`/study/setup?topicId=${data.topic.id}`}
-        studyReady={data.hasAssignedVocabulary}
+        studyReady={data.topic.studyScopeAvailable === true || data.hasAssignedVocabulary}
+        directStudyScope={data.topic.studyScopeAvailable === true}
         assignmentHref={data.items.length > 0 && !data.hasAssignedVocabulary ? "/learning-sets/assign" : undefined}
       />
     );

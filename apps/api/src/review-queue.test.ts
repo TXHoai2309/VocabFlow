@@ -104,6 +104,32 @@ describe("Scoped membership SQL before bounds", () => {
       expect(query.sql).toContain('"learner_learning_sets"'); expect(query.sql).toContain('"vocabulary_topics"'); expect(query.params).toContain(7);
     }
   });
+
+  it.each([
+    { type: "topic" as const, id: 7, membershipTable: '"vocabulary_topics"' },
+    { type: "learning-set" as const, id: 4, membershipTable: '"learning_set_items"' }
+  ])("scopes V2 $type learning queues to the selected metadata membership", async ({ type, id, membershipTable }) => {
+    const queries: Array<{ sql: string; params: unknown[] }> = [];
+    const execute = vi.fn(async (query) => {
+      const rendered = new PgDialect().sqlToQuery(query); queries.push(rendered);
+      const statement = rendered.sql;
+      if (queries.length === 1) return authorizedRows();
+      if (statement.includes("SELECT t.id") || statement.includes("SELECT ls.id")) return { rows: [{ id }] };
+      if (statement.includes("SELECT timezone")) return { rows: [{ timezone: "Asia/Ho_Chi_Minh" }] };
+      if (statement.includes("daily_new_word_limit")) return dailyUsageRow(10, 0);
+      if (statement.includes("next_review_date <=")) return { rows: [] };
+      if (statement.includes("lp.vocabulary_id IS NULL")) return { rows: [newRow(701, 1)] };
+      throw new Error("Unexpected V2 learning queue query");
+    });
+    const service = createReviewQueueService({ execute }, { datasetVersion: "v2" });
+    const result = await service.list("A", learnerId, undefined, { type, id });
+    expect(result.queue.map((item) => item.vocabulary.id)).toEqual([701]);
+    const membershipQuery = queries.find(({ sql }) => sql.includes("COUNT(*) OVER()"))?.sql ?? "";
+    expect(membershipQuery).toContain(membershipTable);
+    expect(membershipQuery).toContain("source_dataset =");
+    expect(membershipQuery).not.toContain('"learner_learning_sets"');
+    expect(queries.some(({ sql }) => sql.includes("SELECT t.id") || sql.includes("SELECT ls.id"))).toBe(true);
+  });
 });
 
 describe("Bounded Study candidate capacity", () => {

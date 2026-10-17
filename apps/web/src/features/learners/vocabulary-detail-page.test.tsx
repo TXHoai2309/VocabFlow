@@ -110,7 +110,7 @@ describe("vocabulary detail page", () => {
     expect(screen.getByText("3 tháng 10, 2026")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /banana/ })).toHaveAttribute("href", "/vocabulary/2");
     expect(screen.queryByRole("link", { name: /book/ })).not.toBeInTheDocument();
-    expect(fetchMock).toHaveBeenCalledWith(`/api/learners/${learner.id}/vocabulary`, { credentials: "include" });
+    expect(fetchMock).toHaveBeenCalledWith(`/api/learners/${learner.id}/vocabulary?id=1`, { credentials: "include" });
   });
 
   it("uses explicit empty states for unavailable content and does not invent learning metrics", async () => {
@@ -170,7 +170,7 @@ describe("vocabulary detail page", () => {
     expect(await screen.findByTestId("vocabulary-detail-error")).toHaveTextContent("Không thể tải chi tiết từ vựng lúc này.");
     fireEvent.click(screen.getByRole("button", { name: "Thử lại" }));
     await waitFor(() => expect(screen.getByRole("heading", { name: "apple" })).toBeInTheDocument());
-    expect(fetchMock.mock.calls.filter(([url]) => String(url).endsWith("/vocabulary"))).toHaveLength(2);
+    expect(fetchMock.mock.calls.filter(([url]) => String(url).includes("/vocabulary") && !String(url).includes("saved-vocabulary"))).toHaveLength(2);
   });
 
   it("saves and unsaves from detail with immediate accessible state and no page reload", async () => {

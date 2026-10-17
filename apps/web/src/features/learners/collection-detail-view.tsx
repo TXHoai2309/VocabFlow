@@ -17,6 +17,7 @@ type CollectionDetailViewProps = {
   masteredCount: number;
   studyHref: string;
   studyReady: boolean;
+  directStudyScope?: boolean;
   assignmentHref?: string;
 };
 
@@ -56,6 +57,7 @@ export function CollectionDetailView({
   masteredCount,
   studyHref,
   studyReady,
+  directStudyScope = false,
   assignmentHref
 }: CollectionDetailViewProps) {
   const [query, setQuery] = useState("");
@@ -160,7 +162,7 @@ export function CollectionDetailView({
             <div className="collection-progress-track" role="progressbar" aria-label={`Tiến độ học ${title}`} aria-valuemin={0} aria-valuemax={Math.max(total, 1)} aria-valuenow={learned} aria-valuetext={`${learned} / ${total} từ, ${percent}%`}>
               <span style={{ width: `${percent}%` }} />
             </div>
-            {kind === "topic" ? <p className="collection-progress-note">Tiến độ tính trên từ thuộc các bộ học tập của bạn.</p> : null}
+            {kind === "topic" ? <p className="collection-progress-note">{directStudyScope ? "Tiến độ tính trên các từ V2 thuộc chủ đề này." : "Tiến độ tính trên từ thuộc các bộ học tập của bạn."}</p> : null}
           </section>
 
           <section className="collection-detail-card collection-detail-action-card" aria-labelledby="collection-action-title">

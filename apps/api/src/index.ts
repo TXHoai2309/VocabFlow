@@ -1,4 +1,4 @@
-import { parseStudySetIds, positiveStudyId, parseStudyQueueCapacity } from "@vocabflow/contracts";
+import { parseStudySetIds, positiveStudyId, parseStudyQueueCapacity, learnerVocabularyBrowseQuerySchema } from "@vocabflow/contracts";
 import { Hono } from "hono";
 import { performance } from "node:perf_hooks";
 import type { RuntimeBindings } from "./runtime-bindings";
@@ -43,6 +43,7 @@ import {
 } from "./continue-learning";
 import { createGamificationService, GamificationServiceError, type GamificationService } from "./gamification";
 import { createLearnerVocabularyService, LearnerVocabularyServiceError, type LearnerVocabularyService } from "./learner-vocabulary";
+import { createLearnerVocabularyBrowseService, type LearnerVocabularyBrowseService } from "./learner-vocabulary-browse";
 import {
   createLearnerSavedVocabularyService,
   LearnerSavedVocabularyServiceError,
@@ -60,6 +61,8 @@ import {
   parseGlobalSearchQuery,
   type GlobalSearchService
 } from "./global-search";
+import { vocabularyDatasetVersion } from "./vocabulary-dataset-version";
+import { mustWithholdV2Media, withoutUnclearedV2Media } from "./v2-public-media";
 import {
   createResetLearnerProgressService,
   ResetLearnerProgressServiceError,
@@ -90,6 +93,7 @@ export type AppDependencies = {
   continueLearningService?: ContinueLearningService;
   gamificationService?: GamificationService;
   learnerVocabularyService?: LearnerVocabularyService;
+  learnerVocabularyBrowseService?: LearnerVocabularyBrowseService;
   learnerSavedVocabularyService?: LearnerSavedVocabularyService;
   weakWordsService?: WeakWordsService;
   globalSearchService?: GlobalSearchService;
@@ -120,7 +124,7 @@ async function readAuthenticatedSession(request: Request, env: RuntimeBindings, 
 async function runBootstrap(userId: string, env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
-  const database = createHttpDatabase(env.DATABASE_URL);
+  const database = createHttpDatabase(env.DATABASE_URL, env.DATABASE_DRIVER);
   const service: BootstrapService = createBootstrapService(database);
   return service.ensureDefaultHousehold(userId);
 }
@@ -128,109 +132,109 @@ async function runBootstrap(userId: string, env: RuntimeBindings) {
 async function runLearnerService(env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
-  return createLearnerService(createHttpDatabase(env.DATABASE_URL));
+  return createLearnerService(createHttpDatabase(env.DATABASE_URL, env.DATABASE_DRIVER));
 }
 
 async function runVocabularyService(env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
-  return createVocabularyService(createHttpDatabase(env.DATABASE_URL));
+  return createVocabularyService(createHttpDatabase(env.DATABASE_URL, env.DATABASE_DRIVER), { datasetVersion: vocabularyDatasetVersion(env) });
 }
 
 async function runReviewService(env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
-  return createReviewService(createHttpDatabase(env.DATABASE_URL));
+  return createReviewService(createHttpDatabase(env.DATABASE_URL, env.DATABASE_DRIVER));
 }
 
 async function runReviewQueueService(env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
-  return createReviewQueueService(createHttpDatabase(env.DATABASE_URL));
+  return createReviewQueueService(createHttpDatabase(env.DATABASE_URL, env.DATABASE_DRIVER), { datasetVersion: vocabularyDatasetVersion(env) });
 }
 
 async function runLearnerSettingsService(env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
-  return createLearnerSettingsService(createHttpDatabase(env.DATABASE_URL));
+  return createLearnerSettingsService(createHttpDatabase(env.DATABASE_URL, env.DATABASE_DRIVER));
 }
 
 async function runTopicService(env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
-  return createTopicService(createHttpDatabase(env.DATABASE_URL));
+  return createTopicService(createHttpDatabase(env.DATABASE_URL, env.DATABASE_DRIVER), { datasetVersion: vocabularyDatasetVersion(env) });
 }
 
 async function runLearningSetService(env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
-  return createLearningSetService(createHttpDatabase(env.DATABASE_URL));
+  return createLearningSetService(createHttpDatabase(env.DATABASE_URL, env.DATABASE_DRIVER), { datasetVersion: vocabularyDatasetVersion(env) });
 }
 
 async function runProgressSummaryService(env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
-  return createProgressSummaryService(createHttpDatabase(env.DATABASE_URL));
+  return createProgressSummaryService(createHttpDatabase(env.DATABASE_URL, env.DATABASE_DRIVER), { datasetVersion: vocabularyDatasetVersion(env) });
 }
 
 async function runActivitySummaryService(env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
-  return createActivitySummaryService(createHttpDatabase(env.DATABASE_URL));
+  return createActivitySummaryService(createHttpDatabase(env.DATABASE_URL, env.DATABASE_DRIVER), { datasetVersion: vocabularyDatasetVersion(env) });
 }
 
 async function runProgressHistoryService(env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
-  return createProgressHistoryService(createHttpDatabase(env.DATABASE_URL));
+  return createProgressHistoryService(createHttpDatabase(env.DATABASE_URL, env.DATABASE_DRIVER), { datasetVersion: vocabularyDatasetVersion(env) });
 }
 
 async function runTopicProgressService(env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
-  return createTopicProgressService(createHttpDatabase(env.DATABASE_URL));
+  return createTopicProgressService(createHttpDatabase(env.DATABASE_URL, env.DATABASE_DRIVER), { datasetVersion: vocabularyDatasetVersion(env) });
 }
 
 async function runGamificationService(env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
-  return createGamificationService(createHttpDatabase(env.DATABASE_URL));
+  return createGamificationService(createHttpDatabase(env.DATABASE_URL, env.DATABASE_DRIVER), { datasetVersion: vocabularyDatasetVersion(env) });
 }
 
 async function runLearnerVocabularyService(env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
-  return createLearnerVocabularyService(createHttpDatabase(env.DATABASE_URL));
+  return createLearnerVocabularyService(createHttpDatabase(env.DATABASE_URL, env.DATABASE_DRIVER), { datasetVersion: vocabularyDatasetVersion(env) });
 }
 
 async function runContinueLearningService(env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
-  return createContinueLearningService(createHttpDatabase(env.DATABASE_URL));
+  return createContinueLearningService(createHttpDatabase(env.DATABASE_URL, env.DATABASE_DRIVER), { datasetVersion: vocabularyDatasetVersion(env) });
 }
 
 async function runLearnerSavedVocabularyService(env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
-  return createLearnerSavedVocabularyService(createHttpDatabase(env.DATABASE_URL));
+  return createLearnerSavedVocabularyService(createHttpDatabase(env.DATABASE_URL, env.DATABASE_DRIVER), { datasetVersion: vocabularyDatasetVersion(env) });
 }
 
 async function runWeakWordsService(env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
-  return createWeakWordsService(createHttpDatabase(env.DATABASE_URL));
+  return createWeakWordsService(createHttpDatabase(env.DATABASE_URL, env.DATABASE_DRIVER), { datasetVersion: vocabularyDatasetVersion(env) });
 }
 
 async function runGlobalSearchService(env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
-  return createGlobalSearchService(createHttpDatabase(env.DATABASE_URL));
+  return createGlobalSearchService(createHttpDatabase(env.DATABASE_URL, env.DATABASE_DRIVER), { datasetVersion: vocabularyDatasetVersion(env) });
 }
 
 async function runResetLearnerProgressService(env: RuntimeBindings) {
   if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
   const { createHttpDatabase } = await import("./db/client");
-  return createResetLearnerProgressService(createHttpDatabase(env.DATABASE_URL));
+  return createResetLearnerProgressService(createHttpDatabase(env.DATABASE_URL, env.DATABASE_DRIVER), { datasetVersion: vocabularyDatasetVersion(env) });
 }
 
 function parseVocabularyLevelQuery(request: Request): VocabularyLevel | undefined | null {
@@ -239,6 +243,48 @@ function parseVocabularyLevelQuery(request: Request): VocabularyLevel | undefine
   if (keys.length === 0) return undefined;
   if (keys.length !== 1 || keys[0] !== "level") return null;
   const parsed = vocabularyLevelSchema.safeParse(params.get("level"));
+  return parsed.success ? parsed.data : null;
+}
+
+async function runLearnerVocabularyBrowseService(env: RuntimeBindings) {
+  if (!env.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
+  const { createHttpDatabase } = await import("./db/client");
+  return createLearnerVocabularyBrowseService(createHttpDatabase(env.DATABASE_URL, env.DATABASE_DRIVER), { datasetVersion: vocabularyDatasetVersion(env) });
+}
+
+function parseLearnerVocabularyQuery(request: Request): { level?: VocabularyLevel; vocabularyId?: number } | null {
+  const params = new URL(request.url).searchParams;
+  const keys = [...params.keys()];
+  if (new Set(keys).size !== keys.length || keys.some((key) => key !== "level" && key !== "id")) return null;
+  const rawLevel = params.get("level");
+  const level = rawLevel === null ? undefined : vocabularyLevelSchema.safeParse(rawLevel);
+  if (level && !level.success) return null;
+  const rawId = params.get("id");
+  const vocabularyId = rawId === null ? undefined : positiveStudyId(rawId);
+  if (rawId !== null && vocabularyId === null) return null;
+  return {
+    ...(level?.success ? { level: level.data } : {}),
+    ...(vocabularyId ? { vocabularyId } : {})
+  };
+}
+
+function parseLearnerVocabularyBrowseQuery(request: Request) {
+  const params = new URL(request.url).searchParams;
+  const allowed = new Set(["page", "pageSize", "q", "level", "cefr", "topic"]);
+  const keys = [...params.keys()];
+  if (new Set(keys).size !== keys.length || keys.some((key) => !allowed.has(key))) return null;
+
+  const candidate: Record<string, unknown> = {};
+  for (const key of ["page", "pageSize"] as const) {
+    const value = params.get(key);
+    if (value !== null) candidate[key] = /^\d+$/.test(value) ? Number(value) : Number.NaN;
+  }
+  for (const key of ["q", "level", "cefr", "topic"] as const) {
+    const value = params.get(key);
+    if (value !== null) candidate[key] = value;
+  }
+
+  const parsed = learnerVocabularyBrowseQuerySchema.safeParse(candidate);
   return parsed.success ? parsed.data : null;
 }
 
@@ -287,6 +333,17 @@ export function createApp(dependencies: AppDependencies = {}) {
   const readSession = dependencies.readSession ?? readAuthenticatedSession;
   const bootstrap = dependencies.bootstrap ?? runBootstrap;
   const application = new Hono<{ Bindings: RuntimeBindings }>();
+
+  application.use("/api/*", async (c, next) => {
+    await next();
+    if (!mustWithholdV2Media(c.env ?? {}) || c.req.path.startsWith("/api/auth/")
+      || !c.res.headers.get("content-type")?.includes("application/json")) return;
+    const body: unknown = await c.res.clone().json();
+    const response = new Response(JSON.stringify(withoutUnclearedV2Media(body)), c.res);
+    response.headers.delete("content-length");
+    response.headers.delete("etag");
+    c.res = response;
+  });
 
   application.get("/api/health", (c) => c.json({ status: "ok" }, 200));
 
@@ -908,20 +965,43 @@ export function createApp(dependencies: AppDependencies = {}) {
     }
   });
 
+  application.get("/api/learners/:learnerId/vocabulary/browse", async (c) => {
+    try {
+      const session = await readSession(c.req.raw, c.env);
+      if (!session?.user?.id) {
+        return c.json(errorEnvelope("UNAUTHORIZED", "Đăng nhập để tiếp tục."), 401);
+      }
+      const query = parseLearnerVocabularyBrowseQuery(c.req.raw);
+      if (query === null) {
+        return c.json(errorEnvelope("INVALID_REQUEST", "Dữ liệu gửi lên không hợp lệ."), 400);
+      }
+      const service = dependencies.learnerVocabularyBrowseService ?? await runLearnerVocabularyBrowseService(c.env);
+      return c.json(await service.browse(session.user.id, c.req.param("learnerId"), query), 200);
+    } catch (error) {
+      if (error instanceof LearnerVocabularyServiceError) {
+        const message = error.code === "HOUSEHOLD_ACCESS_DENIED"
+          ? "Bạn không có quyền truy cập learner này."
+          : "Không thể tải vocabulary lúc này. Vui lòng thử lại.";
+        return c.json(errorEnvelope(error.code, message), error.status);
+      }
+      return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể tải vocabulary lúc này. Vui lòng thử lại."), 503);
+    }
+  });
+
   application.get("/api/learners/:learnerId/vocabulary", async (c) => {
     try {
       const session = await readSession(c.req.raw, c.env);
       if (!session?.user?.id) {
         return c.json(errorEnvelope("UNAUTHORIZED", "Đăng nhập để tiếp tục."), 401);
       }
-      const level = parseVocabularyLevelQuery(c.req.raw);
-      if (level === null) {
+      const query = parseLearnerVocabularyQuery(c.req.raw);
+      if (query === null) {
         return c.json(errorEnvelope("INVALID_REQUEST", "Dữ liệu gửi lên không hợp lệ."), 400);
       }
       const service = dependencies.learnerVocabularyService ?? await runLearnerVocabularyService(c.env);
-      const vocabulary = level === undefined
+      const vocabulary = query.level === undefined && query.vocabularyId === undefined
         ? await service.list(session.user.id, c.req.param("learnerId"))
-        : await service.list(session.user.id, c.req.param("learnerId"), level);
+        : await service.list(session.user.id, c.req.param("learnerId"), query.level, query.vocabularyId);
       return c.json({ vocabulary }, 200);
     } catch (error) {
       if (error instanceof LearnerVocabularyServiceError) {
