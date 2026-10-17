@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { VocabularyDto } from "@vocabflow/contracts";
 import { usePronunciationAudio } from "./pronunciation-audio";
 import { DevelopmentExampleAudio, DevelopmentImageNotice, DevelopmentImagePreviews, DevelopmentWordAudio } from "./development-media";
+import { formatPartOfSpeech, formatVocabularyTopic, parseVocabularyExamples } from "../vocabulary/vocabulary-presentation";
 
 export type FlashcardProps = {
   vocabulary: VocabularyDto;
@@ -13,13 +14,9 @@ export function Flashcard({ vocabulary, isFlipped, onFlip }: FlashcardProps) {
   const [imageFailed, setImageFailed] = useState(false);
   const audio = usePronunciationAudio(vocabulary.audioUrl, vocabulary.word, vocabulary.id);
   const developmentAudio = (vocabulary.developmentMedia?.wordAudio?.length ?? 0) > 0;
-  const examples = (vocabulary.examples ?? []).flatMap((example) => {
-    if (typeof example !== "object" || example === null) return [];
-    const value = example as Record<string, unknown>;
-    const english = value.en;
-    const exampleKey = typeof value.exampleKey === "string" ? value.exampleKey : undefined;
-    return typeof english === "string" && english.trim() ? [{ english, exampleKey }] : [];
-  });
+  const examples = parseVocabularyExamples(vocabulary.examples);
+  const partOfSpeech = formatPartOfSpeech(vocabulary.partOfSpeech);
+  const topic = formatVocabularyTopic(vocabulary.topic);
 
   const audioLabel = audio.state === "loading"
     ? `Đang tải phát âm ${audio.word}`
@@ -34,7 +31,7 @@ export function Flashcard({ vocabulary, isFlipped, onFlip }: FlashcardProps) {
   return (
     <div className="flashcard" data-testid="flashcard">
       {developmentAudio ? <DevelopmentWordAudio vocabulary={vocabulary} /> : null}
-      {audio.hasAudio && !developmentAudio ? (
+      {audio.hasAudio && !developmentAudio && audio.state !== "error" ? (
         <div className="flashcard-audio-control">
           <button
             className="auth-retry flashcard-audio-button"
@@ -42,14 +39,14 @@ export function Flashcard({ vocabulary, isFlipped, onFlip }: FlashcardProps) {
             aria-label={audioLabel}
             aria-busy={audio.state === "loading"}
             data-audio-state={audio.state}
-            disabled={audio.state === "loading" || audio.state === "error"}
+            disabled={audio.state === "loading"}
             onClick={audio.state === "playing" ? audio.pause : audio.play}
           >
             {audio.state === "loading" ? "Đang tải…" : audio.state === "playing" ? "Tạm dừng" : audio.state === "ended" ? "Nghe lại" : "Nghe phát âm"}
           </button>
-          {audio.state === "error" ? <span className="flashcard-audio-error" role="status">Âm thanh không khả dụng.</span> : null}
         </div>
       ) : null}
+      {audio.state === "error" && !developmentAudio ? <span className="flashcard-audio-error" role="status">Âm thanh không khả dụng.</span> : null}
 
       <button
         className="flashcard-flip"
@@ -75,18 +72,26 @@ export function Flashcard({ vocabulary, isFlipped, onFlip }: FlashcardProps) {
           <span className="flashcard-face flashcard-back">
             <span id="flashcard-description" className="sr-only">Từ: {vocabulary.word}. Nghĩa: {vocabulary.vietnamese}.</span>
             <span className="flashcard-word">{vocabulary.word}</span>
-            {vocabulary.ipa ? <span className="flashcard-optional">{vocabulary.ipa}</span> : null}
+            {vocabulary.ipa || partOfSpeech ? <span className="flashcard-optional">{[vocabulary.ipa, partOfSpeech].filter(Boolean).join(" · ")}</span> : null}
+            <span className="flashcard-meaning-label">Nghĩa tiếng Việt</span>
             <span className="flashcard-vietnamese">{vocabulary.vietnamese}</span>
-            {vocabulary.definitionEn ? <span className="flashcard-optional">{vocabulary.definitionEn}</span> : null}
+            {vocabulary.definitionEn ? <span className="flashcard-definition"><span className="flashcard-meaning-label">Định nghĩa tiếng Anh</span><span lang="en">{vocabulary.definitionEn}</span></span> : null}
             {examples.length > 0 ? examples.map((example, index) => (
-              <span className="flashcard-example" key={`${index}:${example.english}`}>{example.english}<DevelopmentExampleAudio vocabulary={vocabulary} exampleKey={example.exampleKey} /></span>
-            )) : vocabulary.exampleEn ? <span className="flashcard-example">{vocabulary.exampleEn}</span> : null}
-            {vocabulary.topic ? <span className="flashcard-optional">{vocabulary.topic}</span> : null}
+              <span className="flashcard-example" key={`${index}:${example.english}`}>
+                <span className="flashcard-example-line"><span className="flashcard-example-language">EN</span><span lang="en">{example.english}</span></span>
+                {example.vietnamese ? <span className="flashcard-example-line"><span className="flashcard-example-language">VI</span><span lang="vi">{example.vietnamese}</span></span> : null}
+                <DevelopmentExampleAudio vocabulary={vocabulary} exampleKey={example.exampleKey} />
+              </span>
+            )) : vocabulary.exampleEn ? <span className="flashcard-example"><span className="flashcard-example-line"><span className="flashcard-example-language">EN</span><span lang="en">{vocabulary.exampleEn}</span></span></span> : null}
+            {topic ? <span className="flashcard-optional">{topic}</span> : null}
             {vocabulary.imageUrl && !imageFailed ? (
               <img className="flashcard-image" src={vocabulary.imageUrl} alt={`Minh họa cho ${vocabulary.word}`} onError={() => setImageFailed(true)} />
             ) : null}
             <DevelopmentImageNotice vocabulary={vocabulary} />
             {!vocabulary.imageUrl || imageFailed ? <DevelopmentImagePreviews vocabulary={vocabulary} /> : null}
+            {(!vocabulary.imageUrl || imageFailed) && (vocabulary.developmentMedia?.images?.length ?? 0) === 0
+              ? <span className="flashcard-missing-image" role="img" aria-label={`Chưa có hình minh họa cho ${vocabulary.word}`}>Chưa có hình minh họa</span>
+              : null}
           </span>
         )}
       </button>

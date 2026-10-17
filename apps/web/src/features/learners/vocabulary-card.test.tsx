@@ -38,19 +38,49 @@ function renderCard(showStatus = true) {
 describe("VocabularyCard shared UI", () => {
   beforeEach(() => vi.clearAllMocks());
 
-  it.each(["loading", "error"] as const)("disables audio while playback is %s", (state) => {
-    setupAudio(state);
+  it("disables audio while playback is loading", () => {
+    setupAudio("loading");
     renderCard();
 
     expect(screen.getByRole("button", { name: "Nghe phát âm apple" })).toBeDisabled();
     expect(screen.getByText("Đang học")).toBeInTheDocument();
   });
 
-  it("disables audio when the vocabulary has no available audio URL", () => {
+  it("replaces a failed player control with a non-interactive status", () => {
+    setupAudio("error");
+    renderCard();
+
+    expect(screen.queryByRole("button", { name: /phát âm apple/i })).not.toBeInTheDocument();
+    expect(screen.getByText("Âm thanh không khả dụng")).toHaveAttribute("role", "status");
+  });
+
+  it("does not render an audio button without a usable source", () => {
     setupAudio("idle", false);
     renderCard();
 
-    expect(screen.getByRole("button", { name: "Nghe phát âm apple" })).toBeDisabled();
+    expect(screen.queryByRole("button", { name: "Nghe phát âm apple" })).not.toBeInTheDocument();
+  });
+
+  it("labels the Vietnamese gloss, POS and inferred topics for learners", () => {
+    setupAudio("idle", false);
+    render(<MemoryRouter><ul><VocabularyCard item={{
+      ...item,
+      partOfSpeech: "NOUN",
+      tags: ["topic-inferred:travel"]
+    }} showTopic /></ul></MemoryRouter>);
+
+    expect(screen.getByText("Nghĩa tiếng Việt")).toBeInTheDocument();
+    expect(screen.getByText("/ˈæp.əl/ · Danh từ")).toBeInTheDocument();
+    expect(screen.getByText("Chủ đề · Du lịch")).toBeInTheDocument();
+    expect(screen.queryByText("topic-inferred:travel")).not.toBeInTheDocument();
+  });
+
+  it("shows a named image fallback after a broken image URL", () => {
+    setupAudio("idle", false);
+    const { container } = render(<MemoryRouter><ul><VocabularyCard item={{ ...item, imageUrl: "/broken.jpg" }} /></ul></MemoryRouter>);
+    fireEvent.error(container.querySelector("img")!);
+
+    expect(screen.getByRole("img", { name: "Chưa có hình minh họa cho apple" })).toBeInTheDocument();
   });
 
   it("reuses the audio playback hook when audio is available", () => {

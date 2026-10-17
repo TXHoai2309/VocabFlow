@@ -4479,3 +4479,15 @@ Added a content-bound, immutable downstream overlay for three grammar-note field
 
 - Allow the production build mutation guard to ignore the tracked vocabflow-dataset/ directory that Vercel intentionally removes through .vercelignore; continue to reject tracked changes to deployed application files. Add a regression test for both behaviors.
 - The first Vercel Preview for release commit 37e9dc0d53c78f1d75c42d3512b6217a5c18954e failed at this guard. Follow-up Preview verification is pending; no Production settings or deployment changed.
+
+## 2026-10-18 — Vocabulary UI presentation hotfix
+
+- Label the canonical Vietnamese meaning and English definition separately,
+  show POS with IPA, and display structured English/Vietnamese examples on
+  distinct lines. Translate known/inferred topic labels for display without
+  changing their API filter IDs.
+- Add accessible image fallbacks and hide pronunciation controls when there
+  is no playable URL; playback failure receives a status message. Preserve the
+  Production media withholding guard for media without clearance.
+- Add focused helper and UI regression tests. No Dataset, Neon, Cloudinary,
+  Production configuration, or deployment changes.

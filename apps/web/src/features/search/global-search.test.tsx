@@ -114,6 +114,22 @@ describe("global search palette", () => {
     expect(requestUrl().searchParams.get("limit")).toBe("5");
   });
 
+  it("labels the Vietnamese gloss and falls back when a search image cannot load", async () => {
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(JSON.stringify({
+      ...response(),
+      vocabulary: [{ ...vocabulary, imageUrl: "/broken-image.jpg" }]
+    }), { status: 200 }));
+    const { container } = renderPalette();
+    fireEvent.change(screen.getByRole("searchbox", { name: "Tìm từ vựng, chủ đề hoặc bộ từ" }), { target: { value: "family" } });
+
+    expect(await screen.findByText("Nghĩa · gia đình")).toBeInTheDocument();
+    const image = container.querySelector(".global-search-result-image");
+    expect(image).toBeInTheDocument();
+    fireEvent.error(image!);
+    expect(container.querySelector(".global-search-result-image")).not.toBeInTheDocument();
+    expect(container.querySelector(".global-search-result-icon.is-vocabulary")).toBeInTheDocument();
+  });
+
   it("does not let a late response for an older query overwrite the latest results", async () => {
     const pending: Array<(response: Response) => void> = [];
     vi.spyOn(globalThis, "fetch").mockImplementation(() => new Promise((resolve) => pending.push(resolve)));

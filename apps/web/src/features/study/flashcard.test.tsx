@@ -45,6 +45,7 @@ describe("US-11 Flashcard back state", () => {
 
     rerender(<Flashcard vocabulary={vocabulary} isFlipped onFlip={onFlip} />);
     expect(screen.getByTestId("flashcard").querySelector(".flashcard-back")).toBeInTheDocument();
+    expect(screen.getByText("Nghĩa tiếng Việt")).toBeInTheDocument();
     expect(screen.getByText("sức mạnh; quyền lực")).toBeInTheDocument();
     expect(screen.getByText("/ˈpaʊər/")).toBeInTheDocument();
     expect(screen.getByText("the ability to control or influence")).toBeInTheDocument();
@@ -56,7 +57,7 @@ describe("US-11 Flashcard back state", () => {
       .toHaveAttribute("alt", "Minh họa cho power");
   });
 
-  it("omits absent IPA, definition, example and image without placeholders", () => {
+  it("omits absent optional content and uses a compact image fallback", () => {
     const sparseVocabulary: VocabularyDto = {
       ...vocabulary,
       ipa: null,
@@ -73,8 +74,25 @@ describe("US-11 Flashcard back state", () => {
     expect(screen.queryByText("/ˈpaʊər/")).not.toBeInTheDocument();
     expect(screen.queryByText("the ability to control or influence")).not.toBeInTheDocument();
     expect(screen.queryByText("Power can be shared.")).not.toBeInTheDocument();
-    expect(screen.queryByRole("img")).not.toBeInTheDocument();
+    expect(screen.getByRole("img", { name: "Chưa có hình minh họa cho power" })).toBeInTheDocument();
+    expect(screen.getByText("Chưa có hình minh họa")).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Nghe phát âm power" })).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: "Phát âm thanh" })).not.toBeInTheDocument();
+  });
+
+  it("renders a structured English-Vietnamese example as two labeled lines", () => {
+    const { container } = render(<Flashcard vocabulary={{
+      ...vocabulary,
+      exampleEn: null,
+      examples: [{ en: "I recognized her regional accent immediately.", vi: "Tôi nhận ra ngay giọng vùng miền của cô ấy." }]
+    }} isFlipped onFlip={vi.fn()} />);
+
+    const english = screen.getByText("I recognized her regional accent immediately.");
+    const vietnamese = screen.getByText("Tôi nhận ra ngay giọng vùng miền của cô ấy.");
+    expect(english.closest(".flashcard-example-line")).toHaveTextContent("EN");
+    expect(vietnamese.closest(".flashcard-example-line")).toHaveTextContent("VI");
+    expect(english.closest(".flashcard-example-line")).not.toBe(vietnamese.closest(".flashcard-example-line"));
+    expect(container.querySelectorAll(".flashcard-example-line")).toHaveLength(2);
   });
 
   it("does not expose a quarantined teacher poster image or its printed answer text", () => {
@@ -84,7 +102,7 @@ describe("US-11 Flashcard back state", () => {
       onFlip={vi.fn()}
     />);
 
-    expect(screen.queryByRole("img")).not.toBeInTheDocument();
+    expect(screen.getByRole("img", { name: "Chưa có hình minh họa cho teacher" })).toBeInTheDocument();
     expect(screen.queryByText(/A TEACHER/i)).not.toBeInTheDocument();
   });
 
@@ -106,6 +124,7 @@ describe("US-11 Flashcard back state", () => {
     expect(image).toBeInTheDocument();
     fireEvent.error(image!);
     expect(container.querySelector(".flashcard-image")).not.toBeInTheDocument();
+    expect(screen.getByText("Chưa có hình minh họa")).toBeInTheDocument();
     expect(screen.getByText("sức mạnh; quyền lực")).toBeInTheDocument();
   });
 });
@@ -232,7 +251,7 @@ describe("US-12 pronunciation audio", () => {
 
     fireEvent.click(screen.getByRole("button", { name: "Nghe phát âm power" }));
     expect(await screen.findByText("Âm thanh không khả dụng.")).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Âm thanh không khả dụng cho power" })).toBeDisabled();
+    expect(screen.queryByRole("button", { name: /phát âm power/i })).not.toBeInTheDocument();
 
     fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
     expect(onFlip).toHaveBeenCalledTimes(1);

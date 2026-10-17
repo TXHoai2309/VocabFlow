@@ -79,7 +79,7 @@ function response(vocabulary: LearnerVocabularyDto[], status = 200, total = voca
     page,
     pageSize,
     totalPages: Math.max(1, Math.ceil(total / pageSize)),
-    filters: { cefrOptions: ["A1", "A2", "B1"], topicOptions: ["Animals", "Food"] }
+    filters: { cefrOptions: ["A1", "A2", "B1"], topicOptions: ["Animals", "Food", "topic-inferred:computer-science", "topic-inferred:travel"] }
   }), {
     status,
     headers: { "Content-Type": "application/json" }
@@ -190,7 +190,7 @@ describe("US-22 vocabulary list UI", () => {
     fireEvent.change(screen.getByTestId("vocabulary-search"), { target: { value: "apple" } });
 
     await waitFor(() => expect(screen.queryByTestId("vocabulary-row-2")).not.toBeInTheDocument());
-    expect(screen.getByTestId("vocabulary-row-1")).toBeInTheDocument();
+    expect(await screen.findByTestId("vocabulary-row-1")).toBeInTheDocument();
     expect(fetchMock.mock.calls.some(([url]) => String(url).includes("q=apple"))).toBe(true);
   });
 
@@ -202,7 +202,7 @@ describe("US-22 vocabulary list UI", () => {
     fireEvent.change(screen.getByTestId("vocabulary-search"), { target: { value: "quả táo" } });
 
     await waitFor(() => expect(screen.queryByTestId("vocabulary-row-2")).not.toBeInTheDocument());
-    expect(screen.getByTestId("vocabulary-row-1")).toBeInTheDocument();
+    expect(await screen.findByTestId("vocabulary-row-1")).toBeInTheDocument();
   });
 
   it("matches English searches without case sensitivity", async () => {
@@ -213,7 +213,7 @@ describe("US-22 vocabulary list UI", () => {
     fireEvent.change(screen.getByTestId("vocabulary-search"), { target: { value: "APPLE" } });
 
     await waitFor(() => expect(screen.queryByTestId("vocabulary-row-2")).not.toBeInTheDocument());
-    expect(screen.getByTestId("vocabulary-row-1")).toBeInTheDocument();
+    expect(await screen.findByTestId("vocabulary-row-1")).toBeInTheDocument();
   });
 
   it("trims whitespace before matching", async () => {
@@ -224,7 +224,7 @@ describe("US-22 vocabulary list UI", () => {
     fireEvent.change(screen.getByTestId("vocabulary-search"), { target: { value: "  APPLE  " } });
 
     await waitFor(() => expect(screen.queryByTestId("vocabulary-row-2")).not.toBeInTheDocument());
-    expect(screen.getByTestId("vocabulary-row-1")).toBeInTheDocument();
+    expect(await screen.findByTestId("vocabulary-row-1")).toBeInTheDocument();
   });
 
   it("shows a distinct no-results state and clears the search", async () => {
@@ -286,6 +286,21 @@ describe("US-22 vocabulary list UI", () => {
     expect(screen.queryByTestId("vocabulary-row-1")).not.toBeInTheDocument();
   });
 
+  it("shows friendly inferred topic names while keeping the API filter identity unchanged", async () => {
+    const identity = "topic-inferred:computer-science";
+    const fetchMock = mockVocabulary([item(1, "algorithm", "NEW", null, { tags: [identity] })]);
+    renderList();
+
+    const topicSelect = await screen.findByTestId("vocabulary-topic-filter");
+    const option = within(topicSelect).getByRole("option", { name: "Chủ đề · Tin học và khoa học máy tính" });
+    expect(option).toHaveValue(identity);
+    expect(screen.queryByText(identity)).not.toBeInTheDocument();
+
+    fireEvent.change(topicSelect, { target: { value: identity } });
+    await waitFor(() => expect(fetchMock.mock.calls.some(([url]) => new URL(String(url), "http://localhost").searchParams.get("topic") === identity)).toBe(true));
+    expect(screen.getByTestId("vocabulary-row-1")).toBeInTheDocument();
+  });
+
   it("initializes the search input and results from the q URL parameter", async () => {
     mockVocabulary([item(1, "apple"), item(2, "book")]);
     renderList(learnerA, "/vocabulary?q=book");
@@ -340,16 +355,16 @@ describe("US-22 vocabulary list UI", () => {
     const card = await screen.findByTestId("vocabulary-row-1");
     fireEvent.error(within(card).getByRole("img", { name: "Hình minh họa apple" }));
 
-    expect(within(card).queryByRole("img")).not.toBeInTheDocument();
+    expect(within(card).getByRole("img", { name: "Chưa có hình minh họa cho apple" })).toBeInTheDocument();
     expect(card.querySelector("svg")).toBeInTheDocument();
   });
 
-  it("disables audio without a real audio URL and enables the real save control", async () => {
+  it("hides audio without a real URL and enables the real save control", async () => {
     mockVocabulary([item(1, "apple")]);
     renderList();
     const card = await screen.findByTestId("vocabulary-row-1");
 
-    expect(within(card).getByRole("button", { name: "Nghe phát âm apple" })).toBeDisabled();
+    expect(within(card).queryByRole("button", { name: "Nghe phát âm apple" })).not.toBeInTheDocument();
     expect(within(card).getByRole("button", { name: "Lưu từ apple" })).toBeEnabled();
   });
 

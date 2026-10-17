@@ -6,6 +6,7 @@ import { useActiveLearner } from "./learner-context-hook";
 import { LearnerVocabularyClientError, requestLearnerVocabulary } from "./vocabulary-list-client";
 import { usePronunciationAudio } from "../study/pronunciation-audio";
 import { DevelopmentExampleAudio, DevelopmentImageNotice, DevelopmentImagePreviews, DevelopmentWordAudio } from "../study/development-media";
+import { formatPartOfSpeech, formatVocabularyTopic, parseVocabularyExamples } from "../vocabulary/vocabulary-presentation";
 import { requestSavedVocabulary, saveVocabulary, unsaveVocabulary } from "./saved-vocabulary-client";
 import { ErrorState, LoadingState } from "../../components/async-states";
 import { useToast } from "../../components/toast/toast-context";
@@ -243,17 +244,13 @@ function VocabularyDetailContent({ vocabulary, allVocabulary, isSaved, isSaving,
   const [imageFailed, setImageFailed] = useState(false);
   const audio = usePronunciationAudio(vocabulary.audioUrl, vocabulary.word, vocabulary.id);
   const hasDevelopmentAudio = (vocabulary.developmentMedia?.wordAudio?.length ?? 0) > 0;
-  const examples = (vocabulary.examples ?? []).flatMap((example) => {
-    if (typeof example !== "object" || example === null) return [];
-    const value = example as Record<string, unknown>;
-    return typeof value.en === "string" && value.en.trim()
-      ? [{ english: value.en, vietnamese: typeof value.vi === "string" ? value.vi : null, exampleKey: typeof value.exampleKey === "string" ? value.exampleKey : undefined }]
-      : [];
-  });
+  const examples = parseVocabularyExamples(vocabulary.examples);
   const relatedWords = vocabulary.topic
     ? allVocabulary.filter((item) => item.id !== vocabulary.id && item.topic?.trim().toLocaleLowerCase() === vocabulary.topic?.trim().toLocaleLowerCase()).slice(0, 3)
     : [];
   const level = levelLabel(vocabulary.level);
+  const partOfSpeech = formatPartOfSpeech(vocabulary.partOfSpeech);
+  const topic = formatVocabularyTopic(vocabulary.topic);
   const audioLabel = audio.state === "playing" ? `Tạm dừng phát âm ${vocabulary.word}`
     : audio.state === "ended" ? `Nghe lại phát âm ${vocabulary.word}`
       : audio.state === "error" ? `Âm thanh không khả dụng cho ${vocabulary.word}`
@@ -265,40 +262,43 @@ function VocabularyDetailContent({ vocabulary, allVocabulary, isSaved, isSaving,
         <section className="vocabulary-detail-hero" aria-labelledby="vocabulary-detail-title">
           <div className="vocabulary-detail-hero-copy">
             <div className="vocabulary-detail-word-row">
-              {!hasDevelopmentAudio ? <button
+              {!hasDevelopmentAudio && audio.hasAudio && audio.state !== "error" ? <button
                 className="vocabulary-detail-speaker"
                 type="button"
-                aria-label={audio.hasAudio ? audioLabel : `Chưa có phát âm cho ${vocabulary.word}`}
+                aria-label={audioLabel}
                 aria-busy={audio.state === "loading"}
-                disabled={!audio.hasAudio || audio.state === "loading" || audio.state === "error"}
+                disabled={audio.state === "loading"}
                 onClick={audio.state === "playing" ? audio.pause : audio.play}
               >
                 <DetailIcon name="speaker" />
               </button> : null}
               <div className="vocabulary-detail-word-copy">
                 <h1 id="vocabulary-detail-title">{vocabulary.word}</h1>
-                {vocabulary.ipa ? <p className="vocabulary-detail-ipa">{vocabulary.ipa}</p> : null}
+                {vocabulary.ipa || partOfSpeech ? <p className="vocabulary-detail-ipa">{[vocabulary.ipa, partOfSpeech].filter(Boolean).join(" · ")}</p> : null}
               </div>
             </div>
 
             <div className="vocabulary-detail-badges" aria-label="Thông tin từ vựng">
-              {vocabulary.topic ? <span className="vocabulary-detail-badge vocabulary-detail-badge-topic">{vocabulary.topic}</span> : null}
+              {topic ? <span className="vocabulary-detail-badge vocabulary-detail-badge-topic">{topic}</span> : null}
               {level ? <span className="vocabulary-detail-badge vocabulary-detail-badge-level">{level}</span> : null}
               <span className="vocabulary-detail-badge vocabulary-detail-badge-status">{statusLabel(vocabulary.status)}</span>
             </div>
 
-            <p className="vocabulary-detail-meaning">{vocabulary.vietnamese}</p>
+            <div className="vocabulary-detail-meaning-block">
+              <span className="vocabulary-detail-meaning-label">Nghĩa tiếng Việt</span>
+              <p className="vocabulary-detail-meaning">{vocabulary.vietnamese}</p>
+            </div>
             <div className="vocabulary-detail-actions">
-              {!hasDevelopmentAudio ? <button
+              {!hasDevelopmentAudio && audio.hasAudio && audio.state !== "error" ? <button
                 className="vocabulary-detail-action vocabulary-detail-action-primary"
                 type="button"
-                disabled={!audio.hasAudio || audio.state === "loading" || audio.state === "error"}
+                disabled={audio.state === "loading"}
                 aria-busy={audio.state === "loading"}
                 onClick={audio.state === "playing" ? audio.pause : audio.play}
               >
                 <DetailIcon name="speaker" />
                 {audio.state === "loading" ? "Đang tải…" : audio.state === "playing" ? "Tạm dừng" : audio.state === "ended" ? "Nghe lại" : "Nghe phát âm"}
-              </button> : null}
+              </button> : !hasDevelopmentAudio && !audio.hasAudio ? <span className="vocabulary-detail-audio-unavailable">Chưa có tệp phát âm</span> : null}
               <button
                 className={`vocabulary-detail-action vocabulary-detail-action-secondary${isSaved ? " is-saved" : ""}`}
                 type="button"
@@ -337,7 +337,7 @@ function VocabularyDetailContent({ vocabulary, allVocabulary, isSaved, isSaving,
         </section>
 
         <div className="vocabulary-detail-content-grid">
-          <DetailCard icon="definition" title="Định nghĩa" className="vocabulary-detail-definition">
+          <DetailCard icon="definition" title="Định nghĩa tiếng Anh" className="vocabulary-detail-definition">
             {vocabulary.definitionEn ? <p lang="en">{vocabulary.definitionEn}</p> : <p className="vocabulary-detail-empty-copy">Chưa có định nghĩa chi tiết cho từ này.</p>}
           </DetailCard>
 
@@ -346,8 +346,14 @@ function VocabularyDetailContent({ vocabulary, allVocabulary, isSaved, isSaving,
               <ol className="vocabulary-detail-example-list">
                 {examples.map((example, index) => (
                   <li key={`${index}:${example.english}`}>
-                    <span lang="en">{example.english}</span>
-                    {example.vietnamese ? <span lang="vi" className="vocabulary-detail-example-translation">{example.vietnamese}</span> : null}
+                    <span className="vocabulary-detail-example-line">
+                      <span className="vocabulary-detail-example-language">EN</span>
+                      <span lang="en">{example.english}</span>
+                    </span>
+                    {example.vietnamese ? <span className="vocabulary-detail-example-line">
+                      <span className="vocabulary-detail-example-language">VI</span>
+                      <span lang="vi" className="vocabulary-detail-example-translation">{example.vietnamese}</span>
+                    </span> : null}
                     <DevelopmentExampleAudio vocabulary={vocabulary} exampleKey={example.exampleKey} />
                   </li>
                 ))}
@@ -368,7 +374,7 @@ function VocabularyDetailContent({ vocabulary, allVocabulary, isSaved, isSaving,
           </DetailCard>
 
           <DetailCard icon="topic" title="Chủ đề liên quan" className="vocabulary-detail-topics">
-            {vocabulary.topic ? <span className="vocabulary-detail-topic-chip">{vocabulary.topic}</span> : <p className="vocabulary-detail-empty-copy">Từ này chưa được gắn chủ đề.</p>}
+            {topic ? <span className="vocabulary-detail-topic-chip">{topic}</span> : <p className="vocabulary-detail-empty-copy">Từ này chưa được gắn chủ đề.</p>}
           </DetailCard>
         </div>
       </div>

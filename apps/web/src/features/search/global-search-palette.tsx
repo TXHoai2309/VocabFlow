@@ -39,11 +39,19 @@ function resultLabel(type: SearchResult["type"]) {
 }
 
 function resultSubtitle(result: SearchResult) {
-  if (result.type === "VOCABULARY") return result.subtitle;
+  if (result.type === "VOCABULARY") return `Nghĩa · ${result.subtitle}`;
   if (result.type === "TOPIC") return result.description;
   const gradeLabel = result.grade === "GENERAL" ? "Chung" : result.grade?.replace("GRADE_", "Lớp ");
   const parts = [result.description, `${result.vocabularyCount} từ`, gradeLabel];
   return parts.filter(Boolean).join(" · ");
+}
+
+function SearchResultVisual({ result }: { result: SearchResult }) {
+  const [imageFailed, setImageFailed] = useState(false);
+  if (result.type === "VOCABULARY" && result.imageUrl && !imageFailed) {
+    return <img className="global-search-result-image" src={result.imageUrl} alt="" loading="lazy" onError={() => setImageFailed(true)} />;
+  }
+  return <span className={`global-search-result-icon is-${result.type.toLowerCase()}`}><EntityGlyph type={result.type} /></span>;
 }
 
 export function GlobalSearchPalette({
@@ -243,9 +251,7 @@ export function GlobalSearchPalette({
                       onMouseEnter={() => setActiveIndex(index)}
                       onClick={() => selectResult(result)}
                     >
-                      {result.type === "VOCABULARY" && result.imageUrl
-                        ? <img className="global-search-result-image" src={result.imageUrl} alt="" loading="lazy" />
-                        : <span className={`global-search-result-icon is-${result.type.toLowerCase()}`}><EntityGlyph type={result.type} /></span>}
+                      <SearchResultVisual key={`${result.type}-${result.id}-${result.type === "VOCABULARY" ? result.imageUrl ?? "" : ""}`} result={result} />
                       <span className="global-search-result-copy"><strong>{result.title}</strong><small>{resultSubtitle(result)}</small></span>
                       <span className="global-search-result-kind">{resultLabel(result.type)}</span>
                       <span className="global-search-result-chevron" aria-hidden="true">›</span>

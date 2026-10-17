@@ -8,6 +8,7 @@ import { VocabularyCard } from "./vocabulary-card";
 import { EmptyState, ErrorState, LoadingState } from "../../components/async-states";
 import { useToast } from "../../components/toast/toast-context";
 import { requestSavedVocabulary, saveVocabulary, unsaveVocabulary } from "./saved-vocabulary-client";
+import { formatVocabularyTopic } from "../vocabulary/vocabulary-presentation";
 
 type VocabularyListState = "loading" | "ready" | "error";
 type VocabularyIconName = "home" | "book" | "level" | "search" | "clear" | "previous" | "next";
@@ -71,7 +72,10 @@ function DebouncedVocabularySearch({ query, updateFilter }: {
     return () => window.clearTimeout(timer);
   }, [query, searchInput, updateFilter]);
 
-  const clearQuery = () => updateFilter("q", "");
+  const clearQuery = () => {
+    setSearchInput("");
+    updateFilter("q", "");
+  };
 
   return (
     <div className="vocabulary-search-field">
@@ -328,7 +332,10 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
             <span className="sr-only">Chủ đề</span>
             <select aria-label="Chủ đề" className="vocabulary-level-select" data-testid="vocabulary-topic-filter" value={topic} onChange={(event) => updateFilter("topic", event.target.value)}>
               <option value="">Chủ đề: Tất cả</option>
-              {topicOptions.map((value) => <option key={value} value={value}>{value}</option>)}
+              {[...topicOptions].sort((a, b) => {
+                const labelOrder = (formatVocabularyTopic(a) ?? a).localeCompare(formatVocabularyTopic(b) ?? b, "vi");
+                return labelOrder || a.localeCompare(b);
+              }).map((value) => <option key={value} value={value}>{formatVocabularyTopic(value) ?? "Chủ đề khác"}</option>)}
             </select>
           </label>
         ) : null}

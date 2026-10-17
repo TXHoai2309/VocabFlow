@@ -101,6 +101,7 @@ describe("vocabulary detail page", () => {
     renderDetail();
 
     expect(await screen.findByRole("heading", { name: "apple" })).toBeInTheDocument();
+    expect(screen.getByText("Nghĩa tiếng Việt")).toBeInTheDocument();
     expect(screen.getByText("quả táo")).toBeInTheDocument();
     expect(screen.getByText("/ˈæp.əl/")).toBeInTheDocument();
     expect(screen.getByText("A round fruit with firm white flesh and a green, red, or yellow skin.")).toBeInTheDocument();
@@ -111,6 +112,24 @@ describe("vocabulary detail page", () => {
     expect(screen.getByRole("link", { name: /banana/ })).toHaveAttribute("href", "/vocabulary/2");
     expect(screen.queryByRole("link", { name: /book/ })).not.toBeInTheDocument();
     expect(fetchMock).toHaveBeenCalledWith(`/api/learners/${learner.id}/vocabulary?id=1`, { credentials: "include" });
+  });
+
+  it("shows POS next to IPA and keeps bilingual examples on distinct lines", async () => {
+    mockDetailApi([item({
+      partOfSpeech: "NOUN",
+      exampleEn: null,
+      examples: [{ exampleKey: "accent-ex-1", en: "I recognized her regional accent immediately.", vi: "Tôi nhận ra ngay giọng vùng miền của cô ấy." }]
+    })]);
+
+    const { container } = renderDetail();
+
+    expect(await screen.findByText("/ˈæp.əl/ · Danh từ")).toBeInTheDocument();
+    const english = screen.getByText("I recognized her regional accent immediately.");
+    const vietnamese = screen.getByText("Tôi nhận ra ngay giọng vùng miền của cô ấy.");
+    expect(english.closest(".vocabulary-detail-example-line")).toHaveTextContent("EN");
+    expect(vietnamese.closest(".vocabulary-detail-example-line")).toHaveTextContent("VI");
+    expect(english.closest(".vocabulary-detail-example-line")).not.toBe(vietnamese.closest(".vocabulary-detail-example-line"));
+    expect(container.querySelectorAll(".vocabulary-detail-example-line")).toHaveLength(2);
   });
 
   it("uses explicit empty states for unavailable content and does not invent learning metrics", async () => {
@@ -130,6 +149,8 @@ describe("vocabulary detail page", () => {
 
     expect(await screen.findByRole("heading", { name: "apple" })).toBeInTheDocument();
     expect(screen.getByText("Chưa có hình minh họa")).toBeInTheDocument();
+    expect(screen.getByText("Chưa có tệp phát âm")).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /phát âm apple/i })).not.toBeInTheDocument();
     expect(screen.getByText("Chưa có định nghĩa chi tiết cho từ này.")).toBeInTheDocument();
     expect(screen.getByText("Chưa có câu ví dụ cho từ này.")).toBeInTheDocument();
     expect(screen.getByText("Chưa có dữ liệu từ đồng nghĩa.")).toBeInTheDocument();

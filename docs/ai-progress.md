@@ -7245,3 +7245,35 @@ owner-approved baseline exception. See
 - Exact-SHA clean-clone pnpm build:production with Node 22.23.2 and pnpm 11.17.0 passes, including runtime/client secret and source-map scans. Focused runtime suite and typechecks pass.
 - Vercel Preview initially failed because Vercel removes the tracked vocabflow-dataset/ path listed in .vercelignore, which the build mutation guard counted as dirty. Fix the guard to exclude only that deployment-ignored path while continuing to block edits in deployed sources; add a regression test. Focused production-build tests pass 71/71. A follow-up Preview build is still required.
 - No Production environment, alias, database, media rights, or deployment changed. V1 backup remains owner-waived; V1 database rollback is unverified. Keep the Production GO gate closed until a READY Preview and required smoke checks pass.
+
+### 2026-10-18 — Vocabulary UI presentation hotfix
+
+- Based on release SHA `1587090a2f5f7470d31722465bf4703b319cf006` on local
+  branch `fix/v2-vocabulary-ui-prod-20261018`. Keep canonical V2 content and
+  hashes unchanged; the DTO exposes one Vietnamese meaning field, an English
+  definition, and structured bilingual example fields.
+- Vocabulary cards/detail/flashcards now label meaning and definition
+  distinctly, display POS beside IPA, separate EN/VI example lines, and render
+  friendly topic labels while preserving stable filter values. Search result
+  subtitles identify Vietnamese meaning; image/audio fallbacks are explicit.
+- Production media absence traces to the intentional V2 rights guard:
+  production requests strip uncleared media URLs. The guard was not changed.
+  No Cloudinary or Neon operations were performed.
+- Safe Git archive:
+  `D:\hoctienganh\VocabFlow-workspace-archive-20261018-1792264171904-d6151`;
+  archived files were SHA256 verified before cleanup. The detached release
+  worktree remains preserved.
+- Focused tests pass 74/74 across six files when excluding `.vocabflow-local`
+  release checkouts from Vitest discovery. Web TypeScript (`tsc -p
+  apps/web/tsconfig.json --noEmit`) and focused ESLint pass. `pnpm build` passes;
+  Node 22.19.0 is below the repository-pinned 22.23.2 and Vite reports an
+  existing API dynamic-import warning plus the web chunk-size warning.
+- Full `pnpm typecheck` remains blocked by nine diagnostics in two pre-existing
+  untracked development scripts (`scripts/local-development-postgres.ts` and
+  `scripts/resolve-master-v2-development-pending.ts`); the changed web project
+  itself typechecks cleanly. No unrelated script was edited.
+- Archive verification passes for all 1,927 pre-existing untracked files, but
+  the host rejected the bulk per-file workspace cleanup command. No archived
+  workspace files were removed; the exact remaining list is preserved in the
+  archive disposition manifest. No push, database operation, Cloudinary
+  operation, or deployment.

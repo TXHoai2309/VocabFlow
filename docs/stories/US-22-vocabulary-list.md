@@ -46,3 +46,20 @@ explicitly deferred and this story must not be called accepted/closed yet.
 ## Known limitation
 
 The list is not a catalog administration or import UI.
+
+## V2 vocabulary presentation follow-up — 2026-10-18
+
+- Keep the canonical Vietnamese field labeled as a Vietnamese meaning; this
+  release contract has no separate approved short gloss or Vietnamese
+  explanation field. Keep the English definition in its own labeled section.
+- Show the available POS beside IPA, format catalog and inferred topic values
+  for learners while retaining their API filter identities, and place
+  structured English/Vietnamese examples on separate labeled lines.
+- Show a friendly missing-image state and remove pronunciation controls when no
+  playable URL exists. A playback failure is shown as a non-interactive status.
+- In Production, `mustWithholdV2Media` intentionally strips uncleared media
+  URLs from the API response. This UI change preserves that rights guard and
+  does not enable APKG media delivery.
+- Focused component and helper coverage: 74 tests pass across the six targeted
+  files. Full app typecheck, lint, and build status are recorded in the current
+  `docs/ai-progress.md` entry.
