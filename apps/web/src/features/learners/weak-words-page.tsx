@@ -48,7 +48,7 @@ function WeakWordRow({ item }: { item: WeakWordsItem }) {
   return (
     <li className="weak-words-row-item" data-testid={`weak-word-${item.vocabulary.id}`}>
       <article className="weak-words-row">
-        <Link className="weak-words-word-link" to={`/vocabulary/${item.vocabulary.id}`} aria-label={`${item.vocabulary.word}. ${item.vocabulary.vietnamese}. Xem chi tiết`}>
+        <Link className="weak-words-word-link" to={`/vocabulary/${item.vocabulary.id}`} aria-label={`${item.vocabulary.word}. ${item.vocabulary.sourceMeaningVi ?? item.vocabulary.vietnamese}. Xem chi tiết`}>
           <span className="weak-words-thumbnail">
             {item.vocabulary.imageUrl && !imageFailed
               ? <img src={item.vocabulary.imageUrl} alt={`Hình minh họa ${item.vocabulary.word}`} loading="lazy" onError={() => setImageFailed(true)} />
@@ -57,7 +57,7 @@ function WeakWordRow({ item }: { item: WeakWordsItem }) {
           <span className="weak-words-main-copy">
             <strong>{item.vocabulary.word}</strong>
             {item.vocabulary.ipa ? <small>{item.vocabulary.ipa}</small> : null}
-            <span>{item.vocabulary.vietnamese}</span>
+            <span>{item.vocabulary.sourceMeaningVi ?? item.vocabulary.vietnamese}</span>
             <span className="weak-words-taxonomy">
               {item.vocabulary.topic ? <span>{item.vocabulary.topic}</span> : null}
               {item.vocabulary.level ? <span>{item.vocabulary.level === "GENERAL" ? "Chung" : `Lớp ${item.vocabulary.level.slice(-1)}`}</span> : null}

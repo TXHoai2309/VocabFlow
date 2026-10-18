@@ -63,3 +63,15 @@ The list is not a catalog administration or import UI.
 - Focused component and helper coverage: 74 tests pass across the six targeted
   files. Full app typecheck, lint, and build status are recorded in the current
   `docs/ai-progress.md` entry.
+
+## V2 source gloss follow-up — 2026-10-18
+
+- Carry the hash-pinned source inventory's `sourceMeaningVi` separately from
+  the Sense-specific `vietnamese` value through learner, catalog, search,
+  collection, review queue, and saved/weak-word DTOs. Display the source gloss
+  first and retain the Sense-specific study meaning on detail when it differs;
+  answer validation continues to use the Sense-specific value.
+- Keep the Production media gate. The API returns the owner-attested mapped
+  media allowed by the V2 release contract; unavailable source media is labelled
+  as pending rights review. This code release does not import/backfill the
+  Production projection data or upload APKG files to Cloudinary.

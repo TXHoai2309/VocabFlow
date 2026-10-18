@@ -104,7 +104,7 @@ async function searchRows(
         'VOCABULARY'::text AS entity_type,
         v.id,
         v.word AS title,
-        COALESCE(v.vietnamese_override, v.vietnamese) AS subtitle,
+        COALESCE(md.source_provenance->'masterV2Identity'->>'sourceMeaningVi', v.vietnamese_override, v.vietnamese) AS subtitle,
         CASE WHEN v.image_quarantined THEN NULL ELSE v.image_url END AS image_url,
         v.topic,
         v.level::text AS level,
@@ -120,7 +120,9 @@ async function searchRows(
         0::integer AS stable_order
       FROM eligible_vocabulary ev
       JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = ev.id
+      LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
       WHERE lower(v.word) LIKE lower(${containsPattern}) ESCAPE ${escapeCharacter}
+         OR lower(COALESCE(md.source_provenance->'masterV2Identity'->>'sourceMeaningVi', '')) LIKE lower(${containsPattern}) ESCAPE ${escapeCharacter}
          OR lower(COALESCE(v.vietnamese_override, v.vietnamese)) LIKE lower(${containsPattern}) ESCAPE ${escapeCharacter}
     ),
     topic_matches AS (

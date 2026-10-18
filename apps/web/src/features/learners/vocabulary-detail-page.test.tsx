@@ -92,7 +92,7 @@ describe("vocabulary detail page", () => {
 
   it("renders current-learner vocabulary content and links related words from the same topic", async () => {
     const items = [
-      item(),
+      item({ sourceMeaningVi: "quả táo, trái táo" }),
       item({ id: 2, word: "banana", vietnamese: "quả chuối", ipa: "/bəˈnɑː.nə/", imageUrl: null }),
       item({ id: 3, word: "book", topic: "Trường học" })
     ];
@@ -101,7 +101,9 @@ describe("vocabulary detail page", () => {
     renderDetail();
 
     expect(await screen.findByRole("heading", { name: "apple" })).toBeInTheDocument();
-    expect(screen.getByText("Nghĩa tiếng Việt")).toBeInTheDocument();
+    expect(screen.getByText("Nghĩa tiếng Việt theo nguồn")).toBeInTheDocument();
+    expect(screen.getByText("Nghĩa của sense đang học")).toBeInTheDocument();
+    expect(screen.getByText("quả táo, trái táo")).toBeInTheDocument();
     expect(screen.getByText("quả táo")).toBeInTheDocument();
     expect(screen.getByText("/ˈæp.əl/")).toBeInTheDocument();
     expect(screen.getByText("A round fruit with firm white flesh and a green, red, or yellow skin.")).toBeInTheDocument();

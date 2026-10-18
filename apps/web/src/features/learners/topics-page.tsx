@@ -124,7 +124,7 @@ export function TopicsPage() {
                 {vocabularyState === "ready" && vocabulary.length === 0 ? <EmptyState className="topic-vocabulary-empty" icon="book" title="Chủ đề chưa có từ vựng" description="Chưa có từ vựng nào đang bật trong chủ đề này." testId="topic-vocabulary-empty" /> : null}
                 {vocabularyState === "ready" && vocabulary.length > 0 ? (
                   <ul className="vocabulary-list" data-testid="topic-vocabulary-list">
-                    {vocabulary.map((item) => <li className="vocabulary-list-row" key={item.id}><div className="vocabulary-list-copy"><strong>{item.word}</strong><span>{item.vietnamese}</span></div></li>)}
+                    {vocabulary.map((item) => <li className="vocabulary-list-row" key={item.id}><div className="vocabulary-list-copy"><strong>{item.word}</strong><span>{item.sourceMeaningVi ?? item.vietnamese}</span></div></li>)}
                   </ul>
                 ) : null}
               </>}

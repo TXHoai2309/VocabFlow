@@ -16,6 +16,7 @@ type VocabularyBrowseRow = {
   word: unknown;
   ipa: unknown;
   vietnamese: unknown;
+  source_meaning_vi?: unknown;
   image_url: unknown;
   audio_url: unknown;
   topic: unknown;
@@ -33,6 +34,7 @@ type VocabularyBrowseRow = {
   content_sha256?: unknown;
   content_review_decision?: unknown;
   editorial_status?: unknown;
+  rights_status?: unknown;
 };
 
 function rowsOf<T>(result: unknown): T[] {
@@ -63,6 +65,7 @@ function toBrowseItem(row: VocabularyBrowseRow): LearnerVocabularyBrowseItem {
     word: String(row.word),
     ipa: nullableText(row.ipa),
     vietnamese: String(row.vietnamese),
+    ...(typeof row.source_meaning_vi === "string" && row.source_meaning_vi.trim() ? { sourceMeaningVi: row.source_meaning_vi.trim() } : {}),
     imageUrl: images ? (singleImage ? nullableText(singleImage.url) : null) : nullableText(row.image_url),
     audioUrl: media ? null : nullableText(row.audio_url),
     topic: nullableText(row.topic),
@@ -79,6 +82,7 @@ function toBrowseItem(row: VocabularyBrowseRow): LearnerVocabularyBrowseItem {
     ...(row.content_review_decision === "PASS" ? { contentReviewStatus: "PASS" as const } : {}),
     ...(row.editorial_status === "DRAFT" ? { editorialStatus: "DRAFT" as const } : {}),
     ...(Array.isArray(row.tags) ? { tags: row.tags.map(String) } : {}),
+    ...(row.rights_status === "UNKNOWN_REVIEW_REQUIRED" ? { rightsStatus: "UNKNOWN_REVIEW_REQUIRED" as const } : {}),
     ...(images || wordAudio ? { developmentMedia: {
       ...(images ? { images } : {}),
       ...(wordAudio ? { wordAudio } : {})
@@ -117,6 +121,7 @@ function browseFilters(datasetVersion: VocabularyDatasetVersion, query: LearnerV
     const pattern = `%${query.q.replace(/[\\%_]/g, "\\$&")}%`;
     filters.push(sql`(
       v.word ILIKE ${pattern} ESCAPE ${"\\"}
+      OR md.source_provenance->'masterV2Identity'->>'sourceMeaningVi' ILIKE ${pattern} ESCAPE ${"\\"}
       OR COALESCE(v.vietnamese_override, v.vietnamese) ILIKE ${pattern} ESCAPE ${"\\"}
     )`);
   }
@@ -150,8 +155,9 @@ export function createLearnerVocabularyBrowseService(
               CASE WHEN v.image_quarantined THEN NULL ELSE v.image_url END AS image_url,
               v.audio_url, v.topic, v.level, v.enabled, v.content_version,
               md.proposal_key AS master_sense_identity,
+              md.source_provenance->'masterV2Identity'->>'sourceMeaningVi' AS source_meaning_vi,
               md.source_provenance->'masterV2Identity'->>'displayForm' AS display_form,
-              md.part_of_speech, md.cefr, md.tags, md.content_sha256,
+              md.part_of_speech, md.cefr, md.tags, md.rights_status, md.content_sha256,
               md.content_review_decision, md.editorial_status,
               CASE WHEN md.development_media IS NULL THEN NULL ELSE
                 jsonb_strip_nulls(jsonb_build_object(

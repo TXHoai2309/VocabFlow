@@ -41,6 +41,7 @@ type VocabularyRow = {
   word: string;
   ipa: string | null;
   vietnamese: string;
+  source_meaning_vi?: string | null;
   definition_en: string | null;
   example_en: string | null;
   image_url: string | null;
@@ -79,6 +80,7 @@ function toVocabularyDto(row: VocabularyRow): VocabularyDto {
     word: String(row.word),
     ipa: nullableText(row.ipa),
     vietnamese: String(row.vietnamese),
+    ...(row.source_meaning_vi?.trim() ? { sourceMeaningVi: row.source_meaning_vi.trim() } : {}),
     definitionEn: nullableText(row.definition_en),
     exampleEn: nullableText(row.example_en),
     imageUrl: images ? (singleImage ? nullableText(singleImage.url) : null) : nullableText(row.image_url),
@@ -135,6 +137,7 @@ export function createVocabularyService(database: VocabularyDatabase, options: {
                  CASE WHEN image_quarantined THEN NULL ELSE image_url END AS image_url,
                  audio_url, topic, enabled, content_version, level,
                  md.proposal_key AS master_sense_identity,
+                 md.source_provenance->'masterV2Identity'->>'sourceMeaningVi' AS source_meaning_vi,
                  md.source_provenance->'masterV2Identity'->>'displayForm' AS display_form,
                  md.part_of_speech, md.cefr, md.tags, md.examples, md.content_sha256,
                  md.content_review_decision, md.editorial_status, md.rights_status, md.development_media

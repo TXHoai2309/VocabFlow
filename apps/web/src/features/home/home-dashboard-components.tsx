@@ -335,7 +335,7 @@ export function ContinueLearningCard({
           <div className="home-next-copy">
             <small>Tiếp theo trong danh sách học hiện tại · {next.queueType === "DUE" ? "Ôn tập" : "Từ mới"}</small>
             <strong>{next.vocabulary.word}</strong>
-            <span>{next.vocabulary.vietnamese}</span>
+            <span>{next.vocabulary.sourceMeaningVi ?? next.vocabulary.vietnamese}</span>
           </div>
           <Link className="home-button home-button-primary" to="/study/setup">Bắt đầu phiên học</Link>
         </div>

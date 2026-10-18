@@ -7299,3 +7299,14 @@ owner-approved baseline exception. See
   exposed. Cloudinary data-sample and live-browser checks remain outstanding.
 - No Neon, Cloudinary asset, learner-history, canonical Sense, or V1 resource
   has been modified. No commit, push, environment update, or deployment yet.
+
+### 2026-10-18 — Source gloss and media availability UI release
+
+- Carry `sourceMeaningVi` from pinned Master V2 projection provenance through
+  vocabulary APIs and render it separately from the Sense-specific study
+  meaning. Keep review-answer validation on the Sense-specific value.
+- Update missing Production media labels to identify the rights hold. Preserve
+  the owner-attested runtime's signed-URL and current-mapping checks.
+- No Production database import/backfill or Cloudinary upload is included.
+  Focused checks and the production build run are recorded after this entry is
+  prepared for release.

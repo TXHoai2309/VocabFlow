@@ -54,6 +54,7 @@ type VocabularyRow = {
   word: unknown;
   ipa: unknown;
   vietnamese: unknown;
+  source_meaning_vi?: unknown;
   definition_en: unknown;
   example_en: unknown;
   image_url: unknown;
@@ -124,6 +125,7 @@ function toVocabularyDto(row: VocabularyRow): VocabularyDto {
     word: String(row.word),
     ipa: nullableText(row.ipa),
     vietnamese: String(row.vietnamese),
+    ...(typeof row.source_meaning_vi === "string" && row.source_meaning_vi.trim() ? { sourceMeaningVi: row.source_meaning_vi.trim() } : {}),
     definitionEn: nullableText(row.definition_en),
     exampleEn: nullableText(row.example_en),
     imageUrl: nullableText(row.image_url),
@@ -227,6 +229,7 @@ export function createTopicService(database: TopicDatabase, options: { datasetVe
             md.tags,
             md.source_provenance->'developmentLearningMetadataV1'->'assignments' AS metadata_assignments,
             md.proposal_key AS master_sense_identity,
+            md.source_provenance->'masterV2Identity'->>'sourceMeaningVi' AS source_meaning_vi,
             md.source_provenance->'masterV2Identity'->>'displayForm' AS display_form,
             md.part_of_speech,
             md.content_sha256 AS content_hash,

@@ -64,7 +64,7 @@ export function CollectionDetailView({
   const trimmedQuery = query.trim().toLowerCase();
   const matchingItems = items.filter((item) => !trimmedQuery
     || item.word.toLowerCase().includes(trimmedQuery)
-    || item.vietnamese.toLowerCase().includes(trimmedQuery));
+    || (item.sourceMeaningVi ?? item.vietnamese).toLowerCase().includes(trimmedQuery));
   const typeLabel = kind === "topic" ? "Chủ đề" : "Bộ từ";
   const collectionPath = kind === "topic" ? "/topics" : "/learning-sets";
   const total = Math.max(0, progressTotal);

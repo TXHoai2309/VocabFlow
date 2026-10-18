@@ -38,6 +38,7 @@ type QueryRow = {
   word: unknown;
   ipa: unknown;
   vietnamese: unknown;
+  source_meaning_vi?: unknown;
   definition_en: unknown;
   example_en: unknown;
   image_url: unknown;
@@ -127,6 +128,7 @@ function vocabularyFromRow(row: QueryRow): VocabularyDto {
     word: row.word,
     ipa: row.ipa,
     vietnamese: row.vietnamese,
+    ...(typeof row.source_meaning_vi === "string" && row.source_meaning_vi.trim() ? { sourceMeaningVi: row.source_meaning_vi.trim() } : {}),
     definitionEn: row.definition_en,
     exampleEn: row.example_en,
     imageUrl: images ? (singleImage ? String(singleImage.url ?? "") : null) : row.image_url,
@@ -261,6 +263,7 @@ async function loadWeakWordsData(database: WeakWordsDatabase, learnerId: string,
     WITH eligible_vocabulary AS (
       SELECT DISTINCT v.id, v.word, v.ipa,
              COALESCE(v.vietnamese_override, v.vietnamese) AS vietnamese,
+             md.source_provenance->'masterV2Identity'->>'sourceMeaningVi' AS source_meaning_vi,
              v.definition_en, v.example_en,
              CASE WHEN v.image_quarantined THEN NULL ELSE v.image_url END AS image_url,
              v.audio_url, v.topic, v.level, v.enabled, v.content_version,
@@ -326,7 +329,7 @@ async function loadWeakWordsData(database: WeakWordsDatabase, learnerId: string,
     )
     SELECT rs.review_count AS summary_review_count,
            rs.remembered_count AS summary_remembered_count,
-           c.id, c.word, c.ipa, c.vietnamese, c.definition_en, c.example_en,
+           c.id, c.word, c.ipa, c.vietnamese, c.source_meaning_vi, c.definition_en, c.example_en,
            c.image_url, c.audio_url, c.topic, c.level, c.enabled,
            c.content_version, c.learning_state, c.next_review_date,
            c.revision, c.review_count, c.remembered_count, c.forgotten_count,

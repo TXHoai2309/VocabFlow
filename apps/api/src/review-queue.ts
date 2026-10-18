@@ -65,6 +65,7 @@ type QueueRow = {
   word: string;
   ipa: string | null;
   vietnamese: string;
+  source_meaning_vi?: string | null;
   definition_en: string | null;
   example_en: string | null;
   image_url: string | null;
@@ -128,6 +129,7 @@ function vocabularyFromRow(row: QueueRow): VocabularyDto {
     word: row.word,
     ipa: row.ipa,
     vietnamese: row.vietnamese,
+    ...(row.source_meaning_vi?.trim() ? { sourceMeaningVi: row.source_meaning_vi.trim() } : {}),
     definitionEn: row.definition_en,
     exampleEn: row.example_en,
     imageUrl: images ? (singleImage ? String(singleImage.url ?? "") : null) : row.image_url,
@@ -273,6 +275,7 @@ async function dueRows(database: ReviewQueueDatabase, learnerId: string, reviewD
            v.enabled,
            v.content_version,
            md.proposal_key AS master_sense_identity,
+           md.source_provenance->'masterV2Identity'->>'sourceMeaningVi' AS source_meaning_vi,
            md.source_provenance->'masterV2Identity'->>'displayForm' AS display_form,
            md.part_of_speech, md.cefr, md.tags, md.examples, md.content_sha256,
            md.content_review_decision, md.editorial_status, md.rights_status, md.development_media,
@@ -310,6 +313,7 @@ async function newRows(database: ReviewQueueDatabase, learnerId: string, scope?:
            v.enabled,
            v.content_version,
            md.proposal_key AS master_sense_identity,
+           md.source_provenance->'masterV2Identity'->>'sourceMeaningVi' AS source_meaning_vi,
            md.source_provenance->'masterV2Identity'->>'displayForm' AS display_form,
            md.part_of_speech, md.cefr, md.tags, md.examples, md.content_sha256,
            md.content_review_decision, md.editorial_status, md.rights_status, md.development_media,
@@ -350,6 +354,7 @@ async function allSavedRows(database: ReviewQueueDatabase, learnerId: string, da
            lp.next_review_date::text AS next_review_date,
            COALESCE(lp.revision, 0)::bigint AS revision,
            md.proposal_key AS master_sense_identity,
+           md.source_provenance->'masterV2Identity'->>'sourceMeaningVi' AS source_meaning_vi,
            md.source_provenance->'masterV2Identity'->>'displayForm' AS display_form,
            md.part_of_speech, md.cefr, md.tags, md.examples, md.content_sha256,
            md.content_review_decision, md.editorial_status, md.rights_status, md.development_media,

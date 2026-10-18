@@ -8,7 +8,7 @@ import { formatInferredMetadataLabel, formatPartOfSpeech, formatVocabularyTopic 
 export type VocabularyCardItem = Pick<
   VocabularyDto,
   | "id" | "word" | "ipa" | "partOfSpeech" | "vietnamese" | "imageUrl" | "audioUrl" | "level" | "topic"
-  | "developmentMedia" | "masterSenseIdentity" | "imageMediaStatus" | "cefr" | "tags" | "metadataEvidence"
+  | "sourceMeaningVi" | "rightsStatus" | "developmentMedia" | "masterSenseIdentity" | "imageMediaStatus" | "cefr" | "tags" | "metadataEvidence"
 > & { status?: LearnerVocabularyDto["status"] };
 
 type VocabularyIconName = "bookmark" | "speaker" | "image";
@@ -60,6 +60,7 @@ export function VocabularyCard({ item, showStatus = false, showTopic = false, va
   const level = levelLabel(item.level);
   const partOfSpeech = formatPartOfSpeech(item.partOfSpeech);
   const topic = formatVocabularyTopic(item.topic);
+  const meaning = item.sourceMeaningVi ?? item.vietnamese;
   const inferredLabels = item.metadataEvidence?.filter((evidence) => evidence.status === "INFERRED_REVIEWABLE").map((evidence) => ({
     key: `${evidence.dimension}:${evidence.code}`,
     label: formatInferredMetadataLabel(evidence.label ?? evidence.code, evidence.dimension),
@@ -70,18 +71,18 @@ export function VocabularyCard({ item, showStatus = false, showTopic = false, va
   return (
     <li className={`vocabulary-card-item${variant === "row" ? " is-row" : ""}`} data-testid={`vocabulary-row-${item.id}`}>
       <article className={`vocabulary-card${variant === "row" ? " is-row" : ""}`}>
-        <Link className="vocabulary-card-link" to={`/vocabulary/${item.id}`} aria-label={`${item.word}${item.ipa ? `, ${item.ipa}` : ""}. ${item.vietnamese}. Xem chi tiết`}>
+        <Link className="vocabulary-card-link" to={`/vocabulary/${item.id}`} aria-label={`${item.word}${item.ipa ? `, ${item.ipa}` : ""}. ${meaning}. Xem chi tiết`}>
           <span className="vocabulary-card-thumbnail">
             {imageUrl && !imageFailed ? (
               <img src={imageUrl} alt={`Hình minh họa ${item.word}`} loading="lazy" onError={() => setImageFailed(true)} />
-            ) : <span role="img" aria-label={`Chưa có hình minh họa cho ${item.word}`}><VocabularyIcon name="image" /></span>}
+            ) : <span role="img" aria-label={item.rightsStatus === "UNKNOWN_REVIEW_REQUIRED" ? `Chưa thể hiển thị ảnh; quyền media nguồn đang chờ xác minh cho ${item.word}` : `Chưa có hình minh họa cho ${item.word}`}><VocabularyIcon name="image" /></span>}
           </span>
           {level ? <span className="vocabulary-level-badge">{level}</span> : null}
           <span className="vocabulary-card-copy">
             <strong>{item.word}</strong>
             {item.ipa || partOfSpeech ? <span className="vocabulary-card-ipa">{[item.ipa, partOfSpeech].filter(Boolean).join(" · ")}</span> : null}
             <span className="vocabulary-card-meaning-label">Nghĩa tiếng Việt</span>
-            <span className="vocabulary-card-meaning">{item.vietnamese}</span>
+            <span className="vocabulary-card-meaning">{meaning}</span>
             {showStatus && item.status ? <span className={`vocabulary-card-status vocabulary-card-status-${item.status.toLowerCase()}`}>{statusLabel(item.status)}</span> : null}
             {showTopic && topic ? <span className="vocabulary-card-topic">{topic}</span> : null}
             {item.masterSenseIdentity && item.cefr ? <span className="vocabulary-card-topic">CEFR {item.cefr}</span> : null}

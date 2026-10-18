@@ -252,6 +252,13 @@ function VocabularyDetailContent({ vocabulary, allVocabulary, isSaved, isSaving,
   const level = levelLabel(vocabulary.level);
   const partOfSpeech = formatPartOfSpeech(vocabulary.partOfSpeech);
   const topic = formatVocabularyTopic(vocabulary.topic);
+  const mediaRightsPending = vocabulary.rightsStatus === "UNKNOWN_REVIEW_REQUIRED";
+  const audioUnavailableMessage = mediaRightsPending
+    ? "Phát âm chưa khả dụng; quyền media nguồn đang chờ xác minh."
+    : "Chưa có tệp phát âm";
+  const imageUnavailableMessage = mediaRightsPending
+    ? "Hình ảnh chưa khả dụng; quyền media nguồn đang chờ xác minh."
+    : "Chưa có hình minh họa";
   const audioLabel = audio.state === "playing" ? `Tạm dừng phát âm ${vocabulary.word}`
     : audio.state === "ended" ? `Nghe lại phát âm ${vocabulary.word}`
       : audio.state === "error" ? `Âm thanh không khả dụng cho ${vocabulary.word}`
@@ -286,8 +293,12 @@ function VocabularyDetailContent({ vocabulary, allVocabulary, isSaved, isSaving,
             </div>
 
             <div className="vocabulary-detail-meaning-block">
-              <span className="vocabulary-detail-meaning-label">Nghĩa tiếng Việt</span>
-              <p className="vocabulary-detail-meaning">{vocabulary.vietnamese}</p>
+              <span className="vocabulary-detail-meaning-label">Nghĩa tiếng Việt theo nguồn</span>
+              <p className="vocabulary-detail-meaning">{vocabulary.sourceMeaningVi ?? vocabulary.vietnamese}</p>
+              {vocabulary.sourceMeaningVi && vocabulary.sourceMeaningVi.trim() !== vocabulary.vietnamese.trim() ? <>
+                <span className="vocabulary-detail-meaning-label">Nghĩa của sense đang học</span>
+                <p className="vocabulary-detail-meaning">{vocabulary.vietnamese}</p>
+              </> : null}
             </div>
             <div className="vocabulary-detail-actions">
               {!hasDevelopmentAudio && audio.hasAudio && audio.state !== "error" ? <button
@@ -299,7 +310,7 @@ function VocabularyDetailContent({ vocabulary, allVocabulary, isSaved, isSaving,
               >
                 <DetailIcon name="speaker" />
                 {audio.state === "loading" ? "Đang tải…" : audio.state === "playing" ? "Tạm dừng" : audio.state === "ended" ? "Nghe lại" : "Nghe phát âm"}
-              </button> : !hasDevelopmentAudio && !audio.hasAudio ? <span className="vocabulary-detail-audio-unavailable">Chưa có tệp phát âm</span> : null}
+              </button> : !hasDevelopmentAudio && !audio.hasAudio ? <span className="vocabulary-detail-audio-unavailable">{audioUnavailableMessage}</span> : null}
               <button
                 className={`vocabulary-detail-action vocabulary-detail-action-secondary${isSaved ? " is-saved" : ""}`}
                 type="button"
@@ -327,9 +338,9 @@ function VocabularyDetailContent({ vocabulary, allVocabulary, isSaved, isSaving,
             {vocabulary.imageUrl && !imageFailed ? (
               <img src={vocabulary.imageUrl} alt={`Minh họa cho từ ${vocabulary.word}`} onError={() => setImageFailed(true)} />
             ) : (
-              <div className="vocabulary-detail-image-placeholder" role="img" aria-label={`Chưa có hình minh họa cho ${vocabulary.word}`}>
+              <div className="vocabulary-detail-image-placeholder" role="img" aria-label={`${imageUnavailableMessage} ${vocabulary.word}`}>
                 <DetailIcon name="image" />
-                <span>Chưa có hình minh họa</span>
+                <span>{imageUnavailableMessage}</span>
               </div>
             )}
             <DevelopmentImageNotice vocabulary={vocabulary} />

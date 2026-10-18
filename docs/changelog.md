@@ -11,6 +11,15 @@
 - Keep source mapping details out of deployed API DTOs and add an accessible
   example-audio player to vocabulary detail and flashcards.
 
+## 2026-10-18 — Show source gloss and clarify unavailable media
+
+- Carry the source inventory gloss through vocabulary API responses and show
+  it separately from the Sense-specific study meaning. Keep answer validation
+  Sense-specific.
+- Explain that missing Production media is waiting on rights/mapping
+  eligibility; preserve the owner-attested signed V2 media filter.
+- No Production database backfill or Cloudinary upload.
+
 ## 2026-10-18 — V2 final release candidate
 
 - Prepare the isolated V2 Production runtime behind explicit environment and endpoint checks; Preview targets Neon V2 Development.
