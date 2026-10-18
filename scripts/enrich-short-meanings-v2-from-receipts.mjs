@@ -2,10 +2,11 @@ import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { verifyReceiptReviewedGloss } from "./short-meanings-v2-receipt-evidence.mjs";
+import { resolveRepositoryPath } from "./short-meaning-v2-paths.mjs";
 
-const inputDir = path.resolve(process.env.SHORT_MEANING_INPUT_DIR ?? ".vocabflow-local/short-meanings-v2-final");
-const outputDir = path.resolve(process.env.SHORT_MEANING_ARTIFACT_DIR ?? ".vocabflow-local/short-meanings-v2-final-reviewed-v3");
-const sourceRepoRoot = path.resolve(process.env.SHORT_MEANING_SOURCE_REPO ?? "D:/hoctienganh/VocabFlow");
+const inputDir = resolveRepositoryPath(process.env.SHORT_MEANING_INPUT_DIR ?? ".vocabflow-local/short-meanings-v2-final");
+const outputDir = resolveRepositoryPath(process.env.SHORT_MEANING_ARTIFACT_DIR ?? "vocabflow-dataset/artifacts/short-meanings-v2-final-reviewed-v3");
+const sourceRepoRoot = resolveRepositoryPath(process.env.SHORT_MEANING_SOURCE_REPO ?? ".");
 const sha256 = (value) => createHash("sha256").update(value).digest("hex");
 const canonicalJson = (value) => JSON.stringify(value);
 const readJson = async (filename) => JSON.parse(await readFile(filename, "utf8"));

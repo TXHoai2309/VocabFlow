@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { resolveRepositoryPath } from "./short-meaning-v2-paths.mjs";
 
 const expected = {
   projectId: "silent-sky-84582895",
@@ -9,14 +10,14 @@ const expected = {
   count: 7311,
   contentFingerprint: "9abf453175f3cb48fdf46c779e6bdcbb5cad8ba659df3321893a777a539cb367"
 };
-const outputDir = path.resolve(process.env.SHORT_MEANING_ARTIFACT_DIR ?? ".vocabflow-local/short-meanings-v2-final");
-const sourceRoot = path.resolve(process.env.SHORT_MEANING_SOURCE_ROOT ?? "D:/hoctienganh/VocabFlow/vocabflow-dataset/workspaces/full-source-inventory-dedupe");
-const offlineRowsPath = path.resolve(process.env.SHORT_MEANING_OFFLINE_ROWS ?? ".vocabflow-local/short-meanings-v2/offline-source-rows.jsonl");
-const runtimeManifestPath = path.resolve(process.env.SHORT_MEANING_RUNTIME_MANIFEST
-  ?? "D:/hoctienganh/VocabFlow/vocabflow-dataset/workspaces/master-v2-development-sync/development-runtime-v1/master-v2-development-runtime-snapshot-v1.json");
+const outputDir = resolveRepositoryPath(process.env.SHORT_MEANING_ARTIFACT_DIR ?? ".vocabflow-local/short-meanings-v2-final");
+const sourceRoot = resolveRepositoryPath(process.env.SHORT_MEANING_SOURCE_ROOT ?? "vocabflow-dataset/workspaces/full-source-inventory-dedupe");
+const offlineRowsPath = resolveRepositoryPath(process.env.SHORT_MEANING_OFFLINE_ROWS ?? ".vocabflow-local/short-meanings-v2/offline-source-rows.jsonl");
+const runtimeManifestPath = resolveRepositoryPath(process.env.SHORT_MEANING_RUNTIME_MANIFEST
+  ?? "vocabflow-dataset/workspaces/master-v2-development-sync/development-runtime-v1/master-v2-development-runtime-snapshot-v1.json");
 const runtimeManifestHashPath = `${runtimeManifestPath}.sha256`;
-const dumpPath = path.resolve(process.env.SHORT_MEANING_DEVELOPMENT_DUMP
-  ?? "D:/hoctienganh/VocabFlow/.vocabflow-local/backups/vocabflow-neon-v2-development-20261017.dump");
+const dumpPath = resolveRepositoryPath(process.env.SHORT_MEANING_DEVELOPMENT_DUMP
+  ?? ".vocabflow-local/backups/vocabflow-neon-v2-development-20261017.dump");
 
 const sha256 = (value) => createHash("sha256").update(value).digest("hex");
 const canonicalJson = (value) => JSON.stringify(value);

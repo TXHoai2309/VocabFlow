@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import postgres from "postgres";
+import { reviewedShortMeaningsArtifact, resolveRepositoryPath } from "./short-meaning-v2-paths.mjs";
 
 const expected = {
   projectId: "silent-sky-84582895",
@@ -10,7 +11,7 @@ const expected = {
   count: 7311,
   contentFingerprint: "9abf453175f3cb48fdf46c779e6bdcbb5cad8ba659df3321893a777a539cb367"
 };
-const artifactDir = path.resolve(process.env.SHORT_MEANING_ARTIFACT_DIR ?? ".vocabflow-local/short-meanings-v2");
+const artifactDir = resolveRepositoryPath(process.env.SHORT_MEANING_ARTIFACT_DIR ?? reviewedShortMeaningsArtifact);
 const apply = process.argv.includes("--apply");
 if (process.argv.some((arg) => arg !== "--apply")) throw new Error("INVALID_ARGUMENT");
 if (!process.env.DATABASE_URL) throw new Error("MISSING_DATABASE_URL");

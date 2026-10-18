@@ -4537,3 +4537,12 @@ Added a content-bound, immutable downstream overlay for three grammar-note field
   Flashcard answers on the back, structure EN/VI examples, and place exact-
   sentence audio controls outside the flip button.
 - Preserve media and rights guards, canonical content, Neon, SRS, and Production.
+
+## 2026-10-18 — TXH short-meaning bundle consolidation
+
+- Preserve the reviewed V2 short-meaning artifact, source archive pin, and the
+  5,147-row parent baseline in a portable repository bundle. The verified
+  result remains 5,402 of 7,311; 397 are review-required and 1,512 unresolved.
+- Make preparation, verification, enrichment, and sync artifact paths resolve
+  from the TXH repository instead of the former worktree path. Portable
+  verification is offline and does not write Neon.

@@ -355,7 +355,7 @@ describe("US-22 vocabulary list UI", () => {
     const card = await screen.findByTestId("vocabulary-row-1");
     fireEvent.error(within(card).getByRole("img", { name: "Hình minh họa apple" }));
 
-    expect(within(card).getByRole("img", { name: "Chưa có hình minh họa cho apple" })).toBeInTheDocument();
+    expect(within(card).getByRole("img", { name: "Ảnh minh họa apple chưa tải được" })).toBeInTheDocument();
     expect(card.querySelector("svg")).toBeInTheDocument();
   });
 

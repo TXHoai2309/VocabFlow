@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import postgres from "postgres";
+import { resolveRepositoryPath } from "./short-meaning-v2-paths.mjs";
 
 const expected = {
   projectId: "silent-sky-84582895",
@@ -17,7 +18,7 @@ if ((process.env.DATABASE_ENV && process.env.DATABASE_ENV !== "development")
   throw new Error("NON_DEVELOPMENT_V2_TARGET_BLOCKED");
 }
 
-const outputDir = path.resolve(process.env.SHORT_MEANING_ARTIFACT_DIR ?? ".vocabflow-local/short-meanings-v2");
+const outputDir = resolveRepositoryPath(process.env.SHORT_MEANING_ARTIFACT_DIR ?? ".vocabflow-local/short-meanings-v2");
 const sha256 = (value) => createHash("sha256").update(value).digest("hex");
 const canonicalJson = (value) => JSON.stringify(value);
 const countWords = (value) => value.trim().split(/\s+/u).filter(Boolean).length;
