@@ -66,6 +66,8 @@ type QueueRow = {
   ipa: string | null;
   vietnamese: string;
   source_meaning_vi?: string | null;
+  short_meaning_vi?: string | null;
+  short_meaning_status?: string | null;
   definition_en: string | null;
   example_en: string | null;
   image_url: string | null;
@@ -130,6 +132,7 @@ function vocabularyFromRow(row: QueueRow): VocabularyDto {
     ipa: row.ipa,
     vietnamese: row.vietnamese,
     ...(row.source_meaning_vi?.trim() ? { sourceMeaningVi: row.source_meaning_vi.trim() } : {}),
+    ...(row.short_meaning_status === "VERIFIED" && row.short_meaning_vi?.trim() ? { shortMeaningVi: row.short_meaning_vi.trim(), shortMeaningStatus: "VERIFIED" as const } : {}),
     definitionEn: row.definition_en,
     exampleEn: row.example_en,
     imageUrl: images ? (singleImage ? String(singleImage.url ?? "") : null) : row.image_url,
@@ -276,6 +279,7 @@ async function dueRows(database: ReviewQueueDatabase, learnerId: string, reviewD
            v.content_version,
            md.proposal_key AS master_sense_identity,
            md.source_provenance->'masterV2Identity'->>'sourceMeaningVi' AS source_meaning_vi,
+           sm.short_meaning_vi AS short_meaning_vi, sm.validation_status AS short_meaning_status,
            md.source_provenance->'masterV2Identity'->>'displayForm' AS display_form,
            md.part_of_speech, md.cefr, md.tags, md.examples, md.content_sha256,
            md.content_review_decision, md.editorial_status, md.rights_status, md.development_media,
@@ -286,6 +290,8 @@ async function dueRows(database: ReviewQueueDatabase, learnerId: string, reviewD
     FROM "${sql.raw(APP_SCHEMA)}"."learner_progress" lp
     JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = lp.vocabulary_id
     LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
+    LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_short_meanings" sm
+      ON sm.vocabulary_id = v.id AND sm.source_content_hash = md.content_sha256 AND sm.validation_status = 'VERIFIED'
     WHERE lp.learner_id = ${learnerId}::uuid
       AND lp.next_review_date <= ${reviewDate}::date
       AND v.enabled = true
@@ -314,6 +320,7 @@ async function newRows(database: ReviewQueueDatabase, learnerId: string, scope?:
            v.content_version,
            md.proposal_key AS master_sense_identity,
            md.source_provenance->'masterV2Identity'->>'sourceMeaningVi' AS source_meaning_vi,
+           sm.short_meaning_vi AS short_meaning_vi, sm.validation_status AS short_meaning_status,
            md.source_provenance->'masterV2Identity'->>'displayForm' AS display_form,
            md.part_of_speech, md.cefr, md.tags, md.examples, md.content_sha256,
            md.content_review_decision, md.editorial_status, md.rights_status, md.development_media,
@@ -323,6 +330,8 @@ async function newRows(database: ReviewQueueDatabase, learnerId: string, scope?:
            COUNT(*) OVER() AS total_count
     FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v
     LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
+    LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_short_meanings" sm
+      ON sm.vocabulary_id = v.id AND sm.source_content_hash = md.content_sha256 AND sm.validation_status = 'VERIFIED'
     LEFT JOIN "${sql.raw(APP_SCHEMA)}"."learner_progress" lp
       ON lp.vocabulary_id = v.id
      AND lp.learner_id = ${learnerId}::uuid
@@ -355,6 +364,7 @@ async function allSavedRows(database: ReviewQueueDatabase, learnerId: string, da
            COALESCE(lp.revision, 0)::bigint AS revision,
            md.proposal_key AS master_sense_identity,
            md.source_provenance->'masterV2Identity'->>'sourceMeaningVi' AS source_meaning_vi,
+           sm.short_meaning_vi AS short_meaning_vi, sm.validation_status AS short_meaning_status,
            md.source_provenance->'masterV2Identity'->>'displayForm' AS display_form,
            md.part_of_speech, md.cefr, md.tags, md.examples, md.content_sha256,
            md.content_review_decision, md.editorial_status, md.rights_status, md.development_media,
@@ -362,6 +372,8 @@ async function allSavedRows(database: ReviewQueueDatabase, learnerId: string, da
     FROM "${sql.raw(APP_SCHEMA)}"."learner_saved_vocabulary" saved
     JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = saved.vocabulary_id
     LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
+    LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_short_meanings" sm
+      ON sm.vocabulary_id = v.id AND sm.source_content_hash = md.content_sha256 AND sm.validation_status = 'VERIFIED'
     LEFT JOIN "${sql.raw(APP_SCHEMA)}"."learner_progress" lp
       ON lp.learner_id = saved.learner_id
      AND lp.vocabulary_id = v.id

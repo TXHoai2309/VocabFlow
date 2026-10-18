@@ -6,6 +6,7 @@ import type { LearnerDto, LearnerVocabularyDto } from "@vocabflow/contracts";
 import { ActiveLearnerProvider } from "./learner-context-provider";
 import { ToastProvider } from "../../components/toast/toast-provider";
 import { VocabularyDetailPage } from "./vocabulary-detail-page";
+import { shortMeaningV2OfflineFixtures } from "../vocabulary/short-meaning-v2-offline-fixtures";
 
 const learner: LearnerDto = {
   id: "00000000-0000-4000-8000-000000000021",
@@ -101,9 +102,9 @@ describe("vocabulary detail page", () => {
     renderDetail();
 
     expect(await screen.findByRole("heading", { name: "apple" })).toBeInTheDocument();
-    expect(screen.getByText("Nghĩa tiếng Việt theo nguồn")).toBeInTheDocument();
-    expect(screen.getByText("Nghĩa của sense đang học")).toBeInTheDocument();
-    expect(screen.getByText("quả táo, trái táo")).toBeInTheDocument();
+    expect(screen.getByText("Giải thích nghĩa")).toBeInTheDocument();
+    expect(screen.queryByText("Nghĩa tiếng Việt theo nguồn")).not.toBeInTheDocument();
+    expect(screen.queryByText("quả táo, trái táo")).not.toBeInTheDocument();
     expect(screen.getByText("quả táo")).toBeInTheDocument();
     expect(screen.getByText("/ˈæp.əl/")).toBeInTheDocument();
     expect(screen.getByText("A round fruit with firm white flesh and a green, red, or yellow skin.")).toBeInTheDocument();
@@ -132,6 +133,33 @@ describe("vocabulary detail page", () => {
     expect(vietnamese.closest(".vocabulary-detail-example-line")).toHaveTextContent("VI");
     expect(english.closest(".vocabulary-detail-example-line")).not.toBe(vietnamese.closest(".vocabulary-detail-example-line"));
     expect(container.querySelectorAll(".vocabulary-detail-example-line")).toHaveLength(2);
+  });
+
+  it("keeps the real about adverb Sense separate from the about preposition in the offline V2 fixture", async () => {
+    const sense = shortMeaningV2OfflineFixtures.aboutAdverb.vocabulary;
+    mockDetailApi([item({
+      id: sense.id,
+      word: sense.word,
+      ipa: sense.ipa,
+      partOfSpeech: sense.partOfSpeech,
+      vietnamese: sense.vietnamese,
+      shortMeaningVi: sense.shortMeaningVi,
+      shortMeaningStatus: sense.shortMeaningStatus,
+      definitionEn: sense.definitionEn,
+      exampleEn: sense.exampleEn,
+      examples: sense.examples as LearnerVocabularyDto["examples"],
+      contentHash: sense.contentHash
+    })]);
+
+    renderDetail(String(sense.id));
+
+    expect(await screen.findByRole("heading", { name: "about" })).toBeInTheDocument();
+    expect(screen.getByText("Trạng từ")).toBeInTheDocument();
+    expect(screen.getByText("loanh quanh")).toBeInTheDocument();
+    expect(screen.getByText("quanh quẩn hoặc ở nhiều chỗ trong một khu vực gần đó")).toBeInTheDocument();
+    expect(screen.getByText("In various places within or near an area.")).toBeInTheDocument();
+    expect(screen.getByText("The children wandered about while we packed the bags.")).toBeInTheDocument();
+    expect(screen.queryByText("về")).not.toBeInTheDocument();
   });
 
   it("shows the player only for an exact example audio URL supplied on that example", async () => {
@@ -163,7 +191,7 @@ describe("vocabulary detail page", () => {
     renderDetail();
 
     expect(await screen.findByRole("heading", { name: "apple" })).toBeInTheDocument();
-    expect(screen.getByText("Nghĩa của sense đang học")).toBeInTheDocument();
+    expect(screen.getByText("Giải thích nghĩa")).toBeInTheDocument();
     expect(screen.getByText("Chưa có hình minh họa")).toBeInTheDocument();
     expect(screen.getByText("Chưa có tệp phát âm")).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /phát âm apple/i })).not.toBeInTheDocument();

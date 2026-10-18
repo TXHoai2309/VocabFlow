@@ -39,7 +39,7 @@ function resultLabel(type: SearchResult["type"]) {
 }
 
 function resultSubtitle(result: SearchResult) {
-  if (result.type === "VOCABULARY") return `Nghĩa · ${result.subtitle}`;
+  if (result.type === "VOCABULARY") return `${result.subtitleLabel} · ${result.subtitle}`;
   if (result.type === "TOPIC") return result.description;
   const gradeLabel = result.grade === "GENERAL" ? "Chung" : result.grade?.replace("GRADE_", "Lớp ");
   const parts = [result.description, `${result.vocabularyCount} từ`, gradeLabel];

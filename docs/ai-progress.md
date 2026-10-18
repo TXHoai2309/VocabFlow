@@ -7345,3 +7345,40 @@ owner-approved baseline exception. See
   `abandon` word audio played. `about` ADVERB retained its own meaning/example
   and showed no media under the current rights guard. Production remains
   unchanged.
+# 2026-10-18 — V2 short Vietnamese meaning overlay
+
+- Add one shared presentation rule: only `shortMeaningStatus=VERIFIED` may be
+  shown as a short gloss. Otherwise preserve the current Sense translation and
+  label it `Giải thích nghĩa`. A previously carried `sourceMeaningVi` alone no
+  longer upgrades itself to a verified gloss.
+- Add the hash-pinned `master_v2_short_meanings` overlay schema and minimal
+  additive migration. The generated migration was narrowed because older
+  V2 projection/import tables exist in the live schema but are absent from the
+  previous Drizzle snapshot; only the new overlay table is created.
+- Add deterministic snapshot/result and idempotent sync scripts. They require
+  the protected Neon identity to match V2 Development and never call AI.
+  Short `sourceMeaningVi` values are candidates marked `REVIEW_REQUIRED`, not
+  silently approved; missing evidence produces `UNRESOLVED`.
+- Wire the verified-only overlay through Vocabulary, detail, browse, Search,
+  learner, Review Queue, topic, learning-set, saved, and weak-word APIs and
+  displays. Canonical content, rights, media, SRS, and progress are untouched.
+- Owner declined paid AI. The repo-local ignored `.env` has Development and
+  migration settings, but the one read-only Neon preflight returned the
+  provider error that the account or project has exceeded quota. The pulled
+  Preview env contains `[SENSITIVE]`, not a usable connection string. No live
+  snapshot, migration, Neon sync, or Preview could be run; no credentials were
+  printed and no retry/write followed the quota error.
+- Focused tests: 236/236 passed across 16 files. Workspace packages,
+  `pnpm typecheck`, and `pnpm build` passed under Node 22.19.0 (repository pins
+  22.23.2); focused ESLint passed. Build retained existing dynamic-import and
+  large-chunk warnings.
+  Database-dependent acceptance evidence remains pending a usable local
+  Development connection.
+- Offline receipt enrichment used the existing 16 SHA-pinned independent
+  content-review receipts. It promoted 255 single-candidate source glosses
+  only where the PASS receipt matched the exact current content fields and
+  hash, verified the source-record pin, and cited the relevant gloss. The
+  original 5,147 verified rows were left unchanged; totals are now 5,402
+  VERIFIED, 397 REVIEW_REQUIRED, and 1,512 UNRESOLVED. A 1,909-row contextual
+  queue and receipt evidence are stored in the ignored local artifact folder
+  and backed up outside the workspace. Neon remains untouched.

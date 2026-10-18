@@ -307,6 +307,48 @@ export const masterVocabularyMappings = vocabflowApp.table("master_vocabulary_ma
   check("master_vocabulary_mappings_sense_revision_check", sql`${table.appliedSenseRevision} >= 1`)
 ]);
 
+/** Additive short-gloss overlay; never changes canonical vocabulary content or review history. */
+export const masterV2ShortMeanings = vocabflowApp.table("master_v2_short_meanings", {
+  vocabularyId: integer("vocabulary_id").primaryKey()
+    .references(() => vocabularies.id, { onDelete: "no action", onUpdate: "no action" }),
+  proposalIdentity: text("proposal_identity").notNull().unique(),
+  sourceContentHash: text("source_content_hash").notNull(),
+  shortMeaningVi: text("short_meaning_vi"),
+  sourceType: text("source_type"),
+  evidenceRef: text("evidence_ref"),
+  confidence: text("confidence"),
+  validationStatus: text("validation_status").notNull(),
+  reviewerIdentity: text("reviewer_identity"),
+  reviewedAt: timestamp("reviewed_at", { withTimezone: true }),
+  reviewEvidence: text("review_evidence"),
+  artifactVersion: text("artifact_version").notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow()
+}, (table) => [
+  check("master_v2_short_meanings_proposal_identity_check", sql`length(trim(${table.proposalIdentity})) > 0`),
+  check("master_v2_short_meanings_hash_check", sql`${table.sourceContentHash} ~ '^[0-9a-f]{64}$'`),
+  check("master_v2_short_meanings_source_type_check", sql`${table.sourceType} IS NULL OR ${table.sourceType} IN ('EXISTING_APPROVED_TRANSLATION', 'VERIFIED_SOURCE_GLOSS', 'AI_DERIVED')`),
+  check("master_v2_short_meanings_confidence_check", sql`${table.confidence} IS NULL OR ${table.confidence} IN ('HIGH', 'MEDIUM', 'LOW')`),
+  check("master_v2_short_meanings_status_check", sql`${table.validationStatus} IN ('VERIFIED', 'REVIEW_REQUIRED', 'UNRESOLVED')`),
+  check("master_v2_short_meanings_payload_check", sql`
+    (${table.validationStatus} = 'UNRESOLVED' AND ${table.shortMeaningVi} IS NULL)
+    OR (${table.validationStatus} IN ('VERIFIED', 'REVIEW_REQUIRED') AND length(trim(${table.shortMeaningVi})) > 0)
+  `),
+  check("master_v2_short_meanings_verified_evidence_check", sql`
+    ${table.validationStatus} <> 'VERIFIED'
+    OR (
+      ${table.evidenceRef} IS NOT NULL AND length(trim(${table.evidenceRef})) > 0
+      AND ${table.sourceType} IS NOT NULL
+      AND (${table.sourceType} <> 'AI_DERIVED' OR (
+        ${table.reviewerIdentity} IS NOT NULL AND length(trim(${table.reviewerIdentity})) > 0
+        AND ${table.reviewedAt} IS NOT NULL
+        AND ${table.reviewEvidence} IS NOT NULL AND length(trim(${table.reviewEvidence})) > 0
+      ))
+    )
+  `),
+  index("master_v2_short_meanings_status_hash_idx").on(table.validationStatus, table.sourceContentHash)
+]);
+
 export const masterTopicMappings = vocabflowApp.table("master_topic_mappings", {
   masterTopicId: uuid("master_topic_id").primaryKey(),
   topicId: integer("topic_id").notNull().unique()

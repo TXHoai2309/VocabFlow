@@ -39,6 +39,8 @@ type QueryRow = {
   ipa: unknown;
   vietnamese: unknown;
   source_meaning_vi?: unknown;
+  short_meaning_vi?: unknown;
+  short_meaning_status?: unknown;
   definition_en: unknown;
   example_en: unknown;
   image_url: unknown;
@@ -129,6 +131,7 @@ function vocabularyFromRow(row: QueryRow): VocabularyDto {
     ipa: row.ipa,
     vietnamese: row.vietnamese,
     ...(typeof row.source_meaning_vi === "string" && row.source_meaning_vi.trim() ? { sourceMeaningVi: row.source_meaning_vi.trim() } : {}),
+    ...(row.short_meaning_status === "VERIFIED" && typeof row.short_meaning_vi === "string" && row.short_meaning_vi.trim() ? { shortMeaningVi: row.short_meaning_vi.trim(), shortMeaningStatus: "VERIFIED" as const } : {}),
     definitionEn: row.definition_en,
     exampleEn: row.example_en,
     imageUrl: images ? (singleImage ? String(singleImage.url ?? "") : null) : row.image_url,
@@ -264,6 +267,7 @@ async function loadWeakWordsData(database: WeakWordsDatabase, learnerId: string,
       SELECT DISTINCT v.id, v.word, v.ipa,
              COALESCE(v.vietnamese_override, v.vietnamese) AS vietnamese,
              md.source_provenance->'masterV2Identity'->>'sourceMeaningVi' AS source_meaning_vi,
+             sm.short_meaning_vi AS short_meaning_vi, sm.validation_status AS short_meaning_status,
              v.definition_en, v.example_en,
              CASE WHEN v.image_quarantined THEN NULL ELSE v.image_url END AS image_url,
              v.audio_url, v.topic, v.level, v.enabled, v.content_version,
@@ -273,6 +277,8 @@ async function loadWeakWordsData(database: WeakWordsDatabase, learnerId: string,
              md.content_review_decision, md.editorial_status, md.rights_status, md.development_media
       FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v
       LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
+      LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_short_meanings" sm
+        ON sm.vocabulary_id = v.id AND sm.source_content_hash = md.content_sha256 AND sm.validation_status = 'VERIFIED'
       WHERE v.enabled = true
         AND ${vocabularyDatasetPredicate("v", datasetVersion)}
         AND (${datasetVersion === "v2" ? sql`true` : sql`EXISTS (
@@ -329,7 +335,7 @@ async function loadWeakWordsData(database: WeakWordsDatabase, learnerId: string,
     )
     SELECT rs.review_count AS summary_review_count,
            rs.remembered_count AS summary_remembered_count,
-           c.id, c.word, c.ipa, c.vietnamese, c.source_meaning_vi, c.definition_en, c.example_en,
+           c.id, c.word, c.ipa, c.vietnamese, c.source_meaning_vi, c.short_meaning_vi, c.short_meaning_status, c.definition_en, c.example_en,
            c.image_url, c.audio_url, c.topic, c.level, c.enabled,
            c.content_version, c.learning_state, c.next_review_date,
            c.revision, c.review_count, c.remembered_count, c.forgotten_count,

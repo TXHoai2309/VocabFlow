@@ -1,3 +1,5 @@
+import { presentVietnameseMeaning } from "@vocabflow/contracts";
+
 export type VocabularyDisplayExample = {
   english: string;
   vietnamese: string | null;
@@ -96,9 +98,18 @@ export function formatInferredMetadataLabel(value: string, dimension: "TOPIC" | 
 /** Prefer the short source gloss when supplied; otherwise preserve the full Sense meaning. */
 export function getPrimaryVietnameseMeaning(value: {
   vietnamese: string;
-  sourceMeaningVi?: string | null;
+  shortMeaningVi?: string | null;
+  shortMeaningStatus?: "VERIFIED";
 }): string {
-  return value.sourceMeaningVi?.trim() || value.vietnamese;
+  return presentVietnameseMeaning(value).primary;
+}
+
+export function getVietnameseMeaningPresentation(value: {
+  vietnamese: string;
+  shortMeaningVi?: string | null;
+  shortMeaningStatus?: "VERIFIED";
+}) {
+  return presentVietnameseMeaning(value);
 }
 
 /** Read only structured bilingual examples; never split or rewrite source text. */

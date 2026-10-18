@@ -1131,6 +1131,7 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
 .vocabulary-detail-meaning-block { display: grid; gap: 5px; margin-top: 2px; }
 .vocabulary-detail-meaning-label, .flashcard-meaning-label { color: var(--color-text-muted); font-size: var(--text-caption); font-weight: 700; line-height: 16px; letter-spacing: .02em; }
 .vocabulary-detail-meaning { margin: 0; color: var(--color-text); font-size: var(--text-body); font-weight: 500; line-height: var(--leading-body); overflow-wrap: anywhere; }
+.vocabulary-detail-explanation { color: var(--color-text-muted); font-weight: 400; }
 .vocabulary-detail-audio-unavailable { display: inline-flex; min-height: 40px; align-items: center; color: var(--color-text-muted); font-size: var(--text-small); }
 .vocabulary-detail-actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 20px; }
 .vocabulary-detail-action {
@@ -1328,6 +1329,7 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
 .flashcard-hint { color: var(--color-text-muted); font-size: 14px; }
 .flashcard-meaning-block { display: grid; gap: 3px; }
 .flashcard-vietnamese { max-width: 100%; overflow-wrap: anywhere; color: var(--color-primary); font-size: clamp(1rem, 2.4vw, 1.28rem); font-weight: 650; line-height: 1.45; }
+.flashcard-vietnamese-explanation { color: var(--color-text-muted); font-size: 12px; font-weight: 400; }
 .flashcard-optional, .flashcard-example { max-width: 100%; color: var(--color-text-muted); font-size: 14px; line-height: 1.5; }
 .flashcard-example { display: grid; gap: 6px; font-style: normal; text-align: left; }
 .flashcard-meaning-label { display: block; color: var(--color-text-muted); font-size: var(--text-caption); font-weight: 700; line-height: 1.35; }
@@ -1585,6 +1587,7 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
 .vocabulary-card-copy strong { overflow-wrap: anywhere; color: var(--color-text); font-size: var(--text-h3); font-weight: var(--weight-h3); line-height: var(--leading-h3); }
 .vocabulary-card-ipa, .vocabulary-card-meaning { overflow: hidden; color: var(--color-text-muted); font-size: var(--text-small); line-height: var(--leading-small); text-overflow: ellipsis; white-space: nowrap; }
 .vocabulary-card-meaning-label { color: var(--color-text-muted); font-size: var(--text-caption); font-weight: 700; line-height: 15px; }
+.vocabulary-card-explanation { display: -webkit-box; overflow: hidden; color: var(--color-text-muted); font-size: var(--text-caption); line-height: 1.35; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
 .vocabulary-card-topic { overflow: hidden; color: var(--color-text-muted); font-size: var(--text-caption); line-height: 16px; text-overflow: ellipsis; white-space: nowrap; }
 .vocabulary-card-metadata-suggestion { width: fit-content; max-width: 100%; overflow: hidden; padding: 2px 6px; border: 1px solid var(--color-border-subtle); border-radius: 999px; color: var(--color-text-muted); font-size: var(--text-caption); line-height: 16px; text-overflow: ellipsis; white-space: nowrap; }
 .vocabulary-bookmark-button, .vocabulary-audio-button { position: absolute; display: grid; place-items: center; border: 0; cursor: pointer; }

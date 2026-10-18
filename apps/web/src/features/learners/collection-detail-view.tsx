@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import type { VocabularyLevel } from "@vocabflow/contracts";
 import { VocabularyCard, type VocabularyCardItem } from "./vocabulary-card";
 import { EmptyState } from "../../components/async-states";
+import { getPrimaryVietnameseMeaning } from "../vocabulary/vocabulary-presentation";
 
 export type CollectionKind = "topic" | "learning-set";
 
@@ -64,7 +65,7 @@ export function CollectionDetailView({
   const trimmedQuery = query.trim().toLowerCase();
   const matchingItems = items.filter((item) => !trimmedQuery
     || item.word.toLowerCase().includes(trimmedQuery)
-    || (item.sourceMeaningVi ?? item.vietnamese).toLowerCase().includes(trimmedQuery));
+    || getPrimaryVietnameseMeaning(item).toLowerCase().includes(trimmedQuery));
   const typeLabel = kind === "topic" ? "Chủ đề" : "Bộ từ";
   const collectionPath = kind === "topic" ? "/topics" : "/learning-sets";
   const total = Math.max(0, progressTotal);

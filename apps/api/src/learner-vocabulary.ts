@@ -34,6 +34,8 @@ type LearnerVocabularyRow = {
   ipa: unknown;
   vietnamese: unknown;
   source_meaning_vi?: unknown;
+  short_meaning_vi?: unknown;
+  short_meaning_status?: unknown;
   definition_en: unknown;
   example_en: unknown;
   image_url: unknown;
@@ -88,6 +90,7 @@ function toLearnerVocabularyDto(row: LearnerVocabularyRow): LearnerVocabularyDto
     ipa: nullableText(row.ipa),
     vietnamese: String(row.vietnamese),
     ...(typeof row.source_meaning_vi === "string" && row.source_meaning_vi.trim() ? { sourceMeaningVi: row.source_meaning_vi.trim() } : {}),
+    ...(row.short_meaning_status === "VERIFIED" && typeof row.short_meaning_vi === "string" && row.short_meaning_vi.trim() ? { shortMeaningVi: row.short_meaning_vi.trim(), shortMeaningStatus: "VERIFIED" as const } : {}),
     definitionEn: nullableText(row.definition_en),
     exampleEn: nullableText(row.example_en),
     imageUrl: images ? (singleImage ? nullableText(singleImage.url) : null) : nullableText(row.image_url),
@@ -149,6 +152,7 @@ export function createLearnerVocabularyService(database: LearnerVocabularyDataba
             v.content_version,
             md.proposal_key AS master_sense_identity,
             md.source_provenance->'masterV2Identity'->>'sourceMeaningVi' AS source_meaning_vi,
+            sm.short_meaning_vi AS short_meaning_vi, sm.validation_status AS short_meaning_status,
             md.source_provenance->'masterV2Identity'->>'displayForm' AS display_form,
             md.part_of_speech, md.cefr, md.tags, md.examples, md.content_sha256,
             md.content_review_decision, md.editorial_status, md.rights_status, md.development_media,
@@ -156,6 +160,8 @@ export function createLearnerVocabularyService(database: LearnerVocabularyDataba
             lp.next_review_date
           FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v
           LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
+          LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_short_meanings" sm
+            ON sm.vocabulary_id = v.id AND sm.source_content_hash = md.content_sha256 AND sm.validation_status = 'VERIFIED'
           LEFT JOIN "${sql.raw(APP_SCHEMA)}"."learner_progress" lp
             ON lp.vocabulary_id = v.id
            AND lp.learner_id = ${ownership.learnerId}::uuid

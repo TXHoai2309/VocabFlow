@@ -7,6 +7,7 @@ import { LearnerVocabularyClientError, requestLearnerVocabulary } from "./vocabu
 import { ProgressInsightsClientError, requestTopicProgress } from "./progress-insights-client";
 import { requestTopicVocabulary, requestTopics, TopicsClientError } from "./topics-client";
 import { CollectionDetailView } from "./collection-detail-view";
+import { getVietnameseMeaningPresentation } from "../vocabulary/vocabulary-presentation";
 import type { VocabularyCardItem } from "./vocabulary-card";
 import { EmptyState, ErrorState, LoadingState } from "../../components/async-states";
 
@@ -124,7 +125,7 @@ export function TopicsPage() {
                 {vocabularyState === "ready" && vocabulary.length === 0 ? <EmptyState className="topic-vocabulary-empty" icon="book" title="Chủ đề chưa có từ vựng" description="Chưa có từ vựng nào đang bật trong chủ đề này." testId="topic-vocabulary-empty" /> : null}
                 {vocabularyState === "ready" && vocabulary.length > 0 ? (
                   <ul className="vocabulary-list" data-testid="topic-vocabulary-list">
-                    {vocabulary.map((item) => <li className="vocabulary-list-row" key={item.id}><div className="vocabulary-list-copy"><strong>{item.word}</strong><span>{item.sourceMeaningVi ?? item.vietnamese}</span></div></li>)}
+                    {vocabulary.map((item) => { const meaning = getVietnameseMeaningPresentation(item); return <li className="vocabulary-list-row" key={item.id}><div className="vocabulary-list-copy"><strong>{item.word}</strong><small>{meaning.primaryLabel}</small><span>{meaning.primary}</span></div></li>; })}
                   </ul>
                 ) : null}
               </>}

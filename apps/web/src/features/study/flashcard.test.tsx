@@ -3,6 +3,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import type { VocabularyDto } from "@vocabflow/contracts";
 import { Flashcard } from "./flashcard";
+import { shortMeaningV2OfflineFixtures } from "../vocabulary/short-meaning-v2-offline-fixtures";
 
 const vocabulary: VocabularyDto = {
   id: 1,
@@ -45,7 +46,7 @@ describe("US-11 Flashcard back state", () => {
 
     rerender(<Flashcard vocabulary={vocabulary} isFlipped onFlip={onFlip} />);
     expect(screen.getByTestId("flashcard").querySelector(".flashcard-back")).toBeInTheDocument();
-    expect(screen.getByText("Nghĩa tiếng Việt")).toBeInTheDocument();
+    expect(screen.getByText("Giải thích nghĩa")).toBeInTheDocument();
     expect(screen.getByText("sức mạnh; quyền lực")).toBeInTheDocument();
     expect(screen.getByText("/ˈpaʊər/")).toBeInTheDocument();
     expect(screen.getByText("the ability to control or influence")).toBeInTheDocument();
@@ -133,10 +134,41 @@ describe("US-11 Flashcard back state", () => {
     expect(screen.queryByText("về một chủ đề hoặc vấn đề")).not.toBeInTheDocument();
   });
 
-  it("prioritizes a supplied source meaning without replacing the identity-specific Sense meaning", () => {
+  it("does not expose unverified source meaning as a short gloss", () => {
     render(<Flashcard vocabulary={{ ...vocabulary, sourceMeaningVi: "nghĩa nguồn ngắn" }} isFlipped onFlip={vi.fn()} />);
 
-    expect(screen.getByText("nghĩa nguồn ngắn")).toBeInTheDocument();
+    expect(screen.queryByText("nghĩa nguồn ngắn")).not.toBeInTheDocument();
+    expect(screen.getByText(vocabulary.vietnamese)).toBeInTheDocument();
+  });
+
+  it("shows a verified short meaning and keeps the existing explanation", () => {
+    render(<Flashcard vocabulary={{ ...vocabulary, shortMeaningVi: "sức mạnh", shortMeaningStatus: "VERIFIED" }} isFlipped onFlip={vi.fn()} />);
+
+    expect(screen.getByText("Nghĩa tiếng Việt")).toBeInTheDocument();
+    expect(screen.getByText("sức mạnh")).toBeInTheDocument();
+    expect(screen.getByText("Giải thích")).toBeInTheDocument();
+    expect(screen.getByText(vocabulary.vietnamese)).toBeInTheDocument();
+  });
+
+  it("keeps the two real age noun senses distinct and refuses a short gloss for unresolved tear", () => {
+    const period = shortMeaningV2OfflineFixtures.ageHistoricalPeriod.vocabulary;
+    const lived = shortMeaningV2OfflineFixtures.ageYearsLived.vocabulary;
+    const { rerender } = render(<Flashcard vocabulary={period} isFlipped onFlip={vi.fn()} />);
+
+    expect(screen.getByText("thời đại")).toBeInTheDocument();
+    expect(screen.getByText(/giai đoạn lịch sử/)).toBeInTheDocument();
+    expect(screen.queryByText("tuổi")).not.toBeInTheDocument();
+
+    rerender(<Flashcard vocabulary={lived} isFlipped onFlip={vi.fn()} />);
+    expect(screen.getByText("tuổi")).toBeInTheDocument();
+    expect(screen.queryByText("thời đại")).not.toBeInTheDocument();
+
+    const unresolved = shortMeaningV2OfflineFixtures.tearUnresolved.vocabulary;
+    rerender(<Flashcard vocabulary={unresolved} isFlipped onFlip={vi.fn()} />);
+    expect(screen.getByText("Giải thích nghĩa")).toBeInTheDocument();
+    expect(screen.getByText("xé; làm rách")).toBeInTheDocument();
+    expect(screen.queryByText("Nghĩa tiếng Việt")).not.toBeInTheDocument();
+    expect(shortMeaningV2OfflineFixtures.tearUnresolved.shortMeaningStatus).toBe("UNRESOLVED");
   });
 
   it("does not expose a quarantined teacher poster image or its printed answer text", () => {

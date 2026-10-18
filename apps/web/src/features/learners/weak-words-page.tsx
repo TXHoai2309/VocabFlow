@@ -6,6 +6,7 @@ import { usePronunciationAudio } from "../study/pronunciation-audio";
 import { useActiveLearner } from "./learner-context-hook";
 import { requestWeakWords, WeakWordsClientError } from "./weak-words-client";
 import { EmptyState, ErrorState, LoadingState } from "../../components/async-states";
+import { getVietnameseMeaningPresentation } from "../vocabulary/vocabulary-presentation";
 
 type PageState = "loading" | "ready" | "error";
 const PAGE_SIZE = 20;
@@ -45,10 +46,11 @@ function AudioIcon() {
 function WeakWordRow({ item }: { item: WeakWordsItem }) {
   const [imageFailed, setImageFailed] = useState(false);
   const audio = usePronunciationAudio(item.vocabulary.audioUrl, item.vocabulary.word, item.vocabulary.id);
+  const meaning = getVietnameseMeaningPresentation(item.vocabulary);
   return (
     <li className="weak-words-row-item" data-testid={`weak-word-${item.vocabulary.id}`}>
       <article className="weak-words-row">
-        <Link className="weak-words-word-link" to={`/vocabulary/${item.vocabulary.id}`} aria-label={`${item.vocabulary.word}. ${item.vocabulary.sourceMeaningVi ?? item.vocabulary.vietnamese}. Xem chi tiết`}>
+        <Link className="weak-words-word-link" to={`/vocabulary/${item.vocabulary.id}`} aria-label={`${item.vocabulary.word}. ${meaning.primary}. Xem chi tiết`}>
           <span className="weak-words-thumbnail">
             {item.vocabulary.imageUrl && !imageFailed
               ? <img src={item.vocabulary.imageUrl} alt={`Hình minh họa ${item.vocabulary.word}`} loading="lazy" onError={() => setImageFailed(true)} />
@@ -57,7 +59,7 @@ function WeakWordRow({ item }: { item: WeakWordsItem }) {
           <span className="weak-words-main-copy">
             <strong>{item.vocabulary.word}</strong>
             {item.vocabulary.ipa ? <small>{item.vocabulary.ipa}</small> : null}
-            <span>{item.vocabulary.sourceMeaningVi ?? item.vocabulary.vietnamese}</span>
+            <span><small>{meaning.primaryLabel}</small>{meaning.primary}</span>
             <span className="weak-words-taxonomy">
               {item.vocabulary.topic ? <span>{item.vocabulary.topic}</span> : null}
               {item.vocabulary.level ? <span>{item.vocabulary.level === "GENERAL" ? "Chung" : `Lớp ${item.vocabulary.level.slice(-1)}`}</span> : null}

@@ -10,6 +10,7 @@ import type {
   VocabularyLevel
 } from "@vocabflow/contracts";
 import { ErrorState, LoadingState, type LoadingPattern } from "../../components/async-states";
+import { getVietnameseMeaningPresentation } from "../vocabulary/vocabulary-presentation";
 
 export type HomeResource<T> =
   | { status: "loading" }
@@ -293,6 +294,7 @@ export function ContinueLearningCard({
   onRetry: () => void;
 }) {
   const next = queue.status === "ready" ? queue.data.queue[0] : undefined;
+  const nextMeaning = next ? getVietnameseMeaningPresentation(next.vocabulary) : null;
   const candidate = continuation.status === "ready" ? continuation.data : null;
   const showFallback = candidate === null && (continuation.status === "ready" || continuation.status === "error");
   return (
@@ -335,7 +337,7 @@ export function ContinueLearningCard({
           <div className="home-next-copy">
             <small>Tiếp theo trong danh sách học hiện tại · {next.queueType === "DUE" ? "Ôn tập" : "Từ mới"}</small>
             <strong>{next.vocabulary.word}</strong>
-            <span>{next.vocabulary.sourceMeaningVi ?? next.vocabulary.vietnamese}</span>
+            {nextMeaning ? <span><small>{nextMeaning.primaryLabel}</small>{nextMeaning.primary}</span> : null}
           </div>
           <Link className="home-button home-button-primary" to="/study/setup">Bắt đầu phiên học</Link>
         </div>

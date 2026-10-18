@@ -29,6 +29,7 @@ type SearchRow = {
   id: unknown;
   title: unknown;
   subtitle: unknown;
+  subtitle_label: unknown;
   image_url: unknown;
   topic: unknown;
   level: unknown;
@@ -104,7 +105,8 @@ async function searchRows(
         'VOCABULARY'::text AS entity_type,
         v.id,
         v.word AS title,
-        COALESCE(md.source_provenance->'masterV2Identity'->>'sourceMeaningVi', v.vietnamese_override, v.vietnamese) AS subtitle,
+        COALESCE(sm.short_meaning_vi, v.vietnamese_override, v.vietnamese) AS subtitle,
+        CASE WHEN sm.short_meaning_vi IS NOT NULL THEN 'Nghĩa tiếng Việt' ELSE 'Giải thích nghĩa' END::text AS subtitle_label,
         CASE WHEN v.image_quarantined THEN NULL ELSE v.image_url END AS image_url,
         v.topic,
         v.level::text AS level,
@@ -121,6 +123,8 @@ async function searchRows(
       FROM eligible_vocabulary ev
       JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = ev.id
       LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
+      LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_short_meanings" sm
+        ON sm.vocabulary_id = v.id AND sm.source_content_hash = md.content_sha256 AND sm.validation_status = 'VERIFIED'
       WHERE lower(v.word) LIKE lower(${containsPattern}) ESCAPE ${escapeCharacter}
          OR lower(COALESCE(md.source_provenance->'masterV2Identity'->>'sourceMeaningVi', '')) LIKE lower(${containsPattern}) ESCAPE ${escapeCharacter}
          OR lower(COALESCE(v.vietnamese_override, v.vietnamese)) LIKE lower(${containsPattern}) ESCAPE ${escapeCharacter}
@@ -131,6 +135,7 @@ async function searchRows(
         t.id,
         t.name AS title,
         NULL::text AS subtitle,
+        NULL::text AS subtitle_label,
         NULL::text AS image_url,
         NULL::text AS topic,
         NULL::text AS level,
@@ -164,6 +169,7 @@ async function searchRows(
         ls.id,
         ls.name AS title,
         NULL::text AS subtitle,
+        NULL::text AS subtitle_label,
         NULL::text AS image_url,
         NULL::text AS topic,
         NULL::text AS level,
@@ -200,7 +206,7 @@ async function searchRows(
       ) AS entity_rank
       FROM all_matches
     )
-    SELECT entity_type, id, title, subtitle, image_url, topic, level, description, vocabulary_count, grade
+    SELECT entity_type, id, title, subtitle, subtitle_label, image_url, topic, level, description, vocabulary_count, grade
     FROM ranked_matches
     WHERE entity_rank <= ${query.limit}
     ORDER BY
@@ -236,6 +242,7 @@ export function createGlobalSearchService(database: GlobalSearchDatabase, option
               id,
               title,
               subtitle: String(row.subtitle),
+              subtitleLabel: row.subtitle_label === "Nghĩa tiếng Việt" ? "Nghĩa tiếng Việt" : "Giải thích nghĩa",
               imageUrl: nullableText(row.image_url),
               topic: nullableText(row.topic),
               level: nullableText(row.level) as GlobalSearchResponse["vocabulary"][number]["level"]

@@ -3,12 +3,12 @@ import { Link } from "react-router";
 import type { LearnerVocabularyDto, VocabularyDto } from "@vocabflow/contracts";
 import { usePronunciationAudio } from "../study/pronunciation-audio";
 import { DevelopmentImageNotice, DevelopmentWordAudio } from "../study/development-media";
-import { formatInferredMetadataLabel, formatPartOfSpeech, formatVocabularyTopic, getPrimaryVietnameseMeaning } from "../vocabulary/vocabulary-presentation";
+import { formatInferredMetadataLabel, formatPartOfSpeech, formatVocabularyTopic, getVietnameseMeaningPresentation } from "../vocabulary/vocabulary-presentation";
 
 export type VocabularyCardItem = Pick<
   VocabularyDto,
   | "id" | "word" | "ipa" | "partOfSpeech" | "vietnamese" | "imageUrl" | "audioUrl" | "level" | "topic"
-  | "sourceMeaningVi" | "rightsStatus" | "developmentMedia" | "masterSenseIdentity" | "imageMediaStatus" | "cefr" | "tags" | "metadataEvidence"
+  | "sourceMeaningVi" | "shortMeaningVi" | "shortMeaningStatus" | "rightsStatus" | "developmentMedia" | "masterSenseIdentity" | "imageMediaStatus" | "cefr" | "tags" | "metadataEvidence"
 > & { status?: LearnerVocabularyDto["status"] };
 
 type VocabularyIconName = "bookmark" | "speaker" | "image";
@@ -62,7 +62,7 @@ export function VocabularyCard({ item, showStatus = false, showTopic = false, va
   const level = levelLabel(item.level);
   const partOfSpeech = formatPartOfSpeech(item.partOfSpeech);
   const topic = formatVocabularyTopic(item.topic);
-  const meaning = getPrimaryVietnameseMeaning(item);
+  const meaning = getVietnameseMeaningPresentation(item);
   const inferredLabels = item.metadataEvidence?.filter((evidence) => evidence.status === "INFERRED_REVIEWABLE").map((evidence) => ({
     key: `${evidence.dimension}:${evidence.code}`,
     label: formatInferredMetadataLabel(evidence.label ?? evidence.code, evidence.dimension),
@@ -73,7 +73,7 @@ export function VocabularyCard({ item, showStatus = false, showTopic = false, va
   return (
     <li className={`vocabulary-card-item${variant === "row" ? " is-row" : ""}`} data-testid={`vocabulary-row-${item.id}`}>
       <article className={`vocabulary-card${variant === "row" ? " is-row" : ""}${imageUrl ? imageFailed ? " has-image-fallback" : " has-image" : " is-text-first"}${level ? " has-level" : ""}`}>
-        <Link className="vocabulary-card-link" to={`/vocabulary/${item.id}`} aria-label={`${item.word}${item.ipa ? `, ${item.ipa}` : ""}. ${meaning}. Xem chi tiết`}>
+        <Link className="vocabulary-card-link" to={`/vocabulary/${item.id}`} aria-label={`${item.word}${item.ipa ? `, ${item.ipa}` : ""}. ${meaning.primary}. Xem chi tiết`}>
           {imageUrl && !imageFailed ? <span className="vocabulary-card-thumbnail">
             <img src={imageUrl} alt={`Hình minh họa ${item.word}`} loading="lazy" onError={() => imageKey && setFailedImageKey(imageKey)} />
           </span> : imageUrl ? <span className="vocabulary-card-image-fallback" role="img" aria-label={`Ảnh minh họa ${item.word} chưa tải được`}><VocabularyIcon name="image" /></span> : null}
@@ -81,8 +81,9 @@ export function VocabularyCard({ item, showStatus = false, showTopic = false, va
           <span className="vocabulary-card-copy">
             <strong>{item.word}</strong>
             {item.ipa || partOfSpeech ? <span className="vocabulary-card-ipa">{[item.ipa, partOfSpeech].filter(Boolean).join(" · ")}</span> : null}
-            <span className="vocabulary-card-meaning-label">Nghĩa tiếng Việt</span>
-            <span className="vocabulary-card-meaning">{meaning}</span>
+            <span className="vocabulary-card-meaning-label">{meaning.primaryLabel}</span>
+            <span className="vocabulary-card-meaning">{meaning.primary}</span>
+            {meaning.explanation ? <span className="vocabulary-card-explanation">Giải thích: {meaning.explanation}</span> : null}
             {showStatus && item.status ? <span className={`vocabulary-card-status vocabulary-card-status-${item.status.toLowerCase()}`}>{statusLabel(item.status)}</span> : null}
             {showTopic && topic ? <span className="vocabulary-card-topic">{topic}</span> : null}
             {item.masterSenseIdentity && item.cefr ? <span className="vocabulary-card-topic">CEFR {item.cefr}</span> : null}

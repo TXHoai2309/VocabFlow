@@ -3,7 +3,7 @@ import type { VocabularyDto } from "@vocabflow/contracts";
 import { usePronunciationAudio } from "./pronunciation-audio";
 import { DevelopmentExampleAudio, DevelopmentImageNotice, DevelopmentImagePreviews, DevelopmentWordAudio } from "./development-media";
 import { ExampleAudio } from "./example-audio";
-import { formatPartOfSpeech, formatVocabularyTopic, getPrimaryVietnameseMeaning, parseVocabularyExamples } from "../vocabulary/vocabulary-presentation";
+import { formatPartOfSpeech, formatVocabularyTopic, getVietnameseMeaningPresentation, parseVocabularyExamples } from "../vocabulary/vocabulary-presentation";
 
 export type FlashcardProps = {
   vocabulary: VocabularyDto;
@@ -25,7 +25,7 @@ export function Flashcard({ vocabulary, isFlipped, onFlip }: FlashcardProps) {
     return hasPublishedAudio || hasDevelopmentAudio ? [{ example, index, hasPublishedAudio }] : [];
   });
   const partOfSpeech = formatPartOfSpeech(vocabulary.partOfSpeech);
-  const meaning = getPrimaryVietnameseMeaning(vocabulary);
+  const meaning = getVietnameseMeaningPresentation(vocabulary);
   const topic = formatVocabularyTopic(vocabulary.topic);
   const pronunciationDetail = [vocabulary.ipa, partOfSpeech].filter(Boolean).join(" · ");
 
@@ -82,14 +82,15 @@ export function Flashcard({ vocabulary, isFlipped, onFlip }: FlashcardProps) {
           </span>
         ) : (
           <span className="flashcard-face flashcard-back">
-            <span id="flashcard-description" className="sr-only">Từ: {vocabulary.word}. {pronunciationDetail ? `${pronunciationDetail}. ` : ""}Nghĩa: {meaning}.</span>
+            <span id="flashcard-description" className="sr-only">Từ: {vocabulary.word}. {pronunciationDetail ? `${pronunciationDetail}. ` : ""}{meaning.primaryLabel}: {meaning.primary}.</span>
             <span className="flashcard-back-heading">
               <span className="flashcard-word">{vocabulary.word}</span>
               {pronunciationDetail ? <span className="flashcard-optional">{pronunciationDetail}</span> : null}
             </span>
             <span className="flashcard-meaning-block">
-              <span className="flashcard-meaning-label">Nghĩa tiếng Việt</span>
-              <span className="flashcard-vietnamese" lang="vi">{meaning}</span>
+              <span className="flashcard-meaning-label">{meaning.primaryLabel}</span>
+              <span className="flashcard-vietnamese" lang="vi">{meaning.primary}</span>
+              {meaning.explanation ? <span className="flashcard-definition flashcard-vietnamese-explanation"><span className="flashcard-meaning-label">Giải thích</span><span lang="vi">{meaning.explanation}</span></span> : null}
             </span>
             {vocabulary.definitionEn ? <span className="flashcard-definition"><span className="flashcard-meaning-label">Định nghĩa tiếng Anh</span><span lang="en">{vocabulary.definitionEn}</span></span> : null}
             {examples.length > 0 ? examples.map((example, index) => (

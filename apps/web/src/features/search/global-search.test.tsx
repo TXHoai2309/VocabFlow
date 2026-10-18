@@ -5,6 +5,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import type { GlobalSearchResponse, GlobalSearchResult } from "@vocabflow/contracts";
 import { GlobalSearchPalette } from "./global-search-palette";
+import { bananaShortMeaningSearchResult } from "../vocabulary/short-meaning-v2-offline-fixtures";
 import {
   addRecentSearch,
   persistRecentSearches,
@@ -17,6 +18,7 @@ const vocabulary = {
   id: 1,
   title: "family",
   subtitle: "gia đình",
+  subtitleLabel: "Giải thích nghĩa" as const,
   imageUrl: null,
   topic: "Gia đình",
   level: "GRADE_1" as const
@@ -122,12 +124,35 @@ describe("global search palette", () => {
     const { container } = renderPalette();
     fireEvent.change(screen.getByRole("searchbox", { name: "Tìm từ vựng, chủ đề hoặc bộ từ" }), { target: { value: "family" } });
 
-    expect(await screen.findByText("Nghĩa · gia đình")).toBeInTheDocument();
+    expect(await screen.findByText("Giải thích nghĩa · gia đình")).toBeInTheDocument();
     const image = container.querySelector(".global-search-result-image");
     expect(image).toBeInTheDocument();
     fireEvent.error(image!);
     expect(container.querySelector(".global-search-result-image")).not.toBeInTheDocument();
     expect(container.querySelector(".global-search-result-icon.is-vocabulary")).toBeInTheDocument();
+  });
+
+  it("labels only a verified short meaning as the Vietnamese gloss", async () => {
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(JSON.stringify({
+      ...response(),
+      vocabulary: [{ ...vocabulary, subtitleLabel: "Nghĩa tiếng Việt" as const, subtitle: "chuối" }]
+    }), { status: 200 }));
+    renderPalette();
+    fireEvent.change(screen.getByRole("searchbox", { name: "Tìm từ vựng, chủ đề hoặc bộ từ" }), { target: { value: "family" } });
+
+    expect(await screen.findByText("Nghĩa tiếng Việt · chuối")).toBeInTheDocument();
+  });
+
+  it("shows the real hash-pinned banana short meaning in offline V2 search data", async () => {
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(JSON.stringify({
+      ...response("banana"),
+      vocabulary: [bananaShortMeaningSearchResult]
+    }), { status: 200 }));
+    renderPalette();
+    fireEvent.change(screen.getByRole("searchbox", { name: "Tìm từ vựng, chủ đề hoặc bộ từ" }), { target: { value: "banana" } });
+
+    expect(await screen.findByText("Nghĩa tiếng Việt · quả chuối")).toBeInTheDocument();
+    expect(screen.getByRole("group", { name: "Từ vựng (1)" })).toHaveTextContent("banana");
   });
 
   it("does not let a late response for an older query overwrite the latest results", async () => {

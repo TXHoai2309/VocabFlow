@@ -148,6 +148,30 @@ describe("US-04 vocabulary service", () => {
     await expect(createVocabularyService({ execute }).list("parent-1")).resolves.toEqual([]);
   });
 
+  it("returns only a hash-current verified short meaning from the overlay", async () => {
+    const queries: Array<{ sql: string; params: unknown[] }> = [];
+    const execute = vi.fn()
+      .mockResolvedValueOnce({ rows: [{ household_id: householdId }] })
+      .mockImplementationOnce(async (query) => {
+        queries.push(new PgDialect().sqlToQuery(query));
+        return { rows: [{ ...vocabulary[0], content_version: 1, content_sha256: "a".repeat(64), short_meaning_vi: "chuối", short_meaning_status: "VERIFIED" }] };
+      });
+    const result = await createVocabularyService({ execute }, { datasetVersion: "v2" }).list("parent-1");
+    expect(result[0]).toMatchObject({ shortMeaningVi: "chuối", shortMeaningStatus: "VERIFIED" });
+    expect(queries[0]?.sql).toContain('"master_v2_short_meanings"');
+    expect(queries[0]?.sql).toContain("sm.source_content_hash = md.content_sha256");
+    expect(queries[0]?.sql).toContain("sm.validation_status = 'VERIFIED'");
+  });
+
+  it("does not serialize an unverified overlay row as a short meaning", async () => {
+    const execute = vi.fn()
+      .mockResolvedValueOnce({ rows: [{ household_id: householdId }] })
+      .mockResolvedValueOnce({ rows: [{ ...vocabulary[0], content_version: 1, short_meaning_vi: "candidate", short_meaning_status: "REVIEW_REQUIRED" }] });
+    const result = await createVocabularyService({ execute }, { datasetVersion: "v2" }).list("parent-1");
+    expect(result[0]).not.toHaveProperty("shortMeaningVi");
+    expect(result[0]).not.toHaveProperty("shortMeaningStatus");
+  });
+
   it("adds a level predicate without changing enabled ordering semantics", async () => {
     const queries: Array<{ sql: string; params: unknown[] }> = [];
     const execute = vi.fn()

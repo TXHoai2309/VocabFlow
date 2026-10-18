@@ -16,6 +16,7 @@ function row(type: "VOCABULARY" | "TOPIC" | "LEARNING_SET", id: number, title: s
     id,
     title,
     subtitle: type === "VOCABULARY" ? "gia đình" : null,
+    subtitle_label: type === "VOCABULARY" ? "Giải thích nghĩa" : null,
     image_url: null,
     topic: type === "VOCABULARY" ? "Family" : null,
     level: type === "VOCABULARY" ? "GRADE_1" : null,
@@ -97,7 +98,7 @@ describe("global search learner API", () => {
   it("passes the normalized query and returns the three typed real-data groups", async () => {
     const payload = {
       query: "family",
-      vocabulary: [{ type: "VOCABULARY" as const, id: 1, title: "family", subtitle: "gia đình", imageUrl: null, topic: "Family", level: "GRADE_1" as const }],
+      vocabulary: [{ type: "VOCABULARY" as const, id: 1, title: "family", subtitle: "gia đình", subtitleLabel: "Giải thích nghĩa" as const, imageUrl: null, topic: "Family", level: "GRADE_1" as const }],
       topics: [{ type: "TOPIC" as const, id: 4, title: "Gia đình", description: "Từ vựng về gia đình." }],
       learningSets: [{ type: "LEARNING_SET" as const, id: 8, title: "Từ vựng gia đình", description: "Bộ từ gia đình.", vocabularyCount: 12, grade: "GRADE_1" as const }]
     };
@@ -131,10 +132,23 @@ describe("global search database service", () => {
 
     expect(response).toEqual({
       query: "family",
-      vocabulary: [{ type: "VOCABULARY", id: 1, title: "family", subtitle: "gia đình", imageUrl: null, topic: "Family", level: "GRADE_1" }],
+      vocabulary: [{ type: "VOCABULARY", id: 1, title: "family", subtitle: "gia đình", subtitleLabel: "Giải thích nghĩa", imageUrl: null, topic: "Family", level: "GRADE_1" }],
       topics: [{ type: "TOPIC", id: 4, title: "Gia đình", description: "Description for Gia đình" }],
       learningSets: [{ type: "LEARNING_SET", id: 8, title: "Từ vựng gia đình", description: "Description for Từ vựng gia đình", vocabularyCount: 12, grade: "GRADE_1" }]
     });
+  });
+
+  it("returns the verified gloss only from the current-hash overlay", async () => {
+    const verified = row("VOCABULARY", 1, "family");
+    verified.subtitle = "gia đình";
+    verified.subtitle_label = "Nghĩa tiếng Việt";
+    const { database, queries } = createDatabase({ rows: [verified] });
+    const response = await createGlobalSearchService(database, { datasetVersion: "v2" }).search("parent-1", learnerId, { q: "family", limit: 5 });
+
+    expect(response.vocabulary[0]).toMatchObject({ subtitle: "gia đình", subtitleLabel: "Nghĩa tiếng Việt" });
+    expect(queries[1]?.sql).toContain('"master_v2_short_meanings"');
+    expect(queries[1]?.sql).toContain("sm.source_content_hash = md.content_sha256");
+    expect(queries[1]?.sql).toContain("sm.validation_status = 'VERIFIED'");
   });
 
   it("denies a learner outside the authenticated household before search", async () => {

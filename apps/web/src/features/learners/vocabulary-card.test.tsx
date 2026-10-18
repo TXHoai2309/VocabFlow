@@ -4,6 +4,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import { VocabularyCard, type VocabularyCardItem } from "./vocabulary-card";
 import { usePronunciationAudio } from "../study/pronunciation-audio";
+import { shortMeaningV2OfflineFixtures } from "../vocabulary/short-meaning-v2-offline-fixtures";
 
 vi.mock("../study/pronunciation-audio", () => ({ usePronunciationAudio: vi.fn() }));
 
@@ -69,7 +70,7 @@ describe("VocabularyCard shared UI", () => {
       tags: ["topic-inferred:travel"]
     }} showTopic /></ul></MemoryRouter>);
 
-    expect(screen.getByText("Nghĩa tiếng Việt")).toBeInTheDocument();
+    expect(screen.getByText("Giải thích nghĩa")).toBeInTheDocument();
     expect(screen.getByText("/ˈæp.əl/ · Danh từ")).toBeInTheDocument();
     expect(screen.getByText("Chủ đề · Du lịch")).toBeInTheDocument();
     expect(screen.queryByText("topic-inferred:travel")).not.toBeInTheDocument();
@@ -106,14 +107,30 @@ describe("VocabularyCard shared UI", () => {
     expect(container.querySelector(".vocabulary-card-image-fallback")).not.toBeInTheDocument();
   });
 
-  it("uses the supplied source meaning first and falls back to the whole Sense meaning", () => {
+  it("uses only a verified short meaning and otherwise shows the full Sense explanation", () => {
     setupAudio("idle", false);
     const { rerender } = render(<MemoryRouter><ul><VocabularyCard item={{ ...item, sourceMeaningVi: " nghĩa ngắn " }} /></ul></MemoryRouter>);
-    expect(screen.getByText("nghĩa ngắn")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /nghĩa ngắn/ })).toBeInTheDocument();
+    expect(screen.getByText("quả táo")).toBeInTheDocument();
+    expect(screen.queryByText("nghĩa ngắn")).not.toBeInTheDocument();
+
+    rerender(<MemoryRouter><ul><VocabularyCard item={{ ...item, shortMeaningVi: "quả táo", shortMeaningStatus: "VERIFIED" }} /></ul></MemoryRouter>);
+    expect(screen.getByText("Nghĩa tiếng Việt")).toBeInTheDocument();
+    expect(screen.getByText("quả táo")).toBeInTheDocument();
 
     rerender(<MemoryRouter><ul><VocabularyCard item={{ ...item, sourceMeaningVi: "   " }} /></ul></MemoryRouter>);
     expect(screen.getByText("quả táo")).toBeInTheDocument();
+  });
+
+  it("renders the offline PASS banana gloss from the exact V2 Sense fixture", () => {
+    setupAudio("idle", false);
+    const fixture = shortMeaningV2OfflineFixtures.banana;
+    render(<MemoryRouter><ul><VocabularyCard item={fixture.vocabulary} /></ul></MemoryRouter>);
+
+    expect(fixture.proposalIdentity).toBe("EDITORIAL_2H2B:banana:fruit");
+    expect(fixture.vocabulary.contentHash).toBe(fixture.contentHash);
+    expect(screen.getByText("Nghĩa tiếng Việt")).toBeInTheDocument();
+    expect(screen.getByText("quả chuối")).toBeInTheDocument();
+    expect(screen.getByText(/Giải thích: quả chuối dài/)).toBeInTheDocument();
   });
 
   it("reuses the audio playback hook when audio is available", () => {

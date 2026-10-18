@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { formatInferredMetadataLabel, formatPartOfSpeech, formatVocabularyTopic, getPrimaryVietnameseMeaning, parseVocabularyExamples } from "./vocabulary-presentation";
+import { formatInferredMetadataLabel, formatPartOfSpeech, formatVocabularyTopic, getPrimaryVietnameseMeaning, getVietnameseMeaningPresentation, parseVocabularyExamples } from "./vocabulary-presentation";
 
 describe("vocabulary presentation helpers", () => {
   it("localizes known POS values and keeps an understandable fallback", () => {
@@ -36,9 +36,24 @@ describe("vocabulary presentation helpers", () => {
     ]);
   });
 
-  it("uses a trimmed source gloss when available and preserves the full Sense meaning otherwise", () => {
-    expect(getPrimaryVietnameseMeaning({ vietnamese: "nghĩa của Sense", sourceMeaningVi: "  nghĩa nguồn ngắn  " })).toBe("nghĩa nguồn ngắn");
-    expect(getPrimaryVietnameseMeaning({ vietnamese: "nghĩa đầy đủ", sourceMeaningVi: "   " })).toBe("nghĩa đầy đủ");
+  it("uses only a verified short gloss and labels the full explanation as fallback", () => {
+    expect(getPrimaryVietnameseMeaning({ vietnamese: "nghĩa của Sense", shortMeaningVi: "  nghĩa ngắn  ", shortMeaningStatus: "VERIFIED" })).toBe("nghĩa ngắn");
+    expect(getPrimaryVietnameseMeaning({ vietnamese: "nghĩa đầy đủ", sourceMeaningVi: "nghĩa nguồn" } as never)).toBe("nghĩa đầy đủ");
+    expect(getVietnameseMeaningPresentation({ vietnamese: "nghĩa đầy đủ" })).toEqual({
+      primary: "nghĩa đầy đủ",
+      primaryLabel: "Giải thích nghĩa",
+      explanation: null,
+      hasVerifiedShortMeaning: false
+    });
+  });
+
+  it("keeps the full explanation available beside a verified short gloss", () => {
+    expect(getVietnameseMeaningPresentation({ vietnamese: "quả chuối dài, cong, có vỏ", shortMeaningVi: "chuối", shortMeaningStatus: "VERIFIED" })).toEqual({
+      primary: "chuối",
+      primaryLabel: "Nghĩa tiếng Việt",
+      explanation: "quả chuối dài, cong, có vỏ",
+      hasVerifiedShortMeaning: true
+    });
   });
 
   it("preserves only an explicit example audio URL from the API", () => {

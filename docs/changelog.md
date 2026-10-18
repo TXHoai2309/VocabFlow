@@ -1,5 +1,21 @@
 # VocabFlow Changelog
 
+## 2026-10-18 — Hash-pinned V2 short Vietnamese meaning overlay
+
+- Add a separate, current-content-hash-bound short-meaning overlay. Only
+  explicitly verified glosses are exposed as a short meaning; all other rows
+  keep the existing Vietnamese Sense text labeled `Giải thích nghĩa`.
+- Carry verified glosses through Vocabulary, search, detail, Study/Review Queue,
+  topic and learning-set APIs using one presentation helper. Preserve canonical
+  content, content hashes, media, rights, learner progress and review history.
+- Add deterministic source snapshot/results and Development-only idempotent
+  sync scripts. No paid AI was called. Neon sync and Preview remain blocked
+  until a valid local Development connection is available.
+- Reuse 16 existing pinned independent-review receipts offline to verify 255
+  additional single-source glosses on their exact current content hashes.
+  The 5,147 previously verified rows are byte-for-byte unchanged; 1,909 rows
+  remain in a hash-pinned review queue. No Neon writes or media changes.
+
 ## 2026-10-18 — Owner-attested V2 public media release
 
 - Record the owner's public-display authorization separately from formal

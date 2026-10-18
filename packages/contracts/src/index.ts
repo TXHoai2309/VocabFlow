@@ -201,6 +201,8 @@ export const vocabularyDtoSchema = z.object({
   ipa: z.string().nullable(),
   vietnamese: z.string().min(1),
   sourceMeaningVi: z.string().min(1).optional(),
+  shortMeaningVi: z.string().trim().min(1).optional(),
+  shortMeaningStatus: z.literal("VERIFIED").optional(),
   definitionEn: z.string().nullable(),
   exampleEn: z.string().nullable(),
   imageUrl: z.string().nullable(),
@@ -250,6 +252,33 @@ export const vocabularyDtoSchema = z.object({
   }).strict().optional()
 });
 export type VocabularyDto = z.infer<typeof vocabularyDtoSchema>;
+
+export type VietnameseMeaningPresentationInput = {
+  vietnamese: string;
+  shortMeaningVi?: string | null;
+  shortMeaningStatus?: "VERIFIED";
+};
+
+export type VietnameseMeaningPresentation = {
+  primary: string;
+  primaryLabel: "Nghĩa tiếng Việt" | "Giải thích nghĩa";
+  explanation: string | null;
+  hasVerifiedShortMeaning: boolean;
+};
+
+/** Only use a short gloss explicitly verified against the current Sense hash. */
+export function presentVietnameseMeaning(value: VietnameseMeaningPresentationInput): VietnameseMeaningPresentation {
+  const explanation = value.vietnamese.trim();
+  const shortMeaning = value.shortMeaningStatus === "VERIFIED" ? value.shortMeaningVi?.trim() : undefined;
+  const hasVerifiedShortMeaning = Boolean(shortMeaning);
+  const sameText = Boolean(shortMeaning && explanation && shortMeaning.localeCompare(explanation, "vi", { sensitivity: "accent" }) === 0);
+  return {
+    primary: hasVerifiedShortMeaning ? shortMeaning! : explanation,
+    primaryLabel: hasVerifiedShortMeaning ? "Nghĩa tiếng Việt" : "Giải thích nghĩa",
+    explanation: hasVerifiedShortMeaning && !sameText ? explanation : null,
+    hasVerifiedShortMeaning
+  };
+}
 
 export const vocabularyListResponseSchema = z.object({
   vocabulary: z.array(vocabularyDtoSchema)
@@ -394,6 +423,8 @@ export const learnerVocabularyBrowseItemSchema = z.object({
   ipa: z.string().nullable(),
   vietnamese: z.string().min(1),
   sourceMeaningVi: z.string().min(1).optional(),
+  shortMeaningVi: z.string().trim().min(1).optional(),
+  shortMeaningStatus: z.literal("VERIFIED").optional(),
   imageUrl: z.string().nullable(),
   audioUrl: z.string().nullable(),
   topic: z.string().nullable(),
@@ -434,6 +465,7 @@ export const globalSearchVocabularyResultSchema = z.object({
   id: z.number().int().positive(),
   title: z.string().min(1),
   subtitle: z.string().min(1),
+  subtitleLabel: z.enum(["Nghĩa tiếng Việt", "Giải thích nghĩa"]),
   imageUrl: z.string().nullable(),
   topic: z.string().nullable(),
   level: vocabularyLevelSchema.nullable()
