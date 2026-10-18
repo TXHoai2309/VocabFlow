@@ -1,4 +1,7 @@
+import { createHash } from "node:crypto";
 import postgres from "postgres";
+
+const expectedContentFingerprint = "9abf453175f3cb48fdf46c779e6bdcbb5cad8ba659df3321893a777a539cb367";
 
 const required = ["DATABASE_URL", "DATABASE_ENV", "VOCABFLOW_ENV", "VOCAB_DATASET_VERSION"];
 for (const key of required) {
@@ -28,31 +31,42 @@ try {
   `;
   const [counts] = await sql`
     select count(*)::int as senses,
-      count(distinct m.master_sense_id)::int as stable_ids,
+      count(distinct p.proposal_key)::int as stable_ids,
       count(*) filter (where p.content_review_decision = 'PASS' and p.editorial_status = 'DRAFT')::int as pass_draft,
       count(*) filter (where p.content_sha256 is null or p.content_sha256 !~ '^[0-9a-f]{64}$')::int as bad_hashes,
       count(*) filter (where nullif(trim(v.vietnamese), '') is not null)::int as vietnamese_rows,
       count(*) filter (where nullif(trim(v.definition_en), '') is not null)::int as english_definition_rows
     from vocabflow_app.vocabularies v
-    join vocabflow_app.master_vocabulary_mappings m on m.vocabulary_id = v.id
     join vocabflow_app.master_v2_development_projections p on p.vocabulary_id = v.id
-    where v.enabled = true and v.source_dataset = 'VOCABFLOW_MASTER_V2'
+    where v.enabled = true and v.source_dataset = 'VOCABFLOW_MASTER_V2_DEV'
   `;
+  const fingerprintRows = await sql`
+    select p.proposal_key as proposal_identity, p.content_sha256 as source_content_hash
+    from vocabflow_app.vocabularies v
+    join vocabflow_app.master_v2_development_projections p on p.vocabulary_id = v.id
+    where v.enabled = true and v.source_dataset = 'VOCABFLOW_MASTER_V2_DEV'
+  `;
+  const contentFingerprint = createHash("sha256").update(JSON.stringify(fingerprintRows
+    .map((row) => [row.proposal_identity, row.source_content_hash])
+    .sort((a, b) => a[0].localeCompare(b[0])))).digest("hex");
   const specialSamples = await sql`
-    select v.id, v.word, p.part_of_speech, m.master_sense_id, p.content_sha256,
+    select v.id, v.word, p.part_of_speech, p.proposal_key as proposal_identity, p.content_sha256,
       v.vietnamese, v.vietnamese_override, v.definition_en, p.examples,
       p.source_provenance->'masterV2Identity'->>'sourceMeaningVi' as source_meaning_vi
     from vocabflow_app.vocabularies v
-    join vocabflow_app.master_vocabulary_mappings m on m.vocabulary_id = v.id
     join vocabflow_app.master_v2_development_projections p on p.vocabulary_id = v.id
-    where v.enabled = true and v.source_dataset = 'VOCABFLOW_MASTER_V2'
+    where v.enabled = true and v.source_dataset = 'VOCABFLOW_MASTER_V2_DEV'
       and lower(v.word) in ('banana','age','about','a','an','abandon','abuse','block','book','tear','academic')
-    order by v.word, p.part_of_speech, m.master_sense_id
+    order by v.word, p.part_of_speech, p.proposal_key
   `;
+  if (counts.senses !== 7311 || counts.stable_ids !== 7311 || contentFingerprint !== expectedContentFingerprint) {
+    throw new Error("NEON_DEVELOPMENT_V2_CONTENT_FINGERPRINT_MISMATCH");
+  }
   console.log(JSON.stringify({
     environment: { databaseEnv: process.env.DATABASE_ENV, dataset: process.env.VOCAB_DATASET_VERSION, database: url.pathname.slice(1), endpointHost: url.hostname },
       neon: { ...meta, ...identity },
     counts,
+    contentFingerprint,
     specialSamples
   }, null, 2));
 } catch (error) {

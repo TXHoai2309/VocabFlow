@@ -13,7 +13,7 @@ const expected = {
 };
 const artifactDir = resolveRepositoryPath(process.env.SHORT_MEANING_ARTIFACT_DIR ?? reviewedShortMeaningsArtifact);
 const apply = process.argv.includes("--apply");
-if (process.argv.some((arg) => arg !== "--apply")) throw new Error("INVALID_ARGUMENT");
+if (process.argv.slice(2).some((arg) => arg !== "--apply")) throw new Error("INVALID_ARGUMENT");
 if (!process.env.DATABASE_URL) throw new Error("MISSING_DATABASE_URL");
 if ((process.env.DATABASE_ENV && process.env.DATABASE_ENV !== "development")
   || (process.env.VOCABFLOW_ENV && process.env.VOCABFLOW_ENV !== "development")
@@ -77,7 +77,9 @@ try {
       const source = inputBySense.get(current.proposal_identity);
       if (!source || Number(current.vocabulary_id) !== source.vocabularyId || current.source_content_hash !== source.sourceContentHash) throw new Error("STALE_OR_MISMATCHED_SOURCE_SNAPSHOT");
     }
-    const liveFingerprint = sha256(JSON.stringify(currentRows.map((row) => [row.proposal_identity, row.source_content_hash])));
+    const liveFingerprint = sha256(JSON.stringify(currentRows
+      .map((row) => [row.proposal_identity, row.source_content_hash])
+      .sort((a, b) => a[0].localeCompare(b[0]))));
     if (liveFingerprint !== expected.contentFingerprint) throw new Error("LIVE_CONTENT_FINGERPRINT_MISMATCH");
 
     if (!apply) {
