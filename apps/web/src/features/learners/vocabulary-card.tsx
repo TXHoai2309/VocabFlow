@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import type { LearnerVocabularyDto, VocabularyDto } from "@vocabflow/contracts";
 import { usePronunciationAudio } from "../study/pronunciation-audio";
 import { DevelopmentImageNotice, DevelopmentWordAudio } from "../study/development-media";
-import { formatInferredMetadataLabel, formatPartOfSpeech, formatVocabularyTopic } from "../vocabulary/vocabulary-presentation";
+import { formatInferredMetadataLabel, formatPartOfSpeech, formatVocabularyTopic, getPrimaryVietnameseMeaning } from "../vocabulary/vocabulary-presentation";
 
 export type VocabularyCardItem = Pick<
   VocabularyDto,
@@ -54,13 +54,15 @@ export function VocabularyCard({ item, showStatus = false, showTopic = false, va
   savedAt?: string | null;
   onToggleSaved?: (item: VocabularyCardItem) => void;
 }) {
-  const [imageFailed, setImageFailed] = useState(false);
+  const [failedImageKey, setFailedImageKey] = useState<string | null>(null);
   const audio = usePronunciationAudio(item.audioUrl, item.word, item.id);
   const imageUrl = item.imageUrl?.trim();
+  const imageKey = imageUrl ? `${item.id}:${imageUrl}` : null;
+  const imageFailed = imageKey !== null && failedImageKey === imageKey;
   const level = levelLabel(item.level);
   const partOfSpeech = formatPartOfSpeech(item.partOfSpeech);
   const topic = formatVocabularyTopic(item.topic);
-  const meaning = item.sourceMeaningVi ?? item.vietnamese;
+  const meaning = getPrimaryVietnameseMeaning(item);
   const inferredLabels = item.metadataEvidence?.filter((evidence) => evidence.status === "INFERRED_REVIEWABLE").map((evidence) => ({
     key: `${evidence.dimension}:${evidence.code}`,
     label: formatInferredMetadataLabel(evidence.label ?? evidence.code, evidence.dimension),
@@ -70,13 +72,11 @@ export function VocabularyCard({ item, showStatus = false, showTopic = false, va
 
   return (
     <li className={`vocabulary-card-item${variant === "row" ? " is-row" : ""}`} data-testid={`vocabulary-row-${item.id}`}>
-      <article className={`vocabulary-card${variant === "row" ? " is-row" : ""}`}>
+      <article className={`vocabulary-card${variant === "row" ? " is-row" : ""}${imageUrl ? imageFailed ? " has-image-fallback" : " has-image" : " is-text-first"}${level ? " has-level" : ""}`}>
         <Link className="vocabulary-card-link" to={`/vocabulary/${item.id}`} aria-label={`${item.word}${item.ipa ? `, ${item.ipa}` : ""}. ${meaning}. Xem chi tiết`}>
-          <span className="vocabulary-card-thumbnail">
-            {imageUrl && !imageFailed ? (
-              <img src={imageUrl} alt={`Hình minh họa ${item.word}`} loading="lazy" onError={() => setImageFailed(true)} />
-            ) : <span role="img" aria-label={item.rightsStatus === "UNKNOWN_REVIEW_REQUIRED" ? `Chưa thể hiển thị ảnh; quyền media nguồn đang chờ xác minh cho ${item.word}` : `Chưa có hình minh họa cho ${item.word}`}><VocabularyIcon name="image" /></span>}
-          </span>
+          {imageUrl && !imageFailed ? <span className="vocabulary-card-thumbnail">
+            <img src={imageUrl} alt={`Hình minh họa ${item.word}`} loading="lazy" onError={() => imageKey && setFailedImageKey(imageKey)} />
+          </span> : imageUrl ? <span className="vocabulary-card-image-fallback" role="img" aria-label={`Ảnh minh họa ${item.word} chưa tải được`}><VocabularyIcon name="image" /></span> : null}
           {level ? <span className="vocabulary-level-badge">{level}</span> : null}
           <span className="vocabulary-card-copy">
             <strong>{item.word}</strong>

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { formatInferredMetadataLabel, formatPartOfSpeech, formatVocabularyTopic, parseVocabularyExamples } from "./vocabulary-presentation";
+import { formatInferredMetadataLabel, formatPartOfSpeech, formatVocabularyTopic, getPrimaryVietnameseMeaning, parseVocabularyExamples } from "./vocabulary-presentation";
 
 describe("vocabulary presentation helpers", () => {
   it("localizes known POS values and keeps an understandable fallback", () => {
@@ -34,6 +34,11 @@ describe("vocabulary presentation helpers", () => {
       { exampleKey: "ex-1", english: "I recognized her accent.", vietnamese: "Tôi nhận ra giọng của cô ấy." },
       { english: "One sentence only.", vietnamese: null }
     ]);
+  });
+
+  it("uses a trimmed source gloss when available and preserves the full Sense meaning otherwise", () => {
+    expect(getPrimaryVietnameseMeaning({ vietnamese: "nghĩa của Sense", sourceMeaningVi: "  nghĩa nguồn ngắn  " })).toBe("nghĩa nguồn ngắn");
+    expect(getPrimaryVietnameseMeaning({ vietnamese: "nghĩa đầy đủ", sourceMeaningVi: "   " })).toBe("nghĩa đầy đủ");
   });
 
   it("preserves only an explicit example audio URL from the API", () => {

@@ -3,7 +3,7 @@ import type { VocabularyDto } from "@vocabflow/contracts";
 import { usePronunciationAudio } from "./pronunciation-audio";
 import { DevelopmentExampleAudio, DevelopmentImageNotice, DevelopmentImagePreviews, DevelopmentWordAudio } from "./development-media";
 import { ExampleAudio } from "./example-audio";
-import { formatPartOfSpeech, formatVocabularyTopic, parseVocabularyExamples } from "../vocabulary/vocabulary-presentation";
+import { formatPartOfSpeech, formatVocabularyTopic, getPrimaryVietnameseMeaning, parseVocabularyExamples } from "../vocabulary/vocabulary-presentation";
 
 export type FlashcardProps = {
   vocabulary: VocabularyDto;
@@ -12,12 +12,22 @@ export type FlashcardProps = {
 };
 
 export function Flashcard({ vocabulary, isFlipped, onFlip }: FlashcardProps) {
-  const [imageFailed, setImageFailed] = useState(false);
+  const [failedImageKey, setFailedImageKey] = useState<string | null>(null);
+  const imageUrl = vocabulary.imageUrl?.trim() || null;
+  const imageKey = imageUrl ? `${vocabulary.id}:${imageUrl}` : null;
+  const imageFailed = imageKey !== null && failedImageKey === imageKey;
   const audio = usePronunciationAudio(vocabulary.audioUrl, vocabulary.word, vocabulary.id);
   const developmentAudio = (vocabulary.developmentMedia?.wordAudio?.length ?? 0) > 0;
   const examples = parseVocabularyExamples(vocabulary.examples);
+  const exampleAudio = examples.flatMap((example, index) => {
+    const hasPublishedAudio = Boolean(example.audioUrl && /^https:\/\//i.test(example.audioUrl));
+    const hasDevelopmentAudio = Boolean(example.exampleKey && vocabulary.developmentMedia?.exampleAudio?.some((item) => item.exampleKey === example.exampleKey));
+    return hasPublishedAudio || hasDevelopmentAudio ? [{ example, index, hasPublishedAudio }] : [];
+  });
   const partOfSpeech = formatPartOfSpeech(vocabulary.partOfSpeech);
+  const meaning = getPrimaryVietnameseMeaning(vocabulary);
   const topic = formatVocabularyTopic(vocabulary.topic);
+  const pronunciationDetail = [vocabulary.ipa, partOfSpeech].filter(Boolean).join(" · ");
 
   const audioLabel = audio.state === "loading"
     ? `Đang tải phát âm ${audio.word}`
@@ -50,7 +60,7 @@ export function Flashcard({ vocabulary, isFlipped, onFlip }: FlashcardProps) {
       {audio.state === "error" && !developmentAudio ? <span className="flashcard-audio-error" role="status">Âm thanh không khả dụng.</span> : null}
 
       <button
-        className="flashcard-flip"
+        className={`flashcard-flip${isFlipped ? " is-back" : " is-front"}`}
         type="button"
         aria-label={isFlipped ? "Lật về mặt trước" : "Lật để xem nghĩa"}
         aria-describedby="flashcard-description"
@@ -65,39 +75,52 @@ export function Flashcard({ vocabulary, isFlipped, onFlip }: FlashcardProps) {
       >
         {!isFlipped ? (
           <span className="flashcard-face flashcard-front">
-            <span id="flashcard-description" className="sr-only">Từ tiếng Anh: {vocabulary.word}</span>
+            <span id="flashcard-description" className="sr-only">Từ tiếng Anh: {vocabulary.word}{pronunciationDetail ? `. ${pronunciationDetail}.` : ""}</span>
             <span className="flashcard-word">{vocabulary.word}</span>
-            <span className="flashcard-hint">Nhấn để xem nghĩa</span>
+            {pronunciationDetail ? <span className="flashcard-front-meta">{pronunciationDetail}</span> : null}
+            <span className="flashcard-hint">Lật thẻ để xem nghĩa</span>
           </span>
         ) : (
           <span className="flashcard-face flashcard-back">
-            <span id="flashcard-description" className="sr-only">Từ: {vocabulary.word}. Nghĩa: {vocabulary.vietnamese}.</span>
-            <span className="flashcard-word">{vocabulary.word}</span>
-            {vocabulary.ipa || partOfSpeech ? <span className="flashcard-optional">{[vocabulary.ipa, partOfSpeech].filter(Boolean).join(" · ")}</span> : null}
-            <span className="flashcard-meaning-label">Nghĩa tiếng Việt</span>
-            <span className="flashcard-vietnamese">{vocabulary.vietnamese}</span>
+            <span id="flashcard-description" className="sr-only">Từ: {vocabulary.word}. {pronunciationDetail ? `${pronunciationDetail}. ` : ""}Nghĩa: {meaning}.</span>
+            <span className="flashcard-back-heading">
+              <span className="flashcard-word">{vocabulary.word}</span>
+              {pronunciationDetail ? <span className="flashcard-optional">{pronunciationDetail}</span> : null}
+            </span>
+            <span className="flashcard-meaning-block">
+              <span className="flashcard-meaning-label">Nghĩa tiếng Việt</span>
+              <span className="flashcard-vietnamese" lang="vi">{meaning}</span>
+            </span>
             {vocabulary.definitionEn ? <span className="flashcard-definition"><span className="flashcard-meaning-label">Định nghĩa tiếng Anh</span><span lang="en">{vocabulary.definitionEn}</span></span> : null}
             {examples.length > 0 ? examples.map((example, index) => (
               <span className="flashcard-example" key={`${index}:${example.english}`}>
                 <span className="flashcard-example-line"><span className="flashcard-example-language">EN</span><span lang="en">{example.english}</span></span>
                 {example.vietnamese ? <span className="flashcard-example-line"><span className="flashcard-example-language">VI</span><span lang="vi">{example.vietnamese}</span></span> : null}
-                {example.audioUrl
-                  ? <ExampleAudio audioUrl={example.audioUrl} exampleIndex={index} />
-                  : <DevelopmentExampleAudio vocabulary={vocabulary} exampleKey={example.exampleKey} />}
               </span>
             )) : vocabulary.exampleEn ? <span className="flashcard-example"><span className="flashcard-example-line"><span className="flashcard-example-language">EN</span><span lang="en">{vocabulary.exampleEn}</span></span></span> : null}
             {topic ? <span className="flashcard-optional">{topic}</span> : null}
-            {vocabulary.imageUrl && !imageFailed ? (
-              <img className="flashcard-image" src={vocabulary.imageUrl} alt={`Minh họa cho ${vocabulary.word}`} onError={() => setImageFailed(true)} />
+            {imageUrl && !imageFailed ? (
+              <img className="flashcard-image" src={imageUrl} alt={`Minh họa cho ${vocabulary.word}`} onError={() => imageKey && setFailedImageKey(imageKey)} />
             ) : null}
+            {imageUrl && imageFailed ? <span className="flashcard-image-fallback" role="status">Ảnh minh họa chưa tải được.</span> : null}
             <DevelopmentImageNotice vocabulary={vocabulary} />
-            {!vocabulary.imageUrl || imageFailed ? <DevelopmentImagePreviews vocabulary={vocabulary} /> : null}
-            {(!vocabulary.imageUrl || imageFailed) && (vocabulary.developmentMedia?.images?.length ?? 0) === 0
-              ? <span className="flashcard-missing-image" role="img" aria-label={`Chưa có hình minh họa cho ${vocabulary.word}`}>Chưa có hình minh họa</span>
-              : null}
+            {!imageUrl || imageFailed ? <DevelopmentImagePreviews vocabulary={vocabulary} /> : null}
           </span>
         )}
       </button>
+
+      {isFlipped && exampleAudio.length > 0 ? (
+        <section className="flashcard-example-audios" aria-label="Âm thanh câu ví dụ">
+          {exampleAudio.map(({ example, index, hasPublishedAudio }) => (
+            <div className="flashcard-example-audio-item" key={`${index}:${example.exampleKey ?? example.english}`}>
+              <span className="flashcard-example-audio-label">Audio · Ví dụ {index + 1}</span>
+              {hasPublishedAudio
+                ? <ExampleAudio audioUrl={example.audioUrl} exampleIndex={index} exampleText={example.english} />
+                : <DevelopmentExampleAudio vocabulary={vocabulary} exampleKey={example.exampleKey} exampleIndex={index} exampleText={example.english} />}
+            </div>
+          ))}
+        </section>
+      ) : null}
     </div>
   );
 }

@@ -31,7 +31,7 @@ export function DevelopmentWordAudio({ vocabulary }: { vocabulary: DevelopmentMe
   );
 }
 
-export function DevelopmentExampleAudio({ vocabulary, exampleKey }: { vocabulary: DevelopmentMediaSource; exampleKey?: string }) {
+export function DevelopmentExampleAudio({ vocabulary, exampleKey, exampleIndex, exampleText }: { vocabulary: DevelopmentMediaSource; exampleKey?: string; exampleIndex: number; exampleText: string }) {
   if (!exampleKey) return null;
   const items = (vocabulary.developmentMedia?.exampleAudio ?? []).filter((item) => item.exampleKey === exampleKey);
   if (items.length === 0) return null;
@@ -40,7 +40,7 @@ export function DevelopmentExampleAudio({ vocabulary, exampleKey }: { vocabulary
       {items.map((item, index) => (
         <div key={`${item.mediaSha256}:${index}`}>
           <p className="development-media-notice">Audio khớp câu ví dụ · quyền sử dụng chưa xác minh</p>
-          <audio controls preload="none" src={item.url} aria-label={`Nghe câu ví dụ ${index + 1}`} />
+          <audio controls preload="none" src={item.url} aria-label={`Nghe câu ví dụ ${exampleIndex + 1}: ${exampleText}${items.length > 1 ? `, phương án ${index + 1}` : ""}`} />
         </div>
       ))}
     </div>

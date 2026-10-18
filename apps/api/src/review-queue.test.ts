@@ -2,6 +2,7 @@ import { PgDialect } from "drizzle-orm/pg-core";
 import { describe, expect, it, vi } from "vitest";
 import { createApp } from "./index";
 import { createReviewQueueService, ReviewQueueServiceError } from "./review-queue";
+import { V2_PUBLIC_MEDIA_OWNER_ATTESTATION_ID } from "./v2-public-media";
 import type { ReviewQueueResponse } from "@vocabflow/contracts";
 
 const learnerId = "00000000-0000-4000-8000-000000000010";
@@ -290,6 +291,75 @@ describe("US-08 review queue API boundary", () => {
     expect(timing).not.toContain("secret");
   });
 
+  it("preserves the compact source meaning and approved media URLs through the nested queue response sanitizer", async () => {
+    const imageUrl = "https://res.cloudinary.com/vocabflow/image/authenticated/s--Abc_def1--/v1729000000/Vocab/v2/images/about.jpg";
+    const wordAudioUrl = "https://res.cloudinary.com/vocabflow/video/authenticated/s--Audio_12--/v1729000000/Vocab/v2/audio/about.mp3";
+    const exampleAudioUrl = "https://res.cloudinary.com/vocabflow/video/authenticated/s--Exmpl_12--/v1729000000/Vocab/v2/audio/about-example.mp3";
+    const queue: ReviewQueueResponse = {
+      learnerId,
+      reviewDate: "2026-10-18",
+      dueCount: 0,
+      newCount: 1,
+      queue: [{
+        vocabulary: {
+          id: 92,
+          word: "about",
+          ipa: "/əˈbaʊt/",
+          partOfSpeech: "ADVERB",
+          vietnamese: "quanh quẩn hoặc ở nhiều chỗ trong một khu vực gần đó",
+          sourceMeaningVi: "ở quanh khu vực đó",
+          definitionEn: "In various places within or near an area.",
+          exampleEn: "The children wandered about while we packed the bags.",
+          examples: [{ exampleKey: "about-adv-example-1", en: "The children wandered about while we packed the bags.", vi: "Bọn trẻ đi quanh quẩn trong lúc chúng tôi xếp đồ vào túi." }],
+          imageUrl: null,
+          audioUrl: null,
+          topic: null,
+          level: null,
+          enabled: true,
+          contentVersion: 1,
+          masterSenseIdentity: "about|ADVERB|sense-1",
+          contentHash: "a".repeat(64),
+          contentReviewStatus: "PASS",
+          editorialStatus: "DRAFT",
+          rightsStatus: "UNKNOWN_REVIEW_REQUIRED",
+          developmentMedia: {
+            images: [{ url: imageUrl, mediaSha256: "b".repeat(64), mimeType: "image/jpeg", sourceNoteIdentity: "about-note:1", reviewStatus: "ACCEPTED_MAPPING", rightsStatus: "UNKNOWN_REVIEW_REQUIRED" }],
+            wordAudio: [{ url: wordAudioUrl, mediaSha256: "c".repeat(64), mimeType: "audio/mpeg", sourceNoteIdentity: "about-note:1", reviewStatus: "ACCEPTED_MAPPING", rightsStatus: "UNKNOWN_REVIEW_REQUIRED", pronunciation: "/əˈbaʊt/", pronunciationEvidence: "Source-note Sound/IPA matches target IPA" }],
+            exampleAudio: [{ url: exampleAudioUrl, mediaSha256: "d".repeat(64), mimeType: "audio/mpeg", sourceNoteIdentity: "about-note:1", reviewStatus: "ACCEPTED_MAPPING", rightsStatus: "UNKNOWN_REVIEW_REQUIRED", exampleKey: "about-adv-example-1" }]
+          }
+        },
+        queueType: "NEW",
+        status: "NEW",
+        nextReviewDate: null,
+        expectedRevision: 0
+      }]
+    };
+    const app = createApp({ readSession: async () => ({ user: { id: "parent-1" } }), reviewQueueService: { list: async () => queue } });
+    const response = await app.request(`http://localhost/api/learners/${learnerId}/review-queue`, {}, {
+      VERCEL_ENV: "production",
+      VOCABFLOW_V2_PUBLIC_MEDIA_ATTESTATION_ID: V2_PUBLIC_MEDIA_OWNER_ATTESTATION_ID
+    });
+    const body = await response.json() as ReviewQueueResponse;
+    const item = body.queue[0]?.vocabulary;
+
+    expect(response.status).toBe(200);
+    expect(item).toMatchObject({
+      word: "about",
+      partOfSpeech: "ADVERB",
+      vietnamese: "quanh quẩn hoặc ở nhiều chỗ trong một khu vực gần đó",
+      sourceMeaningVi: "ở quanh khu vực đó",
+      definitionEn: "In various places within or near an area."
+    });
+    expect(item?.imageUrl).toBe(imageUrl);
+    expect(item?.audioUrl).toBe(wordAudioUrl);
+    expect(item?.examples?.[0]).toMatchObject({
+      en: "The children wandered about while we packed the bags.",
+      audioUrl: exampleAudioUrl
+    });
+    expect(item).not.toHaveProperty("developmentMedia");
+    expect(item?.rightsStatus).toBe("UNKNOWN_REVIEW_REQUIRED");
+  });
+
   it("accepts the saved scope, passes it to the queue service, and rejects unknown or duplicate scope params", async () => {
     const queue: ReviewQueueResponse = { learnerId, reviewDate: "2026-09-14", dueCount: 0, newCount: 0, queue: [] };
     const service = { list: vi.fn(async () => queue) };
@@ -336,6 +406,59 @@ describe("US-08 review queue API boundary", () => {
 });
 
 describe("US-08 review queue service", () => {
+  it("serializes source meaning, Sense identity and all media evidence into the Review Queue DTO", async () => {
+    const image = { url: "https://media.example/about.jpg", mediaSha256: "b".repeat(64), mimeType: "image/jpeg", sourceNoteIdentity: "about-note:1", reviewStatus: "PROPOSED", rightsStatus: "UNKNOWN_REVIEW_REQUIRED" };
+    const wordAudio = { url: "https://media.example/about.mp3", mediaSha256: "c".repeat(64), mimeType: "audio/mpeg", sourceNoteIdentity: "about-note:1", reviewStatus: "PROPOSED", rightsStatus: "UNKNOWN_REVIEW_REQUIRED", pronunciation: "/əˈbaʊt/", pronunciationEvidence: "Source-note Sound/IPA matches target IPA" };
+    const exampleAudio = { url: "https://media.example/about-example.mp3", mediaSha256: "d".repeat(64), mimeType: "audio/mpeg", sourceNoteIdentity: "about-note:1", reviewStatus: "ACCEPTED_MAPPING", rightsStatus: "UNKNOWN_REVIEW_REQUIRED", exampleKey: "about-adv-example-1" };
+    const row = {
+      ...newRow(92, 1),
+      word: "about",
+      ipa: "/əˈbaʊt/",
+      part_of_speech: "ADVERB",
+      vietnamese: "quanh quẩn hoặc ở nhiều chỗ trong một khu vực gần đó",
+      source_meaning_vi: "ở quanh khu vực đó",
+      definition_en: "In various places within or near an area.",
+      example_en: "The children wandered about while we packed the bags.",
+      examples: [{ exampleKey: "about-adv-example-1", en: "The children wandered about while we packed the bags.", vi: "Bọn trẻ đi quanh quẩn trong lúc chúng tôi xếp đồ vào túi." }],
+      master_sense_identity: "about|ADVERB|sense-1",
+      content_sha256: "a".repeat(64),
+      content_review_decision: "PASS",
+      editorial_status: "DRAFT",
+      rights_status: "UNKNOWN_REVIEW_REQUIRED",
+      development_media: { images: [image], wordAudio: [wordAudio], exampleAudio: [exampleAudio] }
+    };
+    const execute = vi.fn(async (query) => {
+      const statement = new PgDialect().sqlToQuery(query).sql;
+      if (statement.includes("SELECT lp.id::text AS learner_id")) return authorizedRows();
+      if (statement.includes("SELECT timezone")) return { rows: [{ timezone: "Asia/Ho_Chi_Minh" }] };
+      if (statement.includes("daily_new_word_limit")) return dailyUsageRow();
+      if (statement.includes("next_review_date <=")) return { rows: [] };
+      if (statement.includes("lp.vocabulary_id IS NULL")) return { rows: [row] };
+      throw new Error("Unexpected Review Queue query");
+    });
+
+    const result = await createReviewQueueService({ execute }, { datasetVersion: "v2", now: () => new Date("2026-10-18T03:00:00Z") })
+      .list("parent-1", learnerId);
+    const vocabulary = result.queue[0]?.vocabulary;
+
+    expect(vocabulary).toMatchObject({
+      word: "about",
+      partOfSpeech: "ADVERB",
+      vietnamese: "quanh quẩn hoặc ở nhiều chỗ trong một khu vực gần đó",
+      sourceMeaningVi: "ở quanh khu vực đó",
+      definitionEn: "In various places within or near an area.",
+      masterSenseIdentity: "about|ADVERB|sense-1",
+      contentHash: "a".repeat(64),
+      contentReviewStatus: "PASS",
+      editorialStatus: "DRAFT"
+    });
+    expect(vocabulary?.examples).toEqual(row.examples);
+    expect(vocabulary?.developmentMedia?.images).toEqual([image]);
+    expect(vocabulary?.developmentMedia?.wordAudio).toEqual([wordAudio]);
+    expect(vocabulary?.developmentMedia?.exampleAudio).toEqual([exampleAudio]);
+    expect(vocabulary?.rightsStatus).toBe("UNKNOWN_REVIEW_REQUIRED");
+  });
+
   it("restricts both saved due and new rows to this learner's saved vocabulary", async () => {
     const queries: Array<{ sql: string; params: unknown[] }> = [];
     const execute = vi.fn(async (query) => {

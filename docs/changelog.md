@@ -4511,3 +4511,13 @@ Added a content-bound, immutable downstream overlay for three grammar-note field
   Production media withholding guard for media without clearance.
 - Add focused helper and UI regression tests. No Dataset, Neon, Cloudinary,
   Production configuration, or deployment changes.
+
+## 2026-10-18 — Study and vocabulary media presentation refinement
+
+- Keep missing Vocabulary images out of the card layout; show a compact image
+  error fallback only when a mapped URL fails. Reset failure state when the
+  vocabulary identity or URL changes.
+- Align Vietnamese meaning presentation across Vocabulary and Study. Keep
+  Flashcard answers on the back, structure EN/VI examples, and place exact-
+  sentence audio controls outside the flip button.
+- Preserve media and rights guards, canonical content, Neon, SRS, and Production.

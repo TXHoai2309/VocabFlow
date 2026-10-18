@@ -28,7 +28,7 @@ describe("US-11 Flashcard back state", () => {
     expect(screen.getByText("power")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Nghe phát âm power" })).toBeInTheDocument();
     expect(screen.queryByText("sức mạnh; quyền lực")).not.toBeInTheDocument();
-    expect(screen.queryByText("/ˈpaʊər/")).not.toBeInTheDocument();
+    expect(screen.getByText("/ˈpaʊər/")).toBeInTheDocument();
     expect(screen.queryByText("the ability to control or influence")).not.toBeInTheDocument();
     expect(screen.queryByText("Power can be shared.")).not.toBeInTheDocument();
     expect(screen.queryByText("people")).not.toBeInTheDocument();
@@ -74,8 +74,8 @@ describe("US-11 Flashcard back state", () => {
     expect(screen.queryByText("/ˈpaʊər/")).not.toBeInTheDocument();
     expect(screen.queryByText("the ability to control or influence")).not.toBeInTheDocument();
     expect(screen.queryByText("Power can be shared.")).not.toBeInTheDocument();
-    expect(screen.getByRole("img", { name: "Chưa có hình minh họa cho power" })).toBeInTheDocument();
-    expect(screen.getByText("Chưa có hình minh họa")).toBeInTheDocument();
+    expect(screen.queryByRole("img", { name: /hình minh họa/i })).not.toBeInTheDocument();
+    expect(screen.queryByText("Chưa có hình minh họa")).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: "Nghe phát âm power" })).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: "Phát âm thanh" })).not.toBeInTheDocument();
   });
@@ -95,16 +95,48 @@ describe("US-11 Flashcard back state", () => {
     expect(container.querySelectorAll(".flashcard-example-line")).toHaveLength(2);
   });
 
-  it("plays an example clip only when the matching example includes its URL", () => {
+  it("plays an example clip only when the matching example includes its URL, outside the flip control", () => {
     const exampleUrl = "https://res.cloudinary.com/vocabflow/video/authenticated/s--Exmpl_12--/Vocab/v2/audio/example.mp3";
+    const onFlip = vi.fn();
     const { container } = render(<Flashcard vocabulary={{
       ...vocabulary,
       exampleEn: null,
       examples: [{ exampleKey: "power-example-1", en: "Power can be shared.", audioUrl: exampleUrl }]
-    }} isFlipped onFlip={vi.fn()} />);
+    }} isFlipped onFlip={onFlip} />);
 
     expect(container.querySelector("audio.vocabulary-example-audio-control")).toHaveAttribute("src", exampleUrl);
     expect(container.querySelector("audio.vocabulary-example-audio-control")).toHaveAttribute("preload", "none");
+    expect(container.querySelector("audio.vocabulary-example-audio-control")?.closest("button")).toBeNull();
+    fireEvent.click(container.querySelector("audio.vocabulary-example-audio-control")!);
+    expect(onFlip).not.toHaveBeenCalled();
+  });
+
+  it("keeps the about adverb Sense meaning and example separate from the preposition Sense", () => {
+    const about = {
+      ...vocabulary,
+      id: 29285,
+      word: "about",
+      ipa: "/əˈbaʊt/",
+      partOfSpeech: "ADVERB",
+      vietnamese: "quanh quẩn hoặc ở nhiều chỗ trong một khu vực gần đó",
+      definitionEn: "In various places within or near an area.",
+      exampleEn: "The children wandered about while we packed the bags.",
+      examples: [{ en: "The children wandered about while we packed the bags.", vi: "Bọn trẻ đi quanh quẩn trong lúc chúng tôi xếp đồ vào túi." }]
+    } satisfies VocabularyDto;
+    render(<Flashcard vocabulary={about} isFlipped onFlip={vi.fn()} />);
+
+    expect(screen.getByText("/əˈbaʊt/ · Trạng từ")).toBeInTheDocument();
+    expect(screen.getByText("quanh quẩn hoặc ở nhiều chỗ trong một khu vực gần đó")).toBeInTheDocument();
+    expect(screen.getByText("In various places within or near an area.")).toBeInTheDocument();
+    expect(screen.getByText("The children wandered about while we packed the bags.")).toBeInTheDocument();
+    expect(screen.getByText("Bọn trẻ đi quanh quẩn trong lúc chúng tôi xếp đồ vào túi.")).toBeInTheDocument();
+    expect(screen.queryByText("về một chủ đề hoặc vấn đề")).not.toBeInTheDocument();
+  });
+
+  it("prioritizes a supplied source meaning without replacing the identity-specific Sense meaning", () => {
+    render(<Flashcard vocabulary={{ ...vocabulary, sourceMeaningVi: "nghĩa nguồn ngắn" }} isFlipped onFlip={vi.fn()} />);
+
+    expect(screen.getByText("nghĩa nguồn ngắn")).toBeInTheDocument();
   });
 
   it("does not expose a quarantined teacher poster image or its printed answer text", () => {
@@ -114,7 +146,7 @@ describe("US-11 Flashcard back state", () => {
       onFlip={vi.fn()}
     />);
 
-    expect(screen.getByRole("img", { name: "Chưa có hình minh họa cho teacher" })).toBeInTheDocument();
+    expect(screen.queryByRole("img", { name: /hình minh họa/i })).not.toBeInTheDocument();
     expect(screen.queryByText(/A TEACHER/i)).not.toBeInTheDocument();
   });
 
@@ -136,8 +168,17 @@ describe("US-11 Flashcard back state", () => {
     expect(image).toBeInTheDocument();
     fireEvent.error(image!);
     expect(container.querySelector(".flashcard-image")).not.toBeInTheDocument();
-    expect(screen.getByText("Chưa có hình minh họa")).toBeInTheDocument();
+    expect(screen.getByText("Ảnh minh họa chưa tải được.")).toHaveAttribute("role", "status");
     expect(screen.getByText("sức mạnh; quyền lực")).toBeInTheDocument();
+  });
+
+  it("does not put the word pronunciation control inside the flip button", () => {
+    const onFlip = vi.fn();
+    render(<Flashcard vocabulary={vocabulary} isFlipped={false} onFlip={onFlip} />);
+    const audioButton = screen.getByRole("button", { name: "Nghe phát âm power" });
+    expect(audioButton.closest(".flashcard-flip")).toBeNull();
+    fireEvent.click(audioButton);
+    expect(onFlip).not.toHaveBeenCalled();
   });
 });
 

@@ -96,3 +96,13 @@ Trusted DB is not required.
 
 Implementation and local validation are complete. US-11 is accepted/closed;
 subsequent work is recorded in US-12 and later backfilled story documents.
+
+### 2026-10-18 presentation refinement
+
+Preserve the existing flip and recall flow while keeping the front answer-free.
+The back now prioritizes the source Vietnamese gloss when present, otherwise
+the complete Sense-specific Vietnamese meaning, with the English definition
+and bilingual example as secondary content. Optional media is compact and
+example audio remains associated with its exact sentence. Focused Study tests,
+web/API typecheck, and production build pass; no review behavior or canonical
+content changed.

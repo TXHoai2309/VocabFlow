@@ -93,6 +93,14 @@ export function formatInferredMetadataLabel(value: string, dimension: "TOPIC" | 
   return label || (kind === "domain" ? "Lĩnh vực khác" : "Chủ đề khác");
 }
 
+/** Prefer the short source gloss when supplied; otherwise preserve the full Sense meaning. */
+export function getPrimaryVietnameseMeaning(value: {
+  vietnamese: string;
+  sourceMeaningVi?: string | null;
+}): string {
+  return value.sourceMeaningVi?.trim() || value.vietnamese;
+}
+
 /** Read only structured bilingual examples; never split or rewrite source text. */
 export function parseVocabularyExamples(value: unknown): VocabularyDisplayExample[] {
   if (!Array.isArray(value)) return [];

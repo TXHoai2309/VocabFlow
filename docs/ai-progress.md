@@ -7310,3 +7310,38 @@ owner-approved baseline exception. See
 - No Production database import/backfill or Cloudinary upload is included.
   Focused checks and the production build run are recorded after this entry is
   prepared for release.
+
+### 2026-10-18 — Study flashcard and missing-thumbnail hotfix
+
+- Work from isolated branch `fix/v2-study-media-ux-20261018`, based directly on
+  verified main `6b2410a20fda7b5cedeafd83eb2346ec3e44baaa`; the root workspace and
+  its pre-existing untracked files were left untouched.
+- Production read-only browse showed 30 first-page rows and no image URLs in
+  that response; no CDN image request failed. Production does not expose enough
+  mapping metadata to distinguish unassigned images from URLs withheld by the
+  public-media guard. Search returned safe image URLs for advertise/equivalent;
+  abandon had word audio, while detail and browse differed on image availability.
+  `about` ADVERB and PREPOSITION remain distinct; the ADVERB queue row has no
+  source gloss or media, so presentation uses its complete Sense-specific
+  Vietnamese meaning and does not borrow another Sense's gloss.
+- Vocabulary cards hide missing thumbnails, compactly report failed loads, and
+  reset failure state per identity/URL. Study cards keep answers on the back,
+  use a shared source-gloss fallback, separate EN/VI example lines, and render
+  exact-sentence audio outside the flip control. Review Queue sanitizer and
+  serializer regression tests protect source gloss, stable Sense identity,
+  hashes, and permitted media fields.
+- Focused tests: 152/152 pass across 7 files. Web/API typecheck and production
+  build pass. Build ran with Node 22.19.0 instead of pinned 22.23.2 and reported
+  existing dynamic-import and chunk-size warnings. No canonical content, Neon,
+  Cloudinary, media mapping, rights, SRS, Production configuration, or runtime
+  data changed. Pushed hotfix commit `7cc0f1191f2e9bcfd77ee85dd7dfacc04d11be6a`;
+  Vercel created a Ready Preview at
+  `https://vocab-flow-p1anh6cbr-to-xuan-hoai-s-projects.vercel.app` from that
+  exact commit. Authenticated browser smoke passed: first page remained 30 rows
+  with no empty image icons; search `tear` returned two results; Study opened
+  answer-free, audio did not flip the card, and its back showed the Sense
+  meaning, definition and separate EN/VI example lines. No review answer was
+  submitted. `advertise` image and `equivalent` example audio rendered/played;
+  `abandon` word audio played. `about` ADVERB retained its own meaning/example
+  and showed no media under the current rights guard. Production remains
+  unchanged.

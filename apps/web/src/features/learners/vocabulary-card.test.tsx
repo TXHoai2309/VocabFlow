@@ -80,7 +80,40 @@ describe("VocabularyCard shared UI", () => {
     const { container } = render(<MemoryRouter><ul><VocabularyCard item={{ ...item, imageUrl: "/broken.jpg" }} /></ul></MemoryRouter>);
     fireEvent.error(container.querySelector("img")!);
 
-    expect(screen.getByRole("img", { name: "Chưa có hình minh họa cho apple" })).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: "Ảnh minh họa apple chưa tải được" })).toBeInTheDocument();
+    expect(container.querySelector(".vocabulary-card-thumbnail")).not.toBeInTheDocument();
+    expect(container.querySelector(".vocabulary-card-image-fallback")).toBeInTheDocument();
+  });
+
+  it("omits the image area entirely when there is no image URL", () => {
+    setupAudio("idle", false);
+    const { container } = renderCard();
+
+    expect(container.querySelector(".vocabulary-card-thumbnail")).not.toBeInTheDocument();
+    expect(container.querySelector(".vocabulary-card-image-fallback")).not.toBeInTheDocument();
+    expect(container.querySelector(".vocabulary-card")).toHaveClass("is-text-first");
+    expect(screen.queryByRole("img", { name: /hình minh họa/i })).not.toBeInTheDocument();
+  });
+
+  it("resets an image failure when the card identity or URL changes", () => {
+    setupAudio("idle", false);
+    const { container, rerender } = render(<MemoryRouter><ul><VocabularyCard item={{ ...item, imageUrl: "/broken.jpg" }} /></ul></MemoryRouter>);
+    fireEvent.error(container.querySelector("img")!);
+    expect(container.querySelector(".vocabulary-card-image-fallback")).toBeInTheDocument();
+
+    rerender(<MemoryRouter><ul><VocabularyCard item={{ ...item, id: 2, word: "pear", imageUrl: "/pear.jpg" }} /></ul></MemoryRouter>);
+    expect(container.querySelector(".vocabulary-card-thumbnail img")).toHaveAttribute("src", "/pear.jpg");
+    expect(container.querySelector(".vocabulary-card-image-fallback")).not.toBeInTheDocument();
+  });
+
+  it("uses the supplied source meaning first and falls back to the whole Sense meaning", () => {
+    setupAudio("idle", false);
+    const { rerender } = render(<MemoryRouter><ul><VocabularyCard item={{ ...item, sourceMeaningVi: " nghĩa ngắn " }} /></ul></MemoryRouter>);
+    expect(screen.getByText("nghĩa ngắn")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /nghĩa ngắn/ })).toBeInTheDocument();
+
+    rerender(<MemoryRouter><ul><VocabularyCard item={{ ...item, sourceMeaningVi: "   " }} /></ul></MemoryRouter>);
+    expect(screen.getByText("quả táo")).toBeInTheDocument();
   });
 
   it("reuses the audio playback hook when audio is available", () => {

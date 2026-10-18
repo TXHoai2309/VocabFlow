@@ -1290,7 +1290,7 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
 .study-instruction { margin: 0 0 12px; color: var(--color-text-muted); font-size: 14px; line-height: 20px; }
 .flashcard {
   width: 100%;
-  min-height: min(460px, 56vh);
+  min-height: 0;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -1305,9 +1305,9 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
 .flashcard-audio-error { color: var(--color-danger); font-size: 14px; line-height: 20px; }
 .flashcard-flip {
   display: block;
-  flex: 1;
+  flex: 0 0 auto;
   width: 100%;
-  min-height: 292px;
+  min-height: 0;
   padding: 32px 24px;
   border: 0;
   color: var(--color-text);
@@ -1317,18 +1317,29 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
 }
 .flashcard:hover { border-color: var(--color-primary); }
 .flashcard-flip:focus-visible { outline: 3px solid var(--color-focus); outline-offset: -5px; }
-.flashcard-face { display: flex; min-height: 292px; flex-direction: column; align-items: center; justify-content: center; gap: 16px; overflow-wrap: anywhere; }
-.flashcard-word { color: var(--color-text); font-size: clamp(2.5rem, 9vw, 5rem); font-weight: 800; line-height: 1; letter-spacing: -0.06em; }
+.flashcard-flip.is-front { min-height: 300px; }
+.flashcard-flip.is-back { min-height: 0; }
+.flashcard-face { display: flex; width: 100%; min-height: 0; flex-direction: column; align-items: center; justify-content: center; gap: 12px; overflow-wrap: anywhere; }
+.flashcard-front { min-height: 248px; }
+.flashcard-back { max-width: 720px; align-items: stretch; justify-content: flex-start; gap: 10px; margin: 0 auto; text-align: left; }
+.flashcard-back-heading { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 14px; }
+.flashcard-word { color: var(--color-text); font-size: clamp(2.25rem, 6vw, 3.75rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.05em; }
+.flashcard-front-meta { color: var(--color-text-muted); font-size: var(--text-small); line-height: var(--leading-small); }
 .flashcard-hint { color: var(--color-text-muted); font-size: 14px; }
-.flashcard-vietnamese { color: var(--color-primary); font-size: clamp(1.1rem, 3vw, 1.4rem); font-weight: 650; line-height: 1.4; }
-.flashcard-optional, .flashcard-example { max-width: 560px; color: var(--color-text-muted); font-size: 15px; line-height: 1.5; }
+.flashcard-meaning-block { display: grid; gap: 3px; }
+.flashcard-vietnamese { max-width: 100%; overflow-wrap: anywhere; color: var(--color-primary); font-size: clamp(1rem, 2.4vw, 1.28rem); font-weight: 650; line-height: 1.45; }
+.flashcard-optional, .flashcard-example { max-width: 100%; color: var(--color-text-muted); font-size: 14px; line-height: 1.5; }
 .flashcard-example { display: grid; gap: 6px; font-style: normal; text-align: left; }
-.flashcard-meaning-label { display: block; }
-.flashcard-definition { display: grid; gap: 4px; max-width: 560px; color: var(--color-text-muted); font-size: 15px; line-height: 1.5; }
+.flashcard-meaning-label { display: block; color: var(--color-text-muted); font-size: var(--text-caption); font-weight: 700; line-height: 1.35; }
+.flashcard-definition { display: grid; gap: 3px; max-width: 680px; color: var(--color-text-muted); font-size: 13px; line-height: 1.45; }
 .flashcard-example-line { display: grid; grid-template-columns: 26px minmax(0, 1fr); align-items: start; gap: 8px; }
 .flashcard-example-line > span:last-child { overflow-wrap: anywhere; }
-.flashcard-missing-image { display: grid; width: min(100%, 280px); min-height: 72px; place-items: center; padding: 12px; border-radius: var(--radius-control); color: var(--color-text-muted); background: var(--color-surface-muted); font-size: var(--text-caption); }
-.flashcard-image { max-width: min(100%, 280px); max-height: 140px; border-radius: 12px; object-fit: cover; }
+.flashcard-image { display: block; max-width: min(100%, 280px); max-height: 144px; border-radius: 12px; object-fit: contain; }
+.flashcard-image-fallback { color: var(--color-text-muted); font-size: var(--text-caption); }
+.flashcard-example-audios { display: grid; gap: 8px; padding: 0 24px 16px; }
+.flashcard-example-audio-item { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px 16px; }
+.flashcard-example-audio-label { color: var(--color-text-muted); font-size: var(--text-caption); font-weight: 650; }
+.flashcard-example-audio-item .vocabulary-example-audio-control { width: min(100%, 260px); margin: 0; }
 .study-card-state { margin: 12px 0 0; color: var(--color-text-muted); font-size: 14px; line-height: 20px; text-align: center; }
 .study-session-message { margin: 12px 0 0; color: var(--color-text-muted); font-size: 14px; line-height: 20px; text-align: center; }
 .study-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 18px; }
@@ -1488,9 +1499,13 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
   .exercise-option { min-height: 60px; padding: 10px 12px; }
   .exercise-option-key { flex-basis: 36px; width: 36px; height: 36px; }
   .exercise-option-state small { display: none; }
-  .flashcard, .flashcard-flip { min-height: 300px; }
-  .flashcard-flip { padding: 24px 16px; }
-  .flashcard-face { min-height: 244px; }
+  .flashcard { min-height: 0; }
+  .flashcard-flip { padding: 20px 16px; }
+  .flashcard-flip.is-front { min-height: 280px; }
+  .flashcard-flip.is-back { min-height: 0; }
+  .flashcard-front { min-height: 236px; }
+  .flashcard-example-audios { padding: 0 16px 14px; }
+  .flashcard-example-audio-item { grid-template-columns: minmax(0, 1fr); }
   .study-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
   .study-save-failed { align-items: flex-start; flex-direction: column; }
   .study-summary-hero { align-items: flex-start; gap: 14px; padding: 18px 15px; }
@@ -1556,6 +1571,15 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
 .vocabulary-card-thumbnail { display: grid; width: 88px; height: 88px; place-items: center; overflow: hidden; border-radius: var(--radius-control); color: var(--color-text-muted); background: var(--color-surface); }
 .vocabulary-card-thumbnail img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .vocabulary-card-thumbnail svg { width: 34px; height: 34px; }
+.vocabulary-card-image-fallback { display: grid; width: 40px; height: 40px; place-items: center; border-radius: var(--radius-control); color: var(--color-text-muted); background: var(--color-surface-muted); }
+.vocabulary-card-image-fallback svg { width: 20px; height: 20px; }
+.vocabulary-card.is-text-first { min-height: 144px; }
+.vocabulary-card.is-text-first .vocabulary-card-link { min-height: 144px; grid-template-rows: minmax(0, 1fr); }
+.vocabulary-card.is-text-first.has-level { min-height: 174px; }
+.vocabulary-card.is-text-first.has-level .vocabulary-card-link { min-height: 174px; }
+.vocabulary-card.is-text-first.has-level .vocabulary-card-copy { padding-top: 28px; }
+.vocabulary-card.has-image-fallback { min-height: 160px; }
+.vocabulary-card.has-image-fallback .vocabulary-card-link { min-height: 160px; grid-template-rows: 40px minmax(0, 1fr); }
 .vocabulary-level-badge { position: absolute; top: 16px; right: 64px; display: inline-flex; min-height: 32px; align-items: center; justify-content: center; padding: 0 12px; border-radius: var(--radius-control); color: var(--color-primary-hover); background: var(--color-primary-soft); font-size: var(--text-caption); font-weight: 700; line-height: 16px; }
 .vocabulary-card-copy { display: grid; min-width: 0; align-content: start; gap: 4px; padding-right: 42px; }
 .vocabulary-card-copy strong { overflow-wrap: anywhere; color: var(--color-text); font-size: var(--text-h3); font-weight: var(--weight-h3); line-height: var(--leading-h3); }
@@ -1611,6 +1635,12 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
   .vocabulary-card, .vocabulary-card-link { min-height: 192px; }
   .vocabulary-card-link { grid-template-rows: 80px minmax(0, 1fr); padding: 14px; }
   .vocabulary-card-thumbnail { width: 80px; height: 80px; }
+  .vocabulary-card.is-text-first { min-height: 140px; }
+  .vocabulary-card.is-text-first .vocabulary-card-link { min-height: 140px; grid-template-rows: minmax(0, 1fr); }
+  .vocabulary-card.is-text-first.has-level { min-height: 170px; }
+  .vocabulary-card.is-text-first.has-level .vocabulary-card-link { min-height: 170px; }
+  .vocabulary-card.has-image-fallback { min-height: 156px; }
+  .vocabulary-card.has-image-fallback .vocabulary-card-link { min-height: 156px; grid-template-rows: 40px minmax(0, 1fr); }
   .vocabulary-level-badge { top: 14px; right: 64px; }
   .vocabulary-pagination-row { display: grid; grid-template-columns: minmax(0, 1fr); justify-items: center; gap: var(--space-2); }
   .vocabulary-page-size-control { width: 100%; justify-content: space-between; }
@@ -2319,6 +2349,8 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
   .vocabulary-card.is-row { grid-template-columns: minmax(0, 1fr) minmax(96px, auto) 44px 44px; gap: 8px; }
   .vocabulary-card.is-row .vocabulary-card-link { grid-template-columns: 54px minmax(0, 1fr) auto; gap: 10px; }
   .vocabulary-card.is-row .vocabulary-card-thumbnail { width: 54px; height: 52px; }
+  .vocabulary-card.is-row.is-text-first .vocabulary-card-link { grid-template-columns: minmax(0, 1fr) auto; }
+  .vocabulary-card.is-row.is-text-first .vocabulary-level-badge { grid-column: 2; }
   .vocabulary-card.is-row .vocabulary-card-copy strong { font-size: 15px; line-height: 20px; }
   .vocabulary-card.is-row .vocabulary-card-ipa, .vocabulary-card.is-row .vocabulary-card-meaning, .vocabulary-card.is-row .vocabulary-card-topic { font-size: 12px; line-height: 16px; }
 }
@@ -2337,6 +2369,8 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
   .vocabulary-card.is-row { grid-template-columns: minmax(0, 1fr) 44px 44px; grid-template-rows: auto auto; gap: 2px 6px; padding: 7px 9px; }
   .vocabulary-card.is-row .vocabulary-card-link { grid-column: 1 / -1; grid-row: 1; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 9px; }
   .vocabulary-card.is-row .vocabulary-card-thumbnail { width: 50px; height: 48px; }
+  .vocabulary-card.is-row.is-text-first .vocabulary-card-link { grid-template-columns: minmax(0, 1fr) auto; }
+  .vocabulary-card.is-row.is-text-first .vocabulary-level-badge { grid-column: 2; }
   .vocabulary-card.is-row .vocabulary-card-copy strong { font-size: 15px; line-height: 19px; }
   .vocabulary-card.is-row .vocabulary-card-ipa, .vocabulary-card.is-row .vocabulary-card-meaning { font-size: 12px; line-height: 16px; }
   .vocabulary-card.is-row .vocabulary-card-topic { display: none; }

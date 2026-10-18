@@ -48,3 +48,11 @@ gitignored artifacts and are not required by Core CI.
 
 Unavailable assets remain unavailable until an explicit controlled media
 operation supplies them.
+
+### 2026-10-18 presentation refinement
+
+Vocabulary cards omit the thumbnail entirely when no safe image URL is
+available and use a compact fallback only after an image load failure. Error
+state is scoped to the current vocabulary identity and URL. Audio controls stay
+hidden without a playable URL. This is a presentation change only; it does not
+create mappings, alter rights states, or change media storage.

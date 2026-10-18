@@ -7,7 +7,7 @@ import { LearnerVocabularyClientError, requestLearnerVocabulary } from "./vocabu
 import { usePronunciationAudio } from "../study/pronunciation-audio";
 import { DevelopmentExampleAudio, DevelopmentImageNotice, DevelopmentImagePreviews, DevelopmentWordAudio } from "../study/development-media";
 import { ExampleAudio } from "../study/example-audio";
-import { formatPartOfSpeech, formatVocabularyTopic, parseVocabularyExamples } from "../vocabulary/vocabulary-presentation";
+import { formatPartOfSpeech, formatVocabularyTopic, getPrimaryVietnameseMeaning, parseVocabularyExamples } from "../vocabulary/vocabulary-presentation";
 import { requestSavedVocabulary, saveVocabulary, unsaveVocabulary } from "./saved-vocabulary-client";
 import { ErrorState, LoadingState } from "../../components/async-states";
 import { useToast } from "../../components/toast/toast-context";
@@ -252,6 +252,7 @@ function VocabularyDetailContent({ vocabulary, allVocabulary, isSaved, isSaving,
   const level = levelLabel(vocabulary.level);
   const partOfSpeech = formatPartOfSpeech(vocabulary.partOfSpeech);
   const topic = formatVocabularyTopic(vocabulary.topic);
+  const primaryMeaning = getPrimaryVietnameseMeaning(vocabulary);
   const mediaRightsPending = vocabulary.rightsStatus === "UNKNOWN_REVIEW_REQUIRED";
   const audioUnavailableMessage = mediaRightsPending
     ? "Phát âm chưa khả dụng; quyền media nguồn đang chờ xác minh."
@@ -294,8 +295,8 @@ function VocabularyDetailContent({ vocabulary, allVocabulary, isSaved, isSaving,
 
             <div className="vocabulary-detail-meaning-block">
               <span className="vocabulary-detail-meaning-label">{vocabulary.sourceMeaningVi ? "Nghĩa tiếng Việt theo nguồn" : "Nghĩa của sense đang học"}</span>
-              <p className="vocabulary-detail-meaning">{vocabulary.sourceMeaningVi ?? vocabulary.vietnamese}</p>
-              {vocabulary.sourceMeaningVi && vocabulary.sourceMeaningVi.trim() !== vocabulary.vietnamese.trim() ? <>
+              <p className="vocabulary-detail-meaning">{primaryMeaning}</p>
+              {vocabulary.sourceMeaningVi?.trim() && primaryMeaning.trim() !== vocabulary.vietnamese.trim() ? <>
                 <span className="vocabulary-detail-meaning-label">Nghĩa của sense đang học</span>
                 <p className="vocabulary-detail-meaning">{vocabulary.vietnamese}</p>
               </> : null}
@@ -367,8 +368,8 @@ function VocabularyDetailContent({ vocabulary, allVocabulary, isSaved, isSaving,
                       <span lang="vi" className="vocabulary-detail-example-translation">{example.vietnamese}</span>
                     </span> : null}
                     {example.audioUrl
-                      ? <ExampleAudio audioUrl={example.audioUrl} exampleIndex={index} />
-                      : <DevelopmentExampleAudio vocabulary={vocabulary} exampleKey={example.exampleKey} />}
+                      ? <ExampleAudio audioUrl={example.audioUrl} exampleIndex={index} exampleText={example.english} />
+                      : <DevelopmentExampleAudio vocabulary={vocabulary} exampleKey={example.exampleKey} exampleIndex={index} exampleText={example.english} />}
                   </li>
                 ))}
               </ol>
