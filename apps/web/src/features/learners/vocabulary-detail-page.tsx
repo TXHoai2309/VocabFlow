@@ -293,7 +293,7 @@ function VocabularyDetailContent({ vocabulary, allVocabulary, isSaved, isSaving,
             </div>
 
             <div className="vocabulary-detail-meaning-block">
-              <span className="vocabulary-detail-meaning-label">Nghĩa tiếng Việt theo nguồn</span>
+              <span className="vocabulary-detail-meaning-label">{vocabulary.sourceMeaningVi ? "Nghĩa tiếng Việt theo nguồn" : "Nghĩa của sense đang học"}</span>
               <p className="vocabulary-detail-meaning">{vocabulary.sourceMeaningVi ?? vocabulary.vietnamese}</p>
               {vocabulary.sourceMeaningVi && vocabulary.sourceMeaningVi.trim() !== vocabulary.vietnamese.trim() ? <>
                 <span className="vocabulary-detail-meaning-label">Nghĩa của sense đang học</span>

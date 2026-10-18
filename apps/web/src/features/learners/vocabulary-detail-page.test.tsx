@@ -163,6 +163,7 @@ describe("vocabulary detail page", () => {
     renderDetail();
 
     expect(await screen.findByRole("heading", { name: "apple" })).toBeInTheDocument();
+    expect(screen.getByText("Nghĩa của sense đang học")).toBeInTheDocument();
     expect(screen.getByText("Chưa có hình minh họa")).toBeInTheDocument();
     expect(screen.getByText("Chưa có tệp phát âm")).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /phát âm apple/i })).not.toBeInTheDocument();
