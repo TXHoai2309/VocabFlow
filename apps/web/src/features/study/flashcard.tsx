@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { VocabularyDto } from "@vocabflow/contracts";
 import { usePronunciationAudio } from "./pronunciation-audio";
 import { DevelopmentExampleAudio, DevelopmentImageNotice, DevelopmentImagePreviews, DevelopmentWordAudio } from "./development-media";
+import { ExampleAudio } from "./example-audio";
 import { formatPartOfSpeech, formatVocabularyTopic, parseVocabularyExamples } from "../vocabulary/vocabulary-presentation";
 
 export type FlashcardProps = {
@@ -80,7 +81,9 @@ export function Flashcard({ vocabulary, isFlipped, onFlip }: FlashcardProps) {
               <span className="flashcard-example" key={`${index}:${example.english}`}>
                 <span className="flashcard-example-line"><span className="flashcard-example-language">EN</span><span lang="en">{example.english}</span></span>
                 {example.vietnamese ? <span className="flashcard-example-line"><span className="flashcard-example-language">VI</span><span lang="vi">{example.vietnamese}</span></span> : null}
-                <DevelopmentExampleAudio vocabulary={vocabulary} exampleKey={example.exampleKey} />
+                {example.audioUrl
+                  ? <ExampleAudio audioUrl={example.audioUrl} exampleIndex={index} />
+                  : <DevelopmentExampleAudio vocabulary={vocabulary} exampleKey={example.exampleKey} />}
               </span>
             )) : vocabulary.exampleEn ? <span className="flashcard-example"><span className="flashcard-example-line"><span className="flashcard-example-language">EN</span><span lang="en">{vocabulary.exampleEn}</span></span></span> : null}
             {topic ? <span className="flashcard-optional">{topic}</span> : null}

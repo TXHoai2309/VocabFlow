@@ -404,6 +404,9 @@ export const learnerVocabularyBrowseItemSchema = z.object({
   displayForm: z.string().optional(),
   partOfSpeech: z.string().optional(),
   cefr: z.string().nullable().optional(),
+  contentHash: z.string().regex(/^[0-9a-f]{64}$/).optional(),
+  contentReviewStatus: z.literal("PASS").optional(),
+  editorialStatus: z.literal("DRAFT").optional(),
   tags: z.array(z.string()).optional(),
   imageMediaStatus: z.enum(["ACCEPTED_MAPPING", "PROPOSED", "AMBIGUOUS"]).optional(),
   developmentMedia: vocabularyDevelopmentListMediaSchema.optional()

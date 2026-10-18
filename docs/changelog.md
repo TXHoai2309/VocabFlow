@@ -1,5 +1,16 @@
 # VocabFlow Changelog
 
+## 2026-10-18 — Owner-attested V2 public media release
+
+- Record the owner's public-display authorization separately from formal
+  third-party license evidence; leave Neon media rights states unchanged.
+- Add a default-deny runtime gate that exposes only unique, non-ambiguous,
+  current V2 media mappings with signed Cloudinary authenticated URLs. Match
+  word audio to Sense IPA and attach example audio only by its accepted exact
+  example mapping.
+- Keep source mapping details out of deployed API DTOs and add an accessible
+  example-audio player to vocabulary detail and flashcards.
+
 ## 2026-10-18 — V2 final release candidate
 
 - Prepare the isolated V2 Production runtime behind explicit environment and endpoint checks; Preview targets Neon V2 Development.

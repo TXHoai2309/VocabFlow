@@ -1,5 +1,27 @@
 # V2 cutover preparation — 2026-10-17
 
+## 2026-10-18 — Owner-authorized V2 public media release addendum
+
+This addendum supersedes the earlier Development-only media restriction for
+the exact scope in [DEC-032](../decisions.md#dec-032--owner-attested-v2-public-media-and-release)
+and the [owner attestation](../rights/v2-apkg-public-media-owner-attestation-2026-10-18.md).
+It does not supersede the V1 retention, account isolation, or no-import rules.
+The owner attestation is not recorded as formal third-party license evidence;
+Neon rights states remain unchanged.
+
+Production/Preview require the non-secret
+`VOCABFLOW_V2_PUBLIC_MEDIA_ATTESTATION_ID` to match the recorded attestation.
+The deployed API publishes only signed, namespaced V2 URLs from a valid current
+PASS/DRAFT projection and removes Development mapping details. No asset upload,
+Neon update, rights-status change, V1 cleanup, or content import is part of this
+release.
+
+Vercel Git Production deployment from `main` is owner-authorized for this
+Preview-verified release. `git.deploymentEnabled.main` must be enabled; that
+also permits future main pushes to create Production deployments. Production
+environment secrets cannot be read back through local Vercel CLI env commands,
+so the target branch must not be inferred from secret presence alone.
+
 ## 2026-10-18 — Owner decision and final release candidate
 
 The owner accepts discarding V1 test users, accounts, sessions, learner progress, and review history, and waives a V1 backup for the future cutover. This supersedes the earlier account-continuity and backup prerequisites below. Do not retry V1 SQL after the recorded PostgreSQL `53000` quota failure.

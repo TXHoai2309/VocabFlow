@@ -62,7 +62,7 @@ import {
   type GlobalSearchService
 } from "./global-search";
 import { vocabularyDatasetVersion } from "./vocabulary-dataset-version";
-import { mustWithholdV2Media, withoutUnclearedV2Media } from "./v2-public-media";
+import { mustSanitizeV2MediaResponse, withoutUnclearedV2Media } from "./v2-public-media";
 import {
   createResetLearnerProgressService,
   ResetLearnerProgressServiceError,
@@ -336,10 +336,10 @@ export function createApp(dependencies: AppDependencies = {}) {
 
   application.use("/api/*", async (c, next) => {
     await next();
-    if (!mustWithholdV2Media(c.env ?? {}) || c.req.path.startsWith("/api/auth/")
+    if (!mustSanitizeV2MediaResponse(c.env ?? {}) || c.req.path.startsWith("/api/auth/")
       || !c.res.headers.get("content-type")?.includes("application/json")) return;
     const body: unknown = await c.res.clone().json();
-    const response = new Response(JSON.stringify(withoutUnclearedV2Media(body)), c.res);
+    const response = new Response(JSON.stringify(withoutUnclearedV2Media(body, c.env ?? {})), c.res);
     response.headers.delete("content-length");
     response.headers.delete("etag");
     c.res = response;

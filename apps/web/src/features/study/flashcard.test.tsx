@@ -95,6 +95,18 @@ describe("US-11 Flashcard back state", () => {
     expect(container.querySelectorAll(".flashcard-example-line")).toHaveLength(2);
   });
 
+  it("plays an example clip only when the matching example includes its URL", () => {
+    const exampleUrl = "https://res.cloudinary.com/vocabflow/video/authenticated/s--Exmpl_12--/Vocab/v2/audio/example.mp3";
+    const { container } = render(<Flashcard vocabulary={{
+      ...vocabulary,
+      exampleEn: null,
+      examples: [{ exampleKey: "power-example-1", en: "Power can be shared.", audioUrl: exampleUrl }]
+    }} isFlipped onFlip={vi.fn()} />);
+
+    expect(container.querySelector("audio.vocabulary-example-audio-control")).toHaveAttribute("src", exampleUrl);
+    expect(container.querySelector("audio.vocabulary-example-audio-control")).toHaveAttribute("preload", "none");
+  });
+
   it("does not expose a quarantined teacher poster image or its printed answer text", () => {
     render(<Flashcard
       vocabulary={{ ...vocabulary, word: "teacher", vietnamese: "giáo viên", imageUrl: null }}

@@ -30,6 +30,9 @@ type VocabularyBrowseRow = {
   cefr?: unknown;
   tags?: unknown;
   development_media?: unknown;
+  content_sha256?: unknown;
+  content_review_decision?: unknown;
+  editorial_status?: unknown;
 };
 
 function rowsOf<T>(result: unknown): T[] {
@@ -72,6 +75,9 @@ function toBrowseItem(row: VocabularyBrowseRow): LearnerVocabularyBrowseItem {
     ...(row.display_form ? { displayForm: String(row.display_form) } : {}),
     ...(row.part_of_speech ? { partOfSpeech: String(row.part_of_speech) } : {}),
     ...(row.cefr != null ? { cefr: String(row.cefr) } : {}),
+    ...(row.content_sha256 ? { contentHash: String(row.content_sha256) } : {}),
+    ...(row.content_review_decision === "PASS" ? { contentReviewStatus: "PASS" as const } : {}),
+    ...(row.editorial_status === "DRAFT" ? { editorialStatus: "DRAFT" as const } : {}),
     ...(Array.isArray(row.tags) ? { tags: row.tags.map(String) } : {}),
     ...(images || wordAudio ? { developmentMedia: {
       ...(images ? { images } : {}),
@@ -145,7 +151,8 @@ export function createLearnerVocabularyBrowseService(
               v.audio_url, v.topic, v.level, v.enabled, v.content_version,
               md.proposal_key AS master_sense_identity,
               md.source_provenance->'masterV2Identity'->>'displayForm' AS display_form,
-              md.part_of_speech, md.cefr, md.tags,
+              md.part_of_speech, md.cefr, md.tags, md.content_sha256,
+              md.content_review_decision, md.editorial_status,
               CASE WHEN md.development_media IS NULL THEN NULL ELSE
                 jsonb_strip_nulls(jsonb_build_object(
                   'images', md.development_media->'images',

@@ -6,6 +6,7 @@ import { useActiveLearner } from "./learner-context-hook";
 import { LearnerVocabularyClientError, requestLearnerVocabulary } from "./vocabulary-list-client";
 import { usePronunciationAudio } from "../study/pronunciation-audio";
 import { DevelopmentExampleAudio, DevelopmentImageNotice, DevelopmentImagePreviews, DevelopmentWordAudio } from "../study/development-media";
+import { ExampleAudio } from "../study/example-audio";
 import { formatPartOfSpeech, formatVocabularyTopic, parseVocabularyExamples } from "../vocabulary/vocabulary-presentation";
 import { requestSavedVocabulary, saveVocabulary, unsaveVocabulary } from "./saved-vocabulary-client";
 import { ErrorState, LoadingState } from "../../components/async-states";
@@ -354,7 +355,9 @@ function VocabularyDetailContent({ vocabulary, allVocabulary, isSaved, isSaving,
                       <span className="vocabulary-detail-example-language">VI</span>
                       <span lang="vi" className="vocabulary-detail-example-translation">{example.vietnamese}</span>
                     </span> : null}
-                    <DevelopmentExampleAudio vocabulary={vocabulary} exampleKey={example.exampleKey} />
+                    {example.audioUrl
+                      ? <ExampleAudio audioUrl={example.audioUrl} exampleIndex={index} />
+                      : <DevelopmentExampleAudio vocabulary={vocabulary} exampleKey={example.exampleKey} />}
                   </li>
                 ))}
               </ol>

@@ -98,3 +98,14 @@ source-control diagnostic test timed out under full-suite load at its old
 raised to 15 seconds. Local Node is 22.19.0 rather than the repository's
 22.23.2 pin. No DB/migration command, deployment, commit or push was executed.
 Owner review remains pending.
+
+## Owner-authorized V2 media release exception (2026-10-18)
+
+The current owner request explicitly reprioritizes this release and supersedes
+the `main`-disabled requirement above for the V2 media release only. After the
+exact commit passes Preview checks, the owner authorizes Vercel Git to create
+Production from that commit on `main`; no Vercel CLI deployment or database
+migration/import is authorized. This requires `git.deploymentEnabled.main` to
+be true for the release. Vercel's branch rule also enables subsequent `main`
+pushes to deploy, a consequence recorded in DEC-032. The existing protected
+release workflow remains the default for other release work.

@@ -7277,3 +7277,25 @@ owner-approved baseline exception. See
   workspace files were removed; the exact remaining list is preserved in the
   archive disposition manifest. No push, database operation, Cloudinary
   operation, or deployment.
+
+### 2026-10-18 — V2 public media owner-attested release
+
+- Continue from the UI hotfix commit `11d56345fd2703c44b66218efef05bbfe8fb7088`
+  in the isolated `VocabFlow-release-37e9dc0` checkout; leave the root working
+  tree and its 1,926 untracked files untouched.
+- Record the owner's V2 APKG public-display authorization as an
+  `OWNER_ATTESTED_FOR_PUBLIC_DISPLAY` audit record, distinct from third-party
+  license evidence. Keep Neon `UNKNOWN_REVIEW_REQUIRED` and all mapping review
+  states unchanged.
+- Implement a deployment sanitizer requiring the exact attestation ID and a
+  current V2 PASS/DRAFT identity/content hash. It accepts only unique,
+  non-ambiguous signed Cloudinary V2 URLs, requires pronunciation evidence and
+  exact IPA matching for word audio, and attaches accepted example audio only
+  through a matching stable example key. Deployed DTOs omit Development mapping
+  metadata. Add example playback controls to Vocabulary detail and Flashcards.
+- Focused tests: 39/39 pass. API typecheck, Web typecheck and focused ESLint
+  pass. Local Neon readback is blocked because Vercel CLI does not inject the
+  Preview/Production Secret values into local commands; no credentials were
+  exposed. Cloudinary data-sample and live-browser checks remain outstanding.
+- No Neon, Cloudinary asset, learner-history, canonical Sense, or V1 resource
+  has been modified. No commit, push, environment update, or deployment yet.

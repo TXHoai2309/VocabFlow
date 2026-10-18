@@ -2,6 +2,7 @@ export type VocabularyDisplayExample = {
   english: string;
   vietnamese: string | null;
   exampleKey?: string;
+  audioUrl?: string;
 };
 
 const partOfSpeechLabels: Record<string, string> = {
@@ -102,7 +103,8 @@ export function parseVocabularyExamples(value: unknown): VocabularyDisplayExampl
     return [{
       english: example.en,
       vietnamese: typeof example.vi === "string" && example.vi.trim() ? example.vi : null,
-      ...(typeof example.exampleKey === "string" ? { exampleKey: example.exampleKey } : {})
+      ...(typeof example.exampleKey === "string" ? { exampleKey: example.exampleKey } : {}),
+      ...(typeof example.audioUrl === "string" && example.audioUrl.trim() ? { audioUrl: example.audioUrl } : {})
     }];
   });
 }

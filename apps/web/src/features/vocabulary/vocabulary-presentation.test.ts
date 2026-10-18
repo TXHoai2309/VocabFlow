@@ -35,4 +35,17 @@ describe("vocabulary presentation helpers", () => {
       { english: "One sentence only.", vietnamese: null }
     ]);
   });
+
+  it("preserves only an explicit example audio URL from the API", () => {
+    expect(parseVocabularyExamples([{
+      exampleKey: "ex-1",
+      en: "The two values are equivalent.",
+      audioUrl: "https://res.cloudinary.com/vocabflow/video/authenticated/s--Exmpl_12--/Vocab/v2/audio/example.mp3"
+    }])).toEqual([{
+      exampleKey: "ex-1",
+      english: "The two values are equivalent.",
+      vietnamese: null,
+      audioUrl: "https://res.cloudinary.com/vocabflow/video/authenticated/s--Exmpl_12--/Vocab/v2/audio/example.mp3"
+    }]);
+  });
 });

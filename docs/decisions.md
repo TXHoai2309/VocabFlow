@@ -1,5 +1,31 @@
 # VocabFlow Project Decisions
 
+## DEC-032 — Owner-attested V2 public media and release
+
+- Status: ACCEPTED by explicit owner instruction on 2026-10-18.
+- The owner attests that the APKG image/audio collection incorporated into
+  VocabFlow V2 may be used and publicly displayed on VocabFlow. Record this as
+  `OWNER_ATTESTED_FOR_PUBLIC_DISPLAY`, separately from formal third-party
+  license evidence. Do not mark source licenses verified or change Neon
+  `rights_status` values from `UNKNOWN_REVIEW_REQUIRED`.
+- Public runtime scope is limited to one valid, current V2 `PASS`/`DRAFT`
+  projection, one unique non-ambiguous mapping, an exact pronunciation match
+  for word audio, and a signed Cloudinary URL in the V2 media namespace. Example
+  audio requires an accepted mapping with the same stable `exampleKey` on the
+  current Sense. V1, unrelated, ambiguous, mismatched, and unmapped media stay
+  excluded. Authorization never changes mapping review states.
+- Runtime authorization is an explicit, non-secret Vercel environment value
+  matching the attestation ID in
+  [the owner attestation record](rights/v2-apkg-public-media-owner-attestation-2026-10-18.md).
+  Missing or mismatched values keep public V2 media withheld.
+- For this owner-directed release, Vercel Git deployment from `main` is enabled
+  so the Preview-verified release commit can create a Production deployment.
+  This overrides the earlier `main`-disabled release setting. The setting also
+  enables later `main` pushes to deploy automatically unless the owner changes
+  it.
+- No Neon vocabulary/content, review, learner history, Cloudinary asset, or V1
+  resource is modified by this decision.
+
 ## DEC-031 — V1 test-data disposition for V2 cutover
 
 - Status: ACCEPTED by explicit owner instruction on 2026-10-18; supersedes the earlier Vercel cutover preparation status where V1 backup or account continuity was described as a prerequisite.

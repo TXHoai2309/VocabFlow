@@ -9,6 +9,7 @@ export type RuntimeBindings = {
   VERCEL_ENV?: string;
   VERCEL_URL?: string;
   VOCAB_DATASET_VERSION?: string;
+  VOCABFLOW_V2_PUBLIC_MEDIA_ATTESTATION_ID?: string;
 };
 
 const bindingNames = [
@@ -22,6 +23,7 @@ const bindingNames = [
   "VERCEL_ENV",
   "VERCEL_URL",
   "VOCAB_DATASET_VERSION",
+  "VOCABFLOW_V2_PUBLIC_MEDIA_ATTESTATION_ID",
 ] as const satisfies readonly (keyof RuntimeBindings)[];
 
 export function runtimeBindingsFromEnvironment(environment: NodeJS.ProcessEnv): RuntimeBindings {

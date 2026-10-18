@@ -132,6 +132,19 @@ describe("vocabulary detail page", () => {
     expect(container.querySelectorAll(".vocabulary-detail-example-line")).toHaveLength(2);
   });
 
+  it("shows the player only for an exact example audio URL supplied on that example", async () => {
+    const exampleUrl = "https://res.cloudinary.com/vocabflow/video/authenticated/s--Exmpl_12--/Vocab/v2/audio/example.mp3";
+    mockDetailApi([item({
+      exampleEn: null,
+      examples: [{ exampleKey: "accent-ex-1", en: "I recognized her accent.", audioUrl: exampleUrl }]
+    })]);
+
+    const { container } = renderDetail();
+
+    expect(await screen.findByText("I recognized her accent.")).toBeInTheDocument();
+    expect(container.querySelector("audio.vocabulary-example-audio-control")).toHaveAttribute("src", exampleUrl);
+  });
+
   it("uses explicit empty states for unavailable content and does not invent learning metrics", async () => {
     mockDetailApi([item({
       ipa: null,
