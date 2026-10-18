@@ -66,12 +66,19 @@ function validSignedCloudinaryUrl(rawUrl: unknown, kind: "image" | "audio", mime
 
   const acceptedPathSignature = CLOUDINARY_SIGNATURE_PATTERN.test(pathSegments[3] ?? "");
   const token = url.searchParams.get("__cld_token__");
+  const queryKeys = [...url.searchParams.keys()];
   const acceptedToken = Boolean(token
-    && [...url.searchParams.keys()].length === 1
+    && queryKeys.length === 1
+    && queryKeys[0] === "__cld_token__"
     && token.split("~").some((part) => /^hmac=[a-f0-9]{64}$/i.test(part))
     && token.split("~").some((part) => /^(exp|dur)=\d+$/i.test(part)));
+  // Cloudinary SDKs append `_a` as an analytics query parameter by default.
+  // It does not replace or alter the signed authenticated delivery path.
+  const acceptedSdkAnalytics = queryKeys.length === 1
+    && queryKeys[0] === "_a"
+    && /^[A-Za-z0-9._~-]{1,256}$/.test(url.searchParams.get("_a") ?? "");
   if (!acceptedPathSignature && !acceptedToken) return false;
-  if (acceptedPathSignature && url.searchParams.size > 0) return false;
+  if (acceptedPathSignature && queryKeys.length > 0 && !acceptedSdkAnalytics) return false;
 
   let publicIdSegments = pathSegments.slice(acceptedPathSignature ? 4 : 3);
   if (publicIdSegments[0] && /^v\d+$/.test(publicIdSegments[0])) publicIdSegments = publicIdSegments.slice(1);
@@ -127,9 +134,39 @@ function singleWordAudioUrl(record: JsonRecord): string | null {
   const item = items[0];
   const sourcePronunciation = pronunciationKey(item.pronunciation);
   const targetPronunciation = pronunciationKey(record.ipa);
-  if (!sourcePronunciation || !targetPronunciation || sourcePronunciation !== targetPronunciation
-    || !nonEmptyString(item.pronunciationEvidence)) return null;
+  if (!sourcePronunciation) return null;
+
+  if (targetPronunciation) {
+    if (sourcePronunciation !== targetPronunciation || !nonEmptyString(item.pronunciationEvidence)) return null;
+  } else if (!hasVerifiedSourcePronunciationForCurrentSense(record, item)) {
+    return null;
+  }
   return validSignedCloudinaryUrl(item.url, "audio", item.mimeType) ? item.url : null;
+}
+
+function hasVerifiedSourcePronunciationForCurrentSense(record: JsonRecord, item: JsonRecord): boolean {
+  if (record.ipa != null && nonEmptyString(record.ipa)) return false;
+  if (item.pronunciationEvidence !== "SOURCE_NOTE_FIELD_SOUND_AND_IPA") return false;
+  if (!nonEmptyString(record.word) || !nonEmptyString(record.partOfSpeech)
+    || !nonEmptyString(record.masterSenseIdentity) || typeof record.contentHash !== "string"
+    || !SHA256_PATTERN.test(record.contentHash)) return false;
+  if (!/^[^:\r\n]{1,128}:[^:\r\n]{1,128}$/.test(String(item.sourceNoteIdentity ?? ""))) return false;
+
+  const evidence = typeof item.mappingEvidence === "string" ? item.mappingEvidence : "";
+  const match = evidence.match(/^Source-note Sound\/IPA and lemma\/POS verified for Lexeme ([^;]{1,256}); target hash set ([0-9a-f]{64})\.$/);
+  if (!match) return false;
+
+  // This hash fingerprints the whole lexeme's ordered target-sense set, not
+  // this one sense's contentHash. validCurrentSenseProjection verifies the
+  // current sense identity and content hash independently.
+  const lexemeIdentity = match[1];
+  const expectedPartOfSpeech = String(record.partOfSpeech).trim().toUpperCase();
+  const separator = lexemeIdentity.lastIndexOf("|");
+  if (separator < 1 || lexemeIdentity.slice(separator + 1).toUpperCase() !== expectedPartOfSpeech) return false;
+
+  const escapedWord = String(record.word).trim().replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const wordBoundary = new RegExp(`(^|[^\\p{L}\\p{N}])${escapedWord}($|[^\\p{L}\\p{N}])`, "iu");
+  return wordBoundary.test(lexemeIdentity.slice(0, separator));
 }
 
 function examplesWithExactAudio(record: JsonRecord): unknown[] | undefined {

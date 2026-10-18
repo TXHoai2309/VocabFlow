@@ -17,7 +17,7 @@ const ownerEnv = { VERCEL_ENV: "production", VOCABFLOW_V2_PUBLIC_MEDIA_ATTESTATI
 const v2: VocabularyDto = {
   id: 100, word: "abandon", ipa: "/əˈbændən/", vietnamese: "từ bỏ", definitionEn: "to leave permanently", exampleEn: null,
   imageUrl: "https://legacy.invalid/image.jpg", audioUrl: null, topic: null, level: null, enabled: true, contentVersion: 1,
-  masterSenseIdentity: "sense:abandon:verb", contentHash: "a".repeat(64), contentReviewStatus: "PASS", editorialStatus: "DRAFT",
+  masterSenseIdentity: "sense:abandon:verb", partOfSpeech: "VERB", contentHash: "a".repeat(64), contentReviewStatus: "PASS", editorialStatus: "DRAFT",
   rightsStatus: "UNKNOWN_REVIEW_REQUIRED",
   examples: [{ exampleKey: "sense:abandon:example-1", en: "They abandoned the plan.", vi: "Họ đã từ bỏ kế hoạch." }],
   developmentMedia: {
@@ -74,6 +74,85 @@ describe("V2 public media authorization gate", () => {
     expect(published.rightsStatus).toBe("UNKNOWN_REVIEW_REQUIRED");
     expect(JSON.stringify(published)).not.toContain("note:abandon");
     expect(JSON.stringify(published)).not.toContain("pronunciationEvidence");
+  });
+
+  it("accepts Cloudinary SDK analytics on signed delivery URLs while rejecting arbitrary query parameters", () => {
+    const withAnalytics = withoutUnclearedV2Media({ ...v2, developmentMedia: {
+      ...v2.developmentMedia,
+      images: [{ ...v2.developmentMedia!.images![0]!, url: `${imageUrl}?_a=CloudinarySDK1` }],
+      wordAudio: [{ ...v2.developmentMedia!.wordAudio![0]!, url: `${audioUrl}?_a=CloudinarySDK1` }]
+    } }, ownerEnv) as VocabularyDto;
+    expect(withAnalytics.imageUrl).toBe(`${imageUrl}?_a=CloudinarySDK1`);
+    expect(withAnalytics.audioUrl).toBe(`${audioUrl}?_a=CloudinarySDK1`);
+
+    const arbitraryQuery = withoutUnclearedV2Media({ ...v2, developmentMedia: {
+      ...v2.developmentMedia,
+      images: [{ ...v2.developmentMedia!.images![0]!, url: `${imageUrl}?redirect=https://example.com` }],
+      wordAudio: [{ ...v2.developmentMedia!.wordAudio![0]!, url: `${audioUrl}?_a=CloudinarySDK1&redirect=https://example.com` }]
+    } }, ownerEnv) as VocabularyDto;
+    expect(arbitraryQuery.imageUrl).toBeNull();
+    expect(arbitraryQuery.audioUrl).toBeNull();
+  });
+
+  it("publishes IPA-null word audio only with a unique source-note pronunciation proof bound to this lemma, POS, and Sense hash", () => {
+    const sourceWordAudio = v2.developmentMedia!.wordAudio![0]!;
+    const ipaNull = withoutUnclearedV2Media({
+      ...v2,
+      ipa: null,
+      contentHash: "b".repeat(64),
+      developmentMedia: {
+        ...v2.developmentMedia,
+        wordAudio: [{
+          ...sourceWordAudio,
+          sourceNoteIdentity: "source-note-1:source-guid-1",
+          pronunciationEvidence: "SOURCE_NOTE_FIELD_SOUND_AND_IPA",
+          mappingEvidence: `Source-note Sound/IPA and lemma/POS verified for Lexeme source:abandon|VERB; target hash set ${"a".repeat(64)}.`
+        }]
+      }
+    }, ownerEnv) as VocabularyDto;
+    expect(ipaNull.audioUrl).toBe(audioUrl);
+    expect(ipaNull.ipa).toBeNull();
+
+    const wrongHomograph = withoutUnclearedV2Media({
+      ...v2,
+      word: "tear",
+      ipa: null,
+      partOfSpeech: "VERB",
+      developmentMedia: {
+        ...v2.developmentMedia,
+        wordAudio: [{
+          ...sourceWordAudio,
+          sourceNoteIdentity: "source-note-2:source-guid-2",
+          pronunciationEvidence: "SOURCE_NOTE_FIELD_SOUND_AND_IPA",
+          mappingEvidence: `Source-note Sound/IPA and lemma/POS verified for Lexeme source:tear|NOUN; target hash set ${"a".repeat(64)}.`
+        }]
+      }
+    }, ownerEnv) as VocabularyDto;
+    expect(wrongHomograph.audioUrl).toBeNull();
+
+    const ambiguousPronunciation = withoutUnclearedV2Media({
+      ...v2,
+      ipa: null,
+      developmentMedia: {
+        ...v2.developmentMedia,
+        wordAudio: [
+          {
+            ...sourceWordAudio,
+            sourceNoteIdentity: "source-note-3:source-guid-3",
+            pronunciationEvidence: "SOURCE_NOTE_FIELD_SOUND_AND_IPA",
+            mappingEvidence: `Source-note Sound/IPA and lemma/POS verified for Lexeme source:abandon|VERB; target hash set ${"a".repeat(64)}.`
+          },
+          {
+            ...sourceWordAudio,
+            pronunciation: "əˈbændɒn",
+            sourceNoteIdentity: "source-note-4:source-guid-4",
+            pronunciationEvidence: "SOURCE_NOTE_FIELD_SOUND_AND_IPA",
+            mappingEvidence: `Source-note Sound/IPA and lemma/POS verified for Lexeme source:abandon|VERB; target hash set ${"a".repeat(64)}.`
+          }
+        ]
+      }
+    }, ownerEnv) as VocabularyDto;
+    expect(ambiguousPronunciation.audioUrl).toBeNull();
   });
 
   it("attaches only the accepted example clip whose stable key is on that Sense's current example", () => {
