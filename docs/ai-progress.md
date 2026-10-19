@@ -1,5 +1,17 @@
 # Current Handoff Snapshot
 
+## 2026-10-19 — Review Queue contract schema fix for backfilled media metadata
+
+- Resolved `INTERNAL_ERROR` 500 failure on `/api/learners/:learnerId/review-queue`
+  caused by `.strict()` in `packages/contracts/src/index.ts` rejecting backfilled
+  provenance metadata (`mappingKey`, `sourceNoteId`, `byteLength`, etc.) present in
+  `master_v2_development_projections.development_media`.
+- Switched `developmentMedia` object and array schemas (`images`, `wordAudio`, `exampleAudio`)
+  to `.passthrough()` while preserving required type/format assertions on known fields.
+- Rebuilt workspace packages (`build:workspace-packages`).
+- Added regression test verifying ReviewQueueService accepts rows with backfilled media
+  metadata. All 74 review-queue tests pass; workspace build and TypeScript checks pass.
+
 ## 2026-10-19 — Production V2 image coverage backfill
 
 - On the verified Neon V2 Production branch `br-cool-sea-a1ifkf95`, backfill

@@ -323,7 +323,12 @@ describe("US-08 review queue API boundary", () => {
           editorialStatus: "DRAFT",
           rightsStatus: "UNKNOWN_REVIEW_REQUIRED",
           developmentMedia: {
-            images: [{ url: imageUrl, mediaSha256: "b".repeat(64), mimeType: "image/jpeg", sourceNoteIdentity: "about-note:1", reviewStatus: "ACCEPTED_MAPPING", rightsStatus: "UNKNOWN_REVIEW_REQUIRED" }],
+            images: [{
+              url: imageUrl, mediaSha256: "b".repeat(64), mimeType: "image/jpeg",
+              sourceNoteIdentity: "about-note:1", reviewStatus: "ACCEPTED_MAPPING",
+              rightsStatus: "UNKNOWN_REVIEW_REQUIRED",
+              targetProposalKey: "about|ADVERB|sense-1", targetContentSha256: "a".repeat(64)
+            }],
             wordAudio: [{ url: wordAudioUrl, mediaSha256: "c".repeat(64), mimeType: "audio/mpeg", sourceNoteIdentity: "about-note:1", reviewStatus: "ACCEPTED_MAPPING", rightsStatus: "UNKNOWN_REVIEW_REQUIRED", pronunciation: "/əˈbaʊt/", pronunciationEvidence: "Source-note Sound/IPA matches target IPA" }],
             exampleAudio: [{ url: exampleAudioUrl, mediaSha256: "d".repeat(64), mimeType: "audio/mpeg", sourceNoteIdentity: "about-note:1", reviewStatus: "ACCEPTED_MAPPING", rightsStatus: "UNKNOWN_REVIEW_REQUIRED", exampleKey: "about-adv-example-1" }]
           }
@@ -763,5 +768,54 @@ describe("US-08 review queue service", () => {
 
     expect(result.newCount).toBe(4);
     expect(result.queue.map((item) => item.queueType)).toEqual(["DUE"]);
+  });
+
+  it("safely processes rows with backfilled provenance metadata in developmentMedia without failing validation", async () => {
+    const backfilledImage = {
+      url: "https://res.cloudinary.com/vocabflow/image/authenticated/s--Abc_1234--/v1/Vocab/v2/images/7de12dcbb731044f09520cceda680268658817fe7cc674f948e6cae2b4471f50.jpg",
+      mediaSha256: "7de12dcbb731044f09520cceda680268658817fe7cc674f948e6cae2b4471f50",
+      mimeType: "image/jpeg",
+      sourceNoteIdentity: "1556384730998:ie!<.B&L!>",
+      reviewStatus: "PROPOSED",
+      rightsStatus: "UNKNOWN_REVIEW_REQUIRED",
+      mappingKey: "829af1fa34c78b07424868f31f988faa1800f144f6b441789bd848b8145560d4",
+      sourceNoteId: "1556384730998",
+      sourceNoteGuid: "ie!<.B&L!>",
+      sourceRecordEvidenceSha256: "7f07bfb8ca19b888b8a5b01397036f974876b2ede924b80759a77418bad82f2b",
+      sourceFilename: "11_0201.jpg",
+      byteLength: 21303,
+      targetProposalKey: "EDITORIAL_2H2K:advertise:public-promotion",
+      targetContentSha256: "97cd1480cfe0b61a97834aab14ec002f6542ed3e32d3fcae85ccdda30b2feb77",
+      mappingConfidence: 0.718,
+      mappingEvidence: "{}",
+      visualReview: "NOT_PERFORMED",
+      provider: "CLOUDINARY",
+      publicId: "Vocab/v2/images/7de12dcbb731044f09520cceda680268658817fe7cc674f948e6cae2b4471f50",
+      resourceType: "image",
+      deliveryType: "authenticated",
+      sourceApkgSha256: "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
+      sourceMappingBundleSha256: "7bb52fbae0e329b00b8d1713e2959c888bc2cc5b82496403682a3d1dd213c068"
+    };
+    const row = {
+      ...newRow(30830, 1),
+      word: "advertise",
+      master_sense_identity: "EDITORIAL_2H2K:advertise:public-promotion",
+      content_sha256: "97cd1480cfe0b61a97834aab14ec002f6542ed3e32d3fcae85ccdda30b2feb77",
+      content_review_decision: "PASS",
+      editorial_status: "DRAFT",
+      rights_status: "UNKNOWN_REVIEW_REQUIRED",
+      development_media: { images: [backfilledImage] }
+    };
+    const execute = vi.fn()
+      .mockResolvedValueOnce(authorizedRows())
+      .mockResolvedValueOnce({ rows: [{ timezone: "Asia/Ho_Chi_Minh" }] })
+      .mockResolvedValueOnce(dailyUsageRow(10, 0))
+      .mockResolvedValueOnce({ rows: [] })
+      .mockResolvedValueOnce({ rows: [row] });
+
+    const result = await createReviewQueueService({ execute }, { now: () => new Date("2026-09-14T03:00:00.000Z") }).list("parent-1", learnerId);
+    expect(result.newCount).toBe(1);
+    expect(result.queue).toHaveLength(1);
+    expect(result.queue[0]?.vocabulary.id).toBe(30830);
   });
 });

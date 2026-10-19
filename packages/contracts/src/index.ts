@@ -238,19 +238,19 @@ export const vocabularyDtoSchema = z.object({
       sourceNoteIdentity: z.string().min(1), reviewStatus: z.enum(["ACCEPTED_MAPPING", "PROPOSED", "AMBIGUOUS"]),
       rightsStatus: z.literal("UNKNOWN_REVIEW_REQUIRED"), mappingEvidence: z.string().optional(),
       targetProposalKey: z.string().min(1).optional(), targetContentSha256: z.string().regex(/^[0-9a-f]{64}$/).optional()
-    }).strict()).optional(),
+    }).passthrough()).optional(),
     wordAudio: z.array(z.object({
       url: z.string().min(1), mediaSha256: z.string().regex(/^[0-9a-f]{64}$/), mimeType: z.string().min(1),
       sourceNoteIdentity: z.string().min(1), reviewStatus: z.enum(["ACCEPTED_MAPPING", "PROPOSED", "AMBIGUOUS"]),
       rightsStatus: z.literal("UNKNOWN_REVIEW_REQUIRED"), pronunciationEvidence: z.string().optional(),
       pronunciation: z.string().optional(), mappingEvidence: z.string().optional()
-    }).strict()).optional(),
+    }).passthrough()).optional(),
     exampleAudio: z.array(z.object({
       url: z.string().min(1), mediaSha256: z.string().regex(/^[0-9a-f]{64}$/), mimeType: z.string().min(1),
       sourceNoteIdentity: z.string().min(1), reviewStatus: z.enum(["ACCEPTED_MAPPING", "PROPOSED", "AMBIGUOUS"]),
       rightsStatus: z.literal("UNKNOWN_REVIEW_REQUIRED"), exampleKey: z.string().optional()
-    }).strict()).optional()
-  }).strict().optional()
+    }).passthrough()).optional()
+  }).passthrough().optional()
 });
 export type VocabularyDto = z.infer<typeof vocabularyDtoSchema>;
 

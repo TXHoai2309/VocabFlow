@@ -1,5 +1,12 @@
 # VocabFlow Changelog
 
+## 2026-10-19 — Review Queue contract schema fix for backfilled media metadata
+
+- Allow extra provenance/audit metadata in `developmentMedia` by using `.passthrough()`
+  instead of `.strict()` in `packages/contracts`, resolving 500 `INTERNAL_ERROR` on
+  `/api/learners/:learnerId/review-queue`.
+- Add test coverage for rows containing backfilled metadata fields in `ReviewQueueService`.
+
 ## 2026-10-19 — V2 Production image mapping coverage and empty detail layout
 
 - Reuse source-pinned image references for 3,936 current PASS/DRAFT Sense
