@@ -22,7 +22,8 @@ const v2: VocabularyDto = {
   examples: [{ exampleKey: "sense:abandon:example-1", en: "They abandoned the plan.", vi: "Họ đã từ bỏ kế hoạch." }],
   developmentMedia: {
     images: [{ url: imageUrl.replace("advertise.jpg", "abandon.jpg"), mediaSha256: "b".repeat(64), mimeType: "image/jpeg",
-      sourceNoteIdentity: "note:abandon", reviewStatus: "PROPOSED", rightsStatus: "UNKNOWN_REVIEW_REQUIRED" }],
+      sourceNoteIdentity: "note:abandon", reviewStatus: "PROPOSED", rightsStatus: "UNKNOWN_REVIEW_REQUIRED",
+      targetProposalKey: "sense:abandon:verb", targetContentSha256: "a".repeat(64) }],
     wordAudio: [{ url: audioUrl, mediaSha256: "c".repeat(64), mimeType: "audio/mpeg", sourceNoteIdentity: "note:abandon",
       reviewStatus: "PROPOSED", rightsStatus: "UNKNOWN_REVIEW_REQUIRED", pronunciation: "əˈbændən", pronunciationEvidence: "same lemma/POS/IPA" }],
     exampleAudio: []
@@ -169,7 +170,7 @@ describe("V2 public media authorization gate", () => {
     expect(mismatch.examples?.[0]).not.toHaveProperty("audioUrl");
   });
 
-  it("does not choose ambiguous, duplicate, mismatched, unsigned, wrong-namespace, wrong-type, or stale media", () => {
+  it("does not choose ambiguous, mismatched, unsigned, wrong-namespace, wrong-type, or stale media", () => {
     const media = v2.developmentMedia!;
     const ambiguous = withoutUnclearedV2Media({ ...v2, developmentMedia: {
       ...media,
@@ -181,13 +182,19 @@ describe("V2 public media authorization gate", () => {
     expect(ambiguous.audioUrl).toBeNull();
     expect(ambiguous.examples?.[0]).not.toHaveProperty("audioUrl");
 
-    const duplicate = withoutUnclearedV2Media({ ...v2, developmentMedia: {
+    const duplicateSameAsset = withoutUnclearedV2Media({ ...v2, developmentMedia: {
       ...media,
       images: [media.images![0], media.images![0]],
       wordAudio: [media.wordAudio![0], media.wordAudio![0]]
     } }, ownerEnv) as VocabularyDto;
-    expect(duplicate.imageUrl).toBeNull();
-    expect(duplicate.audioUrl).toBeNull();
+    expect(duplicateSameAsset.imageUrl).toBe(imageUrl.replace("advertise.jpg", "abandon.jpg"));
+    expect(duplicateSameAsset.audioUrl).toBeNull();
+
+    const distinctImages = withoutUnclearedV2Media({ ...v2, developmentMedia: {
+      ...media,
+      images: [media.images![0], { ...media.images![0]!, mediaSha256: "e".repeat(64) }]
+    } }, ownerEnv) as VocabularyDto;
+    expect(distinctImages.imageUrl).toBeNull();
 
     const unsigned = withoutUnclearedV2Media({ ...v2, developmentMedia: {
       ...media,
@@ -209,12 +216,40 @@ describe("V2 public media authorization gate", () => {
     } }, ownerEnv) as VocabularyDto;
     expect(gif.imageUrl).toContain("/raw/authenticated/");
 
+    const webp = withoutUnclearedV2Media({ ...v2, developmentMedia: {
+      images: [{ ...v2.developmentMedia!.images![0]!, url: "https://res.cloudinary.com/vocabflow/image/authenticated/s--Webp_123--/Vocab/v2/images/illustration.webp", mimeType: "image/webp" }],
+      wordAudio: []
+    } }, ownerEnv) as VocabularyDto;
+    expect(webp.imageUrl).toContain("/images/illustration.webp");
+
     const mismatch = withoutUnclearedV2Media({ ...v2, developmentMedia: {
       images: [{ ...v2.developmentMedia!.images![0]!, mimeType: "image/png" }],
       wordAudio: [{ ...v2.developmentMedia!.wordAudio![0]!, mimeType: "audio/mpeg", pronunciation: "tɪər" }]
     } }, ownerEnv) as VocabularyDto;
     expect(mismatch.imageUrl).toBeNull();
     expect(mismatch.audioUrl).toBeNull();
+  });
+
+  it("rejects image mappings pinned to a different Sense identity or content hash", () => {
+    const staleHash = withoutUnclearedV2Media({ ...v2, developmentMedia: {
+      ...v2.developmentMedia,
+      images: [{ ...v2.developmentMedia!.images![0]!, targetContentSha256: "f".repeat(64) }]
+    } }, ownerEnv) as VocabularyDto;
+    const wrongIdentity = withoutUnclearedV2Media({ ...v2, developmentMedia: {
+      ...v2.developmentMedia,
+      images: [{ ...v2.developmentMedia!.images![0]!, targetProposalKey: "sense:other:verb" }]
+    } }, ownerEnv) as VocabularyDto;
+    expect(staleHash.imageUrl).toBeNull();
+    expect(wrongIdentity.imageUrl).toBeNull();
+
+    const staleAndCurrent = withoutUnclearedV2Media({ ...v2, developmentMedia: {
+      ...v2.developmentMedia,
+      images: [
+        { ...v2.developmentMedia!.images![0]!, targetContentSha256: "f".repeat(64) },
+        v2.developmentMedia!.images![0]!
+      ]
+    } }, ownerEnv) as VocabularyDto;
+    expect(staleAndCurrent.imageUrl).toBe(imageUrl.replace("advertise.jpg", "abandon.jpg"));
   });
 
   it("enforces sanitization and owner authorization at the actual API boundary", async () => {

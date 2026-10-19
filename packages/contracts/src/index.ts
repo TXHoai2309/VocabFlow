@@ -236,7 +236,8 @@ export const vocabularyDtoSchema = z.object({
     images: z.array(z.object({
       url: z.string().min(1), mediaSha256: z.string().regex(/^[0-9a-f]{64}$/), mimeType: z.string().min(1),
       sourceNoteIdentity: z.string().min(1), reviewStatus: z.enum(["ACCEPTED_MAPPING", "PROPOSED", "AMBIGUOUS"]),
-      rightsStatus: z.literal("UNKNOWN_REVIEW_REQUIRED"), mappingEvidence: z.string().optional()
+      rightsStatus: z.literal("UNKNOWN_REVIEW_REQUIRED"), mappingEvidence: z.string().optional(),
+      targetProposalKey: z.string().min(1).optional(), targetContentSha256: z.string().regex(/^[0-9a-f]{64}$/).optional()
     }).strict()).optional(),
     wordAudio: z.array(z.object({
       url: z.string().min(1), mediaSha256: z.string().regex(/^[0-9a-f]{64}$/), mimeType: z.string().min(1),

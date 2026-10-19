@@ -1,5 +1,25 @@
 # VocabFlow Changelog
 
+## 2026-10-19 — V2 Production image mapping coverage and empty detail layout
+
+- Reuse source-pinned image references for 3,936 current PASS/DRAFT Sense
+  identities in the V2 Production projection, recording 3,937 proposed
+  references across 3,932 unique source image hashes from 4,669 inventory
+  image assets (737 hashes are not used by the selected mappings). The backfill updates
+  only `development_media.images`; content, review, rights, progress, and
+  release statuses remain unchanged. Replay plans zero writes.
+- Require the target Sense identity and current content hash to match before
+  returning an image URL. Same-hash references collapse to one asset; distinct
+  current hashes remain withheld. Add WebP validation while retaining signed,
+  authenticated V2 Cloudinary checks and the exact owner-attestation gate.
+- Remove the blank detail image panel when there is no eligible URL, reset
+  failed-image state when the selected Sense changes, and use a compact
+  delivery fallback. No image/audio was uploaded and no rights decision was
+  made.
+- Focused API/backfill/UI tests (47) and production build pass. Production
+  deployment and browser smoke remain blocked on verifying the Vercel
+  production attestation configuration.
+
 ## 2026-10-18 — Hash-pinned V2 short Vietnamese meaning overlay
 
 - Add a separate, current-content-hash-bound short-meaning overlay. Only

@@ -91,6 +91,7 @@ function validSignedCloudinaryUrl(rawUrl: unknown, kind: "image" | "audio", mime
   if (kind === "audio") return resourceType === "video" && mimeType === "audio/mpeg" && extension === "mp3";
   if (mimeType === "image/jpeg") return resourceType === "image" && (extension === "jpg" || extension === "jpeg");
   if (mimeType === "image/png") return resourceType === "image" && extension === "png";
+  if (mimeType === "image/webp") return resourceType === "image" && extension === "webp";
   if (mimeType === "image/gif") return (resourceType === "raw" || resourceType === "image") && extension === "gif";
   return false;
 }
@@ -116,9 +117,28 @@ function validCurrentSenseProjection(value: JsonRecord) {
 function singleImageUrl(record: JsonRecord): string | null {
   const media = isRecord(record.developmentMedia) ? record.developmentMedia : null;
   const items = list(media?.images);
-  if (items.length !== 1 || !validMappingItem(items[0])) return null;
-  const item = items[0];
-  return validSignedCloudinaryUrl(item.url, "image", item.mimeType) ? item.url : null;
+  if (items.length === 0) return null;
+
+  const currentIdentity = record.masterSenseIdentity;
+  const currentHash = record.contentHash;
+  if (!nonEmptyString(currentIdentity) || !nonEmptyString(currentHash)) return null;
+  const mappedItems = items.filter((item): item is JsonRecord => isRecord(item)
+    && item.targetProposalKey === currentIdentity
+    && item.targetContentSha256 === currentHash);
+  if (mappedItems.length === 0 || !mappedItems.every(validMappingItem)) return null;
+  if (mappedItems.some((item) => item.rightsStatus !== "UNKNOWN_REVIEW_REQUIRED")) return null;
+
+  const hashes = new Set(mappedItems.map((item) => item.mediaSha256));
+  if (hashes.size !== 1) return null;
+
+  // Ignore stale target/hash pins, but keep an ambiguous current mapping closed.
+  // Source references may repeat one physical image for the same Sense. Treat
+  // identical hashes as one asset, but leave distinct images unresolved.
+  const urls = mappedItems
+    .filter((item) => validSignedCloudinaryUrl(item.url, "image", item.mimeType))
+    .sort((left, right) => String(left.sourceNoteIdentity).localeCompare(String(right.sourceNoteIdentity))
+      || String(left.url).localeCompare(String(right.url)));
+  return typeof urls[0]?.url === "string" ? urls[0].url : null;
 }
 
 function pronunciationKey(value: unknown): string | null {

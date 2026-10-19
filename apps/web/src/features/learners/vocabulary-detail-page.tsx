@@ -243,6 +243,7 @@ function VocabularyDetailContent({ vocabulary, allVocabulary, isSaved, isSaving,
   onRetrySaved: () => void;
 }) {
   const [imageFailed, setImageFailed] = useState(false);
+  useEffect(() => setImageFailed(false), [vocabulary.id, vocabulary.imageUrl]);
   const audio = usePronunciationAudio(vocabulary.audioUrl, vocabulary.word, vocabulary.id);
   const hasDevelopmentAudio = (vocabulary.developmentMedia?.wordAudio?.length ?? 0) > 0;
   const examples = parseVocabularyExamples(vocabulary.examples);
@@ -257,9 +258,8 @@ function VocabularyDetailContent({ vocabulary, allVocabulary, isSaved, isSaving,
   const audioUnavailableMessage = mediaRightsPending
     ? "Phát âm chưa khả dụng; quyền media nguồn đang chờ xác minh."
     : "Chưa có tệp phát âm";
-  const imageUnavailableMessage = mediaRightsPending
-    ? "Hình ảnh chưa khả dụng; quyền media nguồn đang chờ xác minh."
-    : "Chưa có hình minh họa";
+  const hasDevelopmentImageCandidates = (vocabulary.developmentMedia?.images?.length ?? 0) > 0;
+  const showImagePanel = Boolean(vocabulary.imageUrl || hasDevelopmentImageCandidates);
   const audioLabel = audio.state === "playing" ? `Tạm dừng phát âm ${vocabulary.word}`
     : audio.state === "ended" ? `Nghe lại phát âm ${vocabulary.word}`
       : audio.state === "error" ? `Âm thanh không khả dụng cho ${vocabulary.word}`
@@ -268,7 +268,7 @@ function VocabularyDetailContent({ vocabulary, allVocabulary, isSaved, isSaving,
   return (
     <div className="vocabulary-detail-layout">
       <div className="vocabulary-detail-primary-column">
-        <section className="vocabulary-detail-hero" aria-labelledby="vocabulary-detail-title">
+        <section className={`vocabulary-detail-hero${showImagePanel ? "" : " is-text-only"}`} aria-labelledby="vocabulary-detail-title">
           <div className="vocabulary-detail-hero-copy">
             <div className="vocabulary-detail-word-row">
               {!hasDevelopmentAudio && audio.hasAudio && audio.state !== "error" ? <button
@@ -335,18 +335,13 @@ function VocabularyDetailContent({ vocabulary, allVocabulary, isSaved, isSaving,
             {audio.state === "error" ? <p className="vocabulary-detail-audio-error" role="status">Âm thanh không khả dụng lúc này.</p> : null}
           </div>
 
-          <div className="vocabulary-detail-image-panel">
-            {vocabulary.imageUrl && !imageFailed ? (
-              <img src={vocabulary.imageUrl} alt={`Minh họa cho từ ${vocabulary.word}`} onError={() => setImageFailed(true)} />
-            ) : (
-              <div className="vocabulary-detail-image-placeholder" role="img" aria-label={`${imageUnavailableMessage} ${vocabulary.word}`}>
-                <DetailIcon name="image" />
-                <span>{imageUnavailableMessage}</span>
-              </div>
-            )}
+          {showImagePanel ? <div className={`vocabulary-detail-image-panel${imageFailed ? " is-failed" : ""}`}>
+            {vocabulary.imageUrl && !imageFailed
+              ? <img src={vocabulary.imageUrl} alt={`Minh họa cho từ ${vocabulary.word}`} onError={() => setImageFailed(true)} />
+              : hasDevelopmentImageCandidates ? <DevelopmentImagePreviews vocabulary={vocabulary} />
+                : <p className="vocabulary-detail-image-fallback" role="status">Hình ảnh tạm thời không khả dụng.</p>}
             <DevelopmentImageNotice vocabulary={vocabulary} />
-            {!vocabulary.imageUrl || imageFailed ? <DevelopmentImagePreviews vocabulary={vocabulary} /> : null}
-          </div>
+          </div> : null}
         </section>
 
         <div className="vocabulary-detail-content-grid">

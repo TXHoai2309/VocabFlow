@@ -1,5 +1,39 @@
 # Current Handoff Snapshot
 
+## 2026-10-19 — Production V2 image coverage backfill
+
+- On the verified Neon V2 Production branch `br-cool-sea-a1ifkf95`, backfill
+  3,937 identity/content-hash-pinned image references for 3,936 of 7,311
+  current PASS/DRAFT Senses. The source inventory has 4,669 image assets;
+  3,932 unique hashes are used by these mappings and 737 inventory hashes are
+  not used by a selected mapping. Source bytes were reused; no Cloudinary
+  upload occurred.
+- All new references remain `PROPOSED`, rights remain
+  `UNKNOWN_REVIEW_REQUIRED`, and visual review remains `NOT_PERFORMED`.
+  Ambiguous hashes and mismatched source evidence remain unresolved. Content
+  fingerprint, vocabulary identity count, taxonomy, learning-set membership,
+  learner progress and review-event counts were preserved. A second dry run
+  planned zero updates.
+- The API serves an image only when a current exact Sense identity and content
+  hash pin exists, duplicates refer to one physical hash, the authenticated
+  Cloudinary URL and MIME are valid, and the exact owner public-media
+  attestation is configured. Detail hides an empty image panel and uses a
+  compact fallback for a failed delivery.
+- Focused tests: 7 files / 47 tests PASS; Web TypeScript check PASS; full
+  workspace build PASS. Full workspace `pnpm typecheck` remains blocked by
+  existing errors in unrelated local scripts. Node 22.19.0 is below the
+  repository's requested 22.23.2; existing chunk-size and dynamic-import
+  warnings remain.
+- No Git push or deployment was performed. Vercel project environment
+  attestation could not be verified because the connected Vercel scope denied
+  the environment query; Production browser smoke therefore remains pending.
+- Required samples: `banana` and `abolish` have proposed exact target/hash
+  images; `advertise` retains its proposed image. `ahead` remains unmapped
+  because its source POS is adjective while the target Sense is adverb. The
+  historical-period `age` Sense has no matching source meaning; the years-lived
+  `age` Sense remains below the minimum semantic-match threshold. No sample was
+  auto-reviewed or rights-cleared.
+
 ## 2026-10-18 — V2 final release candidate
 
 Owner accepts discarding V1 test users/accounts/sessions/progress/reviews and waives a V1 backup for cutover; this does not authorize deleting Neon V1 or Cloudinary V1. Do not retry V1 SQL after PostgreSQL 53000.
