@@ -1,3 +1,4 @@
+import { learningFetch } from "../guest/learning-fetch";
 import {
   learnerSavedVocabularyMutationResponseSchema,
   learnerSavedVocabularyResponseSchema,
@@ -39,7 +40,7 @@ async function readJson(response: Response): Promise<unknown> {
 export async function requestSavedVocabulary(learnerId: string): Promise<LearnerSavedVocabularyDto[]> {
   let response: Response;
   try {
-    response = await fetch(`/api/learners/${encodeURIComponent(learnerId)}/saved-vocabulary`, { credentials: "include" });
+    response = await learningFetch(`/api/learners/${encodeURIComponent(learnerId)}/saved-vocabulary`, { credentials: "include" });
   } catch {
     throw new SavedVocabularyClientError("NETWORK_ERROR", 0);
   }
@@ -52,7 +53,7 @@ export async function requestSavedVocabulary(learnerId: string): Promise<Learner
 async function mutateSavedVocabulary(learnerId: string, vocabularyId: number, method: "POST" | "DELETE"): Promise<LearnerSavedVocabularyMutationResponse> {
   let response: Response;
   try {
-    response = await fetch(`/api/learners/${encodeURIComponent(learnerId)}/saved-vocabulary/${vocabularyId}`, {
+    response = await learningFetch(`/api/learners/${encodeURIComponent(learnerId)}/saved-vocabulary/${vocabularyId}`, {
       method,
       credentials: "include"
     });

@@ -1,5 +1,13 @@
 # VocabFlow Roadmap and Batch Index
 
+## Owner priority — US-58 Public guest learning (2026-10-19)
+
+Implementation authorized directly by the owner for the initial public phase.
+Scope: public content reads, local guest learning/persistence, non-blocking
+registration recommendation, existing account isolation. No deployment,
+database migration or automatic account import. See stories/US-58-guest-learning.md.
+
+
 ## US-54 — Study Source Picker (2026-10-08)
 
 Owner-approved compact Study Setup source selector and server-scoped queues.

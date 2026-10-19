@@ -1,3 +1,4 @@
+import { learningFetch } from "../guest/learning-fetch";
 import {
   progressSummaryResponseSchema,
   type ProgressSummaryResponse
@@ -29,7 +30,7 @@ async function readError(response: Response): Promise<ProgressSummaryClientError
 export async function requestProgressSummary(learnerId: string): Promise<ProgressSummaryResponse> {
   let response: Response;
   try {
-    response = await fetch(`/api/learners/${encodeURIComponent(learnerId)}/progress-summary`, {
+    response = await learningFetch(`/api/learners/${encodeURIComponent(learnerId)}/progress-summary`, {
       credentials: "include"
     });
   } catch {

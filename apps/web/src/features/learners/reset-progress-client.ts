@@ -1,3 +1,4 @@
+import { learningFetch } from "../guest/learning-fetch";
 import {
   resetLearnerProgressResponseSchema,
   type ResetLearnerProgressResponse
@@ -29,7 +30,7 @@ async function readError(response: Response): Promise<ResetLearnerProgressClient
 export async function requestResetLearnerProgress(learnerId: string): Promise<ResetLearnerProgressResponse> {
   let response: Response;
   try {
-    response = await fetch(`/api/learners/${encodeURIComponent(learnerId)}/reset-progress`, {
+    response = await learningFetch(`/api/learners/${encodeURIComponent(learnerId)}/reset-progress`, {
       method: "POST",
       credentials: "include"
     });

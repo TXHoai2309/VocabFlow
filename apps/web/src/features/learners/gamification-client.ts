@@ -1,3 +1,4 @@
+import { learningFetch } from "../guest/learning-fetch";
 import { gamificationResponseSchema, type GamificationResponse } from "@vocabflow/contracts";
 
 export class GamificationClientError extends Error {
@@ -15,7 +16,7 @@ export class GamificationClientError extends Error {
 export async function requestGamification(learnerId: string): Promise<GamificationResponse> {
   let response: Response;
   try {
-    response = await fetch(`/api/learners/${encodeURIComponent(learnerId)}/gamification`, { credentials: "include" });
+    response = await learningFetch(`/api/learners/${encodeURIComponent(learnerId)}/gamification`, { credentials: "include" });
   } catch {
     throw new GamificationClientError("NETWORK_ERROR", 0);
   }

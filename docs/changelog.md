@@ -1,5 +1,16 @@
 # VocabFlow Changelog
 
+## 2026-10-19 — Public guest learning (US-58)
+
+- Open Home and learning routes without signup; add a dismissible registration
+  recommendation and guest account entry on desktop/mobile.
+- Add an enabled-content public catalog with the existing media publication policy.
+- Save guest reviews/SRS, progress, activity, preferences and saved words locally;
+  preserve idempotency and handle cross-tab/stored-data failures visibly.
+- Preserve account API authorization and separate guest/account histories.
+  No automatic guest import, database migration or deployment.
+
+
 ## 2026-10-19 — Review Queue contract schema fix for backfilled media metadata
 
 - Allow extra provenance/audit metadata in `developmentMedia` by using `.passthrough()`

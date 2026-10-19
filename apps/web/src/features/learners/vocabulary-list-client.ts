@@ -1,3 +1,4 @@
+import { learningFetch } from "../guest/learning-fetch";
 import {
   learnerVocabularyBrowseResponseSchema,
   learnerVocabularyListResponseSchema,
@@ -38,7 +39,7 @@ export async function requestLearnerVocabulary(learnerId: string, level?: Vocabu
   const query = queryString ? `?${queryString}` : "";
   let response: Response;
   try {
-    response = await fetch(`/api/learners/${encodeURIComponent(learnerId)}/vocabulary${query}`, {
+    response = await learningFetch(`/api/learners/${encodeURIComponent(learnerId)}/vocabulary${query}`, {
       credentials: "include"
     });
   } catch {
@@ -79,7 +80,7 @@ export async function requestLearnerVocabularyBrowse(
 
   let response: Response;
   try {
-    response = await fetch(`/api/learners/${encodeURIComponent(learnerId)}/vocabulary/browse?${params}`, {
+    response = await learningFetch(`/api/learners/${encodeURIComponent(learnerId)}/vocabulary/browse?${params}`, {
       credentials: "include",
       signal
     });

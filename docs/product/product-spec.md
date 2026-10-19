@@ -1,5 +1,17 @@
 # VocabFlow Product Specification — Single-account learning
 
+## Public guest learning (US-58, 2026-10-19)
+
+The owner's initial public-phase request supersedes the account-required entry
+baseline below. Visitors may use the learning app without registering. Guest
+progress, SRS state, review receipts, saved words, assignments and settings stay
+in versioned localStorage on that browser. Registration remains recommended for
+account synchronization across devices. A dismissible suggestion never blocks
+learning. Guest progress is retained separately after signup/login; automatic
+import into account history is not part of this release. Browser data clearing
+removes guest progress. Existing authenticated data and authorization are unchanged.
+
+
 ## Study source extension (US-54, 2026-10-08)
 
 Study Setup has exactly three compact source options: Học theo lộ trình

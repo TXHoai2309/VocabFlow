@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { GuestProvider, LearningMode } from "./features/guest/guest-provider";
 import { Link, Navigate, Route, Routes } from "react-router";
 import { AppShell } from "./components/app-shell";
 import { ToastProvider } from "./components/toast/toast-provider";
@@ -70,6 +72,9 @@ function AuthenticatedAppShell({ parentName }: { parentName: string }) {
 
 function AppShellRoute() {
   const sessionState = authClient.useSession();
+  const [continueAsGuest, setContinueAsGuest] = useState(false);
+  const guestShell = <LearningMode guest><GuestProvider><ToastProvider><AppShell parentName="Bạn" guest /></ToastProvider></GuestProvider></LearningMode>;
+  if (continueAsGuest && !sessionState.data?.user?.id) return guestShell;
 
   if (sessionState.isPending) {
     return (
@@ -90,19 +95,20 @@ function AppShellRoute() {
           <button className="auth-retry" type="button" onClick={() => void sessionState.refetch()}>
             Thử lại
           </button>
+          <button className="auth-retry" type="button" onClick={() => setContinueAsGuest(true)}>Học không cần tài khoản</button>
         </section>
       </main>
     );
   }
 
   const user = sessionState.data?.user;
-  if (!user?.id) return <Navigate to="/login" replace />;
+  if (!user?.id) return guestShell;
 
   const parentName = typeof user.name === "string" ? user.name : "";
   return (
-    <ActiveLearnerProvider key={user.id} userId={user.id} userName={parentName}>
+    <LearningMode guest={false}><ActiveLearnerProvider key={user.id} userId={user.id} userName={parentName}>
       <AuthenticatedAppShell parentName={parentName} />
-    </ActiveLearnerProvider>
+    </ActiveLearnerProvider></LearningMode>
   );
 }
 

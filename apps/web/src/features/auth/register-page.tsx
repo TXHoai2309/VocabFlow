@@ -89,6 +89,7 @@ export function RegisterPage() {
             </div>
           ) : null}
         </div>
+        <p className="auth-switch"><Link className="auth-link" to="/">Học ngay không cần tài khoản</Link></p>
         <p className="auth-switch">
           Đã có tài khoản? <Link className="auth-link" to="/login">Đăng nhập</Link>
         </p>

@@ -128,6 +128,7 @@ function isLearnerAccessError(error: unknown) {
 }
 
 function saveErrorMessage(error: unknown) {
+  if (error instanceof ReviewClientError && error.code === "GUEST_STORAGE_UNAVAILABLE") return "Chưa lưu được tiến độ. Hãy kiểm tra quyền lưu dữ liệu và dung lượng trình duyệt, rồi thử lại.";
   if (isLoginError(error)) return "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại.";
   if (isLearnerAccessError(error)) return "Không thể truy cập dữ liệu học tập. Vui lòng thử lại.";
   return SAFE_SAVE_ERROR;

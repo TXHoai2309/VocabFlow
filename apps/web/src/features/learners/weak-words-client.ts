@@ -1,3 +1,4 @@
+import { learningFetch } from "../guest/learning-fetch";
 import {
   weakWordsResponseSchema,
   type WeakWordsResponse,
@@ -40,7 +41,7 @@ export async function requestWeakWords(learnerId: string, options: {
   params.set("pageSize", String(options.pageSize ?? 20));
   let response: Response;
   try {
-    response = await fetch(`/api/learners/${encodeURIComponent(learnerId)}/weak-words?${params.toString()}`, {
+    response = await learningFetch(`/api/learners/${encodeURIComponent(learnerId)}/weak-words?${params.toString()}`, {
       credentials: "include"
     });
   } catch {

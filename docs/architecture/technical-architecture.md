@@ -1,5 +1,28 @@
 # Technical Architecture v1.0.17
 
+## Guest persistence exception (US-58, 2026-10-19)
+
+The owner authorized a device-local guest persistence mode. This is an explicit
+exception to historical server-authoritative-only statements below, applicable
+only to the fixed local guest identity. Account data retains PostgreSQL,
+Better Auth, household ownership, revision and idempotency boundaries.
+
+GET /api/public/learning-catalog exposes only enabled catalog DTOs and enabled
+set/topic membership intersected with the configured dataset. It requires no
+session, never provisions learners, and always runs the deployed public-media
+sanitizer (also locally). The response is public-cacheable for 60 seconds.
+Private endpoints retain their existing 401/403 behavior.
+
+The web learning transport handles only guest learner requests locally. Account
+requests continue to their existing APIs. Guest reviews validate shared DTOs,
+derive exercise results, reuse learning-domain scheduleReview, check revisions
+and receipts, and atomically commit under a same-origin Web Lock before returning
+success. localStorage failure, corruption or unavailable locking is visible and
+never reported as a successful save. No cloud import or full offline write queue
+is implemented. Public content must load online; saved guest progress survives
+reloads. Guest source preferences are scoped separately under the guest ID.
+
+
 ## Study source queue extension (US-54, 2026-10-08)
 
 The additive source/pathway, source/custom + setIds and source/all queue

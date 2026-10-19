@@ -5,6 +5,7 @@ import type { LearnerDto } from "@vocabflow/contracts";
 import { AppRoutes } from "./App";
 import { ACTIVE_LEARNER_STORAGE_KEY } from "./features/learners/learner-context";
 import { LearnerClientError } from "./features/learners/learner-client";
+import { emptyGuestState, GUEST_STORAGE_KEY } from "./features/guest/guest-store";
 const { useSession, requestLearners, createLearner, signOut, requestBootstrap, replacePage } = vi.hoisted(() => ({ useSession: vi.fn(), requestLearners: vi.fn(), createLearner: vi.fn(), signOut: vi.fn(), requestBootstrap: vi.fn(), replacePage: vi.fn() }));
 vi.mock("./features/auth/auth-client", () => ({ authClient: { useSession, signOut } }));
 vi.mock("./features/auth/auth-navigation", () => ({ replacePage }));
@@ -31,7 +32,19 @@ beforeEach(() => {
 });
 afterEach(() => vi.restoreAllMocks());
 describe("single-account routing and navigation", () => {
-  it("redirects unauthenticated requests to login", () => { useSession.mockReturnValue({ data: null, isPending: false }); mount("/progress"); expect(screen.getByRole("heading", { name: "Đăng nhập" })).toBeInTheDocument(); expect(requestLearners).not.toHaveBeenCalled(); });
+  it("opens guest learning without account provisioning", () => { useSession.mockReturnValue({ data: null, isPending: false }); mount("/progress"); expect(screen.getByLabelText("Học không cần tài khoản")).toBeInTheDocument(); expect(screen.getByTestId("location")).toHaveTextContent("/progress"); expect(requestLearners).not.toHaveBeenCalled(); expect(createLearner).not.toHaveBeenCalled(); });
+  it("keeps guest data separate when an authenticated session arrives", async () => {
+    const stored = JSON.stringify(emptyGuestState()); localStorage.setItem(GUEST_STORAGE_KEY, stored);
+    useSession.mockReturnValue({ data: null, isPending: false });
+    const view = mount("/progress");
+    expect(screen.getByLabelText("Học không cần tài khoản")).toBeInTheDocument();
+    useSession.mockReturnValue({ data: { user: { id: "account-a", name: "Jordan Nguyen" } }, isPending: false });
+    view.rerender(<MemoryRouter initialEntries={["/progress"]}><Probe /><AppRoutes /></MemoryRouter>);
+    await readyShell();
+    expect(screen.queryByLabelText("Học không cần tài khoản")).not.toBeInTheDocument();
+    expect(localStorage.getItem(GUEST_STORAGE_KEY)).toBe(stored);
+    expect(requestLearners).toHaveBeenCalledOnce();
+  });
   it("shows session check and safe retry error", () => {
     const refetch = vi.fn(); useSession.mockReturnValue({ data: null, isPending: false, error: new Error("offline"), refetch }); mount();
     fireEvent.click(screen.getByRole("button", { name: "Thử lại" })); expect(refetch).toHaveBeenCalledOnce(); expect(requestLearners).not.toHaveBeenCalled();

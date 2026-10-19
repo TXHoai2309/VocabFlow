@@ -1,3 +1,4 @@
+import { GuestNotice } from "../features/guest/guest-provider";
 import { useEffect, useRef, useState } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router";
 import type { GlobalSearchResult } from "@vocabflow/contracts";
@@ -87,7 +88,7 @@ function PrimaryNavigation({ variant }: { variant: NavigationVariant }) {
   );
 }
 
-function AccountMenu({ parentName, placement, signingOut, onLogout }: { parentName: string; placement: AccountPlacement; signingOut: boolean; onLogout: () => void }) {
+function AccountMenu({ parentName, placement, signingOut, onLogout, guest = false }: { parentName: string; placement: AccountPlacement; signingOut: boolean; onLogout: () => void; guest?: boolean }) {
   const displayName = parentName.trim();
   const accountLabel = displayName || "Tài khoản";
   const menuId = `app-account-menu-${placement}`;
@@ -170,13 +171,13 @@ function AccountMenu({ parentName, placement, signingOut, onLogout }: { parentNa
           <Link role="menuitem" to="/learner-settings" onClick={closeMenu}>Cài đặt</Link>
           <hr role="separator" />
         </> : null}
-        <button role="menuitem" type="button" disabled={signingOut} onClick={onLogout}>{signingOut ? "Đang đăng xuất…" : "Đăng xuất"}</button>
+        {guest ? <><Link role="menuitem" to="/login" onClick={closeMenu}>Đăng nhập</Link><Link role="menuitem" to="/register" onClick={closeMenu}>Đăng ký miễn phí</Link></> : <button role="menuitem" type="button" disabled={signingOut} onClick={onLogout}>{signingOut ? "Đang đăng xuất…" : "Đăng xuất"}</button>}
       </div>
     </div>
   );
 }
 
-export function AppShell({ parentName }: { parentName: string }) {
+export function AppShell({ parentName, guest = false }: { parentName: string; guest?: boolean }) {
   const location = useLocation();
   const navigate = useNavigate();
   const { activeLearner, clearActiveLearner, status } = useActiveLearner();
@@ -248,7 +249,7 @@ export function AppShell({ parentName }: { parentName: string }) {
       <aside className="app-sidebar" aria-label="Thanh điều hướng ứng dụng">
         <Brand />
         <PrimaryNavigation variant="desktop" />
-        <AccountMenu parentName={parentName} placement="sidebar" signingOut={signingOut} onLogout={() => void logout()} />
+        {guest ? <nav className="guest-account-actions" aria-label="Tài khoản học tập"><Link className="auth-link" to="/login">Đăng nhập</Link><Link className="button primary" to="/register">Đăng ký</Link></nav> : <AccountMenu parentName={parentName} placement="sidebar" signingOut={signingOut} onLogout={() => void logout()} />}
       </aside>
       <div className="app-main-column">
         {!isStudySession ? (
@@ -262,9 +263,10 @@ export function AppShell({ parentName }: { parentName: string }) {
           <Brand />
           <div className="app-mobile-header-actions">
             {!isStudySession ? <button ref={mobileSearchRef} className="global-search-trigger is-mobile" type="button" disabled={!activeLearner} aria-label="Mở tìm kiếm toàn cục" aria-haspopup="dialog" aria-expanded={searchOpen} aria-controls="global-search-dialog" onClick={(event) => openFromTrigger(event.currentTarget)}><SearchIcon /></button> : null}
-            <AccountMenu parentName={parentName} placement="mobile" signingOut={signingOut} onLogout={() => void logout()} />
+            <AccountMenu parentName={guest ? "Khách" : parentName} placement="mobile" signingOut={signingOut} onLogout={() => void logout()} guest={guest} />
           </div>
         </header>
+        {guest ? <GuestNotice /> : null}
         <Outlet />
         <PrimaryNavigation variant="mobile" />
       </div>

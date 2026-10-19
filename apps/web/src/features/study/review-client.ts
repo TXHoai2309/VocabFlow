@@ -1,3 +1,4 @@
+import { learningFetch } from "../guest/learning-fetch";
 import {
   reviewRequestSchema,
   reviewResponseSchema,
@@ -36,7 +37,7 @@ export async function submitReview(input: ReviewRequest): Promise<ReviewResponse
 
   let response: Response;
   try {
-    response = await fetch("/api/reviews", {
+    response = await learningFetch("/api/reviews", {
       method: "POST",
       credentials: "include",
       headers: { "Content-Type": "application/json" },

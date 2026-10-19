@@ -1,5 +1,16 @@
 # User Flow v1
 
+## Public entry override (US-58, 2026-10-19)
+
+No session → guest Home or requested learning route → optional registration
+recommendation → Study Setup → flashcards/exercises → durable browser save →
+progress/summary. Dismissal does not block learning. Login and signup are always
+available through navigation; mobile guests retain Settings in the account menu.
+Session-service errors offer retry or explicit guest continuation. Successful
+account entry uses the existing canonical account identity; guest state remains
+on the device separately. See US-58 for retention and verification boundaries.
+
+
 ## Study source flow (US-54, 2026-10-08)
 
 Home/Study → Setup defaults to remembered account source or Pathway. Select

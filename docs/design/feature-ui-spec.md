@@ -1,5 +1,16 @@
 # VocabFlow Feature UI Specification — Single-account learning
 
+## Guest learning (US-58, 2026-10-19)
+
+Guest routes reuse the existing shell, navigation, page composition and controls.
+A shared in-flow notice recommends registration, describes browser-only storage
+and clearing risk, and offers “Đăng ký” / “Tiếp tục học”. Dismiss for the
+current tab session; retain account entry in desktop navigation and the mobile
+account menu. Never force registration to continue learning. Storage failures
+replace the suggestion with a persistent accessible alert and keep the answer
+retryable. Existing account page states and confirmation flows remain canonical.
+
+
 ## Study Setup compact sources (US-54, 2026-10-08)
 
 Owner-approved Study Setup order: source select, amount, mode, Start. Exactly

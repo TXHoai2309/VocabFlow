@@ -1,3 +1,5 @@
+import { readPublicLearningCatalog } from "./public-learning-catalog";
+import type { PublicLearningCatalog } from "@vocabflow/contracts";
 import { parseStudySetIds, positiveStudyId, parseStudyQueueCapacity, learnerVocabularyBrowseQuerySchema } from "@vocabflow/contracts";
 import { Hono } from "hono";
 import { performance } from "node:perf_hooks";
@@ -76,6 +78,7 @@ type BootstrapRunner = (userId: string, env: RuntimeBindings) => Promise<Househo
 type AuthRequestHandler = (request: Request, env: RuntimeBindings) => Promise<Response>;
 
 export type AppDependencies = {
+  publicLearningCatalog?: (env: RuntimeBindings) => Promise<PublicLearningCatalog>;
   authRequestHandler?: AuthRequestHandler;
   readSession?: SessionReader;
   bootstrap?: BootstrapRunner;
@@ -336,13 +339,29 @@ export function createApp(dependencies: AppDependencies = {}) {
 
   application.use("/api/*", async (c, next) => {
     await next();
-    if (!mustSanitizeV2MediaResponse(c.env ?? {}) || c.req.path.startsWith("/api/auth/")
+    const mediaEnv = c.req.path === "/api/public/learning-catalog" ? { ...c.env, VERCEL_ENV: c.env?.VERCEL_ENV ?? "preview" } : c.env ?? {};
+    if (!mustSanitizeV2MediaResponse(mediaEnv) || c.req.path.startsWith("/api/auth/")
       || !c.res.headers.get("content-type")?.includes("application/json")) return;
     const body: unknown = await c.res.clone().json();
-    const response = new Response(JSON.stringify(withoutUnclearedV2Media(body, c.env ?? {})), c.res);
+    const response = new Response(JSON.stringify(withoutUnclearedV2Media(body, mediaEnv)), c.res);
     response.headers.delete("content-length");
     response.headers.delete("etag");
     c.res = response;
+  });
+
+  application.get("/api/public/learning-catalog", async (c) => {
+    if (new URL(c.req.url).search) return c.json(errorEnvelope("INVALID_REQUEST", "Yêu cầu không hợp lệ."), 400);
+    try {
+      const catalog = dependencies.publicLearningCatalog ? await dependencies.publicLearningCatalog(c.env) : await (async () => {
+        if (!c.env?.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
+        const { createHttpDatabase } = await import("./db/client");
+        return readPublicLearningCatalog(createHttpDatabase(c.env.DATABASE_URL, c.env.DATABASE_DRIVER), vocabularyDatasetVersion(c.env));
+      })();
+      c.header("Cache-Control", "public, max-age=60, stale-while-revalidate=300");
+      return c.json(catalog, 200);
+    } catch {
+      return c.json(errorEnvelope("INTERNAL_ERROR", "Không thể tải nội dung học. Vui lòng thử lại."), 503);
+    }
   });
 
   application.get("/api/health", (c) => c.json({ status: "ok" }, 200));

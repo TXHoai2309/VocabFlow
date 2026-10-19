@@ -1,3 +1,4 @@
+import { learningFetch } from "../guest/learning-fetch";
 import {
   learnerSettingsResponseSchema,
   updateLearnerSettingsRequestSchema,
@@ -43,7 +44,7 @@ async function readResponse(response: Response): Promise<LearnerSettingsResponse
 export async function requestLearnerSettings(learnerId: string): Promise<LearnerSettingsResponse> {
   let response: Response;
   try {
-    response = await fetch(`/api/learners/${encodeURIComponent(learnerId)}/settings`, { credentials: "include" });
+    response = await learningFetch(`/api/learners/${encodeURIComponent(learnerId)}/settings`, { credentials: "include" });
   } catch {
     throw new LearnerSettingsClientError("NETWORK_ERROR", 0);
   }
@@ -58,7 +59,7 @@ export async function updateLearnerSettings(
   if (!request.success) throw new LearnerSettingsClientError("INVALID_REQUEST", 400);
   let response: Response;
   try {
-    response = await fetch(`/api/learners/${encodeURIComponent(learnerId)}/settings`, {
+    response = await learningFetch(`/api/learners/${encodeURIComponent(learnerId)}/settings`, {
       method: "PATCH",
       credentials: "include",
       headers: { "Content-Type": "application/json" },

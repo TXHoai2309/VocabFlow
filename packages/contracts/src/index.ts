@@ -822,3 +822,11 @@ export function errorEnvelope(code: ErrorCode, message: string, details?: Record
 }
 
 export * from "./study-scope.js";
+
+/** Public enabled content; no account, household or progress fields. */
+export const publicLearningCatalogSchema = z.object({
+  vocabulary: z.array(vocabularyDtoSchema),
+  learningSets: z.array(learningSetSummarySchema.extend({ vocabularyIds: z.array(z.number().int().positive()) }).strict()),
+  topics: z.array(topicDtoSchema.extend({ vocabularyIds: z.array(z.number().int().positive()) }).strict())
+}).strict();
+export type PublicLearningCatalog = z.infer<typeof publicLearningCatalogSchema>;

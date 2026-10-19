@@ -1,3 +1,4 @@
+import { learningFetch } from "../guest/learning-fetch";
 import {
   learnerLearningSetListResponseSchema,
   learnerLearningSetMutationResponseSchema,
@@ -43,7 +44,7 @@ async function readError(response: Response): Promise<never> {
 export async function requestLearningSets(): Promise<LearningSetSummary[]> {
   let response: Response;
   try {
-    response = await fetch("/api/learning-sets", { credentials: "include" });
+    response = await learningFetch("/api/learning-sets", { credentials: "include" });
   } catch {
     throw new LearningSetsClientError("NETWORK_ERROR", 0);
   }
@@ -56,7 +57,7 @@ export async function requestLearningSets(): Promise<LearningSetSummary[]> {
 export async function requestLearningSet(learningSetId: number): Promise<LearningSetDetail> {
   let response: Response;
   try {
-    response = await fetch(`/api/learning-sets/${learningSetId}`, { credentials: "include" });
+    response = await learningFetch(`/api/learning-sets/${learningSetId}`, { credentials: "include" });
   } catch {
     throw new LearningSetsClientError("NETWORK_ERROR", 0);
   }
@@ -69,7 +70,7 @@ export async function requestLearningSet(learningSetId: number): Promise<Learnin
 export async function requestLearnerLearningSets(learnerId: string): Promise<LearnerLearningSetDto[]> {
   let response: Response;
   try {
-    response = await fetch(`/api/learners/${learnerId}/learning-sets`, { credentials: "include" });
+    response = await learningFetch(`/api/learners/${learnerId}/learning-sets`, { credentials: "include" });
   } catch {
     throw new LearningSetsClientError("NETWORK_ERROR", 0);
   }
@@ -82,7 +83,7 @@ export async function requestLearnerLearningSets(learnerId: string): Promise<Lea
 async function mutateLearnerSet(learnerId: string, learningSetId: number, method: "PUT" | "DELETE") {
   let response: Response;
   try {
-    response = await fetch(`/api/learners/${learnerId}/learning-sets/${learningSetId}`, {
+    response = await learningFetch(`/api/learners/${learnerId}/learning-sets/${learningSetId}`, {
       method,
       credentials: "include"
     });

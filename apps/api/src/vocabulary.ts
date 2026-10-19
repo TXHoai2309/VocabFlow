@@ -119,7 +119,6 @@ export type VocabularyService = {
 };
 
 export function createVocabularyService(database: VocabularyDatabase, options: { datasetVersion?: VocabularyDatasetVersion } = {}): VocabularyService {
-  const datasetVersion = options.datasetVersion ?? "legacy";
   return {
     async list(userId, level) {
       try {
@@ -133,32 +132,38 @@ export function createVocabularyService(database: VocabularyDatabase, options: {
         throw new VocabularyServiceError("INTERNAL_ERROR", 500);
       }
 
-      try {
-        const result = await database.execute(sql`
-          SELECT id, word, ipa, COALESCE(vietnamese_override, vietnamese) AS vietnamese,
-                 definition_en, example_en,
-                 CASE WHEN image_quarantined THEN NULL ELSE image_url END AS image_url,
-                 audio_url, topic, enabled, content_version, level,
-                 md.proposal_key AS master_sense_identity,
-                 md.source_provenance->'masterV2Identity'->>'sourceMeaningVi' AS source_meaning_vi,
-                 sm.short_meaning_vi AS short_meaning_vi, sm.validation_status AS short_meaning_status,
-                 md.source_provenance->'masterV2Identity'->>'displayForm' AS display_form,
-                 md.part_of_speech, md.cefr, md.tags, md.examples, md.content_sha256,
-                 md.content_review_decision, md.editorial_status, md.rights_status, md.development_media
-          FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v
-          LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
-          LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_short_meanings" sm
-            ON sm.vocabulary_id = v.id AND sm.source_content_hash = md.content_sha256 AND sm.validation_status = 'VERIFIED'
-          WHERE enabled = true
-            AND ${vocabularyDatasetPredicate("v", datasetVersion)}
-            ${level ? sql`AND level = ${level}` : sql``}
-          ORDER BY v.id ASC
-        `);
-        return rowsOf<VocabularyRow>(result).map(toVocabularyDto);
-      } catch (error) {
-        if (error instanceof VocabularyServiceError) throw error;
-        throw new VocabularyServiceError("INTERNAL_ERROR", 500);
-      }
+      return readPublicVocabulary(database, options, level);
     }
   };
+}
+
+/** Enabled catalog content only; never reads household or learner data. */
+export async function readPublicVocabulary(database: VocabularyDatabase, options: { datasetVersion?: VocabularyDatasetVersion } = {}, level?: VocabularyLevel): Promise<VocabularyDto[]> {
+  const datasetVersion = options.datasetVersion ?? "legacy";
+  try {
+    const result = await database.execute(sql`
+      SELECT id, word, ipa, COALESCE(vietnamese_override, vietnamese) AS vietnamese,
+             definition_en, example_en,
+             CASE WHEN image_quarantined THEN NULL ELSE image_url END AS image_url,
+             audio_url, topic, enabled, content_version, level,
+             md.proposal_key AS master_sense_identity,
+             md.source_provenance->'masterV2Identity'->>'sourceMeaningVi' AS source_meaning_vi,
+             sm.short_meaning_vi AS short_meaning_vi, sm.validation_status AS short_meaning_status,
+             md.source_provenance->'masterV2Identity'->>'displayForm' AS display_form,
+             md.part_of_speech, md.cefr, md.tags, md.examples, md.content_sha256,
+             md.content_review_decision, md.editorial_status, md.rights_status, md.development_media
+      FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v
+      LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
+      LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_short_meanings" sm
+        ON sm.vocabulary_id = v.id AND sm.source_content_hash = md.content_sha256 AND sm.validation_status = 'VERIFIED'
+      WHERE enabled = true
+        AND ${vocabularyDatasetPredicate("v", datasetVersion)}
+        ${level ? sql`AND level = ${level}` : sql``}
+      ORDER BY v.id ASC
+    `);
+    return rowsOf<VocabularyRow>(result).map(toVocabularyDto);
+  } catch (error) {
+    if (error instanceof VocabularyServiceError) throw error;
+    throw new VocabularyServiceError("INTERNAL_ERROR", 500);
+  }
 }

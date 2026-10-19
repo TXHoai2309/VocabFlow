@@ -1,3 +1,4 @@
+import { GUEST_ID } from "../guest/guest-store";
 import { AccountLearningState } from "../learners/account-learning-state";
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router";
@@ -142,6 +143,7 @@ function HomeDashboard({ learner, parentName }: { learner: LearnerDto; parentNam
 export function HomePage() {
   const sessionState = authClient.useSession();
   const { activeLearner } = useActiveLearner();
+  if (activeLearner?.id === GUEST_ID) return <HomeDashboard learner={activeLearner} parentName="Bạn" />;
   if (sessionState.isPending) return <HomeSessionLoading />;
   if (sessionState.error) return <HomeSessionError onRetry={() => void sessionState.refetch()} />;
   if (!sessionState.data?.user?.id) return <Navigate to="/login" replace />;

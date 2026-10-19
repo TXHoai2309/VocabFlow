@@ -7428,3 +7428,45 @@ owner-approved baseline exception. See
   VERIFIED, 397 REVIEW_REQUIRED, and 1,512 UNRESOLVED. A 1,909-row contextual
   queue and receipt evidence are stored in the ignored local artifact folder
   and backed up outside the workspace. Neon remains untouched.
+
+
+### 2026-10-19 — US-58 public guest learning
+
+- Owner explicitly reprioritized public initial-phase access, optional accounts
+  and localStorage persistence. Added US-58 and updated product/architecture/flow,
+  decisions/changelog and UI ownership docs to record the guest-only exception.
+- No-session users enter the existing app shell/routes with a local identity.
+  Desktop and mobile retain account entry; a dismissible shared notice recommends
+  registration and honestly describes device storage, clearing and no auto-import.
+  Session-service errors also permit explicit guest continuation.
+- Public catalog uses the enabled dataset reader and set/topic memberships, with
+  the deployed media sanitizer even locally. It never reads/provisions private
+  learner data. Existing private APIs retain authentication/household boundaries.
+- A shared web transport routes only the fixed guest identity locally. Guest
+  reviews validate shared DTOs, derive exercise correctness, reuse scheduleReview,
+  check revision/idempotency and commit localStorage under a cross-tab Web Lock.
+  Failed/corrupt/unavailable storage does not advance the card or wipe old data.
+  Saved words, settings, activity and study preferences persist separately.
+- Final focused checks: 74 tests pass; exercise study suite 14/14 passes on an
+  isolated rerun after an intermittent shortcut assertion in a combined run.
+  Six guest browser E2E pass, including actual concurrent tabs and typing exercise.
+  Expanded auth/browser smoke: 11/12, with inherited US-05 old summary-label
+  assertions failing. Broad web/API/domain suite: 810 pass, one failure in the
+  pre-existing untracked development preview duplicate-text assertion.
+- Web/API typecheck, changed-file ESLint, pnpm build, strict production-UI audit
+  and git diff --check pass. Root typecheck still has 10 diagnostics in unrelated
+  scripts; root lint has 46 existing tooling/development/script errors. Node is
+  22.19.0 versus pinned 22.23.2; build retains existing chunk/dynamic-import warnings.
+- Browser/API checks use mocked public content; live DB/public catalog readback
+  remains an owner/deployment check. No DB migration/write, commit, push or deploy.
+  All pre-existing untracked datasets/scripts/development UI remain untouched.
+
+
+### 2026-10-19 — US-58 branch publication authorization
+
+- Owner requested publishing the completed guest-learning change to TXH, dev and
+  main. Fresh remote inspection found all three at 05a624ff04dbedc064fbd38a283a7c80e909a74c.
+- Stage only the feature and its documentation/test artifacts. Preserve unrelated
+  untracked development UI, scripts, datasets and migration files. Publish one
+  commit through normal fast-forward updates; the existing main CI/release
+  pipeline remains the release authority. No standalone deployment or DB command.

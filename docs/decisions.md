@@ -1,5 +1,17 @@
 # VocabFlow Project Decisions
 
+## US-58 decision — Public learning with isolated device persistence (2026-10-19)
+
+Owner authority: explicit request in the current chat to open initial-phase
+learning to everyone, recommend accounts, and store guest data in localStorage.
+This reprioritizes US-58 and overrides historical account-required entry and
+server-only guest persistence restrictions. Keep all account security boundaries.
+Expose enabled content only; apply the existing deployed media policy. Guests
+reuse SRS rules locally and advance only after a durable, serialized browser save.
+Keep guest history separate from account history; automatic merging needs a
+future import contract. Do not silently claim signup migrated guest progress.
+
+
 ## DEC-032 — Owner-attested V2 public media and release
 
 - Status: ACCEPTED by explicit owner instruction on 2026-10-18.

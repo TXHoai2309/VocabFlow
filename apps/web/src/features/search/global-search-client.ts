@@ -1,3 +1,4 @@
+import { learningFetch } from "../guest/learning-fetch";
 import { globalSearchResponseSchema, type GlobalSearchResponse } from "@vocabflow/contracts";
 
 export class GlobalSearchClientError extends Error {
@@ -16,7 +17,7 @@ export async function requestGlobalSearch(learnerId: string, query: string, sign
   const params = new URLSearchParams({ q: normalized, limit: "5" });
   let response: Response;
   try {
-    response = await fetch(`/api/learners/${encodeURIComponent(learnerId)}/search?${params}`, {
+    response = await learningFetch(`/api/learners/${encodeURIComponent(learnerId)}/search?${params}`, {
       credentials: "include",
       signal
     });

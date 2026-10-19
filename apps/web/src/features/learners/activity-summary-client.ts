@@ -1,3 +1,4 @@
+import { learningFetch } from "../guest/learning-fetch";
 import {
   activitySummaryResponseSchema,
   type ActivitySummaryResponse
@@ -27,7 +28,7 @@ async function readError(response: Response): Promise<ActivitySummaryClientError
 export async function requestActivitySummary(learnerId: string): Promise<ActivitySummaryResponse> {
   let response: Response;
   try {
-    response = await fetch(`/api/learners/${encodeURIComponent(learnerId)}/activity-summary`, {
+    response = await learningFetch(`/api/learners/${encodeURIComponent(learnerId)}/activity-summary`, {
       credentials: "include"
     });
   } catch {

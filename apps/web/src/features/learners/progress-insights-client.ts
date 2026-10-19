@@ -1,3 +1,4 @@
+import { learningFetch } from "../guest/learning-fetch";
 import {
   progressHistoryResponseSchema,
   topicProgressResponseSchema,
@@ -29,7 +30,7 @@ async function errorFor(response: Response): Promise<ProgressInsightsClientError
 async function request<T>(path: string, schema: { safeParse: (value: unknown) => { success: boolean; data?: T } }): Promise<T> {
   let response: Response;
   try {
-    response = await fetch(path, { credentials: "include" });
+    response = await learningFetch(path, { credentials: "include" });
   } catch {
     throw new ProgressInsightsClientError("NETWORK_ERROR", 0);
   }

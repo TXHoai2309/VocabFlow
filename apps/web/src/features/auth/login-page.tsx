@@ -78,6 +78,7 @@ export function LoginPage() {
           {state === "auth-error" ? <p role="alert">{message ?? AUTH_ERROR_MESSAGE}</p> : null}
         </div>
 
+        <p className="auth-switch"><Link className="auth-link" to="/">Học ngay không cần tài khoản</Link></p>
         <p className="auth-switch">
           Chưa có tài khoản? <Link className="auth-link" to="/register">Tạo tài khoản</Link>
         </p>

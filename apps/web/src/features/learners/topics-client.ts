@@ -1,3 +1,4 @@
+import { learningFetch } from "../guest/learning-fetch";
 import {
   topicListResponseSchema,
   vocabularyListResponseSchema,
@@ -26,7 +27,7 @@ async function readJson(response: Response): Promise<unknown> {
 export async function requestTopics(): Promise<TopicDto[]> {
   let response: Response;
   try {
-    response = await fetch("/api/topics", { credentials: "include" });
+    response = await learningFetch("/api/topics", { credentials: "include" });
   } catch {
     throw new TopicsClientError("NETWORK_ERROR", 0);
   }
@@ -39,7 +40,7 @@ export async function requestTopics(): Promise<TopicDto[]> {
 export async function requestTopicVocabulary(topicId: number): Promise<VocabularyDto[]> {
   let response: Response;
   try {
-    response = await fetch(`/api/topics/${topicId}/vocabulary`, { credentials: "include" });
+    response = await learningFetch(`/api/topics/${topicId}/vocabulary`, { credentials: "include" });
   } catch {
     throw new TopicsClientError("NETWORK_ERROR", 0);
   }

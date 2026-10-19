@@ -1,5 +1,11 @@
 # VocabFlow User Story System
 
+## Current owner priority (2026-10-19)
+
+[US-58 — Public guest learning](US-58-guest-learning.md): implemented locally, ready for owner check.
+Public entry is the explicit exception to the historical account-only baseline below.
+
+
 ## Single-account learning baseline (2026-10-07)
 
 This owner-approved baseline supersedes the earlier learner-management flow and

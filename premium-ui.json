@@ -1,0 +1,17 @@
+{
+  "profile": "product-admin",
+  "sourceRoots": [
+    "apps/web/src/components",
+    "apps/web/src/features/auth",
+    "apps/web/src/features/guest",
+    "apps/web/src/features/home",
+    "apps/web/src/features/learners",
+    "apps/web/src/features/learning-sets",
+    "apps/web/src/features/search",
+    "apps/web/src/features/study",
+    "apps/web/src/features/vocabulary"
+  ],
+  "canonicalMap": "UX-CONTRACT.md",
+  "requiredCapabilities": ["Select/Listbox", "Form", "Scrollbar", "Toast", "CRUD"],
+  "ownership": { "Select/Listbox": "native" }
+}

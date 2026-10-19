@@ -1,3 +1,4 @@
+import { learningFetch } from "../guest/learning-fetch";
 import {
   vocabularyListResponseSchema,
   type VocabularyDto
@@ -29,7 +30,7 @@ async function readError(response: Response): Promise<VocabularyClientError> {
 export async function requestVocabulary(): Promise<VocabularyDto[]> {
   let response: Response;
   try {
-    response = await fetch("/api/vocabulary", { credentials: "include" });
+    response = await learningFetch("/api/vocabulary", { credentials: "include" });
   } catch {
     throw new VocabularyClientError("NETWORK_ERROR", 0);
   }

@@ -1,3 +1,4 @@
+import { learningFetch } from "../guest/learning-fetch";
 import {
   reviewQueueResponseSchema,
   type CatalogStudyScope,
@@ -41,7 +42,7 @@ export async function requestReviewQueue(learnerId: string, scope?: "saved" | "s
       : scope === "saved" ? "?scope=saved"
         : scope === "weak" ? "?scope=weak" : "";
     const query = capacity === undefined ? scopeQuery : `${scopeQuery}${scopeQuery ? "&" : "?"}capacity=${capacity}`;
-    response = await fetch(`/api/learners/${encodeURIComponent(learnerId)}/review-queue${query}`, {
+    response = await learningFetch(`/api/learners/${encodeURIComponent(learnerId)}/review-queue${query}`, {
       credentials: "include"
     });
   } catch {
