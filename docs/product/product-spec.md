@@ -2,6 +2,14 @@
 
 ## Public guest learning (US-58, 2026-10-19)
 
+Owner-approved correction: Home “Từ mới” shows the actual distinct unseen count
+in the eligible source, not `dailyNewWordLimit - learnedToday`. The daily hero
+and queue retain today's allowance; goals remain progress targets, limits
+remain admission rules and session amount remains an independent selection.
+Sparse learned IDs are excluded by identity; older learning days do not consume
+the current day's allowance. Guest Settings and local history remain usable
+without a content request; browse and collection details use bounded pages.
+
 The owner's initial public-phase request supersedes the account-required entry
 baseline below. Visitors may use the learning app without registering. Guest
 progress, SRS state, review receipts, saved words, assignments and settings stay

@@ -682,6 +682,7 @@ export const reviewQueueResponseSchema = z.object({
   reviewDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
   dueCount: z.number().int().nonnegative().safe(),
   newCount: z.number().int().nonnegative().safe(),
+  dailyNewRemaining: z.number().int().nonnegative().safe().optional(),
   queue: z.array(reviewQueueItemSchema)
 }).strict();
 export type ReviewQueueResponse = z.infer<typeof reviewQueueResponseSchema>;
@@ -830,3 +831,17 @@ export const publicLearningCatalogSchema = z.object({
   topics: z.array(topicDtoSchema.extend({ vocabularyIds: z.array(z.number().int().positive()) }).strict())
 }).strict();
 export type PublicLearningCatalog = z.infer<typeof publicLearningCatalogSchema>;
+
+/** Scheduling/counting metadata only. Full learning content is always bounded. */
+export const publicLearningIndexSchema = publicLearningCatalogSchema.extend({
+  vocabulary: z.array(z.object({ id: z.number().int().positive(), level: vocabularyLevelSchema.nullable() }).strict())
+}).strict();
+export type PublicLearningIndex = z.infer<typeof publicLearningIndexSchema>;
+
+export const PUBLIC_VOCABULARY_BATCH_LIMIT = 60;
+export const publicVocabularyBrowseQuerySchema = learnerVocabularyBrowseQuerySchema.extend({
+  learningSetId: z.number().int().positive().max(2147483647).optional(),
+  topicId: z.number().int().positive().max(2147483647).optional()
+}).refine((query) => !(query.learningSetId && query.topicId));
+export type PublicVocabularyBrowseQuery = z.infer<typeof publicVocabularyBrowseQuerySchema>;
+export const publicVocabularyMatchResponseSchema = z.object({ ids: z.array(z.number().int().positive()) }).strict();

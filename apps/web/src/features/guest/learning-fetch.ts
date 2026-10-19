@@ -1,23 +1,17 @@
+import { clearPublicLearningCache, requestPublicLearningIndex, requestPublicWords, requestPublicBrowse, requestPublicMatchingIds } from "./public-learning-client";
 import {
-  publicLearningCatalogSchema, learnerVocabularyBrowseItemSchema, reviewRequestSchema,
+  reviewRequestSchema,
   reviewResponseSchema, updateLearnerSettingsRequestSchema,
-  type PublicLearningCatalog, type VocabularyDto, type ReviewQueueResponse, type ReviewRequest, type LearnerVocabularyDto, type WeakWordsItem
+  type PublicLearningIndex, type VocabularyDto, type ReviewQueueResponse, type ReviewRequest, type LearnerVocabularyDto, type WeakWordsItem
 } from "@vocabflow/contracts";
 import { scheduleReview, type SchedulerState } from "@vocabflow/learning-domain";
 import { GUEST_ID, guestToday, readGuestState, mutateGuestState, type GuestState } from "./guest-store";
 
 let guestCatalogEnabled = false;
 export function setGuestCatalogEnabled(enabled: boolean) { guestCatalogEnabled = enabled; }
-let catalogPromise: Promise<PublicLearningCatalog> | undefined;
-export function clearLearningCatalogCache() { catalogPromise = undefined; }
-async function catalog() {
-  catalogPromise ??= fetch("/api/public/learning-catalog", { credentials: "omit" })
-    .then(async (response) => {
-      if (!response.ok) throw new Error("CATALOG_UNAVAILABLE");
-      return publicLearningCatalogSchema.parse(await response.json());
-    }).catch((error: unknown) => { catalogPromise = undefined; throw error; });
-  return catalogPromise;
-}
+export const clearLearningCatalogCache = clearPublicLearningCache;
+type IndexWord = PublicLearningIndex["vocabulary"][number];
+const catalog = requestPublicLearningIndex;
 function json(value: unknown, status = 200) { return new Response(JSON.stringify(value), { status, headers: { "Content-Type": "application/json" } }); }
 function failure(code: string, status = 409) { return json({ error: { code, message: "Không thể hoàn tất. Vui lòng thử lại." } }, status); }
 function normalize(text: string) { return text.normalize("NFKC").trim().toLocaleLowerCase("vi-VN"); }
@@ -49,10 +43,10 @@ function activity(state: GuestState) {
     dailyGoal: { newWords, reviews, overallPercent: Math.round((newWords.percent + reviews.percent) / 2), completed: newWords.remaining === 0 && reviews.remaining === 0 },
     streak: { currentStreak, longestStreak, todayActive: events.reviews > 0 } };
 }
-function weakData(data: PublicLearningCatalog, state: GuestState) {
+function weakData(data: PublicLearningIndex, state: GuestState) {
   const today = guestToday();
   const events = Object.values(state.receipts).filter((event) => event.date >= previousDate(today, 29) && event.date <= today);
-  const items: WeakWordsItem[] = data.vocabulary.filter((word) => state.progress[word.id]).map((word) => {
+  const items: (Omit<WeakWordsItem, "vocabulary"> & { vocabulary: IndexWord })[] = data.vocabulary.filter((word) => state.progress[word.id]).map((word) => {
     const progress = state.progress[word.id]!;
     const recent = events.filter((event) => event.request.vocabularyId === word.id).slice(-10);
     const count = recent.length; const remembered = recent.filter((event) => event.response.result === "REMEMBERED").length;
@@ -63,14 +57,14 @@ function weakData(data: PublicLearningCatalog, state: GuestState) {
       reviewCount: count, rememberedCount: remembered, forgottenCount: count - remembered, nextReviewDate: progress.nextReviewDate,
       dueStatus: days < 0 ? "OVERDUE" : days === 0 ? "DUE_TODAY" : "UPCOMING", daysUntilDue: days, expectedRevision: progress.revision };
   });
-  const rank = (item: WeakWordsItem) => (item.weaknessStatus === "WEAK" ? 0 : item.weaknessStatus === "LEARNING" ? 3 : 7) + ((item.daysUntilDue ?? 1) < 0 ? 0 : item.daysUntilDue === 0 ? 1 : 2);
+  const rank = (item: Omit<WeakWordsItem, "vocabulary">) => (item.weaknessStatus === "WEAK" ? 0 : item.weaknessStatus === "LEARNING" ? 3 : 7) + ((item.daysUntilDue ?? 1) < 0 ? 0 : item.daysUntilDue === 0 ? 1 : 2);
   items.sort((a, b) => rank(a) - rank(b) || (a.recentAccuracy ?? 101) - (b.recentAccuracy ?? 101) || (a.nextReviewDate ?? "").localeCompare(b.nextReviewDate ?? "") || a.vocabulary.id - b.vocabulary.id);
   return { items, summary: { weakCount: items.filter((item) => item.weaknessStatus === "WEAK").length,
     dueCount: items.filter((item) => (item.daysUntilDue ?? 1) <= 0).length,
     recentAccuracy: events.length ? Math.round(events.filter((event) => event.response.result === "REMEMBERED").length / events.length * 100) : null,
     recentReviewCount: events.length } };
 }
-function scopedWords(data: PublicLearningCatalog, state: GuestState, params: URLSearchParams) {
+function scopedWords(data: PublicLearningIndex, state: GuestState, params: URLSearchParams) {
   let ids: number[] | undefined;
   if (params.has("topicId")) ids = data.topics.find((item) => item.id === Number(params.get("topicId")))?.vocabularyIds ?? [];
   else if (params.has("learningSetId")) ids = data.learningSets.find((item) => item.id === Number(params.get("learningSetId")))?.vocabularyIds ?? [];
@@ -87,7 +81,7 @@ function scopedWords(data: PublicLearningCatalog, state: GuestState, params: URL
   const byId = new Map(data.vocabulary.map((word) => [word.id, word]));
   return [...new Set(ids)].flatMap((id) => byId.get(id) ? [byId.get(id)!] : []);
 }
-function queue(data: PublicLearningCatalog, state: GuestState, params: URLSearchParams): ReviewQueueResponse {
+async function queue(data: PublicLearningIndex, state: GuestState, params: URLSearchParams): Promise<ReviewQueueResponse> {
   const today = guestToday(); const words = scopedWords(data, state, params);
   const remaining = Math.max(0, state.settings.dailyNewWordLimit - history(state, today).newLearned);
   const due = words.filter((word) => state.progress[word.id] && state.progress[word.id]!.nextReviewDate <= today)
@@ -97,13 +91,17 @@ function queue(data: PublicLearningCatalog, state: GuestState, params: URLSearch
   const limit = Number(params.get("capacity")) || 20;
   const allowedFresh = new Set(fresh.slice(0, remaining).map((word) => word.id));
   const items = voluntary ? words.filter((word) => state.progress[word.id] || allowedFresh.has(word.id)) : [...due.slice(0, limit), ...fresh.slice(0, Math.min(params.has("capacity") ? limit : 10, remaining))];
-  return { learnerId: GUEST_ID, reviewDate: today, dueCount: due.length, newCount: Math.min(fresh.length, remaining),
-    queue: items.map((word) => ({ vocabulary: word, status: state.progress[word.id]?.status ?? "NEW",
+  const details = new Map((await requestPublicWords(items.map((word) => word.id))).map((word) => [word.id, word]));
+  return { learnerId: GUEST_ID, reviewDate: today, dueCount: due.length, newCount: fresh.length, dailyNewRemaining: Math.min(fresh.length, remaining),
+    queue: items.filter((word) => details.has(word.id)).map((word) => ({ vocabulary: details.get(word.id)!, status: state.progress[word.id]?.status ?? "NEW",
       nextReviewDate: state.progress[word.id]?.nextReviewDate ?? null, expectedRevision: state.progress[word.id]?.revision ?? 0,
       queueType: state.progress[word.id] ? state.progress[word.id]!.nextReviewDate <= today ? "DUE" : "VOLUNTARY" : "NEW" })) };
 }
-async function review(input: ReviewRequest, data: PublicLearningCatalog) {
-  const word = data.vocabulary.find((item) => item.id === input.vocabularyId);
+async function review(input: ReviewRequest) {
+  const confirmed = readGuestState().receipts[input.reviewId];
+  if (confirmed) return JSON.stringify(confirmed.request) === JSON.stringify(input)
+    ? json(confirmed.response) : failure("IDEMPOTENCY_CONFLICT");
+  const word = (await requestPublicWords([input.vocabularyId]))[0];
   if (!word) return failure("VOCABULARY_NOT_FOUND", 404);
   return mutateGuestState((state) => {
     const receipt = state.receipts[input.reviewId];
@@ -140,29 +138,23 @@ export async function learningFetch(path: string, init?: RequestInit): Promise<R
   if (!publicCatalogPath && !guestPath && !(input?.success && input.data.learnerId === GUEST_ID)) return fetch(path, init);
   if (init?.signal?.aborted) throw new DOMException("Aborted", "AbortError");
   try {
-    const data = await catalog();
-    if (init?.signal?.aborted) throw new DOMException("Aborted", "AbortError");
     const params = url.searchParams;
-    if (publicCatalogPath) {
-      if (method !== "GET") return failure("INVALID_REQUEST", 400);
-      if (url.pathname === "/api/vocabulary") return json({ vocabulary: data.vocabulary });
-      if (url.pathname === "/api/topics") return json({ topics: data.topics.map(({ vocabularyIds: _ids, ...topic }) => topic) });
-      if (url.pathname.startsWith("/api/topics/")) {
-        const topic = data.topics.find((item) => item.id === Number(url.pathname.split("/")[3]));
-        return topic ? json({ vocabulary: data.vocabulary.filter((word) => topic.vocabularyIds.includes(word.id)) }) : failure("TOPIC_NOT_FOUND", 404);
-      }
-      if (url.pathname === "/api/learning-sets") return json({ learningSets: data.learningSets.map(({ vocabularyIds: _ids, ...set }) => set) });
-      const set = data.learningSets.find((item) => item.id === Number(url.pathname.split("/")[3]));
-      if (!set) return failure("LEARNING_SET_NOT_FOUND", 404);
-      const { vocabularyIds, ...summary } = set;
-      return json({ learningSet: { ...summary, items: vocabularyIds.map((id, sortOrder) => ({ sortOrder, vocabulary: data.vocabulary.find((word) => word.id === id)! })) } });
-    }
-    if (input?.success) return await review(input.data, data);
-    const state = readGuestState();
-    const resource = url.pathname.split("/").slice(4).join("/");
+    const resource = guestPath ? url.pathname.split("/").slice(4).join("/") : "";
     const body: unknown = typeof init?.body === "string" ? JSON.parse(init.body) : null;
+    const state = guestPath || input?.success ? readGuestState() : null;
+    if (input?.success) return await review(input.data);
+    if (state && resource === "activity-summary") return json(activity(state));
+    if (state && resource === "gamification") {
+      const total = Object.values(state.receipts).reduce((sum, event) => sum + 10 + (event.request.exerciseSubmission && event.response.result === "REMEMBERED" ? 5 : 0), 0);
+      return json({ learnerId: GUEST_ID, xp: { total, level: Math.floor(total / 100) + 1, xpIntoLevel: total % 100, xpPerLevel: 100, xpToNextLevel: 100 - total % 100 }, achievements: [] });
+    }
+    if (state && resource === "progress-history") {
+      const from = params.get("from") ?? guestToday(); const to = params.get("to") ?? guestToday(); const days = [];
+      for (let date = from; date <= to && days.length < 366; date = previousDate(date, -1)) days.push(history(state, date));
+      return json({ learnerId: GUEST_ID, timezone: "Asia/Ho_Chi_Minh", from, to, days });
+    }
     if (resource === "settings") {
-      if (method === "GET") return json(state.settings);
+      if (method === "GET") return json(state!.settings);
       const patch = updateLearnerSettingsRequestSchema.parse(body);
       return await mutateGuestState((fresh) => { fresh.settings = { ...fresh.settings, ...patch }; return json(fresh.settings); });
     }
@@ -172,48 +164,52 @@ export async function learningFetch(path: string, init?: RequestInit): Promise<R
     });
     if (resource.startsWith("saved-vocabulary/")) {
       const id = Number(resource.split("/")[1]);
-      if (!data.vocabulary.some((word) => word.id === id)) return failure("VOCABULARY_NOT_FOUND", 404);
+      if (!Number.isSafeInteger(id) || id <= 0) return failure("INVALID_REQUEST", 400);
+      if (method !== "DELETE" && !(await requestPublicWords([id])).length) return failure("VOCABULARY_NOT_FOUND", 404);
       return await mutateGuestState((fresh) => {
         if (method === "DELETE") delete fresh.saved[id]; else fresh.saved[id] ??= new Date().toISOString();
         return json({ learnerId: GUEST_ID, vocabularyId: id, saved: method !== "DELETE", savedAt: fresh.saved[id] ?? null });
       });
     }
+    if (state && resource === "saved-vocabulary") {
+      const words = await requestPublicWords(Object.keys(state.saved).map(Number));
+      return json({ savedVocabulary: words.map((word) => ({ vocabulary: learnedWord(word, state), savedAt: state.saved[word.id] })) });
+    }
+    if (state && resource === "vocabulary" && params.has("id")) {
+      const words = await requestPublicWords([Number(params.get("id"))]);
+      return json({ vocabulary: words.map((word) => learnedWord(word, state)) });
+    }
+    if (state && resource === "vocabulary/browse") {
+      const page = await requestPublicBrowse(params, init?.signal ?? undefined);
+      return json({ ...page, vocabulary: page.vocabulary.map((word) => ({ ...word, status: state.progress[word.id]?.status ?? "NEW", nextReviewDate: state.progress[word.id]?.nextReviewDate ?? null })) });
+    }
+    const data = await catalog();
+    if (init?.signal?.aborted) throw new DOMException("Aborted", "AbortError");
+    if (publicCatalogPath) {
+      if (method !== "GET") return failure("INVALID_REQUEST", 400);
+      if (url.pathname === "/api/topics") return json({ topics: data.topics.map(({ vocabularyIds: _ids, ...topic }) => topic) });
+      if (url.pathname === "/api/learning-sets") return json({ learningSets: data.learningSets.map(({ vocabularyIds: _ids, ...set }) => set) });
+      return failure("INVALID_REQUEST", 400);
+    }
+    if (!state) return failure("INVALID_REQUEST", 400);
     if (resource.startsWith("learning-sets/")) {
       const id = Number(resource.split("/")[1]);
       return await mutateGuestState((fresh) => { fresh.assignments[id] = method !== "DELETE"; return json({ learnerId: GUEST_ID, learningSetId: id, active: method !== "DELETE" }); });
     }
-    const words = data.vocabulary.map((word) => learnedWord(word, state));
-    if (resource === "vocabulary") return json({ vocabulary: words.filter((word) => (!params.has("id") || word.id === Number(params.get("id"))) && (!params.has("level") || word.level === params.get("level"))) });
-    if (resource === "vocabulary/browse") {
-      const filtered = words.filter((word) => (!params.get("q") || normalize(`${word.word} ${word.vietnamese}`).includes(normalize(params.get("q")!)))
-        && (!params.get("level") || word.level === params.get("level")) && (!params.get("cefr") || word.cefr === params.get("cefr")) && (!params.get("topic") || word.topic === params.get("topic")));
-      const pageSize = Number(params.get("pageSize")) || 30; const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize)); const page = Math.min(totalPages, Number(params.get("page")) || 1);
-      return json({ vocabulary: filtered.slice((page - 1) * pageSize, page * pageSize).map((word) => learnerVocabularyBrowseItemSchema.parse(Object.fromEntries(Object.entries(word).filter(([key]) => key in learnerVocabularyBrowseItemSchema.shape)))),
-        total: filtered.length, page, pageSize, totalPages, filters: { cefrOptions: [...new Set(words.flatMap((word) => word.cefr ? [word.cefr] : []))].sort(), topicOptions: [...new Set(words.flatMap((word) => word.topic ? [word.topic] : []))].sort() } });
-    }
-    if (resource === "review-queue") return json(queue(data, state, params));
-    if (resource === "saved-vocabulary") return json({ savedVocabulary: words.filter((word) => state.saved[word.id]).map((word) => ({ vocabulary: word, savedAt: state.saved[word.id] })) });
+    const words = data.vocabulary.map((word): IndexWord & Pick<LearnerVocabularyDto, "status" | "nextReviewDate"> => ({ ...word, status: state.progress[word.id]?.status ?? "NEW", nextReviewDate: state.progress[word.id]?.nextReviewDate ?? null }));
+    const today = guestToday();
+    if (resource === "review-queue") return json(await queue(data, state, params));
     if (resource === "learning-sets") return json({ learningSets: data.learningSets.map(({ vocabularyIds: _ids, ...set }) => ({ learningSet: set, active: state.assignments[set.id] !== false })) });
-    if (resource === "activity-summary") return json(activity(state));
-    if (resource === "gamification") {
-      const total = Object.values(state.receipts).reduce((sum, event) => sum + 10 + (event.request.exerciseSubmission && event.response.result === "REMEMBERED" ? 5 : 0), 0);
-      return json({ learnerId: GUEST_ID, xp: { total, level: Math.floor(total / 100) + 1, xpIntoLevel: total % 100, xpPerLevel: 100, xpToNextLevel: 100 - total % 100 }, achievements: [] });
-    }
     if (resource === "progress-summary") return json({ learnerId: GUEST_ID, newCount: words.filter((word) => word.status === "NEW").length,
       learningCount: words.filter((word) => word.status === "LEARNING").length, masteredCount: words.filter((word) => word.status === "MASTERED").length,
-      dueCount: words.filter((word) => word.nextReviewDate && word.nextReviewDate <= guestToday()).length, learnedCount: words.filter((word) => word.status !== "NEW").length,
+      dueCount: words.filter((word) => word.nextReviewDate && word.nextReviewDate <= today).length, learnedCount: words.filter((word) => word.status !== "NEW").length,
       progressByLevel: [...new Set(words.map((word) => word.level))].map((level) => ({ level, total: words.filter((word) => word.level === level).length,
         learnedCount: words.filter((word) => word.level === level && word.status !== "NEW").length, masteredCount: words.filter((word) => word.level === level && word.status === "MASTERED").length })) });
-    if (resource === "progress-history") {
-      const from = params.get("from") ?? guestToday(); const to = params.get("to") ?? guestToday(); const days = [];
-      for (let date = from; date <= to && days.length < 366; date = previousDate(date, -1)) days.push(history(state, date));
-      return json({ learnerId: GUEST_ID, timezone: "Asia/Ho_Chi_Minh", from, to, days });
-    }
     if (resource === "topic-progress") return json({ learnerId: GUEST_ID, localDate: guestToday(), topics: data.topics.map((topic) => {
       const items = words.filter((word) => topic.vocabularyIds.includes(word.id));
       return { topicId: topic.id, slug: topic.slug, name: topic.name, total: items.length, newCount: items.filter((word) => word.status === "NEW").length,
         learningCount: items.filter((word) => word.status === "LEARNING").length, masteredCount: items.filter((word) => word.status === "MASTERED").length,
-        dueCount: items.filter((word) => word.nextReviewDate && word.nextReviewDate <= guestToday()).length };
+        dueCount: items.filter((word) => word.nextReviewDate && word.nextReviewDate <= today).length };
     }) });
     if (resource === "continue-learning") {
       const set = data.learningSets.find((item) => { const count = item.vocabularyIds.filter((id) => state.progress[id]).length; return count > 0 && count < item.vocabularyIds.length; });
@@ -223,7 +219,8 @@ export async function learningFetch(path: string, init?: RequestInit): Promise<R
     }
     if (resource === "search") {
       const query = params.get("q") ?? ""; const matches = (text: string) => normalize(text).includes(normalize(query));
-      return json({ query, vocabulary: words.filter((word) => matches(`${word.word} ${word.vietnamese}`)).slice(0, 10).map((word) => ({ type: "VOCABULARY", id: word.id, title: word.word, subtitle: word.shortMeaningVi ?? word.vietnamese,
+      const page = await requestPublicBrowse(new URLSearchParams({ page: "1", pageSize: "20", q: query }), init?.signal ?? undefined);
+      return json({ query, vocabulary: page.vocabulary.slice(0, 10).map((word) => ({ type: "VOCABULARY", id: word.id, title: word.word, subtitle: word.shortMeaningVi ?? word.vietnamese,
         subtitleLabel: word.shortMeaningVi ? "Nghĩa tiếng Việt" : "Giải thích nghĩa", imageUrl: word.imageUrl, topic: word.topic, level: word.level })),
         topics: data.topics.filter((topic) => matches(topic.name)).slice(0, 10).map((topic) => ({ type: "TOPIC", id: topic.id, title: topic.name, description: topic.description })),
         learningSets: data.learningSets.filter((set) => matches(set.name)).slice(0, 10).map((set) => ({ type: "LEARNING_SET", id: set.id, title: set.name, description: set.description, vocabularyCount: set.vocabularyCount, grade: set.grade })) });
@@ -234,9 +231,14 @@ export async function learningFetch(path: string, init?: RequestInit): Promise<R
       const summary = result.summary;
       if (params.get("status")) items = items.filter((item) => item.weaknessStatus.toLowerCase() === params.get("status"));
       else items = items.filter((item) => item.weaknessStatus === "WEAK" || (item.daysUntilDue ?? 1) <= 0);
-      if (params.get("q")) items = items.filter((item) => normalize(`${item.vocabulary.word} ${item.vocabulary.vietnamese}`).includes(normalize(params.get("q")!)));
+      if (params.get("q")) {
+        const ids = await requestPublicMatchingIds(params.get("q")!, init?.signal ?? undefined);
+        items = items.filter((item) => ids.has(item.vocabulary.id));
+      }
       const page = Number(params.get("page")) || 1; const pageSize = Number(params.get("pageSize")) || 20;
-      return json({ learnerId: GUEST_ID, reviewDate: guestToday(), summary, items: items.slice((page - 1) * pageSize, page * pageSize), pagination: { page, pageSize, totalItems: items.length, totalPages: Math.ceil(items.length / pageSize) } });
+      const selected = items.slice((page - 1) * pageSize, page * pageSize);
+      const details = new Map((await requestPublicWords(selected.map((item) => item.vocabulary.id))).map((word) => [word.id, word]));
+      return json({ learnerId: GUEST_ID, reviewDate: today, summary, items: selected.filter((item) => details.has(item.vocabulary.id)).map((item) => ({ ...item, vocabulary: details.get(item.vocabulary.id)! })), pagination: { page, pageSize, totalItems: items.length, totalPages: Math.ceil(items.length / pageSize) } });
     }
     return failure("NOT_FOUND", 404);
   } catch (error) {

@@ -1,3 +1,7 @@
+import { readPublicLearningIndex } from "./public-learning-index";
+import { readPublicVocabularyBrowse, readPublicVocabularyMatchIds } from "./learner-vocabulary-browse";
+import { readPublicVocabulary } from "./vocabulary";
+import { PUBLIC_VOCABULARY_BATCH_LIMIT, publicVocabularyBrowseQuerySchema, type PublicLearningIndex, type PublicVocabularyBrowseQuery, type LearnerVocabularyBrowseResponse, type VocabularyDto } from "@vocabflow/contracts";
 import { readPublicLearningCatalog } from "./public-learning-catalog";
 import type { PublicLearningCatalog } from "@vocabflow/contracts";
 import { parseStudySetIds, positiveStudyId, parseStudyQueueCapacity, learnerVocabularyBrowseQuerySchema } from "@vocabflow/contracts";
@@ -78,6 +82,10 @@ type BootstrapRunner = (userId: string, env: RuntimeBindings) => Promise<Househo
 type AuthRequestHandler = (request: Request, env: RuntimeBindings) => Promise<Response>;
 
 export type AppDependencies = {
+  publicLearningIndex?: (env: RuntimeBindings) => Promise<PublicLearningIndex>;
+  publicVocabularyBatch?: (env: RuntimeBindings, ids: number[]) => Promise<VocabularyDto[]>;
+  publicVocabularyBrowse?: (env: RuntimeBindings, query: PublicVocabularyBrowseQuery) => Promise<LearnerVocabularyBrowseResponse>;
+  publicVocabularyMatches?: (env: RuntimeBindings, query: string) => Promise<number[]>;
   publicLearningCatalog?: (env: RuntimeBindings) => Promise<PublicLearningCatalog>;
   authRequestHandler?: AuthRequestHandler;
   readSession?: SessionReader;
@@ -339,14 +347,84 @@ export function createApp(dependencies: AppDependencies = {}) {
 
   application.use("/api/*", async (c, next) => {
     await next();
-    const mediaEnv = c.req.path === "/api/public/learning-catalog" ? { ...c.env, VERCEL_ENV: c.env?.VERCEL_ENV ?? "preview" } : c.env ?? {};
+    const mediaEnv = c.req.path.startsWith("/api/public/") ? { ...c.env, VERCEL_ENV: c.env?.VERCEL_ENV ?? "preview" } : c.env ?? {};
     if (!mustSanitizeV2MediaResponse(mediaEnv) || c.req.path.startsWith("/api/auth/")
       || !c.res.headers.get("content-type")?.includes("application/json")) return;
+    const mediaStarted = performance.now();
     const body: unknown = await c.res.clone().json();
     const response = new Response(JSON.stringify(withoutUnclearedV2Media(body, mediaEnv)), c.res);
     response.headers.delete("content-length");
     response.headers.delete("etag");
+    if (c.req.path.startsWith("/api/public/")) {
+      const existing = response.headers.get("Server-Timing");
+      response.headers.set("Server-Timing", `${existing ? `${existing}, ` : ""}public_media;dur=${(performance.now() - mediaStarted).toFixed(1)}`);
+    }
     c.res = response;
+  });
+
+  const publicDatabase = async (env: RuntimeBindings) => {
+    if (!env?.DATABASE_URL) throw new Error("DATABASE_URL_REQUIRED");
+    const { createHttpDatabase } = await import("./db/client");
+    return createHttpDatabase(env.DATABASE_URL, env.DATABASE_DRIVER);
+  };
+  const publicFailure = () => errorEnvelope("INTERNAL_ERROR", "Không thể tải nội dung học. Vui lòng thử lại.");
+  application.get("/api/public/learning-index", async (c) => {
+    if (new URL(c.req.url).search) return c.json(errorEnvelope("INVALID_REQUEST", "Yêu cầu không hợp lệ."), 400);
+    const started = performance.now(); const timings: Record<string, number> = {};
+    try {
+      const data = dependencies.publicLearningIndex ? await dependencies.publicLearningIndex(c.env)
+        : await readPublicLearningIndex(await publicDatabase(c.env), vocabularyDatasetVersion(c.env), timings);
+      c.header("Cache-Control", "public, max-age=60, stale-while-revalidate=300");
+      c.header("Server-Timing", [...Object.entries(timings).map(([key, ms]) => `${key};dur=${ms.toFixed(1)}`), `index_total;dur=${(performance.now() - started).toFixed(1)}`].join(", "));
+      return c.json(data, 200);
+    } catch { return c.json(publicFailure(), 503); }
+  });
+  application.get("/api/public/vocabulary", async (c) => {
+    const params = new URL(c.req.url).searchParams;
+    const raw = params.get("ids");
+    const values = raw?.split(",") ?? [];
+    const ids = values.map(Number);
+    if ([...params.keys()].some((key) => key !== "ids") || params.getAll("ids").length !== 1
+      || !values.length || values.length > PUBLIC_VOCABULARY_BATCH_LIMIT || new Set(ids).size !== ids.length
+      || values.some((value) => !/^[1-9]\d*$/.test(value)) || ids.some((id) => !Number.isSafeInteger(id) || id > 2147483647)) {
+      return c.json(errorEnvelope("INVALID_REQUEST", "Yêu cầu không hợp lệ."), 400);
+    }
+    const started = performance.now();
+    try {
+      const vocabulary = dependencies.publicVocabularyBatch ? await dependencies.publicVocabularyBatch(c.env, ids)
+        : await readPublicVocabulary(await publicDatabase(c.env), { datasetVersion: vocabularyDatasetVersion(c.env), ids });
+      c.header("Cache-Control", "public, max-age=60, stale-while-revalidate=300");
+      c.header("Server-Timing", `vocabulary_batch;dur=${(performance.now() - started).toFixed(1)}`);
+      return c.json({ vocabulary }, 200);
+    } catch { return c.json(publicFailure(), 503); }
+  });
+  application.get("/api/public/vocabulary/matches", async (c) => {
+    const params = new URL(c.req.url).searchParams;
+    const query = params.get("q")?.trim();
+    if (!query || query.length > 100 || params.getAll("q").length !== 1 || [...params.keys()].some((key) => key !== "q")) return c.json(errorEnvelope("INVALID_REQUEST", "Yêu cầu không hợp lệ."), 400);
+    try {
+      const ids = dependencies.publicVocabularyMatches ? await dependencies.publicVocabularyMatches(c.env, query)
+        : await readPublicVocabularyMatchIds(await publicDatabase(c.env), vocabularyDatasetVersion(c.env), query);
+      c.header("Cache-Control", "public, max-age=60, stale-while-revalidate=300");
+      return c.json({ ids }, 200);
+    } catch { return c.json(publicFailure(), 503); }
+  });
+  application.get("/api/public/vocabulary/browse", async (c) => {
+    const params = new URL(c.req.url).searchParams;
+    const values = Object.fromEntries(params);
+    if ([...params.keys()].some((key) => params.getAll(key).length !== 1)) return c.json(errorEnvelope("INVALID_REQUEST", "Yêu cầu không hợp lệ."), 400);
+    const parsed = publicVocabularyBrowseQuerySchema.safeParse({ ...values,
+      ...Object.fromEntries(["page", "pageSize", "topicId", "learningSetId"].filter((key) => params.has(key)).map((key) => [key, Number(params.get(key))]))
+    });
+    if (!parsed.success) return c.json(errorEnvelope("INVALID_REQUEST", "Yêu cầu không hợp lệ."), 400);
+    const started = performance.now();
+    try {
+      const result = dependencies.publicVocabularyBrowse ? await dependencies.publicVocabularyBrowse(c.env, parsed.data)
+        : await readPublicVocabularyBrowse(await publicDatabase(c.env), vocabularyDatasetVersion(c.env), parsed.data);
+      c.header("Cache-Control", "public, max-age=60, stale-while-revalidate=300");
+      c.header("Server-Timing", `vocabulary_browse;dur=${(performance.now() - started).toFixed(1)}`);
+      return c.json(result, 200);
+    } catch { return c.json(publicFailure(), 503); }
   });
 
   application.get("/api/public/learning-catalog", async (c) => {

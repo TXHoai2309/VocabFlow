@@ -2,6 +2,29 @@
 
 ## Guest persistence exception (US-58, 2026-10-19)
 
+### Loading/count correction (owner-approved, 2026-10-19)
+
+Guest startup uses `GET /api/public/learning-index`: only enabled dataset IDs,
+levels and enabled set/topic memberships; no definitions, examples or media.
+Its three SQL reads run concurrently and expose per-stage Server-Timing.
+`GET /api/public/vocabulary?ids=…` accepts 1–60 unique positive IDs and fetches
+only those rows. The client shares per-word promises and limits detail batches
+to two at a time. `GET /api/public/vocabulary/browse` pages 20/30/50 rows in SQL,
+optionally by one enabled collection, with existing search/filter semantics.
+`GET /api/public/vocabulary/matches?q=…` returns only enabled matching IDs for
+filtering sparse local weak-word state. Public responses keep dataset predicates,
+public cache policy and the deployed media sanitizer; no learner joins occur.
+
+The historical full catalog endpoint below remains compatible with already-open
+clients; the current web app does not use it. Local Settings, activity/history,
+rewards, reset and unsave do not wait for catalog/index/content. Browse and word
+detail also avoid index reads. Guest persisted format/version is unchanged.
+
+`newCount` counts all distinct unseen words in scope, independently of daily
+settings. The optional `dailyNewRemaining` describes today's eligible allowance.
+Only the candidate queue is clipped by that allowance and capacity. The client
+filters actual learned IDs rather than treating learned count as an offset.
+
 The owner authorized a device-local guest persistence mode. This is an explicit
 exception to historical server-authoritative-only statements below, applicable
 only to the fixed local guest identity. Account data retains PostgreSQL,

@@ -2,6 +2,13 @@
 
 ## US-58 decision — Public learning with isolated device persistence (2026-10-19)
 
+Correction authorized by the owner after the deployed loading audit: separate
+lightweight public scheduling metadata from bounded word details/pages. Pure
+local resources cannot require catalog fetches. Public media/authorization
+boundaries and the existing storage format stay intact. New source totals,
+today's allowance and session candidate counts have separate DTO meanings.
+Publish the correction to the same TXH/dev/main branches requested in-session.
+
 Owner authority: explicit request in the current chat to open initial-phase
 learning to everyone, recommend accounts, and store guest data in localStorage.
 This reprioritizes US-58 and overrides historical account-required entry and

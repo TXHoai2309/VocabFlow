@@ -31,3 +31,14 @@ persistence baseline. Account authorization and writes retain that baseline.
 
 The premium audit covers production UI source folders. The untracked development
 media editor and historical local release copies are outside the production app.
+
+## Guest performance correction (owner request, 2026-10-19)
+
+- Home “Từ mới” counts distinct unseen words in the current source; the daily
+  hero uses the separate remaining allowance. Goal, limit and session amount
+  retain their existing distinct meanings. Source: US-58 correction contract.
+- Guest collection detail is a named paginated variant of CollectionDetailView:
+  30 rows, URL page/query, cancelable debounced search and explicit previous/next
+  actions. Collection totals and progress refer to the whole collection.
+- Settings and local history work without content requests; resource errors
+  remain inline. Public word detail loads only requested IDs.

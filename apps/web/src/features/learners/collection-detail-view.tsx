@@ -20,6 +20,10 @@ type CollectionDetailViewProps = {
   studyReady: boolean;
   directStudyScope?: boolean;
   assignmentHref?: string;
+  paging?: {
+    page: number; totalPages: number; totalCount: number; query: string; busy: boolean;
+    onQueryChange: (query: string) => void; onPageChange: (page: number) => void;
+  };
 };
 
 type CollectionIconName = "topic" | "book" | "info" | "count" | "level" | "folder" | "play" | "search";
@@ -59,11 +63,13 @@ export function CollectionDetailView({
   studyHref,
   studyReady,
   directStudyScope = false,
-  assignmentHref
+  assignmentHref,
+  paging
 }: CollectionDetailViewProps) {
   const [query, setQuery] = useState("");
+  const [composing, setComposing] = useState(false);
   const trimmedQuery = query.trim().toLowerCase();
-  const matchingItems = items.filter((item) => !trimmedQuery
+  const matchingItems = paging ? items : items.filter((item) => !trimmedQuery
     || item.word.toLowerCase().includes(trimmedQuery)
     || getPrimaryVietnameseMeaning(item).toLowerCase().includes(trimmedQuery));
   const typeLabel = kind === "topic" ? "Chủ đề" : "Bộ từ";
@@ -73,9 +79,10 @@ export function CollectionDetailView({
   const percent = total === 0 ? 0 : Math.round((learned / total) * 100);
   const unlearned = total - learned;
   const complete = total > 0 && masteredCount === total;
-  const canStudy = studyReady && items.length > 0;
+  const totalItems = paging?.totalCount ?? items.length;
+  const canStudy = studyReady && progressTotal > 0;
   const actionHref = canStudy ? studyHref : assignmentHref;
-  const actionLabel = !items.length
+  const actionLabel = !progressTotal
     ? "Chưa có từ để học"
     : !studyReady
       ? kind === "learning-set" ? "Thêm bộ từ vào học tập" : "Chọn bộ từ để bắt đầu"
@@ -103,7 +110,7 @@ export function CollectionDetailView({
               <h1 id="collection-detail-title">{title}</h1>
               <p>{description}</p>
               <div className="collection-detail-badges">
-                <span className="collection-detail-badge collection-detail-count">{items.length} từ</span>
+                <span className="collection-detail-badge collection-detail-count">{progressTotal} từ</span>
                 {level ? <span className="collection-detail-badge collection-detail-level">{gradeLabel(level)}</span> : null}
               </div>
             </div>
@@ -116,9 +123,9 @@ export function CollectionDetailView({
             <div className="collection-vocabulary-heading">
               <div>
                 <h2 id="collection-vocabulary-title">Từ vựng trong {kind === "topic" ? "chủ đề" : "bộ này"}</h2>
-                <p>{items.length} từ theo thứ tự nội dung</p>
+                <p>{totalItems} từ theo thứ tự nội dung</p>
               </div>
-              {items.length > 0 ? (
+              {progressTotal > 0 ? (
                 <div className="collection-vocabulary-search">
                   <CollectionIcon name="search" />
                   <label className="sr-only" htmlFor="collection-vocabulary-search">Tìm từ trong {kind === "topic" ? "chủ đề" : "bộ từ"}</label>
@@ -126,22 +133,31 @@ export function CollectionDetailView({
                     id="collection-vocabulary-search"
                     type="search"
                     placeholder={`Tìm trong ${kind === "topic" ? "chủ đề" : "bộ từ"} này…`}
-                    value={query}
-                    onChange={(event) => setQuery(event.target.value)}
+                    value={composing ? query : paging?.query ?? query}
+                    onCompositionStart={() => { setQuery(paging?.query ?? query); setComposing(true); }}
+                    onCompositionEnd={(event) => { setComposing(false); if (paging) paging.onQueryChange(event.currentTarget.value); else setQuery(event.currentTarget.value); }}
+                    onChange={(event) => paging && !composing ? paging.onQueryChange(event.target.value) : setQuery(event.target.value)}
                   />
+                  {(paging?.query ?? query) ? <button type="button" className="button secondary" aria-label="Xóa tìm kiếm trong bộ từ" onClick={() => paging ? paging.onQueryChange("") : setQuery("")}>×</button> : null}
                 </div>
               ) : null}
             </div>
 
-            {items.length === 0 ? (
+            {paging?.busy ? <p role="status">Đang tải từ vựng…</p> : null}
+            {progressTotal === 0 ? (
               <EmptyState className="collection-detail-empty" icon="book" title="Chưa có từ vựng trong nội dung này." description="Nội dung sẽ xuất hiện tại đây khi có từ đang bật." testId="collection-detail-empty" />
             ) : matchingItems.length === 0 ? (
-              <EmptyState className="collection-detail-empty" icon="search" title="Không tìm thấy từ phù hợp" description="Thử từ khóa tiếng Anh hoặc nghĩa tiếng Việt khác." action={<button type="button" className="button secondary" onClick={() => setQuery("")}>Xóa tìm kiếm</button>} testId="collection-detail-no-results" />
+              <EmptyState className="collection-detail-empty" icon="search" title="Không tìm thấy từ phù hợp" description="Thử từ khóa tiếng Anh hoặc nghĩa tiếng Việt khác." action={<button type="button" className="button secondary" onClick={() => paging ? paging.onQueryChange("") : setQuery("")}>Xóa tìm kiếm</button>} testId="collection-detail-no-results" />
             ) : (
-              <ul className="vocabulary-grid" data-testid="collection-vocabulary-list">
+              <ul className="vocabulary-grid" data-testid="collection-vocabulary-list" aria-busy={paging?.busy}>
                 {matchingItems.map((item) => <VocabularyCard key={item.id} item={item} showStatus />)}
               </ul>
             )}
+            {paging ? <nav className="guest-collection-pagination" aria-label="Phân trang từ vựng trong bộ">
+              <button className="button secondary" type="button" disabled={paging.busy || paging.page <= 1} onClick={() => paging.onPageChange(paging.page - 1)}>Trang trước</button>
+              <span aria-live="polite">Trang {paging.page} / {paging.totalPages}</span>
+              <button className="button secondary" type="button" disabled={paging.busy || paging.page >= paging.totalPages} onClick={() => paging.onPageChange(paging.page + 1)}>Trang sau</button>
+            </nav> : null}
           </section>
         </div>
 
@@ -149,7 +165,7 @@ export function CollectionDetailView({
           <section className="collection-detail-card" aria-labelledby="collection-info-title">
             <h2 id="collection-info-title"><CollectionIcon name="info" />Thông tin {typeLabel.toLowerCase()}</h2>
             <dl className="collection-detail-facts">
-              <div><dt><CollectionIcon name="count" />Số lượng từ</dt><dd>{items.length} từ</dd></div>
+              <div><dt><CollectionIcon name="count" />Số lượng từ</dt><dd>{progressTotal} từ</dd></div>
               {level ? <div><dt><CollectionIcon name="level" />Cấp độ</dt><dd>{gradeLabel(level)}</dd></div> : null}
               <div><dt><CollectionIcon name="folder" />Danh mục</dt><dd>{typeLabel}</dd></div>
               <div className="collection-detail-description"><dt>Mô tả</dt><dd>{description}</dd></div>

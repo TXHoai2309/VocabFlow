@@ -2,6 +2,15 @@
 
 ## 2026-10-19 — Public guest learning (US-58)
 
+### Loading and New-count correction
+
+- Replace guest startup full-content downloads with an ID/membership index;
+  fetch word details by bounded IDs and browse/collections by SQL pages.
+- Local Settings/history/activity no longer wait for content. Keep existing
+  local progress, scheduler rules and authenticated authorization unchanged.
+- Show real unseen source counts, separate today's allowance and exclude
+  learned IDs directly when selecting cards. Add 7,311-word regression budgets.
+
 - Open Home and learning routes without signup; add a dismissible registration
   recommendation and guest account entry on desktop/mobile.
 - Add an enabled-content public catalog with the existing media publication policy.

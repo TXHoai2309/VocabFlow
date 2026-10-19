@@ -11,7 +11,15 @@ let network: ReturnType<typeof vi.fn>;
 let lockTail = Promise.resolve();
 beforeEach(() => {
   localStorage.clear(); clearLearningCatalogCache(); setGuestCatalogEnabled(true);
-  network = vi.fn().mockImplementation(async () => new Response(JSON.stringify(guestTestCatalog)));
+  network = vi.fn().mockImplementation(async (path: string) => {
+    const url = new URL(path, "http://localhost");
+    if (url.pathname === "/api/public/learning-index") return new Response(JSON.stringify({ ...guestTestCatalog, vocabulary: guestTestCatalog.vocabulary.map(({ id, level }) => ({ id, level })) }));
+    if (url.pathname === "/api/public/vocabulary") return new Response(JSON.stringify({ vocabulary: guestTestCatalog.vocabulary.filter((word) => (url.searchParams.get("ids") ?? "").split(",").map(Number).includes(word.id)) }));
+    if (url.pathname === "/api/public/vocabulary/browse") return new Response(JSON.stringify({ vocabulary: guestTestCatalog.vocabulary.map(({ definitionEn: _definition, exampleEn: _example, ...item }) => {
+      return { ...item, status: "NEW", nextReviewDate: null };
+    }), total: 2, page: 1, pageSize: 30, totalPages: 1, filters: { cefrOptions: [], topicOptions: ["Chào hỏi"] } }));
+    return new Response(JSON.stringify(guestTestCatalog));
+  });
   vi.stubGlobal("fetch", network);
   vi.stubGlobal("navigator", { locks: { request: (_name: string, callback: () => unknown) => {
     const next = lockTail.then(callback); lockTail = next.then(() => undefined, () => undefined); return next;
@@ -32,12 +40,18 @@ describe("guest learning persistence and transport isolation", () => {
     expect(Object.keys(readGuestState().receipts)).toHaveLength(1);
     const restored = contracts.reviewQueueResponseSchema.parse(await get("review-queue?source=all"));
     expect(restored.queue.map((item) => item.vocabulary.id)).toEqual([2]);
-    expect(network.mock.calls.every(([url]) => url === "/api/public/learning-catalog")).toBe(true);
+    expect(network.mock.calls.every(([url]) => String(url).startsWith("/api/public/") && !String(url).includes("learning-catalog"))).toBe(true);
   });
   it("serializes competing tabs and rejects stale revisions", async () => {
     const responses = await Promise.all([review(), review({ reviewId: "00000000-0000-4000-8000-000000000002" })]);
     expect(responses.map((response) => response.status)).toEqual([200, 409]);
     expect(readGuestState().progress[1]?.revision).toBe(1);
+  });
+  it("replays an already confirmed local review without content or network", async () => {
+    const first = await (await review()).json();
+    clearLearningCatalogCache(); network.mockReset().mockRejectedValue(new Error("offline"));
+    expect(await (await review()).json()).toEqual(first);
+    expect(network).not.toHaveBeenCalled();
   });
   it("keeps an account review on the authenticated server transport", async () => {
     const accountId = "00000000-0000-4000-8000-000000000099";
@@ -75,7 +89,7 @@ describe("guest learning persistence and transport isolation", () => {
   it("returns valid data for every guest screen, including after learning", async () => {
     await review();
     const resources = [
-      ["vocabulary", contracts.learnerVocabularyListResponseSchema], ["vocabulary/browse", contracts.learnerVocabularyBrowseResponseSchema],
+      ["vocabulary?id=1", contracts.learnerVocabularyListResponseSchema], ["vocabulary/browse", contracts.learnerVocabularyBrowseResponseSchema],
       ["progress-summary", contracts.progressSummaryResponseSchema], ["activity-summary", contracts.activitySummaryResponseSchema],
       ["progress-history", contracts.progressHistoryResponseSchema], ["topic-progress", contracts.topicProgressResponseSchema],
       ["continue-learning", contracts.continueLearningSummaryResponseSchema], ["learning-sets", contracts.learnerLearningSetListResponseSchema],

@@ -7470,3 +7470,47 @@ owner-approved baseline exception. See
   untracked development UI, scripts, datasets and migration files. Publish one
   commit through normal fast-forward updates; the existing main CI/release
   pipeline remains the release authority. No standalone deployment or DB command.
+
+### 2026-10-19 — US-58 deployed loading performance audit
+
+- Owner requested a read-only audit after deployment. Public catalog MISS was
+  9,407 ms (8,602 ms TTFB), then HIT 508 ms / STALE 480 ms. Payload: 7,311 words,
+  8,140,988 decoded JSON bytes and about 1.85 MB compressed response body.
+- Confirmed every guest resource waits for the full catalog, including local
+  Settings. This US-58 bootstrap regression escaped the 1–2-word test fixtures.
+- Findings, measurements and limitations are recorded in
+  docs/qa/US-58-loading-performance-audit-2026-10-19.md. No application fix made.
+  SQL/Neon/serialization attribution needs per-stage Server-Timing; no direct DB
+  query or authenticated-account performance claim was made.
+- Production was read only. No progress write, environment change, commit,
+  push or deployment. Public response samples and metrics are local/gitignored.
+
+### 2026-10-19 — US-58 performance and New-count fix, owner-authorized publication
+
+- Owner requested fixing the audit and the screenshot's 100 minus 10 New metric,
+  then pushing to Git. Continue the same TXH/dev/main publication scope.
+- Public startup now reads an enabled dataset ID/level/membership index via
+  three parallel queries. Detail batches accept at most 60 IDs, with at most
+  two concurrent browser batches. Browse and guest collections page in SQL;
+  weak-word search transfers IDs rather than whole word content. Preserve the
+  existing public-media sanitizer and private API authorization.
+- Settings/activity/history/rewards/reset/unsave are independent of content
+  reads. Reuse validated storage snapshots; clone before locked writes so a
+  persistence failure cannot mutate the cached snapshot. Confirmed review
+  retries replay locally without fetching content. Stored format remains v1.
+- New count is the true unseen source total; today's allowance and session
+  candidates remain separate. Exclude learned IDs, not a learned-count offset.
+  The 7,311-word / 10-learned / limit-100 fixture reports 7,301 New, 90 eligible
+  today and 30 capacity-bounded candidates. Older-day history does not reduce
+  today's allowance. Existing scheduler, due ordering and account flows remain.
+- Same-data public payload projection: 8,140,988 decoded bytes before versus
+  252,429-byte index + 11,074 bytes for ten details = 263,503 (96.8% reduction).
+  This is a size projection, not a post-deployment timing claim.
+- Final verification: 833/833 production web/API/domain tests (63 files);
+  27/27 Chromium E2E for guests, login, picker and allocation; Web/API typechecks,
+  changed-file ESLint, pnpm build and strict production UI audit pass. The
+  unrelated untracked development preview suite remains outside this regression
+  run. Existing root local-tooling/script check debt was not modified.
+- No direct Neon/DB write, migration, environment or learner-history operation.
+  Preserve unrelated untracked data/scripts/development UI. Publish one normal
+  fast-forward commit; the existing main CI/Vercel pipeline controls deployment.

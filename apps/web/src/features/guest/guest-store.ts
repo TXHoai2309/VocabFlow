@@ -21,6 +21,8 @@ export function emptyGuestState(): GuestState {
     settings: { learnerId: GUEST_ID, dailyNewWordLimit: 10, dailyNewWordGoal: 10, dailyReviewWordGoal: 20 } };
 }
 let storageError = false;
+let cachedRaw: string | null = null;
+let cachedState: GuestState | undefined;
 export function hasGuestStorageError() { return storageError; }
 function setStorageError(value: boolean) {
   storageError = value;
@@ -29,7 +31,11 @@ function setStorageError(value: boolean) {
 export function readGuestState(): GuestState {
   try {
     const raw = localStorage.getItem(GUEST_STORAGE_KEY);
-    return raw ? stateSchema.parse(JSON.parse(raw)) : emptyGuestState();
+    if (!raw) { cachedRaw = null; cachedState = undefined; return emptyGuestState(); }
+    if (raw === cachedRaw && cachedState) return cachedState;
+    const state = stateSchema.parse(JSON.parse(raw));
+    cachedRaw = raw; cachedState = state;
+    return state;
   } catch {
     setStorageError(true);
     throw new Error("GUEST_STORAGE_UNAVAILABLE");
@@ -41,11 +47,15 @@ export function readGuestState(): GuestState {
 export async function mutateGuestState<T>(update: (state: GuestState) => T): Promise<T> {
   if (!navigator.locks) { setStorageError(true); throw new Error("GUEST_LOCK_UNAVAILABLE"); }
   return navigator.locks.request(GUEST_STORAGE_KEY, () => {
-    const state = readGuestState();
+    // The cached read snapshot remains unchanged if persistence fails.
+    const state = structuredClone(readGuestState());
     const result = update(state);
     state.revision += 1;
     try {
-      localStorage.setItem(GUEST_STORAGE_KEY, JSON.stringify(stateSchema.parse(state)));
+      const validated = stateSchema.parse(state);
+      const raw = JSON.stringify(validated);
+      localStorage.setItem(GUEST_STORAGE_KEY, raw);
+      cachedRaw = raw; cachedState = validated;
       setStorageError(false);
     } catch {
       setStorageError(true);

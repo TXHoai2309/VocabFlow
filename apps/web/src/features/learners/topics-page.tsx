@@ -1,6 +1,9 @@
+import { ActiveLearnerContext } from "./learner-context";
+import { GuestCollectionPage } from "../guest/guest-collection-page";
+import { GUEST_ID } from "../guest/guest-store";
 import { AccountLearningState } from "./account-learning-state";
-import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router";
+import { useContext, useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router";
 import type { LearnerDto, TopicDto, VocabularyDto, VocabularyLevel } from "@vocabflow/contracts";
 import { useActiveLearner } from "./learner-context-hook";
 import { LearnerVocabularyClientError, requestLearnerVocabulary } from "./vocabulary-list-client";
@@ -21,6 +24,8 @@ function errorMessage(error: unknown, topic = false) {
 }
 
 export function TopicsPage() {
+  const activeLearner = useContext(ActiveLearnerContext)?.activeLearner;
+  const navigate = useNavigate();
   const [topics, setTopics] = useState<TopicDto[]>([]);
   const [topicState, setTopicState] = useState<LoadState>("loading");
   const [topicMessage, setTopicMessage] = useState<string | null>(null);
@@ -66,6 +71,7 @@ export function TopicsPage() {
   }, [selectedTopicId, vocabularyRetry]);
 
   function selectTopic(topicId: number) {
+    if (activeLearner?.id === GUEST_ID) { navigate(`/topics/${topicId}`); return; }
     setSelectedTopicId(topicId);
     setVocabularyState("loading");
     setVocabularyMessage(null);
@@ -166,6 +172,7 @@ export function TopicDetailPage() {
     return <AccountLearningState />;
   }
   const parsedId = topicId && /^\d+$/.test(topicId) ? Number(topicId) : NaN;
+  if (activeLearner.id === GUEST_ID && Number.isSafeInteger(parsedId) && parsedId > 0) return <GuestCollectionPage kind="topic" id={parsedId} />;
   return <TopicDetailExperience key={`${activeLearner.id}:${topicId ?? "missing"}`} learner={activeLearner} topicId={parsedId} />;
 }
 

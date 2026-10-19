@@ -1,3 +1,5 @@
+import { GuestCollectionPage } from "../guest/guest-collection-page";
+import { GUEST_ID } from "../guest/guest-store";
 import { AccountLearningState } from "../learners/account-learning-state";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
@@ -105,6 +107,7 @@ export function LearningSetDetailPage() {
     return <AccountLearningState />;
   }
   const parsedId = learningSetId && /^\d+$/.test(learningSetId) ? Number(learningSetId) : NaN;
+  if (activeLearner.id === GUEST_ID && Number.isSafeInteger(parsedId) && parsedId > 0) return <GuestCollectionPage kind="learning-set" id={parsedId} />;
   return <LearningSetDetailExperience key={`${activeLearner.id}:${learningSetId ?? "missing"}`} learner={activeLearner} learningSetId={parsedId} />;
 }
 

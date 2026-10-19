@@ -3,6 +3,7 @@ import {
   APP_SCHEMA,
   learnerVocabularyBrowseItemSchema,
   learnerVocabularyBrowseResponseSchema,
+  type PublicVocabularyBrowseQuery,
   type LearnerVocabularyBrowseItem,
   type LearnerVocabularyBrowseQuery,
   type LearnerVocabularyBrowseResponse
@@ -147,108 +148,138 @@ export function createLearnerVocabularyBrowseService(
         throw new LearnerVocabularyServiceError("HOUSEHOLD_ACCESS_DENIED", 403);
       }
 
-      try {
-        const where = sql.join(browseFilters(datasetVersion, query), sql` AND `);
-        const offset = (query.page - 1) * query.pageSize;
-        const [pageResult, countResult, filtersResult] = await Promise.all([
-          database.execute(sql`
-            SELECT
-              v.id, v.word, v.ipa,
-              COALESCE(v.vietnamese_override, v.vietnamese) AS vietnamese,
-              CASE WHEN v.image_quarantined THEN NULL ELSE v.image_url END AS image_url,
-              v.audio_url, v.topic, v.level, v.enabled, v.content_version,
-              md.proposal_key AS master_sense_identity,
-              md.source_provenance->'masterV2Identity'->>'sourceMeaningVi' AS source_meaning_vi,
-              sm.short_meaning_vi AS short_meaning_vi, sm.validation_status AS short_meaning_status,
-              md.source_provenance->'masterV2Identity'->>'displayForm' AS display_form,
-              md.part_of_speech, md.cefr, md.tags, md.rights_status, md.content_sha256,
-              md.content_review_decision, md.editorial_status,
-              CASE WHEN md.development_media IS NULL THEN NULL ELSE
-                jsonb_strip_nulls(jsonb_build_object(
-                  'images', md.development_media->'images',
-                  'wordAudio', md.development_media->'wordAudio'
-                ))
-              END AS development_media,
-              lp.status::text AS progress_status,
-              lp.next_review_date
-            FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v
-            LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
-            LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_short_meanings" sm
-              ON sm.vocabulary_id = v.id AND sm.source_content_hash = md.content_sha256 AND sm.validation_status = 'VERIFIED'
-            LEFT JOIN "${sql.raw(APP_SCHEMA)}"."learner_progress" lp
-              ON lp.vocabulary_id = v.id
-             AND lp.learner_id = ${ownership.learnerId}::uuid
-            WHERE ${where}
-            ORDER BY v.id ASC
-            LIMIT ${query.pageSize} OFFSET ${offset}
-          `),
-          database.execute(sql`
-            SELECT COUNT(*)::bigint AS total
-            FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v
-            LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
-            WHERE ${where}
-          `),
-          database.execute(sql`
-            SELECT
-              COALESCE((
-                SELECT array_agg(options.cefr ORDER BY options.cefr)
-                FROM (
-                  SELECT DISTINCT md.cefr AS cefr
-                  FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v
-                  JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
-                  WHERE v.enabled = true AND ${vocabularyDatasetPredicate("v", datasetVersion)} AND md.cefr IS NOT NULL
-                ) options
-              ), ARRAY[]::text[]) AS cefr_options,
-              COALESCE((
-                SELECT array_agg(options.topic ORDER BY options.topic)
-                FROM (
-                SELECT DISTINCT topic_values.topic
-                FROM (
-                    SELECT t.name AS topic
-                    FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v
-                    JOIN "${sql.raw(APP_SCHEMA)}"."vocabulary_topics" vt ON vt.vocabulary_id = v.id
-                    JOIN "${sql.raw(APP_SCHEMA)}"."topics" t ON t.id = vt.topic_id
-                    WHERE v.enabled = true
-                      AND ${vocabularyDatasetPredicate("v", datasetVersion)}
-                      AND t.enabled = true
-                    UNION
-                    SELECT NULLIF(BTRIM(v.topic), '') AS topic
-                    FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v
-                    WHERE v.enabled = true AND ${vocabularyDatasetPredicate("v", datasetVersion)}
-                    UNION
-                    SELECT NULLIF(BTRIM(tag.value), '') AS topic
-                    FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v
-                    LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
-                    CROSS JOIN LATERAL jsonb_array_elements_text(COALESCE(md.tags, '[]'::jsonb)) AS tag(value)
-                    WHERE v.enabled = true AND ${vocabularyDatasetPredicate("v", datasetVersion)}
-                  ) topic_values
-                  WHERE topic_values.topic IS NOT NULL
-                ) options
-              ), ARRAY[]::text[]) AS topic_options
-          `)
-        ]);
-
-        const [countRow] = rowsOf<{ total: unknown }>(countResult);
-        const [filterRow] = rowsOf<{ cefr_options: unknown; topic_options: unknown }>(filtersResult);
-        const total = safeInteger(countRow?.total ?? 0);
-        const response: LearnerVocabularyBrowseResponse = {
-          vocabulary: rowsOf<VocabularyBrowseRow>(pageResult).map(toBrowseItem),
-          total,
-          page: query.page,
-          pageSize: query.pageSize,
-          totalPages: Math.max(1, Math.ceil(total / query.pageSize)),
-          filters: {
-            cefrOptions: Array.isArray(filterRow?.cefr_options) ? filterRow.cefr_options.map(String) : [],
-            topicOptions: Array.isArray(filterRow?.topic_options) ? filterRow.topic_options.map(String) : []
-          }
-        };
-        const parsed = learnerVocabularyBrowseResponseSchema.safeParse(response);
-        if (!parsed.success) throw new LearnerVocabularyServiceError("INTERNAL_ERROR", 500);
-        return parsed.data;
-      } catch (error) {
-        if (error instanceof LearnerVocabularyServiceError) throw error;
-        throw new LearnerVocabularyServiceError("INTERNAL_ERROR", 500);
-      }
+      return readVocabularyBrowse(database, datasetVersion, query, ownership.learnerId);
     }
   };
+}
+
+
+/** The public caller has no learner join, identity, household or progress read. */
+export function readPublicVocabularyBrowse(database: LearnerVocabularyDatabase, datasetVersion: VocabularyDatasetVersion, query: PublicVocabularyBrowseQuery): Promise<LearnerVocabularyBrowseResponse> {
+  return readVocabularyBrowse(database, datasetVersion, query);
+}
+
+/** Search within sparse local progress using IDs, without downloading word content. */
+export async function readPublicVocabularyMatchIds(database: LearnerVocabularyDatabase, datasetVersion: VocabularyDatasetVersion, query: string): Promise<number[]> {
+  const where = sql.join(browseFilters(datasetVersion, { page: 1, pageSize: 20, q: query }), sql` AND `);
+  const result = await database.execute(sql`
+    SELECT v.id FROM "${sql.raw(APP_SCHEMA)}".vocabularies v
+    LEFT JOIN "${sql.raw(APP_SCHEMA)}".master_v2_development_projections md ON md.vocabulary_id = v.id
+    WHERE ${where} ORDER BY v.id
+  `);
+  return rowsOf<{ id: unknown }>(result).map((row) => safeInteger(row.id));
+}
+
+async function readVocabularyBrowse(database: LearnerVocabularyDatabase, datasetVersion: VocabularyDatasetVersion, query: PublicVocabularyBrowseQuery, learnerId?: string): Promise<LearnerVocabularyBrowseResponse> {
+  try {
+    const filters = browseFilters(datasetVersion, query);
+    if (query.learningSetId) filters.push(sql`EXISTS (
+      SELECT 1 FROM "${sql.raw(APP_SCHEMA)}".learning_set_items lsi
+      JOIN "${sql.raw(APP_SCHEMA)}".learning_sets ls ON ls.id = lsi.learning_set_id AND ls.enabled = true
+      WHERE lsi.vocabulary_id = v.id AND ls.id = ${query.learningSetId}
+    )`);
+    if (query.topicId) filters.push(sql`EXISTS (
+      SELECT 1 FROM "${sql.raw(APP_SCHEMA)}".vocabulary_topics vt
+      JOIN "${sql.raw(APP_SCHEMA)}".topics t ON t.id = vt.topic_id AND t.enabled = true
+      WHERE vt.vocabulary_id = v.id AND t.id = ${query.topicId}
+    )`);
+    const where = sql.join(filters, sql` AND `);
+    const offset = (query.page - 1) * query.pageSize;
+    const [pageResult, countResult, filtersResult] = await Promise.all([
+      database.execute(sql`
+        SELECT
+          v.id, v.word, v.ipa,
+          COALESCE(v.vietnamese_override, v.vietnamese) AS vietnamese,
+          CASE WHEN v.image_quarantined THEN NULL ELSE v.image_url END AS image_url,
+          v.audio_url, v.topic, v.level, v.enabled, v.content_version,
+          md.proposal_key AS master_sense_identity,
+          md.source_provenance->'masterV2Identity'->>'sourceMeaningVi' AS source_meaning_vi,
+          sm.short_meaning_vi AS short_meaning_vi, sm.validation_status AS short_meaning_status,
+          md.source_provenance->'masterV2Identity'->>'displayForm' AS display_form,
+          md.part_of_speech, md.cefr, md.tags, md.rights_status, md.content_sha256,
+          md.content_review_decision, md.editorial_status,
+          CASE WHEN md.development_media IS NULL THEN NULL ELSE
+            jsonb_strip_nulls(jsonb_build_object(
+              'images', md.development_media->'images',
+              'wordAudio', md.development_media->'wordAudio'
+            ))
+          END AS development_media,
+          ${learnerId ? sql`lp.status::text AS progress_status, lp.next_review_date` : sql`NULL::text AS progress_status, NULL::date AS next_review_date`}
+        FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v
+        LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
+        LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_short_meanings" sm
+          ON sm.vocabulary_id = v.id AND sm.source_content_hash = md.content_sha256 AND sm.validation_status = 'VERIFIED'
+        ${learnerId ? sql`LEFT JOIN "${sql.raw(APP_SCHEMA)}"."learner_progress" lp
+          ON lp.vocabulary_id = v.id AND lp.learner_id = ${learnerId}::uuid` : sql``}
+        WHERE ${where}
+        ORDER BY v.id ASC
+        LIMIT ${query.pageSize} OFFSET ${offset}
+      `),
+      database.execute(sql`
+        SELECT COUNT(*)::bigint AS total
+        FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v
+        LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
+        WHERE ${where}
+      `),
+      database.execute(sql`
+        SELECT
+          COALESCE((
+            SELECT array_agg(options.cefr ORDER BY options.cefr)
+            FROM (
+              SELECT DISTINCT md.cefr AS cefr
+              FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v
+              JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
+              WHERE v.enabled = true AND ${vocabularyDatasetPredicate("v", datasetVersion)} AND md.cefr IS NOT NULL
+            ) options
+          ), ARRAY[]::text[]) AS cefr_options,
+          COALESCE((
+            SELECT array_agg(options.topic ORDER BY options.topic)
+            FROM (
+            SELECT DISTINCT topic_values.topic
+            FROM (
+                SELECT t.name AS topic
+                FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v
+                JOIN "${sql.raw(APP_SCHEMA)}"."vocabulary_topics" vt ON vt.vocabulary_id = v.id
+                JOIN "${sql.raw(APP_SCHEMA)}"."topics" t ON t.id = vt.topic_id
+                WHERE v.enabled = true
+                  AND ${vocabularyDatasetPredicate("v", datasetVersion)}
+                  AND t.enabled = true
+                UNION
+                SELECT NULLIF(BTRIM(v.topic), '') AS topic
+                FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v
+                WHERE v.enabled = true AND ${vocabularyDatasetPredicate("v", datasetVersion)}
+                UNION
+                SELECT NULLIF(BTRIM(tag.value), '') AS topic
+                FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v
+                LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
+                CROSS JOIN LATERAL jsonb_array_elements_text(COALESCE(md.tags, '[]'::jsonb)) AS tag(value)
+                WHERE v.enabled = true AND ${vocabularyDatasetPredicate("v", datasetVersion)}
+              ) topic_values
+              WHERE topic_values.topic IS NOT NULL
+            ) options
+          ), ARRAY[]::text[]) AS topic_options
+      `)
+    ]);
+
+    const [countRow] = rowsOf<{ total: unknown }>(countResult);
+    const [filterRow] = rowsOf<{ cefr_options: unknown; topic_options: unknown }>(filtersResult);
+    const total = safeInteger(countRow?.total ?? 0);
+    const response: LearnerVocabularyBrowseResponse = {
+      vocabulary: rowsOf<VocabularyBrowseRow>(pageResult).map(toBrowseItem),
+      total,
+      page: query.page,
+      pageSize: query.pageSize,
+      totalPages: Math.max(1, Math.ceil(total / query.pageSize)),
+      filters: {
+        cefrOptions: Array.isArray(filterRow?.cefr_options) ? filterRow.cefr_options.map(String) : [],
+        topicOptions: Array.isArray(filterRow?.topic_options) ? filterRow.topic_options.map(String) : []
+      }
+    };
+    const parsed = learnerVocabularyBrowseResponseSchema.safeParse(response);
+    if (!parsed.success) throw new LearnerVocabularyServiceError("INTERNAL_ERROR", 500);
+    return parsed.data;
+  } catch (error) {
+    if (error instanceof LearnerVocabularyServiceError) throw error;
+    throw new LearnerVocabularyServiceError("INTERNAL_ERROR", 500);
+  }
 }

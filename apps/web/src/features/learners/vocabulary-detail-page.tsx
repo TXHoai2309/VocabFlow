@@ -118,7 +118,7 @@ function VocabularyDetailExperience({ activeLearner, vocabularyId }: { activeLea
       return;
     }
     try {
-      const response = await requestLearnerVocabulary(activeLearner.id);
+      const response = await requestLearnerVocabulary(activeLearner.id, undefined, vocabularyId);
       setAllVocabulary(response);
       setVocabulary(response.find((item) => item.id === vocabularyId) ?? null);
       setState("ready");
@@ -242,8 +242,9 @@ function VocabularyDetailContent({ vocabulary, allVocabulary, isSaved, isSaving,
   onToggleSaved: () => void;
   onRetrySaved: () => void;
 }) {
-  const [imageFailed, setImageFailed] = useState(false);
-  useEffect(() => setImageFailed(false), [vocabulary.id, vocabulary.imageUrl]);
+  const [failedImageKey, setFailedImageKey] = useState<string | null>(null);
+  const imageKey = `${vocabulary.id}:${vocabulary.imageUrl ?? ""}`;
+  const imageFailed = failedImageKey === imageKey;
   const audio = usePronunciationAudio(vocabulary.audioUrl, vocabulary.word, vocabulary.id);
   const hasDevelopmentAudio = (vocabulary.developmentMedia?.wordAudio?.length ?? 0) > 0;
   const examples = parseVocabularyExamples(vocabulary.examples);
@@ -337,7 +338,7 @@ function VocabularyDetailContent({ vocabulary, allVocabulary, isSaved, isSaving,
 
           {showImagePanel ? <div className={`vocabulary-detail-image-panel${imageFailed ? " is-failed" : ""}`}>
             {vocabulary.imageUrl && !imageFailed
-              ? <img src={vocabulary.imageUrl} alt={`Minh họa cho từ ${vocabulary.word}`} onError={() => setImageFailed(true)} />
+              ? <img src={vocabulary.imageUrl} alt={`Minh họa cho từ ${vocabulary.word}`} onError={() => setFailedImageKey(imageKey)} />
               : hasDevelopmentImageCandidates ? <DevelopmentImagePreviews vocabulary={vocabulary} />
                 : <p className="vocabulary-detail-image-fallback" role="status">Hình ảnh tạm thời không khả dụng.</p>}
             <DevelopmentImageNotice vocabulary={vocabulary} />

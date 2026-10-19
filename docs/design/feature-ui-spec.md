@@ -2,6 +2,13 @@
 
 ## Guest learning (US-58, 2026-10-19)
 
+Home's New stat uses the total unseen source count; its daily hero uses the
+separate remaining daily allowance. Guest collection detail reuses the shared
+layout with 30-row server paging, whole-collection totals, URL page/search,
+debounced/cancelable search and keyboard-accessible previous/next controls.
+Guest Topic selection opens that paged detail route; account browse remains
+compatible. Settings renders and saves from local state without content reads.
+
 Guest routes reuse the existing shell, navigation, page composition and controls.
 A shared in-flow notice recommends registration, describes browser-only storage
 and clearing risk, and offers “Đăng ký” / “Tiếp tục học”. Dismiss for the

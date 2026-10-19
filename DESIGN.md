@@ -24,3 +24,7 @@ storage from account synchronization and expose storage failures accessibly.
 ## Verification
 Use component tests, guest persistence tests and browser E2E at desktop/mobile
 widths, plus repository lint/typecheck/build. No new font or token adapter.
+
+Guest collection pagination reuses existing button/card/search tokens and keeps
+the shared collection layout. Its metadata/counts refer to the entire collection;
+only list cards are paged. See UX-CONTRACT.md and the US-58 correction contract.

@@ -52,3 +52,36 @@ This is not a full offline/PWA mode. Durable guest writes require localStorage
 and Web Locks (HTTPS/localhost in supported browsers). Unsupported/blocked/full
 storage surfaces a persistent error and keeps the answer retryable. Guest
 history stays separate from account history; no automatic upload or merge.
+
+## Owner-approved performance and New-count correction — 2026-10-19
+
+Status: IMPLEMENTED / READY FOR OWNER CHECK. The owner requested fixing the deployed loading audit and
+the guest New metric shown as 100 minus 10, then publishing to Git.
+
+- Guest `newCount` is the actual distinct unseen vocabulary count in scope,
+  independent of daily goals/limits. `dailyNewRemaining` is the current daily
+  allowance clipped to available New. The candidate queue respects that
+  allowance and the requested capacity; it excludes learned IDs, never skips
+  an offset equal to the total learned count. Previously learned days do not
+  consume today's allowance. Due-before-New and scheduler rules remain intact.
+- Replace the startup full-content catalog with a public ID/level/membership
+  index. Full content is fetched in bounded batches of at most 60 IDs with at
+  most two simultaneous batches; browse/collections/search use bounded pages.
+- Settings, activity/history, rewards, reset and unsave run locally without
+  fetching content. Existing guest storage survives unchanged; cache snapshots
+  are reused while writes clone the snapshot and commit under the existing lock.
+- Guest collections use 30-row server pages, URL state and cancelable/IME-safe
+  search; account collection behavior and authorization remain compatible.
+- New public queries retain dataset/enabled predicates and the existing media
+  sanitizer; no private identity/progress data enters public responses.
+- Acceptance includes 7,311-word budgets, total-versus-daily counts, sparse ID
+  selection, offline Settings, bounded requests and authenticated regressions.
+
+Correction verification: 833/833 production web/API/domain tests pass across
+63 files (excluding the unrelated untracked development preview). All 27 selected
+Chromium E2E pass: guest learning/scale/offline/two-tab/paging, login, source
+picker at 320/390/768/1440px and mixed allocations. Web/API typechecks,
+changed-file ESLint, pnpm build and strict production UI audit pass. Same-data
+payload projection drops 8,140,988 bytes to 263,503 bytes for index + ten Home
+details (96.8% less); see the loading-performance-fix QA report. This is not
+a live post-deployment latency claim. No direct DB write/migration was run.

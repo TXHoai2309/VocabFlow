@@ -112,7 +112,7 @@ export function DailyStudyHero({
 }) {
   const hasQueue = queue.status === "ready" && queue.data.queue.length > 0;
   const dueCount = queue.status === "ready" ? queue.data.dueCount : null;
-  const newCount = queue.status === "ready" ? queue.data.newCount : null;
+  const newCount = queue.status === "ready" ? queue.data.dailyNewRemaining ?? queue.data.newCount : null;
   const streak = activity.status === "ready" ? activity.data.streak.currentStreak : null;
   return (
     <section className="home-hero" aria-labelledby="home-hero-title">

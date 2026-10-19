@@ -1,0 +1,57 @@
+import { performance } from "node:perf_hooks";
+import { sql } from "drizzle-orm";
+import { APP_SCHEMA, publicLearningIndexSchema, type PublicLearningIndex } from "@vocabflow/contracts";
+import type { VocabularyDatabase } from "./vocabulary";
+import { vocabularyDatasetPredicate, type VocabularyDatasetVersion } from "./vocabulary-dataset-version";
+
+function rows<T>(value: unknown): T[] {
+  if (Array.isArray(value)) return value as T[];
+  if (value && typeof value === "object" && "rows" in value && Array.isArray(value.rows)) return value.rows as T[];
+  throw new Error("INVALID_PUBLIC_INDEX");
+}
+type CollectionRow = { id: number; slug: string; name: string; description: string; grade?: string | null; sort_order: number; vocabulary_ids: number[] | string };
+
+export async function readPublicLearningIndex(database: VocabularyDatabase, datasetVersion: VocabularyDatasetVersion, timings: Record<string, number> = {}): Promise<PublicLearningIndex> {
+  const query = async (name: string, statement: Parameters<VocabularyDatabase["execute"]>[0]) => {
+    const started = performance.now();
+    try { return await database.execute(statement); } finally { timings[name] = performance.now() - started; }
+  };
+  const [vocabularyResult, setsResult, topicsResult] = await Promise.all([
+    query("index_words", sql`
+      SELECT v.id, v.level FROM "${sql.raw(APP_SCHEMA)}".vocabularies v
+      WHERE v.enabled = true AND ${vocabularyDatasetPredicate("v", datasetVersion)} ORDER BY v.id
+    `),
+    query("index_sets", sql`
+      SELECT ls.id, ls.slug, ls.name, ls.description, ls.grade, ls.sort_order,
+        json_agg(v.id ORDER BY lsi.sort_order, v.id) AS vocabulary_ids
+      FROM "${sql.raw(APP_SCHEMA)}".learning_sets ls
+      JOIN "${sql.raw(APP_SCHEMA)}".learning_set_items lsi ON lsi.learning_set_id = ls.id
+      JOIN "${sql.raw(APP_SCHEMA)}".vocabularies v ON v.id = lsi.vocabulary_id
+      WHERE ls.enabled = true AND v.enabled = true AND ${vocabularyDatasetPredicate("v", datasetVersion)}
+      GROUP BY ls.id ORDER BY ls.sort_order, ls.id
+    `),
+    query("index_topics", sql`
+      SELECT t.id, t.slug, t.name, t.description, t.sort_order,
+        json_agg(v.id ORDER BY v.id) AS vocabulary_ids
+      FROM "${sql.raw(APP_SCHEMA)}".topics t
+      JOIN "${sql.raw(APP_SCHEMA)}".vocabulary_topics vt ON vt.topic_id = t.id
+      JOIN "${sql.raw(APP_SCHEMA)}".vocabularies v ON v.id = vt.vocabulary_id
+      WHERE t.enabled = true AND v.enabled = true AND ${vocabularyDatasetPredicate("v", datasetVersion)}
+      GROUP BY t.id ORDER BY t.sort_order, t.id
+    `)
+  ]);
+  const vocabulary = rows<{ id: number; level: string | null }>(vocabularyResult).map((row) => ({ id: Number(row.id), level: row.level }));
+  const enabledIds = new Set(vocabulary.map((word) => word.id));
+  const collection = (row: CollectionRow) => ({
+    id: Number(row.id), slug: row.slug, name: row.name, description: row.description,
+    enabled: true, sortOrder: Number(row.sort_order), studyScopeAvailable: true,
+    vocabularyIds: [...new Set((typeof row.vocabulary_ids === "string" ? JSON.parse(row.vocabulary_ids) as number[] : row.vocabulary_ids).map(Number))].filter((id) => enabledIds.has(id))
+  });
+  return publicLearningIndexSchema.parse({ vocabulary,
+    learningSets: rows<CollectionRow>(setsResult).map((row) => {
+      const set = collection(row);
+      return { ...set, grade: row.grade ?? null, vocabularyCount: set.vocabularyIds.length };
+    }).filter((set) => set.vocabularyCount > 0),
+    topics: rows<CollectionRow>(topicsResult).map(collection).filter((topic) => topic.vocabularyIds.length > 0)
+  });
+}

@@ -138,8 +138,9 @@ export function createVocabularyService(database: VocabularyDatabase, options: {
 }
 
 /** Enabled catalog content only; never reads household or learner data. */
-export async function readPublicVocabulary(database: VocabularyDatabase, options: { datasetVersion?: VocabularyDatasetVersion } = {}, level?: VocabularyLevel): Promise<VocabularyDto[]> {
+export async function readPublicVocabulary(database: VocabularyDatabase, options: { datasetVersion?: VocabularyDatasetVersion; ids?: number[] } = {}, level?: VocabularyLevel): Promise<VocabularyDto[]> {
   const datasetVersion = options.datasetVersion ?? "legacy";
+  if (options.ids?.length === 0) return [];
   try {
     const result = await database.execute(sql`
       SELECT id, word, ipa, COALESCE(vietnamese_override, vietnamese) AS vietnamese,
@@ -158,6 +159,7 @@ export async function readPublicVocabulary(database: VocabularyDatabase, options
         ON sm.vocabulary_id = v.id AND sm.source_content_hash = md.content_sha256 AND sm.validation_status = 'VERIFIED'
       WHERE enabled = true
         AND ${vocabularyDatasetPredicate("v", datasetVersion)}
+        ${options.ids ? sql`AND v.id IN (${sql.join(options.ids.map((id) => sql`${id}`), sql`, `)})` : sql``}
         ${level ? sql`AND level = ${level}` : sql``}
       ORDER BY v.id ASC
     `);
