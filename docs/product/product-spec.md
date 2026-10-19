@@ -2,6 +2,11 @@
 
 ## Public guest learning (US-58, 2026-10-19)
 
+Guest default, Pathway and All queues use the complete enabled dataset, matching
+the account V2 behavior. Missing CEFR or learning-set membership does not exclude
+a word. Explicit custom sets, single-set, topic, saved and weak scopes still
+restrict the queue. Set assignments do not narrow the broad V2 queue.
+
 Owner-approved correction: Home “Từ mới” shows the actual distinct unseen count
 in the eligible source, not `dailyNewWordLimit - learnedToday`. The daily hero
 and queue retain today's allowance; goals remain progress targets, limits

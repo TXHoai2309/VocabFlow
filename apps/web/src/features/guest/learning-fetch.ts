@@ -73,11 +73,11 @@ function scopedWords(data: PublicLearningIndex, state: GuestState, params: URLSe
   else if (params.get("source") === "custom") {
     const selected = (params.get("setIds") ?? "").split(",").map(Number);
     ids = data.learningSets.filter((item) => selected.includes(item.id)).flatMap((item) => item.vocabularyIds);
-  } else if (params.get("source") === "pathway") {
-    const current = data.learningSets.find((set) => set.vocabularyIds.some((id) => !state.progress[id]));
-    const all = new Set(data.learningSets.flatMap((set) => set.vocabularyIds));
-    ids = [...(current?.vocabularyIds ?? []), ...Object.keys(state.progress).map(Number).filter((id) => all.has(id))];
-  } else ids = data.learningSets.filter((set) => params.get("source") === "all" || state.assignments[set.id] !== false).flatMap((set) => set.vocabularyIds);
+  } else {
+    // Match the account V2 queue: default, pathway and all use the enabled dataset.
+    // Membership only narrows explicitly selected sets/topics, not unclassified words.
+    return data.vocabulary;
+  }
   const byId = new Map(data.vocabulary.map((word) => [word.id, word]));
   return [...new Set(ids)].flatMap((id) => byId.get(id) ? [byId.get(id)!] : []);
 }

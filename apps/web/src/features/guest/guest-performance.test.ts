@@ -6,7 +6,8 @@ import { learningFetch, clearLearningCatalogCache, setGuestCatalogEnabled } from
 const ids = Array.from({ length: 7311 }, (_, offset) => offset + 1);
 const index: PublicLearningIndex = {
   vocabulary: ids.map((id) => ({ id, level: null })),
-  learningSets: [{ id: 1, slug: "all", name: "Tất cả", description: "Toàn bộ kho", grade: null, enabled: true, sortOrder: 0, vocabularyCount: ids.length, vocabularyIds: ids }], topics: []
+  learningSets: [{ id: 1, slug: "classified", name: "Đã phân cấp", description: "Từ đã có bộ", grade: null, enabled: true, sortOrder: 0, vocabularyCount: 6717, vocabularyIds: ids.slice(0, 6717) }],
+  topics: [{ id: 1, slug: "sample", name: "Chủ đề", description: "Chủ đề mẫu", enabled: true, sortOrder: 0, vocabularyIds: [1, 6718] }]
 };
 const word = (id: number): VocabularyDto => ({ id, word: `word-${id}`, vietnamese: `nghĩa-${id}`, ipa: null, definitionEn: null, exampleEn: null, audioUrl: null, imageUrl: null, topic: null, level: null, enabled: true, contentVersion: 1 });
 type PublicFetch = (path: string) => Promise<Response>;
@@ -43,6 +44,25 @@ function learnedTen(date = guestToday()) {
   return state;
 }
 describe("guest scale, local availability and uncapped New counts", () => {
+  it.each(["", "source=pathway", "source=all"])("includes all 594 unassigned words for the broad source %s", async (query) => {
+    const state = learnedTen();
+    state.assignments[1] = false;
+    for (const id of ids.slice(10, 6717)) state.progress[id] = state.progress[1]!;
+    state.progress[7311] = { ...state.progress[1]!, nextReviewDate: guestToday() };
+    localStorage.setItem(GUEST_STORAGE_KEY, JSON.stringify(state));
+    const result = await getQueue(query);
+    expect(result.newCount).toBe(593);
+    expect(result.dueCount).toBe(1);
+    expect(result.queue[0]?.vocabulary.id).toBe(7311);
+    expect(result.queue.find((item) => item.queueType === "NEW")?.vocabulary.id).toBe(6718);
+    expect(result.dailyNewRemaining).toBe(90);
+  });
+  it.each([["learningSetId=1", 6707], ["source=custom&setIds=1", 6707], ["topicId=1", 1]] as const)("preserves explicit collection scope %s", async (query, expected) => {
+    learnedTen();
+    const result = await getQueue(query);
+    expect(result.newCount).toBe(expected);
+    expect(result.queue.every((item) => query.startsWith("topicId") ? item.vocabulary.id === 6718 : item.vocabulary.id <= 6717)).toBe(true);
+  });
   it("keeps count/index payload bounded with 7,311 words", () => {
     expect(publicLearningIndexSchema.safeParse(index).success).toBe(true);
     expect(new TextEncoder().encode(JSON.stringify(index)).byteLength).toBeLessThan(300_000);

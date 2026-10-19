@@ -4,6 +4,11 @@
 
 ### Loading/count correction (owner-approved, 2026-10-19)
 
+Guest broad scopes (default, pathway, all) select `index.vocabulary`, matching
+the account V2 dataset predicate rather than a union of enabled set memberships.
+Explicit custom/set/topic/saved/weak scopes retain their existing filters. No
+classification, membership backfill or storage migration is required.
+
 Guest startup uses `GET /api/public/learning-index`: only enabled dataset IDs,
 levels and enabled set/topic memberships; no definitions, examples or media.
 Its three SQL reads run concurrently and expose per-stage Server-Timing.

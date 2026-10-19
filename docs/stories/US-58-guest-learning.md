@@ -7,6 +7,9 @@ study without registering. A dismissible recommendation explains registration
 and device-local persistence. Existing account authorization remains intact.
 
 Acceptance criteria:
+- Guest default/Pathway/All count and select the complete enabled dataset like
+  authenticated V2, including unclassified words outside enabled sets. Explicit
+  custom/set/topic/saved/weak scopes remain restricted to the selected source.
 - Home, catalog, study setup, flashcards/exercises, saved words, settings and
   progress work for a guest without provisioning an account or database learner.
 - Public reads contain enabled learning content only and use the existing media
@@ -85,3 +88,16 @@ changed-file ESLint, pnpm build and strict production UI audit pass. Same-data
 payload projection drops 8,140,988 bytes to 263,503 bytes for index + ten Home
 details (96.8% less); see the loading-performance-fix QA report. This is not
 a live post-deployment latency claim. No direct DB write/migration was run.
+
+## Guest/account dataset parity correction — 2026-10-19
+
+Owner authorized matching the account V2 enabled-dataset queue. Default,
+Pathway and All no longer require set membership; explicit collection filters
+remain. Scale fixtures now reflect the deployed 7,311 enabled / 6,717 assigned
+split. With ten learned, Home reports 7,301 New and 90 daily remaining. A browser
+test also learns/saves/restores a word with no sets at all. No data backfill.
+
+Verification: 28/28 guest unit tests; 24/24 Chromium guest, source-picker and
+allocation E2E; Web typecheck, focused ESLint, production build and diff checks
+pass. Existing Node-version and bundle-size warnings remain. Publication uses
+the owner's previously requested TXH/dev/main branches and existing CI pipeline.

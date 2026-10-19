@@ -7514,3 +7514,23 @@ owner-approved baseline exception. See
 - No direct Neon/DB write, migration, environment or learner-history operation.
   Preserve unrelated untracked data/scripts/development UI. Publish one normal
   fast-forward commit; the existing main CI/Vercel pipeline controls deployment.
+
+### 2026-10-19 — US-58 guest/account dataset parity
+
+- Owner requested fixing guest Home showing 6,707 while the signed-in account
+  includes the full catalog. Public index confirms 7,311 enabled rows, 6,717
+  distinct rows in enabled sets and 594 outside. Guest default/Pathway/All
+  incorrectly used set memberships; authenticated V2 uses the enabled dataset.
+- Broad guest queues now select the complete index vocabulary. Explicit custom
+  sets, single sets, topics, saved and weak filters are preserved. Due-before-New,
+  daily admission, capacity, local storage and bounded detail requests remain.
+- Scale fixtures now contain 594 unassigned rows. Regression cases exercise
+  all broad sources, due/new outside sets, ignored assignments for broad V2,
+  and explicit collection filtering. Browser fixtures cover no-set learning,
+  persistence and Home showing 7,301 unseen / 90 remaining after ten learned.
+- No database backfill, CEFR edit, migration, environment change or account-data
+  operation. Preserve all unrelated untracked development tooling/datasets.
+- Verification: 28/28 guest unit tests and 24/24 Chromium guest/source-picker/
+  allocation E2E pass. Web typecheck, changed-code/test ESLint, production build
+  and diff whitespace checks pass. Existing Node pin/chunk warnings remain.
+  Publish through the previously authorized TXH/dev/main fast-forward scope.

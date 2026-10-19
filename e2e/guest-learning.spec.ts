@@ -8,8 +8,11 @@ async function guestApi(page: Page) {
   await page.route("**/api/public/learning-index", (route) => route.fulfill({ json: { ...catalog, vocabulary: catalog.vocabulary.map(({ id, level }) => ({ id, level })) } }));
   await page.route("**/api/public/vocabulary?ids=*", (route) => route.fulfill({ json: { vocabulary: catalog.vocabulary } }));
 }
-test("guest completes a flashcard, restores progress and keeps it when opening signup", async ({ page }) => {
+test("guest studies a word without any set, restores progress and keeps it when opening signup", async ({ page }) => {
   await guestApi(page);
+  await page.route("**/api/public/learning-index", (route) => route.fulfill({ json: {
+    vocabulary: [{ id: word.id, level: null }], learningSets: [], topics: []
+  } }));
   const privateWrites: string[] = [];
   page.on("request", (request) => { if (["POST", "PUT", "PATCH", "DELETE"].includes(request.method())) privateWrites.push(request.url()); });
   await page.goto("/");
@@ -111,7 +114,7 @@ test("7,311-word guest Home separates unseen count, daily allowance and selected
     localStorage.setItem(guestKey, JSON.stringify(state));
   }, { guestKey });
   await page.route("**/api/public/learning-index", (route) => route.fulfill({ json: {
-    vocabulary: ids.map((id) => ({ id, level: null })), learningSets: [{ ...catalog.learningSets[0], vocabularyCount: ids.length, vocabularyIds: ids }], topics: []
+    vocabulary: ids.map((id) => ({ id, level: null })), learningSets: [{ ...catalog.learningSets[0], vocabularyCount: 6717, vocabularyIds: ids.slice(0, 6717) }], topics: []
   } }));
   const detailBatches: number[][] = [];
   await page.route("**/api/public/vocabulary?ids=*", (route) => {

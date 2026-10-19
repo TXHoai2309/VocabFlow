@@ -2,6 +2,11 @@
 
 ## US-58 decision — Public learning with isolated device persistence (2026-10-19)
 
+Owner-authorized parity correction: use all enabled dataset words for guest
+default/Pathway/All, like authenticated V2 queues. Do not require CEFR or set
+membership to study enabled content. Explicit collection scopes remain narrow.
+The deployed 594 words outside enabled sets need no database backfill to learn.
+
 Correction authorized by the owner after the deployed loading audit: separate
 lightweight public scheduling metadata from bounded word details/pages. Pure
 local resources cannot require catalog fetches. Public media/authorization

@@ -2,6 +2,10 @@
 
 ## 2026-10-19 — Public guest learning (US-58)
 
+- Align guest default/Pathway/All queues with authenticated V2: include enabled
+  words outside learning sets, including words without CEFR. Preserve explicit
+  collection filters, daily limits, local progress and bounded detail requests.
+
 ### Loading and New-count correction
 
 - Replace guest startup full-content downloads with an ID/membership index;
