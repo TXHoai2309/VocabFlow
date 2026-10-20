@@ -1,5 +1,12 @@
 # VocabFlow Changelog
 
+## 2026-10-20 — One-Sense-Per-Lemma Dataset Cleansing (4,537 Canonical Words)
+
+- Cleaned 592 polysemous lemmas across both Development and Production Neon databases.
+- Retained the single most representative sense per lemma based on verified Vietnamese meaning, media availability, and CEFR/POS priority.
+- Disabled 819 duplicate/secondary senses (`enabled = false`) across both databases.
+- Flashcard study sessions (`/study`) and vocabulary listings (`/vocabulary`) now feature exactly 1 distinct sense per English word with 0 duplicate words.
+
 ## 2026-10-20 — Multi-Sense Headword Grouping & Slide-Over Drawer on Vocabulary Browse
 
 - Consolidated multiple senses of the same headword on the Vocabulary browse grid (`/vocabulary`)

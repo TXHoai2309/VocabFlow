@@ -1,5 +1,13 @@
 # Current Handoff Snapshot
 
+## 2026-10-20 — One-Sense-Per-Lemma Dataset Cleansing (4,537 Canonical Words)
+
+- Cleansed 592 polysemous lemmas on both Development and Production Neon branches (`br-cold-shadow-a17yg4k2` and `br-cool-sea-a1ifkf95`).
+- For every lemma with multiple senses, evaluated candidate senses by authentic image/audio availability, verified Vietnamese short meaning, CEFR level (A1 > A2 > B1 > B2 > C1 > C2), and primary part-of-speech ranking to retain the single most representative sense.
+- Disabled 819 secondary/duplicate senses (`enabled = false`) across both databases.
+- Result: exactly 4,537 active words remain; 0 duplicate words remain in the entire active catalog. Study sessions, flashcards, and vocabulary browse now present exactly 1 distinct sense per English word.
+- Production preflight verified: `PRODUCTION_DB_PREFLIGHT=PASS`, `MIGRATION_LEDGER_ROWS=21`, `DATABASE_MUTATIONS=0`.
+
 ## 2026-10-20 — Multi-Sense Headword Grouping & Slide-Over Drawer on Vocabulary Browse
 
 - Grouped vocabulary browse items by normalized headword/lemma (`groupVocabularyByHeadword`),
