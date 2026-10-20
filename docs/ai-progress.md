@@ -1,5 +1,21 @@
 # Current Handoff Snapshot
 
+## 2026-10-20 — Multi-Sense Headword Grouping & Slide-Over Drawer on Vocabulary Browse
+
+- Grouped vocabulary browse items by normalized headword/lemma (`groupVocabularyByHeadword`),
+  consolidating multi-sense words (e.g. 6 senses of `abuse`, 6 of `bow`, 5 of `fine`/`key`) into
+  a single distinct card on the vocabulary browse grid instead of multiple duplicate cards.
+- Added visual multi-sense pill badge (`{N} nét nghĩa • {POS list}`) on the vocabulary card.
+- Implemented accessible `MultiSenseDrawer` slide-over sheet triggered by `Xem {N} nghĩa →` on multi-sense cards:
+  - Accessible dialog (`role="dialog"`, `aria-modal="true"`, focus management, Escape key support).
+  - Displays word title, IPA, pronunciation audio player, and authentic image (if available).
+  - Groups senses by Part of Speech (`Danh từ`, `Động từ`, etc.) with index, CEFR tag, primary meaning, explanation,
+    individual bookmark button, and direct link to the full detail view (`/vocabulary/:id`).
+- Enhanced `VocabularyDetailPage` to display an accordion/card listing all other senses of the word (`Các nét nghĩa khác của từ này`),
+  enabling seamless switching between senses for polysemous words.
+- Vitest coverage: 56/56 tests PASS across 5 test suites (added `grouped-vocabulary.test.ts` and `multi-sense-drawer.test.tsx`).
+- TypeScript (`tsc -p apps/web/tsconfig.json`) PASS with 0 errors; ESLint on `apps/web/src/features/learners` PASS with 0 warnings/errors.
+
 ## 2026-10-19 — Review Queue contract schema fix for backfilled media metadata
 
 - Resolved `INTERNAL_ERROR` 500 failure on `/api/learners/:learnerId/review-queue`

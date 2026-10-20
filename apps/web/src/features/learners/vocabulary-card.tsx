@@ -43,8 +43,22 @@ function formattedSavedDate(value: string | null | undefined) {
   return new Intl.DateTimeFormat("vi-VN", { day: "2-digit", month: "2-digit", year: "numeric" }).format(date);
 }
 
-export function VocabularyCard({ item, showStatus = false, showTopic = false, variant = "card", isSaved = false, isSaving = false, bookmarkDisabled = false, savedAt, onToggleSaved }: {
+export function VocabularyCard({
+  item,
+  senses,
+  onOpenSenses,
+  showStatus = false,
+  showTopic = false,
+  variant = "card",
+  isSaved = false,
+  isSaving = false,
+  bookmarkDisabled = false,
+  savedAt,
+  onToggleSaved
+}: {
   item: VocabularyCardItem;
+  senses?: VocabularyCardItem[];
+  onOpenSenses?: (item: VocabularyCardItem) => void;
   showStatus?: boolean;
   showTopic?: boolean;
   variant?: "card" | "row";
@@ -63,6 +77,9 @@ export function VocabularyCard({ item, showStatus = false, showTopic = false, va
   const partOfSpeech = formatPartOfSpeech(item.partOfSpeech);
   const topic = formatVocabularyTopic(item.topic);
   const meaning = getVietnameseMeaningPresentation(item);
+  const uniquePosLabels = senses && senses.length > 1
+    ? Array.from(new Set(senses.map((s) => formatPartOfSpeech(s.partOfSpeech)).filter((s): s is string => Boolean(s))))
+    : [];
   const inferredLabels = item.metadataEvidence?.filter((evidence) => evidence.status === "INFERRED_REVIEWABLE").map((evidence) => ({
     key: `${evidence.dimension}:${evidence.code}`,
     label: formatInferredMetadataLabel(evidence.label ?? evidence.code, evidence.dimension),
@@ -80,6 +97,11 @@ export function VocabularyCard({ item, showStatus = false, showTopic = false, va
           {level ? <span className="vocabulary-level-badge">{level}</span> : null}
           <span className="vocabulary-card-copy">
             <strong>{item.word}</strong>
+            {senses && senses.length > 1 ? (
+              <span className="vocabulary-card-senses-badge" data-testid={`senses-badge-${item.id}`}>
+                {senses.length} nét nghĩa{uniquePosLabels.length > 0 ? ` · ${uniquePosLabels.join(", ")}` : ""}
+              </span>
+            ) : null}
             {item.ipa || partOfSpeech ? <span className="vocabulary-card-ipa">{[item.ipa, partOfSpeech].filter(Boolean).join(" · ")}</span> : null}
             <span className="vocabulary-card-meaning-label">{meaning.primaryLabel}</span>
             <span className="vocabulary-card-meaning">{meaning.primary}</span>
@@ -96,6 +118,24 @@ export function VocabularyCard({ item, showStatus = false, showTopic = false, va
                 {formatVocabularyTopic(tag)}
               </span>
             ))}
+            {senses && senses.length > 1 && onOpenSenses ? (
+              <button
+                type="button"
+                className="vocabulary-card-senses-trigger"
+                aria-label={`Xem tất cả ${senses.length} nét nghĩa của từ ${item.word}`}
+                data-testid={`senses-trigger-${item.id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  onOpenSenses(item);
+                }}
+              >
+                <span>Xem {senses.length} nghĩa</span>
+                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </button>
+            ) : null}
           </span>
         </Link>
         {variant === "row" && savedAt ? <span className="vocabulary-card-saved-date">Đã lưu {formattedSavedDate(savedAt)}</span> : null}

@@ -233,7 +233,15 @@ function VocabularyDetailExperience({ activeLearner, vocabularyId }: { activeLea
   );
 }
 
-function VocabularyDetailContent({ vocabulary, allVocabulary, isSaved, isSaving, savedVocabularyState, onToggleSaved, onRetrySaved }: {
+function VocabularyDetailContent({
+  vocabulary,
+  allVocabulary,
+  isSaved,
+  isSaving,
+  savedVocabularyState,
+  onToggleSaved,
+  onRetrySaved
+}: {
   vocabulary: LearnerVocabularyDto;
   allVocabulary: LearnerVocabularyDto[];
   isSaved: boolean;
@@ -242,6 +250,9 @@ function VocabularyDetailContent({ vocabulary, allVocabulary, isSaved, isSaving,
   onToggleSaved: () => void;
   onRetrySaved: () => void;
 }) {
+  const otherSenses = allVocabulary.filter(
+    (item) => item.id !== vocabulary.id && item.word.trim().toLowerCase() === vocabulary.word.trim().toLowerCase()
+  );
   const [failedImageKey, setFailedImageKey] = useState<string | null>(null);
   const imageKey = `${vocabulary.id}:${vocabulary.imageUrl ?? ""}`;
   const imageFailed = failedImageKey === imageKey;
@@ -375,6 +386,29 @@ function VocabularyDetailContent({ vocabulary, allVocabulary, isSaved, isSaving,
               </ol>
             ) : <p className="vocabulary-detail-empty-copy">Chưa có câu ví dụ cho từ này.</p>}
           </DetailCard>
+
+          {otherSenses.length > 0 ? (
+            <DetailCard icon="definition" title={`Các nét nghĩa khác của từ này (${otherSenses.length})`} className="vocabulary-detail-other-senses">
+              <p className="vocabulary-detail-other-senses-desc">
+                Từ <strong>"{vocabulary.word}"</strong> có {otherSenses.length + 1} nét nghĩa trong hệ thống:
+              </p>
+              <ul className="vocabulary-detail-other-senses-list" data-testid="detail-other-senses-list">
+                {otherSenses.map((otherSense) => {
+                  const otherMeaning = getVietnameseMeaningPresentation(otherSense);
+                  const pos = formatPartOfSpeech(otherSense.partOfSpeech);
+                  return (
+                    <li key={otherSense.id} className="vocabulary-detail-other-sense-item">
+                      <Link to={`/vocabulary/${otherSense.id}`} className="vocabulary-detail-other-sense-link">
+                        <span className="vocabulary-detail-other-sense-pos">{pos ?? "Nghĩa khác"}</span>
+                        <span className="vocabulary-detail-other-sense-meaning">{otherMeaning.primary}</span>
+                        <span className="vocabulary-detail-other-sense-arrow" aria-hidden="true">→</span>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </DetailCard>
+          ) : null}
 
           <DetailCard icon="related" title="Từ đồng nghĩa" className="vocabulary-detail-synonyms">
             <p className="vocabulary-detail-empty-copy">Chưa có dữ liệu từ đồng nghĩa.</p>

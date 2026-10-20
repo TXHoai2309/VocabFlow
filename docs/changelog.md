@@ -1,5 +1,15 @@
 # VocabFlow Changelog
 
+## 2026-10-20 — Multi-Sense Headword Grouping & Slide-Over Drawer on Vocabulary Browse
+
+- Consolidated multiple senses of the same headword on the Vocabulary browse grid (`/vocabulary`)
+  so that polysemous words (e.g. `abuse` with 6 senses) render as a single consolidated card
+  instead of multiple duplicate cards with identical photos and text.
+- Added `{N} nét nghĩa • {POS}` badge and `Xem {N} nghĩa →` action on multi-sense cards.
+- Created `MultiSenseDrawer` slide-over drawer to display all senses categorized by Part of Speech
+  (`Danh từ`, `Động từ`, etc.) with individual meaning explanations, audio playback, and bookmark controls.
+- Enhanced `VocabularyDetailPage` to display "Các nét nghĩa khác của từ này" for seamless sense switching.
+
 ## 2026-10-19 — Public guest learning (US-58)
 
 - Align guest default/Pathway/All queues with authenticated V2: include enabled

@@ -1,5 +1,5 @@
 import { AccountLearningState } from "./account-learning-state";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router";
 import type { LearnerDto, LearnerVocabularyBrowseItem, VocabularyBrowsePageSize, VocabularyLevel } from "@vocabflow/contracts";
 import { useActiveLearner } from "./learner-context-hook";
@@ -9,6 +9,8 @@ import { EmptyState, ErrorState, LoadingState } from "../../components/async-sta
 import { useToast } from "../../components/toast/toast-context";
 import { requestSavedVocabulary, saveVocabulary, unsaveVocabulary } from "./saved-vocabulary-client";
 import { formatVocabularyTopic } from "../vocabulary/vocabulary-presentation";
+import { groupVocabularyByHeadword, type GroupedVocabularyItem } from "./grouped-vocabulary";
+import { MultiSenseDrawer } from "./multi-sense-drawer";
 
 type VocabularyListState = "loading" | "ready" | "error";
 type VocabularyIconName = "home" | "book" | "level" | "search" | "clear" | "previous" | "next";
@@ -138,7 +140,10 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
   const [savedVocabularyState, setSavedVocabularyState] = useState<"loading" | "ready" | "error">("loading");
   const [savedIds, setSavedIds] = useState<Set<number>>(new Set());
   const [savingIds, setSavingIds] = useState<Set<number>>(new Set());
+  const [activeDrawerGroup, setActiveDrawerGroup] = useState<GroupedVocabularyItem | null>(null);
   const mutationInFlight = useRef(new Set<number>());
+
+  const groupedVocabulary = useMemo(() => groupVocabularyByHeadword(vocabulary), [vocabulary]);
 
   const updateFilter = useCallback((name: "q" | "level" | "cefr" | "topic" | "pageSize", value: string) => {
     setSearchParams((current) => {
@@ -370,16 +375,22 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
               <span className="vocabulary-page-summary">Trang {currentPage} / {totalPages}</span>
             </div>
             <ul className="vocabulary-grid" data-testid="vocabulary-grid">
-              {vocabulary.map((item) => (
-                <VocabularyCard
-                  key={item.id}
-                  item={item}
-                  isSaved={savedIds.has(item.id)}
-                  isSaving={savingIds.has(item.id)}
-                  bookmarkDisabled={savedVocabularyState !== "ready"}
-                  onToggleSaved={() => void toggleSaved(item)}
-                />
-              ))}
+              {groupedVocabulary.map((group) => {
+                const isSaved = group.senses.some((s) => savedIds.has(s.id));
+                const isSaving = group.senses.some((s) => savingIds.has(s.id));
+                return (
+                  <VocabularyCard
+                    key={group.primaryItem.id}
+                    item={group.primaryItem}
+                    senses={group.senses}
+                    onOpenSenses={() => setActiveDrawerGroup(group)}
+                    isSaved={isSaved}
+                    isSaving={isSaving}
+                    bookmarkDisabled={savedVocabularyState !== "ready"}
+                    onToggleSaved={() => void toggleSaved(group.primaryItem)}
+                  />
+                );
+              })}
             </ul>
             <div className="vocabulary-pagination-row">
               <label className="vocabulary-page-size-control">
@@ -412,6 +423,14 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
           </>
         )
       ) : null}
+      <MultiSenseDrawer
+        group={activeDrawerGroup}
+        onClose={() => setActiveDrawerGroup(null)}
+        savedIds={savedIds}
+        savingIds={savingIds}
+        bookmarkDisabled={savedVocabularyState !== "ready"}
+        onToggleSaved={(sense) => void toggleSaved(sense)}
+      />
     </main>
   );
 }

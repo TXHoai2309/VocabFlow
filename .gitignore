@@ -52,3 +52,10 @@ data/raw/
 
 .vercel
 .env*
+
+# Python caches
+__pycache__/
+*.pyc
+
+# Dataset workspaces
+/vocabflow-dataset/workspaces/
