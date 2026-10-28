@@ -266,10 +266,7 @@ function VocabularyDetailContent({
   const partOfSpeech = formatPartOfSpeech(vocabulary.partOfSpeech);
   const topic = formatVocabularyTopic(vocabulary.topic);
   const meaningPresentation = getVietnameseMeaningPresentation(vocabulary);
-  const mediaRightsPending = vocabulary.rightsStatus === "UNKNOWN_REVIEW_REQUIRED";
-  const audioUnavailableMessage = mediaRightsPending
-    ? "Phát âm chưa khả dụng; quyền media nguồn đang chờ xác minh."
-    : "Chưa có tệp phát âm";
+  const audioUnavailableMessage = "Chưa có tệp phát âm cho từ này.";
   const hasDevelopmentImageCandidates = (vocabulary.developmentMedia?.images?.length ?? 0) > 0;
   const showImagePanel = Boolean(vocabulary.imageUrl || hasDevelopmentImageCandidates);
   const audioLabel = audio.state === "playing" ? `Tạm dừng phát âm ${vocabulary.word}`

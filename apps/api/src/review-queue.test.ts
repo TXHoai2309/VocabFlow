@@ -6,6 +6,35 @@ import { V2_PUBLIC_MEDIA_OWNER_ATTESTATION_ID } from "./v2-public-media";
 import type { ReviewQueueResponse } from "@vocabflow/contracts";
 
 const learnerId = "00000000-0000-4000-8000-000000000010";
+
+describe("V2 broad sources and explicit catalog filters", () => {
+  it.each(["all", "pathway"] as const)("%s includes enabled words outside all learning sets", async (type) => {
+    const queries: Array<{ sql: string; params: unknown[] }> = [];
+    const execute = vi.fn(async (query) => {
+      const rendered = new PgDialect().sqlToQuery(query); queries.push(rendered);
+      if (queries.length === 1) return authorizedRows();
+      if (rendered.sql.includes("SELECT timezone")) return { rows: [{ timezone: "Asia/Ho_Chi_Minh" }] };
+      if (rendered.sql.includes("daily_new_word_limit")) return dailyUsageRow(10, 0);
+      if (rendered.sql.includes("next_review_date <=")) return { rows: [] };
+      if (rendered.sql.includes("lp.vocabulary_id IS NULL")) {
+        // This word has no set membership: only an erroneously added set
+        // predicate would hide it in the real query.
+        expect(rendered.sql).not.toContain('"learning_set_items"');
+        expect(rendered.sql).not.toContain('"learner_learning_sets"');
+        return { rows: [newRow(999, 1)] };
+      }
+      throw new Error("Unexpected query");
+    });
+    const result = await createReviewQueueService({ execute }, { datasetVersion: "v2" }).list("A", learnerId, undefined, { type, level: "GRADE_1", cefr: "A1" }, 5);
+    expect(result.queue.map((item) => item.vocabulary.id)).toEqual([999]);
+    for (const query of queries.filter((item) => item.sql.includes("COUNT(*) OVER()"))) {
+      expect(query.sql).toContain("v.enabled = true");
+      expect(query.sql).toContain("v.level =");
+      expect(query.sql).toContain("md.cefr =");
+      expect(query.params).toEqual(expect.arrayContaining(["GRADE_1", "A1"]));
+    }
+  });
+});
 const householdId = "00000000-0000-4000-8000-000000000001";
 
 describe("Study source API contract", () => {

@@ -2,7 +2,8 @@ import { learningFetch } from "../guest/learning-fetch";
 import {
   learnerSettingsResponseSchema,
   updateLearnerSettingsRequestSchema,
-  type LearnerSettingsResponse
+  type LearnerSettingsResponse,
+  type UpdateLearnerSettingsRequest
 } from "@vocabflow/contracts";
 
 export class LearnerSettingsClientError extends Error {
@@ -53,7 +54,7 @@ export async function requestLearnerSettings(learnerId: string): Promise<Learner
 
 export async function updateLearnerSettings(
   learnerId: string,
-  settings: { dailyNewWordLimit?: number; dailyNewWordGoal?: number; dailyReviewWordGoal?: number }
+  settings: UpdateLearnerSettingsRequest
 ): Promise<LearnerSettingsResponse> {
   const request = updateLearnerSettingsRequestSchema.safeParse(settings);
   if (!request.success) throw new LearnerSettingsClientError("INVALID_REQUEST", 400);

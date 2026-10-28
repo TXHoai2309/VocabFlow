@@ -46,7 +46,7 @@ describe("US-38 topic progress", () => {
     expect(aggregate).toContain("ls.enabled = true");
     expect(aggregate).toContain("v.enabled = true");
     expect(aggregate).toContain("lp.next_review_date <=");
-    expect(aggregate).toContain("LEFT JOIN \"vocabflow_app\".\"vocabulary_topics\"");
+    expect(aggregate).toContain("WITH RECURSIVE topic_tree");
   });
 
   it("counts topic progress over the active V2 dataset without changing SRS state", async () => {

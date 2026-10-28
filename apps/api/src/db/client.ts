@@ -5,6 +5,9 @@ import { drizzle as drizzlePostgresJs } from "drizzle-orm/postgres-js";
 import * as schema from "./schema";
 
 const localPostgresDatabases = new Map<string, ReturnType<typeof drizzlePostgresJs<typeof schema>>>();
+// Neon HTTP clients have no mutable session state or long-lived SQL connection.
+// Reusing a bounded set also lets public catalog metadata caches share identity.
+const httpDatabases = new Map<string, ReturnType<typeof drizzle<typeof schema>>>();
 
 export function createHttpDatabase(connectionString: string, driver: string | undefined = "neon-http") {
   if (!connectionString) {
@@ -32,6 +35,11 @@ export function createHttpDatabase(connectionString: string, driver: string | un
     return database;
   }
   if (driver !== undefined && driver !== "neon-http") throw new Error("DATABASE_DRIVER_UNSUPPORTED");
+  const existing = httpDatabases.get(connectionString);
+  if (existing) return existing;
   const sql = neon(connectionString);
-  return drizzle(sql, { schema });
+  const database = drizzle(sql, { schema });
+  if (httpDatabases.size >= 4) httpDatabases.delete(httpDatabases.keys().next().value!);
+  httpDatabases.set(connectionString, database);
+  return database;
 }

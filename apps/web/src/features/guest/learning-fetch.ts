@@ -1,3 +1,4 @@
+import { studyScopeFromParams } from "../study/study-queue";
 import { clearPublicLearningCache, requestPublicLearningIndex, requestPublicWords, requestPublicBrowse, requestPublicMatchingIds } from "./public-learning-client";
 import {
   reviewRequestSchema,
@@ -65,6 +66,10 @@ function weakData(data: PublicLearningIndex, state: GuestState) {
     recentReviewCount: events.length } };
 }
 function scopedWords(data: PublicLearningIndex, state: GuestState, params: URLSearchParams) {
+  const level = params.get("level"); const cefr = params.get("cefr");
+  return baseScopedWords(data, state, params).filter((word) => (!level || word.level === level) && (!cefr || word.cefr === cefr));
+}
+function baseScopedWords(data: PublicLearningIndex, state: GuestState, params: URLSearchParams) {
   let ids: number[] | undefined;
   if (params.has("topicId")) ids = data.topics.find((item) => item.id === Number(params.get("topicId")))?.vocabularyIds ?? [];
   else if (params.has("learningSetId")) ids = data.learningSets.find((item) => item.id === Number(params.get("learningSetId")))?.vocabularyIds ?? [];
@@ -181,14 +186,42 @@ export async function learningFetch(path: string, init?: RequestInit): Promise<R
     }
     if (state && resource === "vocabulary/browse") {
       const page = await requestPublicBrowse(params, init?.signal ?? undefined);
-      return json({ ...page, vocabulary: page.vocabulary.map((word) => ({ ...word, status: state.progress[word.id]?.status ?? "NEW", nextReviewDate: state.progress[word.id]?.nextReviewDate ?? null })) });
+      return json({ ...page, vocabulary: page.vocabulary.map((word) => ({ ...word, status: state.progress[word.id]?.status ?? "NEW", nextReviewDate: state.progress[word.id]?.nextReviewDate ?? null, isSaved: Boolean(state.saved[word.id]) })) });
+    }
+    if (resource === "review-queue") {
+      const allowed = new Set(["source", "setIds", "topicId", "learningSetId", "level", "cefr", "scope", "content", "capacity"]);
+      if ([...params.keys()].some((key) => !allowed.has(key) || params.getAll(key).length !== 1)
+        || (params.has("capacity") && !["5", "10", "20", "30"].includes(params.get("capacity")!))) return failure("INVALID_REQUEST", 400);
     }
     const data = await catalog();
     if (init?.signal?.aborted) throw new DOMException("Aborted", "AbortError");
     if (publicCatalogPath) {
       if (method !== "GET") return failure("INVALID_REQUEST", 400);
       if (url.pathname === "/api/topics") return json({ topics: data.topics.map(({ vocabularyIds: _ids, ...topic }) => topic) });
-      if (url.pathname === "/api/learning-sets") return json({ learningSets: data.learningSets.map(({ vocabularyIds: _ids, ...set }) => set) });
+      if (url.pathname === "/api/learning-sets") {
+        if ([...params.keys()].some((key) => key !== "includeTopics")
+          || params.getAll("includeTopics").length > 1
+          || (params.has("includeTopics") && params.get("includeTopics") !== "1")) return failure("INVALID_REQUEST", 400);
+        const includeTopics = params.get("includeTopics") === "1";
+        const topicsByVocabulary = new Map<number, Array<{ id: number; slug: string; name: string }>>();
+        if (includeTopics) {
+          for (const { id, slug, name, vocabularyIds } of data.topics) {
+            for (const vocabularyId of vocabularyIds) {
+              const topics = topicsByVocabulary.get(vocabularyId) ?? [];
+              topics.push({ id, slug, name });
+              topicsByVocabulary.set(vocabularyId, topics);
+            }
+          }
+        }
+        return json({ learningSets: data.learningSets.map(({ vocabularyIds, ...set }) => {
+          if (!includeTopics) return set;
+          const topicIds = new Set<number>();
+          for (const vocabularyId of vocabularyIds) {
+            for (const topic of topicsByVocabulary.get(vocabularyId) ?? []) topicIds.add(topic.id);
+          }
+          return { ...set, topics: data.topics.filter((topic) => topicIds.has(topic.id)).map(({ id, slug, name }) => ({ id, slug, name })) };
+        }) });
+      }
       return failure("INVALID_REQUEST", 400);
     }
     if (!state) return failure("INVALID_REQUEST", 400);
@@ -198,7 +231,13 @@ export async function learningFetch(path: string, init?: RequestInit): Promise<R
     }
     const words = data.vocabulary.map((word): IndexWord & Pick<LearnerVocabularyDto, "status" | "nextReviewDate"> => ({ ...word, status: state.progress[word.id]?.status ?? "NEW", nextReviewDate: state.progress[word.id]?.nextReviewDate ?? null }));
     const today = guestToday();
-    if (resource === "review-queue") return json(await queue(data, state, params));
+    if (resource === "review-queue") {
+      const scopeParams = new URLSearchParams(params);
+      if (scopeParams.get("scope") === "saved") { scopeParams.delete("scope"); scopeParams.set("saved", "1"); }
+      if (scopeParams.get("scope") === "weak") { scopeParams.delete("scope"); scopeParams.set("weak", "1"); }
+      if (studyScopeFromParams(scopeParams)?.type === "invalid") return failure("INVALID_REQUEST", 400);
+      return json(await queue(data, state, params));
+    }
     if (resource === "learning-sets") return json({ learningSets: data.learningSets.map(({ vocabularyIds: _ids, ...set }) => ({ learningSet: set, active: state.assignments[set.id] !== false })) });
     if (resource === "progress-summary") return json({ learnerId: GUEST_ID, newCount: words.filter((word) => word.status === "NEW").length,
       learningCount: words.filter((word) => word.status === "LEARNING").length, masteredCount: words.filter((word) => word.status === "MASTERED").length,

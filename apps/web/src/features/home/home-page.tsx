@@ -73,7 +73,7 @@ function HomeDashboard({ learner, parentName }: { learner: LearnerDto; parentNam
       }
     };
 
-    void load(() => requestReviewQueue(learner.id), setQueue);
+    void load(() => requestReviewQueue(learner.id, undefined, 5), setQueue);
     void load(() => requestProgressSummary(learner.id), setSummary);
     void load(() => requestGamification(learner.id), setGamification);
     void load(() => requestLearnerLearningSets(learner.id), setLearningSets);

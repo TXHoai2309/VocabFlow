@@ -1,5 +1,38 @@
 # Technical Architecture v1.0.17
 
+## Learner flashcard display preference (US-60, 2026-10-21)
+
+`learner_profiles.flashcard_display_mode` stores one validated presentation
+choice per learner. The additive default is `SELF_RECALL`; the settings API
+continues to authorize through the active user's household membership.
+`EASY_INTRO` and `DETAILED` affect card projection only. They do not enter review
+requests or change queue/scheduler state. Guests store the same field in the
+existing strict v1 snapshot; consumers default missing values in older
+snapshots to `SELF_RECALL`.
+Migration 0021 follows pending migration 0020; both must precede code rollout
+and neither is run by this implementation.
+
+## Consistent catalog scope and reviewed topics (US-59, 2026-10-21)
+
+Explicit catalog study scopes optionally include school `level` and `cefr`.
+Account filters apply before Due/New capacity; guest public index includes
+optional CEFR and intersects the same dimensions. V2 All/default/Pathway include
+enabled dataset words outside learning sets. No empty intersection broadens
+the source or changes scheduler/write rules.
+
+Migration 0020 adds independent topic-node and membership review states plus a
+nullable topic parent FK/index. Main discovery and study use APPROVED nodes and
+APPROVED links through one recursive UNION closure; EXISTS preserves unique
+vocabulary. Unknown/inferred data remains stored as UNREVIEWED. Reviewed Master
+import ledger and exact legacy source-backed memberships are preserved; pinned
+taxonomy 2.0.1 supplies five known parent edges. Arbitrary hierarchy editing is
+out of scope; longer-cycle validation is required before adding such a writer.
+
+Browse contains page-local optional `isSaved`; public transport never joins
+learner saved/progress data, and guest state is merged only after the public
+response. Public filter metadata is cached for 60 seconds per database/dataset,
+separate from private page data. See US-59 for rollout and verification limits.
+
 ## Guest persistence exception (US-58, 2026-10-19)
 
 ### Loading/count correction (owner-approved, 2026-10-19)

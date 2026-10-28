@@ -34,6 +34,8 @@ export async function requestReviewQueue(learnerId: string, scope?: "saved" | "s
   try {
     const params = new URLSearchParams();
     if (typeof scope === "object") {
+      if (scope.level) params.set("level", scope.level);
+      if (scope.cefr) params.set("cefr", scope.cefr);
       if (scope.type === "topic" || scope.type === "learning-set") params.set(scope.type === "topic" ? "topicId" : "learningSetId", String(scope.id));
       else { params.set("source", scope.type); if (scope.type === "custom") params.set("setIds", scope.ids.join(",")); }
     }

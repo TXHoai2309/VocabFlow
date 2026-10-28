@@ -88,7 +88,9 @@ describe("US-27 topic service", () => {
         return { rows: [vocabularyRow(10)] };
       });
     await expect(createTopicService({ execute }).listVocabulary("parent-1", 1)).resolves.toMatchObject([{ id: 10, level: null }]);
-    expect(queries[0]?.sql).toContain('FROM "vocabflow_app"."vocabulary_topics"');
+    expect(queries[0]?.sql).toContain('JOIN "vocabflow_app"."vocabulary_topics"');
+    expect(queries[0]?.sql).toContain("WITH RECURSIVE topic_tree");
+    expect(queries[0]?.sql).toContain("vt.review_status = 'APPROVED'");
     expect(queries[0]?.sql).toContain("COALESCE(v.vietnamese_override, v.vietnamese) AS vietnamese");
     expect(queries[0]?.sql).toContain("CASE WHEN v.image_quarantined THEN NULL ELSE v.image_url END AS image_url");
     expect(queries[0]?.sql).toContain("v.enabled = true");

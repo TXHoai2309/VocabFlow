@@ -6,7 +6,10 @@ import {
   DAILY_WORD_GOAL_MIN,
   DAILY_NEW_WORD_LIMIT_MAX,
   DAILY_NEW_WORD_LIMIT_MIN,
-  type LearnerDto
+  FLASHCARD_DISPLAY_MODE,
+  type FlashcardDisplayMode,
+  type LearnerDto,
+  type UpdateLearnerSettingsRequest
 } from "@vocabflow/contracts";
 import { useActiveLearner } from "./learner-context-hook";
 import { ErrorState, LoadingState } from "../../components/async-states";
@@ -53,6 +56,8 @@ function LearnerSettingsExperience({ activeLearner }: { activeLearner: LearnerDt
   const [dailyNewWordLimit, setDailyNewWordLimit] = useState("");
   const [dailyNewWordGoal, setDailyNewWordGoal] = useState("");
   const [dailyReviewWordGoal, setDailyReviewWordGoal] = useState("");
+  const [flashcardDisplayMode, setFlashcardDisplayMode] = useState<FlashcardDisplayMode>(FLASHCARD_DISPLAY_MODE.SELF_RECALL);
+  const [savedFlashcardDisplayMode, setSavedFlashcardDisplayMode] = useState<FlashcardDisplayMode>(FLASHCARD_DISPLAY_MODE.SELF_RECALL);
   const [message, setMessage] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<Record<SettingsField, string | null>>({
     dailyNewWordLimit: null,
@@ -70,6 +75,9 @@ function LearnerSettingsExperience({ activeLearner }: { activeLearner: LearnerDt
         setDailyNewWordLimit(String(settings.dailyNewWordLimit));
         setDailyNewWordGoal(String(settings.dailyNewWordGoal));
         setDailyReviewWordGoal(String(settings.dailyReviewWordGoal));
+        const displayMode = settings.flashcardDisplayMode ?? FLASHCARD_DISPLAY_MODE.SELF_RECALL;
+        setFlashcardDisplayMode(displayMode);
+        setSavedFlashcardDisplayMode(displayMode);
         setState("ready");
       })
       .catch((error: unknown) => {
@@ -102,14 +110,21 @@ function LearnerSettingsExperience({ activeLearner }: { activeLearner: LearnerDt
     if (newLimitError || newGoalError || reviewGoalError) return;
     setSaving(true);
     try {
-      const saved = await updateLearnerSettings(activeLearner.id, {
+      const update: UpdateLearnerSettingsRequest = {
         dailyNewWordLimit: Number(dailyNewWordLimit),
         dailyNewWordGoal: Number(dailyNewWordGoal),
         dailyReviewWordGoal: Number(dailyReviewWordGoal)
-      });
+      };
+      if (flashcardDisplayMode !== savedFlashcardDisplayMode) {
+        update.flashcardDisplayMode = flashcardDisplayMode;
+      }
+      const saved = await updateLearnerSettings(activeLearner.id, update);
       setDailyNewWordLimit(String(saved.dailyNewWordLimit));
       setDailyNewWordGoal(String(saved.dailyNewWordGoal));
       setDailyReviewWordGoal(String(saved.dailyReviewWordGoal));
+      const displayMode = saved.flashcardDisplayMode ?? flashcardDisplayMode;
+      setFlashcardDisplayMode(displayMode);
+      setSavedFlashcardDisplayMode(displayMode);
       toast.success("Đã lưu cài đặt");
     } catch (error) {
       toast.error(saveErrorMessage(error));
@@ -205,6 +220,42 @@ function LearnerSettingsExperience({ activeLearner }: { activeLearner: LearnerDt
               />
               {fieldErrors.dailyNewWordLimit ? <p className="form-error" id="daily-new-word-limit-error" role="alert">{fieldErrors.dailyNewWordLimit}</p> : null}
             </div>
+            <fieldset className="learner-presentation-settings" disabled={saving} aria-describedby="flashcard-display-description">
+              <legend className="form-label">Cách hiển thị thẻ từ</legend>
+              <p id="flashcard-display-description">Áp dụng từ thẻ học tiếp theo; lựa chọn này không đổi tiến độ hoặc lịch ôn.</p>
+              <div className="learner-presentation-options">
+                <label className={`learner-presentation-option${flashcardDisplayMode === FLASHCARD_DISPLAY_MODE.SELF_RECALL ? " is-selected" : ""}`}>
+                  <input
+                    type="radio"
+                    name="flashcard-display-mode"
+                    value={FLASHCARD_DISPLAY_MODE.SELF_RECALL}
+                    checked={flashcardDisplayMode === FLASHCARD_DISPLAY_MODE.SELF_RECALL}
+                    onChange={() => setFlashcardDisplayMode(FLASHCARD_DISPLAY_MODE.SELF_RECALL)}
+                  />
+                  <span><strong>Tự nhớ</strong><span>Ẩn nghĩa đến khi lật; sau đó hiện nghĩa và một ví dụ.</span></span>
+                </label>
+                <label className={`learner-presentation-option${flashcardDisplayMode === FLASHCARD_DISPLAY_MODE.EASY_INTRO ? " is-selected" : ""}`}>
+                  <input
+                    type="radio"
+                    name="flashcard-display-mode"
+                    value={FLASHCARD_DISPLAY_MODE.EASY_INTRO}
+                    checked={flashcardDisplayMode === FLASHCARD_DISPLAY_MODE.EASY_INTRO}
+                    onChange={() => setFlashcardDisplayMode(FLASHCARD_DISPLAY_MODE.EASY_INTRO)}
+                  />
+                  <span><strong>Dễ làm quen</strong><span>Hiện nghĩa tiếng Việt ngay trên mặt trước.</span></span>
+                </label>
+                <label className={`learner-presentation-option${flashcardDisplayMode === FLASHCARD_DISPLAY_MODE.DETAILED ? " is-selected" : ""}`}>
+                  <input
+                    type="radio"
+                    name="flashcard-display-mode"
+                    value={FLASHCARD_DISPLAY_MODE.DETAILED}
+                    checked={flashcardDisplayMode === FLASHCARD_DISPLAY_MODE.DETAILED}
+                    onChange={() => setFlashcardDisplayMode(FLASHCARD_DISPLAY_MODE.DETAILED)}
+                  />
+                  <span><strong>Chi tiết</strong><span>Lật thẻ để xem đầy đủ giải thích, câu ví dụ và hình minh họa.</span></span>
+                </label>
+              </div>
+            </fieldset>
             <button className="register-submit" type="submit" disabled={saving} aria-busy={saving}>
               {saving ? "Đang lưu…" : "Lưu cài đặt"}
             </button>

@@ -1,3 +1,4 @@
+import { topicMembership } from "./topic-policy";
 import { sql } from "drizzle-orm";
 import { APP_SCHEMA, publicLearningCatalogSchema, type PublicLearningCatalog } from "@vocabflow/contracts";
 import { readPublicVocabulary, type VocabularyDatabase } from "./vocabulary";
@@ -22,18 +23,20 @@ export async function readPublicLearningCatalog(database: VocabularyDatabase, da
       WHERE ls.enabled = true GROUP BY ls.id ORDER BY ls.sort_order, ls.id
     `),
     database.execute(sql`
-      SELECT t.id, t.slug, t.name, t.description, t.sort_order,
-        COALESCE(json_agg(vt.vocabulary_id ORDER BY vt.vocabulary_id)
-          FILTER (WHERE vt.vocabulary_id IS NOT NULL), '[]') AS vocabulary_ids
+      SELECT t.id, t.slug, t.name, t.description, t.sort_order, t.parent_topic_id,
+        COALESCE(json_agg(DISTINCT v.id ORDER BY v.id) FILTER (WHERE v.id IS NOT NULL), '[]') AS vocabulary_ids
       FROM "${sql.raw(APP_SCHEMA)}".topics t
-      LEFT JOIN "${sql.raw(APP_SCHEMA)}".vocabulary_topics vt ON vt.topic_id = t.id
-      WHERE t.enabled = true GROUP BY t.id ORDER BY t.sort_order, t.id
+      LEFT JOIN "${sql.raw(APP_SCHEMA)}".vocabularies v
+        ON v.enabled = true AND ${topicMembership(sql`v.id`, sql`t.id`)}
+      WHERE t.enabled = true AND t.review_status = 'APPROVED'
+      GROUP BY t.id ORDER BY t.sort_order, t.id
     `)
   ]);
-  type Row = { id: number; slug: string; name: string; description: string; grade?: string | null; sort_order: number; vocabulary_ids: number[] | string };
+  type Row = { id: number; slug: string; name: string; description: string; grade?: string | null; sort_order: number; parent_topic_id?: number | null; vocabulary_ids: number[] | string };
   const project = (row: Row) => ({
     id: Number(row.id), slug: row.slug, name: row.name, description: row.description,
     sortOrder: Number(row.sort_order), enabled: true, studyScopeAvailable: true,
+    ...(row.parent_topic_id ? { parentTopicId: Number(row.parent_topic_id) } : {}),
     vocabularyIds: [...new Set((typeof row.vocabulary_ids === "string" ? JSON.parse(row.vocabulary_ids) as number[] : row.vocabulary_ids).map(Number))].filter((id) => enabledIds.has(id))
   });
   const learningSets = rows<Row>(setResult).map((row) => {

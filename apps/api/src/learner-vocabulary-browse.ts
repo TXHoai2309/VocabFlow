@@ -12,7 +12,10 @@ import { authorizeLearnerOwnership } from "./learners";
 import { LearnerVocabularyServiceError, type LearnerVocabularyDatabase } from "./learner-vocabulary";
 import { jsonArray, jsonObject, vocabularyDatasetPredicate, type VocabularyDatasetVersion } from "./vocabulary-dataset-version";
 
+import { topicMembership } from "./topic-policy";
+
 type VocabularyBrowseRow = {
+  is_saved?: unknown;
   id: unknown;
   word: unknown;
   ipa: unknown;
@@ -65,6 +68,7 @@ function toBrowseItem(row: VocabularyBrowseRow): LearnerVocabularyBrowseItem {
   const singleImage = images?.length === 1 ? jsonObject(images[0]) : undefined;
   const dto = {
     id: safeInteger(row.id),
+    isSaved: row.is_saved === true,
     word: String(row.word),
     ipa: nullableText(row.ipa),
     vietnamese: String(row.vietnamese),
@@ -105,21 +109,12 @@ function browseFilters(datasetVersion: VocabularyDatasetVersion, query: LearnerV
   ];
   if (query.level) filters.push(sql`v.level = ${query.level}`);
   if (query.cefr) filters.push(sql`md.cefr = ${query.cefr}`);
-  if (query.topic) filters.push(sql`(
-    lower(COALESCE(v.topic, '')) = lower(${query.topic})
-    OR EXISTS (
-      SELECT 1
-      FROM "${sql.raw(APP_SCHEMA)}"."vocabulary_topics" vt
-      JOIN "${sql.raw(APP_SCHEMA)}"."topics" t ON t.id = vt.topic_id
-      WHERE vt.vocabulary_id = v.id
-        AND t.enabled = true
-        AND (lower(t.name) = lower(${query.topic}) OR lower(t.slug) = lower(${query.topic}))
-    )
-    OR EXISTS (
-      SELECT 1
-      FROM jsonb_array_elements_text(COALESCE(md.tags, '[]'::jsonb)) AS tag(value)
-      WHERE lower(tag.value) = lower(${query.topic})
-    )
+  if (query.topicId) filters.push(topicMembership(sql`v.id`, sql`${query.topicId}`));
+  if (query.topic) filters.push(sql`EXISTS (
+    SELECT 1 FROM "${sql.raw(APP_SCHEMA)}".topics selected_topic
+    WHERE selected_topic.enabled = true AND selected_topic.review_status = 'APPROVED'
+      AND (lower(selected_topic.name) = lower(${query.topic}) OR selected_topic.slug = ${query.topic})
+      AND ${topicMembership(sql`v.id`, sql`selected_topic.id`)}
   )`);
   if (query.q) {
     const pattern = `%${query.q.replace(/[\\%_]/g, "\\$&")}%`;
@@ -170,6 +165,17 @@ export async function readPublicVocabularyMatchIds(database: LearnerVocabularyDa
   return rowsOf<{ id: unknown }>(result).map((row) => safeInteger(row.id));
 }
 
+const filterCache = new WeakMap<LearnerVocabularyDatabase, Map<string, { expires: number; promise: Promise<unknown> }>>();
+function cachedFilters(database: LearnerVocabularyDatabase, dataset: string, statement: SQL) {
+  let cache = filterCache.get(database);
+  if (!cache) { cache = new Map(); filterCache.set(database, cache); }
+  const cached = cache.get(dataset);
+  if (cached && cached.expires > Date.now()) return cached.promise;
+  const promise = database.execute(statement).catch((error: unknown) => { cache!.delete(dataset); throw error; });
+  cache.set(dataset, { expires: Date.now() + 60_000, promise });
+  return promise;
+}
+
 async function readVocabularyBrowse(database: LearnerVocabularyDatabase, datasetVersion: VocabularyDatasetVersion, query: PublicVocabularyBrowseQuery, learnerId?: string): Promise<LearnerVocabularyBrowseResponse> {
   try {
     const filters = browseFilters(datasetVersion, query);
@@ -178,17 +184,14 @@ async function readVocabularyBrowse(database: LearnerVocabularyDatabase, dataset
       JOIN "${sql.raw(APP_SCHEMA)}".learning_sets ls ON ls.id = lsi.learning_set_id AND ls.enabled = true
       WHERE lsi.vocabulary_id = v.id AND ls.id = ${query.learningSetId}
     )`);
-    if (query.topicId) filters.push(sql`EXISTS (
-      SELECT 1 FROM "${sql.raw(APP_SCHEMA)}".vocabulary_topics vt
-      JOIN "${sql.raw(APP_SCHEMA)}".topics t ON t.id = vt.topic_id AND t.enabled = true
-      WHERE vt.vocabulary_id = v.id AND t.id = ${query.topicId}
-    )`);
     const where = sql.join(filters, sql` AND `);
     const offset = (query.page - 1) * query.pageSize;
     const [pageResult, countResult, filtersResult] = await Promise.all([
       database.execute(sql`
         SELECT
           v.id, v.word, v.ipa,
+          ${learnerId ? sql`EXISTS (SELECT 1 FROM "${sql.raw(APP_SCHEMA)}".learner_saved_vocabulary saved
+            WHERE saved.learner_id = ${learnerId}::uuid AND saved.vocabulary_id = v.id)` : sql`false`} AS is_saved,
           COALESCE(v.vietnamese_override, v.vietnamese) AS vietnamese,
           CASE WHEN v.image_quarantined THEN NULL ELSE v.image_url END AS image_url,
           v.audio_url, v.topic, v.level, v.enabled, v.content_version,
@@ -221,8 +224,13 @@ async function readVocabularyBrowse(database: LearnerVocabularyDatabase, dataset
         LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
         WHERE ${where}
       `),
-      database.execute(sql`
+      cachedFilters(database, datasetVersion, sql`
         SELECT
+          COALESCE((SELECT json_agg(json_build_object('id', t.id, 'name', t.name, 'slug', t.slug, 'parentTopicId', t.parent_topic_id) ORDER BY t.sort_order, t.id)
+            FROM "${sql.raw(APP_SCHEMA)}".topics t
+            WHERE t.enabled = true AND t.review_status = 'APPROVED'
+              AND EXISTS (SELECT 1 FROM "${sql.raw(APP_SCHEMA)}".vocabularies v
+                WHERE v.enabled = true AND ${vocabularyDatasetPredicate("v", datasetVersion)} AND ${topicMembership(sql`v.id`, sql`t.id`)})), '[]') AS topic_choices,
           COALESCE((
             SELECT array_agg(options.cefr ORDER BY options.cefr)
             FROM (
@@ -235,34 +243,19 @@ async function readVocabularyBrowse(database: LearnerVocabularyDatabase, dataset
           COALESCE((
             SELECT array_agg(options.topic ORDER BY options.topic)
             FROM (
-            SELECT DISTINCT topic_values.topic
-            FROM (
-                SELECT t.name AS topic
-                FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v
-                JOIN "${sql.raw(APP_SCHEMA)}"."vocabulary_topics" vt ON vt.vocabulary_id = v.id
-                JOIN "${sql.raw(APP_SCHEMA)}"."topics" t ON t.id = vt.topic_id
-                WHERE v.enabled = true
-                  AND ${vocabularyDatasetPredicate("v", datasetVersion)}
-                  AND t.enabled = true
-                UNION
-                SELECT NULLIF(BTRIM(v.topic), '') AS topic
-                FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v
-                WHERE v.enabled = true AND ${vocabularyDatasetPredicate("v", datasetVersion)}
-                UNION
-                SELECT NULLIF(BTRIM(tag.value), '') AS topic
-                FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v
-                LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
-                CROSS JOIN LATERAL jsonb_array_elements_text(COALESCE(md.tags, '[]'::jsonb)) AS tag(value)
-                WHERE v.enabled = true AND ${vocabularyDatasetPredicate("v", datasetVersion)}
-              ) topic_values
-              WHERE topic_values.topic IS NOT NULL
+              SELECT DISTINCT t.name AS topic
+              FROM "${sql.raw(APP_SCHEMA)}".topics t
+              WHERE t.enabled = true AND t.review_status = 'APPROVED'
+                AND EXISTS (SELECT 1 FROM "${sql.raw(APP_SCHEMA)}".vocabularies v
+                  WHERE v.enabled = true AND ${vocabularyDatasetPredicate("v", datasetVersion)}
+                    AND ${topicMembership(sql`v.id`, sql`t.id`)})
             ) options
           ), ARRAY[]::text[]) AS topic_options
       `)
     ]);
 
     const [countRow] = rowsOf<{ total: unknown }>(countResult);
-    const [filterRow] = rowsOf<{ cefr_options: unknown; topic_options: unknown }>(filtersResult);
+    const [filterRow] = rowsOf<{ cefr_options: unknown; topic_options: unknown; topic_choices?: unknown }>(filtersResult);
     const total = safeInteger(countRow?.total ?? 0);
     const response: LearnerVocabularyBrowseResponse = {
       vocabulary: rowsOf<VocabularyBrowseRow>(pageResult).map(toBrowseItem),
@@ -272,7 +265,8 @@ async function readVocabularyBrowse(database: LearnerVocabularyDatabase, dataset
       totalPages: Math.max(1, Math.ceil(total / query.pageSize)),
       filters: {
         cefrOptions: Array.isArray(filterRow?.cefr_options) ? filterRow.cefr_options.map(String) : [],
-        topicOptions: Array.isArray(filterRow?.topic_options) ? filterRow.topic_options.map(String) : []
+        topicOptions: Array.isArray(filterRow?.topic_options) ? filterRow.topic_options.map(String) : [],
+        ...(Array.isArray(filterRow?.topic_choices) ? { topicChoices: filterRow.topic_choices } : {})
       }
     };
     const parsed = learnerVocabularyBrowseResponseSchema.safeParse(response);

@@ -281,12 +281,12 @@ function parseLearnerVocabularyQuery(request: Request): { level?: VocabularyLeve
 
 function parseLearnerVocabularyBrowseQuery(request: Request) {
   const params = new URL(request.url).searchParams;
-  const allowed = new Set(["page", "pageSize", "q", "level", "cefr", "topic"]);
+  const allowed = new Set(["page", "pageSize", "q", "level", "cefr", "topic", "topicId"]);
   const keys = [...params.keys()];
   if (new Set(keys).size !== keys.length || keys.some((key) => !allowed.has(key))) return null;
 
   const candidate: Record<string, unknown> = {};
-  for (const key of ["page", "pageSize"] as const) {
+  for (const key of ["page", "pageSize", "topicId"] as const) {
     const value = params.get(key);
     if (value !== null) candidate[key] = /^\d+$/.test(value) ? Number(value) : Number.NaN;
   }
@@ -300,6 +300,19 @@ function parseLearnerVocabularyBrowseQuery(request: Request) {
 }
 
 function parseReviewQueueScope(request: Request): ReviewQueueScope | undefined | null {
+  const url = new URL(request.url);
+  const level = url.searchParams.get("level");
+  const cefr = url.searchParams.get("cefr");
+  if (url.searchParams.getAll("level").length > 1 || url.searchParams.getAll("cefr").length > 1
+    || (level !== null && !["GRADE_1", "GRADE_2", "GRADE_3", "GRADE_4", "GRADE_5", "GENERAL"].includes(level))
+    || (cefr !== null && !/^[ABC][12]$/.test(cefr))) return null;
+  url.searchParams.delete("level"); url.searchParams.delete("cefr");
+  const scope = parseBaseReviewQueueScope(new Request(url));
+  if (level === null && cefr === null) return scope;
+  if (scope === null || typeof scope === "string") return null;
+  return { ...(scope ?? { type: "all" }), ...(level ? { level: level as import("@vocabflow/contracts").VocabularyLevel } : {}), ...(cefr ? { cefr } : {}) };
+}
+function parseBaseReviewQueueScope(request: Request): ReviewQueueScope | undefined | null {
   const params = new URL(request.url).searchParams;
   params.delete("capacity");
   const keys = [...params.keys()];
@@ -347,7 +360,9 @@ export function createApp(dependencies: AppDependencies = {}) {
 
   application.use("/api/*", async (c, next) => {
     await next();
-    const mediaEnv = c.req.path.startsWith("/api/public/") ? { ...c.env, VERCEL_ENV: c.env?.VERCEL_ENV ?? "preview" } : c.env ?? {};
+    // Use the actual deployment bindings. Local Development has no VERCEL_ENV
+    // and is allowed to show its explicitly labeled source-media previews.
+    const mediaEnv = c.env ?? {};
     if (!mustSanitizeV2MediaResponse(mediaEnv) || c.req.path.startsWith("/api/auth/")
       || !c.res.headers.get("content-type")?.includes("application/json")) return;
     const mediaStarted = performance.now();
@@ -630,7 +645,7 @@ export function createApp(dependencies: AppDependencies = {}) {
         const message = error.code === "HOUSEHOLD_ACCESS_DENIED"
           ? "Bạn không có quyền thay đổi learner này."
           : error.code === "INVALID_REQUEST"
-            ? "Mục tiêu và giới hạn từ mới phải là số nguyên trong phạm vi cho phép."
+            ? "Cài đặt học tập không hợp lệ. Vui lòng kiểm tra và thử lại."
             : "Không thể lưu cài đặt learner lúc này. Vui lòng thử lại.";
         return c.json(errorEnvelope(error.code, message), error.status);
       }
@@ -644,11 +659,14 @@ export function createApp(dependencies: AppDependencies = {}) {
       if (!session?.user?.id) {
         return c.json(errorEnvelope("UNAUTHORIZED", "Đăng nhập để tiếp tục."), 401);
       }
-      if ([...new URL(c.req.url).searchParams.keys()].length > 0) {
+      const listParams = new URL(c.req.url).searchParams;
+      if ([...listParams.keys()].some((key) => key !== "includeTopics")
+        || listParams.getAll("includeTopics").length > 1
+        || (listParams.has("includeTopics") && listParams.get("includeTopics") !== "1")) {
         return c.json(errorEnvelope("INVALID_REQUEST", "Dữ liệu gửi lên không hợp lệ."), 400);
       }
       const service = dependencies.learningSetService ?? await runLearningSetService(c.env);
-      return c.json({ learningSets: await service.list(session.user.id) }, 200);
+      return c.json({ learningSets: await service.list(session.user.id, { includeTopics: listParams.get("includeTopics") === "1" }) }, 200);
     } catch (error) {
       if (error instanceof LearningSetServiceError) {
         const message = error.code === "HOUSEHOLD_ACCESS_DENIED"

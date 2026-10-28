@@ -130,7 +130,21 @@ describe("US-28/29 learning set UI", () => {
     const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValue(response({ learningSets: [learningSet] }));
     render(<MemoryRouter initialEntries={["/learning-sets"]}><AccountRouteProbe /><Routes><Route path="/learning-sets" element={<LearningSetsPage />} /></Routes></MemoryRouter>);
     expect(await screen.findByTestId("learning-sets-list")).toHaveTextContent("Bộ từ khởi đầu VocabFlow");
-    expect(fetchMock).toHaveBeenCalledWith("/api/learning-sets", { credentials: "include" });
+    expect(fetchMock).toHaveBeenCalledWith("/api/learning-sets?includeTopics=1", { credentials: "include" });
+  });
+
+  it("intersects the grade and topic filters and links a set back to its topic", async () => {
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValue(response({ learningSets: [
+      { ...learningSet, topics: [{ id: 11, slug: "family", name: "Gia đình" }] },
+      { ...learningSet, id: 2, slug: "food-grade-2", name: "Đồ ăn", grade: "GRADE_2", topics: [{ id: 12, slug: "food", name: "Ẩm thực" }] }
+    ] }));
+    render(<MemoryRouter initialEntries={["/learning-sets?level=GRADE_1&topicId=11"]}><AccountRouteProbe /><Routes><Route path="/learning-sets" element={<LearningSetsPage />} /></Routes></MemoryRouter>);
+
+    const list = await screen.findByTestId("learning-sets-list");
+    expect(list).toHaveTextContent("Bộ từ khởi đầu VocabFlow");
+    expect(list).not.toHaveTextContent("Đồ ăn");
+    expect(screen.getByRole("link", { name: "Gia đình" })).toHaveAttribute("href", "/topics?topicId=11&level=GRADE_1");
+    expect(fetchMock).toHaveBeenCalledWith("/api/learning-sets?includeTopics=1", { credentials: "include" });
   });
 
   it("distinguishes source-verified CEFR sets from inferred domain suggestions", async () => {
@@ -144,7 +158,7 @@ describe("US-28/29 learning set UI", () => {
     expect(list).toHaveTextContent("CEFR · Có nguồn");
     expect(list).toHaveTextContent("Gợi ý · Cần xem lại");
     expect(screen.queryByRole("link", { name: "Thêm vào học tập" })).not.toBeInTheDocument();
-    expect(fetchMock).toHaveBeenCalledWith("/api/learning-sets", { credentials: "include" });
+    expect(fetchMock).toHaveBeenCalledWith("/api/learning-sets?includeTopics=1", { credentials: "include" });
   });
 
   it("allows a V2 learning set to start study without a legacy learner-set assignment", async () => {
@@ -178,8 +192,8 @@ describe("US-28/29 learning set UI", () => {
 
     expect(await screen.findByTestId("learning-sets-list")).toHaveTextContent(learningSet.name);
     expect(fetchMock).toHaveBeenCalledTimes(2);
-    expect(fetchMock).toHaveBeenNthCalledWith(1, "/api/learning-sets", { credentials: "include" });
-    expect(fetchMock).toHaveBeenNthCalledWith(2, "/api/learning-sets", { credentials: "include" });
+    expect(fetchMock).toHaveBeenNthCalledWith(1, "/api/learning-sets?includeTopics=1", { credentials: "include" });
+    expect(fetchMock).toHaveBeenNthCalledWith(2, "/api/learning-sets?includeTopics=1", { credentials: "include" });
   });
 
   it("renders ordered vocabulary and real partial progress", async () => {

@@ -1,5 +1,40 @@
 # VocabFlow Roadmap and Batch Index
 
+## Owner priority — US-62 Grade 1–2 themed vocabulary pilot (2026-10-21)
+
+The owner approved a selectable, approximately 30-word pilot across four
+familiar topics, with no forced sequence. Editorial and asset-level rights
+preflight found that the current V2 local index exposes no eligible topic facets
+or grade assignments; sampled Development media has unknown usage rights.
+Keep the catalog filters truthful and do not activate these words until exact
+content and media evidence pass review. See
+[US-62](stories/US-62-grade-1-2-topic-pilot.md).
+
+## Owner priority — US-61 learning-set topic discovery (2026-10-21)
+
+Locally implemented / ready for owner check. Grade/topic search filters,
+reviewed topic facets and links between topic and set discovery are available.
+Current local data has no approved topic or grade assignments, so the filters
+correctly return no matching Grade 1–2 pilot. See
+[US-61](stories/US-61-learning-set-topic-discovery.md).
+
+## Owner priority — US-60 flashcard display preferences (2026-10-21)
+
+The owner reprioritized phase 2 after US-59's local implementation. US-60 is
+locally implemented with three learner-scoped card styles and `Tự nhớ` as the
+default; migration 0021 and owner checks remain pending. See
+[US-60](stories/US-60-flashcard-display-preferences.md). Focused settings,
+flashcard and study-flow tests now pass 157/157. US-59's owner check and
+migration rollout also remain pending.
+
+## Owner priority — US-59 learning catalog improvement (2026-10-21)
+
+Phase 1 is locally implemented / ready for owner check; migration 0020 and
+trusted PostgreSQL validation are pending before rollout. Scope and verification:
+[US-59](stories/US-59-learning-catalog-consistency.md). Phase 2 display
+preferences are implemented in US-60; phase 3 curates suitable grade 1–2 and
+other all-ages pathways without automatic CEFR-to-grade mapping.
+
 ## Owner priority — US-58 Public guest learning (2026-10-19)
 
 Implementation authorized directly by the owner for the initial public phase.

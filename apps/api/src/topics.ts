@@ -1,3 +1,4 @@
+import { topicMembership } from "./topic-policy";
 import { sql, type SQL } from "drizzle-orm";
 import {
   APP_SCHEMA,
@@ -46,6 +47,7 @@ type TopicRow = {
   description: unknown;
   sort_order: number | string;
   enabled: unknown;
+  parent_topic_id?: unknown;
   study_scope_available?: unknown;
 };
 
@@ -96,6 +98,7 @@ function toTopicDto(row: TopicRow, datasetVersion: VocabularyDatasetVersion): To
     description: String(row.description),
     sortOrder: safeInteger(row.sort_order),
     enabled: row.enabled === true,
+    ...(row.parent_topic_id != null ? { parentTopicId: safeInteger(row.parent_topic_id) } : {}),
     ...(datasetVersion === "v2" ? { studyScopeAvailable: row.study_scope_available === true } : {})
   });
   if (!parsed.success) throw new TopicServiceError("INTERNAL_ERROR", 500);
@@ -176,15 +179,15 @@ export function createTopicService(database: TopicDatabase, options: { datasetVe
       await authorizeCatalogAccess(database, userId);
       try {
         const result = await database.execute(sql`
-          SELECT t.id, t.slug, t.name, t.description, t.sort_order, t.enabled,
+          SELECT t.id, t.slug, t.name, t.description, t.sort_order, t.enabled, t.parent_topic_id,
                  ${datasetVersion === "v2" ? sql`true` : sql`false`} AS study_scope_available
           FROM "${sql.raw(APP_SCHEMA)}"."topics" t
-          WHERE t.enabled = true
+          WHERE t.enabled = true AND t.review_status = 'APPROVED'
             AND EXISTS (
               SELECT 1
-              FROM "${sql.raw(APP_SCHEMA)}"."vocabulary_topics" vt
-              JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = vt.vocabulary_id AND v.enabled = true
-              WHERE vt.topic_id = t.id AND ${vocabularyDatasetPredicate("v", datasetVersion)}
+              FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v
+              WHERE v.enabled = true AND ${vocabularyDatasetPredicate("v", datasetVersion)}
+                AND ${topicMembership(sql`v.id`, sql`t.id`)}
             )
           ORDER BY t.sort_order ASC, t.id ASC
         `);
@@ -203,11 +206,10 @@ export function createTopicService(database: TopicDatabase, options: { datasetVe
           FROM "${sql.raw(APP_SCHEMA)}"."topics" t
           WHERE t.id = ${topicId}
             AND t.enabled = true
-            AND EXISTS (
-              SELECT 1 FROM "${sql.raw(APP_SCHEMA)}"."vocabulary_topics" vt
-              JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = vt.vocabulary_id AND v.enabled = true
-              WHERE vt.topic_id = t.id AND ${vocabularyDatasetPredicate("v", datasetVersion)}
-            )
+            AND t.review_status = 'APPROVED'
+            AND EXISTS (SELECT 1 FROM "${sql.raw(APP_SCHEMA)}".vocabularies v
+              WHERE v.enabled = true AND ${vocabularyDatasetPredicate("v", datasetVersion)}
+                AND ${topicMembership(sql`v.id`, sql`t.id`)})
           LIMIT 1
         `);
         if (rowsOf<{ id: number | string }>(topicResult).length === 0) {
@@ -241,12 +243,11 @@ export function createTopicService(database: TopicDatabase, options: { datasetVe
             md.editorial_status,
             md.rights_status,
             md.development_media
-          FROM "${sql.raw(APP_SCHEMA)}"."vocabulary_topics" vt
-          JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = vt.vocabulary_id
+          FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v
           LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
           LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_short_meanings" sm
             ON sm.vocabulary_id = v.id AND sm.source_content_hash = md.content_sha256 AND sm.validation_status = 'VERIFIED'
-          WHERE vt.topic_id = ${topicId}
+          WHERE ${topicMembership(sql`v.id`, sql`${topicId}`)}
             AND v.enabled = true
             AND ${vocabularyDatasetPredicate("v", datasetVersion)}
           ORDER BY v.id ASC

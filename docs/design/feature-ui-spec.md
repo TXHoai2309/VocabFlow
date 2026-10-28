@@ -1,5 +1,35 @@
 # VocabFlow Feature UI Specification — Single-account learning
 
+## Flashcard display preferences (US-60, 2026-10-21)
+
+The existing learning settings page offers three accessible, clearly described
+radio choices. `Tự nhớ` is the default: hide the Vietnamese meaning before flip
+and show the primary meaning plus one example on the back. `Dễ làm quen` shows
+the primary Vietnamese meaning on the front and one example after flip.
+`Chi tiết` keeps the front answer-free and shows the full available definition,
+examples, topic and image after flip. Keep pronunciation/audio controls
+independent of the selected mode. Use the current shell, form controls, tokens,
+loading/error states and 44px minimum target guidance; do not add a new visual
+language. The mode is used by regular flashcards and exercise fallback cards.
+
+## Compact catalog and linked study filters (US-59, 2026-10-21)
+
+Vocabulary cards prioritize word, pronunciation/POS and one concise meaning;
+full explanation and source evidence remain in detail/review contexts. Never
+display inferred pipeline tags as primary learner topics. Save/audio/disclosure
+buttons are siblings of the detail link, not nested interactive controls.
+
+Canonical topic choices use stable IDs. Topic and collection pages reuse native
+grade/CEFR controls, preserve selected dimensions when starting a session, and
+show an empty result rather than broadening the scope. A parent includes its
+published descendants with unique word counts. Topic focus rings differ from
+selected fill. The catalog study action reserves its layout space while loading;
+text-search mode omits that action because search text is not a study scope.
+
+Existing visual tokens, shell, keyboard behavior and loading/error components
+remain canonical. Missing topic approval or grade assignment is missing content,
+not a reason to invent classifications. Display presets are defined by US-60.
+
 ## Guest learning (US-58, 2026-10-19)
 
 Home's New stat uses the total unseen source count; its daily hero uses the

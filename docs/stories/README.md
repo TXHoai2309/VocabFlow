@@ -1,6 +1,24 @@
 # VocabFlow User Story System
 
-## Current owner priority (2026-10-19)
+## Current owner priority (2026-10-21)
+
+[US-62 — Grade 1–2 themed vocabulary pilot](US-62-grade-1-2-topic-pilot.md):
+the owner-approved 30-word / four-topic scope is in editorial and rights
+preflight. No draft word has been activated because the local V2 content has no
+approved grade/topic assignments or asset-level rights evidence.
+
+[US-61 — Learning-set topic discovery](US-61-learning-set-topic-discovery.md):
+implemented locally and ready for owner check. Catalog topics and grade filters
+work, while accurately reflecting that the current local runtime has no
+approved topics or grade assignments.
+
+[US-60 — Flashcard display preferences](US-60-flashcard-display-preferences.md):
+implemented locally and ready for owner check. Migration 0021 remains unapplied.
+
+[US-59 — Consistent, compact learning catalog](US-59-learning-catalog-consistency.md):
+implemented locally and ready for owner check. Migration 0020 remains unapplied.
+
+## Earlier owner priority (2026-10-19)
 
 [US-58 — Public guest learning](US-58-guest-learning.md): implemented locally, ready for owner check.
 Public entry is the explicit exception to the historical account-only baseline below.
@@ -115,6 +133,10 @@ convenient. Reprioritization or a new story must be explicit.
 - [US-52 Loading / Empty / Error States](US-52-async-data-states.md) — `IMPLEMENTED / READY FOR OWNER CHECK` (Feature #15; shared accessible skeleton, empty, safe error and retry states across learner data pages and Global Search).
 
 - [US-53 Toast & Feedback](US-53-toast-feedback.md) — `IMPLEMENTED / READY FOR OWNER CHECK` (Feature #16; shared mutation feedback, success toasts for normal actions and confirmation for destructive actions).
+- [US-59 Consistent, Compact Learning Catalog](US-59-learning-catalog-consistency.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
+- [US-60 Flashcard Display Preferences](US-60-flashcard-display-preferences.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
+- [US-61 Learning-Set Topic Discovery](US-61-learning-set-topic-discovery.md) — `IMPLEMENTED / READY FOR OWNER CHECK`.
+- [US-62 Grade 1–2 Themed Vocabulary Pilot](US-62-grade-1-2-topic-pilot.md) — `IN PROGRESS — EDITORIAL / RIGHTS PREFLIGHT`.
 
 ## Story status gate
 

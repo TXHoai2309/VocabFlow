@@ -391,6 +391,7 @@ describe("US-22 vocabulary list UI", () => {
     await waitFor(() => expect(within(card).getByRole("button", { name: "Bỏ lưu từ apple" })).toHaveAttribute("aria-pressed", "true"));
     expect(screen.getByTestId("current-url")).toHaveTextContent("/vocabulary");
     expect(fetchMock.mock.calls.some(([url, init]) => String(url).endsWith("/saved-vocabulary/1") && init?.method === "POST")).toBe(true);
+    expect(fetchMock.mock.calls.some(([url]) => String(url).endsWith("/saved-vocabulary"))).toBe(false);
     expect(screen.queryByTestId("detail-route")).not.toBeInTheDocument();
     expect(screen.getByText("Đã thêm vào Yêu thích")).toBeInTheDocument();
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();

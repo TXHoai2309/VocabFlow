@@ -1,5 +1,28 @@
 # VocabFlow Product Specification — Single-account learning
 
+## Flashcard display preferences (US-60, 2026-10-21)
+
+Each learner may choose how much help a flashcard shows. `SELF_RECALL` is the
+default: the front hides the Vietnamese meaning and the back shows the primary
+meaning plus at most one example. `EASY_INTRO` shows the Vietnamese meaning on
+the front and at most one example after flip. `DETAILED` keeps the front
+answer-free and shows all available meaning, definition, examples, topic and
+image details after flip. The selected preference belongs to the learner
+profile; the guest identity stores it on that browser. Existing guest snapshots
+default to `SELF_RECALL`. Presentation settings never change answer evaluation,
+queue scope or the review schedule. See [US-60](../stories/US-60-flashcard-display-preferences.md).
+
+## Catalog learning improvement (US-59, 2026-10-21)
+
+The product remains for all ages. Canonical published topics and reviewed/source
+memberships form main discovery; inferred classifications stay review evidence
+without deleting words from broad browse. A parent includes published children
+and counts each vocabulary once. School grade and CEFR are independent explicit
+constraints that survive into a session; an empty intersection never broadens
+the source. Grade 1–2 suitability does not claim textbook alignment or follow
+automatically from A1. Display preferences are implemented separately in US-60.
+See US-59 for verification and rollout limits.
+
 ## Public guest learning (US-58, 2026-10-19)
 
 Guest default, Pathway and All queues use the complete enabled dataset, matching

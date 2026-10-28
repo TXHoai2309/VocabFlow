@@ -63,12 +63,14 @@ function toResponse(row: {
   daily_new_word_limit: unknown;
   daily_new_word_goal: unknown;
   daily_review_word_goal: unknown;
+  flashcard_display_mode: unknown;
 }): LearnerSettingsResponse {
   const parsed = learnerSettingsResponseSchema.safeParse({
     learnerId: String(row.learner_id),
     dailyNewWordLimit: safeLimit(Number(row.daily_new_word_limit)),
     dailyNewWordGoal: safeGoal(Number(row.daily_new_word_goal)),
-    dailyReviewWordGoal: safeGoal(Number(row.daily_review_word_goal))
+    dailyReviewWordGoal: safeGoal(Number(row.daily_review_word_goal)),
+    flashcardDisplayMode: row.flashcard_display_mode
   });
   if (!parsed.success) throw new LearnerSettingsServiceError("INTERNAL_ERROR", 500);
   return parsed.data;
@@ -95,7 +97,8 @@ export function createLearnerSettingsService(database: LearnerSettingsDatabase):
       try {
         const result = await database.execute(sql`
         SELECT id::text AS learner_id, daily_new_word_limit,
-               daily_new_word_goal, daily_review_word_goal
+               daily_new_word_goal, daily_review_word_goal,
+               flashcard_display_mode
           FROM "${sql.raw(APP_SCHEMA)}"."learner_profiles"
           WHERE id = ${ownership.learnerId}::uuid
           LIMIT 1
@@ -105,6 +108,7 @@ export function createLearnerSettingsService(database: LearnerSettingsDatabase):
           daily_new_word_limit: unknown;
           daily_new_word_goal: unknown;
           daily_review_word_goal: unknown;
+          flashcard_display_mode: unknown;
         }>(result);
         if (!row) throw new LearnerSettingsServiceError("INTERNAL_ERROR", 500);
         return toResponse(row);
@@ -130,19 +134,24 @@ export function createLearnerSettingsService(database: LearnerSettingsDatabase):
         if (settings.dailyReviewWordGoal !== undefined) {
           updates.push(sql`daily_review_word_goal = ${settings.dailyReviewWordGoal}::integer`);
         }
+        if (settings.flashcardDisplayMode !== undefined) {
+          updates.push(sql`flashcard_display_mode = ${settings.flashcardDisplayMode}`);
+        }
         updates.push(sql`updated_at = now()`);
         const result = await database.execute(sql`
           UPDATE "${sql.raw(APP_SCHEMA)}"."learner_profiles"
           SET ${sql.join(updates, sql`, `)}
           WHERE id = ${ownership.learnerId}::uuid
           RETURNING id::text AS learner_id, daily_new_word_limit,
-                    daily_new_word_goal, daily_review_word_goal
+                    daily_new_word_goal, daily_review_word_goal,
+                    flashcard_display_mode
         `);
         const [row] = rowsOf<{
           learner_id: unknown;
           daily_new_word_limit: unknown;
           daily_new_word_goal: unknown;
           daily_review_word_goal: unknown;
+          flashcard_display_mode: unknown;
         }>(result);
         if (!row) throw new LearnerSettingsServiceError("INTERNAL_ERROR", 500);
         return toResponse(row);

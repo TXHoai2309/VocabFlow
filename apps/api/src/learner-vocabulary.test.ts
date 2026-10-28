@@ -170,7 +170,9 @@ describe("US-22 paged vocabulary browse service", () => {
     expect(pageQuery?.sql).toContain("v.word ILIKE");
     expect(pageQuery?.sql).toContain("v.level =");
     expect(pageQuery?.sql).toContain("md.cefr =");
-    expect(pageQuery?.sql).toContain("jsonb_array_elements_text");
+    expect(pageQuery?.sql).not.toContain("jsonb_array_elements_text");
+    expect(pageQuery?.sql).toContain("review_status = 'APPROVED'");
+    expect(pageQuery?.sql).toContain("learner_saved_vocabulary");
     expect(pageQuery?.sql).toContain('"vocabulary_topics"');
     expect(pageQuery?.sql).toContain("ORDER BY v.id ASC");
     expect(pageQuery?.sql).toContain("LIMIT");

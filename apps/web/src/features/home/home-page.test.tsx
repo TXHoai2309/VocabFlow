@@ -248,7 +248,7 @@ describe("Home dashboard", () => {
     expect(screen.getByText("20 từ · Lớp 1")).toBeInTheDocument();
     expect(await screen.findByText(/5 từ khác nhau đã học vào ngày/)).toBeInTheDocument();
     expect(screen.getByText("6 lượt ôn tập")).toBeInTheDocument();
-    expect(requestReviewQueue).toHaveBeenCalledWith(learner.id);
+    expect(requestReviewQueue).toHaveBeenCalledWith(learner.id, undefined, 5);
     expect(requestContinueLearningSummary).toHaveBeenCalledWith(learner.id);
     expect(requestContinueLearningSummary).toHaveBeenCalledOnce();
     expect(requestProgressSummary).toHaveBeenCalledWith(learner.id);

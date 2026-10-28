@@ -68,6 +68,29 @@ describe("US-28/29 learning set API boundary", () => {
     expect(service.detail).toHaveBeenCalledWith("parent-1", 1);
   });
 
+  it("opts in to reviewed topic summaries without changing the default list contract", async () => {
+    const service = {
+      list: vi.fn(async (_userId: string, options?: { includeTopics?: boolean }) => [{
+        id: summaryRow.id, slug: summaryRow.slug, name: summaryRow.name, description: summaryRow.description,
+        grade: null, enabled: true, sortOrder: summaryRow.sort_order, vocabularyCount: Number(summaryRow.vocabulary_count),
+        ...(options?.includeTopics ? { topics: [{ id: 11, slug: "food", name: "Ẩm thực" }] } : {})
+      }]),
+      detail: vi.fn(), listForLearner: vi.fn(), assign: vi.fn(), unassign: vi.fn()
+    };
+    const app = createApp({ readSession: async () => ({ user: { id: "parent-1" } }), learningSetService: service });
+
+    const included = await app.request("http://localhost/api/learning-sets?includeTopics=1");
+    expect(included.status).toBe(200);
+    expect(await included.json()).toMatchObject({ learningSets: [{ topics: [{ id: 11, slug: "food", name: "Ẩm thực" }] }] });
+    expect(service.list).toHaveBeenCalledWith("parent-1", { includeTopics: true });
+
+    const duplicate = await app.request("http://localhost/api/learning-sets?includeTopics=1&includeTopics=1");
+    const unknown = await app.request("http://localhost/api/learning-sets?topicId=11");
+    expect(duplicate.status).toBe(400);
+    expect(unknown.status).toBe(400);
+    expect(service.list).toHaveBeenCalledTimes(1);
+  });
+
   it("validates set ids and maps unavailable sets to 404", async () => {
     const service = { list: vi.fn(), detail: vi.fn(async () => { throw new LearningSetServiceError("LEARNING_SET_NOT_FOUND", 404); }), listForLearner: vi.fn(), assign: vi.fn(), unassign: vi.fn() };
     const app = createApp({ readSession: async () => ({ user: { id: "parent-1" } }), learningSetService: service });
@@ -140,6 +163,23 @@ describe("US-28/29 learning set service", () => {
     expect(queries[0]).toContain('v.source_dataset =');
     expect(queries[1]).toContain('v.source_dataset =');
     expect(queries[1]).toContain('"master_v2_development_projections"');
+  });
+
+  it("returns set-to-topic facets from enabled words and reviewed canonical memberships in one read", async () => {
+    const queries: Array<{ sql: string; params: unknown[] }> = [];
+    const setRow = { ...summaryRow, slug: "grade-1-food", name: "Đồ ăn lớp 1", grade: "GRADE_1", topics: [{ id: 11, slug: "food", name: "Ẩm thực" }] };
+    const execute = vi.fn()
+      .mockResolvedValueOnce(authorizedRows())
+      .mockImplementationOnce(async (query) => { queries.push(new PgDialect().sqlToQuery(query)); return { rows: [setRow] }; });
+    const result = await createLearningSetService({ execute }, { datasetVersion: "v2" }).list("parent-1", { includeTopics: true });
+
+    expect(result[0]).toMatchObject({ grade: "GRADE_1", topics: [{ id: 11, slug: "food", name: "Ẩm thực" }] });
+    expect(execute).toHaveBeenCalledTimes(2);
+    expect(queries[0]?.sql).toContain("WITH RECURSIVE topic_tree");
+    expect(queries[0]?.sql).toContain("vt.review_status = 'APPROVED'");
+    expect(queries[0]?.sql).toContain("JOIN eligible_vocabulary ev");
+    expect(queries[0]?.sql).toContain("jsonb_agg(jsonb_build_object");
+    expect(queries[0]?.sql).toContain("COUNT(*) FILTER");
   });
 
   it("returns active assignment state for every enabled set", async () => {

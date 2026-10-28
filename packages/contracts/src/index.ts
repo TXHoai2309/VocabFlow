@@ -293,7 +293,8 @@ export const topicDtoSchema = z.object({
   description: z.string().min(1),
   sortOrder: z.number().int().nonnegative(),
   enabled: z.boolean(),
-  studyScopeAvailable: z.boolean().optional()
+  studyScopeAvailable: z.boolean().optional(),
+  parentTopicId: z.number().int().positive().nullable().optional()
 }).strict();
 export type TopicDto = z.infer<typeof topicDtoSchema>;
 
@@ -315,24 +316,46 @@ export const DAILY_REVIEW_WORD_GOAL_DEFAULT = 20 as const;
 export const DAILY_WORD_GOAL_MIN = 1 as const;
 export const DAILY_WORD_GOAL_MAX = 100 as const;
 
+export const FLASHCARD_DISPLAY_MODE = {
+  SELF_RECALL: "SELF_RECALL",
+  EASY_INTRO: "EASY_INTRO",
+  DETAILED: "DETAILED"
+} as const;
+export const flashcardDisplayModeSchema = z.enum([
+  FLASHCARD_DISPLAY_MODE.SELF_RECALL,
+  FLASHCARD_DISPLAY_MODE.EASY_INTRO,
+  FLASHCARD_DISPLAY_MODE.DETAILED
+]);
+export type FlashcardDisplayMode = z.infer<typeof flashcardDisplayModeSchema>;
+
 export const learnerSettingsResponseSchema = z.object({
   learnerId: canonicalUuidSchema,
   dailyNewWordLimit: z.number().int().min(DAILY_NEW_WORD_LIMIT_MIN).max(DAILY_NEW_WORD_LIMIT_MAX).safe(),
   dailyNewWordGoal: z.number().int().min(DAILY_WORD_GOAL_MIN).max(DAILY_WORD_GOAL_MAX).safe(),
-  dailyReviewWordGoal: z.number().int().min(DAILY_WORD_GOAL_MIN).max(DAILY_WORD_GOAL_MAX).safe()
+  dailyReviewWordGoal: z.number().int().min(DAILY_WORD_GOAL_MIN).max(DAILY_WORD_GOAL_MAX).safe(),
+  flashcardDisplayMode: flashcardDisplayModeSchema.optional()
 }).strict();
 export type LearnerSettingsResponse = z.infer<typeof learnerSettingsResponseSchema>;
 
 export const updateLearnerSettingsRequestSchema = z.object({
   dailyNewWordLimit: z.number().int().min(DAILY_NEW_WORD_LIMIT_MIN).max(DAILY_NEW_WORD_LIMIT_MAX).safe().optional(),
   dailyNewWordGoal: z.number().int().min(DAILY_WORD_GOAL_MIN).max(DAILY_WORD_GOAL_MAX).safe().optional(),
-  dailyReviewWordGoal: z.number().int().min(DAILY_WORD_GOAL_MIN).max(DAILY_WORD_GOAL_MAX).safe().optional()
+  dailyReviewWordGoal: z.number().int().min(DAILY_WORD_GOAL_MIN).max(DAILY_WORD_GOAL_MAX).safe().optional(),
+  flashcardDisplayMode: flashcardDisplayModeSchema.optional()
 }).strict().refine((value) =>
   value.dailyNewWordLimit !== undefined
   || value.dailyNewWordGoal !== undefined
   || value.dailyReviewWordGoal !== undefined
+  || value.flashcardDisplayMode !== undefined
 );
 export type UpdateLearnerSettingsRequest = z.infer<typeof updateLearnerSettingsRequestSchema>;
+
+export const learningSetTopicSchema = z.object({
+  id: z.number().int().positive(),
+  slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
+  name: z.string().min(1)
+}).strict();
+export type LearningSetTopic = z.infer<typeof learningSetTopicSchema>;
 
 export const learningSetSummarySchema = z.object({
   id: z.number().int().positive(),
@@ -343,6 +366,7 @@ export const learningSetSummarySchema = z.object({
   enabled: z.boolean(),
   sortOrder: z.number().int().nonnegative(),
   vocabularyCount: z.number().int().nonnegative().safe(),
+  topics: z.array(learningSetTopicSchema).optional(),
   studyScopeAvailable: z.boolean().optional(),
   classificationStatus: z.enum(["SOURCE_VERIFIED", "INFERRED_REVIEWABLE"]).optional()
 }).strict();
@@ -411,7 +435,8 @@ export const learnerVocabularyBrowseQuerySchema = z.object({
   q: z.string().trim().max(100).optional(),
   level: vocabularyLevelSchema.optional(),
   cefr: z.string().regex(/^[ABC][12]$/).optional(),
-  topic: z.string().trim().min(1).max(100).optional()
+  topic: z.string().trim().min(1).max(100).optional(),
+  topicId: z.number().int().positive().max(2147483647).optional()
 }).strict();
 export type LearnerVocabularyBrowseQuery = z.infer<typeof learnerVocabularyBrowseQuerySchema>;
 
@@ -419,6 +444,7 @@ const vocabularyDevelopmentListMediaSchema = vocabularyDtoSchema.shape.developme
   .pick({ images: true, wordAudio: true });
 
 export const learnerVocabularyBrowseItemSchema = z.object({
+  isSaved: z.boolean().optional(),
   id: z.number().int(),
   word: z.string().min(1),
   ipa: z.string().nullable(),
@@ -456,7 +482,8 @@ export const learnerVocabularyBrowseResponseSchema = z.object({
   totalPages: z.number().int().positive(),
   filters: z.object({
     cefrOptions: z.array(z.string()),
-    topicOptions: z.array(z.string())
+    topicOptions: z.array(z.string()),
+    topicChoices: z.array(topicDtoSchema.pick({ id: true, name: true, slug: true, parentTopicId: true })).optional()
   }).strict()
 }).strict();
 export type LearnerVocabularyBrowseResponse = z.infer<typeof learnerVocabularyBrowseResponseSchema>;
@@ -834,7 +861,7 @@ export type PublicLearningCatalog = z.infer<typeof publicLearningCatalogSchema>;
 
 /** Scheduling/counting metadata only. Full learning content is always bounded. */
 export const publicLearningIndexSchema = publicLearningCatalogSchema.extend({
-  vocabulary: z.array(z.object({ id: z.number().int().positive(), level: vocabularyLevelSchema.nullable() }).strict())
+  vocabulary: z.array(z.object({ id: z.number().int().positive(), level: vocabularyLevelSchema.nullable(), cefr: z.string().nullable().optional() }).strict())
 }).strict();
 export type PublicLearningIndex = z.infer<typeof publicLearningIndexSchema>;
 

@@ -57,6 +57,6 @@ export async function requestPublicMatchingIds(query: string, signal?: AbortSign
 }
 
 /** List cards deliberately omit full examples/definitions; detail uses its ID. */
-export function publicCardVocabulary({ status: _status, nextReviewDate: _date, ...card }: LearnerVocabularyBrowseItem): VocabularyDto {
+export function publicCardVocabulary({ status: _status, nextReviewDate: _date, isSaved: _saved, ...card }: LearnerVocabularyBrowseItem): VocabularyDto {
   return { ...card, definitionEn: null, exampleEn: null };
 }

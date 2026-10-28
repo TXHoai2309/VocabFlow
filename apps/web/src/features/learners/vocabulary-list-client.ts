@@ -65,6 +65,7 @@ export type LearnerVocabularyBrowseRequest = {
   level?: VocabularyLevel;
   cefr?: string;
   topic?: string;
+  topicId?: number;
 };
 
 export async function requestLearnerVocabularyBrowse(
@@ -77,6 +78,7 @@ export async function requestLearnerVocabularyBrowse(
   if (query.level) params.set("level", query.level);
   if (query.cefr) params.set("cefr", query.cefr);
   if (query.topic) params.set("topic", query.topic);
+  if (query.topicId) params.set("topicId", String(query.topicId));
 
   let response: Response;
   try {

@@ -1,0 +1,2 @@
+ALTER TABLE "vocabflow_app"."learner_profiles" ADD COLUMN "flashcard_display_mode" text DEFAULT 'SELF_RECALL' NOT NULL;--> statement-breakpoint
+ALTER TABLE "vocabflow_app"."learner_profiles" ADD CONSTRAINT "learner_profiles_flashcard_display_mode_check" CHECK ("vocabflow_app"."learner_profiles"."flashcard_display_mode" IN ('SELF_RECALL', 'EASY_INTRO', 'DETAILED'));

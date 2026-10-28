@@ -113,6 +113,7 @@ export const learnerProfiles = vocabflowApp.table("learner_profiles", {
   dailyLearningGoal: integer("daily_learning_goal").notNull().default(10),
   dailyNewWordGoal: integer("daily_new_word_goal").notNull().default(10),
   dailyReviewWordGoal: integer("daily_review_word_goal").notNull().default(20),
+  flashcardDisplayMode: text("flashcard_display_mode").notNull().default("SELF_RECALL"),
   enabled: boolean("enabled").notNull().default(true),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow()
@@ -121,6 +122,7 @@ export const learnerProfiles = vocabflowApp.table("learner_profiles", {
   check("learner_profiles_daily_learning_goal_check", sql`${table.dailyLearningGoal} >= 1 AND ${table.dailyLearningGoal} <= 100`),
   check("learner_profiles_daily_new_word_goal_check", sql`${table.dailyNewWordGoal} >= 1 AND ${table.dailyNewWordGoal} <= 100`),
   check("learner_profiles_daily_review_word_goal_check", sql`${table.dailyReviewWordGoal} >= 1 AND ${table.dailyReviewWordGoal} <= 100`),
+  check("learner_profiles_flashcard_display_mode_check", sql`${table.flashcardDisplayMode} IN ('SELF_RECALL', 'EASY_INTRO', 'DETAILED')`),
   index("learner_profiles_household_enabled_created_id_idx").on(
     table.householdId,
     table.enabled,
@@ -207,10 +209,16 @@ export const topics = vocabflowApp.table("topics", {
   sortOrder: integer("sort_order").notNull(),
   enabled: boolean("enabled").notNull().default(true),
   sourceTopic: text("source_topic").unique(),
+  reviewStatus: text("review_status").notNull().default("UNREVIEWED"),
+  parentTopicId: integer("parent_topic_id"),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow()
 }, (table) => [
   check("topics_sort_order_check", sql`${table.sortOrder} >= 0`),
+  check("topics_review_status_check", sql`${table.reviewStatus} IN ('APPROVED', 'UNREVIEWED')`),
+  check("topics_not_self_parent_check", sql`${table.parentTopicId} IS NULL OR ${table.parentTopicId} <> ${table.id}`),
+  foreignKey({ columns: [table.parentTopicId], foreignColumns: [table.id], name: "topics_parent_topic_fk" }),
+  index("topics_parent_topic_idx").on(table.parentTopicId),
   index("topics_enabled_sort_order_id_idx").on(table.enabled, table.sortOrder, table.id)
 ]);
 
@@ -230,6 +238,7 @@ export const learningSets = vocabflowApp.table("learning_sets", {
 ]);
 
 export const vocabularyTopics = vocabflowApp.table("vocabulary_topics", {
+  reviewStatus: text("review_status").notNull().default("UNREVIEWED"),
   vocabularyId: integer("vocabulary_id")
     .notNull()
     .references(() => vocabularies.id, { onDelete: "cascade" }),
@@ -238,6 +247,7 @@ export const vocabularyTopics = vocabflowApp.table("vocabulary_topics", {
     .references(() => topics.id, { onDelete: "cascade" })
 }, (table) => [
   primaryKey({ columns: [table.vocabularyId, table.topicId], name: "vocabulary_topics_vocabulary_topic_pk" }),
+  check("vocabulary_topics_review_status_check", sql`${table.reviewStatus} IN ('APPROVED', 'UNREVIEWED')`),
   index("vocabulary_topics_topic_vocabulary_idx").on(table.topicId, table.vocabularyId)
 ]);
 

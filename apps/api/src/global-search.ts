@@ -1,3 +1,4 @@
+import { topicMembership } from "./topic-policy";
 import { sql, type SQL } from "drizzle-orm";
 import {
   APP_SCHEMA,
@@ -150,17 +151,16 @@ async function searchRows(
         END::integer AS match_rank,
         t.sort_order AS stable_order
       FROM "${sql.raw(APP_SCHEMA)}"."topics" t
-      WHERE t.enabled = true
-        AND ${legacyEntitiesEnabled}
+      WHERE t.enabled = true AND t.review_status = 'APPROVED'
         AND (
           lower(t.name) LIKE lower(${containsPattern}) ESCAPE ${escapeCharacter}
           OR lower(t.description) LIKE lower(${containsPattern}) ESCAPE ${escapeCharacter}
         )
         AND EXISTS (
           SELECT 1
-          FROM "${sql.raw(APP_SCHEMA)}"."vocabulary_topics" vt
-          JOIN eligible_vocabulary ev ON ev.id = vt.vocabulary_id
-          WHERE vt.topic_id = t.id
+          FROM eligible_vocabulary ev
+          JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = ev.id
+          WHERE ${topicMembership(sql`v.id`, sql`t.id`)}
         )
     ),
     learning_set_matches AS (

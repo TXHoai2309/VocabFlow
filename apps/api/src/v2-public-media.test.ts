@@ -18,7 +18,7 @@ const v2: VocabularyDto = {
   id: 100, word: "abandon", ipa: "/əˈbændən/", vietnamese: "từ bỏ", definitionEn: "to leave permanently", exampleEn: null,
   imageUrl: "https://legacy.invalid/image.jpg", audioUrl: null, topic: null, level: null, enabled: true, contentVersion: 1,
   masterSenseIdentity: "sense:abandon:verb", partOfSpeech: "VERB", contentHash: "a".repeat(64), contentReviewStatus: "PASS", editorialStatus: "DRAFT",
-  rightsStatus: "UNKNOWN_REVIEW_REQUIRED",
+  rightsStatus: "UNKNOWN_REVIEW_REQUIRED", imageMediaStatus: "PROPOSED",
   examples: [{ exampleKey: "sense:abandon:example-1", en: "They abandoned the plan.", vi: "Họ đã từ bỏ kế hoạch." }],
   developmentMedia: {
     images: [{ url: imageUrl.replace("advertise.jpg", "abandon.jpg"), mediaSha256: "b".repeat(64), mimeType: "image/jpeg",
@@ -62,6 +62,27 @@ describe("V2 public media authorization gate", () => {
     expect(blocked.audioUrl).toBeNull();
     expect(blocked).not.toHaveProperty("developmentMedia");
     expect(blocked).not.toHaveProperty("imageMediaStatus");
+  });
+
+  it("keeps explicitly local public catalog media visible while withholding the same payload on Preview", async () => {
+    const testApp = createApp({ publicVocabularyBatch: async () => [v2] });
+    const local = await testApp.request("http://localhost/api/public/vocabulary?ids=100", {}, {
+      VOCABFLOW_ENV: "development",
+      DATABASE_ENV: "development",
+      EXECUTION_CONTEXT: "local-development",
+    });
+    const localBody = await local.json() as { vocabulary: VocabularyDto[] };
+    expect(localBody.vocabulary[0]?.developmentMedia?.images).toHaveLength(1);
+    expect(localBody.vocabulary[0]?.imageMediaStatus).toBe("PROPOSED");
+
+    const preview = await testApp.request("http://localhost/api/public/vocabulary?ids=100", {}, {
+      VOCABFLOW_ENV: "development",
+      DATABASE_ENV: "development",
+      VERCEL_ENV: "preview",
+    });
+    const previewBody = await preview.json() as { vocabulary: VocabularyDto[] };
+    expect(previewBody.vocabulary[0]?.imageUrl).toBeNull();
+    expect(previewBody.vocabulary[0]).not.toHaveProperty("developmentMedia");
   });
 
   it("publishes only unique signed V2 mappings from the current PASS/DRAFT Sense projection", () => {

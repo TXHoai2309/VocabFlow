@@ -1,3 +1,4 @@
+import { topicMembership } from "./topic-policy";
 import { sql, type SQL } from "drizzle-orm";
 import {
   APP_SCHEMA,
@@ -95,15 +96,14 @@ async function aggregateRows(
       COUNT(ev.vocabulary_id) FILTER (WHERE lp.status::text = 'MASTERED') AS mastered_count,
       COUNT(ev.vocabulary_id) FILTER (WHERE lp.next_review_date <= ${localDate}::date) AS due_count
     FROM "${sql.raw(APP_SCHEMA)}"."topics" t
-    LEFT JOIN "${sql.raw(APP_SCHEMA)}"."vocabulary_topics" vt ON vt.topic_id = t.id
-    LEFT JOIN eligible_vocabulary ev ON ev.vocabulary_id = vt.vocabulary_id
+    LEFT JOIN eligible_vocabulary ev ON ${topicMembership(sql`ev.vocabulary_id`, sql`t.id`)}
     LEFT JOIN "${sql.raw(APP_SCHEMA)}"."learner_progress" lp
       ON lp.vocabulary_id = ev.vocabulary_id AND lp.learner_id = ${learnerId}::uuid
-    WHERE t.enabled = true
+    WHERE t.enabled = true AND t.review_status = 'APPROVED'
       AND EXISTS (
-        SELECT 1 FROM "${sql.raw(APP_SCHEMA)}"."vocabulary_topics" scoped_vt
-        JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = scoped_vt.vocabulary_id AND v.enabled = true
-        WHERE scoped_vt.topic_id = t.id AND ${vocabularyDatasetPredicate("v", datasetVersion)}
+        SELECT 1 FROM "${sql.raw(APP_SCHEMA)}".vocabularies v
+        WHERE v.enabled = true AND ${vocabularyDatasetPredicate("v", datasetVersion)}
+          AND ${topicMembership(sql`v.id`, sql`t.id`)}
       )
     GROUP BY t.id, t.slug, t.name, t.sort_order
     ORDER BY t.sort_order ASC, t.id ASC

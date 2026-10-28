@@ -22,6 +22,14 @@ Keep registration/login available after dismissal. Clearly distinguish device
 storage from account synchronization and expose storage failures accessibly.
 
 ## Verification
+
+Catalog cards use a compact word-first hierarchy; full explanations and source
+evidence belong to detail/review contexts. Main topic navigation uses published
+canonical concepts and reviewed memberships. Native grade/CEFR filters preserve
+study scope; focus and selected-topic states remain visually distinct (US-59).
+Study cards offer `Tự nhớ`, `Dễ làm quen` and `Chi tiết`; keep the selected
+Vietnamese hint level clear while preserving the shared flip control and
+independent pronunciation audio (US-60).
 Use component tests, guest persistence tests and browser E2E at desktop/mobile
 widths, plus repository lint/typecheck/build. No new font or token adapter.
 

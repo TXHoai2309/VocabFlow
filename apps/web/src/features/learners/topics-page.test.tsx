@@ -13,9 +13,9 @@ const topics = [{
   enabled: true
 }];
 
-function renderPage() {
+function renderPage(path = "/topics") {
   return render(
-    <MemoryRouter initialEntries={["/topics"]}>
+    <MemoryRouter initialEntries={[path]}>
       <Routes>
         <Route path="/topics" element={<TopicsPage />} />
       </Routes>
@@ -50,6 +50,17 @@ describe("US-27 topic browse UI", () => {
     expect(await screen.findByTestId("topic-vocabulary-list")).toHaveTextContent("family");
     expect(fetchMock).toHaveBeenNthCalledWith(1, "/api/topics", { credentials: "include" });
     expect(fetchMock).toHaveBeenNthCalledWith(2, "/api/topics/1/vocabulary", { credentials: "include" });
+  });
+
+  it("opens a linked topic directly and offers its matching learning sets", async () => {
+    vi.spyOn(globalThis, "fetch")
+      .mockResolvedValueOnce(new Response(JSON.stringify({ topics }), { status: 200 }))
+      .mockResolvedValueOnce(new Response(JSON.stringify({ vocabulary: [] }), { status: 200 }));
+    renderPage("/topics?topicId=1&level=GRADE_1");
+
+    expect(await screen.findByTestId("topic-family")).toHaveAttribute("aria-pressed", "true");
+    expect(await screen.findByRole("link", { name: "Tìm bộ từ theo chủ đề" }))
+      .toHaveAttribute("href", "/learning-sets?topicId=1&level=GRADE_1");
   });
 
   it("shows an explicit empty topic state", async () => {

@@ -97,4 +97,12 @@ describe("guest learning persistence and transport isolation", () => {
     ] as const;
     for (const [resource, schema] of resources) expect(schema.safeParse(await get(resource)).success, resource).toBe(true);
   });
+  it("returns guest set-to-topic facets from the cached public index without another endpoint", async () => {
+    const response = await learningFetch("/api/learning-sets?includeTopics=1");
+    const payload = contracts.learningSetListResponseSchema.parse(await response.json());
+
+    expect(payload.learningSets[0]?.topics).toEqual([{ id: 1, slug: "greetings", name: "Chào hỏi" }]);
+    expect(network.mock.calls.filter(([url]) => String(url) === "/api/public/learning-index")).toHaveLength(1);
+    expect(await learningFetch("/api/learning-sets?includeTopics=1&includeTopics=1")).toMatchObject({ status: 400 });
+  });
 });

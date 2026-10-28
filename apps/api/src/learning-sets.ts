@@ -1,4 +1,5 @@
 import { sql, type SQL } from "drizzle-orm";
+import { topicClosure } from "./topic-policy";
 import {
   APP_SCHEMA,
   learningSetDetailSchema,
@@ -66,6 +67,7 @@ type SummaryRow = {
   enabled: unknown;
   sort_order: number | string;
   vocabulary_count: number | string | bigint;
+  topics?: unknown;
 };
 
 type VocabularyRow = {
@@ -100,6 +102,11 @@ type VocabularyRow = {
 type AssignmentRow = SummaryRow & { active: unknown };
 
 function toSummary(row: SummaryRow, datasetVersion: VocabularyDatasetVersion): LearningSetSummary {
+  const topics = jsonArray(row.topics)?.flatMap((item) => {
+    const topic = jsonObject(item);
+    if (!topic) return [];
+    return [{ id: safeInteger(topic.id), slug: String(topic.slug), name: String(topic.name) }];
+  });
   const parsed = learningSetSummarySchema.safeParse({
     id: safeInteger(row.id),
     slug: String(row.slug),
@@ -109,6 +116,7 @@ function toSummary(row: SummaryRow, datasetVersion: VocabularyDatasetVersion): L
     enabled: row.enabled === true,
     sortOrder: safeInteger(row.sort_order),
     vocabularyCount: safeInteger(row.vocabulary_count),
+    ...(topics ? { topics } : {}),
     ...(datasetVersion === "v2" ? {
       studyScopeAvailable: true,
       ...(String(row.slug).startsWith("v2-cefr-") ? { classificationStatus: "SOURCE_VERIFIED" as const } : {}),
@@ -181,8 +189,33 @@ async function authorizeCatalogAccess(database: LearningSetDatabase, userId: str
   }
 }
 
-async function summaryRows(database: LearningSetDatabase, datasetVersion: VocabularyDatasetVersion, extra: SQL = sql``) {
+async function summaryRows(database: LearningSetDatabase, datasetVersion: VocabularyDatasetVersion, extra: SQL = sql``, includeTopics = false) {
+  const cteStart = includeTopics ? topicClosure() : sql`WITH`;
+  const cteSeparator = includeTopics ? sql`,` : sql``;
+  const setTopicCtes = includeTopics ? sql`, set_topics AS (
+      SELECT DISTINCT scoped_lsi.learning_set_id, topic.id, topic.slug, topic.name, topic.sort_order
+      FROM "${sql.raw(APP_SCHEMA)}"."learning_set_items" scoped_lsi
+      JOIN eligible_vocabulary ev ON ev.id = scoped_lsi.vocabulary_id
+      JOIN "${sql.raw(APP_SCHEMA)}"."vocabulary_topics" vt
+        ON vt.vocabulary_id = ev.id AND vt.review_status = 'APPROVED'
+      JOIN topic_tree tree ON tree.descendant_id = vt.topic_id
+      JOIN "${sql.raw(APP_SCHEMA)}"."topics" topic ON topic.id = tree.ancestor_id
+    ), set_topic_summary AS (
+      SELECT learning_set_id,
+        jsonb_agg(jsonb_build_object('id', id, 'slug', slug, 'name', name) ORDER BY sort_order, id) AS topics
+      FROM set_topics GROUP BY learning_set_id
+    )` : sql``;
+  const topicSelection = includeTopics ? sql`, COALESCE(set_topic_summary.topics, '[]'::jsonb) AS topics` : sql``;
+  const topicJoin = includeTopics ? sql`LEFT JOIN set_topic_summary ON set_topic_summary.learning_set_id = ls.id` : sql``;
+  const topicGroup = includeTopics ? sql`, set_topic_summary.topics` : sql``;
   const result = await database.execute(sql`
+    ${cteStart}${cteSeparator}
+    eligible_vocabulary AS (
+      SELECT DISTINCT v.id
+      FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v
+      WHERE v.enabled = true AND ${vocabularyDatasetPredicate("v", datasetVersion)}
+    )
+    ${setTopicCtes}
     SELECT ls.id,
            ls.slug,
            ls.name,
@@ -191,9 +224,11 @@ async function summaryRows(database: LearningSetDatabase, datasetVersion: Vocabu
            ls.enabled,
            ls.sort_order,
            COUNT(*) FILTER (WHERE v.enabled = true AND ${vocabularyDatasetPredicate("v", datasetVersion)})::bigint AS vocabulary_count
+           ${topicSelection}
     FROM "${sql.raw(APP_SCHEMA)}"."learning_sets" ls
     LEFT JOIN "${sql.raw(APP_SCHEMA)}"."learning_set_items" lsi ON lsi.learning_set_id = ls.id
     LEFT JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = lsi.vocabulary_id
+    ${topicJoin}
     WHERE ls.enabled = true
       AND EXISTS (
         SELECT 1 FROM "${sql.raw(APP_SCHEMA)}"."learning_set_items" scoped_lsi
@@ -201,7 +236,7 @@ async function summaryRows(database: LearningSetDatabase, datasetVersion: Vocabu
         WHERE scoped_lsi.learning_set_id = ls.id AND ${vocabularyDatasetPredicate("v", datasetVersion)}
       )
       ${extra}
-    GROUP BY ls.id, ls.slug, ls.name, ls.description, ls.grade, ls.enabled, ls.sort_order
+    GROUP BY ls.id, ls.slug, ls.name, ls.description, ls.grade, ls.enabled, ls.sort_order ${topicGroup}
     ORDER BY ls.sort_order ASC, ls.id ASC
   `);
   return rowsOf<SummaryRow>(result);
@@ -222,7 +257,7 @@ async function requireOwnership(database: LearningSetDatabase, userId: string, l
 }
 
 export type LearningSetService = {
-  list: (userId: string) => Promise<LearningSetSummary[]>;
+  list: (userId: string, options?: { includeTopics?: boolean }) => Promise<LearningSetSummary[]>;
   detail: (userId: string, learningSetId: number) => Promise<LearningSetDetail>;
   listForLearner: (userId: string, learnerId: string) => Promise<LearnerLearningSetDto[]>;
   assign: (userId: string, learnerId: string, learningSetId: number) => Promise<LearnerLearningSetMutationResponse>;
@@ -232,10 +267,10 @@ export type LearningSetService = {
 export function createLearningSetService(database: LearningSetDatabase, options: { datasetVersion?: VocabularyDatasetVersion } = {}): LearningSetService {
   const datasetVersion = options.datasetVersion ?? "legacy";
   return {
-    async list(userId) {
+    async list(userId, options = {}) {
       await authorizeCatalogAccess(database, userId);
       try {
-        return (await summaryRows(database, datasetVersion)).map((row) => toSummary(row, datasetVersion));
+        return (await summaryRows(database, datasetVersion, sql``, options.includeTopics === true)).map((row) => toSummary(row, datasetVersion));
       } catch (error) {
         if (error instanceof LearningSetServiceError) throw error;
         throw new LearningSetServiceError("INTERNAL_ERROR", 500);

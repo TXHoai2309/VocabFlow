@@ -6,6 +6,12 @@ import type { LearnerDto, ReviewQueueItem, ReviewQueueResponse, VocabularyDto } 
 import { ActiveLearnerProvider } from "../learners/learner-context-provider";
 import { ExerciseStudyPage } from "./study-page";
 
+const { requestLearnerSettingsMock } = vi.hoisted(() => ({ requestLearnerSettingsMock: vi.fn() }));
+vi.mock("../learners/learner-settings-client", async (importOriginal) => ({
+  ...await importOriginal<typeof import("../learners/learner-settings-client")>(),
+  requestLearnerSettings: requestLearnerSettingsMock
+}));
+
 const learner: LearnerDto = {
   id: "00000000-0000-4000-8000-000000000010",
   householdId: "00000000-0000-4000-8000-000000000001",
@@ -79,6 +85,13 @@ describe("US-31 + US-32 controlled exercise Study mode", () => {
   beforeEach(() => {
     vi.restoreAllMocks();
     vi.unstubAllGlobals();
+    requestLearnerSettingsMock.mockReset().mockResolvedValue({
+      learnerId: learner.id,
+      dailyNewWordLimit: 10,
+      dailyNewWordGoal: 10,
+      dailyReviewWordGoal: 20,
+      flashcardDisplayMode: "SELF_RECALL"
+    });
   });
 
   it("maps a meaning answer to REMEMBERED and automatically advances after saving", async () => {

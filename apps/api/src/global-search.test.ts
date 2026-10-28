@@ -151,6 +151,20 @@ describe("global search database service", () => {
     expect(queries[1]?.sql).toContain("sm.validation_status = 'VERIFIED'");
   });
 
+  it("includes reviewed V2 topics only when their reviewed words are learner-eligible", async () => {
+    const { database, queries } = createDatabase({ rows: [row("TOPIC", 4, "Gia đình")] });
+    const response = await createGlobalSearchService(database, { datasetVersion: "v2" })
+      .search("parent-1", learnerId, { q: "gia đình", limit: 5 });
+    const searchSql = queries[1]!.sql;
+    const topicSql = searchSql.slice(searchSql.indexOf("topic_matches AS"), searchSql.indexOf("learning_set_matches AS"));
+
+    expect(response.topics).toHaveLength(1);
+    expect(topicSql).toContain("t.review_status = 'APPROVED'");
+    expect(topicSql).toMatch(/FROM eligible_vocabulary ev\s+JOIN "vocabflow_app"\."vocabularies" v ON v\.id = ev\.id/);
+    expect(topicSql).toContain("vt.review_status = 'APPROVED'");
+    expect(topicSql).not.toContain("legacyEntitiesEnabled");
+  });
+
   it("denies a learner outside the authenticated household before search", async () => {
     const { database, execute } = createDatabase({ authorized: false });
     await expect(createGlobalSearchService(database).search("parent-1", learnerId, { q: "family", limit: 5 }))

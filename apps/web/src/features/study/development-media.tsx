@@ -48,6 +48,9 @@ export function DevelopmentExampleAudio({ vocabulary, exampleKey, exampleIndex, 
 }
 
 export function DevelopmentImageNotice({ vocabulary }: { vocabulary: Pick<VocabularyDto, "word" | "imageUrl" | "masterSenseIdentity" | "imageMediaStatus" | "developmentMedia"> }) {
+  // Public media is already authorized/sanitized by the server. A Master ID
+  // alone is not evidence that a published image is a Development preview.
+  if (!vocabulary.developmentMedia) return null;
   if (!vocabulary.masterSenseIdentity || !vocabulary.imageUrl) return null;
   const status = vocabulary.imageMediaStatus === "ACCEPTED_MAPPING" ? "Đã xác nhận mapping"
     : vocabulary.imageMediaStatus === "AMBIGUOUS" ? "Nhiều phương án — cần chọn"

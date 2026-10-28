@@ -1,5 +1,36 @@
 # VocabFlow Project Decisions
 
+## Learning experience improvement — owner decisions (2026-10-21)
+
+Owner explicitly accepted all three proposed choices after the source audit.
+
+- Keep the app for all ages. Prioritize phase 1: consistent All scope across
+  guest/account, preserve grade/topic constraints into study, reduce redundant
+  reads and simplify vocabulary/topic presentation. Display preferences and
+  curated pathways follow in phases 2 and 3.
+- Curate content suitable for grades 1–2 without claiming alignment to a named
+  textbook. CEFR, school grade and topic remain independent. Do not assign
+  grade 1 automatically from A1.
+- Default flashcard presentation is Self Recall (Tự nhớ): hide meaning
+  before flip, then show meaning and one example. Easy Introduction can show
+  the Vietnamese meaning immediately. Display preferences belong to each
+  learner profile; guest preferences remain device-local.
+- The owner explicitly reprioritized phase 2 after US-59's local implementation;
+  US-60 implements the three display choices. US-59 owner check and migration
+  rollout remain pending. No production deployment or content operation is
+  authorized by this decision. Topic inference visibility and parent-topic
+  inclusion behavior were subsequently resolved below.
+
+- Owner accepted Q5: parent topic selection includes enabled descendants,
+  intersects the chosen school level and never counts a word twice.
+- Owner accepted Q4: only canonical topics belong in main discovery. Inferred
+  labels remain review evidence; removing them from discovery never deletes
+  words or meanings and unclassified words remain in the broad catalog.
+- Shared understanding for phases 1 and 2 is complete; implementation proceeds
+  under US-59 and US-60 respectively. Curricular content remains phase 3.
+
+References: `learning-experience-audit-2026-10-21.md` and root `GLOSSARY.md`.
+
 ## US-58 decision — Public learning with isolated device persistence (2026-10-19)
 
 Owner-authorized parity correction: use all enabled dataset words for guest

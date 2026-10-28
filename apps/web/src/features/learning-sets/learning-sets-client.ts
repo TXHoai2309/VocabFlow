@@ -41,10 +41,11 @@ async function readError(response: Response): Promise<never> {
   throw new LearningSetsClientError(code, response.status);
 }
 
-export async function requestLearningSets(): Promise<LearningSetSummary[]> {
+export async function requestLearningSets(options: { includeTopics?: boolean } = {}): Promise<LearningSetSummary[]> {
   let response: Response;
   try {
-    response = await learningFetch("/api/learning-sets", { credentials: "include" });
+    const query = options.includeTopics ? "?includeTopics=1" : "";
+    response = await learningFetch(`/api/learning-sets${query}`, { credentials: "include" });
   } catch {
     throw new LearningSetsClientError("NETWORK_ERROR", 0);
   }

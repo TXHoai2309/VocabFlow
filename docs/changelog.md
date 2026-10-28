@@ -1,5 +1,49 @@
 # VocabFlow Changelog
 
+## 2026-10-21 — US-61 grade/topic discovery and catalog consistency
+
+- Add URL-backed set search, grade/topic intersection filters, reviewed topic
+  facets and topic-to-set deep links; preserve the default list contract and do
+  not expose inferred-only topics as filters.
+- Keep the local catalog honest: the current V2 index has no eligible topic
+  facets or explicit grade assignments, so the Grade 1–2 pilot is not shown as
+  available.
+- Catalog regressions pass 63/63; study regressions pass 39/39. API/web
+  typechecks, changed-source lint and production build pass. A local 204,315-byte
+  public index measured 376 ms first request and 94–96 ms on two warm requests;
+  this is not a production latency claim.
+- The owner-approved 30-word/four-topic pilot is tracked in US-62. No content,
+  rights evidence, database, migration or deployment was changed for that pilot.
+
+## 2026-10-21 — US-60 learner flashcard display preferences (local)
+
+- Add the `Tự nhớ`, `Dễ làm quen` and `Chi tiết` presentation choices to the
+  existing learner settings and flashcard flow. The account choice is stored on
+  its learner profile; guest v1 snapshots use a backward-compatible default.
+- Migration 0021 is additive and not applied. No production database operation
+  or deployment is included.
+- Focused settings/flashcard/study-flow tests pass 157/157; production build,
+  web/API typechecks and changed-source lint pass. Browser E2E and live account
+  save/reload remain pending; see US-60 for the owner-check boundary.
+
+## 2026-10-21 — US-59 compact catalog and consistent study scope (local)
+
+- Align V2 All/default/Pathway on enabled content; preserve grade/CEFR/topic
+  constraints in account and guest sessions without broad fallback.
+- Add reviewed topic memberships and descendant selection in additive migration
+  0020, retaining inferred evidence. Migration is generated, not applied.
+- Reduce redundant saved-content reads and Home candidates, cache public filter
+  metadata, and simplify vocabulary cards and topic presentation.
+- Relevant tests: 394 PASS, E2E 2/2 PASS; build and web/API checks pass. Global
+  historical checks remain non-green; see US-59 for exact limitations.
+
+## 2026-10-21 — Learning experience design decisions (documentation only)
+
+- Record owner-approved improvement order, grade 1–2 content suitability and
+  future flashcard defaults/preference ownership. Add shared learning glossary.
+- Source audit and follow-up findings remain in
+  `learning-experience-audit-2026-10-21.md`; no feature implementation included.
+
 ## 2026-10-20 — One-Sense-Per-Lemma Dataset Cleansing (4,537 Canonical Words)
 
 - Cleaned 592 polysemous lemmas across both Development and Production Neon databases.

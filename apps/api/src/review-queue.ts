@@ -1,3 +1,4 @@
+import { topicMembership } from "./topic-policy";
 import { sql, type SQL } from "drizzle-orm";
 import { performance } from "node:perf_hooks";
 import {
@@ -220,6 +221,15 @@ async function dailyNewUsage(
 }
 
 function vocabularyMembership(learner: SQL, scope?: ReviewQueueScope, datasetVersion: VocabularyDatasetVersion = "legacy"): SQL {
+  const filters = [baseVocabularyMembership(learner, scope, datasetVersion)];
+  if (typeof scope === "object") {
+    if (scope.level) filters.push(sql`v.level = ${scope.level}`);
+    if (scope.cefr) filters.push(sql`md.cefr = ${scope.cefr}`);
+  }
+  return sql.join(filters, sql` AND `);
+}
+
+function baseVocabularyMembership(learner: SQL, scope?: ReviewQueueScope, datasetVersion: VocabularyDatasetVersion = "legacy"): SQL {
   if (scope === "saved" || scope === "saved-all") {
     return sql`EXISTS (
       SELECT 1
@@ -229,17 +239,9 @@ function vocabularyMembership(learner: SQL, scope?: ReviewQueueScope, datasetVer
     )`;
   }
   if (typeof scope === "object") {
-    if (datasetVersion === "v2" && scope.type === "pathway") return vocabularyDatasetPredicate("v", datasetVersion);
-    if (datasetVersion === "v2" && scope.type === "topic") return sql`EXISTS (
-      SELECT 1 FROM "${sql.raw(APP_SCHEMA)}"."vocabulary_topics" vt
-      JOIN "${sql.raw(APP_SCHEMA)}"."topics" t ON t.id = vt.topic_id AND t.enabled = true
-      WHERE vt.vocabulary_id = v.id AND t.id = ${scope.id}
-    )`;
-    if (scope.type === "topic") return sql`${vocabularyMembership(learner, undefined, datasetVersion)} AND EXISTS (
-      SELECT 1 FROM "${sql.raw(APP_SCHEMA)}"."vocabulary_topics" vt
-      JOIN "${sql.raw(APP_SCHEMA)}"."topics" t ON t.id = vt.topic_id
-      WHERE vt.vocabulary_id = v.id AND t.enabled = true AND t.id = ${scope.id}
-    )`;
+    if (datasetVersion === "v2" && (scope.type === "pathway" || scope.type === "all")) return vocabularyDatasetPredicate("v", datasetVersion);
+    if (scope.type === "topic") return sql`${datasetVersion === "v2" ? sql`true` : baseVocabularyMembership(learner, undefined, datasetVersion)}
+      AND ${topicMembership(sql`v.id`, sql`${scope.id}`)}`;
     const selected = scope.type === "custom"
       ? sql`AND ls.id IN (${sql.join(scope.ids.map((id) => sql`${id}`), sql`, `)})`
       : scope.type === "learning-set" ? sql`AND ls.id = ${scope.id}` : sql``;
@@ -431,12 +433,10 @@ export function createReviewQueueService(
               const validQuery = datasetVersion === "v2"
                 ? scope.type === "topic"
                   ? sql`SELECT t.id FROM "${sql.raw(APP_SCHEMA)}"."topics" t
-                      WHERE t.enabled = true AND ${idFilter}
-                        AND EXISTS (
-                          SELECT 1 FROM "${sql.raw(APP_SCHEMA)}"."vocabulary_topics" vt
-                          JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = vt.vocabulary_id AND v.enabled = true
-                          WHERE vt.topic_id = t.id AND ${vocabularyDatasetPredicate("v", datasetVersion)}
-                        )`
+                      WHERE t.enabled = true AND t.review_status = 'APPROVED' AND ${idFilter}
+                        AND EXISTS (SELECT 1 FROM "${sql.raw(APP_SCHEMA)}".vocabularies v
+                          WHERE v.enabled = true AND ${vocabularyDatasetPredicate("v", datasetVersion)}
+                            AND ${topicMembership(sql`v.id`, sql`t.id`)})`
                   : sql`SELECT ls.id FROM "${sql.raw(APP_SCHEMA)}"."learning_sets" ls
                       WHERE ls.enabled = true AND ${idFilter}
                         AND EXISTS (
@@ -461,9 +461,9 @@ export function createReviewQueueService(
                   )
                 ) ORDER BY ls.sort_order ASC, ls.id ASC LIMIT 1
               `));
-              newScope = { type: "custom", ids: candidates.length ? [Number(candidates[0]!.id)] : [] };
+              newScope = { type: "custom", ids: candidates.length ? [Number(candidates[0]!.id)] : [], ...(scope.level ? { level: scope.level } : {}), ...(scope.cefr ? { cefr: scope.cefr } : {}) };
             } else if (scope.type === "pathway" && datasetVersion === "v2") {
-              newScope = undefined;
+              newScope = { type: "pathway", ...(scope.level ? { level: scope.level } : {}), ...(scope.cefr ? { cefr: scope.cefr } : {}) };
             }
           }
           const timezone = await householdTimezone(database, ownership.householdId);

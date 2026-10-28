@@ -1,7 +1,7 @@
-import { parseStudySetIds, type LearningSourceScope, type ReviewQueueResponse, type StudyQueueCapacity } from "@vocabflow/contracts";
+import { parseStudySetIds, type CatalogStudyScope, type LearningSourceScope, type ReviewQueueResponse, type StudyQueueCapacity } from "@vocabflow/contracts";
 import { requestReviewQueue } from "./review-queue-client";
 
-export type StudyScope = { type: "topic" | "learning-set"; id: number } | { type: "saved"; all: boolean } | { type: "weak" } | { type: "invalid" } | LearningSourceScope;
+export type StudyScope = CatalogStudyScope | { type: "saved"; all: boolean } | { type: "weak" } | { type: "invalid" } | LearningSourceScope;
 export type StudyContentMode = "new" | "review" | "mixed";
 export type StudySelection = { amount: 5 | 10 | 20 | 30; content: StudyContentMode | "all" };
 
@@ -12,6 +12,18 @@ export function studyContentModeFromParams(searchParams: URLSearchParams): Study
 }
 
 export function studyScopeFromParams(searchParams: URLSearchParams): StudyScope | null {
+  const params = new URLSearchParams(searchParams);
+  const level = params.get("level"); const cefr = params.get("cefr");
+  if (params.getAll("level").length > 1 || params.getAll("cefr").length > 1
+    || (level !== null && !["GRADE_1", "GRADE_2", "GRADE_3", "GRADE_4", "GRADE_5", "GENERAL"].includes(level))
+    || (cefr !== null && !/^[ABC][12]$/.test(cefr))) return { type: "invalid" };
+  params.delete("level"); params.delete("cefr");
+  const scope = baseStudyScopeFromParams(params);
+  if (level === null && cefr === null) return scope;
+  if (scope?.type === "invalid" || scope?.type === "saved" || scope?.type === "weak") return { type: "invalid" };
+  return { ...(scope ?? { type: "all" }), ...(level ? { level: level as import("@vocabflow/contracts").VocabularyLevel } : {}), ...(cefr ? { cefr } : {}) };
+}
+function baseStudyScopeFromParams(searchParams: URLSearchParams): StudyScope | null {
   const scopeKeys = ["source", "setIds", "topicId", "learningSetId", "saved", "weak"];
   if (scopeKeys.some((key) => searchParams.getAll(key).length > 1)) return { type: "invalid" };
   const source = searchParams.get("source");
@@ -95,6 +107,8 @@ export function selectStudyQueue(response: ReviewQueueResponse, selection: { amo
 
 export function studyScopeParams(scope: StudyScope | null): URLSearchParams {
   const params = new URLSearchParams();
+  if (scope && "level" in scope && scope.level) params.set("level", scope.level);
+  if (scope && "cefr" in scope && scope.cefr) params.set("cefr", scope.cefr);
   if (scope?.type === "topic" || scope?.type === "learning-set") params.set(scope.type === "topic" ? "topicId" : "learningSetId", String(scope.id));
   if (scope?.type === "saved") { params.set("saved", "1"); if (scope.all) params.set("content", "all"); }
   if (scope?.type === "weak") params.set("weak", "1");

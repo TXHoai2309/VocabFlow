@@ -11,11 +11,20 @@ persistence baseline. Account authorization and writes retain that baseline.
 | --- | --- | --- | --- | --- |
 | Select/Listbox | Native select | docs/design/feature-ui-spec.md | OS-owned source/filter selection; custom set picker uses existing dialog | Study source E2E and keyboard |
 | Form | Existing auth/settings forms and contract schemas | docs/design/design-system.md | Account forms; guest settings share the same validation | Component tests |
+| Flashcard display mode | Learner settings service + shared Flashcard | US-60; docs/design/feature-ui-spec.md | Self Recall default, Easy Intro, Detailed; guest stores locally | Settings and study flow |
 | Scrollbar | apps/web/src/styles.css | docs/design/design-system.md | Existing document and picker scrolling | Browser inspection |
 | Toast | components/toast | docs/design/design-system.md | Info, success, error | Toast component tests |
 | CRUD | Existing page clients through learning-fetch | US-58; current authenticated APIs | Guest durable local writes; server account writes | Guest persistence and existing regression tests |
 
 ## Guest flow ledger
+
+- Catalog study filters: canonical topic ID, school grade and CEFR survive
+  browse → setup → session in both modes. Empty intersections do not widen.
+- Parent topics include published descendants via reviewed memberships; unique
+  words are counted once. Inferred evidence never becomes approval by renaming.
+- Browse bookmarks use the current page's saved flag; no full saved-word
+  content request is required to enable the control. Private flags are not
+  stored in shared public metadata caches.
 
 - No session: same shell/routes with one local learning identity; no account provisioning.
 - Account session error: retry or explicitly continue as guest; never mutate account data.
@@ -28,6 +37,9 @@ persistence baseline. Account authorization and writes retain that baseline.
 - Guest reset: existing explicit progress-reset confirmation; retains preferences
   and saved words while clearing local progress and review history.
 - Native selects keep platform-owned popup geometry, locale and keyboard behavior.
+- Flashcard display choices belong to the learner; guests keep the same choice
+  in their device-local settings. Each mode preserves the single flip target;
+  pronunciation audio stays independent.
 
 The premium audit covers production UI source folders. The untracked development
 media editor and historical local release copies are outside the production app.

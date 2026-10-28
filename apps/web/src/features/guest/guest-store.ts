@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { learnerSettingsResponseSchema, reviewRequestSchema, reviewResponseSchema, type LearnerDto } from "@vocabflow/contracts";
+import { FLASHCARD_DISPLAY_MODE, learnerSettingsResponseSchema, reviewRequestSchema, reviewResponseSchema, type LearnerDto } from "@vocabflow/contracts";
 
 export const GUEST_ID = "00000000-0000-4000-8000-000000000058";
 export const GUEST_STORAGE_KEY = "vocabflow.guest.v1";
@@ -18,7 +18,13 @@ const stateSchema = z.object({
 export type GuestState = z.infer<typeof stateSchema>;
 export function emptyGuestState(): GuestState {
   return { version: 1, revision: 0, progress: {}, receipts: {}, saved: {}, assignments: {},
-    settings: { learnerId: GUEST_ID, dailyNewWordLimit: 10, dailyNewWordGoal: 10, dailyReviewWordGoal: 20 } };
+    settings: {
+      learnerId: GUEST_ID,
+      dailyNewWordLimit: 10,
+      dailyNewWordGoal: 10,
+      dailyReviewWordGoal: 20,
+      flashcardDisplayMode: FLASHCARD_DISPLAY_MODE.SELF_RECALL
+    } };
 }
 let storageError = false;
 let cachedRaw: string | null = null;

@@ -53,7 +53,11 @@ function SetupIcon({ name }: { name: "back" | "layers" | "new" | "review" | "mix
 }
 
 function returnHref(scope: StudyScope | null) {
-  if (scope?.type === "topic") return `/topics/${scope.id}`;
+  const params = new URLSearchParams();
+  if (scope && "level" in scope && scope.level) params.set("level", scope.level);
+  if (scope && "cefr" in scope && scope.cefr) params.set("cefr", scope.cefr);
+  const suffix = params.size ? `?${params}` : "";
+  if (scope?.type === "topic") return `/topics/${scope.id}${suffix}`;
   if (scope?.type === "learning-set") return `/learning-sets/${scope.id}`;
   if (scope?.type === "saved") return "/saved";
   if (scope?.type === "weak") return "/weak-words";
@@ -115,7 +119,12 @@ function StudySetupExperience({ activeLearner, scope: urlScope, userId, preferre
   const [picker, setPicker] = useState(false);
   const catalogRequest = useRef<Promise<LearningSetSummary[]> | null>(null);
   const [catalogError, setCatalogError] = useState(false);
-  const scope = useMemo<StudyScope>(() => urlScope && !override ? urlScope : source === "custom" ? { type: "custom", ids } : { type: source }, [urlScope, override, source, ids]);
+  const scope = useMemo<StudyScope>(() => {
+    if (urlScope && !override) return urlScope;
+    const filters = urlScope && "level" in urlScope ? { ...(urlScope.level ? { level: urlScope.level } : {}), ...(urlScope.cefr ? { cefr: urlScope.cefr } : {}) }
+      : urlScope && "cefr" in urlScope && urlScope.cefr ? { cefr: urlScope.cefr } : {};
+    return { ...(source === "custom" ? { type: "custom" as const, ids } : { type: source }), ...filters };
+  }, [urlScope, override, source, ids]);
   const sourceName = source === "pathway" ? "Học theo lộ trình" : source === "all" ? "Tất cả bộ từ" : `${ids.length} bộ từ`;
 
   const [state, setState] = useState<SetupState>("loading");
@@ -125,9 +134,9 @@ function StudySetupExperience({ activeLearner, scope: urlScope, userId, preferre
   const [content, setContent] = useState<StudyContentMode | null>(null);
   const [retry, setRetry] = useState(0);
 
-  const requiresCatalog = ["pathway", "all", "custom", "learning-set"].includes(scope.type);
+  const requiresCatalog = ["custom", "learning-set"].includes(scope.type);
   useEffect(() => {
-    if ((!requiresCatalog && !picker) || sets) return;
+    if ((!["pathway", "all", "custom", "learning-set"].includes(scope.type) && !picker) || sets) return;
     let cancelled = false;
     if (!catalogRequest.current) catalogRequest.current = requestLearningSets().then((list) => list.filter((set) => set.enabled));
     void catalogRequest.current.then((enabled) => {
@@ -146,7 +155,7 @@ function StudySetupExperience({ activeLearner, scope: urlScope, userId, preferre
       if (!cancelled) setCatalogError(true);
     });
     return () => { cancelled = true; };
-  }, [requiresCatalog, picker, sets, catalogRetry, urlScope, userId]);
+  }, [requiresCatalog, scope.type, picker, sets, catalogRetry, urlScope, userId]);
 
   const scopeSets = requiresCatalog ? sets : null;
 
@@ -235,6 +244,8 @@ function StudySetupExperience({ activeLearner, scope: urlScope, userId, preferre
       <header className="study-setup-header">
         <Link className="study-setup-back-link" to={backHref}><SetupIcon name="back" />Quay lại</Link>
         <h1 id="study-setup-title">Thiết lập buổi học</h1>
+        {scope && "level" in scope && scope.level ? <p>{scope.level === "GENERAL" ? "Nội dung chung" : `Lớp ${scope.level.slice(-1)}`}</p> : null}
+        {scope && "cefr" in scope && scope.cefr ? <p>CEFR {scope.cefr}</p> : null}
 
       </header>
 

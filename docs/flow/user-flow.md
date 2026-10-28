@@ -1,5 +1,24 @@
 # User Flow v1
 
+## Flashcard display preferences (US-60, 2026-10-21)
+
+Settings → choose `Tự nhớ`, `Dễ làm quen` or `Chi tiết` → save → next study
+session uses that presentation on flashcards and exercise fallback cards.
+Authenticated settings remain on the learner profile; guest settings stay in
+that browser's local snapshot. The selection does not alter scope, answer,
+progress or review schedule.
+
+## Linked catalog filters (US-59, 2026-10-21)
+
+Vocabulary → choose school grade / CEFR / canonical topic → Học nội dung đã
+chọn → Setup preserving dimensions → Study with the same bounded scope.
+Text search remains discovery-only and hides the scope-start action.
+Topics → optional grade/CEFR → published parent or child → filtered collection
+→ setup → study. Parent selection includes approved descendants, with no
+duplicate words; no eligible content shows an empty state rather than widening
+to the entire catalog. Guest/account use the same selection semantics and keep
+their established independent persistence and review-authority boundaries.
+
 ## Public entry override (US-58, 2026-10-19)
 
 No session → guest Home or requested learning route → optional registration

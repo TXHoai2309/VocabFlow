@@ -1,10 +1,11 @@
 import { GuestCollectionPage } from "../guest/guest-collection-page";
 import { GUEST_ID } from "../guest/guest-store";
 import { AccountLearningState } from "../learners/account-learning-state";
-import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router";
+import { useDeferredValue, useEffect, useState } from "react";
+import { Link, useParams, useSearchParams } from "react-router";
 import type { LearnerDto, LearningSetDetail, LearningSetSummary, VocabularyLevel } from "@vocabflow/contracts";
 import { LearningSetsClientError, requestLearnerLearningSets, requestLearningSet, requestLearningSets } from "./learning-sets-client";
+import { filterLearningSets, readLearningSetCatalogFilters } from "./learning-set-catalog";
 import { useActiveLearner } from "../learners/learner-context-hook";
 import { requestLearnerVocabulary } from "../learners/vocabulary-list-client";
 import { CollectionDetailView } from "../learners/collection-detail-view";
@@ -14,8 +15,14 @@ import type { VocabularyCardItem } from "../learners/vocabulary-card";
 type LoadState = "loading" | "ready" | "error";
 
 function gradeLabel(grade: VocabularyLevel | null) {
-  if (!grade) return "Chung";
+  if (!grade) return "Chưa phân lớp";
   return grade === "GENERAL" ? "Chung" : grade.replace("GRADE_", "Lớp ");
+}
+
+function topicHref(topicId: number, grade: VocabularyLevel | null) {
+  const params = new URLSearchParams({ topicId: String(topicId) });
+  if (grade) params.set("level", grade);
+  return `/topics?${params}`;
 }
 
 function loadError(error: unknown) {
@@ -24,14 +31,38 @@ function loadError(error: unknown) {
 }
 
 export function LearningSetsPage() {
+  const [params, setParams] = useSearchParams();
+  const filters = readLearningSetCatalogFilters(params);
+  const deferredQuery = useDeferredValue(filters.query);
   const [state, setState] = useState<LoadState>("loading");
   const [learningSets, setLearningSets] = useState<LearningSetSummary[]>([]);
   const [message, setMessage] = useState<string | null>(null);
+  const visibleLearningSets = filterLearningSets(learningSets, { ...filters, query: deferredQuery });
+  const topicOptions = [...new Map(learningSets.flatMap((learningSet) => learningSet.topics ?? []).map((topic) => [topic.id, topic])).values()]
+    .sort((a, b) => a.name.localeCompare(b.name, "vi"));
+
+  function changeFilter(key: "level" | "topicId" | "q", value: string) {
+    setParams((current) => {
+      const next = new URLSearchParams(current);
+      if (value) next.set(key, value); else next.delete(key);
+      return next;
+    });
+  }
+
+  function clearFilters() {
+    setParams((current) => {
+      const next = new URLSearchParams(current);
+      next.delete("level");
+      next.delete("topicId");
+      next.delete("q");
+      return next;
+    });
+  }
 
   function load() {
     setState("loading");
     setMessage(null);
-    void requestLearningSets()
+    void requestLearningSets({ includeTopics: true })
       .then((items) => {
         setLearningSets(items);
         setState("ready");
@@ -44,7 +75,7 @@ export function LearningSetsPage() {
 
   useEffect(() => {
     let cancelled = false;
-    void requestLearningSets()
+    void requestLearningSets({ includeTopics: true })
       .then((items) => {
         if (cancelled) return;
         setLearningSets(items);
@@ -67,34 +98,52 @@ export function LearningSetsPage() {
             ? <Link className="learning-sets-manage-link" to="/learning-sets/assign">Thêm vào học tập</Link>
             : null}
         </div>
-        <p className="auth-eyebrow">Bộ từ</p>
-        <h1 className="auth-title" id="learning-sets-title">Bộ từ</h1>
-        <p className="auth-copy">Các bộ từ được tuyển chọn sẵn, có thứ tự ổn định để bạn chọn nội dung học.</p>
+        <p className="auth-eyebrow">Chọn theo chủ đề và lớp</p>
+        <h1 className="auth-title" id="learning-sets-title">Bộ từ để học</h1>
+        <p className="auth-copy">Chọn chủ đề và lớp phù hợp với bạn. Mỗi bộ từ có thể học riêng, không cần theo thứ tự.</p>
 
         {state === "loading" ? <LoadingState className="learning-sets-state" label="Đang tải danh sách bộ từ…" pattern="rows" testId="learning-sets-loading" /> : null}
         {state === "error" ? (
           <ErrorState className="learning-sets-state learning-sets-error" title="Không thể tải danh sách bộ từ" description={message ?? "Vui lòng thử lại."} onRetry={() => void load()} testId="learning-sets-error" />
         ) : null}
+        {state === "ready" ? <div className="learning-set-catalog-tools" aria-label="Lọc bộ từ">
+          <label className="learning-set-search">Tìm bộ từ<input type="search" value={filters.query} onChange={(event) => changeFilter("q", event.target.value)} placeholder="Ví dụ: gia đình, đồ ăn…" /></label>
+          <label>Lớp học<select value={filters.grade ?? ""} onChange={(event) => changeFilter("level", event.target.value)}>
+            <option value="">Tất cả lớp</option>
+            {(["GRADE_1", "GRADE_2", "GRADE_3", "GRADE_4", "GRADE_5", "GENERAL"] as const).map((grade) => <option value={grade} key={grade}>{gradeLabel(grade)}</option>)}
+          </select></label>
+          <label>Chủ đề<select value={filters.topicId ?? ""} onChange={(event) => changeFilter("topicId", event.target.value)}>
+            <option value="">Tất cả chủ đề</option>
+            {topicOptions.map((topic) => <option value={topic.id} key={topic.id}>{topic.name}</option>)}
+          </select></label>
+          {(filters.grade || filters.topicId || filters.query) ? <button className="learning-set-clear-filters" type="button" onClick={clearFilters}>Xóa bộ lọc</button> : null}
+        </div> : null}
         {state === "ready" && learningSets.length === 0 ? (
-          <EmptyState className="vocabulary-empty" icon="folder" title="Chưa có bộ từ phù hợp" description="Danh mục bộ từ hiện đang trống." testId="learning-sets-empty" />
+          <EmptyState className="vocabulary-empty" icon="folder" title="Chưa có bộ từ đã duyệt" description="Danh mục chưa có bộ từ chứa nội dung phù hợp để hiển thị." action={<Link className="button secondary" to="/topics">Khám phá chủ đề</Link>} testId="learning-sets-empty" />
         ) : null}
-        {state === "ready" && learningSets.length > 0 ? (
-          <ul className="learning-set-list" data-testid="learning-sets-list">
-            {learningSets.map((learningSet) => (
-              <li className="learning-set-row" key={learningSet.id}>
-                <div className="learning-set-copy">
-                  <div className="learning-set-heading"><strong>{learningSet.name}</strong><span>
-                    {learningSet.classificationStatus === "SOURCE_VERIFIED" ? "CEFR · Có nguồn" :
-                      learningSet.classificationStatus === "INFERRED_REVIEWABLE" ? "Gợi ý · Cần xem lại" : gradeLabel(learningSet.grade)}
-                  </span></div>
-                  <p>{learningSet.description}</p>
-                  <small>{learningSet.vocabularyCount} từ đang bật</small>
-                </div>
-                <Link className="button secondary learning-set-open" to={`/learning-sets/${learningSet.id}`}>Xem bộ từ</Link>
-              </li>
-            ))}
-          </ul>
-        ) : null}
+        {state === "ready" && learningSets.length > 0 ? <>
+          <p className="learning-set-results" aria-live="polite">{visibleLearningSets.length} / {learningSets.length} bộ từ</p>
+          {visibleLearningSets.length === 0 ? <EmptyState className="vocabulary-empty" icon="search" title="Không tìm thấy bộ từ phù hợp" description="Thử bỏ bớt bộ lọc hoặc đổi từ khóa tìm kiếm." action={<button className="button secondary" type="button" onClick={clearFilters}>Xóa bộ lọc</button>} testId="learning-sets-filtered-empty" /> : (
+            <ul className="learning-set-list" data-testid="learning-sets-list">
+              {visibleLearningSets.map((learningSet) => (
+                <li className="learning-set-row" key={learningSet.id}>
+                  <div className="learning-set-copy">
+                    <div className="learning-set-heading"><strong>{learningSet.name}</strong><span>
+                      {learningSet.classificationStatus === "SOURCE_VERIFIED" ? "CEFR · Có nguồn" :
+                        learningSet.classificationStatus === "INFERRED_REVIEWABLE" ? "Gợi ý · Cần xem lại" : gradeLabel(learningSet.grade)}
+                    </span></div>
+                    <p>{learningSet.description}</p>
+                    <small>{learningSet.vocabularyCount} từ đang bật</small>
+                    <div className="learning-set-topic-links" aria-label={`Chủ đề trong ${learningSet.name}`}>
+                      {learningSet.topics?.length ? learningSet.topics.map((topic) => <Link key={topic.id} to={topicHref(topic.id, learningSet.grade)}>{topic.name}</Link>) : <span>Chưa có chủ đề được duyệt</span>}
+                    </div>
+                  </div>
+                  <Link className="button secondary learning-set-open" to={`/learning-sets/${learningSet.id}`}>Xem bộ từ</Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </> : null}
       </section>
     </main>
   );

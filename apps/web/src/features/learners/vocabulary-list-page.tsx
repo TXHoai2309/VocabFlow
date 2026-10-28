@@ -7,7 +7,7 @@ import { LearnerVocabularyClientError, requestLearnerVocabularyBrowse } from "./
 import { VocabularyCard } from "./vocabulary-card";
 import { EmptyState, ErrorState, LoadingState } from "../../components/async-states";
 import { useToast } from "../../components/toast/toast-context";
-import { requestSavedVocabulary, saveVocabulary, unsaveVocabulary } from "./saved-vocabulary-client";
+import { saveVocabulary, unsaveVocabulary } from "./saved-vocabulary-client";
 import { formatVocabularyTopic } from "../vocabulary/vocabulary-presentation";
 import { groupVocabularyByHeadword, type GroupedVocabularyItem } from "./grouped-vocabulary";
 import { MultiSenseDrawer } from "./multi-sense-drawer";
@@ -64,7 +64,7 @@ function listErrorMessage(error: unknown) {
 
 function DebouncedVocabularySearch({ query, updateFilter }: {
   query: string;
-  updateFilter: (name: "q" | "level" | "cefr" | "topic" | "pageSize", value: string) => void;
+  updateFilter: (name: "q" | "level" | "cefr" | "topic" | "topicId" | "pageSize", value: string) => void;
 }) {
   const [searchInput, setSearchInput] = useState(query);
 
@@ -124,6 +124,7 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
   const level = isVocabularyLevel(requestedLevel) ? requestedLevel : "";
   const cefr = searchParams.get("cefr") ?? "";
   const topic = searchParams.get("topic") ?? "";
+  const topicId = Number(searchParams.get("topicId")) || undefined;
   const requestedPage = Number(searchParams.get("page"));
   const pageFromUrl = Number.isSafeInteger(requestedPage) && requestedPage > 0 ? requestedPage : 1;
   const requestedPageSize = Number(searchParams.get("pageSize"));
@@ -135,6 +136,7 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
   const [totalPages, setTotalPages] = useState(1);
   const [cefrOptions, setCefrOptions] = useState<string[]>([]);
   const [topicOptions, setTopicOptions] = useState<string[]>([]);
+  const [topicChoices, setTopicChoices] = useState<{ id: number; name: string; slug: string }[]>([]);
   const [message, setMessage] = useState<string | null>(null);
   const [reloadToken, setReloadToken] = useState(0);
   const [savedVocabularyState, setSavedVocabularyState] = useState<"loading" | "ready" | "error">("loading");
@@ -142,12 +144,15 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
   const [savingIds, setSavingIds] = useState<Set<number>>(new Set());
   const [activeDrawerGroup, setActiveDrawerGroup] = useState<GroupedVocabularyItem | null>(null);
   const mutationInFlight = useRef(new Set<number>());
+  const savedMutationVersion = useRef(0);
 
   const groupedVocabulary = useMemo(() => groupVocabularyByHeadword(vocabulary), [vocabulary]);
 
-  const updateFilter = useCallback((name: "q" | "level" | "cefr" | "topic" | "pageSize", value: string) => {
+  const updateFilter = useCallback((name: "q" | "level" | "cefr" | "topic" | "topicId" | "pageSize", value: string) => {
     setSearchParams((current) => {
       const next = new URLSearchParams(current);
+      if (name === "topicId") next.delete("topic");
+      if (name === "topic") next.delete("topicId");
       const normalizedValue = name === "q" ? value.trim() : value;
       if (normalizedValue) next.set(name, normalizedValue);
       else next.delete(name);
@@ -157,27 +162,39 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
   }, [setSearchParams]);
 
   const browseRequestKey = JSON.stringify([
-    activeLearner.id, pageFromUrl, pageSize, normalizedQuery, level, cefr, topic, reloadToken
+    activeLearner.id, pageFromUrl, pageSize, normalizedQuery, level, cefr, topic, topicId, reloadToken
   ]);
 
   useEffect(() => {
     const controller = new AbortController();
     const requestKey = browseRequestKey;
+    const savedVersion = savedMutationVersion.current;
     void requestLearnerVocabularyBrowse(activeLearner.id, {
       page: pageFromUrl,
       pageSize,
       ...(normalizedQuery ? { q: normalizedQuery } : {}),
       ...(level ? { level } : {}),
       ...(cefr ? { cefr } : {}),
-      ...(topic ? { topic } : {})
+      ...(topicId ? { topicId } : topic ? { topic } : {})
     }, controller.signal)
       .then((result) => {
         if (controller.signal.aborted) return;
         setVocabulary(result.vocabulary);
+        setSavedIds((current) => {
+          const next = new Set(current);
+          for (const item of result.vocabulary) {
+            if (savedVersion === savedMutationVersion.current && !mutationInFlight.current.has(item.id)) {
+              if (item.isSaved) next.add(item.id); else next.delete(item.id);
+            }
+          }
+          return next;
+        });
+        setSavedVocabularyState("ready");
         setTotal(result.total);
         setTotalPages(result.totalPages);
         setCefrOptions(result.filters.cefrOptions);
         setTopicOptions(result.filters.topicOptions);
+        setTopicChoices(result.filters.topicChoices ?? []);
         setState("ready");
         setMessage(null);
         setResultKey(requestKey);
@@ -189,22 +206,12 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
         setResultKey(requestKey);
       });
     return () => controller.abort();
-  }, [activeLearner.id, browseRequestKey, cefr, level, normalizedQuery, pageFromUrl, pageSize, reloadToken, topic]);
-
-  const loadSavedVocabulary = useCallback(async () => {
-    setSavedVocabularyState("loading");
-    try {
-      const saved = await requestSavedVocabulary(activeLearner.id);
-      setSavedIds(new Set(saved.map((item) => item.vocabulary.id)));
-      setSavedVocabularyState("ready");
-    } catch {
-      setSavedVocabularyState("error");
-    }
-  }, [activeLearner.id, setSavedIds, setSavedVocabularyState]);
+  }, [activeLearner.id, browseRequestKey, cefr, level, normalizedQuery, pageFromUrl, pageSize, reloadToken, topic, topicId]);
 
   const toggleSaved = useCallback(async (item: LearnerVocabularyBrowseItem) => {
     if (savedVocabularyState !== "ready" || mutationInFlight.current.has(item.id)) return;
     const wasSaved = savedIds.has(item.id);
+    savedMutationVersion.current += 1;
     mutationInFlight.current.add(item.id);
     setSavingIds((current) => new Set(current).add(item.id));
     setSavedIds((current) => {
@@ -237,22 +244,7 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
     }
   }, [activeLearner.id, savedIds, savedVocabularyState, setSavedIds, setSavingIds, toast]);
 
-  useEffect(() => {
-    let cancelled = false;
-    void requestSavedVocabulary(activeLearner.id)
-      .then((saved) => {
-        if (cancelled) return;
-        setSavedIds(new Set(saved.map((item) => item.vocabulary.id)));
-        setSavedVocabularyState("ready");
-      })
-      .catch(() => {
-        if (cancelled) return;
-        setSavedVocabularyState("error");
-      });
-    return () => { cancelled = true; };
-  }, [activeLearner.id]);
-
-  const hasFilters = Boolean(normalizedQuery || level || cefr || topic);
+  const hasFilters = Boolean(normalizedQuery || level || cefr || topic || topicId);
   const currentPage = Math.min(pageFromUrl, totalPages);
   const visibleState = resultKey === browseRequestKey ? state : "loading";
 
@@ -276,8 +268,16 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
     }, { replace: true });
   };
 
+  const topicChoice = topicChoices.find((item) => item.id === topicId || item.name === topic || item.slug === topic);
+  const studyParams = new URLSearchParams(topicChoice ? { topicId: String(topicChoice.id) } : { source: "all" });
+  if (level) studyParams.set("level", level);
+  if (cefr) studyParams.set("cefr", cefr);
+  const discoveryParams = new URLSearchParams();
+  if (level) discoveryParams.set("level", level);
+  if (cefr) discoveryParams.set("cefr", cefr);
+  if (topicChoice) discoveryParams.set("topicId", String(topicChoice.id));
   const clearActiveFilter = () => {
-    const filter = normalizedQuery ? "q" : level ? "level" : cefr ? "cefr" : "topic";
+    const filter = normalizedQuery ? "q" : level ? "level" : cefr ? "cefr" : topicId ? "topicId" : "topic";
     updateFilter(filter, "");
   };
   const visiblePageNumbers = Array.from(
@@ -296,15 +296,16 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
         <div className="vocabulary-heading-row">
           <div className="vocabulary-heading-copy">
             <h1 id="vocabulary-list-title">Từ vựng của bạn</h1>
-            <p>Khám phá và ôn tập các từ vựng theo chương trình học.</p>
+            <p>Chọn từ phù hợp với trình độ và sở thích của bạn.</p>
           </div>
-          <Link className="vocabulary-topics-link" to="/topics">
+          <Link className="vocabulary-topics-link" to={`/topics${discoveryParams.size ? `?${discoveryParams}` : ""}`}>
             <VocabularyIcon name="book" />
             <span>Duyệt theo chủ đề</span>
             <VocabularyIcon name="next" />
           </Link>
         </div>
       </header>
+
 
       <section className="vocabulary-toolbar" aria-label="Tìm kiếm và lọc từ vựng">
         <DebouncedVocabularySearch key={query} query={query} updateFilter={updateFilter} />
@@ -335,16 +336,19 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
         {topicOptions.length > 0 ? (
           <label className="vocabulary-level-control">
             <span className="sr-only">Chủ đề</span>
-            <select aria-label="Chủ đề" className="vocabulary-level-select" data-testid="vocabulary-topic-filter" value={topic} onChange={(event) => updateFilter("topic", event.target.value)}>
+            <select aria-label="Chủ đề" className="vocabulary-level-select" data-testid="vocabulary-topic-filter" value={topicChoices.length ? String(topicChoice?.id ?? "") : topic} onChange={(event) => updateFilter(topicChoices.length ? "topicId" : "topic", event.target.value)}>
               <option value="">Chủ đề: Tất cả</option>
-              {[...topicOptions].sort((a, b) => {
+              {topicChoices.length ? topicChoices.map((choice) => <option key={choice.id} value={choice.id}>{choice.name}</option>) : (
+[...topicOptions].sort((a, b) => {
                 const labelOrder = (formatVocabularyTopic(a) ?? a).localeCompare(formatVocabularyTopic(b) ?? b, "vi");
                 return labelOrder || a.localeCompare(b);
-              }).map((value) => <option key={value} value={value}>{formatVocabularyTopic(value) ?? "Chủ đề khác"}</option>)}
+              }).map((value) => <option key={value} value={value}>{formatVocabularyTopic(value) ?? "Chủ đề khác"}</option>))}
             </select>
           </label>
         ) : null}
       </section>
+
+      <div className="vocabulary-study-action">{visibleState === "ready" && !normalizedQuery && total > 0 && (!(topic || topicId) || topicChoice) ? <Link className="vocabulary-study-selection" to={`/study/setup?${studyParams}`}>Học nội dung đã chọn</Link> : null}</div>
 
       {visibleState === "loading" ? (
         <LoadingState className="vocabulary-list-state" label="Đang tải từ vựng…" pattern="cards" testId="vocabulary-loading" />
@@ -354,12 +358,7 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
         <ErrorState className="vocabulary-list-state vocabulary-list-error" title="Không thể tải danh sách từ vựng" description={message ?? "Vui lòng thử lại."} onRetry={() => setReloadToken((value) => value + 1)} testId="vocabulary-error" />
       ) : null}
 
-      {savedVocabularyState === "error" ? (
-        <div className="saved-vocabulary-inline-error" role="alert">
-          <span>Không thể tải trạng thái từ đã lưu.</span>
-          <button type="button" onClick={() => void loadSavedVocabulary()}>Thử lại</button>
-        </div>
-      ) : null}
+
 
       {visibleState === "ready" ? (
         total === 0 && !hasFilters ? (
@@ -376,7 +375,7 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
             </div>
             <ul className="vocabulary-grid" data-testid="vocabulary-grid">
               {groupedVocabulary.map((group) => {
-                const isSaved = group.senses.some((s) => savedIds.has(s.id));
+                const isSaved = savedIds.has(group.primaryItem.id);
                 const isSaving = group.senses.some((s) => savingIds.has(s.id));
                 return (
                   <VocabularyCard

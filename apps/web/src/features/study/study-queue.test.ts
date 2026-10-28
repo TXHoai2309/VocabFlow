@@ -2,6 +2,21 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { ReviewQueueResponse } from "@vocabflow/contracts";
 import { requestScopedReviewQueue, selectStudyQueue, studyContentModeFromParams, studyScopeFromParams, studyScopeParams, studySelectionFromParams, type StudyScope } from "./study-queue";
 
+describe("catalog intersection scope", () => {
+  it("round trips a topic, school grade and CEFR through setup and study", () => {
+    const input = new URLSearchParams("topicId=7&level=GRADE_1&cefr=A1&count=10&content=mixed");
+    const scope = studyScopeFromParams(input);
+    expect(scope).toEqual({ type: "topic", id: 7, level: "GRADE_1", cefr: "A1" });
+    expect(studyScopeFromParams(studyScopeParams(scope))).toEqual(scope);
+  });
+  it.each(["level=GRADE_9", "cefr=INVALID", "level=GRADE_1&level=GRADE_2", "saved=1&level=GRADE_1"])("fails closed for %s", (query) => {
+    expect(studyScopeFromParams(new URLSearchParams(query))).toEqual({ type: "invalid" });
+  });
+  it("uses a broad source with explicit filters when no collection was selected", () => {
+    expect(studyScopeFromParams(new URLSearchParams("level=GRADE_2"))).toEqual({ type: "all", level: "GRADE_2" });
+  });
+});
+
 const learnerId = "00000000-0000-4000-8000-000000000010";
 
 function queueResponse(): ReviewQueueResponse {

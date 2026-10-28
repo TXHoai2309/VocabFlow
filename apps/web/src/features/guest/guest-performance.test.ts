@@ -44,6 +44,32 @@ function learnedTen(date = guestToday()) {
   return state;
 }
 describe("guest scale, local availability and uncapped New counts", () => {
+  it("intersects a topic with school grade and CEFR without falling back to broad content", async () => {
+    const fixture = { ...index, vocabulary: [
+      { id: 1, level: "GRADE_1", cefr: "A1" },
+      { id: 6718, level: "GRADE_2", cefr: "A1" },
+      { id: 7000, level: "GRADE_1", cefr: "A1" }
+    ] };
+    const original = network.getMockImplementation()!;
+    network.mockImplementation((url: string) => url === "/api/public/learning-index"
+      ? Promise.resolve(new Response(JSON.stringify(fixture))) : original(url));
+    const result = await getQueue("topicId=1&level=GRADE_1&cefr=A1&capacity=5");
+    expect(result.queue.map((item) => item.vocabulary.id)).toEqual([1]);
+    expect(result.newCount).toBe(1);
+    const empty = await getQueue("topicId=1&level=GRADE_1&cefr=B2&capacity=5");
+    expect(empty.queue).toEqual([]); expect(empty.newCount).toBe(0);
+  });
+  it("marks bookmarks from local state without requesting saved word content", async () => {
+    const state = emptyGuestState(); state.saved[5000] = new Date().toISOString();
+    localStorage.setItem(GUEST_STORAGE_KEY, JSON.stringify(state));
+    network.mockImplementationOnce(async () => new Response(JSON.stringify({
+      vocabulary: [{ ...word(5000), definitionEn: undefined, exampleEn: undefined, status: "NEW", nextReviewDate: null }],
+      total: 1, page: 1, pageSize: 30, totalPages: 1, filters: { cefrOptions: [], topicOptions: [] }
+    })));
+    const result = await (await learningFetch(path("vocabulary/browse"))).json();
+    expect(result.vocabulary[0].isSaved).toBe(true);
+    expect(network).toHaveBeenCalledOnce();
+  });
   it.each(["", "source=pathway", "source=all"])("includes all 594 unassigned words for the broad source %s", async (query) => {
     const state = learnedTen();
     state.assignments[1] = false;

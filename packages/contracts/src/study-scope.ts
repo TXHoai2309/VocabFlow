@@ -4,7 +4,8 @@ export function parseStudyQueueCapacity(raw: string): StudyQueueCapacity | null 
   return ["5", "10", "20", "30"].includes(raw) ? Number(raw) as StudyQueueCapacity : null;
 }
 export type LearningSourceScope = { type: "pathway" } | { type: "all" } | { type: "custom"; ids: number[] };
-export type CatalogStudyScope = LearningSourceScope | { type: "topic" | "learning-set"; id: number };
+export type StudyCatalogFilters = { level?: "GRADE_1" | "GRADE_2" | "GRADE_3" | "GRADE_4" | "GRADE_5" | "GENERAL"; cefr?: string };
+export type CatalogStudyScope = (LearningSourceScope | { type: "topic" | "learning-set"; id: number }) & StudyCatalogFilters;
 
 export function positiveStudyId(raw: string): number | null {
   const id = Number(raw);

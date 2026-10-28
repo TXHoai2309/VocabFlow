@@ -194,7 +194,7 @@ describe("vocabulary detail page", () => {
     expect(screen.getByText("Giải thích nghĩa")).toBeInTheDocument();
     expect(screen.queryByText("Chưa có hình minh họa")).not.toBeInTheDocument();
     expect(document.querySelector(".vocabulary-detail-image-panel")).not.toBeInTheDocument();
-    expect(screen.getByText("Chưa có tệp phát âm")).toBeInTheDocument();
+    expect(screen.getByText("Chưa có tệp phát âm cho từ này.")).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /phát âm apple/i })).not.toBeInTheDocument();
     expect(screen.getByText("Chưa có định nghĩa chi tiết cho từ này.")).toBeInTheDocument();
     expect(screen.getByText("Chưa có câu ví dụ cho từ này.")).toBeInTheDocument();

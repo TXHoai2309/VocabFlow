@@ -1,9 +1,11 @@
+import { CatalogLearningFilters } from "./catalog-learning-filters";
+import { catalogLearningFilterParams, readCatalogLearningFilters } from "./catalog-learning-filter-state";
 import { ActiveLearnerContext } from "./learner-context";
 import { GuestCollectionPage } from "../guest/guest-collection-page";
 import { GUEST_ID } from "../guest/guest-store";
 import { AccountLearningState } from "./account-learning-state";
 import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router";
+import { Link, useNavigate, useParams, useSearchParams } from "react-router";
 import type { LearnerDto, TopicDto, VocabularyDto, VocabularyLevel } from "@vocabflow/contracts";
 import { useActiveLearner } from "./learner-context-hook";
 import { LearnerVocabularyClientError, requestLearnerVocabulary } from "./vocabulary-list-client";
@@ -26,10 +28,13 @@ function errorMessage(error: unknown, topic = false) {
 export function TopicsPage() {
   const activeLearner = useContext(ActiveLearnerContext)?.activeLearner;
   const navigate = useNavigate();
+  const [params, setParams] = useSearchParams();
+  const filters = readCatalogLearningFilters(params);
+  const filterParams = catalogLearningFilterParams(params);
   const [topics, setTopics] = useState<TopicDto[]>([]);
   const [topicState, setTopicState] = useState<LoadState>("loading");
   const [topicMessage, setTopicMessage] = useState<string | null>(null);
-  const [selectedTopicId, setSelectedTopicId] = useState<number | null>(null);
+  const [selectedTopicId, setSelectedTopicId] = useState<number | null>(() => Number(params.get("topicId")) || null);
   const [vocabulary, setVocabulary] = useState<VocabularyDto[]>([]);
   const [vocabularyState, setVocabularyState] = useState<LoadState>("ready");
   const [vocabularyMessage, setVocabularyMessage] = useState<string | null>(null);
@@ -71,7 +76,12 @@ export function TopicsPage() {
   }, [selectedTopicId, vocabularyRetry]);
 
   function selectTopic(topicId: number) {
-    if (activeLearner?.id === GUEST_ID) { navigate(`/topics/${topicId}`); return; }
+    if (activeLearner?.id === GUEST_ID) { navigate(`/topics/${topicId}${filterParams.size ? `?${filterParams}` : ""}`); return; }
+    setParams((current) => {
+      const next = new URLSearchParams(current);
+      next.set("topicId", String(topicId));
+      return next;
+    });
     setSelectedTopicId(topicId);
     setVocabularyState("loading");
     setVocabularyMessage(null);
@@ -89,7 +99,9 @@ export function TopicsPage() {
     setVocabularyRetry((value) => value + 1);
   }
 
+  const visibleVocabulary = vocabulary.filter((item) => (!filters.level || item.level === filters.level) && (!filters.cefr || item.cefr === filters.cefr));
   const selectedTopic = topics.find((topic) => topic.id === selectedTopicId) ?? null;
+  const relatedSetsParams = selectedTopic ? new URLSearchParams({ topicId: String(selectedTopic.id), ...(filters.level ? { level: filters.level } : {}) }) : null;
 
   return (
     <main className="learner-page" aria-labelledby="topics-title">
@@ -100,6 +112,7 @@ export function TopicsPage() {
         <p className="auth-eyebrow">Chủ đề</p>
         <h1 className="auth-title" id="topics-title">Học theo chủ đề</h1>
 
+        <CatalogLearningFilters />
         {topicState === "loading" ? <LoadingState className="vocabulary-list-state" label="Đang tải chủ đề…" pattern="cards" testId="topics-loading" /> : null}
         {topicState === "error" ? <ErrorState className="vocabulary-list-state vocabulary-list-error" title="Không thể tải chủ đề" description={topicMessage ?? "Vui lòng thử lại."} onRetry={retryTopics} testId="topics-error" /> : null}
         {topicState === "ready" && topics.length === 0 ? (
@@ -118,20 +131,23 @@ export function TopicsPage() {
                   aria-pressed={topic.id === selectedTopicId}
                 >
                   <strong>{topic.name}</strong>
-                  <span>{topic.description}</span>
+                  <span>{topic.parentTopicId ? `Thuộc ${topics.find((parent) => parent.id === topic.parentTopicId)?.name ?? "chủ đề lớn"}` : "Khám phá từ vựng"}</span>
                 </button>
               ))}
             </nav>
             <section className="topic-vocabulary" aria-live="polite">
               {!selectedTopic ? <p data-testid="topic-select-prompt">Chọn một chủ đề để xem từ vựng.</p> : <>
                 <h2>{selectedTopic.name}</h2>
-                <Link className="topic-detail-link" to={`/topics/${selectedTopic.id}`}>Xem chi tiết chủ đề</Link>
+                <div className="topic-actions">
+                  <Link className="topic-detail-link" to={`/topics/${selectedTopic.id}${filterParams.size ? `?${filterParams}` : ""}`}>Xem chi tiết chủ đề</Link>
+                  {relatedSetsParams ? <Link className="topic-detail-link" to={`/learning-sets?${relatedSetsParams}`}>Tìm bộ từ theo chủ đề</Link> : null}
+                </div>
                 {vocabularyState === "loading" ? <LoadingState className="vocabulary-list-state" label="Đang tải từ vựng theo chủ đề…" pattern="rows" testId="topic-vocabulary-loading" /> : null}
                 {vocabularyState === "error" ? <ErrorState className="vocabulary-list-state vocabulary-list-error" title="Không thể tải từ vựng theo chủ đề" description={vocabularyMessage ?? "Vui lòng thử lại."} onRetry={retryTopicVocabulary} testId="topic-vocabulary-error" /> : null}
-                {vocabularyState === "ready" && vocabulary.length === 0 ? <EmptyState className="topic-vocabulary-empty" icon="book" title="Chủ đề chưa có từ vựng" description="Chưa có từ vựng nào đang bật trong chủ đề này." testId="topic-vocabulary-empty" /> : null}
+                {vocabularyState === "ready" && visibleVocabulary.length === 0 ? <EmptyState className="topic-vocabulary-empty" icon="book" title="Chủ đề chưa có từ vựng" description="Chưa có từ vựng nào đang bật trong chủ đề này." testId="topic-vocabulary-empty" /> : null}
                 {vocabularyState === "ready" && vocabulary.length > 0 ? (
                   <ul className="vocabulary-list" data-testid="topic-vocabulary-list">
-                    {vocabulary.map((item) => { const meaning = getVietnameseMeaningPresentation(item); return <li className="vocabulary-list-row" key={item.id}><div className="vocabulary-list-copy"><strong>{item.word}</strong><small>{meaning.primaryLabel}</small><span>{meaning.primary}</span></div></li>; })}
+                    {visibleVocabulary.map((item) => { const meaning = getVietnameseMeaningPresentation(item); return <li className="vocabulary-list-row" key={item.id}><div className="vocabulary-list-copy"><strong>{item.word}</strong><small>{meaning.primaryLabel}</small><span>{meaning.primary}</span></div></li>; })}
                   </ul>
                 ) : null}
               </>}
@@ -177,6 +193,8 @@ export function TopicDetailPage() {
 }
 
 function TopicDetailExperience({ learner, topicId }: { learner: LearnerDto; topicId: number }) {
+  const [params] = useSearchParams();
+  const filters = readCatalogLearningFilters(params);
   const [state, setState] = useState<TopicDetailState>("loading");
   const [data, setData] = useState<TopicDetailData | null>(null);
   const [message, setMessage] = useState<string | null>(null);
@@ -242,21 +260,23 @@ function TopicDetailExperience({ learner, topicId }: { learner: LearnerDto; topi
   }
 
   if (state === "ready" && data) {
-    return (
+    const items = data.items.filter((item) => (!filters.level || item.level === filters.level) && (!filters.cefr || item.cefr === filters.cefr));
+    const scopeParams = catalogLearningFilterParams(params); scopeParams.set("topicId", String(data.topic.id));
+    return (<><CatalogLearningFilters />
       <CollectionDetailView
         kind="topic"
         title={data.topic.name}
-        description={data.topic.description}
-        level={data.level}
-        items={data.items}
-        learnedCount={data.learned}
-        progressTotal={data.total}
-        masteredCount={data.mastered}
-        studyHref={`/study/setup?topicId=${data.topic.id}`}
+        description={`Từ vựng về ${data.topic.name.toLocaleLowerCase("vi-VN")}.`}
+        level={filters.level ?? data.level}
+        items={items}
+        learnedCount={items.filter((item) => item.status === "LEARNING" || item.status === "MASTERED").length}
+        progressTotal={items.length}
+        masteredCount={items.filter((item) => item.status === "MASTERED").length}
+        studyHref={`/study/setup?${scopeParams}`}
         studyReady={data.topic.studyScopeAvailable === true || data.hasAssignedVocabulary}
         directStudyScope={data.topic.studyScopeAvailable === true}
-        assignmentHref={data.items.length > 0 && !data.hasAssignedVocabulary ? "/learning-sets/assign" : undefined}
-      />
+        assignmentHref={items.length > 0 && !data.hasAssignedVocabulary ? "/learning-sets/assign" : undefined}
+      /></>
     );
   }
 
