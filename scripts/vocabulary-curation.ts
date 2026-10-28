@@ -722,8 +722,8 @@ export async function applyCurationManifest(
     ]));
     await tx`DELETE FROM ${tx.unsafe(MEMBERSHIPS)} WHERE vocabulary_id = ANY(${tx.array(vocabularyIds)}::integer[])`;
     await tx`
-      INSERT INTO ${tx.unsafe(MEMBERSHIPS)} (vocabulary_id, topic_id)
-      SELECT * FROM unnest(${tx.array(topicPairs.map(([vocabularyId]) => vocabularyId))}::integer[], ${tx.array(topicPairs.map(([, topicId]) => topicId))}::integer[])
+      INSERT INTO ${tx.unsafe(MEMBERSHIPS)} (vocabulary_id, topic_id, review_status)
+      SELECT pair.*, 'APPROVED' FROM unnest(${tx.array(topicPairs.map(([vocabularyId]) => vocabularyId))}::integer[], ${tx.array(topicPairs.map(([, topicId]) => topicId))}::integer[])
       AS pair(vocabulary_id, topic_id)
       ON CONFLICT DO NOTHING
     `;
@@ -747,11 +747,14 @@ export async function applyCurationManifest(
     });
     await tx`DELETE FROM ${tx.unsafe(MEMBERSHIPS)} WHERE vocabulary_id BETWEEN 1 AND 30`;
     await tx`
-      INSERT INTO ${tx.unsafe(MEMBERSHIPS)} (vocabulary_id, topic_id)
-      SELECT * FROM unnest(${tx.array(starterTopicPairs.map(([vocabularyId]) => vocabularyId))}::integer[], ${tx.array(starterTopicPairs.map(([, topicId]) => topicId))}::integer[])
+      INSERT INTO ${tx.unsafe(MEMBERSHIPS)} (vocabulary_id, topic_id, review_status)
+      SELECT pair.*, 'APPROVED' FROM unnest(${tx.array(starterTopicPairs.map(([vocabularyId]) => vocabularyId))}::integer[], ${tx.array(starterTopicPairs.map(([, topicId]) => topicId))}::integer[])
       AS pair(vocabulary_id, topic_id)
       ON CONFLICT DO NOTHING
     `;
+
+    await tx`UPDATE ${tx.unsafe(TOPICS)} SET review_status = 'APPROVED'
+      WHERE id = ANY(${tx.array([...topicIds.values()])}::integer[])`;
 
     const starterAfter = await tx<{ id: number; word: string; enabled: boolean; content_version: number }[]>`
       SELECT id, word, enabled, content_version FROM ${tx.unsafe(VOCABULARIES)} WHERE id BETWEEN 1 AND 30 ORDER BY id

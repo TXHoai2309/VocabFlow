@@ -111,6 +111,10 @@ function fakeSql(options: { wrongIdentity?: boolean } = {}) {
       } });
       return Promise.resolve([{ id: 31 }]);
     }
+    if (/^UPDATE/i.test(statement) && statement.includes('"topics" t SET review_status')) {
+      mutations.push("APPROVE source topic classifications");
+      return Promise.resolve([]);
+    }
     if (/^UPDATE/i.test(statement) && searchable.includes("vocabularies")) {
       mutations.push("UPDATE vocabulary");
       return Promise.resolve([{ id: 31 }]);
@@ -329,7 +333,7 @@ describe("production vocab:import-catalog operator path", () => {
     });
 
     expect(neon.getConnectionUri).toHaveBeenCalledWith(expect.objectContaining({ roleName: "vocabflow_runtime" }));
-    expect(database.mutations).toEqual(["INSERT vocabulary batch", "SYNC vocabulary topics", "SYNC vocabulary topics"]);
+    expect(database.mutations).toEqual(["INSERT vocabulary batch", "SYNC vocabulary topics", "SYNC vocabulary topics", "APPROVE source topic classifications"]);
     expect(database.statements.some((statement) => statement.includes("false, 1"))).toBe(true);
     expect(plan.insertCount).toBe(1);
     expect(renderReport(plan, true)).toContain("DATABASE_MUTATIONS=1");

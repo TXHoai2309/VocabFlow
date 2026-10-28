@@ -303,17 +303,18 @@ export function createPostgresMasterImportStore(sql: SqlClient): MasterImportSto
         if (rows.length !== 1) throw new Error("MASTER_VOCABULARY_MAPPING_IDENTITY_CHANGED");
       },
       insertTopic: async (record) => {
-        const [row] = await tx<Record<string, unknown>[]>`INSERT INTO "vocabflow_app"."topics" (slug, name, description, sort_order, enabled)
-          VALUES (${String(record.slug)}, ${String(record.name)}, ${String(record.description)}, ${Number(record.sortOrder)}, true) RETURNING id`;
+        const [row] = await tx<Record<string, unknown>[]>`INSERT INTO "vocabflow_app"."topics" (slug, name, description, sort_order, enabled, review_status)
+          VALUES (${String(record.slug)}, ${String(record.name)}, ${String(record.description)}, ${Number(record.sortOrder)}, true, 'APPROVED') RETURNING id`;
         if (!row) throw new Error("IMPORT_TOPIC_INSERT_FAILED"); return Number(row.id);
       },
-      updateTopic: async (topicId, record) => { await tx`UPDATE "vocabflow_app"."topics" SET slug = ${String(record.slug)}, name = ${String(record.name)}, description = ${String(record.description)}, sort_order = ${Number(record.sortOrder)}, enabled = true, updated_at = now() WHERE id = ${topicId}`; },
+      updateTopic: async (topicId, record) => { await tx`UPDATE "vocabflow_app"."topics" SET slug = ${String(record.slug)}, name = ${String(record.name)}, description = ${String(record.description)}, sort_order = ${Number(record.sortOrder)}, enabled = true, review_status = 'APPROVED', updated_at = now() WHERE id = ${topicId}`; },
       writeTopicMapping: async (input) => {
         const rows = await tx<Record<string, unknown>[]>`INSERT INTO "vocabflow_app"."master_topic_mappings" (master_topic_id, topic_id, source_dataset_id, last_release_hash, last_import_run_id)
           VALUES (${input.masterId}::uuid, ${input.appId}, ${input.sourceDatasetId}::uuid, ${input.releaseHash}, ${input.runId}::uuid)
           ON CONFLICT (master_topic_id) DO UPDATE SET source_dataset_id = EXCLUDED.source_dataset_id, last_release_hash = EXCLUDED.last_release_hash, last_import_run_id = EXCLUDED.last_import_run_id, updated_at = now()
           WHERE "vocabflow_app"."master_topic_mappings".topic_id = EXCLUDED.topic_id RETURNING topic_id`;
         if (rows.length !== 1) throw new Error("MASTER_TOPIC_MAPPING_IDENTITY_CHANGED");
+        await tx`UPDATE "vocabflow_app"."topics" SET review_status = 'APPROVED' WHERE id = ${input.appId}`;
       },
       insertLearningSet: async (record) => {
         const grade = typeof record.grade === "string" ? record.grade : null;
@@ -332,13 +333,14 @@ export function createPostgresMasterImportStore(sql: SqlClient): MasterImportSto
           WHERE "vocabflow_app"."master_learning_set_mappings".learning_set_id = EXCLUDED.learning_set_id RETURNING learning_set_id`;
         if (rows.length !== 1) throw new Error("MASTER_LEARNING_SET_MAPPING_IDENTITY_CHANGED");
       },
-      insertVocabularyTopic: async (vocabularyId, topicId) => { await tx`INSERT INTO "vocabflow_app"."vocabulary_topics" (vocabulary_id, topic_id) VALUES (${vocabularyId}, ${topicId}) ON CONFLICT (vocabulary_id, topic_id) DO NOTHING`; },
+      insertVocabularyTopic: async (vocabularyId, topicId) => { await tx`INSERT INTO "vocabflow_app"."vocabulary_topics" (vocabulary_id, topic_id, review_status) VALUES (${vocabularyId}, ${topicId}, 'APPROVED') ON CONFLICT (vocabulary_id, topic_id) DO UPDATE SET review_status = 'APPROVED'`; },
       writeVocabularyTopicMembership: async (input) => {
         const rows = await tx<Record<string, unknown>[]>`INSERT INTO "vocabflow_app"."master_vocabulary_topic_memberships" (master_sense_id, master_topic_id, vocabulary_id, topic_id, last_release_hash)
           VALUES (${input.masterSenseId}::uuid, ${input.masterTopicId}::uuid, ${input.vocabularyId}, ${input.topicId}, ${input.releaseHash})
           ON CONFLICT (master_sense_id, master_topic_id) DO UPDATE SET last_release_hash = EXCLUDED.last_release_hash
           WHERE "vocabflow_app"."master_vocabulary_topic_memberships".vocabulary_id = EXCLUDED.vocabulary_id AND "vocabflow_app"."master_vocabulary_topic_memberships".topic_id = EXCLUDED.topic_id RETURNING master_sense_id`;
         if (rows.length !== 1) throw new Error("MASTER_TOPIC_MEMBERSHIP_IDENTITY_CHANGED");
+        await tx`UPDATE "vocabflow_app"."vocabulary_topics" SET review_status = 'APPROVED' WHERE vocabulary_id = ${input.vocabularyId} AND topic_id = ${input.topicId}`;
       },
       upsertLearningSetItem: async (learningSetId, vocabularyId, sortOrder) => {
         await tx`INSERT INTO "vocabflow_app"."learning_set_items" (learning_set_id, vocabulary_id, sort_order) VALUES (${learningSetId}, ${vocabularyId}, ${sortOrder})

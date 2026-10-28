@@ -700,14 +700,17 @@ function transactionForSql(sqlClient: SqlTag): CatalogTransaction {
           AND v.source_dataset = ${SOURCE_DATASET_ID}
       `;
       await sqlClient`
-        INSERT INTO "${sqlClient.unsafe(APP_SCHEMA)}"."vocabulary_topics" (vocabulary_id, topic_id)
-        SELECT v.id, t.id
+        INSERT INTO "${sqlClient.unsafe(APP_SCHEMA)}"."vocabulary_topics" (vocabulary_id, topic_id, review_status)
+        SELECT v.id, t.id, 'APPROVED'
         FROM "${sqlClient.unsafe(APP_SCHEMA)}"."vocabularies" v
         JOIN "${sqlClient.unsafe(APP_SCHEMA)}"."topics" t ON t.source_topic = v.topic
         WHERE v.source_dataset = ${SOURCE_DATASET_ID}
           AND v.source_record_id IS NOT NULL
-        ON CONFLICT (vocabulary_id, topic_id) DO NOTHING
+        ON CONFLICT (vocabulary_id, topic_id) DO UPDATE SET review_status = 'APPROVED'
       `;
+      await sqlClient`UPDATE "${sqlClient.unsafe(APP_SCHEMA)}"."topics" t SET review_status = 'APPROVED'
+        WHERE EXISTS (SELECT 1 FROM "${sqlClient.unsafe(APP_SCHEMA)}"."vocabularies" v
+          WHERE v.source_dataset = ${SOURCE_DATASET_ID} AND v.topic = t.source_topic)`;
     }
   };
 }

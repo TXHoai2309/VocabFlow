@@ -1,0 +1,315 @@
+{
+  "artifactType": "VOCABFLOW_PHASE_AWARE_TEST_MANIFEST",
+  "artifactVersion": 1,
+  "status": "PROPOSED_CURRENT_PHASE_SCOPE_PENDING_OWNER_APPROVAL",
+  "repository": {
+    "branch": "TXH",
+    "currentHead": "a2b18a9f06bd1dc6981ad2a52a30741cad700be6",
+    "remoteHead": "a2b18a9f06bd1dc6981ad2a52a30741cad700be6"
+  },
+  "runtime": {
+    "node": "22.23.2",
+    "packageManager": "pnpm@11.17.0",
+    "vitest": "5.0.0",
+    "historicalLockfileGitBlob": "995caa188b464181474c65d7c64cf7a2039098f2",
+    "historicalRuntimeLockfileGitBlob": "5cf64f83286fe1aab67faa8ae682e1b50b0460e2"
+  },
+  "executionScopes": {
+    "originalRootSuite": {
+      "command": "pnpm test",
+      "gateStatus": "UNCHANGED_MANDATORY_FAILS_UNLESS_ALL_CHECKS_PASS"
+    },
+    "proposedCurrentApplicable": {
+      "command": "pnpm test:current-phase:proposed",
+      "config": "vitest.phase-aware-proposed.config.mts",
+      "definition": "Root Vitest include, excluding only historicalTests entries whose phase and snapshotCommit are pinned below.",
+      "releaseGateEffect": "NONE_PENDING_OWNER_APPROVAL"
+    },
+    "historicalPhases": {
+      "command": "pnpm test:historical-phases -- --report-dir <new-empty-directory>",
+      "runner": "scripts/run-historical-phase-tests.v1.ts",
+      "execution": "Each file runs in a disposable isolated clone checked out at its pinned historical commit, with dependencies installed from that commit's frozen lockfile."
+    }
+  },
+  "currentStateContracts": [
+    {
+      "gate": "taxonomy 2.0.1, approved releases 2.2.0 and 2.2.1, 286 materialized approval targets, canonical UUID uniqueness and stable identity across releases",
+      "command": "pnpm exec tsx scripts/phase-e-current-state-contract.v1.ts"
+    },
+    {
+      "gate": "CP02 queue, frozen selection, source pins and read-only micro-replay regression",
+      "command": "python -B vocabflow-dataset/workspaces/master-editorial-high-throughput-500-03/tooling/checkpoint-02-test.py"
+    },
+    {
+      "gate": "T16 final-partial contract and 29/29 proposals",
+      "command": "python -B vocabflow-dataset/workspaces/master-editorial-high-throughput-500-03/provisional-bulk-continuation/phase-e-final-partial-t16-20261013-v1/tests/test_t16_final_partial_contract.py"
+    },
+    {
+      "gate": "scanner v2 unit contract",
+      "command": "python -B -m unittest discover -s vocabflow-dataset/workspaces/master-editorial-high-throughput-500-03/tooling -p test_phase_e_scanner_v2.py"
+    },
+    {
+      "gate": "scanner v2 frozen-input deterministic replay",
+      "command": "python -B vocabflow-dataset/workspaces/master-editorial-high-throughput-500-03/tooling/phase_e_scanner_v2.py --verify --workspace-root vocabflow-dataset/workspaces/master-editorial-high-throughput-500-03 --output-dir D:\\hoctienganh\\VocabFlow-local-backups\\phase-e-technical-gate-stabilization-20261013-v1"
+    },
+    {
+      "gate": "Master Vocabulary V2 dataset integrity",
+      "command": "pnpm test:current-phase:proposed (includes the validator's 30 assertion tests)"
+    },
+    {
+      "gate": "historical identity immutability and promotion collision guard",
+      "command": "pnpm test:historical-phases -- --report-dir <new-empty-directory> (Phase 2F.3 pinned test)"
+    }
+  ],
+  "historicalTests": [
+    {
+      "testFile": "scripts/master-vocabulary-v2-pilot.test.ts",
+      "originalPhase": "2B",
+      "snapshotCommit": "ce0ad846333fd32206542f2b7f0ce807868e7ba8",
+      "snapshotTree": "3d0e9a5d50efa0e4af5173d41d0bcd0a6f54a21a",
+      "testBlob": "11ee06df6b8f9b135952d65ac549d86685e08d3a",
+      "packageJsonBlob": "986b9911d2252cf1e3f294cb999e6f4e8a1519e7",
+      "lockfileBlob": "5cf64f83286fe1aab67faa8ae682e1b50b0460e2",
+      "vitestConfigBlob": "10b1c7c7e504830532497ac3bd3bbc2dc88e074a",
+      "fixtureContract": "Original 2B pilot dataset and its exact manifest-selected records.",
+      "immutableArtifactPins": [
+        "The historical commit tree and phase-local dataset manifest.",
+        "Pilot assertions: 25 Senses and exactly five POS classes."
+      ],
+      "expectedExecutionState": "PASS_AT_PINNED_SNAPSHOT",
+      "appliesToCurrentHead": false,
+      "successConditions": [
+        "The pinned commit and tree match.",
+        "Frozen lockfile installation succeeds.",
+        "Every test in this file passes."
+      ],
+      "commandTemplate": "pnpm exec vitest run --pool=threads --maxWorkers=1 --no-file-parallelism scripts/master-vocabulary-v2-pilot.test.ts"
+    },
+    {
+      "testFile": "scripts/hybrid-100-editorial-draft.test.ts",
+      "originalPhase": "2F.2",
+      "snapshotCommit": "25abd1d52089897d8cb0d6b513be3a12f65c2b34",
+      "snapshotTree": "c68961c62683a046813b1b736aed6377b827d7e9",
+      "testBlob": "886b120b2acfadfe49d89938ab37dd70fc182f3b",
+      "packageJsonBlob": "17c15e916ffff794ef02621b16b1d62f7260ad8c",
+      "lockfileBlob": "995caa188b464181474c65d7c64cf7a2039098f2",
+      "vitestConfigBlob": "10b1c7c7e504830532497ac3bd3bbc2dc88e074a",
+      "fixtureContract": "Materialized 2F.2 editorial draft, then-current identity registry, and protected canonical-file snapshot.",
+      "immutableArtifactPins": [
+        "The entire phase snapshot is pinned by snapshotCommit and snapshotTree; the test's order, registry and protected-file assertions remain intact."
+      ],
+      "expectedExecutionState": "PASS_AT_PINNED_SNAPSHOT",
+      "successConditions": [
+        "The pinned commit and tree match.",
+        "Frozen lockfile installation succeeds.",
+        "Every test in this file passes."
+      ],
+      "commandTemplate": "pnpm exec vitest run --pool=threads --maxWorkers=1 --no-file-parallelism scripts/hybrid-100-editorial-draft.test.ts",
+      "appliesToCurrentHead": false
+    },
+    {
+      "testFile": "scripts/hybrid-100-canonical-promote.test.ts",
+      "originalPhase": "2F.3",
+      "snapshotCommit": "0ea0958a50619e229f72f038285ee166b421ef9f",
+      "snapshotTree": "b71e04e407b0f5a8640115b9cf10f0adbe46219d",
+      "testBlob": "e9b6f472838ca5b2cca8b169dbb00b7c8a083039",
+      "packageJsonBlob": "52daf9a3a727597a63c2b684b91a077c6189128c",
+      "lockfileBlob": "995caa188b464181474c65d7c64cf7a2039098f2",
+      "vitestConfigBlob": "10b1c7c7e504830532497ac3bd3bbc2dc88e074a",
+      "fixtureContract": "2F.2 source, owner approval, and pre-promotion canonical state at the promotion commit.",
+      "immutableArtifactPins": [
+        "Approved-draft fingerprint a112a475e896f09038d4dd6834389af2d553d3a509829ef410ef17ae4e37ee1d.",
+        "Source-proof fingerprint 89d6477c3c1a32a0eb1e367f09df37238554f762b3b378c0f590525f3d0a4ccc.",
+        "Canonical collision guard and 84/98 promotion assertions."
+      ],
+      "expectedExecutionState": "PASS_AT_PINNED_SNAPSHOT",
+      "successConditions": [
+        "The pinned commit and tree match.",
+        "Frozen lockfile installation succeeds.",
+        "Every test in this file passes."
+      ],
+      "commandTemplate": "pnpm exec vitest run --pool=threads --maxWorkers=1 --no-file-parallelism scripts/hybrid-100-canonical-promote.test.ts",
+      "appliesToCurrentHead": false
+    },
+    {
+      "testFile": "scripts/hybrid-100-cefr-owner-review-closure.test.ts",
+      "originalPhase": "2F.4A",
+      "snapshotCommit": "f2bc0431514d8df1fb483db1b44e8eb0337a90d5",
+      "snapshotTree": "18bbfbb1f8fc691d1fd5ad98391b9b50184fa9df",
+      "testBlob": "24bd436c2f5ff316bf235648f8ac136a2e62bf83",
+      "packageJsonBlob": "839e979cf9c4164e786617a1cf380d68d3fb39dd",
+      "lockfileBlob": "995caa188b464181474c65d7c64cf7a2039098f2",
+      "vitestConfigBlob": "10b1c7c7e504830532497ac3bd3bbc2dc88e074a",
+      "fixtureContract": "Phase 2F.4A owner-exception closure before the later full-owner approval materialized; exact five owner-reviewed exceptions with the remaining 95 decisions pending.",
+      "immutableArtifactPins": [
+        "Phase 2F.4A closure fingerprint ec0a6e34556a3d484dbdd608e592b912cb8c4ff2ceafdbe46b9cac02ea23b18f.",
+        "The full-owner-approval.json artifact is absent at this pinned snapshot; the current test intentionally skips once that artifact exists."
+      ],
+      "expectedExecutionState": "PASS_AT_PINNED_SNAPSHOT",
+      "successConditions": [
+        "The pinned commit and tree match.",
+        "Frozen lockfile installation succeeds.",
+        "All nine Phase 2F.4A regression tests pass before the full-owner approval state."
+      ],
+      "commandTemplate": "pnpm exec vitest run --pool=threads --maxWorkers=1 --no-file-parallelism scripts/hybrid-100-cefr-owner-review-closure.test.ts",
+      "appliesToCurrentHead": false
+    },
+    {
+      "testFile": "scripts/hybrid-100-cefr-full-owner-approval.test.ts",
+      "originalPhase": "2F.4B",
+      "snapshotCommit": "ccff09eceea01540027c4e9e8e7daee2c6402c33",
+      "snapshotTree": "eaf041c62a4b17092548cdbdc10426f4cdb1d9ae",
+      "testBlob": "a70ca8a0afc481770695690020802beb195a2a41",
+      "packageJsonBlob": "ccfc62bb376ba68c23ddfa232557a98230b2cd83",
+      "lockfileBlob": "995caa188b464181474c65d7c64cf7a2039098f2",
+      "vitestConfigBlob": "10b1c7c7e504830532497ac3bd3bbc2dc88e074a",
+      "fixtureContract": "Final amended 2F.4B full-owner approval state, before the 2F.5 release candidate.",
+      "immutableArtifactPins": [
+        "Parent CEFR owner-closure fingerprint ec0a6e34556a3d484dbdd608e592b912cb8c4ff2ceafdbe46b9cac02ea23b18f.",
+        "Superseded approval fingerprint 5c2132d01b43a7539d1b7745bf4d65bafe498c13e5fc332437c9ab0b46812dfd."
+      ],
+      "expectedExecutionState": "PASS_AT_PINNED_SNAPSHOT",
+      "successConditions": [
+        "The pinned commit and tree match.",
+        "Frozen lockfile installation succeeds.",
+        "Every test in this file passes."
+      ],
+      "commandTemplate": "pnpm exec vitest run --pool=threads --maxWorkers=1 --no-file-parallelism scripts/hybrid-100-cefr-full-owner-approval.test.ts",
+      "appliesToCurrentHead": false
+    },
+    {
+      "testFile": "scripts/hybrid-100-release-candidate.test.ts",
+      "originalPhase": "2F.5",
+      "snapshotCommit": "e3d60c37e8c7d25a641a62af95f43fe35ab1149f",
+      "snapshotTree": "5961ae40e315ec272588aaea0b2c60f1ee858c4f",
+      "testBlob": "b3dbdf9a9018d1535e60ae69f9c4074c9d8c4108",
+      "packageJsonBlob": "30434597cfd5a0fea7042fdd0912fdc5bf3fbd95",
+      "lockfileBlob": "995caa188b464181474c65d7c64cf7a2039098f2",
+      "vitestConfigBlob": "10b1c7c7e504830532497ac3bd3bbc2dc88e074a",
+      "fixtureContract": "2F.5 taxonomy 2.0.0 DRAFT, pre-2F.6 approval state, and its original CEFR/canonical inputs.",
+      "immutableArtifactPins": [
+        "Historical taxonomy content hash 67ecd13e49e756df6fce2def9f40fe11eb8831ef9a68097299d37324ac588b79.",
+        "Light predecessor hash 08482dae079eb7932bb7254e9a99277f104d58cf73be9f954b63641996c9763c."
+      ],
+      "expectedExecutionState": "PASS_AT_PINNED_SNAPSHOT",
+      "successConditions": [
+        "The pinned commit and tree match.",
+        "Frozen lockfile installation succeeds.",
+        "Every test in this file passes."
+      ],
+      "commandTemplate": "pnpm exec vitest run --pool=threads --maxWorkers=1 --no-file-parallelism scripts/hybrid-100-release-candidate.test.ts",
+      "appliesToCurrentHead": false
+    },
+    {
+      "testFile": "scripts/hybrid-100-rc-final-audit.test.ts",
+      "originalPhase": "2F.6A",
+      "snapshotCommit": "e29ffc7cfa09c2906b6a0604f670f1c8333df1e4",
+      "snapshotTree": "d3b9f92d20adf1816fa5e2ab9a8bfe8c496271e6",
+      "testBlob": "d9386383afec9339904b9f2cd8d9f664a9b4eab5",
+      "packageJsonBlob": "002c0d359dcee6630f89ea189ee2ee1f287d75ee",
+      "lockfileBlob": "995caa188b464181474c65d7c64cf7a2039098f2",
+      "vitestConfigBlob": "10b1c7c7e504830532497ac3bd3bbc2dc88e074a",
+      "fixtureContract": "2F.6A final-audit review state; no final release yet; RC and CEFR pins remain historical.",
+      "immutableArtifactPins": [
+        "RC fingerprint 06b2a4dec2f54438416cae67788e0683fe94907cbce0a60fbb2d6469bc25b82c.",
+        "RC tree fingerprint 9d021e151d934a61c577289a4aff3ded8883858bac672e1c27ac546a335966a7.",
+        "Authorized CEFR fingerprint d0a60b26f75b65c18953e76ed759447151ab81a880e9c3e869cbefc6f12bb622.",
+        "Required baseline commit b3db6c38213cc05e0fa8437c42f4c236c671c629."
+      ],
+      "expectedExecutionState": "PASS_AT_PINNED_SNAPSHOT",
+      "successConditions": [
+        "The pinned commit and tree match.",
+        "Frozen lockfile installation succeeds.",
+        "Every test in this file passes."
+      ],
+      "commandTemplate": "pnpm exec vitest run --pool=threads --maxWorkers=1 --no-file-parallelism scripts/hybrid-100-rc-final-audit.test.ts",
+      "appliesToCurrentHead": false
+    },
+    {
+      "testFile": "scripts/hybrid-100-canary-integrity.test.ts",
+      "originalPhase": "2F.6A",
+      "snapshotCommit": "e29ffc7cfa09c2906b6a0604f670f1c8333df1e4",
+      "snapshotTree": "d3b9f92d20adf1816fa5e2ab9a8bfe8c496271e6",
+      "testBlob": "e8dba57ee791f5e2a817c1a0cd00c461ead59c2c",
+      "packageJsonBlob": "002c0d359dcee6630f89ea189ee2ee1f287d75ee",
+      "lockfileBlob": "995caa188b464181474c65d7c64cf7a2039098f2",
+      "vitestConfigBlob": "10b1c7c7e504830532497ac3bd3bbc2dc88e074a",
+      "fixtureContract": "Committed 2F.6A canary tree, before current 286 materialized approval-only targets.",
+      "immutableArtifactPins": [
+        "Canary Git tree SHA f5d4e502be5106da191b5b2ab807f5db12065831.",
+        "Historical superseded canary fingerprint remains labeled historical."
+      ],
+      "expectedExecutionState": "PASS_AT_PINNED_SNAPSHOT",
+      "successConditions": [
+        "The pinned commit and tree match.",
+        "Frozen lockfile installation succeeds.",
+        "Every test in this file passes."
+      ],
+      "commandTemplate": "pnpm exec vitest run --pool=threads --maxWorkers=1 --no-file-parallelism scripts/hybrid-100-canary-integrity.test.ts",
+      "appliesToCurrentHead": false
+    },
+    {
+      "testFile": "scripts/hybrid-100-runtime-eligibility-closure.test.ts",
+      "originalPhase": "2G.1A",
+      "snapshotCommit": "a5cb5a65135fb0d10bdc55d205a807dd4a69ebe0",
+      "snapshotTree": "8139b64592116cbc1f12304f66b3fa43d458f42d",
+      "testBlob": "50beb84633933b853e76511479fbdea894b6cc9b",
+      "packageJsonBlob": "dffeee10d68970169d6c8daca3a5ed21dd0e49da",
+      "lockfileBlob": "995caa188b464181474c65d7c64cf7a2039098f2",
+      "vitestConfigBlob": "10b1c7c7e504830532497ac3bd3bbc2dc88e074a",
+      "fixtureContract": "2G.1A runtime-eligibility closure design state; 2.2.1 target release has not been materialized.",
+      "immutableArtifactPins": [
+        "Source release hash c82a32a3d7fc3534105b85e14908edd336c2409aa7294d070528a47f6260339d.",
+        "Source release tree fingerprint 35334eb7769c39029223d2d60311c6faab8c462efd0a340f262bed27543256ae.",
+        "Semantic draft fingerprint a112a475e896f09038d4dd6834389af2d553d3a509829ef410ef17ae4e37ee1d."
+      ],
+      "expectedExecutionState": "PASS_AT_PINNED_SNAPSHOT",
+      "successConditions": [
+        "The pinned commit and tree match.",
+        "Frozen lockfile installation succeeds.",
+        "Every test in this file passes."
+      ],
+      "commandTemplate": "pnpm exec vitest run --pool=threads --maxWorkers=1 --no-file-parallelism scripts/hybrid-100-runtime-eligibility-closure.test.ts",
+      "appliesToCurrentHead": false
+    },
+    {
+      "testFile": "scripts/hybrid-100-owner-reconciliation-proposal.test.ts",
+      "originalPhase": "2G.2A",
+      "snapshotCommit": "349254178511a3ced1afafb8da370dbf719227bb",
+      "snapshotTree": "dd08b66a4ecd19ddb36690b5c55f376f949762cb",
+      "testBlob": "6c3a6c14ad13e9fa912730768553dffb5caf1a0e",
+      "packageJsonBlob": "f63bca55060a4c8100569d4f5d6e1d90d1a8118d",
+      "lockfileBlob": "995caa188b464181474c65d7c64cf7a2039098f2",
+      "vitestConfigBlob": "10b1c7c7e504830532497ac3bd3bbc2dc88e074a",
+      "fixtureContract": "Exact committed 2G.1C release and source snapshot used by the 2G.2A proposal.",
+      "immutableArtifactPins": [
+        "Release hash 44874b11d1fdef76a515f6285d04c9a417318daa6969e112608a59e7c232613c.",
+        "Release tree fingerprint 51ab4c5ce31bd38b51742d1aea16602150522da27ad26c123cc17b332f9a406e.",
+        "Source snapshot fingerprint 89bfe022122209e0d11031d4f970a9029fd92186bce46ddfca77b95870a51f8e."
+      ],
+      "expectedExecutionState": "PASS_AT_PINNED_SNAPSHOT",
+      "successConditions": [
+        "The pinned commit and tree match.",
+        "Frozen lockfile installation succeeds.",
+        "Every test in this file passes."
+      ],
+      "commandTemplate": "pnpm exec vitest run --pool=threads --maxWorkers=1 --no-file-parallelism scripts/hybrid-100-owner-reconciliation-proposal.test.ts",
+      "appliesToCurrentHead": false
+    }
+  ],
+  "currentPhaseRequirements": [
+    "Taxonomy 2.0.1 approved-state and content hash.",
+    "Canonical release 2.2.0 and 2.2.1 identities and hashes.",
+    "286/286 approval-only materialized targets with exact identity, status, revision, and content hashes.",
+    "Canonical UUID uniqueness and historical identity immutability.",
+    "T16 final-partial 29/29.",
+    "CP02 queue integrity.",
+    "Scanner v2 deterministic replay.",
+    "Master Dataset validation and integrity."
+  ],
+  "releaseGate": {
+    "fullTestStatus": "FAIL_UNLESS_ORIGINAL_ROOT_SUITE_AND_REQUIRED_PHASE_SCOPES_PASS",
+    "baselineNonRegression": "UNPROVEN_UNTIL_EQUIVALENT_SCOPE_RUNS_AND_FAILURES_ARE_CLASSIFIED",
+    "ownerApprovalRequiredBeforeProposedScopeCanReplaceAnyMandatoryGate": true
+  }
+}
