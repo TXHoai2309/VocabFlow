@@ -62,7 +62,7 @@ describe("VocabularyCard shared UI", () => {
     expect(screen.queryByRole("button", { name: "Nghe phát âm apple" })).not.toBeInTheDocument();
   });
 
-  it("labels the Vietnamese gloss, POS and inferred topics for learners", () => {
+  it("shows the meaning and POS without inferred pipeline labels", () => {
     setupAudio("idle", false);
     render(<MemoryRouter><ul><VocabularyCard item={{
       ...item,
@@ -70,9 +70,9 @@ describe("VocabularyCard shared UI", () => {
       tags: ["topic-inferred:travel"]
     }} showTopic /></ul></MemoryRouter>);
 
-    expect(screen.getByText("Giải thích nghĩa")).toBeInTheDocument();
+    expect(screen.queryByText("Giải thích nghĩa")).not.toBeInTheDocument();
     expect(screen.getByText("/ˈæp.əl/ · Danh từ")).toBeInTheDocument();
-    expect(screen.getByText("Chủ đề · Du lịch")).toBeInTheDocument();
+    expect(screen.queryByText("Chủ đề · Du lịch")).not.toBeInTheDocument();
     expect(screen.queryByText("topic-inferred:travel")).not.toBeInTheDocument();
   });
 
@@ -114,7 +114,7 @@ describe("VocabularyCard shared UI", () => {
     expect(screen.queryByText("nghĩa ngắn")).not.toBeInTheDocument();
 
     rerender(<MemoryRouter><ul><VocabularyCard item={{ ...item, shortMeaningVi: "quả táo", shortMeaningStatus: "VERIFIED" }} /></ul></MemoryRouter>);
-    expect(screen.getByText("Nghĩa tiếng Việt")).toBeInTheDocument();
+    expect(screen.queryByText("Nghĩa tiếng Việt")).not.toBeInTheDocument();
     expect(screen.getByText("quả táo")).toBeInTheDocument();
 
     rerender(<MemoryRouter><ul><VocabularyCard item={{ ...item, sourceMeaningVi: "   " }} /></ul></MemoryRouter>);
@@ -128,9 +128,9 @@ describe("VocabularyCard shared UI", () => {
 
     expect(fixture.proposalIdentity).toBe("EDITORIAL_2H2B:banana:fruit");
     expect(fixture.vocabulary.contentHash).toBe(fixture.contentHash);
-    expect(screen.getByText("Nghĩa tiếng Việt")).toBeInTheDocument();
+    expect(screen.queryByText("Nghĩa tiếng Việt")).not.toBeInTheDocument();
     expect(screen.getByText("quả chuối")).toBeInTheDocument();
-    expect(screen.getByText(/Giải thích: quả chuối dài/)).toBeInTheDocument();
+    expect(screen.queryByText(/Giải thích: quả chuối dài/)).not.toBeInTheDocument();
   });
 
   it("reuses the audio playback hook when audio is available", () => {

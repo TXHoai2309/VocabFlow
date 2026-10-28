@@ -1,5 +1,95 @@
 # Current Handoff Snapshot
 
+## 2026-10-28 — UI/UX Pro Max polish for Vocabulary Browse & Study Flashcard
+
+- Executed grill-with-docs and aligned on UI/UX Pro Max improvements with project owner:
+  - Vocabulary Browse (`/vocabulary`): streamlined cards by removing redundant labels ("Nghĩa tiếng Việt", long explanation text moved to detail), polished filter toolbar layout from 2 fragmented rows into a unified responsive grid, added subtle card resting elevation, enhanced CEFR and POS badges, and elevated thumbnail/bookmark aesthetics.
+  - Flashcard Study (`/study`): elevated card elevation and padding, added speaker icon to pronunciation button, styled high-contrast primary meaning, organized bilingual examples into soft-surface callouts with clean tag pills, styled image containers with subtle borders and shadows, and hid technical provenance notices (`.development-media-notice`) from learner view while preserving test/DOM semantics.
+  - Study Actions: modernized "Chưa nhớ" (warm soft rose tone with retry icon and `[1]` shortcut badge) and "Đã nhớ" (solid emerald green with checkmark icon and `[2]` shortcut badge) with 52px touch-friendly targets and tactile active states.
+- Verification: 54/54 focused tests PASS (`vocabulary-card`, `flashcard`, `study-page`), TypeScript `tsc` PASS (0 errors), ESLint on modified files PASS (0 warnings/errors), production bundle `pnpm build` PASS.
+
+## 2026-10-21 — US-61 catalog discovery; US-62 content preflight
+
+- Added URL-backed grade/topic filters for learning sets, approved topic facets,
+  topic deep links and a regression for global search/import review status.
+  Focused catalog/API/guest tests pass 63/63; web/API TypeScript checks, changed
+  source lint and production build pass. Local visual inspection covered the
+  set catalog and learner settings.
+- Local public index: 4,537 words, 11 sets, zero eligible topic facets and zero
+  grade assignments. It is 204,315 UTF-8 JSON bytes; local server timing was 376 ms on
+  the first request and 94–96 ms on two warm requests. This is not a production
+  benchmark.
+- User-approved Grade 1–2 pilot scope is recorded in US-62. Sampled beginner
+  records/media remain drafts with unknown rights, so no words, topic rows,
+  media, database or migrations were activated. This is a content/rights gate,
+  not an absent UI filter.
+- Focused settings/flashcard/study verification passes 157/157 tests after
+  isolating the settings client in study-flow fixtures. The 39 study-flow tests
+  pass across two files. `pnpm build` passes; Node 22.19.0 is below the project
+  engine requirement 22.23.2, and Vite reports the existing 646 kB main chunk.
+- No commit, push, deployment, live database operation or migration execution.
+
+## 2026-10-21 — US-60 local implementation, owner check pending
+
+- Owner reprioritized phase 2 after US-59's local implementation. US-60 adds
+  learner-scoped `Tự nhớ` (default), `Dễ làm quen` and `Chi tiết` preferences to
+  Settings and the shared flashcard flow. Guest v1 state remains readable with
+  a safe `Tự nhớ` fallback.
+- Production build, web/API typechecks and changed-source lint pass. Focused
+  settings/flashcard/study-flow tests now pass 157/157. Browser E2E and live
+  account save/reload remain pending. Migration 0021, owner check and US-59
+  rollout remain pending. No live database, deployment, learner history or
+  content operation.
+
+## 2026-10-21 — US-59 local implementation, owner check pending
+
+- Implemented phase 1 after final Q4/Q5 approval: consistent V2 broad source,
+  grade/CEFR intersection through study, reviewed topic policy and descendants,
+  compact cards, page-local saved flags, public metadata cache and smaller Home
+  candidate queue. Added migration 0020; it has NOT been applied to any DB.
+- 331 relevant tests + 63 import/curation tests PASS; Chromium E2E 2/2 PASS at
+  375/1440px, screenshots inspected. Build, web/API TypeScript and changed-file
+  lint PASS. Full test/lint/typecheck remain non-green on historical fixtures
+  and unrelated local scripts; exact evidence and rollout limits are in US-59.
+- No content approval, grade backfill, commit, push, live DB read/write or deploy.
+  At this handoff phase 2 display preferences and phase 3 curated beginner/grade
+  content remained; US-60 now handles phase 2.
+
+## 2026-10-21 — Owner accepted improvement direction
+
+- Owner accepted phase 1 first, curated grade 1–2 suitability without textbook
+  claims, and future Self Recall default with learner-scoped display preferences
+  (guest device-local). Recorded in decisions, audit and new root glossary.
+- Remaining design questions: visibility of unreviewed inferred topics and
+  parent-topic descendant inclusion. No feature code or data changes in this
+  documentation turn. No tests rerun; `git diff --check` used for document edits.
+
+## 2026-10-21 — Learning experience and loading audit (design discussion)
+
+- Follow-up survey: topic scope reaches study but grade/CEFR browse filters do
+  not. Static V2 All scope differs between account membership SQL and guest
+  enabled-index selection; needs a dedicated parity fixture before correction.
+- Identified fixed-empty V2 dashboard service calls, eager page imports,
+  non-expiring in-memory guest promises and user-scoped browser source
+  preferences. Expanded the audit with a proposed five-slice plan; no product
+  choices marked accepted and no feature implementation performed.
+- Focused offline verification: 4 Vitest files / 71 tests PASS (guest scale,
+  bounded transport, flashcard and study queue). No production timing or real
+  browser/audio validation; jsdom reported unimplemented media methods.
+
+- Read-only source audit requested with `grill-with-docs` and UI UX Pro Max;
+  findings and proposed priorities are in
+  `docs/learning-experience-audit-2026-10-21.md`.
+- Owner clarified that the app serves all ages; grade 1–2 is a pathway within
+  the shared product. Display defaults, preference persistence and grade content
+  criteria remain open. No new product decision is marked accepted.
+- Confirmed redundant saved-word detail loading, repeated browse filter SQL,
+  mixed-source topic options and learner-facing editorial metadata. Existing
+  browse pagination/debounce/abort and guest bounded loading are acknowledged.
+- No feature code, database access, content mutation, deployment or tests in
+  this audit. Timing impact is unmeasured; implementation awaits the explicit
+  shared-understanding step of the invoked grilling workflow.
+
 ## 2026-10-20 — One-Sense-Per-Lemma Dataset Cleansing (4,537 Canonical Words)
 
 - Cleansed 592 polysemous lemmas on both Development and Production Neon branches (`br-cold-shadow-a17yg4k2` and `br-cool-sea-a1ifkf95`).

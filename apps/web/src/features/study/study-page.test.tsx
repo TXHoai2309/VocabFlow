@@ -8,8 +8,15 @@ import { StudyPage } from "./study-page";
 import { formatStudyDuration } from "./study-session-result";
 import type { ExerciseType } from "./exercise-generator";
 
-const { requestActivitySummaryMock } = vi.hoisted(() => ({ requestActivitySummaryMock: vi.fn() }));
+const { requestActivitySummaryMock, requestLearnerSettingsMock } = vi.hoisted(() => ({
+  requestActivitySummaryMock: vi.fn(),
+  requestLearnerSettingsMock: vi.fn()
+}));
 vi.mock("../learners/activity-summary-client", () => ({ requestActivitySummary: requestActivitySummaryMock }));
+vi.mock("../learners/learner-settings-client", async (importOriginal) => ({
+  ...await importOriginal<typeof import("../learners/learner-settings-client")>(),
+  requestLearnerSettings: requestLearnerSettingsMock
+}));
 
 const learner: LearnerDto = {
   id: "00000000-0000-4000-8000-000000000010",
@@ -105,6 +112,13 @@ function renderStudy(initialLearner: LearnerDto | null = learner, mode: "flashca
 describe("US-09 flashcard session UX", () => {
   beforeEach(() => {
     vi.restoreAllMocks();
+    requestLearnerSettingsMock.mockReset().mockResolvedValue({
+      learnerId: learner.id,
+      dailyNewWordLimit: 10,
+      dailyNewWordGoal: 10,
+      dailyReviewWordGoal: 20,
+      flashcardDisplayMode: "SELF_RECALL"
+    });
     requestActivitySummaryMock.mockReset().mockResolvedValue({
       learnerId: learner.id,
       localDate: "2026-09-15",
@@ -149,6 +163,7 @@ describe("US-09 flashcard session UX", () => {
     expect(screen.getByTestId("summary-answered-total")).toHaveTextContent("5 / 5");
     expect(fetchMock.mock.calls.filter(([, init]) => init?.body).map(([, init]) => JSON.parse(String(init?.body)).vocabularyId)).toEqual([1, 2, 2, 3, 100, 101]);
   });
+
   it("loads the canonical due-first queue and keeps Vietnamese off the front", async () => {
     const due = queueItem(1, "apple", "DUE", 3);
     due.vocabulary.audioUrl = "/audio/apple.mp3";

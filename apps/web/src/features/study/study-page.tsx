@@ -10,8 +10,10 @@ import type {
   ReviewResult,
   ReviewResponse
 } from "@vocabflow/contracts";
+import { FLASHCARD_DISPLAY_MODE, type FlashcardDisplayMode } from "@vocabflow/contracts";
 import { requestActivitySummary } from "../learners/activity-summary-client";
 import { useActiveLearner } from "../learners/learner-context-hook";
+import { requestLearnerSettings } from "../learners/learner-settings-client";
 import { ReviewQueueClientError } from "./review-queue-client";
 import { requestScopedReviewQueue, selectStudyQueue, studyScopeFromParams, studySelectionFromParams, type StudyScope, type StudySelection } from "./study-queue";
 import { ReviewClientError, submitReview } from "./review-client";
@@ -160,6 +162,7 @@ export function ExerciseStudyPage() {
 
 function StudyExperience({ activeLearner, mode, exercisePreference, scope, selection, returnTo }: { activeLearner: LearnerDto; mode: StudyMode; exercisePreference?: ExerciseType; scope: StudyScope | null; selection: StudySelection | null; returnTo: string }) {
   const [state, setState] = useState<StudyState>("loading");
+  const [flashcardDisplayMode, setFlashcardDisplayMode] = useState<FlashcardDisplayMode>(FLASHCARD_DISPLAY_MODE.SELF_RECALL);
   const [cards, setCards] = useState<SessionCard[]>([]);
   const [baseQueueLength, setBaseQueueLength] = useState(0);
   const [metrics, setMetrics] = useState<SessionMetrics>({ scheduledReviews: 0 });
@@ -204,7 +207,11 @@ function StudyExperience({ activeLearner, mode, exercisePreference, scope, selec
     setExerciseBlockedCues([]);
     setIsFlipped(false);
     try {
-      const scopedResponse = await requestScopedReviewQueue(activeLearner.id, scope, selection?.amount);
+      const [scopedResponse, settings] = await Promise.all([
+        requestScopedReviewQueue(activeLearner.id, scope, selection?.amount),
+        requestLearnerSettings(activeLearner.id).catch(() => null)
+      ]);
+      setFlashcardDisplayMode(settings?.flashcardDisplayMode ?? FLASHCARD_DISPLAY_MODE.SELF_RECALL);
       const response = selection ? selectStudyQueue(scopedResponse, selection) : scopedResponse;
       const nextCards = sessionCards(response.queue);
       answeredIds.current.clear();
@@ -611,6 +618,7 @@ function StudyExperience({ activeLearner, mode, exercisePreference, scope, selec
                   key={`${currentCard.item.vocabulary.id}-${currentCard.reinforcementAttempt}`}
                   vocabulary={currentCard.item.vocabulary}
                   isFlipped={isFlipped}
+                  displayMode={flashcardDisplayMode}
                   onFlip={() => setIsFlipped((current) => !current)}
                 />
                 {mode === "exercise" ? <p className="study-session-message" role="status">Không đủ đáp án phù hợp cho bài tập; dùng thẻ học cho từ này.</p> : null}
@@ -622,8 +630,41 @@ function StudyExperience({ activeLearner, mode, exercisePreference, scope, selec
 
             {!useExerciseCard && isFlipped && (state === "ready" || state === "save-failed") ? (
               <div className="study-actions" aria-label="Đánh giá thẻ học">
-                <button className={`study-recall study-recall-forgotten${lastAnswer === "FORGOTTEN" ? " is-selected" : ""}`} type="button" disabled={state === "save-failed"} aria-keyshortcuts="1" aria-pressed={lastAnswer === "FORGOTTEN"} onClick={() => answerCard("FORGOTTEN")}>Chưa nhớ</button>
-                <button className={`study-recall study-recall-remembered${lastAnswer === "REMEMBERED" ? " is-selected" : ""}`} type="button" disabled={state === "save-failed"} aria-keyshortcuts="2" aria-pressed={lastAnswer === "REMEMBERED"} onClick={() => answerCard("REMEMBERED")}>Đã nhớ</button>
+                <button
+                  className={`study-recall study-recall-forgotten${lastAnswer === "FORGOTTEN" ? " is-selected" : ""}`}
+                  type="button"
+                  disabled={state === "save-failed"}
+                  aria-keyshortcuts="1"
+                  aria-label="Chưa nhớ"
+                  aria-pressed={lastAnswer === "FORGOTTEN"}
+                  onClick={() => answerCard("FORGOTTEN")}
+                >
+                  <span className="study-recall-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                      <path d="M3 3v5h5" />
+                    </svg>
+                  </span>
+                  <span className="study-recall-text">Chưa nhớ</span>
+                  <kbd className="study-recall-kbd" aria-hidden="true">1</kbd>
+                </button>
+                <button
+                  className={`study-recall study-recall-remembered${lastAnswer === "REMEMBERED" ? " is-selected" : ""}`}
+                  type="button"
+                  disabled={state === "save-failed"}
+                  aria-keyshortcuts="2"
+                  aria-label="Đã nhớ"
+                  aria-pressed={lastAnswer === "REMEMBERED"}
+                  onClick={() => answerCard("REMEMBERED")}
+                >
+                  <span className="study-recall-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                  </span>
+                  <span className="study-recall-text">Đã nhớ</span>
+                  <kbd className="study-recall-kbd" aria-hidden="true">2</kbd>
+                </button>
               </div>
             ) : null}
 

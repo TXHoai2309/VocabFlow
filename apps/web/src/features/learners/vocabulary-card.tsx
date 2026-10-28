@@ -2,8 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router";
 import type { LearnerVocabularyDto, VocabularyDto } from "@vocabflow/contracts";
 import { usePronunciationAudio } from "../study/pronunciation-audio";
-import { DevelopmentImageNotice, DevelopmentWordAudio } from "../study/development-media";
-import { formatInferredMetadataLabel, formatPartOfSpeech, formatVocabularyTopic, getVietnameseMeaningPresentation } from "../vocabulary/vocabulary-presentation";
+import { formatPartOfSpeech, formatVocabularyTopic, getVietnameseMeaningPresentation } from "../vocabulary/vocabulary-presentation";
 
 export type VocabularyCardItem = Pick<
   VocabularyDto,
@@ -80,12 +79,6 @@ export function VocabularyCard({
   const uniquePosLabels = senses && senses.length > 1
     ? Array.from(new Set(senses.map((s) => formatPartOfSpeech(s.partOfSpeech)).filter((s): s is string => Boolean(s))))
     : [];
-  const inferredLabels = item.metadataEvidence?.filter((evidence) => evidence.status === "INFERRED_REVIEWABLE").map((evidence) => ({
-    key: `${evidence.dimension}:${evidence.code}`,
-    label: formatInferredMetadataLabel(evidence.label ?? evidence.code, evidence.dimension),
-    dimension: evidence.dimension === "SUBTOPIC" ? "Tiểu chủ đề" : evidence.dimension === "DOMAIN" ? "Miền dùng" : "Chủ đề"
-  }));
-  const inferredTags = item.tags?.filter((tag) => tag.startsWith("topic-inferred:") || tag.startsWith("domain-inferred:")) ?? [];
 
   return (
     <li className={`vocabulary-card-item${variant === "row" ? " is-row" : ""}`} data-testid={`vocabulary-row-${item.id}`}>
@@ -103,21 +96,14 @@ export function VocabularyCard({
               </span>
             ) : null}
             {item.ipa || partOfSpeech ? <span className="vocabulary-card-ipa">{[item.ipa, partOfSpeech].filter(Boolean).join(" · ")}</span> : null}
-            <span className="vocabulary-card-meaning-label">{meaning.primaryLabel}</span>
             <span className="vocabulary-card-meaning">{meaning.primary}</span>
-            {meaning.explanation ? <span className="vocabulary-card-explanation">Giải thích: {meaning.explanation}</span> : null}
             {showStatus && item.status ? <span className={`vocabulary-card-status vocabulary-card-status-${item.status.toLowerCase()}`}>{statusLabel(item.status)}</span> : null}
             {showTopic && topic ? <span className="vocabulary-card-topic">{topic}</span> : null}
-            {item.masterSenseIdentity && item.cefr ? <span className="vocabulary-card-topic">CEFR {item.cefr}</span> : null}
-            {inferredLabels?.length ? inferredLabels.map((evidence) => (
-              <span className="vocabulary-card-metadata-suggestion" key={evidence.key}>
-                {evidence.dimension} gợi ý · {evidence.label}
-              </span>
-            )) : inferredTags.map((tag) => (
-              <span className="vocabulary-card-metadata-suggestion" key={tag}>
-                {formatVocabularyTopic(tag)}
-              </span>
-            ))}
+            {item.masterSenseIdentity && item.cefr ? <span className="vocabulary-card-topic vocabulary-card-cefr">CEFR {item.cefr}</span> : null}
+
+          </span>
+        </Link>
+        {variant === "row" && savedAt ? <span className="vocabulary-card-saved-date">Đã lưu {formattedSavedDate(savedAt)}</span> : null}
             {senses && senses.length > 1 && onOpenSenses ? (
               <button
                 type="button"
@@ -136,10 +122,7 @@ export function VocabularyCard({
                 </svg>
               </button>
             ) : null}
-          </span>
-        </Link>
-        {variant === "row" && savedAt ? <span className="vocabulary-card-saved-date">Đã lưu {formattedSavedDate(savedAt)}</span> : null}
-        {(item.developmentMedia?.wordAudio?.length ?? 0) === 0 ? <button
+        {<button
           className={`vocabulary-bookmark-button${isSaved ? " is-saved" : ""}`}
           type="button"
           disabled={bookmarkDisabled || isSaving || !onToggleSaved}
@@ -154,14 +137,7 @@ export function VocabularyCard({
           }}
         >
           <VocabularyIcon name="bookmark" filled={isSaved} />
-        </button> : null}
-        {(item.developmentMedia?.wordAudio?.length ?? 0) > 0 ? (
-          <details className="vocabulary-card-development-audio">
-            <summary aria-label={`Chọn phát âm nguồn cho ${item.word}`}><VocabularyIcon name="speaker" /></summary>
-            <DevelopmentWordAudio vocabulary={item} />
-          </details>
-        ) : null}
-        {item.masterSenseIdentity ? <DevelopmentImageNotice vocabulary={item} /> : null}
+        </button>}
         {audio.hasAudio && audio.state !== "error" ? <button
           className="vocabulary-audio-button"
           type="button"

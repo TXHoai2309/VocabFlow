@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
-import type { VocabularyDto } from "@vocabflow/contracts";
+import { FLASHCARD_DISPLAY_MODE, type VocabularyDto } from "@vocabflow/contracts";
 import { Flashcard } from "./flashcard";
 import { shortMeaningV2OfflineFixtures } from "../vocabulary/short-meaning-v2-offline-fixtures";
 
@@ -44,7 +44,7 @@ describe("US-11 Flashcard back state", () => {
     fireEvent.click(screen.getByRole("button", { name: "Lật để xem nghĩa" }));
     expect(onFlip).toHaveBeenCalledTimes(1);
 
-    rerender(<Flashcard vocabulary={vocabulary} isFlipped onFlip={onFlip} />);
+    rerender(<Flashcard vocabulary={vocabulary} isFlipped displayMode={FLASHCARD_DISPLAY_MODE.DETAILED} onFlip={onFlip} />);
     expect(screen.getByTestId("flashcard").querySelector(".flashcard-back")).toBeInTheDocument();
     expect(screen.getByText("Giải thích nghĩa")).toBeInTheDocument();
     expect(screen.getByText("sức mạnh; quyền lực")).toBeInTheDocument();
@@ -56,6 +56,33 @@ describe("US-11 Flashcard back state", () => {
       .toHaveAttribute("src", "/images/power.jpg");
     expect(screen.getByTestId("flashcard").querySelector(".flashcard-image"))
       .toHaveAttribute("alt", "Minh họa cho power");
+  });
+
+  it("shows a local Development image on the answer side in self-recall mode", () => {
+    const previewUrl = "/images/local-preview.jpg";
+    render(<Flashcard vocabulary={{
+      ...vocabulary,
+      imageUrl: previewUrl,
+      imageMediaStatus: "PROPOSED",
+      masterSenseIdentity: "sense:power:noun",
+      developmentMedia: {
+        images: [{
+          url: previewUrl,
+          mediaSha256: "b".repeat(64),
+          mimeType: "image/jpeg",
+          sourceNoteIdentity: "note:power",
+          reviewStatus: "PROPOSED",
+          rightsStatus: "UNKNOWN_REVIEW_REQUIRED",
+          targetProposalKey: "sense:power:noun",
+          targetContentSha256: "a".repeat(64)
+        }]
+      }
+    }} isFlipped onFlip={vi.fn()} />);
+
+    expect(screen.getByTestId("flashcard").querySelector(".flashcard-image"))
+      .toHaveAttribute("src", previewUrl);
+    expect(screen.getByText("Media nguồn Development · PROPOSED — chưa kiểm duyệt · quyền chưa xác minh"))
+      .toBeInTheDocument();
   });
 
   it("omits absent optional content and uses a compact image fallback", () => {
@@ -124,7 +151,7 @@ describe("US-11 Flashcard back state", () => {
       exampleEn: "The children wandered about while we packed the bags.",
       examples: [{ en: "The children wandered about while we packed the bags.", vi: "Bọn trẻ đi quanh quẩn trong lúc chúng tôi xếp đồ vào túi." }]
     } satisfies VocabularyDto;
-    render(<Flashcard vocabulary={about} isFlipped onFlip={vi.fn()} />);
+    render(<Flashcard vocabulary={about} isFlipped displayMode={FLASHCARD_DISPLAY_MODE.DETAILED} onFlip={vi.fn()} />);
 
     expect(screen.getByText("/əˈbaʊt/ · Trạng từ")).toBeInTheDocument();
     expect(screen.getByText("quanh quẩn hoặc ở nhiều chỗ trong một khu vực gần đó")).toBeInTheDocument();
@@ -142,7 +169,7 @@ describe("US-11 Flashcard back state", () => {
   });
 
   it("shows a verified short meaning and keeps the existing explanation", () => {
-    render(<Flashcard vocabulary={{ ...vocabulary, shortMeaningVi: "sức mạnh", shortMeaningStatus: "VERIFIED" }} isFlipped onFlip={vi.fn()} />);
+    render(<Flashcard vocabulary={{ ...vocabulary, shortMeaningVi: "sức mạnh", shortMeaningStatus: "VERIFIED" }} isFlipped displayMode={FLASHCARD_DISPLAY_MODE.DETAILED} onFlip={vi.fn()} />);
 
     expect(screen.getByText("Nghĩa tiếng Việt")).toBeInTheDocument();
     expect(screen.getByText("sức mạnh")).toBeInTheDocument();
@@ -153,18 +180,18 @@ describe("US-11 Flashcard back state", () => {
   it("keeps the two real age noun senses distinct and refuses a short gloss for unresolved tear", () => {
     const period = shortMeaningV2OfflineFixtures.ageHistoricalPeriod.vocabulary;
     const lived = shortMeaningV2OfflineFixtures.ageYearsLived.vocabulary;
-    const { rerender } = render(<Flashcard vocabulary={period} isFlipped onFlip={vi.fn()} />);
+    const { rerender } = render(<Flashcard vocabulary={period} isFlipped displayMode={FLASHCARD_DISPLAY_MODE.DETAILED} onFlip={vi.fn()} />);
 
     expect(screen.getByText("thời đại")).toBeInTheDocument();
     expect(screen.getByText(/giai đoạn lịch sử/)).toBeInTheDocument();
     expect(screen.queryByText("tuổi")).not.toBeInTheDocument();
 
-    rerender(<Flashcard vocabulary={lived} isFlipped onFlip={vi.fn()} />);
+    rerender(<Flashcard vocabulary={lived} isFlipped displayMode={FLASHCARD_DISPLAY_MODE.DETAILED} onFlip={vi.fn()} />);
     expect(screen.getByText("tuổi")).toBeInTheDocument();
     expect(screen.queryByText("thời đại")).not.toBeInTheDocument();
 
     const unresolved = shortMeaningV2OfflineFixtures.tearUnresolved.vocabulary;
-    rerender(<Flashcard vocabulary={unresolved} isFlipped onFlip={vi.fn()} />);
+    rerender(<Flashcard vocabulary={unresolved} isFlipped displayMode={FLASHCARD_DISPLAY_MODE.DETAILED} onFlip={vi.fn()} />);
     expect(screen.getByText("Giải thích nghĩa")).toBeInTheDocument();
     expect(screen.getByText("xé; làm rách")).toBeInTheDocument();
     expect(screen.queryByText("Nghĩa tiếng Việt")).not.toBeInTheDocument();
