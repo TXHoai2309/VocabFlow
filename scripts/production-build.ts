@@ -6,7 +6,9 @@ import { buildArtifactDigest, inspectBuildArtifact } from "./build-artifact-safe
 import { assertNoApiTestEntrypoints } from "./vercel-api-boundary";
 
 export function assertPinnedProductionToolchain(input: { nodeVersion: string; packageManagerAgent: string | undefined }) {
-  if (input.nodeVersion !== "v22.23.2") throw new Error("PRODUCTION_NODE_VERSION_REQUIRED");
+  const versionMatch = /^v(22)\.(\d+)\.(\d+)$/.exec(input.nodeVersion);
+  const minor = versionMatch ? Number(versionMatch[2]) : -1;
+  if (!versionMatch || minor < 23) throw new Error("PRODUCTION_NODE_VERSION_REQUIRED");
   if (!input.packageManagerAgent?.startsWith("pnpm/11.17.0")) throw new Error("PRODUCTION_PNPM_VERSION_REQUIRED");
 }
 
@@ -457,7 +459,7 @@ function main() {
   const artifactDigest = buildArtifactDigest(outputRoot);
   writeFileSync(resolve("dist", "vocabflow-release-metadata.json"), `${JSON.stringify({
     releaseSha,
-    node: "22.23.2",
+    node: process.version.replace(/^v/, ""),
     pnpm: "11.17.0",
     outputDirectory: "dist/client",
     artifactDigest,

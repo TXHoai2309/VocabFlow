@@ -82,6 +82,8 @@ describe("Vercel production build safety", () => {
       .toThrow("PRODUCTION_PNPM_VERSION_REQUIRED");
     expect(() => assertPinnedProductionToolchain({ nodeVersion: "v22.23.2", packageManagerAgent: "pnpm/11.17.0 node/v22.23.2" }))
       .not.toThrow();
+    expect(() => assertPinnedProductionToolchain({ nodeVersion: "v22.23.4", packageManagerAgent: "pnpm/11.17.0 node/v22.23.4" }))
+      .not.toThrow();
   });
 
   it("requires a full matching SHA and a completely clean checkout", () => {
