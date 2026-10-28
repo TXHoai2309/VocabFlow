@@ -1,7 +1,6 @@
 import type { RuntimeBindings } from "./runtime-bindings";
 
 /**
- * Owner authorization is recorded separately from third-party license evidence.
  * The exact ID must be explicitly configured for each Vercel environment.
  */
 export const V2_PUBLIC_MEDIA_OWNER_ATTESTATION_ID = "vocabflow-v2-public-media-owner-2026-10-18";

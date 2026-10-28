@@ -425,7 +425,6 @@ def map_bundle() -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
         mapping_counts[status] += 1
         mapping_rows.append(bundle_row)
 
-    # One rights entry per unique content hash; no page-level license is treated as asset clearance.
     rights_evidence = [
         {
             "evidenceId": "ANKIVN_PAGE_LEVEL_CC_BY_NC_NOTICE",
