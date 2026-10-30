@@ -16,9 +16,16 @@ describe("owner publication media at the actual deployed response boundary", () 
     }) });
     const response = await app.request("/api/public/learning-catalog", {}, env);
     expect(response.status).toBe(200);
+    expect(response.headers.get("cache-control")).toBe("no-store");
     const body = await response.json();
     expect(body.vocabulary[0]).toMatchObject({ imageUrl: image, audioUrl: audio, examples: word.examples });
     expect(body.vocabulary[0]).not.toHaveProperty("developmentMedia");
+  });
+  it.each(["/api/public/vocabulary?ids=1", "/api/public/vocabulary/matches?q=cat"])("does not cache retired detail/search content across the cutover: %s", async (path) => {
+    const app = createApp({ publicVocabularyBatch: async () => [], publicVocabularyMatches: async () => [] });
+    const response = await app.request(path, {}, env);
+    expect(response.status).toBe(200);
+    expect(response.headers.get("cache-control")).toBe("no-store");
   });
   it("preserves only the new namespace without requiring a fabricated independent PASS", () => {
     const result = withoutUnclearedV2Media(word, env);

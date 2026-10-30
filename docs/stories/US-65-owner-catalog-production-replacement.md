@@ -1,6 +1,9 @@
 # US-65 — Replace Production vocabulary and retire its old Cloudinary assets
 
 - Status: IN PROGRESS — MEDIA/BACKUP/REHEARSAL PASS; RELEASE PENDING
+- Release authorization: owner explicitly approved commit/push, CI repair and
+  continuation through Production completion on 2026-10-30. PR #10 records the
+  publication/runtime package. The checkpoint below predates that approval.
 - Authority: owner explicitly requests “giờ thay cho tôi đi, xóa cả bên phía
   cloudiary nhé, ưu tiên làm ở prod trc, dev để sau”, 2026-10-30.
 - Priority supersedes further Development changes. One session, no delegation.

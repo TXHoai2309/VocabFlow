@@ -1,5 +1,18 @@
 # Current Handoff Snapshot
 
+## 2026-10-30 — US65 release authorized; CI repair and PR #10 in progress
+
+Owner explicitly authorized commit/push, CI repair and completion of Production.
+PR #10 publishes the separate owner catalog/runtime and operational safeguards.
+Full lint/typecheck pass. Active catalog integrity passes with platform-neutral
+LF source hashes; the progress empty-state test now waits for completed history.
+Public owner-production responses disable HTTP caching across the atomic catalog
+switch so a fresh index cannot be paired with a cached retired word/media record.
+Trusted DB checks run only through GitHub against the new isolated empty test
+project; no Production/Development data was copied into it. See ADR0003 for the
+explicit retired authoring-test scope. Prior prepared checkpoint is historical;
+live migration/deployment/content replacement and cloud retirement are pending.
+
 ## 2026-10-30 — US65 Production replacement prepared; live catalog unchanged
 
 Owner explicitly requests Production first and Cloudinary retirement, Development

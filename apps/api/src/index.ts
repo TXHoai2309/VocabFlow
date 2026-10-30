@@ -363,6 +363,11 @@ export function createApp(dependencies: AppDependencies = {}) {
     // Use the actual deployment bindings. Local Development has no VERCEL_ENV
     // and is allowed to show its explicitly labeled source-media previews.
     const mediaEnv = c.env ?? {};
+    // The catalog identity can switch atomically after the compatible runtime
+    // deploys. Public detail/search caches must not retain retired content.
+    if (c.req.path.startsWith("/api/public/") && vocabularyDatasetVersion(mediaEnv) === "owner-production") {
+      c.header("Cache-Control", "no-store");
+    }
     const explicitLocalPreview = mediaEnv.VOCABFLOW_ENV === "development" && mediaEnv.DATABASE_ENV === "development"
       && mediaEnv.EXECUTION_CONTEXT === "local-development" && !mediaEnv.VERCEL_ENV;
     const forcePublicBoundary = c.req.path.startsWith("/api/public/") && !mediaEnv.DATABASE_URL && !explicitLocalPreview;
