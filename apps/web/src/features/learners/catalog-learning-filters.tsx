@@ -1,7 +1,8 @@
 import { useSearchParams } from "react-router";
+import { cefrLearningLevels, introductoryLearningLevels, learningLevelLabel, unclassifiedCefrFilter } from "@vocabflow/contracts";
 import { catalogGrades, readCatalogLearningFilters } from "./catalog-learning-filter-state";
 
-export function CatalogLearningFilters() {
+export function CatalogLearningFilters({ firstWordsAvailable = false }: { firstWordsAvailable?: boolean }) {
   const [params, setParams] = useSearchParams();
   const { level, cefr } = readCatalogLearningFilters(params);
   const change = (key: string, value: string) => setParams((current) => {
@@ -15,9 +16,11 @@ export function CatalogLearningFilters() {
       <option value="">Tất cả lớp học</option>
       {catalogGrades.map((grade) => <option key={grade} value={grade}>{grade === "GENERAL" ? "Chung" : `Lớp ${grade.slice(-1)}`}</option>)}
     </select></label>
-    <label>Trình độ CEFR<select value={cefr ?? ""} onChange={(event) => change("cefr", event.target.value)}>
+    <label>Mức học<select value={cefr ?? ""} onChange={(event) => change("cefr", event.target.value)}>
       <option value="">Tất cả trình độ</option>
-      {["A1", "A2", "B1", "B2", "C1", "C2"].map((value) => <option key={value}>{value}</option>)}
+      {introductoryLearningLevels.map(({ value, label }) => <option key={value} value={value} disabled={value !== "intro-first-words" || !firstWordsAvailable}>{label}{value === "intro-first-words" && firstWordsAvailable ? "" : " — Chưa có nội dung"}</option>)}
+      {cefrLearningLevels.map(({ value }) => <option key={value} value={value}>{learningLevelLabel(value)}</option>)}
+      <option value={unclassifiedCefrFilter}>Chưa phân loại</option>
     </select></label>
   </div>;
 }

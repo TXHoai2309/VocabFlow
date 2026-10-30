@@ -1,0 +1,41 @@
+import { describe, expect, it } from "vitest";
+import { withoutUnclearedV2Media } from "./v2-public-media";
+import { createApp } from "./index";
+
+const env = { VOCAB_DATASET_VERSION: "owner-production", VERCEL_ENV: "production", VOCABFLOW_ENV: "production", DATABASE_ENV: "production", EXECUTION_CONTEXT: "vercel-production", DATABASE_URL: "postgres://vocabflow_runtime:fixture@ep-twilight-firefly-a1dugz2x-pooler.ap-southeast-1.aws.neon.tech/neondb" };
+const root = "https://res.cloudinary.com/fixture";
+const folder = "vocabflow/owner/production-1547-20261030-r0001";
+const image = `${root}/image/upload/c_limit,f_auto,q_auto,w_960/v123/${folder}/images/${"a".repeat(64)}.png`;
+const audio = `${root}/video/upload/v123/${folder}/audio/${"b".repeat(64)}.mp3`;
+const word = { masterSenseIdentity: "owner-publication:fixture-1", contentHash: "c".repeat(64), imageUrl: image, audioUrl: audio, developmentMedia: {}, examples: [{ en: "A cat.", vi: "Một con mèo.", audioUrl: audio }] };
+describe("owner publication media at the actual deployed response boundary", () => {
+  it("keeps new media through the real Hono Production middleware", async () => {
+    const app = createApp({ publicLearningCatalog: async () => ({
+      vocabulary: [{ id: 1, word: "cat", vietnamese: "mèo", ipa: null, definitionEn: null, exampleEn: "A cat.",
+        topic: null, level: null, enabled: true, contentVersion: 1, ...word }], learningSets: [], topics: []
+    }) });
+    const response = await app.request("/api/public/learning-catalog", {}, env);
+    expect(response.status).toBe(200);
+    const body = await response.json();
+    expect(body.vocabulary[0]).toMatchObject({ imageUrl: image, audioUrl: audio, examples: word.examples });
+    expect(body.vocabulary[0]).not.toHaveProperty("developmentMedia");
+  });
+  it("preserves only the new namespace without requiring a fabricated independent PASS", () => {
+    const result = withoutUnclearedV2Media(word, env);
+    expect(result).toMatchObject({ imageUrl: image, audioUrl: audio, examples: word.examples });
+    expect(result).not.toHaveProperty("developmentMedia");
+    expect(result).not.toHaveProperty("contentReviewStatus");
+  });
+  it("does not publish owner media on another environment or an arbitrary identity", () => {
+    expect(withoutUnclearedV2Media(word, { ...env, VOCAB_DATASET_VERSION: "v2" })).toMatchObject({ imageUrl: null, audioUrl: null });
+    expect(withoutUnclearedV2Media({ ...word, masterSenseIdentity: "other" }, env)).toMatchObject({ imageUrl: null, audioUrl: null });
+  });
+  it("withholds localhost, foreign namespaces and unapproved example audio", () => {
+    expect(withoutUnclearedV2Media({ ...word, imageUrl: "/api/local-owner-editorial-media/a.png", audioUrl: "https://example.com/word.mp3", examples: [{ en: "A cat.", audioUrl: "https://example.com/sentence.mp3" }] }, env))
+      .toMatchObject({ imageUrl: null, audioUrl: null, examples: [{ en: "A cat." }] });
+  });
+  it("accepts the SDK analytics parameter on the exact publication URL, with no arbitrary query parameters", () => {
+    expect(withoutUnclearedV2Media({ ...word, imageUrl: image + "?_a=BAMAMiZS0" }, env)).toMatchObject({ imageUrl: image + "?_a=BAMAMiZS0" });
+    expect(withoutUnclearedV2Media({ ...word, imageUrl: image + "?download=1" }, env)).toMatchObject({ imageUrl: null });
+  });
+});

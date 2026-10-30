@@ -1,4 +1,5 @@
 import type { RuntimeBindings } from "./runtime-bindings";
+import { ownerPublishedPublicMedia } from "./owner-public-media";
 
 /**
  * The exact ID must be explicitly configured for each Vercel environment.
@@ -210,12 +211,14 @@ function examplesWithExactAudio(record: JsonRecord): unknown[] | undefined {
  * owner attestation is configured, only unique, non-ambiguous V2 mappings with
  * current PASS/DRAFT identity and a signed V2 Cloudinary URL are published.
  */
-export function withoutUnclearedV2Media(value: unknown, env: RuntimeBindings = {}): unknown {
-  if (!mustSanitizeV2MediaResponse(env)) return value;
-  if (Array.isArray(value)) return value.map((item) => withoutUnclearedV2Media(item, env));
+export function withoutUnclearedV2Media(value: unknown, env: RuntimeBindings = {}, options: { forcePublicBoundary?: boolean } = {}): unknown {
+  if (!options.forcePublicBoundary && !mustSanitizeV2MediaResponse(env)) return value;
+  if (Array.isArray(value)) return value.map((item) => withoutUnclearedV2Media(item, env, options));
   if (!isRecord(value)) return value;
 
-  const result = Object.fromEntries(Object.entries(value).map(([key, child]) => [key, withoutUnclearedV2Media(child, env)])) as JsonRecord;
+  const result = Object.fromEntries(Object.entries(value).map(([key, child]) => [key, withoutUnclearedV2Media(child, env, options)])) as JsonRecord;
+  const ownerPublished = ownerPublishedPublicMedia(result, env);
+  if (ownerPublished) return ownerPublished;
   if (!nonEmptyString(value.masterSenseIdentity)) return result;
 
   result.imageUrl = null;

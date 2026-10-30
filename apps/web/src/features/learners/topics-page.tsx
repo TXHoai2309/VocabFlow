@@ -1,4 +1,5 @@
 import { CatalogLearningFilters } from "./catalog-learning-filters";
+import { matchesCefrFilter } from "@vocabflow/contracts";
 import { catalogLearningFilterParams, readCatalogLearningFilters } from "./catalog-learning-filter-state";
 import { ActiveLearnerContext } from "./learner-context";
 import { GuestCollectionPage } from "../guest/guest-collection-page";
@@ -99,7 +100,7 @@ export function TopicsPage() {
     setVocabularyRetry((value) => value + 1);
   }
 
-  const visibleVocabulary = vocabulary.filter((item) => (!filters.level || item.level === filters.level) && (!filters.cefr || item.cefr === filters.cefr));
+  const visibleVocabulary = vocabulary.filter((item) => (!filters.level || item.level === filters.level) && matchesCefrFilter(item.cefr, filters.cefr, item.tags));
   const selectedTopic = topics.find((topic) => topic.id === selectedTopicId) ?? null;
   const relatedSetsParams = selectedTopic ? new URLSearchParams({ topicId: String(selectedTopic.id), ...(filters.level ? { level: filters.level } : {}) }) : null;
 
@@ -112,7 +113,7 @@ export function TopicsPage() {
         <p className="auth-eyebrow">Chủ đề</p>
         <h1 className="auth-title" id="topics-title">Học theo chủ đề</h1>
 
-        <CatalogLearningFilters />
+        <CatalogLearningFilters firstWordsAvailable={vocabulary.some(word => word.tags?.includes("EDITORIAL:FIRST_WORDS"))} />
         {topicState === "loading" ? <LoadingState className="vocabulary-list-state" label="Đang tải chủ đề…" pattern="cards" testId="topics-loading" /> : null}
         {topicState === "error" ? <ErrorState className="vocabulary-list-state vocabulary-list-error" title="Không thể tải chủ đề" description={topicMessage ?? "Vui lòng thử lại."} onRetry={retryTopics} testId="topics-error" /> : null}
         {topicState === "ready" && topics.length === 0 ? (
@@ -260,9 +261,9 @@ function TopicDetailExperience({ learner, topicId }: { learner: LearnerDto; topi
   }
 
   if (state === "ready" && data) {
-    const items = data.items.filter((item) => (!filters.level || item.level === filters.level) && (!filters.cefr || item.cefr === filters.cefr));
+    const items = data.items.filter((item) => (!filters.level || item.level === filters.level) && matchesCefrFilter(item.cefr, filters.cefr, item.tags));
     const scopeParams = catalogLearningFilterParams(params); scopeParams.set("topicId", String(data.topic.id));
-    return (<><CatalogLearningFilters />
+    return (<><CatalogLearningFilters firstWordsAvailable={data.items.some(word => word.tags?.includes("EDITORIAL:FIRST_WORDS"))} />
       <CollectionDetailView
         kind="topic"
         title={data.topic.name}

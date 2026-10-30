@@ -30,6 +30,7 @@ async function main() {
     `https://console.neon.tech/api/v2/projects/${projectId}/connection_uri?branch_id=br-cold-shadow-a17yg4k2&database_name=neondb&role_name=neondb_owner`,
     { headers: { Authorization: `Bearer ${neonApiKey}` } }
   );
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Version-pinned historical artifact/SQL adapter; runtime target and source-pin validation remain mandatory.
   const data = await res.json() as any;
   const sql = postgres(data.uri);
 
@@ -99,7 +100,7 @@ async function main() {
   let singleSenseWords = 0;
   let multiSenseWords = 0;
 
-  for (const [w, senses] of sensesByWord.entries()) {
+  for (const senses of sensesByWord.values()) {
     const count = senses.length;
     distribution.set(count, (distribution.get(count) ?? 0) + 1);
     if (count === 1) singleSenseWords++;

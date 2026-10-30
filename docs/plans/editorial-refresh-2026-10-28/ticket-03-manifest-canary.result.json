@@ -1,0 +1,94 @@
+{
+  "artifactType": "TICKET_03_MANIFEST_CANARY_RESULT",
+  "schemaVersion": 1,
+  "ticketId": "03",
+  "status": "COMPLETE_MOCK_ONLY",
+  "baseline": {
+    "baselineId": "baseline-v2",
+    "manifestByteSha256": "eef748df5dda27086c19f071ad6e3601f474b4494e07822fd844eda75f6365b2",
+    "corpusByteSha256": "bcc91c46b4c8be536f2a445a3a3da4a605da75a97f75bfceeed72b213547b309"
+  },
+  "inputManifestRelative": ".vocabflow-local/editorial-refresh-20261028/ticket03-canary-v1/input/manifest-r0001.json",
+  "inputManifestByteSha256": "2ce63cef9f95e4e4ea43bd4cba16f8385905722fe845d34daa17aaaefbca4953",
+  "items": [
+    {
+      "baselineRowId": "runtime-29368",
+      "runtimeVocabularyId": 29368,
+      "headword": "apple",
+      "proposalKey": "EDITORIAL_2H2B:apple:fruit",
+      "exampleKey": "EDITORIAL_2H2B:apple:fruit:example-1",
+      "masterSenseId": null
+    },
+    {
+      "baselineRowId": "runtime-31491",
+      "runtimeVocabularyId": 31491,
+      "headword": "blue",
+      "proposalKey": "EDITORIAL_2H2L:blue:colour-name",
+      "exampleKey": "EDITORIAL_2H2L:blue:colour-name:example-1",
+      "masterSenseId": null
+    },
+    {
+      "baselineRowId": "runtime-30185",
+      "runtimeVocabularyId": 30185,
+      "headword": "dog",
+      "proposalKey": "EDITORIAL_2H2H:dog:domestic-canine",
+      "exampleKey": null,
+      "masterSenseId": null
+    }
+  ],
+  "canary": {
+    "artifactType": "TICKET_03_CANARY_RESULT",
+    "rootRelative": ".vocabflow-local/editorial-refresh-20261028/ticket03-canary-v1",
+    "bundleRelative": ".vocabflow-local/editorial-refresh-20261028/ticket03-handoff-v1",
+    "status": "COMPLETE_MOCK_ONLY",
+    "packageManifestSha256": "e9069b44b26dbcb30d4f3af03d13ce852d8991f3f761312ce184f278fa66d0c6",
+    "files": 33,
+    "items": 3,
+    "jobs": 9,
+    "receipts": 9,
+    "providerCalls": 0,
+    "databaseAccess": false,
+    "originalBaselineRequired": false,
+    "mockOnly": true,
+    "runtimeEligible": false,
+    "concurrentWorkerResults": [
+      {
+        "workerId": "images-canary",
+        "receipts": 3,
+        "mockOnly": true
+      },
+      {
+        "workerId": "tts-canary",
+        "receipts": 6,
+        "mockOnly": true
+      }
+    ],
+    "counts": {
+      "REVIEW_REQUIRED_MOCK": 9
+    }
+  },
+  "verification": {
+    "testsPassed": 21,
+    "testsFailed": 0,
+    "portableBundle": "PASS",
+    "relocatedBundleWithoutOriginalBaseline": "PASS",
+    "concurrentWorkers": "PASS",
+    "providerCalls": 0,
+    "databaseAccess": false,
+    "runtimeEligible": false
+  },
+  "tools": [
+    {
+      "path": "scripts/editorial-canary-lib-v1.mjs",
+      "byteSha256": "cffe28a0a6a75192c656ce0dcd2ed028e67eed92cd7e8bbc060053fc3d475c04"
+    },
+    {
+      "path": "scripts/editorial-canary-v1.mjs",
+      "byteSha256": "601dfb7a859068af2683cae7f592321324b908b4f7ecfb46e053083e445d3aac"
+    },
+    {
+      "path": "scripts/editorial-canary-v1.test.mjs",
+      "byteSha256": "a20036f8e6d99da4ccbf2ce42d18a54f339e408e74c0902d3c6136a197f4e7d2"
+    }
+  ]
+}

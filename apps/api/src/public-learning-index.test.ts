@@ -23,7 +23,8 @@ describe("bounded public learning reads", () => {
     for (const [statement] of execute.mock.calls) {
       const query = compiled(statement).sql;
       expect(query).toContain("enabled = true");
-      expect(query).not.toMatch(/development_media|examples|learner_progress|household|session|source_provenance/);
+      expect(query).not.toMatch(/development_media|examples|learner_progress|household|session/);
+      expect(query).not.toMatch(/SELECT\s+md\.source_provenance(?:\s|,)/);
     }
     expect(Object.keys(timings)).toEqual(expect.arrayContaining(["index_words", "index_sets", "index_topics"]));
   });

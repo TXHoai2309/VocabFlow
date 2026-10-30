@@ -58,7 +58,7 @@ function roleModelFailure(error: unknown) {
 
 type SqlTag = {
   unsafe(value: string): unknown;
-  (strings: TemplateStringsArray, ...values: unknown[]): Promise<unknown>;
+  (strings: TemplateStringsArray, ...values: unknown[]): unknown;
 };
 
 type TemporarySetRole = typeof ROLE_NAMES.migration | typeof ROLE_NAMES.owner;

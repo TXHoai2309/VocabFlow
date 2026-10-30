@@ -1,0 +1,38 @@
+import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { v7 } from 'uuid';
+
+const root = 'vocabflow-dataset/workspaces/editorial-refresh-20261030/foundation08-09-r0001';
+const local = '.vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001';
+const source = 'docs/plans/editorial-refresh-2026-10-28/parallel-08-09-review-r0002/mapped-targets-r0002.json';
+const sha = value => createHash('sha256').update(value).digest('hex');
+const pin = path => { const b = readFileSync(path); return { path, sha256: sha(b), byteLength: b.length }; };
+mkdirSync(root, { recursive: true }); mkdirSync(local, { recursive: true });
+const destination = `${root}/execution-manifest-r0001.json`;
+assert(!existsSync(destination), 'ALREADY_FROZEN_DO_NOT_REALLOCATE_IDENTITIES');
+const mapped = JSON.parse(readFileSync(source, 'utf8'));
+assert.equal(mapped.targets.length, 24);
+const parents = new Map();
+const config = { provider: 'Muse', model: 'avocado_v2', voice: 'MAI_01', locale: 'en-US', speed: 90 };
+const targets = mapped.targets.map(t => {
+  assert.equal(pin(t.source.repoRelativePath).sha256, t.source.byteSha256);
+  assert.equal(pin(t.sourceMedia.repoRelativePath).sha256, t.sourceMedia.byteSha256);
+  const spec = t.originalMediaSpec;
+  const activity = t.draftTarget.itemType === 'LETTER_ACTIVITY';
+  const payload = activity ? spec.payload : spec.binding;
+  const kind = activity ? spec.kind : 'UTTERANCE_TARGET_AUDIO';
+  const ref = t.draftTarget.draftRef;
+  if (activity && !parents.has(payload.draftItemRef)) parents.set(payload.draftItemRef, v7());
+  const id = v7(); const jobId = v7();
+  const exactText = activity ? payload.spokenText : payload.englishExactText;
+  const request = { config, kind, exactText, targetIpa: payload.targetIpa ?? null, direction: activity ? payload.directionVi : spec.direction, isolatedSound: kind === 'LETTER_SOUND_AUDIO', speakInstructions: false, speakAnchorWord: false, noMusic: true };
+  return { itemType: t.draftTarget.itemType, targetId: id, parentLetterId: activity ? parents.get(payload.draftItemRef) : null, draftRef: ref, revisionPins: t.revisionPins, source: t.source, placements: t.placements, authorityContent: t.authorityContent, sourceDependency: t.sourceDependency, media: { jobId, itemId: id, targetRef: ref, filename: `${jobId}.mp3`, kind, exactText, targetIpa: request.targetIpa, dependencyHash: t.sourceDependency.dependencyHash, providerRequestHash: sha(JSON.stringify(request)), requestSpec: request, canary: ['w08:activity:a:name','w08:activity:a:sound','t09:utterance:01'].includes(ref), status: 'NOT_SUBMITTED' } };
+});
+const manifest = { artifactType: 'FOUNDATION_08_09_EXECUTION_MANIFEST', revision: 1, date: '2026-10-30', ownerAuthorization: 'vậy làm luôn cái đó đi', state: 'IN_PROGRESS', identityScope: 'FOUNDATION_TARGET_UUID_V7_STABLE_REGISTRY_NOT_VOCABULARY_IDS', sourceMapping: pin(source), providerConfig: config, targets, parentLetters: [...parents].map(([draftRef, id]) => ({ draftRef, id })), counts: { letters: 6, letterActivities: 12, utterances: 12, audioJobs: 24, imageJobs: 0, newLexicalSenses: 0 }, mediaRoot: local, outstandingSoundCapabilityCheck: true };
+const blob = JSON.stringify(manifest, null, 2) + '\n';
+writeFileSync(destination, blob, { flag: 'wx' });
+writeFileSync(`${root}/execution-manifest-r0001.sha256`, sha(blob) + '\n', { flag: 'wx' });
+const request = { datasetId: 'foundation08-09-r0001', workOrder: pin(destination), providerConfig: config, instructions: 'Create only the3canary jobs first. Remaining21jobs must wait. No images, translations, extra spoken words, public sharing or modifications to source text/IDs. Isolated phonemes need genuine provider capability; if unsupported report UNSUPPORTED without substituting letter names or speaking IPA notation.', jobs: targets.map(t => t.media) };
+writeFileSync(`${local}/muse-request-r0001.json`, JSON.stringify(request, null, 2) + '\n', { flag: 'wx' });
+console.log(JSON.stringify({ manifest: pin(destination), request: pin(`${local}/muse-request-r0001.json`), counts: manifest.counts, canaryJobs: request.jobs.filter(j => j.canary) }));

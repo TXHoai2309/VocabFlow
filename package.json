@@ -18,7 +18,7 @@
     "postinstall": "pnpm build:runtime",
     "lint": "eslint . --max-warnings=0",
     "typecheck": "tsc -b",
-    "test": "vitest run",
+    "test": "vitest run --config vitest.release.config.mts",
     "build": "pnpm build:runtime && vite build --config apps/web/vite.config.mts",
     "postbuild": "tsx scripts/postbuild.ts",
     "build:production": "tsx scripts/production-build.ts",
@@ -83,7 +83,9 @@
     "media:manifest": "tsx scripts/vocab-media-manifest.ts",
     "media:upload": "tsx scripts/vocab-media-upload.ts",
     "test:db": "tsx scripts/test-db.ts",
-    "test:e2e": "pnpm build && playwright test"
+    "test:e2e": "pnpm build && playwright test",
+    "test:archived-authoring": "vitest run --config vitest.config.mts",
+    "test:historical-phases": "tsx scripts/run-historical-phase-tests.v1.ts"
   },
   "dependencies": {
     "@neondatabase/serverless": "1.1.0",

@@ -94,7 +94,13 @@ function writeProgress(): void {
   }, null, 2)}\n`, "utf8");
 }
 const grouped = new Map<string, HistoricalBinding[]>();
+const snapshotFilter = optionValue("--snapshot");
+if (snapshotFilter && (!/^[a-f0-9]{40}$/.test(snapshotFilter)
+  || !manifest.historicalTests.some(binding => binding.snapshotCommit === snapshotFilter))) {
+  fail("UNKNOWN_HISTORICAL_SNAPSHOT");
+}
 for (const binding of manifest.historicalTests) {
+  if (snapshotFilter && binding.snapshotCommit !== snapshotFilter) continue;
   const group = grouped.get(binding.snapshotCommit) ?? [];
   group.push(binding);
   grouped.set(binding.snapshotCommit, group);
@@ -121,6 +127,9 @@ try {
     if (clone.status !== 0) fail(`CLONE_FAILED: ${commit}\n${clone.stderr ?? ""}`);
     execFileSync("git", ["-C", checkout, "config", "core.autocrlf", "false"], { cwd: repositoryRoot });
     execFileSync("git", ["-C", checkout, "checkout", "--detach", commit], { cwd: repositoryRoot, stdio: "pipe" });
+    // The historical guard compares HEAD with the phase's own origin/TXH tree.
+    // Restore that reference only inside this disposable historical fixture.
+    execFileSync("git", ["-C", checkout, "update-ref", "refs/remotes/origin/TXH", commit], { cwd: repositoryRoot });
 
     const actualTree = git(["rev-parse", "HEAD^{tree}"], checkout);
     if (actualTree !== expectedTree) fail(`TREE_MISMATCH: ${commit}: expected ${expectedTree}, observed ${actualTree}`);
@@ -236,7 +245,13 @@ try {
     }
   }
 } finally {
-  rmSync(scratchRoot, { recursive: true, force: true });
+  const resolvedScratch = path.resolve(scratchRoot);
+  const resolvedTemp = path.resolve(os.tmpdir());
+  if (!resolvedScratch.startsWith(`${resolvedTemp}${path.sep}`)
+    || !path.relative(resolvedTemp, resolvedScratch).startsWith("vocabflow-historical-phase-clones-v1-")) {
+    throw new Error("HISTORICAL_SCRATCH_CLEANUP_OUTSIDE_OWNED_DIRECTORY");
+  }
+  rmSync(resolvedScratch, { recursive: true, force: true });
 }
 
 const resultSummary = {

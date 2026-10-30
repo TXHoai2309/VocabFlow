@@ -1,0 +1,61 @@
+{
+  "artifactType": "OWNER_ISOLATED_WORD_AUDIO_LISTENING_ACCEPTANCE",
+  "date": "2026-10-29",
+  "verbatimOwnerStatement": "tôi nghe thì khớp nghĩ mà",
+  "context": "Owner listened to the five exact files presented in the preceding assistant message and confirmed they match their words.",
+  "decision": "OWNER_LISTENING_ACCEPTED",
+  "asrDisposition": "ASR uncertainty resolved by owner listening, not proven audio defect; preserve original ASR results unchanged.",
+  "files": [
+    {
+      "word": "duck",
+      "runtimeVocabularyId": 30987,
+      "jobId": "14591ff9-2520-4ce4-a07e-c323be90854d",
+      "receiptRelative": "runs/844a349c-d754-4182-99d3-b47aacecfcb1/14591ff9-2520-4ce4-a07e-c323be90854d/attempt-0001/receipt.json",
+      "receiptSha256": "461d2027b06122434465d3dc754f95774f09857fa148df22400890568fdd891f",
+      "assetPath": ".vocabflow-local/editorial-refresh-20261028/media-production-r0001/assets/audio/ad321874e03b977413c969ece8437653180bc000271c1c4c190fcf0c827a0c8b.mp3",
+      "assetSha256": "ad321874e03b977413c969ece8437653180bc000271c1c4c190fcf0c827a0c8b",
+      "byteLength": 5989
+    },
+    {
+      "word": "blue",
+      "runtimeVocabularyId": 31492,
+      "jobId": "e94015f5-6cc5-401e-be71-896edf8b1806",
+      "receiptRelative": "runs/844a349c-d754-4182-99d3-b47aacecfcb1/e94015f5-6cc5-401e-be71-896edf8b1806/attempt-0001/receipt.json",
+      "receiptSha256": "b6a74f512b0a772f1b6baa70140e5e47c9d9489b1bced5933dff617e8e73048a",
+      "assetPath": ".vocabflow-local/editorial-refresh-20261028/media-production-r0001/assets/audio/ac9a1ed333f480eb1d04c9b6e709193bcdcb227884be5bfe6c619b6277d97b68.mp3",
+      "assetSha256": "ac9a1ed333f480eb1d04c9b6e709193bcdcb227884be5bfe6c619b6277d97b68",
+      "byteLength": 5989
+    },
+    {
+      "word": "white",
+      "runtimeVocabularyId": 30758,
+      "jobId": "e3bdb903-729a-4725-b2e1-34148f53b44d",
+      "receiptRelative": "runs/844a349c-d754-4182-99d3-b47aacecfcb1/e3bdb903-729a-4725-b2e1-34148f53b44d/attempt-0001/receipt.json",
+      "receiptSha256": "4e9cf2e0cdec6de63f9f0749dfd20cb57bfa6241b4451c3e4b8943784d74d502",
+      "assetPath": ".vocabflow-local/editorial-refresh-20261028/media-production-r0001/assets/audio/6f0e405dcfcbeb6359f7eef7421b9b963b2ff8d57d00d2e8ba45241f013cafbd.mp3",
+      "assetSha256": "6f0e405dcfcbeb6359f7eef7421b9b963b2ff8d57d00d2e8ba45241f013cafbd",
+      "byteLength": 5605
+    },
+    {
+      "word": "pen",
+      "runtimeVocabularyId": 31180,
+      "jobId": "b43c655b-5d9a-4921-8252-470ea0e20185",
+      "receiptRelative": "runs/844a349c-d754-4182-99d3-b47aacecfcb1/b43c655b-5d9a-4921-8252-470ea0e20185/attempt-0001/receipt.json",
+      "receiptSha256": "4dcfdc7cb025a42c163b6e7c121c6243c5b297d3daba80f959f61fa79ef31d3f",
+      "assetPath": ".vocabflow-local/editorial-refresh-20261028/media-production-r0001/assets/audio/6722d959140eedc41445175e2fa5808e1d984cf903f855d2f16067b352d2812d.mp3",
+      "assetSha256": "6722d959140eedc41445175e2fa5808e1d984cf903f855d2f16067b352d2812d",
+      "byteLength": 6757
+    },
+    {
+      "word": "pencil",
+      "runtimeVocabularyId": 31181,
+      "jobId": "7757590b-bef7-4746-82a5-136f216d769e",
+      "receiptRelative": "runs/844a349c-d754-4182-99d3-b47aacecfcb1/7757590b-bef7-4746-82a5-136f216d769e/attempt-0001/receipt.json",
+      "receiptSha256": "93b13030d49ad616fd5a394c472815fe6b02fc113149d0fb55c51057cb999bf9",
+      "assetPath": ".vocabflow-local/editorial-refresh-20261028/media-production-r0001/assets/audio/66fd01bb29a09f3491bb9443113fb2edb0a7dd746412cc7b6a1fecb03a109e04.mp3",
+      "assetSha256": "66fd01bb29a09f3491bb9443113fb2edb0a7dd746412cc7b6a1fecb03a109e04",
+      "byteLength": 7525
+    }
+  ],
+  "scope": "Enable the same five existing clips in the accepted local pilot; no regeneration or new production release."
+}

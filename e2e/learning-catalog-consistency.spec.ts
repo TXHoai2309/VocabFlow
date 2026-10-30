@@ -38,15 +38,21 @@ for (const width of [375, 1440]) {
     await expect(page.getByRole("button", { name: "Bỏ lưu từ apple" })).toBeEnabled();
     expect(requests.some((url) => url.endsWith("/saved-vocabulary"))).toBe(false);
     expect(await page.locator(".vocabulary-card-link button").count()).toBe(0);
+    await expect(page.getByRole("combobox", { name: "Mức học" })).toBeVisible();
+    await expect(page.getByRole("combobox", { name: "Mức học" }).locator("option")).toHaveCount(11);
+    await page.getByRole("combobox", { name: "Mức học" }).selectOption("A1");
+    await page.getByText("Lọc bổ sung", { exact: true }).click();
     await page.getByTestId("vocabulary-level-filter").selectOption("GRADE_1");
     await expect(page.getByTestId("vocabulary-row-2")).toHaveCount(0);
     await page.getByTestId("vocabulary-topic-filter").selectOption("10");
     await expect(page.getByRole("link", { name: "Học nội dung đã chọn" })).toHaveAttribute("href", /topicId=10.*level=GRADE_1/);
+    await expect(page.getByRole("link", { name: "Học nội dung đã chọn" })).toHaveAttribute("href", /cefr=A1/);
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
     await page.screenshot({ path: `test-results/us59-catalog-${width}.png`, fullPage: true });
     await page.getByRole("link", { name: "Học nội dung đã chọn" }).click();
     await expect(page.getByTestId("study-setup-page")).toBeVisible();
     await expect(page.getByText("Lớp 1", { exact: true })).toBeVisible();
+    await expect(page.getByText("Mức học: Sơ cấp (A1)", { exact: true })).toBeVisible();
     expect(requests.some((url) => url.includes("/review-queue?") && url.includes("topicId=10") && url.includes("level=GRADE_1"))).toBe(true);
   });
 }

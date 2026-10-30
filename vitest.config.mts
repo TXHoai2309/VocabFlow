@@ -16,6 +16,6 @@ export default defineConfig({
     globals: true,
     setupFiles: ["./vitest.setup.ts"],
     include: ["**/*.{test,spec}.{ts,tsx}"],
-    exclude: ["**/node_modules/**", "node_modules", "e2e", ".vocabflow-local/**"]
+    exclude: ["**/node_modules/**", "node_modules", "e2e", ".vocabflow-local/**", ".scratch/**", "vocabflow-dataset/**", ".vercel/**"]
   }
 });

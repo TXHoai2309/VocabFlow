@@ -28,6 +28,7 @@ const EXPECTED = {
   apkgSha256: "495077028ede6f4de9ff166c605673da379ac4ce32113e49099f6d8e28ffbd6b",
 } as const;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- Version-pinned historical artifact/SQL adapter; runtime target and source-pin validation remain mandatory.
 type Json = Record<string, any>;
 type ProjectionRow = {
   proposal_key: string;
@@ -486,7 +487,7 @@ function sampleSenseReport(rows: ProjectionRow[], candidates: Candidate[], sourc
     const exact = images.filter((item) => isExactTargetItem(item, row));
     const sourceRefs = (sources.bundle.mappings as Json[]).filter((mapping) => mapping.mediaKind === IMAGE_KIND
       && normalize(mapping.mappingEvidence?.sourceLemma) === normalize(row.word));
-    const sourceStatusCounts = Object.fromEntries(sourceRefs.reduce((counts, mapping) => {
+    const sourceStatusCounts = Object.fromEntries(sourceRefs.reduce<Map<string, number>>((counts, mapping) => {
       const key = String(mapping.mappingStatus);
       counts.set(key, (counts.get(key) ?? 0) + 1);
       return counts;
@@ -521,7 +522,7 @@ function sampleSenseReport(rows: ProjectionRow[], candidates: Candidate[], sourc
   });
 }
 
-async function queryTargets(sql: Sql<{}>): Promise<ProjectionRow[]> {
+async function queryTargets(sql: Sql<Record<string, never>>): Promise<ProjectionRow[]> {
   return await sql<ProjectionRow[]>`
     select p.proposal_key, p.vocabulary_id, p.part_of_speech, p.content_sha256,
       p.content_review_decision, p.editorial_status, p.rights_status, p.source_provenance,
@@ -533,7 +534,7 @@ async function queryTargets(sql: Sql<{}>): Promise<ProjectionRow[]> {
   `;
 }
 
-async function assertTargetSnapshot(sql: Sql<{}>) {
+async function assertTargetSnapshot(sql: Sql<Record<string, never>>) {
   await assertPostConnectIdentity(sql as never, DATABASE_TARGETS.production);
   const rows = await queryTargets(sql);
   assert(rows.length === EXPECTED.senses && new Set(rows.map((row) => row.proposal_key)).size === EXPECTED.senses
@@ -566,7 +567,7 @@ async function verifyCloudinaryDelivery(items: Map<string, Json[]>, sources: Ret
   return { checked: new Set(selected.map((entry) => entry.mediaSha256)).size, sourceAssetsVerified: sources.uploadByHash.size };
 }
 
-async function readPreservationCounts(sql: Sql<{}>) {
+async function readPreservationCounts(sql: Sql<Record<string, never>>) {
   const [row] = await sql<[{ vocabularies: number; learnerProgress: number; reviewEvents: number; topics: number; learningSets: number; setItems: number; vocabularyTopics: number }]>`
     select (select count(*)::int from vocabflow_app.vocabularies) as vocabularies,
       (select count(*)::int from vocabflow_app.learner_progress) as "learnerProgress",
@@ -579,13 +580,13 @@ async function readPreservationCounts(sql: Sql<{}>) {
   return row;
 }
 
-async function applyPlan(sql: Sql<{}>, rowsBefore: ProjectionRow[], updates: Map<string, Json[]>) {
+async function applyPlan(sql: Sql<Record<string, never>>, rowsBefore: ProjectionRow[], updates: Map<string, Json[]>) {
   return await sql.begin(async (tx) => {
     await tx`set transaction isolation level serializable`;
     await assertPostConnectIdentity(tx as never, DATABASE_TARGETS.production);
-    const beforeRows = await queryTargets(tx as unknown as Sql<{}>);
+    const beforeRows = await queryTargets(tx as unknown as Sql<Record<string, never>>);
     assert(stableFingerprint(beforeRows) === EXPECTED.fingerprint, "PRODUCTION_CONTENT_CHANGED_BEFORE_WRITE");
-    const beforePreservation = await readPreservationCounts(tx as unknown as Sql<{}>);
+    const beforePreservation = await readPreservationCounts(tx as unknown as Sql<Record<string, never>>);
     const beforeByKey = new Map(beforeRows.map((row) => [row.proposal_key, row]));
     const payload = [...updates].map(([proposal_key, images]) => ({ proposal_key,
       expected_hash: beforeByKey.get(proposal_key)!.content_sha256,
@@ -603,11 +604,11 @@ async function applyPlan(sql: Sql<{}>, rowsBefore: ProjectionRow[], updates: Map
       changed += result.length;
       assert(result.length === chunk.length, "PRODUCTION_IMAGE_BACKFILL_COMPARE_AND_SET_FAILED");
     }
-    const afterRows = await queryTargets(tx as unknown as Sql<{}>);
+    const afterRows = await queryTargets(tx as unknown as Sql<Record<string, never>>);
     assert(stableFingerprint(afterRows) === EXPECTED.fingerprint && afterRows.length === rowsBefore.length, "PRODUCTION_CONTENT_CHANGED_DURING_BACKFILL");
     assert(afterRows.every((row) => row.content_review_decision === "PASS" && row.editorial_status === "DRAFT"
       && row.rights_status === "UNKNOWN_REVIEW_REQUIRED"), "PRODUCTION_CANONICAL_STATUS_CHANGED");
-    const afterPreservation = await readPreservationCounts(tx as unknown as Sql<{}>);
+    const afterPreservation = await readPreservationCounts(tx as unknown as Sql<Record<string, never>>);
     assert(stable(beforePreservation) === stable(afterPreservation), "PRODUCTION_LEARNER_OR_TAXONOMY_COUNTS_CHANGED");
     for (const [proposalKey, images] of updates) {
       const actual = afterRows.find((row) => row.proposal_key === proposalKey);

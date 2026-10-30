@@ -1,7 +1,9 @@
 import { AccountLearningState } from "./account-learning-state";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Link, useSearchParams } from "react-router";
+import { Link, useNavigate, useSearchParams } from "react-router";
+import { foundationRouteForLevel } from "../foundation/foundation-routing";
 import type { LearnerDto, LearnerVocabularyBrowseItem, VocabularyBrowsePageSize, VocabularyLevel } from "@vocabflow/contracts";
+import { cefrLearningLevels, introductoryLearningLevels, learningLevelLabel, unclassifiedCefrFilter } from "@vocabflow/contracts";
 import { useActiveLearner } from "./learner-context-hook";
 import { LearnerVocabularyClientError, requestLearnerVocabularyBrowse } from "./vocabulary-list-client";
 import { VocabularyCard } from "./vocabulary-card";
@@ -116,6 +118,7 @@ export function VocabularyListPage() {
 }
 
 function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto }) {
+  const navigate = useNavigate();
   const toast = useToast();
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get("q") ?? "";
@@ -135,6 +138,7 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
   const [total, setTotal] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
   const [cefrOptions, setCefrOptions] = useState<string[]>([]);
+  const [catalogMetadataLoaded, setCatalogMetadataLoaded] = useState(false);
   const [topicOptions, setTopicOptions] = useState<string[]>([]);
   const [topicChoices, setTopicChoices] = useState<{ id: number; name: string; slug: string }[]>([]);
   const [message, setMessage] = useState<string | null>(null);
@@ -193,6 +197,7 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
         setTotal(result.total);
         setTotalPages(result.totalPages);
         setCefrOptions(result.filters.cefrOptions);
+        setCatalogMetadataLoaded(true);
         setTopicOptions(result.filters.topicOptions);
         setTopicChoices(result.filters.topicChoices ?? []);
         setState("ready");
@@ -272,10 +277,6 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
   const studyParams = new URLSearchParams(topicChoice ? { topicId: String(topicChoice.id) } : { source: "all" });
   if (level) studyParams.set("level", level);
   if (cefr) studyParams.set("cefr", cefr);
-  const discoveryParams = new URLSearchParams();
-  if (level) discoveryParams.set("level", level);
-  if (cefr) discoveryParams.set("cefr", cefr);
-  if (topicChoice) discoveryParams.set("topicId", String(topicChoice.id));
   const clearActiveFilter = () => {
     const filter = normalizedQuery ? "q" : level ? "level" : cefr ? "cefr" : topicId ? "topicId" : "topic";
     updateFilter(filter, "");
@@ -298,11 +299,6 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
             <h1 id="vocabulary-list-title">Từ vựng của bạn</h1>
             <p>Chọn từ phù hợp với trình độ và sở thích của bạn.</p>
           </div>
-          <Link className="vocabulary-topics-link" to={`/topics${discoveryParams.size ? `?${discoveryParams}` : ""}`}>
-            <VocabularyIcon name="book" />
-            <span>Duyệt theo chủ đề</span>
-            <VocabularyIcon name="next" />
-          </Link>
         </div>
       </header>
 
@@ -311,42 +307,59 @@ function VocabularyListExperience({ activeLearner }: { activeLearner: LearnerDto
         <DebouncedVocabularySearch key={query} query={query} updateFilter={updateFilter} />
         <label className="vocabulary-level-control">
           <VocabularyIcon name="level" />
-          <span className="sr-only">Cấp độ</span>
-          <select
-            id="vocabulary-level-filter"
-            aria-label="Cấp độ"
-            className="vocabulary-level-select"
-            data-testid="vocabulary-level-filter"
-            value={level}
-            onChange={(event) => updateFilter("level", event.target.value)}
-          >
-            <option value="">Cấp độ: Tất cả</option>
-            {vocabularyLevels.map((option) => <option key={option.value} value={option.value}>Cấp độ: {option.label}</option>)}
+          <span className="sr-only">Mức học</span>
+          <select aria-label="Mức học" className="vocabulary-level-select" data-testid="vocabulary-cefr-filter" value={cefr} onChange={(event) => { const route = import.meta.env.DEV ? foundationRouteForLevel(event.target.value) : null; if (route) navigate(route); else updateFilter("cefr", event.target.value); }}>
+            <option value="">Mức học: Tất cả</option>
+            {introductoryLearningLevels.map(({ value, label }, index) => {
+              const foundation = foundationRouteForLevel(value);
+              const unavailable = foundation
+                ? !import.meta.env.DEV || Boolean(level || topic || topicId || normalizedQuery)
+                : !cefrOptions.includes(value);
+              const suffix = unavailable
+                ? foundation && import.meta.env.DEV ? " — Không khả dụng trong lựa chọn này" : " — Chưa có nội dung"
+                : foundation ? value === "intro-first-utterances" ? " — 12 câu local" : " — 6 tên chữ local" : "";
+              return <option key={value} value={value} disabled={unavailable}>{index + 1}. {label}{suffix}</option>;
+            })}
+            {cefrLearningLevels.map(({ value }, index) => <option key={value} value={value} disabled={!catalogMetadataLoaded || !cefrOptions.includes(value)}>{index + 4}. {learningLevelLabel(value)}{!catalogMetadataLoaded ? (visibleState === "error" ? " — Chưa tải được dữ liệu" : " — Đang tải…") : cefrOptions.includes(value) ? "" : " — Chưa có nội dung"}</option>)}
+            <option value={unclassifiedCefrFilter}>Chưa phân loại</option>
           </select>
         </label>
-        {cefrOptions.length > 0 ? (
-          <label className="vocabulary-level-control">
-            <span className="sr-only">CEFR</span>
-            <select aria-label="CEFR" className="vocabulary-level-select" data-testid="vocabulary-cefr-filter" value={cefr} onChange={(event) => updateFilter("cefr", event.target.value)}>
-              <option value="">CEFR: Tất cả</option>
-              {cefrOptions.map((value) => <option key={value} value={value}>CEFR {value}</option>)}
-            </select>
-          </label>
-        ) : null}
-        {topicOptions.length > 0 ? (
-          <label className="vocabulary-level-control">
-            <span className="sr-only">Chủ đề</span>
-            <select aria-label="Chủ đề" className="vocabulary-level-select" data-testid="vocabulary-topic-filter" value={topicChoices.length ? String(topicChoice?.id ?? "") : topic} onChange={(event) => updateFilter(topicChoices.length ? "topicId" : "topic", event.target.value)}>
-              <option value="">Chủ đề: Tất cả</option>
-              {topicChoices.length ? topicChoices.map((choice) => <option key={choice.id} value={choice.id}>{choice.name}</option>) : (
-[...topicOptions].sort((a, b) => {
-                const labelOrder = (formatVocabularyTopic(a) ?? a).localeCompare(formatVocabularyTopic(b) ?? b, "vi");
-                return labelOrder || a.localeCompare(b);
-              }).map((value) => <option key={value} value={value}>{formatVocabularyTopic(value) ?? "Chủ đề khác"}</option>))}
-            </select>
-          </label>
-        ) : null}
       </section>
+
+      <details className="vocabulary-additional-filters" open={Boolean(level || topic || topicId)}>
+        <summary>Lọc bổ sung{level || topic || topicId ? " — đang áp dụng" : ""}</summary>
+        <div className="vocabulary-additional-filter-fields">
+          <label className="vocabulary-level-control">
+            <VocabularyIcon name="level" />
+            <span className="sr-only">Lớp học</span>
+            <select
+              id="vocabulary-level-filter"
+              aria-label="Lớp học"
+              className="vocabulary-level-select"
+              data-testid="vocabulary-level-filter"
+              value={level}
+              onChange={(event) => updateFilter("level", event.target.value)}
+            >
+              <option value="">Lớp học: Tất cả</option>
+              {vocabularyLevels.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
+            </select>
+          </label>
+          {topicOptions.length > 0 ? (
+            <label className="vocabulary-level-control">
+              <span className="sr-only">Chủ đề</span>
+              <select aria-label="Chủ đề" className="vocabulary-level-select" data-testid="vocabulary-topic-filter" value={topicChoices.length ? String(topicChoice?.id ?? "") : topic} onChange={(event) => updateFilter(topicChoices.length ? "topicId" : "topic", event.target.value)}>
+                <option value="">Chủ đề: Tất cả</option>
+                {topicChoices.length ? topicChoices.map((choice) => <option key={choice.id} value={choice.id}>{choice.name}</option>) : (
+                  [...topicOptions].sort((a, b) => {
+                    const labelOrder = (formatVocabularyTopic(a) ?? a).localeCompare(formatVocabularyTopic(b) ?? b, "vi");
+                    return labelOrder || a.localeCompare(b);
+                  }).map((value) => <option key={value} value={value}>{formatVocabularyTopic(value) ?? "Chủ đề khác"}</option>)
+                )}
+              </select>
+            </label>
+          ) : null}
+        </div>
+      </details>
 
       <div className="vocabulary-study-action">{visibleState === "ready" && !normalizedQuery && total > 0 && (!(topic || topicId) || topicChoice) ? <Link className="vocabulary-study-selection" to={`/study/setup?${studyParams}`}>Học nội dung đã chọn</Link> : null}</div>
 

@@ -111,6 +111,7 @@ function renderList(initialLearner: LearnerDto | null = learnerA, path = "/vocab
           <LocationProbe />
           <Routes>
             <Route path="/vocabulary" element={<VocabularyListPage />} />
+              <Route path="/foundation/learn" element={<div>foundation-route</div>} />
             <Route path="/vocabulary/:vocabularyId" element={<div data-testid="detail-route">detail route</div>} />
             <Route path="/learners" element={<LearnerRouteProbe />} />
           </Routes>
@@ -132,7 +133,7 @@ function mockVocabulary(items: LearnerVocabularyDto[]) {
     const filtered = items.filter((item) =>
       (!query || item.word.toLocaleLowerCase().includes(query) || item.vietnamese.toLocaleLowerCase().includes(query))
       && (!level || item.level === level)
-      && (!cefr || item.cefr === cefr)
+      && (!cefr || (cefr === "UNCLASSIFIED" ? !item.cefr?.trim() : item.cefr === cefr))
       && (!topic || [...(item.tags ?? []), ...(item.topic ? [item.topic] : [])].some((value) => value.toLocaleLowerCase() === topic))
     );
     const page = Number(params.get("page") ?? 1);
@@ -173,7 +174,7 @@ describe("US-22 vocabulary list UI", () => {
     expect(screen.getByRole("searchbox", { name: "Tìm từ tiếng Anh hoặc nghĩa tiếng Việt" })).toBeInTheDocument();
     expect(await screen.findByTestId("vocabulary-grid")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Từ vựng của bạn" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Duyệt theo chủ đề" })).toHaveAttribute("href", "/topics");
+    expect(screen.queryByRole("link", { name: "Duyệt theo chủ đề" })).not.toBeInTheDocument();
     expect(screen.getByTestId("vocabulary-row-1")).toHaveTextContent("apple");
     expect(screen.getByTestId("vocabulary-row-1")).toHaveTextContent("/ˈæp.əl/");
     expect(screen.getByTestId("vocabulary-row-1")).toHaveTextContent("Lớp 1");
@@ -268,6 +269,59 @@ describe("US-22 vocabulary list UI", () => {
     expect(screen.queryByTestId("vocabulary-row-2")).not.toBeInTheDocument();
     expect(screen.queryByTestId("vocabulary-row-3")).not.toBeInTheDocument();
     expect(fetchMock.mock.calls.filter(([url]) => String(url).includes("/vocabulary/browse?")).length).toBeGreaterThan(1);
+  });
+
+  it("offers nine named levels with available local foundation routes and preserves unpublished word levels", async () => {
+    mockVocabulary([item(1, "apple", "NEW", null, { cefr: "A1" })]);
+    renderList();
+    await screen.findByTestId("vocabulary-row-1");
+    const levels = screen.getByRole("combobox", { name: "Mức học" });
+    expect(within(levels).getByRole("option", { name: "1. Làm quen chữ và âm — 6 tên chữ local" })).toBeEnabled();
+    expect(within(levels).getByRole("option", { name: "2. Từ đầu tiên — Chưa có nội dung" })).toBeDisabled();
+    expect(within(levels).getByRole("option", { name: "3. Câu đầu tiên — 12 câu local" })).toBeEnabled();
+    expect(within(levels).getByRole("option", { name: "4. Sơ cấp (A1)" })).toHaveValue("A1");
+    expect(within(levels).getByRole("option", { name: /9\. Chuyên sâu \(C2\)/ })).toBeDisabled();
+    expect(within(levels).getAllByRole("option")).toHaveLength(11);
+    expect(screen.getByText("Lọc bổ sung").closest("details")).not.toHaveAttribute("open");
+  });
+
+  it("routes typed foundation content without inventing a lexical CEFR filter", async () => {
+    const fetchMock = mockVocabulary([item(1, "apple", "NEW", null, { cefr: "A1" })]);
+    renderList();await screen.findByTestId("vocabulary-row-1");
+    fireEvent.change(screen.getByRole("combobox", { name: "Mức học" }), { target: { value: "intro-first-utterances" } });
+    await waitFor(()=>expect(screen.getByTestId("current-url")).toHaveTextContent("/foundation/learn?module=utterances"));
+    expect(fetchMock.mock.calls.some(([url])=>String(url).includes("cefr=intro-first-utterances"))).toBe(false);
+  });
+
+  it("does not widen a grade-filtered lexical scope into foundation content", async () => {
+    mockVocabulary([item(1, "apple", "NEW", "GRADE_1", { cefr: "A1" })]);
+    renderList(learnerA,"/vocabulary?level=GRADE_1");await screen.findByTestId("vocabulary-row-1");
+    const levels=screen.getByRole("combobox",{name:"Mức học"});
+    expect(within(levels).getByRole("option",{name:/1\. Làm quen chữ và âm/})).toBeDisabled();
+    expect(within(levels).getByRole("option",{name:/3\. Câu đầu tiên/})).toBeDisabled();
+  });
+
+  it("does not claim CEFR content is missing when initial metadata cannot load", async () => {
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(response([], 503));
+    renderList();
+    await screen.findByTestId("vocabulary-error");
+    const levels = screen.getByRole("combobox", { name: "Mức học" });
+    expect(within(levels).getByRole("option", { name: "4. Sơ cấp (A1) — Chưa tải được dữ liệu" })).toBeDisabled();
+    expect(within(levels).queryByRole("option", { name: "4. Sơ cấp (A1) — Chưa có nội dung" })).not.toBeInTheDocument();
+  });
+
+  it("keeps unclassified separate from A1 and carries its scope into study", async () => {
+    const fetchMock = mockVocabulary([
+      item(1, "apple", "NEW", null, { cefr: "A1" }),
+      item(2, "unclassified")
+    ]);
+    renderList();
+    await screen.findByTestId("vocabulary-row-1");
+    fireEvent.change(screen.getByRole("combobox", { name: "Mức học" }), { target: { value: "UNCLASSIFIED" } });
+    expect(await screen.findByTestId("vocabulary-row-2")).toBeInTheDocument();
+    expect(screen.queryByTestId("vocabulary-row-1")).not.toBeInTheDocument();
+    expect(fetchMock.mock.calls.some(([url]) => String(url).includes("cefr=UNCLASSIFIED"))).toBe(true);
+    expect(screen.getByRole("link", { name: "Học nội dung đã chọn" })).toHaveAttribute("href", "/study/setup?source=all&cefr=UNCLASSIFIED");
   });
 
   it("applies CEFR and topic filters through the server and resets pagination", async () => {

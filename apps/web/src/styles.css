@@ -871,7 +871,6 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
   background: var(--color-surface);
   font: inherit;
 }
-.vocabulary-topics-link { margin-left: auto; font-weight: 700; }
 .vocabulary-list-state {
   min-height: 80px;
   display: grid;
@@ -1074,7 +1073,6 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
   .vocabulary-list-error { align-items: flex-start; flex-direction: column; }
   .vocabulary-list-row-link { align-items: flex-start; flex-wrap: wrap; }
   .vocabulary-list-chevron { align-self: center; }
-  .vocabulary-topics-link { margin-left: 0; }
   .topics-layout { grid-template-columns: 1fr; }
   .learning-sets-topbar { align-items: flex-start; flex-direction: column; }
   .learning-sets-error { align-items: flex-start; flex-direction: column; }
@@ -1433,6 +1431,12 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
   box-shadow: 0 2px 8px rgb(15 23 42 / 0.06);
 }
 .flashcard-image-fallback { color: var(--color-text-muted); font-size: var(--text-caption); }
+.editorial-local-preview-audio { display: grid; gap: 8px; padding: 16px 24px; }
+.editorial-local-preview-audio audio { width: min(100%, 320px); }
+.editorial-local-preview-note { display: block; margin: 8px 0; color: var(--color-text-muted); font-size: var(--text-caption); }
+.editorial-local-preview-evidence { font-size: var(--text-caption); color: var(--color-text-muted); overflow-wrap: anywhere; }
+.editorial-local-preview-evidence summary { min-height: 44px; padding-block: 12px; cursor: pointer; }
+.editorial-local-preview-evidence summary:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
 .development-media-notice {
   position: absolute;
   width: 1px;
@@ -1445,7 +1449,7 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
   border: 0;
 }
 .flashcard-example-audios { display: grid; gap: 8px; padding: 0 24px 16px; }
-.flashcard-example-audio-item { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px 16px; }
+.flashcard-example-audio-item { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 260px); align-items: center; gap: 8px 16px; }
 .flashcard-example-audio-label { color: var(--color-text-muted); font-size: var(--text-caption); font-weight: 650; }
 .flashcard-example-audio-item .vocabulary-example-audio-control { width: min(100%, 260px); margin: 0; }
 .study-card-state { margin: 12px 0 0; color: var(--color-text-muted); font-size: 14px; line-height: 20px; text-align: center; }
@@ -1714,16 +1718,16 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
 .vocabulary-heading-copy { min-width: 0; }
 .vocabulary-heading-copy h1 { margin: 0; color: var(--color-text); font-size: var(--text-h1); font-weight: var(--weight-h1); line-height: var(--leading-h1); letter-spacing: -.03em; }
 .vocabulary-heading-copy p { margin: 6px 0 0; color: var(--color-text-muted); font-size: var(--text-body); line-height: var(--leading-body); }
-.vocabulary-topics-link { display: inline-flex; min-height: 52px; flex: 0 0 auto; align-items: center; justify-content: center; gap: 12px; padding: 0 16px; border: 1px solid var(--color-primary); border-radius: var(--radius-control); color: var(--color-primary-hover); background: var(--color-surface); font-size: var(--text-small); font-weight: 700; text-decoration: none; transition: background var(--motion-fast) var(--motion-easing), border-color var(--motion-fast) var(--motion-easing); }
-.vocabulary-topics-link:hover { border-color: var(--color-primary-hover); background: var(--color-primary-soft); }
-.vocabulary-topics-link svg { width: 22px; height: 22px; color: var(--color-primary); }
-.vocabulary-topics-link svg:last-child { width: 18px; height: 18px; }
 .vocabulary-toolbar {
   display: grid;
-  grid-template-columns: minmax(260px, 1.8fr) repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
   gap: 12px;
   margin-top: 24px;
 }
+.vocabulary-additional-filters { margin-top: 12px; }
+.vocabulary-additional-filters > summary { display: list-item; min-height: 44px; width: fit-content; padding: 12px 4px; color: var(--color-primary-hover); font-weight: 600; cursor: pointer; }
+.vocabulary-additional-filters > summary:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 2px; border-radius: var(--radius-control); }
+.vocabulary-additional-filter-fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 4px; }
 .vocabulary-search-field {
   display: flex;
   min-width: 0;
@@ -1932,7 +1936,6 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
   .vocabulary-page { padding: 0; }
   .vocabulary-heading-row { align-items: flex-start; flex-direction: column; gap: 16px; margin-top: 8px; }
   .vocabulary-heading-copy h1 { font-size: 26px; line-height: 32px; }
-  .vocabulary-topics-link { min-height: 48px; }
   .vocabulary-toolbar { grid-template-columns: minmax(0, 1fr); gap: 10px; margin-top: 18px; }
   .vocabulary-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
   .vocabulary-card, .vocabulary-card-link { min-height: 192px; }
@@ -3578,3 +3581,17 @@ p { max-width: 650px; margin: 22px 0 0; color: #52647d; font-size: 1.05rem; line
 
 .vocabulary-study-action { display: flex; justify-content: flex-end; min-height: 60px; }
 @media (max-width: 480px) { .vocabulary-study-action .vocabulary-study-selection { width: 100%; } }
+.foundation-page { max-width: 1100px; }
+.foundation-tabs, .foundation-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.foundation-tabs { margin-bottom: var(--space-6); }
+.foundation-session { display: grid; gap: var(--space-4); max-width: 760px; padding: var(--space-6); }
+.foundation-session p, .foundation-session h2 { margin: 0; }
+.foundation-session audio { display: block; width: min(100%, 420px); }
+.foundation-context { font-size: var(--text-h3); line-height: var(--leading-h3); }
+.foundation-teaching { display: grid; gap: var(--space-4); }
+.foundation-glyph { font-size: 64px; line-height: 1.25; font-weight: 600; }
+.foundation-utterance { font-size: var(--text-h2); line-height: var(--leading-h2); font-weight: 600; }
+.foundation-letter-options { display: flex; flex-wrap: wrap; gap: var(--space-4); }
+.foundation-letter-option { font-size: var(--text-h2); min-width: 96px; min-height: 64px; }
+.foundation-note { color: var(--color-text-muted); font-size: var(--text-small); }
+@media (max-width: 600px) { .foundation-session { padding: var(--space-4); } .foundation-tabs > .button { flex: 1; } }

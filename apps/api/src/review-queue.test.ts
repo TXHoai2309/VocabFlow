@@ -8,6 +8,26 @@ import type { ReviewQueueResponse } from "@vocabflow/contracts";
 const learnerId = "00000000-0000-4000-8000-000000000010";
 
 describe("V2 broad sources and explicit catalog filters", () => {
+  it("keeps unclassified scope on both due and new queues before capacity", async () => {
+    const queries: Array<{ sql: string; params: unknown[] }> = [];
+    const execute = vi.fn(async (query) => {
+      const compiled = new PgDialect().sqlToQuery(query); queries.push(compiled);
+      if (queries.length === 1) return authorizedRows();
+      if (compiled.sql.includes("SELECT timezone")) return { rows: [{ timezone: "Asia/Ho_Chi_Minh" }] };
+      if (compiled.sql.includes("daily_new_word_limit")) return dailyUsageRow(10, 0);
+      return { rows: [] };
+    });
+    const result = await createReviewQueueService({ execute }, { datasetVersion: "v2" })
+      .list("A", learnerId, undefined, { type: "all", cefr: "UNCLASSIFIED" }, 5);
+    expect(result.queue).toEqual([]);
+    const scoped = queries.filter(({ sql }) => sql.includes("COUNT(*) OVER()"));
+    expect(scoped.length).toBeGreaterThanOrEqual(2);
+    for (const query of scoped) {
+      expect(query.sql).toContain("NULLIF(trim(md.cefr), '') IS NULL");
+      expect(query.sql.indexOf("NULLIF(trim(md.cefr), '') IS NULL")).toBeLessThan(query.sql.indexOf("LIMIT"));
+      expect(query.params).not.toContain("UNCLASSIFIED");
+    }
+  });
   it.each(["all", "pathway"] as const)("%s includes enabled words outside all learning sets", async (type) => {
     const queries: Array<{ sql: string; params: unknown[] }> = [];
     const execute = vi.fn(async (query) => {
@@ -38,7 +58,7 @@ describe("V2 broad sources and explicit catalog filters", () => {
 const householdId = "00000000-0000-4000-8000-000000000001";
 
 describe("Study source API contract", () => {
-  it.each(["capacity=5", "capacity=10", "capacity=20", "capacity=30", "source=custom&setIds=1,2&capacity=30", "source=pathway&capacity=30", "source=all&capacity=30", "topicId=7&capacity=30", "learningSetId=4&capacity=30", "scope=saved&capacity=30"])("accepts bounded candidate %s without changing scope", async (query) => {
+  it.each(["capacity=5", "capacity=10", "capacity=20", "capacity=30", "source=custom&setIds=1,2&capacity=30", "source=pathway&capacity=30", "source=all&capacity=30", "source=all&cefr=UNCLASSIFIED&capacity=5", "topicId=7&capacity=30", "learningSetId=4&capacity=30", "scope=saved&capacity=30"])("accepts bounded candidate %s without changing scope", async (query) => {
     const list = vi.fn(async () => ({ learnerId, reviewDate: "2026-10-08", dueCount: 0, newCount: 0, queue: [] }));
     const app = createApp({ readSession: async () => ({ user: { id: "A" } }), reviewQueueService: { list } });
     expect((await app.request(`http://localhost/api/learners/${learnerId}/review-queue?${query}`)).status).toBe(200);

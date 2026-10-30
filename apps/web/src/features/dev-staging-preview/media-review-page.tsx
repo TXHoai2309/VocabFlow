@@ -136,14 +136,17 @@ function useDevRequest<T>(url: string, retry: number) {
   const [error, setError] = useState("");
   useEffect(() => {
     const controller = new AbortController();
-    setLoading(true);
-    setError("");
-    fetch(url, { signal: controller.signal, cache: "no-store" })
+    Promise.resolve().then(() => {
+      if (controller.signal.aborted) return null;
+      setLoading(true); setError("");
+      return fetch(url, { signal: controller.signal, cache: "no-store" });
+    })
       .then(async (response) => {
+        if (!response) return null;
         if (!response.ok) throw new Error(response.status === 409 ? "Snapshot Development đã đổi; cần tạo snapshot mới trước khi tiếp tục." : "Không tải được dữ liệu media review.");
         return response.json() as Promise<T>;
       })
-      .then(setData)
+      .then((result) => { if (!controller.signal.aborted && result) setData(result); })
       .catch((cause: unknown) => {
         if (cause instanceof Error && cause.name === "AbortError") return;
         setError(cause instanceof Error ? cause.message : "Không tải được dữ liệu media review.");
@@ -156,7 +159,9 @@ function useDevRequest<T>(url: string, retry: number) {
 
 function setParams(setSearchParams: (next: URLSearchParams, options?: { replace?: boolean }) => void, searchParams: URLSearchParams, values: Record<string, string | null>) {
   const next = new URLSearchParams(searchParams);
-  for (const [key, value] of Object.entries(values)) value ? next.set(key, value) : next.delete(key);
+  for (const [key, value] of Object.entries(values)) {
+    if (value) next.set(key, value); else next.delete(key);
+  }
   setSearchParams(next);
 }
 
@@ -197,8 +202,14 @@ export function MediaReviewPage() {
   const [reviewerNote, setReviewerNote] = useState("");
   const pendingKeys = useRef(new Map<string, string>());
 
-  useEffect(() => setSearchDraft(search), [search]);
-  useEffect(() => { setSelectedPageMappings(new Set()); setActionError(""); }, [tab, search, status, page]);
+  useEffect(() => {
+    const timer = window.setTimeout(() => setSearchDraft(search), 0);
+    return () => window.clearTimeout(timer);
+  }, [search]);
+  useEffect(() => {
+    const timer = window.setTimeout(() => { setSelectedPageMappings(new Set()); setActionError(""); }, 0);
+    return () => window.clearTimeout(timer);
+  }, [tab, search, status, page]);
   const mappingUrl = useMemo(() => {
     if (!activeTab.kind) return "";
     const params = new URLSearchParams({ kind: activeTab.kind, status, page: String(page) });
@@ -228,10 +239,11 @@ export function MediaReviewPage() {
   const reviewer = tab === "rights" ? rightsData?.reviewerIdentity : mappingData?.reviewerIdentity;
 
   useEffect(() => {
-    if (selectedItem) {
+    const timer = window.setTimeout(() => { if (selectedItem) {
       setTargetSenseKey((current) => current || selectedItem.proposedSense?.proposalKey || selectedItem.targetCandidates[0]?.proposalKey || "");
       setTargetExampleKey((current) => current || selectedItem.exampleTextComparison?.target?.exampleKey || "");
-    }
+    } }, 0);
+    return () => window.clearTimeout(timer);
   }, [selectedItem]);
 
   function changeTab(nextTab: Tab) {
@@ -496,7 +508,6 @@ function MappingDetail({ item, tab, targetSenseKey, setTargetSenseKey, targetExa
   const acceptOutcome = item.exampleTextComparison?.classification;
   const assetPreview = `${api}/assets/${item.mediaSha256}/preview`;
   const normalizationTarget = item.targetExampleCandidates.find((candidate) => candidate.exampleKey === item.exampleTextComparison?.target?.exampleKey);
-  const textComparisonAvailable = Boolean(item.exampleTextComparison?.target);
   const senseCandidates = item.targetCandidates;
   const isAmbiguousImage = item.mappingStatus.includes("AMBIGUOUS") || senseCandidates.length > 1 || !item.proposedSense;
   return (

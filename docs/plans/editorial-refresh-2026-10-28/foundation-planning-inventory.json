@@ -1,0 +1,36 @@
+{
+  "status": "ANALYSIS_SAMPLE_NOT_A_CURRICULUM",
+  "purpose": "Reproduce a coarse introductory coverage comparison before aliases, morphology or sense suitability are reviewed.",
+  "normalization": "NFKC, trim, lowercase; string categories split on spaces, array entries preserved; global deduplication.",
+  "groups": {
+    "numbers": "zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty thirty forty fifty sixty seventy eighty ninety hundred thousand",
+    "colors": "red blue yellow green orange purple pink black white brown grey gray",
+    "body": "head hair face eye ear nose mouth tooth teeth tongue neck shoulder arm hand finger thumb leg knee foot feet toe back stomach",
+    "family": "mother father mum mom dad parent sister brother grandmother grandfather grandma grandpa family baby boy girl child children friend teacher",
+    "school": "book pen pencil eraser ruler sharpener bag backpack desk chair table board crayon paper notebook classroom school student lesson library playground computer scissors glue lunchbox uniform",
+    "home": "house home room bedroom bathroom kitchen garden door window wall floor roof bed pillow blanket lamp clock mirror soap towel toothbrush cup plate spoon fork bowl bottle box key",
+    "animals": "cat dog bird fish rabbit mouse horse cow pig sheep goat duck chicken hen rooster frog elephant lion tiger monkey bear panda giraffe zebra turtle snake crocodile butterfly bee ant spider",
+    "food": ["apple", "banana", "orange", "pear", "grape", "strawberry", "watermelon", "mango", "pineapple", "coconut", "peach", "lemon", "tomato", "potato", "carrot", "onion", "cucumber", "rice", "bread", "milk", "water", "juice", "egg", "cheese", "meat", "chicken", "beef", "pork", "fish", "soup", "cake", "biscuit", "cookie", "candy", "chocolate", "ice cream"],
+    "actions": "eat drink sleep wake walk run jump sit stand read write draw sing dance play listen speak say look see hear touch wash brush open close give take put get go come stop start count spell smile laugh cry help like want need",
+    "adjectives": "big small tall short long happy sad angry tired hungry thirsty hot cold clean dirty new old good bad nice beautiful fast slow easy hard",
+    "surroundings": "sun moon star sky cloud rain wind snow tree flower leaf grass river lake sea beach mountain park road street shop store bus car bicycle bike train boat plane ball toy doll kite robot",
+    "social": "hello goodbye hi bye please thanks yes no sorry welcome morning afternoon evening night today tomorrow yesterday birthday name age how what who where when why",
+    "first_utterances": ["good morning", "good night", "thank you", "excuse me", "my name is", "how are you", "i am fine", "nice to meet you", "see you", "i like", "i have", "this is", "it is", "how old are you", "what is your name", "can i", "may i", "please help me", "come here", "sit down", "stand up", "open your book", "close your book"]
+  },
+  "observed": {
+    "categoryMemberships": 358,
+    "uniquePlanningItems": 355,
+    "runtimeExactMatches": 225,
+    "canonicalOrRuntimeExactMatches": 257,
+    "unmatchedStrings": 98,
+    "unmatchedUtteranceOrPatternStrings": 23,
+    "unmatchedLexicalStrings": 75,
+    "unmatchedLexicalStringsPresentInLegacyStarter": ["cat", "friend", "good", "home", "student"]
+  },
+  "caveats": [
+    "This is a planning sample, not an official syllabus or an approved word list.",
+    "Headword matches do not establish that the correct sense is present or appropriate for children.",
+    "Unmatched strings are not a verified count of new Lexemes: aliases, inflections, variants and legacy sources still require review.",
+    "Alphabet and phoneme activities are not included in this inventory."
+  ]
+}

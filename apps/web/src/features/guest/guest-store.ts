@@ -11,6 +11,7 @@ export const guestLearner: LearnerDto = {
 const receiptSchema = z.object({ request: reviewRequestSchema, response: reviewResponseSchema, date: z.string(), isNew: z.boolean() });
 const stateSchema = z.object({
   version: z.literal(1), revision: z.number().int().nonnegative(),
+  catalogIdentity: z.string().optional(),
   progress: z.record(z.string(), reviewResponseSchema.shape.progress),
   receipts: z.record(z.string(), receiptSchema), saved: z.record(z.string(), z.string().datetime()),
   assignments: z.record(z.string(), z.boolean()), settings: learnerSettingsResponseSchema
@@ -29,6 +30,7 @@ export function emptyGuestState(): GuestState {
 let storageError = false;
 let cachedRaw: string | null = null;
 let cachedState: GuestState | undefined;
+const SKIP_GUEST_WRITE = Symbol("skip-guest-write");
 export function hasGuestStorageError() { return storageError; }
 function setStorageError(value: boolean) {
   storageError = value;
@@ -56,6 +58,7 @@ export async function mutateGuestState<T>(update: (state: GuestState) => T): Pro
     // The cached read snapshot remains unchanged if persistence fails.
     const state = structuredClone(readGuestState());
     const result = update(state);
+    if (result === SKIP_GUEST_WRITE) return result;
     state.revision += 1;
     try {
       const validated = stateSchema.parse(state);
@@ -68,6 +71,26 @@ export async function mutateGuestState<T>(update: (state: GuestState) => T): Pro
       throw new Error("GUEST_STORAGE_UNAVAILABLE");
     }
     return result;
+  });
+}
+
+/** Owner explicitly retires a previous vocabulary catalog. Back up first. */
+export async function reconcileGuestCatalog(catalog: { catalogIdentity?: string; vocabulary: { id: number }[]; learningSets: { id: number }[] }) {
+  const identity = catalog.catalogIdentity;
+  if (!identity || !["owner-editorial-1547-20261030-r0001", "owner-production-1547-20261030-r0001"].includes(identity)
+    || readGuestState().catalogIdentity === identity) return;
+  const allowed = new Set(catalog.vocabulary.map(x => x.id));
+  const sets = new Set(catalog.learningSets.map(x => x.id));
+  if (allowed.size !== 1547) throw new Error("GUEST_CATALOG_INCOMPLETE");
+  await mutateGuestState(state => {
+    if (state.catalogIdentity === identity) return SKIP_GUEST_WRITE;
+    const backup = `${GUEST_STORAGE_KEY}.before.${identity}`;
+    if (!localStorage.getItem(backup)) localStorage.setItem(backup, JSON.stringify(state));
+    state.progress = Object.fromEntries(Object.entries(state.progress).filter(([id]) => allowed.has(Number(id))));
+    state.saved = Object.fromEntries(Object.entries(state.saved).filter(([id]) => allowed.has(Number(id))));
+    state.receipts = Object.fromEntries(Object.entries(state.receipts).filter(([, receipt]) => allowed.has(receipt.request.vocabularyId)));
+    state.assignments = Object.fromEntries(Object.entries(state.assignments).filter(([id]) => sets.has(Number(id))));
+    state.catalogIdentity = identity;
   });
 }
 

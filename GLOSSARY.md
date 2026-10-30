@@ -4,6 +4,30 @@ Các thuật ngữ sản phẩm đã thống nhất trong thiết kế trải ng
 
 ## Nội dung học
 
+**Đầu mục từ**:
+Dạng từ hoặc cụm từ để người học nhận ra một mục trong kho; một đầu mục có thể có nhiều nghĩa và cách dùng.
+_Avoid_: Một đầu mục luôn đồng nghĩa một nghĩa học
+
+**Nghĩa học**:
+Một nghĩa cụ thể của từ hoặc cụm từ được dùng làm đơn vị học, phân biệt với các nghĩa khác của cùng đầu mục.
+_Avoid_: Mỗi lớp là một bản sao của cùng nghĩa
+
+**Bộ học**:
+Tập hợp nội dung được tuyển chọn cho một mục đích học. Một nghĩa có thể được dùng lại trong nhiều bộ học và nhiều lớp mà vẫn là cùng nội dung học.
+_Avoid_: Bộ học sở hữu bản sao riêng của từng nghĩa
+
+**CEFR**:
+Khung tham chiếu trình độ ngôn ngữ; nhãn CEFR của một nghĩa là đánh giá có căn cứ theo khung này, không phải khối lớp hay độ tuổi người học.
+_Avoid_: A1 đồng nghĩa lớp 1, chưa phân loại đồng nghĩa Pre-A1
+
+**Mức học**:
+Nhóm nội dung để người học chọn từ bước làm quen đến chuyên sâu; ba mức đầu được tuyển chọn riêng, sáu mức tiếp theo tương ứng A1–C2.
+_Avoid_: Khối lớp, đánh giá trình độ hiện tại của người học
+
+**Chưa phân loại**:
+Nội dung chưa có căn cứ để xếp vào nhóm trình độ tương ứng; trạng thái này không khẳng định nội dung dễ hay dành cho người mới bắt đầu.
+_Avoid_: Mức thấp nhất, Pre-A1
+
 **Chủ đề chuẩn**:
 Một chủ đề được công bố để người học duyệt và chọn học. Chỉ những phân loại từ đã có nguồn đáng tin cậy hoặc được duyệt mới được tính vào nội dung của chủ đề.
 _Avoid_: Chủ đề gợi ý đồng nghĩa chủ đề đã duyệt

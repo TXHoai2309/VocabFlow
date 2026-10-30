@@ -1,0 +1,66 @@
+{
+  "artifactType": "OWNER_CATALOG_LOCAL_REPLACEMENT_RESULT",
+  "date": "2026-10-30",
+  "status": "LOCAL_IMPLEMENTED_READY_FOR_OWNER_CHECK",
+  "story": "US-64",
+  "ownerInstruction": "giữ lại các từ hôm qua đến nay bắt đầu soạn mới qua muse, xóa sạch những data cũ đi",
+  "catalogId": "owner-editorial-1547-20261030-r0001",
+  "counts": {
+    "words": 1547,
+    "retainedIds": 905,
+    "newLocalIds": 642,
+    "retiredRows": 6436,
+    "topics": 73,
+    "sets": 76
+  },
+  "levels": {
+    "FIRST_WORDS": 139,
+    "A2": 544,
+    "B1": 132,
+    "A1": 731,
+    "B2": 1
+  },
+  "dataset": {
+    "path": "vocabflow-dataset/workspaces/editorial-refresh-20261030/owned-catalog-r0001/catalog-complete-r0001.json",
+    "sha256": "016c2ac449cd7c03d4dafc6d9b893ab38c6323341c9e31b9cfcfe20955ca45b5",
+    "byteLength": 10349683
+  },
+  "handoff": {
+    "path": "vocabflow-dataset/workspaces/editorial-refresh-20261030/owned-catalog-r0001/handoff-r0001.json",
+    "sha256": "5947e35588360c3d49fae521c2157b8091b5e9abb8e6834bfb3a1d0ac882f1dd",
+    "byteLength": 1564
+  },
+  "archive": {
+    "path": ".vocabflow-local/editorial-refresh-20261030/owned-catalog-r0001/owner-catalog-1547-manifests-r0001.zip",
+    "sha256": "47e2292c774691fa649b66e7f7d0eef192c76a45e99a3db18c33d10168b87c4a",
+    "byteLength": 4157942
+  },
+  "archiveIndex": {
+    "path": "vocabflow-dataset/workspaces/editorial-refresh-20261030/owned-catalog-r0001/archive-index-r0001.json",
+    "sha256": "a8108648963be61675edf11991614442c8f7a6ffa2de63b6a7d0295c7dc21e3f",
+    "byteLength": 4609
+  },
+  "uniqueMediaFiles": 4640,
+  "allAssetBytesAndReceiptsReverified": true,
+  "testsPassed": 221,
+  "requiredChecks": "PASS",
+  "rootTypecheck": "FAIL_EXISTING_TOOLING_OUTSIDE_US64",
+  "privateBackup": {
+    "indexPath": ".vocabflow-local/editorial-refresh-20261030/owned-catalog-r0001/backup.json",
+    "restoreRehearsal": "PASS",
+    "tableFingerprintsRestored": 34,
+    "includedInHandoff": false
+  },
+  "localEvidenceDirectory": ".vocabflow-local/editorial-refresh-20261030/owned-catalog-r0001",
+  "collectionUrls": [
+    "http://127.0.0.1:5173/learning-sets/31",
+    "http://127.0.0.1:5173/learning-sets/32",
+    "http://127.0.0.1:5173/learning-sets/33"
+  ],
+  "retiredPreviewCollection": 30,
+  "foundationStatus": "18_OWNER_ACCEPTED_AUDIO_6_ISOLATED_SOUNDS_PENDING_UNCHANGED",
+  "campaign15Complete": false,
+  "remoteWrites": 0,
+  "providerJobs": 0,
+  "commitPushDeploy": false
+}

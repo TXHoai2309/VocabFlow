@@ -2,6 +2,8 @@ import { useState } from "react";
 import { FLASHCARD_DISPLAY_MODE, type FlashcardDisplayMode, type VocabularyDto } from "@vocabflow/contracts";
 import { usePronunciationAudio } from "./pronunciation-audio";
 import { DevelopmentExampleAudio, DevelopmentImageNotice, DevelopmentImagePreviews, DevelopmentWordAudio } from "./development-media";
+import { developmentExampleAudioItems } from "./development-example-audio";
+import { isExampleAudioUrl } from "./example-audio-url";
 import { ExampleAudio } from "./example-audio";
 import { formatPartOfSpeech, formatVocabularyTopic, getVietnameseMeaningPresentation, parseVocabularyExamples } from "../vocabulary/vocabulary-presentation";
 
@@ -24,8 +26,8 @@ export function Flashcard({ vocabulary, isFlipped, displayMode = FLASHCARD_DISPL
     .map((example, index) => ({ example, index }))
     .filter(({ index }) => displayMode === FLASHCARD_DISPLAY_MODE.DETAILED || index === 0);
   const exampleAudio = visibleExamples.flatMap(({ example, index }) => {
-    const hasPublishedAudio = Boolean(example.audioUrl && /^https:\/\//i.test(example.audioUrl));
-    const hasDevelopmentAudio = Boolean(example.exampleKey && vocabulary.developmentMedia?.exampleAudio?.some((item) => item.exampleKey === example.exampleKey));
+    const hasPublishedAudio = isExampleAudioUrl(example.audioUrl);
+    const hasDevelopmentAudio = developmentExampleAudioItems(vocabulary, example.exampleKey, index, example.english).length > 0;
     return hasPublishedAudio || hasDevelopmentAudio ? [{ example, index, hasPublishedAudio }] : [];
   });
   const partOfSpeech = formatPartOfSpeech(vocabulary.partOfSpeech);

@@ -1,7 +1,9 @@
 {
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
-    "types": ["node"]
+    "types": [
+      "node"
+    ]
   },
   "include": [
     ".",
@@ -10,8 +12,10 @@
     "../apps/web/vite.config.mts",
     "../vite.config.mts",
     "../vitest.config.mts",
+    "../vitest.phase-aware-proposed.config.mts",
     "../vitest.setup.ts",
     "../playwright.config.ts",
-    "../drizzle.config.ts"
+    "../drizzle.config.ts",
+    "../vitest.release.config.mts"
   ]
 }

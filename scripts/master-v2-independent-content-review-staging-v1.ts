@@ -9,7 +9,6 @@ import { assertMarkers, assertResolvedTargetBeforeMutation } from "./runtime-val
 const ROOT = process.cwd();
 const WORKSPACE = "vocabflow-dataset/workspaces/master-v2-development-sync";
 const QUEUE_PATH = `${WORKSPACE}/independent-content-review-queue-v1.json`;
-const QUEUE_FILE = path.join(ROOT, QUEUE_PATH);
 const SCHEMA = "vocabflow_editorial_staging";
 const TABLE = `${SCHEMA}.independent_content_review_events_v1`;
 const TARGET = {
@@ -102,12 +101,14 @@ const EXPECTED_COLUMNS = [
   "release_eligible", "evidence",
 ];
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- Version-pinned historical artifact/SQL adapter; runtime target and source-pin validation remain mandatory.
 type Row = Record<string, any>;
 
 function sha(value: Buffer | string) {
   return createHash("sha256").update(value).digest("hex");
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- Version-pinned historical artifact/SQL adapter; runtime target and source-pin validation remain mandatory.
 function stable(value: any): string {
   if (Array.isArray(value)) return `[${value.map(stable).join(",")}]`;
   if (value && typeof value === "object") {
@@ -371,10 +372,10 @@ function buildEvents() {
   const verifyQueueEntry = (entry: Row, receiptEntry: Row) => {
     const provenance = entry.sourceProvenance ?? {};
     const rawInventoryPins = provenance.sourceInventoryFilePins ?? provenance.sourceInventoryPins ?? {};
-    const inventoryPins: Row[] = Array.isArray(rawInventoryPins) ? rawInventoryPins : Object.entries(rawInventoryPins).map(([filename, value]: [string, any]) => ({
+    const inventoryPins: Row[] = Array.isArray(rawInventoryPins) ? rawInventoryPins : Object.entries(rawInventoryPins).map(([filename, value]: [string, unknown]) => ({
       path: `vocabflow-dataset/workspaces/full-source-inventory-dedupe/${filename}`,
       corpus: filename.startsWith("oxford") ? "OXFORD_5000" : filename.startsWith("vocab4600") ? "ENGLISH_VOCAB_4600" : undefined,
-      sha256: typeof value === "string" ? value : value?.sha256,
+      sha256: typeof value === "string" ? value : value && typeof value === "object" && "sha256" in value ? value.sha256 : undefined,
     }));
     for (const pin of inventoryPins) pinInventory(pin);
     const sourceEvidenceReferences: Row[] = provenance.sourceEvidenceReferences ?? [];
@@ -420,6 +421,7 @@ function buildEvents() {
         artifactCache.set(relativePath, cached);
       } else if (cached.bytesSha !== ref.sha256) throw new Error(`REVIEW_CANDIDATE_ARTIFACT_PIN_CONFLICT:${relativePath}`);
       const pointerParts = String(ref.jsonPointer ?? "").split("/").slice(1).map((part: string) => part.replaceAll("~1", "/").replaceAll("~0", "~"));
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Version-pinned historical artifact/SQL adapter; runtime target and source-pin validation remain mandatory.
       let candidate: any = cached.records;
       let index = Number.NaN;
       const recordParts = pointerParts[0] === "records" ? pointerParts.slice(1) : pointerParts;

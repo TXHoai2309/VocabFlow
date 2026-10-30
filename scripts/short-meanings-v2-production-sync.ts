@@ -2,7 +2,6 @@ import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import postgres from "postgres";
 import { authorizeProductionRelease, parseProductionReleaseArgs, resolveProductionConnection } from "./production-release-safety";
 import { assertPostConnectIdentity, openSql } from "./db-core";
 

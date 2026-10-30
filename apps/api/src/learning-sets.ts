@@ -1,3 +1,5 @@
+import { vocabularyProjectionTable } from "./vocabulary-dataset-version";
+import { editorialPreviewDisplayForm, editorialPreviewWord, editorialPreviewExampleEn, editorialPreviewField, editorialPreviewMeaning, editorialPreviewMeaningStatus, editorialPreviewTags } from "./editorial-local-preview";
 import { sql, type SQL } from "drizzle-orm";
 import { topicClosure } from "./topic-policy";
 import {
@@ -117,7 +119,7 @@ function toSummary(row: SummaryRow, datasetVersion: VocabularyDatasetVersion): L
     sortOrder: safeInteger(row.sort_order),
     vocabularyCount: safeInteger(row.vocabulary_count),
     ...(topics ? { topics } : {}),
-    ...(datasetVersion === "v2" ? {
+    ...(datasetVersion !== "legacy" ? {
       studyScopeAvailable: true,
       ...(String(row.slug).startsWith("v2-cefr-") ? { classificationStatus: "SOURCE_VERIFIED" as const } : {}),
       ...(String(row.slug).startsWith("v2-domain-") ? { classificationStatus: "INFERRED_REVIEWABLE" as const } : {})
@@ -169,9 +171,9 @@ function toVocabulary(row: VocabularyRow): VocabularyDto {
     ...(row.display_form ? { displayForm: String(row.display_form) } : {}),
     ...(row.part_of_speech ? { partOfSpeech: String(row.part_of_speech) } : {}),
     ...(row.content_hash ? { contentHash: String(row.content_hash) } : {}),
-    ...(row.content_review_status ? { contentReviewStatus: String(row.content_review_status) } : {}),
-    ...(row.editorial_status ? { editorialStatus: String(row.editorial_status) } : {}),
-    ...(row.rights_status ? { rightsStatus: String(row.rights_status) } : {}),
+    ...(row.content_review_status === "PASS" ? { contentReviewStatus: "PASS" as const } : {}),
+    ...(row.editorial_status === "DRAFT" ? { editorialStatus: "DRAFT" as const } : {}),
+    ...(row.rights_status === "UNKNOWN_REVIEW_REQUIRED" ? { rightsStatus: "UNKNOWN_REVIEW_REQUIRED" as const } : {}),
     ...(developmentMedia ? { developmentMedia } : {})
   });
   if (!parsed.success) throw new LearningSetServiceError("INTERNAL_ERROR", 500);
@@ -283,11 +285,11 @@ export function createLearningSetService(database: LearningSetDatabase, options:
         const summary = await requireSet(database, learningSetId, datasetVersion);
         const result = await database.execute(sql`
           SELECT v.id,
-                 v.word,
+                 ${editorialPreviewWord} AS word,
                  v.ipa,
                  COALESCE(v.vietnamese_override, v.vietnamese) AS vietnamese,
                  v.definition_en,
-                 v.example_en,
+                 ${editorialPreviewExampleEn} AS example_en,
                  CASE WHEN v.image_quarantined THEN NULL ELSE v.image_url END AS image_url,
                  v.audio_url,
                  v.topic,
@@ -295,22 +297,22 @@ export function createLearningSetService(database: LearningSetDatabase, options:
                  v.enabled,
                  v.content_version,
                  md.cefr,
-                 md.tags,
+                 ${editorialPreviewTags} AS tags,
                  md.source_provenance->'developmentLearningMetadataV1'->'assignments' AS metadata_assignments,
                  md.proposal_key AS master_sense_identity,
                  md.source_provenance->'masterV2Identity'->>'sourceMeaningVi' AS source_meaning_vi,
-                 sm.short_meaning_vi AS short_meaning_vi, sm.validation_status AS short_meaning_status,
-                 md.source_provenance->'masterV2Identity'->>'displayForm' AS display_form,
+                 ${editorialPreviewMeaning} AS short_meaning_vi, ${editorialPreviewMeaningStatus} AS short_meaning_status,
+                 ${editorialPreviewDisplayForm} AS display_form,
                  md.part_of_speech,
                  md.content_sha256 AS content_hash,
                  md.content_review_decision AS content_review_status,
                  md.editorial_status,
                  md.rights_status,
-                 md.development_media,
+                 ${editorialPreviewField("media", sql`md.development_media`)} AS development_media,
                  lsi.sort_order
           FROM "${sql.raw(APP_SCHEMA)}"."learning_set_items" lsi
           JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = lsi.vocabulary_id
-          LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
+          LEFT JOIN ${vocabularyProjectionTable(datasetVersion)} md ON md.vocabulary_id = v.id
           LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_short_meanings" sm
             ON sm.vocabulary_id = v.id AND sm.source_content_hash = md.content_sha256 AND sm.validation_status = 'VERIFIED'
           WHERE lsi.learning_set_id = ${learningSetId}
@@ -336,7 +338,7 @@ export function createLearningSetService(database: LearningSetDatabase, options:
 
     async listForLearner(userId, learnerId) {
       const ownership = await requireOwnership(database, userId, learnerId);
-      if (datasetVersion === "v2") return [];
+      if (datasetVersion !== "legacy") return [];
       try {
         const result = await database.execute(sql`
           SELECT ls.id,
@@ -380,7 +382,7 @@ export function createLearningSetService(database: LearningSetDatabase, options:
 
     async assign(userId, learnerId, learningSetId) {
       await requireOwnership(database, userId, learnerId);
-      if (datasetVersion === "v2") throw new LearningSetServiceError("LEARNING_SET_NOT_FOUND", 404);
+      if (datasetVersion !== "legacy") throw new LearningSetServiceError("LEARNING_SET_NOT_FOUND", 404);
       try {
         await requireSet(database, learningSetId, datasetVersion);
         const result = await database.execute(sql`
@@ -407,7 +409,7 @@ export function createLearningSetService(database: LearningSetDatabase, options:
 
     async unassign(userId, learnerId, learningSetId) {
       await requireOwnership(database, userId, learnerId);
-      if (datasetVersion === "v2") throw new LearningSetServiceError("LEARNING_SET_NOT_FOUND", 404);
+      if (datasetVersion !== "legacy") throw new LearningSetServiceError("LEARNING_SET_NOT_FOUND", 404);
       try {
         await requireSet(database, learningSetId, datasetVersion);
         await database.execute(sql`

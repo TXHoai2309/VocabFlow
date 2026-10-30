@@ -1,3 +1,5 @@
+import { vocabularyProjectionTable, OWNER_LOCAL_CATALOG_ID, OWNER_PRODUCTION_CATALOG_ID, OWNER_PRODUCTION_SOURCE } from "./vocabulary-dataset-version";
+import { localEditorialPilot } from "./editorial-local-preview";
 import { topicMembership } from "./topic-policy";
 import { performance } from "node:perf_hooks";
 import { sql } from "drizzle-orm";
@@ -19,8 +21,8 @@ export async function readPublicLearningIndex(database: VocabularyDatabase, data
   };
   const [vocabularyResult, setsResult, topicsResult] = await Promise.all([
     query("index_words", sql`
-      SELECT v.id, v.level, md.cefr FROM "${sql.raw(APP_SCHEMA)}".vocabularies v
-      LEFT JOIN "${sql.raw(APP_SCHEMA)}".master_v2_development_projections md ON md.vocabulary_id = v.id
+      SELECT v.id, v.level, v.source_dataset, md.cefr, ${datasetVersion === "owner-local" || datasetVersion === "owner-production" ? sql`md.tags` : sql`CASE WHEN ${localEditorialPilot} THEN '["EDITORIAL:FIRST_WORDS"]'::jsonb ELSE '[]'::jsonb END`} AS tags FROM "${sql.raw(APP_SCHEMA)}".vocabularies v
+      LEFT JOIN ${vocabularyProjectionTable(datasetVersion)} md ON md.vocabulary_id = v.id
       WHERE v.enabled = true AND ${vocabularyDatasetPredicate("v", datasetVersion)} ORDER BY v.id
     `),
     query("index_sets", sql`
@@ -42,7 +44,8 @@ export async function readPublicLearningIndex(database: VocabularyDatabase, data
       GROUP BY t.id ORDER BY t.sort_order, t.id
     `)
   ]);
-  const vocabulary = rows<{ id: number; level: string | null; cefr?: string | null }>(vocabularyResult).map((row) => ({ id: Number(row.id), level: row.level, ...(row.cefr ? { cefr: row.cefr } : {}) }));
+  const wordRows = rows<{ id: number; level: string | null; source_dataset?: string; cefr?: string | null; tags?: string[] }>(vocabularyResult);
+  const vocabulary = wordRows.map((row) => ({ id: Number(row.id), level: row.level, ...(row.cefr ? { cefr: row.cefr } : {}), ...(row.tags?.length ? { tags: row.tags } : {}) }));
   const enabledIds = new Set(vocabulary.map((word) => word.id));
   const collection = (row: CollectionRow) => ({
     id: Number(row.id), slug: row.slug, name: row.name, description: row.description,
@@ -51,6 +54,9 @@ export async function readPublicLearningIndex(database: VocabularyDatabase, data
     vocabularyIds: [...new Set((typeof row.vocabulary_ids === "string" ? JSON.parse(row.vocabulary_ids) as number[] : row.vocabulary_ids).map(Number))].filter((id) => enabledIds.has(id))
   });
   return publicLearningIndexSchema.parse({ vocabulary,
+    ...(datasetVersion === "owner-local" ? { catalogIdentity: OWNER_LOCAL_CATALOG_ID } : {}),
+    ...(datasetVersion === "owner-production" && wordRows.length === 1547 && wordRows.every(row => row.source_dataset === OWNER_PRODUCTION_SOURCE)
+      ? { catalogIdentity: OWNER_PRODUCTION_CATALOG_ID } : {}),
     learningSets: rows<CollectionRow>(setsResult).map((row) => {
       const set = collection(row);
       return { ...set, grade: row.grade ?? null, vocabularyCount: set.vocabularyIds.length };

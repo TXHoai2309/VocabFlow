@@ -1,5 +1,122 @@
 # VocabFlow Project Decisions
 
+## Production owner publication — owner direction, 2026-10-30
+
+Owner authorizes replacement of Production vocabulary with the selected
+547/500/500packages and old Cloudinary vocabulary retirement, prioritizing
+Production before Development. Verify provider identity and preserve source-
+record runtime identity rather than assuming local IDs match. Preserve accounts,
+settings/XP and retained-source progress; remove retired lexical references.
+
+Use a separate honest OWNER_SELECTED_PUBLICATION projection and compatibility
+view, leaving existing V2 content readable until the atomic content transaction.
+Deploy compatible code first. Publish exact new media before switching data;
+verify the live catalog before deleting inventoried backed-up old assets.
+Keep shared Development assets until its deferred cutover and preserve unrelated
+resources. Owner authorization does not manufacture independent Master PASS.
+AGENTS13and immutable-main/CIrelease boundaries remain applicable; no fake clean
+source/SHA/gates or silent manual deployment bypass. Current work is prepared,
+not a completed Production cutover. [Evidence](plans/editorial-refresh-2026-10-28/owner-production-replacement-2026-10-30.md).
+
+## Owner-selected catalog replacement — 2026-10-30
+
+Explicit owner instruction supersedes reviewing the old catalog in place:
+keep exactly the three Muse packages (547/500/500) and retire other local
+vocabulary. Back up and rehearse restoration first. Retain the 905 referenced
+runtime IDs/progress, allocate 642 local IDs above the previous maximum, rebuild
+lexical collections and remove only retired lexical history. Preserve auth,
+settings, foundation08/09, protected metadata and migration history. Historical
+source/media packages remain immutable on disk.
+
+Use a separate owner-local projection with OWNER_SELECTED_LOCAL review and
+owner-attested media use, keeping WordNet/reused text attribution. Never write
+fake canonical allocations or independent Master PASS. Explicit owner-local
+mode requires exact Development markers and loopback DB. Hash-pinned media
+runs in the local Node entry only. Guest catalog replacement uses a versioned
+backup and Web Lock before pruning; offline failure must retain existing state.
+No deployment/remote replacement or fresh generation is implied. See
+[scope, counts and evidence](plans/editorial-refresh-2026-10-28/owner-local-catalog-replacement-2026-10-30.md).
+
+## Dedicated local editorial preview — 2026-10-29
+
+Owner authorized ticket07 after accepting the media gallery. Use a reversible
+source-provenance namespace in the existing development projection for this
+bounded30-Sense pilot, retaining source columns and existing progress identity.
+The original source hash and separate integration-plan hash remain distinct.
+Only matching source hashes in vocabflow_dev enable the local presentation;
+Node development alone serves its hash-pinned media. This is not the future
+canonical placement/variant model or commercial media acceptance. Same Sense
+uses one presentation across these local sets; per-collection variants need a
+separate model.05/06 final gates and08–15 remain open. See
+[ticket07 contract/evidence](plans/editorial-refresh-2026-10-28/ticket-07-local-pilot.md).
+
+
+## Whole-corpus editorial campaign — accepted scope (recorded 2026-10-29)
+
+The owner accepted reviewing the entire corpus, retaining correct material and
+selectively correcting errors/missing fields rather than rewriting everything.
+The expansion planning target is approximately 600 genuinely new words/lexical
+phrases, with a 500–800 envelope after duplicate/sense checks, plus approximately
+25–35 additional curated learning sets using suitable existing and new Senses.
+This is not an assertion that 600 exact missing entries have been identified.
+
+The owner requested installing to-tickets into the repo; the original 1.3.1
+skill was copied unchanged. The [campaign analysis](plans/editorial-refresh-2026-10-28/README.md)
+records a draft coordination contract. The owner subsequently approved the
+15-ticket breakdown/blocking edges and selected local Markdown publication on
+29 October. Tickets are published one file each with status `planned`; this
+approval explicitly does not start implementation. The tracker is configured
+for this campaign only. Voice/image/provider, implementation contracts,
+generation spend and content publication remain separate decisions.
+No application schema, runtime content, learner history or release changed.
+
+The owner then explicitly requested “giờ làm 01 trước”. This authorizes only
+the read-only local/offline baseline and filesystem handoff of ticket 01.
+It does not extend execution to 02–15 or authorize DB writes/provider calls.
+The [completed baseline report](plans/editorial-refresh-2026-10-28/ticket-01-baseline.md)
+records the selected immutable checkpoint, ID/source/media crosswalk and known
+limits. Existing identity policy remains: keep runtime IDs, leave unverified
+Master mappings pending, and do not assign canonical identities from words/hashes.
+
+The owner subsequently requested tickets02 and03 together. This authorizes the
+recoverable local schema compatibility work, including existing reviewed
+migrations0019–0021 through the trusted executor, and the bounded mock-only
+manifest/receipt canary. Both are complete; no remote operation, provider call,
+new vocabulary/media, pilot authoring or content activation followed from this
+authorization. Production provider/voice/style/item/rights decisions remain
+separate. See [02 evidence](plans/editorial-refresh-2026-10-28/ticket-02-local-preview.md)
+and [03 evidence](plans/editorial-refresh-2026-10-28/ticket-03-manifest-canary.md).
+
+The subsequent continuation request authorizes the next frontier04: offline
+pilot curation and source-bound child presentations, with independent draft
+review and media preflight. [04](plans/editorial-refresh-2026-10-28/ticket-04-frozen-pilot.md)
+is complete. Its four themes are draft collection groups, not a decision to
+mint canonical topics or infer grades from CEFR. Existing source Sense/runtime
+identities and examples remain intact; new sentences use draft references until
+canonical Example creation is reviewed. This does not select a provider/voice,
+authorize05/06 generation, approve content for publication or clear new assets.
+
+## Content reuse and school placements — owner decisions (2026-10-28)
+
+The owner accepted reusing suitable existing Senses and authoring missing
+content, with letters/letter names/basic sounds treated as separate introductory
+content rather than English articles. The owner also accepted one Sense across
+multiple school grades/sets with shared identity and progress; child-appropriate
+wording/examples are curated in the pedagogical context. See ADR-0002 and the
+[local-only audit](audits/local-content-audit-2026-10-28/README.md).
+No generated-content activation, provider spend, database migration or history
+rewrite is authorized by these decisions.
+
+The owner subsequently explicitly confirmed these nine learner-facing levels:
+Làm quen chữ và âm; Từ đầu tiên; Câu đầu tiên; Sơ cấp (A1); Cơ bản (A2);
+Trung cấp (B1); Trên trung cấp (B2); Nâng cao (C1); Chuyên sâu (C2).
+Unclassified is a separate state. The three introductory groups require curated
+content and are not automatic Pre-A1/unknown-CEFR mappings. School grade remains
+supplementary. This supersedes the earlier four/seven-level and grade-primary
+proposals. The first discovery implementation is bounded by US-63; unpopulated
+introductory options stay honestly unavailable until a reviewed authoring model
+exists. There is no mandatory progression lock or proficiency assessment.
+
 ## Learning experience improvement — owner decisions (2026-10-21)
 
 Owner explicitly accepted all three proposed choices after the source audit.
@@ -734,3 +851,45 @@ evidence condition is met and the affected source document is updated.
   and the CP02 baseline comparison recorded in `docs/ai-progress.md`.
 - Revisit only if the owner changes the offline DRAFT publication contract or
   the repository adopts a higher-priority immutable validation requirement.
+
+## 2026-10-29 — Owner prioritizes vocabulary expansion in one session
+
+Owner redirects the campaign from 08/09 runtime proposals to 500–600 lexical
+additions with topic/level metadata and complete media bindings. This chat
+owns authoring, examples, translations and JSON. Muse only produces requested
+images and TTS. No additional worker chats or new learning UI are authorized
+by this continuation. The prepared 550 candidates remain editorial drafts;
+canonical identity reconciliation, actual media review and any import are
+separate unfinished steps. Historical pilot acceptance does not accept these
+new candidates. See plans/editorial-refresh-2026-10-28/expansion-550-production.md.
+
+## 2026-10-29 — Additional 500-entry basic collection
+
+Owner selects500 basic entries for the next collection. Preserve exact existing
+senses and progress identities where available, author missing senses and
+context separately, and distinguish collection size from net new vocabulary.
+The preceding547-item export remains independent. This chat owns text and
+bindings; Muse owns only requested media. Proposed basic-track levels do not
+overwrite source CEFR or imply school grades. Continue the existing media
+filename/hash/receipt contract in a separate basic-500 media root. No new
+learning UI, extra chats, or DB import is implied by authoring/media generation.
+## 2026-10-30 — Owner resumes the bounded foundation08/09 local wave
+
+Direct instructions “vậy làm luôn cái đó đi” and “làm tiếp cho tôi” authorize
+the concrete local08/09contract after its previous deferral. One session owns
+typed UUID foundation identities/progress,additive local persistence,new
+same-origin local endpoints and media work order. Reuse existing visual system
+and5/10/20/30capacity control;no independent daily foundation quota,lexical
+progress migration,word-goal increment,new vocabulary or public deployment.
+
+Node Development entry alone installs the foundation authority;Worker and
+Production do not expose it. Existing Better Auth/household boundary remains
+the authority. New foundation items never occupy vocabulary integer IDs.
+Guest foundation state has its own validated Web-Locks namespace,with durable
+save before UI advance. Account state remains transactionally server-authoritative.
+
+Muse supplied18name/utterance clips but cannot produce isolated phonemes via
+its plain-text backend. Six sound targets remain pending and unassessable;
+no paid provider switch or fake phoneme substitute. New audio remains pending
+listening acceptance;old05/06approval is not assigned to new bytes. Evidence:
+`plans/editorial-refresh-2026-10-28/foundation-08-09-execution-2026-10-30.md`.

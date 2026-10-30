@@ -19,6 +19,7 @@ const ACCEPTED_INVENTORY_FINGERPRINT = "58928e98845e326f8d9a268aa160c867443e8497
 const TARGET = Object.freeze({ projectId: "shy-hill-72364426", branchId: "br-square-grass-b3af0nte", databaseName: "neondb", endpointId: "ep-small-shadow-b3ny4993" });
 const BATCH_PREFIX = "vocabflow-master-v2-development-pending-content-artifact-recovery-v1:";
 let activePhase = "START";
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- Version-pinned historical artifact/SQL adapter; runtime target and source-pin validation remain mandatory.
 type Row = Record<string, any>;
 type BundleItem = {
   proposalKey: string;
@@ -230,6 +231,7 @@ async function runtimeCounts() {
   activePhase = "RUNTIME_COUNTS";
   const { sql } = await connectVerified("runtime");
   try {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Version-pinned historical artifact/SQL adapter; runtime target and source-pin validation remain mandatory.
     return await sql.begin(async (tx: any) => {
       await tx.unsafe("SET TRANSACTION ISOLATION LEVEL REPEATABLE READ READ ONLY");
       const tables = await tx.unsafe("SELECT table_name FROM information_schema.tables WHERE table_schema = 'vocabflow_app' AND table_type = 'BASE TABLE' ORDER BY table_name");
@@ -244,6 +246,7 @@ async function runtimeCounts() {
   } finally { await sql.end({ timeout: 5 }); }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- Version-pinned historical artifact/SQL adapter; runtime target and source-pin validation remain mandatory.
 async function stagingSummary(tx: any) {
   activePhase = "STAGING_STATUS_QUERY";
   const [statusRows, effective] = await Promise.all([
@@ -263,6 +266,7 @@ async function stagingSummary(tx: any) {
   return { statuses, effective: effective[0], media };
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- Version-pinned historical artifact/SQL adapter; runtime target and source-pin validation remain mandatory.
 async function readCandidateRows(tx: any, lock = false): Promise<Row[]> {
   const lockSql = lock ? " FOR UPDATE OF i" : "";
   return tx.unsafe(`SELECT i.proposal_key, i.source_group_key, i.resolution_status, trim(coalesce(i.effective_content_hash, '')) AS effective_content_hash,
@@ -278,7 +282,15 @@ async function readCandidateRows(tx: any, lock = false): Promise<Row[]> {
     WHERE i.resolution_status = 'PENDING_CONTENT_VALIDATION' ORDER BY i.proposal_key${lockSql}`);
 }
 
-async function readBaseline(tx: any) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- Version-pinned historical artifact/SQL adapter; runtime target and source-pin validation remain mandatory.
+async function readBaseline(tx: any): Promise<{
+  identityCount: number;
+  statuses: Awaited<ReturnType<typeof stagingSummary>>["statuses"];
+  effectiveDraftIntegrity: Awaited<ReturnType<typeof stagingSummary>>["effective"];
+  pendingVersionIdentities: number;
+  mediaCounts: Awaited<ReturnType<typeof stagingSummary>>["media"];
+  runtimeCounts?: Record<string, number>;
+}> {
   activePhase = "READ_STAGING_SUMMARY";
   const snapshot = await stagingSummary(tx);
   activePhase = "READ_IDENTITY_COUNT";
@@ -402,6 +414,7 @@ async function plan() {
   const { sql } = await connectVerified("bootstrap");
   try {
     activePhase = "READ_BASELINE";
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Version-pinned historical artifact/SQL adapter; runtime target and source-pin validation remain mandatory.
     const data = await sql.begin(async (tx: any) => {
       await tx.unsafe("SET TRANSACTION ISOLATION LEVEL REPEATABLE READ READ ONLY");
       const baseline = await readBaseline(tx);
@@ -450,6 +463,7 @@ function readBundle() {
   return bundle;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- Version-pinned historical artifact/SQL adapter; runtime target and source-pin validation remain mandatory.
 async function currentMediaCounts(tx: any) {
   return (await tx<Row[]>`SELECT
     (SELECT count(*)::int FROM ${tx.unsafe(`${SCHEMA}.media_assets_v2`)} WHERE manifest_version = 'english-vocabulary-4600-media-v2.0.0') AS assets,
@@ -468,6 +482,7 @@ async function apply() {
   let result: Row;
   try {
     activePhase = "APPLY_TRANSACTION";
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Version-pinned historical artifact/SQL adapter; runtime target and source-pin validation remain mandatory.
     result = await sql.begin(async (tx: any) => {
       await tx.unsafe("SET TRANSACTION ISOLATION LEVEL SERIALIZABLE");
       await tx`SELECT pg_advisory_xact_lock(hashtext('vocabflow-master-v2-development-pending-content-artifact-recovery-v1'))`;
@@ -683,6 +698,7 @@ async function exportSnapshot() {
   const { sql } = await connectVerified("bootstrap");
   try {
     activePhase = "SNAPSHOT_READBACK";
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Version-pinned historical artifact/SQL adapter; runtime target and source-pin validation remain mandatory.
     const captured = await sql.begin(async (tx: any) => {
       await tx.unsafe("SET TRANSACTION ISOLATION LEVEL REPEATABLE READ READ ONLY");
       const [identity] = await tx<Row[]>`SELECT current_database() AS database_name, current_user AS role_name,
@@ -754,8 +770,7 @@ async function exportSnapshot() {
       runtimeCountsAtCapture: await runtimeCounts(),
       senses,
     };
-    const stagingFingerprintPayload = { ...payload };
-    delete stagingFingerprintPayload.runtimeCountsAtCapture;
+    const stagingFingerprintPayload = Object.fromEntries(Object.entries(payload).filter(([key]) => key !== "runtimeCountsAtCapture"));
     const snapshotFingerprint = sha256(stable(stagingFingerprintPayload));
     const serialized = `${JSON.stringify({ ...payload, snapshotFingerprint }, null, 2)}\n`;
     const snapshotSha256 = sha256(serialized);

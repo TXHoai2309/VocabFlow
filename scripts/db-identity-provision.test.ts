@@ -26,8 +26,8 @@ describe("canonical identity provisioning", () => {
     expect(identity).toEqual({
       environment: "production",
       provider: "neon",
-      projectId: "shy-hill-72364426",
-      branchId: "br-rough-silence-b3gbqjcb",
+      projectId: "silent-sky-84582895",
+      branchId: "br-cool-sea-a1ifkf95",
       identityVersion: 1,
     });
     const insert = fixture.queries.find(({ text }) => text.includes("INSERT INTO vocabflow_meta.environment_identity"));

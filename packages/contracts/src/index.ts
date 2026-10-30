@@ -1,4 +1,6 @@
 import { z } from "zod";
+import { cefrFilterValues } from "./learning-levels.js";
+export * from "./learning-levels.js";
 
 export const APP_SCHEMA = "vocabflow_app" as const;
 export const MIGRATION_SCHEMA = "drizzle" as const;
@@ -434,7 +436,7 @@ export const learnerVocabularyBrowseQuerySchema = z.object({
   pageSize: vocabularyBrowsePageSizeSchema.default(30),
   q: z.string().trim().max(100).optional(),
   level: vocabularyLevelSchema.optional(),
-  cefr: z.string().regex(/^[ABC][12]$/).optional(),
+  cefr: z.enum(cefrFilterValues).optional(),
   topic: z.string().trim().min(1).max(100).optional(),
   topicId: z.number().int().positive().max(2147483647).optional()
 }).strict();
@@ -861,7 +863,8 @@ export type PublicLearningCatalog = z.infer<typeof publicLearningCatalogSchema>;
 
 /** Scheduling/counting metadata only. Full learning content is always bounded. */
 export const publicLearningIndexSchema = publicLearningCatalogSchema.extend({
-  vocabulary: z.array(z.object({ id: z.number().int().positive(), level: vocabularyLevelSchema.nullable(), cefr: z.string().nullable().optional() }).strict())
+  catalogIdentity: z.string().min(1).optional(),
+  vocabulary: z.array(z.object({ id: z.number().int().positive(), level: vocabularyLevelSchema.nullable(), cefr: z.string().nullable().optional(), tags: z.array(z.string()).optional() }).strict())
 }).strict();
 export type PublicLearningIndex = z.infer<typeof publicLearningIndexSchema>;
 
@@ -872,3 +875,4 @@ export const publicVocabularyBrowseQuerySchema = learnerVocabularyBrowseQuerySch
 }).refine((query) => !(query.learningSetId && query.topicId));
 export type PublicVocabularyBrowseQuery = z.infer<typeof publicVocabularyBrowseQuerySchema>;
 export const publicVocabularyMatchResponseSchema = z.object({ ids: z.array(z.number().int().positive()) }).strict();
+export * from "./foundation.js";

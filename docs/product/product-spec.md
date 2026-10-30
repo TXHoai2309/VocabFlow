@@ -1,5 +1,38 @@
 # VocabFlow Product Specification — Single-account learning
 
+## Owner-selected local vocabulary — 2026-10-30
+
+The owner replaced the dedicated local catalog with the existing 547/500/500
+Muse packages: 1,547 selected lexical entries with existing image, word audio
+and example audio. This is a catalog replacement, with preserved account/settings
+and retained-ID progress; foundation letters/sounds/utterances stay separate.
+FIRST_WORDS requires explicit selection, while A1–C2 use recorded CEFR without
+school-grade conversion. Source attribution remains attached. This local action
+does not imply a remote replacement, new generation or public release.
+
+## Local letters and first utterances — owner scope2026-10-30
+
+For the owner-authorized local pilot,Mức học can open6letters/12distinct name-
+sound activities or12complete utterances. These items are not CEFR vocabulary
+Senses or school-grade assignments and add0new lexical words. Existing setup
+5/10/20/30capacity selects activities/câu without another daily quota. Utterances
+show context before optional answer/audio reveal and explicit self-recall;names
+can be practised without graded progress while media acceptance is pending.
+Six sounds missing provider-compatible audio cannot start listening assessment.
+Typed foundation progress is independent of lexical progress,word goals and
+collection placement. This bounded extension is local only,not public release
+or authorization to expand to26letters. See the current08/09execution contract.
+
+## Nine learning levels (US-63, owner confirmed 2026-10-28)
+
+Vocabulary discovery prioritizes nine learner-facing levels: introductory
+letters/sounds, first words, first utterances, then named A1–C2 groups. School
+grade is supplementary; age suitability and proficiency remain independent.
+All and Unclassified are distinct choices. Unknown CEFR never means introductory
+content. The three introductory groups require curated content and are shown
+unavailable while no such content is published. There is no forced progression
+or change to the scheduler. See [US-63](../stories/US-63-nine-learning-levels.md).
+
 ## Flashcard display preferences (US-60, 2026-10-21)
 
 Each learner may choose how much help a flashcard shows. `SELF_RECALL` is the

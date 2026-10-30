@@ -1,0 +1,146 @@
+{
+  "artifactType": "TICKET_04_FROZEN_PILOT_RESULT",
+  "schemaVersion": 1,
+  "ticketId": "04",
+  "date": "2026-10-29",
+  "status": "COMPLETE_OFFLINE_DRAFT_ONLY",
+  "authorization": "Owner requested continuation after tickets01-03; execute next frontier04 as a source-bound offline pilot draft only.",
+  "batchId": "ef343cdf-43af-42e1-9bdc-6fc64ba87e99",
+  "baseline": {
+    "rootRelative": "vocabflow-dataset/workspaces/editorial-refresh-20261028/baseline-v2",
+    "manifestByteSha256": "eef748df5dda27086c19f071ad6e3601f474b4494e07822fd844eda75f6365b2"
+  },
+  "draftRootRelative": "vocabflow-dataset/workspaces/editorial-refresh-20261028/pilot-r0001",
+  "manifest": {
+    "path": "vocabflow-dataset/workspaces/editorial-refresh-20261028/pilot-r0001/manifest-r0001.json",
+    "byteSha256": "17bea1e964a0003a000d77a64d0899c61a473bc7068e60ccf9b4bab5523400d1",
+    "byteLength": 486840
+  },
+  "draftSeal": {
+    "path": "vocabflow-dataset/workspaces/editorial-refresh-20261028/pilot-r0001/draft-seal.json",
+    "byteSha256": "dcbff0126b8c401dea6e1dc76aab62d44b57a89b39a460c4c52f86fbc365911a",
+    "byteLength": 5413
+  },
+  "readableDraftRelative": "vocabflow-dataset/workspaces/editorial-refresh-20261028/pilot-r0001/READABLE-DRAFT.md",
+  "independentReview": {
+    "status": "PASS_DRAFT_ONLY",
+    "reviewerIdentity": "/root/ticket04_independent_review",
+    "reviewedItems": 30,
+    "unresolvedBlockingFindings": 0,
+    "receipt": {
+      "path": ".vocabflow-local/editorial-refresh-20261028/ticket04-review/independent-review-r0001.json",
+      "byteSha256": "e72064c0d06f809b9413dcb86b3d3bc70b30a7c9427755cdc65d537ad733b5e3",
+      "byteLength": 18583
+    },
+    "inputPinsVerified": 9,
+    "humanApproval": "PENDING_OWNER_REVIEW"
+  },
+  "counts": {
+    "reusedExistingV2Senses": 30,
+    "newLexemes": 0,
+    "newSenses": 0,
+    "newWords": 0,
+    "newBilingualExampleDrafts": 30,
+    "themes": 4,
+    "proposedGrade1": 27,
+    "proposedGrade2": 30,
+    "localA1": 25,
+    "localUnclassified": 5,
+    "mediaSlots": 90,
+    "omittedImages": 5,
+    "potentialMediaOutputs": 85,
+    "imageSlotsWithReuseCandidates": 6,
+    "wordAudioSlotsWithReuseCandidates": 11,
+    "exactNewExampleAudioBindings": 0,
+    "candidateMediaFiles": 18,
+    "candidateMediaBytes": 321435
+  },
+  "potentialNewOutputs": {
+    "ifAllEligibleCandidatesPass": 68,
+    "ifNoReusePasses": 85,
+    "note": "Planning only, excludes retries, not an executable queue or quote."
+  },
+  "coverage": {
+    "runtimeRowsScanned": 7341,
+    "reviewQueueEntriesScanned": 7320,
+    "oxfordRecordsScanned": 5004,
+    "vocab4600RecordsScanned": 4673,
+    "deferredTargets": 6,
+    "verifiedNewWordGaps": 0,
+    "aliasRegistryComplete": false
+  },
+  "handoff": {
+    "rootRelative": ".vocabflow-local/editorial-refresh-20261028/ticket04-handoff-v1",
+    "packageManifest": {
+      "path": ".vocabflow-local/editorial-refresh-20261028/ticket04-handoff-v1/package-manifest.json",
+      "byteSha256": "16b07298fa7096d2bbd3ea1b92b7415daa758a135aa4672919adafb898fce786",
+      "byteLength": 6511
+    },
+    "pinnedPayloadFiles": 30,
+    "includesCandidateMediaBytes": true,
+    "wholeCorpusReplayRequiresSeparateTicket01Baseline": true,
+    "receivingWorkspaceVerification": "PASS"
+  },
+  "verification": {
+    "guardTests": {
+      "passed": 11,
+      "failed": 0,
+      "skipped": 0
+    },
+    "actualPackageRelocation": "PASS",
+    "reviewInputPins": "PASS",
+    "report": {
+      "path": ".vocabflow-local/editorial-refresh-20261028/ticket04-validation-v1/report.json",
+      "byteSha256": "cb976be1a32955b7cbcdde75090bad790a1387a7533a9d7448e48bf23240ed7c",
+      "byteLength": 1651
+    },
+    "toolPins": [
+      {
+        "path": "scripts/editorial-pilot-v1.mjs",
+        "byteSha256": "36566be6d6a2e0863a4f2708621f98e5a843d8247557273f61f149002801b0f1"
+      },
+      {
+        "path": "scripts/editorial-pilot-v1.test.mjs",
+        "byteSha256": "b637b41fea37a1edf7adbe298e7fa1f53e816f37e9d5f16f35912aea587929c4"
+      },
+      {
+        "path": "scripts/editorial-canary-lib-v1.mjs",
+        "byteSha256": "cffe28a0a6a75192c656ce0dcd2ed028e67eed92cd7e8bbc060053fc3d475c04"
+      }
+    ],
+    "handoffChecks": {
+      "status": "PASS",
+      "checks": 65,
+      "links": 59,
+      "pin": {
+        "path": ".vocabflow-local/editorial-refresh-20261028/ticket04-validation-v1/handoff-checks.json",
+        "byteSha256": "1ea5f9a0beb9c6f867847d08020c6f50b38362fa22ad6074f222a78897d00eab",
+        "byteLength": 9987
+      }
+    },
+    "eslint": "PASS",
+    "whitespace": "PASS"
+  },
+  "runtimeEligible": false,
+  "mediaExecutionAllowed": false,
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "providerCalls": 0,
+  "newMediaProduced": 0,
+  "contentActivation": false,
+  "unverifiedMasterIdsRemainNull": true,
+  "otherTicketsStarted": false,
+  "nextTechnicalFrontier": [
+    "05",
+    "06"
+  ],
+  "pending": [
+    "Owner content approval before activation",
+    "Verified Master identity bridge",
+    "Runtime placement/item contract and import at07",
+    "Media style/provider/locale/voice/phoneme configuration",
+    "Actual image/listening and applicable rights/delivery review",
+    "Media receipt adapter and new provider work orders",
+    "Off-machine backup destination"
+  ]
+}

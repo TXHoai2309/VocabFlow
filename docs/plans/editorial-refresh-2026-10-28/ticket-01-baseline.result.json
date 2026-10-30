@@ -1,0 +1,88 @@
+{
+  "artifactType": "TICKET_01_BASELINE_RESULT",
+  "schemaVersion": 1,
+  "ticketId": "01",
+  "status": "COMPLETE",
+  "authorization": "Owner requested ticket 01 only on 2026-10-29.",
+  "baselineId": "baseline-v2",
+  "baselineRootRelative": "vocabflow-dataset/workspaces/editorial-refresh-20261028/baseline-v2",
+  "manifestRelative": "vocabflow-dataset/workspaces/editorial-refresh-20261028/baseline-v2/baseline-manifest.json",
+  "manifestByteSha256": "eef748df5dda27086c19f071ad6e3601f474b4494e07822fd844eda75f6365b2",
+  "capturedAtUtc": "2026-10-29T01:46:50.503Z",
+  "counts": {
+    "allRuntimeRows": 7341,
+    "v2Senses": 7311,
+    "legacyRows": 30,
+    "distinctV2RuntimeDisplayStrings": 6114,
+    "distinctV2CanonicalHeadwords": 5798,
+    "runtimeDisplayDiffersFromCanonicalRows": 573,
+    "exactStringDisplayDiffersFromCanonicalRows": 599,
+    "comparisonNormalization": "NFKC_TRIM_LOWERCASE",
+    "verifiedMasterSenseMappings": 0,
+    "examples": 7313,
+    "examplesWithExistingKey": 5913,
+    "reviewShards": 148,
+    "reviewRowsAssignedExactlyOnce": 7341,
+    "targetPlanningStrings": 355,
+    "targetStringsWithExactCandidates": 262,
+    "targetStringsRequiringFurtherSearch": 93,
+    "learningSets": 15,
+    "learningSetsWithV2": 10,
+    "historicalPassReceiptBindingsVerified": 7311,
+    "mediaAssets": 13977,
+    "frozenMediaBindings": 15328
+  },
+  "cefr": {
+    "local": {
+      "A1": 1008,
+      "B2": 1424,
+      "A2": 905,
+      "UNCLASSIFIED": 1772,
+      "C1": 1462,
+      "B1": 740
+    },
+    "offlineEnrichment": {
+      "A1": 1017,
+      "B2": 1580,
+      "A2": 929,
+      "C2": 606,
+      "C1": 1778,
+      "B1": 784,
+      "UNCLASSIFIED": 617
+    },
+    "labelsAdded": 1155,
+    "labelsChanged": 0,
+    "secondarySourceDisagreements": 103,
+    "applied": false
+  },
+  "evidenceClosure": {
+    "currentContentAndOperationalInputs": "PACKAGED_AND_BYTE_PINNED",
+    "historicalPrimaryArchiveReplay": "PARTIAL_NOT_REPLAYED",
+    "oewnDerivedSenses": 573,
+    "note": "OEWN archive/member/record claims remain preserved in queue/provenance. Packaging current content and source inventories is not a fresh replay of every historical raw archive or source record."
+  },
+  "verification": {
+    "frozenBaseline": "PASS",
+    "guardTests": {
+      "passed": 9,
+      "failed": 0
+    },
+    "independentStructuralReview": "PASS",
+    "portableArchive": "PASS",
+    "handoffLinks": "PASS_NEW_LINKS",
+    "historicalIgnoredDatasetLinksAlreadyInHEAD": 59
+  },
+  "handoff": {
+    "archiveRelative": ".vocabflow-local/editorial-refresh-20261028/handoff/baseline-v2-eef748df5dda27086c19f071ad6e3601f474b4494e07822fd844eda75f6365b2.zip",
+    "receiptRelative": ".vocabflow-local/editorial-refresh-20261028/handoff/baseline-v2-eef748df5dda27086c19f071ad6e3601f474b4494e07822fd844eda75f6365b2.receipt.json",
+    "archiveByteSha256": "144c8a01d7d1754cb0af66ab58438b913e6cdda30c5642159d8c142a6f19806b",
+    "archiveByteLength": 665093401,
+    "verifiedEntries": 14045,
+    "verifiedMediaAssets": 13977
+  },
+  "databaseWrites": 0,
+  "newVocabularyAuthored": 0,
+  "providerCalls": 0,
+  "contentActivation": false,
+  "otherTicketsAuthorized": false
+}

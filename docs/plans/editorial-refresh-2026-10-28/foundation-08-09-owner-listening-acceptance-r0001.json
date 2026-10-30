@@ -1,0 +1,347 @@
+{
+  "artifactType": "OWNER_FOUNDATION_08_09_AUDIO_LISTENING_ACCEPTANCE",
+  "date": "2026-10-30",
+  "authority": "Direct owner message in this chat",
+  "verbatimOwnerStatement": "tôi nghe ok rồi mà chưa có hình ảnh hả",
+  "context": "Owner listened to the linked foundation08/09 gallery containing18actual audio clips and6missing sound slots,then confirmed the audio sounds OK and asked about images.",
+  "decision": "OWNER_LISTENING_ACCEPTED_18_EXISTING_CLIPS",
+  "scope": "Accept the existing6letter-name and12utterance audio. No6isolated sound file exists or is accepted;no image generation is authorized by this record.",
+  "sourceDataset": {
+    "path": "vocabflow-dataset/workspaces/editorial-refresh-20261030/foundation08-09-r0001/dataset-selected-r0001.json",
+    "sha256": "8b769379d99fba883e063fad6918589cfe823f6c740d5b43881bbfd4a3de31c7",
+    "byteLength": 92263
+  },
+  "sourceSeed": {
+    "path": "vocabflow-dataset/workspaces/editorial-refresh-20261030/foundation08-09-r0001/runtime-seed-r0001.json",
+    "sha256": "d850dd02ba005942611c19db9cc53d001cf447798808c5c6490dd51a8081542f",
+    "byteLength": 34946
+  },
+  "acceptedFiles": [
+    {
+      "targetId": "01a18af2-202f-75bc-a1ad-9de08e4e752d",
+      "draftRef": "t09:utterance:01",
+      "jobId": "01a18af2-2030-72d9-a78c-63e1d96b2d3b",
+      "kind": "UTTERANCE_TARGET_AUDIO",
+      "exactText": "Hello.",
+      "targetIpa": null,
+      "asset": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/assets/audio/b40c7acfb16dd4a33a38c8a8a9cd13ee8e0db86af864c2164e2204708f14af75.mp3",
+        "sha256": "b40c7acfb16dd4a33a38c8a8a9cd13ee8e0db86af864c2164e2204708f14af75",
+        "byteLength": 6373
+      },
+      "receipt": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/receipts/01a18af2-2030-72d9-a78c-63e1d96b2d3b.json",
+        "sha256": "4692c7a71d80a034e34925b8546a35ca1be45f97f9088e4a01db03a49ad9df2f",
+        "byteLength": 2214
+      }
+    },
+    {
+      "targetId": "01a18af2-2031-76ef-abab-6e226c55b9ab",
+      "draftRef": "t09:utterance:02",
+      "jobId": "01a18af2-2031-76ef-abab-73d9beb90d26",
+      "kind": "UTTERANCE_TARGET_AUDIO",
+      "exactText": "Good morning.",
+      "targetIpa": null,
+      "asset": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/assets/audio/4fba7baa8ecc90ac9adc1c1e0a84b7e1f80d0949796d918c2016197d1e5595f5.mp3",
+        "sha256": "4fba7baa8ecc90ac9adc1c1e0a84b7e1f80d0949796d918c2016197d1e5595f5",
+        "byteLength": 7525
+      },
+      "receipt": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/receipts/01a18af2-2031-76ef-abab-73d9beb90d26.json",
+        "sha256": "a6f797b9c46f2bf66e218d20ffdd3c6e25aa8a37d019d6745497af2fbac25a86",
+        "byteLength": 2246
+      }
+    },
+    {
+      "targetId": "01a18af2-2031-76ef-abab-74cfab8f04d8",
+      "draftRef": "t09:utterance:03",
+      "jobId": "01a18af2-2031-76ef-abab-7b41fa830d40",
+      "kind": "UTTERANCE_TARGET_AUDIO",
+      "exactText": "How are you?",
+      "targetIpa": null,
+      "asset": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/assets/audio/7974ca1fe1c552eebf33d74a322826a6f5c9d04d5c0456bc71016e0934a7824f.mp3",
+        "sha256": "7974ca1fe1c552eebf33d74a322826a6f5c9d04d5c0456bc71016e0934a7824f",
+        "byteLength": 7909
+      },
+      "receipt": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/receipts/01a18af2-2031-76ef-abab-7b41fa830d40.json",
+        "sha256": "3370a913b7966df1f29a4e867557d799e660bf2a4870094ecd02f3a83c90964d",
+        "byteLength": 2229
+      }
+    },
+    {
+      "targetId": "01a18af2-2032-77a5-be7d-f4ee243d35d7",
+      "draftRef": "t09:utterance:04",
+      "jobId": "01a18af2-2032-77a5-be7d-f9bc56aa03cb",
+      "kind": "UTTERANCE_TARGET_AUDIO",
+      "exactText": "I'm fine, thank you.",
+      "targetIpa": null,
+      "asset": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/assets/audio/4830d691ae3d2427cd04e2a2b924364951fdcf99b07986478a5e4454e2c65ac4.mp3",
+        "sha256": "4830d691ae3d2427cd04e2a2b924364951fdcf99b07986478a5e4454e2c65ac4",
+        "byteLength": 12517
+      },
+      "receipt": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/receipts/01a18af2-2032-77a5-be7d-f9bc56aa03cb.json",
+        "sha256": "e519aace63f3a9ea211fb319ffb8835e9682746abe09c4c7cb5a6b849b6e68e2",
+        "byteLength": 2269
+      }
+    },
+    {
+      "targetId": "01a18af2-2033-7433-b107-9fd3855a9589",
+      "draftRef": "t09:utterance:05",
+      "jobId": "01a18af2-2033-7433-b107-a3744bab4baa",
+      "kind": "UTTERANCE_TARGET_AUDIO",
+      "exactText": "Nice to meet you.",
+      "targetIpa": null,
+      "asset": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/assets/audio/a4b432b458525dff85fbe028c68c0845d2c547b8fc28e40636994a5bc2636656.mp3",
+        "sha256": "a4b432b458525dff85fbe028c68c0845d2c547b8fc28e40636994a5bc2636656",
+        "byteLength": 8869
+      },
+      "receipt": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/receipts/01a18af2-2033-7433-b107-a3744bab4baa.json",
+        "sha256": "6647b6199c02e21d8f6eccb68f16b7cafe2e9b0f07b1e4e3553a9d932441fc78",
+        "byteLength": 2259
+      }
+    },
+    {
+      "targetId": "01a18af2-2034-70d6-9377-c0a82e36a5d3",
+      "draftRef": "t09:utterance:06",
+      "jobId": "01a18af2-2034-70d6-9377-c5dd06d1cfe8",
+      "kind": "UTTERANCE_TARGET_AUDIO",
+      "exactText": "Thank you.",
+      "targetIpa": null,
+      "asset": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/assets/audio/70389c41110379d98dd1f528038f7b23feb71437c0f71d1e2c95aea1b07e4ed2.mp3",
+        "sha256": "70389c41110379d98dd1f528038f7b23feb71437c0f71d1e2c95aea1b07e4ed2",
+        "byteLength": 7141
+      },
+      "receipt": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/receipts/01a18af2-2034-70d6-9377-c5dd06d1cfe8.json",
+        "sha256": "3fef9468bbaf662b7c8c27c2f4e4b0fdaeed413c49b66ca0fb3636e96f00638d",
+        "byteLength": 2223
+      }
+    },
+    {
+      "targetId": "01a18af2-2034-70d6-9377-cac4e49915ed",
+      "draftRef": "t09:utterance:07",
+      "jobId": "01a18af2-2034-70d6-9377-ccc9f508416f",
+      "kind": "UTTERANCE_TARGET_AUDIO",
+      "exactText": "You're welcome.",
+      "targetIpa": null,
+      "asset": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/assets/audio/8a575e164064938546fbcd6283470f51bacd4fa62bda40e76d2b7256d3a51338.mp3",
+        "sha256": "8a575e164064938546fbcd6283470f51bacd4fa62bda40e76d2b7256d3a51338",
+        "byteLength": 8101
+      },
+      "receipt": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/receipts/01a18af2-2034-70d6-9377-ccc9f508416f.json",
+        "sha256": "2494dfa223a3e47ba71e51f56d47d5892efd19c02479e098cdfdaa3e1a3069eb",
+        "byteLength": 2255
+      }
+    },
+    {
+      "targetId": "01a18af2-2035-731e-b21f-9615d1d70305",
+      "draftRef": "t09:utterance:08",
+      "jobId": "01a18af2-2035-731e-b21f-991e71341d41",
+      "kind": "UTTERANCE_TARGET_AUDIO",
+      "exactText": "Excuse me.",
+      "targetIpa": null,
+      "asset": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/assets/audio/30b068f4d0a28dcc7ce572b7aa625003ba343f12b24f57de795d238c0875d66a.mp3",
+        "sha256": "30b068f4d0a28dcc7ce572b7aa625003ba343f12b24f57de795d238c0875d66a",
+        "byteLength": 8485
+      },
+      "receipt": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/receipts/01a18af2-2035-731e-b21f-991e71341d41.json",
+        "sha256": "0d20161f8eec0b6a74cea8e87dd1a318aa93abaded89311160057bbdf5156a7c",
+        "byteLength": 2238
+      }
+    },
+    {
+      "targetId": "01a18af2-2035-731e-b21f-9d99c40cb243",
+      "draftRef": "t09:utterance:09",
+      "jobId": "01a18af2-2035-731e-b21f-a37ec0639a0d",
+      "kind": "UTTERANCE_TARGET_AUDIO",
+      "exactText": "Can you help me, please?",
+      "targetIpa": null,
+      "asset": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/assets/audio/92aef9cd0b5b5ae77090fce5ce77fc496ae1f1e6c82dc37ebbeba36cfd88a886.mp3",
+        "sha256": "92aef9cd0b5b5ae77090fce5ce77fc496ae1f1e6c82dc37ebbeba36cfd88a886",
+        "byteLength": 15973
+      },
+      "receipt": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/receipts/01a18af2-2035-731e-b21f-a37ec0639a0d.json",
+        "sha256": "49d58257c82813df37056b567a55e5e6b28b95f906dfcea36cb70c34b94ba69d",
+        "byteLength": 2267
+      }
+    },
+    {
+      "targetId": "01a18af2-2036-777c-92b8-70ccdc92b5cf",
+      "draftRef": "t09:utterance:10",
+      "jobId": "01a18af2-2036-777c-92b8-7610000e37ce",
+      "kind": "UTTERANCE_TARGET_AUDIO",
+      "exactText": "I don't understand.",
+      "targetIpa": null,
+      "asset": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/assets/audio/d4c50013830bc93137b436f33a730691aa694505e5e0ca92deadb4944115f701.mp3",
+        "sha256": "d4c50013830bc93137b436f33a730691aa694505e5e0ca92deadb4944115f701",
+        "byteLength": 12709
+      },
+      "receipt": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/receipts/01a18af2-2036-777c-92b8-7610000e37ce.json",
+        "sha256": "865c08dfbc5fe09db77471e6b06679011066cdecb5d80e9aa4b8d98981b90007",
+        "byteLength": 2251
+      }
+    },
+    {
+      "targetId": "01a18af2-2036-777c-92b8-7add6c6a9562",
+      "draftRef": "t09:utterance:11",
+      "jobId": "01a18af2-2036-777c-92b8-7f10eef1ec1d",
+      "kind": "UTTERANCE_TARGET_AUDIO",
+      "exactText": "Can you say that again, please?",
+      "targetIpa": null,
+      "asset": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/assets/audio/056e2bb484fe85d66f068e22445dc1ddb09f382865347444a803f3163d963f29.mp3",
+        "sha256": "056e2bb484fe85d66f068e22445dc1ddb09f382865347444a803f3163d963f29",
+        "byteLength": 14629
+      },
+      "receipt": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/receipts/01a18af2-2036-777c-92b8-7f10eef1ec1d.json",
+        "sha256": "0356b7a8461da3acd2ebea5bf28a915d9dd51f3f29040e51963f675109c780db",
+        "byteLength": 2303
+      }
+    },
+    {
+      "targetId": "01a18af2-2037-70c6-bcd2-a2ef4d218ce0",
+      "draftRef": "t09:utterance:12",
+      "jobId": "01a18af2-2037-70c6-bcd2-a734e71609ee",
+      "kind": "UTTERANCE_TARGET_AUDIO",
+      "exactText": "Can you speak more slowly, please?",
+      "targetIpa": null,
+      "asset": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/assets/audio/6a2209da3b1fe99a3c0174d43e47ab4e50621f4ffcdf6676bb29ee9b065583a0.mp3",
+        "sha256": "6a2209da3b1fe99a3c0174d43e47ab4e50621f4ffcdf6676bb29ee9b065583a0",
+        "byteLength": 18853
+      },
+      "receipt": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/receipts/01a18af2-2037-70c6-bcd2-a734e71609ee.json",
+        "sha256": "1a31dd8e59997fa501890005c5cb320f4e09c3ba1a3ed6a0e413d3dbf392453b",
+        "byteLength": 2310
+      }
+    },
+    {
+      "targetId": "01a18af2-2038-7743-b044-fe0fdd49e822",
+      "draftRef": "w08:activity:a:name",
+      "jobId": "01a18af2-2038-7743-b045-0303dc298467",
+      "kind": "LETTER_NAME_AUDIO",
+      "exactText": "A",
+      "targetIpa": "/eɪ/",
+      "asset": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/assets/audio/6f80cf9bccef142d2f179eee30860c4492749bd67462974d3a4bbc8080f6c27c.mp3",
+        "sha256": "6f80cf9bccef142d2f179eee30860c4492749bd67462974d3a4bbc8080f6c27c",
+        "byteLength": 5029
+      },
+      "receipt": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/receipts/01a18af2-2038-7743-b045-0303dc298467.json",
+        "sha256": "65f98c42fc4fd3a873300039bbe044d92f20f4b5d03fa058677f65177294dd7b",
+        "byteLength": 2201
+      }
+    },
+    {
+      "targetId": "01a18af2-2039-7382-84b6-756642dca319",
+      "draftRef": "w08:activity:i:name",
+      "jobId": "01a18af2-2039-7382-84b6-79269c9fce10",
+      "kind": "LETTER_NAME_AUDIO",
+      "exactText": "I",
+      "targetIpa": "/aɪ/",
+      "asset": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/assets/audio/26a3c1d440a293c33585d5e5bcdd748a445f3d8a73d00a2538f3c5e8709cd229.mp3",
+        "sha256": "26a3c1d440a293c33585d5e5bcdd748a445f3d8a73d00a2538f3c5e8709cd229",
+        "byteLength": 4261
+      },
+      "receipt": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/receipts/01a18af2-2039-7382-84b6-79269c9fce10.json",
+        "sha256": "0fd24b7f0bed28009515c157667676a53f2fb16631a608b4cdeefebfb6b40384",
+        "byteLength": 2209
+      }
+    },
+    {
+      "targetId": "01a18af2-203b-7508-8ad6-7c26b3c7d496",
+      "draftRef": "w08:activity:m:name",
+      "jobId": "01a18af2-203b-7508-8ad6-806a402ba7ac",
+      "kind": "LETTER_NAME_AUDIO",
+      "exactText": "M",
+      "targetIpa": "/em/",
+      "asset": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/assets/audio/17ec90ccc3507194b499a239ac1e401cbf0febbf8cb3bd7814d9b2c798c594ba.mp3",
+        "sha256": "17ec90ccc3507194b499a239ac1e401cbf0febbf8cb3bd7814d9b2c798c594ba",
+        "byteLength": 7141
+      },
+      "receipt": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/receipts/01a18af2-203b-7508-8ad6-806a402ba7ac.json",
+        "sha256": "f736b43df42d452a165357587d3b6ed4362235bf8230a47f4bf1141118cc65e4",
+        "byteLength": 2212
+      }
+    },
+    {
+      "targetId": "01a18af2-203c-75bd-8192-df67dffba348",
+      "draftRef": "w08:activity:s:name",
+      "jobId": "01a18af2-203c-75bd-8192-e174a0119550",
+      "kind": "LETTER_NAME_AUDIO",
+      "exactText": "S",
+      "targetIpa": "/es/",
+      "asset": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/assets/audio/471369b371afc0b69c50d4bfc8b5ddc51ac87cabb9720e59a7d2522cfafb1df9.mp3",
+        "sha256": "471369b371afc0b69c50d4bfc8b5ddc51ac87cabb9720e59a7d2522cfafb1df9",
+        "byteLength": 5605
+      },
+      "receipt": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/receipts/01a18af2-203c-75bd-8192-e174a0119550.json",
+        "sha256": "defdc46eb66f5c7585b5792572c8f236931de9cb12c0aad67f877aee25964b10",
+        "byteLength": 2211
+      }
+    },
+    {
+      "targetId": "01a18af2-203d-71a7-b3a7-f26849668a81",
+      "draftRef": "w08:activity:f:name",
+      "jobId": "01a18af2-203d-71a7-b3a7-f69b9e95d083",
+      "kind": "LETTER_NAME_AUDIO",
+      "exactText": "F",
+      "targetIpa": "/ef/",
+      "asset": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/assets/audio/0ac89760739c5e36c0104ca242d48e4a7b0808c22e23df906adb1f6b257e625c.mp3",
+        "sha256": "0ac89760739c5e36c0104ca242d48e4a7b0808c22e23df906adb1f6b257e625c",
+        "byteLength": 5029
+      },
+      "receipt": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/receipts/01a18af2-203d-71a7-b3a7-f69b9e95d083.json",
+        "sha256": "ef75517a59405cd345385dba10af0c2a22a5d8761a5c0e7a0013d943f81dfd91",
+        "byteLength": 2196
+      }
+    },
+    {
+      "targetId": "01a18af2-203f-776a-874e-e0b5ba6f5109",
+      "draftRef": "w08:activity:t:name",
+      "jobId": "01a18af2-203f-776a-874e-e7c7b64a3ee2",
+      "kind": "LETTER_NAME_AUDIO",
+      "exactText": "T",
+      "targetIpa": "/tiː/",
+      "asset": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/assets/audio/dfc8a5855591e98a1c4dd78654266d01ab6972f8e8140c47c7699b873e6aa88d.mp3",
+        "sha256": "dfc8a5855591e98a1c4dd78654266d01ab6972f8e8140c47c7699b873e6aa88d",
+        "byteLength": 5989
+      },
+      "receipt": {
+        "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/receipts/01a18af2-203f-776a-874e-e7c7b64a3ee2.json",
+        "sha256": "fb329ebe8149e02828d48d9ef1774e80dd80f6f2c9c596e3c08be2152c788804",
+        "byteLength": 2215
+      }
+    }
+  ],
+  "newMediaGenerated": 0,
+  "newIndependentExpertPhoneticReviewClaim": false
+}

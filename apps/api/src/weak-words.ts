@@ -1,3 +1,5 @@
+import { vocabularyProjectionTable } from "./vocabulary-dataset-version";
+import { editorialPreviewDisplayForm, editorialPreviewWord, editorialPreviewExampleEn, editorialPreviewField, editorialPreviewMeaning, editorialPreviewMeaningStatus, editorialPreviewTags } from "./editorial-local-preview";
 import { sql, type SQL } from "drizzle-orm";
 import {
   APP_SCHEMA,
@@ -264,24 +266,24 @@ type WeakWordsData = {
 async function loadWeakWordsData(database: WeakWordsDatabase, learnerId: string, reviewDate: string, datasetVersion: VocabularyDatasetVersion): Promise<WeakWordsData> {
   const result = await database.execute(sql`
     WITH eligible_vocabulary AS (
-      SELECT DISTINCT v.id, v.word, v.ipa,
+      SELECT DISTINCT v.id, ${editorialPreviewWord} AS word, v.ipa,
              COALESCE(v.vietnamese_override, v.vietnamese) AS vietnamese,
              md.source_provenance->'masterV2Identity'->>'sourceMeaningVi' AS source_meaning_vi,
-             sm.short_meaning_vi AS short_meaning_vi, sm.validation_status AS short_meaning_status,
-             v.definition_en, v.example_en,
+             ${editorialPreviewMeaning} AS short_meaning_vi, ${editorialPreviewMeaningStatus} AS short_meaning_status,
+             v.definition_en, ${editorialPreviewExampleEn} AS example_en,
              CASE WHEN v.image_quarantined THEN NULL ELSE v.image_url END AS image_url,
              v.audio_url, v.topic, v.level, v.enabled, v.content_version,
              md.proposal_key AS master_sense_identity,
-             md.source_provenance->'masterV2Identity'->>'displayForm' AS display_form,
-             md.part_of_speech, md.cefr, md.tags, md.examples, md.content_sha256,
-             md.content_review_decision, md.editorial_status, md.rights_status, md.development_media
+             ${editorialPreviewDisplayForm} AS display_form,
+             md.part_of_speech, md.cefr, ${editorialPreviewTags} AS tags, ${editorialPreviewField("examples", sql`md.examples`)} AS examples, md.content_sha256,
+             md.content_review_decision, md.editorial_status, md.rights_status, ${editorialPreviewField("media", sql`md.development_media`)} AS development_media
       FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v
-      LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
+      LEFT JOIN ${vocabularyProjectionTable(datasetVersion)} md ON md.vocabulary_id = v.id
       LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_short_meanings" sm
         ON sm.vocabulary_id = v.id AND sm.source_content_hash = md.content_sha256 AND sm.validation_status = 'VERIFIED'
       WHERE v.enabled = true
         AND ${vocabularyDatasetPredicate("v", datasetVersion)}
-        AND (${datasetVersion === "v2" ? sql`true` : sql`EXISTS (
+        AND (${datasetVersion !== "legacy" ? sql`true` : sql`EXISTS (
           SELECT 1
           FROM "${sql.raw(APP_SCHEMA)}"."learner_learning_sets" lls
           JOIN "${sql.raw(APP_SCHEMA)}"."learning_sets" ls

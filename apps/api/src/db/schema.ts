@@ -184,6 +184,52 @@ export const masterV2DevelopmentProjections = vocabflowApp.table("master_v2_deve
   index("master_v2_development_projections_source_group_idx").on(table.sourceGroupKey)
 ]);
 
+/** Owner-selected local editorial data; not independently reviewed Master V2. */
+export const ownerEditorialLocalProjections = vocabflowApp.table("owner_editorial_local_projections", {
+  proposalKey: text("proposal_key").primaryKey(),
+  sourceGroupKey: text("source_group_key").notNull(),
+  vocabularyId: integer("vocabulary_id").notNull().references(() => vocabularies.id, { onDelete: "no action" }),
+  partOfSpeech: text("part_of_speech").notNull(),
+  cefr: text("cefr"),
+  tags: jsonb("tags").$type<string[]>().notNull(),
+  examples: jsonb("examples").$type<unknown[]>().notNull(),
+  sourceProvenance: jsonb("source_provenance").$type<Record<string, unknown>>().notNull(),
+  contentSha256: text("content_sha256").notNull(),
+  contentReviewDecision: text("content_review_decision").notNull().default("OWNER_SELECTED_LOCAL"),
+  editorialStatus: text("editorial_status").notNull().default("OWNER_LOCAL_CATALOG"),
+  rightsStatus: text("rights_status").notNull().default("OWNER_ATTESTED_MEDIA_TEXT_PROVENANCE_RETAINED"),
+  developmentMedia: jsonb("development_media"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow()
+}, (table) => [
+  unique("owner_editorial_local_vocabulary_unique").on(table.vocabularyId),
+  check("owner_editorial_local_hash_check", sql`${table.contentSha256} ~ '^[0-9a-f]{64}$'`),
+  check("owner_editorial_local_review_check", sql`${table.contentReviewDecision} = 'OWNER_SELECTED_LOCAL'`)
+]);
+
+/** Owner-approved publication, independent of local previews and Master review. */
+export const ownerEditorialProjections = vocabflowApp.table("owner_editorial_projections", {
+  proposalKey: text("proposal_key").primaryKey(),
+  sourceGroupKey: text("source_group_key").notNull(),
+  vocabularyId: integer("vocabulary_id").notNull().references(() => vocabularies.id, { onDelete: "no action" }),
+  partOfSpeech: text("part_of_speech").notNull(),
+  cefr: text("cefr"),
+  tags: jsonb("tags").$type<string[]>().notNull(),
+  examples: jsonb("examples").$type<unknown[]>().notNull(),
+  sourceProvenance: jsonb("source_provenance").$type<Record<string, unknown>>().notNull(),
+  contentSha256: text("content_sha256").notNull(),
+  contentReviewDecision: text("content_review_decision").notNull().default("OWNER_SELECTED_PUBLICATION"),
+  editorialStatus: text("editorial_status").notNull().default("OWNER_PUBLISHED_CATALOG"),
+  rightsStatus: text("rights_status").notNull().default("OWNER_ATTESTED_MEDIA_TEXT_PROVENANCE_RETAINED"),
+  developmentMedia: jsonb("development_media"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow()
+}, table => [
+  unique("owner_editorial_vocabulary_unique").on(table.vocabularyId),
+  check("owner_editorial_hash_check", sql`${table.contentSha256} ~ '^[0-9a-f]{64}$'`),
+  check("owner_editorial_review_check", sql`${table.contentReviewDecision} = 'OWNER_SELECTED_PUBLICATION'`)
+]);
+
 export const masterV2DevelopmentImportRuns = vocabflowApp.table("master_v2_development_import_runs", {
   snapshotFingerprint: text("snapshot_fingerprint").primaryKey(),
   sourceQueueSha256: text("source_queue_sha256").notNull(),

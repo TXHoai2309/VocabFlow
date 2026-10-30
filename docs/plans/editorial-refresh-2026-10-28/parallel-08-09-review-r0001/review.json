@@ -1,0 +1,62 @@
+{
+  "artifactType": "COORDINATOR_REVIEW_08_09",
+  "date": "2026-10-29",
+  "status": "DRAFTS_VERIFIED_WITH_08_CORRECTION_REQUIRED",
+  "inputs": [
+    {
+      "ticketId": "08",
+      "handoffPath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket08-draft-r0001/handoff.json",
+      "handoffSha256": "98744b105a94877d021b187dea45a441c947135d4f18cb1f4e78079810687dcb",
+      "artifactCount": 14,
+      "verifiedInputPins": 6
+    },
+    {
+      "ticketId": "09",
+      "handoffPath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket09-draft-r0001/handoff.json",
+      "handoffSha256": "7c8dc8749ff6e989fb18a9674c1bbb76942be5eb3b12ec724e6e577698b34b2f",
+      "artifactCount": 13,
+      "verifiedInputPins": 6
+    }
+  ],
+  "validation": {
+    "worker08CheckCount": 120,
+    "worker09CheckCount": 14,
+    "worker09InvalidCasesRejected": 12,
+    "allHandoffArtifactHashesAndLengths": "PASS",
+    "all12InputPinChecks": "PASS",
+    "runtimeTests": "NOT_RUN_NO_RUNTIME_CHANGE",
+    "phoneticOrMediaAcceptance": "NOT_PERFORMED_NO_OUTPUT_AUDIO"
+  },
+  "decisions": [
+    {
+      "ticketId": "08",
+      "verdict": "CHANGES_REQUIRED",
+      "findingId": "C08-01",
+      "severity": "P1",
+      "issue": "All12pre-answer instructionVi strings reveal the correct letter;6sound instructions additionally expose target IPA and anchor. cueBeforeAnswer=false does not suppress the independent instructionVi field.",
+      "example": "Nghe tên chữ A, rồi chọn cặp chữ đúng.",
+      "requiredCorrection": "Separate neutral pre-answer instruction from post-answer explanation; enforce audience/phase separation for visible text, accessible labels and media metadata. Add invalid-mutation tests."
+    },
+    {
+      "ticketId": "09",
+      "verdict": "DRAFT_CONTENT_REVIEW_PASS_CONTRACT_PENDING",
+      "scope": "Coordinator read all12EN/VI/context pairs and self-review. No blocking wording issue identified for this draft; not audio or public/canonical acceptance.",
+      "remaining": "Shared typed identity/progress/revision/storage policy and runtime/media remain to implement."
+    }
+  ],
+  "counts": {
+    "letters": 6,
+    "letterActivities": 12,
+    "utteranceItems": 12,
+    "newLexicalSenses": 0,
+    "newMedia": 0
+  },
+  "parallelNextWave": {
+    "worker08": "Fix C08-01 in new r0002 owned directory; preserve r0001.",
+    "worker09": "Build offline shared-contract compatibility fixtures/negative cases against coordinator proposal; preserve r0001.",
+    "coordinator": "Reconcile shared persistence/API/guest/quota proposals; own registry, shared edits and later integration."
+  },
+  "runtimeOrDatabaseWrites": 0,
+  "providerCalls": 0,
+  "sourcePackagesRemainImmutable": true
+}

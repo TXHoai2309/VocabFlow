@@ -126,6 +126,19 @@ describe("global search learner API", () => {
 });
 
 describe("global search database service", () => {
+  it("searches the owner catalog and its rebuilt collections while preserving the V2 collection gate", async () => {
+    const owner = createDatabase();
+    await createGlobalSearchService(owner.database, { datasetVersion: "owner-local" })
+      .search("parent-1", learnerId, { q: "family", limit: 5 });
+    expect(owner.queries[1]!.sql).toContain('"owner_editorial_local_projections"');
+    expect(owner.queries[1]!.params).toContain("VOCABFLOW_OWNER_EDITORIAL_LOCAL");
+    expect(owner.queries[1]!.sql).toMatch(/WHERE ls\.enabled = true\s+AND true/);
+    const v2 = createDatabase();
+    await createGlobalSearchService(v2.database, { datasetVersion: "v2" })
+      .search("parent-1", learnerId, { q: "family", limit: 5 });
+    expect(v2.queries[1]!.sql).toMatch(/WHERE ls\.enabled = true\s+AND false/);
+  });
+
   it("returns learner-scoped vocabulary, accessible topics and enabled Learning Sets", async () => {
     const { database } = createDatabase();
     const response = await createGlobalSearchService(database).search("parent-1", learnerId, { q: "family", limit: 5 });

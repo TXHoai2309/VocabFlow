@@ -105,7 +105,7 @@ async function summaryRow(
 }
 
 async function levelProgressRows(database: ProgressSummaryDatabase, learnerId: string, datasetVersion: VocabularyDatasetVersion): Promise<LevelProgressRow[]> {
-  if (datasetVersion === "v2") {
+  if (datasetVersion !== "legacy") {
     const result = await database.execute(sql`
       SELECT v.level::text AS level,
              COUNT(*) AS total,

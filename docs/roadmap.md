@@ -1,5 +1,47 @@
 # VocabFlow Roadmap and Batch Index
 
+## Current owner priority — US65 Production first, 2026-10-30
+
+In progress. Allnew4,640Cloudinary originals uploaded; Production28-table backup
+and complete1,547replacement rehearsal pass.9,168old unreferenced resources are
+backed up;8,722shared Development assets are retained for the later dev phase.
+Live Production DB/content and old cloud resources remain unchanged. Release
+source/CIboundary is still pending; do not run content apply before compatible
+runtime deployment. [US65](stories/US-65-owner-catalog-production-replacement.md)
+· [checkpoint](plans/editorial-refresh-2026-10-28/owner-production-replacement-2026-10-30.md).
+
+## Current owner priority — US64 local catalog replacement, 2026-10-30
+
+Locally implemented / ready for owner check. Owner-selected 547 + 500 + 500
+packages now form the entire 1,547-entry local catalog, with complete existing
+media and 73 topic sets plus three parent sets. Old10–13 review templates no
+longer govern the active local catalog; historical review evidence remains.
+Further word/media generation stays paused. Foundation08/09 still has six
+missing isolated sounds; full campaign15 and remote release are not closed.
+[US64](stories/US-64-owner-editorial-local-catalog.md) · [evidence](plans/editorial-refresh-2026-10-28/owner-local-catalog-replacement-2026-10-30.md).
+
+Older priorities below describe their recorded dates, not the current catalog.
+
+## Current owner priority —foundation08/09local,2026-10-30
+
+Owner resumed the reviewed letters/utterances drafts. Local implementation has
+24typed targets and18audio;6isolated phonemes still pending unsupported Muse
+capability.12utterances support self-recall;6names support unscored practice.
+Tickets remain in-progress for listening/browser acceptance and missing sound
+recordings. Vocabulary expansion stays paused,10-01review preserved;no change
+to completed05/06/07or public release status. Evidence:
+[foundation execution](plans/editorial-refresh-2026-10-28/foundation-08-09-execution-2026-10-30.md).
+
+## Owner priority — US-63 nine learning levels (2026-10-28)
+
+The owner confirmed nine learner-facing levels. US-63 is locally implemented /
+ready for owner check: the primary Vocabulary selector uses existing CEFR groups
+and explicit Unclassified filtering; grade/topic use supplementary controls.
+Introductory levels remain unavailable
+until curated content and its item model exist. This discovery slice precedes
+further US-62 content work and does not authorize generation, DB writes or
+deployment. See [US-63](stories/US-63-nine-learning-levels.md).
+
 ## Owner priority — US-62 Grade 1–2 themed vocabulary pilot (2026-10-21)
 
 The owner approved a selectable, approximately 30-word pilot across four
