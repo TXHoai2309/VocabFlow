@@ -144,7 +144,7 @@ test("US-32 hides the listening prompt target and maps a wrong choice to FORGOTT
   await expect(page.getByTestId("exercise-prompt")).not.toContainText("apple");
   await expect(page.getByTestId("exercise-audio-button")).toHaveAccessibleName("Nghe phát âm");
   await page.getByRole("button", { name: "book" }).click();
-  await expect(page.getByText("Chưa đúng. Đáp án:")).toBeVisible();
+  await expect(page.getByText("Chưa đúng.", { exact: true })).toBeVisible();
   expect(reviewBody).toMatchObject({ learnerId: learner.id, vocabularyId: 1, result: "FORGOTTEN", expectedRevision: 0 });
 });
 
