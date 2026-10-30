@@ -69,7 +69,8 @@ describe("owner-selected Production publication integrity", () => {
     for (const test of scope.archivedAuthoringTests) {
       expect(test.testFile.startsWith("scripts/")).toBe(true);
       expect(test.testFile).not.toMatch(/scripts\/(?:db-|production-|vercel-|owner-|runtime-|auth-)/);
-      expect(hash(readFileSync(test.testFile))).toBe(test.sha256);
+      // Git checks out CRLF on Windows and LF on Linux; pin the same source text.
+      expect(hash(readFileSync(test.testFile, "utf8").replaceAll("\r\n", "\n"))).toBe(test.sha256);
       expect(test.reason).toContain("Retired Master V2");
     }
     const appTests: string[] = [];
