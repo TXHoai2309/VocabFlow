@@ -239,8 +239,8 @@ describe("Feature #11 learner progress dashboard", () => {
     renderProgress();
 
     expect(await screen.findByTestId("progress-empty-state")).toBeInTheDocument();
-    await waitFor(() => expect(metric("progress-metric-accuracy")).toHaveTextContent("—"));
-    expect(screen.getByTestId("progress-metric-accuracy")).toHaveTextContent("Chưa có lượt ôn");
+    await waitFor(() => expect(screen.getByTestId("progress-metric-accuracy")).toHaveTextContent("Chưa có lượt ôn"));
+    expect(metric("progress-metric-accuracy")).toHaveTextContent("—");
     expect(screen.queryByTestId("accuracy-chart")).not.toBeInTheDocument();
     expect(screen.getByRole("region", { name: "Độ chính xác ôn tập" })).toHaveTextContent("Chưa đủ dữ liệu");
   });
