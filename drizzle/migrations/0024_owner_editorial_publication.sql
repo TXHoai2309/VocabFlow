@@ -24,16 +24,30 @@ ALTER TABLE "vocabflow_app"."owner_editorial_projections" ADD CONSTRAINT "owner_
 -- Compatibility view keeps the current V2 catalog readable before the atomic
 -- owner-catalog cutover. It switches with that transaction, without an empty
 -- catalog between schema/app rollout and the separate reviewed content apply.
-CREATE VIEW "vocabflow_app"."owner_editorial_active_projections" AS
-SELECT proposal_key,source_group_key,vocabulary_id,part_of_speech,cefr,tags,
-  examples,source_provenance,content_sha256,content_review_decision,
-  editorial_status,rights_status,development_media,created_at,updated_at
-FROM "vocabflow_app"."owner_editorial_projections"
-UNION ALL
-SELECT proposal_key,source_group_key,vocabulary_id,part_of_speech,cefr,tags,
-  examples,source_provenance,content_sha256,content_review_decision,
-  editorial_status,rights_status,development_media,created_at,updated_at
-FROM "vocabflow_app"."master_v2_development_projections"
-WHERE NOT EXISTS (SELECT 1 FROM "vocabflow_app"."owner_editorial_projections");
+-- The legacy projection was provisioned by the old catalog importer, so a
+-- fresh migration-only database legitimately has no legacy table to union.
+DO $publication_view$
+BEGIN
+  IF to_regclass('vocabflow_app.master_v2_development_projections') IS NULL THEN
+    EXECUTE 'CREATE VIEW vocabflow_app.owner_editorial_active_projections AS
+      SELECT proposal_key,source_group_key,vocabulary_id,part_of_speech,cefr,tags,
+        examples,source_provenance,content_sha256,content_review_decision,
+        editorial_status,rights_status,development_media,created_at,updated_at
+      FROM vocabflow_app.owner_editorial_projections';
+  ELSE
+    EXECUTE 'CREATE VIEW vocabflow_app.owner_editorial_active_projections AS
+      SELECT proposal_key,source_group_key,vocabulary_id,part_of_speech,cefr,tags,
+        examples,source_provenance,content_sha256,content_review_decision,
+        editorial_status,rights_status,development_media,created_at,updated_at
+      FROM vocabflow_app.owner_editorial_projections
+      UNION ALL
+      SELECT proposal_key,source_group_key,vocabulary_id,part_of_speech,cefr,tags,
+        examples,source_provenance,content_sha256,content_review_decision,
+        editorial_status,rights_status,development_media,created_at,updated_at
+      FROM vocabflow_app.master_v2_development_projections
+      WHERE NOT EXISTS (SELECT 1 FROM vocabflow_app.owner_editorial_projections)';
+  END IF;
+END
+$publication_view$;
 --> statement-breakpoint
 GRANT SELECT ON "vocabflow_app"."owner_editorial_projections", "vocabflow_app"."owner_editorial_active_projections" TO "vocabflow_runtime";

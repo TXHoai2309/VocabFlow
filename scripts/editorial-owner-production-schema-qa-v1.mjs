@@ -21,7 +21,12 @@ async function main(){
     let ready=false;for(let n=0;n<45;n++){if(docker(['pg_isready','-U','qa_admin']).status===0){ready=true;break;}await new Promise(r=>setTimeout(r,1000));}assert(ready,'QA_POSTGRES18_NOT_READY');
     run(`CREATE ROLE vocabflow_runtime NOLOGIN; CREATE SCHEMA vocabflow_app; GRANT USAGE ON SCHEMA vocabflow_app TO vocabflow_runtime;
       CREATE TABLE vocabflow_app.vocabularies(id integer PRIMARY KEY,source_dataset text,enabled boolean);
-      GRANT SELECT ON vocabflow_app.vocabularies TO vocabflow_runtime;
+      GRANT SELECT ON vocabflow_app.vocabularies TO vocabflow_runtime;`);
+    run(readFileSync('drizzle/migrations/0024_owner_editorial_publication.sql','utf8'));
+    assert.equal(run('SET ROLE vocabflow_runtime; SELECT count(*) FROM vocabflow_app.owner_editorial_active_projections'),'0');
+    pass('fresh-migration-only-database-needs-no-importer-created-legacy-table');
+    run(`DROP VIEW vocabflow_app.owner_editorial_active_projections;
+      DROP TABLE vocabflow_app.owner_editorial_projections;
       CREATE TABLE vocabflow_app.master_v2_development_projections(proposal_key text,source_group_key text,vocabulary_id integer,part_of_speech text,cefr text,tags jsonb,examples jsonb,source_provenance jsonb,content_sha256 text,content_review_decision text,editorial_status text,rights_status text,development_media jsonb,created_at timestamptz,updated_at timestamptz);
       INSERT INTO vocabflow_app.vocabularies VALUES(1,'VOCABFLOW_MASTER_V2_DEV',true);
       INSERT INTO vocabflow_app.master_v2_development_projections VALUES('old:one','old',1,'NOUN','A1','[]','[]','{}',repeat('1',64),'PASS','DRAFT','UNKNOWN_REVIEW_REQUIRED','{}',now(),now());`);
